@@ -120,18 +120,24 @@
                         ></span>
                     </oui-button>
 
-                    <oui-button
-                        data-variant="primary"
-                        data-type="submit"
-                        data-variant-nav="next"
-                        data-disabled="$ctrl.isInvalidPaymentMethod()"
-                        data-ng-if="$ctrl.canProceedToCreateProject()"
-                        on-click="$ctrl.sendTrack('new_project_payment_continue')"
-                    >
-                        <span
-                            data-translate="pci_project_new_payment_btn_continue_default"
-                        ></span>
-                    </oui-button>
+                    <div class="d-flex">
+                        <oui-button
+                            data-variant="primary"
+                            data-type="submit"
+                            data-variant-nav="next"
+                            data-disabled="$ctrl.isInvalidPaymentMethod()"
+                            data-ng-if="$ctrl.canProceedToCreateProject()"
+                            data-on-click="$ctrl.sendTrack('new_project_payment_continue')"
+                        >
+                            <span
+                                data-translate="pci_project_new_payment_btn_continue_default"
+                            ></span>
+                        </oui-button>
+                        <oui-spinner
+                            class="m-2" size="s"
+                            data-ng-if="$ctrl.globalLoading.finalize"
+                        ></oui-spinner>
+                    </div>
 
                     <oui-button
                         variant="primary"
