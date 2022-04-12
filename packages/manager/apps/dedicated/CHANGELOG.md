@@ -1,3 +1,12 @@
+## [17.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.1...@ovh-ux/manager-dedicated@17.16.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* check country to display GST ([#6872](https://github.com/ovh/manager/issues/6872)) ([#6883](https://github.com/ovh/manager/issues/6883)) ([28fa8df](https://github.com/ovh/manager/commit/28fa8dfc8e0f7c857cea293a7ba07a308bc025b8))
+
+
+
 ## [17.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.0...@ovh-ux/manager-dedicated@17.16.1) (2022-04-12)
 
 
