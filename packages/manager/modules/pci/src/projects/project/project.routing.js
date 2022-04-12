@@ -110,7 +110,18 @@ export default /* @ngInject */ ($stateProvider) => {
       customerRegions: /* @ngInject */ (PciProject, projectId) =>
         PciProject.getCustomerRegions(projectId),
 
-      onCreateProjectClick: /* @ngInject */ (goToCreateProject) => () => {
+      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+        return atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
+      },
+
+      onCreateProjectClick: /* @ngInject */ (trackClick, goToCreateProject) => (
+        hit,
+      ) => {
+        trackClick(hit);
+
         return goToCreateProject();
       },
 

@@ -19,6 +19,7 @@ export default {
     pciFeatureRedirect: '<',
     trackPage: '<',
     sendTrack: '<',
+    trackClick: '<',
   },
   controller,
   template,
