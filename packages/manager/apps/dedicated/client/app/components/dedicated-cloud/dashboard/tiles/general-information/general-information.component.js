@@ -6,7 +6,7 @@ export default {
     currentService: '<',
     editDetails: '<',
     onUpgradeVersion: '<',
-    onAssociateIpBlock: '<',
+    associateIpBlockLink: '<',
     onExecutionDateChange: '<',
     trackingPrefix: '<',
   },

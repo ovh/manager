@@ -17,7 +17,7 @@ export default {
     isDrpActionPossible: '<',
     isMailingListSubscriptionAvailable: '<',
     onUpgradeVersion: '<',
-    onAssociateIpBlock: '<',
+    associateIpBlockLink: '<',
     onExecutionDateChange: '<',
     onMlSubscribe: '<',
     onTerminate: '<',
