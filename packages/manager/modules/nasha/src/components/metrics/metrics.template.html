@@ -1,39 +1,36 @@
-<div class="col-xs-12 well top-space-p20">
+<div class="nasha-components-metrics col-xs-12 well top-space-p20">
     <div class="row">
         <div class="col-xs-12 col-lg-7">
             <dl class="dl-horizontal">
                 <dt
-                    data-translate="nasha_dashboard_ip"
+                    data-translate="nasha_components_metrics_ip"
+                    class="bottom-space-m4"
+                ></dt>
+                <dd data-ng-bind="$ctrl.nasha.ip" class="bottom-space-m8"></dd>
+                <dt
+                    data-translate="nasha_components_metrics_datacenter"
                     class="bottom-space-m4"
                 ></dt>
                 <dd
-                    data-ng-bind="NashaCtrl.data.nasha.ip"
+                    data-translate="{{:: ('nasha_components_metrics_datacenter_' + $ctrl.nasha.datacenter) }}"
                     class="bottom-space-m8"
                 ></dd>
                 <dt
-                    data-translate="nasha_dashboard_datacenter"
-                    class="bottom-space-m4"
-                ></dt>
-                <dd
-                    data-translate="{{ ::'nasha_datacenter_' + NashaCtrl.data.nasha.datacenter }}"
-                    class="bottom-space-m8"
-                ></dd>
-                <dt
-                    data-translate="nasha_dashboard_capacity"
+                    data-translate="nasha_components_metrics_capacity"
                     class="bottom-space-m4"
                 ></dt>
                 <dd class="info-total-capacity">
                     <nasha-components-space-meter
                         class="cloud-space-meter"
-                        data-usage="NashaCtrl.data.nasha.use"
+                        data-usage="$ctrl.nasha.use"
                         data-legend="true"
                         data-large="true"
                     >
                     </nasha-components-space-meter>
                     <span class="info-total-capacity-text">
-                        <i
-                            data-translate="nasha_dashboard_capacity_delay_text"
-                        ></i>
+                        <em
+                            data-translate="nasha_components_metrics_capacity_delay_text"
+                        ></em>
                     </span>
                 </dd>
             </dl>
@@ -42,38 +39,33 @@
         <div class="col-xs-12 col-lg-5 pull-right">
             <dl class="dl-horizontal bottom-space-m0">
                 <dt
-                    data-translate="nasha_dashboard_creation_date"
+                    data-translate="nasha_components_metrics_creation_date"
                     class="bottom-space-m4"
                 ></dt>
                 <dd
-                    data-ng-bind="NashaCtrl.data.information.creation | date:'mediumDate'"
+                    data-ng-bind="$ctrl.serviceInfo.creation | date:'mediumDate'"
                     class="bottom-space-m8"
                 ></dd>
-                <dd
-                    data-ng-show="NashaCtrl.loaders.information"
-                    class="loader-inline bottom-space-m8"
-                ></dd>
-
                 <dt
-                    data-translate="nasha_dashboard_expiration_date"
+                    data-translate="nasha_components_metrics_expiration_date"
                     class="bottom-space-m4"
                 ></dt>
                 <dd class="bottom-space-m8">
                     <span
-                        data-ng-bind="NashaCtrl.data.information.expiration | date:'mediumDate'"
+                        data-ng-bind="$ctrl.serviceInfo.expiration | date:'mediumDate'"
                     ></span>
                     <a
-                        data-ng-show="NashaCtrl.urlRenew"
-                        data-ng-href="{{NashaCtrl.urlRenew}}"
+                        data-ng-show="$ctrl.urlRenew"
+                        data-ng-href="{{ $ctrl.urlRenew }}"
                         class="oui-button_ghost"
-                        target="_top"
                     >
-                        <span data-translate="nasha_common_renew"></span>
+                        <span
+                            data-translate="nasha_components_metrics_renew"
+                        ></span>
                     </a>
                 </dd>
-
                 <dt
-                    data-translate="nasha_dashboard_space_usage"
+                    data-translate="nasha_components_metrics_space_usage"
                     class="bottom-space-m4"
                 ></dt>
                 <dd class="bottom-space-m8">
@@ -84,9 +76,9 @@
                                     <input
                                         type="checkbox"
                                         class="oui-switch__checkbox"
-                                        data-ng-disabled="NashaCtrl.monitoring.loading"
-                                        data-ng-model="NashaCtrl.monitoring.enabled"
-                                        data-ng-change="NashaCtrl.updateMonitoringState(NashaCtrl.monitoring.enabled)"
+                                        data-ng-model="$ctrl.nasha.monitored"
+                                        data-ng-disabled="$ctrl.monitoredDisabled"
+                                        data-ng-change="$ctrl.onMonitoredChanged($value)"
                                     />
                                     <span
                                         class="oui-switch__slider"
@@ -97,13 +89,13 @@
                         </label>
                     </div>
                     <span>&nbsp;</span>
-                    <i
+                    <em
                         class="oui-icon pointer oui-icon-help-circle"
                         data-responsive-popover="'nasha/information/nasha-information-usage-help.html'"
                         data-popover-placement="bottom"
                         data-popover-trigger="outsideClick"
                     >
-                    </i>
+                    </em>
                 </dd>
             </dl>
         </div>

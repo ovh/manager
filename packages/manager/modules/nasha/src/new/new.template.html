@@ -1,39 +1,38 @@
 <div>
-    <oui-header data-heading="{{::'nasha_order_title' | translate}}">
+    <oui-header data-heading="{{::'nasha_new_title' | translate}}">
     </oui-header>
 
     <!-- init loading... -->
     <cui-message-container
-        data-ng-if="!NashaAddCtrl.isLoadingOfferData()"
-        data-messages="NashaAddCtrl.messages"
+        data-ng-if="!$ctrl.isLoadingOfferData()"
+        data-messages="$ctrl.messages"
     >
     </cui-message-container>
 
     <div>
-        <div class="text-center" data-ng-if="NashaAddCtrl.isLoadingOfferData()">
+        <div class="text-center" data-ng-if="$ctrl.isLoadingOfferData()">
             <oui-spinner size="l"></oui-spinner>
         </div>
 
-        <div data-ng-if="!NashaAddCtrl.isLoadingOfferData()">
+        <div data-ng-if="!$ctrl.isLoadingOfferData()">
             <!--Step One-->
             <div>
                 <h2
                     class="oui-heading_2"
-                    data-translate="nasha_order_step_1_configure"
+                    data-translate="nasha_new_step_1_configure"
                 ></h2>
             </div>
 
             <div>
                 <form
                     name="nashaOrderForm"
-                    data-ng-submit="NashaAddCtrl.order()"
-                    target="_top"
+                    data-ng-submit="$ctrl.order()"
                     novalidate
                 >
                     <div class="oui-field">
                         <label
                             class="oui-field__label oui-label"
-                            data-translate="nasha_order_name"
+                            data-translate="nasha_new_name"
                             for="selectModel"
                         ></label>
                         <div class="oui-field__content">
@@ -43,13 +42,13 @@
                                         id="selectModel"
                                         name="select"
                                         class="oui-select__input"
-                                        data-ng-change="NashaAddCtrl.onOfferChanged()"
-                                        data-ng-model="NashaAddCtrl.data.selectedModel"
-                                        data-ng-options="offer.planCode as offer.productName + ' - ' + offer.prices[0].price.text + '/' + ('nas_order_month' | translate) for offer in NashaAddCtrl.offers.data | orderBy: 'prices[0].priceInUcents'"
+                                        data-ng-change="$ctrl.onOfferChanged()"
+                                        data-ng-model="$ctrl.data.selectedModel"
+                                        data-ng-options="offer.planCode as offer.productName + ' - ' + offer.prices[0].price.text + '/' + ('nasha_new_month' | translate) for offer in $ctrl.offers.data | orderBy: 'prices[0].priceInUcents'"
                                     >
                                         <option
                                             value
-                                            data-translate="nasha_order_select_placeholder"
+                                            data-translate="nasha_new_select_placeholder"
                                         ></option>
                                     </select>
                                     <i
@@ -64,7 +63,7 @@
                     <div class="oui-field">
                         <label
                             class="oui-field__label oui-label"
-                            data-translate="nasha_order_datacenter"
+                            data-translate="nasha_new_datacenter"
                             for="selectDatacenter"
                         ></label>
                         <div class="oui-field__content">
@@ -74,12 +73,12 @@
                                         id="selectDatacenter"
                                         name="select"
                                         class="oui-select__input"
-                                        data-ng-model="NashaAddCtrl.data.selectedDatacenter"
-                                        data-ng-options="datacenter as ('nasha_order_datacenter_' + datacenter.toLowerCase() | translate) for datacenter in NashaAddCtrl.datacenters"
+                                        data-ng-model="$ctrl.data.selectedDatacenter"
+                                        data-ng-options="datacenter as ('nasha_new_datacenter_' + datacenter.toLowerCase() | translate) for datacenter in $ctrl.datacenters"
                                     >
                                         <option
                                             value
-                                            data-translate="nasha_order_select_placeholder"
+                                            data-translate="nasha_new_select_placeholder"
                                         ></option>
                                     </select>
                                     <i
@@ -94,13 +93,13 @@
                     <div>
                         <button
                             type="submit"
-                            data-ng-show="!NashaAddCtrl.isLoadingOfferData()"
+                            data-ng-show="!$ctrl.isLoadingOfferData()"
                             class="oui-button oui-button_primary"
-                            data-translate="nasha_common_validate"
-                            data-ng-disabled="!NashaAddCtrl.data.selectedDatacenter || !NashaAddCtrl.data.selectedModel || !NashaAddCtrl.data.selectedDuration || NashaAddCtrl.data.orderValidated"
+                            data-translate="nasha_new_validate"
+                            data-ng-disabled="!$ctrl.data.selectedDatacenter || !$ctrl.data.selectedModel || !$ctrl.data.selectedDuration || $ctrl.data.orderValidated"
                         ></button>
                         <oui-spinner
-                            data-ng-show="NashaAddCtrl.isLoadingOfferData()"
+                            data-ng-show="$ctrl.isLoadingOfferData()"
                             size="s"
                         ></oui-spinner>
                     </div>

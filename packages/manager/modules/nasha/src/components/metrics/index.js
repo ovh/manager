@@ -3,23 +3,19 @@ import angular from 'angular';
 import 'angular-ui-bootstrap';
 import '@ovh-ux/ng-translate-async-loader';
 
-import legend from './legend';
-import spaceLeft from './space-left';
+import spaceMeterModule from '../space-meter';
 
-import component from './component';
+import component from './metrics.component';
 
-import './index.less';
-
-const moduleName = 'ovhManagerNashaComponentsSpaceMeter';
+const moduleName = 'ovhManagerNashaComponentsMetrics';
 
 angular
   .module(moduleName, [
     'ui.bootstrap',
     'ngTranslateAsyncLoader',
-    legend,
-    spaceLeft,
+    spaceMeterModule,
   ])
-  .component('nashaComponentsSpaceMeter', component)
+  .component('nashaComponentsMetrics', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,4 +1,4 @@
-export default class NashaAddCtrl {
+export default class NashaNewController {
   /* @ngInject */
   constructor(
     $translate,
@@ -7,7 +7,7 @@ export default class NashaAddCtrl {
     atInternet,
     CucCloudMessage,
     CucControllerHelper,
-    NashaAddService,
+    NashaOrderService,
   ) {
     this.$translate = $translate;
     this.$state = $state;
@@ -15,7 +15,7 @@ export default class NashaAddCtrl {
     this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
-    this.NashaAddService = NashaAddService;
+    this.NashaOrderService = NashaOrderService;
 
     this.data = {};
     this.messages = {};
@@ -44,7 +44,7 @@ export default class NashaAddCtrl {
         .replace(/-/g, '_')}::${this.data.selectedDatacenter}`,
       type: 'action',
     });
-    this.NashaAddService.order(this.data).then(({ url }) =>
+    this.NashaOrderService.order(this.data).then(({ url }) =>
       this.$window.open(url, '_blank'),
     );
   }
@@ -60,27 +60,27 @@ export default class NashaAddCtrl {
   initLoaders() {
     this.offers = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
-        this.NashaAddService.getOffers().then((offers) => {
+        this.NashaOrderService.getOffers().then((offers) => {
           this.allOffers = offers;
           return offers;
         }),
     });
 
     this.catalog = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.NashaAddService.getCatalog(),
+      loaderFunction: () => this.NashaOrderService.getCatalog(),
     });
   }
 
   loadMessages() {
-    const stateName = 'nasha-add';
+    const stateName = 'nasha.new';
     this.CucCloudMessage.unSubscribe(stateName);
     this.messageHandler = this.CucCloudMessage.subscribe(stateName, {
       onMessage: () => this.refreshMessage(),
     });
     this.CucCloudMessage.info(
-      this.$translate.instant('nasha_order_datacenter_unavailable', {
-        region: this.$translate.instant('nasha_order_datacenter_gra'),
-        fallback: this.$translate.instant('nasha_order_datacenter_rbx'),
+      this.$translate.instant('nasha_new_datacenter_unavailable', {
+        region: this.$translate.instant('nasha_new_datacenter_gra'),
+        fallback: this.$translate.instant('nasha_new_datacenter_rbx'),
       }),
     );
   }

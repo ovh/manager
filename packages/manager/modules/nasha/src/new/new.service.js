@@ -1,7 +1,7 @@
 import forEach from 'lodash/forEach';
 import set from 'lodash/set';
 
-export default class NashaAddService {
+export default class NashaOrderService {
   /* @ngInject */
   constructor(
     $http,
@@ -56,7 +56,7 @@ export default class NashaAddService {
           set(
             offer,
             'productName',
-            this.$translate.instant(`nasha_order_nasha_${offer.planCode}`),
+            this.$translate.instant(`nasha_new_nasha_${offer.planCode}`),
           );
         });
 
@@ -71,7 +71,7 @@ export default class NashaAddService {
 
         return response.offers;
       })
-      .catch(this.CucServiceHelper.errorHandler('nasha_order_loading_error'));
+      .catch(this.CucServiceHelper.errorHandler('nasha_new_loading_error'));
   }
 
   order(model) {
@@ -89,8 +89,6 @@ export default class NashaAddService {
       ],
     })
       .then((response) => ({ url: response }))
-      .catch(
-        this.CucServiceHelper.errorHandler('nasha_order_validation_error'),
-      );
+      .catch(this.CucServiceHelper.errorHandler('nasha_new_validation_error'));
   }
 }

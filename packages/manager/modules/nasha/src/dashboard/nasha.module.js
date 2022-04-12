@@ -14,20 +14,16 @@ import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 
 import NashaCtrl from './controller';
-import NashaAddCtrl from '../add/nasha-add.controller';
-import NashaUnavailableCtrl from '../add/nasha-unavailable.controller';
 
 import informationTemplate from '../information/nasha-information.html';
 import usageHelpTemplate from '../information/nasha-information-usage-help.html';
 
-import NashaAddService from '../add/nasha-add.service';
 import partition from '../partition';
 import routing from './routing';
 import cucAutoComplete from '../components/autocomplete';
 import cucSpaceMeter from '../components/space-meter';
 
 import './styles.less';
-import '../add/styles.less';
 
 const moduleName = 'ovhManagerNashaDashboard';
 
@@ -56,10 +52,6 @@ angular
     },
   )
   .controller('NashaCtrl', NashaCtrl)
-  .controller('NashaAddCtrl', NashaAddCtrl)
-  .controller('NashaUnavailableCtrl', NashaUnavailableCtrl)
-  .service('NashaAddService', NashaAddService)
-  .run(/* @ngTranslationsInject:json ./translations ../add/translations */)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
