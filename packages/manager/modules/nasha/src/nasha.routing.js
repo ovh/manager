@@ -1,24 +1,19 @@
-import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { NASHA_TITLE } from './nasha.constants';
 
-export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nasha.index', {
-    url: `?${ListLayoutHelper.urlQueryParams}`,
-    component: 'managerListLayout',
-    params: ListLayoutHelper.stateParams,
+export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+  $stateProvider.state('nasha', {
+    url: '/nasha',
+    redirectTo: 'nasha.directory',
+    template: '<div ui-view></div>',
     resolve: {
-      ...ListLayoutHelper.stateResolves,
-      apiPath: () => '/dedicated/nasha',
-      dataModel: () => 'dedicated.nasha.Storage',
-      defaultFilterColumn: () => 'serviceName',
-      header: () => 'NASHA',
-      customizableColumns: () => true,
-      getServiceNameLink: /* @ngInject */ ($state) => ({
-        serviceName: nashaId,
-      }) =>
-        $state.href('nasha.dashboard', {
-          nashaId,
-        }),
-      hideBreadcrumb: () => true,
+      breadcrumb: () => NASHA_TITLE,
     },
+  });
+
+  $urlRouterProvider.when(/^\/paas\/nasha/, () => {
+    window.location.href = window.location.href.replace(
+      '/paas/nasha',
+      '/nasha',
+    );
   });
 };
