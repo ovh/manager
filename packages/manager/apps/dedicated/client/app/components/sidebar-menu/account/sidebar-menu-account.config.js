@@ -114,7 +114,7 @@ angular
               });
             }
 
-            if (coreConfig.isRegion('EU') || coreConfig.isRegion('CA')) {
+            if (['EU', 'CA'].includes(coreConfig.getRegion())) {
               SidebarMenu.addMenuItem({
                 name: 'billingContacts',
                 title: $translate.instant('menu_contacts'),
