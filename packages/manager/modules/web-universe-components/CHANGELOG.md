@@ -1,3 +1,12 @@
+## [9.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.4.0...@ovh-ux/ng-ovh-web-universe-components@9.4.1) (2022-04-12)
+
+
+### Bug Fixes
+
+* add target _top to links ([2d375e6](https://github.com/ovh/manager/commit/2d375e6ac23773f6d4f9780aa3fa8df903692adc))
+
+
+
 # [9.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.3.4...@ovh-ux/ng-ovh-web-universe-components@9.4.0) (2022-04-06)
 
 

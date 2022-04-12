@@ -1,3 +1,12 @@
+## [13.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.36.1...@ovh-ux/manager-telecom@13.36.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* add target _top to links ([2d375e6](https://github.com/ovh/manager/commit/2d375e6ac23773f6d4f9780aa3fa8df903692adc))
+
+
+
 ## [13.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.36.0...@ovh-ux/manager-telecom@13.36.1) (2022-04-06)
 
 

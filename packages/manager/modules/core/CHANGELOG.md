@@ -1,3 +1,12 @@
+# [12.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.10.3...@ovh-ux/manager-core@12.11.0) (2022-04-12)
+
+
+### Features
+
+* **ovh-shell:** add new shell plugins ([5616f7b](https://github.com/ovh/manager/commit/5616f7bf829404510e86fa26cf2dd06facfc65a8))
+
+
+
 ## [12.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.10.2...@ovh-ux/manager-core@12.10.3) (2022-03-24)
 
 

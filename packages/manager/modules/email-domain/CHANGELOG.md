@@ -1,3 +1,12 @@
+## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.0.5...@ovh-ux/manager-email-domain@1.0.6) (2022-04-12)
+
+
+### Bug Fixes
+
+* add target _top to links ([2d375e6](https://github.com/ovh/manager/commit/2d375e6ac23773f6d4f9780aa3fa8df903692adc))
+
+
+
 ## [1.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.0.4...@ovh-ux/manager-email-domain@1.0.5) (2022-03-24)
 
 
