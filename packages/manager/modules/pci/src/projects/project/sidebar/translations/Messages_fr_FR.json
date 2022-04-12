@@ -1,5 +1,6 @@
 {
   "cloud_sidebar_public_cloud": "Public Cloud",
+  "cloud_sidebar_public_cloud_create_project": "Créer un nouveau projet",
   "cloud_sidebar_compute": "Compute",
   "cloud_sidebar_compute_instance": "Instances",
   "cloud_sidebar_storage": "Storage",
