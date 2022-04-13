@@ -482,6 +482,12 @@ export default class PciProjectNewPaymentCtrl {
     this.hasComponentRedirectCallback = false;
   }
 
+  onContactUsLinkClick() {
+    this.trackClick(
+      'PublicCloud::pci::projects::new_project_payment_contact-us',
+    );
+  }
+
   /* -----  End of Callbacks  ------ */
 
   /* ============================
