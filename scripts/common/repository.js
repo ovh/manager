@@ -1,4 +1,4 @@
-/* eslint-disable global-require, import/no-dynamic-require,
+/* eslint-disable global-require,
 max-classes-per-file, no-use-before-define */
 const concat = require('concat-stream');
 const conventionalCommitsParser = require('conventional-commits-parser');
@@ -188,7 +188,7 @@ class Repository {
   }
 
   getPackageJson() {
-    return require(this.getPackageJsonPath());
+    return require(this.getPackageJsonPath()); // eslint-disable-line
   }
 
   updatePackageJson(changes) {
@@ -450,5 +450,5 @@ module.exports = {
   Repository,
   Dependency,
 };
-/* eslint-enable global-require, import/no-dynamic-require,
+/* eslint-enable global-require,
 max-classes-per-file, no-use-before-define */
