@@ -7,6 +7,6 @@
   "cloud_connect_stats_period": "Częstotliwość zbierania danych",
   "cloud_connect_stats_period_hourly": "Co godzinę",
   "cloud_connect_stats_period_daily": "Codziennie",
-  "cloud_connect_stats_period_weekly": "Co tydzień",
+  "cloud_connect_stats_period_weekly": "Raz w tygodniu",
   "cloud_connect_stats_no_data": "Brak danych"
 }

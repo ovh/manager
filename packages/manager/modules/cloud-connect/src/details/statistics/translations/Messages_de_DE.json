@@ -7,6 +7,6 @@
   "cloud_connect_stats_period": "Frequenz",
   "cloud_connect_stats_period_hourly": "Stündlich",
   "cloud_connect_stats_period_daily": "Täglich",
-  "cloud_connect_stats_period_weekly": "Wöchentlich",
+  "cloud_connect_stats_period_weekly": "wöchentlich",
   "cloud_connect_stats_no_data": "Keine Daten gefunden"
 }
