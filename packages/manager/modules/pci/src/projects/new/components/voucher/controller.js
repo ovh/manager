@@ -120,12 +120,13 @@ export default class PciProjectNewVoucherCtrl {
   onVoucherFormReset() {
     this.loading.reset = true;
     this.globalLoading.isVoucherValidating = true;
-    this.disablePaymentMethods(true);
 
     this.pciProjectNew
       .removeCartProjectItemVoucher(this.cart)
       .then(() => {
         this.model.voucher.reset();
+        this.model.voucher.setValue('');
+
         this.errors.reset = false;
         this.model.isVoucherRequirePaymentMethod = true;
       })
