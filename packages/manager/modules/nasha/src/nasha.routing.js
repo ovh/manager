@@ -3,7 +3,6 @@ import { NASHA_TITLE } from './nasha.constants';
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('nasha', {
     url: '/nasha',
-    redirectTo: 'nasha.directory',
     template: '<div ui-view></div>',
     resolve: {
       breadcrumb: () => NASHA_TITLE,
@@ -11,9 +10,12 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('resources')
-        .then((resources) =>
-          resources.data.length === 0 ? 'nasha.onboarding' : false,
+        .get('iceberg')('/dedicated/nasha')
+        .query()
+        .limit(1)
+        .execute(null)
+        .$promise.then(({ data }) =>
+          data.length ? 'nasha.directory' : 'nasha.onboarding',
         ),
   });
 

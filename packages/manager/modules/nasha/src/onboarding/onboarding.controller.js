@@ -1,20 +1,18 @@
-import { GUIDES } from './constants';
+import illustration from './assets/instance.png';
+import { GUIDES } from './onboarding.constants';
+import { NASHA_TITLE } from '../nasha.constants';
 
-export default class OnboardingNashaController {
+export default class NashaOnboardingController {
   /* @ngInject */
-  constructor($translate, coreConfig, coreURLBuilder) {
-    this.$translate = $translate;
-    this.coreConfig = coreConfig;
-    this.cta = coreURLBuilder.buildURL('dedicated', '#/nasha/new');
-  }
-
-  async $onInit() {
-    const user = await this.coreConfig.getUser();
-    this.ovhSubsidiary = user.ovhSubsidiary;
+  constructor($translate, coreConfig) {
+    const { ovhSubsidiary } = coreConfig.getUser();
+    this.illustration = illustration;
+    this.title = NASHA_TITLE;
     this.guides = GUIDES.map((guide) => ({
-      link: guide.links[this.ovhSubsidiary] || guide.links.DEFAULT,
-      description: this.$translate.instant(guide.description),
-      title: this.$translate.instant(guide.title),
+      ...guide,
+      title: $translate.instant(`nasha_onboarding_${guide.id}_title`),
+      description: $translate.instant(`nasha_onboarding_${guide.id}_content`),
+      link: guide.link[ovhSubsidiary] || guide.link.WW,
     }));
   }
 }
