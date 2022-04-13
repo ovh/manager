@@ -1,17 +1,6 @@
+import { User } from '@ovh-ux/manager-config';
+
 import { EXCLUDED_ROLES } from './constants';
-
-type UserAuth = {
-  method: string;
-};
-
-/* TODO import User from @ovh-ux when possible */
-type User = {
-  auth: UserAuth;
-  firstname: string;
-  isTrusted: boolean;
-  name: string;
-  supportLevel: string;
-};
 
 interface UseUserInfos {
   getUser(): User;
