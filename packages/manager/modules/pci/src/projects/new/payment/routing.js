@@ -5,6 +5,7 @@ import get from 'lodash/get';
 import { CREDIT_PROVISIONING } from './components/add/constants';
 
 import component from './component';
+import { PCI_PROJECT_STEPS } from '../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.new.payment', {
@@ -55,6 +56,24 @@ export default /* @ngInject */ ($stateProvider) => {
         name: 'PublicCloud::pci::projects::new::payment',
         pciCreationNumProjects: numProjects,
       });
+    },
+    redirectTo: (transition) => {
+      const injector = transition.injector();
+      const modelPromise = injector.getAsync('model');
+      const activeStepPromise = injector.getAsync('activeStep');
+
+      return Promise.all([modelPromise, activeStepPromise]).then(
+        ([model, activeStep]) => {
+          if (model?.agreements) {
+            return false;
+          }
+
+          activeStep(PCI_PROJECT_STEPS.CONFIGURATION);
+          return {
+            state: 'pci.projects.new',
+          };
+        },
+      );
     },
     resolve: {
       callback: /* @ngInject */ ($location) => $location.search(),

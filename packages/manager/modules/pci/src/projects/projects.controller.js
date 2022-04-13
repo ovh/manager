@@ -26,4 +26,10 @@ export default class {
       );
     });
   }
+
+  onCreateProjectClick() {
+    this.trackClick('public-cloud_project-listing_create-instance');
+
+    return this.goToNewProject();
+  }
 }
