@@ -1,3 +1,15 @@
+# [5.67.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.66.1...@ovh-ux/manager-pci@5.67.0) (2022-04-13)
+
+
+### Features
+
+* add a banner to help create incident ticket ([#6860](https://github.com/ovh/manager/issues/6860)) ([fbb179b](https://github.com/ovh/manager/commit/fbb179b75abec680e43a543d8d63fd6ea32b388c))
+* create project from sidebar ([#6867](https://github.com/ovh/manager/issues/6867)) ([9dc8f20](https://github.com/ovh/manager/commit/9dc8f20b076fe24dae3d2f120010c3bb01a17f48))
+* **pci.projects.new.payment:** add create project spinner ([#6853](https://github.com/ovh/manager/issues/6853)) ([a349d00](https://github.com/ovh/manager/commit/a349d00206ebb46a4b5e3265ed77631cf5280682))
+* **pci.projects.new.payment:** redirect to step1 if no agreements ([4760eb6](https://github.com/ovh/manager/commit/4760eb6ec9ea6483290b1ab47324ff538c4bac36))
+
+
+
 ## [5.66.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.66.0...@ovh-ux/manager-pci@5.66.1) (2022-04-12)
 
 
