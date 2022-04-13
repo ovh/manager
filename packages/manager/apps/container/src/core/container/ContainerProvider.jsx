@@ -11,6 +11,7 @@ export const ContainerProvider = ({ children }) => {
   const [isBeta, setIsBeta] = useState(false);
   const [askBeta, setAskBeta] = useState(false);
 
+  let isMounted = true;
   let containerContext = useContext(ContainerContext);
 
   const updateBetaChoice = async (accept = false) => {
@@ -53,13 +54,17 @@ export const ContainerProvider = ({ children }) => {
           throw error;
         }
       })
-      .finally(() => setIsLoading(false));
+      .finally(() => isMounted && setIsLoading(false));
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   containerContext = {
     createBetaChoice,
     askBeta,
     isBeta,
+    isLoading,
     updateBetaChoice,
   };
 
