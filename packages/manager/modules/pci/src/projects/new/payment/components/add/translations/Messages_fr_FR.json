@@ -1,5 +1,5 @@
 {
-  "pci_project_new_payment_method_save_explain_part_1": "L’enregistrement d’un moyen de paiement est nécessaire afin de valider votre identité et permettre la création de votre projet.",
+  "pci_project_new_payment_method_save_explain_part_1": "Pour créer un projet, vous devez d’abord valider votre identité via l’ajout d’un moyen de paiement. Cela nous permet de mieux protéger notre communauté contre les spammeurs et les bots.",
   "pci_project_new_payment_method_save_explain_part_2": "Sans utilisation de nos offres OVHCloud, vous n’aurez aucun frais à payer.",
   "pci_project_new_payment_method_add_explain": "L'enregistrement d'un moyen de paiement est nécessaire afin de valider votre identité. Tant que vous ne consommez rien vous ne serez pas débité ou prélevé.",
   "pci_project_new_payment_method_add_info_paypal": "En cliquant sur « Paypal » vous allez être redirigé vers l’interface sécurisée de PayPal pour enregistrer votre compte.",
