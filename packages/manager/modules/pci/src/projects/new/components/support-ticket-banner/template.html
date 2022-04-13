@@ -1,0 +1,22 @@
+<div
+    data-ng-if="$ctrl.supportTicketLink"
+>
+    <span class="mx-1 oui-icon oui-icon-info-circle"></span>
+    <span
+        class="mb-2 font-weight-bold"
+        data-translate="pci_project_new_config_create_project_title"
+    ></span>
+    <span
+        class="d-block text-justify"
+        data-translate="pci_project_new_config_create_project_info"
+    ></span>
+    <a
+        class="d-block"
+        data-ng-href="{{:: $ctrl.supportTicketLink}}"
+        target="_blank"
+        rel="noopener"
+    >
+        <span data-translate="pci_project_new_config_create_project_info_link"></span>
+        <i class="oui-icon oui-icon-external-link" aria-hidden="true"></i>
+    </a>
+</div>
