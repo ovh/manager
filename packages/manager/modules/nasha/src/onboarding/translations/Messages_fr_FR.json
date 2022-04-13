@@ -1,12 +1,9 @@
 {
-  "nasha_onboarding_title": "Serveur NAS-HA",
-  "nasha_onboarding_description_bold": "De 3 à 36 To d'espace supplémentaire pour vos solutions OVHcloud",
-  "nasha_onboarding_description": "Avec les espaces de stockage NAS-HA d'OVHcloud, vous disposez d’une plateforme centralisée pour entreposer ou sauvegarder vos données. L’accès s'effectue par le serveur principal. En cas de problème, le serveur secondaire reprend le service, garantissant ainsi une haute disponibilité pour vos informations.",
-  "nasha_onboarding_guide1_title": "Premiers pas avec un NAS-HA",
-  "nasha_onboarding_guide1_description": "Découvrez comment gérer un NAS-HA depuis l'espace client OVHcloud",
-  "nasha_onboarding_guide2_title": "Monter votre NAS sur Windows Server via CIFS",
-  "nasha_onboarding_guide2_description": "Decouvrez comment monter un NAS sur Windows Server via CIFS.",
-  "nasha_onboarding_guide3_title": "Les questions fréquentes concernant le NAS",
-  "nasha_onboarding_guide3_description": "Une question sur le NAS ? Voici les questions les plus fréquemment posées.",
-  "nasha_onboarding_cta": "Commander"
+  "nasha_onboarding_content": "Découvrez des services de stockage managés qui s’appuient sur le système de fichiers OpenZFS. Bénéficiez en quelques clics d’espaces de stockage centralisés pour entreposer ou sauvegarder vos données et fichiers.",
+  "nasha_onboarding_getting-started_title": "Premiers pas avec un NAS-HA",
+  "nasha_onboarding_getting-started_content": "Découvrez comment gérer un NAS-HA depuis l’espace client OVHcloud",
+  "nasha_onboarding_nfs_title": "Monter votre NAS via un partage NFS",
+  "nasha_onboarding_nfs_content": "Découvrez comment monter un NAS via un partage NFS",
+  "nasha_onboarding_cifs_title": "Monter votre NAS sur Windows Server via CIFS",
+  "nasha_onboarding_cifs_content": "Découvrez comment monter un NAS sur Windows Server via le protocol CIFS"
 }

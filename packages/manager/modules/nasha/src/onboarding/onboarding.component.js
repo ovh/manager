@@ -1,7 +1,7 @@
-import template from './onboarding.html';
 import controller from './onboarding.controller';
+import template from './onboarding.html';
 
 export default {
-  template,
   controller,
+  template,
 };

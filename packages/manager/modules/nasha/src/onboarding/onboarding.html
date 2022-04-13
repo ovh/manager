@@ -1,15 +1,8 @@
-<manager-on-boarding-layout data-guides="$ctrl.guides">
-    <onboarding-title>
-        <p data-translate="nasha_onboarding_title"></p>
-    </onboarding-title>
-    <onboarding-description>
-        <strong data-translate="nasha_onboarding_description_bold"></strong>
-        <p data-translate="nasha_onboarding_description"></p>
-        <a
-            class="oui-button oui-button_primary oui-button_l text-light"
-            data-translate="nasha_onboarding_cta"
-            href="{{:: $ctrl.cta }}"
-        >
-        </a>
-    </onboarding-description>
+<manager-on-boarding-layout
+    class="mt-5"
+    guides="$ctrl.guides"
+    image-source="$ctrl.illustration"
+>
+    <h1 data-ng-bind="$ctrl.title"></h1>
+    <p data-translate="nasha_onboarding_content"></p>
 </manager-on-boarding-layout>
