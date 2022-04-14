@@ -4,6 +4,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
 import controller from './contact.controller';
+import service from './contact.service';
 import template from './contact.html';
 
 const moduleName = 'ovhManagerTelecomTelephonyServiceContact';
@@ -15,6 +16,7 @@ angular
     'pascalprecht.translate',
   ])
   .controller('TelecomTelephonyServiceContactCtrl', controller)
+  .service('TelecomTelephonyServiceContactService', service)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
