@@ -193,7 +193,6 @@ export default class {
       description: this.model.name,
       networkId: this.database?.networkId,
       subnetId: this.database?.subnetId,
-      nodesList: null,
       nodesPattern: {
         flavor: this.model.flavor.name,
         number: this.model.plan.nodesCount,
