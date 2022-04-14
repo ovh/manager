@@ -65,6 +65,10 @@ export default class Flavor {
     return this.minDiskSize !== this.maxDiskSize;
   }
 
+  get id() {
+    return `${this.availability[0].engine}-${this.availability[0].plan.name}-${this.name}`;
+  }
+
   compare(flavor) {
     // greater than 0 if current flavor is the lower one
     // less than 0 if current flavor is the higher one

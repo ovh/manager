@@ -90,6 +90,10 @@ export default class Plan {
     return this.maxCores + this.maxMemory + this.maxNodes + this.maxStorage;
   }
 
+  get id() {
+    return `${this.availability[0].engine}-${this.name}`;
+  }
+
   compare(plan) {
     // greater than 0 if current plan is the lower one
     // less than 0 if current plan is the higher one

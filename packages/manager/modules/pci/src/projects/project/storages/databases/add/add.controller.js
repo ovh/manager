@@ -3,6 +3,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
+import capitalize from 'lodash/capitalize';
 import { API_GUIDES } from '../../../project.constants';
 
 import {
@@ -11,6 +12,7 @@ import {
   MIN_NAME_LENGTH,
 } from './add.constants';
 import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
+import { ENGINE_LOGOS } from '../databases.constants';
 
 export default class {
   /* @ngInject */
@@ -21,6 +23,7 @@ export default class {
     CucCloudMessage,
     DatabaseService,
     Poller,
+    ovhManagerRegionService,
   ) {
     this.$anchorScroll = $anchorScroll;
     this.$translate = $translate;
@@ -31,6 +34,9 @@ export default class {
     this.NAME_PATTERN = NAME_PATTERN;
     this.MIN_NAME_LENGTH = MIN_NAME_LENGTH;
     this.MAX_NAME_LENGTH = MAX_NAME_LENGTH;
+    this.ENGINE_LOGOS = ENGINE_LOGOS;
+    this.capitalize = capitalize;
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   $onInit() {
@@ -38,7 +44,7 @@ export default class {
     this.messageContainer = 'pci.projects.project.storages.databases.add';
     this.loadMessages();
     this.model = {
-      engine: find(this.engines, 'isDefault'),
+      engine: find(this.engines, 'isDefault') || this.engines[0],
       plan: null,
       region: null,
       flavor: null,
@@ -59,6 +65,8 @@ export default class {
     this.apiGuideUrl =
       API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
     this.trackDatabases('configuration', 'page');
+
+    this.onEngineChanged(this.model.engine);
   }
 
   checkPattern(value) {
@@ -85,48 +93,48 @@ export default class {
     this.messages = this.messageHandler.getMessages();
   }
 
-  setDefaultPlan() {
-    this.model.plan = this.model.engine.selectedVersion.getDefaultPlan(
-      this.model.plan,
-    );
-  }
+  // setDefaultPlan() {
+  //   this.model.plan = this.model.engine.selectedVersion.getDefaultPlan(
+  //     this.model.plan,
+  //   );
+  // }
 
-  setDefaultRegion() {
-    this.model.region = this.model.plan.getDefaultRegion(this.model.region);
-  }
+  // setDefaultRegion() {
+  //   this.model.region = this.model.plan.getDefaultRegion(this.model.region);
+  // }
 
-  setDefaultFlavor() {
-    this.model.flavor = this.model.region.getDefaultFlavor(this.model.flavor);
-  }
+  // setDefaultFlavor() {
+  //   this.model.flavor = this.model.region.getDefaultFlavor(this.model.flavor);
+  // }
 
-  onFlavorSelect() {
-    this.model.usePrivateNetwork = !this.model.flavor.supportsPublicNetwork;
-    this.model.privateNetwork = this.defaultPrivateNetwork;
-    this.model.subnet = null;
-    this.model.name = `${this.model.engine.name}-${this.model.flavor.name}-${this.model.plan.name}-`;
-    this.availablePrivateNetworks = [
-      this.defaultPrivateNetwork,
-      ...sortBy(
-        map(
-          filter(this.privateNetworks, (network) =>
-            find(
-              network.regions,
-              (region) =>
-                region.region.startsWith(this.model.region.name) &&
-                region.status === 'ACTIVE',
-            ),
-          ),
-          (privateNetwork) => ({
-            ...privateNetwork,
-            name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
-              privateNetwork.name
-            }`,
-          }),
-        ),
-        ['name'],
-      ),
-    ];
-  }
+  // onFlavorSelect() {
+  //   this.model.usePrivateNetwork = !this.model.flavor.supportsPublicNetwork;
+  //   this.model.privateNetwork = this.defaultPrivateNetwork;
+  //   this.model.subnet = null;
+  //   this.model.name = `${this.model.engine.name}-${this.model.flavor.name}-${this.model.plan.name}-`;
+  //   this.availablePrivateNetworks = [
+  //     this.defaultPrivateNetwork,
+  //     ...sortBy(
+  //       map(
+  //         filter(this.privateNetworks, (network) =>
+  //           find(
+  //             network.regions,
+  //             (region) =>
+  //               region.region.startsWith(this.model.region.name) &&
+  //               region.status === 'ACTIVE',
+  //           ),
+  //         ),
+  //         (privateNetwork) => ({
+  //           ...privateNetwork,
+  //           name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
+  //             privateNetwork.name
+  //           }`,
+  //         }),
+  //       ),
+  //       ['name'],
+  //     ),
+  //   ];
+  // }
 
   onPrivateNetworkChange(privateNetwork) {
     this.loadingSubnets = true;
@@ -166,13 +174,25 @@ export default class {
     if (!usePrivateNetwork) this.model.subnet = null;
   }
 
+  getNodesSpecTranslation() {
+    return this.$translate.instant(
+      this.model.plan.minNodes === this.model.plan.maxNodes
+        ? `pci_database_plans_list_spec_nodes${
+            this.model.plan.minNodes === 1 ? '_single' : ''
+          }`
+        : `pci_database_plans_list_spec_nodes_range${
+            this.model.plan.minNodes === 1 ? '_single_min' : ''
+          }`,
+      {
+        min: this.model.plan.minNodes,
+        max: this.model.plan.maxNodes,
+      },
+    );
+  }
+
   prepareOrderData() {
     this.orderData = {
       description: this.model.name,
-      networkId: this.model.privateNetwork.regions?.find(
-        (region) => region.region === this.model.subnet?.ipPools[0].region,
-      )?.openstackId,
-      subnetId: this.model.subnet?.id,
       nodesPattern: {
         flavor: this.model.flavor.name,
         number: this.model.plan.nodesCount,
@@ -181,8 +201,110 @@ export default class {
       plan: this.model.plan.name,
       version: this.model.engine.selectedVersion.version,
     };
+    if (this.model.usePrivateNetwork && this.model.subnet?.id?.length > 0) {
+      this.orderData.networkId = this.model.privateNetwork.regions?.find(
+        (region) => region.region === this.model.subnet?.ipPools[0].region,
+      )?.openstackId;
+      this.orderData.subnetId = this.model.subnet?.id;
+    }
 
     this.orderAPIUrl = `POST /cloud/project/${this.projectId}/database/${this.model.engine.name}`;
+  }
+
+  onEngineChanged(engine) {
+    this.model.engine = engine;
+    this.model.plan = this.getSyncPlan(engine);
+    this.onPlanChanged(this.model.plan);
+  }
+
+  onPlanChanged(plan) {
+    this.model.plan = plan;
+    this.model.region = this.getSyncRegion(plan);
+    this.onRegionChanged(this.model.region);
+  }
+
+  onRegionChanged(region) {
+    this.model.region = region;
+    this.model.flavor = this.getSyncFlavor(region);
+    this.onFlavorChanged(this.model.flavor);
+  }
+
+  onFlavorChanged(flavor) {
+    this.model.flavor = flavor;
+    this.model.name = `${this.model.engine.name}-${flavor.name}-${this.model.plan.name}`;
+
+    if (!flavor.supportsPrivateNetwork) {
+      this.model.usePrivateNetwork = false;
+      this.model.subnet = null;
+      this.model.privateNetwork = null;
+    } else if (!this.model.usePrivateNetwork) {
+      this.model.privateNetwork = this.defaultPrivateNetwork;
+      this.model.subnet = null;
+
+      this.availablePrivateNetworks = [
+        this.defaultPrivateNetwork,
+        ...sortBy(
+          map(
+            filter(this.privateNetworks, (network) =>
+              find(
+                network.regions,
+                (region) =>
+                  region.region.startsWith(this.model.region.name) &&
+                  region.status === 'ACTIVE',
+              ),
+            ),
+            (privateNetwork) => ({
+              ...privateNetwork,
+              name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
+                privateNetwork.name
+              }`,
+            }),
+          ),
+          ['name'],
+        ),
+      ];
+    }
+    this.prepareOrderData();
+  }
+
+  getSyncPlan(engine) {
+    const { plans } = engine.selectedVersion;
+    let plan = plans[0];
+    if (this.model.plan) {
+      const equivalentPlan = plans.find((p) => p.name === this.model.plan.name);
+      if (equivalentPlan) {
+        plan = equivalentPlan;
+      }
+    }
+    return plan;
+  }
+
+  getSyncRegion(plan) {
+    const { regions } = plan;
+    let region = regions[0];
+    if (this.model.region) {
+      const equivalentRegion = regions.find(
+        (r) => r.name === this.model.region.name,
+      );
+      if (equivalentRegion) {
+        region = equivalentRegion;
+      }
+    }
+    return region;
+  }
+
+  getSyncFlavor(region) {
+    const { flavors } = region;
+    let flavor = flavors[0];
+    if (this.model.flavor) {
+      const equivalentFlavor = flavors.find(
+        (f) => f.name === this.model.flavor.name,
+      );
+      if (equivalentFlavor) {
+        flavor = equivalentFlavor;
+      }
+    }
+    return flavor;
   }
 
   createDatabase() {

@@ -1,7 +1,7 @@
 <div class="row">
     <oui-select-picker
         class="d-inline-block col-md-6 col-xl-4 my-3"
-        data-ng-repeat="plan in $ctrl.plans track by plan.name"
+        data-ng-repeat="plan in $ctrl.plans track by plan.id"
         data-disabled="!$ctrl.allowLowerSelection && $ctrl.currentPlan && $ctrl.currentPlan.compare(plan) <= 0"
         data-name="{{:: plan.name }}"
         data-model="$ctrl.selectedPlan"

@@ -9,10 +9,10 @@ export default class {
     this.ENGINE_LOGOS = ENGINE_LOGOS;
   }
 
-  handleVersionChange(engine, modelValue) {
+  handleVersionChange(engine) {
     this.selectedEngine = engine;
     if (this.onChange && isFunction(this.onChange)) {
-      this.onChange({ selectedEngine: modelValue });
+      this.onChange({ selectedEngine: this.selectedEngine });
     }
   }
 

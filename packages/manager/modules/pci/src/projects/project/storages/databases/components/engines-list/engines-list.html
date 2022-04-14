@@ -19,7 +19,7 @@
                 data-translate="pci_database_engines_list_beta"
             ></span>
         </oui-select-picker-label>
-        <oui-select-picker-section>
+        <oui-select-picker-section ng-if="engine.versions.length > 1">
             <oui-select
                 data-items="engine.versions"
                 data-match="version"
