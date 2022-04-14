@@ -19,10 +19,10 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-dbaas-logs-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-at-internet-configuration": "^1.1.2",
+    "@ovh-ux/manager-at-internet-configuration": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
-    "@ovh-ux/manager-dbaas-logs": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-dbaas-logs": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-preloader": "^1.1.0",
     "@ovh-ux/ng-at-internet": "^5.8.1",
@@ -66,6 +66,7 @@
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
     "ovh-api-services": "^14.0.2",
+    "regenerator-runtime": "^0.13.7",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
