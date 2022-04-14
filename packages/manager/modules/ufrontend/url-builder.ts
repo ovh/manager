@@ -50,9 +50,11 @@ export const buildURL = (
   params: Record<string, ParamValueType>,
 ): string => {
   let { url: buildedPath, params: queryObject } = buildURLPattern(path, params);
-
   if (baseURL.includes('#') && buildedPath.includes('#')) {
     buildedPath = buildedPath.replace('#', '');
+  }
+  if (baseURL.endsWith('/') && buildedPath.startsWith('/')) {
+    buildedPath = buildedPath.substring(1);
   }
 
   let queryString = queryObject ? buildQueryString(queryObject) : '';
