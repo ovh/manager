@@ -97,6 +97,6 @@ export default function exposeApi(shellClient: ShellClient) {
         shellClient.addEventListener('ux:close-chatbot', callback),
     },
     navigation: clientNavigation(shellClient),
-    tracking: exposeTrackingAPI(),
+    tracking: exposeTrackingAPI(shellClient),
   };
 }

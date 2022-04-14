@@ -8,6 +8,10 @@ import navigationPlugin from '../plugin/navigation';
 import { exposeTrackingAPI } from '../plugin/tracking';
 import { i18n as i18nPlugin } from '../plugin/i18n';
 import { UXPlugin, UXPluginType } from '../plugin/ux';
+import {
+  TrackingPlugin,
+  TrackingPluginType,
+} from '../plugin/tracking/tracking';
 
 function isStagingEnvironment() {
   return /\.dev$/.test(window.location.hostname);
@@ -55,6 +59,20 @@ export function initShell(): Promise<Shell> {
     shell
       .getPluginManager()
       .registerPlugin('navigation', navigationPlugin(environment));
+    // Register Tracking plugin
+    const trackingPlugin = new TrackingPlugin();
+
+    trackingPlugin.configureTracking(
+      environment.getRegion(),
+      environment.getUser(),
+    );
+
+    shell
+      .getPluginManager()
+      .registerPlugin(
+        'tracking',
+        trackingPlugin as TrackingPluginType<TrackingPlugin>,
+      );
 
     // @TODO implement tracking plugin
     shell
