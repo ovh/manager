@@ -1,3 +1,12 @@
+## [13.36.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.36.2...@ovh-ux/manager-telecom@13.36.3) (2022-04-14)
+
+
+### Bug Fixes
+
+* **modem.templates:** revert to display modem templates ([#6752](https://github.com/ovh/manager/issues/6752)) ([5ce5df9](https://github.com/ovh/manager/commit/5ce5df9a92c7a901107bd8c0bcdc8b7c2196bba6))
+
+
+
 ## [13.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.36.1...@ovh-ux/manager-telecom@13.36.2) (2022-04-12)
 
 

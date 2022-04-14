@@ -1,3 +1,20 @@
+# [5.68.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.67.0...@ovh-ux/manager-pci@5.68.0) (2022-04-14)
+
+
+### Bug Fixes
+
+* remove iceberg header for vrack ([#6886](https://github.com/ovh/manager/issues/6886)) ([7c6f33c](https://github.com/ovh/manager/commit/7c6f33c7f61a6ececa18ca36c10b63a787cfc2ad))
+* remove nodeList parameter ([#6879](https://github.com/ovh/manager/issues/6879)) ([2693786](https://github.com/ovh/manager/commit/269378613e206c8b7cd8106c0a18b39890543002))
+* resume transition instead of cancelling it ([#6876](https://github.com/ovh/manager/issues/6876)) ([8c249d8](https://github.com/ovh/manager/commit/8c249d8335a2fb50f06aea2dfacc43fc452e1b29))
+
+
+### Features
+
+* add tracking for contact-us links ([#6895](https://github.com/ovh/manager/issues/6895)) ([3a28bdc](https://github.com/ovh/manager/commit/3a28bdc73884eb5c49ed1308b990ccb981239db8))
+* manage voucher on step 2 ([#6847](https://github.com/ovh/manager/issues/6847)) ([41ab1c1](https://github.com/ovh/manager/commit/41ab1c1aa7789806fcd76d3d8e2bf0cf67363859))
+
+
+
 # [5.67.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.66.1...@ovh-ux/manager-pci@5.67.0) (2022-04-13)
 
 
