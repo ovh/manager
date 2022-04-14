@@ -240,7 +240,7 @@
                             class="col-md-6"
                         >
                             <input
-                                data-ng-if="!$ctrl.autoCompletePostCode"
+                                data-ng-if="$ctrl.autoCompletePostCode.length === 0"
                                 type="text"
                                 id="contactPostCode"
                                 name="contactPostCode"
@@ -251,7 +251,7 @@
                                 data-ng-model-options="{ debounce: 500 }"
                             />
                             <oui-select
-                                data-ng-if="$ctrl.autoCompletePostCode"
+                                data-ng-if="$ctrl.autoCompletePostCode.length > 0"
                                 items="$ctrl.autoCompletePostCode"
                                 model="$ctrl.directoryForm.postCode"
                                 name="contactPostCode"
@@ -270,7 +270,7 @@
                             class="col-md-6"
                         >
                             <input
-                                data-ng-if="!$ctrl.autoCompleteCity"
+                                data-ng-if="!$ctrl.autoCompleteCity || $ctrl.autoCompleteCity.length <= 1"
                                 type="text"
                                 id="contactCity"
                                 name="contactCity"
@@ -279,7 +279,7 @@
                                 data-ng-model="$ctrl.directoryForm.city"
                             />
                             <oui-select
-                                data-ng-if="$ctrl.autoCompleteCity"
+                                data-ng-if="$ctrl.autoCompleteCity.length > 1"
                                 match="name"
                                 items="$ctrl.autoCompleteCity"
                                 model="$ctrl.directoryForm.city"
@@ -362,7 +362,7 @@
                         label="{{:: 'telephony_service_contact_wayname' | translate }}*"
                     >
                         <input
-                            data-ng-if="!$ctrl.autoCompleteStreetName"
+                            data-ng-if="!$ctrl.autoCompleteStreetName || $ctrl.autoCompleteStreetName.length === 0"
                             class="oui-input"
                             id="contactWayName"
                             type="text"
@@ -374,7 +374,7 @@
                             required
                         />
                         <oui-select
-                            data-ng-if="$ctrl.autoCompleteStreetName"
+                            data-ng-if="$ctrl.autoCompleteStreetName.length > 0"
                             match="streetName"
                             items="$ctrl.autoCompleteStreetName"
                             model="$ctrl.directoryForm.wayName"

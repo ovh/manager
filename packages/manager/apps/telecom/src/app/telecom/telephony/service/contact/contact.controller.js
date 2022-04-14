@@ -16,10 +16,9 @@ import {
   REGEX,
 } from './contact.constants';
 
-export default class {
+export default class TelecomTelephonyServiceContactCtrl {
   /* @ngInject */
   constructor(
-    $state,
     $stateParams,
     $q,
     $timeout,
@@ -30,8 +29,8 @@ export default class {
     tucTelephonyBulk,
     TelecomTelephonyServiceContactService,
   ) {
-    this.$state = $state;
-    this.$stateParams = $stateParams;
+    this.billingAccount = $stateParams.billingAccount;
+    this.serviceName = $stateParams.serviceName;
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
@@ -58,7 +57,10 @@ export default class {
     return this.$q
       .all({
         infos: this.OvhApiTelephony.v6().schema().$promise,
-        directory: this.TelecomTelephonyServiceContactService.getDirectory(),
+        directory: this.TelecomTelephonyServiceContactService.getDirectory(
+          this.billingAccount,
+          this.serviceName,
+        ),
       })
       .then(({ infos, directory }) => {
         return this.$q.all({
@@ -69,13 +71,7 @@ export default class {
       })
       .then(({ infos, directory, autoCompletePostCode }) => {
         this.autoCompletePostCode =
-          autoCompletePostCode?.length > 0
-            ? autoCompletePostCode.sort((a, b) => {
-                if (a < b) return -1;
-                if (a > b) return 1;
-                return 0;
-              })
-            : null;
+          autoCompletePostCode?.length > 0 ? autoCompletePostCode.sort() : [];
 
         this.directory = this.buildWayInfo(directory);
 
@@ -107,8 +103,8 @@ export default class {
         );
 
         this.bulkDatas = {
-          billingAccount: this.$stateParams.billingAccount,
-          serviceName: this.$stateParams.serviceName,
+          billingAccount: this.billingAccount,
+          serviceName: this.serviceName,
           infos: {
             name: 'contact',
             actions: [
@@ -197,9 +193,13 @@ export default class {
   }
 
   onSiretChange() {
-    if (this.directoryForm.siret && this.directoryForm.siret.length === 14) {
+    if (this.directoryForm.siret?.match(this.REGEX.siret)) {
       // we have to poll because api call is not synchronous :(
-      this.fetchEntrepriseInformations(this.directoryForm.siret)
+      this.fetchEntrepriseInformations(
+        this.billingAccount,
+        this.serviceName,
+        this.directoryForm.siret,
+      )
         .then((infos) => {
           if (infos.informations.isValid) {
             this.directoryForm.ape = infos.informations.ape;
@@ -209,6 +209,8 @@ export default class {
             // fetch directory codes for given APE
             if (this.directoryForm.ape) {
               this.TelecomTelephonyServiceContactService.fetchDirectoryServiceCode(
+                this.billingAccount,
+                this.serviceName,
                 this.directoryForm.ape,
               ).then((result) => {
                 this.directoryCodes = result;
@@ -226,11 +228,18 @@ export default class {
 
   fetchEntrepriseInformations() {
     return this.TelecomTelephonyServiceContactService.fetchEntrepriseInformations(
+      this.billingAccount,
+      this.serviceName,
       this.directoryForm.siret,
     ).then((infos) => {
       if (infos.status === 'todo') {
         return this.$timeout(
-          () => this.fetchEntrepriseInformations(this.directoryForm.siret),
+          () =>
+            this.fetchEntrepriseInformations(
+              this.billingAccount,
+              this.serviceName,
+              this.directoryForm.siret,
+            ),
           500,
         );
       }
@@ -240,7 +249,7 @@ export default class {
 
   postCodeAvailable(directory) {
     return this.TelecomTelephonyServiceContactService.getPostCodeAvailable(
-      this.$stateParams.serviceName,
+      this.serviceName,
       directory.country,
     );
   }
@@ -271,19 +280,25 @@ export default class {
           ),
         )
         .then((cities) => {
-          this.autoCompleteCity =
-            cities?.length > 1
-              ? cities.sort((a, b) => {
-                  if (a < b) return -1;
-                  if (a > b) return 1;
-                  return 0;
-                })
-              : null;
           // automatically select city if there is only one
           if (cities?.length === 1) {
             this.directoryForm.city = head(cities).name;
             this.getStreetNameList(head(cities).administrationCode);
           }
+
+          this.autoCompleteCity =
+            cities?.length > 1
+              ? cities.sort((a, b) => {
+                  if (a.name < b.name) {
+                    return -1;
+                  }
+                  if (a.name > b.name) {
+                    return 1;
+                  }
+                  return 0;
+                })
+              : [];
+
           // parse urban district
           if (this.isUrbanDistrictRequired()) {
             this.directoryForm.urbanDistrict = this.directoryForm.postCode.slice(
@@ -320,13 +335,7 @@ export default class {
       this.getStreetNameListFunction(inseeCode)
         .then((streets) => {
           this.autoCompleteStreetName =
-            streets?.result?.length > 1
-              ? streets.result.sort((a, b) => {
-                  if (a < b) return -1;
-                  if (a > b) return 1;
-                  return 0;
-                })
-              : null;
+            streets?.result?.length > 0 ? streets.result : [];
         })
         .catch((err) => new this.TucToastError(err));
     }
@@ -376,6 +385,8 @@ export default class {
     this.isUpdating = true;
 
     return this.TelecomTelephonyServiceContactService.putDirectory(
+      this.billingAccount,
+      this.serviceName,
       omit(modified, 'inseeCode'),
     )
       .then(() => {

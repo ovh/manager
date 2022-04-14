@@ -1,51 +1,46 @@
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-export default class {
+export default class ContactService {
   /* @ngInject */
-  constructor($http, $q, $stateParams) {
+  constructor($http, $q) {
     this.$http = $http;
     this.$q = $q;
-    this.$stateParams = $stateParams;
   }
 
-  getDirectory() {
+  getDirectory(billingAccount, serviceName) {
     return this.$http
-      .get(
-        `/telephony/${this.$stateParams.billingAccount}/service/${this.$stateParams.serviceName}/directory`,
-      )
+      .get(`/telephony/${billingAccount}/service/${serviceName}/directory`)
       .then(({ data }) => data)
       .catch(({ data }) => this.$q.reject(data.message));
   }
 
-  putDirectory(params) {
+  putDirectory(billingAccount, serviceName, params) {
     return this.$http
       .put(
-        `/telephony/${this.$stateParams.billingAccount}/service/${this.$stateParams.serviceName}/directory`,
+        `/telephony/${billingAccount}/service/${serviceName}/directory`,
         params,
       )
       .then(({ data }) => data)
       .catch(({ data }) => this.$q.reject(data.message));
   }
 
-  fetchEntrepriseInformations(entrepriseNumber) {
+  fetchEntrepriseInformations(billingAccount, serviceName, entrepriseNumber) {
     return this.$http
       .post(
-        `/telephony/${this.$stateParams.billingAccount}/service/${this.$stateParams.serviceName}/directory/fetchEntrepriseInformations`,
+        `/telephony/${billingAccount}/service/${serviceName}/directory/fetchEntrepriseInformations`,
         {
           entrepriseNumber,
         },
       )
-      .then(({ data }) => {
-        return data;
-      })
+      .then(({ data }) => data)
       .catch(() => null);
   }
 
-  fetchDirectoryServiceCode(apeCode) {
+  fetchDirectoryServiceCode(billingAccount, serviceName, apeCode) {
     return this.$http
       .get(
-        `/telephony/${this.$stateParams.billingAccount}/service/${this.$stateParams.serviceName}/directory/getDirectoryServiceCode`,
+        `/telephony/${billingAccount}/service/${serviceName}/directory/getDirectoryServiceCode`,
         {
           params: {
             apeCode,
