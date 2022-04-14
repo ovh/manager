@@ -97,5 +97,9 @@ export default class PciProjectNewConfigCtrl {
       });
   }
 
+  onContactUsLinkClick() {
+    this.trackClick('PublicCloud::pci::projects::new_project_contact-us');
+  }
+
   /* -----  End of Events  ------ */
 }
