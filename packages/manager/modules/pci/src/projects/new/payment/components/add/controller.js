@@ -113,11 +113,6 @@ export default class PciProjectNewPaymentMethodAddCtrl {
         return methodAIndex - methodBIndex;
       },
     );
-
-    // set payment method model
-    this.model.paymentMethod = this.eligibility.isAddPaymentMethodRequired()
-      ? head(this.authorizedPaymentMethods)
-      : null;
   }
 
   /* -----  End of Hooks  ------ */
