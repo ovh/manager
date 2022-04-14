@@ -23,6 +23,7 @@ export default {
     onAskCreditPayment: '<',
     globalLoading: '<',
     paymentStatus: '<',
+    trackClick: '<',
     trackPage: '<',
     sendTrack: '<',
     trackProjectCreationError: '<',
