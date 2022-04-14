@@ -69,7 +69,7 @@
                 data-label="{{ ::'pci_database_add_nodes_count' | translate }}"
             >
                 <oui-numeric
-                    data-disabled="true"
+                    data-disabled="$ctrl.model.plan.minNodes === $ctrl.model.plan.maxNodes"
                     data-name="nodesCount"
                     data-model="$ctrl.model.plan.nodesCount"
                     data-min="$ctrl.model.plan.minNodes"
@@ -182,7 +182,6 @@
                             data-ng-if="$ctrl.availableSubnets.length > 1"
                             data-match="name"
                             data-searchable
-                            data-on-change="$ctrl.prepareOrderData()"
                         >
                         </oui-select>
                         <p>
@@ -194,7 +193,6 @@
                                 data-translate="pci_database_add_subnet_add"
                                 data-ng-click="$ctrl.trackDatabases('config_create_subnet')"
                                 rel="noopener"
-                                data-on-change="$ctrl.prepareOrderData()"
                             ></a>
                         </p>
                     </oui-field>
@@ -242,7 +240,7 @@
             <oui-tile data-heading="Votre commande" class="mb-3">
                 <oui-tile-definition data-term="Résumé">
                     <oui-tile-description>
-                        <p><b>Name:</b> {{$ctrl.model.name}}</p>
+                        <p><strong>Name:</strong> {{$ctrl.model.name}}</p>
                         <div class="d-flex align-items-center">
                             <span class="mr-2"
                                 ><a

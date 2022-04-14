@@ -6,11 +6,6 @@ import sortBy from 'lodash/sortBy';
 import capitalize from 'lodash/capitalize';
 import { API_GUIDES } from '../../../project.constants';
 
-import {
-  NAME_PATTERN,
-  MAX_NAME_LENGTH,
-  MIN_NAME_LENGTH,
-} from './add.constants';
 import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
 import { ENGINE_LOGOS } from '../databases.constants';
 
@@ -19,24 +14,19 @@ export default class {
   constructor(
     $anchorScroll,
     $translate,
-    $q,
     CucCloudMessage,
     DatabaseService,
-    Poller,
     ovhManagerRegionService,
+    $scope,
   ) {
     this.$anchorScroll = $anchorScroll;
     this.$translate = $translate;
-    this.$q = $q;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
-    this.Poller = Poller;
-    this.NAME_PATTERN = NAME_PATTERN;
-    this.MIN_NAME_LENGTH = MIN_NAME_LENGTH;
-    this.MAX_NAME_LENGTH = MAX_NAME_LENGTH;
     this.ENGINE_LOGOS = ENGINE_LOGOS;
     this.capitalize = capitalize;
     this.ovhManagerRegionService = ovhManagerRegionService;
+    this.$scope = $scope;
   }
 
   $onInit() {
@@ -53,7 +43,6 @@ export default class {
       subnet: null,
       usePrivateNetwork: false,
     };
-    this.orderData = null;
     this.defaultPrivateNetwork = {
       id: '',
       name: this.$translate.instant('pci_database_common_none'),
@@ -67,10 +56,14 @@ export default class {
     this.trackDatabases('configuration', 'page');
 
     this.onEngineChanged(this.model.engine);
-  }
 
-  checkPattern(value) {
-    return this.NAME_PATTERN.test(value);
+    this.$scope.$watch(
+      '$ctrl.model',
+      () => {
+        this.getOrderData();
+      },
+      true,
+    );
   }
 
   acceptLab(accepted) {
@@ -92,49 +85,6 @@ export default class {
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
   }
-
-  // setDefaultPlan() {
-  //   this.model.plan = this.model.engine.selectedVersion.getDefaultPlan(
-  //     this.model.plan,
-  //   );
-  // }
-
-  // setDefaultRegion() {
-  //   this.model.region = this.model.plan.getDefaultRegion(this.model.region);
-  // }
-
-  // setDefaultFlavor() {
-  //   this.model.flavor = this.model.region.getDefaultFlavor(this.model.flavor);
-  // }
-
-  // onFlavorSelect() {
-  //   this.model.usePrivateNetwork = !this.model.flavor.supportsPublicNetwork;
-  //   this.model.privateNetwork = this.defaultPrivateNetwork;
-  //   this.model.subnet = null;
-  //   this.model.name = `${this.model.engine.name}-${this.model.flavor.name}-${this.model.plan.name}-`;
-  //   this.availablePrivateNetworks = [
-  //     this.defaultPrivateNetwork,
-  //     ...sortBy(
-  //       map(
-  //         filter(this.privateNetworks, (network) =>
-  //           find(
-  //             network.regions,
-  //             (region) =>
-  //               region.region.startsWith(this.model.region.name) &&
-  //               region.status === 'ACTIVE',
-  //           ),
-  //         ),
-  //         (privateNetwork) => ({
-  //           ...privateNetwork,
-  //           name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
-  //             privateNetwork.name
-  //           }`,
-  //         }),
-  //       ),
-  //       ['name'],
-  //     ),
-  //   ];
-  // }
 
   onPrivateNetworkChange(privateNetwork) {
     this.loadingSubnets = true;
@@ -176,21 +126,22 @@ export default class {
 
   getNodesSpecTranslation() {
     return this.$translate.instant(
-      this.model.plan.minNodes === this.model.plan.maxNodes
+      this.model.plan.nodesCount === this.model.plan.maxNodes
         ? `pci_database_plans_list_spec_nodes${
-            this.model.plan.minNodes === 1 ? '_single' : ''
+            this.model.plan.nodesCount === 1 ? '_single' : ''
           }`
         : `pci_database_plans_list_spec_nodes_range${
-            this.model.plan.minNodes === 1 ? '_single_min' : ''
+            this.model.plan.nodesCount === 1 ? '_single_min' : ''
           }`,
       {
-        min: this.model.plan.minNodes,
+        min: this.model.plan.nodesCount,
         max: this.model.plan.maxNodes,
       },
     );
   }
 
-  prepareOrderData() {
+  getOrderData() {
+    this.orderAPIUrl = `POST /cloud/project/${this.projectId}/database/${this.model.engine.name}`;
     this.orderData = {
       description: this.model.name,
       nodesPattern: {
@@ -207,8 +158,7 @@ export default class {
       )?.openstackId;
       this.orderData.subnetId = this.model.subnet?.id;
     }
-
-    this.orderAPIUrl = `POST /cloud/project/${this.projectId}/database/${this.model.engine.name}`;
+    return this.orderData;
   }
 
   onEngineChanged(engine) {
@@ -264,7 +214,6 @@ export default class {
         ),
       ];
     }
-    this.prepareOrderData();
   }
 
   getSyncPlan(engine) {
