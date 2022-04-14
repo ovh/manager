@@ -123,7 +123,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return projects.length ? 'pci.projects' : 'pci.projects.onboarding';
         }
 
-        return false;
+        return true;
       },
 
       /**
