@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
 
 import ProductNavReshuffleContext from './context';
+import { FEEDBACK_URLS } from './constants';
+
 import useOnboarding, {
   ONBOARDING_OPENED_STATE_ENUM,
   ONBOARDING_STATUS_ENUM,
@@ -20,15 +22,8 @@ export const ProductNavReshuffleProvider = ({
 
   const [isLoading, setIsLoading] = useState(true);
 
-  // feedback widget
-  const [feedbackWidgetOpened, setFeedbackWidgetOpened] = useState(false);
-
-  const openFeedbackWidget = () => {
-    setFeedbackWidgetOpened(true);
-  };
-
-  const closeFeebackWidget = () => {
-    setFeedbackWidgetOpened(false);
+  const getFeedbackUrl = () => {
+    return FEEDBACK_URLS.beta1; // TODO: check for language and beta version
   };
 
   // onboarding
@@ -40,7 +35,6 @@ export const ProductNavReshuffleProvider = ({
     setOnboardingOpenedState(
       onboardingHelper.getNextOpenedState(onboardingOpenedState),
     );
-    closeFeebackWidget();
   };
 
   const startOnboarding = () => {
@@ -94,10 +88,7 @@ export const ProductNavReshuffleProvider = ({
 
   pnrContext = {
     isLoading,
-    // feedback widget
-    feedbackWidgetOpened,
-    openFeedbackWidget,
-    closeFeebackWidget,
+    getFeedbackUrl,
     // onboarding
     onboardingOpenedState,
     openOnboarding,
