@@ -1,3 +1,4 @@
+import { buildURL } from '@ovh-ux/ufrontend';
 import RoutingConfiguration from './configuration';
 
 interface ILocation {
@@ -83,9 +84,11 @@ class Orchestrator {
     } else {
       const redirection = this.config.findRedirection(appId);
       if (redirection) {
-        const target = new URL(redirection.href);
-        target.hash = appHash;
-        this.container.setURL(target.href);
+        let hash = appHash;
+        if (!appHash.startsWith('#')) {
+          hash = `#${appHash}`;
+        }
+        this.container.setURL(buildURL(redirection.href, hash, {}));
       } else {
         this.redirectToContainerHome();
       }
