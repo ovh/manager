@@ -86,6 +86,41 @@ defineFeature(feature, (test) => {
     });
   });
 
+  test('Changing the container URL to a standalone application root path', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given('A routing configuration', () => {
+      config = new RoutingConfiguration();
+      config.addConfiguration({ id: 'home', path: '/hub/' });
+      config.addRedirection(
+        'dedicated',
+        'https://www.ovh.com/manager/dedicated/',
+      );
+    });
+
+    and('An orchestrator', () => {
+      orchestrator = new Orchestrator(config, iframe, container);
+    });
+
+    when(
+      'I change the container URL to a standalone application root path',
+      () => {
+        container.setURL('https://www.ovh.com/manager/#/dedicated');
+        iframe.setURL('https://www.ovh.com/hub/#/');
+        orchestrator.updateIframeURL();
+      },
+    );
+
+    then('I should be redirected', () => {
+      expect(container.getURL().href).toBe(
+        'https://www.ovh.com/manager/dedicated/#/',
+      );
+    });
+  });
+
   test('Changing the container URL to a standalone application', ({
     given,
     and,
@@ -114,6 +149,38 @@ defineFeature(feature, (test) => {
     then('I should be redirected', () => {
       expect(container.getURL().href).toBe(
         'https://www.ovh.com/manager/dedicated/#/hello?foo=bar',
+      );
+    });
+  });
+
+  test('Changing the container URL to a subpart of a standalone application', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given('A routing configuration with hash in URL', () => {
+      config = new RoutingConfiguration();
+      config.addConfiguration({ id: 'home', path: '/hub/' });
+      config.addRedirection(
+        'billing',
+        'https://www.ovh.com/manager/dedicated/#/billing',
+      );
+    });
+
+    and('An orchestrator', () => {
+      orchestrator = new Orchestrator(config, iframe, container);
+    });
+
+    when('I change the container URL to a standalone application', () => {
+      container.setURL('https://www.ovh.com/manager/#/billing/hello?foo=bar');
+      iframe.setURL('https://www.ovh.com/hub/#/');
+      orchestrator.updateIframeURL();
+    });
+
+    then('I should be redirected preserving the hash from the URL', () => {
+      expect(container.getURL().href).toBe(
+        'https://www.ovh.com/manager/dedicated/#/billing/hello?foo=bar',
       );
     });
   });
