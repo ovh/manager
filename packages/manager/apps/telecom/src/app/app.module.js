@@ -76,7 +76,7 @@ import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerOverTheBox from '@ovh-ux/manager-overthebox';
 import ovhManagerSms from '@ovh-ux/manager-sms';
 import ovhManagerTelecomTask from '@ovh-ux/manager-telecom-task';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
+import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
@@ -157,7 +157,7 @@ export default async (containerEl, shellClient) => {
         'matchmedia-ng',
         'ngAnimate',
         'ngAria',
-        ngAtInternet,
+        registerAtInternet(shellClient.tracking),
         ngAtInternetUiRouterPlugin,
         'ngCookies',
         'ngCsv',
@@ -248,6 +248,9 @@ export default async (containerEl, shellClient) => {
         $logProvider.debugEnabled(telecomConfig.env !== 'prod');
       },
     )
+    .config(async () => {
+      await shellClient.tracking.setConfig(TRACKING);
+    })
     .config((LineDiagnosticsProvider) => {
       LineDiagnosticsProvider.setPathPrefix('/xdsl/{serviceName}');
     })
@@ -288,7 +291,7 @@ export default async (containerEl, shellClient) => {
     )
     .config(
       /* @ngInject */ (atInternetConfigurationProvider) => {
-        atInternetConfigurationProvider.setConfig(TRACKING);
+        atInternetConfigurationProvider.setSkipInit(true);
       },
     )
     /*= =========  INTERCEPT ERROR IF NO TRANSLATION FOUND  ========== */
