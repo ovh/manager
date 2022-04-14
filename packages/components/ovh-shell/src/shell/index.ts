@@ -74,11 +74,6 @@ export function initShell(): Promise<Shell> {
         trackingPlugin as TrackingPluginType<TrackingPlugin>,
       );
 
-    // @TODO implement tracking plugin
-    shell
-      .getPluginManager()
-      .registerPlugin('tracking', exposeTrackingAPI() as Record<string, CallableFunction>);
-
     return shell;
   });
 }

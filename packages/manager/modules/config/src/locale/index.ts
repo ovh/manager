@@ -1,6 +1,5 @@
 import { LANGUAGES, localeRegex, localeStorageKey } from './locale.constants';
 import { Region } from '../environment/region.enum';
-import { CountryCode } from './country-code.enum';
 
 export type LangId = 'nl' | 'fr' | 'en' | 'de' | 'es' | 'it' | 'pl' | 'pt';
 
@@ -13,6 +12,17 @@ export type PreferredRegionByLang = {
   [langKey in LangId]?: { [regionKey in Region]?: CountryCode };
 };
 
+export const enum CountryCode {
+  US = 'US',
+  CA = 'CA',
+  FR = 'FR',
+  GB = 'GB',
+  ES = 'ES',
+  PL = 'PL',
+  PT = 'PT',
+  IT = 'IT',
+  DE = 'DE',
+}
 export interface OVHLanguages {
   available: Array<KeyPairName>;
   defaultLoc: string;
