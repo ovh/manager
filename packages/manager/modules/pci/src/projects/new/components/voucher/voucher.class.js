@@ -44,4 +44,8 @@ export default class PciVoucher {
 
     return this;
   }
+
+  setValue(value) {
+    this.value = value;
+  }
 }

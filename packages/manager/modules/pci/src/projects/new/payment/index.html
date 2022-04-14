@@ -135,7 +135,7 @@
                         </oui-button>
                         <oui-spinner
                             class="m-2" size="s"
-                            data-ng-if="$ctrl.globalLoading.finalize"
+                            data-ng-if="$ctrl.canProceedToCreateProject() && $ctrl.globalLoading.finalize"
                         ></oui-spinner>
                     </div>
 
@@ -202,6 +202,9 @@
         </ovh-payment-method-integration>
 
         <!--Banner help info-->
-        <support-ticket-banner></support-ticket-banner>
+        <support-ticket-banner
+            data-on-contact-us-link-click="$ctrl.onContactUsLinkClick()"
+        >
+        </support-ticket-banner>
     </div>
 </div>

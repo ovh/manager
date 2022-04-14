@@ -173,7 +173,6 @@ export default class {
         (region) => region.region === this.model.subnet?.ipPools[0].region,
       )?.openstackId,
       subnetId: this.model.subnet?.id,
-      nodesList: null,
       nodesPattern: {
         flavor: this.model.flavor.name,
         number: this.model.plan.nodesCount,
