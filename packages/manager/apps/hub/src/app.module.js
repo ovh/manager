@@ -25,7 +25,7 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
-import atInternet from './components/at-internet';
+import { initHubAtInternet } from './components/at-internet';
 import errorPage from './components/error-page';
 import dashboard from './dashboard';
 import liveChatService from './livechat-service';
@@ -63,7 +63,7 @@ export default async (containerEl, shellClient) => {
     .module(
       moduleName,
       [
-        atInternet,
+        initHubAtInternet(shellClient.tracking),
         dashboard,
         errorPage,
         'ngAnimate',
