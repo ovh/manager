@@ -101,6 +101,7 @@ export function initRouting(shell: Shell, iframe: HTMLIFrameElement) {
     onHashChange: (): void => {
       window.dispatchEvent(new Event(hashChangeEvent));
     },
+    parseContainerURL: () => orchestrator.parseContainerURL(),
   };
 }
 
