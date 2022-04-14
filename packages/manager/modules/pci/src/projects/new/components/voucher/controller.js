@@ -1,6 +1,7 @@
 export default class PciProjectNewVoucherCtrl {
   /* @ngInject */
-  constructor(pciProjectNew) {
+  constructor($q, pciProjectNew) {
+    this.$q = $q;
     this.pciProjectNew = pciProjectNew;
 
     // other attributes
@@ -55,13 +56,29 @@ export default class PciProjectNewVoucherCtrl {
 
   onVoucherFormSubmit() {
     this.loading.check = true;
+    this.globalLoading.isVoucherValidating = true;
 
     return this.checkVoucherValidity(this.model.voucher.value)
       .then((eligibilityOpts) => {
+        this.model.isVoucherRequirePaymentMethod =
+          eligibilityOpts.voucher.paymentMethodRequired;
         this.model.voucher.setInfos(eligibilityOpts.voucher);
+        this.eligibility.setOptions(eligibilityOpts);
         this.setVoucherFormState();
 
-        this.eligibility.setOptions(eligibilityOpts);
+        return eligibilityOpts;
+      })
+      .then((eligibilityOpts) => {
+        if (eligibilityOpts.voucher?.error) {
+          return this.$q.reject(eligibilityOpts);
+        }
+
+        return eligibilityOpts;
+      })
+      .then((eligibilityOpts) => {
+        if (!this.model.isVoucherRequirePaymentMethod) {
+          this.model.paymentMethod = null;
+        }
 
         return this.model.voucher.valid
           ? this.pciProjectNew.setCartProjectItemVoucher(
@@ -71,11 +88,13 @@ export default class PciProjectNewVoucherCtrl {
           : eligibilityOpts.voucher;
       })
       .catch(() => {
+        this.model.isVoucherRequirePaymentMethod = true;
         this.model.voucher.valid = false;
         this.setVoucherFormState();
       })
       .finally(() => {
         this.loading.check = false;
+        this.globalLoading.isVoucherValidating = false;
 
         if (this.hasVoucherError()) {
           this.trackProjectCreationError(
@@ -100,12 +119,16 @@ export default class PciProjectNewVoucherCtrl {
 
   onVoucherFormReset() {
     this.loading.reset = true;
+    this.globalLoading.isVoucherValidating = true;
 
     this.pciProjectNew
       .removeCartProjectItemVoucher(this.cart)
       .then(() => {
         this.model.voucher.reset();
+        this.model.voucher.setValue('');
+
         this.errors.reset = false;
+        this.model.isVoucherRequirePaymentMethod = true;
       })
       .catch(() => {
         this.errors.reset = true;
@@ -116,6 +139,7 @@ export default class PciProjectNewVoucherCtrl {
       })
       .finally(() => {
         this.loading.reset = false;
+        this.globalLoading.isVoucherValidating = false;
       });
   }
 
