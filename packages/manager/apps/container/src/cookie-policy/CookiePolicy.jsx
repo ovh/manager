@@ -54,7 +54,10 @@ const CookiePolicy = (props) => {
       setShow(true);
     } else if (cookies.MANAGER_TRACKING === '1') {
       trackingPlugin.setEnabled(trackingEnabled);
+      trackingPlugin.setRegion(environment.getRegion());
       trackingPlugin.init();
+    } else {
+      trackingPlugin.setEnabled(false);
     }
   }, []);
 
