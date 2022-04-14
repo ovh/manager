@@ -284,6 +284,8 @@ export default class PciProjectNewPaymentCtrl {
 
   isInvalidPaymentMethod() {
     return (
+      this.model.isVoucherValidating ||
+      this.model.isVoucherRequirePaymentMethod ||
       (this.eligibility.isChallengePaymentMethodRequired() &&
         !this.model.challenge.isValid(this.defaultPaymentMethod.paymentType)) ||
       (!this.model.paymentMethod &&
@@ -292,7 +294,8 @@ export default class PciProjectNewPaymentCtrl {
         !this.model.defaultPaymentMethod &&
         this.eligibility.isDefaultPaymentMethodChoiceRequired()) ||
       this.model.challenge.checking ||
-      this.globalLoading.finalize ||
+      (this.globalLoading.finalize &&
+        this.eligibility.isAddPaymentMethodRequired()) ||
       this.globalLoading.setDefaultPaymentMethod
     );
   }
@@ -341,6 +344,8 @@ export default class PciProjectNewPaymentCtrl {
     let challengePromise = Promise.resolve(true);
     let defaultPaymentMethodPromise = Promise.resolve(true);
     let setDefaultPaymentMethodInError = false;
+
+    this.globalLoading.finalize = true;
 
     // call integration submit function if some
     if (
