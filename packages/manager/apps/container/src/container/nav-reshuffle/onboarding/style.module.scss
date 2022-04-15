@@ -3,9 +3,13 @@
   border-radius: 26px !important;
 
   position: absolute !important;
-  bottom: 50px !important;
+  bottom: 20px !important;
   right: 50px !important;
   z-index: 10 !important;
+
+  &_padded {
+    right: 120px !important;
+  }
 }
 
 .welcomePopover {
