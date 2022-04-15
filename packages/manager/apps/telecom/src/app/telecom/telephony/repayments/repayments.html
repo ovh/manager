@@ -1,0 +1,64 @@
+<section class="telephony-group-line-repayments">
+    <section class="widget-presentation">
+        <div class="row">
+            <div class="col-md-6">
+                <h4 data-translate="telephony_repayments_repayments"></h4>
+                <dl>
+                    <dt
+                        data-translate="telephony_repayments_pending_title"
+                    ></dt>
+                    <dd data-ng-bind=":: $ctrl.pendingAmountText"></dd>
+                    <dt
+                        data-translate="telephony_repayments_available_title"
+                    ></dt>
+                    <dd data-ng-bind=":: $ctrl.availableAmountText"></dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <h4 data-translate="telephony_repayments_costs"></h4>
+                <dl>
+                    <dt data-translate="telephony_repayments_costs_title"></dt>
+                    <dd data-ng-bind=":: $ctrl.costsAmountText"></dd>
+                </dl>
+            </div>
+        </div>
+
+        <oui-message type="info" class="d-inline-block mt-3">
+            <span
+                data-ng-if="$ctrl.hasReachedRepaymentAmountThreshold"
+                data-translate="telephony_repayments_message_above_threshold"
+                data-translate-values="{ amount: '<strong>' + $ctrl.availableAmountText + '</strong>' }"
+            ></span>
+            <span
+                data-ng-if="!$ctrl.hasReachedRepaymentAmountThreshold"
+                data-translate="telephony_repayments_message_under_threshold"
+                data-translate-values="{ amount: '<strong>' + $ctrl.repaymentAmountThresholdText + '</strong>' }"
+            ></span>
+        </oui-message>
+
+        <div data-ng-if="$ctrl.isLoadingIban">
+            <oui-spinner size="s"></oui-spinner>
+        </div>
+        <div
+            data-ng-if="$ctrl.iban"
+            class="d-flex flex-column align-items-start mt-2 mb-3"
+        >
+            <h3 data-translate="telephony_repayments_message_bank_account"></h3>
+            <label class="oui-field__label">IBAN</label>
+            <div
+                class="oui-box oui-box_light mb-2 p-2"
+                data-ng-bind=":: $ctrl.iban"
+            ></div>
+            <a class="oui-link_icon" data-ng-href="{{ $ctrl.svaWalletLink }}">
+                <span data-translate="telephony_repayments_iban_link"></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </div>
+
+        <div data-ui-view="listView"></div>
+    </section>
+</section>
+<!-- /.telephony-group-line-repayments. -->
