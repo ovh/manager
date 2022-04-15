@@ -27,7 +27,7 @@
     <span data-translate="pci_database_add_description3"></span>
 </p>
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-9">
         <form novalidate>
             <!-- Step 1 -->
             <h2 id="engine">
@@ -172,8 +172,8 @@
                     >
                         <input
                             type="hidden"
+                            name="subnet_hidden"
                             aria-hidden="true"
-                            data-ng-if="!$ctrl.availableSubnets || $ctrl.availableSubnets.length <= 1"
                         />
                         <oui-select
                             data-name="subnet"
@@ -237,7 +237,7 @@
             </div>
         </form>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <div class="sticky-top mb-3">
             <oui-tile
                 data-heading="{{:: 'pci_database_add_spec_heading' | translate }}"
