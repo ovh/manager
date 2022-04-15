@@ -22,11 +22,20 @@ export const OnboardingIntroduction = () => {
 
   const [isBtnVisible, setIsBtnVisible] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  const [isChatbotVisible, setIsChatbotVisible] = useState(false);
 
-  const user = useShell()
+  const shell = useShell();
+
+  const user = shell
     .getPlugin('environment')
     .getEnvironment()
     .getUser();
+
+  const uxPlugin = shell.getPlugin('ux');
+  uxPlugin.onChatbotVisibilityChange(() => {
+    setIsChatbotVisible(uxPlugin.getChatbot().getVisibility());
+    setIsPopoverVisible(false);
+  });
 
   const openOnboarding = () => {
     productNavReshuffle.openOnboarding();
@@ -62,7 +71,9 @@ export const OnboardingIntroduction = () => {
       {isBtnVisible && (
         <button
           type="button"
-          className={`${style.onboardingButton} oui-button oui-button_icon-left oui-button_l oui-button_primary`}
+          className={`${style.onboardingButton} ${
+            isChatbotVisible ? style.onboardingButton_padded : ''
+          } oui-button oui-button_icon-left oui-button_l oui-button_primary`}
           onClick={() => openOnboarding()}
           ref={setPopoverButton}
           aria-expanded={isPopoverVisible}

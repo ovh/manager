@@ -140,4 +140,20 @@ export class UXPlugin implements IUXPlugin {
   closeChatbot(): void {
     this.shell.emitEvent('ux:close-chatbot');
   }
+
+  onChatbotOpen(): void {
+    this.shellUX.getChatbot().show();
+  }
+
+  onChatbotClose(reduced: boolean): void {
+    if (reduced) {
+      this.shellUX.getChatbot().reduce();
+    } else {
+      this.shellUX.getChatbot().hide();
+    }
+  }
+
+  onChatbotVisibilityChange(callback: CallableFunction): void {
+    this.shellUX.getChatbot().onVisibilityChange(callback);
+  }
 }
