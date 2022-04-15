@@ -1,6 +1,7 @@
 import React from 'react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
+import { act, waitFor } from '@testing-library/react';
 import { renderWithNotifications } from '../__test-utils__/contextRenders';
 
 import Navbar from '@/container/legacy/navbar/Navbar';
@@ -19,6 +20,12 @@ const server = setupServer(
     '/engine/apiv6/me/preferences/manager/NAV_RESHUFFLE_BETA_ACCESS',
     (req, res) => {
       return res(false);
+    },
+  ),
+  rest.get(
+    '/engine/2api/feature/pnr:betaV1,pnr:betaV2/availability',
+    (req, res, ctx) => {
+      return res(ctx.json({}));
     },
   ),
 );
@@ -45,11 +52,17 @@ describe('UI testing of the navbar', () => {
       getRegion: () => 'EU',
     };
 
-    const { asFragment } = await renderWithNotifications(
-      <Navbar environment={environment}></Navbar>,
-      environment,
-    );
+    let render = null;
 
-    expect(asFragment()).toMatchSnapshot();
+    await act(async () => {
+      render = await renderWithNotifications(
+        <Navbar environment={environment}></Navbar>,
+        environment,
+      );
+    });
+
+    await waitFor(() => {
+      expect(render.asFragment()).toMatchSnapshot();
+    });
   });
 });
