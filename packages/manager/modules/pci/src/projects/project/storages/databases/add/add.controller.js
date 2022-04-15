@@ -18,14 +18,15 @@ export default class {
     DatabaseService,
     ovhManagerRegionService,
     $scope,
+    $timeout,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
     this.ENGINE_LOGOS = ENGINE_LOGOS;
     this.ovhManagerRegionService = ovhManagerRegionService;
-    this.$scope = $scope;
     this.orderKeys = ORDER_KEYS;
+    this.$timeout = $timeout;
   }
 
   $onInit() {
@@ -55,14 +56,6 @@ export default class {
     this.trackDatabases('configuration', 'page');
 
     this.onEngineChanged(this.model.engine);
-
-    this.$scope.$watch(
-      '$ctrl.model',
-      () => {
-        this.getOrderData();
-      },
-      true,
-    );
 
     this.scrollToOptions = {
       element: document.getElementsByClassName('pci-project-content')[0],
@@ -121,6 +114,7 @@ export default class {
       .finally(() => {
         this.loadingSubnets = false;
       });
+    this.getOrderData();
   }
 
   isNetworkSelected() {
@@ -131,6 +125,12 @@ export default class {
 
   onNetworkTypeChange(usePrivateNetwork) {
     if (!usePrivateNetwork) this.model.subnet = null;
+    this.getOrderData();
+  }
+
+  // bug in oui-numeric: on-change event is fired before model is updated
+  onNodeNumberChange() {
+    this.$timeout(() => this.getOrderData());
   }
 
   getNodesSpecTranslation() {
@@ -218,6 +218,7 @@ export default class {
         ),
       ];
     }
+    this.getOrderData();
   }
 
   getSyncPlan(engine) {
