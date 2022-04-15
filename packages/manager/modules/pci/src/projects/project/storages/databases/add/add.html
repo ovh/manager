@@ -447,7 +447,7 @@
                                 data-translate="pci_database_common_price"
                             ></span>
                             <ovh-manager-catalog-price
-                                data-price="$ctrl.model.flavor.hourlyPrice.priceInUcents"
+                                data-price="$ctrl.model.flavor.hourlyPrice.priceInUcents * $ctrl.model.plan.nodesCount"
                                 data-tax="$ctrl.model.flavor.hourlyPrice.tax"
                                 data-user="$ctrl.user"
                                 data-show-zero-price="true"
