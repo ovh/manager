@@ -7,6 +7,7 @@ export interface IUxComponent {
   show: () => void;
   hide: () => void;
   getVisibility: () => boolean;
+  onVisibilityChange: (callback: CallableFunction) => void;
 }
 
 export class UXComponent implements IUxComponent {
@@ -37,6 +38,10 @@ export class UXComponent implements IUxComponent {
 
   public getVisibility(): boolean {
     return this.visible;
+  }
+
+  public onVisibilityChange(callback: CallableFunction): void {
+    this.listeners.push(callback);
   }
 
   private triggerListeners() {
