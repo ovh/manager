@@ -1,5 +1,5 @@
 import component from './component';
-import { PCI_PROJECT_ORDER_CART } from '../constants';
+import { PCI_PROJECT_ORDER_CART, PCI_PROJECT_STEPS } from '../constants';
 import { PCI_HDS_ADDON } from '../../project/project.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -68,7 +68,8 @@ export default /* @ngInject */ ($stateProvider) => {
           PCI_HDS_ADDON.planCode,
         ),
 
-      step: /* @ngInject */ (getStep) => getStep('configuration'),
+      step: /* @ngInject */ (getStep) =>
+        getStep(PCI_PROJECT_STEPS.CONFIGURATION),
 
       summary: /* @ngInject */ (cart, getSummary) => getSummary(),
 
