@@ -283,20 +283,27 @@ export default class PciProjectNewPaymentCtrl {
   }
 
   isInvalidPaymentMethod() {
+    const { finalize, setDefaultPaymentMethod } = this.globalLoading;
+    const {
+      defaultPaymentMethod,
+      isVoucherValidating,
+      isVoucherRequirePaymentMethod,
+      challenge,
+      paymentMethod,
+    } = this.model;
+
     return (
-      this.model.isVoucherValidating ||
-      this.model.isVoucherRequirePaymentMethod ||
+      isVoucherValidating ||
+      isVoucherRequirePaymentMethod ||
       (this.eligibility.isChallengePaymentMethodRequired() &&
-        !this.model.challenge.isValid(this.defaultPaymentMethod.paymentType)) ||
-      (!this.model.paymentMethod &&
-        this.eligibility.isAddPaymentMethodRequired()) ||
+        !challenge.isValid(this.defaultPaymentMethod.paymentType)) ||
+      (!paymentMethod && this.eligibility.isAddPaymentMethodRequired()) ||
       (!this.defaultPaymentMethod &&
-        !this.model.defaultPaymentMethod &&
+        !defaultPaymentMethod &&
         this.eligibility.isDefaultPaymentMethodChoiceRequired()) ||
-      this.model.challenge.checking ||
-      (this.globalLoading.finalize &&
-        this.eligibility.isAddPaymentMethodRequired()) ||
-      this.globalLoading.setDefaultPaymentMethod
+      challenge.checking ||
+      (finalize && this.eligibility.isAddPaymentMethodRequired()) ||
+      setDefaultPaymentMethod
     );
   }
 
