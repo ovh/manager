@@ -13,10 +13,14 @@ type Props = {
 
 function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
   const { t } = useTranslation('beta-modal');
-  const { updateBetaChoice, isBeta } = useProductNavReshuffle();
+  const { updateBetaChoice, betaVersion, useBeta } = useProductNavReshuffle();
   const ref = useRef();
   const [show, setShow] = useState<boolean>(false);
   const [confirm, setConfirm] = useState<boolean>(false);
+
+  if (!betaVersion) {
+    return <></>;
+  }
 
   useEffect(() => {
     onChange(show);
@@ -46,7 +50,7 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
           }}
         >
           <span className="oui-navbar-link__wrapper">
-            {isBeta && (
+            {useBeta && (
               <>
                 <span className="oui-navbar-link__text">
                   {t('beta_modal_new')}
@@ -57,7 +61,7 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
                 <span className="oui-icon oui-icon-chevron-down ml-2"></span>
               </>
             )}
-            {!isBeta && (
+            {!useBeta && (
               <>
                 <span className="oui-navbar-link__text">Version classique</span>
                 <span className="oui-icon oui-icon-chevron-down ml-2"></span>
@@ -70,7 +74,7 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
             <div className="oui-navbar-list_dropdown">
               <ul className="oui-navbar-list">
                 <li className="oui-navbar-list__item">
-                  {isBeta && (
+                  {useBeta && (
                     <button
                       className="oui-navbar-link oui-navbar-link_tertiary"
                       type="button"
@@ -82,7 +86,7 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
                       {t('beta_modal_old')}
                     </button>
                   )}
-                  {!isBeta && (
+                  {!useBeta && (
                     <button
                       className="oui-navbar-link oui-navbar-link_tertiary"
                       type="button"
