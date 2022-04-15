@@ -5,9 +5,13 @@ import NavReshuffleContainer from '@/container/nav-reshuffle';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 export default function Container(): JSX.Element {
-  const { isLoading, isBeta } = useProductNavReshuffle();
+  const { isLoading, betaVersion, useBeta } = useProductNavReshuffle();
   if (isLoading) {
     return <></>;
   }
-  return <>{isBeta ? <NavReshuffleContainer /> : <LegacyContainer />}</>;
+  return (
+    <>
+      {betaVersion && useBeta ? <NavReshuffleContainer /> : <LegacyContainer />}
+    </>
+  );
 }

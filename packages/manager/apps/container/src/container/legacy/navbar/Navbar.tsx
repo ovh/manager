@@ -35,6 +35,7 @@ function Navbar({ environment }: Props): JSX.Element {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
+    let mounted = true;
     environmentPlugin.onUniverseChange(() => {
       setCurrentUniverse(environment.getUniverse());
     });
@@ -42,7 +43,10 @@ function Navbar({ environment }: Props): JSX.Element {
     listen(MESSAGES.navbarSearch, ({ url }) => {
       setSearchURL(url);
     });
-    fetchUniverses().then(setUniverses);
+    fetchUniverses().then((u) => mounted && setUniverses(u));
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   const brandClickHandler = () =>
