@@ -64,8 +64,9 @@ export default class AdvancedConfigurationCtrl {
         entry?.key?.name &&
         entry?.value !== undefined &&
         entry?.value !== null
-      )
+      ) {
         advancedJson[entry.key.name] = `${entry.value}`;
+      }
     });
     return advancedJson;
   }

@@ -97,7 +97,9 @@ export default class Plan {
     if (!plan) return -1;
     const planScore = plan.specsScore;
     const thisScore = this.specsScore;
-    if (planScore === thisScore) return 0;
+    if (planScore === thisScore) {
+      return 0;
+    }
     return planScore > thisScore ? 1 : -1;
   }
 
