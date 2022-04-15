@@ -448,7 +448,7 @@
                             ></span>
                             <ovh-manager-catalog-price
                                 data-price="$ctrl.model.flavor.hourlyPrice.priceInUcents * $ctrl.model.plan.nodesCount"
-                                data-tax="$ctrl.model.flavor.hourlyPrice.tax"
+                                data-tax="$ctrl.model.flavor.hourlyPrice.tax * $ctrl.model.plan.nodesCount"
                                 data-user="$ctrl.user"
                                 data-show-zero-price="true"
                                 data-interval="'hour'"
