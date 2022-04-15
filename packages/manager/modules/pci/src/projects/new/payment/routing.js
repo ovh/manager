@@ -178,7 +178,7 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
-      step: /* @ngInject */ (getStep) => getStep('payment'),
+      step: /* @ngInject */ (getStep) => getStep(PCI_PROJECT_STEPS.PAYMENT),
     },
   });
 };
