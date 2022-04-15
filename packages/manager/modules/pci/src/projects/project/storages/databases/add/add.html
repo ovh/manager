@@ -204,7 +204,9 @@
             <pci-order-command
                 data-order-api-url="$ctrl.orderAPIUrl"
                 data-order-data="$ctrl.orderData"
+                data-parameter-keys="$ctrl.orderKeys"
                 data-user="$ctrl.user"
+                data-auto-height="true"
             >
                 <p data-translate="pci_database_add_command_description"></p>
                 <a
@@ -236,16 +238,14 @@
         </form>
     </div>
     <div class="col-lg-4">
-        <div class="sticky-top">
-            <oui-tile data-heading="Votre commande" class="mb-3">
+        <div class="sticky-top mb-3">
+            <oui-tile data-heading="Votre commande">
                 <oui-tile-definition data-term="Résumé">
                     <oui-tile-description>
                         <p><strong>Name:</strong> {{$ctrl.model.name}}</p>
                         <div class="d-flex align-items-center">
                             <span class="mr-2"
-                                ><a
-                                    href=""
-                                    ng-click="$ctrl.$anchorScroll('engine')"
+                                ><a href="" ng-click="$ctrl.scrollTo('engine')"
                                     >Engine:</a
                                 >
                                 {{$ctrl.model.engine.getLabel()}}</span
@@ -269,7 +269,7 @@
                             </span>
                         </div>
                         <p>
-                            <a href="" ng-click="$ctrl.$anchorScroll('plan')"
+                            <a href="" ng-click="$ctrl.scrollTo('plan')"
                                 >Offer:</a
                             >
                             {{$ctrl.capitalize($ctrl.model.plan.name)}}
@@ -295,14 +295,14 @@
                             </span>
                         </div>
                         <p>
-                            <a href="" ng-click="$ctrl.$anchorScroll('region')"
+                            <a href="" ng-click="$ctrl.scrollTo('region')"
                                 >Region:</a
                             >
                             {{$ctrl.ovhManagerRegionService.getTranslatedMacroRegion($ctrl.model.region.name)}}
                             ({{$ctrl.model.region.name}})
                         </p>
                         <p>
-                            <a href="" ng-click="$ctrl.$anchorScroll('flavor')"
+                            <a href="" ng-click="$ctrl.scrollTo('flavor')"
                                 >Flavor:</a
                             >
                             {{$ctrl.capitalize($ctrl.model.flavor.name)}}
@@ -345,7 +345,7 @@
                             </span>
                         </div>
                         <p>
-                            <a href="" ng-click="$ctrl.$anchorScroll('network')"
+                            <a href="" ng-click="$ctrl.scrollTo('network')"
                                 >Network:</a
                             >
                             {{$ctrl.model.usePrivateNetwork ? 'private' :

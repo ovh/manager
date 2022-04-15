@@ -4,22 +4,22 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 import capitalize from 'lodash/capitalize';
+import animateScrollTo from 'animated-scroll-to';
 import { API_GUIDES } from '../../../project.constants';
 
 import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
 import { ENGINE_LOGOS } from '../databases.constants';
+import { ORDER_KEYS } from './add.constants';
 
 export default class {
   /* @ngInject */
   constructor(
-    $anchorScroll,
     $translate,
     CucCloudMessage,
     DatabaseService,
     ovhManagerRegionService,
     $scope,
   ) {
-    this.$anchorScroll = $anchorScroll;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
@@ -27,6 +27,7 @@ export default class {
     this.capitalize = capitalize;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.$scope = $scope;
+    this.orderKeys = ORDER_KEYS;
   }
 
   $onInit() {
@@ -64,6 +65,16 @@ export default class {
       },
       true,
     );
+
+    this.scrollToOptions = {
+      element: document.getElementsByClassName('pci-project-content')[0],
+      offset: 0,
+      horizontal: false,
+    };
+  }
+
+  scrollTo(id) {
+    animateScrollTo(document.getElementById(id), this.scrollToOptions);
   }
 
   acceptLab(accepted) {
@@ -158,7 +169,6 @@ export default class {
       )?.openstackId;
       this.orderData.subnetId = this.model.subnet?.id;
     }
-    return this.orderData;
   }
 
   onEngineChanged(engine) {
