@@ -1,6 +1,7 @@
 import Shell from '../../shell/shell';
 import Sidebar from './components/sidebar';
 import Navbar, { INavbar } from './components/navbar';
+import Chatbot from './components/chatbot';
 
 export interface ISidebars {
   [name: string]: Sidebar;
@@ -26,8 +27,11 @@ export class ShellUX implements IShellUx {
 
   private sidebars: ISidebars = {};
 
+  private chatbot: Chatbot;
+
   constructor(shell: Shell) {
     this.shell = shell;
+    this.chatbot = new Chatbot();
   }
 
   registerSidebar(sidebarName: string): void {
@@ -96,5 +100,9 @@ export class ShellUX implements IShellUx {
 
   getNavbar(): INavbar {
     return this.navbar;
+  }
+
+  getChatbot(): Chatbot {
+    return this.chatbot;
   }
 }
