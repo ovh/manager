@@ -222,7 +222,7 @@ export default class {
 
   getSyncPlan(engine) {
     const { plans } = engine.selectedVersion;
-    let plan = plans[0];
+    let plan = engine.getDefaultPlan();
     if (this.model.plan) {
       const equivalentPlan = plans.find((p) => p.name === this.model.plan.name);
       if (equivalentPlan) {
@@ -234,7 +234,7 @@ export default class {
 
   getSyncRegion(plan) {
     const { regions } = plan;
-    let region = regions[0];
+    let region = plan.getDefaultRegion();
     if (this.model.region) {
       const equivalentRegion = regions.find(
         (r) => r.name === this.model.region.name,
@@ -248,7 +248,7 @@ export default class {
 
   getSyncFlavor(region) {
     const { flavors } = region;
-    let flavor = flavors[0];
+    let flavor = region.getDefaultFlavor();
     if (this.model.flavor) {
       const equivalentFlavor = flavors.find(
         (f) => f.name === this.model.flavor.name,

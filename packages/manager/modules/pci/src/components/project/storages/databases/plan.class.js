@@ -107,13 +107,20 @@ export default class Plan {
     return planScore > thisScore ? 1 : -1;
   }
 
-  getDefaultRegion(selectedRegion) {
-    return this.regions.includes(selectedRegion)
-      ? selectedRegion
-      : find(this.regions, 'isDefault');
+  getDefaultRegion() {
+    const defaultRegion = find(this.regions, 'isDefault');
+    return defaultRegion || this.regions[0];
   }
 
   getRegion(regionName) {
     return find(this.regions, { name: regionName });
+  }
+
+  isNetworkSupported(networkName) {
+    return some(this.availability, { network: networkName });
+  }
+
+  get supportsPrivateNetwork() {
+    return this.isNetworkSupported('private');
   }
 }

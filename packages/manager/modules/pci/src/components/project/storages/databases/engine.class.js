@@ -96,4 +96,9 @@ export default class Engine {
   getRegion(versionName, planName, regionName) {
     return this.getPlan(versionName, planName).getRegion(regionName);
   }
+
+  getDefaultPlan() {
+    const defaultPlan = find(this.selectedVersion.plans, 'isDefault');
+    return defaultPlan || this.selectedVersion.plans[0];
+  }
 }

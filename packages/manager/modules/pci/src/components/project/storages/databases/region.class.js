@@ -25,10 +25,9 @@ export default class Region {
     return this.hasSufficientQuota;
   }
 
-  getDefaultFlavor(selectedFlavor) {
-    return this.flavors.includes(selectedFlavor)
-      ? selectedFlavor
-      : find(this.flavors, 'isDefault');
+  getDefaultFlavor() {
+    const defaultFlavor = find(this.flavors, 'isDefault');
+    return defaultFlavor || this.flavors[0];
   }
 
   getFlavor(flavorName) {
