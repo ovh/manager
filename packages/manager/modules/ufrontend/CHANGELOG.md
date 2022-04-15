@@ -1,3 +1,12 @@
+## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ufrontend@2.2.0...@ovh-ux/ufrontend@2.2.1) (2022-04-15)
+
+
+### Bug Fixes
+
+* **ufrontend:** avoid double slash in URL ([d3de8f5](https://github.com/ovh/manager/commit/d3de8f53942c6e94cd91862af82d168ca6841871))
+
+
+
 # [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ufrontend@2.1.1...@ovh-ux/ufrontend@2.2.0) (2022-04-12)
 
 
