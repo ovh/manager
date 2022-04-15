@@ -244,7 +244,7 @@
             >
                 <oui-tile-definition>
                     <oui-tile-description>
-                        <p>
+                        <div>
                             <strong
                                 data-translate="pci_database_add_spec_name"
                             ></strong
@@ -252,10 +252,10 @@
                                 ng-bind="$ctrl.model.name"
                                 class="ml-2"
                             ></span>
-                        </p>
+                        </div>
                         <div class="d-flex align-items-center">
-                            <span class="mr-2"
-                                ><a
+                            <div class="mr-2">
+                                <a
                                     href=""
                                     ng-click="$ctrl.scrollTo('engine')"
                                     data-translate="pci_database_add_spec_engine"
@@ -263,7 +263,7 @@
                                 <span
                                     ng-bind="$ctrl.model.engine.getLabel()"
                                 ></span>
-                            </span>
+                            </div>
                             <img
                                 ng-src="{{$ctrl.ENGINE_LOGOS[$ctrl.model.engine.name]}}"
                                 width="60px"
@@ -272,7 +272,7 @@
                             />
                         </div>
                         <div class="d-flex flex-column mb-2 pl-2">
-                            <span class="d-flex">
+                            <div class="d-flex">
                                 <span
                                     class="oui-icon oui-icon-hashtag_concept mr-2"
                                 ></span>
@@ -282,9 +282,9 @@
                                         version: $ctrl.model.engine.selectedVersion.version
                                     }"
                                 ></span>
-                            </span>
+                            </div>
                         </div>
-                        <p>
+                        <div>
                             <a
                                 href=""
                                 ng-click="$ctrl.scrollTo('plan')"
@@ -294,28 +294,28 @@
                                 class="text-capitalize"
                                 ng-bind="$ctrl.model.plan.name"
                             ></span>
-                        </p>
+                        </div>
                         <div class="d-flex flex-column mb-2 pl-2">
-                            <span class="d-flex">
+                            <div class="d-flex">
                                 <span
                                     class="oui-icon oui-icon-cloud-edge-computing_concept mr-2"
                                 ></span>
                                 <span
                                     data-ng-bind="$ctrl.getNodesSpecTranslation()"
                                 ></span>
-                            </span>
+                            </div>
                         </div>
                         <div class="d-flex flex-column mb-2 pl-2">
-                            <span class="d-flex">
+                            <div class="d-flex">
                                 <span
                                     class="oui-icon oui-icon-floppy-clock_concept mr-2"
                                 ></span>
                                 <span
                                     data-translate="pci_database_add_spec_backup_policy"
                                 ></span>
-                            </span>
+                            </div>
                         </div>
-                        <p>
+                        <div>
                             <a
                                 href=""
                                 ng-click="$ctrl.scrollTo('region')"
@@ -328,8 +328,8 @@
                                     alias: $ctrl.model.region.name
                                 }"
                             ></span>
-                        </p>
-                        <p>
+                        </div>
+                        <div>
                             <a
                                 href=""
                                 ng-click="$ctrl.scrollTo('flavor')"
@@ -339,9 +339,9 @@
                                 class="text-capitalize"
                                 ng-bind="$ctrl.model.flavor.name"
                             ></span>
-                        </p>
+                        </div>
                         <div class="d-flex flex-column mb-2 pl-2">
-                            <span class="d-flex">
+                            <div class="d-flex">
                                 <span
                                     class="oui-icon oui-icon-component_concept mr-2"
                                 ></span>
@@ -352,8 +352,8 @@
                                         bytes:2:false:'GB')
                                     }"
                                 ></span>
-                            </span>
-                            <span class="d-flex">
+                            </div>
+                            <div class="d-flex">
                                 <span
                                     class="oui-icon oui-icon-ram_concept mr-2"
                                 ></span>
@@ -364,8 +364,8 @@
                                         bytes:2:false:'GB')
                                     }"
                                 ></span>
-                            </span>
-                            <span
+                            </div>
+                            <div
                                 class="d-flex"
                                 ng-if="$ctrl.model.flavor.maxDiskSize > 0"
                             >
@@ -387,9 +387,9 @@
                                         storageMaxSize: ($ctrl.model.flavor.maxDiskSize | bytes:2:false:'GB')
                                     }"
                                 ></span>
-                            </span>
+                            </div>
                         </div>
-                        <p>
+                        <div>
                             <a
                                 href=""
                                 ng-click="$ctrl.scrollTo('network')"
@@ -403,12 +403,12 @@
                                 ng-if="!$ctrl.model.usePrivateNetwork"
                                 data-translate="pci_database_add_network_mode_public"
                             ></span>
-                        </p>
+                        </div>
                         <div
                             class="d-flex flex-column mb-2 pl-2"
                             ng-if="$ctrl.model.usePrivateNetwork "
                         >
-                            <span class="d-flex">
+                            <div class="d-flex">
                                 <span
                                     class="oui-icon oui-icon-cloud_concept mr-2"
                                 ></span>
@@ -419,8 +419,8 @@
                                 <span
                                     ng-bind="$ctrl.model.privateNetwork.name"
                                 ></span>
-                            </span>
-                            <span class="d-flex">
+                            </div>
+                            <div class="d-flex">
                                 <span
                                     class="oui-icon oui-icon-cloud-edge-computing_concept mr-2"
                                 ></span>
@@ -436,8 +436,12 @@
                                     ng-if="!$ctrl.model.subnet.name"
                                     data-translate="pci_database_add_spec_network_none"
                                 ></span>
-                            </span>
+                            </div>
                         </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition>
+                    <oui-tile-description>
                         <div class="d-flex justify-content-between">
                             <span
                                 data-translate="pci_database_common_price"
