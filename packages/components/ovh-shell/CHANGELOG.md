@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.1.1...@ovh-ux/shell@1.1.2) (2022-04-15)
+
+
+### Bug Fixes
+
+* **shell:** use buildURL to build redirection URL ([13287f6](https://github.com/ovh/manager/commit/13287f6e3515355179af2b1220c6129ee4b01452))
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.1.0...@ovh-ux/shell@1.1.1) (2022-04-12)
 
 
