@@ -293,6 +293,7 @@ export default class PciProjectNewPaymentCtrl {
     } = this.model;
 
     return (
+      finalize ||
       isVoucherValidating ||
       isVoucherRequirePaymentMethod ||
       (this.eligibility.isChallengePaymentMethodRequired() &&
