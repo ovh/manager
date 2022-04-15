@@ -3,7 +3,6 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
-import capitalize from 'lodash/capitalize';
 import animateScrollTo from 'animated-scroll-to';
 import { API_GUIDES } from '../../../project.constants';
 
@@ -24,7 +23,6 @@ export default class {
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
     this.ENGINE_LOGOS = ENGINE_LOGOS;
-    this.capitalize = capitalize;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.$scope = $scope;
     this.orderKeys = ORDER_KEYS;
@@ -136,19 +134,15 @@ export default class {
   }
 
   getNodesSpecTranslation() {
-    return this.$translate.instant(
-      this.model.plan.nodesCount === this.model.plan.maxNodes
-        ? `pci_database_plans_list_spec_nodes${
-            this.model.plan.nodesCount === 1 ? '_single' : ''
-          }`
-        : `pci_database_plans_list_spec_nodes_range${
-            this.model.plan.nodesCount === 1 ? '_single_min' : ''
-          }`,
-      {
-        min: this.model.plan.nodesCount,
-        max: this.model.plan.maxNodes,
-      },
-    );
+    const prefix = 'pci_database_add_spec_nodes';
+    const range =
+      this.model.plan.nodesCount === this.model.plan.maxNodes ? '' : '_range';
+    const single = this.model.plan.nodesCount === 1 ? '_single' : '';
+    const translateKey = `${prefix}${range}${single}`;
+    return this.$translate.instant(translateKey, {
+      min: this.model.plan.nodesCount,
+      max: this.model.plan.maxNodes,
+    });
   }
 
   getOrderData() {
