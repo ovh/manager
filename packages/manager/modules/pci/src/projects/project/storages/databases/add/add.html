@@ -417,7 +417,13 @@
                                     class="mr-2"
                                 ></span>
                                 <span
+                                    ng-if="$ctrl.model.privateNetwork.id.length !== 0"
                                     ng-bind="$ctrl.model.privateNetwork.name"
+                                ></span>
+                                <span
+                                    class="oui-color-ae-500"
+                                    ng-if="$ctrl.model.privateNetwork.id.length === 0"
+                                    data-translate="pci_database_add_spec_network_none"
                                 ></span>
                             </div>
                             <div class="d-flex">
@@ -429,11 +435,12 @@
                                     class="mr-2"
                                 ></span>
                                 <span
-                                    ng-if="$ctrl.model.subnet.name"
+                                    ng-if="$ctrl.model.subnet.id.length !== 0"
                                     ng_bind="$ctrl.model.subnet.name"
                                 ></span>
                                 <span
-                                    ng-if="!$ctrl.model.subnet.name"
+                                    class="oui-color-ae-500"
+                                    ng-if="!$ctrl.model.subnet.id || $ctrl.model.subnet.id.length === 0"
                                     data-translate="pci_database_add_spec_network_none"
                                 ></span>
                             </div>
