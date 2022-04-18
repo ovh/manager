@@ -1,6 +1,8 @@
 import controller from './ip.controller';
 import template from './ip.html';
 
+const allowByoipFeatureName = 'ip:byoip';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip', {
     url: '/ip?serviceName&page&pageSize',
@@ -29,6 +31,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href($state.current.name, $transition$.params()),
       goToOrganisation: /* @ngInject */ ($state) => () =>
         $state.go('app.ip.dashboard.organisation'),
+      isByoipAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(allowByoipFeatureName)
+          .then((feature) => feature.isFeatureAvailable(allowByoipFeatureName)),
       breadcrumb: /* @ngInject */ ($translate) => $translate.instant('ip_ip'),
     },
     atInternet: {

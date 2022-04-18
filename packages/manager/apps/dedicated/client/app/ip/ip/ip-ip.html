@@ -161,7 +161,10 @@
                     >
                         <span data-translate="ip_order_additional_ips"></span>
                     </oui-tile-button>
-                    <oui-tile-button data-on-click="goToByoipConfiguration()">
+                    <oui-tile-button
+                        data-on-click="goToByoipConfiguration()"
+                        data-ng-if="isByoipAvailable"
+                    >
                         <span data-ng-bind=":: BRING_YOUR_OWN_IP"></span>
                     </oui-tile-button>
                 </oui-tile>
