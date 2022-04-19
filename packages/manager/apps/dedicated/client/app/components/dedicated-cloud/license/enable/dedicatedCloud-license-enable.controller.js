@@ -2,8 +2,9 @@ import head from 'lodash/head';
 
 export default class {
   /* @ngInject */
-  constructor($translate, ovhManagerPccLicenseEnableService, User) {
+  constructor($translate, $window, ovhManagerPccLicenseEnableService, User) {
     this.$translate = $translate;
+    this.$window = $window;
     this.ovhManagerPccLicenseEnableService = ovhManagerPccLicenseEnableService;
     this.User = User;
   }
@@ -108,5 +109,10 @@ export default class {
         quantity: 1,
       },
     ])}`;
+  }
+
+  openOrderPage() {
+    this.$window.open(this.getOrderUrl(), '_blank');
+    this.goBack();
   }
 }
