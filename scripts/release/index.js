@@ -129,8 +129,8 @@ const getReleaseVersion = (version, seed) => {
   return Promise.resolve().then(() => version);
 };
 
-const release = (version, repos) =>
-  MonoRepository.release(version, repos)
+const release = (version, repos, dryRelease) =>
+  MonoRepository.release(version, repos, dryRelease)
     .logging(`releasing ${version}`)
     .then(() => console.log(`    released ${version}`))
     .then(() => version);
