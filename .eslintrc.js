@@ -4,7 +4,6 @@ module.exports = {
   plugins: ['angular', 'markdown', 'prettier'],
   extends: ['airbnb-base', 'prettier'],
   env: {
-    'angular/mocks': true,
     browser: true,
     jquery: true,
     jest: true,
