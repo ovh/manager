@@ -20,20 +20,6 @@ export default class PciProjectNewConfigCtrl {
     }).join(', ');
   }
 
-  setCartProjectItem() {
-    if (
-      this.model.description &&
-      !this.cart.projectItem.descriptionConfiguration
-    ) {
-      return this.pciProjectNew.setCartProjectItemDescription(
-        this.cart,
-        this.model.description,
-      );
-    }
-
-    return this.$q.when();
-  }
-
   setHdsOptionItem() {
     const { cartId, projectItem, hdsItem } = this.cart;
     const { hds: hdsIsChecked } = this.model;

@@ -71,6 +71,37 @@ export default /* @ngInject */ ($stateProvider) => {
       step: /* @ngInject */ (getStep) =>
         getStep(PCI_PROJECT_STEPS.CONFIGURATION),
 
+      setCartProjectItem: /* @ngInject */ (
+        $q,
+        model,
+        cart,
+        pciProjectNew,
+      ) => () => {
+        if (model.description && !cart.projectItem.descriptionConfiguration) {
+          return pciProjectNew.setCartProjectItemDescription(
+            cart,
+            model.description,
+          );
+        }
+
+        return $q.when();
+      },
+
+      onProgressStepClick: /* @ngInject */ (
+        hds,
+        model,
+        setCartProjectItem,
+        goToPayment,
+      ) => ({ name, active }) => {
+        if (name === PCI_PROJECT_STEPS.PAYMENT && !active) {
+          if (model.agreements || hds.isInprogressRequest) {
+            return setCartProjectItem().then(() => goToPayment());
+          }
+        }
+
+        return null;
+      },
+
       summary: /* @ngInject */ (cart, getSummary) => getSummary(),
 
       getSummary: /* @ngInject */ (cart, orderCart) => () =>
