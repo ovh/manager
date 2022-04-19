@@ -3,6 +3,7 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 
 import { CREDIT_PROVISIONING } from './components/add/constants';
+import { PCI_PROJECT_STEPS } from '../constants';
 
 import component from './component';
 
@@ -176,6 +177,14 @@ export default /* @ngInject */ ($stateProvider) => {
             location: false,
           },
         );
+      },
+
+      onProgressStepClick: /* @ngInject */ ($state) => ({ name, active }) => {
+        if (name === PCI_PROJECT_STEPS.CONFIGURATION && !active) {
+          return $state.go('^');
+        }
+
+        return null;
       },
 
       step: /* @ngInject */ (getStep) => getStep(PCI_PROJECT_STEPS.PAYMENT),
