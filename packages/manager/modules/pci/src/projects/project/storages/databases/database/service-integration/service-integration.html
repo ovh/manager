@@ -12,18 +12,21 @@
         data-dismissable
     >
         <span
-            data-translate="pci_databases_service_integration_tab_no_kafka_service"
+            data-translate="pci_databases_service_integration_tab_no_service"
+            data-translate-values="{engineName: $ctrl.engineName}"
         ></span>
     </oui-message>
-
-    <p data-translate="pci_databases_service_integration_tab_descritpion"></p>
+    <p
+        data-translate="pci_databases_service_integration_tab_descritpion"
+        data-translate-values="{engineName: $ctrl.engineName}"
+    ></p>
     <oui-datagrid
         class="mt-5"
         data-page-size="10"
         data-rows="$ctrl.serviceIntegrationList"
     >
         <oui-datagrid-column
-            data-title=":: 'pci_databases_service_integration_tab_kafka_service' | translate"
+            data-title=":: 'pci_databases_service_integration_tab_service' | translate: {engineName: $ctrl.engineName}"
             data-property="sourceServiceName"
             data-sortable="asc"
             data-type="string"
@@ -72,7 +75,8 @@
                     aria-hidden="true"
                 ></span>
                 <span
-                    data-translate="pci_databases_service_integration_tab_add_kafka"
+                    data-translate="pci_databases_service_integration_tab_add"
+                    data-translate-values="{engineName: $ctrl.engineName}"
                 ></span>
             </oui-button>
             <button

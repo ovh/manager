@@ -1,8 +1,8 @@
 {
   "pci_databases_service_integration_add_confirm": "Confirm",
   "pci_databases_service_integration_add_cancel": "Cancel",
-  "pci_databases_service_integration_add": "Add a Kafka",
-  "pci_databases_service_integration_add_service_label": "Select a Kafka service:",
-  "pci_databases_service_integration_add_success_message": "Your Kafka service has been added.",
-  "pci_databases_service_integration_add_error_message": "An error occurred while adding your Kafka service: {{message}}"
+  "pci_databases_service_integration_add": "Add an {{engineName}}",
+  "pci_databases_service_integration_add_service_label": "Select an {{engineName}} service:",
+  "pci_databases_service_integration_add_success_message": "Your {{engineName}} service has been added.",
+  "pci_databases_service_integration_add_error_message": "An error has occurred adding your {{engineName}} service: {{message}}"
 }

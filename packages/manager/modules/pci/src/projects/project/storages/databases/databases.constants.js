@@ -5,6 +5,11 @@ import ASSET_POSTGRE_SQL from './assets/postgresql.png';
 import ASSET_REDIS from './assets/redis.png';
 import ASSET_OPEN_SEARCH from './assets/opensearch.png';
 import ASSET_KAFKA_MIRROR_MAKER from './assets/Kafka_MirrorMaker.png';
+import ASSET_KAFKA_CONNECT from './assets/Kafka_Connect.png';
+import ASSET_M3DB from './assets/m3.png';
+import ASSET_CASSANDRA from './assets/Cassandra.png';
+import ASSET_GRAFANA from './assets/grafana.png';
+import ASSET_M3AGGREGATOR from './assets/m3aggregator.png';
 
 export const ENGINE_LOGOS = {
   mongodb: ASSET_MONGO_DB,
@@ -14,6 +19,11 @@ export const ENGINE_LOGOS = {
   redis: ASSET_REDIS,
   opensearch: ASSET_OPEN_SEARCH,
   kafkaMirrorMaker: ASSET_KAFKA_MIRROR_MAKER,
+  kafkaConnect: ASSET_KAFKA_CONNECT,
+  m3db: ASSET_M3DB,
+  cassandra: ASSET_CASSANDRA,
+  grafana: ASSET_GRAFANA,
+  m3aggregator: ASSET_M3AGGREGATOR,
 };
 
 export const DATABASES_GUIDES_URL =
@@ -27,6 +37,11 @@ export const DATABASE_TYPES = {
   KAFKA: 'kafka',
   OPEN_SEARCH: 'opensearch',
   KAFKA_MIRROR_MAKER: 'kafkaMirrorMaker',
+  KAFKA_CONNECT: 'kafkaConnect',
+  M3DB: 'm3db',
+  CASSANDRA: 'cassandra',
+  GRAFANA: 'grafana',
+  M3AGGEGATOR: 'm3aggregator',
 };
 
 export const SHELL_NAMES = {
@@ -37,6 +52,11 @@ export const SHELL_NAMES = {
   kafka: 'kafka',
   opensearch: 'opensearch',
   kafkaMirrorMaker: 'kafkaMirrorMaker',
+  kafkaConnect: 'kafkaConnect',
+  m3db: 'm3db',
+  cassandra: 'cassandra',
+  grafana: 'grafana',
+  m3aggregator: 'm3aggregator',
 };
 
 export const SECRET_TYPE = {

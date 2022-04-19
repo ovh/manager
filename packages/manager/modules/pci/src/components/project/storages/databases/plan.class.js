@@ -86,12 +86,21 @@ export default class Plan {
     return maxBy(this.availability, 'maxDiskSize').maxDiskSize;
   }
 
+  get specsScore() {
+    return this.maxCores + this.maxMemory + this.maxNodes + this.maxStorage;
+  }
+
   compare(plan) {
     // greater than 0 if current plan is the lower one
     // less than 0 if current plan is the higher one
     // 0 if equal
     if (!plan) return -1;
-    return plan.minNodes - this.minNodes;
+    const planScore = plan.specsScore;
+    const thisScore = this.specsScore;
+    if (planScore === thisScore) {
+      return 0;
+    }
+    return planScore > thisScore ? 1 : -1;
   }
 
   getDefaultRegion(selectedRegion) {

@@ -1,5 +1,7 @@
 import some from 'lodash/some';
+import set from 'lodash/set';
 import isFeatureActivated from '../../features.constants';
+import { ADD_USER_FORM_RULES } from './add/add.constants';
 import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
 
 export default class UsersCtrl {
@@ -8,6 +10,7 @@ export default class UsersCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.$translate = $translate;
     this.DatabaseService = DatabaseService;
+    this.ADD_USER_FORM_RULES = ADD_USER_FORM_RULES;
   }
 
   $onInit() {
@@ -22,6 +25,7 @@ export default class UsersCtrl {
       'showUserInformations',
       this.database.engine,
     );
+    this.showGroup = isFeatureActivated('usersGroup', this.database.engine);
 
     // Poll the database status
     if (this.database.isProcessing()) {
@@ -100,6 +104,25 @@ export default class UsersCtrl {
 
   isDisabledOrPending($row) {
     return $row.isProcessing() || this.database.isProcessing();
+  }
+
+  handleGroupChange(newValue, row) {
+    set(row, 'pending', true);
+    this.DatabaseService.editUser(
+      this.projectId,
+      this.database.engine,
+      this.database.id,
+      row.id,
+      {
+        group: newValue,
+      },
+    )
+      .then(() => {
+        set(row, 'group', newValue);
+      })
+      .finally(() => {
+        set(row, 'pending', false);
+      });
   }
 
   $onDestroy() {
