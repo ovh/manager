@@ -5,5 +5,6 @@ export default {
   template,
   bindings: {
     steps: '<',
+    onProgressStepClick: '<',
   },
 };
