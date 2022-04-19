@@ -5,6 +5,7 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
+import cloneDeep from 'lodash/cloneDeep';
 
 export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingDepositMovementCtrl(
   $q,
@@ -74,6 +75,50 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingDep
       });
   };
 
+  function getCanTransferSecurityDeposit(targetsChunk) {
+    return $q.all(
+      reduce(
+        targetsChunk,
+        (obj, value) => {
+          const billingAccount = get(value, 'value.billingAccount');
+          // eslint-disable-next-line no-param-reassign
+          obj[billingAccount] = OvhApiTelephony.v6()
+            .canTransferSecurityDeposit(
+              {
+                billingAccount: self.source.billingAccount,
+              },
+              {
+                billingAccountDestination: billingAccount,
+              },
+            )
+            .$promise.then((data) => data.value)
+            .catch((err) => {
+              if (err.status === 400) {
+                // means that deposit cannot be transfered
+                return false;
+              }
+              return $q.reject(err);
+            });
+          return obj;
+        },
+        {},
+      ),
+    );
+  }
+
+  async function fetchDataInChunks(targetsArr) {
+    const targetsArrCopy = cloneDeep(targetsArr);
+    let result = {};
+    while (targetsArrCopy.length) {
+      // eslint-disable-next-line no-await-in-loop
+      const resultOfChunk = await getCanTransferSecurityDeposit(
+        targetsArrCopy.splice(0, 10),
+      );
+      result = Object.assign(result, resultOfChunk);
+    }
+    return result;
+  }
+
   self.onChangeSource = function onChangeSource() {
     self.targets = [];
     self.currency =
@@ -89,35 +134,9 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingDep
 
     // disable target if not the same billing contact than source
     // build a billingAccount->promise object of all the requests to canTransferSecurityDeposit
-    return $q
-      .all(
-        reduce(
-          targets,
-          (obj, value) => {
-            const billingAccount = get(value, 'value.billingAccount');
-            // eslint-disable-next-line no-param-reassign
-            obj[billingAccount] = OvhApiTelephony.v6()
-              .canTransferSecurityDeposit(
-                {
-                  billingAccount: self.source.billingAccount,
-                },
-                {
-                  billingAccountDestination: billingAccount,
-                },
-              )
-              .$promise.then((data) => data.value)
-              .catch((err) => {
-                if (err.status === 400) {
-                  // means that deposit cannot be transfered
-                  return false;
-                }
-                return $q.reject(err);
-              });
-            return obj;
-          },
-          {},
-        ),
-      )
+    // fetch canTransferSecurityDeposit of targets in chunks to avoid HTTP 429 Error
+    self.loading.target = true;
+    return fetchDataInChunks(targets)
       .then((billingAccountTransfertStatus) => {
         forEach(targets, (target) => {
           set(
@@ -135,6 +154,11 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingDep
           ),
         );
         return $q.reject(err);
+      })
+      .finally(() => {
+        $timeout(() => {
+          self.loading.target = false;
+        });
       });
   };
 

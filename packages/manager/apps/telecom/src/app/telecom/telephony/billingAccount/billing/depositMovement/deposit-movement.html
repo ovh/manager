@@ -194,7 +194,7 @@
                                 required
                                 data-ng-model="BillingAccountDepositMovementCtrl.target"
                                 data-ng-options="item.value as item.label disable when item.disable for item in BillingAccountDepositMovementCtrl.targets"
-                                data-ng-disabled="!BillingAccountDepositMovementCtrl.source || BillingAccountDepositMovementCtrl.loading.submit"
+                                data-ng-disabled="!BillingAccountDepositMovementCtrl.source || BillingAccountDepositMovementCtrl.loading.submit || BillingAccountDepositMovementCtrl.loading.target"
                             >
                             </select>
                         </div>
