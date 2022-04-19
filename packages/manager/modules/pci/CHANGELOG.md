@@ -1,3 +1,39 @@
+# [5.69.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.68.0...@ovh-ux/manager-pci@5.69.0) (2022-04-19)
+
+
+### Bug Fixes
+
+* sonarcloud ([220049b](https://github.com/ovh/manager/commit/220049b47e5b8c6430dcd359de2a223f22026bab))
+* **i18n:** add missing translations [CDS 1566] ([5fce6af](https://github.com/ovh/manager/commit/5fce6af8ba3095843b899e2533d90f36a74a532a))
+* **pci.storage.databases:** add rules for group input ([#6728](https://github.com/ovh/manager/issues/6728)) ([b38fc96](https://github.com/ovh/manager/commit/b38fc9648d2406956b5986f7773af5e729715690))
+* **pci.storage.databases:** check required inputs ([#6725](https://github.com/ovh/manager/issues/6725)) ([c6b6b77](https://github.com/ovh/manager/commit/c6b6b770ec51692cde7d30bfeaf371424eefcfcd))
+* **pci.storage.databases:** display none if no integration found ([#6722](https://github.com/ovh/manager/issues/6722)) ([e16c927](https://github.com/ovh/manager/commit/e16c92794eebdc6400cef5519db5beb4ceddfbfa))
+* **pci.storage.databases:** do not list non ready services in integration ([#6735](https://github.com/ovh/manager/issues/6735)) ([926fdb4](https://github.com/ovh/manager/commit/926fdb44b2b770b897980814f6bce192b210e734))
+* **pci.storage.databases:** fix connectors 500 ([#6775](https://github.com/ovh/manager/issues/6775)) ([b20b36b](https://github.com/ovh/manager/commit/b20b36b7ff81bf1be68901056f4cf2beda7700e5))
+* **pci.storage.databases:** fix plan compare function ([#6705](https://github.com/ovh/manager/issues/6705)) ([7489afd](https://github.com/ovh/manager/commit/7489afd5849fe0ee8896b5979db5a7d29ed95a52))
+* **pci.storage.databases:** remove advanced configuration for m3dbd ([#6747](https://github.com/ovh/manager/issues/6747)) ([657c68e](https://github.com/ovh/manager/commit/657c68ed643e02690421f2542a154c0450dc79d2))
+* **pci.storage.databases:** remove special characters for tracking ([#6785](https://github.com/ovh/manager/issues/6785)) ([9015335](https://github.com/ovh/manager/commit/9015335983160183c742846a621876dbc4f5de62))
+* **pci.storage.databases:** update plan fix ([#6729](https://github.com/ovh/manager/issues/6729)) ([7fd4ebc](https://github.com/ovh/manager/commit/7fd4ebc4fbeb96e45580538fd5b452ab4033d4b3))
+* **pci.storage.databases:** update tracking with new specs ([#6727](https://github.com/ovh/manager/issues/6727)) ([9da0d8e](https://github.com/ovh/manager/commit/9da0d8e20d15ec66f92be29031c1d5b9a307239f))
+
+
+### Features
+
+* **pci.storage.databases:**  m3db add namespaces actions ([#6414](https://github.com/ovh/manager/issues/6414)) ([8336df8](https://github.com/ovh/manager/commit/8336df8d80e754900a3cdc61d01cc32afe718058))
+* **pci.storage.databases:** add advanced configuration tab ([#6568](https://github.com/ovh/manager/issues/6568)) ([cc320ac](https://github.com/ovh/manager/commit/cc320ac2a99278f29f492a96e0be9426ff486226))
+* **pci.storage.databases:** add cassandra engine ([#6368](https://github.com/ovh/manager/issues/6368)) ([400d4cf](https://github.com/ovh/manager/commit/400d4cf7c0e6a52b94a1e1b423475b92c0f43553))
+* **pci.storage.databases:** add grafana engine ([#6376](https://github.com/ovh/manager/issues/6376)) ([9d1eb8f](https://github.com/ovh/manager/commit/9d1eb8f5142421f0c3d30739b51bc35c1a4434da))
+* **pci.storage.databases:** add group property for m3db user ([#6399](https://github.com/ovh/manager/issues/6399)) ([cb6f659](https://github.com/ovh/manager/commit/cb6f659c3a593e341b380e2244424ea225fd4fdc))
+* **pci.storage.databases:** add kafka connect engine ([#6576](https://github.com/ovh/manager/issues/6576)) ([6d21c05](https://github.com/ovh/manager/commit/6d21c05ae8abc021d35b7359139a9a92f855a35d))
+* **pci.storage.databases:** add m3aggregator engine ([#6426](https://github.com/ovh/manager/issues/6426)) ([4b5d426](https://github.com/ovh/manager/commit/4b5d4264629efbac7dcec90b4c4543f159d41469))
+* **pci.storage.databases:** add m3db engine ([#6400](https://github.com/ovh/manager/issues/6400)) ([481293d](https://github.com/ovh/manager/commit/481293dc0ebd9b668b94759e2e93fa772e3c996a))
+* **pci.storage.databases:** add m3db namespaces tab ([#6405](https://github.com/ovh/manager/issues/6405)) ([7ee8363](https://github.com/ovh/manager/commit/7ee836375e824ffee978012bc8400c6625cfcece))
+* **pci.storage.databases:** use endpoint property for connections ([#6409](https://github.com/ovh/manager/issues/6409)) ([eb52310](https://github.com/ovh/manager/commit/eb523101cd36300881a0fb0106a6e0e6e012720a))
+* **pci.storage.databases:** use placeholder logo for m3db aggregator ([#6644](https://github.com/ovh/manager/issues/6644)) ([bb31f03](https://github.com/ovh/manager/commit/bb31f032036e8182a439cf0c42c2013988f6e869))
+* **storage.databases:** align logo and engine name in db views ([#6383](https://github.com/ovh/manager/issues/6383)) ([f383cde](https://github.com/ovh/manager/commit/f383cde7c12362d5cfd35ef51a68f0f3f539e59b))
+
+
+
 # [5.68.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.67.0...@ovh-ux/manager-pci@5.68.0) (2022-04-14)
 
 
