@@ -59,6 +59,10 @@ export default class PciProjectNewVoucherCtrl {
     );
   }
 
+  getFormatCreditText() {
+    return `<span class="text-success">${this.voucherEligibility.voucher.credit.text}</span>`;
+  }
+
   /* -----  End of Helpers  ------ */
 
   /* =============================
@@ -144,6 +148,7 @@ export default class PciProjectNewVoucherCtrl {
         this.model.voucher.reset();
         this.model.voucher.setValue('');
 
+        this.voucherEligibility = null;
         this.errors.reset = false;
         this.model.isVoucherRequirePaymentMethod = true;
       })
