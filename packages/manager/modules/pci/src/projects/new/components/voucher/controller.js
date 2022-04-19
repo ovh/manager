@@ -1,3 +1,5 @@
+import PciEligibility from '../../classes/eligibility.class';
+
 export default class PciProjectNewVoucherCtrl {
   /* @ngInject */
   constructor($q, pciProjectNew) {
@@ -44,6 +46,19 @@ export default class PciProjectNewVoucherCtrl {
     return step.name === 'configuration' ? 'config' : step.name;
   }
 
+  canAddVoucher() {
+    const { voucher } = this.model;
+    const { finalize, isVoucherValidating } = this.globalLoading;
+
+    return (
+      !this.loading.check &&
+      !finalize &&
+      !isVoucherValidating &&
+      voucher.value &&
+      !voucher.valid
+    );
+  }
+
   /* -----  End of Helpers  ------ */
 
   /* =============================
@@ -72,6 +87,8 @@ export default class PciProjectNewVoucherCtrl {
         if (eligibilityOpts.voucher?.error) {
           return this.$q.reject(eligibilityOpts);
         }
+
+        this.voucherEligibility = new PciEligibility(eligibilityOpts);
 
         return eligibilityOpts;
       })
@@ -151,6 +168,7 @@ export default class PciProjectNewVoucherCtrl {
 
   $onInit() {
     if (this.model.voucher.value) {
+      this.voucherEligibility = this.eligibility;
       this.formVisible = true;
       this.setVoucherFormState();
     }
