@@ -50,6 +50,10 @@ program
     '--release-type <releasetype>',
     'Force a release as patch, minor or major',
   )
+  .option(
+    '--dry-release <dryRelease>',
+    'Make a dry release, which will not update, nor push tag to the remote repository',
+  )
   .action(() => {
     if (!program.token) {
       console.warn('Missing <token> option, no github release will be done!');
@@ -86,9 +90,13 @@ program
         if (program.release && repos.length) {
           return getReleaseVersion(program.releaseName, program.seed)
             .then((version) => updateSonarProjectVersion(version))
-            .then((version) => release(version, repos))
+            .then((version) => release(version, repos, program.dryRelease))
             .then((version) => {
-              if (program.token && program.organization) {
+              if (
+                program.token &&
+                program.organization &&
+                !program.dryRelease
+              ) {
                 const options = {
                   draft: program.draftRelease || false,
                   prerelease: program.preRelease || false,

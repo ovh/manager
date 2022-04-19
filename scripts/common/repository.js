@@ -1,4 +1,4 @@
-/* eslint-disable global-require, import/no-dynamic-require,
+/* eslint-disable global-require,
 max-classes-per-file, no-use-before-define */
 const concat = require('concat-stream');
 const conventionalCommitsParser = require('conventional-commits-parser');
@@ -55,7 +55,7 @@ class MonoRepository {
       });
   }
 
-  static release(version, repos) {
+  static release(version, repos, dryRelease = false) {
     const commitMsg = repos
       .map((r) => `* Package ${r.name} ${r.getPackageJson().version}`)
       .join('\n');
@@ -70,9 +70,11 @@ class MonoRepository {
         }),
       )
       .then((v) =>
-        execa
-          .command('git push origin master --tags', { shell: true })
-          .then(() => v),
+        dryRelease
+          ? Promise.resolve(v)
+          : execa
+              .command('git push origin master --tags', { shell: true })
+              .then(() => v),
       );
   }
 
@@ -186,7 +188,7 @@ class Repository {
   }
 
   getPackageJson() {
-    return require(this.getPackageJsonPath());
+    return require(this.getPackageJsonPath()); // eslint-disable-line
   }
 
   updatePackageJson(changes) {
@@ -448,5 +450,5 @@ module.exports = {
   Repository,
   Dependency,
 };
-/* eslint-enable global-require, import/no-dynamic-require,
+/* eslint-enable global-require,
 max-classes-per-file, no-use-before-define */
