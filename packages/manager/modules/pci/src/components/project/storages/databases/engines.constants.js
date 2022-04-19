@@ -14,6 +14,11 @@ export const ENGINES_NAMES = {
   redis: 'Redis™*',
   opensearch: 'OpenSearch',
   kafkaMirrorMaker: 'Kafka MirrorMaker',
+  kafkaConnect: 'Kafka Connect',
+  m3db: 'M3DB',
+  cassandra: 'Cassandra',
+  grafana: 'Grafana',
+  m3aggregator: 'M3 Aggregator',
 };
 
 export default {

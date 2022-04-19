@@ -84,7 +84,8 @@
             data-href="{{ $ctrl.poolsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.poolsLink"
             ><span
-                data-translate="pci_databases_dashboard_pools_tab_title"></span>
+                data-translate="pci_databases_dashboard_pools_tab_title"
+            ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.logsLink }}"
@@ -122,6 +123,30 @@
             data-active="$ctrl.currentActiveLink() === $ctrl.replicationsLink"
             ><span
                 data-translate="pci_databases_dashboard_replications_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('namespacesTab')"
+            data-href="{{ $ctrl.namespacesLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.namespacesLink"
+            ><span
+                data-translate="pci_databases_dashboard_namespaces_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('connectorsTab')"
+            data-href="{{ $ctrl.connectorsLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.connectorsLink"
+            ><span
+                data-translate="pci_databases_dashboard_connectors_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('advancedConfigurationTab')"
+            data-href="{{ $ctrl.advancedConfigurationLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.advancedConfigurationLink"
+            ><span
+                data-translate="pci_databases_dashboard_advanced_configuration_tab_title"
             ></span>
         </oui-header-tabs-item>
     </oui-header-tabs>

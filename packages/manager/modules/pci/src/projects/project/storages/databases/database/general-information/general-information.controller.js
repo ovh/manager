@@ -25,6 +25,7 @@ export default class {
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.DatabaseService = DatabaseService;
+    this.DATABASE_TYPES = DATABASE_TYPES;
   }
 
   $onInit() {
@@ -45,6 +46,7 @@ export default class {
       )?.uri;
       this.KARAPACE_URL = KARAPACE_URL;
     }
+    [this.endpoint] = this.database.endpoints;
   }
 
   downloadCertificate() {
@@ -92,6 +94,51 @@ export default class {
     }
 
     this.goToManagerUsers();
+  }
+
+  resetPassword() {
+    this.trackDashboard('general_information::reset_password');
+    this.DatabaseService.resetUserCredentials(
+      this.projectId,
+      this.database.engine,
+      this.database.id,
+      this.users[0].id,
+    )
+      .then((data) => {
+        this.trackDashboard(
+          'general_information::reset_password_validated',
+          'page',
+        );
+        this.CucCloudMessage.flushMessages(this.messageContainer);
+        this.CucCloudMessage.success(
+          {
+            textHtml: this.$translate.instant(
+              'pci_databases_general_information_reset_password_success',
+              {
+                user: this.users[0].username,
+                password: data.password,
+              },
+            ),
+          },
+          this.messageContainer,
+        );
+      })
+      .catch((error) => {
+        this.trackDashboard(
+          'general_information::reset_password_error',
+          'page',
+        );
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_databases_general_information_reset_password_error',
+            {
+              user: this.users[0].username,
+              message: error.data?.message || null,
+            },
+          ),
+          this.messageContainer,
+        );
+      });
   }
 
   trackManageVRack() {
@@ -209,6 +256,13 @@ export default class {
         'click',
       );
     }
+  }
+
+  trackEndpointChange(modelValue) {
+    this.trackDashboard(
+      `general_information::select_services::${modelValue.component}`,
+      'click',
+    );
   }
 
   $onDestroy() {

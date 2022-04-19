@@ -232,39 +232,79 @@
                 </oui-tile-definition>
             </oui-tile>
         </div>
-        <div
-            class="col-md"
-            data-ng-if="!$ctrl.isFeatureActivated('hideMiddleColumn')"
-        >
+        <div class="col-md" data-ng-if="$ctrl.database.endpoints.length > 0">
             <oui-tile
                 data-heading="{{:: 'pci_databases_general_information_connection_information' | translate }}"
                 class="mb-3"
             >
                 <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_endpoint_label' | translate }}"
+                    data-ng-if="$ctrl.database.endpoints.length > 1"
+                >
+                    <oui-tile-description>
+                        <oui-select
+                            match="component"
+                            model="$ctrl.endpoint"
+                            items="$ctrl.database.endpoints"
+                            on-change="$ctrl.trackEndpointChange(modelValue)"
+                        >
+                        </oui-select>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_service_URI_label' | translate }}"
-                    data-ng-if="$ctrl.isFeatureActivated('serviceURI')"
+                    data-ng-if="$ctrl.endpoint.uri"
                 >
                     <oui-tile-description>
                         <oui-tile-description>
                             <oui-clipboard
-                                data-model="$ctrl.database.uri"
-                                data-id="connection-mongo-shell"
-                                data-name="connection-mongo-shell"
+                                model="$ctrl.endpoint.uri"
                             ></oui-clipboard>
                         </oui-tile-description>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_database_host' | translate }}"
-                    data-ng-if="$ctrl.isFeatureActivated('host')"
-                    data-description="{{:: $ctrl.database.domain }}"
+                    data-ng-if="$ctrl.endpoint.domain"
                 >
+                    <oui-tile-description>
+                        <span data-ng-bind="$ctrl.endpoint.domain"></span>
+                    </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_database_port' | translate }}"
-                    data-ng-if="$ctrl.isFeatureActivated('port')"
-                    data-description="{{:: $ctrl.database.port }}"
+                    data-ng-if="$ctrl.endpoint.port"
                 >
+                    <oui-tile-description>
+                        <span data-ng-bind="$ctrl.endpoint.port"></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_scheme_label' | translate }}"
+                    data-ng-if="$ctrl.endpoint.scheme"
+                >
+                    <oui-tile-description>
+                        <span data-ng-bind="$ctrl.endpoint.scheme"></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_path_label' | translate }}"
+                    data-ng-if="$ctrl.endpoint.path"
+                >
+                    <oui-tile-description>
+                        <span data-ng-bind="$ctrl.endpoint.path"></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_ssl_mode' | translate }}"
+                    data-description="{{:: $ctrl.endpoint.sslMode }}"
+                    data-ng-if="$ctrl.endpoint.sslMode"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-translate="{{'pci_databases_general_information_' + $ctrl.database.getSSLModeKey($ctrl.endpoint.sslMode)}}"
+                        ></span>
+                    </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_user_label' | translate }}"
@@ -303,28 +343,24 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_service_URI_kibana_label' | translate }}"
-                    data-ng-if="$ctrl.isFeatureActivated('showKibanaURI')"
+                    data-term="{{:: 'pci_databases_general_information_user_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('resetAdminUserFromDashboard')"
                 >
                     <oui-tile-description>
-                        <oui-tile-description>
-                            <oui-clipboard
-                                data-model="$ctrl.database.additionalUris.kibana"
-                                data-id="connection-kibana-shell"
-                                data-name="connection-kibana-shell"
-                            ></oui-clipboard>
-                        </oui-tile-description>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_ssl_mode' | translate }}"
-                    data-description="{{:: $ctrl.database.sslMode }}"
-                    data-ng-if="$ctrl.isFeatureActivated('showSSL')"
-                >
-                    <oui-tile-description>
-                        <span
-                            data-translate="{{'pci_databases_general_information_' + $ctrl.database.getSSLModeKey()}}"
-                        ></span>
+                        <span data-ng-bind="$ctrl.users[0].username"></span>
+                        <button
+                            type="button"
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            data-ng-click="$ctrl.resetPassword()"
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_reset_password"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right ml-1"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
@@ -399,19 +435,60 @@
                 data-heading="{{:: 'pci_databases_general_information_service_integration_title' | translate }}"
             >
                 <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_kafka_mirror_maker_label' | translate }}"
+                    ng-if="$ctrl.database.engine === $ctrl.DATABASE_TYPES.KAFKA"
+                    data-term="{{::'pci_databases_general_information_kafka_mirror_maker_label' | translate }}"
                 >
                     <oui-tile-description>
                         <p
-                            data-ng-if="$ctrl.serviceIntegration.length === 0"
-                            data-translate="pci_databases_general_information_kafka_mirror_maker_none"
+                            data-ng-if="!$ctrl.serviceIntegration.kafkaMirrorMaker"
+                            data-translate="pci_databases_general_information_integration_none"
                         ></p>
                         <p
-                            data-ng-repeat="integration in $ctrl.serviceIntegration track by $index"
+                            data-ng-repeat="integration in $ctrl.serviceIntegration.kafkaMirrorMaker track by $index"
                         >
                             <span
                                 class="oui-badge_success oui-badge"
-                                data-ng-bind="integration.serviceName"
+                                data-ng-bind="integration.destinationServiceName"
+                            >
+                            </span>
+                        </p>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    ng-if="$ctrl.database.engine === $ctrl.DATABASE_TYPES.KAFKA"
+                    data-term="{{::'pci_databases_general_information_kafka_connect_label' | translate }}"
+                >
+                    <oui-tile-description>
+                        <p
+                            data-ng-if="!$ctrl.serviceIntegration.kafkaConnect"
+                            data-translate="pci_databases_general_information_integration_none"
+                        ></p>
+                        <p
+                            data-ng-repeat="integration in $ctrl.serviceIntegration.kafkaConnect track by $index"
+                        >
+                            <span
+                                class="oui-badge_success oui-badge"
+                                data-ng-bind="integration.destinationServiceName"
+                            >
+                            </span>
+                        </p>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    ng-if="$ctrl.database.engine === $ctrl.DATABASE_TYPES.M3DB"
+                    data-term="{{::'pci_databases_general_information_m3_aggregator_label' | translate }}"
+                >
+                    <oui-tile-description>
+                        <p
+                            data-ng-if="!$ctrl.serviceIntegration.m3aggregator"
+                            data-translate="pci_databases_general_information_integration_none"
+                        ></p>
+                        <p
+                            data-ng-repeat="integration in $ctrl.serviceIntegration.m3aggregator track by $index"
+                        >
+                            <span
+                                class="oui-badge_success oui-badge"
+                                data-ng-bind="integration.destinationServiceName"
                             >
                             </span>
                         </p>

@@ -7,5 +7,6 @@
   "pci_databases_general_information_upgrade_plan_cancel": "Annulla",
   "pci_databases_general_information_upgrade_plan_success": "La tua richiesta di cambio di offerta è stata presa in carico. Sarà effettiva entro pochi minuti.",
   "pci_databases_general_information_upgrade_plan_error": "La modifica dell'offerta non è stata effettuata correttamente: {{ message }}",
-  "pci_databases_general_information_upgrade_plan": "Modifica offerta"
+  "pci_databases_general_information_upgrade_plan": "Modifica offerta",
+  "pci_databases_general_information_upgrade_plan_select_flavor": "Il modello di nodi corrente {{flavor}} non consente di selezionare il piano superiore \"{{plan}}\". Per migrare la soluzione verso una versione superiore, scegli prima un nuovo modello di nodo tra quelli indicati qui sotto."
 }

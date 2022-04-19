@@ -13,7 +13,7 @@
   "pci_databases_general_information_node_type_storage_range": "da {{storageMinSize}} a {{storageMaxSize}} di storage SSD",
   "pci_databases_general_information_upgrade_node": "Migliora il modello di nodo",
   "pci_databases_general_information_service_label": "Servizio",
-  "pci_databases_general_information_service_URI_label": "URI del servizio",
+  "pci_databases_general_information_service_URI_label": "URI",
   "pci_databases_general_information_service_URI_kibana_label": "URI del servizio Kibana",
   "pci_databases_general_information_replicate_URI_label": "URI replica",
   "pci_databases_general_information_database_name": "Nome database",
@@ -68,5 +68,14 @@
   "pci_databases_general_information_kafka_rest_api_enable": "Attiva",
   "pci_databases_general_information_kafka_rest_api_disable": "Disattiva",
   "pci_databases_general_information_kafka_rest_service_uri_label": "URI del servizio REST Kafka",
-  "pci_databases_general_information_kafka_rest_api_enable_disable_error": "Si è verificato un errore durante l'attivazione/disattivazione di Kafka REST API."
+  "pci_databases_general_information_kafka_rest_api_enable_disable_error": "Si è verificato un errore durante l'attivazione/disattivazione di Kafka REST API.",
+  "pci_databases_general_information_m3_aggregator_label": "M3 Aggregator",
+  "pci_databases_general_information_kafka_connect_label": "Kafka Connect",
+  "pci_databases_general_information_integration_none": "Nessuno",
+  "pci_databases_general_information_endpoint_label": "Servizio",
+  "pci_databases_general_information_scheme_label": "Protocollo",
+  "pci_databases_general_information_path_label": "Percorso",
+  "pci_databases_general_information_reset_password": "Rigenera la password",
+  "pci_databases_general_information_reset_password_success": "La password dell'utente {{ user }} è stata rigenerata correttamente: <code>{{ password }}</code>. Annotala perché non potrà essere recuperata in seguito.",
+  "pci_databases_general_information_reset_password_error": "Si è verificato un errore durante la modifica della password dell'utente {{ user }}: {{ message }}."
 }

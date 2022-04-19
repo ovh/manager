@@ -2,12 +2,13 @@ import get from 'lodash/get';
 import { DATABASE_TYPES } from '../../../databases.constants';
 import { ADD_USER_FORM_RULES } from './add.constants';
 
-export default class {
+export default class AddUserCtrl {
   /* @ngInject */
   constructor($translate, DatabaseService) {
     this.$translate = $translate;
     this.DatabaseService = DatabaseService;
     this.inputRules = ADD_USER_FORM_RULES;
+    this.checkPattern = AddUserCtrl.checkPattern;
   }
 
   $onInit() {
@@ -16,6 +17,7 @@ export default class {
     this.model = {
       username: '',
       password: '',
+      group: '',
       categories: [],
       channels: [],
       commands: [],
@@ -23,13 +25,14 @@ export default class {
       selectedRoles: [],
     };
     this.isRolesReadOnly = !this.isFeatureActivated('getRoles');
+    this.hasGroups = this.isFeatureActivated('usersGroup');
     if (this.isRolesReadOnly) {
       this.model.selectedRoles = [];
     }
   }
 
-  checkPattern(value) {
-    return this.inputRules.name.pattern.test(value);
+  static checkPattern(value, pattern) {
+    return pattern.test(value);
   }
 
   getUserFromModel() {
@@ -44,6 +47,9 @@ export default class {
     }
     if (this.isFeatureActivated('getRoles')) {
       user.roles = this.model.selectedRoles.map((role) => role.name);
+    }
+    if (this.hasGroups && this.model.group) {
+      user.group = this.model.group;
     }
     return user;
   }

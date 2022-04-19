@@ -13,7 +13,7 @@
   "pci_databases_general_information_node_type_storage_range": "od {{storageMinSize}} do {{storageMaxSize}} przestrzeni dyskowej SSD",
   "pci_databases_general_information_upgrade_node": "Ulepsz model węzła",
   "pci_databases_general_information_service_label": "Usługa",
-  "pci_databases_general_information_service_URI_label": "URI usługi",
+  "pci_databases_general_information_service_URI_label": "URI",
   "pci_databases_general_information_service_URI_kibana_label": "URI usługi Kibana",
   "pci_databases_general_information_replicate_URI_label": "URI replica",
   "pci_databases_general_information_database_name": "Nazwa bazy danych",
@@ -68,5 +68,14 @@
   "pci_databases_general_information_kafka_rest_api_enable": "Włącz",
   "pci_databases_general_information_kafka_rest_api_disable": "Wyłącz",
   "pci_databases_general_information_kafka_rest_service_uri_label": "URI usługi REST Kafka",
-  "pci_databases_general_information_kafka_rest_api_enable_disable_error": "Wystąpił błąd podczas włączania/wyłączania Kafka REST API."
+  "pci_databases_general_information_kafka_rest_api_enable_disable_error": "Wystąpił błąd podczas włączania/wyłączania Kafka REST API.",
+  "pci_databases_general_information_m3_aggregator_label": "M3 Aggregator",
+  "pci_databases_general_information_kafka_connect_label": "Kafka Connect",
+  "pci_databases_general_information_integration_none": "Brak",
+  "pci_databases_general_information_endpoint_label": "Usługa",
+  "pci_databases_general_information_scheme_label": "Protokół",
+  "pci_databases_general_information_path_label": "Path",
+  "pci_databases_general_information_reset_password": "Wygeneruj ponownie hasło",
+  "pci_databases_general_information_reset_password_success": "Hasło użytkownika {{user}} zostało poprawnie wygenerowane: <code>{{password}}</code>. Zapisz je, ponieważ nie będzie można go później odzyskać.",
+  "pci_databases_general_information_reset_password_error": "Wystąpił błąd podczas modyfikacji hasła dla użytkownika {{user}}: {{message}}."
 }

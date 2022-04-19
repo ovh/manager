@@ -8,5 +8,10 @@
   "pci_database_engines_list_description_redis": "Sistema de almacenamiento de datos clave-valor en memoria",
   "pci_database_engines_list_description_mongodb": "Sistema de gestión de bases de datos orientado a documentos",
   "pci_database_engines_list_description_opensearch": "Motor de búsqueda y análisis distribuido Fork de Elasticsearch 7.10.2 y de Kibana 7.10.2",
-  "pci_database_engines_list_description_kafkaMirrorMaker": "Sistema de replicación de datos entre dos servicios Kafka"
+  "pci_database_engines_list_description_kafkaMirrorMaker": "Sistema de replicación de datos entre dos servicios Kafka",
+  "pci_database_engines_list_description_kafkaConnect": "Extensión de Kafka que facilita la conexión con sus sistemas externos de datos.",
+  "pci_database_engines_list_description_m3db": "Sistema de almacenamiento de series temporales",
+  "pci_database_engines_list_description_cassandra": "Sistema de almacenamiento de datos NoSQL distribuido",
+  "pci_database_engines_list_description_grafana": "Solución de análisis y monitorización",
+  "pci_database_engines_list_description_m3aggregator": "Sistema de agregación y remuestreo de series temporales"
 }
