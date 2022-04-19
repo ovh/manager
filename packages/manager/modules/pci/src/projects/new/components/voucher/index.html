@@ -71,6 +71,13 @@
                       data-translate-values="{ credit: $ctrl.getFormatCreditText() }"
                 >
                 </span>
+
+                <!--Reset voucher-->
+                <oui-button size="l" variant="link"
+                            disabled="$ctrl.loading.reset"
+                            data-on-click="$ctrl.onVoucherFormReset()">
+                    <span class="oui-icon oui-icon-trash"></span>
+                </oui-button>
             </div>
             <span
                 class="oui-field__helper"
