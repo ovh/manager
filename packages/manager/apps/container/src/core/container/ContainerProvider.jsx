@@ -21,7 +21,7 @@ export const ContainerProvider = ({ children }) => {
         value: accept ? 'true' : 'false',
       })
       .then((result) => {
-        if (!accept) {
+        if (accept === false) {
           // @TODO open new tab for survey
         }
         window.location.reload(false);
@@ -70,7 +70,7 @@ export const ContainerProvider = ({ children }) => {
 
   return (
     <ContainerContext.Provider value={containerContext}>
-      {!isLoading && children}
+      {children}
     </ContainerContext.Provider>
   );
 };
