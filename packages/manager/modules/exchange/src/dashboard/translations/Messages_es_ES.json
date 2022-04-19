@@ -1597,5 +1597,8 @@
   "exchange_reset_mfa_success": "Se ha reiniciado la doble autenticación.",
   "exchange_mfa_error": "Se ha producido un error: {{error}}",
   "exchange_delete_mfa_success": "Se ha eliminado la doble autenticación.",
-  "exchange_delete_mfa_error": "Se ha producido un error al eliminar la doble autenticación: {{error}}"
+  "exchange_delete_mfa_error": "Se ha producido un error al eliminar la doble autenticación: {{error}}",
+  "exchange_tab_ALIAS_add_address_placeholder": "Dirección",
+  "exchange_tab_ALIAS_add_alias_x500_label": "X500 (útil en caso de migración)",
+  "exchange_tab_ALIAS_add_alias_valid_x500": "Atención, el carácter especial «@» no es compatible con las direcciones X500."
 }
