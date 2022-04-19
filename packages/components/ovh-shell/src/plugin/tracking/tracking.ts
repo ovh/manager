@@ -23,9 +23,9 @@ export interface TrackingConfig {
 }
 
 const getCookie = (cookieId: string) => {
-  const latestCookies = document.cookie;
+  const latestCookies = document?.cookie;
   const idCookie = latestCookies
-    .split(';')
+    ?.split(';')
     .find((item) => item.includes(cookieId));
 
   if (idCookie) {
