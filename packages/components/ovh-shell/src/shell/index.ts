@@ -5,7 +5,6 @@ import DirectClientMessageBus from '../message-bus/direct-client';
 import authenticationPlugin from '../plugin/auth';
 import environmentPlugin from '../plugin/environment';
 import navigationPlugin from '../plugin/navigation';
-import { exposeTrackingAPI } from '../plugin/tracking';
 import { i18n as i18nPlugin } from '../plugin/i18n';
 import { UXPlugin, UXPluginType } from '../plugin/ux';
 import {

@@ -81,9 +81,9 @@ export class TrackingPlugin extends OvhAtInternet {
 
     const defaultConfig = {
       ...data,
-      countryCode: user.country,
-      currencyCode: user.currency && user.currency.code,
-      visitorId: user.customerCode,
+      countryCode: user?.country,
+      currencyCode: user?.currency && user?.currency.code,
+      visitorId: user?.customerCode,
     } as OrderData;
 
     this.setDefaults(defaultConfig);
