@@ -12,10 +12,6 @@ const feature = loadFeature('../../features/client/shell-client.feature', {
 const windowLocation = window.location;
 const setHrefSpy = jest.fn((href) => href);
 
-jest.mock('@ovh-ux/manager-config', () => ({
-  fetchConfiguration: () => Promise.resolve({}),
-}));
-
 defineFeature(feature, (test) => {
   beforeEach(() => {
     delete window.location;
