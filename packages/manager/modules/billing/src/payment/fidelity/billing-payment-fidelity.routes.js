@@ -1,6 +1,3 @@
-import controller from './billing-fidelity.controller';
-import template from './billing-fidelity.html';
-
 export default /* @ngInject */ (
   $stateProvider,
   $urlRouterProvider,
@@ -11,8 +8,7 @@ export default /* @ngInject */ (
 
     $stateProvider.state(name, {
       url: '/fidelity',
-      template,
-      controller,
+      component: 'billingFidelityComponent',
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('billing_payment_fidelity'),

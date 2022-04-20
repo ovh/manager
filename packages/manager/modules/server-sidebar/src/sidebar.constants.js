@@ -408,6 +408,13 @@ export const DEDICATED_NETWORK_CONFIG = {
           namespace: [undefined, HPC_NAMESPACE],
         },
       ],
+      children: [
+        {
+          id: 'cloud_connect_all_order_follow_up',
+          state: 'cloud-connect.index',
+          app: [DEDICATED],
+        },
+      ],
       icon: 'oui-icon oui-icon-line-communicating_concept',
       app: [DEDICATED],
       namespace: [undefined, HPC_NAMESPACE],

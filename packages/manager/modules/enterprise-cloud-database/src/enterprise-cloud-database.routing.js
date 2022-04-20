@@ -43,6 +43,8 @@ export default /* @ngInject */ ($stateProvider) => {
             offer: find(capabilities, { name: details.offerName }),
             details,
           })),
+      createCluster: /* @ngInject */ ($state) => () =>
+        $state.go('enterprise-cloud-database.create'),
       gettingStarted: /* @ngInject */ ($state) => (clusterId) =>
         $state.go('enterprise-cloud-database.service.get-started', {
           clusterId,

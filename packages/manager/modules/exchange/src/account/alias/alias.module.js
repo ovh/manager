@@ -6,6 +6,8 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import routing from './alias.routing';
 import component from './account-alias.component';
 
+import './account-alias.styles.scss';
+
 const moduleName = 'ovhManagerExchangeDashboardAccountAlias';
 
 angular

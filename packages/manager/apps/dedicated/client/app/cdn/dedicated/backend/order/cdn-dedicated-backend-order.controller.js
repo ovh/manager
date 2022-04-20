@@ -11,11 +11,9 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, Cdn) => {
 
   $scope.loadBackendPrice = () => {
     if (!$scope.price) {
-      Cdn.getSelected()
-        .then((cdn) => Cdn.getBackendPrice(cdn.serviceName))
-        .then((price) => {
-          $scope.price = price;
-        });
+      Cdn.getBackendPrice($stateParams.productId).then((price) => {
+        $scope.price = price;
+      });
     }
   };
 

@@ -36,7 +36,7 @@
   "telephony_billingAccount_svaWallet_kyc_identity_representative_birthdate": "Date of birth",
   "telephony_billingAccount_svaWallet_kyc_identity_representative_birthcity": "Place of birth",
   "telephony_billingAccount_svaWallet_kyc_identity_representative_birthcountry": "Country of birth",
-  "telephony_billingAccount_svaWallet_kyc_identity_representative_email": "Email",
+  "telephony_billingAccount_svaWallet_kyc_identity_representative_email": "Email address",
   "telephony_billingAccount_svaWallet_kyc_identity_representative_nationality": "Nationality",
   "telephony_billingAccount_svaWallet_kyc_identity_iban": "IBAN",
   "telephony_billingAccount_svaWallet_kyc_identity_iban_format_error": "The format for your IBAN number is not correct.",

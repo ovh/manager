@@ -2,7 +2,7 @@
     <div
         class="alert alert-warning"
         role="alert"
-        data-ng-if="ctrl.tasksList.list.messages.length > 0"
+        data-ng-if="ctrl.tasksList.messages.length > 0"
     >
         <div>
             <strong data-translate="exchange_tab_TASKS_warning"></strong>
@@ -14,7 +14,7 @@
         class="alert alert-info"
         role="alert"
         data-translate="exchange_tab_TASKS_table_empty"
-        data-ng-if="ctrl.tasksList.list.results.length === 0"
+        data-ng-if="ctrl.tasksList.results.length === 0"
     ></div>
 
     <oui-datagrid data-rows-loader="ctrl.loadPaginated($config)">

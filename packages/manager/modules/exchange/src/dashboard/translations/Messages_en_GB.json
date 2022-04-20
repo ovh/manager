@@ -1609,5 +1609,9 @@
   "exchange_resilitation_cancel_action_confirmation_2": "Do you want to proceed with this operation?",
   "exchange_resilitation_cancel_action_confirmation_3": "The service will then switch to automatic renewal.",
   "exchange_update_billing_periode_intro_1": "Choose the automatic renewal frequency for each account.",
-  "exchange_update_billing_periode_intro_2": "This will be applied from the next renewal."
+  "exchange_update_billing_periode_intro_2": "This will be applied from the next renewal.",
+  "exchange_tab_ALIAS_add_address_placeholder": "Address",
+  "exchange_tab_ALIAS_add_alias_x500_label": "X500 (useful for migration)",
+  "exchange_tab_ALIAS_add_alias_valid_x500": "Please note that the special character '@' is not accepted for an X500 address",
+  "exchange_tab_ALIAS_add_alias_valid_smtp": "Important: Some special symbols are not accepted in alias names, for example: + ? / () [] ;"
 }

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row account-alias">
     <div class="col-md-9">
         <oui-back-button
             data-on-click="$ctrl.messaging.resetMessages(); $ctrl.hide()"
@@ -13,7 +13,12 @@
             <oui-datagrid-column
                 data-title="'exchange_tab_ALIAS_header' | translate"
                 data-property="displayName"
-            ></oui-datagrid-column>
+            >
+                <span
+                    class="account-alias-column d-inline-block text-wrap"
+                    data-ng-bind="$value"
+                ></span>
+            </oui-datagrid-column>
             <oui-datagrid-column
                 data-title="'exchange_tab_ACCOUNTS_table_status' | translate"
                 data-property="taskPendingId"

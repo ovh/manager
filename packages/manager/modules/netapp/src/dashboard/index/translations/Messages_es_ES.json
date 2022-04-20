@@ -1,5 +1,4 @@
 {
-  "netapp_dashboard_general_information": "Información general",
   "netapp_dashboard_information": "Información",
   "netapp_dashboard_information_name": "Nombre",
   "netapp_dashboard_information_id": "ID",
@@ -16,7 +15,5 @@
   "netapp_dashboard_configuration_status_suspended": "Suspendido",
   "netapp_dashboard_configuration_status_deleting": "Eliminando...",
   "netapp_dashboard_configuration_status_deleted": "Eliminado",
-  "netapp_dashboard_configuration_create_volume": "Crear un volumen",
-  "netapp_dashboard_volumes": "Volúmenes",
-  "netapp_dashboard_snapshot_policies": "Políticas de snapshots"
+  "netapp_dashboard_configuration_create_volume": "Crear un volumen"
 }

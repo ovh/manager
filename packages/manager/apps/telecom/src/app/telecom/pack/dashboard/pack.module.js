@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 import packMove from '../move';
-import packResiliation from '../resiliation/pack-resiliation';
+import packResiliation from '../resiliation';
 import xdsl from '../xdsl';
 import migration from '../migration';
 import slots from '../slots';
