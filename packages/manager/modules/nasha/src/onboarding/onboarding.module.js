@@ -8,6 +8,7 @@ const moduleName = 'nashaOnboarding';
 angular
   .module(moduleName, [OnboardingLayoutHelper])
   .component('nashaOnboardingComponent', component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
