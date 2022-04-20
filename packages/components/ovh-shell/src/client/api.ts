@@ -79,6 +79,13 @@ export default function exposeApi(shellClient: ShellClient) {
           plugin: 'ux',
           method: 'isAccountSidebarVisible',
         }),
+      setForceAccountSiderBarDisplayOnLargeScreen: (isForced: boolean) => {
+        shellClient.invokePluginMethod({
+          plugin: 'ux',
+          method: 'setForceAccountSiderBarDisplayOnLargeScreen',
+          args: [isForced],
+        });
+      },
       getSSOAuthModalMode: (oldUserCookie: string) =>
         shellClient.invokePluginMethod<string>({
           plugin: 'ux',
@@ -97,6 +104,6 @@ export default function exposeApi(shellClient: ShellClient) {
         shellClient.addEventListener('ux:close-chatbot', callback),
     },
     navigation: clientNavigation(shellClient),
-    tracking: exposeTrackingAPI(),
+    tracking: exposeTrackingAPI(shellClient),
   };
 }

@@ -64,6 +64,18 @@ export class ShellUX implements IShellUx {
     registeredSidebar?.disableToggle();
   }
 
+  isLargeScreenDisplayForced(sidebarName: string): boolean {
+    const registeredSidebar = this.sidebars[sidebarName];
+
+    return registeredSidebar?.isLargeScreenDisplayForced();
+  }
+
+  setForceSiderBarDisplayOnLargeScreen(sidebarName: string, isForced: boolean): void {
+    const registeredSidebar = this.sidebars[sidebarName];
+
+    registeredSidebar?.setForceLargeScreenDisplay(isForced);
+  }
+
   onSidebarVisibilityChange(
     sidebarName: string,
     callback: CallableFunction,

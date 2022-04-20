@@ -6,38 +6,52 @@ import HeaderContext from './header.context';
 export const HeaderProvider = ({ children }) => {
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
+
   /* ----------- Account sidebar -----------*/
-  const [isAccountSidebarVisible, setIsAccountSidebarVisible] = useState(false);
+
+  const [
+    isAccountSidebarVisible,
+    setIsAccountSidebarVisible,
+  ] = useState(uxPlugin.isAccountSidebarVisible());
+  const isAccountSidebarLargeScreenDisplayForced = uxPlugin.isAccountSidebarLargeScreenDisplayForced();
+
+  useEffect(() => {
+    uxPlugin.onAccountSidebarVisibilityChange(() => {
+      setIsAccountSidebarVisible(uxPlugin.isAccountSidebarVisible());
+    });
+  }, []);
+
+  function toggleAccountSidebar() {
+    uxPlugin.toggleAccountSidebarVisibility();
+  }
 
   /* ----------- Notifications sidebar -----------*/
 
   const [
     isNotificationsSidebarVisible,
     setIsNotificationsSidebarVisible,
-  ] = useState(false);
-
-  const headerContext = {
-    // Account sidebar
-    isAccountSidebarVisible,
-    setIsAccountSidebarVisible,
-    // Notifications sidebar
-    isNotificationsSidebarVisible,
-    setIsNotificationsSidebarVisible,
-  };
+  ] = useState(uxPlugin.isNotificationsSidebarVisible());
 
   useEffect(() => {
-    setIsNotificationsSidebarVisible(uxPlugin.isNotificationsSidebarVisible());
-    uxPlugin.onAccountSidebarVisibilityChange(() => {
-      setIsAccountSidebarVisible(uxPlugin?.isAccountSidebarVisible());
+    uxPlugin.onNotificationsSidebarVisibilityChange(() => {
+      setIsNotificationsSidebarVisible(uxPlugin.isNotificationsSidebarVisible());
     });
   }, []);
 
-  useEffect(() => {
+  function toggleNotificationSidebar() {
     uxPlugin.toggleNotificationsSidebarVisibility();
-  }, [isNotificationsSidebarVisible]);
+  }
 
   return (
-    <HeaderContext.Provider value={headerContext}>
+    <HeaderContext.Provider
+      value={{
+        isAccountSidebarLargeScreenDisplayForced,
+        isAccountSidebarVisible,
+        isNotificationsSidebarVisible,
+        toggleAccountSidebar,
+        toggleNotificationSidebar,
+      }}
+    >
       {children}
     </HeaderContext.Provider>
   );
