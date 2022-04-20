@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import { useReket } from '@ovh-ux/ovh-reket';
 
+import useContainer from '@/core/container/useContainer';
+import { useShell } from '@/context/useApplicationContext';
+
 import ProductNavReshuffleContext from './context';
 import { FEEDBACK_URLS } from './constants';
 
@@ -21,9 +24,19 @@ export const ProductNavReshuffleProvider = ({
   const onboardingHelper = useOnboarding();
 
   const [isLoading, setIsLoading] = useState(true);
+  const { betaVersion } = useContainer();
 
+  /**
+   * @TODO: manage links for US version
+   */
   const getFeedbackUrl = () => {
-    return FEEDBACK_URLS.beta1; // TODO: check for language and beta version
+    let feedbackUrl = FEEDBACK_URLS[`beta${betaVersion}`];
+    const [lang] = useShell()
+      .getPlugin('i18n')
+      .getLocale()
+      .split('_');
+    feedbackUrl = `${feedbackUrl}?lang=${lang}`;
+    return feedbackUrl;
   };
 
   // onboarding
