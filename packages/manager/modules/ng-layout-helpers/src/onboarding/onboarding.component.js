@@ -4,7 +4,10 @@ import template from './onboarding.html';
 export default {
   controller,
   template,
-  transclude: true,
+  transclude: {
+    title: '?onboardingTitle',
+    description: '?onboardingDescription',
+  },
   bindings: {
     imageAlt: '<',
     imageSource: '<',
