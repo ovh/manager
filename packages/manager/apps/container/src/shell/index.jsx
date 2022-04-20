@@ -38,6 +38,24 @@ function Shell() {
       </Route>,
     );
 
+    // useraccount redirection, preserving path and search params
+    routing.addRoute(
+      <Route
+        path="/useraccount"
+        component={({ location }) => (
+          <Redirect
+            to={{
+              ...location,
+              pathname: location.pathname.replace(
+                /^\/useraccount/,
+                '/dedicated/useraccount',
+              ),
+            }}
+          />
+        )}
+      />,
+    );
+
     // Telecom application redirections
     [
       'freefax/:id?',
