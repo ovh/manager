@@ -9,5 +9,6 @@
   "pci_projects_new_voucher_form_add_title": "Einen Gutschein hinzufügen",
   "pci_projects_new_voucher_form_remove": "Entfernen",
   "pci_projects_new_voucher_form_remove_title": "Gutschein entfernen",
-  "pci_projects_new_voucher_form_reset_error": "Beim Entfernen Ihres Gutscheins ist ein Fehler aufgetreten."
+  "pci_projects_new_voucher_form_reset_error": "Beim Entfernen Ihres Gutscheins ist ein Fehler aufgetreten.",
+  "pci_projects_new_voucher_title": "Haben Sie einen Promo-Code?"
 }

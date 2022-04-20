@@ -9,5 +9,6 @@
   "pci_projects_new_voucher_form_add_title": "Wprowadź kod vouchera",
   "pci_projects_new_voucher_form_remove": "Usuń",
   "pci_projects_new_voucher_form_remove_title": "Usuń kod vouchera",
-  "pci_projects_new_voucher_form_reset_error": "Wystąpił błąd podczas usuwania kodu vouchera."
+  "pci_projects_new_voucher_form_reset_error": "Wystąpił błąd podczas usuwania kodu vouchera.",
+  "pci_projects_new_voucher_title": "Masz kod promocyjny?"
 }
