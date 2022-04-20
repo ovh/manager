@@ -11,6 +11,7 @@ const Button = ({ link, translationBase }) => {
       className="btn btn-link d-flex"
       type="button"
       role="button"
+      onClick={link.action}
     >
       {link.icon && (
         <span
