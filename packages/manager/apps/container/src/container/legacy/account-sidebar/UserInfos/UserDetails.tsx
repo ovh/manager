@@ -1,15 +1,16 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-
 import { User } from './useUserInfos';
 
 type Props = {
-  cssBaseClassName: string;
-  user: User;
+  cssBaseClassName?: string;
+  user?: User;
 };
 
-const UserDetails = ({ user, cssBaseClassName }: Props): JSX.Element => {
+const UserDetails = ({
+  cssBaseClassName = '',
+  user = {},
+}: Props): JSX.Element => {
   const { organisation, email, nichandle } = user;
 
   return (
@@ -29,16 +30,6 @@ const UserDetails = ({ user, cssBaseClassName }: Props): JSX.Element => {
       )}
     </p>
   );
-};
-
-UserDetails.propTypes = {
-  cssBaseClassName: PropTypes.string,
-  user: PropTypes.object,
-};
-
-UserDetails.defaultProps = {
-  cssBaseClassName: '',
-  user: {},
 };
 
 export default UserDetails;

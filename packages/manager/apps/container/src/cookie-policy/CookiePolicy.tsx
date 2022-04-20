@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { Modal } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
-import { useCookies } from 'react-cookie';
-import PropTypes from 'prop-types';
 
-import { useApplication } from '@/context';
+import Shell from '@ovh-ux/shell';
+import { Modal } from 'react-bootstrap';
+import { useCookies } from 'react-cookie';
+import { useTranslation } from 'react-i18next';
 
 import ovhCloudLogo from './assets/logo-ovhcloud.png';
 import links from './links';
 import './style.scss';
 
+import { useApplication } from '@/context';
+
 const trackingEnabled = process.env.NODE_ENV === 'production';
 
-const CookiePolicy = (props) => {
+type Props = {
+  shell: Shell;
+};
+
+const CookiePolicy = ({ shell }: Props): JSX.Element => {
   const { t } = useTranslation('cookie-policy');
   const [cookies, setCookies] = useCookies(['MANAGER_TRACKING']);
   const { environment } = useApplication();
-  const { shell } = props;
   const [show, setShow] = useState(false);
   const { ovhSubsidiary } = shell
     .getPlugin('environment')
@@ -115,10 +119,6 @@ const CookiePolicy = (props) => {
       </Modal.Footer>
     </Modal>
   );
-};
-
-CookiePolicy.propTypes = {
-  shell: PropTypes.object,
 };
 
 CookiePolicy.displayName = 'CookiePolicy';

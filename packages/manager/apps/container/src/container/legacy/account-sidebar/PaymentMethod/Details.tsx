@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import { TRANSLATE_NAMESPACE } from '../constants';
@@ -8,15 +7,15 @@ import { TRANSLATE_NAMESPACE } from '../constants';
 import { PaymentMethod } from './usePaymentMethod';
 
 type Props = {
-  cssBaseClassName: string;
-  defaultPaymentMethod: PaymentMethod;
-  translationBase: string;
+  cssBaseClassName?: string;
+  defaultPaymentMethod?: PaymentMethod;
+  translationBase?: string;
 };
 
 const Details = ({
-  cssBaseClassName,
-  defaultPaymentMethod,
-  translationBase,
+  cssBaseClassName = '',
+  defaultPaymentMethod = {},
+  translationBase = '',
 }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
 
@@ -49,16 +48,6 @@ const Details = ({
     )}
     </div>
   );
-};
-
-Details.propTypes = {
-  cssBaseClassName: PropTypes.string,
-  defaultPaymentMethod: PropTypes.object,
-  translationBase: PropTypes.string,
-};
-
-Details.defaultProps = {
-  defaultPaymentMethod: {},
 };
 
 export default Details;

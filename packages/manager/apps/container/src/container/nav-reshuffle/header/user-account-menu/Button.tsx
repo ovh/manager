@@ -1,14 +1,19 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import style from './style.module.scss';
 
+type Props = {
+  children?: JSX.Element;
+  onClick(show: boolean): void;
+  show?: boolean;
+};
+
 const UserAccountMenuButton = ({
-  children,
+  children = null,
   onClick,
-  show,
+  show = false,
 }: Props): JSX.Element => {
   const { t } = useTranslation('user-account-menu');
   return (
@@ -29,20 +34,6 @@ const UserAccountMenuButton = ({
       </span>
     </button>
   );
-};
-
-UserAccountMenuButton.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-  onClick: PropTypes.func.isRequired,
-  show: PropTypes.bool,
-};
-
-UserAccountMenuButton.defaultProps = {
-  children: null,
-  show: false,
 };
 
 export default UserAccountMenuButton;

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import { useReket } from '@ovh-ux/ovh-reket';
-import PropTypes from 'prop-types';
 
 import ProductNavReshuffleContext from './context';
 
@@ -10,7 +9,7 @@ type Props = {
 };
 
 export const ProductNavReshuffleProvider = ({
-  children,
+  children = null,
 }: Props): JSX.Element => {
   const reketInstance = useReket();
   const preferenceKey = 'NAV_RESHUFFLE_BETA_ACCESS';
@@ -80,17 +79,6 @@ export const ProductNavReshuffleProvider = ({
       {children}
     </ProductNavReshuffleContext.Provider>
   );
-};
-
-ProductNavReshuffleProvider.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-};
-
-ProductNavReshuffleProvider.defaultProps = {
-  children: null,
 };
 
 export default ProductNavReshuffleProvider;
