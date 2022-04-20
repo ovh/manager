@@ -1,19 +1,18 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 
 import { TRANSLATE_NAMESPACE } from '../constants';
 
 type Props = {
-  cssBaseClassName: string;
-  translationBase: string;
+  cssBaseClassName?: string;
+  translationBase?: string;
 };
 
 const UserInfosFooter = ({
-  cssBaseClassName,
-  translationBase,
+  cssBaseClassName = '',
+  translationBase = '',
 }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const shell = useShell();
@@ -40,16 +39,6 @@ const UserInfosFooter = ({
       </button>
     </div>
   );
-};
-
-UserInfosFooter.propTypes = {
-  cssBaseClassName: PropTypes.string,
-  translationBase: PropTypes.string,
-};
-
-UserInfosFooter.defaultProps = {
-  cssBaseClassName: '',
-  translationBase: '',
 };
 
 export default UserInfosFooter;

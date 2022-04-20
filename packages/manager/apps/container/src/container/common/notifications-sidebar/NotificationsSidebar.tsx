@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
 import { groupBy } from 'lodash-es';
-import PropTypes from 'prop-types';
 
 import { MAX_NOTIFICATIONS } from './constants';
 import Notifications from './Notifications/Notifications';
@@ -13,10 +12,10 @@ import useNotifications from '@/core/notifications';
 import useDate from '@/helpers/useDate';
 
 type Props = {
-  environment: Environment;
+  environment?: Environment;
 };
 
-const NotificationsSidebar = ({ environment }: Props): JSX.Element => {
+const NotificationsSidebar = ({ environment = {} }: Props): JSX.Element => {
   const locale = environment.getUserLocale();
   const { fromNow } = useDate();
 
@@ -60,29 +59,24 @@ const NotificationsSidebar = ({ environment }: Props): JSX.Element => {
       role="menu"
     >
       <Notifications>
-        {isLoading && <Notifications.Loading />}
-        {!isLoading &&
-          Object.keys(groupedNotifications).map((groupTime, index) => {
-            return (
+        { isLoading ? (
+          <Notifications.Loading />
+        ) : notifications.length == 0 ? (
+          <Notifications.Empty />
+        ) : (
+          <>
+            {Object.keys(groupedNotifications).map((groupTime, index) => (
               <Notifications.Group
                 notifications={groupedNotifications[groupTime]}
                 title={groupTime}
                 key={index}
               />
-            );
-          })}
-        {!isLoading && !notifications.length && <Notifications.Empty />}
+            ))}
+          </>
+        )}
       </Notifications>
     </div>
   );
-};
-
-NotificationsSidebar.propTypes = {
-  environment: PropTypes.object,
-};
-
-NotificationsSidebar.defaultProps = {
-  environment: {},
 };
 
 export default NotificationsSidebar;

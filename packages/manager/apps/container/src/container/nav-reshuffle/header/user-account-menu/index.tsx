@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from 'react';
 
 import { useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
 import { useReket } from '@ovh-ux/ovh-reket';
-import PropTypes from 'prop-types';
 import useClickAway from 'react-use/lib/useClickAway';
 
 import UserAccountMenuButton from './Button';
@@ -13,7 +12,7 @@ import { useShell } from '@/context';
 import style from './style.module.scss';
 
 type Props = {
-  onToggle(): void;
+  onToggle(show: boolean): void;
 };
 
 export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
@@ -47,7 +46,7 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
       }
     }
 
-    onToggle({ show });
+    onToggle(show);
   }, [show]);
 
   useClickAway(ref, handleRootClose);
@@ -73,10 +72,6 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
       />
     </div>
   );
-};
-
-UserAccountMenu.propTypes = {
-  onToggle: PropTypes.func.isRequired,
 };
 
 export default UserAccountMenu;

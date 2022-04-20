@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { buildURL } from '@ovh-ux/ufrontend';
-import PropTypes from 'prop-types';
 import { useTranslation, Trans } from 'react-i18next';
 
 import icon from './assets/give_feedback.png';
@@ -11,13 +10,13 @@ import style from './style.module.scss';
 import { useShell } from '@/context';
 
 type Props = {
-  defaultPaymentMethod: unknown;
-  isLoading: boolean;
+  defaultPaymentMethod?: unknown;
+  isLoading?: boolean;
 };
 
 const UserAccountMenu = ({
-  defaultPaymentMethod,
-  isLoading,
+  defaultPaymentMethod = {},
+  isLoading = false,
 }: Props): JSX.Element => {
   const { t } = useTranslation('user-account-menu');
   const shell = useShell();
@@ -114,16 +113,6 @@ const UserAccountMenu = ({
       </div>
     </div>
   );
-};
-
-UserAccountMenu.propTypes = {
-  defaultPaymentMethod: PropTypes.object,
-  isLoading: PropTypes.bool,
-};
-
-UserAccountMenu.defaultProps = {
-  defaultPaymentMethod: {},
-  isLoading: false,
 };
 
 export default UserAccountMenu;

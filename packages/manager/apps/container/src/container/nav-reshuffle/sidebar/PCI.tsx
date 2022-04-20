@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import pciNode from './navigation-tree/pci';
@@ -13,16 +12,16 @@ type Props = {
   onExit(): void;
   onSelectProject(project: unknown): void;
   projects: unknown[];
-  selectedProject: unknown;
-  servicesCount: number;
+  selectedProject?: unknown;
+  servicesCount?: number;
 };
 
 export default function PciMenu({
   onExit,
   onSelectProject,
   projects,
-  selectedProject,
-  servicesCount,
+  selectedProject = '',
+  servicesCount = 0,
 }: Props): JSX.Element {
   const { t } = useTranslation('sidebar');
   const [navigationHistory, setNavigationHistory] = useState([]);
@@ -90,19 +89,3 @@ export default function PciMenu({
     </div>
   );
 }
-
-PciMenu.propTypes = {
-  onExit: PropTypes.func.isRequired,
-  onSelectProject: PropTypes.func.isRequired,
-  projects: PropTypes.array.isRequired,
-  selectedProject: PropTypes.any,
-  servicesCount: PropTypes.any,
-};
-
-PciMenu.defaultProps = {
-  onExit: () => {},
-  onSelectProject: () => {},
-  projects: [],
-  selectedProject: '',
-  servicesCount: null,
-};

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import { TRANSLATE_NAMESPACE } from '../constants';
@@ -8,15 +7,15 @@ import { TRANSLATE_NAMESPACE } from '../constants';
 import useUserInfos, { User } from './useUserInfos';
 
 type Props = {
-  cssBaseClassName: string;
-  translationBase: string;
-  user: User;
+  cssBaseClassName?: string;
+  translationBase?: string;
+  user?: User;
 };
 
 const UserSupportLevel = ({
-  cssBaseClassName,
-  translationBase,
-  user,
+  cssBaseClassName = '',
+  translationBase = '',
+  user = {},
 }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
 
@@ -35,18 +34,6 @@ const UserSupportLevel = ({
       </span>
     </p>
   );
-};
-
-UserSupportLevel.propTypes = {
-  cssBaseClassName: PropTypes.string,
-  translationBase: PropTypes.string,
-  user: PropTypes.object,
-};
-
-UserSupportLevel.defaultProps = {
-  cssBaseClassName: '',
-  translationBase: '',
-  user: {},
 };
 
 export default UserSupportLevel;

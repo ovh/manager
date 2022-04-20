@@ -2,6 +2,8 @@ import { Environment } from '@ovh-ux/manager-config';
 import { PaymentMethod, useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
 import { useReket } from '@ovh-ux/ovh-reket';
 
+export { PaymentMethod };
+
 interface UsePaymentMethod {
   getDefaultPaymentMethod(): PaymentMethod;
   isEnterpriseAccount(): boolean;

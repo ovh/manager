@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import useClickAway from 'react-use/lib/useClickAway';
 
@@ -9,7 +8,7 @@ import NavReshuffleSwitchBackModal from './Modal';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 type Props = {
-  onChange(): void;
+  onChange(show: boolean): void;
 };
 
 function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
@@ -20,7 +19,7 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
   const [confirm, setConfirm] = useState(false);
 
   useEffect(() => {
-    onChange({ show });
+    onChange(show);
   }, [show]);
 
   useClickAway(ref, () => setShow(false));
@@ -109,9 +108,5 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
     </>
   );
 }
-
-NavReshuffleSwitchBack.propTypes = {
-  onChange: PropTypes.func.isRequired,
-};
 
 export default NavReshuffleSwitchBack;
