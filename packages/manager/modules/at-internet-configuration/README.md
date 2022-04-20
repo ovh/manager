@@ -12,6 +12,8 @@ $ yarn add @ovh-ux/manager-at-internet-configuration
 
 Before using this component please make sure that ATInternet JS library: smarttag.js is linked in your project.
 
+This component also uses the `async/await` syntax, please make sure your code has the necessary tooling to understand it.
+
 ```js
 import angular from 'angular';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/ng-at-internet';
