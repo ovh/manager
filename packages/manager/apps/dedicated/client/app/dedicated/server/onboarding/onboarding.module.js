@@ -8,6 +8,7 @@ const moduleName = 'dedicatedServerOnboarding';
 angular
   .module(moduleName, [OnboardingLayoutHelper])
   .component('dedicatedServerOnboardingComponent', component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
