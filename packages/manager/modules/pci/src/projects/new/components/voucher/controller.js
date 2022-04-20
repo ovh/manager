@@ -165,6 +165,13 @@ export default class PciProjectNewVoucherCtrl {
       });
   }
 
+  onVoucherInputChange() {
+    if (!this.model.voucher.value) {
+      this.model.voucher.reset();
+      this.voucherForm.voucher.$setValidity('voucher', true);
+    }
+  }
+
   /* -----  End of Events  ------ */
 
   /* ============================
