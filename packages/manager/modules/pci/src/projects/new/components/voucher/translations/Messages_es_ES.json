@@ -9,5 +9,6 @@
   "pci_projects_new_voucher_form_add_title": "Introduzca el vale",
   "pci_projects_new_voucher_form_remove": "Retirar",
   "pci_projects_new_voucher_form_remove_title": "Retirar el vale",
-  "pci_projects_new_voucher_form_reset_error": "Se ha producido un error al retirar el vale."
+  "pci_projects_new_voucher_form_reset_error": "Se ha producido un error al retirar el vale.",
+  "pci_projects_new_voucher_title": "¿Tiene un código promocional?"
 }

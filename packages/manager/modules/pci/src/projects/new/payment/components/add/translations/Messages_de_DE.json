@@ -1,11 +1,11 @@
 {
-  "pci_project_new_payment_method_save_explain_part_1": "Um Ihre Identität zu bestätigen und ein Projekt zu erstellen, ist die Hinterlegung eines Zahlungsmittels erforderlich.",
+  "pci_project_new_payment_method_save_explain_part_1": "Um ein Projekt zu erstellen, bestätigen Sie bitte zuerst Ihre Identität, indem Sie ein Zahlungsmittel hinzufügen. So können wir unsere Community besser vor Spammern und Bots schützen.",
   "pci_project_new_payment_method_save_explain_part_2": "Wenn Sie von den OVHCloud Angeboten keinen Gebrauch machen, entstehen Ihnen keinerlei Kosten.",
   "pci_project_new_payment_method_add_explain": "Um Ihre Identität zu bestätigen, ist die Eintragung eines Zahlungsmittels erforderlich. Es erfolgt keine Abbuchung oder Belastung, solange Sie nichts verbrauchen.",
   "pci_project_new_payment_method_add_info_paypal": "Wenn Sie auf „Paypal“ klicken, werden Sie zum gesicherten Paypal-Interface weitergeleitet, um Ihr Konto zu registrieren.",
   "pci_project_new_payment_method_add_info_bank_account": "Wenn Sie auf „Hinzufügen\" klicken, werden Sie zum Bereich <a href=\"{{ paymentMethodSection }}\">„Meine Zahlungsarten“</a> im Kundencenter weitergeleitet.",
-  "pci_project_new_payment_method_add_credit_card_info_part_1": "Im nächsten Schritt wird die Gültigkeit Ihrer Karte durch eine zeitweilige Abbuchung bei Ihrem Bankinstitut überprüft.",
-  "pci_project_new_payment_method_add_credit_card_info_part_2": "Ihre Kreditkarte wird dabei nicht belastet.",
+  "pci_project_new_payment_method_add_credit_card_info_part_1": "Von Ihrer Kreditkarte werden keine Beträge eingezogen.",
+  "pci_project_new_payment_method_add_credit_card_info_part_2": "Im nächsten Schritt wird die Gültigkeit Ihrer Karte durch eine zeitweilige Abbuchung überprüft.",
   "pci_project_new_payment_method_add_warning_paypal_account": "Wenn Sie PayPal auswählen, wird eine Transaktion in Höhe von {{amount}} für Ihren Account ausgeführt. So wird bestätigt, dass dieser korrekt funktioniert. Diese Gutschrift geht nicht verloren. Sie wird zur Bezahlung Ihrer ersten eingesetzten Ressourcen verwendet.",
   "pci_project_new_payment_method_add_warning_bank_account": "Ihr Bankkonto wird innerhalb von 24 bis 48 Stunden nach Eingang Ihrer per Post zu übersendenden Einzugsermächtigung bestätigt. Daraufhin können Sie erneut ein Public Cloud Projekt erstellen.",
   "pci_project_new_payment_method_add_credit": "Guthaben aufladen"

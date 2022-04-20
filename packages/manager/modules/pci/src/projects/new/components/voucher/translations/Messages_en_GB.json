@@ -9,5 +9,6 @@
   "pci_projects_new_voucher_form_add_title": "Add a coupon or voucher",
   "pci_projects_new_voucher_form_remove": "Remove ",
   "pci_projects_new_voucher_form_remove_title": "Remove coupon or voucher",
-  "pci_projects_new_voucher_form_reset_error": "An error has occurred removing your voucher."
+  "pci_projects_new_voucher_form_reset_error": "An error has occurred removing your voucher.",
+  "pci_projects_new_voucher_title": "Got a promo code?"
 }
