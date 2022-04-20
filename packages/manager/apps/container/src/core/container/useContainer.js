@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import ProductNavReshuffleContext from './context';
+import ContainerContext from './context';
 
-export const useProductNavReshuffle = () => {
-  return useContext(ProductNavReshuffleContext);
+export const useContainer = () => {
+  return useContext(ContainerContext);
 };
 
-export default useProductNavReshuffle;
+export default useContainer;
