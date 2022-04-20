@@ -1,6 +1,6 @@
 import { LANGUAGES, localeRegex, localeStorageKey } from './locale.constants';
 import { Region } from '../environment/region.enum';
-import { CountryCode } from './country-code.enum';
+import { CountryCode } from '../locale/country-code.enum';
 
 export type LangId = 'nl' | 'fr' | 'en' | 'de' | 'es' | 'it' | 'pl' | 'pt';
 
