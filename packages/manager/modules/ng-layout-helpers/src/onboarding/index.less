@@ -1,6 +1,16 @@
+@border-blue: #bef1ff;
+@guide-title-color: #0050d7;
+
 .manager-on-boarding-layout {
+  .description {
+    text-align: center;
+  }
+
   aside {
     a.oui-tile {
+      border: 2px solid @border-blue;
+      box-shadow: none;
+
       &:hover,
       &:focus {
         text-decoration: none;
@@ -22,6 +32,10 @@
 
       .oui-tile__description {
         word-break: initial;
+      }
+
+      .guide-title {
+        color: @guide-title-color;
       }
     }
   }
