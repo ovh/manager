@@ -1,6 +1,5 @@
 import angular from 'angular';
 import 'angular-translate';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 import ovhManagerHub from '@ovh-ux/manager-hub';
 import catalog from './catalog';
@@ -19,9 +18,9 @@ angular
   .module(moduleName, [
     catalog,
     listingPage,
-    ngAtInternet,
     orderDashboard,
     ovhManagerHub,
+    'ngAtInternet',
     'pascalprecht.translate',
     welcome,
   ])
