@@ -1,3 +1,12 @@
+## [13.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.37.0...@ovh-ux/manager-telecom@13.37.1) (2022-04-20)
+
+
+### Bug Fixes
+
+* **telephony.sva-wallet:** replace title of the kbis field ([#6928](https://github.com/ovh/manager/issues/6928)) ([f97bb2e](https://github.com/ovh/manager/commit/f97bb2e7f431468767ee04c1c5a63c004cf2617e))
+
+
+
 # [13.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.36.3...@ovh-ux/manager-telecom@13.37.0) (2022-04-20)
 
 
