@@ -90,12 +90,14 @@ program
         if (program.release && repos.length) {
           return getReleaseVersion(program.releaseName, program.seed)
             .then((version) => updateSonarProjectVersion(version))
-            .then((version) => release(version, repos, program.dryRelease))
+            .then((version) =>
+              release(version, repos, program.dryRelease === 'true'),
+            )
             .then((version) => {
               if (
                 program.token &&
                 program.organization &&
-                !program.dryRelease
+                program.dryRelease === 'false'
               ) {
                 const options = {
                   draft: program.draftRelease || false,
