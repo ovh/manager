@@ -1,3 +1,12 @@
+## [1.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@1.3.2...@ovh-ux/manager-enterprise-cloud-database@1.3.3) (2022-04-20)
+
+
+### Bug Fixes
+
+* restore go to function ([#6870](https://github.com/ovh/manager/issues/6870)) ([49a5b37](https://github.com/ovh/manager/commit/49a5b378600ace3b12c4e7f7a0c1ccd6f44b1af3))
+
+
+
 ## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@1.3.1...@ovh-ux/manager-enterprise-cloud-database@1.3.2) (2022-03-24)
 
 

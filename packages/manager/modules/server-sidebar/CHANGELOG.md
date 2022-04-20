@@ -1,3 +1,12 @@
+# [3.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.19.1...@ovh-ux/manager-server-sidebar@3.20.0) (2022-04-20)
+
+
+### Features
+
+* **cloud-connect:** add order follow up list and services list ([#6309](https://github.com/ovh/manager/issues/6309)) ([ba1f64f](https://github.com/ovh/manager/commit/ba1f64f04412a64113501ae9647d288b3c548db2))
+
+
+
 ## [3.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.19.0...@ovh-ux/manager-server-sidebar@3.19.1) (2022-03-24)
 
 

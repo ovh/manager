@@ -1,3 +1,21 @@
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.2.3...@ovh-ux/manager-exchange@3.3.0) (2022-04-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1560] ([23ac021](https://github.com/ovh/manager/commit/23ac02141679d82b82cd759e510e71d1fb80c74f))
+* **i18n:** add missing translations [CDS 1579] ([d3dbf3d](https://github.com/ovh/manager/commit/d3dbf3dce0ef242e3068ac8a1a8c531da98618d0))
+* **i18n:** add missing translations [CDS 1580] ([d5ad6ca](https://github.com/ovh/manager/commit/d5ad6ca341e6ab261db1723a05bd9372980e4714))
+* **i18n:** add missing translations [CDS 1581] ([b8463ea](https://github.com/ovh/manager/commit/b8463ea2778f635025ba70f73f26d3417daabca4))
+* **task:** display translation for empty rows ([#6737](https://github.com/ovh/manager/issues/6737)) ([13781b5](https://github.com/ovh/manager/commit/13781b5cb294dee571a50f59c2ca42e92a8f44ff))
+
+
+### Features
+
+* **web:** addition of x500 alias for exchange email ([922a540](https://github.com/ovh/manager/commit/922a5403dd5c30eca8fc617da3c54a3fb690d7e7))
+
+
+
 ## [3.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.2.2...@ovh-ux/manager-exchange@3.2.3) (2022-04-12)
 
 

@@ -1,3 +1,12 @@
+# [9.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.4.1...@ovh-ux/ng-ovh-web-universe-components@9.5.0) (2022-04-20)
+
+
+### Features
+
+* **web:** addition of x500 alias for exchange email ([922a540](https://github.com/ovh/manager/commit/922a5403dd5c30eca8fc617da3c54a3fb690d7e7))
+
+
+
 ## [9.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.4.0...@ovh-ux/ng-ovh-web-universe-components@9.4.1) (2022-04-12)
 
 

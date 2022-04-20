@@ -1,3 +1,23 @@
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.5.4...@ovh-ux/manager-cloud-connect@1.6.0) (2022-04-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1567] ([c312388](https://github.com/ovh/manager/commit/c312388a1647fb26076a20265ef49be708d00cd4))
+* **i18n:** add missing translations [CDS 1572] ([25f0b7e](https://github.com/ovh/manager/commit/25f0b7e7eea297a587f56e2f757ba85239ab8dc8))
+
+
+### Features
+
+* **cloud-connect:** add order follow up list and services list ([#6309](https://github.com/ovh/manager/issues/6309)) ([ba1f64f](https://github.com/ovh/manager/commit/ba1f64f04412a64113501ae9647d288b3c548db2))
+
+
+### Reverts
+
+* Revert "feat(details): add statistics" (#6529) ([608d020](https://github.com/ovh/manager/commit/608d0203677cb5f3597658579a45a99e601ddb13)), closes [#6529](https://github.com/ovh/manager/issues/6529)
+
+
+
 ## [1.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.5.3...@ovh-ux/manager-cloud-connect@1.5.4) (2022-04-12)
 
 

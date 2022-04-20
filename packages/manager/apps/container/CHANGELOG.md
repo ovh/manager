@@ -1,3 +1,16 @@
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.2.0...@ovh-ux/manager-container-app@0.2.1) (2022-04-20)
+
+
+### Bug Fixes
+
+* **container:** add useraccount redirection ([#6925](https://github.com/ovh/manager/issues/6925)) ([8b48563](https://github.com/ovh/manager/commit/8b485635b2a1fdff50b64bfe8e2bcd89db4f542b))
+* **i18n:** add missing translations [CDS 1570] ([7eeb7ac](https://github.com/ovh/manager/commit/7eeb7ac612b9173d7b29f1da9447bdb7b94add7e))
+* **i18n:** add missing translations [CDS 1572] ([25f0b7e](https://github.com/ovh/manager/commit/25f0b7e7eea297a587f56e2f757ba85239ab8dc8))
+* **i18n:** add missing translations [CDS 1573] ([18f8f6a](https://github.com/ovh/manager/commit/18f8f6a952ebfefc38648145218104546f2de94d))
+* **i18n:** add missing translations [CDS 1577] ([415af1a](https://github.com/ovh/manager/commit/415af1ace227fcb590700d39d10474c3445e97a6))
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.1.4...@ovh-ux/manager-container-app@0.2.0) (2022-04-12)
 
 
