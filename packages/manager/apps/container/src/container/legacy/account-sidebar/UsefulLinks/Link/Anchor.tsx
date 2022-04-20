@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import { useShell } from '@/context';
@@ -9,14 +8,14 @@ import { TRANSLATE_NAMESPACE } from '../../constants';
 import { UsefulLink } from './usefulLink';
 
 type Props = {
-  link: UsefulLink;
-  translationBase: string;
+  link?: UsefulLink;
+  translationBase?: string;
 };
 
-const Anchor = ({ link, translationBase }: Props): JSX.Element => {
+const Anchor = ({ link = {}, translationBase = '' }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const shell = useShell();
-  const handleLinkClick = (link) => {
+  const handleLinkClick = (link: UsefulLink): void => {
     if (link?.tracking) {
       shell.getPlugin('tracking').trackClick({
         name: link.tracking,
@@ -37,16 +36,6 @@ const Anchor = ({ link, translationBase }: Props): JSX.Element => {
       <span>{t(`${translationBase}_${link.id}`)}</span>
     </a>
   );
-};
-
-Anchor.propTypes = {
-  link: PropTypes.object,
-  translationBase: PropTypes.string,
-};
-
-Anchor.defaultProps = {
-  link: {},
-  translationBase: '',
 };
 
 export default Anchor;

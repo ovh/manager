@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { capitalize, truncate } from 'lodash-es';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import { TRANSLATE_NAMESPACE } from './constants';
@@ -51,9 +50,5 @@ function NavbarAccount({ user }: Props): JSX.Element {
     </button>
   );
 }
-
-NavbarAccount.propTypes = {
-  user: PropTypes.object.isRequired,
-};
 
 export default NavbarAccount;

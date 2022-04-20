@@ -1,19 +1,17 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-
 import useNotifications from '@/core/notifications';
 
 type Props = {
-  children: JSX.Element;
-  notificationId: string;
-  url: string;
+  children?: JSX.Element;
+  notificationId?: string;
+  url?: string;
 };
 
 const NotificationIcon = ({
-  children,
-  notificationId,
-  url,
+  children = null,
+  notificationId = '',
+  url = '',
 }: Props): JSX.Element => {
   const { toggleNotificationReadStatus } = useNotifications();
 
@@ -26,21 +24,6 @@ const NotificationIcon = ({
       {children}
     </a>
   );
-};
-
-NotificationIcon.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-  notificationId: PropTypes.string,
-  url: PropTypes.string,
-};
-
-NotificationIcon.defaultProps = {
-  children: null,
-  notificationId: '',
-  url: '',
 };
 
 export default NotificationIcon;

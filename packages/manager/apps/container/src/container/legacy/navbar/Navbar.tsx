@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
 import { listen } from '@ovh-ux/ufrontend';
-import PropTypes from 'prop-types';
 
 import Account from './Account';
 import Brand from './Brand';
@@ -81,14 +80,14 @@ function Navbar({ environment }: Props): JSX.Element {
           )}
           <div className="oui-navbar-list__item">
             <NavReshuffleSwitchBack
-              onChange={({ show }) => setIsDropdownOpen(show)}
+              onChange={(show: boolean) => setIsDropdownOpen(show)}
             />
           </div>
           <div className="oui-navbar-list__item">
             <LanguageMenu
               setUserLocale={setUserLocale}
               userLocale={userLocale}
-              onChange={({ show }) => setIsDropdownOpen(show)}
+              onChange={(show: boolean) => setIsDropdownOpen(show)}
             ></LanguageMenu>
           </div>
           <div className="oui-navbar-list__item">
@@ -100,9 +99,5 @@ function Navbar({ environment }: Props): JSX.Element {
     </>
   );
 }
-
-Navbar.propTypes = {
-  environment: PropTypes.object.isRequired,
-};
 
 export default Navbar;

@@ -1,13 +1,14 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-
 type Props = {
-  isOpen: boolean;
-  onClick(): void;
+  isOpen?: boolean;
+  onClick?(): void;
 };
 
-function HamburgerMenu({ isOpen, onClick }: Props): JSX.Element {
+function HamburgerMenu({
+  isOpen = false,
+  onClick = () => {},
+}: Props): JSX.Element {
   return (
     <div>
       <button
@@ -27,15 +28,5 @@ function HamburgerMenu({ isOpen, onClick }: Props): JSX.Element {
     </div>
   );
 }
-
-HamburgerMenu.propTypes = {
-  isOpen: PropTypes.bool,
-  onClick: PropTypes.func,
-};
-
-HamburgerMenu.defaultProps = {
-  isOpen: false,
-  onClick: () => {},
-};
 
 export default HamburgerMenu;
