@@ -55,6 +55,7 @@ describe('Renders shell header', () => {
       firstname: 'Tester',
       name: 'testee',
       supportLevel: 1,
+      country: 'FR',
     };
     const universe = 'web';
 

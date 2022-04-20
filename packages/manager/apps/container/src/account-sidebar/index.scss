@@ -23,7 +23,7 @@ $ovh-sidebar-width: 18.75rem;
     }
   }
 
-  &.sidebar-expand {
+  &.force-large-screen-display {
     @media screen and (min-width: ($device-breakpoint-medium  - 1px)) {
       width: $ovh-sidebar-width;
       padding-left: 0;
