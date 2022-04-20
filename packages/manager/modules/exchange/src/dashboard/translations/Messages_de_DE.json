@@ -1612,5 +1612,6 @@
   "exchange_update_billing_periode_intro_2": "Ab der nächsten Verlängerung wird dieser Rhythmus dann angewendet.",
   "exchange_tab_ALIAS_add_address_placeholder": "Adresse",
   "exchange_tab_ALIAS_add_alias_x500_label": "X500 (nützlich für eine Migration)",
-  "exchange_tab_ALIAS_add_alias_valid_x500": "Bitte beachten Sie: Das Sonderzeichen „@“ ist für eine X500-Adresse unzulässig."
+  "exchange_tab_ALIAS_add_alias_valid_x500": "Bitte beachten Sie: Das Sonderzeichen „@“ ist für eine X500-Adresse unzulässig.",
+  "exchange_tab_ALIAS_add_alias_valid_smtp": "Achtung, einige Sonderzeichen können nicht in einem Alias-Namen verwendet werden, zum Beispiel + ? / () [] ;"
 }

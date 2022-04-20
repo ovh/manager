@@ -1612,5 +1612,6 @@
   "exchange_update_billing_periode_intro_2": "Esta será aplicada a partir da próxima renovação.",
   "exchange_tab_ALIAS_add_address_placeholder": "Morada",
   "exchange_tab_ALIAS_add_alias_x500_label": "X500 (útil no âmbito de uma migração)",
-  "exchange_tab_ALIAS_add_alias_valid_x500": "Atenção: o caráter especial \"@\" não é aceite no âmbito de um endereço X500"
+  "exchange_tab_ALIAS_add_alias_valid_x500": "Atenção: o caráter especial \"@\" não é aceite no âmbito de um endereço X500",
+  "exchange_tab_ALIAS_add_alias_valid_smtp": "Atenção, certos caracteres especiais não são aceites no nome de um alias, por exemplo + ? / () [] ;"
 }
