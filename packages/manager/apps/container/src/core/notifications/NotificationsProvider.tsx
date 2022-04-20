@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react';
 import { Environment } from '@ovh-ux/manager-config';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { find } from 'lodash-es';
-import PropTypes from 'prop-types';
 
 import { NOTIFICATION_STATUS_ENUM } from './constants';
 import NotificationsContext from './context';
@@ -15,8 +14,8 @@ type Props = {
 };
 
 export const NotificationsProvider = ({
-  children,
-  environment,
+  children = null,
+  environment = {},
 }: Props): JSX.Element => {
   const reketInstance = useReket();
 
@@ -158,19 +157,6 @@ export const NotificationsProvider = ({
       {children}
     </NotificationsContext.Provider>
   );
-};
-
-NotificationsProvider.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-  environment: PropTypes.object,
-};
-
-NotificationsProvider.defaultProps = {
-  children: null,
-  environment: {},
 };
 
 export default NotificationsProvider;

@@ -1,12 +1,10 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-
 type Props = {
-  level: string;
+  level?: string;
 };
 
-const NotificationIcon = ({ level }: Props): JSX.Element => {
+const NotificationIcon = ({ level = '' }: Props): JSX.Element => {
   const getIconClassName = (notificationLevel) => {
     switch (notificationLevel) {
       case 'error':
@@ -29,14 +27,6 @@ const NotificationIcon = ({ level }: Props): JSX.Element => {
       aria-hidden="true"
     ></span>
   );
-};
-
-NotificationIcon.propTypes = {
-  level: PropTypes.string,
-};
-
-NotificationIcon.defaultProps = {
-  level: '',
 };
 
 export default NotificationIcon;

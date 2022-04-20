@@ -1,18 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { useTranslation } from 'react-i18next';
 import { buildURL } from '@ovh-ux/ufrontend';
 
 import style from './style.module.scss';
 
 type Props = {
-  defaultPaymentMethod: unknown;
-  isLoading: boolean;
+  defaultPaymentMethod?: unknown;
+  isLoading?: boolean;
 };
 
 const UserDefaultPaymentMethod = ({
-  defaultPaymentMethod,
-  isLoading,
+  defaultPaymentMethod = {},
+  isLoading = false,
 }: Props): JSX.Element => {
   const { t } = useTranslation('user-account-menu');
 
@@ -63,16 +63,6 @@ const UserDefaultPaymentMethod = ({
       </a>
     </div>
   );
-};
-
-UserDefaultPaymentMethod.propTypes = {
-  defaultPaymentMethod: PropTypes.object,
-  isLoading: PropTypes.bool,
-};
-
-UserDefaultPaymentMethod.defaultProps = {
-  defaultPaymentMethod: {},
-  isLoading: false,
 };
 
 export default UserDefaultPaymentMethod;

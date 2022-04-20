@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import { TRANSLATE_NAMESPACE } from '../../constants';
@@ -8,11 +7,11 @@ import { TRANSLATE_NAMESPACE } from '../../constants';
 import { UsefulLink } from './usefulLink';
 
 type Props = {
-  link: UsefulLink;
-  translationBase: string;
+  link?: UsefulLink;
+  translationBase?: string;
 };
 
-const Button = ({ link, translationBase }: Props): JSX.Element => {
+const Button = ({ link = {}, translationBase = '' }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
 
   return (
@@ -21,16 +20,6 @@ const Button = ({ link, translationBase }: Props): JSX.Element => {
       <span>{t(`${translationBase}_${link.id}`)}</span>
     </button>
   );
-};
-
-Button.propTypes = {
-  link: PropTypes.object,
-  translationBase: PropTypes.string,
-};
-
-Button.defaultProps = {
-  link: {},
-  translationBase: '',
 };
 
 export default Button;

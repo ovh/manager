@@ -1,18 +1,19 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-
 import Notification from './Notification';
 import style from './notifications.module.scss';
 
 import { Notification as NotificationType } from '@/core/notifications';
 
 type Props = {
-  notifications: NotificationType[];
-  title: string;
+  notifications?: NotificationType[];
+  title?: string;
 };
 
-const NotificationsGroup = ({ notifications, title }: Props): JSX.Element => {
+const NotificationsGroup = ({
+  notifications = [],
+  title = '',
+}: Props): JSX.Element => {
   return (
     <li>
       <div className={style.notificationsList_group_title}>{title}</div>
@@ -45,16 +46,6 @@ const NotificationsGroup = ({ notifications, title }: Props): JSX.Element => {
       ))}
     </li>
   );
-};
-
-NotificationsGroup.propTypes = {
-  notifications: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string,
-};
-
-NotificationsGroup.defaultProps = {
-  notifications: [],
-  title: '',
 };
 
 export default NotificationsGroup;

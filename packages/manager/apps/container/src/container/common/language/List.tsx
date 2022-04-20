@@ -1,17 +1,16 @@
 import React from 'react';
 
 import { KeyPairName } from '@ovh-ux/manager-config/types/locale';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import style from './style.module.scss';
 
 type Props = {
-  languages: KeyPairName[];
-  onSelect(key: number): void;
+  languages?: KeyPairName[];
+  onSelect(key: string): void;
 };
 
-const LanguageMenu = ({ languages, onSelect }: Props): JSX.Element => {
+const LanguageMenu = ({ languages = [], onSelect }: Props): JSX.Element => {
   const { t } = useTranslation('language');
 
   return (
@@ -41,15 +40,6 @@ const LanguageMenu = ({ languages, onSelect }: Props): JSX.Element => {
       </div>
     </div>
   );
-};
-
-LanguageMenu.propTypes = {
-  languages: PropTypes.arrayOf(PropTypes.object),
-  onSelect: PropTypes.func.isRequired,
-};
-
-LanguageMenu.defaultProps = {
-  languages: [],
 };
 
 export default LanguageMenu;
