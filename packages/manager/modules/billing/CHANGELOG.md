@@ -1,3 +1,12 @@
+# [0.13.0-alpha.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.5...@ovh-ux/manager-billing@0.13.0-alpha.6) (2022-04-20)
+
+
+### Bug Fixes
+
+* **billing.fidelity:** fix duplicate issues on data refresh ([07b8b88](https://github.com/ovh/manager/commit/07b8b88577c34869a76bc2e25e03f22e4cbbd7b1))
+
+
+
 # [0.13.0-alpha.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.4...@ovh-ux/manager-billing@0.13.0-alpha.5) (2022-04-12)
 
 

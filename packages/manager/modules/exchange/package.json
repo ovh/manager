@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange",
-  "version": "3.2.3",
+  "version": "3.3.0",
   "private": true,
   "description": "Exchange product.",
   "repository": {

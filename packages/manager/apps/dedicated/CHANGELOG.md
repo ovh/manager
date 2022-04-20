@@ -1,3 +1,14 @@
+## [17.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.2...@ovh-ux/manager-dedicated@17.16.3) (2022-04-20)
+
+
+### Bug Fixes
+
+* **cdn:** display Order Backends modal ([#6828](https://github.com/ovh/manager/issues/6828)) ([5eca000](https://github.com/ovh/manager/commit/5eca000040b148a1cc197ad4186dd8e614902b08))
+* **dedicated.server:** block nb disks selection on os with no partition ([28fcbd7](https://github.com/ovh/manager/commit/28fcbd7a8f47ddce43fd79f2c513f5da6bd2b370)), closes [#6566](https://github.com/ovh/manager/issues/6566)
+* **dedicated/server:** fix installation error message ([ca55b1b](https://github.com/ovh/manager/commit/ca55b1b9872f9c1d9364a696a0ee4310658cc712))
+
+
+
 ## [17.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.1...@ovh-ux/manager-dedicated@17.16.2) (2022-04-12)
 
 

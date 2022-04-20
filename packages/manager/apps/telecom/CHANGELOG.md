@@ -1,3 +1,18 @@
+# [13.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.36.3...@ovh-ux/manager-telecom@13.37.0) (2022-04-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1560] ([23ac021](https://github.com/ovh/manager/commit/23ac02141679d82b82cd759e510e71d1fb80c74f))
+* **telephony.sva-wallet.kyc.identity:** update email label ([#6802](https://github.com/ovh/manager/issues/6802)) ([e1d6f2c](https://github.com/ovh/manager/commit/e1d6f2c5077857fdfd9da83965ebb1c2eee5336a))
+
+
+### Features
+
+* **pack.resiliation:** add new reasons for resiliation survey ([#6416](https://github.com/ovh/manager/issues/6416)) ([d3e034f](https://github.com/ovh/manager/commit/d3e034fa6abd0f2fbcbf79defbc9eca3f5dc5933))
+
+
+
 ## [13.36.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.36.2...@ovh-ux/manager-telecom@13.36.3) (2022-04-14)
 
 

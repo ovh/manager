@@ -1,3 +1,20 @@
+## [5.69.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.69.0...@ovh-ux/manager-pci@5.69.1) (2022-04-20)
+
+
+### Bug Fixes
+
+* **flavors-list:** fix banner when flavor selected is end of sales ([#6844](https://github.com/ovh/manager/issues/6844)) ([b63718c](https://github.com/ovh/manager/commit/b63718ca53d16e240b0ad1b4e799d9b9cb17532d))
+* **i18n:** add missing translations [CDS 1572] ([25f0b7e](https://github.com/ovh/manager/commit/25f0b7e7eea297a587f56e2f757ba85239ab8dc8))
+* **i18n:** add missing translations [CDS 1573] ([18f8f6a](https://github.com/ovh/manager/commit/18f8f6a952ebfefc38648145218104546f2de94d))
+* **i18n:** add missing translations [CDS 1577] ([415af1a](https://github.com/ovh/manager/commit/415af1ace227fcb590700d39d10474c3445e97a6))
+* **i18n:** add missing translations [CDS 1578] ([2282c61](https://github.com/ovh/manager/commit/2282c6101b829f148b3fc231ca8e29785993d55a))
+* **i18n:** add missing translations [CDS 1581] ([b8463ea](https://github.com/ovh/manager/commit/b8463ea2778f635025ba70f73f26d3417daabca4))
+* **pci.project.users:** add check on onDestroy method before call ([0df03fb](https://github.com/ovh/manager/commit/0df03fb42f970020bfc63d3750c4dd2159a67d32))
+* **storages.cloud-archives.add:** use `cancel` to go to previous page ([#6820](https://github.com/ovh/manager/issues/6820)) ([6e14a97](https://github.com/ovh/manager/commit/6e14a9710e97a9771c29bd64e7597f656d0168f3))
+* **storages.databases.users:** update page heading ([#6770](https://github.com/ovh/manager/issues/6770)) ([d9a9867](https://github.com/ovh/manager/commit/d9a9867eb2571c1f273716c1f2d383dc772bf359))
+
+
+
 # [5.69.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.68.0...@ovh-ux/manager-pci@5.69.0) (2022-04-19)
 
 
