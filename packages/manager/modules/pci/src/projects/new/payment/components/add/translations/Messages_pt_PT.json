@@ -1,11 +1,11 @@
 {
-  "pci_project_new_payment_method_save_explain_part_1": "O registo de um método de pagamento é necessário para validar a sua identidade e permitir a criação do seu projeto.",
+  "pci_project_new_payment_method_save_explain_part_1": "Para criar um projeto, primeiro deve validar a sua identidade através da adição de um método de pagamento. Isto permite-nos proteger melhor a nossa comunidade contra o spam e os bots.",
   "pci_project_new_payment_method_save_explain_part_2": "Se não utiliza nenhum serviço da OVHcloud, não terá qualquer custo.",
   "pci_project_new_payment_method_add_explain": "O registo de um método de pagamento é necessário para validar a sua identidade. Enquanto não existirem consumos, nenhum valor lhe será debitado.",
   "pci_project_new_payment_method_add_info_paypal": "Ao clicar em “PayPal”, será redirecionado para a interface segura do PayPal para registar a sua conta.",
   "pci_project_new_payment_method_add_info_bank_account": "Ao clicar no botão \"Adicionar\", será redirecionado para a secção <a href=\"{{ paymentMethodSection }}\">“Métodos de pagamento”</a> da Área de Cliente.",
-  "pci_project_new_payment_method_add_credit_card_info_part_1": "Para confirmar a validade do cartão, efetuar-se-á uma tentativa de débito junto do seu banco na etapa seguinte.",
-  "pci_project_new_payment_method_add_credit_card_info_part_2": "Não será debitado nenhum montante no seu cartão de de pagamento.",
+  "pci_project_new_payment_method_add_credit_card_info_part_1": "Não será efetuado qualquer débito no seu cartão de pagamento.",
+  "pci_project_new_payment_method_add_credit_card_info_part_2": "Para confirmar a validade do cartão, efetuar-se-á uma tentativa de débito na etapa seguinte.",
   "pci_project_new_payment_method_add_warning_paypal_account": "Ao escolher o PayPal, será efetuada uma transação de {{amount}} na sua conta para validar o seu bom funcionamento. Este crédito não é perdido: será utilizado para pagar os seus primeiros recursos implementados.",
   "pci_project_new_payment_method_add_warning_bank_account": "A sua conta bancária será aprovada nas 24 a 48 horas a seguir à receção da sua autorização de débito direto, que deverá reenviar por correio. Após essa validação, poderá criar um projeto Public Cloud.",
   "pci_project_new_payment_method_add_credit": "Adicionar créditos"
