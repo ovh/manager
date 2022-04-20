@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import PropTypes from 'prop-types';
-
 import HeaderContext from './header.context';
 
 import { useShell } from '@/context';
@@ -10,7 +8,7 @@ type Props = {
   children: JSX.Element;
 };
 
-export const HeaderProvider = ({ children }: Props): JSX.Element => {
+export const HeaderProvider = ({ children = null }: Props): JSX.Element => {
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
   /* ----------- Account sidebar -----------*/
@@ -48,17 +46,6 @@ export const HeaderProvider = ({ children }: Props): JSX.Element => {
       {children}
     </HeaderContext.Provider>
   );
-};
-
-HeaderProvider.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-};
-
-HeaderProvider.defaultProps = {
-  children: null,
 };
 
 export default HeaderProvider;

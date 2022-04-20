@@ -25,7 +25,7 @@ const server = setupServer(
 
 jest.mock('@/container/legacy/account-sidebar', () => () => null);
 jest.mock('@/container/common/notifications-sidebar', () => () => null);
-jest.mock('@/cookie-policy/CookiePolicy');
+jest.mock('@/cookie-policy/CookiePolicy', () => () => null);
 jest.mock('@/assets/images/pnr/background.png');
 jest.mock('@ovh-ux/ovh-reket', () => {
   return {

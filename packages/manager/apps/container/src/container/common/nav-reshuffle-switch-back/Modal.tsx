@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import style from './style.module.scss';
@@ -38,10 +37,5 @@ function NavReshuffleSwitchBackModal({
     </div>
   );
 }
-
-NavReshuffleSwitchBackModal.propTypes = {
-  onConfirm: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
-};
 
 export default NavReshuffleSwitchBackModal;

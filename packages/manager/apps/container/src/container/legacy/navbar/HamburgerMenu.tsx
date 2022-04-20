@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { emit } from '@ovh-ux/ufrontend';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import { MESSAGES, TRANSLATE_NAMESPACE } from './constants';
@@ -9,11 +8,11 @@ import style from './navbar.module.scss';
 import { Universe } from './service';
 
 type Props = {
-  universe: string;
+  universe?: string;
   universes: Universe[];
 };
 
-function HamburgerMenu({ universe, universes }: Props): JSX.Element {
+function HamburgerMenu({ universe = '', universes }: Props): JSX.Element {
   const [opened, setOpened] = useState(false);
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
 
@@ -75,14 +74,5 @@ function HamburgerMenu({ universe, universes }: Props): JSX.Element {
     </div>
   );
 }
-
-HamburgerMenu.propTypes = {
-  universe: PropTypes.string,
-  universes: PropTypes.array.isRequired,
-};
-
-HamburgerMenu.defaultProps = {
-  universe: '',
-};
 
 export default HamburgerMenu;

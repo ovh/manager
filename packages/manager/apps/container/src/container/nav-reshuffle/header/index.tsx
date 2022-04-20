@@ -1,7 +1,5 @@
 import React, { useState, Suspense } from 'react';
 
-import PropTypes from 'prop-types';
-
 import HamburgerMenu from './HamburgerMenu';
 import UserAccountMenu from './user-account-menu';
 
@@ -14,15 +12,15 @@ import ApplicationContext, { useShell } from '@/context';
 import { NotificationsProvider } from '@/core/notifications';
 
 type Props = {
-  isSidebarExpanded: boolean;
-  onHamburgerMenuClick(): void;
-  onUserAccountMenuToggle(): void;
+  isSidebarExpanded?: boolean;
+  onHamburgerMenuClick?(): void;
+  onUserAccountMenuToggle?(show: boolean): void;
 };
 
 function Header({
-  isSidebarExpanded,
-  onHamburgerMenuClick,
-  onUserAccountMenuToggle,
+  isSidebarExpanded = false,
+  onHamburgerMenuClick = () => {},
+  onUserAccountMenuToggle = () => {},
 }: Props): JSX.Element {
   const shell = useShell();
   const [userLocale, setUserLocale] = useState(
@@ -47,14 +45,14 @@ function Header({
             <div className="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end">
               <div className="oui-navbar-list__item">
                 <NavReshuffleSwitchBack
-                  onChange={({ show }) => setIsDropdownOpen(show)}
+                  onChange={(show: boolean) => setIsDropdownOpen(show)}
                 />
               </div>
               <div className="oui-navbar-list__item">
                 <LanguageMenu
                   setUserLocale={setUserLocale}
                   userLocale={userLocale}
-                  onChange={({ show }) => setIsDropdownOpen(show)}
+                  onChange={(show: boolean) => setIsDropdownOpen(show)}
                 ></LanguageMenu>
               </div>
               <div className="oui-navbar-list__item">
@@ -65,7 +63,7 @@ function Header({
               </div>
               <div className="oui-navbar-list__item">
                 <UserAccountMenu
-                  onToggle={({ show }) => {
+                  onToggle={(show: boolean) => {
                     setIsDropdownOpen(show);
                     onUserAccountMenuToggle(show);
                   }}
@@ -78,17 +76,5 @@ function Header({
     </ApplicationContext.Consumer>
   );
 }
-
-Header.propTypes = {
-  isSidebarExpanded: PropTypes.bool,
-  onHamburgerMenuClick: PropTypes.func,
-  onUserAccountMenuToggle: PropTypes.func,
-};
-
-Header.defaultProps = {
-  isSidebarExpanded: false,
-  onHamburgerMenuClick: () => {},
-  onUserAccountMenuToggle: () => {},
-};
 
 export default Header;
