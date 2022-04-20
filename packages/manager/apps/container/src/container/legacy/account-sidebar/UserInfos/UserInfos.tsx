@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { buildURL } from '@ovh-ux/ufrontend';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import { TRANSLATE_NAMESPACE } from '../constants';

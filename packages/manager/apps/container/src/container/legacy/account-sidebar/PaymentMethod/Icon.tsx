@@ -1,14 +1,12 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-
 import { PaymentMethod } from './usePaymentMethod';
 
 type Props = {
-  defaultPaymentMethod: PaymentMethod;
+  defaultPaymentMethod?: PaymentMethod;
 };
 
-const Icon = ({ defaultPaymentMethod }: Props): JSX.Element => {
+const Icon = ({ defaultPaymentMethod = {} }: Props): JSX.Element => {
   return (
     <>
     {!defaultPaymentMethod?.icon ? (
@@ -27,14 +25,6 @@ const Icon = ({ defaultPaymentMethod }: Props): JSX.Element => {
     )}
     </>
   );
-};
-
-Icon.propTypes = {
-  defaultPaymentMethod: PropTypes.object,
-};
-
-Icon.defaultProps = {
-  defaultPaymentMethod: {},
 };
 
 export default Icon;

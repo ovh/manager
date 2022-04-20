@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import { useShell } from '@/context';
@@ -12,7 +11,7 @@ type Props = {
   shortcut: Shortcut;
 };
 
-const Tile = ({ shortcut }: Props): JSX.Element => {
+const Tile = ({ shortcut = {} }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const shell = useShell();
 
@@ -45,14 +44,6 @@ const Tile = ({ shortcut }: Props): JSX.Element => {
       </a>
     </div>
   );
-};
-
-Tile.propTypes = {
-  shortcut: PropTypes.object,
-};
-
-Tile.defaultProps = {
-  shortcut: {},
 };
 
 export default Tile;

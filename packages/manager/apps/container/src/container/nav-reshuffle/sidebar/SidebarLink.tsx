@@ -1,15 +1,14 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import style from './style.module.scss';
 
 type StaticLinkProps = {
-  node: unknown;
+  node?: unknown;
 };
 
-function StaticLink({ node }: StaticLinkProps): JSX.Element {
+function StaticLink({ node = {} }: StaticLinkProps): JSX.Element {
   const { t } = useTranslation('sidebar');
   return (
     <a
@@ -28,19 +27,17 @@ function StaticLink({ node }: StaticLinkProps): JSX.Element {
   );
 }
 
-StaticLink.propTypes = {
-  node: PropTypes.object,
-};
-
-StaticLink.defaultProps = {
-  node: {},
-};
-
 type SidebarLinkProps = {
-  node: unknown;
+  count?: number;
+  node?: unknown;
+  onClick?(): void;
 };
 
-function SidebarLink({ count, node, onClick }: SidebarLinkProps): JSX.Element {
+function SidebarLink({
+  count = 0,
+  node = {},
+  onClick = () => {},
+}: SidebarLinkProps): JSX.Element {
   const { t } = useTranslation('sidebar');
   return node.url ? (
     <StaticLink node={node} />
@@ -65,17 +62,5 @@ function SidebarLink({ count, node, onClick }: SidebarLinkProps): JSX.Element {
     </a>
   );
 }
-
-SidebarLink.propTypes = {
-  count: PropTypes.number,
-  node: PropTypes.object,
-  onClick: PropTypes.func,
-};
-
-SidebarLink.defaultProps = {
-  count: 0,
-  node: {},
-  onClick: () => {},
-};
 
 export default SidebarLink;

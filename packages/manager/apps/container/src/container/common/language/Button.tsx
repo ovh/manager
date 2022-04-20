@@ -1,15 +1,18 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
-  children: JSX.Element;
-  onClick(e: MouseEvent): void;
-  show: boolean;
+  children?: JSX.Element;
+  onClick(show: boolean): void;
+  show?: boolean;
 };
 
-function LanguageButton({ children, onClick, show }: Props): JSX.Element {
+function LanguageButton({
+  children = null,
+  onClick,
+  show = false,
+}: Props): JSX.Element {
   const { t } = useTranslation('language');
   return (
     <button
@@ -31,19 +34,5 @@ function LanguageButton({ children, onClick, show }: Props): JSX.Element {
     </button>
   );
 }
-
-LanguageButton.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-  onClick: PropTypes.func.isRequired,
-  show: PropTypes.bool,
-};
-
-LanguageButton.defaultProps = {
-  children: null,
-  show: false,
-};
 
 export default LanguageButton;

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import { TRANSLATE_NAMESPACE } from './constants';
@@ -24,9 +23,5 @@ function NavbarSearch({ targetURL }: Props): JSX.Element {
     </a>
   );
 }
-
-NavbarSearch.propTypes = {
-  targetURL: PropTypes.string.isRequired,
-};
 
 export default NavbarSearch;

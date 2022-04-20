@@ -1,17 +1,20 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import { TRANSLATE_NAMESPACE } from './constants';
 
 type Props = {
-  onClick(): void;
-  universe: string;
-  universes: unknown;
+  onClick?(): void;
+  universe?: string;
+  universes: unknown[];
 };
 
-function NavbarUniverses({ onClick, universe, universes }: Props): JSX.Element {
+function NavbarUniverses({
+  onClick = () => {},
+  universe = '',
+  universes,
+}: Props): JSX.Element {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
 
   return (
@@ -40,16 +43,5 @@ function NavbarUniverses({ onClick, universe, universes }: Props): JSX.Element {
     </div>
   );
 }
-
-NavbarUniverses.propTypes = {
-  onClick: PropTypes.func,
-  universe: PropTypes.string,
-  universes: PropTypes.array.isRequired,
-};
-
-NavbarUniverses.defaultProps = {
-  onClick: () => {},
-  universe: '',
-};
 
 export default NavbarUniverses;

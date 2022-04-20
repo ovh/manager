@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 
 import { useReket } from '@ovh-ux/ovh-reket';
-import PropTypes from 'prop-types';
 import { Modal } from 'react-bootstrap';
 import { useTranslation, Trans } from 'react-i18next';
 
@@ -19,11 +18,12 @@ const SSOAuthModal = (): JSX.Element => {
   const [mode, setMode] = useState('');
   const size = useMemo(() =>
     mode === disconnectedToConnected || mode === connectedToOther ? 'lg' : 'md',
+    [mode],
   );
   const shell = useShell();
   const reketInstance = useReket();
   const { t } = useTranslation('sso-auth-modal');
-  const show = useMemo(() => !!mode);
+  const show = useMemo(() => !!mode, [mode]);
   const authPlugin = shell.getPlugin('auth');
   const uxPlugin = shell.getPlugin('ux');
   const { environment } = useApplication();
