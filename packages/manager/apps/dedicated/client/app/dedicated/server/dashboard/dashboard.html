@@ -557,6 +557,19 @@
                     </oui-action-menu>
                 </oui-tile-definition>
 
+                <!-- Gateway IP-->
+                <oui-tile-definition
+                    term="{{:: 'server_configuration_gateway_ip' | translate }}"
+                >
+                    <oui-tile-description>
+                        <oui-clipboard
+                            class="ip-clipboard"
+                            data-model="$ctrl.specifications.routing.ipv4.gateway"
+                        >
+                        </oui-clipboard>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
                 <!-- IPv6 -->
                 <oui-tile-definition
                     term="{{:: 'server_configuration_ipv6' | translate }}"
