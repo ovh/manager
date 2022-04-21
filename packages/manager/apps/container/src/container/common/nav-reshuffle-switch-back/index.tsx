@@ -15,8 +15,8 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
   const { t } = useTranslation('beta-modal');
   const { updateBetaChoice, isBeta } = useProductNavReshuffle();
   const ref = useRef();
-  const [show, setShow] = useState(false);
-  const [confirm, setConfirm] = useState(false);
+  const [show, setShow] = useState<boolean>(false);
+  const [confirm, setConfirm] = useState<boolean>(false);
 
   useEffect(() => {
     onChange(show);
