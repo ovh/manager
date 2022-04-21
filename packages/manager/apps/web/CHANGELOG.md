@@ -1,3 +1,12 @@
+# [16.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.9.4...@ovh-ux/manager-web@16.10.0) (2022-04-21)
+
+
+### Features
+
+* **apps:** add phone-prefix module dependency ([9ed7b55](https://github.com/ovh/manager/commit/9ed7b559d435d95d9ce0ef3fda2e65cb51637357))
+
+
+
 ## [16.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.9.3...@ovh-ux/manager-web@16.9.4) (2022-04-20)
 
 

@@ -1,3 +1,12 @@
+## [5.69.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.69.1...@ovh-ux/manager-pci@5.69.2) (2022-04-21)
+
+
+### Bug Fixes
+
+* **public-cloud:** fix object storage high perf wrongly listed ([#6734](https://github.com/ovh/manager/issues/6734)) ([82d2415](https://github.com/ovh/manager/commit/82d24153b8ddf920d7005b32f25cccecb5036601))
+
+
+
 ## [5.69.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.69.0...@ovh-ux/manager-pci@5.69.1) (2022-04-20)
 
 

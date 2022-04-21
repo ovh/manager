@@ -1,3 +1,48 @@
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.3.0...@ovh-ux/manager-exchange@3.4.0) (2022-04-21)
+
+
+### Bug Fixes
+
+* **account:** add new bullet info ([#6660](https://github.com/ovh/manager/issues/6660)) ([89e98ab](https://github.com/ovh/manager/commit/89e98ab156edf59572ca996d35a9e7c82277b13d))
+* **account.add:** avoid highlighting errors on checkbox ([#6640](https://github.com/ovh/manager/issues/6640)) ([9f40804](https://github.com/ovh/manager/commit/9f4080410d717625c4212fed64125c114fa41ca2))
+* **account.update:** fix spelling mistake ([#6648](https://github.com/ovh/manager/issues/6648)) ([db6d22c](https://github.com/ovh/manager/commit/db6d22c9c2e5a742a73261544c72edb98c20980d))
+* **exchange.account:** add exchange guid in update form ([15c3446](https://github.com/ovh/manager/commit/15c3446b88ce15dc1e990b4300b07941610024d7))
+* **exchange.account:** add required field in the label for displayname ([00a3b1b](https://github.com/ovh/manager/commit/00a3b1b67c753115573caf3dc478222d84ddfad3))
+* **exchange.account:** broken CSV file ([0d1ca41](https://github.com/ovh/manager/commit/0d1ca418c47b8c79af324b5aacb19873e9a3d9e1))
+* **exchange.account:** description is "undefined" ([15c7fc0](https://github.com/ovh/manager/commit/15c7fc050b99c5b5497ff2364c651ebc432b7b5c))
+* **exchange.account:** uncheck email copy checkbox ([4e980f0](https://github.com/ovh/manager/commit/4e980f09619f116123b1ed8606e21924b1978e73))
+* **i18n:** add missing translations [CDS 1571] ([dfc043b](https://github.com/ovh/manager/commit/dfc043b0aa13f227e00433b2b0d39469a73d1b56))
+* **web.exchange.account:** add missed option on update page ([adcc6dd](https://github.com/ovh/manager/commit/adcc6dd6d700f9cbea0dccea7dda3e8f46232939))
+* **web.exchange.account:** add missed street-address field ([8bbe90e](https://github.com/ovh/manager/commit/8bbe90e8c46cfa24a36282fcba3465358c565106))
+* **web.exchange.account:** add missed translation key ([9eda1f5](https://github.com/ovh/manager/commit/9eda1f586e76a1b598adf7008f8bdb0fb179b0a2))
+* **web.exchange.account:** allow hiding email account from directory ([a8d9453](https://github.com/ovh/manager/commit/a8d94530b4ffd877f6d05c66a4e0834390777706))
+* **web.exchange.account:** allow showing-hiding confirm password ([5fef856](https://github.com/ovh/manager/commit/5fef856ceabff934f379eee6fcd8af79b930257e))
+* **web.exchange.account:** display contact info ([e179953](https://github.com/ovh/manager/commit/e17995366b9d254a9e7ce7950f60489a4795b804))
+* **web.exchange.account:** showing-hiding confirm password for update ([86517d0](https://github.com/ovh/manager/commit/86517d0a9c54c6b46c0e782694b17b8606be792c))
+* fix spelling mistake ([#6649](https://github.com/ovh/manager/issues/6649)) ([b16b6ed](https://github.com/ovh/manager/commit/b16b6ede774c8c64c7d1d14d88727289fbca7a20))
+* **web.exchange.account:** have same fields validation criteria ([3bd41bc](https://github.com/ovh/manager/commit/3bd41bcc4574857206cd3cfe9cfb8385bb2ea203))
+* **web.exchange.account:** manage csv double string quote ([e952d92](https://github.com/ovh/manager/commit/e952d928a2c961cd7a91990d984293be94f3cfed))
+
+
+### Features
+
+* **account:** sort alphabetically countries ([#6659](https://github.com/ovh/manager/issues/6659)) ([0758729](https://github.com/ovh/manager/commit/075872969b7937b54c5d70f1f780cc88ba92578f))
+* **account-update:** display criteria in red if error ([#6679](https://github.com/ovh/manager/issues/6679)) ([2a83e40](https://github.com/ovh/manager/commit/2a83e405162c6effce8e8f597d6ca63403472efb))
+* **apps:** add phone-prefix module dependency ([9ed7b55](https://github.com/ovh/manager/commit/9ed7b559d435d95d9ce0ef3fda2e65cb51637357))
+* **web.exchange:** add country_codes phones list ([fef7bd9](https://github.com/ovh/manager/commit/fef7bd93955a1e4d7c0d9aac85191ccf0a4ccd40))
+* **web.exchange:** add update exchange module ([eeae84c](https://github.com/ovh/manager/commit/eeae84ce3dbf2db1f537d3f104762f8525bb0f39))
+* **web.exchange:** add update module dependency ([d87146d](https://github.com/ovh/manager/commit/d87146d8fdf77ad62eff8465b40d7046e8ae27b2))
+* **web.exchange:** improve ui and add new fields ([22a56c8](https://github.com/ovh/manager/commit/22a56c87ed7b0a8a286a75cca47259094f8aaba2))
+* **web.exchange.account:** change dot by semicolon ([8736857](https://github.com/ovh/manager/commit/8736857c36e7d4121bf8705019b8a0fdb1a7153e))
+* **web.exchange.account:** disable copy email if no email filled ([a018894](https://github.com/ovh/manager/commit/a0188940c371eeb936e52a00eafd1b5bb4bfbc3d))
+* **web.exchange.account:** make display_name required ([88755e2](https://github.com/ovh/manager/commit/88755e271d0bbbe27f635ca43f5c5b26eb476c77))
+* **web.exchange.account-add:** add validation on phones number ([e4ec2f9](https://github.com/ovh/manager/commit/e4ec2f9769140e423baad4fdf70b5f82e154e1af))
+* **web.exchange.account-add:** avoid going to emails if request fail ([988e71e](https://github.com/ovh/manager/commit/988e71e96ebac7449aa1e1634d4b8c2c42fdafc6))
+* **web.exchange.account-update:** add validation phones number ([15a7386](https://github.com/ovh/manager/commit/15a7386b25b26053e2f6b6c3507a31fcd8a269ee))
+* **web.exchange.account-update:** avoid empty description conversion ([9b35923](https://github.com/ovh/manager/commit/9b35923fefcec6b3d28c4fc60d8bf279a175a88a))
+
+
+
 # [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.2.3...@ovh-ux/manager-exchange@3.3.0) (2022-04-20)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-phone-prefix",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Set of telephone code list",
   "repository": {

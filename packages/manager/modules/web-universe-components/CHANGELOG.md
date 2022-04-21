@@ -1,3 +1,12 @@
+# [9.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.5.0...@ovh-ux/ng-ovh-web-universe-components@9.6.0) (2022-04-21)
+
+
+### Features
+
+* **web.exchange.account:** make display_name required ([88755e2](https://github.com/ovh/manager/commit/88755e271d0bbbe27f635ca43f5c5b26eb476c77))
+
+
+
 # [9.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.4.1...@ovh-ux/ng-ovh-web-universe-components@9.5.0) (2022-04-20)
 
 
