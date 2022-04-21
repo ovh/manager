@@ -20,6 +20,16 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad', freefax]).config(
           breadcrumb: () => 'Fax',
         },
       })
+      .state('freefaxes.onboarding.**', {
+        url: '/onboarding',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./onboarding/onboarding.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      })
       .state('freefaxes.index.**', {
         url: '',
         lazyLoad: ($transition$) => {
