@@ -16,5 +16,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('freefaxes.freefax', { serviceName: fax.number }),
       hideBreadcrumb: () => true,
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('resources')
+        .then((resources) =>
+          resources.data.length === 0 ? 'freefaxes.onboarding' : false,
+        ),
   });
 };
