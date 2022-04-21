@@ -63,17 +63,8 @@
             type="button"
             class="oui-button oui-button_primary"
             data-translate="wizard_order"
-            data-ng-if="!$ctrl.isOrderButtonAvailable()"
-            data-ng-disabled="true"
+            data-ng-click="$ctrl.openOrderPage()"
+            data-ng-disabled="!$ctrl.isOrderButtonAvailable()"
         ></button>
-        <a
-            class="oui-button oui-button_primary"
-            data-translate="wizard_order"
-            target="_blank"
-            rel="noopener"
-            data-ng-if="$ctrl.isOrderButtonAvailable()"
-            data-ng-click=":: $ctrl.goBack()"
-            href="{{ $ctrl.getOrderUrl() }}"
-        ></a>
     </div>
 </div>

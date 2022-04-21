@@ -467,6 +467,11 @@ export default class ExchangeAccountHomeController {
     this.goToAddAccount();
   }
 
+  displayAccountUpdateView(emailAccount) {
+    this.messaging.resetMessages();
+    this.goToUpdateAccount(emailAccount);
+  }
+
   openAccountOrderingDialog() {
     const placeholderAccountAmount = sumBy(this.accounts, (account) =>
       this.exchangeAccount.isPlaceholder(account),

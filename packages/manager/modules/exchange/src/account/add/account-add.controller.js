@@ -5,11 +5,20 @@ import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 import map from 'lodash/map';
 
+import {
+  ACCOUNT_WORLD_PHONE_REGEX,
+  ACCOUNT_EMAIL_ADDRESS_REGEX,
+} from '../account.constants';
+import { EXCHANGE_CONTAINER_MESSAGING } from '../../dashboard/exchange.constants';
+
 export default class ExchangeAccountAddController {
   /* @ngInject */
   constructor(
     $scope,
     $timeout,
+    $translate,
+    $location,
+    $anchorScroll,
     exchangeAccountTypes,
     wucExchange,
     exchangeAccount,
@@ -17,10 +26,12 @@ export default class ExchangeAccountAddController {
     wucExchangePassword,
     exchangeVersion,
     messaging,
-    $translate,
   ) {
     this.$scope = $scope;
     this.$timeout = $timeout;
+    this.$translate = $translate;
+    this.$location = $location;
+    this.$anchorScroll = $anchorScroll;
 
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.wucExchange = wucExchange;
@@ -29,18 +40,37 @@ export default class ExchangeAccountAddController {
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.exchangeVersion = exchangeVersion;
     this.messaging = messaging;
-    this.$translate = $translate;
+
+    this.ACCOUNT_WORLD_PHONE_REGEX = ACCOUNT_WORLD_PHONE_REGEX;
+    this.ACCOUNT_EMAIL_ADDRESS_REGEX = ACCOUNT_EMAIL_ADDRESS_REGEX;
   }
 
   $onInit() {
     this.$routerParams = this.wucExchange.getParams();
 
     this.isFetchingCreationOptions = true;
+    this.telephonyModel = {
+      phone: { selected: '', number: '' },
+      mobile: { selected: '', number: '' },
+      fax: { selected: '', number: '' },
+    };
     this.newAccount = {};
     this.shouldDisplayPasswordInput = true;
     this.isSendingNewAccount = false;
 
     return this.fetchingAccountCreationOptions();
+  }
+
+  $doCheck() {
+    if (!this.newAccountForm) {
+      return;
+    }
+    if (
+      !this.newAccountForm.accountInfoEmail.$invalid &&
+      !this.newAccount.forwardingEmail
+    ) {
+      this.newAccount.storeCopyOfEmail = false;
+    }
   }
 
   fetchingAccountCreationOptions() {
@@ -152,7 +182,7 @@ export default class ExchangeAccountAddController {
   }
 
   hide() {
-    this.goToAccounts();
+    return this.goToAccounts();
   }
 
   switchBetweenPasswordAndTextInput() {
@@ -169,33 +199,37 @@ export default class ExchangeAccountAddController {
     });
   }
 
-  onPasswordConfirmationChange() {
-    if (this.newAccountForm.passwordConfirmation.$error.required) {
-      this.newAccountForm.passwordConfirmation.$setValidity(
-        'isDifferentToPassword',
-        true,
-      );
-    } else {
-      this.newAccountForm.passwordConfirmation.$setValidity(
-        'isDifferentToPassword',
-        this.newAccount.password === this.newAccount.passwordConfirmation,
-      );
-    }
-  }
-
   sendingNewAccount() {
     this.isSendingNewAccount = true;
 
     const formattedAccount = {
       SAMAccountName: this.newAccount.samAccountName,
-      company: this.newAccount.company,
-      displayName: this.newAccount.displayName,
+      login: this.newAccount.login,
+      hiddenFromGAL: this.newAccount.hiddenFromGAL,
       domain: this.newAccount.domain.name,
       firstName: this.newAccount.firstName,
       lastName: this.newAccount.lastName,
-      license: this.newAccount.accountType.name.toLowerCase(),
-      login: this.newAccount.login,
+      displayName: this.newAccount.displayName,
+      initials: this.newAccount.initials,
+      description: this.newAccount.description,
+      forwardingEmail: this.newAccount.forwardingEmail,
+      storeCopyOfEmail: this.newAccount.storeCopyOfEmail,
       password: this.newAccount.password,
+      company: this.newAccount.company,
+      jobDepartment: this.newAccount.jobDepartment,
+      jobTitle: this.newAccount.jobTitle,
+      office: this.newAccount.office,
+      streetAddress: this.newAccount.streetAddress,
+      postalCode: this.newAccount.postalCode,
+      city: this.newAccount.city,
+      ...(this.newAccount.countryCode && {
+        countryCode: this.newAccount.countryCode.code,
+      }),
+      region: this.newAccount.region,
+      phone: this.newAccount.phone,
+      mobile: this.newAccount.mobile,
+      fax: this.newAccount.fax,
+      license: this.newAccount.accountType.name.toLowerCase(),
       spamAndVirusConfiguration: {
         checkDKIM: false,
         putInJunk: false,
@@ -214,21 +248,46 @@ export default class ExchangeAccountAddController {
         formattedAccount,
       )
       .then((data) => {
-        this.messaging.writeSuccess(
-          this.$translate.instant('exchange_account_add_submit_success', {
-            t0: `${formattedAccount.login}@${formattedAccount.domain}`,
-          }),
-          data,
+        return this.goToAccounts().then(() =>
+          this.messaging.writeSuccess(
+            this.$translate.instant('exchange_account_add_submit_success', {
+              t0: `${formattedAccount.login}@${formattedAccount.domain}`,
+            }),
+            data,
+          ),
         );
       })
       .catch((error) => {
         this.messaging.writeError(
-          this.$translate.instant('exchange_ACTION_add_account_error_message'),
+          this.$translate.instant('exchange_ACTION_add_account_error_message', {
+            message: error.message || error.data?.message,
+          }),
           error,
         );
+        this.$anchorScroll();
       })
       .finally(() => {
-        this.hide();
+        this.isSendingNewAccount = false;
+
+        this.$location.hash(EXCHANGE_CONTAINER_MESSAGING);
       });
+  }
+
+  onPasswordConfirmationChange() {
+    if (this.newAccountForm.passwordConfirmation.$error.required) {
+      this.newAccountForm.passwordConfirmation.$setValidity(
+        'isDifferentToPassword',
+        true,
+      );
+    } else {
+      this.newAccountForm.passwordConfirmation.$setValidity(
+        'isDifferentToPassword',
+        this.newAccount.password === this.newAccount.passwordConfirmation,
+      );
+    }
+  }
+
+  onCountryPhoneCodeChange(type) {
+    this.newAccount[type] = this.telephonyModel[type].number;
   }
 }

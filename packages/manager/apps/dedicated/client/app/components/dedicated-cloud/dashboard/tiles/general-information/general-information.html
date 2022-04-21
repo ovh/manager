@@ -170,7 +170,7 @@
                 class="oui-dropdown-option mb-1"
                 role="menuitem"
                 data-ng-if="$ctrl.bindings.numberOfIPBlocks.total"
-                data-ng-click="$ctrl.onAssociateIpBlock()"
+                data-ng-href="{{:: $ctrl.associateIpBlockLink() }}"
                 data-track-on="click"
                 data-track-name="{{:: $ctrl.trackingPrefix + '::dashboard::associate-ip-bloc' }}"
                 data-track-type="action"

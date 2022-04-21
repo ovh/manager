@@ -3,11 +3,14 @@ import template from './account.html';
 
 export default {
   bindings: {
-    goToAddAccount: '<',
-    goToAliasManagement: '<',
-    organization: '<',
     productId: '<',
+    organization: '<',
     securityLink: '<',
+    countries: '<',
+    phoneCountries: '<',
+    goToAddAccount: '<',
+    goToUpdateAccount: '<',
+    goToAliasManagement: '<',
   },
   controller,
   template,
