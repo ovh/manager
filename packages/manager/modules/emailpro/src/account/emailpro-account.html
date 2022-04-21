@@ -365,11 +365,11 @@
             >
                 <span
                     data-translate="emailpro_ACTION_order_accounts_button"
-                    data-ng-if="(exchange.serverDiagnostic.version == 14 && is25g()) || (exchange.serverDiagnostic.version == 14 && exchange.offer == exchangeTypeHosted ) || (exchange.serverDiagnostic.version == 15 && exchange.offer != exchangeTypeDedicated) "
+                    data-ng-if="isNewAccountOrder()"
                 ></span>
                 <span
                     data-translate="emailpro_ACTION_add_account_button"
-                    data-ng-if="!is25g() && ((exchange.serverDiagnostic.version == 14 && exchange.offer != exchangeTypeHosted) || (exchange.serverDiagnostic.version == 15 && exchange.offer == exchangeTypeDedicated))"
+                    data-ng-if="!isNewAccountOrder()"
                 ></span>
             </button>
         </div>
