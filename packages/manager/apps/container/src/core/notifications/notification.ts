@@ -4,14 +4,17 @@ type URLDetails = {
   href: string;
 };
 
-export type Notification = {
+export type APINotification = {
   date: string;
+  id: string;
   status: string;
   updating: boolean;
   urlDetails: URLDetails;
 };
 
-interface UseNotifications {
+export interface Notification {
+  date: string;
+  id: string;
   status: string;
   updating: boolean;
   urlDetails: URLDetails;
@@ -29,8 +32,8 @@ interface UseNotifications {
  * @return {Object}
  */
 export const useNotification = (
-  notification: Notification,
-): UseNotifications => {
+  notification: APINotification,
+): Notification => {
   /**
    * Helper that checks if the notification status is considered as acknoleged.
    * @return {Boolean}
