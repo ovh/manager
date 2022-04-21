@@ -1,3 +1,17 @@
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.8.4...@ovh-ux/manager-support@1.9.0) (2022-04-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1584] ([30b4a3d](https://github.com/ovh/manager/commit/30b4a3dab51147950f938402b43883838a650ee6))
+
+
+### Features
+
+* **tickets.new-ticket:** new ticket service types ([3bce752](https://github.com/ovh/manager/commit/3bce75218acc5e2f87fa2e7aac5d5ae3666cc824))
+
+
+
 ## [1.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.8.3...@ovh-ux/manager-support@1.8.4) (2022-04-06)
 
 

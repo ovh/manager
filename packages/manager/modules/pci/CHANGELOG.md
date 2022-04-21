@@ -1,3 +1,21 @@
+# [5.70.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.69.2...@ovh-ux/manager-pci@5.70.0) (2022-04-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1582] ([4826fea](https://github.com/ovh/manager/commit/4826fea86aee9b10cf786b8fb5efd4291edb193f))
+* **pci.projects.new.payment:** abort redirection to step1 ([#6944](https://github.com/ovh/manager/issues/6944)) ([564d301](https://github.com/ovh/manager/commit/564d301787c441a3f3b1e5906b0df1d7e0c1a259))
+
+
+### Features
+
+* **pci.projects.new:** improve voucher section ([c05283b](https://github.com/ovh/manager/commit/c05283bac1b8915fc5f2cdf22d111d169242a303))
+* **pci.projects.new.payment:** improve payment methods section ([9f62fcd](https://github.com/ovh/manager/commit/9f62fcdfe2d183e56a5a0763760cbe4d45965306))
+* **pci.projects.new.payment:** remove the default select method ([f8ca13f](https://github.com/ovh/manager/commit/f8ca13f106fa516ddd01853b90dcc60fa16f77f5))
+* **pci.projects.new.payment:** update credit card banner info ([7b231a4](https://github.com/ovh/manager/commit/7b231a45aa71e37d016c1858be9f93c85837d6b7))
+
+
+
 ## [5.69.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.69.1...@ovh-ux/manager-pci@5.69.2) (2022-04-21)
 
 
