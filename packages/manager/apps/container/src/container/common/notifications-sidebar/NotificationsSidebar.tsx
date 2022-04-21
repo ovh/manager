@@ -8,8 +8,13 @@ import Notifications from './Notifications/Notifications';
 import style from './notifications-sidebar.module.scss';
 
 import { useHeader } from '@/context/header';
+import { Notification } from '@/core/notification';
 import useNotifications from '@/core/notifications';
 import useDate from '@/helpers/useDate';
+
+type NotificationByDate = {
+  [fromDate: string]: Notification;
+}
 
 type Props = {
   environment?: Environment;
@@ -19,8 +24,8 @@ const NotificationsSidebar = ({ environment = {} }: Props): JSX.Element => {
   const locale = environment.getUserLocale();
   const { fromNow } = useDate();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [groupedNotifications, setGroupedNotifications] = useState([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [groupedNotifications, setGroupedNotifications] = useState<NotificationByDate[]>([]);
 
   const { isNotificationsSidebarVisible } = useHeader();
   const {
@@ -30,7 +35,7 @@ const NotificationsSidebar = ({ environment = {} }: Props): JSX.Element => {
     getActiveNotifications,
   } = useNotifications();
 
-  const getGroupedNotifications = (notificationToDisplay) => {
+  const getGroupedNotifications = (notificationToDisplay: Notification[]): NotificationByDate[] => {
     return groupBy(notificationToDisplay, ({ date }) => fromNow(date, locale));
   };
 
