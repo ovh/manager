@@ -138,5 +138,10 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Hai un progetto da analizzare?",
   "ovhManagerSupport_new_business_2": "Descrivi in modo dettagliato le tue esigenze inviandoci un’email all’indirizzo:",
-  "ovhManagerSupport_new_business_3": "Le richieste di supporto ricevute a questo indirizzo non verranno prese in carico."
+  "ovhManagerSupport_new_business_3": "Le richieste di supporto ricevute a questo indirizzo non verranno prese in carico.",
+  "ovhManagerSupport_new_serviceType_managed_grafana": "Public Cloud databases for Grafana",
+  "ovhManagerSupport_new_serviceType_managed_m3": "Public Cloud databases for M3",
+  "ovhManagerSupport_new_serviceType_managed_m3_aggregator": "Public Cloud databases for M3 Aggregator",
+  "ovhManagerSupport_new_serviceType_managed_kafka_connect": "Public Cloud databases for Kafka Connect",
+  "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud databases for Cassandra"
 }

@@ -138,5 +138,10 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Quer iniciar um projeto?",
   "ovhManagerSupport_new_business_2": "Explique-nos aquilo de que precisa através do seguinte endereço:",
-  "ovhManagerSupport_new_business_3": "Os pedidos de assistência recebidos neste endereço não serão tratados."
+  "ovhManagerSupport_new_business_3": "Os pedidos de assistência recebidos neste endereço não serão tratados.",
+  "ovhManagerSupport_new_serviceType_managed_grafana": "Public Cloud databases for Grafana",
+  "ovhManagerSupport_new_serviceType_managed_m3": "Public Cloud databases for M3",
+  "ovhManagerSupport_new_serviceType_managed_m3_aggregator": "Public Cloud databases for M3 Aggregator",
+  "ovhManagerSupport_new_serviceType_managed_kafka_connect": "Public Cloud databases for Kafka Connect",
+  "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud databases for Cassandra"
 }
