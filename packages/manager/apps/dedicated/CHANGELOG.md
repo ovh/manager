@@ -1,3 +1,14 @@
+## [17.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.3...@ovh-ux/manager-dedicated@17.16.4) (2022-04-21)
+
+
+### Bug Fixes
+
+* **dedicated:** hpc navbar highlight ([3214593](https://github.com/ovh/manager/commit/3214593716e4fa94705b244c1dc665480ecb6f57))
+* **hosted-private-cloud:** correct UX for order button ([9630671](https://github.com/ovh/manager/commit/9630671d85e93473bc332e08d7dcb19661f36cb9))
+* **vmware:** fix a cta is not in blue color ([#6890](https://github.com/ovh/manager/issues/6890)) ([1a45060](https://github.com/ovh/manager/commit/1a450601a810d0fe213f976816c0b8fb8ad47d5b))
+
+
+
 ## [17.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.2...@ovh-ux/manager-dedicated@17.16.3) (2022-04-20)
 
 
