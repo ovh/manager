@@ -53,8 +53,8 @@ export default /* @ngInject */ ($stateProvider) => {
           targetVersion,
         }),
 
-      onAssociateIpBlock: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.details.dashboard.associate-ip-bloc'),
+      associateIpBlockLink: /* @ngInject */ ($state) => () =>
+        $state.href('app.managedBaremetal.details.dashboard.associate-ip-bloc'),
 
       onExecutionDateChange: /* @ngInject */ ($state, currentService) => () =>
         $state.go(

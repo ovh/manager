@@ -99,11 +99,14 @@ export default class AppAttachController {
   filterStorages() {
     this.filteredStorages = this.storages
       // Remove containers that are already on volume list
-      .filter(({ name, region }) => {
-        return !this.volumes
-          .filter(({ privateSwift }) => privateSwift)
-          .map(({ container }) => `${container.name}-${container.region}`)
-          .includes(`${name}-${region}`);
+      .filter(({ name, region, isHighPerfStorage }) => {
+        return (
+          !isHighPerfStorage &&
+          !this.volumes
+            .filter(({ privateSwift }) => privateSwift)
+            .map(({ container }) => `${container.name}-${container.region}`)
+            .includes(`${name}-${region}`)
+        );
       })
       .map(({ name, region }) => {
         return {
