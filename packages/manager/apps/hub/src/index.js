@@ -14,14 +14,16 @@ import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 import { BILLING_REDIRECTIONS } from './constants';
 
 import { getShellClient, setShellClient } from './shell';
+import TRACKING from './components/at-internet/at-internet.constant';
 
 attachPreloader(findAvailableLocale(detectUserLocale()));
 
 useShellClient('hub')
-  .then((client) => {
+  .then(async (client) => {
     setShellClient(client);
     client.ux.setForceAccountSiderBarDisplayOnLargeScreen(true);
     client.ux.showAccountSidebar();
+    await client.tracking.setConfig(TRACKING);
 
     return client.environment.getEnvironment();
   })
