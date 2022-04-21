@@ -3,9 +3,10 @@ import { GUIDES } from './onboarding.constants';
 
 export default class PciFailoverIpsOnboardingController {
   /* @ngInject */
-  constructor($translate, CucCloudMessage) {
+  constructor($translate, CucCloudMessage, coreConfig) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {
@@ -21,6 +22,7 @@ export default class PciFailoverIpsOnboardingController {
           description: this.$translate.instant(
             `pci_projects_project_failoverip_onboarding_guides_${guide.id}_description`,
           ),
+          link: guide.links[this.user.ovhSubsidiary] || guide.links.DEFAULT,
         },
       ],
       [],
