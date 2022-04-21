@@ -5,7 +5,7 @@ import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.failover-ips', {
-    url: '/failover-ips?ip',
+    url: '/additional-ips?ip',
     component: 'pciProjectFailoverIps',
     translations: {
       format: 'json',
