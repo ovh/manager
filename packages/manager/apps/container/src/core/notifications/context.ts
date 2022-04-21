@@ -4,17 +4,17 @@ import { Notification } from './notification';
 
 export type NotificationsContextType = {
   notifications: Notification[];
-  getActiveNotifications(): Notification[];
-  loadNotifications(): Promise<Notification[]>;
-  readAllNotifications(): Promise<boolean>;
+  getActiveNotifications(notifs: Notification[]): Notification[];
+  loadNotifications(): Promise<unknown>;
+  readAllNotifications(notifs: Notification[]): Promise<unknown>;
   toggleNotificationReadStatus(
     notificationId: string,
     linkClicked?: boolean,
-  ): Promise<boolean>;
+  ): Promise<unknown>;
   notificationsCount: number;
   setNotificationsCount(count: number): void;
 };
 
-const NotificationsContext = createContext<NotificationsContextType | null>();
+const NotificationsContext = createContext<NotificationsContextType | null>(null);
 
 export default NotificationsContext;
