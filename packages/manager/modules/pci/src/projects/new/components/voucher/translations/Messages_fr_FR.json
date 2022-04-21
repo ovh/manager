@@ -1,5 +1,6 @@
 {
-  "pci_projects_new_voucher_question": "Bon d'achat ?",
+  "pci_projects_new_voucher_title": "Vous avez un code promo ?",
+  "pci_projects_new_voucher_question": "Bon d'achat",
   "pci_projects_new_voucher_form_field": "Entrer un bon d'achat",
   "pci_projects_new_voucher_form_field_amount": "Montant crédité : {{ amount }}",
   "pci_projects_new_voucher_form_field_error_invalid": "Code invalide.",
