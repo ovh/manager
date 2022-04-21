@@ -1612,5 +1612,6 @@
   "exchange_update_billing_periode_intro_2": "Zostanie ona zastosowana począwszy od kolejnego odnowienia.",
   "exchange_tab_ALIAS_add_address_placeholder": "Adres",
   "exchange_tab_ALIAS_add_alias_x500_label": "X500 (przydatny w przypadku migracji)",
-  "exchange_tab_ALIAS_add_alias_valid_x500": "Uwaga: znak „@” nie jest akceptowany w adresie X500"
+  "exchange_tab_ALIAS_add_alias_valid_x500": "Uwaga: znak „@” nie jest akceptowany w adresie X500",
+  "exchange_tab_ALIAS_add_alias_valid_smtp": "Uwaga, niektóre znaki specjalne nie są dozwolone w nazwie aliasu, na przykład + ? / () [] ;"
 }

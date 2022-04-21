@@ -1612,5 +1612,6 @@
   "exchange_update_billing_periode_intro_2": "La periodicità scelta verrà applicata a partire dal prossimo rinnovo.",
   "exchange_tab_ALIAS_add_address_placeholder": "Indirizzo",
   "exchange_tab_ALIAS_add_alias_x500_label": "X500 (utile nell’ambito di una migrazione)",
-  "exchange_tab_ALIAS_add_alias_valid_x500": "Attenzione: il carattere speciale \"@\" non è accettato per gli indirizzi X500"
+  "exchange_tab_ALIAS_add_alias_valid_x500": "Attenzione: il carattere speciale \"@\" non è accettato per gli indirizzi X500",
+  "exchange_tab_ALIAS_add_alias_valid_smtp": "Attenzione, alcuni caratteri speciali non sono accettati nel nome di un alias, come ad esempio + ? / () [] ;"
 }
