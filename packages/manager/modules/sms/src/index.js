@@ -19,6 +19,16 @@ angular
             breadcrumb: () => 'SMS',
           },
         })
+        .state('sms.onboarding.**', {
+          url: '/onboarding',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./onboarding/onboarding.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        })
         .state('sms.index.**', {
           url: '',
           lazyLoad: ($transition$) => {
