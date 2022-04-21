@@ -25,6 +25,7 @@ export default class atInternetConfigurationProvider {
   $get() {
     return {
       config: this.config,
+      skipInit: this.skipInit,
       setExtraConfig: (config) => {
         this.extraConfig = config;
       },

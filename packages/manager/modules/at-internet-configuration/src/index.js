@@ -114,23 +114,23 @@ angular
       atInternetConfiguration,
       coreConfig,
     ) => {
-      if (atInternetConfiguration.skipInit) return;
+      if (!atInternetConfiguration.skipInit) {
+        const referrerSite = $cookies.get('OrderCloud');
+        const data = {
+          ...CUSTOM_VARIABLES,
+          ...atInternetConfiguration.getConfig(coreConfig.getRegion()),
+          ...(referrerSite ? { referrerSite } : {}),
+        };
+        const me = coreConfig.getUser();
+        const atInternetDefaultConfig = {
+          ...data,
+          countryCode: me.country,
+          currencyCode: me.currency && me.currency.code,
+          visitorId: me.customerCode,
+        };
 
-      const referrerSite = $cookies.get('OrderCloud');
-      const data = {
-        ...CUSTOM_VARIABLES,
-        ...atInternetConfiguration.getConfig(coreConfig.getRegion()),
-        ...(referrerSite ? { referrerSite } : {}),
-      };
-      const me = coreConfig.getUser();
-      const atInternetDefaultConfig = {
-        ...data,
-        countryCode: me.country,
-        currencyCode: me.currency && me.currency.code,
-        visitorId: me.customerCode,
-      };
-
-      atInternet.setDefaults(atInternetDefaultConfig);
+        atInternet.setDefaults(atInternetDefaultConfig);
+      }
     },
   );
 
