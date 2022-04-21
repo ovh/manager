@@ -30,6 +30,9 @@ angular.module('App').controller(
     $onInit() {
       this.$scope.$on('switchUniverse', (event, universe) => {
         this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
+        if (universe === 'hpc') {
+          this.navbarOptions.universe = universe;
+        }
         this.$transitions.onSuccess({}, (transition) => {
           // Prevent displaying `server` as the current universe if user is
           // browsing in account/billing section.
