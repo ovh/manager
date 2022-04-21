@@ -59,9 +59,7 @@ export class TrackingPlugin extends OvhAtInternet {
   setConfig(config: RegionsTrackingConfig): void {
     this.config = config;
 
-    if (this.config && this.currentUser) {
-      this.configureTracking(this.region as Region, this.currentUser);
-    }
+    this.configureTracking(this.region as Region, this.currentUser);
   }
 
   getConfigByRegion(region: Region): TrackingConfig['config'] {

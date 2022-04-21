@@ -2,8 +2,6 @@ import angular from 'angular';
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 
-import TRACKING from './at-internet.constant';
-
 const moduleName = 'hubAtInternet';
 
 export const initHubAtInternet = (trackingPlugin) => {
@@ -12,9 +10,6 @@ export const initHubAtInternet = (trackingPlugin) => {
       registerAtInternet(trackingPlugin),
       ovhManagerAtInternetConfiguration,
     ])
-    .config(async () => {
-      await trackingPlugin.setConfig(TRACKING);
-    })
     .config(
       /* @ngInject */ (atInternetConfigurationProvider) => {
         atInternetConfigurationProvider.setSkipInit(true);
