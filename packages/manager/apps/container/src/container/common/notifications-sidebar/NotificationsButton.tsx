@@ -17,7 +17,7 @@ function NavbarNotifications(): JSX.Element {
     toggleNotificationSidebar,
   } = useHeader();
 
-  function onClick() {
+  function onClick(): void {
     const initialVisibilityState = isNotificationsSidebarVisible;
     toggleNotificationSidebar();
     if (initialVisibilityState) {

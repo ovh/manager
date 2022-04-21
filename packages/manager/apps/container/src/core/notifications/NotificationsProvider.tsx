@@ -6,7 +6,7 @@ import { find } from 'lodash-es';
 
 import { NOTIFICATION_STATUS_ENUM } from './constants';
 import NotificationsContext from './context';
-import useNotification from './notification';
+import useNotification, { APINotification, Notification } from './notification';
 
 type Props = {
   children: JSX.Element;
@@ -21,14 +21,14 @@ export const NotificationsProvider = ({
 
   let notificationsContext = useContext(NotificationsContext);
 
-  const [notifications, setNotifications] = useState([]);
-  const [notificationsCount, setNotificationsCount] = useState([]);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [notificationsCount, setNotificationsCount] = useState<number>(0);
 
   /**
    * Call 2API notifications to get notifications that needs to be displayed.
-   * @return {Promise<Array.<Object>>}
+   * @return {Promise<void>}
    */
-  const loadNotifications = async () => {
+  const loadNotifications = async (): Promise<unknown> => {
     return reketInstance
       .get('/notification', {
         requestType: 'aapi',
@@ -37,14 +37,17 @@ export const NotificationsProvider = ({
           lang: environment.getUserLocale(),
         },
       })
-      .then((notifs) => {
-        const newNotifications = [];
-        notifs.forEach((notif) => {
+      .then((notifs: unknown[]) => {
+        const newNotifications: APINotification[] = [];
+        notifs.forEach((notif: any) => {
           newNotifications.push({
             date: notif.date,
+            id: notif.id,
             status: notif.status,
             updating: notif.updating,
-            urlDetails: notif.urlDetails ? { href: notif.urlDetails.href } : {},
+            urlDetails: {
+              href: notif.urlDetails ? notif.urlDetails.href : '',
+            },
           });
         });
         setNotifications(newNotifications.map(useNotification));
@@ -60,7 +63,7 @@ export const NotificationsProvider = ({
    *                                 If none provided, filters loaded notifications.
    * @return {Array.<Object>}
    */
-  const getActiveNotifications = (notifs) => {
+  const getActiveNotifications = (notifs: Notification[]): Notification[] => {
     const notificationsToFilter = notifs || notifications;
 
     return notificationsToFilter.filter((notification) =>
@@ -68,17 +71,17 @@ export const NotificationsProvider = ({
     );
   };
 
-  const getNotificationById = (notificationId) => {
+  const getNotificationById = (notificationId: string): Notification => {
     return find(notifications, {
       id: notificationId,
     });
   };
 
-  const updateNotications = (status) => {
+  const updateNotications = (status: unknown): Promise<unknown> => {
     return reketInstance.post('/notification', status, { requestType: 'aapi' });
   };
 
-  const updateNotificationReadStatus = (notification, status) => {
+  const updateNotificationReadStatus = (notification: Notification, status: string): Promise<unknown> => {
     notification.setUpdating(true);
 
     return updateNotications({
@@ -93,11 +96,11 @@ export const NotificationsProvider = ({
       });
   };
 
-  const readAllNotifications = (notifs) => {
+  const readAllNotifications = (notifs: Notification[]): Promise<unknown> => {
     const notificationsToUpdate = notifs || notifications;
 
     return Promise.all(
-      notificationsToUpdate.map((notification) =>
+      notificationsToUpdate.map((notification: Notification) =>
         !notification.updating && notification.isActive()
           ? updateNotificationReadStatus(
               notification,
@@ -115,9 +118,9 @@ export const NotificationsProvider = ({
    * @return {Promise}
    */
   const toggleNotificationReadStatus = (
-    notificationId,
-    linkClicked = false,
-  ) => {
+    notificationId: string,
+    linkClicked: boolean = false,
+  ): Promise<unknown> => {
     const notificationToUpdate = getNotificationById(notificationId);
 
     if (notificationToUpdate.isActive() && !notificationToUpdate.updating) {

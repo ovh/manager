@@ -15,7 +15,7 @@ const NotificationIcon = ({
 }: Props): JSX.Element => {
   const { toggleNotificationReadStatus } = useNotifications();
 
-  const onNotificationLinkClick = () => {
+  const onNotificationLinkClick = (): Promise<void> => {
     return toggleNotificationReadStatus(notificationId, true);
   };
 
