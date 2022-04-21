@@ -20,6 +20,16 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad', overTheBox]).config(
           breadcrumb: () => 'OverTheBox',
         },
       })
+      .state('overTheBoxes.onboarding.**', {
+        url: '/onboarding',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./onboarding/onboarding.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      })
       .state('overTheBoxes.index.**', {
         url: '',
         lazyLoad: ($transition$) => {
