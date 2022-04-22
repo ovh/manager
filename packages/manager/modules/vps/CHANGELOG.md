@@ -1,3 +1,12 @@
+## [2.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.2...@ovh-ux/manager-vps@2.20.3) (2022-04-22)
+
+
+### Bug Fixes
+
+* **veeam.order:** fix order duration ([#6759](https://github.com/ovh/manager/issues/6759)) ([163e17a](https://github.com/ovh/manager/commit/163e17a59a56042b5f652b33f9e0c6a57fd0ce42))
+
+
+
 ## [2.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.1...@ovh-ux/manager-vps@2.20.2) (2022-04-12)
 
 
