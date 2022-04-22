@@ -1,4 +1,5 @@
 import {
+  PURCHASE_ORDER,
   TYPE_PURCHASE_FOR_TRACKING,
   TYPE_PURCHASE,
 } from '../billing-orders-purchases.constant';
@@ -9,6 +10,7 @@ export default class BillingOrdersPurchaseEditCtrl {
     this.$translate = $translate;
     this.billingOrdersPurchasesService = billingOrdersPurchasesService;
     this.TYPE_PURCHASE = TYPE_PURCHASE;
+    this.PURCHASE_ORDER = PURCHASE_ORDER;
   }
 
   $onInit() {
@@ -38,13 +40,11 @@ export default class BillingOrdersPurchaseEditCtrl {
       `modify-${TYPE_PURCHASE_FOR_TRACKING[this.model.type]}_confirm`,
     );
 
-    const { reference, startDate, type, endDate } = this.model;
-
     const data = {
-      reference,
-      startDate,
-      type,
-      ...(endDate && { endDate }),
+      reference: this.model.reference,
+      startDate: this.model.startDate,
+      type: this.model.type,
+      ...(this.model.endDate && { endDate: this.model.endDate }),
     };
 
     this.billingOrdersPurchasesService
