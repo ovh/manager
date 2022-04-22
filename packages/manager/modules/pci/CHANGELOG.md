@@ -1,3 +1,12 @@
+## [5.70.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.70.0...@ovh-ux/manager-pci@5.70.1) (2022-04-22)
+
+
+### Bug Fixes
+
+* **pci.projects.new.payment:** restore default payment selection ([b8e5441](https://github.com/ovh/manager/commit/b8e5441ca06123b51a8ea14f5ae4d6846f7d42ef))
+
+
+
 # [5.70.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.69.2...@ovh-ux/manager-pci@5.70.0) (2022-04-21)
 
 
