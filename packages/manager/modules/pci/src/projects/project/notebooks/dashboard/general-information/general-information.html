@@ -340,7 +340,9 @@
                                 oui-popover="{{:: 'pci_notebooks_general_information_other_resources_info_workspace_storage_popover' | translate: {freeStorage: ($ctrl.notebook.workspaceFreeStorage | bytes:0:true:'B')} }}"
                             ></button>
                         </div>
-                        <div ng-if="$ctrl.notebook.workspaceUsedStorage">
+                        <div
+                            ng-if="$ctrl.notebook.workspaceUsedStorage || $ctrl.notebook.workspaceUsedStorage === 0"
+                        >
                             <oui-progress
                                 ng-if="$ctrl.notebook.workspaceUsedStorage <= $ctrl.notebook.workspaceFreeStorage"
                                 max-value="100"
