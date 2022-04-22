@@ -530,7 +530,6 @@
                             class="d-inline-block col-md-6 col-xl-3 my-3"
                             data-ng-repeat="flavor in $ctrl.flavors | filter: { type: $ctrl.flavorsTypeSelected } track by flavor.id"
                             data-name="{{:: flavor.id }}"
-                            data-description="{{:: flavor.description}}"
                             data-model="$ctrl.flavorSelected"
                             data-values="[flavor]"
                             data-variant="light"
@@ -538,47 +537,63 @@
                             data-required
                         >
                             <oui-select-picker-label>
-                                <strong data-ng-bind=":: flavor.id"></strong>
+                                <strong
+                                    data-ng-bind=":: flavor.id | uppercase"
+                                ></strong>
                             </oui-select-picker-label>
-
-                            <oui-select-picker-section>
-                                <div class="d-flex">
-                                    <span
-                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_ram"
-                                        data-translate-values="{ ram: (flavor.resourcesPerUnit.memory | bytes:2:true:'B') }"
-                                    ></span>
-                                    <span
-                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_type_cpu"
-                                    ></span>
-                                </div>
+                            <oui-select-picker-description>
                                 <div
-                                    class="d-flex"
+                                    class="d-flex flex-column"
                                     data-ng-if="flavor.gpuInformation.gpuMemory"
                                 >
                                     <span
+                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_description_gpu_description"
+                                        data-translate-values="{ nbResources: $ctrl.resourceN, description: flavor.description }"
+                                    ></span>
+                                    <span
+                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_description_gpu_ram"
+                                        data-translate-values="{ nbResources: $ctrl.resourceN, ram: (flavor.gpuInformation.gpuMemory | bytes:0:true:'B') }"
+                                    ></span>
+                                </div>
+                                <div
+                                    class="d-flex flex-column"
+                                    data-ng-if="!flavor.gpuInformation.gpuMemory"
+                                >
+                                    <span
+                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_description_cpu"
+                                        data-translate-values="{ description: flavor.description }"
+                                    ></span>
+                                </div>
+                            </oui-select-picker-description>
+                            <oui-select-picker-section>
+                                <div class="d-flex">
+                                    <span
+                                        ng-if="($ctrl.resourceN * flavor.resourcesPerUnit.cpu) <= 1"
+                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_cpu"
+                                        data-translate-values="{ vcores: $ctrl.resourceN * flavor.resourcesPerUnit.cpu }"
+                                    ></span>
+                                    <span
+                                        ng-if="($ctrl.resourceN * flavor.resourcesPerUnit.cpu) > 1"
+                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_cpu_plural"
+                                        data-translate-values="{ vcores: $ctrl.resourceN * flavor.resourcesPerUnit.cpu }"
+                                    ></span>
+                                </div>
+                                <div class="d-flex">
+                                    <span
                                         data-translate="pci_projects_project_training_jobs_submitresources_proposed_ram"
-                                        data-translate-values="{ ram: (flavor.gpuInformation.gpuMemory | bytes:2:true:'B') }"
-                                    ></span>
-                                    <span
-                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_type_gpu"
+                                        data-translate-values="{ ram: ($ctrl.resourceN * flavor.resourcesPerUnit.memory | bytes:0:true:'B') }"
                                     ></span>
                                 </div>
-                                <div class="d-flex">
-                                    <span
-                                        data-translate="pci_project_flavors_spec_core_details"
-                                        data-translate-values="{ vcores: flavor.resourcesPerUnit.cpu }"
-                                    ></span>
-                                </div>
-                                <div class="d-flex">
+                                <div>
                                     <span
                                         data-translate="pci_projects_project_training_jobs_submitresources_proposed_storage"
-                                        data-translate-values="{ memory: (flavor.resourcesPerUnit.ephemeralStorage | bytes:2:true:'B') }"
+                                        data-translate-values="{ memory: (($ctrl.resourceN * flavor.resourcesPerUnit.ephemeralStorage) | bytes:2:true:'B') }"
                                     ></span>
                                 </div>
-                                <div class="d-flex">
+                                <div>
                                     <span
                                         data-translate="pci_projects_project_training_jobs_submitresources_proposed_public_bandwidth"
-                                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.publicNetwork | bytes:2:false:'B') }"
+                                        data-translate-values="{ bandwidth : (($ctrl.resourceN * flavor.resourcesPerUnit.publicNetwork) | bytes:2:false:'B') }"
                                     ></span>
                                 </div>
                                 <div
@@ -587,7 +602,7 @@
                                 >
                                     <span
                                         data-translate="pci_projects_project_training_jobs_submitresources_proposed_private_bandwidth"
-                                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.privateNetwork | bytes:2:false:'B') }"
+                                        data-translate-values="{ bandwidth : (($ctrl.resourceN * flavor.resourcesPerUnit.privateNetwork) | bytes:2:false:'B') }"
                                     ></span>
                                 </div>
                             </oui-select-picker-section>
@@ -598,6 +613,15 @@
                                     data-translate-values="{ price: $ctrl.getFlavorPrice(flavor) }"
                                 >
                                 </strong>
+                                <ovh-manager-catalog-price
+                                    data-price="$ctrl.flavorPrice"
+                                    data-tax="$ctrl.flavorPriceTax"
+                                    data-user="$ctrl.user"
+                                    data-perform-rounding="false"
+                                    data-maximum-fraction-digits="3"
+                                >
+                                </ovh-manager-catalog-price>
+                                <strong>/heure</strong>
                             </oui-select-picker-section>
                         </oui-select-picker>
                     </div>
@@ -613,27 +637,6 @@
                             </oui-numeric>
                         </oui-field>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <oui-tile
-                        class="h-100"
-                        data-heading="{{:: 'pci_projects_project_training_jobs_submit_select_config_resources_tips_price' | translate  }}"
-                    >
-                        <oui-tile-definition
-                            data-term="{{:: 'pci_projects_project_training_jobs_submit_select_config_resources_tips_per_hour' | translate  }}"
-                        >
-                            <oui-tile-description>
-                                <ovh-manager-catalog-price
-                                    data-price="$ctrl.flavorPrice"
-                                    data-tax="$ctrl.flavorPriceTax"
-                                    data-user="$ctrl.user"
-                                    data-perform-rounding="false"
-                                    data-maximum-fraction-digits="3"
-                                >
-                                </ovh-manager-catalog-price>
-                            </oui-tile-description>
-                        </oui-tile-definition>
-                    </oui-tile>
                 </div>
             </div>
         </oui-step-form>
