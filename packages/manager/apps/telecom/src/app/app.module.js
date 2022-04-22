@@ -339,8 +339,9 @@ export default (containerEl, environment) => {
     )
     .controller('TelecomAppCtrl', TelecomAppCtrl)
     .run(
-      /* @ngInject */ ($rootScope, $state) => {
-        $state.defaultErrorHandler((error) => {
+      /* @ngInject */ ($rootScope, $state, $transitions) => {
+        $transitions.onError({}, (transition) => {
+          const error = transition.error();
           if (error.type === RejectType.ERROR) {
             $rootScope.$emit('ovh::sidebar::hide');
             $state.go(
@@ -348,14 +349,22 @@ export default (containerEl, environment) => {
               {
                 detail: {
                   message: get(error.detail, 'data.message'),
+                  status: error.detail?.status,
                   code: has(error.detail, 'headers')
                     ? error.detail.headers('x-ovh-queryId')
                     : null,
+                },
+                to: {
+                  state: transition.to(),
+                  params: transition.params(),
                 },
               },
               { location: false },
             );
           }
+        });
+        $state.defaultErrorHandler((error) => {
+          return error;
         });
       },
     )

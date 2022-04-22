@@ -349,10 +349,6 @@ export default (containerEl, environment) => {
             $rootScope.$emit('ovh::sidebar::hide');
             $state.go('app.error', { error });
           }
-        });
-
-        $state.defaultErrorHandler((error) => {
-          console.log(error);
           if (error.type === RejectType.ERROR && !error.handled) {
             $rootScope.$emit('ovh::sidebar::hide');
             $state.go(
@@ -360,14 +356,23 @@ export default (containerEl, environment) => {
               {
                 detail: {
                   message: get(error.detail, 'data.message'),
+                  status: error.detail.status,
                   code: has(error.detail, 'headers')
                     ? error.detail.headers('x-ovh-queryId')
                     : null,
+                },
+                to: {
+                  state: transition.to(),
+                  params: transition.params(),
                 },
               },
               { location: false },
             );
           }
+        });
+
+        $state.defaultErrorHandler((error) => {
+          console.log(error);
         });
 
         set($rootScope, 'worldPart', coreConfig.getRegion());
