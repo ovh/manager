@@ -19,7 +19,7 @@
                 data-translate="pci_database_engines_list_beta"
             ></span>
         </oui-select-picker-label>
-        <oui-select-picker-section ng-if="engine.versions.length > 1">
+        <oui-select-picker-section>
             <oui-select
                 data-items="engine.versions"
                 data-match="version"
@@ -27,6 +27,7 @@
                 data-name="{{ engine.name + 'versions' }}"
                 data-on-change="$ctrl.handleVersionChange(engine, modelValue)"
                 data-disable-items="$ctrl.isDisabledVersion($item)"
+                data-disabled="engine.versions.length > 1"
             >
                 <span data-ng-bind="$item.version"></span>
                 <span
