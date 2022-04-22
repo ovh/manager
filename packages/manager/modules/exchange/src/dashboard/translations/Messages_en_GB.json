@@ -440,7 +440,6 @@
   "exchange_account_add_accountType_label": "Account type (required)",
   "exchange_account_add_accountType_tooltip": "Email Pro: Get 10GB of storage, POP, IMAP and SMTP protocols. Exchange: Get 50GB of storage, MAPI and ActiveSync protocols.\n",
   "exchange_account_add_emailAddress_label": "Email address (required)",
-  "exchange_account_add_emailAddress_hint": "The local part of your email address (the text before the '@') must comply with these rules:<ul>\n<li qtlid=\"485957\">It must start and end with a letter or a number.</li>\n<li qtlid=\"485970\">Authorised special characters are \".\", \"+\", \"-\" and \"_\".</li>\n<li qtlid=\"485983\">You cannot have two special characters in a row.</li>\n</ul>",
   "exchange_account_add_emailAddress_error_emailAddressIsAlreadyTaken": "This email address already exists.",
   "exchange_account_add_samAccountName_label": "Name of Exchange 2010 account",
   "exchange_account_add_company_label": "Company",

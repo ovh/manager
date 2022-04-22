@@ -440,7 +440,6 @@
   "exchange_account_add_accountType_label": "Tipo di account (obbligatorio)",
   "exchange_account_add_accountType_tooltip": "Email Pro: approfitta di 10 GB di storage e dei protocolli POP, IMAP e SMTP. Exchange: approfitta di 50 GB di storage e dei protocolli MAPI e ActiveSync.\n",
   "exchange_account_add_emailAddress_label": "Indirizzo email (obbligatorio)",
-  "exchange_account_add_emailAddress_hint": "La parte locale del tuo indirizzo email (il testo che precede \"@\") deve rispettare queste condizioni: <ul>\n<li qtlid=\"485957\">iniziare e terminare con una lettera o un numero;</li>\n<li qtlid=\"485970\">i caratteri speciali autorizzati sono \".\", \"+\", \"-\" e \"_\";</li>\n<li qtlid=\"485983\">non è possibile utilizzare più caratteri speciali di seguito.</li>\n</ul>",
   "exchange_account_add_emailAddress_error_emailAddressIsAlreadyTaken": "Questo indirizzo email è già esistente.",
   "exchange_account_add_samAccountName_label": "Nome dell'account Exchange 2010",
   "exchange_account_add_company_label": "Società",
