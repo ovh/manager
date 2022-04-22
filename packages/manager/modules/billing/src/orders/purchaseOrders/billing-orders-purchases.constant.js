@@ -1,3 +1,5 @@
+export const PURCHASE_ORDER = 'Purchase order';
+
 export const ENUM_PURCHASES_STATUS = ['actif', 'inactif', 'desactivate'];
 
 export const TYPE_PURCHASE = {
