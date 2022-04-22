@@ -3,11 +3,11 @@
         heading="{{:: 'purchaseOrders_edit_page_title' | translate }}"
     ></oui-header>
     <form novalidate name="editPurchaseForm">
-        <oui-field size="m">
+        <oui-field size="l">
             <oui-radio-group direction="column" model="$ctrl.model.type">
                 <oui-radio
                     data-value="$ctrl.TYPE_PURCHASE.REFERENCE_ORDER"
-                    name="type_{{ $ctrl.TYPE_PURCHASE.REFERENCE_ORDER }}"
+                    name="type_{{:: $ctrl.TYPE_PURCHASE.REFERENCE_ORDER }}"
                     model="$ctrl.model.type"
                 >
                     <span
@@ -16,7 +16,7 @@
                 </oui-radio>
                 <oui-radio
                     data-value="$ctrl.TYPE_PURCHASE.PURCHASE_ORDER"
-                    name="type_{{ $ctrl.TYPE_PURCHASE.PURCHASE_ORDER }}"
+                    name="type_{{:: $ctrl.TYPE_PURCHASE.PURCHASE_ORDER }}"
                     model="$ctrl.model.type"
                 >
                     <span
@@ -37,7 +37,7 @@
                 type="text"
                 maxlength="20"
                 data-ng-model="$ctrl.model.reference"
-                name="reference_{{ $ctrl.TYPE_PURCHASE.REFERENCE_ORDER }}"
+                name="reference_{{:: $ctrl.TYPE_PURCHASE.REFERENCE_ORDER }}"
                 required
             />
         </oui-field>
@@ -49,11 +49,11 @@
         >
             <input
                 class="oui-input"
-                placeholder="{{:: 'purchaseOrders_form_edit_purchase_order_placeholder' | translate }}"
+                placeholder="{{:: $ctrl.PURCHASE_ORDER }}"
                 type="text"
                 maxlength="20"
                 data-ng-model="$ctrl.model.reference"
-                name="reference_{{ $ctrl.TYPE_PURCHASE.PURCHASE_ORDER }}"
+                name="reference_{{:: $ctrl.TYPE_PURCHASE.PURCHASE_ORDER }}"
                 required
             />
         </oui-field>
