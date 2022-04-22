@@ -440,7 +440,6 @@
   "exchange_account_add_accountType_label": "Typ konta (obowiązkowe)",
   "exchange_account_add_accountType_tooltip": "E-mail Pro: 10 GB przestrzeni dyskowej, protokoły POP, IMAP i SMTP.  Exchange: 50 GB przestrzeni dyskowej, protokoły MAPI i ActiveSync.\n",
   "exchange_account_add_emailAddress_label": "Adres e-mail (obowiązkowy)",
-  "exchange_account_add_emailAddress_hint": "Pierwsza część Twojego adresu e-mail (tekst przed \"@\") należy utworzyć zgodnie z następującymi zasadami: <ul>\n<li qtlid=\"485957\">nazwa powinna zaczynać się i kończyć literą lub cyfrą;</li>\n<li qtlid=\"485970\">dozwolone są następujące znaki specjalne: \".\", \"+\", \"-\" i \"_\";</li>\n<li qtlid=\"485983\">znaki specjalne nie mogą występować obok siebie.</li>\n</ul>",
   "exchange_account_add_emailAddress_error_emailAddressIsAlreadyTaken": "Ten adres e-mail już istnieje.",
   "exchange_account_add_samAccountName_label": "Nazwa konta Exchange 2010:",
   "exchange_account_add_company_label": "Firma",

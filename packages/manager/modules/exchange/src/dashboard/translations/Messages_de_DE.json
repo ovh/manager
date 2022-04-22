@@ -440,7 +440,6 @@
   "exchange_account_add_accountType_label": "Art des Accounts (obligatorisch)",
   "exchange_account_add_accountType_tooltip": "E-Mail Pro: Sie erhalten 10 GB Storage sowie POP-, IMAP- und SMTP-Protokolle. Exchange: Sie erhalten 50 GB Storage, MAPI- und ActiveSync-Protokolle.\n",
   "exchange_account_add_emailAddress_label": "E-Mail-Adresse (obligatorisch)",
-  "exchange_account_add_emailAddress_hint": "Der lokale Teil Ihrer E-Mail-Adresse (der Text vor dem @-Zeichen) muss folgenden Regeln entsprechen:\n<li qtlid=\"485957\">Er muss mit einem Buchstaben oder einer Ziffer beginnen und enden.</li>\n<li qtlid=\"485970\">Die erlaubten Sonderzeichen sind „ . “, „+“, „-“ und „_“.</li>\n<li qtlid=\"485983\">Sonderzeichen können nicht nebeneinander stehen.</li>\n</ul>",
   "exchange_account_add_emailAddress_error_emailAddressIsAlreadyTaken": "Diese E-Mail-Adresse existiert bereits.",
   "exchange_account_add_samAccountName_label": "Name des Exchange 2010 Accounts",
   "exchange_account_add_company_label": "Unternehmen",
