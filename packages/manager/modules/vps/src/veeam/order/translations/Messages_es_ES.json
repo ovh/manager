@@ -21,5 +21,7 @@
   "vps_configuration_veeam_order_fail": "Se ha producido un error al solicitar la contratación de la opción de backup automatizado.",
   "vps_configuration_veeam_order_success": "Siga las instrucciones que se indican en la nueva pestaña para finalizar el pedido. Si no aparece ninguna pestaña, haga clic en este <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">enlace</a>.",
   "vps_configuration_veeam_order_load_error": "Se ha producido un error al cargar la información del pedido del backup automatizado.",
-  "vps_configuration_veeam_order_load_error_none": "No se ha encontrado ningún pedido de la opción de backup automatizado en su VPS."
+  "vps_configuration_veeam_order_load_error_none": "No se ha encontrado ningún pedido de la opción de backup automatizado en su VPS.",
+  "vps_configuration_veeam_order_step1_info2_PXM": "{{amount}} meses",
+  "vps_configuration_veeam_order_step1_info2_PXY": "{{amount}} años"
 }

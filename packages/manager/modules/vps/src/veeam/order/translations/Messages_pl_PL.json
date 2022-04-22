@@ -21,5 +21,7 @@
   "vps_configuration_veeam_order_fail": "Wystąpił błąd podczas zamawiania zautomatyzowanych kopii zapasowych.",
   "vps_configuration_veeam_order_success": "Aby sfinalizować zamówienie, postępuj zgodnie z instrukcjami opisanymi w otwartej zakładce. Jeśli nie otworzy się żadna nowa zakładka, kliknij <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">tutaj</a>.",
   "vps_configuration_veeam_order_load_error": "Wystąpił błąd podczas pobierania informacji o zamówieniu zautomatyzowanych kopii zapasowych.",
-  "vps_configuration_veeam_order_load_error_none": "Brak zamówień na zautomatyzowane kopie zapasowe dla tego VPS."
+  "vps_configuration_veeam_order_load_error_none": "Brak zamówień na zautomatyzowane kopie zapasowe dla tego VPS.",
+  "vps_configuration_veeam_order_step1_info2_PXM": "{{amount}} m-ce/m-cy",
+  "vps_configuration_veeam_order_step1_info2_PXY": "{{amount}} lat/a"
 }

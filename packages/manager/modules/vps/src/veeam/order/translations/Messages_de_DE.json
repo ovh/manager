@@ -21,5 +21,7 @@
   "vps_configuration_veeam_order_fail": "Bei der Anfrage zur Bestellung der Option für automatische Backups ist ein Fehler aufgetreten.",
   "vps_configuration_veeam_order_success": "Um Ihre Bestellung abzuschließen, folgen Sie bitte den Anweisungen im neu geöffneten Tab. Wenn sich kein neuer Tab geöffnet hat, klicken Sie auf <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">diesen Link</a>.",
   "vps_configuration_veeam_order_load_error": "Beim Laden der Informationen zur Bestellung der automatischen Backup-Option ist ein Fehler aufgetreten.",
-  "vps_configuration_veeam_order_load_error_none": "Es konnte keine Bestellung automatischer Backups für Ihren VPS gefunden werden."
+  "vps_configuration_veeam_order_load_error_none": "Es konnte keine Bestellung automatischer Backups für Ihren VPS gefunden werden.",
+  "vps_configuration_veeam_order_step1_info2_PXM": "{{amount}} Monat(e)",
+  "vps_configuration_veeam_order_step1_info2_PXY": "{{amount}} Jahre"
 }
