@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vps",
-  "version": "2.20.2",
+  "version": "2.20.3",
   "private": true,
   "description": "VPS product.",
   "repository": {
