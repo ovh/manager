@@ -139,9 +139,9 @@
   "ovhManagerSupport_new_business_1": "Sie wünschen Beratung zu einem Projekt?",
   "ovhManagerSupport_new_business_2": "Bitte senden Sie uns eine E-Mail mit ausführlichen Informationen an die Adresse",
   "ovhManagerSupport_new_business_3": "Support-Anfragen, die an diese Adresse versendet werden, werden nicht bearbeitet.",
-  "ovhManagerSupport_new_serviceType_managed_grafana": "Public Cloud databases for Grafana",
-  "ovhManagerSupport_new_serviceType_managed_m3": "Public Cloud databases for M3",
-  "ovhManagerSupport_new_serviceType_managed_m3_aggregator": "Public Cloud databases for M3 Aggregator",
-  "ovhManagerSupport_new_serviceType_managed_kafka_connect": "Public Cloud databases for Kafka Connect",
-  "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud databases for Cassandra"
+  "ovhManagerSupport_new_serviceType_managed_grafana": "Public Cloud Databases for Grafana",
+  "ovhManagerSupport_new_serviceType_managed_m3": "Public Cloud Databases for M3",
+  "ovhManagerSupport_new_serviceType_managed_m3_aggregator": "Public Cloud Databases for M3 Aggregator",
+  "ovhManagerSupport_new_serviceType_managed_kafka_connect": "Public Cloud Databases for Kafka Connect",
+  "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud Databases for Cassandra"
 }
