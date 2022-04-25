@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "es2020"],
+    "module": "ES2020",
+    "removeComments": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "declaration": true,
+    "jsx": "react"
+  },
+  "exclude": ["node_modules", "dist", "src/__tests__"]
+}
