@@ -1,6 +1,7 @@
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
 import getNavbarConfig from './navbar.config';
+import { getShellClient } from './shell';
 
 export default class PublicCloudController {
   /* @ngInject */
@@ -30,6 +31,7 @@ export default class PublicCloudController {
     this.isTopLevelApplication = isTopLevelApplication();
 
     this.chatbotEnabled = false;
+    this.shell = getShellClient();
 
     $scope.$on('oui-step-form.submit', (event, { form }) => {
       this.atInternet.trackClick({
@@ -64,5 +66,13 @@ export default class PublicCloudController {
 
   openSidebar() {
     this.$scope.$broadcast('sidebar:open');
+  }
+
+  onChatbotOpen() {
+    this.shell.ux.onChatbotOpen();
+  }
+
+  onChatbotClose(reduced) {
+    this.shell.ux.onChatbotClose(reduced);
   }
 }
