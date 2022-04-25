@@ -261,13 +261,13 @@ export default class NotebookAddController {
   onNotebookSubmit() {
     const { selected, nbResources } = this.notebookModel;
     const { editor, framework, resource } = selected;
-    const flavorName = resource.flavor.name;
+    const flavorId = resource.flavor.id;
 
     this.trackNotebooks(`config_create_notebook::${editor.id}`);
     this.trackNotebooks(
       'PublicCloud_create_new_notebook::'
         .concat(`${editor.id}::${framework.model.id}::`)
-        .concat(`${resource.usage}_${flavorName}_${nbResources}`),
+        .concat(`${resource.usage}_${flavorId}_${nbResources}`),
       undefined,
       false,
     );

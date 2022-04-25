@@ -37,7 +37,7 @@
   "ovhManagerSupport_new_serviceType_vps": "Virtual Private Server",
   "ovhManagerSupport_new_serviceType_xdsl": "Internetzugang (ADSL, SDSL, VDSL, FTTH)",
   "ovhManagerSupport_new_serviceType_vrack": "vRack",
-  "ovhManagerSupport_new_serviceType_domain": "Domainname",
+  "ovhManagerSupport_new_serviceType_domain": "Domain",
   "ovhManagerSupport_new_serviceType_carrier_sip": "Operator Carrier SIP",
   "ovhManagerSupport_new_serviceType_cdn_webstorage": "WebStorage CDN",
   "ovhManagerSupport_new_serviceType_cdn_website": "WebSite CDN",
@@ -95,7 +95,7 @@
   "ovhManagerSupport_new_serviceType_ssl_gateway": "SSL Gateway",
   "ovhManagerSupport_new_serviceType_paas_timeseries": "PaaS Time Series",
   "ovhManagerSupport_new_serviceType_hpcspot": "HPC Spot",
-  "ovhManagerSupport_new_serviceType_saas_csp_2": "Vertriebspartner für Microsoft 365 und Office 365 ",
+  "ovhManagerSupport_new_serviceType_saas_csp_2": "Vertriebspartner für Microsoft 365 und Office 365",
   "ovhManagerSupport_new_serviceType_horizon_view": "Horizon View",
   "ovhManagerSupport_new_serviceType_other": "Andere Anfrage",
   "ovhManagerSupport_new_serviceType_ai_training_job": "AI Training",
@@ -139,9 +139,10 @@
   "ovhManagerSupport_new_business_1": "Sie wünschen Beratung zu einem Projekt?",
   "ovhManagerSupport_new_business_2": "Bitte senden Sie uns eine E-Mail mit ausführlichen Informationen an die Adresse",
   "ovhManagerSupport_new_business_3": "Support-Anfragen, die an diese Adresse versendet werden, werden nicht bearbeitet.",
-  "ovhManagerSupport_new_serviceType_managed_grafana": "Public Cloud Databases for Grafana",
-  "ovhManagerSupport_new_serviceType_managed_m3": "Public Cloud Databases for M3",
-  "ovhManagerSupport_new_serviceType_managed_m3_aggregator": "Public Cloud Databases for M3 Aggregator",
-  "ovhManagerSupport_new_serviceType_managed_kafka_connect": "Public Cloud Databases for Kafka Connect",
-  "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud Databases for Cassandra"
+  "ovhManagerSupport_new_serviceType_managed_grafana": "Public Cloud databases for Grafana",
+  "ovhManagerSupport_new_serviceType_managed_m3": "Public Cloud databases for M3",
+  "ovhManagerSupport_new_serviceType_managed_m3_aggregator": "Public Cloud databases for M3 Aggregator",
+  "ovhManagerSupport_new_serviceType_managed_kafka_connect": "Public Cloud databases for Kafka Connect",
+  "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud databases for Cassandra",
+  "ovhManagerSupport_new_serviceType_ai_notebook": "AI Notebooks"
 }

@@ -33,10 +33,19 @@
   "pci_notebooks_general_information_life_cycle_timeline_actions_restart": "Fecha de reinicio",
   "pci_notebooks_general_information_life_cycle_timeline_actions_stopped": "Fecha de detención",
   "pci_notebooks_general_information_resources_title": "Recursos",
-  "pci_notebooks_general_information_resources_local_storage": "Almacenamiento local por recurso",
+  "pci_notebooks_general_information_resources_local_storage": "Almacenamiento",
   "pci_notebooks_general_information_resources_monitoring": "Seguimiento del consumo",
   "pci_notebooks_general_information_resources_monitoring_access_to_graph": "Acceder a Graph Dashboard",
   "pci_notebooks_general_information_resources_quantity": "Recursos",
   "pci_notebooks_general_information_resources_info": "GPU, CPU y RAM por recurso",
-  "pci_notebooks_general_information_info_notebook_ssh_url": "Acceso SSH"
+  "pci_notebooks_general_information_info_notebook_ssh_url": "Acceso SSH",
+  "pci_notebooks_general_information_resources_RAM_per_GPU": "{{ressources}} × {{ram}} RAM",
+  "pci_notebooks_general_information_other_resources_info": "Otros recursos",
+  "pci_notebooks_general_information_other_resources_info_CPU": "CPU: {{cpu}} vCores",
+  "pci_notebooks_general_information_other_resources_info_RAM": "RAM: {{ram}}",
+  "pci_notebooks_general_information_other_resources_info_ephemeral_storage": "Tamaño del almacenamiento local efímero: {{ storage }} SSD",
+  "pci_notebooks_general_information_other_resources_info_workspace_storage": "Espacio de trabajo: {{ storage }} SSD incluidos",
+  "pci_notebooks_general_information_other_resources_info_ephemeral_storage_popover": "Almacenamiento local potente, pero sin copia de seguridad",
+  "pci_notebooks_general_information_other_resources_info_workspace_storage_popover": "Almacenamiento remoto con copia de seguridad Una vez transcurridos 30 días consecutivos de almacenamiento o si supera el límite de {{freeStorage}}, se aplicarán las tarifas del servicio Object Storage de Public Cloud.",
+  "pci_notebooks_general_information_other_resources_info_bandwidth": "Red pública: {{ bandwidth }}/s"
 }
