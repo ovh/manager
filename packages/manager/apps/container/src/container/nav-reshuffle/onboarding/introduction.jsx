@@ -33,7 +33,7 @@ export const OnboardingIntroduction = () => {
 
   const uxPlugin = shell.getPlugin('ux');
   uxPlugin.onChatbotVisibilityChange(() => {
-    setIsChatbotVisible(uxPlugin.getChatbot().getVisibility());
+    setIsChatbotVisible(uxPlugin.shellUX.getChatbot().getVisibility());
     setIsPopoverVisible(false);
   });
 
