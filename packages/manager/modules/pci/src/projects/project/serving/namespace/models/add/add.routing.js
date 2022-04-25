@@ -51,10 +51,13 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         ),
       goToContainer: /* @ngInject */ ($state, projectId, namespace) => () =>
-        $state.go('pci.projects.project.storages.object-storage.object', {
-          projectId,
-          containerId: namespace.containerId,
-        }),
+        $state.go(
+          'pci.projects.project.storages.object-storage.objects.object',
+          {
+            projectId,
+            containerId: namespace.containerId,
+          },
+        ),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_serving_namespace_models_add'),
     },
