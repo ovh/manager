@@ -1,3 +1,12 @@
+## [5.70.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.70.1...@ovh-ux/manager-pci@5.70.2) (2022-04-25)
+
+
+### Bug Fixes
+
+* **pci.notebooks:** fix notebook informations resources ([#6676](https://github.com/ovh/manager/issues/6676)) ([0de1933](https://github.com/ovh/manager/commit/0de19333642b53f0eb3c3d0e27557f244611f3ba))
+
+
+
 ## [5.70.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.70.0...@ovh-ux/manager-pci@5.70.1) (2022-04-22)
 
 
