@@ -258,11 +258,11 @@
                         <div data-ng-if="$ctrl.flavor.gpuInformation">
                             <p
                                 class="mb-1 font-weight-bold"
-                                data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"
+                                data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN + ($ctrl.notebook.flavor | uppercase)"
                             ></p>
                             <p
                                 class="mb-1"
-                                data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.flavor.description | uppercase)"
+                                data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN + ($ctrl.flavor.description | uppercase)"
                             ></p>
                             <p
                                 class="mb-1"
@@ -274,11 +274,11 @@
                         <div data-ng-if="!$ctrl.flavor.gpuInformation">
                             <p
                                 class="mb-1 font-weight-bold"
-                                data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"
+                                data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN + ($ctrl.notebook.flavor | uppercase)"
                             ></p>
                             <p
                                 class="mb-1"
-                                data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.flavor.description | uppercase)"
+                                data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN + ($ctrl.flavor.description | uppercase)"
                             ></p>
                         </div>
                     </oui-tile-description>
