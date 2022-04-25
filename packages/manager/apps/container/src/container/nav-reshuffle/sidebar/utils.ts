@@ -19,6 +19,9 @@ export function countServices(
   if (navigationNode.id === 'services') {
     excludeIds.push('public-cloud');
   }
+  if (navigationNode.id === 'public-cloud') {
+    return servicesCount.serviceTypes.CLOUD_PROJECT;
+  }
   if (!servicesCount) return 0;
   if (navigationNode.serviceType) {
     const types = [].concat(navigationNode.serviceType);
@@ -56,4 +59,23 @@ export function findNodeById(rootNode: Node, id: string): Node {
   return found;
 }
 
-export default { countServices, findNodeById };
+/**
+ * Find path in the tree from rootNode to the node which comparatorFn(node) is truthy,
+ * returns an array listing all the node making the path
+ */
+export function findPathToNode(rootNode, comparatorFn) {
+  if (comparatorFn(rootNode)) {
+    return [rootNode];
+  }
+  if (rootNode && rootNode.children) {
+    for (let i = 0; i < rootNode.children.length; i += 1) {
+      const subPath = findPathToNode(rootNode.children[i], comparatorFn);
+      if (subPath.length) {
+        return [rootNode].concat(subPath);
+      }
+    }
+  }
+  return [];
+}
+
+export default { countServices, findNodeById, findPathToNode };

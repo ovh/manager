@@ -1,18 +1,56 @@
 import React from 'react';
 
 import { useTranslation } from 'react-i18next';
+import { useShell } from '@/context';
+import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import style from './style.module.scss';
 
 type StaticLinkProps = {
+  count?: number;
   node?: unknown;
+  linkParams?: Record<string, string>;
 };
 
-function StaticLink({ node = {} }: StaticLinkProps): JSX.Element {
+function StaticLink({
+  count = 0,
+  node = {},
+  linkParams = {},
+}: StaticLinkProps): JSX.Element {
   const { t } = useTranslation('sidebar');
+  const shell = useShell();
+  const navigation = shell.getPlugin('navigation');
+  let url = null;
+
+  if (node.url) {
+    url =
+      node.url[
+        shell
+          .getPlugin('environment')
+          .getEnvironment()
+          .getRegion()
+      ] || node.url;
+  } else {
+    url = navigation.getURL(
+      node.routing.application,
+      node.routing.hash || '#/',
+    );
+  }
+
+  if (linkParams) {
+    Object.keys(linkParams).forEach((paramName) => {
+      url = url.replace(`{${paramName}}`, linkParams[paramName]);
+    });
+  }
+  const { betaVersion } = useProductNavReshuffle();
+
+  if (betaVersion === 2 && !count && node.count !== false) {
+    return <></>;
+  }
+
   return (
     <a
-      href={node.url}
+      href={url}
       target={node.isExternal ? '_blank' : '_top'}
       rel={node.isExternal ? 'noopener noreferrer' : ''}
     >
@@ -23,6 +61,13 @@ function StaticLink({ node = {} }: StaticLinkProps): JSX.Element {
           className={`${style.sidebar_external} oui-icon oui-icon-external-link`}
         ></span>
       )}
+      {count > 0 && (
+        <span
+          className={`oui-badge oui-badge_s oui-badge_new ml-1 ${style.sidebar_chip}`}
+        >
+          {count}
+        </span>
+      )}
     </a>
   );
 }
@@ -30,17 +75,19 @@ function StaticLink({ node = {} }: StaticLinkProps): JSX.Element {
 type SidebarLinkProps = {
   count?: number;
   node?: unknown;
+  linkParams?: Record<string, string>;
   onClick?(): void;
 };
 
 function SidebarLink({
   count = 0,
   node = {},
+  linkParams = {},
   onClick = () => {},
 }: SidebarLinkProps): JSX.Element {
   const { t } = useTranslation('sidebar');
-  return node.url ? (
-    <StaticLink node={node} />
+  return node.url || node.routing ? (
+    <StaticLink count={count} node={node} linkParams={linkParams} />
   ) : (
     <a onClick={onClick}>
       {t(node.translation)}
