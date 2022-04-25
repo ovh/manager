@@ -11,6 +11,8 @@ import Notifications from '@/container/common/notifications-sidebar/Notification
 import ApplicationContext, { useShell } from '@/context';
 import { NotificationsProvider } from '@/core/notifications';
 
+import style from './style.module.scss';
+
 type Props = {
   isSidebarExpanded?: boolean;
   onHamburgerMenuClick?(): void;
@@ -37,7 +39,7 @@ function Header({
               isDropdownOpen ? '' : modalStyle.hidden
             }`}
           ></div>
-          <div className="oui-navbar">
+          <div className={`oui-navbar ${style.navbar}`}>
             <HamburgerMenu
               isOpen={isSidebarExpanded}
               onClick={onHamburgerMenuClick}
