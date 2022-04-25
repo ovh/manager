@@ -104,7 +104,7 @@ export default function exposeApi(shellClient: ShellClient) {
       onChatbotClose: (reduced: boolean) => {
         shellClient.invokePluginMethod<string>({
           plugin: 'ux',
-          method: 'onChatbotOpen',
+          method: 'onChatbotClose',
           args: [reduced],
         });
       },

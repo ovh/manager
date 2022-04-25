@@ -74,7 +74,7 @@ export default class HubController {
     this.shell.ux.onChatbotOpen();
   }
 
-  onChatbotClose({ reduced }) {
+  onChatbotClose(reduced) {
     this.shell.ux.onChatbotClose(reduced);
   }
 }
