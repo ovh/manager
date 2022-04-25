@@ -3,10 +3,11 @@ import {
   NOTEBOOK_FLAVOR_TYPE,
   NOTEBOOK_MULTIPLY_SIGN,
   NOTEBOOK_VOLUME_TYPE,
+  NOTEBOOK_MAX_PROGRESS_VALUE,
 } from '../../notebook.constants';
 import Notebook from '../../Notebook.class';
 
-export default class {
+export default class NotebookGeneralInformationCtrl {
   /* @ngInject */
   constructor(
     $filter,
@@ -33,6 +34,7 @@ export default class {
 
     this.notebookModel = Notebook.notebookCommandModel(this.notebook);
     this.notebookActionsHistory = [];
+    this.getProgressValue = NotebookGeneralInformationCtrl.getProgressValue;
   }
 
   loadMessages() {
@@ -47,26 +49,6 @@ export default class {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
-  }
-
-  getCpuRamInfo() {
-    return `${this.$filter('bytes')(
-      this.flavor.resourcesPerUnit.memory,
-      0,
-      false,
-      'B',
-    )} RAM (${NOTEBOOK_FLAVOR_TYPE.CPU})`;
-  }
-
-  getGpuRamInfo() {
-    return this.flavor.gpuInformation
-      ? `${this.$filter('bytes')(
-          this.flavor.gpuInformation.gpuMemory,
-          0,
-          false,
-          'B',
-        )} RAM (${NOTEBOOK_FLAVOR_TYPE.GPU})`
-      : null;
   }
 
   onLabelRemove(label) {
@@ -107,7 +89,7 @@ export default class {
 
   onNotebookStopClick(notebookId) {
     this.trackNotebooks('dashboard::options_menu::stop_notebook');
-    return this.stopNotebook(notebookId);
+    return this.goToStopNotebook(notebookId);
   }
 
   onOpenLiveCodeEditorClick(editorId) {
@@ -127,5 +109,9 @@ export default class {
   onDeleteNotebookClick() {
     this.trackNotebooks('dashboard::delete_notebook');
     return this.goToDeleteNotebook();
+  }
+
+  static getProgressValue(value, max) {
+    return (NOTEBOOK_MAX_PROGRESS_VALUE * value) / max;
   }
 }

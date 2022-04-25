@@ -12,5 +12,9 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ (notebook, goToNotebook) => (message, type) =>
         goToNotebook(notebook, message, type),
     },
+    atInternet: {
+      rename:
+        'pci::projects::project::ai_machine_learning::notebooks::attached_data',
+    },
   });
 };
