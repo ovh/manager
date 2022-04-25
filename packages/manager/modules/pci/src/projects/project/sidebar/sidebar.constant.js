@@ -106,7 +106,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         options: {
           state: 'pci.projects.project.failover-ips',
         },
-        title: 'Failover IP',
+        title: 'Additional IPs',
         feature: PCI_FEATURES.PRODUCTS.FAILOVER_IP,
       },
     ],
