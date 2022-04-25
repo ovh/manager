@@ -79,6 +79,7 @@ type SidebarLinkProps = {
   node?: unknown;
   linkParams?: Record<string, string>;
   onClick?(): void;
+  id?: string;
 };
 
 function SidebarLink({
@@ -86,6 +87,7 @@ function SidebarLink({
   node = {},
   linkParams = {},
   onClick = () => {},
+  id = '',
 }: SidebarLinkProps): JSX.Element {
   const { t } = useTranslation('sidebar');
   return node.url || node.routing ? (
