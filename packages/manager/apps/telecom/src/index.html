@@ -100,6 +100,8 @@
                                         data-language="{{$ctrl.currentLanguage}}"
                                         data-country="{{$ctrl.user.ovhSubsidiary}}"
                                         data-support-level="{{$ctrl.user.supportLevel.level}}"
+                                        data-on-open="$ctrl.onChatbotOpen()"
+                                        data-on-close="$ctrl.onChatbotClose(reduced)"
                                     ></ovh-chatbot>
 
                                     <div
