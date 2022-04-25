@@ -1,4 +1,5 @@
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import { getShellClient } from './shell';
 
 export default class TelecomAppCtrl {
   /* @ngInject */
@@ -28,6 +29,7 @@ export default class TelecomAppCtrl {
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.isTopLevelApplication = isTopLevelApplication();
 
+    this.shell = getShellClient();
     this.chatbotEnabled = false;
     this.SYSTRAN_FEEDBACK_INFO = {
       part1:
@@ -81,5 +83,13 @@ export default class TelecomAppCtrl {
   closeSidebar() {
     this.displayFallbackMenu = false;
     $('#sidebar-menu').removeClass('nav-open');
+  }
+
+  onChatbotOpen() {
+    this.shell.ux.onChatbotOpen();
+  }
+
+  onChatbotClose(reduced) {
+    this.shell.ux.onChatbotClose(reduced);
   }
 }
