@@ -173,23 +173,6 @@
                         </div>
                     </div>
 
-                    <!--Exchange 2010-->
-                    <oui-field
-                        data-label="{{:: 'exchange_account_update_samAccountName_label' | translate }}"
-                        data-ng-if="$ctrl.exchangeVersion.isVersion(2010)"
-                    >
-                        <input
-                            class="oui-input"
-                            type="text"
-                            id="samAccountName"
-                            name="samAccountName"
-                            maxlength="256"
-                            data-ng-model="$ctrl.selectedAccount.samAccountName"
-                            data-ng-change="$ctrl.checkPasswordValidity()"
-                            data-ng-model-options="{ updateOn: 'blur' }"
-                        />
-                    </oui-field>
-
                     <!--Name and first name-->
                     <div class="row">
                         <!--First name-->
@@ -509,6 +492,26 @@
                                 <div class="oui-field-control text-nowrap">
                                     <span
                                         data-ng-bind="$ctrl.emailAccount.exchangeGuid"
+                                    ></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Exchange 2010-->
+                    <div
+                        class="row"
+                        data-ng-if="$ctrl.exchangeVersion.isVersion(2010)"
+                    >
+                        <div class="col-md-6 oui-field mb-4">
+                            <label
+                                class="oui-field__label oui-label"
+                                data-translate="exchange_account_update_samAccountName_label"
+                            ></label>
+                            <div class="oui-field__content">
+                                <div class="oui-field-control text-nowrap">
+                                    <span
+                                        data-ng-bind="$ctrl.emailAccount.samaccountName"
                                     ></span>
                                 </div>
                             </div>
