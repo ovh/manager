@@ -1,0 +1,11 @@
+ul {
+  li.d-inline {
+    &::after {
+      content: ',';
+    }
+
+    &:last-child::after {
+      content: '';
+    }
+  }
+}
