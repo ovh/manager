@@ -5,6 +5,13 @@ export default /* @ngInject */ ($stateProvider) => {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('resources')
+        .then((resources) =>
+          resources.data.length === 0 ? { state: 'office.onboarding' } : false,
+        ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/license/office',
