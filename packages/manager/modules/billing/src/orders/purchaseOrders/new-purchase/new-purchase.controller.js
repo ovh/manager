@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import {
   TYPE_PURCHASE_FOR_TRACKING,
   TYPE_PURCHASE,
@@ -23,12 +25,13 @@ export default class BillingOrdersPurchaseAddCtrl {
     this.trackClick(
       `create-${TYPE_PURCHASE_FOR_TRACKING[this.model.type]}_cancel`,
     );
-    this.goToPurchaseOrder();
+    return this.goToPurchaseOrder();
   }
 
   onChangeMinDateForEndDate(selectedDates, dateStr) {
-    const date = new Date(dateStr);
-    this.minDateForEndDate = date.setDate(date.getDate() + 1);
+    this.minDateForEndDate = moment(dateStr)
+      .add(1, 'day')
+      .toDate();
   }
 
   onSubmit() {
@@ -36,17 +39,15 @@ export default class BillingOrdersPurchaseAddCtrl {
       `create-${TYPE_PURCHASE_FOR_TRACKING[this.model.type]}_confirm`,
     );
 
-    const { active, reference, startDate, type, endDate } = this.model;
-
     const data = {
-      active,
-      reference,
-      startDate,
-      type,
-      ...(endDate && { endDate }),
+      active: this.model.active,
+      reference: this.model.reference,
+      startDate: this.model.startDate,
+      type: this.model.type,
+      ...(this.model.endDate && { endDate: this.model.endDate }),
     };
 
-    this.billingOrdersPurchasesService
+    return this.billingOrdersPurchasesService
       .postPurchaseOrder(data)
       .then(() => {
         this.trackClick(

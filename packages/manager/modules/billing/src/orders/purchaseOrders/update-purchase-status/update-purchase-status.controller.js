@@ -8,7 +8,7 @@ export default class BillingOrdersPurchaseUpdatePurchaseStatusCtrl {
   }
 
   onCancel() {
-    this.goToPurchaseOrder();
+    return this.goToPurchaseOrder();
   }
 
   onSubmit() {
@@ -20,7 +20,7 @@ export default class BillingOrdersPurchaseUpdatePurchaseStatusCtrl {
       active: false,
     };
 
-    this.billingOrdersPurchasesService
+    return this.billingOrdersPurchasesService
       .putPurchaseOrder(this.purchase.id, data)
       .then(() => {
         this.trackPage(

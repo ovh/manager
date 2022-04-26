@@ -64,8 +64,9 @@
             <oui-calendar
                 placeholder="{{:: 'purchaseOrders_form_edit_purchase_startDate' | translate }}"
                 model="$ctrl.model.startDate"
-                disable-date="$ctrl.disableDate"
+                disable-date="$ctrl.disableDateForEdit"
                 min-date="$ctrl.minDate"
+                max-date="$ctrl.maxDate"
                 on-change="$ctrl.onChangeMinDateForEndDate(selectedDates, dateStr)"
                 alt-format="{{ $ctrl.dateFormat }}"
                 required
@@ -79,8 +80,9 @@
             <oui-calendar
                 placeholder="{{:: 'purchaseOrders_form_edit_purchase_endDate' | translate }}"
                 model="$ctrl.model.endDate"
-                disable-date="$ctrl.disableDate"
+                disable-date="$ctrl.disableDateForEdit"
                 min-date="$ctrl.minDateForEndDate"
+                max-date="$ctrl.maxDate"
                 alt-format="{{ $ctrl.dateFormat }}"
             >
             </oui-calendar>
