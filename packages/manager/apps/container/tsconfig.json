@@ -1,14 +1,22 @@
 {
   "compilerOptions": {
     "lib": ["dom", "es2020"],
+    "target": "es2020",
+    "types": ["vite/client"],
     "module": "ES2020",
+    "moduleResolution": "node",
     "removeComments": true,
     "outDir": "dist",
     "esModuleInterop": true,
+    "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
     "noImplicitAny": true,
     "declaration": true,
-    "jsx": "react"
+    "jsx": "react",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "exclude": ["node_modules", "dist", "src/__tests__"]
 }
