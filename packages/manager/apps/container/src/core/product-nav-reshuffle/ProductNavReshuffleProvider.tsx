@@ -26,11 +26,11 @@ export const ProductNavReshuffleProvider = ({
         key: preferenceKey,
         value: accept ? 'true' : 'false',
       })
-      .then((result) => {
+      .then((result: unknown) => {
         if (accept === false) {
           // @TODO open new tab for survey
         }
-        window.location.reload(false);
+        window.location.reload();
         return result;
       });
   };
@@ -41,8 +41,8 @@ export const ProductNavReshuffleProvider = ({
         key: preferenceKey,
         value: accept ? 'true' : 'false',
       })
-      .then((result) => {
-        window.location.reload(false);
+      .then((result: unknown) => {
+        window.location.reload();
         return result;
       });
   };
@@ -50,7 +50,7 @@ export const ProductNavReshuffleProvider = ({
   useEffect(() => {
     reketInstance
       .get(`/me/preferences/manager/${preferenceKey}`)
-      .then(({ value }) => {
+      .then(({ value }: { value: string }) => {
         setIsBeta(value === 'true');
       })
       .catch((error) => {
