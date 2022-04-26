@@ -7,7 +7,7 @@
             <oui-radio-group direction="column" model="$ctrl.model.type">
                 <oui-radio
                     data-value="$ctrl.TYPE_PURCHASE.REFERENCE_ORDER"
-                    name="type_{{ $ctrl.TYPE_PURCHASE.REFERENCE_ORDER }}"
+                    name="type_{{:: $ctrl.TYPE_PURCHASE.REFERENCE_ORDER }}"
                     model="$ctrl.model.type"
                 >
                     <span
@@ -16,7 +16,7 @@
                 </oui-radio>
                 <oui-radio
                     data-value="$ctrl.TYPE_PURCHASE.PURCHASE_ORDER"
-                    name="type_{{ $ctrl.TYPE_PURCHASE.PURCHASE_ORDER }}"
+                    name="type_{{:: $ctrl.TYPE_PURCHASE.PURCHASE_ORDER }}"
                     model="$ctrl.model.type"
                 >
                     <span
@@ -66,6 +66,7 @@
                 model="$ctrl.model.startDate"
                 disable-date="$ctrl.disableDate"
                 min-date="$ctrl.minDate"
+                max-date="$ctrl.maxDate"
                 on-change="$ctrl.onChangeMinDateForEndDate(selectedDates, dateStr)"
                 alt-format="{{ $ctrl.dateFormat }}"
                 required
@@ -81,6 +82,7 @@
                 model="$ctrl.model.endDate"
                 disable-date="$ctrl.disableDate"
                 min-date="$ctrl.minDateForEndDate"
+                max-date="$ctrl.maxDate"
                 alt-format="{{ $ctrl.dateFormat }}"
             >
             </oui-calendar>
