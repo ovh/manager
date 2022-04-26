@@ -2,13 +2,14 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
+import onboarding from './onboarding';
 import './index.less';
 import './index.scss';
 
 const moduleName = 'ovhManagerEmailDomainLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad'])
+  .module(moduleName, ['ui.router', 'oc.lazyLoad', onboarding])
   .config(
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       $stateProvider.state('app.email', {
