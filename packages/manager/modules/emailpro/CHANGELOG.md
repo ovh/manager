@@ -1,3 +1,12 @@
+## [3.1.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.1.8...@ovh-ux/manager-emailpro@3.1.9) (2022-04-26)
+
+
+### Bug Fixes
+
+* **account:** fix empty order account button label ([#6945](https://github.com/ovh/manager/issues/6945)) ([3e03e3b](https://github.com/ovh/manager/commit/3e03e3ba74c973cb0ee42a634ca685b79cc4303a))
+
+
+
 ## [3.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.1.7...@ovh-ux/manager-emailpro@3.1.8) (2022-04-20)
 
 
