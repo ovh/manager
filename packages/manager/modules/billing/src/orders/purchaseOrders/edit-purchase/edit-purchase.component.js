@@ -7,6 +7,7 @@ export default {
     disableDate: '<',
     goToPurchaseOrder: '<',
     minDate: '<',
+    maxDate: '<',
     minDateForEndDate: '<',
     purchase: '<',
     trackClick: '<',

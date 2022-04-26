@@ -22,6 +22,9 @@ export default /* @ngInject */ ($stateProvider) => {
       disableDate: /* @ngInject */ (billingOrdersPurchasesService, purchases) =>
         billingOrdersPurchasesService.getDisableDate(purchases),
 
+      maxDate: /* @ngInject */ (billingOrdersPurchasesService, purchases) =>
+        billingOrdersPurchasesService.getMaxDate(purchases),
+
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
 
       goToEditPurchase: /* @ngInject */ ($state) => (purchase) => {
