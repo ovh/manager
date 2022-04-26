@@ -1,3 +1,12 @@
+# [5.72.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.71.0...@ovh-ux/manager-pci@5.72.0) (2022-04-26)
+
+
+### Features
+
+* **pci.projects.new.payment:** add spinner for create project btn ([a638d5a](https://github.com/ovh/manager/commit/a638d5a36dc778af1e92736f35cc31a7cd37b488))
+
+
+
 # [5.71.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.70.2...@ovh-ux/manager-pci@5.71.0) (2022-04-26)
 
 
