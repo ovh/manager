@@ -1,12 +1,9 @@
 {
   "pci_databases_service_integration_tab_title": "Service integration",
   "pci_databases_service_integration_tab_descritpion": "With service integration, you can connect different {{engineName}} solutions.",
-  "pci_databases_service_integration_tab_kafka_service": "Kafka Service",
-  "pci_databases_service_integration_tab_add_kafka": "Add a Kafka",
-  "pci_databases_service_integration_tab_no_kafka_service": "You cannot add a Kafka because you do not have or no longer have a Kafka service available to connect.",
-  "pci_databases_service_integration_tab_unknown_service": "Service not found",
-  "pci_databases_service_integration_tab_service_ready": "Your {{engineName}} service integration is now ready",
   "pci_databases_service_integration_tab_service": "{{engineName}} service",
   "pci_databases_service_integration_tab_add": "Add an {{engineName}}",
-  "pci_databases_service_integration_tab_no_service": "You cannot add an {{engineName}} because you currently have no {{engineName}} services available to connect."
+  "pci_databases_service_integration_tab_no_service": "You cannot add an {{engineName}} because you currently have no {{engineName}} services available to connect.",
+  "pci_databases_service_integration_tab_unknown_service": "Service not found",
+  "pci_databases_service_integration_tab_service_ready": "Your {{engineName}} service integration is now ready"
 }

@@ -2,7 +2,6 @@
   "pci_notebooks_stop_notebook_title": "Notebook herunterfahren",
   "pci_notebooks_stop_notebook_submit_label": "Bestätigen",
   "pci_notebooks_stop_notebook_cancel_label": "Abbrechen",
-  "pci_notebooks_stop_notebook_content": "Sind Sie sicher, dass Sie Ihr Notebook {{ notebook }} anhalten möchten?",
   "pci_notebooks_stop_notebook_success": "Ihr Notebook wurde heruntergefahren",
   "pci_notebooks_stop_notebook_error": "Beim Herunterfahren des Notebook {{ notebook }} ist ein Fehler aufgetreten: {{ message }}",
   "pci_notebooks_stop_notebook_content_1": "Was passiert, wenn Sie ein AI-Notebook anhalten? ",
