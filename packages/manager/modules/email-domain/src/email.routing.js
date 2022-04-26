@@ -5,6 +5,15 @@ export default /* @ngInject */ ($stateProvider) => {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('resources')
+        .then((resouces) =>
+          resouces.data.length === 0
+            ? { state: 'app.email.onboarding' }
+            : false,
+        ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/email/domain',
