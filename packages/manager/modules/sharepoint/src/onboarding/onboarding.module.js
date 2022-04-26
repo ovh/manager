@@ -8,6 +8,7 @@ const moduleName = 'sharepointOnboarding';
 angular
   .module(moduleName, [OnboardingLayoutHelper])
   .component('sharepointOnboardingComponent', component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
