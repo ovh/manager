@@ -1,30 +1,20 @@
+import moment from 'moment';
+
 export default class BillingOrdersPurchasesService {
   /* @ngInject */
-  constructor($locale, $log, $q, OvhHttp, iceberg) {
+  constructor($locale, $log, $http, iceberg) {
     this.$locale = $locale;
     this.$log = $log;
-    this.$q = $q;
-    this.OvhHttp = OvhHttp;
+    this.$http = $http;
     this.iceberg = iceberg;
-    this.toDay = () => {
-      return new Date()
-        .toISOString()
-        .slice(0, new Date().toISOString().indexOf('T'));
-    };
   }
 
   postPurchaseOrder(data) {
-    return this.OvhHttp.post('/me/billing/purchaseOrder', {
-      rootPath: 'apiv6',
-      data,
-    });
+    return this.$http.post('/me/billing/purchaseOrder', data);
   }
 
   putPurchaseOrder(id, data) {
-    return this.OvhHttp.put(`/me/billing/purchaseOrder/${id}`, {
-      rootPath: 'apiv6',
-      data,
-    });
+    return this.$http.put(`/me/billing/purchaseOrder/${id}`, data);
   }
 
   getPurchasesOrder() {
@@ -41,14 +31,14 @@ export default class BillingOrdersPurchasesService {
           .map((elm) => {
             const newElm = { ...elm };
             if (
-              elm.active === true &&
-              this.toDay >= elm.startDate &&
-              this.toDay <= elm.endDate
+              elm.active === true && elm.endDate
+                ? moment().isBetween(elm.startDate, elm.endDate, '[]')
+                : moment().isSameOrAfter(elm.startDate)
             ) {
               newElm.status = 'actif';
             } else if (
               elm.active === true &&
-              !(this.toDay >= elm.startDate && this.toDay <= elm.endDate)
+              !moment().isBetween(elm.startDate, elm.endDate, '[]')
             ) {
               newElm.status = 'inactif';
             } else {
@@ -62,17 +52,27 @@ export default class BillingOrdersPurchasesService {
   getDisableDate(purchases) {
     this.purchases = purchases;
     return this.purchases.flatMap((elm) => {
-      const nbrDays =
-        (new Date(elm.endDate).getTime() - new Date(elm.startDate).getTime()) /
-        86400000;
       const array = [];
-      for (let i = 0; i < nbrDays; i += 1) {
-        const date = new Date(elm.startDate);
-        date.setDate(date.getDate() + i);
-        array.push(date);
+      if (elm.endDate) {
+        const nbrDays = moment(elm.endDate).diff(elm.startDate, 'days');
+        for (let i = 0; i < nbrDays; i += 1) {
+          array.push(
+            moment(elm.startDate)
+              .add(i, 'day')
+              .toDate(),
+          );
+        }
       }
       return array;
     });
+  }
+
+  getMaxDate(purchases) {
+    this.purchases = purchases;
+    const arrayMaxDate = purchases.flatMap((elm) => {
+      return !elm.endDate ? elm.startDate : [];
+    });
+    return arrayMaxDate.length > 0 ? arrayMaxDate[0] : null;
   }
 
   getDateFormat() {
@@ -94,11 +94,11 @@ export default class BillingOrdersPurchasesService {
         this.$log.error(err);
       }
     }
-    return undefined;
+    return null;
   }
 
   minDateForEndDate() {
-    this.date = new Date();
-    return this.date.setDate(this.date.getDate() + 1);
+    this.moment = moment();
+    return this.moment.add(1, 'day').toDate();
   }
 }

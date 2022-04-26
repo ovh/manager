@@ -18,15 +18,14 @@ export default class BillingOrdersPurchasesCtrl {
   }
 
   editPurchase(purchase) {
-    this.goToEditPurchase(purchase);
+    return this.goToEditPurchase(purchase);
   }
 
   editPurchaseStatus(purchase) {
-    if (purchase.active === true) {
-      this.goToModalDesactivatePurchase(purchase);
-    } else {
-      this.purchaseReActivation(purchase);
-    }
+    const action = purchase.active
+      ? 'goToModalDesactivatePurchase'
+      : 'purchaseReActivation';
+    return this[action](purchase);
   }
 
   getStateEnumFilter() {
@@ -48,7 +47,7 @@ export default class BillingOrdersPurchasesCtrl {
 
   newPurchase() {
     this.trackClick('create-internal-ref');
-    this.goToNewPurchase();
+    return this.goToNewPurchase();
   }
 
   onCriteriaChange(criteria) {
@@ -57,9 +56,9 @@ export default class BillingOrdersPurchasesCtrl {
       this.filter = encodeURIComponent(
         JSON.stringify(criteria.map((c) => omit(c, 'title'))),
       );
-      this.updateFilterParam(this.filter);
+      return this.updateFilterParam(this.filter);
     } catch (err) {
-      this.$log.error(err);
+      return this.$log.error(err);
     }
   }
 
@@ -70,7 +69,7 @@ export default class BillingOrdersPurchasesCtrl {
       active: true,
     };
 
-    this.billingOrdersPurchasesService
+    return this.billingOrdersPurchasesService
       .putPurchaseOrder(purchase.id, data)
       .then(() => {
         this.trackPage(

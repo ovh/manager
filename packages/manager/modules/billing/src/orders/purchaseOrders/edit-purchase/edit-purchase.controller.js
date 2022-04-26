@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import {
   PURCHASE_ORDER,
   TYPE_PURCHASE_FOR_TRACKING,
@@ -21,18 +23,31 @@ export default class BillingOrdersPurchaseEditCtrl {
       startDate: new Date(this.purchase.startDate),
       type: this.purchase.type,
     };
+
+    this.maxDate = this.purchase.endDate ? this.maxDate : null;
+
+    this.disableDateForEdit = this.disableDate.flatMap((elm) => {
+      return moment(elm).isBetween(
+        this.purchase.startDate,
+        this.purchase.endDate,
+        '[]',
+      )
+        ? []
+        : elm;
+    });
   }
 
   onCancel() {
     this.trackClick(
       `modify-${TYPE_PURCHASE_FOR_TRACKING[this.model.type]}_cancel`,
     );
-    this.goToPurchaseOrder();
+    return this.goToPurchaseOrder();
   }
 
   onChangeMinDateForEndDate(selectedDates, dateStr) {
-    const date = new Date(dateStr);
-    this.minDateForEndDate = date.setDate(date.getDate() + 1);
+    this.minDateForEndDate = moment(dateStr)
+      .add(1, 'day')
+      .toDate();
   }
 
   onSubmit() {
@@ -47,7 +62,7 @@ export default class BillingOrdersPurchaseEditCtrl {
       ...(this.model.endDate && { endDate: this.model.endDate }),
     };
 
-    this.billingOrdersPurchasesService
+    return this.billingOrdersPurchasesService
       .putPurchaseOrder(this.purchase.id, data)
       .then(() => {
         this.trackPage(
