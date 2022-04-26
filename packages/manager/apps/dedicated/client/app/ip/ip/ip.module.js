@@ -5,6 +5,7 @@ import routing from './ip-dashboard.routing';
 import antihack from './antihack/antihack.module';
 import antispam from './antispam/antispam.module';
 import arp from './arp/arp.module';
+import associateIpBloc from './associate-ip-bloc/associate-ip-bloc.module';
 import block from './block/block.module';
 import exportCsv from './export-csv/export-csv.module';
 import firewall from './firewall/firewall.module';
@@ -25,6 +26,7 @@ angular
     antihack,
     antispam,
     arp,
+    associateIpBloc,
     block,
     exportCsv,
     firewall,
