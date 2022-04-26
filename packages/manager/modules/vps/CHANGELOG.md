@@ -1,3 +1,12 @@
+## [2.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.3...@ovh-ux/manager-vps@2.20.4) (2022-04-26)
+
+
+### Bug Fixes
+
+* **dashboard:** display region icon by adding missing class separator ([#6972](https://github.com/ovh/manager/issues/6972)) ([4fb8916](https://github.com/ovh/manager/commit/4fb8916be0b9f81d77bac4f4794a735638f12e31))
+
+
+
 ## [2.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.2...@ovh-ux/manager-vps@2.20.3) (2022-04-22)
 
 

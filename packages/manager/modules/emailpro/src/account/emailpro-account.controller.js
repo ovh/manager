@@ -148,21 +148,28 @@ export default class {
       );
     };
 
-    this.$scope.newAccount = () => {
+    this.$scope.isNewAccountOrder = () => {
       if (this.$scope.is25g()) {
-        this.$scope.setAction('emailpro/account/order/email-pro-account-order');
-      } else if (
-        this.$scope.exchange.offer === this.$scope.exchangeTypeDedicated
-      ) {
-        this.$scope.setAction('emailpro/account/add/emailpro-account-add');
-      } else if (
+        return true;
+      }
+      if (this.$scope.exchange.offer === this.$scope.exchangeTypeDedicated) {
+        return false;
+      }
+      if (
         this.$scope.exchange.offer === this.$scope.exchangeTypeProvider &&
         this.$scope.exchange.serverDiagnostic.version ===
           this.EmailPro.EmailPro2010Code
       ) {
-        this.this.$scope.setAction('emailpro/account/add/emailpro-account-add');
-      } else {
+        return false;
+      }
+      return true;
+    };
+
+    this.$scope.newAccount = () => {
+      if (this.$scope.isNewAccountOrder()) {
         this.$scope.setAction('emailpro/account/order/emailpro-account-order');
+      } else {
+        this.$scope.setAction('emailpro/account/add/emailpro-account-add');
       }
     };
 

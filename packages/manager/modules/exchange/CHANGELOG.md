@@ -1,3 +1,13 @@
+## [3.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.0...@ovh-ux/manager-exchange@3.4.1) (2022-04-26)
+
+
+### Bug Fixes
+
+* **web.exchange:** name of exchange 2010 account not displayed ([408938c](https://github.com/ovh/manager/commit/408938c319ce9642bacadae13f2acd430ec796bd))
+* **web.exchange:** remove old translation no more required ([b2cd7cd](https://github.com/ovh/manager/commit/b2cd7cde697f083e0e01f2b3b109ef06d510da0e))
+
+
+
 # [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.3.0...@ovh-ux/manager-exchange@3.4.0) (2022-04-21)
 
 

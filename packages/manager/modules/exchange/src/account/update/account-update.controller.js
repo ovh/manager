@@ -20,6 +20,7 @@ export default class ExchangeUpdateAccountCtrl {
     $timeout,
     exchangeServiceInfrastructure,
     exchangeAccountTypes,
+    exchangeVersion,
     wucExchange,
     wucExchangePassword,
     messaging,
@@ -30,6 +31,7 @@ export default class ExchangeUpdateAccountCtrl {
     this.$timeout = $timeout;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.exchangeAccountTypes = exchangeAccountTypes;
+    this.exchangeVersion = exchangeVersion;
     this.wucExchange = wucExchange;
     this.wucExchangePassword = wucExchangePassword;
     this.messaging = messaging;
@@ -410,7 +412,11 @@ export default class ExchangeUpdateAccountCtrl {
       this.originalValues.streetAddress !== modifiedBuffer.streetAddress ||
       this.originalValues.postalCode !== modifiedBuffer.postalCode ||
       this.originalValues.city !== modifiedBuffer.city ||
-      this.originalValues.countryCode !== modifiedBuffer.countryCode ||
+      (modifiedBuffer.countryCode != null &&
+        this.originalValues.countryCode !==
+          (typeof modifiedBuffer.countryCode === 'string'
+            ? modifiedBuffer.countryCode
+            : modifiedBuffer.countryCode.code)) ||
       this.originalValues.region !== modifiedBuffer.region ||
       this.originalValues.phone !== modifiedBuffer.phone ||
       this.originalValues.mobile !== modifiedBuffer.mobile ||
@@ -512,11 +518,11 @@ export default class ExchangeUpdateAccountCtrl {
       );
       this.updateAccountForm.selectedAccountPassword.$setValidity(
         'isSameAsSAMAccountName',
-        isEmpty(this.selectedAccount.samAccountName) ||
+        isEmpty(this.selectedAccount.samaccountName) ||
           (isString(this.selectedAccount.password) &&
-            isString(this.selectedAccount.samAccountName) &&
+            isString(this.selectedAccount.samaccountName) &&
             this.selectedAccount.selectedAccountPassword.toUpperCase() !==
-              this.selectedAccount.samAccountName.toUpperCase()),
+              this.selectedAccount.samaccountName.toUpperCase()),
       );
     } else {
       this.updateAccountForm.selectedAccountPassword.$setValidity(

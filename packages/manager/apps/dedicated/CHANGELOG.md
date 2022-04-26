@@ -1,3 +1,12 @@
+## [17.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.4...@ovh-ux/manager-dedicated@17.16.5) (2022-04-26)
+
+
+### Bug Fixes
+
+* **ip:** add missing `associate-ip-bloc` module import ([#6960](https://github.com/ovh/manager/issues/6960)) ([6489896](https://github.com/ovh/manager/commit/64898967aeadb9cf05854548fad51ae793da48ad))
+
+
+
 ## [17.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.3...@ovh-ux/manager-dedicated@17.16.4) (2022-04-21)
 
 
