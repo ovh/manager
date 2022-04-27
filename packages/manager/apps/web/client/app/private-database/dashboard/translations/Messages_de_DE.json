@@ -481,5 +481,6 @@
   "privateDatabase_tabs_list_extensions_disable_success": "Die Erweiterung wurde erfolgreich deaktiviert.",
   "privateDatabase_tabs_list_extensions_disable_error": "Bei der Deaktivierung der Erweiterung ist ein Fehler aufgetreten.",
   "privateDatabase_order_sql_period_sub_title": "Wie lange möchten Sie sie benutzen? ",
-  "privateDatabase_configuration_field_sql_mode": "Die Option „sql_mode“ betrifft die unterstützte SQL-Syntax und die Überprüfungen der Datenvalidierung durch MySQL/MariaDB."
+  "privateDatabase_configuration_field_sql_mode": "Die Option „sql_mode“ betrifft die unterstützte SQL-Syntax und die Überprüfungen der Datenvalidierung durch MySQL/MariaDB.",
+  "privateDatabase_configuration_documentation": "Weitere Informationen zu diesen Optionen"
 }
