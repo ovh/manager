@@ -12,6 +12,7 @@ angular.module('App').controller(
       $scope,
       $stateParams,
       $translate,
+      WucUser,
     ) {
       this.alerter = Alerter;
       this.privateDatabaseService = PrivateDatabase;
@@ -19,6 +20,7 @@ angular.module('App').controller(
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
+      this.userService = WucUser;
     }
 
     $onInit() {
@@ -31,6 +33,12 @@ angular.module('App').controller(
       };
 
       this.getConfigurationDetails();
+
+      this.userService.getUrlOf('guides').then((guide) => {
+        if (guide.hostingPrivateDatabaseConfiguration) {
+          this.configuration_guide = guide.hostingPrivateDatabaseConfiguration;
+        }
+      });
     }
 
     getConfigurationDetails() {

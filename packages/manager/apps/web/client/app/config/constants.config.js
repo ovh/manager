@@ -124,6 +124,8 @@ module.exports = {
             beginPostgre:
               'https://docs.ovh.com/de/clouddb/erste-schritte-mit-postgresql/',
           },
+          hostingPrivateDatabaseConfiguration:
+            'https://docs.ovh.com/de/hosting/konfigurieren-ihres-datenbank-servers/#mysql-und-mariadb-instanzen',
           wordpress:
             'https://codex.wordpress.org/de:Erste_Schritte_mit_WordPress',
           prestashop:
@@ -165,6 +167,8 @@ module.exports = {
             beginPostgre:
               'https://docs.ovh.com/es/clouddb/empezar-con-postgresql/',
           },
+          hostingPrivateDatabaseConfiguration:
+            'https://docs.ovh.com/es/hosting/configurar-optimizar-su-servidor-de-base-de-datos/#instancia-mysql-y-mariadb',
           wordpress:
             'https://codex.wordpress.org/es:Getting_Started_with_WordPress',
           prestashop:
@@ -266,6 +270,8 @@ module.exports = {
             beginPostgre:
               'https://docs.ovh.com/fr/fr/cloud/clouddb/demarrez-avec-postgresql/',
           },
+          hostingPrivateDatabaseConfiguration:
+            'https://docs.ovh.com/fr/hosting/configurer-optimiser-son-serveur-de-base-de-donnees/#instance-mysql-et-mariadb',
           emailsConfiguration: 'https://docs.ovh.com/fr/fr/web/emails/',
           emailsConfigurationAuto: 'https://mail.ovh.net/auto/',
           emailsConfigurationMacMountainLion:
@@ -369,6 +375,8 @@ module.exports = {
             beginPostgre:
               'https://docs.ovh.com/gb/en/clouddb/getting-started-with-postgresql/',
           },
+          hostingPrivateDatabaseConfiguration:
+            'https://docs.ovh.com/gb/en/hosting/configure-optimise-database-server/#mysql-and-mariadb-instances',
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
@@ -446,6 +454,8 @@ module.exports = {
             beginPostgre:
               'https://docs.ovh.com/it/clouddb/come-utilizzare-postgresql/',
           },
+          hostingPrivateDatabaseConfiguration:
+            'https://docs.ovh.com/it/hosting/configurare-ottimizzare-il-tuo-database-server/#istanza-mysql-e-mariadb',
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
@@ -597,6 +607,8 @@ module.exports = {
             beginPostgre:
               'https://docs.ovh.com/pl/clouddb/pierwsze-kroki-z-postgresql/',
           },
+          hostingPrivateDatabaseConfiguration:
+            'https://docs.ovh.com/pl/hosting/konfiguracja-optymalizacja-serwera-bazy-danych/#instancja-mysql-i-mariadb',
           phpAppendices: 'http://php.net/manual/en/appendices.php',
           prestashop:
             'http://doc.prestashop.com/display/PS16/Polska+dokumentacja',
@@ -647,6 +659,8 @@ module.exports = {
             beginPostgre:
               'https://docs.ovh.com/pt/clouddb/comecar-com-postgresql/',
           },
+          hostingPrivateDatabaseConfiguration:
+            'https://docs.ovh.com/pt/hosting/configurar-otimizar-servidor-de-bases-de-dados/#instancia-mysql-e-mariadb',
           phpAppendices: 'http://php.net/manual/en/appendices.php',
           prestashop:
             'http://doc.prestashop.com/display/PS16/English+documentation',

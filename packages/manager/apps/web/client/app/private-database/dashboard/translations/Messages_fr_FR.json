@@ -60,6 +60,7 @@
   "privateDatabase_configurations_general_postgresql": "Configuration générale de PostgreSQL",
   "privateDatabase_configurations_general_postgresql_soon": "Bientôt disponible pour PostgreSQL",
   "privateDatabase_configuration_alert": "Toute modification entraîne un redémarrage du serveur.",
+  "privateDatabase_configuration_documentation": "Plus d'informations sur ces options",
   "privateDatabase_configuration_edit_btn": "Editer",
   "privateDatabase_configuration_cancel_btn": "Annuler",
   "privateDatabase_configuration_confirm_btn": "Appliquer",
