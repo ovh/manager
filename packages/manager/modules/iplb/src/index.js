@@ -4,10 +4,12 @@ import 'oclazyload';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
+import onboarding from './onboarding';
+
 const moduleName = 'ovhManagerIplbLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad'])
+  .module(moduleName, ['ui.router', 'oc.lazyLoad', onboarding])
   .config(
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       $stateProvider
