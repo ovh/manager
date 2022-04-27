@@ -1,0 +1,13 @@
+{
+  "vps_onboarding_title": "Serveurs privés virtuels (VPS)",
+  "vps_onboarding_description_1": "Hautes performances au meilleur prix",
+  "vps_onboarding_description_2": "Simplicité, évolutivité, personnalisation",
+  "vps_onboarding_description_3": "Traffic illimité et bande passante jusqu'à 2 Gbit/s*",
+  "vps_onboarding_cta": "Commander",
+  "vps_onboarding_guide1_title": "Débuter avec un VPS",
+  "vps_onboarding_guide1_description": "Apprenez les bases de l'utilisation d'un VPS",
+  "vps_onboarding_guide2_title": "Sécuriser un VPS",
+  "vps_onboarding_guide2_description": "Découvrez les éléments de base vous permettant de sécuriser votre VPS",
+  "vps_onboarding_guide3_title": "Utiliser le snapshot",
+  "vps_onboarding_guide3_description": "Découvrez comment activer et utiliser l’option snapshot depuis l’espace client OVHcloud"
+}

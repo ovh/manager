@@ -8,6 +8,7 @@ const moduleName = 'vpsOnboarding';
 angular
   .module(moduleName, [OnboardingLayoutHelper])
   .component('vpsOnboardingComponent', component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,3 +1,19 @@
-<manager-on-boarding-layout>
-    <!-- TODO : Waiting for content -->
+<manager-on-boarding-layout data-guides=":: $ctrl.guides">
+    <onboarding-title>
+        <p data-translate="vps_onboarding_title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <ul class="text-left">
+            <li data-translate="vps_onboarding_description_1"></li>
+            <li data-translate="vps_onboarding_description_2"></li>
+            <li data-translate="vps_onboarding_description_3"></li>
+        </ul>
+        <a
+            class="oui-button oui-button_primary oui-button_l text-light"
+            data-translate="vps_onboarding_cta"
+            href="{{:: $ctrl.cta }}"
+            target="_blank"
+        >
+        </a>
+    </onboarding-description>
 </manager-on-boarding-layout>
