@@ -1,0 +1,12 @@
+{
+  "iplb_onboarding_title": "Load Balancers",
+  "iplb_onboarding_description": "Scalez sans contraintes avec tous nos produits Cloud, dans tous nos datacentres.",
+  "iplb_onboarding_description_part2": "L'OVH Load Balancer répartit la charge entre vos différents services dans nos datacentres. Il vous assure la mise à l'échelle de votre infrastructure face à un trafic important, une tolérance aux pannes et des temps de réponse optimisés. Le tout avec un niveau de service ayant comme objectif le Zero Downtime.",
+  "iplb_onboarding_order": "Commander",
+  "iplb_onboarding_guide1_title": "Présentation du service OVHcloud Load Balancer",
+  "iplb_onboarding_guide1_description": "Découvrez le service OVHcloud Load Balancer",
+  "iplb_onboarding_guide2_title": "Gestion du service OVHcloud Load Balancer via l'espace client",
+  "iplb_onboarding_guide2_description": "Résumé des principales fonctionnalités et prise en main du service Load Balancer via l'espace client OVHcloud",
+  "iplb_onboarding_guide3_title": "Configurer HTTP/2 sur un service OVHcloud Load Balancer",
+  "iplb_onboarding_guide3_description": "Configuration de HTTP/2 sur un service OVHcloud Load Balancer"
+}
