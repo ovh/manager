@@ -60,7 +60,7 @@ const useShortcuts = () => {
             },
           ]
         : []),
-      ...(['EU'].includes(region)
+      ...(['EU', 'CA'].includes(region)
         ? [
             {
               id: 'contacts',
