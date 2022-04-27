@@ -8,6 +8,7 @@ const moduleName = 'managedBaremetalOnboarding';
 angular
   .module(moduleName, [OnboardingLayoutHelper])
   .component('managedBaremetalOnboardingComponent', component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
