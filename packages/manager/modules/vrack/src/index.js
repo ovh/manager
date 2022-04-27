@@ -6,6 +6,8 @@ import 'oclazyload';
 import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
+import onboarding from './onboarding';
+
 const moduleName = 'ovhManagerVrackLazyLoading';
 
 angular
@@ -14,6 +16,7 @@ angular
     'ngUiRouterBreadcrumb',
     'oc.lazyLoad',
     'ovhManagerCore',
+    onboarding,
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
