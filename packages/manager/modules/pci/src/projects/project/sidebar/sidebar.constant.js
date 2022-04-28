@@ -117,6 +117,14 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         title: 'Additional IP',
         feature: PCI_FEATURES.PRODUCTS.ADDITIONAL_IP,
       },
+      {
+        id: 'public-gateways',
+        options: {
+          state: 'pci.projects.project.public-gateways',
+        },
+        title: 'Public Gateways',
+        feature: PCI_FEATURES.PRODUCTS.PUBLIC_GATEWAYS,
+      },
     ],
     title: 'Network',
   },
