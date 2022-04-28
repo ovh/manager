@@ -1,5 +1,7 @@
 import moment from 'moment';
 
+import { DATE_FORMAT_MOMENT } from './billing-orders-purchases.constant';
+
 export default class BillingOrdersPurchasesService {
   /* @ngInject */
   constructor($locale, $log, $http, iceberg) {
@@ -21,7 +23,7 @@ export default class BillingOrdersPurchasesService {
     return this.iceberg('/me/billing/purchaseOrder')
       .query()
       .expand('CachedObjectList-Pages')
-      .sort('reference', 'ASC')
+      .sort('startDate', 'ASC')
       .limit(5000)
       .execute(null, true)
       .$promise.then(({ data }) => data)
@@ -31,14 +33,16 @@ export default class BillingOrdersPurchasesService {
           .map((elm) => {
             const newElm = { ...elm };
             if (
-              elm.active === true && elm.endDate
-                ? moment().isBetween(elm.startDate, elm.endDate, '[]')
-                : moment().isSameOrAfter(elm.startDate)
+              elm.active === true &&
+              (elm.endDate
+                ? moment().isBetween(elm.startDate, elm.endDate, '[)') ||
+                  moment().isSame(elm.startDate)
+                : moment().isSameOrAfter(elm.startDate))
             ) {
               newElm.status = 'actif';
             } else if (
               elm.active === true &&
-              !moment().isBetween(elm.startDate, elm.endDate, '[]')
+              !moment().isBetween(elm.startDate, elm.endDate, '[)')
             ) {
               newElm.status = 'inactif';
             } else {
@@ -59,7 +63,7 @@ export default class BillingOrdersPurchasesService {
           array.push(
             moment(elm.startDate)
               .add(i, 'day')
-              .toDate(),
+              .format(DATE_FORMAT_MOMENT),
           );
         }
       }
@@ -99,6 +103,6 @@ export default class BillingOrdersPurchasesService {
 
   minDateForEndDate() {
     this.moment = moment();
-    return this.moment.add(1, 'day').toDate();
+    return this.moment.add(1, 'day').format(DATE_FORMAT_MOMENT);
   }
 }

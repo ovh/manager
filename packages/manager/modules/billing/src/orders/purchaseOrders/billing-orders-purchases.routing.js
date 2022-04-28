@@ -1,3 +1,7 @@
+import moment from 'moment';
+
+import { DATE_FORMAT_MOMENT } from './billing-orders-purchases.constant';
+
 export default /* @ngInject */ ($stateProvider) => {
   const stateParent = 'app.account.billing.orders.purchases';
 
@@ -61,7 +65,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
       hideBreadcrumb: /* @ngInject */ () => false,
 
-      minDate: /* @ngInject */ () => new Date(),
+      minDate: /* @ngInject */ () => moment().format(DATE_FORMAT_MOMENT),
 
       minDateForEndDate: /* @ngInject */ (billingOrdersPurchasesService) =>
         billingOrdersPurchasesService.minDateForEndDate(),
