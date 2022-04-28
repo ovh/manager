@@ -13,6 +13,7 @@ export interface IUXPlugin {
   toggleNotificationsSidebarVisibility(): void;
   toggleAccountSidebarVisibility(): void;
   getUserIdCookie(): string;
+  isBetaNavigation(): boolean;
 }
 
 // TODO: remove this once we have a more generic Plugin class
@@ -25,6 +26,8 @@ export class UXPlugin implements IUXPlugin {
 
   private shellUX: ShellUX;
 
+  private betaNavigation: boolean;
+
   constructor(shell: Shell) {
     this.shell = shell;
 
@@ -32,6 +35,8 @@ export class UXPlugin implements IUXPlugin {
     this.shellUX.registerSidebar('account');
     this.shellUX.registerSidebar('notifications');
     this.shellUX.registerNavbar();
+
+    this.betaNavigation = false;
   }
 
   /* ----------- AccountSidebar methods -----------*/
@@ -126,5 +131,15 @@ export class UXPlugin implements IUXPlugin {
 
   closeChatbot(): void {
     this.shell.emitEvent('ux:close-chatbot');
+  }
+
+  /* ----------- Beta navigation -----------*/
+
+  setIsBetaNavigation(isBeta: boolean): void {
+    this.betaNavigation = isBeta;
+  }
+
+  isBetaNavigation(): boolean {
+    return this.betaNavigation;
   }
 }
