@@ -296,7 +296,26 @@ export default async (containerEl, shellClient) => {
         set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
       },
     ])
-
+    .config(
+      /* @ngInject */ (ssoAuthModalPluginFctProvider) => {
+        ssoAuthModalPluginFctProvider.setOnLogout(() => {
+          shellClient.auth.logout();
+        });
+        ssoAuthModalPluginFctProvider.setOnReload(() => {
+          shellClient.navigation.reload();
+        });
+      },
+    )
+    .config(
+      /* @ngInject */ (ssoAuthenticationProvider) => {
+        ssoAuthenticationProvider.setOnLogin(() => {
+          shellClient.auth.login();
+        });
+        ssoAuthenticationProvider.setOnLogout(() => {
+          shellClient.auth.logout();
+        });
+      },
+    )
     .config([
       '$compileProvider',
       '$logProvider',
