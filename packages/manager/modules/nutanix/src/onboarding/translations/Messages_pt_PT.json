@@ -1,6 +1,4 @@
 {
   "nutanix_onboarding_title": "Hosted Private Cloud powered by Nutanix",
-  "nutanix_onboarding_description": "Descubra a nossa nova plataforma de cloud privada e escalável. Ela associa as licenças da Nutanix Cloud Platform pré-instaladas e as infraestruturas da OVHcloud 100% dedicadas e seguras, de modo a fornecer-lhe um ambiente Nutanix hiperconvergente (HCI) pronto a utilizar em algumas horas.",
-  "nutanix_onboarding_description_1": "Esta solução é ideal para as suas estratégias de migração para a cloud, para a implementação de um Plano de Retoma de Atividade (PRA) ou ainda para as sobrecargas de cargas.",
-  "nutanix_onboarding_contact_us": "Contacte-nos"
+  "nutanix_onboarding_description": "Descubra a nossa nova plataforma de cloud privada e escalável. Ela associa as licenças da Nutanix Cloud Platform pré-instaladas e as infraestruturas da OVHcloud 100% dedicadas e seguras, de modo a fornecer-lhe um ambiente Nutanix hiperconvergente (HCI) pronto a utilizar em algumas horas."
 }
