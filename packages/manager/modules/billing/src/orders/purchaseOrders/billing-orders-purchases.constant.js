@@ -14,8 +14,11 @@ export const TYPE_PURCHASE_FOR_TRACKING = {
 
 export const PAGE_SIZE = 10;
 
+export const DATE_FORMAT_MOMENT = 'YYYY-MM-DD';
+
 export default {
   ENUM_PURCHASES_STATUS,
   TYPE_PURCHASE_FOR_TRACKING,
   PAGE_SIZE,
+  DATE_FORMAT_MOMENT,
 };

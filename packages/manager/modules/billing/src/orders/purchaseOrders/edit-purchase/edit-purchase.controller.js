@@ -4,6 +4,7 @@ import {
   PURCHASE_ORDER,
   TYPE_PURCHASE_FOR_TRACKING,
   TYPE_PURCHASE,
+  DATE_FORMAT_MOMENT,
 } from '../billing-orders-purchases.constant';
 
 export default class BillingOrdersPurchaseEditCtrl {
@@ -31,10 +32,20 @@ export default class BillingOrdersPurchaseEditCtrl {
         this.purchase.startDate,
         this.purchase.endDate,
         '[]',
-      )
+      ) ||
+        moment(elm).isSame(this.purchase.startDate) ||
+        moment(elm).isSame(this.purchase.endDate)
         ? []
         : elm;
     });
+
+    if (
+      moment(moment().format(DATE_FORMAT_MOMENT)).isSameOrBefore(
+        this.purchase.startDate,
+      )
+    ) {
+      this.onChangeMinDateForEndDate(null, this.purchase.startDate);
+    }
   }
 
   onCancel() {
@@ -48,6 +59,16 @@ export default class BillingOrdersPurchaseEditCtrl {
     this.minDateForEndDate = moment(dateStr)
       .add(1, 'day')
       .toDate();
+    this.maxDateForEndDate = this.disableDateForEdit.find((elm) =>
+      moment(elm).isAfter(dateStr),
+    );
+    this.disableDateForEndDate = this.disableDateForEdit.map((elm) =>
+      moment(elm).isAfter(dateStr),
+    );
+    this.maxDateForEndDate =
+      this.maxDateForEndDate !== undefined
+        ? moment(this.maxDateForEndDate).format(DATE_FORMAT_MOMENT)
+        : null;
   }
 
   onSubmit() {
