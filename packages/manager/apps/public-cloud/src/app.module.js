@@ -99,6 +99,26 @@ export default async (containerEl, shellClient) => {
       /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
     )
     .config(
+      /* @ngInject */ (ssoAuthModalPluginFctProvider) => {
+        ssoAuthModalPluginFctProvider.setOnLogout(() => {
+          shellClient.auth.logout();
+        });
+        ssoAuthModalPluginFctProvider.setOnReload(() => {
+          shellClient.navigation.reload();
+        });
+      },
+    )
+    .config(
+      /* @ngInject */ (ssoAuthenticationProvider) => {
+        ssoAuthenticationProvider.setOnLogin(() => {
+          shellClient.auth.login();
+        });
+        ssoAuthenticationProvider.setOnLogout(() => {
+          shellClient.auth.logout();
+        });
+      },
+    )
+    .config(
       /* @ngInject */ (ovhFeatureFlippingProvider) => {
         ovhFeatureFlippingProvider.setApplicationName(
           environment.getApplicationName(),
