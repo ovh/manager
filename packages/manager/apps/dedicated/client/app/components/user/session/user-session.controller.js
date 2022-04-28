@@ -29,6 +29,9 @@ angular.module('App').controller(
       this.chatbotEnabled = false;
       this.isTopLevelApplication = isTopLevelApplication();
       this.shell = getShellClient();
+      this.shell.ux.isMenuSidebarVisible().then((isMenuSidebarVisible) => {
+        this.isMenuSidebarVisible = isMenuSidebarVisible;
+      });
     }
 
     $onInit() {
