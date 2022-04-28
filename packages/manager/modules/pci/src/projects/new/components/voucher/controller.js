@@ -1,3 +1,5 @@
+import PciEligibility from '../../classes/eligibility.class';
+
 export default class PciProjectNewVoucherCtrl {
   /* @ngInject */
   constructor($q, pciProjectNew) {
@@ -44,6 +46,23 @@ export default class PciProjectNewVoucherCtrl {
     return step.name === 'configuration' ? 'config' : step.name;
   }
 
+  canAddVoucher() {
+    const { voucher } = this.model;
+    const { finalize, isVoucherValidating } = this.globalLoading;
+
+    return (
+      !this.loading.check &&
+      !finalize &&
+      !isVoucherValidating &&
+      voucher.value &&
+      !voucher.valid
+    );
+  }
+
+  getFormatCreditText() {
+    return `<span class="text-success">${this.voucherEligibility.voucher.credit.text}</span>`;
+  }
+
   /* -----  End of Helpers  ------ */
 
   /* =============================
@@ -72,6 +91,8 @@ export default class PciProjectNewVoucherCtrl {
         if (eligibilityOpts.voucher?.error) {
           return this.$q.reject(eligibilityOpts);
         }
+
+        this.voucherEligibility = new PciEligibility(eligibilityOpts);
 
         return eligibilityOpts;
       })
@@ -127,6 +148,7 @@ export default class PciProjectNewVoucherCtrl {
         this.model.voucher.reset();
         this.model.voucher.setValue('');
 
+        this.voucherEligibility = null;
         this.errors.reset = false;
         this.model.isVoucherRequirePaymentMethod = true;
       })
@@ -143,6 +165,13 @@ export default class PciProjectNewVoucherCtrl {
       });
   }
 
+  onVoucherInputChange() {
+    if (!this.model.voucher.value) {
+      this.model.voucher.reset();
+      this.voucherForm.voucher.$setValidity('voucher', true);
+    }
+  }
+
   /* -----  End of Events  ------ */
 
   /* ============================
@@ -151,6 +180,7 @@ export default class PciProjectNewVoucherCtrl {
 
   $onInit() {
     if (this.model.voucher.value) {
+      this.voucherEligibility = this.eligibility;
       this.formVisible = true;
       this.setVoucherFormState();
     }
