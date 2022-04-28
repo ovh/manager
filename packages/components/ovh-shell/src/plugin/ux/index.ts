@@ -2,9 +2,12 @@ import Shell from '../../shell/shell';
 import { ShellUX } from './ux';
 
 export interface IUXPlugin {
-  isAccountSidebarVisible(sidebarName: string): boolean;
+  isAccountSidebarVisible(): boolean;
+  isMenuSidebarVisible(): boolean;
   showAccountSidebar(disableToggle: boolean): void;
+  showMenuSidebar(): void;
   hideAccountSidebar(): void;
+  hideMenuSidebar(): void;
   isNotificationsSidebarVisible(): boolean;
   showNotificationsSidebar(): void;
   hideNotificationsSidebar(): void;
@@ -32,6 +35,7 @@ export class UXPlugin implements IUXPlugin {
     this.shellUX = new ShellUX(this.shell);
     this.shellUX.registerSidebar('account');
     this.shellUX.registerSidebar('notifications');
+    this.shellUX.registerSidebar('menu');
     this.shellUX.registerNavbar();
   }
 
@@ -49,8 +53,20 @@ export class UXPlugin implements IUXPlugin {
     return this.shellUX.showSidebar('account');
   }
 
+  isMenuSidebarVisible(): boolean {
+    return this.shellUX.isSidebarVisible('menu');
+  }
+
+  showMenuSidebar(): void {
+    return this.shellUX.showSidebar('menu');
+  }
+
   hideAccountSidebar(): void {
     return this.shellUX.hideSidebar('account');
+  }
+
+  hideMenuSidebar(): void {
+    return this.shellUX.hideSidebar('menu');
   }
 
   enableAccountSidebarVisibilityToggle(): void {
