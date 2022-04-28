@@ -116,8 +116,7 @@ export default async (containerEl, shellClient) => {
           shellClient.auth.logout();
         });
         ssoAuthModalPluginFctProvider.setOnReload(() => {
-          // @TODO use shell plugin
-          window.top.location.reload();
+          shellClient.navigation.reload();
         });
       },
     )
