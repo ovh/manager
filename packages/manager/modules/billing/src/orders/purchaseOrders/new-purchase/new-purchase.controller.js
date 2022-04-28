@@ -32,6 +32,16 @@ export default class BillingOrdersPurchaseAddCtrl {
     this.minDateForEndDate = moment(dateStr)
       .add(1, 'day')
       .toDate();
+    this.maxDateForEndDate = this.disableDate.find((elm) =>
+      moment(elm).isAfter(dateStr),
+    );
+    this.disableDateForEndDate = this.disableDate.map((elm) =>
+      moment(elm).isAfter(dateStr),
+    );
+    this.maxDateForEndDate =
+      this.maxDateForEndDate !== undefined
+        ? moment(this.maxDateForEndDate).toDate()
+        : null;
   }
 
   onSubmit() {
