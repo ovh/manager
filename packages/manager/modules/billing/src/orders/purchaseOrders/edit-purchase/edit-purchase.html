@@ -80,9 +80,9 @@
             <oui-calendar
                 placeholder="{{:: 'purchaseOrders_form_edit_purchase_endDate' | translate }}"
                 model="$ctrl.model.endDate"
-                disable-date="$ctrl.disableDateForEdit"
+                disable-date="$ctrl.disableDateForEndDate"
                 min-date="$ctrl.minDateForEndDate"
-                max-date="$ctrl.maxDate"
+                max-date="$ctrl.maxDateForEndDate"
                 alt-format="{{ $ctrl.dateFormat }}"
             >
             </oui-calendar>
