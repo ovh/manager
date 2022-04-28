@@ -67,19 +67,26 @@
                         namespace="$ctrl.sidebarNamespace"
                         data-is-open="$ctrl.sidebarIsOpen"
                         data-on-click="$ctrl.closeSidebar()"
-                        data-ng-if="!$ctrl.displayAccountSidebar"
+                        data-ng-if="!$ctrl.isMenuSidebarVisible && !$ctrl.displayAccountSidebar"
                     >
                     </ovh-manager-server-sidebar>
 
                     <div
-                        class="col-md-3 col-lg-2"
+                        class="col-lg-2"
+                        data-ng-class="{
+                            'col-md-3': !$ctrl.isMenuSidebarVisible,
+                        }"
                         data-ng-if="$ctrl.displayAccountSidebar"
                         data-sidebar-menu
                         data-sidebar-namespace="'account'"
                     ></div>
 
                     <div
-                        class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 px-0 h-100"
+                        class="col-lg-10 col-lg-offset-2 px-0 h-100"
+                        data-ng-class="{
+                            'col-md-9': !$ctrl.isMenuSidebarVisible,
+                            'col-md-offset-3': !$ctrl.isMenuSidebarVisible,
+                        }"
                         ui-view="container"
                     >
                         <!-- Skip content target -->
