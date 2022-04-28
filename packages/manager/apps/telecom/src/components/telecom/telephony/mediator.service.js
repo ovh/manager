@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import keys from 'lodash/keys';
 
 export default /* @ngInject */ function TelephonyMediator(
   $q,
@@ -143,18 +142,6 @@ export default /* @ngInject */ function TelephonyMediator(
   };
 
   /* -----  End of GROUP  ------*/
-
-  /*= ======================================
-    =            SIDEBAR HELPERS            =
-    ======================================= */
-
-  /* ----------  COUNT  ----------*/
-
-  self.getCount = function getCount(force) {
-    return self.getAll(force).then((groups) => keys(groups).length);
-  };
-
-  /* -----  End of SIDEBAR HELPERS  ------*/
 
   /*= =====================================
     =            INITIALIZATION            =

@@ -59,10 +59,13 @@
                     <div class="container-fluid h-100" data-ui-view="root">
                         <div class="row h-100">
                             <!-- SIDE MENU -->
-                            <div
-                                data-sidebar-menu
+                            <ovh-manager-server-sidebar
+                                data-ng-if="$ctrl.sidebarUniverse"
+                                universe="$ctrl.sidebarUniverse"
                                 class="col-md-3 col-lg-2"
-                            ></div>
+                            >
+                            </ovh-manager-server-sidebar>
+
                             <!-- CONTENT -->
                             <div
                                 id="content"
