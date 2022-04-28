@@ -2,6 +2,7 @@ import isString from 'lodash/isString';
 import set from 'lodash/set';
 import startsWith from 'lodash/startsWith';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import { getShellClient } from '../../../shell';
 
 angular.module('App').controller(
   'SessionCtrl',
@@ -27,6 +28,11 @@ angular.module('App').controller(
       this.ovhFeatureFlipping = ovhFeatureFlipping;
       this.chatbotEnabled = false;
       this.isTopLevelApplication = isTopLevelApplication();
+      getShellClient()
+        .ux.isBetaNavigation()
+        .then((isBeta) => {
+          this.isBetaNavigation = isBeta;
+        });
     }
 
     $onInit() {
