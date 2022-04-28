@@ -14,5 +14,6 @@ export default {
     globalLoading: '<',
     trackProjectCreationError: '<',
     steps: '<',
+    defaultPaymentMethod: '<',
   },
 };
