@@ -86,6 +86,16 @@ export default function exposeApi(shellClient: ShellClient) {
           args: [isForced],
         });
       },
+      isMenuSidebarVisible: () =>
+        shellClient.invokePluginMethod({
+          plugin: 'ux',
+          method: 'isMenuSidebarVisible',
+        }),
+      showMenuSidebar: () =>
+        shellClient.invokePluginMethod({
+          plugin: 'ux',
+          method: 'showMenuSidebar',
+        }),
       getSSOAuthModalMode: (oldUserCookie: string) =>
         shellClient.invokePluginMethod<string>({
           plugin: 'ux',
