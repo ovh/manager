@@ -1,3 +1,14 @@
+# [13.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.37.1...@ovh-ux/manager-telecom@13.38.0) (2022-04-28)
+
+
+### Features
+
+* **api:** replace apiv7 calls by v6 and iceberg ([#6307](https://github.com/ovh/manager/issues/6307)) ([b2e86fd](https://github.com/ovh/manager/commit/b2e86fd91d9accad4d670f441a4af04d3ef65b67))
+* **telecom:** manage telecom beta sidebar ([97d5c06](https://github.com/ovh/manager/commit/97d5c062a9850b926eaa78676a04825b9f9a3b18))
+* **telecom:** use server sidebar ([a0d14c8](https://github.com/ovh/manager/commit/a0d14c8179bb01a2ce31a8c64e8270aed253dd7a))
+
+
+
 ## [13.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.37.0...@ovh-ux/manager-telecom@13.37.1) (2022-04-20)
 
 

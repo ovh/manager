@@ -1,3 +1,12 @@
+# [7.10.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.9.2...@ovh-ux/ng-ovh-telecom-universe-components@7.10.0) (2022-04-28)
+
+
+### Features
+
+* **api:** replace apiv7 calls by v6 and iceberg ([#6307](https://github.com/ovh/manager/issues/6307)) ([b2e86fd](https://github.com/ovh/manager/commit/b2e86fd91d9accad4d670f441a4af04d3ef65b67))
+
+
+
 ## [7.9.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.9.1...@ovh-ux/ng-ovh-telecom-universe-components@7.9.2) (2022-04-06)
 
 

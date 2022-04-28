@@ -1,3 +1,21 @@
+# [3.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.20.0...@ovh-ux/manager-server-sidebar@3.21.0) (2022-04-28)
+
+
+### Bug Fixes
+
+* **sdebar:** fix domain translation ([5a0e189](https://github.com/ovh/manager/commit/5a0e189f63d8f5eef7a29bf1e9ad1f583716540d))
+* **sidebar:** add pack prefix ([bcefdf4](https://github.com/ovh/manager/commit/bcefdf46a3ef04fa1b01a65555bfb8263c779681))
+* **sidebar:** force display search on pack and telephony ([cb38f74](https://github.com/ovh/manager/commit/cb38f74affc47212e323e610b9ba60f7f482ebde))
+* **sidebar:** update items sorting ([d744fbe](https://github.com/ovh/manager/commit/d744fbe9620e8a357d30532b2e068e1a68bb2320))
+
+
+### Features
+
+* **telecom:** manage telecom beta sidebar ([97d5c06](https://github.com/ovh/manager/commit/97d5c062a9850b926eaa78676a04825b9f9a3b18))
+* **telecom:** use server sidebar ([a0d14c8](https://github.com/ovh/manager/commit/a0d14c8179bb01a2ce31a8c64e8270aed253dd7a))
+
+
+
 # [3.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.19.1...@ovh-ux/manager-server-sidebar@3.20.0) (2022-04-20)
 
 
