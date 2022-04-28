@@ -1,3 +1,25 @@
+# [5.73.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.72.0...@ovh-ux/manager-pci@5.73.0) (2022-04-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1595] ([1be4d43](https://github.com/ovh/manager/commit/1be4d430f596f8f541b9cd295e7c8e14e7e2e7bf))
+* **pci.projects.new.payment:** disable create bn once finalize is true ([8446142](https://github.com/ovh/manager/commit/8446142ee21e7848975d98803d187b4cbd849ab5))
+
+
+### Features
+
+* **pci.projects.new:** go to payment from progress step ([98709e8](https://github.com/ovh/manager/commit/98709e81147fc1a8bf6170b302f8f5847591d416))
+* **pci.projects.new:** remove one-shot ticket ([7f08737](https://github.com/ovh/manager/commit/7f087379be61bcb82bc1281bca6f73453a30c0a0))
+* **pci.projects.new.component:** display voucher credit details ([78e582f](https://github.com/ovh/manager/commit/78e582f7de5cd52139fdbd97d3e1f8a80a4fe1fa))
+* **pci.projects.new.component:** improve vouchers errors display ([96655c7](https://github.com/ovh/manager/commit/96655c752a14c25d0259b7be5298bac967535c8c))
+* **pci.projects.new.component:** remove voucher from trash icon ([b80f83b](https://github.com/ovh/manager/commit/b80f83b9f746ddf801b61aac17bf2fcff043e8d4))
+* **pci.projects.new.components:** add on-click callback for progress ([6e77686](https://github.com/ovh/manager/commit/6e77686cb838b424cb31922402673400d332b2a9))
+* **pci.projects.new.payment:** disable next btn for voucher validation ([b954ee8](https://github.com/ovh/manager/commit/b954ee8f19dfc1b5b6371ff82914fcffe061cfb5))
+* **pci.projects.new.payment:** go to config from progress step ([0e181fa](https://github.com/ovh/manager/commit/0e181fa040fd129c7f98d9d13fbe9523e6ea37f2))
+
+
+
 # [5.72.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.71.0...@ovh-ux/manager-pci@5.72.0) (2022-04-26)
 
 
