@@ -248,6 +248,26 @@ export default async (containerEl, shellClient) => {
         $logProvider.debugEnabled(telecomConfig.env !== 'prod');
       },
     )
+    .config(
+      /* @ngInject */ (ssoAuthModalPluginFctProvider) => {
+        ssoAuthModalPluginFctProvider.setOnLogout(() => {
+          shellClient.auth.logout();
+        });
+        ssoAuthModalPluginFctProvider.setOnReload(() => {
+          shellClient.navigation.reload();
+        });
+      },
+    )
+    .config(
+      /* @ngInject */ (ssoAuthenticationProvider) => {
+        ssoAuthenticationProvider.setOnLogin(() => {
+          shellClient.auth.login();
+        });
+        ssoAuthenticationProvider.setOnLogout(() => {
+          shellClient.auth.logout();
+        });
+      },
+    )
     .config((LineDiagnosticsProvider) => {
       LineDiagnosticsProvider.setPathPrefix('/xdsl/{serviceName}');
     })
