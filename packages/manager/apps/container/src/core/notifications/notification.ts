@@ -8,6 +8,8 @@ export type APINotification = {
   date: string;
   id: string;
   status: string;
+  subject: string;
+  description: string;
   updating: boolean;
   urlDetails: URLDetails;
 };

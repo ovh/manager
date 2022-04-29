@@ -41,10 +41,7 @@ export const NotificationsProvider = ({
         const newNotifications: APINotification[] = [];
         notifs.forEach((notif: any) => {
           newNotifications.push({
-            date: notif.date,
-            id: notif.id,
-            status: notif.status,
-            updating: notif.updating,
+            ...notif,
             urlDetails: {
               href: notif.urlDetails ? notif.urlDetails.href : '',
             },
