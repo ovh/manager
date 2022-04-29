@@ -190,6 +190,7 @@ function Sidebar(): JSX.Element {
               projectId: selectedPciProject?.project_id,
             }}
             onClick={() => clickHandler(node)}
+            id={node.idAttr}
           />
         </li>
       ));

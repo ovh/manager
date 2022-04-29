@@ -1,6 +1,7 @@
 export default {
   id: 'services',
   translation: 'sidebar_services',
+  idAttr: 'sidebar-link-services',
   children: [
     {
       id: 'baremetal-cloud',

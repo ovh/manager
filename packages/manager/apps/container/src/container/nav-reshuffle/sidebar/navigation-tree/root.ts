@@ -28,6 +28,7 @@ export default {
         hash: '#/billing/history',
       },
       count: false,
+      idAttr: 'sidebar-link-billing',
     },
     {
       id: 'orders',
