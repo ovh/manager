@@ -17,7 +17,7 @@ function StaticLink({
   count = 0,
   node = {},
   linkParams = {},
-  id,
+  id = '',
 }: StaticLinkProps): JSX.Element {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
@@ -55,6 +55,7 @@ function StaticLink({
       href={url}
       target={node.isExternal ? '_blank' : '_top'}
       rel={node.isExternal ? 'noopener noreferrer' : ''}
+      id={id}
     >
       {t(node.translation)}
       {node.isExternal && (
@@ -91,7 +92,7 @@ function SidebarLink({
 }: SidebarLinkProps): JSX.Element {
   const { t } = useTranslation('sidebar');
   return node.url || node.routing ? (
-    <StaticLink count={count} node={node} linkParams={linkParams} />
+    <StaticLink count={count} node={node} linkParams={linkParams} id={id} />
   ) : (
     <a onClick={onClick} id={id}>
       {t(node.translation)}
