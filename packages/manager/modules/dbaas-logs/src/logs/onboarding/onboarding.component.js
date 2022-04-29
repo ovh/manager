@@ -1,11 +1,7 @@
-import controller from './onboarding.controller';
 import template from './onboarding.html';
+import controller from './onboarding.controller';
 
 export default {
-  bindings: {
-    me: '<',
-    orderLink: '<',
-  },
-  controller,
   template,
+  controller,
 };
