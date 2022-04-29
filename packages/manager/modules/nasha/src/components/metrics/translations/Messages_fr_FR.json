@@ -10,5 +10,6 @@
   "nasha_components_metrics_expiration_date": "Date d'expiration",
   "nasha_components_metrics_ip": "IP",
   "nasha_components_metrics_renew": "Renouveler",
-  "nasha_components_metrics_space_usage": "Avis d'utilisation"
+  "nasha_components_metrics_space_usage": "Avis d'utilisation",
+  "nasha_components_metrics_space_usage_help": "Le contact administrateur et le contact technique recevront une alerte par e-mail lorsque le NAS atteint 90% d'occupation"
 }

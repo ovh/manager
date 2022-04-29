@@ -12,7 +12,7 @@
                     class="bottom-space-m4"
                 ></dt>
                 <dd
-                    data-translate="{{:: ('nasha_components_metrics_datacenter_' + $ctrl.nasha.datacenter) }}"
+                    data-ng-bind="$ctrl.nasha.localeDatacenter"
                     class="bottom-space-m8"
                 ></dd>
                 <dt
@@ -91,7 +91,7 @@
                     <span>&nbsp;</span>
                     <em
                         class="oui-icon pointer oui-icon-help-circle"
-                        data-responsive-popover="'nasha/information/nasha-information-usage-help.html'"
+                        data-uib-popover="{{:: ('nasha_components_metrics_space_usage_help' | translate) }}"
                         data-popover-placement="bottom"
                         data-popover-trigger="outsideClick"
                     >

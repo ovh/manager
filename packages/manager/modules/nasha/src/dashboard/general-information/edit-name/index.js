@@ -3,14 +3,15 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerNashaDirectoryLazyLoading';
+const moduleName =
+  'ovhManagerNashaDashboardGeneralInformationEditNameLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('nasha.directory.**', {
-      url: '',
+    $stateProvider.state('nasha.dashboard.general-information.edit-name.**', {
+      url: 'edit-name',
       lazyLoad: (transition) =>
-        import('./directory.module').then((module) =>
+        import('./edit-name.module').then((module) =>
           transition
             .injector()
             .get('$ocLazyLoad')

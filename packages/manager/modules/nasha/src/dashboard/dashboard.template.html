@@ -1,0 +1,40 @@
+<div class="nasha-dashboard">
+    <header class="oui-header" role="banner">
+        <div class="d-flex pt-4">
+            <h1
+                class="word-break mb-0 oui-header-2"
+                data-ng-bind="$ctrl.nasha.customName"
+            ></h1>
+            <button
+                type="button"
+                class="btn btn-icon my-auto ml-2"
+                data-translate-attr="{ title: 'nasha_dashboard_edit' }"
+                data-ng-click="$ctrl.isEditNameModalShown = true"
+            >
+                <span
+                    class="oui-icon oui-icon_small oui-icon-pen_concept"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </div>
+        <p data-ng-bind="$ctrl.serviceName"></p>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-state="nasha.dashboard.general-information"
+                ><span
+                    data-translate="nasha_dashboard_tab_general_information"
+                ></span
+            ></oui-header-tabs-item>
+        </oui-header-tabs>
+    </header>
+    <div data-ui-view></div>
+    <nasha-components-edit-name
+        data-ng-if="$ctrl.isEditNameModalShown"
+        data-nasha="$ctrl.nasha"
+        data-close="$ctrl.goToDashboard({ success })"
+        data-dismiss="
+            $ctrl.goToDashboard({ error });
+            $ctrl.isEditNameModalShown = false;
+        "
+    ></nasha-components-edit-name>
+</div>
