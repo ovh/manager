@@ -19,6 +19,7 @@ export const NOTEBOOK_ATTACH_STORAGE = {
   GIT_URL_REGEX: 'http(s)?://([\\w\\.\\:/\\-~]+)(\\.git)(/)?',
   PERMISSION_READ_ONLY: 'RO',
   PERMISSION_READ_WRITE: 'RW',
+  PERMISSION_READ_WRITE_DELETE: 'RWD',
   MAX_VOLUMES: 10,
 };
 
