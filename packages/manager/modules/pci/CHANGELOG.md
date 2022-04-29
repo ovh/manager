@@ -1,3 +1,12 @@
+## [5.73.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.73.0...@ovh-ux/manager-pci@5.73.1) (2022-04-29)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** allow create project if default payment ([#6997](https://github.com/ovh/manager/issues/6997)) ([4e6446b](https://github.com/ovh/manager/commit/4e6446b2da30c0737b4dfd1e66c503cc02126825))
+
+
+
 # [5.73.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.72.0...@ovh-ux/manager-pci@5.73.0) (2022-04-28)
 
 
