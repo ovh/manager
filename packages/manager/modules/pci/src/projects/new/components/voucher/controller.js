@@ -97,7 +97,10 @@ export default class PciProjectNewVoucherCtrl {
         return eligibilityOpts;
       })
       .then((eligibilityOpts) => {
-        if (!this.model.isVoucherRequirePaymentMethod) {
+        if (
+          !this.model.isVoucherRequirePaymentMethod &&
+          !this.defaultPaymentMethod
+        ) {
           this.model.paymentMethod = null;
         }
 

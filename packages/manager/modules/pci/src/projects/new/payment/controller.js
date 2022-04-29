@@ -295,7 +295,7 @@ export default class PciProjectNewPaymentCtrl {
     return (
       finalize ||
       isVoucherValidating ||
-      isVoucherRequirePaymentMethod ||
+      (isVoucherRequirePaymentMethod && !this.defaultPaymentMethod) ||
       (this.eligibility.isChallengePaymentMethodRequired() &&
         !challenge.isValid(this.defaultPaymentMethod.paymentType)) ||
       (!paymentMethod && this.eligibility.isAddPaymentMethodRequired()) ||
