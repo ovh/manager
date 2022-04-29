@@ -1,5 +1,6 @@
 import isString from 'lodash/isString';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import { getShellClient } from '../shell';
 
 export default class WebAppCtrl {
   /* @ngInject */
@@ -21,6 +22,7 @@ export default class WebAppCtrl {
     this.coreConfig = coreConfig;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.isTopLevelApplication = isTopLevelApplication();
+    this.shell = getShellClient();
   }
 
   $onInit() {
@@ -80,6 +82,14 @@ export default class WebAppCtrl {
 
   closeSidebar() {
     this.sidebarIsOpen = false;
+  }
+
+  onChatbotOpen() {
+    this.shell.ux.onChatbotOpen();
+  }
+
+  onChatbotClose(reduced) {
+    this.shell.ux.onChatbotClose(reduced);
   }
 }
 

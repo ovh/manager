@@ -18,6 +18,7 @@ const UserAccountMenuButton = ({
   const { t } = useTranslation('user-account-menu');
   return (
     <button
+      id="header-user-menu-button"
       aria-haspopup={show}
       aria-expanded={show}
       aria-label={t('user_account_menu_manage_my_account')}

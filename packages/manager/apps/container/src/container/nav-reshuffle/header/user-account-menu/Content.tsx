@@ -8,6 +8,7 @@ import UserDefaultPaymentMethod from './DefaultPaymentMethod';
 import style from './style.module.scss';
 
 import { useShell } from '@/context';
+import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 type Props = {
   defaultPaymentMethod?: unknown;
@@ -20,6 +21,7 @@ const UserAccountMenu = ({
 }: Props): JSX.Element => {
   const { t } = useTranslation('user-account-menu');
   const shell = useShell();
+  const feedbackUrl = useProductNavReshuffle().getFeedbackUrl();
 
   const user = shell
     .getPlugin('environment')
@@ -28,6 +30,12 @@ const UserAccountMenu = ({
 
   const onLougoutBtnClick = () => {
     shell.getPlugin('auth').logout();
+  };
+
+  const onGiveFeedbackLinkClick = () => {
+    shell
+      .getPlugin('tracking')
+      .trackClick('topnav::user_widget::give_feedback');
   };
 
   // @todo: use navigation plugin instead
@@ -65,7 +73,14 @@ const UserAccountMenu = ({
           />
         )}
         <hr />
-        <a href={'#'} className={`${style.feedback} d-flex`}>
+        <a
+          href={feedbackUrl}
+          className={`${style.feedback} d-flex`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={t('user_account_menu_beta_feedback')}
+          onClick={onGiveFeedbackLinkClick}
+        >
           <span className="align-self-center">
             <img src={icon} alt={t('user_account_menu_beta_feedback')} />
           </span>
@@ -89,6 +104,7 @@ const UserAccountMenu = ({
           title={t('user_account_menu_profile')}
           href={myAccountLink}
           target="_top"
+          id="user-account-menu-profile"
         >
           {t('user_account_menu_profile')}
           <span

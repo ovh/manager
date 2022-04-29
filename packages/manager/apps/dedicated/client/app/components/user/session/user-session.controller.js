@@ -2,6 +2,7 @@ import isString from 'lodash/isString';
 import set from 'lodash/set';
 import startsWith from 'lodash/startsWith';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import { getShellClient } from '../../../shell';
 
 angular.module('App').controller(
   'SessionCtrl',
@@ -27,6 +28,7 @@ angular.module('App').controller(
       this.ovhFeatureFlipping = ovhFeatureFlipping;
       this.chatbotEnabled = false;
       this.isTopLevelApplication = isTopLevelApplication();
+      this.shell = getShellClient();
     }
 
     $onInit() {
@@ -105,6 +107,14 @@ angular.module('App').controller(
 
     $onDestroy() {
       this.hooksToUnsubscribe.forEach((hook) => hook());
+    }
+
+    onChatbotOpen() {
+      this.shell.ux.onChatbotOpen();
+    }
+
+    onChatbotClose(reduced) {
+      this.shell.ux.onChatbotClose(reduced);
     }
   },
 );

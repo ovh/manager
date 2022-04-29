@@ -69,4 +69,12 @@ export default class HubController {
       element.focus();
     }
   }
+
+  onChatbotOpen() {
+    this.shell.ux.onChatbotOpen();
+  }
+
+  onChatbotClose(reduced) {
+    this.shell.ux.onChatbotClose(reduced);
+  }
 }

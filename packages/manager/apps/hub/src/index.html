@@ -82,6 +82,8 @@
             data-country="{{$ctrl.me.ovhSubsidiary}}"
             data-support-level="{{$ctrl.me.supportLevel.level}}"
             data-open-at-startup="$ctrl.showLivechat"
+            data-on-open="$ctrl.onChatbotOpen()"
+            data-on-close="$ctrl.onChatbotClose(reduced)"
         ></ovh-chatbot>
     </body>
 </html>
