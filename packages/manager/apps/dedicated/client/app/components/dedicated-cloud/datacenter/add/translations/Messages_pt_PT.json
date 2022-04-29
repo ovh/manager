@@ -4,5 +4,9 @@
   "dedicatedCloud_datacenters_adding_success": "Dentro de momentos será criado um novo datacenter.",
   "dedicatedCloud_datacenters_adding_error": "Erro ao adicionar datacenter.",
   "dedicatedCloud_datacenters_adding_load_error": "Erro ao processar alteração informações relativas à criação de um datacenter.",
-  "dedicatedCloud_datacenters_adding_select": "Selecionar..."
+  "dedicatedCloud_datacenters_adding_select": "Selecionar...",
+  "dedicatedCloud_configuration_add_datacenter_option": "Alterar as opções",
+  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part1": "Optou por adicionar um virtual DataCenter (vDC) da gama Premier, na qual o NSX está ativado por predefinição. Não é possível adicionar um vDC Premier enquanto o NSX não estiver ativado na sua infraestrutura.",
+  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part2": "A ativação do NSX é realizada a partir da página inicial da sua infraestrutura VMware, sem afetar a sua infraestrutura. Esta tarefa pode demorar até duas horas e pode acompanhar o seu progresso a partir do separador Operações.",
+  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part3": "Uma vez o NSX ativado, poderá retomar a adição de um virtual DataCenter Premier."
 }
