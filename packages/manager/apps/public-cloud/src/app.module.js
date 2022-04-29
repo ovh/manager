@@ -14,6 +14,7 @@ import '@ovh-ux/ui-kit';
 
 import get from 'lodash/get';
 import has from 'lodash/has';
+import isString from 'lodash/isString';
 
 import navbar from '@ovh-ux/manager-navbar';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
@@ -30,6 +31,7 @@ import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
@@ -86,12 +88,12 @@ export default async (containerEl, shellClient) => {
         'oui',
         ovhManagerAccountSidebar,
         registerCoreModule(environment, coreCallbacks),
-        ovhManagerCookiePolicy,
+        isTopLevelApplication() ? ovhManagerCookiePolicy : null,
         ovhManagerMfaEnrollment,
         ovhManagerPci,
         ovhNotificationsSidebar,
         uiRouter,
-      ].filter((value) => value !== null),
+      ].filter(isString),
     ) // Remove null because __NG_APP_INJECTIONS__ can be null
     .controller('PublicCloudController', controller)
     .service('publicCloud', service)

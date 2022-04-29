@@ -88,6 +88,7 @@ import sharepoint from '@ovh-ux/manager-sharepoint';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import WebPaas from '@ovh-ux/manager-web-paas';
 import '@ovh-ux/manager-filters';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
 import getConfig from './config/config';
 import domain from './domain';
@@ -179,7 +180,7 @@ export default async (containerEl, shellClient) => {
         ovhManagerAtInternetConfiguration,
         ovhManagerAccountMigration,
         ovhManagerBanner,
-        ovhManagerCookiePolicy,
+        isTopLevelApplication() ? ovhManagerCookiePolicy : null,
         ovhManagerCatalogPrice,
         ovhManagerNavbar,
         ovhManagerProductOffers,
