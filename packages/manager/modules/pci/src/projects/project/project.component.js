@@ -21,6 +21,7 @@ export default {
     goToProjectInactive: '<',
     goToRegion: '<',
     onCreateProjectClick: '<',
+    isMenuSidebarVisible: '<',
   },
   controller,
   template,
