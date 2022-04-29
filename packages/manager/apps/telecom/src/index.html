@@ -72,11 +72,16 @@
                             <div
                                 data-sidebar-menu
                                 class="col-md-3 col-lg-2"
+                                data-ng-if="!$ctrl.isMenuSidebarVisible"
                             ></div>
                             <!-- CONTENT -->
                             <div
                                 id="content"
-                                class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 h-100"
+                                class="col-lg-10 col-lg-offset-2 h-100"
+                                data-ng-class="{
+                                    'col-md-9': !$ctrl.isMenuSidebarVisible,
+                                    'col-md-offset-3': !$ctrl.isMenuSidebarVisible,
+                                }"
                                 style="overflow: auto;"
                             >
                                 <div class="position-absolute w-100">
