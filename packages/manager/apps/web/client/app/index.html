@@ -63,11 +63,16 @@
                         universe="'WEB'"
                         data-is-open="$ctrl.sidebarIsOpen"
                         data-on-click="$ctrl.closeSidebar()"
+                        data-ng-if="!$ctrl.isMenuSidebarVisible"
                     >
                     </ovh-manager-server-sidebar>
 
                     <div
-                        class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 px-0"
+                        class="col-lg-10 col-lg-offset-2 px-0"
+                        data-ng-class="{
+                            'col-md-9': !$ctrl.isMenuSidebarVisible,
+                            'col-md-offset-3': !$ctrl.isMenuSidebarVisible,
+                        }"
                     >
                         <!-- Skip content target -->
                         <div class="skiptarget">

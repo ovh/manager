@@ -23,6 +23,9 @@ export default class WebAppCtrl {
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.isTopLevelApplication = isTopLevelApplication();
     this.shell = getShellClient();
+    this.shell.ux.isMenuSidebarVisible().then((isMenuSidebarVisible) => {
+      this.isMenuSidebarVisible = isMenuSidebarVisible;
+    });
   }
 
   $onInit() {
