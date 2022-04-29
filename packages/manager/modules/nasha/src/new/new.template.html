@@ -74,7 +74,7 @@
                                         name="select"
                                         class="oui-select__input"
                                         data-ng-model="$ctrl.data.selectedDatacenter"
-                                        data-ng-options="datacenter as ('nasha_new_datacenter_' + datacenter.toLowerCase() | translate) for datacenter in $ctrl.datacenters"
+                                        data-ng-options="datacenter as $ctrl.localizeDatacenter(datacenter) for datacenter in $ctrl.datacenters"
                                     >
                                         <option
                                             value

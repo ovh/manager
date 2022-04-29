@@ -1,12 +1,15 @@
-import { NASHA_TITLE } from './nasha.constants';
+import { NASHA_ALERT_ID, NASHA_TITLE } from './nasha.constants';
+import { localizeDatacenter, prepareNasha } from './nasha.utils';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('nasha', {
     url: '/nasha',
-    template: '<div ui-view></div>',
-    resolve: {
-      breadcrumb: () => NASHA_TITLE,
-    },
+    template: `
+      <div class="nasha">
+          <div data-ovh-alert="${NASHA_ALERT_ID}"></div>
+          <div data-ui-view></div>
+      </div>
+    `,
     redirectTo: (transition) =>
       transition
         .injector()
@@ -17,6 +20,23 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         .$promise.then(({ data }) =>
           data.length ? 'nasha.directory' : 'nasha.onboarding',
         ),
+    resolve: {
+      alert: /* @ngInject */ (Alerter) => (type, message) =>
+        Alerter[type](message, NASHA_ALERT_ID),
+      alertSuccess: /* @ngInject */ (alert) => (message) =>
+        alert('success', message),
+      alertError: /* @ngInject */ (alert, $translate) => (error) => {
+        const message =
+          error.data?.message || error.message || error.toString();
+        alert('error', $translate.instant('nasha_error', { message }));
+      },
+      breadcrumb: () => NASHA_TITLE,
+      localizeDatacenter: /* @ngInject */ ($translate) => (datacenter) =>
+        localizeDatacenter(datacenter, $translate),
+      prepareNasha: /* @ngInject */ ($translate) => (nasha) =>
+        prepareNasha(nasha, $translate),
+      trackingPrefix: () => NASHA_TITLE,
+    },
   });
 
   $urlRouterProvider.when(/^\/paas\/nasha/, () => {
