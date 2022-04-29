@@ -20,6 +20,7 @@ export default {
     goToProjects: '<',
     goToProjectInactive: '<',
     goToRegion: '<',
+    isMenuSidebarVisible: '<',
   },
   controller,
   template,
