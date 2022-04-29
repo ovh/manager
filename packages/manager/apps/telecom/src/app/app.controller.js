@@ -38,6 +38,12 @@ export default class TelecomAppCtrl {
     };
     this.SYSTRAN_FEEDBACK_LINK =
       'https://survey.ovh.com/index.php/175287?lang=en';
+
+    getShellClient()
+      .ux.isMenuSidebarVisible()
+      .then((isMenuSidebarVisible) => {
+        this.isMenuSidebarVisible = isMenuSidebarVisible;
+      });
   }
 
   $onInit() {
