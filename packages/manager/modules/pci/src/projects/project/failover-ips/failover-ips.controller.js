@@ -16,9 +16,9 @@ export default class FailoverIpController {
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProjectIpFailover = OvhApiCloudProjectIpFailover;
 
-    this.DEDICATED_IPS_URL = coreURLBuilder.buildURL(
+    this.FAILOVER_IPS_URL = coreURLBuilder.buildURL(
       'dedicated',
-      '#/configuration/ip',
+      '#/ip?serviceName=_FAILOVER&page=1',
     );
   }
 

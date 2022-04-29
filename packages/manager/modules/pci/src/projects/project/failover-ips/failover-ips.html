@@ -14,6 +14,7 @@
         </oui-guide-menu>
     </oui-header>
     <div>
+        <p data-translate="pci_projects_project_additional_ips_description"></p>
         <pci-maintenance-banner
             data-steins="$ctrl.steins"
             data-customer-regions="$ctrl.customerRegions"
@@ -31,100 +32,104 @@
             data-messages="$ctrl.messages"
         ></cui-message-container>
 
-        <oui-datagrid
-            data-rows="$ctrl.failoverIps"
-            criteria="$ctrl.criteria"
-            on-criteria-change="$ctrl.onListParamChange($criteria)"
-        >
-            <oui-datagrid-topbar>
-                <oui-action-menu
-                    data-text="{{:: 'pci_projects_project_failoverip_actions' | translate }}"
+        <oui-tabs>
+            <oui-tabs-item
+                heading="{{:: 'pci_additional_ips_failover_id_title' | translate}}"
+            >
+                <oui-datagrid
+                    data-rows="$ctrl.failoverIps"
+                    criteria="$ctrl.criteria"
+                    on-criteria-change="$ctrl.onListParamChange($criteria)"
                 >
-                    <oui-action-menu-item
-                        state="pci.projects.project.failover-ips.imports"
+                    <oui-datagrid-topbar>
+                        <oui-action-menu
+                            data-text="{{:: 'pci_projects_project_failoverip_actions' | translate }}"
+                        >
+                            <oui-action-menu-item
+                                state="pci.projects.project.failover-ips.imports"
+                            >
+                                <span
+                                    data-translate="pci_projects_project_failoverip_import"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                state="pci.projects.project.failover-ips.order"
+                                disabled="$ctrl.instances.length === 0"
+                            >
+                                <span
+                                    data-translate="pci_projects_project_failoverip_order"
+                                ></span>
+                            </oui-action-menu-item>
+                        </oui-action-menu>
+                    </oui-datagrid-topbar>
+                    <oui-datagrid-column
+                        data-title=":: 'pci_projects_project_failoverip_ip' | translate"
+                        data-property="ip"
+                        data-type="string"
+                        data-searchable
+                        data-filterable
                     >
-                        <span
-                            data-translate="pci_projects_project_failoverip_import"
-                        ></span>
-                    </oui-action-menu-item>
-                    <oui-action-menu-item
-                        state="pci.projects.project.failover-ips.order"
-                        disabled="$ctrl.instances.length === 0"
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title=":: 'pci_projects_project_failoverip_block' | translate"
+                        data-property="block"
+                        data-type="string"
+                        data-searchable
+                        data-filterable
                     >
-                        <span
-                            data-translate="pci_projects_project_failoverip_order"
-                        ></span>
-                    </oui-action-menu-item>
-                </oui-action-menu>
-            </oui-datagrid-topbar>
-            <oui-datagrid-column
-                data-title=":: 'pci_projects_project_failoverip_ip' | translate"
-                data-property="ip"
-                data-type="string"
-                data-searchable
-                data-filterable
-            >
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title=":: 'pci_projects_project_failoverip_block' | translate"
-                data-property="block"
-                data-type="string"
-                data-searchable
-                data-filterable
-            >
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title=":: 'pci_projects_project_failoverip_geoloc' | translate"
-                data-property="geoloc"
-                data-type="string"
-                data-searchable
-                data-filterable
-            >
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title=":: 'pci_projects_project_failoverip_id' | translate"
-                data-property="id"
-                data-type="string"
-            >
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title=":: 'pci_projects_project_failoverip_routedTo' | translate"
-                data-property="instance.name"
-                data-type="string"
-                data-searchable
-                data-filterable
-            >
-                <a
-                    data-ng-if="$row.instance"
-                    data-ui-sref="pci.projects.project.instances.instance({projectId : $ctrl.projectId, instanceId: $row.instance.id})"
-                    data-ng-bind="$row.instance.name"
-                ></a>
-            </oui-datagrid-column>
-            <oui-action-menu data-compact data-placement="end">
-                <oui-action-menu-item
-                    data-ui-sref="pci.projects.project.failover-ips.edit({ projectId: $ctrl.projectId, serviceName: $row.id })"
-                >
-                    <span
-                        data-translate="pci_projects_project_failoverip_edit"
-                    ></span>
-                </oui-action-menu-item>
-                <oui-action-menu-item
-                    data-href="{{:: $ctrl.DEDICATED_IPS_URL }}"
-                    data-external
-                >
-                    <span
-                        data-translate="pci_projects_project_failoverip_mitigation"
-                    ></span>
-                </oui-action-menu-item>
-                <oui-action-menu-item
-                    data-href="{{:: $ctrl.DEDICATED_IPS_URL }}"
-                    data-external
-                >
-                    <span
-                        data-translate="pci_projects_project_failoverip_firewall"
-                    ></span>
-                </oui-action-menu-item>
-            </oui-action-menu>
-        </oui-datagrid>
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title=":: 'pci_projects_project_failoverip_geoloc' | translate"
+                        data-property="geoloc"
+                        data-type="string"
+                        data-searchable
+                        data-filterable
+                    >
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title=":: 'pci_projects_project_failoverip_id' | translate"
+                        data-property="id"
+                        data-type="string"
+                    >
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title=":: 'pci_projects_project_failoverip_routedTo' | translate"
+                        data-property="instance.name"
+                        data-type="string"
+                        data-searchable
+                        data-filterable
+                    >
+                        <a
+                            data-ng-if="$row.instance"
+                            data-ui-sref="pci.projects.project.instances.instance({projectId : $ctrl.projectId, instanceId: $row.instance.id})"
+                            data-ng-bind="$row.instance.name"
+                        ></a>
+                    </oui-datagrid-column>
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            data-ui-sref="pci.projects.project.failover-ips.edit({ projectId: $ctrl.projectId, serviceName: $row.id })"
+                        >
+                            <span
+                                data-translate="pci_projects_project_failoverip_edit"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-href="{{:: $ctrl.FAILOVER_IPS_URL }}"
+                        >
+                            <span
+                                data-translate="pci_additional_ips_manage_network_security"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-href="{{:: $ctrl.FAILOVER_IPS_URL }}"
+                        >
+                            <span
+                                data-translate="pci_additional_ips_manage_ip_failover_service"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-datagrid>
+            </oui-tabs-item>
+        </oui-tabs>
     </div>
 </div>
