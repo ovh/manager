@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerDbaasLogsOnboardingLazyLoad';
+const moduleName = 'dbaasLogsOnboardingLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
