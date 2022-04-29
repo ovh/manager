@@ -53,6 +53,26 @@ export const LEGAL_FORM_ENUM = {
   BE: ['individual', 'corporation'],
 };
 
+const CORPORATION_FR = {
+  legalForm: true,
+  name: false,
+  legalConcept: true,
+  occupation: false,
+  siret: true,
+  tva: false,
+  ape: true,
+  socialNominationExtra: true,
+  email: true,
+  cedex: true,
+  universalDirectoryAvailable: true,
+  pjdenomination: true,
+  directoryServiceCode: true,
+  displayMarketingDirectory: true,
+  contactDisplayFirstName: false,
+  displayOnlyCity: false,
+  contactServiceDescription: true,
+};
+
 export const AVAILABLE_FIELDS = {
   FR: {
     individual: {
@@ -89,23 +109,13 @@ export const AVAILABLE_FIELDS = {
       contactServiceDescription: true,
     },
     corporation: {
-      legalForm: true,
-      name: false,
-      legalConcept: true,
-      occupation: false,
-      siret: true,
-      tva: false,
-      ape: true,
-      socialNominationExtra: true,
-      email: true,
-      cedex: true,
-      universalDirectoryAvailable: true,
-      pjdenomination: true,
-      directoryServiceCode: true,
-      displayMarketingDirectory: true,
-      contactDisplayFirstName: false,
-      displayOnlyCity: false,
-      contactServiceDescription: true,
+      ...CORPORATION_FR,
+    },
+    association: {
+      ...CORPORATION_FR,
+    },
+    other: {
+      ...CORPORATION_FR,
     },
   },
   BE: {
