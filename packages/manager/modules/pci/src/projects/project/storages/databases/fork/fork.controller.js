@@ -35,7 +35,6 @@ export default class {
   }
 
   $onInit() {
-    this.labAccepted = this.lab.isActivated();
     this.messageContainer = 'pci.projects.project.storages.databases.fork';
     this.loadMessages();
 
@@ -140,10 +139,6 @@ export default class {
       });
   }
 
-  acceptLab(accepted) {
-    this.labAccepted = accepted;
-  }
-
   loadMessages() {
     this.CucCloudMessage.unSubscribe(this.messageContainer);
     this.messageHandler = this.CucCloudMessage.subscribe(
@@ -222,14 +217,11 @@ export default class {
       'action',
       false,
     );
-    return this.DatabaseService.activateLab(this.projectId, this.lab)
-      .then(() =>
-        this.DatabaseService.createDatabase(
-          this.projectId,
-          this.model.engine.name,
-          this.orderData,
-        ),
-      )
+    return this.DatabaseService.createDatabase(
+      this.projectId,
+      this.model.engine.name,
+      this.orderData,
+    )
       .then((databaseInfo) => {
         this.trackDatabases(
           `config_fork_database_validated::${this.model.engine.name}`,
@@ -256,9 +248,5 @@ export default class {
         this.$anchorScroll('forkMessages');
         this.processingOrder = false;
       });
-  }
-
-  $onDestroy() {
-    this.DatabaseService.stopPollingLabActivationStatus(this.lab.id);
   }
 }

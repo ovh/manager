@@ -203,13 +203,6 @@
         data-order-api-url="$ctrl.getOrderAPIUrl()"
         data-user="$ctrl.user"
     ></pci-order-command>
-    <div class="mb-3">
-        <pci-project-lab-agreements
-            data-lab="$ctrl.lab"
-            data-ng-if="!$ctrl.lab.isActivated()"
-            data-on-accept="$ctrl.acceptLab(accepted)"
-        ></pci-project-lab-agreements>
-    </div>
     <div data-ng-if="$ctrl.processingOrder">
         <oui-spinner data-size="s"></oui-spinner>
         <span
