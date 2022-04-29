@@ -6,6 +6,7 @@ import { debounce } from 'lodash-es';
 import popoverStyle from '@/container/common/popover.module.scss';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { ONBOARDING_STATUS_ENUM } from '@/core/onboarding';
+import { useShell } from '@/context';
 
 import style from './style.module.scss';
 
@@ -19,6 +20,10 @@ export const OnboardingWalkMe = () => {
   const popoverElement = useRef();
   const [arrowPlacement, setArrowPlacement] = useState();
   const [popperInstance, setPopperInstance] = useState();
+  const user = useShell()
+    .getPlugin('environment')
+    .getEnvironment()
+    .getUser();
 
   const {
     closeOnboarding,
@@ -77,13 +82,17 @@ export const OnboardingWalkMe = () => {
         }
       },
     },
-    {
-      selector: '#sidebar-link-billing',
-      placement: 'right-start',
-      mobilePlacement: 'bottom-end',
-      title: t('onboarding_walkme_popover_step5_title'),
-      content: t('onboarding_walkme_popover_step5_content'),
-    },
+    ...(!user.enterprise
+      ? [
+          {
+            selector: '#sidebar-link-billing',
+            placement: 'right-start',
+            mobilePlacement: 'bottom-end',
+            title: t('onboarding_walkme_popover_step5_title'),
+            content: t('onboarding_walkme_popover_step5_content'),
+          },
+        ]
+      : []),
   ];
 
   const onHideBtnClick = (onboardingStatus) => {
