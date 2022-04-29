@@ -32,9 +32,9 @@ export const WAY_NUMBER_EXTRA = [
 ];
 
 export const DIRECTORY_WAY_NUMBER_EXTRA_ENUM = {
-  BE: ['', 'A', 'B', 'C', ...WAY_NUMBER_EXTRA],
+  BE: ['&nbsp;', 'A', 'B', 'C', ...WAY_NUMBER_EXTRA],
   OTHER: [
-    '',
+    '&nbsp;',
     'bis',
     'ter',
     'quater',

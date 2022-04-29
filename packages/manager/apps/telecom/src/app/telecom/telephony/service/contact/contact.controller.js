@@ -381,6 +381,12 @@ export default class TelecomTelephonyServiceContactCtrl {
     if (this.directoryForm.legalForm !== 'individual') {
       this.directoryForm.PJSocialNomination = this.directoryForm.socialNomination;
     }
+
+    this.directoryForm.wayNumberExtra = this.directoryForm.wayNumberExtra.replace(
+      /&nbsp;/g,
+      '',
+    );
+
     const modified = assign(this.directory, this.directoryForm);
     this.isUpdating = true;
 
