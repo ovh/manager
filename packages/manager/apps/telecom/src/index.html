@@ -70,7 +70,7 @@
                         <div class="row h-100">
                             <!-- SIDE MENU -->
                             <ovh-manager-server-sidebar
-                                data-ng-if="$ctrl.sidebarUniverse"
+                                data-ng-if="$ctrl.sidebarUniverse && !$ctrl.isMenuSidebarVisible"
                                 universe="$ctrl.sidebarUniverse"
                             >
                             </ovh-manager-server-sidebar>
@@ -78,7 +78,11 @@
                             <!-- CONTENT -->
                             <div
                                 id="content"
-                                class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 h-100"
+                                class="col-lg-10 col-lg-offset-2 h-100"
+                                data-ng-class="{
+                                    'col-md-9': !$ctrl.isMenuSidebarVisible,
+                                    'col-md-offset-3': !$ctrl.isMenuSidebarVisible,
+                                }"
                                 style="overflow: auto;"
                             >
                                 <div class="position-absolute w-100">
