@@ -120,6 +120,7 @@ export default async (containerEl, shellClient) => {
         });
       },
     )
+    .constant('ovhShell', shellClient)
     .config(
       /* @ngInject */ (ovhFeatureFlippingProvider) => {
         ovhFeatureFlippingProvider.setApplicationName(
