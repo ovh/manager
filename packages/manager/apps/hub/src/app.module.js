@@ -83,9 +83,9 @@ export default async (containerEl, shellClient) => {
         'pascalprecht.translate',
         'ui.bootstrap',
         uiRouter,
-        isTopLevelApplication() ? ovhManagerCookiePolicy : '',
+        isTopLevelApplication() ? ovhManagerCookiePolicy : null,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
-      ].filter((module) => module && isString(module)),
+      ].filter(isString),
     )
     .config(
       /* @ngInject */ (coreConfigProvider) => {

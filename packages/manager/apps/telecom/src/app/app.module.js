@@ -106,6 +106,7 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
@@ -197,7 +198,7 @@ export default async (containerEl, shellClient) => {
         ovhManagerAccountMigration,
         ovhManagerBetaPreference,
         registerCoreModule(environment, coreCallbacks),
-        ovhManagerCookiePolicy,
+        isTopLevelApplication() ? ovhManagerCookiePolicy : null,
         ovhManagerDashboard,
         ovhManagerFreefax,
         ovhManagerNavbar,

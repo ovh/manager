@@ -113,6 +113,7 @@ import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ovhManagerNutanix from '@ovh-ux/manager-nutanix';
 import { pollingService } from '@ovh-ux/manager-bm-server-components';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import account from './account';
 import cdn from './cdn';
 import moduleLicense from './license';
@@ -167,7 +168,7 @@ export default async (containerEl, shellClient) => {
         registerCoreModule(environment, coreCallbacks),
         ovhManagerAtInternetConfiguration,
         ovhManagerBilling,
-        ovhManagerCookiePolicy,
+        isTopLevelApplication() ? ovhManagerCookiePolicy : null,
         chartjs,
         'controllers',
         cdn,
