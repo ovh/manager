@@ -19,7 +19,6 @@ type Props = {
   onUserAccountMenuToggle?(show: boolean): void;
 };
 
-
 function Header({
   isSidebarExpanded = false,
   onHamburgerMenuClick = () => {},

@@ -57,7 +57,7 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
       }
     }
 
-    onToggle({ show: isAccountSidebarOpened });
+    onToggle(isAccountSidebarOpened);
   }, [isAccountSidebarOpened]);
 
   useClickAway(ref, handleRootClose);
