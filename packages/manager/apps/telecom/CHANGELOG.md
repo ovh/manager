@@ -1,3 +1,12 @@
+## [13.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.38.0...@ovh-ux/manager-telecom@13.38.1) (2022-04-29)
+
+
+### Bug Fixes
+
+* remove extra column helpers on `<ovh-manager-server-sidebar>` ([#7009](https://github.com/ovh/manager/issues/7009)) ([f964c5e](https://github.com/ovh/manager/commit/f964c5ef2630dece3c24f4e722c4c4dc9a40af8d))
+
+
+
 # [13.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.37.1...@ovh-ux/manager-telecom@13.38.0) (2022-04-28)
 
 
