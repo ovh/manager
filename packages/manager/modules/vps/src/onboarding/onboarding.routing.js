@@ -6,6 +6,16 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       hideBreadcrumb: () => true,
+      resources: /* @ngInject */ ($http) =>
+        $http.get('/vps').then(({ data }) => data),
+    },
+    redirectTo: (transition) => {
+      return transition
+        .injector()
+        .getAsync('resources')
+        .then((resources) => {
+          return resources.length > 0 ? 'vps.index' : false;
+        });
     },
   });
 };
