@@ -10,11 +10,11 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
     $stateProvider.state('nasha.new.**', {
       url: '/new',
       lazyLoad: (transition) =>
-        import('./new.module').then((mod) =>
+        import('./new.module').then((module) =>
           transition
             .injector()
             .get('$ocLazyLoad')
-            .inject(mod.default || mod),
+            .inject(module.default),
         ),
     });
   },

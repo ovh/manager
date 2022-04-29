@@ -19,7 +19,6 @@ angular
     legend,
     spaceLeft,
   ])
-  .component('nashaComponentsSpaceMeter', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('nashaComponentsSpaceMeter', component);
 
 export default moduleName;

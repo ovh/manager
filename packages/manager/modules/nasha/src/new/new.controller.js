@@ -79,8 +79,8 @@ export default class NashaNewController {
     });
     this.CucCloudMessage.info(
       this.$translate.instant('nasha_new_datacenter_unavailable', {
-        region: this.$translate.instant('nasha_new_datacenter_gra'),
-        fallback: this.$translate.instant('nasha_new_datacenter_rbx'),
+        region: this.localizeDatacenter('gra'),
+        fallback: this.localizeDatacenter('rbx'),
       }),
     );
   }
