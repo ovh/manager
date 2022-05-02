@@ -9,6 +9,7 @@ import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back
 import NotificationsSidebar from '@/container/common/notifications-sidebar';
 import Notifications from '@/container/common/notifications-sidebar/NotificationsButton';
 import ApplicationContext, { useShell } from '@/context';
+import { useHeader } from '@/context/header';
 import { NotificationsProvider } from '@/core/notifications';
 
 import style from './style.module.scss';
@@ -29,6 +30,7 @@ function Header({
     shell.getPlugin('i18n').getLocale(),
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { setIsNotificationsSidebarVisible } = useHeader();
 
   return (
     <ApplicationContext.Consumer>
@@ -47,14 +49,20 @@ function Header({
             <div className="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end">
               <div className="oui-navbar-list__item">
                 <NavReshuffleSwitchBack
-                  onChange={(show: boolean) => setIsDropdownOpen(show)}
+                  onChange={(show: boolean) => {
+                    setIsDropdownOpen(show);
+                    setIsNotificationsSidebarVisible(false);
+                  }}
                 />
               </div>
               <div className="oui-navbar-list__item">
                 <LanguageMenu
                   setUserLocale={setUserLocale}
                   userLocale={userLocale}
-                  onChange={(show: boolean) => setIsDropdownOpen(show)}
+                  onChange={(show: boolean) => {
+                    setIsDropdownOpen(show);
+                    setIsNotificationsSidebarVisible(false);
+                  }}
                 ></LanguageMenu>
               </div>
               <div className="oui-navbar-list__item">
