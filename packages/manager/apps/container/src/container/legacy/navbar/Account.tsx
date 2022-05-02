@@ -22,11 +22,15 @@ function NavbarAccount({ user }: Props): JSX.Element {
     length: 10,
   });
 
-  const { setIsAccountSidebarVisible } = useHeader();
+  const {
+    setIsAccountSidebarVisible,
+    setIsNotificationsSidebarVisible,
+  } = useHeader();
 
   const toggleSidebar = () => {
     uxPlugin.toggleAccountSidebarVisibility();
     setIsAccountSidebarVisible(uxPlugin?.isAccountSidebarVisible());
+    setIsNotificationsSidebarVisible(false);
     shell.getPlugin('tracking').trackClick({
       name: 'navbar::action::user-bar',
       type: 'action',

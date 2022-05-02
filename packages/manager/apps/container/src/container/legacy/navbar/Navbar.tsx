@@ -17,6 +17,7 @@ import modalStyle from '@/container/common/modal.module.scss';
 import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
 import Notifications from '@/container/common/notifications-sidebar/NotificationsButton';
 import { useShell } from '@/context';
+import { useHeader } from '@/context/header';
 
 type Props = {
   environment: Environment;
@@ -33,6 +34,7 @@ function Navbar({ environment }: Props): JSX.Element {
   const [searchURL, setSearchURL] = useState();
   const [currentUniverse, setCurrentUniverse] = useState();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { setIsNotificationsSidebarVisible } = useHeader();
 
   useEffect(() => {
     let mounted = true;
@@ -84,14 +86,20 @@ function Navbar({ environment }: Props): JSX.Element {
           )}
           <div className="oui-navbar-list__item">
             <NavReshuffleSwitchBack
-              onChange={(show: boolean) => setIsDropdownOpen(show)}
+              onChange={(show: boolean) => {
+                setIsDropdownOpen(show);
+                setIsNotificationsSidebarVisible(false);
+              }}
             />
           </div>
           <div className="oui-navbar-list__item">
             <LanguageMenu
               setUserLocale={setUserLocale}
               userLocale={userLocale}
-              onChange={(show: boolean) => setIsDropdownOpen(show)}
+              onChange={(show: boolean) => {
+                setIsDropdownOpen(show);
+                setIsNotificationsSidebarVisible(false);
+              }}
             ></LanguageMenu>
           </div>
           <div className="oui-navbar-list__item">
