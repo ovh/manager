@@ -10,6 +10,7 @@ import useOnboarding from '@/core/onboarding';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import { useShell } from '@/context';
+import { useHeader } from '@/context/header';
 
 import style from './style.module.scss';
 
@@ -20,6 +21,7 @@ type Props = {
 export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
   const ref = useRef();
   const shell = useShell();
+  const { setIsNotificationsSidebarVisible } = useHeader();
 
   const environment = shell.getPlugin('environment').getEnvironment();
   const user = environment.getUser();
@@ -69,6 +71,7 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
         onClick={(nextShow) => {
           if (nextShow) {
             openAccountSidebar();
+            setIsNotificationsSidebarVisible(false);
           } else {
             closeAccountSidebar();
           }
