@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useReket } from '@ovh-ux/ovh-reket';
 
 import ContainerContext from './context';
@@ -21,27 +20,32 @@ export const ContainerProvider = ({ children }) => {
   // user choice about using or not the beta
   const [useBeta, setUseBeta] = useState(false);
 
+  const [isChatbotEnabled, setIsChatbotEnabled] = useState(false);
+
   let containerContext = useContext(ContainerContext);
 
-  /**
-   * Check in feature availability if the user is a beta tester
-   * and returns the beta version if it's the case.
-   */
-  const fetchBetaVersion = async () => {
+  const fetchFeatureAvailability = async () => {
     return reketInstance
-      .get(`/feature/pnr:betaV1,pnr:betaV2/availability`, {
+      .get(`/feature/chatbot,pnr:betaV1,pnr:betaV2/availability`, {
         requestType: 'aapi',
       })
       .then((value) => {
+        let version = null;
         if (value['pnr:betaV1'] === true) {
-          return BETA_V1;
+          version = BETA_V1;
         }
         if (value['pnr:betaV2'] === true) {
-          return BETA_V2;
+          version = BETA_V2;
         }
-        return null;
+        return {
+          version,
+          chatbot: !!value.chatbot,
+        };
       })
-      .finally(() => null);
+      .catch(() => ({
+        version: null,
+        chatbot: false,
+      }));
   };
 
   const fetchBetaChoice = async () => {
@@ -93,9 +97,10 @@ export const ContainerProvider = ({ children }) => {
    * to provide him the choice.
    */
   useEffect(() => {
-    fetchBetaVersion()
-      .then((version) => {
+    fetchFeatureAvailability()
+      .then(({ version, chatbot }) => {
         setBetaVersion(version);
+        setIsChatbotEnabled(chatbot);
         if (version) {
           return fetchBetaChoice();
         }
@@ -109,6 +114,7 @@ export const ContainerProvider = ({ children }) => {
     askBeta,
     betaVersion,
     useBeta,
+    isChatbotEnabled,
     isLoading,
     updateBetaChoice,
   };
@@ -118,10 +124,6 @@ export const ContainerProvider = ({ children }) => {
       {children}
     </ContainerContext.Provider>
   );
-};
-
-ContainerProvider.propTypes = {
-  children: PropTypes.any,
 };
 
 export default ContainerProvider;

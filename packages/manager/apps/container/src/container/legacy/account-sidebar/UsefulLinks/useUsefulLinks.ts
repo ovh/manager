@@ -2,10 +2,11 @@ import constants from './constants';
 import { UsefulLink } from './Link/usefulLink';
 
 import { useShell } from '@/context/useApplicationContext';
+import useContainer from '@/core/container';
 
 interface UseUsefulLinks {
   getUsefulLinks(): UsefulLink[];
-};
+}
 
 const useUsefulLinks = (): UseUsefulLinks => {
   const shell = useShell();
@@ -13,8 +14,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
   const environment = shell.getPlugin('environment').getEnvironment();
   const region = environment.getRegion();
   const user = environment.getUser();
-
-  const hasChatbot = true;
+  const { isChatbotEnabled } = useContainer();
 
   const getUsefulLinks = (): UsefulLink[] => {
     const trackingPrefix = 'hub::sidebar::useful-links';
@@ -25,7 +25,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
         tracking: `${trackingPrefix}::go-to-helpcenter`,
         icon: 'oui-icon oui-icon-lifebuoy_concept',
       },
-      ...(hasChatbot
+      ...(isChatbotEnabled
         ? [
             {
               id: 'chatbot',
