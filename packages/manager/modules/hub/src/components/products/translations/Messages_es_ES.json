@@ -64,5 +64,6 @@
   "manager_hub_products_see_less": "Ver menos servicios",
   "manager_hub_products_see_more": "Ver más servicios",
   "manager_hub_products_see_all": "Ver todo",
-  "manager_hub_products_NETAPP": "NetApp"
+  "manager_hub_products_NETAPP": "NetApp",
+  "manager_hub_products_EMAIL_EXCHANGE": "Microsoft Exchange"
 }
