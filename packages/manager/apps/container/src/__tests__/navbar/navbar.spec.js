@@ -23,7 +23,7 @@ const server = setupServer(
     },
   ),
   rest.get(
-    '/engine/2api/feature/pnr:betaV1,pnr:betaV2/availability',
+    '/engine/2api/feature/chatbot,pnr:betaV1,pnr:betaV2/availability',
     (req, res, ctx) => {
       return res(ctx.json({}));
     },
