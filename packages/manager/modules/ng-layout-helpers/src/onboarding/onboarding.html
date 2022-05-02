@@ -1,20 +1,19 @@
 <div class="container mx-0 px-0 manager-on-boarding-layout">
     <div class="row align-items-center">
-        <div
-            data-ng-class="{ 'w-100' : !$ctrl.imageSource, 'col-md-4': $ctrl.imageSource }"
-        >
-            <div
-                data-ng-class="{ 'placeholder p-5 d-flex justify-content-center' : !$ctrl.imageSource }"
-            >
+        <div class="w-100">
+            <div class="placeholder p-5 d-flex justify-content-center">
                 <img
                     data-ng-src="{{:: $ctrl.imageSource || $ctrl.placeholder }}"
                     data-ng-attr-alt="{{:: $ctrl.imageAlt }}"
                     alt
-                    data-ng-class="{ 'w-100' : $ctrl.imageSource }"
+                    data-ng-class="{ 'w-50' : $ctrl.imageSource }"
                 />
             </div>
         </div>
-        <div class="col-md-8" data-ng-transclude></div>
+        <div
+            class="w-100 justify-content-center description"
+            data-ng-transclude
+        ></div>
         <h2
             class="w-100 d-flex justify-content-center"
             data-ng-transclude="title"
