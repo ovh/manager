@@ -202,45 +202,23 @@
             </div>
 
             <!-- Step 6 -->
-            <h2>{{:: 'pci_database_add_step6_title' | translate }}</h2>
-            <pci-order-command
-                data-order-api-url="$ctrl.orderAPIUrl"
-                data-order-data="$ctrl.orderData"
-                data-parameter-keys="$ctrl.orderKeys"
-                data-user="$ctrl.user"
-                data-auto-height="true"
-            >
-                <p data-translate="pci_database_add_command_description"></p>
-                <a
-                    class="oui-link_icon"
-                    data-ng-href="{{:: $ctrl.apiGuideUrl }}"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    <span
-                        data-translate="pci_database_add_command_documentation_link"
-                    ></span>
-                    <span
-                        class="oui-icon oui-icon-external-link"
-                        aria-hidden="true"
-                    ></span>
-                </a>
-            </pci-order-command>
             <div
-                class="mb-3"
                 data-ng-if="$ctrl.model.engine.selectedVersion.status === 'BETA'"
             >
-                <pci-project-lab-agreements
-                    data-lab="$ctrl.lab"
-                    data-ng-if="!$ctrl.lab.isActivated()"
-                    data-on-accept="$ctrl.acceptLab(accepted)"
-                    data-on-contract-click="$ctrl.clickOnContract()"
-                ></pci-project-lab-agreements>
+                <h2>{{:: 'pci_database_add_step6_title' | translate }}</h2>
+                <div class="mb-3">
+                    <pci-project-lab-agreements
+                        data-lab="$ctrl.lab"
+                        data-ng-if="!$ctrl.lab.isActivated()"
+                        data-on-accept="$ctrl.acceptLab(accepted)"
+                        data-on-contract-click="$ctrl.clickOnContract()"
+                    ></pci-project-lab-agreements>
+                </div>
             </div>
         </form>
     </div>
     <div class="col-lg-3">
-        <div class="sticky-top mb-3">
+        <div class="order-summary sticky-top mb-3">
             <oui-tile
                 data-heading="{{:: 'pci_database_add_spec_heading' | translate }}"
             >
@@ -445,6 +423,16 @@
                                 ></span>
                             </div>
                         </div>
+                        <oui-button
+                            block
+                            on-click="$ctrl.goToCommand($ctrl.commandData)"
+                            class="mb-2 mt-2"
+                            icon-left="oui-icon-app-script_concept"
+                        >
+                            <span
+                                data-translate="pci_database_add_show_command"
+                            ></span>
+                        </oui-button>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition>

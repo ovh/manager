@@ -2,10 +2,13 @@
 <div>
     <ng-transclude></ng-transclude>
 </div>
-<tail-logs data-ng-class="{'overloader_height_tail_logs': $ctrl.autoHeight }">
-    <p data-ng-bind="$ctrl.orderApiUrl"></p>
+<div
+    class="command oui-color-p-000 p-2"
+    data-ng-class="{'overloader_height_tail_logs': $ctrl.autoHeight }"
+>
+    <p data-ng-bind="$ctrl.orderApiUrl" class="api-url monospace"></p>
     <p data-translate="pci_order_command_parameters"></p>
-    <pre data-ng-bind="$ctrl.getRequestData()"></pre>
+    <pre data-ng-bind="$ctrl.getRequestData()" class="monospace"></pre>
     <p>
         <span data-translate="pci_order_command_parameters_info"></span>
         <a
@@ -20,13 +23,13 @@
             class="row mb-2"
         >
             <dt
-                class="col-sm-3 font-weight-normal"
+                class="col-6 col-md-4 ont-weight-normal"
                 data-ng-bind="orderDataKey"
             ></dt>
             <dd
-                class="col-sm-9 my-auto"
+                class="col-6 col-md-8 my-auto"
                 data-translate="{{:: 'pci_order_command_parameters_info_' + $ctrl.constructor.formatKey(orderDataKey)}}"
             ></dd>
         </div>
     </dl>
-</tail-logs>
+</div>

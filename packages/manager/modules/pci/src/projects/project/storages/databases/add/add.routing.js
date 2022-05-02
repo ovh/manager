@@ -27,6 +27,11 @@ export default /* @ngInject */ ($stateProvider) => {
           set(newDatabases, database.id, true);
           return goToDatabase(database, message, type);
         }),
+      goToCommand: /* @ngInject */ ($state) => (data) => {
+        $state.go('pci.projects.project.storages.databases.add.command', {
+          data,
+        });
+      },
     },
   });
 };

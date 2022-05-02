@@ -163,6 +163,13 @@ export default class {
       )?.openstackId;
       this.orderData.subnetId = this.model.subnet?.id;
     }
+
+    this.commandData = {
+      orderAPIUrl: this.orderAPIUrl,
+      orderData: this.orderData,
+      orderKeys: this.orderKeys,
+      apiGuideUrl: this.apiGuideUrl,
+    };
   }
 
   onEngineChanged(engine) {

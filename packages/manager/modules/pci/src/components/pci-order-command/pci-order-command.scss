@@ -1,5 +1,16 @@
-.overloader_height_tail_logs {
-  .tail-logs:first-child {
-    height: auto;
+pci-order-command {
+  .overloader_height_tail_logs {
+    .tail-logs:first-child {
+      height: auto;
+    }
+  }
+  .command {
+    background-color: #122844;
+  }
+  .api-url {
+    word-break: break-all;
+  }
+  .monospace {
+    font-family: monospace;
   }
 }
