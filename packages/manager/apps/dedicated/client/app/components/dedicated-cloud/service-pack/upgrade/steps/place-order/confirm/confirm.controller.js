@@ -3,16 +3,20 @@ export default class {
   constructor(
     $translate,
     $uibModalInstance,
+    atInternet,
     hasDefaultMeansOfPayment,
     itemName,
     itemType,
     prices,
+    itemRef,
   ) {
     this.$translate = $translate;
     this.$uibModalInstance = $uibModalInstance;
+    this.atInternet = atInternet;
     this.hasDefaultMeansOfPayment = hasDefaultMeansOfPayment;
     this.itemName = itemName;
     this.itemType = itemType;
+    this.itemRef = itemRef;
     this.prices = prices;
   }
 
@@ -35,5 +39,22 @@ export default class {
 
     this.monthly =
       this.prices.monthly.exists && this.prices.monthly.display.substr(1);
+  }
+
+  onValid() {
+    this.atInternet.trackClick({
+      name: `dedicated::dedicatedCloud::details::servicePackUpgrade::basicOptions::confirm_${this.itemRef}`,
+      type: 'action',
+    });
+    this.$uibModalInstance.close();
+  }
+
+  onCancel() {
+    this.atInternet.trackClick({
+      name:
+        'dedicated::dedicatedCloud::details::servicePackUpgrade::basicOptions::cancel',
+      type: 'action',
+    });
+    this.$uibModalInstance.dismiss();
   }
 }

@@ -8,6 +8,7 @@ export default {
     productId: '<',
     datastoreId: '<',
     isGlobal: '<',
+    trackClick: '<',
   },
   controller,
   template,

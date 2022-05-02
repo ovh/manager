@@ -5,8 +5,11 @@ export const state = {
   name: 'app.dedicatedCloud.details.servicePackUpgrade.basicOptions',
   params: {
     activationType: 'basic',
+    isPremier: null,
   },
   resolve: {
+    isPremier: /* @ngInject */ ($transition$) =>
+      $transition$.params().isPremier,
     backButtonText: /* @ngInject */ ($translate) =>
       $translate.instant('ovhManagerPccServicePackUpgradeBasicOptions_header'),
     orderableServicePacks: /* @ngInject */ (

@@ -37,6 +37,11 @@ export default /* @ngInject */ ($stateProvider) => {
           { productId, range, upgradeCode },
         );
       },
+      onBasicOptionsUpgrade: /* @ngInject */ ($state) => (stateParams) =>
+        $state.go(
+          'app.dedicatedCloud.details.servicePackUpgrade.basicOptions',
+          stateParams,
+        ),
       breadcrumb: () => null,
     },
   });
