@@ -102,6 +102,7 @@
             data-label="{{:: 'dedicated_server_dashboard_upgrade_intervention_choose_date' | translate }}"
         >
             <oui-calendar
+                class="upgrade-intervention-calender"
                 data-model="$ctrl.interventionData.selectedDate"
                 data-min-date="$ctrl.interventionData.minDate"
                 data-on-change="$ctrl.onInterventionDateChange(selectedDates, dateStr)"
