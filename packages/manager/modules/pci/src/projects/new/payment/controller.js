@@ -401,6 +401,7 @@ export default class PciProjectNewPaymentCtrl {
           return null;
         })
         .finally(() => {
+          this.globalLoading.finalize = false;
           this.model.challenge.checking = false;
         });
     }
