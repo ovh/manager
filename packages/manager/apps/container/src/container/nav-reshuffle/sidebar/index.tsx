@@ -51,7 +51,9 @@ function Sidebar(): JSX.Element {
     const path = findPathToNode(navigationRoot, (node) => {
       if (!node?.routing) return false;
       const hashRegexp = new RegExp(
-        (node.routing.appHash || '#/').replace(/{[^}]+}/g, '[^/]+'),
+        (node.routing.hash || '/')
+          .replace(/^#/, '')
+          .replace(/{[^}]+}/g, '[^/]+'),
       );
       return node.routing.application === appId && hashRegexp.test(appHash);
     });
