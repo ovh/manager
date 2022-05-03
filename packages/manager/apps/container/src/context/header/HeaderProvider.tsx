@@ -14,10 +14,9 @@ export const HeaderProvider = ({ children = null }: Props): JSX.Element => {
 
   /* ----------- Account sidebar -----------*/
 
-  const [
-    isAccountSidebarVisible,
-    setIsAccountSidebarVisible,
-  ] = useState(uxPlugin.isAccountSidebarVisible());
+  const [isAccountSidebarVisible, setIsAccountSidebarVisible] = useState(
+    uxPlugin.isAccountSidebarVisible(),
+  );
   const isAccountSidebarLargeScreenDisplayForced = uxPlugin.isAccountSidebarLargeScreenDisplayForced();
 
   useEffect(() => {
@@ -26,10 +25,6 @@ export const HeaderProvider = ({ children = null }: Props): JSX.Element => {
     });
   }, []);
 
-  function toggleAccountSidebar() {
-    uxPlugin.toggleAccountSidebarVisibility();
-  }
-
   /* ----------- Notifications sidebar -----------*/
 
   const [
@@ -37,26 +32,24 @@ export const HeaderProvider = ({ children = null }: Props): JSX.Element => {
     setIsNotificationsSidebarVisible,
   ] = useState(uxPlugin.isNotificationsSidebarVisible());
 
+  const headerContext = {
+    isAccountSidebarVisible,
+    isAccountSidebarLargeScreenDisplayForced,
+    setIsAccountSidebarVisible,
+    isNotificationsSidebarVisible,
+    setIsNotificationsSidebarVisible,
+  };
+
   useEffect(() => {
     uxPlugin.onNotificationsSidebarVisibilityChange(() => {
-      setIsNotificationsSidebarVisible(uxPlugin.isNotificationsSidebarVisible());
+      setIsNotificationsSidebarVisible(
+        uxPlugin.isNotificationsSidebarVisible(),
+      );
     });
   }, []);
 
-  function toggleNotificationSidebar() {
-    uxPlugin.toggleNotificationsSidebarVisibility();
-  }
-
   return (
-    <HeaderContext.Provider
-      value={{
-        isAccountSidebarLargeScreenDisplayForced,
-        isAccountSidebarVisible,
-        isNotificationsSidebarVisible,
-        toggleAccountSidebar,
-        toggleNotificationSidebar,
-      }}
-    >
+    <HeaderContext.Provider value={headerContext}>
       {children}
     </HeaderContext.Provider>
   );
