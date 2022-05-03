@@ -1,3 +1,12 @@
+## [5.73.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.73.1...@ovh-ux/manager-pci@5.73.2) (2022-05-03)
+
+
+### Bug Fixes
+
+* remove lab from fork page ([#7004](https://github.com/ovh/manager/issues/7004)) ([3ef5715](https://github.com/ovh/manager/commit/3ef5715ac81410449022dc26b1c4bf28b171ecc2))
+
+
+
 ## [5.73.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.73.0...@ovh-ux/manager-pci@5.73.1) (2022-04-29)
 
 
