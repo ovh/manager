@@ -59,6 +59,7 @@ export default class {
 
   onNotebookStopClick(notebookId) {
     this.trackNotebooks('table::options_menu::pause_notebook');
-    return this.stopNotebook(notebookId);
+    const notebook = this.notebooks.find((n) => n.id === notebookId);
+    return this.goToStopNotebook(notebook);
   }
 }

@@ -69,7 +69,7 @@ export default /* @ngInject */ ($stateProvider) => {
           'pci.projects.project.notebooks.dashboard.general-information.stop-notebook',
           {
             projectId,
-            notebookId: notebook.id,
+            notebook,
           },
         ),
 

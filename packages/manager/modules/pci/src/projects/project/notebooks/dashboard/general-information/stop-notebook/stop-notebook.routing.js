@@ -1,30 +1,20 @@
-import Notebook from '../../../Notebook.class';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.notebooks.dashboard.general-information.stop-notebook',
     {
       url: '/stop-notebook',
+      params: { notebook: null },
       views: {
         modal: {
-          component: 'pciNotebooksNotebookDashboardNotebookStop',
+          component: 'pciNotebooksStopNotebook',
         },
       },
       layout: 'modal',
       resolve: {
+        notebook: /* @ngInject */ ($transition$) =>
+          $transition$.params().notebook,
         breadcrumb: () => null,
-
-        notebookId: /* @ngInject */ ($transition$) =>
-          $transition$.params().notebookId,
-
-        notebookModel: /* @ngInject */ (
-          projectId,
-          notebookId,
-          NotebookService,
-        ) => NotebookService.getNotebook(projectId, notebookId),
-
-        notebook: /* @ngInject */ (notebookModel) =>
-          new Notebook(notebookModel, null, null),
+        trackingPrefix: () => 'dashboard',
       },
     },
   );

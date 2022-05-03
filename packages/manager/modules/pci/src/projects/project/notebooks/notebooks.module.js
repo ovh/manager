@@ -13,6 +13,7 @@ import deleteNotebook from './delete-notebook';
 import onboarding from './onboarding';
 import routing from './notebooks.routing';
 import service from './notebooks.service';
+import stopNotebook from './stop-notebook';
 
 import './index.scss';
 
@@ -30,6 +31,7 @@ angular
     'ngOvhCloudUniverseComponents',
     'oui',
     'ui.router',
+    stopNotebook,
   ])
   .config(routing)
   .component('ovhManagerPciProjectNotebooks', component)
