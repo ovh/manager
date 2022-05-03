@@ -14,12 +14,12 @@ function NavbarNotifications(): JSX.Element {
 
   const {
     isNotificationsSidebarVisible,
-    toggleNotificationSidebar,
+    setIsNotificationsSidebarVisible,
   } = useHeader();
 
   function onClick(): void {
     const initialVisibilityState = isNotificationsSidebarVisible;
-    toggleNotificationSidebar();
+    setIsNotificationsSidebarVisible(!isNotificationsSidebarVisible);
     if (initialVisibilityState) {
       readAllNotifications();
     }
