@@ -60,7 +60,7 @@
   "pci_projects_project_training_jobs_submit_select_image_name": "Docker Image Name",
   "pci_projects_project_training_jobs_submit_select_image_info": "Need Jupyter or VS Code notebooks with your favourite AI frameworks, such as TensorFlow, PyTorch, and scikit-learn? You will now find them in the AI Notebooks section of your cloud project",
   "pci_projects_project_training_jobs_submitresources_proposed_title": "Available resources",
-  "pci_projects_project_training_jobs_submitresources_proposed_ram": "{{ram}} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_ram": "RAM: {{ram}}",
   "pci_projects_project_training_jobs_submitresources_proposed_storage": "Local storage: {{memory}} SSD",
   "pci_projects_project_training_jobs_submitresources_proposed_public_bandwidth": "Public network {{bandwidth}}/s",
   "pci_projects_project_training_jobs_submitresources_proposed_private_bandwidth": "Private network {{ bandwidth }}/s",
@@ -77,5 +77,10 @@
   "pci_projects_project_training_jobs_submit_select_ssh_add": "Add a new SSH public key",
   "pci_projects_project_training_jobs_submit_select_ssh_quantity": "{{numberOfSshKeys}}/{{maxSshKeys}} SSH keys",
   "pci_projects_project_training_jobs_submit_select_ssh_legend": "Public SSH key",
-  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Delete the attached SSH key"
+  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Delete the attached SSH key",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_cpu": "Model: {{description}}",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_gpu_ram": "{{nbResources}} × {{ram}} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_gpu_description": "{{nbResources}} × {{ description }}",
+  "pci_projects_project_training_jobs_submitresources_proposed_cpu": "CPU: {{vcores}} vCore",
+  "pci_projects_project_training_jobs_submitresources_proposed_cpu_plural": "CPU: {{vcores}} vCores"
 }

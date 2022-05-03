@@ -59,7 +59,7 @@
   "pci_projects_project_training_jobs_submit_select_image_name": "Nome dell'immagine Docker",
   "pci_projects_project_training_jobs_submit_select_image_info": "Hai bisogno di notebook Jupyter o VSCode con i tuoi framework di Intelligenza Artificiale preferiti come TensorFlow, PyTorch, scikit-learn? Puoi trovarli nella sezione AI Notebooks del tuo progetto Cloud",
   "pci_projects_project_training_jobs_submitresources_proposed_title": "Risorse proposte",
-  "pci_projects_project_training_jobs_submitresources_proposed_ram": "{{ ram }} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_ram": "RAM: {{ ram }}",
   "pci_projects_project_training_jobs_submitresources_proposed_storage": "Storage locale: {{ memory }} SSD",
   "pci_projects_project_training_jobs_submitresources_proposed_public_bandwidth": "Rete pubblica {{ bandwidth }}/s",
   "pci_projects_project_training_jobs_submitresources_proposed_private_bandwidth": "Rete privata {{ bandwidth }}/s",
@@ -77,5 +77,10 @@
   "pci_projects_project_training_jobs_submit_select_ssh_add": "Aggiungi una nuova chiave pubblica SSH",
   "pci_projects_project_training_jobs_submit_select_ssh_quantity": "{{ numberOfSshKeys }}/{{ maxSshKeys }} chiavi SSH",
   "pci_projects_project_training_jobs_submit_select_ssh_legend": "Chiave pubblica SSH",
-  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Elimina la chiave SSH associata"
+  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Elimina la chiave SSH associata",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_cpu": "Modello: {{description}}",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_gpu_ram": "{{nbResources}} × {{ ram }} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_gpu_description": "{{nbResources}} × {{ description }}",
+  "pci_projects_project_training_jobs_submitresources_proposed_cpu": "CPU: {{vcores}} vCore",
+  "pci_projects_project_training_jobs_submitresources_proposed_cpu_plural": "CPU: {{vcores}} vCore"
 }
