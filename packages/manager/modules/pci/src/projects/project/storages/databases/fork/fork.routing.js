@@ -11,10 +11,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_database_fork_title'),
-
-      lab: /* @ngInject */ (PciProjectLabsService, projectId) =>
-        PciProjectLabsService.getLabByName(projectId, 'databases'),
-
       backupInstance: /* @ngInject */ ($transition$) =>
         $transition$.params().backupInstance,
       database: /* @ngInject */ ($transition$) =>
