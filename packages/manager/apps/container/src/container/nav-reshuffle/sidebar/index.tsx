@@ -154,6 +154,19 @@ function Sidebar(): JSX.Element {
   }, [selectedPciProject]);
 
   /**
+   * Navigate to pci project dashboard when selecting a pci project
+   * in the sidebar
+   */
+  useEffect(() => {
+    if (isPciMenu && selectedPciProject) {
+      navigationPlugin.navigateTo(
+        'public-cloud',
+        `#/pci/projects/${selectedPciProject.project_id}`,
+      );
+    }
+  }, [isPciMenu, selectedPciProject]);
+
+  /**
    * Displayed menu items are the children of current navigation node
    * filtered by region if the attribute is provided
    */
