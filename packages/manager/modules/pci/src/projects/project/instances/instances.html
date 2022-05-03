@@ -67,7 +67,6 @@
                 data-ng-if="!$row.isDeleting()"
                 data-ng-href="{{:: $ctrl.instanceLink($row) }}"
                 data-ng-bind="$value"
-                target="_top"
             ></a>
             <span data-ng-if="$row.isDeleting()" data-ng-bind="$value"></span>
         </oui-datagrid-column>
