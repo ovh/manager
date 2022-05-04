@@ -1,3 +1,12 @@
+## [2.20.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.4...@ovh-ux/manager-vps@2.20.5) (2022-05-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1585] ([ea42ea8](https://github.com/ovh/manager/commit/ea42ea8328971cdd664e15fd9ed0874eb5ebdfbe))
+
+
+
 ## [2.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.3...@ovh-ux/manager-vps@2.20.4) (2022-04-26)
 
 

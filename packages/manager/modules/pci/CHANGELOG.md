@@ -1,3 +1,29 @@
+# [5.75.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.74.0...@ovh-ux/manager-pci@5.75.0) (2022-05-04)
+
+
+### Bug Fixes
+
+* avoid zindex conflict with languages dropdown ([#6964](https://github.com/ovh/manager/issues/6964)) ([7ac4591](https://github.com/ovh/manager/commit/7ac4591478a0a7c1f6561ef88b60ebaf85354bea))
+* **i18n:** add missing translations [CDS 1583] ([3a0fb54](https://github.com/ovh/manager/commit/3a0fb5498707da9053b0e00ed4ab756e82369043))
+* **i18n:** add missing translations [CDS 1585] ([ea42ea8](https://github.com/ovh/manager/commit/ea42ea8328971cdd664e15fd9ed0874eb5ebdfbe))
+* **i18n:** add missing translations [CDS 1586] ([b8b625b](https://github.com/ovh/manager/commit/b8b625b57603f09ecadba766e6d4ab418bf31729))
+* **i18n:** add missing translations [CDS 1590] ([f82f630](https://github.com/ovh/manager/commit/f82f63003ed78808900238d7991734c91ca52f8f))
+* **i18n:** add missing translations [CDS 1591] ([346f31e](https://github.com/ovh/manager/commit/346f31e71d3909407e995c5613aa154f02439f92))
+* **i18n:** add missing translations [CDS 1596] ([8bd2b7e](https://github.com/ovh/manager/commit/8bd2b7eeeda957669e992f1967d02062e8e16b27))
+* **i18n:** add missing translations [CDS 1598] ([aef711f](https://github.com/ovh/manager/commit/aef711f49f3620b13c6ac5974bf6bb16eb534cb3))
+* **i18n:** add missing translations [CDS 1603] ([061637b](https://github.com/ovh/manager/commit/061637ba185a15576264d34e00f9e41b784ba416))
+* **i18n:** add missing translations [CDS 1604] ([5edbcd6](https://github.com/ovh/manager/commit/5edbcd604af94451f86f580acb4b1dfb78e467e3))
+* **pci.notebooks:** display stop modal when stopping a notebook from list too ([#6831](https://github.com/ovh/manager/issues/6831)) ([0bb4926](https://github.com/ovh/manager/commit/0bb4926e75af7deb123ed44da70324f87926ab65))
+* **pci.training:** dynamic training resources ([#6963](https://github.com/ovh/manager/issues/6963)) ([4bf97c9](https://github.com/ovh/manager/commit/4bf97c992f72d4b47ba8aa55050f90712fdb8d16))
+* remove unused translations [CDS] ([56b18fb](https://github.com/ovh/manager/commit/56b18fb5056653a2c48b851415f9692e2eef22c3))
+
+
+### Features
+
+* **pci:** remove region query [#8895](https://github.com/ovh/manager/issues/8895) ([#6849](https://github.com/ovh/manager/issues/6849)) ([5864f97](https://github.com/ovh/manager/commit/5864f97fb55664cdd0715d7a901c86a779150eea))
+
+
+
 # [5.74.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.73.2...@ovh-ux/manager-pci@5.74.0) (2022-05-04)
 
 

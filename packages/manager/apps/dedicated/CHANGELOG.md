@@ -1,3 +1,21 @@
+# [17.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.5...@ovh-ux/manager-dedicated@17.17.0) (2022-05-04)
+
+
+### Bug Fixes
+
+* **dedicated:** contact management menu missing ([#6873](https://github.com/ovh/manager/issues/6873)) ([cf8609e](https://github.com/ovh/manager/commit/cf8609e1fd7e6ba60418695af7ade8df1046f090))
+* **i18n:** add missing translations [CDS 1588] ([90df78b](https://github.com/ovh/manager/commit/90df78b6c54a025f32914b1288124e9459450c7e))
+* **i18n:** add missing translations [CDS 1592] ([80e3031](https://github.com/ovh/manager/commit/80e3031eb0eac4b02fe0a1ddb38bef1d6700b50a))
+
+
+### Features
+
+* **dedicated:** add gateway ip in network tile ([f38386a](https://github.com/ovh/manager/commit/f38386a9c5506c4cb7a684abef20eaddda7ea392))
+* **dedicated.server:** display RTM EOL info ([a13a479](https://github.com/ovh/manager/commit/a13a4791808bc3ecf650f398c6b37b092811ff9c))
+* **pcc:** pcc migration without nsx ([#6235](https://github.com/ovh/manager/issues/6235)) ([a35aa85](https://github.com/ovh/manager/commit/a35aa8560cc692946bc6e471e76b7278450ea745))
+
+
+
 ## [17.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.4...@ovh-ux/manager-dedicated@17.16.5) (2022-04-26)
 
 
