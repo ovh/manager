@@ -448,15 +448,6 @@ export default {
                 hash: '#/dbaas/logs',
               },
             },
-            {
-              id: 'pci-analytics-data-platform',
-              translation: 'sidebar_pci_ai_analytics_data_platform',
-              serviceType: 'ANALYTICS_PLATFORMS',
-              routing: {
-                application: 'public-cloud',
-                hash: '#/pci/projects/{projectId}/analytics-data-platform',
-              },
-            },
           ],
         },
         {
