@@ -5,7 +5,6 @@ import useClickAway from 'react-use/lib/useClickAway';
 
 import NavReshuffleSwitchBackModal from './Modal';
 
-import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import useContainer from '@/core/container';
 
 type Props = {
@@ -29,12 +28,21 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
 
   useClickAway(ref, () => setShow(false));
 
+  const switchBack = () => {
+    window.open(
+      'https://survey.ovh.com/index.php/813778',
+      '_blank',
+      'noopener',
+    );
+    updateBetaChoice(false);
+  };
+
   return (
     <>
       {confirm && (
         <NavReshuffleSwitchBackModal
           onCancel={() => setConfirm(false)}
-          onConfirm={() => updateBetaChoice(false)}
+          onConfirm={() => switchBack()}
         />
       )}
       <div className="oui-navbar-dropdown" ref={ref}>
