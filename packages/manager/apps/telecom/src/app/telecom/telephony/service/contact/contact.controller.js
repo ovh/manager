@@ -407,6 +407,13 @@ export default class TelecomTelephonyServiceContactCtrl {
       });
   }
 
+  filterServices() {
+    return (services) =>
+      services.filter(({ country }) =>
+        this.directory.country.includes(country),
+      );
+  }
+
   getBulkParams() {
     return () => {
       return pickBy(
