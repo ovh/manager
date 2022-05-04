@@ -8,21 +8,23 @@
 </oui-checkbox>
 
 <ul>
-    <li data-ng-repeat="contract in $ctrl.contracts track by $index">
+    <li data-ng-repeat="contract in $ctrl.contracts track by $index"
+        data-ng-class="{'d-inline': $ctrl.inlineContracts }"
+    >
         <a
             class="oui-link_icon"
             data-ng-href="{{ contract.url }}"
             rel="noopener"
             target="_blank"
         >
-            <span data-ng-bind="contract.name"></span>
-            <span
-                class="oui-icon oui-icon_external-link"
-                aria-hidden="true"
+            <span data-ng-bind="contract.name"
+            >
+            </span>
+            <span class="m-0 oui-icon oui-icon-external-link"
+                  aria-hidden="true"
             ></span>
-            <span
-                class="sr-only"
-                data-translate="order_contracts_label_new_tab"
+            <span class="sr-only"
+                  data-translate="order_contracts_label_new_tab"
             ></span>
         </a>
     </li>
