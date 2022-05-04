@@ -15,6 +15,11 @@ import { ContainerProvider } from '@/core/container';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './index.scss';
 
+// avoid container inception
+if (window.top !== window.self) {
+  window.top.location.href = window.self.location.href;
+}
+
 initSso();
 
 shellApi.initShell().then((shell) => {
