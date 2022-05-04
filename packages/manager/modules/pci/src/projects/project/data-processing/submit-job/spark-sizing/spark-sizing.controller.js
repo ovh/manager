@@ -2,7 +2,7 @@ import { MEMORY_OVERHEAD_RATIO, GIB_IN_MIB } from './spark-sizing.constants';
 
 export default class {
   /* @ngInject */
-  constructor(dataProcessingService) {
+  constructor(dataProcessingService, $scope) {
     // let's do some bindings
     this.onClickAdvancedConfigurationHandler = this.onClickAdvancedConfigurationHandler.bind(
       this,
@@ -12,6 +12,7 @@ export default class {
     this.driverTemplates = null;
     this.workerTemplates = null;
     this.dataProcessingService = dataProcessingService;
+    this.$scope = $scope;
   }
 
   $onInit() {
@@ -41,6 +42,14 @@ export default class {
     };
     // update overhead memory from template
     this.updateStateFromTemplate();
+
+    this.$scope.$watch(
+      '$ctrl.state',
+      () => {
+        this.$onChanges();
+      },
+      true,
+    );
   }
 
   /**
@@ -49,12 +58,14 @@ export default class {
    * Parent must use `validate` binding to trigger changes.
    */
   $onChanges() {
-    Object.assign(this.values, this.state);
-    if (this.templates) {
-      this.driverTemplates = this.templates;
-      this.workerTemplates = this.templates;
-      if (!this.state.advancedSizing) {
-        this.updateStateFromTemplate();
+    if (this.state.driverTemplate) {
+      Object.assign(this.values, this.state);
+      if (this.templates) {
+        this.driverTemplates = this.templates;
+        this.workerTemplates = this.templates;
+        if (!this.state.advancedSizing) {
+          this.updateStateFromTemplate();
+        }
       }
     }
   }
