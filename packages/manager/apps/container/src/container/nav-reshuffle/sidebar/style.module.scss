@@ -29,6 +29,7 @@
       display: inline-block;
       width: 100%;
       border-bottom: 1px solid #0050d7bf;
+      outline: none;
     }
 
     a:hover {
@@ -69,6 +70,7 @@
       text-align: center;
       line-height: 2.5rem;
       border-radius: 0.5rem;
+      outline: none;
     }
 
     a:hover {
@@ -118,6 +120,10 @@
 
   &_filler {
     flex-grow: 1;
+  }
+
+  &_selected {
+    background-color: black;
   }
 
   select {
