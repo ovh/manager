@@ -38,8 +38,9 @@ const UserAccountMenu = ({
       .trackClick('topnav::user_widget::give_feedback');
   };
 
-  // @todo: use navigation plugin instead
-  const myAccountLink = buildURL('dedicated', '#/useraccount/dashboard');
+  const myAccountLink = shell
+    .getPlugin('navigation')
+    .getURL('dedicated', '#/useraccount/dashboard');
 
   return (
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>
