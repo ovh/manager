@@ -481,5 +481,6 @@
   "privateDatabase_tabs_list_extensions_disable_success": "Extensão desativada",
   "privateDatabase_tabs_list_extensions_disable_error": "Erro ao processar desativação da extensão",
   "privateDatabase_order_sql_period_sub_title": "Durante quanto tempo deseja utilizá-las?",
-  "privateDatabase_configuration_field_sql_mode": "A opção \"sql_mode\" afeta a sintaxe SQL e os controlos de validação dos dados efetuados por MySQL/MariaDB."
+  "privateDatabase_configuration_field_sql_mode": "A opção \"sql_mode\" afeta a sintaxe SQL e os controlos de validação dos dados efetuados por MySQL/MariaDB.",
+  "privateDatabase_configuration_documentation": "Saber mais sobre estas opções"
 }

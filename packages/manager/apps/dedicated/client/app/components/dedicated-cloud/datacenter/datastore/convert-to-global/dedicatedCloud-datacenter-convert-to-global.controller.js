@@ -15,6 +15,10 @@ export default class {
   }
 
   convertToGlobal() {
+    this.trackClick(
+      'datacenter::details::datastores::convertToGlobal::confirm',
+    );
+
     this.loading = true;
 
     const convertToGlobalPromise =
@@ -51,5 +55,10 @@ export default class {
       .finally(() => {
         this.loading = false;
       });
+  }
+
+  onCancel() {
+    this.trackClick('datacenter::details::datastores::convertToGlobal::cancel');
+    return this.goBack();
   }
 }

@@ -59,7 +59,7 @@
   "pci_projects_project_training_jobs_submit_select_image_name": "Nombre de la imagen Docker",
   "pci_projects_project_training_jobs_submit_select_image_info": "¿Necesita notebooks Jupyter o VS Code con sus frameworks AI preferidos como TensorFlow, PyTorch o Scikit-learn? Los encontrará en la sección AI Notebooks de su proyecto cloud.",
   "pci_projects_project_training_jobs_submitresources_proposed_title": "Recursos propuestos",
-  "pci_projects_project_training_jobs_submitresources_proposed_ram": "{{ ram }} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_ram": "RAM: {{ ram }}",
   "pci_projects_project_training_jobs_submitresources_proposed_storage": "Almacenamiento local: {{ memory }} SSD",
   "pci_projects_project_training_jobs_submitresources_proposed_public_bandwidth": "Red pública {{ bandwidth }}/s",
   "pci_projects_project_training_jobs_submitresources_proposed_private_bandwidth": "Red privada {{ bandwidth }}/s",
@@ -77,5 +77,10 @@
   "pci_projects_project_training_jobs_submit_select_ssh_add": "Añadir una nueva clave pública SSH",
   "pci_projects_project_training_jobs_submit_select_ssh_quantity": "{{ numberOfSshKeys }}/{{ maxSshKeys }} clave(s) SSH",
   "pci_projects_project_training_jobs_submit_select_ssh_legend": "Clave pública SSH",
-  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Eliminar la clave SSH asociada"
+  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Eliminar la clave SSH asociada",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_cpu": "Modelo: {{description}}",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_gpu_ram": "{{nbResources}} × {{ ram }} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_gpu_description": "{{nbResources}} × {{ description }}",
+  "pci_projects_project_training_jobs_submitresources_proposed_cpu": "CPU: {{vcores}} vCore",
+  "pci_projects_project_training_jobs_submitresources_proposed_cpu_plural": "CPU: {{vcores}} vCores"
 }

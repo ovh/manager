@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-export default class PciNotebookNotebookStopController {
+export default class PciNotebooksStopNotebookController {
   /* @ngInject */
   constructor($translate, NotebookService) {
     this.$translate = $translate;
@@ -12,7 +12,7 @@ export default class PciNotebookNotebookStopController {
   }
 
   onStopNotebookConfirmClick() {
-    this.trackNotebooks('dashboard::stop_notebook_confirm');
+    this.trackNotebooks(`${this.trackingPrefix}::stop_notebook_confirm`);
 
     this.isLoading = true;
     return this.NotebookService.stopNotebook(this.projectId, this.notebook.id)
@@ -36,7 +36,7 @@ export default class PciNotebookNotebookStopController {
   }
 
   onStopNotebookCancelClick() {
-    this.trackNotebooks('dashboard::stop_notebook_cancel');
+    this.trackNotebooks(`${this.trackingPrefix}::stop_notebook_cancel`);
     return this.goBack();
   }
 }

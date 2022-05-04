@@ -6,9 +6,9 @@ export default {
   template,
   bindings: {
     goBack: '<',
-    goToNotebooks: '<',
     notebook: '<',
     projectId: '<',
     trackNotebooks: '<',
+    trackingPrefix: '<',
   },
 };

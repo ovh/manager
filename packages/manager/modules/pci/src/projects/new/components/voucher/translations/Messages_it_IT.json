@@ -1,5 +1,5 @@
 {
-  "pci_projects_new_voucher_question": "Hai un voucher?",
+  "pci_projects_new_voucher_question": "Voucher",
   "pci_projects_new_voucher_form_field": "Inserisci un voucher",
   "pci_projects_new_voucher_form_field_amount": "Importo accreditato: {{ amount }}",
   "pci_projects_new_voucher_form_field_error_invalid": "Il codice inserito non è corretto.",

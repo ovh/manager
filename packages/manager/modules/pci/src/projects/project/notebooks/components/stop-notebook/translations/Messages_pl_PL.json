@@ -2,7 +2,6 @@
   "pci_notebooks_stop_notebook_title": "Zatrzymanie notebooka",
   "pci_notebooks_stop_notebook_submit_label": "Zatwierdź",
   "pci_notebooks_stop_notebook_cancel_label": "Anuluj",
-  "pci_notebooks_stop_notebook_content": "Czy na pewno chcesz zatrzymać Twój notebook {{ notebook }}?",
   "pci_notebooks_stop_notebook_success": "Twój notebook został zatrzymany",
   "pci_notebooks_stop_notebook_error": "Wystąpił błąd podczas zatrzymywania notebooka {{notebook}}: {{message}}",
   "pci_notebooks_stop_notebook_content_1": "Po zatrzymaniu AI Notebook: ",

@@ -59,7 +59,7 @@
   "pci_projects_project_training_jobs_submit_select_image_name": "Nome da imagem Docker",
   "pci_projects_project_training_jobs_submit_select_image_info": "Precisa de notebooks Jupyter ou VSCode com os seus frameworks AI preferidos tais como TensorFlow, PyTorch, scikit-learn? Já os pode encontrar na secção AI Notebooks do seu projeto cloud",
   "pci_projects_project_training_jobs_submitresources_proposed_title": "Recursos disponíveis",
-  "pci_projects_project_training_jobs_submitresources_proposed_ram": "{{ ram }} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_ram": "RAM: {{ ram }}",
   "pci_projects_project_training_jobs_submitresources_proposed_storage": "Armazenamento local: {{ memory }} SSD",
   "pci_projects_project_training_jobs_submitresources_proposed_public_bandwidth": "Rede pública {{ bandwidth }}/s",
   "pci_projects_project_training_jobs_submitresources_proposed_private_bandwidth": "Rede Ppivada {{ bandwidth }}/s",
@@ -77,5 +77,10 @@
   "pci_projects_project_training_jobs_submit_select_ssh_add": "Adicionar uma nova chave pública SSH",
   "pci_projects_project_training_jobs_submit_select_ssh_quantity": "{{ numberOfSshKeys }} / {{ maxSshKeys }} chave(s) SSH",
   "pci_projects_project_training_jobs_submit_select_ssh_legend": "Chave pública SSH",
-  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Eliminar a chave SSH associada"
+  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Eliminar a chave SSH associada",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_cpu": "Modelo: {{description}}",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_gpu_ram": "{{nbResources}} × {{ ram }} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_gpu_description": "{{nbResources}} × {{ description }}",
+  "pci_projects_project_training_jobs_submitresources_proposed_cpu": "CPU: {{vcores}} vCore",
+  "pci_projects_project_training_jobs_submitresources_proposed_cpu_plural": "CPU: {{vcores}} vCores"
 }

@@ -362,6 +362,7 @@
   "server_configuration_reverse_not_configured": "Non configuré",
   "server_configuration_reverse_edit_button": "Modifier",
   "server_configuration_ipv4": "Ipv4",
+  "server_configuration_gateway_ip": "Gateway IPv4",
   "server_configuration_ipv6": "Ipv6",
   "server_configuration_ipv4_manage": "Gérer",
   "server_configuration_secondary_dns_fail": "Une erreur est survenue lors du chargement des informations du DNS secondaire",
@@ -1203,5 +1204,6 @@
   "server_configuration_intervention_activate_failed": "Une erreur est survenue lors de l'activation des interventions sur site sur le serveur {{serverName}}",
   "server_nutanix_cluster_node_warning_1": "Ce serveur dédié fait partie d'un cluster Nutanix : {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "Nous vous recommandons d'effectuer tous vos changements de configuration directement dans le tableau de bord du serveur lié à votre cluster Nutanix : {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "Toutes les actions de facturation liées à ce serveur sont visibles sur votre cluster Nutanix : {{clusterDashboardLink}}"
+  "server_nutanix_cluster_node_warning_3": "Toutes les actions de facturation liées à ce serveur sont visibles sur votre cluster Nutanix : {{clusterDashboardLink}}",
+  "server_rtm_eol_info": "Information importante relative à l’obsolescence du service Real Time Monitoring – le service continuera de fonctionner jusqu’au 30 juin 2022. Après cette date, nous procéderons à l’arrêt de l’affichage de vos données de consommation, et ce sans impact sur le fonctionnement de votre serveur."
 }

@@ -74,6 +74,8 @@
         on-error="$ctrl.onBillingInformationError(error)"
         service-path="{{ ::'/storage/netapp/' + $ctrl.storage.id }}"
         with-engagement="$ctrl.isCommitmentAvailable"
+        tracking-prefix="netapp::dashboard"
+        commit-impression-data=":: $ctrl.commitImpressionData"
     >
     </billing-subscription-tile>
 </div>

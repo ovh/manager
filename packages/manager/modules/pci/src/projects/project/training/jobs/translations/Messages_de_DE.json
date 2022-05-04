@@ -59,7 +59,7 @@
   "pci_projects_project_training_jobs_submit_select_image_name": "Name des Docker Images",
   "pci_projects_project_training_jobs_submit_select_image_info": "Brauchen Sie Notebooks mit Jupyter oder VSCode und den AI-Frameworks Ihrer Wahl wie TensorFlow, PyTorch oder scikit-learn? Diese Notebooks sind ab sofort verfügbar: im Bereich AI Notebooks Ihres Cloud Projekts.",
   "pci_projects_project_training_jobs_submitresources_proposed_title": "Vorgeschlagene Ressourcen",
-  "pci_projects_project_training_jobs_submitresources_proposed_ram": "{{ram}} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_ram": "RAM: {{ ram }}",
   "pci_projects_project_training_jobs_submitresources_proposed_storage": "Lokaler Speicher: {{ memory }} SSD",
   "pci_projects_project_training_jobs_submitresources_proposed_public_bandwidth": "Öffentliches Netzwerk {{ bandwidth }}/s",
   "pci_projects_project_training_jobs_submitresources_proposed_private_bandwidth": "Privates Netzwerk {{ bandwidth }}/s",
@@ -77,5 +77,10 @@
   "pci_projects_project_training_jobs_submit_select_ssh_add": "Einen neuen öffentlichen SSH-Schlüssel hinzufügen",
   "pci_projects_project_training_jobs_submit_select_ssh_quantity": "{{ numberOfSshKeys }} / {{ maxSshKeys }} SSH-Schlüssel",
   "pci_projects_project_training_jobs_submit_select_ssh_legend": "Öffentlicher SSH-Schlüssel",
-  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Den hinzugefügten SSH-Schlüssel löschen"
+  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Den hinzugefügten SSH-Schlüssel löschen",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_cpu": "Modell: {{description}}",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_gpu_ram": "{{nbResources}} × {{ ram }} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_gpu_description": "{{nbResources}} × {{ description }}",
+  "pci_projects_project_training_jobs_submitresources_proposed_cpu": "CPU: {{vcores}} vCore",
+  "pci_projects_project_training_jobs_submitresources_proposed_cpu_plural": "CPU: {{vcores}} vCores"
 }

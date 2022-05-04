@@ -95,6 +95,9 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
+      goBack: /* @ngInject */ (goToNotebooks) => (message, type) =>
+        goToNotebooks(message, type),
+
       goToNotebook: /* @ngInject */ ($state, CucCloudMessage, projectId) => (
         notebook,
         message = false,
@@ -124,6 +127,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToDeleteNotebook: /* @ngInject */ ($state, projectId) => (notebook) =>
         $state.go('pci.projects.project.notebooks.delete', {
+          projectId,
+          notebook,
+        }),
+
+      goToStopNotebook: /* @ngInject */ ($state, projectId) => (notebook) =>
+        $state.go('pci.projects.project.notebooks.stop-notebook', {
           projectId,
           notebook,
         }),

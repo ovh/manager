@@ -4,20 +4,11 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import component from './stop-notebook.component';
+import stopNotebook from '../../../components/stop-notebook';
 import routing from './stop-notebook.routing';
 
 const moduleName = 'ovhManagerPciNotebooksNotebookDashboardNotebookStop';
 
-angular
-  .module(moduleName, [
-    'ui.router',
-    'oui',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-  ])
-  .config(routing)
-  .component('pciNotebooksNotebookDashboardNotebookStop', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, ['ui.router', stopNotebook]).config(routing);
 
 export default moduleName;

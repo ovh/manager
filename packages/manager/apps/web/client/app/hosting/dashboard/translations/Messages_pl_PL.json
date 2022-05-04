@@ -1182,7 +1182,7 @@
   "hosting_action_config_rollback_success": "Modyfikacja późniejszej konfiguracji hostingu współdzielonego została zapisana.",
   "hosting_action_config_edit_choose_config": "Poprzedni wybór",
   "hosting_action_config_edit_engine_name": "Silnik",
-  "hosting_action_config_edit_engine_name_help": "PHP-CGI uruchamia FPM.",
+  "hosting_action_config_edit_engine_name_help": "PHP-CGI wyłącza FPM.",
   "hosting_action_config_edit_container_version": "Środowisko uruchomieniowe",
   "hosting_action_config_edit_container_version_enum_amd64_jessie": "Jessie.i386",
   "hosting_action_config_edit_container_version_enum_default_image": "Domyślnie",

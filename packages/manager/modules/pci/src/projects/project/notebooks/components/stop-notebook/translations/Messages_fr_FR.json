@@ -2,7 +2,7 @@
   "pci_notebooks_stop_notebook_title": "Arrêt du notebook",
   "pci_notebooks_stop_notebook_submit_label": "Confirmer",
   "pci_notebooks_stop_notebook_cancel_label": "Annuler",
-  "pci_notebooks_stop_notebook_success": "Votre notebook a bien été arrếté",
+  "pci_notebooks_stop_notebook_success": "Votre notebook a bien été arrêté",
   "pci_notebooks_stop_notebook_error": "Une erreur est survenue lors de l'arrêt du notebook {{ notebook }} : {{ message }}.",
   "pci_notebooks_stop_notebook_content_1": "Lorsque vous stoppez un AI Notebook : ",
   "pci_notebooks_stop_notebook_content_list_1": "Les ressources de calculs sont libérées (vous ne payez plus pour les CPUs et GPUs).",

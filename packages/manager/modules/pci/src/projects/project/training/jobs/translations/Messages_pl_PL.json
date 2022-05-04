@@ -59,7 +59,7 @@
   "pci_projects_project_training_jobs_submit_select_image_name": "Nazwa obrazu Docker",
   "pci_projects_project_training_jobs_submit_select_image_info": "Potrzebujesz notebooków Jupyter lub VSCode ze sprawdzonymi frameworkami AI, takimi jak TensorFlow, PyTorch, scikit-learn? Znajdziesz je teraz w sekcji AI Notebooks Twojego projektu cloud",
   "pci_projects_project_training_jobs_submitresources_proposed_title": "Proponowane zasoby",
-  "pci_projects_project_training_jobs_submitresources_proposed_ram": "{{ram}} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_ram": "RAM: {{ram}}",
   "pci_projects_project_training_jobs_submitresources_proposed_storage": "Lokalna przestrzeń dyskowa: {{memory}} SSD",
   "pci_projects_project_training_jobs_submitresources_proposed_public_bandwidth": "Sieć publiczna {{bandwidth}}/s",
   "pci_projects_project_training_jobs_submitresources_proposed_private_bandwidth": "Sieć prywatna {{bandwidth}}/s",
@@ -77,5 +77,10 @@
   "pci_projects_project_training_jobs_submit_select_ssh_add": "Dodaj nowy publiczny klucz SSH",
   "pci_projects_project_training_jobs_submit_select_ssh_quantity": "{{numberOfSshKeys}} / {{maxSshKeys}} kluczy SSH",
   "pci_projects_project_training_jobs_submit_select_ssh_legend": "Publiczny klucz SSH",
-  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Usuń przypisany klucz SSH"
+  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Usuń przypisany klucz SSH",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_cpu": "Model: {{description}}",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_gpu_ram": "{{nbResources}} × {{ram}} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_description_gpu_description": "{{nbResources}} × {{ description }}",
+  "pci_projects_project_training_jobs_submitresources_proposed_cpu": "CPU: {{vcores}} vCore",
+  "pci_projects_project_training_jobs_submitresources_proposed_cpu_plural": "CPU: {{vcores}} vCores"
 }
