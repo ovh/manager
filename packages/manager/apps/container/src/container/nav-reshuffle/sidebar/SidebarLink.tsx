@@ -11,12 +11,14 @@ type StaticLinkProps = {
   node?: unknown;
   linkParams?: Record<string, string>;
   id?: string;
+  onClick?(): void;
 };
 
 function StaticLink({
   count = 0,
   node = {},
   linkParams = {},
+  onClick = () => {},
   id = '',
 }: StaticLinkProps): JSX.Element {
   const { t } = useTranslation('sidebar');
@@ -53,6 +55,7 @@ function StaticLink({
   return (
     <a
       href={url}
+      onClick={onClick}
       target={node.isExternal ? '_blank' : '_top'}
       rel={node.isExternal ? 'noopener noreferrer' : ''}
       id={id}
@@ -91,8 +94,8 @@ function SidebarLink({
   id = '',
 }: SidebarLinkProps): JSX.Element {
   const { t } = useTranslation('sidebar');
-  return node.url || node.routing ? (
-    <StaticLink count={count} node={node} linkParams={linkParams} id={id} />
+  return !node.children && (node.url || node.routing) ? (
+    <StaticLink count={count} node={node} linkParams={linkParams} id={id} onClick={onClick} />
   ) : (
     <a onClick={onClick} id={id}>
       {t(node.translation)}
