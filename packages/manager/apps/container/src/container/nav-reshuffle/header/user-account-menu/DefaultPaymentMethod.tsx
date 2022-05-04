@@ -3,6 +3,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { buildURL } from '@ovh-ux/ufrontend';
 
+import { useShell } from '@/context';
+
 import style from './style.module.scss';
 
 type Props = {
@@ -17,7 +19,9 @@ const UserDefaultPaymentMethod = ({
   const { t } = useTranslation('user-account-menu');
 
   // @todo: use navigation plugin instead
-  const paymentMethodUrl = buildURL('dedicated', '#/billing/payment/method');
+  const paymentMethodUrl = useShell()
+    .getPlugin('navigation')
+    .getURL('dedicated', '#/useraccount/dashboard');
 
   return (
     <div
