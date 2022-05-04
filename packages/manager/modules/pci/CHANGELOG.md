@@ -1,3 +1,20 @@
+# [5.74.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.73.2...@ovh-ux/manager-pci@5.74.0) (2022-05-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1609] ([6aa959c](https://github.com/ovh/manager/commit/6aa959ca71d4eb00eb1f3e0ac1129c1c94fae0af))
+
+
+### Features
+
+* **pci.projects.new:** inline pci contracts ([c63aa21](https://github.com/ovh/manager/commit/c63aa2107597aab2c3cddbecac922d585214ec5d))
+* **pci.projects.new.payment:** allow new attempts in challenge mode ([9e4361e](https://github.com/ovh/manager/commit/9e4361e25f747f375b3d730aba4029cdccefcc84))
+* **pci.projects.new.payment:** improve default payment method part ([ea49aa4](https://github.com/ovh/manager/commit/ea49aa45ae26323caa9bb95640887c2f13a4f08f))
+* **pci.projects.new.payment:** tracking ([b8a7b21](https://github.com/ovh/manager/commit/b8a7b21d72e9a8cbeb566b865ca0791954a60da0))
+
+
+
 ## [5.73.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.73.1...@ovh-ux/manager-pci@5.73.2) (2022-05-03)
 
 
