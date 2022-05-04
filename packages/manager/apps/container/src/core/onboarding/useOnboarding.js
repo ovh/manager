@@ -1,5 +1,7 @@
 import { useReket } from '@ovh-ux/ovh-reket';
 
+import { isBetaForced } from '../container';
+
 import {
   ONBOARDING_STATUS_ENUM,
   ONBOARDING_OPENED_STATE_ENUM,
@@ -9,32 +11,53 @@ export const useOnboarding = () => {
   const reketInstance = useReket();
   const preferenceKey = 'NAV_RESHUFFLE_ONBOARDING';
 
+  const getOnboardingFromLocalStorage = () => {
+    return window.localStorage.getItem(preferenceKey);
+  };
+
+  const setOnboardingToLocalStorage = (value) => {
+    window.localStorage.setItem(preferenceKey, JSON.stringify(value));
+    return null;
+  };
+
   const createPreference = () => {
     const value = { status: ONBOARDING_STATUS_ENUM.DISPLAYED };
 
-    return reketInstance
-      .post(`/me/preferences/manager`, {
-        key: preferenceKey,
-        value: JSON.stringify(value),
-      })
-      .then(() => {
-        return value;
-      });
+    const createPromise = isBetaForced()
+      ? Promise.resolve(setOnboardingToLocalStorage(value))
+      : reketInstance.post(`/me/preferences/manager`, {
+          key: preferenceKey,
+          value: JSON.stringify(value),
+        });
+
+    return createPromise.then(() => value);
   };
 
   const updatePreference = (value) => {
-    return reketInstance
-      .put(`/me/preferences/manager/${preferenceKey}`, {
-        value: JSON.stringify(value),
-      })
-      .then(() => {
-        return value;
-      });
+    const updatePromise = isBetaForced()
+      ? Promise.resolve(setOnboardingToLocalStorage(value))
+      : reketInstance.put(`/me/preferences/manager/${preferenceKey}`, {
+          value: JSON.stringify(value),
+        });
+
+    return updatePromise.then(() => value);
   };
 
   const init = () => {
-    return reketInstance
-      .get(`/me/preferences/manager/${preferenceKey}`)
+    const getPreferencesPromise = isBetaForced()
+      ? new Promise((resolve, reject) => {
+          const localStorageValue = getOnboardingFromLocalStorage();
+          if (localStorageValue) {
+            resolve({ value: localStorageValue });
+          } else {
+            const error = new Error();
+            error.status = 404;
+            reject(error);
+          }
+        })
+      : reketInstance.get(`/me/preferences/manager/${preferenceKey}`);
+
+    return getPreferencesPromise
       .then(({ value }) => {
         try {
           return JSON.parse(value);

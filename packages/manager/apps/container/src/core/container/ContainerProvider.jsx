@@ -2,6 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
 
 import ContainerContext from './context';
+import {
+  getBetaAvailabilityFromLocalStorage,
+  setBetaAvailabilityToLocalStorage,
+  getBetaVersionFromLocalStorage,
+  isBetaForced,
+} from './localStorage';
 
 export const BETA_V1 = 1;
 export const BETA_V2 = 2;
@@ -25,23 +31,27 @@ export const ContainerProvider = ({ children }) => {
   let containerContext = useContext(ContainerContext);
 
   const fetchFeatureAvailability = async () => {
+    const getBetaVersion = (value) => {
+      if (isBetaForced()) {
+        return getBetaVersionFromLocalStorage();
+      }
+      if (value['pnr:betaV2']) {
+        return BETA_V2;
+      }
+      if (value['pnr:betaV1']) {
+        return BETA_V1;
+      }
+      return null;
+    };
+
     return reketInstance
       .get(`/feature/chatbot,pnr:betaV1,pnr:betaV2/availability`, {
         requestType: 'aapi',
       })
-      .then((value) => {
-        let version = null;
-        if (value['pnr:betaV1'] === true) {
-          version = BETA_V1;
-        }
-        if (value['pnr:betaV2'] === true) {
-          version = BETA_V2;
-        }
-        return {
-          version,
-          chatbot: !!value.chatbot,
-        };
-      })
+      .then((value) => ({
+        version: getBetaVersion(value),
+        chatbot: !!value.chatbot,
+      }))
       .catch(() => ({
         version: null,
         chatbot: false,
@@ -49,8 +59,12 @@ export const ContainerProvider = ({ children }) => {
   };
 
   const fetchBetaChoice = async () => {
-    return reketInstance
-      .get(`/me/preferences/manager/${preferenceKey}`)
+    const betaValue = getBetaAvailabilityFromLocalStorage();
+    const fetchPromise = betaValue
+      ? Promise.resolve({ value: betaValue })
+      : reketInstance.get(`/me/preferences/manager/${preferenceKey}`);
+
+    return fetchPromise
       .then(({ value }) => {
         setUseBeta(value === 'true');
       })
@@ -64,30 +78,34 @@ export const ContainerProvider = ({ children }) => {
   };
 
   const updateBetaChoice = async (accept = false) => {
-    return reketInstance
-      .put(`/me/preferences/manager/${preferenceKey}`, {
-        key: preferenceKey,
-        value: accept ? 'true' : 'false',
-      })
-      .then((result) => {
-        if (accept === false) {
-          // @TODO open new tab for survey
-        }
-        window.location.reload(false);
-        return result;
-      });
+    const updatePromise = isBetaForced()
+      ? Promise.resolve(setBetaAvailabilityToLocalStorage(accept))
+      : reketInstance.put(`/me/preferences/manager/${preferenceKey}`, {
+          key: preferenceKey,
+          value: accept.toString(),
+        });
+
+    return updatePromise.then((result) => {
+      if (!accept) {
+        // @TODO open new tab for survey
+      }
+      window.location.reload(false);
+      return result;
+    });
   };
 
   const createBetaChoice = async (accept = false) => {
-    return reketInstance
-      .post(`/me/preferences/manager`, {
-        key: preferenceKey,
-        value: accept ? 'true' : 'false',
-      })
-      .then((result) => {
-        window.location.reload(false);
-        return result;
-      });
+    const createPromise = isBetaForced()
+      ? Promise.resolve(setBetaAvailabilityToLocalStorage(accept))
+      : reketInstance.post(`/me/preferences/manager`, {
+          key: preferenceKey,
+          value: accept.toString(),
+        });
+
+    return createPromise.then((result) => {
+      window.location.reload(false);
+      return result;
+    });
   };
 
   /**
