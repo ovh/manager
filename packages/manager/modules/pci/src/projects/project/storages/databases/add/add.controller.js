@@ -177,6 +177,7 @@ export default class {
     this.model.engine = engine;
     this.model.plan = this.getSyncPlan(engine);
     this.onPlanChanged(this.model.plan);
+    this.model.name = this.nameGenerator(`${this.model.engine.name}-`);
   }
 
   onPlanChanged(plan) {
@@ -193,7 +194,6 @@ export default class {
 
   onFlavorChanged(flavor) {
     this.model.flavor = flavor;
-    this.model.name = this.nameGenerator(`${this.model.engine.name}-`);
 
     if (!flavor.supportsPrivateNetwork) {
       this.model.usePrivateNetwork = false;
