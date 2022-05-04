@@ -162,6 +162,7 @@ export default {
               serviceType: 'DEDICATEDCLOUD_VMWARE',
               routing: {
                 application: 'dedicated',
+                hash: '#/dedicated_cloud',
               },
             },
             {
