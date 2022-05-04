@@ -144,6 +144,51 @@ export default /* @ngInject */ ($stateProvider) => {
             );
       },
 
+      summary: /* @ngInject */ (
+        $q,
+        cart,
+        voucher,
+        getSummary,
+        pciProjectNew,
+      ) => {
+        return $q
+          .resolve()
+          .then(() => {
+            const cartVoucher = get(
+              cart,
+              'projectItem.voucherConfiguration.value',
+            );
+
+            return {
+              value: cartVoucher || voucher,
+              isInCart: !!cartVoucher,
+            };
+          })
+          .then((voucherInfo) => {
+            return voucherInfo.isInCart
+              ? pciProjectNew
+                  .removeCartProjectItemVoucher(cart)
+                  .then(() => voucherInfo)
+              : voucherInfo;
+          })
+          .then((voucherInfo) =>
+            getSummary().then((summary) => ({
+              summary,
+              voucherInfo,
+            })),
+          )
+          .then(({ voucherInfo, summary }) => {
+            return voucherInfo.value
+              ? pciProjectNew
+                  .setCartProjectItemVoucher(cart, voucherInfo.value)
+                  .then(() => summary)
+              : summary;
+          });
+      },
+
+      getSummary: /* @ngInject */ (cart, orderCart) => () =>
+        orderCart.getSummary(cart.cartId),
+
       voucher: /* @ngInject */ ($transition$) => {
         return $transition$.params().voucher;
       },
@@ -194,30 +239,16 @@ export default /* @ngInject */ ($stateProvider) => {
         };
 
         if (modelDef.voucher.value) {
-          return checkVoucherValidity(modelDef.voucher.value)
-            .then((eligibilityOpts) => {
+          return checkVoucherValidity(modelDef.voucher.value).then(
+            (eligibilityOpts) => {
               // update eligibility instance
               eligibility.setOptions(eligibilityOpts);
               // set some information to voucher model
               modelDef.voucher.setInfos(eligibilityOpts.voucher);
               // return the model
               return modelDef;
-            })
-            .then(() => {
-              const voucherCartPath = 'projectItem.voucherConfiguration.value';
-              const isVoucherInCart = !!get(cart, voucherCartPath);
-
-              return isVoucherInCart
-                ? pciProjectNew.removeCartProjectItemVoucher(cart)
-                : null;
-            })
-            .then(() => {
-              return pciProjectNew.setCartProjectItemVoucher(
-                cart,
-                modelDef.voucher.value,
-              );
-            })
-            .then(() => modelDef);
+            },
+          );
         }
 
         return modelDef;
