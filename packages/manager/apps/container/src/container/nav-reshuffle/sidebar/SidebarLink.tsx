@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
-import useProductNavReshuffle from '@/core/product-nav-reshuffle';
+import useContainer from '@/core/container';
 
 import style from './style.module.scss';
 
@@ -44,7 +44,7 @@ function StaticLink({
       url = url.replace(`{${paramName}}`, linkParams[paramName]);
     });
   }
-  const { betaVersion } = useProductNavReshuffle();
+  const { betaVersion } = useContainer();
 
   if (betaVersion === 2 && !count && node.count !== false) {
     return <></>;
