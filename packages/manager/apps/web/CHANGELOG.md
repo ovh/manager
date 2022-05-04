@@ -1,3 +1,19 @@
+# [16.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.10.0...@ovh-ux/manager-web@16.11.0) (2022-05-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1589] ([8489e83](https://github.com/ovh/manager/commit/8489e83a1fbc89f75acd38e8c1fd094e5199945d))
+* **i18n:** add missing translations [CDS 1600] ([#6999](https://github.com/ovh/manager/issues/6999)) ([4c3629e](https://github.com/ovh/manager/commit/4c3629e78647f9e570be01fa1a9a2b8e379c4a42))
+
+
+### Features
+
+* **private-database:** add link to configuration documentation ([#6764](https://github.com/ovh/manager/issues/6764)) ([a1c88fb](https://github.com/ovh/manager/commit/a1c88fbfad1362cb75eb478c3769303a91dfe7a0))
+* **web.domain:** add domain owner contact ([d9f883f](https://github.com/ovh/manager/commit/d9f883fe68bcfb7f7472ae5a9afda13c4589a2ef)), closes [#6731](https://github.com/ovh/manager/issues/6731)
+
+
+
 # [16.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.9.4...@ovh-ux/manager-web@16.10.0) (2022-04-21)
 
 

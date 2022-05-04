@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "17.16.5",
+  "version": "17.17.0",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -68,7 +68,7 @@
     "@ovh-ux/ng-ovh-browser-alert": "^2.0.4",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contacts": "^5.0.0",
-    "@ovh-ux/ng-ovh-contracts": "^4.0.7",
+    "@ovh-ux/ng-ovh-contracts": "^4.1.0",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.4",
     "@ovh-ux/ng-ovh-export-csv": "^2.0.4",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",

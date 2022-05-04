@@ -1,3 +1,13 @@
+## [3.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.1...@ovh-ux/manager-exchange@3.4.2) (2022-05-04)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([56b18fb](https://github.com/ovh/manager/commit/56b18fb5056653a2c48b851415f9692e2eef22c3))
+* **i18n:** add missing translations [CDS 1583] ([3a0fb54](https://github.com/ovh/manager/commit/3a0fb5498707da9053b0e00ed4ab756e82369043))
+
+
+
 ## [3.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.0...@ovh-ux/manager-exchange@3.4.1) (2022-04-26)
 
 
