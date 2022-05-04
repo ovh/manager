@@ -11,20 +11,25 @@ angular
   .module(moduleName, ['pascalprecht.translate'])
   .component('mfaEnrollment', component)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(($q, $state, OvhApiAuth) =>
+  .run(($q, $state, $location, OvhApiAuth) =>
     OvhApiAuth.v6()
       .shouldDisplayMFAEnrollment()
       .$promise.then((shouldDisplayMFA) => {
+        const { voucher, category, target } = $location.search();
+        const isRedirectionRequired = voucher || (category && target);
+
         if (
-          (shouldDisplayMFA.value === 'true' ||
-            shouldDisplayMFA.value === 'forced') &&
-          !alreadyShowMFA
+          !isRedirectionRequired &&
+          !alreadyShowMFA &&
+          ['true', 'forced'].includes(shouldDisplayMFA.value)
         ) {
           alreadyShowMFA = true;
-          $state.go('app.mfaEnrollment', {
+          return $state.go('app.mfaEnrollment', {
             forced: shouldDisplayMFA.value === 'forced',
           });
         }
+
+        return shouldDisplayMFA;
       })
       .catch(() => $q.resolve()),
   );
