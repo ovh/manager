@@ -64,3 +64,5 @@ export const SUBMIT_JOB_API_GUIDES = {
   QC: 'https://docs.ovh.com/gb/en/data-processing/use-api/',
   SG: 'https://docs.ovh.com/gb/en/data-processing/use-api/',
 };
+
+export const GIB_IN_MIB = 1024;

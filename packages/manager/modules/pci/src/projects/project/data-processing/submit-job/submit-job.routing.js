@@ -15,6 +15,23 @@ export default /* @ngInject */ ($stateProvider) =>
       prices: /* @ngInject */ (dataProcessingService, projectId) =>
         dataProcessingService.getPricesFromCatalog(projectId),
       user: /* @ngInject */ (SessionService) => SessionService.getUser(),
+      containers: /* @ngInject */ (PciStoragesContainersService, projectId) =>
+        PciStoragesContainersService.getAll(projectId),
+      goToObjectStorage: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.storages.object-storage.add', {
+          projectId,
+        }),
+      goToDashboard: /* @ngInject */ ($state, projectId) => (jobId) =>
+        $state.go(
+          'pci.projects.project.data-processing.job-details.dashboard',
+          {
+            projectId,
+            jobId,
+          },
+          {
+            reload: true,
+          },
+        ),
     },
     atInternet: {
       rename:

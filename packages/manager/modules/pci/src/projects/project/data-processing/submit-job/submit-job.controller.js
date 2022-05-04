@@ -1,6 +1,10 @@
 import { find } from 'lodash';
+import animateScrollTo from 'animated-scroll-to';
 import { API_GUIDES } from '../../project.constants';
-import { SUBMIT_JOB_API_GUIDES } from '../data-processing.constants';
+import {
+  SUBMIT_JOB_API_GUIDES,
+  GIB_IN_MIB,
+} from '../data-processing.constants';
 
 export default class {
   /* @ngInject */
@@ -42,6 +46,24 @@ export default class {
       API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
     this.submitJobGuideUrl =
       SUBMIT_JOB_API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
+
+    this.scrollToOptions = {
+      element: document.getElementsByClassName('pci-project-content')[0],
+      offset: 0,
+      horizontal: false,
+    };
+
+    this.$scope.$watch(
+      '$ctrl.state',
+      () => {
+        this.prepareJobPayload();
+      },
+      true,
+    );
+  }
+
+  scrollTo(id) {
+    animateScrollTo(document.getElementById(id), this.scrollToOptions);
   }
 
   /**
@@ -60,6 +82,7 @@ export default class {
       name: region,
       hasEnoughQuota: () => true,
     }));
+    this.onChangeRegionHandler(this.regions[0]);
   }
 
   /**
@@ -80,8 +103,9 @@ export default class {
    * Handler for region selector change
    * @param name Name of the selected region
    */
-  onChangeRegionHandler({ name }) {
-    this.state.region = name;
+  onChangeRegionHandler(region) {
+    this.state.region = region;
+    this.updateAvailableJobParameters();
   }
 
   /**
@@ -94,6 +118,7 @@ export default class {
       ...jobType,
       templates: e.templates,
     };
+    this.updateAvailableRegions();
   }
 
   onSubmitJobSizingHandler() {
@@ -137,7 +162,7 @@ export default class {
       engine: this.state.jobEngine.engine,
       engineVersion: this.state.jobEngine.version,
       name: this.state.jobConfig.jobName,
-      region: this.state.region,
+      region: this.state.region.name,
       engineParameters: [
         {
           name: 'main_application_code',
@@ -194,18 +219,19 @@ export default class {
   }
 
   onSubmitJobHandler() {
+    this.prepareJobPayload();
     const lastIndex = this.currentIndex;
     this.isSubmitting = true;
 
     this.dataProcessingService
       .submitJob(this.projectId, this.orderData)
-      .then(() => {
+      .then(({ data }) => {
         this.atInternet.trackClick({
           name:
             'public-cloud::pci::projects::project::data-processing::submit-job::submit',
           type: 'action',
         });
-        this.goBack();
+        this.goToDashboard(data.id);
       })
       .catch((error) => {
         if (
@@ -229,5 +255,55 @@ export default class {
         }
         this.submitRetries += 1;
       });
+  }
+
+  computePrice() {
+    const {
+      workerMemoryGb,
+      driverMemoryGb,
+      workerCount,
+      workerMemoryOverheadMb,
+      driverMemoryOverheadMb,
+      driverCores,
+      workerCores,
+    } = this.state.jobSizing;
+    const pricePerGiB = this.prices.memory.priceInUcents;
+    const pricePerCore = this.prices.core.priceInUcents;
+    return (
+      (workerMemoryGb + workerMemoryOverheadMb / GIB_IN_MIB) *
+        pricePerGiB *
+        workerCount +
+      (driverMemoryGb + driverMemoryOverheadMb / GIB_IN_MIB) * pricePerGiB +
+      (driverCores + workerCores * workerCount) * pricePerCore
+    );
+  }
+
+  /**
+   * Compute the estimated tax on the estimated price /min depending on job sizing.
+   * @return {number}
+   */
+  computeTax() {
+    const {
+      workerMemoryGb,
+      driverMemoryGb,
+      workerCount,
+      workerMemoryOverheadMb,
+      driverMemoryOverheadMb,
+      driverCores,
+      workerCores,
+    } = this.state.jobSizing;
+    const taxMemory = this.prices.memory.tax;
+    const taxCores = this.prices.core.tax;
+    return (
+      (workerMemoryGb + workerMemoryOverheadMb / GIB_IN_MIB) *
+        taxMemory *
+        workerCount +
+      (driverMemoryGb + driverMemoryOverheadMb / GIB_IN_MIB) * taxMemory +
+      (driverCores + workerCores * workerCount) * taxCores
+    );
+  }
+
+  getArgumentsList() {
+    return this.state.jobConfig.arguments.map((a) => a.title).join(' ');
   }
 }

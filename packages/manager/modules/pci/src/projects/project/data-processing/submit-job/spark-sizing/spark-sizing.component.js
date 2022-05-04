@@ -11,7 +11,5 @@ export default {
     templates: '<',
     jobParameters: '<',
     projectId: '<',
-    prices: '<',
-    user: '<',
   },
 };
