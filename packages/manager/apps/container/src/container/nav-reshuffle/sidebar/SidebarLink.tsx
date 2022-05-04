@@ -91,7 +91,7 @@ function SidebarLink({
   id = '',
 }: SidebarLinkProps): JSX.Element {
   const { t } = useTranslation('sidebar');
-  return node.url || node.routing ? (
+  return !node.children && (node.url || node.routing) ? (
     <StaticLink count={count} node={node} linkParams={linkParams} id={id} />
   ) : (
     <a onClick={onClick} id={id}>

@@ -1,6 +1,26 @@
 import { Node } from './navigation-tree/node';
 
 /**
+ * Initialize the tree by adding a parent attribute in each node
+ */
+export function initTree(node: Node, parentNode?: Node = null) {
+  if (node.children) {
+    const resultNode = {
+      ...node,
+      parent: parentNode,
+    };
+    resultNode.children = node.children.map((child) =>
+      initTree(child, resultNode),
+    );
+    return resultNode;
+  }
+  return {
+    ...node,
+    parent: parentNode,
+  };
+}
+
+/**
  * Given the servicesCount data, a navigation node and a list of node ids to exclude
  * traverse the navigation tree and sum the count of services for this navigation node
  */
@@ -63,8 +83,15 @@ export function findNodeById(rootNode: Node, id: string): Node {
  * Find path in the tree from rootNode to the node which comparatorFn(node) is truthy,
  * returns an array listing all the node making the path
  */
-export function findPathToNode(rootNode, comparatorFn) {
-  if (comparatorFn(rootNode)) {
+export function findPathToNode(rootNode: Node, comparatorFn: CallableFunction) {
+  const doCompare = (node: Node) => {
+    try {
+      return comparatorFn(node);
+    } catch {
+      return false;
+    }
+  };
+  if (doCompare(rootNode)) {
     return [rootNode];
   }
   if (rootNode && rootNode.children) {
@@ -78,4 +105,4 @@ export function findPathToNode(rootNode, comparatorFn) {
   return [];
 }
 
-export default { countServices, findNodeById, findPathToNode };
+export default { initTree, countServices, findNodeById, findPathToNode };

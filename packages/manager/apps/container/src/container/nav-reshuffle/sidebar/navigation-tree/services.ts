@@ -6,6 +6,10 @@ export default {
     {
       id: 'baremetal-cloud',
       translation: 'sidebar_bare_metal_cloud',
+      routing: {
+        application: 'dedicated',
+        hash: '#/configuration',
+      },
       children: [
         {
           id: 'bmc-dedicated-vps',
@@ -162,6 +166,7 @@ export default {
               serviceType: 'DEDICATEDCLOUD_VMWARE',
               routing: {
                 application: 'dedicated',
+                hash: '#/dedicated_cloud',
               },
             },
             {
@@ -230,8 +235,12 @@ export default {
       ],
     },
     {
-      id: 'public-cloud',
+      id: 'pci',
       translation: 'sidebar_pci',
+      routing: {
+        application: 'public-cloud',
+        hash: '#/pci/projects/{projectId}',
+      },
       children: [
         {
           id: 'pci-compute',
@@ -542,6 +551,10 @@ export default {
     {
       id: 'web-cloud',
       translation: 'sidebar_web_cloud',
+      routing: {
+        application: 'web',
+        hash: '#/configuration',
+      },
       children: [
         {
           id: 'domain-dns',
@@ -726,6 +739,10 @@ export default {
     {
       id: 'telecom',
       translation: 'sidebar_telecom',
+      routing: {
+        application: 'telecom',
+        hash: '#/',
+      },
       children: [
         {
           id: 'internet',
