@@ -30,6 +30,8 @@ function Sidebar(): JSX.Element {
   const [pciProjectServiceCount, setPciProjectServiceCount] = useState(null);
   const [initialNavigationPath, setInitialNavigationPath] = useState([]);
 
+  const logoLink = navigationPlugin.getURL('hub', '#/');
+
   const clickHandler = (node) => {
     if (node.children) {
       setNavigationHistory([...navigationHistory, currentNavigationNode]);
@@ -213,9 +215,15 @@ function Sidebar(): JSX.Element {
 
   return (
     <div className={style.sidebar}>
-      <span role="img" className={style.sidebar_logo} aria-label="OVHcloud">
+      <a
+        role="img"
+        className={style.sidebar_logo}
+        aria-label="OVHcloud"
+        target="_top"
+        href={logoLink}
+      >
         <img src={logo} alt="OVHcloud" aria-hidden="true" />
-      </span>
+      </a>
       <ul>
         {navigationHistory.length > 0 && (
           <a className={style.sidebar_back_btn} onClick={goBackHandler}>
