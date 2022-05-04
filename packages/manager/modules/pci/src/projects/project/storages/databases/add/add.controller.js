@@ -8,7 +8,7 @@ import { API_GUIDES } from '../../../project.constants';
 
 import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
 import { ENGINE_LOGOS } from '../databases.constants';
-import { ORDER_KEYS } from './add.constants';
+import { ORDER_KEYS, nameGenerator } from './add.constants';
 
 export default class {
   /* @ngInject */
@@ -27,6 +27,7 @@ export default class {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.orderKeys = ORDER_KEYS;
     this.$timeout = $timeout;
+    this.nameGenerator = nameGenerator;
   }
 
   $onInit() {
@@ -192,7 +193,7 @@ export default class {
 
   onFlavorChanged(flavor) {
     this.model.flavor = flavor;
-    this.model.name = `${this.model.engine.name}-${flavor.name}-${this.model.plan.name}`;
+    this.model.name = this.nameGenerator(`${this.model.engine.name}-`);
 
     if (!flavor.supportsPrivateNetwork) {
       this.model.usePrivateNetwork = false;

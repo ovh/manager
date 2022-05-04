@@ -231,7 +231,15 @@
                             ><span
                                 ng-bind="$ctrl.model.name"
                                 class="ml-2"
+                                oui-popover="lorem ipsum"
                             ></span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                oui-popover="{{:: 'pci_database_add_spec_name_popover' | translate }}"
+                                oui-popover-id="popover-name"
+                                oui-popover-placement="right"
+                            ></button>
                         </div>
                         <div class="d-flex align-items-center mt-2">
                             <div class="mr-2">
