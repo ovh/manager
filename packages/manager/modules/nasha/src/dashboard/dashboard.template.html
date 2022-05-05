@@ -9,7 +9,7 @@
                 type="button"
                 class="btn btn-icon my-auto ml-2"
                 data-translate-attr="{ title: 'nasha_dashboard_edit' }"
-                data-ng-click="$ctrl.isEditNameModalShown = true"
+                data-ng-click="$ctrl.openEditNameModal()"
             >
                 <span
                     class="oui-icon oui-icon_small oui-icon-pen_concept"
@@ -25,16 +25,15 @@
                     data-translate="nasha_dashboard_tab_general_information"
                 ></span
             ></oui-header-tabs-item>
+            <oui-header-tabs-item data-state="nasha.dashboard.partitions"
+                ><span data-translate="nasha_dashboard_tab_partitions"></span
+            ></oui-header-tabs-item>
         </oui-header-tabs>
     </header>
     <div data-ui-view></div>
     <nasha-components-edit-name
-        data-ng-if="$ctrl.isEditNameModalShown"
-        data-nasha="$ctrl.nasha"
-        data-close="$ctrl.goToDashboard({ success })"
-        data-dismiss="
-            $ctrl.goToDashboard({ error });
-            $ctrl.isEditNameModalShown = false;
-        "
+        data-ng-if="$ctrl.isEditNameModalOpened"
+        data-nasha=":: $ctrl.nasha"
+        data-close=":: $ctrl.closeEditNameModal"
     ></nasha-components-edit-name>
 </div>

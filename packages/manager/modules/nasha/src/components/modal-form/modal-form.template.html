@@ -1,0 +1,31 @@
+<div
+    class="nasha-components-modal-form modal d-block"
+    tabindex="-1"
+    data-ng-mouseup=":: $ctrl.close()"
+>
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <form
+                name="$ctrl.form"
+                role="form"
+                data-ng-submit=":: $ctrl.doSubmit()"
+                novalidate
+            >
+                <oui-modal
+                    data-primary-label="{{:: $ctrl.primaryLabel }}"
+                    data-primary-disabled="$ctrl.form.$invalid || $ctrl.canSubmit === false"
+                    data-secondary-label="{{:: $ctrl.secondaryLabel }}"
+                    data-secondary-action=":: $ctrl.close()"
+                    data-on-dismiss=":: $ctrl.close()"
+                    data-loading="$ctrl.loading || $ctrl.submitting"
+                    data-heading="{{:: $ctrl.heading }}"
+                    data-type="{{:: $ctrl.type }}"
+                    data-ng-mouseup="$event.stopPropagation()"
+                >
+                    <div data-ng-transclude></div>
+                </oui-modal>
+            </form>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>

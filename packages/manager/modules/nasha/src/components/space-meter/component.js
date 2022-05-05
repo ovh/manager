@@ -7,6 +7,7 @@ export default /* @ngInject */ {
     legend: '<',
     large: '<',
     usage: '<',
+    help: '<',
   },
   template,
 };

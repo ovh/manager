@@ -52,15 +52,19 @@
                 ></dt>
                 <dd class="bottom-space-m8">
                     <span
+                        class="d-block"
                         data-ng-bind="$ctrl.serviceInfo.expiration | date:'mediumDate'"
                     ></span>
                     <a
-                        data-ng-show="$ctrl.urlRenew"
+                        class="oui-button oui-button_icon-right oui-button_m oui-button_link"
                         data-ng-href="{{ $ctrl.urlRenew }}"
-                        class="oui-button_ghost"
                     >
                         <span
                             data-translate="nasha_components_metrics_renew"
+                        ></span>
+                        <span
+                            aria-hidden="true"
+                            class="oui-icon oui-icon-arrow-right"
                         ></span>
                     </a>
                 </dd>
@@ -68,7 +72,7 @@
                     data-translate="nasha_components_metrics_space_usage"
                     class="bottom-space-m4"
                 ></dt>
-                <dd class="bottom-space-m8">
+                <dd class="d-flex align-items-center bottom-space-m8">
                     <div>
                         <label class="oui-switch pull-left">
                             <span class="oui-switch">
@@ -88,14 +92,12 @@
                             </span>
                         </label>
                     </div>
-                    <span>&nbsp;</span>
-                    <em
-                        class="oui-icon pointer oui-icon-help-circle"
-                        data-uib-popover="{{:: ('nasha_components_metrics_space_usage_help' | translate) }}"
-                        data-popover-placement="bottom"
-                        data-popover-trigger="outsideClick"
-                    >
-                    </em>
+                    <button
+                        type="button"
+                        class="oui-popover-button ml-2"
+                        data-oui-popover="{{:: ('nasha_components_metrics_space_usage_help' | translate) }}"
+                        data-oui-popover-placement="top"
+                    ></button>
                 </dd>
             </dl>
         </div>
