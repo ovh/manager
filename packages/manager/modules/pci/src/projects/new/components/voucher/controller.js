@@ -63,17 +63,19 @@ export default class PciProjectNewVoucherCtrl {
     return `<span class="text-success">${this.voucherEligibility.voucher.credit.text}</span>`;
   }
 
-  /* -----  End of Helpers  ------ */
-
-  /* =============================
-  =            Events            =
-  ============================== */
-
-  onAddVoucherBtnClick() {
-    this.formVisible = true;
+  hasVoucherError() {
+    return (
+      this.model.voucher.value &&
+      !this.model.voucher.valid &&
+      this.model.voucher.error
+    );
   }
 
-  onVoucherFormSubmit() {
+  getVoucherError() {
+    return `pci_projects_new_voucher_form_field_error_${this.model.voucher.error.statusText.toLowerCase()}`;
+  }
+
+  submitVoucher() {
     this.loading.check = true;
     this.globalLoading.isVoucherValidating = true;
 
@@ -129,16 +131,25 @@ export default class PciProjectNewVoucherCtrl {
       });
   }
 
-  hasVoucherError() {
-    return (
-      this.model.voucher.value &&
-      !this.model.voucher.valid &&
-      this.model.voucher.error
-    );
+  manageResetVoucher() {
+    if (!this.model.voucher.value) {
+      this.model.voucher.reset();
+      this.voucherForm.voucher.$setValidity('voucher', true);
+    }
   }
 
-  getVoucherError() {
-    return `pci_projects_new_voucher_form_field_error_${this.model.voucher.error.statusText.toLowerCase()}`;
+  /* -----  End of Helpers  ------ */
+
+  /* =============================
+  =            Events            =
+  ============================== */
+
+  onAddVoucherBtnClick() {
+    this.formVisible = true;
+  }
+
+  onVoucherFormSubmit() {
+    return this.submitVoucher();
   }
 
   onVoucherFormReset() {
@@ -169,10 +180,15 @@ export default class PciProjectNewVoucherCtrl {
   }
 
   onVoucherInputChange() {
-    if (!this.model.voucher.value) {
-      this.model.voucher.reset();
-      this.voucherForm.voucher.$setValidity('voucher', true);
+    this.manageResetVoucher();
+  }
+
+  onVoucherInputLeave() {
+    if (this.model.voucher.value && this.canAddVoucher()) {
+      return this.submitVoucher();
     }
+
+    return this.manageResetVoucher();
   }
 
   /* -----  End of Events  ------ */
