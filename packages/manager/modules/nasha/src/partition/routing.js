@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nasha.dashboard.nasha-partitions', {
-    url: '/partitions',
+    url: '/partitions-old',
     views: {
       nashaPartition: {
         component: 'nashaPartitionComponent',

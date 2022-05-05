@@ -3,8 +3,7 @@ import template from './edit-name.template.html';
 
 export default {
   bindings: {
-    close: '&',
-    dismiss: '&',
+    close: '<',
     nasha: '<',
   },
   controller,
