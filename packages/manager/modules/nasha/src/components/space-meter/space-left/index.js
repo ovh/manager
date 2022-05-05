@@ -13,6 +13,7 @@ angular
   .module(moduleName, ['pascalprecht.translate'])
   .component('cucSpaceMeterSpaceLeft', component)
   .filter('cucSpaceMeterSpaceLeft', filter)
+  .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(

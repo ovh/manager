@@ -1,5 +1,10 @@
 import { NASHA_ALERT_ID, NASHA_TITLE } from './nasha.constants';
-import { localizeDatacenter, prepareNasha } from './nasha.utils';
+import {
+  localizeDatacenter,
+  localizeOperation,
+  prepareNasha,
+  preparePartition,
+} from './nasha.utils';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('nasha', {
@@ -33,8 +38,12 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       breadcrumb: () => NASHA_TITLE,
       localizeDatacenter: /* @ngInject */ ($translate) => (datacenter) =>
         localizeDatacenter(datacenter, $translate),
+      localizeOperation: /* @ngInject */ ($translate) => (operation) =>
+        localizeOperation(operation, $translate),
       prepareNasha: /* @ngInject */ ($translate) => (nasha) =>
         prepareNasha(nasha, $translate),
+      preparePartition: /* @ngInject */ ($translate) => (partition) =>
+        preparePartition(partition, $translate),
       trackingPrefix: () => NASHA_TITLE,
     },
   });

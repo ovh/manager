@@ -1,38 +1,30 @@
+import { NAME_PATTERN } from './edit-name.constants';
+
 export default class NashaComponentsEditNameController {
   /* @ngInject */
-  constructor($scope, $translate, $http) {
-    this.$scope = $scope;
+  constructor($translate, $http) {
     this.$translate = $translate;
     this.$http = $http;
-    this.isSubmitting = false;
-    this.name = '';
-  }
-
-  get baseName() {
-    return this.nasha?.customName || '';
-  }
-
-  get canSubmit() {
-    return (
-      (this.$scope.editNameForm?.$valid && this.name !== this.baseName) || false
-    );
+    this.model = { name: '' };
+    this.namePattern = NAME_PATTERN;
   }
 
   $onInit() {
-    this.name = this.baseName;
+    this.model.name = this.nasha.customName;
   }
 
   submit() {
-    const { name: customName } = this;
+    const { name: customName } = this.model;
     const { serviceName } = this.nasha;
-    this.isSubmitting = true;
     this.$http
       .put(`/dedicated/nasha/${serviceName}`, { customName })
       .then(() =>
         this.close({
-          success: this.$translate.instant('nasha_dashboard_edit_name_success'),
+          success: this.$translate.instant(
+            'nasha_components_edit_name_success',
+          ),
         }),
       )
-      .catch((error) => this.dismiss({ error }));
+      .catch((error) => this.close({ error }));
   }
 }

@@ -1,11 +1,14 @@
+import controller from './dashboard.controller';
 import template from './dashboard.template.html';
 
 export default {
   bindings: {
-    goToDashboard: '<',
+    alertError: '<',
     goToGeneralInformation: '<',
     nasha: '<',
+    reload: '<',
     serviceName: '<',
   },
+  controller,
   template,
 };

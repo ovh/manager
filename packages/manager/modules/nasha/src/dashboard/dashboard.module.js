@@ -8,6 +8,7 @@ import routing from './dashboard.routing';
 
 import editNameComponentModule from '../components/edit-name';
 import generalInformationModule from './general-information';
+import partitionsModule from './partitions';
 
 const moduleName = 'ovhManagerNashaDashboard';
 
@@ -17,6 +18,7 @@ angular
     'ui.router',
     editNameComponentModule,
     generalInformationModule,
+    partitionsModule,
   ])
   .component('nashaDashboard', component)
   .config(routing)

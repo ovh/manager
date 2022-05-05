@@ -4,10 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'nashaComponentsEditName',
     resolve: {
       breadcrumb: () => null,
-      close: /* @ngInject */ (goToDashboard) => (success) =>
-        goToDashboard({ success }),
-      dismiss: /* @ngInject */ (goToDashboard) => (error) =>
-        goToDashboard({ error }),
+      close: /* @ngInject */ (goBack) => goBack,
     },
   });
 };

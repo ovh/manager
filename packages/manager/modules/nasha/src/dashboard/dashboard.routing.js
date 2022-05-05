@@ -5,27 +5,31 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: 'nasha.dashboard.general-information',
     resolve: {
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
-      goBack: /* @ngInject */ (goToDashboard) => () => goToDashboard(),
-      goToDashboard: /* @ngInject */ (
+      goBack: /* @ngInject */ (
         $state,
         serviceName,
         alertSuccess,
         alertError,
-      ) => ({ success, error } = {}) => {
-        const params = { serviceName };
-        const options = { reload: !!success };
-        return $state.go('nasha.dashboard', params, options).then((result) => {
-          if (success) {
-            alertSuccess(success);
-          }
-          if (error) {
-            alertError(error);
-          }
-          return result;
-        });
-      },
+      ) => ({ success, error, stateName = '', reload = false } = {}) =>
+        $state
+          .go(
+            stateName || '^',
+            { serviceName },
+            { reload: reload || !!success },
+          )
+          .then((result) => {
+            if (success) {
+              alertSuccess(success);
+            }
+            if (error) {
+              alertError(error);
+            }
+            return result;
+          }),
       goToGeneralInformation: /* @ngInject */ ($state, serviceName) => () =>
         $state.go('nasha.dashboard.general-information', { serviceName }),
+      goToPartitions: /* @ngInject */ ($state, serviceName) => () =>
+        $state.go('nasha.dashboard.partitions', { serviceName }),
       nasha: /* @ngInject */ (
         OvhApiDedicatedNasha,
         serviceName,
@@ -35,6 +39,13 @@ export default /* @ngInject */ ($stateProvider) => {
         aapi.resetCache();
         return aapi.get({ serviceName }).$promise.then(prepareNasha);
       },
+      reload: /* @ngInject */ ($state, goBack) => ({ success, error }) =>
+        goBack({
+          stateName: $state.current.name,
+          reload: true,
+          success,
+          error,
+        }),
       serviceInfo: /* @ngInject */ ($http, serviceName) =>
         $http
           .get(`/dedicated/nasha/${serviceName}/serviceInfos`)
