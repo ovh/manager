@@ -20,6 +20,7 @@ export default {
     trackPage: '<',
     sendTrack: '<',
     trackClick: '<',
+    trackProjectCreationError: '<',
   },
   controller,
   template,
