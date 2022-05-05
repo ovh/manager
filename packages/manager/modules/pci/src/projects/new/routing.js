@@ -30,7 +30,12 @@ export default /* @ngInject */ ($stateProvider) => {
       const coreURLBuilderPromise = injector.getAsync('coreURLBuilder');
       const cartPromise = injector.getAsync('cart');
       const eligibilityPromise = injector.getAsync('eligibility');
-      const newSupportTicketLink = injector.getAsync('newSupportTicketLink');
+      const newSupportTicketLinkPromise = injector.getAsync(
+        'newSupportTicketLink',
+      );
+      const trackProjectCreationErrorPromise = injector.getAsync(
+        'trackProjectCreationError',
+      );
 
       return Promise.all([
         translatePromise,
@@ -38,65 +43,80 @@ export default /* @ngInject */ ($stateProvider) => {
         cartPromise,
         eligibilityPromise,
         coreURLBuilderPromise,
-      ]).then(([$translate, $window, cart, eligibility, coreURLBuilder]) => {
-        let redirectState = 'pci.projects.new.config';
-        let redirectParams = transition.params();
-        const redirectOptions = {
-          location: false,
-        };
-
-        let trackErrorMessage;
-
-        if (eligibility.isAskIncreaseProjectsQuotaRequired()) {
-          redirectState = 'pci.projects.project.error';
-          redirectParams = {
-            message: $translate.instant(
-              'pci_project_new_error_ask_increase_projects_quota',
-            ),
-            code: ELIGIBILITY_ACTION_ENUM.ASK_INCREASE_PROJECTS_QUOTA,
-            image: ELIGIBILITY_ERROR_IMAGES_SRC.ASK_INCREASE_PROJECTS_QUOTA,
-            projectId: get(transition.params('from'), 'projectId'),
-            submitLabel: $translate.instant(
-              'pci_project_new_error_contact_support',
-            ),
-            submitLink: newSupportTicketLink,
+        newSupportTicketLinkPromise,
+        trackProjectCreationErrorPromise,
+      ]).then(
+        ([
+          $translate,
+          $window,
+          cart,
+          eligibility,
+          coreURLBuilder,
+          newSupportTicketLink,
+          trackProjectCreationError,
+        ]) => {
+          let redirectState = 'pci.projects.new.config';
+          let redirectParams = transition.params();
+          const redirectOptions = {
+            location: false,
           };
-          trackErrorMessage =
-            'pci_project_new_error_ask_increase_projects_quota';
-        } else if (eligibility.isVerifyPaypalRequired()) {
-          redirectState = 'pci.error';
-          redirectParams = {
-            message: $translate.instant('pci_project_new_error_verify_paypal', {
-              href: coreURLBuilder.buildURL(
-                'dedicated',
-                '#/billing/payment/method',
+
+          let trackErrorMessage;
+
+          if (eligibility.isAskIncreaseProjectsQuotaRequired()) {
+            redirectState = 'pci.projects.project.error';
+            redirectParams = {
+              message: $translate.instant(
+                'pci_project_new_error_ask_increase_projects_quota',
               ),
-            }),
-            code: ELIGIBILITY_ACTION_ENUM.VERIFY_PAYPAL,
-            image: ELIGIBILITY_ERROR_IMAGES_SRC.VERIFY_PAYPAL,
-            submitLabel: null,
-          };
-          trackErrorMessage = 'pci_project_new_error_verify_paypal';
-        } else if (cart.cartId !== transition.params().cartId) {
-          $window.location.replace(
-            transition.router.stateService.href('pci.projects.new', {
-              cartId: cart.cartId,
-              voucher: redirectParams.voucher,
-            }),
+              code: ELIGIBILITY_ACTION_ENUM.ASK_INCREASE_PROJECTS_QUOTA,
+              image: ELIGIBILITY_ERROR_IMAGES_SRC.ASK_INCREASE_PROJECTS_QUOTA,
+              projectId: get(transition.params('from'), 'projectId'),
+              submitLabel: $translate.instant(
+                'pci_project_new_error_contact_support',
+              ),
+              submitLink: newSupportTicketLink,
+            };
+            trackErrorMessage =
+              'pci_project_new_error_ask_increase_projects_quota';
+          } else if (eligibility.isVerifyPaypalRequired()) {
+            redirectState = 'pci.error';
+            redirectParams = {
+              message: $translate.instant(
+                'pci_project_new_error_verify_paypal',
+                {
+                  href: coreURLBuilder.buildURL(
+                    'dedicated',
+                    '#/billing/payment/method',
+                  ),
+                },
+              ),
+              code: ELIGIBILITY_ACTION_ENUM.VERIFY_PAYPAL,
+              image: ELIGIBILITY_ERROR_IMAGES_SRC.VERIFY_PAYPAL,
+              submitLabel: null,
+            };
+            trackErrorMessage = 'pci_project_new_error_verify_paypal';
+          } else if (cart.cartId !== transition.params().cartId) {
+            $window.location.replace(
+              transition.router.stateService.href('pci.projects.new', {
+                cartId: cart.cartId,
+                voucher: redirectParams.voucher,
+              }),
+            );
+            return null;
+          }
+
+          if (trackErrorMessage) {
+            trackProjectCreationError('config', trackErrorMessage);
+          }
+
+          return transition.router.stateService.target(
+            redirectState,
+            redirectParams,
+            redirectOptions,
           );
-          return null;
-        }
-
-        if (trackErrorMessage) {
-          this.trackProjectCreationError('config', trackErrorMessage);
-        }
-
-        return transition.router.stateService.target(
-          redirectState,
-          redirectParams,
-          redirectOptions,
-        );
-      });
+        },
+      );
     },
     views: {
       '@pci': component.name,
