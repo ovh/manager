@@ -1,3 +1,12 @@
+## [16.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.11.0...@ovh-ux/manager-web@16.11.1) (2022-05-05)
+
+
+### Bug Fixes
+
+* **web.domain:** fix domain owner information ([#7048](https://github.com/ovh/manager/issues/7048)) ([1688a5f](https://github.com/ovh/manager/commit/1688a5f1f3ea8cae1c9a18d4c5eb08b5767ffaf7))
+
+
+
 # [16.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.10.0...@ovh-ux/manager-web@16.11.0) (2022-05-04)
 
 
