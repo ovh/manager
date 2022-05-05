@@ -8,5 +8,6 @@ export default {
     projects: '<',
     isHdsAvailable: '<',
     isValidHdsSupportLevel: '<',
+    trackProjectCreationError: '<',
   },
 };
