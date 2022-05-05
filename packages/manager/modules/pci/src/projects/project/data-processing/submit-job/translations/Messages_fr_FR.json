@@ -49,5 +49,7 @@
   "data_processing_submit_job_spec_config_job_type": "Type : ",
   "data_processing_submit_job_spec_config_main_application_code": "Fichier : ",
   "data_processing_submit_job_spec_config_main_class": "Classe principale : ",
-  "data_processing_submit_job_spec_config_arguments": "Arguments : "
+  "data_processing_submit_job_spec_config_arguments": "Arguments : ",
+  "data_processing_submit_job_spec_config_none": "Aucun",
+  "data_processing_submit_job_spec_config_none_f": "Aucune"
 }

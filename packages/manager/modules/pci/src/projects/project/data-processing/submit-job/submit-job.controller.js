@@ -1,8 +1,10 @@
 import { find } from 'lodash';
 import animateScrollTo from 'animated-scroll-to';
 import { API_GUIDES } from '../../project.constants';
-import { SUBMIT_JOB_API_GUIDES } from '../data-processing.constants';
-import { GIB_IN_MIB } from './spark-sizing/spark-sizing.constants';
+import {
+  SUBMIT_JOB_API_GUIDES,
+  GIB_IN_MIB,
+} from '../data-processing.constants';
 
 export default class {
   /* @ngInject */
@@ -267,13 +269,13 @@ export default class {
     } = this.state.jobSizing;
     const pricePerGiB = this.prices.memory.priceInUcents;
     const pricePerCore = this.prices.core.priceInUcents;
-    const price =
+    return (
       (workerMemoryGb + workerMemoryOverheadMb / GIB_IN_MIB) *
         pricePerGiB *
         workerCount +
       (driverMemoryGb + driverMemoryOverheadMb / GIB_IN_MIB) * pricePerGiB +
-      (driverCores + workerCores * workerCount) * pricePerCore;
-    return price;
+      (driverCores + workerCores * workerCount) * pricePerCore
+    );
   }
 
   /**
@@ -292,13 +294,13 @@ export default class {
     } = this.state.jobSizing;
     const taxMemory = this.prices.memory.tax;
     const taxCores = this.prices.core.tax;
-    const tax =
+    return (
       (workerMemoryGb + workerMemoryOverheadMb / GIB_IN_MIB) *
         taxMemory *
         workerCount +
       (driverMemoryGb + driverMemoryOverheadMb / GIB_IN_MIB) * taxMemory +
-      (driverCores + workerCores * workerCount) * taxCores;
-    return tax;
+      (driverCores + workerCores * workerCount) * taxCores
+    );
   }
 
   getArgumentsList() {

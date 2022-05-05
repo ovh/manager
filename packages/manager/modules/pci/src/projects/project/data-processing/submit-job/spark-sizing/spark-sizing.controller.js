@@ -1,4 +1,5 @@
-import { MEMORY_OVERHEAD_RATIO, GIB_IN_MIB } from './spark-sizing.constants';
+import { GIB_IN_MIB } from '../../data-processing.constants';
+import { MEMORY_OVERHEAD_RATIO } from './spark-sizing.constants';
 
 export default class {
   /* @ngInject */
@@ -210,55 +211,5 @@ export default class {
         workerMemoryOverheadMb,
       });
     }
-  }
-
-  /**
-   * Compute the estimated price /min depending on job sizing.
-   * @return {number}
-   */
-  computePrice() {
-    const {
-      workerMemoryGb,
-      driverMemoryGb,
-      workerCount,
-      workerMemoryOverheadMb,
-      driverMemoryOverheadMb,
-      driverCores,
-      workerCores,
-    } = this.state;
-    const pricePerGiB = this.prices.memory.priceInUcents;
-    const pricePerCore = this.prices.core.priceInUcents;
-    const price =
-      (workerMemoryGb + workerMemoryOverheadMb / GIB_IN_MIB) *
-        pricePerGiB *
-        workerCount +
-      (driverMemoryGb + driverMemoryOverheadMb / GIB_IN_MIB) * pricePerGiB +
-      (driverCores + workerCores * workerCount) * pricePerCore;
-    return price;
-  }
-
-  /**
-   * Compute the estimated tax on the estimated price /min depending on job sizing.
-   * @return {number}
-   */
-  computeTax() {
-    const {
-      workerMemoryGb,
-      driverMemoryGb,
-      workerCount,
-      workerMemoryOverheadMb,
-      driverMemoryOverheadMb,
-      driverCores,
-      workerCores,
-    } = this.state;
-    const taxMemory = this.prices.memory.tax;
-    const taxCores = this.prices.core.tax;
-    const tax =
-      (workerMemoryGb + workerMemoryOverheadMb / GIB_IN_MIB) *
-        taxMemory *
-        workerCount +
-      (driverMemoryGb + driverMemoryOverheadMb / GIB_IN_MIB) * taxMemory +
-      (driverCores + workerCores * workerCount) * taxCores;
-    return tax;
   }
 }

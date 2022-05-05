@@ -71,26 +71,6 @@
             >
             </oui-numeric>
         </oui-field>
-        <div class="sizing__pricing">
-            {{ :: 'data_processing_submit_job_stepper_spark_estimated_price' |
-            translate }}
-
-            <strong data-ng-if="::$ctrl.computePrice()">
-                <ovh-manager-catalog-price
-                    data-price="$ctrl.computePrice()"
-                    data-tax="$ctrl.computeTax()"
-                    data-user="$ctrl.user"
-                    data-perform-rounding="false"
-                    data-maximum-fraction-digits="5"
-                >
-                </ovh-manager-catalog-price>
-                /min
-            </strong>
-            <strong
-                data-ng-if="::!$ctrl.computePrice()"
-                data-translate="data_processing_submit_job_stepper_spark_free"
-            />
-        </div>
         <button
             class="oui-button sizing__advanced-button oui-button_ghost"
             type="button"
@@ -227,25 +207,6 @@
             >
             </oui-numeric>
         </oui-field>
-        <div class="sizing__pricing">
-            {{ :: 'data_processing_submit_job_stepper_spark_estimated_price' |
-            translate }}
-            <strong data-ng-if="::$ctrl.computePrice()">
-                <ovh-manager-catalog-price
-                    data-price="$ctrl.computePrice()"
-                    data-tax="$ctrl.computeTax()"
-                    data-user="$ctrl.user"
-                    data-perform-rounding="false"
-                    data-maximum-fraction-digits="5"
-                >
-                </ovh-manager-catalog-price>
-                /min
-            </strong>
-            <strong
-                data-ng-if="::!$ctrl.computePrice()"
-                data-translate="data_processing_submit_job_stepper_spark_free"
-            />
-        </div>
         <button
             class="oui-button sizing__advanced-button oui-button_ghost"
             type="button"

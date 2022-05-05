@@ -234,7 +234,13 @@
                                         data-translate="data_processing_submit_job_spec_config_name"
                                     ></span>
                                     <span
+                                        data-ng-if="$ctrl.state.jobConfig.jobName"
                                         ng-bind="$ctrl.state.jobConfig.jobName"
+                                    ></span>
+                                    <span
+                                        class="oui-color-ae-500"
+                                        data-ng-if="!$ctrl.state.jobConfig.jobName"
+                                        data-translate="data_processing_submit_job_spec_config_none"
                                     ></span>
                                 </div>
                                 <div>
@@ -242,7 +248,13 @@
                                         data-translate="data_processing_submit_job_spec_config_container"
                                     ></span>
                                     <span
+                                        data-ng-if="$ctrl.state.jobConfig.swiftContainer"
                                         ng-bind="$ctrl.state.jobConfig.swiftContainer"
+                                    ></span>
+                                    <span
+                                        class="oui-color-ae-500"
+                                        data-ng-if="!$ctrl.state.jobConfig.swiftContainer"
+                                        data-translate="data_processing_submit_job_spec_config_none"
                                     ></span>
                                 </div>
                                 <div>
@@ -250,7 +262,13 @@
                                         data-translate="data_processing_submit_job_spec_config_job_type"
                                     ></span>
                                     <span
+                                        data-ng-if="$ctrl.state.jobConfig.jobType"
                                         ng-bind="$ctrl.state.jobConfig.jobType"
+                                    ></span>
+                                    <span
+                                        class="oui-color-ae-500"
+                                        data-ng-if="!$ctrl.state.jobConfig.jobType"
+                                        data-translate="data_processing_submit_job_spec_config_none"
                                     ></span>
                                 </div>
                                 <div>
@@ -258,7 +276,13 @@
                                         data-translate="data_processing_submit_job_spec_config_main_application_code"
                                     ></span>
                                     <span
+                                        data-ng-if="$ctrl.state.jobConfig.mainApplicationCode"
                                         ng-bind="$ctrl.state.jobConfig.mainApplicationCode"
+                                    ></span>
+                                    <span
+                                        class="oui-color-ae-500"
+                                        data-ng-if="!$ctrl.state.jobConfig.mainApplicationCode"
+                                        data-translate="data_processing_submit_job_spec_config_none"
                                     ></span>
                                 </div>
                                 <div
@@ -268,7 +292,13 @@
                                         data-translate="data_processing_submit_job_spec_config_main_class"
                                     ></span>
                                     <span
+                                        data-ng-if="$ctrl.state.jobConfig.mainClass"
                                         ng-bind="$ctrl.state.jobConfig.mainClass"
+                                    ></span>
+                                    <span
+                                        class="oui-color-ae-500"
+                                        data-ng-if="!$ctrl.state.jobConfig.mainClass"
+                                        data-translate="data_processing_submit_job_spec_config_none_f"
                                     ></span>
                                 </div>
                                 <div
@@ -308,7 +338,7 @@
                         variant="primary"
                         block
                         on-click="$ctrl.onSubmitJobHandler()"
-                        disabled="$ctrl.isSubmitting || !$ctrl.isConfigureStepValid"
+                        disabled="$ctrl.isSubmitting || !$ctrl.isConfigureStepValid || !$ctrl.state.jobConfig.jobName"
                     >
                         <span
                             ng-if="!$ctrl.isSubmitting"
