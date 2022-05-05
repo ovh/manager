@@ -64,7 +64,11 @@ export default /* @ngInject */ ($stateProvider) => {
           let trackErrorMessage;
 
           if (eligibility.isAskIncreaseProjectsQuotaRequired()) {
-            redirectState = 'pci.projects.project.error';
+            const projectId = get(transition.params('from'), 'projectId');
+
+            redirectState = projectId
+              ? 'pci.projects.project.error'
+              : 'pci.error';
             redirectParams = {
               message: $translate.instant(
                 'pci_project_new_error_ask_increase_projects_quota',
