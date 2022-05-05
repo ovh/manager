@@ -638,6 +638,19 @@ export default class DomainTabGeneralInformationsCtrl {
     }
     return DOMAIN_SERVICE_STATES.manualPayment;
   }
+
+  canDisplayDomainOwner() {
+    return this.loggedInUser === this.domainInfos.contactAdmin;
+  }
+
+  getDomainOwnerInformation() {
+    const ownerName = `${this.domain.whoisOwner.firstName} ${this.domain.whoisOwner.lastName}`;
+    if (['individual', 'other'].includes(this.domain.whoisOwner.legalForm)) {
+      return ownerName;
+    }
+
+    return this.domain.whoisOwner.organisationName || ownerName;
+  }
 }
 
 angular
