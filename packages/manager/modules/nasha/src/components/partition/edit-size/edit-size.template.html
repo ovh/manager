@@ -1,0 +1,22 @@
+<nasha-components-modal-form
+    data-submit=":: $ctrl.submit()"
+    data-close=":: $ctrl.close()"
+    data-loading="$ctrl.isLoading"
+    data-heading="{{:: ('nasha_components_partition_edit_size_title' | translate) }}"
+    data-primary-label="{{:: ('nasha_components_partition_edit_size_submit' | translate) }}"
+    data-secondary-label="{{:: ('nasha_components_partition_edit_size_cancel' | translate) }}"
+>
+    <oui-field
+        data-label="{{:: ('nasha_components_partition_edit_size_label' | translate) }}"
+        data-help-text="{{:: ('nasha_components_partition_edit_size_rules' | translate: { min: $ctrl.sizeMin, max: $ctrl.sizeMax }) }}"
+    >
+        <oui-numeric
+            data-id="size"
+            data-name="size"
+            data-min="$ctrl.sizeMin"
+            data-max="$ctrl.sizeMax"
+            data-model="$ctrl.model.size"
+        >
+        </oui-numeric>
+    </oui-field>
+</nasha-components-modal-form>

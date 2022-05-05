@@ -8,4 +8,8 @@ export default class CucConfirmationModalController {
     }
     return parseInt(this.usage.size.value, 10);
   }
+
+  $onInit() {
+    this.help = this.help !== false;
+  }
 }

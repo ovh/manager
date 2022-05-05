@@ -13,6 +13,7 @@ import { isString, get } from 'lodash-es';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhManagerNasha from '@ovh-ux/manager-nasha';
+import ovhManagerFilters from '@ovh-ux/manager-filters';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
@@ -29,6 +30,7 @@ export default (containerEl, environment) => {
       [
         'ovh-api-services',
         ovhManagerNasha,
+        ovhManagerFilters,
         ngUiRouterBreadcrumb,
         ngOvhUtils,
         ngUiRouterLayout,
