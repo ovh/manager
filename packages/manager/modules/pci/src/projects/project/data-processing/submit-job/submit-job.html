@@ -4,6 +4,14 @@
         class="mb-2"
         data-heading="{{ ::'data_processing_submit_job_title' | translate }}"
     ></oui-header>
+    <oui-message data-ng-if="$ctrl.conatiners.length === 0" data-type="warning">
+        <span data-translate="data_processing_submit_no_container"></span>
+        <a href="" data-ng-click="$ctrl.goToObjectStorage()">
+            <span
+                data-translate="data_processing_submit_object_storage_link"
+            ></span>
+        </a>
+    </oui-message>
     <!-- page content -->
     <p data-translate="data_processing_submit_job_description_1"></p>
     <p data-translate="data_processing_submit_job_description_2"></p>
