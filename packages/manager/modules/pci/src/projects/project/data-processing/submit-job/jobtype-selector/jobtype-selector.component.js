@@ -1,4 +1,3 @@
-import './job-selector.scss';
 import controller from './jobtype-selector.controller';
 import template from './jobtype-selector.html';
 

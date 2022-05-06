@@ -1,8 +1,9 @@
-<div class="jobtype-selector__picker">
+<div class="row">
     <oui-select-picker
         data-ng-repeat="item in $ctrl.availableEngines"
+        class="d-inline-block col-md-6 col-xl-4 my-3"
         data-name="jobType"
-        data-match="id"
+        data-match="description"
         data-on-change="$ctrl.onChange(modelValue)"
         data-model="$ctrl.jobType"
         data-values="item.versions"
