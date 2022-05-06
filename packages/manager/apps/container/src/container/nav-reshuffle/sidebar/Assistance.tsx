@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useURL } from '@/container/common/urls-constants';
 import ApplicationContext from '@/context';
-import useOnboarding from '@/core/onboarding';
+import { ONBOARDING_STATUS_ENUM } from '@/core/onboarding';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import SidebarLink from './SidebarLink';
@@ -16,9 +16,23 @@ function AssistanceSidebar(): JSX.Element {
     .getPlugin('environment')
     .getEnvironment();
   const urls = useURL(environment);
+  const trackingPlugin = shell.getPlugin('tracking');
 
   const hasAdvancedSupport = ['EU', 'CA'].includes(environment.getRegion());
-  const { openOnboarding } = useProductNavReshuffle();
+  const { openOnboarding, onboardingOpenedState } = useProductNavReshuffle();
+
+  const startOnboarding = () => {
+    openOnboarding();
+    trackingPlugin.trackClickImpression({
+      label: 'navbar_v2::assistance::onboarding_widget',
+      campaignId: '[tooltip-manager]',
+      creation: '[general-onboarding]',
+      detailedPlacement:
+        onboardingOpenedState === ONBOARDING_STATUS_ENUM.DISPLAYED
+          ? '[new_visitor]'
+          : '[returning_visitor]',
+    });
+  };
 
   return (
     <ul>
@@ -72,7 +86,7 @@ function AssistanceSidebar(): JSX.Element {
         )}
         <SidebarLink
           node={{ translation: 'sidebar_assistance_onboarding', count: false }}
-          onClick={() => openOnboarding()}
+          onClick={() => startOnboarding()}
         />
       </li>
     </ul>
