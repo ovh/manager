@@ -10,6 +10,7 @@
   "purchaseOrders_form_add_purchase_order_sub_info": "Le nom ne doit pas excéder 20 caractères",
   "purchaseOrders_form_add_purchase_startDate": "Date de début",
   "purchaseOrders_form_add_purchase_endDate": "Date de fin",
+  "purchaseOrders_form_add_purchase_endDate_helper": "La date de fin est exclue",
   "purchaseOrders_form_add_purchase_submit": "Valider",
   "purchaseOrders_form_add_purchase_cancel": "Annuler",
   "purchaseOrders_form_add_purchase_submit_REFERENCE_ORDER_success": "Votre référence interne a bien été créée !",
