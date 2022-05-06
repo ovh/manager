@@ -69,7 +69,7 @@ export default async (containerEl, shellClient) => {
         'ngAnimate',
         ngOvhFeatureFlipping,
         ngOvhSsoAuthModalPlugin,
-        ngOvhUiRouterLineProgress,
+        isTopLevelApplication() ? ngOvhUiRouterLineProgress : null,
         ngUiRouterBreadcrumb,
         'oui',
         ovhManagerAccountSidebar,
@@ -131,6 +131,32 @@ export default async (containerEl, shellClient) => {
       },
     )
     .run(
+      /* @ngInject */ ($transitions) => {
+        // replace ngOvhUiRouterLineProgress if in container
+        if (!isTopLevelApplication()) {
+          $transitions.onBefore({}, (transition) => {
+            if (
+              !transition.ignored() &&
+              transition.from().name !== '' &&
+              transition.entering().length > 0
+            ) {
+              shellClient.ux.startProgress();
+            }
+          });
+
+          $transitions.onSuccess({}, () => {
+            shellClient.ux.stopProgress();
+          });
+
+          $transitions.onError({}, (transition) => {
+            if (!transition.error().redirected) {
+              shellClient.ux.stopProgress();
+            }
+          });
+        }
+      },
+    )
+    .run(
       /* @ngInject */ ($anchorScroll, $rootScope, $translate, $transitions) => {
         $transitions.onSuccess({}, () => $anchorScroll('hub-scroll-top'));
 
@@ -187,7 +213,9 @@ export default async (containerEl, shellClient) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
+          if (isTopLevelApplication()) {
+            detachPreloader();
+          }
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
