@@ -78,11 +78,13 @@
                             <!-- CONTENT -->
                             <div
                                 id="content"
-                                class="col-lg-10 h-100"
+                                class="h-100"
                                 data-ng-class="{
+                                    'col-lg-12': $ctrl.isMenuSidebarVisible,
+                                    'col-lg-10': !$ctrl.isMenuSidebarVisible,
                                     'col-md-9': !$ctrl.isMenuSidebarVisible,
                                     'col-md-offset-3': !$ctrl.isMenuSidebarVisible,
-                                    'col-lg-offset-2': !ctrl.isMenuSidebarVisible,
+                                    'col-lg-offset-2': !$ctrl.isMenuSidebarVisible,
                                 }"
                                 style="overflow: auto;"
                             >
