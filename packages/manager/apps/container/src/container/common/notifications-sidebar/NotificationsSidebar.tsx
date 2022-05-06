@@ -14,7 +14,7 @@ import useDate from '@/helpers/useDate';
 
 type NotificationByDate = {
   [fromDate: string]: Notification;
-}
+};
 
 type Props = {
   environment?: Environment;
@@ -25,7 +25,9 @@ const NotificationsSidebar = ({ environment = {} }: Props): JSX.Element => {
   const { fromNow } = useDate();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [groupedNotifications, setGroupedNotifications] = useState<NotificationByDate[]>([]);
+  const [groupedNotifications, setGroupedNotifications] = useState<
+    NotificationByDate[]
+  >([]);
 
   const { isNotificationsSidebarVisible } = useHeader();
   const {
@@ -35,8 +37,31 @@ const NotificationsSidebar = ({ environment = {} }: Props): JSX.Element => {
     getActiveNotifications,
   } = useNotifications();
 
-  const getGroupedNotifications = (notificationToDisplay: Notification[]): NotificationByDate[] => {
-    return groupBy(notificationToDisplay, ({ date }) => fromNow(date, locale));
+  const getGroupedNotifications = async (
+    notificationToDisplay: Notification[],
+  ): Promise<NotificationByDate[]> => {
+    if (!notificationToDisplay) {
+      return [];
+    }
+
+    const allDates = [
+      ...new Set(notificationToDisplay.map(({ date }) => date)),
+    ];
+
+    const groups = await Promise.all(
+      allDates.map(async (date) => {
+        const dateFromNow = await fromNow(date, locale);
+        return { date, fromNow: dateFromNow };
+      }),
+    );
+    const dateGroups = groups.reduce((all, { date, fromNow: dateFromNow }) => {
+      return {
+        ...all,
+        [date]: dateFromNow,
+      };
+    }, {});
+
+    return groupBy(notificationToDisplay, ({ date }) => dateGroups[date]);
   };
 
   useEffect(() => {
@@ -44,7 +69,7 @@ const NotificationsSidebar = ({ environment = {} }: Props): JSX.Element => {
     loadNotifications().finally(() => {
       setIsLoading(false);
     });
-  }, []);
+  }, [locale]);
 
   useEffect(() => {
     const notificationToDisplay =
@@ -52,9 +77,40 @@ const NotificationsSidebar = ({ environment = {} }: Props): JSX.Element => {
         ? notifications.slice(0, MAX_NOTIFICATIONS)
         : notifications;
 
-    setNotificationsCount(getActiveNotifications(notificationToDisplay).length);
-    setGroupedNotifications(getGroupedNotifications(notificationToDisplay));
+    if (notificationToDisplay.length === 0) {
+      setNotificationsCount(0);
+      setGroupedNotifications([]);
+    } else {
+      const updateNotifications = async () => {
+        setNotificationsCount(
+          getActiveNotifications(notificationToDisplay).length,
+        );
+        setGroupedNotifications(
+          await getGroupedNotifications(notificationToDisplay),
+        );
+      };
+      updateNotifications();
+    }
   }, [notifications]);
+
+  let notificationsContent;
+  if (isLoading) {
+    notificationsContent = <Notifications.Loading />;
+  } else if (notifications.length === 0) {
+    notificationsContent = <Notifications.Empty />;
+  } else {
+    notificationsContent = (
+      <>
+        {Object.keys(groupedNotifications).map((groupTime: string, index) => (
+          <Notifications.Group
+            notifications={groupedNotifications[groupTime]}
+            title={groupTime}
+            key={index}
+          />
+        ))}
+      </>
+    );
+  }
 
   return (
     <div
@@ -63,23 +119,7 @@ const NotificationsSidebar = ({ environment = {} }: Props): JSX.Element => {
       } ${isNotificationsSidebarVisible && style.notificationsSidebar_toggle}`}
       role="menu"
     >
-      <Notifications>
-        { isLoading ? (
-          <Notifications.Loading />
-        ) : notifications.length == 0 ? (
-          <Notifications.Empty />
-        ) : (
-          <>
-            {Object.keys(groupedNotifications).map((groupTime, index) => (
-              <Notifications.Group
-                notifications={groupedNotifications[groupTime]}
-                title={groupTime}
-                key={index}
-              />
-            ))}
-          </>
-        )}
-      </Notifications>
+      <Notifications>{ notificationsContent }</Notifications>
     </div>
   );
 };

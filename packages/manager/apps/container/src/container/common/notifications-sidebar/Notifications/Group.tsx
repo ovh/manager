@@ -21,7 +21,7 @@ const NotificationsGroup = ({
         <Notification key={`notification-${key}`}>
           <>
             <Notification.Icon level={notification.level} />
-            {notification.urlDetails ? (
+            {notification.urlDetails.href ? (
               <Notification.Link
                 url={notification.getUrl()}
                 notificationId={notification.id}
