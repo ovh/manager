@@ -3,7 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { usePopper } from 'react-popper';
 
 import { useShell } from '@/context/useApplicationContext';
-import { ONBOARDING_OPENED_STATE_ENUM } from '@/core/onboarding';
+import {
+  ONBOARDING_OPENED_STATE_ENUM,
+  ONBOARDING_STATUS_ENUM,
+} from '@/core/onboarding';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import style from './style.module.scss';
@@ -34,10 +37,21 @@ export const OnboardingIntroduction = () => {
     uxPlugin.shellUX.getChatbot().getVisibility(),
   );
 
+  const trackingPlugin = shell.getPlugin('tracking');
   uxPlugin.onChatbotVisibilityChange(() => {
     setIsChatbotVisible(uxPlugin.shellUX.getChatbot().getVisibility());
     setIsPopoverVisible(false);
   });
+  const commonTrackingOptions = {
+    campaignId: '[tooltip-manager]',
+    creation: '[general-onboarding]',
+    variant: 'welcome_message',
+    detailedPlacement:
+      productNavReshuffle.onboardingOpenedState ===
+      ONBOARDING_STATUS_ENUM.DISPLAYED
+        ? '[new_visitor]'
+        : '[returning_visitor]',
+  };
 
   const openOnboarding = () => {
     setIsPopoverVisible(true);
@@ -46,10 +60,20 @@ export const OnboardingIntroduction = () => {
 
   const startOnboarding = () => {
     productNavReshuffle.startOnboarding();
+    trackingPlugin.trackClickImpression({
+      label: 'onboarding_manager::launch_guide_main_cta',
+      ...commonTrackingOptions,
+      generalPlacement: '[next]',
+    });
   };
 
   const closeOnboarding = () => {
     productNavReshuffle.closeOnboarding();
+    trackingPlugin.trackClickImpression({
+      label: 'onboarding_manager::close_guide_main_cta',
+      ...commonTrackingOptions,
+      generalPlacement: '[hide]',
+    });
   };
 
   useEffect(() => {

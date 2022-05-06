@@ -24,6 +24,7 @@ export const OnboardingWalkMe = () => {
     .getPlugin('environment')
     .getEnvironment()
     .getUser();
+  const trackingPlugin = useShell().getPlugin('tracking');
 
   const {
     closeOnboarding,
@@ -31,6 +32,7 @@ export const OnboardingWalkMe = () => {
     closeAccountSidebar,
     openNavigationSidebar,
     closeNavigationSidebar,
+    onboardingOpenedState,
   } = useProductNavReshuffle();
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -39,12 +41,23 @@ export const OnboardingWalkMe = () => {
     window.innerWidth < MOBILE_WIDTH_RESOLUTION,
   );
 
+  const commonTrackingOptions = {
+    campaignId: '[tooltip-manager]',
+    creation: '[general-onboarding]',
+    detailedPlacement:
+      onboardingOpenedState === ONBOARDING_STATUS_ENUM.DISPLAYED
+        ? '[new_visitor]'
+        : '[returning_visitor]',
+    generalPlacement: '[next]',
+  };
+
   const steps = [
     {
       selector: '#header-user-menu-button',
       placement: 'bottom-start',
       title: t('onboarding_walkme_popover_step1_title'),
       content: t('onboarding_walkme_popover_step1_content'),
+      trackingVariant: 'my_account',
     },
     {
       selector: '#user-account-menu-profile',
@@ -52,6 +65,7 @@ export const OnboardingWalkMe = () => {
       mobilePlacement: 'bottom-start',
       title: t('onboarding_walkme_popover_step2_title'),
       content: t('onboarding_walkme_popover_step2_content'),
+      trackingVariant: 'my_profile',
       onBeforeEnter: () => {
         openAccountSidebar();
         const animationPromise = new Promise((resolve) => {
@@ -68,6 +82,7 @@ export const OnboardingWalkMe = () => {
       mobilePlacement: 'bottom-start',
       title: t('onboarding_walkme_popover_step3_title'),
       content: t('onboarding_walkme_popover_step3_content'),
+      trackingVariant: 'my_payment_method',
     },
     {
       selector: '#sidebar-link-services',
@@ -75,6 +90,7 @@ export const OnboardingWalkMe = () => {
       mobilePlacement: 'bottom-end',
       title: t('onboarding_walkme_popover_step4_title'),
       content: t('onboarding_walkme_popover_step4_content'),
+      trackingVariant: 'my_services',
       onBeforeEnter: () => {
         closeAccountSidebar();
         if (isMobile) {
@@ -90,6 +106,7 @@ export const OnboardingWalkMe = () => {
             mobilePlacement: 'bottom-end',
             title: t('onboarding_walkme_popover_step5_title'),
             content: t('onboarding_walkme_popover_step5_content'),
+            trackingVariant: 'my_billing',
           },
         ]
       : []),
@@ -135,6 +152,11 @@ export const OnboardingWalkMe = () => {
           ? currentStep.mobilePlacement
           : currentStep.placement;
 
+      trackingPlugin.trackImpression({
+        ...commonTrackingOptions,
+        variant: `${currentStep.trackingVariant}`,
+        format: `[${currentStepIndex}-${steps.length}]`,
+      });
       // add a timeout of the same time of the stepElement animation
       // before recalculating popper position
       setTimeout(() => {
