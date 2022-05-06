@@ -5,6 +5,7 @@
   "purchaseOrders_creationDate": "Date de création",
   "purchaseOrders_startDate": "Date de début",
   "purchaseOrders_endDate": "Date de fin",
+  "purchaseOrders_endDate_helper": "La date de fin est exclue",
   "purchaseOrders_status": "Statut",
   "purchaseOrders_status_actif": "Actif",
   "purchaseOrders_status_inactif": "Inactif",
