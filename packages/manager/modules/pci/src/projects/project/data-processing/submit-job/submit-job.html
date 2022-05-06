@@ -67,10 +67,18 @@
                     data-valid="$ctrl.isConfigureStepValid"
                     data-job-parameters="$ctrl.jobParameters"
                 >
+                    <!-- step 5 - price & api -->
                 </pci-project-data-processing-submit-job-spark-config>
                 <h2
-                    data-translate="data_processing_submit_job_stepper_submit_title"
+                    id="prices"
+                    data-translate="data_processing_submit_job_stepper_prices_and_api_title"
                 ></h2>
+
+                <pci-project-data-processing-submit-price-details
+                    user="$ctrl.user"
+                    prices-data="$ctrl.jobPrices"
+                    worker-count="$ctrl.state.jobSizing.workerCount"
+                ></pci-project-data-processing-submit-price-details>
                 <pci-order-command
                     data-order-api-url="$ctrl.orderAPIUrl"
                     data-order-data="$ctrl.orderData"
@@ -326,13 +334,15 @@
                     <oui-tile-definition>
                         <oui-tile-description>
                             <div class="break-word">
-                                <span
+                                <a
+                                    href=""
+                                    ng-click="$ctrl.scrollTo('prices')"
                                     data-translate="data_processing_submit_job_spec_price"
-                                ></span>
+                                ></a>
                                 <strong>
                                     <ovh-manager-catalog-price
-                                        data-price="$ctrl.computePrice()"
-                                        data-tax="$ctrl.computeTax()"
+                                        data-price="$ctrl.jobPrices.cores.totalPrice + $ctrl.jobPrices.memory.totalPrice"
+                                        data-tax="$ctrl.jobPrices.cores.totalTax + $ctrl.jobPrices.memory.totalTax"
                                         data-user="$ctrl.user"
                                         data-perform-rounding="false"
                                         data-maximum-fraction-digits="5"
