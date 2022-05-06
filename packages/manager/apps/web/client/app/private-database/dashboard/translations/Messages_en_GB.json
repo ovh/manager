@@ -480,5 +480,17 @@
   "privateDatabase_tabs_list_extensions_disable_error": "An error has occurred disabling the extension.",
   "privateDatabase_order_sql_period_sub_title": "How long do you want to use it for?",
   "privateDatabase_configuration_field_sql_mode": "The “sql_mode” option affects the supported SQL syntax and data validation checks performed by MySQL/MariaDB.",
+  "privateDatabase_dashboard_cpu_throttle": "CPU throttling",
+  "privateDatabase_dashboard_cpu_saturation": "Time spent with CPU throttled over the last 24 hours.",
+  "privateDatabase_modale_cpu_throttle_title": "CPU throttles",
+  "privateDatabase_modale_cpu_throttle_state_button": "Check CPU throttles",
+  "privateDatabase_modale_cpu_throttle_close_button": "Close",
+  "privateDatabase_modale_cpu_throttle_info": "CPU throttles in the last {{t0}} days.<br />Only the last {{t1}} throttles are available.",
+  "privateDatabase_modale_cpu_throttle_tab_event_start_date": "Start date",
+  "privateDatabase_modale_cpu_throttle_tab_event_end_date": "End date ",
+  "privateDatabase_modale_cpu_throttle_tab_duration": "Throttle duration",
+  "privateDatabase_modale_cpu_throttle_ongoing_cpu_throttle": "CPU throttle in progress",
+  "privateDatabase_modale_cpu_throttle_no_cpu_throttle": "No CPU throttles.",
+  "privateDatabase_modale_cpu_throttle_info_order": "We recommend improving your queries and indexes, or distributing your databases across more CloudDB instances to resolve these issues.",
   "privateDatabase_configuration_documentation": "More information on these options"
 }
