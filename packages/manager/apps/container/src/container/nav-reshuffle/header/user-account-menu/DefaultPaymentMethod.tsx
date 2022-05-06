@@ -21,7 +21,7 @@ const UserDefaultPaymentMethod = ({
   // @todo: use navigation plugin instead
   const paymentMethodUrl = useShell()
     .getPlugin('navigation')
-    .getURL('dedicated', '#/useraccount/dashboard');
+    .getURL('dedicated', '#/billing/payment/method');
 
   return (
     <div
