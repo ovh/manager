@@ -9,6 +9,7 @@ interface ISidebar extends IUxComponent {
 
 export default class Sidebar extends UXComponent implements ISidebar {
   private allowToggle?: boolean;
+
   private forceLargeScreenDisplay?: boolean;
 
   constructor() {
