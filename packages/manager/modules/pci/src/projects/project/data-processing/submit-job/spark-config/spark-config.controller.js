@@ -1,8 +1,5 @@
 import { filter, find } from 'lodash';
-import {
-  ARGUMENTS_VALIDATION_PATTERN,
-  PYTHON_ENV_FILENAME,
-} from './spark-config.constants';
+import { PYTHON_ENV_FILENAME } from './spark-config.constants';
 import {
   JOB_TYPE_JAVA,
   JOB_TYPE_PYTHON,
@@ -11,15 +8,15 @@ import { nameGenerator } from '../../data-processing.utils';
 
 export default class {
   /* @ngInject */
-  constructor($scope, SparkConfigService) {
+  constructor($scope, SparkConfigService, $translate) {
     this.$scope = $scope;
     // create state
     this.state = {};
     this.swiftContainers = {};
     this.swiftContainersInRegion = {};
-    this.currentArgument = '';
     this.sparkConfigService = SparkConfigService;
     this.containerObjects = [];
+    this.$translate = $translate;
   }
 
   $onInit() {
@@ -28,12 +25,16 @@ export default class {
     this.swiftContainers = [];
     // initialize component state
     this.state = {
-      arguments: [],
-      currentArgument: '',
+      arguments: '',
       jobName: nameGenerator(),
       mainApplicationCodeFileNotFound: false, // used by UI to show a warning when file is not found
       mainApplicationCodeFileInvalid: false, // used by UI to show a warning when main application file is invalid
       pythonEnvironmentMissing: false, // used by UI to show a warning when environment.yml file is missing
+      ttl: {
+        enabled: false,
+        unit: null,
+        time: 10,
+      },
     };
     this.sparkConfigService
       .listContainers(this.projectId)
@@ -49,6 +50,30 @@ export default class {
       },
       true,
     );
+
+    this.units = [
+      {
+        name: 'minutes',
+        description: this.$translate.instant(
+          'data_processing_submit_job_stepper_spark_select_unit_minutes',
+        ),
+      },
+      {
+        name: 'hours',
+        description: this.$translate.instant(
+          'data_processing_submit_job_stepper_spark_select_unit_hours',
+        ),
+      },
+      {
+        name: 'days',
+        multiplier: 1440,
+        description: this.$translate.instant(
+          'data_processing_submit_job_stepper_spark_select_unit_days',
+        ),
+      },
+    ];
+
+    [this.state.ttl.unit] = this.units;
 
     this.onChangeHandler(this.state);
   }
@@ -121,19 +146,19 @@ export default class {
    * Handler to add current arguments to the chips argument list
    * @param evt <enter> key event
    */
-  onSubmitArgumentHandler(evt) {
-    evt.preventDefault();
-    evt.stopPropagation();
-    const arg = evt.target.value;
-    // validate argument against authorized pattern
-    if (arg.match(ARGUMENTS_VALIDATION_PATTERN)) {
-      this.state.arguments.push({
-        title: arg,
-      });
-      this.state.currentArgument = '';
-    }
-    this.onChangeHandler(this.state);
-  }
+  // onSubmitArgumentHandler(evt) {
+  //   evt.preventDefault();
+  //   evt.stopPropagation();
+  //   const arg = evt.target.value;
+  //   // validate argument against authorized pattern
+  //   if (arg.match(ARGUMENTS_VALIDATION_PATTERN)) {
+  //     this.state.arguments.push({
+  //       title: arg,
+  //     });
+  //     this.state.currentArgument = '';
+  //   }
+  //   this.onChangeHandler(this.state);
+  // }
 
   /**
    * Handler to manage Main Class field changes

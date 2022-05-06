@@ -53,6 +53,7 @@
                     data-job-parameters="$ctrl.jobParameters"
                     data-prices="$ctrl.prices"
                     data-user="$ctrl.user"
+                    class="mb-2"
                 >
                 </pci-project-data-processing-submit-job-spark-sizing>
                 <!-- step 4 - configure job -->
@@ -66,6 +67,7 @@
                     data-on-change-handler="$ctrl.onChangeJobConfigHandler"
                     data-valid="$ctrl.isConfigureStepValid"
                     data-job-parameters="$ctrl.jobParameters"
+                    class="mb-2"
                 >
                     <!-- step 5 - price & api -->
                 </pci-project-data-processing-submit-job-spark-config>
@@ -325,7 +327,18 @@
                                         data-translate="data_processing_submit_job_spec_config_arguments"
                                     ></strong>
                                     <span
-                                        ng-bind="$ctrl.getArgumentsList()"
+                                        ng-bind="$ctrl.state.jobConfig.arguments"
+                                    ></span>
+                                </div>
+                                <div ng-if="$ctrl.state.jobConfig.ttl.enabled">
+                                    <span
+                                        data-translate="data_processing_submit_job_spec_config_ttl"
+                                    ></span>
+                                    <span
+                                        data-ng-bind="$ctrl.state.jobConfig.ttl.time"
+                                    ></span>
+                                    <span
+                                        data-ng-bind="$ctrl.state.jobConfig.ttl.unit.description"
                                     ></span>
                                 </div>
                             </div>
