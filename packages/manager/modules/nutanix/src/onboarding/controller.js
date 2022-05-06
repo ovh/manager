@@ -6,6 +6,7 @@ export default class NutanixOnboardingController {
   constructor($translate, coreConfig) {
     this.$translate = $translate;
     this.coreConfig = coreConfig;
+    this.illustration = illustration;
   }
 
   async $onInit() {
@@ -17,6 +18,5 @@ export default class NutanixOnboardingController {
       title: this.$translate.instant(guide.title),
     }));
     this.cta = CTAS[this.ovhSubsidiary] || CTAS.DEFAULT;
-    this.illustration = illustration;
   }
 }
