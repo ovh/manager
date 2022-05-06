@@ -52,6 +52,7 @@
                     data-on-change-handler="$ctrl.onChangeJobConfigHandler"
                     data-valid="$ctrl.isConfigureStepValid"
                     data-job-parameters="$ctrl.jobParameters"
+                    class="mb-2"
                 >
                 </pci-project-data-processing-submit-job-spark-config>
                 <!-- step 4 - job sizing -->
@@ -67,8 +68,10 @@
                     data-job-parameters="$ctrl.jobParameters"
                     data-prices="$ctrl.prices"
                     data-user="$ctrl.user"
+                    class="mb-2"
                 >
                 </pci-project-data-processing-submit-job-spark-sizing>
+                <!-- step 5 - prices & API -->
                 <h2
                     id="prices"
                     data-translate="data_processing_submit_job_stepper_prices_and_api_title"
@@ -247,7 +250,18 @@
                                         data-translate="data_processing_submit_job_spec_config_arguments"
                                     ></strong>
                                     <span
-                                        data-ng-bind="$ctrl.getArgumentsList()"
+                                        ng-bind="$ctrl.state.jobConfig.arguments"
+                                    ></span>
+                                </div>
+                                <div ng-if="$ctrl.state.jobConfig.ttl.enabled">
+                                    <strong
+                                        data-translate="data_processing_submit_job_spec_config_ttl"
+                                    ></strong>
+                                    <span
+                                        data-ng-bind="$ctrl.state.jobConfig.ttl.time"
+                                    ></span>
+                                    <span
+                                        data-ng-bind="$ctrl.state.jobConfig.ttl.unit.description"
                                     ></span>
                                 </div>
                             </div>
