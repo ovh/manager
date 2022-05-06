@@ -5,6 +5,7 @@ import NavReshuffleContainer from '@/container/nav-reshuffle';
 import { useShell } from '@/context';
 import useContainer from '@/core/container';
 import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
+import { ProgressProvider } from '@/context/progress';
 
 export default function Container(): JSX.Element {
   const { isLoading, betaVersion, useBeta } = useContainer();
@@ -17,7 +18,7 @@ export default function Container(): JSX.Element {
     shell.getPlugin('ux').showMenuSidebar();
   }
   return (
-    <>
+    <ProgressProvider>
       {isNavReshuffle ? (
         <ProductNavReshuffleProvider>
           <NavReshuffleContainer />
@@ -25,6 +26,6 @@ export default function Container(): JSX.Element {
       ) : (
         <LegacyContainer />
       )}
-    </>
+    </ProgressProvider>
   );
 }
