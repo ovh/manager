@@ -6,7 +6,7 @@ export type NotificationsContextType = {
   notifications: Notification[];
   getActiveNotifications(notifs: Notification[]): Notification[];
   loadNotifications(): Promise<unknown>;
-  readAllNotifications(notifs: Notification[]): Promise<unknown>;
+  readAllNotifications(notifs?: Notification[]): Promise<unknown>;
   toggleNotificationReadStatus(
     notificationId: string,
     linkClicked?: boolean,
@@ -15,6 +15,8 @@ export type NotificationsContextType = {
   setNotificationsCount(count: number): void;
 };
 
-const NotificationsContext = createContext<NotificationsContextType | null>(null);
+const NotificationsContext = createContext<NotificationsContextType | null>(
+  null,
+);
 
 export default NotificationsContext;
