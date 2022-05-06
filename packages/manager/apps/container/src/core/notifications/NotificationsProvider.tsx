@@ -78,7 +78,10 @@ export const NotificationsProvider = ({
     return reketInstance.post('/notification', status, { requestType: 'aapi' });
   };
 
-  const updateNotificationReadStatus = (notification: Notification, status: string): Promise<unknown> => {
+  const updateNotificationReadStatus = (
+    notification: Notification,
+    status: string,
+  ): Promise<unknown> => {
     notification.setUpdating(true);
 
     return updateNotications({
@@ -93,9 +96,9 @@ export const NotificationsProvider = ({
       });
   };
 
-  const readAllNotifications = (notifs: Notification[]): Promise<unknown> => {
-    const notificationsToUpdate = notifs || notifications;
-
+  const readAllNotifications = (
+    notificationsToUpdate: Notification[] = notifications,
+  ): Promise<unknown> => {
     return Promise.all(
       notificationsToUpdate.map((notification: Notification) =>
         !notification.updating && notification.isActive()
@@ -116,7 +119,7 @@ export const NotificationsProvider = ({
    */
   const toggleNotificationReadStatus = (
     notificationId: string,
-    linkClicked: boolean = false,
+    linkClicked = false,
   ): Promise<unknown> => {
     const notificationToUpdate = getNotificationById(notificationId);
 
