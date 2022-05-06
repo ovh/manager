@@ -17,6 +17,8 @@ import Sidebar from './sidebar';
 import NavReshuffleOnboardingWidget from './onboarding';
 
 import style from './template.module.scss';
+import Progress from '../common/Progress';
+import { useProgress } from '@/context/progress';
 
 function NavReshuffleContainer(): JSX.Element {
   const iframeRef = useRef(null);
@@ -24,6 +26,7 @@ function NavReshuffleContainer(): JSX.Element {
   const [router, setRouter] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
   const { shell } = useContext(ApplicationContext);
+  const { isStarted: isProgressAnimating } = useProgress();
 
   const productNavReshuffle = useProductNavReshuffle();
   const {
@@ -87,6 +90,7 @@ function NavReshuffleContainer(): JSX.Element {
         </Suspense>
       </div>
       <div className={`${style.container}`}>
+        <Progress isAnimating={isProgressAnimating}></Progress>
         <div className={style.navbar}>
           <Header
             isSidebarExpanded={isNavigationSidebarOpened}
