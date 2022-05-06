@@ -41,46 +41,46 @@ function Header({
               isDropdownOpen ? '' : modalStyle.hidden
             }`}
           ></div>
-          <div className={`oui-navbar ${style.navbar}`}>
-            <HamburgerMenu
-              isOpen={isSidebarExpanded}
-              onClick={onHamburgerMenuClick}
-            />
-            <div className="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end">
-              <div className="oui-navbar-list__item">
-                <NavReshuffleSwitchBack
-                  onChange={(show: boolean) => {
-                    setIsDropdownOpen(show);
-                    setIsNotificationsSidebarVisible(false);
-                  }}
-                />
-              </div>
-              <div className="oui-navbar-list__item">
-                <LanguageMenu
-                  setUserLocale={setUserLocale}
-                  userLocale={userLocale}
-                  onChange={(show: boolean) => {
-                    setIsDropdownOpen(show);
-                    setIsNotificationsSidebarVisible(false);
-                  }}
-                ></LanguageMenu>
-              </div>
-              <div className="oui-navbar-list__item">
-                <NotificationsProvider environment={environment}>
-                  <NotificationsSidebar environment={environment} />
+          <NotificationsProvider environment={environment}>
+            <div className={`oui-navbar ${style.navbar}`}>
+              <HamburgerMenu
+                isOpen={isSidebarExpanded}
+                onClick={onHamburgerMenuClick}
+              />
+              <div className="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end">
+                <div className="oui-navbar-list__item">
+                  <NavReshuffleSwitchBack
+                    onChange={(show: boolean) => {
+                      setIsDropdownOpen(show);
+                      setIsNotificationsSidebarVisible(false);
+                    }}
+                  />
+                </div>
+                <div className="oui-navbar-list__item">
+                  <LanguageMenu
+                    setUserLocale={setUserLocale}
+                    userLocale={userLocale}
+                    onChange={(show: boolean) => {
+                      setIsDropdownOpen(show);
+                      setIsNotificationsSidebarVisible(false);
+                    }}
+                  ></LanguageMenu>
+                </div>
+                <div className="oui-navbar-list__item">
                   <Notifications />
-                </NotificationsProvider>
-              </div>
-              <div className="oui-navbar-list__item">
-                <UserAccountMenu
-                  onToggle={(show: boolean) => {
-                    setIsDropdownOpen(show);
-                    onUserAccountMenuToggle(show);
-                  }}
-                />
+                </div>
+                <div className="oui-navbar-list__item">
+                  <UserAccountMenu
+                    onToggle={(show: boolean) => {
+                      setIsDropdownOpen(show);
+                      onUserAccountMenuToggle(show);
+                    }}
+                  />
+                </div>
               </div>
             </div>
-          </div>
+            <NotificationsSidebar environment={environment} />
+          </NotificationsProvider>
         </Suspense>
       )}
     </ApplicationContext.Consumer>
