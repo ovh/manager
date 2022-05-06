@@ -7,6 +7,7 @@ import regionSelector from './region-selector';
 import jobTypeSelector from './jobtype-selector';
 import sparkSizing from './spark-sizing';
 import sparkConfig from './spark-config';
+import priceDetails from './price-details';
 
 import dataProcessingSubmitJobComponent from './submit-job.component';
 
@@ -21,6 +22,7 @@ angular
     jobTypeSelector,
     sparkSizing,
     sparkConfig,
+    priceDetails,
   ])
   .config(routing)
   .component(

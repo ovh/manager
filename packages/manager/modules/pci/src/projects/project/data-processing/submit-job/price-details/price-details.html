@@ -1,0 +1,211 @@
+<div class="mb-3">
+    <h5 data-translate="data_processing_price_details_estimation"></h5>
+    <p data-translate="data_processing_price_details_description"></p>
+    <div class="row">
+        <div class="col">
+            <oui-tile
+                data-heading="{{:: 'data_processing_price_details_cores' | translate}}"
+            >
+                <oui-tile-definition>
+                    <oui-tile-description>
+                        <div>
+                            <span
+                                data-translate="data_processing_price_details_driver"
+                            ></span>
+                            <strong
+                                data-ng-bind="$ctrl.pricesData.cores.driver"
+                            ></strong>
+                        </div>
+                        <div>
+                            <span
+                                data-translate="data_processing_price_details_workers"
+                            ></span>
+                            <strong data-ng-bind="$ctrl.workerCount"></strong>
+                            <span> x </span>
+                            <strong
+                                data-ng-bind="$ctrl.pricesData.cores.worker"
+                            ></strong>
+                        </div>
+                        <div>
+                            <span
+                                data-translate="data_processing_price_details_price_per_core"
+                            ></span>
+                            <ovh-manager-catalog-price
+                                data-price="$ctrl.pricesData.cores.price"
+                                data-tax="$ctrl.pricesData.cores.tax"
+                                data-user="$ctrl.user"
+                                data-perform-rounding="false"
+                                data-maximum-fraction-digits="5"
+                            >
+                            </ovh-manager-catalog-price>
+                            <span> / </span>
+                            <span
+                                data-translate="data_processing_price_details_unit_minute"
+                            ></span>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition>
+                    <oui-tile-description>
+                        <div>
+                            <span
+                                data-translate="data_processing_price_details_total"
+                            ></span>
+                            <ovh-manager-catalog-price
+                                data-price="$ctrl.pricesData.cores.totalPrice * $ctrl.time * $ctrl.unit.multiplier"
+                                data-tax="$ctrl.pricesData.cores.totalTax * $ctrl.time * $ctrl.unit.multiplier"
+                                data-user="$ctrl.user"
+                                data-perform-rounding="false"
+                                data-maximum-fraction-digits="5"
+                            >
+                            </ovh-manager-catalog-price>
+                            <span> / </span>
+                            <span
+                                ng-if="$ctrl.time > 1"
+                                ng-bind="$ctrl.time"
+                            ></span>
+                            <span
+                                data-ng-bind="'data_processing_price_details_unit_' + $ctrl.unit.name + ($ctrl.time > 1 ? '_plural' : '') | translate"
+                            ></span>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+        <div class="col">
+            <oui-tile
+                data-heading="{{:: 'data_processing_price_details_memory' | translate}}"
+            >
+                <oui-tile-definition>
+                    <oui-tile-description>
+                        <div>
+                            <span
+                                data-translate="data_processing_price_details_driver"
+                            ></span>
+                            <strong
+                                data-translate="data_processing_price_details_memory_gib"
+                                data-translate-values="{
+                                memory: $ctrl.pricesData.memory.driver.base,
+                            }"
+                            ></strong>
+                            <span> + </span>
+                            <strong
+                                data-translate="data_processing_price_details_memory_gib"
+                                data-translate-values="{
+                                memory: $ctrl.pricesData.memory.driver.overhead,
+                            }"
+                            ></strong>
+                            <span
+                                data-translate="data_processing_price_details_memory_overhead"
+                            ></span>
+                        </div>
+                        <div>
+                            <span
+                                data-translate="data_processing_price_details_workers"
+                            ></span>
+                            <strong data-ng-bind="$ctrl.workerCount"></strong>
+                            <span> x </span>
+                            <span>(</span>
+                            <strong
+                                data-translate="data_processing_price_details_memory_gib"
+                                data-translate-values="{
+                                memory: $ctrl.pricesData.memory.worker.base,
+                            }"
+                            ></strong>
+                            <span> + </span>
+                            <strong
+                                data-translate="data_processing_price_details_memory_gib"
+                                data-translate-values="{
+                                memory: $ctrl.pricesData.memory.worker.overhead,
+                            }"
+                            ></strong>
+                            <span
+                                data-translate="data_processing_price_details_memory_overhead"
+                            ></span>
+                            <span>)</span>
+                        </div>
+                        <div>
+                            <span
+                                data-translate="data_processing_price_details_price_per_gib"
+                            ></span>
+                            <ovh-manager-catalog-price
+                                data-price="$ctrl.pricesData.memory.price"
+                                data-tax="$ctrl.pricesData.memory.tax"
+                                data-user="$ctrl.user"
+                                data-perform-rounding="false"
+                                data-maximum-fraction-digits="5"
+                            >
+                            </ovh-manager-catalog-price>
+                            <span>/</span>
+                            <span
+                                data-translate="data_processing_price_details_unit_minute"
+                            ></span>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition>
+                    <oui-tile-description>
+                        <div>
+                            <span
+                                data-translate="data_processing_price_details_total"
+                            ></span>
+                            <ovh-manager-catalog-price
+                                data-price="$ctrl.pricesData.memory.totalPrice * $ctrl.time * $ctrl.unit.multiplier"
+                                data-tax="$ctrl.pricesData.memory.totalTax * $ctrl.time * $ctrl.unit.multiplier"
+                                data-user="$ctrl.user"
+                                data-perform-rounding="false"
+                                data-maximum-fraction-digits="5"
+                            >
+                            </ovh-manager-catalog-price>
+                            <span> / </span>
+                            <span
+                                ng-if="$ctrl.time > 1"
+                                ng-bind="$ctrl.time"
+                            ></span>
+                            <span
+                                data-ng-bind="'data_processing_price_details_unit_' + $ctrl.unit.name + ($ctrl.time > 1 ? '_plural' : '') | translate"
+                            ></span>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <oui-tile
+                data-heading="{{:: 'data_processing_price_details_job' | translate}}"
+            >
+                <oui-tile-definition>
+                    <oui-tile-description>
+                        <div class="d-flex align-items-center">
+                            <ovh-manager-catalog-price
+                                data-price="($ctrl.pricesData.memory.totalPrice + $ctrl.pricesData.cores.totalPrice) * $ctrl.time * $ctrl.unit.multiplier"
+                                data-tax="($ctrl.pricesData.memory.totalPrice + $ctrl.pricesData.cores.totalPrice) * $ctrl.time * $ctrl.unit.multiplier"
+                                data-user="$ctrl.user"
+                                data-perform-rounding="false"
+                                data-maximum-fraction-digits="5"
+                            >
+                            </ovh-manager-catalog-price>
+                            <span class="mx-2">/</span>
+                            <label class="d-inline-block w-auto">
+                                <oui-numeric min="1" model="$ctrl.time">
+                                </oui-numeric>
+                            </label>
+                            <label class="oui-select oui-select_inline ml-2">
+                                <oui-select
+                                    name="unit"
+                                    id="unit"
+                                    match="description"
+                                    data-model="$ctrl.unit"
+                                    data-items="$ctrl.units"
+                                >
+                                </oui-select>
+                            </label>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+</div>
