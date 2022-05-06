@@ -2,6 +2,7 @@ import Shell from '../../shell/shell';
 import Sidebar from './components/sidebar';
 import Navbar, { INavbar } from './components/navbar';
 import Chatbot from './components/chatbot';
+import Progress from './components/progress';
 
 export interface ISidebars {
   [name: string]: Sidebar;
@@ -14,6 +15,7 @@ interface IShellUx {
   showSidebar: (sidebarName: string) => void;
   hideSidebar: (sidebarName: string) => void;
   registerNavbar: () => void;
+  registerProgress: () => void;
   onSidebarVisibilityChange(
     sidebarName: string,
     callback: CallableFunction,
@@ -28,6 +30,8 @@ export class ShellUX implements IShellUx {
   private sidebars: ISidebars = {};
 
   private chatbot: Chatbot;
+
+  private progress: Progress;
 
   constructor(shell: Shell) {
     this.shell = shell;
@@ -74,7 +78,10 @@ export class ShellUX implements IShellUx {
     return registeredSidebar?.isLargeScreenDisplayForced();
   }
 
-  setForceSiderBarDisplayOnLargeScreen(sidebarName: string, isForced: boolean): void {
+  setForceSiderBarDisplayOnLargeScreen(
+    sidebarName: string,
+    isForced: boolean,
+  ): void {
     const registeredSidebar = this.sidebars[sidebarName];
 
     registeredSidebar?.setForceLargeScreenDisplay(isForced);
@@ -116,5 +123,25 @@ export class ShellUX implements IShellUx {
 
   getChatbot(): Chatbot {
     return this.chatbot;
+  }
+
+  registerProgress(): void {
+    this.progress = new Progress();
+  }
+
+  startProgress() {
+    this.progress.start();
+  }
+
+  stopProgress() {
+    this.progress.stop();
+  }
+
+  onProgressStart(callback: CallableFunction,) {
+    this.progress.onStart(callback);
+  }
+
+  onProgressStop(callback: CallableFunction,) {
+    this.progress.onStop(callback);
   }
 }

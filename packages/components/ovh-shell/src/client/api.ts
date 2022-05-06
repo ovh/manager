@@ -125,6 +125,19 @@ export default function exposeApi(shellClient: ShellClient) {
           args: [reduced],
         });
       },
+
+      startProgress: () => {
+        shellClient.invokePluginMethod<string>({
+          plugin: 'ux',
+          method: 'startProgress',
+        });
+      },
+      stopProgress: () => {
+        shellClient.invokePluginMethod<string>({
+          plugin: 'ux',
+          method: 'stopProgress',
+        });
+      },
     },
     navigation: clientNavigation(shellClient),
     tracking: exposeTrackingAPI(shellClient),

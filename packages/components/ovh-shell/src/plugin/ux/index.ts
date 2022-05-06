@@ -36,7 +36,7 @@ export class UXPlugin implements IUXPlugin {
     this.shellUX.registerSidebar('account');
     this.shellUX.registerSidebar('notifications');
     this.shellUX.registerSidebar('menu');
-    this.shellUX.registerNavbar();
+    this.shellUX.registerProgress();
   }
 
   /* ----------- AccountSidebar methods -----------*/
@@ -171,5 +171,21 @@ export class UXPlugin implements IUXPlugin {
 
   onChatbotVisibilityChange(callback: CallableFunction): void {
     this.shellUX.getChatbot().onVisibilityChange(callback);
+  }
+
+  startProgress(): void {
+    this.shellUX.startProgress();
+  }
+
+  stopProgress(): void {
+    this.shellUX.stopProgress();
+  }
+
+  onProgressStart(callback: CallableFunction): void {
+    this.shellUX.onProgressStart(callback);
+  }
+
+  onProgressStop(callback: CallableFunction): void {
+    this.shellUX.onProgressStop(callback);
   }
 }
