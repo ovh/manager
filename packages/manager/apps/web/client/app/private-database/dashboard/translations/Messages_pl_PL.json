@@ -482,5 +482,17 @@
   "privateDatabase_tabs_list_extensions_disable_error": "Wystąpił błąd podczas aktywowania rozszerzenia.",
   "privateDatabase_order_sql_period_sub_title": "Jak długo chcesz korzystać z bazy?",
   "privateDatabase_configuration_field_sql_mode": "Opcja \"sql_mode\" wpływa na obsługiwaną składnię SQL oraz sprawdzanie poprawności danych przez MySQL/MariaDB.",
+  "privateDatabase_dashboard_cpu_throttle": "Nasycenie CPU",
+  "privateDatabase_dashboard_cpu_saturation": "Czas nasycenia CPU w ciągu ostatnich 24 godzin.",
+  "privateDatabase_modale_cpu_throttle_title": "Nasycenia CPU",
+  "privateDatabase_modale_cpu_throttle_state_button": "Sprawdź nasycenie CPU",
+  "privateDatabase_modale_cpu_throttle_close_button": "Zamknij",
+  "privateDatabase_modale_cpu_throttle_info": "Nasycenia CPU, które wystąpiły w ciągu ostatnich {{t0}} dni.<br />Dostępna jest tylko następująca liczba nasyceń: {{t1}}.",
+  "privateDatabase_modale_cpu_throttle_tab_event_start_date": "Data rozpoczęcia",
+  "privateDatabase_modale_cpu_throttle_tab_event_end_date": "Data zakończenia",
+  "privateDatabase_modale_cpu_throttle_tab_duration": "Czas nasycenia",
+  "privateDatabase_modale_cpu_throttle_ongoing_cpu_throttle": "Nasycenie CPU trakcie",
+  "privateDatabase_modale_cpu_throttle_no_cpu_throttle": "Brak nasycenia CPU.",
+  "privateDatabase_modale_cpu_throttle_info_order": "Jeśli chcesz zaradzić tym problemom, zalecamy, abyś zoptymalizował zapytania i indeksy lub rozdzielił bazy danych na więcej instancji CloudDB.",
   "privateDatabase_configuration_documentation": "Więcej informacji na temat tych opcji"
 }

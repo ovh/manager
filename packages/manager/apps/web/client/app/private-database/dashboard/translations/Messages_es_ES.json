@@ -482,5 +482,17 @@
   "privateDatabase_tabs_list_extensions_disable_error": "Se ha producido un error al desactivar la extensión.",
   "privateDatabase_order_sql_period_sub_title": "¿Por cuánto tiempo quiere utilizarlas?",
   "privateDatabase_configuration_field_sql_mode": "La opción «sql_mode» afecta a la sintaxis SQL considerada y las comprobaciones de validación de los datos realizadas por MySQL/MariaDB.",
+  "privateDatabase_dashboard_cpu_throttle": "Saturación de CPU",
+  "privateDatabase_dashboard_cpu_saturation": "Tiempo de saturación de CPU en las últimas 24 horas.",
+  "privateDatabase_modale_cpu_throttle_title": "Saturaciones de CPU",
+  "privateDatabase_modale_cpu_throttle_state_button": "Comprobar la saturación de CPU",
+  "privateDatabase_modale_cpu_throttle_close_button": "Cerrar",
+  "privateDatabase_modale_cpu_throttle_info": "Saturaciones de CPU producidas en los últimos {{t0}} días.<br />Solo están disponibles las {{t1}} últimas saturaciones.",
+  "privateDatabase_modale_cpu_throttle_tab_event_start_date": "Fecha de inicio",
+  "privateDatabase_modale_cpu_throttle_tab_event_end_date": "Fecha de finalización",
+  "privateDatabase_modale_cpu_throttle_tab_duration": "Duración de la saturación",
+  "privateDatabase_modale_cpu_throttle_ongoing_cpu_throttle": "Saturación de CPU en curso",
+  "privateDatabase_modale_cpu_throttle_no_cpu_throttle": "Sin saturación de CPU",
+  "privateDatabase_modale_cpu_throttle_info_order": "Le recomendamos que mejore sus consultas e índices o que reparta sus bases de datos en más instancias CloudDB para solucionar estos problemas.",
   "privateDatabase_configuration_documentation": "Más información sobre estas opciones"
 }
