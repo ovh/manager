@@ -15,7 +15,12 @@ const Button = ({ link = {}, translationBase = '' }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
 
   return (
-    <button className="btn btn-link d-flex" type="button" role="button">
+    <button
+      className="btn btn-link d-flex"
+      type="button"
+      role="button"
+      onClick={link.action}
+    >
       {link.icon && <span className={link.icon} aria-hidden="true"></span>}
       <span>{t(`${translationBase}_${link.id}`)}</span>
     </button>
