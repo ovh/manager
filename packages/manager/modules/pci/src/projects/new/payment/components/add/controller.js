@@ -11,8 +11,15 @@ import {
 
 export default class PciProjectNewPaymentMethodAddCtrl {
   /* @ngInject */
-  constructor($translate, coreConfig, coreURLBuilder, ovhPaymentMethodHelper) {
+  constructor(
+    $translate,
+    $location,
+    coreConfig,
+    coreURLBuilder,
+    ovhPaymentMethodHelper,
+  ) {
     this.$translate = $translate;
+    this.$location = $location;
     this.coreConfig = coreConfig;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
 
@@ -115,8 +122,19 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     );
 
     // set payment method model
+    this.preselectPaymentMethod();
+  }
+
+  preselectPaymentMethod() {
+    // Preselection for redirection case (return from HiPay or Worldline)
+    const paymentMethodToPreselect = this.authorizedPaymentMethods.find(
+      ({ type }) => type.paymentType === this.$location.search()?.paymentType,
+    );
+    const defaultPaymentMethod = head(this.authorizedPaymentMethods);
+
+    // preselect payment method
     this.model.paymentMethod = this.eligibility.isAddPaymentMethodRequired()
-      ? head(this.authorizedPaymentMethods)
+      ? paymentMethodToPreselect || defaultPaymentMethod
       : null;
   }
 
