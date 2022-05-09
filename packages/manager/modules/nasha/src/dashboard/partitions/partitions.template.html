@@ -42,9 +42,9 @@
                 data-title=":: ('nasha_dashboard_partitions_list_partition_name' | translate)"
             >
                 <button
-                    data-ng-click="$ctrl.goToPagePartitionDashboard($row.partitionName)"
+                    data-ng-click="$ctrl.goToPagePartition($row.partitionName)"
                     data-ng-bind="$row.partitionName"
-                    data-ng-disabled="$row.inCreation"
+                    data-ng-disabled="$row.inCreation || $row.inDeletion"
                     class="oui-button oui-button_m oui-button_link"
                 ></button>
             </oui-datagrid-column>
@@ -81,12 +81,12 @@
                 </div>
             </oui-datagrid-column>
             <oui-action-menu
-                data-ng-if="!$row.tasks.length"
+                data-ng-if="!$row.inCreation && !$row.inDeletion"
                 data-compact
                 data-placement="end"
             >
                 <oui-action-menu-item
-                    data-on-click="$ctrl.goToPagePartitionDashboard($row.partitionName)"
+                    data-on-click="$ctrl.goToPagePartition($row.partitionName)"
                 >
                     <span
                         data-translate="nasha_dashboard_partitions_action_show"
@@ -108,6 +108,7 @@
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-on-click="$ctrl.goToTabPartitionsEditSize($row)"
+                    data-disabled="$ctrl.hasOperation($row, 'Update')"
                 >
                     <span
                         data-translate="nasha_dashboard_partitions_action_edit_size"
@@ -115,6 +116,7 @@
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-on-click="$ctrl.goToTabPartitionsZfsOptions($row)"
+                    data-disabled="$ctrl.hasOperation($row, 'ZfsOptions')"
                 >
                     <span
                         data-translate="nasha_dashboard_partitions_action_zfs_options"

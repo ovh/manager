@@ -1,0 +1,28 @@
+<nasha-components-modal-form
+    data-submit=":: $ctrl.submit()"
+    data-close=":: $ctrl.close()"
+    data-heading="{{:: ('nasha_components_partition_edit_name_title' | translate) }}"
+    data-primary-label="{{:: ('nasha_components_partition_edit_name_primary' | translate) }}"
+    data-secondary-label="{{:: ('nasha_components_partition_edit_name_secondary' | translate) }}"
+>
+    <oui-field
+        data-label="{{:: ('nasha_components_partition_edit_name_label' | translate) }}"
+        data-help-text="{{:: ('nasha_components_partition_edit_name_rules' | translate) }}"
+        data-error-messages="{
+            forbid: ('nasha_components_partition_edit_name_forbid' | translate: { name: $ctrl.partition.partitionName }),
+            forbidOthers: $ctrl.forbidOthersMessage
+        }"
+    >
+        <input
+            type="text"
+            id="partitionName"
+            name="partitionName"
+            class="oui-input"
+            data-ng-model="$ctrl.model.partitionName"
+            data-ng-pattern="$ctrl.namePattern"
+            data-forbid-others="$ctrl.partitionNames"
+            data-forbid
+            required
+        />
+    </oui-field>
+</nasha-components-modal-form>

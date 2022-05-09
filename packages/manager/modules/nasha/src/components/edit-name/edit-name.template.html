@@ -9,7 +9,7 @@
         data-label="{{:: ('nasha_components_edit_name_label' | translate) }}"
         data-help-text="{{:: ('nasha_components_edit_name_rules' | translate) }}"
         data-error-messages="{
-            mismatch: ('nasha_components_edit_name_mismatch' | translate),
+            forbid: ('nasha_components_edit_name_forbid' | translate: { name: $ctrl.nasha.customName }),
         }"
     >
         <input
@@ -19,7 +19,7 @@
             class="oui-input"
             data-ng-model="$ctrl.model.name"
             data-ng-pattern="$ctrl.namePattern"
-            data-mismatch="{{:: $ctrl.model.name }}"
+            data-forbid
             required
         />
     </oui-field>
