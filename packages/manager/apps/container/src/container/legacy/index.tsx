@@ -12,8 +12,6 @@ import { Redirect, Route } from 'react-router-dom';
 import NavReshuffleBetaAccessModal from '@/container/common/pnr-beta-modal';
 import ApplicationContext from '@/context';
 import { useProgress } from '@/context/progress';
-import CookiePolicy from '@/cookie-policy/CookiePolicy';
-import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
 import LegacyHeader from './Header';
 import style from './template.module.scss';
 import Progress from '../common/Progress';
@@ -84,13 +82,6 @@ function LegacyContainer(): JSX.Element {
             ></iframe>
           </Preloader>
         </div>
-        <Suspense fallback="">
-          <SSOAuthModal />
-        </Suspense>
-        <div className={style.managerShell_footer}></div>
-        <Suspense fallback="...">
-          <CookiePolicy shell={shell} />
-        </Suspense>
       </div>
     </>
   );
