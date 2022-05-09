@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 import useClickAway from 'react-use/lib/useClickAway';
 
@@ -6,6 +7,7 @@ import LanguageButton from './Button';
 import LanguageList from './List';
 
 import { useShell } from '@/context';
+import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 
 type Props = {
   onChange(show: boolean): void;
@@ -22,6 +24,9 @@ function LanguageMenu({
   const shell = useShell();
   const [show, setShow] = useState(false);
   const handleRootClose = () => setShow(false);
+  const isSmallDevice = useMediaQuery({
+    query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
+  });
 
   useEffect(() => {
     onChange(show);
@@ -62,10 +67,19 @@ function LanguageMenu({
     return <div></div>;
   }
 
+  const getLanguageLabel = () => {
+    if (currentLanguage) {
+      return isSmallDevice
+        ? currentLanguage.key.slice(-2)
+        : currentLanguage.name;
+    }
+    return '';
+  };
+
   return (
     <div className="oui-navbar-dropdown" ref={ref}>
       <LanguageButton show={show} onClick={(nextShow) => setShow(nextShow)}>
-        {currentLanguage.name}
+        {getLanguageLabel()}
       </LanguageButton>
       <LanguageList
         languages={availableLanguages}
