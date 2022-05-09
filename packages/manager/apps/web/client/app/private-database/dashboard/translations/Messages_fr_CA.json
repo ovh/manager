@@ -470,7 +470,7 @@
   "privateDatabase_modale_cpu_throttle_tab_duration": "Durée de la saturation",
   "privateDatabase_modale_cpu_throttle_ongoing_cpu_throttle": "Saturation CPU en cours",
   "privateDatabase_modale_cpu_throttle_no_cpu_throttle": "Pas de saturation CPU.",
-  "privateDatabase_modale_cpu_throttle_info_order": "Nous vous conseillons d'améliorer vos requêtes et index ou de répartir vos bases de données sur plus d'instances CloudDB pour pallier ces problèmes.",
+  "privateDatabase_modale_cpu_throttle_info_order": "Nous vous conseillons d'améliorer vos requêtes et index ou de répartir vos bases de données sur plus d'instances CloudDB pour pallier à ces problèmes.",
   "privateDatabase_modale_oom_title": "Dépassements de la mémoire vive",
   "privateDatabase_modale_oom_state_button": "Vérifier les dépassements de la mémoire vive",
   "privateDatabase_modale_oom_confirm_button": "Commander plus de RAM",
