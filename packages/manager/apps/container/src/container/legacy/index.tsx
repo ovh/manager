@@ -17,6 +17,8 @@ import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
 import LegacyHeader from './Header';
 import style from './template.module.scss';
 import Progress from '../common/Progress';
+import Preloader from '../common/Preloader';
+import usePreloader from '../common/Preloader/usePreloader';
 
 function LegacyContainer(): JSX.Element {
   const iframeRef = useRef(null);
@@ -24,6 +26,7 @@ function LegacyContainer(): JSX.Element {
   const [router, setRouter] = useState(null);
   const { shell } = useContext(ApplicationContext);
   const { isStarted: isProgressAnimating } = useProgress();
+  const preloaderVisible = usePreloader(shell);
 
   useEffect(() => {
     setIframe(iframeRef.current);
@@ -72,12 +75,14 @@ function LegacyContainer(): JSX.Element {
           <LegacyHeader />
         </div>
         <div className={style.managerShell_content}>
-          <iframe
-            label="app"
-            role="document"
-            src="about:blank"
-            ref={iframeRef}
-          ></iframe>
+          <Preloader visible={preloaderVisible}>
+            <iframe
+              label="app"
+              role="document"
+              src="about:blank"
+              ref={iframeRef}
+            ></iframe>
+          </Preloader>
         </div>
         <Suspense fallback="">
           <SSOAuthModal />

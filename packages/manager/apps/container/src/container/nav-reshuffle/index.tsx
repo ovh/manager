@@ -19,6 +19,8 @@ import NavReshuffleOnboardingWidget from './onboarding';
 import style from './template.module.scss';
 import Progress from '../common/Progress';
 import { useProgress } from '@/context/progress';
+import Preloader from '../common/Preloader';
+import usePreloader from '../common/Preloader/usePreloader';
 
 function NavReshuffleContainer(): JSX.Element {
   const iframeRef = useRef(null);
@@ -27,6 +29,8 @@ function NavReshuffleContainer(): JSX.Element {
   const [showOverlay, setShowOverlay] = useState(false);
   const { shell } = useContext(ApplicationContext);
   const { isStarted: isProgressAnimating } = useProgress();
+
+  const preloaderVisible = usePreloader(shell);
 
   const productNavReshuffle = useProductNavReshuffle();
   const {
@@ -106,12 +110,14 @@ function NavReshuffleContainer(): JSX.Element {
                 : ''
             }`}
           ></div>
-          <iframe
-            label="app"
-            role="document"
-            src="about:blank"
-            ref={iframeRef}
-          ></iframe>
+          <Preloader visible={preloaderVisible}>
+            <iframe
+              label="app"
+              role="document"
+              src="about:blank"
+              ref={iframeRef}
+            ></iframe>
+          </Preloader>
         </div>
         <Suspense fallback="">
           {!productNavReshuffle.isLoading && <NavReshuffleOnboardingWidget />}
