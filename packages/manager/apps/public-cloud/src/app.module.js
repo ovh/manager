@@ -78,7 +78,7 @@ export default async (containerEl, shellClient) => {
         darkMode,
         ngAnimate,
         ngUiRouterBreadcrumb,
-        ngUiRouterLineProgress,
+        isTopLevelApplication() ? ngUiRouterLineProgress : null,
         ngOvhApiWrappers,
         ngOvhFeatureFlipping,
         ngOvhPaymentMethod,
@@ -191,9 +191,37 @@ export default async (containerEl, shellClient) => {
     )
     .run(/* @ngTranslationsInject:json ./translations */)
     .run(
+      /* @ngInject */ ($transitions) => {
+        // replace ngOvhUiRouterLineProgress if in container
+        if (!isTopLevelApplication()) {
+          $transitions.onBefore({}, (transition) => {
+            if (
+              !transition.ignored() &&
+              transition.from().name !== '' &&
+              transition.entering().length > 0
+            ) {
+              shellClient.ux.startProgress();
+            }
+          });
+
+          $transitions.onSuccess({}, () => {
+            shellClient.ux.stopProgress();
+          });
+
+          $transitions.onError({}, (transition) => {
+            if (!transition.error().redirected) {
+              shellClient.ux.stopProgress();
+            }
+          });
+        }
+      },
+    )
+    .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
+          if (isTopLevelApplication()) {
+            detachPreloader();
+          }
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
