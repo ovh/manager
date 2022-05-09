@@ -170,7 +170,7 @@ export default async (containerEl, shellClient) => {
         ngTranslateAsyncLoader,
         ngUiRouterBreadcrumb,
         ngUiRouterLayout,
-        ngUiRouterLineProgress,
+        isTopLevelApplication() ? ngUiRouterLineProgress : null,
         ovhManagerServerSidebar,
         uiRouter,
         'pascalprecht.translate',
@@ -614,9 +614,37 @@ export default async (containerEl, shellClient) => {
     )
     .run(/* @ngTranslationsInject:json ./core/translations */)
     .run(
+      /* @ngInject */ ($transitions) => {
+        // replace ngOvhUiRouterLineProgress if in container
+        if (!isTopLevelApplication()) {
+          $transitions.onBefore({}, (transition) => {
+            if (
+              !transition.ignored() &&
+              transition.from().name !== '' &&
+              transition.entering().length > 0
+            ) {
+              shellClient.ux.startProgress();
+            }
+          });
+
+          $transitions.onSuccess({}, () => {
+            shellClient.ux.stopProgress();
+          });
+
+          $transitions.onError({}, (transition) => {
+            if (!transition.error().redirected) {
+              shellClient.ux.stopProgress();
+            }
+          });
+        }
+      },
+    )
+    .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
+          if (isTopLevelApplication()) {
+            detachPreloader();
+          }
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
