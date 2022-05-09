@@ -9,6 +9,7 @@
         </span>
     </div>
 
+    <!--Payment methods-->
     <div class="row">
         <div
             class="col-md-6 mb-3"
@@ -32,6 +33,7 @@
 
     <!--Credit card info banner-->
     <oui-message
+        class="text-justify"
         data-type="info"
         data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard()"
     >
@@ -46,6 +48,7 @@
 
     <!--PAYPAL charged tax info banner-->
     <oui-message
+        class="text-justify"
         data-type="warning"
         data-ng-if="$ctrl.isDisplayablePaypalChargeBanner && $ctrl.model.paymentMethod.type.isPaypal()"
     >
@@ -55,23 +58,41 @@
         ></span>
     </oui-message>
 
-    <div data-ng-if="$ctrl.model.paymentMethod.paymentType !== 'CREDIT'">
-        <oui-message
-            data-type="warning"
-            data-ng-if="$ctrl.model.paymentMethod.type.isBankAccount()"
-        >
+    <!--SEPA banner info-->
+    <div class="text-justify"
+         data-ng-if="$ctrl.model.paymentMethod.type.isSepaDirectDebit()"
+    >
+
+        <!--Description-->
+        <p
+            translate="pci_project_new_payment_method_add_info_sepa_direct_debit_main_info"
+            data-translate-values="{ break: '<br>' }"
+        ></p>
+
+        <!--Redirection to Worldline banner info-->
+        <oui-message data-type="warning">
             <span
-                data-translate="pci_project_new_payment_method_add_warning_bank_account"
+                data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_redirect_warn"
+                data-translate-values="{ break: '<br>' }"
             ></span>
         </oui-message>
 
-        <p>
-            <small
-                data-ng-if="$ctrl.model.paymentMethod && !$ctrl.model.paymentMethod.type.isCreditCard()"
-                data-translate="{{ 'pci_project_new_payment_method_add_info_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
-                data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"
-            >
-            </small>
-        </p>
+        <!--Data collect banner info-->
+        <oui-message data-type="info">
+            <span
+                data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_collect_data_info"
+                data-translate-values="{ break: '<br>' }"
+            ></span>
+        </oui-message>
+
     </div>
+
+    <p data-ng-if="$ctrl.model.paymentMethod.type.isPaypal()"
+    >
+        <small
+            data-translate="pci_project_new_payment_method_add_info_paypal"
+            data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"
+        >
+        </small>
+    </p>
 </div>
