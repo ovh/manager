@@ -653,6 +653,8 @@ export default async (containerEl, shellClient) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
           if (isTopLevelApplication()) {
             detachPreloader();
+          } else {
+            shellClient.ux.hidePreloader();
           }
           $rootScope.$broadcast('app:started');
           unregisterHook();
