@@ -13,7 +13,7 @@ import NashaPartitionSnapshot from './snapshot';
 import NashaPartitionCustomSnapshot from './custom-snapshot';
 import NashaPartitionZfsOptions from './zfs-options';
 
-import NashaPartitionZFSOptionsService from './zfs-options/service';
+import NashaPartitionZfsOptionsService from './zfs-options/service';
 import access from './access';
 
 import './styles.less';
@@ -33,7 +33,7 @@ angular
   ])
   .config(routing)
   .controller('NashaPartitionCtrl', NashaPartitionCtrl)
-  .service('NashaPartitionZFSOptionsService', NashaPartitionZFSOptionsService)
+  .service('NashaPartitionZfsOptionsService', NashaPartitionZfsOptionsService)
 
   .component('nashaPartitionComponent', NashaPartitionComponent)
 

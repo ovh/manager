@@ -11,7 +11,6 @@ import directoryModule from './directory';
 import newModule from './new';
 import onboardingModule from './onboarding';
 import dashboardModule from './dashboard';
-import partitionModule from './partition';
 
 const moduleName = 'ovhManagerNasha';
 
@@ -23,7 +22,6 @@ angular
     newModule,
     onboardingModule,
     dashboardModule,
-    partitionModule,
   ])
   .config(routing)
   .constant('NashaTask', NASHA_TASK)

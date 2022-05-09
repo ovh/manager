@@ -2,11 +2,11 @@ import angular from 'angular';
 
 import 'angular-translate';
 
-import modalFormComponentModule from '../modal-form';
-import forbidDirectiveModule from '../../directives/forbid';
+import modalFormComponentModule from '../../modal-form';
+import forbidDirectiveModule from '../../../directives/forbid';
 import component from './edit-name.component';
 
-const moduleName = 'ovhManagerNashaComponentsEditName';
+const moduleName = 'ovhManagerNashaComponentsPartitionEditName';
 
 angular
   .module(moduleName, [
@@ -14,7 +14,7 @@ angular
     modalFormComponentModule,
     forbidDirectiveModule,
   ])
-  .component('nashaComponentsEditName', component)
+  .component('nashaComponentsPartitionEditName', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

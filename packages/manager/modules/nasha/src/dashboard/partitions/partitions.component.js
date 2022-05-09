@@ -5,8 +5,8 @@ export default {
   bindings: {
     alertError: '<',
     alertSuccess: '<',
+    goToPagePartition: '<',
     goToPagePartitionAccess: '<',
-    goToPagePartitionDashboard: '<',
     goToPagePartitionSnapshots: '<',
     goToTabPartitionsCreate: '<',
     goToTabPartitionsDelete: '<',

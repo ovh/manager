@@ -2,18 +2,21 @@ import { STATE_NAME } from './partitions.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const goToPagePartitionResolve = [
+    { id: '', name: '' },
     { id: 'access', name: 'Access' },
-    { id: 'dashboard', name: 'Dashboard' },
     { id: 'snapshots', name: 'Snapshots' },
-  ].reduce(
-    (resolves, { id, name }) => ({
+  ].reduce((resolves, { id, name }) => {
+    const resolveName = `goToPagePartition${name}`;
+    const stateId = id ? `.${id}` : '';
+    return {
       ...resolves,
-      [`goToPagePartition${name}`]: /* @ngInject */ ($state, serviceName) => (
-        partitionName,
-      ) => $state.go(`nasha.partition.${id}`, { serviceName, partitionName }),
-    }),
-    {},
-  );
+      [resolveName]: /* @ngInject */ ($state, serviceName) => (partitionName) =>
+        $state.go(`nasha.dashboard.partition${stateId}`, {
+          serviceName,
+          partitionName,
+        }),
+    };
+  }, {});
 
   const goToTabPartitionsResolve = [
     { id: 'create', name: 'Create' },

@@ -8,7 +8,7 @@ export default class NashaDashboardController {
     this.isEditNameModalOpened = true;
   }
 
-  closeEditNameModal({ success, error }) {
+  closeEditNameModal({ success, error } = {}) {
     this.isEditNameModalOpened = false;
     if (success) {
       this.reload({ success });
