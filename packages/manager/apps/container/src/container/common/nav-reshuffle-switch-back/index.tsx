@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 import { useTranslation } from 'react-i18next';
 import useClickAway from 'react-use/lib/useClickAway';
@@ -6,6 +7,7 @@ import useClickAway from 'react-use/lib/useClickAway';
 import NavReshuffleSwitchBackModal from './Modal';
 
 import useContainer from '@/core/container';
+import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 
 type Props = {
   onChange(show: boolean): void;
@@ -17,10 +19,9 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
   const ref = useRef();
   const [show, setShow] = useState<boolean>(false);
   const [confirm, setConfirm] = useState<boolean>(false);
-
-  if (!betaVersion) {
-    return <></>;
-  }
+  const isSmallDevice = useMediaQuery({
+    query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
+  });
 
   useEffect(() => {
     onChange(show);
@@ -36,6 +37,10 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
     );
     updateBetaChoice(false);
   };
+
+  if (isSmallDevice || !betaVersion) {
+    return <></>;
+  }
 
   return (
     <>
