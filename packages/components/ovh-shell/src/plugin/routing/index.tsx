@@ -4,7 +4,11 @@ import { Redirect, Route } from 'react-router-dom';
 import Router, { hashChangeEvent } from './router';
 import Shell from '../../shell/shell';
 import RoutingConfiguration from './configuration';
-import Orchestrator from './orchestrator';
+import Orchestrator, { AppChangeCallback } from './orchestrator';
+
+export interface IRoutingOptions {
+  onAppChange?: AppChangeCallback;
+}
 
 export function initRoutingConfiguration(
   shell: Shell,
@@ -57,7 +61,11 @@ export function initRoutingConfiguration(
   }
 }
 
-export function initRouting(shell: Shell, iframe: HTMLIFrameElement) {
+export function initRouting(
+  shell: Shell,
+  iframe: HTMLIFrameElement,
+  options?: IRoutingOptions,
+) {
   const routingConfig = new RoutingConfiguration();
   const routes: React.ReactElement<Route | Redirect>[] = [];
 
@@ -76,6 +84,11 @@ export function initRouting(shell: Shell, iframe: HTMLIFrameElement) {
     } else {
       orchestrator.redirectToContainerHome();
     }
+  });
+
+  orchestrator.onAppChangHandler((onAppChangeParams) => {
+    shell.getPlugin('ux').showPreloader();
+    options?.onAppChange?.(onAppChangeParams);
   });
 
   iframe.addEventListener('load', () => {

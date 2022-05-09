@@ -138,6 +138,13 @@ export default function exposeApi(shellClient: ShellClient) {
           method: 'stopProgress',
         });
       },
+
+      hidePreloader: () => {
+        shellClient.invokePluginMethod<void>({
+          plugin: 'ux',
+          method: 'hidePreloader',
+        });
+      },
     },
     navigation: clientNavigation(shellClient),
     tracking: exposeTrackingAPI(shellClient),
