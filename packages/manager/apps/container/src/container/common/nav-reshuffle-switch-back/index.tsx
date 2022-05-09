@@ -29,12 +29,14 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
 
   useClickAway(ref, () => setShow(false));
 
-  const switchBack = () => {
-    window.open(
-      'https://survey.ovh.com/index.php/813778',
-      '_blank',
-      'noopener',
-    );
+  const switchBack = (openSurvey = false) => {
+    if (openSurvey) {
+      window.open(
+        'https://survey.ovh.com/index.php/813778',
+        '_blank',
+        'noopener',
+      );
+    }
     updateBetaChoice(false);
   };
 
@@ -47,7 +49,7 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
       {confirm && (
         <NavReshuffleSwitchBackModal
           onCancel={() => setConfirm(false)}
-          onConfirm={() => switchBack()}
+          onConfirm={(openSurvey = false) => switchBack(openSurvey)}
         />
       )}
       <div className="oui-navbar-dropdown" ref={ref}>
