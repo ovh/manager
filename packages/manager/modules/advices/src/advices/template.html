@@ -23,6 +23,7 @@
                     data-ng-click="$ctrl.onClick(advice)"
                     aria-label="{{ ::advice.ariaLabel || advice.localizedName }}"
                     external="advice.external"
+                    top="!advice.external"
                 >
                     <span data-ng-bind="advice.localizedName"></span>
                 </oui-tile-button>
