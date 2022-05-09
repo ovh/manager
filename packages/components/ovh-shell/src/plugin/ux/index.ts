@@ -37,6 +37,7 @@ export class UXPlugin implements IUXPlugin {
     this.shellUX.registerSidebar('notifications');
     this.shellUX.registerSidebar('menu');
     this.shellUX.registerProgress();
+    this.shellUX.registerPreloader();
   }
 
   /* ----------- AccountSidebar methods -----------*/
@@ -187,5 +188,29 @@ export class UXPlugin implements IUXPlugin {
 
   onProgressStop(callback: CallableFunction): void {
     this.shellUX.onProgressStop(callback);
+  }
+
+  showPreloader(): void {
+    this.shellUX.showPreloader();
+  }
+
+  onShowPreloader(callback: CallableFunction): void {
+    this.shellUX.onShowPreloader(callback);
+  }
+
+  removeOnShowPreloader(callback: CallableFunction): void {
+    this.shellUX.removeOnShowPreloader(callback);
+  }
+
+  hidePreloader(): void {
+    this.shellUX.hidePrelaoder();
+  }
+
+  onHidePreloader(callback: CallableFunction): void {
+    this.shellUX.onHidePreloader(callback);
+  }
+
+  removeOnHidePreloader(callback: CallableFunction): void {
+    this.shellUX.removeOnHidePreloader(callback);
   }
 }

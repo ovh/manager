@@ -3,6 +3,7 @@ import Sidebar from './components/sidebar';
 import Navbar, { INavbar } from './components/navbar';
 import Chatbot from './components/chatbot';
 import Progress from './components/progress';
+import Preloader from './components/preloader';
 
 export interface ISidebars {
   [name: string]: Sidebar;
@@ -32,6 +33,8 @@ export class ShellUX implements IShellUx {
   private chatbot: Chatbot;
 
   private progress: Progress;
+
+  private preloader: Preloader;
 
   constructor(shell: Shell) {
     this.shell = shell;
@@ -137,11 +140,39 @@ export class ShellUX implements IShellUx {
     this.progress.stop();
   }
 
-  onProgressStart(callback: CallableFunction,) {
+  onProgressStart(callback: CallableFunction) {
     this.progress.onStart(callback);
   }
 
-  onProgressStop(callback: CallableFunction,) {
+  onProgressStop(callback: CallableFunction) {
     this.progress.onStop(callback);
+  }
+
+  registerPreloader(): void {
+    this.preloader = new Preloader();
+  }
+
+  showPreloader(): void {
+    this.preloader.show();
+  }
+
+  onShowPreloader(callback: CallableFunction) {
+    this.preloader.onShow(callback);
+  }
+
+  removeOnShowPreloader(callback: CallableFunction) {
+    this.preloader.removeOnSHow(callback);
+  }
+
+  hidePrelaoder(): void {
+    this.preloader.hide();
+  }
+
+  onHidePreloader(callback: CallableFunction) {
+    this.preloader.onHide(callback);
+  }
+
+  removeOnHidePreloader(callback: CallableFunction) {
+    this.preloader.removeOnHide(callback);
   }
 }

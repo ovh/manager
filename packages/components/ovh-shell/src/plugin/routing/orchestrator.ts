@@ -5,7 +5,13 @@ interface ILocation {
   setURL(href: string): void;
   getURL(): URL;
 }
-
+export type AppChangeCallback = ({
+  from,
+  to,
+}: {
+  from: string;
+  to: string;
+}) => void;
 class Orchestrator {
   iframe: ILocation;
 
@@ -14,6 +20,8 @@ class Orchestrator {
   config: RoutingConfiguration;
 
   onCrossOriginError: CallableFunction;
+
+  onAppChange: AppChangeCallback;
 
   constructor(
     config: RoutingConfiguration,
@@ -26,6 +34,8 @@ class Orchestrator {
     this.onCrossOriginError = (error: Error) => {
       throw error;
     };
+
+    this.onAppChange = () => {};
   }
 
   static create(
@@ -48,6 +58,10 @@ class Orchestrator {
 
   setCrossOriginErrorHandler(handler: CallableFunction) {
     this.onCrossOriginError = handler;
+  }
+
+  onAppChangHandler(handler: AppChangeCallback) {
+    this.onAppChange = handler;
   }
 
   /**
@@ -77,8 +91,13 @@ class Orchestrator {
    */
   updateIframeURL() {
     const { appId, appHash, appURL } = this.parseContainerURL();
+    const { appId: currentAppId } = this.parseIframeURL();
+
     if (appURL) {
       if (appURL.href !== this.getIFrameURL().href) {
+        if (currentAppId !== appId && this.onAppChange) {
+          this.onAppChange({ from: currentAppId, to: appId });
+        }
         this.setIFrameURL(appURL.href);
       }
     } else {
