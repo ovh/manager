@@ -209,7 +209,7 @@ export default async (containerEl, shellClient) => {
         'ngRoute',
         'ngSanitize',
         ngTranslateAsyncLoader,
-        ngUirouterLineProgress,
+        isTopLevelApplication() ? ngUirouterLineProgress : null,
         'oui',
         ngOvhExportCsv,
         ngPaginationFront,
@@ -344,6 +344,32 @@ export default async (containerEl, shellClient) => {
       ROUTABLE_BLOCK_OR_IP: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))?$/,
     })
     .run(
+      /* @ngInject */ ($transitions) => {
+        // replace ngOvhUiRouterLineProgress if in container
+        if (!isTopLevelApplication()) {
+          $transitions.onBefore({}, (transition) => {
+            if (
+              !transition.ignored() &&
+              transition.from().name !== '' &&
+              transition.entering().length > 0
+            ) {
+              shellClient.ux.startProgress();
+            }
+          });
+
+          $transitions.onSuccess({}, () => {
+            shellClient.ux.stopProgress();
+          });
+
+          $transitions.onError({}, (transition) => {
+            if (!transition.error().redirected) {
+              shellClient.ux.stopProgress();
+            }
+          });
+        }
+      },
+    )
+    .run(
       /* @ngInject */ ($rootScope, $state, $transitions, coreConfig) => {
         $rootScope.$on('$locationChangeStart', () => {
           // eslint-disable-next-line no-param-reassign
@@ -465,7 +491,9 @@ export default async (containerEl, shellClient) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
+          if (isTopLevelApplication()) {
+            detachPreloader();
+          }
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
