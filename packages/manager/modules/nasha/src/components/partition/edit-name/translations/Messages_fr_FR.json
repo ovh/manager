@@ -1,0 +1,11 @@
+{
+  "nasha_components_partition_edit_name_forbid_many": "{{ names }} sont déjà utilisés par d'autres partitions",
+  "nasha_components_partition_edit_name_forbid_one": "{{ name }} est déjà utilisé par une autre partition",
+  "nasha_components_partition_edit_name_forbid": "Vous devez choisir un nom différent de {{ name }}",
+  "nasha_components_partition_edit_name_label": "Nom de la partition",
+  "nasha_components_partition_edit_name_primary": "Modifier le nom",
+  "nasha_components_partition_edit_name_rules": "Seules les lettres de A à Z (minuscules et majuscules) et les chiffres sont autorisés",
+  "nasha_components_partition_edit_name_secondary": "Fermer",
+  "nasha_components_partition_edit_name_success": "Le nom de la partition a été changé avec succès",
+  "nasha_components_partition_edit_name_title": "Modifier le nom de la partition"
+}

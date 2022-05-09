@@ -16,6 +16,7 @@ export default class NashaComponentsEditNameController {
   submit() {
     const { name: customName } = this.model;
     const { serviceName } = this.nasha;
+
     this.$http
       .put(`/dedicated/nasha/${serviceName}`, { customName })
       .then(() =>
