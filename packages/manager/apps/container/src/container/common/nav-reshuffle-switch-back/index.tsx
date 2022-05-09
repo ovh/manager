@@ -50,8 +50,8 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
           className="oui-navbar-link oui-navbar-link_dropdown"
           aria-haspopup={show}
           aria-expanded={show}
-          aria-label={t('language_change')}
-          title={t('language_change')}
+          aria-label={t('beta_switch')}
+          title={t('beta_switch')}
           type="button"
           onClick={(e) => {
             e.preventDefault();
