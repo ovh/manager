@@ -32,17 +32,25 @@
                     data-required
                 >
                     <oui-select-picker-section>
-                        <div class="d-flex">
-                            <span
-                                data-ng-repeat="gatewayPrice in gateway.pricings track by $index"
-                                data-translate="{{ 'pci_projects_project_public_gateways_edit_spec_' + gateway.product  + '_price'}}"
-                                data-translate-values="{ price: gatewayPrice.price }"
-                            ></span>
-                        </div>
-                        <div class="d-flex" data-ng-if="gateway.bandwidth">
-                            <span
+                        <div
+                            class="d-flex"
+                            data-ng-if="gateway.blobs.technical.bandwidth.level"
+                        >
+                            <strong
                                 data-translate="{{ 'pci_projects_project_public_gateways_edit_spec_' + gateway.product  + '_bandwidth'}}"
-                                data-translate-values="{ bandwidth : gateway.bandwidth}"
+                                data-translate-values="{ bandwidth : gateway.blobs.technical.bandwidth.level }"
+                            ></strong>
+                        </div>
+                        <div
+                            class="d-flex mt-3"
+                            data-ng-if="gateway.pricings.length > 0"
+                        >
+                            <strong
+                                data-translate="{{ 'pci_projects_project_public_gateways_edit_spec_' + gateway.product  + '_price'}}"
+                            ></strong>
+                            <span
+                                class="ml-1"
+                                data-ng-bind="gateway.gatewayPrice.price"
                             ></span>
                         </div>
                     </oui-select-picker-section>

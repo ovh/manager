@@ -24,6 +24,7 @@ export default class PublicGatewaysController {
 
   onAddPublicGatewayClick() {
     this.trackPublicGateways('add');
+    return this.goToAddPublicGateway();
   }
 
   onGoToPrivateNetworkClick() {
