@@ -9,7 +9,7 @@ export const NASHA_TASK = {
     SnapshotCreate: 'clusterLeclercCustomSnapCreate',
     SnapshotUpdate: 'clusterLeclercSnapshotUpdate',
     Update: 'clusterLeclercPartitionUpdate',
-    ZFSOptions: 'clusterLeclercZfsOptions',
+    ZfsOptions: 'clusterLeclercZfsOptions',
   },
   status: {
     Doing: 'doing',
