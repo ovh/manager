@@ -80,3 +80,26 @@ export const CTAS = {
   WE: 'https://ovhcloud.com/us-en/bare-metal',
   WS: 'https://ovhcloud.com/us-en/bare-metal',
 };
+
+export const US_GUIDES = [
+  {
+    title: 'dedicated_servers_onboarding_us_guide1_title',
+    description: 'dedicated_servers_onboarding_us_guide1_description',
+    link:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360002286570-Overview-of-Dedicated-Servers',
+  },
+  {
+    title: 'dedicated_servers_onboarding_us_guide2_title',
+    description: 'dedicated_servers_onboarding_us_guide2_description',
+    link:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/115001775950-How-to-Install-an-OS-on-a-Dedicated-Server',
+  },
+  {
+    title: 'dedicated_servers_onboarding_us_guide3_title',
+    description: 'dedicated_servers_onboarding_us_guide3_description',
+    link:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/115001729044-How-to-Configure-Firewall-and-Anti-DDoS-Settings',
+  },
+];
+
+export const US_CTA = 'https://us.ovhcloud.com/bare-metal/prices/';
