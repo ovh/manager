@@ -4,6 +4,7 @@ import { KeyPairName } from '@ovh-ux/manager-config/types/locale';
 import { useTranslation } from 'react-i18next';
 
 import style from './style.module.scss';
+import { useShell } from '@/context';
 
 type Props = {
   languages?: KeyPairName[];
@@ -12,6 +13,8 @@ type Props = {
 
 const LanguageMenu = ({ languages = [], onSelect }: Props): JSX.Element => {
   const { t } = useTranslation('language');
+  const shell = useShell();
+  const trackingPlugin = shell.getPlugin('tracking');
 
   return (
     <div className="oui-navbar-menu__wrapper">
@@ -29,6 +32,10 @@ const LanguageMenu = ({ languages = [], onSelect }: Props): JSX.Element => {
                   onClick={(e) => {
                     e.preventDefault();
                     onSelect(key);
+                    trackingPlugin.trackClick({
+                      name: `topnav::language_selector::switch_to_${name}`,
+                      type: 'action',
+                    });
                   }}
                 >
                   {name}

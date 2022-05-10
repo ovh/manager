@@ -8,11 +8,14 @@ import style from './style.module.scss';
 
 export const NavReshuffleFeedbackWidget = (): JSX.Element => {
   const { t } = useTranslation('nav-reshuffle/feedback');
-  const { trackClick } = useShell().getPlugin('tracking');
+  const trackingPlugin = useShell().getPlugin('tracking');
   const feedbackUrl = useProductNavReshuffle().getFeedbackUrl();
 
   const onGiveFeedbackLinkClick = () => {
-    trackClick('float_band::user_widget::give_feedback');
+    trackingPlugin.trackClick({
+      name: 'float_band::user_widget::give_feedback',
+      type: 'action',
+    });
   };
 
   return (
