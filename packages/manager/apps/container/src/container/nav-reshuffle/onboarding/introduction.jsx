@@ -38,6 +38,7 @@ export const OnboardingIntroduction = () => {
   });
 
   const openOnboarding = () => {
+    setIsPopoverVisible(true);
     productNavReshuffle.openOnboarding();
   };
 
