@@ -67,7 +67,7 @@ exports[`UI testing of the navbar renders correctly with environment and shell 1
             aria-expanded="false"
             aria-haspopup="false"
             aria-label="language_change"
-            class="oui-navbar-link oui-navbar-link_dropdown"
+            class="oui-navbar-link oui-navbar-link_dropdown "
             title="language_change"
             type="button"
           >
