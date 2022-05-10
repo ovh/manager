@@ -203,7 +203,9 @@ function Sidebar(): JSX.Element {
         >
           <SidebarLink
             node={node}
-            count={countServices(count, node)}
+            count={
+              node.count === false ? node.count : countServices(count, node)
+            }
             linkParams={{
               projectId: selectedPciProject?.project_id,
             }}

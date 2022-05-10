@@ -461,10 +461,12 @@ export default {
         {
           id: 'pci-management-interface',
           translation: 'sidebar_pci_management',
+          count: false,
           children: [
             {
               id: 'pci-horizon',
               translation: 'sidebar_pci_horizon',
+              count: false,
               url: {
                 CA: 'https://horizon.cloud.ovh.net/auth/login/',
                 EU: 'https://horizon.cloud.ovh.net/auth/login/',
@@ -477,6 +479,7 @@ export default {
         {
           id: 'pci-settings',
           translation: 'sidebar_pci_settings',
+          count: false,
           children: [
             {
               id: 'pci-users-roles',
@@ -485,6 +488,7 @@ export default {
                 application: 'public-cloud',
                 hash: '#/pci/projects/{projectId}/users',
               },
+              count: false,
             },
             {
               id: 'pci-quota-region',
@@ -493,6 +497,7 @@ export default {
                 application: 'public-cloud',
                 hash: '#/pci/projects/{projectId}/quota',
               },
+              count: false,
             },
             {
               id: 'pci-ssh-keys',
@@ -501,6 +506,7 @@ export default {
                 application: 'public-cloud',
                 hash: '#/pci/projects/{projectId}/ssh',
               },
+              count: false,
             },
             {
               id: 'pci-billing',
@@ -509,6 +515,7 @@ export default {
                 application: 'public-cloud',
                 hash: '#/pci/projects/{projectId}/billing',
               },
+              count: false,
             },
             {
               id: 'pci-credits-vouchers',
@@ -518,6 +525,7 @@ export default {
                 application: 'public-cloud',
                 hash: '#/pci/projects/{projectId}/vouchers',
               },
+              count: false,
             },
             {
               id: 'pci-contacts-rights',
@@ -526,6 +534,7 @@ export default {
                 application: 'public-cloud',
                 hash: '#/pci/projects/{projectId}/contacts',
               },
+              count: false,
             },
             {
               id: 'pci-project-settings',
@@ -534,6 +543,7 @@ export default {
                 application: 'public-cloud',
                 hash: '#/pci/projects/{projectId}/edit',
               },
+              count: false,
             },
           ],
         },
