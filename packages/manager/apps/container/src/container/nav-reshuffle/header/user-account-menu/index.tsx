@@ -65,7 +65,7 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
   useClickAway(ref, handleRootClose);
 
   return (
-    <div className="oui-navbar-dropdown" ref={ref}>
+    <div className={`oui-navbar-dropdown ${style.selectable}`} ref={ref}>
       <UserAccountMenuButton
         show={isAccountSidebarOpened}
         onClick={(nextShow) => {
