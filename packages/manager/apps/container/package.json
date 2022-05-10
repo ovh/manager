@@ -30,7 +30,7 @@
     "@ovh-ux/ovh-reket": "^0.1.1",
     "@ovh-ux/shell": "^0.0.0 || ^1.0.0",
     "@ovh-ux/ufrontend": "^1.1.1 || ^2.0.0",
-    "@ovh-ux/ui-kit": "^6.0.0",
+    "@ovh-ux/ui-kit": "^6.1.0",
     "@popperjs/core": "^2.11.4",
     "@tanem/react-nprogress": "^5.0.0",
     "bootstrap": "4.6.0",
