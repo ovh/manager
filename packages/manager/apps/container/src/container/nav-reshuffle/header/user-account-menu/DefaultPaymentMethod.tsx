@@ -6,6 +6,7 @@ import { buildURL } from '@ovh-ux/ufrontend';
 import { useShell } from '@/context';
 
 import style from './style.module.scss';
+import { useShell } from '@/context';
 
 type Props = {
   defaultPaymentMethod?: unknown;
@@ -17,6 +18,8 @@ const UserDefaultPaymentMethod = ({
   isLoading = false,
 }: Props): JSX.Element => {
   const { t } = useTranslation('user-account-menu');
+  const shell = useShell();
+  const trackingPlugin = shell.getPlugin('tracking');
 
   // @todo: use navigation plugin instead
   const paymentMethodUrl = useShell()
@@ -29,6 +32,12 @@ const UserDefaultPaymentMethod = ({
       id="user-account-menu-payment-method"
     >
       <a
+        onClick={() =>
+          trackingPlugin.trackClick({
+            name: 'topnav::user_widget::go_to_payment_method',
+            type: 'navigation',
+          })
+        }
         className="d-flex flex-row align-items-center p-2"
         href={paymentMethodUrl}
         target="_top"

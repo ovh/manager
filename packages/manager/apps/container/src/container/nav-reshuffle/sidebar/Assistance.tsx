@@ -24,14 +24,20 @@ function AssistanceSidebar(): JSX.Element {
   const startOnboarding = () => {
     openOnboarding();
     trackingPlugin.trackClickImpression({
-      label: 'navbar_v2::assistance::onboarding_widget',
-      campaignId: '[tooltip-manager]',
-      creation: '[general-onboarding]',
-      detailedPlacement:
-        onboardingOpenedState === ONBOARDING_STATUS_ENUM.DISPLAYED
-          ? '[new_visitor]'
-          : '[returning_visitor]',
+      click: {
+        variant: 'navbar_v2::assistance::onboarding_widget',
+        campaignId: '[tooltip-manager]',
+        creation: '[general-onboarding]',
+        detailedPlacement:
+          onboardingOpenedState === ONBOARDING_STATUS_ENUM.DISPLAYED
+            ? '[new_visitor]'
+            : '[returning_visitor]',
+      },
     });
+  };
+
+  const trackNode = (id) => {
+    trackingPlugin.trackClick({ name: `navbar_v2_${id}`, type: 'navigation' });
   };
 
   return (
@@ -47,6 +53,7 @@ function AssistanceSidebar(): JSX.Element {
             count: false,
             isExternal: true,
           }}
+          onClick={() => trackNode('assistance_help_center')}
         />
         <SidebarLink
           node={{
@@ -57,6 +64,7 @@ function AssistanceSidebar(): JSX.Element {
             },
             count: false,
           }}
+          onClick={() => trackNode('assistance_tickets')}
         />
         <SidebarLink
           node={{
@@ -65,6 +73,7 @@ function AssistanceSidebar(): JSX.Element {
             count: false,
             isExternal: true,
           }}
+          onClick={() => trackNode('assistance_status')}
         />
         {hasAdvancedSupport && (
           <SidebarLink
@@ -76,12 +85,16 @@ function AssistanceSidebar(): JSX.Element {
               },
               count: false,
             }}
+            onClick={() => trackNode('assistance_support_level')}
           />
         )}
         {hasAdvancedSupport && (
           <SidebarLink
             node={{ translation: 'sidebar_assistance_live_chat', count: false }}
-            onClick={() => shell.getPlugin('ux').openChatbot()}
+            onClick={() => {
+              shell.getPlugin('ux').openChatbot();
+              trackNode('assistance_live_chat');
+            }}
           />
         )}
         <SidebarLink

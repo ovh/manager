@@ -6,9 +6,12 @@ import style from './notifications-sidebar.module.scss';
 
 import useNotifications from '@/core/notifications';
 import { useHeader } from '@/context/header';
+import { useShell } from '@/context';
 
 function NavbarNotifications(): JSX.Element {
   const { t } = useTranslation('navbar');
+  const shell = useShell();
+  const trackingPlugin = shell.getPlugin('tracking');
   // getNavbarNotificationCount
   const { readAllNotifications, notificationsCount } = useNotifications();
 
@@ -18,6 +21,10 @@ function NavbarNotifications(): JSX.Element {
   } = useHeader();
 
   function onClick(): void {
+    trackingPlugin.trackClick({
+      name: 'topnav::notifications',
+      type: 'action',
+    });
     const initialVisibilityState = isNotificationsSidebarVisible;
     setIsNotificationsSidebarVisible(!isNotificationsSidebarVisible);
     if (initialVisibilityState) {
