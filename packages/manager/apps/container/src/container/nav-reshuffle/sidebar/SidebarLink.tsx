@@ -46,11 +46,6 @@ function StaticLink({
       url = url.replace(`{${paramName}}`, linkParams[paramName]);
     });
   }
-  const { betaVersion } = useContainer();
-
-  if (betaVersion === 2 && !count && node.count !== false) {
-    return <></>;
-  }
 
   return (
     <a
@@ -94,10 +89,31 @@ function SidebarLink({
   id = '',
 }: SidebarLinkProps): JSX.Element {
   const { t } = useTranslation('sidebar');
+  const { betaVersion } = useContainer();
+
+  const shouldHideElement = () => {
+    if (betaVersion === 2) {
+      if (node.id === 'services') return false;
+      if (node.count === false) return false;
+      return !count;
+    }
+    return false;
+  };
+
   return !node.children && (node.url || node.routing) ? (
-    <StaticLink count={count} node={node} linkParams={linkParams} id={id} onClick={onClick} />
+    <StaticLink
+      className={shouldHideElement() ? style.sidebar_hidden : ''}
+      count={count}
+      node={node}
+      linkParams={linkParams}
+      id={id}
+    />
   ) : (
-    <a onClick={onClick} id={id}>
+    <a
+      className={shouldHideElement() ? style.sidebar_hidden : ''}
+      onClick={onClick}
+      id={id}
+    >
       {t(node.translation)}
       {node.children ? (
         <span
