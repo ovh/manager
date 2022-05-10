@@ -17,5 +17,6 @@ export default {
     customerRegions: '<',
     failoverIpsRegions: '<',
     goToRegion: '<',
+    goToAdditionalIpOrderPage: '<',
   },
 };

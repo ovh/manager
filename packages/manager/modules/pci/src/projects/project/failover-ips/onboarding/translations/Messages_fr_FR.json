@@ -6,7 +6,6 @@
   "pci_projects_project_failoverip_onboarding_content4_description": "convient le mieux aux opérations de basculement inter-produits d'OVHcloud, tout en ayant besoin d'une configuration système manuelle aux points de terminaison.",
   "pci_projects_project_failoverip_onboarding_content5_heading": "IP flottantes du Public Cloud :",
   "pci_projects_project_failoverip_onboarding_content5_description": "convient le mieux aux cas d’usage Public Cloud, à l’automatisation du cloud (Terraform) ou aux réseaux privés régionalisés. La configuration du système de endpoint est automatique.",
-  "pci_projects_project_failoverip_onboarding_action_label": "Importer une IP Failover",
   "pci_projects_project_failoverip_onboarding_action_buy": "Créer une IP additionnelle",
 
   "pci_projects_project_failoverip_onboarding_guides_service_agnostic_public_ip_title": "Créer une IP publique indépendante du service - IP failover VS. IP flottantes",

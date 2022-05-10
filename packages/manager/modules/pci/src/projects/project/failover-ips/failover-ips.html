@@ -53,8 +53,7 @@
                                 ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                state="pci.projects.project.failover-ips.order"
-                                disabled="$ctrl.instances.length === 0"
+                                data-on-click="$ctrl.goToAdditionalIpOrderPage()"
                             >
                                 <span
                                     data-translate="pci_projects_project_failoverip_order"
@@ -82,9 +81,10 @@
                         data-title=":: 'pci_projects_project_failoverip_geoloc' | translate"
                         data-property="geoloc"
                         data-type="string"
-                        data-searchable
-                        data-filterable
                     >
+                        <span
+                            data-ng-bind="'pci_projects_project_failoverip_country_' + $row.geoloc | translate"
+                        ></span>
                     </oui-datagrid-column>
                     <oui-datagrid-column
                         data-title=":: 'pci_projects_project_failoverip_id' | translate"

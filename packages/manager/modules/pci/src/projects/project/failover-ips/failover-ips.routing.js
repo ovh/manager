@@ -102,6 +102,15 @@ export default /* @ngInject */ ($stateProvider) => {
             find(ipAddresses, { type: 'public' }),
           ),
         ),
+
+      createInstanceUrl: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.instances.add', {
+          projectId,
+        }),
+      goToAdditionalIpOrderPage: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.failover-ips.order', {
+          projectId,
+        }),
     },
   });
 };

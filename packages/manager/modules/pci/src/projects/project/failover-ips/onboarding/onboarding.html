@@ -26,19 +26,9 @@
 
     <div class="d-flex align-items-center">
         <oui-button
-            data-variant="primary"
-            data-on-click="$ctrl.addFailoverIp()"
-        >
-            <span
-                data-translate="pci_projects_project_failoverip_onboarding_action_label"
-            ></span>
-        </oui-button>
-
-        <oui-button
             class="ml-2"
             data-variant="secondary"
-            data-on-click="$ctrl.buyFailoverIp()"
-            data-disabled="$ctrl.instances.length === 0"
+            data-on-click="$ctrl.goToAdditionalIpOrderPage()"
         >
             <span
                 data-translate="pci_projects_project_failoverip_onboarding_action_buy"
