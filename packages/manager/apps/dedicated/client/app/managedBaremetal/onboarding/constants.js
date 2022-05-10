@@ -122,3 +122,19 @@ export const CTAS = {
   WE: 'https://ovhcloud.com/us-en/managed-bare-metal/',
   WS: 'https://ovhcloud.com/us-en/managed-bare-metal/',
 };
+
+export const US_GUIDES = [
+  {
+    title: 'managed_baremetal_onboarding_us_guide1_title',
+    description: 'managed_baremetal_onboarding_us_guide1_description',
+    url:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360017368520-How-to-Add-an-IP-Block-to-vSphere',
+  },
+  {
+    title: 'managed_baremetal_onboarding_us_guide2_title',
+    description: 'managed_baremetal_onboarding_us_guide2_description',
+    url:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360015989419-How-to-Log-Into-the-vSphere-Web-Client',
+  },
+];
+export const US_CTA = 'https://us.ovhcloud.com/managed-bare-metal/';
