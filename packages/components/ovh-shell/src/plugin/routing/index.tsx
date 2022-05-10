@@ -92,6 +92,7 @@ export function initRouting(
   });
 
   iframe.addEventListener('load', () => {
+    shell.getPlugin('ux').showPreloader();
     try {
       iframe.contentWindow.location.toString();
     } catch {
