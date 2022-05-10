@@ -12,11 +12,26 @@ import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
 export default function Container(): JSX.Element {
   const { isLoading, betaVersion, useBeta } = useContainer();
   const shell = useShell();
+  const tracking = shell.getPlugin('tracking');
   const isNavReshuffle = betaVersion && useBeta;
   if (isLoading) {
     return <></>;
   }
   if (isNavReshuffle) {
+    if (betaVersion === 1) {
+      tracking.trackMVTest({
+        test: '[product-nav-reshuffle]',
+        waveId: 1,
+        creation: '[full-services]',
+      });
+    } else if (betaVersion === 2) {
+      tracking.trackMVTest({
+        test: '[product-nav-reshuffle]',
+        waveId: 1,
+        creation: '[customer-services]',
+      });
+    }
+
     shell.getPlugin('ux').showMenuSidebar();
   }
   return (

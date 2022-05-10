@@ -8,6 +8,7 @@ import NavReshuffleSwitchBackModal from './Modal';
 
 import useContainer from '@/core/container';
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
+import { useShell } from '@/context';
 
 type Props = {
   onChange(show: boolean): void;
@@ -16,6 +17,8 @@ type Props = {
 function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
   const { t } = useTranslation('beta-modal');
   const { updateBetaChoice, betaVersion, useBeta } = useContainer();
+  const shell = useShell();
+  const trackingPlugin = shell.getPlugin('tracking');
   const ref = useRef();
   const [show, setShow] = useState<boolean>(false);
   const [confirm, setConfirm] = useState<boolean>(false);
@@ -104,6 +107,10 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
                       onClick={(e) => {
                         e.preventDefault();
                         setConfirm(true);
+                        trackingPlugin.trackClick({
+                          name: 'topnav::switch_version::go_to_old_version',
+                          type: 'navigation',
+                        });
                       }}
                     >
                       {t('beta_modal_old')}
@@ -116,6 +123,10 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
                       onClick={(e) => {
                         e.preventDefault();
                         updateBetaChoice(true);
+                        trackingPlugin.trackClick({
+                          name: 'topnav::switch_version::go_to_new_version',
+                          type: 'navigation',
+                        });
                       }}
                     >
                       <span className="oui-navbar-link__text">

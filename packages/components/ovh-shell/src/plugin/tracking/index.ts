@@ -4,6 +4,7 @@ import {
   EventData,
   ImpressionData,
   ImpressionDataClick,
+  MVTestingData,
   OrderData,
   PageData,
 } from '@ovh-ux/ovh-at-internet/types/config';
@@ -22,6 +23,7 @@ export interface TrackingAPI {
   trackEvent(data: EventData): PromiseLike<void>;
   trackImpression(data: ImpressionData): PromiseLike<void>;
   trackClickImpression(data: ImpressionDataClick): PromiseLike<void>;
+  trackMVTest(data: MVTestingData): PromiseLike<void>;
   isEnabled(): PromiseLike<boolean>;
   setEnabled(state: boolean): PromiseLike<void>;
   setDebug(state: boolean): PromiseLike<void>;
@@ -184,6 +186,12 @@ export function exposeTrackingAPI(shellClient: ShellClient): TrackingAPI {
         plugin: 'tracking',
         method: 'setConfig',
         args: [config],
+      }),
+    trackMVTest: (data: MVTestingData) =>
+      shellClient.invokePluginMethod<void>({
+        plugin: 'tracking',
+        method: 'trackMVTest',
+        args: [data],
       }),
   };
 }
