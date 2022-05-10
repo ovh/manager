@@ -5,10 +5,8 @@ export default {
   controller,
   template,
   bindings: {
-    addFailoverIp: '<',
-    buyFailoverIp: '<',
-    instances: '<',
     getStateName: '<',
     goToRegion: '<',
+    goToAdditionalIpOrderPage: '<',
   },
 };

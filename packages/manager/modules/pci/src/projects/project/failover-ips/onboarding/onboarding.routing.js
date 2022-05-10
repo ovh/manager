@@ -13,14 +13,6 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb
-      addFailoverIp: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.failover-ips.imports', {
-          projectId,
-        }),
-      buyFailoverIp: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.failover-ips.onboarding.order', {
-          projectId,
-        }),
       goToFailoverIpsOnboarding: /* @ngInject */ (
         $state,
         CucCloudMessage,
