@@ -95,3 +95,25 @@ export const CTAS = {
   WE: 'https://ovhcloud.com/us-en/vps',
   WS: 'https://ovhcloud.com/us-en/vps',
 };
+
+export const US_GUIDES = [
+  {
+    title: 'vps_onboarding_us_guide1_title',
+    description: 'vps_onboarding_us_guide1_description',
+    link:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360009253639-Getting-Started-with-a-VPS',
+  },
+  {
+    title: 'vps_onboarding_us_guide2_title',
+    description: 'vps_onboarding_us_guide2_description',
+    link:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/4412351365139-How-to-Secure-a-VPS',
+  },
+  {
+    title: 'vps_onboarding_us_guide3_title',
+    description: 'vps_onboarding_us_guide3_description',
+    link:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360012573640-How-to-Use-Snapshots-on-a-VPS',
+  },
+];
+export const US_CTA = 'https://us.ovhcloud.com/vps/';
