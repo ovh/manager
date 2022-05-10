@@ -145,7 +145,28 @@ export const CTAS = {
     "https://us.ovh.com/es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
 };
 
+export const US_GUIDES = [
+  {
+    title: 'vrack_onboarding_us_guide1_title',
+    description: 'vrack_onboarding_us_guide1_description',
+    link: 'https://support.us.ovhcloud.com/hc/en-us/articles/360001410984',
+  },
+  {
+    title: 'vrack_onboarding_us_guide2_title',
+    description: 'vrack_onboarding_us_guide2_description',
+    link: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002093130',
+  },
+  {
+    title: 'vrack_onboarding_us_guide3_title',
+    description: 'vrack_onboarding_us_guide3_description',
+    link: 'https://support.us.ovhcloud.com/hc/en-us/articles/4403594838803',
+  },
+];
+export const US_CTA = `https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))`;
+
 export default {
   GUIDES,
   CTAS,
+  US_GUIDES,
+  US_CTA,
 };

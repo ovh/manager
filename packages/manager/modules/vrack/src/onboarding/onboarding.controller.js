@@ -1,4 +1,4 @@
-import { CTAS, GUIDES } from './constants';
+import { CTAS, GUIDES, US_CTA, US_GUIDES } from './constants';
 
 export default class VrackOnboardingCtrl {
   /* @ngInject */
@@ -10,13 +10,22 @@ export default class VrackOnboardingCtrl {
   async $onInit() {
     const user = await this.coreConfig.getUser();
     this.ovhSubsidiary = user.ovhSubsidiary;
-    this.guides = GUIDES.map((guide) => ({
-      link: guide.links[this.ovhSubsidiary] || guide.links.DEFAULT,
+
+    let guides = GUIDES;
+    let cta = CTAS[this.ovhSubsidiary] || CTAS.DEFAULT;
+    if (this.ovhSubsidiary === 'US') {
+      guides = US_GUIDES;
+      cta = US_CTA;
+    }
+    this.guides = guides.map((guide) => ({
+      link: guide.links
+        ? guide.links[this.ovhSubsidiary] || guide.links.DEFAULT
+        : guide.link,
       description:
         guide.description && this.$translate.instant(guide.description),
       title: this.$translate.instant(guide.title),
     }));
 
-    this.cta = CTAS[this.ovhSubsidiary] || CTAS.DEFAULT;
+    this.cta = cta;
   }
 }
