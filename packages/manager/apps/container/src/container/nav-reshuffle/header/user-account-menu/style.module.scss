@@ -27,6 +27,10 @@
   }
 }
 
+.selectable {
+  user-select: text;
+}
+
 .defaultPaymentMethod {
   @import '@ovh-ux/ui-kit/dist/scss/_tokens.scss';
   @import '@ovh-ux/manager-hub/src/variables.scss';
