@@ -99,6 +99,10 @@
     margin-right: -0.5rem;
   }
 
+  &_hidden {
+    display: none !important;
+  }
+
   &_back_btn {
     padding-left: 1rem;
     display: inline-block;
