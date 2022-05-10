@@ -43,10 +43,13 @@ export default /* @ngInject */ ($stateProvider) =>
         browseObjectStorage: /* @ngInject */ ($state, projectId) => (
           containerId,
         ) => {
-          $state.go('pci.projects.project.storages.object-storage.object', {
-            projectId,
-            containerId,
-          });
+          $state.go(
+            'pci.projects.project.storages.object-storage.objects.object',
+            {
+              projectId,
+              containerId,
+            },
+          );
         },
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('data_processing_details_dashboard_label'), // update breadcrumb with "Dashboard"

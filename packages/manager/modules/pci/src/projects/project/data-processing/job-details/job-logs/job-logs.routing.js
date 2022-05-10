@@ -23,17 +23,20 @@ export default /* @ngInject */ ($stateProvider) =>
           projectId,
           containerId,
         ) =>
-          $state.go('pci.projects.project.storages.object-storage.object', {
-            projectId,
-            containerId,
-            defaultCriteria: [
-              {
-                property: 'name',
-                operator: 'contains',
-                value: jobId,
-              },
-            ],
-          }),
+          $state.go(
+            'pci.projects.project.storages.object-storage.objects.object',
+            {
+              projectId,
+              containerId,
+              defaultCriteria: [
+                {
+                  property: 'name',
+                  operator: 'contains',
+                  value: jobId,
+                },
+              ],
+            },
+          ),
       },
     },
   );
