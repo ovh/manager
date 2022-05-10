@@ -1,4 +1,4 @@
-import { NASHA_USE_SIZE_NAME } from './nasha.constants';
+import { NASHA_USE_SIZE_NAME, NASHA_TASK } from './nasha.constants';
 
 export const localizeDatacenter = (datacenter, $translate) =>
   $translate.instant(`nasha_datacenter_${datacenter.toLowerCase()}`);
@@ -51,9 +51,72 @@ export const preparePartition = ({ use, ...partition }, $translate) => ({
   protocol: partition.protocol?.split('_').join(' '),
 });
 
+export const preparePartitionSnapshots = (
+  partition,
+  snapshots,
+  customSnapshots,
+  SnapshotEnum,
+  tasks,
+  $translate,
+) => {
+  const partitionTasks = tasks.filter(
+    ({ partitionName }) => partitionName === partition.partitionName,
+  );
+
+  const snapshotsMap = {
+    types: SnapshotEnum.map((type) => ({
+      type,
+      label: $translate.instant(`nasha_snapshot_type_${type}`),
+      enabled: snapshots.includes(type),
+      tasks: {
+        update: partitionTasks.filter(
+          ({ details, operation }) =>
+            details === type &&
+            operation === NASHA_TASK.operation.SnapshotUpdate,
+        ),
+      },
+    })),
+    customs: customSnapshots.map((name) => ({
+      name,
+      tasks: {
+        delete: partitionTasks.filter(
+          ({ details, operation }) =>
+            details === name &&
+            operation === NASHA_TASK.operation.CustomSnapshotDelete,
+        ),
+      },
+    })),
+  };
+
+  partitionTasks
+    .filter(
+      ({ operation }) =>
+        operation === NASHA_TASK.operation.CustomSnapshotCreate,
+    )
+    .forEach((customSnapshotCreateTask) => {
+      const { details: name } = customSnapshotCreateTask;
+      if (!snapshotsMap.customs.find((custom) => custom.name === name)) {
+        snapshotsMap.customs.push({
+          name,
+          tasks: { create: [customSnapshotCreateTask] },
+        });
+      }
+    });
+
+  return snapshotsMap;
+};
+
+export const prepareTasks = (tasks, $translate) =>
+  tasks.map((task) => ({
+    ...task,
+    localeOperation: localizeOperation(task.operation, $translate),
+  }));
+
 export default {
   localizeDatacenter,
   localizeOperation,
   prepareNasha,
   preparePartition,
+  preparePartitionSnapshots,
+  prepareTasks,
 };

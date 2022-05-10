@@ -1,6 +1,6 @@
-export default /* @ngInject */ ($stateProvider) => {
-  const stateName = 'nasha.dashboard.partition';
+import { STATE_NAME } from './partition.constants';
 
+export default /* @ngInject */ ($stateProvider) => {
   const goToEditResolve = ['description', 'name', 'size'].reduce(
     (resolves, id) => {
       const capitalizedId = `${id[0].toUpperCase()}${id.slice(1)}`;
@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName,
           partitionName,
         ) => () =>
-          $state.go(`${stateName}.edit-${id}`, {
+          $state.go(`${STATE_NAME}.edit-${id}`, {
             serviceName,
             partitionName,
           }),
@@ -20,37 +20,30 @@ export default /* @ngInject */ ($stateProvider) => {
     {},
   );
 
-  $stateProvider.state(stateName, {
+  $stateProvider.state(STATE_NAME, {
     url: '/partition/:partitionName',
     views: {
       '@nasha': {
         component: 'nashaDashboardPartition',
       },
     },
-    onExit: /* @ngInject */ (Poller) => {
-      Poller.kill({ namespace: stateName });
-    },
     resolve: {
       breadcrumb: /* @ngInject */ (partitionName) => partitionName,
       editDescriptionHref: /* @ngInject */ ($state, serviceName) => () =>
-        $state.href(`${stateName}.edit-description`, { serviceName }),
+        $state.href(`${STATE_NAME}.edit-description`, { serviceName }),
       editNameHref: /* @ngInject */ ($state, serviceName) => () =>
-        $state.href(`${stateName}.edit-name`, { serviceName }),
+        $state.href(`${STATE_NAME}.edit-name`, { serviceName }),
       editSizeHref: /* @ngInject */ ($state, serviceName) => () =>
-        $state.href(`${stateName}.edit-size`, { serviceName }),
-      hasOperation: /* @ngInject */ (NashaTask, partition) => (operation) =>
-        partition.tasks.filter(
+        $state.href(`${STATE_NAME}.edit-size`, { serviceName }),
+      hasOperation: /* @ngInject */ (NashaTask, tasks) => (operation) =>
+        tasks.filter(
           (task) => task.operation === NashaTask.operation[operation],
-        ).length,
+        ).length > 0,
       partition: /* @ngInject */ (
         $state,
         serviceName,
         partitionName,
         partitions,
-        iceberg,
-        reload,
-        Poller,
-        NashaTask,
       ) => {
         const [partition] = partitions.filter(
           ({ partitionName: name }) => name === partitionName,
@@ -60,27 +53,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return $state.go('nasha.dashboard', { serviceName });
         }
 
-        return iceberg(`/dedicated/nasha/${serviceName}/task`)
-          .query()
-          .expand('CachedObjectList-Pages')
-          .addFilter('status', 'in', Object.values(NashaTask.status))
-          .addFilter('partitionName', 'eq', partition.partitionName)
-          .execute(null, true)
-          .$promise.then(({ data: tasks }) => {
-            const statuses = Object.values(NashaTask.status);
-            partition.tasks = tasks;
-            partition.polls = tasks.map(({ taskId }) =>
-              Poller.poll(
-                `/dedicated/nasha/${serviceName}/task/${taskId}`,
-                null,
-                {
-                  namespace: stateName,
-                  successRule: ({ status }) => !statuses.includes(status),
-                },
-              ).then(reload),
-            );
-          })
-          .then(() => partition);
+        return partition;
       },
       partitions: /* @ngInject */ (
         serviceName,
@@ -92,10 +65,26 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName,
         }).$promise.then((partitions) => partitions.map(preparePartition));
       },
+      partitionApiUrl: /* @ngInject */ (serviceName, partitionName) =>
+        `/dedicated/nasha/${serviceName}/partition/${partitionName}`,
       partitionName: /* @ngInject */ ($transition$) =>
         $transition$.params().partitionName,
       partitionHref: /* @ngInject */ ($state, serviceName) => () =>
-        $state.href(stateName, { serviceName }),
+        $state.href(STATE_NAME, { serviceName }),
+      tasks: /* @ngInject */ (
+        iceberg,
+        serviceName,
+        partitionName,
+        NashaTask,
+        prepareTasks,
+      ) =>
+        iceberg(`/dedicated/nasha/${serviceName}/task`)
+          .query()
+          .expand('CachedObjectList-Pages')
+          .addFilter('status', 'in', Object.values(NashaTask.status))
+          .addFilter('partitionName', 'eq', partitionName)
+          .execute(null, true)
+          .$promise.then(({ data: tasks }) => prepareTasks(tasks)),
       ...goToEditResolve,
     },
   });

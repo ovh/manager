@@ -4,6 +4,8 @@ import {
   localizeOperation,
   prepareNasha,
   preparePartition,
+  preparePartitionSnapshots,
+  prepareTasks,
 } from './nasha.utils';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
@@ -44,6 +46,23 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         prepareNasha(nasha, $translate),
       preparePartition: /* @ngInject */ ($translate) => (partition) =>
         preparePartition(partition, $translate),
+      preparePartitionSnapshots: /* @ngInject */ ($translate) => (
+        partition,
+        snapshots,
+        customSnapshots,
+        SnapshotEnum,
+        tasks,
+      ) =>
+        preparePartitionSnapshots(
+          partition,
+          snapshots,
+          customSnapshots,
+          SnapshotEnum,
+          tasks,
+          $translate,
+        ),
+      prepareTasks: /* @ngInject */ ($translate) => (tasks) =>
+        prepareTasks(tasks, $translate),
       trackingPrefix: () => NASHA_TITLE,
     },
   });
