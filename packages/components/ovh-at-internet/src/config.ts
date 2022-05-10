@@ -18,6 +18,17 @@ export interface ClickData extends PageData {
   type: 'action' | 'navigation' | 'download' | 'exit';
 }
 
+export interface MVTestingData {
+  test: string;
+  waveId: number;
+  creation: string;
+}
+
+export interface MVTestingVariables {
+  variable: string;
+  version: string;
+}
+
 export interface OrderData extends PageData {
   page?: string;
   price?: number;

@@ -1,4 +1,4 @@
-import { PageData } from './config';
+import { MVTestingData, PageData } from './config';
 
 export type TrackType =
   | 'trackPage'
@@ -6,9 +6,12 @@ export type TrackType =
   | 'trackOrder'
   | 'trackEvent'
   | 'trackImpression'
-  | 'trackClickImpression';
+  | 'trackClickImpression'
+  | 'trackMVTest';
 
-export interface IOvhAtInternetTrack<T extends PageData> {
+export type AtInternetTrackData<T> = T extends PageData ? T : MVTestingData;
+
+export interface IOvhAtInternetTrack<T> {
   type: TrackType;
-  data: T;
+  data: AtInternetTrackData<T>;
 }

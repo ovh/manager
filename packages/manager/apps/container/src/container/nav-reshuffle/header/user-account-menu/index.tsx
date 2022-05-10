@@ -21,6 +21,7 @@ type Props = {
 export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
   const ref = useRef();
   const shell = useShell();
+  const trackingPlugin = shell.getPlugin('tracking');
   const { setIsNotificationsSidebarVisible } = useHeader();
 
   const environment = shell.getPlugin('environment').getEnvironment();
@@ -72,6 +73,10 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
           if (nextShow) {
             openAccountSidebar();
             setIsNotificationsSidebarVisible(false);
+            trackingPlugin.trackClick({
+              type: 'action',
+              name: 'topnav::user_widget::open',
+            });
           } else {
             closeAccountSidebar();
           }

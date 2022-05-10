@@ -33,6 +33,7 @@ function LegacyContainer(): JSX.Element {
 
   useEffect(() => {
     const routing = plugin.routing.initRouting(shell, iframeRef.current);
+    const tracking = shell.getPlugin('tracking');
 
     // Hub application redirections
     routing.addRoute(
@@ -76,6 +77,11 @@ function LegacyContainer(): JSX.Element {
 
     shell.registerPlugin('routing', routing);
     setRouter(routing.router);
+    tracking.trackMVTest({
+      test: '[product-navigation-reshuffle]',
+      waveId: 1,
+      creation: '[old-nav]',
+    });
   }, [iframeRef, shell]);
 
   return (
