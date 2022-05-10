@@ -6,21 +6,24 @@ import useContainer from '@/core/container';
 
 import style from './style.module.scss';
 
-type StaticLinkProps = {
+type ComponentProps<T> = React.PropsWithChildren<T> &
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+
+interface StaticLinkProps {
   count?: number;
   node?: unknown;
   linkParams?: Record<string, string>;
-  id?: string;
   onClick?(): void;
-};
+  id?: string;
+}
 
-function StaticLink({
+const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
   count = 0,
   node = {},
   linkParams = {},
   onClick = () => {},
   id = '',
-}: StaticLinkProps): JSX.Element {
+}: StaticLinkProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
   const navigation = shell.getPlugin('navigation');
@@ -49,8 +52,8 @@ function StaticLink({
 
   return (
     <a
-      href={url}
       onClick={onClick}
+      href={url}
       target={node.isExternal ? '_blank' : '_top'}
       rel={node.isExternal ? 'noopener noreferrer' : ''}
       id={id}
@@ -71,7 +74,7 @@ function StaticLink({
       )}
     </a>
   );
-}
+};
 
 type SidebarLinkProps = {
   count?: number;
@@ -81,13 +84,13 @@ type SidebarLinkProps = {
   id?: string;
 };
 
-function SidebarLink({
+const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   count = 0,
   node = {},
   linkParams = {},
   onClick = () => {},
   id = '',
-}: SidebarLinkProps): JSX.Element {
+}: SidebarLinkProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const { betaVersion } = useContainer();
 
@@ -106,6 +109,7 @@ function SidebarLink({
   return !node.children && (node.url || node.routing) ? (
     <StaticLink
       className={shouldHideElement() ? style.sidebar_hidden : ''}
+      onClick={onClick}
       count={count}
       node={node}
       linkParams={linkParams}
@@ -135,6 +139,6 @@ function SidebarLink({
       )}
     </a>
   );
-}
+};
 
 export default SidebarLink;

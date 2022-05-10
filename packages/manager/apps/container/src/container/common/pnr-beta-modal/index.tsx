@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -8,21 +8,38 @@ import style from './style.module.scss';
 import backgroundImage from '@/assets/images/pnr/background.png';
 import previewImage from '@/assets/images/pnr/preview.png';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
+import { useShell } from '@/context';
 
 function NavReshuffleBetaAccessModal(): JSX.Element {
   const { t } = useTranslation('beta-modal');
+  const shell = useShell();
+  const trackingPlugin = shell.getPlugin('tracking');
   const { askBeta, createBetaChoice } = useContainer();
   const [submitting, setSubmitting] = useState(false);
 
   function onAccept() {
     setSubmitting(true);
+    trackingPlugin.trackClick({
+      name: 'accessing_beta_popin::go_to_beta',
+      type: 'action',
+    });
     return createBetaChoice(true).then(() => window.location.reload(false));
   }
 
   function onDecline() {
     setSubmitting(true);
+    trackingPlugin.trackClick({
+      name: 'accessing_beta_popin::nogo_beta',
+      type: 'action',
+    });
     return createBetaChoice(false).then(() => window.location.reload(false));
   }
+
+  useEffect(() => {
+    if (askBeta) {
+      trackingPlugin.trackPage('accessing_beta_popin');
+    }
+  }, [askBeta]);
 
   return (
     <div className={`${style.backdrop} ${askBeta ? '' : style.hidden}`}>

@@ -60,19 +60,31 @@ export const OnboardingIntroduction = () => {
 
   const startOnboarding = () => {
     productNavReshuffle.startOnboarding();
+
     trackingPlugin.trackClickImpression({
-      label: 'onboarding_manager::launch_guide_main_cta',
+      click: {
+        ...commonTrackingOptions,
+        variant: 'onboarding_manager::launch_guide_main_cta',
+        generalPlacement: '[next]',
+      },
+    });
+    trackingPlugin.trackImpression({
       ...commonTrackingOptions,
-      generalPlacement: '[next]',
     });
   };
 
   const closeOnboarding = () => {
     productNavReshuffle.closeOnboarding();
+
     trackingPlugin.trackClickImpression({
-      label: 'onboarding_manager::close_guide_main_cta',
+      click: {
+        ...commonTrackingOptions,
+        variant: 'onboarding_manager::close_guide_main_cta',
+        generalPlacement: '[hide]',
+      },
+    });
+    trackingPlugin.trackImpression({
       ...commonTrackingOptions,
-      generalPlacement: '[hide]',
     });
   };
 

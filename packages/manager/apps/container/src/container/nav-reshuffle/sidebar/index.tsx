@@ -14,6 +14,7 @@ import { initTree, countServices, findPathToNode } from './utils';
 function Sidebar(): JSX.Element {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
+  const trackingPlugin = shell.getPlugin('tracking');
   const navigationPlugin = shell.getPlugin('navigation');
   const routingPlugin = shell.getPlugin('routing');
   const environment = shell.getPlugin('environment').getEnvironment();
@@ -36,6 +37,14 @@ function Sidebar(): JSX.Element {
   const logoLink = navigationPlugin.getURL('hub', '#/');
 
   const menuClickHandler = (node) => {
+    let trackingIdComplement = 'navbar_v2_entry_';
+    const history = findPathToNode(navigationRoot, (n) => n.id === node.id)
+      .filter((item) => item.id)
+      .map((element) => element.id);
+
+    history.forEach((entry: string) => {
+      trackingIdComplement += `${entry.replace(/-/g, '_')}::`;
+    });
     if (node.children) {
       setCurrentNavigationNode(node);
       if (node.id === 'pci' && selectedPciProject) {
@@ -48,6 +57,11 @@ function Sidebar(): JSX.Element {
     } else {
       setHighlightedNode(node);
     }
+
+    trackingPlugin.trackClick({
+      name: trackingIdComplement.replace(/[:][:]$/g, ''),
+      type: 'navigation',
+    });
   };
 
   /** Initialize navigation tree */
@@ -266,7 +280,15 @@ function Sidebar(): JSX.Element {
         {getMenuItems()}
       </ul>
       <div className={style.sidebar_action}>
-        <a href={navigationPlugin.getURL('hub', '#/catalog')}>
+        <a
+          onClick={() =>
+            trackingPlugin.trackClick({
+              name: 'navbar_v2_cta_add_a_service',
+              type: 'action',
+            })
+          }
+          href={navigationPlugin.getURL('hub', '#/catalog')}
+        >
           <span
             className={`oui-icon oui-icon-plus ${style.sidebar_action_icon}`}
             aria-hidden="true"

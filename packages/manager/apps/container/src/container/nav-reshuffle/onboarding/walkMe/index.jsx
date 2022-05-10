@@ -48,7 +48,6 @@ export const OnboardingWalkMe = () => {
       onboardingOpenedState === ONBOARDING_STATUS_ENUM.DISPLAYED
         ? '[new_visitor]'
         : '[returning_visitor]',
-    generalPlacement: '[next]',
   };
 
   const steps = [
@@ -113,6 +112,15 @@ export const OnboardingWalkMe = () => {
   ];
 
   const onHideBtnClick = (onboardingStatus) => {
+    const currentStep = steps[currentStepIndex];
+    trackingPlugin.trackClickImpression({
+      click: {
+        ...commonTrackingOptions,
+        variant: `${currentStep.trackingVariant}`,
+        format: `[${currentStepIndex + 1}-${steps.length}]`,
+        generalPlacement: '[hide]',
+      },
+    });
     closeOnboarding(onboardingStatus);
     closeAccountSidebar();
     if (isMobile) {
@@ -121,6 +129,15 @@ export const OnboardingWalkMe = () => {
   };
 
   const onNextBtnClick = () => {
+    const currentStep = steps[currentStepIndex];
+    trackingPlugin.trackClickImpression({
+      click: {
+        ...commonTrackingOptions,
+        variant: `${currentStep.trackingVariant}`,
+        format: `[${currentStepIndex + 1}-${steps.length}]`,
+        generalPlacement: '[next]',
+      },
+    });
     if (currentStepIndex + 1 < steps.length) {
       setIsPopoverVisible(false);
       setCurrentStepIndex(currentStepIndex + 1);
@@ -155,7 +172,7 @@ export const OnboardingWalkMe = () => {
       trackingPlugin.trackImpression({
         ...commonTrackingOptions,
         variant: `${currentStep.trackingVariant}`,
-        format: `[${currentStepIndex}-${steps.length}]`,
+        format: `[${currentStepIndex + 1}-${steps.length}]`,
       });
       // add a timeout of the same time of the stepElement animation
       // before recalculating popper position

@@ -21,6 +21,7 @@ const UserAccountMenu = ({
 }: Props): JSX.Element => {
   const { t } = useTranslation('user-account-menu');
   const shell = useShell();
+  const trackingPlugin = shell.getPlugin('tracking');
   const feedbackUrl = useProductNavReshuffle().getFeedbackUrl();
 
   const user = shell
@@ -29,13 +30,18 @@ const UserAccountMenu = ({
     .getUser();
 
   const onLougoutBtnClick = () => {
+    trackingPlugin.trackClick({
+      name: 'topnav::user_widget::logout',
+      type: 'action',
+    });
     shell.getPlugin('auth').logout();
   };
 
   const onGiveFeedbackLinkClick = () => {
-    shell
-      .getPlugin('tracking')
-      .trackClick('topnav::user_widget::give_feedback');
+    trackingPlugin.trackClick({
+      name: 'topnav::user_widget::give_feedback',
+      type: 'action',
+    });
   };
 
   const myAccountLink = shell
@@ -100,6 +106,12 @@ const UserAccountMenu = ({
         </a>
         <hr />
         <a
+          onClick={() =>
+            trackingPlugin.trackClick({
+              name: 'topnav::user_widget::go_to_profile',
+              type: 'navigation',
+            })
+          }
           className="d-block oui-link_icon"
           aria-label={t('user_account_menu_profile')}
           title={t('user_account_menu_profile')}

@@ -7,6 +7,7 @@ import {
   ImpressionData,
   ImpressionDataClick,
   EventData,
+  MVTestingData,
 } from './config';
 import { IOvhAtInternetTrack } from './track';
 import { getUniqueId } from './utils';
@@ -26,7 +27,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
    */
   private atinternetTag: ATInternetTagOptions = null;
 
-  private trackQueue: Array<IOvhAtInternetTrack<PageData>> = [];
+  private trackQueue: Array<IOvhAtInternetTrack<PageData | MVTestingData>> = [];
 
   // protected defaults;
   /**
@@ -164,6 +165,22 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         this.atinternetTag = null;
         console.error('atinternet tag initialization failed', err);
       }
+    }
+  }
+
+  trackMVTest(mvData: MVTestingData): void {
+    if (this.isTagAvailable()) {
+      try {
+        this.atinternetTag.mvTesting.set(mvData);
+        this.atinternetTag.dispatch();
+      } catch (e) {
+        console.error('atinternet or mvTesting tag missing', e);
+      }
+    } else {
+      this.trackQueue.push({
+        type: 'trackMVTest',
+        data: mvData,
+      });
     }
   }
 
