@@ -40,7 +40,7 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
     updateBetaChoice(false);
   };
 
-  if (isSmallDevice || !betaVersion) {
+  if (!betaVersion) {
     return <></>;
   }
 
@@ -54,7 +54,9 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
       )}
       <div className="oui-navbar-dropdown" ref={ref}>
         <button
-          className="oui-navbar-link oui-navbar-link_dropdown"
+          className={`oui-navbar-link oui-navbar-link_dropdown ${
+            isSmallDevice ? 'p-0' : ''
+          }`}
           aria-haspopup={show}
           aria-expanded={show}
           aria-label={t('beta_switch')}
@@ -71,10 +73,15 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
                 <span className="oui-navbar-link__text">
                   {t('beta_modal_new')}
                 </span>
-                <span className="oui-badge oui-badge_s oui-badge_beta">
-                  {t('beta_modal_beta')}
-                </span>
-                <span className="oui-icon oui-icon-chevron-down ml-2"></span>
+                {!isSmallDevice && (
+                  <>
+                    <span className="oui-badge oui-badge_s oui-badge_beta">
+                      {t('beta_modal_beta')}
+                    </span>
+
+                    <span className="oui-icon oui-icon-chevron-down ml-2"></span>
+                  </>
+                )}
               </>
             )}
             {!useBeta && (

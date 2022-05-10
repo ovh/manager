@@ -27,7 +27,9 @@ function LanguageButton({
       aria-label={t('language_change')}
       title={t('language_change')}
       type="button"
-      className="oui-navbar-link oui-navbar-link_dropdown"
+      className={`oui-navbar-link oui-navbar-link_dropdown ${
+        isSmallDevice ? 'p-0' : ''
+      }`}
       onClick={(e) => {
         e.preventDefault();
         onClick(!show);
