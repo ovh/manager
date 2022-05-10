@@ -138,3 +138,26 @@ export const CTAS = {
   WS:
     'https://ovhcloud.com/us-en/enterprise/products/hosted-private-cloud/prices/',
 };
+
+export const US_GUIDES = [
+  {
+    title: 'dedicated_clouds_onboarding_us_guide1_title',
+    description: 'dedicated_clouds_onboarding_us_guide1_description',
+    link:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360017372019-How-to-Deploy-a-VM-in-the-vSphere-Web-Client',
+  },
+  {
+    title: 'dedicated_clouds_onboarding_us_guide2_title',
+    description: 'dedicated_clouds_onboarding_us_guide2_description',
+    link:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360015989419-How-to-Log-Into-the-vSphere-Web-Client',
+  },
+  {
+    title: 'dedicated_clouds_onboarding_us_guide3_title',
+    description: 'dedicated_clouds_onboarding_us_guide3_description',
+    link:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360000794910-How-to-Access-a-Datastore-via-SFTP',
+  },
+];
+export const US_CTA =
+  'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/';
