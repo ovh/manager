@@ -18,6 +18,6 @@
   "data_processing_submit_job_stepper_spark_no_python_environment_label": "Le fichier d'environnement Python 'environment.yml' n'existe pas dans le conteneur sélectionné.",
   "data_processing_submit_job_stepper_spark_arguments_warning": "Attention : Pour stocker des données confidentielles (identifiants...), préférez l'utilisation d'un fichier de configuration.",
   "data_processing_submit_job_stepper_spark_select_unit_minutes": "minute(s)",
-  "data_processing_submit_job_stepper_spark_select_unit_hous": "heure(s)",
+  "data_processing_submit_job_stepper_spark_select_unit_hours": "heure(s)",
   "data_processing_submit_job_stepper_spark_select_unit_days": "jour(s)"
 }
