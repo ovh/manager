@@ -1,5 +1,9 @@
 import { filter, find } from 'lodash';
-import { PYTHON_ENV_FILENAME } from './spark-config.constants';
+import {
+  PYTHON_ENV_FILENAME,
+  PYTHON_FILES_CONTENT_TYPES,
+  JAVA_FILES_CONTENT_TYPES,
+} from './spark-config.constants';
 import {
   JOB_TYPE_JAVA,
   JOB_TYPE_PYTHON,
@@ -102,6 +106,22 @@ export default class {
       .listObjects(this.projectId, containerId)
       .then((container) => {
         this.containerObjects = container.objects;
+        // try to detect correct job type and file
+        const pythonFiles = container.objects.filter((object) =>
+          PYTHON_FILES_CONTENT_TYPES.includes(object.contentType),
+        );
+        const javaFiles = container.objects.filter((object) =>
+          JAVA_FILES_CONTENT_TYPES.includes(object.contentType),
+        );
+        if (pythonFiles.length > 0) {
+          this.state.jobType = 'python';
+          this.state.mainApplicationCode = pythonFiles[0].name;
+        } else if (javaFiles.length > 0) {
+          this.state.jobType = 'java';
+          this.state.mainApplicationCode = javaFiles[0].name;
+        } else if (this.state.mainApplicationCode) {
+          this.state.mainApplicationCode = '';
+        }
         // handle case where customer started by code filename before selecting container
         this.onMainApplicationCodeChangeHandler();
       });
@@ -117,9 +137,7 @@ export default class {
     this.state.mainApplicationCodeFileInvalid =
       fileObject &&
       this.state.jobType === 'java' &&
-      fileObject.contentType !== 'application/java-archive' &&
-      fileObject.contentType !== 'application/x-java-archive' &&
-      fileObject.contentType !== 'application/x-jar';
+      !JAVA_FILES_CONTENT_TYPES.includes(fileObject.contentType);
     // check if file exists
     this.state.mainApplicationCodeFileNotFound = fileObject === undefined;
     // check if environment file exists
@@ -141,24 +159,6 @@ export default class {
     this.onMainApplicationCodeChangeHandler();
     this.onChangeHandler(this.state);
   }
-
-  /**
-   * Handler to add current arguments to the chips argument list
-   * @param evt <enter> key event
-   */
-  // onSubmitArgumentHandler(evt) {
-  //   evt.preventDefault();
-  //   evt.stopPropagation();
-  //   const arg = evt.target.value;
-  //   // validate argument against authorized pattern
-  //   if (arg.match(ARGUMENTS_VALIDATION_PATTERN)) {
-  //     this.state.arguments.push({
-  //       title: arg,
-  //     });
-  //     this.state.currentArgument = '';
-  //   }
-  //   this.onChangeHandler(this.state);
-  // }
 
   /**
    * Handler to manage Main Class field changes
