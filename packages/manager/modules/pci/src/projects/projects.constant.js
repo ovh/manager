@@ -71,6 +71,50 @@ export const PCI_FEATURES = {
   },
 };
 
+export const PCI_FEATURES_STATES = {
+  COMPUTE: {
+    INSTANCES: 'pci.projects.project.instances',
+    BAREMETAL: 'pci.projects.project.baremetal',
+  },
+  STORAGE: {
+    BLOCK: 'pci.projects.project.storages.blocks',
+    OBJECT: 'pci.projects.project.storages.object-storage',
+    DATABASE: 'pci.projects.project.storages.databases',
+    CLOUD_ARCHIVE: 'pci.projects.project.storages.archives',
+    VOLUME_SNAPSHOT: 'pci.projects.project.storages.snapshots',
+    INSTANCE_BACKUP: 'pci.projects.project.storages.instance-backups',
+  },
+  NETWORK: {
+    LOAD_BALANCER: 'pci.projects.project.loadbalancer',
+    PRIVATE_NETWORK: 'pci.projects.project.privateNetwork',
+    FAILOVER_IP: 'pci.projects.project.failover-ips',
+  },
+  CONTAINERS_ORCHESTRATION: {
+    MANAGED_KUBERNETES_SERVICE: 'pci.projects.project.kubernetes',
+    MANAGED_PRIVATE_REGISTRY: 'pci.projects.project.private-registry',
+    WORKFLOW_MANAGEMENT: 'pci.projects.project.workflow',
+  },
+  AI_ML: {
+    NOTEBOOKS: 'pci.projects.project.notebooks',
+    TRAINING: 'pci.projects.project.ai.training',
+    APPS: 'pci.projects.project.ai.apps',
+    ALPHA: 'pci.projects.project.ai',
+    SERVING: 'pci.projects.project.ai.serving',
+  },
+  DATA_ANALYTICS: {
+    DATA_PROCESSING: 'pci.projects.project.data-processing',
+  },
+  PROJECT_MANAGEMENT: {
+    USERS_ROLES: 'pci.projects.project.users',
+    QUOTA_AND_REGIONS: 'pci.projects.project.quota',
+    SSH_KEYS: 'pci.projects.project.sshKeys',
+    BILLING_CONTROL: 'pci.projects.project.billing',
+    CREDIT_AND_VOUCHERS: 'pci.projects.project.vouchers',
+    CONTACTS_AND_RIGHTS: 'pci.projects.project.contacts',
+    PROJECT_SETTINGS: 'pci.projects.project.edit',
+  },
+};
+
 export const ORDER_FOLLOW_UP_POLLING_INTERVAL = 7000;
 
 export const ORDER_FOLLOW_UP_STATUS_ENUM = {

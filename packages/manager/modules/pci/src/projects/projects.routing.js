@@ -1,21 +1,25 @@
 import { SupportLevel } from '@ovh-ux/manager-models';
 
 import Offer from '../components/project/offer/offer.class';
-import { PCI_FEATURES } from './projects.constant';
+import { PCI_FEATURES, PCI_FEATURES_STATES } from './projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects', {
-    url: '/projects',
+    url: '/projects?context&category&target',
     component: 'pciProjects',
     redirectTo: (transition) => {
-      const projectsPromise = transition.injector().getAsync('projects');
-      return projectsPromise.then((projects) => {
-        if (!projects.length) {
-          return 'pci.projects.onboarding';
-        }
+      const injector = transition.injector();
 
-        return true;
-      });
+      return injector
+        .get('$q')
+        .all([injector.getAsync('projects')])
+        .then(([projects]) => {
+          if (!projects.length) {
+            return 'pci.projects.onboarding';
+          }
+
+          return true;
+        });
     },
     resolve: {
       breadcrumb: /* @ngInject */ () => null,
@@ -31,6 +35,47 @@ export default /* @ngInject */ ($stateProvider) => {
 
       defaultProject: /* @ngInject */ (PciProjectsService) =>
         PciProjectsService.getDefaultProject(),
+
+      redirectContext: /* @ngInject */ ($transition$) =>
+        $transition$.params().context,
+
+      redirectCategory: /* @ngInject */ ($transition$) =>
+        $transition$.params().category,
+
+      redirectTarget: /* @ngInject */ ($transition$) =>
+        $transition$.params().target,
+
+      isRedirectRequired: /* @ngInject */ (
+        redirectContext,
+        redirectCategory,
+        redirectTarget,
+      ) => {
+        return redirectContext && redirectCategory && redirectTarget;
+      },
+
+      getTargetedState: /* @ngInject */ (
+        redirectCategory,
+        redirectTarget,
+      ) => (project) => {
+        const category = redirectCategory.toUpperCase();
+        const target = redirectTarget.toUpperCase();
+
+        return {
+          state: PCI_FEATURES_STATES[category][target],
+          params: {
+            projectId: project.project_id,
+          },
+          options: {
+            inherit: false,
+          },
+        };
+      },
+
+      goToState: /* @ngInject */ ($state) => (targetedState) => {
+        const { state, params, options } = targetedState;
+
+        return $state.go(state, params, options);
+      },
 
       goToProject: /* @ngInject */ ($state) => (project) =>
         $state.go('pci.projects.project', { projectId: project.project_id }),
