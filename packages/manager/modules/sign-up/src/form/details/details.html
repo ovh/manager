@@ -201,7 +201,7 @@
         <div class="col-lg" data-ng-if="$ctrl.signUpFormCtrl.rules.area">
             <!-- area -->
             <oui-field
-                data-label="{{ 'sign_up_details_field_' + ($ctrl.signUpFormCtrl.model.country.includes('AU', 'US', 'WE') ? 'state' : $ctrl.signUpFormCtrl.model.country === 'CA' ? 'province' : 'area') | translate }}"
+                data-label="{{ 'sign_up_details_field_' + ($ctrl.signUpFormCtrl.model.country.includes('AU', 'US', 'WE', 'IN') ? 'state' : $ctrl.signUpFormCtrl.model.country === 'CA' ? 'province' : 'area') | translate }}"
             >
                 <label class="oui-select">
                     <select
