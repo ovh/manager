@@ -71,7 +71,7 @@ function AssistanceSidebar(): JSX.Element {
           />
         )}
         <SidebarLink
-          node={{ translation: 'sidebar_assistance_onboarding' }}
+          node={{ translation: 'sidebar_assistance_onboarding', count: false }}
           onClick={() => openOnboarding()}
         />
       </li>
