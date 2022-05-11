@@ -553,7 +553,7 @@ export default async (containerEl, shellClient) => {
 
     .config(
       /* @ngInject */ (ouiCalendarConfigurationProvider) => {
-        const lang = locale;
+        const [lang] = locale.split('_');
         return import(`flatpickr/dist/l10n/${lang}.js`)
           .then((module) => {
             ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
