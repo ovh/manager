@@ -25,8 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return false;
         }),
     resolve: {
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('anthos_tenants'),
+      hideBreadcrumb: () => true,
 
       user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
 
