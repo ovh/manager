@@ -1,5 +1,6 @@
 {
   "pci_projects": "Projets",
+  "pci_projects_redirect_to_dedicated_page": "Pour continuer, veuillez sélectionner un projet existant ou créer un nouveau projet.",
   "pci_projects_description": "Description",
   "pci_projects_create_project": "Créer un nouveau projet",
   "pci_projects_status": "Statut",
