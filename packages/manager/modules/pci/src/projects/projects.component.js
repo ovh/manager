@@ -4,8 +4,14 @@ import template from './projects.html';
 export default {
   bindings: {
     billingUrl: '@',
+    redirectContext: '<',
+    redirectCategory: '<',
+    redirectTarget: '<',
+    isRedirectRequired: '<',
+    getTargetedState: '<',
     confirmDeletion: '<',
     goToNewProject: '<',
+    goToState: '<',
     goToProject: '<',
     goToProjects: '<',
     isHdsAvailable: '<',
