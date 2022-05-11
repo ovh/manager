@@ -19,11 +19,6 @@ export const OnboardingIntroduction = () => {
   });
 
   const productNavReshuffle = useProductNavReshuffle();
-
-  const [isBtnVisible, setIsBtnVisible] = useState(false);
-  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
-  const [isChatbotVisible, setIsChatbotVisible] = useState(false);
-
   const shell = useShell();
 
   const user = shell
@@ -32,6 +27,13 @@ export const OnboardingIntroduction = () => {
     .getUser();
 
   const uxPlugin = shell.getPlugin('ux');
+
+  const [isBtnVisible, setIsBtnVisible] = useState(false);
+  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  const [isChatbotVisible, setIsChatbotVisible] = useState(
+    uxPlugin.shellUX.getChatbot().getVisibility(),
+  );
+
   uxPlugin.onChatbotVisibilityChange(() => {
     setIsChatbotVisible(uxPlugin.shellUX.getChatbot().getVisibility());
     setIsPopoverVisible(false);
