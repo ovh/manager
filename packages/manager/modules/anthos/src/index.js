@@ -18,7 +18,7 @@ angular
         redirectTo: 'anthos.index',
         resolve: {
           breadcrumb: /* @ngInject */ ($translate) =>
-            $translate.instant('anthos_hpc_title'),
+            $translate.instant('anthos_tenants'),
         },
       });
       $stateProvider.state('anthos.index.**', {
