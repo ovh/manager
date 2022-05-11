@@ -10,10 +10,15 @@
             ></ovh-manager-trusted-nic-label>
         </div>
 
+        <!--Title-->
         <h1 data-translate="pci_projects"></h1>
+
+        <!--Message table-->
         <cui-message-container
             data-messages="$ctrl.messages"
         ></cui-message-container>
+
+        <!--Project table-->
         <oui-datagrid rows="$ctrl.projects">
             <oui-datagrid-column
                 title=":: 'pci_projects_description' | translate"
