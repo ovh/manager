@@ -76,7 +76,7 @@ export default class PackExchangeAccountCtrl {
                 data.map((account) => ({
                   ...account,
                   managerUrl: this.coreURLBuilder.buildURL(
-                    'exchange',
+                    'web',
                     '#/exchange/:organization/:exchangeService/account',
                     {
                       organization: exchangeService,
