@@ -191,9 +191,6 @@ function Sidebar(): JSX.Element {
           const regionFilter = [].concat(node.region);
           return regionFilter.includes(currentRegion);
         }
-        if (node.hideIfEmpty && !node.count) {
-          return false;
-        }
         return true;
       })
       .map((node) => (

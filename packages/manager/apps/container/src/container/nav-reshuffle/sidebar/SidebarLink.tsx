@@ -92,6 +92,9 @@ function SidebarLink({
   const { betaVersion } = useContainer();
 
   const shouldHideElement = () => {
+    if (node.hideIfEmpty && !node.count) {
+      return true;
+    }
     if (betaVersion === 2) {
       if (node.id === 'services') return false;
       if (node.count === false) return false;
