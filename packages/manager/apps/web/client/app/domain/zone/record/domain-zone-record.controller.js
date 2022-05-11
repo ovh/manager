@@ -6,6 +6,7 @@ import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
+import lowerCase from 'lodash/lowerCase';
 import trim from 'lodash/trim';
 import set from 'lodash/set';
 
@@ -112,7 +113,7 @@ angular.module('App').controller(
       this.Domain.checkIfRecordCanBeAdd(this.domain.name, {
         excludeId: this.edit ? this.edit.id : undefined,
         fieldType: this.model.fieldType,
-        subDomain: punycode.toASCII(this.model.subDomainToDisplay || ''),
+        subDomain: lowerCase(punycode.toASCII(this.model.subDomainToDisplay || '')),
         target: this.model.target.value,
       })
         .then(({ recordCanBeAdded, conflictingRecords }) => {
