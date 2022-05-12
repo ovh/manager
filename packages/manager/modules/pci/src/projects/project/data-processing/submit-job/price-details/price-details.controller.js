@@ -10,21 +10,21 @@ export default class {
         name: 'minute',
         multiplier: 1,
         description: this.$translate.instant(
-          'data_processing_price_details_select_unit_minute',
+          'data_processing_price_details_unit_minute',
         ),
       },
       {
         name: 'hour',
         multiplier: 60,
         description: this.$translate.instant(
-          'data_processing_price_details_select_unit_hour',
+          'data_processing_price_details_unit_hour',
         ),
       },
       {
         name: 'day',
         multiplier: 1440,
         description: this.$translate.instant(
-          'data_processing_price_details_select_unit_day',
+          'data_processing_price_details_unit_day',
         ),
       },
     ];
