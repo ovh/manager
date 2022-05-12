@@ -2,7 +2,6 @@
 <div class="pci-projects w-100 h-100 overflow-auto" data-ui-view>
     <account-migration-notification></account-migration-notification>
     <div class="container px-3 py-5">
-
         <!--Trusted zone badge-->
         <div class="text-center">
             <ovh-manager-trusted-nic-label
@@ -60,6 +59,7 @@
                 <oui-action-menu-item
                     data-ng-if="$row.hasPendingDebt()"
                     data-href="{{ $ctrl.billingUrl }}"
+                    top
                 >
                     <span data-translate="pci_projects_project_pay_bill"></span>
                 </oui-action-menu-item>
