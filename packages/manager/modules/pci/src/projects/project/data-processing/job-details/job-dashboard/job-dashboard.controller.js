@@ -86,13 +86,13 @@ export default class {
     this.queryMetrics();
 
     // Poll the database status
-    if (isJobRunning()) {
+    if (isJobRunning(this.job)) {
       this.poller = this.CucCloudPoll.poll({
         interval: 1000,
         item: this.job,
         pollFunction: (job) =>
           this.dataProcessingService.getJob(this.projectId, job.id),
-        stopCondition: () => !this.isJobRunning(),
+        stopCondition: () => !isJobRunning(this.job),
       });
     }
   }
