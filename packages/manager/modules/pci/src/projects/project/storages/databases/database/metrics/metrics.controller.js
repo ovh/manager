@@ -79,7 +79,7 @@ export default class MetricsCtrl {
       );
 
       this.metricsData[metric].chart.setTooltipCallback('label', (item) =>
-        parseFloat(item.value, 10).toFixed(2),
+        parseFloat(item.value, 10).toPrecision(3),
       );
     });
   }
@@ -106,8 +106,19 @@ export default class MetricsCtrl {
         availableMetric,
         this.selectedTimeRange.value,
       ).then((data) => {
-        const metrics = sortBy(data.metrics, 'hostname');
-        this.metricsData[data.name].data = data;
+        const metricData = data;
+        if (['net_send', 'net_receive'].includes(availableMetric)) {
+          metricData.metrics[0].dataPoints = data.metrics[0].dataPoints.map(
+            (point) => {
+              return {
+                timestamp: point.timestamp,
+                value: point.value / 1000000.0,
+              };
+            },
+          );
+        }
+        const metrics = sortBy(metricData.metrics, 'hostname');
+        this.metricsData[metricData.name].data = metricData;
 
         metrics.forEach((metric) => {
           this.metricsData[data.name].chart.updateSerie(
@@ -125,7 +136,7 @@ export default class MetricsCtrl {
           );
         });
 
-        this.metricsData[data.name].utils.refresh();
+        this.metricsData[metricData.name].utils.refresh();
       });
     });
   }
