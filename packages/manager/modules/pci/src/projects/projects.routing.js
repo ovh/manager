@@ -12,14 +12,31 @@ export default /* @ngInject */ ($stateProvider) => {
 
       return injector
         .get('$q')
-        .all([injector.getAsync('projects')])
-        .then(([projects]) => {
-          if (!projects.length) {
-            return 'pci.projects.onboarding';
-          }
+        .all([
+          injector.getAsync('projects'),
+          injector.getAsync('activeProjects'),
+          injector.getAsync('isRedirectRequired'),
+          injector.getAsync('getTargetedState'),
+        ])
+        .then(
+          ([
+            projects,
+            activeProjects,
+            isRedirectRequired,
+            getTargetedState,
+          ]) => {
+            if (!projects.length) {
+              return 'pci.projects.onboarding';
+            }
 
-          return true;
-        });
+            // Redirect customer to right page
+            if (isRedirectRequired && activeProjects.length === 1) {
+              return getTargetedState(activeProjects[0]);
+            }
+
+            return true;
+          },
+        );
     },
     resolve: {
       breadcrumb: /* @ngInject */ () => null,
@@ -53,10 +70,9 @@ export default /* @ngInject */ ($stateProvider) => {
         return redirectContext && redirectCategory && redirectTarget;
       },
 
-      getTargetedState: /* @ngInject */ (
-        redirectCategory,
-        redirectTarget,
-      ) => (project) => {
+      getTargetedState: /* @ngInject */ (redirectCategory, redirectTarget) => (
+        project,
+      ) => {
         const category = redirectCategory.toUpperCase();
         const target = redirectTarget.toUpperCase();
 
@@ -123,6 +139,10 @@ export default /* @ngInject */ ($stateProvider) => {
             return project1SuspendedOrDebt ? -1 : 1;
           }),
         ),
+
+      activeProjects: /* @ngInject */ (projects) => {
+        return (projects || []).filter(({ status }) => status === 'ok');
+      },
 
       numProjects: /* @ngInject */ (projects) => projects.length,
 
