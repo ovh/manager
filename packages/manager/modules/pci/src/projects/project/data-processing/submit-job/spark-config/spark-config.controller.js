@@ -147,10 +147,7 @@ export default class {
     );
     this.state.pythonEnvironmentMissing =
       !environmentFileObject && this.state.jobType === JOB_TYPE_PYTHON;
-    // check for field global validity (files exist)
-    this.valid =
-      !this.state.pythonEnvironmentMissing &&
-      !this.state.mainApplicationCodeFileNotFound;
+    this.checkValidity();
     this.onChangeHandler(this.state);
   }
 
@@ -160,10 +157,19 @@ export default class {
     this.onChangeHandler(this.state);
   }
 
+  checkValidity() {
+    // check for field global validity (files exist)
+    this.valid =
+      !this.state.pythonEnvironmentMissing &&
+      !this.state.mainApplicationCodeFileNotFound &&
+      !(this.state.jobType === 'java' && !this.state.mainClass);
+  }
+
   /**
    * Handler to manage Main Class field changes
    */
   onMainClassChangeHandler() {
+    this.checkValidity();
     this.onChangeHandler(this.state);
   }
 }
