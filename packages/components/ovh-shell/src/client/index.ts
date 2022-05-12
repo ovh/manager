@@ -70,6 +70,7 @@ export default function init(applicationId: ApplicationId) {
   }
 
   return initPromise.then((shellApi) => {
+    shellApi.ux.resetAccountSidebar();
     return shellApi.environment.setUniverse(applicationId).then(() => shellApi);
   });
 }

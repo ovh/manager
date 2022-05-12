@@ -17,10 +17,17 @@ export const HeaderProvider = ({ children = null }: Props): JSX.Element => {
   const [isAccountSidebarVisible, setIsAccountSidebarVisible] = useState(
     uxPlugin.isAccountSidebarVisible(),
   );
-  const isAccountSidebarLargeScreenDisplayForced = uxPlugin.isAccountSidebarLargeScreenDisplayForced();
+
+  const [
+    isAccountSidebarLargeScreenDisplayForced,
+    setIsAccountSidebarLargeScreenDisplayForced,
+  ] = useState(uxPlugin.isAccountSidebarLargeScreenDisplayForced());
 
   useEffect(() => {
     uxPlugin.onAccountSidebarVisibilityChange(() => {
+      setIsAccountSidebarLargeScreenDisplayForced(
+        uxPlugin.isAccountSidebarLargeScreenDisplayForced(),
+      );
       setIsAccountSidebarVisible(uxPlugin.isAccountSidebarVisible());
     });
   }, []);
