@@ -33,7 +33,7 @@
             >
                 <oui-tile-description>
                     <span ng-if="!$ctrl.isJobPending()"
-                        >{{ $ctrl.isJobPending() ? 0 : $ctrl.job.duration |
+                        >{{ ($ctrl.isJobPending() ? 0 : $ctrl.job.duration) |
                         dataProcessingDuration }}</span
                     >
                 </oui-tile-description>
