@@ -1,5 +1,8 @@
 import { find, unzip } from 'lodash';
-import { getDataProcessingUiUrl } from '../../data-processing.utils';
+import {
+  getDataProcessingUiUrl,
+  formatDuration,
+} from '../../data-processing.utils';
 import {
   DATA_PROCESSING_STATUS_TO_CLASS,
   DATA_PROCESSING_STATUSES,
@@ -37,6 +40,7 @@ export default class {
     this.atInternet = atInternet;
     this.containerId = null;
     this.metricsTimer = null;
+    this.formatDuration = formatDuration;
     // setup metrics retrieval
     this.warp10 = $resource(
       WARP10_URL,
