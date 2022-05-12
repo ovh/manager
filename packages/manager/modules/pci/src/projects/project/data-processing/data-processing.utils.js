@@ -69,7 +69,10 @@ export const summarizeSparkJob = (job) => {
     type: 'Spark',
     status: startCase(job.status.toLowerCase()),
     duration: job.endDate
-      ? (moment(job.endDate) - moment(job.creationDate)).valueOf()
+      ? (
+          moment(job.endDate) -
+          moment(job.startDate ? job.startDate : job.creationDate)
+        ).valueOf()
       : 0,
     engineParameters,
   };
