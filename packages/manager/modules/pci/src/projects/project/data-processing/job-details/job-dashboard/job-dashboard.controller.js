@@ -1,5 +1,8 @@
 import { find, unzip } from 'lodash';
-import { getDataProcessingUiUrl } from '../../data-processing.utils';
+import {
+  getDataProcessingUiUrl,
+  isJobRunning,
+} from '../../data-processing.utils';
 import {
   DATA_PROCESSING_STATUS_TO_CLASS,
   DATA_PROCESSING_STATUSES,
@@ -22,6 +25,7 @@ export default class {
     ovhManagerRegionService,
     PciStoragesContainersService,
     atInternet,
+    CucCloudPoll,
   ) {
     this.$scope = $scope;
     this.$timeout = $timeout;
@@ -37,6 +41,7 @@ export default class {
     this.atInternet = atInternet;
     this.containerId = null;
     this.metricsTimer = null;
+    this.CucCloudPoll = CucCloudPoll;
     // setup metrics retrieval
     this.warp10 = $resource(
       WARP10_URL,
@@ -79,9 +84,23 @@ export default class {
     });
     // start metrics retrieval
     this.queryMetrics();
+
+    // Poll the database status
+    if (isJobRunning(this.job)) {
+      this.poller = this.CucCloudPoll.poll({
+        interval: 5000,
+        item: this.job,
+        pollFunction: (job) =>
+          this.dataProcessingService.getJob(this.projectId, job.id),
+        stopCondition: (job) => job.endDate !== null,
+      });
+    }
   }
 
   $onDestroy() {
+    if (this.poller) {
+      this.poller.kill();
+    }
     if (this.metricsTimer !== null) {
       this.$timeout.cancel(this.metricsTimer);
     }
