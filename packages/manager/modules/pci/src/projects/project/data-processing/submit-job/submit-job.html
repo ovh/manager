@@ -238,9 +238,9 @@
                             </div>
                             <div class="d-flex flex-column mb-2 pl-2">
                                 <div>
-                                    <span
+                                    <strong
                                         data-translate="data_processing_submit_job_spec_config_name"
-                                    ></span>
+                                    ></strong>
                                     <span
                                         data-ng-if="$ctrl.state.jobConfig.jobName"
                                         ng-bind="$ctrl.state.jobConfig.jobName"
@@ -252,9 +252,9 @@
                                     ></span>
                                 </div>
                                 <div>
-                                    <span
+                                    <strong
                                         data-translate="data_processing_submit_job_spec_config_container"
-                                    ></span>
+                                    ></strong>
                                     <span
                                         data-ng-if="$ctrl.state.jobConfig.swiftContainer"
                                         ng-bind="$ctrl.state.jobConfig.swiftContainer"
@@ -266,9 +266,9 @@
                                     ></span>
                                 </div>
                                 <div>
-                                    <span
+                                    <strong
                                         data-translate="data_processing_submit_job_spec_config_job_type"
-                                    ></span>
+                                    ></strong>
                                     <span
                                         class="text-capitalize"
                                         data-ng-if="$ctrl.state.jobConfig.jobType"
@@ -281,9 +281,9 @@
                                     ></span>
                                 </div>
                                 <div>
-                                    <span
+                                    <strong
                                         data-translate="data_processing_submit_job_spec_config_main_application_code"
-                                    ></span>
+                                    ></strong>
                                     <span
                                         data-ng-if="$ctrl.state.jobConfig.mainApplicationCode"
                                         ng-bind="$ctrl.state.jobConfig.mainApplicationCode"
@@ -297,9 +297,9 @@
                                 <div
                                     ng-if="$ctrl.state.jobConfig.jobType === 'java'"
                                 >
-                                    <span
+                                    <strong
                                         data-translate="data_processing_submit_job_spec_config_main_class"
-                                    ></span>
+                                    ></strong>
                                     <span
                                         data-ng-if="$ctrl.state.jobConfig.mainClass"
                                         ng-bind="$ctrl.state.jobConfig.mainClass"
@@ -313,9 +313,9 @@
                                 <div
                                     ng-if="$ctrl.state.jobConfig.arguments.length > 0"
                                 >
-                                    <span
+                                    <strong
                                         data-translate="data_processing_submit_job_spec_config_arguments"
-                                    ></span>
+                                    ></strong>
                                     <span
                                         ng-bind="$ctrl.getArgumentsList()"
                                     ></span>
