@@ -105,6 +105,7 @@
                     <oui-action-menu-item
                         data-ng-if="$ctrl.canSubscribeToSharepoint"
                         href="{{ :: $ctrl.URLS.ACTIVATE_SHAREPOINT }}"
+                        top
                     >
                         <span
                             data-translate="exchange_tab_INFORMATIONS_order_sharepoint"
@@ -113,6 +114,7 @@
                     <oui-action-menu-item
                         data-ng-if="$ctrl.canSubscribeToOfficeAttach"
                         href="{{:: $ctrl.URLS.ORDER_OFFICE_LICENCE }}"
+                        top
                     >
                         <span
                             data-translate="exchange_tab_INFORMATIONS_order_office"
@@ -140,6 +142,7 @@
                     <oui-action-menu-item
                         data-ng-if="$ctrl.exchangeService.renewOptionAvailable"
                         data-href="{{:: $ctrl.URLS.AUTORENEW }}"
+                        top
                     >
                         <span
                             data-translate="exchange_update_billing_button_title"
