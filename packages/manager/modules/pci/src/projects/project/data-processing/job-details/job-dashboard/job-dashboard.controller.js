@@ -1,8 +1,5 @@
 import { find, unzip } from 'lodash';
-import {
-  getDataProcessingUiUrl,
-  isJobRunning,
-} from '../../data-processing.utils';
+import { getDataProcessingUiUrl } from '../../data-processing.utils';
 import {
   DATA_PROCESSING_STATUS_TO_CLASS,
   DATA_PROCESSING_STATUSES,
@@ -86,13 +83,13 @@ export default class {
     this.queryMetrics();
 
     // Poll the database status
-    if (isJobRunning(this.job)) {
+    if (this.isJobRunning()) {
       this.poller = this.CucCloudPoll.poll({
         interval: 1000,
         item: this.job,
         pollFunction: (job) =>
           this.dataProcessingService.getJob(this.projectId, job.id),
-        stopCondition: () => !isJobRunning(this.job),
+        stopCondition: () => !this.isJobRunning(),
       });
     }
   }
