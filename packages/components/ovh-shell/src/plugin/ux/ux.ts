@@ -115,6 +115,13 @@ export class ShellUX implements IShellUx {
     }
   }
 
+  resetSidebar(sidebarName: string) {
+    const registeredSidebar = this.sidebars[sidebarName];
+    if (registeredSidebar) {
+      registeredSidebar.reset();
+    }
+  }
+
   registerNavbar(): void {
     this.navbar = Navbar();
     this.shell.emitEvent('ux:navbar-register', {});

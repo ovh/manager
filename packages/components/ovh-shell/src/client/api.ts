@@ -86,6 +86,11 @@ export default function exposeApi(shellClient: ShellClient) {
           args: [isForced],
         });
       },
+      resetAccountSidebar: () =>
+        shellClient.invokePluginMethod({
+          plugin: 'ux',
+          method: 'resetAccountSidebar',
+        }),
       isMenuSidebarVisible: () =>
         shellClient.invokePluginMethod({
           plugin: 'ux',
