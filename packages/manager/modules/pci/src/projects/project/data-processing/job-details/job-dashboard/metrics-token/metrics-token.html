@@ -1,7 +1,9 @@
 <oui-modal
     data-heading="{{ ::'data_processing_details_metrics_token_modal_title' | translate }}"
-    data-primary-action="$ctrl.closeModal()"
-    data-primary-label="{{ ::'data_processing_details_metrics_token_modal_dismiss_button' | translate }}"
+    data-primary-action="$ctrl.goToGrafana()"
+    data-primary-label="{{ ::'data_processing_details_metrics_token_modal_grafana_button' | translate }}"
+    data-secondary-action="$ctrl.closeModal()"
+    data-secondary-label="{{ ::'data_processing_details_metrics_token_modal_dismiss_button' | translate }}"
     data-on-dismiss="$ctrl.closeModal()"
 >
     <span
