@@ -32,7 +32,7 @@
                 data-term="{{ :: 'data_processing_details_information_elapsed_label' | translate }}"
             >
                 <oui-tile-description>
-                    <span ng-if="!$ctrl.isJobPending()"
+                    <span
                         >{{ ($ctrl.isJobPending() ? 0 : $ctrl.job.duration) |
                         dataProcessingDuration }}</span
                     >
