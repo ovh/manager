@@ -9,5 +9,6 @@ export default {
     job: '<',
     projectId: '<',
     redirectToObjectStorage: '<',
+    logContainer: '<',
   },
 };
