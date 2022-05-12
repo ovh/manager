@@ -21,6 +21,17 @@ export default /* @ngInject */ ($stateProvider) =>
         $state.go('pci.projects.project.storages.object-storage.add', {
           projectId,
         }),
+      goToDashboard: /* @ngInject */ ($state, projectId) => (jobId) =>
+        $state.go(
+          'pci.projects.project.data-processing.job-details.dashboard',
+          {
+            projectId,
+            jobId,
+          },
+          {
+            reload: true,
+          },
+        ),
     },
     atInternet: {
       rename:

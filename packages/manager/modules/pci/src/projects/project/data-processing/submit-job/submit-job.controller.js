@@ -225,13 +225,13 @@ export default class {
 
     this.dataProcessingService
       .submitJob(this.projectId, this.orderData)
-      .then(() => {
+      .then(({ data }) => {
         this.atInternet.trackClick({
           name:
             'public-cloud::pci::projects::project::data-processing::submit-job::submit',
           type: 'action',
         });
-        this.goBack();
+        this.goToDashboard(data.id);
       })
       .catch((error) => {
         if (

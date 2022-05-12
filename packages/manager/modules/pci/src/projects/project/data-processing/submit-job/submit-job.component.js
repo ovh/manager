@@ -14,5 +14,6 @@ export default {
     user: '<',
     containers: '<',
     goToObjectStorage: '<',
+    goToDashboard: '<',
   },
 };
