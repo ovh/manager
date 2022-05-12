@@ -213,7 +213,10 @@ export default class {
   }
 
   isJobPending() {
-    return this.job.status === DATA_PROCESSING_STATUSES.PENDING;
+    return [
+      DATA_PROCESSING_STATUSES.PENDING,
+      DATA_PROCESSING_STATUSES.SUBMITTED,
+    ].includes(this.job.status);
   }
 
   // eslint-disable-next-line class-methods-use-this

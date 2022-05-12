@@ -33,9 +33,9 @@
             >
                 <oui-tile-description>
                     <span ng-if="!$ctrl.isJobPending()"
-                        >{{ $ctrl.job.duration | dataProcessingDuration }}</span
+                        >{{ $ctrl.isJobPending() ? 0 : $ctrl.job.duration |
+                        dataProcessingDuration }}</span
                     >
-                    <span ng-if="$ctrl.isJobPending()">-</span>
                 </oui-tile-description>
             </oui-tile-definition>
             <!-- Tile item :: Total memory -->
