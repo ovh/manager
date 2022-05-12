@@ -23,13 +23,17 @@ if (isTopLevelApplication()) {
 
 useShellClient('hub')
   .then(async (client) => {
+    const isSidebarMenuVisible = await client.ux.isMenuSidebarVisible();
     if (!isTopLevelApplication()) {
       client.ux.startProgress();
     }
 
     setShellClient(client);
     client.ux.setForceAccountSiderBarDisplayOnLargeScreen(true);
-    client.ux.showAccountSidebar();
+    if (!isSidebarMenuVisible) {
+      client.ux.showAccountSidebar();
+    }
+
     await client.tracking.setConfig(TRACKING);
 
     return client.environment.getEnvironment();
