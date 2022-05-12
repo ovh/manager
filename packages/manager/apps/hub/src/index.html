@@ -77,6 +77,7 @@
         </div>
 
         <ovh-chatbot
+            data-ng-class="{ 'sidebar-open': $ctrl.isAccountSidebarVisible }"
             data-ng-if="$ctrl.chatbotEnabled"
             data-language="{{$ctrl.currentLanguage}}"
             data-country="{{$ctrl.me.ovhSubsidiary}}"
