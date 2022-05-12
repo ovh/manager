@@ -17,6 +17,7 @@ export default {
     isHdsAvailable: '<',
     isValidHdsSupportLevel: '<',
     projects: '<',
+    activeProjects: '<',
     terminateProject: '<',
     catalogEndpoint: '<',
     user: '<',
