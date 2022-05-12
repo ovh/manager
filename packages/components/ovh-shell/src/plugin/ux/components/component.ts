@@ -19,6 +19,10 @@ export class UXComponent implements IUxComponent {
     this.visible = options.visible || false;
   }
 
+  public reset(options: IUxComponentOptions = {}) {
+    this.setVisibility(options.visible || false);
+  }
+
   public setVisibility = (visibility: boolean) => {
     this.visible = visibility;
     this.triggerListeners();
