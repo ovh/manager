@@ -14,8 +14,13 @@ export default class Sidebar extends UXComponent implements ISidebar {
 
   constructor() {
     super({ visible: false });
-    this.allowToggle = true;
-    this.forceLargeScreenDisplay = false;
+    this.reset();
+  }
+
+  public reset() {
+    this.enableToggle();
+    this.setForceLargeScreenDisplay(false);
+    super.reset({ visible: false });
   }
 
   public isToggleAllowed(): boolean {

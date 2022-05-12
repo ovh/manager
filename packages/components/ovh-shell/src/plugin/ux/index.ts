@@ -14,6 +14,7 @@ export interface IUXPlugin {
   enableAccountSidebarVisibilityToggle(): void;
   disableAccountSidebarVisibilityToggle(): void;
   setForceAccountSiderBarDisplayOnLargeScreen(isForced: boolean): void;
+  resetAccountSidebar(): void;
   toggleNotificationsSidebarVisibility(): void;
   toggleAccountSidebarVisibility(): void;
   getUserIdCookie(): string;
@@ -80,6 +81,10 @@ export class UXPlugin implements IUXPlugin {
 
   setForceAccountSiderBarDisplayOnLargeScreen(isForced: boolean): void {
     this.shellUX.setForceSiderBarDisplayOnLargeScreen('account', isForced);
+  }
+
+  resetAccountSidebar(): void {
+    this.shellUX.resetSidebar('account');
   }
 
   toggleAccountSidebarVisibility(): void {
