@@ -22,7 +22,6 @@ export default class {
     ovhManagerRegionService,
     PciStoragesContainersService,
     atInternet,
-    CucCloudPoll,
   ) {
     this.$scope = $scope;
     this.$timeout = $timeout;
@@ -37,8 +36,7 @@ export default class {
     this.containerService = PciStoragesContainersService;
     this.atInternet = atInternet;
     this.containerId = null;
-    this.metricsTimer = null;
-    this.CucCloudPoll = CucCloudPoll;
+    this.pollTimer = null;
     // setup metrics retrieval
     this.warp10 = $resource(
       WARP10_URL,
@@ -80,26 +78,12 @@ export default class {
       }
     });
     // start metrics retrieval
-    this.queryMetrics();
-
-    // Poll the database status
-    if (this.isJobRunning()) {
-      this.poller = this.CucCloudPoll.poll({
-        interval: 1000,
-        item: this.job,
-        pollFunction: (job) =>
-          this.dataProcessingService.getJob(this.projectId, job.id),
-        stopCondition: () => !this.isJobRunning(),
-      });
-    }
+    this.pollData();
   }
 
   $onDestroy() {
-    if (this.poller) {
-      this.poller.kill();
-    }
-    if (this.metricsTimer !== null) {
-      this.$timeout.cancel(this.metricsTimer);
+    if (this.pollTimer !== null) {
+      this.$timeout.cancel(this.pollTimer);
     }
   }
 
@@ -107,13 +91,14 @@ export default class {
    * Query metrics from OVH metrics backend
    * If job is still running, we query each METRICS_REFRESH_INTERVAL to update charts
    */
-  queryMetrics() {
+  pollData() {
     this.queryMetricsTotalMemory();
     this.queryMetricsActiveTasks();
     this.queryMetricsDiskUsed();
+    this.queryJob();
     if (this.job.endDate === null) {
-      this.metricsTimer = this.$timeout(
-        () => this.queryMetrics(),
+      this.pollTimer = this.$timeout(
+        () => this.pollData(),
         METRICS_REFRESH_INTERVAL,
       );
     }
@@ -139,6 +124,14 @@ export default class {
       startDate,
       endDate,
     };
+  }
+
+  queryJob() {
+    this.dataProcessingService
+      .getJob(this.projectId, this.job.id)
+      .then((job) => {
+        this.job = job;
+      });
   }
 
   /**
