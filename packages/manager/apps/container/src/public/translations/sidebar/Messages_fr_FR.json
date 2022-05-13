@@ -1,7 +1,6 @@
 {
   "sidebar_home": "Tableau de bord",
   "sidebar_back": "Retour",
-  "sidebar_services": "Mes services",
   "sidebar_service_add": "Ajouter un service",
   "sidebar_bare_metal_cloud": "Bare Metal Cloud",
   "sidebar_web_cloud": "Web Cloud",
@@ -21,6 +20,7 @@
   "sidebar_platforms": "Plateformes",
   "sidebar_veeam_enterprise": "Veeam Enterprise",
   "sidebar_pci": "Public Cloud",
+  "sidebar_pci_new": "Créer un projet",
   "sidebar_pci_compute": "Compute",
   "sidebar_pci_instances": "Instances",
   "sidebar_pci_bare_metal": "Bare Metal",
@@ -103,6 +103,11 @@
   "sidebar_account": "Mon compte",
   "sidebar_billing": "Mes factures",
   "sidebar_orders": "Mes commandes",
+  "sidebar_account_profile": "Mon profil",
+  "sidebar_account_contacts": "Mes contacts",
+  "sidebar_billing_services": "Mes services",
+  "sidebar_billing_bills": "Mes factures",
+  "sidebar_billing_payment": "Mes moyens de paiement",
   "sidebar_sunrise": "Sunrise",
   "sidebar_marketplace": "Marketplace",
   "sidebar_assistance_title": "Assistance",
@@ -111,5 +116,6 @@
   "sidebar_assistance_status": "Etat du réseau et incidents",
   "sidebar_assistance_support_level": "Niveau de support",
   "sidebar_assistance_live_chat": "Live Chat",
-  "sidebar_assistance_onboarding": "Visite guidée"
+  "sidebar_assistance_onboarding": "Visite guidée",
+  "sidebar_clipboard_copy": "Copier dans le presse-papiers"
 }

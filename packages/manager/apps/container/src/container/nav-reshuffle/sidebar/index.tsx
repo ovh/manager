@@ -3,13 +3,21 @@ import React, { useEffect, useState, Suspense } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
-
+import useContainer from '@/core/container';
 import logo from '@/assets/images/OVHcloud_logo.svg';
 import Assistance from './Assistance';
 import navigationRoot from './navigation-tree/root';
 import SidebarLink from './SidebarLink';
 import style from './style.module.scss';
-import { initTree, countServices, findPathToNode } from './utils';
+import {
+  initTree,
+  countServices,
+  findPathToNode,
+  findPathToNodeByApp,
+  initFeatureNames,
+} from './utils';
+import { Node } from './navigation-tree/node';
+import ProjectSelector from './ProjectSelector/ProjectSelector';
 
 function Sidebar(): JSX.Element {
   const { t } = useTranslation('sidebar');
@@ -17,18 +25,18 @@ function Sidebar(): JSX.Element {
   const trackingPlugin = shell.getPlugin('tracking');
   const navigationPlugin = shell.getPlugin('navigation');
   const routingPlugin = shell.getPlugin('routing');
-  const environment = shell.getPlugin('environment').getEnvironment();
-  const currentRegion = environment.getRegion();
   const reketInstance = useReket();
+  const { betaVersion } = useContainer();
 
   const [containerURL, setContainerURL] = useState(
     routingPlugin.parseContainerURL(),
   );
   const [navigationTree, setNavigationTree] = useState({});
-  const [currentNavigationNode, setCurrentNavigationNode] = useState(
+  const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(
     navigationTree,
   );
   const [servicesCount, setServicesCount] = useState(null);
+  const [menuItems, setMenuItems] = useState(null);
   const [pciProjects, setPciProjects] = useState(null);
   const [selectedPciProject, setSelectedPciProject] = useState(null);
   const [pciProjectServiceCount, setPciProjectServiceCount] = useState(null);
@@ -37,26 +45,21 @@ function Sidebar(): JSX.Element {
   const logoLink = navigationPlugin.getURL('hub', '#/');
 
   const menuClickHandler = (node) => {
+    if (node.children) {
+      setCurrentNavigationNode(node);
+    }
+
     let trackingIdComplement = 'navbar_v2_entry_';
-    const history = findPathToNode(navigationRoot, (n) => n.id === node.id)
+    const history = findPathToNode(
+      navigationRoot,
+      (n: Node) => n.id === node.id,
+    )
       .filter((item) => item.id)
       .map((element) => element.id);
 
     history.forEach((entry: string) => {
       trackingIdComplement += `${entry.replace(/-/g, '_')}::`;
     });
-    if (node.children) {
-      setCurrentNavigationNode(node);
-      if (node.id === 'pci' && selectedPciProject) {
-        navigationPlugin.navigateTo(
-          'public-cloud',
-          `#/pci/projects/${selectedPciProject.project_id}`,
-        );
-      }
-      setHighlightedNode(null);
-    } else {
-      setHighlightedNode(node);
-    }
 
     trackingPlugin.trackClick({
       name: trackingIdComplement.replace(/[:][:]$/g, ''),
@@ -66,9 +69,30 @@ function Sidebar(): JSX.Element {
 
   /** Initialize navigation tree */
   useEffect(() => {
-    const tree = initTree(navigationRoot);
-    setNavigationTree(tree);
-    setCurrentNavigationNode(tree);
+    let abort = false;
+
+    const featuresListPromise = async () => {
+      if (!abort) {
+        const features = initFeatureNames(navigationRoot);
+
+        const results: Record<string, boolean> = await reketInstance.get(
+          `/feature/${features.join(',')}/availability`,
+          {
+            requestType: 'aapi',
+          },
+        );
+
+        const [tree] = initTree([navigationRoot], results);
+
+        setNavigationTree(tree);
+        setCurrentNavigationNode(tree);
+      }
+    };
+    featuresListPromise();
+
+    return () => {
+      abort = true;
+    };
   }, []);
 
   /**
@@ -114,51 +138,80 @@ function Sidebar(): JSX.Element {
    * in the sidebar
    */
   useEffect(() => {
-    const { appId, appHash } = routingPlugin.parseContainerURL();
-    const getRouteComparator = (isExact) => {
-      return (node) => {
-        if (!node?.routing?.hash) return false;
-        const hashRegexp = new RegExp(
-          `${(node.routing.hash || '/')
-            .replace(/^#/, '')
-            .replace(/{[^}]+}/g, '[^/]+')}?${isExact ? '$' : ''}`,
-        );
-        return node.routing.application === appId && hashRegexp.test(appHash);
-      };
-    };
-    let path = findPathToNode(navigationTree, getRouteComparator(true));
-    if (!path || path.length === 0) {
-      path = findPathToNode(navigationTree, getRouteComparator(false));
+    const { appId, appHash } = containerURL;
+
+    if (appId === 'manager' && !pciProjects) return;
+    if (appId === 'hub' && appHash === '/catalog') {
+      setHighlightedNode(null);
+      return;
     }
+
+    const compareFn = (
+      node: Node,
+      searchAppId: string,
+      searchAppHash: string,
+    ) => {
+      if (!node?.routing?.hash) return false;
+      const hashRegexp = new RegExp(
+        `${(node.routing.hash || '/')
+          .replace(/^#/, '')
+          .replace(/{[^}]+}/g, '[^/]+')}?$`,
+      );
+
+      return (
+        node.routing.application === searchAppId &&
+        hashRegexp.test(searchAppHash)
+      );
+    };
+    let searchHash = appHash;
+    if (appHash.includes('?')) {
+      searchHash = appHash.substring(0, appHash.lastIndexOf('?'));
+    }
+
+    const path = findPathToNodeByApp(
+      navigationTree,
+      compareFn,
+      appId,
+      searchHash.replace(/^#/, ''),
+    );
     const target = path.pop();
     if (target) {
-      if (target.children) {
-        setCurrentNavigationNode(target);
-        setHighlightedNode(null);
-      } else {
-        setCurrentNavigationNode(target.parent);
-        setHighlightedNode(target);
-      }
+      setCurrentNavigationNode(target.children ? target : target.parent);
+      setHighlightedNode(target);
+    } else {
+      setHighlightedNode(null);
     }
-  }, [navigationTree]);
+  }, [navigationTree, containerURL, pciProjects]);
 
   /**
    * Synchronize selected public cloud project with pci's project id in URL
    */
   useEffect(() => {
-    if (!pciProjects?.length) return;
-    const { appHash } = routingPlugin.parseContainerURL();
-    const pciProjectMatch = (appHash || '').match(/^\/pci\/projects\/([^/]+)/);
-    if (pciProjectMatch && pciProjectMatch.length >= 2) {
-      const [, pciProjectId] = pciProjectMatch;
-      const project = pciProjects.find((p) => p.project_id === pciProjectId);
+    const { appHash } = containerURL;
+    if (appHash.startsWith('/pci/projects/new')) {
+      setSelectedPciProject(null);
+    } else {
+      if (!pciProjects?.length) return;
+
+      const pciProjectMatch = (appHash || '').match(
+        /^\/pci\/projects\/([^/?]+)/,
+      );
+      let project;
+      if (pciProjectMatch && pciProjectMatch.length >= 2) {
+        const [, pciProjectId] = pciProjectMatch;
+        project = pciProjects.find((p) => p.project_id === pciProjectId);
+      }
+
       if (project) {
         setSelectedPciProject(project);
-        return;
+      } else if (currentNavigationNode.id === 'pci') {
+        navigationPlugin.navigateTo(
+          'public-cloud',
+          `#/pci/projects/${pciProjects[0].project_id}`,
+        );
       }
     }
-    setSelectedPciProject(pciProjects[0]);
-  }, [pciProjects, containerURL]);
+  }, [pciProjects, currentNavigationNode, containerURL]);
 
   /**
    * Count services of a pci project once a project is selected
@@ -172,133 +225,171 @@ function Sidebar(): JSX.Element {
           requestType: 'aapi',
         })
         .then((result) => {
-          if (!abort) {
-            setPciProjectServiceCount(result);
-          }
+          if (abort) return;
+          setPciProjectServiceCount(result);
         });
     }
+
     return () => {
       abort = true;
     };
   }, [selectedPciProject]);
 
   /**
-   * Displayed menu items are the children of current navigation node
-   * filtered by region if the attribute is provided
+   * Update menu items based on currentNavigationNode
+   * Update menu items count when servicesCount or pciProjectServiceCount are updated
    */
-  const getMenuItems = () => {
-    const count = {
-      total: servicesCount?.total,
-      serviceTypes: {
-        ...servicesCount?.serviceTypes,
-      },
-    };
-    if (pciProjectServiceCount) {
-      count.serviceTypes = {
-        ...pciProjectServiceCount.serviceTypes,
-        ...servicesCount?.serviceTypes,
+  useEffect(() => {
+    if (currentNavigationNode?.id?.startsWith('pci') && !selectedPciProject) {
+      setMenuItems([]);
+    } else {
+      const count = {
+        total: servicesCount?.total,
+        serviceTypes: {
+          ...servicesCount?.serviceTypes,
+          ...(pciProjectServiceCount
+            ? pciProjectServiceCount.serviceTypes
+            : []),
+        },
       };
+
+      setMenuItems(
+        currentNavigationNode.children?.map((node: Node) => ({
+          node,
+          count: node.count === false ? node.count : countServices(count, node),
+        })),
+      );
     }
-    return currentNavigationNode.children
-      ?.filter((node) => {
-        if (node.region) {
-          const regionFilter = [].concat(node.region);
-          return regionFilter.includes(currentRegion);
-        }
-        return true;
-      })
-      .map((node) => (
-        <li
-          key={node.id}
-          className={node === highlightedNode ? style.sidebar_selected : ''}
-        >
-          <SidebarLink
-            node={node}
-            count={
-              node.count === false ? node.count : countServices(count, node)
-            }
-            linkParams={{
-              projectId: selectedPciProject?.project_id,
-            }}
-            onClick={() => menuClickHandler(node)}
-            id={node.idAttr}
-          />
-        </li>
-      ));
-  };
+  }, [
+    servicesCount,
+    pciProjectServiceCount,
+    currentNavigationNode,
+    selectedPciProject,
+  ]);
 
   return (
     <div className={style.sidebar}>
       <a
         role="img"
-        className={style.sidebar_logo}
+        className={`d-flex ${style.sidebar_logo}`}
         aria-label="OVHcloud"
         target="_top"
         href={logoLink}
       >
-        <img src={logo} alt="OVHcloud" aria-hidden="true" />
+        <img
+          className="mx-4 my-3"
+          src={logo}
+          alt="OVHcloud"
+          aria-hidden="true"
+        />
       </a>
-      <ul>
-        {currentNavigationNode !== navigationTree && (
+      <div className={style.sidebar_menu}>
+        <div className={style.sidebar_action}>
           <a
-            className={style.sidebar_back_btn}
             onClick={() =>
-              setCurrentNavigationNode(currentNavigationNode.parent)
+              trackingPlugin.trackClick({
+                name: 'navbar_v2_cta_add_a_service',
+                type: 'action',
+              })
             }
+            href={navigationPlugin.getURL('hub', '#/catalog')}
           >
             <span
-              className="oui-icon oui-icon-chevron-left"
+              className={`oui-icon oui-icon-plus ${style.sidebar_action_icon}`}
               aria-hidden="true"
             ></span>
-            {t('sidebar_back')}
+            <span>{t('sidebar_service_add')}</span>
           </a>
+        </div>
+        {(servicesCount || betaVersion === 1) && (
+          <ul>
+            {currentNavigationNode !== navigationTree && (
+              <a
+                className={style.sidebar_back_btn}
+                onClick={() =>
+                  setCurrentNavigationNode(currentNavigationNode.parent)
+                }
+              >
+                <span
+                  className="oui-icon oui-icon-chevron-left"
+                  aria-hidden="true"
+                ></span>
+                {t('sidebar_back')}
+              </a>
+            )}
+            <li>
+              <h2>{t(currentNavigationNode.translation)}</h2>
+            </li>
+
+            {/^pci/.test(currentNavigationNode?.id) && (
+              <li>
+                <ProjectSelector
+                  isLoading={!pciProjects}
+                  projects={pciProjects}
+                  selectedProject={selectedPciProject}
+                  onProjectChange={(option) => {
+                    if (selectedPciProject !== option) {
+                      navigationPlugin.navigateTo(
+                        'public-cloud',
+                        `#/pci/projects/${option.project_id}`,
+                      );
+                    }
+                  }}
+                  onProjectCreate={() => {
+                    navigationPlugin.navigateTo(
+                      'public-cloud',
+                      `#/pci/projects/new`,
+                    );
+                  }}
+                  createLabel={t('sidebar_pci_new')}
+                />
+                {selectedPciProject && (
+                  <span
+                    className={`d-flex px-1 ${style.sidebar_clipboard}`}
+                    title={t('sidebar_clipboard_copy')}
+                    onClick={() =>
+                      navigator.clipboard.writeText(
+                        selectedPciProject.project_id,
+                      )
+                    }
+                  >
+                    <span className={style.sidebar_clipboard_text}>
+                      {selectedPciProject.project_id}
+                    </span>
+
+                    <span
+                      className={`oui-icon oui-icon-copy px-1 mx-1  ml-auto ${style.sidebar_clipboard_copy}`}
+                    ></span>
+                  </span>
+                )}
+              </li>
+            )}
+
+            {menuItems?.map(({ node, count }) => (
+              <li
+                key={node.id}
+                className={
+                  node === highlightedNode ? style.sidebar_selected : ''
+                }
+              >
+                <SidebarLink
+                  node={node}
+                  count={count}
+                  linkParams={{
+                    projectId: selectedPciProject?.project_id,
+                  }}
+                  onClick={() => menuClickHandler(node)}
+                  id={node.idAttr}
+                />
+                {node.separator && <hr />}
+              </li>
+            ))}
+          </ul>
         )}
-        {/^pci/.test(currentNavigationNode?.id) && pciProjects && (
-          <li>
-            <select
-              value={pciProjects.indexOf(selectedPciProject)}
-              onChange={(e) => {
-                const project = pciProjects[e.target.value];
-                setSelectedPciProject(project);
-                navigationPlugin.navigateTo(
-                  'public-cloud',
-                  `#/pci/projects/${project.project_id}`,
-                );
-              }}
-            >
-              {pciProjects.map((project, index) => (
-                <option value={index} key={index}>
-                  {project.description || project.project_id}
-                </option>
-              ))}
-            </select>
-          </li>
-        )}
-        <li>
-          <h2>{t(currentNavigationNode.translation)}</h2>
-        </li>
-        {getMenuItems()}
-      </ul>
-      <div className={style.sidebar_action}>
-        <a
-          onClick={() =>
-            trackingPlugin.trackClick({
-              name: 'navbar_v2_cta_add_a_service',
-              type: 'action',
-            })
-          }
-          href={navigationPlugin.getURL('hub', '#/catalog')}
-        >
-          <span
-            className={`oui-icon oui-icon-plus ${style.sidebar_action_icon}`}
-            aria-hidden="true"
-          ></span>
-          <span>{t('sidebar_service_add')}</span>
-        </a>
       </div>
-      <div className={style.sidebar_filler} aria-hidden="true"></div>
+
       <Suspense fallback="">
-        <Assistance />
+        <Assistance containerURL={containerURL} />
       </Suspense>
     </div>
   );
