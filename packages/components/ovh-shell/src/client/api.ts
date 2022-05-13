@@ -101,6 +101,8 @@ export default function exposeApi(shellClient: ShellClient) {
           plugin: 'ux',
           method: 'showMenuSidebar',
         }),
+      onRequestClientSidebarOpen: (callback: CallableFunction) =>
+        shellClient.addEventListener('ux:client-sidebar-open', callback),
       getSSOAuthModalMode: (oldUserCookie: string) =>
         shellClient.invokePluginMethod<string>({
           plugin: 'ux',

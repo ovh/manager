@@ -77,6 +77,10 @@ export default class WebAppCtrl {
         this.$document[0].getElementById(id).focus();
       }
     };
+
+    this.shell.ux.onRequestClientSidebarOpen(() =>
+      this.$timeout(() => this.openSidebar()),
+    );
   }
 
   openSidebar() {

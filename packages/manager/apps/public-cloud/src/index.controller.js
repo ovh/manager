@@ -45,6 +45,10 @@ export default class PublicCloudController {
     this.currentLanguage = this.coreConfig.getUserLanguage();
     this.user = this.coreConfig.getUser();
 
+    this.shell.ux.onRequestClientSidebarOpen(() =>
+      this.$timeout(() => this.openSidebar()),
+    );
+
     const unregisterListener = this.$scope.$on('app:started', () => {
       const CHATBOT_FEATURE = 'chatbot';
       this.ovhFeatureFlipping

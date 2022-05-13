@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import { emit } from '@ovh-ux/ufrontend';
 import { useTranslation } from 'react-i18next';
 
-import { MESSAGES, TRANSLATE_NAMESPACE } from './constants';
+import { TRANSLATE_NAMESPACE } from './constants';
 import style from './navbar.module.scss';
 import { Universe } from './service';
+import { useShell } from '@/context';
 
 type Props = {
   universe?: string;
@@ -15,13 +15,12 @@ type Props = {
 function HamburgerMenu({ universe = '', universes }: Props): JSX.Element {
   const [opened, setOpened] = useState(false);
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
+  const shell = useShell();
 
   function onUniverseClick({ event, destination }) {
     if (universe === destination) {
       event.preventDefault();
-      emit({
-        id: MESSAGES.navigationSidebarShow,
-      });
+      shell.getPlugin('ux').requestClientSidebarOpen();
       setOpened(false);
     }
   }
