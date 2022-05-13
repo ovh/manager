@@ -15,10 +15,16 @@ export default function exposeApi(shellClient: ShellClient) {
             method: 'getEnvironment',
           })
           .then((environment) => new Environment(environment as Environment)),
-      setUniverse: (applicationId: ApplicationId) =>
+      setUniverse: (universe: string) =>
         shellClient.invokePluginMethod({
           plugin: 'environment',
           method: 'setUniverse',
+          args: [universe],
+        }),
+      setUniverseFromApplication: (applicationId: ApplicationId) =>
+        shellClient.invokePluginMethod({
+          plugin: 'environment',
+          method: 'setUniverseFromApplication',
           args: [applicationId],
         }),
     },
