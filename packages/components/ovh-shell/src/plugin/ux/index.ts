@@ -218,4 +218,9 @@ export class UXPlugin implements IUXPlugin {
   removeOnHidePreloader(callback: CallableFunction): void {
     this.shellUX.removeOnHidePreloader(callback);
   }
+
+  // request the client application to open his sidebar
+  requestClientSidebarOpen() {
+    this.shell.emitEvent('ux:client-sidebar-open');
+  }
 }
