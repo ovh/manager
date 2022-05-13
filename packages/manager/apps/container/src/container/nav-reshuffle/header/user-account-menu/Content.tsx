@@ -109,7 +109,7 @@ const UserAccountMenu = ({
         >
           {t('user_account_menu_profile')}
           <span
-            className="oui-icon oui-icon-arrow-right"
+            className={`${style.myAccountIcon} oui-icon oui-icon-arrow-right`}
             aria-hidden="true"
           ></span>
         </a>
