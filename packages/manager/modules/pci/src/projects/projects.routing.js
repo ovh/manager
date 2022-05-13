@@ -67,7 +67,7 @@ export default /* @ngInject */ ($stateProvider) => {
         redirectCategory,
         redirectTarget,
       ) => {
-        return redirectContext && redirectCategory && redirectTarget;
+        return !!(redirectContext && redirectCategory && redirectTarget);
       },
 
       getTargetedState: /* @ngInject */ (redirectCategory, redirectTarget) => (
