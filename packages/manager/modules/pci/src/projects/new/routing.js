@@ -105,6 +105,9 @@ export default /* @ngInject */ ($stateProvider) => {
               transition.router.stateService.href('pci.projects.new', {
                 cartId: cart.cartId,
                 voucher: redirectParams.voucher,
+                context: redirectParams.context,
+                category: redirectParams.category,
+                target: redirectParams.target,
               }),
             );
             return null;
