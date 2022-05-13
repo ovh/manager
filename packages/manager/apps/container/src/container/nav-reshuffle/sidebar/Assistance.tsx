@@ -7,8 +7,13 @@ import { ONBOARDING_STATUS_ENUM } from '@/core/onboarding';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import SidebarLink from './SidebarLink';
+import style from './style.module.scss';
 
-function AssistanceSidebar(): JSX.Element {
+type Props = {
+  containerURL: { appId: string; appHash: string };
+};
+
+function AssistanceSidebar({ containerURL }: Props): JSX.Element {
   const { t } = useTranslation('sidebar');
   const { shell } = useContext(ApplicationContext);
   const environment = shell
@@ -18,12 +23,13 @@ function AssistanceSidebar(): JSX.Element {
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
   const reketInstance = useReket();
+  const [isOpen, setIsOpen] = useState(true);
+  const [selectedItem, setSelectedItem] = useState<string>(null);
 
   const hasAdvancedSupport = ['EU', 'CA'].includes(environment.getRegion());
+  const [hasChatbot, setHashChatbot] = useState(false);
 
   const { openOnboarding, onboardingOpenedState } = useProductNavReshuffle();
-
-  const [hasChatbot, setHashChatbot] = useState(false);
 
   useEffect(() => {
     const initChatbot = async () => {
@@ -38,6 +44,23 @@ function AssistanceSidebar(): JSX.Element {
     };
     initChatbot();
   });
+
+  useEffect(() => {
+    const { appId, appHash } = containerURL;
+
+    setSelectedItem(null);
+    if (
+      appId === 'dedicated' &&
+      appHash.startsWith('/useraccount/support/level')
+    ) {
+      setSelectedItem('support_level');
+    } else if (
+      appId === 'dedicated' &&
+      (appHash.startsWith('/ticket') || appHash.startsWith('/support/tickets'))
+    ) {
+      setSelectedItem('tickets');
+    }
+  }, [containerURL]);
 
   const startOnboarding = () => {
     openOnboarding();
@@ -54,72 +77,105 @@ function AssistanceSidebar(): JSX.Element {
     });
   };
 
-  const trackNode = (id) => {
+  const trackNode = (id: string) => {
     trackingPlugin.trackClick({ name: `navbar_v2_${id}`, type: 'navigation' });
   };
 
   return (
-    <ul>
-      <li>
-        <h2>{t('sidebar_assistance_title')}</h2>
+    <ul className="mt-auto">
+      <li className="assistance_header" onClick={() => setIsOpen(!isOpen)}>
+        <h2 className="d-flex justify-content-between">
+          <span>{t('sidebar_assistance_title')}</span>
+          <span
+            className={`oui-icon oui-icon-chevron-${isOpen ? 'up' : 'down'}`}
+          ></span>
+        </h2>
       </li>
-      <li>
-        <SidebarLink
-          node={{
-            translation: 'sidebar_assistance_help_center',
-            url: urls.get('help'),
-            count: false,
-            isExternal: true,
-          }}
-          onClick={() => trackNode('assistance_help_center')}
-        />
-        <SidebarLink
-          node={{
-            translation: 'sidebar_assistance_tickets',
-            routing: {
-              application: 'dedicated',
-              hash: '#/ticket',
-            },
-            count: false,
-          }}
-          onClick={() => trackNode('assistance_tickets')}
-        />
-        <SidebarLink
-          node={{
-            translation: 'sidebar_assistance_status',
-            url: urls.get('status'),
-            count: false,
-            isExternal: true,
-          }}
-          onClick={() => trackNode('assistance_status')}
-        />
-        {hasAdvancedSupport && (
-          <SidebarLink
-            node={{
-              translation: 'sidebar_assistance_support_level',
-              routing: {
-                application: 'dedicated',
-                hash: '#/useraccount/support/level',
-              },
-              count: false,
-            }}
-            onClick={() => trackNode('assistance_support_level')}
-          />
-        )}
-        {hasChatbot && (
-          <SidebarLink
-            node={{ translation: 'sidebar_assistance_live_chat', count: false }}
-            onClick={() => {
-              shell.getPlugin('ux').openChatbot();
-              trackNode('assistance_live_chat');
-            }}
-          />
-        )}
-        <SidebarLink
-          node={{ translation: 'sidebar_assistance_onboarding', count: false }}
-          onClick={() => startOnboarding()}
-        />
-      </li>
+      {isOpen && (
+        <>
+          <li>
+            <SidebarLink
+              node={{
+                translation: 'sidebar_assistance_help_center',
+                url: urls.get('help'),
+                count: false,
+                isExternal: true,
+              }}
+              onClick={() => trackNode('assistance_help_center')}
+            />
+          </li>
+          <li
+            className={`${
+              selectedItem === 'tickets' ? style.sidebar_selected : ''
+            }`}
+          >
+            <SidebarLink
+              node={{
+                translation: 'sidebar_assistance_tickets',
+                routing: {
+                  application: 'dedicated',
+                  hash: '#/ticket',
+                },
+                count: false,
+              }}
+              onClick={() => trackNode('assistance_tickets')}
+            />
+          </li>
+          <li>
+            <SidebarLink
+              node={{
+                translation: 'sidebar_assistance_status',
+                url: urls.get('status'),
+                count: false,
+                isExternal: true,
+              }}
+              onClick={() => trackNode('assistance_status')}
+            />
+          </li>
+          {hasAdvancedSupport && (
+            <li
+              className={`${
+                selectedItem === 'support_level' ? style.sidebar_selected : ''
+              }`}
+            >
+              <SidebarLink
+                node={{
+                  translation: 'sidebar_assistance_support_level',
+                  routing: {
+                    application: 'dedicated',
+                    hash: '#/useraccount/support/level',
+                  },
+                  count: false,
+                }}
+                onClick={() => trackNode('assistance_support_level')}
+              />
+            </li>
+          )}
+          {hasChatbot && (
+            <li>
+              <SidebarLink
+                node={{
+                  translation: 'sidebar_assistance_live_chat',
+                  count: false,
+                }}
+                onClick={() => {
+                  shell.getPlugin('ux').openChatbot();
+                  trackNode('assistance_live_chat');
+                }}
+              />
+            </li>
+          )}
+          <li>
+            <SidebarLink
+              node={{
+                translation: 'sidebar_assistance_onboarding',
+                count: false,
+              }}
+              onClick={() => startOnboarding()}
+            />
+          </li>
+        </>
+      )}
     </ul>
   );
 }

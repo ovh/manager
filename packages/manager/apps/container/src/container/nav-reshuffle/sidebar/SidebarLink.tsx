@@ -98,9 +98,13 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
     if (node.hideIfEmpty && !node.count) {
       return true;
     }
+    if (node.forceVisibility) {
+      return false;
+    }
     if (betaVersion === 2) {
       if (node.id === 'services') return false;
       if (node.count === false) return false;
+      if (node.hideIfEmpty === false) return false;
       return !count;
     }
     return false;
