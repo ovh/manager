@@ -19,20 +19,22 @@ function NavReshuffleSwitchBackModal({
       <div className={style.modal}>
         <h1>{t('beta_modal_switch_title')}</h1>
         <p>{t('beta_modal_switch_infos')}</p>
-        <button
-          type="button"
-          className="oui-button oui-button_primary float-right"
-          onClick={() => onConfirm(true)}
-        >
-          {t('beta_modal_switch_accept')}
-        </button>
-        <button
-          type="button"
-          className="oui-button oui-button_secondary float-right mr-2"
-          onClick={() => onConfirm()}
-        >
-          {t('beta_modal_switch_later')}
-        </button>
+        <div className="d-flex flex-row-reverse justify-content-between">
+          <button
+            type="button"
+            className="oui-button oui-button_primary float-right"
+            onClick={() => onConfirm(true)}
+          >
+            {t('beta_modal_switch_accept')}
+          </button>
+          <button
+            type="button"
+            className="oui-button oui-button_secondary float-right mr-2"
+            onClick={() => onConfirm()}
+          >
+            {t('beta_modal_switch_later')}
+          </button>
+        </div>
       </div>
     </div>
   );
