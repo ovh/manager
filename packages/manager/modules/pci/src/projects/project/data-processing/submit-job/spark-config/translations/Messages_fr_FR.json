@@ -6,7 +6,7 @@
   "data_processing_submit_job_stepper_spark_jobtype_label": "Type de job",
   "data_processing_submit_job_stepper_spark_jobtype_placeholder": "Sélectionnez un type de job",
   "data_processing_submit_job_stepper_spark_jar_file_label": "Fichier JAR",
-  "data_processing_submit_job_stepper_spark_python_file_label": "Fichier Pyhon",
+  "data_processing_submit_job_stepper_spark_python_file_label": "Fichier Python",
   "data_processing_submit_job_stepper_spark_main_class_label": "Classe principale",
   "data_processing_submit_job_stepper_spark_main_class_help": "ex. org.apache.spark.examples.SparkPi",
   "data_processing_submit_job_stepper_spark_jar_file_help": "Chemin vers votre fichier JAR au sein de votre conteneur d'objets",
