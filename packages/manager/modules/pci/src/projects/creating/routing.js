@@ -27,10 +27,12 @@ export default /* @ngInject */ ($stateProvider) => {
       pciProjectsHref: /* @ngInject */ ($state) => $state.href('pci.projects'),
 
       onProjectDelivered: /* @ngInject */ (
-        $state,
         atInternet,
         voucherCode,
         numProjects,
+        isRedirectRequired,
+        getTargetedState,
+        goToState,
       ) => (projectId) => {
         atInternet.trackPage({
           name: 'public-cloud::pci::projects::created',
@@ -38,8 +40,17 @@ export default /* @ngInject */ ($stateProvider) => {
           ...(voucherCode ? { voucherCode } : {}),
           pciCreationNumProjects3: numProjects,
         });
-        return $state.go('pci.projects.project', {
-          projectId,
+
+        // Used in redirection case to a specific page
+        if (isRedirectRequired) {
+          const targetState = getTargetedState({ project_id: projectId });
+
+          return goToState(targetState);
+        }
+
+        return goToState({
+          state: 'pci.projects.project',
+          params: { projectId },
         });
       },
 
