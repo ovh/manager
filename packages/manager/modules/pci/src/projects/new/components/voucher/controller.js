@@ -59,10 +59,6 @@ export default class PciProjectNewVoucherCtrl {
     );
   }
 
-  getFormatCreditText() {
-    return `<span class="text-success">${this.voucherEligibility.voucher.credit.text}</span>`;
-  }
-
   hasVoucherError() {
     return (
       this.model.voucher.value &&
@@ -71,8 +67,8 @@ export default class PciProjectNewVoucherCtrl {
     );
   }
 
-  getVoucherError() {
-    return `pci_projects_new_voucher_form_field_error_${this.model.voucher.error.statusText.toLowerCase()}`;
+  getFormatCreditText() {
+    return `<span class="text-success">${this.voucherEligibility.voucher.credit.text}</span>`;
   }
 
   submitVoucher() {
@@ -131,32 +127,11 @@ export default class PciProjectNewVoucherCtrl {
       });
   }
 
-  manageResetVoucher() {
-    if (!this.model.voucher.value) {
-      this.model.voucher.reset();
-      this.voucherForm.voucher.$setValidity('voucher', true);
-    }
-  }
-
-  /* -----  End of Helpers  ------ */
-
-  /* =============================
-  =            Events            =
-  ============================== */
-
-  onAddVoucherBtnClick() {
-    this.formVisible = true;
-  }
-
-  onVoucherFormSubmit() {
-    return this.submitVoucher();
-  }
-
-  onVoucherFormReset() {
+  resetVoucher() {
     this.loading.reset = true;
     this.globalLoading.isVoucherValidating = true;
 
-    this.pciProjectNew
+    return this.pciProjectNew
       .removeCartProjectItemVoucher(this.cart)
       .then(() => {
         this.model.voucher.reset();
@@ -179,6 +154,35 @@ export default class PciProjectNewVoucherCtrl {
       });
   }
 
+  manageResetVoucher() {
+    if (!this.model.voucher.value) {
+      this.model.voucher.reset();
+      this.voucherForm.voucher.$setValidity('voucher', true);
+    }
+  }
+
+  getVoucherError() {
+    return `pci_projects_new_voucher_form_field_error_${this.model.voucher.error.statusText.toLowerCase()}`;
+  }
+
+  /* -----  End of Helpers  ------ */
+
+  /* =============================
+  =            Events            =
+  ============================== */
+
+  onVoucherFormSubmit() {
+    return this.submitVoucher();
+  }
+
+  onVoucherFormReset() {
+    return this.resetVoucher();
+  }
+
+  onAddVoucherBtnClick() {
+    this.formVisible = true;
+  }
+
   onVoucherInputChange() {
     this.manageResetVoucher();
   }
@@ -198,8 +202,15 @@ export default class PciProjectNewVoucherCtrl {
   ============================= */
 
   $onInit() {
-    if (this.model.voucher.value) {
-      this.voucherEligibility = this.eligibility;
+    const { value, valid } = this.model.voucher;
+
+    if (value) {
+      if (valid) {
+        this.voucherEligibility = this.eligibility;
+      } else {
+        this.model.voucher.setValue('');
+      }
+
       this.formVisible = true;
       this.setVoucherFormState();
     }
