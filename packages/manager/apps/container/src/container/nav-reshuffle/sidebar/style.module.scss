@@ -8,8 +8,13 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   min-width: 20rem;
   color: white;
+
+  &_menu {
+    // overflow: scroll;
+  }
 
   ul {
     margin: 0;
@@ -20,7 +25,7 @@
   li {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    line-height: 2.5rem;
+    line-height: 2.3rem;
     vertical-align: middle;
 
     a {
@@ -28,7 +33,6 @@
       font-weight: 400;
       display: inline-block;
       width: 100%;
-      border-bottom: 1px solid #0050d7bf;
       outline: none;
     }
 
@@ -39,21 +43,15 @@
 
   h2 {
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 600;
     margin: 0;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
   }
-
-  &_logo {
-    margin: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
   @media (max-width: $device-breakpoint-tablet-max-width) {
     &_logo {
-      margin-top: 4rem;
+      margin-top: 3rem;
     }
   }
 
@@ -137,7 +135,21 @@
     background-color: $p-700;
     color: white;
     border: 1px solid #0050d7bf;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  }
+
+  &_clipboard {
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+
+    &_copy {
+      font-size: 1.5rem;
+    }
+    &_text {
+      font-size: 0.8rem;
+    }
+  }
+
+  li[class^='assistance_header'] {
+    cursor: pointer;
   }
 }
