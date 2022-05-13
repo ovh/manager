@@ -13,6 +13,7 @@ angular.module('App').controller(
       $rootScope,
       $scope,
       $state,
+      $timeout,
       $transitions,
       $translate,
       coreConfig,
@@ -22,6 +23,7 @@ angular.module('App').controller(
       this.$rootScope = $rootScope;
       this.$scope = $scope;
       this.$state = $state;
+      this.$timeout = $timeout;
       this.$transitions = $transitions;
       this.$translate = $translate;
       this.coreConfig = coreConfig;
@@ -101,6 +103,10 @@ angular.module('App').controller(
           this.$document.find(`#${id}`)[0].focus();
         }
       };
+
+      this.shell.ux.onRequestClientSidebarOpen(() =>
+        this.$timeout(() => this.openSidebar()),
+      );
     }
 
     openSidebar() {

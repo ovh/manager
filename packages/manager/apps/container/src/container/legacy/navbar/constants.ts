@@ -8,8 +8,6 @@ export const MESSAGES = {
   navbarSearch: 'navbar.search',
   navbarSetUniverse: 'navbar.universe.set',
 
-  navigationSidebarShow: 'navigation-sidebar.show',
-
   notificationsCount: 'ovh.notifications.count',
   notificationsHide: 'ovh.notifications.hide',
   notificationsOpen: 'ovh.notifications.open',
