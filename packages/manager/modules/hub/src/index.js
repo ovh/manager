@@ -14,6 +14,7 @@ import ovhManagerHubPaymentStatusTile from './components/payment-status-tile';
 import ovhManagerHubProducts from './components/products';
 import ovhManagerHubSupport from './components/support';
 import ovhManagerHubTile from './components/tile';
+import ovhManagerHubTelephonyProcedure from './components/telephony-procedure';
 
 const moduleName = 'ovhManagerHub';
 
@@ -30,6 +31,7 @@ angular.module(moduleName, [
   ovhManagerHubProducts,
   ovhManagerHubSupport,
   ovhManagerHubTile,
+  ovhManagerHubTelephonyProcedure,
 ]);
 
 export default moduleName;
