@@ -2,32 +2,25 @@ import { MAX_PARTITIONS, STATE_NAME } from './partitions.constants';
 
 export default class NashaDashboardPartitionsController {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    OvhApiDedicatedNasha,
-    NashaTask,
-    Poller,
-    iceberg,
-  ) {
-    this.$q = $q;
+  constructor($translate, OvhApiDedicatedNasha, NashaTask) {
     this.$translate = $translate;
     this.OvhApiDedicatedNasha = OvhApiDedicatedNasha;
     this.NashaTask = NashaTask;
-    this.Poller = Poller;
-    this.iceberg = iceberg;
 
     this.isMonitoredUpdating = false;
     this.maxPartitions = MAX_PARTITIONS;
     this.partitionsCount = null;
+    this.stateName = STATE_NAME;
+    this.operations = [
+      this.NashaTask.operation.Create,
+      this.NashaTask.operation.Delete,
+      this.NashaTask.operation.Update,
+      this.NashaTask.operation.ZfsOptions,
+    ];
   }
 
   get canCreatePartition() {
     return this.partitionsCount < this.maxPartitions;
-  }
-
-  $onDestroy() {
-    this.Poller.kill({ namespace: STATE_NAME });
   }
 
   updateMonitored() {
@@ -57,63 +50,34 @@ export default class NashaDashboardPartitionsController {
 
     aapi.resetCache();
 
-    return this.$q
-      .all({
-        partitions: aapi
-          .partitions({ serviceName })
-          .$promise.then((partitions) => partitions.map(this.preparePartition)),
-        tasks: this.iceberg(`/dedicated/nasha/${serviceName}/task`)
-          .query()
-          .expand('CachedObjectList-Pages')
-          .addFilter('status', 'in', Object.values(this.NashaTask.status))
-          .execute(null, true)
-          .$promise.then(({ data }) => data),
-      })
-      .then(({ partitions, tasks }) => this.mergeTasks(partitions, tasks))
-      .then((partitions) => this.startPolls(partitions))
+    return aapi
+      .partitions({ serviceName })
+      .$promise.then((partitions) => partitions.map(this.preparePartition))
+      .then((partitions) => this.mergeTasks(partitions))
       .then((partitions) => this.formatDataGrid(partitions))
       .catch((error) => this.alertError({ error }));
   }
 
-  mergeTasks(partitions, tasks) {
-    const operations = [
-      this.NashaTask.operation.Create,
-      this.NashaTask.operation.Delete,
-      this.NashaTask.operation.Update,
-      this.NashaTask.operation.ZfsOptions,
-    ];
-    tasks
-      .filter(({ operation }) => operation === this.NashaTask.operation.Add)
+  mergeTasks(partitions) {
+    this.tasks
+      .filter(({ operation }) => operation === this.NashaTask.operation.Create)
       .forEach(({ partitionName }) => {
         partitions.push({ partitionName, inCreation: true });
       });
+
     return partitions
       .map((item) => ({
         ...item,
-        tasks: tasks
-          .filter(({ partitionName }) => partitionName === item.partitionName)
-          .filter(({ operation }) => operations.includes(operation)),
+        tasks: this.tasks.filter(
+          ({ operation, partitionName }) =>
+            this.operations.includes(operation) &&
+            partitionName === item.partitionName,
+        ),
       }))
       .map((item) => ({
         ...item,
         inDeletion: this.hasOperation(item, 'Delete'),
       }));
-  }
-
-  startPolls(partitions) {
-    const { NashaTask, Poller, reload, serviceName } = this;
-    const statuses = Object.values(NashaTask.status);
-
-    partitions.forEach((partition) => {
-      partition.tasks.forEach(({ taskId }) => {
-        Poller.poll(`/dedicated/nasha/${serviceName}/task/${taskId}`, null, {
-          namespace: STATE_NAME,
-          successRule: ({ status }) => !statuses.includes(status),
-        }).then(reload);
-      });
-    });
-
-    return partitions;
   }
 
   formatDataGrid(partitions) {

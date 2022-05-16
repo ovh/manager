@@ -6,14 +6,11 @@ export default class NashaComponentsPartitionSnapshotDeleteController {
   }
 
   submit() {
-    const { serviceName } = this.nasha;
+    const { customSnapshotName: name, partitionApiUrl } = this;
     const { partitionName } = this.partition;
-    const { customSnapshotName: name } = this;
 
     this.$http
-      .delete(
-        `/dedicated/nasha/${serviceName}/partition/${partitionName}/customSnapshot/${name}`,
-      )
+      .delete(`${partitionApiUrl}/customSnapshot/${name}`)
       .then(() =>
         this.close({
           success: this.$translate.instant(

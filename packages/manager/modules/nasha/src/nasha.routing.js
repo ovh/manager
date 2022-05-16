@@ -1,11 +1,20 @@
-import { NASHA_ALERT_ID, NASHA_TITLE } from './nasha.constants';
 import {
+  NASHA_ALERT_ID,
+  NASHA_BASE_API_URL,
+  NASHA_TITLE,
+} from './nasha.constants';
+import {
+  exportZfsOptions,
   localizeDatacenter,
   localizeOperation,
+  formatProtocolEnum,
+  formatRecordsizeEnum,
+  formatSyncEnum,
   prepareNasha,
   preparePartition,
   preparePartitionSnapshots,
   prepareTasks,
+  prepareZfsOptions,
 } from './nasha.utils';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
@@ -20,10 +29,11 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .get('iceberg')('/dedicated/nasha')
+        .get('iceberg')(NASHA_BASE_API_URL)
         .query()
+        .expand('CachedObjectList-Pages')
         .limit(1)
-        .execute(null)
+        .execute(null, true)
         .$promise.then(({ data }) =>
           data.length ? 'nasha.directory' : 'nasha.onboarding',
         ),
@@ -37,7 +47,9 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           error.data?.message || error.message || error.toString();
         alert('error', $translate.instant('nasha_error', { message }));
       },
+      baseApiUrl: () => NASHA_BASE_API_URL,
       breadcrumb: () => NASHA_TITLE,
+      exportZfsOptions: () => exportZfsOptions,
       localizeDatacenter: /* @ngInject */ ($translate) => (datacenter) =>
         localizeDatacenter(datacenter, $translate),
       localizeOperation: /* @ngInject */ ($translate) => (operation) =>
@@ -63,6 +75,13 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         ),
       prepareTasks: /* @ngInject */ ($translate) => (tasks) =>
         prepareTasks(tasks, $translate),
+      prepareZfsOptions: () => prepareZfsOptions,
+      protocolEnum: /* @ngInject */ (schema) => formatProtocolEnum(schema),
+      recordsizeEnum: /* @ngInject */ (schema, $filter) =>
+        formatRecordsizeEnum(schema, $filter('bytes')),
+      schema: /* @ngInject */ ($http, baseApiUrl) =>
+        $http.get(`${baseApiUrl}.json`).then(({ data }) => data),
+      syncEnum: /* @ngInject */ (schema) => formatSyncEnum(schema),
       trackingPrefix: () => NASHA_TITLE,
     },
   });

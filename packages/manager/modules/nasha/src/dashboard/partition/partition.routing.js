@@ -65,20 +65,20 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName,
         }).$promise.then((partitions) => partitions.map(preparePartition));
       },
-      partitionApiUrl: /* @ngInject */ (serviceName, partitionName) =>
-        `/dedicated/nasha/${serviceName}/partition/${partitionName}`,
+      partitionApiUrl: /* @ngInject */ (nashaApiUrl, partitionName) =>
+        `${nashaApiUrl}/partition/${partitionName}`,
       partitionName: /* @ngInject */ ($transition$) =>
         $transition$.params().partitionName,
       partitionHref: /* @ngInject */ ($state, serviceName) => () =>
         $state.href(STATE_NAME, { serviceName }),
       tasks: /* @ngInject */ (
         iceberg,
-        serviceName,
+        nashaApiUrl,
         partitionName,
         NashaTask,
         prepareTasks,
       ) =>
-        iceberg(`/dedicated/nasha/${serviceName}/task`)
+        iceberg(`${nashaApiUrl}/task`)
           .query()
           .expand('CachedObjectList-Pages')
           .addFilter('status', 'in', Object.values(NashaTask.status))

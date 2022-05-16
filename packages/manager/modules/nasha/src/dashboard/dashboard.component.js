@@ -10,6 +10,7 @@ export default {
     goToEditName: '<',
     goToPartitions: '<',
     nasha: '<',
+    nashaApiUrl: '<',
     reload: '<',
     serviceInfo: '<',
     serviceName: '<',

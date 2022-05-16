@@ -14,21 +14,15 @@ export default class NashaComponentsPartitionEditDescriptionController {
   }
 
   submit() {
-    const { description } = this.model;
-    const { serviceName } = this.nasha;
-    const { partitionName } = this.partition;
-
     this.$http
-      .put(`/dedicated/nasha/${serviceName}/partition/${partitionName}`, {
-        description,
-      })
+      .put(this.partitionApiUrl, this.model)
+      .catch((error) => this.close({ error }))
       .then(() =>
         this.close({
           success: this.$translate.instant(
             'nasha_components_partition_edit_description_success',
           ),
         }),
-      )
-      .catch((error) => this.close({ error }));
+      );
   }
 }

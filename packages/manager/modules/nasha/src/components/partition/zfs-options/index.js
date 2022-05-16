@@ -5,7 +5,7 @@ import '@ovh-ux/ui-kit';
 
 import modalFormComponentModule from '../../modal-form';
 import component from './zfs-options.component';
-import service from './zfs-options.service';
+import { STATE_RESOLVE } from './zfs-options.constants';
 
 const moduleName = 'ovhManagerNashaComponentsPartitionZfsOptions';
 
@@ -16,7 +16,7 @@ angular
     modalFormComponentModule,
   ])
   .component('nashaComponentsPartitionZfsOptions', component)
-  .service('ZfsOptionsService', service)
+  .constant('ZfsOptionsStateResolve', STATE_RESOLVE)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

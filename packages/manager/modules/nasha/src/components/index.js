@@ -5,6 +5,7 @@ import editNameModule from './edit-name';
 import metricsModule from './metrics';
 import spaceMeterModule from './space-meter';
 import partitionModule from './partition';
+import tasksPollerModule from './tasks-poller';
 
 const moduleName = 'ovhManagerNashaComponents';
 
@@ -14,6 +15,7 @@ angular.module(moduleName, [
   spaceMeterModule,
   metricsModule,
   partitionModule,
+  tasksPollerModule,
 ]);
 
 export default moduleName;

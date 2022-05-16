@@ -1,4 +1,12 @@
 <div class="nasha-dashboard-partitions">
+    <nasha-components-tasks-poller
+        data-ng-if="$ctrl.currentHref() === $ctrl.partitionsHref()"
+        data-namespace="{{:: $ctrl.stateName }}"
+        data-nasha-api-url="{{:: $ctrl.nashaApiUrl }}"
+        data-operations=":: $ctrl.operations"
+        data-reload=":: $ctrl.reload()"
+        data-tasks=":: $ctrl.tasks"
+    ></nasha-components-tasks-poller>
     <div class="d-flex flex-column">
         <h4 data-translate="nasha_dashboard_partitions_metrics"></h4>
         <nasha-components-metrics
@@ -126,7 +134,6 @@
                     data-on-click="$ctrl.goToTabPartitionsDelete($row)"
                 >
                     <span
-                        class="text-danger"
                         data-translate="nasha_dashboard_partitions_action_delete"
                     ></span>
                 </oui-action-menu-item>

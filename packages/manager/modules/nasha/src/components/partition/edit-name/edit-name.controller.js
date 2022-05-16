@@ -16,7 +16,8 @@ export default class NashaComponentsEditNameController {
     this.model.partitionName = partitionName;
     this.partitionNames = this.partitions
       .filter((partition) => partition.partitionName !== partitionName)
-      .map((partition) => partition.partitionName);
+      .map((partition) => partition.partitionName)
+      .sort();
   }
 
   get forbidOthersMessage() {
@@ -30,16 +31,10 @@ export default class NashaComponentsEditNameController {
   }
 
   submit() {
-    const { serviceName } = this.nasha;
-    const { partitionName } = this.partition;
-
     this.$http
-      .put(
-        `/dedicated/nasha/${serviceName}/partition/${partitionName}`,
-        this.model,
-      )
-      .then(() => this.close({ success: this.translate('success') }))
-      .catch((error) => this.close({ error }));
+      .put(this.partitionApiUrl, this.model)
+      .catch((error) => this.close({ error }))
+      .then(() => this.close({ success: this.translate('success') }));
   }
 
   translate(key, values) {

@@ -6,13 +6,14 @@ import {
 
 export default class NashaComponentsPartitionCreateController {
   /* @ngInject */
-  constructor($translate, OvhApiDedicatedNasha) {
+  constructor($translate, $http) {
     this.$translate = $translate;
-    this.OvhApiDedicatedNasha = OvhApiDedicatedNasha;
+    this.$http = $http;
 
-    this.isLoading = true;
-
-    this.protocols = [];
+    this.protocolEnum = [];
+    this.namePattern = NAME_PATTERN;
+    this.descriptionMax = DESCRIPTION_MAX;
+    this.sizeMin = SIZE_MIN;
     this.model = {
       partitionName: null,
       size: null,
@@ -21,42 +22,20 @@ export default class NashaComponentsPartitionCreateController {
   }
 
   $onInit() {
-    this.namePattern = NAME_PATTERN;
-    this.descriptionMax = DESCRIPTION_MAX;
-    this.sizeMin = SIZE_MIN;
     this.sizeMax = this.nasha.zpoolSize;
-
-    this.OvhApiDedicatedNasha.v6()
-      .schema()
-      .$promise.then((data) => {
-        this.protocols = data.models['dedicated.storage.ProtocolEnum'].enum.map(
-          (protocol) => ({
-            value: protocol,
-            name: protocol.replace(/_/g, ' '),
-          }),
-        );
-      })
-      .catch((error) => this.close({ error }))
-      .finally(() => {
-        this.isLoading = false;
-      });
   }
 
   submit() {
-    const { serviceName } = this.nasha;
-    const partition = this.model;
-
-    this.OvhApiDedicatedNasha.Partition()
-      .v6()
-      .create({ serviceName }, partition)
-      .$promise.then(() =>
+    this.$http
+      .post(`${this.nashaApiUrl}/partition`, this.model)
+      .catch((error) => this.close({ error }))
+      .then(() =>
         this.close({
           success: this.$translate.instant(
             'nasha_components_partition_create_success',
-            partition,
+            this.model,
           ),
         }),
-      )
-      .catch((error) => this.close({ error }));
+      );
   }
 }

@@ -1,9 +1,9 @@
 {
   "nasha_components_partition_edit_description_forbid": "La description n'a pas été modifiée",
-  "nasha_components_partition_edit_description_label": "Description de la partition",
+  "nasha_components_partition_edit_description_label": "Description de la partition {{ name }}",
   "nasha_components_partition_edit_description_primary": "Modifier la description",
   "nasha_components_partition_edit_description_rules": "{{ max }} caractères maximum",
   "nasha_components_partition_edit_description_secondary": "Fermer",
   "nasha_components_partition_edit_description_success": "Le description de la partition a été modifiée avec succès",
-  "nasha_components_partition_edit_description_title": "Modifier la description de la partition"
+  "nasha_components_partition_edit_description_title": "Modifier la description de la partition {{ name }}"
 }

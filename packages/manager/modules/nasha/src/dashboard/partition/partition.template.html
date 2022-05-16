@@ -35,6 +35,14 @@
         </oui-header-tabs>
     </header>
     <div data-ui-view>
+        <nasha-components-tasks-poller
+            data-ng-if="$ctrl.currentHref() === $ctrl.partitionHref()"
+            data-namespace="{{:: $ctrl.stateName }}"
+            data-nasha-api-url="{{:: $ctrl.nashaApiUrl }}"
+            data-operations=":: $ctrl.operations"
+            data-reload=":: $ctrl.reload()"
+            data-tasks=":: $ctrl.tasks"
+        ></nasha-components-tasks-poller>
         <div class="nasha-dashboard-partition-general-information">
             <div class="row py-4">
                 <!-- Information -->
@@ -156,5 +164,6 @@
         data-close=":: $ctrl.closeEditNameModal"
         data-partition=":: $ctrl.partition"
         data-partitions=":: $ctrl.partitions"
+        data-partition-api-url=":: $ctrl.partitionApiUrl"
     ></nasha-components-partition-edit-name>
 </div>

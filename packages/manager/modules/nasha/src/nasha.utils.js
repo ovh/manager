@@ -1,4 +1,11 @@
-import { NASHA_USE_SIZE_NAME, NASHA_TASK } from './nasha.constants';
+import {
+  NASHA_DEFAULT_ZFS_OPTIONS,
+  NASHA_PROTOCOL_ENUM,
+  NASHA_RECORD_SIZE_ENUM,
+  NASHA_SYNC_ENUM,
+  NASHA_TASK,
+  NASHA_USE_SIZE_NAME,
+} from './nasha.constants';
 
 export const localizeDatacenter = (datacenter, $translate) =>
   $translate.instant(`nasha_datacenter_${datacenter.toLowerCase()}`);
@@ -112,11 +119,54 @@ export const prepareTasks = (tasks, $translate) =>
     localeOperation: localizeOperation(task.operation, $translate),
   }));
 
+export const prepareZfsOptions = ({
+  atime,
+  recordsize,
+  sync,
+} = NASHA_DEFAULT_ZFS_OPTIONS) => ({
+  atime: atime === 'on',
+  recordsize,
+  sync,
+});
+
+export const exportZfsOptions = ({ atime, recordsize, sync }) => ({
+  atime: atime ? 'on' : 'off',
+  recordsize,
+  sync,
+});
+
+export const formatRecordsizeEnum = (schema, bytesFilter) =>
+  schema.models[NASHA_RECORD_SIZE_ENUM].enum
+    .map((recordsize) => ({
+      value: recordsize,
+      label: bytesFilter(parseInt(recordsize, 10), true),
+      default: recordsize === NASHA_DEFAULT_ZFS_OPTIONS.recordsize,
+    }))
+    .sort(({ value: a }, { value: b }) => Number(a) - Number(b));
+
+export const formatSyncEnum = (schema) =>
+  schema.models[NASHA_SYNC_ENUM].enum.map((sync) => ({
+    value: sync,
+    label: `${sync[0].toUpperCase()}${sync.slice(1)}`,
+    default: sync === NASHA_DEFAULT_ZFS_OPTIONS.sync,
+  }));
+
+export const formatProtocolEnum = (schema) =>
+  schema.models[NASHA_PROTOCOL_ENUM].enum.map((protocol) => ({
+    label: protocol.replace(/_/g, ' '),
+    value: protocol,
+  }));
+
 export default {
+  exportZfsOptions,
   localizeDatacenter,
   localizeOperation,
+  formatProtocolEnum,
+  formatRecordsizeEnum,
+  formatSyncEnum,
   prepareNasha,
   preparePartition,
   preparePartitionSnapshots,
   prepareTasks,
+  prepareZfsOptions,
 };

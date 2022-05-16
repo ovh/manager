@@ -1,10 +1,12 @@
-export default /* @ngInject */ ($stateProvider) => {
+export default /* @ngInject */ (
+  $stateProvider,
+  PartitionsInstanceStateResolve,
+) => {
   $stateProvider.state('nasha.dashboard.partitions.create', {
     url: '/create',
     component: 'nashaComponentsPartitionCreate',
     resolve: {
-      breadcrumb: () => null,
-      close: /* @ngInject */ (goBack) => goBack,
+      ...PartitionsInstanceStateResolve,
     },
   });
 };
