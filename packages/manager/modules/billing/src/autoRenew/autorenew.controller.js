@@ -246,7 +246,11 @@ export default class AutorenewCtrl {
       .map(({ domain }) => domain)
       .join(URL_PARAMETER_SEPARATOR);
 
-    return `${RENEW_URL[this.currentUser.ovhSubsidiary]}${urlParameterDomains}`;
+    return `${get(
+      RENEW_URL,
+      this.currentUser.ovhSubsidiary,
+      RENEW_URL.default,
+    )}${urlParameterDomains}`;
   }
 
   getAutomaticExpirationDate(service) {
