@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId,
             containerId,
             container.isHighPerfStorage,
+            container.region,
           );
         },
 
