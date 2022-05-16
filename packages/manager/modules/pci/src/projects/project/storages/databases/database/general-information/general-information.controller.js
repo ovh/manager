@@ -9,6 +9,7 @@ import {
   WARNING_MESSAGES,
   KARAPACE_URL,
 } from './general-information.constants';
+import isFeatureActivated from '../../features.constants';
 
 export default class {
   /* @ngInject */
@@ -185,21 +186,34 @@ export default class {
   deleteDatabase() {
     this.trackDashboard('general_information::delete_database');
 
-    if (
-      [DATABASE_TYPES.KAFKA, DATABASE_TYPES.KAFKA_MIRROR_MAKER].includes(
-        this.database.engine,
-      )
-    ) {
+    if (isFeatureActivated('serviceIntegrationTab', this.database.engine)) {
       return this.DatabaseService.getIntegrations(
         this.projectId,
         this.database.engine,
         this.database.id,
       ).then((integrations) => {
-        const linkedServices = integrations.map((integration) =>
-          this.database.engine === DATABASE_TYPES.KAFKA
-            ? find(this.databases, { id: integration.destinationServiceId })
-            : find(this.databases, { id: integration.sourceServiceId }),
-        );
+        const linkedServices = integrations.reduce((acc, curr) => {
+          // if source equals destination, then the service is linked to himself
+          // this is the only scenario where we want to display it in the linked service
+          if (curr.sourceServiceId === curr.destinationServiceId) {
+            if (!acc.find((service) => service.id === curr.sourceServiceId)) {
+              acc.push(find(this.databases, { id: curr.sourceServiceId }));
+            }
+          }
+          if (
+            this.database.id !== curr.sourceServiceId &&
+            !acc.find((service) => service.id === curr.sourceServiceId)
+          ) {
+            acc.push(find(this.databases, { id: curr.sourceServiceId }));
+          }
+          if (
+            this.database.id !== curr.destinationServiceId &&
+            !acc.find((service) => service.id === curr.destinationServiceId)
+          ) {
+            acc.push(find(this.databases, { id: curr.destinationServiceId }));
+          }
+          return acc;
+        }, []);
         if (linkedServices.length > 0) {
           return this.goToConfirmDeleteDatabase(linkedServices);
         }
