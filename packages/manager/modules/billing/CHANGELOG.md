@@ -1,3 +1,12 @@
+# [0.13.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.7...@ovh-ux/manager-billing@0.13.0-alpha.8) (2022-05-16)
+
+
+### Bug Fixes
+
+* **autorenew:** fallback to `default` renew URL for specific subs ([8f18f5d](https://github.com/ovh/manager/commit/8f18f5d6dafbc0be356d8599528f1b32b535363a))
+
+
+
 # [0.13.0-alpha.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.6...@ovh-ux/manager-billing@0.13.0-alpha.7) (2022-05-04)
 
 
