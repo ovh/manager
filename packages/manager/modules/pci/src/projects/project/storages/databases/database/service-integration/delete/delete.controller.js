@@ -7,21 +7,21 @@ export default class {
 
   $onInit() {
     this.trackDashboard(
-      `service_integration::delete_${this.engineName}`,
+      `service_integration::delete_${this.database.engine}`,
       'page',
     );
   }
 
   cancel() {
     this.trackDashboard(
-      `service_integration::delete_${this.engineName}_cancel`,
+      `service_integration::delete_${this.database.engine}_cancel`,
     );
     this.goBack();
   }
 
   deleteServiceIntegration() {
     this.trackDashboard(
-      `service_integration::delete_${this.engineName}_confirm`,
+      `service_integration::delete_${this.database.engine}_confirm`,
     );
     this.processing = true;
     return this.DatabaseService.deleteIntegration(
@@ -32,22 +32,21 @@ export default class {
     )
       .then(() => {
         this.trackDashboard(
-          `service_integration::delete_${this.engineName}_validate_banner`,
+          `service_integration::delete_${this.database.engine}_validate_banner`,
           'page',
         );
         return this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_service_integration_delete_success_message',
             {
-              engineName: this.engineName,
-              integration: this.integration.serviceName,
+              integrationType: this.integration.type,
             },
           ),
         });
       })
       .catch((err) => {
         this.trackDashboard(
-          `service_integration::delete_${this.engineName}_error_banner`,
+          `service_integration::delete_${this.database.engine}_error_banner`,
           'page',
         );
         return this.goBack(

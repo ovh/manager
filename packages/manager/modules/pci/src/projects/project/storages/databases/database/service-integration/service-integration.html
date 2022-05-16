@@ -5,29 +5,57 @@
     ></cui-message-container>
 
     <h2 data-translate="pci_databases_service_integration_tab_title"></h2>
-
-    <oui-message
-        data-ng-if="$ctrl.addableServicesList.length === 0"
-        data-type="warning"
-        data-dismissable
-    >
-        <span
-            data-translate="pci_databases_service_integration_tab_no_service"
-            data-translate-values="{engineName: $ctrl.engineName}"
-        ></span>
-    </oui-message>
-    <p
-        data-translate="pci_databases_service_integration_tab_descritpion"
-        data-translate-values="{engineName: $ctrl.engineName}"
-    ></p>
+    <p data-translate="pci_databases_service_integration_tab_descritpion"></p>
     <oui-datagrid
         class="mt-5"
         data-page-size="10"
         data-rows="$ctrl.serviceIntegrationList"
     >
         <oui-datagrid-column
-            data-title=":: 'pci_databases_service_integration_tab_service' | translate: {engineName: $ctrl.engineName}"
+            data-title=":: 'pci_databases_service_integration_tab_source_service' | translate"
             data-property="sourceServiceName"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <span>{{$row.sourceServiceName}}</span>
+            <button
+                class="oui-link"
+                type="button"
+                ng-click="$ctrl.goToDatabase({id: $row.sourceServiceId})"
+                ng-if="$row.sourceServiceId !== $ctrl.database.id"
+            >
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_service_integration_tab_destination_service' | translate"
+            data-property="destinationServiceName"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <span>{{$row.destinationServiceName}}</span>
+            <button
+                class="oui-link"
+                type="button"
+                ng-click="$ctrl.goToDatabase({id: $row.destinationServiceId})"
+                ng-if="$row.destinationServiceId !== $ctrl.database.id"
+            >
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_service_integration_tab_type' | translate"
+            data-property="type"
             data-sortable="asc"
             data-type="string"
             data-searchable
@@ -67,8 +95,8 @@
         </oui-datagrid-column>
         <oui-datagrid-topbar>
             <oui-button
-                data-disabled="$ctrl.addableServicesList.length === 0"
                 data-on-click="$ctrl.trackAndAddServiceIntegration()"
+                data-disabled="!$ctrl.database.isActive()"
             >
                 <span
                     class="oui-icon oui-icon-add pr-1"
@@ -76,7 +104,6 @@
                 ></span>
                 <span
                     data-translate="pci_databases_service_integration_tab_add"
-                    data-translate-values="{engineName: $ctrl.engineName}"
                 ></span>
             </oui-button>
             <button
