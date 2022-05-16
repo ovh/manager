@@ -1,3 +1,12 @@
+## [5.75.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.75.0...@ovh-ux/manager-pci@5.75.1) (2022-05-16)
+
+
+### Bug Fixes
+
+* **pci:** remove hardcoded region for highperfstorages ([#7085](https://github.com/ovh/manager/issues/7085)) ([2ee2d0c](https://github.com/ovh/manager/commit/2ee2d0c4e98806325878099f9acaf8c21e7e313a))
+
+
+
 # [5.75.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.74.0...@ovh-ux/manager-pci@5.75.0) (2022-05-04)
 
 
