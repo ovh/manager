@@ -198,7 +198,7 @@ export default class DomainTabGeneralInformationsCtrl {
   }
 
   initActions() {
-    const contactManagementUrl = this.coreConfig.isRegion('EU')
+    const contactManagementUrl = this.coreConfig.isRegion(['EU', 'CA'])
       ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
           serviceName: this.domain.name,
           category: PRODUCT_TYPE,

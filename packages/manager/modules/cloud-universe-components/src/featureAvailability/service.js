@@ -5,24 +5,19 @@ import { FEATURE_AVAILABILITY } from './constants';
 
 export default class CucFeatureAvailabilityService {
   /* @ngInject */
-  constructor($q, coreConfig, CucConfig) {
-    this.CucConfig = CucConfig;
-
+  constructor($q, coreConfig) {
+    this.region = coreConfig.getRegion();
     this.locale = coreConfig.getUser().ovhSubsidiary;
     this.localePromise = $q.when(this.locale);
   }
 
   hasFeature(product, feature, locale = this.locale) {
-    if (
-      !has(FEATURE_AVAILABILITY, [product, feature, this.CucConfig.getRegion()])
-    ) {
+    if (!has(FEATURE_AVAILABILITY, [product, feature, this.region])) {
       return false;
     }
     return (
-      indexOf(
-        FEATURE_AVAILABILITY[product][feature][this.CucConfig.getRegion()],
-        locale,
-      ) !== -1
+      indexOf(FEATURE_AVAILABILITY[product][feature][this.region], locale) !==
+      -1
     );
   }
 

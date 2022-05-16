@@ -184,6 +184,7 @@ export const FEATURE_AVAILABILITY = {
   CONTACTS: {
     manage: {
       EU: ALL_EUROPEAN_SUBSIDIARIES,
+      CA: ALL_CANADIAN_SUBSIDIARIES,
     },
   },
   DBAAS_LOGS: {

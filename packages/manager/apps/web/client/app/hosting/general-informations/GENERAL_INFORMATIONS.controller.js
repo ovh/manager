@@ -68,7 +68,7 @@ export default class HostingGeneralInformationsCtrl {
       this.$scope.cdnServiceInfo?.renew.mode === 'deleteAtExpiration';
     this.defaultRuntime = null;
     this.isAvailableOfferOrDetach = false;
-    this.contactManagementLink = this.coreConfig.isRegion('EU')
+    this.contactManagementLink = this.coreConfig.isRegion(['EU', 'CA'])
       ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
           serviceName: this.serviceName,
           category: 'HOSTING',
