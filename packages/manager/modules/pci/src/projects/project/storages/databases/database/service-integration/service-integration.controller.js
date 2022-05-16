@@ -41,12 +41,12 @@ export default class ServiceIntegrationCtrl {
   }
 
   trackAndAddServiceIntegration() {
-    this.trackDashboard(`service_integration::add_${this.engineName}`);
+    this.trackDashboard(`service_integration::add_${this.database.engine}`);
     this.goToAddServiceIntegration();
   }
 
   trackAndDeleteServiceIntegration(serviceIntegration) {
-    this.trackDashboard(`service_integration::delete_${this.engineName}`);
+    this.trackDashboard(`service_integration::delete_${this.database.engine}`);
     this.goToDeleteServiceIntegration(serviceIntegration);
   }
 

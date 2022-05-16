@@ -4,6 +4,7 @@ import template from './service-integration.html';
 export default {
   bindings: {
     projectId: '<',
+    databases: '<',
     database: '<',
     trackDashboard: '<',
     goToAddServiceIntegration: '<',
@@ -11,10 +12,10 @@ export default {
     refreshServiceIntegration: '<',
     serviceIntegrationList: '<',
     servicesList: '<',
-    addableServicesList: '<',
     stopPollingIntegrationsStatus: '<',
     replicationsList: '<',
-    engineName: '<',
+    integrationCapabilities: '<',
+    goToDatabase: '<',
   },
   controller,
   template,
