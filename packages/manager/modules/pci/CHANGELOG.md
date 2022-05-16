@@ -1,3 +1,12 @@
+## [5.75.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.75.1...@ovh-ux/manager-pci@5.75.2) (2022-05-16)
+
+
+### Bug Fixes
+
+* **pci:** missing region for highperfstorage on add new user ([#7140](https://github.com/ovh/manager/issues/7140)) ([8cb2f96](https://github.com/ovh/manager/commit/8cb2f962eaec0aa9cd66cd342c97d1995c601f18))
+
+
+
 ## [5.75.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.75.0...@ovh-ux/manager-pci@5.75.1) (2022-05-16)
 
 
