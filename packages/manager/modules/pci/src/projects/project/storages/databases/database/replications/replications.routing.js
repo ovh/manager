@@ -53,7 +53,7 @@ export default /* @ngInject */ ($stateProvider) => {
           database,
           DatabaseService,
           projectId,
-          kafkaServicesList,
+          databases,
         ) =>
           DatabaseService.getIntegrations(
             projectId,
@@ -62,7 +62,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ).then((integrations) =>
             map(integrations, (i) => {
               const serviceIntegration = new ServiceIntegration(i);
-              serviceIntegration.setSourceServiceName(kafkaServicesList);
+              serviceIntegration.setServicesNames(databases);
               return serviceIntegration;
             }),
           ),

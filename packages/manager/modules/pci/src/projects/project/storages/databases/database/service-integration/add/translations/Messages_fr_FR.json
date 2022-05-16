@@ -1,8 +1,17 @@
 {
   "pci_databases_service_integration_add_confirm": "Confirmer",
   "pci_databases_service_integration_add_cancel": "Annuler",
-  "pci_databases_service_integration_add": "Ajouter un {{engineName}}",
-  "pci_databases_service_integration_add_service_label": "Sélectionnez un service {{engineName}} :",
-  "pci_databases_service_integration_add_success_message": "Votre service {{engineName}} a été ajouté avec succès.",
-  "pci_databases_service_integration_add_error_message": "Une erreur est survenue lors de l'ajout de votre service {{engineName}} : {{message}}"
+  "pci_databases_service_integration_add": "Ajouter une intégration",
+  "pci_databases_service_integration_add_success_message": "Votre intégration {{integrationType}} a été ajoutée avec succès.",
+  "pci_databases_service_integration_add_error_message": "Une erreur est survenue lors de l'ajout de votre intégration {{integrationType}} : {{message}}",
+  "pci_databases_service_integration_add_type_label": "Type d'intégration",
+  "pci_databases_service_integration_add_source_service_label": "Service source",
+  "pci_databases_service_integration_add_destination_service_label": "Service de destination",
+  "pci_databases_service_integration_add_service_placeholder_label": "Selectionnez un service",
+  "pci_databases_service_integration_add_type_placeholder_label": "Selectionnez un type d'intégration",
+  "pci_databases_service_integration_add_error_no_current_service": "Vous devez selectionner le service {{serviceName}} comme source ou destination.",
+  "pci_databases_service_integration_add_error_existing_integration": "Une intégration similaire existe déjà.",
+  "pci_databases_service_integration_add_error_no_available_service_1": "Vous ne disposez pas de service permettant d'ajouter ce type d'intégration. Veuillez",
+  "pci_databases_service_integration_add_error_no_available_service_2": "ayant pour moteur un de ceux listés ci-dessous: ",
+  "pci_databases_service_integration_add_error_no_available_service_link": "ajouter un service"
 }

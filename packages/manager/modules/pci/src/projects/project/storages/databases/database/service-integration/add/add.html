@@ -2,23 +2,128 @@
     ng-form="addServiceIntegration"
     data-on-dismiss="$ctrl.cancel()"
     data-primary-label="{{:: 'pci_databases_service_integration_add_confirm' | translate}}"
-    data-primary-disabled="addServiceIntegration.$invalid"
+    data-primary-disabled="addServiceIntegration.$invalid || $ctrl.existingIntegrationError"
     data-primary-action="$ctrl.addServiceIntegration()"
     data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{:: 'pci_databases_service_integration_add_cancel' | translate}}"
     data-loading="$ctrl.processing"
-    data-heading="{{:: 'pci_databases_service_integration_add' | translate: {engineName: $ctrl.engineName} }}"
+    data-heading="{{:: 'pci_databases_service_integration_add' | translate}}"
 >
-    <oui-field
-        data-label="{{:: 'pci_databases_service_integration_add_service_label' | translate: {engineName: $ctrl.engineName} }}"
+    <oui-message data-type="warning" ng-if="$ctrl.showNoServiceMessage">
+        <div>
+            <span
+                data-translate="pci_databases_service_integration_add_error_no_available_service_1"
+            ></span>
+            <button class="oui-link" ng-click="$ctrl.goToAddDatabase()">
+                <span
+                    data-translate="pci_databases_service_integration_add_error_no_available_service_link"
+                ></span>
+            </button>
+            <span
+                data-translate="pci_databases_service_integration_add_error_no_available_service_2"
+            ></span>
+        </div>
+        <ul>
+            <li
+                ng-repeat="engine in $ctrl.expectedEngines track by id"
+                ng-bind="engine"
+            ></li>
+        </ul>
+    </oui-message>
+
+    <oui-message data-type="warning" ng-if="$ctrl.existingIntegrationError">
+        <p
+            data-translate="pci_databases_service_integration_add_error_existing_integration"
+        ></p>
+    </oui-message>
+
+    <oui-message
+        data-type="warning"
+        ng-if="$ctrl.notCurrentServiceSelectedError"
     >
-        <oui-select
-            model="$ctrl.service"
-            name="service"
-            items="$ctrl.addableServicesList"
-            match="description"
-            required
+        <p
+            data-translate="pci_databases_service_integration_add_error_no_current_service"
+            data-translate-values="{serviceName: $ctrl.database.description}"
+        ></p>
+    </oui-message>
+
+    <div class="row">
+        <div class="col">
+            <oui-field
+                data-label="{{:: 'pci_databases_service_integration_add_type_label' | translate }}"
+            >
+                <oui-select
+                    model="$ctrl.integrationCapability"
+                    name="type"
+                    items="$ctrl.aggregatedIntegrationCapabilities"
+                    match="type"
+                    placeholder="{{:: 'pci_databases_service_integration_add_type_placeholder_label' | translate}}"
+                    on-change="$ctrl.handleIntegrationChange(modelValue)"
+                    required
+                >
+                </oui-select>
+            </oui-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <oui-field
+                data-label="{{:: 'pci_databases_service_integration_add_source_service_label' | translate }}"
+            >
+                <oui-select
+                    model="$ctrl.sourceService"
+                    name="sourceSservice"
+                    items="$ctrl.sourceServiceList"
+                    match="description"
+                    placeholder="{{:: 'pci_databases_service_integration_add_service_placeholder_label' | translate}}"
+                    disabled="$ctrl.isDisabledSourceSelect"
+                    on-change="$ctrl.checkIntegrationValidity()"
+                    required
+                >
+                </oui-select>
+            </oui-field>
+        </div>
+        <div class="col">
+            <oui-field
+                data-label="{{:: 'pci_databases_service_integration_add_destination_service_label' | translate }}"
+            >
+                <oui-select
+                    model="$ctrl.destinationService"
+                    name="destinationService"
+                    items="$ctrl.destinationServiceList"
+                    match="description"
+                    placeholder="{{:: 'pci_databases_service_integration_add_service_placeholder_label' | translate}}"
+                    disabled="$ctrl.isDisabledDestinationSelect"
+                    on-change="$ctrl.checkIntegrationValidity()"
+                    required
+                >
+                </oui-select>
+            </oui-field>
+        </div>
+    </div>
+
+    <div class="row" ng-if="$ctrl.integrationCapability.parameters.length > 0">
+        <div
+            class="col"
+            ng-repeat="parameter in $ctrl.integrationCapability.parameters track by $index"
         >
-        </oui-select>
-    </oui-field>
+            <oui-field data-label="{{parameter.name}}">
+                <input type="hidden" name="hiddenfield" />
+                <input
+                    ng-if="parameter.type === 'string'"
+                    class="oui-input"
+                    type="text"
+                    name="{{parameter.name}}"
+                    ng-model="$ctrl.parameters[parameter.name]"
+                    required
+                />
+                <oui-numeric
+                    ng-if="parameter.type === 'integer'"
+                    data-min="1"
+                    data-model="$ctrl.parameters[parameter.name]"
+                    required
+                />
+            </oui-field>
+        </div>
+    </div>
 </oui-modal>
