@@ -79,8 +79,10 @@ export default /* @ngInject */ ($stateProvider) => {
         if (message) {
           stateGoPromise.then(() => {
             $timeout(() =>
-              Alerter[message.type](
+              Alerter.set(
+                `alert-${message.type === 'error' ? 'danger' : message.type}`,
                 message.text,
+                null,
                 'billing_payment_method_alert',
               ),
             );
