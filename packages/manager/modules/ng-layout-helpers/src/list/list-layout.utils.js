@@ -126,36 +126,40 @@ const mapApiProperties = (properties) => {
   }));
 };
 
+const sortColumns = (columns, priorities) =>
+  columns.sort(({ property: a }, { property: b }) => {
+    const aPriority = priorities.indexOf(a);
+    const bPriority = priorities.indexOf(b);
+
+    if (aPriority > -1 && bPriority > -1) {
+      return aPriority - bPriority;
+    }
+    if (aPriority > -1) {
+      return -1;
+    }
+    return 1;
+  });
+
 export const getDefaultConfiguration = (
   dataModel,
   defaultFilterColumn,
   displayedColumns,
 ) => {
-  const columns = mapApiProperties(dataModel.properties).filter(
+  let columns = mapApiProperties(dataModel.properties).filter(
     ({ label }) => label !== defaultFilterColumn,
   );
 
-  // pull the service's description column to the front then ...
-  columns.sort((a, b) => {
-    if (a.property === 'description') return -1;
-    if (b.properby === 'description') return 1;
-    return 0;
-  });
-
-  // ... pull the service's displayName column to the front then ...
-  columns.sort((a, b) => {
-    if (a.property === 'displayName') return -1;
-    if (b.properby === 'displayName') return 1;
-    return 0;
-  });
-
-  // ... prepend the serviceName, so the initial columns order
-  // will be [serviceName, displayName, description, ...]
   columns.unshift({
     label: defaultFilterColumn,
     property: defaultFilterColumn,
     serviceLink: true,
   });
+
+  columns = sortColumns(columns, [
+    defaultFilterColumn,
+    'displayName',
+    'description',
+  ]);
 
   return {
     data: columns.map((column, index) => ({
