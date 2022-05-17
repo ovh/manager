@@ -1,0 +1,9 @@
+{
+  "ip_byoip_disclaimer_title": "Wymagane potwierdzenie",
+  "ip_byoip_disclaimer_description": "Oświadczam, że: ",
+  "ip_byoip_disclaimer_description_point_1": " - jestem właścicielem wskazanego zakresu adresów IP",
+  "ip_byoip_disclaimer_description_point_2": " - wskazany zakres adresów IP nie jest rozgłaszany w Internecie",
+  "ip_byoip_disclaimer_description_point_3": " - wskazany zakres adresów IP posiada pozytywną reputację",
+  "ip_byoip_disclaimer_confirm_text": "Zatwierdź",
+  "ip_byoip_disclaimer_cancel_text": "Anuluj"
+}
