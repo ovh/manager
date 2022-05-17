@@ -1,0 +1,9 @@
+{
+  "ip_byoip_disclaimer_title": "Conferma necessaria",
+  "ip_byoip_disclaimer_description": "Dichiaro: ",
+  "ip_byoip_disclaimer_description_point_1": " - di essere il proprietario della classe di indirizzi IP inserita",
+  "ip_byoip_disclaimer_description_point_2": " - che la classe di indirizzi IP inserita non è annunciata su Internet",
+  "ip_byoip_disclaimer_description_point_3": " - di avere una buona reputazione su questa classe di indirizzi IP",
+  "ip_byoip_disclaimer_confirm_text": "Conferma",
+  "ip_byoip_disclaimer_cancel_text": "Annulla"
+}
