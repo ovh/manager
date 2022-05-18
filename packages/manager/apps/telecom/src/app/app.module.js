@@ -65,7 +65,6 @@ import has from 'lodash/has';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
 
-import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ovhManagerBetaPreference from '@ovh-ux/manager-beta-preference';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import { registerCoreModule } from '@ovh-ux/manager-core';
@@ -76,7 +75,8 @@ import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerOverTheBox from '@ovh-ux/manager-overthebox';
 import ovhManagerSms from '@ovh-ux/manager-sms';
 import ovhManagerTelecomTask from '@ovh-ux/manager-telecom-task';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
+import '@ovh-ux/ng-at-internet';
+import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
@@ -159,7 +159,7 @@ export default async (containerEl, shellClient) => {
         'matchmedia-ng',
         'ngAnimate',
         'ngAria',
-        ngAtInternet,
+        registerAtInternet(shellClient.tracking),
         ngAtInternetUiRouterPlugin,
         'ngCookies',
         'ngCsv',
@@ -195,7 +195,6 @@ export default async (containerEl, shellClient) => {
         'ovh-api-services',
         'ovh-ng-input-password',
         ovhManagerAccountSidebar,
-        ovhManagerAtInternetConfiguration,
         ovhManagerAccountMigration,
         ovhManagerBetaPreference,
         registerCoreModule(environment, coreCallbacks),
@@ -309,11 +308,9 @@ export default async (containerEl, shellClient) => {
           .catch(() => {});
       },
     )
-    .config(
-      /* @ngInject */ (atInternetConfigurationProvider) => {
-        atInternetConfigurationProvider.setConfig(TRACKING);
-      },
-    )
+    .config(() => {
+      shellClient.tracking.setConfig(TRACKING);
+    })
     /*= =========  INTERCEPT ERROR IF NO TRANSLATION FOUND  ========== */
     .factory('translateInterceptor', ($q) => {
       const regexp = new RegExp(/Messages\w+\.json$/i);
