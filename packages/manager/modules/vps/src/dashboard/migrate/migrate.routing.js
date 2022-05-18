@@ -1,4 +1,3 @@
-import find from 'lodash/find';
 import { MIGRATION_STATUS } from '../vps-dashboard.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -19,8 +18,11 @@ export default /* @ngInject */ ($stateProvider) => {
             : null,
         ),
     resolve: {
+      model: /* @ngInject */ (newPlans) => ({
+        selectedPlan: newPlans[0],
+      }),
       migrationTrackingPrefix: /* @ngInject */ (vpsMigration) => {
-        return `vps::vps-migration::from_${vpsMigration.currentPlan}_to_${vpsMigration.newPlan}`;
+        return `vps::vps-migration::from_${vpsMigration.plans[0].currentPlan}`;
       },
       trackPage: /* @ngInject */ (atInternet, migrationTrackingPrefix) =>
         atInternet.trackPage({
@@ -30,16 +32,22 @@ export default /* @ngInject */ ($stateProvider) => {
       goToMigrateConfirm: /* @ngInject */ (
         $state,
         atInternet,
+        vpsMigration,
         migrationTrackingPrefix,
-      ) => () => {
+      ) => (selectedPlan) => {
         atInternet.trackClick({
-          name: `${migrationTrackingPrefix}::confirm`,
+          name: `${migrationTrackingPrefix}_to_${selectedPlan.planCode}::confirm`,
           type: 'action',
         });
-        return $state.go('vps.detail.dashboard.migrate.confirm');
+        return $state.go('vps.detail.dashboard.migrate.confirm', {
+          selectedPlan,
+        });
       },
-      newPlan: /* @ngInject */ (catalog, vpsMigration) =>
-        find(catalog.plans, { planCode: vpsMigration.newPlan }),
+      newPlans: /* @ngInject */ (catalog, vpsMigration) => {
+        return vpsMigration.plans.map((plans) =>
+          catalog.plans.find(({ planCode }) => plans.newPlan === planCode),
+        );
+      },
       currentPrice: /* @ngInject */ (
         vpsMigrateService,
         serviceInfos,
@@ -49,17 +57,20 @@ export default /* @ngInject */ ($stateProvider) => {
           ? vpsMigrateService.fetchCurrentPrice(serviceInfos.serviceId)
           : null;
       },
-      newPrice: /* @ngInject */ (
+      newPrices: /* @ngInject */ (
+        $q,
         vpsMigrateService,
-        newPlan,
         user,
         vpsMigration,
       ) => {
-        return vpsMigrateService.fetchNewPrice(
-          newPlan,
-          user.ovhSubsidiary,
-          vpsMigration,
+        const prices = vpsMigration.plans.map((plans) =>
+          vpsMigrateService.fetchNewPrice(
+            user.ovhSubsidiary,
+            plans,
+            vpsMigration.datacenter,
+          ),
         );
+        return $q.all(prices).then((data) => data);
       },
       goBackToMigrate: /* @ngInject */ ($state, CucCloudMessage) => (
         message = false,
