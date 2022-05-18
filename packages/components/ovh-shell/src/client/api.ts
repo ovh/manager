@@ -112,6 +112,8 @@ export default function exposeApi(shellClient: ShellClient) {
         shellClient.addEventListener('ux:open-chatbot', callback),
       onCloseChatbot: (callback: CallableFunction) =>
         shellClient.addEventListener('ux:close-chatbot', callback),
+      onReduceChatbot: (callback: CallableFunction) =>
+        shellClient.addEventListener('ux:reduce-chatbot', callback),
       onChatbotOpen: () => {
         shellClient.invokePluginMethod<string>({
           plugin: 'ux',
