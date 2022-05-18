@@ -39,8 +39,11 @@ export const OnboardingIntroduction = () => {
 
   const trackingPlugin = shell.getPlugin('tracking');
   uxPlugin.onChatbotVisibilityChange(() => {
-    setIsChatbotVisible(uxPlugin.shellUX.getChatbot().getVisibility());
-    setIsPopoverVisible(false);
+    const chatbotVisible = uxPlugin.shellUX.getChatbot().getVisibility();
+    setIsChatbotVisible(chatbotVisible);
+    if (chatbotVisible) {
+      productNavReshuffle.reduceOnboarding();
+    }
   });
   const commonTrackingOptions = {
     campaignId: '[tooltip-manager]',
@@ -54,7 +57,6 @@ export const OnboardingIntroduction = () => {
   };
 
   const openOnboarding = () => {
-    setIsPopoverVisible(true);
     productNavReshuffle.openOnboarding();
   };
 

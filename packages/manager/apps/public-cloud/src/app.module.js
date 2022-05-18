@@ -230,6 +230,10 @@ export default async (containerEl, shellClient) => {
         shellClient.ux.onOpenChatbot(() => {
           $rootScope.$emit('ovh-chatbot:open');
         });
+
+        shellClient.ux.onReduceChatbot(() => {
+          $rootScope.$emit('ovh-chatbot:close', false);
+        });
       },
     );
 
