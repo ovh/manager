@@ -7,6 +7,7 @@ import { useShell } from '@/context';
 
 import style from './style.module.scss';
 import { useShell } from '@/context';
+import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 type Props = {
   defaultPaymentMethod?: unknown;
@@ -20,6 +21,15 @@ const UserDefaultPaymentMethod = ({
   const { t } = useTranslation('user-account-menu');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
+  const { closeAccountSidebar } = useProductNavReshuffle();
+
+  const onPaymentMethodLinkClick = () => {
+    closeAccountSidebar();
+    trackingPlugin.trackClick({
+      name: 'topnav::user_widget::go_to_payment_method',
+      type: 'navigation',
+    });
+  };
 
   // @todo: use navigation plugin instead
   const paymentMethodUrl = useShell()
@@ -32,12 +42,7 @@ const UserDefaultPaymentMethod = ({
       id="user-account-menu-payment-method"
     >
       <a
-        onClick={() =>
-          trackingPlugin.trackClick({
-            name: 'topnav::user_widget::go_to_payment_method',
-            type: 'navigation',
-          })
-        }
+        onClick={onPaymentMethodLinkClick}
         className="d-flex flex-row align-items-center p-2"
         href={paymentMethodUrl}
         target="_top"

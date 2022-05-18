@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { buildURL } from '@ovh-ux/ufrontend';
 import { useTranslation, Trans } from 'react-i18next';
 
 import icon from './assets/give_feedback.png';
@@ -25,7 +24,8 @@ const UserAccountMenu = ({
   const environment = shell.getPlugin('environment').getEnvironment();
   const region = environment.getRegion();
 
-  const feedbackUrl = useProductNavReshuffle().getFeedbackUrl();
+  const { getFeedbackUrl, closeAccountSidebar } = useProductNavReshuffle();
+  const feedbackUrl = getFeedbackUrl();
 
   const user = shell
     .getPlugin('environment')
@@ -41,9 +41,18 @@ const UserAccountMenu = ({
   };
 
   const onGiveFeedbackLinkClick = () => {
+    closeAccountSidebar();
     trackingPlugin.trackClick({
       name: 'topnav::user_widget::give_feedback',
       type: 'action',
+    });
+  };
+
+  const onMyAccountLinkClick = () => {
+    closeAccountSidebar();
+    trackingPlugin.trackClick({
+      name: 'topnav::user_widget::go_to_profile',
+      type: 'navigation',
     });
   };
 
@@ -111,12 +120,7 @@ const UserAccountMenu = ({
         </a>
         <hr />
         <a
-          onClick={() =>
-            trackingPlugin.trackClick({
-              name: 'topnav::user_widget::go_to_profile',
-              type: 'navigation',
-            })
-          }
+          onClick={onMyAccountLinkClick}
           className="d-block oui-link_icon"
           aria-label={t('user_account_menu_profile')}
           title={t('user_account_menu_profile')}
