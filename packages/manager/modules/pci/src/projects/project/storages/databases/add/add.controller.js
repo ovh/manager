@@ -66,6 +66,7 @@ export default class {
   }
 
   scrollTo(id) {
+    this.trackDatabases(`databases_config_page::basket::anchors::${id}`);
     animateScrollTo(document.getElementById(id), this.scrollToOptions);
   }
 
@@ -267,6 +268,15 @@ export default class {
       }
     }
     return flavor;
+  }
+
+  trackAndGoToCommand() {
+    this.trackDatabases(`databases_config_page::basket::goto_api_equivalent`);
+    this.goToCommand(this.commandData);
+  }
+
+  trackNamePopover() {
+    this.trackDatabases(`databases_config_page::basket::info_popin::name`);
   }
 
   createDatabase() {
