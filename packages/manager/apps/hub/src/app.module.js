@@ -4,6 +4,7 @@ import angular from 'angular';
 import 'angular-ui-bootstrap';
 import 'angular-animate';
 import 'angular-translate';
+import '@ovh-ux/ng-at-internet';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
