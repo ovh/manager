@@ -22,6 +22,9 @@ const UserAccountMenu = ({
   const { t } = useTranslation('user-account-menu');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
+  const environment = shell.getPlugin('environment').getEnvironment();
+  const region = environment.getRegion();
+
   const feedbackUrl = useProductNavReshuffle().getFeedbackUrl();
 
   const user = shell
@@ -52,15 +55,17 @@ const UserAccountMenu = ({
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>
       <div className="oui-navbar-menu oui-navbar-menu_fixed oui-navbar-menu_end p-3">
         <h1 className="oui-heading_4 mb-1">{`${user.firstname} ${user.name}`}</h1>
-        <p className="oui-chip mb-0">
-          <strong className={style.supportLevel}>
-            {t(
-              `user_account_menu_support_level_${user.supportLevel.level}${
-                user.isTrusted ? '_trusted' : ''
-              }`,
-            )}
-          </strong>
-        </p>
+        {['EU', 'CA'].includes(region) && (
+          <p className="oui-chip mb-0">
+            <strong className={style.supportLevel}>
+              {t(
+                `user_account_menu_support_level_${user.supportLevel.level}${
+                  user.isTrusted ? '_trusted' : ''
+                }`,
+              )}
+            </strong>
+          </p>
+        )}
         <p className="mb-0">
           <strong>{user.email}</strong>
         </p>
