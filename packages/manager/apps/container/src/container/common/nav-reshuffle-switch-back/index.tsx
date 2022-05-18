@@ -96,7 +96,7 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
           </span>
         </button>
         <div className="oui-navbar-menu__wrapper">
-          <div className="oui-navbar-menu oui-navbar-menu_end">
+          <div className="oui-navbar-menu">
             <div className="oui-navbar-list_dropdown">
               <ul className="oui-navbar-list">
                 <li className="oui-navbar-list__item">
