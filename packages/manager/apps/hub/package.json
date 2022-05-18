@@ -34,6 +34,7 @@
     "@ovh-ux/manager-notifications-sidebar": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/manager-trusted-nic": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/ng-at-internet": "^5.9.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.11",
     "@ovh-ux/ng-ovh-contracts": "^4.0.7",
