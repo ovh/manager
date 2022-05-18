@@ -49,7 +49,8 @@ import set from 'lodash/set';
 
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
+import '@ovh-ux/ng-at-internet';
+import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhContracts from '@ovh-ux/ng-ovh-contracts';
@@ -153,7 +154,7 @@ export default async (containerEl, shellClient) => {
         ngQAllSettled,
         'ngMessages',
         'xeditable',
-        ngAtInternet,
+        registerAtInternet(shellClient.tracking),
         ngAtInternetUiRouterPlugin,
         ngOvhApiWrappers,
         ngOvhContracts,
@@ -328,9 +329,12 @@ export default async (containerEl, shellClient) => {
         $logProvider.debugEnabled(!constants.prodMode);
       },
     ])
+    .config(async () => {
+      await shellClient.tracking.setConfig(TRACKING);
+    })
     .config(
       /* @ngInject */ (atInternetConfigurationProvider) => {
-        atInternetConfigurationProvider.setConfig(TRACKING);
+        atInternetConfigurationProvider.setSkipInit(true);
         atInternetConfigurationProvider.setReplacementRules([
           {
             pattern: /^app/,

@@ -57,7 +57,8 @@ import has from 'lodash/has';
 import set from 'lodash/set';
 import isString from 'lodash/isString';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
+import '@ovh-ux/ng-at-internet';
+import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
@@ -166,6 +167,7 @@ export default async (containerEl, shellClient) => {
         account,
         ovhManagerAccountSidebar,
         registerCoreModule(environment, coreCallbacks),
+        registerAtInternet(shellClient.tracking),
         ovhManagerAtInternetConfiguration,
         ovhManagerBilling,
         isTopLevelApplication() ? ovhManagerCookiePolicy : null,
@@ -192,7 +194,6 @@ export default async (containerEl, shellClient) => {
         otrs,
         ovhManagerMfaEnrollment,
         'ngMessages',
-        ngAtInternet,
         ngAtInternetUiRouterPlugin,
         ngOvhApiWrappers,
         ngOvhBrowserAlert,
@@ -302,9 +303,12 @@ export default async (containerEl, shellClient) => {
     .config(($urlServiceProvider) => {
       $urlServiceProvider.rules.otherwise('/configuration');
     })
+    .config(async () => {
+      await shellClient.tracking.setConfig(TRACKING);
+    })
     .config(
       /* @ngInject */ (atInternetConfigurationProvider) => {
-        atInternetConfigurationProvider.setConfig(TRACKING);
+        atInternetConfigurationProvider.setSkipInit(true);
         atInternetConfigurationProvider.setReplacementRules([
           {
             pattern: /^app/,
