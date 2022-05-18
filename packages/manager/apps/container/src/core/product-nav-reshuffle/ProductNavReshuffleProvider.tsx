@@ -25,13 +25,14 @@ export const ProductNavReshuffleProvider = ({
 
   const [isLoading, setIsLoading] = useState(true);
   const { betaVersion } = useContainer();
+  const shell = useShell();
 
   /**
    * @TODO: manage links for US version
    */
   const getFeedbackUrl = () => {
     let feedbackUrl = FEEDBACK_URLS[`beta${betaVersion}`];
-    const [lang] = useShell()
+    const [lang] = shell
       .getPlugin('i18n')
       .getLocale()
       .split('_');
@@ -45,9 +46,18 @@ export const ProductNavReshuffleProvider = ({
   );
 
   const openOnboarding = () => {
-    setOnboardingOpenedState(
-      onboardingHelper.getNextOpenedState(onboardingOpenedState),
+    const nextOpenedState = onboardingHelper.getNextOpenedState(
+      onboardingOpenedState,
     );
+
+    setOnboardingOpenedState(nextOpenedState);
+    if (
+      nextOpenedState === ONBOARDING_OPENED_STATE_ENUM.WELCOME &&
+      !shell.getPlugin('ux').shellUX.chatbot.isReduced()
+    ) {
+      // reduce chatbot if welcome popover is displayed
+      shell.getPlugin('ux').reduceChatbot();
+    }
   };
 
   const startOnboarding = () => {
@@ -60,6 +70,12 @@ export const ProductNavReshuffleProvider = ({
     return onboardingHelper.updatePreference({
       status: onboardingStatus || ONBOARDING_STATUS_ENUM.CLOSED,
     });
+  };
+
+  const reduceOnboarding = () => {
+    if (onboardingOpenedState === ONBOARDING_OPENED_STATE_ENUM.WELCOME) {
+      setOnboardingOpenedState(ONBOARDING_OPENED_STATE_ENUM.BUTTON);
+    }
   };
 
   // account sidebar
@@ -107,6 +123,7 @@ export const ProductNavReshuffleProvider = ({
     openOnboarding,
     startOnboarding,
     closeOnboarding,
+    reduceOnboarding,
     // account sidebar
     isAccountSidebarOpened,
     openAccountSidebar,
