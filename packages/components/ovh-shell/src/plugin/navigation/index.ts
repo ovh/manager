@@ -21,10 +21,7 @@ export interface ClientNavigationApi {
 
 export function navigation(environment: Environment) {
   const getPublicURL = (application: ApplicationId) => {
-    if (
-      window.location.hostname === 'localhost' &&
-      !process.env.JEST_WORKER_ID
-    ) {
+    if (window.location.hostname === 'localhost') {
       return `${window.location.origin}/#/manager`;
     }
     const appPublicURL = environment.getApplications()[application]?.publicURL;
