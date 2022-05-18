@@ -32,12 +32,12 @@ import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
-
+import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
-import atInternet from './components/at-internet';
+import { initAtInternet } from './components/at-internet';
 import darkMode from './components/dark-mode';
 
 import './assets/theme/default/index.less';
@@ -74,7 +74,7 @@ export default async (containerEl, shellClient) => {
       moduleName,
       [
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
-        atInternet,
+        initAtInternet(shellClient.tracking),
         darkMode,
         ngAnimate,
         ngUiRouterBreadcrumb,
