@@ -19,6 +19,7 @@ const UserInfos = (): JSX.Element => {
   const shell = useShell();
   const environment = shell.getPlugin('environment').getEnvironment();
   const user = environment.getUser();
+  const region = environment.getRegion();
 
   const cssBaseClassName = 'manager-account-sidebar-user-infos';
   const translationBase = 'user_account_menu';
@@ -42,11 +43,13 @@ const UserInfos = (): JSX.Element => {
         onClick={userAccountClickHander}
       >
         <UserInitials user={user} cssBaseClassName={cssBaseClassName} />
-        <UserSupportLevel
-          user={user}
-          cssBaseClassName={cssBaseClassName}
-          translationBase={translationBase}
-        />
+        {['EU', 'CA'].includes(region) && (
+          <UserSupportLevel
+            user={user}
+            cssBaseClassName={cssBaseClassName}
+            translationBase={translationBase}
+          />
+        )}
         <UserName user={user} cssBaseClassName={cssBaseClassName} />
       </a>
       <UserRole
