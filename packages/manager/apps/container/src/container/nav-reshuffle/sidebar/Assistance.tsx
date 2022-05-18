@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
+import { useReket } from '@ovh-ux/ovh-reket';
 import { useURL } from '@/container/common/urls-constants';
 import ApplicationContext from '@/context';
 import { ONBOARDING_STATUS_ENUM } from '@/core/onboarding';
@@ -17,9 +17,27 @@ function AssistanceSidebar(): JSX.Element {
     .getEnvironment();
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
+  const reketInstance = useReket();
 
   const hasAdvancedSupport = ['EU', 'CA'].includes(environment.getRegion());
+
   const { openOnboarding, onboardingOpenedState } = useProductNavReshuffle();
+
+  const [hasChatbot, setHashChatbot] = useState(false);
+
+  useEffect(() => {
+    const initChatbot = async () => {
+      const results: Record<string, boolean> = await reketInstance.get(
+        `/feature/chatbot/availability`,
+        {
+          requestType: 'aapi',
+        },
+      );
+
+      setHashChatbot(results.chatbot);
+    };
+    initChatbot();
+  });
 
   const startOnboarding = () => {
     openOnboarding();
@@ -88,7 +106,7 @@ function AssistanceSidebar(): JSX.Element {
             onClick={() => trackNode('assistance_support_level')}
           />
         )}
-        {hasAdvancedSupport && (
+        {hasChatbot && (
           <SidebarLink
             node={{ translation: 'sidebar_assistance_live_chat', count: false }}
             onClick={() => {
