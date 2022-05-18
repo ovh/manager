@@ -10,16 +10,14 @@
             <span data-translate="orders_billing"></span>
         </oui-guide-menu-item>
         <oui-guide-menu-item
-            data-ng-if="$ctrl.featuresAvailabilities['billing:purchasesOrder']"
+            data-ng-if=":: $ctrl.isAvailable()"
             data-ng-href="{{:: $ctrl.purchaseOrdersGuideUrl }}"
             data-external="true"
         >
             <span data-translate="orders_purchase"></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
-    <oui-header-tabs
-        data-ng-if="$ctrl.featuresAvailabilities['billing:purchasesOrder']"
-    >
+    <oui-header-tabs data-ng-if=":: $ctrl.isAvailable()">
         <oui-header-tabs-item state="{{:: $ctrl.ordersSectionState }}"
             ><span data-translate="orders_page_title"></span
         ></oui-header-tabs-item>
