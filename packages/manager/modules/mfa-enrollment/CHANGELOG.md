@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@2.1.2...@ovh-ux/mfa-enrollment@2.2.0) (2022-05-19)
+
+
+### Features
+
+* **modules.mfa:** avoid redirection break to avoid lose voucher ([d71a66d](https://github.com/ovh/manager/commit/d71a66d0758ba882f5007eedfb2783d4f76e747d))
+
+
+
 ## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@2.1.1...@ovh-ux/mfa-enrollment@2.1.2) (2022-04-12)
 
 

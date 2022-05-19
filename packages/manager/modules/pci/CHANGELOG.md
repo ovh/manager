@@ -1,3 +1,24 @@
+# [5.76.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.75.3...@ovh-ux/manager-pci@5.76.0) (2022-05-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1632] ([45fae78](https://github.com/ovh/manager/commit/45fae785413f17ef5fdba7a6ecc9a8821534fcb2))
+* **pci.failover-ips:** map orderable ips to project available regions ([#6721](https://github.com/ovh/manager/issues/6721)) ([eed2b5c](https://github.com/ovh/manager/commit/eed2b5ce49cd9f60e09b846d94d089392b73edb5))
+* **pci.projects.new:** add missed tracking param ([ce425a2](https://github.com/ovh/manager/commit/ce425a2c6395548c8a2d16dddd6fac7012c28f95))
+
+
+### Features
+
+* **pci.projects:** auto redirect if only one project ([bc256c9](https://github.com/ovh/manager/commit/bc256c9b6ef3722d83471499098a6ba49c79f014))
+* **pci.projects:** redirect info message ([625630f](https://github.com/ovh/manager/commit/625630f0f93f42fbacb7db09fb7a3fea6d75e83a))
+* **pci.projects:** redirect to right product ([12ced27](https://github.com/ovh/manager/commit/12ced27d88231d5b3947e897a22bb5d6f3df5cbf))
+* **pci.projects.new:** display right error page ([6378bfc](https://github.com/ovh/manager/commit/6378bfc2dbcf9b8a0e2cddd0d0659a03f310cb35))
+* **pci.projects.new:** manage voucher redirect ([6907222](https://github.com/ovh/manager/commit/69072226e2384a250e60be0656f7772ed87ace7a))
+* **pci.projects.new:** validate voucher on input leave ([237ea74](https://github.com/ovh/manager/commit/237ea740d2dc70e9d931cc958d1a0bbe947a30ae))
+
+
+
 ## [5.75.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.75.2...@ovh-ux/manager-pci@5.75.3) (2022-05-19)
 
 
