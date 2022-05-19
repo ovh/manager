@@ -88,6 +88,7 @@ const ProjectSelector = ({
         isSearchable={false}
         formatOptionLabel={getProjectOption}
         options={options}
+        menuPortalTarget={document.body}
         value={value}
         onChange={(option) => {
           if (option.new) {
