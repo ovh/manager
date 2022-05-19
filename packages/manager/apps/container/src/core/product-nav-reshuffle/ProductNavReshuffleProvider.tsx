@@ -12,6 +12,7 @@ import useOnboarding, {
   ONBOARDING_OPENED_STATE_ENUM,
   ONBOARDING_STATUS_ENUM,
 } from '../onboarding';
+import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 
 type Props = {
   children: JSX.Element;
@@ -22,7 +23,8 @@ export const ProductNavReshuffleProvider = ({
 }: Props): JSX.Element => {
   let pnrContext = useContext(ProductNavReshuffleContext);
   const onboardingHelper = useOnboarding();
-
+  const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>({});
+  const [navigationTree, setNavigationTree] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { betaVersion } = useContainer();
   const shell = useShell();
@@ -132,6 +134,10 @@ export const ProductNavReshuffleProvider = ({
     isNavigationSidebarOpened,
     openNavigationSidebar,
     closeNavigationSidebar,
+    currentNavigationNode,
+    setCurrentNavigationNode,
+    navigationTree,
+    setNavigationTree,
   };
 
   return (
