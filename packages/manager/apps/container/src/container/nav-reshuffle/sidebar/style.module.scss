@@ -13,7 +13,8 @@
   color: white;
 
   &_menu {
-    // overflow: scroll;
+    overflow: scroll;
+    flex: 1;
   }
 
   ul {
