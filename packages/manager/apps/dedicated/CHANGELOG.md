@@ -1,3 +1,15 @@
+## [17.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.17.1...@ovh-ux/manager-dedicated@17.17.2) (2022-05-19)
+
+
+### Bug Fixes
+
+* **dedicated.server:** change url ecorange order for us ([#6830](https://github.com/ovh/manager/issues/6830)) ([4affaeb](https://github.com/ovh/manager/commit/4affaeb41861632fda5316b23a735477d95010af))
+* **dedicated.server:** fix OS field label ([#6871](https://github.com/ovh/manager/issues/6871)) ([28caadd](https://github.com/ovh/manager/commit/28caaddcfb16f332bb0a61e85d1e5000e7116988)), closes [#6118](https://github.com/ovh/manager/issues/6118)
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+* **i18n:** add missing translations [CDS 1618] ([3624c98](https://github.com/ovh/manager/commit/3624c988c85c68c6cdcb1717baf6fa38d2d223ab))
+
+
+
 ## [17.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.17.0...@ovh-ux/manager-dedicated@17.17.1) (2022-05-16)
 
 

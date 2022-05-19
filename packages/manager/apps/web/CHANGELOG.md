@@ -1,3 +1,21 @@
+# [16.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.11.1...@ovh-ux/manager-web@16.12.0) (2022-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+* **domain.dns:** allow empty IP ([#7077](https://github.com/ovh/manager/issues/7077)) ([490fa27](https://github.com/ovh/manager/commit/490fa27cb3f940cc3cb4c307d9cab4570ed3413f))
+* **domain.dns:** fix domain ns server ip edition ([baf1e46](https://github.com/ovh/manager/commit/baf1e468330756bbfbf346e915d9f1f413ccb843))
+* **i18n:** add missing translations [CDS 1617] ([399f737](https://github.com/ovh/manager/commit/399f73775a9968f791fbf6908b0efb870345d576))
+* **i18n:** add missing translations [CDS 1620] ([b2319ba](https://github.com/ovh/manager/commit/b2319ba88d0f098ce77bf015113017c066b6ed05))
+
+
+### Features
+
+* **private-database:** add CPU throttle to CloudDB stats ([20c6620](https://github.com/ovh/manager/commit/20c6620f4a9f8fe8a7ab4ede077ec51098cff1f7))
+
+
+
 ## [16.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.11.0...@ovh-ux/manager-web@16.11.1) (2022-05-05)
 
 

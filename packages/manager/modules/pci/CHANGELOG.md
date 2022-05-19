@@ -1,3 +1,13 @@
+## [5.75.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.75.2...@ovh-ux/manager-pci@5.75.3) (2022-05-19)
+
+
+### Bug Fixes
+
+* fix redirect not working anymore ([#6974](https://github.com/ovh/manager/issues/6974)) ([3767c26](https://github.com/ovh/manager/commit/3767c269a4c5af07554288153e9d6cedf395c2e8))
+* remove unused translations [CDS] ([bf30200](https://github.com/ovh/manager/commit/bf30200e702669bc51c4f7411aad8a3ab44aa3d9))
+
+
+
 ## [5.75.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.75.1...@ovh-ux/manager-pci@5.75.2) (2022-05-16)
 
 

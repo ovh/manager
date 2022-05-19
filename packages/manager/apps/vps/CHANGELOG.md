@@ -1,3 +1,12 @@
+## [1.7.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.7.7...@ovh-ux/manager-vps-app@1.7.8) (2022-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+
+
+
 ## [1.7.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.7.6...@ovh-ux/manager-vps-app@1.7.7) (2022-03-24)
 
 
