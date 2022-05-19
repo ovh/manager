@@ -1,3 +1,4 @@
+import clone from 'lodash/clone';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
@@ -16,6 +17,7 @@ export default class PrivateDatabaseStateCtrl {
     Hosting,
     Navigator,
     OomService,
+    CpuThrottleService,
     PrivateDatabase,
     userLink,
     WucUser,
@@ -30,6 +32,7 @@ export default class PrivateDatabaseStateCtrl {
     this.hostingService = Hosting;
     this.navigatorService = Navigator;
     this.oomService = OomService;
+    this.cpuThrottleService = CpuThrottleService;
     this.privateDatabaseService = PrivateDatabase;
     this.canOrderRam = false;
     this.userLink = userLink;
@@ -52,8 +55,14 @@ export default class PrivateDatabaseStateCtrl {
       nbOomError: 4,
     };
 
+    this.database.cpuThrottle = {
+      criticalPercentage: 25,
+      nbHoursCpuThrottle: 24,
+    };
+
     if (!this.isExpired) {
       this.getHostingsLinked();
+      this.getCpuThrottleList();
       this.getOomList();
     }
 
@@ -71,6 +80,55 @@ export default class PrivateDatabaseStateCtrl {
     const resUnit = this.$translate.instant(`unit_size_${res.symbol}`);
 
     return `${res.value} ${resUnit}`;
+  }
+
+  getCpuThrottleList() {
+    return this.cpuThrottleService
+      .getCpuThrottleList(this.productId)
+      .then((cpuThrottleList) => {
+        this.database.cpuThrottle.list = cpuThrottleList;
+
+        const periodDate = moment().subtract(
+          this.database.cpuThrottle.nbHoursCpuThrottle,
+          'hours',
+        );
+        const cpuThrottleDuringLastPeriod = cpuThrottleList.filter(
+          (item) => item.endDate === null || moment(item.endDate) >= periodDate,
+        );
+
+        if (cpuThrottleDuringLastPeriod.length === 0) {
+          this.database.cpuThrottle.percentage = 0;
+        } else {
+          const cpuThrottleDurations = cpuThrottleDuringLastPeriod.map(
+            (original) => {
+              const item = clone(original);
+              if (moment(item.startDate) <= periodDate) {
+                item.startDate = periodDate;
+              }
+              if (item.endDate === null) {
+                item.endDate = moment();
+              }
+              return moment.duration(
+                moment(item.endDate).diff(moment(item.startDate)),
+              );
+            },
+          );
+
+          const cpuThrottleTotalDuration = cpuThrottleDurations.reduce(
+            (result, currentValue) => result.add(currentValue),
+          );
+
+          const periodDuration = moment
+            .duration(this.database.cpuThrottle.nbHoursCpuThrottle, 'hours')
+            .asSeconds();
+
+          this.database.cpuThrottle.percentage = Math.floor(
+            (cpuThrottleTotalDuration.asSeconds() / periodDuration) * 100,
+          );
+        }
+
+        return cpuThrottleList;
+      });
   }
 
   getOomList() {
@@ -176,6 +234,12 @@ export default class PrivateDatabaseStateCtrl {
         passwordType: 'ftp',
       },
     );
+  }
+
+  goToCpuThrottle() {
+    this.$scope.setAction('cpu-throttle/private-database-cpu-throttle', {
+      database: this.$scope.database,
+    });
   }
 
   goToOom() {

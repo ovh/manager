@@ -1178,7 +1178,7 @@ const constants = {
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/ca/en/vps/faq-help.xml',
         dedicatedOrder: 'https://us.ovhcloud.com/bare-metal/prices',
-        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en/',
+        dedicatedEcoRangeOrder: 'https://eco.us.ovhcloud.com/',
         vrackOrder:
           "https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
         cloudProjectOrder:

@@ -22,6 +22,8 @@ import './database/version/update/private-database-database-version-update.contr
 import './logs/private-database-logs.controller';
 import './logs/private-database-logs.service';
 import './metrics/private-database-metrics.controller';
+import './cpu-throttle/private-database-cpu-throttle.controller';
+import './cpu-throttle/private-database-cpu-throttle.service';
 import './oom/private-database-oom.controller';
 import './oom/private-database-oom.service';
 import './state/private-database-state.controller';

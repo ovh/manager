@@ -56,10 +56,13 @@ export default /* @ngInject */ ($stateProvider) => {
           namespaceId,
         }),
       goToContainer: /* @ngInject */ ($state, projectId, namespace) => () =>
-        $state.go('pci.projects.project.storages.object-storage.object', {
-          projectId,
-          containerId: namespace.containerId,
-        }),
+        $state.go(
+          'pci.projects.project.storages.object-storage.objects.object',
+          {
+            projectId,
+            containerId: namespace.containerId,
+          },
+        ),
       deleteNamespace: /* @ngInject */ ($state, projectId, namespaceId) => () =>
         $state.go('pci.projects.project.serving.delete', {
           projectId,
