@@ -5,9 +5,7 @@ import { useShell } from '@/context';
 import useContainer from '@/core/container';
 
 import style from './style.module.scss';
-
-type ComponentProps<T> = React.PropsWithChildren<T> &
-  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+import { ComponentProps } from './utils';
 
 interface StaticLinkProps {
   count?: number;
