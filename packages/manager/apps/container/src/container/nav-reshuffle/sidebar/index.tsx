@@ -283,40 +283,39 @@ function Sidebar(): JSX.Element {
           aria-hidden="true"
         />
       </a>
+
+      <div className={style.sidebar_action}>
+        <a
+          onClick={() =>
+            trackingPlugin.trackClick({
+              name: 'navbar_v2_cta_add_a_service',
+              type: 'action',
+            })
+          }
+          href={navigationPlugin.getURL('hub', '#/catalog')}
+        >
+          <span
+            className={`oui-icon oui-icon-plus ${style.sidebar_action_icon}`}
+            aria-hidden="true"
+          ></span>
+          <span>{t('sidebar_service_add')}</span>
+        </a>
+      </div>
+      {currentNavigationNode !== navigationTree && (
+        <a
+          className={style.sidebar_back_btn}
+          onClick={() => setCurrentNavigationNode(currentNavigationNode.parent)}
+        >
+          <span
+            className="oui-icon oui-icon-chevron-left"
+            aria-hidden="true"
+          ></span>
+          {t('sidebar_back')}
+        </a>
+      )}
       <div className={style.sidebar_menu}>
-        <div className={style.sidebar_action}>
-          <a
-            onClick={() =>
-              trackingPlugin.trackClick({
-                name: 'navbar_v2_cta_add_a_service',
-                type: 'action',
-              })
-            }
-            href={navigationPlugin.getURL('hub', '#/catalog')}
-          >
-            <span
-              className={`oui-icon oui-icon-plus ${style.sidebar_action_icon}`}
-              aria-hidden="true"
-            ></span>
-            <span>{t('sidebar_service_add')}</span>
-          </a>
-        </div>
         {(servicesCount || betaVersion === 1) && (
           <ul>
-            {currentNavigationNode !== navigationTree && (
-              <a
-                className={style.sidebar_back_btn}
-                onClick={() =>
-                  setCurrentNavigationNode(currentNavigationNode.parent)
-                }
-              >
-                <span
-                  className="oui-icon oui-icon-chevron-left"
-                  aria-hidden="true"
-                ></span>
-                {t('sidebar_back')}
-              </a>
-            )}
             <li>
               <h2>{t(currentNavigationNode.translation)}</h2>
             </li>
