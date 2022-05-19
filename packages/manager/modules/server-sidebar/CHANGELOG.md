@@ -1,3 +1,14 @@
+## [3.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.1...@ovh-ux/manager-server-sidebar@3.21.2) (2022-05-19)
+
+
+### Bug Fixes
+
+* **dedicated.server:** change url ecorange order for us ([#6830](https://github.com/ovh/manager/issues/6830)) ([4affaeb](https://github.com/ovh/manager/commit/4affaeb41861632fda5316b23a735477d95010af))
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+* **i18n:** add missing translations [CDS 1616] ([a183886](https://github.com/ovh/manager/commit/a183886ef4a9a7f41b79477982b182cd2716eb30))
+
+
+
 ## [3.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.0...@ovh-ux/manager-server-sidebar@3.21.1) (2022-05-04)
 
 

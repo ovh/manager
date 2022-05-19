@@ -1,3 +1,12 @@
+# [0.13.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.8...@ovh-ux/manager-billing@0.13.0-alpha.9) (2022-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+
+
+
 # [0.13.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.7...@ovh-ux/manager-billing@0.13.0-alpha.8) (2022-05-16)
 
 

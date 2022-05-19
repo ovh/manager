@@ -1,3 +1,12 @@
+## [3.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.2...@ovh-ux/manager-exchange@3.4.3) (2022-05-19)
+
+
+### Bug Fixes
+
+* **web.exchange:** fix mobile and phone field inversed ([#7036](https://github.com/ovh/manager/issues/7036)) ([d166d18](https://github.com/ovh/manager/commit/d166d1800e699d1d17e8264960bb6eefbb53d6b4))
+
+
+
 ## [3.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.1...@ovh-ux/manager-exchange@3.4.2) (2022-05-04)
 
 

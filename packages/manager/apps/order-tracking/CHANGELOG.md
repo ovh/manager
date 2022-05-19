@@ -1,3 +1,12 @@
+## [2.4.6](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.4.5...@ovh-ux/order-tracking-app@2.4.6) (2022-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+
+
+
 ## [2.4.5](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.4.4...@ovh-ux/order-tracking-app@2.4.5) (2022-03-24)
 
 

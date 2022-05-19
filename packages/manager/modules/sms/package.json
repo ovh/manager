@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms",
-  "version": "8.7.4",
+  "version": "8.7.5",
   "private": true,
   "description": "SMS product.",
   "repository": {
@@ -29,7 +29,7 @@
     "@ovh-ux/ng-at-internet": "^5.9.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.1",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.4",
-    "@ovh-ux/ng-ovh-contracts": "^4.0.7",
+    "@ovh-ux/ng-ovh-contracts": "^4.1.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^6.0.0 || ^7.0.0",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.4",
