@@ -30,10 +30,8 @@
     <div class="col-lg-9">
         <form novalidate>
             <!-- Step 1 -->
-            <h2 id="engine">
-                {{:: 'pci_database_add_step1_title' | translate }}
-            </h2>
-            <p>{{:: 'pci_database_add_step1_description' | translate }}</p>
+            <h2 id="engine" data-translate="pci_database_add_step1_title"></h2>
+            <p data-translate="pci_database_add_step1_description"></p>
             <database-engines-list
                 data-engines="$ctrl.engines"
                 data-selected-engine="$ctrl.model.engine"
@@ -58,9 +56,7 @@
             ></pci-project-regions-list>
 
             <!-- Step 4 -->
-            <h2 id="flavor">
-                {{:: 'pci_database_add_step4_title' | translate }}
-            </h2>
+            <h2 id="flavor" data-translate="pci_database_add_step4_title"></h2>
             <oui-field
                 data-label="{{ ::'pci_database_add_nodes_count' | translate }}"
             >
@@ -415,7 +411,7 @@
                                 ></span>
                                 <span
                                     data-ng-if="$ctrl.model.subnet.id.length !== 0"
-                                    ng_bind="$ctrl.model.subnet.name"
+                                    data-ng-bind="$ctrl.model.subnet.name"
                                 ></span>
                                 <span
                                     class="oui-color-ae-500"
