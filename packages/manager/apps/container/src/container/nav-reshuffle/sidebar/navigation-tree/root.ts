@@ -68,6 +68,7 @@ export default {
             application: 'dedicated',
             hash: '#/billing/autorenew',
           },
+          idAttr: 'sidebar-link-services',
           count: false,
         },
         {

@@ -11,4 +11,6 @@ export type Node = {
   idAttr?: string;
   hideIfEmpty?: boolean;
   forceVisibility?: boolean;
+  url?: string;
+  isExternal?: boolean;
 };
