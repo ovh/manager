@@ -1,3 +1,12 @@
+## [3.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.2...@ovh-ux/manager-server-sidebar@3.21.3) (2022-05-19)
+
+
+### Bug Fixes
+
+* **sidebar:** list standalone xdsl lines ([#7174](https://github.com/ovh/manager/issues/7174)) ([332317a](https://github.com/ovh/manager/commit/332317ad3eb493a2207e22fc496459487ea9a4f0))
+
+
+
 ## [3.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.1...@ovh-ux/manager-server-sidebar@3.21.2) (2022-05-19)
 
 
