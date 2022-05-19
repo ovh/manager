@@ -106,6 +106,19 @@ export const PACK_CONFIG = {
         },
       ],
     },
+    {
+      path: '/xdsl/standalone',
+      app: [TELECOM],
+      stateParams: ['accessType', 'accessName'],
+      types: [
+        {
+          path: '/xdsl/:accessType/xdsl/:accessName/lines',
+          state: 'telecom.packs.pack.xdsl.line',
+          stateParams: ['packName', 'serviceName', 'number'],
+          app: [TELECOM],
+        },
+      ],
+    },
   ],
   icon: 'ovh-font ovh-font-telecom-ethernet',
   app: [TELECOM],
