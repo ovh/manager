@@ -11,5 +11,6 @@
   "pci_projects_project_pay_bill": "Pay my bill",
   "pci_projects_project_view": "View project",
   "pci_projects_create_project": "Create a new project",
-  "pci_projects_project_delete": "Delete"
+  "pci_projects_project_delete": "Delete",
+  "pci_projects_redirect_to_dedicated_page": "To continue, please select an existing project or create a new project."
 }
