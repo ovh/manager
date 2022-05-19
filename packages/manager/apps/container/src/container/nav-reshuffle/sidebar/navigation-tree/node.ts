@@ -9,4 +9,6 @@ export type Node = {
   features?: string[];
   separator?: boolean;
   idAttr?: string;
+  hideIfEmpty?: boolean;
+  forceVisibility?: boolean;
 };
