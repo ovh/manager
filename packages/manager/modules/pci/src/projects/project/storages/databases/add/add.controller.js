@@ -15,6 +15,7 @@ export default class {
   constructor(
     $translate,
     $timeout,
+    $document,
     $anchorScroll,
     CucCloudMessage,
     DatabaseService,
@@ -22,6 +23,7 @@ export default class {
   ) {
     this.$translate = $translate;
     this.$timeout = $timeout;
+    this.$document = $document;
     this.$anchorScroll = $anchorScroll;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
@@ -60,7 +62,7 @@ export default class {
     this.updateEngine(this.model.engine);
 
     // If we find the partentElement, we can enable smooth scrolling. Otherwise, fallback to $anchor
-    const scrollParentElement = document.getElementsByClassName(
+    const scrollParentElement = this.$document[0].getElementsByClassName(
       'pci-project-content',
     )[0];
     this.scrollToOptions = scrollParentElement

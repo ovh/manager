@@ -41,9 +41,7 @@
             ></database-engines-list>
 
             <!-- Step 2 -->
-            <h2 id="plan">
-                {{:: 'pci_database_add_step2_title' | translate }}
-            </h2>
+            <h2 id="plan" data-translate="pci_database_add_step2_title"></h2>
             <database-plans-list
                 data-plans="$ctrl.model.engine.selectedVersion.plans"
                 data-selected-plan="$ctrl.model.plan"
@@ -52,9 +50,7 @@
             ></database-plans-list>
 
             <!-- Step 3 -->
-            <h2 id="region">
-                {{:: 'pci_database_add_step3_title' | translate }}
-            </h2>
+            <h2 id="region" data-translate="pci_database_add_step3_title"></h2>
             <pci-project-regions-list
                 data-regions="$ctrl.model.plan.regions"
                 data-selected-region="$ctrl.model.region"
@@ -87,9 +83,7 @@
             ></database-flavors-list>
 
             <!-- Step 5 -->
-            <h2 id="network">
-                {{:: 'pci_database_add_step5_title' | translate }}
-            </h2>
+            <h2 id="network" data-translate="pci_database_add_step5_title"></h2>
             <oui-message
                 data-ng-if="!($ctrl.model.flavor.supportsPublicNetwork && $ctrl.model.flavor.supportsPrivateNetwork)"
                 data-type="info"
@@ -205,7 +199,7 @@
             <div
                 data-ng-if="$ctrl.model.engine.selectedVersion.status === 'BETA'"
             >
-                <h2>{{:: 'pci_database_add_step6_title' | translate }}</h2>
+                <h2 data-translate="pci_database_add_step6_title"></h2>
                 <div class="mb-3">
                     <pci-project-lab-agreements
                         data-lab="$ctrl.lab"
@@ -229,9 +223,8 @@
                                 data-translate="pci_database_add_spec_name"
                             ></strong
                             ><span
-                                ng-bind="$ctrl.model.name"
+                                data-ng-bind="$ctrl.model.name"
                                 class="ml-2"
-                                oui-popover="lorem ipsum"
                             ></span>
                             <button
                                 type="button"
@@ -245,18 +238,18 @@
                             <div class="mr-2">
                                 <a
                                     href=""
-                                    ng-click="$ctrl.scrollTo('engine')"
+                                    data-ng-click="$ctrl.scrollTo('engine')"
                                     data-translate="pci_database_add_spec_engine"
                                 ></a>
                                 <span
-                                    ng-bind="$ctrl.model.engine.getLabel()"
+                                    data-ng-bind="$ctrl.model.engine.getLabel()"
                                 ></span>
                             </div>
                             <img
-                                ng-src="{{$ctrl.ENGINE_LOGOS[$ctrl.model.engine.name]}}"
+                                data-ng-src="{{$ctrl.ENGINE_LOGOS[$ctrl.model.engine.name]}}"
                                 width="60px"
                                 height="40px"
-                                alt="engine logo"
+                                alt="{{:: 'pci_database_add_spec_logo_alt' | translate}}"
                             />
                         </div>
                         <div class="d-flex flex-column mb-2 pl-2">
@@ -275,12 +268,12 @@
                         <div class="mt-2">
                             <a
                                 href=""
-                                ng-click="$ctrl.scrollTo('plan')"
+                                data-ng-click="$ctrl.scrollTo('plan')"
                                 data-translate="pci_database_add_spec_plan"
                             ></a>
                             <span
                                 class="text-capitalize"
-                                ng-bind="$ctrl.model.plan.name"
+                                data-ng-bind="$ctrl.model.plan.name"
                             ></span>
                         </div>
                         <div class="d-flex flex-column mb-2 pl-2">
@@ -304,7 +297,7 @@
                         <div class="mt-2">
                             <a
                                 href=""
-                                ng-click="$ctrl.scrollTo('region')"
+                                data-ng-click="$ctrl.scrollTo('region')"
                                 data-translate="pci_database_add_spec_region"
                             ></a>
                             <span
@@ -318,12 +311,12 @@
                         <div class="mt-2">
                             <a
                                 href=""
-                                ng-click="$ctrl.scrollTo('flavor')"
+                                data-ng-click="$ctrl.scrollTo('flavor')"
                                 data-translate="pci_database_add_spec_flavor"
                             ></a>
                             <span
                                 class="text-capitalize"
-                                ng-bind="$ctrl.model.flavor.name"
+                                data-ng-bind="$ctrl.model.flavor.name"
                             ></span>
                         </div>
                         <div class="d-flex flex-column mb-2 pl-2">
@@ -353,20 +346,20 @@
                             </div>
                             <div
                                 class="d-flex"
-                                ng-if="$ctrl.model.flavor.maxDiskSize > 0"
+                                data-ng-if="$ctrl.model.flavor.maxDiskSize > 0"
                             >
                                 <span
                                     class="oui-icon oui-icon-hardware-ssd_concept mr-2"
                                 ></span>
                                 <span
-                                    ng-if="$ctrl.model.flavor.minDiskSize === $ctrl.model.flavor.maxDiskSize"
+                                    data-ng-if="$ctrl.model.flavor.minDiskSize === $ctrl.model.flavor.maxDiskSize"
                                     data-translate="pci_database_add_spec_flavor_storage"
                                     data-translate-values="{
                                         storageSize: ($ctrl.model.flavor.minDiskSize | bytes:2:false:'GB')
                                     }"
                                 ></span>
                                 <span
-                                    ng-if="$ctrl.model.flavor.minDiskSize !== $ctrl.model.flavor.maxDiskSize"
+                                    data-ng-if="$ctrl.model.flavor.minDiskSize !== $ctrl.model.flavor.maxDiskSize"
                                     data-translate="pci_database_add_spec_flavor_storage_range"
                                     data-translate-values="{
                                         storageMinSize: ($ctrl.model.flavor.minDiskSize | bytes:2:false:'GB'),
@@ -378,21 +371,21 @@
                         <div class="mt-2">
                             <a
                                 href=""
-                                ng-click="$ctrl.scrollTo('network')"
+                                data-ng-click="$ctrl.scrollTo('network')"
                                 data-translate="pci_database_add_spec_network"
                             ></a>
                             <span
-                                ng-if="$ctrl.model.usePrivateNetwork"
+                                data-ng-if="$ctrl.model.usePrivateNetwork"
                                 data-translate="pci_database_add_network_mode_private"
                             ></span>
                             <span
-                                ng-if="!$ctrl.model.usePrivateNetwork"
+                                data-ng-if="!$ctrl.model.usePrivateNetwork"
                                 data-translate="pci_database_add_network_mode_public"
                             ></span>
                         </div>
                         <div
                             class="d-flex flex-column mb-2 pl-2"
-                            ng-if="$ctrl.model.usePrivateNetwork "
+                            data-ng-if="$ctrl.model.usePrivateNetwork "
                         >
                             <div class="d-flex">
                                 <span
@@ -403,12 +396,12 @@
                                     class="mr-2"
                                 ></span>
                                 <span
-                                    ng-if="$ctrl.model.privateNetwork.id.length !== 0"
-                                    ng-bind="$ctrl.model.privateNetwork.name"
+                                    data-ng-if="$ctrl.model.privateNetwork.id.length !== 0"
+                                    data-ng-bind="$ctrl.model.privateNetwork.name"
                                 ></span>
                                 <span
                                     class="oui-color-ae-500"
-                                    ng-if="$ctrl.model.privateNetwork.id.length === 0"
+                                    data-ng-if="$ctrl.model.privateNetwork.id.length === 0"
                                     data-translate="pci_database_add_spec_network_none"
                                 ></span>
                             </div>
@@ -421,12 +414,12 @@
                                     class="mr-2"
                                 ></span>
                                 <span
-                                    ng-if="$ctrl.model.subnet.id.length !== 0"
+                                    data-ng-if="$ctrl.model.subnet.id.length !== 0"
                                     ng_bind="$ctrl.model.subnet.name"
                                 ></span>
                                 <span
                                     class="oui-color-ae-500"
-                                    ng-if="!$ctrl.model.subnet.id || $ctrl.model.subnet.id.length === 0"
+                                    data-ng-if="!$ctrl.model.subnet.id || $ctrl.model.subnet.id.length === 0"
                                     data-translate="pci_database_add_spec_network_none"
                                 ></span>
                             </div>
@@ -467,7 +460,7 @@
                     disabled="!$ctrl.isNetworkSelected() || $ctrl.processingOrder"
                 >
                     <span
-                        ng-if="!$ctrl.processingOrder"
+                        data-ng-if="!$ctrl.processingOrder"
                         data-translate="pci_database_add_spec_order"
                     ></span>
                     <div
