@@ -27,7 +27,7 @@ export default {
         application: 'sunrise',
       },
       count: false,
-      feature: 'sunrise',
+      features: ['sunrise'],
       separator: true,
     },
     {
@@ -105,7 +105,7 @@ export default {
       url: 'https://marketplace.ovhcloud.com/',
       isExternal: true,
       count: false,
-      feature: 'marketplace',
+      features: ['marketplace'],
     },
   ],
 };
