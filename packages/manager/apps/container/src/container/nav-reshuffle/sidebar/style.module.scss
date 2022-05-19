@@ -13,7 +13,7 @@
   color: white;
 
   &_menu {
-    overflow: scroll;
+    overflow-y: auto;
     flex: 1;
   }
 
