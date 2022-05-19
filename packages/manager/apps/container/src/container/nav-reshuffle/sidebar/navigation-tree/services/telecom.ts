@@ -78,5 +78,10 @@ export default {
         hash: '#/task',
       },
     },
+    {
+      id: 'telecom-v4',
+      translation: 'sidebar_telecom_v4',
+      url: 'https://www.ovh.com/managerv3/telephony2-main.pl',
+    },
   ],
 };
