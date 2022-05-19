@@ -92,27 +92,9 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   id = '',
 }: SidebarLinkProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
-  const { betaVersion } = useContainer();
-
-  const shouldHideElement = () => {
-    if (node.hideIfEmpty && !node.count) {
-      return true;
-    }
-    if (node.forceVisibility) {
-      return false;
-    }
-    if (betaVersion === 2) {
-      if (node.id === 'services') return false;
-      if (node.count === false) return false;
-      if (node.hideIfEmpty === false) return false;
-      return !count;
-    }
-    return false;
-  };
 
   return !node.children && (node.url || node.routing) ? (
     <StaticLink
-      className={shouldHideElement() ? style.sidebar_hidden : ''}
       onClick={onClick}
       count={count}
       node={node}
@@ -120,11 +102,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       id={id}
     />
   ) : (
-    <a
-      className={shouldHideElement() ? style.sidebar_hidden : ''}
-      onClick={onClick}
-      id={id}
-    >
+    <a onClick={onClick} id={id}>
       {t(node.translation)}
       {node.children ? (
         <span

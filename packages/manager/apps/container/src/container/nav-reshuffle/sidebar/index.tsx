@@ -44,6 +44,23 @@ function Sidebar(): JSX.Element {
 
   const logoLink = navigationPlugin.getURL('hub', '#/');
 
+  const shouldHideElement = (node: Node) => {
+    if (betaVersion === 2) {
+      if (node.id === 'services') return false;
+      if (node.count === false) return false;
+      if (node.hideIfEmpty === false) return false;
+      return !node.count;
+    }
+    if (node.hideIfEmpty && !node.count) {
+      return true;
+    }
+    if (node.forceVisibility) {
+      return false;
+    }
+
+    return false;
+  };
+
   const menuClickHandler = (node) => {
     if (node.children) {
       setCurrentNavigationNode(node);
@@ -371,16 +388,17 @@ function Sidebar(): JSX.Element {
                   node === highlightedNode ? style.sidebar_selected : ''
                 }
               >
-                <SidebarLink
-                  node={node}
-                  count={count}
-                  linkParams={{
-                    projectId: selectedPciProject?.project_id,
-                  }}
-                  onClick={() => menuClickHandler(node)}
-                  id={node.idAttr}
-                />
-                {node.separator && <hr />}
+                {!shouldHideElement(node) && (
+                  <SidebarLink
+                    node={node}
+                    count={count}
+                    linkParams={{
+                      projectId: selectedPciProject?.project_id,
+                    }}
+                    onClick={() => menuClickHandler(node)}
+                    id={node.idAttr}
+                  />
+                )}
               </li>
             ))}
           </ul>
