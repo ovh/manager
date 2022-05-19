@@ -102,11 +102,6 @@ export default /* @ngInject */ ($stateProvider) => {
         return null;
       },
 
-      summary: /* @ngInject */ (cart, getSummary) => getSummary(),
-
-      getSummary: /* @ngInject */ (cart, orderCart) => () =>
-        orderCart.getSummary(cart.cartId),
-
       trackClick: /* @ngInject */ (atInternet) => (hit) => {
         atInternet.trackClick({
           name: hit,

@@ -1,6 +1,5 @@
 import JSURL from 'jsurl';
 import filter from 'lodash/filter';
-import find from 'lodash/find';
 import get from 'lodash/get';
 import isNumber from 'lodash/isNumber';
 import min from 'lodash/min';
@@ -15,6 +14,7 @@ export default class FailoverIpController {
   }
 
   $onInit() {
+    this.orderRegion = null;
     this.ip = {
       quantity: 1,
       instance: null,
@@ -22,10 +22,12 @@ export default class FailoverIpController {
       product: null,
     };
 
-    const [product] = this.products;
-    const configurations = get(product, 'details.product.configurations');
-
-    this.REGIONS = get(find(configurations, { name: 'country' }), 'values');
+    this.productsList = this.products.filter(
+      (product, index, products) =>
+        products.findIndex(
+          (p) => p.details.product.name === product.details.product.name,
+        ) === index,
+    );
   }
 
   static getMaximumQuantity(product) {
@@ -41,14 +43,34 @@ export default class FailoverIpController {
     );
   }
 
-  onProductChange(product) {
-    const configurations = get(product, 'details.product.configurations');
-    this.REGIONS = get(find(configurations, { name: 'country' }), 'values');
+  onInstanceSelect(instance) {
+    this.ip.region = null;
+    this.orderRegion = this.availableRegionsForOrder.find(
+      (region) => region.name === instance.region,
+    );
+
+    this.REGIONS = this.products
+      .flatMap((product) => product?.details?.product?.configurations)
+      .filter(({ name }) => name === 'country')
+      .flatMap(({ values }) => values)
+      .filter((country) =>
+        this.orderRegion.ipCountries.some(
+          (ipCountry) => country === ipCountry.toUpperCase(),
+        ),
+      )
+      .sort();
   }
 
   order() {
+    const planCode = this.products.find((product) =>
+      product.details.product.configurations
+        .filter(({ name }) => name === 'country')
+        .flatMap(({ values }) => values)
+        .includes(this.ip.region),
+    )?.planCode;
+
     const order = {
-      planCode: this.ip.product.planCode,
+      planCode,
       productId: 'ip',
       pricingMode: 'default',
       quantity: this.ip.quantity,

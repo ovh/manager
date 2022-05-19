@@ -46,6 +46,7 @@
                     placeholder="{{:: ('pci_projects_new_voucher_form_field_placeholder' | translate)}}"
                     data-ng-model="$ctrl.model.voucher.value"
                     data-ng-change="$ctrl.onVoucherInputChange()"
+                    data-ng-blur="$ctrl.onVoucherInputLeave()"
                     data-ng-disabled="$ctrl.loading.check || $ctrl.loading.reset || $ctrl.globalLoading.finalize"
                     data-ng-readonly="$ctrl.model.voucher.value && $ctrl.model.voucher.valid"
                 />
