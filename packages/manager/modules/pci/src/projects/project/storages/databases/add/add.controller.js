@@ -14,19 +14,20 @@ export default class {
   /* @ngInject */
   constructor(
     $translate,
+    $timeout,
+    $anchorScroll,
     CucCloudMessage,
     DatabaseService,
     ovhManagerRegionService,
-    $scope,
-    $timeout,
   ) {
     this.$translate = $translate;
+    this.$timeout = $timeout;
+    this.$anchorScroll = $anchorScroll;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
-    this.ENGINE_LOGOS = ENGINE_LOGOS;
     this.ovhManagerRegionService = ovhManagerRegionService;
+    this.ENGINE_LOGOS = ENGINE_LOGOS;
     this.orderKeys = ORDER_KEYS;
-    this.$timeout = $timeout;
     this.nameGenerator = nameGenerator;
   }
 
@@ -56,18 +57,29 @@ export default class {
       API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
     this.trackDatabases('configuration', 'page');
 
-    this.onEngineChanged(this.model.engine);
+    this.updateEngine(this.model.engine);
 
-    this.scrollToOptions = {
-      element: document.getElementsByClassName('pci-project-content')[0],
-      offset: 0,
-      horizontal: false,
-    };
+    // If we find the partentElement, we can enable smooth scrolling. Otherwise, fallback to $anchor
+    const scrollParentElement = document.getElementsByClassName(
+      'pci-project-content',
+    )[0];
+    this.scrollToOptions = scrollParentElement
+      ? {
+          element: scrollParentElement,
+          offset: 0,
+          horizontal: false,
+        }
+      : null;
   }
 
   scrollTo(id) {
     this.trackDatabases(`databases_config_page::basket::anchors::${id}`);
-    animateScrollTo(document.getElementById(id), this.scrollToOptions);
+    // If we have the scrollToOptions, we can use the smooth scrolling, otherwise we use $anchor
+    if (this.scrollToOptions) {
+      animateScrollTo(document.getElementById(id), this.scrollToOptions);
+    } else {
+      this.$anchorScroll(id);
+    }
   }
 
   acceptLab(accepted) {
@@ -130,20 +142,20 @@ export default class {
     this.getOrderData();
   }
 
-  // bug in oui-numeric: on-change event is fired before model is updated
   onNodeNumberChange() {
+    // delay order data computation so it has the last value of input number
     this.$timeout(() => this.getOrderData());
   }
 
   getNodesSpecTranslation() {
+    const { nodesCount, maxNodes } = this.model.plan;
     const prefix = 'pci_database_add_spec_nodes';
-    const range =
-      this.model.plan.nodesCount === this.model.plan.maxNodes ? '' : '_range';
-    const single = this.model.plan.nodesCount === 1 ? '_single' : '';
+    const range = nodesCount === maxNodes ? '' : '_range';
+    const single = nodesCount === 1 ? '_single' : '';
     const translateKey = `${prefix}${range}${single}`;
     return this.$translate.instant(translateKey, {
-      min: this.model.plan.nodesCount,
-      max: this.model.plan.maxNodes,
+      min: nodesCount,
+      max: maxNodes,
     });
   }
 
@@ -175,25 +187,41 @@ export default class {
   }
 
   onEngineChanged(engine) {
-    this.model.engine = engine;
-    this.model.plan = this.getSyncPlan(engine);
-    this.onPlanChanged(this.model.plan);
-    this.model.name = this.nameGenerator(`${this.model.engine.name}-`);
+    this.updateEngine(engine);
   }
 
   onPlanChanged(plan) {
-    this.model.plan = plan;
-    this.model.region = this.getSyncRegion(plan);
-    this.onRegionChanged(this.model.region);
+    this.updatePlan(plan);
   }
 
   onRegionChanged(region) {
-    this.model.region = region;
-    this.model.flavor = this.getSyncFlavor(region);
-    this.onFlavorChanged(this.model.flavor);
+    this.updateRegion(region);
   }
 
   onFlavorChanged(flavor) {
+    this.updateFlavor(flavor);
+  }
+
+  updateEngine(engine) {
+    this.model.engine = engine;
+    this.model.plan = this.getSyncPlan(engine);
+    this.model.name = this.nameGenerator(`${engine.name}-`);
+    this.updatePlan(this.model.plan);
+  }
+
+  updatePlan(plan) {
+    this.model.plan = plan;
+    this.model.region = this.getSyncRegion(plan);
+    this.updateRegion(this.model.region);
+  }
+
+  updateRegion(region) {
+    this.model.region = region;
+    this.model.flavor = this.getSyncFlavor(region);
+    this.updateFlavor(this.model.flavor);
+  }
+
+  updateFlavor(flavor) {
     this.model.flavor = flavor;
 
     if (!flavor.supportsPrivateNetwork) {

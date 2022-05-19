@@ -12,6 +12,6 @@ export default class CommandCtrl {
   }
 
   cancel() {
-    this.goBack();
+    return this.goBack();
   }
 }
