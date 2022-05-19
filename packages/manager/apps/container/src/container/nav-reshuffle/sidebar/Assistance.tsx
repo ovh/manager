@@ -8,14 +8,18 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import SidebarLink from './SidebarLink';
 import style from './style.module.scss';
+import { ComponentProps, findPathToNode } from './utils';
 
-type Props = {
+interface Props {
   containerURL: { appId: string; appHash: string };
-};
+}
 
-function AssistanceSidebar({ containerURL }: Props): JSX.Element {
+const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
+  containerURL,
+}: Props): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const { shell } = useContext(ApplicationContext);
+
   const environment = shell
     .getPluginManager()
     .getPlugin('environment')
@@ -178,6 +182,6 @@ function AssistanceSidebar({ containerURL }: Props): JSX.Element {
       )}
     </ul>
   );
-}
+};
 
 export default AssistanceSidebar;

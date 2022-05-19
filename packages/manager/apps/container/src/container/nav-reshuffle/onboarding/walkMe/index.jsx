@@ -6,6 +6,7 @@ import { debounce } from 'lodash-es';
 import popoverStyle from '@/container/common/popover.module.scss';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { ONBOARDING_STATUS_ENUM } from '@/core/onboarding';
+import { findNodeById } from '@/container/nav-reshuffle/sidebar/utils';
 import { useShell } from '@/context';
 
 import style from './style.module.scss';
@@ -33,13 +34,21 @@ export const OnboardingWalkMe = () => {
     openNavigationSidebar,
     closeNavigationSidebar,
     onboardingOpenedState,
+    currentNavigationNode,
+    navigationTree,
+    setCurrentNavigationNode,
   } = useProductNavReshuffle();
+  const [currentUserNode, setCurrentUserNode] = useState({});
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(
     window.innerWidth < MOBILE_WIDTH_RESOLUTION,
   );
+
+  useEffect(() => {
+    setCurrentUserNode({ ...currentNavigationNode });
+  }, []);
 
   const commonTrackingOptions = {
     campaignId: '[tooltip-manager]',
@@ -49,6 +58,7 @@ export const OnboardingWalkMe = () => {
         ? '[new_visitor]'
         : '[returning_visitor]',
   };
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const steps = [
     {
@@ -65,13 +75,14 @@ export const OnboardingWalkMe = () => {
       title: t('onboarding_walkme_popover_step2_title'),
       content: t('onboarding_walkme_popover_step2_content'),
       trackingVariant: 'my_profile',
-      onBeforeEnter: () => {
+      onBeforeEnter: async () => {
         openAccountSidebar();
         const animationPromise = new Promise((resolve) => {
           setTimeout(() => {
             resolve();
           }, 150);
         });
+
         return animationPromise;
       },
     },
@@ -84,17 +95,23 @@ export const OnboardingWalkMe = () => {
       trackingVariant: 'my_payment_method',
     },
     {
-      selector: '#sidebar-link-services',
+      selector: 'services',
       placement: 'right-start',
       mobilePlacement: 'bottom-end',
       title: t('onboarding_walkme_popover_step4_title'),
       content: t('onboarding_walkme_popover_step4_content'),
       trackingVariant: 'my_services',
-      onBeforeEnter: () => {
+      onBeforeEnter: async () => {
         closeAccountSidebar();
+        const homeNode = findNodeById(navigationTree, 'home');
+        setCurrentNavigationNode(homeNode);
+
         if (isMobile) {
           openNavigationSidebar();
         }
+
+        // Waiting for DOM update
+        await delay(100);
       },
     },
     ...(!user.enterprise
@@ -106,6 +123,13 @@ export const OnboardingWalkMe = () => {
             title: t('onboarding_walkme_popover_step5_title'),
             content: t('onboarding_walkme_popover_step5_content'),
             trackingVariant: 'my_billing',
+            onBeforeEnter: async () => {
+              const homeNode = findNodeById(navigationTree, 'home');
+              setCurrentNavigationNode(homeNode);
+
+              // Waiting for DOM update
+              await delay(100);
+            },
           },
         ]
       : []),
@@ -142,22 +166,38 @@ export const OnboardingWalkMe = () => {
       setIsPopoverVisible(false);
       setCurrentStepIndex(currentStepIndex + 1);
     } else {
+      setCurrentNavigationNode(currentUserNode);
       onHideBtnClick(ONBOARDING_STATUS_ENUM.DONE);
     }
   };
 
   const calculateTargetBound = useCallback(() => {
     const currentStep = steps[currentStepIndex];
-    const targetElement = document.querySelector(currentStep.selector);
-    const targetPos = targetElement.getBoundingClientRect();
-    const el = stepElement.current;
+    const updatePos = (targetPos) => {
+      const el = stepElement.current;
 
-    const positionOffset = ELEMENT_OFFSET / 2;
+      const positionOffset = ELEMENT_OFFSET / 2;
 
-    el.style.top = `${targetPos.top - positionOffset}px`;
-    el.style.left = `${targetPos.left - positionOffset}px`;
-    el.style.width = `${targetPos.width + ELEMENT_OFFSET}px`;
-    el.style.height = `${targetPos.height + ELEMENT_OFFSET}px`;
+      el.style.top = `${targetPos.top - positionOffset}px`;
+      el.style.left = `${targetPos.left - positionOffset}px`;
+      el.style.width = `${targetPos.width + ELEMENT_OFFSET}px`;
+      el.style.height = `${targetPos.height + ELEMENT_OFFSET}px`;
+    };
+    let targetPos;
+    if (currentStep.selector === 'services') {
+      const elements = document.querySelectorAll('#menu li');
+      const range = new Range();
+
+      range.setStartBefore(elements[0]);
+      range.setEndAfter(elements[elements.length - 5]);
+
+      targetPos = range.getBoundingClientRect();
+      updatePos(targetPos);
+    } else {
+      const targetElement = document.querySelector(currentStep.selector);
+      targetPos = targetElement.getBoundingClientRect();
+      updatePos(targetPos);
+    }
   }, [currentStepIndex, isMobile]);
 
   const updatePopper = useCallback(

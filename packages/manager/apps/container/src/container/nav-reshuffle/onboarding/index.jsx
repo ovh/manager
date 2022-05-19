@@ -8,15 +8,13 @@ import OnboardingWalkMe from './walkMe';
 
 export const NavReshuffleOnboardingWidget = () => {
   const onboarding = useOnboarding();
-  const productNavReshuffle = useProductNavReshuffle();
+  const { onboardingOpenedState } = useProductNavReshuffle();
 
   const [isWalkMeVisible, setIsWalkMeVisible] = useState();
 
   useMemo(() => {
-    setIsWalkMeVisible(
-      onboarding.hasStarted(productNavReshuffle.onboardingOpenedState),
-    );
-  }, [productNavReshuffle.onboardingOpenedState]);
+    setIsWalkMeVisible(onboarding.hasStarted(onboardingOpenedState));
+  }, [onboardingOpenedState]);
 
   return (
     <>

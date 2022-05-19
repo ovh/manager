@@ -18,6 +18,7 @@ import {
 } from './utils';
 import { Node } from './navigation-tree/node';
 import ProjectSelector from './ProjectSelector/ProjectSelector';
+import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 function Sidebar(): JSX.Element {
   const { t } = useTranslation('sidebar');
@@ -31,10 +32,12 @@ function Sidebar(): JSX.Element {
   const [containerURL, setContainerURL] = useState(
     routingPlugin.parseContainerURL(),
   );
-  const [navigationTree, setNavigationTree] = useState({});
-  const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(
+  const {
+    currentNavigationNode,
+    setCurrentNavigationNode,
     navigationTree,
-  );
+    setNavigationTree,
+  } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState(null);
   const [menuItems, setMenuItems] = useState(null);
   const [pciProjects, setPciProjects] = useState(null);
@@ -320,7 +323,7 @@ function Sidebar(): JSX.Element {
           <span>{t('sidebar_service_add')}</span>
         </a>
       </div>
-      {currentNavigationNode !== navigationTree && (
+      {currentNavigationNode.id !== 'home' && (
         <a
           className={style.sidebar_back_btn}
           onClick={() => setCurrentNavigationNode(currentNavigationNode.parent)}
@@ -334,7 +337,7 @@ function Sidebar(): JSX.Element {
       )}
       <div className={style.sidebar_menu}>
         {(servicesCount || betaVersion === 1) && (
-          <ul>
+          <ul id="menu">
             <li>
               <h2>{t(currentNavigationNode.translation)}</h2>
             </li>
@@ -386,6 +389,7 @@ function Sidebar(): JSX.Element {
             {menuItems?.map(({ node, count }) => (
               <li
                 key={node.id}
+                id={node.id}
                 className={
                   node === highlightedNode ? style.sidebar_selected : ''
                 }
@@ -401,6 +405,7 @@ function Sidebar(): JSX.Element {
                     id={node.idAttr}
                   />
                 )}
+                {node.separator && <hr />}
               </li>
             ))}
           </ul>
