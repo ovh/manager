@@ -77,6 +77,13 @@ export default {
         application: 'telecom',
         hash: '#/task',
       },
+      count: false,
+    },
+    {
+      id: 'telecom-v4',
+      translation: 'sidebar_telecom_v4',
+      url: 'https://www.ovh.com/managerv3/telephony2-main.pl',
+      count: false,
     },
   ],
 };
