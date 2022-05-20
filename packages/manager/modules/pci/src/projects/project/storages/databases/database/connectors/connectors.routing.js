@@ -1,6 +1,7 @@
 import map from 'lodash/map';
 import ServiceIntegration from '../../../../../../components/project/storages/databases/serviceIntegration.class';
 import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
+import { CONNECTOR_INTEGRATION_TYPE } from './connectors.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const stateName =
@@ -81,7 +82,11 @@ export default /* @ngInject */ ($stateProvider) => {
           map(
             integrations,
             (integration) => new ServiceIntegration(integration),
-          ).filter((s) => s.statusGroup === STATUS.READY),
+          ).filter(
+            (s) =>
+              s.statusGroup === STATUS.READY &&
+              s.type === CONNECTOR_INTEGRATION_TYPE,
+          ),
         ),
       availableConnectors: /* @ngInject */ (
         database,
