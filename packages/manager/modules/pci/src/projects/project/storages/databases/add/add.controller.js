@@ -39,33 +39,24 @@ export default class {
     this.messageContainer = 'pci.projects.project.storages.databases.add';
     this.loadMessages();
     this.model = {
-      engine: find(this.engines, 'isDefault') || this.engines[0],
-      plan: null,
+      engine:
+        this.engines.find(
+          (e) => e.name.toLowerCase() === this.queryParamEngine?.toLowerCase(),
+        ) ||
+        find(this.engines, 'isDefault') ||
+        this.engines[0],
+      plan: {
+        name: this.queryParamOffer?.toLowerCase(),
+      },
       region: null,
-      flavor: null,
+      flavor: {
+        name: this.queryParamFlavor?.toLowerCase(),
+      },
       name: '',
       privateNetwork: null,
       subnet: null,
       usePrivateNetwork: false,
     };
-    // handle query params if any
-    if (this.queryParamEngine) {
-      const engineFromQueryParam = this.engines.find(
-        (e) => e.name.toLowerCase() === this.queryParamEngine.toLowerCase(),
-      );
-      if (engineFromQueryParam) {
-        this.model.engine = engineFromQueryParam;
-      }
-    }
-    if (this.queryParamOffer) {
-      const { plans } = this.model.engine.selectedVersion;
-      const planFromQueryParam = plans.find(
-        (p) => p.name.toLowerCase() === this.queryParamOffer.toLowerCase(),
-      );
-      if (planFromQueryParam) {
-        this.model.plan = planFromQueryParam;
-      }
-    }
 
     this.defaultPrivateNetworkengineFromQueryParam = {
       id: '',
