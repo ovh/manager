@@ -13,6 +13,15 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       hideBreadcrumb: () => true,
+      cloudDbAvailability: /* @ngInject */ (ovhFeatureFlipping) => {
+        const cloudDbFeature = 'cloud-database';
+
+        return ovhFeatureFlipping
+          .checkFeatureAvailability(cloudDbFeature)
+          .then((featureAvailability) => {
+            return featureAvailability.isFeatureAvailable(cloudDbFeature);
+          });
+      },
       resources: /* @ngInject */ ($http) =>
         $http.get('/hosting/privateDatabase').then(({ data }) => data),
       ctaURLs: /* @ngInject */ ($state) => [
