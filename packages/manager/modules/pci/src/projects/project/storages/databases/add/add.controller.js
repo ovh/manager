@@ -8,7 +8,8 @@ import { API_GUIDES } from '../../../project.constants';
 
 import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
 import { ENGINE_LOGOS } from '../databases.constants';
-import { ORDER_KEYS, nameGenerator } from './add.constants';
+import { ORDER_KEYS } from './add.constants';
+import { nameGenerator } from '../../../../../name-generator.constant';
 
 export default class {
   /* @ngInject */
@@ -61,7 +62,7 @@ export default class {
 
     this.updateEngine(this.model.engine);
 
-    // If we find the partentElement, we can enable smooth scrolling. Otherwise, fallback to $anchor
+    // If we find the parentElement, we can enable smooth scrolling. Otherwise, fallback to $anchor
     const scrollParentElement = this.$document[0].getElementsByClassName(
       'pci-project-content',
     )[0];
