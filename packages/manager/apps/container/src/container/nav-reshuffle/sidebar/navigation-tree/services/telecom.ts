@@ -1,10 +1,6 @@
 export default {
   id: 'telecom',
   translation: 'sidebar_telecom',
-  routing: {
-    application: 'telecom',
-    hash: '#/',
-  },
   children: [
     {
       id: 'internet',

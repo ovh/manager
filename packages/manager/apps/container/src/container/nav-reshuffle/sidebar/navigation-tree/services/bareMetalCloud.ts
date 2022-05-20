@@ -1,10 +1,6 @@
 export default {
   id: 'baremetal-cloud',
   translation: 'sidebar_bare_metal_cloud',
-  routing: {
-    application: 'dedicated',
-    hash: '#/configuration',
-  },
   children: [
     {
       id: 'bmc-dedicated-vps',
