@@ -110,40 +110,50 @@ angular.module('App').controller(
       );
     }
 
-    getDetachActionsOptions() {
-      return {
-        addons: [
-          {
+    getDetachRequestOptions(serviceId, planCode) {
+      return this.ovhManagerProductOffersActionService
+        .getDetachPlancodeInformationOptions(serviceId, planCode)
+        .then((data) => {
+          const addons = data.map((e) => ({
             duration: DETACH_DEFAULT_OPTIONS.durationCode,
-            planCode: this.model.offer.value,
+            planCode: e.plans[0].planCode,
             pricingMode: DETACH_DEFAULT_OPTIONS.pricingMode,
             quantity: DETACH_DEFAULT_OPTIONS.quantity,
-            serviceId: this.serviceId,
-          },
-        ],
-        duration: DETACH_DEFAULT_OPTIONS.durationCode,
-        pricingMode: DETACH_DEFAULT_OPTIONS.pricingMode,
-        quantity: DETACH_DEFAULT_OPTIONS.quantity,
-      };
+            serviceId: e.serviceId,
+          }));
+
+          return {
+            addons,
+            duration: DETACH_DEFAULT_OPTIONS.durationCode,
+            pricingMode: DETACH_DEFAULT_OPTIONS.pricingMode,
+            quantity: DETACH_DEFAULT_OPTIONS.quantity,
+          };
+        });
+    }
+
+    getDetachPrices(serviceId, planCode) {
+      return this.getDetachRequestOptions(serviceId, planCode)
+        .then((detachOptions) => {
+          return this.ovhManagerProductOffersActionService.simulate(
+            planCode,
+            serviceId,
+            DETACH_DEFAULT_OPTIONS.type,
+            detachOptions,
+          );
+        })
+        .then((data) => {
+          return [
+            {
+              ...data.order,
+              duration: DETACH_DEFAULT_OPTIONS.durationText,
+            },
+          ];
+        });
     }
 
     getPrices() {
       if (this.isDetachable) {
-        return this.ovhManagerProductOffersActionService
-          .simulate(
-            this.model.offer.value,
-            this.serviceId,
-            DETACH_DEFAULT_OPTIONS.type,
-            this.getDetachActionsOptions(),
-          )
-          .then((data) => {
-            const durationsTab = [];
-            const details = angular.copy(data.order);
-            details.duration = DETACH_DEFAULT_OPTIONS.durationText;
-            durationsTab.push(details);
-
-            return durationsTab;
-          });
+        return this.getDetachPrices(this.serviceId, this.model.offer.value);
       }
 
       return this.Hosting.getUpgradePrices(
@@ -152,18 +162,24 @@ angular.module('App').controller(
       );
     }
 
+    executeDetachOrder(serviceId, planCode) {
+      return this.getDetachRequestOptions(serviceId, planCode)
+        .then((detachOptions) => {
+          return this.ovhManagerProductOffersActionService.execute(
+            planCode,
+            serviceId,
+            DETACH_DEFAULT_OPTIONS.type,
+            detachOptions,
+          );
+        })
+        .then((data) => {
+          return data.order;
+        });
+    }
+
     executeOrder() {
       if (this.isDetachable) {
-        return this.ovhManagerProductOffersActionService
-          .execute(
-            this.model.offer.value,
-            this.serviceId,
-            DETACH_DEFAULT_OPTIONS.type,
-            this.getDetachActionsOptions(),
-          )
-          .then((data) => {
-            return data.order;
-          });
+        return this.executeDetachOrder(this.serviceId, this.model.offer.value);
       }
 
       const startTime = moment(this.model.startTime, 'HH:mm:ss')
