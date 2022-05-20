@@ -30,6 +30,8 @@ export default class TelecomTelephonyRepaymentsListCtrl extends ListLayoutHelper
       ),
     };
 
+    this.defaultFilterColumn = 'calledNumber';
+
     this.columnsConfig = [
       { name: 'calledNumber', sortable: this.getSorting('calledNumber') },
       { name: 'callingNumber', sortable: this.getSorting('callingNumber') },
