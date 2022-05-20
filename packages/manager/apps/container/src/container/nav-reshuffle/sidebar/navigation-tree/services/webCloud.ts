@@ -1,10 +1,6 @@
 export default {
   id: 'web-cloud',
   translation: 'sidebar_web_cloud',
-  routing: {
-    application: 'web',
-    hash: '#/configuration',
-  },
   children: [
     {
       id: 'domain-dns',
