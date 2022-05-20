@@ -48,7 +48,26 @@ export default class {
       subnet: null,
       usePrivateNetwork: false,
     };
-    this.defaultPrivateNetwork = {
+    // handle query params if any
+    if (this.queryParamEngine) {
+      const engineFromQueryParam = this.engines.find(
+        (e) => e.name.toLowerCase() === this.queryParamEngine.toLowerCase(),
+      );
+      if (engineFromQueryParam) {
+        this.model.engine = engineFromQueryParam;
+      }
+    }
+    if (this.queryParamOffer) {
+      const { plans } = this.model.engine.selectedVersion;
+      const planFromQueryParam = plans.find(
+        (p) => p.name.toLowerCase() === this.queryParamOffer.toLowerCase(),
+      );
+      if (planFromQueryParam) {
+        this.model.plan = planFromQueryParam;
+      }
+    }
+
+    this.defaultPrivateNetworkengineFromQueryParam = {
       id: '',
       name: this.$translate.instant('pci_database_common_none'),
     };

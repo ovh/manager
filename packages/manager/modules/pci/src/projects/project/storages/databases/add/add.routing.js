@@ -2,7 +2,7 @@ import set from 'lodash/set';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.databases.add', {
-    url: '/new',
+    url: '/new?engine&offer',
     component: 'pciProjectStoragesDatabasesAdd',
     resolve: {
       addPrivateNetworksLink: /* @ngInject */ ($state, projectId) =>
@@ -35,6 +35,10 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         );
       },
+      queryParamEngine: /* @ngInject */ ($transition$) =>
+        $transition$.params().engine,
+      queryParamOffer: /* @ngInject */ ($transition$) =>
+        $transition$.params().offer,
     },
   });
 };

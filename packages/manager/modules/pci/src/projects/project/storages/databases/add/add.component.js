@@ -15,6 +15,8 @@ export default {
     trackDatabases: '<',
     user: '<',
     goToCommand: '<',
+    queryParamEngine: '<',
+    queryParamOffer: '<',
   },
   controller,
   template,
