@@ -21,6 +21,7 @@ export default {
     goToUpgradeVersion: '<',
     goToUpgradeNode: '<',
     goToFork: '<',
+    goToIntegrations: '<',
     vRack: '<',
     vRackLink: '<',
     latestPlan: '<',

@@ -1,9 +1,6 @@
-import groupBy from 'lodash/groupBy';
 import find from 'lodash/find';
-import map from 'lodash/map';
 import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
-import { INTEGRATION_TYPE } from '../../../../../../components/project/storages/databases/serviceIntegration.constants';
-import { DATABASE_TYPES, NODES_PER_ROW } from '../../databases.constants';
+import { NODES_PER_ROW } from '../../databases.constants';
 import isFeatureActivated from '../../features.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -52,6 +49,14 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           databaseId,
         }),
+      goToIntegrations: /* @ngInject */ ($state, databaseId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.service-integration',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
       goToConfirmDeleteDatabase: /* @ngInject */ ($state, database) => (
         linkedServices,
       ) =>
@@ -236,47 +241,16 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
       serviceIntegration: /* @ngInject */ (
-        $q,
         DatabaseService,
         database,
         projectId,
       ) =>
-        isFeatureActivated('showServiceIntegration', database.engine)
+        isFeatureActivated('serviceIntegrationTab', database.engine)
           ? DatabaseService.getIntegrations(
               projectId,
               database.engine,
               database.id,
-            ).then((integrations) => {
-              // filter integrations
-              const filter =
-                database.engine === DATABASE_TYPES.KAFKA
-                  ? [
-                      INTEGRATION_TYPE.MIRROR_MAKER,
-                      INTEGRATION_TYPE.KAFKA_CONNECT,
-                    ]
-                  : [INTEGRATION_TYPE.M3_AGGREGATOR];
-              const filteredIntegrations = integrations.filter((integration) =>
-                filter.includes(integration.type),
-              );
-              return $q
-                .all(
-                  // map servicename
-                  map(filteredIntegrations, (integration) => {
-                    return DatabaseService.getDatabaseDetails(
-                      projectId,
-                      integration.getTargetEngine(),
-                      integration.destinationServiceId,
-                    ).then((service) => {
-                      integration.setDestinationServiceName([service]);
-                      return integration;
-                    });
-                  }),
-                )
-                .then((aggregatedIntegrations) =>
-                  // group integrations by type
-                  groupBy(aggregatedIntegrations, 'type'),
-                );
-            })
+            )
           : [],
       users: /* @ngInject */ (DatabaseService, database, projectId) =>
         isFeatureActivated('usersTab', database.engine) ||
