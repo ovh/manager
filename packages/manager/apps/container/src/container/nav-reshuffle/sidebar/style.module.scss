@@ -2,6 +2,8 @@
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
 
+$selected: #00185e;
+
 .sidebar {
   @import '@ovh-ux/manager-hub/src/variables.scss';
   width: 20rem;
@@ -12,6 +14,23 @@
   min-width: 20rem;
   color: white;
 
+  &_pci_refresh {
+    line-height: 1rem;
+    display: flex;
+    margin-top: 0.4rem;
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    color: inherit;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background: $selected;
+    }
+  }
   &_menu {
     overflow-y: auto;
     flex: 1;
@@ -126,7 +145,7 @@
   }
 
   &_selected {
-    background-color: #00185e;
+    background-color: $selected;
   }
 
   select {
