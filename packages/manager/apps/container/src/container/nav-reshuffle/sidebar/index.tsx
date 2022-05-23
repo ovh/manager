@@ -40,7 +40,7 @@ function Sidebar(): JSX.Element {
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState(null);
   const [menuItems, setMenuItems] = useState(null);
-  const [pciProjects, setPciProjects] = useState(null);
+  const [pciProjects, setPciProjects] = useState([]);
   const [selectedPciProject, setSelectedPciProject] = useState(null);
   const [pciProjectServiceCount, setPciProjectServiceCount] = useState(null);
   const [highlightedNode, setHighlightedNode] = useState(null);
@@ -162,7 +162,7 @@ function Sidebar(): JSX.Element {
   useEffect(() => {
     const { appId, appHash } = containerURL;
 
-    if (appId === 'manager' && !pciProjects) return;
+    if (appId === 'public-cloud' && !pciProjects) return;
     if (appId === 'hub' && appHash === '/catalog') {
       setHighlightedNode(null);
       return;
