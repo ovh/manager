@@ -111,7 +111,7 @@ export default class MetricsCtrl {
 
         metrics.forEach((metric) => {
           this.metricsData[data.name].chart.updateSerie(
-            metric.hostname.substring(0, metric.hostname.indexOf('-')),
+            metric.hostname,
             map(metric.dataPoints, (point) => ({
               x: moment.unix(point.timestamp),
               y: point.value,
