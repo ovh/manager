@@ -494,11 +494,11 @@ export default async (containerEl, shellClient) => {
     .constant('UNIVERSE', 'DEDICATED')
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
-        const unregisterHook = $transitions.onSuccess({}, () => {
+        const unregisterHook = $transitions.onSuccess({}, async () => {
           if (isTopLevelApplication()) {
             detachPreloader();
           } else {
-            shellClient.ux.hidePreloader();
+            await shellClient.ux.hidePreloader();
           }
           $rootScope.$broadcast('app:started');
           unregisterHook();
