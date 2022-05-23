@@ -41,6 +41,7 @@ function Sidebar(): JSX.Element {
   const [servicesCount, setServicesCount] = useState(null);
   const [menuItems, setMenuItems] = useState(null);
   const [pciProjects, setPciProjects] = useState([]);
+  const [pciError, setPciError] = useState(false);
   const [selectedPciProject, setSelectedPciProject] = useState(null);
   const [pciProjectServiceCount, setPciProjectServiceCount] = useState(null);
   const [highlightedNode, setHighlightedNode] = useState(null);
@@ -128,10 +129,7 @@ function Sidebar(): JSX.Element {
       .then((result) => setServicesCount(result));
   }, []);
 
-  /**
-   * Initialize list of pci projects
-   */
-  useEffect(() => {
+  const fetchPciProjects = () => {
     reketInstance
       .get('/cloud/project', {
         headers: {
@@ -140,10 +138,20 @@ function Sidebar(): JSX.Element {
         },
       })
       .then((result) => {
+        setPciError(false);
         if (result && result.length) {
           setPciProjects(result);
         }
+      })
+      .catch((error) => {
+        setPciError(true);
       });
+  };
+  /**
+   * Initialize list of pci projects
+   */
+  useEffect(() => {
+    fetchPciProjects();
   }, []);
 
   /** Watch URL changes to update selected menu dynamically */
@@ -364,6 +372,15 @@ function Sidebar(): JSX.Element {
                   }}
                   createLabel={t('sidebar_pci_new')}
                 />
+                {pciError && (
+                  <button
+                    className={style.sidebar_pci_refresh}
+                    onClick={() => fetchPciProjects()}
+                  >
+                    <span>{t('sidebar_pci_load_error')}</span>
+                    <span className="oui-icon oui-icon-refresh"></span>
+                  </button>
+                )}
                 {selectedPciProject && (
                   <span
                     className={`d-flex px-1 ${style.sidebar_clipboard}`}
