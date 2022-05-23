@@ -28,40 +28,59 @@
             <div
                 data-ng-if="ctrlHostingTabFTP.ftpInformations.hasMultiFtp === false"
             >
-                <dl>
-                    <dt data-translate="hosting_tab_FTP_dashboard_server"></dt>
-                    <dd class="mb-3">
-                        <oui-clipboard
-                            class="w-25"
-                            data-model="ctrlHostingTabFTP.firstUser.ftp.url"
-                        ></oui-clipboard>
-                    </dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <dl>
+                            <dt
+                                data-translate="hosting_tab_FTP_dashboard_server"
+                            ></dt>
+                            <dd class="mb-3">
+                                <oui-clipboard
+                                    class="w-75"
+                                    data-model="ftp.url"
+                                ></oui-clipboard>
+                            </dd>
 
-                    <dt
-                        data-translate="hosting_tab_FTP_dashboard_server_link"
-                    ></dt>
-                    <dd class="mb-3">
-                        <a
-                            data-ng-href="ftp://{{ctrlHostingTabFTP.firstUser.ftp.user}}@{{ctrlHostingTabFTP.firstUser.ftp.url}}:{{ctrlHostingTabFTP.firstUser.ftp.port}}/"
-                            target="_blank"
-                            title="{{ 'hosting_dashboard_service_home_ftp_newtab' | translate }}"
-                        >
-                            <span
-                                data-ng-bind="ctrlHostingTabFTP.firstUser.ftpUrl"
-                            ></span>
-                            <span
-                                class="fa fa-external-link"
-                                aria-hidden="true"
-                            ></span>
-                        </a>
-                    </dd>
+                            <dt data-translate="hosting_tab_FTP_FTP_port"></dt>
+                            <dd data-ng-bind="ftp.port"></dd>
 
-                    <dt data-translate="hosting_tab_FTP_dashboard_homez"></dt>
-                    <dd
-                        class="mb-3"
-                        data-ng-bind="'/home/' + ctrlHostingTabFTP.ftpInformations.primaryLogin"
-                    ></dd>
-                </dl>
+                            <dt data-translate="hosting_tab_FTP_SFTP_port"></dt>
+                            <dd data-ng-bind="ssh.port"></dd>
+                        </dl>
+                    </div>
+
+                    <div class="col-md-6">
+                        <dl>
+                            <dt
+                                data-translate="hosting_tab_FTP_dashboard_server_link"
+                            ></dt>
+                            <dd class="mb-3">
+                                <a
+                                    data-ng-href="ftp://{{ctrlHostingTabFTP.firstUser.ftp.user}}@{{ctrlHostingTabFTP.firstUser.ftp.url}}:{{ctrlHostingTabFTP.firstUser.ftp.port}}/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    title="{{ 'hosting_dashboard_service_home_ftp_newtab' | translate }}"
+                                >
+                                    <span
+                                        data-ng-bind="ctrlHostingTabFTP.firstUser.ftpUrl"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-external-link"
+                                        aria-hidden="true"
+                                    ></span>
+                                </a>
+                            </dd>
+
+                            <dt
+                                data-translate="hosting_tab_FTP_dashboard_homez"
+                            ></dt>
+                            <dd
+                                class="mb-3"
+                                data-ng-bind="'/home/' + ctrlHostingTabFTP.ftpInformations.primaryLogin"
+                            ></dd>
+                        </dl>
+                    </div>
+                </div>
 
                 <div
                     class="text-center"
