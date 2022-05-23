@@ -10,19 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('OvhApiDbaas')
-        .then((OvhApiDbaas) =>
-          OvhApiDbaas.Logs()
-            .v6()
-            .query()
-            .$promise.then((result) => {
-              return result.length > 0
-                ? 'dbaas-logs.list'
-                : 'dbaas-logs.onboarding';
-            })
-            .catch(() => {
-              return 'dbaas-logs.onboarding';
-            }),
-        ),
+        .getAsync('logs')
+        .then((logs) => (logs.length > 0 ? 'dbaas-logs.list' : false)),
   });
 };
