@@ -13,7 +13,9 @@ export default class NetAppVolumesDashboardSnapshotsController {
   }
 
   isApplicablePolicy() {
-    return this.snapshots?.length && !this.snapshots[0].isDefault;
+    return (
+      this.snapshotPolicies.length === 1 && !this.snapshotPolicies[0].isDefault
+    );
   }
 
   changePolicy() {
