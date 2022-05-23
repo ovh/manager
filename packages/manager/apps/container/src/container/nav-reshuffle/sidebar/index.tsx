@@ -12,6 +12,7 @@ import style from './style.module.scss';
 import {
   initTree,
   countServices,
+  findNodeById,
   findPathToNode,
   findPathToNodeByApp,
   initFeatureNames,
@@ -25,6 +26,7 @@ function Sidebar(): JSX.Element {
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
   const navigationPlugin = shell.getPlugin('navigation');
+  const environmentPlugin = shell.getPlugin('environment');
   const routingPlugin = shell.getPlugin('routing');
   const reketInstance = useReket();
   const { betaVersion } = useContainer();
@@ -105,6 +107,14 @@ function Sidebar(): JSX.Element {
         );
 
         const [tree] = initTree([navigationRoot], results);
+
+        const mxPlanNode = findNodeById(tree, 'mxplan');
+        if (
+          mxPlanNode &&
+          environmentPlugin.getEnvironment().getRegion() === 'CA'
+        ) {
+          mxPlanNode.routing.hash = '#/email_mxplan';
+        }
 
         setNavigationTree(tree);
         setCurrentNavigationNode(tree);
