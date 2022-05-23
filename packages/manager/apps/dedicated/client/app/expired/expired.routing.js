@@ -5,6 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/expired',
     params: {
       error: null,
+      product: null,
     },
     views: {
       'container@': {
@@ -16,8 +17,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.configuration', { reload: true }),
       error: /* @ngInject */ ($transition$) =>
         get($transition$.params(), 'error'),
+      product: /* @ngInject */ ($transition$) => $transition$.params()?.product,
       translationsRefresh: /* @ngInject */ ($translate) => $translate.refresh(),
       breadcrumb: () => null,
+    },
+    atInternet: {
+      ignore: true,
     },
   });
 };

@@ -46,22 +46,31 @@ export default (containerEl, environment) => {
       },
     )
     .run(
-      /* @ngInject */ ($state) => {
-        $state.defaultErrorHandler((error) => {
+      /* @ngInject */ ($state, $transitions) => {
+        $transitions.onError({}, (transition) => {
+          const error = transition.error();
           if (error.type === RejectType.ERROR) {
             $state.go(
               'error',
               {
                 detail: {
                   message: get(error.detail, 'data.message'),
+                  status: error.detail.status,
                   code: has(error.detail, 'headers')
                     ? error.detail.headers('x-ovh-queryId')
                     : null,
+                },
+                to: {
+                  state: transition.to(),
+                  params: transition.params(),
                 },
               },
               { location: false },
             );
           }
+        });
+        $state.defaultErrorHandler((error) => {
+          return error;
         });
       },
     );

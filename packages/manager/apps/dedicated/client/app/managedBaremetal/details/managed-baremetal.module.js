@@ -34,7 +34,10 @@ angular
         const error = transition.error();
         if (get(error, 'detail.code') === 460) {
           error.handled = true;
-          $state.go('app.expired', { error });
+          $state.go('app.expired', {
+            error,
+            product: 'expired-managedBaremetal',
+          });
         }
       });
     },

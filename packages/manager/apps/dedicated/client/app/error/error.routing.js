@@ -3,6 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/error',
     params: {
       detail: null,
+      to: null,
     },
     views: {
       'app@': {
@@ -13,9 +14,20 @@ export default /* @ngInject */ ($stateProvider) => {
       cancelLink: /* @ngInject */ ($state) =>
         $state.href('app.configuration', { reload: true }),
       error: /* @ngInject */ ($transition$) => $transition$.params(),
+      product: /* @ngInject */ ($state, $transition$) => {
+        const { state, params } = $transition$.params().to;
+        // href will include # so split with '/' and take second element
+        const [, product] = $state
+          .href(state, params, { lossy: true })
+          .split('/');
+        return product;
+      },
       submitAction: /* @ngInject */ ($window) => () =>
         $window.location.reload(),
       translationsRefresh: /* @ngInject */ ($translate) => $translate.refresh(),
+    },
+    atInternet: {
+      ignore: true,
     },
   });
 };
