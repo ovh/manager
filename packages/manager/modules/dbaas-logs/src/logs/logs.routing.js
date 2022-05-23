@@ -2,28 +2,15 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('dbaas-logs', {
     component: 'dbaasLogs',
     url: '/dbaas/logs',
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('OvhApiDbaas')
-        .then((OvhApiDbaas) =>
-          OvhApiDbaas.Logs()
-            .v6()
-            .query()
-            .$promise.then((result) => {
-              return result.length > 0
-                ? 'dbaas-logs.list'
-                : 'dbaas-logs.onboarding';
-            })
-            .catch(() => {
-              return 'dbaas-logs.onboarding';
-            }),
-        ),
     translations: {
       value: ['.'],
       format: 'json',
     },
     resolve: {
+      logs: /* @ngInject */ (OvhApiDbaas) =>
+        OvhApiDbaas.Logs()
+          .v6()
+          .query().$promise,
       me: /* @ngInject */ ($http) =>
         $http
           .get('/me')
@@ -33,5 +20,12 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dbaas_logs'),
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('logs')
+        .then((results) =>
+          results.length === 0 ? 'dbaas-logs.onboarding' : 'dbaas-logs.list',
+        ),
   });
 };
