@@ -61,5 +61,7 @@
   "telephony_service_contact_bulk_some_success": "La modifica delle coordinate è stata applicata a {{ count }} dei servizi selezionati.",
   "telephony_service_contact_bulk_error": "Non è stato possibile applicare la modifica delle coordinate a questi servizi:",
   "telephony_service_contact_bulk_on_error": "Si è verificato un errore durante la modifica delle coordinate",
-  "telephony_service_contact_required_fields": "I campi contrassegnati dall'asterisco sono obbligatori."
+  "telephony_service_contact_required_fields": "I campi contrassegnati dall'asterisco sono obbligatori.",
+  "telephony_service_contact_tva": "Partita IVA",
+  "telephony_service_contact_tva_invalid": "Il numero di partita IVA inserito non è valido"
 }
