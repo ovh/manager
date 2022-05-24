@@ -28,5 +28,6 @@
   "pci_notebook_permission_RO": "Solo lectura",
   "pci_notebook_permission_RW": "Lectura y escritura",
   "pci_notebook_permission_RWD": "Lectura, escritura y eliminación",
-  "pci_notebook_data_cache": "Caché"
+  "pci_notebook_data_cache": "Caché",
+  "pci_notebook_list_status_DELETING": "Eliminando..."
 }

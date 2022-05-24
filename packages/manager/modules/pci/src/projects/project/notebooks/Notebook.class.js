@@ -104,8 +104,12 @@ export default class Notebook {
     return this.status?.state === NOTEBOOK_STATUS.STOPPING;
   }
 
+  isDeleting() {
+    return this.status?.state === NOTEBOOK_STATUS.DELETING;
+  }
+
   isPending() {
-    return this.isStarting() || this.isStopping();
+    return this.isStarting() || this.isStopping() || this.isDeleting();
   }
 
   isFailed() {
