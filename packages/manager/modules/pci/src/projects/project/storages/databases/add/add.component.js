@@ -13,6 +13,7 @@ export default {
     privateNetworks: '<',
     trackDatabases: '<',
     user: '<',
+    redirectTarget: '<',
   },
   controller,
   template,
