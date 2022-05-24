@@ -1,6 +1,7 @@
 export default {
   id: 'telecom',
   translation: 'sidebar_telecom',
+  features: ['telecom', 'telephony', 'sms', 'pack', 'overthebox', 'fax'],
   children: [
     {
       id: 'internet',
