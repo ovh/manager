@@ -209,10 +209,19 @@ export const OnboardingWalkMe = () => {
           ? currentStep.mobilePlacement
           : currentStep.placement;
 
+      // Two impressions because we show two buttons
+      // One for next and one for hide.
       trackingPlugin.trackImpression({
         ...commonTrackingOptions,
         variant: `${currentStep.trackingVariant}`,
         format: `[${currentStepIndex + 1}-${steps.length}]`,
+        generalPlacement: '[next]',
+      });
+      trackingPlugin.trackImpression({
+        ...commonTrackingOptions,
+        variant: `${currentStep.trackingVariant}`,
+        format: `[${currentStepIndex + 1}-${steps.length}]`,
+        generalPlacement: '[hide]',
       });
       // add a timeout of the same time of the stepElement animation
       // before recalculating popper position
