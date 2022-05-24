@@ -47,7 +47,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
       setHashChatbot(results.chatbot);
     };
     initChatbot();
-  });
+  }, []);
 
   useEffect(() => {
     const { appId, appHash } = containerURL;
