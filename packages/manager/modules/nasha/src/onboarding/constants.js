@@ -61,9 +61,4 @@ export const GUIDES = [
   },
 ];
 
-export const CTAS = {
-  DEFAULT: 'https://www.ovh.com/manager/dedicated/#/nasha/new',
-  CA: 'https://ca.ovh.com/manager/dedicated/#/nasha/new',
-};
-
-export default { CTAS, GUIDES };
+export default { GUIDES };
