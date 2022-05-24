@@ -38,10 +38,6 @@ function LanguageMenu({
   const [availableLanguages, setAvailableLanguages] = useState([]);
 
   const onLocaleChange = (locale) => {
-    shell.getPlugin('tracking').trackClick({
-      name: `navbar::action::lang::change-lange`,
-      type: 'action',
-    });
     shell.getPlugin('i18n').setLocale(locale);
     setShow(false);
     setUserLocale(locale);

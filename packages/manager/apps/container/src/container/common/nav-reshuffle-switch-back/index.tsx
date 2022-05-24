@@ -51,8 +51,18 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
     <>
       {confirm && (
         <NavReshuffleSwitchBackModal
-          onCancel={() => setConfirm(false)}
-          onConfirm={(openSurvey = false) => switchBack(openSurvey)}
+          onCancel={() => {
+            trackingPlugin.trackClick({
+              name: 'topnav::switch_versionpopin::decline_survey',
+            });
+            setConfirm(false);
+          }}
+          onConfirm={(openSurvey = false) => {
+            trackingPlugin.trackClick({
+              name: 'topnav::switch_version_popin::go_to_survey',
+            });
+            switchBack(openSurvey);
+          }}
         />
       )}
       <div className="oui-navbar-dropdown" ref={ref}>

@@ -57,22 +57,15 @@ export const OnboardingIntroduction = () => {
   };
 
   const openOnboarding = () => {
+    trackingPlugin.trackClick({
+      name: 'onboarding_manager::launch_guide_main_cta',
+      type: 'action',
+    });
     productNavReshuffle.openOnboarding();
   };
 
   const startOnboarding = () => {
     productNavReshuffle.startOnboarding();
-
-    trackingPlugin.trackClickImpression({
-      click: {
-        ...commonTrackingOptions,
-        variant: 'onboarding_manager::launch_guide_main_cta',
-        generalPlacement: '[next]',
-      },
-    });
-    trackingPlugin.trackImpression({
-      ...commonTrackingOptions,
-    });
   };
 
   const closeOnboarding = () => {
@@ -89,6 +82,14 @@ export const OnboardingIntroduction = () => {
       ...commonTrackingOptions,
     });
   };
+
+  useEffect(() => {
+    if (isPopoverVisible) {
+      trackingPlugin.trackImpression({
+        ...commonTrackingOptions,
+      });
+    }
+  }, [isPopoverVisible]);
 
   useEffect(() => {
     switch (productNavReshuffle.onboardingOpenedState) {
