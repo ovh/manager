@@ -68,16 +68,9 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
 
   const startOnboarding = () => {
     openOnboarding();
-    trackingPlugin.trackClickImpression({
-      click: {
-        variant: 'navbar_v2::assistance::onboarding_widget',
-        campaignId: '[tooltip-manager]',
-        creation: '[general-onboarding]',
-        detailedPlacement:
-          onboardingOpenedState === ONBOARDING_STATUS_ENUM.DISPLAYED
-            ? '[new_visitor]'
-            : '[returning_visitor]',
-      },
+    trackingPlugin.trackClick({
+      name: 'navbar_v2::assistance::onboarding_widget',
+      type: 'action',
     });
   };
 
