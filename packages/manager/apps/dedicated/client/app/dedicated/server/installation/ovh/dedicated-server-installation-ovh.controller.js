@@ -2518,7 +2518,6 @@ angular
             diskGroupId: !isDefaultDiskGroup($scope.installation.diskGroup)
               ? $scope.installation.diskGroup.diskGroupId
               : null,
-            resetHwRaid: !isDefaultDiskGroup($scope.installation.diskGroup),
           },
         ).then(
           (task) => {

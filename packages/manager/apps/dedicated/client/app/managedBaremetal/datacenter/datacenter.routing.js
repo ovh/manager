@@ -66,6 +66,12 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
       breadcrumb: /* @ngInject */ (datacenterId) => datacenterId,
+      trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (click) => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}::details::${click}`,
+          type: 'action',
+        });
+      },
     },
   });
 };
