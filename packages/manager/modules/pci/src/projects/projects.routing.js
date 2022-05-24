@@ -1,3 +1,5 @@
+import has from 'lodash/has';
+
 import { SupportLevel } from '@ovh-ux/manager-models';
 
 import Offer from '../components/project/offer/offer.class';
@@ -5,7 +7,7 @@ import { PCI_FEATURES, PCI_FEATURES_STATES } from './projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects', {
-    url: '/projects?context&category&target',
+    url: '/projects?context&target',
     component: 'pciProjects',
     redirectTo: (transition) => {
       const injector = transition.injector();
@@ -13,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       return injector
         .get('$q')
         .all([
+          injector.getAsync('$transition$'),
           injector.getAsync('projects'),
           injector.getAsync('activeProjects'),
           injector.getAsync('isRedirectRequired'),
@@ -20,6 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ])
         .then(
           ([
+            $transition$,
             projects,
             activeProjects,
             isRedirectRequired,
@@ -31,7 +35,13 @@ export default /* @ngInject */ ($stateProvider) => {
 
             // Redirect customer to right page
             if (isRedirectRequired && activeProjects.length === 1) {
-              return getTargetedState(activeProjects[0]);
+              const targetState = getTargetedState(activeProjects[0]);
+              targetState.params = {
+                ...targetState.params,
+                ...$transition$.params(),
+              };
+
+              return targetState;
             }
 
             return true;
@@ -56,33 +66,27 @@ export default /* @ngInject */ ($stateProvider) => {
       redirectContext: /* @ngInject */ ($transition$) =>
         $transition$.params().context,
 
-      redirectCategory: /* @ngInject */ ($transition$) =>
-        $transition$.params().category,
-
       redirectTarget: /* @ngInject */ ($transition$) =>
-        $transition$.params().target,
+        JSON.parse($transition$.params()?.target || '{}'),
 
-      isRedirectRequired: /* @ngInject */ (
-        redirectContext,
-        redirectCategory,
-        redirectTarget,
-      ) => {
-        return !!(redirectContext && redirectCategory && redirectTarget);
+      isRedirectRequired: /* @ngInject */ (redirectTarget) => {
+        const { category, state } = redirectTarget;
+        const isStateExist = has(PCI_FEATURES_STATES, `${category}.${state}`);
+
+        return isStateExist;
       },
 
-      getTargetedState: /* @ngInject */ (redirectCategory, redirectTarget) => (
-        project,
-      ) => {
-        const category = redirectCategory.toUpperCase();
-        const target = redirectTarget.toUpperCase();
+      getTargetedState: /* @ngInject */ (redirectTarget) => (project) => {
+        const category = redirectTarget.category.toUpperCase();
+        const state = redirectTarget.state.toUpperCase();
 
         return {
-          state: PCI_FEATURES_STATES[category][target],
+          state: PCI_FEATURES_STATES[category][state],
           params: {
             projectId: project.project_id,
           },
           options: {
-            inherit: false,
+            inherit: true,
           },
         };
       },
