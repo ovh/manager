@@ -1,3 +1,17 @@
+# [17.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.17.2...@ovh-ux/manager-dedicated@17.18.0) (2022-05-24)
+
+
+### Bug Fixes
+
+* **managed-baremetal.datacenter:** add missing `trackClick` resolve ([#7138](https://github.com/ovh/manager/issues/7138)) ([7c97a86](https://github.com/ovh/manager/commit/7c97a86e6f349ef04c73b16b6ed5a78e2f0f82a3))
+
+
+### Features
+
+* **server.install:** remove deprecated API flag ([#7150](https://github.com/ovh/manager/issues/7150)) ([52a351f](https://github.com/ovh/manager/commit/52a351f62cd900675c9206f94f8409a81fa0a1fd))
+
+
+
 ## [17.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.17.1...@ovh-ux/manager-dedicated@17.17.2) (2022-05-19)
 
 
