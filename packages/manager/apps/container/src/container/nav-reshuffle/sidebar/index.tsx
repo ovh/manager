@@ -227,10 +227,21 @@ function Sidebar(): JSX.Element {
       if (project) {
         setSelectedPciProject(project);
       } else if (currentNavigationNode.id === 'pci') {
-        navigationPlugin.navigateTo(
-          'public-cloud',
-          `#/pci/projects/${pciProjects[0].project_id}`,
-        );
+        reketInstance
+          .get('/me/preferences/manager/PUBLIC_CLOUD_DEFAULT_PROJECT')
+          .then((result) => JSON.parse(result.value).projectId)
+          .then((projectId) => {
+            navigationPlugin.navigateTo(
+              'public-cloud',
+              `#/pci/projects/${projectId}`,
+            );
+          })
+          .catch(() => {
+            navigationPlugin.navigateTo(
+              'public-cloud',
+              `#/pci/projects/${pciProjects[0].project_id}`,
+            );
+          });
       }
     }
   }, [pciProjects, currentNavigationNode, containerURL]);
