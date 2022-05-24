@@ -67,7 +67,7 @@
 
 <oui-select-picker
     class="d-inline-block mr-5 w-25"
-    label="{{('vps_dashboard_migrate_choice' | translate) + ' ' + $index + ' ' + ('vps_dashboard_migrate_new_range_title' | translate) }}"
+    label="{{($index === 0 ? (('vps_dashboard_migrate_new_range_title' | translate) + ': ') : '') + $ctrl.getPlanLabel(newPlan)}}"
     model="$ctrl.model.selectedPlan"
     data-ng-repeat="newPlan in $ctrl.newPlans track by $index"
     data-values="[newPlan]"
