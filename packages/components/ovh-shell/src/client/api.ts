@@ -21,10 +21,10 @@ export default function exposeApi(shellClient: ShellClient) {
           method: 'setUniverse',
           args: [universe],
         }),
-      setUniverseFromApplication: (applicationId: ApplicationId) =>
+      setApplication: (applicationId: ApplicationId) =>
         shellClient.invokePluginMethod({
           plugin: 'environment',
-          method: 'setUniverseFromApplication',
+          method: 'setApplication',
           args: [applicationId],
         }),
     },
