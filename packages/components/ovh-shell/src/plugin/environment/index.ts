@@ -16,7 +16,8 @@ export function environment(environment: Environment) {
       environment.setUniverse(universe);
       triggerListeners(environment.getUniverse());
     },
-    setUniverseFromApplication: (applicationId: ApplicationId) => {
+    setApplication: (applicationId: ApplicationId) => {
+      environment.setApplicationName(applicationId);
       environment.setUniverseFromApplicationId(applicationId);
       triggerListeners(environment.getUniverse());
     },
