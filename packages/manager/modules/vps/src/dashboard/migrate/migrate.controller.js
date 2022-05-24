@@ -54,4 +54,9 @@ export default class {
     return newPrices.find((price) => price.newPlan === planCode).price?.prices
       ?.originalWithoutTax.text;
   };
+
+  getPlanLabel = (planDetails) => {
+    const [, planCode = ''] = planDetails.planCode.split('-');
+    return `${planCode.charAt(0).toUpperCase()}${planCode.slice(1)}`;
+  };
 }
