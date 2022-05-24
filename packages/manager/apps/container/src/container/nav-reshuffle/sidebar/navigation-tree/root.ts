@@ -40,7 +40,7 @@ export default {
           translation: 'sidebar_account_profile',
           routing: {
             application: 'dedicated',
-            hash: '#/useraccount/dashboard',
+            hash: '#/useraccount',
           },
           count: false,
         },
