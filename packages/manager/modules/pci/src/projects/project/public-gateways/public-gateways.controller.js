@@ -21,4 +21,13 @@ export default class PublicGatewaysController {
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
   }
+
+  onAddPublicGatewayClick() {
+    this.trackPublicGateways('add');
+  }
+
+  onGoToPrivateNetworkClick() {
+    this.trackPublicGateways('table-option-menu::private-network');
+    return this.goToPrivateNetwork(this.projectId);
+  }
 }

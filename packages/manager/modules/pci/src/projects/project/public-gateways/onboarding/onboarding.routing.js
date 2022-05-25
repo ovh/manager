@@ -5,9 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('publicGateways')
-        .then((publicGateways) =>
-          publicGateways.length > 0
+        .getAsync('gateways')
+        .then((gateways) =>
+          gateways.length > 0
             ? { state: 'pci.projects.project.public-gateways' }
             : false,
         ),
