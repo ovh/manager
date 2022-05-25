@@ -5,8 +5,9 @@ export default {
   controller,
   template,
   bindings: {
-    goToAddPublicGateway: '<',
     publicGateways: '<',
+    gateways: '<',
     trackPublicGateways: '<',
+    guideUrl: '<',
   },
 };
