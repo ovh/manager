@@ -207,13 +207,22 @@ function Sidebar(): JSX.Element {
     if (appHash.includes('?')) {
       searchHash = appHash.substring(0, appHash.lastIndexOf('?'));
     }
-
-    const path = findPathToNodeByApp(
-      navigationTree,
+    let path = findPathToNodeByApp(
+      currentNavigationNode,
       compareFn,
       appId,
       searchHash.replace(/^#/, ''),
     );
+
+    if (path.length === 0) {
+      path = findPathToNodeByApp(
+        navigationTree,
+        compareFn,
+        appId,
+        searchHash.replace(/^#/, ''),
+      );
+    }
+
     const target = path.pop();
     if (target) {
       setCurrentNavigationNode(target.children ? target : target.parent);
