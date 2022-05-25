@@ -80,7 +80,7 @@ export const CTAS = {
   PL: 'https://ovhcloud.com/pl/solutions/load-balancer/',
   PT: 'https://ovhcloud.com/pt/solutions/load-balancer/',
   GB: 'https://ovhcloud.com/en-gb/solutions/load-balancer/',
-  CA: 'https://ovhcloud.com/en-ca/solutions/load-balancer/',
+  CA: 'https://www.ovh.com/ca/en/solutions/load-balancer/',
   QC: 'https://ovhcloud.com/fr-ca/solutions/load-balancer/',
   MA: 'https://ovhcloud.com/fr-ma/solutions/load-balancer/',
   SN: 'https://ovhcloud.com/fr-sn/solutions/load-balancer/',
