@@ -227,39 +227,41 @@ function Sidebar(): JSX.Element {
    * Synchronize selected public cloud project with pci's project id in URL
    */
   useEffect(() => {
-    const { appHash } = containerURL;
-    if (appHash.startsWith('/pci/projects/new')) {
-      setSelectedPciProject(null);
-    } else {
-      if (!pciProjects?.length) return;
+    const { appId, appHash } = containerURL;
+    if (appId === 'public-cloud') {
+      if (appHash.startsWith('/pci/projects/new')) {
+        setSelectedPciProject(null);
+      } else {
+        if (!pciProjects?.length) return;
 
-      const pciProjectMatch = (appHash || '').match(
-        /^\/pci\/projects\/([^/?]+)/,
-      );
-      let project;
-      if (pciProjectMatch && pciProjectMatch.length >= 2) {
-        const [, pciProjectId] = pciProjectMatch;
-        project = pciProjects.find((p) => p.project_id === pciProjectId);
-      }
+        const pciProjectMatch = (appHash || '').match(
+          /^\/pci\/projects\/([^/?]+)/,
+        );
+        let project;
+        if (pciProjectMatch && pciProjectMatch.length >= 2) {
+          const [, pciProjectId] = pciProjectMatch;
+          project = pciProjects.find((p) => p.project_id === pciProjectId);
+        }
 
-      if (project) {
-        setSelectedPciProject(project);
-      } else if (currentNavigationNode.id === 'pci' && !selectedPciProject) {
-        reketInstance
-          .get('/me/preferences/manager/PUBLIC_CLOUD_DEFAULT_PROJECT')
-          .then((result) => JSON.parse(result.value).projectId)
-          .then((projectId) => {
-            navigationPlugin.navigateTo(
-              'public-cloud',
-              `#/pci/projects/${projectId}`,
-            );
-          })
-          .catch(() => {
-            navigationPlugin.navigateTo(
-              'public-cloud',
-              `#/pci/projects/${pciProjects[0].project_id}`,
-            );
-          });
+        if (project) {
+          setSelectedPciProject(project);
+        } else if (currentNavigationNode.id === 'pci' && !selectedPciProject) {
+          reketInstance
+            .get('/me/preferences/manager/PUBLIC_CLOUD_DEFAULT_PROJECT')
+            .then((result) => JSON.parse(result.value).projectId)
+            .then((projectId) => {
+              navigationPlugin.navigateTo(
+                'public-cloud',
+                `#/pci/projects/${projectId}`,
+              );
+            })
+            .catch(() => {
+              navigationPlugin.navigateTo(
+                'public-cloud',
+                `#/pci/projects/${pciProjects[0].project_id}`,
+              );
+            });
+        }
       }
     }
   }, [pciProjects, currentNavigationNode, containerURL]);
