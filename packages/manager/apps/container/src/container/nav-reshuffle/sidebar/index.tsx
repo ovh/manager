@@ -244,7 +244,7 @@ function Sidebar(): JSX.Element {
 
       if (project) {
         setSelectedPciProject(project);
-      } else if (currentNavigationNode.id === 'pci') {
+      } else if (currentNavigationNode.id === 'pci' && !selectedPciProject) {
         reketInstance
           .get('/me/preferences/manager/PUBLIC_CLOUD_DEFAULT_PROJECT')
           .then((result) => JSON.parse(result.value).projectId)

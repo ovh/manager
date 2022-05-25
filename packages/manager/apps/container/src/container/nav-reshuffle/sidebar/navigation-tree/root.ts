@@ -8,10 +8,6 @@ import telecom from './services/telecom';
 export default {
   id: 'home',
   translation: 'sidebar_home',
-  routing: {
-    application: 'hub',
-    hash: '#/',
-  },
   count: false,
   children: [
     bareMetalCloud,
