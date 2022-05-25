@@ -1,10 +1,6 @@
 export default {
   id: 'pci',
   translation: 'sidebar_pci',
-  routing: {
-    application: 'public-cloud',
-    hash: '#/pci/projects/{projectId}',
-  },
   children: [
     {
       id: 'pci-compute',
