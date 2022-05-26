@@ -14,6 +14,7 @@
   "dependencies": {
     "@ovh-ux/manager-models": "^1.4.3",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "ipaddr.js": "^1.9.1",
     "lodash": "^4.17.14"
   },
   "peerDependencies": {
