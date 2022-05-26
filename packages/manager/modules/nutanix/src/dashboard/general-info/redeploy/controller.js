@@ -20,6 +20,7 @@ export default class NutanixGeneralInfoRedeployCtrl {
     this.IPV4_REGEX = IPV4_REGEX;
     this.IPV4_BLOCK_REGEX = IPV4_BLOCK_REGEX;
     this.CLUSTER_CONFIG_TERMS = CLUSTER_CONFIG_TERMS;
+    this.displayIpSubnetError = false;
   }
 
   $onInit() {
@@ -68,6 +69,44 @@ export default class NutanixGeneralInfoRedeployCtrl {
     return modelValue;
   }
 
+  static getIpsList(config = {}) {
+    return [
+      config.prismElementVip,
+      config.prismCentral?.vip,
+      ...(config?.prismCentral?.ips && config.prismCentral.ips),
+      ...(config.nodes?.length > 0 &&
+        config.nodes.reduce((acc, item) => {
+          acc.push(item.ahvIp);
+          acc.push(item.cvmIp);
+          return acc;
+        }, [])),
+    ];
+  }
+
+  checkIpsUniqueness() {
+    if (this.config) {
+      const IPs =
+        NutanixGeneralInfoRedeployCtrl.getIpsList(this.config).filter(
+          Boolean,
+        ) || [];
+      this.displayIpUniquenessError = IPs.length !== new Set(IPs).size;
+      return !this.displayIpUniquenessError;
+    }
+    return true;
+  }
+
+  onGatewayCidrChange = (form) => {
+    form.$$controls.forEach((element) => element.$validate());
+  };
+
+  displayIpSubnetErrorPrismCentralIpField = (form, index) => {
+    return (
+      form[`ip${index}`]?.$error.ipSubnetValidator &&
+      form[`ip${index}`]?.$touched &&
+      form[`ip${index}`]?.$dirty
+    );
+  };
+
   addPrismCentralIp() {
     this.config.prismCentral.ips.push('');
   }
@@ -89,6 +128,7 @@ export default class NutanixGeneralInfoRedeployCtrl {
         prismElementVip,
         gatewayCidr,
         version,
+        nodes,
       }) => ({
         redundancyFactor,
         erasureCoding,
@@ -96,6 +136,7 @@ export default class NutanixGeneralInfoRedeployCtrl {
         prismElementVip,
         gatewayCidr,
         version,
+        nodes,
       }))(cloneDeep(this.cluster.targetSpec));
       if (this.cluster.allowedRedundancyFactor.length === 1) {
         this.redundancyFactorValue = `${this.cluster.allowedRedundancyFactor[0]}`;
@@ -112,6 +153,7 @@ export default class NutanixGeneralInfoRedeployCtrl {
     prismElementVip,
     gatewayCidr,
     version,
+    nodes,
   }) {
     return {
       erasureCoding,
@@ -120,6 +162,9 @@ export default class NutanixGeneralInfoRedeployCtrl {
         ...(prismCentral.vip && { vip: prismCentral.vip }),
         ips: prismCentral.ips.length > 0 ? prismCentral.ips : [],
       },
+      ...(nodes && {
+        nodes: nodes.map(({ ahvIp, cvmIp }) => ({ ahvIp, cvmIp })),
+      }),
       ...(redundancyFactor && { redundancyFactor }),
       ...(prismElementVip && { prismElementVip }),
       ...(gatewayCidr && { gatewayCidr }),
@@ -127,19 +172,20 @@ export default class NutanixGeneralInfoRedeployCtrl {
     };
   }
 
-  onRedeploy() {
-    this.trackClick(
-      this.redeployMethod === REDEPLOY_CONFIG_OPTIONS.CUSTOM
-        ? 'confirm_personalized-configuration'
-        : 'confirm_saved-configuration',
+  redeployInitialConfiguration() {
+    this.trackClick('confirm_saved-configuration');
+    delete this.initalConfig.nodes;
+    return this.goToConfirmRedeploy(
+      REDEPLOY_CONFIG_OPTIONS.INITIAL,
+      NutanixGeneralInfoRedeployCtrl.preparePayload(this.initalConfig),
     );
-    this.goToConfirmRedeploy(
-      this.redeployMethod,
-      NutanixGeneralInfoRedeployCtrl.preparePayload(
-        this.redeployMethod === REDEPLOY_CONFIG_OPTIONS.CUSTOM
-          ? this.config
-          : this.initalConfig,
-      ),
+  }
+
+  redeployCustomConfiguration() {
+    this.trackClick('confirm_personalized-configuration');
+    return this.goToConfirmRedeploy(
+      REDEPLOY_CONFIG_OPTIONS.CUSTOM,
+      NutanixGeneralInfoRedeployCtrl.preparePayload(this.config),
     );
   }
 
