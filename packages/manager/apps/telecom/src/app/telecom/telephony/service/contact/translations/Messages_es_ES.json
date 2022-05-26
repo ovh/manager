@@ -61,5 +61,7 @@
   "telephony_service_contact_bulk_some_success": "Se han modificado los datos de {{ count }} de los servicios seleccionados.",
   "telephony_service_contact_bulk_error": "No se han podido modificar los datos de los siguientes servicios:",
   "telephony_service_contact_bulk_on_error": "¡Vaya! Se ha producido un error al modificar los datos.",
-  "telephony_service_contact_required_fields": "Los campos con asterisco son obligatorios."
+  "telephony_service_contact_required_fields": "Los campos con asterisco son obligatorios.",
+  "telephony_service_contact_tva": "Número de IVA",
+  "telephony_service_contact_tva_invalid": "El número de IVA introducido no es válido."
 }
