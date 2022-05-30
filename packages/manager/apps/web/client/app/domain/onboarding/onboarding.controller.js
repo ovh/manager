@@ -9,6 +9,7 @@ export default class DomainOnboardingController {
 
   async $onInit() {
     const user = await this.coreConfig.getUser();
+    this.region = await this.coreConfig.getRegion();
     this.ovhSubsidiary = user.ovhSubsidiary;
     this.guides = GUIDES.map((guide) => ({
       link: guide.links[this.ovhSubsidiary] || guide.links.DEFAULT,
