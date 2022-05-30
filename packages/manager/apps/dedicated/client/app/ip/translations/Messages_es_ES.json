@@ -673,5 +673,9 @@
   "ip_table_manage_delegation_ipv6block_delete_err": "Se ha producido un error al eliminar la delegación del registro DNS inverso:",
   "ip_table_manage_delegation_ipv6block_resume": "Resumen de la operación",
   "ip_table_manage_delegation_ipv6block_to_add": "Registro(s) inverso(s) que desea añadir",
-  "ip_table_manage_delegation_ipv6block_to_delete": "Registro(s) inverso(s) que desea eliminar"
+  "ip_table_manage_delegation_ipv6block_to_delete": "Registro(s) inverso(s) que desea eliminar",
+  "ip_order_title": "Contratar",
+  "ip_administration_title": "Administrar",
+  "ip_addresses_grid_header": "Mis direcciones IP públicas y servicios asociados",
+  "ip_order_additional_ips": "IP adicionales"
 }

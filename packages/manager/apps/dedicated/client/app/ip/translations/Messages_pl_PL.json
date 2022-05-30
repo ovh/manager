@@ -673,5 +673,9 @@
   "ip_table_manage_delegation_ipv6block_delete_err": "Wystąpił błąd podczas usuwania delegacji rewersu DNS:",
   "ip_table_manage_delegation_ipv6block_resume": "Podsumowanie operacji",
   "ip_table_manage_delegation_ipv6block_to_add": "Rewers(y) do dodania",
-  "ip_table_manage_delegation_ipv6block_to_delete": "Rewers(y) do usunięcia"
+  "ip_table_manage_delegation_ipv6block_to_delete": "Rewers(y) do usunięcia",
+  "ip_order_title": "Zamów",
+  "ip_administration_title": "Zarządzanie",
+  "ip_addresses_grid_header": "Moje publiczne adresy IP i usługi powiązane",
+  "ip_order_additional_ips": "Dodatkowe IP"
 }

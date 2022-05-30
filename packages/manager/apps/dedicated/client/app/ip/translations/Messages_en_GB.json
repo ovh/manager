@@ -673,5 +673,9 @@
   "ip_table_manage_delegation_ipv6block_delete_err": "An error occurred while deleting the reverse DNS delegation:",
   "ip_table_manage_delegation_ipv6block_resume": "Task summary ",
   "ip_table_manage_delegation_ipv6block_to_add": "Reverse to be added ",
-  "ip_table_manage_delegation_ipv6block_to_delete": "Reverse to delete "
+  "ip_table_manage_delegation_ipv6block_to_delete": "Reverse to delete ",
+  "ip_order_title": "Order",
+  "ip_administration_title": "Administer",
+  "ip_addresses_grid_header": "My public IP addresses and associated services",
+  "ip_order_additional_ips": "Additional IPs"
 }

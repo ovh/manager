@@ -678,8 +678,5 @@
   "ip_order_title": "Commander",
   "ip_order_additional_ips": "IP supplémentaires",
   "ip_administration_title": "Administrer",
-  "ip_administration_export_to_csv": "Exporter mes adresses IP dans un fichier CSV",
-  "ip_administration_import": "Importer mes adresses IP de SYS vers OVHcloud",
-  "ip_administration_manager_organizations": "Gérer mes organisations",
   "ip_addresses_grid_header": "Mes adresses IP publiques et services associés"
 }
