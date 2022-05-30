@@ -1,9 +1,10 @@
-import { GUIDES, CTAS } from './constants';
+import { GUIDES } from './constants';
 import image from './assets/logs.png';
 
 export default class DbaasLogsOnboardingController {
   /* @ngInject */
-  constructor($translate, coreConfig) {
+  constructor($state, $translate, coreConfig) {
+    this.$state = $state;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.image = image;
@@ -17,6 +18,6 @@ export default class DbaasLogsOnboardingController {
       description: this.$translate.instant(guide.description),
       title: this.$translate.instant(guide.title),
     }));
-    this.cta = CTAS[this.ovhSubsidiary] || CTAS.DEFAULT;
+    this.cta = this.$state.href('dbaas-logs.order');
   }
 }
