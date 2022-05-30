@@ -1,12 +1,19 @@
+import { get } from 'lodash';
 import capitalize from 'lodash/capitalize';
+import { SPECIAL_CONDITIONS } from './app.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, ovhManagerRegionService) {
+  constructor(
+    $translate,
+    CucCloudMessage,
+    ovhManagerRegionService,
+    coreConfig,
+  ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
-
+    this.coreConfig = coreConfig;
     this.capitalize = capitalize;
   }
 
@@ -62,5 +69,13 @@ export default class {
 
   onGuideLinkClick(guideName) {
     this.trackApps(`'table::guide::${guideName}`);
+  }
+
+  getSpecialConfitionsLink() {
+    return get(
+      SPECIAL_CONDITIONS,
+      `${this.coreConfig.getRegion()}.${this.$translate.use()}`,
+      get(SPECIAL_CONDITIONS, `${this.coreConfig.getRegion()}.default`),
+    );
   }
 }
