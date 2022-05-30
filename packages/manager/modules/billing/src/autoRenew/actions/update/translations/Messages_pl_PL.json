@@ -7,7 +7,7 @@
   "billing_autorenew_service_update_service_period": "Częstotliwość",
   "billing_autorenew_service_update_service_period_value": "{{month}} miesiąc",
   "billing_autorenew_service_update_confirm": "Zatwierdź",
-  "billing_autorenew_service_update_success": "Odnowienie usługi {{service}} zostało zaktualizowane.",
+  "billing_autorenew_service_update_success": "Odnowienie usługi {{service}} zostało zaktualizowane. Jeśli modyfikacja nie wyświetla się na liście, odśwież stronę.",
   "billing_autorenew_service_update_error": "Wystąpił błąd podczas konfiguracji odnowienia {{message}}.",
   "billing_autorenew_service_update_add_mean": "Dodaj sposób płatności",
   "billing_autorenew_service_update_validate": "Weryfikacja",
