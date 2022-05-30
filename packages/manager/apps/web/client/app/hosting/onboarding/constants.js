@@ -88,6 +88,7 @@ export const GUIDES = [
       GB: 'https://docs.ovh.com/gb/en/hosting/activate-start10m/',
       FR: 'https://docs.ovh.com/fr/hosting/activer-start10m/',
     },
+    region: ['EU'],
   },
 ];
 
