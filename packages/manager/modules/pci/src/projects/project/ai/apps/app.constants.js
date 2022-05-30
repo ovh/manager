@@ -49,27 +49,6 @@ export const APP_STORAGE_INFO = {
   CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/data/',
 };
 
-export const SPECIAL_CONDITIONS = {
-  CA: {
-    fr_FR:
-      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/0a19c8e-Conditions_particulieres_OVH_Stack-FR-11.0.pdf',
-    fr_CA:
-      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/0a19c8e-Conditions_particulieres_OVH_Stack-FR-11.0.pdf',
-    default:
-      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/d2a208c-Conditions_particulieres_OVH_Stack-WE-9.0.pdf',
-  },
-  EU: {
-    fr_FR:
-      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/0a19c8e-Conditions_particulieres_OVH_Stack-FR-11.0.pdf',
-    default:
-      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/d2a208c-Conditions_particulieres_OVH_Stack-WE-9.0.pdf',
-  },
-  US: {
-    default:
-      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/d2a208c-Conditions_particulieres_OVH_Stack-WE-9.0.pdf',
-  },
-};
-
 export const APP_MULTIPLY_SIGN = ' × ';
 
 export default {

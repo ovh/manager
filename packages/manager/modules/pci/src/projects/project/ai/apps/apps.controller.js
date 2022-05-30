@@ -1,6 +1,6 @@
-import { get } from 'lodash';
+import get from 'lodash/get';
 import capitalize from 'lodash/capitalize';
-import { SPECIAL_CONDITIONS } from './app.constants';
+import { PCI_SPECIAL_CONDITIONS } from '../../../../constants';
 
 export default class {
   /* @ngInject */
@@ -71,11 +71,11 @@ export default class {
     this.trackApps(`'table::guide::${guideName}`);
   }
 
-  getSpecialConfitionsLink() {
+  getSpecialConditionsLink() {
     return get(
-      SPECIAL_CONDITIONS,
+      PCI_SPECIAL_CONDITIONS,
       `${this.coreConfig.getRegion()}.${this.$translate.use()}`,
-      get(SPECIAL_CONDITIONS, `${this.coreConfig.getRegion()}.default`),
+      get(PCI_SPECIAL_CONDITIONS, `${this.coreConfig.getRegion()}.default`),
     );
   }
 }
