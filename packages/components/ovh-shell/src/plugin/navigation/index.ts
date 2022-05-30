@@ -24,16 +24,7 @@ export function navigation(environment: Environment) {
     if (window.location.hostname === 'localhost') {
       return `${window.location.origin}/#/manager`;
     }
-    const appPublicURL = environment.getApplications()[application]?.publicURL;
-    const currentAppPublicURL = environment.getApplications()[
-      environment.getApplicationName() as ApplicationId
-    ]?.publicURL;
-
-    if (appPublicURL === currentAppPublicURL) {
-      return `${window.location.origin}${window.location.pathname}`;
-    }
-
-    return appPublicURL;
+    return environment.getApplications()[application]?.publicURL;
   };
 
   const getURL = (
