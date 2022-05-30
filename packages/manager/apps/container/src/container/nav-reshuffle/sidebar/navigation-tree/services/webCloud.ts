@@ -104,7 +104,7 @@ export default {
     {
       id: 'microsoft',
       translation: 'sidebar_microsoft',
-      features: ['office', 'exchange:web-dashboard', 'sharepoint'],
+      features: ['office', 'exchange', 'sharepoint'],
       children: [
         {
           id: 'office',
@@ -124,7 +124,7 @@ export default {
             application: 'web',
             hash: '#/exchange',
           },
-          features: ['exchange:web-dashboard'],
+          features: ['exchange'],
         },
         {
           id: 'sharepoint',
