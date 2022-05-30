@@ -9,8 +9,11 @@ export default class HostingsOnboardingController {
 
   async $onInit() {
     const user = await this.coreConfig.getUser();
+    const region = await this.coreConfig.getRegion();
     this.ovhSubsidiary = user.ovhSubsidiary;
-    this.guides = GUIDES.map((guide) => ({
+    this.guides = GUIDES.filter((guide) => {
+      return guide.region ? guide.region.include(region) : true;
+    }).map((guide) => ({
       link: guide.links[this.ovhSubsidiary] || guide.links.DEFAULT,
       description: this.$translate.instant(guide.description),
       title: this.$translate.instant(guide.title),
