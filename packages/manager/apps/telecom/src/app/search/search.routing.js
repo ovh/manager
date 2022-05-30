@@ -1,7 +1,6 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
-import map from 'lodash/map';
 import some from 'lodash/some';
 
 import controller from './search.controller';
@@ -38,27 +37,9 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       query: ($transition$) => $transition$.params().q,
-      services: (apiv7, query) =>
-        query
-          ? apiv7('/telephony/*/service?$aggreg=1')
-              .query()
-              .execute()
-              .$promise.then((results) => {
-                const filteredResults = filterResults(results, query, [
-                  'value.serviceName',
-                  'value.description',
-                  {
-                    path: 'value.associatedDeviceMac',
-                    verify: (mac) =>
-                      mac.replace(/:/g, '').toLowerCase() ===
-                      query.replace(/:/g, '').toLowerCase(),
-                  },
-                ]);
-                return map(filteredResults, (result) => ({
-                  ...result,
-                  billingAccount: result.path.split('/')[2],
-                }));
-              })
+      services: (query, telecomSearchResultsService) =>
+        query?.length >= 5 && query?.indexOf(' ') === -1 // requirements for the api /telephony/searchServices
+          ? telecomSearchResultsService.findTelephonyService(query)
           : null,
       billingAccount: (query, iceberg) =>
         query
