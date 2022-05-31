@@ -28,15 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
       billingAccount: /* @ngInject */ ($transition$) =>
         $transition$.params().billingAccount,
       billingAccountId: /* @ngInject */ (billingAccount) => billingAccount,
-      initTelephony($q, $stateParams, TelephonyMediator) {
-        // init all groups, lines and numbers
-        TelephonyMediator.init().then(() =>
-          TelephonyMediator.getGroup(
-            $stateParams.billingAccount,
-          ).then((group) => TelephonyMediator.setCurrentGroup(group)),
-        );
-        return $q.when({ init: true });
-      },
       $title(translations, $translate, $stateParams, OvhApiTelephony) {
         return OvhApiTelephony.v6()
           .get({

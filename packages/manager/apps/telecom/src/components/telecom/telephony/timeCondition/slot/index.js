@@ -5,6 +5,8 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
 
+import serviceChoiceModule from '../../service/choice';
+
 import component from './slot.component';
 
 import editTemplate from './edit/edit.html';
@@ -20,6 +22,7 @@ angular
     'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
+    serviceChoiceModule,
   ])
   .component('voipTimeConditionSlot', component)
   .controller('voipTimeConditionSlotEditCtrl', editController)

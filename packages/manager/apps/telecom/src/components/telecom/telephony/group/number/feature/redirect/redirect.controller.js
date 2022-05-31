@@ -1,9 +1,9 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
-import keys from 'lodash/keys';
 
 export default /* @ngInject */ function TelephonyNumberRedirectCtrl(
   $q,
+  $http,
   $translate,
   TelephonyMediator,
   tucVoipServiceTask,
@@ -15,6 +15,7 @@ export default /* @ngInject */ function TelephonyNumberRedirectCtrl(
   self.group = null;
   self.destinationService = null;
   self.availableServices = null;
+  self.isLoadingAvailableServices = false;
 
   self.displayHelpers = {
     currentGroupServiceCount: null,
@@ -48,7 +49,7 @@ export default /* @ngInject */ function TelephonyNumberRedirectCtrl(
       ? self.group.getService(destinationServiceName)
       : null;
     return (
-      serviceFromCurrentGroup ||
+      $q.when(serviceFromCurrentGroup) ||
       TelephonyMediator.findService(destinationServiceName)
     );
   }
@@ -63,6 +64,7 @@ export default /* @ngInject */ function TelephonyNumberRedirectCtrl(
   }
 
   function refreshAvailableServices() {
+    self.isLoadingAvailableServices = true;
     self.availableServices = [];
 
     // set service of current group
@@ -74,17 +76,21 @@ export default /* @ngInject */ function TelephonyNumberRedirectCtrl(
     }
 
     // manage selected service
-    selectedService = getDestinationService();
-    if (
-      selectedService &&
-      !find(self.availableServices, {
-        serviceName: selectedService.serviceName,
-      })
-    ) {
-      self.availableServices.push(selectedService);
-    }
+    return getDestinationService().then((service) => {
+      selectedService = service;
 
-    return self.availableServices;
+      if (
+        selectedService &&
+        !find(self.availableServices, {
+          serviceName: selectedService.serviceName,
+        })
+      ) {
+        self.availableServices.push(selectedService);
+      }
+
+      self.isLoadingAvailableServices = false;
+      return self.availableServices;
+    });
   }
 
   /**
@@ -159,7 +165,9 @@ export default /* @ngInject */ function TelephonyNumberRedirectCtrl(
   };
 
   self.onFeatureStopEdit = function onFeatureStopEdit() {
-    self.destinationService = getDestinationService();
+    getDestinationService().then((service) => {
+      self.destinationService = service;
+    });
   };
 
   self.manageCancelChoice = function manageCancelChoice() {
@@ -185,38 +193,49 @@ export default /* @ngInject */ function TelephonyNumberRedirectCtrl(
    *  Component initialization
    */
   self.$onInit = function $onInit() {
+    const { billingAccount } = self.numberCtrl.number;
     self.numberCtrl.loading.feature = true;
 
     // set save feature function
     self.numberCtrl.saveFeature = saveFeature;
 
     // load resource needed for redirect
-    return TelephonyMediator.getGroup(self.numberCtrl.number.billingAccount)
-      .then((group) => {
+    return $q
+      .all({
+        group: TelephonyMediator.getGroup(billingAccount),
+        anotherGroup: $http
+          .get('/telephony', {
+            headers: {
+              Pragma: 'no-cache',
+              'X-Pagination-Mode': 'CachedObjectList-Pages',
+              'X-Pagination-Size': 1,
+              'X-Pagination-Filter': `billingAccount:ne=${billingAccount}`,
+            },
+          })
+          .then(({ data: [group] }) => group),
+      })
+      .then(({ group, anotherGroup }) => {
         self.group = group;
 
-        return TelephonyMediator.getAll().then(() => {
-          const numberList = getNumberList();
+        const numberList = getNumberList();
 
-          self.displayHelpers.currentGroupServiceCount =
-            numberList.length + self.group.lines.length + self.group.fax.length;
+        self.displayHelpers.currentGroupServiceCount =
+          numberList.length + self.group.lines.length + self.group.fax.length;
 
-          // set display helpers
-          self.displayHelpers.hasOtherGroups =
-            keys(TelephonyMediator.groups).length > 1;
-          self.displayHelpers.availableTypes =
-            self.numberCtrl.number.feature.featureType === 'ddi'
-              ? ['trunk', 'sip', 'plugAndFax']
-              : undefined;
-          if (
-            self.displayHelpers.hasOtherGroups &&
-            self.displayHelpers.currentGroupServiceCount <= 4
-          ) {
-            self.displayHelpers.hiddenGroups.push(
-              self.numberCtrl.number.billingAccount,
-            );
-          }
-        });
+        // set display helpers
+        self.displayHelpers.hasOtherGroups = Boolean(anotherGroup);
+        self.displayHelpers.availableTypes =
+          self.numberCtrl.number.feature.featureType === 'ddi'
+            ? ['trunk', 'sip', 'plugAndFax']
+            : undefined;
+        if (
+          self.displayHelpers.hasOtherGroups &&
+          self.displayHelpers.currentGroupServiceCount <= 4
+        ) {
+          self.displayHelpers.hiddenGroups.push(
+            self.numberCtrl.number.billingAccount,
+          );
+        }
       })
       .finally(() => {
         self.numberCtrl.loading.feature = false;
