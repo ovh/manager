@@ -39,15 +39,16 @@ module.exports = (env) => {
       new FriendlyErrorsWebpackPlugin(),
     ],
     devServer: {
-      before(app) {
-        app.get('/auth', sso.auth.bind(sso));
-        app.get('/auth/check', sso.checkAuth.bind(sso));
+      onBeforeSetupMiddleware(devServer) {
+        devServer.app.get('/auth', sso.auth.bind(sso));
+        devServer.app.get('/auth/check', sso.checkAuth.bind(sso));
       },
-      clientLogLevel: 'none',
+      client: {
+        logging: 'none',
+      },
       logLevel: 'silent',
       host: env.host || process.env.npm_package_config_host || 'localhost',
       https: env.https || yn(process.env.npm_package_config_https) || false,
-      overlay: true,
       port:
         env.port ||
         Number.parseInt(process.env.npm_package_config_port, 10) ||
