@@ -313,7 +313,9 @@
             </oui-field>
         </div>
 
-        <div data-ng-if="$ctrl.automatedBackup.available">
+        <div
+            data-ng-if="$ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($ctrl.flavor.type)"
+        >
             <oui-checkbox
                 class="mb-4"
                 model="$ctrl.automatedBackup.selected"

@@ -1,4 +1,4 @@
-export const DEFAULT_OS = 'linux';
+export const DEFAULT_OS = ['linux', 'baremetal-linux'];
 
 export const CATEGORIES = [
   {

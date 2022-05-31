@@ -1,5 +1,5 @@
 export const BANDWIDTH_OUT = 'bandwidth_instance_out.consumption';
-export const EXCLUDE_FLAVOR_CATEGORIES = ['baremetal'];
+export const FILTER_PRIVATE_NETWORK_BAREMETAL = 'ovh.baremetal';
 
 export const INSTANCE_MODES_ENUM = [
   { mode: 'public_mode' },
@@ -23,8 +23,8 @@ export const FLOATING_IP_AVAILABILITY_INFO_LINK =
 
 export default {
   BANDWIDTH_OUT,
-  EXCLUDE_FLAVOR_CATEGORIES,
   INSTANCE_MODES_ENUM,
   AVAILABLE_SUBNET,
   INSTANCE_READ_MORE_GUIDE,
+  FILTER_PRIVATE_NETWORK_BAREMETAL,
 };
