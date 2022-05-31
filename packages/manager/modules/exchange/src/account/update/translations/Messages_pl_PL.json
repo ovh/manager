@@ -13,7 +13,6 @@
   "exchange_account_update_emailAddress_hint_part_1": "powinna zaczynać się i kończyć literą lub cyfrą;",
   "exchange_account_update_emailAddress_hint_part_2": "dozwolone są następujące znaki specjalne: \".\", \"+\", \"-\" i \"_\";",
   "exchange_account_update_emailAddress_hint_part_3": "znaki specjalne nie mogą występować obok siebie.",
-  "exchange_account_update_emailAddress_hint_part_4": "znaki specjalne nie mogą występować obok siebie.",
   "exchange_account_update_emailAddress_hide_from_directory": "Ukryj adres w książce adresowej",
   "exchange_account_update_emailAddress_error_emailAddressIsAlreadyTaken": "Ten adres e-mail już istnieje.",
   "exchange_account_update_samAccountName_label": "Nazwa konta Exchange 2010:",

@@ -4,7 +4,6 @@
   "exchange_account_add_emailAddress_hint_part_1": "deve iniziare e terminare con una lettera o un numero",
   "exchange_account_add_emailAddress_hint_part_2": "i caratteri speciali autorizzati sono \".\", \"+\", \"-\" e \"_\"",
   "exchange_account_add_emailAddress_hint_part_3": "non è possibile utilizzare caratteri speciali consecutivi",
-  "exchange_account_add_emailAddress_hint_part_4": "non è possibile utilizzare caratteri speciali consecutivi",
   "exchange_account_add_phone_help_text": "Inserisci un numero in formato internazionale (00xx ...).",
   "exchange_account_country_AD": "Andorra",
   "exchange_account_country_AE": "Emirati Arabi Uniti",

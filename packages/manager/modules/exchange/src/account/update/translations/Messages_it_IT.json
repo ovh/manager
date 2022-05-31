@@ -13,7 +13,6 @@
   "exchange_account_update_emailAddress_hint_part_1": "deve iniziare e terminare con una lettera o un numero",
   "exchange_account_update_emailAddress_hint_part_2": "i caratteri speciali autorizzati sono \".\", \"+\", \"-\" e \"_\"",
   "exchange_account_update_emailAddress_hint_part_3": "non è possibile utilizzare caratteri speciali consecutivi",
-  "exchange_account_update_emailAddress_hint_part_4": "non è possibile utilizzare caratteri speciali consecutivi",
   "exchange_account_update_emailAddress_hide_from_directory": "Nascondi l'indirizzo nella rubrica",
   "exchange_account_update_emailAddress_error_emailAddressIsAlreadyTaken": "Questo indirizzo email esiste già",
   "exchange_account_update_samAccountName_label": "Nome dell'account Exchange 2010",

@@ -4,7 +4,6 @@
   "exchange_account_add_emailAddress_hint_part_1": "powinna zaczynać się i kończyć literą lub cyfrą;",
   "exchange_account_add_emailAddress_hint_part_2": "dozwolone są następujące znaki specjalne: \".\", \"+\", \"-\" i \"_\";",
   "exchange_account_add_emailAddress_hint_part_3": "znaki specjalne nie mogą występować obok siebie.",
-  "exchange_account_add_emailAddress_hint_part_4": "znaki specjalne nie mogą występować obok siebie.",
   "exchange_account_add_phone_help_text": "Wpisz numer w formacie międzynarodowym (00xx ...).",
   "exchange_account_country_AD": "Andora",
   "exchange_account_country_AE": "Zjednoczone Emiraty Arabskie",

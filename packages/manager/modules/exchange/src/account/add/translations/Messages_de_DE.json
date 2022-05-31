@@ -4,7 +4,6 @@
   "exchange_account_add_emailAddress_hint_part_1": "Er muss mit einem Buchstaben oder einer Zahl anfangen und enden.",
   "exchange_account_add_emailAddress_hint_part_2": "Diese Sonderzeichen sind zugelassen: „.“, „+“, „-“ und „_“ .",
   "exchange_account_add_emailAddress_hint_part_3": "Sonderzeichen können nicht nebeneinander stehen",
-  "exchange_account_add_emailAddress_hint_part_4": "Sonderzeichen können nicht nebeneinander stehen",
   "exchange_account_add_phone_help_text": "Bitte geben Sie eine Nummer im internationalen Format an (00xx ...).",
   "exchange_account_country_AD": "Andorra",
   "exchange_account_country_AE": "Vereinigte Arabische Emirate",
