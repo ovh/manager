@@ -1,3 +1,12 @@
+# [13.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.38.2...@ovh-ux/manager-telecom@13.39.0) (2022-05-31)
+
+
+### Features
+
+* **telecom:** kill v7 tucVoipService.fetchAll ([#7202](https://github.com/ovh/manager/issues/7202)) ([5e40e83](https://github.com/ovh/manager/commit/5e40e83938654fa7089d31d8c9ccc0ccbfeff736))
+
+
+
 ## [13.38.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.38.1...@ovh-ux/manager-telecom@13.38.2) (2022-05-19)
 
 
