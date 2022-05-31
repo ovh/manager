@@ -40,17 +40,7 @@ export default {
         {
           id: 'hpc-licences',
           translation: 'sidebar_licences',
-          serviceType: [
-            'LICENSE_CLOUDLINUX',
-            'LICENSE_CPANEL',
-            'LICENSE_DIRECTADMIN',
-            'LICENSE_PLESK',
-            'LICENSE_SPLA',
-            'LICENSE_SQLSERVER',
-            'LICENSE_VIRTUOZZO',
-            'LICENSE_WINDOWS',
-            'LICENSE_WORKLIGHT',
-          ],
+          serviceType: 'LICENSE',
           routing: {
             application: 'dedicated',
             hash: '#/license',
