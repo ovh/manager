@@ -1,4 +1,0 @@
-{
-  "pci_projects_project_baremetal_add_success_message": "O servidor {{ instance }} está a ser criado e esta operação pode demorar até 15 minutos.",
-  "pci_projects_project_baremetal_add_success_multiple_message": "Os servidores estão a ser criados e a operação pode demorar até 15 minutos."
-}

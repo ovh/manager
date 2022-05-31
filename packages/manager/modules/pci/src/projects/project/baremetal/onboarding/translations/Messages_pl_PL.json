@@ -1,7 +1,0 @@
-{
-  "pci_projects_project_baremetal_onboarding_content1": "Obecnie nie posiadasz żadnej instancji bare metal.",
-  "pci_projects_project_baremetal_onboarding_content2": "Instancje bare metal oferują serwery fizyczne na żądanie, które są dostarczane w ciągu kilku minut i są fakturowane w trybie godzinowym lub miesięcznym.",
-  "pci_projects_project_baremetal_onboarding_content3": "Mogą być one obsługiwane jak klasyczne instancje - poprzez interfejs klienta lub standardowe narzędzia do zarządzania infrastrukturą, takie jak CLI lub narzędzia do orkiestracji.",
-  "pci_projects_project_baremetal_onboarding_content4": "Niektóre funkcje nie są dostępne w przypadku instancji bare metal, np. snapshoty lub zmiana skalowanie.",
-  "pci_projects_project_baremetal_onboarding_action_label": "Utwórz instancję"
-}
