@@ -13,5 +13,8 @@ export default {
     orderId: '<',
     orderStatus: '<',
     voucherCode: '<?',
+    isRedirectRequired: '<',
+    getTargetedState: '<',
+    goToState: '<',
   },
 };
