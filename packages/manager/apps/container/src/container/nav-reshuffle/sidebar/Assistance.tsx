@@ -3,12 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useURL } from '@/container/common/urls-constants';
 import ApplicationContext from '@/context';
-import { ONBOARDING_STATUS_ENUM } from '@/core/onboarding';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import SidebarLink from './SidebarLink';
 import style from './style.module.scss';
-import { ComponentProps, findPathToNode } from './utils';
+import { ComponentProps } from './utils';
 
 interface Props {
   containerURL: { appId: string; appHash: string };
@@ -33,7 +32,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
   const hasAdvancedSupport = ['EU', 'CA'].includes(environment.getRegion());
   const [hasChatbot, setHashChatbot] = useState(false);
 
-  const { openOnboarding, onboardingOpenedState } = useProductNavReshuffle();
+  const { closeNavigationSidebar, openOnboarding } = useProductNavReshuffle();
 
   useEffect(() => {
     const initChatbot = async () => {
@@ -115,7 +114,10 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
                 },
                 count: false,
               }}
-              onClick={() => trackNode('assistance_tickets')}
+              onClick={() => {
+                trackNode('assistance_tickets');
+                closeNavigationSidebar();
+              }}
             />
           </li>
           <li>
@@ -144,7 +146,10 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
                   },
                   count: false,
                 }}
-                onClick={() => trackNode('assistance_support_level')}
+                onClick={() => {
+                  trackNode('assistance_support_level');
+                  closeNavigationSidebar();
+                }}
               />
             </li>
           )}
@@ -158,6 +163,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
                 onClick={() => {
                   shell.getPlugin('ux').openChatbot();
                   trackNode('assistance_live_chat');
+                  closeNavigationSidebar();
                 }}
               />
             </li>
