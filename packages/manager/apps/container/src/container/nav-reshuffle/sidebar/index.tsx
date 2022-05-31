@@ -35,6 +35,7 @@ function Sidebar(): JSX.Element {
     routingPlugin.parseContainerURL(),
   );
   const {
+    closeNavigationSidebar,
     currentNavigationNode,
     setCurrentNavigationNode,
     navigationTree,
@@ -72,6 +73,8 @@ function Sidebar(): JSX.Element {
   const menuClickHandler = (node) => {
     if (node.children) {
       setCurrentNavigationNode(node);
+    } else {
+      closeNavigationSidebar();
     }
 
     let trackingIdComplement = 'navbar_v2_entry_';
