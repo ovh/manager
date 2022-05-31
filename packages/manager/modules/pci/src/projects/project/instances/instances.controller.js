@@ -91,4 +91,8 @@ export default class CloudProjectComputeInfrastructureListCtrl {
         });
     }
   }
+
+  getIpsForTooltip = (ipsList) => {
+    return ipsList.map(({ ip }) => ip).join(', ');
+  };
 }
