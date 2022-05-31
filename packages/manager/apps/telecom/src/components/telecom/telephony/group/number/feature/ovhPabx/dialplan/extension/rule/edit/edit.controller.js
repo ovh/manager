@@ -1,10 +1,8 @@
-import find from 'lodash/find';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import isString from 'lodash/isString';
 import map from 'lodash/map';
 import snakeCase from 'lodash/snakeCase';
-import sortBy from 'lodash/sortBy';
 
 export default class DialplanExtensionRuleEditCtrl {
   /* @ngInject */
@@ -39,8 +37,6 @@ export default class DialplanExtensionRuleEditCtrl {
     this.ovhPabx = null;
     this.rule = null;
     this.availableActions = null;
-    this.groups = null;
-    this.groupsFiltered = {};
   }
 
   $onInit() {
@@ -92,20 +88,6 @@ export default class DialplanExtensionRuleEditCtrl {
               )}_explain`,
             ),
           }),
-        );
-
-        // sort and filter groups and reject groups that don't have any service
-        // used for voicemail selection
-        this.groups = sortBy(
-          filter(
-            this.TelephonyMediator.groups,
-            (group) => group.getAllServices().length > 0,
-          ),
-          (group) => group.getDisplayedName(),
-        );
-
-        this.groupsFiltered = this.groups.filter((group) =>
-          this.filterDisplayedGroup(group),
         );
       })
       .finally(() => {
@@ -172,32 +154,6 @@ export default class DialplanExtensionRuleEditCtrl {
     return service.description && service.description !== service.serviceName
       ? `${service.description} - ${service.serviceName}`
       : service.serviceName;
-  }
-
-  /**
-   *  @todo refactor with service choice popover
-   */
-  getServiceGroupName(service) {
-    return this.getServiceDisplayedName(
-      find(this.TelephonyMediator.groups, {
-        billingAccount: service.billingAccount,
-      }),
-      true,
-    );
-  }
-
-  /* ----------  Voicemail selection  ---------- */
-
-  // eslint-disable-next-line class-methods-use-this
-  filterGroupServices(group) {
-    return [].concat(group.lines, group.fax);
-  }
-
-  filterDisplayedGroup(group) {
-    return this.$filter('tucPropsFilter')(this.filterGroupServices(group), {
-      serviceName: this.model.search,
-      description: this.model.search,
-    }).length;
   }
 
   /* ----------  ACTION CHOICE   ----------*/
@@ -305,6 +261,7 @@ export default class DialplanExtensionRuleEditCtrl {
   onVoicemailActionParamChange(service) {
     this.parentCtrl.popoverStatus.move = false;
     this.rule.actionParamInfos = service;
+    this.rule.actionParam = service.serviceName;
   }
 
   /* ----------  IVR ACTIONS  ----------*/

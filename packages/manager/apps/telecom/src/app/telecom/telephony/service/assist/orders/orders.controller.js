@@ -70,13 +70,17 @@ export default /* @ngInject */ function TelecomTelephonyServiceAssistOrdersCtrl(
     self.ordersRaw = null;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount)
-      .then(() => {
-        self.service = TelephonyMediator.findService($stateParams.serviceName);
+      .then(() =>
+        TelephonyMediator.findService($stateParams.serviceName).then(
+          (service) => {
+            self.service = service;
 
-        return fetchOrders().then((orders) => {
-          self.ordersRaw = orders;
-        });
-      })
+            return fetchOrders().then((orders) => {
+              self.ordersRaw = orders;
+            });
+          },
+        ),
+      )
       .catch(() => {
         self.ordersRaw = [];
       });

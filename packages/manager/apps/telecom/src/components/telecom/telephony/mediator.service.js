@@ -3,8 +3,14 @@ import get from 'lodash/get';
 export default /* @ngInject */ function TelephonyMediator(
   $q,
   $stateParams,
+  $http,
+  iceberg,
   OvhApiTelephony,
   TelephonyVoipService,
+  TelephonyGroup,
+  TelephonyGroupFax,
+  TelephonyGroupLine,
+  TelephonyGroupNumber,
   URLS,
   REDIRECT_V4_HASH,
 ) {
@@ -19,6 +25,23 @@ export default /* @ngInject */ function TelephonyMediator(
   self.groups = {};
   self.getAllDeferred = null;
   self.apiScheme = null;
+
+  const createGroup = (group) => {
+    return new TelephonyGroup(group);
+  };
+
+  const createService = (service) => {
+    if (['fax', 'voicefax'].includes(service.featureType)) {
+      return new TelephonyGroupFax(service);
+    }
+    if (service.serviceType === 'line') {
+      return new TelephonyGroupLine(service);
+    }
+    if (service.serviceType === 'alias') {
+      return new TelephonyGroupNumber(service);
+    }
+    return null;
+  };
 
   self.getApiScheme = function getApiScheme() {
     if (!self.apiScheme) {
@@ -82,43 +105,56 @@ export default /* @ngInject */ function TelephonyMediator(
   /* ----------  SERVICES  ----------*/
 
   // @TODO refactor to use the getAll function instead of self.groups
-  self.findService = function findService(serviceName) {
-    let tmpGroup = null;
-    let tmpService = null;
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (const billingAccount in self.groups) {
-      if (get(self.groups, billingAccount)) {
-        tmpGroup = get(self.groups, billingAccount);
-        tmpService = tmpGroup.getService(serviceName);
-        if (tmpService) {
-          return tmpService;
+  self.findService = function findService(axiom) {
+    return $http
+      .get(`/telephony/searchServices?axiom=${axiom}`)
+      .then(({ data: [result] }) => {
+        if (result) {
+          const { billingAccount, domain } = result;
+          return $http
+            .get(`/telephony/${billingAccount}/service/${domain}`)
+            .then(({ data: service }) =>
+              createService({ ...service, billingAccount }),
+            );
         }
-      }
-    }
-    return null;
+        return null;
+      })
+      .catch(() => null);
   };
 
-  self.getAll = function getAll(force) {
-    if (self.getAllDeferred && !force) {
-      return self.getAllDeferred.promise;
-    }
-    self.getAllDeferred = $q.defer();
-    TelephonyVoipService.fetchAll()
-      .then((groups) => {
-        self.groups = groups; // only because of findService function
-        self.getAllDeferred.resolve(groups);
-      })
-      .catch((err) => {
-        self.getAllDeferred.reject(err);
-      });
-    return self.getAllDeferred.promise;
+  self.getAll = function getAll() {
+    return iceberg(`/telephony`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data: groups }) => groups.map(createGroup));
   };
 
   /* ----------  ACTIONS  ----------*/
 
-  self.getGroup = function getGroup(billingAccount, force) {
-    return self.getAll(force).then((groups) => groups[billingAccount]);
+  self.getGroup = function getGroup(billingAccount) {
+    return $q
+      .all({
+        group: $http.get(`/telephony/${billingAccount}`),
+        services: iceberg(`/telephony/${billingAccount}/service`)
+          .query()
+          .expand('CachedObjectList-Pages')
+          .execute(null, true).$promise,
+      })
+      .then(({ group: { data: group }, services: { data: services } }) => {
+        const telephonyGroup = createGroup(group);
+        services
+          .map((service) => createService({ ...service, billingAccount }))
+          .forEach((service) => {
+            if (service instanceof TelephonyGroupFax)
+              telephonyGroup.fax.push(service);
+            if (service instanceof TelephonyGroupLine)
+              telephonyGroup.lines.push(service);
+            if (service instanceof TelephonyGroupNumber)
+              telephonyGroup.numbers.push(service);
+          });
+        return telephonyGroup;
+      });
   };
 
   /*
