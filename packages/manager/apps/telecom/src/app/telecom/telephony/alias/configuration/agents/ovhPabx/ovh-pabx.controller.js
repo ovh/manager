@@ -1,9 +1,6 @@
 import assign from 'lodash/assign';
-import endsWith from 'lodash/endsWith';
-import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
-import map from 'lodash/map';
 import pick from 'lodash/pick';
 import pull from 'lodash/pull';
 import pullAt from 'lodash/pullAt';
@@ -19,17 +16,18 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
   /* @ngInject */
   constructor(
     $q,
+    $http,
     $stateParams,
     $timeout,
     $translate,
     $uibModal,
     OvhApiTelephony,
     TelephonyMediator,
-    tucTelecomVoip,
     TucToast,
     voipAliasGuides,
   ) {
     this.$q = $q;
+    this.$http = $http;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
     this.$translate = $translate;
@@ -37,7 +35,6 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
     this.OvhApiTelephony = OvhApiTelephony;
     this.TucToast = TucToast;
     this.TelephonyMediator = TelephonyMediator;
-    this.tucTelecomVoip = tucTelecomVoip;
     this.guides = voipAliasGuides;
   }
 
@@ -77,14 +74,10 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
     this.$q
       .all({
         translations: this.$translate.refresh(),
-        services: this.tucTelecomVoip.fetchAll(),
+        agentsIds: this.fetchAgentsIds(),
       })
-      .then((result) => {
-        this.groupList = result.services;
-        return this.fetchAgentsIds();
-      })
-      .then((ids) => {
-        this.agents.ids = ids;
+      .then(({ agentsIds }) => {
+        this.agents.ids = agentsIds;
       })
       .catch((err) => {
         this.TucToast.error(
@@ -261,11 +254,8 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
   }
 
   getInternalNumber(newNumber) {
-    const allNumbers = flatten(map(this.groupList, 'services'));
-    const [, numberSuffix] = newNumber.replace(/ /g, '').split(NUMBER_PREFIXES);
-    return allNumbers.find(({ serviceName }) =>
-      endsWith(serviceName, numberSuffix),
-    );
+    const [, axiom] = newNumber.replace(/ /g, '').split(NUMBER_PREFIXES);
+    return this.TelephonyMediator.findService(axiom);
   }
 
   // Check if external numbers are defined into the list
@@ -274,43 +264,51 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
       anyExternalNumber: false,
       detail: [],
     };
-    detailNumber.detail = this.addAgentForm.numbers.map((newNumber) => {
-      const internalNumber = this.getInternalNumber(newNumber);
-      let obj = {};
-      if (
-        internalNumber === undefined ||
-        !ALLOWED_FEATURE_TYPES.includes(internalNumber.serviceType)
-      ) {
-        obj = { serviceName: newNumber, description: '' };
-        detailNumber.anyExternalNumber = true;
-      } else {
-        obj = internalNumber;
-      }
-      return obj;
-    });
-    return detailNumber;
+    return this.$q
+      .all(
+        this.addAgentForm.numbers.map((newNumber) =>
+          this.getInternalNumber(newNumber).then((internalNumber) => {
+            let obj = {};
+            if (
+              !internalNumber ||
+              !ALLOWED_FEATURE_TYPES.includes(internalNumber.serviceType)
+            ) {
+              obj = { serviceName: newNumber, description: '' };
+              detailNumber.anyExternalNumber = true;
+            } else {
+              obj = internalNumber;
+            }
+            return obj;
+          }),
+        ),
+      )
+      .then((detail) => {
+        detailNumber.detail = detail;
+        return detailNumber;
+      });
   }
 
   addAgents() {
-    const detailNumber = this.checkExternalNumber();
-    if (detailNumber.anyExternalNumber) {
-      this.$uibModal
-        .open({
-          animation: true,
-          template: modalTemplate,
-          controller: modalController,
-          controllerAs: '$ctrl',
-        })
-        .result.then(() => {
-          this.createAgents(detailNumber);
-        });
-    } else {
-      this.createAgents(detailNumber);
-    }
+    this.addAgentForm.isAdding = true;
+    this.checkExternalNumber().then((detailNumber) => {
+      if (detailNumber.anyExternalNumber) {
+        this.$uibModal
+          .open({
+            animation: true,
+            template: modalTemplate,
+            controller: modalController,
+            controllerAs: '$ctrl',
+          })
+          .result.then(() => {
+            this.createAgents(detailNumber);
+          });
+      } else {
+        this.createAgents(detailNumber);
+      }
+    });
   }
 
   createAgents(detailNumber) {
-    this.addAgentForm.isAdding = true;
     return this.$q
       .all(
         detailNumber.detail.map((number) => {

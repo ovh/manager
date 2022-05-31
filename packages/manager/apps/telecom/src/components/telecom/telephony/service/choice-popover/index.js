@@ -10,6 +10,8 @@ import directive from './choice-popover.directive';
 
 import './choice-popover.less';
 
+import choiceModule from '../choice';
+
 const moduleName =
   'ovhManagerTelecomComponentsTelecomTelephonyServiceChoicePopover';
 
@@ -20,6 +22,7 @@ angular
     'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
+    choiceModule,
   ])
   .directive('voipServiceChoicePopover', directive)
   .run(
@@ -29,7 +32,6 @@ angular
         template,
       );
     },
-  )
-  .run(/* @ngTranslationsInject:json ./translations */);
+  );
 
 export default moduleName;

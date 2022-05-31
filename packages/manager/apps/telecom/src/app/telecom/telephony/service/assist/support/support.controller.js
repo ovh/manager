@@ -22,9 +22,13 @@ export default /* @ngInject */ function TelecomTelephonyServiceAssistSupportCtrl
     self.loading.init = true;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount)
-      .then(() => {
-        self.service = TelephonyMediator.findService($stateParams.serviceName);
-      })
+      .then(() =>
+        TelephonyMediator.findService($stateParams.serviceName).then(
+          (service) => {
+            self.service = service;
+          },
+        ),
+      )
       .finally(() => {
         self.loading.init = false;
       });

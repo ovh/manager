@@ -47,8 +47,16 @@
             <span
                 class="voip-plan__step-info"
                 data-ng-switch-when="voicemail"
-                data-ng-bind="$ctrl.getVoicemailInfos().getDisplayedName() | tucPhoneNumber"
+                data-ng-init="$ctrl.fetchVoicemailInfos()"
             >
+                <oui-spinner
+                    data-ng-if="$ctrl.isLoadingVoicemailInfos"
+                    data-size="s"
+                ></oui-spinner>
+                <span
+                    data-ng-if="!$ctrl.isLoadingVoicemailInfos && $ctrl.voicemailInfos"
+                    data-ng-bind="$ctrl.voicemailInfos.getDisplayedName() | tucPhoneNumber"
+                ></span>
             </span>
             <!-- VOICEMAIL -->
 
