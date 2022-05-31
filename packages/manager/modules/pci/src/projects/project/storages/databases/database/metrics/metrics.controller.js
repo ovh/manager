@@ -112,7 +112,7 @@ export default class MetricsCtrl {
             (point) => {
               return {
                 timestamp: point.timestamp,
-                value: point.value / 1000000.0,
+                value: point.value / 1000000,
               };
             },
           );
