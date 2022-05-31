@@ -1,3 +1,18 @@
+# [5.77.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.76.0...@ovh-ux/manager-pci@5.77.0) (2022-05-31)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** reload page with redirect params ([d1a139f](https://github.com/ovh/manager/commit/d1a139fb59bb95ea15b46822274dcb2112d3d938))
+
+
+### Features
+
+* **pci.projects.creating:** redirect customer to right page ([f3b6fde](https://github.com/ovh/manager/commit/f3b6fde66944a0488bdb6c770428f4a164f69333))
+* **pci.projects.new:** assign eligibility voucher if valid ([53073ee](https://github.com/ovh/manager/commit/53073ee4816fba8482f61b7ba9f9e91d0b995f61))
+
+
+
 # [5.76.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.75.3...@ovh-ux/manager-pci@5.76.0) (2022-05-19)
 
 
