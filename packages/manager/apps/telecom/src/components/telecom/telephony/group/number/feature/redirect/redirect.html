@@ -118,8 +118,12 @@
         data-ng-init="$ctrl.onFeatureStartEdit()"
     >
         <!-- CHOOSE INTO AVAILABLE SERVICES -->
+        <oui-spinner
+            data-ng-if="$ctrl.isLoadingAvailableServices"
+        ></oui-spinner>
         <div
             class="voip-plan__step"
+            data-ng-if="!$ctrl.isLoadingAvailableServices"
             data-ng-repeat="service in $ctrl.availableServices track by service.serviceName"
         >
             <!-- RADIO -->

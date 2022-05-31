@@ -29,6 +29,8 @@ export default class DialplanExtensionRuleCtrl {
     this.ovhPabx = null;
     this.dialplan = null;
     this.extension = null;
+    this.voicemailInfos = null;
+    this.isLoadingVoicemailInfos = false;
   }
 
   $onInit() {
@@ -69,10 +71,18 @@ export default class DialplanExtensionRuleCtrl {
     );
   }
 
-  getVoicemailInfos() {
-    return this.TelephonyMediator.findService(
-      this.getRuleAttribute('actionParam'),
-    );
+  fetchVoicemailInfos() {
+    if (this.isLoadingVoicemailInfos) {
+      return;
+    }
+    this.isLoadingVoicemailInfos = true;
+    this.TelephonyMediator.findService(this.getRuleAttribute('actionParam'))
+      .then((service) => {
+        this.voicemailInfos = service;
+      })
+      .finally(() => {
+        this.isLoadingVoicemailInfos = false;
+      });
   }
 
   getMenu() {

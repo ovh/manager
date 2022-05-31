@@ -14,6 +14,7 @@ export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
     tucVoipService,
     tucVoipServiceAlias,
     tucVoipServiceLine,
+    TelephonyMediator,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -25,6 +26,7 @@ export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
     this.tucVoipService = tucVoipService;
     this.tucVoipServiceAlias = tucVoipServiceAlias;
     this.tucVoipServiceLine = tucVoipServiceLine;
+    this.TelephonyMediator = TelephonyMediator;
   }
 
   $onInit() {
@@ -44,31 +46,30 @@ export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
         },
         this.featureTypeToUse,
       )
-      .then(({ destination }) =>
-        this.tucVoipService.fetchAll().then((allServices) => {
-          this.destination = allServices.find(({ serviceName }) =>
-            isEqual(serviceName, destination),
-          );
-
-          if (this.destination && this.canDestinationBeUsedForPresentation()) {
-            return this.tucVoipServiceLine
-              .getLineOptions({
-                billingAccount: this.destination.billingAccount,
-                serviceName: this.destination.serviceName,
-              })
-              .then(({ displayNumber }) => {
-                this.destinationUsedAsPresentation = isEqual(
-                  displayNumber,
-                  this.alias.serviceName,
-                );
-                this.actualPresentation = this.destinationUsedAsPresentation;
-                return displayNumber;
-              });
-          }
-
-          return destination;
-        }),
+      .then(
+        ({ destination }) =>
+          destination && this.TelephonyMediator.findService(destination),
       )
+      .then((destination) => {
+        this.destination = destination;
+        if (this.destination && this.canDestinationBeUsedForPresentation()) {
+          return this.tucVoipServiceLine
+            .getLineOptions({
+              billingAccount: this.destination.billingAccount,
+              serviceName: this.destination.serviceName,
+            })
+            .then(({ displayNumber }) => {
+              this.destinationUsedAsPresentation = isEqual(
+                displayNumber,
+                this.alias.serviceName,
+              );
+              this.actualPresentation = this.destinationUsedAsPresentation;
+              return displayNumber;
+            });
+        }
+
+        return destination;
+      })
       .catch((error) => {
         this.TucToast.error(
           `${this.$translate.instant(

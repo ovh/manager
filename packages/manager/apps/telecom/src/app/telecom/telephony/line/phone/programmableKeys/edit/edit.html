@@ -140,9 +140,12 @@
                     </div>
 
                     <!-- VOICE FAX -->
-                    <div class="col-xs-12" data-ng-switch-when="voicefax">
+                    <div
+                        class="col-xs-12 d-flex"
+                        data-ng-switch-when="voicefax"
+                    >
                         <select
-                            class="form-control"
+                            class="form-control flex-grow"
                             id="parameter"
                             name="parameter"
                             data-ng-if="!ProgammableKeysEditCtrl.loading.parameters"
@@ -156,6 +159,32 @@
                                 disabled
                             ></option>
                         </select>
+                        <button
+                            type="button"
+                            class="oui-button oui-button_secondary ml-1"
+                            data-ng-if="!ProgammableKeysEditCtrl.loading.parameters"
+                            data-voip-service-choice-popover="{
+                                popoverPlacement: 'auto right',
+                                popoverClass: 'telephony-service-choice-popover pretty-popover',
+                                popoverAppendToBody: true,
+                                popoverIsOpen: false
+                            }"
+                            data-choice-args="$index"
+                            data-available-types="['sip', 'number', 'trunk']"
+                            data-on-choice-validated="ProgammableKeysEditCtrl.onVoicefaxParameterValidated"
+                            data-on-choice-cancel=""
+                        >
+                            <span
+                                class="oui-icon oui-icon-search"
+                                aria-hidden="true"
+                            >
+                            </span>
+                            <span
+                                class="sr-only"
+                                data-translate="common_search"
+                            >
+                            </span>
+                        </button>
                     </div>
 
                     <!-- HUNTING -->

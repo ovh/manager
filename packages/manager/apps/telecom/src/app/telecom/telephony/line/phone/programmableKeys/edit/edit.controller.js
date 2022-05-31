@@ -224,41 +224,44 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
   }
 
   function getFaxParameters() {
-    return $q
-      .all([
-        OvhApiTelephonyFax.Aapi()
-          .getServices()
-          .$promise.then((faxList) => {
-            angular.forEach(faxList, (fax) => {
-              self.availableParameters.push({
-                label: fax.label,
-                serviceName: fax.serviceName,
-                group: $translate.instant(
-                  'telephony_line_phone_programmableKeys_FAX',
-                ),
-              });
-            });
-          }),
-        TelephonyMediator.init().then((groups) => {
-          angular.forEach(groups, (group) => {
-            angular.forEach(group.lines, (line) => {
-              self.availableParameters.push({
-                group: group.description || group.billingAccount,
-                serviceName: line.serviceName,
-                label: line.description,
-              });
-            });
-            angular.forEach(group.numbers, (number) => {
-              self.availableParameters.push({
-                group: group.description || group.billingAccount,
-                serviceName: number.serviceName,
-                label: number.description,
-              });
-            });
+    return OvhApiTelephonyFax.Aapi()
+      .getServices()
+      .$promise.then((faxList) => {
+        const { availableParameters } = self;
+        const { parameter } = self.FunctionKey;
+
+        angular.forEach(faxList, (fax) => {
+          availableParameters.push({
+            label: fax.label,
+            serviceName: fax.serviceName,
+            group: $translate.instant(
+              'telephony_line_phone_programmableKeys_FAX',
+            ),
           });
-        }),
-      ])
-      .then(() => self.availableParameters);
+        });
+
+        if (
+          parameter &&
+          !availableParameters.find(
+            ({ serviceName }) => parameter === serviceName,
+          )
+        ) {
+          return TelephonyMediator.findService(self.FunctionKey.parameter).then(
+            (service) => {
+              if (service) {
+                availableParameters.push({
+                  group: service.billingAccount,
+                  serviceName: service.serviceName,
+                  label: service.description,
+                });
+              }
+              return availableParameters;
+            },
+          );
+        }
+
+        return availableParameters;
+      });
   }
 
   function getHuntingParameter() {
@@ -384,6 +387,15 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
       .finally(() => {
         self.loading.parameters = false;
       });
+  };
+
+  self.onVoicefaxParameterValidated = (selectedService) => {
+    self.availableParameters.push({
+      group: selectedService.billingAccount,
+      serviceName: selectedService.serviceName,
+      label: selectedService.description,
+    });
+    self.FunctionKey.parameter = selectedService.serviceName;
   };
 
   const init = function init() {

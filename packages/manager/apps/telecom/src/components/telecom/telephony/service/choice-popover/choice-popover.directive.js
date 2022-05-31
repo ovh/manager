@@ -43,7 +43,10 @@ export default /* @ngInject */ ($compile) => ({
     hiddenGroups: '<?',
     onChoiceValidated: '&?',
     onChoiceCancel: '&?',
+    onChoiceChanged: '&?',
     choiceArgs: '<?',
     excludeServices: '<?',
+    hideFooter: '=?',
+    hideHeader: '=?',
   },
 });
