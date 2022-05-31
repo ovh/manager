@@ -70,7 +70,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.scheduleAutoBackup($ctrl.instance)"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && !$ctrl.coreConfig.isRegion('US')"
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && $ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($ctrl.instance.flavor.type)"
                     data-disabled="!$ctrl.instance.canCreateOrScheduleBackup()"
                 >
                     <span

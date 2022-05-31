@@ -1,4 +1,0 @@
-{
-  "pci_projects_project_baremetal_add_success_message": "Le serveur {{ instance }} est en cours de création et peut prendre jusqu'à 15 minutes.",
-  "pci_projects_project_baremetal_add_success_multiple_message": "Les serveurs sont en cours de création et peuvent prendre jusqu'à 15 minutes."
-}

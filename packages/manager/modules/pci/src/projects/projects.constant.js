@@ -4,7 +4,6 @@ export const QUOTA_THRESHOLD = 80;
 export const PCI_FEATURES = {
   PRODUCTS: {
     INSTANCE: 'instance',
-    BAREMETAL: 'pci-baremetal',
     BLOCK_STORAGE: 'block-storage',
     OBJECT_STORAGE: 'object-storage',
     DATABASES: 'databases',
@@ -36,6 +35,7 @@ export const PCI_FEATURES = {
     SANDBOX: 'instance:flavors-category-sandbox',
     DISCOVERY: 'instance:flavors-category-discovery',
     IOPS: 'instance:flavors-category-iops',
+    BAREMETAL: 'instance:flavors-category-baremetal',
   },
   SETTINGS: {
     USERS: 'public-cloud:users',

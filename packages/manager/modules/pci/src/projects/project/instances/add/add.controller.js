@@ -93,7 +93,6 @@ export default class PciInstancesAddController {
     this.selectedPrivateNetwork = this.defaultPrivateNetwork;
     this.availablePrivateNetworks = [this.defaultPrivateNetwork];
     this.automatedBackup = {
-      available: !this.coreConfig.isRegion('US'),
       selected: false,
       schedule: null,
       price: null,
@@ -666,7 +665,12 @@ export default class PciInstancesAddController {
       this.instance.userData = null;
     }
 
-    if (this.automatedBackup.available && this.automatedBackup.selected) {
+    if (
+      this.PciProjectsProjectInstanceService.automatedBackupIsAvailable(
+        this.flavor.type,
+      ) &&
+      this.automatedBackup.selected
+    ) {
       const { schedule } = this.automatedBackup;
       this.instance.autobackup = {
         cron: `${schedule.cronPattern.minutes} ${schedule.cronPattern.hour} ${schedule.cronPattern.dom} ${schedule.cronPattern.month} ${schedule.cronPattern.dow}`,

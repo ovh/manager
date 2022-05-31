@@ -1,6 +1,5 @@
 import Datacenter from '../../../../../components/project/regions-list/datacenter.class';
 import { FLAVORS_FEATURES_FLIPPING_MAP } from '../../instances.constants';
-import { EXCLUDE_FLAVOR_CATEGORIES } from '../../add/add.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances.instance.edit', {
@@ -47,13 +46,11 @@ export default /* @ngInject */ ($stateProvider) => {
 
       excludeCategories: /* @ngInject */ (pciFeatures) => {
         const flavorCategories = Object.keys(FLAVORS_FEATURES_FLIPPING_MAP);
-        const toExclude = flavorCategories.filter((flavor) => {
+        return flavorCategories.filter((flavor) => {
           return !pciFeatures.isFeatureAvailable(
             FLAVORS_FEATURES_FLIPPING_MAP[flavor],
           );
         });
-
-        return EXCLUDE_FLAVOR_CATEGORIES.concat(toExclude);
       },
 
       goBack: /* @ngInject */ (goToInstance) => goToInstance,
