@@ -13,7 +13,10 @@ export default class FlavorGroup {
     Object.assign(
       this,
       omit(
-        find(flavors, (flavor) => flavor.osType === image && !flavor.isFlex()),
+        find(
+          flavors,
+          (flavor) => image.indexOf(flavor.osType) !== -1 && !flavor.isFlex(),
+        ),
         ['regions', 'id', 'osType', 'planCodes'],
       ),
     );

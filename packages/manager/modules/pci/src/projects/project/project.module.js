@@ -8,7 +8,6 @@ import '@ovh-ux/ui-kit';
 import ovhManagerAdvices from '@ovh-ux/manager-advices';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
 
-import baremetal from './baremetal';
 import billing from './billing';
 import contacts from './contacts';
 import creating from './creating';
@@ -49,7 +48,6 @@ angular
   .module(moduleName, [
     ovhManagerAdvices,
     trustedNic,
-    baremetal,
     billing,
     contacts,
     creating,

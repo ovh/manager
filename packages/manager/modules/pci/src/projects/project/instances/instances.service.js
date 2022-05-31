@@ -16,6 +16,7 @@ import {
   BANDWIDTH_CONSUMPTION,
   BANDWIDTH_LIMIT,
   BANDWIDTH_OUT_INVOICE,
+  FLAVORS_WITHOUT_AUTOMATED_BACKUP,
 } from './instances.constants';
 
 export default class PciProjectInstanceService {
@@ -23,6 +24,7 @@ export default class PciProjectInstanceService {
   constructor(
     $http,
     $q,
+    coreConfig,
     CucPriceHelper,
     ovhManagerRegionService,
     OvhApiCloudProject,
@@ -38,6 +40,7 @@ export default class PciProjectInstanceService {
   ) {
     this.$http = $http;
     this.$q = $q;
+    this.coreConfig = coreConfig;
     this.CucPriceHelper = CucPriceHelper;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
@@ -603,5 +606,12 @@ export default class PciProjectInstanceService {
         {},
       );
     });
+  }
+
+  automatedBackupIsAvailable(flavorType) {
+    return (
+      !this.coreConfig.isRegion('US') &&
+      !FLAVORS_WITHOUT_AUTOMATED_BACKUP.find((value) => value.test(flavorType))
+    );
   }
 }

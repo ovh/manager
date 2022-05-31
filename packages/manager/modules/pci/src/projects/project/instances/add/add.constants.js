@@ -1,5 +1,5 @@
 export const BANDWIDTH_OUT = 'bandwidth_instance_out.consumption';
-export const EXCLUDE_FLAVOR_CATEGORIES = ['baremetal'];
+export const EXCLUDE_FLAVOR_CATEGORIES = [];
 
 export default {
   BANDWIDTH_OUT,
