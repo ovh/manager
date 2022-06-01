@@ -105,7 +105,7 @@
   "ip_table_header_ip_address": "Endereço IP",
   "ip_table_header_ip_address_invalid": "Introduza um IPV6 válido",
   "ip_table_header_country": "País",
-  "ip_table_header_reverse": "Reverse",
+  "ip_table_header_reverse": "Reverse DNS",
   "ip_table_header_reverse_invalid": "Introduza uma reverse válida",
   "ip_table_header_virtual_mac": "MAC virtual",
   "ip_table_header_antispam": "Antispam",
@@ -484,7 +484,7 @@
   "ip_order_finish_error": "Ocorreu um erro durante a encomenda de IP adicionais.",
   "ip_order_free_activation_fee": "Para os servidores cujos IPs são oferecidos, estas taxas de ativação não serão novamente faturadas quando for renovado o servidor de destino.",
   "ip_organisation_title": "Gerir as minhas organizações",
-  "ip_organisation_button": "As minhas organizações",
+  "ip_organisation_button": "Gerir as minhas organizações",
   "ip_organisation_table_organisation": "Organização",
   "ip_organisation_table_type": "Tipo",
   "ip_organisation_table_lastname": "Nome",
@@ -677,5 +677,6 @@
   "ip_order_title": "Encomendar",
   "ip_administration_title": "Administrar",
   "ip_addresses_grid_header": "Os meus endereços IP públicos e serviços associados",
-  "ip_order_additional_ips": "IP adicionais"
+  "ip_order_additional_ips": "IP adicionais",
+  "ip_table_header_campus": "Campus"
 }

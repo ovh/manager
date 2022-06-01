@@ -105,7 +105,7 @@
   "ip_table_header_ip_address": "Adres IP",
   "ip_table_header_ip_address_invalid": "Wprowadź prawidłowy adres URL",
   "ip_table_header_country": "Kraj",
-  "ip_table_header_reverse": "Rewers",
+  "ip_table_header_reverse": "Rewers DNS",
   "ip_table_header_reverse_invalid": "Wprowadź prawidłowy rewers",
   "ip_table_header_virtual_mac": "Wirtualny MAC",
   "ip_table_header_antispam": "Antyspam",
@@ -484,7 +484,7 @@
   "ip_order_finish_error": "Wystąpił błąd podczas zamawiania dodatkowych adresów IP.",
   "ip_order_free_activation_fee": "W przypadku serwerów, dla których abonament za dodatkowe adresy IP jest darmowy, koszty aktywacji nie będą doliczane w trakcie odnawiania serwera. ",
   "ip_organisation_title": "Zarządzanie organizacjami",
-  "ip_organisation_button": "Moje organizacje",
+  "ip_organisation_button": "Zarządzanie organizacjami",
   "ip_organisation_table_organisation": "Firma",
   "ip_organisation_table_type": "Typ",
   "ip_organisation_table_lastname": "Nazwisko",
@@ -677,5 +677,6 @@
   "ip_order_title": "Zamów",
   "ip_administration_title": "Zarządzanie",
   "ip_addresses_grid_header": "Moje publiczne adresy IP i usługi powiązane",
-  "ip_order_additional_ips": "Dodatkowe IP"
+  "ip_order_additional_ips": "Dodatkowe IP",
+  "ip_table_header_campus": "Kampus"
 }
