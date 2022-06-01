@@ -20,13 +20,13 @@ export default function Container(): JSX.Element {
   if (isNavReshuffle) {
     if (betaVersion === 1) {
       tracking.trackMVTest({
-        test: '[product-nav-reshuffle]',
+        test: '[product-navigation-reshuffle]',
         waveId: 1,
         creation: '[full-services]',
       });
     } else if (betaVersion === 2) {
       tracking.trackMVTest({
-        test: '[product-nav-reshuffle]',
+        test: '[product-navigation-reshuffle]',
         waveId: 1,
         creation: '[customer-services]',
       });
