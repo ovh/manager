@@ -38,6 +38,9 @@ export default /* @ngInject */ ($stateProvider) => {
           billingAccount,
         }),
 
+      goToTelephonyRepayments: /* @ngInject */ ($state) => () =>
+        $state.go('telecom.telephony.repayments.index'),
+
       viewBillingAccount: /* @ngInject */ ($state) => ({ billingAccount }) =>
         $state.go('telecom.telephony.billingAccount', {
           billingAccount,
