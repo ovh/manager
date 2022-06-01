@@ -106,7 +106,6 @@ export default /* @ngInject */ ($stateProvider) => {
                 cartId: cart.cartId,
                 voucher: redirectParams.voucher,
                 context: redirectParams.context,
-                category: redirectParams.category,
                 target: redirectParams.target,
               }),
             );

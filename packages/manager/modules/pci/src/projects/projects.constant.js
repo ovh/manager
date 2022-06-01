@@ -72,37 +72,75 @@ export const PCI_FEATURES = {
 };
 
 export const PCI_FEATURES_STATES = {
-  COMPUTE: {
-    INSTANCES: 'pci.projects.project.instances',
-    BAREMETAL: 'pci.projects.project.baremetal',
+  INSTANCES: {
+    LIST: 'pci.projects.project.instances',
+    ADD: 'pci.projects.project.instances.add',
   },
-  STORAGE: {
-    BLOCK: 'pci.projects.project.storages.blocks',
-    OBJECT: 'pci.projects.project.storages.object-storage',
-    DATABASE: 'pci.projects.project.storages.databases',
-    CLOUD_ARCHIVE: 'pci.projects.project.storages.archives',
-    VOLUME_SNAPSHOT: 'pci.projects.project.storages.snapshots',
-    INSTANCE_BACKUP: 'pci.projects.project.storages.instance-backups',
+  BAREMETAL: {
+    LIST: 'pci.projects.project.baremetal',
+    ADD: 'pci.projects.project.baremetal.add',
   },
-  NETWORK: {
-    LOAD_BALANCER: 'pci.projects.project.loadbalancer',
-    PRIVATE_NETWORK: 'pci.projects.project.privateNetwork',
-    FAILOVER_IP: 'pci.projects.project.failover-ips',
+  BLOCKS: {
+    LIST: 'pci.projects.project.storages.blocks',
+    ADD: 'pci.projects.project.storages.blocks.add',
   },
-  CONTAINERS_ORCHESTRATION: {
-    MANAGED_KUBERNETES_SERVICE: 'pci.projects.project.kubernetes',
-    MANAGED_PRIVATE_REGISTRY: 'pci.projects.project.private-registry',
-    WORKFLOW_MANAGEMENT: 'pci.projects.project.workflow',
+  OBJECTS: {
+    LIST: 'pci.projects.project.storages.object-storage',
+    ADD: 'pci.projects.project.storages.object-storage.add',
   },
-  AI_ML: {
-    NOTEBOOKS: 'pci.projects.project.notebooks',
-    TRAINING: 'pci.projects.project.ai.training',
-    APPS: 'pci.projects.project.ai.apps',
-    ALPHA: 'pci.projects.project.ai',
-    SERVING: 'pci.projects.project.ai.serving',
+  DATABASES: {
+    LIST: 'pci.projects.project.storages.databases',
+    ADD: 'pci.projects.project.storages.databases.add',
   },
-  DATA_ANALYTICS: {
-    DATA_PROCESSING: 'pci.projects.project.data-processing',
+  ARCHIVES: {
+    LIST: 'pci.projects.project.storages.archives',
+    ADD: 'pci.projects.project.storages.archives.archive.add',
+  },
+  SNAPSHOTS: {
+    LIST: 'pci.projects.project.storages.snapshots',
+    ADD: 'pci.projects.project.storages.snapshots.snapshot.create-volume',
+  },
+  CONTAINERS: {
+    LIST: 'pci.projects.project.storages.containers',
+    ADD: 'pci.projects.project.storages.containers.add',
+  },
+  LOADBALANCER: {
+    LIST: 'pci.projects.project.loadbalancer',
+  },
+  PRIVATE_NETWORK: {
+    LIST: 'pci.projects.project.privateNetwork',
+    ADD: 'pci.projects.project.privateNetwork.new',
+  },
+  FAILOVER_IP: {
+    LIST: 'pci.projects.project.failover-ips',
+  },
+  KUBERNETES: {
+    LIST: 'pci.projects.project.kubernetes',
+    ADD: 'pci.projects.project.kubernetes.add',
+  },
+  PRIVATE_REGISTRY: {
+    LIST: 'pci.projects.project.private-registry',
+    ADD: 'pci.projects.project.private-registry.create',
+  },
+  WORKFLOW: {
+    LIST: 'pci.projects.project.workflow',
+    ADD: 'pci.projects.project.workflow.new',
+  },
+  NOTEBOOKS: {
+    LIST: 'pci.projects.project.notebooks',
+    ADD: 'pci.projects.project.notebooks.add',
+  },
+  TRAINING: {
+    LIST: 'pci.projects.project.training',
+    ADD: 'pci.projects.project.training.jobs.submit',
+  },
+  SERVING: {
+    LIST: 'pci.projects.project.serving',
+    ADD: 'pci.projects.project.serving.add',
+  },
+  DATA_PROCESSING: {
+    LIST: 'pci.projects.project.data-processing',
+    ADD: 'pci.projects.project.data-processing.submit-job',
   },
   PROJECT_MANAGEMENT: {
     USERS_ROLES: 'pci.projects.project.users',
