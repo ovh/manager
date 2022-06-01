@@ -479,7 +479,10 @@
                     </div>
 
                     <!--ExchangeGuid-->
-                    <div class="row">
+                    <div
+                        class="row"
+                        data-ng-if="$ctrl.emailAccount.exchangeGuid"
+                    >
                         <div class="col-md-6 oui-field mb-4">
                             <label
                                 class="oui-field__label oui-label"
