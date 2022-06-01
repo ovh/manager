@@ -1,0 +1,9 @@
+{
+  "ip_byoip_disclaimer_title": "Confirmação necessária",
+  "ip_byoip_disclaimer_description": "Declaro: ",
+  "ip_byoip_disclaimer_description_point_1": " - Ser proprietário do intervalo de endereços IP indicado.",
+  "ip_byoip_disclaimer_description_point_2": " - Que o intervalo de endereços IP indicado não está anunciado na Internet.",
+  "ip_byoip_disclaimer_description_point_3": " - Ter boa reputação neste intervalo de endereços IP.",
+  "ip_byoip_disclaimer_confirm_text": "Validar",
+  "ip_byoip_disclaimer_cancel_text": "Anular"
+}

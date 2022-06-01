@@ -20,5 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
     },
     layout: 'modal',
+    atInternet: {
+      rename: 'dedicated::ip::dashboard::order',
+    },
   });
 };
