@@ -72,6 +72,10 @@ function Sidebar(): JSX.Element {
 
   const menuClickHandler = (node) => {
     if (node.children) {
+      // reset pci project selection before entering pci section
+      if (node.id === 'pci') {
+        setSelectedPciProject(null);
+      }
       setCurrentNavigationNode(node);
     } else {
       closeNavigationSidebar();
