@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../../ip-ip.constant';
+
 export default /* @ngInject */ (
   $q,
   $scope,
@@ -7,6 +9,7 @@ export default /* @ngInject */ (
   ipFeatureAvailability,
   IpOrganisation,
   User,
+  atInternet,
 ) => {
   $scope.alert = 'ip_organisation_addedit_alerter';
   $scope.load = {
@@ -35,6 +38,10 @@ export default /* @ngInject */ (
   $scope.formOrganisation = {
     formValid: false,
     edit: false,
+  };
+
+  $scope.goToPrevious = function goToPrevious() {
+    $scope.trackClick('previous');
   };
 
   $scope.orderByCountryAlias = function orderByCountryAlias(a) {
@@ -84,7 +91,8 @@ export default /* @ngInject */ (
     );
   };
 
-  $scope.resetAlertOranisation = function resetAlertOranisation() {
+  $scope.resetAlertOrganisation = function resetAlertOrganisation() {
+    $scope.trackClick('next-step-2');
     Alerter.resetMessage($scope.alert);
   };
 
@@ -93,8 +101,9 @@ export default /* @ngInject */ (
   };
 
   $scope.addOrganisation = function addOrganisation() {
+    $scope.trackClick('confirm');
     $scope.load.loading = true;
-    $scope.resetAlertOranisation();
+    Alerter.resetMessage($scope.alert);
     if ($scope.formOrganisation.edit) {
       IpOrganisation.putOrganisation($scope.newOrganisation).then(
         () => {
@@ -136,5 +145,19 @@ export default /* @ngInject */ (
         },
       );
     }
+  };
+
+  $scope.cancelAddOrganisation = function cancelAddOrganisation() {
+    $scope.trackClick('cancel');
+    $scope.resetAction();
+  };
+
+  $scope.trackClick = function trackClick(hit) {
+    atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::organisation::${
+        $scope.formOrganisation.edit ? 'update' : 'add'
+      }::${hit}`,
+      type: 'action',
+    });
   };
 };

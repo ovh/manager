@@ -2,7 +2,7 @@
     <div
         data-wizard
         data-wizard-bread-crumb="true"
-        data-wizard-on-cancel="resetAction"
+        data-wizard-on-cancel="cancelMigrate"
         data-wizard-on-finish="migrateIp"
         data-wizard-title=":: 'ip_migration' | translate"
     >
@@ -52,6 +52,7 @@
         <div
             data-wizard-step
             data-wizard-step-on-load="getServices"
+            data-wizard-step-on-previous="trackPrevious"
             data-wizard-step-valid="!loading.step2 && !migrateableIpError && !loading.checkServiceMigrateable && durations.available.length > 0"
         >
             <div data-ovh-alert="otrs_alert_migration"></div>
@@ -128,6 +129,7 @@
         <!-- Step 3: Durations -->
         <div
             data-wizard-step
+            data-wizard-step-on-previous="trackPrevious"
             data-wizard-step-on-load="getDurations"
             data-wizard-step-valid="migrate.duration"
         >
@@ -167,6 +169,7 @@
         <!-- Step 4: Contracts -->
         <div
             data-wizard-step
+            data-wizard-step-on-previous="trackPrevious"
             data-wizard-step-on-load="loadContracts"
             data-wizard-step-valid="agree.value"
         >

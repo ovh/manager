@@ -1,0 +1,9 @@
+{
+  "ip_byoip_disclaimer_title": "Erforderliche Bestätigung",
+  "ip_byoip_disclaimer_description": "Ich erkläre hiermit: ",
+  "ip_byoip_disclaimer_description_point_1": " - der/die Inhaber(in) des angegebenen IP-Adressbereichs zu sein.",
+  "ip_byoip_disclaimer_description_point_2": " - dass der angegebene IP-Adressbereich nicht im Internet angekündigt ist.",
+  "ip_byoip_disclaimer_description_point_3": " - dass dieser IP-Adressbereich eine gute Reputation hat.",
+  "ip_byoip_disclaimer_confirm_text": "Bestätigen",
+  "ip_byoip_disclaimer_cancel_text": "Abbrechen"
+}

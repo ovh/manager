@@ -51,8 +51,8 @@
   "ip_table_search": "Wyszukiwanie...",
   "ip_table_ipblock_refresh": "Odświeżenie IP {{t0}}...",
   "ip_manage_task_pending": "Trwa wykonywanie operacji dla jednego z adresów IP serwera.",
-  "ip_migration": "Importuj IP fail-over",
-  "ip_export": "Eksportuj adresy IP (CSV)",
+  "ip_migration": "Import adresów IP SYS do OVHcloud",
+  "ip_export": "Eksport adresów IP do pliku CSV",
   "ip_export_csv_expl": "Eksport adresów IP trwa kilka sekund (w zależności od posiadanej liczby adresów IP).",
   "ip_export_csv_confirm": "Czy chcesz wyeksportować adresy IP w formacie CSV?",
   "ip_export_csv_success": "Eksport adresów IP został zakończony.",
@@ -673,5 +673,9 @@
   "ip_table_manage_delegation_ipv6block_delete_err": "Wystąpił błąd podczas usuwania delegacji rewersu DNS:",
   "ip_table_manage_delegation_ipv6block_resume": "Podsumowanie operacji",
   "ip_table_manage_delegation_ipv6block_to_add": "Rewers(y) do dodania",
-  "ip_table_manage_delegation_ipv6block_to_delete": "Rewers(y) do usunięcia"
+  "ip_table_manage_delegation_ipv6block_to_delete": "Rewers(y) do usunięcia",
+  "ip_order_title": "Zamów",
+  "ip_administration_title": "Zarządzanie",
+  "ip_addresses_grid_header": "Moje publiczne adresy IP i usługi powiązane",
+  "ip_order_additional_ips": "Dodatkowe IP"
 }

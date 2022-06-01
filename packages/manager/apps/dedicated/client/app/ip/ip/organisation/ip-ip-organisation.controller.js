@@ -1,12 +1,23 @@
+import { TRACKING_PREFIX } from '../ip-ip.constant';
+
 export default class IpOrganisationController {
   /* @ngInject */
-  constructor($scope, $translate, goToDashboard, Ip, IpOrganisation, Alerter) {
+  constructor(
+    $scope,
+    $translate,
+    goToDashboard,
+    Ip,
+    IpOrganisation,
+    Alerter,
+    atInternet,
+  ) {
     this.$scope = $scope;
     this.$translate = $translate;
     this.goToDashboard = goToDashboard;
     this.Ip = Ip;
     this.IpOrganisation = IpOrganisation;
     this.Alerter = Alerter;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -39,5 +50,30 @@ export default class IpOrganisationController {
       .finally(() => {
         this.$scope.loadingOrganisation = false;
       });
+  }
+
+  goToUpdateOrganisation(organisation) {
+    this.trackClickAndPage('update');
+    this.$scope.setAction(
+      'ip/organisation/add-or-edit/ip-ip-organisation-add-or-edit',
+      organisation,
+    );
+  }
+
+  goToAddOrganisation() {
+    this.trackClickAndPage('add');
+    this.$scope.setAction(
+      'ip/organisation/add-or-edit/ip-ip-organisation-add-or-edit',
+    );
+  }
+
+  trackClickAndPage(key) {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::organisation::${key}`,
+      type: 'action',
+    });
+    this.atInternet.trackPage({
+      name: `${TRACKING_PREFIX}::organisation::${key}`,
+    });
   }
 }

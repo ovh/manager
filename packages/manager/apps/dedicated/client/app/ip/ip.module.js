@@ -12,6 +12,7 @@ import availableTextFilter from './filters/ip/availableIpText/availableIpTextFil
 import ipFilterByService from './filters/ip/ipFilterByService/ipServiceCollapsed';
 import ipFirewallRulePort from './filters/ip/ipFirewallRulePort/ipFirewallRulePort';
 import ipPunycode from './filters/ip/ipPunycode/ipPunycode';
+import byoip from './byoip';
 
 import routing from './ip.routing';
 
@@ -29,6 +30,7 @@ angular
     translate,
     uiRouter,
     'ui.bootstrap',
+    byoip,
   ])
   .config(routing)
   .filter('availableIpText', availableTextFilter)
