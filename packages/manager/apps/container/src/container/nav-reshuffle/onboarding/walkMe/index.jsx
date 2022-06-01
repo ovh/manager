@@ -140,7 +140,7 @@ export const OnboardingWalkMe = () => {
     trackingPlugin.trackClickImpression({
       click: {
         ...commonTrackingOptions,
-        variant: `${currentStep.trackingVariant}`,
+        variant: `[${currentStep.trackingVariant}]`,
         format: `[${currentStepIndex + 1}-${steps.length}]`,
         generalPlacement: '[hide]',
       },
@@ -157,7 +157,7 @@ export const OnboardingWalkMe = () => {
     trackingPlugin.trackClickImpression({
       click: {
         ...commonTrackingOptions,
-        variant: `${currentStep.trackingVariant}`,
+        variant: `[${currentStep.trackingVariant}]`,
         format: `[${currentStepIndex + 1}-${steps.length}]`,
         generalPlacement: '[next]',
       },
@@ -213,13 +213,13 @@ export const OnboardingWalkMe = () => {
       // One for next and one for hide.
       trackingPlugin.trackImpression({
         ...commonTrackingOptions,
-        variant: `${currentStep.trackingVariant}`,
+        variant: `[${currentStep.trackingVariant}]`,
         format: `[${currentStepIndex + 1}-${steps.length}]`,
         generalPlacement: '[next]',
       });
       trackingPlugin.trackImpression({
         ...commonTrackingOptions,
-        variant: `${currentStep.trackingVariant}`,
+        variant: `[${currentStep.trackingVariant}]`,
         format: `[${currentStepIndex + 1}-${steps.length}]`,
         generalPlacement: '[hide]',
       });

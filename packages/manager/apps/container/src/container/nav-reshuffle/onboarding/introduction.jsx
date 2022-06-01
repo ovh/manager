@@ -48,7 +48,7 @@ export const OnboardingIntroduction = () => {
   const commonTrackingOptions = {
     campaignId: '[tooltip-manager]',
     creation: '[general-onboarding]',
-    variant: 'welcome_message',
+    variant: '[welcome_message]',
     detailedPlacement:
       productNavReshuffle.onboardingOpenedState ===
       ONBOARDING_STATUS_ENUM.DISPLAYED
@@ -66,6 +66,13 @@ export const OnboardingIntroduction = () => {
 
   const startOnboarding = () => {
     productNavReshuffle.startOnboarding();
+    trackingPlugin.trackClickImpression({
+      click: {
+        ...commonTrackingOptions,
+        format: `[0-5]`,
+        generalPlacement: '[next]',
+      },
+    });
   };
 
   const closeOnboarding = () => {
@@ -74,12 +81,9 @@ export const OnboardingIntroduction = () => {
     trackingPlugin.trackClickImpression({
       click: {
         ...commonTrackingOptions,
-        variant: 'onboarding_manager::close_guide_main_cta',
         generalPlacement: '[hide]',
+        format: '[0-5]',
       },
-    });
-    trackingPlugin.trackImpression({
-      ...commonTrackingOptions,
     });
   };
 
@@ -87,6 +91,13 @@ export const OnboardingIntroduction = () => {
     if (isPopoverVisible) {
       trackingPlugin.trackImpression({
         ...commonTrackingOptions,
+        generalPlacement: '[next]',
+        format: '[0-5]',
+      });
+      trackingPlugin.trackImpression({
+        ...commonTrackingOptions,
+        generalPlacement: '[hide]',
+        format: '[0-5]',
       });
     }
   }, [isPopoverVisible]);
