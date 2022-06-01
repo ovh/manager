@@ -1,6 +1,7 @@
 export default {
   id: 'pci',
   translation: 'sidebar_pci',
+  forceVisibility: true,
   children: [
     {
       id: 'pci-compute',
