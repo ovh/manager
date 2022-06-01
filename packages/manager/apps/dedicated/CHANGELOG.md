@@ -1,3 +1,12 @@
+# [17.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.18.0...@ovh-ux/manager-dedicated@17.19.0) (2022-06-01)
+
+
+### Features
+
+* **ip:** add byoip ([#7252](https://github.com/ovh/manager/issues/7252)) ([2cf6b8e](https://github.com/ovh/manager/commit/2cf6b8e0fa3d2694469101524724eeafb545879b)), closes [#6257](https://github.com/ovh/manager/issues/6257) [#MANAGER-8439](https://github.com/ovh/manager/issues/MANAGER-8439) [#6229](https://github.com/ovh/manager/issues/6229) [#6378](https://github.com/ovh/manager/issues/6378) [#MANAGER-8440](https://github.com/ovh/manager/issues/MANAGER-8440) [#6404](https://github.com/ovh/manager/issues/6404) [#MANAGER-8437](https://github.com/ovh/manager/issues/MANAGER-8437) [#6434](https://github.com/ovh/manager/issues/6434) [#MANAGER-8437](https://github.com/ovh/manager/issues/MANAGER-8437) [#6472](https://github.com/ovh/manager/issues/6472) [#MANAGER-8440](https://github.com/ovh/manager/issues/MANAGER-8440) [#6484](https://github.com/ovh/manager/issues/6484) [#MANAGER-8437](https://github.com/ovh/manager/issues/MANAGER-8437)
+
+
+
 # [17.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.17.2...@ovh-ux/manager-dedicated@17.18.0) (2022-05-24)
 
 
