@@ -72,28 +72,57 @@ export default /* @ngInject */ function voipServiceChoiceCtrl(
     self.search = '';
   };
 
-  self.onChange = function onChange() {
+  self.onChange = function onChange(service) {
+    self.selectedService = service;
     // call callback function
     if (self.onChoiceChanged && isFunction(self.onChoiceChanged())) {
       self.onChoiceChanged()(self.selectedService, self.choiceArgs);
     }
   };
 
-  self.startLoadServices = function startLoadServices(group) {
+  self.startLoadServices = (group, { immediate } = {}) => {
     if (loadPromises[group]) {
-      return;
+      return null;
     }
 
-    loadPromises[group] = $timeout(() => {
+    const doStartLoadServices = () => {
       if (group.services?.length) {
-        return;
+        return null;
       }
 
-      TelephonyMediator.getGroup(group.billingAccount).then((mediatorGroup) => {
-        Object.assign(group, { services: mediatorGroup.getAllServices() });
-        self.loading.services[group] = false;
-      });
-    }, 1000);
+      return TelephonyMediator.getGroup(group.billingAccount)
+        .then((mediatorGroup) => {
+          const mediatorGroupServices = mediatorGroup.getAllServices();
+
+          if (self.filterServices) {
+            return $q.when(
+              self.filterServices(
+                mediatorGroup,
+                mediatorGroupServices,
+                self.choiceArgs,
+              ),
+            );
+          }
+
+          return $q.when(mediatorGroupServices);
+        })
+        .then((services) => {
+          Object.assign(group, { services });
+        })
+        .finally(() => {
+          self.loading.services[group] = false;
+        });
+    };
+
+    if (immediate) {
+      return doStartLoadServices();
+    }
+
+    const loadPromise = $timeout(() => doStartLoadServices(), 1000);
+
+    loadPromises[group] = loadPromise;
+
+    return loadPromise;
   };
 
   self.stopLoadServices = function stopLoadServices(group) {
@@ -120,14 +149,31 @@ export default /* @ngInject */ function voipServiceChoiceCtrl(
         self.groupList = sortBy(groupList, [
           (group) => group.getDisplayedName(),
         ]);
+
         if (this.hiddenGroups?.length) {
           self.groupList = self.groupList.filter(
             ({ billingAccount }) => !self.hiddenGroups.includes(billingAccount),
           );
         }
+
         self.groupList.forEach((group) => {
           self.loading.services[group] = true;
         });
+
+        if (this.highlightedGroup) {
+          const highlightedGroup = self.groupList.find(
+            ({ billingAccount }) => billingAccount === this.highlightedGroup,
+          );
+          if (highlightedGroup) {
+            self.groupList.splice(self.groupList.indexOf(highlightedGroup), 1);
+            self.groupList.unshift(highlightedGroup);
+            return this.startLoadServices(highlightedGroup, {
+              immediate: true,
+            });
+          }
+        }
+
+        return null;
       })
       .finally(() => {
         self.loading.init = false;
