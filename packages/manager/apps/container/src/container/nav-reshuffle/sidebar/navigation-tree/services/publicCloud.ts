@@ -63,7 +63,7 @@ export default {
         {
           id: 'pci-object-storage',
           translation: 'sidebar_pci_object_storage',
-          serviceType: 'CLOUD_PROJECT_STORAGE',
+          serviceType: 'CLOUD_PROJECT_STORAGE_OBJECTS',
           routing: {
             application: 'public-cloud',
             hash: '#/pci/projects/{projectId}/storages/objects',
@@ -96,7 +96,7 @@ export default {
         {
           id: 'pci-cloud-archive',
           translation: 'sidebar_pci_cloud_archive',
-          serviceType: 'CLOUD_PROJECT_STORAGE',
+          serviceType: 'CLOUD_PROJECT_STORAGE_ARCHIVES',
           routing: {
             application: 'public-cloud',
             hash: '#/pci/projects/{projectId}/storages/cloud-archives',
