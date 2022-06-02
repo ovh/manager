@@ -16,5 +16,19 @@ export default class ExchangeOnboardingController {
       title: this.$translate.instant(guide.title),
     }));
     this.cta = this.ctaURL;
+
+    if (this.ovhSubsidiary === 'FR') {
+      this.description = this.$translate.instant(
+        'exchange_onboarding_description_fr',
+      );
+    } else if (['CA', 'WE', 'WS', 'QC'].includes(this.ovhSubsidiary)) {
+      this.description = this.$translate.instant(
+        'exchange_onboarding_description_ca',
+      );
+    } else {
+      this.description = this.$translate.instant(
+        'exchange_onboarding_description_eu',
+      );
+    }
   }
 }
