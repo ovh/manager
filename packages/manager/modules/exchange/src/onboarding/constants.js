@@ -84,6 +84,7 @@ export const GUIDES = [
       FR:
         'https://docs.ovh.com/fr/microsoft-collaborative-solutions/exchange-premiers-pas-avec-un-serveur-private/',
     },
+    excludeRegion: ['CA'],
   },
 ];
 
