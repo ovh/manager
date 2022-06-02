@@ -4,8 +4,10 @@ import { GUIDES } from './onboarding.constants';
 
 export default class PciPublicGatewaysOnboardingController {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, CucCloudMessage, coreConfig) {
     this.$translate = $translate;
+    this.CucCloudMessage = CucCloudMessage;
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {
@@ -19,9 +21,7 @@ export default class PciPublicGatewaysOnboardingController {
           title: this.$translate.instant(
             `pci_projects_project_public_gateways_onboarding_guides_${guide.id}_title`,
           ),
-          description: this.$translate.instant(
-            `pci_projects_project_public_gateways_onboarding_guides_${guide.id}_description`,
-          ),
+          link: guide.links[this.user.ovhSubsidiary] || guide.links.DEFAULT,
         },
       ],
       [],
@@ -30,6 +30,22 @@ export default class PciPublicGatewaysOnboardingController {
 
   onAddPublicGatewayClick() {
     this.trackPublicGateways('onboarding::add');
+  }
+
+  loadMessages() {
+    this.CucCloudMessage.unSubscribe(
+      'pci.projects.project.public-gateways.onboarding',
+    );
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.public-gateways.onboarding',
+      {
+        onMessage: () => this.refreshMessages(),
+      },
+    );
+  }
+
+  refreshMessages() {
+    this.messages = this.messageHandler.getMessages();
   }
 
   onDocumentationClick(guide) {

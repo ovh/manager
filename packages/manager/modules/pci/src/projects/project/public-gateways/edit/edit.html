@@ -1,0 +1,53 @@
+<div data-ui-view class="py-4">
+    <oui-back-button data-on-click="$ctrl.onGoBackClick()"> </oui-back-button>
+    <div class="text-center" data-ng-if="$ctrl.isEditing">
+        <oui-spinner></oui-spinner>
+    </div>
+    <oui-stepper
+        data-on-finish="$ctrl.edit()"
+        data-current-index="$ctrl.currrentStep"
+    >
+        <oui-step-form
+            data-header="{{:: 'pci_projects_project_public_gateway_edit_size_sub_title' | translate }}"
+            data-on-submit="$ctrl.onNextClick()"
+            data-editable="!$ctrl.isEditing"
+            data-name="public_gateway_add_size"
+            data-valid="$ctrl.selectedGatewaySize.product"
+            data-submit-text="{{:: 'pci_projects_project_public_gateway_edit_submit_action' | translate }}"
+            data-prevent-next="true"
+        >
+            <p
+                data-translate="pci_projects_project_public_gateway_edit_size_info"
+            ></p>
+            <div class="row mb-3">
+                <oui-select-picker
+                    class="col-md-6 col-xl-4 my-3"
+                    data-ng-repeat="gateway in $ctrl.gatewayCatalog track by gateway.product"
+                    data-name="size_{{:: gateway.product }}"
+                    data-model="$ctrl.selectedGatewaySize"
+                    data-label="{{:: ('pci_projects_project_public_gateways_edit_spec_' + gateway.product + '_size') | translate }}"
+                    data-values="[gateway]"
+                    data-variant="light"
+                    data-on-change="$ctrl.onGatewaySizeSelect(gateway)"
+                    data-required
+                >
+                    <oui-select-picker-section>
+                        <div class="d-flex">
+                            <span
+                                data-ng-repeat="gatewayPrice in gateway.pricings track by $index"
+                                data-translate="{{ 'pci_projects_project_public_gateways_edit_spec_' + gateway.product  + '_price'}}"
+                                data-translate-values="{ price: gatewayPrice.price }"
+                            ></span>
+                        </div>
+                        <div class="d-flex" data-ng-if="gateway.bandwidth">
+                            <span
+                                data-translate="{{ 'pci_projects_project_public_gateways_edit_spec_' + gateway.product  + '_bandwidth'}}"
+                                data-translate-values="{ bandwidth : gateway.bandwidth}"
+                            ></span>
+                        </div>
+                    </oui-select-picker-section>
+                </oui-select-picker>
+            </div>
+        </oui-step-form>
+    </oui-stepper>
+</div>
