@@ -14,6 +14,7 @@ export const PCI_FEATURES = {
     LOAD_BALANCER: 'load-balancer',
     PRIVATE_NETWORK: 'private-network',
     FAILOVER_IP: 'failover-ip',
+    ADDITIONAL_IP: 'failover-ip', // 'additional-ip', //TODO replace with 'additional-ip'
     KUBERNETES: 'kubernetes',
     PRIVATE_REGISTRY: 'private-registry',
     WORKFLOW_MANAGEMENT: 'workflow-management',
