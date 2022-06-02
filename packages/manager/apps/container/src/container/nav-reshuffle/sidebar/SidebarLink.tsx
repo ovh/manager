@@ -1,15 +1,17 @@
 import React from 'react';
 
 import { useTranslation } from 'react-i18next';
+import { Environment } from '@ovh-ux/manager-config/types';
+
 import { useShell } from '@/context';
-import useContainer from '@/core/container';
 
 import style from './style.module.scss';
 import { ComponentProps } from './utils';
+import { Node } from './navigation-tree/node';
 
 interface StaticLinkProps {
-  count?: number;
-  node?: unknown;
+  count?: number | boolean;
+  node?: Node;
   linkParams?: Record<string, string>;
   onClick?(): void;
   id?: string;
@@ -25,16 +27,15 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
   const { t } = useTranslation('sidebar');
   const shell = useShell();
   const navigation = shell.getPlugin('navigation');
-  let url = null;
+  const environment: Environment = shell
+    .getPlugin('environment')
+    .getEnvironment();
+  let url: string = null;
 
   if (node.url) {
     url =
-      node.url[
-        shell
-          .getPlugin('environment')
-          .getEnvironment()
-          .getRegion()
-      ] || node.url;
+      (node.url as Record<string, string>)[environment.getRegion()] ||
+      (node.url as string);
   } else {
     url = navigation.getURL(
       node.routing.application,
@@ -75,8 +76,8 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
 };
 
 type SidebarLinkProps = {
-  count?: number;
-  node?: unknown;
+  count?: number | boolean;
+  node?: Node;
   linkParams?: Record<string, string>;
   onClick?(): void;
   id?: string;

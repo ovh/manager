@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { createPopper } from '@popperjs/core';
+import { createPopper, Instance, Placement } from '@popperjs/core';
 import { debounce } from 'lodash-es';
 
 import popoverStyle from '@/container/common/popover.module.scss';
@@ -10,6 +10,7 @@ import { findNodeById } from '@/container/nav-reshuffle/sidebar/utils';
 import { useShell } from '@/context';
 
 import style from './style.module.scss';
+import { Node } from '../../sidebar/navigation-tree/node';
 
 const ELEMENT_OFFSET = 10;
 const MOBILE_WIDTH_RESOLUTION = 1024;
@@ -19,8 +20,8 @@ export const OnboardingWalkMe = () => {
 
   const stepElement = useRef();
   const popoverElement = useRef();
-  const [arrowPlacement, setArrowPlacement] = useState();
-  const [popperInstance, setPopperInstance] = useState();
+  const [arrowPlacement, setArrowPlacement] = useState<Placement>();
+  const [popperInstance, setPopperInstance] = useState<Instance>();
   const user = useShell()
     .getPlugin('environment')
     .getEnvironment()
@@ -38,7 +39,7 @@ export const OnboardingWalkMe = () => {
     navigationTree,
     setCurrentNavigationNode,
   } = useProductNavReshuffle();
-  const [currentUserNode, setCurrentUserNode] = useState({});
+  const [currentUserNode, setCurrentUserNode] = useState<Node>({});
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
@@ -58,7 +59,7 @@ export const OnboardingWalkMe = () => {
         ? '[new_visitor]'
         : '[returning_visitor]',
   };
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+  const delay = (ms: number) => new Promise<void>((res) => setTimeout(res, ms));
 
   const steps = [
     {
@@ -77,7 +78,7 @@ export const OnboardingWalkMe = () => {
       trackingVariant: 'my_profile',
       onBeforeEnter: async () => {
         openAccountSidebar();
-        const animationPromise = new Promise((resolve) => {
+        const animationPromise = new Promise<void>((resolve) => {
           setTimeout(() => {
             resolve();
           }, 150);
@@ -135,7 +136,7 @@ export const OnboardingWalkMe = () => {
       : []),
   ];
 
-  const onHideBtnClick = (onboardingStatus) => {
+  const onHideBtnClick = (onboardingStatus?: string) => {
     const currentStep = steps[currentStepIndex];
     trackingPlugin.trackClickImpression({
       click: {
@@ -173,8 +174,8 @@ export const OnboardingWalkMe = () => {
 
   const calculateTargetBound = useCallback(() => {
     const currentStep = steps[currentStepIndex];
-    const updatePos = (targetPos) => {
-      const el = stepElement.current;
+    const updatePos = (targetPos: DOMRect) => {
+      const el: HTMLElement = stepElement.current;
 
       const positionOffset = ELEMENT_OFFSET / 2;
 
@@ -204,10 +205,9 @@ export const OnboardingWalkMe = () => {
     (interval = 350) => {
       const currentStep = steps[currentStepIndex];
 
-      const placement =
-        isMobile && currentStep.mobilePlacement
-          ? currentStep.mobilePlacement
-          : currentStep.placement;
+      const placement = (isMobile && currentStep.mobilePlacement
+        ? currentStep.mobilePlacement
+        : currentStep.placement) as Placement;
 
       // Two impressions because we show two buttons
       // One for next and one for hide.
@@ -270,9 +270,9 @@ export const OnboardingWalkMe = () => {
     onBeforeEnter.then(() => {
       calculateTargetBound();
       setArrowPlacement(
-        isMobile && currentStep.mobilePlacement
+        (isMobile && currentStep.mobilePlacement
           ? currentStep.mobilePlacement
-          : currentStep.placement,
+          : currentStep.placement) as Placement,
       );
       updatePopper(currentStepIndex === 0 ? 0 : 350);
     });

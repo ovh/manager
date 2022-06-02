@@ -1,14 +1,17 @@
+import { Environment } from '@ovh-ux/manager-config/types';
 import { useShell } from '@/context';
 
 import { Shortcut } from './Tile/shortcut';
 
 interface UseShortcuts {
   getShortcuts(): Shortcut[];
-};
+}
 
 const useShortcuts = (): UseShortcuts => {
   const shell = useShell();
-  const environment = shell.getPlugin('environment').getEnvironment();
+  const environment: Environment = shell
+    .getPlugin('environment')
+    .getEnvironment();
   const region = environment.getRegion();
   const user = environment.getUser();
   const navigation = shell.getPlugin('navigation');

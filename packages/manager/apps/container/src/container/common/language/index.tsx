@@ -37,7 +37,7 @@ function LanguageMenu({
   const [currentLanguage, setCurrentLanguage] = useState(null);
   const [availableLanguages, setAvailableLanguages] = useState([]);
 
-  const onLocaleChange = (locale) => {
+  const onLocaleChange = (locale: string) => {
     shell.getPlugin('i18n').setLocale(locale);
     setShow(false);
     setUserLocale(locale);
@@ -48,14 +48,14 @@ function LanguageMenu({
       shell
         .getPlugin('i18n')
         .getAvailableLocales()
-        .find(({ key }) => key === userLocale),
+        .find(({ key }: { key: string }) => key === userLocale),
     );
 
     setAvailableLanguages(
       shell
         .getPlugin('i18n')
         .getAvailableLocales()
-        .filter(({ key }) => key !== userLocale),
+        .filter(({ key }: { key: string }) => key !== userLocale),
     );
   }, [userLocale]);
 

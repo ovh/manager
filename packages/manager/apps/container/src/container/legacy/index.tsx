@@ -20,7 +20,7 @@ import usePreloader from '../common/Preloader/usePreloader';
 
 function LegacyContainer(): JSX.Element {
   const iframeRef = useRef(null);
-  const [iframe, setIframe] = useState(null);
+  const [iframe, setIframe] = useState<HTMLIFrameElement>(null);
   const [router, setRouter] = useState(null);
   const { shell } = useContext(ApplicationContext);
   const { isStarted: isProgressAnimating } = useProgress();
@@ -46,7 +46,7 @@ function LegacyContainer(): JSX.Element {
     routing.addRoute(
       <Route
         path="/useraccount"
-        component={({ location }) => (
+        component={({ location }: { location: Location }) => (
           <Redirect
             to={{
               ...location,
@@ -99,7 +99,7 @@ function LegacyContainer(): JSX.Element {
         <div className={style.managerShell_content}>
           <Preloader visible={preloaderVisible}>
             <iframe
-              label="app"
+              title="app"
               role="document"
               src="about:blank"
               ref={iframeRef}

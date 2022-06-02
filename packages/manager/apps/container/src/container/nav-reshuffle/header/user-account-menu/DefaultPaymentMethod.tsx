@@ -1,16 +1,14 @@
 import React from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { buildURL } from '@ovh-ux/ufrontend';
-
-import { useShell } from '@/context';
 
 import style from './style.module.scss';
 import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
+import { PaymentMethodType } from '@/container/legacy/account-sidebar/PaymentMethod/usePaymentMethod';
 
 type Props = {
-  defaultPaymentMethod?: unknown;
+  defaultPaymentMethod?: PaymentMethodType;
   isLoading?: boolean;
 };
 

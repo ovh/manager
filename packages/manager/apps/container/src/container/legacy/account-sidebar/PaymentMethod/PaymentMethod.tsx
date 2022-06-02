@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
+import { Environment } from '@ovh-ux/manager-config/types';
 import Details from './Details';
 import Icon from './Icon';
-import usePaymentMethod from './usePaymentMethod';
+import usePaymentMethod, { PaymentMethodType } from './usePaymentMethod';
 
 import { useShell } from '@/context';
 
@@ -10,9 +11,13 @@ import './index.scss';
 
 const PaymentMethod = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
-  const [defaultPaymentMethod, setDefaultPaymentMethod] = useState();
+  const [defaultPaymentMethod, setDefaultPaymentMethod] = useState<
+    PaymentMethodType
+  >();
   const shell = useShell();
-  const environment = shell.getPlugin('environment').getEnvironment();
+  const environment: Environment = shell
+    .getPlugin('environment')
+    .getEnvironment();
 
   const { getDefaultPaymentMethod, isEnterpriseAccount } = usePaymentMethod(
     environment,
@@ -29,7 +34,7 @@ const PaymentMethod = (): JSX.Element => {
 
     if (!isEnterpriseAccount()) {
       getDefaultPaymentMethod()
-        .then((paymentMethod) => {
+        .then((paymentMethod: PaymentMethodType) => {
           setDefaultPaymentMethod(paymentMethod);
         })
         .finally(() => {

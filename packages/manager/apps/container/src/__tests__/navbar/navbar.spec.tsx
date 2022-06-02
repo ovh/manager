@@ -2,9 +2,10 @@ import React from 'react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { act, waitFor } from '@testing-library/react';
+import { Environment, User } from '@ovh-ux/manager-config/types';
 import { renderWithNotifications } from '../__test-utils__/contextRenders';
 
-import Navbar from '@/container/legacy/navbar/Navbar';
+import Navbar from '../../container/legacy/navbar/Navbar';
 
 const server = setupServer(
   rest.get('/engine/2api/notification', (req, res, ctx) => {
@@ -18,8 +19,8 @@ const server = setupServer(
   }),
   rest.get(
     '/engine/apiv6/me/preferences/manager/NAV_RESHUFFLE_BETA_ACCESS',
-    (req, res) => {
-      return res(false);
+    (req, res, ctx) => {
+      return res(ctx.json(false));
     },
   ),
   rest.get(
@@ -38,27 +39,28 @@ describe('UI testing of the navbar', () => {
   afterAll(() => server.close());
 
   it('renders correctly with environment and shell', async () => {
-    const user = {
+    const user: Partial<User> = {
       firstname: 'Tester',
       name: 'testee',
-      supportLevel: 1,
+      supportLevel: {
+        level: '1',
+      },
       country: 'FR',
     };
     const universe = 'web';
 
-    const environment = {
-      getUser: () => user,
+    const environment: Partial<Environment> = {
+      getUser: () => user as User,
       getUniverse: () => universe,
       getUserLocale: () => 'fr_FR',
-      getRegion: () => 'EU',
     };
 
     let render = null;
 
     await act(async () => {
       render = await renderWithNotifications(
-        <Navbar environment={environment}></Navbar>,
-        environment,
+        <Navbar environment={environment as Environment}></Navbar>,
+        { environment },
       );
     });
 

@@ -1,8 +1,7 @@
 import React from 'react';
-
-import { buildURL } from '@ovh-ux/ufrontend';
 import { useTranslation } from 'react-i18next';
 
+import { Environment } from '@ovh-ux/manager-config/types';
 import { TRANSLATE_NAMESPACE } from '../constants';
 
 import UserDetails from './UserDetails';
@@ -17,7 +16,9 @@ import { useShell } from '@/context';
 const UserInfos = (): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const shell = useShell();
-  const environment = shell.getPlugin('environment').getEnvironment();
+  const environment: Environment = shell
+    .getPlugin('environment')
+    .getEnvironment();
   const user = environment.getUser();
   const region = environment.getRegion();
 

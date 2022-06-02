@@ -109,7 +109,7 @@ export function initRouting(
   );
 
   return {
-    router,
+    router: () => router,
     addRoute: (route: React.ReactElement<Route | Redirect>): void => {
       routes.push(route);
     },

@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "lib": ["dom", "es2020"],
+    "noEmit": true,
     "target": "es2020",
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
     "module": "ES2020",
     "moduleResolution": "node",
     "removeComments": true,
@@ -13,10 +14,12 @@
     "skipLibCheck": true,
     "noImplicitAny": true,
     "declaration": true,
+    "allowJs": true,
     "jsx": "react",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "exclude": ["node_modules", "dist", "src/__tests__"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "types", "src/__tests__"]
 }

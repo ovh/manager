@@ -1,18 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
 
-import ContainerContext from './context';
 import {
   getBetaAvailabilityFromLocalStorage,
   setBetaAvailabilityToLocalStorage,
   getBetaVersionFromLocalStorage,
   isBetaForced,
 } from './localStorage';
+// Note: Disabling prettier because it is not up-to-date
+// eslint-disable-next-line prettier/prettier
+import type { BetaVersion, ContainerContext as ContainerContextType} from './context';
+import ContainerContext from './context';
+
 
 export const BETA_V1 = 1;
 export const BETA_V2 = 2;
 
-export const ContainerProvider = ({ children }) => {
+export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const reketInstance = useReket();
   const preferenceKey = 'NAV_RESHUFFLE_BETA_ACCESS';
   const [isLoading, setIsLoading] = useState(true);
@@ -21,17 +25,22 @@ export const ContainerProvider = ({ children }) => {
   const [askBeta, setAskBeta] = useState(false);
 
   // 1 for beta1, 2 for beta2, otherwise null if not a beta tester
-  const [betaVersion, setBetaVersion] = useState(null);
+  const [betaVersion, setBetaVersion] = useState<BetaVersion>(null);
 
   // user choice about using or not the beta
   const [useBeta, setUseBeta] = useState(false);
 
   const [isChatbotEnabled, setIsChatbotEnabled] = useState(false);
 
-  let containerContext = useContext(ContainerContext);
+  let containerContext: ContainerContextType = useContext(ContainerContext);
 
   const fetchFeatureAvailability = async () => {
-    const getBetaVersion = (value) => {
+    interface CurrentContextAvailability {
+      'pnr:betaV1': boolean;
+      'pnr:betaV2': boolean;
+      chatbot: boolean;
+    }
+    const getBetaVersion = (value: CurrentContextAvailability) => {
       if (isBetaForced()) {
         return getBetaVersionFromLocalStorage();
       }
@@ -48,12 +57,12 @@ export const ContainerProvider = ({ children }) => {
       .get(`/feature/chatbot,pnr:betaV1,pnr:betaV2/availability`, {
         requestType: 'aapi',
       })
-      .then((value) => ({
+      .then((value: CurrentContextAvailability) => ({
         version: getBetaVersion(value),
         chatbot: !!value.chatbot,
       }))
       .catch(() => ({
-        version: null,
+        version: '',
         chatbot: false,
       }));
   };
@@ -62,7 +71,9 @@ export const ContainerProvider = ({ children }) => {
     const betaValue = getBetaAvailabilityFromLocalStorage();
     const fetchPromise = betaValue
       ? Promise.resolve({ value: betaValue })
-      : reketInstance.get(`/me/preferences/manager/${preferenceKey}`);
+      : (reketInstance.get(
+          `/me/preferences/manager/${preferenceKey}`,
+        ) as Promise<{ value: string }>);
 
     return fetchPromise
       .then(({ value }) => {
@@ -85,12 +96,11 @@ export const ContainerProvider = ({ children }) => {
           value: accept.toString(),
         });
 
-    return updatePromise.then((result) => {
+    return updatePromise.then(() => {
       if (!accept) {
         // @TODO open new tab for survey
       }
-      window.location.reload(false);
-      return result;
+      window.location.reload();
     });
   };
 
@@ -102,9 +112,8 @@ export const ContainerProvider = ({ children }) => {
           value: accept.toString(),
         });
 
-    return createPromise.then((result) => {
-      window.location.reload(false);
-      return result;
+    return createPromise.then(() => {
+      window.location.reload();
     });
   };
 

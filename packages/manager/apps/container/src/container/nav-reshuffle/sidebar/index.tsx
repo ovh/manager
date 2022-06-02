@@ -18,10 +18,21 @@ import {
   initFeatureNames,
 } from './utils';
 import { Node } from './navigation-tree/node';
-import ProjectSelector from './ProjectSelector/ProjectSelector';
+import ProjectSelector, { PciProject } from './ProjectSelector/ProjectSelector';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
-function Sidebar(): JSX.Element {
+interface ServicesCountError {
+  url: string;
+  status: number;
+  message: string;
+}
+interface ServicesCount {
+  total: number;
+  serviceTypes: Record<string, number>;
+  errors?: Array<ServicesCountError>;
+}
+
+const Sidebar = (): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
@@ -41,17 +52,23 @@ function Sidebar(): JSX.Element {
     navigationTree,
     setNavigationTree,
   } = useProductNavReshuffle();
-  const [servicesCount, setServicesCount] = useState(null);
-  const [menuItems, setMenuItems] = useState(null);
-  const [pciProjects, setPciProjects] = useState([]);
-  const [pciError, setPciError] = useState(false);
-  const [selectedPciProject, setSelectedPciProject] = useState(null);
-  const [pciProjectServiceCount, setPciProjectServiceCount] = useState(null);
-  const [highlightedNode, setHighlightedNode] = useState(null);
+  const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
+  const [menuItems, setMenuItems] = useState<
+    Array<{ node: Node; count: number | boolean }>
+  >([]);
+  const [pciProjects, setPciProjects] = useState<PciProject[]>([]);
+  const [pciError, setPciError] = useState<boolean>(false);
+  const [selectedPciProject, setSelectedPciProject] = useState<PciProject>(
+    null,
+  );
+  const [pciProjectServiceCount, setPciProjectServiceCount] = useState<
+    ServicesCount
+  >(null);
+  const [highlightedNode, setHighlightedNode] = useState<Node>(null);
 
   const logoLink = navigationPlugin.getURL('hub', '#/');
 
-  const shouldHideElement = (node: Node, count: number) => {
+  const shouldHideElement = (node: Node, count: number | boolean) => {
     if (node.hideIfEmpty && !node.count) {
       return true;
     }
@@ -70,7 +87,7 @@ function Sidebar(): JSX.Element {
     return false;
   };
 
-  const menuClickHandler = (node) => {
+  const menuClickHandler = (node: Node) => {
     if (node.children) {
       // reset pci project selection before entering pci section
       if (node.id === 'pci') {
@@ -143,7 +160,7 @@ function Sidebar(): JSX.Element {
       .get('/services/count', {
         requestType: 'aapi',
       })
-      .then((result) => setServicesCount(result));
+      .then((result: ServicesCount) => setServicesCount(result));
   }, []);
 
   const fetchPciProjects = () => {
@@ -154,13 +171,13 @@ function Sidebar(): JSX.Element {
           'X-Pagination-Size': 5000,
         },
       })
-      .then((result) => {
+      .then((result: Array<PciProject>) => {
         setPciError(false);
         if (result && result.length) {
           setPciProjects(result);
         }
       })
-      .catch((error) => {
+      .catch(() => {
         setPciError(true);
       });
   };
@@ -265,8 +282,11 @@ function Sidebar(): JSX.Element {
       } else if (currentNavigationNode.id === 'pci' && !selectedPciProject) {
         reketInstance
           .get('/me/preferences/manager/PUBLIC_CLOUD_DEFAULT_PROJECT')
-          .then((result) => JSON.parse(result.value).projectId)
-          .then((projectId) => {
+          .then(
+            (result: { key: string; value: string }) =>
+              JSON.parse(result.value).projectId,
+          )
+          .then((projectId: string) => {
             navigationPlugin.navigateTo(
               'public-cloud',
               `#/pci/projects/${projectId}`,
@@ -293,7 +313,7 @@ function Sidebar(): JSX.Element {
         .get(`/services/count?pciProjectId=${selectedPciProject.project_id}`, {
           requestType: 'aapi',
         })
-        .then((result) => {
+        .then((result: ServicesCount) => {
           if (abort) return;
           setPciProjectServiceCount(result);
         });
@@ -312,14 +332,14 @@ function Sidebar(): JSX.Element {
     if (currentNavigationNode?.id?.startsWith('pci') && !selectedPciProject) {
       setMenuItems([]);
     } else {
-      const count = {
+      const count: ServicesCount = {
         total: servicesCount?.total,
         serviceTypes: {
           ...servicesCount?.serviceTypes,
           ...(pciProjectServiceCount
             ? pciProjectServiceCount.serviceTypes
             : []),
-        },
+        } as Record<string, number>,
       };
 
       setMenuItems(
@@ -395,7 +415,7 @@ function Sidebar(): JSX.Element {
                   isLoading={!pciProjects}
                   projects={pciProjects}
                   selectedProject={selectedPciProject}
-                  onProjectChange={(option) => {
+                  onProjectChange={(option: typeof selectedPciProject) => {
                     if (selectedPciProject !== option) {
                       navigationPlugin.navigateTo(
                         'public-cloud',
@@ -473,6 +493,6 @@ function Sidebar(): JSX.Element {
       </Suspense>
     </div>
   );
-}
+};
 
 export default Sidebar;

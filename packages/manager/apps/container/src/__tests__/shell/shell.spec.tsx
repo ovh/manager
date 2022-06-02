@@ -4,11 +4,11 @@ import { setupServer } from 'msw/node';
 
 import { render, screen, waitFor } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
-import { shell as shellApi } from '@ovh-ux/shell';
+import { initShell } from '@ovh-ux/shell';
+import Shell from '../../container/legacy';
 import i18n from '../config/i18nTestConfig';
-import Shell from '@/container/legacy';
 import { ApplicationProvider } from '../../context';
-import { ContainerProvider } from '@/core/container';
+import { ContainerProvider } from '../../core/container';
 
 // TODO: improve mocks to render shell with both sidebars
 const server = setupServer(
@@ -72,7 +72,7 @@ describe('Renders shell header', () => {
     };
     const universe = 'web';
 
-    shellApi.initShell().then((shell) => {
+    initShell().then((shell) => {
       const environment = shell.getPlugin('environment').getEnvironment();
       environment.setUser(user);
       environment.setUniverse(universe);

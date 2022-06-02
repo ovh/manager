@@ -1,8 +1,20 @@
 import { Environment } from '@ovh-ux/manager-config';
+import { Region } from '@ovh-ux/manager-config/types/environment/region.enum';
 
 const helpRoot = 'https://help.ovhcloud.com';
 
-const urls = {
+interface ContentURLS {
+  help: {
+    [key in string]: string;
+  };
+  status: string;
+}
+
+type URLLinks = {
+  [key in Region]: ContentURLS;
+};
+
+const urls: URLLinks = {
   EU: {
     help: {
       DE: `${helpRoot}/de`,
@@ -41,15 +53,16 @@ const urls = {
 };
 
 interface UseURL {
-  get(id: string): string;
+  get(id: keyof ContentURLS): string;
 }
 
 export function useURL(environment: Environment): UseURL {
   return {
-    get: (id) => {
+    get: (id: keyof ContentURLS) => {
       const region = environment.getRegion();
       const user = environment.getUser();
-      const url = urls[region][id];
+      const regionURL = urls[region];
+      const url = regionURL[id];
       return typeof url === 'string' ? url : url[user.ovhSubsidiary];
     },
   };

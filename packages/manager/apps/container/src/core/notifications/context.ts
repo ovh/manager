@@ -5,7 +5,7 @@ import { Notification } from './notification';
 export type NotificationsContextType = {
   notifications: Notification[];
   getActiveNotifications(notifs: Notification[]): Notification[];
-  loadNotifications(): Promise<unknown>;
+  loadNotifications(): Promise<void>;
   readAllNotifications(notifs?: Notification[]): Promise<unknown>;
   toggleNotificationReadStatus(
     notificationId: string,
@@ -15,8 +15,8 @@ export type NotificationsContextType = {
   setNotificationsCount(count: number): void;
 };
 
-const NotificationsContext = createContext<NotificationsContextType | null>(
-  null,
+const NotificationsContext = createContext<NotificationsContextType>(
+  {} as NotificationsContextType,
 );
 
 export default NotificationsContext;

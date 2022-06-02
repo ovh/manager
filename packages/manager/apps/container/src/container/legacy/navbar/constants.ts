@@ -1,4 +1,4 @@
-export const SECONDARY_UNIVERSES = [];
+export const SECONDARY_UNIVERSES: string[] = [];
 
 export const MESSAGES = {
   accountSidebarHide: 'ovh.account-sidebar.hide',

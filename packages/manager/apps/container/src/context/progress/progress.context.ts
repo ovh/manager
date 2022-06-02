@@ -4,7 +4,7 @@ export type ProgressContextType = {
   isStarted: boolean;
 };
 
-const ProgressContext = createContext<ProgressContextType | null>({
+const ProgressContext = createContext<ProgressContextType>({
   isStarted: false,
 });
 

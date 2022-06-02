@@ -7,7 +7,6 @@ import style from './style.module.scss';
 
 import backgroundImage from '@/assets/images/pnr/background.png';
 import previewImage from '@/assets/images/pnr/preview.png';
-import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { useShell } from '@/context';
 
 function NavReshuffleBetaAccessModal(): JSX.Element {
@@ -17,22 +16,22 @@ function NavReshuffleBetaAccessModal(): JSX.Element {
   const { askBeta, createBetaChoice } = useContainer();
   const [submitting, setSubmitting] = useState(false);
 
-  function onAccept() {
+  async function onAccept() {
     setSubmitting(true);
     trackingPlugin.trackClick({
       name: 'accessing_beta_popin::go_to_beta',
       type: 'action',
     });
-    return createBetaChoice(true).then(() => window.location.reload(false));
+    return createBetaChoice(true).then(() => window.location.reload());
   }
 
-  function onDecline() {
+  async function onDecline() {
     setSubmitting(true);
     trackingPlugin.trackClick({
       name: 'accessing_beta_popin::nogo_beta',
       type: 'action',
     });
-    return createBetaChoice(false).then(() => window.location.reload(false));
+    return createBetaChoice(false).then(() => window.location.reload());
   }
 
   useEffect(() => {

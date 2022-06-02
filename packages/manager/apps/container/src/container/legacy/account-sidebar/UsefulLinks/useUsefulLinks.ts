@@ -1,3 +1,4 @@
+import { Environment } from '@ovh-ux/manager-config/types';
 import constants from './constants';
 import { UsefulLink } from './Link/usefulLink';
 
@@ -11,7 +12,9 @@ interface UseUsefulLinks {
 const useUsefulLinks = (): UseUsefulLinks => {
   const shell = useShell();
   const navigation = shell.getPlugin('navigation');
-  const environment = shell.getPlugin('environment').getEnvironment();
+  const environment: Environment = shell
+    .getPlugin('environment')
+    .getEnvironment();
   const region = environment.getRegion();
   const user = environment.getUser();
   const { isChatbotEnabled } = useContainer();

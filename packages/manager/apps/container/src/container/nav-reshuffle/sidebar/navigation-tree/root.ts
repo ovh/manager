@@ -4,8 +4,9 @@ import publicCloud from './services/publicCloud';
 import webCloud from './services/webCloud';
 import network from './services/network';
 import telecom from './services/telecom';
+import { Node } from './node';
 
-export default {
+const root: Node = {
   id: 'home',
   translation: 'sidebar_home',
   count: false,
@@ -110,3 +111,5 @@ export default {
     },
   ],
 };
+
+export default root;

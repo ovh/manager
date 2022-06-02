@@ -7,6 +7,10 @@ import {
   ONBOARDING_OPENED_STATE_ENUM,
 } from './constants';
 
+interface LocalStorageStatus {
+  status: string;
+}
+
 export const useOnboarding = () => {
   const reketInstance = useReket();
   const preferenceKey = 'NAV_RESHUFFLE_ONBOARDING';
@@ -15,9 +19,8 @@ export const useOnboarding = () => {
     return window.localStorage.getItem(preferenceKey);
   };
 
-  const setOnboardingToLocalStorage = (value) => {
+  const setOnboardingToLocalStorage = (value: LocalStorageStatus) => {
     window.localStorage.setItem(preferenceKey, JSON.stringify(value));
-    return null;
   };
 
   const createPreference = () => {
@@ -33,7 +36,7 @@ export const useOnboarding = () => {
     return createPromise.then(() => value);
   };
 
-  const updatePreference = (value) => {
+  const updatePreference = (value: LocalStorageStatus): LocalStorageStatus => {
     const updatePromise = isBetaForced()
       ? Promise.resolve(setOnboardingToLocalStorage(value))
       : reketInstance.put(`/me/preferences/manager/${preferenceKey}`, {
@@ -43,8 +46,8 @@ export const useOnboarding = () => {
     return updatePromise.then(() => value);
   };
 
-  const init = () => {
-    const getPreferencesPromise = isBetaForced()
+  const init = async () => {
+    const getPreferencesPromise: Promise<{ value: string }> = isBetaForced()
       ? new Promise((resolve, reject) => {
           const localStorageValue = getOnboardingFromLocalStorage();
           if (localStorageValue) {
@@ -58,25 +61,25 @@ export const useOnboarding = () => {
       : reketInstance.get(`/me/preferences/manager/${preferenceKey}`);
 
     return getPreferencesPromise
-      .then(({ value }) => {
+      .then(({ value }: { value: string }) => {
         try {
           return JSON.parse(value);
         } catch (err) {
           return updatePreference({ status: ONBOARDING_STATUS_ENUM.DISPLAYED });
         }
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         if (error?.status === 404) {
           return createPreference();
         }
         throw error;
       })
-      .then((parsedValue) => {
+      .then((parsedValue: LocalStorageStatus) => {
         return parsedValue.status;
       });
   };
 
-  const getOpenedStateFromStatus = (onboardingStatus) => {
+  const getOpenedStateFromStatus = (onboardingStatus: string) => {
     switch (onboardingStatus) {
       case ONBOARDING_STATUS_ENUM.DISPLAYED:
         return ONBOARDING_OPENED_STATE_ENUM.WELCOME;
@@ -85,11 +88,11 @@ export const useOnboarding = () => {
     }
   };
 
-  const hasStarted = (openedState) => {
+  const hasStarted = (openedState: string) => {
     return openedState === ONBOARDING_OPENED_STATE_ENUM.WALKME;
   };
 
-  const getNextOpenedState = (openedState) => {
+  const getNextOpenedState = (openedState: string) => {
     switch (openedState) {
       case ONBOARDING_OPENED_STATE_ENUM.CLOSED:
         return ONBOARDING_OPENED_STATE_ENUM.BUTTON;

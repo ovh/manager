@@ -112,7 +112,7 @@ function NavReshuffleContainer(): JSX.Element {
           ></div>
           <Preloader visible={preloaderVisible}>
             <iframe
-              label="app"
+              title="app"
               role="document"
               src="about:blank"
               ref={iframeRef}

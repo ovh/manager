@@ -17,7 +17,13 @@ function HamburgerMenu({ universe = '', universes }: Props): JSX.Element {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const shell = useShell();
 
-  function onUniverseClick({ event, destination }) {
+  function onUniverseClick({
+    event,
+    destination,
+  }: {
+    event: React.MouseEvent<HTMLAnchorElement>;
+    destination: string;
+  }) {
     if (universe === destination) {
       event.preventDefault();
       shell.getPlugin('ux').requestClientSidebarOpen();

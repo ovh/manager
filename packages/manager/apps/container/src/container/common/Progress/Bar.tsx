@@ -34,4 +34,3 @@ const Bar = ({ progress, animationDuration }: Props) => (
 );
 
 export default Bar;
-

@@ -2,13 +2,14 @@ import { get, find } from 'lodash-es';
 
 import { SECONDARY_UNIVERSES } from './constants';
 
-type Universe = {
+export type Universe = {
   isPrimary: boolean;
   universe: string;
   url: string;
+  external?: boolean;
 };
 
-export function fetchUniverses(): Promise<Universe[]> {
+export async function fetchUniverses(): Promise<Universe[]> {
   return fetch('/engine/2api/universes?version=beta', {
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -18,7 +19,7 @@ export function fetchUniverses(): Promise<Universe[]> {
   })
     .then((response) => response.json())
     .then((universes) =>
-      universes.map((universe) => ({
+      universes.map((universe: Universe) => ({
         isPrimary: !SECONDARY_UNIVERSES.includes(universe.universe),
         universe: universe.universe,
         url: universe.url,

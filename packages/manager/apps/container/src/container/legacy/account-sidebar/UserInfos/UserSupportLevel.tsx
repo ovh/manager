@@ -1,10 +1,11 @@
+import { User } from '@ovh-ux/manager-config/types';
 import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
 import { TRANSLATE_NAMESPACE } from '../constants';
 
-import useUserInfos, { User } from './useUserInfos';
+import useUserInfos from './useUserInfos';
 
 type Props = {
   cssBaseClassName?: string;
@@ -15,7 +16,7 @@ type Props = {
 const UserSupportLevel = ({
   cssBaseClassName = '',
   translationBase = '',
-  user = {},
+  user = {} as User,
 }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
 

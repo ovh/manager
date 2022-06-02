@@ -1,4 +1,7 @@
-import { User } from '@ovh-ux/manager-config';
+import {
+  SupportLevel,
+  User,
+} from '@ovh-ux/manager-config/types/environment/user';
 
 import { EXCLUDED_ROLES } from './constants';
 
@@ -6,7 +9,7 @@ interface UseUserInfos {
   getUser(): User;
   getUserNameInitials(): string;
   getUserDisplayName(): string;
-  getSupportLevel(): string;
+  getSupportLevel(): SupportLevel;
   isTrustedUser(): boolean;
   getUserRole(): string;
 }
@@ -41,7 +44,7 @@ const useUserInfos = (user: User): UseUserInfos => {
    * Get the support level of the connected user.
    * @return {String}
    */
-  const getSupportLevel = (): string => {
+  const getSupportLevel = (): SupportLevel => {
     return user.supportLevel;
   };
 

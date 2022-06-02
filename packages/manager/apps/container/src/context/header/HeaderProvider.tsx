@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import HeaderContext from './header.context';
+import HeaderContext, { HeaderContextType } from './header.context';
 
 import { useShell } from '@/context';
 
@@ -14,14 +14,14 @@ export const HeaderProvider = ({ children = null }: Props): JSX.Element => {
 
   /* ----------- Account sidebar -----------*/
 
-  const [isAccountSidebarVisible, setIsAccountSidebarVisible] = useState(
-    uxPlugin.isAccountSidebarVisible(),
-  );
+  const [isAccountSidebarVisible, setIsAccountSidebarVisible] = useState<
+    boolean
+  >(uxPlugin.isAccountSidebarVisible());
 
   const [
     isAccountSidebarLargeScreenDisplayForced,
     setIsAccountSidebarLargeScreenDisplayForced,
-  ] = useState(uxPlugin.isAccountSidebarLargeScreenDisplayForced());
+  ] = useState<boolean>(uxPlugin.isAccountSidebarLargeScreenDisplayForced());
 
   useEffect(() => {
     uxPlugin.onAccountSidebarVisibilityChange(() => {
@@ -37,9 +37,9 @@ export const HeaderProvider = ({ children = null }: Props): JSX.Element => {
   const [
     isNotificationsSidebarVisible,
     setIsNotificationsSidebarVisible,
-  ] = useState(uxPlugin.isNotificationsSidebarVisible());
+  ] = useState<boolean>(uxPlugin.isNotificationsSidebarVisible());
 
-  const headerContext = {
+  const headerContext: HeaderContextType = {
     isAccountSidebarVisible,
     isAccountSidebarLargeScreenDisplayForced,
     setIsAccountSidebarVisible,

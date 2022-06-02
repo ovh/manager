@@ -9,8 +9,8 @@ import NotificationsContext from './context';
 import useNotification, { APINotification, Notification } from './notification';
 
 type Props = {
-  children: JSX.Element;
-  environment: Environment;
+  children: JSX.Element | JSX.Element[];
+  environment: Partial<Environment>;
 };
 
 export const NotificationsProvider = ({
@@ -28,7 +28,7 @@ export const NotificationsProvider = ({
    * Call 2API notifications to get notifications that needs to be displayed.
    * @return {Promise<void>}
    */
-  const loadNotifications = async (): Promise<unknown> => {
+  const loadNotifications = async (): Promise<void> => {
     return reketInstance
       .get('/notification', {
         requestType: 'aapi',
@@ -37,9 +37,9 @@ export const NotificationsProvider = ({
           lang: environment.getUserLocale(),
         },
       })
-      .then((notifs: unknown[]) => {
+      .then((notifs: APINotification[]) => {
         const newNotifications: APINotification[] = [];
-        notifs.forEach((notif: any) => {
+        notifs.forEach((notif: APINotification) => {
           newNotifications.push({
             ...notif,
             urlDetails: {

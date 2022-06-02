@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import style from './style.module.scss';
 
 type Props = {
-  children?: JSX.Element;
+  children?: JSX.Element | JSX.Element[];
   onClick(show: boolean): void;
   show?: boolean;
 };

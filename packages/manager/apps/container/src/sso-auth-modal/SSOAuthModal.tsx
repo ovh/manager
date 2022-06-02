@@ -4,6 +4,8 @@ import { useReket } from '@ovh-ux/ovh-reket';
 import { Modal } from 'react-bootstrap';
 import { useTranslation, Trans } from 'react-i18next';
 
+import { User } from '@ovh-ux/manager-config/types';
+
 import {
   connectedToDisconnected,
   connectedToOther,
@@ -16,8 +18,11 @@ import './styles.scss';
 
 const SSOAuthModal = (): JSX.Element => {
   const [mode, setMode] = useState('');
-  const size = useMemo(() =>
-    mode === disconnectedToConnected || mode === connectedToOther ? 'lg' : 'md',
+  const size = useMemo(
+    () =>
+      mode === disconnectedToConnected || mode === connectedToOther
+        ? 'lg'
+        : 'sm',
     [mode],
   );
   const shell = useShell();
@@ -28,7 +33,7 @@ const SSOAuthModal = (): JSX.Element => {
   const uxPlugin = shell.getPlugin('ux');
   const { environment } = useApplication();
   const { user } = environment;
-  const [connectedUser, setConnectedUser] = useState({});
+  const [connectedUser, setConnectedUser] = useState<User>({} as User);
   const userId = uxPlugin.getUserIdCookie();
 
   useEffect(() => {
@@ -47,12 +52,10 @@ const SSOAuthModal = (): JSX.Element => {
             lang: environment.getUserLocale(),
           },
         })
-        .then((currentUser) => {
+        .then((currentUser: User) => {
           setConnectedUser(currentUser);
         })
-        .catch((e) => {
-          console.error(e);
-        });
+        .catch(() => {});
     }
   }, [mode]);
 

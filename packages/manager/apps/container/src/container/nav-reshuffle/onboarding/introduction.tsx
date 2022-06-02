@@ -14,8 +14,8 @@ import popoverStyle from '@/container/common/popover.module.scss';
 
 export const OnboardingIntroduction = () => {
   const { t } = useTranslation('nav-reshuffle/onboarding');
-  const [popoverButton, setPopoverButton] = useState();
-  const [popover, setPopover] = useState();
+  const [popoverButton, setPopoverButton] = useState<HTMLElement>();
+  const [popover, setPopover] = useState<HTMLElement>();
 
   const { styles, attributes } = usePopper(popoverButton, popover, {
     placement: 'top-end',
@@ -33,13 +33,13 @@ export const OnboardingIntroduction = () => {
 
   const [isBtnVisible, setIsBtnVisible] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
-  const [isChatbotVisible, setIsChatbotVisible] = useState(
-    uxPlugin.shellUX.getChatbot().getVisibility(),
+  const [isChatbotVisible, setIsChatbotVisible] = useState<boolean>(
+    uxPlugin.isChatbotVisible(),
   );
 
   const trackingPlugin = shell.getPlugin('tracking');
   uxPlugin.onChatbotVisibilityChange(() => {
-    const chatbotVisible = uxPlugin.shellUX.getChatbot().getVisibility();
+    const chatbotVisible = uxPlugin.isChatbotVisible();
     setIsChatbotVisible(chatbotVisible);
     if (chatbotVisible) {
       productNavReshuffle.reduceOnboarding();

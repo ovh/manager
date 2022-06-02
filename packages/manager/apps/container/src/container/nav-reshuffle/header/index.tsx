@@ -26,7 +26,7 @@ function Header({
   onUserAccountMenuToggle = () => {},
 }: Props): JSX.Element {
   const shell = useShell();
-  const [userLocale, setUserLocale] = useState(
+  const [userLocale, setUserLocale] = useState<string>(
     shell.getPlugin('i18n').getLocale(),
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
