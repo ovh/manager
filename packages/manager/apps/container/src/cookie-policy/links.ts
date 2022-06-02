@@ -1,3 +1,8 @@
+interface Links {
+  moreInfo: Record<string, string>;
+  changeOpinionLink: Record<string, string>;
+}
+
 export default {
   moreInfo: {
     FR:
@@ -40,4 +45,4 @@ export default {
     TN:
       'https://www.ovh.com/tn/protection-donnees-personnelles/exercer-vos-droits/',
   },
-};
+} as Links;

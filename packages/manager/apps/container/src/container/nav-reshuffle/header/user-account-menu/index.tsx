@@ -49,18 +49,22 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
     }
   };
 
-  useEffect(async () => {
-    if (!defaultPaymentMethod && isAccountSidebarOpened && !user.enterprise) {
-      try {
-        setDefaultPaymentMethod(
-          await ovhPaymentMethod.getDefaultPaymentMethod(),
-        );
-      } finally {
-        setIsPaymentMethodLoading(false);
+  useEffect(() => {
+    const loadPaymentMethods = async () => {
+      if (!defaultPaymentMethod && isAccountSidebarOpened && !user.enterprise) {
+        try {
+          setDefaultPaymentMethod(
+            await ovhPaymentMethod.getDefaultPaymentMethod(),
+          );
+        } finally {
+          setIsPaymentMethodLoading(false);
+        }
       }
-    }
 
-    onToggle(isAccountSidebarOpened);
+      onToggle(isAccountSidebarOpened);
+    };
+
+    loadPaymentMethods();
   }, [isAccountSidebarOpened]);
 
   useClickAway(ref, handleRootClose);

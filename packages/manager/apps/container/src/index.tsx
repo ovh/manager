@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { shell as shellApi } from '@ovh-ux/shell';
+import { initShell } from '@ovh-ux/shell';
 import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import ReactDOM from 'react-dom';
 import { initReactI18next } from 'react-i18next';
+import { Environment } from '@ovh-ux/manager-config/types';
 
 import Container from '@/container';
 import { ApplicationProvider } from '@/context';
-import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
 import { initSso } from '@/core/sso';
 import { ContainerProvider } from '@/core/container';
 
@@ -22,8 +22,10 @@ if (window.top !== window.self) {
 
 initSso();
 
-shellApi.initShell().then((shell) => {
-  const environment = shell.getPlugin('environment').getEnvironment();
+initShell().then((shell) => {
+  const environment: Environment = shell
+    .getPlugin('environment')
+    .getEnvironment();
   const locale = environment.getUserLocale();
   const config = () => import(`./config-${environment.getRegion()}.js`);
 
@@ -39,7 +41,8 @@ shellApi.initShell().then((shell) => {
           ns: [], // namespaces to load by default
           backend: {
             // path construction for async load, ns: namespace, lng: locale
-            loadPath: (lng, ns) => `./translations/${ns}/Messages_${lng}.json`,
+            loadPath: (lng: string, ns: string) =>
+              `./translations/${ns}/Messages_${lng}.json`,
           },
         });
 

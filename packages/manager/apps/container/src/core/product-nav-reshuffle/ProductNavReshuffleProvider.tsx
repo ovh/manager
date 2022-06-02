@@ -1,13 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-
-import { useReket } from '@ovh-ux/ovh-reket';
-
 import useContainer from '@/core/container/useContainer';
 import { useShell } from '@/context/useApplicationContext';
-
 import ProductNavReshuffleContext from './context';
 import { FEEDBACK_URLS } from './constants';
-
 import useOnboarding, {
   ONBOARDING_OPENED_STATE_ENUM,
   ONBOARDING_STATUS_ENUM,
@@ -43,7 +38,7 @@ export const ProductNavReshuffleProvider = ({
   };
 
   // onboarding
-  const [onboardingOpenedState, setOnboardingOpenedState] = useState(
+  const [onboardingOpenedState, setOnboardingOpenedState] = useState<string>(
     ONBOARDING_OPENED_STATE_ENUM.CLOSED,
   );
 
@@ -55,7 +50,7 @@ export const ProductNavReshuffleProvider = ({
     setOnboardingOpenedState(nextOpenedState);
     if (
       nextOpenedState === ONBOARDING_OPENED_STATE_ENUM.WELCOME &&
-      !shell.getPlugin('ux').shellUX.chatbot.isReduced()
+      !shell.getPlugin('ux').isChatbotReduced()
     ) {
       // reduce chatbot if welcome popover is displayed
       shell.getPlugin('ux').reduceChatbot();
@@ -66,7 +61,7 @@ export const ProductNavReshuffleProvider = ({
     setOnboardingOpenedState(ONBOARDING_OPENED_STATE_ENUM.WALKME);
   };
 
-  const closeOnboarding = (onboardingStatus) => {
+  const closeOnboarding = (onboardingStatus: string) => {
     setOnboardingOpenedState(ONBOARDING_OPENED_STATE_ENUM.CLOSED);
 
     return onboardingHelper.updatePreference({
@@ -107,7 +102,7 @@ export const ProductNavReshuffleProvider = ({
   useEffect(() => {
     onboardingHelper
       .init()
-      .then((status) => {
+      .then((status: string) => {
         setOnboardingOpenedState(
           onboardingHelper.getOpenedStateFromStatus(status),
         );

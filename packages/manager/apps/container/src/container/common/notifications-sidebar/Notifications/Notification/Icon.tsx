@@ -21,7 +21,9 @@ const NotificationIcon = ({ level = '' }: Props): JSX.Element => {
 
   return (
     <span
-      className={`oui-icon oui-navbar-notification__icon oui-icon_bicolor oui-icon-info-circle ${getIconClassName(level)}`}
+      className={`oui-icon oui-navbar-notification__icon oui-icon_bicolor oui-icon-info-circle ${getIconClassName(
+        level,
+      )}`}
       aria-hidden="true"
     ></span>
   );

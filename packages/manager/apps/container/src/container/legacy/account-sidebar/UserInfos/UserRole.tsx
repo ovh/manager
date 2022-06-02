@@ -1,10 +1,11 @@
+import { User } from '@ovh-ux/manager-config/types';
 import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
 import { TRANSLATE_NAMESPACE } from '../constants';
 
-import useUserInfos, { User } from './useUserInfos';
+import useUserInfos from './useUserInfos';
 
 type Props = {
   cssBaseClassName?: string;
@@ -15,7 +16,7 @@ type Props = {
 const UserRole = ({
   cssBaseClassName = '',
   translationBase = '',
-  user = {},
+  user = {} as User,
 }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const role = useUserInfos(user).getUserRole();
@@ -25,12 +26,12 @@ const UserRole = ({
       className={`${cssBaseClassName}_user-name mb-2`}
       data-navi-id="account-sidebar-block"
     >
-     {role && (
+      {role && (
         <div>
           <span
-              className={`${cssBaseClassName}_role oui-badge oui-badge_warning`}
+            className={`${cssBaseClassName}_role oui-badge oui-badge_warning`}
           >
-            { t(`${translationBase}_role_${role}`) }
+            {t(`${translationBase}_role_${role}`)}
           </span>
         </div>
       )}

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
-import Shell from '@ovh-ux/shell';
+import { Shell } from '@ovh-ux/shell/types';
 
 import ApplicationContext from './application.context';
 import { HeaderProvider } from './header';
@@ -14,8 +14,8 @@ type Props = {
 
 export const ApplicationProvider = ({
   children = null,
-  environment = {},
-  shell = {},
+  environment = {} as Environment,
+  shell = {} as Shell,
 }: Props): JSX.Element => {
   let applicationContext = useContext(ApplicationContext);
 

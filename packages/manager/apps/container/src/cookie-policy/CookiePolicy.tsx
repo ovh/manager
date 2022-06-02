@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import Shell from '@ovh-ux/shell';
+import { Shell } from '@ovh-ux/shell/types';
 import { Modal } from 'react-bootstrap';
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
+import { User } from '@ovh-ux/manager-config/types';
 
 import ovhCloudLogo from './assets/logo-ovhcloud.png';
 import links from './links';
@@ -22,9 +23,8 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
   const [cookies, setCookies] = useCookies(['MANAGER_TRACKING']);
   const { environment } = useApplication();
   const [show, setShow] = useState(false);
-  const { ovhSubsidiary } = shell
-    .getPlugin('environment')
-    .getEnvironment().user;
+  const { ovhSubsidiary } = shell.getPlugin('environment').getEnvironment()
+    .user as User;
   const trackingPlugin = shell.getPlugin('tracking');
 
   const accept = () => {
@@ -120,7 +120,5 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
     </Modal>
   );
 };
-
-CookiePolicy.displayName = 'CookiePolicy';
 
 export default CookiePolicy;

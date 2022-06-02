@@ -12,7 +12,6 @@ function NavbarNotifications(): JSX.Element {
   const { t } = useTranslation('navbar');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
-  // getNavbarNotificationCount
   const { readAllNotifications, notificationsCount } = useNotifications();
 
   const {

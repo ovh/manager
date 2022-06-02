@@ -1,6 +1,7 @@
+import { Shell } from '@ovh-ux/shell/types';
 import { useEffect, useState } from 'react';
 
-const usePreloader = (shell, defaultValue = false) => {
+const usePreloader = (shell: Shell, defaultValue = false) => {
   const [visible, setVisible] = useState(defaultValue);
 
   useEffect(() => {

@@ -12,13 +12,16 @@ type Props = {
   translationBase?: string;
 };
 
-const Anchor = ({ link = {}, translationBase = '' }: Props): JSX.Element => {
+const Anchor = ({
+  link = {} as UsefulLink,
+  translationBase = '',
+}: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const shell = useShell();
-  const handleLinkClick = (link: UsefulLink): void => {
-    if (link?.tracking) {
+  const handleLinkClick = (linkParam: UsefulLink): void => {
+    if (linkParam?.tracking) {
       shell.getPlugin('tracking').trackClick({
-        name: link.tracking,
+        name: linkParam.tracking,
         type: 'navigation',
       });
     }

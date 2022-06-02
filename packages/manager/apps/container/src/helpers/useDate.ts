@@ -1,5 +1,8 @@
 import parse from 'date-fns/parse';
 import formatDistanceStrict from 'date-fns/formatDistanceStrict';
+// TODO: upgrade prettier
+// eslint-disable-next-line prettier/prettier
+import type { Locale } from 'date-fns';
 
 interface UseDate {
   fromNow(date: string, locale: string): Promise<string>;
@@ -8,7 +11,7 @@ interface UseDate {
 const useDate = (): UseDate => {
   const fromNow = async (date: string, locale: string): Promise<string> => {
     const importLocale = () => import(`date-fns/locale`);
-    const locales = await importLocale();
+    const locales = (await importLocale()) as Record<string, Locale> ;
     return formatDistanceStrict(
       parse(date, 'yyyy-MM-dd', new Date()),
       new Date(),

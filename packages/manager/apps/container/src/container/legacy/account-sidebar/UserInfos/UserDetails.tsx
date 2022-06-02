@@ -1,6 +1,5 @@
+import { User } from '@ovh-ux/manager-config/types';
 import React from 'react';
-
-import { User } from './useUserInfos';
 
 type Props = {
   cssBaseClassName?: string;
@@ -9,7 +8,7 @@ type Props = {
 
 const UserDetails = ({
   cssBaseClassName = '',
-  user = {},
+  user = {} as User,
 }: Props): JSX.Element => {
   const { organisation, email, nichandle } = user;
 

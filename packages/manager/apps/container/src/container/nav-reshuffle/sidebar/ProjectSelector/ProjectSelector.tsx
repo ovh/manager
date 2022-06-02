@@ -1,7 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
+import { ComponentProps } from '../utils';
 
-const getProjectOption = (option): JSX.Element => {
+export type PciProject = {
+  access: string;
+  creationDate: Date;
+  description: string;
+  expiration: Date;
+  manualQuota: boolean;
+  orderId: unknown;
+  planCode: string;
+  projectName: string;
+  project_id: string;
+  status: string;
+  unleash: boolean;
+};
+
+const getProjectOption = (option: Record<string, unknown>): JSX.Element => {
   return (
     <div style={{ alignItems: 'center', display: 'flex' }}>
       {option.new && (
@@ -17,13 +32,13 @@ const getProjectOption = (option): JSX.Element => {
 
 type Props = {
   isLoading: boolean;
-  projects: [];
-  selectedProject: unknown;
+  projects: PciProject[];
+  selectedProject: PciProject;
   onProjectChange: CallableFunction;
   onProjectCreate: CallableFunction;
   createLabel: string;
 };
-const ProjectSelector = ({
+const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   isLoading,
   projects,
   selectedProject,
@@ -31,8 +46,14 @@ const ProjectSelector = ({
   onProjectCreate,
   createLabel,
 }: Props): JSX.Element => {
+  // Important note :
+  // The any types in this bloc are there because the react select
+  // should expose its own types, it's not for us to define
+  // This should be updated once the lib is updated to expose the necessary typings
+  // Also, i don't want to disable the option "noImplicitAny"
+  // Because this is done under unique circumstances and should not impact the rest of the codebase
   const selectStyles = {
-    option: (provided) => ({
+    option: (provided: any) => ({
       ...provided,
       backgroundColor: '#FFFFFF',
       color: '#1A53CF',
@@ -42,7 +63,7 @@ const ProjectSelector = ({
       },
       cursor: 'pointer',
     }),
-    control: (provided, state) => ({
+    control: (provided: any, state: any) => ({
       ...provided,
       backgroundColor: state.isFocused ? '#98D7F9' : '#FFF',
       color: state.isFocused ? '#1C55D0' : '#1A53CF',

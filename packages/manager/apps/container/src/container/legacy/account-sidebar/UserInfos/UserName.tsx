@@ -1,13 +1,17 @@
+import { User } from '@ovh-ux/manager-config/types';
 import React from 'react';
 
-import useUserInfos, { User } from './useUserInfos';
+import useUserInfos from './useUserInfos';
 
 type Props = {
   cssBaseClassName?: string;
   user?: User;
 };
 
-const UserName = ({ cssBaseClassName = '', user = {} }: Props): JSX.Element => {
+const UserName = ({
+  cssBaseClassName = '',
+  user = {} as User,
+}: Props): JSX.Element => {
   const { getUserDisplayName } = useUserInfos(user);
 
   return (

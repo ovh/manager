@@ -10,9 +10,7 @@ export const ONBOARDING_OPENED_STATE_ENUM = {
   BUTTON: 'BUTTON', // only the button must be shown
   WELCOME: 'WELCOME', // the button and the welcome button is shown
   WALKME: 'WALKME', // the onboarding has started
-};
+} as const;
 
-export default {
-  ONBOARDING_STATUS_ENUM,
-  ONBOARDING_OPENED_STATE_ENUM,
-};
+export type OnboardingOpenedStatusEnum = typeof ONBOARDING_OPENED_STATE_ENUM;
+export type OnboardingStatusEnum = typeof ONBOARDING_STATUS_ENUM;

@@ -1,4 +1,6 @@
-export default {
+import { Node } from '../node';
+
+const pciNode: Node = {
   id: 'pci',
   translation: 'sidebar_pci',
   routing: {
@@ -395,3 +397,5 @@ export default {
     },
   ],
 };
+
+export default pciNode;

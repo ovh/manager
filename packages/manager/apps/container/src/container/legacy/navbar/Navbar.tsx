@@ -9,7 +9,7 @@ import { MESSAGES } from './constants';
 import Hamburger from './HamburgerMenu';
 import style from './navbar.module.scss';
 import Search from './Search';
-import { fetchUniverses, getBrandURL } from './service';
+import { fetchUniverses, getBrandURL, Universe } from './service';
 import Universes from './Universes';
 
 import LanguageMenu from '@/container/common/language';
@@ -30,10 +30,10 @@ function Navbar({ environment }: Props): JSX.Element {
     shell.getPlugin('i18n').getLocale(),
   );
 
-  const [universes, setUniverses] = useState([]);
-  const [searchURL, setSearchURL] = useState();
-  const [currentUniverse, setCurrentUniverse] = useState();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [universes, setUniverses] = useState<Universe[]>([]);
+  const [searchURL, setSearchURL] = useState<string>();
+  const [currentUniverse, setCurrentUniverse] = useState<string>();
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const { setIsNotificationsSidebarVisible } = useHeader();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ function Navbar({ environment }: Props): JSX.Element {
       type: 'action',
     });
 
-  const universeClickHandler = ({ universe }) =>
+  const universeClickHandler = ({ universe }: Partial<Environment>) =>
     shell.getPlugin('tracking').trackClick({
       name: `navbar::entry::${universe}`,
       type: 'action',

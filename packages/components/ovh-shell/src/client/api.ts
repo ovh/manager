@@ -68,18 +68,16 @@ export default function exposeApi(shellClient: ShellClient) {
           plugin: 'ux',
           method: 'showAccountSidebar',
         }),
-      disableAccountSidebarToggle: () => {
+      disableAccountSidebarToggle: () =>
         shellClient.invokePluginMethod({
           plugin: 'ux',
           method: 'disableAccountSidebarVisibilityToggle',
-        });
-      },
-      enableAccountSidebarToggle: () => {
+        }),
+      enableAccountSidebarToggle: () =>
         shellClient.invokePluginMethod({
           plugin: 'ux',
           method: 'enableAccountSidebarVisibilityToggle',
-        });
-      },
+        }),
       isAccountSidebarVisible: () =>
         shellClient.invokePluginMethod({
           plugin: 'ux',
@@ -127,39 +125,43 @@ export default function exposeApi(shellClient: ShellClient) {
         shellClient.addEventListener('ux:close-chatbot', callback),
       onReduceChatbot: (callback: CallableFunction) =>
         shellClient.addEventListener('ux:reduce-chatbot', callback),
-      onChatbotOpen: () => {
+      onChatbotOpen: () =>
         shellClient.invokePluginMethod<string>({
           plugin: 'ux',
           method: 'onChatbotOpen',
-        });
-      },
-      onChatbotClose: (reduced: boolean) => {
+        }),
+      onChatbotClose: (reduced: boolean) =>
         shellClient.invokePluginMethod<string>({
           plugin: 'ux',
           method: 'onChatbotClose',
           args: [reduced],
-        });
-      },
+        }),
+      isChatbotReduced: () =>
+        shellClient.invokePluginMethod<boolean>({
+          plugin: 'ux',
+          method: 'isChatbotReduced',
+        }),
+      isChatbotVisible: () =>
+        shellClient.invokePluginMethod<boolean>({
+          plugin: 'ux',
+          method: 'isChatbotVisible',
+        }),
 
-      startProgress: () => {
+      startProgress: () =>
         shellClient.invokePluginMethod<string>({
           plugin: 'ux',
           method: 'startProgress',
-        });
-      },
-      stopProgress: () => {
+        }),
+      stopProgress: () =>
         shellClient.invokePluginMethod<string>({
           plugin: 'ux',
           method: 'stopProgress',
-        });
-      },
-
-      hidePreloader: () => {
+        }),
+      hidePreloader: () =>
         shellClient.invokePluginMethod<void>({
           plugin: 'ux',
           method: 'hidePreloader',
-        });
-      },
+        }),
     },
     navigation: clientNavigation(shellClient),
     tracking: exposeTrackingAPI(shellClient),

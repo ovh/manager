@@ -10,7 +10,7 @@ export const NavReshuffleOnboardingWidget = () => {
   const onboarding = useOnboarding();
   const { onboardingOpenedState } = useProductNavReshuffle();
 
-  const [isWalkMeVisible, setIsWalkMeVisible] = useState();
+  const [isWalkMeVisible, setIsWalkMeVisible] = useState<boolean>();
 
   useMemo(() => {
     setIsWalkMeVisible(onboarding.hasStarted(onboardingOpenedState));

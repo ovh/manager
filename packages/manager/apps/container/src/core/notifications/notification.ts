@@ -12,9 +12,10 @@ export type APINotification = {
   description: string;
   updating: boolean;
   urlDetails: URLDetails;
+  level: string;
 };
 
-export interface Notification {
+export interface Notification extends APINotification {
   date: string;
   id: string;
   status: string;

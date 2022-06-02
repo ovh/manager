@@ -13,6 +13,7 @@
   "sideEffects": "false",
   "type": "module",
   "main": "./dist/index.js",
+  "types": "./types/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc",

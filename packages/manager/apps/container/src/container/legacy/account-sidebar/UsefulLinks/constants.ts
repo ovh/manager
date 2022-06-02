@@ -1,6 +1,18 @@
+import { Region } from '@ovh-ux/manager-config/types/environment/region.enum';
+
 const helpRoot = 'https://help.ovhcloud.com';
 
-export default {
+interface UsefulLinks {
+  help: {
+    [key in string]: string;
+  };
+  tasks: string;
+}
+type UsefulLinkConstants = {
+  [key in Region]: UsefulLinks;
+};
+
+const consts: UsefulLinkConstants = {
   EU: {
     help: {
       DE: `${helpRoot}/de`,
@@ -37,3 +49,5 @@ export default {
     tasks: '',
   },
 };
+
+export default consts;

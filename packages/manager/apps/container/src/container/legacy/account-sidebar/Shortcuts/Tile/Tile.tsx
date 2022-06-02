@@ -11,17 +11,17 @@ type Props = {
   shortcut: Shortcut;
 };
 
-const Tile = ({ shortcut = {} }: Props): JSX.Element => {
+const Tile = ({ shortcut = {} as Shortcut }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const shell = useShell();
 
   const cssClassName = 'manager-account-sidebar-shortcuts-tile';
   const translationBase = 'user_account_menu_shortcuts_tile';
 
-  const handleShortcutClick = (shortcut) => {
-    if (shortcut?.tracking) {
+  const handleShortcutClick = (param: Shortcut) => {
+    if (param?.tracking) {
       shell.getPlugin('tracking').trackClick({
-        name: shortcut.tracking,
+        name: param.tracking,
         type: 'navigation',
       });
     }

@@ -11,7 +11,10 @@ type Props = {
   translationBase?: string;
 };
 
-const Button = ({ link = {}, translationBase = '' }: Props): JSX.Element => {
+const Button = ({
+  link = {} as UsefulLink,
+  translationBase = '',
+}: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
 
   return (

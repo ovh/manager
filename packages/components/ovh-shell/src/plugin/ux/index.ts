@@ -155,6 +155,14 @@ export class UXPlugin implements IUXPlugin {
 
   /* ----------- Chatbot methods -----------*/
 
+  isChatbotReduced(): boolean {
+    return this.shellUX.getChatbot().isReduced();
+  }
+
+  isChatbotVisible(): boolean {
+    return this.shellUX.getChatbot().getVisibility();
+  }
+
   openChatbot(): void {
     this.shell.emitEvent('ux:open-chatbot');
   }

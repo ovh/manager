@@ -8,26 +8,25 @@ import Notifications from './Notifications/Notifications';
 import style from './notifications-sidebar.module.scss';
 
 import { useHeader } from '@/context/header';
-import { Notification } from '@/core/notification';
-import useNotifications from '@/core/notifications';
+import useNotifications, { Notification } from '@/core/notifications';
 import useDate from '@/helpers/useDate';
 
-type NotificationByDate = {
-  [fromDate: string]: Notification;
-};
+type NotificationByDate = Record<string, Notification[]>;
 
 type Props = {
   environment?: Environment;
 };
 
-const NotificationsSidebar = ({ environment = {} }: Props): JSX.Element => {
+const NotificationsSidebar = ({
+  environment = {} as Environment,
+}: Props): JSX.Element => {
   const locale = environment.getUserLocale();
   const { fromNow } = useDate();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [groupedNotifications, setGroupedNotifications] = useState<
-    NotificationByDate[]
-  >([]);
+    NotificationByDate
+  >({});
 
   const { isNotificationsSidebarVisible } = useHeader();
   const {
@@ -39,27 +38,34 @@ const NotificationsSidebar = ({ environment = {} }: Props): JSX.Element => {
 
   const getGroupedNotifications = async (
     notificationToDisplay: Notification[],
-  ): Promise<NotificationByDate[]> => {
+  ): Promise<NotificationByDate> => {
     if (!notificationToDisplay) {
-      return [];
+      return groupBy([] as Notification[]);
     }
 
     const allDates = [
       ...new Set(notificationToDisplay.map(({ date }) => date)),
     ];
+    interface Group {
+      date: string;
+      fromNow: string;
+    }
 
-    const groups = await Promise.all(
+    const groups: Group[] = await Promise.all(
       allDates.map(async (date) => {
         const dateFromNow = await fromNow(date, locale);
         return { date, fromNow: dateFromNow };
       }),
     );
-    const dateGroups = groups.reduce((all, { date, fromNow: dateFromNow }) => {
-      return {
-        ...all,
-        [date]: dateFromNow,
-      };
-    }, {});
+    const dateGroups = groups.reduce(
+      (all: Record<string, Group>, { date, fromNow: dateFromNow }) => {
+        return {
+          ...all,
+          [date]: dateFromNow,
+        };
+      },
+      {},
+    );
 
     return groupBy(notificationToDisplay, ({ date }) => dateGroups[date]);
   };
@@ -79,7 +85,7 @@ const NotificationsSidebar = ({ environment = {} }: Props): JSX.Element => {
 
     if (notificationToDisplay.length === 0) {
       setNotificationsCount(0);
-      setGroupedNotifications([]);
+      setGroupedNotifications({});
     } else {
       const updateNotifications = async () => {
         setNotificationsCount(
@@ -119,7 +125,7 @@ const NotificationsSidebar = ({ environment = {} }: Props): JSX.Element => {
       } ${isNotificationsSidebarVisible && style.notificationsSidebar_toggle}`}
       role="menu"
     >
-      <Notifications>{ notificationsContent }</Notifications>
+      <Notifications>{notificationsContent}</Notifications>
     </div>
   );
 };
