@@ -11,24 +11,22 @@
 
     <!--Payment methods-->
     <div class="row">
-        <div
-            class="col-md-6 mb-3"
+
+        <oui-select-picker
+            class="col-md-6 m-0 mb-3"
             data-ng-repeat="authorizedPaymentMethod in $ctrl.authorizedPaymentMethods track by $index"
-        >
-            <oui-radio
-                class="oui-radio_btn"
-                data-name="paymentType"
-                data-thumbnail
-                data-model="$ctrl.model.paymentMethod"
-                data-value="authorizedPaymentMethod"
-                data-on-change="$ctrl.onPaymentTypeRadioChange()"
-                data-disabled="$ctrl.globalLoading.finalize"
-            >
+            data-disabled="$ctrl.globalLoading.finalize"
+            data-name="paymentType"
+            data-model="$ctrl.model.paymentMethod"
+            data-values="[authorizedPaymentMethod]"
+            data-on-change="$ctrl.onPaymentTypeRadioChange()">
+            <oui-select-picker-label class="w-100 text-center">
                 <span
-                    data-ng-bind="$ctrl.getPaymentMethodTypeText(authorizedPaymentMethod)"
+                    data-ng-bind=":: $ctrl.getPaymentMethodTypeText(authorizedPaymentMethod)"
                 ></span>
-            </oui-radio>
-        </div>
+            </oui-select-picker-label>
+        </oui-select-picker>
+
     </div>
 
     <!--Credit card info banner-->
