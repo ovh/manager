@@ -16,6 +16,7 @@ import dataProcessing from './data-processing';
 import edit from './edit';
 import errorModal from '../new/error-modal';
 import failoverIps from './failover-ips';
+import additionalIps from './additional-ips';
 import inactive from './inactive';
 import instances from './instances';
 import kubernetes from './kubernetes';
@@ -57,6 +58,7 @@ angular
     edit,
     errorModal,
     failoverIps,
+    additionalIps,
     inactive,
     instances,
     loadBalancer,
