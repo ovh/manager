@@ -109,6 +109,14 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         title: 'Failover IP',
         feature: PCI_FEATURES.PRODUCTS.FAILOVER_IP,
       },
+      {
+        id: 'additional-ip',
+        options: {
+          state: 'pci.projects.project.additional-ips',
+        },
+        title: 'Additional IP',
+        feature: PCI_FEATURES.PRODUCTS.ADDITIONAL_IP,
+      },
     ],
     title: 'Network',
   },
