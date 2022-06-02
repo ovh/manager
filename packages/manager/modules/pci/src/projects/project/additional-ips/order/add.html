@@ -1,0 +1,213 @@
+<div data-ui-view class="container-fluid py-4">
+    <oui-back-button data-on-click="$ctrl.goBack()">
+        <span data-translate="pci_additional_ip_create"></span>
+    </oui-back-button>
+
+    <p data-translate="pci_additional_ip_create_description"></p>
+
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <oui-stepper>
+        <!-- select additional IP type -->
+        <oui-step-form
+            data-header="{{:: 'pci_additional_ip_create_step_select_ip' | translate}}"
+            data-editable="!$ctrl.loaders.isSubmitting"
+            name="additional_ip_create_step_select_ip"
+        >
+            <div class="row mb-3">
+                <oui-select-picker
+                    class="col-md-4 mb-3"
+                    data-ng-repeat="type in $ctrl.ipTypes track by type.name"
+                    data-name="{{:: type.name }}"
+                    data-model="$ctrl.selectedIpType"
+                    data-label="{{:: type.label }}"
+                    data-values="[type]"
+                    data-variant="light"
+                    data-on-change="$ctrl.onProductChange(modelValue)"
+                    data-required
+                >
+                    <oui-select-picker-section>
+                        <span data-ng-bind="type.description"></span>
+                    </oui-select-picker-section>
+                </oui-select-picker>
+            </div>
+        </oui-step-form>
+        <!-- select DC/country -->
+        <oui-step-form
+            data-header="{{'pci_additional_ip_create_step_select_region_' + $ctrl.selectedIpType.name | translate }}"
+            data-editable="!$ctrl.loaders.isSubmitting"
+            data-loading="$ctrl.loadingRegions"
+            data-navigation="$ctrl.ip.region"
+            name="additional_ip_create_step_select_region"
+        >
+            <div
+                data-ng-if="$ctrl.selectedIpType.name === $ctrl.IP_TYPE_ENUM.FAILOVER"
+            >
+                <p
+                    data-translate="pci_additional_ip_create_step_select_region_description_failover_ip"
+                    data-translate_values="{
+                        guideLink: $ctrl.getAdditionalIpGuideLink()
+                    }"
+                ></p>
+                <div class="row mb-3">
+                    <oui-select-picker
+                        class="col-md-4 mb-3"
+                        data-ng-repeat="country in $ctrl.failOverIpCountries track by country"
+                        data-name="{{:: country }}"
+                        data-model="$ctrl.ip.region"
+                        data-label="{{:: 'pci_additional_ips_country_' + country | translate }}"
+                        data-values="[country]"
+                        data-variant="light"
+                        data-required
+                    >
+                    </oui-select-picker>
+                </div>
+            </div>
+            <div
+                data-ng-if="$ctrl.selectedIpType.name === $ctrl.IP_TYPE_ENUM.FLOATING"
+            >
+                <p
+                    data-translate="pci_additional_ip_create_step_select_region_description_floating_ip"
+                    data-translate_values="{
+                        guideLink: $ctrl.getRegionsAvailabilityGuideLink()
+                    }"
+                ></p>
+                <pci-project-regions-list
+                    data-regions="$ctrl.regions"
+                    data-selected-region="$ctrl.ip.region"
+                    data-display-selected-region="$ctrl.displaySelectedRegion"
+                    data-on-change="$ctrl.onRegionChange(region)"
+                ></pci-project-regions-list>
+            </div>
+        </oui-step-form>
+        <!-- select instance - failover IP -->
+        <oui-step-form
+            data-ng-if="$ctrl.selectedIpType.name === $ctrl.IP_TYPE_ENUM.FAILOVER"
+            data-header="{{:: 'pci_additional_ip_create_step_attach_instance' | translate }}"
+            data-editable="!$ctrl.loaders.isSubmitting"
+            data-on-submit="$ctrl.createAdditionalIp()"
+            data-navigation="$ctrl.instances.length > 0"
+            data-submit-text="{{:: 'pci_additional_ip_create_action_label' | translate }}"
+            data-required
+            name="additional_ip_create_step_attach_instance"
+        >
+            <div data-ng-if="$ctrl.instances.length === 0">
+                <oui-message data-type="error">
+                    <p>
+                        <span
+                            data-ng-bind="{{ 'pci_additional_ip_create_no_instance_message_' + $ctrl.selectedIpType.name}}"
+                        ></span>
+                        <span
+                            data-translate="pci_additional_ip_create_create_instance"
+                            data-translate_values="{
+                                url: $ctrl.createInstanceUrl
+                            }"
+                        >
+                        </span>
+                    </p>
+                </oui-message>
+            </div>
+            <oui-message data-type="info">
+                <p
+                    data-translate="pci_additional_ip_create_step_attach_instance_info_failover_ip"
+                    data-translate_values="{
+                        guideLink: $ctrl.getAdditionalIpConfGuideLink()
+                    }"
+                ></p>
+            </oui-message>
+
+            <div data-ng-if="$ctrl.instances.length > 0" class="mb-3">
+                <oui-field
+                    data-label="{{:: 'pci_additional_ips_failoverip_order_instance' | translate }}"
+                    data-size="xl"
+                >
+                    <oui-select
+                        name="instance"
+                        data-placeholder="{{:: 'pci_additional_ip_create_step_attach_instance_label' | translate }}"
+                        data-model="$ctrl.ip.instance"
+                        data-items="$ctrl.instances"
+                        data-match="name"
+                        data-required
+                    >
+                    </oui-select>
+                </oui-field>
+            </div>
+        </oui-step-form>
+        <!-- select instance - floating IP -->
+        <oui-step-form
+            data-ng-if="$ctrl.selectedIpType.name === $ctrl.IP_TYPE_ENUM.FLOATING"
+            data-header="{{:: 'pci_additional_ip_create_step_attach_instance' | translate }}"
+            data-editable="!$ctrl.loaders.isSubmitting"
+            data-navigation="$ctrl.ip.instance && $ctrl.ip.network"
+            data-required
+            data-on-submit="$ctrl.loadGatewayDetails()"
+            name="additional_ip_create_step_attach_instance"
+        >
+            <div data-ng-if="$ctrl.filteredInstances.length === 0">
+                <oui-message data-type="error">
+                    <p>
+                        <span
+                            data-translate="{{ 'pci_additional_ip_create_no_instance_message_' + $ctrl.selectedIpType.name }}"
+                        ></span>
+                        <span
+                            data-translate="pci_additional_ip_create_create_instance"
+                            data-translate_values="{
+                                url: $ctrl.createInstanceUrl
+                            }"
+                        >
+                        </span>
+                    </p>
+                </oui-message>
+            </div>
+            <div data-ng-if="$ctrl.filteredInstances.length > 0">
+                <p
+                    data-translate="pci_additional_ip_create_step_attach_instance_description_floating_ip"
+                ></p>
+                <oui-field
+                    data-label="{{:: 'pci_additional_ips_failoverip_order_instance' | translate }}"
+                    data-size="xl"
+                >
+                    <oui-select
+                        name="instance"
+                        data-placeholder="{{:: 'pci_additional_ip_create_step_attach_instance_label' | translate }}"
+                        data-model="$ctrl.ip.instance"
+                        data-items="$ctrl.filteredInstances"
+                        data-match="name"
+                        data-on-change="$ctrl.instanceChange(modelValue)"
+                        data-required
+                    >
+                    </oui-select>
+                </oui-field>
+                <oui-field
+                    data-label="{{:: 'pci_additional_ip_select_network_label' | translate }}"
+                    data-size="xl"
+                    data-ng-if="$ctrl.privateNetworks.length > 0"
+                >
+                    <oui-select
+                        name="instance"
+                        data-placeholder="{{:: 'pci_additional_ip_select_network_placeholder' | translate }}"
+                        data-model="$ctrl.ip.network"
+                        data-items="$ctrl.privateNetworks"
+                        data-match="ip"
+                        data-required
+                    >
+                    </oui-select>
+                </oui-field>
+            </div>
+        </oui-step-form>
+        <!-- summary -->
+        <oui-step-form
+            data-ng-if="$ctrl.selectedIpType.name === $ctrl.IP_TYPE_ENUM.FLOATING"
+            data-header="{{:: 'pci_additional_ip_create_step_summary' | translate }}"
+            data-editable="!$ctrl.loaders.isSubmitting"
+            data-on-submit="$ctrl.createAdditionalIp()"
+            data-loading="$ctrl.loadingGatewayDetails"
+            data-submit-text="{{:: 'pci_additional_ip_create_action_label' | translate }}"
+            data-required
+            name="additional_ip_create_step_summary"
+        >
+        </oui-step-form>
+    </oui-stepper>
+</div>
