@@ -1,4 +1,7 @@
-<oui-header data-heading="{{:: 'billing_title' | translate}}">
+<oui-header
+    data-heading="{{:: 'billing_title' | translate}}"
+    data-description="{{ :: $ctrl.descriptionOfHeading() }}"
+>
     <oui-header-tabs>
         <oui-header-tabs-item
             href="{{:: $ctrl.homeLink }}"
