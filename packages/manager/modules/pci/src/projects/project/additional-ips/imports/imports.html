@@ -1,0 +1,38 @@
+<div data-ui-view>
+    <h1 data-translate="pci_additional_ips_failoverip_imports_title"></h1>
+    <div>
+        <oui-datagrid data-rows="$ctrl.ips">
+            <oui-datagrid-column
+                data-title=":: 'pci_additional_ips_failoverip_imports_block' | translate"
+                data-property="ip"
+                data-type="string"
+                data-searchable
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'pci_additional_ips_failoverip_imports_geoloc' | translate"
+                data-property="country"
+                data-type="string"
+                data-searchable
+            >
+                <span class="text-uppercase" data-ng-bind="$value"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'pci_additional_ips_failoverip_imports_id' | translate"
+                data-property="routedTo.serviceName"
+                data-type="string"
+                data-searchable
+            >
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
+                <oui-action-menu-item
+                    data-ui-sref="pci.projects.project.additional-ips.imports.import({ projectId: $ctrl.projectId, serviceName: $row.ip })"
+                >
+                    <span
+                        data-translate="pci_additional_ips_failoverip_imports_importIp"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid>
+    </div>
+</div>
