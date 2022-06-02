@@ -38,6 +38,6 @@
     "angular-websocket": "^2.0.1",
     "bootstrap": "~3.3.0",
     "moment": "^2.24.0",
-    "ovh-api-services": "^11.2.0"
+    "ovh-api-services": "^14.0.6"
   }
 }
