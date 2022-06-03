@@ -15,34 +15,44 @@ import {
 export default class AdditionalIpController {
   /* @ngInject */
   constructor(
+    $q,
     $window,
     $translate,
     coreConfig,
     OvhApiOrderCloudProjectIp,
     OvhApiOrderCatalogFormatted,
     additionalIpService,
+    CucCloudMessage,
   ) {
+    this.$q = $q;
     this.$window = $window;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.OvhApiOrderCloudProjectIp = OvhApiOrderCloudProjectIp;
     this.OvhApiOrderCatalogFormatted = OvhApiOrderCatalogFormatted;
     this.additionalIpService = additionalIpService;
+    this.CucCloudMessage = CucCloudMessage;
     this.IP_TYPE_ENUM = IP_TYPE_ENUM;
   }
 
   $onInit() {
+    this.currencySymbol = this.coreConfig.getUser().currency.symbol;
     this.allInstances = this.instances;
     this.filteredInstances = [];
     this.privateNetworks = [];
     this.gateways = [];
-    this.initIp();
+    this.gateway = null;
+    this.snatEnabled = false;
+    this.confirmAndProceed = false;
+    this.gatewayPrice = null;
     this.ip = {
       quantity: 1,
       instance: null,
       region: null,
       product: null,
     };
+    this.loadMessages();
+    this.initIp();
   }
 
   static getMaximumQuantity(product) {
@@ -58,7 +68,7 @@ export default class AdditionalIpController {
     );
   }
 
-  order() {
+  orderFailoverIp() {
     const order = {
       planCode: this.ip.product.planCode,
       productId: 'ip',
@@ -87,6 +97,51 @@ export default class AdditionalIpController {
       'noopener',
     );
     this.goBack();
+  }
+
+  loadMessages() {
+    this.CucCloudMessage.unSubscribe(
+      'pci.projects.project.additional-ips.order',
+    );
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.additional-ips.order',
+      { onMessage: () => this.refreshMessages() },
+    );
+  }
+
+  refreshMessages() {
+    this.messages = this.messageHandler.getMessages();
+  }
+
+  createFloatingIp() {
+    this.creatingFloatingIp = true;
+    this.additionalIpService
+      .createFloatingIp(
+        this.projectId,
+        this.ip.region.name,
+        this.ip.instance.id,
+        this.ip.network.ip,
+      )
+      .then(() => {
+        this.goBack(
+          this.$translate.instant(
+            'pci_additional_ip_create_floating_ip_success',
+          ),
+        );
+      })
+      .catch((error) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_additional_ip_create_floating_ip_error',
+            {
+              message: error.data?.message || null,
+            },
+          ),
+        );
+      })
+      .finally(() => {
+        this.creatingFloatingIp = false;
+      });
   }
 
   onProductChange(ipType) {
@@ -118,20 +173,24 @@ export default class AdditionalIpController {
       this.selectedIpType.name === IP_TYPE_ENUM.FAILOVER &&
       this.ip.instance
     ) {
-      this.order();
+      this.orderFailoverIp();
+    } else if (this.selectedIpType.name === IP_TYPE_ENUM.FLOATING) {
+      this.createFloatingIp();
     }
   }
 
   filterInstances(regionName) {
     this.filteredInstances = filter(this.instances, (instance) => {
-      return (
-        instance.region === regionName &&
-        find(instance.ipAddresses, (ip) => ip.type === 'private')
-      );
+      return instance.region === regionName;
     });
   }
 
   initIp() {
+    const plan = this.getFailoverIpPlan();
+    const floatingIpPrice = `${plan.pricings[0].price + plan.pricings[0].tax}${
+      this.currencySymbol
+    }`;
+    const failoverIpPrice = `0${this.currencySymbol}`;
     this.ipTypes = map(IP_TYPE_ENUM, (type) => {
       return {
         name: type,
@@ -139,6 +198,8 @@ export default class AdditionalIpController {
         description: this.$translate.instant(
           `pci_additional_ip_${type}_description`,
         ),
+        price:
+          type === IP_TYPE_ENUM.FLOATING ? floatingIpPrice : failoverIpPrice,
       };
     });
     [this.selectedIpType] = this.ipTypes;
@@ -193,14 +254,60 @@ export default class AdditionalIpController {
 
   loadGatewayDetails() {
     this.loadingGatewayDetails = true;
-    this.additionalIpService
-      .getGateways(this.projectId, this.ip.region.name)
-      .then((gateways) => {
-        this.gateways = gateways;
+    this.$q
+      .all({
+        gateways: this.additionalIpService.getGateways(
+          this.projectId,
+          this.ip.region.name,
+        ),
+        subnets: this.additionalIpService.getNetworkSubnets(
+          this.projectId,
+          this.ip.network.networkId,
+        ),
+      })
+      .then(({ gateways, subnets }) => {
+        const networkSubnets = subnets.map((subnet) => subnet.id);
+        this.gateways = gateways.filter((gateway) => {
+          return gateway.interfaces.find((intrfce) =>
+            networkSubnets.includes(intrfce.subnetId),
+          );
+        });
+        if (this.gateways.length === 0) {
+          const plan = this.getSmallestGatewayPlan();
+          this.gatewayPrice = `${plan.pricings[0].price +
+            plan.pricings[0].tax}${this.currencySymbol}`;
+        } else {
+          // there will be only one gateway with selected subnet, select the first one
+          [this.gateway] = this.gateways;
+          // SNAT is enabled if the gateway has externalInformation
+          this.snatEnabled =
+            this.gateway.externalInformation !== 'undefined' &&
+            this.gateway.externalInformation !== null;
+        }
       })
       .finally(() => {
         this.loadingGatewayDetails = false;
       });
+  }
+
+  getSmallestGatewayPlan() {
+    return this.publicCloudCatalog.addons.find(
+      (addon) => addon.product === 'publiccloud-gateway-s',
+    );
+  }
+
+  showSubmitButtonOnSummaryStep() {
+    return (
+      this.gateways.length === 0 ||
+      (this.gateways.length > 0 && this.snatEnabled) ||
+      (this.gateways.length > 0 && !this.snatEnabled && this.confirmAndProceed)
+    );
+  }
+
+  getFailoverIpPlan() {
+    return this.publicCloudCatalog.addons.find(
+      (addon) => addon.product === 'publiccloud-floatingip-floatingip',
+    );
   }
 
   getAdditionalIpGuideLink() {
