@@ -7,6 +7,7 @@ export default {
   transclude: {
     title: '?onboardingTitle',
     description: '?onboardingDescription',
+    footer: '?onboardingFooter',
   },
   bindings: {
     imageAlt: '<',

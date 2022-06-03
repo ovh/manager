@@ -3,6 +3,7 @@
   "vps_onboarding_description_1": "Hautes performances au meilleur prix",
   "vps_onboarding_description_2": "Simplicité, évolutivité, personnalisation",
   "vps_onboarding_description_3": "Traffic illimité et bande passante jusqu'à 2 Gbit/s*",
+  "vps_onboarding_traffic_infos": "Pour les VPS hébergés à Sydney et Singapour : 1 To de trafic/mois pour les gammes Starter et Value, 2 To/mois pour la gamme Essential, 3 To/mois pour la gamme Comfort et 4 To/mois pour la gamme Élite. La bande passante est réduite à 10 Mbit/s une fois le quota mensuel dépassé.",
   "vps_onboarding_cta": "Commander",
   "vps_onboarding_guide1_title": "Débuter avec un VPS",
   "vps_onboarding_guide1_description": "Apprenez les bases de l'utilisation d'un VPS",
