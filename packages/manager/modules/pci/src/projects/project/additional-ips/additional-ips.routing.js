@@ -100,7 +100,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         ).then((instances) =>
           filter(instances, ({ ipAddresses }) =>
-            find(ipAddresses, { type: 'public' }),
+            find(ipAddresses, { type: 'private' }),
           ),
         ),
 

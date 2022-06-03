@@ -9,5 +9,6 @@ export default {
     createInstanceUrl: '<',
     projectId: '<',
     goBack: '<',
+    publicCloudCatalog: '<',
   },
 };
