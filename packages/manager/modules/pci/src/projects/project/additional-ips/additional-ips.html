@@ -6,7 +6,7 @@
         <oui-guide-menu
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
-            <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
+            <oui-guide-menu-item href="{{:: $ctrl.guideUrl }}" data-external>
                 <span
                     data-translate="pci_project_guides_header_all_guides"
                 ></span>
@@ -37,7 +37,7 @@
                 heading="{{:: 'pci_additional_ips_failover_ip_title' | translate}}"
             >
                 <oui-datagrid
-                    data-rows="$ctrl.additionalIps"
+                    rows="$ctrl.additionalIps"
                     criteria="$ctrl.criteria"
                     on-criteria-change="$ctrl.onListParamChange($criteria)"
                 >

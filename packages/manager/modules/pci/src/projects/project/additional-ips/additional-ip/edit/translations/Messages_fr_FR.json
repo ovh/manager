@@ -4,7 +4,7 @@
   "pci_additional_ips_failoverips_failoverip_edit_cancel_label": "Annuler",
   "pci_additional_ips_failoverips_failoverip_edit_description": "Sélectionnez l'instance sur laquelle vous souhaitez attacher l'adresse IP {{ serviceName }}.",
   "pci_additional_ips_failoverips_failoverip_edit_select_instance": "Sélectionnez une instance",
-  "pci_additional_ips_failover-ip_edit": "L'instance associée à l'ip {{ ip }} a été modifiée.",
+  "pci_additional_ips_failover-ip_edit": "L'instance associée à l'IP {{ ip }} a été modifiée.",
   "pci_additional_ips_failover-ip_error": "Une erreur est survenue lors de la récupération des données: {{ error }}",
   "pci_additional_ips_failover-ip_edit_error": "Une erreur est survenue lors de la modification de l'instance associée: {{ error }}"
 }
