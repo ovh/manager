@@ -2,8 +2,6 @@ import cloneDeep from 'lodash/cloneDeep';
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
-import includes from 'lodash/includes';
-import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 
 export default /* @ngInject */
@@ -39,7 +37,8 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
   this.availableFunctions = [];
   this.availableParameters = [];
 
-  this.highlightedParameterGroup = null;
+  this.currentGroup = null;
+  this.parameterGroup = null;
   this.voicefaxPopoverOptions = {
     popoverPlacement: 'auto right',
     popoverClass: 'telephony-service-choice-popover pretty-popover',
@@ -231,7 +230,7 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
   }
 
   function getFaxParameters() {
-    self.highlightedParameterGroup = '';
+    self.parameterGroup = '';
     return OvhApiTelephonyFax.Aapi()
       .getServices()
       .$promise.then((faxList) => {
@@ -257,7 +256,7 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
           return TelephonyMediator.findService(self.FunctionKey.parameter).then(
             (service) => {
               if (service) {
-                self.highlightedParameterGroup = service.billingAccount;
+                self.parameterGroup = service.billingAccount;
                 availableParameters.push({
                   group: service.billingAccount,
                   serviceName: service.serviceName,
@@ -274,7 +273,7 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
   }
 
   function getHuntingParameter() {
-    self.highlightedParameterGroup = '';
+    self.parameterGroup = '';
     return TelephonyMediator.getGroup($stateParams.billingAccount).then(
       (group) => {
         const { parameter } = self.FunctionKey;
@@ -282,39 +281,13 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
 
         if (parameter) {
           return TelephonyMediator.findService(parameter).then((service) => {
-            self.highlightedParameterGroup = service?.billingAccount;
+            self.parameterGroup = service?.billingAccount;
             return self.availableParameters;
           });
         }
 
         return self.availableParameters;
       },
-    );
-  }
-
-  function getCloudHuntingParameter() {
-    const allowedFeatureTypes = [
-      'cloudHunting',
-      'contactCenterSolution',
-      'contactCenterSolutionExpert',
-    ];
-    return TelephonyMediator.getGroup($stateParams.billingAccount).then(
-      () => {
-        angular.forEach(TelephonyMediator.groups, (group) => {
-          angular.forEach(group.numbers, (number) => {
-            if (includes(allowedFeatureTypes, number.feature.featureType)) {
-              set(
-                number,
-                'billingAccount',
-                group.description || group.billingAccount,
-              );
-              self.availableParameters.push(number);
-            }
-          });
-        });
-        return self.availableParameters;
-      },
-      () => [],
     );
   }
 
@@ -336,10 +309,8 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
         request = getFaxParameters();
         break;
       case 'hunting':
-        request = getHuntingParameter();
-        break;
       case 'cloudhunting':
-        request = getCloudHuntingParameter();
+        request = getHuntingParameter();
         break;
       default:
         request = $q.when(self.availableParameters);
@@ -407,6 +378,17 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
         ),
       )
       .then((services) => services.flat());
+  };
+
+  self.filterCloudHuntingParameters = (group) => {
+    const allowedFeatureTypes = [
+      'cloudHunting',
+      'contactCenterSolution',
+      'contactCenterSolutionExpert',
+    ];
+    return group.numbers.filter((number) =>
+      allowedFeatureTypes.includes(number.feature.featureType),
+    );
   };
 
   const init = function init() {

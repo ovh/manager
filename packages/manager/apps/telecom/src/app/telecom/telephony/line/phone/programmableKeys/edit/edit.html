@@ -169,7 +169,7 @@
                             data-on-choice-changed="ProgammableKeysEditCtrl.onVoicefaxParameterChanged"
                             data-on-choice-cancel=""
                             data-hide-footer="true"
-                            data-highlighted-group="{{ ProgammableKeysEditCtrl.highlightedParameterGroup }}"
+                            data-preload-group="{{ ProgammableKeysEditCtrl.parameterGroup }}"
                         >
                             <span
                                 class="oui-icon oui-icon-search"
@@ -189,34 +189,27 @@
                         <voip-service-choice
                             data-ng-if="!ProgammableKeysEditCtrl.loading.parameters"
                             data-ng-model="ProgammableKeysEditCtrl.FunctionKey.parameter"
-                            data-on-choice-changed="ProgammableKeysEditCtrl.onHuntingParameterValidated"
-                            data-on-choice-cancel=""
                             data-filter-services="ProgammableKeysEditCtrl.filterHuntingParameters"
                             data-hide-header="true"
                             data-hide-footer="true"
                             data-container-class="'telephony-line-phone-programmableKeys-edit-service-choice'"
-                            data-highlighted-group="{{ ProgammableKeysEditCtrl.highlightedParameterGroup }}"
+                            data-preload-group="{{ ProgammableKeysEditCtrl.parameterGroup }}"
                             required
                         ></voip-service-choice>
                     </div>
 
                     <!-- cloudHunting -->
                     <div class="col-xs-12" data-ng-switch-when="cloudhunting">
-                        <select
-                            class="form-control"
-                            id="parameter"
-                            name="parameter"
+                        <voip-service-choice
                             data-ng-if="!ProgammableKeysEditCtrl.loading.parameters"
                             data-ng-model="ProgammableKeysEditCtrl.FunctionKey.parameter"
-                            data-ng-options="parameter.serviceName as parameter.description + ' (' + parameter.serviceName + ')' group by parameter.billingAccount for parameter in ProgammableKeysEditCtrl.availableParameters"
+                            data-filter-services="ProgammableKeysEditCtrl.filterCloudHuntingParameters"
+                            data-hide-header="true"
+                            data-hide-footer="true"
+                            data-container-class="'telephony-line-phone-programmableKeys-edit-service-choice'"
+                            data-preload-group="{{ ProgammableKeysEditCtrl.parameterGroup }}"
                             required
-                        >
-                            <option
-                                value=""
-                                data-translate="telephony_line_phone_programmableKeys_available_function_param_select"
-                                disabled
-                            ></option>
-                        </select>
+                        ></voip-service-choice>
                     </div>
 
                     <!-- URL -->
