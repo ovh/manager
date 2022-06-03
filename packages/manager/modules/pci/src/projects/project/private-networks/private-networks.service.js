@@ -44,4 +44,10 @@ export default class {
         operations.find(({ action }) => action === VRACK_CREATION_ACTION),
       );
   }
+
+  getNetworks(serviceName) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/network/private`)
+      .then(({ data }) => data);
+  }
 }
