@@ -1,5 +1,5 @@
 {
-  "pci_additional_ips_failoverip_order": "Acheter des IPS Failover Cloud",
+  "pci_additional_ips_failoverip_order": "Acheter des IPs Failover Cloud",
   "pci_additional_ips_failoverip_order_generate": "Générer le bon de commande",
   "pci_additional_ips_failoverip_order_cancel": "Annuler",
   "pci_additional_ips_failoverip_order_description": "Les adresses IPs Failover Cloud sont déplaçables d'un serveur à l'autre au sein d'un même projet Cloud et d'un même continent.",
@@ -22,12 +22,26 @@
   "pci_additional_ip_create_step_select_region_failover_ip": "Sélectionnez un pays pour votre nouvelle IP fail-over OVHcloud",
   "pci_additional_ip_create_step_select_region_description_failover_ip": "Pour plus d'informations sur les IP fail-over, <a href=\"{{ guideLink }}\" target=\"_blank\">cliquez ici.</a>",
   "pci_additional_ip_create_step_attach_instance_info_failover_ip": "Cette IP sera directement connectée à l'instance (ancien mode, sans Public Gateway). Veuillez sélectionner une instance à utiliser. Une opération manuelle sur l'instance est nécessaire, <a href=\"{{ guideLink }}\" target=\"_blank\">plus de détails ici</a>",
-  "pci_additional_ip_create_no_instance_message_failover_ip": "Aucune instance pour attacher l'IP de basculement n'a été trouvée. Veuillez en créer un avant.",
+  "pci_additional_ip_create_no_instance_message_failover_ip": "Aucune instance avec réseau privé n'a été détectée dans la région sélectionnée. Merci d'en créer une avant d'attacher une IP flottante.",
 
   "pci_additional_ip_floating_ip": "IP flottantes (Public Cloud)",
   "pci_additional_ip_floating_ip_description": "solution optimisée pour les cas d’utilisation Public Cloud, l’automatisation (Terraform) et le support de réseaux privés régionalisés. Disponible en modèle de facturation à l’usage.",
   "pci_additional_ip_create_step_select_region_floating_ip": "Sélectionnez une région pour votre nouvelle IP flottante",
   "pci_additional_ip_create_step_select_region_description_floating_ip": "Vous ne trouvez pas la région que vous désirez dans la liste ? Pour en savoir plus sur la disponibilité des produits par région, <a href=\"{{ guideLink }}\" target=\"_blank\">cliquez ici.</a>",
   "pci_additional_ip_create_step_attach_instance_description_floating_ip": "Seules les instances avec des réseaux privés sont affichées",
-  "pci_additional_ip_create_no_instance_message_floating_ip": "Aucune instance avec réseau privé n'a été trouvée dans la région sélectionnée. Veuillez en créer un avant d'attacher une IP flottante."
+  "pci_additional_ip_create_no_instance_message_floating_ip": "Aucune instance avec réseau privé n'a été trouvée dans la région sélectionnée. Veuillez en créer un avant d'attacher une IP flottante.",
+
+  "pci_additional_ip_create_step_summary_banner1": "Aucune Public Gateway utilisable n'a été trouvée dans la région sélectionnée. Une nouvelle sera créée comme suit :",
+  "pci_additional_ip_create_step_summary_banner1_size": "Nouvelle Public Gateway à créer ({{ size }})",
+  "pci_additional_ip_create_step_summary_banner1_price": "Le coût supplémentaire de la Public Gateway s’ajoutera à votre facture : {{ price }} (facturés à l'heure)",
+
+  "pci_additional_ip_create_step_summary_banner2": "Nous avons détecté une Public Gateway déjà utilisée dans la région sélectionnée : {{ gatewayName }}. Une nouvelle IP flottante y sera configurée.",
+
+  "pci_additional_ip_create_step_summary_banner3": "Nous avons détecté une Public Gateway disponible dans la région sélectionnée : {{gatewayName}} qui peut être utilisée. Pour la configurer avec la nouvelle IP flottante, une option de 'Gateway externe' (SNAT) doit être activée sur la Public Gateway. Voulez-vous continuer ?",
+  "pci_additional_ip_create_step_summary_banner3_confirmation": "Oui, je veux activer l'option SNAT sur {{ gatewayName }} et la configurer avec une nouvelle IP flottante",
+
+  "pci_additional_ip_price_per_month": "{{ price }}/mois",
+  "pci_additional_ip_creating_floating_ip": "Créer une IP flottante",
+  "pci_additional_ip_create_floating_ip_success": "Une nouvelle IP flottante est en cours d'attribution...",
+  "pci_additional_ip_create_floating_ip_error": "Échec de l'attribution d'une adresse IP flottante : {{ message }}"
 }
