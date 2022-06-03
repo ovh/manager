@@ -338,7 +338,7 @@ function Sidebar(): JSX.Element {
     <div className={style.sidebar}>
       <a
         role="img"
-        className={`d-flex ${style.sidebar_logo}`}
+        className={`d-block ${style.sidebar_logo}`}
         aria-label="OVHcloud"
         target="_top"
         href={logoLink}
