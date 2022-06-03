@@ -21,10 +21,35 @@ export default class AdditionalIpService {
       );
   }
 
+  getNetworkSubnets(projectId, networkId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/network/private/${networkId}/subnet`)
+      .then(({ data }) => data);
+  }
+
   // TODO use gateway service when available
   getGateways(projectId, regionName) {
     return this.$http
       .get(`/cloud/project/${projectId}/region/${regionName}/gateway`)
+      .then(({ data }) => data);
+  }
+
+  getPublicCloudCatalog(params) {
+    return this.$http
+      .get(`/order/catalog/public/cloud`, {
+        params,
+      })
+      .then(({ data }) => data);
+  }
+
+  createFloatingIp(projectId, regionName, instanceId, networkIp) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/region/${regionName}/instance/${instanceId}/floatingip`,
+        {
+          ip: networkIp,
+        },
+      )
       .then(({ data }) => data);
   }
 }
