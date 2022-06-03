@@ -4,6 +4,7 @@
 <div class="container-fluid my-5">
     <oui-datagrid
         id="dg-telephony-packs"
+        data-page="{{ $ctrl.paginationNumber }}"
         data-page-size="{{ $ctrl.paginationSize }}"
         data-rows-loader="$ctrl.loadPage()"
         data-row-loader="$ctrl.loadResource($row)"
