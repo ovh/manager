@@ -8,6 +8,10 @@ import addGroup from './addGroup';
 import deleteGroup from './deleteGroup';
 import linesGroup from './linesGroup';
 import optionsGroup from './optionsGroup';
+import whiteLabelManager from './white-label-manager';
+
+import billingAccountAdministrationComponent from './administration.component';
+import billingAccountAdministrationService from './administration.service';
 
 const moduleName =
   'ovhManagerTelecomTelephonyBillingAccountAdministrationLazyLoading';
@@ -22,6 +26,7 @@ angular
     deleteGroup,
     linesGroup,
     optionsGroup,
+    whiteLabelManager,
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
@@ -40,6 +45,14 @@ angular
         },
       );
     },
+  )
+  .component(
+    'telecomBillingAccountAdministrationComponent',
+    billingAccountAdministrationComponent,
+  )
+  .service(
+    'telecomBillingAccountAdministrationService',
+    billingAccountAdministrationService,
   )
   .run(/* @ngTranslationsInject:json ./translations ./../billing/translations */);
 
