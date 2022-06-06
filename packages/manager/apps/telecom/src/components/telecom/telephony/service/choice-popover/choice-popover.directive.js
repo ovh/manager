@@ -41,7 +41,7 @@ export default /* @ngInject */ ($compile) => ({
     popoverOptions: '=voipServiceChoicePopover',
     availableTypes: '<?',
     hiddenGroups: '<?',
-    highlightedGroup: '@?',
+    preloadGroup: '@?',
     onChoiceValidated: '&?',
     onChoiceCancel: '&?',
     onChoiceChanged: '&?',

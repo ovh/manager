@@ -7,6 +7,7 @@ export default /* @ngInject */ function voipServiceChoiceCtrl(
   $scope,
   $q,
   $translate,
+  $element,
   tucVoipBillingAccount,
   TelephonyMediator,
 ) {
@@ -111,6 +112,8 @@ export default /* @ngInject */ function voipServiceChoiceCtrl(
         })
         .finally(() => {
           self.loading.services[group] = false;
+          // Manually triggers the in-view plugin directive
+          $element.find('#groups').click();
         });
     };
 
@@ -160,14 +163,14 @@ export default /* @ngInject */ function voipServiceChoiceCtrl(
           self.loading.services[group] = true;
         });
 
-        if (this.highlightedGroup) {
-          const highlightedGroup = self.groupList.find(
-            ({ billingAccount }) => billingAccount === this.highlightedGroup,
+        if (this.preloadGroup) {
+          const preloadGroup = self.groupList.find(
+            ({ billingAccount }) => billingAccount === this.preloadGroup,
           );
-          if (highlightedGroup) {
-            self.groupList.splice(self.groupList.indexOf(highlightedGroup), 1);
-            self.groupList.unshift(highlightedGroup);
-            return this.startLoadServices(highlightedGroup, {
+          if (preloadGroup) {
+            self.groupList.splice(self.groupList.indexOf(preloadGroup), 1);
+            self.groupList.unshift(preloadGroup);
+            return this.startLoadServices(preloadGroup, {
               immediate: true,
             });
           }

@@ -10,7 +10,7 @@ export default /* @ngInject */ () => ({
   scope: {
     availableTypes: '<?',
     hiddenGroups: '<?',
-    highlightedGroup: '@?',
+    preloadGroup: '@?',
     onChoiceValidated: '&?',
     onChoiceChanged: '&?',
     onChoiceCancel: '&?',
