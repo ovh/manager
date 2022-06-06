@@ -415,7 +415,9 @@ export default class PciStoragesContainersService {
     const region = containerRegion || OPENIO_DEFAULT_REGION;
     return this.$http
       .delete(
-        `/cloud/project/${projectId}/region/${region}/storage/${containerId}/object/${objectKey}`,
+        `/cloud/project/${projectId}/region/${region}/storage/${containerId}/object/${encodeURIComponent(
+          objectKey,
+        )}`,
       )
       .then(({ data }) => data);
   }
