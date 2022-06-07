@@ -1,3 +1,12 @@
+# [2.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.6...@ovh-ux/manager-vps@2.21.0) (2022-06-07)
+
+
+### Features
+
+* vps eol 2016 2018 ([#7296](https://github.com/ovh/manager/issues/7296)) ([c26f8f4](https://github.com/ovh/manager/commit/c26f8f4b84be5d8adf725937dc0f5a27b23a575c))
+
+
+
 ## [2.20.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.5...@ovh-ux/manager-vps@2.20.6) (2022-06-07)
 
 
