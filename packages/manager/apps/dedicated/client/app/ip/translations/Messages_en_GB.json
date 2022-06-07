@@ -484,7 +484,7 @@
   "ip_order_finish_error": "An error occurred on ordering additional IPs.",
   "ip_order_free_activation_fee": "If you have a server with free IPs included, you will not be billed these activation fees following the renewal of your server.",
   "ip_organisation_title": "Manage my organisations",
-  "ip_organisation_button": "My organisations",
+  "ip_organisation_button": "Manage my organisations",
   "ip_organisation_table_organisation": "Organisation",
   "ip_organisation_table_type": "Type",
   "ip_organisation_table_lastname": "Surname",
@@ -677,5 +677,6 @@
   "ip_order_title": "Order",
   "ip_administration_title": "Administer",
   "ip_addresses_grid_header": "My public IP addresses and associated services",
-  "ip_order_additional_ips": "Additional IPs"
+  "ip_order_additional_ips": "Additional IPs",
+  "ip_table_header_campus": "Campus"
 }

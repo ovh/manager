@@ -105,7 +105,7 @@
   "ip_table_header_ip_address": "Indirizzo IP",
   "ip_table_header_ip_address_invalid": "Inserisci un IPv6 valido",
   "ip_table_header_country": "Paese",
-  "ip_table_header_reverse": "Reverse",
+  "ip_table_header_reverse": "Reverse DNS",
   "ip_table_header_reverse_invalid": "Inserisci un Reverse valido",
   "ip_table_header_virtual_mac": "MAC virtuale",
   "ip_table_header_antispam": "Antispam",
@@ -484,7 +484,7 @@
   "ip_order_finish_error": "Si è verificato un errore nell'ordine di IP aggiuntivi.",
   "ip_order_free_activation_fee": "Attenzione: gli IP aggiuntivi dei server dedicati OVH comportano solo le spese di attivazione, non sono previsti costi di rinnovo mensile",
   "ip_organisation_title": "Gestisci le mie organizzazioni",
-  "ip_organisation_button": "Le mie organizzazioni",
+  "ip_organisation_button": "Gestisci le mie organizzazioni",
   "ip_organisation_table_organisation": "Organizzazione",
   "ip_organisation_table_type": "Tipo",
   "ip_organisation_table_lastname": "Cognome",
@@ -677,5 +677,6 @@
   "ip_order_title": "Ordina",
   "ip_administration_title": "Gestisci",
   "ip_addresses_grid_header": "I tuoi indirizzi IP pubblici e servizi associati",
-  "ip_order_additional_ips": "IP aggiuntivi"
+  "ip_order_additional_ips": "IP aggiuntivi",
+  "ip_table_header_campus": "Campus"
 }

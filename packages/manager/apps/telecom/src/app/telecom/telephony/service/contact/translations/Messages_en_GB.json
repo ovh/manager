@@ -60,5 +60,8 @@
   "telephony_service_contact_bulk_all_success": "Your contact detail changes have been applied to the services selected.",
   "telephony_service_contact_bulk_some_success": "Your contact detail changes have been made to {{ count }} of the services selected.",
   "telephony_service_contact_bulk_error": "Your contact detail changes could not be applied to the following services:",
-  "telephony_service_contact_bulk_on_error": "Oops! An error occurred while changing the contact details."
+  "telephony_service_contact_bulk_on_error": "Oops! An error occurred while changing the contact details.",
+  "telephony_service_contact_required_fields": "Fields followed by an asterisk are mandatory.",
+  "telephony_service_contact_tva": "VAT number",
+  "telephony_service_contact_tva_invalid": "Invalid VAT number entered"
 }

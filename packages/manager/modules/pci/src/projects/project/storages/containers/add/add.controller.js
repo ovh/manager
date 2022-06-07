@@ -56,6 +56,20 @@ export default class PciStoragesContainersAddController {
       archive: this.archive,
     });
     this.container.region = null;
+
+    this.preselectStepItem();
+  }
+
+  /**
+   * Use this to preselect an item regarding current step
+   */
+  preselectStepItem() {
+    const { steps } = this.redirectTarget;
+    const currentStep = (this.currrentStep || 0) + 1; // to have human start count
+
+    if (steps && currentStep === 1) {
+      this.container.offer = steps[`STEP_${currentStep}`];
+    }
   }
 
   loadMessages() {

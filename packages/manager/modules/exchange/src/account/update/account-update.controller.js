@@ -12,9 +12,13 @@ import {
   ACCOUNT_EMAIL_ADDRESS_REGEX,
 } from '../account.constants';
 
+import { EXCHANGE_CONTAINER_MESSAGING } from '../../dashboard/exchange.constants';
+
 export default class ExchangeUpdateAccountCtrl {
   /* @ngInject */
   constructor(
+    $anchorScroll,
+    $location,
     $scope,
     $translate,
     $timeout,
@@ -26,6 +30,8 @@ export default class ExchangeUpdateAccountCtrl {
     messaging,
     navigation,
   ) {
+    this.$anchorScroll = $anchorScroll;
+    this.$location = $location;
     this.$scope = $scope;
     this.$translate = $translate;
     this.$timeout = $timeout;
@@ -308,7 +314,9 @@ export default class ExchangeUpdateAccountCtrl {
         (value) => currentEmail === value.toLowerCase(),
       );
 
-      if (this.selectedAccount.primaryEmailAddress === currentEmail) {
+      if (
+        this.selectedAccount.primaryEmailAddress.toLowerCase() === currentEmail
+      ) {
         this.takenEmailError = false;
       }
     }
@@ -614,6 +622,8 @@ export default class ExchangeUpdateAccountCtrl {
         })
         .then(() => this.goBack())
         .catch((failure) => {
+          this.$location.hash(EXCHANGE_CONTAINER_MESSAGING);
+          this.$anchorScroll();
           this.messaging.writeError(`
             ${this.$translate.instant('exchange_common_error')} ${get(
             failure,

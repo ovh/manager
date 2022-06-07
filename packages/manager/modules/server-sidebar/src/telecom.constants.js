@@ -145,7 +145,7 @@ const TELEPHONY_SERVICES_DATA = {
     prefix: 'line',
   },
 
-  siptrunk: {
+  sipTrunk: {
     state: 'telecom.telephony.billingAccount.line.dashboard',
     prefix: 'trunk',
   },

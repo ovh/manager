@@ -120,8 +120,10 @@ export default class ExchangeAccountAddController {
       find(
         this.accountCreationOptions.takenEmails,
         (emailAddress) =>
-          emailAddress ===
-          `${this.newAccount.login}@${this.newAccount.domain.name}`,
+          emailAddress.toLowerCase() ===
+          `${this.newAccount.login.toLowerCase()}@${
+            this.newAccount.domain.name
+          }`,
       ),
     );
 

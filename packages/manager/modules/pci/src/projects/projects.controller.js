@@ -8,7 +8,13 @@ export default class {
   $onInit() {
     this.loadMessages();
 
-    if (this.isRedirectRequired && this.activeProjects.length > 1) {
+    this.redirectInfoBanner();
+  }
+
+  redirectInfoBanner() {
+    const { isRedirectRequired, activeProjects } = this;
+
+    if (isRedirectRequired && activeProjects.length > 1) {
       this.CucCloudMessage.info(
         this.$translate.instant('pci_projects_redirect_to_dedicated_page'),
       );

@@ -105,7 +105,7 @@
   "ip_table_header_ip_address": "IP-Adresse",
   "ip_table_header_ip_address_invalid": "Bitte geben Sie eine gültige IPv6 ein",
   "ip_table_header_country": "Land",
-  "ip_table_header_reverse": "Reverse",
+  "ip_table_header_reverse": "Reverse DNS",
   "ip_table_header_reverse_invalid": "Bitte geben Sie einen gültigen Reverse ein",
   "ip_table_header_virtual_mac": "Virtuelle MAC-Adresse",
   "ip_table_header_antispam": "Antispam",
@@ -484,7 +484,7 @@
   "ip_order_finish_error": "Bei der Bestellung zusätzlicher IP-Adressen ist ein Fehler aufgetreten.",
   "ip_order_free_activation_fee": "Bei Servern, für die der Bezug zusätzlicher IP-Adressen kostenlos ist, werden diese Aktivierungsgebühren bei der Verlängerung des Servers nicht erneut in Rechnung gestellt.",
   "ip_organisation_title": "Meine Organisationen verwalten",
-  "ip_organisation_button": "Meine Organisationen",
+  "ip_organisation_button": "Meine Organisationen verwalten",
   "ip_organisation_table_organisation": "Organisation",
   "ip_organisation_table_type": "Typ",
   "ip_organisation_table_lastname": "Name",
@@ -677,5 +677,6 @@
   "ip_order_title": "Bestellen",
   "ip_administration_title": "Verwalten",
   "ip_addresses_grid_header": "Meine öffentlichen IP-Adressen und dazugehörigen Dienste",
-  "ip_order_additional_ips": "Zusätzliche IP-Adressen"
+  "ip_order_additional_ips": "Zusätzliche IP-Adressen",
+  "ip_table_header_campus": "Campus"
 }

@@ -150,7 +150,7 @@
                     </oui-tile-description>
                 </oui-tile-definition>
 
-                <div class="oui-tile__item" ng-if="$ctrl.job.status.jobUrl">
+                <div class="oui-tile__item" ng-if="$ctrl.job.status.url">
                     <dl class="oui-tile__definition">
                         <dt class="oui-tile__term">
                             <span
@@ -166,7 +166,7 @@
                         <oui-tile-description>
                             <a
                                 class="oui-link oui-link_icon"
-                                data-ng-href="{{ $ctrl.job.status.jobUrl }}"
+                                data-ng-href="{{ $ctrl.job.status.url }}"
                                 target="_blank"
                                 rel="noopener"
                             >

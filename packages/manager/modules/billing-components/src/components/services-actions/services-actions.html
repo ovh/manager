@@ -115,7 +115,12 @@
             data-navi-id="go-to-resiliate"
         >
             <span
+                data-ng-if="!$ctrl.service.hasEngagement()"
                 data-translate="billing_services_actions_menu_resiliate"
+            ></span>
+            <span
+                data-ng-if="$ctrl.service.hasEngagement()"
+                data-translate="billing_services_actions_menu_resiliate_my_engagement"
             ></span>
         </oui-action-menu-item>
 

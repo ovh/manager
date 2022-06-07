@@ -6,9 +6,9 @@ import sortBy from 'lodash/sortBy';
 import { API_GUIDES } from '../../../project.constants';
 
 import {
-  NAME_PATTERN,
   MAX_NAME_LENGTH,
   MIN_NAME_LENGTH,
+  NAME_PATTERN,
 } from './add.constants';
 import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
 
@@ -59,6 +59,23 @@ export default class {
     this.apiGuideUrl =
       API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
     this.trackDatabases('configuration', 'page');
+
+    this.preselectStepItem();
+  }
+
+  /**
+   * Use this to preselect an item regarding current step
+   */
+  preselectStepItem() {
+    const { steps } = this.redirectTarget;
+    const currentStep = (this.currrentStep || 0) + 1; // to have human start count
+
+    if (steps && currentStep === 1) {
+      this.model.engine =
+        this.engines.find(
+          ({ name }) => name === steps[`STEP_${currentStep}`],
+        ) || this.model.engine;
+    }
   }
 
   checkPattern(value) {
