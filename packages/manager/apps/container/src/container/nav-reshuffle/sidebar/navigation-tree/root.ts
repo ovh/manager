@@ -9,6 +9,10 @@ export default {
   id: 'home',
   translation: 'sidebar_home',
   count: false,
+  routing: {
+    application: 'hub',
+    hash: '#/',
+  },
   children: [
     bareMetalCloud,
     hostedPrivateCloud,

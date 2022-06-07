@@ -2,6 +2,10 @@ export default {
   id: 'telecom',
   translation: 'sidebar_telecom',
   features: ['telecom', 'telephony', 'sms', 'pack', 'overthebox', 'fax'],
+  routing: {
+    application: 'telecom',
+    hash: '#/',
+  },
   children: [
     {
       id: 'internet',
