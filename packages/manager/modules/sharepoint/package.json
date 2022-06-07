@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sharepoint",
-  "version": "2.5.3",
+  "version": "2.5.4",
   "private": true,
   "description": "SharePoint product.",
   "repository": {

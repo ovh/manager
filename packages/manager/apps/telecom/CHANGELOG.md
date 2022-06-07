@@ -1,3 +1,12 @@
+## [13.39.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.39.1...@ovh-ux/manager-telecom@13.39.2) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [13.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.39.0...@ovh-ux/manager-telecom@13.39.1) (2022-06-07)
 
 

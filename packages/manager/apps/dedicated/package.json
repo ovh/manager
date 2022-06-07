@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "17.19.0",
+  "version": "17.19.1",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -67,7 +67,7 @@
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.11",
     "@ovh-ux/ng-ovh-browser-alert": "^2.0.4",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
-    "@ovh-ux/ng-ovh-contacts": "^5.0.0",
+    "@ovh-ux/ng-ovh-contacts": "^5.0.1",
     "@ovh-ux/ng-ovh-contracts": "^4.1.0",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.4",
     "@ovh-ux/ng-ovh-export-csv": "^2.0.4",
@@ -75,7 +75,7 @@
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-jquery-ui-draggable": "^2.0.4",
     "@ovh-ux/ng-ovh-order-tracking": "^1.1.1 || ^2.0.0",
-    "@ovh-ux/ng-ovh-otrs": "^9.2.6",
+    "@ovh-ux/ng-ovh-otrs": "^9.2.7",
     "@ovh-ux/ng-ovh-payment-method": "^9.1.8",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.4",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
