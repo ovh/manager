@@ -8,9 +8,6 @@
     </header>
     <tuc-toast-message></tuc-toast-message>
 
-    <div class="text-center" data-ng-if="$ctrl.isLoading">
-        <oui-spinner></oui-spinner>
-    </div>
     <!-- ATTACH -->
     <section class="mt-5 widget-presentation">
         <header class="widget-presentation-header">
@@ -24,73 +21,8 @@
             data-billing-account="$ctrl.billingAccount"
             data-service-name="$ctrl.serviceName"
             data-mac-address="$ctrl.macAddress"
+            data-go-back="$ctrl.goBack"
         >
         </telecom-telephony-associate-device>
-    </section>
-
-    <!-- DETACH -->
-    <section
-        class="col-xs-12 col-md-6 widget-presentation"
-        data-ng-if="$ctrl.line.isAttachedToOtherLinesPhone && $ctrl.phone"
-    >
-        <header class="widget-presentation-header">
-            <h2
-                class="widget-presentation-title"
-                data-translate="telephony_phone_line_detach_title"
-            ></h2>
-        </header>
-        <div class="form-group">
-            <label
-                class="control-label"
-                data-translate="telephony_line_phone_detach_info1"
-                data-translate-values="{
-                            'phoneName': '<strong>$ctrl.phone.description</strong>',
-                            'phoneMacAddress': '<strong>$ctrl.phone.getFormattedMacAddress()</strong>''
-                        }"
-            ></label>
-            <label
-                class="control-label"
-                data-translate="telephony_line_phone_detach_info2"
-            ></label>
-        </div>
-        <form name="detachPhoneForm" data-ng-submit="$ctrl.detachPhone()">
-            <div class="row">
-                <div class="form-group col-xs-12 col-sm-6 col-md-6">
-                    <label
-                        class="control-label"
-                        for="detachPhoneIp"
-                        data-translate="telephony_line_phone_detach_device"
-                    >
-                    </label>
-                    <div
-                        data-ng-class="{ 'has-error': detachPhoneForm.detachPhoneIp.$touched && detachPhoneForm.detachPhoneIp.$invalid }"
-                    >
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="detachPhoneIp"
-                            name="detachPhoneIp"
-                            required
-                            data-ng-pattern="$ctrl.ipValidator"
-                            data-ng-model="$ctrl.attachedPhoneIpAddress"
-                        />
-                    </div>
-                </div>
-                <div class="form-group col-xs-12 col-md-12">
-                    <button
-                        class="btn btn-primary"
-                        type="submit"
-                        data-ng-disabled="detachPhoneForm.$invalid || $ctrl.isDetaching"
-                        data-translate="telephony_line_phone_detach_device_action"
-                    ></button>
-                    <oui-spinner
-                        class="d-inline-block align-middle ml-2"
-                        data-ng-if="$ctrl.isDetaching"
-                        data-size="s"
-                    >
-                    </oui-spinner>
-                </div>
-            </div>
-        </form>
     </section>
 </div>

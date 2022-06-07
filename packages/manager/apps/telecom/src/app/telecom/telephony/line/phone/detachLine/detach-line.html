@@ -1,0 +1,82 @@
+<div class="telecom-telephony-line-phone-detach">
+    <header>
+        <oui-back-button
+            data-on-click="::$ctrl.goBack()"
+            previous-page="{{::'telephony_group_line_phone_section_back_link_target' | translate}}"
+        >
+        </oui-back-button>
+    </header>
+    <tuc-toast-message></tuc-toast-message>
+
+    <!-- DETACH -->
+    <section class="col-12 col-md-6 widget-presentation">
+        <header class="widget-presentation-header">
+            <h2
+                class="widget-presentation-title"
+                data-translate="telephony_line_phone_detach_title"
+            ></h2>
+        </header>
+
+        <div class="text-center" data-ng-if="$ctrl.isLoading">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div class="form-group" data-ng-if="!$ctrl.isLoading">
+            <label
+                class="control-label"
+                data-translate="telephony_line_phone_detach_info1"
+                data-translate-values="{
+                            'phoneName': '<strong>{{:: $ctrl.phone.description }}</strong>',
+                            'phoneMacAddress': '<strong>{{:: $ctrl.phone.getFormattedMacAddress() }}</strong>'
+                        }"
+            ></label>
+            <label
+                class="control-label"
+                data-translate="telephony_line_phone_detach_info2"
+            ></label>
+        </div>
+        <form
+            name="detachPhoneForm"
+            data-ng-if="!$ctrl.isLoading"
+            data-ng-submit="$ctrl.detachPhone()"
+        >
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label
+                        class="control-label"
+                        for="detachPhoneIp"
+                        data-translate="telephony_line_phone_detach_device"
+                    >
+                    </label>
+                    <div
+                        data-ng-class="{ 'has-error': detachPhoneForm.detachPhoneIp.$touched && detachPhoneForm.detachPhoneIp.$invalid }"
+                    >
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="detachPhoneIp"
+                            name="detachPhoneIp"
+                            required
+                            data-ng-pattern="$ctrl.ipValidator"
+                            data-ng-model="$ctrl.attachedPhoneIpAddress"
+                        />
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <button
+                        class="btn btn-primary"
+                        type="submit"
+                        data-ng-disabled="detachPhoneForm.$invalid || $ctrl.isDetaching || $ctrl.isDetached"
+                        data-translate="telephony_line_phone_detach_device_action"
+                    ></button>
+                    <oui-spinner
+                        class="d-inline-block align-middle ml-2"
+                        data-ng-if="$ctrl.isDetaching"
+                        data-size="s"
+                    >
+                    </oui-spinner>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
