@@ -173,7 +173,6 @@
             data-position="1"
             data-submit-text="{{:: 'nutanix_redeploy_button' | translate}}"
             data-prevent-next="true"
-            data-valid="$ctrl.checkIpsUniqueness()"
             data-on-submit="$ctrl.redeployCustomConfiguration(form)"
         >
             <form name="customConfig" novalidate>
@@ -184,9 +183,12 @@
                     <section
                         data-ng-repeat="node in $ctrl.config.nodes track by $index"
                     >
-                        <strong data-ng-bind="node.server"></strong>
+                        <strong data-ng-bind="node.displayName"></strong>
                         <oui-field
-                            data-error-messages="{ ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate) }"
+                            data-error-messages="{ 
+                                ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
+                                uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate)
+                            }"
                         >
                             <label
                                 for="nodeAhvIp{{$index}}"
@@ -200,11 +202,15 @@
                                 data-ng-model="node.ahvIp"
                                 data-ng-model-options="{ debounce: 500 }"
                                 data-ng-pattern="$ctrl.IPV4_REGEX"
+                                data-unique-ip-validator="$ctrl.getIpsList()"
                                 data-ip-subnet-validator="$ctrl.config.gatewayCidr"
                             />
                         </oui-field>
                         <oui-field
-                            data-error-messages="{ ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate) }"
+                            data-error-messages="{ 
+                                ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
+                                uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate)
+                            }"
                         >
                             <label
                                 for="nodeCvmIp{{$index}}"
@@ -218,6 +224,7 @@
                                 data-ng-model="node.cvmIp"
                                 data-ng-model-options="{ debounce: 500 }"
                                 data-ng-pattern="$ctrl.IPV4_REGEX"
+                                data-unique-ip-validator="$ctrl.getIpsList()"
                                 data-ip-subnet-validator="$ctrl.config.gatewayCidr"
                             />
                         </oui-field>
@@ -278,7 +285,10 @@
                     <oui-field
                         data-label="{{:: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_VIP}}"
                         data-label-popover="{{:: 'nutanix_redeploy_prism_central_virtual_ip_description' | translate}}"
-                        data-error-messages="{ ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate) }"
+                        data-error-messages="{ 
+                            ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
+                            uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate)
+                        }"
                     >
                         <input
                             class="oui-input w-50 mt-1"
@@ -287,6 +297,7 @@
                             data-ng-model="$ctrl.config.prismCentral.vip"
                             data-ng-model-options="{ debounce: 500 }"
                             data-ng-pattern="$ctrl.IPV4_REGEX"
+                            data-unique-ip-validator="$ctrl.getIpsList()"
                             data-ip-subnet-validator="$ctrl.config.gatewayCidr"
                         />
                     </oui-field>
@@ -328,13 +339,21 @@
                                     data-ng-model-options="{ debounce: 500 }"
                                     required
                                     data-ng-pattern="$ctrl.IPV4_REGEX"
+                                    data-unique-ip-validator="$ctrl.getIpsList()"
                                     data-ip-subnet-validator="$ctrl.config.gatewayCidr"
                                 />
                                 <small
                                     class="form-text text-danger"
-                                    data-ng-if="$ctrl.displayIpSubnetErrorPrismCentralIpField(customConfig, $index)"
+                                    data-ng-if="$ctrl.canShowIpSubnetErrorPrismCentralIpField(customConfig, $index)"
                                     data-translate="nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error"
-                                ></small>
+                                >
+                                </small>
+                                <small
+                                    class="form-text text-danger"
+                                    data-ng-if="$ctrl.canShowIpUniqueErrorPrismCentralIpField(customConfig, $index)"
+                                    data-translate="nutanix_redeploy_custom_config_ip_unique_error"
+                                >
+                                </small>
                             </div>
                             <oui-button
                                 class="ml-2"
@@ -355,7 +374,10 @@
                         data-translate="nutanix_redeploy_prism_element_vip_description"
                     ></p>
                     <oui-field
-                        data-error-messages="{ ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate) }"
+                        data-error-messages="{ 
+                            ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
+                            uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate)
+                        }"
                     >
                         <input
                             type="text"
@@ -364,6 +386,7 @@
                             data-ng-model="$ctrl.config.prismElementVip"
                             data-ng-model-options="{ debounce: 500 }"
                             data-ng-pattern="$ctrl.IPV4_REGEX"
+                            data-unique-ip-validator="$ctrl.getIpsList()"
                             data-ip-subnet-validator="$ctrl.config.gatewayCidr"
                         />
                     </oui-field>
@@ -403,15 +426,6 @@
                         ></oui-select>
                     </oui-input>
                 </div>
-                <oui-message
-                    data-ng-if="$ctrl.displayIpUniquenessError"
-                    class="mb-1"
-                    type="error"
-                >
-                    <p
-                        data-translate="nutanix_redeploy_custom_config_ip_unique_error"
-                    ></p>
-                </oui-message>
             </form>
         </oui-step-form>
     </oui-stepper>
