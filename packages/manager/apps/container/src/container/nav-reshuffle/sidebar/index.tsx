@@ -200,7 +200,7 @@ function Sidebar(): JSX.Element {
     ) => {
       if (!node?.routing?.hash) return false;
       const hashRegexp = new RegExp(
-        `${(node.routing.hash || '/')
+        `^\\${(node.routing.hash || '/')
           .replace(/^#/, '')
           .replace(/{[^}]+}/g, '[^/]+')}?$`,
       );
@@ -233,7 +233,9 @@ function Sidebar(): JSX.Element {
     const target = path.pop();
     if (target) {
       setCurrentNavigationNode(target.children ? target : target.parent);
-      setHighlightedNode(target);
+      if (!target.children) {
+        setHighlightedNode(target);
+      }
     } else {
       setHighlightedNode(null);
     }
