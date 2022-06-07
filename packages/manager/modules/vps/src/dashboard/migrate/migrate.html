@@ -66,9 +66,11 @@
 </p>
 
 <oui-select-picker
-    class="w-25"
-    label="{{:: 'vps_dashboard_migrate_new_range_title' | translate }}"
-    model="$ctrl.selectedPlan"
+    class="d-inline-block mr-5 w-25"
+    label="{{($index === 0 ? (('vps_dashboard_migrate_new_range_title' | translate) + ': ') : '') + $ctrl.getPlanLabel(newPlan)}}"
+    model="$ctrl.model.selectedPlan"
+    data-ng-repeat="newPlan in $ctrl.newPlans track by $index"
+    data-values="[newPlan]"
 >
     <oui-select-picker-section>
         <dl class="vps-dl-horizontal">
@@ -79,7 +81,7 @@
             <dd
                 class="vps-item-horizontal"
                 data-translate="vps_dashboard_migrate_configuration_vcore"
-                data-translate-values="{ count: $ctrl.newPlan.configuration.cpu.cores }"
+                data-translate-values="{ count: newPlan.configuration.cpu.cores }"
             ></dd>
             <dt
                 class="vps-item-horizontal text-bold"
@@ -87,7 +89,7 @@
             ></dt>
             <dd
                 class="vps-item-horizontal"
-                data-ng-bind=":: ($ctrl.newPlan.configuration.memory.size) | bytes:0:false:'GB'"
+                data-ng-bind=":: (newPlan.configuration.memory.size) | bytes:0:false:'GB'"
             ></dd>
             <dt
                 class="vps-item-horizontal text-bold"
@@ -95,13 +97,15 @@
             ></dt>
             <dd
                 class="vps-item-horizontal"
-                data-ng-bind=":: $ctrl.getStorageCapacity() | bytes:0:false:'GB'"
+                data-ng-bind=":: $ctrl.getStorageCapacity(newPlan) | bytes:0:false:'GB'"
             ></dd>
         </dl>
     </oui-select-picker-section>
     <oui-select-picker-footer>
-        <strong data-ng-bind="$ctrl.newPrice.originalWithoutTax.text"></strong>
-        /<span data-translate="vps_dashboard_migrate_price_per_month"></span>
+        <strong
+            data-ng-bind=":: $ctrl.getOriginalPriceWithoutTax(newPlan.planCode,$ctrl.newPrices)"
+        ></strong>
+        <span data-translate="vps_dashboard_migrate_price_per_month"></span>
     </oui-select-picker-footer>
 </oui-select-picker>
 <footer class="mt-5">
@@ -109,7 +113,7 @@
         variant="primary"
         size="l"
         type="submit"
-        on-click="$ctrl.goToMigrateConfirm()"
+        on-click="$ctrl.goToMigrateConfirm($ctrl.model.selectedPlan)"
         ><span data-translate="vps_common_confirm"></span
     ></oui-button>
     <oui-button variant="link" size="l" on-click="$ctrl.cancel()"
