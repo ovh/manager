@@ -1,3 +1,12 @@
+# [3.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.20.5...@ovh-ux/manager-hub-app@3.21.0) (2022-06-07)
+
+
+### Features
+
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
 ## [3.20.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.20.4...@ovh-ux/manager-hub-app@3.20.5) (2022-06-07)
 
 

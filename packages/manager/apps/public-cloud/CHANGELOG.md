@@ -1,3 +1,12 @@
+# [4.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.17.9...@ovh-ux/manager-public-cloud@4.18.0) (2022-06-07)
+
+
+### Features
+
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
 ## [4.17.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.17.8...@ovh-ux/manager-public-cloud@4.17.9) (2022-06-07)
 
 

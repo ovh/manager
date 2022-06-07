@@ -1,3 +1,20 @@
+# [5.78.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.77.1...@ovh-ux/manager-pci@5.78.0) (2022-06-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1666] ([5566e26](https://github.com/ovh/manager/commit/5566e2615e217efbc8301f721887450651c01db9))
+* show all metrics ([#7146](https://github.com/ovh/manager/issues/7146)) ([6fdc7e1](https://github.com/ovh/manager/commit/6fdc7e1448cc5e7dfab8b19e79f7295b31b90753))
+
+
+### Features
+
+* **pci.storages.containers:** redirect and preselect items ([#7219](https://github.com/ovh/manager/issues/7219)) ([2f3152e](https://github.com/ovh/manager/commit/2f3152eed718e7be49dee8fc45283804470490e9))
+* change joburl to url ([#7127](https://github.com/ovh/manager/issues/7127)) ([d9365de](https://github.com/ovh/manager/commit/d9365decfdaf64e0053e7c2fc93a9206587a6224))
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
 ## [5.77.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.77.0...@ovh-ux/manager-pci@5.77.1) (2022-06-07)
 
 

@@ -1,3 +1,12 @@
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.9.3...@ovh-ux/manager-support@1.10.0) (2022-06-07)
+
+
+### Features
+
+* **dedicated:** add description on several section ([#6688](https://github.com/ovh/manager/issues/6688)) ([cc9017b](https://github.com/ovh/manager/commit/cc9017bd7e42ad013642f381a524de10060336d7))
+
+
+
 ## [1.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.9.2...@ovh-ux/manager-support@1.9.3) (2022-06-07)
 
 

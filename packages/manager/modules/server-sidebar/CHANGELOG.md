@@ -1,3 +1,12 @@
+## [3.21.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.4...@ovh-ux/manager-server-sidebar@3.21.5) (2022-06-07)
+
+
+### Bug Fixes
+
+* **server-sidebar:** fix typo in conf for siptrunks ([86b128f](https://github.com/ovh/manager/commit/86b128fbf55c522905a0dc00b69b29bcf7ddef48))
+
+
+
 ## [3.21.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.3...@ovh-ux/manager-server-sidebar@3.21.4) (2022-06-07)
 
 

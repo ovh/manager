@@ -1,3 +1,13 @@
+# [16.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.12.1...@ovh-ux/manager-web@16.13.0) (2022-06-07)
+
+
+### Features
+
+* **hosting.ftp:** harmonize sftp info for perso/kimsufi ([#7113](https://github.com/ovh/manager/issues/7113)) ([4fe8221](https://github.com/ovh/manager/commit/4fe8221832d9e710f9cb52b917a0c28e78815c5f))
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
 ## [16.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.12.0...@ovh-ux/manager-web@16.12.1) (2022-06-07)
 
 
