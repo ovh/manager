@@ -170,8 +170,6 @@ export default function() {
       return OvhApiMe.Contact()
         .v7()
         .query()
-        .expand()
-        .execute()
         .$promise.then((contactsList) => {
           // filter contact that are not already added
           // this avoid loosing contact object reference
