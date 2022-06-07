@@ -1,3 +1,12 @@
+## [13.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.39.0...@ovh-ux/manager-telecom@13.39.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* **telephony:** kill mediator groups ([#7264](https://github.com/ovh/manager/issues/7264)) ([#7292](https://github.com/ovh/manager/issues/7292)) ([2946c0b](https://github.com/ovh/manager/commit/2946c0be58f5988bd9354d3ec6ba7971dc5caf75))
+
+
+
 # [13.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.38.2...@ovh-ux/manager-telecom@13.39.0) (2022-05-31)
 
 
