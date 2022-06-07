@@ -8,6 +8,7 @@ import isString from 'lodash/isString';
 
 import editTemplate from './edit/edit.html';
 import editController from './edit/edit.controller';
+import './edit/edit.less';
 
 export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   /* @ngInject */
