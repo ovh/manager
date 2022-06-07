@@ -1,3 +1,23 @@
+# [17.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.19.1...@ovh-ux/manager-dedicated@17.20.0) (2022-06-07)
+
+
+### Bug Fixes
+
+* **dedicated:** fix billing module range ([d399853](https://github.com/ovh/manager/commit/d399853cc75fb6da44d81274c419b0564be2639a))
+* **i18n:** add missing translations [CDS 1638] ([7f2d0b0](https://github.com/ovh/manager/commit/7f2d0b0bd20b62fb37740eaba94dc00f406408e0))
+* **i18n:** add missing translations [CDS 1652] ([71a6ea1](https://github.com/ovh/manager/commit/71a6ea193e58d87d6089d42843174c5ed9285204))
+* **i18n:** add missing translations [CDS 1657] ([76bf43d](https://github.com/ovh/manager/commit/76bf43d99e9d918740cede0039b80b44cb6cee06))
+* **useraccount:** display appropriate Region label ([b623e11](https://github.com/ovh/manager/commit/b623e119ba598f548130d36bf51bf4f27d524e80))
+
+
+### Features
+
+* **dedicated:** add description on several section ([#6688](https://github.com/ovh/manager/issues/6688)) ([cc9017b](https://github.com/ovh/manager/commit/cc9017bd7e42ad013642f381a524de10060336d7))
+* **useraccount:** india states information ([ac509d1](https://github.com/ovh/manager/commit/ac509d14e31733ae67e5b74ff9be3771d28ac56c))
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
 ## [17.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.19.0...@ovh-ux/manager-dedicated@17.19.1) (2022-06-07)
 
 

@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos-app@1.0.10...@ovh-ux/manager-anthos-app@1.1.0) (2022-06-07)
+
+
+### Features
+
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
 ## [1.0.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos-app@1.0.9...@ovh-ux/manager-anthos-app@1.0.10) (2022-06-07)
 
 

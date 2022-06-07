@@ -1,3 +1,21 @@
+# [13.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.39.2...@ovh-ux/manager-telecom@13.40.0) (2022-06-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1639] ([16e1ecb](https://github.com/ovh/manager/commit/16e1ecb37ad510dc0b985d09ff96c1fc9775ce68))
+* **i18n:** add missing translations [CDS 1641] ([fdf10e8](https://github.com/ovh/manager/commit/fdf10e8ef59724fa50204aec936cb2fa0681f3bc))
+* **i18n:** add missing translations [CDS 1644] ([2c62894](https://github.com/ovh/manager/commit/2c62894eac7ceb69aed9fd1dd887235a67b7ae75))
+* **i18n:** add missing translations [CDS 1645] ([37a6f46](https://github.com/ovh/manager/commit/37a6f46b7c5d51f584516c6dd6d038e6739f2f2c))
+* **telephony.contact:** contact for belgian customers update ([#6901](https://github.com/ovh/manager/issues/6901)) ([b5a6c1a](https://github.com/ovh/manager/commit/b5a6c1ac98d0e15a2eedb8d6f315abc42e9091a5))
+
+
+### Features
+
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
 ## [13.39.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.39.1...@ovh-ux/manager-telecom@13.39.2) (2022-06-07)
 
 

@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@2.1.2...@ovh-ux/manager-error-page@2.2.0) (2022-06-07)
+
+
+### Features
+
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
 ## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@2.1.1...@ovh-ux/manager-error-page@2.1.2) (2022-04-12)
 
 

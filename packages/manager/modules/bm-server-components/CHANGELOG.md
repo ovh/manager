@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.2.1...@ovh-ux/manager-bm-server-components@1.2.2) (2022-06-07)
+
+
+### Bug Fixes
+
+* **dedicated.server:** display correct incoming bandwidth information ([b76e8fa](https://github.com/ovh/manager/commit/b76e8fa475b06898a79cb11aeb9706139340245e))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.2.0...@ovh-ux/manager-bm-server-components@1.2.1) (2022-03-24)
 
 

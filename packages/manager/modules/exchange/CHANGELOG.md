@@ -1,3 +1,14 @@
+## [3.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.4...@ovh-ux/manager-exchange@3.4.5) (2022-06-07)
+
+
+### Bug Fixes
+
+* **exchange:** hide guid if the account is not configured ([#7200](https://github.com/ovh/manager/issues/7200)) ([dc976a2](https://github.com/ovh/manager/commit/dc976a2a1cbb43a2f58313a57f0fd571a17117f2))
+* remove unused translations [CDS] ([dc1d7db](https://github.com/ovh/manager/commit/dc1d7dbc79b6fb2363deafcd78e3f36d4df486bc))
+* **web.exchange:** allow upper case letters in username ([#7083](https://github.com/ovh/manager/issues/7083)) ([a70d3c4](https://github.com/ovh/manager/commit/a70d3c4b7427176b46de268f3ab157e40327b4b2))
+
+
+
 ## [3.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.3...@ovh-ux/manager-exchange@3.4.4) (2022-06-07)
 
 

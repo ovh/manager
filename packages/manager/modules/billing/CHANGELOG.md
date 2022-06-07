@@ -1,3 +1,12 @@
+# [0.14.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.10...@ovh-ux/manager-billing@0.14.0-alpha.0) (2022-06-07)
+
+
+### Features
+
+* **dedicated:** add description on several section ([#6688](https://github.com/ovh/manager/issues/6688)) ([cc9017b](https://github.com/ovh/manager/commit/cc9017bd7e42ad013642f381a524de10060336d7))
+
+
+
 # [0.13.0-alpha.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.9...@ovh-ux/manager-billing@0.13.0-alpha.10) (2022-06-07)
 
 
