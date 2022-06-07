@@ -7,6 +7,7 @@ export default {
     goBackToMigrate: '<',
     migrationConfirmTrackingPrefix: '<',
     serviceName: '<',
+    selectedPlan: '<',
   },
   controller,
   template,
