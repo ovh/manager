@@ -28,7 +28,7 @@ export default class ExchangeOnboardingController {
       this.description = this.$translate.instant(
         'exchange_onboarding_description_fr',
       );
-    } else if (['CA', 'WE', 'WS', 'QC'].includes(this.ovhSubsidiary)) {
+    } else if (['ASIA', 'CA', 'WE', 'WS', 'QC'].includes(this.ovhSubsidiary)) {
       this.description = this.$translate.instant(
         'exchange_onboarding_description_ca',
       );
