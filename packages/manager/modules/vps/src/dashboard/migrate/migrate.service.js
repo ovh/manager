@@ -18,8 +18,8 @@ export default class {
       .then(({ data }) => data);
   }
 
-  fetchNewPrice(newPlan, ovhSubsidiary, vpsMigration) {
-    const hasWindowsOption = find(vpsMigration.options, (option) =>
+  fetchNewPrice(ovhSubsidiary, planInformation, datacenter) {
+    const hasWindowsOption = find(planInformation.options, (option) =>
       option.newPlan.includes('windows'),
     );
     return this.$http
@@ -32,13 +32,13 @@ export default class {
       .then((data) =>
         this.$http.post(`/order/cart/${data.cartId}/vps`, {
           duration: 'P1M',
-          planCode: newPlan.planCode,
+          planCode: planInformation.newPlan,
           pricingMode: 'default',
           quantity: 1,
         }),
       )
       .then(({ data }) => {
-        const optionsPromise = vpsMigration.options.map((option) => {
+        const optionsPromise = planInformation.options.map((option) => {
           return this.$http.post(`/order/cart/${data.cartId}/vps/options`, {
             itemId: data.itemId,
             duration: 'P1M',
@@ -53,7 +53,7 @@ export default class {
             `/order/cart/${data.cartId}/item/${data.itemId}/configuration`,
             {
               label: 'vps_datacenter',
-              value: vpsMigration.datacenter,
+              value: datacenter,
             },
           ),
         );
@@ -75,6 +75,8 @@ export default class {
       .then(({ cartId }) => {
         return this.$http.get(`/order/cart/${cartId}/checkout`);
       })
-      .then(({ data }) => data.prices);
+      .then(({ data }) => {
+        return { price: data, newPlan: planInformation.newPlan };
+      });
   }
 }

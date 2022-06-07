@@ -19,12 +19,12 @@ export default class {
   $onInit() {
     this.MIGRATE_FAQ_LINK =
       MIGRATE_FAQ_LINK[this.user.ovhSubsidiary] || MIGRATE_FAQ_LINK.DEFAULT;
-    this.newPlan = {
-      ...this.newPlan,
+    this.newPlans = this.newPlans.map((newPlan) => ({
+      ...newPlan,
       configuration: this.VpsHelperService.parseRangeConfiguration(
-        this.newPlan.planCode,
+        newPlan.planCode,
       ),
-    };
+    }));
   }
 
   cancel() {
@@ -42,18 +42,21 @@ export default class {
     ).price;
   }
 
-  getRenewablePrice() {
-    return this.ovhManagerProductOffersService.constructor.getUniquePricingOfCapacity(
-      this.newPlan?.pricings,
-      pricingConstants.PRICING_CAPACITIES.RENEW,
-    ).price;
-  }
-
-  getStorageCapacity() {
-    return this.newPlan.configuration?.storage?.disks[0]?.capacity || 0;
-  }
-
   formatMemory(memory) {
     return memory / this.MEMORY_MULTIPLE;
   }
+
+  getStorageCapacity = (newPlan) => {
+    return newPlan.configuration?.storage?.disks[0]?.capacity || 0;
+  };
+
+  getOriginalPriceWithoutTax = (planCode, newPrices) => {
+    return newPrices.find((price) => price.newPlan === planCode).price?.prices
+      ?.originalWithoutTax.text;
+  };
+
+  getPlanLabel = (planDetails) => {
+    const [, planCode = ''] = planDetails.planCode.split('-');
+    return `${planCode.charAt(0).toUpperCase()}${planCode.slice(1)}`;
+  };
 }
