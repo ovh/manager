@@ -1,3 +1,12 @@
+## [1.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.2.5...@ovh-ux/manager-cda@1.2.6) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.2.4...@ovh-ux/manager-cda@1.2.5) (2022-04-06)
 
 
