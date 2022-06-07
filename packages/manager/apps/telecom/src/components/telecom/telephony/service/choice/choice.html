@@ -8,27 +8,25 @@
             data-ng-class="$ctrl.containerClass"
         >
             <header data-ng-if="!$ctrl.hideHeader">
-                <h2 data-translate="telephony_service_choice_title"></h2>
+                <h2
+                    data-ng-if="!$ctrl.title"
+                    data-translate="telephony_service_choice_title"
+                ></h2>
+                <h2 data-ng-if="$ctrl.title" data-ng-bind="$ctrl.title"></h2>
             </header>
 
-            <div class="telephony-service-choice-section">
+            <div id="groups" class="telephony-service-choice-section">
                 <!-- SEARCH BAR -->
-                <div class="section-group">
-                    <div class="section-item form-group">
-                        <div class="stylish-input-group search-input-group">
-                            <label class="icon-container" for="searchService">
-                                <i class="ovh-font ovh-font-search"></i>
-                            </label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                name="searchService"
-                                id="searchService"
-                                data-ng-model="$ctrl.search"
-                                data-translate-attr="{ placeholder: 'common_search' }"
-                            />
-                        </div>
-                    </div>
+                <div class="oui-input-overlay mb-4">
+                    <input
+                        type="text"
+                        class="oui-input"
+                        name="searchService"
+                        id="searchService"
+                        data-ng-model="$ctrl.search"
+                        data-translate-attr="{ placeholder: 'common_search' }"
+                    />
+                    <span class="oui-icon oui-icon-search"></span>
                 </div>
 
                 <!-- SEARCH RESULTS -->
@@ -67,9 +65,9 @@
                                     class="oui-radio__input"
                                     id="ruleNumber-{{ service.serviceName }}"
                                     name="ruleNumber"
-                                    data-ng-model="$ctrl.selectedService"
-                                    data-ng-value="service"
-                                    data-ng-change="$ctrl.onChange()"
+                                    data-ng-model="$ctrl.value"
+                                    data-ng-value="service.serviceName"
+                                    data-ng-change="$ctrl.onChange(service)"
                                 />
                                 <label
                                     class="oui-radio__label-container"
