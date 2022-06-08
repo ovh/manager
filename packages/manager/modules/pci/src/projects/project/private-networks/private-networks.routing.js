@@ -23,13 +23,27 @@ export default /* @ngInject */ ($stateProvider) => {
       createNetwork: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.privateNetwork.add', { projectId }),
 
-      deleteNetwork: /* @ngInject */ ($state, projectId) => (networkId) =>
+      deleteSubnet: /* @ngInject */ ($state, projectId) => (
+        networkId,
+        subnetId,
+      ) =>
         $state.go('pci.projects.project.privateNetwork.delete', {
           projectId,
           networkId,
+          subnetId,
         }),
-
       networkId: /* @ngInject */ ($transition$) => $transition$.params().id,
+      privateNetworks: /* @ngInject */ (PciPrivateNetworks, projectId) =>
+        PciPrivateNetworks.getPrivateNetworks(projectId),
+      goToAddPublicGateway: /* @ngInject */ ($state, projectId) => (
+        networkId,
+        subnet,
+      ) =>
+        $state.go('pci.projects.project.public-gateways.add', {
+          projectId,
+          networkId,
+          subnet,
+        }),
       privateNetworksRegions: /* @ngInject */ (privateNetworks) =>
         Array.from(
           new Set(
@@ -78,9 +92,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      privateNetworks: /* @ngInject */ (PciPrivateNetworks, projectId) =>
-        PciPrivateNetworks.getPrivateNetworks(projectId),
-
       privateNetworkTrackPrefix: () =>
         'PublicCloud::pci::projects::project::privateNetwork',
       trackPrivateNetworks: /* @ngInject */ (

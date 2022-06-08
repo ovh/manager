@@ -1,15 +1,21 @@
-import sortBy from 'lodash/sortBy';
-
-import {
-  DELETING_STATUS,
-  VRACK_CREATION_ACTION,
-} from './private-networks.constants';
+import { VRACK_CREATION_ACTION } from './private-networks.constants';
 
 export default class {
   /* @ngInject */
-  constructor(OvhApiCloudProject, OvhApiCloudProjectNetworkPrivate) {
+  constructor(
+    $q,
+    $http,
+    $translate,
+    OvhApiCloudProject,
+    OvhApiCloudProjectNetworkPrivate,
+    OvhApiCloudProjectNetworkPrivateSubnet,
+  ) {
+    this.$q = $q;
+    this.$http = $http;
+    this.$translate = $translate;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectNetworkPrivate = OvhApiCloudProjectNetworkPrivate;
+    this.OvhApiCloudProjectNetworkPrivateSubnet = OvhApiCloudProjectNetworkPrivateSubnet;
   }
 
   getPrivateNetworks(serviceName) {
@@ -19,10 +25,45 @@ export default class {
         serviceName,
       })
       .$promise.then((privateNetworks) =>
-        sortBy(privateNetworks, 'vlanId').filter(
-          ({ status }) => !DELETING_STATUS.includes(status),
+        this.$q.all(
+          privateNetworks.map((privateNetwork) =>
+            this.getSubnets(serviceName, privateNetwork),
+          ),
         ),
       );
+  }
+  // TODO: getSubnets call need to trigger on expanding the rows for which we need to update expandable data grid under UI kit. currently calling it under getPrivateNetworks
+
+  getSubnets(serviceName, privateNetwork) {
+    return this.OvhApiCloudProjectNetworkPrivateSubnet.v6()
+      .query({
+        serviceName,
+        networkId: privateNetwork.id,
+      })
+      .$promise.then((data) => {
+        return {
+          ...privateNetwork,
+          subnet: [
+            ...data.map((subnet) => ({
+              ...subnet,
+              allocatedIp: subnet.ipPools
+                .map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
+                .join(' ,'),
+              dhcp: subnet.ipPools
+                .map((ipPool) =>
+                  ipPool.dhcp === true
+                    ? this.$translate.instant(
+                        'pci_projects_project_network_private_dhcp_active',
+                      )
+                    : this.$translate.instant(
+                        'pci_projects_project_network_private_dhcp_suspended',
+                      ),
+                )
+                .join(),
+            })),
+          ],
+        };
+      });
   }
 
   getVrack(serviceName) {
@@ -45,9 +86,11 @@ export default class {
       );
   }
 
-  getNetworks(serviceName) {
+  deleteSubnet(serviceName, networkId, subnetId) {
     return this.$http
-      .get(`/cloud/project/${serviceName}/network/private`)
+      .delete(
+        `/cloud/project/${serviceName}/network/private/${networkId}/subnet/${subnetId}`,
+      )
       .then(({ data }) => data);
   }
 }
