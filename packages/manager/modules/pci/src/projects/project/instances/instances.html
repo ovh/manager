@@ -61,7 +61,7 @@
         on-criteria-change="$ctrl.onListParamChange($criteria)"
     >
         <oui-datagrid-column
-            title=":: 'pci_projects_project_instances_name_label' | translate"
+            title=":: 'pci_projects_project_instances_name_id_label' | translate"
             data-property="name"
             data-type="string"
             data-searchable
@@ -74,14 +74,7 @@
                 data-ng-bind="$value"
             ></a>
             <span data-ng-if="$row.isDeleting()" data-ng-bind="$value"></span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            title=":: 'pci_projects_project_instances_name_id' | translate"
-            data-property="id"
-            data-type="string"
-            data-filterable
-            data-sortable
-        >
+            <p data-ng-bind="$row.id"></p>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_region_label' | translate"
@@ -114,9 +107,15 @@
             data-property="ipAddresses"
         >
             <span
-                class="d-block"
-                data-ng-repeat="ipAddress in $row.publicIpV4 track by $index"
-                data-ng-bind="ipAddress.ip"
+                class="ip-list"
+                data-ng-if="$row.publicIpV4.length > 1"
+                data-ng-bind="$row.publicIpV4[0].ip"
+                oui-tooltip="{{ $ctrl.getIpsForTooltip($row.publicIpV4) }}"
+                oui-tooltip-placement="top"
+            ></span>
+            <span
+                data-ng-if="$row.publicIpV4.length === 1"
+                data-ng-bind="$row.publicIpV4[0].ip"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -124,9 +123,15 @@
             data-property="ipAddresses"
         >
             <span
-                class="d-block"
-                data-ng-repeat="ipAddress in $row.privateIpV4 track by $index"
-                data-ng-bind="ipAddress.ip"
+                class="ip-list"
+                data-ng-if="$row.privateIpV4.length > 1"
+                data-ng-bind="$row.privateIpV4[0].ip"
+                oui-tooltip="{{ $ctrl.getIpsForTooltip($row.privateIpV4) }}"
+                oui-tooltip-placement="top"
+            ></span>
+            <span
+                data-ng-if="$row.privateIpV4.length === 1"
+                data-ng-bind="$row.privateIpV4[0].ip"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
