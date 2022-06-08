@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit';
 import confirmRedeploy from './confirm';
 
 import ipSubnetValidator from './ip-subnet-validator.directive';
+import uniqueIpValidator from './unique-ip-validator.directive';
 import component from './component';
 import routing from './routing';
 
@@ -23,6 +24,7 @@ angular
   ])
   .config(routing)
   .directive('ipSubnetValidator', ipSubnetValidator)
+  .directive('uniqueIpValidator', uniqueIpValidator)
   .component('nutanixDashboardGeneralInfoRedeployComponent', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
