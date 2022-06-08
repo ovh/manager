@@ -1,3 +1,12 @@
+# [16.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.13.0...@ovh-ux/manager-web@16.14.0) (2022-06-08)
+
+
+### Features
+
+* **hosting.offer:** re-implement detach addon of start10M ([#7311](https://github.com/ovh/manager/issues/7311)) ([cf02a8c](https://github.com/ovh/manager/commit/cf02a8c77b563cc711b373733e7ed46ea671cae3))
+
+
+
 # [16.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.12.1...@ovh-ux/manager-web@16.13.0) (2022-06-07)
 
 

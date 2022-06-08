@@ -1,3 +1,12 @@
+## [5.78.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.78.0...@ovh-ux/manager-pci@5.78.1) (2022-06-08)
+
+
+### Bug Fixes
+
+* **containers:** allow deletion for high perf ([#7289](https://github.com/ovh/manager/issues/7289)) ([1401624](https://github.com/ovh/manager/commit/1401624af1c1589f94b0b4ef698218b061053064))
+
+
+
 # [5.78.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.77.1...@ovh-ux/manager-pci@5.78.0) (2022-06-07)
 
 
