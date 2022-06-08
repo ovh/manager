@@ -1,7 +1,7 @@
 {
   "pci_projects_project_instances_title": "Instances",
   "pci_projects_project_instances_beta_subscribe_labs": "Accédez en avant-première à nos instances BareMetal en remplissant le formulaire d’inscription disponible sur la page <a href=\"https://labs.ovh.com/bare-metal-on-public-cloud\" target=\"_blank\">OVH Labs dédiée</a>.",
-  "pci_projects_project_instances_name_label": "Nom",
+  "pci_projects_project_instances_name_id_label": "Nom/ID",
   "pci_projects_project_instances_region_label": "Localisation",
   "pci_projects_project_instances_flavor_label": "Modèle",
   "pci_projects_project_instances_image_label": "Image",
@@ -9,7 +9,6 @@
   "pci_projects_project_instances_privateIp_label": "IP privée(s)",
   "pci_projects_project_instances_volume_label": "Volume(s)",
   "pci_projects_project_instances_status_label": "Statut",
-  "pci_projects_project_instances_name_id": "ID",
 
   "pci_projects_project_instances_status_ACTIVE": "Activée",
   "pci_projects_project_instances_status_BUILDING": "Création",
