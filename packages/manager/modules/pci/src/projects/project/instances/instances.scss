@@ -1,3 +1,7 @@
 #publicCloudInstancesDatagrid {
   margin-bottom: 20rem;
+
+  .ip-list::after {
+    content: ',...';
+  }
 }
