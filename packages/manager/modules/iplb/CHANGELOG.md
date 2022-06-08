@@ -1,3 +1,12 @@
+## [1.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.3.2...@ovh-ux/manager-iplb@1.3.3) (2022-06-08)
+
+
+### Bug Fixes
+
+* **iplb:** set right translation ([#7271](https://github.com/ovh/manager/issues/7271)) ([18c6835](https://github.com/ovh/manager/commit/18c6835d39f5c638608a0ef9f4c802e3a3085c0d))
+
+
+
 ## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.3.1...@ovh-ux/manager-iplb@1.3.2) (2022-06-07)
 
 
