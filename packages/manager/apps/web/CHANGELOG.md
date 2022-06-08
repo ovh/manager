@@ -1,3 +1,12 @@
+## [16.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.14.0...@ovh-ux/manager-web@16.14.1) (2022-06-08)
+
+
+### Bug Fixes
+
+* **hosting.database.add:** display `maxUserLength` value ([#7310](https://github.com/ovh/manager/issues/7310)) ([3a50b91](https://github.com/ovh/manager/commit/3a50b916e1f25c7cb9f6c3cc7c68ebcc2b7fd694)), closes [#7284](https://github.com/ovh/manager/issues/7284)
+
+
+
 # [16.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.13.0...@ovh-ux/manager-web@16.14.0) (2022-06-08)
 
 
