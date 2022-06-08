@@ -2,7 +2,6 @@
 <div class="pci-projects w-100 h-100 overflow-auto" data-ui-view>
     <account-migration-notification></account-migration-notification>
     <div class="container px-3 py-5">
-
         <!--Trusted zone badge-->
         <div class="text-center">
             <ovh-manager-trusted-nic-label
@@ -24,6 +23,7 @@
                 title=":: 'pci_projects_description' | translate"
                 property="description"
                 type="string"
+                sortable
             >
                 <oui-button
                     data-variant="link"
@@ -37,6 +37,7 @@
                 title=":: 'pci_projects_status' | translate"
                 property="status"
                 type="string"
+                sortable
             >
                 <span
                     class="oui-badge"
