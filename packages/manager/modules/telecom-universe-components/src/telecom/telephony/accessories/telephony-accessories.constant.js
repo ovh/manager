@@ -247,6 +247,137 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/accessory-yealink-ehs40-90-90.png',
   },
+  'yealink.bh72': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/yealink/accessory-yealink-bh72-90-90.png',
+  },
+  'yealink.uh38': {
+    img:
+      '		https: //www.ovhtelecom.fr/images/telephonie/2020/yealink/accessory-yealink-uh38-90-90.png',
+  },
+  'yealink.bt41.v2': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/yealink/accessory-yealink-bt41-90-90.png',
+  },
+  'yealink.wh66.v2': {
+    url: URL_ACCESSORIES,
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/yealink/accessory-yealink-wh66-90-90.png',
+  },
+  'yealink.w73h.v3': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/yealink/accessory-yealink-w73h-90-90.png',
+  },
+  'yealink.w59r.v3': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/yealink/accessory-yealink-w59r-90-90.png',
+  },
+  'yealink.wh62.v3': {
+    url: URL_ACCESSORIES,
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/yealink/accessory-yealink-wh62-90-90.png',
+  },
+  'yealink.dd10k.v2': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/yealink/accessory-yealink-dd10k-90-90.png',
+  },
+  'yealink.w53h.v2': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/yealink/accessory-yealink-w53h-90-90.png',
+  },
+  'yealink.exp50.v2': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/yealink/accessory-yealink-exp50-90-90.png',
+  },
+  'orosound.tildeproplus.v3': {
+    url: URL_ACCESSORIES,
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/orosound/accessory-orosound-tildepro-plus-90-90.png',
+  },
+  'sennheiser.sdw5066.v3': {
+    url: URL_ACCESSORIES,
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-sdw5066-90-90.png',
+  },
+  'sennheiser.sdw5036.v3': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-sdw5036-90-90.png',
+  },
+  'epos.sennheiser.adapt.260.v2': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-epos-sennheiser-adapt-260-90-90.png.png',
+  },
+  'epos.sennheiser.adapt.230.v2': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-epos-sennheiser-adapt-230-90-90.png.png',
+  },
+  'epos.sennheiser.adapt.165.usbc.v2': {
+    url: URL_ACCESSORIES,
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/epos/accessory-epos-sennheiser-adapt-165-USBC-90-90.png',
+  },
+  'epos.sennheiser.adapt.165.usba.v2': {
+    url: URL_ACCESSORIES,
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/epos/accessory-epos-sennheiser-adapt-165-USBA-90-90.png',
+  },
+  'sennheiser.sc268.v3': {
+    url: URL_ACCESSORIES,
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-sc268-90-90.png',
+  },
+  'sennheiser.mbpro2.v3': {
+    url: URL_ACCESSORIES,
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-mbpro2-90-90.png',
+  },
+  'sennheiser.mbpro1.v3': {
+    url: URL_ACCESSORIES,
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-mbpro1-90-90.png',
+  },
+  'sennheiser.cstd08.v2': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-cstd08-90-90.png',
+  },
+  'sennheiser.cstd01.v3': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-cstd01-90-90.png',
+  },
+  'accessory.sennheiser.sc238.v3': {
+    url: URL_ACCESSORIES,
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-sc238-90-90.png',
+  },
+  'epos.sennheiser.adapt.560.v4': {
+    url: URL_ACCESSORIES,
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/epos/accessory-epos-adapt560-90-90.png',
+  },
+  'accessory.sennheiser.ccel195.v2': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-ccel195-90-90.png',
+  },
+  'accessory.sennheiser.usbed01.v2': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-usbed01-90-90.png',
+  },
+  'accessory.sennheiser.cmb01ctrl.v2': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-cmb01ctrl-90-90.png',
+  },
+  'accessory.sennheiser.ehsdhsg.v3': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-ehsdhsg-90-90.png',
+  },
+  'accessory.sennheiser.ehscisco02.v2': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-ehscisco02-90-90.png',
+  },
+  'accessory.sennheiser.ehscisco.v2': {
+    img:
+      'https: //www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-ehscisco-90-90.png',
+  },
 };
 
 export default { TELEPHONY_LINE_PHONE_ACCESSORIES };

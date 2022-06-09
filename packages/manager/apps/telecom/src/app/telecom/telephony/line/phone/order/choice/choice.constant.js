@@ -69,6 +69,66 @@ export const TELEPHONY_LINE_PHONE_CHOICE = {
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-cp960-90-90.png',
   },
+  'yealink.t54w.v2': {
+    url: 'https://www.ovhtelecom.fr/telephonie/telephones/yealink_T54W/',
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-t54w-90-90.png',
+  },
+  'yealink.t58wpro.v3': {
+    url: 'https://www.ovhtelecom.fr/telephonie/telephones/yealink_T58WPRO/',
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-t58wpro-90-90.png',
+  },
+  'cisco.cp8861.v2': {
+    url: 'https://www.ovhtelecom.fr/telephonie/telephones/cisco_8861/',
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/cisco/phone-cisco-cp8861-90-90.png',
+  },
+  'cisco.cp8841.v2': {
+    url: 'https://www.ovhtelecom.fr/telephonie/telephones/cisco_8841/',
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/cisco/phone-cisco-cp8861-90-90.png',
+  },
+  'cisco.ata191.v2': {
+    url: 'https://www.ovhtelecom.fr/telephonie/telephones/cisco_ata_191/',
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/cisco/phone-cisco-ata191-90-90.png',
+  },
+  'yealink.cp920.v3': {
+    url: 'https://www.ovhtelecom.fr/telephonie/telephones/yealink_CP920/',
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-cp920-90-90.png',
+  },
+  'yealink.cp925.v3': {
+    url: 'https://www.ovhtelecom.fr/telephonie/telephones/yealink_CP925/',
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-cp925-90-90.png',
+  },
+  'yealink.t53w.v2': {
+    url: 'https://www.ovhtelecom.fr/telephonie/telephones/yealink_T53W/',
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-t53w-90-90.png',
+  },
+  'yealink.t53.v2': {
+    url: 'https://www.ovhtelecom.fr/telephonie/telephones/yealink_T53W/',
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-t53w-90-90.png',
+  },
+  'yealink.w53p.v3': {
+    url: 'https://www.ovhtelecom.fr/telephonie/telephones/yealink_W53P/',
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-w53p-90-90.png',
+  },
+  'yealink.w70p.packed.w73h.v3': {
+    url: 'https://www.ovhtelecom.fr/telephonie/telephones/yealink_W73P/',
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-w70p-packed-w73h-90-90.png',
+  },
+  'yealink.w70p.packed.w59r.v3': {
+    url: 'https://www.ovhtelecom.fr/telephonie/telephones/yealink_W79P/',
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-w70p-packed-w59r-90-90.png',
+  },
 };
 
 export default { TELEPHONY_LINE_PHONE_CHOICE };
