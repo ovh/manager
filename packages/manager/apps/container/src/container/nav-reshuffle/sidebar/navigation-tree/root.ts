@@ -53,6 +53,7 @@ const root: Node = {
             hash: '#/contacts/services',
           },
           count: false,
+          features: ['contact:management'],
         },
       ],
     },
