@@ -4,7 +4,14 @@
     </onboarding-title>
     <onboarding-description>
         <p data-translate="veeam_enterprise_onboarding_description"></p>
-        <p data-translate="veeam_enterprise_onboarding_description2"></p>
+        <p
+            data-ng-if="$ctrl.isUS"
+            data-translate="veeam_enterprise_onboarding_description2_us"
+        ></p>
+        <p
+            data-ng-if="!$ctrl.isUS"
+            data-translate="veeam_enterprise_onboarding_description2"
+        ></p>
         <a
             class="oui-button oui-button_primary oui-button_l text-light"
             data-translate="veeam_enterprise_onboarding_order"

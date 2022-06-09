@@ -17,9 +17,9 @@ export const GUIDES = [
       AU: 'https://docs.ovh.com/au/en/storage/veeam-backup-replication/',
       SG: 'https://docs.ovh.com/sg/en/storage/veeam-backup-replication/',
       FR: 'https://docs.ovh.com/fr/storage/veeam-backup-replication/',
-      WE: 'https://docs.ovh.com/us/en/storage/veeam-backup-replication/',
-      WS: 'https://docs.ovh.com/us/en/storage/veeam-backup-replication/',
-      US: 'https://docs.ovh.com/us/en/storage/veeam-backup-replication/',
+      WE: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002270130',
+      WS: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002270130',
+      US: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002270130',
     },
   },
 ];
@@ -46,6 +46,4 @@ export const CTAS = {
   CZ: 'https://ovhcloud.com/cz-cs/storage-solutions/veeam-enterprise',
   FI: 'https://ovhcloud.com/fi/storage-solutions/veeam-enterprise',
   LT: 'https://ovhcloud.com/lt/storage-solutions/veeam-enterprise',
-  WE: 'https://ovhcloud.com/us-en/storage-solutions/veeam-enterprise',
-  WS: 'https://ovhcloud.com/us-en/storage-solutions/veeam-enterprise',
 };
