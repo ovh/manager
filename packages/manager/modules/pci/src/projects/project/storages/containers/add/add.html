@@ -54,13 +54,30 @@
                     data-ng-if="$ctrl.regions[offerName] && $ctrl.regions[offerName].length > 0"
                     data-name="{{:: offerName }}_offers"
                     data-model="$ctrl.container.offer"
-                    data-label="{{:: ('pci_projects_project_storages_containers_add_offer_' + offerName) | translate }}"
-                    data-description="{{:: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_description') | translate }}"
                     data-values="[offerName]"
                     data-variant="light"
                     data-on-change="$ctrl.onContainerSolutionChange()"
                     data-required
                 >
+                    <oui-select-picker-label>
+                        <strong
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName) | translate"
+                        ></strong>
+                        <span class="oui-badge oui-badge_beta"
+                              data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].beta"
+                              data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_label') | translate"
+                        ></span>
+                        <span class="oui-badge oui-badge_new"
+                              data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].new"
+                              data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_label') | translate"
+                        ></span>
+                    </oui-select-picker-label>
+                    <oui-select-picker-section>
+                        <p
+                            class="text-justify"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_description') | translate"
+                        ></p>
+                    </oui-select-picker-section>
                 </oui-select-picker>
             </div>
         </div>
@@ -73,13 +90,30 @@
                     class="d-inline-block col-md-6 col-xl-4 my-3"
                     data-name="selected-offer"
                     data-model="$ctrl.container.offer"
-                    data-label="{{ ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer) | translate }}"
-                    data-description="{{ ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_description') | translate }}"
                     data-values="[$ctrl.container.offer]"
                     data-variant="light"
                     data-on-change="$ctrl.onContainerSolutionChange()"
                     data-required
                 >
+                    <oui-select-picker-label>
+                        <strong
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer) | translate"
+                        ></strong>
+                        <span class="oui-badge oui-badge_beta"
+                              data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].beta"
+                              data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_label') | translate"
+                        ></span>
+                        <span class="oui-badge oui-badge_new"
+                              data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].new"
+                              data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_label') | translate"
+                        ></span>
+                    </oui-select-picker-label>
+                    <oui-select-picker-section>
+                        <p
+                            class="text-justify"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_description') | translate"
+                        ></p>
+                    </oui-select-picker-section>
                 </oui-select-picker>
             </div>
         </div>
