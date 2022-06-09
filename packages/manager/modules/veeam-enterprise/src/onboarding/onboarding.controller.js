@@ -10,6 +10,7 @@ export default class VeeamEnterpriseOnboardingController {
   async $onInit() {
     const user = await this.coreConfig.getUser();
     this.ovhSubsidiary = user.ovhSubsidiary;
+    this.isUS = this.coreConfig.isRegion('US');
     this.guides = GUIDES.map((guide) => ({
       link: guide.links[this.ovhSubsidiary] || guide.links.DEFAULT,
       description: this.$translate.instant(guide.description),
