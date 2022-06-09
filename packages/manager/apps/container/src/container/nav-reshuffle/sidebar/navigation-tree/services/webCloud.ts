@@ -1,6 +1,19 @@
 export default {
   id: 'web-cloud',
   translation: 'sidebar_web_cloud',
+  features: [
+    'web:domains',
+    'web:domains:zone',
+    'hosting',
+    'private-database',
+    'web-paas',
+    'office',
+    'exchange',
+    'sharepoint',
+    'email-pro',
+    'emails:mxplan',
+    'web-paas',
+  ],
   routing: {
     application: 'web',
     hash: '#/',
