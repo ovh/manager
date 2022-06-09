@@ -52,6 +52,7 @@ export default {
             hash: '#/contacts/services',
           },
           count: false,
+          features: ['contact:management'],
         },
       ],
     },
