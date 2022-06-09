@@ -1,0 +1,9 @@
+{
+  "ip_byoip_disclaimer_title": "Confirmation required",
+  "ip_byoip_disclaimer_description": "I declare that: ",
+  "ip_byoip_disclaimer_description_point_1": " - I am the owner of the IP address range I have entered.",
+  "ip_byoip_disclaimer_description_point_2": " - The IP address range entered is not advertised on the internet.",
+  "ip_byoip_disclaimer_description_point_3": " - This IP address range has a healthy reputation.",
+  "ip_byoip_disclaimer_confirm_text": "Confirm",
+  "ip_byoip_disclaimer_cancel_text": "Cancel"
+}

@@ -5,7 +5,6 @@ import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 import animateScrollTo from 'animated-scroll-to';
 import { API_GUIDES } from '../../../project.constants';
-
 import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
 import { ENGINE_LOGOS } from '../databases.constants';
 import { ORDER_KEYS } from './add.constants';
@@ -60,6 +59,8 @@ export default class {
       API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
     this.trackDatabases('configuration', 'page');
 
+
+    this.preselectStepItem();
     this.updateEngine(this.model.engine);
 
     // If we find the parentElement, we can enable smooth scrolling. Otherwise, fallback to $anchor
@@ -73,6 +74,21 @@ export default class {
           horizontal: false,
         }
       : null;
+  }
+
+  /**
+   * Use this to preselect an item regarding current step
+   */
+  preselectStepItem() {
+    const { steps } = this.redirectTarget;
+    const currentStep = (this.currrentStep || 0) + 1; // to have human start count
+
+    if (steps && currentStep === 1) {
+      this.model.engine =
+        this.engines.find(
+          ({ name }) => name === steps[`STEP_${currentStep}`],
+        ) || this.model.engine;
+    }
   }
 
   scrollTo(id) {

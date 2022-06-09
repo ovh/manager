@@ -18,6 +18,17 @@ pci-project-new-progress {
         flex: 0;
       }
 
+      .oui-progress-tracker__button {
+        background-color: transparent;
+        border-width: 0px;
+        width: fit-content;
+        height: fit-content;
+
+        &:focus {
+          outline: dashed transparent;
+        }
+      }
+
       .oui-progress-tracker__status {
         &::before {
           background-color: transparent;

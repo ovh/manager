@@ -1,12 +1,23 @@
 export default class UserAccountCtrl {
   /* @ngInject */
-  constructor($location, $scope, $state, $timeout, constants, supportLevel) {
+  constructor(
+    $location,
+    $scope,
+    $state,
+    $timeout,
+    $translate,
+    constants,
+    coreConfig,
+    supportLevel,
+  ) {
     // dependencies injections
     this.$location = $location;
     this.$scope = $scope;
     this.$state = $state;
     this.$timeout = $timeout;
+    this.$translate = $translate;
     this.constants = constants;
+    this.coreConfig = coreConfig;
     this.supportLevel = supportLevel;
     this.USERACCOUNT_BASE_URL = 'account/user/';
     this.originUrl =
@@ -43,5 +54,11 @@ export default class UserAccountCtrl {
         }, 300);
       }
     }.bind(this);
+  }
+
+  descriptionOfHeading() {
+    return this.coreConfig.getRegion() !== 'US'
+      ? this.$translate.instant('user_account_description')
+      : '';
   }
 }

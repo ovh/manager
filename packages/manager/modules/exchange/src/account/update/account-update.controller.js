@@ -12,24 +12,32 @@ import {
   ACCOUNT_EMAIL_ADDRESS_REGEX,
 } from '../account.constants';
 
+import { EXCHANGE_CONTAINER_MESSAGING } from '../../dashboard/exchange.constants';
+
 export default class ExchangeUpdateAccountCtrl {
   /* @ngInject */
   constructor(
+    $anchorScroll,
+    $location,
     $scope,
     $translate,
     $timeout,
     exchangeServiceInfrastructure,
     exchangeAccountTypes,
+    exchangeVersion,
     wucExchange,
     wucExchangePassword,
     messaging,
     navigation,
   ) {
+    this.$anchorScroll = $anchorScroll;
+    this.$location = $location;
     this.$scope = $scope;
     this.$translate = $translate;
     this.$timeout = $timeout;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.exchangeAccountTypes = exchangeAccountTypes;
+    this.exchangeVersion = exchangeVersion;
     this.wucExchange = wucExchange;
     this.wucExchangePassword = wucExchangePassword;
     this.messaging = messaging;
@@ -306,7 +314,9 @@ export default class ExchangeUpdateAccountCtrl {
         (value) => currentEmail === value.toLowerCase(),
       );
 
-      if (this.selectedAccount.primaryEmailAddress === currentEmail) {
+      if (
+        this.selectedAccount.primaryEmailAddress.toLowerCase() === currentEmail
+      ) {
         this.takenEmailError = false;
       }
     }
@@ -410,7 +420,11 @@ export default class ExchangeUpdateAccountCtrl {
       this.originalValues.streetAddress !== modifiedBuffer.streetAddress ||
       this.originalValues.postalCode !== modifiedBuffer.postalCode ||
       this.originalValues.city !== modifiedBuffer.city ||
-      this.originalValues.countryCode !== modifiedBuffer.countryCode ||
+      (modifiedBuffer.countryCode != null &&
+        this.originalValues.countryCode !==
+          (typeof modifiedBuffer.countryCode === 'string'
+            ? modifiedBuffer.countryCode
+            : modifiedBuffer.countryCode.code)) ||
       this.originalValues.region !== modifiedBuffer.region ||
       this.originalValues.phone !== modifiedBuffer.phone ||
       this.originalValues.mobile !== modifiedBuffer.mobile ||
@@ -512,11 +526,11 @@ export default class ExchangeUpdateAccountCtrl {
       );
       this.updateAccountForm.selectedAccountPassword.$setValidity(
         'isSameAsSAMAccountName',
-        isEmpty(this.selectedAccount.samAccountName) ||
+        isEmpty(this.selectedAccount.samaccountName) ||
           (isString(this.selectedAccount.password) &&
-            isString(this.selectedAccount.samAccountName) &&
+            isString(this.selectedAccount.samaccountName) &&
             this.selectedAccount.selectedAccountPassword.toUpperCase() !==
-              this.selectedAccount.samAccountName.toUpperCase()),
+              this.selectedAccount.samaccountName.toUpperCase()),
       );
     } else {
       this.updateAccountForm.selectedAccountPassword.$setValidity(
@@ -608,6 +622,8 @@ export default class ExchangeUpdateAccountCtrl {
         })
         .then(() => this.goBack())
         .catch((failure) => {
+          this.$location.hash(EXCHANGE_CONTAINER_MESSAGING);
+          this.$anchorScroll();
           this.messaging.writeError(`
             ${this.$translate.instant('exchange_common_error')} ${get(
             failure,

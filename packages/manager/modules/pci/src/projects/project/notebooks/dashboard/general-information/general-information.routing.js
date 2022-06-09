@@ -69,12 +69,16 @@ export default /* @ngInject */ ($stateProvider) => {
           'pci.projects.project.notebooks.dashboard.general-information.stop-notebook',
           {
             projectId,
-            notebookId: notebook.id,
+            notebook,
           },
         ),
 
       openLiveCodeEditor: /* @ngInject */ ($window, notebook) => () =>
         $window.open(notebook.status.url, '_blank'),
+    },
+    atInternet: {
+      rename:
+        'pci::projects::project::ai_machine_learning::notebooks::dashboard::general-information',
     },
   });
 };

@@ -26,7 +26,7 @@
   "ovhManagerSupport_new_serviceType_email_pro": "Email Pro",
   "ovhManagerSupport_new_serviceType_hubic": "hubiC",
   "ovhManagerSupport_new_serviceType_OTHER": "Other",
-  "ovhManagerSupport_new_serviceType_dedicated_cloud": "Hosted Private Cloud",
+  "ovhManagerSupport_new_serviceType_dedicated_cloud": "VMware",
   "ovhManagerSupport_new_serviceType_managed_bare_metal": "Managed Bare Metal",
   "ovhManagerSupport_new_serviceType_cloud_project": "Public Cloud (project)",
   "ovhManagerSupport_new_serviceType_telephony": "Telephony",
@@ -139,9 +139,10 @@
   "ovhManagerSupport_new_business_1": "Want to get your project reviewed?",
   "ovhManagerSupport_new_business_2": "Please detail your requirements by sending an email to the following email address:",
   "ovhManagerSupport_new_business_3": "Support tickets sent to this email address will not be processed.",
-  "ovhManagerSupport_new_serviceType_managed_grafana": "Public Cloud databases for Grafana",
-  "ovhManagerSupport_new_serviceType_managed_m3": "Public Cloud databases for M3",
-  "ovhManagerSupport_new_serviceType_managed_m3_aggregator": "Public Cloud databases for M3 Aggregator",
-  "ovhManagerSupport_new_serviceType_managed_kafka_connect": "Public Cloud databases for Kafka Connect",
-  "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud databases for Cassandra"
+  "ovhManagerSupport_new_serviceType_managed_grafana": "Public Cloud Databases for Grafana",
+  "ovhManagerSupport_new_serviceType_managed_m3": "Public Cloud Databases for M3",
+  "ovhManagerSupport_new_serviceType_managed_m3_aggregator": "Public Cloud Databases for M3 Aggregator",
+  "ovhManagerSupport_new_serviceType_managed_kafka_connect": "Public Cloud Databases for Kafka Connect",
+  "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud Databases for Cassandra",
+  "ovhManagerSupport_new_serviceType_ai_notebook": "AI Notebooks"
 }

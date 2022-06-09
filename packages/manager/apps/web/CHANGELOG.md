@@ -1,3 +1,83 @@
+## [16.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.14.0...@ovh-ux/manager-web@16.14.1) (2022-06-08)
+
+
+### Bug Fixes
+
+* **hosting.database.add:** display `maxUserLength` value ([#7310](https://github.com/ovh/manager/issues/7310)) ([3a50b91](https://github.com/ovh/manager/commit/3a50b916e1f25c7cb9f6c3cc7c68ebcc2b7fd694)), closes [#7284](https://github.com/ovh/manager/issues/7284)
+
+
+
+# [16.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.13.0...@ovh-ux/manager-web@16.14.0) (2022-06-08)
+
+
+### Features
+
+* **hosting.offer:** re-implement detach addon of start10M ([#7311](https://github.com/ovh/manager/issues/7311)) ([cf02a8c](https://github.com/ovh/manager/commit/cf02a8c77b563cc711b373733e7ed46ea671cae3))
+
+
+
+# [16.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.12.1...@ovh-ux/manager-web@16.13.0) (2022-06-07)
+
+
+### Features
+
+* **hosting.ftp:** harmonize sftp info for perso/kimsufi ([#7113](https://github.com/ovh/manager/issues/7113)) ([4fe8221](https://github.com/ovh/manager/commit/4fe8221832d9e710f9cb52b917a0c28e78815c5f))
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
+## [16.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.12.0...@ovh-ux/manager-web@16.12.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+# [16.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.11.1...@ovh-ux/manager-web@16.12.0) (2022-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+* **domain.dns:** allow empty IP ([#7077](https://github.com/ovh/manager/issues/7077)) ([490fa27](https://github.com/ovh/manager/commit/490fa27cb3f940cc3cb4c307d9cab4570ed3413f))
+* **domain.dns:** fix domain ns server ip edition ([baf1e46](https://github.com/ovh/manager/commit/baf1e468330756bbfbf346e915d9f1f413ccb843))
+* **i18n:** add missing translations [CDS 1617] ([399f737](https://github.com/ovh/manager/commit/399f73775a9968f791fbf6908b0efb870345d576))
+* **i18n:** add missing translations [CDS 1620] ([b2319ba](https://github.com/ovh/manager/commit/b2319ba88d0f098ce77bf015113017c066b6ed05))
+
+
+### Features
+
+* **private-database:** add CPU throttle to CloudDB stats ([20c6620](https://github.com/ovh/manager/commit/20c6620f4a9f8fe8a7ab4ede077ec51098cff1f7))
+
+
+
+## [16.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.11.0...@ovh-ux/manager-web@16.11.1) (2022-05-05)
+
+
+### Bug Fixes
+
+* **web.domain:** fix domain owner information ([#7048](https://github.com/ovh/manager/issues/7048)) ([1688a5f](https://github.com/ovh/manager/commit/1688a5f1f3ea8cae1c9a18d4c5eb08b5767ffaf7))
+
+
+
+# [16.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.10.0...@ovh-ux/manager-web@16.11.0) (2022-05-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1589] ([8489e83](https://github.com/ovh/manager/commit/8489e83a1fbc89f75acd38e8c1fd094e5199945d))
+* **i18n:** add missing translations [CDS 1600] ([#6999](https://github.com/ovh/manager/issues/6999)) ([4c3629e](https://github.com/ovh/manager/commit/4c3629e78647f9e570be01fa1a9a2b8e379c4a42))
+
+
+### Features
+
+* **private-database:** add link to configuration documentation ([#6764](https://github.com/ovh/manager/issues/6764)) ([a1c88fb](https://github.com/ovh/manager/commit/a1c88fbfad1362cb75eb478c3769303a91dfe7a0))
+* **web.domain:** add domain owner contact ([d9f883f](https://github.com/ovh/manager/commit/d9f883fe68bcfb7f7472ae5a9afda13c4589a2ef)), closes [#6731](https://github.com/ovh/manager/issues/6731)
+
+
+
 # [16.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.9.4...@ovh-ux/manager-web@16.10.0) (2022-04-21)
 
 

@@ -8,7 +8,6 @@ import component from './fork.component';
 import enginesList from '../components/engines-list';
 import flavorBilling from '../../../../../components/project/flavor-billing';
 import flavorsList from '../components/flavors-list';
-import labs from '../../../../../components/project/labs';
 import orderReview from '../components/order-review';
 import plansList from '../components/plans-list';
 import regionsList from '../../../../../components/project/regions-list';
@@ -26,7 +25,6 @@ angular
     enginesList,
     flavorBilling,
     flavorsList,
-    labs,
     orderReview,
     plansList,
     regionsList,

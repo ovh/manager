@@ -1,3 +1,48 @@
+# [0.14.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.10...@ovh-ux/manager-billing@0.14.0-alpha.0) (2022-06-07)
+
+
+### Features
+
+* **dedicated:** add description on several section ([#6688](https://github.com/ovh/manager/issues/6688)) ([cc9017b](https://github.com/ovh/manager/commit/cc9017bd7e42ad013642f381a524de10060336d7))
+
+
+
+# [0.13.0-alpha.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.9...@ovh-ux/manager-billing@0.13.0-alpha.10) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+# [0.13.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.8...@ovh-ux/manager-billing@0.13.0-alpha.9) (2022-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+
+
+
+# [0.13.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.7...@ovh-ux/manager-billing@0.13.0-alpha.8) (2022-05-16)
+
+
+### Bug Fixes
+
+* **autorenew:** fallback to `default` renew URL for specific subs ([8f18f5d](https://github.com/ovh/manager/commit/8f18f5d6dafbc0be356d8599528f1b32b535363a))
+
+
+
+# [0.13.0-alpha.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.6...@ovh-ux/manager-billing@0.13.0-alpha.7) (2022-05-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1601] ([#7000](https://github.com/ovh/manager/issues/7000)) ([89b088c](https://github.com/ovh/manager/commit/89b088cfdba143066cc992296b6e3cdeb5acc913))
+
+
+
 # [0.13.0-alpha.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.5...@ovh-ux/manager-billing@0.13.0-alpha.6) (2022-04-20)
 
 

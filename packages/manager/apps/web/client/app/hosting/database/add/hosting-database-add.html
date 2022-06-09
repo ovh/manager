@@ -147,18 +147,21 @@
                                 required
                                 data-ng-maxlength="maxUserLength"
                                 data-ng-model="model.user"
+                                aria-describedby="selectedUserHelpBlock"
                             />
                         </div>
-                        <small
-                            class="help-block"
-                            data-translate="hosting_tab_DATABASES_configuration_create_step2_password_user_error"
-                            data-ng-if="hostingCreateDatabaseUserForm.selectedUser.$dirty && (hostingCreateDatabaseUserForm.selectedUser.$invalid || !isUserValid())"
-                        ></small>
-                        <span
-                            class="d-block mt-2"
-                            data-translate="hosting_tab_DATABASES_configuration_create_step2_password_user_condition"
-                            data-translate-values="{ t0: model.maxUserLength }"
-                        ></span>
+                        <span id="selectedUserHelpBlock">
+                            <span
+                                class="help-block"
+                                data-translate="hosting_tab_DATABASES_configuration_create_step2_password_user_error"
+                                data-ng-if="hostingCreateDatabaseUserForm.selectedUser.$dirty && (hostingCreateDatabaseUserForm.selectedUser.$invalid || !isUserValid())"
+                            ></span>
+                            <span
+                                class="d-block help-block"
+                                data-translate="hosting_tab_DATABASES_configuration_create_step2_password_user_condition"
+                                data-translate-values="{ t0: maxUserLength }"
+                            ></span>
+                        </span>
                     </div>
                 </div>
 

@@ -19,6 +19,10 @@ export default class {
     };
 
     this.load();
+
+    this.DedicatedCloud.getOptionState('nsx', this.serviceName).then((data) => {
+      this.nsxStatus = data;
+    });
   }
 
   load() {
@@ -40,7 +44,18 @@ export default class {
       });
   }
 
+  isValidNsxConfig() {
+    return (
+      this.nsxStatus !== 'enabled' &&
+      this.commercialRange.model?.name === 'premier'
+    );
+  }
+
   addDatacenter() {
+    this.trackClick(
+      `datacenter::add-datacenter::confirm_${this.commercialRange.model.name}`,
+    );
+
     this.loader = true;
 
     if (get(this.commercialRange, 'model.upgradeRequired')) {
@@ -68,5 +83,15 @@ export default class {
         );
       },
     );
+  }
+
+  addOptionNSX() {
+    this.trackClick('datacenter::add-datacenter::activate-nsx');
+    return this.onBasicOptionsUpgrade({ isPremier: true });
+  }
+
+  onCancel() {
+    this.trackClick('datacenter::add-datacenter::cancel');
+    return this.goBack();
   }
 }

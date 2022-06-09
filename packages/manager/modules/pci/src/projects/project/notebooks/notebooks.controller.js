@@ -12,7 +12,6 @@ export default class {
 
   $onInit() {
     this.loadMessages();
-    this.trackNotebooks('table', 'page');
     this.pollNotebookStatus();
   }
 
@@ -50,7 +49,7 @@ export default class {
   }
 
   onGuideLinkClick(guideName) {
-    this.trackNotebooks(`'table::guide::${guideName}`);
+    this.trackNotebooks(`table::guide::${guideName}`);
   }
 
   onNotebookStartClick(notebookId) {
@@ -60,6 +59,7 @@ export default class {
 
   onNotebookStopClick(notebookId) {
     this.trackNotebooks('table::options_menu::pause_notebook');
-    return this.stopNotebook(notebookId);
+    const notebook = this.notebooks.find((n) => n.id === notebookId);
+    return this.goToStopNotebook(notebook);
   }
 }

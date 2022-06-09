@@ -1,6 +1,4 @@
-import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
-import sortBy from 'lodash/sortBy';
 
 export default /* @ngInject */ function voipTimeConditionSlotEditCtrl(
   $scope,
@@ -27,8 +25,8 @@ export default /* @ngInject */ function voipTimeConditionSlotEditCtrl(
 
   self.slot = null;
   self.availableSlotTypes = ['number_ovh', 'number', 'voicemail'];
-  self.groups = null;
   self.redirectNumberOvh = null;
+  self.isLoadingSlotNumber = false;
 
   /*= ==============================
     =            HELPERS            =
@@ -104,16 +102,22 @@ export default /* @ngInject */ function voipTimeConditionSlotEditCtrl(
         return;
       }
 
-      const currentNumber = TelephonyMediator.findService(
-        self.slot.serviceName,
-      );
-      if (currentNumber) {
-        self.redirectNumberOvh = currentNumber;
-        self.slot.number = currentNumber.serviceName;
-      } else {
-        self.slot.number = null;
-        self.redirectNumberOvh = null;
-      }
+      self.slot.number = null;
+      self.redirectNumberOvh = null;
+      self.isLoadingSlotNumber = true;
+
+      TelephonyMediator.findService(self.slot.serviceName)
+        .then((service) => {
+          const currentNumber = service;
+
+          if (currentNumber) {
+            self.redirectNumberOvh = currentNumber;
+            self.slot.number = currentNumber.serviceName;
+          }
+        })
+        .finally(() => {
+          self.isLoadingSlotNumber = false;
+        });
     }
   };
 
@@ -124,11 +128,10 @@ export default /* @ngInject */ function voipTimeConditionSlotEditCtrl(
     self.popoverStatus.rightPage = 'number';
   };
 
-  self.onSlotNumberChange = function onSlotNumberChange() {
+  self.onSlotNumberChange = function onSlotNumberChange(selectedService) {
     self.popoverStatus.move = false;
-
-    // refresh ovh number
-    self.redirectNumberOvh = TelephonyMediator.findService(self.slot.number);
+    self.slot.number = selectedService.serviceName;
+    self.redirectNumberOvh = selectedService;
   };
 
   /* ----------  Footer actions  ----------*/
@@ -154,29 +157,22 @@ export default /* @ngInject */ function voipTimeConditionSlotEditCtrl(
       .allSettled([
         // use of timeout because button click that trigger popover is called after controller init
         $timeout(angular.noop, 99),
-        TelephonyMediator.getAll(),
       ])
       .then(() => {
         // set slot instance to edit
         self.slot = $scope.$parent.$ctrl.slot.startEdition();
 
         // set true slot type
-        self.redirectNumberOvh = TelephonyMediator.findService(
-          self.slot.number,
-        );
-        if (self.slot.type === 'number' && self.redirectNumberOvh) {
-          self.model.slotType = 'number_ovh';
-        } else {
-          self.model.slotType = self.slot.type;
-        }
+        return TelephonyMediator.findService(self.slot.number).then(
+          (service) => {
+            self.redirectNumberOvh = service;
 
-        // sort and filter groups and reject groups that don't have any service
-        self.groups = sortBy(
-          filter(
-            TelephonyMediator.groups,
-            (group) => group.getAllServices().length > 0,
-          ),
-          (group) => group.getDisplayedName(),
+            if (self.slot.type === 'number' && self.redirectNumberOvh) {
+              self.model.slotType = 'number_ovh';
+            } else {
+              self.model.slotType = self.slot.type;
+            }
+          },
         );
       })
       .finally(() => {

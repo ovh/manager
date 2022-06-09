@@ -5,7 +5,9 @@ export default {
   bindings: {
     goBack: '<',
     goUpgradeRange: '<',
+    onBasicOptionsUpgrade: '<',
     serviceName: '<',
+    trackClick: '<',
   },
   controller,
   template,

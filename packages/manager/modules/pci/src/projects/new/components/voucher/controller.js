@@ -1,3 +1,5 @@
+import PciEligibility from '../../classes/eligibility.class';
+
 export default class PciProjectNewVoucherCtrl {
   /* @ngInject */
   constructor($q, pciProjectNew) {
@@ -44,17 +46,32 @@ export default class PciProjectNewVoucherCtrl {
     return step.name === 'configuration' ? 'config' : step.name;
   }
 
-  /* -----  End of Helpers  ------ */
+  canAddVoucher() {
+    const { voucher } = this.model;
+    const { finalize, isVoucherValidating } = this.globalLoading;
 
-  /* =============================
-  =            Events            =
-  ============================== */
-
-  onAddVoucherBtnClick() {
-    this.formVisible = true;
+    return (
+      !this.loading.check &&
+      !finalize &&
+      !isVoucherValidating &&
+      voucher.value &&
+      !voucher.valid
+    );
   }
 
-  onVoucherFormSubmit() {
+  hasVoucherError() {
+    return (
+      this.model.voucher.value &&
+      !this.model.voucher.valid &&
+      this.model.voucher.error
+    );
+  }
+
+  getFormatCreditText() {
+    return `<span class="text-success">${this.voucherEligibility.voucher.credit.text}</span>`;
+  }
+
+  submitVoucher() {
     this.loading.check = true;
     this.globalLoading.isVoucherValidating = true;
 
@@ -73,10 +90,15 @@ export default class PciProjectNewVoucherCtrl {
           return this.$q.reject(eligibilityOpts);
         }
 
+        this.voucherEligibility = new PciEligibility(eligibilityOpts);
+
         return eligibilityOpts;
       })
       .then((eligibilityOpts) => {
-        if (!this.model.isVoucherRequirePaymentMethod) {
+        if (
+          !this.model.isVoucherRequirePaymentMethod &&
+          !this.defaultPaymentMethod
+        ) {
           this.model.paymentMethod = null;
         }
 
@@ -105,28 +127,17 @@ export default class PciProjectNewVoucherCtrl {
       });
   }
 
-  hasVoucherError() {
-    return (
-      this.model.voucher.value &&
-      !this.model.voucher.valid &&
-      this.model.voucher.error
-    );
-  }
-
-  getVoucherError() {
-    return `pci_projects_new_voucher_form_field_error_${this.model.voucher.error.statusText.toLowerCase()}`;
-  }
-
-  onVoucherFormReset() {
+  resetVoucher() {
     this.loading.reset = true;
     this.globalLoading.isVoucherValidating = true;
 
-    this.pciProjectNew
+    return this.pciProjectNew
       .removeCartProjectItemVoucher(this.cart)
       .then(() => {
         this.model.voucher.reset();
         this.model.voucher.setValue('');
 
+        this.voucherEligibility = null;
         this.errors.reset = false;
         this.model.isVoucherRequirePaymentMethod = true;
       })
@@ -143,6 +154,47 @@ export default class PciProjectNewVoucherCtrl {
       });
   }
 
+  manageResetVoucher() {
+    if (!this.model.voucher.value) {
+      this.model.voucher.reset();
+      this.voucherForm.voucher.$setValidity('voucher', true);
+    }
+  }
+
+  getVoucherError() {
+    return `pci_projects_new_voucher_form_field_error_${this.model.voucher.error.statusText.toLowerCase()}`;
+  }
+
+  /* -----  End of Helpers  ------ */
+
+  /* =============================
+  =            Events            =
+  ============================== */
+
+  onVoucherFormSubmit() {
+    return this.submitVoucher();
+  }
+
+  onVoucherFormReset() {
+    return this.resetVoucher();
+  }
+
+  onAddVoucherBtnClick() {
+    this.formVisible = true;
+  }
+
+  onVoucherInputChange() {
+    this.manageResetVoucher();
+  }
+
+  onVoucherInputLeave() {
+    if (this.model.voucher.value && this.canAddVoucher()) {
+      return this.submitVoucher();
+    }
+
+    return this.manageResetVoucher();
+  }
+
   /* -----  End of Events  ------ */
 
   /* ============================
@@ -150,7 +202,15 @@ export default class PciProjectNewVoucherCtrl {
   ============================= */
 
   $onInit() {
-    if (this.model.voucher.value) {
+    const { value, valid } = this.model.voucher;
+
+    if (value) {
+      if (valid) {
+        this.voucherEligibility = this.eligibility;
+      } else {
+        this.model.voucher.setValue('');
+      }
+
       this.formVisible = true;
       this.setVoucherFormState();
     }

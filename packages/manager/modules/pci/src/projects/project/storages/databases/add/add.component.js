@@ -15,6 +15,7 @@ export default {
     trackDatabases: '<',
     user: '<',
     goToCommand: '<',
+    redirectTarget: '<',
   },
   controller,
   template,

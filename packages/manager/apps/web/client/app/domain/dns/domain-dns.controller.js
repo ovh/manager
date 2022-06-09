@@ -199,7 +199,7 @@ export default class DomainDnsCtrl {
       this.loading.table = true;
       dns = map(dns, (d) => ({
         host: d.editedHost || d.host,
-        ip: d.editedIp || d.ip || undefined,
+        ip: d.editedIp || (d.editedIp === '' ? null : d.ip),
       }));
 
       this.$q

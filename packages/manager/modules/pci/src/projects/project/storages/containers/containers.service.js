@@ -134,8 +134,6 @@ export default class PciStoragesContainersService {
       queryParams.archive = false;
     }
 
-    queryParams.region = OPENIO_DEFAULT_REGION;
-
     return this.OvhApiCloudProjectStorage.Aapi()
       .query(queryParams)
       .$promise.then((containers) =>
@@ -147,14 +145,22 @@ export default class PciStoragesContainersService {
       );
   }
 
-  getContainer(projectId, containerId, isHighPerfStorage = false) {
+  getContainer(
+    projectId,
+    containerId,
+    isHighPerfStorage = false,
+    containerRegion,
+  ) {
     let promise = null;
+    const region = containerRegion || OPENIO_DEFAULT_REGION;
     if (isHighPerfStorage) {
       promise = this.$http
         .get(
-          `/cloud/project/${projectId}/region/${OPENIO_DEFAULT_REGION}/storage/${containerId}`,
+          `/cloud/project/${projectId}/region/${region}/storage/${containerId}`,
         )
-        .then(({ data }) => data);
+        .then(({ data }) => {
+          return { ...data, region };
+        });
     } else {
       promise = this.OvhApiCloudProjectStorage.v6().get({
         projectId,
@@ -405,17 +411,23 @@ export default class PciStoragesContainersService {
       });
   }
 
-  deleteHighPerfObject(projectId, containerId, objectKey) {
+  deleteHighPerfObject(projectId, containerId, objectKey, containerRegion) {
+    const region = containerRegion || OPENIO_DEFAULT_REGION;
     return this.$http
       .delete(
-        `/cloud/project/${projectId}/region/${OPENIO_DEFAULT_REGION}/storage/${containerId}/object/${objectKey}`,
+        `/cloud/project/${projectId}/region/${region}/storage/${containerId}/object/${objectKey}`,
       )
       .then(({ data }) => data);
   }
 
-  deleteObject(projectId, container, object, isHighPerfStorage) {
-    if (isHighPerfStorage) {
-      return this.deleteHighPerfObject(projectId, container.id, object.name);
+  deleteObject(projectId, container, object) {
+    if (container.isHighPerfStorage) {
+      return this.deleteHighPerfObject(
+        projectId,
+        container.id,
+        object.name,
+        container.region,
+      );
     }
     return this.requestContainer(projectId, container, {
       method: 'DELETE',

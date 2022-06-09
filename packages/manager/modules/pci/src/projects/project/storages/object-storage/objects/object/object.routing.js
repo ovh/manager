@@ -6,9 +6,14 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/{containerId}',
       component: 'pciProjectStorageContainersContainer',
+      params: {
+        defaultCriteria: null,
+      },
       resolve: {
         containerId: /* @ngInject */ ($transition$) =>
           $transition$.params().containerId,
+        defaultCriteria: /* @ngInject */ ($transition$) =>
+          $transition$.params().defaultCriteria,
         container: /* @ngInject */ (
           PciProjectStorageContainersService,
           projectId,
@@ -20,6 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId,
             containerId,
             container.isHighPerfStorage,
+            container.region,
           );
         },
 

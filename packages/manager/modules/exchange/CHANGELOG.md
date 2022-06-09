@@ -1,3 +1,52 @@
+## [3.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.4...@ovh-ux/manager-exchange@3.4.5) (2022-06-07)
+
+
+### Bug Fixes
+
+* **exchange:** hide guid if the account is not configured ([#7200](https://github.com/ovh/manager/issues/7200)) ([dc976a2](https://github.com/ovh/manager/commit/dc976a2a1cbb43a2f58313a57f0fd571a17117f2))
+* remove unused translations [CDS] ([dc1d7db](https://github.com/ovh/manager/commit/dc1d7dbc79b6fb2363deafcd78e3f36d4df486bc))
+* **web.exchange:** allow upper case letters in username ([#7083](https://github.com/ovh/manager/issues/7083)) ([a70d3c4](https://github.com/ovh/manager/commit/a70d3c4b7427176b46de268f3ab157e40327b4b2))
+
+
+
+## [3.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.3...@ovh-ux/manager-exchange@3.4.4) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+## [3.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.2...@ovh-ux/manager-exchange@3.4.3) (2022-05-19)
+
+
+### Bug Fixes
+
+* **web.exchange:** fix mobile and phone field inversed ([#7036](https://github.com/ovh/manager/issues/7036)) ([d166d18](https://github.com/ovh/manager/commit/d166d1800e699d1d17e8264960bb6eefbb53d6b4))
+
+
+
+## [3.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.1...@ovh-ux/manager-exchange@3.4.2) (2022-05-04)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([56b18fb](https://github.com/ovh/manager/commit/56b18fb5056653a2c48b851415f9692e2eef22c3))
+* **i18n:** add missing translations [CDS 1583] ([3a0fb54](https://github.com/ovh/manager/commit/3a0fb5498707da9053b0e00ed4ab756e82369043))
+
+
+
+## [3.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.0...@ovh-ux/manager-exchange@3.4.1) (2022-04-26)
+
+
+### Bug Fixes
+
+* **web.exchange:** name of exchange 2010 account not displayed ([408938c](https://github.com/ovh/manager/commit/408938c319ce9642bacadae13f2acd430ec796bd))
+* **web.exchange:** remove old translation no more required ([b2cd7cd](https://github.com/ovh/manager/commit/b2cd7cde697f083e0e01f2b3b109ef06d510da0e))
+
+
+
 # [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.3.0...@ovh-ux/manager-exchange@3.4.0) (2022-04-21)
 
 

@@ -1,3 +1,212 @@
+## [5.78.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.78.0...@ovh-ux/manager-pci@5.78.1) (2022-06-08)
+
+
+### Bug Fixes
+
+* **containers:** allow deletion for high perf ([#7289](https://github.com/ovh/manager/issues/7289)) ([1401624](https://github.com/ovh/manager/commit/1401624af1c1589f94b0b4ef698218b061053064))
+
+
+
+# [5.78.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.77.1...@ovh-ux/manager-pci@5.78.0) (2022-06-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1666] ([5566e26](https://github.com/ovh/manager/commit/5566e2615e217efbc8301f721887450651c01db9))
+* show all metrics ([#7146](https://github.com/ovh/manager/issues/7146)) ([6fdc7e1](https://github.com/ovh/manager/commit/6fdc7e1448cc5e7dfab8b19e79f7295b31b90753))
+
+
+### Features
+
+* **pci.storages.containers:** redirect and preselect items ([#7219](https://github.com/ovh/manager/issues/7219)) ([2f3152e](https://github.com/ovh/manager/commit/2f3152eed718e7be49dee8fc45283804470490e9))
+* change joburl to url ([#7127](https://github.com/ovh/manager/issues/7127)) ([d9365de](https://github.com/ovh/manager/commit/d9365decfdaf64e0053e7c2fc93a9206587a6224))
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
+## [5.77.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.77.0...@ovh-ux/manager-pci@5.77.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+# [5.77.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.76.0...@ovh-ux/manager-pci@5.77.0) (2022-05-31)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** reload page with redirect params ([d1a139f](https://github.com/ovh/manager/commit/d1a139fb59bb95ea15b46822274dcb2112d3d938))
+
+
+### Features
+
+* **pci.projects.creating:** redirect customer to right page ([f3b6fde](https://github.com/ovh/manager/commit/f3b6fde66944a0488bdb6c770428f4a164f69333))
+* **pci.projects.new:** assign eligibility voucher if valid ([53073ee](https://github.com/ovh/manager/commit/53073ee4816fba8482f61b7ba9f9e91d0b995f61))
+
+
+
+# [5.76.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.75.3...@ovh-ux/manager-pci@5.76.0) (2022-05-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1632] ([45fae78](https://github.com/ovh/manager/commit/45fae785413f17ef5fdba7a6ecc9a8821534fcb2))
+* **pci.failover-ips:** map orderable ips to project available regions ([#6721](https://github.com/ovh/manager/issues/6721)) ([eed2b5c](https://github.com/ovh/manager/commit/eed2b5ce49cd9f60e09b846d94d089392b73edb5))
+* **pci.projects.new:** add missed tracking param ([ce425a2](https://github.com/ovh/manager/commit/ce425a2c6395548c8a2d16dddd6fac7012c28f95))
+
+
+### Features
+
+* **pci.projects:** auto redirect if only one project ([bc256c9](https://github.com/ovh/manager/commit/bc256c9b6ef3722d83471499098a6ba49c79f014))
+* **pci.projects:** redirect info message ([625630f](https://github.com/ovh/manager/commit/625630f0f93f42fbacb7db09fb7a3fea6d75e83a))
+* **pci.projects:** redirect to right product ([12ced27](https://github.com/ovh/manager/commit/12ced27d88231d5b3947e897a22bb5d6f3df5cbf))
+* **pci.projects.new:** display right error page ([6378bfc](https://github.com/ovh/manager/commit/6378bfc2dbcf9b8a0e2cddd0d0659a03f310cb35))
+* **pci.projects.new:** manage voucher redirect ([6907222](https://github.com/ovh/manager/commit/69072226e2384a250e60be0656f7772ed87ace7a))
+* **pci.projects.new:** validate voucher on input leave ([237ea74](https://github.com/ovh/manager/commit/237ea740d2dc70e9d931cc958d1a0bbe947a30ae))
+
+
+
+## [5.75.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.75.2...@ovh-ux/manager-pci@5.75.3) (2022-05-19)
+
+
+### Bug Fixes
+
+* fix redirect not working anymore ([#6974](https://github.com/ovh/manager/issues/6974)) ([3767c26](https://github.com/ovh/manager/commit/3767c269a4c5af07554288153e9d6cedf395c2e8))
+* remove unused translations [CDS] ([bf30200](https://github.com/ovh/manager/commit/bf30200e702669bc51c4f7411aad8a3ab44aa3d9))
+
+
+
+## [5.75.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.75.1...@ovh-ux/manager-pci@5.75.2) (2022-05-16)
+
+
+### Bug Fixes
+
+* **pci:** missing region for highperfstorage on add new user ([#7140](https://github.com/ovh/manager/issues/7140)) ([8cb2f96](https://github.com/ovh/manager/commit/8cb2f962eaec0aa9cd66cd342c97d1995c601f18))
+
+
+
+## [5.75.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.75.0...@ovh-ux/manager-pci@5.75.1) (2022-05-16)
+
+
+### Bug Fixes
+
+* **pci:** remove hardcoded region for highperfstorages ([#7085](https://github.com/ovh/manager/issues/7085)) ([2ee2d0c](https://github.com/ovh/manager/commit/2ee2d0c4e98806325878099f9acaf8c21e7e313a))
+
+
+
+# [5.75.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.74.0...@ovh-ux/manager-pci@5.75.0) (2022-05-04)
+
+
+### Bug Fixes
+
+* avoid zindex conflict with languages dropdown ([#6964](https://github.com/ovh/manager/issues/6964)) ([7ac4591](https://github.com/ovh/manager/commit/7ac4591478a0a7c1f6561ef88b60ebaf85354bea))
+* **i18n:** add missing translations [CDS 1583] ([3a0fb54](https://github.com/ovh/manager/commit/3a0fb5498707da9053b0e00ed4ab756e82369043))
+* **i18n:** add missing translations [CDS 1585] ([ea42ea8](https://github.com/ovh/manager/commit/ea42ea8328971cdd664e15fd9ed0874eb5ebdfbe))
+* **i18n:** add missing translations [CDS 1586] ([b8b625b](https://github.com/ovh/manager/commit/b8b625b57603f09ecadba766e6d4ab418bf31729))
+* **i18n:** add missing translations [CDS 1590] ([f82f630](https://github.com/ovh/manager/commit/f82f63003ed78808900238d7991734c91ca52f8f))
+* **i18n:** add missing translations [CDS 1591] ([346f31e](https://github.com/ovh/manager/commit/346f31e71d3909407e995c5613aa154f02439f92))
+* **i18n:** add missing translations [CDS 1596] ([8bd2b7e](https://github.com/ovh/manager/commit/8bd2b7eeeda957669e992f1967d02062e8e16b27))
+* **i18n:** add missing translations [CDS 1598] ([aef711f](https://github.com/ovh/manager/commit/aef711f49f3620b13c6ac5974bf6bb16eb534cb3))
+* **i18n:** add missing translations [CDS 1603] ([061637b](https://github.com/ovh/manager/commit/061637ba185a15576264d34e00f9e41b784ba416))
+* **i18n:** add missing translations [CDS 1604] ([5edbcd6](https://github.com/ovh/manager/commit/5edbcd604af94451f86f580acb4b1dfb78e467e3))
+* **pci.notebooks:** display stop modal when stopping a notebook from list too ([#6831](https://github.com/ovh/manager/issues/6831)) ([0bb4926](https://github.com/ovh/manager/commit/0bb4926e75af7deb123ed44da70324f87926ab65))
+* **pci.training:** dynamic training resources ([#6963](https://github.com/ovh/manager/issues/6963)) ([4bf97c9](https://github.com/ovh/manager/commit/4bf97c992f72d4b47ba8aa55050f90712fdb8d16))
+* remove unused translations [CDS] ([56b18fb](https://github.com/ovh/manager/commit/56b18fb5056653a2c48b851415f9692e2eef22c3))
+
+
+### Features
+
+* **pci:** remove region query [#8895](https://github.com/ovh/manager/issues/8895) ([#6849](https://github.com/ovh/manager/issues/6849)) ([5864f97](https://github.com/ovh/manager/commit/5864f97fb55664cdd0715d7a901c86a779150eea))
+
+
+
+# [5.74.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.73.2...@ovh-ux/manager-pci@5.74.0) (2022-05-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1609] ([6aa959c](https://github.com/ovh/manager/commit/6aa959ca71d4eb00eb1f3e0ac1129c1c94fae0af))
+
+
+### Features
+
+* **pci.projects.new:** inline pci contracts ([c63aa21](https://github.com/ovh/manager/commit/c63aa2107597aab2c3cddbecac922d585214ec5d))
+* **pci.projects.new.payment:** allow new attempts in challenge mode ([9e4361e](https://github.com/ovh/manager/commit/9e4361e25f747f375b3d730aba4029cdccefcc84))
+* **pci.projects.new.payment:** improve default payment method part ([ea49aa4](https://github.com/ovh/manager/commit/ea49aa45ae26323caa9bb95640887c2f13a4f08f))
+* **pci.projects.new.payment:** tracking ([b8a7b21](https://github.com/ovh/manager/commit/b8a7b21d72e9a8cbeb566b865ca0791954a60da0))
+
+
+
+## [5.73.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.73.1...@ovh-ux/manager-pci@5.73.2) (2022-05-03)
+
+
+### Bug Fixes
+
+* remove lab from fork page ([#7004](https://github.com/ovh/manager/issues/7004)) ([3ef5715](https://github.com/ovh/manager/commit/3ef5715ac81410449022dc26b1c4bf28b171ecc2))
+
+
+
+## [5.73.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.73.0...@ovh-ux/manager-pci@5.73.1) (2022-04-29)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** allow create project if default payment ([#6997](https://github.com/ovh/manager/issues/6997)) ([4e6446b](https://github.com/ovh/manager/commit/4e6446b2da30c0737b4dfd1e66c503cc02126825))
+
+
+
+# [5.73.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.72.0...@ovh-ux/manager-pci@5.73.0) (2022-04-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1595] ([1be4d43](https://github.com/ovh/manager/commit/1be4d430f596f8f541b9cd295e7c8e14e7e2e7bf))
+* **pci.projects.new.payment:** disable create bn once finalize is true ([8446142](https://github.com/ovh/manager/commit/8446142ee21e7848975d98803d187b4cbd849ab5))
+
+
+### Features
+
+* **pci.projects.new:** go to payment from progress step ([98709e8](https://github.com/ovh/manager/commit/98709e81147fc1a8bf6170b302f8f5847591d416))
+* **pci.projects.new:** remove one-shot ticket ([7f08737](https://github.com/ovh/manager/commit/7f087379be61bcb82bc1281bca6f73453a30c0a0))
+* **pci.projects.new.component:** display voucher credit details ([78e582f](https://github.com/ovh/manager/commit/78e582f7de5cd52139fdbd97d3e1f8a80a4fe1fa))
+* **pci.projects.new.component:** improve vouchers errors display ([96655c7](https://github.com/ovh/manager/commit/96655c752a14c25d0259b7be5298bac967535c8c))
+* **pci.projects.new.component:** remove voucher from trash icon ([b80f83b](https://github.com/ovh/manager/commit/b80f83b9f746ddf801b61aac17bf2fcff043e8d4))
+* **pci.projects.new.components:** add on-click callback for progress ([6e77686](https://github.com/ovh/manager/commit/6e77686cb838b424cb31922402673400d332b2a9))
+* **pci.projects.new.payment:** disable next btn for voucher validation ([b954ee8](https://github.com/ovh/manager/commit/b954ee8f19dfc1b5b6371ff82914fcffe061cfb5))
+* **pci.projects.new.payment:** go to config from progress step ([0e181fa](https://github.com/ovh/manager/commit/0e181fa040fd129c7f98d9d13fbe9523e6ea37f2))
+
+
+
+# [5.72.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.71.0...@ovh-ux/manager-pci@5.72.0) (2022-04-26)
+
+
+### Features
+
+* **pci.projects.new.payment:** add spinner for create project btn ([a638d5a](https://github.com/ovh/manager/commit/a638d5a36dc778af1e92736f35cc31a7cd37b488))
+
+
+
+# [5.71.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.70.2...@ovh-ux/manager-pci@5.71.0) (2022-04-26)
+
+
+### Features
+
+* **pci.projects.new.payment:** add spinner for create project btn ([248bda5](https://github.com/ovh/manager/commit/248bda51d78032d477737d451c6c8ebe232ca975))
+
+
+
+## [5.70.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.70.1...@ovh-ux/manager-pci@5.70.2) (2022-04-25)
+
+
+### Bug Fixes
+
+* **pci.notebooks:** fix notebook informations resources ([#6676](https://github.com/ovh/manager/issues/6676)) ([0de1933](https://github.com/ovh/manager/commit/0de19333642b53f0eb3c3d0e27557f244611f3ba))
+
+
+
 ## [5.70.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.70.0...@ovh-ux/manager-pci@5.70.1) (2022-04-22)
 
 

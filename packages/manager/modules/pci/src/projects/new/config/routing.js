@@ -1,5 +1,5 @@
 import component from './component';
-import { PCI_PROJECT_ORDER_CART } from '../constants';
+import { PCI_PROJECT_ORDER_CART, PCI_PROJECT_STEPS } from '../constants';
 import { PCI_HDS_ADDON } from '../../project/project.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -68,12 +68,39 @@ export default /* @ngInject */ ($stateProvider) => {
           PCI_HDS_ADDON.planCode,
         ),
 
-      step: /* @ngInject */ (getStep) => getStep('configuration'),
+      step: /* @ngInject */ (getStep) =>
+        getStep(PCI_PROJECT_STEPS.CONFIGURATION),
 
-      summary: /* @ngInject */ (cart, getSummary) => getSummary(),
+      setCartProjectItem: /* @ngInject */ (
+        $q,
+        model,
+        cart,
+        pciProjectNew,
+      ) => () => {
+        if (model.description && !cart.projectItem.descriptionConfiguration) {
+          return pciProjectNew.setCartProjectItemDescription(
+            cart,
+            model.description,
+          );
+        }
 
-      getSummary: /* @ngInject */ (cart, orderCart) => () =>
-        orderCart.getSummary(cart.cartId),
+        return $q.when();
+      },
+
+      onProgressStepClick: /* @ngInject */ (
+        hds,
+        model,
+        setCartProjectItem,
+        goToPayment,
+      ) => ({ name, active }) => {
+        if (name === PCI_PROJECT_STEPS.PAYMENT && !active) {
+          if (model.agreements || hds.isInprogressRequest) {
+            return setCartProjectItem().then(() => goToPayment());
+          }
+        }
+
+        return null;
+      },
 
       trackClick: /* @ngInject */ (atInternet) => (hit) => {
         atInternet.trackClick({

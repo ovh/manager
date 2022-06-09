@@ -2,7 +2,7 @@
     <div
         data-wizard
         data-wizard-bread-crumb="true"
-        data-wizard-on-cancel="closeModal"
+        data-wizard-on-cancel="cancel"
         data-wizard-on-finish="confirmOrder"
         data-wizard-title=":: 'ip_additional_order' | translate"
     >
@@ -10,6 +10,7 @@
         <div
             data-wizard-step
             data-wizard-step-on-load="getServices"
+            data-wizard-step-on-previous="trackPrevious"
             data-wizard-step-valid="model.service && orderableIp && !orderableIpError && !loading.serviceCanBeOrdered"
         >
             <div data-ng-show="!loading.services && servicesList.length">
@@ -98,6 +99,7 @@
         <!-- Step 2: Form -->
         <div
             data-wizard-step
+            data-wizard-step-on-previous="trackPrevious"
             data-wizard-step-on-load="loadOrderForm"
             data-wizard-step-valid="orderFormValid()"
         >
@@ -115,6 +117,7 @@
         <!-- Step 3: Durations -->
         <div
             data-wizard-step
+            data-wizard-step-on-previous="trackPrevious"
             data-wizard-step-on-load="getDurations"
             data-wizard-step-valid="model.duration"
         >
@@ -132,6 +135,7 @@
         <!-- Step 4: Contracts -->
         <div
             data-wizard-step
+            data-wizard-step-on-previous="trackPrevious"
             data-wizard-step-on-load="loadContracts"
             data-wizard-step-valid="agree.value"
         >
@@ -145,6 +149,7 @@
         <!-- Step 5: Resume and validation -->
         <div
             data-wizard-step
+            data-wizard-step-on-load="trackStep(5)"
             data-wizard-step-on-previous="backToContracts"
             data-wizard-step-valid="!loading.validation"
         >

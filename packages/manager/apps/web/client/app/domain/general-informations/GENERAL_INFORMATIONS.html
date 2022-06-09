@@ -148,7 +148,7 @@
                     <oui-action-menu
                         data-compact
                         data-placement="end"
-                        data-ng-if="$ctrl.domain.hasDnsAnycast === false && $ctrl.domainInfos.contactAdmin === $ctrl.loggedInUser"
+                        data-ng-if="$ctrl.domain.hasDnsAnycast === false && $ctrl.canDisplayDomainOwner()"
                     >
                         <oui-action-menu-item
                             data-on-click="$ctrl.goToDnsAnycast()"
@@ -516,6 +516,19 @@
                                 <span
                                     class="small"
                                     data-translate="global_billing"
+                                ></span>
+                            </p>
+                            <p
+                                class="mb-0"
+                                data-ng-if="$ctrl.canDisplayDomainOwner()"
+                            >
+                                <span
+                                    data-ng-bind="::$ctrl.getDomainOwnerInformation()"
+                                ></span
+                                >:
+                                <span
+                                    class="small"
+                                    data-translate="domain_contact_owner"
                                 ></span>
                             </p>
                         </ul>

@@ -20,20 +20,6 @@ export default class PciProjectNewConfigCtrl {
     }).join(', ');
   }
 
-  setCartProjectItem() {
-    if (
-      this.model.description &&
-      !this.cart.projectItem.descriptionConfiguration
-    ) {
-      return this.pciProjectNew.setCartProjectItemDescription(
-        this.cart,
-        this.model.description,
-      );
-    }
-
-    return this.$q.when();
-  }
-
   setHdsOptionItem() {
     const { cartId, projectItem, hdsItem } = this.cart;
     const { hds: hdsIsChecked } = this.model;
@@ -95,10 +81,6 @@ export default class PciProjectNewConfigCtrl {
       .finally(() => {
         this.hds.isInprogressRequest = false;
       });
-  }
-
-  onContactUsLinkClick() {
-    this.trackClick('PublicCloud::pci::projects::new_project_contact-us');
   }
 
   /* -----  End of Events  ------ */

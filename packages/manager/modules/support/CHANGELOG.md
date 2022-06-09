@@ -1,3 +1,42 @@
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.9.3...@ovh-ux/manager-support@1.10.0) (2022-06-07)
+
+
+### Features
+
+* **dedicated:** add description on several section ([#6688](https://github.com/ovh/manager/issues/6688)) ([cc9017b](https://github.com/ovh/manager/commit/cc9017bd7e42ad013642f381a524de10060336d7))
+
+
+
+## [1.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.9.2...@ovh-ux/manager-support@1.9.3) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+## [1.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.9.1...@ovh-ux/manager-support@1.9.2) (2022-05-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1585] ([ea42ea8](https://github.com/ovh/manager/commit/ea42ea8328971cdd664e15fd9ed0874eb5ebdfbe))
+* **i18n:** add missing translations [CDS 1586] ([b8b625b](https://github.com/ovh/manager/commit/b8b625b57603f09ecadba766e6d4ab418bf31729))
+* **i18n:** add missing translations [CDS 1591] ([346f31e](https://github.com/ovh/manager/commit/346f31e71d3909407e995c5613aa154f02439f92))
+* **i18n:** add missing translations [CDS 1598] ([aef711f](https://github.com/ovh/manager/commit/aef711f49f3620b13c6ac5974bf6bb16eb534cb3))
+
+
+
+## [1.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.9.0...@ovh-ux/manager-support@1.9.1) (2022-04-25)
+
+
+### Bug Fixes
+
+* **pci.notebooks:** fix notebook informations resources ([#6676](https://github.com/ovh/manager/issues/6676)) ([0de1933](https://github.com/ovh/manager/commit/0de19333642b53f0eb3c3d0e27557f244611f3ba))
+
+
+
 # [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.8.4...@ovh-ux/manager-support@1.9.0) (2022-04-21)
 
 

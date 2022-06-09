@@ -13,6 +13,8 @@
   "telephony_service_contact_occupation": "Profession",
   "telephony_service_contact_siret": "Numéro SIRET",
   "telephony_service_contact_siret_invalid": "Le numéro de SIRET saisi est invalide",
+  "telephony_service_contact_tva": "Numéro TVA",
+  "telephony_service_contact_tva_invalid": "Le numéro de TVA saisi est invalide",
   "telephony_service_contact_ape": "APE / NAF",
   "telephony_service_contact_ape_invalid": "Le code APE doit comporter 4 chiffres et 1 lettre.",
   "telephony_service_contact_social_nomination": "Dénomination de l’entreprise",
@@ -60,5 +62,6 @@
   "telephony_service_contact_bulk_all_success": "La modification des coordonnées a bien été appliquée aux services sélectionnés.",
   "telephony_service_contact_bulk_some_success": "La modification des coordonnées a bien été appliquée à {{ count }} des services sélectionnés.",
   "telephony_service_contact_bulk_error": "La modification des coordonnées n'a pu être appliquée au(x) service(s) suivant(s) :",
-  "telephony_service_contact_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification des coordonnées."
+  "telephony_service_contact_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification des coordonnées.",
+  "telephony_service_contact_required_fields": "Les champs suivis d'un astérisque sont obligatoires."
 }

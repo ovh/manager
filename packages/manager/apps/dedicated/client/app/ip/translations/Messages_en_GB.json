@@ -51,8 +51,8 @@
   "ip_table_search": "Searching....",
   "ip_table_ipblock_refresh": "Refreshing IP {{t0}}...",
   "ip_manage_task_pending": "An operation is currently being processed on one of the IPs in your server.",
-  "ip_migration": "Import failover IP",
-  "ip_export": "Export my IPs (CSV)",
+  "ip_migration": "Import IP addresses from SyS to OVHcloud",
+  "ip_export": "Export IP addresses to a CSV file",
   "ip_export_csv_expl": "Depending on the number of IPs you have, it may take a few seconds to export your IPs.",
   "ip_export_csv_confirm": "Are you sure you want to export your IPs in CSV format?",
   "ip_export_csv_success": "Your IPs have been exported.",
@@ -484,7 +484,7 @@
   "ip_order_finish_error": "An error occurred on ordering additional IPs.",
   "ip_order_free_activation_fee": "If you have a server with free IPs included, you will not be billed these activation fees following the renewal of your server.",
   "ip_organisation_title": "Manage my organisations",
-  "ip_organisation_button": "My organisations",
+  "ip_organisation_button": "Manage my organisations",
   "ip_organisation_table_organisation": "Organisation",
   "ip_organisation_table_type": "Type",
   "ip_organisation_table_lastname": "Surname",
@@ -673,5 +673,10 @@
   "ip_table_manage_delegation_ipv6block_delete_err": "An error occurred while deleting the reverse DNS delegation:",
   "ip_table_manage_delegation_ipv6block_resume": "Task summary ",
   "ip_table_manage_delegation_ipv6block_to_add": "Reverse to be added ",
-  "ip_table_manage_delegation_ipv6block_to_delete": "Reverse to delete "
+  "ip_table_manage_delegation_ipv6block_to_delete": "Reverse to delete ",
+  "ip_order_title": "Order",
+  "ip_administration_title": "Administer",
+  "ip_addresses_grid_header": "My public IP addresses and associated services",
+  "ip_order_additional_ips": "Additional IPs",
+  "ip_table_header_campus": "Campus"
 }

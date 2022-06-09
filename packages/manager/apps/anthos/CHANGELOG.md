@@ -1,3 +1,30 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos-app@1.0.10...@ovh-ux/manager-anthos-app@1.1.0) (2022-06-07)
+
+
+### Features
+
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
+## [1.0.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos-app@1.0.9...@ovh-ux/manager-anthos-app@1.0.10) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+## [1.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos-app@1.0.8...@ovh-ux/manager-anthos-app@1.0.9) (2022-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+
+
+
 ## [1.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos-app@1.0.7...@ovh-ux/manager-anthos-app@1.0.8) (2022-03-24)
 
 

@@ -57,7 +57,7 @@
   "ovhManagerSupport_new_serviceType_ms_services_sharepoint": "SharePoint",
   "ovhManagerSupport_new_serviceType_all_dom": "Packs de dominios",
   "ovhManagerSupport_new_serviceType_cluster_hadoop": "Data Analytics Platform",
-  "ovhManagerSupport_new_serviceType_dedicated_server": "Servidor dedicado (bare metal)",
+  "ovhManagerSupport_new_serviceType_dedicated_server": "Servidor dedicado (Bare Metal)",
   "ovhManagerSupport_new_serviceType_dedicated_housing": "Servidor en housing",
   "ovhManagerSupport_new_serviceType_hosting_web": "Alojamiento web",
   "ovhManagerSupport_new_serviceType_ipLoadbalancing": "IP Load Balancer",
@@ -95,7 +95,7 @@
   "ovhManagerSupport_new_serviceType_ssl_gateway": "SSL Gateway",
   "ovhManagerSupport_new_serviceType_paas_timeseries": "PaaS TimeSeries",
   "ovhManagerSupport_new_serviceType_hpcspot": "HPC Spot",
-  "ovhManagerSupport_new_serviceType_saas_csp_2": "Microsoft 365 y Office 365",
+  "ovhManagerSupport_new_serviceType_saas_csp_2": "Microsoft 365 y Office 365 Reseller",
   "ovhManagerSupport_new_serviceType_horizon_view": "Horizon View",
   "ovhManagerSupport_new_serviceType_other": "Otra solicitud",
   "ovhManagerSupport_new_serviceType_ai_training_job": "AI Training",
@@ -107,7 +107,7 @@
   "ovhManagerSupport_new_serviceType_managed_kafka": "Public Cloud Databases for Kafka",
   "ovhManagerSupport_new_serviceType_managed_opensearch": "Public Cloud Databases for OpenSearch",
   "ovhManagerSupport_new_serviceType_managed_kafka_mirror_maker": "Public Cloud Databases for Kafka MirrorMaker",
-  "ovhManagerSupport_new_service": "Servicio ",
+  "ovhManagerSupport_new_service": "Servicio",
   "ovhManagerSupport_new_service_unknown": "Mi servicio no aparece en la lista o todavía no dispongo de este servicio.",
   "ovhManagerSupport_new_issue": "Pregunta",
   "ovh_manager_support_tickets_new_issues_form_resources_guides_header": "Guías",
@@ -119,7 +119,7 @@
   "ovhManagerSupport_new_helpfull_create": "Crear una nueva solicitud",
   "ovhManagerSupport_new_creation_tip": "Para un tratamiento más rápido de su tíquet, elija el tipo correcto de pregunta y describa su solicitud de la forma más precisa posible.",
   "ovhManagerSupport_new_creation_subject": "Asunto",
-  "ovhManagerSupport_new_creation_submit": "Aceptar",
+  "ovhManagerSupport_new_creation_submit": "Confirmar",
   "ovhManagerSupport_new_creation_cancel": "Volver",
   "ovhManagerSupport_new_create": "Crear una nueva solicitud",
   "ovhManagerSupport_new_creation_success": "Su tíquet número <a ui-sref=\"{{ state }}\">{{ id }}</a> se ha registrado.",
@@ -143,5 +143,6 @@
   "ovhManagerSupport_new_serviceType_managed_m3": "Public Cloud databases for M3",
   "ovhManagerSupport_new_serviceType_managed_m3_aggregator": "Public Cloud databases for M3 Aggregator",
   "ovhManagerSupport_new_serviceType_managed_kafka_connect": "Public Cloud databases for Kafka Connect",
-  "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud databases for Cassandra"
+  "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud databases for Cassandra",
+  "ovhManagerSupport_new_serviceType_ai_notebook": "AI Notebooks"
 }

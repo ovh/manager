@@ -1,3 +1,22 @@
+## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.2.2...@ovh-ux/manager-container-app@0.2.3) (2022-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+
+
+
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.2.1...@ovh-ux/manager-container-app@0.2.2) (2022-05-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1590] ([f82f630](https://github.com/ovh/manager/commit/f82f63003ed78808900238d7991734c91ca52f8f))
+* **i18n:** add missing translations [CDS 1591] ([346f31e](https://github.com/ovh/manager/commit/346f31e71d3909407e995c5613aa154f02439f92))
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.2.0...@ovh-ux/manager-container-app@0.2.1) (2022-04-20)
 
 

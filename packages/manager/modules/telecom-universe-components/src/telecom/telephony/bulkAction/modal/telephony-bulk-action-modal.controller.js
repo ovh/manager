@@ -1,13 +1,12 @@
+import uniqBy from 'lodash/uniqBy';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
-import flatten from 'lodash/flatten';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import head from 'lodash/head';
 import isFunction from 'lodash/isFunction';
 import keys from 'lodash/keys';
 import last from 'lodash/last';
-import map from 'lodash/map';
 import partition from 'lodash/partition';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
@@ -19,14 +18,16 @@ export default /* @ngInject */ function(
   $uibModalInstance,
   atInternet,
   modalBindings,
-  tucTelecomVoip,
+  tucVoipService,
+  tucVoipBillingAccount,
 ) {
   const self = this;
-  let allServices;
+  let allServices = [];
 
   self.loading = {
     init: false,
     bulk: false,
+    services: false,
   };
 
   self.model = {
@@ -57,6 +58,8 @@ export default /* @ngInject */ function(
         billingAccount: self.model.billingAccount,
       });
     }
+
+    services = uniqBy(services, 'serviceName');
 
     if (self.model.searchService !== '') {
       return $filter('tucPropsFilter')(services, {
@@ -133,11 +136,6 @@ export default /* @ngInject */ function(
   self.cancel = function cancel(reason) {
     trackClick('cancel');
     return $uibModalInstance.dismiss(reason);
-  };
-
-  self.onBillingAccountSelectChange = function onBillingAccountSelectChange() {
-    self.state.selectAll = false;
-    self.serviceList = getFilteredServiceList();
   };
 
   self.onToggleAllCheckStateBtnClick = function onToggleAllCheckStateBtnClick() {
@@ -226,6 +224,49 @@ export default /* @ngInject */ function(
     }
   }
 
+  self.onBillingAccountSelectChange = function onBillingAccountSelectChange() {
+    self.loading.services = true;
+    return tucVoipService
+      .fetchAll(self.model.billingAccount)
+      .then((services) => {
+        // apply a first filter based on serviceType
+        const newServices = filter(
+          services,
+          (service) =>
+            self.bindings.serviceType === 'all' ||
+            service.serviceType === self.bindings.serviceType,
+        );
+
+        allServices = Array.from(new Set(allServices.concat(newServices)));
+
+        if (
+          self.bindings.filterServices &&
+          isFunction(self.bindings.filterServices())
+        ) {
+          allServices = self.bindings.filterServices()(allServices);
+          const filterPromise = isFunction(allServices.then)
+            ? allServices
+            : $q.when(allServices);
+
+          filterPromise.then((filteredServices) => {
+            allServices = filteredServices;
+            completeServiceListDetails();
+          });
+
+          return filterPromise;
+        }
+
+        completeServiceListDetails();
+        self.loading.services = false;
+
+        return null;
+      })
+      .finally(() => {
+        self.loading.services = false;
+        self.state.selectAll = false;
+      });
+  };
+
   self.$onInit = function onInit() {
     self.loading.init = true;
 
@@ -238,38 +279,17 @@ export default /* @ngInject */ function(
       });
     }
 
-    return tucTelecomVoip.fetchAll(false).then((billingAccounts) => {
-      self.billingAccounts = sortBy(billingAccounts, (billingAccount) =>
-        billingAccount.getDisplayedName(),
-      );
-
-      // get all services of each billingAccounts and apply a first filter based on serviceType
-      allServices = filter(
-        flatten(map(self.billingAccounts, 'services')),
-        (service) =>
-          self.bindings.serviceType === 'all' ||
-          service.serviceType === self.bindings.serviceType,
-      );
-
-      if (
-        self.bindings.filterServices &&
-        isFunction(self.bindings.filterServices())
-      ) {
-        allServices = self.bindings.filterServices()(allServices);
-        const filterPromise = isFunction(allServices.then)
-          ? allServices
-          : $q.when(allServices);
-
-        filterPromise.then((filteredServices) => {
-          allServices = filteredServices;
-          completeServiceListDetails();
-          self.loading.init = false;
-        });
-      } else {
-        completeServiceListDetails();
+    tucVoipBillingAccount
+      .fetchAll()
+      .then((billingAccounts) => {
+        self.billingAccounts = sortBy(billingAccounts, (billingAccount) =>
+          billingAccount.getDisplayedName(),
+        );
+        return self.onBillingAccountSelectChange();
+      })
+      .finally(() => {
         self.loading.init = false;
-      }
-    });
+      });
   };
 
   /* -----  End of INITIALIZATION  ------ */

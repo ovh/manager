@@ -7,7 +7,13 @@
                 'oui-progress-tracker__step_active': step.active,
             }"
         >
-            <span class="oui-progress-tracker__status"></span>
+            <button
+                type="button"
+                class="oui-progress-tracker__button"
+                data-ng-click="$ctrl.onProgressStepClick(step)"
+            >
+                <span class="oui-progress-tracker__status"></span>
+            </button>
         </li>
     </ol>
 </nav>

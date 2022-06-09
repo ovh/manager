@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dbaas-logs",
-  "version": "1.6.5",
+  "version": "1.6.6",
   "private": true,
   "description": "OVHcloud Logs Data Platform",
   "repository": {
@@ -38,6 +38,6 @@
     "angular-websocket": "^2.0.1",
     "bootstrap": "~3.3.0",
     "moment": "^2.24.0",
-    "ovh-api-services": "^11.2.0"
+    "ovh-api-services": "^14.0.6"
   }
 }

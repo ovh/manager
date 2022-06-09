@@ -7,6 +7,8 @@ import 'ovh-api-services';
 import template from './edit.html';
 import controller from './edit.controller';
 
+import './edit.less';
+
 const moduleName =
   'ovhManagerTelecomComponentsTelecomTelephonyGroupNumberFeatureOvhPabxDiaplplanExtensionRuleEdit';
 

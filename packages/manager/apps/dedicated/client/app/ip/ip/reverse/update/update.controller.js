@@ -1,6 +1,7 @@
 import clone from 'lodash/clone';
 import find from 'lodash/find';
 import get from 'lodash/get';
+import { TRACKING_PREFIX } from '../../ip-ip.constant';
 
 export default class IpReverseUpdateCtrl {
   /* @ngInject */
@@ -14,6 +15,7 @@ export default class IpReverseUpdateCtrl {
     Ip,
     IpReverse,
     Validator,
+    atInternet,
   ) {
     this.$location = $location;
     this.$q = $q;
@@ -24,6 +26,7 @@ export default class IpReverseUpdateCtrl {
     this.Ip = Ip;
     this.IpReverse = IpReverse;
     this.Validator = Validator;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -79,6 +82,10 @@ export default class IpReverseUpdateCtrl {
   }
 
   updateReverse() {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::update-reverse::confirm`,
+      type: 'action',
+    });
     this.loading = true;
 
     // If not modified, return
@@ -120,5 +127,13 @@ export default class IpReverseUpdateCtrl {
   cancelAction() {
     this.Ip.cancelActionParam('reverse');
     this.$scope.resetAction();
+  }
+
+  close() {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::update-reverse::cancel`,
+      type: 'action',
+    });
+    this.cancelAction();
   }
 }

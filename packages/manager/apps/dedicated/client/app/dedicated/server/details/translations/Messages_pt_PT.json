@@ -344,7 +344,7 @@
   "server_tab_USB_STORAGE_order_select_duration": "Selecione a duração:",
   "server_configuration_monitoring_activated": "Ativado",
   "server_configuration_monitoring_disabled": "Desativado",
-  "server_configuration_distribution": "Sistema (SO)",
+  "server_configuration_distribution": "Último sistema operativo (SO) instalado pela OVHcloud",
   "server_configuration_distribution_none": "Não instalado",
   "server_configuration_distribution_byoi": "BringYourOwnImage",
   "server_configuration_boot": "Boot",
@@ -1203,5 +1203,7 @@
   "server_configuration_installation_VMFSL": "VMFSL",
   "server_nutanix_cluster_node_warning_1": "Este servidor dedicado faz parte de um cluster Nutanix: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "Recomendamos que efetue todas as alterações de configuração diretamente no painel de controlo do servidor associado ao seu cluster Nutanix: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "Todas as ações de faturação relacionadas com este servidor são visíveis no seu cluster Nutanix: {{clusterDashboardLink}}"
+  "server_nutanix_cluster_node_warning_3": "Todas as ações de faturação relacionadas com este servidor são visíveis no seu cluster Nutanix: {{clusterDashboardLink}}",
+  "server_rtm_eol_info": "Informação importante relativa à obsolescência do serviço Real Time Monitoring - o serviço continuará a funcionar até 30 de junho de 2022. Após essa data, iremos parar a apresentação dos seus dados de consumo, sem que isso afete o funcionamento do seu servidor.",
+  "server_configuration_gateway_ip": "Gateway IPv4"
 }

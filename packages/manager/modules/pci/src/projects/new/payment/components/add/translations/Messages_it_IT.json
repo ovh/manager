@@ -1,11 +1,11 @@
 {
-  "pci_project_new_payment_method_save_explain_part_1": "Per creare un progetto, devi confermare la tua identità aggiungendo un metodo di pagamento. Questo ci permette di proteggere meglio la nostra community dagli spam e dai bot.",
+  "pci_project_new_payment_method_save_explain_part_1": "Per creare un progetto, è prima necessario confermare l’identità aggiungendo un metodo di pagamento. Questo ci permette di proteggere meglio la nostra community da Spam e bot.",
   "pci_project_new_payment_method_save_explain_part_2": "Se non utilizzi alcun servizio OVHcloud, non sosterrai nessun costo.",
   "pci_project_new_payment_method_add_explain": "Per utilizzare questo servizio è necessario salvare un metodo di pagamento. Non vengono eseguiti addebiti o prelievi se non vengono utilizzate risorse.",
   "pci_project_new_payment_method_add_info_paypal": "Clicca su “PayPal” per essere reindirizzato all'interfaccia di pagamento sicura PayPal, in cui sarà possibile registrare il tuo conto.",
   "pci_project_new_payment_method_add_info_bank_account": "Cliccando su \"Aggiungi\" verrai reindirizzato alla sezione <a href=\"{{ paymentMethodSection }}\">I tuoi metodi di pagamento</a> dello Spazio Cliente.",
-  "pci_project_new_payment_method_add_credit_card_info_part_1": "Non verrà effettuato alcun prelievo sulla tua carta bancaria.",
-  "pci_project_new_payment_method_add_credit_card_info_part_2": "In una fase successiva, per verificare la validità della carta inserita verrà effettuato un tentativo di prelievo.",
+  "pci_project_new_payment_method_add_credit_card_info_part_1": "Non verrà effettuato alcun prelievo sulla carta bancaria.",
+  "pci_project_new_payment_method_add_credit_card_info_part_2": "In una fase successiva, verrà effettuato un tentativo di prelievo per accertare la validità della carta inserita.",
   "pci_project_new_payment_method_add_warning_paypal_account": "Selezionando PayPal, verrà eseguita una transazione di {{amount}} sull’account per verificarne il corretto funzionamento. Questo credito non verrà perso, ma utilizzato per il saldo delle prime risorse attivate.",
   "pci_project_new_payment_method_add_warning_bank_account": "Il conto bancario sarà convalidato entro 24-48 ore a partire dalla ricezione dell’autorizzazione al prelievo. A convalida avvenuta sarà possibile creare un progetto Public Cloud.",
   "pci_project_new_payment_method_add_credit": "Aggiungi crediti:"

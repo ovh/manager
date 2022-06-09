@@ -27,5 +27,6 @@ export default {
     trackPage: '<',
     sendTrack: '<',
     trackProjectCreationError: '<',
+    onProgressStepClick: '<',
   },
 };

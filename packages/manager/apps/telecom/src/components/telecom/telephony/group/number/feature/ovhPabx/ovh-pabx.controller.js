@@ -52,11 +52,7 @@ export default class OvhPabxCtrl {
 
     return this.getTranslations()
       .then(() => {
-        initPromises = [
-          this.ovhPabx.getDialplans(),
-          this.ovhPabx.getSounds(),
-          this.TelephonyMediator.getAll(),
-        ];
+        initPromises = [this.ovhPabx.getDialplans(), this.ovhPabx.getSounds()];
 
         if (
           this.ovhPabx.featureType === 'cloudIvr' ||

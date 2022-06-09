@@ -6,7 +6,7 @@ import orderBy from 'lodash/orderBy';
 import set from 'lodash/set';
 import toInteger from 'lodash/toInteger';
 
-import { IP_TYPE } from './ip-ip.constant';
+import { IP_TYPE, BRING_YOUR_OWN_IP } from './ip-ip.constant';
 
 export default /* @ngInject */
 (
@@ -24,6 +24,8 @@ export default /* @ngInject */
   goToFirewall,
   goToGameFirewall,
   goToOrganisation,
+  goToAgoraOrder,
+  goToByoipConfiguration,
   Ip,
   ipFeatureAvailability,
   IpFirewall,
@@ -33,7 +35,12 @@ export default /* @ngInject */
   IpVirtualMac,
   orderIpAvailable,
   Validator,
+  trackPage,
+  trackClick,
+  isByoipAvailable,
 ) => {
+  $scope.isByoipAvailable = isByoipAvailable;
+
   $scope.currentView = 'table';
   $scope.alerts = {
     mitigation: [],
@@ -42,6 +49,7 @@ export default /* @ngInject */
     spam: [],
   };
   $scope.IP_TYPE = IP_TYPE;
+  $scope.BRING_YOUR_OWN_IP = BRING_YOUR_OWN_IP;
 
   // pagination
   $scope.pageNumber = toInteger($stateParams.page) || 1;
@@ -101,6 +109,8 @@ export default /* @ngInject */
     ipFeatureAvailability.allowIPFailoverOrder() && orderIpAvailable;
   $scope.canOrderAgoraIPFO = () =>
     ipFeatureAvailability.allowIPFailoverAgoraOrder() && orderIpAvailable;
+  $scope.goToAgoraOrder = goToAgoraOrder;
+  $scope.goToByoipConfiguration = goToByoipConfiguration;
 
   $scope.singleService = () =>
     $scope.serviceName !== '_ALL' && $scope.serviceName !== 'FAILOVER';
@@ -361,6 +371,11 @@ export default /* @ngInject */
     $state.go('app.ip', { page: 1, serviceName }, { reload: true });
   };
 
+  $scope.goToIpAdditionalOrder = () => {
+    trackPage('order');
+    $state.go('app.ip.dashboard.agora-order');
+  };
+
   $scope.alertsCount = function alertsCount(ipBlock) {
     if (ipBlock) {
       return (
@@ -513,6 +528,7 @@ export default /* @ngInject */
     );
   };
   $scope.displayOrganisation = function displayOrganisation() {
+    trackClick('manage-organisation');
     goToOrganisation().then(() =>
       $scope.$broadcast('ips.organisation.display'),
     );
@@ -568,6 +584,36 @@ export default /* @ngInject */
   };
 
   init();
+
+  $scope.goToEditDescription = function goToEditDescription(ipBlock) {
+    trackPage('edit-description');
+    $scope.setAction('ip/block/description/edit/ip-ip-block-description-edit', {
+      ipBlock,
+    });
+  };
+
+  $scope.goToUpdateReverse = function goToUpdateReverse(ipBlock, ip) {
+    trackPage('update-reverse');
+    $scope.setAction('ip/reverse/update/ip-ip-reverse-update', { ipBlock, ip });
+  };
+
+  $scope.exportCsv = function exportCsv(ipsList) {
+    trackPage('export-csv');
+    trackClick('export-csv');
+    $scope.setAction('ip/export-csv/ip-ip-export-csv', { ipsList });
+  };
+
+  $scope.importIPFO = function importIPFO() {
+    trackPage('import-failover');
+    trackClick('import');
+    $scope.setAction('ip/legacyOrder/migrate/ip-ip-legacyOrder-migrate');
+  };
+
+  $scope.orderIPFO = function orderIPFO() {
+    trackClick('order-additional-ip');
+    trackPage('order-additional-ip');
+    $scope.setAction('ip/legacyOrder/ip-ip-legacyOrder');
+  };
 
   if ($location.search().action === 'toggleFirewall' && $location.search().ip) {
     $timeout(() => {

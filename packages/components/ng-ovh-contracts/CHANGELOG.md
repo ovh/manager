@@ -1,3 +1,12 @@
+# [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.0.7...@ovh-ux/ng-ovh-contracts@4.1.0) (2022-05-04)
+
+
+### Features
+
+* **components.ovh-contracts:** allow to inline items ([acb6e37](https://github.com/ovh/manager/commit/acb6e376ffc379e8baa1126c764ceba896bf8c75))
+
+
+
 ## [4.0.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.0.6...@ovh-ux/ng-ovh-contracts@4.0.7) (2022-03-24)
 
 

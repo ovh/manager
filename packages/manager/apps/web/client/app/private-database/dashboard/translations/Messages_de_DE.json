@@ -481,5 +481,18 @@
   "privateDatabase_tabs_list_extensions_disable_success": "Die Erweiterung wurde erfolgreich deaktiviert.",
   "privateDatabase_tabs_list_extensions_disable_error": "Bei der Deaktivierung der Erweiterung ist ein Fehler aufgetreten.",
   "privateDatabase_order_sql_period_sub_title": "Wie lange möchten Sie sie benutzen? ",
-  "privateDatabase_configuration_field_sql_mode": "Die Option „sql_mode“ betrifft die unterstützte SQL-Syntax und die Überprüfungen der Datenvalidierung durch MySQL/MariaDB."
+  "privateDatabase_configuration_field_sql_mode": "Die Option „sql_mode“ betrifft die unterstützte SQL-Syntax und die Überprüfungen der Datenvalidierung durch MySQL/MariaDB.",
+  "privateDatabase_configuration_documentation": "Weitere Informationen zu diesen Optionen",
+  "privateDatabase_dashboard_cpu_throttle": "CPU-Auslastung",
+  "privateDatabase_dashboard_cpu_saturation": "CPU im Zustand der Auslastung in den letzten 24 Stunden.",
+  "privateDatabase_modale_cpu_throttle_title": "CPU-Auslastungen",
+  "privateDatabase_modale_cpu_throttle_state_button": "CPU-Auslastungen überprüfen",
+  "privateDatabase_modale_cpu_throttle_close_button": "Schließen",
+  "privateDatabase_modale_cpu_throttle_info": "CPU-Auslastungen in den letzten {{t0}} Tagen.<br />Nur die letzten {{t1}} Auslastungen sind verfügbar.",
+  "privateDatabase_modale_cpu_throttle_tab_event_start_date": "Startdatum",
+  "privateDatabase_modale_cpu_throttle_tab_event_end_date": "Enddatum",
+  "privateDatabase_modale_cpu_throttle_tab_duration": "Dauer der Auslastung",
+  "privateDatabase_modale_cpu_throttle_ongoing_cpu_throttle": "Aktuelle CPU-Auslastung",
+  "privateDatabase_modale_cpu_throttle_no_cpu_throttle": "Keine CPU-Auslastung.",
+  "privateDatabase_modale_cpu_throttle_info_order": "Es wird empfohlen, Ihre Anfragen und Indizes zu verbessern, oder aber Ihre Datenbanken auf eine größere Anzahl von CloudDB-Instanzen zu verteilen."
 }

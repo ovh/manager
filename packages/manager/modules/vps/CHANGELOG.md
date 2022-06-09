@@ -1,3 +1,39 @@
+# [2.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.6...@ovh-ux/manager-vps@2.21.0) (2022-06-07)
+
+
+### Features
+
+* vps eol 2016 2018 ([#7296](https://github.com/ovh/manager/issues/7296)) ([c26f8f4](https://github.com/ovh/manager/commit/c26f8f4b84be5d8adf725937dc0f5a27b23a575c))
+
+
+
+## [2.20.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.5...@ovh-ux/manager-vps@2.20.6) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+## [2.20.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.4...@ovh-ux/manager-vps@2.20.5) (2022-05-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1585] ([ea42ea8](https://github.com/ovh/manager/commit/ea42ea8328971cdd664e15fd9ed0874eb5ebdfbe))
+
+
+
+## [2.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.3...@ovh-ux/manager-vps@2.20.4) (2022-04-26)
+
+
+### Bug Fixes
+
+* **dashboard:** display region icon by adding missing class separator ([#6972](https://github.com/ovh/manager/issues/6972)) ([4fb8916](https://github.com/ovh/manager/commit/4fb8916be0b9f81d77bac4f4794a735638f12e31))
+
+
+
 ## [2.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.2...@ovh-ux/manager-vps@2.20.3) (2022-04-22)
 
 

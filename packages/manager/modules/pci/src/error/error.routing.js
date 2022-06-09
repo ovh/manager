@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
       submitAction: null,
       message: null,
       image: null,
+      to: null,
     },
     resolve: {
       breadcrumb: () => null,
@@ -30,6 +31,13 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return error;
       },
+      product: /* @ngInject */ ($state, $transition$) => {
+        const { state, params } = $transition$.params().to;
+        const url = $state.href(state, params, { lossy: true }).split('/');
+        // url of all states follow #/pci/projects/projectId/(instance/storages/load-balancer)
+        // if type of product is present, pick it otherwise generalise the label 'pci-project'
+        return `${url[1]}-${url[4] ? url[4] : 'project'}`;
+      },
       submitAction: /* @ngInject */ ($window) => () =>
         $window.location.reload(),
 
@@ -44,6 +52,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
       submitLink: /* @ngInject */ ($transition$) =>
         $transition$.params().submitLink || null,
+    },
+    atInternet: {
+      ignore: true,
     },
   });
 };

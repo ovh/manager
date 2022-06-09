@@ -17,6 +17,7 @@
             data-ng-if="$ctrl.rule.fieldName === 'area'"
         ></span>
         <span
+            data-ng-if="$ctrl.rule.fieldName !== 'area'"
             data-translate="{{ 'signup_field_' + $ctrl.rule.displayFieldName }}"
         ></span>
         <em

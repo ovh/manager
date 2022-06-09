@@ -10,6 +10,7 @@ import {
   NOTEBOOK_STORAGE_INFO,
   NOTEBOOK_TAGS,
   NOTEBOOK_VOLUME_TYPE,
+  NOTEBOOK_FREE_WORKSPACE_STORAGE_DEFAULT,
 } from './notebook.constants';
 
 export default class Notebook {
@@ -103,8 +104,12 @@ export default class Notebook {
     return this.status?.state === NOTEBOOK_STATUS.STOPPING;
   }
 
+  isDeleting() {
+    return this.status?.state === NOTEBOOK_STATUS.DELETING;
+  }
+
   isPending() {
-    return this.isStarting() || this.isStopping();
+    return this.isStarting() || this.isStopping() || this.isDeleting();
   }
 
   isFailed() {
@@ -269,6 +274,17 @@ export default class Notebook {
 
   get ephemeralStorage() {
     return this.spec.resources.ephemeralStorage;
+  }
+
+  get workspaceFreeStorage() {
+    return (
+      this.status?.workspace?.storageFree ||
+      NOTEBOOK_FREE_WORKSPACE_STORAGE_DEFAULT
+    );
+  }
+
+  get workspaceUsedStorage() {
+    return this.status?.workspace?.storageUsed;
   }
 
   get formattedRunningDuration() {

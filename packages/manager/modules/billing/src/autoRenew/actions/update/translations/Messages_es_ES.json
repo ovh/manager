@@ -7,7 +7,7 @@
   "billing_autorenew_service_update_service_period": "Frecuencia",
   "billing_autorenew_service_update_service_period_value": "{{ month }} mes(es)",
   "billing_autorenew_service_update_confirm": "Confirmar",
-  "billing_autorenew_service_update_success": "La renovación del servicio {{ service }} se ha actualizado.",
+  "billing_autorenew_service_update_success": "La renovación del servicio {{ service }} se ha actualizado. Si el cambio no aparece en la lista, por favor, vuelva a cargar la página.",
   "billing_autorenew_service_update_error": "Se ha producido un error al configurar la renovación: {{message}}.",
   "billing_autorenew_service_update_add_mean": "Añadir una forma de pago",
   "billing_autorenew_service_update_validate": "Validación",

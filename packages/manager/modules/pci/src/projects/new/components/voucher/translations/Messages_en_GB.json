@@ -1,14 +1,17 @@
 {
-  "pci_projects_new_voucher_question": "Do you have a voucher? ",
+  "pci_projects_new_voucher_question": "Voucher",
   "pci_projects_new_voucher_form_field": "Enter voucher or coupon",
   "pci_projects_new_voucher_form_field_amount": "Amount credited: {{ amount }}",
-  "pci_projects_new_voucher_form_field_error_invalid": "Invalid code",
-  "pci_projects_new_voucher_form_field_error_no_longer_valid": "Invalid code",
+  "pci_projects_new_voucher_form_field_error_invalid": "Invalid code entered.",
+  "pci_projects_new_voucher_form_field_error_no_longer_valid": "The code entered is no longer valid.",
   "pci_projects_new_voucher_form_field_error_default": "An error has occurred checking the code.",
   "pci_projects_new_voucher_form_add": "Add",
   "pci_projects_new_voucher_form_add_title": "Add a coupon or voucher",
   "pci_projects_new_voucher_form_remove": "Remove ",
   "pci_projects_new_voucher_form_remove_title": "Remove coupon or voucher",
   "pci_projects_new_voucher_form_reset_error": "An error has occurred removing your voucher.",
-  "pci_projects_new_voucher_title": "Got a promo code?"
+  "pci_projects_new_voucher_title": "Got a promo code?",
+  "pci_projects_new_voucher_form_field_placeholder": "Promo code",
+  "pci_projects_new_voucher_form_field_add_success": "Congratulations! You are receiving {{credit}} credits",
+  "pci_projects_new_voucher_form_field_error_too_many_attempt": "You have entered invalid promo codes, please try again later."
 }

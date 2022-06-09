@@ -1,3 +1,70 @@
+## [3.21.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.4...@ovh-ux/manager-server-sidebar@3.21.5) (2022-06-07)
+
+
+### Bug Fixes
+
+* **server-sidebar:** fix typo in conf for siptrunks ([86b128f](https://github.com/ovh/manager/commit/86b128fbf55c522905a0dc00b69b29bcf7ddef48))
+
+
+
+## [3.21.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.3...@ovh-ux/manager-server-sidebar@3.21.4) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+## [3.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.2...@ovh-ux/manager-server-sidebar@3.21.3) (2022-05-19)
+
+
+### Bug Fixes
+
+* **sidebar:** list standalone xdsl lines ([#7174](https://github.com/ovh/manager/issues/7174)) ([332317a](https://github.com/ovh/manager/commit/332317ad3eb493a2207e22fc496459487ea9a4f0))
+
+
+
+## [3.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.1...@ovh-ux/manager-server-sidebar@3.21.2) (2022-05-19)
+
+
+### Bug Fixes
+
+* **dedicated.server:** change url ecorange order for us ([#6830](https://github.com/ovh/manager/issues/6830)) ([4affaeb](https://github.com/ovh/manager/commit/4affaeb41861632fda5316b23a735477d95010af))
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+* **i18n:** add missing translations [CDS 1616] ([a183886](https://github.com/ovh/manager/commit/a183886ef4a9a7f41b79477982b182cd2716eb30))
+
+
+
+## [3.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.0...@ovh-ux/manager-server-sidebar@3.21.1) (2022-05-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1603] ([061637b](https://github.com/ovh/manager/commit/061637ba185a15576264d34e00f9e41b784ba416))
+* **i18n:** add missing translations [CDS 1607] ([767351e](https://github.com/ovh/manager/commit/767351e98eec96ef10ea195bed22a766262e5123))
+* **i18n:** add missing translations [CDS 1614] ([73ee9f7](https://github.com/ovh/manager/commit/73ee9f76f31bee84e18fd7f73e5201fdabd916e4))
+
+
+
+# [3.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.20.0...@ovh-ux/manager-server-sidebar@3.21.0) (2022-04-28)
+
+
+### Bug Fixes
+
+* **sdebar:** fix domain translation ([5a0e189](https://github.com/ovh/manager/commit/5a0e189f63d8f5eef7a29bf1e9ad1f583716540d))
+* **sidebar:** add pack prefix ([bcefdf4](https://github.com/ovh/manager/commit/bcefdf46a3ef04fa1b01a65555bfb8263c779681))
+* **sidebar:** force display search on pack and telephony ([cb38f74](https://github.com/ovh/manager/commit/cb38f74affc47212e323e610b9ba60f7f482ebde))
+* **sidebar:** update items sorting ([d744fbe](https://github.com/ovh/manager/commit/d744fbe9620e8a357d30532b2e068e1a68bb2320))
+
+
+### Features
+
+* **telecom:** manage telecom beta sidebar ([97d5c06](https://github.com/ovh/manager/commit/97d5c062a9850b926eaa78676a04825b9f9a3b18))
+* **telecom:** use server sidebar ([a0d14c8](https://github.com/ovh/manager/commit/a0d14c8179bb01a2ce31a8c64e8270aed253dd7a))
+
+
+
 # [3.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.19.1...@ovh-ux/manager-server-sidebar@3.20.0) (2022-04-20)
 
 

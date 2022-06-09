@@ -1,5 +1,8 @@
 <div data-ui-view class="billing-orders">
-    <oui-header data-heading="{{ :: 'orders_page_title' | translate }}">
+    <oui-header
+        data-heading="{{ :: 'orders_page_title' | translate }}"
+        data-description="{{ :: $ctrl.descriptionOfHeading() }}"
+    >
         <oui-guide-menu
             data-text="{{:: 'orders_guides' | translate }}"
             data-ng-if="$ctrl.billingGuideUrl"

@@ -92,6 +92,7 @@
   "domain_hosting_price_ht_label": "{{price}} HT",
   "domain_configuration_action_disable": "Désactiver",
   "domain_configuration_action_enable": "Activer",
+  "domain_contact_owner": "Propriétaire",
   "domain_tab_GENERAL_INFORMATIONS": "Informations générales",
   "domain_tab_DNS": "Serveurs DNS",
   "domain_tab_DNS_warning_only_one_dns": "Attention, il est fortement déconseillé de n'avoir qu'un seul serveur DNS actif.",

@@ -1,0 +1,120 @@
+<div class="telephony-service-choice">
+    <div class="my-3" data-ng-if="$ctrl.loading.init">
+        <oui-spinner data-size="m"></oui-spinner>
+    </div>
+    <div data-ng-if="!$ctrl.loading.init" data-ng-class="$ctrl.wrapperClass">
+        <div
+            class="telephony-service-choice-container"
+            data-ng-class="$ctrl.containerClass"
+        >
+            <header data-ng-if="!$ctrl.hideHeader">
+                <h2
+                    data-ng-if="!$ctrl.title"
+                    data-translate="telephony_service_choice_title"
+                ></h2>
+                <h2 data-ng-if="$ctrl.title" data-ng-bind="$ctrl.title"></h2>
+            </header>
+
+            <div id="groups" class="telephony-service-choice-section">
+                <!-- SEARCH BAR -->
+                <div class="oui-input-overlay mb-4">
+                    <input
+                        type="text"
+                        class="oui-input"
+                        name="searchService"
+                        id="searchService"
+                        data-ng-model="$ctrl.search"
+                        data-translate-attr="{ placeholder: 'common_search' }"
+                    />
+                    <span class="oui-icon oui-icon-search"></span>
+                </div>
+
+                <!-- SEARCH RESULTS -->
+                <div
+                    class="section-group"
+                    data-ng-repeat="group in $ctrl.groupList track by $index"
+                >
+                    <div
+                        id="{{ group }}"
+                        data-ng-if="$ctrl.loading.services[group]"
+                        data-in-view="$inview ? $ctrl.startLoadServices(group) : $ctrl.stopLoadServices(group)"
+                    >
+                        <div class="group-title text-capitalize">
+                            <span
+                                data-ng-bind="group.getDisplayedName()"
+                            ></span>
+                        </div>
+                        <oui-spinner></oui-spinner>
+                    </div>
+                    <div
+                        data-ng-if="!$ctrl.loading.services[group]"
+                        data-ng-repeat="service in group.services | filter:$ctrl.excludeFilter | filter:$ctrl.availableFilter | tucPropsFilter: { serviceName: $ctrl.search, description: $ctrl.search } track by $index"
+                    >
+                        <div
+                            class="group-title text-capitalize"
+                            data-ng-if="$index === 0"
+                        >
+                            <span
+                                data-ng-bind="group.getDisplayedName()"
+                            ></span>
+                        </div>
+                        <div class="section-item">
+                            <div class="oui-radio">
+                                <input
+                                    type="radio"
+                                    class="oui-radio__input"
+                                    id="ruleNumber-{{ service.serviceName }}"
+                                    name="ruleNumber"
+                                    data-ng-model="$ctrl.value"
+                                    data-ng-value="service.serviceName"
+                                    data-ng-change="$ctrl.onChange(service)"
+                                />
+                                <label
+                                    class="oui-radio__label-container"
+                                    for="ruleNumber-{{ service.serviceName }}"
+                                >
+                                    <span class="oui-radio__label">
+                                        <span class="oui-radio__icon"></span>
+                                        <span
+                                            class="oui-radio__text"
+                                            data-ng-bind="service.getDisplayedName()"
+                                        ></span>
+                                    </span>
+                                    <span class="oui-radio__description">
+                                        <i
+                                            data-translate="{{ 'telephony_service_choice_filter_type_' + $ctrl.getServiceType(service) }}"
+                                        ></i>
+                                        <i
+                                            data-ng-if="service.serviceName !== service.description"
+                                            data-ng-bind="' - ' + service.serviceName"
+                                        >
+                                        </i>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer
+                class="telephony-service-choice-footer"
+                data-ng-if="!$ctrl.hideFooter"
+            >
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    data-translate="submit"
+                    data-ng-disabled="!$ctrl.selectedService"
+                    data-ng-click="$ctrl.onValidate()"
+                ></button>
+                <button
+                    type="reset"
+                    class="btn btn-default mr-sm-2 float-left"
+                    data-translate="cancel"
+                    data-ng-click="$ctrl.onCancel()"
+                ></button>
+            </footer>
+        </div>
+    </div>
+</div>

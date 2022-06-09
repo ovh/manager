@@ -1,14 +1,17 @@
 {
-  "pci_projects_new_voucher_question": "Hai un voucher?",
+  "pci_projects_new_voucher_question": "Voucher",
   "pci_projects_new_voucher_form_field": "Inserisci un voucher",
   "pci_projects_new_voucher_form_field_amount": "Importo accreditato: {{ amount }}",
-  "pci_projects_new_voucher_form_field_error_invalid": "Codice non valido",
-  "pci_projects_new_voucher_form_field_error_no_longer_valid": "Codice non valido",
+  "pci_projects_new_voucher_form_field_error_invalid": "Il codice inserito non è corretto.",
+  "pci_projects_new_voucher_form_field_error_no_longer_valid": "Il codice inserito non è più valido.",
   "pci_projects_new_voucher_form_field_error_default": "Si è verificato un errore durante la verifica del codice.",
   "pci_projects_new_voucher_form_add": "Aggiungi",
   "pci_projects_new_voucher_form_add_title": "Aggiungi un voucher",
   "pci_projects_new_voucher_form_remove": "Cancella",
   "pci_projects_new_voucher_form_remove_title": "Rimuovi il voucher",
   "pci_projects_new_voucher_form_reset_error": "Si è verificato un errore durante la rimozione del voucher.",
-  "pci_projects_new_voucher_title": "Hai un codice promozionale?"
+  "pci_projects_new_voucher_title": "Hai un codice promozionale?",
+  "pci_projects_new_voucher_form_field_placeholder": "Codice promozionale",
+  "pci_projects_new_voucher_form_field_add_success": "Congratulazioni! Riceverai un credito di {{ credit }}",
+  "pci_projects_new_voucher_form_field_error_too_many_attempt": "Hai inserito codici promozionali errati, ti preghiamo di riprovare più tardi."
 }

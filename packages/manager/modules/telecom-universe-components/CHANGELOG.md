@@ -1,3 +1,39 @@
+## [7.11.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.11.0...@ovh-ux/ng-ovh-telecom-universe-components@7.11.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+# [7.11.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.10.1...@ovh-ux/ng-ovh-telecom-universe-components@7.11.0) (2022-05-31)
+
+
+### Features
+
+* **telecom:** kill v7 tucVoipService.fetchAll ([#7202](https://github.com/ovh/manager/issues/7202)) ([5e40e83](https://github.com/ovh/manager/commit/5e40e83938654fa7089d31d8c9ccc0ccbfeff736))
+
+
+
+## [7.10.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.10.0...@ovh-ux/ng-ovh-telecom-universe-components@7.10.1) (2022-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+
+
+
+# [7.10.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.9.2...@ovh-ux/ng-ovh-telecom-universe-components@7.10.0) (2022-04-28)
+
+
+### Features
+
+* **api:** replace apiv7 calls by v6 and iceberg ([#6307](https://github.com/ovh/manager/issues/6307)) ([b2e86fd](https://github.com/ovh/manager/commit/b2e86fd91d9accad4d670f441a4af04d3ef65b67))
+
+
+
 ## [7.9.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.9.1...@ovh-ux/ng-ovh-telecom-universe-components@7.9.2) (2022-04-06)
 
 

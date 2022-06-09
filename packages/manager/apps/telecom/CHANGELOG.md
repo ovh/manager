@@ -1,3 +1,77 @@
+# [13.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.39.2...@ovh-ux/manager-telecom@13.40.0) (2022-06-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1639] ([16e1ecb](https://github.com/ovh/manager/commit/16e1ecb37ad510dc0b985d09ff96c1fc9775ce68))
+* **i18n:** add missing translations [CDS 1641] ([fdf10e8](https://github.com/ovh/manager/commit/fdf10e8ef59724fa50204aec936cb2fa0681f3bc))
+* **i18n:** add missing translations [CDS 1644] ([2c62894](https://github.com/ovh/manager/commit/2c62894eac7ceb69aed9fd1dd887235a67b7ae75))
+* **i18n:** add missing translations [CDS 1645] ([37a6f46](https://github.com/ovh/manager/commit/37a6f46b7c5d51f584516c6dd6d038e6739f2f2c))
+* **telephony.contact:** contact for belgian customers update ([#6901](https://github.com/ovh/manager/issues/6901)) ([b5a6c1a](https://github.com/ovh/manager/commit/b5a6c1ac98d0e15a2eedb8d6f315abc42e9091a5))
+
+
+### Features
+
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
+## [13.39.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.39.1...@ovh-ux/manager-telecom@13.39.2) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+## [13.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.39.0...@ovh-ux/manager-telecom@13.39.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* **telephony:** kill mediator groups ([#7264](https://github.com/ovh/manager/issues/7264)) ([#7292](https://github.com/ovh/manager/issues/7292)) ([2946c0b](https://github.com/ovh/manager/commit/2946c0be58f5988bd9354d3ec6ba7971dc5caf75))
+
+
+
+# [13.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.38.2...@ovh-ux/manager-telecom@13.39.0) (2022-05-31)
+
+
+### Features
+
+* **telecom:** kill v7 tucVoipService.fetchAll ([#7202](https://github.com/ovh/manager/issues/7202)) ([5e40e83](https://github.com/ovh/manager/commit/5e40e83938654fa7089d31d8c9ccc0ccbfeff736))
+
+
+
+## [13.38.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.38.1...@ovh-ux/manager-telecom@13.38.2) (2022-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+
+
+
+## [13.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.38.0...@ovh-ux/manager-telecom@13.38.1) (2022-04-29)
+
+
+### Bug Fixes
+
+* remove extra column helpers on `<ovh-manager-server-sidebar>` ([#7009](https://github.com/ovh/manager/issues/7009)) ([f964c5e](https://github.com/ovh/manager/commit/f964c5ef2630dece3c24f4e722c4c4dc9a40af8d))
+
+
+
+# [13.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.37.1...@ovh-ux/manager-telecom@13.38.0) (2022-04-28)
+
+
+### Features
+
+* **api:** replace apiv7 calls by v6 and iceberg ([#6307](https://github.com/ovh/manager/issues/6307)) ([b2e86fd](https://github.com/ovh/manager/commit/b2e86fd91d9accad4d670f441a4af04d3ef65b67))
+* **telecom:** manage telecom beta sidebar ([97d5c06](https://github.com/ovh/manager/commit/97d5c062a9850b926eaa78676a04825b9f9a3b18))
+* **telecom:** use server sidebar ([a0d14c8](https://github.com/ovh/manager/commit/a0d14c8179bb01a2ce31a8c64e8270aed253dd7a))
+
+
+
 ## [13.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.37.0...@ovh-ux/manager-telecom@13.37.1) (2022-04-20)
 
 

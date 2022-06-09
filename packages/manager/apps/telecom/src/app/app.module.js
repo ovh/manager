@@ -106,6 +106,7 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
+import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
@@ -183,6 +184,7 @@ export default (containerEl, environment) => {
         ovhManagerFreefax,
         ovhManagerNavbar,
         ovhManagerOverTheBox,
+        ovhManagerServerSidebar,
         ovhManagerSms,
         ovhManagerTelecomTask,
         ovhNotificationsSidebar,
@@ -339,8 +341,9 @@ export default (containerEl, environment) => {
     )
     .controller('TelecomAppCtrl', TelecomAppCtrl)
     .run(
-      /* @ngInject */ ($rootScope, $state) => {
-        $state.defaultErrorHandler((error) => {
+      /* @ngInject */ ($rootScope, $state, $transitions) => {
+        $transitions.onError({}, (transition) => {
+          const error = transition.error();
           if (error.type === RejectType.ERROR) {
             $rootScope.$emit('ovh::sidebar::hide');
             $state.go(
@@ -348,14 +351,22 @@ export default (containerEl, environment) => {
               {
                 detail: {
                   message: get(error.detail, 'data.message'),
+                  status: error.detail?.status,
                   code: has(error.detail, 'headers')
                     ? error.detail.headers('x-ovh-queryId')
                     : null,
+                },
+                to: {
+                  state: transition.to(),
+                  params: transition.params(),
                 },
               },
               { location: false },
             );
           }
+        });
+        $state.defaultErrorHandler((error) => {
+          return error;
         });
       },
     )

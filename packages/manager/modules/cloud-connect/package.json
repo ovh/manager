@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "private": true,
   "description": "OVHcloud CloudConnect product",
   "repository": {
@@ -32,6 +32,6 @@
     "font-awesome": "~4.7.0",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^11.2.0"
+    "ovh-api-services": "^14.0.6"
   }
 }

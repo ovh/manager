@@ -95,6 +95,9 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
+      goBack: /* @ngInject */ (goToNotebooks) => (message, type) =>
+        goToNotebooks(message, type),
+
       goToNotebook: /* @ngInject */ ($state, CucCloudMessage, projectId) => (
         notebook,
         message = false,
@@ -124,6 +127,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToDeleteNotebook: /* @ngInject */ ($state, projectId) => (notebook) =>
         $state.go('pci.projects.project.notebooks.delete', {
+          projectId,
+          notebook,
+        }),
+
+      goToStopNotebook: /* @ngInject */ ($state, projectId) => (notebook) =>
+        $state.go('pci.projects.project.notebooks.stop-notebook', {
           projectId,
           notebook,
         }),
@@ -209,10 +218,12 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => () => {
         notebooks.forEach((notebook) => {
           if (notebook.isPending()) {
-            NotebookService.pollNotebookStatus(
-              projectId,
-              notebook.id,
-            ).then((notebookInfo) => notebook.updateData(notebookInfo));
+            NotebookService.pollNotebookStatus(projectId, notebook.id).then(
+              // success function
+              (notebookInfo) => notebook.updateData(notebookInfo),
+              // if 404, fall here and delete notebook
+              () => notebooks.splice(notebooks.indexOf(notebook), 1),
+            );
           }
         });
       },

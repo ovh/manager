@@ -1,3 +1,103 @@
+# [17.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.19.1...@ovh-ux/manager-dedicated@17.20.0) (2022-06-07)
+
+
+### Bug Fixes
+
+* **dedicated:** fix billing module range ([d399853](https://github.com/ovh/manager/commit/d399853cc75fb6da44d81274c419b0564be2639a))
+* **i18n:** add missing translations [CDS 1638] ([7f2d0b0](https://github.com/ovh/manager/commit/7f2d0b0bd20b62fb37740eaba94dc00f406408e0))
+* **i18n:** add missing translations [CDS 1652] ([71a6ea1](https://github.com/ovh/manager/commit/71a6ea193e58d87d6089d42843174c5ed9285204))
+* **i18n:** add missing translations [CDS 1657] ([76bf43d](https://github.com/ovh/manager/commit/76bf43d99e9d918740cede0039b80b44cb6cee06))
+* **useraccount:** display appropriate Region label ([b623e11](https://github.com/ovh/manager/commit/b623e119ba598f548130d36bf51bf4f27d524e80))
+
+
+### Features
+
+* **dedicated:** add description on several section ([#6688](https://github.com/ovh/manager/issues/6688)) ([cc9017b](https://github.com/ovh/manager/commit/cc9017bd7e42ad013642f381a524de10060336d7))
+* **useraccount:** india states information ([ac509d1](https://github.com/ovh/manager/commit/ac509d14e31733ae67e5b74ff9be3771d28ac56c))
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
+## [17.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.19.0...@ovh-ux/manager-dedicated@17.19.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+# [17.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.18.0...@ovh-ux/manager-dedicated@17.19.0) (2022-06-01)
+
+
+### Features
+
+* **ip:** add byoip ([#7252](https://github.com/ovh/manager/issues/7252)) ([2cf6b8e](https://github.com/ovh/manager/commit/2cf6b8e0fa3d2694469101524724eeafb545879b)), closes [#6257](https://github.com/ovh/manager/issues/6257) [#MANAGER-8439](https://github.com/ovh/manager/issues/MANAGER-8439) [#6229](https://github.com/ovh/manager/issues/6229) [#6378](https://github.com/ovh/manager/issues/6378) [#MANAGER-8440](https://github.com/ovh/manager/issues/MANAGER-8440) [#6404](https://github.com/ovh/manager/issues/6404) [#MANAGER-8437](https://github.com/ovh/manager/issues/MANAGER-8437) [#6434](https://github.com/ovh/manager/issues/6434) [#MANAGER-8437](https://github.com/ovh/manager/issues/MANAGER-8437) [#6472](https://github.com/ovh/manager/issues/6472) [#MANAGER-8440](https://github.com/ovh/manager/issues/MANAGER-8440) [#6484](https://github.com/ovh/manager/issues/6484) [#MANAGER-8437](https://github.com/ovh/manager/issues/MANAGER-8437)
+
+
+
+# [17.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.17.2...@ovh-ux/manager-dedicated@17.18.0) (2022-05-24)
+
+
+### Bug Fixes
+
+* **managed-baremetal.datacenter:** add missing `trackClick` resolve ([#7138](https://github.com/ovh/manager/issues/7138)) ([7c97a86](https://github.com/ovh/manager/commit/7c97a86e6f349ef04c73b16b6ed5a78e2f0f82a3))
+
+
+### Features
+
+* **server.install:** remove deprecated API flag ([#7150](https://github.com/ovh/manager/issues/7150)) ([52a351f](https://github.com/ovh/manager/commit/52a351f62cd900675c9206f94f8409a81fa0a1fd))
+
+
+
+## [17.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.17.1...@ovh-ux/manager-dedicated@17.17.2) (2022-05-19)
+
+
+### Bug Fixes
+
+* **dedicated.server:** change url ecorange order for us ([#6830](https://github.com/ovh/manager/issues/6830)) ([4affaeb](https://github.com/ovh/manager/commit/4affaeb41861632fda5316b23a735477d95010af))
+* **dedicated.server:** fix OS field label ([#6871](https://github.com/ovh/manager/issues/6871)) ([28caadd](https://github.com/ovh/manager/commit/28caaddcfb16f332bb0a61e85d1e5000e7116988)), closes [#6118](https://github.com/ovh/manager/issues/6118)
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+* **i18n:** add missing translations [CDS 1618] ([3624c98](https://github.com/ovh/manager/commit/3624c988c85c68c6cdcb1717baf6fa38d2d223ab))
+
+
+
+## [17.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.17.0...@ovh-ux/manager-dedicated@17.17.1) (2022-05-16)
+
+
+### Bug Fixes
+
+* update translation ([#7114](https://github.com/ovh/manager/issues/7114)) ([1926877](https://github.com/ovh/manager/commit/19268772b239392a610627b062b7c44924bb6778))
+
+
+
+# [17.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.5...@ovh-ux/manager-dedicated@17.17.0) (2022-05-04)
+
+
+### Bug Fixes
+
+* **dedicated:** contact management menu missing ([#6873](https://github.com/ovh/manager/issues/6873)) ([cf8609e](https://github.com/ovh/manager/commit/cf8609e1fd7e6ba60418695af7ade8df1046f090))
+* **i18n:** add missing translations [CDS 1588] ([90df78b](https://github.com/ovh/manager/commit/90df78b6c54a025f32914b1288124e9459450c7e))
+* **i18n:** add missing translations [CDS 1592] ([80e3031](https://github.com/ovh/manager/commit/80e3031eb0eac4b02fe0a1ddb38bef1d6700b50a))
+
+
+### Features
+
+* **dedicated:** add gateway ip in network tile ([f38386a](https://github.com/ovh/manager/commit/f38386a9c5506c4cb7a684abef20eaddda7ea392))
+* **dedicated.server:** display RTM EOL info ([a13a479](https://github.com/ovh/manager/commit/a13a4791808bc3ecf650f398c6b37b092811ff9c))
+* **pcc:** pcc migration without nsx ([#6235](https://github.com/ovh/manager/issues/6235)) ([a35aa85](https://github.com/ovh/manager/commit/a35aa8560cc692946bc6e471e76b7278450ea745))
+
+
+
+## [17.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.4...@ovh-ux/manager-dedicated@17.16.5) (2022-04-26)
+
+
+### Bug Fixes
+
+* **ip:** add missing `associate-ip-bloc` module import ([#6960](https://github.com/ovh/manager/issues/6960)) ([6489896](https://github.com/ovh/manager/commit/64898967aeadb9cf05854548fad51ae793da48ad))
+
+
+
 ## [17.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.3...@ovh-ux/manager-dedicated@17.16.4) (2022-04-21)
 
 

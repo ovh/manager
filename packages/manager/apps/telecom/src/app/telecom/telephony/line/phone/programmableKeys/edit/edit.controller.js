@@ -2,9 +2,6 @@ import cloneDeep from 'lodash/cloneDeep';
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
-import includes from 'lodash/includes';
-import set from 'lodash/set';
-import uniqBy from 'lodash/uniqBy';
 import sortBy from 'lodash/sortBy';
 
 export default /* @ngInject */
@@ -39,6 +36,15 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
   this.FunctionKey = functionKey;
   this.availableFunctions = [];
   this.availableParameters = [];
+
+  this.currentGroup = null;
+  this.parameterGroup = null;
+  this.voicefaxPopoverOptions = {
+    popoverPlacement: 'auto right',
+    popoverClass: 'telephony-service-choice-popover pretty-popover',
+    popoverAppendToBody: true,
+    popoverIsOpen: false,
+  };
 
   this.save = function save() {
     self.loading.save = true;
@@ -224,129 +230,64 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
   }
 
   function getFaxParameters() {
-    return $q
-      .all([
-        OvhApiTelephonyFax.Aapi()
-          .getServices()
-          .$promise.then((faxList) => {
-            angular.forEach(faxList, (fax) => {
-              self.availableParameters.push({
-                label: fax.label,
-                serviceName: fax.serviceName,
-                group: $translate.instant(
-                  'telephony_line_phone_programmableKeys_FAX',
-                ),
-              });
-            });
-          }),
-        TelephonyMediator.init().then((groups) => {
-          angular.forEach(groups, (group) => {
-            angular.forEach(group.lines, (line) => {
-              self.availableParameters.push({
-                group: group.description || group.billingAccount,
-                serviceName: line.serviceName,
-                label: line.description,
-              });
-            });
-            angular.forEach(group.numbers, (number) => {
-              self.availableParameters.push({
-                group: group.description || group.billingAccount,
-                serviceName: number.serviceName,
-                label: number.description,
-              });
-            });
+    self.parameterGroup = '';
+    return OvhApiTelephonyFax.Aapi()
+      .getServices()
+      .$promise.then((faxList) => {
+        const { availableParameters } = self;
+        const { parameter } = self.FunctionKey;
+
+        angular.forEach(faxList, (fax) => {
+          availableParameters.push({
+            label: fax.label,
+            serviceName: fax.serviceName,
+            group: $translate.instant(
+              'telephony_line_phone_programmableKeys_FAX',
+            ),
           });
-        }),
-      ])
-      .then(() => self.availableParameters);
+        });
+
+        if (
+          parameter &&
+          !availableParameters.find(
+            ({ serviceName }) => parameter === serviceName,
+          )
+        ) {
+          return TelephonyMediator.findService(self.FunctionKey.parameter).then(
+            (service) => {
+              if (service) {
+                self.parameterGroup = service.billingAccount;
+                availableParameters.push({
+                  group: service.billingAccount,
+                  serviceName: service.serviceName,
+                  label: service.description,
+                });
+              }
+              return availableParameters;
+            },
+          );
+        }
+
+        return availableParameters;
+      });
   }
 
   function getHuntingParameter() {
+    self.parameterGroup = '';
     return TelephonyMediator.getGroup($stateParams.billingAccount).then(
-      (curGroup) => {
-        const pabxState = {
-          ovh: OvhApiTelephonyOvhPabx,
-          easy: OvhApiTelephonyEasyPabx,
-          mini: OvhApiTelephonyMiniPabx,
-          request: [],
-        };
-        const line = curGroup.getLine($stateParams.serviceName);
+      (group) => {
+        const { parameter } = self.FunctionKey;
+        self.currentGroup = group;
 
-        /** TODO Optimize * */
-        angular.forEach(TelephonyMediator.groups, (group) => {
-          angular.forEach(['ovh', 'easy', 'mini'], (type) => {
-            pabxState.request.push(
-              pabxState[type]
-                .v6()
-                .query({
-                  billingAccount: group.billingAccount,
-                })
-                .$promise.then((pabx) => {
-                  const request = [];
-                  angular.forEach(pabx, (abx) => {
-                    request.push(
-                      pabxState[type]
-                        .v6()
-                        .queryAgent({
-                          billingAccount: group.billingAccount,
-                          serviceName: abx,
-                        })
-                        .$promise.then((agents) => {
-                          angular.forEach(agents, (agent) => {
-                            if (
-                              agent.toString().indexOf(line.serviceName) > -1
-                            ) {
-                              let numberDetail;
-                              angular.forEach(group.numbers, (detail) => {
-                                if (detail.serviceName === abx) {
-                                  numberDetail = detail;
-                                  numberDetail.billingAccount =
-                                    group.description || group.billingAccount;
-                                }
-                              });
-                              self.availableParameters.push(numberDetail);
-                            }
-                          });
-                        }),
-                    );
-                  });
-
-                  return $q.all(request).then(() => self.availableParameters);
-                }),
-            );
+        if (parameter) {
+          return TelephonyMediator.findService(parameter).then((service) => {
+            self.parameterGroup = service?.billingAccount;
+            return self.availableParameters;
           });
-        });
+        }
 
-        return $q
-          .all(pabxState.request)
-          .then(() => uniqBy(self.availableParameters, 'serviceName'));
-      },
-    );
-  }
-
-  function getCloudHuntingParameter() {
-    const allowedFeatureTypes = [
-      'cloudHunting',
-      'contactCenterSolution',
-      'contactCenterSolutionExpert',
-    ];
-    return TelephonyMediator.getGroup($stateParams.billingAccount).then(
-      () => {
-        angular.forEach(TelephonyMediator.groups, (group) => {
-          angular.forEach(group.numbers, (number) => {
-            if (includes(allowedFeatureTypes, number.feature.featureType)) {
-              set(
-                number,
-                'billingAccount',
-                group.description || group.billingAccount,
-              );
-              self.availableParameters.push(number);
-            }
-          });
-        });
         return self.availableParameters;
       },
-      () => [],
     );
   }
 
@@ -368,10 +309,8 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
         request = getFaxParameters();
         break;
       case 'hunting':
-        request = getHuntingParameter();
-        break;
       case 'cloudhunting':
-        request = getCloudHuntingParameter();
+        request = getHuntingParameter();
         break;
       default:
         request = $q.when(self.availableParameters);
@@ -384,6 +323,72 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
       .finally(() => {
         self.loading.parameters = false;
       });
+  };
+
+  self.onVoicefaxParameterChanged = (selectedService) => {
+    self.voicefaxPopoverOptions.popoverIsOpen = false;
+    if (
+      !self.availableParameters.find(
+        ({ group, serviceName }) =>
+          serviceName === selectedService.serviceName &&
+          group === selectedService.billingAccount,
+      )
+    ) {
+      self.availableParameters.push({
+        group: selectedService.billingAccount,
+        serviceName: selectedService.serviceName,
+        label: selectedService.description,
+      });
+    }
+  };
+
+  self.filterHuntingParameters = (group) => {
+    const { billingAccount } = group;
+    const line = self.currentGroup.getLine($stateParams.serviceName);
+
+    return $q
+      .all(
+        [
+          OvhApiTelephonyOvhPabx,
+          OvhApiTelephonyEasyPabx,
+          OvhApiTelephonyMiniPabx,
+        ].map((pabxResource) =>
+          pabxResource
+            .v6()
+            .query({ billingAccount })
+            .$promise.then((serviceNames) =>
+              $q
+                .all(
+                  serviceNames.map((serviceName) =>
+                    pabxResource
+                      .v6()
+                      .queryAgent({ billingAccount, serviceName })
+                      .$promise.catch(() => [])
+                      .then((agents) =>
+                        agents.some((agent) =>
+                          agent.toString().match(line.serviceName),
+                        )
+                          ? group.getNumber(serviceName)
+                          : null,
+                      ),
+                  ),
+                )
+                .then((numbers) => numbers.filter(Boolean)),
+            ),
+        ),
+      )
+      .then((services) => services.flat());
+  };
+
+  self.filterCloudHuntingParameters = (group) => {
+    const allowedFeatureTypes = [
+      'cloudHunting',
+      'contactCenterSolution',
+      'contactCenterSolutionExpert',
+    ];
+    return group.numbers.filter((number) =>
+      allowedFeatureTypes.includes(number.feature.featureType),
+    );
   };
 
   const init = function init() {

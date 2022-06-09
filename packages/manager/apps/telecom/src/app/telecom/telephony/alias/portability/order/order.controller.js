@@ -9,6 +9,7 @@ import pull from 'lodash/pull';
 import some from 'lodash/some';
 import startsWith from 'lodash/startsWith';
 import uniq from 'lodash/uniq';
+import sortBy from 'lodash/sortBy';
 
 import { SPECIAL_NUMBER_PREFIX } from '../../special/repayments/repayments.constants';
 
@@ -18,7 +19,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
   $stateParams,
   $translate,
   moment,
-  TelephonyMediator,
+  tucVoipBillingAccount,
   OvhApiMe,
   OvhApiOrder,
   TucBankHolidays,
@@ -130,9 +131,12 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
     };
 
     // fetch list of billing accounts
-    return TelephonyMediator.getAll()
+    return tucVoipBillingAccount
+      .fetchAll()
       .then((groups) => {
-        self.billingAccounts = groups;
+        self.billingAccounts = sortBy(groups, [
+          (group) => group.getDisplayedName(),
+        ]);
         self.order.billingAccount = $stateParams.billingAccount;
       })
       .catch((err) => {

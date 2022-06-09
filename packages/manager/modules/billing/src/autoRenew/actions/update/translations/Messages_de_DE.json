@@ -7,7 +7,7 @@
   "billing_autorenew_service_update_service_period": "Intervall",
   "billing_autorenew_service_update_service_period_value": "{{ month }} Monate",
   "billing_autorenew_service_update_confirm": "Bestätigen",
-  "billing_autorenew_service_update_success": "Die Verlängerung des Dienstes {{ service }} wurde erfolgreich aktualisiert.",
+  "billing_autorenew_service_update_success": "Die Verlängerung des Dienstes {{ service }} wurde erfolgreich aktualisiert. Wenn die Änderung nicht in der Liste angezeigt wird, laden Sie bitte die Seite neu.",
   "billing_autorenew_service_update_error": "Bei der Konfiguration der Verlängerung ist ein Fehler aufgetreten {{ message }}",
   "billing_autorenew_service_update_add_mean": "Zahlungsmittel hinzufügen",
   "billing_autorenew_service_update_validate": "Bestätigung",

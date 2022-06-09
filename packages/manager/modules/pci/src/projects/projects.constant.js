@@ -71,6 +71,88 @@ export const PCI_FEATURES = {
   },
 };
 
+export const PCI_FEATURES_STATES = {
+  INSTANCES: {
+    LIST: 'pci.projects.project.instances',
+    ADD: 'pci.projects.project.instances.add',
+  },
+  BAREMETAL: {
+    LIST: 'pci.projects.project.baremetal',
+    ADD: 'pci.projects.project.baremetal.add',
+  },
+  BLOCKS: {
+    LIST: 'pci.projects.project.storages.blocks',
+    ADD: 'pci.projects.project.storages.blocks.add',
+  },
+  OBJECTS: {
+    LIST: 'pci.projects.project.storages.object-storage',
+    ADD: 'pci.projects.project.storages.object-storage.add',
+  },
+  DATABASES: {
+    LIST: 'pci.projects.project.storages.databases',
+    ADD: 'pci.projects.project.storages.databases.add',
+  },
+  ARCHIVES: {
+    LIST: 'pci.projects.project.storages.archives',
+    ADD: 'pci.projects.project.storages.archives.archive.add',
+  },
+  SNAPSHOTS: {
+    LIST: 'pci.projects.project.storages.snapshots',
+    ADD: 'pci.projects.project.storages.snapshots.snapshot.create-volume',
+  },
+  CONTAINERS: {
+    LIST: 'pci.projects.project.storages.containers',
+    ADD: 'pci.projects.project.storages.containers.add',
+  },
+  LOADBALANCER: {
+    LIST: 'pci.projects.project.loadbalancer',
+  },
+  PRIVATE_NETWORK: {
+    LIST: 'pci.projects.project.privateNetwork',
+    ADD: 'pci.projects.project.privateNetwork.new',
+  },
+  FAILOVER_IP: {
+    LIST: 'pci.projects.project.failover-ips',
+  },
+  KUBERNETES: {
+    LIST: 'pci.projects.project.kubernetes',
+    ADD: 'pci.projects.project.kubernetes.add',
+  },
+  PRIVATE_REGISTRY: {
+    LIST: 'pci.projects.project.private-registry',
+    ADD: 'pci.projects.project.private-registry.create',
+  },
+  WORKFLOW: {
+    LIST: 'pci.projects.project.workflow',
+    ADD: 'pci.projects.project.workflow.new',
+  },
+  NOTEBOOKS: {
+    LIST: 'pci.projects.project.notebooks',
+    ADD: 'pci.projects.project.notebooks.add',
+  },
+  TRAINING: {
+    LIST: 'pci.projects.project.training',
+    ADD: 'pci.projects.project.training.jobs.submit',
+  },
+  SERVING: {
+    LIST: 'pci.projects.project.serving',
+    ADD: 'pci.projects.project.serving.add',
+  },
+  DATA_PROCESSING: {
+    LIST: 'pci.projects.project.data-processing',
+    ADD: 'pci.projects.project.data-processing.submit-job',
+  },
+  PROJECT_MANAGEMENT: {
+    USERS_ROLES: 'pci.projects.project.users',
+    QUOTA_AND_REGIONS: 'pci.projects.project.quota',
+    SSH_KEYS: 'pci.projects.project.sshKeys',
+    BILLING_CONTROL: 'pci.projects.project.billing',
+    CREDIT_AND_VOUCHERS: 'pci.projects.project.vouchers',
+    CONTACTS_AND_RIGHTS: 'pci.projects.project.contacts',
+    PROJECT_SETTINGS: 'pci.projects.project.edit',
+  },
+};
+
 export const ORDER_FOLLOW_UP_POLLING_INTERVAL = 7000;
 
 export const ORDER_FOLLOW_UP_STATUS_ENUM = {

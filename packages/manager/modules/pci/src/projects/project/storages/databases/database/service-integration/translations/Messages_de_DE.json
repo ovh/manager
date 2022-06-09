@@ -1,12 +1,9 @@
 {
   "pci_databases_service_integration_tab_title": "Integration von Diensten",
   "pci_databases_service_integration_tab_descritpion": "Die Integration von Diensten ermöglicht das Verbinden verschiedener {{engineName}}-Lösungen miteinander.",
-  "pci_databases_service_integration_tab_kafka_service": "Kafka-Dienst",
-  "pci_databases_service_integration_tab_add_kafka": "Einen Kafka-Dienst hinzufügen",
-  "pci_databases_service_integration_tab_no_kafka_service": "Sie können keinen Kafka-Dienst hinzufügen, da Sie keinen Kafka-Dienst (mehr) haben, den Sie verbinden können.",
-  "pci_databases_service_integration_tab_unknown_service": "Dienst nicht gefunden",
-  "pci_databases_service_integration_tab_service_ready": "Die Integration Ihres {{engineName}}-Dienstes ist bereit.",
   "pci_databases_service_integration_tab_service": "Dienst {{engineName}}",
   "pci_databases_service_integration_tab_add": "{{engineName}} hinzufügen",
-  "pci_databases_service_integration_tab_no_service": "Es lässt sich derzeit kein {{engineName}} hinzufügen, da keine {{engineName}}-Dienste (mehr) zum Verbinden verfügbar sind."
+  "pci_databases_service_integration_tab_no_service": "Es lässt sich derzeit kein {{engineName}} hinzufügen, da keine {{engineName}}-Dienste (mehr) zum Verbinden verfügbar sind.",
+  "pci_databases_service_integration_tab_unknown_service": "Dienst nicht gefunden",
+  "pci_databases_service_integration_tab_service_ready": "Die Integration Ihres {{engineName}}-Dienstes ist bereit."
 }

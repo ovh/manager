@@ -14,6 +14,7 @@ export const PRODUCT_TYPES = {
     typeName: 'VPS',
   },
 };
+export const TRACKING_PREFIX = 'dedicated::ip::dashboard::order::';
 
 export const IP_LOCATION_GROUPS = [
   { labels: ['APAC/CANADA', 'CANADA - ASIA'], countries: ['au', 'ca', 'sg'] },
@@ -46,4 +47,5 @@ export default {
   IP_LOCATION_GROUPS,
   PRODUCT_TYPES,
   VPS_MAX_QUANTITY,
+  TRACKING_PREFIX,
 };
