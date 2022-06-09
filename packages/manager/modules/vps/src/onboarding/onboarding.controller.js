@@ -10,6 +10,7 @@ export default class VPSOnboardingController {
   async $onInit() {
     const user = await this.coreConfig.getUser();
     this.ovhSubsidiary = user.ovhSubsidiary;
+    this.isUS = this.coreConfig.isRegion('US');
 
     let guides = GUIDES;
     let cta = CTAS[this.ovhSubsidiary] || CTAS.DEFAULT;
