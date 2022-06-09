@@ -4,6 +4,7 @@ import { UsefulLink } from './Link/usefulLink';
 
 import { useShell } from '@/context/useApplicationContext';
 import useContainer from '@/core/container';
+import { useHeader } from '@/context/header';
 
 interface UseUsefulLinks {
   getUsefulLinks(): UsefulLink[];
@@ -18,9 +19,11 @@ const useUsefulLinks = (): UseUsefulLinks => {
   const region = environment.getRegion();
   const user = environment.getUser();
   const { isChatbotEnabled } = useContainer();
+  const { setIsAccountSidebarVisible } = useHeader();
 
   const getUsefulLinks = (): UsefulLink[] => {
     const trackingPrefix = 'hub::sidebar::useful-links';
+    const uxPlugin = shell.getPlugin('ux');
     return [
       {
         id: 'helpCenter',
@@ -33,7 +36,9 @@ const useUsefulLinks = (): UseUsefulLinks => {
             {
               id: 'chatbot',
               action: () => {
-                shell.getPlugin('ux').openChatbot();
+                uxPlugin.toggleAccountSidebarVisibility();
+                setIsAccountSidebarVisible(uxPlugin.isAccountSidebarVisible());
+                uxPlugin.openChatbot();
               },
               icon: 'oui-icon oui-icon-speech-bubble_concept',
             },
