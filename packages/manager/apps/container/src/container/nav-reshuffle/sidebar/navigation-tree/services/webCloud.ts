@@ -5,6 +5,7 @@ export default {
     application: 'web',
     hash: '#/',
   },
+  features: ['web'],
   children: [
     {
       id: 'domain-dns',
