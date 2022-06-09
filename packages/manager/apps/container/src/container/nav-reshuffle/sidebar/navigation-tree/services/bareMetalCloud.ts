@@ -1,6 +1,7 @@
 export default {
   id: 'baremetal-cloud',
   translation: 'sidebar_bare_metal_cloud',
+  features: ['bare-metal-cloud'],
   routing: {
     application: 'dedicated',
     hash: '#/',

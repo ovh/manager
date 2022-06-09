@@ -7,6 +7,7 @@ const pciNode: Node = {
     application: 'public-cloud',
     hash: '#/pci/projects/{projectId}',
   },
+  features: ['public-cloud'],
   forceVisibility: true,
   children: [
     {

@@ -1,6 +1,7 @@
 export default {
   id: 'hosted-private-cloud',
   translation: 'sidebar_hpc',
+  features: ['hosted-private-cloud'],
   children: [
     {
       id: 'hpc-platforms',
