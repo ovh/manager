@@ -7,6 +7,8 @@ const component = {
     containersLink: '<',
     currentActiveLink: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     nodePoolsLink: '<',
     serviceLink: '<',
     restrictionsLink: '<',

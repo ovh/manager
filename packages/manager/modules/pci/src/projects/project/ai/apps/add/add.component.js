@@ -8,6 +8,7 @@ export default {
     goToApps: '<',
     createToken: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
     onAppAdd: '<',
     trackApps: '<',
     trackClick: '<',

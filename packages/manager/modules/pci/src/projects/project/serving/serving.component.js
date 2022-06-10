@@ -19,5 +19,8 @@ export default {
     customerRegions: '<',
     namespacesRegions: '<',
     onListParamChange: '<',
+    guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
   },
 };

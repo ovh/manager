@@ -1,6 +1,5 @@
 import moment from 'moment';
 import 'moment-duration-format';
-import { GUIDE_URL } from '../../training.constants';
 
 export default class PciTrainingJobsInfoController {
   /* @ngInject */
@@ -31,8 +30,6 @@ export default class PciTrainingJobsInfoController {
   }
 
   $onInit() {
-    this.guideUrl = GUIDE_URL;
-
     const resourceN =
       this.job.spec.resources.gpu || this.job.spec.resources.cpu;
 

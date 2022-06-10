@@ -10,6 +10,8 @@ export default {
     createVolume: '<',
     deleteSnapshot: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     onListParamChange: '<',
     projectId: '<',
     snapshotId: '<',

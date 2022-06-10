@@ -4,6 +4,8 @@ export default {
   bindings: {
     pciFeatureRedirect: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     isUserTabActive: '<',
     containers: '<',
     steins: '<',

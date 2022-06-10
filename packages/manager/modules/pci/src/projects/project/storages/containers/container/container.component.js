@@ -14,6 +14,8 @@ export default {
     deleteObject: '<',
     goToAddUserOnObject: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     projectId: '<',
     refresh: '<',
     steins: '<',

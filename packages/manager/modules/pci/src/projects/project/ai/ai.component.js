@@ -9,5 +9,8 @@ export default {
     tokensLink: '<',
     currentActiveLink: '<',
     refreshState: '<',
+    guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
   },
 };
