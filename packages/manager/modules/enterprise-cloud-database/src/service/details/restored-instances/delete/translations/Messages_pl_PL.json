@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_restored_instance_delete_confirmation": "Czy na pewno chcesz usunąć przywróconą instancję: {{restoredInstance}}?",
-  "enterprise_cloud_database_restored_instance_delete_title": "Usunięcie przywróconej instancji",
-  "enterprise_cloud_database_restored_instance_delete_success": "Trwa usuwanie następującej przywróconej instancji: {{instanceId}}",
-  "enterprise_cloud_database_restored_instance_delete_error": "Nie można usunąć przywróconej instancji: {{message}}"
-}

@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_service_rule": "Añadir una regla",
-  "enterprise_cloud_database_service_rule_description": "La restricción de acceso a puertos específicos o IPv6 no es compatible actualmente.",
-  "enterprise_cloud_database_service_rule_help": "Debe ser una IPv4 (p. ej.: 192.168.0.1) o un rango de red (p. ej.: 192.168.0.0/24)",
-  "enterprise_cloud_database_service_rule_placeholder": "Introduzca una dirección o un rango de red IPv4"
-}

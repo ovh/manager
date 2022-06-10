@@ -1,7 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_settings_create_rule_title": "Add a rule",
-  "enterprise_cloud_database_service_details_settings_create_rule_description": "Add rule to the security group {{groupName}}",
-  "enterprise_cloud_database_service_details_settings_create_rule_label": "Rule",
-  "enterprise_cloud_database_service_details_settings_create_rule_success": "Your rule is being added. Please allow around 1 minute before the rule becomes effective.",
-  "enterprise_cloud_database_service_details_settings_create_rule_error": "An error occurred while trying to add the rule: {{message}}"
-}

@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_backups_delete_confirmation": "Êtes-vous sûr de vouloir supprimer la sauvegarde  : {{ name }} ?",
-  "enterprise_cloud_database_backups_delete_title": "Supprimer la sauvegarde",
-  "enterprise_cloud_database_backups_delete_success": "Sauvegarde suivante un cours de suppression : {{ name }}",
-  "enterprise_cloud_database_backups_delete_error": "Impossible de supprimer la sauvegarde : {{ message }}"
-}

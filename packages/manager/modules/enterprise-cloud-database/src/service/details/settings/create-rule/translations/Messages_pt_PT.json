@@ -1,7 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_settings_create_rule_title": "Adicionar uma regra",
-  "enterprise_cloud_database_service_details_settings_create_rule_description": "Adicionar uma regra ao grupo de segurança {{groupName}}",
-  "enterprise_cloud_database_service_details_settings_create_rule_label": "Regra",
-  "enterprise_cloud_database_service_details_settings_create_rule_success": "A sua regra foi adicionada. Tenha em conta que a aplicação desta regra poderá demorar cerca de 1 minuto.",
-  "enterprise_cloud_database_service_details_settings_create_rule_error": "Ocorreu um erro durante a adição da regra: {{message}}"
-}

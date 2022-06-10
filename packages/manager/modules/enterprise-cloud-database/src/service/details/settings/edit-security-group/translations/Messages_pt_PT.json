@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_settings_edit_security_group_title": "Editar o grupo de segurança",
-  "enterprise_cloud_database_service_details_settings_edit_security_group_choose_group_name": "Escolha um novo nome de grupo",
-  "enterprise_cloud_database_service_details_settings_edit_security_group_success": "Grupo de segurança guardado com êxito",
-  "enterprise_cloud_database_service_details_settings_edit_security_group_error": "Ocorreu um erro durante atualização do grupo de segurança: {{message}}"
-}

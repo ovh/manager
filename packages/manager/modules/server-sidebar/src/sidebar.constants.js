@@ -166,15 +166,6 @@ export const NETWORKS_CONFIG = {
   feature: 'dedicated-networks',
 };
 
-export const ENTERPRISE_CLOUD_DATABASE = {
-  app: [DEDICATED],
-  icon: 'ovh-font ovh-font-database',
-  id: 'enterprise_cloud_database',
-  state: 'enterprise-cloud-database',
-  stateUrl: '#/enterprise-cloud-database',
-  feature: 'enterprise-cloud-database',
-};
-
 export const MICROSOFT_CONFIG = {
   id: 'microsoft_exchange',
   types: [
@@ -490,7 +481,6 @@ export const SIDEBAR_CONFIG = [
   DEDICATED_CLOUD_CONFIG,
   ANTHOS_CONFIG,
   NETWORKS_CONFIG,
-  ENTERPRISE_CLOUD_DATABASE,
   NUTANIX_CONFIG,
 
   // CLOUD IMPORT

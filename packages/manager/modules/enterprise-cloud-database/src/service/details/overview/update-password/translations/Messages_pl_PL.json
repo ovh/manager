@@ -1,8 +1,0 @@
-{
-  "enterprise_cloud_database_password_change_title": "Aktualizacja hasła",
-  "enterprise_cloud_database_password_change_confirm": "Potwierdź hasło",
-  "enterprise_cloud_database_password_change_success": "Hasło zostało zaktualizowane",
-  "enterprise_cloud_database_password_change_error": "Nie można zaktualizować hasła: {{message}}",
-  "enterprise_cloud_database_password_change_confirm_placeholder": "Powtórz hasło",
-  "enterprise_cloud_database_password_change_confirm_error": "Wprowadzone hasła różnią się od siebie."
-}

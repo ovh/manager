@@ -1,8 +1,0 @@
-{
-  "enterprise_cloud_database_service_get_started_secure_cluster_name": "Rinomina il cluster",
-  "enterprise_cloud_database_service_get_started_secure_cluster_name_help": "Il nome del cluster deve contenere tra 1 e 255 caratteri. Sono accettati esclusivamente lettere maiuscole e minuscole, '-', '_' e numeri.",
-  "enterprise_cloud_database_service_get_started_secure_cluster_name_placeholder": "Inserisci il nome del cluster",
-  "enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_title": "Regole di autorizzazione",
-  "enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_description1": "Di default il tuo cluster non accetta connessioni esterne.",
-  "enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_description2": "Per autorizzarle imposta almeno una regola qui sotto. Tutte le altri indirizzi saranno rifiutati."
-}

@@ -1,8 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_logs_revoke_access_title": "Revoca l’accesso",
-  "enterprise_cloud_database_service_details_logs_revoke_access_description": "Revoca l’accesso all’account OVHcloud Logs Data Platform  {{ldpName}}. Una volta confermata l’operazione, questo account non potrà più accedere ai log.",
-  "enterprise_cloud_database_service_details_logs_revoke_access_warning": "Questa azione non può essere annullata.",
-  "enterprise_cloud_database_service_details_logs_revoke_access_action": "Revoca l’accesso",
-  "enterprise_cloud_database_service_details_logs_revoke_access_success": "Accesso revocato per l’account OVHcloud Logs Data Platform '{{ldpName}}'",
-  "enterprise_cloud_database_service_details_logs_revoke_access_error": "Si è verificato un errore durante la revoca dell’accesso per l’account OVHcloud Logs Data Platform: {{message}}"
-}

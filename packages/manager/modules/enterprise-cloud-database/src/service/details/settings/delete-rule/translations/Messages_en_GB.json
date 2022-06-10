@@ -1,7 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_settings_delete_rule_title": "Remove rule",
-  "enterprise_cloud_database_service_details_settings_delete_rule_description": "Are you sure you want to remove {{source}} from the list of allowed sources?",
-  "enterprise_cloud_database_service_details_settings_delete_rule_warning": "This will permanently remove this rule and this action is irreversible",
-  "enterprise_cloud_database_service_details_settings_delete_rule_success": "Your request to delete the rule {{source}} is accepted and is under process",
-  "enterprise_cloud_database_service_details_settings_delete_rule_error": "An error occurred while trying to remove the rule: {{message}}"
-}

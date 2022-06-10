@@ -1,7 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_settings_delete_security_group_title": "Eliminar o grupo de segurança",
-  "enterprise_cloud_database_service_details_settings_delete_security_group_description": "Tem a certeza de que pretende eliminar o grupo de segurança {{groupName}} e as suas respetivas regras?",
-  "enterprise_cloud_database_service_details_settings_delete_security_group_warning": "Isto eliminará de forma definitiva todas as regras deste grupo.",
-  "enterprise_cloud_database_service_details_settings_delete_security_group_success": "O pedido de eliminação do grupo de segurança {{groupName}} foi criado com êxito e está a ser tratado.",
-  "enterprise_cloud_database_service_details_settings_delete_security_group_error": "Ocorreu um erro aquando da eliminação do grupo de segurança: {{message}}"
-}

@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_service_rule": "Dodawanie reguły",
-  "enterprise_cloud_database_service_rule_description": "Ograniczenie dostępu do określonych portów lub adresów IPv6 nie jest obecnie obsługiwane.",
-  "enterprise_cloud_database_service_rule_help": "Użyj adresu IPv4 (np.: 192.168.0.1) lub zakresu adresów (np. 192.168.0.0/24)",
-  "enterprise_cloud_database_service_rule_placeholder": "Wprowadź adres lub zakres adresów sieciowych IPv4"
-}
