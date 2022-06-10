@@ -39,9 +39,15 @@ export default class {
     this.loadMessages();
     this.model = {
       engine: find(this.engines, 'isDefault') || this.engines[0],
-      plan: null,
-      region: null,
-      flavor: null,
+      plan: {
+        name: null,
+      },
+      region: {
+        name: null,
+      },
+      flavor: {
+        name: null,
+      },
       name: '',
       privateNetwork: null,
       subnet: null,
@@ -58,7 +64,6 @@ export default class {
     this.apiGuideUrl =
       API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
     this.trackDatabases('configuration', 'page');
-
 
     this.preselectStepItem();
     this.updateEngine(this.model.engine);
@@ -81,13 +86,14 @@ export default class {
    */
   preselectStepItem() {
     const { steps } = this.redirectTarget;
-    const currentStep = (this.currrentStep || 0) + 1; // to have human start count
-
-    if (steps && currentStep === 1) {
+    if (steps) {
       this.model.engine =
-        this.engines.find(
-          ({ name }) => name === steps[`STEP_${currentStep}`],
-        ) || this.model.engine;
+        this.engines.find(({ name }) => name === steps.STEP_1) ||
+        this.model.engine;
+
+      this.model.plan.name = steps.STEP_2;
+      this.model.region.name = steps.STEP_3;
+      this.model.flavor.name = steps.STEP_4;
     }
   }
 
