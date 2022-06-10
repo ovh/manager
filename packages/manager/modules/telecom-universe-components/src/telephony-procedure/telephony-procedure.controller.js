@@ -24,7 +24,7 @@ export default class TelephonyProcedureController {
           );
         }
 
-        return featureAvailability.isFeatureAvailable(featureName)
+        return featureAvailability.isFeatureAvailable('telephony')
           ? this.$http
               .get('/telephony/procedure/required')
               .then(({ data: required }) => {
