@@ -1,0 +1,115 @@
+<div data-ui-view>
+    <oui-header
+        data-heading="{{:: 'pci_projects_project_network_private' | translate }}"
+        class="mb-3"
+    >
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
+                <span
+                    data-translate="pci_project_guides_header_all_guides"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+
+    <pci-maintenance-banner
+        data-steins="$ctrl.steins"
+        data-customer-regions="$ctrl.customerRegions"
+        data-product-regions="$ctrl.privateNetworksRegions"
+        data-is-list-page="true"
+        data-product-name=":: 'pci_projects_project_network_private' | translate"
+    ></pci-maintenance-banner>
+
+    <pci-announcement-banner
+        data-get-state-name="$ctrl.getStateName()"
+        data-on-go-to-region="$ctrl.goToRegion()"
+    ></pci-announcement-banner>
+
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <pci-project-private-networks-empty
+        data-ng-if="$ctrl.privateNetworks.length === 0"
+    >
+        <oui-button
+            data-variant="primary"
+            data-on-click="$ctrl.createNetwork()"
+        >
+            <span
+                data-translate="pci_projects_project_network_private_create"
+            ></span>
+        </oui-button>
+    </pci-project-private-networks-empty>
+
+    <oui-datagrid
+        data-rows="$ctrl.privateNetworks"
+        data-row-loader="$ctrl.getCIDR($row)"
+        data-ng-if="$ctrl.privateNetworks.length > 0"
+        criteria="$ctrl.criteria"
+        on-criteria-change="$ctrl.onListParamChange($criteria)"
+    >
+        <oui-datagrid-topbar>
+            <button
+                class="oui-button oui-button_secondary oui-button_icon-left mb-2"
+                data-ng-click="$ctrl.createNetwork()"
+                type="button"
+                data-track-on="click"
+                data-track-name="PCI_PROJECTS_NETWORK_ADD"
+                data-track-type="navigation"
+            >
+                <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
+                <span
+                    data-translate="pci_projects_project_network_private_create"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_network_private_name' | translate"
+            data-property="name"
+            data-searchable
+            data-type="string"
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_network_private_id' | translate"
+            data-property="id"
+            data-type="string"
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_network_private_region' | translate"
+            data-property="formattedRegions"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <span data-ng-bind="$row.regions.length"></span>
+            <button
+                class="oui-popover-button"
+                data-oui-popover="{{ $row.formattedRegions }}"
+                type="button"
+            ></button>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_network_private_vlan_id' | translate"
+            data-property="vlanId"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_network_private_address' | translate"
+            property="address"
+        ></oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item on-click="$ctrl.deleteNetwork($row.id)">
+                <span
+                    data-translate="pci_projects_project_network_private_delete"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

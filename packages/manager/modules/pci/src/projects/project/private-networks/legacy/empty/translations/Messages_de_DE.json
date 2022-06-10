@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_network_private": "Private Netzwerke",
+  "pci_projects_project_network_private_vrack_empty": "Sie haben noch kein privates Netzwerk erstellt.",
+  "pci_projects_project_network_private_vrack_deploy": "Richten Sie private Netzwerke über das OVH vRack ein, um Ihre Instanzen verschiedener Standorte miteinander zu verbinden.",
+  "pci_projects_project_network_private_vrack_explanation_1": "Private Netzwerke werden on demand und ohne Wartezeit erstellt. Sie garantieren Level-2-Isolation und sind mit DHCP-Diensten kompatibel, um Ihren Instanzen automatisch IP-Adressen zuzuteilen. Jedes dieser Netzwerke kann entweder auf einen Standort begrenzt werden oder alle Standorte Ihres Projekts umfassen.",
+  "pci_projects_project_network_private_vrack_explanation_2": "Ihre privaten Netzwerke sind in Ihrem vRack getunnelt. So können sie über eine gemeinsame VLAN-ID mit anderen Lösungen von OVH verbunden werden, die an dieses vRack angebunden sind."
+}
