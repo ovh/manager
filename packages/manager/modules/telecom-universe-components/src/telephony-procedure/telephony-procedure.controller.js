@@ -1,10 +1,10 @@
 export default class TelephonyProcedureController {
   /* @ngInject */
-  constructor($http, $q, coreURLBuilder, ovhFeatureFlipping) {
+  constructor($http, $q, $state, ovhFeatureFlipping) {
     this.$http = $http;
     this.$q = $q;
+    this.$state = $state;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
-    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -18,10 +18,7 @@ export default class TelephonyProcedureController {
           'telecom',
         );
         if (isTelecomAvailable) {
-          this.identityCheckFormLink = this.coreURLBuilder.buildURL(
-            'telecom',
-            '#/identity-check',
-          );
+          this.identityCheckFormLink = this.$state.href('identity-check');
         }
 
         return featureAvailability.isFeatureAvailable('telephony')
