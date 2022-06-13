@@ -25,19 +25,30 @@ export function initRoutingConfiguration(
      */
     const environment = shell.getPlugin('environment').getEnvironment();
     Object.entries(environment.getApplications()).forEach(
-      ([appId, appConfig]: [string, IApplication]) => {
-        if (appConfig?.container?.enabled && appConfig?.container?.path) {
-          const routingConfig = {
-            id: appId,
-            path: `/${appConfig.container.path}/`,
-            publicURL: appConfig.publicURL,
-          };
-          routing.addConfiguration(routingConfig);
-          if (appConfig.container.isDefault) {
-            routing.setDefault(routingConfig);
+      ([, appConfig]: [string, IApplication]) => {
+        /**
+         * Application's id is a unique string identifier defined by container.path
+         * It's used in the container's url to route requests to the corresponding application.
+         */
+        const appId = appConfig?.container?.path;
+        if (appId) {
+          if (appConfig?.container?.enabled) {
+            try {
+              const routingConfig = {
+                id: appId,
+                path: new URL(appConfig.url).pathname,
+                publicURL: appConfig.publicURL,
+              };
+              routing.addConfiguration(routingConfig);
+              if (appConfig.container.isDefault) {
+                routing.setDefault(routingConfig);
+              }
+            } catch {
+              // appConfig.url isn't a valid URL, ignore this config
+            }
+          } else {
+            routing.addRedirection(appId, appConfig.publicURL);
           }
-        } else {
-          routing.addRedirection(appId, appConfig.publicURL);
         }
       },
     );
