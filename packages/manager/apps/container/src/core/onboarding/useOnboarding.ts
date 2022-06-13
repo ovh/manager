@@ -80,12 +80,9 @@ export const useOnboarding = () => {
   };
 
   const getOpenedStateFromStatus = (onboardingStatus: string) => {
-    switch (onboardingStatus) {
-      case ONBOARDING_STATUS_ENUM.DISPLAYED:
-        return ONBOARDING_OPENED_STATE_ENUM.WELCOME;
-      default:
-        return ONBOARDING_OPENED_STATE_ENUM.CLOSED;
-    }
+    return onboardingStatus === ONBOARDING_STATUS_ENUM.DISPLAYED
+      ? ONBOARDING_OPENED_STATE_ENUM.WELCOME
+      : ONBOARDING_OPENED_STATE_ENUM.CLOSED;
   };
 
   const hasStarted = (openedState: string) => {
@@ -93,14 +90,9 @@ export const useOnboarding = () => {
   };
 
   const getNextOpenedState = (openedState: string) => {
-    switch (openedState) {
-      case ONBOARDING_OPENED_STATE_ENUM.CLOSED:
-        return ONBOARDING_OPENED_STATE_ENUM.BUTTON;
-      case ONBOARDING_OPENED_STATE_ENUM.BUTTON:
-        return ONBOARDING_OPENED_STATE_ENUM.WELCOME;
-      default:
-        return openedState;
-    }
+    return openedState === ONBOARDING_OPENED_STATE_ENUM.CLOSED
+      ? ONBOARDING_OPENED_STATE_ENUM.WELCOME
+      : openedState;
   };
 
   return {
