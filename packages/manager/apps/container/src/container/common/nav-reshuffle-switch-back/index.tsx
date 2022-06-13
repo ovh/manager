@@ -93,7 +93,9 @@ function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
             )}
             {!useBeta && (
               <>
-                <span className="oui-navbar-link__text">Version classique</span>
+                <span className="oui-navbar-link__text">
+                  {t('beta_modal_old')}
+                </span>
                 <span className="oui-icon oui-icon-chevron-down ml-2"></span>
               </>
             )}
