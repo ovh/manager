@@ -1,0 +1,34 @@
+<oui-header
+    data-heading="{{ 'pci_projects_project_public_gateway_title' | translate}}"
+>
+    <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
+        <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
+            <span data-translate="pci_project_guides_header_all_guides"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</oui-header>
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+<manager-on-boarding-layout
+    data-guides="$ctrl.guides"
+    data-image-source="$ctrl.illustration"
+    data-on-guide-click="$ctrl.onDocumentationClick(guide)"
+>
+    <h1 data-translate="pci_projects_project_public_gateways_onboarding"></h1>
+    <p
+        data-translate="pci_projects_project_public_gateways_onboarding_content1"
+    ></p>
+    <p
+        data-translate="pci_projects_project_public_gateways_onboarding_content2"
+    ></p>
+
+    <oui-button
+        data-ng-if="!$ctrl.loading"
+        data-variant="primary"
+        data-on-click="$ctrl.onAddPublicGatewayClick()"
+    >
+        <span
+            data-translate="pci_projects_project_public_gateways_onboarding_action_label"
+        ></span>
+        <oui-spinner data-ng-if="$ctrl.loading" data-size="s"></oui-spinner>
+    </oui-button>
+</manager-on-boarding-layout>
