@@ -1,0 +1,16 @@
+{
+  "pci_projects_project_public_gateway_title": "Public Gateways",
+  "pci_projects_project_public_gateways_intro_part_1": "Les Public Gateways fournissent une connectivité aux instances privées, permettant d’accéder de manière sécurisée aux réseaux externes ou d’exposer l'application à un accès externe :",
+  "pci_projects_project_public_gateways_intro_part_2": "Dans le premier cas, Public Gateway agit comme une passerelle SNAT, autorisant les instances à atteindre Internet, mais pas le contraire.",
+  "pci_projects_project_public_gateways_intro_part_3": "Dans le second exemple, il s’agit de donner la possibilité d’exposer un service derrière une instance privée ou un Load Balancer à Internet en utilisant des IP flottantes.",
+  "pci_projects_project_public_gateway_create": "Créer une Public Gateway",
+  "pci_projects_project_public_gateway_name": "Nom",
+  "pci_projects_project_public_gateway_region": "Région",
+  "pci_projects_project_public_gateway_networks_connected": "Réseau connecté",
+  "pci_projects_project_public_gateway_public_ip": "IP publique",
+  "pci_projects_project_public_gateway_flavour": "Taille",
+  "pci_projects_project_public_gateway_status": "Statut",
+  "pci_projects_project_public_gateway_modify": "Modifier votre Public Gateway",
+  "pci_projects_project_public_gateway_go_to_private_networks": "Voir mon réseau privé",
+  "pci_projects_project_public_gateway_delete": "Supprimer"
+}
