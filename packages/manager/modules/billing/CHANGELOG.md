@@ -1,3 +1,12 @@
+# [0.14.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.14.0-alpha.0...@ovh-ux/manager-billing@0.14.0-alpha.1) (2022-06-13)
+
+
+### Bug Fixes
+
+* **refund:** avoid refund amount error ([#7326](https://github.com/ovh/manager/issues/7326)) ([79c55f4](https://github.com/ovh/manager/commit/79c55f46290268ca3f47316403b3e86391c06753))
+
+
+
 # [0.14.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.10...@ovh-ux/manager-billing@0.14.0-alpha.0) (2022-06-07)
 
 
