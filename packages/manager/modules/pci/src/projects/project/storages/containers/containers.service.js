@@ -13,22 +13,24 @@ import Container from './container.class';
 import ContainerObject from './container-object.class';
 
 import {
+  CONTAINER_COMMERCIAL_NAME,
+  CONTAINER_DEFAULT_PASSWORD,
   CONTAINER_DEFAULT_PASSWORD_TENANTNAME,
   CONTAINER_DEFAULT_PASSWORD_USERNAME,
-  CONTAINER_DEFAULT_PASSWORD,
   OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
-  OBJECT_CONTAINER_TYPE_STATIC,
+  OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
+  OBJECT_CONTAINER_OFFER_SWIFT,
   OBJECT_CONTAINER_TYPE_PUBLIC,
+  OBJECT_CONTAINER_TYPE_STATIC,
   OBJECT_TYPE_SEALED,
   OPENIO_DEFAULT_REGION,
   OPENIO_PRESIGN_EXPIRE,
+  PUBLIC_CLOUD_PRODUCT_NAME,
   STORAGE_GATEWAY,
   X_AUTH_TOKEN,
   X_CONTAINER_HEADERS_REGEX,
   X_CONTAINER_READ,
   X_CONTAINER_READ_PUBLIC_VALUE,
-  CONTAINER_COMMERCIAL_NAME,
-  PUBLIC_CLOUD_PRODUCT_NAME,
 } from './containers.constants';
 
 export default class PciStoragesContainersService {
@@ -247,36 +249,98 @@ export default class PciStoragesContainersService {
     );
   }
 
-  addHighPerfStorageContainer(projectId, region, name) {
+  manageContainerCreation(projectId, container) {
+    const { offer } = container;
+
+    switch (offer) {
+      case OBJECT_CONTAINER_OFFER_SWIFT:
+        return this.addSwiftStandardObjectContainer(projectId, container);
+
+      case OBJECT_CONTAINER_OFFER_STORAGE_STANDARD:
+        return this.addS3StandardObjectContainer(projectId, container);
+
+      case OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE:
+        return this.addS3HighPerfStandardContainer(projectId, container);
+
+      default:
+        return this.$q.reject({
+          data: {
+            message: `${offer}: unknown container offer!`,
+          },
+        });
+    }
+  }
+
+  /**
+   * Used to create a SWIFT container object
+   * @param projectId {String}: project id (serviceName)
+   * @param container {Object}: container model
+   * @returns {Promise}: $http request promise
+   */
+  addSwiftStandardObjectContainer(projectId, container) {
+    const { region, name, archive } = container;
+
     return this.$http
-      .post(`/cloud/project/${projectId}/region/${region}/storage`, { name })
+      .post(`/cloud/project/${projectId}/storage`, {
+        archive,
+        containerName: name,
+        region: region.name,
+      })
       .then(({ data }) => data);
   }
 
-  addStorageContainer(projectId, region, name, archive) {
-    return this.OvhApiCloudProjectStorage.v6().save(
-      { projectId },
-      {
-        archive,
-        containerName: name,
-        region,
-      },
-    ).$promise;
+  /**
+   * Create a S3 Standard Storage Object
+   * Nota: used temporary time to have a full support from
+   * /cloud/project/{projectId}/region/{region}/storage
+   * @param projectId {String}: project id (serviceName)
+   * @param container {Object}: container model
+   * @returns {Promise}: $http request promise
+   */
+  addS3StandardObjectContainer(projectId, container) {
+    const { region, name } = container;
+
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/region/${region.name}/storageStandard`,
+        {
+          name,
+        },
+      )
+      .then(({ data }) => data);
   }
 
-  addContainer(projectId, { archive, containerType, offer, name, region }) {
-    return (offer === OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE
-      ? this.addHighPerfStorageContainer(projectId, region.name, name)
-      : this.addStorageContainer(projectId, region.name, name, archive)
-    ).then((container) => {
-      let returnPromise = this.$q.resolve();
-      if (containerType === OBJECT_CONTAINER_TYPE_STATIC) {
-        returnPromise = this.setContainerAsStatic(projectId, container);
-      } else if (containerType === OBJECT_CONTAINER_TYPE_PUBLIC) {
-        returnPromise = this.setContainerAsPublic(projectId, container);
-      }
-      return returnPromise;
-    });
+  /**
+   * Create a S3 High Perf Standard Object
+   * Nota: later it will be used also to create S3 Standard Storage Object
+   * @param projectId {String}: project id (serviceName)
+   * @param container {Object}: container model
+   * @returns {Promise}: $http request promise
+   */
+  addS3HighPerfStandardContainer(projectId, container) {
+    const { region, name } = container;
+
+    return this.$http
+      .post(`/cloud/project/${projectId}/region/${region.name}/storage`, {
+        name,
+      })
+      .then(({ data }) => data);
+  }
+
+  addContainer(projectId, containerModel) {
+    const { containerType } = containerModel;
+
+    return this.manageContainerCreation(projectId, containerModel).then(
+      (container) => {
+        let returnPromise = this.$q.resolve();
+        if (containerType === OBJECT_CONTAINER_TYPE_STATIC) {
+          returnPromise = this.setContainerAsStatic(projectId, container);
+        } else if (containerType === OBJECT_CONTAINER_TYPE_PUBLIC) {
+          returnPromise = this.setContainerAsPublic(projectId, container);
+        }
+        return returnPromise;
+      },
+    );
   }
 
   setContainerAsStatic(projectId, container) {
