@@ -1,0 +1,18 @@
+{
+  "purchaseOrders_edit_page_title": "Zmień wewnętrzne oznaczenie referencyjne",
+  "purchaseOrders_form_edit_internal_reference": "Zmień Twoje wewnętrzne oznaczenie referencyjne",
+  "purchaseOrders_form_edit_purchase_order": "Zmień „purchase order”",
+  "purchaseOrders_form_edit_internal_reference_label": "Brzmienie wewnętrznego oznaczenia referencyjnego",
+  "purchaseOrders_form_edit_internal_reference_placeholder": "Wewnętrzne oznaczenie referencyjne",
+  "purchaseOrders_form_edit_internal_reference_sub_info": "Oznaczenie referencyjne nie może przekroczyć 20 znaków",
+  "purchaseOrders_form_edit_purchase_order_label": "Nazwa „purchase order”",
+  "purchaseOrders_form_edit_purchase_order_sub_info": "Nazwa nie może przekroczyć 20 znaków",
+  "purchaseOrders_form_edit_purchase_startDate": "Data rozpoczęcia",
+  "purchaseOrders_form_edit_purchase_endDate": "Data zakończenia",
+  "purchaseOrders_form_edit_purchase_endDate_helper": "Data zakończenia jest wyłączona",
+  "purchaseOrders_form_edit_purchase_submit": "Zatwierdź",
+  "purchaseOrders_form_edit_purchase_cancel": "Anuluj",
+  "purchaseOrders_edit_purchase_submit_REFERENCE_ORDER_success": "Twoje wewnętrzne oznaczenie referencyjne zostało edytowane!",
+  "purchaseOrders_edit_purchase_submit_PURCHASE_ORDER_success": "„Purchase order” został edytowany!",
+  "purchaseOrders_edit_purchase_submit_error": "Twoja dyspozycja nie mogła zostać przyjęta. Spróbuj później."
+}
