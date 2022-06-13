@@ -1,8 +1,8 @@
 import get from 'lodash/get';
-import { RCLONE_GUIDE } from '../../../../components/users/download-rclone/download-rclone.constants';
+import { RCLONE_GUIDE } from '../../../../../../components/users/download-rclone/download-rclone.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.users.download-rclone', {
+  $stateProvider.state('pci.projects.project.storages.object-storage.users.download-rclone', {
     url: '/rclone/download?userId',
     views: {
       modal: {

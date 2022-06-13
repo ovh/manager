@@ -33,6 +33,7 @@ export default class PciStoragesObjectStorageService {
   }
 
   getS3Users(projectId) {
+    debugger;
     this.OvhApiCloudProjectUser.v6().resetQueryCache();
     return this.OvhApiCloudProjectUser.v6()
       .query({

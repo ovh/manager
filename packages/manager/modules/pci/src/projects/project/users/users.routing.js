@@ -36,7 +36,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           userId: user.id,
         }),
-      downloadOpenStackRclone: /* @ngInject */ ($state, projectId) => (user) =>
+      downloadOpenStackRclone: /* @ngInject */ ($state, projectId) => (user) => //casll
         $state.go('pci.projects.project.users.download-rclone', {
           projectId,
           userId: user.id,
