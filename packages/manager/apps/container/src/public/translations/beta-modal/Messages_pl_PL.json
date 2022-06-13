@@ -1,0 +1,15 @@
+{
+  "beta_modal_title": "Odkryj nową wersję Panelu klienta",
+  "beta_modal_infos": "Przejdź na nową wersję i dodaj swoją opinię, wybierając Twój profil.",
+  "beta_modal_accept": "Przejdź na nową wersję",
+  "beta_modal_decline": "Może później",
+  "beta_modal_screenshot": "Zrzut ekranu",
+  "beta_modal_new": "Nowa wersja",
+  "beta_modal_beta": "Wersja Beta",
+  "beta_modal_old": "Wersja klasyczna",
+  "beta_modal_switch_title": "Chcesz wrócić do poprzedniej wersji panelu klienta",
+  "beta_modal_switch_infos": "Twoje zdanie jest dla nas bardzo ważne. Dzięki niemu możemy dopasowywać jak najlepiej naszą ofertę do Twoich oczekiwań. Pomóż nam ulepszyć nasze usługi!",
+  "beta_modal_switch_accept": "Chcę wyrazić opinię",
+  "beta_switch": "Przełącz wersję",
+  "beta_modal_switch_later": "Później"
+}
