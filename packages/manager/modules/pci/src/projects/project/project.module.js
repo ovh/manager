@@ -38,7 +38,7 @@ import training from './training';
 import workflow from './workflow';
 import pciAnnouncementBanner from '../../components/pci-announcement-banner';
 import pciMaintenanceBanner from '../../components/pci-maintenance-banner';
-
+import publicGateways from './public-gateways';
 import projectComponent from './project.component';
 import service from './project.service';
 
@@ -83,6 +83,7 @@ angular
     training,
     pciAnnouncementBanner,
     pciMaintenanceBanner,
+    publicGateways,
   ])
   .config(routing)
   .component('pciProject', projectComponent)

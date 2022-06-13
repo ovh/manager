@@ -26,6 +26,7 @@ export const PCI_FEATURES = {
     DATA_PROCESSING: 'data-processing',
     LOGS_DATA_PLATFORM: 'logs-data-platform',
     HORIZON: 'horizon',
+    PUBLIC_GATEWAYS: 'public-cloud:public-gateways',
   },
   INSTANCE_FLAVORS_CATEGORY: {
     GENERAL: 'instance:flavors-category-general',
