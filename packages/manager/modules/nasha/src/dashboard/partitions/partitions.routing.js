@@ -40,6 +40,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(STATE_NAME, {
     url: '/partitions',
     component: 'nashaDashboardPartitions',
+    params: {
+      task: null,
+    },
     resolve: {
       breadcrumb: () => null,
       urlRenew: /* @ngInject */ (serviceName, coreURLBuilder) =>
@@ -49,6 +52,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       partitionsHref: /* @ngInject */ ($state, serviceName) => () =>
         $state.href(STATE_NAME, { serviceName }),
+      task: /* @ngInject */ ($transition$) => $transition$.params().task,
       tasks: /* @ngInject */ (iceberg, nashaApiUrl, NashaTask) =>
         iceberg(`${nashaApiUrl}/task`)
           .query()

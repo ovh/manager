@@ -40,11 +40,7 @@ export default class NashaComponentsPartitionZfsOptionsController {
     this.$http
       .post(`${this.partitionApiUrl}/options`, this.exportedModel)
       .catch((error) => this.close({ error }))
-      .then(() =>
-        this.close({
-          success: this.translate('success', this.partition),
-        }),
-      );
+      .then(({ data: task }) => this.close({ task }));
   }
 
   translate(key, values) {

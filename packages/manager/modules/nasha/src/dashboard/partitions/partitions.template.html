@@ -1,12 +1,25 @@
 <div class="nasha-dashboard-partitions">
-    <nasha-components-tasks-poller
+    <task-tracker
+        data-ng-if="$ctrl.task"
+        data-task="$ctrl.task"
+        data-on-done="$ctrl.reload({ stateParams: { task: null }})"
+        data-heading="{{:: (('nasha_dashboard_partitions_operation_' + $ctrl.task.operation) | translate) }}"
+        data-endpoint="{{ $ctrl.nashaApiUrl }}/task"
+    >
+        <task-tracker-header>
+            <oui-message class="mb-3" type="warning">
+                <span data-translate="nasha_dashboard_partitions_task_tracker_header"></span>
+            </oui-message>
+        </task-tracker-header>
+    </task-tracker>
+    <!-- <nasha-components-tasks-poller
         data-ng-if="$ctrl.currentHref() === $ctrl.partitionsHref()"
         data-namespace="{{:: $ctrl.stateName }}"
         data-nasha-api-url="{{:: $ctrl.nashaApiUrl }}"
         data-operations=":: $ctrl.operations"
         data-reload=":: $ctrl.reload()"
         data-tasks=":: $ctrl.tasks"
-    ></nasha-components-tasks-poller>
+    ></nasha-components-tasks-poller> -->
     <div class="d-flex flex-column">
         <h4 data-translate="nasha_dashboard_partitions_metrics"></h4>
         <nasha-components-metrics

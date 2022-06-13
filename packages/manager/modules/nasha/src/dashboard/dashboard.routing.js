@@ -18,11 +18,17 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceName,
         alertSuccess,
         alertError,
-      ) => ({ success, error, stateName = '', reload = false } = {}) =>
+      ) => ({
+        success,
+        error,
+        stateName = '',
+        stateParams = {},
+        reload = false,
+      } = {}) =>
         $state
           .go(
             stateName || '^',
-            { serviceName },
+            { ...stateParams, serviceName },
             { reload: reload || !!success },
           )
           .then((result) => {
@@ -49,12 +55,17 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       nashaApiUrl: /* @ngInject */ (baseApiUrl, serviceName) =>
         `${baseApiUrl}/${serviceName}`,
-      reload: /* @ngInject */ ($state, goBack) => ({ success, error } = {}) =>
+      reload: /* @ngInject */ ($state, goBack) => ({
+        success,
+        error,
+        stateParams,
+      } = {}) =>
         goBack({
           stateName: $state.current.name,
           reload: true,
           success,
           error,
+          stateParams,
         }),
       serviceInfo: /* @ngInject */ ($http, nashaApiUrl) =>
         $http.get(`${nashaApiUrl}/serviceInfos`).then(({ data }) => data),

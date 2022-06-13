@@ -18,6 +18,7 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
+import { taskTracker } from '@ovh-ux/manager-components';
 import 'ovh-api-services';
 
 import './index.scss';
@@ -35,6 +36,7 @@ export default (containerEl, environment) => {
         ngOvhUtils,
         ngUiRouterLayout,
         ngUiRouterLineProgress,
+        taskTracker,
         registerCoreModule(environment),
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),

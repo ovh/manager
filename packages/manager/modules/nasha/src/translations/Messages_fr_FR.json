@@ -17,6 +17,7 @@
   "nasha_snapshot_type_day-7": "Hebdomadaire",
   "nasha_snapshot_type_hour-1": "Toutes les heures",
   "nasha_snapshot_type_hour-6": "Toutes les 6 heures",
+  "nasha_use_type_size": "Taille",
   "nasha_use_type_used": "Stockage",
   "nasha_use_type_usedbysnapshots": "Snapshots",
   "nasha_use_unit_B": "o",

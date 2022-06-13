@@ -16,5 +16,7 @@
   "nasha_dashboard_partitions_metrics": "Métriques générales",
   "nasha_dashboard_partitions_monitored_off": "L'avis d'utilisation est désactivé.",
   "nasha_dashboard_partitions_monitored_on": "L'avis d'utilisation est activé.",
-  "nasha_dashboard_partitions_title": "Partitions"
+  "nasha_dashboard_partitions_title": "Partitions",
+  "nasha_dashboard_partitions_operation_clusterLeclercZfsOptions": "Modification des paramètres Z File System (ZFS)",
+  "nasha_dashboard_partitions_task_tracker_header": "Cette opération peut prendre quelques minutes. Veuillez patienter."
 }

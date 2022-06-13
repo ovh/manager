@@ -4,8 +4,8 @@ export const MAX_PARTITIONS = 10;
 
 export const INSTANCE_STATE_RESOLVE = {
   breadcrumb: () => null,
-  close: /* @ngInject */ (goBack) => ({ success, error } = {}) =>
-    goBack({ success, error, stateName: STATE_NAME }),
+  close: /* @ngInject */ (goBack) => ({ task, error } = {}) =>
+    goBack({ error, stateName: STATE_NAME, stateParams: { task } }),
 };
 
 export default {
