@@ -1,0 +1,15 @@
+{
+  "domains_onboarding_title": "Trova il dominio che ti rappresenta al meglio",
+  "domains_onboarding_description": "Proponiamo una vasta scelta di domini adatti a tutti i tuoi progetti.",
+  "domains_onboarding_description_list1": "Hosting Web da 10 MB incluso",
+  "domains_onboarding_description_list2": "Account email da 5 GB incluso",
+  "domains_onboarding_description_list3": "DNSSEC: protezione dal Cache Poisoning",
+  "domains_onboarding_description_list4": "Easy Redirect: accesso ai social network dal proprio dominio",
+  "domains_onboarding_order": "Ordina",
+  "domains_onboarding_guide1_title": "Veeam Cloud Connect",
+  "domains_onboarding_guide1_description": "Presentazione della soluzione Veeam Cloud Connect",
+  "domains_onboarding_guide2_title": "Modificare il proprietario di un dominio",
+  "domains_onboarding_guide2_description": "Questa guida fornisce le informazioni relative al cambio di proprietario di un dominio.",
+  "domains_onboarding_guide3_title": "Trasferire un dominio in OVHcloud",
+  "domains_onboarding_guide3_description": "Come avviare la procedura di trasferimento di un dominio verso OVHcloud"
+}

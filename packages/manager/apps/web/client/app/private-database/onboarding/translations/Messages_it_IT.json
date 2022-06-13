@@ -1,0 +1,13 @@
+{
+  "private_databases_onboarding_title": "Database",
+  "private_databases_onboarding_description": "Hai la possibilità di aggiungere all’hosting database Start SQL MySQL supplementari. Aumenta la potenza dell’hosting e le possibilità di storage. I database MySQL permettono anche una gestione ottimizzata dei dati. Questa soluzione è ideale per potenziare gli hosting Personale o Pro.",
+  "private_databases_onboarding_description2": "È inoltre possibile optare per database SQL privati. È possibile scegliere tra le soluzioni MySQL, MariaDB o PostgreSQL, che offrono una maggiore libertà di configurazione all'interno dell’hosting.",
+  "private_databases_onboarding_order": "Ordina CloudDB",
+  "private_databases_onboarding_order2": "Ordina SQL Privato",
+  "private_databases_onboarding_guide1_title": "Iniziare a utilizzare CloudDB",
+  "private_databases_onboarding_guide1_description": "Come eseguire le prime operazioni sulla soluzione CloudDB",
+  "private_databases_onboarding_guide2_title": "Creare database e utenti su un server di database",
+  "private_databases_onboarding_guide2_description": "Come creare un database su un server di database.",
+  "private_databases_onboarding_guide3_title": "Connettersi al database di un server di database",
+  "private_databases_onboarding_guide3_description": "Come connettersi a un database"
+}

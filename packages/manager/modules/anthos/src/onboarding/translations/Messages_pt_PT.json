@@ -1,0 +1,11 @@
+{
+  "anthos_onboarding_title": "Hosted Private Cloud powered by Anthos",
+  "anthos_onboarding_description": "A OVHcloud e a Google unem forças para lhe oferecer a primeira oferta de Private Cloud em bare metal, dedicada à tecnologia Anthos operada, instalada e gerida pela OVHcloud.",
+  "anthos_onboarding_order": "Encomendar",
+  "anthos_onboarding_guide1_title": "Primeiros passos com o Hosted Private Cloud powered by Anthos",
+  "anthos_onboarding_guide1_description": "Saiba como configurar o seu Hosted Private Cloud powered by Anthos na Área de Cliente",
+  "anthos_onboarding_guide2_title": "Capacidades e limitações técnicas (FAQ)",
+  "anthos_onboarding_guide2_description": "Descubra as capacidades técnicas e os limites do Hosted Private Cloud powered by Anthos",
+  "anthos_onboarding_guide3_title": "Documentação de Anthos em Bare Metal em modo privado",
+  "anthos_onboarding_guide3_description": ""
+}

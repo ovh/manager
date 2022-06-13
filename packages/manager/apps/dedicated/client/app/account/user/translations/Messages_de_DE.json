@@ -597,7 +597,7 @@
   "user_account_security_double_auth_type_backup_code_delete_success": "Die Notfall-Codes wurden erfolgreich gelöscht.",
   "user_account_security_double_auth_type_backup_code_delete_error": "Beim Löschen der Notfall-Codes ist ein Fehler aufgetreten:",
   "user_account_security_ip_restrictions_alt": "Einschränkung des Zugangs nach IP",
-  "user_account_title_infos": "Mein Profil",
+  "user_account_title_infos": "Mein Account",
   "user_account_title_subscriptions": "Meine Abos",
   "user_agreements_accepting": "Wird ausgeführt...",
   "user_account_emails_title": "Empfangene E-Mails",

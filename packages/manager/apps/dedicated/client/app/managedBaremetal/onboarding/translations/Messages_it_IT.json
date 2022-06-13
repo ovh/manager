@@ -1,0 +1,16 @@
+{
+  "managed_baremetal_onboarding_title": "La virtualizzazione VMware gestita e operata da OVHcloud",
+  "managed_baremetal_onboarding_description_1": "Un'infrastruttura virtuale ​ 100% dedicata, ospitata e controllata, ​ disponibile in pochi click.",
+  "managed_baremetal_onboarding_description_2": "Con la gamma ​Managed Bare Essentials è possibile accedere alla virtualizzazione VMware ad alta disponibilità, che permette di focalizzarsi sulla propria attività.",
+  "managed_baremetal_onboarding_guide1_title": "Presentazione dello Spazio Cliente Managed Bare Metal di OVHcloud",
+  "managed_baremetal_onboarding_cta": "Ordina",
+  "managed_baremetal_onboarding_guide1_description": "Scopri le funzionalità dello Spazio Cliente Managed Bare Metal",
+  "managed_baremetal_onboarding_guide2_title": "Aggiungere blocchi IP",
+  "managed_baremetal_onboarding_guide2_description": "Ordinare un blocco IP su Managed Bare Metal",
+  "managed_baremetal_onboarding_guide3_title": "Connessione all’interfaccia vSphere",
+  "managed_baremetal_onboarding_guide3_description": "Come accedere a vSphere con diverse modalità",
+  "managed_baremetal_onboarding_us_guide1_title": "Adding an IP block",
+  "managed_baremetal_onboarding_us_guide1_description": "Find out how to order an IP block on your Managed Bare Metal",
+  "managed_baremetal_onboarding_us_guide2_title": "Logging in to the vSphere interface",
+  "managed_baremetal_onboarding_us_guide2_description": "Find out about the different ways you can log in to vSphere"
+}

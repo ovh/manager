@@ -1,0 +1,11 @@
+{
+  "cdn_onboarding_title": "CDN infrastructure",
+  "cdn_onboarding_description": "The ultimate solution for optimising access to your web applications, anywhere in the world.",
+  "cdn_onboarding_order": "Order",
+  "cdn_onboarding_guide1_title": "How quota works on the CDN",
+  "cdn_onboarding_guide1_description": "Find out how quota works on your CDN",
+  "cdn_onboarding_guide2_title": "Configuring a domain name for the first time",
+  "cdn_onboarding_guide2_description": "Find out the best practices for configuring a domain on the OVHcloud CDN",
+  "cdn_onboarding_guide3_title": "How the SSL certificate works on the CDN",
+  "cdn_onboarding_guide3_description": "Find out how to add an SSL certificate on the CDN"
+}

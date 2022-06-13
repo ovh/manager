@@ -10,8 +10,8 @@
   "user_account_menu_support_level_premium-accredited_trusted": "Zone de confiance Premium Advanced",
   "user_account_menu_support_level_business_trusted": "Zone de confiance Business",
   "user_account_menu_support_level_enterprise_trusted": "Zone de confiance Enterprise",
-  "user_account_menu_role_user": "Connecté en tant que sous-utilisateur",
-  "user_account_menu_role_none": "Connecté en lecture seule",
+  "user_account_menu_user_id": "Identifiant : <strong>{{nichandle}}</strong>",
+  "user_account_menu_profile": "Mon profil",
   "user_account_menu_logout": "Me déconnecter",
   "user_account_menu_payment_method_title": "Moyen de paiement",
   "user_account_menu_payment_method_status_CANCELED": "Annulé",
@@ -37,5 +37,7 @@
   "user_account_menu_useful_links_chatbot": "Live Chat",
   "user_account_menu_useful_links_tasks": "État du réseau et incidents",
   "user_account_menu_useful_links_tickets": "Mes demandes d'assistance",
-  "user_account_menu_useful_links_createTicket": "Créer un ticket"
+  "user_account_menu_useful_links_createTicket": "Créer un ticket",
+  "user_account_menu_beta_feedback": "Donnez votre avis !",
+  "user_account_menu_beta_feedback_text": "Aidez-nous à améliorer OVHcloud"
 }

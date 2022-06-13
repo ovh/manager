@@ -1,0 +1,9 @@
+{
+  "cda_onboarding_title": "Cloud Disk Array powered by CEPH",
+  "cda_onboarding_description": "Storage scalabile di nuova generazione",
+  "cda_onboarding_guide1_title": "FAQ",
+  "cda_onboarding_guide1_description": "Frequently Asked Questions",
+  "cda_onboarding_guide2_title": "Utilizzare Ceph con Proxmox (EN)",
+  "cda_onboarding_guide2_description": "Find out how to set up the Cloud Disk Array on Proxmox",
+  "cda_onboarding_cta": "Ordina"
+}

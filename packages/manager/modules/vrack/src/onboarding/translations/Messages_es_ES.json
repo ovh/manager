@@ -1,0 +1,19 @@
+{
+  "vrack_onboarding_title": "Red privada vRack",
+  "vrack_onboarding_description": "El vRack es un rack virtual que permite conectar, aislar o repartir los servicios de OVHcloud compatibles dentro de una o más redes privadas. Gracias a su tecnología de red única, podrá construir infraestructuras privadas híbridas en un perímetro multidatacenter mundial.",
+  "vrack_onboarding_description_part2": "Con el vRack podrá comunicar de forma segura sus servicios de OVHcloud compatibles sin salir de su propia red privada. También puede elegir si desea que solo se pueda acceder a sus servicios desde la red pública, o permitir el acceso desde ambas.",
+  "vrack_onboarding_description_part3": "OVHcloud se encarga de administrar toda la red física, sin que usted tenga que instalar ninguna aplicación de software ni realizar ninguna configuración de red en sus servicios.",
+  "vrack_onboarding_order": "Contratar",
+  "vrack_onboarding_guide1_title": "Configurar el vRack en sus servidores dedicados",
+  "vrack_onboarding_guide1_description": "Cómo configurar el vRack en varios servidores dedicados",
+  "vrack_onboarding_guide2_title": "Configuración de tramas Jumbo en el vRack",
+  "vrack_onboarding_guide2_description": "Cómo configurar tramas Jumbo en el vRack",
+  "vrack_onboarding_guide3_title": "Configurar un bloque de IP en el vRack",
+  "vrack_onboarding_guide3_description": "Cómo configurar un bloque de direcciones IP públicas en el vRack",
+  "vrack_onboarding_us_guide1_title": "How to Connect a Dedicated Server to vRack",
+  "vrack_onboarding_us_guide1_description": "Find out how to configure the vRack on two or more dedicated servvers",
+  "vrack_onboarding_us_guide2_title": "How to Configure vRack para Public Cloud Services",
+  "vrack_onboarding_us_guide2_description": "Find out how to configure the vRack on Public Cloud",
+  "vrack_onboarding_us_guide3_title": "How to Configure a Failover IP Block on a vRack",
+  "vrack_onboarding_us_guide3_description": "This guide will show you how to configure a block of public IP addresses for use with the vRack."
+}

@@ -1,0 +1,19 @@
+{
+  "dedicated_clouds_onboarding_title": "A sua plataforma de virtualização VMware na cloud",
+  "dedicated_clouds_onboarding_description": "Precisa de mais recursos para desenvolver a sua atividade? Trabalha com dados sensíveis que requerem segurança, confidencialidade assim como uma infraestrutura dedicada?",
+  "dedicated_clouds_onboarding_description2": "Com o Hosted Private Cloud, oferecemos-lhe uma infraestrutura privada, alojada e gerida pelas nossas equipas, oferecendo uma taxa de disponibilidade global de 99,9% que lhe permite concentrar-se no seu negócio.",
+  "dedicated_clouds_onboarding_description3": "Combinando na perfeição o hardware Intel de última geração e a tecnologia VMware, as nossas ofertas fornecem ambientes totalmente isolados e dedicados, de forma a proteger as suas cargas de trabalho mais críticas.",
+  "dedicated_clouds_onboarding_order": "Encomendar",
+  "dedicated_clouds_onboarding_guide1_title": "Implementação de uma máquina virtual",
+  "dedicated_clouds_onboarding_guide1_description": "Saiba como implementar uma máquina virtual a partir da interface vSphere",
+  "dedicated_clouds_onboarding_guide2_title": "Aceder à interface vSphere",
+  "dedicated_clouds_onboarding_guide2_description": "Descubra as diferentes formas de se ligar ao vSphere",
+  "dedicated_clouds_onboarding_guide3_title": "Aceder através de SFTP",
+  "dedicated_clouds_onboarding_guide3_description": "Saiba como conectar-se ao seu Private Cloud através de SFTP",
+  "dedicated_clouds_onboarding_us_guide1_title": "Deploying a virtual machine",
+  "dedicated_clouds_onboarding_us_guide1_description": "Find out how to deploy a virtual machine in the vSphere interface",
+  "dedicated_clouds_onboarding_us_guide2_title": "Logging in to the vSphere interface",
+  "dedicated_clouds_onboarding_us_guide2_description": "Find out about the different ways you can log in to vSphere",
+  "dedicated_clouds_onboarding_us_guide3_title": "Logging in via SFTP",
+  "dedicated_clouds_onboarding_us_guide3_description": "Find out how to log in to your Private Cloud via SFTP"
+}

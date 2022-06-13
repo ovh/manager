@@ -1,0 +1,15 @@
+{
+  "beta_modal_title": "Descubra la nueva versión de su área de cliente",
+  "beta_modal_infos": "Descubra la nueva versión y envíenos sus comentarios haciendo clic en su perfil.",
+  "beta_modal_accept": "Descubrir la nueva versión",
+  "beta_modal_decline": "Descubrir la nueva versión en otro momento",
+  "beta_modal_screenshot": "Captura de pantalla",
+  "beta_modal_new": "Nueva versión",
+  "beta_modal_beta": "Beta",
+  "beta_modal_old": "Versión clásica",
+  "beta_modal_switch_title": "¿Quiere volver a la versión clásica de su área de cliente?",
+  "beta_modal_switch_infos": "Su opinión nos permite ofrecer un servicio lo más adaptado posible a sus necesidades. ¡Ayúdenos a mejorar!",
+  "beta_modal_switch_accept": "Dar mi opinión",
+  "beta_switch": "Cambiar de versión",
+  "beta_modal_switch_later": "Más tarde"
+}

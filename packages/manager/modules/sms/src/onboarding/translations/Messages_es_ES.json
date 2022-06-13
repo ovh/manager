@@ -1,0 +1,10 @@
+{
+  "sms_onboarding_title": "SMS Profesional",
+  "sms_onboarding_description": "¡Enviar SMS por internet nunca había sido tan fácil!",
+  "sms_onboarding_order": "Descubrir los planes",
+  "sms_onboarding_guide1_title": "Crédito de SMS y recarga automática",
+  "sms_onboarding_guide1_description": "Cómo gestionar el crédito de SMS en OVHcloud",
+  "sms_onboarding_guide2_title": "API SMS Cookbook",
+  "sms_onboarding_guide2_description": "Diferentes combinaciones disponibles en la API para utilizar la plataforma SMS de OVHcloud.",
+  "sms_onboarding_guide3_title": "Gestionar los SMS con respuesta"
+}

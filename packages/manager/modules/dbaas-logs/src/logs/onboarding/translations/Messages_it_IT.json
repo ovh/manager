@@ -1,0 +1,11 @@
+{
+  "dbaas_logs_onboarding_title": "Piattaforma di gestione dei log completa, sicura e pay as you go",
+  "dbaas_logs_onboarding_description": "Per migliorare la visibilità dei propri ambienti applicativi è necessario raccogliere, elaborare, analizzare e archiviare i log in una piattaforma completa e gestita. L'analisi dei log, infatti, è fondamentale per mantenere in stato operativo infrastrutture e applicazioni. OVHcloud fornisce una soluzione chiavi in mano, economica e scalabile che permette all’utente di concentrarsi sul proprio core business.",
+  "dbaas_logs_onboarding_cta": "Ordina",
+  "dbaas_logs_onboarding_guide1_title": "Quick start",
+  "dbaas_logs_onboarding_guide1_description": "",
+  "dbaas_logs_onboarding_guide2_title": "The field naming convention",
+  "dbaas_logs_onboarding_guide2_description": "",
+  "dbaas_logs_onboarding_guide3_title": "Using Grafana with Logs Data Platform",
+  "dbaas_logs_onboarding_guide3_description": ""
+}

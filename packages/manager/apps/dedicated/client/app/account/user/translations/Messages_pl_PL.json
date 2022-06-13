@@ -597,7 +597,7 @@
   "user_account_security_double_auth_type_backup_code_delete_success": "Kody zapasowe zostały usunięte.",
   "user_account_security_double_auth_type_backup_code_delete_error": "Wystąpił błąd podczas usuwania kodów zapasowych:",
   "user_account_security_ip_restrictions_alt": "Ograniczenie dostępu przez adres IP",
-  "user_account_title_infos": "Mój profil",
+  "user_account_title_infos": "Moje konto",
   "user_account_title_subscriptions": "Moje abonamenty",
   "user_agreements_accepting": "W trakcie...",
   "user_account_emails_title": "Otrzymane e-maile",

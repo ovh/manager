@@ -37,5 +37,9 @@
   "user_account_menu_useful_links_chatbot": "Live Chat",
   "user_account_menu_useful_links_tasks": "Estado da rede e incidentes",
   "user_account_menu_useful_links_tickets": "Os meus pedidos de assistência",
-  "user_account_menu_useful_links_createTicket": "Criar um ticket"
+  "user_account_menu_useful_links_createTicket": "Criar um ticket",
+  "user_account_menu_user_id": "Identificador: <strong>{{nichandle}}</strong>",
+  "user_account_menu_profile": "O meu perfil",
+  "user_account_menu_beta_feedback": "Dê a sua opinião!",
+  "user_account_menu_beta_feedback_text": "Ajude-nos a melhorar a OVHcloud"
 }

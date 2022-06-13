@@ -1,0 +1,19 @@
+{
+  "dedicated_clouds_onboarding_title": "Your VMware virtualisation platform in the cloud",
+  "dedicated_clouds_onboarding_description": "Need more resources to develop your business? Need to process sensitive data that requires strict security, confidentiality and a dedicated infrastructure?",
+  "dedicated_clouds_onboarding_description2": "With our Hosted Private Cloud solutions, you get a private infrastructure that has a 99.9% availability rate, and is hosted and managed by our teams — leaving you to focus on your core business.",
+  "dedicated_clouds_onboarding_description3": "We combine the power of next-generation Intel hardware with VMware technology, to deliver you fully-isolated, dedicated environments that can handle the most critical workloads.",
+  "dedicated_clouds_onboarding_order": "Order",
+  "dedicated_clouds_onboarding_guide1_title": "Virtual machine deployment",
+  "dedicated_clouds_onboarding_guide1_description": "Find out how to deploy a virtual machine via the vSphere interface",
+  "dedicated_clouds_onboarding_guide2_title": "Connect to the vSphere interface",
+  "dedicated_clouds_onboarding_guide2_description": "Learn about the different ways you can log in to vSphere",
+  "dedicated_clouds_onboarding_guide3_title": "Logging in via SFTP",
+  "dedicated_clouds_onboarding_guide3_description": "Find out how to log in to your Private Cloud via SFTP",
+  "dedicated_clouds_onboarding_us_guide1_title": "Deploying a virtual machine",
+  "dedicated_clouds_onboarding_us_guide1_description": "Find out how to deploy a virtual machine in the vSphere interface",
+  "dedicated_clouds_onboarding_us_guide2_title": "Logging in to the vSphere interface",
+  "dedicated_clouds_onboarding_us_guide2_description": "Find out about the different ways you can log in to vSphere",
+  "dedicated_clouds_onboarding_us_guide3_title": "Logging in via SFTP",
+  "dedicated_clouds_onboarding_us_guide3_description": "Find out how to log in to your Private Cloud via SFTP"
+}
