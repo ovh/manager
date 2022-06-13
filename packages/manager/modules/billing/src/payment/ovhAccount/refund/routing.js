@@ -20,7 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $http.post(
           `/me/ovhAccount/${accountId}/movements/${movement.movementId}/requestRefund`,
           {
-            amount: movement.retrievableAmount.value * 100,
+            // We use Math.round to avoid floating point error
+            amount: Math.round(movement.retrievableAmount.value * 100),
           },
         ),
       goBack: /* @ngInject */ (goToOvhAccount) => goToOvhAccount,
