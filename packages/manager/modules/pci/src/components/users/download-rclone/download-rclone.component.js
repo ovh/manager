@@ -11,5 +11,6 @@ export default {
     regions: '<',
     rcloneGuide: '<',
     goBack: '<',
+    state: '<',
   },
 };

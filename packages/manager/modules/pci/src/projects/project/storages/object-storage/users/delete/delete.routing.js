@@ -1,5 +1,4 @@
 export default /* @ngInject */ ($stateProvider) => {
-  debugger;
   $stateProvider.state(
     'pci.projects.project.storages.object-storage.users.delete',
     {

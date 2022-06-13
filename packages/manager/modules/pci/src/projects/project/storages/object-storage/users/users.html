@@ -50,14 +50,11 @@
                 data-translate="pci_projects_project_storages_containers_users_download_json"
             ></span>
         </oui-action-menu-item>
-       
+
         <oui-action-menu-item data-on-click="$ctrl.downloadRcloneFile($row)">
             <span
                 data-translate="pci_projects_project_storages_containers_users_download_rclone_file"
             ></span>
-        </oui-action-menu-item>
-        <oui-action-menu-item data-on-click="$ctrl.downloadOpenStackRclone($row)">
-            <span>{{$row}}</span>
         </oui-action-menu-item>
         <oui-action-menu-item data-on-click="$ctrl.showSecretKey($row)">
             <span
@@ -69,7 +66,6 @@
                 data-translate="pci_projects_project_storages_containers_delete_label"
             ></span>
         </oui-action-menu-item>
-        
     </oui-action-menu>
     <oui-datagrid-topbar>
         <button

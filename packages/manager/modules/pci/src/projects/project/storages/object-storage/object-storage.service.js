@@ -33,7 +33,6 @@ export default class PciStoragesObjectStorageService {
   }
 
   getS3Users(projectId) {
-    debugger;
     this.OvhApiCloudProjectUser.v6().resetQueryCache();
     return this.OvhApiCloudProjectUser.v6()
       .query({
@@ -66,6 +65,12 @@ export default class PciStoragesObjectStorageService {
   importUserPolicy(projectId, userId, policy) {
     return this.$http
       .post(`/cloud/project/${projectId}/user/${userId}/policy`, { policy })
+      .then(({ data }) => data);
+  }
+
+  downloadRclone(projectId, { id: userId }, region) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/user/${userId}/rclone?region=${region}`)
       .then(({ data }) => data);
   }
 }

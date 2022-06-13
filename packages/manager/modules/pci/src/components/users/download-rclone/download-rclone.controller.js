@@ -2,7 +2,13 @@ import first from 'lodash/first';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
-import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from './download-rclone.constants';
+import {
+  DOWNLOAD_FILENAME,
+  DOWNLOAD_TYPE,
+  DOWNLOAD_RCLONE_FILETYPE,
+  DOWNLOAD_RCLONE_FILENAME,
+  STATE_TYPE,
+} from './download-rclone.constants';
 
 const { saveAs } = require('file-saver');
 
@@ -13,11 +19,13 @@ export default class PciUsersDownloadRcloneController {
     $translate,
     ovhManagerRegionService,
     PciProjectsProjectUsersService,
+    PciStoragesObjectStorageService,
   ) {
     this.$compile = $compile;
     this.$translate = $translate;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectsProjectUsersService = PciProjectsProjectUsersService;
+    this.PciStoragesObjectStorageService = PciStoragesObjectStorageService;
   }
 
   $onInit() {
@@ -35,15 +43,19 @@ export default class PciUsersDownloadRcloneController {
 
   downloadRclone() {
     this.isLoading = true;
-    return this.PciProjectsProjectUsersService.downloadRclone(
-      this.projectId,
-      this.user,
-      this.region.id,
-    )
+    this.serviceCall =
+      this.state === STATE_TYPE
+        ? this.PciStoragesObjectStorageService
+        : this.PciProjectsProjectUsersService;
+    this.fileType =
+      this.state === STATE_TYPE ? DOWNLOAD_RCLONE_FILETYPE : DOWNLOAD_TYPE;
+    this.fileName =
+      this.state === STATE_TYPE ? DOWNLOAD_RCLONE_FILENAME : DOWNLOAD_FILENAME;
+    return this.serviceCall
+      .downloadRclone(this.projectId, this.user, this.region.id)
       .then(({ content }) => {
-        const data = new Blob([content], { type: DOWNLOAD_TYPE });
-        saveAs(data, DOWNLOAD_FILENAME);
-
+        const data = new Blob([content], { type: this.fileType });
+        saveAs(data, this.fileName);
         return new Promise((resolve) => {
           const reader = new FileReader();
           reader.onloadend = () => resolve(reader.result);
@@ -62,7 +74,7 @@ export default class PciUsersDownloadRcloneController {
                 'pci_projects_project_users_download-rclone_success_message_link',
               ),
               value: link,
-              download: DOWNLOAD_FILENAME,
+              download: this.fileName,
             },
           }),
         );
