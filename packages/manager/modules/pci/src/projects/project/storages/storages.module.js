@@ -9,6 +9,7 @@ import instanceBackups from './instance-backups';
 import objectStorage from './object-storage';
 import snapshots from './snapshots';
 import routing from './storages.routing';
+import service from './object-storage/object-storage.service';
 
 const moduleName = 'ovhManagerPciStorages';
 
@@ -24,6 +25,7 @@ angular
     'ui.router',
     'ovhManagerFilters',
   ])
-  .config(routing);
+  .config(routing)
+  .service('PciStoragesObjectStorageService', service);
 
 export default moduleName;

@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb
+      state: () => 'user',
       userId: /* @ngInject */ ($transition$) => $transition$.params().userId,
       user: /* @ngInject */ (
         PciProjectsProjectUsersService,

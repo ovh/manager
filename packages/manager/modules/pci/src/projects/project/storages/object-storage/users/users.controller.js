@@ -1,4 +1,4 @@
-import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE, DOWNLOAD_RCLONE_FILETYPE, DOWNLOAD_RCLONE_FILENAME } from './users.constants';
+import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from './users.constants';
 
 const { saveAs } = require('file-saver');
 
@@ -9,13 +9,11 @@ export default class PciStoragesContainersUsersController {
     atInternet,
     CucCloudMessage,
     PciStoragesObjectStorageService,
-    $http,
   ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciStoragesObjectStorageService = PciStoragesObjectStorageService;
-    this.$http = $http;
   }
 
   $onInit() {
@@ -46,9 +44,7 @@ export default class PciStoragesContainersUsersController {
       user.id,
     )
       .then(({ policy }) => {
-        console.log();
         const data = new Blob([[policy]], { type: DOWNLOAD_TYPE });
-        console.log("data",data);
         saveAs(data, DOWNLOAD_FILENAME);
 
         return new Promise((resolve) => {
@@ -81,25 +77,10 @@ export default class PciStoragesContainersUsersController {
   }
 
   downloadRcloneFile(user) {
-       console.log("downloadRcloneFile",user);
-       this.downloadOpenStackRclone(user);
-       /* this.$http.get(`/cloud/project/${user.s3Credentials[0].tenantId}/user/${user.id}/rclone?region="SBG"`)
-            .then(({data}) => {
-                console.log("Content",data.content);
-                const data2 = new Blob([data.content], { type: DOWNLOAD_RCLONE_FILETYPE });
-                console.log("data2",data2);
-                saveAs(data2, DOWNLOAD_RCLONE_FILENAME);
-            })
-            .catch(() => {
-
-            })
-            .finally(() => {
-              
-            })*/
+    this.downloadOpenStackRclone(user);
   }
 
-  showSecretKey(user){
-    console.log("showSecretKey",user);
+  showSecretKey(user) {
     this.CucCloudMessage.success(
       this.$translate.instant(
         'pci_projects_project_storages_containers_users_show_secret_key_success',
@@ -108,7 +89,6 @@ export default class PciStoragesContainersUsersController {
           secret: user.s3Credentials[0].secret,
         },
       ),
-    )
+    );
   }
-  
 }
