@@ -1,0 +1,10 @@
+{
+  "pack_onboarding_title": "¿Necesita una conexión potente a internet?",
+  "pack_onboarding_description": "Conexión fluida, necesidades de telefonía profesional, redundancia de acceso, migración hacia el cloud, etc.",
+  "pack_onboarding_order": "Contratar",
+  "pack_onboarding_guide1_title": "FAQ",
+  "pack_onboarding_guide1_description": "Preguntas más frecuentes sobre las soluciones de acceso a internet de OVHcloud",
+  "pack_onboarding_guide2_title": "Configurar un router desde el área de cliente de OVHcloud",
+  "pack_onboarding_guide2_description": "Cómo configurar el router de OVHcloud a distancia desde el área de cliente",
+  "pack_onboarding_guide3_title": "Cómo configurar el registro DNS inverso de mi conexión"
+}

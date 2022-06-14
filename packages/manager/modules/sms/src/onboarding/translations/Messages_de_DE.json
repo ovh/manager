@@ -1,0 +1,10 @@
+{
+  "sms_onboarding_title": "SMS PRO",
+  "sms_onboarding_description": "Der Versand von SMS über das Internet war noch nie so einfach.",
+  "sms_onboarding_order": "Angebote entdecken",
+  "sms_onboarding_guide1_title": "SMS-Guthaben verwalten und die automatische Aufladung aktivieren",
+  "sms_onboarding_guide1_description": "Hier erfahren Sie, wie Sie Ihre OVHcloud SMS-Guthaben verwalten.",
+  "sms_onboarding_guide2_title": "API SMS Cookbook",
+  "sms_onboarding_guide2_description": "Diese Anleitung enthält einige mit der API mögliche Kombinationen, um die SMS-Plattform von OVHcloud zu verwenden.",
+  "sms_onboarding_guide3_title": "SMS mit Antwort verwalten"
+}

@@ -1,6 +1,67 @@
-export const GUIDES = [];
+export const GUIDES = [
+  {
+    title: 'nutanix_onboarding_guide1_title',
+    description: 'nutanix_onboarding_guide1_description',
+    links: {
+      DEFAULT: 'https://docs.ovh.com/gb/en/nutanix/high-level-documentation/',
+      DE: 'https://docs.ovh.com/de/nutanix/high-level-documentation/',
+      ES: 'https://docs.ovh.com/es/nutanix/high-level-documentation/',
+      IE: 'https://docs.ovh.com/ie/en/nutanix/high-level-documentation/',
+      IT: 'https://docs.ovh.com/it/nutanix/high-level-documentation/',
+      PL: 'https://docs.ovh.com/pl/nutanix/high-level-documentation/',
+      PT: 'https://docs.ovh.com/pt/nutanix/high-level-documentation/',
+      GB: 'https://docs.ovh.com/gb/en/nutanix/high-level-documentation/',
+      CA: 'https://docs.ovh.com/ca/en/nutanix/high-level-documentation/',
+      QC: 'https://docs.ovh.com/ca/fr/nutanix/high-level-documentation/',
+      FR: 'https://docs.ovh.com/fr/nutanix/high-level-documentation/',
+      WE: 'https://docs.ovh.com/us/en/nutanix/high-level-documentation/',
+      WS: 'https://docs.ovh.com/us/en/nutanix/high-level-documentation/',
+      US: 'https://docs.ovh.com/us/en/nutanix/high-level-documentation/',
+    },
+  },
+  {
+    title: 'nutanix_onboarding_guide2_title',
+    description: 'nutanix_onboarding_guide2_description',
+    links: {
+      DEFAULT: 'https://docs.ovh.com/gb/en/nutanix/available-services/',
+      DE: 'https://docs.ovh.com/de/nutanix/available-services/',
+      ES: 'https://docs.ovh.com/es/nutanix/available-services/',
+      IE: 'https://docs.ovh.com/ie/en/nutanix/available-services/',
+      IT: 'https://docs.ovh.com/it/nutanix/available-services/',
+      PL: 'https://docs.ovh.com/pl/nutanix/available-services/',
+      PT: 'https://docs.ovh.com/pt/nutanix/available-services/',
+      GB: 'https://docs.ovh.com/gb/en/nutanix/available-services/',
+      CA: 'https://docs.ovh.com/ca/en/nutanix/available-services/',
+      QC: 'https://docs.ovh.com/ca/fr/nutanix/available-services/',
+      FR: 'https://docs.ovh.com/fr/nutanix/available-services/',
+      WE: 'https://docs.ovh.com/us/en/nutanix/available-services/',
+      WS: 'https://docs.ovh.com/us/en/nutanix/available-services/',
+      US: 'https://docs.ovh.com/us/en/nutanix/available-services/',
+    },
+  },
+  {
+    title: 'nutanix_onboarding_guide3_title',
+    description: 'nutanix_onboarding_guide3_description',
+    links: {
+      DEFAULT: 'https://docs.ovh.com/gb/en/nutanix/ovh-gateway-documentation/',
+      DE: 'https://docs.ovh.com/de/nutanix/ovh-gateway-documentation/',
+      ES: 'https://docs.ovh.com/es/nutanix/ovh-gateway-documentation/',
+      IE: 'https://docs.ovh.com/ie/en/nutanix/ovh-gateway-documentation/',
+      IT: 'https://docs.ovh.com/it/nutanix/ovh-gateway-documentation/',
+      PL: 'https://docs.ovh.com/pl/nutanix/ovh-gateway-documentation/',
+      PT: 'https://docs.ovh.com/pt/nutanix/ovh-gateway-documentation/',
+      GB: 'https://docs.ovh.com/gb/en/nutanix/ovh-gateway-documentation/',
+      CA: 'https://docs.ovh.com/ca/en/nutanix/ovh-gateway-documentation/',
+      QC: 'https://docs.ovh.com/ca/fr/nutanix/ovh-gateway-documentation/',
+      FR: 'https://docs.ovh.com/fr/nutanix/ovh-gateway-documentation/',
+      WE: 'https://docs.ovh.com/us/en/nutanix/ovh-gateway-documentation/',
+      WS: 'https://docs.ovh.com/us/en/nutanix/ovh-gateway-documentation/',
+      US: 'https://docs.ovh.com/us/en/nutanix/ovh-gateway-documentation/',
+    },
+  },
+];
 
-export const CONTACT_US_PAGE_URL = {
+export const CTAS = {
   DE: 'https://www.ovhcloud.com/de/hosted-private-cloud/nutanix/',
   ES: 'https://www.ovhcloud.com/es-es/hosted-private-cloud/nutanix/',
   IE: 'https://www.ovhcloud.com/en-ie/hosted-private-cloud/nutanix/',
@@ -22,4 +83,4 @@ export const CONTACT_US_PAGE_URL = {
   DEFAULT: 'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/',
 };
 
-export default { GUIDES, CONTACT_US_PAGE_URL };
+export default { GUIDES, CTAS };

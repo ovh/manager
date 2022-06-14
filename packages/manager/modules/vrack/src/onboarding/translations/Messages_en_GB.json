@@ -1,0 +1,19 @@
+{
+  "vrack_onboarding_title": "vRack private network",
+  "vrack_onboarding_description": "With vRack (virtual rack) technology, you can connect, isolate and distribute OVHcloud products within one or more private networks, if they are compatible. Due to its unique network technology, you can build private hybrid infrastructures across multiple datacentres, on a global scale.",
+  "vrack_onboarding_description_part2": "With vRack, you can also connect compatible OVHcloud products securely within your own private network. You can choose to make your services available only via the private or public network, or you can make them available via both networks.",
+  "vrack_onboarding_description_part3": "This entire network will be physically managed by OVHcloud, without any software applications or network configuration required for your services.",
+  "vrack_onboarding_order": "Order",
+  "vrack_onboarding_guide1_title": "Configuring the vRack on your dedicated servers",
+  "vrack_onboarding_guide1_description": "Find out how to configure vRack on several dedicated servers",
+  "vrack_onboarding_guide2_title": "Configuring jumbo frames in the vRack",
+  "vrack_onboarding_guide2_description": "Find out how to configure jumbo frames in the vRack",
+  "vrack_onboarding_guide3_title": "Configure an IP block in the vRack",
+  "vrack_onboarding_guide3_description": "Find out how to configure a block of public IP addresses in the vRack",
+  "vrack_onboarding_us_guide1_title": "How to connect a dedicated server to the vRack",
+  "vrack_onboarding_us_guide1_description": "Find out how to configure the vRack on two or more dedicated servers",
+  "vrack_onboarding_us_guide2_title": "How to configure vRack for Public Cloud services",
+  "vrack_onboarding_us_guide2_description": "Find out how to configure the vRack on Public Cloud services",
+  "vrack_onboarding_us_guide3_title": "How to configure a failover IP block on a vRack",
+  "vrack_onboarding_us_guide3_description": "This guide will show you how to configure a block of public IP addresses for use with the vRack."
+}

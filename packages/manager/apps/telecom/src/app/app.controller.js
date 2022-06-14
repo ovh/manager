@@ -1,3 +1,6 @@
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import { getShellClient } from './shell';
+
 export default class TelecomAppCtrl {
   /* @ngInject */
   constructor(
@@ -5,6 +8,7 @@ export default class TelecomAppCtrl {
     $state,
     $rootScope,
     $scope,
+    $timeout,
     $transitions,
     $translate,
     betaPreferenceService,
@@ -20,11 +24,14 @@ export default class TelecomAppCtrl {
     this.$state = $state;
     this.$rootScope = $rootScope;
     this.$scope = $scope;
+    this.$timeout = $timeout;
     this.betaPreferenceService = betaPreferenceService;
     this.coreConfig = coreConfig;
     this.ovhUserPref = ovhUserPref;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.isTopLevelApplication = isTopLevelApplication();
 
+    this.shell = getShellClient();
     this.chatbotEnabled = false;
     this.SYSTRAN_FEEDBACK_INFO = {
       part1:
@@ -33,6 +40,10 @@ export default class TelecomAppCtrl {
     };
     this.SYSTRAN_FEEDBACK_LINK =
       'https://survey.ovh.com/index.php/175287?lang=en';
+
+    this.shell.ux.isMenuSidebarVisible().then((isMenuSidebarVisible) => {
+      this.isMenuSidebarVisible = isMenuSidebarVisible;
+    });
   }
 
   $onInit() {
@@ -63,6 +74,10 @@ export default class TelecomAppCtrl {
       unregisterListener();
     });
 
+    this.shell.ux.onRequestClientSidebarOpen(() =>
+      this.$timeout(() => this.openSidebar()),
+    );
+
     return this.betaPreferenceService.isBetaActive().then((beta) => {
       this.globalSearchLink = beta
         ? this.$state.href('telecomSearch', {})
@@ -79,5 +94,13 @@ export default class TelecomAppCtrl {
   closeSidebar() {
     this.displayFallbackMenu = false;
     $('#sidebar-menu').removeClass('nav-open');
+  }
+
+  onChatbotOpen() {
+    this.shell.ux.onChatbotOpen();
+  }
+
+  onChatbotClose(reduced) {
+    this.shell.ux.onChatbotClose(reduced);
   }
 }

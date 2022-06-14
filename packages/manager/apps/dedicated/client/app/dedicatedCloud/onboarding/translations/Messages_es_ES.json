@@ -1,0 +1,19 @@
+{
+  "dedicated_clouds_onboarding_title": "Su plataforma de virtualización VMware en el cloud",
+  "dedicated_clouds_onboarding_description": "¿Necesita más recursos para seguir desarrollando su actividad? ¿Maneja datos sensibles que requieren una infraestructura dedicada con un elevado nivel de seguridad y confidencialidad?",
+  "dedicated_clouds_onboarding_description2": "Con Hosted Private Cloud disfrutará de una infraestructura privada, alojada y gestionada por nuestros equipos, con un índice de disponibilidad global del 99,9 %, con la que podrá concentrarse en su actividad.",
+  "dedicated_clouds_onboarding_description3": "Combinando hardware Intel de última generación y la tecnología de VMware, podemos ofrecerle entornos totalmente aislados y dedicados con los que podrá proteger sus cargas de trabajo más críticas.",
+  "dedicated_clouds_onboarding_order": "Contratar",
+  "dedicated_clouds_onboarding_guide1_title": "Despliegue de una máquina virtual",
+  "dedicated_clouds_onboarding_guide1_description": "Cómo desplegar una máquina virtual desde la interfaz vSphere",
+  "dedicated_clouds_onboarding_guide2_title": "Conectarse a la interfaz vSphere",
+  "dedicated_clouds_onboarding_guide2_description": "Cómo conectarse a la interfaz vSphere",
+  "dedicated_clouds_onboarding_guide3_title": "Conectarse por SFTP",
+  "dedicated_clouds_onboarding_guide3_description": "Cómo conectarse a Hosted Private Cloud por SFTP",
+  "dedicated_clouds_onboarding_us_guide1_title": "Deploying a virtual machine",
+  "dedicated_clouds_onboarding_us_guide1_description": "Find out how to deploy virtual machine in the vSphere interface",
+  "dedicated_clouds_onboarding_us_guide2_title": "Logging in to the vSphere interface",
+  "dedicated_clouds_onboarding_us_guide2_description": "Find out about the different ways you can log in to vSphere",
+  "dedicated_clouds_onboarding_us_guide3_title": "Logging in via SFTP",
+  "dedicated_clouds_onboarding_us_guide3_description": "Find out how to log in to your Private Cloud a través de SFTP"
+}

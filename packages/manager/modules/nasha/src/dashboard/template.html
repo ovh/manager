@@ -5,6 +5,7 @@
                 <oui-guide-menu-item
                     data-ng-repeat="guide in NashaCtrl.guides.list track by guide.url"
                     href="{{ guide.url }}"
+                    top
                 >
                     <span data-ng-bind="guide.name"></span>
                 </oui-guide-menu-item>

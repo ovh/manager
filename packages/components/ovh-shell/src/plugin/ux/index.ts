@@ -2,14 +2,19 @@ import Shell from '../../shell/shell';
 import { ShellUX } from './ux';
 
 export interface IUXPlugin {
-  isAccountSidebarVisible(sidebarName: string): boolean;
+  isAccountSidebarVisible(): boolean;
+  isMenuSidebarVisible(): boolean;
   showAccountSidebar(disableToggle: boolean): void;
+  showMenuSidebar(): void;
   hideAccountSidebar(): void;
+  hideMenuSidebar(): void;
   isNotificationsSidebarVisible(): boolean;
   showNotificationsSidebar(): void;
   hideNotificationsSidebar(): void;
   enableAccountSidebarVisibilityToggle(): void;
   disableAccountSidebarVisibilityToggle(): void;
+  setForceAccountSiderBarDisplayOnLargeScreen(isForced: boolean): void;
+  resetAccountSidebar(): void;
   toggleNotificationsSidebarVisibility(): void;
   toggleAccountSidebarVisibility(): void;
   getUserIdCookie(): string;
@@ -31,7 +36,9 @@ export class UXPlugin implements IUXPlugin {
     this.shellUX = new ShellUX(this.shell);
     this.shellUX.registerSidebar('account');
     this.shellUX.registerSidebar('notifications');
-    this.shellUX.registerNavbar();
+    this.shellUX.registerSidebar('menu');
+    this.shellUX.registerProgress();
+    this.shellUX.registerPreloader();
   }
 
   /* ----------- AccountSidebar methods -----------*/
@@ -40,12 +47,28 @@ export class UXPlugin implements IUXPlugin {
     return this.shellUX.isSidebarVisible('account');
   }
 
+  isAccountSidebarLargeScreenDisplayForced(): boolean {
+    return this.shellUX.isLargeScreenDisplayForced('account');
+  }
+
   showAccountSidebar(): void {
     return this.shellUX.showSidebar('account');
   }
 
+  isMenuSidebarVisible(): boolean {
+    return this.shellUX.isSidebarVisible('menu');
+  }
+
+  showMenuSidebar(): void {
+    return this.shellUX.showSidebar('menu');
+  }
+
   hideAccountSidebar(): void {
     return this.shellUX.hideSidebar('account');
+  }
+
+  hideMenuSidebar(): void {
+    return this.shellUX.hideSidebar('menu');
   }
 
   enableAccountSidebarVisibilityToggle(): void {
@@ -54,6 +77,14 @@ export class UXPlugin implements IUXPlugin {
 
   disableAccountSidebarVisibilityToggle(): void {
     this.shellUX.disableSidebarToggle('account');
+  }
+
+  setForceAccountSiderBarDisplayOnLargeScreen(isForced: boolean): void {
+    this.shellUX.setForceSiderBarDisplayOnLargeScreen('account', isForced);
+  }
+
+  resetAccountSidebar(): void {
+    this.shellUX.resetSidebar('account');
   }
 
   toggleAccountSidebarVisibility(): void {
@@ -80,6 +111,10 @@ export class UXPlugin implements IUXPlugin {
 
   toggleNotificationsSidebarVisibility(): void {
     this.shellUX.toggleSidebarVisibility('notifications');
+  }
+
+  onNotificationsSidebarVisibilityChange(callback: CallableFunction): void {
+    this.shellUX.onSidebarVisibilityChange('notifications', callback);
   }
 
   /* ----------- SSOAuthModal methods -----------*/
@@ -120,11 +155,84 @@ export class UXPlugin implements IUXPlugin {
 
   /* ----------- Chatbot methods -----------*/
 
+  isChatbotReduced(): boolean {
+    return this.shellUX.getChatbot().isReduced();
+  }
+
+  isChatbotVisible(): boolean {
+    return this.shellUX.getChatbot().getVisibility();
+  }
+
   openChatbot(): void {
     this.shell.emitEvent('ux:open-chatbot');
   }
 
   closeChatbot(): void {
     this.shell.emitEvent('ux:close-chatbot');
+  }
+
+  reduceChatbot(): void {
+    this.shell.emitEvent('ux:reduce-chatbot');
+  }
+
+  onChatbotOpen(): void {
+    this.shellUX.getChatbot().show();
+  }
+
+  onChatbotClose(reduced: boolean): void {
+    if (reduced) {
+      this.shellUX.getChatbot().reduce();
+    } else {
+      this.shellUX.getChatbot().hide();
+    }
+  }
+
+  onChatbotVisibilityChange(callback: CallableFunction): void {
+    this.shellUX.getChatbot().onVisibilityChange(callback);
+  }
+
+  startProgress(): void {
+    this.shellUX.startProgress();
+  }
+
+  stopProgress(): void {
+    this.shellUX.stopProgress();
+  }
+
+  onProgressStart(callback: CallableFunction): void {
+    this.shellUX.onProgressStart(callback);
+  }
+
+  onProgressStop(callback: CallableFunction): void {
+    this.shellUX.onProgressStop(callback);
+  }
+
+  showPreloader(): void {
+    this.shellUX.showPreloader();
+  }
+
+  onShowPreloader(callback: CallableFunction): void {
+    this.shellUX.onShowPreloader(callback);
+  }
+
+  removeOnShowPreloader(callback: CallableFunction): void {
+    this.shellUX.removeOnShowPreloader(callback);
+  }
+
+  hidePreloader(): void {
+    this.shellUX.hidePrelaoder();
+  }
+
+  onHidePreloader(callback: CallableFunction): void {
+    this.shellUX.onHidePreloader(callback);
+  }
+
+  removeOnHidePreloader(callback: CallableFunction): void {
+    this.shellUX.removeOnHidePreloader(callback);
+  }
+
+  // request the client application to open his sidebar
+  requestClientSidebarOpen() {
+    this.shell.emitEvent('ux:client-sidebar-open');
   }
 }

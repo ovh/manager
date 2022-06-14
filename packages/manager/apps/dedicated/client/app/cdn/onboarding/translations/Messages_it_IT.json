@@ -1,0 +1,11 @@
+{
+  "cdn_onboarding_title": "CDN Infrastructure",
+  "cdn_onboarding_description": "La soluzione indispensabile per ottimizzare la navigazione nelle applicazioni Web, in Europa e nel mondo.",
+  "cdn_onboarding_order": "Ordina",
+  "cdn_onboarding_guide1_title": "Funzionamento della quota sulla CDN",
+  "cdn_onboarding_guide1_description": "Come funziona la gestione della quota disponibile sulla CDN",
+  "cdn_onboarding_guide2_title": "Prima configurazione di un dominio",
+  "cdn_onboarding_guide2_description": "Best practice per la configurazione di un dominio sulla CDN di OVHcloud",
+  "cdn_onboarding_guide3_title": "Funzionamento del certificato SSL sulla CDN",
+  "cdn_onboarding_guide3_description": "Come aggiungere un certificato SSL sulla CDN"
+}

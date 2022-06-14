@@ -1,0 +1,19 @@
+{
+  "vps_onboarding_title": "Virtual Private Server (VPS)",
+  "vps_onboarding_description_1": "Hohe Performance zum Bestpreis",
+  "vps_onboarding_description_2": "Einfachheit, Skalierbarkeit,  Personalisierung",
+  "vps_onboarding_description_3": "Unbegrenzter Traffic und Bandbreite mit bis zu 2 Gbit/s*",
+  "vps_onboarding_cta": "Bestellen",
+  "vps_onboarding_guide1_title": "Erste Schritte mit einem VPS",
+  "vps_onboarding_guide1_description": "Hier lernen Sie die Grundlagen der Verwendung eines VPS",
+  "vps_onboarding_guide2_title": "VPS Sicherheit",
+  "vps_onboarding_guide2_description": "Hier lernen Sie die Grundlagen für den Schutz Ihres VPS",
+  "vps_onboarding_guide3_title": "Snapshot verwenden",
+  "vps_onboarding_guide3_description": "Hier erfahren Sie, wie Sie die Snapshot-Option im OVHcloud Kundencenter aktivieren und verwenden",
+  "vps_onboarding_us_guide1_title": "Getting started with a VPS",
+  "vps_onboarding_us_guide1_description": "Learn the first steps of using a VPS",
+  "vps_onboarding_us_guide2_title": "How to secure a VPS",
+  "vps_onboarding_us_guide2_description": "Learn the basics of securing your VPS",
+  "vps_onboarding_us_guide3_title": "How to use snapshots on a VPS",
+  "vps_onboarding_us_guide3_description": "Learn about taking snapshots in the OVHcloud Control Panel"
+}

@@ -3,9 +3,11 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import billing from './billing.module';
+
 const moduleName = 'ovhManagerDedicatedBillingLazyLoading';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad', billing]).config(
   /* @ngInject */ ($stateProvider, $urlRouterProvider, $urlServiceProvider) => {
     $stateProvider.state('app.account.billing.**', {
       url: '/billing',

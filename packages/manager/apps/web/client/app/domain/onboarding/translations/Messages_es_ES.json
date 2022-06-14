@@ -1,0 +1,15 @@
+{
+  "domains_onboarding_title": "¡Encuentre el dominio que mejor se adapta a usted!",
+  "domains_onboarding_description": "OVHcloud le ofrece una gran variedad de dominios adaptados a todos sus proyectos",
+  "domains_onboarding_description_list1": "Hosting web de 10 MB gratis",
+  "domains_onboarding_description_list2": "Cuenta de correo de 5 GB gratis",
+  "domains_onboarding_description_list3": "DNSSEC: protección contra el «cache poisoning»",
+  "domains_onboarding_description_list4": "Easy Redirect: acceso a redes sociales desde su dominio",
+  "domains_onboarding_order": "Contratar",
+  "domains_onboarding_guide1_title": "Veeam Cloud Connect",
+  "domains_onboarding_guide1_description": "Presentación de la solución Veeam Cloud Connect",
+  "domains_onboarding_guide2_title": "Cómo cambiar el propietario de un nombre de dominio",
+  "domains_onboarding_guide2_description": "En esta guía encontrará diversas informaciones en relación con el cambio de propietario de un nombre de dominio.",
+  "domains_onboarding_guide3_title": "Transferir un dominio a OVHcloud",
+  "domains_onboarding_guide3_description": "Cómo realizar la transferencia de un dominio a OVHcloud"
+}

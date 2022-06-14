@@ -1,8 +1,11 @@
 <oui-header data-heading="{{ :: 'telephony_title' | translate }}"></oui-header>
 
+<tuc-telephony-procedure class="w-100"></tuc-telephony-procedure>
+
 <div class="container-fluid my-5">
     <oui-datagrid
         id="dg-telephony-billingAccounts"
+        data-page="{{ $ctrl.paginationNumber }}"
         data-page-size="{{ $ctrl.paginationSize }}"
         data-rows-loader="$ctrl.loadPage()"
         data-row-loader="$ctrl.loadResource($row)"
@@ -24,7 +27,6 @@
             <a
                 data-ng-href="{{ $ctrl.getBillingAccountLink($row) }}"
                 data-ng-bind="$row.billingAccount"
-                target="_top"
             ></a>
         </oui-datagrid-column>
         <oui-datagrid-column

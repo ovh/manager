@@ -1,10 +1,11 @@
 {
-  "anthos_onboarding_breadcrumb": "Anthos",
-  "anthos_onboarding_title": "Hosted Private Cloud powered by VMware",
-  "anthos_onboarding_description_part_1": "Utilice la mejor plataforma nativa de cloud para alojar sus aplicaciones en modo privado y bare metal.",
-  "anthos_onboarding_description_part_2": "Elija un pack de inicio y disfrute de su propia consola Anthos privada para crear su primer cluster Kubernetes. Descubra las funcionalidades avanzadas de Anthos en modo privado (observabilidad, servicio mesh...) y añada nodos adicionales bajo demanda.",
-  "anthos_onboarding_description_part_3": "OVHcloud se encarga de gestionar la infraestructura y todos los componentes del plano de control. ¡Concéntrese en la creación, modernización o mejora continua de sus aplicaciones, ahorrando tiempo y dinero!",
-  "anthos_onboarding_cta_start_with_anthos": "Más información sobre Anthos",
-  "anthos_onboarding_guides_anthos_title": "Documentación de Anthos",
-  "anthos_onboarding_guides_anthos_description": "Consulte toda la documentación sobre Anthos"
+  "anthos_onboarding_title": "Hosted Private Cloud powered by Anthos",
+  "anthos_onboarding_description": "OVHcloud y Google unen sus fuerzas para ofrecer la primera solución de cloud privado en bare metal dedicada a la tecnología Anthos. OVHcloud se encarga de operar, instalar y gestionar esta solución.",
+  "anthos_onboarding_order": "Contratar",
+  "anthos_onboarding_guide1_title": "Primeros pasos con Hosted Private Cloud powered by Anthos",
+  "anthos_onboarding_guide1_description": "Cómo configurar Hosted Private Cloud powered by Anthos desde el área de cliente",
+  "anthos_onboarding_guide2_title": "Capacidades y limitaciones técnicas (FAQ)",
+  "anthos_onboarding_guide2_description": "Descubra las capacidades técnicas y los límites de Hosted Private Cloud powered by Anthos",
+  "anthos_onboarding_guide3_title": "Documentación de Anthos en bare metal en modo privado",
+  "anthos_onboarding_guide3_description": ""
 }

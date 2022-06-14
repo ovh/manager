@@ -1,0 +1,15 @@
+{
+  "beta_modal_title": "Entdecken Sie die neue Version des Kundencenters",
+  "beta_modal_infos": "Wechseln Sie zur neuen Version und senden Sie uns Ihre Meinung per Klick auf Ihr Profil.",
+  "beta_modal_accept": "Zur neuen Version wechseln",
+  "beta_modal_decline": "Vielleicht später",
+  "beta_modal_screenshot": "Screenshot",
+  "beta_modal_new": "Neue Version",
+  "beta_modal_beta": "Beta",
+  "beta_modal_old": "Klassische Version",
+  "beta_modal_switch_title": "Sie möchten zur vorherigen Version des Managers zurückkehren?",
+  "beta_modal_switch_infos": "Wir brauchen Ihre Meinung, um Ihren Erwartungen gerecht zu werden. Helfen Sie uns, uns zu verbessern!",
+  "beta_modal_switch_accept": "Ich sage meine Meinung",
+  "beta_switch": "Version wechseln",
+  "beta_modal_switch_later": "Später"
+}

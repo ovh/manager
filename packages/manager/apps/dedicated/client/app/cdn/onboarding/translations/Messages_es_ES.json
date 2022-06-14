@@ -1,0 +1,11 @@
+{
+  "cdn_onboarding_title": "Infraestructura CDN",
+  "cdn_onboarding_description": "La solución ideal para optimizar la consulta de sus aplicaciones web desde cualquier lugar del mundo.",
+  "cdn_onboarding_order": "Contratar",
+  "cdn_onboarding_guide1_title": "Límites de tráfico en la CDN",
+  "cdn_onboarding_guide1_description": "Cómo funcionan los límites de tráfico en el servicio CDN",
+  "cdn_onboarding_guide2_title": "Primera configuración de un dominio en la CDN",
+  "cdn_onboarding_guide2_description": "Cómo configurar un dominio por primera vez en el servicio CDN",
+  "cdn_onboarding_guide3_title": "Funcionamiento del certificado SSL en la CDN",
+  "cdn_onboarding_guide3_description": "Cómo añadir un certificado SSL al servicio CDN"
+}

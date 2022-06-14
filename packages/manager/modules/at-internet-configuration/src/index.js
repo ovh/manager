@@ -1,7 +1,8 @@
 import angular from 'angular';
 
 import '@ovh-ux/manager-core';
-import '@ovh-ux/ng-at-internet';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
+
 import '@ovh-ux/ng-at-internet-ui-router-plugin';
 
 import provider from './provider';
@@ -25,9 +26,11 @@ angular
       atInternetUiRouterPluginProvider,
       coreConfigProvider,
     ) => {
-      atInternetProvider.setEnabled(false);
-      atInternetProvider.setDebug(!trackingEnabled);
-      atInternetProvider.setRegion(coreConfigProvider.getRegion());
+      if (isTopLevelApplication()) {
+        atInternetProvider.setEnabled(false);
+        atInternetProvider.setDebug(!trackingEnabled);
+        atInternetProvider.setRegion(coreConfigProvider.getRegion());
+      }
 
       atInternetUiRouterPluginProvider.setTrackStateChange(true);
       atInternetUiRouterPluginProvider.addStateNameFilter((routeName) => {
@@ -44,34 +47,35 @@ angular
   )
   .run(
     /* @ngInject */ ($cookies, $rootScope, $window, atInternet) => {
+      if (!isTopLevelApplication()) return;
       $rootScope.$on(
         'cookie-policy:decline',
-        (event, { fromModal } = { fromModal: false }) => {
+        async (event, { fromModal } = { fromModal: false }) => {
           // initialize atInternet without cookies (enabled === false) and empty tracking queue
-          atInternet.setEnabled(trackingEnabled);
-          atInternet.clearTrackQueue();
+          await atInternet.setEnabled(trackingEnabled);
+          await atInternet.clearTrackQueue();
           if ($window.ATInternet) {
             $window.ATInternet.Utils.consentReceived(false); // disable cookie creation
-            atInternet.initTag();
+            await atInternet.initTag();
             if (fromModal) {
-              atInternet.trackClick({
+              await atInternet.trackClick({
                 type: 'action',
                 name: 'cookie-banner-manager::decline',
               });
             }
           }
           // disable atInternet
-          atInternet.setEnabled(false);
+          await atInternet.setEnabled(false);
         },
       );
 
       $rootScope.$on(
         'cookie-policy:consent',
-        (event, { fromModal } = { fromModal: false }) => {
-          atInternet.setEnabled(trackingEnabled);
+        async (event, { fromModal } = { fromModal: false }) => {
+          await atInternet.setEnabled(trackingEnabled);
           if (trackingEnabled) {
             const cookie = $cookies.get(USER_ID);
-            const tag = atInternet.getTag();
+            const tag = await atInternet.getTag();
             try {
               if (cookie) {
                 tag.clientSideUserId.set(cookie);
@@ -89,7 +93,7 @@ angular
                 }
               }
               if (fromModal) {
-                atInternet.trackClick({
+                await atInternet.trackClick({
                   type: 'action',
                   name: 'cookie-banner-manager::accept',
                 });
@@ -110,21 +114,23 @@ angular
       atInternetConfiguration,
       coreConfig,
     ) => {
-      const referrerSite = $cookies.get('OrderCloud');
-      const data = {
-        ...CUSTOM_VARIABLES,
-        ...atInternetConfiguration.getConfig(coreConfig.getRegion()),
-        ...(referrerSite ? { referrerSite } : {}),
-      };
-      const me = coreConfig.getUser();
-      atInternet.setDefaultsPromise(
-        $q.when({
+      if (!atInternetConfiguration.skipInit) {
+        const referrerSite = $cookies.get('OrderCloud');
+        const data = {
+          ...CUSTOM_VARIABLES,
+          ...atInternetConfiguration.getConfig(coreConfig.getRegion()),
+          ...(referrerSite ? { referrerSite } : {}),
+        };
+        const me = coreConfig.getUser();
+        const atInternetDefaultConfig = {
           ...data,
           countryCode: me.country,
           currencyCode: me.currency && me.currency.code,
           visitorId: me.customerCode,
-        }),
-      );
+        };
+
+        atInternet.setDefaults(atInternetDefaultConfig);
+      }
     },
   );
 

@@ -1,16 +1,20 @@
 <manager-on-boarding-layout
-    guides="$ctrl.guides"
-    image-source="$ctrl.illustration"
+    data-guides=":: $ctrl.guides"
+    data-image-source=":: $ctrl.illustration"
 >
-    <h1 data-translate="nutanix_onboarding_title"></h1>
-    <p data-translate="nutanix_onboarding_description"></p>
-    <p data-translate="nutanix_onboarding_description_1"></p>
-    <oui-button
-        external
-        data-variant="primary"
-        data-on-click="$ctrl.onContactUs()"
-    >
-        <span data-translate="nutanix_onboarding_contact_us"></span>
-        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
-    </oui-button>
+    <onboarding-title>
+        <p data-translate="nutanix_onboarding_title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <p data-translate="nutanix_onboarding_description"></p>
+        <p data-translate="nutanix_onboarding_description2"></p>
+        <a
+            class="oui-button oui-button_primary oui-button_l text-light"
+            data-translate="nutanix_onboarding_order"
+            href="{{:: $ctrl.cta }}"
+            target="_blank"
+            rel="noopener"
+        >
+        </a>
+    </onboarding-description>
 </manager-on-boarding-layout>

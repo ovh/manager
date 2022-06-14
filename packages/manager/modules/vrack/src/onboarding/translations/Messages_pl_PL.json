@@ -1,0 +1,19 @@
+{
+  "vrack_onboarding_title": "Prywatna sieć vRack",
+  "vrack_onboarding_description": "Technologia vRack (wirtualna szafa) pozwala na podłączenie, odizolowanie lub rozdzielenie kompatybilnych usług OVH w ramach jednej lub kilku prywatnych i zabezpieczonych sieci. Dzięki unikalnym technologiom sieciowym możesz tworzyć prywatne hybrydowe środowiska o globalnym zasięgu w wielu centrach danych. ",
+  "vrack_onboarding_description_part2": "vRack umożliwia bezpieczne połączenie kompatybilnych usług OVH w ramach Twojej własnej prywatnej sieci. Możesz udostępniać Twoje usługi wyłącznie z poziomu sieci prywatnej i/lub z poziomu sieci publicznej.",
+  "vrack_onboarding_description_part3": "Cała sieć będzie fizycznie zarządzana przez OVHcloud, bez konieczności stosowania oprogramowania lub konfiguracji sieci w Twoich usługach.",
+  "vrack_onboarding_order": "Zamów",
+  "vrack_onboarding_guide1_title": "Konfiguracja sieci vRack na serwerach dedykowanych",
+  "vrack_onboarding_guide1_description": "Dowiedz się, jak skonfigurować vRack na kilku serwerach dedykowanych",
+  "vrack_onboarding_guide2_title": "Konfiguracja ramek Jumbo w sieci vRack",
+  "vrack_onboarding_guide2_description": "Dowiedz się, jak skonfigurować ramki Jumbo w sieci vRack",
+  "vrack_onboarding_guide3_title": "Konfiguracja bloku IP w sieci vRack",
+  "vrack_onboarding_guide3_description": "Dowiedz się, jak skonfigurować blok publicznych adresów IP w sieci vRack",
+  "vrack_onboarding_us_guide1_title": "How to Connect a Dedicated Server to vRack",
+  "vrack_onboarding_us_guide1_description": "Find out how to configure the vRack on two or more dedicated servers",
+  "vrack_onboarding_us_guide2_title": "How to Configure vRack for Public Cloud Services",
+  "vrack_onboarding_us_guide2_description": "Find out how to configure the vRack on Public Cloud",
+  "vrack_onboarding_us_guide3_title": "How to Configure a Failover IP Block on a vRack",
+  "vrack_onboarding_us_guide3_description": "This guide will show you how to configure a block of public IP addresses for use with the vRack."
+}

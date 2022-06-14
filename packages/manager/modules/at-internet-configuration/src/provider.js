@@ -3,6 +3,7 @@ export default class atInternetConfigurationProvider {
     this.stateRules = [];
     this.extraConfig = {};
     this.config = {};
+    this.skipInit = false;
   }
 
   setConfig(config) {
@@ -13,6 +14,10 @@ export default class atInternetConfigurationProvider {
     this.stateRules = [...this.stateRules, ...rules];
   }
 
+  setSkipInit(isSkipInit) {
+    this.skipInit = isSkipInit;
+  }
+
   setPrefix(prefix) {
     this.prefix = prefix;
   }
@@ -20,6 +25,7 @@ export default class atInternetConfigurationProvider {
   $get() {
     return {
       config: this.config,
+      skipInit: this.skipInit,
       setExtraConfig: (config) => {
         this.extraConfig = config;
       },

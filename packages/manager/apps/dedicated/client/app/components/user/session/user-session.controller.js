@@ -1,6 +1,7 @@
 import isString from 'lodash/isString';
 import set from 'lodash/set';
-import startsWith from 'lodash/startsWith';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import { getShellClient } from '../../../shell';
 
 angular.module('App').controller(
   'SessionCtrl',
@@ -11,6 +12,7 @@ angular.module('App').controller(
       $rootScope,
       $scope,
       $state,
+      $timeout,
       $transitions,
       $translate,
       coreConfig,
@@ -20,28 +22,24 @@ angular.module('App').controller(
       this.$rootScope = $rootScope;
       this.$scope = $scope;
       this.$state = $state;
+      this.$timeout = $timeout;
       this.$transitions = $transitions;
       this.$translate = $translate;
       this.coreConfig = coreConfig;
       this.ovhFeatureFlipping = ovhFeatureFlipping;
       this.chatbotEnabled = false;
+      this.isTopLevelApplication = isTopLevelApplication();
+      this.shell = getShellClient();
+      this.shell.ux.isMenuSidebarVisible().then((isMenuSidebarVisible) => {
+        this.isMenuSidebarVisible = isMenuSidebarVisible;
+      });
     }
 
     $onInit() {
       this.$scope.$on('switchUniverse', (event, universe) => {
         this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
-        if (universe === 'hpc') {
-          this.navbarOptions.universe = universe;
-        }
-        this.$transitions.onSuccess({}, (transition) => {
-          // Prevent displaying `server` as the current universe if user is
-          // browsing in account/billing section.
-          if (startsWith(transition.to().name, 'app.account')) {
-            this.navbarOptions.universe = undefined;
-          } else {
-            this.navbarOptions.universe = universe;
-          }
-        });
+        this.navbarOptions.universe = universe;
+        this.shell.environment.setUniverse(universe);
         this.coreConfig.setUniverse(universe);
       });
 
@@ -94,6 +92,10 @@ angular.module('App').controller(
           this.$document.find(`#${id}`)[0].focus();
         }
       };
+
+      this.shell.ux.onRequestClientSidebarOpen(() =>
+        this.$timeout(() => this.openSidebar()),
+      );
     }
 
     openSidebar() {
@@ -106,6 +108,14 @@ angular.module('App').controller(
 
     $onDestroy() {
       this.hooksToUnsubscribe.forEach((hook) => hook());
+    }
+
+    onChatbotOpen() {
+      this.shell.ux.onChatbotOpen();
+    }
+
+    onChatbotClose(reduced) {
+      this.shell.ux.onChatbotClose(reduced);
     }
   },
 );

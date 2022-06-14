@@ -1,36 +1,22 @@
-import reduce from 'lodash/reduce';
-import { GUIDES, CONTACT_US_PAGE_URL } from './constants';
+import { GUIDES, CTAS } from './constants';
 import illustration from './assets/Nutanix.png';
 
-export default class NutanixOnboardingCtrl {
+export default class NutanixOnboardingController {
   /* @ngInject */
-  constructor($window, coreConfig) {
-    this.$window = $window;
+  constructor($translate, coreConfig) {
+    this.$translate = $translate;
     this.coreConfig = coreConfig;
-    this.GUIDES = GUIDES;
-  }
-
-  $onInit() {
-    this.guides = reduce(
-      GUIDES,
-      (list, guide) => [
-        ...list,
-        {
-          ...guide,
-        },
-      ],
-      [],
-    );
     this.illustration = illustration;
-    this.user = this.coreConfig.getUser();
   }
 
-  onContactUs() {
-    this.$window.open(
-      CONTACT_US_PAGE_URL[this.user.ovhSubsidiary] ||
-        CONTACT_US_PAGE_URL.DEFAULT,
-      '_blank',
-      'noopener',
-    );
+  async $onInit() {
+    const user = await this.coreConfig.getUser();
+    this.ovhSubsidiary = user.ovhSubsidiary;
+    this.guides = GUIDES.map((guide) => ({
+      link: guide.links[this.ovhSubsidiary] || guide.links.DEFAULT,
+      description: this.$translate.instant(guide.description),
+      title: this.$translate.instant(guide.title),
+    }));
+    this.cta = CTAS[this.ovhSubsidiary] || CTAS.DEFAULT;
   }
 }

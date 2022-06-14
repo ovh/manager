@@ -65,7 +65,6 @@ import has from 'lodash/has';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
 
-import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ovhManagerBetaPreference from '@ovh-ux/manager-beta-preference';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import { registerCoreModule } from '@ovh-ux/manager-core';
@@ -76,7 +75,8 @@ import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerOverTheBox from '@ovh-ux/manager-overthebox';
 import ovhManagerSms from '@ovh-ux/manager-sms';
 import ovhManagerTelecomTask from '@ovh-ux/manager-telecom-task';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
+import '@ovh-ux/ng-at-internet';
+import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
@@ -107,6 +107,7 @@ import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
@@ -127,8 +128,27 @@ import './app.less';
 
 import { TRACKING } from './at-internet.constants';
 
-export default (containerEl, environment) => {
+const getEnvironment = (shellClient) => {
+  return shellClient.environment.getEnvironment();
+};
+
+const getLocale = (shellClient) => {
+  return shellClient.i18n.getLocale();
+};
+
+export default async (containerEl, shellClient) => {
   const moduleName = 'managerApp';
+
+  const [environment, locale] = await Promise.all([
+    getEnvironment(shellClient),
+    getLocale(shellClient),
+  ]);
+
+  const coreCallbacks = {
+    onLocaleChange: (lang) => {
+      shellClient.i18n.setLocale(lang);
+    },
+  };
 
   angular
     .module(
@@ -139,7 +159,7 @@ export default (containerEl, environment) => {
         'matchmedia-ng',
         'ngAnimate',
         'ngAria',
-        ngAtInternet,
+        registerAtInternet(shellClient.tracking),
         ngAtInternetUiRouterPlugin,
         'ngCookies',
         'ngCsv',
@@ -163,7 +183,7 @@ export default (containerEl, environment) => {
         ngOvhPaymentMethod,
         ngOvhUiRouterBreadcrumb,
         ngOvhUiRouterLayout,
-        ngOvhUiRouterLineProgress,
+        isTopLevelApplication() ? ngOvhUiRouterLineProgress : null,
         ngOvhUiRouterTitle,
         ngOvhContact,
         ngOvhLineDiagnostics,
@@ -175,11 +195,10 @@ export default (containerEl, environment) => {
         'ovh-api-services',
         'ovh-ng-input-password',
         ovhManagerAccountSidebar,
-        ovhManagerAtInternetConfiguration,
         ovhManagerAccountMigration,
         ovhManagerBetaPreference,
-        registerCoreModule(environment),
-        ovhManagerCookiePolicy,
+        registerCoreModule(environment, coreCallbacks),
+        isTopLevelApplication() ? ovhManagerCookiePolicy : null,
         ovhManagerDashboard,
         ovhManagerFreefax,
         ovhManagerNavbar,
@@ -231,6 +250,26 @@ export default (containerEl, environment) => {
         $logProvider.debugEnabled(telecomConfig.env !== 'prod');
       },
     )
+    .config(
+      /* @ngInject */ (ssoAuthModalPluginFctProvider) => {
+        ssoAuthModalPluginFctProvider.setOnLogout(() => {
+          shellClient.auth.logout();
+        });
+        ssoAuthModalPluginFctProvider.setOnReload(() => {
+          shellClient.navigation.reload();
+        });
+      },
+    )
+    .config(
+      /* @ngInject */ (ssoAuthenticationProvider) => {
+        ssoAuthenticationProvider.setOnLogin(() => {
+          shellClient.auth.login();
+        });
+        ssoAuthenticationProvider.setOnLogout(() => {
+          shellClient.auth.logout();
+        });
+      },
+    )
     .config((LineDiagnosticsProvider) => {
       LineDiagnosticsProvider.setPathPrefix('/xdsl/{serviceName}');
     })
@@ -241,7 +280,7 @@ export default (containerEl, environment) => {
     })
     .config(
       /* @ngInject */ (ovhPaymentMethodProvider) => {
-        ovhPaymentMethodProvider.setUserLocale(environment.getUserLocale());
+        ovhPaymentMethodProvider.setUserLocale(locale);
       },
     )
     .run(
@@ -261,7 +300,7 @@ export default (containerEl, environment) => {
     )
     .config(
       /* @ngInject */ (ouiCalendarConfigurationProvider) => {
-        const lang = environment.getUserLanguage();
+        const [lang] = locale.split('_');
         return import(`flatpickr/dist/l10n/${lang}.js`)
           .then((module) => {
             ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
@@ -269,11 +308,9 @@ export default (containerEl, environment) => {
           .catch(() => {});
       },
     )
-    .config(
-      /* @ngInject */ (atInternetConfigurationProvider) => {
-        atInternetConfigurationProvider.setConfig(TRACKING);
-      },
-    )
+    .config(() => {
+      shellClient.tracking.setConfig(TRACKING);
+    })
     /*= =========  INTERCEPT ERROR IF NO TRANSLATION FOUND  ========== */
     .factory('translateInterceptor', ($q) => {
       const regexp = new RegExp(/Messages\w+\.json$/i);
@@ -372,11 +409,52 @@ export default (containerEl, environment) => {
     )
     .run(/* @ngTranslationsInject:json ./common/translations */)
     .run(
+      /* @ngInject */ ($transitions) => {
+        // replace ngOvhUiRouterLineProgress if in container
+        if (!isTopLevelApplication()) {
+          $transitions.onBefore({}, (transition) => {
+            if (
+              !transition.ignored() &&
+              transition.from().name !== '' &&
+              transition.entering().length > 0
+            ) {
+              shellClient.ux.startProgress();
+            }
+          });
+
+          $transitions.onSuccess({}, () => {
+            shellClient.ux.stopProgress();
+          });
+
+          $transitions.onError({}, (transition) => {
+            if (!transition.error().redirected) {
+              shellClient.ux.stopProgress();
+            }
+          });
+        }
+      },
+    )
+    .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
+          if (isTopLevelApplication()) {
+            detachPreloader();
+          } else {
+            shellClient.ux.hidePreloader();
+          }
           $rootScope.$broadcast('app:started');
           unregisterHook();
+        });
+      },
+    )
+    .run(
+      /* @ngInject */ ($rootScope) => {
+        shellClient.ux.onOpenChatbot(() => {
+          $rootScope.$emit('ovh-chatbot:open');
+        });
+
+        shellClient.ux.onReduceChatbot(() => {
+          $rootScope.$emit('ovh-chatbot:close', false);
         });
       },
     );
