@@ -5,8 +5,6 @@ export default /* @ngInject */ ($stateProvider) => {
       containersView: 'pciProjectStorageObjectStorageUsers',
     },
     resolve: {
-      userList: /* @ngInject */ (PciStoragesObjectStorageService, projectId) =>
-        PciStoragesObjectStorageService.getS3Users(projectId),
       goToUsersAndRoles: /* @ngInject */ (
         $state,
         atInternet,
