@@ -1,3 +1,21 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.3.1...@ovh-ux/manager-veeam-enterprise@1.4.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **pnr:** add top attribute to oui-action-menu-item with href ([5284489](https://github.com/ovh/manager/commit/5284489da8ae691bbf5b83493dba09f917760a96))
+* **veeam-enterprise:** us onboarding ([a2b920c](https://github.com/ovh/manager/commit/a2b920c46b516c89a648243bc5a1d6d57a620032))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **veeam-enterprise:** add onboarding page ([cee1a5a](https://github.com/ovh/manager/commit/cee1a5ababa9e8517c427760b8669864ab3c346d))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.3.0...@ovh-ux/manager-veeam-enterprise@1.3.1) (2022-06-07)
 
 

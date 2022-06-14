@@ -1,3 +1,12 @@
+# [8.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-mondial-relay@8.2.6...@ovh-ux/ng-ovh-mondial-relay@8.3.0) (2022-06-14)
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
 ## [8.2.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-mondial-relay@8.2.5...@ovh-ux/ng-ovh-mondial-relay@8.2.6) (2022-06-07)
 
 

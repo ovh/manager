@@ -1,3 +1,26 @@
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.4.3...@ovh-ux/manager-nasha@2.5.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **nasha:** fix angularJS module name conflict ([884ae80](https://github.com/ovh/manager/commit/884ae800b047943cc188e32b667ae978837c629f))
+* **nasha:** fix onboarding CTA ([3028ec1](https://github.com/ovh/manager/commit/3028ec1f1b4812bc3ef0a188cafc96ede700ef6d))
+* **pnr:** add cta links for nasha onboarding page ([2545c6c](https://github.com/ovh/manager/commit/2545c6cd21c298bdf51f541ce84ed365038cb2c7))
+* **pnr:** add top on oui-guide-menu-item with href ([ea05258](https://github.com/ovh/manager/commit/ea052580b8119bbd2f7baea9192501a901c0fa74))
+* **pnr:** remove blank target on nasha cta ([4a9d6e5](https://github.com/ovh/manager/commit/4a9d6e59a0b9f55f343d8913e00263c88242ace0))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **cda:** add onboarding module ([3f3f9f4](https://github.com/ovh/manager/commit/3f3f9f4e12293d6a6c98f1209ee2bdca3fbd4403))
+* **nasha:** add content for nasha onboarding ([5a573a0](https://github.com/ovh/manager/commit/5a573a0d72e8878b1910cc5cf1ecb331c392d1cb))
+* **nasha:** add onboarding module ([506d2d6](https://github.com/ovh/manager/commit/506d2d6720a54219f36bc72eb7ca648a4eec6e65))
+
+
+
 ## [2.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.4.2...@ovh-ux/manager-nasha@2.4.3) (2022-06-07)
 
 

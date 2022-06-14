@@ -1,3 +1,20 @@
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.5.4...@ovh-ux/manager-sharepoint@2.6.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **sharepoint:** add onboarding module ([e85122b](https://github.com/ovh/manager/commit/e85122b18db5be88cb507204a5a12b4ae5be1154))
+* **sharepoint:** add onboarding page ([248a551](https://github.com/ovh/manager/commit/248a551cc8a772b2af0f06352544f54d33b8f210))
+
+
+
 ## [2.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.5.3...@ovh-ux/manager-sharepoint@2.5.4) (2022-06-07)
 
 

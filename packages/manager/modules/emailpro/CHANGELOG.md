@@ -1,3 +1,20 @@
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.1.10...@ovh-ux/manager-emailpro@3.2.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **emailpro:** add onboarding module ([e596fa4](https://github.com/ovh/manager/commit/e596fa44c531ac8be76000d13486eed10a34a792))
+* **emailpro:** add onboarding page ([b2c4da2](https://github.com/ovh/manager/commit/b2c4da2010495832398ce949002f6b955bf1d110))
+
+
+
 ## [3.1.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.1.9...@ovh-ux/manager-emailpro@3.1.10) (2022-06-07)
 
 

@@ -1,3 +1,17 @@
+# [3.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.9.0...@ovh-ux/manager-billing-components@3.10.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **pnr:** add top attribute to oui-action-menu-item with href ([5284489](https://github.com/ovh/manager/commit/5284489da8ae691bbf5b83493dba09f917760a96))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
 # [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.8.2...@ovh-ux/manager-billing-components@3.9.0) (2022-06-07)
 
 

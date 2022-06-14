@@ -1,3 +1,12 @@
+# [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.0.12...@ovh-ux/ng-ovh-line-diagnostics@5.1.0) (2022-06-14)
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
 ## [5.0.12](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.0.11...@ovh-ux/ng-ovh-line-diagnostics@5.0.12) (2022-06-07)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ufrontend",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "private": true,
   "description": "OVHcloud micro frontend framework",
   "repository": {

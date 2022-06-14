@@ -1,3 +1,25 @@
+# [2.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.21.0...@ovh-ux/manager-vps@2.22.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* remove links invalid target _top ([a92ea7d](https://github.com/ovh/manager/commit/a92ea7d425ff9bb8d99f5916096780d35ba0d873))
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **onboarding:** update onboarding page ([d5d954b](https://github.com/ovh/manager/commit/d5d954b869f074a2c75a12e8f2dd3905fbc462ef))
+* **onboarding:** update onboarding US ([fcc0a8d](https://github.com/ovh/manager/commit/fcc0a8d337c0da8b3b5578db845a451435ad9f40))
+* **vps:** onboarding footer ([2cc4e5a](https://github.com/ovh/manager/commit/2cc4e5a5e8616e86e6b19c5cdf2cb23328bb2694))
+* **vps:** onboarding redirection ([e42d4b7](https://github.com/ovh/manager/commit/e42d4b7739ba1c8b721b760f0a35784ae5f960ee))
+* **vps:** us onboarding ([7bfbeef](https://github.com/ovh/manager/commit/7bfbeefa4e4edc05d3e123c1479755e817dae861))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **vps:** add onboarding module ([521407c](https://github.com/ovh/manager/commit/521407cfca751e5d7361a85f5acb6ea8043ec869))
+
+
+
 # [2.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.20.6...@ovh-ux/manager-vps@2.21.0) (2022-06-07)
 
 

@@ -1,3 +1,12 @@
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.3.3...@ovh-ux/sign-up@2.4.0) (2022-06-14)
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
 ## [2.3.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.3.2...@ovh-ux/sign-up@2.3.3) (2022-04-06)
 
 
