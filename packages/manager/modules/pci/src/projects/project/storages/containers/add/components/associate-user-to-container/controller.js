@@ -99,14 +99,19 @@ export default class CreateLinkedUserController {
     this.userModel.createOrLinkedMode = CONTAINER_USER_ASSOCIATION_MODES.CREATE;
   }
 
-  onLinkedUserClicked(user) {
+  onLinkedUserClicked() {
+    const { selected: user } = this.userModel.linkedMode;
+
     this.userModel.linkedMode.isInProgress = true;
     return this.PciStoragesUsersService.generateS3Credential(
       this.projectId,
       user.id,
     )
       .then((credential) => {
+        const { s3Credentials } = user;
+        user.s3Credentials = s3Credentials || [];
         user.s3Credentials.push(credential);
+
         this.userModel.linkedMode.credential = credential;
       })
       .finally(() => {
