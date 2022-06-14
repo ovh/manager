@@ -388,6 +388,9 @@ export default async (containerEl, shellClient) => {
             'veeam-enterprise',
             'nutanix',
           ];
+
+          const ACCOUNT_STATES = ['app.account'];
+
           const IGNORE_STATES = [
             'app.configuration',
             'app.expired',
@@ -400,6 +403,10 @@ export default async (containerEl, shellClient) => {
 
           if (HPC_STATES.some((state) => stateIncludes.includes(state))) {
             $rootScope.$broadcast('switchUniverse', 'hpc');
+          } else if (
+            ACCOUNT_STATES.some((state) => stateIncludes.includes(state))
+          ) {
+            $rootScope.$broadcast('switchUniverse', null);
           } else if (
             !IGNORE_STATES.some((state) => stateIncludes.includes(state))
           ) {
