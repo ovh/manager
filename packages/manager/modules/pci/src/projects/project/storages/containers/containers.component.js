@@ -21,6 +21,7 @@ export default {
     viewContainer: '<',
     getStateName: '<',
     steins: '<',
+    userList: '<',
     customerRegions: '<',
     containersRegions: '<',
     goToRegion: '<',
