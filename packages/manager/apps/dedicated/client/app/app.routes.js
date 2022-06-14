@@ -40,8 +40,8 @@ angular.module('App').config(
     });
 
     $stateProvider.state('app.bmc', {
-      url: '/bare-meta-cloud',
-      template: '<ui-view></ui-view>',
+      url: '/bare-metal-cloud',
+      template: '<ui-view />',
       redirectTo: 'app.configuration',
     });
 

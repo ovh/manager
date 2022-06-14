@@ -1,6 +1,5 @@
 import isString from 'lodash/isString';
 import set from 'lodash/set';
-import startsWith from 'lodash/startsWith';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import { getShellClient } from '../../../shell';
 
@@ -39,21 +38,8 @@ angular.module('App').controller(
     $onInit() {
       this.$scope.$on('switchUniverse', (event, universe) => {
         this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
-        if (universe === 'hpc') {
-          this.navbarOptions.universe = universe;
-          this.shell.environment.setUniverse(universe);
-        }
-        this.$transitions.onSuccess({}, (transition) => {
-          // Prevent displaying `server` as the current universe if user is
-          // browsing in account/billing section.
-          if (startsWith(transition.to().name, 'app.account')) {
-            this.navbarOptions.universe = undefined;
-            this.shell.environment.setUniverse(undefined);
-          } else {
-            this.navbarOptions.universe = universe;
-            this.shell.environment.setUniverse(universe);
-          }
-        });
+        this.navbarOptions.universe = universe;
+        this.shell.environment.setUniverse(universe);
         this.coreConfig.setUniverse(universe);
       });
 
