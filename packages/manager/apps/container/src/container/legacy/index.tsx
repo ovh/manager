@@ -17,11 +17,14 @@ import style from './template.module.scss';
 import Progress from '../common/Progress';
 import Preloader from '../common/Preloader';
 import usePreloader from '../common/Preloader/usePreloader';
+import useContainer from '@/core/container';
 
 function LegacyContainer(): JSX.Element {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState<HTMLIFrameElement>(null);
   const [router, setRouter] = useState(null);
+  const { betaVersion } = useContainer();
+
   const { shell } = useContext(ApplicationContext);
   const { isStarted: isProgressAnimating } = useProgress();
   const preloaderVisible = usePreloader(shell);
@@ -77,11 +80,13 @@ function LegacyContainer(): JSX.Element {
 
     shell.registerPlugin('routing', routing);
     setRouter(routing.router);
-    tracking.trackMVTest({
-      test: '[product-navigation-reshuffle]',
-      waveId: 1,
-      creation: '[old-nav]',
-    });
+    if (betaVersion) {
+      tracking.trackMVTest({
+        test: '[product-navigation-reshuffle]',
+        waveId: 1,
+        creation: '[old-nav]',
+      });
+    }
   }, [iframeRef, shell]);
 
   return (
