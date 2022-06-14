@@ -1,3 +1,21 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.1.5...@ovh-ux/manager-anthos@1.2.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **anthos:** update breadcrumb ([0fb7e1c](https://github.com/ovh/manager/commit/0fb7e1c8a6e7fff0f0a5f6398e30218a86b2fa6a))
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **links:** remove top target ([b762db3](https://github.com/ovh/manager/commit/b762db3180629c305b0228a62b1ab15f81c04ca4))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **anthos:** update onboarding page ([9475d61](https://github.com/ovh/manager/commit/9475d61d7913e97b47d71d9a4836c1b2babe77c4))
+
+
+
 ## [1.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.1.4...@ovh-ux/manager-anthos@1.1.5) (2022-04-12)
 
 

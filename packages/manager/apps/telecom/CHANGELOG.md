@@ -1,3 +1,37 @@
+# [13.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.40.0...@ovh-ux/manager-telecom@13.41.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* container cookie policy modal ([9c40fcc](https://github.com/ovh/manager/commit/9c40fcc1a6fe83d8e06874e272d0b4520e0af3e5))
+* container navbar universe ([a53ddb4](https://github.com/ovh/manager/commit/a53ddb4116cb052709b601b7b8ea2e6dde3aac9b))
+* handle tracking deps and add tracking in monolithes ([1fb032f](https://github.com/ovh/manager/commit/1fb032f934b69b1a42bb445a506d19dab27342ac))
+* margin and sidebar for contained apps ([030e4e6](https://github.com/ovh/manager/commit/030e4e6497ee2b56da6eccf2e7f39c230b9b441c))
+* shell authentication in applications ([8154320](https://github.com/ovh/manager/commit/8154320de71e6a61768cab708a69230937dbbfc3))
+* **apps:** update width based on sidebar visibility ([0d24c7e](https://github.com/ovh/manager/commit/0d24c7e1b6fa17db60c20164fd9b831634be5b70))
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **links:** remove top target ([b762db3](https://github.com/ovh/manager/commit/b762db3180629c305b0228a62b1ab15f81c04ca4))
+* **pack:** update exchange link ([926da83](https://github.com/ovh/manager/commit/926da835058aed08310f780a492aa91cedb54936))
+* **pnr:** close chatbot when opening onboarding popup ([e4b3fae](https://github.com/ovh/manager/commit/e4b3faea2c5db0367eb7741b87d86cb7dfc37733))
+* **pnr:** flatpickr loaded language ([d0c6bb1](https://github.com/ovh/manager/commit/d0c6bb188bf5467d25021aee6309b1ec4103b4d0))
+* **telecom:** listing pagination ([d93706c](https://github.com/ovh/manager/commit/d93706c319a2eb7f3fc3e083c9652f7a6c2f1be7))
+* **telecom:** pnr sidebar integration ([8113455](https://github.com/ovh/manager/commit/81134559f480611115061be994a751be96352e15))
+* **telecom:** use progress from shell ([e5f1281](https://github.com/ovh/manager/commit/e5f1281ab12b9b08556d6a3aa26cfea92276e82e))
+* **telecom:** use shell preloader ([e443756](https://github.com/ovh/manager/commit/e443756473aa723440ea403f441a42923e2cc98d))
+
+
+### Features
+
+* **telecom:** move telephony procedure to telephony and fax section ([af42e9e](https://github.com/ovh/manager/commit/af42e9e1f6f243445efcb2d6ba9c5ac41d00000d))
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **pnr:** add empty page for telecom pack section ([577c174](https://github.com/ovh/manager/commit/577c1746949a88320e10cff859e98bb38c4dae20))
+* **pnr:** add empty page for telecom telephony section ([8875861](https://github.com/ovh/manager/commit/8875861e0a312f3a898a68ba42e8e7b34d65ec24))
+* **pnr:** manage chatbot in telecom ([86ffb0e](https://github.com/ovh/manager/commit/86ffb0e6d7f4a91e77576a9fb3aa3df9acb777cd))
+* **telecom:** shell integration ([fb95c59](https://github.com/ovh/manager/commit/fb95c595d3acd1ec9d1da5dd453b8883e09f4cad))
+
+
+
 # [13.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.39.2...@ovh-ux/manager-telecom@13.40.0) (2022-06-07)
 
 

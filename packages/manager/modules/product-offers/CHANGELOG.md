@@ -1,3 +1,12 @@
+# [5.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.2.0...@ovh-ux/manager-product-offers@5.3.0) (2022-06-14)
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
 # [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.1.3...@ovh-ux/manager-product-offers@5.2.0) (2022-06-08)
 
 

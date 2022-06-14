@@ -1,3 +1,12 @@
+# [9.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.6.2...@ovh-ux/ng-ovh-web-universe-components@9.7.0) (2022-06-14)
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
 ## [9.6.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.6.1...@ovh-ux/ng-ovh-web-universe-components@9.6.2) (2022-06-07)
 
 

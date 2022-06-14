@@ -1,3 +1,23 @@
+# [5.79.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.78.1...@ovh-ux/manager-pci@5.79.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **apps:** update width based on sidebar visibility ([0d24c7e](https://github.com/ovh/manager/commit/0d24c7e1b6fa17db60c20164fd9b831634be5b70))
+* **failover-ips:** update onboarding style ([851a2bb](https://github.com/ovh/manager/commit/851a2bb8df7e95f939cc95fea405eafcbf56c655))
+* **links:** remove top target ([b762db3](https://github.com/ovh/manager/commit/b762db3180629c305b0228a62b1ab15f81c04ca4))
+* **pci:** fix quota link's target ([ba6e3fe](https://github.com/ovh/manager/commit/ba6e3feb26b32b290d276867f29aa96c4eb7a16b))
+* **pci:** remove invalid target top ([c799de0](https://github.com/ovh/manager/commit/c799de006683d5e6e1a1b4081f03d3fdda294954))
+* **pnr:** add top attribute to oui-action-menu-item with href ([5284489](https://github.com/ovh/manager/commit/5284489da8ae691bbf5b83493dba09f917760a96))
+* **public-cloud:** pnr sidebar integration ([bd86580](https://github.com/ovh/manager/commit/bd86580fc5084b3e214e082ba3d7b3ce230b43bb))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
 ## [5.78.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.78.0...@ovh-ux/manager-pci@5.78.1) (2022-06-08)
 
 

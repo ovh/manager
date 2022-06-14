@@ -1,3 +1,12 @@
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.6.7...@ovh-ux/manager-support-app@2.7.0) (2022-06-14)
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
 ## [2.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.6.6...@ovh-ux/manager-support-app@2.6.7) (2022-06-07)
 
 

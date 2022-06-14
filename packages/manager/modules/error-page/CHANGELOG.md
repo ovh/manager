@@ -1,3 +1,17 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@2.2.0...@ovh-ux/manager-error-page@2.3.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **links:** remove top target ([b762db3](https://github.com/ovh/manager/commit/b762db3180629c305b0228a62b1ab15f81c04ca4))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
 # [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@2.1.2...@ovh-ux/manager-error-page@2.2.0) (2022-06-07)
 
 

@@ -1,3 +1,18 @@
+# [0.15.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.14.0-alpha.1...@ovh-ux/manager-billing@0.15.0-alpha.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **billing:** avoid future state issue ([5563be6](https://github.com/ovh/manager/commit/5563be6b8ca574d64a16b3d0bd4ad47d9a942033))
+* **pnr:** add top attribute to oui-action-menu-item with href ([5284489](https://github.com/ovh/manager/commit/5284489da8ae691bbf5b83493dba09f917760a96))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
 # [0.14.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.14.0-alpha.0...@ovh-ux/manager-billing@0.14.0-alpha.1) (2022-06-13)
 
 

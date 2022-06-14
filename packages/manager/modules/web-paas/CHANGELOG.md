@@ -1,3 +1,19 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.4.3...@ovh-ux/manager-web-paas@1.5.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **web-paas:** add onboarding page ([fe04226](https://github.com/ovh/manager/commit/fe0422691829158b59de84510b5b0190019b3b0e))
+
+
+
 ## [1.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.4.2...@ovh-ux/manager-web-paas@1.4.3) (2022-03-24)
 
 
