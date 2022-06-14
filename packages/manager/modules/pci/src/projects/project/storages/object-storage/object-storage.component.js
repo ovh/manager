@@ -8,6 +8,7 @@ export default {
     trackClick: '<',
     isUserTabActive: '<',
     containers: '<',
+    userList: '<',
     steins: '<',
     customerRegions: '<',
     containersRegions: '<',
