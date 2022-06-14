@@ -34,6 +34,7 @@
     data-on-finish="$ctrl.add()"
     data-current-index="$ctrl.currrentStep"
 >
+    <!--Offers list-->
     <oui-step-form
         data-ng-if="!$ctrl.archive"
         data-header="{{:: 'pci_projects_project_storages_containers_add_offer_title' | translate }}"
@@ -119,6 +120,7 @@
         </div>
     </oui-step-form>
 
+    <!--Regions list-->
     <oui-step-form
         data-name="storage_container_add_region"
         data-header="{{:: 'pci_projects_project_storages_containers_add_region_title' | translate }}"
@@ -137,6 +139,7 @@
         ></pci-project-regions-list>
     </oui-step-form>
 
+    <!--Container types list-->
     <oui-step-form
         data-header="{{:: 'pci_projects_project_storages_containers_add_type_title' | translate }}"
         data-ng-if="!$ctrl.archive && $ctrl.OBJECT_CONTAINER_TYPE_OFFERS.includes($ctrl.container.offer)"
@@ -172,6 +175,20 @@
         </div>
     </oui-step-form>
 
+    <!--Create/Linked user-->
+    <oui-step-form
+        data-header="{{:: 'pci_projects_project_storages_containers_add_create_or_linked_user_title' | translate }}"
+        data-navigation="$ctrl.isReadyForValidation()"
+        data-name="storage_container_user"
+    >
+        <pci-project-storages-create-linked-user
+            data-project-id="$ctrl.projectId"
+            data-users="$ctrl.userList"
+            data-user-model="$ctrl.userModel"
+        ></pci-project-storages-create-linked-user>
+    </oui-step-form>
+
+    <!--Container name-->
     <oui-step-form
         data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
         data-editable="!$ctrl.isLoading"

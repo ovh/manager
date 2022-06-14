@@ -60,6 +60,21 @@ export default class PciStoragesContainersAddController {
     });
     this.container.region = null;
 
+    this.userModel = {
+      linkedMode: {
+        selected: null,
+        credential: null,
+        isInProgress: false, // HTTP request
+      },
+      createMode: {
+        user: null, // once generate new user
+        credential: null, // new s3 user credential
+        description: null, // new s3 user description
+        isInProgress: false,
+      },
+      createOrLinkedMode: null,
+    };
+
     this.preselectStepItem();
   }
 
@@ -86,6 +101,16 @@ export default class PciStoragesContainersAddController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  isReadyForValidation() {
+    const { createOrLinkedMode } = this.userModel;
+    const { createMode, linkedMode } = this.userModel;
+
+    return (
+      createOrLinkedMode &&
+      ((createMode.user && createMode.description) || linkedMode.selected)
+    );
   }
 
   onContainerSolutionChange() {
