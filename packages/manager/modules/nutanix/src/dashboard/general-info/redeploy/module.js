@@ -23,8 +23,8 @@ angular
     confirmRedeploy,
   ])
   .config(routing)
-  .directive('ipSubnetValidator', ipSubnetValidator)
-  .directive('uniqueIpValidator', uniqueIpValidator)
+  .directive('nutanixDashboardRedeployIpSubnetValidator', ipSubnetValidator)
+  .directive('nutanixDashboardRedeployUniqueIpValidator', uniqueIpValidator)
   .component('nutanixDashboardGeneralInfoRedeployComponent', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

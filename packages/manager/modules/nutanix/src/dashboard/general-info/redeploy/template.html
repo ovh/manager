@@ -202,8 +202,8 @@
                                 data-ng-model="node.ahvIp"
                                 data-ng-model-options="{ debounce: 500 }"
                                 data-ng-pattern="$ctrl.IPV4_REGEX"
-                                data-unique-ip-validator="$ctrl.getIpsList()"
-                                data-ip-subnet-validator="$ctrl.config.gatewayCidr"
+                                data-nutanix-dashboard-redeploy-unique-ip-validator="$ctrl.getIpsList()"
+                                data-nutanix-dashboard-redeploy-ip-subnet-validator="$ctrl.config.gatewayCidr"
                             />
                         </oui-field>
                         <oui-field
@@ -224,8 +224,8 @@
                                 data-ng-model="node.cvmIp"
                                 data-ng-model-options="{ debounce: 500 }"
                                 data-ng-pattern="$ctrl.IPV4_REGEX"
-                                data-unique-ip-validator="$ctrl.getIpsList()"
-                                data-ip-subnet-validator="$ctrl.config.gatewayCidr"
+                                data-nutanix-dashboard-redeploy-unique-ip-validator="$ctrl.getIpsList()"
+                                data-nutanix-dashboard-redeploy-ip-subnet-validator="$ctrl.config.gatewayCidr"
                             />
                         </oui-field>
                     </section>
@@ -297,8 +297,8 @@
                             data-ng-model="$ctrl.config.prismCentral.vip"
                             data-ng-model-options="{ debounce: 500 }"
                             data-ng-pattern="$ctrl.IPV4_REGEX"
-                            data-unique-ip-validator="$ctrl.getIpsList()"
-                            data-ip-subnet-validator="$ctrl.config.gatewayCidr"
+                            data-nutanix-dashboard-redeploy-unique-ip-validator="$ctrl.getIpsList()"
+                            data-nutanix-dashboard-redeploy-ip-subnet-validator="$ctrl.config.gatewayCidr"
                         />
                     </oui-field>
                     <div
@@ -339,8 +339,8 @@
                                     data-ng-model-options="{ debounce: 500 }"
                                     required
                                     data-ng-pattern="$ctrl.IPV4_REGEX"
-                                    data-unique-ip-validator="$ctrl.getIpsList()"
-                                    data-ip-subnet-validator="$ctrl.config.gatewayCidr"
+                                    data-nutanix-dashboard-redeploy-unique-ip-validator="$ctrl.getIpsList()"
+                                    data-nutanix-dashboard-redeploy-ip-subnet-validator="$ctrl.config.gatewayCidr"
                                 />
                                 <small
                                     class="form-text text-danger"
@@ -386,8 +386,8 @@
                             data-ng-model="$ctrl.config.prismElementVip"
                             data-ng-model-options="{ debounce: 500 }"
                             data-ng-pattern="$ctrl.IPV4_REGEX"
-                            data-unique-ip-validator="$ctrl.getIpsList()"
-                            data-ip-subnet-validator="$ctrl.config.gatewayCidr"
+                            data-nutanix-dashboard-redeploy-unique-ip-validator="$ctrl.getIpsList()"
+                            data-nutanix-dashboard-redeploy-ip-subnet-validator="$ctrl.config.gatewayCidr"
                         />
                     </oui-field>
                 </div>

@@ -8,7 +8,9 @@ export default /* @ngInject */ () => ({
     set(modelCtrl, '$validators.ipSubnetValidator', (value) => {
       let gatewayCIDR;
       try {
-        gatewayCIDR = ipaddr.parseCIDR(scope.$eval(attrs.ipSubnetValidator));
+        gatewayCIDR = ipaddr.parseCIDR(
+          scope.$eval(attrs.nutanixDashboardRedeployIpSubnetValidator),
+        );
       } catch (e) {
         gatewayCIDR = null;
       }
