@@ -14,6 +14,8 @@
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf_label": "nouveau",
   "pci_projects_project_storages_containers_add_region_title": "Sélectionnez une localisation",
   "pci_projects_project_storages_containers_add_type_title": "Sélectionnez un type de conteneur",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_title": "Associer un utilisateur",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_description": "Vous avez la possibilité de définir l’accès à vos containers à vos utilisateurs prédéfinis ou créer de nouveaux utilisateurs et obtenir vos clés d'accès.",
   "pci_projects_project_storages_containers_add_type_static_label": "Hébergement statique",
   "pci_projects_project_storages_containers_add_type_static_description": "Accès rapide et performant pour vos sites. Liez vos domaines et déposez vos fichiers.",
   "pci_projects_project_storages_containers_add_type_public_label": "Public",
