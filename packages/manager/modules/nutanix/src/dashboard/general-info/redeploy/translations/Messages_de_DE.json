@@ -25,5 +25,8 @@
   "nutanix_redeploy_custom_configuration_prism_central": "Konfiguration von Prism Central",
   "nutanix_redeploy_custom_configuration_replication_rf": "Replikationsfaktor = {{value}} (RF {{value}})",
   "nutanix_redeploy_custom_configuration_add_prism_central_ip": "Eine IP-Adresse hinzufügen",
-  "nutanix_redeploy_button": "Neu einsetzen"
+  "nutanix_redeploy_button": "Neu einsetzen",
+  "nutanix_redeploy_custom_configuration_nodes": "Nodes",
+  "nutanix_redeploy_custom_config_ip_unique_error": "Diese IP wird in diesem Cluster bereits verwendet.",
+  "nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error": "Die Adressen befinden sich nicht im selben Netzwerk."
 }
