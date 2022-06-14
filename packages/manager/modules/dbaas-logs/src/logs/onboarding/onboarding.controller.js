@@ -1,57 +1,23 @@
-import { GUIDES } from './onboarding.constants';
-import illustration from './assets/LDP-Overview-hero@2x.png';
+import { GUIDES } from './constants';
+import image from './assets/logs.png';
 
-export default class LogsOnboardingCtrl {
+export default class DbaasLogsOnboardingController {
   /* @ngInject */
-  constructor(
-    LogsConstants,
-    CucOrderHelperService,
-    ovhDocUrl,
-    coreConfig,
-    $translate,
-    atInternet,
-  ) {
+  constructor($state, $translate, coreConfig) {
+    this.$state = $state;
     this.$translate = $translate;
-    this.illustration = illustration;
-    this.atInternet = atInternet;
-    this.region = coreConfig.getRegion();
-    this.LogsConstants = LogsConstants;
-    this.CucOrderHelperService = CucOrderHelperService;
-    this.ovhDocUrl = ovhDocUrl;
-    this.urls = {};
+    this.coreConfig = coreConfig;
+    this.image = image;
   }
 
-  $onInit() {
-    this.guides = GUIDES[this.me.ovhSubsidiary].reduce(
-      (list, guide) => [
-        ...list,
-        {
-          ...guide,
-          title: this.$translate.instant(
-            `logs_onboarding_guides_${guide.id}_title`,
-          ),
-          description: '',
-        },
-      ],
-      [],
-    );
-
-    this.urls.docsUrl = this.ovhDocUrl.getDocUrl(
-      this.LogsConstants.LOGS_DOCS_NAME,
-    );
-  }
-
-  onGuideClick(guide) {
-    this.atInternet.trackClick({
-      name: guide.tracker,
-      type: 'action',
-    });
-  }
-
-  onSubmitClick() {
-    this.atInternet.trackClick({
-      name: 'dbaas::logs::onboarding::order',
-      type: 'action',
-    });
+  async $onInit() {
+    const user = await this.coreConfig.getUser();
+    this.ovhSubsidiary = user.ovhSubsidiary;
+    this.guides = GUIDES.map((guide) => ({
+      link: guide.links[this.ovhSubsidiary] || guide.links.DEFAULT,
+      description: this.$translate.instant(guide.description),
+      title: this.$translate.instant(guide.title),
+    }));
+    this.cta = this.$state.href('dbaas-logs.order');
   }
 }

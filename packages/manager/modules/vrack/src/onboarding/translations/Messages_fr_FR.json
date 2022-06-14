@@ -1,0 +1,19 @@
+{
+  "vrack_onboarding_title": "Réseau Privé vRack",
+  "vrack_onboarding_description": "La technologie vRack (baie virtuelle) permet de connecter, d’isoler ou de répartir vos produits OVH compatibles au sein d’un ou plusieurs réseaux privés. Grâce à des technologies réseau uniques, bâtissez des infrastructures privées hybrides sur un périmètre multidatacenter mondial.",
+  "vrack_onboarding_description_part2": "Le vRack vous donne la possibilité de faire communiquer de manière sécurisée vos produits OVH compatible au sein de votre propre réseau privé. Vous pourrez au choix : rendre vos services accessibles uniquement depuis le réseau privé et/ou depuis le réseau public.",
+  "vrack_onboarding_description_part3": "L’ensemble de ce réseau sera géré physiquement par OVHcloud.com, sans qu’aucune application logicielle ou configuration réseau ne soit nécessaire sur vos services.",
+  "vrack_onboarding_order": "Commander",
+  "vrack_onboarding_guide1_title": "Configurer le vRack sur vos serveurs dédiés",
+  "vrack_onboarding_guide1_description": "Découvrez comment configurer le vRack sur plusieurs serveurs dédiés",
+  "vrack_onboarding_guide2_title": "Configuration des trames Jumbo dans le vRack",
+  "vrack_onboarding_guide2_description": "Découvrez comment configurer les Jumbo frames dans le vRack",
+  "vrack_onboarding_guide3_title": "Configurer un bloc d'IP dans le vRack",
+  "vrack_onboarding_guide3_description": "Découvrez comment configurer un bloc d'adresses IP publiques dans le vRack",
+  "vrack_onboarding_us_guide1_title": "How to Connect a Dedicated Server to vRack",
+  "vrack_onboarding_us_guide1_description": "Find out how to configure the vRack on two or more dedicated servers",
+  "vrack_onboarding_us_guide2_title": "How to Configure vRack for Public Cloud Services",
+  "vrack_onboarding_us_guide2_description": "Find out how to configure the vRack on Public Cloud",
+  "vrack_onboarding_us_guide3_title": "How to Configure a Failover IP Block on a vRack",
+  "vrack_onboarding_us_guide3_description": "This guide will show you how to configure a block of public IP addresses for use with the vRack."
+}

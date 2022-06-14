@@ -24,6 +24,7 @@ export default {
     guideUrl: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',
+    isMenuSidebarVisible: '<',
   },
   controller,
   template,

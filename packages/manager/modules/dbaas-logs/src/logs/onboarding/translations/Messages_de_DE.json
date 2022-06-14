@@ -1,0 +1,11 @@
+{
+  "dbaas_logs_onboarding_title": "Eine vollständige und sichere Log-Management-Plattform auf Pay-as-you-go-Basis",
+  "dbaas_logs_onboarding_description": "Verbessern Sie die Sichtbarkeit Ihrer Anwendungsumgebungen, indem Sie Ihre Logs auf einer zugleich vollständigen und verwalteten Plattform sammeln, verarbeiten und speichern. Log-Analysen sind essenziell, um Ihre Infrastruktur und Anwendungen in einem einwandfreien Betriebszustand zu halten. Wir liefern Ihnen eine schlüsselfertige, günstige und skalierbare Lösung, mit der Sie sich ganz auf Ihr Kerngeschäft konzentrieren können.",
+  "dbaas_logs_onboarding_cta": "Bestellen",
+  "dbaas_logs_onboarding_guide1_title": "Quick Start",
+  "dbaas_logs_onboarding_guide1_description": "",
+  "dbaas_logs_onboarding_guide2_title": "The field naming convention",
+  "dbaas_logs_onboarding_guide2_description": "",
+  "dbaas_logs_onboarding_guide3_title": "Using Grafana with Logs Data Platform",
+  "dbaas_logs_onboarding_guide3_description": ""
+}

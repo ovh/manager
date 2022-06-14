@@ -1,0 +1,14 @@
+<manager-on-boarding-layout data-guides=":: $ctrl.guides">
+    <onboarding-title>
+        <p data-translate="exchange_onboarding_title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <p data-ng-bind="$ctrl.description"></p>
+        <a
+            class="oui-button oui-button_primary oui-button_l text-light"
+            data-translate="exchange_onboarding_order"
+            href="{{:: $ctrl.cta }}"
+        >
+        </a>
+    </onboarding-description>
+</manager-on-boarding-layout>

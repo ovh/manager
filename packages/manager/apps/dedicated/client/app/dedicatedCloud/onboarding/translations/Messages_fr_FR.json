@@ -1,0 +1,19 @@
+{
+  "dedicated_clouds_onboarding_title": "Votre plateforme de virtualisation VMware dans le Cloud",
+  "dedicated_clouds_onboarding_description": "Vous avez besoin de davantage de ressources pour développer votre activité ? Vous manipulez des données sensibles nécessitant sécurité, confidentialité ainsi qu'une infrastructure dédiée ?",
+  "dedicated_clouds_onboarding_description2": "Avec Hosted Private Cloud, nous vous proposons une infrastructure privée, hébergée et gérée par nos équipes, offrant un taux de disponibilité global de 99,9% qui vous permet de vous concentrer sur votre cœur de métier.",
+  "dedicated_clouds_onboarding_description3": "Parfaite combinaison du matériel Intel de dernière génération et de la technologie VMware, nos offres fournissent des environnements totalement isolés et dédiés afin de sécuriser vos charges de travail les plus critiques.",
+  "dedicated_clouds_onboarding_order": "Commander",
+  "dedicated_clouds_onboarding_guide1_title": "Déploiement d’une machine virtuelle",
+  "dedicated_clouds_onboarding_guide1_description": "Découvrez comment déployer une machine virtuelle depuis l'interface vSphere",
+  "dedicated_clouds_onboarding_guide2_title": "Se connecter à l’interface vSphere",
+  "dedicated_clouds_onboarding_guide2_description": "Découvrez les différentes façons de se connecter à vSphere",
+  "dedicated_clouds_onboarding_guide3_title": "Se connecter en SFTP",
+  "dedicated_clouds_onboarding_guide3_description": "Apprenez à vous connecter à votre Private Cloud en SFTP",
+  "dedicated_clouds_onboarding_us_guide1_title": "Deploying a virtual machine",
+  "dedicated_clouds_onboarding_us_guide1_description": "Find out how to deploy a virtual machine in the vSphere interface",
+  "dedicated_clouds_onboarding_us_guide2_title": "Logging in to the vSphere interface",
+  "dedicated_clouds_onboarding_us_guide2_description": "Find out about the different ways you can log in to vSphere",
+  "dedicated_clouds_onboarding_us_guide3_title": "Logging in via SFTP",
+  "dedicated_clouds_onboarding_us_guide3_description": "Find out how to log in to your Private Cloud via SFTP"
+}

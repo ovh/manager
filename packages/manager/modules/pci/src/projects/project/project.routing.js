@@ -61,6 +61,14 @@ export default /* @ngInject */ ($stateProvider) => {
       isLegacyProject: /* @ngInject */ (service) =>
         isLegacy(service?.billing?.plan?.code),
 
+      isMenuSidebarVisible: /* @ngInject */ ($injector) => {
+        if ($injector.has('ovhShell')) {
+          const ovhShell = $injector.get('ovhShell');
+          return ovhShell.ux.isMenuSidebarVisible();
+        }
+        return false;
+      },
+
       breadcrumb: /* @ngInject */ (project) =>
         project.status !== 'creating' ? project.description : null,
 

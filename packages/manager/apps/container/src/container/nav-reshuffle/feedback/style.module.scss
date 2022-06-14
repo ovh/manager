@@ -1,0 +1,17 @@
+.feedbackWidget {
+  position: fixed;
+  right: 0;
+  left: auto;
+  top: 50%;
+  transform: rotate(-90deg) translate(50%, -50%);
+  transform-origin: right;
+  background-color: #ffffff;
+
+  border: 0.125rem solid #0046d1;
+  border-radius: 0.5rem 0.5rem 0 0;
+
+  &:hover {
+    text-decoration: none;
+    background-color: #bef1ff;
+  }
+}

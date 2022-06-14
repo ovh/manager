@@ -1,0 +1,10 @@
+{
+  "freefax_onboarding_title": "Fax",
+  "freefax_onboarding_description": "Gérez vos Fax via votre PC / Email, et économisez !",
+  "freefax_onboarding_order": "Découvrir les offres",
+  "freefax_onboarding_guide1_title": "Configuration de votre ligne Fax",
+  "freefax_onboarding_guide1_description": "Découvrez comment configurer votre ligne Fax depuis votre espace client OVHcloud",
+  "freefax_onboarding_guide2_title": "Envoyer une campagne de fax depuis l'espace client OVHcloud",
+  "freefax_onboarding_guide2_description": "Découvrez comment préparer et envoyer une campagne de fax depuis votre espace client OVHcloud",
+  "freefax_onboarding_guide3_title": "Envoyer des fax et créer des campagnes par e-mail"
+}

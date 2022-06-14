@@ -1,0 +1,11 @@
+{
+  "telephony_onboarding_title": "Tarifa VoIP",
+  "telephony_onboarding_description": "La VoIP convierte la voz en señal digital sirviéndose de la potencia de internet.",
+  "telephony_onboarding_description_part2": "Nuestras soluciones le permiten disfrutar de precios atractivos y de la evolución en tiempo real de nuestro parque. Ofrezca a sus usuarios una experiencia óptima gracias a la interconexión entre telefonía e informática de OVH Telecom.",
+  "telephony_onboarding_order": "Descubrir los planes",
+  "telephony_onboarding_guide1_title": "FAQ",
+  "telephony_onboarding_guide1_description": "Preguntas más frecuentes sobre los servicios VoIP de OVHcloud",
+  "telephony_onboarding_guide2_title": "Gestionar el teléfono Plug &amp; Phone de una línea SIP",
+  "telephony_onboarding_guide2_description": "Cómo gestionar el teléfono Plug &amp; Phone de su línea SIP de OVHcloud",
+  "telephony_onboarding_guide3_title": "Activar o desactivar servicios desde el teléfono"
+}

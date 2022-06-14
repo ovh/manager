@@ -1,0 +1,175 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+
+$selected: #00185e;
+
+.sidebar {
+  @import '@ovh-ux/manager-hub/src/variables.scss';
+  width: 20rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-width: 20rem;
+  color: white;
+
+  &_pci_refresh {
+    line-height: 1rem;
+    display: flex;
+    margin-top: 0.4rem;
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    color: inherit;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background: $selected;
+    }
+  }
+  &_menu {
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  li {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    line-height: 2.3rem;
+    vertical-align: middle;
+
+    a {
+      color: white;
+      font-weight: 400;
+      display: inline-block;
+      width: 100%;
+      outline: none;
+    }
+
+    a:hover {
+      text-decoration: underline !important;
+    }
+  }
+
+  h2 {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  @media (max-width: $device-breakpoint-tablet-max-width) {
+    &_logo {
+      margin-top: 3rem;
+    }
+  }
+
+  &_action {
+    margin: 1.5rem;
+    margin-top: 1rem;
+
+    a {
+      background-color: white;
+      display: inline-block;
+      width: 100%;
+      color: $p-500;
+      font-weight: 600;
+      text-align: center;
+      line-height: 2.5rem;
+      border-radius: 0.5rem;
+      outline: none;
+    }
+
+    a:hover {
+      text-decoration: none;
+      background-color: #bef1ff;
+    }
+  }
+
+  &_action_icon {
+    font-size: 1.5rem;
+    vertical-align: bottom !important;
+    margin-right: 0.75rem;
+  }
+
+  &_chip {
+    float: right;
+    margin-top: 0.75rem !important;
+    background-color: #bef1ff !important;
+    color: #0050d7 !important;
+  }
+
+  &_arrow {
+    font-size: 1.5rem;
+    float: right;
+    vertical-align: bottom !important;
+    margin-right: -0.5rem;
+  }
+
+  &_hidden {
+    display: none !important;
+  }
+
+  &_back_btn {
+    padding-left: 1rem;
+    display: inline-block;
+    line-height: 1.5rem;
+    vertical-align: bottom;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+
+    span {
+      font-size: 1.5rem;
+      margin-right: 0.75rem;
+    }
+  }
+
+  &_external {
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+  }
+
+  &_filler {
+    flex-grow: 1;
+  }
+
+  &_selected {
+    background-color: $selected;
+  }
+
+  select {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    background-color: $p-700;
+    color: white;
+    border: 1px solid #0050d7bf;
+  }
+
+  &_clipboard {
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+
+    &_copy {
+      font-size: 1.5rem;
+    }
+    &_text {
+      font-size: 0.8rem;
+    }
+  }
+
+  li[class^='assistance_header'] {
+    cursor: pointer;
+  }
+}

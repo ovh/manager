@@ -1,0 +1,28 @@
+<manager-on-boarding-layout data-guides=":: $ctrl.guides">
+    <onboarding-title>
+        <p data-translate="domains_onboarding_title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <p data-translate="domains_onboarding_description"></p>
+        <ul>
+            <li
+                data-translate="domains_onboarding_description_list1"
+                data-ng-if="$ctrl.region === 'EU'"
+            ></li>
+            <li
+                data-translate="domains_onboarding_description_list2"
+                data-ng-if="$ctrl.region === 'EU'"
+            ></li>
+            <li data-translate="domains_onboarding_description_list3"></li>
+            <li data-translate="domains_onboarding_description_list4"></li>
+        </ul>
+        <a
+            class="oui-button oui-button_primary oui-button_l text-light"
+            data-translate="domains_onboarding_order"
+            href="{{:: $ctrl.cta }}"
+            target="_blank"
+            rel="noopener"
+        >
+        </a>
+    </onboarding-description>
+</manager-on-boarding-layout>

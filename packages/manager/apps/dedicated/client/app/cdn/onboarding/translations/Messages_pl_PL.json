@@ -1,0 +1,11 @@
+{
+  "cdn_onboarding_title": "CDN Infrastructure",
+  "cdn_onboarding_description": "Idealne rozwiązanie do optymalizacji dostępu do aplikacji internetowych w dowolnym miejscu na świecie.",
+  "cdn_onboarding_order": "Zamów",
+  "cdn_onboarding_guide1_title": "Działanie limitu w usłudze CDN",
+  "cdn_onboarding_guide1_description": "Dowiedz się, jak działa limit transferu w Twojej usłudze CDN",
+  "cdn_onboarding_guide2_title": "Pierwsza konfiguracja nazwy domeny",
+  "cdn_onboarding_guide2_description": "Poznaj dobre praktyki w zakresie konfiguracji domeny w usłudze CDN OVHcloud",
+  "cdn_onboarding_guide3_title": "Działanie certyfikatu SSL dla CDN",
+  "cdn_onboarding_guide3_description": "Dowiedz się, jak dodać certyfikat SSL do usługi CDN"
+}

@@ -1,0 +1,19 @@
+{
+  "onboarding_button_text": "Zaczynamy!",
+  "onboarding_introduction_popover_title": "{{userName}}, witamy w Twoim Panelu klienta",
+  "onboarding_introduction_popover_content": "Tutaj znajdziesz wszystkie funkcje niezbędne do zarządzania kontem i usługami.",
+  "onboarding_introduction_popover_extra": "Twój przewodnik będzie nadal dostępny w menu po lewej stronie.",
+  "onboarding_popover_follow_guide_button": "Sprawdź przewodnik",
+  "onboarding_popover_hide_button": "Ukrywanie",
+  "onboarding_walkme_popover_next_step": "Następny {{current}}/{{total}}",
+  "onboarding_walkme_popover_step1_title": "Jak uzyskać dostęp do konta?",
+  "onboarding_walkme_popover_step1_content": "W każdej chwili możesz uzyskać dostęp do konta, klikając Twoje nazwisko/imię.",
+  "onboarding_walkme_popover_step2_title": "Mój profil",
+  "onboarding_walkme_popover_step2_content": "Zarządzaj swoim kontem bezpośrednio w profilu.",
+  "onboarding_walkme_popover_step3_title": "Moje sposoby płatności",
+  "onboarding_walkme_popover_step3_content": "Dodaj jeden lub kilka sposobów płatności. Skonfiguruj jeden z nich jako domyślny do opłaty usług z opcją automatycznego odnowienia.",
+  "onboarding_walkme_popover_step4_title": "Moje usługi",
+  "onboarding_walkme_popover_step4_content": "Poruszaj się swobodnie w menu usług oferowanych przez OVHcloud i bez problemu znajdź Twoje usługi aktywne, odpowiednio zaznaczone.",
+  "onboarding_walkme_popover_step5_title": "Faktury",
+  "onboarding_walkme_popover_step5_content": "W tej sekcji znajdziesz wszystkie faktury, płatności w toku i zwroty."
+}

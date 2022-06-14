@@ -12,9 +12,14 @@ export function environment(environment: Environment) {
 
   return {
     getEnvironment: (): Environment => environment,
-    setUniverse: (applicationId: ApplicationId) => {
-      const universe = environment.setUniverseFromApplicationId(applicationId);
-      triggerListeners(universe);
+    setUniverse: (universe: string) => {
+      environment.setUniverse(universe);
+      triggerListeners(environment.getUniverse());
+    },
+    setApplication: (applicationId: ApplicationId) => {
+      environment.setApplicationName(applicationId);
+      environment.setUniverseFromApplicationId(applicationId);
+      triggerListeners(environment.getUniverse());
     },
     onUniverseChange: (callback: CallableFunction) => {
       listeners.push(callback);

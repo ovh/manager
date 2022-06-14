@@ -1,6 +1,9 @@
 import Shell from '../../shell/shell';
 import Sidebar from './components/sidebar';
 import Navbar, { INavbar } from './components/navbar';
+import Chatbot from './components/chatbot';
+import Progress from './components/progress';
+import Preloader from './components/preloader';
 
 export interface ISidebars {
   [name: string]: Sidebar;
@@ -13,6 +16,7 @@ interface IShellUx {
   showSidebar: (sidebarName: string) => void;
   hideSidebar: (sidebarName: string) => void;
   registerNavbar: () => void;
+  registerProgress: () => void;
   onSidebarVisibilityChange(
     sidebarName: string,
     callback: CallableFunction,
@@ -26,8 +30,15 @@ export class ShellUX implements IShellUx {
 
   private sidebars: ISidebars = {};
 
+  private chatbot: Chatbot;
+
+  private progress: Progress;
+
+  private preloader: Preloader;
+
   constructor(shell: Shell) {
     this.shell = shell;
+    this.chatbot = new Chatbot();
   }
 
   registerSidebar(sidebarName: string): void {
@@ -64,6 +75,21 @@ export class ShellUX implements IShellUx {
     registeredSidebar?.disableToggle();
   }
 
+  isLargeScreenDisplayForced(sidebarName: string): boolean {
+    const registeredSidebar = this.sidebars[sidebarName];
+
+    return registeredSidebar?.isLargeScreenDisplayForced();
+  }
+
+  setForceSiderBarDisplayOnLargeScreen(
+    sidebarName: string,
+    isForced: boolean,
+  ): void {
+    const registeredSidebar = this.sidebars[sidebarName];
+
+    registeredSidebar?.setForceLargeScreenDisplay(isForced);
+  }
+
   onSidebarVisibilityChange(
     sidebarName: string,
     callback: CallableFunction,
@@ -89,6 +115,13 @@ export class ShellUX implements IShellUx {
     }
   }
 
+  resetSidebar(sidebarName: string) {
+    const registeredSidebar = this.sidebars[sidebarName];
+    if (registeredSidebar) {
+      registeredSidebar.reset();
+    }
+  }
+
   registerNavbar(): void {
     this.navbar = Navbar();
     this.shell.emitEvent('ux:navbar-register', {});
@@ -96,5 +129,57 @@ export class ShellUX implements IShellUx {
 
   getNavbar(): INavbar {
     return this.navbar;
+  }
+
+  getChatbot(): Chatbot {
+    return this.chatbot;
+  }
+
+  registerProgress(): void {
+    this.progress = new Progress();
+  }
+
+  startProgress() {
+    this.progress.start();
+  }
+
+  stopProgress() {
+    this.progress.stop();
+  }
+
+  onProgressStart(callback: CallableFunction) {
+    this.progress.onStart(callback);
+  }
+
+  onProgressStop(callback: CallableFunction) {
+    this.progress.onStop(callback);
+  }
+
+  registerPreloader(): void {
+    this.preloader = new Preloader();
+  }
+
+  showPreloader(): void {
+    this.preloader.show();
+  }
+
+  onShowPreloader(callback: CallableFunction) {
+    this.preloader.onShow(callback);
+  }
+
+  removeOnShowPreloader(callback: CallableFunction) {
+    this.preloader.removeOnSHow(callback);
+  }
+
+  hidePrelaoder(): void {
+    this.preloader.hide();
+  }
+
+  onHidePreloader(callback: CallableFunction) {
+    this.preloader.onHide(callback);
+  }
+
+  removeOnHidePreloader(callback: CallableFunction) {
+    this.preloader.removeOnHide(callback);
   }
 }

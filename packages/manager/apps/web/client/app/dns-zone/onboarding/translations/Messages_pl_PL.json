@@ -1,0 +1,10 @@
+{
+  "zones_onboarding_title": "Strefy DNS",
+  "zones_onboarding_description": "<b>Strefa Domain Name System</b> (DNS) to plik konfiguracyjny DNS zarządzający wszystkimi adresami przypisanymi do domeny. Umożliwia konfigurację subdomen lub lokalizację serwera pocztowego. Strefa DNS zawiera informacje techniczne nazywane rekordami, które kierują dane we wskazane miejsce.",
+  "zones_onboarding_description2": "Konfiguracja subdomeny w DNS pozwala na udostępnienie jej użytkownikom Internetu. Operację tę przeprowadzisz za pomocą kilku kliknięć w Panelu klienta OVHcloud, przypisując subdomenę do katalogu zawierającego żądane pliki.",
+  "zones_onboarding_order": "Zamów",
+  "zones_onboarding_guide1_title": "Utworzenie strefy DNS OVHcloud dla domeny",
+  "zones_onboarding_guide1_description": "Dowiedz się, jak utworzyć strefę DNS w OVHcloud dla Twojej domeny z poziomu Panelu klienta",
+  "zones_onboarding_guide2_title": "Edycja strefy DNS OVHcloud",
+  "zones_onboarding_guide2_description": "Dowiedz się, jak edytować strefę DNS OVHcloud z poziomu Panelu klienta"
+}

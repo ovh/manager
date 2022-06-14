@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UI testing of the navbar renders correctly with environment and shell 1`] = `
+<DocumentFragment>
+  <div
+    class="popoverClickAway hidden"
+  />
+  <div
+    class="oui-navbar navbar"
+  >
+    <div>
+      <button
+        aria-expanded="false"
+        class="oui-navbar-toggler oui-navbar-toggler_button"
+        role="button"
+        type="button"
+      >
+        <span
+          class="oui-navbar-toggler__hamburger"
+        >
+          <span />
+          <span />
+          <span />
+          <span />
+        </span>
+      </button>
+      <div
+        aria-expanded="true"
+        class="oui-navbar-menu_toggle oui-navbar-menu oui-navbar-menu_fixed false"
+        role="menu"
+      />
+    </div>
+    <a
+      aria-label="OVHcloud"
+      class="oui-navbar__brand"
+      href="#"
+    >
+      <span
+        aria-hidden="true"
+        class="oui-icon oui-icon-ovh"
+      />
+    </a>
+    <div
+      class="oui-navbar-list"
+    >
+      <div
+        class="oui-navbar-list oui-navbar-list_main oui-navbar_desktop-only"
+      >
+        <span>
+          navbar_loading_universes
+        </span>
+      </div>
+    </div>
+    <div
+      class="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end"
+    >
+      <div
+        class="oui-navbar-list__item"
+      />
+      <div
+        class="oui-navbar-list__item"
+      >
+        <div
+          class="oui-navbar-dropdown"
+        >
+          <button
+            aria-expanded="false"
+            aria-haspopup="false"
+            aria-label="language_change"
+            class="oui-navbar-link oui-navbar-link_dropdown "
+            title="language_change"
+            type="button"
+          >
+            <span
+              class="oui-navbar-link__wrapper"
+            >
+              <span
+                class="oui-navbar-link__text"
+              >
+                English
+              </span>
+              <span
+                class="oui-icon oui-icon-chevron-down ml-2"
+              />
+            </span>
+          </button>
+          <div
+            class="oui-navbar-menu__wrapper"
+          >
+            <div
+              class="oui-navbar-menu oui-navbar-menu_fixed oui-navbar-menu_end"
+            >
+              <div
+                class="oui-navbar-list_dropdown p-4"
+              >
+                <span
+                  class="oui-navbar-list__title title"
+                >
+                  language_change
+                </span>
+                <ul
+                  class="oui-navbar-list"
+                >
+                  <li
+                    class="oui-navbar-list__item"
+                  >
+                    <button
+                      class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      type="button"
+                    >
+                      Deutsch
+                    </button>
+                  </li>
+                  <li
+                    class="oui-navbar-list__item"
+                  >
+                    <button
+                      class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      type="button"
+                    >
+                      Español
+                    </button>
+                  </li>
+                  <li
+                    class="oui-navbar-list__item"
+                  >
+                    <button
+                      class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      type="button"
+                    >
+                      Français
+                    </button>
+                  </li>
+                  <li
+                    class="oui-navbar-list__item"
+                  >
+                    <button
+                      class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      type="button"
+                    >
+                      Français (Canadien)
+                    </button>
+                  </li>
+                  <li
+                    class="oui-navbar-list__item"
+                  >
+                    <button
+                      class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      type="button"
+                    >
+                      Italiano
+                    </button>
+                  </li>
+                  <li
+                    class="oui-navbar-list__item"
+                  >
+                    <button
+                      class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      type="button"
+                    >
+                      Polski
+                    </button>
+                  </li>
+                  <li
+                    class="oui-navbar-list__item"
+                  >
+                    <button
+                      class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      type="button"
+                    >
+                      Português
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="oui-navbar-list__item"
+      >
+        <button
+          aria-label="navbar_notifications"
+          class="oui-navbar-link oui-navbar-link_icon oui-navbar-link_tertiary navbarLink"
+          role="button"
+          title="navbar_notifications"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="oui-icon oui-icon-bell"
+          />
+        </button>
+      </div>
+      <button
+        aria-label="navbar_account"
+        class="oui-navbar-link oui-navbar-link_icon oui-navbar-link_tertiary navbarLink"
+        role="button"
+        type="button"
+      >
+        <span
+          class="oui-navbar-link__wrapper oui-navbar-link__wrapper_border"
+        >
+          <span
+            aria-hidden="true"
+            class="oui-icon navbar-oui-icon oui-icon-user"
+          />
+          <span
+            class="oui-navbar-link__text"
+          >
+            Tester Testee
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

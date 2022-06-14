@@ -35,6 +35,7 @@ import tucUnitHumanize from './unit/humanize';
 import tucValidator from './validator';
 import tucBankHolidays from './bank-holidays';
 import FeatureAvailability from './feature-availability';
+import tucTelephonyProcedure from './telephony-procedure';
 
 const moduleName = 'ngOvhTelecomUniverseComponents';
 
@@ -73,6 +74,7 @@ angular.module(moduleName, [
   tucUnitHumanize,
   tucValidator,
   tucBankHolidays,
+  tucTelephonyProcedure,
 ]);
 
 export { FeatureAvailability };

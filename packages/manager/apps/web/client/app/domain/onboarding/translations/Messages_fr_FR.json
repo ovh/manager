@@ -1,0 +1,15 @@
+{
+  "domains_onboarding_title": "Trouvez le nom de domaine qui vous correspond",
+  "domains_onboarding_description": "Nous vous proposons un large choix de noms de domaine adaptés à tous vos projets.",
+  "domains_onboarding_description_list1": "Hébergement Web 10 Mo offert",
+  "domains_onboarding_description_list2": "Compte E-mail 5 Go offert",
+  "domains_onboarding_description_list3": "DNSSEC : protection contre l’empoisonnement du cache (cache poisoning)",
+  "domains_onboarding_description_list4": "Easy Redirect : accès aux réseaux sociaux depuis votre nom de domaine",
+  "domains_onboarding_order": "Commander",
+  "domains_onboarding_guide1_title": "Rediriger un nom de domaine géré par OVHcloud",
+  "domains_onboarding_guide1_description": "Découvrez les différents types de redirections et comment en créer une pour un nom de domaine géré par OVHcloud",
+  "domains_onboarding_guide2_title": "Changer le propriétaire d’un nom de domaine",
+  "domains_onboarding_guide2_description": "Vous trouverez dans ce guide différentes informations concernant le changement de propriétaire d’un nom de domaine.",
+  "domains_onboarding_guide3_title": "Transférer son nom de domaine vers OVHcloud",
+  "domains_onboarding_guide3_description": "Apprenez comment réaliser le transfert d'un nom de domaine vers OVHcloud"
+}

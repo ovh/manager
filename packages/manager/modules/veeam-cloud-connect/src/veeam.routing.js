@@ -23,5 +23,15 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       hideBreadcrumb: /* @ngInject */ () => true,
     },
+    redirectTo: (transition) => {
+      return transition
+        .injector()
+        .getAsync('resources')
+        .then((resources) => {
+          return resources.data.length === 0
+            ? 'veeam-cloud-connect.onboarding'
+            : false;
+        });
+    },
   });
 };

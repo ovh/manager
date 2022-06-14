@@ -3,13 +3,17 @@ import {
   DISPLAYED_PRODUCTS_NUMBER,
 } from './constants';
 
+import { getProductListingRoute } from './listing-pages.constants';
+
 export default class ProductsController {
   /* @ngInject */
-  constructor($state, atInternet) {
+  constructor($state, $window, atInternet, coreURLBuilder) {
     this.DEFAULT_DISPLAYED_TILES = DEFAULT_DISPLAYED_TILES;
     this.DISPLAYED_PRODUCTS_NUMBER = DISPLAYED_PRODUCTS_NUMBER;
     this.$state = $state;
+    this.$window = $window;
     this.atInternet = atInternet;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -39,23 +43,19 @@ export default class ProductsController {
     return productType.toLowerCase().replace(/_/g, '-');
   }
 
-  goToProductPage(productObject) {
-    const product = productObject.productType;
+  goToProductPage({ productType }) {
     this.atInternet.trackClick({
-      name: `${this.trackingPrefix}::product::${product
-        .toLowerCase()
-        .replace(/_/g, '-')}::show-all`,
+      name: `${
+        this.trackingPrefix
+      }::product::${productType.toLowerCase().replace(/_/g, '-')}::show-all`,
       type: 'action',
     });
-    return (
-      this.$state
-        .go(`app.dashboard.${product.toLowerCase()}`)
-        // If the transition error, it means the state doesn't exist
-        .catch(() => {
-          this.$state.go('app.dashboard.products', {
-            product: product.toLowerCase(),
-          });
-        })
-    );
+    const { application, hash } = getProductListingRoute(productType);
+    if (application && hash) {
+      this.$window.open(
+        this.coreURLBuilder.buildURL(application, hash),
+        '_top',
+      );
+    }
   }
 }

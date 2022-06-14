@@ -48,4 +48,6 @@ export interface User {
   supportLevel: SupportLevel;
   certificates: string[];
   auth: Auth;
+  isTrusted: boolean;
+  enterprise: boolean;
 }

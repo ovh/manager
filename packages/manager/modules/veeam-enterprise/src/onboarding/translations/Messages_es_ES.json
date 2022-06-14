@@ -1,0 +1,8 @@
+{
+  "veeam_enterprise_onboarding_title": "Veeam Enterprise",
+  "veeam_enterprise_onboarding_description": "<b>La solución independiente para proteger sus datos</b>",
+  "veeam_enterprise_onboarding_description2": "Despliegue su plataforma Veeam Backup &amp; Replication y utilice las licencias Enterprise Plus de OVHcloud para realizar copias de seguridad, la restauración y la replicación de sus cargas de trabajo críticas, incluyendo VMware, los servidores físicos Windows y Linux, o los almacenamientos NAS.",
+  "veeam_enterprise_onboarding_order": "Contratar",
+  "veeam_enterprise__onboarding_guide1_title": "Instalar Veeam Backup &amp; Replication",
+  "veeam_enterprise__onboarding_guide1_description": "Cómo instalar un servidor Veeam Backup &amp; Replication con Veeam Enterprise"
+}
