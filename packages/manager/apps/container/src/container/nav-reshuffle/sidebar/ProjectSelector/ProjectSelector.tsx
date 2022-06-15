@@ -109,7 +109,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
         isSearchable={false}
         formatOptionLabel={getProjectOption}
         options={options}
-        menuPortalTarget={document.body}
+        menuPosition={'absolute'}
         value={value}
         onChange={(option) => {
           if (option.new) {
