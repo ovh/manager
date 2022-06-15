@@ -1,0 +1,29 @@
+<div class="d-flex align-items-center">
+    <oui-timepicker
+        class="border rounded"
+        model="$ctrl.model"
+        format="H:i"
+        inline
+        ng-if="!$ctrl.refreshCalendarValue"
+    ></oui-timepicker>
+    <div ng-if="!$ctrl.isEqualToInitialValue()">
+        <button
+            class="oui-button oui-button_ghost"
+            data-ng-click="$ctrl.validate()"
+            data-ng-disabled="$ctrl.disabled || $ctrl.loading"
+        >
+            <span class="oui-icon oui-icon-ok" aria-hidden="true"></span>
+        </button>
+        <button
+            class="oui-button oui-button_ghost"
+            data-ng-click="$ctrl.cancel()"
+            data-ng-disabled="$ctrl.disabled || $ctrl.loading"
+        >
+            <span class="oui-icon oui-icon-close"></span>
+        </button>
+    </div>
+</div>
+<small
+    data-translate="pci_database_calendar_edit_local_hour"
+    data-translate-values="{'gmt': $ctrl.gmt, 'localTime': $ctrl.getLocalTime()}"
+></small>

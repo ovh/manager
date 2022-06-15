@@ -17,6 +17,8 @@ import upgradePlan from './upgrade-plan';
 import upgradeVersion from './upgrade-version';
 import upgradeNode from './upgrade-node';
 
+import calendarEdit from '../../components/calendar-edit';
+
 const moduleName = 'ovhManagerPciStoragesDatabaseGeneralInformation';
 
 angular
@@ -35,6 +37,7 @@ angular
     upgradePlan,
     upgradeVersion,
     upgradeNode,
+    calendarEdit,
   ])
   .config(routing)
   .component('ovhManagerPciProjectDatabaseGeneralInformation', component)

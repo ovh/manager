@@ -12,20 +12,25 @@
     <oui-tile
         heading="{{:: 'pci_databases_backup_informations_title' | translate}}"
     >
-        <div class="oui-table">
-            <div>
-                <div class="oui-table__row">
-                    <div class="oui-table__cell">
-                        <div class="oui-description">
-                            <div
-                                data-translate="pci_databases_backup_informations_retention"
-                            ></div>
-                            <div>
-                                {{:: $ctrl.backupRetentionTime.humanize()}}
-                            </div>
-                        </div>
-                    </div>
+        <div class="row px-3">
+            <div class="col border-top border-bottom border-light p-2">
+                <div
+                    data-translate="pci_databases_backup_informations_retention"
+                ></div>
+                <div>
+                    {{:: $ctrl.backupRetentionTime.humanize()}}
                 </div>
+            </div>
+            <div class="col border-top border-bottom border-light p-2">
+                <div data-translate="pci_databases_backup_time"></div>
+                <calendar-edit
+                    data-model="$ctrl.backupTime"
+                    data-init-value="$ctrl.database.backupTime"
+                    data-callback="$ctrl.updateBackupTime()"
+                    data-callback-success="$ctrl.handleBackupTimeSuccess()"
+                    data-callback-error="$ctrl.showBackupError()"
+                    data-disabled="!$ctrl.database.isActive()"
+                ></calendar-edit>
             </div>
         </div>
     </oui-tile>

@@ -1101,4 +1101,21 @@ export default class DatabaseService {
       )
       .then(({ data }) => data);
   }
+
+  getMaintenances(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/maintenance`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  applyMaintenance(projectId, engine, databaseId, maintenanceId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/maintenance/${maintenanceId}/apply`,
+      )
+      .then(({ data }) => data);
+  }
 }
