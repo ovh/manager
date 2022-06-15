@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/white-label-manager',
       views: {
-        'groupInnerView@telecom.telephony.billingAccount': {
+        'groupView@telecom.telephony.billingAccount': {
           component: 'whiteLabelManagerComponent',
         },
       },
