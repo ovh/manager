@@ -75,6 +75,17 @@ const pciNode: Node = {
           forceVisibility: true,
         },
         {
+          id: 'pci-databases',
+          translation: 'sidebar_pci_databases',
+          serviceType: 'CLOUD_PROJECT_DATABASE',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/storages/databases',
+          },
+          features: ['databases'],
+          forceVisibility: true,
+        },
+        {
           id: 'pci-volume-snapshot',
           translation: 'sidebar_pci_volume_snapshot',
           serviceType: 'CLOUD_PROJECT_VOLUME_SNAPSHOT',
