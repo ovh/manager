@@ -1,5 +1,3 @@
-import set from 'lodash/set';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.error', {
     url: '/error',
@@ -24,7 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
 
       submitAction: /* @ngInject */ ($window, submitLink) => () => {
-        set($window, 'location.href', submitLink);
+        window.top.location.href = submitLink;
       },
 
       message: /* @ngInject */ ($transition$) =>
