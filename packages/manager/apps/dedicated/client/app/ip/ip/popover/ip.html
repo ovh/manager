@@ -83,7 +83,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/virtual-mac/add/ip-ip-virtual-mac-add', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="setAction('ip/virtual-mac/add/ip-ip-virtual-mac-add', { ipBlock: ipBlock, ip: ip ,tracking : tracking['mac-add']})"
                 data-translate="ip_table_manage_add_virtualmac"
                 data-ng-disabled="ipBlock.service.category !== 'DEDICATED' || (ipBlock.virtualMac && ipBlock.virtualMac.status !== 'OK') || ipBlock.virtualMac.virtualMacs[ip.ip]"
                 data-oui-tooltip-placement="left"
@@ -96,7 +96,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/virtual-mac/ip-ip-virtual-mac', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="setAction('ip/virtual-mac/ip-ip-virtual-mac', { ipBlock: ipBlock, ip: ip ,tracking : tracking['mac-details']})"
                 data-translate="ip_table_manage_view_virtualmac"
             ></button>
         </li>
@@ -106,7 +106,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/virtual-mac/delete/ip-ip-virtual-mac-delete', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="setAction('ip/virtual-mac/delete/ip-ip-virtual-mac-delete', { ipBlock: ipBlock, ip: ip,tracking : tracking['mac-delete'] })"
                 data-translate="ip_table_manage_del_virtualmac"
             ></button>
         </li>
@@ -124,7 +124,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/mitigation/update/ip-ip-mitigation-update', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="setAction('ip/mitigation/update/ip-ip-mitigation-update', { ipBlock: ipBlock, ip: ip,tracking : tracking['enable-permanent-mitigation']})"
                 data-translate="ip_table_manage_mitigation_DEFAULT_to_PERMANENT"
             ></button>
         </li>
@@ -135,7 +135,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/mitigation/update/ip-ip-mitigation-update', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="setAction('ip/mitigation/update/ip-ip-mitigation-update', { ipBlock: ipBlock, ip: ip ,tracking : tracking['switch-auto-mitigation']})"
                 data-translate="ip_table_manage_mitigation_PERMANENT_to_AUTO"
             ></button>
         </li>
@@ -147,7 +147,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/mitigation/statistics/ip-ip-mitigation-statistics', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="setAction('ip/mitigation/statistics/ip-ip-mitigation-statistics', { ipBlock: ipBlock, ip: ip ,tracking : tracking['statistics']})"
                 data-translate="ip_table_manage_mitigation_stats"
             ></button>
         </li>
@@ -183,7 +183,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip, tracking : tracking['create-firewall']})"
                 data-translate="ip_table_manage_firewall_configure"
             ></button>
         </li>
@@ -194,7 +194,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip , tracking : tracking['enable-firewall']})"
                 data-translate="ip_table_manage_firewall_enable"
             ></button>
         </li>
@@ -205,7 +205,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip, tracking : tracking['disable-firewall'] })"
                 data-translate="ip_table_manage_firewall_disable"
             ></button>
         </li>
@@ -300,7 +300,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/block/move/ip-ip-block-move', { ipBlock: ipBlock })"
+                data-ng-click="setAction('ip/block/move/ip-ip-block-move', { ipBlock: ipBlock, tracking : tracking['move-failover']})"
                 data-translate="ip_table_manage_move_ipblock"
             ></button>
         </li>
@@ -310,7 +310,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock })"
+                data-ng-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock , tracking : tracking['delete-failover']})"
                 data-ng-disabled="!ipBlock.canBeTerminated"
                 data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
                 data-oui-tooltip-placement="left"

@@ -19,10 +19,9 @@
     <button
         type="button"
         class="btn btn-primary"
-        data-ng-click="setAction('ip/firewall/rule/add/ip-ip-firewall-rule-add', { ipBlock: selectedBlock, ip: selectedIp })"
+        data-ng-click="setAction('ip/firewall/rule/add/ip-ip-firewall-rule-add', { ipBlock: selectedBlock, ip: selectedIp ,tracking : tracking['ip-firewall-add-rule']})"
         data-translate="ip_firewall_add_title"
     ></button>
-
     <div class="table-responsive mt-2" data-ng-if="!rulesLoadingError">
         <table class="table table-hover">
             <thead>
@@ -113,7 +112,7 @@
                             class="btn btn-link"
                             data-oui-tooltip="{{:: 'ip_firewall_remove_rule' | translate }}"
                             data-oui-tooltip-placement="left"
-                            data-ng-click="setAction('ip/firewall/rule/delete/ip-ip-firewall-rule-delete', { ipBlock: selectedBlock, ip: selectedIp, rule: rule })"
+                            data-ng-click="setAction('ip/firewall/rule/delete/ip-ip-firewall-rule-delete', { ipBlock: selectedBlock, ip: selectedIp, rule: rule ,tracking : tracking['ip-firewall-delete-rule']})"
                             data-ng-show="rule.state === 'ok'"
                         >
                             <span

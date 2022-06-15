@@ -5,10 +5,18 @@ export default /* @ngInject */ (
   Ip,
   IpFirewall,
   Alerter,
+  atInternet,
 ) => {
   $scope.data = $scope.currentActionData;
-
+  atInternet.trackClick({
+    name: $scope.data?.tracking,
+    type: 'action',
+  });
   $scope.removeRule = function removeRule() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::confirm`,
+      type: 'action',
+    });
     $scope.loading = true;
     IpFirewall.removeFirewallRule(
       $scope.data.ipBlock,
@@ -29,5 +37,12 @@ export default /* @ngInject */ (
       .finally(() => {
         $scope.resetAction();
       });
+  };
+  $scope.cancelAction = function cancelAction() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::cancel`,
+      type: 'action',
+    });
+    $scope.resetAction();
   };
 };

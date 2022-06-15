@@ -88,4 +88,12 @@ export default class {
         ),
       );
   }
+
+  onCancel() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::cancel`,
+      type: 'action',
+    });
+    return this.goBack();
+  }
 }
