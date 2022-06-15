@@ -5,12 +5,13 @@ export default {
   controller,
   template,
   bindings: {
-    projectId: '<',
     userId: '<',
     user: '<',
     regions: '<',
     rcloneGuide: '<',
     goBack: '<',
-    state: '<',
+    file: '<',
+    downloadRCloneConfig: '<',
+    checkGlobalRegionCallBack: '<',
   },
 };

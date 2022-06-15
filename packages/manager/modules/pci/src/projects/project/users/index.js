@@ -1,7 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
-import service from '../storages/object-storage/object-storage.service';
 
 const moduleName = 'ovhManagerPciUsersLazyLoading';
 
@@ -21,7 +20,6 @@ angular
       });
     },
   )
-  .service('PciStoragesObjectStorageService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -76,10 +76,6 @@ export default class PciStoragesContainersUsersController {
       );
   }
 
-  downloadRcloneFile(user) {
-    this.downloadOpenStackRclone(user);
-  }
-
   showSecretKey(user) {
     this.CucCloudMessage.success(
       this.$translate.instant(

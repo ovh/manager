@@ -1,5 +1,10 @@
 import get from 'lodash/get';
-import { RCLONE_GUIDE } from '../../../../../../components/users/download-rclone/download-rclone.constants';
+import {
+  RCLONE_GUIDE,
+  DOWNLOAD_RCLONE_FILENAME,
+  DOWNLOAD_RCLONE_FILETYPE,
+  REGION_CAPACITY,
+} from '../../../../../../components/users/download-rclone/download-rclone.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -14,22 +19,38 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
-        state: () => 'storage',
+        file: /* @ngInject */ () => {
+          return {
+            fileName: DOWNLOAD_RCLONE_FILENAME,
+            fileType: DOWNLOAD_RCLONE_FILETYPE,
+          };
+        },
         userId: /* @ngInject */ ($transition$) => $transition$.params().userId,
         user: /* @ngInject */ (
-          PciProjectsProjectUsersService,
+          PciStoragesObjectStorageService,
           projectId,
           userId,
-        ) => PciProjectsProjectUsersService.get(projectId, userId),
-        regions: /* @ngInject */ (PciProjectsProjectUsersService, projectId) =>
-          PciProjectsProjectUsersService.getStorageRegions(
+        ) => PciStoragesObjectStorageService.get(projectId, userId),
+        regions: /* @ngInject */ (PciStoragesObjectStorageService, projectId) =>
+          PciStoragesObjectStorageService.getStorageRegions(
             projectId,
+            REGION_CAPACITY,
           ).then((regions) => regions.map(({ name }) => name)),
-        rcloneGuide: /* @ngInject */ (SessionService) =>
-          SessionService.getUser().then(({ ovhSubsidiary }) =>
-            get(RCLONE_GUIDE, ovhSubsidiary),
-          ),
+        rcloneGuide: /* @ngInject */ (coreConfig) => {
+          return get(RCLONE_GUIDE, coreConfig.getUser().ovhSubsidiary);
+        },
         goBack: /* @ngInject */ (goToUsers) => goToUsers,
+        downloadRCloneConfig: /* @ngInject */ (
+          PciStoragesObjectStorageService,
+          projectId,
+          user,
+        ) => (regionId) =>
+          PciStoragesObjectStorageService.downloadRclone(
+            projectId,
+            user,
+            regionId,
+          ),
+        checkGlobalRegionCallBack: /* @ngInject */ () => () => null,
       },
     },
   );

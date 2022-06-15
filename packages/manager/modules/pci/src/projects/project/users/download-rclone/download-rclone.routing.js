@@ -1,5 +1,10 @@
 import get from 'lodash/get';
-import { RCLONE_GUIDE } from '../../../../components/users/download-rclone/download-rclone.constants';
+import {
+  RCLONE_GUIDE,
+  DOWNLOAD_TYPE,
+  DOWNLOAD_FILENAME,
+  REGION_CAPACITY,
+} from '../../../../components/users/download-rclone/download-rclone.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.users.download-rclone', {
@@ -12,7 +17,12 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb
-      state: () => 'user',
+      file: /* @ngInject */ () => {
+        return {
+          fileName: DOWNLOAD_FILENAME,
+          fileType: DOWNLOAD_TYPE,
+        };
+      },
       userId: /* @ngInject */ ($transition$) => $transition$.params().userId,
       user: /* @ngInject */ (
         PciProjectsProjectUsersService,
@@ -22,12 +32,26 @@ export default /* @ngInject */ ($stateProvider) => {
       regions: /* @ngInject */ (PciProjectsProjectUsersService, projectId) =>
         PciProjectsProjectUsersService.getStorageRegions(
           projectId,
+          REGION_CAPACITY,
         ).then((regions) => regions.map(({ name }) => name)),
-      rcloneGuide: /* @ngInject */ (SessionService) =>
-        SessionService.getUser().then(({ ovhSubsidiary }) =>
-          get(RCLONE_GUIDE, ovhSubsidiary),
-        ),
+      rcloneGuide: /* @ngInject */ (coreConfig) => {
+        return get(RCLONE_GUIDE, coreConfig.getUser().ovhSubsidiary);
+      },
       goBack: /* @ngInject */ (goToUsers) => goToUsers,
+      downloadRCloneConfig: /* @ngInject */ (
+        PciProjectsProjectUsersService,
+        projectId,
+        user,
+      ) => (regionId) =>
+        PciProjectsProjectUsersService.downloadRclone(
+          projectId,
+          user,
+          regionId,
+        ),
+      checkGlobalRegionCallBack: /* @ngInject */ (
+        PciProjectsProjectUsersService,
+      ) => (regions) =>
+        PciProjectsProjectUsersService.checkGlobalRegion(regions),
     },
   });
 };

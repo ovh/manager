@@ -2,60 +2,32 @@ import first from 'lodash/first';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
-import {
-  DOWNLOAD_FILENAME,
-  DOWNLOAD_TYPE,
-  DOWNLOAD_RCLONE_FILETYPE,
-  DOWNLOAD_RCLONE_FILENAME,
-  STATE_TYPE,
-} from './download-rclone.constants';
-
 const { saveAs } = require('file-saver');
 
 export default class PciUsersDownloadRcloneController {
   /* @ngInject */
-  constructor(
-    $compile,
-    $translate,
-    ovhManagerRegionService,
-    PciProjectsProjectUsersService,
-    PciStoragesObjectStorageService,
-  ) {
+  constructor($compile, $translate, ovhManagerRegionService) {
     this.$compile = $compile;
     this.$translate = $translate;
     this.ovhManagerRegionService = ovhManagerRegionService;
-    this.PciProjectsProjectUsersService = PciProjectsProjectUsersService;
-    this.PciStoragesObjectStorageService = PciStoragesObjectStorageService;
   }
 
   $onInit() {
     this.isLoading = false;
-
     this.regions = map(this.regions, (region) => ({
       id: region,
       label: this.ovhManagerRegionService.getTranslatedMicroRegion(region),
     }));
     this.region = first(this.regions);
-    this.hasGlobalRegions = this.PciProjectsProjectUsersService.checkGlobalRegion(
-      this.regions,
-    );
+    this.hasGlobalRegions = this.checkGlobalRegionCallBack(this.regions);
   }
 
   downloadRclone() {
     this.isLoading = true;
-    this.serviceCall =
-      this.state === STATE_TYPE
-        ? this.PciStoragesObjectStorageService
-        : this.PciProjectsProjectUsersService;
-    this.fileType =
-      this.state === STATE_TYPE ? DOWNLOAD_RCLONE_FILETYPE : DOWNLOAD_TYPE;
-    this.fileName =
-      this.state === STATE_TYPE ? DOWNLOAD_RCLONE_FILENAME : DOWNLOAD_FILENAME;
-    return this.serviceCall
-      .downloadRclone(this.projectId, this.user, this.region.id)
+    return this.downloadRCloneConfig(this.region.id)
       .then(({ content }) => {
-        const data = new Blob([content], { type: this.fileType });
-        saveAs(data, this.fileName);
+        const data = new Blob([content], { type: this.file.fileType });
+        saveAs(data, this.file.fileName);
         return new Promise((resolve) => {
           const reader = new FileReader();
           reader.onloadend = () => resolve(reader.result);
@@ -74,7 +46,7 @@ export default class PciUsersDownloadRcloneController {
                 'pci_projects_project_users_download-rclone_success_message_link',
               ),
               value: link,
-              download: this.fileName,
+              download: this.file.fileName,
             },
           }),
         );
