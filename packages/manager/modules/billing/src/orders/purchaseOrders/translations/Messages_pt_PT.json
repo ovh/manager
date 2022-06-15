@@ -4,7 +4,7 @@
   "purchaseOrders_reference": "Referência",
   "purchaseOrders_creationDate": "Data de criação",
   "purchaseOrders_startDate": "Data de início",
-  "purchaseOrders_endDate": "Data de finalização",
+  "purchaseOrders_endDate": "Data de fim",
   "purchaseOrders_endDate_helper": "A data de fim está excluída",
   "purchaseOrders_status": "Estado",
   "purchaseOrders_status_actif": "Ativo",

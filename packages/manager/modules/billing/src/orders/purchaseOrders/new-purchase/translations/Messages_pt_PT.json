@@ -9,7 +9,7 @@
   "purchaseOrders_form_add_purchase_order_placeholder": "Purchase order",
   "purchaseOrders_form_add_purchase_order_sub_info": "O nome não deve exceder 20 caracteres",
   "purchaseOrders_form_add_purchase_startDate": "Data de início",
-  "purchaseOrders_form_add_purchase_endDate": "Data de finalização",
+  "purchaseOrders_form_add_purchase_endDate": "Data de fim",
   "purchaseOrders_form_add_purchase_endDate_helper": "A data de fim está excluída",
   "purchaseOrders_form_add_purchase_submit": "Validar",
   "purchaseOrders_form_add_purchase_cancel": "Anular",

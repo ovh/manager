@@ -11,8 +11,8 @@
   "purchaseOrders_form_add_purchase_startDate": "Data di inizio",
   "purchaseOrders_form_add_purchase_endDate": "Data di fine",
   "purchaseOrders_form_add_purchase_endDate_helper": "La data di fine è esclusa",
-  "purchaseOrders_form_add_purchase_submit": "Conferma",
-  "purchaseOrders_form_add_purchase_cancel": "Annulla",
+  "purchaseOrders_form_add_purchase_submit": "Confermare",
+  "purchaseOrders_form_add_purchase_cancel": "Annullare",
   "purchaseOrders_form_add_purchase_submit_REFERENCE_ORDER_success": "La tua referenza interna è stata creata!",
   "purchaseOrders_form_add_purchase_submit_PURCHASE_ORDER_success": "Il tuo purchase order è stato creato!",
   "purchaseOrders_form_add_purchase_submit_error": "Non è stato possibile prendere in carico la tua richiesta. Ti preghiamo di riprovare."

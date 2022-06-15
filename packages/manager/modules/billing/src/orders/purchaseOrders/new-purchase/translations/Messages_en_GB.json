@@ -11,7 +11,7 @@
   "purchaseOrders_form_add_purchase_startDate": "Start date",
   "purchaseOrders_form_add_purchase_endDate": "End date ",
   "purchaseOrders_form_add_purchase_endDate_helper": "The end date is excluded",
-  "purchaseOrders_form_add_purchase_submit": "Confirm",
+  "purchaseOrders_form_add_purchase_submit": "Validate",
   "purchaseOrders_form_add_purchase_cancel": "Cancel",
   "purchaseOrders_form_add_purchase_submit_REFERENCE_ORDER_success": "Your internal reference has been created.",
   "purchaseOrders_form_add_purchase_submit_PURCHASE_ORDER_success": "Your purchase order has been created.",
