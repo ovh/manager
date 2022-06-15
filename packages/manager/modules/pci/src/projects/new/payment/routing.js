@@ -152,7 +152,7 @@ export default /* @ngInject */ ($stateProvider) => {
       onAskCreditPayment: /* @ngInject */ ($state) => () =>
         $state.go('pci.projects.new.payment.credit', {}, { location: false }),
 
-      onCartFinalized: /* @ngInject */ ($state, $window, cart) => ({
+      onCartFinalized: /* @ngInject */ ($state, cart) => ({
         orderId,
         prices,
         url,
@@ -160,7 +160,7 @@ export default /* @ngInject */ ($stateProvider) => {
         if (cart.creditOption || prices.withTax.value !== 0) {
           // if credit has been added or total checkout is not equal to 0
           // redirect to order url
-          return $window.location.assign(url);
+          window.top.location.assign(url);
         }
 
         return $state.go(
