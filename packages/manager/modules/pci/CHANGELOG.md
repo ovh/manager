@@ -1,3 +1,12 @@
+## [5.79.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.79.0...@ovh-ux/manager-pci@5.79.1) (2022-06-15)
+
+
+### Bug Fixes
+
+* **pci:** open payment method add in top frame ([3ad5a84](https://github.com/ovh/manager/commit/3ad5a8432d7a51a9a92bf6cd497d025f7ac33d5c))
+
+
+
 # [5.79.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.78.1...@ovh-ux/manager-pci@5.79.0) (2022-06-14)
 
 

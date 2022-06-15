@@ -1,3 +1,12 @@
+## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.5.0...@ovh-ux/manager-nasha@2.5.1) (2022-06-15)
+
+
+### Bug Fixes
+
+* **nasha:** order link ([bacba47](https://github.com/ovh/manager/commit/bacba472a0a2076be65088a42e90e546fe4ce55f))
+
+
+
 # [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.4.3...@ovh-ux/manager-nasha@2.5.0) (2022-06-14)
 
 
