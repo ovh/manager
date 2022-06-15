@@ -9,13 +9,11 @@ export default class PciStoragesContainersUsersController {
     atInternet,
     CucCloudMessage,
     PciStoragesObjectStorageService,
-    $http,
   ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciStoragesObjectStorageService = PciStoragesObjectStorageService;
-    this.$http = $http;
   }
 
   $onInit() {
