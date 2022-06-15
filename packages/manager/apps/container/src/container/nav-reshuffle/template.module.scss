@@ -3,8 +3,8 @@
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
 
 $z-index-iframe: 5;
-$z-index-iframe-overlay: 6;
-$z-index-sidebar: 7;
+$z-index-iframe-overlay: 600;
+$z-index-sidebar: 700;
 
 .navReshuffle {
   display: flex;
