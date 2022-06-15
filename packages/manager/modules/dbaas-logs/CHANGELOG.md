@@ -1,3 +1,12 @@
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.7.0...@ovh-ux/manager-dbaas-logs@1.7.1) (2022-06-15)
+
+
+### Bug Fixes
+
+* **dbaas-logs:** order link ([24db2e7](https://github.com/ovh/manager/commit/24db2e7b6223bc370c2e6d52c80289319ceef640))
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.6.6...@ovh-ux/manager-dbaas-logs@1.7.0) (2022-06-14)
 
 

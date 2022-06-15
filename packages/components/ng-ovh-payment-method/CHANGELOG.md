@@ -1,3 +1,12 @@
+## [9.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.2.0...@ovh-ux/ng-ovh-payment-method@9.2.1) (2022-06-15)
+
+
+### Bug Fixes
+
+* **payment-method:** force redirect to open in top frame ([b1f9edd](https://github.com/ovh/manager/commit/b1f9edd1d623805c396d0aca3c00531094454a4d))
+
+
+
 # [9.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.1.8...@ovh-ux/ng-ovh-payment-method@9.2.0) (2022-06-14)
 
 
