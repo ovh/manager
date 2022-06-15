@@ -6,6 +6,7 @@ export default {
     cluster: '<',
     goBack: '<',
     goToConfirmRedeploy: '<',
+    nodes: '<',
     serviceName: '<',
   },
   template,
