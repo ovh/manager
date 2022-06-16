@@ -1,0 +1,30 @@
+<oui-header heading="{{:: 'orders_page_title' | translate }}">
+    <oui-guide-menu
+        data-text="{{:: 'orders_guides' | translate }}"
+        data-ng-if="$ctrl.billingGuideUrl"
+    >
+        <oui-guide-menu-item
+            data-ng-href="{{:: $ctrl.billingGuideUrl }}"
+            data-external="true"
+        >
+            <span data-translate="orders_billing"></span>
+        </oui-guide-menu-item>
+        <oui-guide-menu-item
+            data-ng-if=":: $ctrl.isAvailable()"
+            data-ng-href="{{:: $ctrl.purchaseOrdersGuideUrl }}"
+            data-external="true"
+        >
+            <span data-translate="orders_purchase"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+    <oui-header-tabs data-ng-if=":: $ctrl.isAvailable()">
+        <oui-header-tabs-item state="{{:: $ctrl.ordersSectionState }}"
+            ><span data-translate="orders_page_title"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item state="{{:: $ctrl.purchasesOrdersSectionState }}"
+            ><span data-translate="purchaseOrders_page_title"></span
+        ></oui-header-tabs-item>
+    </oui-header-tabs>
+</oui-header>
+
+<div data-ui-view></div>

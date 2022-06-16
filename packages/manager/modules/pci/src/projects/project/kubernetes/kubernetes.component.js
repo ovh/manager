@@ -7,6 +7,8 @@ export default {
     projects: '<',
     addCluster: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     kubernetes: '<',
     projectId: '<',
     privateNetworks: '<',

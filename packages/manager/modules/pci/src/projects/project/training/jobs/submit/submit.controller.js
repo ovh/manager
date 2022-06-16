@@ -69,7 +69,7 @@ export default class PciTrainingJobsSubmitController {
     );
 
     this.httpHeader = [];
-    this.volumesPermissions = ['RO', 'RW'];
+    this.volumesPermissions = ['RO', 'RW', 'RWD'];
     this.discordUrl = DISCORD_URL;
     this.docDockerBuildUrl = DOC_DOCKER_BUILD_URL;
     // Form payload

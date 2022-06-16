@@ -14,6 +14,8 @@ export default {
     enableMonthlyBillingInstance: '<',
     endRescueInstance: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     hardRebootInstance: '<',
     help: '<',
     instanceLink: '<',

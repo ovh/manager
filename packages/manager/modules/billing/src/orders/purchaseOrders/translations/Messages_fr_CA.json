@@ -1,0 +1,21 @@
+{
+  "purchaseOrders_page_title": "Mes références internes",
+  "purchaseOrders_page_description": "Votre référence interne correspond à une purchase order (PO), un nom de projet ou une mention interne. Toutes les factures émises indiqueront cette référence.",
+  "purchaseOrders_reference": "Référence",
+  "purchaseOrders_creationDate": "Date de création",
+  "purchaseOrders_startDate": "Date de début",
+  "purchaseOrders_endDate": "Date de fin",
+  "purchaseOrders_endDate_helper": "La date de fin est exclue",
+  "purchaseOrders_status": "Statut",
+  "purchaseOrders_status_actif": "Actif",
+  "purchaseOrders_status_inactif": "Inactif",
+  "purchaseOrders_status_desactivate": "Désactivé",
+  "purchaseOrders_create_reference": "Créer une référence interne",
+  "purchaseOrders_add_reference": "Ajouter une référence interne",
+  "purchaseOrders_edit_reference": "Modifier",
+  "purchaseOrders_status_change_reactivation": "Réactiver",
+  "purchaseOrders_status_change_desactivation": "Désactiver",
+  "purchaseOrders_confirmation_reactivation_REFERENCE_ORDER_success": "Votre référence interne a bien été réactivée.",
+  "purchaseOrders_confirmation_reactivation_PURCHASE_ORDER_success": "Votre purchase order a bien été réactivé.",
+  "purchaseOrders_confirmation_reactivation_error": "Votre demande n'a pas pu être prise en compte. Merci d'essayer ultérieurement."
+}

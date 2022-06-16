@@ -12,11 +12,15 @@ export default /* @ngInject */ (
   IpFirewall,
   Alerter,
   Validator,
+  atInternet,
 ) => {
   $scope.data = $scope.currentActionData;
+  atInternet.trackClick({
+    name: $scope.data?.tracking,
+    type: 'action',
+  });
   $scope.constants = null;
   $scope.rule = {};
-
   $scope.validator = {
     required: false,
     source: true,
@@ -24,6 +28,9 @@ export default /* @ngInject */ (
     destinationPort: true,
     fragment: true,
   };
+  atInternet.trackPage({
+    name: $scope.data?.tracking,
+  });
 
   $scope.resetOptionField = function resetOptionField() {
     if ($scope.rule.protocol !== 'tcp') {
@@ -119,6 +126,10 @@ export default /* @ngInject */ (
   };
 
   $scope.addRule = function addRule() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::confirm`,
+      type: 'action',
+    });
     $scope.loading = true;
 
     // set empty string to null values to avoid API error
@@ -152,5 +163,13 @@ export default /* @ngInject */ (
         );
       },
     );
+  };
+
+  $scope.cancelAction = function cancelAction() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::cancel`,
+      type: 'action',
+    });
+    $scope.resetAction();
   };
 };

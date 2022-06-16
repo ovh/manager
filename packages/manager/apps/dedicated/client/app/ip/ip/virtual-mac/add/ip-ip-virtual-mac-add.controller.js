@@ -10,8 +10,12 @@ export default /* @ngInject */ (
   Ip,
   IpVirtualMac,
   Alerter,
+  atInternet,
 ) => {
   $scope.data = $scope.currentActionData; // service and sub
+  atInternet.trackPage({
+    name: $scope.data?.tracking,
+  });
   $scope.serviceName = get($scope, 'data.ipBlock.service.serviceName');
 
   $scope.model = {
@@ -37,6 +41,10 @@ export default /* @ngInject */ (
   /* Action */
 
   $scope.addVirtualMac = function addVirtualMac() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::confirm`,
+      type: 'action',
+    });
     $scope.loading = true;
     if ($scope.model.choice === 'new') {
       IpVirtualMac.addVirtualMacToIp(
@@ -102,5 +110,13 @@ export default /* @ngInject */ (
       default:
         return false;
     }
+  };
+
+  $scope.cancelAction = function cancelAction() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::cancel`,
+      type: 'action',
+    });
+    $scope.resetAction();
   };
 };

@@ -12,6 +12,7 @@ export default {
     isAuthorized: '<',
     reloadState: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
     notebookLink: '<',
     notebooks: '<',
     startNotebook: '<',

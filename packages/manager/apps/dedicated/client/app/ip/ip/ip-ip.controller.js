@@ -6,7 +6,7 @@ import orderBy from 'lodash/orderBy';
 import set from 'lodash/set';
 import toInteger from 'lodash/toInteger';
 
-import { IP_TYPE, BRING_YOUR_OWN_IP } from './ip-ip.constant';
+import { IP_TYPE, BRING_YOUR_OWN_IP, TRACKING_PREFIX } from './ip-ip.constant';
 
 export default /* @ngInject */
 (
@@ -38,6 +38,7 @@ export default /* @ngInject */
   trackPage,
   trackClick,
   isByoipAvailable,
+  atInternet,
 ) => {
   $scope.isByoipAvailable = isByoipAvailable;
 
@@ -70,6 +71,22 @@ export default /* @ngInject */
     $scope.services = [];
     $scope.selectedService = null;
     $scope.serviceName = $stateParams.serviceName || '_ALL';
+    $scope.tracking = {
+      'enable-permanent-mitigation': `${TRACKING_PREFIX}::enable-permanent-mitigation`,
+      'create-firewall': `${TRACKING_PREFIX}::create-firewall`,
+      'enable-firewall': `${TRACKING_PREFIX}::enable-firewall`,
+      'ip-firewall': `${TRACKING_PREFIX}::ip::firewall`,
+      'disable-firewall': `${TRACKING_PREFIX}::disable-firewall`,
+      'mac-add': `${TRACKING_PREFIX}::mac-add`,
+      statistics: `${TRACKING_PREFIX}::statistics`,
+      'switch-auto-mitigation': `${TRACKING_PREFIX}::switch-auto-mitigation`,
+      'move-failover': `${TRACKING_PREFIX}::move-failover`,
+      'delete-failover': `${TRACKING_PREFIX}::delete-failover`,
+      'mac-details': `${TRACKING_PREFIX}::mac-details`,
+      'mac-delete': `${TRACKING_PREFIX}::mac-delete`,
+      'ip-firewall-add-rule': `${TRACKING_PREFIX}::ip::firewall::add-rule`,
+      'ip-firewall-delete-rule': `${TRACKING_PREFIX}::ip::firewall::delete-rule`,
+    };
   }
 
   function fetchServices() {
@@ -624,6 +641,8 @@ export default /* @ngInject */
     }, 300);
   }
   if ($location.search().action === 'mitigation' && $location.search().ip) {
+    $scope.trackPage(`${TRACKING_PREFIX}::enable-permanent-mitigation`);
+
     $timeout(() => {
       $scope.setAction('ip/mitigation/update/ip-ip-mitigation-update', {
         ipBlock: $location.search().ipBlock,
@@ -651,6 +670,13 @@ export default /* @ngInject */
   } else {
     refreshTable();
   }
+
+  $scope.trackPage = function(name) {
+    atInternet.trackPage({
+      name,
+      type: 'navigation',
+    });
+  };
 
   refreshAlerts();
 };

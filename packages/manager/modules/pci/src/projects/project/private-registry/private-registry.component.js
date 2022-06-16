@@ -13,6 +13,7 @@ export default {
     generateCredentials: '<',
     getRegistryPlan: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
     projectId: '<',
     onListParamChange: '<',
     refreshRegistryList: '<',

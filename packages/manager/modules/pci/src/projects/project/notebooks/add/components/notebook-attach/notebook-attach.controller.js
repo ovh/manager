@@ -11,6 +11,7 @@ export default class NotebookAttachController {
     this.permissions = [
       NOTEBOOK_ATTACH_STORAGE.PERMISSION_READ_ONLY,
       NOTEBOOK_ATTACH_STORAGE.PERMISSION_READ_WRITE,
+      NOTEBOOK_ATTACH_STORAGE.PERMISSION_READ_WRITE_DELETE,
     ];
   }
 

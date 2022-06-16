@@ -1,4 +1,11 @@
-export default /* @ngInject */ ($scope, $q, $translate, Ip, Alerter) => {
+export default /* @ngInject */ (
+  $scope,
+  $q,
+  $translate,
+  Ip,
+  Alerter,
+  atInternet,
+) => {
   $scope.data = $scope.currentActionData;
   $scope.model = { serviceName: null, nexthop: null };
   $scope.noTasksPending = false;
@@ -12,6 +19,9 @@ export default /* @ngInject */ ($scope, $q, $translate, Ip, Alerter) => {
   };
 
   function init() {
+    atInternet.trackPage({
+      name: $scope.data?.tracking,
+    });
     const queue = [];
     queue.push(
       Ip.checkTaskUnique(
@@ -65,6 +75,10 @@ export default /* @ngInject */ ($scope, $q, $translate, Ip, Alerter) => {
   };
 
   $scope.moveIpBlock = function moveIpBlock() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::confirm`,
+      type: 'action',
+    });
     $scope.loading.save = true;
     if ($scope.model.serviceName.serviceType === '_PARK') {
       Ip.moveIpBlockToPark($scope.data.ipBlock.ipBlock)
@@ -141,6 +155,33 @@ export default /* @ngInject */ ($scope, $q, $translate, Ip, Alerter) => {
     return (
       serviceNameChoosed && (nextHopSelectedPCC() || nextHopSelectedOther())
     );
+  };
+  $scope.onCancelAction = function onCancelAction() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::cancel`,
+      type: 'action',
+    });
+    $scope.resetAction();
+  };
+  $scope.onNextAction = function() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::next`,
+      type: 'action',
+    });
+  };
+
+  $scope.onPreviousAction = function() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::back`,
+      type: 'action',
+    });
+  };
+  $scope.onBackAction = function onBackAction() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::back`,
+      type: 'action',
+    });
+    return $scope.loading.save;
   };
 
   init();

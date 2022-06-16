@@ -16,5 +16,8 @@ export default {
     jobInfo: '<',
     jobLogs: '<',
     currentActiveLink: '<',
+    guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
   },
 };

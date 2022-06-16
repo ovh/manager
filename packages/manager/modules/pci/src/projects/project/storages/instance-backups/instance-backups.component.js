@@ -12,6 +12,8 @@ export default {
     deleteInstanceBackup: '<',
     instanceBackups: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     onListParamChange: '<',
     projectId: '<',
     getStateName: '<',

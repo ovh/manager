@@ -1,0 +1,9 @@
+{
+  "purchaseOrders_modal_title": "Disattivare",
+  "purchaseOrders_modal_content": "Vuoi davvero disattivare la referenza interna? Se disattivi questa referenza, non comparirà più sulle prossime fatture.",
+  "purchaseOrders_modal_primary_action": "Confermare",
+  "purchaseOrders_modal_secondary_action": "Annullare",
+  "purchaseOrders_confirmation_desactivation_REFERENCE_ORDER_success": "La referenza interna è stata disattivata correttamente.",
+  "purchaseOrders_confirmation_desactivation_PURCHASE_ORDER_success": "Il purchase order è stato disattivato correttamente.",
+  "purchaseOrders_confirmation_desactivation_error": "Non è stato possibile prendere in carico la tua richiesta. Ti preghiamo di riprovare."
+}

@@ -1,0 +1,9 @@
+{
+  "purchaseOrders_modal_title": "Deaktivieren",
+  "purchaseOrders_modal_content": "Sind Sie sicher, dass Sie Ihre interne Referenz deaktivieren möchten? Wenn Sie diese Referenz deaktivieren, wird sie auf Ihren nächsten Rechnungen nicht mehr ausgewiesen.",
+  "purchaseOrders_modal_primary_action": "Bestätigen",
+  "purchaseOrders_modal_secondary_action": "Abbrechen",
+  "purchaseOrders_confirmation_desactivation_REFERENCE_ORDER_success": "Ihre interne Referenz wurde deaktiviert.",
+  "purchaseOrders_confirmation_desactivation_PURCHASE_ORDER_success": "Ihre Purchase Order wurde deaktiviert.",
+  "purchaseOrders_confirmation_desactivation_error": "Ihre Anfrage konnte nicht bearbeitet werden. Bitte versuchen Sie es später erneut."
+}

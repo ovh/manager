@@ -8,12 +8,13 @@
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
             <oui-guide-menu-item
-                href="{{ $ctrl.guideUrl }}"
+                data-ng-repeat="guide in $ctrl.guideUrl.storage track by $index"
+                data-href="{{:: guide.url }}"
+                data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.object_storage + guide.tracking)"
                 data-external
-                data-on-click="$ctrl.onGuideLinkClick()"
             >
                 <span
-                    data-translate="pci_project_guides_header_all_guides"
+                    data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>

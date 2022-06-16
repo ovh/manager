@@ -2,7 +2,22 @@
     <oui-header
         data-heading="{{:: 'pci_projects_project_serving_title' | translate }}"
         class="mb-3"
-    ></oui-header>
+    >
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.guideUrl.ml_serving track by $index"
+                data-href="{{:: guide.url }}"
+                data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.ml_serving + guide.tracking)"
+                data-external
+            >
+                <span
+                    data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
 
     <pci-maintenance-banner
         data-steins="$ctrl.steins"

@@ -1,0 +1,21 @@
+{
+  "purchaseOrders_page_title": "My internal references",
+  "purchaseOrders_page_description": "Your internal reference is a purchase order (PO), project name, or internal note. All invoices issued will include this reference.",
+  "purchaseOrders_reference": "Reference",
+  "purchaseOrders_creationDate": "Creation date",
+  "purchaseOrders_startDate": "Start date",
+  "purchaseOrders_endDate": "End date ",
+  "purchaseOrders_endDate_helper": "The end date is excluded",
+  "purchaseOrders_status": "Status",
+  "purchaseOrders_status_actif": "Active",
+  "purchaseOrders_status_inactif": "Disabled",
+  "purchaseOrders_status_desactivate": "Disabled",
+  "purchaseOrders_create_reference": "Create an internal reference",
+  "purchaseOrders_add_reference": "Add an internal reference",
+  "purchaseOrders_edit_reference": "Edit",
+  "purchaseOrders_status_change_reactivation": "Reactivate ",
+  "purchaseOrders_status_change_desactivation": "Disable",
+  "purchaseOrders_confirmation_reactivation_REFERENCE_ORDER_success": "Your internal reference has been re-enabled..",
+  "purchaseOrders_confirmation_reactivation_PURCHASE_ORDER_success": "Your purchase order has been re-enabled.",
+  "purchaseOrders_confirmation_reactivation_error": "Your request could not be processed. Please try again later."
+}
