@@ -60,6 +60,24 @@ function LegacyContainer(): JSX.Element {
       />,
     );
 
+    // billing redirection, preserving path and search params
+    routing.addRoute(
+      <Route
+        path="/billing"
+        component={({ location }: { location: Location }) => (
+          <Redirect
+            to={{
+              ...location,
+              pathname: location.pathname.replace(
+                /^\/billing/,
+                '/dedicated/billing',
+              ),
+            }}
+          />
+        )}
+      />,
+    );
+
     // Telecom application redirections
     [
       'freefax/:id?',
