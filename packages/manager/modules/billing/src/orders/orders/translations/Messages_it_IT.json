@@ -1,5 +1,5 @@
 {
-  "orders_page_title": "I tuoi ordini",
+  "orders_page_title": "I miei ordini",
   "orders_date": "Data",
   "orders_id": "Numero dell'ordine",
   "orders_status": "Stato",
@@ -9,7 +9,7 @@
   "orders_taxes_included": "Importo IVA inclusa",
   "orders_total_price": "Importo",
   "orders_table_empty": "Non sono presenti ordini",
-  "orders_table_empty_with_filter": "Non sono presenti ordini con questi parametri:",
+  "orders_table_empty_with_filter": "Non sono presenti ordini con questi criteri:",
   "orders_informations_error": "Si è verificato un errore:",
   "orders_order_status_cancelled": "Annullata",
   "orders_order_status_cancelling": "Annullamento in corso...",
