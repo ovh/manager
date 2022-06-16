@@ -22,7 +22,7 @@ import messageParser from './common/messageParser';
 import order from './order/billing-order-tracking.module';
 import orders from './orders/orders/orders.module';
 import ordersMain from './orders/orders-main.module';
-import ordersPurchases from './orders/purchaseOrders';
+import ordersPurchases from './orders/purchaseOrders/billing-orders-purchases.module';
 import ovhAccountRefund from './payment/ovhAccount/refund';
 import refunds from './main/refunds/refunds.module';
 import sla from './sla/sla.module';
