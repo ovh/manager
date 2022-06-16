@@ -26,6 +26,50 @@ import ASSET_OS_WINDOWS_SERVER_2012 from './assets/os/windows_server_2012.png';
 import ASSET_OS_WINDOWS_SERVER_2016 from './assets/os/windows_server_2016.png';
 
 export const IMAGES_REGEX = {
+  'baremetal-linux': [
+    {
+      name: 'baremetal_ubuntu',
+      regex: /Ubuntu/i,
+    },
+    {
+      name: 'baremetal_freebsd',
+      regex: /FreeBSD/i,
+    },
+    {
+      name: 'baremetal_coreos',
+      regex: /CoreOS/i,
+    },
+    {
+      name: 'baremetal_debian',
+      regex: /Debian/i,
+    },
+    {
+      name: 'baremetal_centos',
+      regex: /Cent[\s-]?OS/i,
+    },
+    {
+      name: 'baremetal_fedora',
+      regex: /Fedora/i,
+    },
+    {
+      name: 'baremetal_dokku',
+      regex: /Dokku/i,
+    },
+    {
+      name: 'baremetal_linux',
+      regex: /(Alma|Rocky)/i,
+    },
+  ],
+  'baremetal-windows': [
+    {
+      name: 'windows_server_2012',
+      regex: /Win[a-zA-Z\s-]+2012/i,
+    },
+    {
+      name: 'windows_server_2016',
+      regex: /Win[a-zA-Z\s-]+2016/i,
+    },
+  ],
   linux: [
     {
       name: 'ubuntu',
@@ -178,10 +222,13 @@ export const IMAGE_ASSETS = {
   },
 };
 
+export const REGEX_PREFIX_BAREMETAL = /^baremetal-/;
+
 export default {
   ACTIVE_STATUS,
   APPLICATION_TAG,
   APPLICATION_LIST,
   IMAGE_ASSETS,
   IMAGES_REGEX,
+  REGEX_PREFIX_BAREMETAL,
 };

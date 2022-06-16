@@ -7,14 +7,14 @@ import snakeCase from 'lodash/snakeCase';
 import uniq from 'lodash/uniq';
 
 import Image from './images.class';
-import { IMAGES_REGEX } from './images.constants';
+import { IMAGES_REGEX, REGEX_PREFIX_BAREMETAL } from './images.constants';
 
 function getDistribution(name, type) {
   const os = IMAGES_REGEX[type];
   if (os) {
     const distribution = os.find((distrib) => distrib.regex.test(name));
 
-    return distribution?.name || ''.concat(type, '_other');
+    return distribution?.name || `${type}_other`;
   }
 
   return 'unknown';
@@ -26,6 +26,14 @@ export default class ImagesList {
     this.$http = $http;
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
     this.OvhApiCloudProjectSnapshot = OvhApiCloudProjectSnapshot;
+    this.REGEX_PREFIX_BAREMETAL = REGEX_PREFIX_BAREMETAL;
+  }
+
+  removeBaremetalPrefix(imageType) {
+    if (imageType.match(this.REGEX_PREFIX_BAREMETAL)) {
+      return imageType.replace(this.REGEX_PREFIX_BAREMETAL, '');
+    }
+    return imageType;
   }
 
   static groupByType(images) {
