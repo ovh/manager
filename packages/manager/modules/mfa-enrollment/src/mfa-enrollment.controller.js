@@ -23,6 +23,10 @@ export default class mfaEnrollmentCtrl {
   }
 
   goBack() {
-    this.$state.go(this.from ? this.from : this.rootState);
+    if (this.from) {
+      window.history.back();
+    } else {
+      this.$state.go(this.rootState);
+    }
   }
 }
