@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.3.0...@ovh-ux/manager-netapp@1.3.1) (2022-06-16)
+
+
+### Bug Fixes
+
+* **volumes:** update policy application rule ([fe8b16a](https://github.com/ovh/manager/commit/fe8b16a16bb92e910c014eb4fecd51310978a6c7))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.2.7...@ovh-ux/manager-netapp@1.3.0) (2022-06-14)
 
 

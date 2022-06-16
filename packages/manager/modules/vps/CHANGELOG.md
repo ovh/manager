@@ -1,3 +1,12 @@
+## [2.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.22.0...@ovh-ux/manager-vps@2.22.1) (2022-06-16)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([c155c42](https://github.com/ovh/manager/commit/c155c4207b6855a8e3d69853af2c0960f0e3c708))
+
+
+
 # [2.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.21.0...@ovh-ux/manager-vps@2.22.0) (2022-06-14)
 
 

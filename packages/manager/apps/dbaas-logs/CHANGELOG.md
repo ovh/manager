@@ -1,3 +1,12 @@
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.7.0...@ovh-ux/manager-dbaas-logs-app@1.7.1) (2022-06-16)
+
+
+### Bug Fixes
+
+* **deps:** add missing `@ovh-ux/manager-ng-layout-helpers` deps ([#7356](https://github.com/ovh/manager/issues/7356)) ([af6ac09](https://github.com/ovh/manager/commit/af6ac09060dcf2b3126af457371525d32859ed7b))
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.6.7...@ovh-ux/manager-dbaas-logs-app@1.7.0) (2022-06-14)
 
 

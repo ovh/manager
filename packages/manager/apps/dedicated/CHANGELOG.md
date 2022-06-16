@@ -1,3 +1,19 @@
+# [17.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.21.0...@ovh-ux/manager-dedicated@17.22.0) (2022-06-16)
+
+
+### Bug Fixes
+
+* **dedicated:** fix semver issue ([f423eb2](https://github.com/ovh/manager/commit/f423eb254a7c98c8798b6054b7a6d90eeca95a28))
+* **deps:** update semver range for billing module ([#7360](https://github.com/ovh/manager/issues/7360)) ([353611d](https://github.com/ovh/manager/commit/353611da5c1eca66ea3e27a2876652973de1dd9b))
+
+
+### Features
+
+* **billing:** purchase orders ([49e5379](https://github.com/ovh/manager/commit/49e537931f31826cdf213286999ab063625c8846))
+* **ip:** add tracking ([#7227](https://github.com/ovh/manager/issues/7227)) ([9c8cedd](https://github.com/ovh/manager/commit/9c8cedd4664c5e971b0d26b52a469185d79777ff))
+
+
+
 # [17.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.20.0...@ovh-ux/manager-dedicated@17.21.0) (2022-06-14)
 
 

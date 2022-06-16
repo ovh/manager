@@ -1,3 +1,12 @@
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.7.0...@ovh-ux/manager-cloud-connect@1.7.1) (2022-06-16)
+
+
+### Bug Fixes
+
+* **details.overview:** align cards in configure tab ([#7245](https://github.com/ovh/manager/issues/7245)) ([e60d5e8](https://github.com/ovh/manager/commit/e60d5e85bda3b4ec0125350c01ceb17898b35626))
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.6.1...@ovh-ux/manager-cloud-connect@1.7.0) (2022-06-14)
 
 
