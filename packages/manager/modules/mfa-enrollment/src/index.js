@@ -5,33 +5,48 @@ import component from './mfa-enrollment.component';
 import './mfa-enrollment.less';
 
 const moduleName = 'ovhManagerMfaEnrollment';
-let alreadyShowMFA = false;
+const alreadyShowMFA = false;
+let alreadyRedirectedToMFA = false;
 
 angular
   .module(moduleName, ['pascalprecht.translate'])
   .component('mfaEnrollment', component)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(($q, $state, $location, OvhApiAuth) =>
-    OvhApiAuth.v6()
-      .shouldDisplayMFAEnrollment()
-      .$promise.then((shouldDisplayMFA) => {
-        const { voucher, category, target } = $location.search();
-        const isRedirectionRequired = voucher || (category && target);
+  .run(
+    /* @ngInject */ ($q, $state, $transitions, $location, OvhApiAuth) =>
+      OvhApiAuth.v6()
+        .shouldDisplayMFAEnrollment()
+        .$promise.then((shouldDisplayMFA) => {
+          const { voucher, category, target } = $location.search();
+          const isRedirectionRequired = voucher || (category && target);
 
-        if (
-          !isRedirectionRequired &&
-          !alreadyShowMFA &&
-          ['true', 'forced'].includes(shouldDisplayMFA.value)
-        ) {
-          alreadyShowMFA = true;
-          return $state.go('app.mfaEnrollment', {
-            forced: shouldDisplayMFA.value === 'forced',
-          });
-        }
+          if (
+            !isRedirectionRequired &&
+            !alreadyShowMFA &&
+            ['true', 'forced'].includes(shouldDisplayMFA.value)
+          ) {
+            const redirectToMFA = () => {
+              if (!alreadyRedirectedToMFA) {
+                alreadyRedirectedToMFA = true;
+                return $state.go('app.mfaEnrollment', {
+                  forced: shouldDisplayMFA.value === 'forced',
+                });
+              }
+              return $q.resolve();
+            };
 
-        return shouldDisplayMFA;
-      })
-      .catch(() => $q.resolve()),
+            if ($state.current.name === '') {
+              $transitions.onSuccess({}, () => {
+                redirectToMFA();
+              });
+            } else {
+              redirectToMFA();
+            }
+          }
+
+          return shouldDisplayMFA;
+        })
+        .catch(() => $q.resolve()),
   );
 
 export default moduleName;
