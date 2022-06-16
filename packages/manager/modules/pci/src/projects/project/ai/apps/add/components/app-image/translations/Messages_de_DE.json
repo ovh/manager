@@ -1,3 +1,10 @@
 {
-  "pci_app_submit_select_image_tips": "Geben Sie den Zugriffspfad für Ihr Docker-Image ein. Dies kann eine öffentliche Registry wie GitHub, Gitlab und DockerHub oder eine private Registry sein."
+  "pci_app_submit_select_image_tips": "Geben Sie den Zugriffspfad für Ihr Docker-Image ein. Dies kann eine öffentliche Registry wie GitHub, Gitlab und DockerHub oder eine private Registry sein.",
+  "pci_app_submit_select_image_preset_info": "Beschreibung",
+  "pci_app_submit_select_image_advanced_tips": "Ihre eigene Anwendung einsetzen",
+  "pci_app_submit_select_image_advanced": "Ihre eigene Anwendung einsetzen (Docker Image)",
+  "pci_app_submit_select_image_name": "Zugriffspfad zu Ihrem Docker Image",
+  "pci_app_submit_select_image_tips_help": "Angenommen werden Images, die in einem privaten oder öffentlichen Register gehostet werden (GitHub, GitLab, DockerHub...)",
+  "pci_app_submit_select_image_custom_doc": "So erstellen Sie ein personalisiertes Docker-Image",
+  "pci_app_submit_select_start_from": "Ab"
 }

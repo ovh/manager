@@ -1,3 +1,25 @@
 {
-  "pci_app_add_resources_replicas": "Anzahl der Instanzen, auf denen Ihre AI App eingesetzt wird"
+  "pci_app_add_resources_replicas": "Anzahl der Instanzen, auf denen Ihre AI App eingesetzt wird",
+  "pci_app_add_resources_usecase": "Instanz-Typ",
+  "pci_app_add_resources_usecase_item_cpu": "CPU",
+  "pci_app_add_resources_usecase_item_gpu": "GPU",
+  "pci_app_add_resources_proposed_title": "Verfügbare Reihen von Instanzen",
+  "pci_app_add_resources_proposed_ram": " {{ram}} RAM",
+  "pci_app_add_resources_proposed_storage": "{{ memory }} SSD",
+  "pci_app_add_resources_proposed_bandwidth": "{{ bandwidth }}/s",
+  "pci_app_add_resources_proposed_resource_price_by_resource": "inkl. MwSt. / Stunde",
+  "pci_app_add_resources_proposed_type_gpu": "(GPU)",
+  "pci_app_add_resources_proposed_type_gpu_description": "Anzeige der GPU Instanzen",
+  "pci_app_add_resources_proposed_type_cpu": "(CPU)",
+  "pci_app_add_resources_proposed_type_cpu_description": "Anzeige der CPU Instanzen",
+  "pci_app_add_resources_number_of_resources": "Ressourcen pro Instanz",
+  "pci_app_add_resources_number_of_resources_description": "CPU- und GPU-Ressourcen",
+  "pci_app_add_resources_number_of_resources_type_cpu": "CPU-Ressourcen",
+  "pci_app_add_resources_number_of_resources_type_gpu": "GPU-Ressourcen",
+  "pci_app_add_resources_number_of_resources_number_of_resource": "Anzahl der CPU",
+  "pci_app_add_resources_replicas_help_text": "Sichern Sie sich Hochverfügbarkeit mit einem Einsatz auf mindestens 2 Instanzen.",
+  "pci_app_add_resources_flavor_count": "Größe der Ressource",
+  "pci_app_add_resources_total": "Gesamtpreis der Bereitstellung",
+  "pci_app_add_resources_resource_price": "Preis der Ressource",
+  "pci_app_add_resources_partner_price": "Preis der Lizenz"
 }

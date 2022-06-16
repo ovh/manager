@@ -28,5 +28,5 @@
   "nutanix_redeploy_button": "Ponowne wdrożenie",
   "nutanix_redeploy_custom_configuration_nodes": "Węzły",
   "nutanix_redeploy_custom_config_ip_unique_error": "Ten adres IP jest już używany na tym klastrze",
-  "nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error": "Adresy te nie znajdują się w tej samej sieci."
+  "nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error": "Adresy nie są w tej samej sieci."
 }
