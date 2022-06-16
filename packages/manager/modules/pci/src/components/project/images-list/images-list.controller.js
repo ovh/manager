@@ -1,7 +1,6 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import first from 'lodash/first';
-import forEach from 'lodash/forEach';
 import keys from 'lodash/keys';
 import partition from 'lodash/partition';
 import reduce from 'lodash/reduce';
@@ -78,13 +77,21 @@ export default class ImagesListController {
     this.availableImages = {};
     this.unavailableImages = {};
 
-    forEach(this.os, (distributions, imageType) => {
-      this.availableImages[imageType] = {};
-      this.unavailableImages[imageType] = {};
-      forEach(distributions, (images, distribution) => {
+    Object.entries(this.os).forEach(([imageType, distributions]) => {
+      // remove the prefix "baremetal-" if it exists to merge the 2 types
+      const formatedType = this.PciProjectImages.removeBaremetalPrefix(
+        imageType,
+      );
+
+      if (!this.availableImages[formatedType]) {
+        this.availableImages[formatedType] = {};
+        this.unavailableImages[formatedType] = {};
+      }
+
+      Object.entries(distributions).forEach(([distribution, images]) => {
         [
-          this.availableImages[imageType][distribution],
-          this.unavailableImages[imageType][distribution],
+          this.availableImages[formatedType][distribution],
+          this.unavailableImages[formatedType][distribution],
         ] = partition(images, (image) => this.isCompatible(image));
       });
     });
