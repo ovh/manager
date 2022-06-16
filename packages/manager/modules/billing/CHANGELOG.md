@@ -1,3 +1,24 @@
+# [0.16.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.15.0-alpha.0...@ovh-ux/manager-billing@0.16.0-alpha.0) (2022-06-16)
+
+
+### Bug Fixes
+
+* **billing:** enable the sorting on the status column ([ef5b053](https://github.com/ovh/manager/commit/ef5b0536ec056d6cf9440e7a72bceaf2aee3163c))
+* **billing:** modification of wording for edit purchase order ([aee8922](https://github.com/ovh/manager/commit/aee892202cb3920972c6b5adfb94b716f9c1a132))
+* **billing:** po is available only for not individual legalform ([44fb3e5](https://github.com/ovh/manager/commit/44fb3e5a00e491f9c3f88e4b23ea5dcd8725c07b))
+* **billing:** purchase order end date excluded information ([5514696](https://github.com/ovh/manager/commit/551469685884c4d7f6bd3e4fe1c547472ce5ee83))
+* **billing:** purchase order fix first valid date not selectable ([159c945](https://github.com/ovh/manager/commit/159c945eaca481264d2c49c5b1cf927ae1920268))
+* **billing:** purchase order number stays inactive ([9001b11](https://github.com/ovh/manager/commit/9001b1155a6aca5a96f0dbd7000359f72a6a68e2))
+* **i18n:** add missing translations [CDS 1675] ([6477e46](https://github.com/ovh/manager/commit/6477e46da4cbceba352b8513032ed78b9acc2196))
+* **i18n:** add missing translations [CDS 1680] ([24023e2](https://github.com/ovh/manager/commit/24023e29bc6eaa89b6b789c2fa0787baafae3c73))
+
+
+### Features
+
+* **billing:** purchase orders ([49e5379](https://github.com/ovh/manager/commit/49e537931f31826cdf213286999ab063625c8846))
+
+
+
 # [0.15.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.14.0-alpha.1...@ovh-ux/manager-billing@0.15.0-alpha.0) (2022-06-14)
 
 

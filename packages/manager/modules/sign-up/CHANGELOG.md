@@ -1,3 +1,12 @@
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.4.0...@ovh-ux/sign-up@2.5.0) (2022-06-16)
+
+
+### Features
+
+* update list of state for indian customers ([#7102](https://github.com/ovh/manager/issues/7102)) ([acba95c](https://github.com/ovh/manager/commit/acba95c51373173bffc3e0b641549b2e2b91f3ab))
+
+
+
 # [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.3.3...@ovh-ux/sign-up@2.4.0) (2022-06-14)
 
 

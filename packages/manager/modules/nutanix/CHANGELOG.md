@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.1.0...@ovh-ux/manager-nutanix@1.2.0) (2022-06-16)
+
+
+### Features
+
+* **redeploy:** enhance cluster redeploy ([#7225](https://github.com/ovh/manager/issues/7225)) ([3d6b03b](https://github.com/ovh/manager/commit/3d6b03bb3ab1a35ae0d88ca9b9b1c0b86858a3e7))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.0.3...@ovh-ux/manager-nutanix@1.1.0) (2022-06-14)
 
 

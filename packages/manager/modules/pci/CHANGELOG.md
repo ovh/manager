@@ -1,3 +1,21 @@
+# [5.80.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.79.1...@ovh-ux/manager-pci@5.80.0) (2022-06-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1669] ([3e3062f](https://github.com/ovh/manager/commit/3e3062fc5107973037fdfab66dda8ab9794ac90e))
+* **i18n:** add missing translations [CDS 1678] ([a7edeb9](https://github.com/ovh/manager/commit/a7edeb904996fe2bf83778d3e01feed0d7905d1a))
+* **i18n:** add missing translations [CDS 1680] ([24023e2](https://github.com/ovh/manager/commit/24023e29bc6eaa89b6b789c2fa0787baafae3c73))
+* **notebooks.add:** add missing RWD permission ([#7006](https://github.com/ovh/manager/issues/7006)) ([acb3a07](https://github.com/ovh/manager/commit/acb3a071957f0f7476001971a7745a31b070a45a))
+* **public-cloud:** update guides links ([#6795](https://github.com/ovh/manager/issues/6795)) ([998192b](https://github.com/ovh/manager/commit/998192b07d0f9f0d84e7d1c810946e1fcdfa611a))
+
+
+### Features
+
+* **kube.node-pool:** no desired in autoscale case ([#7316](https://github.com/ovh/manager/issues/7316)) ([4e64d6b](https://github.com/ovh/manager/commit/4e64d6bcda9af7411c9e7a6bc9f57f442e052923))
+
+
+
 ## [5.79.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.79.0...@ovh-ux/manager-pci@5.79.1) (2022-06-15)
 
 
