@@ -11,8 +11,7 @@ export default class PciCalendarEditController {
     const timezone = (new Date().getTimezoneOffset() / 60) * -1;
     this.gmt = 'GMT';
     if (timezone !== 0) {
-      this.gmt += timezone > 0 ? ' +' : ' ';
-      this.gmt += timezone;
+      this.gmt += `${timezone > 0 ? ' +' : ' '}${timezone}`;
     }
   }
 

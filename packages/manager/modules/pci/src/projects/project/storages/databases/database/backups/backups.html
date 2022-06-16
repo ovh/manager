@@ -17,9 +17,9 @@
                 <div
                     data-translate="pci_databases_backup_informations_retention"
                 ></div>
-                <div>
-                    {{:: $ctrl.backupRetentionTime.humanize()}}
-                </div>
+                <div
+                    data-ng-bind=":: $ctrl.backupRetentionTime.humanize()"
+                ></div>
             </div>
             <div class="col border-top border-bottom border-light p-2">
                 <div data-translate="pci_databases_backup_time"></div>

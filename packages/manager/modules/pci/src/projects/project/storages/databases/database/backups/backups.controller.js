@@ -1,4 +1,4 @@
-export default class {
+export default class PciProjectStorageDatabaseBackupsCtrl {
   /* @ngInject */
   constructor(
     CucCloudMessage,

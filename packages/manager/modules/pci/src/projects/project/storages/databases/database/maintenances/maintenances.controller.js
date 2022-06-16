@@ -4,7 +4,7 @@ import {
   WARNING_STATUS,
 } from './maintenance.constants';
 
-export default class {
+export default class PciProjectStorageDatabaseMaintenanceCtrl {
   /* @ngInject */
   constructor($translate, DatabaseService, CucCloudMessage) {
     this.$translate = $translate;
