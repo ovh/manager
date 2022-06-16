@@ -14,7 +14,7 @@ type Props = {
 
 const Details = ({
   cssBaseClassName = '',
-  defaultPaymentMethod = {},
+  defaultPaymentMethod = null,
   translationBase = '',
 }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
