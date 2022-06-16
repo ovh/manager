@@ -1,3 +1,13 @@
+## [13.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.41.0...@ovh-ux/manager-telecom@13.41.1) (2022-06-16)
+
+
+### Bug Fixes
+
+* **sva:** dropdown menu not display ([#7362](https://github.com/ovh/manager/issues/7362)) ([890caca](https://github.com/ovh/manager/commit/890caca56257989940470f6eb36af42d3b62e85d))
+* **telephony.programmable-keys:** undef phone obj ([#7348](https://github.com/ovh/manager/issues/7348)) ([12829ee](https://github.com/ovh/manager/commit/12829eec69698aff192d7e2550c4a2d921dbaca6))
+
+
+
 # [13.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.40.0...@ovh-ux/manager-telecom@13.41.0) (2022-06-14)
 
 
