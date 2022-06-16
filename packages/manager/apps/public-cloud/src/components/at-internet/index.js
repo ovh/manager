@@ -21,6 +21,7 @@ export const initAtInternet = (trackingPlugin) => {
         atInternetConfigurationProvider.setPrefix('PublicCloud');
       },
     );
+  return moduleName;
 };
 
 export default moduleName;
