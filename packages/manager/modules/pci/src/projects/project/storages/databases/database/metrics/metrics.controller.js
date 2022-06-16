@@ -6,6 +6,7 @@ import {
   CHART_METRICS_OPTIONS,
   CHART_METRICS_REFRESH_INTERVAL,
 } from '../../databases.constants';
+import { METRICS_CONVERTER } from './metrics.constants';
 
 export default class MetricsCtrl {
   /* @ngInject */
@@ -106,26 +107,15 @@ export default class MetricsCtrl {
         availableMetric,
         this.selectedTimeRange.value,
       ).then((data) => {
-        const metricData = data;
-        if (['net_send', 'net_receive'].includes(availableMetric)) {
-          metricData.metrics[0].dataPoints = data.metrics[0].dataPoints.map(
-            (point) => {
-              return {
-                timestamp: point.timestamp,
-                value: point.value / 1000000,
-              };
-            },
-          );
-        }
-        const metrics = sortBy(metricData.metrics, 'hostname');
-        this.metricsData[metricData.name].data = metricData;
+        const metrics = sortBy(data.metrics, 'hostname');
+        this.metricsData[data.name].data = data;
 
         metrics.forEach((metric) => {
           this.metricsData[data.name].chart.updateSerie(
             metric.hostname,
             map(metric.dataPoints, (point) => ({
               x: moment.unix(point.timestamp),
-              y: point.value,
+              y: point.value * (METRICS_CONVERTER[data.name] || 1),
             })),
             {
               dataset: {
@@ -136,7 +126,7 @@ export default class MetricsCtrl {
           );
         });
 
-        this.metricsData[metricData.name].utils.refresh();
+        this.metricsData[data.name].utils.refresh();
       });
     });
   }
