@@ -1,7 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep';
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
-import get from 'lodash/get';
 import sortBy from 'lodash/sortBy';
 
 export default /* @ngInject */
@@ -202,19 +201,16 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
    * And get maxLine to generere available params for EXT function...
    * */
   function getDynamicParameters() {
-    return TelephonyMediator.getGroup($stateParams.billingAccount).then(
-      (group) => {
+    return TelephonyMediator.getGroup($stateParams.billingAccount)
+      .then((group) => {
         const line = group.getLine($stateParams.serviceName);
-        const phone = get(line, 'phone');
-        const extValues = [];
-
-        for (let i = 0; i < phone.maxline; i += 1) {
-          extValues.push(`${i + 1}`);
-        }
-        self.availableParameters = extValues;
+        return line.getPhone();
+      })
+      .then((phone) => {
+        const { maxline: length } = phone;
+        self.availableParameters = Array.from({ length }, (v, i) => i + 1);
         return self.availableParameters;
-      },
-    );
+      });
   }
 
   function getSiblingParameters() {
