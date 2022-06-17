@@ -44,6 +44,10 @@ export default class NgAtInternet {
   }
 
   async trackEvent(data) {
+    return this.trackingPlugin.trackEvent(data);
+  }
+
+  async trackOrder(data) {
     return this.trackingPlugin.trackOrder(data);
   }
 
