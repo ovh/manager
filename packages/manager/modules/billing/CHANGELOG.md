@@ -1,3 +1,12 @@
+# [0.16.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.1...@ovh-ux/manager-billing@0.16.0-alpha.2) (2022-06-17)
+
+
+### Bug Fixes
+
+* **billing:** remove unused future state ([#7398](https://github.com/ovh/manager/issues/7398)) ([cb9a41c](https://github.com/ovh/manager/commit/cb9a41c066c8309160c2023b7f85c512775e5ca1))
+
+
+
 # [0.16.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.0...@ovh-ux/manager-billing@0.16.0-alpha.1) (2022-06-17)
 
 
