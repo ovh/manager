@@ -1,3 +1,12 @@
+## [17.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.22.0...@ovh-ux/manager-dedicated@17.22.1) (2022-06-17)
+
+
+### Bug Fixes
+
+* **dedicated-cloud.mailing-list.subscribe:** display new address ([#7378](https://github.com/ovh/manager/issues/7378)) ([587ac48](https://github.com/ovh/manager/commit/587ac48eb6d8361868f6d691e625bd380f8f1499))
+
+
+
 # [17.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.21.0...@ovh-ux/manager-dedicated@17.22.0) (2022-06-16)
 
 

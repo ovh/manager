@@ -1,3 +1,12 @@
+## [4.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.19.0...@ovh-ux/manager-public-cloud@4.19.1) (2022-06-17)
+
+
+### Bug Fixes
+
+* **at-internet:** add missing return statement([#7374](https://github.com/ovh/manager/issues/7374)) ([4c1d567](https://github.com/ovh/manager/commit/4c1d5676532b34e6e8eaa05309bea6cd19ae7719))
+
+
+
 # [4.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.18.0...@ovh-ux/manager-public-cloud@4.19.0) (2022-06-14)
 
 

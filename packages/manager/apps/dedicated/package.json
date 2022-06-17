@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "17.22.0",
+  "version": "17.22.1",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -90,7 +90,7 @@
     "@ovh-ux/ng-ovh-web-universe-components": "^8.0.0 || ^9.0.0",
     "@ovh-ux/ng-pagination-front": "^10.1.0",
     "@ovh-ux/ng-q-allsettled": "^2.0.4",
-    "@ovh-ux/ng-shell-tracking": "^0.1.0",
+    "@ovh-ux/ng-shell-tracking": "^0.1.1",
     "@ovh-ux/ng-tail-logs": "^2.0.7",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
