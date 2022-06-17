@@ -1,0 +1,29 @@
+{
+  "pci_projects_project_network_private_create": "Créer un réseau privé",
+  "pci_projects_project_network_private_create_init_error": "Une erreur est survenue lors du chargement des informations : {{ message }}",
+  "pci_projects_project_network_private_create_configure": "Configurer votre réseau privé",
+  "pci_projects_project_network_private_create_configure_address": "Adresse du réseau privé :",
+  "pci_projects_project_network_private_create_configure_mask": "Masque",
+  "pci_projects_project_network_private_create_configure_dhcp": "Distribution des adresses :",
+  "pci_projects_project_network_private_create_configure_dhcp_active": "Dynamique (DHCP)",
+  "pci_projects_project_network_private_create_configure_dhcp_inactive": "Statique (Manuelle)",
+  "pci_projects_project_network_private_create_configure_choose_vlan": "Définir un ID de VLAN",
+  "pci_projects_project_network_private_create_configure_vlan": "ID de VLAN",
+  "pci_projects_project_network_private_create_configure_vlan_limits": "Entre 2 et 4000",
+  "pci_projects_project_network_private_create_configure_vlan_taken": "Ce VLAN est déjà pris.",
+  "pci_projects_project_network_private_create_configure_api": "Vous pouvez personnaliser vos plages via l'API.",
+
+  "pci_projects_project_network_private_create_localisation": "Localisation",
+  "pci_projects_project_network_private_create_localisation_range": "Plage",
+  "pci_projects_project_network_private_create_localisation_gateway": "Activer la passerelle par défaut",
+
+  "pci_projects_project_network_private_create_name_step": "Nommer votre réseau privé",
+  "pci_projects_project_network_private_create_name": "Nom du réseau privé",
+  "pci_projects_project_network_private_create_name_placeholder": "Saisir un nom de réseau privé",
+
+  "pci_projects_project_network_private_create_submit": "Créer",
+
+  "pci_projects_project_network_private_create_loading": "La création du réseau privé est en cours. Cela peut prendre quelques minutes",
+  "pci_projects_project_network_private_create_success": "Le réseau privé a bien été créé",
+  "pci_projects_project_network_private_create_error": "Une erreur est survenue lors de la création du réseau privé : {{ message }}"
+}
