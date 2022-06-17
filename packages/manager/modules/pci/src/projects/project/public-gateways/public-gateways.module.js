@@ -6,6 +6,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'ovh-api-services';
 
 import onboarding from './onboarding';
+import add from './add';
 import component from './public-gateways.component';
 import routing from './public-gateways.routing';
 import service from './public-gateways.service';
@@ -24,6 +25,7 @@ angular
     onboarding,
     deletePublicGateway,
     editGateway,
+    add,
   ])
   .config(routing)
   .component('pciProjectPublicGateways', component)

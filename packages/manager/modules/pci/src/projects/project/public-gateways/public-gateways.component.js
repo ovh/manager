@@ -13,6 +13,7 @@ export default {
     goToDeleteGateway: '<',
     goToEditGateway: '<',
     goToPrivateNetwork: '<',
+    goToAddPublicGateway: '<',
   },
   controller,
   template,
