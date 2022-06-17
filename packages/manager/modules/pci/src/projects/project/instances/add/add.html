@@ -193,7 +193,7 @@
         </pci-project-images-list>
 
         <pci-project-instance-ssh-keys
-            data-ng-if="$ctrl.model.image.type === 'linux'"
+            data-ng-if="$ctrl.isLinuxImageType()"
             data-region="$ctrl.model.datacenter.name"
             data-selected-key="$ctrl.model.sshKey"
             data-service-name="{{:: $ctrl.projectId }}"
@@ -284,10 +284,7 @@
             </div>
         </oui-field>
 
-        <div
-            class="oui-box mb-4"
-            data-ng-if="$ctrl.model.image.type === 'linux'"
-        >
+        <div class="oui-box mb-4" data-ng-if="$ctrl.isLinuxImageType()">
             <oui-field
                 data-label="{{ 'pci_projects_project_instances_add_script_label' | translate }}"
                 data-help-text="{{ 'pci_projects_project_instances_add_script_help' | translate }}"
