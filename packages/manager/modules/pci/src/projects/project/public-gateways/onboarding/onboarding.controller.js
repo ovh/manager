@@ -30,6 +30,7 @@ export default class PciPublicGatewaysOnboardingController {
 
   onAddPublicGatewayClick() {
     this.trackPublicGateways('onboarding::add');
+    return this.goToAddPublicGateway();
   }
 
   loadMessages() {
