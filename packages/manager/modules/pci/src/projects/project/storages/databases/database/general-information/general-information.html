@@ -503,14 +503,14 @@
                     data-term="{{:: 'pci_databases_general_information_maintenance_time_label' | translate }}"
                 >
                     <oui-tile-description>
-                        <calendar-edit
+                        <pci-databases-calendar-edit
                             data-model="$ctrl.maintenanceTime"
                             data-init-value="$ctrl.database.maintenanceTime"
                             data-callback="$ctrl.updateMaintenanceTime()"
                             data-callback-success="$ctrl.handleMaintenanceTimeSuccess()"
                             data-callback-error="$ctrl.showMaintenanceError()"
                             data-disabled="!$ctrl.database.isActive()"
-                        ></calendar-edit>
+                        ></pci-databases-calendar-edit>
                         <button
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                             type="button"
@@ -532,14 +532,14 @@
                     data-term="{{:: 'pci_databases_general_information_backup_time_label' | translate }}"
                 >
                     <oui-tile-description>
-                        <calendar-edit
+                        <pci-databases-calendar-edit
                             data-model="$ctrl.backupTime"
                             data-init-value="$ctrl.database.backupTime"
                             data-callback="$ctrl.updateBackupTime()"
                             data-callback-success="$ctrl.handleBackupTimeSuccess()"
                             data-callback-error="$ctrl.showBackupError()"
                             data-disabled="!$ctrl.database.isActive()"
-                        ></calendar-edit>
+                        ></pci-databases-calendar-edit>
                         <button
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                             type="button"

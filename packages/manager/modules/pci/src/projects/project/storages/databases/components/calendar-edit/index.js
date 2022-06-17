@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerPciStoragesDatabasesCalendarEdit';
 
 angular
   .module(moduleName, ['oui'])
-  .component('calendarEdit', component)
+  .component('pciDatabasesCalendarEdit', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

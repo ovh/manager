@@ -1,4 +1,4 @@
-<div class="container-fluid px-0 mt-3">
+<div class="container-fluid mt-3">
     <!-- error messages -->
     <cui-message-container
         data-messages="$ctrl.messages"
@@ -23,14 +23,14 @@
             </div>
             <div class="col border-top border-bottom border-light p-2">
                 <div data-translate="pci_databases_backup_time"></div>
-                <calendar-edit
+                <pci-databases-calendar-edit
                     data-model="$ctrl.backupTime"
                     data-init-value="$ctrl.database.backupTime"
                     data-callback="$ctrl.updateBackupTime()"
                     data-callback-success="$ctrl.handleBackupTimeSuccess()"
                     data-callback-error="$ctrl.showBackupError()"
                     data-disabled="!$ctrl.database.isActive()"
-                ></calendar-edit>
+                ></pci-databases-calendar-edit>
             </div>
         </div>
     </oui-tile>

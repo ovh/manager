@@ -1,4 +1,4 @@
-<div class="container-fluid px-0 mt-3">
+<div class="container-fluid mt-3">
     <oui-back-button
         data-previous-page="{{:: 'pci_databases_maintenances_back' | translate }}"
         data-on-click="$ctrl.goBacktoGeneralInformation()"
@@ -17,14 +17,14 @@
     >
         <div class="row px-3">
             <div class="col border-top border-bottom border-light p-2">
-                <calendar-edit
+                <pci-databases-calendar-edit
                     data-model="$ctrl.maintenanceTime"
                     data-init-value="$ctrl.database.maintenanceTime"
                     data-callback="$ctrl.updateMaintenanceTime()"
                     data-callback-success="$ctrl.handleMaintenanceTimeSuccess()"
                     data-callback-error="$ctrl.showMaintenanceError()"
                     data-disabled="!$ctrl.database.isActive()"
-                ></calendar-edit>
+                ></pci-databases-calendar-edit>
             </div>
         </div>
     </oui-tile>
@@ -51,7 +51,7 @@
             data-searchable
             data-filterable
         >
-            <span> {{::$row.scheduledAt | date:'short'}}</span>
+            <span ng-bind="::$row.scheduledAt | date:'short'"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_maintenances_maintenance_applied_at' | translate"
@@ -61,7 +61,7 @@
             data-searchable
             data-filterable
         >
-            <span> {{::$row.appliedAt | date:'short'}}</span>
+            <span ng-bind="::$row.appliedAt | date:'short'"></span>
         </oui-datagrid-column>
 
         <oui-datagrid-column
@@ -78,10 +78,8 @@
                     'oui-badge_warning':  $ctrl.WARNING_STATUS.includes($row.status),
                     'oui-badge_error': $ctrl.ERROR_STATUS.includes($row.status),
                 }"
+                data-ng-bind="('pci_databases_maintenances_maintenance_status_' + $row.status) | translate"
             >
-                <span
-                    data-ng-bind="('pci_databases_maintenances_maintenance_status_' + $row.status) | translate"
-                ></span>
             </span>
         </oui-datagrid-column>
         <oui-action-menu
