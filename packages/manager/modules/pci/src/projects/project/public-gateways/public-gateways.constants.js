@@ -1,13 +1,13 @@
 export const PUBLIC_GATEWAY_CATALOG_ADDON_PRODUCT_NAME = 'CLOUD';
-export const PUBLIC_GATEWAY_ADDON_PRODUCT_S = 'publiccloud-gateway-s';
-export const PUBLIC_GATEWAY_ADDON_PRODUCT_M = 'publiccloud-gateway-m';
-export const PUBLIC_GATEWAY_ADDON_PRODUCT_L = 'publiccloud-gateway-l';
+export const PUBLIC_GATEWAY_ADDONS = {
+  PRODUCT_S: 'publiccloud-gateway-s',
+  PRODUCT_M: 'publiccloud-gateway-m',
+  PRODUCT_L: 'publiccloud-gateway-l',
+};
 export const GATEWAY_DEFAULT_REGION = 'GRA9';
 
 export default {
   PUBLIC_GATEWAY_CATALOG_ADDON_PRODUCT_NAME,
-  PUBLIC_GATEWAY_ADDON_PRODUCT_S,
-  PUBLIC_GATEWAY_ADDON_PRODUCT_M,
-  PUBLIC_GATEWAY_ADDON_PRODUCT_L,
   GATEWAY_DEFAULT_REGION,
+  PUBLIC_GATEWAY_ADDONS,
 };
