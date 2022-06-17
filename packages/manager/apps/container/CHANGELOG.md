@@ -1,3 +1,15 @@
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.0...@ovh-ux/manager-container-app@0.3.1) (2022-06-17)
+
+
+### Bug Fixes
+
+* **container:** add billing redirection ([420af05](https://github.com/ovh/manager/commit/420af054b04d46682ba77fd76548b5c62a4cf8f5))
+* **container:** add databases in pci storages for pnr ([0b40914](https://github.com/ovh/manager/commit/0b409141159952a9d1799faeb583ad1a4a9cf0ee))
+* **sidebar:** fix select on smaller screens ([ad69ff6](https://github.com/ovh/manager/commit/ad69ff61ac52a4a6236e21a3c3b9733a4b111b82))
+* **sidebar:** fix sidebar overlay with preloader ([#7359](https://github.com/ovh/manager/issues/7359)) ([89730db](https://github.com/ovh/manager/commit/89730dbabe624202d5a6deb713fb839c9dbfc444))
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.2.3...@ovh-ux/manager-container-app@0.3.0) (2022-06-14)
 
 
