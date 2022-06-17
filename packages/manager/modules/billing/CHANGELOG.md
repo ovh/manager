@@ -1,3 +1,12 @@
+# [0.16.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.0...@ovh-ux/manager-billing@0.16.0-alpha.1) (2022-06-17)
+
+
+### Bug Fixes
+
+* **billing:** remove lazyload on purchase order ([#7385](https://github.com/ovh/manager/issues/7385)) ([#7394](https://github.com/ovh/manager/issues/7394)) ([4d728b2](https://github.com/ovh/manager/commit/4d728b2a36803e773986308c2b48e2bbf531b345))
+
+
+
 # [0.16.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.15.0-alpha.0...@ovh-ux/manager-billing@0.16.0-alpha.0) (2022-06-16)
 
 
