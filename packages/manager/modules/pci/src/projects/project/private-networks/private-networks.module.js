@@ -15,6 +15,7 @@ import vrack from './vrack';
 
 import empty from './empty';
 import onboarding from './onboarding';
+import './private-networks.less';
 
 const moduleName = 'ovhManagerPciPrivateNetworks';
 
