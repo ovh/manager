@@ -1,6 +1,10 @@
 build:
   - packages/manager/tools/!(testcafe)/**
   - scripts/**
+container:
+  - packages/components/ovh-shell/**
+  - packages/manager/apps/container/**
+  - packages/manager/modules/ufrontend/**
 continuous-integration:
   - .github/**
 dependencies:
@@ -30,12 +34,15 @@ universe-bare-metal-cloud:
   - packages/manager/*/metrics/**
   - packages/manager/*/nasha/**
   - packages/manager/*/netapp/**
+  - packages/manager/*/order-tracking/**
+  - packages/manager/*/support/**
   - packages/manager/*/veeam-*/**
-  - packages/manager/*/vps/**
   - packages/manager/*/vps/**
   - packages/manager/*/vrack/**
 universe-hosted-private-cloud:
   - packages/manager/apps/dedicated/client/app/dedicatedCloud/**
+  - packages/manager/*/anthos/**
+  - packages/manager/*/nutanix/**
 universe-hub:
   - packages/manager/*/hub/**
 universe-telecom:
@@ -46,8 +53,11 @@ universe-telecom:
   - packages/manager/*/sms/**
 universe-web-cloud:
   - packages/manager/*/web?(-*)/**
-  - packages/manager/*/emailpro/**
+  - packages/manager/*/email-domain/**
+  - packages/manager/apps/email-pro/**
+  - packages/manager/modules/emailpro/**
   - packages/manager/*/exchange/**
   - packages/manager/*/office/**
   - packages/manager/*/sharepoint/**
-  - packages/manager/*/web-paas
+sign-up:
+  - packages/manager/*/sign-up/**
