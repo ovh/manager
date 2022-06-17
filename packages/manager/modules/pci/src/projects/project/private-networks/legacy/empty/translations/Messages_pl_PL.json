@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_network_private": "Sieci prywatne",
+  "pci_projects_project_network_private_vrack_empty": "Nie utworzyłeś jeszcze prywatnej sieci.",
+  "pci_projects_project_network_private_vrack_deploy": "Uruchamiaj prywatne sieci vRack i łącz Twoje instancje niezależnie od ich lokalizacji.",
+  "pci_projects_project_network_private_vrack_explanation_1": "Sieci prywatne są tworzone na żądanie i natychmiast. Gwarantują izolację sieci na warstwie 2 i mogą obsługiwać usługę DHCP, aby zapewnić Twoim instancjom automatyczne adresowanie IP. Każda z tych sieci może zostać ograniczona do jednej lokalizacji lub rozszerzona na wszystkie lokalizacje Twojego projektu.",
+  "pci_projects_project_network_private_vrack_explanation_2": "Twoje prywatne sieci są osadzone w Twojej wirtualnej szafie vRack. Możesz je zatem łączyć z innymi rozwiązaniami OVH powiązanymi z tą samą szafą vRack przy użyciu wspólnego identyfikatora VLAN (VLAN ID)."
+}
