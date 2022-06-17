@@ -1,5 +1,5 @@
 {
-  "orders_page_title": "Mis pedidos ",
+  "orders_page_title": "Mis pedidos",
   "orders_date": "Fecha",
   "orders_id": "Número de pedido",
   "orders_status": "Estado",
@@ -8,8 +8,8 @@
   "orders_url": "Ver la orden de pedido en formato HTML",
   "orders_taxes_included": "Importe con IVA incl.",
   "orders_total_price": "Importe",
-  "orders_table_empty": "No tiene ningún pedido. ",
-  "orders_table_empty_with_filter": "No hay pedidos que cumplan los criterios:",
+  "orders_table_empty": "No tiene ningún pedido.",
+  "orders_table_empty_with_filter": "No hay pedidos que cumplan los siguientes criterios:",
   "orders_informations_error": "Se ha producido un error:",
   "orders_order_status_cancelled": "Cancelado",
   "orders_order_status_cancelling": "Cancelando...",
