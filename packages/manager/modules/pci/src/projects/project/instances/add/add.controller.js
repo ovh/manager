@@ -290,12 +290,16 @@ export default class PciInstancesAddController {
 
     this.onFlexChange(false);
 
-    if (this.model.image.type !== 'linux') {
+    if (!this.isLinuxImageType()) {
       this.model.sshKey = null;
       this.instance.sshKeyId = null;
     } else {
       this.instance.sshKeyId = get(this.model.sshKey, 'id');
     }
+  }
+
+  isLinuxImageType() {
+    return this.model.image?.type?.includes('linux');
   }
 
   getBackupPrice() {
@@ -309,7 +313,7 @@ export default class PciInstancesAddController {
     return (
       this.model.image &&
       this.model.isImageCompatible &&
-      (this.model.image.type !== 'linux' || this.model.sshKey)
+      (!this.isLinuxImageType() || this.model.sshKey)
     );
   }
 
@@ -661,7 +665,8 @@ export default class PciInstancesAddController {
   create() {
     this.isLoading = true;
     this.trackCreate();
-    if (this.model.image.type !== 'linux') {
+
+    if (!this.isLinuxImageType()) {
       this.instance.userData = null;
     }
 
