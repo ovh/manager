@@ -1,7 +1,5 @@
-import get from 'lodash/get';
-import map from 'lodash/map';
-
 import { getCriteria } from '../project.utils';
+import { PRIVATE_NETWORK_LIST } from './private-networks.constants';
 
 const CONTAINER_NAME = 'pci.projects.project.privateNetwork';
 
@@ -15,24 +13,12 @@ export default class {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProjectNetworkPrivateSubnet = OvhApiCloudProjectNetworkPrivateSubnet;
+    this.PRIVATE_NETWORK_LIST = PRIVATE_NETWORK_LIST;
   }
 
   $onInit() {
     this.loadMessages();
     this.criteria = getCriteria('id', this.networkId);
-  }
-
-  getCIDR(network) {
-    return this.OvhApiCloudProjectNetworkPrivateSubnet.v6()
-      .query({
-        serviceName: this.projectId,
-        networkId: network.id,
-      })
-      .$promise.then(([firstSubnet]) => ({
-        ...network,
-        formattedRegions: map(network.regions, 'region').join(', '),
-        address: get(firstSubnet, 'cidr'),
-      }));
   }
 
   loadMessages() {
