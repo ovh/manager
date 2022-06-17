@@ -2,49 +2,32 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, OvhApiCloudProjectNetworkPrivate) {
+  constructor($translate, CucCloudMessage, PciPrivateNetworks) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.OvhApiCloudProjectNetworkPrivate = OvhApiCloudProjectNetworkPrivate;
+    this.PciPrivateNetworks = PciPrivateNetworks;
   }
 
   $onInit() {
-    this.isLoading = true;
-    return this.getPrivateNetwork().finally(() => {
-      this.isLoading = false;
-    });
+    this.isDeleting = false;
   }
 
-  getPrivateNetwork() {
-    return this.OvhApiCloudProjectNetworkPrivate.v6()
-      .get({
-        serviceName: this.projectId,
-        networkId: this.networkId,
-      })
-      .$promise.then((network) => {
-        this.network = network;
-      });
-  }
-
-  deleteNetwork() {
-    this.isLoading = true;
-    return this.OvhApiCloudProjectNetworkPrivate.v6()
-      .delete({
-        serviceName: this.projectId,
-        networkId: this.networkId,
-      })
-      .$promise.then(() => {
-        this.goBack(
+  deleteSubnet() {
+    this.isDeleting = true;
+    return this.PciPrivateNetworks.deleteSubnet(
+      this.projectId,
+      this.networkId,
+      this.subnetId,
+    )
+      .then(() => {
+        return this.goBack(
           this.$translate.instant(
             'pci_projects_project_network_private_delete_success',
-            {
-              name: this.network.name,
-            },
           ),
         );
       })
       .catch((error) => {
-        this.goBack(
+        return this.goBack(
           this.$translate.instant(
             'pci_projects_project_network_private_delete_error',
             {
@@ -53,6 +36,9 @@ export default class {
           ),
           'error',
         );
+      })
+      .finally(() => {
+        this.isDeleting = false;
       });
   }
 }
