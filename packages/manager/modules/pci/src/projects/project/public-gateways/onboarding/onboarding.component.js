@@ -9,5 +9,6 @@ export default {
     gateways: '<',
     trackPublicGateways: '<',
     guideUrl: '<',
+    goToAddPublicGateway: '<',
   },
 };
