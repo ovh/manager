@@ -1,7 +1,3 @@
-import isEmpty from 'lodash/isEmpty';
-import isObject from 'lodash/isObject';
-
-import { VRACK_OPERATION_COMPLETED_STATUS } from './private-networks.constants';
 import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -14,21 +10,40 @@ export default /* @ngInject */ ($stateProvider) => {
         type: 'string',
       },
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('privateNetworks')
+        .then((privateNetworks) =>
+          privateNetworks.length === 0
+            ? { state: 'pci.projects.project.privateNetwork.onboarding' }
+            : false,
+        ),
     resolve: {
       createNetwork: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.privateNetwork.add', { projectId }),
 
-      deleteNetwork: /* @ngInject */ ($state, projectId) => (networkId) =>
+      deleteSubnet: /* @ngInject */ ($state, projectId) => (
+        networkId,
+        subnetId,
+      ) =>
         $state.go('pci.projects.project.privateNetwork.delete', {
           projectId,
           networkId,
+          subnetId,
         }),
-
       networkId: /* @ngInject */ ($transition$) => $transition$.params().id,
-
       privateNetworks: /* @ngInject */ (PciPrivateNetworks, projectId) =>
         PciPrivateNetworks.getPrivateNetworks(projectId),
-
+      goToAddPublicGateway: /* @ngInject */ ($state, projectId) => (
+        networkId,
+        subnet,
+      ) =>
+        $state.go('pci.projects.project.public-gateways.add', {
+          projectId,
+          networkId,
+          subnet,
+        }),
       privateNetworksRegions: /* @ngInject */ (privateNetworks) =>
         Array.from(
           new Set(
@@ -77,32 +92,46 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      privateNetworkTrackPrefix: () =>
+        'PublicCloud::pci::projects::project::privateNetwork',
+      trackPrivateNetworks: /* @ngInject */ (
+        privateNetworkTrackPrefix,
+        trackClick,
+        trackPage,
+      ) => (complement, type = 'action', prefix = true) => {
+        const name = `${
+          prefix ? `${privateNetworkTrackPrefix}::` : ''
+        }${complement}`;
+        switch (type) {
+          case 'action':
+          case 'navigation':
+            trackClick(name, type);
+            break;
+          case 'page':
+            trackPage(name);
+            break;
+          default:
+            trackClick(name);
+        }
+      },
+
+      trackClick: /* @ngInject */ (atInternet) => (hit, type = 'action') => {
+        atInternet.trackClick({
+          name: hit,
+          type,
+        });
+      },
+
+      trackPage: /* @ngInject */ (atInternet) => (hit) => {
+        atInternet.trackPage({
+          name: hit,
+        });
+      },
     },
 
     onEnter: /* @ngInject */ (pciFeatureRedirect) => {
       return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.PRIVATE_NETWORK);
     },
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('operation')
-        .then((operation) => {
-          if (isObject(operation)) {
-            return VRACK_OPERATION_COMPLETED_STATUS.includes(operation.status)
-              ? false
-              : { state: 'pci.projects.project.privateNetwork.vrack' };
-          }
-
-          return transition
-            .injector()
-            .getAsync('vrack')
-            .then((vrack) =>
-              isEmpty(vrack)
-                ? { state: 'pci.projects.project.privateNetwork.vrack' }
-                : false,
-            );
-        }),
-
     translations: {
       value: ['.'],
       format: 'json',
