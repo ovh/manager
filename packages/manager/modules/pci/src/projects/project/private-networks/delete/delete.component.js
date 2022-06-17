@@ -6,6 +6,7 @@ export default {
     goBack: '<',
     projectId: '<',
     networkId: '<',
+    subnetId: '<',
   },
   controller,
   template,

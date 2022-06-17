@@ -1,10 +1,10 @@
 <oui-modal
     data-heading="{{:: 'pci_projects_project_network_private_delete' | translate}}"
-    data-primary-action="$ctrl.deleteNetwork()"
+    data-primary-action="$ctrl.deleteSubnet()"
     data-primary-label="{{:: 'pci_projects_project_network_private_delete_confirm' | translate }}"
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_network_private_delete_cancel' | translate }}"
-    data-loading="$ctrl.isLoading"
+    data-loading="$ctrl.isDeleting"
     data-on-dismiss="$ctrl.goBack()"
 >
     <p
