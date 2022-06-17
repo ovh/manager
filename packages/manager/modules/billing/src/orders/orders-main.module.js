@@ -6,7 +6,7 @@ import '@ovh-ux/ui-kit';
 import uiRouter from '@uirouter/angularjs';
 
 import billingOrders from './orders/orders.module';
-import billingOrdersPurchases from './purchaseOrders';
+import billingOrdersPurchases from './purchaseOrders/billing-orders-purchases.module';
 
 import routing from './orders-main.routing';
 
