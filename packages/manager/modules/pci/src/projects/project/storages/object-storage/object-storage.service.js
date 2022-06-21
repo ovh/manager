@@ -67,4 +67,35 @@ export default class PciStoragesObjectStorageService {
       .post(`/cloud/project/${projectId}/user/${userId}/policy`, { policy })
       .then(({ data }) => data);
   }
+
+  downloadRclone(projectId, { id: userId }, region) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/user/${userId}/rclone?region=${region}`)
+      .then(({ data }) => data);
+  }
+
+  get(projectId, userId) {
+    return this.OvhApiCloudProjectUser.v6().get({
+      serviceName: projectId,
+      userId,
+    }).$promise;
+  }
+
+  getRegions(projectId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/region`, {
+        headers: {
+          'X-Pagination-Mode': 'CachedObjectList-Pages',
+        },
+      })
+      .then(({ data }) => data);
+  }
+
+  getStorageRegions(projectId, regionCapacity) {
+    return this.getRegions(projectId).then((regions) => {
+      return regions.filter(({ services }) =>
+        services.find(({ name }) => name === regionCapacity),
+      );
+    });
+  }
 }

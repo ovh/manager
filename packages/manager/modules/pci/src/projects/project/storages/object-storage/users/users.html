@@ -14,11 +14,6 @@
 <p
     data-translate="pci_projects_project_storages_containers_users_user_description"
 ></p>
-<oui-message data-type="warning">
-    <span
-        data-translate="pci_projects_project_storages_containers_users_user_description_warning"
-    ></span>
-</oui-message>
 
 <oui-datagrid data-rows="$ctrl.userList">
     <oui-datagrid-column
@@ -37,6 +32,13 @@
         data-sortable
         data-filterable
     ></oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'pci_projects_project_storages_containers_users_accesskey' | translate"
+        data-property="s3Credentials[0].access"
+        data-type="string"
+        data-sortable
+        data-filterable
+    ></oui-datagrid-column>
     <oui-action-menu data-compact data-placement="end">
         <oui-action-menu-item data-on-click="$ctrl.goToImportPolicy($row)">
             <span
@@ -46,6 +48,19 @@
         <oui-action-menu-item data-on-click="$ctrl.downloadJson($row)">
             <span
                 data-translate="pci_projects_project_storages_containers_users_download_json"
+            ></span>
+        </oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-on-click="$ctrl.downloadOpenStackRclone($row)"
+        >
+            <span
+                data-translate="pci_projects_project_storages_containers_users_download_rclone_file"
+            ></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item data-on-click="$ctrl.showSecretKey($row)">
+            <span
+                data-translate="pci_projects_project_storages_containers_users_see_secret_key"
             ></span>
         </oui-action-menu-item>
         <oui-action-menu-item data-on-click="$ctrl.goToDeleteUser($row)">
