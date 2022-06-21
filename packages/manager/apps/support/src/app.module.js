@@ -8,7 +8,6 @@ import { isString, get } from 'lodash-es';
 import angular from 'angular';
 import uiRouterAngularJs from '@uirouter/angularjs';
 import managerSupport from '@ovh-ux/manager-support';
-import navbar from '@ovh-ux/manager-navbar';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
 import { registerCoreModule } from '@ovh-ux/manager-core';
@@ -24,7 +23,6 @@ export default (containerEl, environment) => {
       moduleName,
       [
         managerSupport,
-        navbar,
         uiRouterAngularJs,
         ngUiRouterBreadcrumb,
         registerCoreModule(environment),
