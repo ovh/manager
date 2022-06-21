@@ -4,6 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'nashaOnboarding',
     resolve: {
       breadcrumb: () => null,
+      goToOrder: /* @ngInject */ ($state) => () => $state.go('nasha.order'),
     },
   });
 };
