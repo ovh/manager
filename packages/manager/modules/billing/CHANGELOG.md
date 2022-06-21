@@ -1,3 +1,12 @@
+# [0.16.0-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.2...@ovh-ux/manager-billing@0.16.0-alpha.3) (2022-06-21)
+
+
+### Bug Fixes
+
+* **billing.history:** hide HTML invoice for India customers ([#7261](https://github.com/ovh/manager/issues/7261)) ([1bfc845](https://github.com/ovh/manager/commit/1bfc845ae001354da461f81b91467fd7c873bcfb))
+
+
+
 # [0.16.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.1...@ovh-ux/manager-billing@0.16.0-alpha.2) (2022-06-17)
 
 
