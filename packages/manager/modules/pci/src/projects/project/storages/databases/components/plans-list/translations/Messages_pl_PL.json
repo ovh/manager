@@ -10,5 +10,7 @@
   "pci_database_plans_list_spec_ram_unique": "{{ram}} RAM",
   "pci_database_plans_list_spec_core_unique": "{{vcore}} vCores",
   "pci_database_plans_list_spec_storage_unique": "{{storage}} przestrzeni dyskowej SSD",
-  "pci_database_plans_list_current_offer": "Aktualna oferta"
+  "pci_database_plans_list_current_offer": "Aktualna oferta",
+  "pci_database_plans_list_spec_private_network": "Sieci prywatne",
+  "pci_database_plans_list_spec_price_unit": " / godzina / węzeł"
 }
