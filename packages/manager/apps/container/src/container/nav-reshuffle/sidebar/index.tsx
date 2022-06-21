@@ -141,6 +141,24 @@ const Sidebar = (): JSX.Element => {
           mxPlanNode.routing.hash = '#/email_mxplan';
         }
 
+        /**
+         * US enterprise customers special case
+         */
+        ['billing_bills', 'billing_payment', 'orders'].forEach((nodeId) => {
+          const node = findNodeById(tree, nodeId);
+          if (!node) return;
+          const env = environmentPlugin.getEnvironment();
+          if (env.getRegion() === 'US' && env.user.enterprise) {
+            if (nodeId === 'orders') {
+              node.hideIfEmpty = true;
+            } else {
+              delete node.routing;
+              node.url = 'https://billing.us.ovhcloud.com/login';
+              node.isExternal = true;
+            }
+          }
+        });
+
         setNavigationTree(tree);
         setCurrentNavigationNode(tree);
       }
