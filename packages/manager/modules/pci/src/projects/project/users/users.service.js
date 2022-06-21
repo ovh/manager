@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import some from 'lodash/some';
 import { OPENRC_VERSION } from './download-openrc/download-openrc.constants';
-import { ALPHA_CHARACTERS_REGEX, REGION_CAPACITY } from './users.constants';
+import { ALPHA_CHARACTERS_REGEX } from './users.constants';
 
 export default class PciProjectsProjectUsersService {
   /* @ngInject */
@@ -77,10 +77,10 @@ export default class PciProjectsProjectUsersService {
       .then(({ data }) => data);
   }
 
-  getStorageRegions(projectId) {
+  getStorageRegions(projectId, regionCapacity) {
     return this.getRegions(projectId).then((regions) => {
       return regions.filter(({ services }) =>
-        services.find(({ name }) => name === REGION_CAPACITY),
+        services.find(({ name }) => name === regionCapacity),
       );
     });
   }

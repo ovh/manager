@@ -75,4 +75,16 @@ export default class PciStoragesContainersUsersController {
         ),
       );
   }
+
+  showSecretKey(user) {
+    this.CucCloudMessage.success(
+      this.$translate.instant(
+        'pci_projects_project_storages_containers_users_show_secret_key_success',
+        {
+          user: user.username,
+          secret: user.s3Credentials[0].secret,
+        },
+      ),
+    );
+  }
 }

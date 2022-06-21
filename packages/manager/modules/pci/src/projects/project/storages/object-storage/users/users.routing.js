@@ -29,6 +29,14 @@ export default /* @ngInject */ ($stateProvider) => {
             userId: user.id,
           },
         ),
+      downloadOpenStackRclone: /* @ngInject */ ($state, projectId) => (user) =>
+        $state.go(
+          'pci.projects.project.storages.object-storage.users.download-rclone',
+          {
+            projectId,
+            userId: user.id,
+          },
+        ),
       goToUsers: /* @ngInject */ (CucCloudMessage, $state, projectId) => (
         message = false,
         type = 'success',
