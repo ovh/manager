@@ -28,6 +28,5 @@
   "orders_search_input_title": "Search for my orders by ID. ",
   "orders_table_actions_tooltip": "More details about this order",
   "orders_order_action_retract": "Cancel the order",
-  "orders_tracking": "Order tracking",
-  "orders_page_description": "View your logs, and track orders in progress. Access your purchase orders."
+  "orders_tracking": "Order tracking"
 }

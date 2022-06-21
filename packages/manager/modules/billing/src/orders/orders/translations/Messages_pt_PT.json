@@ -28,6 +28,5 @@
   "orders_search_input_title": "Pesquisar as minhas encomendas por ID.",
   "orders_table_actions_tooltip": "Mais detalhes sobre esta encomenda",
   "orders_order_action_retract": "Anular a encomenda",
-  "orders_tracking": "Seguir encomenda",
-  "orders_page_description": "Consulte o seu histórico e siga as encomendas em curso. Aceda às suas notas de encomenda."
+  "orders_tracking": "Seguir encomenda"
 }

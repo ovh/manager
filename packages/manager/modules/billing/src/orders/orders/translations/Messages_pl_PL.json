@@ -28,6 +28,5 @@
   "orders_search_input_title": "Wyszukaj zamówienie na podstawie identyfikatora.",
   "orders_table_actions_tooltip": "Więcej informacji na temat tego zamówienia",
   "orders_order_action_retract": "Anuluj zamówienie",
-  "orders_tracking": "Informacje o zamówieniu",
-  "orders_page_description": "Sprawdź historię i monitoruj bieżące zamówienia. Wyświetl zamówienia."
+  "orders_tracking": "Informacje o zamówieniu"
 }
