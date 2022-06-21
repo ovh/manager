@@ -10,6 +10,7 @@ const moduleName = 'ovhManagerNashaDirectory';
 
 angular
   .module(moduleName, ['oui', 'ui.router', ListLayoutHelper.moduleName])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

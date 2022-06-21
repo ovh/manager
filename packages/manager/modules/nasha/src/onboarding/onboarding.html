@@ -5,4 +5,12 @@
 >
     <h1 data-ng-bind="$ctrl.title"></h1>
     <p data-translate="nasha_onboarding_content"></p>
+    <oui-button
+        data-type="button"
+        data-size="l"
+        data-variant="primary"
+        data-on-click="$ctrl.goToOrder()"
+    >
+        <span data-translate="nasha_onboarding_order"></span>
+    </oui-button>
 </manager-on-boarding-layout>
