@@ -12,9 +12,8 @@ import edit from './edit';
 import onboarding from './onboarding';
 import openstackToken from './openstack-token';
 import usersComponent from '../../../components/project/users';
-
-import routing from './users.routing';
 import service from './users.service';
+import routing from './users.routing';
 
 const moduleName = 'ovhManagerPciUsers';
 

@@ -10,9 +10,15 @@ export const RCLONE_GUIDE = {
 
 export const DOWNLOAD_FILENAME = 'rclone.sh';
 export const DOWNLOAD_TYPE = 'text/x-shellscipt';
+export const DOWNLOAD_RCLONE_FILENAME = 'config.txt';
+export const DOWNLOAD_RCLONE_FILETYPE = 'text/plain;charset=utf-8';
+export const REGION_CAPACITY = 'storage';
 
 export default {
   DOWNLOAD_FILENAME,
   DOWNLOAD_TYPE,
   RCLONE_GUIDE,
+  DOWNLOAD_RCLONE_FILENAME,
+  DOWNLOAD_RCLONE_FILETYPE,
+  REGION_CAPACITY,
 };

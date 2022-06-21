@@ -11,6 +11,7 @@ import component from './users.component';
 import routing from './users.routing';
 import deleteUser from './delete';
 import importPolicy from './import';
+import downloadRclone from './download-rclone';
 
 const moduleName = 'ovhManagerPciStoragesObjectStorageUserList';
 
@@ -25,6 +26,7 @@ angular
     'ui.bootstrap',
     deleteUser,
     importPolicy,
+    downloadRclone,
   ])
   .component('pciProjectStorageObjectStorageUsers', component)
   .config(routing)
