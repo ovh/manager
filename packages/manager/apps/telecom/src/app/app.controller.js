@@ -1,5 +1,9 @@
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import { getShellClient } from './shell';
+import {
+  SYSTRAN_LOCALE_UNAVAILABLE,
+  URL_SURVEY_SYSTRAN,
+} from './app.constants';
 
 export default class TelecomAppCtrl {
   /* @ngInject */
@@ -33,13 +37,8 @@ export default class TelecomAppCtrl {
 
     this.shell = getShellClient();
     this.chatbotEnabled = false;
-    this.SYSTRAN_FEEDBACK_INFO = {
-      part1:
-        'The text in this manager section is provided by Systran machine translation.',
-      part2: 'Share your feedback here.',
-    };
-    this.SYSTRAN_FEEDBACK_LINK =
-      'https://survey.ovh.com/index.php/175287?lang=en';
+
+    this.URL_SURVEY_SYSTRAN = URL_SURVEY_SYSTRAN;
 
     this.shell.ux.isMenuSidebarVisible().then((isMenuSidebarVisible) => {
       this.isMenuSidebarVisible = isMenuSidebarVisible;
@@ -55,6 +54,10 @@ export default class TelecomAppCtrl {
     };
     this.currentLanguage = this.coreConfig.getUserLanguage();
     this.user = this.coreConfig.getUser();
+
+    this.displaySystranMessage = !(
+      SYSTRAN_LOCALE_UNAVAILABLE === this.currentLanguage
+    );
 
     const unregisterListener = this.$scope.$on('app:started', () => {
       const CHATBOT_FEATURE = 'chatbot';

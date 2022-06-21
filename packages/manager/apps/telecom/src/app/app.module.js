@@ -377,6 +377,7 @@ export default async (containerEl, shellClient) => {
       },
     )
     .controller('TelecomAppCtrl', TelecomAppCtrl)
+    .run(/* @ngTranslationsInject:json ./translations */)
     .run(
       /* @ngInject */ ($rootScope, $state, $transitions) => {
         $transitions.onError({}, (transition) => {
