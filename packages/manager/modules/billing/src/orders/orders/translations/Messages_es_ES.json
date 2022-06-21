@@ -28,6 +28,5 @@
   "orders_search_input_title": "Buscar mis pedidos por identificador.",
   "orders_table_actions_tooltip": "Más detalles sobre el pedido",
   "orders_order_action_retract": "Cancelar el pedido",
-  "orders_tracking": "Seguimiento del pedido",
-  "orders_page_description": "Consulte su historial y los pedidos en curso. Acceda a sus órdenes de pedido."
+  "orders_tracking": "Seguimiento del pedido"
 }

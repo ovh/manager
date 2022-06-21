@@ -28,6 +28,5 @@
   "orders_search_input_title": "Ricerca i tuoi ordini per identificativo.",
   "orders_table_actions_tooltip": "Maggiori informazioni su questo ordine",
   "orders_order_action_retract": "Annulla l'ordine",
-  "orders_tracking": "Stato dell'ordine",
-  "orders_page_description": "Consulta lo storico e segui gli ordini in corso. Accedi ai tuoi ordini."
+  "orders_tracking": "Stato dell'ordine"
 }

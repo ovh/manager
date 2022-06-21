@@ -28,6 +28,5 @@
   "orders_search_input_title": "Per ID nach meinen Bestellungen suchen.",
   "orders_table_actions_tooltip": "Weitere Details zu dieser Bestellung",
   "orders_order_action_retract": "Bestellung stornieren",
-  "orders_tracking": "Bestellungsnachverfolgung",
-  "orders_page_description": "Sehen Sie Ihren Bestellungsverlauf ein und behalten Sie die aktuellen Bestellungen im Blick. Greifen Sie auf Ihre Bestellscheine zu."
+  "orders_tracking": "Bestellungsnachverfolgung"
 }
