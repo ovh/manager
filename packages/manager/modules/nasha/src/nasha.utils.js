@@ -51,9 +51,38 @@ export const preparePartition = ({ use, ...partition }, $translate) => ({
   protocol: partition.protocol?.split('_').join(' '),
 });
 
+export const preparePlans = (catalog, $filter) =>
+  catalog.plans
+    .filter((plan) => {
+      try {
+        const disk = catalog.products.find(({ name }) => name === plan.product)
+          .blobs.technical.storage.disks[0];
+        Object.assign(plan, { disk });
+        return Boolean(disk.technology) && Boolean(disk.capacity);
+      } catch (error) {
+        return false;
+      }
+    })
+    .map(({ disk, ...plan }) => ({
+      ...plan,
+      diskType: disk.technology.toLowerCase(),
+      capacity: {
+        label: $filter('bytes')(disk.capacity * 1000 * 1000 * 1000),
+        value: disk.capacity / 1000,
+      },
+      datacenters: plan.configurations.find(({ name }) => name === 'datacenter')
+        ?.values,
+      defaultPrice: plan.pricings.find(({ mode }) => mode === 'default'),
+      price: plan.pricings.find(
+        ({ capacities, mode }) =>
+          capacities.includes('renew') && mode === 'default',
+      ),
+    }));
+
 export default {
   localizeDatacenter,
   localizeOperation,
   prepareNasha,
   preparePartition,
+  preparePlans,
 };

@@ -4,6 +4,7 @@ import {
   localizeOperation,
   prepareNasha,
   preparePartition,
+  preparePlans,
 } from './nasha.utils';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
@@ -44,6 +45,8 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         prepareNasha(nasha, $translate),
       preparePartition: /* @ngInject */ ($translate) => (partition) =>
         preparePartition(partition, $translate),
+      preparePlans: /* @ngInject */ ($filter) => (catalog) =>
+        preparePlans(catalog, $filter),
       trackingPrefix: () => NASHA_TITLE,
     },
   });
