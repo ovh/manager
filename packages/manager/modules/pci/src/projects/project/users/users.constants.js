@@ -13,11 +13,8 @@ export const HORIZON_LINK_TRUSTED = {
 
 export const ALPHA_CHARACTERS_REGEX = /^[a-zA-Z-]+$/;
 
-export const REGION_CAPACITY = 'storage';
-
 export default {
   HORIZON_LINK,
   HORIZON_LINK_TRUSTED,
   ALPHA_CHARACTERS_REGEX,
-  REGION_CAPACITY,
 };

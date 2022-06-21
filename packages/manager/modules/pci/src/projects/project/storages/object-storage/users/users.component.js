@@ -12,5 +12,6 @@ export default {
     goToUsersAndRoles: '<',
     goToUsers: '<',
     trackingPrefix: '<',
+    downloadOpenStackRclone: '<',
   },
 };
