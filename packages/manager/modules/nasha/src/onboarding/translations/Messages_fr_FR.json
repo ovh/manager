@@ -5,5 +5,6 @@
   "nasha_onboarding_nfs_title": "Monter votre NAS via un partage NFS",
   "nasha_onboarding_nfs_content": "Découvrez comment monter un NAS via un partage NFS",
   "nasha_onboarding_cifs_title": "Monter votre NAS sur Windows Server via CIFS",
-  "nasha_onboarding_cifs_content": "Découvrez comment monter un NAS sur Windows Server via le protocol CIFS"
+  "nasha_onboarding_cifs_content": "Découvrez comment monter un NAS sur Windows Server via le protocol CIFS",
+  "nasha_onboarding_order": "Commander un NAS-HA"
 }

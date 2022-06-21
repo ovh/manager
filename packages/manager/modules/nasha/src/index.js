@@ -8,7 +8,7 @@ import { NASHA_TASK } from './nasha.constants';
 import routing from './nasha.routing';
 
 import directoryModule from './directory';
-import newModule from './new';
+import orderModule from './order';
 import onboardingModule from './onboarding';
 import dashboardModule from './dashboard';
 
@@ -19,7 +19,7 @@ angular
     'ui.router',
     'ngUiRouterBreadcrumb',
     directoryModule,
-    newModule,
+    orderModule,
     onboardingModule,
     dashboardModule,
   ])
