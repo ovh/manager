@@ -62,11 +62,11 @@ export const IMAGES_REGEX = {
   ],
   'baremetal-windows': [
     {
-      name: 'windows_server_2012',
+      name: 'baremetal_windows_server_2012',
       regex: /Win[a-zA-Z\s-]+2012/i,
     },
     {
-      name: 'windows_server_2016',
+      name: 'baremetal_windows_server_2016',
       regex: /Win[a-zA-Z\s-]+2016/i,
     },
   ],
@@ -219,6 +219,18 @@ export const IMAGE_ASSETS = {
     windows_other: ASSET_OS_WINDOWS_OTHER,
     windows_server_2012: ASSET_OS_WINDOWS_SERVER_2012,
     windows_server_2016: ASSET_OS_WINDOWS_SERVER_2016,
+    baremetal_centos: ASSET_OS_CENTOS,
+    baremetal_coreos: ASSET_OS_COREOS,
+    baremetal_debian: ASSET_OS_DEBIAN,
+    baremetal_dokku: ASSET_OS_DOKKU,
+    baremetal_fedora: ASSET_OS_FEDORA,
+    baremetal_freebsd: ASSET_OS_FREEBSD,
+    baremetal_linux: ASSET_OS_LINUX_OTHER,
+    baremetal_linux_other: ASSET_OS_LINUX_OTHER,
+    baremetal_ubuntu: ASSET_OS_UBUNTU,
+    baremetal_windows_other: ASSET_OS_WINDOWS_OTHER,
+    baremetal_windows_server_2012: ASSET_OS_WINDOWS_SERVER_2012,
+    baremetal_windows_server_2016: ASSET_OS_WINDOWS_SERVER_2016,
   },
 };
 
