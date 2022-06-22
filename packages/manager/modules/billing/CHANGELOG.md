@@ -1,3 +1,12 @@
+# [0.16.0-alpha.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.3...@ovh-ux/manager-billing@0.16.0-alpha.4) (2022-06-22)
+
+
+### Bug Fixes
+
+* **orders:** prevent displaying empty page ([#7414](https://github.com/ovh/manager/issues/7414)) ([c603135](https://github.com/ovh/manager/commit/c603135673ced2dac5de0945557446a65cfff3e0)), closes [#7402](https://github.com/ovh/manager/issues/7402)
+
+
+
 # [0.16.0-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.2...@ovh-ux/manager-billing@0.16.0-alpha.3) (2022-06-21)
 
 
