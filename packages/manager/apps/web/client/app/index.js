@@ -7,6 +7,8 @@ import {
   isTopLevelApplication,
 } from '@ovh-ux/manager-config';
 
+// test
+
 import { getShellClient, setShellClient } from './shell';
 
 if (isTopLevelApplication()) {

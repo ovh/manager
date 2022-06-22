@@ -21,6 +21,8 @@ if (isTopLevelApplication()) {
     .catch(() => {});
 }
 
+// test
+
 useShellClient('hub')
   .then(async (client) => {
     const isSidebarMenuVisible = await client.ux.isMenuSidebarVisible();
