@@ -74,10 +74,11 @@
                 <!-- Expiration date -->
                 <oui-tile-definition
                     data-term="{{ ::'cloud_connect_date_expiration' | translate }}"
+                    data-ng-if="$ctrl.cancelTerminationUrl"
                 >
                     <oui-tile-description>
                         <a
-                            href="{{ $ctrl.getCancelTerminationUrl($ctrl.serviceInfos.domain) }}"
+                            href="{{:: $ctrl.cancelTerminationUrl }}"
                             target="_top"
                         >
                             <span

@@ -62,14 +62,28 @@ export default /* @ngInject */ ($stateProvider) => {
           datacenterId,
           extraId,
         }),
-      getCancelTerminationUrl: /* @ngInject */ (coreConfig, coreURLBuilder) => (
-        serviceName,
-      ) =>
-        coreConfig.isRegion(['EU', 'CA'])
-          ? coreURLBuilder.buildURL('dedicated', '#/billing/autorenew', {
+      getCancelTerminationUrl: /* @ngInject */ (
+        $injector,
+        $q,
+        coreConfig,
+        coreURLBuilder,
+      ) => (serviceName) => {
+        if (coreConfig.isRegion('US')) {
+          return $q.when('');
+        }
+        if ($injector.has('shellClient')) {
+          return $injector
+            .get('shellClient')
+            .navigation.getURL('dedicated', '#/billing/autorenew', {
               searchText: serviceName,
-            })
-          : '',
+            });
+        }
+        return $q.when(
+          coreURLBuilder.buildURL('dedicated', '#/billing/autorenew', {
+            searchText: serviceName,
+          }),
+        );
+      },
       goToManageServiceKeysPage: /* @ngInject */ ($state) => () =>
         $state.go('cloud-connect.details.service-keys'),
       tasksHref: /* @ngInject */ ($state, cloudConnect) =>

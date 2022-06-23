@@ -241,6 +241,7 @@ export default async (containerEl, shellClient) => {
       ].filter(isString),
     )
     .service('Polling', pollingService)
+    .constant('shellClient', shellClient)
     .constant('constants', {
       prodMode: config.prodMode,
       swsProxyRootPath: config.swsProxyRootPath,

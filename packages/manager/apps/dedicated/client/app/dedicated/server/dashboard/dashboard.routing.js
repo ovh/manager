@@ -137,25 +137,52 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicated-server.server.dashboard.edit-display-name', {
           productId: serverName,
         }),
-      goToCommit: /* @ngInject */ ($state, serverName) => () =>
-        $state.href('app.dedicated-server.server.dashboard.commitment', {
-          productId: serverName,
-        }),
-      goToCancelCommit: /* @ngInject */ ($state, serverName) => () =>
-        $state.href('app.dedicated-server.server.dashboard.cancel-commitment', {
-          productId: serverName,
-        }),
-      goToCancelResiliation: /* @ngInject */ ($state, serverName) => () =>
-        $state.href(
-          'app.dedicated-server.server.dashboard.cancel-resiliation',
-          {
-            productId: serverName,
-          },
-        ),
-      goToResiliation: /* @ngInject */ ($state, serverName) => () =>
-        $state.href('app.dedicated-server.server.dashboard.resiliation', {
-          productId: serverName,
-        }),
+      goToCommit: /* @ngInject */ ($state, serverName, shellClient) =>
+        shellClient.navigation
+          .getURL(
+            'dedicated',
+            $state.href('app.dedicated-server.server.dashboard.commitment', {
+              productId: serverName,
+            }),
+          )
+          .then((url) => () => url),
+      goToCancelCommit: /* @ngInject */ ($state, serverName, shellClient) =>
+        shellClient.navigation
+          .getURL(
+            'dedicated',
+            $state.href(
+              'app.dedicated-server.server.dashboard.cancel-commitment',
+              {
+                productId: serverName,
+              },
+            ),
+          )
+          .then((url) => () => url),
+      goToCancelResiliation: /* @ngInject */ (
+        $state,
+        serverName,
+        shellClient,
+      ) =>
+        shellClient.navigation
+          .getURL(
+            'dedicated',
+            $state.href(
+              'app.dedicated-server.server.dashboard.cancel-resiliation',
+              {
+                productId: serverName,
+              },
+            ),
+          )
+          .then((url) => () => url),
+      goToResiliation: /* @ngInject */ ($state, serverName, shellClient) =>
+        shellClient.navigation
+          .getURL(
+            'dedicated',
+            $state.href('app.dedicated-server.server.dashboard.resiliation', {
+              productId: serverName,
+            }),
+          )
+          .then((url) => () => url),
       goToSgxIntroduction: /* @ngInject */ ($state, atInternet) => () => {
         atInternet.trackClick({
           name: 'dedicated::dedicated::server::dashboard::sgx::manage',

@@ -81,10 +81,30 @@ export default /* @ngInject */ ($stateProvider) => {
             commitmentAvailability.isFeatureAvailable('billing:commitment'),
           )
           .catch(() => false),
-      goToCommit: /* @ngInject */ ($state) => () =>
-        $state.href('vps.detail.dashboard.commitment'),
-      goToCancelCommit: /* @ngInject */ ($state) => () =>
-        $state.href('vps.detail.dashboard.cancel-commitment'),
+      goToCommit: /* @ngInject */ ($state, $injector, serviceInfos) => {
+        if ($injector.has('shellClient')) {
+          return $injector
+            .get('shellClient')
+            .navigation.getURL(
+              'dedicated',
+              `#/billing/autorenew/${serviceInfos.serviceId}/commitment`,
+            )
+            .then((url) => () => url);
+        }
+        return () => $state.href('vps.detail.dashboard.commitment');
+      },
+      goToCancelCommit: /* @ngInject */ ($state, $injector, serviceInfos) => {
+        if ($injector.has('shellClient')) {
+          return $injector
+            .get('shellClient')
+            .navigation.getURL(
+              'dedicated',
+              `#/billing/autorenew/${serviceInfos.serviceId}/cancel-commitment`,
+            )
+            .then((url) => () => url);
+        }
+        return () => $state.href('vps.detail.dashboard.cancel-commitment');
+      },
       goToCancelResiliation: /* @ngInject */ ($state) => () =>
         $state.href('vps.detail.dashboard.cancel-resiliation'),
       goToResiliation: /* @ngInject */ ($state) => () =>
