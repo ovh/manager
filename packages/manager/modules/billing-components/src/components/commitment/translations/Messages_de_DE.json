@@ -20,7 +20,7 @@
   "billing_commitment_summary_description_end": "Nach dem {{ endDate }} wird Ihr Dienst stillschweigend erneut für eine Laufzeit aktiviert, die Ihrer letzten Vertragslaufzeit entspricht.",
   "billing_commitment_summit": "Bestätigen",
   "billing_commitment_service_vps": "Virtual Private Server",
-  "billing_commitment_savings": "Insgesamt {{ price }} sparen",
+  "billing_commitment_savings": "Sparen Sie insgesamt {{ price }}",
   "billing_commitment_payment_upfront_pay_now": "Zahlen Sie jetzt {{ price }}",
   "billing_commitment_summary_description_periodic_end": "Nach dem {{ engagementEndDate }} wird Ihr Dienst stillschweigend erneut für eine Laufzeit aktiviert, die Ihrer letzten Vertragslaufzeit entspricht.",
   "billing_commitment_summary_description_upfront_end": "Nach dem {{ engagementEndDate }} wird Ihr Dienst {{ serviceName }} stillschweigend wieder aktiviert. Die Dauer und Zahlungsart entsprechen Ihrem letzten Abonnement.",
