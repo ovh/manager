@@ -2,7 +2,7 @@
     aria-label="{{:: 'billing_services_actions_menu_label' | translate }}"
     compact
     data-placement="end"
-    data-ng-if="$ctrl.autorenewLink || $ctrl.service.canBeEngaged || $ctrl.service.hasPendingEngagement"
+    data-ng-if="!$ctrl.isLoading && ($ctrl.autorenewLink || $ctrl.service.canBeEngaged || $ctrl.service.hasPendingEngagement)"
 >
     <oui-action-menu-item
         ng-if="$ctrl.autorenewLink && $ctrl.service.hasDebt() && !$ctrl.service.hasBillingRights($ctrl.user.nichandle)"

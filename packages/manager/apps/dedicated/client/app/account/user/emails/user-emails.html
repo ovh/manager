@@ -60,7 +60,6 @@
                             data-ng-href="{{ '#/useraccount/emails/' + email.id + '?previousPage=' + currentPage }}"
                             data-ng-click="resetEmailIdsInError()"
                             data-ng-bind="email.subject"
-                            target="_top"
                         >
                         </a>
                     </td>
@@ -70,7 +69,6 @@
                             data-ng-href="{{ '#/useraccount/emails/' + email.id + '?previousPage=' + currentPage }}"
                             data-ng-click="resetEmailIdsInError()"
                             data-ng-bind="email.date | date : 'short'"
-                            target="_top"
                         >
                         </a>
                     </td>
@@ -79,7 +77,6 @@
                             class="d-block"
                             data-ng-href="{{ '#/useraccount/emails/' + email.id + '?previousPage=' + currentPage }}"
                             data-ng-click="resetEmailIdsInError()"
-                            target="_top"
                         >
                             <span class="fa fa-search-plus" aria-hidden="true">
                             </span>
