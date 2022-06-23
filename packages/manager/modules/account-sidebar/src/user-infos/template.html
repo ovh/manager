@@ -1,4 +1,4 @@
-<div class="manager-hub-user-infos">
+<div class="manager-hub-user-infos" data-navi-id="account-sidebar-block">
     <a
         class="manager-hub-user-infos_profile"
         data-ng-if="$ctrl.me"
@@ -33,11 +33,7 @@
     <p data-ng-if="!$ctrl.me">
         <oui-skeleton class="mx-auto" data-size="s"></oui-skeleton>
     </p>
-    <div
-        class="manager-hub-user-infos_user-name mb-2"
-        data-ng-if="$ctrl.me"
-        data-navi-id="account-sidebar-block"
-    >
+    <div class="manager-hub-user-infos_user-name mb-2" data-ng-if="$ctrl.me">
         <div>
             <span
                 class="manager-hub-user-infos_role oui-badge oui-badge_warning"
@@ -61,6 +57,7 @@
         <span
             class="d-block manager-hub-user-infos_text-small text-break"
             data-ng-bind="$ctrl.me.email"
+            data-navi-id="account-email"
         >
         </span>
         <span
