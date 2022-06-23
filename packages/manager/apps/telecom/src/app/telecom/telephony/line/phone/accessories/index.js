@@ -13,6 +13,8 @@ import shipping from './shipping';
 import component from './accessories.component';
 import routing from './accessories.routing';
 
+import './accessories.less';
+
 const moduleName = 'ovhManagerTelecomTelephonyLinePhoneAccessories';
 
 angular
