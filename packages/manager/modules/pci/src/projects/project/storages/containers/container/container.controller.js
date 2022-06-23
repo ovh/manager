@@ -1,6 +1,9 @@
 import get from 'lodash/get';
 
-import { CONTAINER_DEFAULT_USER } from '../containers.constants';
+import {
+  CONTAINER_DEFAULT_USER,
+  CONTAINER_GUIDES,
+} from '../containers.constants';
 
 export default class PciStoragesContainersContainerController {
   /* @ngInject */
@@ -8,6 +11,7 @@ export default class PciStoragesContainersContainerController {
     $q,
     $translate,
     $window,
+    coreConfig,
     atInternet,
     CucCloudMessage,
     PciProjectStorageContainersService,
@@ -15,10 +19,23 @@ export default class PciStoragesContainersContainerController {
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
+    this.coreConfig = coreConfig;
     this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
 
+    this.guides = CONTAINER_GUIDES.map((guide) => ({
+      ...guide,
+      title: $translate.instant(
+        `pci_projects_project_storages_containers_container_documentation_title_${guide.id}`,
+      ),
+      description: $translate.instant(
+        `pci_projects_project_storages_containers_container_documentation_description_${guide.id}`,
+      ),
+      link:
+        guide.links[coreConfig.getUser().ovhSubsidiary] ||
+        guide.links[guide.links.DEFAULT],
+    }));
     this.defaultUser = CONTAINER_DEFAULT_USER;
   }
 

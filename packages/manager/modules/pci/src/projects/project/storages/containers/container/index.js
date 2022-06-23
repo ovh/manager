@@ -6,6 +6,7 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
 import 'angular-ui-bootstrap';
+import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import deleteContainer from './delete';
 import addUser from './addUser';
@@ -28,6 +29,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ui.bootstrap',
+    OnboardingLayoutHelper,
   ])
   .component('pciProjectStorageContainersContainer', component)
   .run(/* @ngTranslationsInject:json ./translations */);
