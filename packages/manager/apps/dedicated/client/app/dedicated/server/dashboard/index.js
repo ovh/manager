@@ -19,7 +19,7 @@ import cancelResiliation from './cancel-resiliation';
 import resiliation from './resiliation';
 import professionalUse from './professional-use';
 import terminate from '../terminate/terminate.module';
-import upgradeRequest from './upgrade-request';
+import upgrade from './upgrade';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -36,7 +36,7 @@ angular
     'oui',
     'pascalprecht.translate',
     professionalUse,
-    upgradeRequest,
+    upgrade,
     'ui.router',
     ovhManagerBillingComponents,
     resiliation,
