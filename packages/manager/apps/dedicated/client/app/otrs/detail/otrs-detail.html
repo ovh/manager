@@ -23,15 +23,9 @@
     </div>
 </header>
 <div>
-    <a
-        class="d-inline-block mb-5"
-        data-ng-href="#/ticket?currentPage={{ previousPage }}"
-        title="{{ 'otrs_back' | translate }}"
-        target="_top"
-    >
-        <span class="fa fa-chevron-left mr-2" aria-hidden="true"></span>
+    <oui-back-button data-on-click="goBack()">
         <span data-translate="otrs_back"></span>
-    </a>
+    </oui-back-button>
     <div data-ovh-alert="otrs_detail"></div>
     <div data-ovh-alert="otrs_message"></div>
     <div data-ovh-alert="otrs_replyClose"></div>

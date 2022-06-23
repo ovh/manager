@@ -5,10 +5,11 @@ import uiRouter from '@uirouter/angularjs';
 import angularTranslate from 'angular-translate';
 import '@ovh-ux/ui-kit';
 
+import supportComponents from '../components/index';
+
 import newTicket from './new-ticket';
 import ticket from './ticket';
 
-import component from './tickets.component';
 import { state } from './tickets.routing';
 import ticketMessageService from './ticket/message/message.service';
 import ticketService from './ticket/ticket.service';
@@ -24,16 +25,15 @@ angular
     newTicket,
     ngTranslateAsyncLoader,
     'oui',
+    supportComponents,
     ticket,
     uiRouter,
   ])
-  .component(component.name, component)
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state(state.name, state);
     },
   )
-  .run(/* @ngTranslationsInject:json ./translations */)
   .service('ticketService', ticketService)
   .service('ticketMessageService', ticketMessageService)
   .service('ticketsService', ticketsService);

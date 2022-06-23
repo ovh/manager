@@ -3,19 +3,16 @@ import set from 'lodash/set';
 export default /* @ngInject */ function OtrsDetailCtrl(
   $scope,
   $injector,
-  $location,
   $translate,
   Otrs,
   Alerter,
+  goBack,
 ) {
   const $routerParams = $injector.has('$stateParams')
     ? $injector.get('$stateParams')
     : $injector.get('$routeParams');
 
-  $scope.previousPage =
-    $location.search() && $location.search().previousPage
-      ? $location.search().previousPage
-      : 1;
+  $scope.goBack = goBack;
 
   function loadSchemas() {
     return Otrs.getModels()
