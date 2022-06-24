@@ -1,0 +1,19 @@
+{
+  "onboarding_button_text": "Iniziamo!",
+  "onboarding_introduction_popover_title": "{{userName}}, benvenuto nel tuo Spazio Cliente!",
+  "onboarding_introduction_popover_content": "Qui trovi tutte le funzionalità necessarie alla gestione del tuo account e dei servizi.",
+  "onboarding_introduction_popover_extra": "La nostra guida dedicata è disponibile nel menu a sinistra.",
+  "onboarding_popover_follow_guide_button": "Consulta la guida",
+  "onboarding_popover_hide_button": "Nascondi",
+  "onboarding_walkme_popover_next_step": "Seguente {{current}}/{{total}}",
+  "onboarding_walkme_popover_step1_title": "Come accedere al tuo account?",
+  "onboarding_walkme_popover_step1_content": "Accedi all’account in qualsiasi momento cliccando sul tuo nome utente.",
+  "onboarding_walkme_popover_step2_title": "Il mio profilo",
+  "onboarding_walkme_popover_step2_content": "Gestisci l’account direttamente dal tuo profilo.",
+  "onboarding_walkme_popover_step3_title": "I tuoi metodi di pagamento",
+  "onboarding_walkme_popover_step3_content": "Aggiungi uno o più metodi di pagamento. Configurane uno \"predefinito\" per i tuoi servizi con rinnovo automatico.",
+  "onboarding_walkme_popover_step4_title": "I miei servizi",
+  "onboarding_walkme_popover_step4_content": "Naviga con la massima semplicità nel menu dei servizi OVHcloud e trova facilmente i tuoi servizi attivi segnalati da un badge.",
+  "onboarding_walkme_popover_step5_title": "Le mie fatture",
+  "onboarding_walkme_popover_step5_content": "Consulta tutte le fatture, i pagamenti in corso e il credito disponibile in questa sezione."
+}

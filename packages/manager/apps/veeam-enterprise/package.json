@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-enterprise-app",
-  "version": "1.5.6",
+  "version": "1.6.0",
   "private": true,
   "description": "Veeam Enterprise standalone application.",
   "repository": {
@@ -34,9 +34,9 @@
     "@ovh-ux/ng-ovh-user-pref": "^2.0.4",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
-    "@ovh-ux/ng-ui-router-layout": "^4.0.6",
+    "@ovh-ux/ng-ui-router-layout": "^4.1.0",
     "@ovh-ux/ufrontend": "^1.1.1 || ^2.0.0",
-    "@ovh-ux/ui-kit": "^6.0.0",
+    "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.8",
@@ -54,7 +54,7 @@
     "flatpickr": "^4.6.3",
     "jquery": "^2.1.3",
     "lodash-es": "^4.17.15",
-    "ovh-api-services": "^14.0.2",
+    "ovh-api-services": "^14.0.6",
     "ovh-ui-kit-bs": "^4.2.0",
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",

@@ -6,11 +6,15 @@ export default /* @ngInject */ (
   $translate,
   Alerter,
   $location,
+  atInternet,
 ) => {
   $scope.translations = {};
 
   function init(data) {
     $scope.data = data || $scope.currentActionData;
+    atInternet.trackPage({
+      name: $scope.data?.tracking,
+    });
     $scope.mitigationStatusAuto =
       !$scope.data.ip.mitigation || $scope.data.ip.mitigation === 'DEFAULT'; // Hack for the wizard status
 
@@ -40,7 +44,10 @@ export default /* @ngInject */ (
 
   $scope.updateMitigation = function updateMitigation() {
     $scope.loading = true;
-
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::confirm`,
+      type: 'action',
+    });
     // Toggle between the two mitigation status that can be changed
     let newMitigationStatus = 'DEFAULT';
     if ($scope.mitigationStatusAuto) {
@@ -90,7 +97,8 @@ export default /* @ngInject */ (
         },
       )
       .finally(() => {
-        $scope.cancelAction();
+        Ip.cancelActionParam('mitigation');
+        $scope.resetAction();
       });
   };
 
@@ -128,6 +136,10 @@ export default /* @ngInject */ (
   }
 
   $scope.cancelAction = function cancelAction() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::cancel`,
+      type: 'action',
+    });
     Ip.cancelActionParam('mitigation');
     $scope.resetAction();
   };

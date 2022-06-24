@@ -1,3 +1,35 @@
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.7.0...@ovh-ux/manager-dbaas-logs-app@1.7.1) (2022-06-16)
+
+
+### Bug Fixes
+
+* **deps:** add missing `@ovh-ux/manager-ng-layout-helpers` deps ([#7356](https://github.com/ovh/manager/issues/7356)) ([af6ac09](https://github.com/ovh/manager/commit/af6ac09060dcf2b3126af457371525d32859ed7b))
+
+
+
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.6.7...@ovh-ux/manager-dbaas-logs-app@1.7.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **dbaas-logs:** update at-internet-configuration ([95e9b17](https://github.com/ovh/manager/commit/95e9b1776db4660bf743a688179a92cfb2c5240d))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
+## [1.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.6.6...@ovh-ux/manager-dbaas-logs-app@1.6.7) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [1.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.6.5...@ovh-ux/manager-dbaas-logs-app@1.6.6) (2022-05-19)
 
 

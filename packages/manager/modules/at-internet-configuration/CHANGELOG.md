@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.3.1...@ovh-ux/manager-at-internet-configuration@1.3.2) (2022-06-14)
+
+
+### Bug Fixes
+
+* **tracking:** fix tracking init ([6e947b2](https://github.com/ovh/manager/commit/6e947b2bd828335f3361be08d19ead825b15fe05))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.3.0...@ovh-ux/manager-at-internet-configuration@1.3.1) (2021-08-10)
 
 

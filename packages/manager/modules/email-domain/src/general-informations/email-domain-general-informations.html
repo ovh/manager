@@ -144,6 +144,7 @@
                     <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             data-href="{{ ::ctrlTabGeneralInformations.urls.manageContacts }}"
+                            top
                         >
                             <span
                                 data-translate="emails_common_manage_contacts"
@@ -166,6 +167,7 @@
                     <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             data-href="{{ ::ctrlTabGeneralInformations.urls.delete }}"
+                            top="{ctrlTabGeneralInformations.urls.delete.indexOf(0) !== '#'}"
                         >
                             <span data-translate="emails_common_delete"></span>
                         </oui-action-menu-item>

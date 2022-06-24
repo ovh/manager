@@ -9,3 +9,9 @@
 @import 'office-ui-fabric-core/dist/sass/_Font.Definitions';
 @import 'office-ui-fabric-core/dist/sass/_Icon';
 @import 'office-ui-fabric-core/dist/sass/_Icon.Definitions';
+
+.ovh-manager-telecom-app {
+  &.in-container #sidebar-menu {
+    top: -2px !important;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "onboarding_button_text": "Los geht‘s!",
+  "onboarding_introduction_popover_title": "{{userName}}, herzlich willkommen in Ihrem Kundencenter",
+  "onboarding_introduction_popover_content": "Hier finden Sie alle Funktionen, die Sie für die Verwaltung Ihres Accounts und Ihrer Dienste benötigen.",
+  "onboarding_introduction_popover_extra": "Die zugehörige Anleitung können Sie jederzeit im Menü auf der linken Seite einsehen.",
+  "onboarding_popover_follow_guide_button": "Nutzen Sie dazu diese Anleitung",
+  "onboarding_popover_hide_button": "Verbergen",
+  "onboarding_walkme_popover_next_step": "Weiter {{current}}/{{total}}",
+  "onboarding_walkme_popover_step1_title": "Wie kann ich auf meinen Account zugreifen?",
+  "onboarding_walkme_popover_step1_content": "Sie können jederzeit auf Ihren Account zugreifen, indem Sie auf Ihren Namen klicken.",
+  "onboarding_walkme_popover_step2_title": "Mein Profil",
+  "onboarding_walkme_popover_step2_content": "Verwalten Sie Ihren Account direkt über Ihr Profil.",
+  "onboarding_walkme_popover_step3_title": "Meine Zahlungsarten",
+  "onboarding_walkme_popover_step3_content": "Fügen Sie ein oder mehrere Zahlungsmittel hinzu. Richten Sie ein Standardzahlungsmittel für Ihre Dienste mit automatischer Verlängerung ein.",
+  "onboarding_walkme_popover_step4_title": "Meine Dienste",
+  "onboarding_walkme_popover_step4_content": "Gehen Sie einfach in das Menü der von OVHcloud angebotenen Dienste. Ihre aktiven Dienste sind problemlos zu erkennen, da sie entsprechend mit einem Kästchen gekennzeichnet sind.",
+  "onboarding_walkme_popover_step5_title": "Meine Rechnungen",
+  "onboarding_walkme_popover_step5_content": "Hier finden Sie alle Ihre Rechnungen, ausstehenden Zahlungen und Guthaben."
+}

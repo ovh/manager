@@ -1,0 +1,17 @@
+{
+  "pci_app_title": "AI Apps",
+  "pci_app_onboarding_content1": "Sus aplicaciones y modelos AI desplegados en alta disponibilidad.",
+  "pci_app_onboarding_content2": "Elija entre un catálogo o despliegue sus propias imágenes Docker.",
+  "pci_app_onboarding_content3": "¿Trabaja como «data scientist» o desarrollador y quiere desplegar una aplicación o un modelo de inteligencia artificial en solo unos minutos? Seleccione entre un catálogo de AI Apps o importe su propia aplicación contenerizada. OVHcloud se encarga del despliegue en alta disponibilidad, así como de su seguridad. Disponga de recursos de CPU o GPU, herramientas de seguimiento en tiempo real y una tarificación sencilla, con pago por consumo. Por último, elija si prefiere conectarse por API o a través de una interfaz web HTTP.",
+  "pci_app_onboarding_action_label": "Desplegar una AI App",
+  "pci_app_guides_documentation_title": "Documentación completa de AI Apps",
+  "pci_app_guides_documentation_description": "Consulte toda la documentación de AI Apps.",
+  "pci_app_guides_definition_title": "Definición de AI Apps",
+  "pci_app_guides_definition_description": "Descubra la solución AI Apps de OVHcloud.",
+  "pci_app_guides_start_title": "Empezar con AI Apps",
+  "pci_app_guides_start_description": "Descubra cómo lanzar rápidamente una AI App desde el área de cliente.",
+  "pci_app_guides_share_title": "Compartir una AI App",
+  "pci_app_guides_share_description": "Descubra cómo compartir una AI App con otros desarrolladores.",
+  "pci_app_guides_object_storage_access_title": "Acceder a sus datos desde Object Storage",
+  "pci_app_guides_object_storage_access_description": "Descubra cómo acceder a sus datos desde una AI App con su Object Storage."
+}

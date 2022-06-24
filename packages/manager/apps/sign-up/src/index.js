@@ -13,6 +13,7 @@ import angular from 'angular';
 import 'angular-sanitize';
 import 'angular-translate';
 import '@uirouter/angularjs';
+import 'regenerator-runtime/runtime';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth'; // peerDep of manager-core
@@ -46,9 +47,9 @@ angular
       'ngSanitize',
       'pascalprecht.translate',
       registerCoreModule(environment),
+      ngAtInternet,
       ovhManagerAtInternetConfiguration,
       ovhManagerCookiePolicy,
-      ngAtInternet,
       ngAtInternetUiRouterPlugin,
       ngOvhSsoAuth,
       signUpFormView,

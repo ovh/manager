@@ -1,3 +1,25 @@
 {
-  "pci_app_add_resources_replicas": "Liczba instancji, na których zostanie wdrożona AI App"
+  "pci_app_add_resources_replicas": "Liczba instancji, na których zostanie wdrożona AI App",
+  "pci_app_add_resources_usecase": "Typ instancji",
+  "pci_app_add_resources_usecase_item_cpu": "CPU",
+  "pci_app_add_resources_usecase_item_gpu": "GPU",
+  "pci_app_add_resources_proposed_title": "Oferta dostępnych instancji",
+  "pci_app_add_resources_proposed_ram": " {{ram}} RAM",
+  "pci_app_add_resources_proposed_storage": "{{ memory }} SSD",
+  "pci_app_add_resources_proposed_bandwidth": "{{ bandwidth }}/s",
+  "pci_app_add_resources_proposed_resource_price_by_resource": "netto / godzina",
+  "pci_app_add_resources_proposed_type_gpu": "(GPU)",
+  "pci_app_add_resources_proposed_type_gpu_description": "Wyświetlanie instancji GPU",
+  "pci_app_add_resources_proposed_type_cpu": "(CPU)",
+  "pci_app_add_resources_proposed_type_cpu_description": "Wyświetlanie instancji CPU",
+  "pci_app_add_resources_number_of_resources": "Zasoby na instancję",
+  "pci_app_add_resources_number_of_resources_description": "Zasoby CPU/GPU",
+  "pci_app_add_resources_number_of_resources_type_cpu": "Zasoby CPU",
+  "pci_app_add_resources_number_of_resources_type_gpu": "Zasoby GPU",
+  "pci_app_add_resources_number_of_resources_number_of_resource": "Liczba CPU",
+  "pci_app_add_resources_replicas_help_text": "Uruchom na co najmniej 2 instancjach, aby zyskać wysoką dostępność",
+  "pci_app_add_resources_flavor_count": "Rozmiar zasobu",
+  "pci_app_add_resources_total": "Całkowita cena wdrożenia",
+  "pci_app_add_resources_resource_price": "Cena zasobu",
+  "pci_app_add_resources_partner_price": "Cena licencji"
 }

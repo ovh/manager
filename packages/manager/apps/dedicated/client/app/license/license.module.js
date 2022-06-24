@@ -18,6 +18,7 @@ import upgradeModule from './upgrade/license-upgrade.module';
 
 import routing from './license.routes';
 import service from './license.service';
+import onboarding from './onboarding';
 import licenseAvailabilityService from './license-feature-availability';
 import { LICENSE_TYPES } from './license.constants';
 
@@ -40,6 +41,7 @@ angular
     redirectionUpgradeModule,
     splaModule,
     upgradeModule,
+    onboarding,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)

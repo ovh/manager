@@ -1,0 +1,21 @@
+{
+  "vps_onboarding_title": "Serveurs privés virtuels (VPS)",
+  "vps_onboarding_description_1": "Hautes performances au meilleur prix",
+  "vps_onboarding_description_2": "Simplicité, évolutivité, personnalisation",
+  "vps_onboarding_description_3": "Traffic illimité et bande passante jusqu'à 2 Gbit/s*",
+  "vps_onboarding_description_3_us": "Traffic illimité et bande passante jusqu'à 2 Gbit/s",
+  "vps_onboarding_traffic_infos": "Pour les VPS hébergés à Sydney et Singapour : 1 To de trafic/mois pour les gammes Starter et Value, 2 To/mois pour la gamme Essential, 3 To/mois pour la gamme Comfort et 4 To/mois pour la gamme Élite. La bande passante est réduite à 10 Mbit/s une fois le quota mensuel dépassé.",
+  "vps_onboarding_cta": "Commander",
+  "vps_onboarding_guide1_title": "Débuter avec un VPS",
+  "vps_onboarding_guide1_description": "Apprenez les bases de l'utilisation d'un VPS",
+  "vps_onboarding_guide2_title": "Sécuriser un VPS",
+  "vps_onboarding_guide2_description": "Découvrez les éléments de base vous permettant de sécuriser votre VPS",
+  "vps_onboarding_guide3_title": "Utiliser le snapshot",
+  "vps_onboarding_guide3_description": "Découvrez comment activer et utiliser l’option snapshot depuis l’espace client OVHcloud",
+  "vps_onboarding_us_guide1_title": "Getting Started with a VPS",
+  "vps_onboarding_us_guide1_description": "Learn the first steps of using a VPS",
+  "vps_onboarding_us_guide2_title": "How to Secure a VPS",
+  "vps_onboarding_us_guide2_description": "Learn the basics of securing your VPS",
+  "vps_onboarding_us_guide3_title": "How to Use Snapshots on a VPS",
+  "vps_onboarding_us_guide3_description": "Learn about taking snapshots in the OVHcloud Control Panel"
+}

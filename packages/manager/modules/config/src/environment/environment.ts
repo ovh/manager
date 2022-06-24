@@ -8,6 +8,8 @@ import {
 import { User } from './user';
 import { ApplicationId, Application } from '../application';
 
+import { Region } from './region.enum';
+
 export type EnvMessage = {
   [key in LangId]: { description: string };
 };
@@ -15,8 +17,6 @@ export type EnvMessage = {
 export type Applications = {
   [appId in ApplicationId]: Application;
 };
-
-import { Region } from './region.enum';
 
 export interface IEnvironment {
   getRegion: () => Region;

@@ -39,6 +39,12 @@ angular.module('App').config(
       redirectTo: 'app.configuration',
     });
 
+    $stateProvider.state('app.bmc', {
+      url: '/bare-metal-cloud',
+      template: '<ui-view />',
+      redirectTo: 'app.configuration',
+    });
+
     // CDN & NAS
     $stateProvider.state('app.networks', {
       abstract: true,

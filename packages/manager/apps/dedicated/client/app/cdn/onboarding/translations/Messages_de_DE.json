@@ -1,0 +1,11 @@
+{
+  "cdn_onboarding_title": "CDN Infrastruktur",
+  "cdn_onboarding_description": "Eine unverzichtbare Lösung, um die Leistung Ihrer Webanwendungen zu optimieren – in Deutschland und auf der ganzen Welt.",
+  "cdn_onboarding_order": "Bestellen",
+  "cdn_onboarding_guide1_title": "Funktionsweise der Quotas auf dem CDN",
+  "cdn_onboarding_guide1_description": "Hier erfahren Sie, wie Traffic-Quotas auf Ihrem CDN funktionieren",
+  "cdn_onboarding_guide2_title": "Erstkonfiguration einer Domain",
+  "cdn_onboarding_guide2_description": "In dieser Anleitung lernen Sie die Best Practices zur Domainkonfiguration auf Ihrem OVHcloud CDN kennen",
+  "cdn_onboarding_guide3_title": "Funktionsweise des SSL-Zertifikats auf dem CDN",
+  "cdn_onboarding_guide3_description": "Hier erfahren Sie, wie Sie ein SSL-Zertifikat auf dem CDN hinzufügen"
+}

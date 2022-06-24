@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emailpro",
-  "version": "3.1.9",
+  "version": "3.2.0",
   "private": true,
   "description": "Email Pro product.",
   "repository": {
@@ -26,11 +26,11 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",
     "@ovh-ux/ng-ovh-utils": "^14.0.17",
     "@ovh-ux/ng-ovh-web-universe-components": "^8.0.0 || ^9.0.0",
-    "@ovh-ux/ng-pagination-front": "^10.0.6",
+    "@ovh-ux/ng-pagination-front": "^10.1.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
-    "@ovh-ux/ng-ui-router-layout": "^4.0.6",
-    "@ovh-ux/ui-kit": "^5.3.3",
+    "@ovh-ux/ng-ui-router-layout": "^4.1.0",
+    "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-route": "^1.7.5",
@@ -40,7 +40,7 @@
     "moment": "^2.24.0",
     "ng-ckeditor": "^2.0.5",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^11.2.0",
+    "ovh-api-services": "^14.0.6",
     "ovh-ui-kit-bs": "4.1.6"
   }
 }

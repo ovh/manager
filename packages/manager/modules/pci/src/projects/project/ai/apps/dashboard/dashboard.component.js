@@ -4,6 +4,8 @@ export default {
   bindings: {
     app: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     reloadState: '<',
     needRefresh: '<',
     killTasks: '<',

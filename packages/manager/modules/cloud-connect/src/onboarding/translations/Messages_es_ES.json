@@ -1,0 +1,11 @@
+{
+  "cloud_connect_onboarding_title": "Extienda su red hacia los datacenters de OVHcloud",
+  "cloud_connect_onboarding_description": "Nuestra solución de conexión híbrida OVHcloud Connect le permitirá conectar la red de su empresa con la red privada vRack de OVHcloud, de forma segura y eficaz.",
+  "cloud_connect_onboarding_description_part2": "Con la solución Direct, al pasar por nuestras infraestructuras, disfrutará de una interconexión dedicada con un ancho de banda de entre 1 Gb/s y 10 Gb/s.",
+  "cloud_connect_onboarding_description_part3": "También puede optar por la solución Provider con uno de nuestros partners (Equinix, Megaport y otras empresas que se añadirán próximamente). Disfrute de un ancho de banda desde 200 Mb/s hasta 5 Gb/s, así como de una mayor cobertura mundial.",
+  "cloud_connect_onboarding_order": "Contratar",
+  "cloud_connect_onboarding_guide1_title": "Principales conceptos",
+  "cloud_connect_onboarding_guide1_description": "Presentación de los principales conceptos necesarios para entender la solución OVHcloud Connect",
+  "cloud_connect_onboarding_guide2_title": "FAQ",
+  "cloud_connect_onboarding_guide2_description": "FAQ sobre la solución OVHcloud Connect"
+}

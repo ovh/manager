@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-office",
-  "version": "2.6.2",
+  "version": "2.7.0",
   "private": true,
   "description": "Office product.",
   "repository": {
@@ -23,10 +23,11 @@
     "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
-    "@ovh-ux/ng-ovh-utils": "^14.0.16",
+    "@ovh-ux/ng-ovh-utils": "^14.0.17",
     "@ovh-ux/ng-ovh-web-universe-components": "^8.0.0 || ^9.0.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
-    "@ovh-ux/ui-kit": "^5.3.3",
+    "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-route": "^1.7.5",

@@ -1,25 +1,22 @@
-import reduce from 'lodash/reduce';
+import { GUIDES } from './constants';
 import illustration from './assets/PlatformSH.png';
-import { GUIDES } from './onboarding.constants';
 
-export default class {
+export default class WebPaasOnboardingController {
   /* @ngInject */
-  constructor($translate) {
-    this.trackCreateProject = 'web::web-paas::onboarding::create-project';
+  constructor($translate, coreConfig) {
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
   }
 
-  $onInit() {
-    this.guides = reduce(
-      GUIDES,
-      (list, guide) => [
-        ...list,
-        {
-          ...guide,
-        },
-      ],
-      [],
-    );
+  async $onInit() {
     this.illustration = illustration;
+    const user = await this.coreConfig.getUser();
+    this.ovhSubsidiary = user.ovhSubsidiary;
+    this.guides = GUIDES.map((guide) => ({
+      link: guide.links[this.ovhSubsidiary] || guide.links.DEFAULT,
+      description: this.$translate.instant(guide.description),
+      title: this.$translate.instant(guide.title),
+    }));
+    this.cta = this.ctaURL;
   }
 }

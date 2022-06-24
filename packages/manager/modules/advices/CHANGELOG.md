@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.3.4...@ovh-ux/manager-advices@1.4.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **pnr:** add top to advice links ([31f5384](https://github.com/ovh/manager/commit/31f5384f7b8aab16fbc8046c31d472869019a6b2))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
 ## [1.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.3.3...@ovh-ux/manager-advices@1.3.4) (2022-03-24)
 
 

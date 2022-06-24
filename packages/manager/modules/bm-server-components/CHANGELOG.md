@@ -1,3 +1,26 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.2.2...@ovh-ux/manager-bm-server-components@1.3.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **pnr:** add top attribute to oui-action-menu-item with href ([5284489](https://github.com/ovh/manager/commit/5284489da8ae691bbf5b83493dba09f917760a96))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.2.1...@ovh-ux/manager-bm-server-components@1.2.2) (2022-06-07)
+
+
+### Bug Fixes
+
+* **dedicated.server:** display correct incoming bandwidth information ([b76e8fa](https://github.com/ovh/manager/commit/b76e8fa475b06898a79cb11aeb9706139340245e))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.2.0...@ovh-ux/manager-bm-server-components@1.2.1) (2022-03-24)
 
 

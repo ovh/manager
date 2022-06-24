@@ -6,12 +6,16 @@ export default /* @ngInject */ (
   $translate,
   Alerter,
   $location,
+  atInternet,
 ) => {
   // Hack because the condition in the template wouldn't change depending on the mitigation status
   $scope.translations = {};
 
   function init(data) {
     $scope.data = data || $scope.currentActionData;
+    atInternet.trackPage({
+      name: $scope.data?.tracking,
+    });
     if ($scope.data.ip.firewall === 'ACTIVATED') {
       $scope.translations.wizardTitle = $translate.instant(
         'ip_firewall_disable_title',
@@ -46,6 +50,10 @@ export default /* @ngInject */ (
   }
 
   $scope.toggleFirewall = function toggleFirewall() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::confirm`,
+      type: 'action',
+    });
     $scope.loading = true;
 
     let newStatus = 'NOT_CONFIGURED';
@@ -80,7 +88,8 @@ export default /* @ngInject */ (
           },
         )
         .finally(() => {
-          $scope.cancelAction();
+          Ip.cancelActionParam('toggleFirewall');
+          $scope.resetAction();
         });
     } else {
       IpFirewall.toggleFirewall(
@@ -127,7 +136,8 @@ export default /* @ngInject */ (
           },
         )
         .finally(() => {
-          $scope.cancelAction();
+          Ip.cancelActionParam('toggleFirewall');
+          $scope.resetAction();
         });
     }
   };
@@ -165,6 +175,10 @@ export default /* @ngInject */ (
   }
 
   $scope.cancelAction = function cancelAction() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::cancel`,
+      type: 'action',
+    });
     Ip.cancelActionParam('toggleFirewall');
     $scope.resetAction();
   };

@@ -1,5 +1,3 @@
-import { GUIDE_URL, COMMUNITY_URL } from './ai.constants';
-
 export default class PciAiController {
   /* @ngInject */
   constructor(CucCloudMessage, ovhManagerRegionService) {
@@ -9,8 +7,6 @@ export default class PciAiController {
 
   $onInit() {
     this.loadMessages();
-    this.guideUrl = GUIDE_URL;
-    this.communityUrl = COMMUNITY_URL;
   }
 
   loadMessages() {

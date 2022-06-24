@@ -8,5 +8,8 @@ export default {
   bindings: {
     job: '<',
     projectId: '<',
+    guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
   },
 };

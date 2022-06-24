@@ -1,3 +1,51 @@
+# [3.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.21.0...@ovh-ux/manager-hub-app@3.22.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* container cookie policy modal ([9c40fcc](https://github.com/ovh/manager/commit/9c40fcc1a6fe83d8e06874e272d0b4520e0af3e5))
+* handle tracking deps and add tracking in monolithes ([1fb032f](https://github.com/ovh/manager/commit/1fb032f934b69b1a42bb445a506d19dab27342ac))
+* shell authentication in applications ([8154320](https://github.com/ovh/manager/commit/8154320de71e6a61768cab708a69230937dbbfc3))
+* **chatbot:** fix spacing in pnr ([005651d](https://github.com/ovh/manager/commit/005651d05be18391363003f2148290ea51cb6c09))
+* **hub:** chatbot button margin ([c1f2fac](https://github.com/ovh/manager/commit/c1f2facfaebe8c781d4da9e9d132e1f9b18a7085))
+* **hub:** update style based on account sidebar visibility ([e6cb892](https://github.com/ovh/manager/commit/e6cb892f232d8b4c50acb5b485f8172da1c8b21e))
+* **hub:** use default margins in container ([52f8d1d](https://github.com/ovh/manager/commit/52f8d1dd45969bbb0b1b24856b070715695294d6))
+* **hub:** use progress from shell ([33a375a](https://github.com/ovh/manager/commit/33a375a3cb543714f3926f77ef914000770a8018))
+* **hub:** use shell preloader ([02057b4](https://github.com/ovh/manager/commit/02057b4b0c1da4fd99ab2512046b6af54b45ebb9))
+* **pnr:** chatbot management in hub ([7f0757f](https://github.com/ovh/manager/commit/7f0757f85a50d43957bd84f572cbb5a12fa677ea))
+* **pnr:** close chatbot when opening onboarding popup ([e4b3fae](https://github.com/ovh/manager/commit/e4b3faea2c5db0367eb7741b87d86cb7dfc37733))
+* **tracking:** fix tracking init ([6e947b2](https://github.com/ovh/manager/commit/6e947b2bd828335f3361be08d19ead825b15fe05))
+
+
+### Features
+
+* **hub:** add telephony procedure on dashboard ([b8f18c3](https://github.com/ovh/manager/commit/b8f18c33ef5dd46176b685ed231ed95d2d4edb04))
+* **hub:** product nav reshuffle ([dd3859f](https://github.com/ovh/manager/commit/dd3859f10fca306ac9a3014f024dc75abcf7fd9e))
+* **hub:** shell container integration ([2545749](https://github.com/ovh/manager/commit/2545749036cb41c4e2a21b84e49a0e4f00291555))
+* **pnr:** manage chatbot integration with onboarding ([3927bf1](https://github.com/ovh/manager/commit/3927bf16a6e873c830af7e59a6ea06a85f0d2029))
+* **telecom:** move telephony procedure to telephony and fax section ([af42e9e](https://github.com/ovh/manager/commit/af42e9e1f6f243445efcb2d6ba9c5ac41d00000d))
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
+# [3.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.20.5...@ovh-ux/manager-hub-app@3.21.0) (2022-06-07)
+
+
+### Features
+
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
+## [3.20.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.20.4...@ovh-ux/manager-hub-app@3.20.5) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [3.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.20.3...@ovh-ux/manager-hub-app@3.20.4) (2022-05-19)
 
 

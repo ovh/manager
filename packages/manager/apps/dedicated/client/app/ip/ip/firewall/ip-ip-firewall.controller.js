@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../ip-ip.constant';
+
 export default /* @ngInject */ (
   $scope,
   $rootScope,
@@ -10,6 +12,7 @@ export default /* @ngInject */ (
   $route,
   $stateParams,
   $http,
+  atInternet,
 ) => {
   $scope.selectedBlock = null;
   $scope.selectedIp = null;
@@ -115,6 +118,10 @@ export default /* @ngInject */ (
   };
 
   $scope.hideFirewall = function hideFirewall() {
+    atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::ip::firewall::back`,
+      type: 'action',
+    });
     Ip.cancelActionParam('firewall');
     IpFirewall.killPollFirewallRule();
     goToDashboard();

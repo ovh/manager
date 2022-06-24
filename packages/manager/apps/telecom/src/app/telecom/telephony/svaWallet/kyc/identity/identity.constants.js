@@ -17,6 +17,39 @@ export const FORCE_REPRESENTAIVE_IS_BENEFICIARY_KINDS = ['MICRO_ENTERPRISE'];
 
 export const WEBSITE_URL_DEFAULT = 'https://www.ovhcloud.com';
 
+export const DIRECTORY_WAY_NUMBER_EXTRA_ENUM = [
+  'bis',
+  'ter',
+  'quater',
+  'quinquies',
+  'sexto',
+  'septimo',
+  'octimo',
+  'nono',
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'S',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z',
+];
+
 export default {
   DISALLOW_BENEFICIARIES_KINDS,
   FORCE_REPRESENTAIVE_IS_BENEFICIARY_KINDS,

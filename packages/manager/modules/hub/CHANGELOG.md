@@ -1,3 +1,33 @@
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.3.6...@ovh-ux/manager-hub@3.4.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **hub:** hub not visible after telephony banner in ca ([4474104](https://github.com/ovh/manager/commit/4474104459e68334bc267493721ba392db7ce247))
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **pnr:** avoid call to /telephony for procedure message ([0707e34](https://github.com/ovh/manager/commit/0707e34c825ef8986e9fd7157df19205172fd734))
+
+
+### Features
+
+* **hub:** add telephony procedure on dashboard ([b8f18c3](https://github.com/ovh/manager/commit/b8f18c33ef5dd46176b685ed231ed95d2d4edb04))
+* **hub:** product nav reshuffle ([dd3859f](https://github.com/ovh/manager/commit/dd3859f10fca306ac9a3014f024dc75abcf7fd9e))
+* **telecom:** move telephony procedure to telephony and fax section ([af42e9e](https://github.com/ovh/manager/commit/af42e9e1f6f243445efcb2d6ba9c5ac41d00000d))
+* **telecom:** move telephony procedure to telephony and fax section ([0d5384b](https://github.com/ovh/manager/commit/0d5384b5aebb0ff0859d536f24f4f02e84253697))
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
+## [3.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.3.5...@ovh-ux/manager-hub@3.3.6) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [3.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.3.4...@ovh-ux/manager-hub@3.3.5) (2022-05-19)
 
 

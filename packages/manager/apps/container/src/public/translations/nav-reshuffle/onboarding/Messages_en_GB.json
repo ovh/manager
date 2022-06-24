@@ -1,0 +1,19 @@
+{
+  "onboarding_button_text": "Let’s begin!",
+  "onboarding_introduction_popover_title": "{{userName}}, welcome to the OVHcloud Control Panel",
+  "onboarding_introduction_popover_content": "Here, you can find all the features you need to manage your account and services.",
+  "onboarding_introduction_popover_extra": "Your guide will remain available and accessible from the left-hand menu.",
+  "onboarding_popover_follow_guide_button": "Follow the guide",
+  "onboarding_popover_hide_button": "Hide",
+  "onboarding_walkme_popover_next_step": "Next {{current}}/{{total}}",
+  "onboarding_walkme_popover_step1_title": "How do I access my account?",
+  "onboarding_walkme_popover_step1_content": "Access your account at any time by clicking on your name.",
+  "onboarding_walkme_popover_step2_title": "My profile ",
+  "onboarding_walkme_popover_step2_content": "Manage your account directly from your profile.",
+  "onboarding_walkme_popover_step3_title": "My payment methods",
+  "onboarding_walkme_popover_step3_content": "Add one or more payment methods. Configure a default payment method for services with automatic renewal.",
+  "onboarding_walkme_popover_step4_title": "My services",
+  "onboarding_walkme_popover_step4_content": "Simply browse the menu of OVHcloud services, and you can easily find your active services listed in a box.",
+  "onboarding_walkme_popover_step5_title": "My bills",
+  "onboarding_walkme_popover_step5_content": "You can find all of your bills, payments in progress and credit notes in this section."
+}

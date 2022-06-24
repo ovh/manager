@@ -17,8 +17,15 @@
         </oui-header-tabs-item>
     </oui-header-tabs>
     <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
-        <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
-            <span data-translate="pci_project_guides_header_all_guides"></span>
+        <oui-guide-menu-item
+            data-ng-repeat="guide in $ctrl.guideUrl.instances track by $index"
+            data-href="{{:: guide.url }}"
+            data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.instances + guide.tracking)"
+            data-external
+        >
+            <span
+                data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+            ></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
 </oui-header>

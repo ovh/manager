@@ -1,3 +1,104 @@
+## [17.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.22.0...@ovh-ux/manager-dedicated@17.22.1) (2022-06-17)
+
+
+### Bug Fixes
+
+* **dedicated-cloud.mailing-list.subscribe:** display new address ([#7378](https://github.com/ovh/manager/issues/7378)) ([587ac48](https://github.com/ovh/manager/commit/587ac48eb6d8361868f6d691e625bd380f8f1499))
+
+
+
+# [17.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.21.0...@ovh-ux/manager-dedicated@17.22.0) (2022-06-16)
+
+
+### Bug Fixes
+
+* **dedicated:** fix semver issue ([f423eb2](https://github.com/ovh/manager/commit/f423eb254a7c98c8798b6054b7a6d90eeca95a28))
+* **deps:** update semver range for billing module ([#7360](https://github.com/ovh/manager/issues/7360)) ([353611d](https://github.com/ovh/manager/commit/353611da5c1eca66ea3e27a2876652973de1dd9b))
+
+
+### Features
+
+* **billing:** purchase orders ([49e5379](https://github.com/ovh/manager/commit/49e537931f31826cdf213286999ab063625c8846))
+* **ip:** add tracking ([#7227](https://github.com/ovh/manager/issues/7227)) ([9c8cedd](https://github.com/ovh/manager/commit/9c8cedd4664c5e971b0d26b52a469185d79777ff))
+
+
+
+# [17.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.20.0...@ovh-ux/manager-dedicated@17.21.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* container cookie policy modal ([9c40fcc](https://github.com/ovh/manager/commit/9c40fcc1a6fe83d8e06874e272d0b4520e0af3e5))
+* container navbar universe ([a53ddb4](https://github.com/ovh/manager/commit/a53ddb4116cb052709b601b7b8ea2e6dde3aac9b))
+* handle tracking deps and add tracking in monolithes ([1fb032f](https://github.com/ovh/manager/commit/1fb032f934b69b1a42bb445a506d19dab27342ac))
+* margin and sidebar for contained apps ([030e4e6](https://github.com/ovh/manager/commit/030e4e6497ee2b56da6eccf2e7f39c230b9b441c))
+* shell authentication in applications ([8154320](https://github.com/ovh/manager/commit/8154320de71e6a61768cab708a69230937dbbfc3))
+* **account:** rename my account ([43f2443](https://github.com/ovh/manager/commit/43f24439c427c0cb3ccf2465b0e453b665361b39))
+* **apps:** update width based on sidebar visibility ([0d24c7e](https://github.com/ovh/manager/commit/0d24c7e1b6fa17db60c20164fd9b831634be5b70))
+* **bmc:** add bare-metal-cloud redirection state ([06ce5ab](https://github.com/ovh/manager/commit/06ce5ab0d73889b83ee01398fa7060577ba70fea))
+* **dedicated:** app.bmc state ([316adb2](https://github.com/ovh/manager/commit/316adb26cc64a5f19d8d1dca47a28c2f567f7ce4))
+* **dedicated:** container navbar hpc universe ([d085f93](https://github.com/ovh/manager/commit/d085f93ca058fdd0090b63819a199ccee53b5895))
+* **dedicated:** pnr sidebar integration ([6e4eb95](https://github.com/ovh/manager/commit/6e4eb953fb41b813e875bee9245d0a96db0df862))
+* **dedicated:** use progress from shell ([a0c7b34](https://github.com/ovh/manager/commit/a0c7b346493b18097e666e5c2e0776383c9ab0bb))
+* **dedicated:** use shell preloader ([654fae7](https://github.com/ovh/manager/commit/654fae7ea681a6cadd09ce1fb51242fb1618e577))
+* **dedicatedcloud:** filter list on productReference ([860cfd9](https://github.com/ovh/manager/commit/860cfd97f6b49e7e0ab41177e04647491a7f5a38))
+* **dedicatedservers:** fix listing search redirection to onboarding ([adda855](https://github.com/ovh/manager/commit/adda855f6e71445aa63bab74f461123dc9833245))
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **ldp:** fix redirect when empty array result ([0bcc052](https://github.com/ovh/manager/commit/0bcc0529bfb6b0436ec138fc520decf06c511be0))
+* **links:** remove top target ([b762db3](https://github.com/ovh/manager/commit/b762db3180629c305b0228a62b1ab15f81c04ca4))
+* **mbm:** fix US guides links ([1fd5afc](https://github.com/ovh/manager/commit/1fd5afc908255ddf5b8ecbd1cab391c7d8ee7195))
+* **onboarding:** update onboarding page ([d5d954b](https://github.com/ovh/manager/commit/d5d954b869f074a2c75a12e8f2dd3905fbc462ef))
+* **onboarding:** update onboarding US ([fcc0a8d](https://github.com/ovh/manager/commit/fcc0a8d337c0da8b3b5578db845a451435ad9f40))
+* **pnr:** add top attribute to oui-action-menu-item with href ([5284489](https://github.com/ovh/manager/commit/5284489da8ae691bbf5b83493dba09f917760a96))
+* **pnr:** close chatbot when opening onboarding popup ([e4b3fae](https://github.com/ovh/manager/commit/e4b3faea2c5db0367eb7741b87d86cb7dfc37733))
+* **pnr:** flatpickr loaded language ([d0c6bb1](https://github.com/ovh/manager/commit/d0c6bb188bf5467d25021aee6309b1ec4103b4d0))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **cdn:** add onboarding page ([43d30fc](https://github.com/ovh/manager/commit/43d30fc5a538f145424ead934b294b2aa7e41e63))
+* **dedicated:** shell integration ([78f2d67](https://github.com/ovh/manager/commit/78f2d67b66f90f03bdd2d6449ccc37d06a208afe))
+* **dedicated-cloud:** add onboarding page ([1b42924](https://github.com/ovh/manager/commit/1b42924e11c3aa7f81bd890d4b769adc3416d472))
+* **dedicatedservers:** add onboarding module ([9a8c59d](https://github.com/ovh/manager/commit/9a8c59d0219e6df6082a1be08893110957fafec0))
+* **dedicatedservers:** update onboarding page with content ([0af4f67](https://github.com/ovh/manager/commit/0af4f675423afabe85ce8517966cf89aa65b6d4f))
+* **license:** add onboarding module ([b3776be](https://github.com/ovh/manager/commit/b3776be6e326bc59f4f95a100a8d17cac7ddb952))
+* **license:** update content for onboarding ([1951941](https://github.com/ovh/manager/commit/19519417396ed22c5c0a389baf9ed9fe97d59c04))
+* **managedbaremetal:** add onboarding module ([1a4b5e1](https://github.com/ovh/manager/commit/1a4b5e1fb09b334354cc00487bc186e8f1a64e2b))
+* **pnr:** manage chatbot in dedicated ([647f425](https://github.com/ovh/manager/commit/647f425d382d0254e6860852f63a63691293fd9b))
+
+
+
+# [17.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.19.1...@ovh-ux/manager-dedicated@17.20.0) (2022-06-07)
+
+
+### Bug Fixes
+
+* **dedicated:** fix billing module range ([d399853](https://github.com/ovh/manager/commit/d399853cc75fb6da44d81274c419b0564be2639a))
+* **i18n:** add missing translations [CDS 1638] ([7f2d0b0](https://github.com/ovh/manager/commit/7f2d0b0bd20b62fb37740eaba94dc00f406408e0))
+* **i18n:** add missing translations [CDS 1652] ([71a6ea1](https://github.com/ovh/manager/commit/71a6ea193e58d87d6089d42843174c5ed9285204))
+* **i18n:** add missing translations [CDS 1657] ([76bf43d](https://github.com/ovh/manager/commit/76bf43d99e9d918740cede0039b80b44cb6cee06))
+* **useraccount:** display appropriate Region label ([b623e11](https://github.com/ovh/manager/commit/b623e119ba598f548130d36bf51bf4f27d524e80))
+
+
+### Features
+
+* **dedicated:** add description on several section ([#6688](https://github.com/ovh/manager/issues/6688)) ([cc9017b](https://github.com/ovh/manager/commit/cc9017bd7e42ad013642f381a524de10060336d7))
+* **useraccount:** india states information ([ac509d1](https://github.com/ovh/manager/commit/ac509d14e31733ae67e5b74ff9be3771d28ac56c))
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
+## [17.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.19.0...@ovh-ux/manager-dedicated@17.19.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 # [17.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.18.0...@ovh-ux/manager-dedicated@17.19.0) (2022-06-01)
 
 

@@ -163,7 +163,11 @@
         >
         </oui-datagrid-column>
         <oui-action-menu data-compact placement="end">
-            <oui-action-menu-item data-ng-if="$row.url" href="{{:: $row.url}}">
+            <oui-action-menu-item
+                data-ng-if="$row.url"
+                href="{{:: $row.url}}"
+                top
+            >
                 <span data-translate="table_download_html"></span>
             </oui-action-menu-item>
             <oui-action-menu-item

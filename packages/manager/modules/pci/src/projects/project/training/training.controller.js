@@ -1,5 +1,3 @@
-import { GUIDE_URL, DISCORD_URL } from './training.constants';
-
 export default class PciTrainingController {
   /* @ngInject */
   constructor(CucCloudMessage, ovhManagerRegionService) {
@@ -9,8 +7,6 @@ export default class PciTrainingController {
 
   $onInit() {
     this.loadMessages();
-    this.guideUrl = GUIDE_URL;
-    this.discordUrl = DISCORD_URL;
   }
 
   loadMessages() {

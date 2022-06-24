@@ -2,5 +2,7 @@
   "pci_ai_apps_delete_success": "A sua AI app foi eliminada com sucesso",
   "pci_ai_apps_delete_error": "Ocorreu um erro durante a eliminação da AI App: {{ message }}",
   "pci_ai_apps_delete": "Eliminação da AI app",
-  "pci_ai_apps_delete_warning": "Tem a certeza de que pretende eliminar a AI App {{ appId }}?"
+  "pci_ai_apps_delete_warning": "Tem a certeza de que pretende eliminar a AI App {{ appId }}?",
+  "pci_ai_apps_delete_common_delete": "Eliminar",
+  "pci_ai_apps_delete_common_cancel": "Anular"
 }

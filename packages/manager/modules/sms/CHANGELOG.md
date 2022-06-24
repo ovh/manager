@@ -1,3 +1,29 @@
+# [8.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.7.6...@ovh-ux/manager-sms@8.8.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **links:** remove top target ([b762db3](https://github.com/ovh/manager/commit/b762db3180629c305b0228a62b1ab15f81c04ca4))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **pnr:** add empty page for telecom sms section ([c6b27ad](https://github.com/ovh/manager/commit/c6b27addeed5a581bbda21a14f7b0657e7e89f01))
+
+
+
+## [8.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.7.5...@ovh-ux/manager-sms@8.7.6) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [8.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.7.4...@ovh-ux/manager-sms@8.7.5) (2022-05-19)
 
 

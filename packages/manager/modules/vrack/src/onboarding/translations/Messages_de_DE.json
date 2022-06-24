@@ -1,0 +1,19 @@
+{
+  "vrack_onboarding_title": "Privates vRack Netzwerk",
+  "vrack_onboarding_description": "Die vRack (virtuelles Rack) Technologie macht es möglich, Ihre kompatiblen OVHcloud Produkte innerhalb eines oder mehrerer privater Netzwerke zu verbinden, zu isolieren oder zu verteilen. Errichten Sie mithilfe einzigartiger Netzwerktechnologien private hybride Infrastrukturen über mehrere, international verstreute Rechenzentren hinweg.",
+  "vrack_onboarding_description_part2": "Mit vRack können Sie Ihre OVHcloud Produkte auf sichere Art und Weise innerhalb Ihres eigenen privaten Netzwerks miteinander kommunizieren lassen. Bestimmen Sie selbst, ob Ihre Dienste nur über das private Netzwerk und/oder über das öffentliche Netzwerk erreichbar sind.",
+  "vrack_onboarding_description_part3": "Das gesamte Netzwerk wird physisch von OVHcloud.com verwaltet, ohne dass eine Softwareanwendung oder Netzwerkkonfiguration für Ihre Dienste erforderlich wird.",
+  "vrack_onboarding_order": "Bestellen",
+  "vrack_onboarding_guide1_title": "vRack auf Ihren Dedicated Servern konfigurieren",
+  "vrack_onboarding_guide1_description": "Hier erfahren Sie, wie Sie vRack auf mehreren Dedicated Servern einrichten",
+  "vrack_onboarding_guide2_title": "Jumbo Frames im vRack konfigurieren",
+  "vrack_onboarding_guide2_description": "Hier erfahren Sie, wie Sie Jumbo Frames im vRack einrichten",
+  "vrack_onboarding_guide3_title": "IP-Block im vRack konfigurieren",
+  "vrack_onboarding_guide3_description": "Hier erfahren Sie, wie Sie einen öffentlichen IP-Adressblock im vRack einrichten",
+  "vrack_onboarding_us_guide1_title": "How to connect a Dedicated Server to vRack",
+  "vrack_onboarding_us_guide1_description": "Find out how to configure the vRack on two or more dedicated servers",
+  "vrack_onboarding_us_guide2_title": "How to configure vRack for Public Cloud Services",
+  "vrack_onboarding_us_guide2_description": "Find out how to configure the vRack on Public Cloud",
+  "vrack_onboarding_us_guide3_title": "How to configure a Failover IP Block on a vRack",
+  "vrack_onboarding_us_guide3_description": "This guide will show you how to configure a block of public IP addresses for use with the vRack."
+}

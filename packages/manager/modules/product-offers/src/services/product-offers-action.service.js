@@ -35,6 +35,18 @@ export default class ProductOffersActionService {
   }
 
   /**
+   * Get the detach plancode information for its options (addons)
+   * @param  {string} planCode  Plancode identifier
+   * @param  {string} serviceId Id of the service
+   * @return {Promise<Object>}  Promise of the addon detach details
+   */
+  getDetachPlancodeInformationOptions(serviceId, planCode) {
+    return this.$http
+      .get(`/services/${serviceId}/detach/${planCode}/options`)
+      .then(({ data }) => data);
+  }
+
+  /**
    * Retrieve all available options for a given service
    * @param  {string} serviceId Id of the service
    * @return {Promise<Array>}   Promise of the plancodes list

@@ -1,0 +1,22 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+
+.onboardingButton {
+  background: #0050d7;
+  border-radius: 26px !important;
+
+  position: absolute !important;
+  bottom: 20px !important;
+  right: 50px !important;
+  z-index: $base-z-index-popover !important;
+
+  &_padded {
+    right: 120px !important;
+  }
+}
+
+.welcomePopover {
+  width: 280px;
+  max-width: 280px !important;
+}

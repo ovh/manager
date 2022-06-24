@@ -50,3 +50,12 @@
   float: right;
   position: absolute;
 }
+
+.sidebar-open {
+  .chatbot-floating-button,
+  .chatbot-main,
+  .chatbot-reduced,
+  .chatbot-sticky {
+    right: 20rem !important;
+  }
+}

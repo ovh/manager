@@ -1,10 +1,6 @@
 import map from 'lodash/map';
 
-import {
-  DATABASES_GUIDES_URL,
-  NODES_PER_ROW,
-  SHELL_NAMES,
-} from './databases.constants';
+import { NODES_PER_ROW, SHELL_NAMES } from './databases.constants';
 import { WARNING_DATE } from '../../../../components/project/warning-message/warning.constants';
 import Database from '../../../../components/project/storages/databases/database.class';
 import Node from '../../../../components/project/storages/databases/node.class';
@@ -29,7 +25,6 @@ export default /* @ngInject */ ($stateProvider) => {
             : false,
         ),
     resolve: {
-      databaseGuideUrl: () => DATABASES_GUIDES_URL,
       goToAddDatabase: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.storages.databases.add', { projectId }),
       databaseId: /* @ngInject */ ($transition$) => $transition$.params().id,

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sign-up",
-  "version": "2.3.3",
+  "version": "2.5.0",
   "private": true,
   "description": "Sign-Up form component.",
   "repository": {
@@ -30,9 +30,9 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
-    "@ovh-ux/ng-at-internet": "^5.9.0",
+    "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
-    "@ovh-ux/ui-kit": "^5.3.3",
+    "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1"

@@ -1,3 +1,30 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.2.6...@ovh-ux/manager-cda@1.3.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **cda:** onboarding cta ([8e29231](https://github.com/ovh/manager/commit/8e292315b04a61781437fa1ef144f2e7218d3ccd))
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **pnr:** add top on oui-guide-menu-item with href ([ea05258](https://github.com/ovh/manager/commit/ea052580b8119bbd2f7baea9192501a901c0fa74))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **cda:** add onboarding module ([3f3f9f4](https://github.com/ovh/manager/commit/3f3f9f4e12293d6a6c98f1209ee2bdca3fbd4403))
+
+
+
+## [1.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.2.5...@ovh-ux/manager-cda@1.2.6) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.2.4...@ovh-ux/manager-cda@1.2.5) (2022-04-06)
 
 

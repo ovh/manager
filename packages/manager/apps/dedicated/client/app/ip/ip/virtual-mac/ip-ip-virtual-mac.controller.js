@@ -1,7 +1,9 @@
-export default /* @ngInject */ ($scope, IpVirtualMac) => {
+export default /* @ngInject */ ($scope, IpVirtualMac, atInternet) => {
   $scope.data = $scope.currentActionData;
   $scope.loading = true;
-
+  atInternet.trackPage({
+    name: $scope.data?.tracking,
+  });
   IpVirtualMac.getVirtualMacDetails(
     $scope.data.ipBlock.service.serviceName,
     $scope.data.ipBlock.virtualMac.virtualMacs[$scope.data.ip.ip],
@@ -14,4 +16,12 @@ export default /* @ngInject */ ($scope, IpVirtualMac) => {
     .catch(() => {
       $scope.loading = false;
     });
+
+  $scope.closeAction = function closeAction() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::close`,
+      type: 'action',
+    });
+    $scope.resetAction();
+  };
 };

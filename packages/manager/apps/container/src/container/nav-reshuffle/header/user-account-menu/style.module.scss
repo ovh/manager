@@ -1,0 +1,118 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+
+.userIcon {
+  font-size: 1.375rem;
+}
+
+.menuContent {
+  strong {
+    font-weight: 600;
+  }
+
+  hr {
+    border: 1px solid #85d9fd;
+  }
+}
+
+.feedback {
+  &_title {
+    font-size: 16px;
+  }
+
+  &_text {
+    font-size: 14px;
+    color: #4d5592;
+  }
+}
+
+.selectable {
+  user-select: text;
+}
+
+.defaultPaymentMethod {
+  @import '@ovh-ux/ui-kit/dist/scss/_tokens.scss';
+  @import '@ovh-ux/manager-hub/src/variables.scss';
+
+  > a {
+    background: transparent linear-gradient(89deg, #0046d1 0%, #001091 100%) 0%
+      0% no-repeat padding-box;
+    border-radius: 10px;
+    color: white !important;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    width: 100%;
+    text-decoration: none;
+    transition: background-color 250ms;
+  }
+
+  > a:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5rem;
+    color: white;
+  }
+
+  &_loading {
+    max-height: 41px;
+  }
+
+  &_label {
+    font-size: 0.75rem;
+
+    > p {
+      color: inherit;
+    }
+  }
+
+  &_status {
+    font-size: 0.8rem;
+    font-weight: bold;
+    max-width: none;
+    line-height: 0.85rem;
+    border-radius: 16px;
+  }
+
+  .oui-badge {
+    &_error {
+      color: $ae-500;
+    }
+
+    &_warning {
+      color: $aw-500;
+    }
+
+    &_success {
+      color: $as-500;
+    }
+  }
+
+  .oui-icon {
+    color: $p-800;
+  }
+
+  .oui-icon-arrow-right {
+    color: $p-500;
+  }
+}
+
+.myAccountIcon {
+  font-size: 1rem !important;
+  vertical-align: top !important;
+}
+
+@media (max-width: $device-breakpoint-tablet-max-width) {
+  .userInfos {
+    display: none;
+  }
+}

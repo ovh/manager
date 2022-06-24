@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ui-router-layout",
-  "version": "4.0.6",
+  "version": "4.1.0",
   "description": "Enhance UI-Router by adding a layout decorator to deal with an UI Bootstrap modal instance.",
   "keywords": [
     "angularjs",
@@ -44,7 +44,7 @@
     "@ovh-ux/component-rollup-config": "^11.0.0 || ^12.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/ui-kit": "^5.3.3",
+    "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.5.0",
     "angular-ui-bootstrap": "~1.3.3"

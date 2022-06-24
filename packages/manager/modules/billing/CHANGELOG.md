@@ -1,3 +1,102 @@
+# [0.16.0-alpha.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.3...@ovh-ux/manager-billing@0.16.0-alpha.4) (2022-06-22)
+
+
+### Bug Fixes
+
+* **orders:** prevent displaying empty page ([#7414](https://github.com/ovh/manager/issues/7414)) ([c603135](https://github.com/ovh/manager/commit/c603135673ced2dac5de0945557446a65cfff3e0)), closes [#7402](https://github.com/ovh/manager/issues/7402)
+
+
+
+# [0.16.0-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.2...@ovh-ux/manager-billing@0.16.0-alpha.3) (2022-06-21)
+
+
+### Bug Fixes
+
+* **billing.history:** hide HTML invoice for India customers ([#7261](https://github.com/ovh/manager/issues/7261)) ([1bfc845](https://github.com/ovh/manager/commit/1bfc845ae001354da461f81b91467fd7c873bcfb))
+
+
+
+# [0.16.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.1...@ovh-ux/manager-billing@0.16.0-alpha.2) (2022-06-17)
+
+
+### Bug Fixes
+
+* **billing:** remove unused future state ([#7398](https://github.com/ovh/manager/issues/7398)) ([cb9a41c](https://github.com/ovh/manager/commit/cb9a41c066c8309160c2023b7f85c512775e5ca1))
+
+
+
+# [0.16.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.0...@ovh-ux/manager-billing@0.16.0-alpha.1) (2022-06-17)
+
+
+### Bug Fixes
+
+* **billing:** remove lazyload on purchase order ([#7385](https://github.com/ovh/manager/issues/7385)) ([#7394](https://github.com/ovh/manager/issues/7394)) ([4d728b2](https://github.com/ovh/manager/commit/4d728b2a36803e773986308c2b48e2bbf531b345))
+
+
+
+# [0.16.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.15.0-alpha.0...@ovh-ux/manager-billing@0.16.0-alpha.0) (2022-06-16)
+
+
+### Bug Fixes
+
+* **billing:** enable the sorting on the status column ([ef5b053](https://github.com/ovh/manager/commit/ef5b0536ec056d6cf9440e7a72bceaf2aee3163c))
+* **billing:** modification of wording for edit purchase order ([aee8922](https://github.com/ovh/manager/commit/aee892202cb3920972c6b5adfb94b716f9c1a132))
+* **billing:** po is available only for not individual legalform ([44fb3e5](https://github.com/ovh/manager/commit/44fb3e5a00e491f9c3f88e4b23ea5dcd8725c07b))
+* **billing:** purchase order end date excluded information ([5514696](https://github.com/ovh/manager/commit/551469685884c4d7f6bd3e4fe1c547472ce5ee83))
+* **billing:** purchase order fix first valid date not selectable ([159c945](https://github.com/ovh/manager/commit/159c945eaca481264d2c49c5b1cf927ae1920268))
+* **billing:** purchase order number stays inactive ([9001b11](https://github.com/ovh/manager/commit/9001b1155a6aca5a96f0dbd7000359f72a6a68e2))
+* **i18n:** add missing translations [CDS 1675] ([6477e46](https://github.com/ovh/manager/commit/6477e46da4cbceba352b8513032ed78b9acc2196))
+* **i18n:** add missing translations [CDS 1680] ([24023e2](https://github.com/ovh/manager/commit/24023e29bc6eaa89b6b789c2fa0787baafae3c73))
+
+
+### Features
+
+* **billing:** purchase orders ([49e5379](https://github.com/ovh/manager/commit/49e537931f31826cdf213286999ab063625c8846))
+
+
+
+# [0.15.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.14.0-alpha.1...@ovh-ux/manager-billing@0.15.0-alpha.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **billing:** avoid future state issue ([5563be6](https://github.com/ovh/manager/commit/5563be6b8ca574d64a16b3d0bd4ad47d9a942033))
+* **pnr:** add top attribute to oui-action-menu-item with href ([5284489](https://github.com/ovh/manager/commit/5284489da8ae691bbf5b83493dba09f917760a96))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
+# [0.14.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.14.0-alpha.0...@ovh-ux/manager-billing@0.14.0-alpha.1) (2022-06-13)
+
+
+### Bug Fixes
+
+* **refund:** avoid refund amount error ([#7326](https://github.com/ovh/manager/issues/7326)) ([79c55f4](https://github.com/ovh/manager/commit/79c55f46290268ca3f47316403b3e86391c06753))
+
+
+
+# [0.14.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.10...@ovh-ux/manager-billing@0.14.0-alpha.0) (2022-06-07)
+
+
+### Features
+
+* **dedicated:** add description on several section ([#6688](https://github.com/ovh/manager/issues/6688)) ([cc9017b](https://github.com/ovh/manager/commit/cc9017bd7e42ad013642f381a524de10060336d7))
+
+
+
+# [0.13.0-alpha.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.9...@ovh-ux/manager-billing@0.13.0-alpha.10) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 # [0.13.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.8...@ovh-ux/manager-billing@0.13.0-alpha.9) (2022-05-19)
 
 

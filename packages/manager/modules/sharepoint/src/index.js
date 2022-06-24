@@ -2,6 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 import '@ovh-ux/ng-at-internet';
+import onboarding from './onboarding';
 
 import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -14,6 +15,7 @@ angular
     'ngUiRouterBreadcrumb',
     'oc.lazyLoad',
     'ngAtInternet',
+    onboarding,
   ])
   .config(
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {

@@ -1,6 +1,12 @@
 {
   "nutanix_onboarding_title": "Hosted Private Cloud powered by Nutanix",
   "nutanix_onboarding_description": "Explore our new, all-in-one, scalable Private Cloud platform. It combines pre-installed Nutanix Cloud Platform licences with OVHcloud infrastructures that are 100% dedicated and secure. You get a ready-to-use Nutanix hyperconverged infrastructure (HCI) in just a few hours.",
-  "nutanix_onboarding_description_1": "This solution is perfect for cloud migration strategies, implementing a Disaster Recovery Plan (DRP), and handling excess workloads.",
-  "nutanix_onboarding_contact_us": "Contact us"
+  "nutanix_onboarding_description2": "This solution is perfect for cloud migration strategies, implementing a Disaster Recovery Plan (DRP), and handling excess workloads.",
+  "nutanix_onboarding_order": "Order",
+  "nutanix_onboarding_guide1_title": "General documentation on Nutanix",
+  "nutanix_onboarding_guide1_description": "Technical details of the Nutanix infrastructure at OVHcloud",
+  "nutanix_onboarding_guide2_title": "List of included services and licences",
+  "nutanix_onboarding_guide2_description": "Overview of services and licences included in the Hosted Private Cloud powered by Nutanix solution",
+  "nutanix_onboarding_guide3_title": "How the OVHgateway works",
+  "nutanix_onboarding_guide3_description": "Find out how the OVHgateway works"
 }

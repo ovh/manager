@@ -1,7 +1,6 @@
 import {
   PRIVATE_REGISTRY_STATUS,
   PRIVATE_REGISTRY_STATUS_MAP,
-  GUIDE_LINKS,
 } from './private-registry.constants';
 
 import { getCriteria } from '../project.utils';
@@ -10,7 +9,6 @@ export default class {
   /* @ngInject */
   constructor(CucCloudMessage, pciPrivateRegistryService) {
     this.CucCloudMessage = CucCloudMessage;
-    this.GUIDE_LINKS = GUIDE_LINKS;
     this.PRIVATE_REGISTRY_STATUS = PRIVATE_REGISTRY_STATUS;
     this.PRIVATE_REGISTRY_STATUS_MAP = PRIVATE_REGISTRY_STATUS_MAP;
     this.pciPrivateRegistryService = pciPrivateRegistryService;

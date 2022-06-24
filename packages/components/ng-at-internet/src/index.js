@@ -1,7 +1,6 @@
 import angular from 'angular';
 import { set } from 'lodash-es';
 
-import { AT_INTERNET_CUSTOM_VARS } from './constants';
 import {
   atInternetClickDirective,
   trackOnDirective,
@@ -14,7 +13,6 @@ const moduleName = 'ngAtInternet';
 
 angular
   .module(moduleName, [])
-  .constant('AT_INTERNET_CUSTOM_VARS', AT_INTERNET_CUSTOM_VARS)
   .config(($provide, atInternetProvider) => {
     $provide.decorator('atInternet', ($delegate) => {
       const delegateTrackPage = $delegate.trackPage;

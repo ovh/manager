@@ -6,6 +6,8 @@ export default {
     pciFeatureRedirect: '<',
     hasDefaultPaymentMethod: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     project: '<',
     projectId: '<',
     quotas: '<',

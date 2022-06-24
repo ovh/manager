@@ -1,0 +1,10 @@
+{
+  "freefax_onboarding_title": "Faks",
+  "freefax_onboarding_description": "Zarządzaj faksem za pomocą komputera lub poczty elektronicznej i oszczędzaj pieniądze.",
+  "freefax_onboarding_order": "Sprawdź pakiety",
+  "freefax_onboarding_guide1_title": "Konfiguracja linii faksu",
+  "freefax_onboarding_guide1_description": "Dowiedz się, jak skonfigurować linię faksu z poziomu Panelu klienta OVHcloud",
+  "freefax_onboarding_guide2_title": "Wyślij kampanię faksową z poziomu Twojego Panelu klienta OVHcloud",
+  "freefax_onboarding_guide2_description": "Dowiedz się, jak przygotować i wysłać kampanię faksową z z poziomu Panelu klienta OVHcloud",
+  "freefax_onboarding_guide3_title": "Wysyłanie faksów i tworzenie kampanii za pomocą poczty elektronicznej"
+}

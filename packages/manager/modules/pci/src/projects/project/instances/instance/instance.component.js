@@ -44,6 +44,8 @@ export default {
     attachPrivateNetwork: '<',
     scheduleAutoBackup: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     vncDisabled: '<',
   },
 };

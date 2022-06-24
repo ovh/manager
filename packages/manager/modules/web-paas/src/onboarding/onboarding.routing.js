@@ -1,7 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('web-paas.onboarding', {
     url: '/onboarding',
-    component: 'webPaasOnboarding',
+    component: 'webPaasOnboardingComponent',
     redirectTo: (transition) =>
       transition
         .injector()
@@ -10,8 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
           projects.length > 0 ? { state: 'web-paas' } : false,
         ),
     resolve: {
+      hideBreadcrumb: () => true,
       projects: /* @ngInject */ (WebPaas) => WebPaas.getProjects(),
-      breadcrumb: () => null, // Hide breadcrumb
+      ctaURL: /* @ngInject */ ($state) => $state.href('web-paas.add'),
     },
   });
 };

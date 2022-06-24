@@ -31,5 +31,12 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       hideBreadcrumb: () => true,
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('resources')
+        .then((resources) =>
+          resources.length === 0 ? 'app.managedBaremetal.onboarding' : false,
+        ),
   });
 };

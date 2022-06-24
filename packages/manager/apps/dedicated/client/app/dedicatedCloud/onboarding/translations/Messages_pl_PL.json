@@ -1,0 +1,19 @@
+{
+  "dedicated_clouds_onboarding_title": "Platforma wirtualizacji VMware w chmurze",
+  "dedicated_clouds_onboarding_description": "Potrzebujesz więcej zasobów, aby rozwijać Twoją działalność? Realizujesz operacje na danych wrażliwych wymagających bezpieczeństwa, poufności i dedykowanej infrastruktury?",
+  "dedicated_clouds_onboarding_description2": "Usługa Hosted Private Cloud działa w oparciu o prywatną infrastrukturę hostowaną w OVHcloud i zarządzaną przez nasze zespoły, gwarantującą poziom dostępności 99,9%, która pozwoli Ci skupić się na kluczowych aspektach Twojej działalności.",
+  "dedicated_clouds_onboarding_description3": "Nasza oferta, stanowiąca doskonałe połączenie sprzętu Intel najnowszej generacji z technologią VMware, zapewnia w pełni izolowane i dedykowane środowiska i gwarantuje bezpieczeństwo Twoich najbardziej krytycznych projektów.",
+  "dedicated_clouds_onboarding_order": "Zamów",
+  "dedicated_clouds_onboarding_guide1_title": "Wdrożenie wirtualnej maszyny",
+  "dedicated_clouds_onboarding_guide1_description": "Dowiedz się, jak wdrożyć wirtualną maszynę z poziomu interfejsu vSphere",
+  "dedicated_clouds_onboarding_guide2_title": "Logowanie do interfejsu vSphere",
+  "dedicated_clouds_onboarding_guide2_description": "Sprawdź różne sposoby logowania do vSphere",
+  "dedicated_clouds_onboarding_guide3_title": "Logowanie przez SFTP",
+  "dedicated_clouds_onboarding_guide3_description": "Dowiedz się, jak się zalogować do Private Cloud przez SFTP",
+  "dedicated_clouds_onboarding_us_guide1_title": "Deploying a virtual machine",
+  "dedicated_clouds_onboarding_us_guide1_description": "Find out how to deploy a virtual machine in the vSphere interface",
+  "dedicated_clouds_onboarding_us_guide2_title": "Logging in to the vSphere interface",
+  "dedicated_clouds_onboarding_us_guide2_description": "Find out about the different ways you can log in to vSphere",
+  "dedicated_clouds_onboarding_us_guide3_title": "Logging in via SFTP",
+  "dedicated_clouds_onboarding_us_guide3_description": "Find out how to log in to your Private Cloud via SFTP"
+}

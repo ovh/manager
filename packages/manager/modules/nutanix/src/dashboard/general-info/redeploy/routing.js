@@ -11,6 +11,15 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
+      nodes: /* @ngInject */ ($http, serviceName) =>
+        $http
+          .get(
+            `/service?type=${encodeURIComponent(`/nutanix/${serviceName}`)}`,
+            {
+              serviceType: 'aapi',
+            },
+          )
+          .then(({ data }) => data),
       goBack: /* @ngInject */ (goToNutanixGeneralInfo) =>
         goToNutanixGeneralInfo,
       goToConfirmRedeploy: /* @ngInject */ ($state) => (

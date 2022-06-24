@@ -1,0 +1,15 @@
+{
+  "beta_modal_title": "Descubra a nova versão da Área de Cliente",
+  "beta_modal_infos": "Clique no seu perfil para passar para a nova versão e dê a sua opinião.",
+  "beta_modal_accept": "Migrar para a nova versão",
+  "beta_modal_decline": "Talvez mais tarde",
+  "beta_modal_screenshot": "Captura de ecrã",
+  "beta_modal_new": "Nova versão",
+  "beta_modal_beta": "Beta",
+  "beta_modal_old": "Versão clássica",
+  "beta_modal_switch_title": "Pretende voltar à versão anterior da Área de Cliente?",
+  "beta_modal_switch_infos": "Para melhor responder às suas expectativas, a sua opinião é importante para nós. Ajude-nos a melhorar!",
+  "beta_modal_switch_accept": "Dar a minha opinião",
+  "beta_switch": "Mudar de versão",
+  "beta_modal_switch_later": "Mais tarde"
+}

@@ -1,3 +1,43 @@
+# [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.5...@ovh-ux/manager-exchange@3.5.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **exchange:** ca onboarding description ([9ff71b5](https://github.com/ovh/manager/commit/9ff71b55512116b4620792f5d17f7015f4723991))
+* **exchange:** onboarding description ([95ac906](https://github.com/ovh/manager/commit/95ac90639481a104ad524ca9512be5727675c0be))
+* **exchange:** onboarding tutorial ([863de3e](https://github.com/ovh/manager/commit/863de3ed6ff350f479fbb61f7f294f466480ae69))
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **pnr:** add top attribute to oui-action-menu-item with href ([5284489](https://github.com/ovh/manager/commit/5284489da8ae691bbf5b83493dba09f917760a96))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **exchange:** add onboarding page ([291f131](https://github.com/ovh/manager/commit/291f13173a49c58d4035b4c4cf7d521a314fcf3a))
+
+
+
+## [3.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.4...@ovh-ux/manager-exchange@3.4.5) (2022-06-07)
+
+
+### Bug Fixes
+
+* **exchange:** hide guid if the account is not configured ([#7200](https://github.com/ovh/manager/issues/7200)) ([dc976a2](https://github.com/ovh/manager/commit/dc976a2a1cbb43a2f58313a57f0fd571a17117f2))
+* remove unused translations [CDS] ([dc1d7db](https://github.com/ovh/manager/commit/dc1d7dbc79b6fb2363deafcd78e3f36d4df486bc))
+* **web.exchange:** allow upper case letters in username ([#7083](https://github.com/ovh/manager/issues/7083)) ([a70d3c4](https://github.com/ovh/manager/commit/a70d3c4b7427176b46de268f3ab157e40327b4b2))
+
+
+
+## [3.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.3...@ovh-ux/manager-exchange@3.4.4) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [3.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.2...@ovh-ux/manager-exchange@3.4.3) (2022-05-19)
 
 

@@ -20,6 +20,14 @@ defineFeature(feature, (test) => {
   shell.setMessageBus(shellMessageBus);
 
   test('Retrieving a URL', ({ given, when, then }) => {
+    beforeEach(() => {
+      Object.defineProperty(window, 'location', {
+        value: {
+          href: '',
+          hostname: 'ovh',
+        },
+      });
+    });
     let desiredURL;
 
     given('I have a navigation plugin instanciated', () => {

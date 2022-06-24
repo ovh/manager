@@ -2,10 +2,12 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import onboarding from './onboarding';
+
 const moduleName = 'managedBaremetalLazyloading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad'])
+  .module(moduleName, ['ui.router', 'oc.lazyLoad', onboarding])
   .config(
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       $stateProvider.state('app.managedBaremetal', {

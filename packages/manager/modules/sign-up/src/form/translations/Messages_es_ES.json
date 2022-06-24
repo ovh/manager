@@ -667,5 +667,13 @@
   "sign_up_form_enum_IT_area_VT": "Viterbo (Lacio)",
   "sign_up_form_enum_IT_area_BT": "Barletta-Andria-Trani (Apulia)",
   "sign_up_form_enum_IT_area_FM": "Fermo (Marche)",
-  "sign_up_form_enum_IT_area_MB": "Monza E Brianza (Lombardía)"
+  "sign_up_form_enum_IT_area_MB": "Monza E Brianza (Lombardía)",
+  "sign_up_form_enum_IN_area_IN-AN": "Islas Andamán y Nicobar",
+  "sign_up_form_enum_IN_area_IN-CH": "Chandigarh",
+  "sign_up_form_enum_IN_area_IN-DH": "Dadra y Nagar Haveli y Damán y Diu",
+  "sign_up_form_enum_IN_area_IN-DL": "Delhi",
+  "sign_up_form_enum_IN_area_IN-JK": "Jammu y Cachemira",
+  "sign_up_form_enum_IN_area_IN-LA": "Ladakh",
+  "sign_up_form_enum_IN_area_IN-LD": "Lakshadweep",
+  "sign_up_form_enum_IN_area_IN-PY": "Puducherry"
 }

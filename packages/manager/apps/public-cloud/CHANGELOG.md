@@ -1,3 +1,54 @@
+## [4.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.19.0...@ovh-ux/manager-public-cloud@4.19.1) (2022-06-17)
+
+
+### Bug Fixes
+
+* **at-internet:** add missing return statement([#7374](https://github.com/ovh/manager/issues/7374)) ([4c1d567](https://github.com/ovh/manager/commit/4c1d5676532b34e6e8eaa05309bea6cd19ae7719))
+
+
+
+# [4.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.18.0...@ovh-ux/manager-public-cloud@4.19.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* container cookie policy modal ([9c40fcc](https://github.com/ovh/manager/commit/9c40fcc1a6fe83d8e06874e272d0b4520e0af3e5))
+* container navbar universe ([a53ddb4](https://github.com/ovh/manager/commit/a53ddb4116cb052709b601b7b8ea2e6dde3aac9b))
+* handle tracking deps and add tracking in monolithes ([1fb032f](https://github.com/ovh/manager/commit/1fb032f934b69b1a42bb445a506d19dab27342ac))
+* shell authentication in applications ([8154320](https://github.com/ovh/manager/commit/8154320de71e6a61768cab708a69230937dbbfc3))
+* **pnr:** close chatbot when opening onboarding popup ([e4b3fae](https://github.com/ovh/manager/commit/e4b3faea2c5db0367eb7741b87d86cb7dfc37733))
+* **pnr:** flatpickr loaded language ([d0c6bb1](https://github.com/ovh/manager/commit/d0c6bb188bf5467d25021aee6309b1ec4103b4d0))
+* **public-cloud:** pnr sidebar integration ([bd86580](https://github.com/ovh/manager/commit/bd86580fc5084b3e214e082ba3d7b3ce230b43bb))
+* **public-cloud:** use progress from shell ([3f6162a](https://github.com/ovh/manager/commit/3f6162ac35f0087ad59a9e8e865d63328fd008c5))
+* **public-cloud:** use shell preloader ([0c7b662](https://github.com/ovh/manager/commit/0c7b662df9e3a24c362350adb9c0e83182a73ad4))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **pnr:** manage chatbot in public-cloud ([95c3489](https://github.com/ovh/manager/commit/95c3489b49ea39567505d792af5901a9488b35a3))
+* **public-cloud:** shell integration ([0e54cef](https://github.com/ovh/manager/commit/0e54cef9567498f91b33072c04f079ebf392384a))
+
+
+
+# [4.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.17.9...@ovh-ux/manager-public-cloud@4.18.0) (2022-06-07)
+
+
+### Features
+
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
+## [4.17.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.17.8...@ovh-ux/manager-public-cloud@4.17.9) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [4.17.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.17.7...@ovh-ux/manager-public-cloud@4.17.8) (2022-05-19)
 
 

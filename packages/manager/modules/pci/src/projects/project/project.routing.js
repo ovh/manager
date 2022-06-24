@@ -1,4 +1,7 @@
-import { GUIDES_URL } from '../../components/project/guides-header/guides-header.constants';
+import {
+  GUIDES_LIST,
+  GUIDE_TRACKING_TAG,
+} from '../../components/project/guides-header/guides-header.constants';
 import { ACTIONS, LEGACY_PLAN_CODES, LINKS } from './project.constants';
 import { PCI_FEATURES } from '../projects.constant';
 
@@ -58,14 +61,33 @@ export default /* @ngInject */ ($stateProvider) => {
       isLegacyProject: /* @ngInject */ (service) =>
         isLegacy(service?.billing?.plan?.code),
 
+      isMenuSidebarVisible: /* @ngInject */ ($injector) => {
+        if ($injector.has('ovhShell')) {
+          const ovhShell = $injector.get('ovhShell');
+          return ovhShell.ux.isMenuSidebarVisible();
+        }
+        return false;
+      },
+
       breadcrumb: /* @ngInject */ (project) =>
         project.status !== 'creating' ? project.description : null,
 
       getQuotaUrl: /* @ngInject */ ($state) => () =>
         $state.href('pci.projects.project.quota'),
 
-      guideUrl: /* @ngInject */ (user) =>
-        GUIDES_URL[user.ovhSubsidiary] || GUIDES_URL.DEFAULT,
+      guideUrl: /* @ngInject */ (user) => {
+        Object.keys(GUIDES_LIST).forEach((key) => {
+          Object.entries(GUIDES_LIST[key]).forEach(([subKey, value]) => {
+            GUIDES_LIST[key][subKey].url =
+              typeof value.url === 'object'
+                ? value.url[user.ovhSubsidiary] || value.url.DEFAULT
+                : value.url;
+          });
+        });
+        return GUIDES_LIST;
+      },
+
+      guideTrackingSectionTags: /* @ngInject */ () => GUIDE_TRACKING_TAG,
 
       onListParamChange: /* @ngInject */ ($state, $transition$) => () => {
         return $state.go(

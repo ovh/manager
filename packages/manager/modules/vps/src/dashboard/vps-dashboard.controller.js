@@ -480,17 +480,6 @@ export default class {
             isAvailable: () =>
               this.tabSummary.windowsActivated && !this.isMigrationInProgress,
           },
-          upgrade: {
-            text: this.$translate.instant(
-              'vps_configuration_upgradevps_title_button',
-            ),
-            state: 'vps.detail.upgrade',
-            stateParams: { serviceName: this.serviceName },
-            isAvailable: () =>
-              !this.loaders.polling &&
-              !this.isVpsNewRange &&
-              !this.isMigrationInProgress,
-          },
         };
       });
   }

@@ -1,0 +1,27 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+
+.popover {
+  position: absolute !important;
+  visibility: visible;
+  z-index: $base-z-index-popover !important;
+  opacity: 1 !important;
+
+  .popover-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: $p-800;
+    margin-bottom: 16px;
+
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .popover-body {
+    font-size: 16px;
+    color: inherit;
+    padding: 0;
+  }
+}

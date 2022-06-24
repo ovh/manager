@@ -3,8 +3,8 @@ import {
   FORCE_REPRESENTAIVE_IS_BENEFICIARY_KINDS,
   REGEX_VALIDATORS,
   WEBSITE_URL_DEFAULT,
+  DIRECTORY_WAY_NUMBER_EXTRA_ENUM,
 } from '../identity.constants';
-import { DIRECTORY_WAY_NUMBER_EXTRA_ENUM } from '../../../../service/contact/contact.constants';
 
 import { buildEnumList, getEnumItemValue } from '../../../sva-wallet.constants';
 

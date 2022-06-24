@@ -53,6 +53,11 @@ export default /* @ngInject */ ($stateProvider) => {
           .catch(() => false),
       getServerDashboardLink: /* @ngInject */ ($state) => (server) =>
         $state.href('app.dedicated-server.server', { productId: server.name }),
+      noFiltersServers: /* @ngInject */ (iceberg) =>
+        iceberg('/dedicated/server')
+          .query()
+          .expand('CachedObjectList-Pages')
+          .execute(null, true).$promise,
       dedicatedServers: /* @ngInject */ ($transition$, iceberg) => {
         const { filter, pageSize, sort, sortOrder } = $transition$.params();
         let { page } = $transition$.params();
@@ -125,5 +130,14 @@ export default /* @ngInject */ ($stateProvider) => {
         get(dedicatedServers.headers, 'x-pagination-sort-order'),
       hideBreadcrumb: () => true,
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('noFiltersServers')
+        .then((noFiltersServers) =>
+          noFiltersServers.data.length === 0
+            ? 'app.dedicated-server.onboarding'
+            : false,
+        ),
   });
 };

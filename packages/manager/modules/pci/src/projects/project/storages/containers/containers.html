@@ -8,9 +8,14 @@
             <oui-guide-menu
                 data-text="{{:: 'pci_project_guides_header' | translate }}"
             >
-                <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
+                <oui-guide-menu-item
+                    data-ng-repeat="guide in $ctrl.guideUrl.storage track by $index"
+                    data-href="{{:: guide.url }}"
+                    data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.cloud_archive + guide.tracking)"
+                    data-external
+                >
                     <span
-                        data-translate="pci_project_guides_header_all_guides"
+                        data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
                     ></span>
                 </oui-guide-menu-item>
             </oui-guide-menu>
@@ -50,7 +55,6 @@
                     data-ng-href="{{:: $ctrl.containerLink($row) }}"
                     data-ng-bind="::$value"
                     class="text-truncate"
-                    target="_top"
                 ></a>
             </oui-datagrid-column>
             <oui-datagrid-column

@@ -45,7 +45,10 @@
             data-ng-if="$ctrl.isTopLevelApplication"
         >
         </ovh-manager-account-sidebar>
-        <ovh-manager-notifications-sidebar> </ovh-manager-notifications-sidebar>
+        <ovh-manager-notifications-sidebar
+            data-ng-if="$ctrl.isTopLevelApplication"
+        >
+        </ovh-manager-notifications-sidebar>
         <div class="position-relative w-100 h-100 overflow-auto ng-cloak">
             <div
                 class="position-absolute hub-main w-100 h-100"
@@ -74,11 +77,14 @@
         </div>
 
         <ovh-chatbot
+            data-ng-class="{ 'sidebar-open': $ctrl.isAccountSidebarVisible }"
             data-ng-if="$ctrl.chatbotEnabled"
             data-language="{{$ctrl.currentLanguage}}"
             data-country="{{$ctrl.me.ovhSubsidiary}}"
             data-support-level="{{$ctrl.me.supportLevel.level}}"
             data-open-at-startup="$ctrl.showLivechat"
+            data-on-open="$ctrl.onChatbotOpen()"
+            data-on-close="$ctrl.onChatbotClose(reduced)"
         ></ovh-chatbot>
     </body>
 </html>

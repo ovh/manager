@@ -1,3 +1,30 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.1.0...@ovh-ux/manager-nutanix@1.2.0) (2022-06-16)
+
+
+### Features
+
+* **redeploy:** enhance cluster redeploy ([#7225](https://github.com/ovh/manager/issues/7225)) ([3d6b03b](https://github.com/ovh/manager/commit/3d6b03bb3ab1a35ae0d88ca9b9b1c0b86858a3e7))
+
+
+
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.0.3...@ovh-ux/manager-nutanix@1.1.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **anthos:** update onboarding content ([e7b1e10](https://github.com/ovh/manager/commit/e7b1e10dd220940569b457eef541cccd0a5a84ef))
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **nutanix:** fix image on onboarding page ([28c8554](https://github.com/ovh/manager/commit/28c855439a3348e8374fb8582303debc21bb81aa))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **nutanix:** update onboarding ([a3dd473](https://github.com/ovh/manager/commit/a3dd473de95259c1ca21f7fbd48bc494a794dfb9))
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.0.2...@ovh-ux/manager-nutanix@1.0.3) (2022-04-06)
 
 

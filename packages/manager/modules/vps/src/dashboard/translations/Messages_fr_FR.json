@@ -7,6 +7,7 @@
   "vps_dashboard_migration_in_progress": "Votre VPS Cloud est en cours de migration vers la nouvelle gamme.",
   "vps_dashboard_migration_in_error": "Une erreur s'est produite lors de la migration de votre VPS. La suite de la migration va être prise en charge par nos équipes.",
   "vps_dashboard_migration_link": "Migrer vers la nouvelle gamme",
+  "vps_dashboard_migration_tile": "Migrer mon VPS",
   "vps_dashboard_state": "Statut",
   "vps_dashboard_state_backuping": "En cours de sauvegarde",
   "vps_dashboard_state_installing": "En cours d'installation",

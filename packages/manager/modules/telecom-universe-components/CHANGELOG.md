@@ -1,3 +1,28 @@
+# [7.12.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.11.1...@ovh-ux/ng-ovh-telecom-universe-components@7.12.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **telecom:** fix link to telephony procedure ([6711da6](https://github.com/ovh/manager/commit/6711da6241b0ff4201732283e2543498d7e70375))
+
+
+### Features
+
+* **telecom:** move telephony procedure to telephony and fax section ([af42e9e](https://github.com/ovh/manager/commit/af42e9e1f6f243445efcb2d6ba9c5ac41d00000d))
+* **telecom:** move telephony procedure to telephony and fax section ([0d5384b](https://github.com/ovh/manager/commit/0d5384b5aebb0ff0859d536f24f4f02e84253697))
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
+## [7.11.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.11.0...@ovh-ux/ng-ovh-telecom-universe-components@7.11.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 # [7.11.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.10.1...@ovh-ux/ng-ovh-telecom-universe-components@7.11.0) (2022-05-31)
 
 

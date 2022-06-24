@@ -1,3 +1,34 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.1.2...@ovh-ux/shell@1.2.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* container navbar universe ([a53ddb4](https://github.com/ovh/manager/commit/a53ddb4116cb052709b601b7b8ea2e6dde3aac9b))
+* **container:** display preloader on iframe load ([3f537d8](https://github.com/ovh/manager/commit/3f537d8f2c8fd4fda90f85895248d98a8d87a528))
+* **container:** fix typescript issues ([293afbd](https://github.com/ovh/manager/commit/293afbd90b78604e14b4d462f8378aae35a9ae10))
+* **container:** update sidebar ([3229ce5](https://github.com/ovh/manager/commit/3229ce5ac27ef30e427b88f1a465027eb1111c3f))
+* **dedicated:** container navbar hpc universe ([d085f93](https://github.com/ovh/manager/commit/d085f93ca058fdd0090b63819a199ccee53b5895))
+* **ovh-shell:** fix application path in routing ([5041486](https://github.com/ovh/manager/commit/5041486367d582083560ca14014cdb82aa567e00))
+* **ovh-shell:** navigation plugin buildURL ([a5dc703](https://github.com/ovh/manager/commit/a5dc703334b2f2e396317774a59fc0597c4bfee9))
+* **pnr:** chatbot management in hub ([7f0757f](https://github.com/ovh/manager/commit/7f0757f85a50d43957bd84f572cbb5a12fa677ea))
+* **shell:** reset account sidebar ([e21a144](https://github.com/ovh/manager/commit/e21a144fa2771dcfe41ccc8e1a27f3bd2c1b2766))
+* **shell:** set app id at client init ([57118d2](https://github.com/ovh/manager/commit/57118d26229991129ff23cc27d454a42f8e27280))
+* **tracking:** fix tracking init ([6e947b2](https://github.com/ovh/manager/commit/6e947b2bd828335f3361be08d19ead825b15fe05))
+
+
+### Features
+
+* **ovh-shell:** add menu sidebar to ux plugin ([5500ddd](https://github.com/ovh/manager/commit/5500dddc553789612be9b296286176fd78dcc16d))
+* **pnr:** add nav tracking ([0ec0ada](https://github.com/ovh/manager/commit/0ec0adae23428bf77e9808b1e86f4e917583d376))
+* **pnr:** manage chatbot integration with onboarding ([3927bf1](https://github.com/ovh/manager/commit/3927bf16a6e873c830af7e59a6ea06a85f0d2029))
+* **shell:** add parseContainerURL in routing plugin ([f219fb1](https://github.com/ovh/manager/commit/f219fb10f139b8a4d2e3756b579cb5c4e1b26a9d))
+* **shell:** add reduce chatbot functionnality to ux plugin ([7d157b1](https://github.com/ovh/manager/commit/7d157b1047e6b4f584a8c7f24b7db068b8db6a8f))
+* **shell:** add ux preloader ([f81ee59](https://github.com/ovh/manager/commit/f81ee59634d87509b4a84808aac4001b8855a6fc))
+* **shell:** add ux progress ([0cecac1](https://github.com/ovh/manager/commit/0cecac107477d465d16a20d95fdcc407f63372d6))
+* **shell:** tracking plugin & ux sidebar fixes ([7911a00](https://github.com/ovh/manager/commit/7911a00c7567d9de6cbfe81e3a2ef747d76dbf5e))
+
+
+
 ## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.1.1...@ovh-ux/shell@1.1.2) (2022-04-15)
 
 

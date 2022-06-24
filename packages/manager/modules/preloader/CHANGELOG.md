@@ -1,3 +1,12 @@
+## [1.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-preloader@1.3.4...@ovh-ux/manager-preloader@1.3.5) (2022-06-14)
+
+
+### Bug Fixes
+
+* **preloader:** use loading message in container ([c047c23](https://github.com/ovh/manager/commit/c047c23e64554d8af750f02c29ef7d23bea87faf))
+
+
+
 ## [1.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-preloader@1.3.3...@ovh-ux/manager-preloader@1.3.4) (2022-03-04)
 
 

@@ -1,5 +1,7 @@
 <pci-project-quota-header
     data-guide-url="$ctrl.guideUrl"
+    data-track-click="$ctrl.trackClick"
+    data-guide-tracking-section-tags="$ctrl.guideTrackingSectionTags"
 ></pci-project-quota-header>
 
 <pci-announcement-banner
@@ -59,7 +61,6 @@
                 class="oui-button oui-button_primary oui-link_icon"
                 data-ng-if=":: $ctrl.quotas.length > 0"
                 data-ng-href="{{ :: $ctrl.increaseQuotaUrls.contactSupport }}"
-                target="_top"
             >
                 <span
                     data-translate="pci_projects_project_quota_protect_contact_support"

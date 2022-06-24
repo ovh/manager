@@ -7,6 +7,8 @@ export default {
     createNetwork: '<',
     deleteSubnet: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     privateNetworks: '<',
     projectId: '<',
     networkId: '<',

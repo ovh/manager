@@ -1,6 +1,12 @@
 {
   "nutanix_onboarding_title": "Hosted Private Cloud powered by Nutanix",
   "nutanix_onboarding_description": "¡Descubra nuestra nueva plataforma escalable de cloud privado todo en uno! Combinamos las licencias de Nutanix Cloud Platform preinstaladas con las infraestructuras 100 % dedicadas y seguras de OVHcloud para ofrecerle un entorno hiperconvergente (HCI) Nutanix listo para usar en solo cuestión de horas.",
-  "nutanix_onboarding_description_1": "Esta solución es ideal para migrar al cloud, implementar un plan de recuperación ante desastres (DRP) o gestionar las sobrecargas.",
-  "nutanix_onboarding_contact_us": "Contactar"
+  "nutanix_onboarding_description2": "Esta solución es ideal para migrar al cloud, implementar un plan de recuperación ante desastres (DRP) o gestionar las sobrecargas.",
+  "nutanix_onboarding_order": "Contratar",
+  "nutanix_onboarding_guide1_title": "Documentación general sobre Nutanix",
+  "nutanix_onboarding_guide1_description": "Detalles técnicos de la infraestructura Nutanix en OVHcloud",
+  "nutanix_onboarding_guide2_title": "Lista de servicios y licencias incluidos",
+  "nutanix_onboarding_guide2_description": "Presentación de los servicios y licencias incluidos en la solución Hosted Private Cloud powered by Nutanix",
+  "nutanix_onboarding_guide3_title": "Funcionamiento de la pasarela OVHgateway (EN)",
+  "nutanix_onboarding_guide3_description": "Cómo funciona la pasarela OVHgateway"
 }

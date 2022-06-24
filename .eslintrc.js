@@ -44,9 +44,33 @@ module.exports = {
         'no-use-before-define': 'off',
         'no-shadow': 'off',
         'no-unused-expressions': 'off',
+        'camelcase': 'off',
+        '@typescript-eslint/camelcase': 'off',
         '@typescript-eslint/no-unused-expressions': ['error'],
         '@typescript-eslint/no-use-before-define': ['error'],
         '@typescript-eslint/no-shadow': ['error'],
+        '@typescript-eslint/naming-convention': [
+          'error',
+          {
+            selector: 'variable',
+            format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
+          },
+          {
+            selector: 'parameter',
+            format: ['camelCase'],
+            leadingUnderscore: 'allow',
+          },
+          {
+            selector: 'memberLike',
+            modifiers: ['private'],
+            format: ['camelCase'],
+            leadingUnderscore: 'require',
+          },
+          {
+            selector: 'typeLike',
+            format: ['PascalCase'],
+          },
+        ],
       },
     },
   ],

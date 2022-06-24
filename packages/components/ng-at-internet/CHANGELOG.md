@@ -1,3 +1,12 @@
+## [5.9.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.9.0...@ovh-ux/ng-at-internet@5.9.1) (2022-06-14)
+
+
+### Bug Fixes
+
+* **ng-at-internet:** use ovh-at-internet component ([7d914f9](https://github.com/ovh/manager/commit/7d914f94cc3d6954144bfc9c82892638c8bd8cd7))
+
+
+
 # [5.9.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.8.1...@ovh-ux/ng-at-internet@5.9.0) (2022-04-04)
 
 

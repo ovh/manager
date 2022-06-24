@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-anthos-app",
-  "version": "1.0.9",
+  "version": "1.2.0",
   "private": true,
   "description": "OVHcloud Anthos app",
   "repository": {
@@ -26,13 +26,13 @@
     "@ovh-ux/manager-error-page": "^2.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/manager-preloader": "^1.1.0",
-    "@ovh-ux/ng-at-internet": "^5.9.0",
+    "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.11",
-    "@ovh-ux/ng-ovh-contracts": "^4.1.0",
+    "@ovh-ux/ng-ovh-contracts": "^4.2.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
-    "@ovh-ux/ng-ovh-payment-method": "^9.1.8",
+    "@ovh-ux/ng-ovh-payment-method": "^9.2.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.6.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",
@@ -40,7 +40,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.7",
     "@ovh-ux/ufrontend": "^1.1.1 || ^2.0.0",
-    "@ovh-ux/ui-kit": "^6.0.0",
+    "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.8",
@@ -61,7 +61,7 @@
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^14.0.2",
+    "ovh-api-services": "^14.0.6",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {

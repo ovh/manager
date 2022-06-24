@@ -1,0 +1,19 @@
+{
+  "onboarding_button_text": "Vamos começar!",
+  "onboarding_introduction_popover_title": "{{userName}}, bem-vindo/a à sua Área de Cliente",
+  "onboarding_introduction_popover_content": "Aqui, poderá encontrar todas as funcionalidades necessárias à gestão da sua conta e dos seus serviços.",
+  "onboarding_introduction_popover_extra": "O seu manual está disponível e acessível a partir do menu à esquerda.",
+  "onboarding_popover_follow_guide_button": "Consulte o manual",
+  "onboarding_popover_hide_button": "Ocultar",
+  "onboarding_walkme_popover_next_step": "Seguinte {{current}}/{{total}}",
+  "onboarding_walkme_popover_step1_title": "Como aceder à minha conta?",
+  "onboarding_walkme_popover_step1_content": "Clique no seu nome para aceder à sua conta a qualquer momento.",
+  "onboarding_walkme_popover_step2_title": "O meu perfil",
+  "onboarding_walkme_popover_step2_content": "Assegure a gestão da sua conta diretamente a partir do seu perfil.",
+  "onboarding_walkme_popover_step3_title": "Os meus métodos de pagamento",
+  "onboarding_walkme_popover_step3_content": "Adicione um ou vários métodos de pagamento. Configure um método \"predefinido\" para os seus serviços em renovação automática.",
+  "onboarding_walkme_popover_step4_title": "Os meus serviços",
+  "onboarding_walkme_popover_step4_content": "Navegue de forma simples no menu dos serviços propostos pela OVHcloud e encontre facilmente os seus serviços ativos assinalados com uma etiqueta.",
+  "onboarding_walkme_popover_step5_title": "As minhas faturas",
+  "onboarding_walkme_popover_step5_content": "Encontre todas as suas faturas, pagamentos em curso e notas de crédito nesta secção."
+}

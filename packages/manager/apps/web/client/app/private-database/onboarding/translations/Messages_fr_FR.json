@@ -1,0 +1,13 @@
+{
+  "private_databases_onboarding_title": "Bases de données",
+  "private_databases_onboarding_description": "Vous avez la possibilité d’ajouter des bases de données  Start SQL MySQL supplémentaires à votre hébergement. Augmentez la puissance de votre hébergement ainsi que vos possibilités de stockage. Les bases de données MySQL permettent également une gestion optimisée de vos données. Cette solution est idéale pour booster vos hébergements Perso ou Pro.",
+  "private_databases_onboarding_description2": "Vous avez également la possibilité d’opter pour des bases de données SQL privées. Vous avez le choix entre nos différentes solutions MySQL, MariaDB ou PostgreSQL. Elles vous apportent davantage de liberté de configuration au sein de votre hébergement.",
+  "private_databases_onboarding_order": "Commander CloudDB",
+  "private_databases_onboarding_order2": "Commander SQL Privé",
+  "private_databases_onboarding_guide1_title": "Premiers pas avec le service CloudDB",
+  "private_databases_onboarding_guide1_description": "Découvrez comment bien débuter avec la solution CloudDB",
+  "private_databases_onboarding_guide2_title": "Créer vos bases de données et vos utilisateurs sur votre serveur de bases de données",
+  "private_databases_onboarding_guide2_description": "Découvrez comment créer une base de données sur votre serveur de bases de données.",
+  "private_databases_onboarding_guide3_title": "Se connecter à la base de données de votre serveur de bases de données",
+  "private_databases_onboarding_guide3_description": "Découvrez comment se connecter à votre base de données"
+}

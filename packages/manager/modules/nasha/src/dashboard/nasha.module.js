@@ -29,7 +29,7 @@ import cucSpaceMeter from '../components/space-meter';
 import './styles.less';
 import '../add/styles.less';
 
-const moduleName = 'ovhManagerNasha';
+const moduleName = 'ovhManagerNashaDashboard';
 
 angular
   .module(moduleName, [

@@ -28,14 +28,18 @@ const hasSwitchParameter = (search) =>
 const isManagerBaseUrl = (url) =>
   MANAGER_BASE_URLS.some((baseUrl) => url.startsWith(baseUrl));
 
+const isInContainer = () => window.top !== window.self;
+
+const shouldDisplayLoadingMessage = () =>
+  hasSwitchParameter(window.location.search) ||
+  isManagerBaseUrl(document.referrer) ||
+  isInContainer();
+
 export const attach = (language = 'en') => {
   const template = document.createElement('template');
 
   let messageSource = WELCOME_MESSAGES;
-  if (
-    hasSwitchParameter(window.location.search) ||
-    isManagerBaseUrl(document.referrer)
-  ) {
+  if (shouldDisplayLoadingMessage()) {
     messageSource = LOADING_MESSAGES;
   }
 

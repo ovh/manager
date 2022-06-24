@@ -30,6 +30,16 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad', meetings]).config(
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
+      })
+      .state('telecom.packs.onboarding.**', {
+        url: '/onboarding',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./onboarding/onboarding.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
       });
 
     $stateProvider.state('telecom.packs.pack.**', {

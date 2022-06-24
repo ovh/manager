@@ -1,0 +1,19 @@
+{
+  "onboarding_button_text": "¡Empezar!",
+  "onboarding_introduction_popover_title": "Hola, {{userName}}, ¡bienvenido/a al área de cliente!",
+  "onboarding_introduction_popover_content": "Aquí encontrará todas las funcionalidades necesarias para gestionar su cuenta de cliente y sus servicios.",
+  "onboarding_introduction_popover_extra": "Puede consultar nuestra guía dedicada en el menú de la izquierda.",
+  "onboarding_popover_follow_guide_button": "Consultar la guía",
+  "onboarding_popover_hide_button": "Ocultar",
+  "onboarding_walkme_popover_next_step": "Siguiente {{current}}/{{total}}",
+  "onboarding_walkme_popover_step1_title": "¿Cómo acceder a mi cuenta?",
+  "onboarding_walkme_popover_step1_content": "Acceda a su cuenta en cualquier momento haciendo clic en su nombre de usuario.",
+  "onboarding_walkme_popover_step2_title": "Mi perfil",
+  "onboarding_walkme_popover_step2_content": "Gestione su cuenta directamente desde su perfil.",
+  "onboarding_walkme_popover_step3_title": "Mis formas de pago",
+  "onboarding_walkme_popover_step3_content": "Añada una o más formas de pago. Configure una forma de pago por defecto para los servicios con renovación automática.",
+  "onboarding_walkme_popover_step4_title": "Mis servicios",
+  "onboarding_walkme_popover_step4_content": "Navegue por el menú de los servicios que ofrece OVHcloud y encuentre fácilmente los servicios activos marcados con una etiqueta.",
+  "onboarding_walkme_popover_step5_title": "Mis facturas",
+  "onboarding_walkme_popover_step5_content": "Consulte todas las facturas, pagos pendientes y devoluciones en este apartado."
+}

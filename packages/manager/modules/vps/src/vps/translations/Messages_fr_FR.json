@@ -233,7 +233,6 @@
   "vps_configuration_period_LASTWEEK": "Les 7 derniers jours",
   "vps_configuration_period_LASTYEAR": "Les 12 derniers mois",
   "vps_configuration_period_TODAY": "Aujourd'hui",
-  "vps_configuration_upgradevps_title_button": "Faire évoluer mon VPS",
   "vps_warning_title": "Avertissement",
   "vps_configuration_secondarydns_add_title_button": "Ajouter un domaine",
   "vps_configuration_secondarydns_add_title": "Ajouter un domaine sur le DNS secondaire",

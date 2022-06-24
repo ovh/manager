@@ -17,6 +17,7 @@
         data-ng-controller="WebAppCtrl as $ctrl"
         class="h-100 ovh-manager-web-app"
         style="overflow: hidden;"
+        data-ng-class="{'in-container': !$ctrl.isTopLevelApplication}"
     >
         <div class="h-100 d-flex flex-column overflow-hidden ng-cloak">
             <!-- Skip to main content -->
@@ -34,10 +35,16 @@
                 <ovh-manager-navbar
                     data-navbar-options="$ctrl.navbarOptions"
                     data-universe-click="$ctrl.openSidebar()"
+                    data-ng-if="$ctrl.isTopLevelApplication"
                 >
                 </ovh-manager-navbar>
-                <ovh-manager-account-sidebar> </ovh-manager-account-sidebar>
-                <ovh-manager-notifications-sidebar>
+                <ovh-manager-account-sidebar
+                    data-ng-if="$ctrl.isTopLevelApplication"
+                >
+                </ovh-manager-account-sidebar>
+                <ovh-manager-notifications-sidebar
+                    data-ng-if="$ctrl.isTopLevelApplication"
+                >
                 </ovh-manager-notifications-sidebar>
                 <button
                     type="button"
@@ -56,11 +63,19 @@
                         universe="'WEB'"
                         data-is-open="$ctrl.sidebarIsOpen"
                         data-on-click="$ctrl.closeSidebar()"
+                        data-ng-if="!$ctrl.isMenuSidebarVisible"
                     >
                     </ovh-manager-server-sidebar>
 
                     <div
-                        class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 px-0"
+                        class="px-0"
+                        data-ng-class="{
+                            'col-lg-12': $ctrl.isMenuSidebarVisible,
+                            'col-lg-10': !$ctrl.isMenuSidebarVisible,
+                            'col-md-9': !$ctrl.isMenuSidebarVisible,
+                            'col-md-offset-3': !$ctrl.isMenuSidebarVisible,
+                            'col-lg-offset-2': !$ctrl.isMenuSidebarVisible,
+                        }"
                     >
                         <!-- Skip content target -->
                         <div class="skiptarget">
@@ -77,6 +92,8 @@
                             data-language="{{$ctrl.currentLanguage}}"
                             data-country="{{$ctrl.user.ovhSubsidiary}}"
                             data-support-level="{{$ctrl.user.supportLevel.level}}"
+                            data-on-open="$ctrl.onChatbotOpen()"
+                            data-on-close="$ctrl.onChatbotClose(reduced)"
                         ></ovh-chatbot>
 
                         <div class="container-fluid px-md-5 px-3 mt-3">

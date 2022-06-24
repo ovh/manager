@@ -2,5 +2,7 @@
   "pci_app_start_app_title": "Avvio di AI App",
   "pci_app_start_app_content": "Vuoi davvero avviare l’AI App {{ appName }}?",
   "pci_app_start_app_success": "La tua AI App è stata avviata correttamente.",
-  "pci_app_start_app_error": "Si è verificato un errore durante l'avvio della tua AI APP {{ appName }}: {{ message }}"
+  "pci_app_start_app_error": "Si è verificato un errore durante l'avvio della tua AI APP {{ appName }}: {{ message }}",
+  "pci_app_start_app_submit_label": "Conferma",
+  "pci_app_start_app_cancel_label": "Annulla"
 }

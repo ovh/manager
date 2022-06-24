@@ -1,3 +1,42 @@
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.7.0...@ovh-ux/manager-dbaas-logs@1.7.1) (2022-06-15)
+
+
+### Bug Fixes
+
+* **dbaas-logs:** order link ([24db2e7](https://github.com/ovh/manager/commit/24db2e7b6223bc370c2e6d52c80289319ceef640))
+
+
+
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.6.6...@ovh-ux/manager-dbaas-logs@1.7.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* remove links invalid target _top ([a92ea7d](https://github.com/ovh/manager/commit/a92ea7d425ff9bb8d99f5916096780d35ba0d873))
+* **dbaas:** cta order redirection ([1e96ba2](https://github.com/ovh/manager/commit/1e96ba2445ae63d1018487e7aa827ff0888ad571))
+* **dbaas:** remove target blank on order link ([6302561](https://github.com/ovh/manager/commit/63025616e2530b774a94c4927145b2dc27061806))
+* **dbaas-logs:** update at-internet-configuration ([95e9b17](https://github.com/ovh/manager/commit/95e9b1776db4660bf743a688179a92cfb2c5240d))
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **ldp:** fix redirect when empty array result ([0bcc052](https://github.com/ovh/manager/commit/0bcc0529bfb6b0436ec138fc520decf06c511be0))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **dbaaslogs:** modify onboarding page ([cbe0ab1](https://github.com/ovh/manager/commit/cbe0ab184854889dc5d762f637efd6f8aed45ee6))
+
+
+
+## [1.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.6.5...@ovh-ux/manager-dbaas-logs@1.6.6) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [1.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.6.4...@ovh-ux/manager-dbaas-logs@1.6.5) (2022-04-12)
 
 

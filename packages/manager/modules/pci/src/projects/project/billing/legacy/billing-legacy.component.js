@@ -9,6 +9,8 @@ export default {
     historyLink: '<',
     currentActiveLink: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     projectId: '<',
   },
   controllerAs: 'BillingCtrl',

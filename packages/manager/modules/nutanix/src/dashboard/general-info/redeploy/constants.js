@@ -28,6 +28,8 @@ export const CLUSTER_CONFIG_TERMS = {
   REPLICATION_FACTOR: 'Replication Factor',
   ERASURE_CODING: 'Erasure Coding',
   AOS: 'AOS Version',
+  NODE_AHV_IP: 'AHV IP',
+  NODE_CVM_IP: 'CVM IP',
 };
 
 export default {

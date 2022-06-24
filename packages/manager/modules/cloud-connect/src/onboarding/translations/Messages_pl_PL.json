@@ -1,0 +1,11 @@
+{
+  "cloud_connect_onboarding_title": "Podłącz Twoją sieć do centrów danych OVHcloud",
+  "cloud_connect_onboarding_description": "Skorzystaj z naszego hybrydowego rozwiązania OVHcloud Connect i połącz w bezpieczny sposób Twoją firmową sieć z prywatną siecią OVHcloud vRack.",
+  "cloud_connect_onboarding_description_part2": "Korzystając z naszej infrastruktury dzięki rozwiązaniu Direct zyskujesz dedykowane połączenie o przepustowości 1 Gbps lub 10 Gbps.",
+  "cloud_connect_onboarding_description_part3": "Możesz również wybrać rozwiązanie Provider dostarczane we współpracy z jednym z naszych partnerów (Equinix, Megaport oraz innymi w niedalekiej przyszłości). Zyskujesz wówczas przepustowość od 200 Mbps do 5 Gbps oraz jeszcze większy zasięg na całym świecie.",
+  "cloud_connect_onboarding_order": "Zamów",
+  "cloud_connect_onboarding_guide1_title": "Prezentacja koncepcji",
+  "cloud_connect_onboarding_guide1_description": "Prezentacja koncepcji niezbędnych do zrozumienia oferty OVHcloud Connect",
+  "cloud_connect_onboarding_guide2_title": "FAQ",
+  "cloud_connect_onboarding_guide2_description": "Najczęściej zadawane pytania dotyczące oferty OVHcloud Connect"
+}

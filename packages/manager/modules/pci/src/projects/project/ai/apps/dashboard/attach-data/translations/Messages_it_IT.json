@@ -1,0 +1,20 @@
+{
+  "pci_apps_tab_attach_data_title": "Associa dati",
+  "pci_apps_tab_attach_data_page_title": "Associa container di dati",
+  "pci_apps_tab_attach_data_page_title_git": "Associa repository Git pubblici",
+  "pci_apps_tab_attach_data_page_description": "Se necessario, è possibile associare all'AI App container Object Storage OVHcloud. Una volta associati, vengono caricati temporaneamente e inseriti in cache vicino all’istanza per ridurre la latenza e migliorare le prestazioni. La buona pratica è quella di associare  un container con i dati in entrata e un altro con i dati in uscita.",
+  "pci_apps_tab_attach_data_page_description_link": "Per maggiori informazioni sullo storage di dati",
+  "pci_apps_tab_attach_data_page_volumes_column_name": "Nome",
+  "pci_apps_tab_attach_data_page_volumes_column_type": "Tipo",
+  "pci_apps_tab_attach_data_page_volumes_column_region": "Localizzazione",
+  "pci_apps_tab_attach_data_page_volumes_column_type_git": "Repository",
+  "pci_apps_tab_attach_data_page_volumes_column_type_swift": "Container di dati",
+  "pci_apps_tab_attach_data_page_volumes_column_mount_path": "Directory di mount",
+  "pci_apps_tab_attach_data_page_volumes_column_git_url": "URL del repository Git",
+  "pci_apps_tab_attach_data_page_volumes_git_none": "Nessun repository Git associato",
+  "pci_apps_tab_attach_data_page_volumes_column_prefix": "Prefisso",
+  "pci_app_data_permission": "Permesso",
+  "pci_app_permission_RO": "Sola lettura",
+  "pci_app_permission_RW": "Lettura - scrittura",
+  "pci_app_data_cache": "Cache"
+}

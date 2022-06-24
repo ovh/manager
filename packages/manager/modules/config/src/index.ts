@@ -1,5 +1,5 @@
 import { useReket } from '@ovh-ux/ovh-reket';
-import Environment from './environment';
+import Environment, { User } from './environment';
 import { Region } from './environment/region.enum';
 
 export const HOSTNAME_REGIONS: Record<string, Region> = {
@@ -8,7 +8,7 @@ export const HOSTNAME_REGIONS: Record<string, Region> = {
   'us.ovhcloud.com': Region.US,
 };
 
-export { default as Environment } from './environment';
+export { Environment, User };
 export {
   convertLanguageFromOVHToBCP47,
   detectUserLocale,

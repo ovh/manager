@@ -20,5 +20,12 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       hideBreadcrumb: () => true,
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('resources')
+        .then((resources) =>
+          resources.data.length === 0 ? 'nasha.onboarding' : false,
+        ),
   });
 };

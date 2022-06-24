@@ -14,6 +14,8 @@ export default {
     goToAddUserContainer: '<',
     goToStorageContainers: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     onListParamChange: '<',
     projectId: '<',
     viewContainer: '<',

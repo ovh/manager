@@ -1,0 +1,11 @@
+{
+  "pci_app_add_review": "Konfiguracja AI App",
+  "pci_app_add_review_region": "Region",
+  "pci_app_add_review_price_partner": "Cena licencji {{ partner }}",
+  "pci_app_add_review_price_partner_free": "Oferowana przez {{ partner }}",
+  "pci_app_add_review_price_resource": "Cena wybranych zasobów",
+  "pci_app_add_review_price_resource_free": "Zasoby oferowane przez OVHcloud w trakcie trwania fazy alfa",
+  "pci_app_add_review_price_total": "Cena całkowita",
+  "pci_app_add_review_price_info": "{{ price }} netto / godzina",
+  "pci_app_add_review_resources": "Model i liczba wybranych instancji"
+}

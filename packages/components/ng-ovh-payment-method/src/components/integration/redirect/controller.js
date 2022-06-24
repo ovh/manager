@@ -21,7 +21,7 @@ export default class OvhPaymentMethodIntegrationRedirectCtrl {
             AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.REDIRECT &&
           response.url
         ) {
-          this.$window.location = response.url;
+          window.top.location = response.url;
         }
         return response;
       })

@@ -7,12 +7,13 @@
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
             <oui-guide-menu-item
-                data-href="{{ $ctrl.guideUrl }}"
-                data-on-click="$ctrl.onGuideLinkClick('all')"
+                data-ng-repeat="guide in $ctrl.guideUrl.ai_notenooks track by $index"
+                data-href="{{:: guide.url }}"
+                data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.ai_notebooks + guide.tracking)"
                 data-external
             >
                 <span
-                    data-translate="pci_project_guides_header_all_guides"
+                    data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
@@ -42,7 +43,6 @@
             <a
                 data-ng-href="{{:: $ctrl.notebookLink($row) }}"
                 data-ng-bind=":: $value"
-                target="_top"
             ></a>
         </oui-datagrid-column>
         <oui-datagrid-column

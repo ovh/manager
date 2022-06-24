@@ -9,6 +9,8 @@ export default {
     consumptionDetails: '<',
     currentActiveLink: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     historyLink: '<',
     projectId: '<',
   },

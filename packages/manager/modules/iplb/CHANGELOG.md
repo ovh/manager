@@ -1,3 +1,38 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.3.3...@ovh-ux/manager-iplb@1.4.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **loadbalancers:** update cta link for CA ([0c6dbe0](https://github.com/ovh/manager/commit/0c6dbe0320d5ab4789b37b6c8e7c869ec6637603))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **iplb:** add onboarding page ([8a11cbd](https://github.com/ovh/manager/commit/8a11cbd35837f273a47d73b39c582e6ea51d10b7))
+
+
+
+## [1.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.3.2...@ovh-ux/manager-iplb@1.3.3) (2022-06-08)
+
+
+### Bug Fixes
+
+* **iplb:** set right translation ([#7271](https://github.com/ovh/manager/issues/7271)) ([18c6835](https://github.com/ovh/manager/commit/18c6835d39f5c638608a0ef9f4c802e3a3085c0d))
+
+
+
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.3.1...@ovh-ux/manager-iplb@1.3.2) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.3.0...@ovh-ux/manager-iplb@1.3.1) (2022-03-24)
 
 

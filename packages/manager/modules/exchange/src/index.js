@@ -13,11 +13,14 @@ import billingAccountRenew from './billing/account-renew/renew.module';
 import APIExchange from './dashboard/exchange.api';
 import navigation from './services/exchange.navigation.service';
 
+import onboarding from './onboarding';
+
 const moduleName = 'ovhManagerExchangeLazyLoading';
 
 angular
   .module(moduleName, [
     billingAccountRenew,
+    onboarding,
     'ngUiRouterBreadcrumb',
     'ui.router',
     'oc.lazyLoad',

@@ -420,8 +420,8 @@ export default class PciStoragesContainersService {
       .then(({ data }) => data);
   }
 
-  deleteObject(projectId, container, object, isHighPerfStorage) {
-    if (isHighPerfStorage) {
+  deleteObject(projectId, container, object) {
+    if (container.isHighPerfStorage) {
       return this.deleteHighPerfObject(
         projectId,
         container.id,

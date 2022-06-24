@@ -1,3 +1,14 @@
+## [6.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@6.4.0...@ovh-ux/manager-config@6.4.1) (2022-06-14)
+
+
+### Bug Fixes
+
+* **config:** enum export ([92363e3](https://github.com/ovh/manager/commit/92363e3a9d7af4e98704491e64c3110de73cf512))
+* **container:** fix typescript issues ([293afbd](https://github.com/ovh/manager/commit/293afbd90b78604e14b4d462f8378aae35a9ae10))
+* **typescript:** fix typescript and eslint errors ([c13d6de](https://github.com/ovh/manager/commit/c13d6dead2e1cfd714a1ec1c814468793aaa7c81))
+
+
+
 # [6.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@6.3.0...@ovh-ux/manager-config@6.4.0) (2022-04-12)
 
 

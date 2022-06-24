@@ -1,29 +1,14 @@
-import angular from 'angular';
-
-import '@ovh-ux/manager-core';
-import '@ovh-ux/ng-ovh-cloud-universe-components';
-import '@uirouter/angularjs';
-import 'angular-translate';
-import '@ovh-ux/ng-ovh-doc-url';
-
-import './onboarding.less';
+import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import component from './onboarding.component';
-import listHeader from '../header/list/list.module';
 import routing from './onboarding.routing';
 
-const moduleName = 'ovhManagerDbaasLogsOnboarding';
+const moduleName = 'dbaasLogsOnboarding';
 
 angular
-  .module(moduleName, [
-    'ngOvhCloudUniverseComponents',
-    'ovhManagerCore',
-    'pascalprecht.translate',
-    'ui.router',
-    listHeader,
-    'ngOvhDocUrl',
-  ])
+  .module(moduleName, [OnboardingLayoutHelper])
+  .component('dbaasLogsOnboardingComponent', component)
   .config(routing)
-  .component('dbaasLogsOnboarding', component);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

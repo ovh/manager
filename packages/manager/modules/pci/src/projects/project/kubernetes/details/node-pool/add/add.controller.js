@@ -41,17 +41,23 @@ export default class {
   create() {
     this.sendKubeTrack('details::nodepools::add::confirm');
 
+    const { flavor, name, antiAffinity } = this.nodePool;
+    const { monthlyBilling: monthlyBilled, autoscaling } = this.nodePool;
+    const { autoscale, nodes } = autoscaling;
+    const { lowest, desired, highest } = nodes;
+    const options = {
+      flavorName: flavor.name,
+      name,
+      antiAffinity,
+      monthlyBilled,
+      autoscale,
+      minNodes: lowest.value,
+      desiredNodes: autoscale ? lowest.value : desired.value,
+      maxNodes: highest.value,
+    };
+
     this.isAdding = true;
-    return this.Kubernetes.createNodePool(this.projectId, this.kubeId, {
-      flavorName: this.nodePool.flavor.name,
-      name: this.nodePool.name,
-      antiAffinity: this.nodePool.antiAffinity,
-      monthlyBilled: this.nodePool.monthlyBilling,
-      autoscale: this.nodePool.autoscaling.autoscale,
-      minNodes: this.nodePool.autoscaling.nodes.lowest.value,
-      desiredNodes: this.nodePool.autoscaling.nodes.desired.value,
-      maxNodes: this.nodePool.autoscaling.nodes.highest.value,
-    })
+    return this.Kubernetes.createNodePool(this.projectId, this.kubeId, options)
       .then(() =>
         this.goBack(
           this.$translate.instant('kube_add_node_pool_success', {

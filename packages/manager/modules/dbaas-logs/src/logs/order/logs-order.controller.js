@@ -50,7 +50,7 @@ export default class LogsOrderCtrl {
     this.CucOrderHelperService.buildUrl(
       `/order/express/#/new/express/resume?products=~(~(planCode~'${this.selectedOffer}~productId~'logs~region~'${this.selectedDatacenter}))`,
     ).then((url) => {
-      window.location.href = url;
+      window.top.location.href = url;
     });
   }
 

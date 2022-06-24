@@ -66,6 +66,16 @@ angular
               meSchema.models['nichandle.CountryEnum'].enum,
           },
         })
+        .state('telecom.telephony.onboarding.**', {
+          url: '/onboarding',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./onboarding/onboarding.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        })
         .state('telecom.telephony.index.**', {
           url: '',
           lazyLoad: ($transition$) => {

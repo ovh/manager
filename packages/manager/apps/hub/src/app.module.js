@@ -4,15 +4,16 @@ import angular from 'angular';
 import 'angular-ui-bootstrap';
 import 'angular-animate';
 import 'angular-translate';
+import '@ovh-ux/ng-at-internet';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 
 import { isString, get, has } from 'lodash-es';
 
 import '@ovh-ux/ui-kit';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
-import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import { registerCoreModule } from '@ovh-ux/manager-core';
@@ -23,8 +24,9 @@ import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
-import atInternet from './components/at-internet';
+import { initHubAtInternet } from './components/at-internet';
 import errorPage from './components/error-page';
 import dashboard from './dashboard';
 import liveChatService from './livechat-service';
@@ -62,13 +64,13 @@ export default async (containerEl, shellClient) => {
     .module(
       moduleName,
       [
-        atInternet,
+        initHubAtInternet(shellClient.tracking),
         dashboard,
         errorPage,
         'ngAnimate',
         ngOvhFeatureFlipping,
         ngOvhSsoAuthModalPlugin,
-        ngOvhUiRouterLineProgress,
+        isTopLevelApplication() ? ngOvhUiRouterLineProgress : null,
         ngUiRouterBreadcrumb,
         'oui',
         ovhManagerAccountSidebar,
@@ -78,11 +80,11 @@ export default async (containerEl, shellClient) => {
         ovhManagerOrderTracking,
         ovhNotificationsSidebar,
         ovhManagerBanner,
-        ovhManagerCookiePolicy,
         ngOvhPaymentMethod,
         'pascalprecht.translate',
         'ui.bootstrap',
         uiRouter,
+        isTopLevelApplication() ? ovhManagerCookiePolicy : null,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
     )
@@ -115,8 +117,7 @@ export default async (containerEl, shellClient) => {
           shellClient.auth.logout();
         });
         ssoAuthModalPluginFctProvider.setOnReload(() => {
-          // @TODO use shell plugin
-          window.top.location.reload();
+          shellClient.navigation.reload();
         });
       },
     )
@@ -128,6 +129,32 @@ export default async (containerEl, shellClient) => {
         ssoAuthenticationProvider.setOnLogout(() => {
           shellClient.auth.logout();
         });
+      },
+    )
+    .run(
+      /* @ngInject */ ($transitions) => {
+        // replace ngOvhUiRouterLineProgress if in container
+        if (!isTopLevelApplication()) {
+          $transitions.onBefore({}, (transition) => {
+            if (
+              !transition.ignored() &&
+              transition.from().name !== '' &&
+              transition.entering().length > 0
+            ) {
+              shellClient.ux.startProgress();
+            }
+          });
+
+          $transitions.onSuccess({}, () => {
+            shellClient.ux.stopProgress();
+          });
+
+          $transitions.onError({}, (transition) => {
+            if (!transition.error().redirected) {
+              shellClient.ux.stopProgress();
+            }
+          });
+        }
       },
     )
     .run(
@@ -187,9 +214,24 @@ export default async (containerEl, shellClient) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
+          if (isTopLevelApplication()) {
+            detachPreloader();
+          } else {
+            shellClient.ux.hidePreloader();
+          }
           $rootScope.$broadcast('app:started');
           unregisterHook();
+        });
+      },
+    )
+    .run(
+      /* @ngInject */ ($rootScope) => {
+        shellClient.ux.onOpenChatbot(() => {
+          $rootScope.$emit('ovh-chatbot:open');
+        });
+
+        shellClient.ux.onReduceChatbot(() => {
+          $rootScope.$emit('ovh-chatbot:close', false);
         });
       },
     );

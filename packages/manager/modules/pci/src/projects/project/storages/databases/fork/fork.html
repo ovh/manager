@@ -1,10 +1,14 @@
 <oui-header data-heading="{{:: 'pci_database_fork_title' | translate }}">
     <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
-        <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
-            <span data-translate="pci_project_guides_header_all_guides"></span>
-        </oui-guide-menu-item>
-        <oui-guide-menu-item href="{{ $ctrl.databaseGuideUrl }}" data-external>
-            <span data-translate="pci_database_list_title"></span>
+        <oui-guide-menu-item
+            data-ng-repeat="guide in $ctrl.guideUrl.databases track by $index"
+            data-href="{{:: guide.url }}"
+            data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.databases + guide.tracking)"
+            data-external
+        >
+            <span
+                data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+            ></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
 </oui-header>

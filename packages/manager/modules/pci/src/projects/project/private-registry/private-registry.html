@@ -4,13 +4,13 @@
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
             <oui-guide-menu-item
-                data-ng-repeat="guide in $ctrl.GUIDE_LINKS track by $index"
+                data-ng-repeat="guide in $ctrl.guideUrl.private_registry track by $index"
                 data-href="{{:: guide.url }}"
+                data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.managed_private_registry + guide.tracking)"
                 data-external
-                data-on-click="$ctrl.trackClick('PCI_PROJECTS_PRIVATEREGISTRY_GUIDE' + ($index + 1))"
             >
                 <span
-                    data-translate="{{:: 'private_registry_guide_' + guide.key.toLowerCase() }}"
+                    data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
@@ -136,7 +136,6 @@
                     data-track-on="click"
                     data-track-name="PCI_PROJECTS_PRIVATEREGISTRY_CREATE"
                     data-track-type="action"
-                    target="_top"
                 >
                     <span
                         class="oui-icon oui-icon-add"

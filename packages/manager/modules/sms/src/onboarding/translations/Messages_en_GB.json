@@ -1,0 +1,10 @@
+{
+  "sms_onboarding_title": "SMS PRO",
+  "sms_onboarding_description": "Sending SMS messages over the internet has never been so easy.",
+  "sms_onboarding_order": "See our solutions",
+  "sms_onboarding_guide1_title": "Manage SMS credits and enable automatic re-crediting",
+  "sms_onboarding_guide1_description": "Find out how to manage OVHcloud SMS credits",
+  "sms_onboarding_guide2_title": "SMS Cookbook API",
+  "sms_onboarding_guide2_description": "This guide explains some possible combinations of the API for using the OVHcloud SMS platform.",
+  "sms_onboarding_guide3_title": "Manage SMS with reply"
+}

@@ -1,3 +1,30 @@
+# [3.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.5...@ovh-ux/manager-server-sidebar@3.22.0) (2022-06-14)
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
+## [3.21.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.4...@ovh-ux/manager-server-sidebar@3.21.5) (2022-06-07)
+
+
+### Bug Fixes
+
+* **server-sidebar:** fix typo in conf for siptrunks ([86b128f](https://github.com/ovh/manager/commit/86b128fbf55c522905a0dc00b69b29bcf7ddef48))
+
+
+
+## [3.21.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.3...@ovh-ux/manager-server-sidebar@3.21.4) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [3.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.2...@ovh-ux/manager-server-sidebar@3.21.3) (2022-05-19)
 
 

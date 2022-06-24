@@ -18,9 +18,7 @@
             data-type="string"
             data-type-options="$ctrl.stringColumnOptions"
         >
-            <a data-ng-href="{{ $ctrl.getServiceLink($row) }}" target="_top"
-                >{{$value}}</a
-            >
+            <a data-ng-href="{{ $ctrl.getServiceLink($row) }}">{{$value}}</a>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'telephony_billing_account_services_description_title' | translate"

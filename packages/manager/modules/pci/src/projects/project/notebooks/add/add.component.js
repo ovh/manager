@@ -8,6 +8,7 @@ export default {
     goToNotebooks: '<',
     createObjectStorage: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
     onNotebookAdd: '<',
     trackNotebooks: '<',
     trackClick: '<',

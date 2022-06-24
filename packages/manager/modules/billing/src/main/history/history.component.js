@@ -11,6 +11,7 @@ export default {
     getDebt: '<',
     hasDefaultPaymentMethod: '<',
     invoicesByPostalMail: '<',
+    isHtmlInvoiceAvailable: '<',
     payDebt: '<',
     seeDebt: '<',
     ...ListLayoutHelper.componentBindings,

@@ -160,7 +160,8 @@ export default /* @ngInject */ ($stateProvider) => {
         if (cart.creditOption || prices.withTax.value !== 0) {
           // if credit has been added or total checkout is not equal to 0
           // redirect to order url
-          return $window.location.assign(url);
+          window.top.location.href = url;
+          return url;
         }
 
         return $state.go(

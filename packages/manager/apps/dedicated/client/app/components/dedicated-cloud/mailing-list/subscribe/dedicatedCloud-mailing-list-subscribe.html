@@ -96,7 +96,7 @@
             </div>
             <p
                 data-ng-if="!$ctrl.loading.subscribe"
-                data-ng-bind-html=":: ('dedicatedCloud_subscribe_mailing_step2_' + $ctrl.pccType) | translate: {
+                data-ng-bind-html="('dedicatedCloud_subscribe_mailing_step2_' + $ctrl.pccType) | translate: {
                     t0: $ctrl.model.email,
                     t1: 'pcc@ml.ovh.net'
                 }"

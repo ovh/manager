@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-at-internet",
-  "version": "5.9.0",
+  "version": "5.9.1",
   "description": "ATInternet tracking library wrapper for AngularJS",
   "keywords": [
     "angularjs",
@@ -34,6 +34,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-at-internet' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
+    "@ovh-ux/ovh-at-internet": "^0.1.0",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/shell",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "private": true,
   "description": "Communication and interaction between applications",
   "repository": {
@@ -13,6 +13,7 @@
   "sideEffects": "false",
   "type": "module",
   "main": "./dist/index.js",
+  "types": "./types/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
@@ -20,6 +21,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/ovh-at-internet": "^0.1.0",
     "@ovh-ux/ovh-reket": "^0.1.1",
     "@ovh-ux/ufrontend": "^1.1.1 || ^2.0.0",
     "@types/react": "^17.0.24",

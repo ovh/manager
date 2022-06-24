@@ -134,7 +134,7 @@
         </oui-datagrid-column>
         <oui-action-menu compact data-placement="end">
             <oui-action-menu-item
-                ng-if="$row.url"
+                ng-if="$row.url && $ctrl.isHtmlInvoiceAvailable"
                 href="{{ :: $row.url }}"
                 external
                 on-click="$ctrl.trackInvoiceOpening('html')"

@@ -1,0 +1,12 @@
+{
+  "nasha_onboarding_title": "Servidor NAS-HA",
+  "nasha_onboarding_description_bold": "De 3 a 36 TB de espacio adicional para sus soluciones OVHcloud",
+  "nasha_onboarding_description": "Con los espacios de almacenamiento NAS-HA de OVHcloud disfrutará de una plataforma centralizada para almacenar o realizar copias de seguridad de sus datos. El acceso se realiza a través del servidor principal. En caso de fallo, el servidor secundario toma el relevo, garantizando así una alta disponibilidad para sus datos.",
+  "nasha_onboarding_guide1_title": "Primeros pasos con un NAS-HA",
+  "nasha_onboarding_guide1_description": "Cómo gestionar un NAS-HA desde el área de cliente de OVHcloud",
+  "nasha_onboarding_guide2_title": "Montar un NAS en Windows Server a través de CIFS",
+  "nasha_onboarding_guide2_description": "Cómo montar un NAS en Windows Server a través de CIFS",
+  "nasha_onboarding_guide3_title": "Preguntas frecuentes sobre los NAS",
+  "nasha_onboarding_guide3_description": "¿Tiene alguna duda sobre los NAS? ¡Encuentre la respuesta a las preguntas más frecuentes!",
+  "nasha_onboarding_cta": "Contratar"
+}

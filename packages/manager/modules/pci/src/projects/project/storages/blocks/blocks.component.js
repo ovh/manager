@@ -13,6 +13,8 @@ export default {
     detachStorage: '<',
     editStorage: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     help: '<',
     instanceLink: '<',
     onListParamChange: '<',

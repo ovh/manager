@@ -1,0 +1,24 @@
+<manager-on-boarding-layout data-guides=":: $ctrl.guides">
+    <onboarding-title>
+        <p data-translate="veeam_enterprise_onboarding_title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <p data-translate="veeam_enterprise_onboarding_description"></p>
+        <p
+            data-ng-if="$ctrl.isUS"
+            data-translate="veeam_enterprise_onboarding_description2_us"
+        ></p>
+        <p
+            data-ng-if="!$ctrl.isUS"
+            data-translate="veeam_enterprise_onboarding_description2"
+        ></p>
+        <a
+            class="oui-button oui-button_primary oui-button_l text-light"
+            data-translate="veeam_enterprise_onboarding_order"
+            href="{{:: $ctrl.cta }}"
+            target="_blank"
+            rel="noopener"
+        >
+        </a>
+    </onboarding-description>
+</manager-on-boarding-layout>

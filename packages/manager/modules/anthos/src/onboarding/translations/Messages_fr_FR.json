@@ -1,10 +1,11 @@
 {
-  "anthos_onboarding_breadcrumb": "Anthos",
-  "anthos_onboarding_title": "Hosted Private Cloud Powered by Anthos",
-  "anthos_onboarding_description_part_1": "« Utilisez la meilleure plateforme cloud-native pour héberger vos applications modernes, en mode privé et Bare Metal.",
-  "anthos_onboarding_description_part_2": "Choisissez un pack de départ et bénéficiez de votre propre console Anthos privée pour créer votre premier cluster Kubernetes. Découvrez  les fonctionnalités avancées de Anthos Private Mode (observabilité, service mesh…) et ajoutez des nœuds supplémentaires à la demande.",
-  "anthos_onboarding_description_part_3": "Nous gérons l'infrastructure et tous les composants du control plane. Vous économisez ainsi du temps et de l’argent, et vous concentrez sur la création, modernisation ou amélioration continue de vos applications . »",
-  "anthos_onboarding_cta_start_with_anthos": "En savoir plus sur Anthos",
-  "anthos_onboarding_guides_anthos_title": "Documentation d'Anthos",
-  "anthos_onboarding_guides_anthos_description": "Retrouvez toute la documentation au sujet d'Anthos"
+  "anthos_onboarding_title": "Hosted Private Cloud powered by Anthos",
+  "anthos_onboarding_description": "OVHcloud et Google unissent leurs forces pour vous proposer la première offre de private cloud sur bare metal, dédiée à la technologie Anthos opérée, installée et managée par OVHcloud.",
+  "anthos_onboarding_order": "Commander",
+  "anthos_onboarding_guide1_title": "Premiers pas avec Hosted Private Cloud powered by Anthos",
+  "anthos_onboarding_guide1_description": "Découvrez comment configurer votre Hosted Private Cloud powered by Anthos dans votre espace client",
+  "anthos_onboarding_guide2_title": "Capacités et limitations techniques (FAQ)",
+  "anthos_onboarding_guide2_description": "Découvrez les capacités techniques et les limites du Hosted Private Cloud powered by Anthos",
+  "anthos_onboarding_guide3_title": "Documentation de Anthos on baremetal in private mode",
+  "anthos_onboarding_guide3_description": ""
 }

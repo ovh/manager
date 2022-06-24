@@ -126,15 +126,17 @@
                 </div>
                 <div
                     class="oui-tile__item oui-tile__item_button"
-                    data-ng-if="$ctrl.hasFeature($ctrl.DASHBOARD_FEATURES.upgrade) && $ctrl.actions.upgrade.state && $ctrl.actions.upgrade.isAvailable() && !$ctrl.isMigrating"
+                    data-ng-if="$ctrl.canBeMigrated()"
                 >
                     <a
-                        class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
-                        data-ui-sref="{{ $ctrl.actions.upgrade.state + $ctrl.constructor.getActionStateParamString($ctrl.actions.upgrade.stateParams) }}"
-                        rel="noopener"
+                        class="oui-tile__button oui-button oui-link_icon"
+                        data-ng-href="{{:: $ctrl.migrationLink }}"
+                        data-track-on="click"
+                        data-track-name="{{:: $ctrl.trackingPrefix + '::migrate-my-vps-banner' }}"
+                        target="_top"
                     >
                         <span
-                            data-ng-bind="::$ctrl.actions.upgrade.text"
+                            data-translate="vps_dashboard_migration_link"
                         ></span>
                     </a>
                 </div>

@@ -6,10 +6,17 @@ import '@ovh-ux/ng-ui-router-breadcrumb';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
+import onboarding from './onboarding';
+
 const moduleName = 'ovhManagerVeeamEnterpriseLazyLoading';
 
 angular
-  .module(moduleName, ['ngUiRouterBreadcrumb', 'ui.router', 'oc.lazyLoad'])
+  .module(moduleName, [
+    'ngUiRouterBreadcrumb',
+    'ui.router',
+    'oc.lazyLoad',
+    onboarding,
+  ])
   .config(
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       $stateProvider.state('veeam-enterprise', {

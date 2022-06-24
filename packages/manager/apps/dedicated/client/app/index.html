@@ -20,6 +20,7 @@
         data-ng-controller="SessionCtrl as $ctrl"
         class="h-100 ovh-manager-dedicated-app"
         style="overflow: hidden;"
+        data-ng-class="{'in-container': !$ctrl.isTopLevelApplication}"
     >
         <div class="h-100 d-flex flex-column overflow-hidden ng-cloak">
             <!-- Skip to main content -->
@@ -36,11 +37,17 @@
             <ovh-manager-navbar
                 data-navbar-options="$ctrl.navbarOptions"
                 data-universe-click="$ctrl.openSidebar()"
+                data-ng-if="$ctrl.isTopLevelApplication"
             >
             </ovh-manager-navbar>
-            <ovh-manager-account-sidebar me="$ctrl.user">
+            <ovh-manager-account-sidebar
+                me="$ctrl.user"
+                data-ng-if="$ctrl.isTopLevelApplication"
+            >
             </ovh-manager-account-sidebar>
-            <ovh-manager-notifications-sidebar>
+            <ovh-manager-notifications-sidebar
+                data-ng-if="$ctrl.isTopLevelApplication"
+            >
             </ovh-manager-notifications-sidebar>
 
             <button
@@ -60,19 +67,29 @@
                         namespace="$ctrl.sidebarNamespace"
                         data-is-open="$ctrl.sidebarIsOpen"
                         data-on-click="$ctrl.closeSidebar()"
-                        data-ng-if="!$ctrl.displayAccountSidebar"
+                        data-ng-if="!$ctrl.isMenuSidebarVisible && !$ctrl.displayAccountSidebar"
                     >
                     </ovh-manager-server-sidebar>
 
                     <div
-                        class="col-md-3 col-lg-2"
-                        data-ng-if="$ctrl.displayAccountSidebar"
+                        class="col-lg-2"
+                        data-ng-class="{
+                            'col-md-3': !$ctrl.isMenuSidebarVisible,
+                        }"
+                        data-ng-if="!$ctrl.isMenuSidebarVisible && $ctrl.displayAccountSidebar"
                         data-sidebar-menu
                         data-sidebar-namespace="'account'"
                     ></div>
 
                     <div
-                        class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 px-0 h-100"
+                        class="px-0 h-100"
+                        data-ng-class="{
+                            'col-lg-12': $ctrl.isMenuSidebarVisible,
+                            'col-lg-10': !$ctrl.isMenuSidebarVisible,
+                            'col-md-9': !$ctrl.isMenuSidebarVisible,
+                            'col-md-offset-3': !$ctrl.isMenuSidebarVisible,
+                            'col-lg-offset-2': !$ctrl.isMenuSidebarVisible,
+                        }"
                         ui-view="container"
                     >
                         <!-- Skip content target -->
@@ -133,6 +150,8 @@
             data-language="{{$ctrl.currentLanguage}}"
             data-country="{{$ctrl.user.ovhSubsidiary}}"
             data-support-level="{{$ctrl.user.supportLevel.level}}"
+            data-on-open="$ctrl.onChatbotOpen()"
+            data-on-close="$ctrl.onChatbotClose(reduced)"
         ></ovh-chatbot>
 
         <div id="otrs-popup" data-otrs-popup></div>

@@ -1,3 +1,79 @@
+# [16.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.14.1...@ovh-ux/manager-web@16.15.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* container cookie policy modal ([9c40fcc](https://github.com/ovh/manager/commit/9c40fcc1a6fe83d8e06874e272d0b4520e0af3e5))
+* container navbar universe ([a53ddb4](https://github.com/ovh/manager/commit/a53ddb4116cb052709b601b7b8ea2e6dde3aac9b))
+* handle tracking deps and add tracking in monolithes ([1fb032f](https://github.com/ovh/manager/commit/1fb032f934b69b1a42bb445a506d19dab27342ac))
+* margin and sidebar for contained apps ([030e4e6](https://github.com/ovh/manager/commit/030e4e6497ee2b56da6eccf2e7f39c230b9b441c))
+* shell authentication in applications ([8154320](https://github.com/ovh/manager/commit/8154320de71e6a61768cab708a69230937dbbfc3))
+* **apps:** update width based on sidebar visibility ([0d24c7e](https://github.com/ovh/manager/commit/0d24c7e1b6fa17db60c20164fd9b831634be5b70))
+* **domainnames:** fix guide ([be0457d](https://github.com/ovh/manager/commit/be0457de0377c7286058a3f166ed45c577c45c01))
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* includes typo ([adff414](https://github.com/ovh/manager/commit/adff4143398ce934371fdcd25d58179dbfebbe5b))
+* **pnr:** add top attribute to oui-action-menu-item with href ([5284489](https://github.com/ovh/manager/commit/5284489da8ae691bbf5b83493dba09f917760a96))
+* **pnr:** close chatbot when opening onboarding popup ([e4b3fae](https://github.com/ovh/manager/commit/e4b3faea2c5db0367eb7741b87d86cb7dfc37733))
+* **pnr:** flatpickr loaded language ([d0c6bb1](https://github.com/ovh/manager/commit/d0c6bb188bf5467d25021aee6309b1ec4103b4d0))
+* **pnr:** hide some content on CA domain onboarding page ([fcff856](https://github.com/ovh/manager/commit/fcff856a33364cc39862ca8168b4502e32c83c39))
+* **pnr:** hide some guide depending region on hosting onboarding page ([69e29b3](https://github.com/ovh/manager/commit/69e29b3d9a13e271712a9186333494cf8fdacadf))
+* **pnr:** use feature flipping to display cloudDB order link ([b2908e7](https://github.com/ovh/manager/commit/b2908e7cd1022193ea13658f980e8818a1a3b083))
+* **web:** domain order cta ([809aee0](https://github.com/ovh/manager/commit/809aee05186d1584633a31477747deec54e097b8))
+* **web:** pnr sidebar integration ([f8ab494](https://github.com/ovh/manager/commit/f8ab49463ded2476dd1fdac16d03079195b94a13))
+* **web:** use progress from shell ([201e537](https://github.com/ovh/manager/commit/201e537d78bc487263350c09530e5faf3d6ab160))
+* **web:** use shell preloader ([d4e21ac](https://github.com/ovh/manager/commit/d4e21acdeae5725dccd7f736ab7a0c240cfe5020))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **dns-zone:** add onboarding page ([dc7daf5](https://github.com/ovh/manager/commit/dc7daf5eff381b8a00c302f9a3927e24d262ac79))
+* **domain:** add onboarding page ([77de27f](https://github.com/ovh/manager/commit/77de27fccab7b9c01e28b3f0cabceaa56d31121d))
+* **hosting:** add onboarding page ([81de87f](https://github.com/ovh/manager/commit/81de87f90bf207a8a1e1a57725e1387a8e0864b9))
+* **pnr:** manage chatbot in web ([a86079a](https://github.com/ovh/manager/commit/a86079a1af4908d73cedcc264e05c4aaa1d49360))
+* **private-database:** add onboarding page ([04f16f5](https://github.com/ovh/manager/commit/04f16f5771f77fec1d592142859abc5aa6eb4d00))
+* **web:** shell integration ([0f7b118](https://github.com/ovh/manager/commit/0f7b1183dacdf614bd7763872590e06914957dd3))
+
+
+
+## [16.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.14.0...@ovh-ux/manager-web@16.14.1) (2022-06-08)
+
+
+### Bug Fixes
+
+* **hosting.database.add:** display `maxUserLength` value ([#7310](https://github.com/ovh/manager/issues/7310)) ([3a50b91](https://github.com/ovh/manager/commit/3a50b916e1f25c7cb9f6c3cc7c68ebcc2b7fd694)), closes [#7284](https://github.com/ovh/manager/issues/7284)
+
+
+
+# [16.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.13.0...@ovh-ux/manager-web@16.14.0) (2022-06-08)
+
+
+### Features
+
+* **hosting.offer:** re-implement detach addon of start10M ([#7311](https://github.com/ovh/manager/issues/7311)) ([cf02a8c](https://github.com/ovh/manager/commit/cf02a8c77b563cc711b373733e7ed46ea671cae3))
+
+
+
+# [16.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.12.1...@ovh-ux/manager-web@16.13.0) (2022-06-07)
+
+
+### Features
+
+* **hosting.ftp:** harmonize sftp info for perso/kimsufi ([#7113](https://github.com/ovh/manager/issues/7113)) ([4fe8221](https://github.com/ovh/manager/commit/4fe8221832d9e710f9cb52b917a0c28e78815c5f))
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
+## [16.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.12.0...@ovh-ux/manager-web@16.12.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 # [16.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.11.1...@ovh-ux/manager-web@16.12.0) (2022-05-19)
 
 

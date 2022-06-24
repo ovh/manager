@@ -599,7 +599,7 @@
   "user_account_security_double_auth_type_backup_code_delete_success": "Les codes de secours ont été supprimés avec succès.",
   "user_account_security_double_auth_type_backup_code_delete_error": "Oups ! Une erreur est survenue lors de la suppression des codes de secours :",
   "user_account_security_ip_restrictions_alt": "Restriction d’accès par IP",
-  "user_account_title_infos": "Mon profil",
+  "user_account_title_infos": "Mon compte",
   "user_account_description": "Administrez votre compte client. Dans cette rubrique, vous gérez la sécurité de votre compte, votre niveau de support et vos utilisateurs. Vous pouvez également consulter les e-mails reçus liés à vos services.",
   "user_account_title_subscriptions": "Mes abonnements",
   "user_agreements_accepting": "En cours…",

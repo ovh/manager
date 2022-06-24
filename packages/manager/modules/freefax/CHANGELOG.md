@@ -1,3 +1,30 @@
+# [7.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.4.3...@ovh-ux/manager-freefax@7.5.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **links:** remove top target ([b762db3](https://github.com/ovh/manager/commit/b762db3180629c305b0228a62b1ab15f81c04ca4))
+
+
+### Features
+
+* **telecom:** move telephony procedure to telephony and fax section ([af42e9e](https://github.com/ovh/manager/commit/af42e9e1f6f243445efcb2d6ba9c5ac41d00000d))
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **pnr:** add empty page for telecom fax section ([4d40566](https://github.com/ovh/manager/commit/4d405664729854e4c7132a95330a66f6d2209353))
+
+
+
+## [7.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.4.2...@ovh-ux/manager-freefax@7.4.3) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [7.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.4.1...@ovh-ux/manager-freefax@7.4.2) (2022-04-12)
 
 

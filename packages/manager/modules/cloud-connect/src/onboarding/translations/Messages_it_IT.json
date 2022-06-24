@@ -1,0 +1,11 @@
+{
+  "cloud_connect_onboarding_title": "Rete estesa ai datacenter di OVHcloud",
+  "cloud_connect_onboarding_description": "La nostra soluzione di connessione ibrida OVHcloud Connect permette di collegare la propria rete aziendale alla rete privata vRack di OVHcloud in modo sicuro ed efficiente.",
+  "cloud_connect_onboarding_description_part2": "Il passaggio dalle nostre infrastrutture attraverso il servizio Direct consente di utilizzare un’interconnessione dedicata con banda passante da 1 Gbps o 10 Gbps.",
+  "cloud_connect_onboarding_description_part3": "Optando per la soluzione Provider con uno dei nostri partner (Equinix, Megaport e, a breve, altri) è invece possibile usufruire di una banda passante da 200 Mbps a 5 Gbps, oltre che di una copertura mondiale ancora più estesa.",
+  "cloud_connect_onboarding_order": "Ordina",
+  "cloud_connect_onboarding_guide1_title": "Concetti principali",
+  "cloud_connect_onboarding_guide1_description": "Presentazione dei principali concetti necessari alla comprensione della soluzione OVHcloud Connect",
+  "cloud_connect_onboarding_guide2_title": "FAQ",
+  "cloud_connect_onboarding_guide2_description": "Domande frequenti sulla soluzione OVHcloud Connect"
+}

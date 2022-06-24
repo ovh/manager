@@ -27,5 +27,8 @@ export default {
     steins: '<',
     customerRegions: '<',
     jobListRegions: '<',
+    guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
   },
 };

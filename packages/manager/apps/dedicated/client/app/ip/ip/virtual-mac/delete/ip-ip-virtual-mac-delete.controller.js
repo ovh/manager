@@ -5,12 +5,19 @@ export default /* @ngInject */ (
   $translate,
   IpVirtualMac,
   Alerter,
+  atInternet,
 ) => {
   $scope.data = $scope.currentActionData; // service and sub
-
+  atInternet.trackPage({
+    name: $scope.data?.tracking,
+  });
   /* Action */
 
   $scope.deleteVirtualMac = function deleteVirtualMac() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::confirm`,
+      type: 'action',
+    });
     $scope.loading = true;
     IpVirtualMac.deleteVirtualMac(
       $scope.data.ipBlock.service.serviceName,
@@ -38,5 +45,13 @@ export default /* @ngInject */ (
             ${reason.message}`);
       })
       .finally(() => $scope.resetAction());
+  };
+
+  $scope.cancelAction = function cancelAction() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::cancel`,
+      type: 'action',
+    });
+    $scope.resetAction();
   };
 };

@@ -2,12 +2,14 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import onboarding from './onboarding';
+
 import service from './anthos-tenants.service';
 
 const moduleName = 'ovhManagerAnthosLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad'])
+  .module(moduleName, ['ui.router', 'oc.lazyLoad', onboarding])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('anthos', {
@@ -16,7 +18,7 @@ angular
         redirectTo: 'anthos.index',
         resolve: {
           breadcrumb: /* @ngInject */ ($translate) =>
-            $translate.instant('anthos_hpc_title'),
+            $translate.instant('anthos_tenants'),
         },
       });
       $stateProvider.state('anthos.index.**', {
@@ -35,16 +37,6 @@ angular
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
           return import('./dashboard/module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
-        },
-      });
-      $stateProvider.state('anthos.onboarding.**', {
-        url: '/onboarding',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
-          return import('./onboarding/module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },

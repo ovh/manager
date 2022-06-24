@@ -20,6 +20,7 @@ module.exports = {
   ],
   moduleNameMapper: {
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
+    '\\.(png|jpg|svg|ttf|woff|woff2)$': 'identity-obj-proxy',
     '^lodash-es$': 'lodash',
     '^@ovh-ux/shell$': '<rootDir>/packages/components/ovh-shell/src',
     '^@ovh-ux/ovh-reket$': '<rootDir>/packages/components/ovh-reket/src',

@@ -14,5 +14,8 @@ export default {
     getPricesFromCatalog: '<',
     jobId: '<',
     onListParamChange: '<',
+    guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
   },
 };

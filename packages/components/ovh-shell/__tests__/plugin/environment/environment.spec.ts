@@ -39,7 +39,7 @@ defineFeature(feature, (test) => {
     });
 
     when('I change the selected universe', () => {
-      envPlugin.setUniverse('dedicated');
+      envPlugin.setApplication('dedicated');
     });
 
     then('I should have the universe updated', () => {

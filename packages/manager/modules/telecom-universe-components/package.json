@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-telecom-universe-components",
-  "version": "7.11.0",
+  "version": "7.12.0",
   "private": true,
   "description": "Collection of components for the Telecom control panel.",
   "repository": {
@@ -12,17 +12,17 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/ui-kit": "^6.0.0",
+    "@ovh-ux/ui-kit": "^6.1.0",
     "bootstrap": "^3.4.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.4",
-    "@ovh-ux/ng-ovh-mondial-relay": "^8.2.5",
+    "@ovh-ux/ng-ovh-mondial-relay": "^8.3.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
-    "@ovh-ux/ui-kit": "^5.3.3",
+    "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.20",
     "CSV-JS": "^1.2.0",
     "angular": "^1.7.5",
@@ -35,7 +35,7 @@
     "jsplumb": "^2.11.2",
     "moment": "^2.24.0",
     "ng-csv": "^0.3.6",
-    "ovh-api-services": "^11.2.0",
+    "ovh-api-services": "^14.0.6",
     "ovh-ngstrap": "^4.0.2",
     "punycode": "^1.4.1",
     "validator": "^13.7.0",

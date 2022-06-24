@@ -1,22 +1,18 @@
-<div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
-    <manager-on-boarding-layout
-        guides="$ctrl.guides"
-        image-source="$ctrl.illustration"
-    >
-        <h1 data-translate="web_paas_title"></h1>
-        <p data-translate="web_paas_onboarding_content1"></p>
-        <strong data-translate="web_paas_onboarding_content2"></strong>
-        <ul>
-            <li data-translate="web_paas_onboarding_content2_1"></li>
-            <li data-translate="web_paas_onboarding_content2_2"></li>
-        </ul>
-        <p data-translate="web_paas_onboarding_content3"></p>
-
-        <oui-button
-            data-variant="primary"
-            data-on-click="$ctrl.createProject($ctrl.trackCreateProject)"
+<manager-on-boarding-layout
+    data-guides=":: $ctrl.guides"
+    image-source="$ctrl.illustration"
+>
+    <onboarding-title>
+        <p data-translate="web_paas_onboarding_title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <p data-translate="web_paas_onboarding_description"></p>
+        <p data-translate="web_paas_onboarding_description2"></p>
+        <a
+            class="oui-button oui-button_primary oui-button_l text-light"
+            data-translate="web_paas_onboarding_order"
+            href="{{:: $ctrl.cta }}"
         >
-            <span data-translate="web_paas_onboarding_action_label"></span>
-        </oui-button>
-    </manager-on-boarding-layout>
-</div>
+        </a>
+    </onboarding-description>
+</manager-on-boarding-layout>

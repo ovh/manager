@@ -31,7 +31,10 @@
             </oui-header-tabs-item>
         </oui-header-tabs>
         <oui-guide-menu text="{{ 'cda_guide_title' | translate }}">
-            <oui-guide-menu-item href="{{ CdaDetailsCtrl.guides.list[0].url }}">
+            <oui-guide-menu-item
+                href="{{ CdaDetailsCtrl.guides.list[0].url }}"
+                top
+            >
                 <span data-ng-bind="CdaDetailsCtrl.guides.list[0].name"></span>
             </oui-guide-menu-item>
         </oui-guide-menu>

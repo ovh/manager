@@ -1,3 +1,27 @@
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.4.4...@ovh-ux/manager-ng-layout-helpers@2.5.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **list:** sort columns by priority ([9a2443a](https://github.com/ovh/manager/commit/9a2443ab7fe2eb34cb4c93eb377aef082eddd026))
+* **ng-layout-helpers:** display description column by default ([45a88fc](https://github.com/ovh/manager/commit/45a88fc3523ee17f1d71060ff7307704696130c1))
+* **ng-layout-helpers:** remove target _top from link ([77ebea3](https://github.com/ovh/manager/commit/77ebea3dc22eb77b2c657d7cfbd5320a43d8bdc2))
+* **onboarding:** define img max height ([016ef6a](https://github.com/ovh/manager/commit/016ef6a9a6300f3309104e9b604864ae3d4e6bdf))
+* **onboarding:** make existing templates look like the new design ([89c1b47](https://github.com/ovh/manager/commit/89c1b47cea2d4ad8bad39200e9bf9e55ec1ca2ee))
+* **onboarding:** update list style on onboarding ([c068757](https://github.com/ovh/manager/commit/c06875775d546ac7820b5d2657d4858fadec3e5d))
+* **onboarding:** update onboarding styles ([4589c9e](https://github.com/ovh/manager/commit/4589c9e12f83deed1f533a2a32ca26e92bbce6d2))
+* **vps:** onboarding footer ([2cc4e5a](https://github.com/ovh/manager/commit/2cc4e5a5e8616e86e6b19c5cdf2cb23328bb2694))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **onboarding:** change placeholder image ([80b89cd](https://github.com/ovh/manager/commit/80b89cd661e0e9fc8b4972c773e1d2d1f8adbfc7))
+* **onboarding:** update UI for new onboarding pages ([e2dec10](https://github.com/ovh/manager/commit/e2dec106346c30c0db226a37f2215a6dd1898c53))
+
+
+
 ## [2.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.4.3...@ovh-ux/manager-ng-layout-helpers@2.4.4) (2022-04-12)
 
 

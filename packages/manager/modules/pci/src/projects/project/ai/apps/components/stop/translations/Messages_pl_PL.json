@@ -2,5 +2,7 @@
   "pci_app_stop_app_title": "Zatrzymanie AI App",
   "pci_app_stop_app_content": "Czy na pewno chcesz zatrzymać AI App {{appName}} ?",
   "pci_app_stop_app_success": "AI App została zatrzymana.",
-  "pci_app_stop_app_error": "Wystąpił błąd podczas zatrzymywania AI App {{appName}}: {{message}}"
+  "pci_app_stop_app_error": "Wystąpił błąd podczas zatrzymywania AI App {{appName}}: {{message}}",
+  "pci_app_stop_app_submit_label": "Zatwierdź",
+  "pci_app_stop_app_cancel_label": "Anuluj"
 }

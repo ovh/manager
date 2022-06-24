@@ -538,6 +538,7 @@
                             ng-if="$ctrl.actions.manageContact.href"
                             aria-label="{{ ::$ctrl.actions.manageContact.text }}"
                             href="{{ ::$ctrl.actions.manageContact.href }}"
+                            top
                         >
                             <span
                                 data-ng-bind="::$ctrl.actions.manageContact.text"
@@ -561,6 +562,7 @@
                             aria-label="domain_configuration_update_owner"
                             data-href="{{ ::$ctrl.updateOwnerUrl.target }}"
                             data-ng-if="$ctrl.updateOwnerUrl.target"
+                            top
                         >
                             <span
                                 data-translate="domain_configuration_update_owner"

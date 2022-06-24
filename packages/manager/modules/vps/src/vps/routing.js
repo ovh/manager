@@ -110,7 +110,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
       vpsMigration: /* @ngInject */ ($http, serviceName) =>
         $http
-          .get(`/vps/${serviceName}/migration2016`)
+          .get(`/vps/${serviceName}/migration2018`)
           .then(({ data }) => data)
           .catch(() => false),
       isMigrating: /* @ngInject */ (vpsMigration) =>

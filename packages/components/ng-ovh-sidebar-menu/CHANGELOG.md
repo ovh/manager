@@ -1,3 +1,17 @@
+# [10.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@10.2.3...@ovh-ux/ng-ovh-sidebar-menu@10.3.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **ng-ovh-sidebar-menu:** remove top margin ([38d9906](https://github.com/ovh/manager/commit/38d9906e08a7a46ee89700f61442f675823afc33))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
 ## [10.2.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@10.2.2...@ovh-ux/ng-ovh-sidebar-menu@10.2.3) (2022-03-24)
 
 

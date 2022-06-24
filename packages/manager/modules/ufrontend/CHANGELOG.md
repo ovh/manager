@@ -1,3 +1,12 @@
+## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ufrontend@2.2.1...@ovh-ux/ufrontend@2.2.2) (2022-06-14)
+
+
+### Bug Fixes
+
+* **typescript:** fix typescript and eslint errors ([c13d6de](https://github.com/ovh/manager/commit/c13d6dead2e1cfd714a1ec1c814468793aaa7c81))
+
+
+
 ## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ufrontend@2.2.0...@ovh-ux/ufrontend@2.2.1) (2022-04-15)
 
 

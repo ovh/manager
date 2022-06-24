@@ -1,0 +1,73 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+
+$z-index-iframe: 5;
+$z-index-iframe-overlay: 600;
+$z-index-sidebar: 700;
+
+.navReshuffle {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  @import '@ovh-ux/manager-hub/src/variables.scss';
+  background-color: $p-700;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.navbar {
+  button {
+    vertical-align: bottom !important;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.iframeContainer {
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: $z-index-iframe;
+    pointer-events: all;
+  }
+}
+
+.iframeOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 80, 215, 0.75);
+  z-index: $z-index-iframe-overlay;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: $device-breakpoint-tablet-max-width) {
+  .hidden {
+    display: none;
+  }
+  .sidebar {
+    position: absolute;
+    z-index: $z-index-sidebar;
+  }
+  .iframeOverlay_visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+}

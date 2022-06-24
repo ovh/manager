@@ -4,12 +4,19 @@ export default /* @ngInject */ (
   $translate,
   Ip,
   Alerter,
+  atInternet,
 ) => {
   $scope.data = $scope.currentActionData;
-
+  atInternet.trackPage({
+    name: $scope.data?.tracking,
+  });
   $scope.loading = false;
 
   $scope.deleteIpBlock = function deleteIpBlock() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::confirm`,
+      type: 'action',
+    });
     $scope.loading = true;
     Ip.deleteIpBlock($scope.data.ipBlock.ipBlock)
       .then(
@@ -31,5 +38,12 @@ export default /* @ngInject */ (
       .finally(() => {
         $scope.resetAction();
       });
+  };
+  $scope.cancelAction = function cancelAction() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::cancel`,
+      type: 'action',
+    });
+    $scope.resetAction();
   };
 };

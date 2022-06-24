@@ -1,3 +1,17 @@
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.4.8...@ovh-ux/sign-up-app@2.5.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **signup:** update at-internet-configuration ([d7d2419](https://github.com/ovh/manager/commit/d7d24198fd4ee06c9f1f14287f9ab4c12789537b))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
 ## [2.4.8](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.4.7...@ovh-ux/sign-up-app@2.4.8) (2022-05-19)
 
 

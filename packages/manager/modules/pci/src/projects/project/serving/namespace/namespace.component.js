@@ -16,5 +16,8 @@ export default {
     steins: '<',
     customerRegions: '<',
     namespacesRegions: '<',
+    guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
   },
 };

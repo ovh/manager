@@ -1,4 +1,4 @@
-export const enum CountryCode {
+export enum CountryCode {
   US = 'US',
   CA = 'CA',
   FR = 'FR',

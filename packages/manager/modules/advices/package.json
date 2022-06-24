@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-advices",
-  "version": "1.3.4",
+  "version": "1.4.0",
   "private": true,
   "description": "OVHcloud advices",
   "repository": {
@@ -28,8 +28,8 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
-    "@ovh-ux/ng-at-internet": "^5.8.1",
-    "@ovh-ux/ui-kit": "^5.3.3",
+    "@ovh-ux/ng-at-internet": "^5.9.1",
+    "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1"

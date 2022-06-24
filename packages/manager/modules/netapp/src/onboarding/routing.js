@@ -30,6 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
         !new SupportLevel(coreConfig.getUser().supportLevel).isStandard(),
       goToOrder: ($state) => () => $state.go('netapp.order'),
       breadcrumb: () => null,
+      hideBreadcrumb: () => true,
       trackClick: /* @ngInject */ (atInternet) => (suffix) => {
         atInternet.trackClick({
           name: `${hitName}::${suffix}`,

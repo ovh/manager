@@ -1,0 +1,12 @@
+{
+  "ecd_onboarding_title": "Database gestiti ad alta disponibilità",
+  "ecd_onboarding_description_1": "Le informazioni personali sono vitali ed è quindi necessario combinare sicurezza e prestazioni.",
+  "ecd_onboarding_description_2": "Con Enterprise Cloud Databases gli utenti possono concentrarsi maggiormente sulle proprie applicazioni piuttosto che sugli aspetti tecnici dei database. La nostra soluzione è basata su architetture hardware dedicate, per offrire performance eccellenti e alta disponibilità. Per migrare facilmente al Cloud e creare i database gestiti sono sufficienti pochi minuti.",
+  "ecd_onboarding_guide1_title": "Presentazione e architettura",
+  "ecd_onboarding_guide1_description": "Scopri l'architettura della soluzione PostgreSQL gestita",
+  "ecd_onboarding_guide2_title": "Iniziare a utilizzare un cluster PostgreSQL",
+  "ecd_onboarding_guide2_description": "Come ordinare, proteggere e connettersi a un’istanza PostgreSQL",
+  "ecd_onboarding_guide3_title": "Enterprise Cloud Databases - Fine del ciclo di vita (EOL)",
+  "ecd_onboarding_guide3_description": "Dettagli sulla fine del ciclo di vita (EOL) delle soluzioni Enterprise Cloud Databases",
+  "ecd_onboarding_cta": "Annuncio di fine del ciclo di vita"
+}

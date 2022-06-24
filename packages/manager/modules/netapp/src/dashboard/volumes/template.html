@@ -28,7 +28,6 @@
                 ng-if="$ctrl.isDashboardAvailable"
                 data-ng-href="{{:: $ctrl.getVolumeDetailsHref($row) }}"
                 data-ng-bind="$row.id"
-                target="_top"
             ></a>
             <span
                 data-ng-if="!$ctrl.isDashboardAvailable"

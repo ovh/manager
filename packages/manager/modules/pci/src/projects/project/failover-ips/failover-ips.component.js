@@ -9,6 +9,8 @@ export default {
     failoverIps: '<',
     instances: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     projectId: '<',
     failoverIp: '<',
     onListParamChange: '<',

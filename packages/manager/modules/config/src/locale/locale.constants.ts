@@ -1,5 +1,5 @@
 import { OVHLanguages } from '../locale';
-import { CountryCode } from './country-code.enum';
+import { CountryCode } from '../locale/country-code.enum';
 
 export const LANGUAGES: OVHLanguages = {
   available: [

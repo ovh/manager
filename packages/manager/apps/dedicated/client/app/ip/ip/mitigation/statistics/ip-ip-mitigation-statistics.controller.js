@@ -10,8 +10,12 @@ export default /* @ngInject */ (
   $filter,
   $timeout,
   $translate,
+  atInternet,
 ) => {
   $scope.data = $scope.currentActionData;
+  atInternet.trackPage({
+    name: $scope.data?.tracking,
+  });
   $scope.statsLoading = false;
   $scope.today = new Date();
 
@@ -173,6 +177,10 @@ export default /* @ngInject */ (
   });
 
   $scope.closeAction = function closeAction() {
+    atInternet.trackClick({
+      name: `${$scope.data?.tracking}::close`,
+      type: 'action',
+    });
     clearTO();
     $scope.resetAction();
   };

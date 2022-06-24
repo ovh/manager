@@ -3,7 +3,7 @@
     data-primary-action="$ctrl.moveIp()"
     data-primary-label="{{:: 'dedicatedCloud_move_ip_confirm' | translate }}"
     data-primary-disabled="!$ctrl.data.targetService || ($ctrl.data.targetService.nexthop.length && !$ctrl.data.nextHop)"
-    data-secondary-action="$ctrl.goBack()"
+    data-secondary-action=":: $ctrl.onCancel()"
     data-secondary-label="{{:: 'dedicatedCloud_move_ip_cancel' | translate }}"
     data-loading="$ctrl.isUpgrading"
     data-on-dismiss="$ctrl.goBack()"

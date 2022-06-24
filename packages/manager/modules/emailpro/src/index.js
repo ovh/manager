@@ -1,6 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
+import onboarding from './onboarding';
 
 import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -8,7 +9,12 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 const moduleName = 'ovhManagerEmailproLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'ngUiRouterBreadcrumb', 'oc.lazyLoad'])
+  .module(moduleName, [
+    'ui.router',
+    'ngUiRouterBreadcrumb',
+    'oc.lazyLoad',
+    onboarding,
+  ])
   .config(
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       const lazyLoad = ($transition$) => {

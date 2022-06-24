@@ -13,9 +13,16 @@
             data-go-to-project="$ctrl.goToProject"
             data-go-to-projects="$ctrl.goToProjects"
             data-go-to-project-inactive="$ctrl.goToProjectInactive"
+            data-ng-if="!$ctrl.isMenuSidebarVisible"
         >
         </cloud-sidebar>
-        <div class="h-100 position-relative p-0 col-lg-10 d-flex flex-column">
+        <div
+            class="h-100 position-relative p-0 d-flex flex-column"
+            data-ng-class="{
+                'col-lg-10': !$ctrl.isMenuSidebarVisible,
+                'col-lg-12': $ctrl.isMenuSidebarVisible,
+             }"
+        >
             <ovh-manager-banner-text></ovh-manager-banner-text>
             <div
                 class="pci-project-content w-100 h-100 pt-4 px-3 px-md-5"
@@ -94,7 +101,9 @@
                                             data-translate="pci_projects_project_documentation"
                                         ></h2>
                                         <ul>
-                                            <li data-ng-repeat="link in $ctrl.links track by $index">
+                                            <li
+                                                data-ng-repeat="link in $ctrl.links track by $index"
+                                            >
                                                 <a
                                                     data-ng-href="{{ ::link.href }}"
                                                     target="_blank"

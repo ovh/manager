@@ -36,7 +36,7 @@ export default class IpLoadBalancerServerFarmCtrl {
     this.i18n = {
       preview: this.$translate.instant('iplb_preview_see'),
       update: this.$translate.instant('iplb_modify'),
-      remove: this.$translate.instant('delete'),
+      remove: this.$translate.instant('iplb_delete'),
     };
 
     this.init();

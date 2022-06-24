@@ -1,0 +1,20 @@
+{
+  "vps_onboarding_traffic_infos": "Para os VPS alojados em Sydney e Singapura: 1 TB de tráfego/mês nas gamas Starter e Value, 2 TB/mês na gama Essential, 3 TB/mês na gama Comfort e 4 TB/mês na gama Elite. A largura de banda é reduzida para 10 Mbps após a ultrapassagem da quota mensal.",
+  "vps_onboarding_title": "Servidores privados virtuais (VPS)",
+  "vps_onboarding_description_1": "Alto desempenho ao melhor preço",
+  "vps_onboarding_description_2": "Simplicidade, escalabilidade e personalização",
+  "vps_onboarding_description_3": "Tráfego ilimitado e largura de banda até 2 Gbps*",
+  "vps_onboarding_cta": "Encomendar",
+  "vps_onboarding_guide1_title": "VPS: primeira utilização",
+  "vps_onboarding_guide1_description": "Saiba como utilizar um VPS",
+  "vps_onboarding_guide2_title": "Como proteger um VPS",
+  "vps_onboarding_guide2_description": "Descubra os elementos de base que lhe permitem proteger o seu VPS",
+  "vps_onboarding_guide3_title": "Utilizar a snapshot",
+  "vps_onboarding_guide3_description": "Saiba como ativar e utilizar a opção Snapshot a partir da Área de Cliente OVHcloud",
+  "vps_onboarding_us_guide1_title": "Getting Started with a VPS",
+  "vps_onboarding_us_guide1_description": "Learn the first steps of using a VPS",
+  "vps_onboarding_us_guide2_title": "How to Secure a VPS",
+  "vps_onboarding_us_guide2_description": "Learn the basics of securing your VPS",
+  "vps_onboarding_us_guide3_title": "How to Use Snapshots on a VPS",
+  "vps_onboarding_us_guide3_description": "Learn about taking snapshots in the OVHcloud Control Panel"
+}

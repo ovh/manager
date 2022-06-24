@@ -6,6 +6,8 @@ export default {
     pciFeatureRedirect: '<',
     deals: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
   },
   controller,
   template,

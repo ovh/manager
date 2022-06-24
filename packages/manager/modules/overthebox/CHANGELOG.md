@@ -1,3 +1,29 @@
+# [6.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.7.2...@ovh-ux/manager-overthebox@6.8.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **links:** remove top target ([b762db3](https://github.com/ovh/manager/commit/b762db3180629c305b0228a62b1ab15f81c04ca4))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **pnr:** add empty page for telecom OTB section ([139be57](https://github.com/ovh/manager/commit/139be5787e64722f6c221ca3081e4506cdd49f07))
+
+
+
+## [6.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.7.1...@ovh-ux/manager-overthebox@6.7.2) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 ## [6.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.7.0...@ovh-ux/manager-overthebox@6.7.1) (2022-04-12)
 
 

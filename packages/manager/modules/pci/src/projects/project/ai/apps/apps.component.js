@@ -15,6 +15,7 @@ export default {
     isAuthorized: '<',
     reloadState: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
     appLink: '<',
     apps: '<',
     pollAppStatus: '<',

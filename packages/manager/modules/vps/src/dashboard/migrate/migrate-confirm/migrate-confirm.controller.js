@@ -25,7 +25,9 @@ export default class {
       type: 'action',
     });
     return this.$http
-      .post(`/vps/${this.serviceName}/migration2016`)
+      .post(`/vps/${this.serviceName}/migration2018`, {
+        newPlan: this.selectedPlan.planCode,
+      })
       .then(() => {
         return this.goBack(
           this.$translate.instant('vps_dashboard_migrate_confirm_success'),

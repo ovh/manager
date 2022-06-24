@@ -1,3 +1,85 @@
+# [5.80.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.79.1...@ovh-ux/manager-pci@5.80.0) (2022-06-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1669] ([3e3062f](https://github.com/ovh/manager/commit/3e3062fc5107973037fdfab66dda8ab9794ac90e))
+* **i18n:** add missing translations [CDS 1678] ([a7edeb9](https://github.com/ovh/manager/commit/a7edeb904996fe2bf83778d3e01feed0d7905d1a))
+* **i18n:** add missing translations [CDS 1680] ([24023e2](https://github.com/ovh/manager/commit/24023e29bc6eaa89b6b789c2fa0787baafae3c73))
+* **notebooks.add:** add missing RWD permission ([#7006](https://github.com/ovh/manager/issues/7006)) ([acb3a07](https://github.com/ovh/manager/commit/acb3a071957f0f7476001971a7745a31b070a45a))
+* **public-cloud:** update guides links ([#6795](https://github.com/ovh/manager/issues/6795)) ([998192b](https://github.com/ovh/manager/commit/998192b07d0f9f0d84e7d1c810946e1fcdfa611a))
+
+
+### Features
+
+* **kube.node-pool:** no desired in autoscale case ([#7316](https://github.com/ovh/manager/issues/7316)) ([4e64d6b](https://github.com/ovh/manager/commit/4e64d6bcda9af7411c9e7a6bc9f57f442e052923))
+
+
+
+## [5.79.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.79.0...@ovh-ux/manager-pci@5.79.1) (2022-06-15)
+
+
+### Bug Fixes
+
+* **pci:** open payment method add in top frame ([3ad5a84](https://github.com/ovh/manager/commit/3ad5a8432d7a51a9a92bf6cd497d025f7ac33d5c))
+
+
+
+# [5.79.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.78.1...@ovh-ux/manager-pci@5.79.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **apps:** update width based on sidebar visibility ([0d24c7e](https://github.com/ovh/manager/commit/0d24c7e1b6fa17db60c20164fd9b831634be5b70))
+* **failover-ips:** update onboarding style ([851a2bb](https://github.com/ovh/manager/commit/851a2bb8df7e95f939cc95fea405eafcbf56c655))
+* **links:** remove top target ([b762db3](https://github.com/ovh/manager/commit/b762db3180629c305b0228a62b1ab15f81c04ca4))
+* **pci:** fix quota link's target ([ba6e3fe](https://github.com/ovh/manager/commit/ba6e3feb26b32b290d276867f29aa96c4eb7a16b))
+* **pci:** remove invalid target top ([c799de0](https://github.com/ovh/manager/commit/c799de006683d5e6e1a1b4081f03d3fdda294954))
+* **pnr:** add top attribute to oui-action-menu-item with href ([5284489](https://github.com/ovh/manager/commit/5284489da8ae691bbf5b83493dba09f917760a96))
+* **public-cloud:** pnr sidebar integration ([bd86580](https://github.com/ovh/manager/commit/bd86580fc5084b3e214e082ba3d7b3ce230b43bb))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
+## [5.78.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.78.0...@ovh-ux/manager-pci@5.78.1) (2022-06-08)
+
+
+### Bug Fixes
+
+* **containers:** allow deletion for high perf ([#7289](https://github.com/ovh/manager/issues/7289)) ([1401624](https://github.com/ovh/manager/commit/1401624af1c1589f94b0b4ef698218b061053064))
+
+
+
+# [5.78.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.77.1...@ovh-ux/manager-pci@5.78.0) (2022-06-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1666] ([5566e26](https://github.com/ovh/manager/commit/5566e2615e217efbc8301f721887450651c01db9))
+* show all metrics ([#7146](https://github.com/ovh/manager/issues/7146)) ([6fdc7e1](https://github.com/ovh/manager/commit/6fdc7e1448cc5e7dfab8b19e79f7295b31b90753))
+
+
+### Features
+
+* **pci.storages.containers:** redirect and preselect items ([#7219](https://github.com/ovh/manager/issues/7219)) ([2f3152e](https://github.com/ovh/manager/commit/2f3152eed718e7be49dee8fc45283804470490e9))
+* change joburl to url ([#7127](https://github.com/ovh/manager/issues/7127)) ([d9365de](https://github.com/ovh/manager/commit/d9365decfdaf64e0053e7c2fc93a9206587a6224))
+* error page tracking improvements ([#6965](https://github.com/ovh/manager/issues/6965)) ([8aa46b8](https://github.com/ovh/manager/commit/8aa46b84bae41b995225bddc66015a7fb1c31580))
+
+
+
+## [5.77.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.77.0...@ovh-ux/manager-pci@5.77.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
 # [5.77.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.76.0...@ovh-ux/manager-pci@5.77.0) (2022-05-31)
 
 

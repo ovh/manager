@@ -4,32 +4,42 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { useShellClient } from '@ovh-ux/shell';
 
-import {
-  attach as attachPreloader,
-  displayMessage,
-} from '@ovh-ux/manager-preloader';
-
 import { buildURL } from '@ovh-ux/ufrontend';
-import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
+import {
+  findAvailableLocale,
+  detectUserLocale,
+  isTopLevelApplication,
+} from '@ovh-ux/manager-config';
 import { BILLING_REDIRECTIONS } from './constants';
 
 import { getShellClient, setShellClient } from './shell';
+import TRACKING from './components/at-internet/at-internet.constant';
 
-attachPreloader(findAvailableLocale(detectUserLocale()));
+if (isTopLevelApplication()) {
+  import('@ovh-ux/manager-preloader')
+    .then(({ attach }) => attach(findAvailableLocale(detectUserLocale())))
+    .catch(() => {});
+}
 
 useShellClient('hub')
-  .then((client) => {
+  .then(async (client) => {
+    const isSidebarMenuVisible = await client.ux.isMenuSidebarVisible();
+    if (!isTopLevelApplication()) {
+      client.ux.startProgress();
+    }
+
     setShellClient(client);
-    client.ux.disableAccountSidebarToggle();
-    client.ux.showAccountSidebar();
+    client.ux.setForceAccountSiderBarDisplayOnLargeScreen(true);
+    if (!isSidebarMenuVisible) {
+      client.ux.showAccountSidebar();
+    }
+
+    await client.tracking.setConfig(TRACKING);
+
     return client.environment.getEnvironment();
   })
   .then((environment) => {
     environment.setVersion(__VERSION__);
-
-    if (environment.getMessage()) {
-      displayMessage(environment.getMessage(), environment.getUserLanguage());
-    }
 
     BILLING_REDIRECTIONS.forEach((redirectionRegex) => {
       const hash = window.location.hash.replace('#', '');

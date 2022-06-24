@@ -38,7 +38,6 @@ export const getLink = (column, tracker) => `
     data-ng-href="{{ $ctrl.getServiceNameLink($row) }}"
     data-ng-bind="$row.${column.property}"
     ${tracker ? `data-track-on="click" data-track-name="${tracker}"` : ''}
-    target="_top"
   ></a>
 `;
 
@@ -127,19 +126,41 @@ const mapApiProperties = (properties) => {
   }));
 };
 
+const sortColumns = (columns, priorities) =>
+  columns.sort(({ property: a }, { property: b }) => {
+    const aPriority = priorities.indexOf(a);
+    const bPriority = priorities.indexOf(b);
+
+    if (aPriority > -1 && bPriority > -1) {
+      return aPriority - bPriority;
+    }
+    if (aPriority > -1) {
+      return -1;
+    }
+    return 1;
+  });
+
 export const getDefaultConfiguration = (
   dataModel,
   defaultFilterColumn,
   displayedColumns,
 ) => {
-  const columns = mapApiProperties(dataModel.properties).filter(
+  let columns = mapApiProperties(dataModel.properties).filter(
     ({ label }) => label !== defaultFilterColumn,
   );
+
   columns.unshift({
     label: defaultFilterColumn,
     property: defaultFilterColumn,
     serviceLink: true,
   });
+
+  columns = sortColumns(columns, [
+    defaultFilterColumn,
+    'displayName',
+    'description',
+  ]);
+
   return {
     data: columns.map((column, index) => ({
       ...column,

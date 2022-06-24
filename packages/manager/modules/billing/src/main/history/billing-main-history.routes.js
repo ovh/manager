@@ -175,6 +175,12 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             billId,
             debtId,
           }),
+        isHtmlInvoiceAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
+          const featureName = 'billing:hideHtmlInvoice';
+          return ovhFeatureFlipping
+            .checkFeatureAvailability(featureName)
+            .then((feature) => !feature.isFeatureAvailable(featureName));
+        },
         breadcrumb: () => null,
         hideBreadcrumb: () => true,
       },

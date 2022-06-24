@@ -1,23 +1,17 @@
-<ldp-project-empty
-    data-guides="$ctrl.guides"
-    data-image-source="$ctrl.illustration"
-    data-on-guide-click="$ctrl.onGuideClick(guide)"
+<manager-on-boarding-layout
+    data-guides=":: $ctrl.guides"
+    data-image-source="$ctrl.image"
 >
-    <h1 data-translate="logs_onboarding_title"></h1>
-    <h5 data-translate="logs_onboarding_description_title_1"></h5>
-    <p
-        data-translate="logs_onboarding_description_1"
-        data-translate-values="{ spark_url: $ctrl.sparkUrl }"
-    ></p>
-    <h5 data-translate="logs_onboarding_description_title_2"></h5>
-    <p data-translate="logs_onboarding_description_2"></p>
-
-    <a data-ng-href="{{$ctrl.orderLink}}" target="_top">
-        <oui-button
-            data-variant="primary"
-            data-on-click="$ctrl.onSubmitClick()"
+    <onboarding-title>
+        <p data-translate="dbaas_logs_onboarding_title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <p data-translate="dbaas_logs_onboarding_description"></p>
+        <a
+            class="oui-button oui-button_primary oui-button_l text-light"
+            data-translate="dbaas_logs_onboarding_cta"
+            href="{{:: $ctrl.cta }}"
         >
-            <span data-translate="logs_onboarding_try"></span>
-        </oui-button>
-    </a>
-</ldp-project-empty>
+        </a>
+    </onboarding-description>
+</manager-on-boarding-layout>

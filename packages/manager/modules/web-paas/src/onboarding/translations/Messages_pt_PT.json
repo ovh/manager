@@ -1,9 +1,8 @@
 {
-  "web_paas_title": "Web PaaS powered by Platform.sh",
-  "web_paas_onboarding_action_label": "Novo projeto",
-  "web_paas_onboarding_content1": "A plataforma de desenvolvimento pensada para os programadores e suas equipas, para conceber, implementar e executar aplicações web.",
-  "web_paas_onboarding_content2": "Graças aos conhecimentos de Platform.sh associados às infraestruturas da OVHcloud, proporcione mais flexibilidade e agilidade às suas equipas de programação.",
-  "web_paas_onboarding_content2_1": "Desenvolva aplicações com o ambiente de execução (runtime) ou o serviço web à sua escolha a partir de uma vasta seleção e beneficie de modelos predefinidos para poder começar rapidamente.",
-  "web_paas_onboarding_content2_2": "Concentre-se no seu código e nos seus projetos graças a uma infraestrutura gerida pela OVHcloud. Desenvolver uma aplicação torna-se assim mais simples e mais rápido.",
-  "web_paas_onboarding_content3": "Usufrua de uma implementação contínua integrada graças às funções nativas (GitHub integrado, CI/CD, etc.) e de uma gestão precisa das funções para tornar a colaboração das equipas de programadores mais eficaz."
+  "web_paas_onboarding_title": "Web PaaS Powered by Platform.sh",
+  "web_paas_onboarding_description": "<b>Concentre-se no código! A OVHcloud trata do resto.</b>",
+  "web_paas_onboarding_description2": "A nossa plataforma automatizada, flexível e inteiramente gerida \"as a service\" permite aos <b>programadores web</b> implementar o seu <b>código fonte com Git</b> em qualquer linguagem ou framework, sem precisarem de conhecimentos de gestão de servidores.",
+  "web_paas_onboarding_order": "Criar um projeto",
+  "web_paas_onboarding_guide1_title": "Web PaaS powered by Platform.sh",
+  "web_paas_onboarding_guide1_description": "Disponível apenas em inglês"
 }

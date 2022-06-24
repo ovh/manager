@@ -57,7 +57,8 @@ import has from 'lodash/has';
 import set from 'lodash/set';
 import isString from 'lodash/isString';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
+import '@ovh-ux/ng-at-internet';
+import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
@@ -113,6 +114,7 @@ import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ovhManagerNutanix from '@ovh-ux/manager-nutanix';
 import { pollingService } from '@ovh-ux/manager-bm-server-components';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import account from './account';
 import cdn from './cdn';
 import moduleLicense from './license';
@@ -133,10 +135,29 @@ import otrs from './otrs';
 
 import { TRACKING } from './at-internet.constants';
 
-export default (containerEl, environment) => {
-  const configConstants = getConstants(environment.getRegion());
+const getEnvironment = (shellClient) => {
+  return shellClient.environment.getEnvironment();
+};
 
+const getLocale = (shellClient) => {
+  return shellClient.i18n.getLocale();
+};
+
+export default async (containerEl, shellClient) => {
   const moduleName = 'App';
+
+  const [environment, locale] = await Promise.all([
+    getEnvironment(shellClient),
+    getLocale(shellClient),
+  ]);
+
+  const coreCallbacks = {
+    onLocaleChange: (lang) => {
+      shellClient.i18n.setLocale(lang);
+    },
+  };
+
+  const configConstants = getConstants(environment.getRegion());
 
   angular
     .module(
@@ -145,10 +166,11 @@ export default (containerEl, environment) => {
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
         account,
         ovhManagerAccountSidebar,
-        registerCoreModule(environment),
+        registerCoreModule(environment, coreCallbacks),
+        registerAtInternet(shellClient.tracking),
         ovhManagerAtInternetConfiguration,
         ovhManagerBilling,
-        ovhManagerCookiePolicy,
+        isTopLevelApplication() ? ovhManagerCookiePolicy : null,
         chartjs,
         'controllers',
         cdn,
@@ -172,7 +194,6 @@ export default (containerEl, environment) => {
         otrs,
         ovhManagerMfaEnrollment,
         'ngMessages',
-        ngAtInternet,
         ngAtInternetUiRouterPlugin,
         ngOvhApiWrappers,
         ngOvhBrowserAlert,
@@ -189,7 +210,7 @@ export default (containerEl, environment) => {
         'ngRoute',
         'ngSanitize',
         ngTranslateAsyncLoader,
-        ngUirouterLineProgress,
+        isTopLevelApplication() ? ngUirouterLineProgress : null,
         'oui',
         ngOvhExportCsv,
         ngPaginationFront,
@@ -282,9 +303,12 @@ export default (containerEl, environment) => {
     .config(($urlServiceProvider) => {
       $urlServiceProvider.rules.otherwise('/configuration');
     })
+    .config(async () => {
+      await shellClient.tracking.setConfig(TRACKING);
+    })
     .config(
       /* @ngInject */ (atInternetConfigurationProvider) => {
-        atInternetConfigurationProvider.setConfig(TRACKING);
+        atInternetConfigurationProvider.setSkipInit(true);
         atInternetConfigurationProvider.setReplacementRules([
           {
             pattern: /^app/,
@@ -295,7 +319,27 @@ export default (containerEl, environment) => {
     )
     .config(
       /* @ngInject */ (ovhPaymentMethodProvider) => {
-        ovhPaymentMethodProvider.setUserLocale(environment.getUserLocale());
+        ovhPaymentMethodProvider.setUserLocale(locale);
+      },
+    )
+    .config(
+      /* @ngInject */ (ssoAuthModalPluginFctProvider) => {
+        ssoAuthModalPluginFctProvider.setOnLogout(() => {
+          shellClient.auth.logout();
+        });
+        ssoAuthModalPluginFctProvider.setOnReload(() => {
+          shellClient.navigation.reload();
+        });
+      },
+    )
+    .config(
+      /* @ngInject */ (ssoAuthenticationProvider) => {
+        ssoAuthenticationProvider.setOnLogin(() => {
+          shellClient.auth.login();
+        });
+        ssoAuthenticationProvider.setOnLogout(() => {
+          shellClient.auth.logout();
+        });
       },
     )
     .constant('REGEX', {
@@ -303,6 +347,32 @@ export default (containerEl, environment) => {
       ROUTABLE_IP: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
       ROUTABLE_BLOCK_OR_IP: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))?$/,
     })
+    .run(
+      /* @ngInject */ ($transitions) => {
+        // replace ngOvhUiRouterLineProgress if in container
+        if (!isTopLevelApplication()) {
+          $transitions.onBefore({}, (transition) => {
+            if (
+              !transition.ignored() &&
+              transition.from().name !== '' &&
+              transition.entering().length > 0
+            ) {
+              shellClient.ux.startProgress();
+            }
+          });
+
+          $transitions.onSuccess({}, () => {
+            shellClient.ux.stopProgress();
+          });
+
+          $transitions.onError({}, (transition) => {
+            if (!transition.error().redirected) {
+              shellClient.ux.stopProgress();
+            }
+          });
+        }
+      },
+    )
     .run(
       /* @ngInject */ ($rootScope, $state, $transitions, coreConfig) => {
         $rootScope.$on('$locationChangeStart', () => {
@@ -318,6 +388,9 @@ export default (containerEl, environment) => {
             'veeam-enterprise',
             'nutanix',
           ];
+
+          const ACCOUNT_STATES = ['app.account'];
+
           const IGNORE_STATES = [
             'app.configuration',
             'app.expired',
@@ -330,6 +403,10 @@ export default (containerEl, environment) => {
 
           if (HPC_STATES.some((state) => stateIncludes.includes(state))) {
             $rootScope.$broadcast('switchUniverse', 'hpc');
+          } else if (
+            ACCOUNT_STATES.some((state) => stateIncludes.includes(state))
+          ) {
+            $rootScope.$broadcast('switchUniverse', null);
           } else if (
             !IGNORE_STATES.some((state) => stateIncludes.includes(state))
           ) {
@@ -413,7 +490,7 @@ export default (containerEl, environment) => {
     )
     .config(
       /* @ngInject */ (ouiCalendarConfigurationProvider) => {
-        const lang = environment.getUserLanguage();
+        const [lang] = locale.split('_');
         return import(`flatpickr/dist/l10n/${lang}.js`)
           .then((module) => {
             ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
@@ -424,8 +501,12 @@ export default (containerEl, environment) => {
     .constant('UNIVERSE', 'DEDICATED')
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
-        const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
+        const unregisterHook = $transitions.onSuccess({}, async () => {
+          if (isTopLevelApplication()) {
+            detachPreloader();
+          } else {
+            await shellClient.ux.hidePreloader();
+          }
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
@@ -436,6 +517,17 @@ export default (containerEl, environment) => {
         ovhFeatureFlippingProvider.setApplicationName(
           environment.getApplicationName(),
         );
+      },
+    )
+    .run(
+      /* @ngInject */ ($rootScope) => {
+        shellClient.ux.onOpenChatbot(() => {
+          $rootScope.$emit('ovh-chatbot:open');
+        });
+
+        shellClient.ux.onReduceChatbot(() => {
+          $rootScope.$emit('ovh-chatbot:close', false);
+        });
       },
     );
 

@@ -21,16 +21,10 @@ export interface ClientNavigationApi {
 
 export function navigation(environment: Environment) {
   const getPublicURL = (application: ApplicationId) => {
-    const appPublicURL = environment.getApplications()[application]?.publicURL;
-    const currentAppPublicURL = environment.getApplications()[
-      environment.getApplicationName() as ApplicationId
-    ]?.publicURL;
-
-    if (appPublicURL === currentAppPublicURL) {
-      return `${window.location.origin}${window.location.pathname}`;
+    if (window.location.hostname === 'localhost') {
+      return `${window.location.origin}/#/manager`;
     }
-
-    return appPublicURL;
+    return environment.getApplications()[application]?.publicURL;
   };
 
   const getURL = (
