@@ -1,7 +1,7 @@
 <div class="row">
     <oui-select-picker
         class="d-inline-block col-md-6 col-xl-4 my-3"
-        data-ng-repeat="flavor in $ctrl.flavors track by flavor.name"
+        data-ng-repeat="flavor in $ctrl.getSortedFlavors() track by flavor.id"
         data-name="{{:: flavor.name }}"
         data-model="$ctrl.selectedFlavor"
         data-disabled="!$ctrl.allowLowerSelection && $ctrl.currentFlavor && $ctrl.currentFlavor.compare(flavor) <= 0"
@@ -56,9 +56,11 @@
                 data-tax="flavor.hourlyPrice.tax"
                 data-user="$ctrl.user"
                 data-show-zero-price="true"
-                data-interval="'hour'"
             >
             </ovh-manager-catalog-price>
+            <strong
+                data-translate="pci_database_flavors_list_spec_price_unit"
+            ></strong>
         </oui-select-picker-section>
     </oui-select-picker>
 </div>

@@ -90,6 +90,10 @@ export default class Plan {
     return this.maxCores + this.maxMemory + this.maxNodes + this.maxStorage;
   }
 
+  get id() {
+    return `${this.availability[0].engine}-${this.name}`;
+  }
+
   compare(plan) {
     // greater than 0 if current plan is the lower one
     // less than 0 if current plan is the higher one
@@ -103,13 +107,20 @@ export default class Plan {
     return planScore > thisScore ? 1 : -1;
   }
 
-  getDefaultRegion(selectedRegion) {
-    return this.regions.includes(selectedRegion)
-      ? selectedRegion
-      : find(this.regions, 'isDefault');
+  getDefaultRegion() {
+    const defaultRegion = find(this.regions, 'isDefault');
+    return defaultRegion || this.regions[0];
   }
 
   getRegion(regionName) {
     return find(this.regions, { name: regionName });
+  }
+
+  isNetworkSupported(networkName) {
+    return some(this.availability, { network: networkName });
+  }
+
+  get supportsPrivateNetwork() {
+    return this.isNetworkSupported('private');
   }
 }
