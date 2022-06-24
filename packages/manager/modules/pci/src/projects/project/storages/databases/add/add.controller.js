@@ -3,34 +3,34 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
+import animateScrollTo from 'animated-scroll-to';
 import { API_GUIDES } from '../../../project.constants';
-
-import {
-  MAX_NAME_LENGTH,
-  MIN_NAME_LENGTH,
-  NAME_PATTERN,
-} from './add.constants';
 import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
+import { ENGINE_LOGOS } from '../databases.constants';
+import { ORDER_KEYS } from './add.constants';
+import { nameGenerator } from '../../../../../name-generator.constant';
 
 export default class {
   /* @ngInject */
   constructor(
-    $anchorScroll,
     $translate,
-    $q,
+    $timeout,
+    $document,
+    $anchorScroll,
     CucCloudMessage,
     DatabaseService,
-    Poller,
+    ovhManagerRegionService,
   ) {
-    this.$anchorScroll = $anchorScroll;
     this.$translate = $translate;
-    this.$q = $q;
+    this.$timeout = $timeout;
+    this.$document = $document;
+    this.$anchorScroll = $anchorScroll;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
-    this.Poller = Poller;
-    this.NAME_PATTERN = NAME_PATTERN;
-    this.MIN_NAME_LENGTH = MIN_NAME_LENGTH;
-    this.MAX_NAME_LENGTH = MAX_NAME_LENGTH;
+    this.ovhManagerRegionService = ovhManagerRegionService;
+    this.ENGINE_LOGOS = ENGINE_LOGOS;
+    this.orderKeys = ORDER_KEYS;
+    this.nameGenerator = nameGenerator;
   }
 
   $onInit() {
@@ -38,16 +38,21 @@ export default class {
     this.messageContainer = 'pci.projects.project.storages.databases.add';
     this.loadMessages();
     this.model = {
-      engine: find(this.engines, 'isDefault'),
-      plan: null,
-      region: null,
-      flavor: null,
+      engine: find(this.engines, 'isDefault') || this.engines[0],
+      plan: {
+        name: null,
+      },
+      region: {
+        name: null,
+      },
+      flavor: {
+        name: null,
+      },
       name: '',
       privateNetwork: null,
       subnet: null,
       usePrivateNetwork: false,
     };
-    this.orderData = null;
     this.defaultPrivateNetwork = {
       id: '',
       name: this.$translate.instant('pci_database_common_none'),
@@ -61,6 +66,19 @@ export default class {
     this.trackDatabases('configuration', 'page');
 
     this.preselectStepItem();
+    this.updateEngine(this.model.engine);
+
+    // If we find the parentElement, we can enable smooth scrolling. Otherwise, fallback to $anchor
+    const scrollParentElement = this.$document[0].getElementsByClassName(
+      'pci-project-content',
+    )[0];
+    this.scrollToOptions = scrollParentElement
+      ? {
+          element: scrollParentElement,
+          offset: 0,
+          horizontal: false,
+        }
+      : null;
   }
 
   /**
@@ -68,18 +86,25 @@ export default class {
    */
   preselectStepItem() {
     const { steps } = this.redirectTarget;
-    const currentStep = (this.currrentStep || 0) + 1; // to have human start count
-
-    if (steps && currentStep === 1) {
+    if (steps) {
       this.model.engine =
-        this.engines.find(
-          ({ name }) => name === steps[`STEP_${currentStep}`],
-        ) || this.model.engine;
+        this.engines.find(({ name }) => name === steps.STEP_1) ||
+        this.model.engine;
+
+      this.model.plan.name = steps.STEP_2;
+      this.model.region.name = steps.STEP_3;
+      this.model.flavor.name = steps.STEP_4;
     }
   }
 
-  checkPattern(value) {
-    return this.NAME_PATTERN.test(value);
+  scrollTo(id) {
+    this.trackDatabases(`databases_config_page::basket::anchors::${id}`);
+    // If we have the scrollToOptions, we can use the smooth scrolling, otherwise we use $anchor
+    if (this.scrollToOptions) {
+      animateScrollTo(document.getElementById(id), this.scrollToOptions);
+    } else {
+      this.$anchorScroll(id);
+    }
   }
 
   acceptLab(accepted) {
@@ -100,49 +125,6 @@ export default class {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
-  }
-
-  setDefaultPlan() {
-    this.model.plan = this.model.engine.selectedVersion.getDefaultPlan(
-      this.model.plan,
-    );
-  }
-
-  setDefaultRegion() {
-    this.model.region = this.model.plan.getDefaultRegion(this.model.region);
-  }
-
-  setDefaultFlavor() {
-    this.model.flavor = this.model.region.getDefaultFlavor(this.model.flavor);
-  }
-
-  onFlavorSelect() {
-    this.model.usePrivateNetwork = !this.model.flavor.supportsPublicNetwork;
-    this.model.privateNetwork = this.defaultPrivateNetwork;
-    this.model.subnet = null;
-    this.model.name = `${this.model.engine.name}-${this.model.flavor.name}-${this.model.plan.name}-`;
-    this.availablePrivateNetworks = [
-      this.defaultPrivateNetwork,
-      ...sortBy(
-        map(
-          filter(this.privateNetworks, (network) =>
-            find(
-              network.regions,
-              (region) =>
-                region.region.startsWith(this.model.region.name) &&
-                region.status === 'ACTIVE',
-            ),
-          ),
-          (privateNetwork) => ({
-            ...privateNetwork,
-            name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
-              privateNetwork.name
-            }`,
-          }),
-        ),
-        ['name'],
-      ),
-    ];
   }
 
   onPrivateNetworkChange(privateNetwork) {
@@ -171,6 +153,7 @@ export default class {
       .finally(() => {
         this.loadingSubnets = false;
       });
+    this.getOrderData();
   }
 
   isNetworkSelected() {
@@ -181,15 +164,30 @@ export default class {
 
   onNetworkTypeChange(usePrivateNetwork) {
     if (!usePrivateNetwork) this.model.subnet = null;
+    this.getOrderData();
   }
 
-  prepareOrderData() {
+  onNodeNumberChange() {
+    // delay order data computation so it has the last value of input number
+    this.$timeout(() => this.getOrderData());
+  }
+
+  getNodesSpecTranslation() {
+    const { nodesCount, maxNodes } = this.model.plan;
+    const prefix = 'pci_database_add_spec_nodes';
+    const range = nodesCount === maxNodes ? '' : '_range';
+    const single = nodesCount === 1 ? '_single' : '';
+    const translateKey = `${prefix}${range}${single}`;
+    return this.$translate.instant(translateKey, {
+      min: nodesCount,
+      max: maxNodes,
+    });
+  }
+
+  getOrderData() {
+    this.orderAPIUrl = `POST /cloud/project/${this.projectId}/database/${this.model.engine.name}`;
     this.orderData = {
       description: this.model.name,
-      networkId: this.model.privateNetwork.regions?.find(
-        (region) => region.region === this.model.subnet?.ipPools[0].region,
-      )?.openstackId,
-      subnetId: this.model.subnet?.id,
       nodesPattern: {
         flavor: this.model.flavor.name,
         number: this.model.plan.nodesCount,
@@ -198,8 +196,140 @@ export default class {
       plan: this.model.plan.name,
       version: this.model.engine.selectedVersion.version,
     };
+    if (this.model.usePrivateNetwork && this.model.subnet?.id?.length > 0) {
+      this.orderData.networkId = this.model.privateNetwork.regions?.find(
+        (region) => region.region === this.model.subnet?.ipPools[0].region,
+      )?.openstackId;
+      this.orderData.subnetId = this.model.subnet?.id;
+    }
 
-    this.orderAPIUrl = `POST /cloud/project/${this.projectId}/database/${this.model.engine.name}`;
+    this.commandData = {
+      orderAPIUrl: this.orderAPIUrl,
+      orderData: this.orderData,
+      orderKeys: this.orderKeys,
+      apiGuideUrl: this.apiGuideUrl,
+    };
+  }
+
+  onEngineChanged(engine) {
+    this.updateEngine(engine);
+  }
+
+  onPlanChanged(plan) {
+    this.updatePlan(plan);
+  }
+
+  onRegionChanged(region) {
+    this.updateRegion(region);
+  }
+
+  onFlavorChanged(flavor) {
+    this.updateFlavor(flavor);
+  }
+
+  updateEngine(engine) {
+    this.model.engine = engine;
+    this.model.plan = this.getSyncPlan(engine);
+    this.model.name = this.nameGenerator(`${engine.name}-`);
+    this.updatePlan(this.model.plan);
+  }
+
+  updatePlan(plan) {
+    this.model.plan = plan;
+    this.model.region = this.getSyncRegion(plan);
+    this.updateRegion(this.model.region);
+  }
+
+  updateRegion(region) {
+    this.model.region = region;
+    this.model.flavor = this.getSyncFlavor(region);
+    this.updateFlavor(this.model.flavor);
+  }
+
+  updateFlavor(flavor) {
+    this.model.flavor = flavor;
+
+    if (!flavor.supportsPrivateNetwork) {
+      this.model.usePrivateNetwork = false;
+      this.model.subnet = null;
+      this.model.privateNetwork = null;
+    } else if (!this.model.usePrivateNetwork) {
+      this.model.privateNetwork = this.defaultPrivateNetwork;
+      this.model.subnet = null;
+
+      this.availablePrivateNetworks = [
+        this.defaultPrivateNetwork,
+        ...sortBy(
+          map(
+            filter(this.privateNetworks, (network) =>
+              find(
+                network.regions,
+                (region) =>
+                  region.region.startsWith(this.model.region.name) &&
+                  region.status === 'ACTIVE',
+              ),
+            ),
+            (privateNetwork) => ({
+              ...privateNetwork,
+              name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
+                privateNetwork.name
+              }`,
+            }),
+          ),
+          ['name'],
+        ),
+      ];
+    }
+    this.getOrderData();
+  }
+
+  getSyncPlan(engine) {
+    const { plans } = engine.selectedVersion;
+    let plan = engine.getDefaultPlan();
+    if (this.model.plan) {
+      const equivalentPlan = plans.find((p) => p.name === this.model.plan.name);
+      if (equivalentPlan) {
+        plan = equivalentPlan;
+      }
+    }
+    return plan;
+  }
+
+  getSyncRegion(plan) {
+    const { regions } = plan;
+    let region = plan.getDefaultRegion();
+    if (this.model.region) {
+      const equivalentRegion = regions.find(
+        (r) => r.name === this.model.region.name,
+      );
+      if (equivalentRegion) {
+        region = equivalentRegion;
+      }
+    }
+    return region;
+  }
+
+  getSyncFlavor(region) {
+    const { flavors } = region;
+    let flavor = region.getDefaultFlavor();
+    if (this.model.flavor) {
+      const equivalentFlavor = flavors.find(
+        (f) => f.name === this.model.flavor.name,
+      );
+      if (equivalentFlavor) {
+        flavor = equivalentFlavor;
+      }
+    }
+    return flavor;
+  }
+
+  trackAndGoToCommand() {
+    this.trackDatabases(`databases_config_page::basket::goto_api_equivalent`);
+    this.goToCommand(this.commandData);
+  }
+
+  trackNamePopover() {
+    this.trackDatabases(`databases_config_page::basket::info_popin::name`);
   }
 
   createDatabase() {

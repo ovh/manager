@@ -1,7 +1,7 @@
 <div class="row">
     <oui-select-picker
         class="d-inline-block col-md-6 col-xl-4 my-3"
-        data-ng-repeat="plan in $ctrl.plans track by plan.name"
+        data-ng-repeat="plan in $ctrl.plans track by plan.id"
         data-disabled="!$ctrl.allowLowerSelection && $ctrl.currentPlan && $ctrl.currentPlan.compare(plan) <= 0"
         data-name="{{:: plan.name }}"
         data-model="$ctrl.selectedPlan"
@@ -77,6 +77,11 @@
                 class="mb-0"
                 data-translate="pci_database_plans_list_spec_backup"
             ></p>
+            <p
+                data-ng-if="plan.supportsPrivateNetwork"
+                class="mb-0"
+                data-translate="pci_database_plans_list_spec_private_network"
+            ></p>
         </oui-select-picker-section>
         <oui-select-picker-section>
             <span
@@ -88,9 +93,11 @@
                 data-tax="plan.minHourlyPrice.tax"
                 data-user="$ctrl.user"
                 data-show-zero-price="true"
-                data-interval="'hour'"
             >
             </ovh-manager-catalog-price>
+            <strong
+                data-translate="pci_database_plans_list_spec_price_unit"
+            ></strong>
         </oui-select-picker-section>
     </oui-select-picker>
 </div>

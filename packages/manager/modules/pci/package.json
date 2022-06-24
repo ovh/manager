@@ -13,6 +13,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
+    "animated-scroll-to": "^1.2.2",
     "d3": "~3.5.13",
     "fast-sha256": "^1.1.0",
     "file-saver": "^2.0.1",
