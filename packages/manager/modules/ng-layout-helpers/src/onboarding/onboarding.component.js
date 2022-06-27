@@ -10,6 +10,7 @@ export default {
     footer: '?onboardingFooter',
   },
   bindings: {
+    hideIllustrationSection: '<',
     imageAlt: '<',
     imageSource: '<',
     guides: '<?',
