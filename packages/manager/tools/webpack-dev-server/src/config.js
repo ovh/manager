@@ -24,6 +24,8 @@ module.exports = (env) => {
     }),
   ];
 
+  const isContainer = env.container || process.env.CONTAINER;
+
   const sso = new Sso(region);
 
   if (yn(env.local2API) || yn(process.env.npm_package_config_local2API)) {
@@ -51,8 +53,11 @@ module.exports = (env) => {
       port:
         env.port ||
         Number.parseInt(process.env.npm_package_config_port, 10) ||
-        9000,
+        isContainer
+          ? 9001
+          : 9000,
       proxy,
+      publicPath: isContainer ? '/app' : '/',
     },
   };
 };
