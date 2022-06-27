@@ -6,7 +6,7 @@ The monorepo is powered by:
 
 - [Yarn](https://yarnpkg.com) — Fast, reliable, and secure dependency management.
 - [Lerna](https://lerna.js.org/) — A tool for managing JavaScript projects with multiple packages.
-- [Jest](https://jestjs.io/) - A Javascript Testing framework with a focus on simplicity.
+- [Jest](https://jestjs.io/) - A JavaScript Testing framework with a focus on simplicity.
 
 Several [workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) are configured and you can find the list in the root [`package.json`](https://github.com/ovh/manager/blob/master/package.json#L7-L12) file.
 
@@ -44,10 +44,10 @@ The **Manager** application is using these following languages:
 
 - HTML
 - CSS ([Less.js](http://lesscss.org/), [SCSS](https://sass-lang.com/))
-- JavaScript/Typescript
+- JavaScript/TypeScript
 
 [AngularJS](https://angularjs.org/) used to be a widelys used MVW Framework to build [Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application).
-[ReactJS](https://fr.reactjs.org/) is used to build the container.
+[ReactJS](https://reactjs.org/) is used to build the container.
 
 ::: tip Information
 We are exploring some new solutions to speed up the development workflow.
@@ -61,7 +61,7 @@ You can see more about our tooling [here](/guide/tools.md).
 
 ## Micro-FrontEnd
 
-In order to enable the uFrontEnd architecture, we use what we call a `Container`. The container contains a standalone application and elements that are common to all applications.
+In order to enable the µFrontEnd architecture, we use what we call a `Container`. The container contains a standalone application and elements that are common to all applications.
 The communication between the standalone application and the common elements is made possible thanks to the library [@ovh-ux/shell](https://github.com/ovh/manager/blob/master/packages/components/ovh-shell/README.md).
 
 ### Philosophy
@@ -70,17 +70,15 @@ The philosophy behind this, is not to be tied to a single framework and big mono
 
 ### Communication
 
-The standalone application is loaded inside an `iframe`. The iframe communicates with the container through [`window.postMessage`](https://developer.mozilla.org/fr/docs/Web/API/Window/postMessage) API. You don't have to worry about this part, since the library `@ovh-ux/shell` handles all this part for you, by exposing a set of plugins that you can use to communicate between a standalone application and the container.
+The standalone application is loaded inside an `iframe`. The iframe communicates with the container through [`window.postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) API. You don't have to worry about this part, since the library `@ovh-ux/shell` handles all this part for you, by exposing a set of plugins that you can use to communicate between a standalone application and the container.
 
-![ufrontend schema](/manager/assets/img/ufrontend.jpeg)
+Each app has to instantiate a `ShellClient` through the `useShellClient` method. This will allow the application to have access to the shell plugins and can use them for `environnement`, `navigation` etc. ( Check the shell library for more information on the subject ).
 
-Each app has to instantiate a `Shell` through the `registerApplication` method. This will allow the application to have access to the shell plugins and can use them for `environnement`, `navigation` etc. ( Check the shell library for more information on the subject ).
-
-Once the shell is instantiated, it will enable communication between the `container` and the app through a message bus like in this picture.
+Once the shell is instantiated, it will enable communication between the `container` and the app through a message bus.
 
 ![Container and shell communication and interaction diagramm](/manager/assets/img/container-shell-comm.png)
 
 ### Routing
 
-The container + shell also keeps the iframe URL and the navigator URL are in sync. This way, you can freely route any application inside the iframe, without worrying about what it will do to the container.
-You don't have to import anything, this in a out of the box feature.
+The container + shell also keeps the iframe URL and the navigator URL in sync. This way, you can freely route any application inside the iframe, without worrying about what it will do to the container.
+You don't have to import anything, this is an out of the box feature.

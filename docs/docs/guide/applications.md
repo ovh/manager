@@ -4,12 +4,13 @@ All applications are located in the `packages/manager/apps/*` workspace.
 
 It houses:
 
-- Dashboard <Badge text="New"/>.
-- Four large AngularJS monolithic applications (listed below).
+- Dashboard .
+- Container <Badge text="New"/>
+- Large AngularJS applications.
 - A Sign-up form.
 - Several standalone applications.
 
-The monolithic applications can be started for a specific region
+The applications can be started for a specific region
 
 | Application                           | Region       |
 | ------------------------------------- | ------------ |
@@ -18,7 +19,7 @@ The monolithic applications can be started for a specific region
 | [Bare Metal Cloud](#bare-metal-cloud) | EU / CA / US |
 | [Public Cloud](#public-cloud)         | EU / CA / US |
 | [Telecom](#telecom)                   | EU           |
-| [Container](#container)               | EU / CA / US |
+| [Container](#container) <Badge text="New"/>               | EU / CA / US |
 
 :::tip Information
 Depending on the requested region, the URL to access the API will be different
@@ -134,24 +135,25 @@ $ yarn run build -p @ovh-ux/manager-telecom
 
 ![Container app screenshot](/manager/assets/img/container.png)
 
-The container app contains all common elements to all applications. It can run alone with the command :
+The container app contains all common elements to all applications. Running this command at the root folder, will launch a CLI that will prompt you to choose between launching your app in your container or not.
 
 ```sh
-TODO: run alone command
+yarn start
 ```
 
-or with an application with the command:
+After it's finished, the app within the container will be available at: http://localhost:9000/
+
+The application can also be run from its own folder with the following command:
 
 ```sh
-TODO: run with app command
+yarn start:dev
 ```
 
-### How to build the application ?
+### How to build the application?
 
 ```sh
-TODO: build command
+$ yarn run build -p @ovh-ux/manager-container-app
 ```
-
 
 ## Related
 
