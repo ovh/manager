@@ -9,6 +9,7 @@
 
   &_content {
     flex: 1 1 auto;
+    height: 100%; /* For Safari on BigSur or before */
 
     iframe {
       width: 100%;
