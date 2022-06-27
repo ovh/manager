@@ -93,67 +93,6 @@ export default function() {
           closeActionsMenu();
         }
       });
-
-      /**
-       *  Manage focus state. Shared with controller to allow focus management into
-       *  controller events.
-       */
-      actionsMenuCtrl.onPageSwitch = function onPageSwitch() {
-        // get visible page dom element
-        const visiblePage = tElement.find(
-          actionsMenuCtrl.status.move ? 'div.secondary-page' : 'div.main-page',
-        );
-
-        // insert a invisible link to it for a better focus management
-        let focusHelper = visiblePage.find('a.focus-helper');
-        if (!focusHelper.length) {
-          focusHelper = $('<a></a>');
-          focusHelper.attr({
-            href: '#',
-            class: 'focus-helper',
-            onClick: 'return false;',
-          });
-          visiblePage.append(focusHelper);
-        }
-
-        // set focus to invisble element
-        focusHelper.focus();
-
-        // manage focus loop for current page
-        visiblePage.on('keydown', (event) => {
-          if (event.keyCode === 9) {
-            // tab
-            if (event.shiftKey) {
-              // shift+tab
-              if (
-                $(event.target).is(
-                  visiblePage.find('a:not(.focus-helper), button').first(),
-                )
-              ) {
-                visiblePage
-                  .find('a:not(.focus-helper), button')
-                  .last()
-                  .focus();
-                event.preventDefault();
-              }
-            } else if (
-              $(event.target).is(
-                visiblePage.find('a:not(.focus-helper), button').last(),
-              ) ||
-              $(event.target).is(focusHelper)
-            ) {
-              visiblePage
-                .find('a:not(.focus-helper), button')
-                .first()
-                .focus();
-              event.preventDefault();
-            }
-          } else if (event.keyCode === 27) {
-            // esc
-            closeActionsMenu();
-          }
-        });
-      };
     },
   };
 }
