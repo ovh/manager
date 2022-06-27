@@ -1,4 +1,5 @@
 import { readdirSync, readFileSync } from 'fs';
+import concurrently from 'concurrently';
 import execa from 'execa';
 import inquirer from 'inquirer';
 
@@ -53,22 +54,42 @@ const questions = [
       return regions;
     },
   },
+  {
+    type: 'confirm',
+    name: 'container',
+    message: 'Start the application inside the container?',
+    default: false,
+  },
 ];
 
-inquirer.prompt(questions).then(async ({ packageName, region = 'EU' }) => {
-  /**
-   * Region is defined as an environment variable which is used by the webpack
-   * development server.
-   *
-   * {@link https://github.com/ovh/manager/tree/master/packages/manager/tools/webpack-dev-server#env | webpack dev server }
-   */
-  process.env.REGION = region;
+inquirer
+  .prompt(questions)
+  .then(async ({ packageName, region = 'EU', container = false }) => {
+    /**
+     * Region is defined as an environment variable which is used by the webpack
+     * development server.
+     *
+     * {@link https://github.com/ovh/manager/tree/master/packages/manager/tools/webpack-dev-server#env | webpack dev server }
+     */
+    process.env.REGION = region;
 
-  try {
-    await execa('yarn', ['workspace', packageName, 'run', 'start:dev'], {
-      stdio: 'inherit',
-    });
-  } catch (error) {
-    console.log(error);
-  }
-});
+    try {
+      if (container) {
+        await concurrently(
+          [
+            'yarn workspace @ovh-ux/manager-container-app run start:dev',
+            `CONTAINER=1 yarn workspace ${packageName} run start:dev`,
+          ],
+          {
+            raw: true,
+          },
+        );
+      } else {
+        await execa('yarn', ['workspace', packageName, 'run', 'start:dev'], {
+          stdio: 'inherit',
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
