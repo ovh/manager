@@ -158,9 +158,7 @@ export default async (containerEl, shellClient) => {
       },
     )
     .run(
-      /* @ngInject */ ($anchorScroll, $rootScope, $translate, $transitions) => {
-        $transitions.onSuccess({}, () => $anchorScroll('hub-scroll-top'));
-
+      /* @ngInject */ ($rootScope, $translate, $transitions) => {
         $transitions.onSuccess({ to: 'error' }, () => {
           $rootScope.$emit('ovh::sidebar::hide');
         });
