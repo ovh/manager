@@ -6,7 +6,7 @@ import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
 
 import routing from './download-rclone.routing';
-import rClone from '../../../../components/users/download-rclone'
+import rClone from '../../../../components/users/download-rclone';
 
 const moduleName = 'ovhManagerPciUsersDownloadRclone';
 
