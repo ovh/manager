@@ -1,3 +1,5 @@
 {
-  "pci_ai_app_beta_warning": "Während der Testphase „Alpha“ sind die Verfügbarkeit der Infrastruktur und der Fortbestand der Daten nicht gewährleistet. Verwenden Sie diesen Dienst nicht für Anwendungen, die gerade aufgebaut werden, solange diese Phase nicht abgeschlossen ist."
+  "pci_ai_app_beta_warning": "Während der Testphase „Alpha“ sind die Verfügbarkeit der Infrastruktur und der Fortbestand der Daten nicht gewährleistet. Verwenden Sie diesen Dienst nicht für Anwendungen, die gerade aufgebaut werden, solange diese Phase nicht abgeschlossen ist.",
+  "pci_ai_app_beta_warning_special_conditions": "AI Apps unterliegen den ",
+  "pci_ai_app_beta_warning_special_conditions_link": "besonderen Bedingungen für die Public Cloud Dienste von OVHcloud"
 }
