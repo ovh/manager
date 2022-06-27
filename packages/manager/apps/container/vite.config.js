@@ -17,19 +17,31 @@ function viteOvhDevServerPlugin() {
       const sso = new Sso(region);
       const app = express();
 
-      const appDistPath = path.join(
-        __dirname,
-        '../',
-        process.env.APP || '',
-        'dist',
-      );
-      const appEntryPoint = path.join(appDistPath, 'index.html');
-      if (!fs.existsSync(appEntryPoint)) {
-        app.all('/app', (req, res) => {
-          res.status(404).send('Application not found');
-        });
+      if (process.env.APP) {
+        // serve application's dist locally
+        const appDistPath = path.join(
+          __dirname,
+          '../',
+          process.env.APP,
+          'dist',
+        );
+        const appEntryPoint = path.join(appDistPath, 'index.html');
+        if (!fs.existsSync(appEntryPoint)) {
+          app.all('/app', (req, res) => {
+            res.status(404).send('Application not found');
+          });
+        } else {
+          app.use('/app', express.static(appDistPath));
+        }
       } else {
-        app.use('/app', express.static(appDistPath));
+        // proxy to application dev server
+        app.use(
+          '/app',
+          createProxyMiddleware({
+            target: 'http://localhost:9001/',
+            changeOrigin: true,
+          }),
+        );
       }
 
       app.get('/auth', sso.auth.bind(sso));
