@@ -18,6 +18,7 @@ The monolithic applications can be started for a specific region
 | [Bare Metal Cloud](#bare-metal-cloud) | EU / CA / US |
 | [Public Cloud](#public-cloud)         | EU / CA / US |
 | [Telecom](#telecom)                   | EU           |
+| [Container](#container)               | EU / CA / US |
 
 :::tip Information
 Depending on the requested region, the URL to access the API will be different
@@ -28,7 +29,7 @@ Depending on the requested region, the URL to access the API will be different
 
 ## Dashboard
 
-![](/manager/assets/img/control-panel.jpg)
+![Screenshot of the control panel](/manager/assets/img/control-panel.jpg)
 
 ### How to start the application?
 
@@ -46,7 +47,7 @@ $ yarn run build -p @ovh-ux/manager-hub-app
 
 ## Web Cloud
 
-![](/manager/assets/img/control-panel-web.jpg)
+![Web cloud screenshot](/manager/assets/img/control-panel-web.jpg)
 
 ### How to start the application?
 
@@ -64,7 +65,7 @@ $ yarn run build -p @ovh-ux/manager-web
 
 ## Bare Metal Cloud
 
-![](/manager/assets/img/control-panel-bare-metal-cloud.jpg)
+![Bare metal cloud screenshot](/manager/assets/img/control-panel-bare-metal-cloud.jpg)
 
 ::: tip Information
 Both applications **Bare Metal Cloud** and **Hosted Private Cloud** are grouped under the following location: `packages/manager/apps/dedicated`.
@@ -90,7 +91,7 @@ $ yarn run build -p @ovh-ux/manager-dedicated
 
 ## Public Cloud
 
-![](/manager/assets/img/control-panel-public-cloud.jpg)
+![Public cloud screenshot](/manager/assets/img/control-panel-public-cloud.jpg)
 
 ::: tip Information
 Application can be started in different region with a given environment variable.
@@ -113,7 +114,7 @@ $ yarn run build -p @ovh-ux/manager-public-cloud
 
 ## Telecom
 
-![](/manager/assets/img/control-panel-telecom.jpg)
+![Telecom screenshot](/manager/assets/img/control-panel-telecom.jpg)
 
 ### How to start the application?
 
@@ -128,6 +129,29 @@ Go to <http://localhost:9000>
 ```sh
 $ yarn run build -p @ovh-ux/manager-telecom
 ```
+
+## Container
+
+![Container app screenshot](/manager/assets/img/container.png)
+
+The container app contains all common elements to all applications. It can run alone with the command :
+
+```sh
+TODO: run alone command
+```
+
+or with an application with the command:
+
+```sh
+TODO: run with app command
+```
+
+### How to build the application ?
+
+```sh
+TODO: build command
+```
+
 
 ## Related
 
