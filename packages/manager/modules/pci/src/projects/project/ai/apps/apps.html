@@ -3,7 +3,14 @@
     data-type="warning"
     data-dismissable
 >
-    <span data-ng-bind="$ctrl.betaWarning"></span>
+    <p data-ng-bind="$ctrl.betaWarning" class="mb-1"></p>
+    <span data-translate="pci_ai_app_beta_warning_special_conditions"></span>
+    <a
+        data-ng-href="{{::$ctrl.getSpecialConditionsLink()}}"
+        target="_blank"
+        class="oui-link"
+        data-translate="pci_ai_app_beta_warning_special_conditions_link"
+    ></a>
 </oui-message>
 
 <div data-ui-view>

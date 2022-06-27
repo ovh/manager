@@ -556,6 +556,27 @@ export const PCI_URLS = {
   },
 };
 
+export const PCI_SPECIAL_CONDITIONS = {
+  CA: {
+    fr_FR:
+      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/0a19c8e-Conditions_particulieres_OVH_Stack-FR-11.0.pdf',
+    fr_CA:
+      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/0a19c8e-Conditions_particulieres_OVH_Stack-FR-11.0.pdf',
+    default:
+      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/d2a208c-Conditions_particulieres_OVH_Stack-WE-9.0.pdf',
+  },
+  EU: {
+    fr_FR:
+      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/0a19c8e-Conditions_particulieres_OVH_Stack-FR-11.0.pdf',
+    default:
+      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/d2a208c-Conditions_particulieres_OVH_Stack-WE-9.0.pdf',
+  },
+  US: {
+    default:
+      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/d2a208c-Conditions_particulieres_OVH_Stack-WE-9.0.pdf',
+  },
+};
+
 export const TRACKING_CLOUD = {
   pci_menu_header_instances: 'cloud::pci::menu::instances',
   pci_menu_header_ssh_keys: 'cloud::pci::menu::ssh_keys',
@@ -587,5 +608,6 @@ export default {
   CLOUD_PROJECT_BILLING_STATE,
   CLOUD_PCA_FILE_STATE,
   PCI_URLS,
+  PCI_SPECIAL_CONDITIONS,
   TRACKING_CLOUD,
 };
