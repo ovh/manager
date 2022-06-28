@@ -46,12 +46,20 @@ export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
         },
         this.featureTypeToUse,
       )
-      .then(
-        ({ destination }) =>
-          destination && this.TelephonyMediator.findService(destination),
-      )
+      .then(({ destination }) => {
+        if (destination) {
+          this.destination = {
+            description: destination,
+          };
+        }
+
+        return destination && this.TelephonyMediator.findService(destination);
+      })
       .then((destination) => {
-        this.destination = destination;
+        if (destination) {
+          this.destination = destination;
+        }
+
         if (this.destination && this.canDestinationBeUsedForPresentation()) {
           return this.tucVoipServiceLine
             .getLineOptions({
@@ -68,7 +76,7 @@ export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
             });
         }
 
-        return destination;
+        return this.destination;
       })
       .catch((error) => {
         this.TucToast.error(
