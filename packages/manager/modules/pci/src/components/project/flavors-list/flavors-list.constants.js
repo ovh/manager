@@ -39,7 +39,7 @@ export const CATEGORIES = [
   },
   {
     category: 'baremetal',
-    title: 'Bare Metal',
+    title: 'Metal',
     pattern: /baremetal/,
   },
 ];
