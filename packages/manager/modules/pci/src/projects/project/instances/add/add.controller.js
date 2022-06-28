@@ -15,7 +15,10 @@ import Quota from '../../../../components/project/instance/quota/quota.class';
 import { PATTERN } from '../../../../components/project/instance/name/constants';
 import Instance from '../../../../components/project/instance/instance.class';
 
-import { BANDWIDTH_OUT } from './add.constants';
+import {
+  BANDWIDTH_OUT,
+  FILTER_PRIVATE_NETWORK_BAREMETAL,
+} from './add.constants';
 
 export default class PciInstancesAddController {
   /* @ngInject */
@@ -163,7 +166,11 @@ export default class PciInstancesAddController {
             find(network.regions, {
               region: this.instance.region,
               status: 'ACTIVE',
-            }),
+            }) &&
+            // For metal instances we only have vlan 0 available
+            this.model.flavorGroup.type === FILTER_PRIVATE_NETWORK_BAREMETAL
+              ? network.vlanId === 0
+              : network.vlanId !== null,
           ),
           (privateNetwork) => ({
             ...privateNetwork,
