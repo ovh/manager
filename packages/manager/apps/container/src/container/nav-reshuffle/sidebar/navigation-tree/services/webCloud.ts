@@ -104,6 +104,16 @@ export default {
           },
           features: ['emails:mxplan'],
         },
+        {
+          id: 'email-delegated',
+          translation: 'sidebar_email_delegated',
+          serviceType: 'EMAIL_DELEGATED',
+          routing: {
+            application: 'web',
+            hash: '#/email_delegate',
+          },
+          features: ['emails:mxplan'],
+        },
       ],
     },
     {
