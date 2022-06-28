@@ -57,7 +57,6 @@
 
       .actions-menu-pages {
         height: 100%;
-        transition: transform @actions-menu-page-switch-animation-duration;
         margin-left: 0;
 
         .actions-menu-page {
@@ -273,10 +272,6 @@
       .actions-menu-pages {
         width: @actions-menu-desktop-page-width * 2;
 
-        &.move {
-          transform: translateX(-(@actions-menu-desktop-page-width));
-        }
-
         .actions-menu-page {
           width: @actions-menu-desktop-page-width;
         }
@@ -291,10 +286,6 @@
 
       .actions-menu-pages {
         width: @actions-menu-mobile-page-width * 2;
-
-        &.move {
-          transform: translateX(-(@actions-menu-mobile-page-width / 2));
-        }
 
         .actions-menu-page {
           width: @actions-menu-mobile-page-width / 2;
