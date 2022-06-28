@@ -69,7 +69,7 @@ const Sidebar = (): JSX.Element => {
   const logoLink = navigationPlugin.getURL('hub', '#/');
 
   const shouldHideElement = (node: Node, count: number | boolean) => {
-    if (node.hideIfEmpty && !node.count) {
+    if (node.hideIfEmpty && !count) {
       return true;
     }
 
