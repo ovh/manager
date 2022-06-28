@@ -131,13 +131,11 @@ const Sidebar = (): JSX.Element => {
           },
         );
 
-        const [tree] = initTree([navigationRoot], results);
+        const region = environmentPlugin.getEnvironment().getRegion();
+        const [tree] = initTree([navigationRoot], results, region);
 
         const mxPlanNode = findNodeById(tree, 'mxplan');
-        if (
-          mxPlanNode &&
-          environmentPlugin.getEnvironment().getRegion() === 'CA'
-        ) {
+        if (mxPlanNode && region === 'CA') {
           mxPlanNode.routing.hash = '#/email_mxplan';
         }
 

@@ -28,6 +28,7 @@ export const initFeatureNames = (node: Node) => {
 export function initTree(
   nodes: Node[],
   features: Record<string, boolean> = {},
+  region: string,
   parentNode?: Node,
 ) {
   return nodes.reduce((all, node) => {
@@ -37,13 +38,16 @@ export function initTree(
     ) {
       return all;
     }
+    if (node?.region && node.region.includes(region)) {
+      return all;
+    }
     const selfNode = {
       ...node,
       parent: parentNode,
     };
 
     selfNode.children = node.children
-      ? initTree(node.children, features, selfNode)
+      ? initTree(node.children, features, region, selfNode)
       : null;
     return [...all, selfNode];
   }, []);

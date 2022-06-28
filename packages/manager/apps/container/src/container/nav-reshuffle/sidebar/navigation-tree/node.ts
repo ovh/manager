@@ -19,4 +19,5 @@ export type Node = {
   url?: string | Record<string, string>;
   isExternal?: boolean;
   routing?: NodeRouting;
+  region?: string[];
 };
