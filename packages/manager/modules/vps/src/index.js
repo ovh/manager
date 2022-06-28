@@ -1,7 +1,8 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
-
+import 'angular-translate';
+import ngOvhTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import onboarding from './onboarding';
 
 import template from './vps/vps.html';
@@ -9,7 +10,13 @@ import template from './vps/vps.html';
 const moduleName = 'ovhManagerVpsLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', onboarding])
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+    'pascalprecht.translate',
+    ngOvhTranslateAsyncLoader,
+    onboarding,
+  ])
   .config(
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       $stateProvider
@@ -20,7 +27,8 @@ angular
           resolve: {
             currentUser: /* @ngInject */ (OvhApiMe) =>
               OvhApiMe.v6().get().$promise,
-            breadcrumb: () => 'VPS',
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('vps_title'),
           },
         })
         .state('vps.index.**', {
@@ -56,6 +64,7 @@ angular
     /* @ngInject */ ($translate, $transitions) => {
       $transitions.onBefore({ to: 'vps.**' }, () => $translate.refresh());
     },
-  );
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

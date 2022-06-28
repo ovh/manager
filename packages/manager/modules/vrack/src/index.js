@@ -25,7 +25,8 @@ angular
         template: '<div ui-view></div>',
         redirectTo: 'vrack.index',
         resolve: {
-          breadcrumb: () => 'vRack',
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('vrack_title'),
         },
       });
 

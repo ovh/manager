@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: () => '/vps',
       dataModel: () => 'vps.VPS',
       defaultFilterColumn: () => 'name',
-      header: () => 'VPS',
+      header: /* @ngInject */ ($translate) => $translate.instant('vps_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ name: serviceName }) =>
         $state.href('vps.detail', {

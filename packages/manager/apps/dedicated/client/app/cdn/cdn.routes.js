@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: () => '/cdn/dedicated',
       dataModel: () => 'cdnanycast.Anycast',
       defaultFilterColumn: () => 'service',
-      header: () => 'CDN',
+      header: /* @ngInject */ ($translate) => $translate.instant('cdn_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({
         service: productId,

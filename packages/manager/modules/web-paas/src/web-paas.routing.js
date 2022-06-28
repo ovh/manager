@@ -57,6 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('web_paas_title'),
+      hideBreadcrumb: () => true,
     },
   });
 };
