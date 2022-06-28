@@ -298,13 +298,14 @@ export default class PciStoragesContainersService {
    * @returns {Promise}: $http request promise
    */
   addS3StandardObjectContainer(projectId, container) {
-    const { region, name } = container;
+    const { region, name, ownerId } = container;
 
     return this.$http
       .post(
         `/cloud/project/${projectId}/region/${region.name}/storageStandard`,
         {
           name,
+          ownerId,
         },
       )
       .then(({ data }) => data);
@@ -318,11 +319,12 @@ export default class PciStoragesContainersService {
    * @returns {Promise}: $http request promise
    */
   addS3HighPerfStandardContainer(projectId, container) {
-    const { region, name } = container;
+    const { region, name, ownerId } = container;
 
     return this.$http
       .post(`/cloud/project/${projectId}/region/${region.name}/storage`, {
         name,
+        ownerId,
       })
       .then(({ data }) => data);
   }
