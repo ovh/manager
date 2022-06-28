@@ -30,20 +30,25 @@ export default class PciProjectTrainingJobService {
       // API does not accept volumes' internal property. We remove it before sending the request.
       toSubmit.volumes = jobSpec.volumes.flatMap((volume) => {
         let toRemove = false;
-        let internalKey;
+        const internalKeys = [];
+        let filteredVolume = volume;
         Object.keys(volume).forEach((key) => {
           if (volume[key] && volume[key].internal !== undefined) {
             if (volume[key].internal === true) {
               toRemove = true;
             } else {
-              internalKey = key;
+              internalKeys.push(key);
             }
           }
         });
         if (toRemove) {
           return [];
         }
-        return internalKey ? omit(volume, `${internalKey}.internal`) : volume;
+        // remove all 'internal' keys from object
+        internalKeys.forEach((key) => {
+          filteredVolume = omit(filteredVolume, `${key}.internal`);
+        });
+        return filteredVolume;
       });
     }
     return this.submit(projectId, toSubmit);
