@@ -23,7 +23,6 @@
   "data_processing_details_configuration_python_file_label": "Fichier Python",
   "data_processing_details_configuration_main_class_label": "Classe principale",
   "data_processing_details_configuration_arguments_label": "Arguments",
-  "data_processing_details_configuration_ttl_label": "Time To Live (TTL)",
   "data_processing_details_no_data": "Pas de données",
   "data_processing_details_charts_total_memory": "Utilisation mémoire sur les 5 dernières minutes (Mi)",
   "data_processing_details_charts_num_active_tasks": "# de tâches actives sur les 5 dernières minutes",

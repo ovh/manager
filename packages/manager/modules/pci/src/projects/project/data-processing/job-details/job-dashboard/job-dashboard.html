@@ -208,9 +208,9 @@
             >
             </oui-tile-definition>
             <oui-tile-definition
-                ng-if="$ctrl.job.ttl"
-                data-term="{{ ::'data_processing_details_configuration_ttl_label' | translate }}"
-                title="{{ ::'data_processing_details_configuration_ttl_label' | translate }}"
+                data-ng-if="$ctrl.job.ttl"
+                data-term="Time To Live (TTL)"
+                title="Time To Live (TTL)"
                 data-description="{{ $ctrl.formatDuration($ctrl.job.ttl, true) }}"
             >
             </oui-tile-definition>
