@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <div class="logger" data-scroll-glue ng-if="!$ctrl.isJobTerminated()">
+    <div class="logger" data-scroll-glue data-ng-if="!$ctrl.isJobTerminated()">
         <div
             data-ng-if="$ctrl.logger.logs.logsAddress === null && !$ctrl.isJobTerminated()"
         >
