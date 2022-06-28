@@ -42,6 +42,48 @@ export const REGIONS = {
   US: 'USA',
 };
 
+export const DEFAULTS_MODEL = [
+  {
+    fields: [
+      {
+        name: 'ipType',
+        model: 'selectedIpType',
+        availableOptions: 'ipTypes',
+        getDefault: (defaultValue, availableOptions) =>
+          availableOptions.find((option) => option.name === defaultValue),
+        onChange: 'onProductChange',
+        onChangeParams: ['selectedIpType'],
+      },
+    ],
+  },
+  {
+    fields: [
+      {
+        name: 'region',
+        model: 'ip.region',
+        availableOptions: 'regions',
+        getDefault: (defaultValue, availableOptions) =>
+          availableOptions.find((option) => option.name === defaultValue),
+        onChange: 'onRegionChange',
+        onChangeParams: ['ip.region'],
+      },
+    ],
+  },
+  {
+    fields: [
+      {
+        name: 'instance',
+        model: 'ip.instance',
+        availableOptions: 'filteredInstances',
+        getDefault: (defaultValue, availableOptions) =>
+          availableOptions.find((option) => option.id === defaultValue),
+        onChange: 'instanceChange',
+        onChangeParams: ['ip.instance'],
+      },
+    ],
+  },
+];
+
 export default {
   ORDER_URL,
   IP_TYPE_ENUM,
