@@ -3,13 +3,14 @@ import get from 'lodash/get';
 import some from 'lodash/some';
 
 import Datacenter from '../../../../components/project/regions-list/datacenter.class';
-import { READY_STATUS } from './add.constants';
+import { KUBE_CONTAINER_MESSAGES, READY_STATUS } from './add.constants';
 
 export default class {
   /* @ngInject */
   constructor(
     $translate,
     $q,
+    $anchorScroll,
     CucCloudMessage,
     Kubernetes,
     OvhApiCloudProjectKube,
@@ -17,10 +18,13 @@ export default class {
   ) {
     this.$translate = $translate;
     this.$q = $q;
+    this.$anchorScroll = $anchorScroll;
     this.CucCloudMessage = CucCloudMessage;
     this.Kubernetes = Kubernetes;
     this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
     this.Poller = Poller;
+
+    this.KUBE_CONTAINER_MESSAGES = KUBE_CONTAINER_MESSAGES;
   }
 
   $onInit() {
@@ -111,6 +115,8 @@ export default class {
           };
         }
         this.CucCloudMessage.error(errorMessage);
+
+        this.$anchorScroll(KUBE_CONTAINER_MESSAGES);
       })
       .finally(() => {
         this.isAdding = false;

@@ -1,6 +1,8 @@
 <h1 data-translate="kubernetes_add"></h1>
 
-<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+<cui-message-container id="{{$ctrl.KUBE_CONTAINER_MESSAGES}}"
+                       data-messages="$ctrl.messages"
+></cui-message-container>
 
 <form name="kubeAddClusterForm">
     <oui-stepper data-current-index="$ctrl.currentStep">
