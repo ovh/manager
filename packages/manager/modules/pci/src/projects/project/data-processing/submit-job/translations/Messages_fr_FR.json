@@ -40,7 +40,7 @@
   "data_processing_submit_job_spec_sizing_worker": "Executor :",
   "data_processing_submit_job_spec_sizing_workers": "{{nbWorker}} × Executors :",
   "data_processing_submit_job_spec_sizing_cores": "{{cores}} cœurs virtuels",
-  "data_processing_submit_job_spec_sizing_memory": "{{memory}} GiB mémoire",
+  "data_processing_submit_job_spec_sizing_memory": "{{memory | bytes:0:false:'GB'}} mémoire",
   "data_processing_submit_job_spec_config": "Configuration",
   "data_processing_submit_job_stepper_submit_processing": "Création en cours",
   "data_processing_submit_job_spec_price": "Prix estimé : ",

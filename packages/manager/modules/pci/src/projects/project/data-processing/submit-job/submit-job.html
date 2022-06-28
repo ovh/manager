@@ -116,12 +116,12 @@
                                 <div class="mr-2">
                                     <a
                                         href=""
-                                        ng-click="$ctrl.scrollTo('engine')"
+                                        data-ng-click="$ctrl.scrollTo('engine')"
                                         data-translate="data_processing_submit_job_spec_engine"
                                     ></a>
                                     <span
                                         class="text-capitalize"
-                                        ng-bind="$ctrl.state.jobEngine.engine"
+                                        data-ng-bind="$ctrl.state.jobEngine.engine"
                                     ></span>
                                 </div>
                             </div>
@@ -142,11 +142,11 @@
                             <div class="mt-2">
                                 <a
                                     href=""
-                                    ng-click="$ctrl.scrollTo('region')"
+                                    data-ng-click="$ctrl.scrollTo('region')"
                                     data-translate="data_processing_submit_job_spec_region"
                                 ></a>
                                 <span
-                                    ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMacroRegion($ctrl.state.region.name)"
+                                    data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMacroRegion($ctrl.state.region.name)"
                                 ></span>
                             </div>
                             <!-- Configuration -->
@@ -154,7 +154,7 @@
                                 <div class="mr-2">
                                     <a
                                         href=""
-                                        ng-click="$ctrl.scrollTo('config')"
+                                        data-ng-click="$ctrl.scrollTo('config')"
                                         data-translate="data_processing_submit_job_spec_config"
                                     ></a>
                                 </div>
@@ -166,7 +166,7 @@
                                     ></strong>
                                     <span
                                         data-ng-if="$ctrl.state.jobConfig.jobName"
-                                        ng-bind="$ctrl.state.jobConfig.jobName"
+                                        data-ng-bind="$ctrl.state.jobConfig.jobName"
                                     ></span>
                                     <span
                                         class="oui-color-ae-500"
@@ -180,7 +180,7 @@
                                     ></strong>
                                     <span
                                         data-ng-if="$ctrl.state.jobConfig.swiftContainer"
-                                        ng-bind="$ctrl.state.jobConfig.swiftContainer"
+                                        data-ng-bind="$ctrl.state.jobConfig.swiftContainer"
                                     ></span>
                                     <span
                                         class="oui-color-ae-500"
@@ -195,7 +195,7 @@
                                     <span
                                         class="text-capitalize"
                                         data-ng-if="$ctrl.state.jobConfig.jobType"
-                                        ng-bind="$ctrl.state.jobConfig.jobType"
+                                        data-ng-bind="$ctrl.state.jobConfig.jobType"
                                     ></span>
                                     <span
                                         class="oui-color-ae-500"
@@ -209,7 +209,7 @@
                                     ></strong>
                                     <span
                                         data-ng-if="$ctrl.state.jobConfig.mainApplicationCode"
-                                        ng-bind="$ctrl.state.jobConfig.mainApplicationCode"
+                                        data-ng-bind="$ctrl.state.jobConfig.mainApplicationCode"
                                     ></span>
                                     <span
                                         class="oui-color-ae-500"
@@ -218,14 +218,14 @@
                                     ></span>
                                 </div>
                                 <div
-                                    ng-if="$ctrl.state.jobConfig.jobType === 'java'"
+                                    data-ng-if="$ctrl.state.jobConfig.jobType === 'java'"
                                 >
                                     <strong
                                         data-translate="data_processing_submit_job_spec_config_main_class"
                                     ></strong>
                                     <span
                                         data-ng-if="$ctrl.state.jobConfig.mainClass"
-                                        ng-bind="$ctrl.state.jobConfig.mainClass"
+                                        data-ng-bind="$ctrl.state.jobConfig.mainClass"
                                     ></span>
                                     <span
                                         class="oui-color-ae-500"
@@ -234,13 +234,13 @@
                                     ></span>
                                 </div>
                                 <div
-                                    ng-if="$ctrl.state.jobConfig.arguments.length > 0"
+                                    data-ng-if="$ctrl.state.jobConfig.arguments.length > 0"
                                 >
                                     <strong
                                         data-translate="data_processing_submit_job_spec_config_arguments"
                                     ></strong>
                                     <span
-                                        ng-bind="$ctrl.getArgumentsList()"
+                                        data-ng-bind="$ctrl.getArgumentsList()"
                                     ></span>
                                 </div>
                             </div>
@@ -249,7 +249,7 @@
                                 <div class="mr-2">
                                     <a
                                         href=""
-                                        ng-click="$ctrl.scrollTo('sizing')"
+                                        data-ng-click="$ctrl.scrollTo('sizing')"
                                         data-translate="data_processing_submit_job_spec_sizing"
                                     ></a>
                                 </div>
@@ -292,12 +292,12 @@
                                 <div class="d-flex">
                                     <span
                                         class="font-weight-bold"
-                                        ng-if="$ctrl.state.jobSizing.workerCount === 1"
+                                        data-ng-if="$ctrl.state.jobSizing.workerCount === 1"
                                         data-translate="data_processing_submit_job_spec_sizing_worker"
                                     ></span>
                                     <span
                                         class="font-weight-bold"
-                                        ng-if="$ctrl.state.jobSizing.workerCount > 1"
+                                        data-ng-if="$ctrl.state.jobSizing.workerCount > 1"
                                         data-translate="data_processing_submit_job_spec_sizing_workers"
                                         data-translate-values="{
                                             nbWorker: $ctrl.state.jobSizing.workerCount
@@ -360,7 +360,7 @@
                         disabled="$ctrl.isSubmitting || !$ctrl.isConfigureStepValid || !$ctrl.state.jobConfig.jobName"
                     >
                         <span
-                            ng-if="!$ctrl.isSubmitting"
+                            data-ng-if="!$ctrl.isSubmitting"
                             data-translate="data_processing_submit_job_stepper_submit_title"
                         ></span>
                         <div
