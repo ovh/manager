@@ -3,7 +3,7 @@ export default class {
     this.integrationTypes = this.integrations
       .reduce((integrationsByType, integration) => {
         const integrationType = integrationsByType.find(
-          (i) => i.type === integration.type,
+          ({ type }) => type === integration.type,
         );
         if (integrationType) {
           integrationType.count += 1;
