@@ -21,6 +21,7 @@ import {
   INSTANCE_MODES_ENUM,
   INSTANCE_READ_MORE_GUIDE,
   FLOATING_IP_AVAILABILITY_INFO_LINK,
+  FILTER_PRIVATE_NETWORK_BAREMETAL,
 } from './add.constants';
 
 export default class PciInstancesAddController {
@@ -224,7 +225,11 @@ export default class PciInstancesAddController {
             find(network.regions, {
               region: this.instance.region,
               status: 'ACTIVE',
-            }),
+            }) &&
+            // For metal instances we only have vlan 0 available
+            this.model.flavorGroup.type === FILTER_PRIVATE_NETWORK_BAREMETAL
+              ? network.vlanId === 0
+              : network.vlanId !== null,
           ),
           (privateNetwork) => {
             return {
