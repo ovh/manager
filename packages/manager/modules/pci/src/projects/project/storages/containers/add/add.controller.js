@@ -113,6 +113,12 @@ export default class PciStoragesContainersAddController {
     );
   }
 
+  getUserOwnerId() {
+    const { createMode, linkedMode } = this.userModel;
+
+    return createMode?.user?.id || linkedMode?.selected?.id;
+  }
+
   onContainerSolutionChange() {
     this.container.region = null;
   }
@@ -158,6 +164,7 @@ export default class PciStoragesContainersAddController {
       type: 'action',
     });
     this.isLoading = true;
+    this.container.ownerId = this.getUserOwnerId();
     return this.PciProjectStorageContainersService.addContainer(
       this.projectId,
       this.container,
