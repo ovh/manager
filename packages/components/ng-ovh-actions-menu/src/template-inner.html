@@ -10,8 +10,12 @@
     </button>
     <!-- CLOSE BUTTON FOR MOBILE -->
 
-    <div class="actions-menu-pages" data-ng-class="{ move: $ctrl.status.move }">
-        <div class="actions-menu-page main-page">
+    <div class="actions-menu-pages">
+        <div
+            class="actions-menu-page main-page"
+            data-ng-show="!$ctrl.status.move"
+            ng-animate-disabled
+        >
             <ul class="actions-list list-unstyled">
                 <li
                     class="actions-list-item"
@@ -21,7 +25,11 @@
                 ></li>
             </ul>
         </div>
-        <div class="actions-menu-page secondary-page">
+        <div
+            class="actions-menu-page secondary-page"
+            data-ng-show="$ctrl.status.move"
+            ng-animate-disabled
+        >
             <ul class="sub-actions-list list-unstyled">
                 <li class="actions-list-item">
                     <button
