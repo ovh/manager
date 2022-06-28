@@ -2,10 +2,11 @@ import angular from 'angular';
 import 'angular-translate';
 import '@uirouter/angularjs';
 
-import additionalIp from './additional-ip';
-import imports from './imports';
+import failoverIps from './failover-ips';
+import floatingIps from './floating-ips';
 import onboarding from './onboarding';
 import order from './order';
+import imports from './imports';
 
 import component from './additional-ips.component';
 import routing from './additional-ips.routing';
@@ -18,7 +19,8 @@ angular
   .module(moduleName, [
     'ui.router',
     'pascalprecht.translate',
-    additionalIp,
+    failoverIps,
+    floatingIps,
     imports,
     instancesModule,
     onboarding,
@@ -26,7 +28,7 @@ angular
   ])
   .config(routing)
   .component('pciProjectAdditionalIps', component)
-  .service('additionalIpService', service)
+  .service('PciProjectAdditionalIpService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
