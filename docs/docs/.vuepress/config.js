@@ -76,6 +76,7 @@ module.exports = {
             'tools',
             'scripts',
             'releasing',
+            'testing',
             'test-e2e',
           ],
         },
