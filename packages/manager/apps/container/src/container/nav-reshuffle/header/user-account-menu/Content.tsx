@@ -62,7 +62,10 @@ const UserAccountMenu = ({
 
   return (
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>
-      <div className="oui-navbar-menu oui-navbar-menu_fixed oui-navbar-menu_end p-3">
+      <div
+        className="oui-navbar-menu oui-navbar-menu_fixed oui-navbar-menu_end p-3"
+        data-navi-id="account-sidebar-block"
+      >
         <h1 className="oui-heading_4 mb-1">{`${user.firstname} ${user.name}`}</h1>
         {['EU', 'CA'].includes(region) && (
           <p className="oui-chip mb-0">
@@ -75,7 +78,7 @@ const UserAccountMenu = ({
             </strong>
           </p>
         )}
-        <p className="mb-0">
+        <p className="mb-0" data-navi-id="account-email">
           <strong>{user.email}</strong>
         </p>
         {user.email !== user.nichandle && (
@@ -127,6 +130,7 @@ const UserAccountMenu = ({
           href={myAccountLink}
           target="_top"
           id="user-account-menu-profile"
+          data-navi-id="profile"
         >
           {t('user_account_menu_profile')}
           <span
@@ -139,8 +143,9 @@ const UserAccountMenu = ({
           role="button"
           className="w-100 text-left oui-button oui-button_icon-right oui-button_link px-0"
           onClick={onLougoutBtnClick}
-          aria-label={t('user_account_menu_profile')}
-          title={t('user_account_menu_profile')}
+          aria-label={t('user_account_menu_logout')}
+          title={t('user_account_menu_logout')}
+          data-navi-id="logout"
         >
           {t('user_account_menu_logout')}
           <span
