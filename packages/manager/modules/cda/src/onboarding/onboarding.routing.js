@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .injector()
         .getAsync('resources')
         .then((resources) =>
-          resources.length > 0 ? { state: 'app.cda.index' } : false,
+          resources.length > 0 ? { state: 'cda.index' } : false,
         ),
   });
 };
