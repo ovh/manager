@@ -169,6 +169,7 @@ const Sidebar = (): JSX.Element => {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
           'X-Pagination-Size': 5000,
+          'X-Pagination-Sort': 'description',
         },
       })
       .then((result: Array<PciProject>) => {
