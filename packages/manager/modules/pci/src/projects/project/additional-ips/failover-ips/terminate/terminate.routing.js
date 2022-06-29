@@ -14,12 +14,20 @@ export default /* @ngInject */ ($stateProvider) => {
         ip: /* @ngInject */ (serviceName, failoverIps) =>
           failoverIps.find(({ id }) => id === serviceName)?.ip,
         goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+        onCancelClick: /* @ngInject */ (goBack, trackClick) => () => {
+          trackClick('failover-ips::terminate::cancel');
+          return goBack();
+        },
         serviceName: /* @ngInject */ ($transition$) =>
           $transition$.params().serviceName,
         terminateIp: /* @ngInject */ (
           PciProjectAdditionalIpService,
           ip,
-        ) => () => PciProjectAdditionalIpService.deleteIpBlock(ip),
+          trackClick,
+        ) => () => {
+          trackClick('failover-ips::terminate::confirm');
+          return PciProjectAdditionalIpService.deleteIpBlock(ip);
+        },
       },
     },
   );

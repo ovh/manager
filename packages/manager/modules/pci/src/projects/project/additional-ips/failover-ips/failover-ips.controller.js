@@ -12,4 +12,9 @@ export default class FailoverIpsController {
   $onInit() {
     this.criteria = getCriteria('ip', this.additionalIp);
   }
+
+  onAdditionalIpOrderClick() {
+    this.trackClick('PCI_PROJECTS_FAILOVER_IP_ADD', false);
+    return this.goToAdditionalIpOrderPage();
+  }
 }

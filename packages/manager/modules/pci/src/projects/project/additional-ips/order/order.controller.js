@@ -16,6 +16,7 @@ import {
   GUIDE_URLS,
   DEFAULTS_MODEL,
   GATEWAY_TRACKING_PREFIX,
+  TRACKING_PREFIX_FORM_SUBMIT,
 } from './order.constants';
 
 export default class AdditionalIpController {
@@ -81,7 +82,19 @@ export default class AdditionalIpController {
     );
   }
 
+  onAdditionalIpTypeSubmit() {
+    this.trackClick(`${TRACKING_PREFIX_FORM_SUBMIT}-usage`, false);
+  }
+
+  onRegionFormSubmit() {
+    this.trackClick(`${TRACKING_PREFIX_FORM_SUBMIT}-region`, false);
+  }
+
   orderFailoverIp() {
+    this.trackClick(
+      `confirm-add-additional-ip::failover-ip::${this.ip.region}`,
+      false,
+    );
     const order = {
       planCode: this.ip.product.planCode,
       productId: 'ip',
@@ -127,6 +140,10 @@ export default class AdditionalIpController {
   }
 
   createFloatingIp() {
+    this.trackClick(
+      `confirm-add-additional-ip::floating-ip::${this.ip.region.name}`,
+      false,
+    );
     this.creatingFloatingIp = true;
     let gateway;
     if (this.gateways.length === 0) {
@@ -289,6 +306,7 @@ export default class AdditionalIpController {
   }
 
   loadGatewayDetails() {
+    this.trackClick('additional-ips_add_select-attachment', false);
     this.loadingGatewayDetails = true;
     this.$q
       .all({
