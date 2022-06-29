@@ -7,7 +7,7 @@ import animateScrollTo from 'animated-scroll-to';
 import { API_GUIDES } from '../../../project.constants';
 import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
 import { ENGINE_LOGOS } from '../databases.constants';
-import { ORDER_KEYS } from './add.constants';
+import { ORDER_KEYS, PRIVATE_NETWORK_GUIDE } from './add.constants';
 import { nameGenerator } from '../../../../../name-generator.constant';
 
 export default class {
@@ -63,6 +63,9 @@ export default class {
     };
     this.apiGuideUrl =
       API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
+    this.privateNetworkGuideUrl =
+      PRIVATE_NETWORK_GUIDE[this.user.ovhSubsidiary] ||
+      PRIVATE_NETWORK_GUIDE.DEFAULT;
     this.trackDatabases('configuration', 'page');
 
     this.preselectStepItem();
