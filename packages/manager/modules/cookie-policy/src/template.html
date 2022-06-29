@@ -22,7 +22,11 @@
     <div
         class="banner-buttons w-100 d-flex justify-content-center align-items-center flex-column"
     >
-        <oui-button data-ng-click="$ctrl.accept()" variant="primary">
+        <oui-button
+            data-ng-click="$ctrl.accept()"
+            variant="primary"
+            data-navi-id="cookie-accept"
+        >
             <span data-translate="cookie_policy_accept"></span>
         </oui-button>
         <oui-button data-ng-click="$ctrl.deny()" variant="secondary">

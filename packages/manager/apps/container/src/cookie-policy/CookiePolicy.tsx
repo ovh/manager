@@ -106,6 +106,7 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
           <button
             onClick={() => accept()}
             className="accept mb-2 oui-button oui-button_primary"
+            data-navi-id="cookie-accept"
           >
             <span>{t('cookie_policy_accept')}</span>
           </button>

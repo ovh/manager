@@ -36,6 +36,7 @@ $z-index-sidebar: 700;
   flex-grow: 1;
   position: relative;
   overflow: hidden;
+  height: 100%; /* For Safari */
 
   iframe {
     width: 100%;
