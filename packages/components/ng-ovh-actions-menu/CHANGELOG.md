@@ -1,3 +1,12 @@
+## [5.0.13](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-actions-menu@5.0.12...@ovh-ux/ng-ovh-actions-menu@5.0.13) (2022-06-29)
+
+
+### Bug Fixes
+
+* **directive:** fix submenu display ([#7437](https://github.com/ovh/manager/issues/7437)) ([6cadaa5](https://github.com/ovh/manager/commit/6cadaa5e00404bd4ac5f311ee280782ba8ca603f))
+
+
+
 ## [5.0.12](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-actions-menu@5.0.11...@ovh-ux/ng-ovh-actions-menu@5.0.12) (2022-04-12)
 
 

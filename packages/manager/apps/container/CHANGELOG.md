@@ -1,3 +1,15 @@
+## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.1...@ovh-ux/manager-container-app@0.3.2) (2022-06-29)
+
+
+### Bug Fixes
+
+* **container:** fix iframe height safari ([c051d4d](https://github.com/ovh/manager/commit/c051d4df55bb2a88edc665e82a00ccf93ff2e6c3))
+* **container.account-sidebar:** fix payment method default ([#7386](https://github.com/ovh/manager/issues/7386)) ([be0d1fb](https://github.com/ovh/manager/commit/be0d1fbdb5385125333b26f037f456fa0ab07de3))
+* **container.legacy:** fix A/B testing tracking ([#7355](https://github.com/ovh/manager/issues/7355)) ([c67a847](https://github.com/ovh/manager/commit/c67a847c1586c70f6b158eb21a06eb15f43fbf3f))
+* **hub:** remove scroll to top on hub ([b255e75](https://github.com/ovh/manager/commit/b255e7562afaae8c17421e5ed24a3024b7c7ce99))
+
+
+
 ## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.0...@ovh-ux/manager-container-app@0.3.1) (2022-06-17)
 
 
