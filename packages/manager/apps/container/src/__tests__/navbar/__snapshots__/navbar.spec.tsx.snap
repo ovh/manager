@@ -52,7 +52,7 @@ exports[`UI testing of the navbar renders correctly with environment and shell 1
       </div>
     </div>
     <div
-      class="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end"
+      class="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end aside"
     >
       <div
         class="oui-navbar-list__item"
