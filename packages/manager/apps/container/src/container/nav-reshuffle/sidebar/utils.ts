@@ -38,7 +38,7 @@ export function initTree(
     ) {
       return all;
     }
-    if (node?.region && node.region.includes(region)) {
+    if (node?.region && !node.region.includes(region)) {
       return all;
     }
     const selfNode = {
