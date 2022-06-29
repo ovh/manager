@@ -1,3 +1,12 @@
+## [13.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.41.1...@ovh-ux/manager-telecom@13.41.2) (2022-06-29)
+
+
+### Bug Fixes
+
+* **telephony.redirect:** display redirect number ([#7441](https://github.com/ovh/manager/issues/7441)) ([b2a6c79](https://github.com/ovh/manager/commit/b2a6c79d82898c1112b2ad21ee74c52e3e2ff101))
+
+
+
 ## [13.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.41.0...@ovh-ux/manager-telecom@13.41.1) (2022-06-16)
 
 

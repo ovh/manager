@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-actions-menu",
-  "version": "5.0.12",
+  "version": "5.0.13",
   "description": "An actions menu gives the opportunity to group a set of actions available for a specific context under a single menu",
   "keywords": [
     "actions-menu",

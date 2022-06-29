@@ -1,3 +1,12 @@
+## [3.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.22.0...@ovh-ux/manager-hub-app@3.22.1) (2022-06-29)
+
+
+### Bug Fixes
+
+* **hub:** remove scroll to top on hub ([b255e75](https://github.com/ovh/manager/commit/b255e7562afaae8c17421e5ed24a3024b7c7ce99))
+
+
+
 # [3.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.21.0...@ovh-ux/manager-hub-app@3.22.0) (2022-06-14)
 
 
