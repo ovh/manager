@@ -74,8 +74,7 @@ useShellClient('myAwesomeApp').then((shell: Shell) => {
   // Do stuff with shell
 })
 
-// You can also do this : 
-
+// You can also do this:
 const shell: Shell = await useShellClient('myAwesomeApp');
 
 // Do stuff with shell
@@ -90,7 +89,7 @@ const shell: Shell = await useShellClient('myAwesomeApp');
 - `setUniverse(universe: string) => void`: Sets universe in the current Environnement.
 - `setApplication(applicationId: ApplicationId)`: Sets current application id
 
-_Example :_
+_Example:_
 
 ```ts
 // This example assumes you already have a shell defined
@@ -107,7 +106,7 @@ const env: Environment = await environmentPlugin.getEnvironment();
 - `setLocale`(`(locale: string) => void`): Sets new user locale based on given parameter.
 - `onLocaleChange`(`(callback: CallableFunction) => void`): defines a function to be triggered when the locale changes.
 
-_Example :_
+_Example:_
 
 ```ts
 // This example assumes you already have a shell defined
@@ -133,7 +132,7 @@ i18n.onLocaleChange(dummyFunction);
 - `login()`: Login to the manager.
 - `logout()`: Logout from the manager.
 
-_Example :_
+_Example:_
 
 ```ts
 const auth = shell.getPlugin('auth');
@@ -147,25 +146,25 @@ auth.logout();
 This plugin handles everything that is UI related, such as elements shown or hidden, the state or position of certain elements etc.
 Currently, it handles the state of the account sidebar, notifications sidebar and verifies cookie verification for the ssoAuthModal.
 
-- `showAccountSidebar() => void`) : display the account sidebar.
-- `disableAccountSidebarToggle() => void`) : Disallows toggle of the Account Sidebar. After calling this function, the Account Sidebar won't toggle anymore unless you call `enableAccountSidebarToggle`.
-- `enableAccountSidebarToggle() => void`) : Allows Account sidebar to be toggled.
-- `isAccountSidebarVisible() => boolean`) : Returns if Account Sidebar is shown or not.
-- `setForceAccountSiderBarDisplayOnLargeScreen(isForced: boolean) => void`) : forces the display on large screens. This option can be disabled by passing the false parameter to `isFalse`.
-- `resetAccountSidebar() => void` : Sets the Account Sidebar to its default state.
-- `isMenuSidebarVisible() => boolean` : Returns if the left Sidebar navigation menu is displayed.
-- `showMenuSidebar() => void` : Shows the PNR menu.
-- `onRequestClientSidebarOpen(callback: CallableFunction) => void` : adds a custom callback that will be trigerred whenever the sidebar is opened.
+- `showAccountSidebar() => void`): display the account sidebar.
+- `disableAccountSidebarToggle() => void`): Disallows toggle of the Account Sidebar. After calling this function, the Account Sidebar won't toggle anymore unless you call `enableAccountSidebarToggle`.
+- `enableAccountSidebarToggle() => void`): Allows Account sidebar to be toggled.
+- `isAccountSidebarVisible() => boolean`): Returns if Account Sidebar is shown or not.
+- `setForceAccountSiderBarDisplayOnLargeScreen(isForced: boolean) => void`): forces the display on large screens. This option can be disabled by passing the false parameter to `isFalse`.
+- `resetAccountSidebar() => void`: Sets the Account Sidebar to its default state.
+- `isMenuSidebarVisible() => boolean`: Returns if the left Sidebar navigation menu is displayed.
+- `showMenuSidebar() => void`: Shows the PNR menu.
+- `onRequestClientSidebarOpen(callback: CallableFunction) => void`: adds a custom callback that will be trigerred whenever the sidebar is opened.
 - `getUserIdCookie() => string`): Returns the latest value of `USER_ID` cookie.
-- `getSSOAuthModalMode(oldUserID: string) => string`): Returns the mode in which the SSOAuth Modal is in. Three possible values : 'CONNECTED_TO_DISCONNECTED', 'DISCONNECTED_TO_CONNECTED', 'CONNECTED_TO_OTHER'.
-  
-__Preloader__ :
+- `getSSOAuthModalMode(oldUserID: string) => string`): Returns the mode in which the SSOAuth Modal is in. Three possible values: 'CONNECTED_TO_DISCONNECTED', 'DISCONNECTED_TO_CONNECTED', 'CONNECTED_TO_OTHER'.
 
-- `startProgress() => void` : show and start progress bar.
+__Preloader__:
+
+- `startProgress() => void`: show and start progress bar.
 - `stopProgress() => void`: stop and hides progress bar.
 - `hidePreloader() => void`: hides OVHcloud preloader.
 
-_Example :_
+_Example:_
 
 ```ts
 const ux = shell.getPlugin('ux');
@@ -181,7 +180,7 @@ So basically, you can use all the functions exposed by `ovh-at-internet` the sam
 
 You can check the library by clicking [this link](../ovh-at-internet/src/ovh-at-internet.ts)
 
-_Example :_
+_Example:_
 
 ```ts
 const tracking = shell.getPlugin('tracking');
@@ -196,5 +195,5 @@ tracking.trackPage(pageData);
 
 The navigation plugin allows you to navigate within the container and handles all route syncs for you. You can use to navigate to an another app or to an external link for example.
 
-- `getURL(application: ApplicationId, path: string, params: Record<string, string | number | boolean>) => string`) : Returns a calculated URL of where you want to go.
+- `getURL(application: ApplicationId, path: string, params: Record<string, string | number | boolean>) => string`): Returns a calculated URL of where you want to go.
 - `navigateTo(application: ApplicationId,path: string,params: Record<string, string | number | boolean>,options: navigationOptions) => void`): Handles navigation between apps.

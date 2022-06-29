@@ -4,22 +4,22 @@ All applications are located in the `packages/manager/apps/*` workspace.
 
 It houses:
 
-- Dashboard .
-- Container <Badge text="New"/>
+- Container <Badge text="New"/>.
+- Dashboard.
 - Large AngularJS applications.
 - A Sign-up form.
 - Several standalone applications.
 
-The applications can be started for a specific region
+The applications can be started for a specific region.
 
 | Application                           | Region       |
 | ------------------------------------- | ------------ |
+| [Container](#container)               | EU / CA / US |
 | [Dashboard](#dashboard)               | EU / CA / US |
 | [Web Cloud](#web-cloud)               | EU / CA      |
 | [Bare Metal Cloud](#bare-metal-cloud) | EU / CA / US |
 | [Public Cloud](#public-cloud)         | EU / CA / US |
 | [Telecom](#telecom)                   | EU           |
-| [Container](#container) <Badge text="New"/>               | EU / CA / US |
 
 :::tip Information
 Depending on the requested region, the URL to access the API will be different
@@ -27,6 +27,33 @@ Depending on the requested region, the URL to access the API will be different
 - <https://ca.api.ovh.com/console/>
 - <https://api.us.ovhcloud.com/console/>
 :::
+
+## Container
+
+![Container app screenshot](/manager/assets/img/container.png)
+
+### How to start the application?
+
+The container app contains all common elements to all applications.
+Running this command at the root folder, will launch a CLI that will prompt you to choose between launching your app in your container or not.
+
+```sh
+$ yarn start
+```
+
+After it's finished, the app within the container will be available at <http://localhost:9000>
+
+The application can also be run from its own folder with the following command:
+
+```sh
+$ yarn start:dev
+```
+
+### How to build the application?
+
+```sh
+$ yarn run build -p @ovh-ux/manager-container-app
+```
 
 ## Dashboard
 
@@ -129,30 +156,6 @@ Go to <http://localhost:9000>
 
 ```sh
 $ yarn run build -p @ovh-ux/manager-telecom
-```
-
-## Container
-
-![Container app screenshot](/manager/assets/img/container.png)
-
-The container app contains all common elements to all applications. Running this command at the root folder, will launch a CLI that will prompt you to choose between launching your app in your container or not.
-
-```sh
-yarn start
-```
-
-After it's finished, the app within the container will be available at: http://localhost:9000/
-
-The application can also be run from its own folder with the following command:
-
-```sh
-yarn start:dev
-```
-
-### How to build the application?
-
-```sh
-$ yarn run build -p @ovh-ux/manager-container-app
 ```
 
 ## Related
