@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import 'script-loader!jquery'; // eslint-disable-line
 import 'whatwg-fetch';
 import { registerApplication } from '@ovh-ux/ufrontend';
