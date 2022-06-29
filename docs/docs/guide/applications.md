@@ -4,15 +4,17 @@ All applications are located in the `packages/manager/apps/*` workspace.
 
 It houses:
 
-- Dashboard <Badge text="New"/>.
-- Four large AngularJS monolithic applications (listed below).
+- Container <Badge text="New"/>.
+- Dashboard.
+- Large AngularJS applications.
 - A Sign-up form.
 - Several standalone applications.
 
-The monolithic applications can be started for a specific region
+The applications can be started for a specific region.
 
 | Application                           | Region       |
 | ------------------------------------- | ------------ |
+| [Container](#container)               | EU / CA / US |
 | [Dashboard](#dashboard)               | EU / CA / US |
 | [Web Cloud](#web-cloud)               | EU / CA      |
 | [Bare Metal Cloud](#bare-metal-cloud) | EU / CA / US |
@@ -26,9 +28,36 @@ Depending on the requested region, the URL to access the API will be different
 - <https://api.us.ovhcloud.com/console/>
 :::
 
+## Container
+
+![Container app screenshot](/manager/assets/img/container.png)
+
+### How to start the application?
+
+The container app contains all common elements to all applications.
+Running this command at the root folder, will launch a CLI that will prompt you to choose between launching your app in your container or not.
+
+```sh
+$ yarn start
+```
+
+After it's finished, the app within the container will be available at <http://localhost:9000>
+
+The application can also be run from its own folder with the following command:
+
+```sh
+$ yarn start:dev
+```
+
+### How to build the application?
+
+```sh
+$ yarn run build -p @ovh-ux/manager-container-app
+```
+
 ## Dashboard
 
-![](/manager/assets/img/control-panel.jpg)
+![Screenshot of the control panel](/manager/assets/img/control-panel.jpg)
 
 ### How to start the application?
 
@@ -46,7 +75,7 @@ $ yarn run build -p @ovh-ux/manager-hub-app
 
 ## Web Cloud
 
-![](/manager/assets/img/control-panel-web.jpg)
+![Web cloud screenshot](/manager/assets/img/control-panel-web.jpg)
 
 ### How to start the application?
 
@@ -64,7 +93,7 @@ $ yarn run build -p @ovh-ux/manager-web
 
 ## Bare Metal Cloud
 
-![](/manager/assets/img/control-panel-bare-metal-cloud.jpg)
+![Bare metal cloud screenshot](/manager/assets/img/control-panel-bare-metal-cloud.jpg)
 
 ::: tip Information
 Both applications **Bare Metal Cloud** and **Hosted Private Cloud** are grouped under the following location: `packages/manager/apps/dedicated`.
@@ -90,7 +119,7 @@ $ yarn run build -p @ovh-ux/manager-dedicated
 
 ## Public Cloud
 
-![](/manager/assets/img/control-panel-public-cloud.jpg)
+![Public cloud screenshot](/manager/assets/img/control-panel-public-cloud.jpg)
 
 ::: tip Information
 Application can be started in different region with a given environment variable.
@@ -113,7 +142,7 @@ $ yarn run build -p @ovh-ux/manager-public-cloud
 
 ## Telecom
 
-![](/manager/assets/img/control-panel-telecom.jpg)
+![Telecom screenshot](/manager/assets/img/control-panel-telecom.jpg)
 
 ### How to start the application?
 

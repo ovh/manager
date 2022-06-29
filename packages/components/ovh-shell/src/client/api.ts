@@ -148,12 +148,12 @@ export default function exposeApi(shellClient: ShellClient) {
         }),
 
       startProgress: () =>
-        shellClient.invokePluginMethod<string>({
+        shellClient.invokePluginMethod<void>({
           plugin: 'ux',
           method: 'startProgress',
         }),
       stopProgress: () =>
-        shellClient.invokePluginMethod<string>({
+        shellClient.invokePluginMethod<void>({
           plugin: 'ux',
           method: 'stopProgress',
         }),
