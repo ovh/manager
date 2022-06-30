@@ -1,3 +1,12 @@
+## [3.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.10.1...@ovh-ux/manager-billing-components@3.10.2) (2022-06-30)
+
+
+### Bug Fixes
+
+* **commitment:** update translation ([#7388](https://github.com/ovh/manager/issues/7388)) ([f889ab4](https://github.com/ovh/manager/commit/f889ab45d69e3b7f73311ac5a11007e4d830d350))
+
+
+
 ## [3.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.10.0...@ovh-ux/manager-billing-components@3.10.1) (2022-06-30)
 
 

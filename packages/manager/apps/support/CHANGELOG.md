@@ -1,3 +1,12 @@
+## [2.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.7.1...@ovh-ux/manager-support-app@2.7.2) (2022-06-30)
+
+
+### Bug Fixes
+
+* **deps:** remove `@ovh-ux/manager-navbar` from dependency ([#7405](https://github.com/ovh/manager/issues/7405)) ([21971fa](https://github.com/ovh/manager/commit/21971fa053cfbef689e7af2bec556d11ac9e08d8))
+
+
+
 ## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.7.0...@ovh-ux/manager-support-app@2.7.1) (2022-06-30)
 
 

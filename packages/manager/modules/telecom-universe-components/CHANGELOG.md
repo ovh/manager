@@ -1,3 +1,12 @@
+## [7.12.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.12.1...@ovh-ux/ng-ovh-telecom-universe-components@7.12.2) (2022-06-30)
+
+
+### Bug Fixes
+
+* **telephony.phone:** add missing accessories and phones images ([#7332](https://github.com/ovh/manager/issues/7332)) ([8a12dee](https://github.com/ovh/manager/commit/8a12deeddb289a82a8f14598002abf77a90d7162))
+
+
+
 ## [7.12.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.12.0...@ovh-ux/ng-ovh-telecom-universe-components@7.12.1) (2022-06-30)
 
 
