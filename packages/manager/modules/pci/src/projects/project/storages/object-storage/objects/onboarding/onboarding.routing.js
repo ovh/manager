@@ -16,7 +16,10 @@ export default /* @ngInject */ ($stateProvider) => {
               : false,
           ),
       resolve: {
-        breadcrumb: () => null, // Hide breadcrumb
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'pci_projects_project_storages_objects_onboarding_title',
+          ),
         addObjectStorage: /* @ngInject */ (
           $state,
           projectId,
