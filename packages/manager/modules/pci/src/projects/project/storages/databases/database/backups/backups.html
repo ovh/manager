@@ -29,7 +29,7 @@
                     data-callback="$ctrl.updateBackupTime()"
                     data-callback-success="$ctrl.handleBackupTimeSuccess()"
                     data-callback-error="$ctrl.showBackupError()"
-                    data-disabled="!$ctrl.database.isActive()"
+                    data-disabled="!$ctrl.database.isActive() || !$ctrl.isFeatureActivated('editBackupTime')"
                 ></pci-databases-calendar-edit>
             </div>
         </div>
