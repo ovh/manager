@@ -11,12 +11,14 @@ export default class PciBlockStorageAddController {
     $timeout,
     $translate,
     CucCloudMessage,
+    CucCurrencyService,
     PciProjectStorageBlockService,
   ) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
+    this.CucCurrencyService = CucCurrencyService;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
   }
 
@@ -110,6 +112,19 @@ export default class PciBlockStorageAddController {
     return (
       region && volumePlan?.regions.some(({ name }) => name === region.name)
     );
+  }
+
+  formatVolumePrice(price) {
+    const convertPrice = this.CucCurrencyService.convertUcentsToCurrency(price);
+    const priceCurrency = this.CucCurrencyService.getCurrentCurrency();
+
+    return `${convertPrice}${priceCurrency}`;
+  }
+
+  static getAddonVolumeIopsInfo(volumeAddon) {
+    const { iops } = volumeAddon.blobs.technical.volume;
+
+    return iops.max || iops.level;
   }
 
   onRegionsFocus() {
