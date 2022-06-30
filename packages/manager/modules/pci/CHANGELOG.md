@@ -1,3 +1,21 @@
+# [5.81.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.80.0...@ovh-ux/manager-pci@5.81.0) (2022-06-30)
+
+
+### Bug Fixes
+
+* **containers:** encode uri for file name ([#7287](https://github.com/ovh/manager/issues/7287)) ([d2ede9a](https://github.com/ovh/manager/commit/d2ede9adc6f1d90991e1c8c02f20c52b7ffe3c6a))
+* **i18n:** add missing translations [CDS 1681] ([d6d0f26](https://github.com/ovh/manager/commit/d6d0f2661141b8950a1bf5dae17e4a33c3a0ba12))
+* **instance:** redirect to instances page after deletion ([#7213](https://github.com/ovh/manager/issues/7213)) ([ba3ec67](https://github.com/ovh/manager/commit/ba3ec67f86131e3592484e3cb7b5c910595fe8c9))
+
+
+### Features
+
+* **pci.ai.apps:** update alpha banner for ai apps ([#7228](https://github.com/ovh/manager/issues/7228)) ([8d7a52a](https://github.com/ovh/manager/commit/8d7a52aabe1464034d34a8187c088dc64e1b01b5))
+* **projects:** add a sorting option to the projects list ([#7321](https://github.com/ovh/manager/issues/7321)) ([18d8502](https://github.com/ovh/manager/commit/18d85024073827b5bcb175c0b13adc44ac8babfb))
+* **storage.databases:** improve funnel order ([#6905](https://github.com/ovh/manager/issues/6905)) ([6c1e3f0](https://github.com/ovh/manager/commit/6c1e3f01368c2b1c9b1a2337c7e7ee354523cf66))
+
+
+
 # [5.80.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.79.1...@ovh-ux/manager-pci@5.80.0) (2022-06-16)
 
 

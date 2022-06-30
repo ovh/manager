@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.2.0...@ovh-ux/manager-nutanix@1.2.1) (2022-06-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1681] ([d6d0f26](https://github.com/ovh/manager/commit/d6d0f2661141b8950a1bf5dae17e4a33c3a0ba12))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.1.0...@ovh-ux/manager-nutanix@1.2.0) (2022-06-16)
 
 

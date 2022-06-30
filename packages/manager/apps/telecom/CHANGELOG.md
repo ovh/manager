@@ -1,3 +1,12 @@
+## [13.41.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.41.2...@ovh-ux/manager-telecom@13.41.3) (2022-06-30)
+
+
+### Bug Fixes
+
+* **telephony.phone:** add missing accessories and phones images ([#7332](https://github.com/ovh/manager/issues/7332)) ([27b3c81](https://github.com/ovh/manager/commit/27b3c81ffba9f8dcf06fd469c366ee3d5685263f))
+
+
+
 ## [13.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.41.1...@ovh-ux/manager-telecom@13.41.2) (2022-06-29)
 
 
