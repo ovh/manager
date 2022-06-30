@@ -1,5 +1,5 @@
 {
-  "sidebar_home": "Cuadro de mando",
+  "sidebar_home": "Panel de control",
   "sidebar_back": "Volver",
   "sidebar_service_add": "Añadir un servicio",
   "sidebar_bare_metal_cloud": "Bare Metal Cloud",
@@ -118,5 +118,7 @@
   "sidebar_assistance_support_level": "Nivel de soporte",
   "sidebar_assistance_live_chat": "Chat en directo",
   "sidebar_assistance_onboarding": "Visita guiada",
-  "sidebar_clipboard_copy": "Copiar al portapapeles"
+  "sidebar_clipboard_copy": "Copiar al portapapeles",
+  "sidebar_pci_load_error": "Se ha producido un error al cargar la lista de proyectos.",
+  "sidebar_billing_ssh": "Mis claves SSH"
 }

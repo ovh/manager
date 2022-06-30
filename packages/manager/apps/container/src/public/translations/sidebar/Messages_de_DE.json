@@ -27,9 +27,9 @@
   "sidebar_pci_bare_metal": "Bare Metal",
   "sidebar_pci_storage": "Storage and Backup",
   "sidebar_pci_network": "Network",
-  "sidebar_pci_containers": "Container & Orchestrierung",
-  "sidebar_pci_ai": "AI & Machine Learning",
-  "sidebar_pci_analytics": "Data & Analytics",
+  "sidebar_pci_containers": "Container &amp; Orchestrierung",
+  "sidebar_pci_ai": "AI &amp; Machine Learning",
+  "sidebar_pci_analytics": "Data &amp; Analytics",
   "sidebar_pci_management": "Verwaltungsinterfaces",
   "sidebar_pci_settings": "Settings",
   "sidebar_pci_object_storage": "Object Storage",
@@ -76,7 +76,7 @@
   "sidebar_iplb": "OVHcloud Load Balancer",
   "sidebar_ip": "Öffentliche IP-Adressen",
   "sidebar_cdn": "CDN Infrastruktur",
-  "sidebar_domain_dns": "Domains & DNS",
+  "sidebar_domain_dns": "Domains &amp; DNS",
   "sidebar_domain": "Domainnamen",
   "sidebar_dns": "DNS-Zone",
   "sidebar_web_hosting": "Web",
@@ -118,5 +118,7 @@
   "sidebar_assistance_support_level": "Support-Level",
   "sidebar_assistance_live_chat": "Live Chat",
   "sidebar_assistance_onboarding": "Geführte Tour",
-  "sidebar_clipboard_copy": "In die Zwischenablage kopieren"
+  "sidebar_clipboard_copy": "In die Zwischenablage kopieren",
+  "sidebar_pci_load_error": "Beim Abruf der Projektliste ist ein Fehler aufgetreten",
+  "sidebar_billing_ssh": "Meine SSH-Schlüssel"
 }
