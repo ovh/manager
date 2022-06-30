@@ -11,18 +11,31 @@
     <h1
         data-translate="pci_projects_project_storages_objects_onboarding_title"
     ></h1>
-    <p
-        data-translate="pci_projects_project_storages_objects_onboarding_content1"
-    ></p>
-    <strong
-        data-translate="pci_projects_project_storages_objects_onboarding_content2"
-    ></strong>
-    <p
-        data-translate="pci_projects_project_storages_objects_onboarding_content3"
-    ></p>
-    <p
-        data-translate="pci_projects_project_storages_objects_onboarding_content4"
-    ></p>
+    <div data-ng-if="!$ctrl.isS3User">
+        <p
+            data-translate="pci_projects_project_storages_objects_onboarding_content1"
+        ></p>
+        <strong
+            data-translate="pci_projects_project_storages_objects_onboarding_content2"
+        ></strong>
+        <p
+            data-translate="pci_projects_project_storages_objects_onboarding_content3"
+        ></p>
+        <p
+            data-translate="pci_projects_project_storages_objects_onboarding_content4"
+        ></p>
+    </div>
+    <div data-ng-if="$ctrl.isS3User">
+        <p
+            data-translate="pci_projects_project_storages_objects_onboarding_content5"
+        ></p>
+        <p
+            data-translate="pci_projects_project_storages_objects_onboarding_content6"
+        ></p>
+        <p
+            data-translate="pci_projects_project_storages_objects_onboarding_content7"
+        ></p>
+    </div>
 
     <oui-button data-variant="primary" data-on-click="$ctrl.addObjectStorage()">
         <span
