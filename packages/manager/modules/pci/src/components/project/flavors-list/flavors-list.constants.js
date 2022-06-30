@@ -61,8 +61,11 @@ export const CPU_FREQUENCY = {
   'ovh.ssd.gpu': 3.1,
   'ovh.ssd.gpu2': 3.1,
   'ovh.ssd.gpu3': 3.1,
-  'ovh.raid-nvme.t1': 2.1,
+  'ovh.raid-nvme.t1': 2.2,
+  'ovh.raid-nvme.t2': 2.2,
   'ovh.iops': 2,
+  'ovh.d2': 2.1,
+  'ovh.baremetal': 3.5,
 };
 
 export const DEFAULT_CATALOG_ENDPOINT = '/order/catalog/public/cloud';
