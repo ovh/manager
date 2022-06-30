@@ -41,6 +41,7 @@ angular.module('App').controller(
             ),
             'server_dashboard_alert',
           );
+          this.Server.getServices();
           reload = true;
         })
         .catch(({ data }) => {
