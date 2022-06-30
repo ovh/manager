@@ -1,3 +1,12 @@
+# [3.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.22.0...@ovh-ux/manager-server-sidebar@3.23.0) (2022-06-30)
+
+
+### Features
+
+* **sva:** reversement new global entry and new global page ([#6910](https://github.com/ovh/manager/issues/6910)) ([859cf74](https://github.com/ovh/manager/commit/859cf741c590c3c2f99560983481d985d483a08e))
+
+
+
 # [3.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.5...@ovh-ux/manager-server-sidebar@3.22.0) (2022-06-14)
 
 

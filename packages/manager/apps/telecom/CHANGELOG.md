@@ -1,3 +1,17 @@
+# [13.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.41.4...@ovh-ux/manager-telecom@13.42.0) (2022-06-30)
+
+
+### Bug Fixes
+
+* **telecom:** text header of the Telecom manager Systran ([#7411](https://github.com/ovh/manager/issues/7411)) ([69db692](https://github.com/ovh/manager/commit/69db692a2e64a60fb5026b1359cf1a3dcc41fa81))
+
+
+### Features
+
+* **sva:** reversement new global entry and new global page ([#6910](https://github.com/ovh/manager/issues/6910)) ([859cf74](https://github.com/ovh/manager/commit/859cf741c590c3c2f99560983481d985d483a08e))
+
+
+
 ## [13.41.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.41.3...@ovh-ux/manager-telecom@13.41.4) (2022-06-30)
 
 
