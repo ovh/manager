@@ -1,3 +1,12 @@
+# [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-dev-server@2.9.0...@ovh-ux/manager-webpack-dev-server@2.10.0) (2022-06-30)
+
+
+### Features
+
+* **webpack-dev-server:** add container environment parameter ([76a136d](https://github.com/ovh/manager/commit/76a136db762846994e281b107cdd01eb1fb96ee8))
+
+
+
 # [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-dev-server@2.8.4...@ovh-ux/manager-webpack-dev-server@2.9.0) (2022-06-30)
 
 

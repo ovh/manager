@@ -1,3 +1,19 @@
+# [5.82.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.81.0...@ovh-ux/manager-pci@5.82.0) (2022-06-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1681] ([1aadfaa](https://github.com/ovh/manager/commit/1aadfaa39570cc1c99f27466c1aff51724a6e3e5))
+* **instance:** redirect to instances page after deletion ([#7213](https://github.com/ovh/manager/issues/7213)) ([fa93819](https://github.com/ovh/manager/commit/fa938190d339dbec53697e8ab30cdd16e06c9bd3))
+
+
+### Features
+
+* **projects:** add a sorting option to the projects list ([#7321](https://github.com/ovh/manager/issues/7321)) ([6832c6e](https://github.com/ovh/manager/commit/6832c6e73f50f62d17a556c6841782782630e12e))
+* **storage.databases:** improve funnel order ([#6905](https://github.com/ovh/manager/issues/6905)) ([e88500e](https://github.com/ovh/manager/commit/e88500e3395221802987a9de6e82c3314eb89d03))
+
+
+
 # [5.81.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.80.0...@ovh-ux/manager-pci@5.81.0) (2022-06-30)
 
 
