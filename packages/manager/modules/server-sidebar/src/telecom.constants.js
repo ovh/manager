@@ -188,6 +188,14 @@ export const TELEPHONY_CONFIG = {
       ],
     },
   ],
+  children: [
+    {
+      id: 'telephony_repayments',
+      state: 'telecom.telephony.repayments.index',
+      icon: 'oui-icon oui-icon-receipt_concept',
+      app: [TELECOM],
+    },
+  ],
   icon: 'ovh-font ovh-font-phone',
   app: [TELECOM],
   feature: 'telephony',

@@ -83,6 +83,7 @@
   "server_sidebar_item_pack_title": "Accès Internet",
   "server_sidebar_item_pack_prefix": "Pack",
   "server_sidebar_item_telephony_title": "Téléphonie",
+  "server_sidebar_item_telephony_repayments_title": "Gérer mes reversements",
   "server_sidebar_item_telephony_prefix_carrier_sip": "Carrier SIP",
   "server_sidebar_item_telephony_prefix_number": "N°",
   "server_sidebar_item_telephony_prefix_line": "SIP",
