@@ -3,7 +3,8 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 import svaWalletModule from './svaWallet';
-import billingAccount from './billingAccount';
+import billingAccountModule from './billingAccount';
+import repaymentsModule from './repayments';
 
 import './telecom-telephony.less';
 
@@ -13,8 +14,9 @@ angular
   .module(moduleName, [
     'ui.router',
     'oc.lazyLoad',
-    billingAccount,
+    billingAccountModule,
     svaWalletModule,
+    repaymentsModule,
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
@@ -74,6 +76,22 @@ angular
             return import('./onboarding/onboarding.module').then((mod) =>
               $ocLazyLoad.inject(mod.default || mod),
             );
+          },
+        })
+        .state('telecom.telephony.svaWallet', {
+          url: '/sva-wallet',
+          redirectTo: (transition) => {
+            const iceberg = transition.injector().get('iceberg');
+            return iceberg('/telephony')
+              .query()
+              .expand('CachedObjectList-Pages')
+              .limit(1)
+              .execute(null, true)
+              .$promise.then(({ data: [{ billingAccount }] }) => ({
+                state: 'telecom.telephony.billingAccount.svaWallet',
+                params: { billingAccount },
+              }))
+              .catch(() => 'telecom.telephony');
           },
         })
         .state('telecom.telephony.index.**', {

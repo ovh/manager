@@ -1,0 +1,21 @@
+{
+  "telephony_repayments_available_title": "Auszahlungen verfügbar",
+  "telephony_repayments_costs_title": "Zu zahlende Kosten",
+  "telephony_repayments_costs": "Kosten",
+  "telephony_repayments_grid_buyAmount.value": "Auszahlung",
+  "telephony_repayments_grid_calledNumber": "Sondernummer",
+  "telephony_repayments_grid_callingNumber": "Eingehende Nummer",
+  "telephony_repayments_grid_duration": "Laufzeit (trocken)",
+  "telephony_repayments_grid_startDate": "Datum",
+  "telephony_repayments_grid_status_CREATED": "Auszahlung wird ausgeführt",
+  "telephony_repayments_grid_status_ERROR": "Fehler bei der Auszahlung",
+  "telephony_repayments_grid_status_NONE": "Keine Auszahlung",
+  "telephony_repayments_grid_status_PAID": "Ausgezahlt",
+  "telephony_repayments_grid_status": "Status",
+  "telephony_repayments_iban_link": "Bankverbindung bearbeiten",
+  "telephony_repayments_message_above_threshold": "Ihre nächste Auszahlung ist {{ amount }}",
+  "telephony_repayments_message_bank_account": "Meine Bankverbindung",
+  "telephony_repayments_message_under_threshold": "Der Mindestbetrag von {{ amount }} ist noch nicht erreicht. Derzeit ist keine Auszahlung geplant",
+  "telephony_repayments_pending_title": "Auszahlungen in Wartestellung",
+  "telephony_repayments_repayments": "Auszahlungen"
+}

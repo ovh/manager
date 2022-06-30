@@ -1,0 +1,21 @@
+{
+  "telephony_repayments_available_title": "Pagamentos disponíveis",
+  "telephony_repayments_costs_title": "Custos a pagar",
+  "telephony_repayments_costs": "Custos",
+  "telephony_repayments_grid_buyAmount.value": "Pagamento",
+  "telephony_repayments_grid_calledNumber": "Número especial",
+  "telephony_repayments_grid_callingNumber": "Número de entrada",
+  "telephony_repayments_grid_duration": "Duração (sec.)",
+  "telephony_repayments_grid_startDate": "Data",
+  "telephony_repayments_grid_status_CREATED": "Pagamento em curso",
+  "telephony_repayments_grid_status_ERROR": "Erro no pagamento",
+  "telephony_repayments_grid_status_NONE": "Nenhum reembolso",
+  "telephony_repayments_grid_status_PAID": "Reembolso",
+  "telephony_repayments_grid_status": "Estado",
+  "telephony_repayments_iban_link": "Alterar as minhas coordenadas bancárias",
+  "telephony_repayments_message_above_threshold": "A sua próxima transferência será de {{ amount }}",
+  "telephony_repayments_message_bank_account": "As minhas coordenadas bancárias",
+  "telephony_repayments_message_under_threshold": "O montante mínimo de {{ amount }} ainda não foi atingido. Não está previsto qualquer reembolso",
+  "telephony_repayments_pending_title": "Reembolsos em espera",
+  "telephony_repayments_repayments": "Reembolsos"
+}
