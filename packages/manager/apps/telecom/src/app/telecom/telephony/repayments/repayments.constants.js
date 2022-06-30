@@ -1,0 +1,10 @@
+export const REPAYMENT_AMOUNT_THRESHOLD = 30;
+
+export const REPAYMENTS_GRID_STATUS = {
+  PAID: 'PAID',
+};
+
+export default {
+  REPAYMENT_AMOUNT_THRESHOLD,
+  REPAYMENTS_GRID_STATUS,
+};
