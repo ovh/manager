@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-container-app",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "private": true,
   "description": "OVHcloud Manager Container.",
   "repository": {
@@ -44,7 +44,6 @@
     "react-cookie": "^4.1.1",
     "react-dom": "^17.0.2",
     "react-i18next": "^11.11.4",
-    "react-popper": "^2.2.5",
     "react-responsive": "^9.0.0-beta.6",
     "react-router-dom": "^5.3.0",
     "react-select": "^5.3.2",

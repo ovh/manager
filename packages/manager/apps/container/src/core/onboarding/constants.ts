@@ -7,7 +7,6 @@ export const ONBOARDING_STATUS_ENUM = {
 
 export const ONBOARDING_OPENED_STATE_ENUM = {
   CLOSED: 'CLOSED', // the widget is closed nothing is displayed
-  BUTTON: 'BUTTON', // only the button must be shown
   WELCOME: 'WELCOME', // the button and the welcome button is shown
   WALKME: 'WALKME', // the onboarding has started
 } as const;

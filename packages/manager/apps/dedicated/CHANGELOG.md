@@ -1,3 +1,12 @@
+## [17.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.22.1...@ovh-ux/manager-dedicated@17.22.2) (2022-07-01)
+
+
+### Bug Fixes
+
+* **ip:** force order ip through new order system ([#7476](https://github.com/ovh/manager/issues/7476)) ([7492cdd](https://github.com/ovh/manager/commit/7492cdd204bc1b1fd9b4cd57ab51bcf34edf1b6f))
+
+
+
 ## [17.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.22.0...@ovh-ux/manager-dedicated@17.22.1) (2022-06-17)
 
 

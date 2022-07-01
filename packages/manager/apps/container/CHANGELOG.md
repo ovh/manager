@@ -1,3 +1,18 @@
+## [0.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.4...@ovh-ux/manager-container-app@0.3.5) (2022-07-01)
+
+
+### Bug Fixes
+
+* **container:** disable cookie policy consent for US region ([#7438](https://github.com/ovh/manager/issues/7438)) ([8e10e4f](https://github.com/ovh/manager/commit/8e10e4f261bbc8e3117588593be5ccca6935eafb))
+* **container:** node region filter ([b8348ec](https://github.com/ovh/manager/commit/b8348ec17a3bf733e5130866a1bc00420bbf9a07))
+* **container:** sidebar billing for us enterprise ([7c37995](https://github.com/ovh/manager/commit/7c3799579df389222cdacba0248ec85544fbaa78))
+* **container:** sidebar ssh key for US region ([#7439](https://github.com/ovh/manager/issues/7439)) ([85b6c28](https://github.com/ovh/manager/commit/85b6c2808acbe6d8240222573678a603ba8ad640))
+* **container:** translation &amp; ([b994672](https://github.com/ovh/manager/commit/b994672e0c5505caf004214e48544a9ea13a4c18))
+* **i18n:** add missing translations [CDS 1700] ([7ba62b9](https://github.com/ovh/manager/commit/7ba62b9f6626a75e01625fe6a6f5b9f8ade0346b))
+* **pnr:** change onboarding popover position ([57a549c](https://github.com/ovh/manager/commit/57a549c145b50eac94d5531e980bef5746065d76))
+
+
+
 ## [0.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.3...@ovh-ux/manager-container-app@0.3.4) (2022-06-30)
 
 

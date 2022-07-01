@@ -107,7 +107,7 @@
   "sidebar_orders": "Encomendas",
   "sidebar_account_profile": "O meu perfil",
   "sidebar_account_contacts": "Contactos",
-  "sidebar_billing_services": "Serviços",
+  "sidebar_billing_services": "Os meus serviços",
   "sidebar_billing_bills": "As minhas faturas",
   "sidebar_billing_payment": "Os meus métodos de pagamento",
   "sidebar_sunrise": "Sunrise",
@@ -119,5 +119,6 @@
   "sidebar_assistance_support_level": "Nível de suporte",
   "sidebar_assistance_live_chat": "Live Chat",
   "sidebar_assistance_onboarding": "Visita guiada",
-  "sidebar_clipboard_copy": "Copiar para a área de transferência"
+  "sidebar_clipboard_copy": "Copiar para a área de transferência",
+  "sidebar_billing_ssh": "Chaves SSH"
 }

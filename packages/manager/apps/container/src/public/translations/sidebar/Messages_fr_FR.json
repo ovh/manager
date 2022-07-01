@@ -108,6 +108,7 @@
   "sidebar_account_profile": "Mon profil",
   "sidebar_account_contacts": "Mes contacts",
   "sidebar_billing_services": "Mes services",
+  "sidebar_billing_ssh": "Mes clés SSH",
   "sidebar_billing_bills": "Mes factures",
   "sidebar_billing_payment": "Mes moyens de paiement",
   "sidebar_sunrise": "Sunrise",
