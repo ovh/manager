@@ -1,3 +1,12 @@
+## [5.82.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.82.0...@ovh-ux/manager-pci@5.82.1) (2022-07-01)
+
+
+### Bug Fixes
+
+* **storages.databases:** do not multiply the flavor price by min nodes ([#7475](https://github.com/ovh/manager/issues/7475)) ([aa7bcd3](https://github.com/ovh/manager/commit/aa7bcd38abe3618ba39970e5ff94521f598cddf0))
+
+
+
 # [5.82.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.81.0...@ovh-ux/manager-pci@5.82.0) (2022-06-30)
 
 
