@@ -37,15 +37,15 @@ export default class Flavor {
 
   get hourlyPrice() {
     return {
-      priceInUcents: this.nodeHourlyPrice.priceInUcents * this.nodesCount,
-      tax: this.nodeHourlyPrice.tax * this.nodesCount,
+      priceInUcents: this.nodeHourlyPrice.priceInUcents,
+      tax: this.nodeHourlyPrice.tax,
     };
   }
 
   get monthlyPrice() {
     return {
-      priceInUcents: this.nodeMonthlyPrice.priceInUcents * this.nodesCount,
-      tax: this.nodeMonthlyPrice.tax * this.nodesCount,
+      priceInUcents: this.nodeMonthlyPrice.priceInUcents,
+      tax: this.nodeMonthlyPrice.tax,
     };
   }
 
