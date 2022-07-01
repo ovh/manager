@@ -109,7 +109,10 @@
                             >
                             </oui-numeric>
                         </div>
-                        <span class="sizing__advanced-units">GiB</span>
+                        <span
+                            class="sizing__advanced-units"
+                            data-translate="data_processing_submit_job_stepper_spark_driver_gib"
+                        ></span>
                     </oui-field>
                 </div>
                 <div class="col">
@@ -126,7 +129,10 @@
                             >
                             </oui-numeric>
                         </div>
-                        <span class="sizing__advanced-units">MiB</span>
+                        <span
+                            class="sizing__advanced-units"
+                            data-translate="data_processing_submit_job_stepper_spark_driver_mib"
+                        ></span>
                         <oui-checkbox
                             class="sizing__advanced-units-checkbox pl-0"
                             name="driver-memory-overhead-auto"
@@ -134,10 +140,8 @@
                             data-on-change="$ctrl.onChangeAdvancedSizingDriverMemOverheadHandler(modelValue)"
                         >
                             <span
-                                >{{
-                                ::'data_processing_submit_job_stepper_spark_memory_overhead_autocompute_label'
-                                | translate}}</span
-                            >
+                                data-translate="data_processing_submit_job_stepper_spark_memory_overhead_autocompute_label"
+                            ></span>
                         </oui-checkbox>
                     </oui-field>
                 </div>
@@ -174,7 +178,10 @@
                             >
                             </oui-numeric>
                         </div>
-                        <span class="sizing__advanced-units">GiB</span>
+                        <span
+                            class="sizing__advanced-units"
+                            data-translate="data_processing_submit_job_stepper_spark_driver_gib"
+                        ></span>
                     </oui-field>
                 </div>
                 <div class="col">
@@ -191,7 +198,10 @@
                             >
                             </oui-numeric>
                         </div>
-                        <span class="sizing__advanced-units">MiB</span>
+                        <span
+                            class="sizing__advanced-units"
+                            data-translate="data_processing_submit_job_stepper_spark_driver_mib"
+                        ></span>
                         <oui-checkbox
                             class="sizing__advanced-units-checkbox pl-0"
                             name="worker-memory-overhead-auto"
@@ -199,10 +209,8 @@
                             data-on-change="$ctrl.onChangeAdvancedSizingWorkerMemOverheadHandler(modelValue)"
                         >
                             <span
-                                >{{
-                                ::'data_processing_submit_job_stepper_spark_memory_overhead_autocompute_label'
-                                | translate}}</span
-                            >
+                                data-translate="data_processing_submit_job_stepper_spark_memory_overhead_autocompute_label"
+                            ></span>
                         </oui-checkbox>
                     </oui-field>
                 </div>
