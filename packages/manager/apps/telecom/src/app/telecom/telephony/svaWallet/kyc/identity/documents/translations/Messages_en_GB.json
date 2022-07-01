@@ -19,5 +19,7 @@
   "telephony_billingAccount_svaWallet_kyc_documents_alert": "Ensure your documents are compliant and readable before finalising your request. A non-compliant document will result in an additional delay in validating your identity.",
   "telephony_billingAccount_svaWallet_kyc_documents_alert_required": "All documents are required.",
   "telephony_billingAccount_svaWallet_kyc_documents_title": "Parts to supply",
-  "telephony_billingAccount_svaWallet_kyc_documents_back_to_dashboard": "Back to dashboard"
+  "telephony_billingAccount_svaWallet_kyc_documents_back_to_dashboard": "Back to dashboard",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_CROWDFUNDING_PROJECT_DETAILS": "A document describing the project in detail",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_BENEFICIARIES_REGISTRY_DBE_S1": "Register of effective beneficiaries type DBE-S1 (showing natural persons holding directly or indirectly more than 25% of the company's capital)"
 }

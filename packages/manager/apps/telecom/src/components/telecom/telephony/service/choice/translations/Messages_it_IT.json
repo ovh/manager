@@ -1,11 +1,12 @@
 {
   "telephony_service_choice_title": "Scegli il servizio",
   "telephony_service_choice_filter_by": "Filtra per:",
-  "telephony_service_choice_filter_by_type": "Tipo",
+  "telephony_service_choice_filter_by_type": "Tipi",
   "telephony_service_choice_filter_by_group": "Gruppi",
   "telephony_service_choice_filter_type_sip": "Linee SIP",
   "telephony_service_choice_filter_type_trunk": "Linee Trunk",
   "telephony_service_choice_filter_type_fax": "Fax",
   "telephony_service_choice_filter_type_number": "Numero",
-  "telephony_service_choice_destination": "Scegli un servizio"
+  "telephony_service_choice_destination": "Scegli un servizio",
+  "telephony_service_choice_filter_type_plugAndFax": "Linee SIP (plug&amp;fax)"
 }

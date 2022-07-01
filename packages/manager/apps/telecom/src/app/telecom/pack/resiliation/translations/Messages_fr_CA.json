@@ -64,5 +64,11 @@
   "pack_resiliation_delete_all_voipAlias": "Les alias suivants seront supprimés",
   "pack_resiliation_delete_all_siteBuilderFull": "Les comptes Site Builder (Full) suivants seront supprimés",
   "pack_resiliation_delete_all_siteBuilderStart": "Les comptes Site Builder suivants seront supprimés",
-  "pack_resiliation_mandatory_field": "Les champs marqués d’un astérisque sont obligatoires."
+  "pack_resiliation_mandatory_field": "Les champs marqués d’un astérisque sont obligatoires.",
+  "pack_resiliation_choice_eligibilityFtth": "Non éligible à la fibre (FTTH)",
+  "pack_resiliation_choice_price": "Tarif",
+  "pack_resiliation_choice_changeOperator": "Changement d'opérateur",
+  "pack_resiliation_susbsidiary_question_technicalProblems": "Quel est le problème rencontré ? (débit, navigation, autres)",
+  "pack_resiliation_susbsidiary_question_eligibilityFtth": "Indiquez l'adresse non éligible (ville)",
+  "pack_resiliation_susbsidiary_question_changeOperator": "Opérateur concerné"
 }
