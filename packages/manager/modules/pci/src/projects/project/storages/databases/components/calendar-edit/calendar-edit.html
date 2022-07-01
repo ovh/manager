@@ -4,7 +4,8 @@
         model="$ctrl.model"
         format="H:i"
         inline
-        ng-if="!$ctrl.refreshCalendarValue"
+        data-ng-if="!$ctrl.refreshCalendarValue"
+        disabled="$ctrl.disabled"
     ></oui-timepicker>
     <div ng-if="!$ctrl.isEqualToInitialValue()">
         <button
@@ -19,7 +20,7 @@
             type="button"
             class="oui-button oui-button_ghost"
             data-ng-click="$ctrl.cancel()"
-            data-ng-disabled="$ctrl.disabled || $ctrl.loading"
+            data-ng-disabled="$ctrl.loading"
         >
             <span class="oui-icon oui-icon-close" aria-hidden="true"></span>
         </button>
