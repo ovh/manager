@@ -17,14 +17,15 @@ const memoryConversions = {
 /**
  * Format a given duration in milliseconds to a hh:mm:ss string
  * @param value Duration in ms
+ * @param humanize Use moment's humanize format
  * @return {string} formatted string
  */
-export const formatDuration = (value) => {
+export const formatDuration = (value, humanize = false) => {
   const duration = moment.duration(value);
-  return (
-    Math.floor(duration.asHours()) +
-    moment.utc(duration.asMilliseconds()).format(':mm:ss')
-  );
+  return humanize
+    ? duration.humanize()
+    : Math.floor(duration.asHours()) +
+        moment.utc(duration.asMilliseconds()).format(':mm:ss');
 };
 
 /**
