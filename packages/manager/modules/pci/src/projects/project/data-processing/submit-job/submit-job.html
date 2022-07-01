@@ -283,7 +283,7 @@
                                     <span
                                         data-translate="data_processing_submit_job_spec_sizing_memory"
                                         data-translate-values="{
-                                            memory: $ctrl.state.jobSizing.driverMemoryGb
+                                            memory: ($ctrl.state.jobSizing.driverMemoryGb | bytes:0:false:'GB')
                                         }"
                                     ></span>
                                 </div>
@@ -326,7 +326,7 @@
                                     <span
                                         data-translate="data_processing_submit_job_spec_sizing_memory"
                                         data-translate-values="{
-                                            memory: $ctrl.state.jobSizing.workerMemoryGb
+                                            memory: ($ctrl.state.jobSizing.workerMemoryGb | bytes:0:false:'GB')
                                         }"
                                     ></span>
                                 </div>
