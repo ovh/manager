@@ -7,7 +7,6 @@ import {
   IPV4_REGEX,
   IPV4_BLOCK_REGEX,
   TRACKING_PREFIX,
-  CLUSTER_CONFIG_TERMS,
   IP_FOR_SCALE_REDEPLOY,
 } from './constants';
 
@@ -21,7 +20,6 @@ export default class NutanixGeneralInfoRedeployCtrl {
     this.prismCentralTypes = PRISM_CENTRAL_TYPES;
     this.IPV4_REGEX = IPV4_REGEX;
     this.IPV4_BLOCK_REGEX = IPV4_BLOCK_REGEX;
-    this.CLUSTER_CONFIG_TERMS = CLUSTER_CONFIG_TERMS;
   }
 
   $onInit() {
