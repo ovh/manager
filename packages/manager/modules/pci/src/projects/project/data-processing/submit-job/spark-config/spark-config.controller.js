@@ -39,7 +39,18 @@ export default class {
       .listContainers(this.projectId)
       .then((containers) => {
         this.swiftContainers = containers;
+        this.$onChanges();
       });
+
+    this.$scope.$watch(
+      '$ctrl.region',
+      () => {
+        this.$onChanges();
+      },
+      true,
+    );
+
+    this.onChangeHandler(this.state);
   }
 
   $onChanges() {
