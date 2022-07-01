@@ -207,6 +207,13 @@
                 data-description="{{ $ctrl.job.engineParameters.arguments }}"
             >
             </oui-tile-definition>
+            <oui-tile-definition
+                data-ng-if="$ctrl.job.ttl"
+                data-term="Time To Live (TTL)"
+                title="Time To Live (TTL)"
+                data-description="{{ $ctrl.formatDuration($ctrl.job.ttl, true) }}"
+            >
+            </oui-tile-definition>
         </oui-tile>
     </div>
 </div>
