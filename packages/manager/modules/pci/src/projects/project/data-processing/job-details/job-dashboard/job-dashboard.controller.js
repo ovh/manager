@@ -39,6 +39,7 @@ export default class {
     this.containerService = PciStoragesContainersService;
     this.atInternet = atInternet;
     this.containerId = null;
+    this.pollTimer = null;
     this.metricsTimer = null;
     this.formatDuration = formatDuration;
     // setup metrics retrieval
@@ -82,12 +83,12 @@ export default class {
       }
     });
     // start metrics retrieval
-    this.queryMetrics();
+    this.pollData();
   }
 
   $onDestroy() {
-    if (this.metricsTimer !== null) {
-      this.$timeout.cancel(this.metricsTimer);
+    if (this.pollTimer !== null) {
+      this.$timeout.cancel(this.pollTimer);
     }
   }
 
@@ -95,13 +96,14 @@ export default class {
    * Query metrics from OVH metrics backend
    * If job is still running, we query each METRICS_REFRESH_INTERVAL to update charts
    */
-  queryMetrics() {
+  pollData() {
     this.queryMetricsTotalMemory();
     this.queryMetricsActiveTasks();
     this.queryMetricsDiskUsed();
+    this.queryJob();
     if (this.job.endDate === null) {
-      this.metricsTimer = this.$timeout(
-        () => this.queryMetrics(),
+      this.pollTimer = this.$timeout(
+        () => this.pollData(),
         METRICS_REFRESH_INTERVAL,
       );
     }
@@ -127,6 +129,14 @@ export default class {
       startDate,
       endDate,
     };
+  }
+
+  queryJob() {
+    this.dataProcessingService
+      .getJob(this.projectId, this.job.id)
+      .then((job) => {
+        this.job = job;
+      });
   }
 
   /**
