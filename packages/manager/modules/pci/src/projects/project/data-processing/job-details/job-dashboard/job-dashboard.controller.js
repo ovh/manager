@@ -226,6 +226,13 @@ export default class {
     ].includes(this.job.status);
   }
 
+  isJobPending() {
+    return [
+      DATA_PROCESSING_STATUSES.PENDING,
+      DATA_PROCESSING_STATUSES.SUBMITTED,
+    ].includes(this.job.status);
+  }
+
   // eslint-disable-next-line class-methods-use-this
   formatDateToCalendar(dt) {
     // this method needs to use current instance of moment, so it cannot static

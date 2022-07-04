@@ -30,8 +30,13 @@
             <!-- Tile item :: Elapsed time -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_details_information_elapsed_label' | translate }}"
-                data-description="{{ $ctrl.job.duration | dataProcessingDuration }}"
             >
+                <oui-tile-description>
+                    <span
+                        >{{ ($ctrl.isJobPending() ? 0 : $ctrl.job.duration) |
+                        dataProcessingDuration }}</span
+                    >
+                </oui-tile-description>
             </oui-tile-definition>
             <!-- Tile item :: Total memory -->
             <span
