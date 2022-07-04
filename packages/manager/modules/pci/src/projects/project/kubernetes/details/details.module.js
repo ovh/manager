@@ -9,7 +9,6 @@ import '@ovh-ux/ui-kit';
 import kubernetesComponent from './component';
 import routing from './details.routing';
 
-import containersComponent from './containers/index';
 import nodePools from './node-pool';
 import serviceComponent from './service/index';
 import restrictions from './restrictions';
@@ -27,7 +26,6 @@ angular
     'pascalprecht.translate',
     'ngTranslateAsyncLoader',
     'ui.router',
-    containersComponent,
     nodePools,
     serviceComponent,
     restrictions,
