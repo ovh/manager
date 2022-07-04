@@ -4,6 +4,7 @@ import {
   CONFIG_FILENAME,
   KUBECONFIG_URL,
   KUBECTL_URL,
+  KUBE_INSTALL_URL,
   VERSIONS_GUIDE_URL,
 } from './service.constants';
 import { STATUS } from '../constants';
@@ -30,6 +31,7 @@ export default class KubernetesServiceCtrl {
     this.CONFIG_FILENAME = CONFIG_FILENAME;
     this.KUBECONFIG_URL = KUBECONFIG_URL;
     this.KUBECTL_URL = KUBECTL_URL;
+    this.KUBE_INSTALL_URL = KUBE_INSTALL_URL;
     this.VERSIONS_GUIDE_URL = VERSIONS_GUIDE_URL;
     this.STATUS = STATUS;
     this.loadingKubeConfig = false;

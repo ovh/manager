@@ -6,6 +6,9 @@ export const KUBECONFIG_URL =
 export const KUBECTL_URL =
   'https://kubernetes.io/docs/reference/kubectl/overview/';
 
+export const KUBE_INSTALL_URL =
+  'https://docs.ovh.com/gb/en/kubernetes/installing-kubernetes-dashboard/';
+
 export const VERSIONS_GUIDE_URL =
   'https://docs.ovh.com/gb/en/kubernetes/eos-eol-policies/';
 
