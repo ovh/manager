@@ -76,7 +76,7 @@
             </oui-field>
             <p data-translate="pci_database_add_select_flavor"></p>
             <database-flavors-list
-                data-flavors="$ctrl.model.region.flavors"
+                data-flavors="$ctrl.model.region.availableFlavors"
                 data-selected-flavor="$ctrl.model.flavor"
                 data-user="$ctrl.user"
                 on-change="$ctrl.onFlavorChanged(selectedFlavor)"
