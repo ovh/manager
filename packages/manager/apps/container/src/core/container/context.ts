@@ -13,6 +13,8 @@ export type ContainerContext = {
   isChatbotEnabled: boolean;
   isLoading: boolean;
   updateBetaChoice: (accept: boolean) => Promise<unknown>;
+  chatbotOpen: boolean;
+  setChatbotOpen: (isOpen: boolean) => void;
 };
 
 const ContainerContext = createContext<ContainerContext>(

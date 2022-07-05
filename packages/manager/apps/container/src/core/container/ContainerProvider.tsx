@@ -11,6 +11,7 @@ import {
 // eslint-disable-next-line prettier/prettier
 import type { BetaVersion, ContainerContext as ContainerContextType} from './context';
 import ContainerContext from './context';
+import { useShell } from '@/context';
 
 
 export const BETA_V1 = 1;
@@ -18,8 +19,11 @@ export const BETA_V2 = 2;
 
 export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const reketInstance = useReket();
+  const shell = useShell();
+  const uxPlugin = shell.getPlugin('ux');
   const preferenceKey = 'NAV_RESHUFFLE_BETA_ACCESS';
   const [isLoading, setIsLoading] = useState(true);
+  const [chatbotOpen, setChatbotOpen] = useState(false);
 
   // true if we should we ask the user if he want to test beta version
   const [askBeta, setAskBeta] = useState(false);
@@ -136,6 +140,13 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       .finally(() => setIsLoading(false));
   }, []);
 
+  useEffect(() => {
+    uxPlugin.onChatbotVisibilityChange(async () => {
+      const chatbotVisibility = await uxPlugin.isChatbotVisible();
+      setChatbotOpen(chatbotVisibility);
+    });
+  }, []);
+
   containerContext = {
     createBetaChoice,
     askBeta,
@@ -144,6 +155,8 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     isChatbotEnabled,
     isLoading,
     updateBetaChoice,
+    chatbotOpen,
+    setChatbotOpen,
   };
 
   return (

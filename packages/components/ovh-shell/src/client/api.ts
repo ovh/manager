@@ -136,6 +136,22 @@ export default function exposeApi(shellClient: ShellClient) {
           method: 'onChatbotClose',
           args: [reduced],
         }),
+      openChatbot: () =>
+        shellClient.invokePluginMethod<void>({
+          plugin: 'ux',
+          method: 'openChatbot',
+        }),
+      closeChatbot: () =>
+        shellClient.invokePluginMethod<void>({
+          plugin: 'ux',
+          method: 'closeChatbot',
+        }),
+      onChatbotVisibilityChange: (callback: CallableFunction) =>
+        shellClient.invokePluginMethod<void>({
+          plugin: 'ux',
+          method: 'onChatbotVisibilityChange',
+          args: [callback],
+        }),
       isChatbotReduced: () =>
         shellClient.invokePluginMethod<boolean>({
           plugin: 'ux',

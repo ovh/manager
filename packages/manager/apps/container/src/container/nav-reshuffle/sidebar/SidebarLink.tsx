@@ -6,7 +6,6 @@ import { Environment } from '@ovh-ux/manager-config/types';
 import { useShell } from '@/context';
 
 import style from './style.module.scss';
-import { ComponentProps } from './utils';
 import SidebarLinkTag from './SidebarLinkTag';
 import { Node } from './navigation-tree/node';
 

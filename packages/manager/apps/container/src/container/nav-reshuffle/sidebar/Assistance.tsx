@@ -7,7 +7,6 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import SidebarLink from './SidebarLink';
 import style from './style.module.scss';
-import { ComponentProps } from './utils';
 
 interface Props {
   containerURL: { appId: string; appHash: string };
