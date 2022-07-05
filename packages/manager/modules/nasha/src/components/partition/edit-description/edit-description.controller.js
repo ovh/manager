@@ -5,23 +5,17 @@ export default class NashaComponentsPartitionEditDescriptionController {
   constructor($translate, $http) {
     this.$translate = $translate;
     this.$http = $http;
-    this.model = { description: '' };
+    this.model = { partitionDescription: '' };
     this.descriptionMax = DESCRIPTION_MAX;
   }
 
   $onInit() {
-    this.model.description = this.partition.description;
+    this.model.partitionDescription = this.partition.partitionDescription;
   }
 
   submit() {
-    const { description } = this.model;
-    const { serviceName } = this.nasha;
-    const { partitionName } = this.partition;
-
     return this.$http
-      .put(`/dedicated/nasha/${serviceName}/partition/${partitionName}`, {
-        description,
-      })
+      .put(this.partitionApiUrl, this.model)
       .then(() =>
         this.close({
           success: this.$translate.instant(

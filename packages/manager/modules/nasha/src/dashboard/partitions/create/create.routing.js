@@ -4,7 +4,8 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'nashaComponentsPartitionCreate',
     resolve: {
       breadcrumb: () => null,
-      close: /* @ngInject */ (goBack) => goBack,
+      partitionNames: /* @ngInject */ ($http, nashaApiUrl) =>
+        $http.get(`${nashaApiUrl}/partition`).then(({ data }) => data),
     },
   });
 };

@@ -4,6 +4,10 @@ export default class NashaDashboardController {
     this.closeEditNameModal = this.closeEditNameModal.bind(this);
   }
 
+  get name() {
+    return this.nasha.customName || this.nasha.serviceName;
+  }
+
   openEditNameModal() {
     this.isEditNameModalOpened = true;
   }

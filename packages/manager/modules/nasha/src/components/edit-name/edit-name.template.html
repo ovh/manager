@@ -1,12 +1,12 @@
 <nasha-components-modal-form
     data-submit=":: $ctrl.submit()"
     data-close=":: $ctrl.close()"
-    data-heading="{{:: ('nasha_components_edit_name_title' | translate) }}"
+    data-heading="{{:: ('nasha_components_edit_name_title' | translate: { name: $ctrl.nasha.serviceName }) }}"
     data-primary-label="{{:: ('nasha_components_edit_name_primary' | translate) }}"
     data-secondary-label="{{:: ('nasha_components_edit_name_secondary' | translate) }}"
 >
     <oui-field
-        data-label="{{:: ('nasha_components_edit_name_label' | translate) }}"
+        data-label="{{:: ('nasha_components_edit_name_label' | translate: { name: $ctrl.nasha.serviceName }) }}"
         data-help-text="{{:: ('nasha_components_edit_name_rules' | translate) }}"
         data-error-messages="{
             forbid: ('nasha_components_edit_name_forbid' | translate: { name: $ctrl.nasha.customName }),
@@ -14,10 +14,10 @@
     >
         <input
             type="text"
-            id="name"
-            name="name"
+            id="customName"
+            name="customName"
             class="oui-input"
-            data-ng-model="$ctrl.model.name"
+            data-ng-model="$ctrl.model.customName"
             data-ng-pattern="$ctrl.namePattern"
             data-forbid
             required

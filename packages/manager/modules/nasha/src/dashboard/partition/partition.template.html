@@ -3,7 +3,7 @@
         <div class="d-flex pt-4">
             <h1
                 class="word-break mb-0 oui-header-2"
-                data-ng-bind="$ctrl.partition.partitionName"
+                data-ng-bind="$ctrl.name"
             ></h1>
             <button
                 type="button"
@@ -77,11 +77,11 @@
                         >
                             <oui-tile-description>
                                 <span
-                                    data-ng-if="$ctrl.partition.description"
-                                    data-ng-bind="$ctrl.partition.description"
+                                    data-ng-if="$ctrl.partition.partitionDescription"
+                                    data-ng-bind="$ctrl.partition.partitionDescription"
                                 ></span>
                                 <em
-                                    data-ng-if="!$ctrl.partition.description"
+                                    data-ng-if="!$ctrl.partition.partitionDescription"
                                     data-translate="nasha_dashboard_partition_information_description_none"
                                 ></em>
                             </oui-tile-description>
@@ -116,11 +116,6 @@
                                 <span
                                     data-ng-bind="$ctrl.partition.use.size.unit"
                                 ></span>
-                                <span
-                                    class="oui-badge oui-badge_warning"
-                                    data-ng-if="$ctrl.hasOperation('Update')"
-                                    data-translate="nasha_dashboard_partition_information_updating"
-                                ></span>
                             </oui-tile-description>
                             <oui-action-menu
                                 aria-label="{{:: 'nasha_dashboard_partition_actions' | translate }}"
@@ -129,7 +124,6 @@
                             >
                                 <oui-action-menu-item
                                     data-on-click="$ctrl.goToEditSize()"
-                                    data-disabled="$ctrl.hasOperation('Update')"
                                 >
                                     <span
                                         data-translate="nasha_dashboard_partition_edit"
@@ -161,6 +155,7 @@
         data-nasha=":: $ctrl.nasha"
         data-close=":: $ctrl.closeEditNameModal"
         data-partition=":: $ctrl.partition"
-        data-partitions=":: $ctrl.partitions"
+        data-partition-names=":: $ctrl.partitionNames"
+        data-partition-api-url=":: $ctrl.partitionApiUrl"
     ></nasha-components-partition-edit-name>
 </div>
