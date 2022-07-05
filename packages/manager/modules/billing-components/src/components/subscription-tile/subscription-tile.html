@@ -43,19 +43,26 @@
             <div data-ng-if="!$ctrl.isLoading">
                 <span
                     class="oui-badge oui-badge_error"
-                    data-ng-if="!$ctrl.service.isEngaged()"
+                    data-ng-if="!$ctrl.service.isEngaged() && !$ctrl.serviceInfos.hasPendingEngagement"
                     data-translate="manager_billing_subscription_engagement_status_none"
                 ></span>
                 <span
-                    data-ng-if="$ctrl.service.isEngaged() && !$ctrl.service.isEngagementExpired()"
-                    data-translate="manager_billing_subscription_engagement_status_engaged"
+                    data-ng-if="$ctrl.service.isEngaged() && !$ctrl.service.isEngagementExpired() && !$ctrl.serviceInfos.hasPendingEngagement"
+                    data-translate="{{ :: $ctrl.isAutoCommitmentStrategy ?
+                        'manager_billing_subscription_engagement_status_engaged_renew' :
+                        'manager_billing_subscription_engagement_status_engaged_expired' }}"
                     data-translate-values="{ endDate: $ctrl.service.engagementEndDate || $ctrl.service.expirationDate }"
                 ></span>
                 <span
-                    data-ng-if="$ctrl.service.isEngagementExpired()"
+                    data-ng-if="$ctrl.service.isEngagementExpired() && !$ctrl.serviceInfos.hasPendingEngagement"
                     class="oui-badge oui-badge_error"
                     data-translate="manager_billing_subscription_engagement_status_engaged_expired"
                     data-translate-values="{ endDate: $ctrl.service.engagementEndDate || $ctrl.service.expirationDate }"
+                ></span>
+                <span
+                    data-ng-if="$ctrl.serviceInfos.hasPendingEngagement"
+                    data-translate="manager_billing_subscription_engagement_status_commitement_pending"
+                    data-translate-values="{ nextBillingDate: $ctrl.service.nextBillingDate }"
                 ></span>
             </div>
             <a
