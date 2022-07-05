@@ -9,13 +9,13 @@ export default class NashaComponentsPartitionSnapshotDeleteController {
 
     return this.$http
       .delete(`${this.partitionApiUrl}/customSnapshot/${customSnapshotName}`)
-      .catch((error) => this.close({ error }))
       .then(({ data: task }) =>
         this.close({
           tasks: [task],
           partitionName: this.partition.partitionName,
           customSnapshotName,
         }),
-      );
+      )
+      .catch((error) => this.close({ error }));
   }
 }

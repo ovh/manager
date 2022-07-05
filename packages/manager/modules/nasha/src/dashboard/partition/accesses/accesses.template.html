@@ -58,7 +58,7 @@
             >
                 <span
                     data-ng-if="!$row.isForm"
-                    data-translate="{{ 'nasha_dashboard_partition_accesses_list_type_' + $row.type }}"
+                    data-ng-bind="$row.typeLabel"
                 ></span>
                 <oui-select
                     data-ng-if="$row.isForm"

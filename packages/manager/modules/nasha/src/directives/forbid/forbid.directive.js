@@ -2,11 +2,12 @@
  * <form name="myForm">
  *   <input
  *     name="myInput"
+ *     value="myValue"
  *     data-forbid
  *     data-forbid-others="[ 'some', 'other', 'values' ]"
  *   />
  *   <div ng-messages="myForm.myInput.$error"
- *     <p data-ng-message="forbid">Please choose another value</p>
+ *     <p data-ng-message="forbid">Please choose a value other than "myValue"</p>
  *     <p data-ng-message="forbidOthers">"some", "other", "values" are forbidden</p>
  *   </div>
  * </form>

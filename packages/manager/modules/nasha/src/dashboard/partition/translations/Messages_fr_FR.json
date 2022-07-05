@@ -8,7 +8,6 @@
   "nasha_dashboard_partition_information_quota": "Quota",
   "nasha_dashboard_partition_information_size": "Taille de la partition",
   "nasha_dashboard_partition_information_title": "Informations",
-  "nasha_dashboard_partition_information_updating": "En cours de modification",
   "nasha_dashboard_partition_tab_general_information": "Informations générales",
   "nasha_dashboard_partition_tab_snapshots": "Snapshot policies",
   "nasha_dashboard_partition_tab_accesses": "Contrôle d'accès (ACL)"

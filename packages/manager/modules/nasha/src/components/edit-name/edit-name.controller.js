@@ -5,20 +5,17 @@ export default class NashaComponentsEditNameController {
   constructor($translate, $http) {
     this.$translate = $translate;
     this.$http = $http;
-    this.model = { name: '' };
+    this.model = { customName: '' };
     this.namePattern = NAME_PATTERN;
   }
 
   $onInit() {
-    this.model.name = this.nasha.customName;
+    this.model.customName = this.nasha.customName;
   }
 
   submit() {
-    const { name: customName } = this.model;
-    const { serviceName } = this.nasha;
-
     return this.$http
-      .put(`/dedicated/nasha/${serviceName}`, { customName })
+      .put(this.nashaApiUrl, this.model)
       .then(() =>
         this.close({
           success: this.$translate.instant(

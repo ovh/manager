@@ -1,3 +1,4 @@
+import { TRANSLATE } from './create.constants';
 import {
   DESCRIPTION_MAX,
   NAME_PATTERN,
@@ -6,14 +7,15 @@ import {
 
 export default class NashaComponentsPartitionCreateController {
   /* @ngInject */
-  constructor($translate, OvhApiDedicatedNasha) {
+  constructor($http, $translate) {
+    this.$http = $http;
     this.$translate = $translate;
-    this.OvhApiDedicatedNasha = OvhApiDedicatedNasha;
 
-    this.isLoading = true;
-
-    this.protocols = [];
+    this.namePattern = NAME_PATTERN;
+    this.descriptionMax = DESCRIPTION_MAX;
+    this.sizeMin = SIZE_MIN;
     this.model = {
+      partitionDescription: null,
       partitionName: null,
       size: null,
       protocol: null,
@@ -21,42 +23,33 @@ export default class NashaComponentsPartitionCreateController {
   }
 
   $onInit() {
-    this.namePattern = NAME_PATTERN;
-    this.descriptionMax = DESCRIPTION_MAX;
-    this.sizeMin = SIZE_MIN;
     this.sizeMax = this.nasha.zpoolSize;
+    this.partitionNames.sort();
+  }
 
-    this.OvhApiDedicatedNasha.v6()
-      .schema()
-      .$promise.then((data) => {
-        this.protocols = data.models['dedicated.storage.ProtocolEnum'].enum.map(
-          (protocol) => ({
-            value: protocol,
-            name: protocol.replace(/_/g, ' '),
-          }),
-        );
-      })
-      .catch((error) => this.close({ error }))
-      .finally(() => {
-        this.isLoading = false;
-      });
+  get forbidOthersMessage() {
+    if (this.partitionNames.length === 1) {
+      return this.translate('forbid_one', { name: this.partitionNames[0] });
+    }
+
+    return this.translate('forbid_many', {
+      names: this.partitionNames.join(', '),
+    });
   }
 
   submit() {
-    const { serviceName } = this.nasha;
-    const partition = this.model;
-
-    return this.OvhApiDedicatedNasha.Partition()
-      .v6()
-      .create({ serviceName }, partition)
-      .$promise.then(() =>
+    return this.$http
+      .post(`${this.nashaApiUrl}/partition`, this.model)
+      .then(({ data: task }) =>
         this.close({
-          success: this.$translate.instant(
-            'nasha_components_partition_create_success',
-            partition,
-          ),
+          tasks: [task],
+          partitionName: this.model.partitionName,
         }),
       )
       .catch((error) => this.close({ error }));
+  }
+
+  translate(key, values) {
+    return this.$translate.instant(`${TRANSLATE}_${key}`, values);
   }
 }

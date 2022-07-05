@@ -20,14 +20,9 @@ export default class NashaDashboardPartitionAccessesController {
   }
 
   $onInit() {
-    this.typeOptions = this.aclTypeEnum
-      .filter((type) =>
-        type === 'readonly' ? this.partition.protocol === 'NFS' : true,
-      )
-      .map((type) => ({
-        label: this.translate(`list_type_${type}`),
-        value: type,
-      }));
+    this.typeOptions = this.aclTypeEnum.filter(({ value }) =>
+      value === 'readonly' ? this.partition.protocol === 'NFS' : true,
+    );
   }
 
   get datagridTypeOptions() {
@@ -97,10 +92,16 @@ export default class NashaDashboardPartitionAccessesController {
         return { data: [] };
       })
       .then(({ data }) => {
-        this.accesses = data;
+        this.accesses = data.map((access) => ({
+          ...access,
+          typeLabel: this.aclTypeEnum.find(({ value }) => value === access.type)
+            ?.label,
+        }));
+
         if (!this.accesses.length) {
           return this.showAccessForm().then(() => this.accesses);
         }
+
         return this.accesses;
       })
       .then((data) => ({
@@ -168,7 +169,6 @@ export default class NashaDashboardPartitionAccessesController {
     } = this.model;
 
     this.isCreatingAccess = true;
-    // this.translate('access_created')
 
     return this.$http
       .post(`${this.partitionApiUrl}/access`, { ip, type })
@@ -177,9 +177,6 @@ export default class NashaDashboardPartitionAccessesController {
       )
       .catch((error) => {
         this.alertError(error);
-      })
-      .finally(() => {
-        this.isCreatingAccess = false;
       });
   }
 

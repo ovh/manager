@@ -1,4 +1,5 @@
-import { STATE_NAME } from './partition.constants';
+import { createTaskTrackerStateOptions } from '../../components/task-tracker';
+import { STATE_NAME, TASK_TRACKER_STATE_NAME } from './partition.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const goToEditResolve = ['description', 'name', 'size'].reduce(
@@ -29,16 +30,21 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: /* @ngInject */ (partitionName) => partitionName,
+      close: /* @ngInject */ (goBack, trackTasks) => ({
+        tasks,
+        partitionName,
+        success,
+        error,
+      } = {}) =>
+        tasks
+          ? trackTasks({ tasks, partitionName })
+          : goBack({ stateName: STATE_NAME, success, error }),
       editDescriptionHref: /* @ngInject */ ($state, serviceName) => () =>
         $state.href(`${STATE_NAME}.edit-description`, { serviceName }),
       editNameHref: /* @ngInject */ ($state, serviceName) => () =>
         $state.href(`${STATE_NAME}.edit-name`, { serviceName }),
       editSizeHref: /* @ngInject */ ($state, serviceName) => () =>
         $state.href(`${STATE_NAME}.edit-size`, { serviceName }),
-      hasOperation: /* @ngInject */ (NashaTask, tasks) => (operation) =>
-        tasks.filter(
-          (task) => task.operation === NashaTask.operation[operation],
-        ).length > 0,
       partition: /* @ngInject */ (
         $state,
         serviceName,
@@ -65,27 +71,27 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName,
         }).$promise.then((partitions) => partitions.map(preparePartition));
       },
-      partitionApiUrl: /* @ngInject */ (serviceName, partitionName) =>
-        `/dedicated/nasha/${serviceName}/partition/${partitionName}`,
+      partitionApiUrl: /* @ngInject */ (nashaApiUrl, partitionName) =>
+        `${nashaApiUrl}/partition/${partitionName}`,
       partitionName: /* @ngInject */ ($transition$) =>
         $transition$.params().partitionName,
       partitionHref: /* @ngInject */ ($state, serviceName) => () =>
         $state.href(STATE_NAME, { serviceName }),
-      tasks: /* @ngInject */ (
-        iceberg,
-        serviceName,
-        partitionName,
-        NashaTask,
-        prepareTasks,
-      ) =>
-        iceberg(`/dedicated/nasha/${serviceName}/task`)
-          .query()
-          .expand('CachedObjectList-Pages')
-          .addFilter('status', 'in', Object.values(NashaTask.status))
-          .addFilter('partitionName', 'eq', partitionName)
-          .execute(null, true)
-          .$promise.then(({ data: tasks }) => prepareTasks(tasks)),
+      trackTasks: /* @ngInject */ ($state) => (params) =>
+        $state.go(TASK_TRACKER_STATE_NAME, params),
       ...goToEditResolve,
+    },
+  });
+
+  const {
+    component,
+    ...taskTrackerStateOptions
+  } = createTaskTrackerStateOptions(['partitionName']);
+
+  $stateProvider.state(TASK_TRACKER_STATE_NAME, {
+    ...taskTrackerStateOptions,
+    views: {
+      edit: { component },
     },
   });
 };

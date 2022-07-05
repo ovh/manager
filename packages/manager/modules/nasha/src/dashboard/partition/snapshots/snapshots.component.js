@@ -4,12 +4,14 @@ import template from './snapshots.template.html';
 export default {
   bindings: {
     alertError: '<',
+    customSnapshots: '<',
     goToDelete: '<',
     nasha: '<',
     partition: '<',
     partitionApiUrl: '<',
     reload: '<',
-    snapshots: '<',
+    snapshotEnum: '<',
+    snapshotTypes: '<',
     trackTasks: '<',
   },
   controller,
