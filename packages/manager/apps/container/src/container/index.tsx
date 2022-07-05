@@ -12,13 +12,7 @@ import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
 import LiveChat from '@/components/LiveChat';
 
 export default function Container(): JSX.Element {
-  const {
-    isLoading,
-    betaVersion,
-    useBeta,
-    chatbotOpen,
-    setChatbotOpen,
-  } = useContainer();
+  const { isLoading, betaVersion, useBeta, chatbotOpen } = useContainer();
   const shell = useShell();
   const environment: Environment = shell
     .getPlugin('environment')
