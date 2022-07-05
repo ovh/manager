@@ -58,7 +58,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('otrs_title'),
       archived: /* @ngInject */ ($transition$) =>
-        $transition$.params().archived,
+        !!$transition$.params().archived,
       filters: /* @ngInject */ ($transition$) => $transition$.params().filters,
       onGridParamsChange: /* @ngInject */ ($state) => (params) =>
         $state.go('.', { ...$state.params, ...params }, { notify: false }),

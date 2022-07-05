@@ -1,6 +1,6 @@
 import { TICKET_STATE, TICKET_LAST_MESSAGE_FROM } from './otrs.constants';
 
-export default class otrsCtrl {
+export default class OtrsCtrl {
   /* @ngInject */
   constructor($translate, OtrsPopupService) {
     this.$translate = $translate;
@@ -14,17 +14,23 @@ export default class otrsCtrl {
 
   setGridColumnLastMessageFromTypeOptions() {
     this.gridColumnLastMessageFromTypeOptions = {
-      values: TICKET_LAST_MESSAGE_FROM.map((option) =>
-        this.$translate.instant(`otrs_table_ticket_lastMessageFrom_${option}`),
-      ),
+      values: TICKET_LAST_MESSAGE_FROM.reduce((accumulator, option) => {
+        accumulator[option] = this.$translate.instant(
+          `otrs_table_ticket_lastMessageFrom_${option}`,
+        );
+        return accumulator;
+      }, {}),
     };
   }
 
   setGridColumnStateTypeOptions() {
     this.gridColumnStateTypeOptions = {
-      values: TICKET_STATE.map((option) =>
-        this.$translate.instant(`otrs_table_ticket_state_${option}`),
-      ),
+      values: TICKET_STATE.reduce((accumulator, option) => {
+        accumulator[option] = this.$translate.instant(
+          `otrs_table_ticket_state_${option}`,
+        );
+        return accumulator;
+      }, {}),
     };
   }
 
