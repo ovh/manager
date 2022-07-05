@@ -1,5 +1,7 @@
 export const ENGINES_STATUS = {
   BETA: 'BETA',
+  STABLE: 'STABLE',
+  DEPRECATED: 'DEPRECATED',
 };
 
 export const ENGINES_PRICE_SUFFIX = {

@@ -1,4 +1,5 @@
 import some from 'lodash/some';
+import { ENGINES_STATUS } from './engines.constants';
 
 export default class Flavor {
   constructor({ name, core, memory }, availability) {
@@ -67,6 +68,10 @@ export default class Flavor {
 
   get id() {
     return `${this.availability[0].engine}-${this.availability[0].plan.name}-${this.name}`;
+  }
+
+  get isDeprecated() {
+    return this.availability[0].status === ENGINES_STATUS.DEPRECATED;
   }
 
   compare(flavor) {
