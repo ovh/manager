@@ -418,7 +418,7 @@ const Sidebar = (): JSX.Element => {
           {t('sidebar_back')}
         </a>
       )}
-      <div className={style.sidebar_menu}>
+      <div className={style.sidebar_menu} id="sidebar-menu-container">
         {(servicesCount || betaVersion === 1) && (
           <ul id="menu">
             <li>

@@ -128,8 +128,22 @@ export const OnboardingWalkMe = () => {
               const homeNode = findNodeById(navigationTree, 'home');
               setCurrentNavigationNode(homeNode);
 
+              // add a scroll to parent element in case assistance menu is openend with a small screen
+              const menuContainer = document.getElementById(
+                'sidebar-menu-container',
+              );
+              const billingLink = document.querySelector(
+                '#sidebar-link-billing',
+              );
+              menuContainer.scrollTo({
+                top:
+                  billingLink.getBoundingClientRect().top -
+                  menuContainer.scrollHeight,
+                behavior: 'smooth',
+              });
+
               // Waiting for DOM update
-              await delay(100);
+              await delay(150);
             },
           },
         ]
