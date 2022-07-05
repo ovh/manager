@@ -10,7 +10,7 @@ import useOnboarding, {
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 
 type Props = {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 };
 
 export const ProductNavReshuffleProvider = ({
