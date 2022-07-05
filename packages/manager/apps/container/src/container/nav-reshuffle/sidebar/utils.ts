@@ -1,8 +1,5 @@
 import { Node } from './navigation-tree/node';
 
-export type ComponentProps<T> = React.PropsWithChildren<T> &
-  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
-
 /**
  * Initialize an array of feature names required to call feature availability
  */
