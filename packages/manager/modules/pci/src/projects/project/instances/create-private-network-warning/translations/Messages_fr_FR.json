@@ -1,0 +1,5 @@
+{
+  "pci_instances_create_private_network_warning_info": "Pour attacher une IP flottante à cette instance, vous devez d'abord avoir configuré un réseau privé sur cette dernière dans la région sélectionnée.",
+  "pci_instances_create_private_network_warning_submit_label": "Créer un réseau privé",
+  "pci_instances_create_private_network_warning_cancel_label": "Annuler"
+}
