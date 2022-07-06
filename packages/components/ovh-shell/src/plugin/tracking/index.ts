@@ -1,13 +1,6 @@
 import { ATInternetTagOptions } from '@ovh-ux/ovh-at-internet/types';
-import {
-  ClickData,
-  EventData,
-  ImpressionData,
-  ImpressionDataClick,
-  MVTestingData,
-  OrderData,
-  PageData,
-} from '@ovh-ux/ovh-at-internet/types/config';
+import { LegacyTrackingData } from '@ovh-ux/ovh-at-internet/types/track';
+import { TrackingDefaults } from '@ovh-ux/ovh-at-internet/types/config';
 import ShellClient from '../../client/shell-client';
 import { RegionsTrackingConfig } from './tracking';
 
@@ -17,23 +10,22 @@ export interface TrackingAPI {
   processTrackQueue(): PromiseLike<void>;
   initTag(): PromiseLike<void>;
   getTag(): PromiseLike<ATInternetTagOptions>;
-  trackClick(data: ClickData): PromiseLike<void>;
-  trackPage(data: PageData): PromiseLike<void>;
-  trackOrder(data: OrderData): PromiseLike<void>;
-  trackEvent(data: EventData): PromiseLike<void>;
-  trackImpression(data: ImpressionData): PromiseLike<void>;
-  trackClickImpression(data: ImpressionDataClick): PromiseLike<void>;
-  trackMVTest(data: MVTestingData): PromiseLike<void>;
+  trackClick(data: LegacyTrackingData): PromiseLike<void>;
+  trackPage(data: LegacyTrackingData): PromiseLike<void>;
+  trackEvent(data: LegacyTrackingData): PromiseLike<void>;
+  trackImpression(data: LegacyTrackingData): PromiseLike<void>;
+  trackClickImpression(data: LegacyTrackingData): PromiseLike<void>;
+  trackMVTest(data: LegacyTrackingData): PromiseLike<void>;
   isEnabled(): PromiseLike<boolean>;
   setEnabled(state: boolean): PromiseLike<void>;
   setDebug(state: boolean): PromiseLike<void>;
   isDebugActive(): PromiseLike<boolean>;
   getRegion(): PromiseLike<string>;
   setRegion(region: string): PromiseLike<void>;
-  setDefaultsPromise(promise: Promise<PageData>): PromiseLike<void>;
-  getDefaultsPromise(): PromiseLike<Promise<PageData>>;
-  getDefaults(): PromiseLike<PageData>;
-  setDefaults(def: PageData): PromiseLike<PageData>;
+  setDefaultsPromise(promise: Promise<TrackingDefaults>): PromiseLike<void>;
+  getDefaultsPromise(): PromiseLike<Promise<TrackingDefaults>>;
+  getDefaults(): PromiseLike<TrackingDefaults>;
+  setDefaults(def: TrackingDefaults): PromiseLike<TrackingDefaults>;
   isDefaultSet(): PromiseLike<boolean>;
   setReplacementRules(rules: unknown[]): PromiseLike<void>;
   setPrefix(prefix: string): PromiseLike<void>;
@@ -68,49 +60,43 @@ export function exposeTrackingAPI(shellClient: ShellClient): TrackingAPI {
         plugin: 'tracking',
         method: 'getTag',
       }),
-    trackClick: (data: ClickData) =>
+    trackClick: (data: LegacyTrackingData) =>
       shellClient.invokePluginMethod<void>({
         plugin: 'tracking',
         method: 'trackClick',
         args: [data],
       }),
-    trackPage: (data: PageData) =>
+    trackPage: (data: LegacyTrackingData) =>
       shellClient.invokePluginMethod<void>({
         plugin: 'tracking',
         method: 'trackPage',
         args: [data],
       }),
-    trackOrder: (data: OrderData) =>
-      shellClient.invokePluginMethod<void>({
-        plugin: 'tracking',
-        method: 'trackOrder',
-        args: [data],
-      }),
-    trackEvent: (data: EventData) =>
+    trackEvent: (data: LegacyTrackingData) =>
       shellClient.invokePluginMethod<void>({
         plugin: 'tracking',
         method: 'trackEvent',
         args: [data],
       }),
-    trackImpression: (data: ImpressionData) =>
+    trackImpression: (data: LegacyTrackingData) =>
       shellClient.invokePluginMethod<void>({
         plugin: 'tracking',
         method: 'trackImpression',
         args: [data],
       }),
-    trackClickImpression: (data: ImpressionDataClick) =>
+    trackClickImpression: (data: LegacyTrackingData) =>
       shellClient.invokePluginMethod<void>({
         plugin: 'tracking',
         method: 'trackClickImpression',
         args: [data],
       }),
     getDefaults: () =>
-      shellClient.invokePluginMethod<PageData>({
+      shellClient.invokePluginMethod<TrackingDefaults>({
         plugin: 'tracking',
         method: 'getDefaults',
       }),
-    setDefaults: (def: PageData) =>
-      shellClient.invokePluginMethod<PageData>({
+    setDefaults: (def: TrackingDefaults) =>
+      shellClient.invokePluginMethod<TrackingDefaults>({
         plugin: 'tracking',
         method: 'setDefaults',
         args: [def],
@@ -121,11 +107,11 @@ export function exposeTrackingAPI(shellClient: ShellClient): TrackingAPI {
         method: 'isDefaultSet',
       }),
     getDefaultsPromise: () =>
-      shellClient.invokePluginMethod<Promise<PageData>>({
+      shellClient.invokePluginMethod<Promise<TrackingDefaults>>({
         plugin: 'tracking',
         method: 'getDefaultsPromise',
       }),
-    setDefaultsPromise: (promise: Promise<PageData>) =>
+    setDefaultsPromise: (promise: Promise<TrackingDefaults>) =>
       shellClient.invokePluginMethod<void>({
         plugin: 'tracking',
         method: 'setDefaultsPromise',
@@ -187,7 +173,7 @@ export function exposeTrackingAPI(shellClient: ShellClient): TrackingAPI {
         method: 'setConfig',
         args: [config],
       }),
-    trackMVTest: (data: MVTestingData) =>
+    trackMVTest: (data: LegacyTrackingData) =>
       shellClient.invokePluginMethod<void>({
         plugin: 'tracking',
         method: 'trackMVTest',

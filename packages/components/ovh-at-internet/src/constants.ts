@@ -1,151 +1,54 @@
-export interface IAtInternetCustomVar {
-  path: Record<string, string>;
-  format: string;
-}
-
-export type AtInternetCustomVars = {
-  [key in string]: IAtInternetCustomVar;
+export const AT_INTERNET_LEVEL2: Record<string, string> = {
+  0: '',
+  56: 'Manager-Cloud',
+  57: 'Manager-Dedicated',
+  67: 'Focus',
+  81: 'Manager',
+  84: 'Manager-Web',
+  85: 'Manager-Server',
+  86: 'Manager-PublicCloud',
+  87: 'Manager-Telecom',
+  88: 'Manager-Hub',
+  95: 'account-creation',
+  98: 'Manager-HostedPrivateCloud',
 };
 
-/**
- * This is custom OVHcloud At-Internet configuration of order's customVars attribute.
- */
-export const AT_INTERNET_CUSTOM_VARS: AtInternetCustomVars = {
-  /**
-   * Country code of the customer making the order
-   */
-  countryCode: {
-    path: {
-      default: 'site.1',
-      US: 'site.12',
-    },
-    format: '[%s]',
-  },
+export const AT_INTERNET_WEBSITE: Record<string, string> = {
+  ASIA: 'Asia',
+  AU: 'Australia',
+  CA: 'Canada',
+  DE: 'Germany',
+  ES: 'Spain',
+  FR: 'France',
+  GB: 'United Kingdom',
+  IE: 'Ireland',
+  IT: 'Italy',
+  MA: 'Morocco',
+  NL: 'Netherlands',
+  PL: 'Poland',
+  PT: 'Portugal',
+  QC: 'Quebec',
+  SG: 'Singapore',
+  SN: 'Senegal',
+  TN: 'Tunisia',
+  US: 'United States',
+  WE: 'WorldEnglish',
+  WS: 'WorldSpanish',
+};
 
-  /**
-   * Currency code of the customer
-   */
-  currencyCode: {
-    path: {
-      default: 'site.16',
-      US: 'site.15',
-    },
-    format: '[%s]',
-  },
-
-  /**
-   * Url for the tracking hit
-   */
-  pageUrl: {
-    path: {
-      default: 'site.11',
-      US: 'site.10',
-    },
-    format: '[%s]',
-  },
-
-  /**
-   * Referrer site
-   */
-
-  referrerSite: {
-    path: {
-      default: 'site.8', // OVH's AtInternet configuration
-      US: 'site.11',
-    },
-    format: '[%s]',
-  },
-
-  /**
-   * Event
-   */
-  event: {
-    path: {
-      default: 'site.20',
-      US: 'site.6',
-    },
-    format: '[%s]',
-  },
-
-  siteName: {
-    path: {
-      default: 'site.13',
-      US: 'site.14',
-    },
-    format: '[%s]',
-  },
-
-  /**
-   * Project Id
-   */
-  projectId: {
-    path: {
-      default: 'page.1', // OVH's AtInternet configuration
-    },
-    format: '[%s]',
-  },
-
-  /**
-   * Voucher code used
-   */
-  voucherCode: {
-    path: {
-      default: 'page.2', // OVH's AtInternet configuration
-    },
-    format: '[%s]',
-  },
-
-  /**
-   * PCI creation step
-   */
-  pciCreationStep: {
-    path: {
-      default: 'page.1', // OVH's AtInternet configuration
-    },
-    format: '[%s]',
-  },
-
-  /**
-   * PCI creation error message
-   */
-  pciCreationErrorMessage: {
-    path: {
-      default: 'page.2', // OVH's AtInternet configuration
-    },
-    format: '[%s]',
-  },
-
-  /**
-   * PCI creation num of customer project (page.1)
-   */
-  pciCreationNumProjects: {
-    path: {
-      default: 'page.1', // OVH's AtInternet configuration
-    },
-    format: '[%s]',
-  },
-
-  /**
-   * PCI creation num of customer project (page.3)
-   */
-  pciCreationNumProjects3: {
-    path: {
-      default: 'page.3', // OVH's AtInternet configuration
-    },
-    format: '[%s]',
-  },
-
-  /**
-   * Order status used
-   */
-  orderStatus: {
-    path: {
-      default: 'page.1',
-    },
-    format: '[%s]',
-  },
+export const AT_INTERNET_CUSTOM_PROPS: Record<string, string> = {
+  referrerSite: 'referrer',
+  projectId: 'pci_project_id',
+  voucherCode: 'pci_voucher_code',
+  pciCreationStep: 'pci_error_step',
+  pciCreationErrorMessage: 'pci_error_message',
+  pciCreationNumProjects: 'pci_number_of_project',
+  pciCreationNumProjects3: 'pci_number_of_project',
+  orderStatus: 'order_status',
 };
 
 export default {
-  AT_INTERNET_CUSTOM_VARS,
+  AT_INTERNET_CUSTOM_PROPS,
+  AT_INTERNET_LEVEL2,
+  AT_INTERNET_WEBSITE,
 };
