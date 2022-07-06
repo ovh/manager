@@ -1,3 +1,5 @@
+import { TaskTracker } from '@ovh-ux/manager-components';
+
 import { NASHA_USE_SIZE_NAME } from './nasha.constants';
 
 export const localizeDatacenter = (datacenter, $translate) =>
@@ -79,10 +81,85 @@ export const preparePlans = (catalog, $filter) =>
       ),
     }));
 
+export const prepareSnapshots = (
+  snapshots,
+  customSnapshots,
+  SnapshotEnum,
+  $translate,
+) => ({
+  types: SnapshotEnum.map((type) => ({
+    type,
+    label: $translate.instant(`nasha_snapshot_type_${type}`),
+    enabled: snapshots.includes(type),
+  })),
+  customs: customSnapshots,
+});
+
+export const prepareTasks = (tasks, $translate) =>
+  tasks.map((task) => ({
+    ...task,
+    localeOperation: localizeOperation(task.operation, $translate),
+  }));
+
+export const injectTaskTrackerState = ($stateProvider, stateName) => {
+  const taskStateName = `${stateName}.task`;
+  const componentName = `${stateName.replace(/\.\w/g, (x) =>
+    x.slice(1).toUpperCase(),
+  )}TaskTracker`;
+
+  return $stateProvider.state(
+    taskStateName,
+    TaskTracker.createStateOptions(componentName, {
+      params: ['partitionName', 'customSnapshotName'],
+      header: `
+        <div class="mb-4">
+          <oui-message data-type="warning" class="d-block mb-4">
+              <span data-translate="nasha_task_tracker_warning"></span>
+          </oui-message>
+          <strong
+              class="d-block"
+              data-ng-if="$ctrl.partitionName"
+              data-translate="nasha_task_tracker_header_partitionName"
+              data-translate-values="$ctrl"
+          ></strong>
+          <strong
+              class="d-block"
+              data-ng-if="$ctrl.customSnapshotName"
+              data-translate="nasha_task_tracker_header_customSnapshotName"
+              data-translate-values="$ctrl"
+          ></strong>
+        </div>
+      `,
+      resolve: {
+        endpoint: /* @ngInject */ (serviceName) =>
+          `/dedicated/nasha/${serviceName}/task`,
+        heading: /* @ngInject */ ($translate, tasks) =>
+          $translate.instant(`nasha_operation_${tasks[0].operation}`),
+        onDone: /* @ngInject */ ($translate, goBack, $transition$) => (
+          $tasks,
+        ) =>
+          goBack({
+            stateName,
+            reload: true,
+            ...($tasks.every((task) => task.status === 'done') && {
+              success: $translate.instant(
+                `nasha_operation_${$tasks[0].operation}_success`,
+                $transition$.params(),
+              ),
+            }),
+          }),
+      },
+    }),
+  );
+};
+
 export default {
+  injectTaskTrackerState,
   localizeDatacenter,
   localizeOperation,
   prepareNasha,
   preparePartition,
   preparePlans,
+  prepareSnapshots,
+  prepareTasks,
 };

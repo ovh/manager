@@ -5,9 +5,8 @@
                 <oui-modal
                     data-heading="{{:: $ctrl.heading }}"
                     data-primary-label="{{:: ('task_tracker_close' | translate) }}"
-                    data-primary-disabled="!$ctrl.isDone"
-                    data-primary-action="$ctrl.onDone()"
-                    data-loading="$ctrl.isLoading"
+                    data-primary-disabled="!$ctrl.isDone && !$ctrl.hasError"
+                    data-primary-action="$ctrl.onDone({ $tasks: $ctrl.tasks })"
                 >
                     <div data-ng-transclude="header"></div>
                     <div
@@ -16,32 +15,32 @@
                         <ol class="oui-progress-tracker__steps">
                             <li
                                 class="oui-progress-tracker__step"
-                                data-ng-repeat="status in $ctrl.statuses track by status"
+                                data-ng-repeat="step in $ctrl.steps track by step.name"
                                 data-ng-class="{
-                                    'oui-progress-tracker__step_complete': $ctrl.isComplete($index),
-                                    'oui-progress-tracker__step_active': $ctrl.isActive($index),
-                                    'oui-progress-tracker__step_error': $ctrl.isError($index),
-                                    'oui-progress-tracker__step_disabled': $ctrl.isDisabled($index),
+                                    'oui-progress-tracker__step_active': step.active,
+                                    'oui-progress-tracker__step_complete': step.complete,
+                                    'oui-progress-tracker__step_disabled': step.disabled,
+                                    'oui-progress-tracker__step_error': step.error,
                                 }"
                             >
                                 <span class="oui-progress-tracker__status">
                                     <span
                                         class="oui-progress-tracker__label"
-                                        data-ng-class="$ctrl.isError($index) && 'oui-color-ae-500'"
+                                        data-ng-class="step.error && 'oui-color-ae-500'"
                                     >
                                         <span
-                                            data-ng-bind="$ctrl[status + 'Label'] || (('task_tracker_status_' + status) | translate)"
+                                            data-ng-bind="$ctrl[step.name + 'Label'] || (('task_tracker_step_' + step.name) | translate)"
                                         ></span>
                                         <span
-                                            data-ng-if="$ctrl.isError($index)"
+                                            data-ng-if="step.error"
                                             class="d-block"
-                                            data-translate="task_tracker_status_error"
-                                            data-translate-values="$ctrl.error"
+                                            data-translate="task_tracker_step_error"
+                                            data-translate-values="{ message: $ctrl.errorMessage }"
                                         ></span>
                                     </span>
                                     <oui-spinner
                                         data-size="s"
-                                        data-ng-if="$ctrl.isActive($index) && !$ctrl.isDone"
+                                        data-ng-if="step.active && !$ctrl.isDone && !$ctrl.hasError"
                                     ></oui-spinner>
                                 </span>
                             </li>

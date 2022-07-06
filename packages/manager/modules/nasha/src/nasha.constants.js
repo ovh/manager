@@ -4,9 +4,10 @@ export const NASHA_ALERT_ID = 'nasha_alert';
 
 export const NASHA_TASK = {
   operation: {
-    Add: 'clusterLeclercPartitionAdd',
+    Create: 'clusterLeclercPartitionAdd',
+    CustomSnapshotCreate: 'clusterLeclercCustomSnapCreate',
+    CustomSnapshotDelete: 'clusterLeclercCustomSnapDelete',
     Delete: 'clusterLeclercPartitionDelete',
-    SnapshotCreate: 'clusterLeclercCustomSnapCreate',
     SnapshotUpdate: 'clusterLeclercSnapshotUpdate',
     Update: 'clusterLeclercPartitionUpdate',
     ZfsOptions: 'clusterLeclercZfsOptions',

@@ -5,6 +5,8 @@ import {
   prepareNasha,
   preparePartition,
   preparePlans,
+  prepareSnapshots,
+  prepareTasks,
 } from './nasha.utils';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
@@ -47,6 +49,19 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         preparePartition(partition, $translate),
       preparePlans: /* @ngInject */ ($filter) => (catalog) =>
         preparePlans(catalog, $filter),
+      prepareSnapshots: /* @ngInject */ ($translate) => (
+        snapshots,
+        customSnapshots,
+        SnapshotEnum,
+      ) =>
+        prepareSnapshots(snapshots, customSnapshots, SnapshotEnum, $translate),
+      prepareTasks: /* @ngInject */ ($translate) => (tasks) =>
+        prepareTasks(tasks, $translate),
+      trackTask: /* @ngInject */ ($state) => ({ taskIds, params }) =>
+        $state.go(`${$state.current.name}.task`, {
+          taskIds: taskIds.join(','),
+          ...params,
+        }),
       trackingPrefix: () => NASHA_TITLE,
     },
   });

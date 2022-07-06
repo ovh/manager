@@ -4,110 +4,130 @@ let uid = 0;
 
 export default class TaskTrackerController {
   /** @ngInject */
-  constructor($q, $http, Poller) {
-    this.$q = $q;
-    this.$http = $http;
+  constructor($translate, Poller) {
+    this.$translate = $translate;
 
     uid += 1;
     this.Poller = Poller;
+    this.pollError = null;
     this.namespace = `task-tracker-${uid}`;
-    this.error = null;
-    this.index = -1;
-    this.statuses = [TASK_STATUS.Todo, TASK_STATUS.Doing, TASK_STATUS.Done];
-    this.isLoading = false;
+    this.steps = [];
   }
 
-  get status() {
-    return this.statuses[this.index];
+  get statuses() {
+    return this.tasks.map(({ status }) => status);
+  }
+
+  get isTodo() {
+    return this.tasks.every(({ status }) => status === TASK_STATUS.Todo);
+  }
+
+  get isDoing() {
+    return !this.isTodo && !this.isDone;
   }
 
   get isDone() {
-    return Boolean(this.error) || this.status === TASK_STATUS.Done;
+    return this.tasks.every(({ status }) => status === TASK_STATUS.Done);
   }
 
-  isComplete(index) {
-    return this.index > index;
+  get hasError() {
+    return Boolean(this.errorMessage);
   }
 
-  isActive(index) {
-    return this.index === index;
-  }
-
-  isError(index) {
-    return Boolean(this.error) && this.isActive(index);
-  }
-
-  isDisabled(index) {
-    return Boolean(this.error) && this.index < index;
-  }
-
-  $onInit() {
-    let promise = this.$q.when();
-
-    if (this.taskId) {
-      this.isLoading = true;
-      promise = this.$http
-        .get(`${this.endpoint}/${this.taskId}`)
-        .then(({ data: task }) => {
-          this.task = task;
-        })
-        .catch((error) => {
-          this.error = { message: error.data?.message || error.message };
-        })
-        .finally(() => {
-          this.isLoading = false;
-        });
+  get errorMessage() {
+    if (this.pollError) {
+      return (
+        this.pollError.data?.message ||
+        this.pollError.message ||
+        this.$translate.instant('task_tracker_empty_error')
+      );
     }
 
-    promise.finally(() => {
-      if (!this.interval) {
-        this.interval = POLL_INTERVAL;
-      }
-      this.interval *= 1000;
-      this.nextStep();
-    });
-  }
-
-  $onDestroy() {
-    this.Poller.kill({ namespace: this.namespace });
-  }
-
-  nextStep() {
-    if (
+    const erroredTask = this.tasks.find(({ status }) =>
       [
         TASK_STATUS.Cancelled,
         TASK_STATUS.CustomerError,
         TASK_STATUS.OvhError,
-      ].includes(this.task.status)
-    ) {
-      this.error = { message: this.task.details };
-      return;
+      ].includes(status),
+    );
+
+    if (erroredTask) {
+      return (
+        erroredTask.details ||
+        this.$translate.instant('task_tracker_empty_error')
+      );
     }
 
-    this.index = this.statuses.indexOf(this.task.status);
-
-    if ([TASK_STATUS.Todo, TASK_STATUS.Doing].includes(this.status)) {
-      this.pollStep();
-    }
+    return '';
   }
 
-  pollStep() {
-    const { endpoint, interval, namespace, Poller, status, task } = this;
-    const { taskId } = task;
-    Poller.poll(`${endpoint}/${taskId}`, null, {
-      successRule: (polledTask) => {
-        this.task = polledTask;
-        return this.task.status !== status;
-      },
-      namespace,
-      interval,
-    })
-      .then(() => {
-        this.Poller.kill({ namespace: this.namespace });
-        this.nextStep();
+  $onInit() {
+    const successRule = (task) => this.onTaskPolled(task);
+    const interval = (this.interval || POLL_INTERVAL) * 1000;
+
+    this.tasks.forEach(({ taskId }, i) => {
+      const namespace = `${this.namespace}-${i}`;
+
+      this.Poller.poll(`${this.endpoint}/${taskId}`, null, {
+        successRule,
+        namespace,
+        interval,
       })
-      .catch((error) => {
-        this.error = { message: error.data?.message || error.message };
-      });
+        .catch((error) => {
+          this.pollError = error;
+        })
+        .finally(() => {
+          this.Poller.kill({ namespace });
+        });
+    });
+
+    this.buildSteps();
+  }
+
+  $onDestroy() {
+    this.tasks.forEach((task, i) =>
+      this.Poller.kill({ namespace: `${this.namespace}-${i}` }),
+    );
+  }
+
+  onTaskPolled(task) {
+    Object.assign(
+      this.tasks.find(({ taskId }) => taskId === task.taskId),
+      task,
+    );
+
+    this.buildSteps();
+
+    return this.isDone || this.hasError;
+  }
+
+  buildSteps() {
+    const { errorMessage, isTodo, isDoing, isDone } = this;
+
+    const todoStep = {
+      name: TASK_STATUS.Todo,
+      active: isTodo,
+      complete: !isTodo,
+      disabled: false,
+      error: isTodo && errorMessage,
+    };
+
+    const doingStep = {
+      name: TASK_STATUS.Doing,
+      active: isDoing,
+      complete: isDone,
+      disabled: todoStep.error,
+      error: isDoing && errorMessage,
+    };
+
+    const doneStep = {
+      name: TASK_STATUS.Done,
+      active: isDone,
+      complete: isDone,
+      disabled: doingStep.disabled,
+      error: false,
+    };
+
+    this.steps = [todoStep, doingStep, doneStep];
   }
 }
