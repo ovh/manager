@@ -6,10 +6,9 @@ export default /* @ngInject */ function UserAccountEmailsController(
   AccountUserEmailsService,
   Alerter,
   coreURLBuilder,
+  shellClient,
 ) {
   const self = this;
-
-  $scope.SUPPORT_URL = coreURLBuilder.buildURL('dedicated', '#/support');
 
   $scope.itemsPerPage = 10;
   $scope.currentPage =
@@ -28,6 +27,12 @@ export default /* @ngInject */ function UserAccountEmailsController(
     };
 
     $scope.getEmailIds();
+
+    shellClient.navigation
+      .getURL('dedicated', '#/support')
+      .then((supportUrl) => {
+        $scope.SUPPORT_URL = supportUrl;
+      });
   };
 
   $scope.getEmailIds = (refresh) => {
