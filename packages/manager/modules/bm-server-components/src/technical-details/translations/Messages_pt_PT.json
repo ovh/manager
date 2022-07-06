@@ -17,9 +17,12 @@
   "dedicated_server_dashboard_technical_details_ram_frequency_unit": "MHz",
   "dedicated_server_dashboard_technical_details_ram_upgrade": "Aumentar a RAM",
   "dedicated_server_dashboard_technical_details_system_disk_upgrade": "Aumentar o armazenamento do sistema",
-  "dedicated_server_dashboard_technical_details_data_disk_upgrade": "Aumentar o armazenamento de dados",
+  "dedicated_server_dashboard_technical_details_data_disk_upgrade": "Aumentar o armazenamento",
   "dedicated_server_dashboard_technical_details_cache_disk_upgrade": "Aumentar o armazenamento da cache",
   "dedicated_server_dashboard_technical_details_disk_none": "Nenhum",
   "dedicated_server_dashboard_technical_details_ram_size_unit_tb": "TB",
-  "dedicated_server_dashboard_technical_details_ram_size_unit_gb": "GB"
+  "dedicated_server_dashboard_technical_details_ram_size_unit_gb": "GB",
+  "dedicated_server_dashboard_technical_details_plan_upgrade": "Planear a sua intervenção",
+  "dedicated_server_dashboard_technical_details_upgrade_in_progress": "Upgrade em curso - {{schedule}}",
+  "dedicated_server_dashboard_technical_details_upgrade_in_todo": "Pedido de upgrade em curso"
 }
