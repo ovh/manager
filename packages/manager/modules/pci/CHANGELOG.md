@@ -1,3 +1,17 @@
+# [5.83.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.82.1...@ovh-ux/manager-pci@5.83.0) (2022-07-06)
+
+
+### Bug Fixes
+
+* **training:** remove HTML tag from the breadcrumb ([#7469](https://github.com/ovh/manager/issues/7469)) ([4475faf](https://github.com/ovh/manager/commit/4475faff8ac511620dffd47d039231fddf4c5f18))
+
+
+### Features
+
+* **storage.databases:** add translation for new metric ([#7373](https://github.com/ovh/manager/issues/7373)) ([853574f](https://github.com/ovh/manager/commit/853574fece430cebc862591f35b92cc2a123b4c0))
+
+
+
 ## [5.82.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.82.0...@ovh-ux/manager-pci@5.82.1) (2022-07-01)
 
 
