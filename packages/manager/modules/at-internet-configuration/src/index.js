@@ -126,6 +126,8 @@ angular
           ...data,
           countryCode: me.country,
           currencyCode: me.currency && me.currency.code,
+          legalform: me.legalform,
+          subsidiary: me.ovhSubsidiary,
           visitorId: me.customerCode,
         };
 
