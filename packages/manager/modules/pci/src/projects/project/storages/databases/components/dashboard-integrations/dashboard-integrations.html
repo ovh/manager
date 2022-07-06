@@ -5,7 +5,7 @@
     <oui-tile-definition>
         <oui-tile-description>
             <div
-                ng-repeat="integration in $ctrl.integrationTypes track by integration.type"
+                data-ng-repeat="integration in $ctrl.integrationTypes track by integration.type"
             >
                 <span
                     data-translate="pci_databases_dashboard_integrations_integration_type"
@@ -18,7 +18,7 @@
                 ></span>
             </div>
             <span
-                ng-if="$ctrl.integrationTypes.length === 0"
+                data-ng-if="$ctrl.integrationTypes.length === 0"
                 data-translate="pci_databases_dashboard_integrations_none"
                 class="oui-badge oui-badge_warning"
             ></span>
