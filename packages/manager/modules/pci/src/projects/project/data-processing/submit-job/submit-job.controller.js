@@ -157,65 +157,114 @@ export default class {
     if (this.state.jobConfig.arguments.length > 0) {
       args = this.state.jobConfig.arguments.map((o) => o.title).join(',');
     }
-    const payload = {
-      containerName: this.state.jobConfig.swiftContainer,
-      engine: this.state.jobEngine.engine,
-      engineVersion: this.state.jobEngine.version,
-      name: this.state.jobConfig.jobName,
-      region: this.state.region.name,
-      engineParameters: [
-        {
-          name: 'main_application_code',
-          value: this.state.jobConfig.mainApplicationCode,
-        },
-        {
-          name: 'arguments',
-          // handle iceberg limitation concerning arrays. We use comma-delimited string
-          value: args,
-        },
-        {
-          name: 'driver_memory',
-          value: (this.state.jobSizing.driverMemoryGb * 1024).toString(),
-        },
-        {
-          name: 'executor_memory',
-          value: (this.state.jobSizing.workerMemoryGb * 1024).toString(),
-        },
-        {
-          name: 'driver_memory_overhead',
-          value: this.state.jobSizing.driverMemoryOverheadMb.toString(),
-        },
-        {
-          name: 'executor_memory_overhead',
-          value: this.state.jobSizing.workerMemoryOverheadMb.toString(),
-        },
-        {
-          name: 'driver_cores',
-          value: this.state.jobSizing.driverCores.toString(),
-        },
-        {
-          name: 'executor_num',
-          value: this.state.jobSizing.workerCount.toString(),
-        },
-        {
-          name: 'executor_cores',
-          value: this.state.jobSizing.workerCores.toString(),
-        },
-        {
-          name: 'job_type',
-          value: this.state.jobConfig.jobType,
-        },
-      ],
-    };
-    if (this.state.jobConfig.jobType === 'java') {
-      payload.engineParameters.push({
-        name: 'main_class_name',
-        value: this.state.jobConfig.mainClass,
-      });
+    if (this.state.jobSizing?.driverMemoryGb) {
+      const payload = {
+        containerName: this.state.jobConfig.swiftContainer,
+        engine: this.state.jobEngine.engine,
+        engineVersion: this.state.jobEngine.version,
+        name: this.state.jobConfig.jobName,
+        region: this.state.region.name,
+        engineParameters: [
+          {
+            name: 'main_application_code',
+            value: this.state.jobConfig.mainApplicationCode,
+          },
+          {
+            name: 'arguments',
+            // handle iceberg limitation concerning arrays. We use comma-delimited string
+            value: args,
+          },
+          {
+            name: 'driver_memory',
+            value: (this.state.jobSizing.driverMemoryGb * 1024).toString(),
+          },
+          {
+            name: 'executor_memory',
+            value: (this.state.jobSizing.workerMemoryGb * 1024).toString(),
+          },
+          {
+            name: 'driver_memory_overhead',
+            value: this.state.jobSizing.driverMemoryOverheadMb.toString(),
+          },
+          {
+            name: 'executor_memory_overhead',
+            value: this.state.jobSizing.workerMemoryOverheadMb.toString(),
+          },
+          {
+            name: 'driver_cores',
+            value: this.state.jobSizing.driverCores.toString(),
+          },
+          {
+            name: 'executor_num',
+            value: this.state.jobSizing.workerCount.toString(),
+          },
+          {
+            name: 'executor_cores',
+            value: this.state.jobSizing.workerCores.toString(),
+          },
+          {
+            name: 'job_type',
+            value: this.state.jobConfig.jobType,
+          },
+        ],
+      };
+
+      if (this.state.jobConfig.jobType === 'java') {
+        payload.engineParameters.push({
+          name: 'main_class_name',
+          value: this.state.jobConfig.mainClass,
+        });
+      }
+      this.orderData = payload;
     }
 
-    this.orderData = payload;
     this.orderAPIUrl = `POST /cloud/project/${this.projectId}/dataProcessing/jobs`;
+
+    // Compute prices and taxes
+    const {
+      workerMemoryGb,
+      driverMemoryGb,
+      workerCount,
+      workerMemoryOverheadMb,
+      driverMemoryOverheadMb,
+      driverCores,
+      workerCores,
+    } = this.state.jobSizing;
+    const driverMemoryOverheadGb = driverMemoryOverheadMb / GIB_IN_MIB;
+    const workerMemoryOverheadGb = workerMemoryOverheadMb / GIB_IN_MIB;
+    const totalMemory =
+      (workerMemoryGb + workerMemoryOverheadGb) * workerCount +
+      (driverMemoryGb + driverMemoryOverheadGb);
+
+    this.jobPrices = {
+      workerCount,
+      cores: {
+        worker: workerCores,
+        driver: driverCores,
+        price: this.prices.core.priceInUcents,
+        tax: this.prices.core.tax,
+        totalPrice:
+          (driverCores + workerCores * workerCount) *
+          this.prices.core.priceInUcents,
+        totalTax:
+          (driverCores + workerCores * workerCount) * this.prices.core.tax,
+      },
+      memory: {
+        driver: {
+          base: driverMemoryGb,
+          overhead: driverMemoryOverheadGb,
+        },
+        worker: {
+          base: workerMemoryGb,
+          overhead: workerMemoryOverheadMb / GIB_IN_MIB,
+        },
+        total: totalMemory,
+        price: this.prices.memory.priceInUcents,
+        tax: this.prices.memory.tax,
+        totalPrice: totalMemory * this.prices.memory.priceInUcents,
+        totalTax: totalMemory * this.prices.memory.tax,
+      },
+    };
   }
 
   onSubmitJobHandler() {
@@ -255,52 +304,6 @@ export default class {
         }
         this.submitRetries += 1;
       });
-  }
-
-  computePrice() {
-    const {
-      workerMemoryGb,
-      driverMemoryGb,
-      workerCount,
-      workerMemoryOverheadMb,
-      driverMemoryOverheadMb,
-      driverCores,
-      workerCores,
-    } = this.state.jobSizing;
-    const pricePerGiB = this.prices.memory.priceInUcents;
-    const pricePerCore = this.prices.core.priceInUcents;
-    return (
-      (workerMemoryGb + workerMemoryOverheadMb / GIB_IN_MIB) *
-        pricePerGiB *
-        workerCount +
-      (driverMemoryGb + driverMemoryOverheadMb / GIB_IN_MIB) * pricePerGiB +
-      (driverCores + workerCores * workerCount) * pricePerCore
-    );
-  }
-
-  /**
-   * Compute the estimated tax on the estimated price /min depending on job sizing.
-   * @return {number}
-   */
-  computeTax() {
-    const {
-      workerMemoryGb,
-      driverMemoryGb,
-      workerCount,
-      workerMemoryOverheadMb,
-      driverMemoryOverheadMb,
-      driverCores,
-      workerCores,
-    } = this.state.jobSizing;
-    const taxMemory = this.prices.memory.tax;
-    const taxCores = this.prices.core.tax;
-    return (
-      (workerMemoryGb + workerMemoryOverheadMb / GIB_IN_MIB) *
-        taxMemory *
-        workerCount +
-      (driverMemoryGb + driverMemoryOverheadMb / GIB_IN_MIB) * taxMemory +
-      (driverCores + workerCores * workerCount) * taxCores
-    );
   }
 
   getArgumentsList() {

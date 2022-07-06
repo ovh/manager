@@ -8,6 +8,7 @@
   "data_processing_submit_job_stepper_sizing_title": "Dimensionnement du job",
   "data_processing_submit_job_stepper_configure_title": "Configurer votre job",
   "data_processing_submit_job_stepper_submit_title": "Soumettre votre job",
+  "data_processing_submit_job_stepper_prices_and_api_title": "Informations de votre job",
   "data_processing_submit_job_command_description": "La commande suivante vous permet de créer votre job grâce à notre API.",
   "data_processing_submit_job_command_documentation_link": "Cliquez-ici pour accéder à la documentation.",
   "data_processing_submit_job_stepper_submit_error_title": "Une erreur est survenue",
