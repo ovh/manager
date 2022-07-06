@@ -14,5 +14,6 @@
   "pci_databases_metrics_title_diskio_read": "N° di IOPS (lettura)",
   "pci_databases_metrics_title_diskio_writes": "N° di IOPS (scrittura)",
   "pci_databases_metrics_title_net_receive": "Ricezione di rete (byte/s)",
-  "pci_databases_metrics_title_net_send": "Trasmissione di rete (byte/s)"
+  "pci_databases_metrics_title_net_send": "Trasmissione di rete (byte/s)",
+  "pci_databases_metrics_title_mem_usage_percent": "Memoria utilizzata (%)"
 }
