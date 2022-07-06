@@ -1,24 +1,40 @@
-import { has, isNumber } from 'lodash-es';
+import { capitalize, isString, mapValues } from 'lodash-es';
+import { OvhAtInternetConfig } from './config';
 import {
-  OvhAtInternetConfig,
-  PageData,
-  OrderData,
-  ClickData,
-  ImpressionData,
-  ImpressionDataClick,
-  EventData,
-  MVTestingData,
-} from './config';
-import { IOvhAtInternetTrack } from './track';
-import { getUniqueId } from './utils';
-import { AT_INTERNET_CUSTOM_VARS, IAtInternetCustomVar } from './constants';
+  IOvhAtInternetTrack,
+  LegacyTrackingData,
+  GenericTrackingData,
+  ImpressionTrackingData,
+  PageTrackingData,
+} from './track';
+import {
+  AT_INTERNET_CUSTOM_PROPS,
+  AT_INTERNET_LEVEL2,
+  AT_INTERNET_WEBSITE,
+} from './constants';
 import { ATInternetTagOptions } from '.';
 
-interface Product {
-  productId: string;
-  quantity: number;
-  unitPriceTaxIncluded?: number;
-  amountTaxIncluded?: number;
+function getPageTrackingData(
+  page: LegacyTrackingData,
+): Partial<PageTrackingData> {
+  const parts = (page.name || '').split('::');
+  const len = parts.length;
+  return {
+    page: len >= 1 ? parts.slice(Math.min(len - 1, 3)).join('::') : '',
+    page_chapter1: len >= 2 ? parts[0] : '',
+    page_chapter2: len >= 3 ? parts[1] : '',
+    page_chapter3: len >= 4 ? parts[2] : '',
+  };
+}
+
+function filterTrackingData(data: any) {
+  return mapValues(data, (value) => {
+    if (isString(value)) {
+      // if value is enclosed in brackets, remove then
+      return value.replace(/^\[/, '').replace(/\]$/, '');
+    }
+    return value;
+  });
 }
 
 export default class OvhAtInternet extends OvhAtInternetConfig {
@@ -27,7 +43,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
    */
   private atinternetTag: ATInternetTagOptions = null;
 
-  private trackQueue: Array<IOvhAtInternetTrack<PageData | MVTestingData>> = [];
+  private trackQueue: Array<IOvhAtInternetTrack> = [];
 
   // protected defaults;
   /**
@@ -39,78 +55,53 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     }
   }
 
-  /**
-   * Returns updated given data with defaults config and level2
-   */
-  private updateData(trackData: PageData): PageData {
-    const data = {
-      ...trackData,
+  getGenericTrackingData(data: LegacyTrackingData): GenericTrackingData {
+    const params = {
       ...this.defaults,
+      ...data,
     };
-
-    // Allow user to set identifiedVisitor id
-    if (!data.visitorId) {
-      this.atinternetTag.identifiedVisitor.set({ id: data.visitorId });
-    }
-
-    // no level2 ? use default and warn
-    if (data.level2 === undefined) {
-      data.level2 = '0';
+    if (params.level2 === undefined) {
+      params.level2 = '0';
       console.warn(
         'atinternet level2 attribute undefined: use default unclassified level2 "0". Please fix it!',
       );
     }
 
-    return data;
-  }
-
-  private updateCustomVars(
-    data: unknown,
-    varValue: IAtInternetCustomVar,
-    varKey: string,
-    customVars: Record<string, string | Record<string, never>>,
-  ) {
-    // if data has custom attribute
-    if (has(data, varKey)) {
-      const valuePath = varValue.path[this.region] || varValue.path.default;
-      const keys = valuePath.split('.');
-      let tmp = customVars;
-
-      /*
-       * Populate attribute into customVars
-       * example :
-       *   myAttr : { path : "a.b.c", format : "[%s]" }
-       * will result in :
-       *   customVars : {
-       *     a { b { c : [value] }}}
-       */
-      keys.forEach((key: string, idx: number) => {
-        if (idx === keys.length - 1 && varValue.format) {
-          tmp[key] = varValue.format.replace(
-            '%s',
-            data[varKey as keyof typeof data] as string,
-          );
-        } else {
-          tmp[key] = tmp[key] || {};
-          tmp = tmp[key] as Record<string, never>;
-        }
-      });
-    }
-  }
-
-  private getCustomVarsWithDefaults(trackData: unknown) {
-    const customVars = {};
-    Object.keys(AT_INTERNET_CUSTOM_VARS).forEach((customVarKey: string) => {
-      const customVarVal = AT_INTERNET_CUSTOM_VARS[customVarKey];
-      this.updateCustomVars(
-        this.defaults,
-        customVarVal,
-        customVarKey,
-        customVars,
-      );
-      this.updateCustomVars(trackData, customVarVal, customVarKey, customVars);
+    const customProps: Partial<LegacyTrackingData> = {};
+    Object.entries(AT_INTERNET_CUSTOM_PROPS).forEach(([oldKey, newKey]) => {
+      if (oldKey in params) {
+        customProps[newKey] = params[oldKey];
+      }
     });
-    return customVars;
+
+    return {
+      ...customProps,
+      country: params.subsidiary,
+      website: AT_INTERNET_WEBSITE[params.subsidiary],
+      full_url: data.pageUrl || encodeURIComponent(window.top.location.href),
+      site_name: params.siteName,
+      site_level2: AT_INTERNET_LEVEL2[params.level2] || params.level2,
+      user_agent: params.userAgent || window.navigator.userAgent,
+      currency: params.currencyCode,
+      residential_country: params.countryCode,
+      user_id: params.visitorId,
+      user_category: capitalize(params.legalform),
+    };
+  }
+
+  getImpressionTrackingData(data: LegacyTrackingData): ImpressionTrackingData {
+    return {
+      ...this.getGenericTrackingData(data),
+      onsitead_type: 'Publisher',
+      onsitead_campaign: data.campaignId,
+      onsitead_creation: data.creation,
+      onsitead_variant: data.variant,
+      onsitead_format: data.format,
+      onsitead_general_placement: data.generalPlacement,
+      onsitead_detailed_placement: data.detailedPlacement,
+      onsitead_advertiser: data.advertiserId,
+      onsitead_url: data.url,
+    };
   }
 
   /**
@@ -168,233 +159,149 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     }
   }
 
-  trackMVTest(mvData: MVTestingData): void {
+  trackMVTest(data: LegacyTrackingData): void {
     if (this.isTagAvailable()) {
-      try {
-        this.atinternetTag.mvTesting.set(mvData);
-        this.atinternetTag.dispatch();
-      } catch (e) {
-        console.error('atinternet or mvTesting tag missing', e);
+      const tracking = {
+        ...this.getGenericTrackingData(data),
+        mv_test: data.test,
+        mv_wave: data.waveId,
+        mv_creation: data.creation,
+      };
+      if (tracking.mv_test) {
+        this.atinternetTag.events.send(
+          'mv_test.display',
+          filterTrackingData(tracking),
+        );
+        this.logDebugInfos('atinternet.trackMVTest: ', tracking);
+      } else {
+        console.error(
+          'atinternet.trackPage invalid data: missing name attribute',
+          data,
+        );
       }
     } else {
       this.trackQueue.push({
         type: 'trackMVTest',
-        data: mvData,
+        data,
       });
     }
   }
 
-  trackPage(pageDataParam: PageData): void {
-    let pageData = pageDataParam;
+  trackPage(data: LegacyTrackingData): void {
     if (this.isTagAvailable()) {
-      pageData = this.updateData(pageData);
-      if (pageData.name) {
-        pageData.customVars = this.getCustomVarsWithDefaults({
-          pageUrl: encodeURIComponent(window.location.href),
-          ...pageDataParam,
-        });
-        this.atinternetTag.page.send(pageData);
-        this.logDebugInfos('atinternet.trackpage: ', pageData);
+      const tracking = {
+        ...this.getGenericTrackingData(data),
+        ...getPageTrackingData(data),
+      };
+      if (tracking.page) {
+        this.atinternetTag.events.send(
+          'page.display',
+          filterTrackingData(tracking),
+        );
+        this.logDebugInfos('atinternet.trackpage: ', tracking);
       } else {
         console.error(
           'atinternet.trackPage invalid data: missing name attribute',
-          pageData,
+          data,
         );
       }
     } else {
       this.trackQueue.push({
         type: 'trackPage',
-        data: pageData,
+        data,
       });
     }
   }
 
-  trackClick(clickDataParam: ClickData): void {
-    let clickData = clickDataParam;
+  trackClick(data: LegacyTrackingData): void {
     if (this.isTagAvailable()) {
-      clickData = this.updateData(clickData) as ClickData;
-      if (
-        ['action', 'navigation', 'download', 'exit'].includes(clickData.type)
-      ) {
-        this.atinternetTag.click.send(clickData);
-        this.logDebugInfos('atinternet.trackclick: ', clickData);
+      const pageTrackingData = getPageTrackingData(data);
+      const tracking = {
+        ...this.getGenericTrackingData(data),
+        click: pageTrackingData.page,
+        click_chapter1: pageTrackingData.page_chapter1,
+        click_chapter2: pageTrackingData.page_chapter2,
+        click_chapter3: pageTrackingData.page_chapter3,
+      };
+      if (['action', 'navigation', 'download', 'exit'].includes(data.type)) {
+        this.atinternetTag.events.send(
+          'click.action',
+          filterTrackingData(tracking),
+        );
+        this.logDebugInfos('atinternet.trackclick: ', tracking);
       } else {
         console.error(
           "atinternet.trackClick invalid or missing 'type' attribute for data",
-          clickData,
+          data,
         );
       }
     } else {
-      this.trackQueue.push({ type: 'trackClick', data: clickData });
+      this.trackQueue.push({ type: 'trackClick', data });
     }
   }
 
-  trackOrder(orderDataParam: OrderData): void {
-    let orderData = orderDataParam;
+  trackEvent(data: LegacyTrackingData): void {
     if (this.isTagAvailable()) {
-      orderData = this.updateData(orderData) as OrderData;
-
-      // Check if product data has all required attributes
-      if (!orderData.page) {
-        console.error(
-          'atinternet.trackProduct missing page attribute: ',
-          orderData,
-        );
+      if (!data.page) {
+        console.error('atinternet.trackEvent missing page attribute: ', data);
         return;
       }
-      if (!orderData.name) {
-        console.error(
-          'atinternet.trackProduct missing name attribute: ',
-          orderData,
-        );
+      if (!data.event) {
+        console.error('atinternet.trackEvent missing event attribute: ', data);
         return;
       }
-      if (
-        orderData.price === undefined &&
-        orderData.priceTaxFree === undefined
-      ) {
-        console.error(
-          'atinternet.trackProduct missing price attribute: ',
-          orderData,
-        );
-        return;
-      }
-
-      const orderId = orderData.orderId || getUniqueId();
-      const cartId = `cart-${orderId}`;
-
-      // set the current page (page must be configured as "main objective" in ATInternet
-      // manager!)
-      this.atinternetTag.page.set({
-        name: orderData.page,
-        level2: orderData.level2,
-      });
-
-      // create the cart
-      this.atinternetTag.cart.set({
-        cardId: cartId,
-      });
-
-      let product: Product = {
-        productId: orderData.name,
-        quantity: orderData.quantity || 1,
+      const tracking = {
+        ...this.getGenericTrackingData(data),
+        ...getPageTrackingData(data),
+        event: data.event,
       };
-
-      const amount = {};
-      let turnover = 0;
-
-      const status = orderData.status || 3;
-
-      if (isNumber(orderData.price)) {
-        product = {
-          ...product,
-          unitPriceTaxIncluded: orderData.price,
-          amountTaxIncluded: orderData.price * product.quantity,
-        };
-        turnover = orderData.price * product.quantity;
-      }
-
-      if (isNumber(orderData.priceTaxFree)) {
-        product = {
-          ...product,
-          unitPriceTaxFree: orderData.priceTaxFree,
-          amountTaxFree: orderData.priceTaxFree * product.quantity,
-        } as Product;
-        turnover = orderData.priceTaxFree * product.quantity;
-      }
-
-      // add the product to the cart
-      this.atinternetTag.cart.add({ product });
-
-      // create a valid order
-      this.atinternetTag.order.set({
-        orderId, // must be unique
-        status,
-        amount,
-        turnover,
-      });
-
-      this.atinternetTag.customVars.set(
-        this.getCustomVarsWithDefaults(orderData),
+      this.atinternetTag.events.send(
+        'page.display',
+        filterTrackingData(tracking),
       );
-
-      this.atinternetTag.dispatch();
-      this.logDebugInfos('atinternet.trackOrder: ', orderData);
+      this.logDebugInfos('atinternet.trackEvent: ', data);
     } else {
-      this.trackQueue.push({ type: 'trackOrder', data: orderData });
+      this.trackQueue.push({ type: 'trackEvent', data });
     }
   }
 
-  trackEvent(eventDataParam: EventData): void {
-    const eventData = eventDataParam;
+  trackImpression(data: LegacyTrackingData): void {
+    const tracking = this.getImpressionTrackingData(data);
     if (this.isTagAvailable()) {
-      if (!eventData.page) {
-        console.error(
-          'atinternet.trackEvent missing page attribute: ',
-          eventData,
-        );
-        return;
-      }
-      if (!eventData.event) {
-        console.error(
-          'atinternet.trackEvent missing eventData attribute: ',
-          eventData,
-        );
-        return;
-      }
-      this.atinternetTag.page.set({
-        name: eventData.page,
-        level2: eventData.level2,
-      });
-      this.atinternetTag.customVars.set(
-        this.getCustomVarsWithDefaults(eventData),
+      this.atinternetTag.events.send(
+        'publisher.display',
+        filterTrackingData(tracking),
       );
-      this.atinternetTag.dispatch();
-      this.logDebugInfos('atinternet.trackEvent: ', eventData);
-    } else {
-      this.trackQueue.push({ type: 'trackEvent', data: eventData });
-    }
-  }
-
-  trackImpression(impressionDataParam: ImpressionData): void {
-    const impressionData = impressionDataParam;
-    if (this.isTagAvailable()) {
-      this.updateData(impressionData);
-      if (!impressionData.campaignId) {
+      if (!tracking.onsitead_campaign) {
         console.error(
-          'atinternet.trackImpression missing impressionData attribute: ',
-          impressionData,
+          'atinternet.trackImpression missing data attribute: ',
+          data,
         );
         return;
       }
-      this.atinternetTag.publisher.set({
-        impression: impressionData,
-      });
-      this.atinternetTag.dispatch();
-      this.logDebugInfos('atinternet.trackImpression: ', impressionData);
+      this.logDebugInfos('atinternet.trackImpression: ', tracking);
     } else {
-      this.trackQueue.push({ type: 'trackImpression', data: impressionData });
+      this.trackQueue.push({ type: 'trackImpression', data });
     }
   }
 
-  trackClickImpression(impressionDataParam: ImpressionDataClick): void {
-    const impressionData = impressionDataParam;
+  trackClickImpression({ click: data }: { click: LegacyTrackingData }): void {
+    const tracking = this.getImpressionTrackingData(data);
     if (this.isTagAvailable()) {
-      this.updateData(impressionData);
-      if (!impressionData.click) {
+      this.atinternetTag.events.send(
+        'publisher.click',
+        filterTrackingData(tracking),
+      );
+      if (!tracking.onsitead_campaign) {
         console.error(
-          'atinternet.trackClickImpression missing impressionData attribute: ',
-          impressionData,
+          'atinternet.trackClickImpression missing data attribute: ',
+          data,
         );
         return;
       }
-      this.atinternetTag.publisher.send(impressionData);
-      this.logDebugInfos('atinternet.trackClickImpression: ', impressionData);
+      this.logDebugInfos('atinternet.trackClickImpression: ', tracking);
     } else {
-      this.trackQueue.push({
-        type: 'trackClickImpression',
-        data: impressionData,
-      });
+      this.trackQueue.push({ type: 'trackClickImpression', data });
     }
   }
 }
