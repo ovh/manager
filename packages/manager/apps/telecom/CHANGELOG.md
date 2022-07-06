@@ -1,3 +1,12 @@
+## [13.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.42.0...@ovh-ux/manager-telecom@13.42.1) (2022-07-06)
+
+
+### Bug Fixes
+
+* **telephony.service.contact:** add test on variable ([#7479](https://github.com/ovh/manager/issues/7479)) ([adccfea](https://github.com/ovh/manager/commit/adccfeaafe8e7ebfe256d923b6e82262f9c441a8))
+
+
+
 # [13.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.41.4...@ovh-ux/manager-telecom@13.42.0) (2022-06-30)
 
 
