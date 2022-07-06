@@ -23,8 +23,8 @@
             <button
                 class="oui-link"
                 type="button"
-                ng-click="$ctrl.goToDatabase({id: $row.sourceServiceId})"
-                ng-if="$row.sourceServiceId !== $ctrl.database.id"
+                data-ng-click="$ctrl.goToDatabase({id: $row.sourceServiceId})"
+                data-ng-if="$row.sourceServiceId !== $ctrl.database.id"
             >
                 <span
                     class="oui-icon oui-icon-external-link"
@@ -44,8 +44,8 @@
             <button
                 class="oui-link"
                 type="button"
-                ng-click="$ctrl.goToDatabase({id: $row.destinationServiceId})"
-                ng-if="$row.destinationServiceId !== $ctrl.database.id"
+                data-ng-click="$ctrl.goToDatabase({id: $row.destinationServiceId})"
+                data-ng-if="$row.destinationServiceId !== $ctrl.database.id"
             >
                 <span
                     class="oui-icon oui-icon-external-link"

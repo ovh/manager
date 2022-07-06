@@ -77,7 +77,6 @@ const features = {
     DATABASE_TYPES.REDIS,
   ],
   replicationsTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
-  // showServiceIntegration: [DATABASE_TYPES.KAFKA, DATABASE_TYPES.M3DB],
   restApi: [DATABASE_TYPES.KAFKA],
   usersGroup: [DATABASE_TYPES.M3DB],
   resetAdminUserFromDashboard: [DATABASE_TYPES.GRAFANA],
