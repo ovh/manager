@@ -21,6 +21,7 @@ import start from './start';
 import stop from './stop';
 import unrescue from './unrescue';
 import unshelve from './unshelve';
+import createPrivateNetworkWarning from './create-private-network-warning';
 
 import component from './instances.component';
 import routing from './instances.routing';
@@ -49,6 +50,7 @@ angular
     stop,
     unrescue,
     unshelve,
+    createPrivateNetworkWarning,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ovh-api-services',
