@@ -11,6 +11,7 @@ import spaceMeterComponentModule from '../../components/space-meter';
 import editDescriptionModule from './edit-description';
 import editNameModule from './edit-name';
 import editSizeModule from './edit-size';
+import snapshotsModule from './snapshots';
 
 const moduleName = 'ovhManagerNashaPartition';
 
@@ -23,6 +24,7 @@ angular
     editDescriptionModule,
     editNameModule,
     editSizeModule,
+    snapshotsModule,
   ])
   .component('nashaDashboardPartition', component)
   .config(routing)

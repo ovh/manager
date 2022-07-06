@@ -76,7 +76,12 @@ export default class NashaDashboardPartitionsController {
   }
 
   mergeTasks(partitions, tasks) {
-    const operations = Object.values(this.NashaTask.operation);
+    const operations = [
+      this.NashaTask.operation.Create,
+      this.NashaTask.operation.Delete,
+      this.NashaTask.operation.Update,
+      this.NashaTask.operation.ZfsOptions,
+    ];
     tasks
       .filter(({ operation }) => operation === this.NashaTask.operation.Add)
       .forEach(({ partitionName }) => {
@@ -96,21 +101,19 @@ export default class NashaDashboardPartitionsController {
   }
 
   startPolls(partitions) {
-    const { serviceName } = this;
-    const statuses = Object.values(this.NashaTask.status);
-    return partitions.map((partition) => ({
-      ...partition,
-      polls: partition.tasks.map((task) =>
-        this.Poller.poll(
-          `/dedicated/nasha/${serviceName}/task/${task.taskId}`,
-          null,
-          {
-            namespace: STATE_NAME,
-            successRule: ({ status }) => !statuses.includes(status),
-          },
-        ).then(this.reload),
-      ),
-    }));
+    const { NashaTask, Poller, reload, serviceName } = this;
+    const statuses = Object.values(NashaTask.status);
+
+    partitions.forEach((partition) => {
+      partition.tasks.forEach(({ taskId }) => {
+        Poller.poll(`/dedicated/nasha/${serviceName}/task/${taskId}`, null, {
+          namespace: STATE_NAME,
+          successRule: ({ status }) => !statuses.includes(status),
+        }).then(reload);
+      });
+    });
+
+    return partitions;
   }
 
   formatDataGrid(partitions) {

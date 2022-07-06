@@ -1,0 +1,15 @@
+{
+  "nasha_dashboard_partition_snapshots_heading": "Gérer les Snapshot policies",
+  "nasha_dashboard_partition_snapshots_description": "Créez et gérez facilement vos règles de snapshots, en matière de périodicité ou de durée de rétention. Vous pourrez ensuite les appliquer sur des volumes spécifiques. Les snapshots utilisent la capacité de stockage de votre solution NAS-HA.",
+  "nasha_dashboard_partition_snapshots_subtitle": "Détails des Snapshot policies",
+  "nasha_dashboard_partition_snapshots_create": "Créer un Snapshot manuel",
+  "nasha_dashboard_partition_snapshots_list_type": "Type",
+  "nasha_dashboard_partition_snapshots_list_name": "Nom",
+  "nasha_dashboard_partition_snapshots_list_options": "Options",
+  "nasha_dashboard_partition_snapshots_list_snapshot_types": "Fréquences",
+  "nasha_dashboard_partition_snapshots_list_custom_snapshot": "Snapshot manuel",
+  "nasha_dashboard_partition_snapshots_frequencies_placeholder": "Sélectionnez des fréquences",
+  "nasha_dashboard_partition_snapshots_snapshot_types_updated": "Les fréquences de snapshots automatiques seront modifiées dans quelques instants",
+  "nasha_dashboard_partition_snapshots_custom_snapshot_created": "Le snapshot manuel sera créé dans quelques instants",
+  "nasha_dashboard_partition_snapshots_custom_snapshot_deleted": "Le snapshot manuel sera supprimé dans quelques instants"
+}

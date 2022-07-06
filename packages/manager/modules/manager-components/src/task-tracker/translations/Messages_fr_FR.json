@@ -1,7 +1,8 @@
 {
-  "task_tracker_status_todo": "L'opération va démarrer dans quelques instants",
-  "task_tracker_status_doing": "L'opération est en cours d'exécution",
-  "task_tracker_status_done": "L'opération a été exécutée avec succès",
-  "task_tracker_status_error": "Une erreur est survenue : {{ message }}",
-  "task_tracker_close": "Fermer"
+  "task_tracker_close": "Fermer",
+  "task_tracker_empty_error": "aucun détail pour cette erreur, merci de contacter le support.",
+  "task_tracker_step_doing": "L'opération est en cours d'exécution",
+  "task_tracker_step_done": "L'opération a été exécutée avec succès",
+  "task_tracker_step_error": "Une erreur est survenue : {{ message }}",
+  "task_tracker_step_todo": "L'opération va démarrer dans quelques instants"
 }
