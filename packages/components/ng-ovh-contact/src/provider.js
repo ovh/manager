@@ -1,14 +1,5 @@
 import angular from 'angular';
-import {
-  forEach,
-  has,
-  keys,
-  map,
-  reject,
-  set,
-  snakeCase,
-  some,
-} from 'lodash-es';
+import { forEach, has, keys, set, snakeCase } from 'lodash-es';
 
 export default function() {
   const self = this;
@@ -19,6 +10,7 @@ export default function() {
     OvhContact,
     OvhApiMe,
     CONTACT_EMAIL_REGEX,
+    iceberg,
   ) {
     /**
      *  @ngdoc service
@@ -167,18 +159,17 @@ export default function() {
         contacts = [];
       }
 
-      return OvhApiMe.Contact()
-        .v7()
+      return iceberg('/me/contact')
         .query()
-        .$promise.then((contactsList) => {
+        .expand('CachedObjectList-Pages')
+        .execute()
+        .$promise.then(({ data: contactsList }) => {
           // filter contact that are not already added
           // this avoid loosing contact object reference
           // then add contact to contact list (at given index)
 
-          const contactsToAdd = reject(map(contactsList, 'value'), (contact) =>
-            some(contacts, {
-              id: contact.id,
-            }),
+          const contactsToAdd = contactsList.filter(
+            (contact) => !contacts.some(({ id }) => contact.id === id),
           );
 
           forEach(contactsToAdd, (contact) => {
