@@ -50,6 +50,7 @@ export default class DomainTabGeneralInformationsCtrl {
     DOMAIN,
     goToDnsAnycast,
     goToTerminateAnycast,
+    shellClient,
   ) {
     this.$http = $http;
     this.$scope = $scope;
@@ -78,6 +79,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.goToDnsAnycast = goToDnsAnycast;
     this.goToTerminateAnycast = goToTerminateAnycast;
     this.DOMAIN_STATE_TYPE = DOMAIN_STATE_TYPE;
+    this.shellClient = shellClient;
   }
 
   $onInit() {
@@ -195,6 +197,34 @@ export default class DomainTabGeneralInformationsCtrl {
     if (this.isAllDom) {
       this.getAllDomInfos(this.$stateParams.allDom);
     }
+
+    if (this.orderedHosting) {
+      this.shellClient.navigation
+        .getURL('web', `#/hosting/${this.orderedHosting}`, {
+          tab: 'GENERAL_INFORMATIONS',
+        })
+        .then((orderedHostingLink) => {
+          this.orderedHostingLink = orderedHostingLink;
+        });
+    }
+
+    const multisiteDetails = [];
+    this.$q
+      .all(
+        this.$scope.ctrlDomain.associatedHostings.map((hosting) => {
+          return this.shellClient.navigation
+            .getURL('web', `#/hosting/${hosting}`, { tab: 'MULTISITE' })
+            .then((multiSiteUrl) => {
+              multisiteDetails.push({
+                hosting,
+                url: multiSiteUrl,
+              });
+            });
+        }),
+      )
+      .then(() => {
+        this.associatedHostingsDetails = multisiteDetails;
+      });
   }
 
   initActions() {
