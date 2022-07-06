@@ -1,5 +1,5 @@
 <oui-modal
-    ng-form="addServiceIntegration"
+    data-ng-form="addServiceIntegration"
     data-on-dismiss="$ctrl.cancel()"
     data-primary-label="{{:: 'pci_databases_service_integration_add_confirm' | translate}}"
     data-primary-disabled="addServiceIntegration.$invalid || $ctrl.existingIntegrationError"
@@ -9,12 +9,12 @@
     data-loading="$ctrl.processing"
     data-heading="{{:: 'pci_databases_service_integration_add' | translate}}"
 >
-    <oui-message data-type="warning" ng-if="$ctrl.showNoServiceMessage">
+    <oui-message data-type="warning" data-ng-if="$ctrl.showNoServiceMessage">
         <div>
             <span
                 data-translate="pci_databases_service_integration_add_error_no_available_service_1"
             ></span>
-            <button class="oui-link" ng-click="$ctrl.goToAddDatabase()">
+            <button class="oui-link" data-ng-click="$ctrl.goToAddDatabase()">
                 <span
                     data-translate="pci_databases_service_integration_add_error_no_available_service_link"
                 ></span>
@@ -25,13 +25,16 @@
         </div>
         <ul>
             <li
-                ng-repeat="engine in $ctrl.expectedEngines track by id"
-                ng-bind="engine"
+                data-ng-repeat="engine in $ctrl.expectedEngines track by id"
+                data-ng-bind="engine"
             ></li>
         </ul>
     </oui-message>
 
-    <oui-message data-type="warning" ng-if="$ctrl.existingIntegrationError">
+    <oui-message
+        data-type="warning"
+        data-ng-if="$ctrl.existingIntegrationError"
+    >
         <p
             data-translate="pci_databases_service_integration_add_error_existing_integration"
         ></p>
@@ -39,7 +42,7 @@
 
     <oui-message
         data-type="warning"
-        ng-if="$ctrl.notCurrentServiceSelectedError"
+        data-ng-if="$ctrl.notCurrentServiceSelectedError"
     >
         <p
             data-translate="pci_databases_service_integration_add_error_no_current_service"
@@ -102,23 +105,26 @@
         </div>
     </div>
 
-    <div class="row" ng-if="$ctrl.integrationCapability.parameters.length > 0">
+    <div
+        class="row"
+        data-ng-if="$ctrl.integrationCapability.parameters.length > 0"
+    >
         <div
             class="col-6"
-            ng-repeat="parameter in $ctrl.integrationCapability.parameters track by $index"
+            data-ng-repeat="parameter in $ctrl.integrationCapability.parameters track by $index"
         >
             <oui-field data-label="{{parameter.name}}">
                 <input type="hidden" name="hiddenfield" />
                 <input
-                    ng-if="parameter.type === 'string'"
+                    data-ng-if="parameter.type === 'string'"
                     class="oui-input"
                     type="text"
                     name="{{parameter.name}}"
-                    ng-model="$ctrl.parameters[parameter.name]"
+                    data-ng-model="$ctrl.parameters[parameter.name]"
                     required
                 />
                 <oui-numeric
-                    ng-if="parameter.type === 'integer'"
+                    data-ng-if="parameter.type === 'integer'"
                     data-min="1"
                     data-model="$ctrl.parameters[parameter.name]"
                     required
