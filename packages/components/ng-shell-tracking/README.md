@@ -98,29 +98,6 @@ Attributes
 
 ```
 
-### Order tracking
-
-*Example of tracking a successfull order.*
-
-```js
-/**
- * Please note that you must supply a product price with one of the following attributes:
- * - 'price'
- * - 'priceTaxFree'
- * You can also supply both price values, with and without taxes if you want.
- */
-atInternet.trackOrder({
-  page: 'pageName', // page of the order
-  name: 'my-product', // name of your product
-  price: 42, // taxes included product price (required only if priceTaxFree is not supplied)
-  // priceTaxFree: 42,   // price tax free (required only if price is not supplied)
-  quantity: 1, // amount of product (default is 1)
-  status: 3, // status of the order (default is 3 : validated)
-  level2: '1', // (optional) if not configured in defaults you must specify your project id
-  visitorId: '123', // (optional) set identifiedVisitor.id sent with each hit
-});
-```
-
 ### Event tracking
 
 *Example of tracking a custom event.*
