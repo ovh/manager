@@ -17,6 +17,8 @@ export default {
     partitions: '<',
     partitionHref: '<',
     reload: '<',
+    serviceName: '<',
+    tasks: '<',
   },
   controller,
   template,
