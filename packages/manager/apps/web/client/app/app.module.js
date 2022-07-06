@@ -236,11 +236,6 @@ export default async (containerEl, shellClient) => {
           set(config, 'serviceType', 'apiv6');
         }
 
-        if (/^apiv7\//.test(config.url)) {
-          set(config, 'url', config.url.replace(/^apiv7/, ''));
-          set(config, 'serviceType', 'apiv7');
-        }
-
         return config;
       },
     }))
