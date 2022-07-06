@@ -1,74 +1,18 @@
 import { isEmpty } from 'lodash-es';
-import { CountryCode } from '@ovh-ux/manager-config/types/locale/country-code.enum';
+import { LegacyTrackingData } from './track';
 
-// eslint-disable-next-line prettier/prettier
-export type levelKey<Num extends number> = `level${Num}`;
-type chapterKey<Num extends number> = `chapter${Num}`;
+export type TrackingDefaults = Partial<LegacyTrackingData>;
 
-export interface PageData {
-  name: string;
-  [key: levelKey<number>]: string; // the project id (required)
-  [key: chapterKey<number>]: string; // section id (optional)
-  visitorId?: number | string; // identified visitor id (optional)
-  customObject?: Record<string, unknown>; // custom javascript data (optional)
-  customVars: Record<string, unknown>;
-}
-
-export interface ClickData extends PageData {
-  type: 'action' | 'navigation' | 'download' | 'exit';
-}
-
-export interface MVTestingData {
-  test: string;
-  waveId: number;
-  creation: string;
-}
-
-export interface MVTestingVariables {
-  variable: string;
-  version: string;
-}
-
-export interface OrderData extends PageData {
-  page?: string;
-  price?: number;
-  priceTaxFree?: number;
-  orderId?: number;
-  quantity?: number;
-  status?: number;
-  countryCode?: CountryCode;
-  currencyCode?: CountryCode;
-}
-
-export interface ImpressionData extends PageData {
-  campaignId: string;
-  creation: string;
-  variant: string;
-  format: string;
-  generalPlacement: string;
-  detailedPlacement: string;
-  advertiserId: string;
-  url: string;
-}
-
-export interface ImpressionDataClick extends ImpressionData {
-  click: unknown;
-}
-
-export interface EventData extends PageData {
-  page: string;
-  event: Event;
-}
 export class OvhAtInternetConfig {
   /**
    * Default data to be sent with each hit.
    */
-  protected defaults: PageData;
+  protected defaults: TrackingDefaults;
 
   /**
    * Promise that make sure that defaults are setted after a promise resoltion.
    */
-  protected defaultsPromise: Promise<PageData>;
+  protected defaultsPromise: Promise<TrackingDefaults>;
 
   /**
    * Enable or disable tracking.
@@ -96,7 +40,7 @@ export class OvhAtInternetConfig {
    * Configure default data to be sent with each tracking data.
    * @param def  Default values to be sent.
    */
-  setDefaults(def: PageData): PageData {
+  setDefaults(def: TrackingDefaults): TrackingDefaults {
     this.defaults = def;
     return this.defaults;
   }
@@ -104,7 +48,7 @@ export class OvhAtInternetConfig {
   /**
    * Retrieve default data to be sent with each tracking data.
    */
-  getDefaults(): PageData {
+  getDefaults(): TrackingDefaults {
     return {
       ...this.defaults,
     };
@@ -115,8 +59,8 @@ export class OvhAtInternetConfig {
    * that defaults are setted).
    * @param promise  A promise that needs to be resolved before sending hits.
    */
-  setDefaultsPromise(promise: Promise<PageData>): void {
-    this.defaultsPromise = promise.then((defaults: PageData) => {
+  setDefaultsPromise(promise: Promise<TrackingDefaults>): void {
+    this.defaultsPromise = promise.then((defaults: TrackingDefaults) => {
       return this.setDefaults(defaults);
     });
   }
@@ -124,7 +68,7 @@ export class OvhAtInternetConfig {
   /**
    * Retrieve the defaults promise setted by setDefaultsPromise method.
    */
-  getDefaultsPromise(): Promise<PageData> {
+  getDefaultsPromise(): Promise<TrackingDefaults> {
     return this.defaultsPromise;
   }
 
@@ -173,3 +117,5 @@ export class OvhAtInternetConfig {
     this.region = region;
   }
 }
+
+export default { OvhAtInternetConfig };
