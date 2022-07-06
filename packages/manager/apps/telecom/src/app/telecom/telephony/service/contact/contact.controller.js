@@ -382,10 +382,12 @@ export default class TelecomTelephonyServiceContactCtrl {
       this.directoryForm.PJSocialNomination = this.directoryForm.socialNomination;
     }
 
-    this.directoryForm.wayNumberExtra = this.directoryForm.wayNumberExtra.replace(
-      /&nbsp;/g,
-      '',
-    );
+    if (this.directoryForm.wayNumberExtra) {
+      this.directoryForm.wayNumberExtra = this.directoryForm.wayNumberExtra.replace(
+        /&nbsp;/g,
+        '',
+      );
+    }
 
     const modified = assign(this.directory, this.directoryForm);
     this.isUpdating = true;
