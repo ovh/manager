@@ -64,6 +64,7 @@ export default class {
       },
       {
         name: 'hours',
+        multiplier: 60,
         description: this.$translate.instant(
           'data_processing_submit_job_stepper_spark_select_unit_hours',
         ),

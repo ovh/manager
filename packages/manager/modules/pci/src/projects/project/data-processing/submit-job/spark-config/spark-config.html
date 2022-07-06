@@ -69,7 +69,7 @@
             </div>
             <div class="col">
                 <oui-field
-                    ng-if="$ctrl.state.jobType === $ctrl.JOB_TYPE_JAVA || $ctrl.state.jobType === $ctrl.JOB_TYPE_PYTHON"
+                    data-ng-if="$ctrl.state.jobType === $ctrl.JOB_TYPE_JAVA || $ctrl.state.jobType === $ctrl.JOB_TYPE_PYTHON"
                     data-label="{{ $ctrl.state.jobType === 'java'? 'data_processing_submit_job_stepper_spark_jar_file_label':'data_processing_submit_job_stepper_spark_python_file_label' | translate }}"
                     data-help-text="{{:: 'data_processing_submit_job_stepper_spark_jar_file_help' | translate }}"
                 >
@@ -146,7 +146,7 @@
                     </div>
                 </oui-field>
             </div>
-            <div class="col" ng-if="$ctrl.state.jobType === 'java'">
+            <div class="col" data-ng-if="$ctrl.state.jobType === 'java'">
                 <oui-field
                     data-label="{{:: 'data_processing_submit_job_stepper_spark_main_class_label' | translate }}"
                     data-help-text="{{:: 'data_processing_submit_job_stepper_spark_main_class_help' | translate }}"

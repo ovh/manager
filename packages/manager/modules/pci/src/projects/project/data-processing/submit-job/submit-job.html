@@ -84,7 +84,6 @@
 
                 <oui-collapsible
                     heading="{{:: 'data_processing_submit_job_api_equivalent' | translate }}"
-
                 >
                     <pci-order-command
                         data-order-api-url="$ctrl.orderAPIUrl"
@@ -250,10 +249,12 @@
                                         data-translate="data_processing_submit_job_spec_config_arguments"
                                     ></strong>
                                     <span
-                                        ng-bind="$ctrl.state.jobConfig.arguments"
+                                        data-ng-bind="$ctrl.state.jobConfig.arguments"
                                     ></span>
                                 </div>
-                                <div ng-if="$ctrl.state.jobConfig.ttl.enabled">
+                                <div
+                                    data-ng-if="$ctrl.state.jobConfig.ttl.enabled"
+                                >
                                     <strong
                                         data-translate="data_processing_submit_job_spec_config_ttl"
                                     ></strong>
@@ -359,7 +360,7 @@
                             <div class="break-word">
                                 <a
                                     href=""
-                                    ng-click="$ctrl.scrollTo('prices')"
+                                    data-ng-click="$ctrl.scrollTo('prices')"
                                     data-translate="data_processing_submit_job_spec_price"
                                 ></a>
                                 <strong>
