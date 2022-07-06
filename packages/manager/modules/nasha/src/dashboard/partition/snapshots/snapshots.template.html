@@ -1,0 +1,177 @@
+<div class="nasha-dashboard-partition-snapshots">
+    <oui-header
+        data-heading="{{:: ('nasha_dashboard_partition_snapshots_heading' | translate) }}"
+        data-description="{{:: ('nasha_dashboard_partition_snapshots_description' | translate) }}"
+    ></oui-header>
+    <h4 data-translate="nasha_dashboard_partition_snapshots_subtitle"></h4>
+    <oui-button
+        class="mb-2"
+        data-icon-left="oui-icon-plus"
+        data-disabled="$ctrl.isCustomSnapshotFormShown"
+        data-on-click="$ctrl.showCustomSnapshotForm()"
+    >
+        <span
+            data-translate="nasha_dashboard_partition_snapshots_create"
+        ></span>
+    </oui-button>
+
+    <table class="oui-datagrid" aria-label="snapshots">
+        <thead>
+            <tr>
+                <th class="oui-datagrid__header" role="heading" tabindex="-1">
+                    <span
+                        data-translate="nasha_dashboard_partition_snapshots_list_type"
+                    ></span>
+                </th>
+                <th class="oui-datagrid__header" role="heading" tabindex="-1">
+                    <span
+                        data-translate="nasha_dashboard_partition_snapshots_list_name"
+                    ></span>
+                </th>
+                <th class="oui-datagrid__header" role="heading" tabindex="-1">
+                    <span
+                        data-translate="nasha_dashboard_partition_snapshots_list_options"
+                    ></span>
+                </th>
+            </tr>
+        </thead>
+        <tbody aria-hidden="false">
+            <!-- Frequencies row -->
+            <tr class="oui-datagrid__row">
+                <td
+                    class="oui-datagrid__cell"
+                    data-translate="nasha_dashboard_partition_snapshots_list_snapshot_types"
+                ></td>
+                <td class="oui-datagrid__cell">-</td>
+                <td
+                    class="oui-datagrid__cell d-flex justify-content-between align-items-center"
+                >
+                    <oui-dropdown>
+                        <oui-dropdown-trigger
+                            text="{{ $ctrl.readableSnapshotTypesModel }}"
+                        ></oui-dropdown-trigger>
+                        <div class="oui-dropdown-menu" oui-dropdown-content>
+                            <oui-dropdown-item
+                                data-ng-repeat="snapshotType in $ctrl.model.snapshotTypes track by snapshotType.type"
+                                data-ng-click="$event.stopPropagation()"
+                            >
+                                <oui-checkbox
+                                    data-id="snapshotType_{{ snapshotType.type }}"
+                                    data-name="snapshotType_{{ snapshotType.type }}"
+                                    data-model="snapshotType.enabled"
+                                >
+                                    <span
+                                        data-ng-bind="snapshotType.label"
+                                    ></span>
+                                </oui-checkbox>
+                            </oui-dropdown-item>
+                        </div>
+                    </oui-dropdown>
+                    <div class="d-flex align-items-center">
+                        <oui-spinner
+                            data-ng-if="$ctrl.isUpdatingSnapshotTypes"
+                            data-size="s"
+                            class="mr-2"
+                        ></oui-spinner>
+                        <oui-button
+                            class="mr-2"
+                            data-on-click="$ctrl.updateSnapshotTypes()"
+                            data-disabled="!$ctrl.canUpdateSnapshotTypes"
+                        >
+                            <span class="oui-icon oui-icon-check"></span>
+                        </oui-button>
+                        <oui-button
+                            data-on-click="$ctrl.resetSnapshotTypes()"
+                            data-disabled="!$ctrl.canUpdateSnapshotTypes"
+                        >
+                            <span class="oui-icon oui-icon-close"></span>
+                        </oui-button>
+                    </div>
+                </td>
+            </tr>
+            <!-- Custom snapshots rows -->
+            <tr
+                class="oui-datagrid__row"
+                data-ng-repeat="customSnapshot in $ctrl.snapshots.customs track by $index"
+            >
+                <td
+                    class="oui-datagrid__cell"
+                    data-translate="nasha_dashboard_partition_snapshots_list_custom_snapshot"
+                ></td>
+                <td colspan="2" class="oui-datagrid__cell">
+                    <div
+                        class="d-flex justify-content-between align-items-center"
+                    >
+                        <span data-ng-bind="customSnapshot"></span>
+                        <div class="d-flex align-items-center">
+                            <oui-button
+                                data-on-click="$ctrl.goToDelete(customSnapshot)"
+                            >
+                                <span class="oui-icon oui-icon-bin"></span>
+                            </oui-button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- Custom snapshot form row -->
+            <tr
+                class="oui-datagrid__row"
+                data-ng-if="$ctrl.isCustomSnapshotFormShown"
+            >
+                <td class="oui-datagrid__cell">
+                    <strong
+                        data-translate="nasha_dashboard_partition_snapshots_list_custom_snapshot"
+                    ></strong>
+                </td>
+                <td class="oui-datagrid__cell" colspan="2">
+                    <form
+                        name="$ctrl.customSnapshotForm"
+                        class="d-flex justify-content-between"
+                        data-ng-submit="$ctrl.createCustomSnapshot()"
+                        data-ng-disabled="$ctrl.isCreatingCustomSnapshot"
+                    >
+                        <div
+                            class="d-flex align-items-baseline oui-input-group oui-input-group_l"
+                        >
+                            <strong
+                                data-ng-bind="$ctrl.customSnapshotNamePrefix"
+                            ></strong>
+                            <strong
+                                data-ng-bind="$ctrl.customSnapshotNameSeparator"
+                            ></strong>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                class="oui-input"
+                                data-ng-model="$ctrl.model.customSnapshotName"
+                                required
+                            />
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <oui-spinner
+                                data-ng-if="$ctrl.isCreatingCustomSnapshot"
+                                data-size="s"
+                                class="mr-2"
+                            ></oui-spinner>
+                            <oui-button
+                                class="mr-2"
+                                data-type="submit"
+                                data-disabled="!$ctrl.canCreateCustomSnapshot"
+                            >
+                                <span class="oui-icon oui-icon-check"></span>
+                            </oui-button>
+                            <oui-button
+                                data-on-click="$ctrl.hideCustomSnapshotForm()"
+                                data-disabled="$ctrl.isCreatingCustomSnapshot"
+                            >
+                                <span class="oui-icon oui-icon-close"></span>
+                            </oui-button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div data-ui-view></div>
+</div>
