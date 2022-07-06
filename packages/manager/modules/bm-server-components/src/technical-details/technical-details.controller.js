@@ -1,6 +1,8 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 
+import { UPGRADE_TYPE } from './technical-details.constants';
+
 export default class BmServerComponentsTechnicalDetailsController {
   /* @ngInject */
   constructor($translate, ovhFeatureFlipping, $q) {
@@ -24,7 +26,8 @@ export default class BmServerComponentsTechnicalDetailsController {
             ? this.technicalDetails.storage.raid
             : '';
         this.upgradeWithTicketAvailable = false;
-        if (this.goToManualUpgrade) {
+        this.UPGRADE_TYPE = UPGRADE_TYPE;
+        if (this.goToUpgrade) {
           this.loadData();
         }
       })
@@ -36,7 +39,8 @@ export default class BmServerComponentsTechnicalDetailsController {
   isRamUpgradable() {
     return (
       this.upgradeWithTicketAvailable &&
-      this.technicalDetails.memory?.upgradable?.length
+      this.technicalDetails.memory?.upgradable?.length &&
+      !this.upgradeTask
     );
   }
 
@@ -112,7 +116,8 @@ export default class BmServerComponentsTechnicalDetailsController {
   isDisksUpgradable() {
     return (
       this.upgradeWithTicketAvailable &&
-      this.technicalDetails.storage?.upgradable?.length
+      this.technicalDetails.storage?.upgradable?.length &&
+      !this.upgradeTask
     );
   }
 
