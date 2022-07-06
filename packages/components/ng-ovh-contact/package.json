@@ -42,6 +42,7 @@
     "@ovh-ux/component-rollup-config": "^11.0.0 || ^12.0.0"
   },
   "peerDependencies": {
+    "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
