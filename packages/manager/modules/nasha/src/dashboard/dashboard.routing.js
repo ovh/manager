@@ -54,6 +54,8 @@ export default /* @ngInject */ ($stateProvider) => {
           success,
           error,
         }),
+      schema: /* @ngInject */ ($http) =>
+        $http.get('/dedicated/nasha.json').then(({ data }) => data),
       serviceInfo: /* @ngInject */ ($http, serviceName) =>
         $http
           .get(`/dedicated/nasha/${serviceName}/serviceInfos`)
