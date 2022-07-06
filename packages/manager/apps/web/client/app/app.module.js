@@ -200,6 +200,7 @@ export default async (containerEl, shellClient) => {
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
     )
+    .constant('shellClient', shellClient)
     .constant('constants', {
       prodMode: config.prodMode,
       aapiRootPath: config.aapiRootPath,
