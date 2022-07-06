@@ -207,10 +207,9 @@
                 >
                     <oui-tile-description>
                         <a
-                            data-ng-if="::$ctrl.orderedHosting"
+                            data-ng-if="::$ctrl.orderedHosting && $ctrl.orderedHostingLink"
                             data-ng-bind="::$ctrl.orderedHosting"
-                            data-ng-href="#/hosting/{{::$ctrl.orderedHosting}}?tab=GENERAL_INFORMATIONS"
-                            target="_top"
+                            data-ng-href="{{$ctrl.orderedHostingLink}}"
                         >
                         </a>
                         <span
@@ -241,12 +240,11 @@
                             data-ng-if="!$ctrl.loading.associatedHosting && $ctrl.hasAssociatedHostings"
                         >
                             <li
-                                data-ng-repeat="hosting in $ctrl.associatedHostings track by $index"
+                                data-ng-repeat="hosting in $ctrl.associatedHostingsDetails track by $index"
                             >
                                 <a
-                                    data-ng-bind="::hosting"
-                                    data-ng-href="#/hosting/{{::hosting}}?tab=MULTISITE"
-                                    target="_top"
+                                    data-ng-bind="::hosting.hosting"
+                                    data-ng-href="{{::hosting.url}}"
                                 >
                                 </a>
                             </li>
