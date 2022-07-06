@@ -107,6 +107,54 @@ export default /* @ngInject */ ($stateProvider) => {
           instanceId: instance.id,
         });
       },
+      checkFloatingIpAvailability: /* @ngInject */ (
+        $http,
+        coreConfig,
+        projectId,
+      ) => (region) => {
+        const product = 'floatingip';
+        return $http
+          .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
+            params: {
+              product,
+              ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
+            },
+          })
+          .then(({ data: { products } }) => {
+            return products
+              .find(({ name }) => name === product)
+              ?.regions.some(({ name }) => name === region);
+          });
+      },
+      assignFloatingIp: /* @ngInject */ (
+        $state,
+        projectId,
+        trackGridAction,
+        checkFloatingIpAvailability,
+      ) => (instance) => {
+        trackGridAction('assign-floating-ip');
+        if (instance.privateIpV4.length === 0) {
+          return $state.go(
+            'pci.projects.project.instances.create-private-network-warning',
+            {
+              projectId,
+              instanceId: instance.id,
+            },
+          );
+        }
+        return checkFloatingIpAvailability(instance.region).then(
+          (isFloatingIpAvailableInInstanceRegion) => {
+            return isFloatingIpAvailableInInstanceRegion
+              ? $state.go('pci.projects.project.additional-ips.order', {
+                  projectId,
+                  ipType: 'floating_ip',
+                  region: instance.region,
+                  instance: instance.id,
+                })
+              : null;
+          },
+        );
+      },
       enableMonthlyBillingInstance: /* @ngInject */ (
         $state,
         projectId,
@@ -366,6 +414,12 @@ export default /* @ngInject */ ($stateProvider) => {
               );
           }
         });
+      },
+      isAdditionalIpsAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
+        const featureName = 'public-cloud:additional-ips';
+        return ovhFeatureFlipping
+          .checkFeatureAvailability(featureName)
+          .then((feature) => feature.isFeatureAvailable(featureName));
       },
     },
   });

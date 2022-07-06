@@ -2,6 +2,8 @@ import JSURL from 'jsurl';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
+import set from 'lodash/set';
+import isFunction from 'lodash/isFunction';
 import isNumber from 'lodash/isNumber';
 import min from 'lodash/min';
 import map from 'lodash/map';
@@ -10,6 +12,7 @@ import {
   IP_TYPE_ENUM,
   REGIONS,
   GUIDE_URLS,
+  DEFAULTS_MODEL,
 } from './order.constants';
 
 export default class AdditionalIpController {
@@ -17,6 +20,7 @@ export default class AdditionalIpController {
   constructor(
     $q,
     $window,
+    $timeout,
     $translate,
     coreConfig,
     OvhApiOrderCloudProjectIp,
@@ -26,6 +30,7 @@ export default class AdditionalIpController {
   ) {
     this.$q = $q;
     this.$window = $window;
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.OvhApiOrderCloudProjectIp = OvhApiOrderCloudProjectIp;
@@ -36,6 +41,7 @@ export default class AdditionalIpController {
   }
 
   $onInit() {
+    this.currentStep = 0;
     this.currencySymbol = this.coreConfig.getUser().currency.symbol;
     this.allInstances = this.instances;
     this.filteredInstances = [];
@@ -53,6 +59,7 @@ export default class AdditionalIpController {
     };
     this.loadMessages();
     this.initIp();
+    this.setDefaultSelections();
   }
 
   static getMaximumQuantity(product) {
@@ -146,10 +153,12 @@ export default class AdditionalIpController {
 
   onProductChange(ipType) {
     if (ipType.name === IP_TYPE_ENUM.FAILOVER && !this.failOverIpCountries) {
-      this.initCountries();
-    } else if (ipType.name === IP_TYPE_ENUM.FLOATING && !this.regions) {
-      this.initRegions();
+      return this.initCountries();
     }
+    if (ipType.name === IP_TYPE_ENUM.FLOATING && !this.regions) {
+      return this.initRegions();
+    }
+    return null;
   }
 
   onRegionChange(region) {
@@ -242,7 +251,7 @@ export default class AdditionalIpController {
 
   initRegions() {
     this.loadingRegions = true;
-    this.additionalIpService
+    return this.additionalIpService
       .getRegions(this.projectId, this.coreConfig.getUser().ovhSubsidiary)
       .then((regions) => {
         this.regions = regions;
@@ -330,5 +339,51 @@ export default class AdditionalIpController {
         this.coreConfig.getUser().ovhSubsidiary
       ] || GUIDE_URLS.REGIONS_AVAILABILITY.DEFAULT
     );
+  }
+
+  getDefaultValue(field) {
+    return (
+      this.defaults[field.name] !== undefined &&
+      isFunction(field.getDefault) &&
+      field.getDefault(this.defaults[field.name], this[field.availableOptions])
+    );
+  }
+
+  onChangeAfterDefaultValueSet(methodToCall, params) {
+    if (this[methodToCall] && isFunction(this[methodToCall])) {
+      return this[methodToCall].call(
+        this,
+        ...params.map((prop) => get(this, prop)),
+      );
+    }
+    return null;
+  }
+
+  async setDefaultSelections() {
+    this.loadingDefaultValues = true;
+    for (let i = 0; i < DEFAULTS_MODEL.length; i += 1) {
+      const step = DEFAULTS_MODEL[i];
+      for (let j = 0; j < step.fields.length; j += 1) {
+        const defaultvalue = this.getDefaultValue(step.fields[j]);
+        if (defaultvalue !== undefined) {
+          set(this, step.fields[j].model, defaultvalue);
+          // eslint-disable-next-line no-await-in-loop
+          await this.onChangeAfterDefaultValueSet(
+            step.fields[j].onChange,
+            step.fields[j].onChangeParams,
+          );
+        } else {
+          this.$timeout(() => {
+            this.currentStep = i;
+            this.loadingDefaultValues = false;
+          });
+          return;
+        }
+      }
+      this.currentStep = i;
+    }
+    this.$timeout(() => {
+      this.loadingDefaultValues = false;
+    });
   }
 }
