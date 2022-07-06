@@ -1,0 +1,10 @@
+{
+  "telephony_white_label_manager_title": "Manager",
+  "telephony_white_label_manager_descrition": "W panelu klienta masz do dyspozycji interfejs do zarządzania usługami Telecom OVHcloud.",
+  "telephony_white_label_manager_checkbox_label": "Chcę zresetować hasło do panelu Manager.",
+  "telephony_white_label_manager_reset_password_title": "Przywrócenie hasła",
+  "telephony_white_label_manager_reset_password_description": "Ta procedura zresetuje hasło do panelu Manager.",
+  "telephony_white_label_manager_reset_password_warning": "Operacja ta spowoduje wyłączenie wszystkich kont użytkowników managera i wymaga ponownej konfiguracji ich haseł.",
+  "telephony_white_label_manager_reset_password_success": "Hasło zostało zresetowane.",
+  "telephony_white_label_manager_reset_password_error": "Wystąpił błąd podczas resetowania hasła. Spróbuj ponownie później."
+}
