@@ -260,14 +260,6 @@ angular.module('App').controller(
             }),
             this.$scope.alerts.page,
           );
-          this.atInternet.trackOrder({
-            name: `[hosting]::${this.model.offer.value}[${this.model.offer.value}]`,
-            page: 'web::payment-pending',
-            orderId: order.orderId,
-            priceTaxFree: order.prices.withoutTax.value,
-            price: order.prices.withTax.value,
-            status: 1,
-          });
           win.location = order.url;
         })
         .catch((err) => {
