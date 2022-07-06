@@ -146,7 +146,7 @@ export default function() {
      *  @methodOf ovhContact.service:ovhContact
      *
      *  @description
-     *  Get the entire list of contacts. This use api v7 to get all contacts details.
+     *  Get the entire list of contacts. This use api iceberg to get all contacts details.
      *
      *  @param {Boolean} refresh Flag telling to fully recreate the contact list.
      *
