@@ -207,11 +207,6 @@ export const registerCoreModule = (environment, { onLocaleChange } = {}) => {
           localConfig.serviceType = 'apiv6';
         }
 
-        if (/^apiv7\//.test(localConfig.url)) {
-          localConfig.url = localConfig.url.replace(/^apiv7/, '');
-          localConfig.serviceType = 'apiv7';
-        }
-
         return localConfig;
       },
     }))
@@ -237,10 +232,6 @@ export const registerCoreModule = (environment, { onLocaleChange } = {}) => {
           {
             serviceType: 'aapi',
             urlPrefix: '/engine/2api',
-          },
-          {
-            serviceType: 'apiv7',
-            urlPrefix: '/engine/apiv7',
           },
           {
             serviceType: 'ws',
