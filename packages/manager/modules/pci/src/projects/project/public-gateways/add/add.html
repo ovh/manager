@@ -1,5 +1,6 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 <div data-ui-view>
+    <oui-back-button data-on-click="$ctrl.onGoBackClick()"> </oui-back-button>
     <oui-header
         data-heading="{{:: 'pci_projects_project_public_gateways_add_title' | translate }}"
         class="mb-3"
@@ -40,9 +41,13 @@
         </a>
     </p>
 </div>
+<div data-ng-if="$ctrl.loadingDefaultValues">
+    <oui-spinner size="s"></oui-spinner>
+</div>
 <oui-stepper
     data-on-finish="$ctrl.add()"
-    data-current-index="$ctrl.currrentStep"
+    data-ng-if="!$ctrl.loadingDefaultValues"
+    data-current-index="$ctrl.currentStep"
 >
     <oui-step-form
         data-header="{{:: 'pci_projects_project_public_gateways_add_size_sub_title' | translate }}"
@@ -51,28 +56,11 @@
         data-editable="!$ctrl.isLoading"
         data-name="public_gateway_add_size"
         data-valid="$ctrl.selectedGatewaySize.product"
-        data-prevent-next="true"
     >
         <p
             data-translate="pci_projects_project_public_gateways_add_size_info"
         ></p>
-        <div class="my-3">
-            <oui-field
-                data-size="l"
-                data-label="{{:: 'pci_projects_project_public_gateways_add_modal_add_public_gateway_field_label' | translate }}"
-            >
-                <input
-                    class="oui-input"
-                    type="text"
-                    id="gatewayName"
-                    name="gatewayName"
-                    placeholder="{{ 'pci_projects_project_public_gateways_add_modal_add_public_gateway_field_placeholder' | translate }}"
-                    data-ng-model="$ctrl.gatewayName"
-                    required
-                />
-            </oui-field>
-        </div>
-        <div class="container-fluid px-0">
+        <div class="px-0">
             <pci-project-gateways-model-selector
                 data-ovh-subsidiary="$ctrl.user.ovhSubsidiary"
                 data-on-gateway-size-selection="$ctrl.onGatewaySizeSelect(gateway)"
@@ -85,7 +73,6 @@
         data-header="{{:: 'pci_projects_project_public_gateways_add_region_title' | translate }}"
         data-editable="!$ctrl.isLoading"
         data-on-focus="$ctrl.onRegionsFocus()"
-        data-prevent-next="true"
     >
         <p>
             <span
@@ -111,10 +98,8 @@
     <oui-step-form
         data-header="{{:: 'pci_projects_project_public_gateways_add_attach_private_network_to_public_gateway_sub_title' | translate }}"
         data-editable="!$ctrl.isLoading"
-        data-submit-text="{{:: 'pci_projects_project_public_gateways_add_submit_label' | translate }}"
         name="public_gateways_add_private_network"
         data-valid="$ctrl.selectedPrivateNetwork.name"
-        data-prevent-next="true"
     >
         <p
             data-translate="pci_projects_project_public_gateways_add_attach_private_network_to_public_gateway_intro1"
@@ -156,6 +141,31 @@
                 ></span>
             </oui-button>
         </oui-field>
+    </oui-step-form>
+    <oui-step-form
+        data-header="{{:: 'pci_projects_project_public_gateways_add_modal_add_public_gateway_field_placeholder' | translate }}"
+        data-editable="!$ctrl.isLoading"
+        data-submit-text="{{:: 'pci_projects_project_public_gateways_add_submit_label' | translate }}"
+        name="public_gateways_add_private_network"
+        data-valid="$ctrl.gatewayName"
+        data-prevent-next="true"
+    >
+        <div class="my-3">
+            <oui-field
+                data-size="l"
+                data-label="{{:: 'pci_projects_project_public_gateways_add_modal_add_public_gateway_field_label' | translate }}"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    id="gatewayName"
+                    name="gatewayName"
+                    placeholder="{{ 'pci_projects_project_public_gateways_add_modal_add_public_gateway_field_placeholder' | translate }}"
+                    data-ng-model="$ctrl.gatewayName"
+                    required
+                />
+            </oui-field>
+        </div>
     </oui-step-form>
 </oui-stepper>
 

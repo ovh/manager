@@ -1,19 +1,23 @@
 import get from 'lodash/get';
+import { setDefaultSelections } from '../../setStepperDefaults.utils';
 import {
   PUBLIC_GATEWAYS_READ_MORE_GUIDE,
   REGIONS_AVAILABILITY_URL,
   AVAILABLE_SUBNET,
   DEFAULT_IPVERSION,
+  DEFAULTS_MODEL,
 } from './add.constants';
 
 export default class PciPublicGatewaysAddController {
   /* @ngInject */
   constructor(
+    $timeout,
     $translate,
     coreConfig,
     PciPublicGatewaysService,
     CucCloudMessage,
   ) {
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.user = coreConfig.getUser();
     this.addPublicGatewaysReadMoreUrl =
@@ -26,6 +30,7 @@ export default class PciPublicGatewaysAddController {
   }
 
   $onInit() {
+    this.currentStep = 0;
     this.gatewayModel = {};
     this.privateNetworkModel = {};
     this.isLoading = false;
@@ -37,6 +42,7 @@ export default class PciPublicGatewaysAddController {
     this.privateNetworks = null;
     this.networkSubnet = null;
     this.gatewayName = null;
+    this.loadingDefaultValues = false;
 
     this.selectedPrivateNetwork = this.getDefaultSelectValue(
       'pci_projects_project_public_gateways_add_select_private_network',
@@ -45,6 +51,17 @@ export default class PciPublicGatewaysAddController {
       'pci_projects_project_public_gateways_add_modal_add_private_network_select_label',
     );
     this.loadMessages();
+    if (this.hasDefaultParams()) {
+      setDefaultSelections(this, DEFAULTS_MODEL, this.loadingDefaultValues);
+    }
+  }
+
+  hasDefaultParams() {
+    return !!(
+      this.defaults.network &&
+      this.defaults.subnet &&
+      this.defaults.region
+    );
   }
 
   getDefaultSelectValue(transKey) {
@@ -71,11 +88,17 @@ export default class PciPublicGatewaysAddController {
     this.trackPublicGateways('add::public-gateway_add_select-region');
     this.displaySelectedRegion = true;
     this.selectedRegion = region;
-    this.getSelectedRegionNetwork(this.projectId, this.selectedRegion.name);
+    return this.getSelectedRegionNetwork(
+      this.projectId,
+      this.selectedRegion.name,
+    );
   }
 
   getSelectedRegionNetwork(projectId, regionName) {
-    this.PciPublicGatewaysService.getPrivateNetworks(projectId, regionName)
+    return this.PciPublicGatewaysService.getPrivateNetworks(
+      projectId,
+      regionName,
+    )
       .then((network) => {
         this.privateNetworks = network;
       })
@@ -122,9 +145,30 @@ export default class PciPublicGatewaysAddController {
       .catch((error) => this.CucCloudMessage.error(get(error, 'data.message')));
   }
 
+  getSubnetById(projectId, regionName, networkId, subnetId) {
+    this.PciPublicGatewaysService.getSubnetById(
+      projectId,
+      regionName,
+      networkId,
+      subnetId,
+    )
+      .then((subnet) => {
+        this.networkSubnet = [subnet];
+      })
+      .catch((error) => this.CucCloudMessage.error(get(error, 'data.message')));
+  }
+
   onPrivateNetworkChange(selectedNetwork) {
     this.trackPublicGateways('add::public-gateway_add_add-private-network');
-    this.getNetworkSubnet(
+    if (this.hasDefaultParams()) {
+      return this.getSubnetById(
+        this.projectId,
+        this.defaults.region,
+        selectedNetwork.id,
+        this.defaults.subnet,
+      );
+    }
+    return this.getNetworkSubnet(
       this.projectId,
       this.selectedRegion.name,
       selectedNetwork.id,
@@ -196,6 +240,13 @@ export default class PciPublicGatewaysAddController {
       this.gatewayModel,
     )
       .then(() => {
+        if (
+          this.defaults.network &&
+          this.defaults.subnet &&
+          this.defaults.region
+        ) {
+          return this.goToPrivateNetwork(this.projectId);
+        }
         return this.goToPublicGateway(
           this.$translate.instant(
             'pci_projects_project_public_gateways_add_success',

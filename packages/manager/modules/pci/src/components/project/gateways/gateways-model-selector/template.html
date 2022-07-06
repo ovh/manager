@@ -19,7 +19,7 @@
             >
                 <strong
                     data-translate="{{ 'pci_projects_project_gateways_model_selector_bandwidth'}}"
-                    data-translate-values="{ bandwidth : gateway.blobs.technical.bandwidth.level }"
+                    data-translate-values="{ bandwidth : gateway.blobs.technical.bandwidth.level + ' ' +gateway.blobs.technical.bandwidth.maxUnit }"
                 ></strong>
             </div>
             <div class="d-flex mt-3" data-ng-if="gateway.pricings.length > 0">

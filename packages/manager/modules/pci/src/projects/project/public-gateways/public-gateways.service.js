@@ -50,6 +50,14 @@ export default class publicGatewaysServiceClass {
       .then(({ data: subnet }) => subnet);
   }
 
+  getSubnetById(serviceName, regionName, networkId, subnetId) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/region/${regionName}/network/${networkId}/subnet/${subnetId}`,
+      )
+      .then(({ data: subnet }) => subnet);
+  }
+
   addPrivateNetwork(serviceName, regionName, privateNetwork) {
     return this.$http
       .post(

@@ -6,20 +6,11 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor(
-    $q,
-    $http,
-    $translate,
-    OvhApiCloudProject,
-    OvhApiCloudProjectNetworkPrivate,
-    OvhApiCloudProjectNetworkPrivateSubnet,
-  ) {
+  constructor($q, $http, $translate, OvhApiCloudProject) {
     this.$q = $q;
     this.$http = $http;
     this.$translate = $translate;
     this.OvhApiCloudProject = OvhApiCloudProject;
-    this.OvhApiCloudProjectNetworkPrivate = OvhApiCloudProjectNetworkPrivate;
-    this.OvhApiCloudProjectNetworkPrivateSubnet = OvhApiCloudProjectNetworkPrivateSubnet;
   }
 
   getPrivateNetworks(serviceName) {
