@@ -5,7 +5,7 @@ export const HEADER_VERSION = 'X-OVH-MANAGER-VERSION';
 
 export const DEFAULT_PAGE = 'bootstrap';
 
-export const ROUTES_PREFIX = ['/engine/apiv6', '/engine/apiv7', '/engine/2api'];
+export const ROUTES_PREFIX = ['/engine/apiv6', '/engine/2api'];
 
 export const ROUTES_HEADERS_OVERRIDE = {
   '^/engine/2api/service': {
