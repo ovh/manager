@@ -5,10 +5,11 @@ export default {
   controller,
   template,
   bindings: {
-    instances: '<',
     createInstanceUrl: '<',
-    projectId: '<',
+    defaults: '<',
     goBack: '<',
+    instances: '<',
+    projectId: '<',
     publicCloudCatalog: '<',
   },
 };
