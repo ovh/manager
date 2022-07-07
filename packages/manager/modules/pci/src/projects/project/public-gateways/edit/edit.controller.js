@@ -1,12 +1,14 @@
 export default class PciPublicGatewaysEditController {
   /* @ngInject */
-  constructor($translate, PciPublicGatewaysService) {
+  constructor($translate, coreConfig, PciPublicGatewaysService) {
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.PciPublicGatewaysService = PciPublicGatewaysService;
   }
 
   $onInit() {
     this.isEditing = false;
+    this.ovhSubsidiary = this.coreConfig.getUser().ovhSubsidiary;
     this.selectedGatewaySize = null;
   }
 
