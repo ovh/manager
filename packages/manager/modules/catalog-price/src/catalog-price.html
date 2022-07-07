@@ -67,7 +67,7 @@
             data-ng-class="{ 'd-block': $ctrl.block }"
         >
             <span
-                data-ng-bind="::$ctrl.getPriceText($ctrl.price + $ctrl.tax)"
+                data-ng-bind="$ctrl.getPriceText($ctrl.price + $ctrl.tax)"
             ></span>
             <span data-ng-if="$ctrl.interval">
                 &#47;
