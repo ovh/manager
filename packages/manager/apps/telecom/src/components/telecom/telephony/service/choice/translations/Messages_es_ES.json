@@ -7,5 +7,6 @@
   "telephony_service_choice_filter_type_trunk": "Líneas Trunk",
   "telephony_service_choice_filter_type_fax": "Fax",
   "telephony_service_choice_filter_type_number": "Número",
-  "telephony_service_choice_destination": "Elija un servicio"
+  "telephony_service_choice_destination": "Seleccione un servicio",
+  "telephony_service_choice_filter_type_plugAndFax": "Líneas SIP (plug&amp;fax)"
 }

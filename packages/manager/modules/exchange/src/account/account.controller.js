@@ -403,8 +403,10 @@ export default class ExchangeAccountHomeController {
       const companyValue = account.company || '';
 
       return every(filter(criteria, { property: 'company' }), (criterium) => {
-        const companyValueUpperCase = `${companyValue}`.trim().upperCase();
-        const criteriumValueUpperCase = `${criterium.value}`.trim().upperCase();
+        const companyValueUpperCase = `${companyValue}`.trim().toUpperCase();
+        const criteriumValueUpperCase = `${criterium.value}`
+          .trim()
+          .toUpperCase();
 
         switch (criterium.operator) {
           case 'contains':

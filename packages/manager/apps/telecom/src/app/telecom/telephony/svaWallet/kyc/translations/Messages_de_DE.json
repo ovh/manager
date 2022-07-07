@@ -1,5 +1,4 @@
 {
-  "telephony_billingAccount_svaWallet_kyc_identity_representative_email": "E-Mail",
   "telephony_billingAccount_svaWallet_kyc_company_kind_ADMINISTRATION": "Verwaltung/Behörden oder Behörden und regionale Behörden",
   "telephony_billingAccount_svaWallet_kyc_company_kind_ASSOCIATION": "Organisation",
   "telephony_billingAccount_svaWallet_kyc_company_kind_CHURCH": "Gemeinde oder Kirche",
@@ -12,9 +11,5 @@
   "telephony_billingAccount_svaWallet_kyc_company_kind_FOUNDATION": "Einfache Stiftung",
   "telephony_billingAccount_svaWallet_kyc_company_kind_FOUNDATION_UNDER_UMBRELLA_FOUNDATION": "Gegründet unter der Schirmherrschaft einer Stiftung",
   "telephony_billingAccount_svaWallet_kyc_company_kind_GROUP_WITH_PUBLIC_INTEREST": "Gemeinnütziges Gemeinwohl, Universitätsklinikum, Staatliche Einrichtung von allgemeinem Interesse, Investmentgesellschaft, Private Gesundheitseinrichtungen von allgemeinem Interesse",
-  "telephony_billingAccount_svaWallet_kyc_company_kind_INSURANCE_COMPANY": "Versicherungsunternehmen",
-  "telephony_billingAccount_svaWallet_kyc_identity_company_crowdfundingPartner": "Mein Unternehmen erhält eine Crowdfunding-Finanzierung",
-  "telephony_billingAccount_svaWallet_kyc_identity_company_marketplace": "Mein Unternehmen ist ein Marketplace",
-  "telephony_billingAccount_svaWallet_kyc_identity_company_websiteUrl": "URL Ihrer Website",
-  "telephony_billingAccount_svaWallet_kyc_identity_submit_edit_label": "Bestätigen"
+  "telephony_billingAccount_svaWallet_kyc_company_kind_INSURANCE_COMPANY": "Versicherungsunternehmen"
 }

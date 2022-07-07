@@ -117,6 +117,7 @@
   "ovhManagerSupport_new_serviceType_managed_m3_aggregator": "Public Cloud databases for M3 Aggregator",
   "ovhManagerSupport_new_serviceType_managed_kafka_connect": "Public Cloud databases for Kafka Connect",
   "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud databases for Cassandra",
+  "ovhManagerSupport_new_serviceType_license_office_prepaid": "Licence Microsoft 365",
   "ovhManagerSupport_new_service": "Service concerné",
   "ovhManagerSupport_new_service_unknown": "Mon service n'est pas listé et/ou je ne dispose pas encore de ce service",
 

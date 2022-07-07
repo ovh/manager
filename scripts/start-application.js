@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from 'fs';
+import { existsSync, readdirSync, readFileSync } from 'fs';
 import concurrently from 'concurrently';
 import execa from 'execa';
 import inquirer from 'inquirer';
@@ -16,7 +16,11 @@ const applicationsWorkspace = 'packages/manager/apps';
 const getApplications = () =>
   readdirSync(applicationsWorkspace, { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory())
-    .map(({ name: application }) => {
+    .map(({ name }) => ({ application: name }))
+    .filter(({ application }) =>
+      existsSync(`${applicationsWorkspace}/${application}/package.json`),
+    )
+    .map(({ application }) => {
       const data = readFileSync(
         `${applicationsWorkspace}/${application}/package.json`,
         'utf8',

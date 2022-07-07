@@ -1,5 +1,4 @@
 {
-  "telephony_billingAccount_svaWallet_kyc_identity_representative_email": "E-mail",
   "telephony_billingAccount_svaWallet_kyc_company_kind_ADMINISTRATION": "Administração/Autoridades ou Agências públicas e autoridades regionais",
   "telephony_billingAccount_svaWallet_kyc_company_kind_ASSOCIATION": "Associação/Organismo jurídico",
   "telephony_billingAccount_svaWallet_kyc_company_kind_CHURCH": "Paroisse ou igreja",
@@ -12,9 +11,5 @@
   "telephony_billingAccount_svaWallet_kyc_company_kind_FOUNDATION": "Fundação simples",
   "telephony_billingAccount_svaWallet_kyc_company_kind_FOUNDATION_UNDER_UMBRELLA_FOUNDATION": "Fundação sob a égide de uma fundação de acolhimento",
   "telephony_billingAccount_svaWallet_kyc_company_kind_GROUP_WITH_PUBLIC_INTEREST": "Agrupamento de interesse público, Centro hospitalar universitário, Estabelecimento público de interesse geral, Sociedade de investimento imobiliário, Estabelecimentos de saúde privados de interesse coletivo",
-  "telephony_billingAccount_svaWallet_kyc_company_kind_INSURANCE_COMPANY": "Companhia de seguros",
-  "telephony_billingAccount_svaWallet_kyc_identity_company_crowdfundingPartner": "A minha empresa beneficia de um financiamento participativo (Crowdfunding)",
-  "telephony_billingAccount_svaWallet_kyc_identity_company_marketplace": "A minha empresa é um marketplace",
-  "telephony_billingAccount_svaWallet_kyc_identity_company_websiteUrl": "URL do seu website",
-  "telephony_billingAccount_svaWallet_kyc_identity_submit_edit_label": "Validar"
+  "telephony_billingAccount_svaWallet_kyc_company_kind_INSURANCE_COMPANY": "Companhia de seguros"
 }

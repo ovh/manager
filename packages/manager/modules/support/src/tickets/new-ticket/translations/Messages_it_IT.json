@@ -144,5 +144,6 @@
   "ovhManagerSupport_new_serviceType_managed_m3_aggregator": "Public Cloud Databases for M3 Aggregator",
   "ovhManagerSupport_new_serviceType_managed_kafka_connect": "Public Cloud Databases for Kafka Connect",
   "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud Databases for Cassandra",
-  "ovhManagerSupport_new_serviceType_ai_notebook": "AI Notebooks"
+  "ovhManagerSupport_new_serviceType_ai_notebook": "AI Notebooks",
+  "ovhManagerSupport_new_serviceType_license_office_prepaid": "Licenza Microsoft 365"
 }
