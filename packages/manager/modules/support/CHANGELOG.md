@@ -1,3 +1,12 @@
+## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.11.0...@ovh-ux/manager-support@1.11.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* **tickets.new-ticket:** add missing translation ([#7404](https://github.com/ovh/manager/issues/7404)) ([f439190](https://github.com/ovh/manager/commit/f4391904e767fd03d1f2f3cfe97a896dab59506c))
+
+
+
 # [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.10.0...@ovh-ux/manager-support@1.11.0) (2022-06-14)
 
 

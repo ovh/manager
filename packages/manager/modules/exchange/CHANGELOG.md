@@ -1,3 +1,12 @@
+## [3.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.5.2...@ovh-ux/manager-exchange@3.5.3) (2022-07-07)
+
+
+### Bug Fixes
+
+* **account:** apply search filters ([#7484](https://github.com/ovh/manager/issues/7484)) ([3e686bb](https://github.com/ovh/manager/commit/3e686bbf59982b98fa42e6af690655575b1bfaa0))
+
+
+
 ## [3.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.5.1...@ovh-ux/manager-exchange@3.5.2) (2022-06-30)
 
 

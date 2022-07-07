@@ -1,3 +1,12 @@
+## [6.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.8.0...@ovh-ux/manager-overthebox@6.8.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1706] ([1e48e5b](https://github.com/ovh/manager/commit/1e48e5baa72b66c34f44fd274c2a53e63722fb17))
+
+
+
 # [6.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.7.2...@ovh-ux/manager-overthebox@6.8.0) (2022-06-14)
 
 

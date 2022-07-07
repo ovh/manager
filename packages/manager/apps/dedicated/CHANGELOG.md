@@ -1,3 +1,14 @@
+## [17.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.22.2...@ovh-ux/manager-dedicated@17.22.3) (2022-07-07)
+
+
+### Bug Fixes
+
+* **cdn.onboarding:** remove typo ([#7434](https://github.com/ovh/manager/issues/7434)) ([ecdf544](https://github.com/ovh/manager/commit/ecdf544d602c0a4a0babcc8c6d2333b78b0dc358))
+* **i18n:** add missing translations [CDS 1713] ([8d39ae4](https://github.com/ovh/manager/commit/8d39ae4a53aebb9d59a99b3331d54890d23ccfa1))
+* **ip.byiop:** fix order page callback ([#7487](https://github.com/ovh/manager/issues/7487)) ([03e4d3f](https://github.com/ovh/manager/commit/03e4d3f01df7db590426e9180695fa47ca10deff))
+
+
+
 ## [17.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.22.1...@ovh-ux/manager-dedicated@17.22.2) (2022-07-01)
 
 
