@@ -6,12 +6,14 @@ import {
 export default class BillingOrdersMainCtrl {
   /* @ngInject */
   constructor(
+    $translate,
     constants,
     currentUser,
     featuresAvailabilities,
     purchasesOrdersSectionState,
     ordersSectionState,
   ) {
+    this.$translate = $translate;
     this.featuresAvailabilities = featuresAvailabilities;
     this.constants = constants;
     this.currentUser = currentUser;
@@ -33,5 +35,11 @@ export default class BillingOrdersMainCtrl {
       this.featuresAvailabilities[FEATURE_NAME] &&
       this.currentUser.legalform !== LEGALFORM_NOT_ALLOWED
     );
+  }
+
+  titleheading() {
+    return this.isAvailable()
+      ? this.$translate.instant('orders_page_title')
+      : '';
   }
 }
