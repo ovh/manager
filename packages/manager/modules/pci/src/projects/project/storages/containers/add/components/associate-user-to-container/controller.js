@@ -1,6 +1,8 @@
 import {
   ASSOCIATE_CONTAINER_USER_CONTAINER_MESSAGES,
   CONTAINER_USER_ASSOCIATION_MODES,
+  NAMESPACES,
+  USER_STATUS,
 } from './constant';
 
 export default class CreateLinkedUserController {
@@ -14,6 +16,10 @@ export default class CreateLinkedUserController {
 
   $onInit() {
     this.loadMessages();
+  }
+
+  $onDestroy() {
+    this.PciStoragesUsersService.stopPollingUserStatus(NAMESPACES.CREATE_USER);
   }
 
   loadMessages() {
@@ -62,10 +68,24 @@ export default class CreateLinkedUserController {
       description,
     })
       .then((user) => {
+        return this.PciStoragesUsersService.pollUserStatus(
+          this.projectId,
+          user.id,
+          USER_STATUS.OK,
+          NAMESPACES.CREATE_USER,
+        );
+      })
+      .then((user) => {
         this.users.push(user);
         this.userModel.createMode.user = user;
 
         return user;
+      })
+      .then((user) => {
+        return this.generateUserS3Credential(user);
+      })
+      .then((credential) => {
+        this.userModel.createMode.credential = credential;
       })
       .catch(() => {
         return this.CucCloudMessage.error(
