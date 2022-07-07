@@ -6,6 +6,7 @@ export default {
     model: '=',
     initValue: '<',
     disabled: '<',
+    readonly: '<',
     callback: '&',
     callbackSuccess: '&',
     callbackError: '&',

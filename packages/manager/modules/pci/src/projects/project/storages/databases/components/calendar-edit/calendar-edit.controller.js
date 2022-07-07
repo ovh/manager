@@ -13,6 +13,9 @@ export default class PciCalendarEditController {
     if (timezone !== 0) {
       this.gmt += `${timezone > 0 ? ' +' : ' '}${timezone}`;
     }
+
+    const [hoursModel, minutesModel] = this.model.split(':');
+    this.readonlyTime = `${hoursModel} : ${minutesModel}`;
   }
 
   validate() {

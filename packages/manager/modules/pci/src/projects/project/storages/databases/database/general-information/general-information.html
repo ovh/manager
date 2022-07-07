@@ -538,7 +538,8 @@
                             data-callback="$ctrl.updateBackupTime()"
                             data-callback-success="$ctrl.handleBackupTimeSuccess()"
                             data-callback-error="$ctrl.showBackupError()"
-                            data-disabled="!$ctrl.database.isActive() || !$ctrl.isFeatureActivated('editBackupTime')"
+                            data-disabled="!$ctrl.database.isActive()"
+                            data-readonly="!$ctrl.isFeatureActivated('editBackupTime')"
                         ></pci-databases-calendar-edit>
                         <button
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"

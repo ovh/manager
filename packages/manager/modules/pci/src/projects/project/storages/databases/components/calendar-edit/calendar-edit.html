@@ -4,9 +4,14 @@
         model="$ctrl.model"
         format="H:i"
         inline
-        data-ng-if="!$ctrl.refreshCalendarValue"
+        data-ng-if="!$ctrl.refreshCalendarValue && !$ctrl.readonly"
         disabled="$ctrl.disabled"
     ></oui-timepicker>
+    <span
+        class="border rounded px-3 py-2 oui-color-g-400"
+        data-ng-bind=":: $ctrl.readonlyTime"
+        data-ng-if="$ctrl.readonly"
+    ></span>
     <div ng-if="!$ctrl.isEqualToInitialValue()">
         <button
             type="button"
