@@ -1,7 +1,8 @@
 export default class {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, Poller) {
     this.$http = $http;
+    this.Poller = Poller;
   }
 
   getBuckets(serviceName, regionName) {
@@ -81,5 +82,33 @@ export default class {
     return this.$http
       .delete(`/cloud/project/${serviceName}/user/${userId}/s3Credentials`)
       .then(({ data }) => data);
+  }
+
+  /**
+   * Call this to be informed where the desired status is on
+   * @param serviceName {String}: concerned project
+   * @param userId {String}: concerned user
+   * @param status {String}: status to check
+   * @param namespace {String}: action scope
+   * @returns {Promise}: $http request promise
+   */
+  pollUserStatus(serviceName, userId, status, namespace) {
+    return this.Poller.poll(
+      `/cloud/project/${serviceName}/user/${userId}`,
+      {},
+      {
+        namespace,
+        method: 'get',
+        successRule: (user) => user.status === status,
+      },
+    );
+  }
+
+  /**
+   * Call this to stop the desired storages user task
+   * @param namespace {String}: task name to stop
+   */
+  stopPollingUserStatus(namespace) {
+    this.Poller.kill({ namespace });
   }
 }
