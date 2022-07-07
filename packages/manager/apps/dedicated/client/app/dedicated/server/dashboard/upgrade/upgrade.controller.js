@@ -104,7 +104,7 @@ export default class {
             'dedicated_server_dashboard_upgrade_order_success',
           )} <a href=${
             order.order.url
-          } rel='noopener'>${this.$translate.instant(
+          } rel='noopener' target="_top">${this.$translate.instant(
             'dedicated_server_dashboard_upgrade_order_success_validate',
           )}</a>`,
         );
