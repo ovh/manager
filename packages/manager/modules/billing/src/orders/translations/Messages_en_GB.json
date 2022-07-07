@@ -1,4 +1,11 @@
 {
   "purchaseOrders_page_title": "My internal references",
-  "orders_purchase": "Concept of Order Number or Purchase Order (PO)"
+  "orders_purchase": "Concept of Order Number or Purchase Order (PO)",
+  "orders_page_title": "My orders ",
+  "orders_page_description": "View your logs, and track orders in progress. Access your purchase orders.",
+  "orders_date": "Date",
+  "orders_id": "Order number ",
+  "orders_status": "Status",
+  "orders_billing": "Billing",
+  "orders_guides": "Guides"
 }
