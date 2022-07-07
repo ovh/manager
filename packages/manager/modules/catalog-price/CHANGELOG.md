@@ -1,3 +1,12 @@
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.6.0...@ovh-ux/manager-catalog-price@1.6.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* **template:** remove one-time binding for displaying price ([#7510](https://github.com/ovh/manager/issues/7510)) ([a74d69d](https://github.com/ovh/manager/commit/a74d69d0d85b5095f818c5be69f23498ffe8866f))
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.5.0...@ovh-ux/manager-catalog-price@1.6.0) (2021-10-27)
 
 
