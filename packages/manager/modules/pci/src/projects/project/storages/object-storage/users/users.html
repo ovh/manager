@@ -14,6 +14,12 @@
 <p
     data-translate="pci_projects_project_storages_containers_users_user_description"
 ></p>
+<!--User credential overview inform -->
+<pci-project-storages-user-credential-banner
+    data-ng-if="$ctrl.userDetails"
+    data-user="$ctrl.userDetails"
+    data-credential="$ctrl.userCredential"
+></pci-project-storages-user-credential-banner>
 
 <oui-datagrid data-rows="$ctrl.userList">
     <oui-datagrid-column
@@ -72,7 +78,7 @@
     <oui-datagrid-topbar>
         <button
             class="oui-button oui-button_secondary"
-            data-ng-click="$ctrl.goToUsersAndRoles()"
+            data-ng-click="$ctrl.goToAddUser()"
         >
             <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span>
             <span

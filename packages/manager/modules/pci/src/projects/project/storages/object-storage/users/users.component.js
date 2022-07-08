@@ -13,5 +13,9 @@ export default {
     goToUsers: '<',
     trackingPrefix: '<',
     downloadOpenStackRclone: '<',
+    goToAddUser: '<',
+    goToUsersBanner: '<',
+    userDetails: '<',
+    userCredential: '<',
   },
 };

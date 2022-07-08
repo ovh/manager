@@ -42,6 +42,11 @@ export default /* @ngInject */ ($stateProvider) => {
       userList: /* @ngInject */ (PciStoragesObjectStorageService, projectId) =>
         PciStoragesObjectStorageService.getS3Users(projectId),
 
+      allUserList: /* @ngInject */ (
+        PciStoragesObjectStorageService,
+        projectId,
+      ) => PciStoragesObjectStorageService.getAllS3Users(projectId),
+
       isUserTabActive: /* @ngInject */ ($transition$, $state) => () => {
         return $state
           .href($state.current.name, $transition$.params())
