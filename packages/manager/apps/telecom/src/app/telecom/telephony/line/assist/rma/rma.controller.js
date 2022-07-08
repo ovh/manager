@@ -1,101 +1,167 @@
 import remove from 'lodash/remove';
-import set from 'lodash/set';
 
-export default /* @ngInject */ function TelecomTelephonyLineAssistRmaCtrl(
-  $stateParams,
-  $q,
-  $translate,
-  TucToast,
-  TucToastError,
-  OvhApiTelephony,
-) {
-  const self = this;
+import { TEXT_FOR_MODAL, ACTION_TYPE, RMA_NEW_TYPE } from './rma.constants';
 
-  function init() {
-    self.rmaList = null;
-    return self
-      .fetchRma()
-      .then((result) => {
-        self.rmaList = result;
-      })
-      .catch((err) => new TucToastError(err));
+export default class TelecomTelephonyLineAssistRmaCtrl {
+  /* @ngInject */
+  constructor($translate, lineAssistRmaService, TucToast, TucToastError) {
+    this.$translate = $translate;
+    this.lineAssistRmaService = lineAssistRmaService;
+    this.TucToast = TucToast;
+    this.TucToastError = TucToastError;
   }
 
-  self.fetchPhone = function fetchPhone() {
-    return OvhApiTelephony.Line()
-      .Phone()
-      .v6()
-      .get({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      }).$promise;
-  };
+  $onInit() {
+    this.rmaList = null;
+    this.actionDoing = false;
 
-  self.fetchRma = function fetchRma() {
-    return OvhApiTelephony.Line()
-      .Phone()
-      .RMA()
-      .v6()
-      .query({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      })
-      .$promise.catch((err) => {
-        if (err.status === 404) {
-          // line has no phone
-          return [];
-        }
-        return $q.reject(err);
-      })
-      .then((rmaIds) =>
-        $q.all(
-          rmaIds.map(
-            (id) =>
-              OvhApiTelephony.Line()
-                .Phone()
-                .RMA()
-                .v6()
-                .get({
-                  billingAccount: $stateParams.billingAccount,
-                  serviceName: $stateParams.serviceName,
-                  id,
-                }).$promise,
-          ),
-        ),
-      );
-  };
+    this.resetModalInfo();
 
-  self.cancelRma = function cancelRma(rma) {
-    set(rma, 'isCancelling', true);
-    return OvhApiTelephony.Line()
-      .Phone()
-      .RMA()
-      .v6()
-      .cancel({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-        id: rma.id,
+    return this.lineAssistRmaService
+      .fetchRma(this.billingAccount, this.serviceName)
+      .then((result) => {
+        this.rmaList = result;
       })
-      .$promise.then(() => {
-        remove(self.rmaList, { id: rma.id });
-        TucToast.success(
-          $translate.instant('telephony_line_assist_rma_cancel_success'),
+      .catch((err) => new this.TucToastError(err));
+  }
+
+  resetModalInfo() {
+    this.isOpenModal = false;
+    this.modal = {
+      rma: null,
+      title: null,
+      content: null,
+      primaryAction: null,
+    };
+  }
+
+  trackDownloadPdf() {
+    this.rmaTrackClick('rma-download-receipt');
+  }
+
+  generateCancelRmaModal(rma) {
+    this.rmaTrackClick('rma-cancel');
+    this.modal = {
+      rma,
+      title: TEXT_FOR_MODAL.cancelRma,
+      content: `${TEXT_FOR_MODAL.cancelRma}_modal_content`,
+      primaryAction: ACTION_TYPE.cancelRma,
+    };
+    this.isOpenModal = true;
+  }
+
+  generateEquipmentOutOfOrderModal(rma) {
+    this.rmaTrackClick('rma-report-equipment');
+    this.modal = {
+      rma,
+      title: TEXT_FOR_MODAL.equipmentOutOfOrder,
+      content: `${TEXT_FOR_MODAL.equipmentOutOfOrder}_modal_content`,
+      primaryAction: ACTION_TYPE.equipmentOutOfOrder,
+    };
+    this.isOpenModal = true;
+  }
+
+  generateKeepingLineModal(rma) {
+    this.rmaTrackClick('rma-keep-line');
+    this.modal = {
+      rma,
+      title: TEXT_FOR_MODAL.keepingLine,
+      content: `${TEXT_FOR_MODAL.keepingLine}_modal_content`,
+      primaryAction: ACTION_TYPE.keepingLine,
+    };
+    this.isOpenModal = true;
+  }
+
+  generateTerminateLineModal(rma) {
+    this.rmaTrackClick('rma-resiliate-line');
+    this.modal = {
+      rma,
+      title: TEXT_FOR_MODAL.terminateLine,
+      content: `${TEXT_FOR_MODAL.terminateLine}_modal_content`,
+      primaryAction: ACTION_TYPE.terminateLine,
+    };
+    this.isOpenModal = true;
+  }
+
+  executeAction(rma) {
+    switch (this.modal.primaryAction) {
+      case ACTION_TYPE.cancelRma:
+        return this.cancelRma(rma);
+      case ACTION_TYPE.equipmentOutOfOrder:
+        return this.equipmentOutOfOrder();
+      case ACTION_TYPE.keepingLine:
+        return this.keepingLine(rma);
+      case ACTION_TYPE.terminateLine:
+        return this.terminateLine(rma);
+      default:
+        return null;
+    }
+  }
+
+  cancelRma(rma) {
+    this.actionDoing = true;
+    return this.lineAssistRmaService
+      .cancelRma(this.billingAccount, this.serviceName, rma)
+      .then(() => {
+        remove(this.rmaList, { id: rma.id });
+        return this.TucToast.success(
+          this.$translate.instant('telephony_line_assist_rma_cancel_success'),
         );
       })
-      .catch((err) => new TucToastError(err))
+      .catch((err) => new this.TucToastError(err))
       .finally(() => {
-        set(rma, 'isCancelling', false);
+        this.isOpenModal = false;
+        this.actionDoing = false;
       });
-  };
+  }
 
-  self.formatEquipementReference = function formatEquipementReference(ref) {
-    // example : 'AB12345' => 'AB:12:34:5'
-    return ((ref || '').match(/\w{1,2}/g) || []).join(':');
-  };
+  equipmentOutOfOrder() {
+    window.location.href = this.urlNewTicket;
+  }
 
-  self.getPdfUrl = function getPdfUrl(rma) {
-    return `http://www.ovh.com/cgi-bin/telephony/rma.pl?reference=${rma.id}`;
-  };
+  keepingLine(rma) {
+    this.actionDoing = true;
+    return this.lineAssistRmaService
+      .changeType(
+        this.billingAccount,
+        this.serviceName,
+        rma,
+        RMA_NEW_TYPE.toSip,
+      )
+      .then(() => {
+        return this.reloadPage(
+          this.$translate.instant(
+            'telephony_line_assist_rma_keeping_line_success',
+          ),
+        );
+      })
+      .catch((err) => new this.TucToastError(err))
+      .finally(() => {
+        this.isOpenModal = false;
+        this.actionDoing = false;
+      });
+  }
 
-  init();
+  terminateLine(rma) {
+    this.actionDoing = true;
+    return this.lineAssistRmaService
+      .changeType(
+        this.billingAccount,
+        this.serviceName,
+        rma,
+        RMA_NEW_TYPE.resiliate,
+      )
+      .then(() => {
+        return this.reloadPage(
+          this.$translate.instant(
+            'telephony_line_assist_rma_terminate_line_success',
+          ),
+        );
+      })
+      .catch((err) => new this.TucToastError(err))
+      .finally(() => {
+        this.isOpenModal = false;
+        this.actionDoing = false;
+      });
+  }
 }
