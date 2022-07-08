@@ -1,0 +1,9 @@
+{
+  "telephony_line_phone_detach_title": "Desconectar a linha de um telefone",
+  "telephony_line_phone_detach_info1": "Esta linha está atualmente ligada ao Plug&amp;Phone: {{phoneName}} ({{phoneMacAddress}}).",
+  "telephony_line_phone_detach_info2": "Para o desassociar, introduza o endereço IP público do Plug&amp;Phone e clique no botão <strong>Desconectar</strong>.",
+  "telephony_line_phone_detach_device": "Endereço IP público",
+  "telephony_line_phone_detach_device_action": "Desassociar",
+  "telephony_line_phone_detach_device_success": "A linha foi desassociada com sucesso",
+  "telephony_line_phone_detach_device_error": "Ocorreu um erro, o desligamento da linha não pôde ser bem sucedido."
+}

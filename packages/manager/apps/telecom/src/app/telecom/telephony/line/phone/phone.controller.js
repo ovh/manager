@@ -131,19 +131,27 @@ export default class TelecomTelephonyLinePhoneCtrl {
         tracking: 'telecom::telephony::billingAccount::line::phone::phonebook',
       },
       {
-        name: 'line_phone_order_attach',
-        sref: 'telecom.telephony.billingAccount.line.dashboard.phone.attach',
-        disabled:
-          (!this.line.hasPhone && this.line.isAttachedToOtherLinesPhone) ||
-          this.line.hasPhone,
-        text:
-          this.line.isAttachedToOtherLinesPhone && this.line.hasPhone
-            ? this.$translate.instant(
-                'telephony_line_phone_actions_line_phone_order_detach',
-              )
-            : this.$translate.instant(
-                'telephony_line_phone_actions_line_phone_order_attach',
-              ),
+        name: `${
+          this.line.hasPhone
+            ? 'line_phone_order_detach'
+            : 'line_phone_order_attach'
+        }`,
+        sref: `${
+          this.line.hasPhone
+            ? 'telecom.telephony.billingAccount.line.dashboard.phone.detach'
+            : 'telecom.telephony.billingAccount.line.dashboard.phone.attach'
+        }`,
+        disabled: !(
+          (this.line.hasPhone && this.line.isAttachedToOtherLinesPhone) ||
+          !this.line.hasPhone
+        ),
+        text: this.line.hasPhone
+          ? this.$translate.instant(
+              'telephony_line_phone_actions_line_phone_order_detach',
+            )
+          : this.$translate.instant(
+              'telephony_line_phone_actions_line_phone_order_attach',
+            ),
         tracking: 'telecom::telephony::billingAccount::line::phone::equipment',
       },
     ];
