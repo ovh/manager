@@ -57,6 +57,7 @@ useShellClient('hub')
       .catch(() => {})
       .then(() => import('./app.module'))
       .then(({ default: startApplication }) => {
+        console.log('test');
         startApplication(document.body, getShellClient());
       });
   });
