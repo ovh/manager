@@ -32,5 +32,17 @@
   "telephony_line_assist_rma_step_name_validation": "Validation of phone change",
   "telephony_line_assist_rma_step_status_todo": "Queued",
   "telephony_line_assist_rma_step_status_done": "Confirmed",
-  "telephony_line_assist_rma_pdf_download": "Download the return document"
+  "telephony_line_assist_rma_pdf_download": "Download the return document",
+  "telephony_line_assist_rma_step_name_dispatchJustification": "Justification for sending",
+  "telephony_line_assist_rma_equipment_out_of_order": "Report out of service equipment",
+  "telephony_line_assist_rma_keeping_line": "Keep phone line without hardware",
+  "telephony_line_assist_rma_terminate_line": "Cancel the associated telephone line",
+  "telephony_line_assist_rma_modal_yes": "Yes",
+  "telephony_line_assist_rma_modal_no": "No",
+  "telephony_line_assist_rma_cancel_modal_content": "Do you want to cancel this RMA?",
+  "telephony_line_assist_rma_equipment_out_of_order_modal_content": "Do you want to report a device that is down? {{ breakLine }} (You will then be redirected to the incident reporting page)",
+  "telephony_line_assist_rma_keeping_line_modal_content": "Do you want to keep the phone line without hardware?",
+  "telephony_line_assist_rma_terminate_line_modal_content": "Do you want to cancel the associated phone line?",
+  "telephony_line_assist_rma_keeping_line_success": "Hardware-less line configuration request completed successfully",
+  "telephony_line_assist_rma_terminate_line_success": "Line cancellation request completed successfully"
 }
