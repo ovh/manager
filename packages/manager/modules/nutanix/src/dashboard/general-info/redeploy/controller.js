@@ -2,11 +2,13 @@ import cloneDeep from 'lodash/cloneDeep';
 import {
   REDEPLOY_CONFIG_OPTIONS,
   PRISM_CENTRAL_TYPE_ALONE,
+  PRISM_CENTRAL_TYPE_SCALE,
   PRISM_CENTRAL_TYPES,
   IPV4_REGEX,
   IPV4_BLOCK_REGEX,
   TRACKING_PREFIX,
   CLUSTER_CONFIG_TERMS,
+  IP_FOR_SCALE_REDEPLOY,
 } from './constants';
 
 export default class NutanixGeneralInfoRedeployCtrl {
@@ -53,9 +55,9 @@ export default class NutanixGeneralInfoRedeployCtrl {
   addEmptyIp(prismCentralType) {
     if (
       this.config.prismCentral?.ips?.length === 0 &&
-      prismCentralType !== PRISM_CENTRAL_TYPE_ALONE
+      prismCentralType === PRISM_CENTRAL_TYPE_SCALE
     ) {
-      this.config.prismCentral.ips = [''];
+      this.config.prismCentral.ips.length = IP_FOR_SCALE_REDEPLOY;
     }
   }
 
@@ -104,14 +106,6 @@ export default class NutanixGeneralInfoRedeployCtrl {
       form[`ip${index}`]?.$dirty
     );
   };
-
-  addPrismCentralIp() {
-    this.config.prismCentral.ips.push('');
-  }
-
-  removePrismCentralIp(index) {
-    this.config.prismCentral.ips.splice(index, 1);
-  }
 
   setRedundancyFactor(modelValue) {
     this.config.redundancyFactor = +modelValue;
