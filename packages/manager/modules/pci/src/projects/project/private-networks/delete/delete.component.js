@@ -7,6 +7,8 @@ export default {
     projectId: '<',
     networkId: '<',
     subnetId: '<',
+    trackPrivateNetworks: '<',
+    onCancelClick: '<',
   },
   controller,
   template,
