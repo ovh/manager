@@ -23,7 +23,7 @@
     "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/manager-support": "^0.6.0 || ^0.7.0 || ^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.9.1",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.11",
+    "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.4",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",

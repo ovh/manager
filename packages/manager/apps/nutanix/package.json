@@ -28,7 +28,7 @@
     "@ovh-ux/manager-nutanix": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-preloader": "^1.1.0",
     "@ovh-ux/ng-at-internet": "^5.9.1",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
+    "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-payment-method": "^9.2.0",

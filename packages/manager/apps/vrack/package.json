@@ -25,7 +25,7 @@
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/manager-vrack": "^0.7.0 || ^1.0.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.11",
+    "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.2.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",

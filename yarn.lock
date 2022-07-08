@@ -4525,10 +4525,10 @@
     rollup-plugin-sass "^1.2.2"
     slash "^2.0.0"
 
-"@ovh-ux/ng-ovh-api-wrappers@^4.0.11", "@ovh-ux/ng-ovh-api-wrappers@^4.0.4":
-  version "4.0.11"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.11.tgz#c8018b8e545408916125f22778a15f88b6916907"
-  integrity sha512-YAGb5Fe6IH7GenWiuwu8Wr0S8IhvuQly7XDTI6/4B9L27wJWqY7gYFghvS/kRhAsYI9AKkl7tDAFZo/nJHkaRg==
+"@ovh-ux/ng-ovh-api-wrappers@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-5.0.0.tgz#b6d2668cb37592594369315ed3c563b6ab53837b"
+  integrity sha512-VXWI8X3GNPBI3Jxormh0E/WRgVi4Q3yA1UX6sRPNcID+eZCzLVSt58nXSttcgmJoQnVVDBMOYnuxT8WDAEe+pA==
   dependencies:
     lodash "^4.17.21"
 
