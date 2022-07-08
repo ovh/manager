@@ -7,6 +7,7 @@ import 'ovh-api-services';
 
 import accessories from './accessories';
 import attachLine from './attachLine';
+import detachLine from './detachLine';
 import codec from './codec';
 import configuration from './configuration';
 import details from './details';
@@ -30,6 +31,7 @@ angular
     attachLine,
     codec,
     configuration,
+    detachLine,
     details,
     order,
     phonebook,

@@ -1,11 +1,11 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.line.dashboard.phone.attach',
+    'telecom.telephony.billingAccount.line.dashboard.phone.detach',
     {
-      url: '/attach',
+      url: '/detach',
       views: {
         'lineView@telecom.telephony.billingAccount.line.dashboard':
-          'telephonyLinePhoneAttach',
+          'telephonyLinePhoneDetach',
       },
       resolve: {
         billingAccount: /* @ngInject */ ($transition$) =>
@@ -40,7 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return promise;
         },
         breadcrumb: /* @ngInject */ ($translate) =>
-          $translate.instant('telephony_line_phone_attach_title'),
+          $translate.instant('telephony_line_phone_detach_title'),
       },
     },
   );
