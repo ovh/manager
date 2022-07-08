@@ -151,6 +151,7 @@ export default class PciStoragesContainersService {
     projectId,
     containerId,
     isHighPerfStorage = false,
+    isStandardS3Storage = false,
     containerRegion,
   ) {
     let promise = null;
@@ -159,6 +160,14 @@ export default class PciStoragesContainersService {
       promise = this.$http
         .get(
           `/cloud/project/${projectId}/region/${region}/storage/${containerId}`,
+        )
+        .then(({ data }) => {
+          return { ...data, region };
+        });
+    } else if (isStandardS3Storage) {
+      promise = this.$http
+        .get(
+          `/cloud/project/${projectId}/region/${region}/storageStandard/${containerId}`,
         )
         .then(({ data }) => {
           return { ...data, region };
