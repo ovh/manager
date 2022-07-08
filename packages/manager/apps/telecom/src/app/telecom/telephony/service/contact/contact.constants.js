@@ -1,6 +1,7 @@
 export const DIRECTORY_INFO = {
   status: {
     todo: 'todo',
+    doing: 'doing',
     error: 'error',
   },
   type: {
