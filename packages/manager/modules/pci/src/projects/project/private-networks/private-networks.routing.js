@@ -23,27 +23,33 @@ export default /* @ngInject */ ($stateProvider) => {
       createNetwork: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.privateNetwork.add', { projectId }),
 
-      deleteSubnet: /* @ngInject */ ($state, projectId) => (
-        networkId,
-        subnetId,
-      ) =>
-        $state.go('pci.projects.project.privateNetwork.delete', {
+      deleteSubnet: /* @ngInject */ (
+        $state,
+        projectId,
+        trackPrivateNetworks,
+      ) => (networkId, subnetId) => {
+        trackPrivateNetworks(`table-option-menu::delete`);
+        return $state.go('pci.projects.project.privateNetwork.delete', {
           projectId,
           networkId,
           subnetId,
-        }),
+        });
+      },
       networkId: /* @ngInject */ ($transition$) => $transition$.params().id,
       privateNetworks: /* @ngInject */ (PciPrivateNetworks, projectId) =>
         PciPrivateNetworks.getPrivateNetworks(projectId),
-      goToAddPublicGateway: /* @ngInject */ ($state, projectId) => (
-        networkId,
-        subnet,
-      ) =>
-        $state.go('pci.projects.project.public-gateways.add', {
+      goToAddPublicGateway: /* @ngInject */ (
+        $state,
+        projectId,
+        trackPrivateNetworks,
+      ) => (networkId, subnet) => {
+        trackPrivateNetworks(`table-option-menu::assign-public-gateway`);
+        return $state.go('pci.projects.project.public-gateways.add', {
           projectId,
           networkId,
           subnet,
-        }),
+        });
+      },
       privateNetworksRegions: /* @ngInject */ (privateNetworks) =>
         Array.from(
           new Set(
@@ -135,6 +141,9 @@ export default /* @ngInject */ ($stateProvider) => {
     translations: {
       value: ['.'],
       format: 'json',
+    },
+    atInternet: {
+      rename: 'PublicCloud::pci::projects::project::privateNetwork',
     },
   });
 };
