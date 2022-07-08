@@ -16,7 +16,7 @@
 <oui-stepper data-current-index="$ctrl.currentStep">
     <oui-step-form
         data-header="{{:: ('dedicated_server_dashboard_upgrade_select_option_title_' + $ctrl.upgradeType) | translate }}"
-        data-description="{{:: ('dedicated_server_dashboard_upgrade_select_option_description_' + $ctrl.upgradeType) | translate }}"
+        data-description="{{:: $ctrl.hasRenewPeriod() ? 'dedicated_server_dashboard_upgrade_select_option_description_part_1_with_interval' : 'dedicated_server_dashboard_upgrade_select_option_description_part_1' | translate : { interval: $ctrl.renewPeriod } }}"
         data-submit-text="{{:: 'dedicated_server_dashboard_upgrade_order' | translate }}"
         data-on-submit="$ctrl.orderOption()"
         data-disabled="$ctrl.upgradeStarted"
@@ -25,7 +25,7 @@
         data-prevent-next
     >
         <p
-            data-translate="dedicated_server_dashboard_upgrade_select_option_description"
+            data-translate="dedicated_server_dashboard_upgrade_select_option_description_part_2"
         ></p>
         <oui-datagrid data-rows="$ctrl.upgradeOptions">
             <oui-datagrid-column
@@ -39,7 +39,7 @@
                 </oui-radio>
             </oui-datagrid-column>
             <oui-datagrid-column
-                data-title=":: 'dedicated_server_dashboard_upgrade_select_option_price' | translate"
+                data-title=":: $ctrl.hasRenewPeriod() ? 'dedicated_server_dashboard_upgrade_select_option_price_with_interval' : 'dedicated_server_dashboard_upgrade_select_option_price' | translate : { interval: $ctrl.renewPeriod }"
             >
                 <span data-ng-bind="$ctrl.getOptionPrice($row).text"></span>
             </oui-datagrid-column>
