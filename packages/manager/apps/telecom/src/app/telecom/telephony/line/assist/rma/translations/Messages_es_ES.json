@@ -32,5 +32,17 @@
   "telephony_line_assist_rma_step_name_validation": "Validation du changement de téléphone",
   "telephony_line_assist_rma_step_status_todo": "Pendiente",
   "telephony_line_assist_rma_step_status_done": "Validado",
-  "telephony_line_assist_rma_pdf_download": "Télécharger le bon de retour"
+  "telephony_line_assist_rma_pdf_download": "Descargar la etiqueta de devolución",
+  "telephony_line_assist_rma_step_name_dispatchJustification": "Justificación del envío",
+  "telephony_line_assist_rma_equipment_out_of_order": "Notificar un dispositivo fuera de servicio",
+  "telephony_line_assist_rma_keeping_line": "Conservar la línea telefónica sin hardware",
+  "telephony_line_assist_rma_terminate_line": "Dar de baja la línea telefónica asociada",
+  "telephony_line_assist_rma_modal_yes": "Sí",
+  "telephony_line_assist_rma_modal_no": "No",
+  "telephony_line_assist_rma_cancel_modal_content": "¿Quiere cancelar este RMA?",
+  "telephony_line_assist_rma_equipment_out_of_order_modal_content": "¿Quiere notificar un dispositivo fuera de servicio? {{ breakLine }} (Será redirigido a la página de declaración de incidencias)",
+  "telephony_line_assist_rma_keeping_line_modal_content": "¿Quiere conservar la línea telefónica sin hardware?",
+  "telephony_line_assist_rma_terminate_line_modal_content": "¿Quiere dar de baja la línea telefónica asociada?",
+  "telephony_line_assist_rma_keeping_line_success": "Solicitud de concertación de la línea sin hardware efectuada con éxito",
+  "telephony_line_assist_rma_terminate_line_success": "La solicitud de baja de la línea se ha enviado correctamente."
 }
