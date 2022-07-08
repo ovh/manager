@@ -6,6 +6,7 @@ import {
   CHART_METRICS_OPTIONS,
   CHART_METRICS_REFRESH_INTERVAL,
 } from '../../databases.constants';
+import { METRICS_CONVERTER } from './metrics.constants';
 
 export default class MetricsCtrl {
   /* @ngInject */
@@ -79,7 +80,7 @@ export default class MetricsCtrl {
       );
 
       this.metricsData[metric].chart.setTooltipCallback('label', (item) =>
-        parseFloat(item.value, 10).toFixed(2),
+        parseFloat(item.value, 10).toPrecision(3),
       );
     });
   }
@@ -114,7 +115,7 @@ export default class MetricsCtrl {
             metric.hostname,
             map(metric.dataPoints, (point) => ({
               x: moment.unix(point.timestamp),
-              y: point.value,
+              y: point.value * (METRICS_CONVERTER[data.name] || 1),
             })),
             {
               dataset: {
