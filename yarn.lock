@@ -18864,10 +18864,10 @@ outvariant@^1.2.0:
   resolved "https://registry.yarnpkg.com/outvariant/-/outvariant-1.2.1.tgz#e630f6cdc1dbf398ed857e36f219de4a005ccd35"
   integrity sha512-bcILvFkvpMXh66+Ubax/inxbKRyWTUiiFIW2DWkiS79wakrLGn3Ydy+GvukadiyfZjaL6C7YhIem4EZSM282wA==
 
-ovh-api-services@^14.0.6:
-  version "14.0.6"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-14.0.6.tgz#8db8260c87933697a63a30bca07b70cfc478cd3b"
-  integrity sha512-4aYUutd3D5RzhH+mzI1hjupx3tCtOtQhyKWGJuF9cY1UGy4n09fp4C+Q+QvewKAHZaGeiRSPhRGiAxifD7esyA==
+ovh-api-services@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-15.0.0.tgz#37079b051a3120dcacb396b5f57692868aa7c3e8"
+  integrity sha512-77jJFnd1X2lAQmNrZ0OQUpSjRBPY41LM9qqQkPBxMOCDR3PROnpheLWR0oPeNDMNOpJvGqdhAKarfnrbMnd+KA==
   dependencies:
     lodash "^4.17.21"
 
@@ -22275,12 +22275,7 @@ shebang-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
-shell-quote@^1.6.1:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.7.3.tgz#aa40edac170445b9a431e17bb62c0b881b9c4123"
-  integrity sha512-Vpfqwm4EnqGdlsBFNmHhxhElJYrdfcxPThu+ryKS5J8L/fhAwLazFZtq+S+TWZ9ANj2piSQLGj6NQg+lKPmxrw==
-
-shell-quote@^1.7.3:
+shell-quote@^1.6.1, shell-quote@^1.7.3:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.7.3.tgz#aa40edac170445b9a431e17bb62c0b881b9c4123"
   integrity sha512-Vpfqwm4EnqGdlsBFNmHhxhElJYrdfcxPThu+ryKS5J8L/fhAwLazFZtq+S+TWZ9ANj2piSQLGj6NQg+lKPmxrw==

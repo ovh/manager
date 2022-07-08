@@ -54,6 +54,6 @@
     "angular-leaflet-directive": "0.8.5",
     "angular-translate": "^2.18.1",
     "leaflet": "0.7.x",
-    "ovh-api-services": "^14.0.6"
+    "ovh-api-services": "^15.0.0"
   }
 }

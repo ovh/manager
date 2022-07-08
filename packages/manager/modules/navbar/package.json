@@ -44,6 +44,6 @@
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "moment": "^2.24.0",
-    "ovh-api-services": "^14.0.6"
+    "ovh-api-services": "^15.0.0"
   }
 }

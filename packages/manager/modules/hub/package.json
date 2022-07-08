@@ -37,6 +37,6 @@
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "ovh-api-services": "^14.0.6"
+    "ovh-api-services": "^15.0.0"
   }
 }
