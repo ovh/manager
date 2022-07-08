@@ -1,0 +1,10 @@
+{
+  "telephony_white_label_manager_title": "Manager marque blanche",
+  "telephony_white_label_manager_descrition": "Le Manager marque blanche vous offre une interface personnalisable aux couleurs de votre société pour gérer les services Telecom OVHcloud.",
+  "telephony_white_label_manager_checkbox_label": "Je souhaite réinitialiser le mot de passe de mon Manager marque blanche.",
+  "telephony_white_label_manager_reset_password_title": "Réinitialisation du mot de passe",
+  "telephony_white_label_manager_reset_password_description": "Cette procédure réinitialisera le mot de passe de votre Manager marque blanche.",
+  "telephony_white_label_manager_reset_password_warning": "Cette action entraine la désactivation de l'ensemble des comptes utilisateurs de votre Manager et nécessite que vous reconfiguriez leur mots de passes.",
+  "telephony_white_label_manager_reset_password_success": "La réinitialisation du mot de passe a été réalisée avec succès.",
+  "telephony_white_label_manager_reset_password_error": "Une erreur est survenue lors de la réinitialisation du mot de passe. Veuillez réessayer ultérieurement."
+}
