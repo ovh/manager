@@ -32,6 +32,8 @@ export const CLUSTER_CONFIG_TERMS = {
   NODE_CVM_IP: 'CVM IP',
 };
 
+export const IP_FOR_SCALE_REDEPLOY = 3;
+
 export default {
   TRACKING_PREFIX,
   REDEPLOY_CONFIG_OPTIONS,
@@ -41,4 +43,5 @@ export default {
   IPV4_REGEX,
   IPV4_BLOCK_REGEX,
   CLUSTER_CONFIG_TERMS,
+  IP_FOR_SCALE_REDEPLOY,
 };
