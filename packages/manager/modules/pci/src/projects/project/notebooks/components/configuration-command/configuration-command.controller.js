@@ -23,7 +23,7 @@ export default class {
       let toRemove = false;
       let internalKey;
       Object.keys(volume).forEach((key) => {
-        if (volume[key].internal !== undefined) {
+        if (volume[key] && volume[key].internal !== undefined) {
           if (volume[key].internal === true) {
             toRemove = true;
           } else {
