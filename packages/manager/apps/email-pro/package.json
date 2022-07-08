@@ -22,7 +22,7 @@
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-emailpro": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.0.0 || ^2.0.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.11",
+    "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.0.4",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-payment-method": "^9.2.0",
@@ -57,7 +57,7 @@
     "lodash-es": "^4.17.15",
     "ng-ckeditor": "^2.0.5",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^14.0.6",
+    "ovh-api-services": "^15.0.0",
     "ovh-ui-kit-bs": "^4.1.8",
     "regenerator-runtime": "0.13.5",
     "whatwg-fetch": "^3.0.0"
