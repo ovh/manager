@@ -8,5 +8,6 @@ export default {
     billingAccount: '<',
     serviceName: '<',
     macAddress: '=',
+    goBack: '<',
   },
 };

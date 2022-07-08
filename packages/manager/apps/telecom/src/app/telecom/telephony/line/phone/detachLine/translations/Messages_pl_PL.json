@@ -1,0 +1,9 @@
+{
+  "telephony_line_phone_detach_title": "Odłącz linię od telefonu",
+  "telephony_line_phone_detach_info1": "Linia ta jest aktualnie przypisana do Plug&amp;Phone: {{phoneName}} ({{phoneMacAddress}}).",
+  "telephony_line_phone_detach_info2": "Aby go odłączyć, wprowadź publiczny adres IP Plug&amp;Phone i kliknij przycisk <strong>Odłącz</strong>.",
+  "telephony_line_phone_detach_device": "Publiczny adres IP",
+  "telephony_line_phone_detach_device_action": "Odłącz",
+  "telephony_line_phone_detach_device_success": "Linia została odłączona",
+  "telephony_line_phone_detach_device_error": "Wystąpił błąd. Odłączenie linii nie mogło się zakończyć."
+}

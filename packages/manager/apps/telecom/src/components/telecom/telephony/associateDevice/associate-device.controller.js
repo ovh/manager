@@ -101,7 +101,13 @@ export default /* @ngInject */ function controller(
           .v6()
           .resetAllCache();
         TelephonyMediator.resetAllCache();
-        $state.reload();
+        if (self.goBack) {
+          self.goBack(
+            $translate.instant('telephony_device_associate_attach_success'),
+          );
+        } else {
+          $state.reload();
+        }
       })
       .catch((err) => new TucToastError(err))
       .finally(() => {

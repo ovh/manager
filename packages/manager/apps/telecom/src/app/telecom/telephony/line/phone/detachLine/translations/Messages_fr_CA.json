@@ -1,0 +1,9 @@
+{
+  "telephony_line_phone_detach_title": "Détacher la ligne d'un téléphone",
+  "telephony_line_phone_detach_info1": "Cette ligne est actuellement rattachée au Plug&Phone : {{phoneName}} ({{phoneMacAddress}}).",
+  "telephony_line_phone_detach_info2": "Pour la détacher, saisissez l'adresse IP publique du Plug&Phone et cliquez sur le bouton <strong>Détacher</strong>.",
+  "telephony_line_phone_detach_device": "Adresse IP publique",
+  "telephony_line_phone_detach_device_action": "Détacher",
+  "telephony_line_phone_detach_device_success": "La ligne a bien été détachée",
+  "telephony_line_phone_detach_device_error": "Une erreur est survenue, le détachement de la ligne n'a pas pu aboutir."
+}
