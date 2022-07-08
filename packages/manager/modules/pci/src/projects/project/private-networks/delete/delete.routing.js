@@ -12,11 +12,18 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       goBack: /* @ngInject */ (goToPrivateNetworks) => goToPrivateNetworks,
+      onCancelClick: /* @ngInject */ (trackPrivateNetworks, goBack) => () => {
+        trackPrivateNetworks('delete::cancel');
+        return goBack();
+      },
       networkId: /* @ngInject */ ($transition$) =>
         $transition$.params().networkId,
       subnetId: /* @ngInject */ ($transition$) =>
         $transition$.params().subnetId,
       breadcrumb: () => null,
+    },
+    atInternet: {
+      rename: 'PublicCloud::pci::projects::project::privateNetwork::delete',
     },
     layout: 'modal',
   });
