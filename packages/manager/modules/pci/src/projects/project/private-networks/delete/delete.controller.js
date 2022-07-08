@@ -13,6 +13,7 @@ export default class {
   }
 
   deleteSubnet() {
+    this.trackPrivateNetworks('delete::confirm');
     this.isDeleting = true;
     return this.PciPrivateNetworks.deleteSubnet(
       this.projectId,
