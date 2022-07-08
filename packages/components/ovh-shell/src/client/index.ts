@@ -38,18 +38,25 @@ export function initStandaloneClientApi(
     throw new Error(`Unknown application '${appId}'`);
   }
 
-  // check for container redirection
+  const queryParams = Object.fromEntries(
+    new URLSearchParams(window.location.search).entries(),
+  );
+
+  // check for container redirection ...
   if (appConfig.container?.enabled === true) {
-    const targetURL = new URL(appConfig.publicURL);
-    const currentHash = window.location.hash;
-    if (currentHash) {
-      targetURL.hash = `${(targetURL.hash || '#').replace(
-        /\/$/,
-        '',
-      )}/${currentHash.replace(/^#?\/?/, '')}`;
-    }
-    if (window.location.hostname !== 'localhost') {
-      window.location.href = targetURL.href;
+    // ... but skip redirection if we are forcing standalone
+    if (!queryParams.hasOwnProperty('standalone')) {
+      const targetURL = new URL(appConfig.publicURL);
+      const currentHash = window.location.hash;
+      if (currentHash) {
+        targetURL.hash = `${(targetURL.hash || '#').replace(
+          /\/$/,
+          '',
+        )}/${currentHash.replace(/^#?\/?/, '')}`;
+      }
+      if (window.location.hostname !== 'localhost') {
+        window.location.href = targetURL.href;
+      }
     }
   }
 
