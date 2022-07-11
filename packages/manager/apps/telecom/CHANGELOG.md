@@ -1,3 +1,12 @@
+## [13.42.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.42.2...@ovh-ux/manager-telecom@13.42.3) (2022-07-11)
+
+
+### Bug Fixes
+
+* **telecom.voip:** add status doing for directory status sync ([#7505](https://github.com/ovh/manager/issues/7505)) ([8a80bf6](https://github.com/ovh/manager/commit/8a80bf6f03011ac889dbaafdefef19d2ecf00620))
+
+
+
 ## [13.42.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.42.1...@ovh-ux/manager-telecom@13.42.2) (2022-07-07)
 
 
