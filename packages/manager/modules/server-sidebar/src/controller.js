@@ -292,7 +292,7 @@ export default class OvhManagerServerSidebarController {
             state: isExternal ? null : get(service, 'state'),
             loadOnState: get(service, 'loadOnState'),
             url: link,
-            target: link ? '_self' : null,
+            target: service.target || (link ? '_self' : null),
             click: () => {
               this.atInternet.trackClick({
                 type: 'action',
