@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_users_add_title": "Ajouter un utilisateur S3",
+  "pci_projects_project_users_add_short_description": "Afin d'accéder au stockage objet, veuillez ajouter un utilisateur à votre conteneur. Vous pouvez sélectionner un utilisateur existant ou en créer un nouveau.Chaque utilisateur (OpenStack) sera associé à une ou plusieurs paires de clés S3 (les credentials S3) composées chacune d'un 'Access Key' et d'un 'Secret Key'.",
+  "pci_projects_project_users_add_submit_label": "Créer",
+  "pci_projects_project_users_add_cancel_label": "Annuler",
+  "pci_projects_project_users_add_description_label": "Description de l'utilisateur",
+  "pci_projects_project_users_add_existing_user": "Sélectionner un utilisateur existant",
+  "pci_projects_project_users_add_create_user": "Créer un nouvel utilisateur",
+  "pci_projects_project_users_add_success_message": "Les informations d'identification S3 pour l'utilisateur {{user}} ont été générées",
+  "pci_projects_project_users_add_error_message": "Les informations d'identification S3 pour l'utilisateur {{user}} n'ont pas pu être générées.",
+  "pci_projects_project_users_add_username": "Votre nom d'utilisateur OpenStack :",
+  "pci_projects_project_users_add_description": "Votre description :",
+  "pci_projects_project_users_add_accesskey": "Votre clé d'accès S3 :",
+  "pci_projects_project_users_add_secretkey": "Votre clé secrète S3 :",
+  "pci_projects_project_users_add_as_no_credentials": "Pas de credentials",
+  "pci_projects_project_users_add_as_credentials": "Credentials générés"
+}
