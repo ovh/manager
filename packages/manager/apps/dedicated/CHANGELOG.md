@@ -1,3 +1,12 @@
+## [17.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.22.3...@ovh-ux/manager-dedicated@17.22.4) (2022-07-11)
+
+
+### Bug Fixes
+
+* **dedicated:** managedBaremetal onboarding translation typo ([e032afd](https://github.com/ovh/manager/commit/e032afd6d725ad32f1ff583db08cda5aded4d980))
+
+
+
 ## [17.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.22.2...@ovh-ux/manager-dedicated@17.22.3) (2022-07-07)
 
 

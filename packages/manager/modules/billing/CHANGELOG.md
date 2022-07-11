@@ -1,3 +1,13 @@
+# [0.16.0-alpha.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.6...@ovh-ux/manager-billing@0.16.0-alpha.7) (2022-07-11)
+
+
+### Bug Fixes
+
+* **billing.order:** remove double title if purchase order isnt available ([28ada16](https://github.com/ovh/manager/commit/28ada16dea58edb277b76a2d1f75daaa1ce1a49f))
+* **i18n:** add missing translations [CDS 1720] ([946fee2](https://github.com/ovh/manager/commit/946fee235409cbf9049b353a84950f0017d6c6bf))
+
+
+
 # [0.16.0-alpha.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.5...@ovh-ux/manager-billing@0.16.0-alpha.6) (2022-06-30)
 
 
