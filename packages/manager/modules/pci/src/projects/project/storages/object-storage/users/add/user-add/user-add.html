@@ -1,0 +1,71 @@
+<form novalidate name="user-add-form">
+    <oui-modal
+        data-heading="{{ 'pci_projects_project_users_add_title' | translate }}"
+        data-primary-label="{{:: 'pci_projects_project_users_add_submit_label' | translate }}"
+        data-primary-action="$ctrl.submit($ctrl.userModel,$ctrl.model)"
+        data-secondary-action="$ctrl.cancel()"
+        data-secondary-label="{{:: 'pci_projects_project_users_add_cancel_label' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-primary-disabled="$ctrl.disable"
+        data-secondary-disabled="$ctrl.disable"
+        data-loading="$ctrl.isLoading"
+    >
+        <p
+            data-translate="pci_projects_project_users_add_short_description"
+        ></p>
+        <oui-radio
+            model="$ctrl.model"
+            name="addExistingUser"
+            on-change="$ctrl.onChange($ctrl.addExistingUser)"
+            value="$ctrl.addExistingUser"
+        >
+            <span
+                data-translate="pci_projects_project_users_add_existing_user"
+            ></span>
+        </oui-radio>
+        <oui-field
+            data-size="xl"
+            data-ng-if="$ctrl.model === $ctrl.addExistingUser"
+        >
+            <oui-select
+                data-name="userList"
+                data-model="$ctrl.userModel"
+                data-items="$ctrl.allUserList"
+                data-match="username"
+            >
+                <span data-ng-bind="$item.username"></span>
+                <small>
+                    <span
+                        class="float-right"
+                        data-ng-bind="$item.asCredentials"
+                    ></span>
+                </small>
+            </oui-select>
+        </oui-field>
+        <oui-radio
+            model="$ctrl.model"
+            name="createNewUser"
+            on-change="$ctrl.onChange($ctrl.createNewUser)"
+            value="$ctrl.createNewUser"
+        >
+            <span
+                data-translate="pci_projects_project_users_add_create_user"
+            ></span>
+        </oui-radio>
+        <oui-field
+            data-label="{{:: 'pci_projects_project_users_add_description_label' | translate }}"
+            data-size="xl"
+            data-ng-if="$ctrl.model === $ctrl.createNewUser"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="description"
+                name="description"
+                ng-model="$ctrl.userModel.description"
+                maxlength="255"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>

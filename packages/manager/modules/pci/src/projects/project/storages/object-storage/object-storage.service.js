@@ -32,6 +32,24 @@ export default class PciStoragesObjectStorageService {
       .then(({ data }) => data);
   }
 
+  createUser(projectId, description) {
+    return this.$http
+      .post(`/cloud/project/${projectId}/user`, { description })
+      .then(({ data }) => data);
+  }
+
+  generateS3Credentials(projectId, userId) {
+    return this.$http
+      .post(`/cloud/project/${projectId}/user/${userId}/s3Credentials`)
+      .then(({ data }) => data);
+  }
+
+  getAllS3Users(projectId) {
+    return this.OvhApiCloudProjectUser.v6().query({
+      serviceName: projectId,
+    }).$promise;
+  }
+
   getS3Users(projectId) {
     this.OvhApiCloudProjectUser.v6().resetQueryCache();
     return this.OvhApiCloudProjectUser.v6()
