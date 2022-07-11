@@ -1,3 +1,12 @@
+## [3.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.0...@ovh-ux/manager-server-sidebar@3.23.1) (2022-07-11)
+
+
+### Bug Fixes
+
+* **sidebar:** use defined target if exists ([0e97e0a](https://github.com/ovh/manager/commit/0e97e0a06bdcc0d2d919f4d41fc9b87b08757057))
+
+
+
 # [3.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.22.0...@ovh-ux/manager-server-sidebar@3.23.0) (2022-06-30)
 
 
