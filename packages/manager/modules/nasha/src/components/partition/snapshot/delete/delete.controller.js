@@ -1,25 +1,21 @@
 export default class NashaComponentsPartitionSnapshotDeleteController {
   /* @ngInject */
-  constructor($translate, $http) {
-    this.$translate = $translate;
+  constructor($http) {
     this.$http = $http;
   }
 
   submit() {
-    const { serviceName } = this.nasha;
-    const { partitionName } = this.partition;
     const { customSnapshotName } = this;
 
-    this.$http
-      .delete(
-        `/dedicated/nasha/${serviceName}/partition/${partitionName}/customSnapshot/${customSnapshotName}`,
-      )
-      .then(({ data: { taskId } }) =>
+    return this.$http
+      .delete(`${this.partitionApiUrl}/customSnapshot/${customSnapshotName}`)
+      .catch((error) => this.close({ error }))
+      .then(({ data: task }) =>
         this.close({
-          taskIds: [taskId],
-          params: { partitionName, customSnapshotName },
+          tasks: [task],
+          partitionName: this.partition.partitionName,
+          customSnapshotName,
         }),
-      )
-      .catch((error) => this.dismiss({ error }));
+      );
   }
 }

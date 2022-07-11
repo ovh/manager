@@ -6,6 +6,7 @@ export const COMPONENT_BINDINGS = {
   close: '<',
   nasha: '<',
   partition: '<',
+  partitionApiUrl: '<',
 };
 
 export default {

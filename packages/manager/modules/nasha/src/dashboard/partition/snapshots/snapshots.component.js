@@ -10,7 +10,7 @@ export default {
     partitionApiUrl: '<',
     reload: '<',
     snapshots: '<',
-    trackTask: '<',
+    trackTasks: '<',
   },
   controller,
   template,

@@ -3,8 +3,8 @@ export default class NashaComponentsModalFormController {
     this.submitting = false;
   }
 
-  doSubmit() {
+  onSubmit() {
     this.submitting = true;
-    this.submit();
+    return this.submit();
   }
 }
