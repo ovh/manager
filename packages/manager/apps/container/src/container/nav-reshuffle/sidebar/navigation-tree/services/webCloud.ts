@@ -14,6 +14,16 @@ export default {
       children: [
         {
           id: 'domains',
+          translation: 'sidebar_domain_operations',
+          routing: {
+            application: 'web',
+            hash: '#/domain/operation',
+          },
+          count: false,
+          features: ['web:domains'],
+        },
+        {
+          id: 'domains',
           translation: 'sidebar_domain',
           serviceType: 'DOMAIN',
           routing: {
