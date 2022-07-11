@@ -39,13 +39,19 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
-      userList: /* @ngInject */ (PciStoragesObjectStorageService, projectId) =>
-        PciStoragesObjectStorageService.getS3Users(projectId),
+      userList: /* @ngInject */ (projectId, allUserList) =>
+        allUserList.filter(({ s3Credentials }) => s3Credentials?.length > 0),
 
       allUserList: /* @ngInject */ (
-        PciStoragesObjectStorageService,
         projectId,
-      ) => PciStoragesObjectStorageService.getAllS3Users(projectId),
+        PciStoragesObjectStorageService,
+      ) =>
+        PciStoragesObjectStorageService.getAllS3Users(projectId).then((users) =>
+          PciStoragesObjectStorageService.mapUsersToCredentials(
+            projectId,
+            users,
+          ),
+        ),
 
       isUserTabActive: /* @ngInject */ ($transition$, $state) => () => {
         return $state

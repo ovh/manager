@@ -9,6 +9,7 @@ export default {
     isUserTabActive: '<',
     containers: '<',
     userList: '<',
+    allUserList: '<',
     steins: '<',
     customerRegions: '<',
     containersRegions: '<',
