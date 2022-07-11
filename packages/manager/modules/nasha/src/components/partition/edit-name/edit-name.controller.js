@@ -33,7 +33,7 @@ export default class NashaComponentsEditNameController {
     const { serviceName } = this.nasha;
     const { partitionName } = this.partition;
 
-    this.$http
+    return this.$http
       .put(
         `/dedicated/nasha/${serviceName}/partition/${partitionName}`,
         this.model,

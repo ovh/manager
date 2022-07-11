@@ -9,7 +9,7 @@ export default class NashaComponentsPartitionDeleteController {
     const { serviceName } = this.nasha;
     const { partitionName } = this.partition;
 
-    this.OvhApiDedicatedNasha.Partition()
+    return this.OvhApiDedicatedNasha.Partition()
       .v6()
       .delete({ serviceName, partitionName })
       .$promise.then(() =>

@@ -77,14 +77,22 @@
                             class="mr-2"
                             data-on-click="$ctrl.updateSnapshotTypes()"
                             data-disabled="!$ctrl.canUpdateSnapshotTypes"
+                            data-translate-attr="{ title: 'nasha_dashboard_partition_snapshots_submit_snapshot_types' }"
                         >
-                            <span class="oui-icon oui-icon-check"></span>
+                            <span
+                                class="oui-icon oui-icon-check"
+                                aria-hidden="true"
+                            ></span>
                         </oui-button>
                         <oui-button
                             data-on-click="$ctrl.resetSnapshotTypes()"
                             data-disabled="!$ctrl.canUpdateSnapshotTypes"
+                            data-translate-attr="{ title: 'nasha_dashboard_partition_snapshots_reset_snapshot_types' }"
                         >
-                            <span class="oui-icon oui-icon-close"></span>
+                            <span
+                                class="oui-icon oui-icon-close"
+                                aria-hidden="true"
+                            ></span>
                         </oui-button>
                     </div>
                 </td>
@@ -106,8 +114,12 @@
                         <div class="d-flex align-items-center">
                             <oui-button
                                 data-on-click="$ctrl.goToDelete(customSnapshot)"
+                                data-translate-attr="{ title: 'nasha_dashboard_partition_snapshots_delete' }"
                             >
-                                <span class="oui-icon oui-icon-bin"></span>
+                                <span
+                                    class="oui-icon oui-icon-bin"
+                                    aria-hidden="true"
+                                ></span>
                             </oui-button>
                         </div>
                     </div>
@@ -158,14 +170,22 @@
                                 class="mr-2"
                                 data-type="submit"
                                 data-disabled="!$ctrl.canCreateCustomSnapshot"
+                                data-translate-attr="{ title: 'nasha_dashboard_partition_snapshots_create' }"
                             >
-                                <span class="oui-icon oui-icon-check"></span>
+                                <span
+                                    class="oui-icon oui-icon-check"
+                                    aria-hidden="true"
+                                ></span>
                             </oui-button>
                             <oui-button
                                 data-on-click="$ctrl.hideCustomSnapshotForm()"
                                 data-disabled="$ctrl.isCreatingCustomSnapshot"
+                                data-translate-attr="{ title: 'nasha_dashboard_partition_snapshots_hide_form' }"
                             >
-                                <span class="oui-icon oui-icon-close"></span>
+                                <span
+                                    class="oui-icon oui-icon-close"
+                                    aria-hidden="true"
+                                ></span>
                             </oui-button>
                         </div>
                     </form>

@@ -1,0 +1,14 @@
+.nasha-dashboard-partition-accesses {
+  oui-datagrid-topbar > * {
+    display: flex;
+    align-items: center;
+  }
+
+  oui-select {
+    width: 20em;
+  }
+
+  .oui-datagrid-responsive {
+    overflow: inherit;
+  }
+}

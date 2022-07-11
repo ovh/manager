@@ -57,11 +57,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         prepareSnapshots(snapshots, customSnapshots, SnapshotEnum, $translate),
       prepareTasks: /* @ngInject */ ($translate) => (tasks) =>
         prepareTasks(tasks, $translate),
-      trackTask: /* @ngInject */ ($state) => ({ taskIds, params }) =>
-        $state.go(`${$state.current.name}.task`, {
-          taskIds: taskIds.join(','),
-          ...params,
-        }),
       trackingPrefix: () => NASHA_TITLE,
     },
   });

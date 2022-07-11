@@ -90,25 +90,29 @@ export default class NashaDashboardPartitionSnapshotsController {
 
       if (!oldType.enabled && newType.enabled) {
         promises.push(
-          this.$http.post(`${this.partitionApiUrl}/snapshot`, {
-            snapshotType: newType.type,
-          }),
+          this.$http
+            .post(`${this.partitionApiUrl}/snapshot`, {
+              snapshotType: newType.type,
+            })
+            .then(({ data: task }) => task),
         );
       }
 
       if (oldType.enabled && !newType.enabled) {
         promises.push(
-          this.$http.delete(`${this.partitionApiUrl}/snapshot/${newType.type}`),
+          this.$http
+            .delete(`${this.partitionApiUrl}/snapshot/${newType.type}`)
+            .then(({ data: task }) => task),
         );
       }
     });
 
     this.$q
       .all(promises)
-      .then((responses) =>
-        this.trackTask({
-          taskIds: responses.map(({ data: { taskId } }) => taskId),
-          params: { partitionName: this.partition.partitionName },
+      .then((tasks) =>
+        this.trackTasks({
+          tasks,
+          partitionName: this.partition.partitionName,
         }),
       )
       .catch((error) => {
@@ -130,10 +134,11 @@ export default class NashaDashboardPartitionSnapshotsController {
 
     this.$http
       .post(`${this.partitionApiUrl}/customSnapshot`, { name })
-      .then(({ data: { taskId } }) =>
-        this.trackTask({
-          taskIds: [taskId],
-          params: { partitionName, customSnapshotName: name },
+      .then(({ data: task }) =>
+        this.trackTasks({
+          tasks: [task],
+          partitionName,
+          customSnapshotName: name,
         }),
       )
       .catch((error) => {
