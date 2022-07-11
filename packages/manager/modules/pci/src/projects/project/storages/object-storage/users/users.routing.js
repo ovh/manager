@@ -4,7 +4,15 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       containersView: 'pciProjectStorageObjectStorageUsers',
     },
+    params: {
+      userDetails: null,
+      userCredential: null,
+    },
     resolve: {
+      userDetails: /* @ngInject */ ($transition$) =>
+        $transition$.params().userDetails,
+      userCredential: /* @ngInject */ ($transition$) =>
+        $transition$.params().userCredential,
       goToUsersAndRoles: /* @ngInject */ (
         $state,
         atInternet,
@@ -35,6 +43,24 @@ export default /* @ngInject */ ($stateProvider) => {
             userId: user.id,
           },
         ),
+      goToUsersBanner: /* @ngInject */ ($state, projectId) => (
+        reload = false,
+        userDetails,
+        userCredential,
+      ) =>
+        $state.go(
+          'pci.projects.project.storages.object-storage.users',
+          {
+            projectId,
+            userDetails,
+            userCredential,
+          },
+          {
+            reload,
+          },
+        ),
+      goToAddUser: /* @ngInject */ ($state) => () =>
+        $state.go('pci.projects.project.storages.object-storage.users.add'),
       goToUsers: /* @ngInject */ (CucCloudMessage, $state, projectId) => (
         message = false,
         type = 'success',

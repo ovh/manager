@@ -1,8 +1,9 @@
 export default class {
   /* @ngInject */
-  constructor($http, Poller) {
+  constructor($http, Poller, $q) {
     this.$http = $http;
     this.Poller = Poller;
+    this.$q = $q;
   }
 
   getBuckets(serviceName, regionName) {
@@ -56,6 +57,22 @@ export default class {
     return this.$http
       .delete(`/cloud/project/${serviceName}/user/${userId}`)
       .then(({ data }) => data);
+  }
+
+  getUsersCredentials(serviceName, usersIds) {
+    const promises = usersIds.map((userId) =>
+      this.asCredentials(serviceName, userId),
+    );
+    return this.$q.all(promises).then((data) => data);
+  }
+
+  asCredentials(serviceName, userId) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/user/${userId}/s3Credentials`)
+      .then(({ data }) => ({
+        userId,
+        asCredentials: data.length !== 0,
+      }));
   }
 
   getS3Credentials(serviceName, userId) {
