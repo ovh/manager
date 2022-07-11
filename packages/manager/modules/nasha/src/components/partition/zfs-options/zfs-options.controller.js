@@ -49,7 +49,11 @@ export default class NashaComponentsPartitionZfsOptionsController {
     const { serviceName } = this.nasha;
     const { partitionName } = this.partition;
 
-    this.ZfsOptionsService.setOptions(serviceName, partitionName, this.model)
+    return this.ZfsOptionsService.setOptions(
+      serviceName,
+      partitionName,
+      this.model,
+    )
       .then(() =>
         this.close({
           success: this.$translate.instant(

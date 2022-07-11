@@ -5,8 +5,12 @@
                 <oui-modal
                     data-heading="{{:: $ctrl.heading }}"
                     data-primary-label="{{:: ('task_tracker_close' | translate) }}"
-                    data-primary-disabled="!$ctrl.isDone && !$ctrl.hasError"
-                    data-primary-action="$ctrl.onDone({ $tasks: $ctrl.tasks })"
+                    data-primary-disabled="!$ctrl.isClosable"
+                    data-primary-action="$ctrl.onDone({
+                        $tasks: $ctrl.tasks,
+                        $success: $ctrl.isDone,
+                        $error: $ctrl.errorMessage,
+                    })"
                 >
                     <div data-ng-transclude="header"></div>
                     <div
@@ -40,7 +44,7 @@
                                     </span>
                                     <oui-spinner
                                         data-size="s"
-                                        data-ng-if="step.active && !$ctrl.isDone && !$ctrl.hasError"
+                                        data-ng-if="step.active && !$ctrl.isClosable"
                                     ></oui-spinner>
                                 </span>
                             </li>
