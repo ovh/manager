@@ -2,7 +2,8 @@ import angular from 'angular';
 
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
-import { taskTracker } from '@ovh-ux/manager-components';
+
+import taskTrackerModule from '../../../components/task-tracker';
 
 import deleteModule from './delete';
 
@@ -16,7 +17,7 @@ angular
   .module(moduleName, [
     'pascalprecht.translate',
     'oui',
-    taskTracker,
+    taskTrackerModule,
     deleteModule,
   ])
   .component('nashaDashboardPartitionSnapshots', component)

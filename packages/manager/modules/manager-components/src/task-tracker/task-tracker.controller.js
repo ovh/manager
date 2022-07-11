@@ -1,21 +1,16 @@
 import { POLL_INTERVAL, TASK_STATUS } from './task-tracker.constants';
 
-let uid = 0;
-
 export default class TaskTrackerController {
-  /** @ngInject */
-  constructor($translate, Poller) {
+  /* @ngInject */
+  constructor($translate, $timeout, $http, TaskTrackerService) {
     this.$translate = $translate;
+    this.$timeout = $timeout;
+    this.$http = $http;
+    this.TaskTrackerService = TaskTrackerService;
 
-    uid += 1;
-    this.Poller = Poller;
-    this.pollError = null;
-    this.namespace = `task-tracker-${uid}`;
+    this.httpError = null;
+    this.timeoutPromise = null;
     this.steps = [];
-  }
-
-  get statuses() {
-    return this.tasks.map(({ status }) => status);
   }
 
   get isTodo() {
@@ -30,15 +25,15 @@ export default class TaskTrackerController {
     return this.tasks.every(({ status }) => status === TASK_STATUS.Done);
   }
 
-  get hasError() {
-    return Boolean(this.errorMessage);
+  get isClosable() {
+    return this.isDone || Boolean(this.errorMessage);
   }
 
   get errorMessage() {
-    if (this.pollError) {
+    if (this.httpError) {
       return (
-        this.pollError.data?.message ||
-        this.pollError.message ||
+        this.httpError.data?.message ||
+        this.httpError.message ||
         this.$translate.instant('task_tracker_empty_error')
       );
     }
@@ -62,43 +57,35 @@ export default class TaskTrackerController {
   }
 
   $onInit() {
-    const successRule = (task) => this.onTaskPolled(task);
-    const interval = (this.interval || POLL_INTERVAL) * 1000;
-
-    this.tasks.forEach(({ taskId }, i) => {
-      const namespace = `${this.namespace}-${i}`;
-
-      this.Poller.poll(`${this.endpoint}/${taskId}`, null, {
-        successRule,
-        namespace,
-        interval,
-      })
-        .catch((error) => {
-          this.pollError = error;
-        })
-        .finally(() => {
-          this.Poller.kill({ namespace });
-        });
-    });
-
     this.buildSteps();
+    this.poll();
   }
 
   $onDestroy() {
-    this.tasks.forEach((task, i) =>
-      this.Poller.kill({ namespace: `${this.namespace}-${i}` }),
-    );
+    this.$timeout.cancel(this.timeoutPromise);
   }
 
-  onTaskPolled(task) {
-    Object.assign(
-      this.tasks.find(({ taskId }) => taskId === task.taskId),
-      task,
-    );
+  poll() {
+    if (this.isClosable) {
+      return;
+    }
 
-    this.buildSteps();
-
-    return this.isDone || this.hasError;
+    this.timeoutPromise = this.$timeout(() => {
+      this.TaskTrackerService.getTasks(
+        this.endpoint,
+        this.tasks.map(({ taskId }) => taskId),
+      )
+        .then((tasks) => {
+          this.tasks = tasks;
+        })
+        .catch((error) => {
+          this.httpError = error;
+        })
+        .finally(() => {
+          this.buildSteps();
+          this.poll();
+        });
+    }, (this.interval || POLL_INTERVAL) * 1000);
   }
 
   buildSteps() {

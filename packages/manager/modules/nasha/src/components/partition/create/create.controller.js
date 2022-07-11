@@ -46,7 +46,7 @@ export default class NashaComponentsPartitionCreateController {
     const { serviceName } = this.nasha;
     const partition = this.model;
 
-    this.OvhApiDedicatedNasha.Partition()
+    return this.OvhApiDedicatedNasha.Partition()
       .v6()
       .create({ serviceName }, partition)
       .$promise.then(() =>

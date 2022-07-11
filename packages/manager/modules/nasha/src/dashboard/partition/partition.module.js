@@ -12,6 +12,7 @@ import editDescriptionModule from './edit-description';
 import editNameModule from './edit-name';
 import editSizeModule from './edit-size';
 import snapshotsModule from './snapshots';
+import accessesModule from './accesses';
 
 const moduleName = 'ovhManagerNashaPartition';
 
@@ -25,6 +26,7 @@ angular
     editNameModule,
     editSizeModule,
     snapshotsModule,
+    accessesModule,
   ])
   .component('nashaDashboardPartition', component)
   .config(routing)
