@@ -1,4 +1,3 @@
-import compact from 'lodash/compact';
 import map from 'lodash/map';
 import 'moment';
 
@@ -50,28 +49,39 @@ export default class PciStoragesObjectStorageService {
     }).$promise;
   }
 
+  mapUsersToCredentials(projectId, users) {
+    const usersCredentialsPromises = users.map((user) =>
+      this.getS3Credentials(projectId, user.id).then((data) => ({
+        ...user,
+        s3Credentials: data,
+      })),
+    );
+
+    return this.$q.all(usersCredentialsPromises);
+  }
+
   getS3Users(projectId) {
     this.OvhApiCloudProjectUser.v6().resetQueryCache();
-    return this.OvhApiCloudProjectUser.v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise.then((users) =>
-        this.$q
-          .all(
-            map(users, (user) =>
-              this.getS3Credentials(projectId, user.id).then((data) =>
-                data.length > 0
-                  ? {
-                      ...user,
-                      s3Credentials: data,
-                    }
-                  : undefined,
-              ),
-            ),
-          )
-          .then((data) => compact(data)),
-      );
+    return this.getAllS3Users(projectId).then((users) =>
+      this.getAndMapUsersHaveCredentials(users),
+    );
+  }
+
+  getAndMapUsersHaveCredentials(projectId, users) {
+    const usersCredentialsPromises = users.map((user) =>
+      this.getS3Credentials(projectId, user.id).then((data) =>
+        data.length > 0
+          ? {
+              ...user,
+              s3Credentials: data,
+            }
+          : undefined,
+      ),
+    );
+
+    return this.$q
+      .all(usersCredentialsPromises)
+      .then((mappedUsers) => mappedUsers.filter((user) => !!user));
   }
 
   getUserStoragePolicy(projectId, userId) {
