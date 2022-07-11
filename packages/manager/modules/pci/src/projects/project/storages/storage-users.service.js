@@ -1,9 +1,9 @@
-export default class {
+export default class PciStoragesUsersService {
   /* @ngInject */
-  constructor($http, Poller, $q) {
+  constructor($q, $http, Poller) {
+    this.$q = $q;
     this.$http = $http;
     this.Poller = Poller;
-    this.$q = $q;
   }
 
   getBuckets(serviceName, regionName) {
