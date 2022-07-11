@@ -1,10 +1,10 @@
-import { injectTaskTrackerState } from '../../../nasha.utils';
+import { createTaskTrackerStateOptions } from '../../../components/task-tracker';
+import { STATE_NAME } from './snapshots.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const stateName = 'nasha.dashboard.partition.snapshots';
   const snapshotEnumKey = 'dedicated.storage.SnapshotEnum';
 
-  $stateProvider.state(stateName, {
+  $stateProvider.state(STATE_NAME, {
     url: '/snapshots',
     component: 'nashaDashboardPartitionSnapshots',
     resolve: {
@@ -33,8 +33,13 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       snapshotEnum: /* @ngInject */ (schema) =>
         schema.models[snapshotEnumKey].enum,
+      trackTasks: /* @ngInject */ ($state) => (params) =>
+        $state.go(`${STATE_NAME}.task-tracker`, params),
     },
   });
 
-  injectTaskTrackerState($stateProvider, stateName);
+  $stateProvider.state(
+    `${STATE_NAME}.task-tracker`,
+    createTaskTrackerStateOptions(['partitionName', 'customSnapshotName']),
+  );
 };

@@ -5,7 +5,7 @@ import chartjs from './chartjs';
 import timeRange from './time-range';
 import serverBandwidth from './bandwidth';
 import editServiceName from './edit-name';
-import taskTracker, { TaskTracker } from './task-tracker';
+import taskTracker from './task-tracker';
 
 export {
   inlinePropertyEditor,
@@ -15,7 +15,6 @@ export {
   serverBandwidth,
   editServiceName,
   taskTracker,
-  TaskTracker,
 };
 
 export default { resourceSelector };

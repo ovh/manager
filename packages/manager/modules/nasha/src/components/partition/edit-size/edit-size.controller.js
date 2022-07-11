@@ -21,7 +21,7 @@ export default class NashaComponentsPartitionEditSizeController {
     const { partitionName } = this.partition;
     const { size } = this.model;
 
-    this.OvhApiDedicatedNasha.Partition()
+    return this.OvhApiDedicatedNasha.Partition()
       .v6()
       .update({ serviceName }, { partitionName, size })
       .$promise.then(() =>
