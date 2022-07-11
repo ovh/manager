@@ -70,5 +70,8 @@
   "kube_service_access_security_oidc_menu_action_sr_only": "Actions",
   "kube_service_access_security_oidc_menu_action_add_provider": "Configure an OIDC provider",
   "kube_service_access_security_oidc_menu_action_set_provider": "Edit OIDC Provider",
-  "kube_service_access_security_oidc_menu_action_remove_provider": "Delete the OIDC provider"
+  "kube_service_access_security_oidc_menu_action_remove_provider": "Delete the OIDC provider",
+  "kube_service_cluster_network_ovh_gateway": "OVHcloud Internet Gateway",
+  "kube_service_cluster_network_vrack_default_gateway": "vRack default gateway (DHCP)",
+  "kube_service_cluster_network_vrack_customer_gateway": "Gateway: {{vRackGatewayIp}}"
 }
