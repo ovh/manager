@@ -12,7 +12,7 @@ export default {
     cancelCreate: '<',
     trackingPrefix: '<',
     user: '<',
-    userList: '<',
+    allUserList: '<',
     redirectTarget: '<',
   },
 };

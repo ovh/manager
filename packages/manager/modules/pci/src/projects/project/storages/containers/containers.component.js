@@ -22,6 +22,7 @@ export default {
     getStateName: '<',
     steins: '<',
     userList: '<',
+    allUserList: '<',
     customerRegions: '<',
     containersRegions: '<',
     goToRegion: '<',
