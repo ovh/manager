@@ -151,6 +151,13 @@ export default class {
     this.goToAllowedIPs();
   }
 
+  manageIntegrations() {
+    this.trackDashboard(
+      'general_information::configuration::manage_integrations',
+    );
+    this.goToIntegrations();
+  }
+
   loadMessages() {
     this.CucCloudMessage.unSubscribe(this.messageContainer);
     this.messageHandler = this.CucCloudMessage.subscribe(

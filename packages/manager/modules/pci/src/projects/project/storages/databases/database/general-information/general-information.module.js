@@ -17,6 +17,8 @@ import upgradePlan from './upgrade-plan';
 import upgradeVersion from './upgrade-version';
 import upgradeNode from './upgrade-node';
 
+import dashboardIntegrations from '../../components/dashboard-integrations';
+
 const moduleName = 'ovhManagerPciStoragesDatabaseGeneralInformation';
 
 angular
@@ -35,6 +37,7 @@ angular
     upgradePlan,
     upgradeVersion,
     upgradeNode,
+    dashboardIntegrations,
   ])
   .config(routing)
   .component('ovhManagerPciProjectDatabaseGeneralInformation', component)
