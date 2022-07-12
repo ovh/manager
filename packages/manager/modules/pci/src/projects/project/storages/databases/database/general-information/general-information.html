@@ -429,72 +429,11 @@
             </oui-tile>
         </div>
         <div class="col-md">
-            <oui-tile
-                data-ng-if="$ctrl.isFeatureActivated('showServiceIntegration')"
-                class="mb-3"
-                data-heading="{{:: 'pci_databases_general_information_service_integration_title' | translate }}"
-            >
-                <oui-tile-definition
-                    ng-if="$ctrl.database.engine === $ctrl.DATABASE_TYPES.KAFKA"
-                    data-term="{{::'pci_databases_general_information_kafka_mirror_maker_label' | translate }}"
-                >
-                    <oui-tile-description>
-                        <p
-                            data-ng-if="!$ctrl.serviceIntegration.kafkaMirrorMaker"
-                            data-translate="pci_databases_general_information_integration_none"
-                        ></p>
-                        <p
-                            data-ng-repeat="integration in $ctrl.serviceIntegration.kafkaMirrorMaker track by $index"
-                        >
-                            <span
-                                class="oui-badge_success oui-badge"
-                                data-ng-bind="integration.destinationServiceName"
-                            >
-                            </span>
-                        </p>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    ng-if="$ctrl.database.engine === $ctrl.DATABASE_TYPES.KAFKA"
-                    data-term="{{::'pci_databases_general_information_kafka_connect_label' | translate }}"
-                >
-                    <oui-tile-description>
-                        <p
-                            data-ng-if="!$ctrl.serviceIntegration.kafkaConnect"
-                            data-translate="pci_databases_general_information_integration_none"
-                        ></p>
-                        <p
-                            data-ng-repeat="integration in $ctrl.serviceIntegration.kafkaConnect track by $index"
-                        >
-                            <span
-                                class="oui-badge_success oui-badge"
-                                data-ng-bind="integration.destinationServiceName"
-                            >
-                            </span>
-                        </p>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    ng-if="$ctrl.database.engine === $ctrl.DATABASE_TYPES.M3DB"
-                    data-term="{{::'pci_databases_general_information_m3_aggregator_label' | translate }}"
-                >
-                    <oui-tile-description>
-                        <p
-                            data-ng-if="!$ctrl.serviceIntegration.m3aggregator"
-                            data-translate="pci_databases_general_information_integration_none"
-                        ></p>
-                        <p
-                            data-ng-repeat="integration in $ctrl.serviceIntegration.m3aggregator track by $index"
-                        >
-                            <span
-                                class="oui-badge_success oui-badge"
-                                data-ng-bind="integration.destinationServiceName"
-                            >
-                            </span>
-                        </p>
-                    </oui-tile-description>
-                </oui-tile-definition>
-            </oui-tile>
+            <dashboard-integration
+                data-ng-if="$ctrl.isFeatureActivated('serviceIntegrationTab')"
+                data-integrations="$ctrl.serviceIntegration"
+                data-on-manage-button-click="$ctrl.manageIntegrations()"
+            ></dashboard-integration>
             <oui-tile
                 class="mb-3"
                 data-heading="{{:: 'pci_databases_general_information_configuration_title' | translate }}"
