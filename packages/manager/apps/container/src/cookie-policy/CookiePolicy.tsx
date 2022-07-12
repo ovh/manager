@@ -84,7 +84,7 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
   };
 
   return (
-    <Modal size="lg" show={show} backdrop="static" keyboard={false}>
+    <Modal size="lg" show={show} backdrop="static" keyboard={false} animation={false}>
       <Modal.Body>
         <div className="cookie-policy-modal p-1">
           <div className="img-wrapper w-100 d-flex justify-content-center align-items-center">
