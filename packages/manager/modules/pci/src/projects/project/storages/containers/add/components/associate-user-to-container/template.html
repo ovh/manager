@@ -43,10 +43,15 @@
                 <oui-select
                     class="w-100 mr-2"
                     data-disabled="!$ctrl.users.length"
-                    data-items="$ctrl.users"
+                    data-items="$ctrl.usersCredentials"
                     data-match="username"
                     data-name="username"
-                    data-model="$ctrl.userModel.linkedMode.selected">
+                    data-model="$ctrl.userModel.linkedMode.selected"
+                >
+                    <span data-ng-bind="$item.username"></span>
+                    <span class="float-right"
+                          data-ng-bind="$item.credentialTrad"
+                    ></span>
                 </oui-select>
                 <oui-spinner data-ng-if="$ctrl.userModel.linkedMode.isInProgress" size="s"></oui-spinner>
             </div>
