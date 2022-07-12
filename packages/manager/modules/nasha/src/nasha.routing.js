@@ -4,8 +4,6 @@ import {
   NASHA_TITLE,
 } from './nasha.constants';
 import {
-  exportZfsOptions,
-  localizeDatacenter,
   formatAclTypeEnum,
   formatProtocolEnum,
   formatRecordsizeEnum,
@@ -73,11 +71,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       preparePlans: /* @ngInject */ ($filter) => (catalog) =>
         preparePlans(catalog, $filter),
       prepareZfsOptions: () => prepareZfsOptions,
-
-      // UTILS
-      exportZfsOptions: () => exportZfsOptions,
-      localizeDatacenter: /* @ngInject */ ($translate) => (datacenter) =>
-        localizeDatacenter(datacenter, $translate),
     },
   });
 

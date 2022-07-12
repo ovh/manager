@@ -9,7 +9,7 @@ export default class TaskTrackerService {
       ? this.$http
           .get(`${endpoint}/${taskIds[0]}`)
           .then(({ data: task }) => [task])
-      : this.getTasksBy(endpoint, { taskIds });
+      : this.getTasksBy(endpoint, { taskId: taskIds });
   }
 
   getTasksBy(endpoint, filters) {
