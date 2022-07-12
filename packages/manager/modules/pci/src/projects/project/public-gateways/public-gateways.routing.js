@@ -1,8 +1,3 @@
-import {
-  PUBLIC_GATEWAY_CATALOG_ADDON_PRODUCT_NAME,
-  PUBLIC_GATEWAY_ADDONS,
-} from './public-gateways.constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.public-gateways', {
     url: '/public-gateways',
@@ -21,28 +16,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('pci_projects_project_public_gateway_title'),
       gateways: /* @ngInject */ (PciPublicGatewaysService, projectId) =>
         PciPublicGatewaysService.getGateways(projectId),
-      gatewayCatalog: /* @ngInject */ (PciPublicGatewaysService, coreConfig) =>
-        PciPublicGatewaysService.getGatwayCatalog({
-          ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
-          productName: PUBLIC_GATEWAY_CATALOG_ADDON_PRODUCT_NAME.toLowerCase(),
-        }).then((data) => {
-          return data.addons
-            .filter(
-              (addon) =>
-                addon.product === PUBLIC_GATEWAY_ADDONS.PRODUCT_S ||
-                addon.product === PUBLIC_GATEWAY_ADDONS.PRODUCT_M ||
-                addon.product === PUBLIC_GATEWAY_ADDONS.PRODUCT_L,
-            )
-            .map((gateway) => {
-              return {
-                ...gateway,
-                gatewayPrice: gateway.pricings.find(
-                  ({ capacities, mode }) =>
-                    capacities.includes('consumption') && mode === 'default',
-                ),
-              };
-            });
-        }),
       goToAddPublicGateway: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.public-gateways.add', {
           projectId,

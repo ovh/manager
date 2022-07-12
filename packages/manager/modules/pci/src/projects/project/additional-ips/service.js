@@ -46,6 +46,14 @@ export default class PciProjectAdditionalIpService {
       .then(({ data }) => data);
   }
 
+  enableSnatOnGateway(projectId, region, gatewayId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/region/${region}/gateway/${gatewayId}/expose`,
+      )
+      .then(({ data }) => data);
+  }
+
   getPublicCloudCatalog(params) {
     return this.$http
       .get(`/order/catalog/public/cloud`, {
@@ -54,12 +62,13 @@ export default class PciProjectAdditionalIpService {
       .then(({ data }) => data);
   }
 
-  createFloatingIp(projectId, regionName, instanceId, networkIp) {
+  createFloatingIp(projectId, regionName, instanceId, ip, gateway = null) {
     return this.$http
       .post(
         `/cloud/project/${projectId}/region/${regionName}/instance/${instanceId}/floatingip`,
         {
-          ip: networkIp,
+          ip,
+          ...(gateway && { gateway }),
         },
       )
       .then(({ data }) => data);

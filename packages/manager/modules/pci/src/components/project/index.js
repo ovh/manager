@@ -12,6 +12,7 @@ import regionsList from './regions-list';
 import rights from './rights';
 import sshKeys from './instance/ssh-keys';
 import storages from './storages';
+import gateways from './gateways';
 
 const moduleName = 'ovhManagerPciComponentsProject';
 
@@ -27,6 +28,7 @@ angular.module(moduleName, [
   rights,
   sshKeys,
   storages,
+  gateways,
 ]);
 
 export default moduleName;

@@ -7,7 +7,6 @@ export default {
     projectId: '<',
     gateway: '<',
     trackPublicGateways: '<',
-    gatewayCatalog: '<',
   },
   controller,
   template,
