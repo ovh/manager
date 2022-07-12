@@ -11,4 +11,8 @@
   .oui-datagrid-responsive {
     overflow: inherit;
   }
+
+  oui-datagrid.hide-pagination oui-pagination {
+    display: none !important;
+  }
 }

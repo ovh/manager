@@ -17,6 +17,4 @@ angular
   .component('nashaComponentsPartitionZfsOptions', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
-export { OPTIONS_RESOLVE as ZFS_OPTIONS_RESOLVE } from './zfs-options.constants';
-
 export default moduleName;

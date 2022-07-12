@@ -6,7 +6,6 @@ export default {
     aclTypeEnum: '<',
     alertError: '<',
     goToDelete: '<',
-    nasha: '<',
     partition: '<',
     partitionApiUrl: '<',
     trackTasks: '<',

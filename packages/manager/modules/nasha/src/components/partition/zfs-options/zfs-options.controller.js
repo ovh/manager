@@ -1,5 +1,6 @@
 import isEqual from 'lodash/isEqual';
 
+import { prepareZfsOptions, exportZfsOptions } from '../../../nasha.utils';
 import { TRANSLATE } from './zfs-options.constants';
 
 export default class NashaComponentsPartitionZfsOptionsController {
@@ -8,6 +9,7 @@ export default class NashaComponentsPartitionZfsOptionsController {
     this.$http = $http;
     this.$translate = $translate;
 
+    this.isLoading = true;
     this.baseModel = null;
     this.model = {
       atime: null,
@@ -17,8 +19,25 @@ export default class NashaComponentsPartitionZfsOptionsController {
   }
 
   $onInit() {
-    this.model = { ...this.options };
-    this.baseModel = { ...this.options };
+    this.$http
+      .get(`${this.partitionApiUrl}/options`)
+      .then(({ data }) => {
+        const options = prepareZfsOptions(data);
+        this.model = { ...options };
+        this.baseModel = { ...options };
+      })
+      .catch((error) => {
+        if (error.status === 404) {
+          const options = prepareZfsOptions();
+          this.model = { ...options };
+          this.baseModel = { ...options };
+        } else {
+          this.close({ error });
+        }
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 
   get canSubmit() {
@@ -26,7 +45,7 @@ export default class NashaComponentsPartitionZfsOptionsController {
   }
 
   get exportedModel() {
-    return this.exportZfsOptions(this.model);
+    return exportZfsOptions(this.model);
   }
 
   getRecordsizeLabel(recordsize) {

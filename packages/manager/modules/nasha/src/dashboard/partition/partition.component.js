@@ -12,7 +12,6 @@ export default {
     goToEditName: '<',
     goToEditSize: '<',
     nasha: '<',
-    nashaApiUrl: '<',
     partition: '<',
     partitions: '<',
     partitionApiUrl: '<',

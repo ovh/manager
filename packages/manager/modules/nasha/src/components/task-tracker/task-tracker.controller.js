@@ -4,19 +4,19 @@ export default class NashaComponentsTaskTracker {
     this.$translate = $translate;
   }
 
-  onDone($success, $error) {
+  onDone(success, error) {
     return this.goBack({
       reload: true,
-      ...($success && {
+      ...(success && {
         success: this.$translate.instant(
           `nasha_components_task_tracker_operation_${this.operation}_success`,
           this.params,
         ),
       }),
-      ...($error && {
+      ...(error && {
         error: this.$translate.instant(
           `nasha_components_task_tracker_operation_${this.operation}_error`,
-          { ...this.params, error: $error },
+          { ...this.params, error },
         ),
       }),
     });

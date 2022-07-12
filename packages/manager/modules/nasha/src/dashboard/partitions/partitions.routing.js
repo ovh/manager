@@ -1,22 +1,21 @@
 import { createTaskTrackerStateOptions } from '../../components/task-tracker';
-import {
-  INSTANCE_STATE_NAME,
-  STATE_NAME,
-  TASK_TRACKER_STATE_NAME,
-} from './partitions.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
+  const stateName = 'nasha.dashboard.partitions';
+  const instanceStateName = `${stateName}.partition`;
+  const taskTrackerStateName = `${stateName}.task-tracker`;
+
   const goToPagePartitionResolve = [
     { id: '', name: '' },
     { id: 'accesses', name: 'Accesses' },
     { id: 'snapshots', name: 'Snapshots' },
   ].reduce((resolve, { id, name }) => {
     const resolveName = `goToPagePartition${name}`;
-    const stateName = `nasha.dashboard.partition${id ? `.${id}` : ''}`;
+    const pageStateName = `nasha.dashboard.partition${id ? `.${id}` : ''}`;
     return {
       ...resolve,
       [resolveName]: /* @ngInject */ ($state, serviceName) => (partitionName) =>
-        $state.go(stateName, {
+        $state.go(pageStateName, {
           serviceName,
           partitionName,
         }),
@@ -30,11 +29,11 @@ export default /* @ngInject */ ($stateProvider) => {
     { id: 'zfs-options', name: 'ZfsOptions', instance: true },
   ].reduce((resolve, { id, name, instance }) => {
     const resolveName = `goToTabPartitions${name}`;
-    const stateName = `${instance ? INSTANCE_STATE_NAME : STATE_NAME}.${id}`;
+    const tabStateName = `${instance ? instanceStateName : stateName}.${id}`;
     return {
       ...resolve,
       [resolveName]: /* @ngInject */ ($state, serviceName) => (partition) =>
-        $state.go(stateName, {
+        $state.go(tabStateName, {
           serviceName,
           partitionName: partition?.partitionName,
           partition,
@@ -42,7 +41,7 @@ export default /* @ngInject */ ($stateProvider) => {
     };
   }, {});
 
-  $stateProvider.state(STATE_NAME, {
+  $stateProvider.state(stateName, {
     url: '/partitions',
     component: 'nashaDashboardPartitions',
     resolve: {
@@ -54,11 +53,9 @@ export default /* @ngInject */ ($stateProvider) => {
       } = {}) =>
         tasks
           ? trackTasks({ tasks, partitionName })
-          : goBack({ stateName: STATE_NAME, error }),
-      partitionsHref: /* @ngInject */ ($state, serviceName) => () =>
-        $state.href(STATE_NAME, { serviceName }),
+          : goBack({ stateName, error }),
       trackTasks: /* @ngInject */ ($state) => (params) =>
-        $state.go(TASK_TRACKER_STATE_NAME, params),
+        $state.go(taskTrackerStateName, params),
       urlRenew: /* @ngInject */ (serviceName, coreURLBuilder) =>
         coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
           selectedType: 'DEDICATED_NASHA',
@@ -70,11 +67,11 @@ export default /* @ngInject */ ($stateProvider) => {
   });
 
   $stateProvider.state(
-    TASK_TRACKER_STATE_NAME,
+    taskTrackerStateName,
     createTaskTrackerStateOptions(['partitionName']),
   );
 
-  $stateProvider.state(INSTANCE_STATE_NAME, {
+  $stateProvider.state(instanceStateName, {
     abstract: true,
     url: '/:partitionName',
     params: {

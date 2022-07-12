@@ -80,7 +80,7 @@ export default class NashaDashboardPartitionSnapshotsController {
 
   hideCustomSnapshotForm() {
     this.isCustomSnapshotFormShown = false;
-    this.model.customSnapshotName = undefined;
+    this.model.customSnapshotName = null;
   }
 
   resetSnapshotTypes() {
@@ -94,20 +94,22 @@ export default class NashaDashboardPartitionSnapshotsController {
 
     this.snapshots.types.forEach((oldType) => {
       const newType = this.model.snapshotTypes.find(
-        ({ type }) => oldType.type === type,
+        ({ value }) => oldType.value === value,
       );
 
       if (!oldType.enabled && newType.enabled) {
         promises.push(
           this.$http.post(`${this.partitionApiUrl}/snapshot`, {
-            snapshotType: newType.type,
+            snapshotType: newType.value,
           }),
         );
       }
 
       if (oldType.enabled && !newType.enabled) {
         promises.push(
-          this.$http.delete(`${this.partitionApiUrl}/snapshot/${newType.type}`),
+          this.$http.delete(
+            `${this.partitionApiUrl}/snapshot/${newType.value}`,
+          ),
         );
       }
     });
@@ -121,6 +123,7 @@ export default class NashaDashboardPartitionSnapshotsController {
         }),
       )
       .catch((error) => {
+        this.isUpdatingSnapshotTypes = false;
         this.alertError(error);
       });
   }
@@ -144,6 +147,7 @@ export default class NashaDashboardPartitionSnapshotsController {
         }),
       )
       .catch((error) => {
+        this.isCreatingCustomSnapshot = false;
         this.alertError(error);
       });
   }
