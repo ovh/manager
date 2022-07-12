@@ -7,6 +7,7 @@ import isFunction from 'lodash/isFunction';
 import isNumber from 'lodash/isNumber';
 import min from 'lodash/min';
 import map from 'lodash/map';
+import last from 'lodash/last';
 import { TABS } from '../additional-ips.constants';
 import {
   ORDER_URL,
@@ -14,6 +15,7 @@ import {
   REGIONS,
   GUIDE_URLS,
   DEFAULTS_MODEL,
+  GATEWAY_TRACKING_PREFIX,
 } from './order.constants';
 
 export default class AdditionalIpController {
@@ -23,6 +25,7 @@ export default class AdditionalIpController {
     $window,
     $timeout,
     $translate,
+    atInternet,
     coreConfig,
     OvhApiOrderCloudProjectIp,
     OvhApiOrderCatalogFormatted,
@@ -33,6 +36,7 @@ export default class AdditionalIpController {
     this.$window = $window;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.OvhApiOrderCloudProjectIp = OvhApiOrderCloudProjectIp;
     this.OvhApiOrderCatalogFormatted = OvhApiOrderCatalogFormatted;
@@ -44,6 +48,7 @@ export default class AdditionalIpController {
   $onInit() {
     this.currentStep = 0;
     this.currencySymbol = this.coreConfig.getUser().currency.symbol;
+    this.ovhSubsidiary = this.coreConfig.getUser().ovhSubsidiary;
     this.allInstances = this.instances;
     this.filteredInstances = [];
     this.privateNetworks = [];
@@ -123,11 +128,19 @@ export default class AdditionalIpController {
 
   createFloatingIp() {
     this.creatingFloatingIp = true;
+    let gateway;
+    if (this.gateways.length === 0) {
+      gateway = {
+        name: this.gatewayName,
+        model: last(this.selectedGatewaySize.product.split('-')),
+      };
+    }
     this.PciProjectAdditionalIpService.createFloatingIp(
       this.projectId,
       this.ip.region.name,
       this.ip.instance.id,
       this.ip.network.ip,
+      gateway,
     )
       .then(() => {
         this.goBack(
@@ -184,10 +197,20 @@ export default class AdditionalIpController {
       this.selectedIpType.name === IP_TYPE_ENUM.FAILOVER &&
       this.ip.instance
     ) {
-      this.orderFailoverIp();
-    } else if (this.selectedIpType.name === IP_TYPE_ENUM.FLOATING) {
-      this.createFloatingIp();
+      return this.orderFailoverIp();
     }
+    if (
+      this.selectedIpType.name === IP_TYPE_ENUM.FLOATING &&
+      this.gateway &&
+      !this.snatEnabled
+    ) {
+      return this.AdditionalIpService.enableSnatOnGateway(
+        this.projectId,
+        this.ip.region.name,
+        this.gateway.id,
+      ).then(() => this.createFloatingIp());
+    }
+    return this.createFloatingIp();
   }
 
   filterInstances(regionName) {
@@ -234,7 +257,7 @@ export default class AdditionalIpController {
     return this.OvhApiOrderCatalogFormatted.v6()
       .get({
         catalogName: 'ip',
-        ovhSubsidiary: this.coreConfig.getUser().ovhSubsidiary,
+        ovhSubsidiary: this.ovhSubsidiary,
       })
       .$promise.then(({ plans }) =>
         filter(
@@ -285,17 +308,26 @@ export default class AdditionalIpController {
             networkSubnets.includes(intrfce.subnetId),
           );
         });
-        if (this.gateways.length === 0) {
-          const plan = this.getSmallestGatewayPlan();
-          this.gatewayPrice = `${plan.pricings[0].price +
-            plan.pricings[0].tax}${this.currencySymbol}`;
-        } else {
+        if (this.gateways.length > 0) {
           // there will be only one gateway with selected subnet, select the first one
           [this.gateway] = this.gateways;
           // SNAT is enabled if the gateway has externalInformation
           this.snatEnabled =
             this.gateway.externalInformation !== 'undefined' &&
             this.gateway.externalInformation !== null;
+          this.atInternet.trackPage({
+            name: `${GATEWAY_TRACKING_PREFIX}::${
+              this.snatEnabled
+                ? 'with-public-gateway'
+                : 'with-public-gateway-snat-disabled'
+            }`,
+            type: 'navigation',
+          });
+        } else {
+          this.atInternet.trackPage({
+            name: `${GATEWAY_TRACKING_PREFIX}::no-public-gateway`,
+            type: 'navigation',
+          });
         }
       })
       .finally(() => {
@@ -303,15 +335,11 @@ export default class AdditionalIpController {
       });
   }
 
-  getSmallestGatewayPlan() {
-    return this.publicCloudCatalog.addons.find(
-      (addon) => addon.product === 'publiccloud-gateway-s',
-    );
-  }
-
   showSubmitButtonOnSummaryStep() {
     return (
-      this.gateways.length === 0 ||
+      (this.gateways.length === 0 &&
+        this.gatewayName &&
+        this.selectedGatewaySize) ||
       (this.gateways.length > 0 && this.snatEnabled) ||
       (this.gateways.length > 0 && !this.snatEnabled && this.confirmAndProceed)
     );
@@ -325,23 +353,22 @@ export default class AdditionalIpController {
 
   getAdditionalIpGuideLink() {
     return (
-      GUIDE_URLS.FAILOVER_IP[this.coreConfig.getUser().ovhSubsidiary] ||
+      GUIDE_URLS.FAILOVER_IP[this.ovhSubsidiary] ||
       GUIDE_URLS.FAILOVER_IP.DEFAULT
     );
   }
 
   getAdditionalIpConfGuideLink() {
     return (
-      GUIDE_URLS.CONF_FAILOVER_IP[this.coreConfig.getUser().ovhSubsidiary] ||
+      GUIDE_URLS.CONF_FAILOVER_IP[this.ovhSubsidiary] ||
       GUIDE_URLS.CONF_FAILOVER_IP.DEFAULT
     );
   }
 
   getRegionsAvailabilityGuideLink() {
     return (
-      GUIDE_URLS.REGIONS_AVAILABILITY[
-        this.coreConfig.getUser().ovhSubsidiary
-      ] || GUIDE_URLS.REGIONS_AVAILABILITY.DEFAULT
+      GUIDE_URLS.REGIONS_AVAILABILITY[this.ovhSubsidiary] ||
+      GUIDE_URLS.REGIONS_AVAILABILITY.DEFAULT
     );
   }
 
@@ -394,5 +421,9 @@ export default class AdditionalIpController {
     this.$timeout(() => {
       this.loadingDefaultValues = false;
     });
+  }
+
+  onGatewayModelSelection(gateway) {
+    this.selectedGatewaySize = gateway;
   }
 }
