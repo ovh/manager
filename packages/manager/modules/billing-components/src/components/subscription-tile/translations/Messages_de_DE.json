@@ -13,5 +13,7 @@
   "manager_billing_subscription_engagement_commit": "Abonnement mit fester Laufzeit bestellen und von der Ermäßigung profitieren",
   "manager_billing_subscription_engagement_commit_again": "Abonnement mit fester Laufzeit verlängern und Vorzugspreis sichern",
   "manager_billing_subscription_engagement_status_engaged": "Läuft ab am {{ endDate }}",
-  "manager_billing_subscription_engagement_status_engaged_expired": "Beendet am {{ endDate }}"
+  "manager_billing_subscription_engagement_status_engaged_expired": "Beendet am {{ endDate }}",
+  "manager_billing_subscription_engagement_status_engaged_renew": "Wird am {{ endDate }} verlängert.",
+  "manager_billing_subscription_engagement_status_commitement_pending": "Die Vertragsbindung für diesen Dienst beginnt am {{ nextBillingDate }}."
 }
