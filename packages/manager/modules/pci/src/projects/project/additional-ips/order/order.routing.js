@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.additional-ips.order', {
     url: '/order?ipType&region&instance',
@@ -22,13 +25,31 @@ export default /* @ngInject */ ($stateProvider) => {
         region: $transition$.params().region,
         instance: $transition$.params().instance,
       }),
-      publicCloudCatalog: /* @ngInject */ (additionalIpService, coreConfig) =>
-        additionalIpService.getPublicCloudCatalog({
+      publicCloudCatalog: /* @ngInject */ (
+        PciProjectAdditionalIpService,
+        coreConfig,
+      ) =>
+        PciProjectAdditionalIpService.getPublicCloudCatalog({
           ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
           productName: 'cloud',
         }),
       breadcrumb: /* @ngInject */ () => null,
       goBack: /* @ngInject */ (goToAdditionalIps) => goToAdditionalIps,
+      instances: /* @ngInject */ (
+        PciProjectsProjectInstanceService,
+        projectId,
+      ) =>
+        PciProjectsProjectInstanceService.getAllInstanceDetails(
+          projectId,
+        ).then((instances) =>
+          filter(instances, ({ ipAddresses }) =>
+            find(ipAddresses, { type: 'private' }),
+          ),
+        ),
+      createInstanceUrl: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.instances.add', {
+          projectId,
+        }),
     },
   });
 };
