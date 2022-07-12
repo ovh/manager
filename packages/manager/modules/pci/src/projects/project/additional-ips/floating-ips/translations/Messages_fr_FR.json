@@ -1,0 +1,10 @@
+{
+  "pci_additional_ips_add_additional_ip": "Ajouter une IP additionnelle",
+  "pci_additional_ips_floating_ip_grid_ip": "Adresse IP",
+  "pci_additional_ips_floating_ip_grid_region": "Région",
+  "pci_additional_ips_floating_ip_grid_associated_service": "Instance associée",
+  "pci_additional_ips_floating_ip_grid_assocated_endpoint": "Endpoint associé",
+  "pci_additional_ips_floating_ip_grid_modify_associated_instance": "Modifier l'instance associée",
+  "pci_additional_ips_floating_ip_grid_manage_network_security": "Configurer la sécurité du réseau",
+  "pci_additional_ips_floating_ip_grid_delete": "Supprimer"
+}

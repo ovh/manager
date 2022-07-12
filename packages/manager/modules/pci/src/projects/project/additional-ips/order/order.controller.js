@@ -7,6 +7,7 @@ import isFunction from 'lodash/isFunction';
 import isNumber from 'lodash/isNumber';
 import min from 'lodash/min';
 import map from 'lodash/map';
+import { TABS } from '../additional-ips.constants';
 import {
   ORDER_URL,
   IP_TYPE_ENUM,
@@ -25,7 +26,7 @@ export default class AdditionalIpController {
     coreConfig,
     OvhApiOrderCloudProjectIp,
     OvhApiOrderCatalogFormatted,
-    additionalIpService,
+    PciProjectAdditionalIpService,
     CucCloudMessage,
   ) {
     this.$q = $q;
@@ -35,7 +36,7 @@ export default class AdditionalIpController {
     this.coreConfig = coreConfig;
     this.OvhApiOrderCloudProjectIp = OvhApiOrderCloudProjectIp;
     this.OvhApiOrderCatalogFormatted = OvhApiOrderCatalogFormatted;
-    this.additionalIpService = additionalIpService;
+    this.PciProjectAdditionalIpService = PciProjectAdditionalIpService;
     this.CucCloudMessage = CucCloudMessage;
     this.IP_TYPE_ENUM = IP_TYPE_ENUM;
   }
@@ -122,18 +123,19 @@ export default class AdditionalIpController {
 
   createFloatingIp() {
     this.creatingFloatingIp = true;
-    this.additionalIpService
-      .createFloatingIp(
-        this.projectId,
-        this.ip.region.name,
-        this.ip.instance.id,
-        this.ip.network.ip,
-      )
+    this.PciProjectAdditionalIpService.createFloatingIp(
+      this.projectId,
+      this.ip.region.name,
+      this.ip.instance.id,
+      this.ip.network.ip,
+    )
       .then(() => {
         this.goBack(
           this.$translate.instant(
             'pci_additional_ip_create_floating_ip_success',
           ),
+          'success',
+          TABS.FLOATING_IP,
         );
       })
       .catch((error) => {
@@ -251,8 +253,10 @@ export default class AdditionalIpController {
 
   initRegions() {
     this.loadingRegions = true;
-    return this.additionalIpService
-      .getRegions(this.projectId, this.coreConfig.getUser().ovhSubsidiary)
+    return this.PciProjectAdditionalIpService.getRegions(
+      this.projectId,
+      this.coreConfig.getUser().ovhSubsidiary,
+    )
       .then((regions) => {
         this.regions = regions;
       })
@@ -265,11 +269,11 @@ export default class AdditionalIpController {
     this.loadingGatewayDetails = true;
     this.$q
       .all({
-        gateways: this.additionalIpService.getGateways(
+        gateways: this.PciProjectAdditionalIpService.getGateways(
           this.projectId,
           this.ip.region.name,
         ),
-        subnets: this.additionalIpService.getNetworkSubnets(
+        subnets: this.PciProjectAdditionalIpService.getNetworkSubnets(
           this.projectId,
           this.ip.network.networkId,
         ),
@@ -342,11 +346,16 @@ export default class AdditionalIpController {
   }
 
   getDefaultValue(field) {
-    return (
-      this.defaults[field.name] !== undefined &&
-      isFunction(field.getDefault) &&
-      field.getDefault(this.defaults[field.name], this[field.availableOptions])
-    );
+    let defaultValue;
+    if (this.defaults[field.name] !== undefined) {
+      defaultValue =
+        isFunction(field.getDefault) &&
+        field.getDefault(
+          this.defaults[field.name],
+          this[field.availableOptions],
+        );
+    }
+    return defaultValue;
   }
 
   onChangeAfterDefaultValueSet(methodToCall, params) {

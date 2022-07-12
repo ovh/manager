@@ -9,8 +9,6 @@ export const GUIDES = [
   {
     id: 'persistent-failover-ip-configuration',
     links: {
-      FR:
-        'https://docs.ovh.com/fr/public-cloud/configurer_une_ip_failover/#objectif',
       DEFAULT:
         'https://docs.ovh.com/gb/en/public-cloud/make-failover-ip-configuration-persistent/',
     },

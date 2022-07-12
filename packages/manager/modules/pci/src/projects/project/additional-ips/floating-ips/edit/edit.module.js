@@ -3,13 +3,15 @@ import 'angular-translate';
 import '@uirouter/angularjs';
 
 import component from './edit.component';
+
 import routing from './edit.routing';
 
-const moduleName = 'ovhManagerPciProjectAdditionalIpEdit';
+const moduleName = 'ovhManagerPciProjectAdditionalIpsFloatingIpsEdit';
 
 angular
   .module(moduleName, ['ui.router', 'pascalprecht.translate'])
+  .component('pciAdditionalIpsFloatingIpEdit', component)
   .config(routing)
-  .component('pciProjectAdditionalIpsEdit', component);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
