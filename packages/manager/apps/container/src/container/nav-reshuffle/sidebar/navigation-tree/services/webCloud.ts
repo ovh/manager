@@ -13,7 +13,7 @@ export default {
       features: ['web:domains', 'web:domains:zone'],
       children: [
         {
-          id: 'domains',
+          id: 'domains-operations',
           translation: 'sidebar_domain_operations',
           routing: {
             application: 'web',
