@@ -8,7 +8,7 @@ export default {
     dashboardHref: '<',
     editNameHref: '<',
     goToEditName: '<',
-    goToPartitions: '<',
+    goToPartitionsCreate: '<',
     nasha: '<',
     nashaApiUrl: '<',
     reload: '<',
