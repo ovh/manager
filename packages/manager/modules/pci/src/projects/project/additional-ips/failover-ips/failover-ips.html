@@ -1,0 +1,92 @@
+<div data-ui-view>
+    <oui-datagrid
+        rows="$ctrl.failoverIps"
+        criteria="$ctrl.criteria"
+        on-criteria-change="$ctrl.onListParamChange($criteria)"
+    >
+        <oui-datagrid-topbar>
+            <oui-action-menu
+                data-text="{{:: 'pci_additional_ips_actions' | translate }}"
+            >
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToImportFailoverIps()"
+                >
+                    <span
+                        data-translate="pci_additional_ips_import_failover_ip"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToAdditionalIpOrderPage()"
+                >
+                    <span data-translate="pci_additional_ips_order"></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title=":: 'pci_additional_ips_failover_ip_title' | translate"
+            data-property="ip"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_additional_ips_ip_block' | translate"
+            data-property="block"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_additional_ips_geoloc' | translate"
+            data-property="geoloc"
+            data-type="string"
+        >
+            <span
+                data-ng-bind="'pci_additional_ips_country_' + $row.geoloc | translate"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_additional_ips_id' | translate"
+            data-property="id"
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_additional_ips_routedTo' | translate"
+            data-property="instance.name"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <a
+                data-ng-if="$row.instance"
+                data-ng-href="{{:: $ctrl.goToInstance($row.instance.id)}}"
+                data-ng-bind="$row.instance.name"
+            ></a>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToEditInstance($row.id)"
+            >
+                <span
+                    data-translate="pci_additional_ips_update_instance"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-href="{{:: $ctrl.FAILOVER_IPS_URL }}">
+                <span
+                    data-translate="pci_additional_ips_manage_network_security"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-href="{{:: $ctrl.FAILOVER_IPS_URL }}">
+                <span
+                    data-translate="pci_additional_ips_manage_ip_failover_service"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.goToTerminate($row.id)">
+                <span data-translate="pci_additional_ips_delete"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

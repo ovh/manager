@@ -1,0 +1,15 @@
+{
+  "pci_additional_ips_ip_block": "Bloc IP",
+  "pci_additional_ips_geoloc": "Pays",
+  "pci_additional_ips_id": "Service associé",
+  "pci_additional_ips_routedTo": "Instance associée",
+  "pci_additional_ips_import_failover_ip": "Importer une IP fail-over",
+  "pci_additional_ips_update_instance": "Modifier l'instance associée",
+  "pci_additional_ips_delete": "Supprimer",
+  "pci_additional_ips_mitigation": "Activer/Désactiver la mitigation",
+  "pci_additional_ips_firewall": "Configurer le pare-feu",
+  "pci_additional_ips_actions": "Actions",
+  "pci_additional_ips_order": "Ajouter une nouvelle IP",
+  "pci_additional_ips_manage_network_security": "Gérer la sécurité du réseau",
+  "pci_additional_ips_manage_ip_failover_service": "Gérer le service IP fail-over"
+}

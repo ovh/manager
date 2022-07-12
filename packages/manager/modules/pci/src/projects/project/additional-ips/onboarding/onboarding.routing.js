@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .injector()
         .getAsync('additionalIps')
         .then((additionalIps) =>
-          additionalIps.length > 0
+          additionalIps.failoverIps.length || additionalIps.floatingIps.length
             ? { state: 'pci.projects.project.additional-ips' }
             : false,
         ),
@@ -41,10 +41,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-    },
-    translations: {
-      value: ['.'],
-      format: 'json',
     },
   });
 };

@@ -5,8 +5,10 @@ export default {
   controller,
   template,
   bindings: {
+    goBack: '<',
+    instances: '<',
+    ip: '<',
     projectId: '<',
     serviceName: '<',
-    ip: '<',
   },
 };
