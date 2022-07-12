@@ -17,10 +17,10 @@ export default class PciAdditionalIpsOnboardingController {
         {
           ...guide,
           title: this.$translate.instant(
-            `pci_additional_ips_failoverip_onboarding_guides_${guide.id}_title`,
+            `pci_additional_ips_onboarding_guides_${guide.id}_title`,
           ),
           description: this.$translate.instant(
-            `pci_additional_ips_failoverip_onboarding_guides_${guide.id}_description`,
+            `pci_additional_ips_onboarding_guides_${guide.id}_description`,
           ),
           link: guide.links[this.user.ovhSubsidiary] || guide.links.DEFAULT,
         },
