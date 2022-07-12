@@ -1,12 +1,10 @@
 import { ipBlockToNumber } from '../../../nasha.utils';
-import { TRANSLATE } from './accesses.constants';
 
 export default class NashaDashboardPartitionAccessesController {
   /* @ngInject */
-  constructor($q, $http, $translate, iceberg) {
+  constructor($q, $http, iceberg) {
     this.$q = $q;
     this.$http = $http;
-    this.$translate = $translate;
     this.iceberg = iceberg;
 
     this.isAccessFormShown = false;
@@ -54,6 +52,13 @@ export default class NashaDashboardPartitionAccessesController {
     );
   }
 
+  get isPaginationHidden() {
+    return (
+      this.accesses.length === 0 ||
+      (this.accesses.length === 1 && this.accesses[0].isForm)
+    );
+  }
+
   loadAccesses($config) {
     const { criteria, pageSize, offset, sort } = $config;
 
@@ -98,16 +103,11 @@ export default class NashaDashboardPartitionAccessesController {
             ?.label,
         }));
 
-        if (!this.accesses.length) {
-          return this.showAccessForm().then(() => this.accesses);
-        }
-
-        return this.accesses;
+        return {
+          data: this.accesses,
+          meta: { totalCount: this.accesses.length },
+        };
       })
-      .then((data) => ({
-        data,
-        meta: { totalCount: data.length },
-      }))
       .finally(() => {
         this.isLoadingAccesses = false;
       });
@@ -178,9 +178,5 @@ export default class NashaDashboardPartitionAccessesController {
       .catch((error) => {
         this.alertError(error);
       });
-  }
-
-  translate(key, values) {
-    return this.$translate.instant(`${TRANSLATE}_${key}`, values);
   }
 }

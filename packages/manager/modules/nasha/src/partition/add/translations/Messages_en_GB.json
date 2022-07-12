@@ -1,9 +1,0 @@
-{
-  "nasha_partitions_action_add_partition_title": "Choose a protocol",
-  "nasha_partitions_action_add_success": "The partition {{partitionName}} will be added shortly.",
-  "nasha_partitions_action_add_failure": "An error occurred when creating partition {{partitionName}}.",
-  "nasha_partitions_action_add_desc_CIFS": "CIFS: recommended exchange protocol for Windows servers.",
-  "nasha_partitions_action_add_desc_NFS": "NFS: recommended exchange protocol for Linux/Unix servers.",
-  "nasha_partitions_action_add_desc_NFS_CIFS": "NFS_CIFS: enables shared exchange with Windows and Linux/Unix servers.",
-  "nasha_partitions_name_fail": "Name is invalid."
-}

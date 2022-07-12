@@ -7,7 +7,6 @@ import taskTrackerModule from '../../../components/task-tracker';
 
 import deleteModule from './delete';
 
-import autocompleteComponentModule from '../../../components/autocomplete';
 import component from './accesses.component';
 import routing from './accesses.routing';
 import './accesses.styles.scss';
@@ -19,7 +18,6 @@ angular
     'pascalprecht.translate',
     'oui',
     taskTrackerModule,
-    autocompleteComponentModule,
     deleteModule,
   ])
   .component('nashaDashboardPartitionAccesses', component)

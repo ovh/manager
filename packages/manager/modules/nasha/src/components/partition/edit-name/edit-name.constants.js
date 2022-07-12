@@ -1,5 +1,5 @@
-export const TRANSLATE = 'nasha_components_partition_edit_name';
+export const TRANSLATE_PREFIX = 'nasha_components_partition_edit_name';
 
 export default {
-  TRANSLATE,
+  TRANSLATE_PREFIX,
 };

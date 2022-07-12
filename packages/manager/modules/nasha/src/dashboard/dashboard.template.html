@@ -37,11 +37,11 @@
                 <!-- Information -->
                 <div class="col-md-4">
                     <oui-tile
-                        data-heading="{{:: ('nasha_dashboard_information_title' | translate) }}"
+                        data-heading="{{:: 'nasha_dashboard_information_title' | translate }}"
                     >
                         <!-- Name -->
                         <oui-tile-definition
-                            data-term="{{:: ('nasha_dashboard_information_name' | translate) }}"
+                            data-term="{{:: 'nasha_dashboard_information_name' | translate }}"
                         >
                             <oui-tile-description>
                                 <span data-ng-bind="$ctrl.name"></span>
@@ -62,25 +62,25 @@
                         </oui-tile-definition>
                         <!-- ID -->
                         <oui-tile-definition
-                            data-term="{{:: ('nasha_dashboard_information_id' | translate) }}"
+                            data-term="{{:: 'nasha_dashboard_information_id' | translate }}"
                             data-description="{{:: $ctrl.nasha.serviceName }}"
                         >
                         </oui-tile-definition>
                         <!-- Region -->
                         <oui-tile-definition
-                            data-term="{{:: ('nasha_dashboard_information_datacenter' | translate) }}"
+                            data-term="{{:: 'nasha_dashboard_information_datacenter' | translate }}"
                             data-description="{{:: $ctrl.nasha.localeDatacenter }}"
                         >
                         </oui-tile-definition>
                         <!-- Format -->
                         <oui-tile-definition
-                            data-term="{{:: ('nasha_dashboard_information_disk_type' | translate) }}"
+                            data-term="{{:: 'nasha_dashboard_information_disk_type' | translate }}"
                             data-description="{{:: $ctrl.nasha.diskType }}"
                         >
                         </oui-tile-definition>
                         <!-- Size -->
                         <oui-tile-definition
-                            data-term="{{:: ('nasha_dashboard_information_disk_size' | translate) }}"
+                            data-term="{{:: 'nasha_dashboard_information_disk_size' | translate }}"
                             data-description="{{:: $ctrl.nasha.diskSize }}"
                         >
                         </oui-tile-definition>
@@ -89,11 +89,11 @@
                 <!-- Configuration -->
                 <div class="col-md-4">
                     <oui-tile
-                        data-heading="{{:: ('nasha_dashboard_configuration_title' | translate) }}"
+                        data-heading="{{:: 'nasha_dashboard_configuration_title' | translate }}"
                     >
                         <!-- Quota -->
                         <oui-tile-definition
-                            data-term="{{:: ('nasha_dashboard_configuration_quota' | translate) }}"
+                            data-term="{{:: 'nasha_dashboard_configuration_quota' | translate }}"
                         >
                             <oui-tile-description>
                                 <nasha-components-space-meter

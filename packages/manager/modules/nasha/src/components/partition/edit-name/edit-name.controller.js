@@ -1,5 +1,5 @@
 import { NAME_PATTERN } from '../partition.constants';
-import { TRANSLATE } from './edit-name.constants';
+import { TRANSLATE_PREFIX } from './edit-name.constants';
 
 export default class NashaComponentsEditNameController {
   /* @ngInject */
@@ -35,6 +35,6 @@ export default class NashaComponentsEditNameController {
   }
 
   translate(key, values) {
-    return this.$translate.instant(`${TRANSLATE}_${key}`, values);
+    return this.$translate.instant(`${TRANSLATE_PREFIX}_${key}`, values);
   }
 }
