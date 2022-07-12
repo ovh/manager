@@ -25,8 +25,8 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId,
             containerId,
             container.isHighPerfStorage,
-            container.isStandardS3Storage,
             container.region,
+            container.s3StorageType,
           );
         },
 
