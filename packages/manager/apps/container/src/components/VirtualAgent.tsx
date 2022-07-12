@@ -193,7 +193,7 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
           <button
             onClick={() => toggle()}
             className={`${styles.group_arrow_button} oui-button`}
-            title={`Toggle ${title}`}
+            title={`Icon button that toggles ${title}`}
           >
             <span className="oui-icon oui-icon-chevron-up"></span>
             <span className="sr-only">{`Toggles ${title}`}</span>
