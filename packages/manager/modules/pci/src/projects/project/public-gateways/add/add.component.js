@@ -7,7 +7,6 @@ export default {
     guideUrl: '<',
     regions: '<',
     displayAddPrivateNetworkModal: '<',
-    gatewayCatalog: '<',
     goToPublicGateway: '<',
     goBack: '<',
     trackPublicGateways: '<',
