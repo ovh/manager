@@ -1,5 +1,3 @@
-import { getCriteria } from '../project.utils';
-
 const MESSAGES_CONTAINER_NAME = 'pci.projects.project.additional-ips';
 
 export default class AdditionalIpsController {
@@ -15,7 +13,6 @@ export default class AdditionalIpsController {
         onMessage: () => this.refreshMessage(),
       },
     );
-    this.criteria = getCriteria('ip', this.additionalIp);
   }
 
   refreshMessage() {

@@ -1,0 +1,36 @@
+<div class="row">
+    <oui-spinner data-ng-if="$ctrl.loading" size="m"></oui-spinner>
+    <oui-select-picker
+        data-ng-if="!$ctrl.loading"
+        class="col-md-6 col-xl-4 my-3"
+        data-ng-repeat="gateway in $ctrl.gatewayCatalog track by gateway.product"
+        data-name="size_{{:: gateway.product }}"
+        data-model="$ctrl.selectedGatewaySize"
+        data-label="{{:: ('pci_projects_project_gateways_model_selector_catalog_' + gateway.product + '_size') | translate }}"
+        data-values="[gateway]"
+        data-variant="light"
+        data-on-change="$ctrl.onGatewaySizeSelection({gateway: gateway})"
+        data-required
+    >
+        <oui-select-picker-section>
+            <div
+                class="d-flex"
+                data-ng-if="gateway.blobs.technical.bandwidth.level"
+            >
+                <strong
+                    data-translate="{{ 'pci_projects_project_gateways_model_selector_bandwidth'}}"
+                    data-translate-values="{ bandwidth : gateway.blobs.technical.bandwidth.level }"
+                ></strong>
+            </div>
+            <div class="d-flex mt-3" data-ng-if="gateway.pricings.length > 0">
+                <strong
+                    data-translate="{{ 'pci_projects_project_gateways_model_selector_catalog_price'}}"
+                ></strong>
+                <span
+                    class="ml-1"
+                    data-ng-bind="gateway.gatewayPrice.price"
+                ></span>
+            </div>
+        </oui-select-picker-section>
+    </oui-select-picker>
+</div>
