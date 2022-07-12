@@ -13,5 +13,7 @@
   "manager_billing_subscription_engagement_commit": "Subscrever com compromisso e beneficiar de um desconto",
   "manager_billing_subscription_engagement_commit_again": "Comprometer-se novamente e beneficiar de um desconto",
   "manager_billing_subscription_engagement_status_engaged": "Termina a {{ endDate }}",
-  "manager_billing_subscription_engagement_status_engaged_expired": "Terminado a {{ endDate }}"
+  "manager_billing_subscription_engagement_status_engaged_expired": "Termina a {{ endDate }}",
+  "manager_billing_subscription_engagement_status_engaged_renew": "Será renovado a {{ endDate }}",
+  "manager_billing_subscription_engagement_status_commitement_pending": "O compromisso do seu serviço começará a {{ nextBillingDate }}"
 }
