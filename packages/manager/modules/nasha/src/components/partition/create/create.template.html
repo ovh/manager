@@ -1,13 +1,13 @@
 <nasha-components-modal-form
     data-submit=":: $ctrl.submit()"
     data-close=":: $ctrl.close()"
-    data-heading="{{:: ('nasha_components_partition_create_title' | translate) }}"
-    data-primary-label="{{:: ('nasha_components_partition_create_submit' | translate) }}"
-    data-secondary-label="{{:: ('nasha_components_partition_create_cancel' | translate) }}"
+    data-heading="{{:: 'nasha_components_partition_create_title' | translate }}"
+    data-primary-label="{{:: 'nasha_components_partition_create_submit' | translate }}"
+    data-secondary-label="{{:: 'nasha_components_partition_create_cancel' | translate }}"
 >
     <oui-field
-        data-label="{{:: ('nasha_components_partition_create_name' | translate) }}"
-        data-help-text="{{:: ('nasha_components_partition_create_name_rules' | translate) }}"
+        data-label="{{:: 'nasha_components_partition_create_name' | translate }}"
+        data-help-text="{{:: 'nasha_components_partition_create_name_rules' | translate }}"
         data-error-messages="{ forbidOthers: $ctrl.forbidOthersMessage }"
     >
         <input
@@ -23,8 +23,8 @@
         />
     </oui-field>
     <oui-field
-        data-label="{{:: ('nasha_components_partition_create_size' | translate) }}"
-        data-help-text="{{:: ('nasha_components_partition_create_size_rules' | translate: { min: $ctrl.sizeMin, max: $ctrl.sizeMax }) }}"
+        data-label="{{:: 'nasha_components_partition_create_size' | translate }}"
+        data-help-text="{{:: 'nasha_components_partition_create_size_rules' | translate: { min: $ctrl.sizeMin, max: $ctrl.sizeMax } }}"
     >
         <oui-numeric
             data-id="size"
@@ -37,8 +37,8 @@
         </oui-numeric>
     </oui-field>
     <oui-field
-        data-label="{{:: ('nasha_components_partition_create_description' | translate) }}"
-        data-help-text="{{:: ('nasha_components_partition_create_description_rules' | translate: { max: $ctrl.descriptionMax }) }}"
+        data-label="{{:: 'nasha_components_partition_create_description' | translate }}"
+        data-help-text="{{:: 'nasha_components_partition_create_description_rules' | translate: { max: $ctrl.descriptionMax } }}"
     >
         <input
             type="text"
@@ -50,7 +50,7 @@
         />
     </oui-field>
     <oui-field
-        data-label="{{:: ('nasha_components_partition_create_protocol' | translate) }}"
+        data-label="{{:: 'nasha_components_partition_create_protocol' | translate }}"
     >
         <oui-radio
             data-ng-repeat="protocol in $ctrl.protocolEnum"
@@ -62,7 +62,7 @@
             <oui-radio-label data-ng-bind="protocol.label"></oui-radio-label>
             <oui-radio-description>
                 <span
-                    data-translate="{{:: ('nasha_components_partition_create_protocol_description_' + protocol.value) }}"
+                    data-translate="{{:: 'nasha_components_partition_create_protocol_description_' + protocol.value }}"
                 ></span>
             </oui-radio-description>
         </oui-radio>

@@ -1,4 +1,4 @@
-import { TRANSLATE } from './create.constants';
+import { TRANSLATE_PREFIX } from './create.constants';
 import {
   DESCRIPTION_MAX,
   NAME_PATTERN,
@@ -50,6 +50,6 @@ export default class NashaComponentsPartitionCreateController {
   }
 
   translate(key, values) {
-    return this.$translate.instant(`${TRANSLATE}_${key}`, values);
+    return this.$translate.instant(`${TRANSLATE_PREFIX}_${key}`, values);
   }
 }

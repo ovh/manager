@@ -8,9 +8,6 @@ import {
   NASHA_USE_SIZE_NAME,
 } from './nasha.constants';
 
-export const localizeDatacenter = (datacenter, $translate) =>
-  $translate.instant(`nasha_datacenter_${datacenter.toLowerCase()}`);
-
 /*
  * use = {
  *   usedbysnapshots: {
@@ -43,7 +40,9 @@ export const prepareNasha = ({ use, ...nasha }, $translate) => {
   return {
     ...nasha,
     use: prepareUse(use, $translate),
-    localeDatacenter: localizeDatacenter(nasha.datacenter, $translate),
+    localeDatacenter: $translate.instant(
+      `nasha_datacenter_${nasha.datacenter.toLowerCase()}`,
+    ),
     diskSize: `${useSize.value} ${$translate.instant(
       `nasha_use_unit_${useSize.unit}`,
     )}`,
@@ -146,7 +145,6 @@ export const ipBlockToNumber = (ipBlock) =>
 export default {
   exportZfsOptions,
   ipBlockToNumber,
-  localizeDatacenter,
   formatAclTypeEnum,
   formatProtocolEnum,
   formatRecordsizeEnum,

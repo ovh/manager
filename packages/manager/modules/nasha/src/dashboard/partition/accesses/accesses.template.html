@@ -1,7 +1,7 @@
 <div class="nasha-dashboard-partition-accesses">
     <oui-header
-        data-heading="{{:: ('nasha_dashboard_partition_accesses_heading' | translate) }}"
-        data-description="{{:: ('nasha_dashboard_partition_accesses_description' | translate) }}"
+        data-heading="{{:: 'nasha_dashboard_partition_accesses_heading' | translate }}"
+        data-description="{{:: 'nasha_dashboard_partition_accesses_description' | translate }}"
     ></oui-header>
     <h4 data-translate="nasha_dashboard_partition_accesses_subtitle"></h4>
     <form
@@ -10,7 +10,10 @@
         data-ng-submit="$ctrl.createAccess()"
         data-ng-disabled="!$ctrl.canCreateAccess"
     >
-        <oui-datagrid data-rows-loader="$ctrl.loadAccesses($config)">
+        <oui-datagrid
+            data-rows-loader="$ctrl.loadAccesses($config)"
+            ng-class="{ 'hide-pagination': $ctrl.isPaginationHidden }"
+        >
             <oui-datagrid-topbar>
                 <oui-button
                     data-icon-left="oui-icon-plus"
@@ -95,7 +98,7 @@
                     </oui-button>
                     <oui-button
                         data-on-click="$ctrl.hideAccessForm()"
-                        data-disabled="$ctrl.isCreatingAccess || $ctrl.accesses.length === 1"
+                        data-disabled="$ctrl.isCreatingAccess"
                         data-translate-attr="{ title: 'nasha_dashboard_partition_accesses_hide_form' }"
                     >
                         <span

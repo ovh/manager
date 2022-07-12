@@ -5,7 +5,6 @@ export default {
   bindings: {
     alertError: '<',
     alertSuccess: '<',
-    currentHref: '<',
     goToPagePartition: '<',
     goToPagePartitionAccesses: '<',
     goToPagePartitionSnapshots: '<',
@@ -15,7 +14,6 @@ export default {
     goToTabPartitionsZfsOptions: '<',
     nasha: '<',
     nashaApiUrl: '<',
-    partitionsHref: '<',
     preparePartition: '<',
     reload: '<',
     serviceInfo: '<',
