@@ -1,7 +1,9 @@
 import { createTaskTrackerStateOptions } from '../../components/task-tracker';
-import { STATE_NAME, TASK_TRACKER_STATE_NAME } from './partition.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
+  const stateName = 'nasha.dashboard.partition';
+  const taskTrackerStateName = `${stateName}.task-tracker`;
+
   const goToEditResolve = ['description', 'name', 'size'].reduce(
     (resolves, id) => {
       const capitalizedId = `${id[0].toUpperCase()}${id.slice(1)}`;
@@ -12,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName,
           partitionName,
         ) => () =>
-          $state.go(`${STATE_NAME}.edit-${id}`, {
+          $state.go(`${stateName}.edit-${id}`, {
             serviceName,
             partitionName,
           }),
@@ -21,7 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
     {},
   );
 
-  $stateProvider.state(STATE_NAME, {
+  $stateProvider.state(stateName, {
     url: '/partition/:partitionName',
     views: {
       '@nasha': {
@@ -38,13 +40,13 @@ export default /* @ngInject */ ($stateProvider) => {
       } = {}) =>
         tasks
           ? goToTrackTasks({ tasks, partitionName })
-          : goBack({ stateName: STATE_NAME, success, error }),
+          : goBack({ stateName, success, error }),
       editDescriptionHref: /* @ngInject */ ($state, serviceName) => () =>
-        $state.href(`${STATE_NAME}.edit-description`, { serviceName }),
+        $state.href(`${stateName}.edit-description`, { serviceName }),
       editNameHref: /* @ngInject */ ($state, serviceName) => () =>
-        $state.href(`${STATE_NAME}.edit-name`, { serviceName }),
+        $state.href(`${stateName}.edit-name`, { serviceName }),
       editSizeHref: /* @ngInject */ ($state, serviceName) => () =>
-        $state.href(`${STATE_NAME}.edit-size`, { serviceName }),
+        $state.href(`${stateName}.edit-size`, { serviceName }),
       partition: /* @ngInject */ (
         $state,
         serviceName,
@@ -76,9 +78,9 @@ export default /* @ngInject */ ($stateProvider) => {
       partitionName: /* @ngInject */ ($transition$) =>
         $transition$.params().partitionName,
       partitionHref: /* @ngInject */ ($state, serviceName) => () =>
-        $state.href(STATE_NAME, { serviceName }),
+        $state.href(stateName, { serviceName }),
       goToTrackTasks: /* @ngInject */ ($state) => (params) =>
-        $state.go(TASK_TRACKER_STATE_NAME, params),
+        $state.go(taskTrackerStateName, params),
       ...goToEditResolve,
     },
   });
@@ -88,7 +90,7 @@ export default /* @ngInject */ ($stateProvider) => {
     ...taskTrackerStateOptions
   } = createTaskTrackerStateOptions(['partitionName']);
 
-  $stateProvider.state(TASK_TRACKER_STATE_NAME, {
+  $stateProvider.state(taskTrackerStateName, {
     ...taskTrackerStateOptions,
     views: {
       edit: { component },

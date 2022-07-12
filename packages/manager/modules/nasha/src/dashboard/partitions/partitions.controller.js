@@ -1,15 +1,15 @@
-import { MAX_PARTITIONS, STATE_NAME } from './partitions.constants';
+import { MAX_PARTITIONS } from './partitions.constants';
 
 export default class NashaDashboardPartitionsController {
   /* @ngInject */
-  constructor($translate, OvhApiDedicatedNasha) {
+  constructor($translate, $http, OvhApiDedicatedNashaAapi) {
     this.$translate = $translate;
-    this.OvhApiDedicatedNasha = OvhApiDedicatedNasha;
+    this.$http = $http;
+    this.OvhApiDedicatedNashaAapi = OvhApiDedicatedNashaAapi;
 
     this.isMonitoredUpdating = false;
     this.maxPartitions = MAX_PARTITIONS;
     this.partitionsCount = null;
-    this.stateName = STATE_NAME;
   }
 
   get canCreatePartition() {
@@ -17,21 +17,23 @@ export default class NashaDashboardPartitionsController {
   }
 
   updateMonitored() {
-    const { customName, monitored } = this.nasha;
-    const { serviceName } = this;
+    const { monitored } = this.nasha;
 
     this.isMonitoredUpdating = true;
 
-    this.OvhApiDedicatedNasha.v6()
-      .updateDetail({ monitored, customName, serviceName })
-      .$promise.then(() =>
+    this.$http
+      .put(`${this.nashaApiUrl}`, { monitored })
+      .then(() =>
         this.alertSuccess(
           this.$translate.instant(
             `nasha_dashboard_partitions_monitored_${monitored ? 'on' : 'off'}`,
           ),
         ),
       )
-      .catch((error) => this.alertError(error))
+      .catch((error) => {
+        this.alertError(error);
+        this.nasha.monitored = !monitored;
+      })
       .finally(() => {
         this.isMonitoredUpdating = false;
       });
@@ -39,12 +41,10 @@ export default class NashaDashboardPartitionsController {
 
   loadPartitions() {
     const { serviceName } = this;
-    const aapi = this.OvhApiDedicatedNasha.Aapi();
 
-    aapi.resetCache();
+    this.OvhApiDedicatedNashaAapi.resetCache();
 
-    return aapi
-      .partitions({ serviceName })
+    return this.OvhApiDedicatedNashaAapi.partitions({ serviceName })
       .$promise.then((partitions) => partitions.map(this.preparePartition))
       .then((partitions) => {
         const totalCount = partitions.length;

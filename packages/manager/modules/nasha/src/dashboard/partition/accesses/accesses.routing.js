@@ -1,8 +1,10 @@
 import { createTaskTrackerStateOptions } from '../../../components/task-tracker';
-import { STATE_NAME, TASK_TRACKER_STATE_NAME } from './accesses.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state(STATE_NAME, {
+  const stateName = 'nasha.dashboard.partition.accesses';
+  const taskTrackerStateName = `${stateName}.task-tracker`;
+
+  $stateProvider.state(stateName, {
     url: '/accesses',
     component: 'nashaDashboardPartitionAccesses',
     resolve: {
@@ -15,18 +17,17 @@ export default /* @ngInject */ ($stateProvider) => {
       } = {}) =>
         tasks
           ? goToTrackTasks({ tasks, partitionName, ip })
-          : goBack({ stateName: STATE_NAME, error }),
+          : goBack({ stateName, error }),
       goToDelete: /* @ngInject */ ($state, serviceName, partitionName) => (
         ip,
-      ) =>
-        $state.go(`${STATE_NAME}.delete`, { serviceName, partitionName, ip }),
+      ) => $state.go(`${stateName}.delete`, { serviceName, partitionName, ip }),
       goToTrackTasks: /* @ngInject */ ($state) => (params) =>
-        $state.go(TASK_TRACKER_STATE_NAME, params),
+        $state.go(taskTrackerStateName, params),
     },
   });
 
   $stateProvider.state(
-    TASK_TRACKER_STATE_NAME,
+    taskTrackerStateName,
     createTaskTrackerStateOptions(['partitionName', 'ip']),
   );
 };

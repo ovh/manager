@@ -18,24 +18,24 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceName,
         alertSuccess,
         alertError,
-      ) => ({ success, error, stateName = '', reload = false } = {}) =>
-        $state
-          .go(
-            stateName || '^',
-            { serviceName },
-            { reload: reload || !!success },
-          )
-          .then((result) => {
-            if (success) {
-              alertSuccess(success);
-            }
-            if (error) {
-              alertError(error);
-            }
-            return result;
-          }),
+      ) => ({ success, error, stateName, reload } = {}) => {
+        const name = stateName || '^';
+        const prms = { serviceName };
+        const opts = {
+          reload: reload === true || (Boolean(success) && reload !== false),
+        };
+        return $state.go(name, prms, opts).then((result) => {
+          if (success) {
+            alertSuccess(success);
+          }
+          if (error) {
+            alertError(error);
+          }
+          return result;
+        });
+      },
       goToEditName: /* @ngInject */ ($state, serviceName) => () =>
-        $state.go(`${dashboardStateName}.edit-name`, { serviceName }),
+        $state.go(editNameStateName, { serviceName }),
       goToPartitions: /* @ngInject */ ($state, serviceName) => () =>
         $state.go(`${dashboardStateName}.partitions`, { serviceName }),
       nasha: /* @ngInject */ (

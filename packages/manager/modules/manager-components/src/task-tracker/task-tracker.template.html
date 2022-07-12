@@ -7,9 +7,9 @@
                     data-primary-label="{{:: ('task_tracker_close' | translate) }}"
                     data-primary-disabled="!$ctrl.isClosable"
                     data-primary-action="$ctrl.onDone({
-                        $tasks: $ctrl.tasks,
-                        $success: $ctrl.isDone,
-                        $error: $ctrl.errorMessage,
+                        tasks: $ctrl.tasks,
+                        success: $ctrl.isDone,
+                        error: $ctrl.errorMessage,
                     })"
                 >
                     <div data-ng-transclude="header"></div>

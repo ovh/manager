@@ -1,13 +1,13 @@
 <nasha-components-modal-form
     data-submit=":: $ctrl.submit()"
     data-close=":: $ctrl.close()"
-    data-heading="{{:: ('nasha_components_partition_edit_description_title' | translate: { name: $ctrl.partition.partitionName }) }}"
-    data-primary-label="{{:: ('nasha_components_partition_edit_description_primary' | translate) }}"
-    data-secondary-label="{{:: ('nasha_components_partition_edit_description_secondary' | translate) }}"
+    data-heading="{{:: 'nasha_components_partition_edit_description_title' | translate: { name: $ctrl.partition.partitionName } }}"
+    data-primary-label="{{:: 'nasha_components_partition_edit_description_primary' | translate }}"
+    data-secondary-label="{{:: 'nasha_components_partition_edit_description_secondary' | translate }}"
 >
     <oui-field
-        data-label="{{:: ('nasha_components_partition_edit_description_label' | translate: { name: $ctrl.partition.partitionName }) }}"
-        data-help-text="{{:: ('nasha_components_partition_edit_description_rules' | translate: { max: $ctrl.descriptionMax }) }}"
+        data-label="{{:: 'nasha_components_partition_edit_description_label' | translate: { name: $ctrl.partition.partitionName } }}"
+        data-help-text="{{:: 'nasha_components_partition_edit_description_rules' | translate: { max: $ctrl.descriptionMax } }}"
         data-error-messages="{ forbid: ('nasha_components_partition_edit_description_forbid' | translate) }"
     >
         <input
