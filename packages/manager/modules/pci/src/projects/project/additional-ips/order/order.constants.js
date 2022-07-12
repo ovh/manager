@@ -84,9 +84,13 @@ export const DEFAULTS_MODEL = [
   },
 ];
 
+export const GATEWAY_TRACKING_PREFIX =
+  'PublicCloud::additional-ips-order::floating-ips-warning-banner';
+
 export default {
   ORDER_URL,
   IP_TYPE_ENUM,
   REGIONS,
   GUIDE_URLS,
+  GATEWAY_TRACKING_PREFIX,
 };
