@@ -36,8 +36,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       goToEditName: /* @ngInject */ ($state, serviceName) => () =>
         $state.go(editNameStateName, { serviceName }),
-      goToPartitions: /* @ngInject */ ($state, serviceName) => () =>
-        $state.go(`${dashboardStateName}.partitions`, { serviceName }),
+      goToPartitionsCreate: /* @ngInject */ ($state, serviceName) => () =>
+        $state.go(`${dashboardStateName}.partitions.create`, { serviceName }),
       nasha: /* @ngInject */ (
         OvhApiDedicatedNasha,
         serviceName,
