@@ -1,4 +1,4 @@
-export default class AdditionalIpService {
+export default class PciProjectAdditionalIpService {
   /* @ngInject */
   constructor($http) {
     this.$http = $http;
@@ -21,6 +21,12 @@ export default class AdditionalIpService {
       );
   }
 
+  getPrivateNetworks(projectId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/network/private`)
+      .then(({ data }) => data);
+  }
+
   getNetworkSubnets(projectId, networkId) {
     return this.$http
       .get(`/cloud/project/${projectId}/network/private/${networkId}/subnet`)
@@ -31,6 +37,12 @@ export default class AdditionalIpService {
   getGateways(projectId, regionName) {
     return this.$http
       .get(`/cloud/project/${projectId}/region/${regionName}/gateway`)
+      .then(({ data }) => data);
+  }
+
+  getGatewayDetails(projectId, region, gatewayId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/region/${region}/gateway/${gatewayId}`)
       .then(({ data }) => data);
   }
 
@@ -51,5 +63,22 @@ export default class AdditionalIpService {
         },
       )
       .then(({ data }) => data);
+  }
+
+  deleteIpBlock(ipBlock) {
+    const [ip, block] = ipBlock.split('/');
+    return this.$http.post(
+      `/ip/service/${`ip-${block === '32' ? ip : ipBlock}`}/terminate`,
+    );
+  }
+
+  updateInstanceForFloatingIp(projectId, region, instanceId, floatingipId, ip) {
+    return this.$http.post(
+      `/cloud/project/${projectId}/region/${region}/instance/${instanceId}/associateFloatingip`,
+      {
+        floatingipId,
+        ip,
+      },
+    );
   }
 }

@@ -1,21 +1,19 @@
-import filter from 'lodash/filter';
-import find from 'lodash/find';
 import map from 'lodash/map';
+import { TABS } from './additional-ips.constants';
 import { PCI_FEATURES } from '../../projects.constant';
+
+const getStateToNavigate = (activeTab = TABS.FAILOVER_IP) =>
+  activeTab === TABS.FLOATING_IP
+    ? 'pci.projects.project.additional-ips.floating-ips'
+    : 'pci.projects.project.additional-ips.failover-ips';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.additional-ips', {
-    url: '/additional-ips?ip',
+    url: '/additional-ips',
     component: 'pciProjectAdditionalIps',
     translations: {
       format: 'json',
       value: ['.'],
-    },
-    params: {
-      ip: {
-        dynamic: true,
-        type: 'string',
-      },
     },
     onEnter: /* @ngInject */ (pciFeatureRedirect) => {
       return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.FAILOVER_IP);
@@ -25,53 +23,105 @@ export default /* @ngInject */ ($stateProvider) => {
         .injector()
         .getAsync('additionalIps')
         .then((additionalIps) =>
-          additionalIps.length === 0
+          additionalIps.failoverIps.length === 0 &&
+          additionalIps.floatingIps.length === 0
             ? { state: 'pci.projects.project.additional-ips.onboarding' }
-            : false,
+            : { state: getStateToNavigate() },
         ),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate
           .refresh()
           .then(() => $translate.instant('pci_additional_ips_title')),
-      additionalIp: /* @ngInject */ ($transition$) => $transition$.params().ip,
       additionalIps: /* @ngInject */ (
         $q,
         OvhApiCloudProject,
         OvhApiCloudProjectIpFailover,
         projectId,
+        getFloatingIps,
       ) =>
         $q
           .all({
-            additionalIps: OvhApiCloudProjectIpFailover.v6().query({
+            failoverIps: OvhApiCloudProjectIpFailover.v6().query({
               serviceName: projectId,
             }).$promise,
             instances: OvhApiCloudProject.Instance()
               .v6()
               .query({
                 serviceName: projectId,
-              }).$promise,
+              })
+              .$promise.then((instances) =>
+                instances.reduce((accumulator, instance) => {
+                  accumulator[instance.id] = instance;
+                  return accumulator;
+                }, {}),
+              ),
+            floatingIps: getFloatingIps(),
           })
-          .then(({ additionalIps, instances }) =>
-            map(additionalIps, (additionalIp) => ({
-              ...additionalIp,
-              instance: additionalIp.routedTo
-                ? find(instances, { id: additionalIp.routedTo })
-                : null,
-            })),
-          ),
+          .then(({ failoverIps, instances, floatingIps }) => {
+            return {
+              failoverIps: map(failoverIps, (failoverIp) => ({
+                ...failoverIp,
+                instance: failoverIp.routedTo
+                  ? instances[failoverIp.routedTo]
+                  : null,
+              })),
+              floatingIps: map(floatingIps, (floatingIp) => ({
+                ...floatingIp,
+                instance:
+                  floatingIp.associatedEntity?.type === 'instance'
+                    ? instances[floatingIp.associatedEntity?.id]
+                    : null,
+              })),
+            };
+          }),
+      currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
+        $state.href($state.current.name, $transition$.params()),
 
-      additionalIpsRegions: /* @ngInject */ (additionalIps) =>
-        Array.from(new Set(additionalIps.map(({ geoloc }) => geoloc))),
+      failoverIpsLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.additional-ips.failover-ips', {
+          projectId,
+        }),
+
+      floatingIpsLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.additional-ips.floating-ips', {
+          projectId,
+        }),
+
+      getFloatingIps: /* @ngInject */ (
+        $http,
+        $q,
+        OvhApiCloudProjectRegion,
+        projectId,
+      ) => () =>
+        OvhApiCloudProjectRegion.v6()
+          .query({
+            serviceName: projectId,
+          })
+          .$promise.then((regions) => {
+            return $q
+              .all(
+                regions.map((region) =>
+                  $http
+                    .get(
+                      `/cloud/project/${projectId}/region/${region}/floatingip `,
+                    )
+                    .then(({ data }) => data.map((ip) => ({ ...ip, region })))
+                    .catch(() => []),
+                ),
+              )
+              .then((floatingIpsData) => floatingIpsData.flat());
+          }),
 
       goToAdditionalIps: ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',
+        activeTab = TABS.FAILOVER_IP,
       ) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
-          'pci.projects.project.additional-ips',
+          getStateToNavigate(activeTab),
           {
             projectId,
           },
@@ -91,23 +141,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-
-      instances: /* @ngInject */ (
-        PciProjectsProjectInstanceService,
-        projectId,
-      ) =>
-        PciProjectsProjectInstanceService.getAllInstanceDetails(
-          projectId,
-        ).then((instances) =>
-          filter(instances, ({ ipAddresses }) =>
-            find(ipAddresses, { type: 'private' }),
-          ),
-        ),
-
-      createInstanceUrl: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.instances.add', {
-          projectId,
-        }),
       goToAdditionalIpOrderPage: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.additional-ips.order', {
           projectId,
