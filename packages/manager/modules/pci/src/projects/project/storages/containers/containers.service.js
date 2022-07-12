@@ -152,13 +152,14 @@ export default class PciStoragesContainersService {
     containerId,
     isHighPerfStorage = false,
     containerRegion,
+    s3StorageType,
   ) {
     let promise = null;
     const region = containerRegion || OPENIO_DEFAULT_REGION;
-    if (isHighPerfStorage) {
+    if (s3StorageType) {
       promise = this.$http
         .get(
-          `/cloud/project/${projectId}/region/${region}/storage/${containerId}`,
+          `/cloud/project/${projectId}/region/${region}/${s3StorageType}/${containerId}`,
         )
         .then(({ data }) => {
           return { ...data, region };
@@ -182,6 +183,7 @@ export default class PciStoragesContainersService {
             ...container,
             state: container.public,
             isHighPerfStorage,
+            s3StorageType,
             objects: map(
               container.objects,
               (object) =>
@@ -380,9 +382,9 @@ export default class PciStoragesContainersService {
     );
 
     return this.$q.all(promises).then(() => {
-      if (container.isHighPerfStorage) {
+      if (container.s3StorageType) {
         return this.$http.delete(
-          `/cloud/project/${projectId}/region/${container.region}/storage/${container.name}`,
+          `/cloud/project/${projectId}/region/${container.region}/${container.s3StorageType}/${container.name}`,
         );
       }
       return this.OvhApiCloudProjectStorage.v6().delete({
@@ -477,22 +479,29 @@ export default class PciStoragesContainersService {
       });
   }
 
-  deleteHighPerfObject(projectId, containerId, objectKey, containerRegion) {
+  deleteS3Object(
+    projectId,
+    containerId,
+    objectKey,
+    containerRegion,
+    s3StorageType,
+  ) {
     const region = containerRegion || OPENIO_DEFAULT_REGION;
     return this.$http
       .delete(
-        `/cloud/project/${projectId}/region/${region}/storage/${containerId}/object/${objectKey}`,
+        `/cloud/project/${projectId}/region/${region}/${s3StorageType}/${containerId}/object/${objectKey}`,
       )
       .then(({ data }) => data);
   }
 
   deleteObject(projectId, container, object) {
-    if (container.isHighPerfStorage) {
-      return this.deleteHighPerfObject(
+    if (container.s3StorageType) {
+      return this.deleteS3Object(
         projectId,
         container.id,
         object.name,
         container.region,
+        container.s3StorageType,
       );
     }
     return this.requestContainer(projectId, container, {

@@ -16,6 +16,7 @@ export default class Container {
     storedBytes,
     storedObjects,
     isHighPerfStorage,
+    s3StorageType,
     publicUrl,
     state,
     storageGateway,
@@ -34,6 +35,7 @@ export default class Container {
       storedBytes,
       storedObjects,
       isHighPerfStorage,
+      s3StorageType,
       publicUrl,
       state,
       storageGateway,
@@ -41,6 +43,7 @@ export default class Container {
     this.storedObjects = this.storedObjects || this.objectsCount;
     this.storedBytes = this.storedBytes || this.objectsSize;
     this.id = this.id || this.name;
+    this.s3StorageType = this.s3StorageType || null;
     this.region = this.region || OPENIO_DEFAULT_REGION;
   }
 

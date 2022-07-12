@@ -58,14 +58,6 @@
                 ></a>
             </oui-datagrid-column>
             <oui-datagrid-column
-                data-title="'pci_projects_project_storages_containers_id_label' | translate"
-                data-property="id"
-                data-type="string"
-                data-sortable
-                data-filterable
-            >
-            </oui-datagrid-column>
-            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_region_label' | translate"
                 data-property="region"
                 data-type="string"
@@ -73,24 +65,13 @@
                 data-filterable
             ></oui-datagrid-column>
             <oui-datagrid-column
-                data-title=":: 'pci_projects_project_storages_containers_containerType_label' | translate"
-                data-property="containerType"
-                data-sortable
-                data-type="string"
-            >
-                <span
-                    data-ng-if="$row.containerType"
-                    data-ng-bind="'pci_projects_project_storages_containers_containerType_' + $row.containerType | translate"
-                ></span>
-            </oui-datagrid-column>
-            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_offer_label' | translate"
                 data-type="string"
                 data-sortable
                 data-filterable
             >
                 <span
-                    data-ng-bind=":: 'pci_projects_project_storages_containers_offer_' + ($row.isHighPerfStorage ? 'high_performance' : 'swift') | translate"
+                    data-ng-bind=":: 'pci_projects_project_storages_containers_offer_' + ($row.s3StorageType == null ? $ctrl.OBJECT_CONTAINER_OFFERS_TYPES.SWIFT : ($row.isHighPerfStorage ? $ctrl.OBJECT_CONTAINER_OFFERS_TYPES.HIGH_PERFORMANCE : $ctrl.OBJECT_CONTAINER_OFFERS_TYPES.STORAGE_STANDARD)) | translate"
                 ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
@@ -114,10 +95,22 @@
                 <span data-ng-if="!$value">-</span>
             </oui-datagrid-column>
 
+            <oui-datagrid-column
+                data-title=":: 'pci_projects_project_storages_containers_containerType_label' | translate"
+                data-property="containerType"
+                data-sortable
+                data-type="string"
+            >
+                <span
+                    data-ng-if="$row.containerType"
+                    data-ng-bind="'pci_projects_project_storages_containers_containerType_' + $row.containerType | translate"
+                ></span>
+            </oui-datagrid-column>
+
             <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-on-click="$ctrl.goToAddUserContainer($row)"
-                    data-ng-if="$row.isHighPerfStorage"
+                    data-ng-if="$row.s3StorageType"
                 >
                     <span
                         data-translate="pci_projects_project_storages_containers_view_add_user_label"
@@ -136,20 +129,6 @@
                     ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
-            <oui-datagrid-column
-                data-title=":: 'pci_projects_project_storages_containers_public_label' | translate"
-                data-property="state"
-                data-sortable
-                data-filterable
-            >
-                <oui-switch
-                    model="$value"
-                    disabled="$row.id === $ctrl.loadingContainer"
-                    on-change="$ctrl.onPublicToggle($row)"
-                    data-ng-if="!$row.isHighPerfStorage"
-                >
-                </oui-switch>
-            </oui-datagrid-column>
 
             <oui-datagrid-topbar>
                 <button
