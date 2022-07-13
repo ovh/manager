@@ -2,6 +2,8 @@ import JSURL from 'jsurl';
 import { uniq } from 'lodash';
 import { CatalogPricing } from '@ovh-ux/manager-models';
 
+import { PRODUCT_ID } from './order.constants';
+
 export default class NashaOrderController {
   /* @ngInject */
   constructor($window, coreConfig, BillingService, RedirectionService) {
@@ -52,7 +54,7 @@ export default class NashaOrderController {
     return this.$window.open(
       `${this.expressOrderUrl}${`?products=${JSURL.stringify([
         {
-          productId: 'nasha',
+          productId: PRODUCT_ID,
           planCode: this.plan.planCode,
           pricingMode: this.payment.value.pricingMode,
           quantity: 1,

@@ -1,3 +1,5 @@
+import { PRODUCT_ID } from './order.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nasha.order', {
     url: '/order',
@@ -8,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
       plans: /* @ngInject */ ($http, coreConfig, preparePlans) =>
         $http
           .get(
-            `/order/catalog/public/f4a53r9w?ovhSubsidiary=${
+            `/order/catalog/public/${PRODUCT_ID}?ovhSubsidiary=${
               coreConfig.getUser().ovhSubsidiary
             }`,
           )
