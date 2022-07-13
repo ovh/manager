@@ -166,6 +166,14 @@
             </span>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_USER_encryption' | translate"
+        >
+            <span data-translate="common_yes" data-ng-if="$row.encryptionRight">
+            </span>
+            <span data-translate="common_no" data-ng-if="!$row.encryptionRight">
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_state' | translate"
         >
             <span
