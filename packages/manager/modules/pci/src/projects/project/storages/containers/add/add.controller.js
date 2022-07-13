@@ -5,6 +5,8 @@ import Container from '../container.class';
 
 import {
   OBJECT_CONTAINER_NAME_PATTERN,
+  OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
+  OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   OBJECT_CONTAINER_OFFERS,
   OBJECT_CONTAINER_OFFERS_LABELS,
   OBJECT_CONTAINER_TYPE_OFFERS,
@@ -101,6 +103,13 @@ export default class PciStoragesContainersAddController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  isRightOffer() {
+    return [
+      OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
+      OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
+    ].includes(this.container.offer);
   }
 
   isReadyForValidation() {
