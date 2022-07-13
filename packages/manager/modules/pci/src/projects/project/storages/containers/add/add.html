@@ -177,6 +177,7 @@
 
     <!--Create/Linked user-->
     <oui-step-form
+        data-ng-if="$ctrl.isRightOffer()"
         data-header="{{:: 'pci_projects_project_storages_containers_add_create_or_linked_user_title' | translate }}"
         data-navigation="$ctrl.isReadyForValidation()"
         data-name="storage_container_user"
