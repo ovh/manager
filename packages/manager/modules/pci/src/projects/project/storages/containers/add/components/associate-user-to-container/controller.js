@@ -177,8 +177,11 @@ export default class CreateLinkedUserController {
       })
       .then((credential) => {
         this.userModel.createMode.credential = credential;
-
+        this.trackPage(`${TRACKING_CREATE_USER}-success`);
         return credential;
+      })
+      .catch(() => {
+        this.trackPage(`${TRACKING_CREATE_USER}-error`);
       })
       .finally(() => {
         this.userModel.createMode.isInProgress = false;

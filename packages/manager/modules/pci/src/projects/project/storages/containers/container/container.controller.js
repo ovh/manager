@@ -142,4 +142,11 @@ export default class PciStoragesContainersContainerController {
         ),
       );
   }
+
+  onDocumentationClick(guide) {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}object::documentation::${guide.id}`,
+      type: 'action',
+    });
+  }
 }
