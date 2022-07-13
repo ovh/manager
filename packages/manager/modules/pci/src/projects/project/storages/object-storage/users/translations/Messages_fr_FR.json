@@ -5,7 +5,7 @@
   "pci_projects_project_storages_containers_users_accesskey": "Clé d'accès",
   "pci_projects_project_storages_containers_users_import_json": "Importer S3 Policy (JSON)",
   "pci_projects_project_storages_containers_users_download_json": "Télécharger S3 Policy (JSON)",
-  "pci_projects_project_storages_containers_users_download_rclone_file": "Télécharger le fichier rClone",
+  "pci_projects_project_storages_containers_users_download_rclone_file": "Télécharger le fichier rclone",
   "pci_projects_project_storages_containers_users_see_secret_key": "Voir la clé secrète",
   "pci_projects_project_storages_containers_users_user_management": "Gestion des utilisateurs",
   "pci_projects_project_storages_containers_users_user_description": "Cette section vous permet d'ajouter un nouvel utilisateur S3, d'obtenir votre clé d'accès et votre clé secrète, et de gérer les S3 Policies.",
