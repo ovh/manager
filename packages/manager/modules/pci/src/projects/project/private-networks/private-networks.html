@@ -48,138 +48,176 @@
             ></span>
         </oui-button>
     </pci-project-private-networks-empty>
-    <oui-datagrid
-        class="private-network-data-grid"
-        data-rows="$ctrl.privateNetworks"
-        data-ng-if="$ctrl.privateNetworks.length > 0"
-        criteria="$ctrl.criteria"
-        on-criteria-change="$ctrl.onListParamChange($criteria)"
-    >
-        <oui-datagrid-topbar>
-            <button
-                class="oui-button oui-button_secondary oui-button_icon-left mb-2"
-                data-ng-click="$ctrl.createNetwork()"
-                type="button"
-                data-track-on="click"
-                data-track-name="PCI_PROJECTS_NETWORK_ADD"
-                data-track-type="navigation"
-            >
-                <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
-                <span
-                    data-translate="pci_projects_project_network_private_create"
-                ></span>
-            </button>
-        </oui-datagrid-topbar>
-        <oui-datagrid-column
-            data-title=":: 'pci_projects_project_network_private_vlan_id' | translate"
-            data-property="vlanId"
-            data-searchable
-            data-type="string"
-            data-filterable
-        ></oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'pci_projects_project_network_private_name' | translate"
-            data-property="name"
-            data-searchable
-            data-type="string"
-            data-filterable
-        ></oui-datagrid-column>
-        <oui-datagrid-row-detail>
-            <div class="text-center" data-ng-if="$row.subnet.length === 0">
-                <span
-                    class="oui-datagrid-empty__placeholder"
-                    data-translate="pci_projects_project_network_private_no_data"
-                ></span>
-            </div>
-            <div
-                class="oui-table-responsive grid-details-table"
-                data-ng-if="$row.subnet.length > 0"
-            >
-                <table class="oui-table">
-                    <thead class="oui-table__headers">
-                        <tr>
-                            <th
-                                scope="col"
-                                class="oui-table__header pl-5"
-                                data-translate="pci_projects_project_network_private_region"
-                            ></th>
-                            <th
-                                scope="col"
-                                class="oui-table__header"
-                                data-ng-bind="$ctrl.PRIVATE_NETWORK_LIST.CIDR"
-                            ></th>
-                            <th
-                                scope="col"
-                                class="oui-table__header"
-                                data-translate="pci_projects_project_network_private_gateway"
-                            ></th>
-                            <th
-                                scope="col"
-                                class="oui-table__header"
-                                data-ng-bind="$ctrl.PRIVATE_NETWORK_LIST.DHCP"
-                            ></th>
-                            <th
-                                scope="col"
-                                class="oui-table__header"
-                                data-translate="pci_projects_project_network_private_ip_allocation"
-                            ></th>
-                            <th scope="col" class="oui-table__header"></th>
-                        </tr>
-                    </thead>
-                    <tbody class="oui-table__body">
-                        <tr
-                            class="oui-table__row"
-                            data-ng-repeat="subnetDetail in $row.subnet track by $index"
+    <div class="oui-datagrid-responsive private-network-data-grid">
+        <table class="oui-datagrid">
+            <thead>
+                <tr>
+                    <th scope="col" class="oui-table__header"></th>
+                    <th
+                        scope="col"
+                        class="oui-table__header"
+                        data-translate="pci_projects_project_network_private_vlan_id"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="oui-table__header"
+                        data-translate="pci_projects_project_network_private_name"
+                    ></th>
+                    <th scope="col" class="oui-table__header"></th>
+                    <th scope="col" class="oui-table__header"></th>
+                    <th scope="col" class="oui-table__header"></th>
+                    <th scope="col" class="oui-table__header"></th>
+                    <th scope="col" class="oui-table__header"></th>
+                    <th scope="col" class="oui-table__header"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    class="oui-datagrid__row oui-datagrid__row_expandable"
+                    data-ng-repeat-start="$row in $ctrl.privateNetworks track by $row.id"
+                    data-ng-click="$ctrl.expandRow($row)"
+                >
+                    <td class="oui-datagrid__cell">
+                        <button
+                            class="oui-button oui-button_ghost oui-button_s"
+                            type="button"
                         >
-                            <td
-                                class="oui-table__cell pl-5"
-                                data-ng-bind="subnetDetail.ipPools[0].region"
-                            ></td>
-                            <td
-                                class="oui-table__cell"
-                                data-ng-bind="subnetDetail.cidr"
-                            ></td>
-                            <td
-                                class="oui-table__cell"
-                                data-ng-bind="subnetDetail.gateway"
-                            ></td>
-                            <td
-                                class="oui-table__cell"
-                                data-ng-bind="subnetDetail.dhcp"
-                            ></td>
-                            <td
-                                class="oui-table__cell"
-                                data-ng-bind="subnetDetail.allocatedIp"
-                            ></td>
-                            <td class="oui-table__cell">
-                                <button
-                                    data-ng-if="!subnetDetail.gateway"
-                                    class="oui-button oui-button_ghost"
-                                    data-ng-click="$ctrl.goToAddPublicGateway($row.id, subnetDetail)"
-                                    data-oui-tooltip="{{:: 'pci_projects_project_network_private_assign_gateway' | translate}}"
-                                    data-oui-tooltip-placement="left"
-                                >
-                                    <i
-                                        class="oui-icon oui-icon-gear"
-                                        aria-hidden="true"
-                                    ></i>
-                                </button>
-                                <button
-                                    class="oui-button oui-button_ghost"
-                                    data-ng-click="$ctrl.deleteSubnet($row.id, subnetDetail.id)"
-                                    data-oui-tooltip="{{:: 'pci_projects_project_network_private_delete' | translate}}"
-                                    data-oui-tooltip-placement="left"
-                                >
-                                    <i
-                                        class="oui-icon oui-icon-bin"
-                                        aria-hidden="true"
-                                    ></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </oui-datagrid-row-detail>
-    </oui-datagrid>
+                            <span
+                                class="oui-icon"
+                                data-ng-class="{
+                                    'oui-icon-chevron-up': $ctrl.isRowExpanded[$row.id],
+                                    'oui-icon-chevron-down': !$ctrl.isRowExpanded[$row.id]
+                                }"
+                            ></span>
+                        </button>
+                    </td>
+                    <td class="oui-datagrid__cell">
+                        <span data-ng-bind="$row.vlanId"></span>
+                    </td>
+                    <td class="oui-datagrid__cell">
+                        <span data-ng-bind="$row.name"></span>
+                    </td>
+                    <td class="oui-datagrid__cell"></td>
+                    <td class="oui-datagrid__cell"></td>
+                    <td class="oui-datagrid__cell"></td>
+                    <td class="oui-datagrid__cell"></td>
+                    <td class="oui-datagrid__cell"></td>
+                    <td class="oui-datagrid__cell"></td>
+                </tr>
+                <tr
+                    class="oui-datagrid__cell text-center my-2"
+                    data-ng-if="$ctrl.isSubnetsLoading && $ctrl.isRowExpanded[$row.id] && !$row.subnets"
+                >
+                    <td colspan="4">
+                        <oui-spinner data-size="m"></oui-spinner>
+                    </td>
+                </tr>
+                <tr
+                    class="oui-datagrid__row text-center my-2"
+                    data-ng-if="$ctrl.isRowExpanded[$row.id] && $row.subnets.length === 0"
+                >
+                    <td
+                        colspan="4"
+                        class="oui-datagrid__cell oui-datagrid-empty__placeholder"
+                        data-translate="pci_projects_project_network_private_no_data"
+                    ></td>
+                </tr>
+                <tr
+                    data-ng-if="$ctrl.isRowExpanded[$row.id] && $row.subnets.length > 0"
+                    class="grid-details-table"
+                >
+                    <th scope="col" class="oui-table__header"></th>
+                    <th scope="col" class="oui-table__header"></th>
+                    <th scope="col" class="oui-table__header"></th>
+                    <th
+                        scope="col"
+                        class="oui-table__header"
+                        data-translate="pci_projects_project_network_private_region"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="oui-table__header"
+                        data-ng-bind="$ctrl.PRIVATE_NETWORK_LIST.CIDR"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="oui-table__header"
+                        data-translate="pci_projects_project_network_private_gateway"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="oui-table__header"
+                        data-ng-bind="$ctrl.PRIVATE_NETWORK_LIST.DHCP"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="oui-table__header"
+                        data-translate="pci_projects_project_network_private_ip_allocation"
+                    ></th>
+                    <th scope="col" class="oui-table__header"></th>
+                </tr>
+                <tr
+                    data-ng-if="$ctrl.isRowExpanded[$row.id] && $row.subnets.length > 0"
+                    data-ng-repeat="subnetDetail in $row.subnets track by $index"
+                >
+                    <td class="oui-datagrid__cell"></td>
+                    <td class="oui-datagrid__cell"></td>
+                    <td class="oui-datagrid__cell"></td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-bind="subnetDetail.ipPools[0].region"
+                    ></td>
+                    <td
+                        class="oui-table__cell"
+                        data-ng-bind="subnetDetail.cidr"
+                    ></td>
+                    <td
+                        class="oui-table__cell"
+                        data-ng-bind="subnetDetail.gateway"
+                    ></td>
+                    <td
+                        class="oui-table__cell"
+                        data-ng-bind="subnetDetail.dhcp"
+                    ></td>
+                    <td
+                        class="oui-table__cell"
+                        data-ng-bind="subnetDetail.allocatedIp"
+                    ></td>
+                    <td class="oui-datagrid__cell">
+                        <button
+                            data-ng-if="!subnetDetail.gateway"
+                            class="oui-button oui-button_ghost"
+                            data-ng-click="$ctrl.goToAddPublicGateway($row.id, subnetDetail)"
+                            data-oui-tooltip="{{:: 'pci_projects_project_network_private_assign_gateway' | translate}}"
+                            data-oui-tooltip-placement="left"
+                        >
+                            <i
+                                class="oui-icon oui-icon-gear"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+                        <button
+                            class="oui-button oui-button_ghost"
+                            data-ng-click="$ctrl.deleteSubnet($row.id, subnetDetail.id)"
+                            data-oui-tooltip="{{:: 'pci_projects_project_network_private_delete' | translate}}"
+                            data-oui-tooltip-placement="left"
+                        >
+                            <i
+                                class="oui-icon oui-icon-bin"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr data-ng-repeat-end aria-hidden="true"></tr>
+            </tbody>
+        </table>
+    </div>
+    <oui-pagination
+        data-current-offset="$ctrl.offset"
+        data-page-size="$ctrl.pageSize"
+        data-total-items="$ctrl.originalList.length"
+        data-on-change="$ctrl.onChange($event)"
+    >
+    </oui-pagination>
 </div>
