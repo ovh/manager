@@ -3,15 +3,25 @@ import {
   CONTAINER_USER_ASSOCIATION_MODES,
   NAMESPACES,
   USER_STATUS,
+  TRACKING_PREFIX,
+  TRACKING_CREATE_USER,
+  TRACKING_ASSOCIATE_USER,
 } from './constant';
 
 export default class CreateLinkedUserController {
   /* @ngInject */
-  constructor($q, $translate, CucCloudMessage, PciStoragesUsersService) {
+  constructor(
+    $q,
+    $translate,
+    CucCloudMessage,
+    PciStoragesUsersService,
+    atInternet,
+  ) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.PciStoragesUsersService = PciStoragesUsersService;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -124,27 +134,33 @@ export default class CreateLinkedUserController {
   }
 
   onLinkedModeClicked() {
+    this.trackClick(TRACKING_ASSOCIATE_USER);
     this.userModel.createOrLinkedMode = CONTAINER_USER_ASSOCIATION_MODES.LINKED;
   }
 
   onCreateModeClicked() {
+    this.trackClick(TRACKING_CREATE_USER);
     this.userModel.createOrLinkedMode = CONTAINER_USER_ASSOCIATION_MODES.CREATE;
   }
 
   onLinkedUserClicked() {
+    this.trackClick(`${TRACKING_ASSOCIATE_USER}-confirm`);
     const { selected: user } = this.userModel.linkedMode;
-
     this.userModel.linkedMode.isInProgress = true;
     return this.PciStoragesUsersService.generateS3Credential(
       this.projectId,
       user.id,
     )
       .then((credential) => {
+        this.trackPage(`${TRACKING_ASSOCIATE_USER}-success`);
         const { s3Credentials } = user;
         user.s3Credentials = s3Credentials || [];
         user.s3Credentials.push(credential);
 
         this.userModel.linkedMode.credential = credential;
+      })
+      .catch(() => {
+        this.trackPage(`${TRACKING_ASSOCIATE_USER}-error`);
       })
       .finally(() => {
         this.userModel.linkedMode.isInProgress = false;
@@ -152,12 +168,14 @@ export default class CreateLinkedUserController {
   }
 
   onCancelLinkedUserClicked() {
+    this.trackClick(`${TRACKING_ASSOCIATE_USER}-cancel`);
     this.reset();
     this.userModel.linkedMode.selected = null;
     this.userModel.linkedMode.credential = null;
   }
 
   onCreateUserClicked(description) {
+    this.trackClick(`${TRACKING_CREATE_USER}-confirm`);
     this.userModel.createMode.isInProgress = true;
     return this.createUser(description)
       .then((user) => this.generateUserS3Credential(user))
@@ -167,11 +185,26 @@ export default class CreateLinkedUserController {
   }
 
   onCancelCreateUserClicked() {
+    this.trackClick(`${TRACKING_CREATE_USER}-cancel`);
     this.reset();
     this.userModel.createMode.user = null;
     this.userModel.createMode.description = '';
     this.CucCloudMessage.flushMessages(
       ASSOCIATE_CONTAINER_USER_CONTAINER_MESSAGES,
     );
+  }
+
+  trackPage(page) {
+    this.atInternet.trackPage({
+      name: `${TRACKING_PREFIX}${page}`,
+      type: 'navigation',
+    });
+  }
+
+  trackClick(action) {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}${action}`,
+      type: 'action',
+    });
   }
 }
