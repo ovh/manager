@@ -11,6 +11,7 @@
   "dedicatedCloud_USER_ip": "Ip",
   "dedicatedCloud_USER_ipfo": "Ip FailOver",
   "dedicatedCloud_USER_nsx": "Interface NSX",
+  "dedicatedCloud_USER_encryption": "Gestion du chiffrement",
   "dedicatedCloud_USER_state": "État",
   "dedicatedCloud_USER_state_CREATING": "Création en cours",
   "dedicatedCloud_USER_state_DELETING": "Suppression en cours",
