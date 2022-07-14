@@ -12,6 +12,10 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: /* @ngInject */ () => null,
         goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+        onCancelClick: /* @ngInject */ (trackClick, goBack) => () => {
+          trackClick('floating-ips::edit::cancel');
+          return goBack();
+        },
         serviceName: /* @ngInject */ ($transition$) =>
           $transition$.params().serviceName,
         ip: /* @ngInject */ (serviceName, floatingIps) =>
