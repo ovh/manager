@@ -9,6 +9,7 @@ export default class PciBlockStorageContainersContainerObjectAddController {
   }
 
   $onInit() {
+    this.trackClick('add');
     this.isLoading = false;
 
     this.prefix = '/';
@@ -18,10 +19,7 @@ export default class PciBlockStorageContainersContainerObjectAddController {
   addObjects() {
     this.isLoading = true;
     let addPromise = null;
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}object::add::confirm`,
-      type: 'action',
-    });
+    this.trackClick('object::add::confirm');
     if (this.container.isHighPerfStorage) {
       addPromise = this.addHighPerfObjects(
         this.projectId,
@@ -77,10 +75,14 @@ export default class PciBlockStorageContainersContainerObjectAddController {
   }
 
   cancel() {
+    this.trackClick('object::add::cancel');
+    return this.goBack();
+  }
+
+  trackClick(action) {
     this.atInternet.trackClick({
-      name: `${this.trackingPrefix}object::add::cancel`,
+      name: `${this.trackingPrefix}${action}`,
       type: 'action',
     });
-    return this.goBack();
   }
 }

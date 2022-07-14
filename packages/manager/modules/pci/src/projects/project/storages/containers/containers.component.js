@@ -26,5 +26,6 @@ export default {
     customerRegions: '<',
     containersRegions: '<',
     goToRegion: '<',
+    trackingPrefix: '<',
   },
 };
