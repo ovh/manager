@@ -8,5 +8,6 @@ export default {
     getStateName: '<',
     goToRegion: '<',
     goToAdditionalIpOrderPage: '<',
+    trackClick: '<',
   },
 };

@@ -14,19 +14,30 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ () => null,
       additionalIp: /* @ngInject */ ($transition$) => $transition$.params().ip,
       floatingIps: /* @ngInject */ (additionalIps) => additionalIps.floatingIps,
-      goToEditInstance: /* @ngInject */ ($state, projectId) => (serviceName) =>
-        $state.go('pci.projects.project.additional-ips.floating-ips.edit', {
-          projectId,
-          serviceName,
-        }),
-      goToTerminate: /* @ngInject */ ($state, projectId) => (serviceName) =>
-        $state.go(
+      goToEditInstance: /* @ngInject */ ($state, projectId, trackClick) => (
+        serviceName,
+      ) => {
+        trackClick('floating-ips::table-option-menu::edit');
+        return $state.go(
+          'pci.projects.project.additional-ips.floating-ips.edit',
+          {
+            projectId,
+            serviceName,
+          },
+        );
+      },
+      goToTerminate: /* @ngInject */ ($state, projectId, trackClick) => (
+        serviceName,
+      ) => {
+        trackClick('floating-ips::table-option-menu::terminate');
+        return $state.go(
           'pci.projects.project.additional-ips.floating-ips.terminate',
           {
             projectId,
             serviceName,
           },
-        ),
+        );
+      },
       goToInstance: /* @ngInject */ ($state, projectId) => (instanceId) =>
         $state.href('pci.projects.project.instances.instance', {
           projectId,
