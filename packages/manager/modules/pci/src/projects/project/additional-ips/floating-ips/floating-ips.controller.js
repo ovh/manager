@@ -10,4 +10,9 @@ export default class FloatingIpController {
       `#/ip?serviceName=${this.projectId}&page=1`,
     );
   }
+
+  onAddAdditionalIpClick() {
+    this.trackClick('PCI_PROJECTS_FLOATING_IP_ADD', false);
+    return this.goToAdditionalIpOrderPage();
+  }
 }

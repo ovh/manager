@@ -45,4 +45,13 @@ export default class PciAdditionalIpsOnboardingController {
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
   }
+
+  onCreateAdditionalIpsBtnClick() {
+    this.trackClick('onboarding::add');
+    return this.goToAdditionalIpOrderPage();
+  }
+
+  onDocumentationClick(guide) {
+    this.trackClick(`onboarding::documentation::${guide.id}`);
+  }
 }

@@ -4,9 +4,9 @@
         data-primary-action="$ctrl.terminate()"
         data-primary-label="{{:: 'pci_additional_ips_floating_ips_floating_ip_terminate_confirm' | translate }}"
         data-primary-disabled="$ctrl.isLoading"
-        data-secondary-action="$ctrl.goBack()"
+        data-secondary-action="$ctrl.onCancelClick()"
         data-secondary-label="{{:: 'pci_additional_ips_floating_ips_floating_ip_terminate_cancel' | translate }}"
-        data-on-dismiss="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.onCancelClick()"
         data-loading="$ctrl.isLoading"
     >
     </oui-modal>

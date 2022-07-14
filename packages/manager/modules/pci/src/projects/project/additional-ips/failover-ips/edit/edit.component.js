@@ -8,6 +8,7 @@ export default {
     goBack: '<',
     instances: '<',
     ip: '<',
+    onCancelClick: '<',
     projectId: '<',
     serviceName: '<',
   },
