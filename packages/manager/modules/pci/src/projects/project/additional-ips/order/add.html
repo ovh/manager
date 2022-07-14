@@ -22,6 +22,7 @@
             data-header="{{:: 'pci_additional_ip_create_step_select_ip' | translate}}"
             data-editable="!$ctrl.creatingFloatingIp"
             data-name="additional_ip_create_step_select_ip"
+            data-on-submit="$ctrl.onAdditionalIpTypeSubmit()"
         >
             <div class="row mb-3">
                 <oui-select-picker
@@ -55,6 +56,7 @@
             data-loading="$ctrl.loadingRegions"
             data-navigation="$ctrl.ip.region"
             data-name="additional_ip_create_step_select_region"
+            data-on-submit="$ctrl.onRegionFormSubmit()"
         >
             <div
                 data-ng-if="$ctrl.selectedIpType.name === $ctrl.IP_TYPE_ENUM.FAILOVER"
@@ -127,8 +129,10 @@
                 <p
                     data-translate="pci_additional_ip_create_step_attach_instance_info_failover_ip"
                     data-translate_values="{
-                        guideLink: $ctrl.getAdditionalIpConfGuideLink()
+                        guideLink: $ctrl.getAdditionalIpConfGuideLink(),
+                        trackLabel: 'guide-configure-failover-ip'
                     }"
+                    data-translate-compile
                 ></p>
             </oui-message>
 
