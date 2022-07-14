@@ -1,4 +1,9 @@
-import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from './users.constants';
+import {
+  DOWNLOAD_FILENAME,
+  DOWNLOAD_TYPE,
+  TRACKING_S3_POLICY,
+  TRACKING_S3_POLICY_ADD,
+} from './users.constants';
 
 const { saveAs } = require('file-saver');
 
@@ -18,6 +23,9 @@ export default class PciStoragesContainersUsersController {
 
   $onInit() {
     this.loadMessages();
+    if (this.trackingInfo)
+      this.trackPage(`${TRACKING_S3_POLICY_ADD}${this.trackingInfo}`);
+    else this.trackPage(`${TRACKING_S3_POLICY}`);
   }
 
   loadMessages() {
@@ -86,5 +94,12 @@ export default class PciStoragesContainersUsersController {
         },
       ),
     );
+  }
+
+  trackPage(page) {
+    this.atInternet.trackPage({
+      name: `${this.trackingPrefix}${page}`,
+      type: 'navigation',
+    });
   }
 }

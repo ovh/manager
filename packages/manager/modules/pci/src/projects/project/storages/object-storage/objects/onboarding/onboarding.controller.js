@@ -39,7 +39,7 @@ export default class PciStorageObjectsOnboardingController {
 
   onDocumentationClick(guide) {
     this.atInternet.trackClick({
-      name: `${this.trackingPrefix}onboarding::documentation::${guide.id}`,
+      name: `${this.trackingPrefix}onboarding::documentation::${guide.title}`,
       type: 'action',
     });
   }

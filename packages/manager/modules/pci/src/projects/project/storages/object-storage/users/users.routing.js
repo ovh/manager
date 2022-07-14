@@ -7,12 +7,15 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       userDetails: null,
       userCredential: null,
+      trackingInfo: null,
     },
     resolve: {
       userDetails: /* @ngInject */ ($transition$) =>
         $transition$.params().userDetails,
       userCredential: /* @ngInject */ ($transition$) =>
         $transition$.params().userCredential,
+      trackingInfo: /* @ngInject */ ($transition$) =>
+        $transition$.params().trackingInfo,
       goToUsersAndRoles: /* @ngInject */ (
         $state,
         atInternet,
@@ -47,20 +50,34 @@ export default /* @ngInject */ ($stateProvider) => {
         reload = false,
         userDetails,
         userCredential,
-      ) =>
-        $state.go(
+        trackingInfo,
+      ) => {
+        return $state.go(
           'pci.projects.project.storages.object-storage.users',
           {
             projectId,
             userDetails,
             userCredential,
+            trackingInfo,
           },
           {
             reload,
           },
-        ),
-      goToAddUser: /* @ngInject */ ($state) => () =>
-        $state.go('pci.projects.project.storages.object-storage.users.add'),
+        );
+      },
+      goToAddUser: /* @ngInject */ (
+        $state,
+        atInternet,
+        trackingPrefix,
+      ) => () => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}s3-policies-users::add`,
+          type: 'action',
+        });
+        return $state.go(
+          'pci.projects.project.storages.object-storage.users.add',
+        );
+      },
       goToUsers: /* @ngInject */ (CucCloudMessage, $state, projectId) => (
         message = false,
         type = 'success',
@@ -94,7 +111,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     },
     atInternet: {
-      rename: 'pci::projects::project::storages::objects::s3-policies-users',
+      ignore: true,
     },
   });
 };

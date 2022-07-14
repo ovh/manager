@@ -2,8 +2,8 @@
     <oui-modal
         data-heading="{{ 'pci_projects_project_users_add_title' | translate }}"
         data-primary-label="{{:: 'pci_projects_project_users_add_submit_label' | translate }}"
-        data-primary-action="$ctrl.submit($ctrl.userModel,$ctrl.model)"
-        data-secondary-action="$ctrl.cancel()"
+        data-primary-action="$ctrl.onSubmit($ctrl.userModel,$ctrl.model)"
+        data-secondary-action="$ctrl.onCancel()"
         data-secondary-label="{{:: 'pci_projects_project_users_add_cancel_label' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
         data-primary-disabled="$ctrl.disable"
