@@ -17,5 +17,6 @@ export default {
     goToUsersBanner: '<',
     userDetails: '<',
     userCredential: '<',
+    trackingInfo: '<',
   },
 };

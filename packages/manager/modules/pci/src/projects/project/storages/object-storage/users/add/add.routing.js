@@ -23,6 +23,10 @@ export default /* @ngInject */ ($stateProvider) => {
             allUserList.map((user) => user.id),
           ),
       },
+      atInternet: {
+        rename:
+          'pci::projects::project::storages::objects::s3-policies-users::add',
+      },
     },
   );
 };

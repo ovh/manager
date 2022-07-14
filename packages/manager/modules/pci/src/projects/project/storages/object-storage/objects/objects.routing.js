@@ -24,22 +24,42 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.storages.object-storage.add', {
           projectId,
         }),
-      viewContainer: /* @ngInject */ ($state, projectId) => (container) =>
-        $state.go(
+      viewContainer: /* @ngInject */ (
+        $state,
+        projectId,
+        atInternet,
+        trackingPrefix,
+      ) => (container) => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}see-objects`,
+          type: 'action',
+        });
+        return $state.go(
           'pci.projects.project.storages.object-storage.objects.object',
           {
             projectId,
             containerId: container.id,
           },
-        ),
-      deleteContainer: /* @ngInject */ ($state, projectId) => (container) =>
-        $state.go(
+        );
+      },
+      deleteContainer: /* @ngInject */ (
+        $state,
+        projectId,
+        atInternet,
+        trackingPrefix,
+      ) => (container) => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}delete`,
+          type: 'action',
+        });
+        return $state.go(
           'pci.projects.project.storages.object-storage.objects.delete',
           {
             projectId,
             containerId: container.id,
           },
-        ),
+        );
+      },
       goToAddUserContainer: /* @ngInject */ (
         $state,
         projectId,
