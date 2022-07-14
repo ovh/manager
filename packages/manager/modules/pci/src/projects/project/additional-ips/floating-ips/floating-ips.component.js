@@ -11,5 +11,6 @@ export default {
     goToInstance: '<',
     goToTerminate: '<',
     projectId: '<',
+    trackClick: '<',
   },
 };

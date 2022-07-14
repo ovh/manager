@@ -1,5 +1,5 @@
 import map from 'lodash/map';
-import { TABS } from './additional-ips.constants';
+import { TABS, TRACKING_PREFIX } from './additional-ips.constants';
 import { PCI_FEATURES } from '../../projects.constant';
 
 const getStateToNavigate = (activeTab = TABS.FAILOVER_IP) =>
@@ -144,6 +144,14 @@ export default /* @ngInject */ ($stateProvider) => {
       goToAdditionalIpOrderPage: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.additional-ips.order', {
           projectId,
+        }),
+      trackClick: /* @ngInject */ (atInternet) => (
+        label = '',
+        includePrefix = true,
+      ) =>
+        atInternet.trackClick({
+          name: includePrefix ? `${TRACKING_PREFIX}::${label}` : label,
+          type: 'action',
         }),
     },
   });
