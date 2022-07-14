@@ -17,9 +17,16 @@ export const NAMESPACES = {
   CREATE_USER: 'pci_storages_create_user',
 };
 
+export const TRACKING_PREFIX = 'storage_container_add_user::';
+export const TRACKING_CREATE_USER = 'create-user';
+export const TRACKING_ASSOCIATE_USER = 'associate-user';
+
 export default {
   CONTAINER_USER_ASSOCIATION_MODES,
   ASSOCIATE_CONTAINER_USER_CONTAINER_MESSAGES,
   USER_STATUS,
   NAMESPACES,
+  TRACKING_PREFIX,
+  TRACKING_CREATE_USER,
+  TRACKING_ASSOCIATE_USER,
 };

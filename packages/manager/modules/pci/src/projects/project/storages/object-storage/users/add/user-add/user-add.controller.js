@@ -1,3 +1,5 @@
+import { TRACKING_S3_POLICY_ADD } from '../../users.constants';
+
 export default class PciUsersAddController {
   /* @ngInject */
   constructor(
@@ -5,11 +7,13 @@ export default class PciUsersAddController {
     CucCloudMessage,
     PciStoragesObjectStorageService,
     $state,
+    atInternet,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.PciStoragesObjectStorageService = PciStoragesObjectStorageService;
     this.$state = $state;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -37,7 +41,13 @@ export default class PciUsersAddController {
     this.disable = false;
   }
 
-  submit(user, action) {
+  onCancel() {
+    this.trackClick(`${TRACKING_S3_POLICY_ADD}::cancel`);
+    return this.cancel();
+  }
+
+  onSubmit(user, action) {
+    this.trackClick(`${TRACKING_S3_POLICY_ADD}::cconfirm`);
     this.isLoading = true;
     if (action === 'addExistingUser') {
       return this.getUserS3Credential(user.id)
@@ -45,7 +55,7 @@ export default class PciUsersAddController {
           if (credentials.length === 0)
             return this.generateUserS3Credential(user);
 
-          return this.goBack(true, user, { ...credentials.pop() });
+          return this.goBack(true, user, { ...credentials.pop() }, `-success`);
         })
         .finally(() => {
           this.isLoading = false;
@@ -94,8 +104,9 @@ export default class PciUsersAddController {
       this.projectId,
       user.id,
     )
-      .then((data) => this.goBack(true, user, data))
+      .then((data) => this.goBack(true, user, data, `-success`))
       .catch(() => {
+        this.trackPage(`${TRACKING_S3_POLICY_ADD}-error`);
         return this.CucCloudMessage.error(
           this.$translate.instant(
             'pci_projects_project_users_add_error_message',
@@ -105,5 +116,19 @@ export default class PciUsersAddController {
           ),
         );
       });
+  }
+
+  trackPage(page) {
+    this.atInternet.trackPage({
+      name: `${this.trackingPrefix}${page}`,
+      type: 'navigation',
+    });
+  }
+
+  trackClick(action) {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}${action}`,
+      type: 'action',
+    });
   }
 }

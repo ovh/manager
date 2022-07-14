@@ -10,6 +10,7 @@ const component = {
     onCreateUserClick: '&',
     onUserSelected: '&',
     onUserCreated: '&',
+    trackingPrefix: '<',
   },
   controller,
   template,
