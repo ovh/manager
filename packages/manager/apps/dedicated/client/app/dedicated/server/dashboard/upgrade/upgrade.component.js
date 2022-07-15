@@ -14,5 +14,6 @@ export default {
     upgradeOptions: '<',
     upgradeTask: '<',
     upgradeType: '<',
+    renewPeriod: '<',
   },
 };

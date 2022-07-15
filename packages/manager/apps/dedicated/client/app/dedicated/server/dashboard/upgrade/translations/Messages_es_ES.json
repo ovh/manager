@@ -33,5 +33,9 @@
   "dedicated_server_dashboard_upgrade_intervention_success_message_ticket": "Más información sobre el siguiente tíquet.",
   "dedicated_server_dashboard_upgrade_intervention_error": "Se ha producido un error al programar la intervención: {{message}}",
   "dedicated_server_dashboard_upgrade_confirm": "Confirmar",
-  "dedicated_server_dashboard_upgrade_cancel": "Cancelar"
+  "dedicated_server_dashboard_upgrade_cancel": "Cancelar",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_1": "Los precios indicados corresponden a un mes completo. La primera factura de esta opción se calculará incluyendo la parte proporcional del mes en curso correspondiente, en función de la fecha de renovación del servidor.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_1_with_interval": "Los precios indicados son válidos por un período de {{interval}} meses completos. La primera factura de esta opción se calculará incluyendo la parte proporcional del período en curso correspondiente, en función de la fecha de renovación del servidor.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_2": "Una vez realizado el pago de la mejora de sus recursos, deberá programar la fecha de la intervención una vez transcurridos diez días desde el pago.",
+  "dedicated_server_dashboard_upgrade_select_option_price_with_interval": "Precio + IVA por un período de {{interval}} meses"
 }

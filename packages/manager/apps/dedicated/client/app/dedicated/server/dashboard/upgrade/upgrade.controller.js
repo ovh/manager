@@ -4,6 +4,7 @@ import {
   COMPOSITE_UPGRADE,
   MIN_INTERVENTION_GAP,
   UPGRADE_MODE,
+  DEFAULT_INTERVAL,
 } from './upgrade.constants';
 
 export default class {
@@ -39,6 +40,10 @@ export default class {
           ? COMPOSITE_UPGRADE
           : this.upgradeTask.components[0];
     }
+  }
+
+  hasRenewPeriod() {
+    return this.renewPeriod !== DEFAULT_INTERVAL;
   }
 
   onInterventionDateChange([selectedDate]) {

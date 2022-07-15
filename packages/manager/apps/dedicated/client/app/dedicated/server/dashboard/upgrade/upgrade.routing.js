@@ -1,4 +1,4 @@
-import { UPGRADE_MODE } from './upgrade.constants';
+import { UPGRADE_MODE, DEFAULT_INTERVAL } from './upgrade.constants';
 import { UPGRADE_TYPE } from '../dashboard.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -15,6 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
         option.prices.find((price) => price.capacities?.includes('renew')),
       getOptionPrice: /* @ngInject */ (getRenewDetails) => (option) =>
         getRenewDetails(option)?.price,
+      getOptionInterval: /* @ngInject */ (getRenewDetails) => (option) =>
+        getRenewDetails(option)?.interval,
       goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
       upgradeOptions: /* @ngInject */ (
         getOptionPrice,
@@ -29,6 +31,12 @@ export default /* @ngInject */ ($stateProvider) => {
           (option1, option2) =>
             getOptionPrice(option1)?.value - getOptionPrice(option2)?.value,
         ),
+      renewPeriod: /* @ngInject */ (upgradeOptions, getOptionInterval) => {
+        const intervals = upgradeOptions.find(
+          (option) => getOptionInterval(option) !== DEFAULT_INTERVAL,
+        );
+        return intervals ? getOptionInterval(intervals) : DEFAULT_INTERVAL;
+      },
       optionId: /* @ngInject */ (technicalDetails, upgradeType) =>
         upgradeType === UPGRADE_TYPE.RAM
           ? technicalDetails.memory?.serviceId

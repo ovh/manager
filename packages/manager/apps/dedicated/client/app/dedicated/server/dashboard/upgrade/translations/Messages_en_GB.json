@@ -33,5 +33,9 @@
   "dedicated_server_dashboard_upgrade_intervention_success_message_ticket": "More information on the following ticket",
   "dedicated_server_dashboard_upgrade_intervention_error": "An error has occurred scheduling your intervention: {{message}}",
   "dedicated_server_dashboard_upgrade_confirm": "Confirm",
-  "dedicated_server_dashboard_upgrade_cancel": "Cancel"
+  "dedicated_server_dashboard_upgrade_cancel": "Cancel",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_1": "The prices shown are for a full month. The first bill you receive for this option will be calculated on a pro rata basis for the current month, depending on your server’s renewal date.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_1_with_interval": "The prices displayed are for a period of full {{interval}} months. The first bill you receive for this option will be calculated on a pro rata basis for the current period, depending on your server’s renewal date.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_2": "Once you have paid for your update, you will need to schedule the intervention date to be at least 10 days after the payment.",
+  "dedicated_server_dashboard_upgrade_select_option_price_with_interval": "Price ex. VAT for a period of {{interval}} months"
 }
