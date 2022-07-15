@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-import { setDefaultSelections } from '../../setStepperDefaults.utils';
+import { setDefaultSelections } from '../../../../components/project/stepper-defaults-selection/stepper-defaults-selection.utils';
 import {
   PUBLIC_GATEWAYS_READ_MORE_GUIDE,
   REGIONS_AVAILABILITY_URL,
@@ -52,7 +52,7 @@ export default class PciPublicGatewaysAddController {
     );
     this.loadMessages();
     if (this.hasDefaultParams()) {
-      setDefaultSelections(this, DEFAULTS_MODEL, this.loadingDefaultValues);
+      this.setDefaults(this, DEFAULTS_MODEL, this.loadingDefaultValues);
     }
   }
 
@@ -62,6 +62,15 @@ export default class PciPublicGatewaysAddController {
       this.defaults.subnet &&
       this.defaults.region
     );
+  }
+
+  setDefaults() {
+    this.loadingDefaultValues = true;
+    setDefaultSelections(this, DEFAULTS_MODEL, 'currentStep').finally(() => {
+      this.$timeout(() => {
+        this.loadingDefaultValues = false;
+      });
+    });
   }
 
   getDefaultSelectValue(transKey) {
