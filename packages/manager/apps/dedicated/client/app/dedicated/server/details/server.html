@@ -83,7 +83,7 @@
             data-href="{{:: $ctrl.getTabItemUrl('firewall') }}"
             active="$ctrl.getTabItemUrl('firewall') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
-            data-ng-if="$ctrl.features.isFeatureAvailable('dedicated-server:firewall')"
+            data-ng-if="$ctrl.features.isFeatureAvailable('dedicated-server:firewall') && $ctrl.firewallAsaIsEnabled"
             ><span data-translate="server_tab_firewall"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
