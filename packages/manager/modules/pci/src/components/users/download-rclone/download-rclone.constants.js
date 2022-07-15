@@ -8,9 +8,9 @@ export const RCLONE_GUIDE = {
   IE: 'https://docs.ovh.com/ie/en/storage/sync-rclone-object-storage/',
 };
 
-export const DOWNLOAD_FILENAME = 'rclone.sh';
-export const DOWNLOAD_TYPE = 'text/x-shellscipt';
-export const DOWNLOAD_RCLONE_FILENAME = 'config.txt';
+export const DOWNLOAD_FILENAME = 'rclone.conf';
+export const DOWNLOAD_TYPE = 'text/plain;charset=utf-8';
+export const DOWNLOAD_RCLONE_FILENAME = 'rclone.conf';
 export const DOWNLOAD_RCLONE_FILETYPE = 'text/plain;charset=utf-8';
 export const REGION_CAPACITY = 'storage';
 
