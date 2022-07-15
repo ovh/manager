@@ -2213,4 +2213,17 @@ export default class ServerF {
       .get(`/dedicated/server/${serviceName}/bringYourOwnImage`)
       .then(({ data }) => data);
   }
+
+  getServices() {
+    return this.$http.get('/service', {
+      params: {
+        external: false,
+        type: '/dedicated/server',
+      },
+      serviceType: 'aapi',
+      headers: {
+        pragma: 'no-cache',
+      },
+    });
+  }
 }
