@@ -62,7 +62,7 @@
   "pci_database_add_show_command": "Voir l'équivalent API",
   "pci_database_add_spec_name_popover": "Le nom de votre cluster est généré automatiquement. Vous pourrez le modifier par la suite.",
   "pci_database_add_spec_logo_alt": "Logo du moteur",
-  "pci_database_add_network_mode_helper": "Pour en savoir plus sur la configuration d'un réseau privé, consultez le guide ",
+  "pci_database_add_network_mode_helper": "Pour en savoir plus sur la configuration d'un réseau privé, consultez le guide : {{ link }}",
   "pci_database_add_network_mode_helper_link": "vRack Public Cloud",
   "pci_database_add_network_mode_public_popover": "Le réseau public permet la connexion depuis n'importe quelle IP source autorisée et connectée à Internet (votre ordinateur, un serveur distant, ...)",
   "pci_database_add_network_mode_private_popover": "Le réseau privé ne permet pas la connectivité publique et n'autorise que les connexions en provenance de l'intérieur de votre vRack."

@@ -138,22 +138,24 @@
                     </oui-radio>
                 </oui-radio-group>
                 <div class="oui-field__helper">
-                    <span data-translate="pci_database_add_network_mode_helper">
-                    </span>
-                    <a
-                        class="oui-link_icon"
-                        href="{{::$ctrl.privateNetworkGuideUrl}}"
-                        target="_blank"
-                        rel="noopener"
+                    <span
+                        data-translate="pci_database_add_network_mode_helper"
+                        data-translate-values="{
+                        link: 
+                        '<a 
+                            class=&quot oui-link_icon &quot 
+                            href=&quot' + $ctrl.privateNetworkGuideUrl + '&quot 
+                            target=&quot _blank &quot 
+                        >
+                            <span>{{:: 'pci_database_add_network_mode_helper_link' | translate}}</span>
+                            <span 
+                                class=&quot oui-icon oui-icon-external-link &quot 
+                                aria-hidden=&quot true &quot 
+                            ></span>
+                        </a>',
+                    }"
                     >
-                        <span
-                            data-translate="pci_database_add_network_mode_helper_link"
-                        ></span>
-                        <span
-                            class="oui-icon oui-icon-external-link"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
+                    </span>
                 </div>
             </oui-field>
 
