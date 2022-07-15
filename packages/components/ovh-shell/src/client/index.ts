@@ -20,6 +20,31 @@ function fetchApplications(): Promise<Record<string, Application>> {
   });
 }
 
+export const buildURLIfStandalone = (appConfig: Application) => {
+  const queryParams = Object.fromEntries(
+    new URLSearchParams(window.location.search).entries(),
+  );
+  // check for container redirection ...
+  if (appConfig.container?.enabled === true) {
+    // ... but skip redirection if we are forcing standalone
+    if (!queryParams.hasOwnProperty('standalone')) {
+      const targetURL = new URL(appConfig.publicURL);
+      const currentHash = window.location.hash;
+      if (currentHash) {
+        targetURL.hash = `${(targetURL.hash || '#').replace(
+          /\/$/,
+          '',
+        )}/${currentHash.replace(/^#?\/?/, '')}`;
+      }
+      if (window.location.hostname !== 'localhost') {
+        return targetURL.href;
+      }
+    }
+  }
+
+  return window.location.href;
+};
+
 export function initIFrameClientApi(appId: ApplicationId) {
   const client = new ShellClient();
   const clientApi = client.getApi();
@@ -38,27 +63,7 @@ export function initStandaloneClientApi(
     throw new Error(`Unknown application '${appId}'`);
   }
 
-  const queryParams = Object.fromEntries(
-    new URLSearchParams(window.location.search).entries(),
-  );
-
-  // check for container redirection ...
-  if (appConfig.container?.enabled === true) {
-    // ... but skip redirection if we are forcing standalone
-    if (!queryParams.hasOwnProperty('standalone')) {
-      const targetURL = new URL(appConfig.publicURL);
-      const currentHash = window.location.hash;
-      if (currentHash) {
-        targetURL.hash = `${(targetURL.hash || '#').replace(
-          /\/$/,
-          '',
-        )}/${currentHash.replace(/^#?\/?/, '')}`;
-      }
-      if (window.location.hostname !== 'localhost') {
-        window.location.href = targetURL.href;
-      }
-    }
-  }
+  window.location.href = buildURLIfStandalone(appConfig);
 
   const client = new StandaloneShellClient();
   client.setApplicationId(appId);
