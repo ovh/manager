@@ -165,7 +165,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         options: {
           state: 'pci.projects.project.ai',
         },
-        title: 'AI Apps',
+        title: 'AI Deploy',
         regions: ['CA', 'EU'],
         feature: PCI_FEATURES.PRODUCTS.AI_APPS,
       },
