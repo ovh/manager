@@ -1,3 +1,12 @@
+## [17.22.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.22.4...@ovh-ux/manager-dedicated@17.22.5) (2022-07-15)
+
+
+### Bug Fixes
+
+* **server.details:** prevent showing cached displayName ([#7467](https://github.com/ovh/manager/issues/7467)) ([2752045](https://github.com/ovh/manager/commit/2752045d43236e09568cad4ea96338c74a4b61f8))
+
+
+
 ## [17.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.22.3...@ovh-ux/manager-dedicated@17.22.4) (2022-07-11)
 
 
