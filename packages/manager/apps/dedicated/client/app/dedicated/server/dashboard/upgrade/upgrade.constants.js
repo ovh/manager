@@ -8,8 +8,11 @@ export const UPGRADE_MODE = {
   NONE: 'none',
 };
 
+export const DEFAULT_INTERVAL = 1;
+
 export default {
   COMPOSITE_UPGRADE,
+  DEFAULT_INTERVAL,
   MIN_INTERVENTION_GAP,
   UPGRADE_MODE,
 };
