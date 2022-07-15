@@ -7,6 +7,7 @@ import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
 import {
+  GUIDES_FIREWALL_CISCO_ASA_EOL,
   NO_AUTORENEW_COUNTRIES,
   BYOI_STARTING_MESSAGE,
   BYOI_STATUS_ENUM,
@@ -690,6 +691,11 @@ export default class ServerCtrl {
     ).then((informations) => {
       if (informations.enabled) {
         this.firewallAsaIsEnabled = true;
+        this.User.getUser().then(({ language }) => {
+          this.linkFirewallCiscoAsa =
+            GUIDES_FIREWALL_CISCO_ASA_EOL[language] ||
+            GUIDES_FIREWALL_CISCO_ASA_EOL.default;
+        });
       }
     });
   }
