@@ -27,7 +27,7 @@ export default class {
   }
 
   goToGrafana() {
-    this.$window.open(this.grafanaUrl, '_blank');
+    this.$window.open(this.grafanaUrl, '_blank', 'noopener');
   }
 
   closeModal() {
