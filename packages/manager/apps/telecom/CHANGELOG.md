@@ -1,3 +1,18 @@
+# [13.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.42.3...@ovh-ux/manager-telecom@13.43.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** fix can not dissociate phone ([#7299](https://github.com/ovh/manager/issues/7299)) ([bd422e4](https://github.com/ovh/manager/commit/bd422e4704f11bcf69043b2497706d1cd5127bb3))
+* **telephony.rma:** add change type for RMA Unknown ([#7325](https://github.com/ovh/manager/issues/7325)) ([41af23d](https://github.com/ovh/manager/commit/41af23d9c2e833c9773e629666c7f5bc02ad19e8))
+
+
+### Features
+
+* **telecom.telephony:** add reset password white label manager ([#7286](https://github.com/ovh/manager/issues/7286)) ([dec44e4](https://github.com/ovh/manager/commit/dec44e43e04fcde9d8a28b55b6109ea363f0cdee))
+
+
+
 ## [13.42.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.42.2...@ovh-ux/manager-telecom@13.42.3) (2022-07-11)
 
 
