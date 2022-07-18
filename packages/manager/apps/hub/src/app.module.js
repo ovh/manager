@@ -6,24 +6,17 @@ import 'angular-animate';
 import 'angular-translate';
 import '@ovh-ux/ng-at-internet';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
-import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
-import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 
 import { isString, get, has } from 'lodash-es';
 
 import '@ovh-ux/ui-kit';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
-import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ovhManagerHub from '@ovh-ux/manager-hub';
-import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
-import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
-import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
 import { initHubAtInternet } from './components/at-internet';
@@ -69,22 +62,16 @@ export default async (containerEl, shellClient) => {
         errorPage,
         'ngAnimate',
         ngOvhFeatureFlipping,
-        ngOvhSsoAuthModalPlugin,
-        isTopLevelApplication() ? ngOvhUiRouterLineProgress : null,
         ngUiRouterBreadcrumb,
         'oui',
-        ovhManagerAccountSidebar,
         registerCoreModule(environment, coreCallbacks),
         ovhManagerHub,
-        ovhManagerNavbar,
         ovhManagerOrderTracking,
-        ovhNotificationsSidebar,
         ovhManagerBanner,
         ngOvhPaymentMethod,
         'pascalprecht.translate',
         'ui.bootstrap',
         uiRouter,
-        isTopLevelApplication() ? ovhManagerCookiePolicy : null,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
     )
@@ -112,16 +99,6 @@ export default async (containerEl, shellClient) => {
       },
     )
     .config(
-      /* @ngInject */ (ssoAuthModalPluginFctProvider) => {
-        ssoAuthModalPluginFctProvider.setOnLogout(() => {
-          shellClient.auth.logout();
-        });
-        ssoAuthModalPluginFctProvider.setOnReload(() => {
-          shellClient.navigation.reload();
-        });
-      },
-    )
-    .config(
       /* @ngInject */ (ssoAuthenticationProvider) => {
         ssoAuthenticationProvider.setOnLogin(() => {
           shellClient.auth.login();
@@ -133,7 +110,6 @@ export default async (containerEl, shellClient) => {
     )
     .run(
       /* @ngInject */ ($transitions) => {
-        // replace ngOvhUiRouterLineProgress if in container
         if (!isTopLevelApplication()) {
           $transitions.onBefore({}, (transition) => {
             if (
@@ -212,9 +188,7 @@ export default async (containerEl, shellClient) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          if (isTopLevelApplication()) {
-            detachPreloader();
-          } else {
+          if (!isTopLevelApplication()) {
             shellClient.ux.hidePreloader();
           }
           $rootScope.$broadcast('app:started');
