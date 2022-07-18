@@ -3,9 +3,10 @@ import 'moment';
 
 export default class PciStoragesObjectStorageService {
   /* @ngInject */
-  constructor($http, $q, OvhApiCloudProjectUser) {
+  constructor($http, $q, Poller, OvhApiCloudProjectUser) {
     this.$http = $http;
     this.$q = $q;
+    this.Poller = Poller;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
   }
 
@@ -127,5 +128,25 @@ export default class PciStoragesObjectStorageService {
         services.find(({ name }) => name === regionCapacity),
       );
     });
+  }
+
+  /**
+   * Call this to be informed where the desired status is on
+   * @param serviceName {String}: concerned project
+   * @param userId {String}: concerned user
+   * @param status {String}: status to check
+   * @param namespace {String}: action scope
+   * @returns {Promise}: $http request promise
+   */
+  pollUserStatus(serviceName, userId, status, namespace) {
+    return this.Poller.poll(
+      `/cloud/project/${serviceName}/user/${userId}`,
+      {},
+      {
+        namespace,
+        method: 'get',
+        successRule: (user) => user.status === status,
+      },
+    );
   }
 }
