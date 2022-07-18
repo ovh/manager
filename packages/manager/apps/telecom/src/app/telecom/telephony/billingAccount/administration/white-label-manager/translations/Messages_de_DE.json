@@ -1,0 +1,10 @@
+{
+  "telephony_white_label_manager_title": "White Label Manager",
+  "telephony_white_label_manager_descrition": "Der White Label Manager bietet Ihnen ein personalisierbares Interface in den Farben Ihres Unternehmens zur Verwaltung der OVHcloud Telecom Dienste.",
+  "telephony_white_label_manager_checkbox_label": "Ich möchte das Passwort meines Weißen Marke Managers zurücksetzen.",
+  "telephony_white_label_manager_reset_password_title": "Zurücksetzen des Passworts",
+  "telephony_white_label_manager_reset_password_description": "Mit diesem Vorgang wird das Passwort Ihres White Label Managers zurückgesetzt.",
+  "telephony_white_label_manager_reset_password_warning": "Diese Aktion führt zur Deaktivierung aller Benutzer-Accounts Ihres Managers und erfordert, dass Sie deren Passwörter neu konfigurieren.",
+  "telephony_white_label_manager_reset_password_success": "Das Passwort wurde erfolgreich zurückgesetzt.",
+  "telephony_white_label_manager_reset_password_error": "Beim Zurücksetzen des Passworts ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."
+}

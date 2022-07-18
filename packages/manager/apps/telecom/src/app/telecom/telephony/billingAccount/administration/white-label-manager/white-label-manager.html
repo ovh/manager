@@ -1,0 +1,41 @@
+<section>
+    <oui-header
+        data-heading="{{ :: 'telephony_white_label_manager_title' | translate }}"
+        data-description="{{ :: 'telephony_white_label_manager_descrition' | translate }}"
+    >
+        <oui-back-button data-href="{{ :: $ctrl.goBackUrl }}">
+        </oui-back-button>
+    </oui-header>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <p
+        class="oui-heading_5 mb-1"
+        data-translate="telephony_white_label_manager_reset_password_title"
+    ></p>
+
+    <p
+        class="mt-1"
+        data-translate="telephony_white_label_manager_reset_password_description"
+    ></p>
+
+    <strong
+        data-translate="telephony_white_label_manager_reset_password_warning"
+    ></strong>
+
+    <form class="mt-3" data-ng-submit="$ctrl.onSubmit()" novalidate>
+        <oui-field>
+            <oui-checkbox name="agreeCheckbox" data-model="$ctrl.agree"
+                ><span
+                    data-translate="telephony_white_label_manager_checkbox_label"
+                ></span
+            ></oui-checkbox>
+        </oui-field>
+
+        <oui-form-actions
+            data-submit-text="{{:: 'submit' | translate }}"
+            data-disabled="!$ctrl.agree || $ctrl.loading"
+        >
+        </oui-form-actions>
+    </form>
+</section>
