@@ -1,3 +1,19 @@
+# [5.84.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.83.1...@ovh-ux/manager-pci@5.84.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* **instance.edit:** update is-flex accordingly ([#7559](https://github.com/ovh/manager/issues/7559)) ([f37ced2](https://github.com/ovh/manager/commit/f37ced226635f6d4d2a2dfafec1bf55fea12f73a))
+* **pci.ai:** filter internal key on jobs volumes when resubmit ([#7423](https://github.com/ovh/manager/issues/7423)) ([23d236e](https://github.com/ovh/manager/commit/23d236e4dab004be6d58f68dd20003a998c10be0))
+
+
+### Features
+
+* **kube:** allow to use custom vRack gateway ([#7420](https://github.com/ovh/manager/issues/7420)) ([859b4ef](https://github.com/ovh/manager/commit/859b4efea13f8af1b54a86a1cd7f10dad31967bb))
+* **pci.storage.databases:** change unit for network metrics from octects to megaoctects ([#7124](https://github.com/ovh/manager/issues/7124)) ([5695630](https://github.com/ovh/manager/commit/5695630808d619cb31d55356afc046a5c7e3123e))
+
+
+
 ## [5.83.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.83.0...@ovh-ux/manager-pci@5.83.1) (2022-07-07)
 
 
