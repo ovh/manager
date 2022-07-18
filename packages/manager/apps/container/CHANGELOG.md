@@ -1,3 +1,12 @@
+## [0.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.5...@ovh-ux/manager-container-app@0.3.6) (2022-07-18)
+
+
+### Bug Fixes
+
+* **container:** remove cookie modal animation ([1b26a02](https://github.com/ovh/manager/commit/1b26a02898eead5efaabf30fb08a90ff3ddcd7d3))
+
+
+
 ## [0.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.4...@ovh-ux/manager-container-app@0.3.5) (2022-07-01)
 
 

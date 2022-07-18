@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.2.0...@ovh-ux/shell@1.3.0) (2022-07-18)
+
+
+### Features
+
+* **ovh-shell:** add standalone query param ([#7535](https://github.com/ovh/manager/issues/7535)) ([35660af](https://github.com/ovh/manager/commit/35660af8b8f0ffcc48b255c0625d762ae741cd7f))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.1.2...@ovh-ux/shell@1.2.0) (2022-06-14)
 
 
