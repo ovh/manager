@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.2.2...@ovh-ux/manager-nutanix@1.2.3) (2022-07-18)
+
+
+### Bug Fixes
+
+* **dashboard:** validation for scaled nutanix cluster redeploy ([#6714](https://github.com/ovh/manager/issues/6714)) ([d5305ae](https://github.com/ovh/manager/commit/d5305ae951f3dfdd658f5c11025826f4245a82eb))
+
+
+
 ## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.2.1...@ovh-ux/manager-nutanix@1.2.2) (2022-06-30)
 
 

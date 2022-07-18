@@ -1,3 +1,12 @@
+# [0.16.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.7...@ovh-ux/manager-billing@0.16.0-alpha.8) (2022-07-18)
+
+
+### Bug Fixes
+
+* **autorenew:** add missing translation for office licenses ([#7496](https://github.com/ovh/manager/issues/7496)) ([65ba9c0](https://github.com/ovh/manager/commit/65ba9c0707b0929e29d9249ffb817fa4d6d70814))
+
+
+
 # [0.16.0-alpha.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.6...@ovh-ux/manager-billing@0.16.0-alpha.7) (2022-07-11)
 
 
