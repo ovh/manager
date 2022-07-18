@@ -190,6 +190,7 @@ export default class PciStoragesContainersService {
                 new ContainerObject({
                   ...object,
                   isHighPerfStorage,
+                  s3StorageType,
                 }),
             ),
             id: containerId,
