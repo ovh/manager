@@ -1,4 +1,5 @@
 import { BillingService as ServiceInfos } from '@ovh-ux/manager-models';
+import { AUTO_COMMITMENT_STRATEGY } from './subscription-tile.constants';
 
 export default class ServicesActionsCtrl {
   /* @ngInject */
@@ -88,6 +89,9 @@ export default class ServicesActionsCtrl {
             'dedicated',
             `#/billing/autorenew/${serviceInfos.serviceId}/commitment`,
           );
+        this.isAutoCommitmentStrategy =
+          this.serviceInfos.engagementDetails?.endRule?.strategy ===
+          AUTO_COMMITMENT_STRATEGY;
         if (
           this.withEngagement &&
           ServicesActionsCtrl.showCommit(

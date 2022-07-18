@@ -315,16 +315,6 @@
                                 data-oui-popover="{{:: 'nutanix_redeploy_prism_central_ip_description' | translate}}"
                             ></button>
                         </div>
-                        <oui-button
-                            class="ml-1"
-                            data-size="s"
-                            data-variant="primary"
-                            data-on-click="$ctrl.addPrismCentralIp()"
-                        >
-                            <span
-                                data-translate="nutanix_redeploy_custom_configuration_add_prism_central_ip"
-                            ></span>
-                        </oui-button>
                         <div
                             class="row ml-1 mt-2"
                             data-ng-repeat="item in $ctrl.config.prismCentral.ips track by $index"
@@ -355,14 +345,6 @@
                                 >
                                 </small>
                             </div>
-                            <oui-button
-                                class="ml-2"
-                                data-size="s"
-                                data-variant="secondary"
-                                data-on-click="$ctrl.removePrismCentralIp($index)"
-                            >
-                                <span class="oui-icon oui-icon-bin"></span>
-                            </oui-button>
                         </div>
                     </div>
                 </div>

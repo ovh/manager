@@ -149,5 +149,6 @@
   "billing_autorenew_renew_action": "Renovar",
   "billing_autorenew_service_renew_requires_mean_and_date": "Para terminar a ativação da renovação automática, adicione um método de pagamento e, de seguida, poderá selecionar a data de débito.",
   "billing_autorenew_service_activate_alert": "A renovação automática foi configurada para, pelo menos, um dos seus serviços, mais ainda não autorizou esta opção.",
-  "billing_description": "Faça a gestão da renovação dos seus serviços. Consulte o seu estado bem como os seus contratos."
+  "billing_description": "Faça a gestão da renovação dos seus serviços. Consulte o seu estado bem como os seus contratos.",
+  "billing_autorenew_service_type_LICENSE_OFFICE_PREPAID": "Licenças Office 365"
 }

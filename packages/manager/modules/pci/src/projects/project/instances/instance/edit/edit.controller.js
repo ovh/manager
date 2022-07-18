@@ -35,7 +35,7 @@ export default class PciInstanceEditController {
     this.messageContainers = ['name', 'image', 'flavor', 'billing'];
     this.messages = {};
     this.model = {
-      isInstanceFlex: false,
+      isInstanceFlex: new Flavor(this.editInstance.flavor).isFlex(),
     };
     this.imageEditMessage =
       this.imageEditMessage ||
@@ -107,7 +107,7 @@ export default class PciInstanceEditController {
       this.editInstance.flavorId = flavorGroup.getFlavorId(
         flavorType,
         this.instance.region,
-        this.defaultFlavor.isFlex(),
+        this.model.isInstanceFlex,
       );
     }
   }

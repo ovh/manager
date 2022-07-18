@@ -6,6 +6,8 @@ import 'angular-translate';
 import 'ovh-api-services';
 
 import routing from './rma.routing';
+import component from './rma.component';
+import service from './rma.service';
 
 import './rma.less';
 
@@ -20,6 +22,8 @@ angular
     'ovh-api-services',
   ])
   .config(routing)
+  .component('lineAssistRmaComponent', component)
+  .service('lineAssistRmaService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

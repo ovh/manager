@@ -13,6 +13,7 @@ import versionsList from './versions-list';
 import antiAffinity from '../components/anti-affinity';
 import nodePool from '../components/node-pool';
 import autoscaling from '../components/autoscaling';
+import gatewayManagement from '../components/gateway-management';
 
 const moduleName = 'ovhManagerPciProjectKubernetesAdd';
 
@@ -27,6 +28,7 @@ angular
     nodePool,
     antiAffinity,
     autoscaling,
+    gatewayManagement,
   ])
   .config(routing)
   .component('ovhManagerPciProjectKubernetesAdd', component)
