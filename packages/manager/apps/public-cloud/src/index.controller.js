@@ -1,6 +1,5 @@
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
-import getNavbarConfig from './navbar.config';
 import { getShellClient } from './shell';
 
 export default class PublicCloudController {
@@ -27,7 +26,6 @@ export default class PublicCloudController {
     this.ovhUserPref = ovhUserPref;
     this.publicCloud = publicCloud;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
-    this.navbarOptions = getNavbarConfig(coreConfig.getUniverse());
     this.isTopLevelApplication = isTopLevelApplication();
 
     this.chatbotEnabled = false;
