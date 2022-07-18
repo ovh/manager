@@ -112,6 +112,7 @@
                 <oui-tile-button
                     data-on-click="$ctrl.softRebootInstance()"
                     data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                    data-disabled="!$ctrl.PciProjectsProjectInstanceService.softRebootIsAvailable($ctrl.instance.flavor.type)"
                 >
                     <span
                         data-translate="pci_projects_project_instances_instance_action_softReboot_label"
@@ -127,7 +128,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.shelveInstance()"
-                    data-disabled="!$ctrl.instance.canBeShelved()"
+                    data-disabled="!$ctrl.instance.canBeShelved() || !$ctrl.PciProjectsProjectInstanceService.suspendIsAvailable($ctrl.instance.flavor.type)"
                 >
                     <span
                         data-translate="pci_projects_project_instances_instance_action_shelve_label"
