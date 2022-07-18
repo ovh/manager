@@ -2,10 +2,10 @@ import {
   ASSOCIATE_CONTAINER_USER_CONTAINER_MESSAGES,
   CONTAINER_USER_ASSOCIATION_MODES,
   NAMESPACES,
-  USER_STATUS,
-  TRACKING_PREFIX,
-  TRACKING_CREATE_USER,
   TRACKING_ASSOCIATE_USER,
+  TRACKING_CREATE_USER,
+  TRACKING_PREFIX,
+  USER_STATUS,
 } from './constant';
 
 export default class CreateLinkedUserController {
@@ -103,12 +103,6 @@ export default class CreateLinkedUserController {
 
         return user;
       })
-      .then((user) => {
-        return this.generateUserS3Credential(user);
-      })
-      .then((credential) => {
-        this.userModel.createMode.credential = credential;
-      })
       .catch(() => {
         return this.CucCloudMessage.error(
           this.$translate.instant(
@@ -178,7 +172,14 @@ export default class CreateLinkedUserController {
     this.trackClick(`${TRACKING_CREATE_USER}-confirm`);
     this.userModel.createMode.isInProgress = true;
     return this.createUser(description)
-      .then((user) => this.generateUserS3Credential(user))
+      .then((user) => {
+        return this.generateUserS3Credential(user);
+      })
+      .then((credential) => {
+        this.userModel.createMode.credential = credential;
+
+        return credential;
+      })
       .finally(() => {
         this.userModel.createMode.isInProgress = false;
       });
@@ -188,7 +189,9 @@ export default class CreateLinkedUserController {
     this.trackClick(`${TRACKING_CREATE_USER}-cancel`);
     this.reset();
     this.userModel.createMode.user = null;
+    this.userModel.createMode.credential = null;
     this.userModel.createMode.description = '';
+
     this.CucCloudMessage.flushMessages(
       ASSOCIATE_CONTAINER_USER_CONTAINER_MESSAGES,
     );
