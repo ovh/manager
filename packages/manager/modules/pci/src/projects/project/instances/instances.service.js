@@ -17,6 +17,8 @@ import {
   BANDWIDTH_LIMIT,
   BANDWIDTH_OUT_INVOICE,
   FLAVORS_WITHOUT_AUTOMATED_BACKUP,
+  FLAVORS_WITHOUT_SOFT_REBOOT,
+  FLAVORS_WITHOUT_SUSPEND,
 } from './instances.constants';
 
 export default class PciProjectInstanceService {
@@ -53,6 +55,8 @@ export default class PciProjectInstanceService {
     this.OvhApiIp = OvhApiIp;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
     this.PciProjectRegions = PciProjectRegions;
+    this.FLAVORS_WITHOUT_SOFT_REBOOT = FLAVORS_WITHOUT_SOFT_REBOOT;
+    this.FLAVORS_WITHOUT_SUSPEND = FLAVORS_WITHOUT_SUSPEND;
   }
 
   getAll(projectId) {
@@ -612,6 +616,18 @@ export default class PciProjectInstanceService {
     return (
       !this.coreConfig.isRegion('US') &&
       !FLAVORS_WITHOUT_AUTOMATED_BACKUP.find((value) => value.test(flavorType))
+    );
+  }
+
+  softRebootIsAvailable(flavorType) {
+    return !this.FLAVORS_WITHOUT_SOFT_REBOOT.find((value) =>
+      value.test(flavorType),
+    );
+  }
+
+  suspendIsAvailable(flavorType) {
+    return !this.FLAVORS_WITHOUT_SUSPEND.find((value) =>
+      value.test(flavorType),
     );
   }
 }
