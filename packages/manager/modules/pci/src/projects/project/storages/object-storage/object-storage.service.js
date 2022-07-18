@@ -51,10 +51,12 @@ export default class PciStoragesObjectStorageService {
 
   mapUsersToCredentials(projectId, users) {
     const usersCredentialsPromises = users.map((user) =>
-      this.getS3Credentials(projectId, user.id).then((data) => ({
-        ...user,
-        s3Credentials: data,
-      })),
+      this.getS3Credentials(projectId, user.id)
+        .then((data) => ({
+          ...user,
+          s3Credentials: data,
+        }))
+        .catch(() => null),
     );
 
     return this.$q.all(usersCredentialsPromises);
