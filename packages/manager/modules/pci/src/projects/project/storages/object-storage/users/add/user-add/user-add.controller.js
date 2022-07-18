@@ -1,4 +1,8 @@
-import { TRACKING_S3_POLICY_ADD } from '../../users.constants';
+import {
+  NAMESPACES,
+  TRACKING_S3_POLICY_ADD,
+  USER_STATUS,
+} from '../../users.constants';
 
 export default class PciUsersAddController {
   /* @ngInject */
@@ -89,6 +93,14 @@ export default class PciUsersAddController {
       this.projectId,
       description,
     )
+      .then((user) => {
+        return this.PciStoragesObjectStorageService.pollUserStatus(
+          this.projectId,
+          user.id,
+          USER_STATUS.OK,
+          NAMESPACES.CREATE_USER,
+        );
+      })
       .then((user) => user)
       .catch(() => {
         return this.CucCloudMessage.error(
