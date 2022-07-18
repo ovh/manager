@@ -115,10 +115,10 @@ export default class {
           JAVA_FILES_CONTENT_TYPES.includes(object.contentType),
         );
         if (pythonFiles.length > 0) {
-          this.state.jobType = 'python';
+          this.state.jobType = JOB_TYPE_PYTHON;
           this.state.mainApplicationCode = pythonFiles[0].name;
         } else if (javaFiles.length > 0) {
-          this.state.jobType = 'java';
+          this.state.jobType = JOB_TYPE_JAVA;
           this.state.mainApplicationCode = javaFiles[0].name;
         } else if (this.state.mainApplicationCode) {
           this.state.mainApplicationCode = '';
@@ -137,7 +137,7 @@ export default class {
     // check for proper JAR (just a warning, no blocking error in case MIME type is wrong in Object Storage)
     this.state.mainApplicationCodeFileInvalid =
       fileObject &&
-      this.state.jobType === 'java' &&
+      this.state.jobType === JOB_TYPE_JAVA &&
       !JAVA_FILES_CONTENT_TYPES.includes(fileObject.contentType);
     // check if file exists
     this.state.mainApplicationCodeFileNotFound = fileObject === undefined;
@@ -163,7 +163,7 @@ export default class {
     this.valid =
       !this.state.pythonEnvironmentMissing &&
       !this.state.mainApplicationCodeFileNotFound &&
-      !(this.state.jobType === 'java' && !this.state.mainClass);
+      !(this.state.jobType === JOB_TYPE_JAVA && !this.state.mainClass);
   }
 
   /**
