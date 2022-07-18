@@ -14,6 +14,10 @@ export const TYPES_TO_EXCLUDE = [];
 
 export const FLAVORS_WITHOUT_AUTOMATED_BACKUP = [/baremetal/];
 
+export const FLAVORS_WITHOUT_SOFT_REBOOT = [/baremetal/];
+
+export const FLAVORS_WITHOUT_SUSPEND = [/baremetal/];
+
 export const POLLER_INSTANCE_NAMESPACE = {
   SHELVE: 'cloud.project.instance.shelve',
   UNSHELVE: 'cloud.project.instance.unshelve',
@@ -37,6 +41,8 @@ export default {
   INSTANCE_BACKUP_CONSUMPTION,
   INSTANCE_HELP_REFERENCE_KEY,
   FLAVORS_WITHOUT_AUTOMATED_BACKUP,
+  FLAVORS_WITHOUT_SOFT_REBOOT,
+  FLAVORS_WITHOUT_SUSPEND,
   POLLER_INSTANCE_NAMESPACE,
   TYPES_TO_EXCLUDE,
   FLAVORS_FEATURES_FLIPPING_MAP,
