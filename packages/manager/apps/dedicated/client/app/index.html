@@ -33,23 +33,6 @@
                 >
                 </a>
             </div>
-            <!-- /Skip to main content -->
-            <ovh-manager-navbar
-                data-navbar-options="$ctrl.navbarOptions"
-                data-universe-click="$ctrl.openSidebar()"
-                data-ng-if="$ctrl.isTopLevelApplication"
-            >
-            </ovh-manager-navbar>
-            <ovh-manager-account-sidebar
-                me="$ctrl.user"
-                data-ng-if="$ctrl.isTopLevelApplication"
-            >
-            </ovh-manager-account-sidebar>
-            <ovh-manager-notifications-sidebar
-                data-ng-if="$ctrl.isTopLevelApplication"
-            >
-            </ovh-manager-notifications-sidebar>
-
             <button
                 style="position: absolute; top: 0; left: 0; width: 48px; height: 44px; background-color: transparent; border: 0;"
                 data-ng-if="$ctrl.sidebarIsOpen"
