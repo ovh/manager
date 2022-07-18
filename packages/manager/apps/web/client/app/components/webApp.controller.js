@@ -29,13 +29,6 @@ export default class WebAppCtrl {
   }
 
   $onInit() {
-    this.navbarOptions = {
-      toggle: {
-        event: 'sidebar:loaded',
-      },
-      universe: this.coreConfig.getUniverse(),
-    };
-
     this.$scope.$watch(
       () => this.$translate.instant('global_app_title'),
       (newVal) => {
