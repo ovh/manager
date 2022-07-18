@@ -41,25 +41,6 @@
                     >
                     </a>
                 </div>
-                <!-- /Skip to main content -->
-                <div data-ui-view="navbar">
-                    <ovh-manager-navbar
-                        data-navbar-options="$ctrl.navbarOptions"
-                        data-universe-click="$ctrl.openSidebar()"
-                        data-global-search-link="{{ $ctrl.globalSearchLink }}"
-                        data-ng-if="$ctrl.isTopLevelApplication"
-                    >
-                    </ovh-manager-navbar>
-                    <ovh-manager-notifications-sidebar
-                        data-ng-if="$ctrl.isTopLevelApplication"
-                    >
-                    </ovh-manager-notifications-sidebar>
-                </div>
-                <ovh-manager-account-sidebar
-                    me="$ctrl.user"
-                    data-ng-if="$ctrl.isTopLevelApplication"
-                >
-                </ovh-manager-account-sidebar>
             </div>
             <div class="d-flex w-100 h-100 position-relative">
                 <div

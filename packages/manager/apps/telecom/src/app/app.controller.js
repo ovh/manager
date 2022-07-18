@@ -46,12 +46,6 @@ export default class TelecomAppCtrl {
   }
 
   $onInit() {
-    this.navbarOptions = {
-      toggle: {
-        event: 'sidebar:loaded',
-      },
-      universe: this.coreConfig.getUniverse(),
-    };
     this.currentLanguage = this.coreConfig.getUserLanguage();
     this.user = this.coreConfig.getUser();
 
@@ -82,9 +76,6 @@ export default class TelecomAppCtrl {
     );
 
     return this.betaPreferenceService.isBetaActive().then((beta) => {
-      this.globalSearchLink = beta
-        ? this.$state.href('telecomSearch', {})
-        : null;
       this.sidebarUniverse = beta ? 'TELECOM_BETA' : 'TELECOM';
     });
   }
