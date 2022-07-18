@@ -2,6 +2,7 @@
   "pci_projects_project_instances_instance_backup_title": "Création d'un backup",
   "pci_projects_project_instances_instance_backup_name_label": "Saisissez le nom de votre backup :",
   "pci_projects_project_instances_instance_backup_warning_message": "Votre instance sera suspendue pendant quelques secondes, puis les performances en lecture/écriture du disque pourront être affectées jusqu'à la finalisation du backup.",
+  "pci_projects_project_instances_instance_backup_warning_message_baremetal": "Votre instance va être arrêtée et mise en mode secours, afin que la sauvegarde soit créée. Une fois la sauvegarde effectuée, votre instance va redémarrer. Selon la taille de vos disques, cela peut prendre un certain temps.",
   "pci_projects_project_instances_instance_backup_price": "Prix : {{ price }} HT/mois/Go",
   "pci_projects_project_instances_instance_backup_submit_label": "Confirmer",
   "pci_projects_project_instances_instance_backup_cancel_label": "Annuler",
