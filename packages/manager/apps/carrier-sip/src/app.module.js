@@ -4,7 +4,6 @@ import angular from 'angular';
 import { isString, get } from 'lodash-es';
 
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 // Module dependencies.
 import ovhManagerCarrierSip from '@ovh-ux/manager-carrier-sip';
 import uiRouter from '@uirouter/angularjs';
@@ -51,7 +50,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
