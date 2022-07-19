@@ -24,5 +24,8 @@
   "dedicatedCloud_USER_delete": "Supprimer cet utilisateur",
   "dedicatedCloud_USER_enable": "Activer l'utilisateur",
   "dedicatedCloud_USER_disable": "Désactiver l'utilisateur",
-  "dedicatedCloud_USER_edit_load_error": "Une erreur est survenue lors du chargement de l'utilisateur."
+  "dedicatedCloud_USER_edit_load_error": "Une erreur est survenue lors du chargement de l'utilisateur.",
+  "dedicatedCloud_USER_cancel": "Annuler",
+  "dedicatedCloud_USER_yes": "Oui",
+  "dedicatedCloud_USER_no": "Non"
 }
