@@ -11,7 +11,6 @@ import managerSupport from '@ovh-ux/manager-support';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import { state } from './routing';
 
@@ -52,7 +51,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
