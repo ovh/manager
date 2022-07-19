@@ -11,7 +11,6 @@ import uiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerFreeFax from '@ovh-ux/manager-freefax';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import controller from './controller';
 
@@ -88,7 +87,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
