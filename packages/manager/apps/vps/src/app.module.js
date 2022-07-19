@@ -17,8 +17,6 @@ import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
-
 export default (containerEl, environment) => {
   const moduleName = 'vpsApp';
   angular
@@ -71,7 +69,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
