@@ -14,6 +14,5 @@
   "nasha_components_partition_create_size": "Taille de la partition",
   "nasha_components_partition_create_submit": "Créer une partition",
   "nasha_components_partition_create_title": "Créer une partition",
-  "nasha_components_partition_create_forbid_many": "{{ names }} sont déjà utilisés par d'autres partitions",
-  "nasha_components_partition_create_forbid_one": "{{ name }} est déjà utilisé par une autre partition"
+  "nasha_components_partition_create_forbid": "Ce nom est déjà utilisé par une partition existante. Nous vous demandons de fournir un nom de partition n'étant pas déjà utilisé."
 }

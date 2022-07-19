@@ -1,4 +1,3 @@
-import { TRANSLATE_PREFIX } from './create.constants';
 import {
   DESCRIPTION_MAX,
   NAME_PATTERN,
@@ -27,16 +26,6 @@ export default class NashaComponentsPartitionCreateController {
     this.partitionNames.sort();
   }
 
-  get forbidOthersMessage() {
-    if (this.partitionNames.length === 1) {
-      return this.translate('forbid_one', { name: this.partitionNames[0] });
-    }
-
-    return this.translate('forbid_many', {
-      names: this.partitionNames.join(', '),
-    });
-  }
-
   submit() {
     return this.$http
       .post(`${this.nashaApiUrl}/partition`, this.model)
@@ -47,9 +36,5 @@ export default class NashaComponentsPartitionCreateController {
         }),
       )
       .catch((error) => this.close({ error }));
-  }
-
-  translate(key, values) {
-    return this.$translate.instant(`${TRANSLATE_PREFIX}_${key}`, values);
   }
 }
