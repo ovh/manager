@@ -45,8 +45,11 @@ export default class PciStoragesContainersContainerController {
         name: 'retrievalState',
         hidden: !this.archive,
       },
+      {
+        name: 'contentType',
+        hidden: this.container.s3StorageType,
+      },
     ];
-
     this.loadMessages();
   }
 
