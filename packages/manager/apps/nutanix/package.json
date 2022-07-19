@@ -26,7 +26,6 @@
     "@ovh-ux/manager-error-page": "^2.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/manager-nutanix": "^0.0.0 || ^1.0.0",
-    "@ovh-ux/manager-preloader": "^1.1.0",
     "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
