@@ -69,7 +69,7 @@ const Sidebar = (): JSX.Element => {
   const logoLink = navigationPlugin.getURL('hub', '#/');
 
   const shouldHideElement = (node: Node, count: number | boolean) => {
-    if (node.hideIfEmpty && !node.count) {
+    if (node.hideIfEmpty && !count) {
       return true;
     }
 
@@ -185,6 +185,7 @@ const Sidebar = (): JSX.Element => {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
           'X-Pagination-Size': 5000,
+          'X-Pagination-Sort': 'description',
         },
       })
       .then((result: Array<PciProject>) => {
