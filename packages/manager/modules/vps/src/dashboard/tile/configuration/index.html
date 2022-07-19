@@ -20,7 +20,7 @@
                 data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteVcore && !$ctrl.isInRescueMode && !$ctrl.isMigrating"
             >
                 <a
-                    data-ng-href="{{:: $ctrl.getUpscaleHref() }}"
+                    data-ng-href="{{:: $ctrl.getUpscaleHref('vCore') }}"
                     data-track-on="click"
                     data-track-name="vps::detail::dashboard::vcore-upscale"
                     data-track-type="action"
@@ -78,7 +78,7 @@
                 data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteRam && !$ctrl.isInRescueMode && !$ctrl.isMigrating"
             >
                 <a
-                    data-ng-href="{{:: $ctrl.getUpscaleHref()}}"
+                    data-ng-href="{{:: $ctrl.getUpscaleHref('memory')}}"
                     data-track-on="click"
                     data-track-name="vps::detail::dashboard::memory-upscale"
                     data-track-type="action"
@@ -136,7 +136,7 @@
                 data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteStorage && !$ctrl.isInRescueMode"
             >
                 <a
-                    data-ng-href="{{:: $ctrl.getUpscaleHref()}}"
+                    data-ng-href="{{:: $ctrl.getUpscaleHref('storage')}}"
                     data-track-on="click"
                     data-track-name="vps::detail::dashboard::storage-upscale"
                     data-track-type="action"

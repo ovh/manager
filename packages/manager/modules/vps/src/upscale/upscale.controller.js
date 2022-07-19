@@ -11,7 +11,7 @@ import { Price } from '@ovh-ux/manager-models';
 import { pricingConstants } from '@ovh-ux/manager-product-offers';
 
 import UpscaleService from './upscale.service';
-import { PRICING_MODES, RANGES } from './upscale.constants';
+import { PRICING_MODES, RANGES, UPSCALE_TYPE_PATH } from './upscale.constants';
 
 export default class UpscaleController {
   /* @ngInject */
@@ -52,6 +52,7 @@ export default class UpscaleController {
       this.range = this.upscaleRanges.find(({ formattedName }) =>
         UpscaleController.isRangeElite(formattedName),
       );
+      console.log(this.range);
       this.goToNextStep(this.range.formattedName);
     }
   }
@@ -364,13 +365,13 @@ export default class UpscaleController {
       return [];
     }
 
+    const availableValues =
+      UPSCALE_TYPE_PATH[this.upscaleType] === path
+        ? this.discardRangesWithLowerConfiguration(technicals, path)
+        : technicals;
+
     return sortBy(
-      uniqBy(
-        this.discardRangesWithLowerConfiguration(
-          technicals,
-          path,
-        ).map((technical) => get(technical, path)),
-      ),
+      uniqBy(availableValues.map((technical) => get(technical, path))),
       (value) => value,
     );
   }

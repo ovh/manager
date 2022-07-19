@@ -14,4 +14,10 @@ export const RANGES = {
   VALUE: 'Value',
 };
 
-export default { PRICING_MODES, RANGES };
+export const UPSCALE_TYPE_PATH = {
+  vCore: 'cpu.cores',
+  memory: 'memory.size',
+  storage: 'storage.disks[0].capacity',
+};
+
+export default { PRICING_MODES, RANGES, UPSCALE_TYPE_PATH };

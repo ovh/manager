@@ -128,8 +128,8 @@ export default /* @ngInject */ ($stateProvider) => {
         };
       },
 
-      getUpscaleHref: /* @ngInject */ ($state) => () =>
-        $state.href('vps.detail.upscale'),
+      getUpscaleHref: /* @ngInject */ ($state) => (type) =>
+        $state.href('vps.detail.upscale', { type }),
 
       goToUpgrade: /* @ngInject */ ($state, stateVps) => (upgradeType) => {
         let from = 0;

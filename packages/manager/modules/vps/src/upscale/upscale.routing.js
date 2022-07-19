@@ -3,7 +3,10 @@ import vpsHeaderComponent from '../header/vps-header.component';
 
 export default /* @ngInject */ function($stateProvider) {
   $stateProvider.state('vps.detail.upscale', {
-    url: '/upscale',
+    url: '/upscale?type',
+    params: {
+      type: null,
+    },
     resolve: {
       agreements: /* @ngInject */ (coreConfig, CORE_URLS) =>
         CORE_URLS.agreements[coreConfig.getRegion()],
@@ -57,6 +60,7 @@ export default /* @ngInject */ function($stateProvider) {
       },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('vps_upscale_title'),
+      upscaleType: /* @ngInject */ ($transition$) => $transition$.params().type,
     },
     views: {
       'vpsHeader@vps': {
