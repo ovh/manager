@@ -1,3 +1,19 @@
+# [17.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.22.5...@ovh-ux/manager-dedicated@17.23.0) (2022-07-19)
+
+
+### Bug Fixes
+
+* **dedicated:** add target for hgv2 link order redirection ([50a9032](https://github.com/ovh/manager/commit/50a9032262322c01bfee4996fc3b9309699b8092))
+* **dedicated:** hgv2 wording adaptation with the renewal period ([#7524](https://github.com/ovh/manager/issues/7524)) ([6e48349](https://github.com/ovh/manager/commit/6e48349a23e9a0fb4596ae6a5bd65ba85e76cd50))
+* **dedicated.server:** hide firewall cisco asa eol if not enabled ([c52bfd1](https://github.com/ovh/manager/commit/c52bfd11409e072bcdea6bd343b643a3d52c8ce4))
+
+
+### Features
+
+* **dedicated.server:** hgv2 new upgrade flow ([#7428](https://github.com/ovh/manager/issues/7428)) ([154a89f](https://github.com/ovh/manager/commit/154a89f19b23253326bc0071dcc0853f0ee9f5d5))
+
+
+
 ## [17.22.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.22.4...@ovh-ux/manager-dedicated@17.22.5) (2022-07-15)
 
 

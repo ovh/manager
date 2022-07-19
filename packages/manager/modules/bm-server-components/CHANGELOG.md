@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.3.0...@ovh-ux/manager-bm-server-components@1.4.0) (2022-07-19)
+
+
+### Features
+
+* **dedicated.server:** hgv2 new upgrade flow ([#7428](https://github.com/ovh/manager/issues/7428)) ([154a89f](https://github.com/ovh/manager/commit/154a89f19b23253326bc0071dcc0853f0ee9f5d5))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.2.2...@ovh-ux/manager-bm-server-components@1.3.0) (2022-06-14)
 
 
