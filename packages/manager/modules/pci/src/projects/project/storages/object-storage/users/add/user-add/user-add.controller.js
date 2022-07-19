@@ -7,17 +7,17 @@ import {
 export default class PciUsersAddController {
   /* @ngInject */
   constructor(
+    $state,
     $translate,
+    atInternet,
     CucCloudMessage,
     PciStoragesObjectStorageService,
-    $state,
-    atInternet,
   ) {
+    this.$state = $state;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciStoragesObjectStorageService = PciStoragesObjectStorageService;
-    this.$state = $state;
-    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -50,10 +50,10 @@ export default class PciUsersAddController {
     return this.cancel();
   }
 
-  onSubmit(user, action) {
+  onSubmit(user) {
     this.trackClick(`${TRACKING_S3_POLICY_ADD}::cconfirm`);
     this.isLoading = true;
-    if (action === 'addExistingUser') {
+    if (this.isUserCreationModeActive()) {
       return this.getUserS3Credential(user.id)
         .then((credentials) => {
           if (credentials.length === 0)
@@ -66,11 +66,26 @@ export default class PciUsersAddController {
         });
     }
     // action === 'createNewUser'
-    return this.createUser(user.description)
+    return this.createUser(this.newUserDescription)
       .then((data) => this.generateUserS3Credential(data))
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  isUserLinkedModeActive() {
+    return this.model === this.addExistingUser;
+  }
+
+  isUserCreationModeActive() {
+    return this.model === this.createNewUser;
+  }
+
+  canUserBeCreated() {
+    return (
+      (this.isUserLinkedModeActive() && this.userModel) ||
+      (this.isUserCreationModeActive() && this.newUserDescription)
+    );
   }
 
   getUserS3Credential(userId) {
