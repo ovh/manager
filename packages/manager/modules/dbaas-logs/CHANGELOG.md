@@ -1,3 +1,12 @@
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.7.1...@ovh-ux/manager-dbaas-logs@1.8.0) (2022-07-19)
+
+
+### Features
+
+* **logs:** rename `Elasticsearch` products to `OpenSearch` ([#7270](https://github.com/ovh/manager/issues/7270)) ([860fd1d](https://github.com/ovh/manager/commit/860fd1de6498d65aa62f6caf063f91fbd9e5afaa))
+
+
+
 ## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.7.0...@ovh-ux/manager-dbaas-logs@1.7.1) (2022-06-15)
 
 
