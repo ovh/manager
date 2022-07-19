@@ -1,14 +1,8 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import 'core-js/stable';
 import 'whatwg-fetch';
-import {
-  attach as attachPreloader,
-  displayMessage,
-} from '@ovh-ux/manager-preloader';
 import { registerApplication } from '@ovh-ux/ufrontend';
-import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 
-attachPreloader(findAvailableLocale(detectUserLocale()));
 
 registerApplication('<%= name %>').then(({ environment }) => {
   environment.setVersion(__VERSION__);
