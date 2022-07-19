@@ -4,6 +4,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import uiRouter from '@uirouter/angularjs';
 import angularTranslate from 'angular-translate';
 import '@ovh-ux/ui-kit';
+import 'ovh-api-services';
 
 import newTicket from './new-ticket';
 import ticket from './ticket';
@@ -24,6 +25,7 @@ angular
     newTicket,
     ngTranslateAsyncLoader,
     'oui',
+    'ovh-api-services',
     ticket,
     uiRouter,
   ])
