@@ -8,8 +8,6 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
 
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
-
 export default (containerEl, environment) => {
   const moduleName = 'veeamCloudConnectApp';
 
@@ -46,7 +44,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
