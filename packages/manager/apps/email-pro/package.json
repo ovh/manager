@@ -22,7 +22,6 @@
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-emailpro": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.0.0 || ^2.0.0",
-    "@ovh-ux/manager-preloader": "^1.1.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.11",
     "@ovh-ux/ng-ovh-export-csv": "^2.0.4",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
