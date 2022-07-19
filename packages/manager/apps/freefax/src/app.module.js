@@ -9,7 +9,6 @@ import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import uiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerFreeFax from '@ovh-ux/manager-freefax';
-import managerNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
@@ -27,7 +26,6 @@ export default (containerEl, environment) => {
       ngOvhApiWrappers,
       ovhManagerFreeFax,
       uiRouterBreadcrumb,
-      managerNotificationsSidebar,
       ngOvhFeatureFlipping,
       ngOvhPaymentMethod,
       ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
