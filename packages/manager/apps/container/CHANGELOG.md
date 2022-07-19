@@ -1,3 +1,14 @@
+## [0.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.6...@ovh-ux/manager-container-app@0.3.7) (2022-07-19)
+
+
+### Bug Fixes
+
+* **container:** close pnr sidebar on mobile outside click ([b69daf7](https://github.com/ovh/manager/commit/b69daf784c4341ea807961b7f008637b28d2194d))
+* **container:** pnr sidebar housing entry ([3805ce5](https://github.com/ovh/manager/commit/3805ce52507731b08a0cf3573fdb2157b38f2ac9))
+* **container:** sort pci projects in sidebar ([6455728](https://github.com/ovh/manager/commit/64557284c923a328189870273c6ab6456cc0a69a))
+
+
+
 ## [0.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.5...@ovh-ux/manager-container-app@0.3.6) (2022-07-18)
 
 
