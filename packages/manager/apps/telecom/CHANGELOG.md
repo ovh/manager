@@ -1,3 +1,12 @@
+## [13.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.0...@ovh-ux/manager-telecom@13.43.1) (2022-07-19)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([e77b109](https://github.com/ovh/manager/commit/e77b1099810a968e1d1c682ea5e8adef9c46cfcf))
+
+
+
 # [13.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.42.3...@ovh-ux/manager-telecom@13.43.0) (2022-07-18)
 
 
