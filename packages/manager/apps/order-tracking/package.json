@@ -13,13 +13,12 @@
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/order-tracking-app' --include-dependencies -- npm run build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/order-tracking-app' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/order-tracking-app' --include-dependencies -- yarn run dev:watch"
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/order-tracking-app' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/order-tracking-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
-    "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-order-tracking": "^1.1.1 || ^2.0.0",

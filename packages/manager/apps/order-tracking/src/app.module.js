@@ -6,7 +6,6 @@ import angular from 'angular';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ssoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
@@ -56,7 +55,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
