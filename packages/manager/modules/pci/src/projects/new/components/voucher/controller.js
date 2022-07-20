@@ -182,6 +182,10 @@ export default class PciProjectNewVoucherCtrl {
 
   onAddVoucherBtnClick() {
     this.formVisible = true;
+    this.atInternet.trackClick({
+      name: 'PublicCloud_new_project::add_voucher',
+      type: 'action',
+    });
   }
 
   onVoucherInputChange() {
