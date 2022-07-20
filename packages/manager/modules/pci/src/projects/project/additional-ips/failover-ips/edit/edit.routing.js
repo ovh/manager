@@ -12,10 +12,6 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: /* @ngInject */ () => null,
         goBack: /* @ngInject */ ($state) => () => $state.go('^'),
-        onCancelClick: /* @ngInject */ (trackClick, goBack) => () => {
-          trackClick('failover-ips::edit::cancel');
-          return goBack();
-        },
         serviceName: /* @ngInject */ ($transition$) =>
           $transition$.params().serviceName,
         ip: /* @ngInject */ (serviceName, failoverIps) =>
