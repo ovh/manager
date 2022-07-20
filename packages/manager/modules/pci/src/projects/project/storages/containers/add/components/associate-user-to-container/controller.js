@@ -139,12 +139,20 @@ export default class CreateLinkedUserController {
 
   onLinkedUserClicked() {
     this.trackClick(`${TRACKING_ASSOCIATE_USER}-confirm`);
+
+    const service = this.PciStoragesUsersService;
     const { selected: user } = this.userModel.linkedMode;
+    const defaultCredential = user.s3Credentials[0];
+    const functionToCallPromise = defaultCredential
+      ? service.getS3Credential(
+          this.projectId,
+          user.id,
+          defaultCredential.access,
+        )
+      : service.generateS3Credential(this.projectId, user.id);
     this.userModel.linkedMode.isInProgress = true;
-    return this.PciStoragesUsersService.generateS3Credential(
-      this.projectId,
-      user.id,
-    )
+
+    return functionToCallPromise
       .then((credential) => {
         this.trackPage(`${TRACKING_ASSOCIATE_USER}-success`);
         const { s3Credentials } = user;
