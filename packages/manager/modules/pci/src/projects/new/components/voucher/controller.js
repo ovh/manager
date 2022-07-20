@@ -173,6 +173,10 @@ export default class PciProjectNewVoucherCtrl {
   ============================== */
 
   onVoucherFormSubmit() {
+    this.atInternet.trackClick({
+      name: 'PublicCloud_new_project::confirm_voucher',
+      type: 'action',
+    });
     return this.submitVoucher();
   }
 
