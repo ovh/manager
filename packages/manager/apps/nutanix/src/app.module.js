@@ -5,7 +5,6 @@ import has from 'lodash/has';
 import isString from 'lodash/isString';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
 import Nutanix from '@ovh-ux/manager-nutanix';
@@ -23,7 +22,6 @@ export default (containerEl, environment) => {
       moduleName,
       [
         registerCoreModule(environment),
-        ngOvhUiRouterLineProgress,
         ngUiRouterBreadcrumb,
         uiRouter,
         errorPage,
