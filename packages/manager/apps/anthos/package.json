@@ -39,7 +39,6 @@
     "@ovh-ux/ng-ovh-utils": "^14.0.17",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
-    "@ovh-ux/ng-ui-router-line-progress": "^1.2.7",
     "@ovh-ux/ufrontend": "^1.1.1 || ^2.0.0",
     "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.23",
