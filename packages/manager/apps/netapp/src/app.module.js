@@ -3,7 +3,6 @@ import { isString, get } from 'lodash-es';
 import { RejectType } from '@uirouter/angularjs';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ui-router-layout';
-import '@ovh-ux/ng-ui-router-line-progress';
 import '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerNetApp from '@ovh-ux/manager-netapp';
 
@@ -22,7 +21,6 @@ export default (containerEl, environment) => {
       [
         registerCoreModule(environment),
         'ngUiRouterLayout',
-        'ngUiRouterLineProgress',
         'ngUiRouterBreadcrumb',
         'ui.router',
         errorPage,
