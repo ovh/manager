@@ -181,6 +181,10 @@ export default class PciProjectNewVoucherCtrl {
   }
 
   onVoucherFormReset() {
+    this.atInternet.trackClick({
+      name: 'PublicCloud_new_project::delete_voucher',
+      type: 'action',
+    });
     return this.resetVoucher();
   }
 
