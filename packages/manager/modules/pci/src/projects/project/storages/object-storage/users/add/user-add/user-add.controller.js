@@ -51,7 +51,7 @@ export default class PciUsersAddController {
   }
 
   onSubmit(user) {
-    this.trackClick(`${TRACKING_S3_POLICY_ADD}::cconfirm`);
+    this.trackClick(`${TRACKING_S3_POLICY_ADD}::confirm`);
     this.isLoading = true;
     if (this.isUserCreationModeActive()) {
       return this.getUserS3Credential(user.id)
