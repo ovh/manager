@@ -1,0 +1,13 @@
+{
+  "name": "@ovh-ux/manager-themes",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@chakra-ui/react": "^2.2.4",
+    "@chakra-ui/theme": "^2.1.3"
+  }
+}
