@@ -42,14 +42,14 @@
                 ></span>
                 <div
                     class="chart__nodata-container"
-                    ng-if="$ctrl.metrics.totalMemory.data.length === 0"
+                    data-ng-if="$ctrl.metrics.totalMemory.data.length === 0"
                 >
                     <span
                         data-translate="data_processing_details_no_data"
                     ></span>
                 </div>
                 <pci-project-data-processing-metrics-chart
-                    ng-if="$ctrl.metrics.totalMemory.data.length !== 0"
+                    data-ng-if="$ctrl.metrics.totalMemory.data.length !== 0"
                     class="chart__container"
                     data-data="$ctrl.metrics.totalMemory.data"
                     data-labels="$ctrl.metrics.totalMemory.labels"
@@ -63,14 +63,14 @@
                 >
                 <div
                     class="chart__nodata-container"
-                    ng-if="$ctrl.metrics.activeTasks.data.length === 0"
+                    data-ng-if="$ctrl.metrics.activeTasks.data.length === 0"
                 >
                     <span
                         data-translate="data_processing_details_no_data"
                     ></span>
                 </div>
                 <pci-project-data-processing-metrics-chart
-                    ng-if="$ctrl.metrics.activeTasks.data.length !== 0"
+                    data-ng-if="$ctrl.metrics.activeTasks.data.length !== 0"
                     class="chart__container"
                     data-data="$ctrl.metrics.activeTasks.data"
                     data-labels="$ctrl.metrics.activeTasks.labels"
@@ -83,14 +83,14 @@
                 >
                 <div
                     class="chart__nodata-container"
-                    ng-if="$ctrl.metrics.blockManagerDiskUsed.data.length === 0"
+                    data-ng-if="$ctrl.metrics.blockManagerDiskUsed.data.length === 0"
                 >
                     <span
                         data-translate="data_processing_details_no_data"
                     ></span>
                 </div>
                 <pci-project-data-processing-metrics-chart
-                    ng-if="$ctrl.metrics.blockManagerDiskUsed.data.length !== 0"
+                    data-ng-if="$ctrl.metrics.blockManagerDiskUsed.data.length !== 0"
                     class="chart__container"
                     data-data="$ctrl.metrics.blockManagerDiskUsed.data"
                     data-labels="$ctrl.metrics.blockManagerDiskUsed.labels"
