@@ -20,7 +20,13 @@ export default class AdditionalIpsFailoverIpsEditController {
     }
   }
 
+  onCancelClick() {
+    this.trackClick('failover-ips::edit::cancel');
+    return this.goBack();
+  }
+
   edit() {
+    this.trackClick('failover-ips::edit::confirm');
     this.isLoading = true;
 
     return this.OvhApiCloudProjectIpFailover.v6()

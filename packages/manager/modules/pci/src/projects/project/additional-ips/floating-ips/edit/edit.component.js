@@ -9,5 +9,6 @@ export default {
     ip: '<',
     projectId: '<',
     serviceName: '<',
+    trackClick: '<',
   },
 };
