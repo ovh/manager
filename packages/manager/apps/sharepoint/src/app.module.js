@@ -3,7 +3,6 @@ import { isString, get } from 'lodash-es';
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
 import Sharepoint from '@ovh-ux/manager-sharepoint';
@@ -16,7 +15,6 @@ export default (containerEl, environment) => {
       moduleName,
       [
         registerCoreModule(environment),
-        ngOvhUiRouterLineProgress,
         ngUiRouterBreadcrumb,
         uiRouter,
         Sharepoint,
