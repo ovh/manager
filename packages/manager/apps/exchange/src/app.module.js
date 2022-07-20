@@ -4,7 +4,6 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import { isString, get } from 'lodash-es';
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
 import Exchange from '@ovh-ux/manager-exchange';
@@ -17,7 +16,6 @@ export default (containerEl, environment) => {
       moduleName,
       [
         registerCoreModule(environment),
-        ngOvhUiRouterLineProgress,
         ngUiRouterBreadcrumb,
         uiRouter,
         Exchange,
