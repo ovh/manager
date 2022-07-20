@@ -4,25 +4,6 @@ export default /* @ngInject */ ($stateProvider) => {
   const stateName = 'nasha.dashboard.partition';
   const taskTrackerStateName = `${stateName}.task-tracker`;
 
-  const goToEditResolve = ['description', 'name', 'size'].reduce(
-    (resolves, id) => {
-      const capitalizedId = `${id[0].toUpperCase()}${id.slice(1)}`;
-      return {
-        ...resolves,
-        [`goToEdit${capitalizedId}`]: /* @ngInject */ (
-          $state,
-          serviceName,
-          partitionName,
-        ) => () =>
-          $state.go(`${stateName}.edit-${id}`, {
-            serviceName,
-            partitionName,
-          }),
-      };
-    },
-    {},
-  );
-
   $stateProvider.state(stateName, {
     url: '/partition/:partitionName',
     views: {
@@ -43,10 +24,27 @@ export default /* @ngInject */ ($stateProvider) => {
           : goBack({ stateName, success, error }),
       editDescriptionHref: /* @ngInject */ ($state, serviceName) => () =>
         $state.href(`${stateName}.edit-description`, { serviceName }),
-      editNameHref: /* @ngInject */ ($state, serviceName) => () =>
-        $state.href(`${stateName}.edit-name`, { serviceName }),
       editSizeHref: /* @ngInject */ ($state, serviceName) => () =>
         $state.href(`${stateName}.edit-size`, { serviceName }),
+      goToEdit: /* @ngInject */ ($state, serviceName, partitionName) => (
+        property,
+      ) =>
+        $state.go(`${stateName}.edit-${property}`, {
+          serviceName,
+          partitionName,
+        }),
+      goToEditDescription: /* @ngInject */ (goToEdit) => () =>
+        goToEdit('description'),
+      goToEditSize: /* @ngInject */ (goToEdit) => () => goToEdit('size'),
+      isPartitionTabActive: /* @ngInject */ (
+        currentHref,
+        partitionHref,
+        editDescriptionHref,
+        editSizeHref,
+      ) => () =>
+        [partitionHref(), editDescriptionHref(), editSizeHref()].includes(
+          currentHref(),
+        ),
       partition: /* @ngInject */ (
         $state,
         serviceName,
@@ -81,7 +79,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href(stateName, { serviceName }),
       goToTrackTasks: /* @ngInject */ ($state) => (params) =>
         $state.go(taskTrackerStateName, params),
-      ...goToEditResolve,
     },
   });
 

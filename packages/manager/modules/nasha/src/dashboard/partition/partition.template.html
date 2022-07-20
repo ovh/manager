@@ -3,25 +3,14 @@
         <div class="d-flex pt-4">
             <h1
                 class="word-break mb-0 oui-header-2"
-                data-ng-bind="$ctrl.name"
+                data-ng-bind="$ctrl.partition.partitionName"
             ></h1>
-            <button
-                type="button"
-                class="btn btn-icon my-auto ml-2"
-                data-translate-attr="{ title: 'nasha_dashboard_partition_edit' }"
-                data-ng-click="$ctrl.openEditNameModal()"
-            >
-                <span
-                    class="oui-icon oui-icon_small oui-icon-pen_concept"
-                    aria-hidden="true"
-                ></span>
-            </button>
         </div>
         <p data-ng-bind="$ctrl.nasha.serviceName"></p>
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.partitionHref() }}"
-                data-active="[$ctrl.partitionHref(), $ctrl.editNameHref(), $ctrl.editDescriptionHref(), $ctrl.editSizeHref()].includes($ctrl.currentHref())"
+                data-active="$ctrl.isPartitionTabActive()"
                 ><span
                     data-translate="nasha_dashboard_partition_tab_general_information"
                 ></span
@@ -57,19 +46,6 @@
                                     data-ng-bind="$ctrl.partition.partitionName"
                                 ></span>
                             </oui-tile-description>
-                            <oui-action-menu
-                                aria-label="{{:: 'nasha_dashboard_partition_actions' | translate }}"
-                                data-compact
-                                data-placement="end"
-                            >
-                                <oui-action-menu-item
-                                    data-on-click="$ctrl.goToEditName()"
-                                >
-                                    <span
-                                        data-translate="nasha_dashboard_partition_edit"
-                                    ></span>
-                                </oui-action-menu-item>
-                            </oui-action-menu>
                         </oui-tile-definition>
                         <!-- Description -->
                         <oui-tile-definition
@@ -150,12 +126,4 @@
         </div>
         <div data-ui-view="edit"></div>
     </div>
-    <nasha-components-partition-edit-name
-        data-ng-if="$ctrl.isEditNameModalOpened"
-        data-nasha=":: $ctrl.nasha"
-        data-close=":: $ctrl.closeEditNameModal"
-        data-partition=":: $ctrl.partition"
-        data-partition-names=":: $ctrl.partitionNames"
-        data-partition-api-url=":: $ctrl.partitionApiUrl"
-    ></nasha-components-partition-edit-name>
 </div>
