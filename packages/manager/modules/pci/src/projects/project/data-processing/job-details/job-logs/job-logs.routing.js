@@ -13,6 +13,32 @@ export default /* @ngInject */ ($stateProvider) =>
           projectId,
           jobId,
         ) => dataProcessingService.getJob(projectId, jobId),
+        logContainer: /* @ngInject */ (
+          PciStoragesContainersService,
+          projectId,
+          jobId,
+        ) =>
+          PciStoragesContainersService.getAll(projectId, false).then(
+            (containers) => {
+              const logContainer = containers.find(
+                (storage) => storage.name === 'odp-logs',
+              );
+              if (logContainer) {
+                return PciStoragesContainersService.getContainer(
+                  projectId,
+                  logContainer.id,
+                ).then(({ objects }) => {
+                  return {
+                    ...logContainer,
+                    objects: objects.filter((object) =>
+                      object.name.includes(jobId),
+                    ),
+                  };
+                });
+              }
+              return null;
+            },
+          ),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('data_processing_details_logs_title'), // update breadcrumb with "/ Logs"
 
