@@ -6,11 +6,9 @@ import 'angular-translate';
 import component from './partition.component';
 import routing from './partition.routing';
 
-import partitionEditNameComponentModule from '../../components/partition/edit-name';
 import spaceMeterComponentModule from '../../components/space-meter';
 import taskTrackerComponentModule from '../../components/task-tracker';
 import editDescriptionModule from './edit-description';
-import editNameModule from './edit-name';
 import editSizeModule from './edit-size';
 import snapshotsModule from './snapshots';
 import accessesModule from './accesses';
@@ -21,11 +19,9 @@ angular
   .module(moduleName, [
     'pascalprecht.translate',
     'ui.router',
-    partitionEditNameComponentModule,
     spaceMeterComponentModule,
     taskTrackerComponentModule,
     editDescriptionModule,
-    editNameModule,
     editSizeModule,
     snapshotsModule,
     accessesModule,
