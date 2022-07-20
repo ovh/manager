@@ -2,9 +2,10 @@ import PciEligibility from '../../classes/eligibility.class';
 
 export default class PciProjectNewVoucherCtrl {
   /* @ngInject */
-  constructor($q, pciProjectNew) {
+  constructor($q, pciProjectNew, atInternet) {
     this.$q = $q;
     this.pciProjectNew = pciProjectNew;
+    this.atInternet = atInternet;
 
     // other attributes
     this.formVisible = false;
