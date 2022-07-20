@@ -19,7 +19,7 @@
   "pci_additional_ip_failover_ip": "IP fail-over (OVHcloud)",
   "pci_additional_ip_failover_ip_description": "Solution optimisée pour les opérations de basculement inter-produits OVHcloud. Configuration manuelle nécessaire, prise en charge des cas d'utilisation du cloud hybride. Payé d'avance.",
   "pci_additional_ip_create_step_select_region_failover_ip": "Sélectionnez un pays pour votre nouvelle IP fail-over OVHcloud",
-  "pci_additional_ip_create_step_select_region_description_failover_ip": "Pour plus d'informations sur les IP fail-over, <a href=\"{{ guideLink }}\" target=\"_blank\">cliquez ici.</a>",
+  "pci_additional_ip_create_step_select_region_description_failover_ip": "Pour plus d'informations sur les IP fail-over, <a href=\"{{ guideLink }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">cliquez ici.</a>",
   "pci_additional_ip_create_step_attach_instance_info_failover_ip": "Cette IP sera directement connectée à l'instance (ancien mode, sans Public Gateway). Veuillez sélectionner une instance à utiliser. Une opération manuelle sur l'instance est nécessaire, <a href=\"{{ guideLink }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">plus de détails ici</a>",
   "pci_additional_ip_create_no_instance_message_failover_ip": "Aucune instance avec réseau privé n'a été détectée dans la région sélectionnée. Merci d'en créer une avant d'attacher une IP flottante.",
   "pci_additional_ip_floating_ip": "IP flottantes (Public Cloud)",
