@@ -64,8 +64,10 @@
                 <p
                     data-translate="pci_additional_ip_create_step_select_region_description_failover_ip"
                     data-translate_values="{
-                        guideLink: $ctrl.getAdditionalIpGuideLink()
+                        guideLink: $ctrl.getAdditionalIpGuideLink(),
+                        trackLabel: 'PublicCloud::pci::projects::project::additional-ips::add::discover-failover-ip',
                     }"
+                    data-translate-compile
                 ></p>
                 <div class="row mb-3">
                     <oui-select-picker
@@ -130,7 +132,7 @@
                     data-translate="pci_additional_ip_create_step_attach_instance_info_failover_ip"
                     data-translate_values="{
                         guideLink: $ctrl.getAdditionalIpConfGuideLink(),
-                        trackLabel: 'guide-configure-failover-ip'
+                        trackLabel: 'PublicCloud::pci::projects::project::additional-ips::add::guide-configure-failover-ip'
                     }"
                     data-translate-compile
                 ></p>
