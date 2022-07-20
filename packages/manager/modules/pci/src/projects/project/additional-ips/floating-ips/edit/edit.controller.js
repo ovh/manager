@@ -90,7 +90,13 @@ export default class AdditionalIpsFloatingIpsEditController {
     [this.privateNetwork] = this.privateNetworks;
   }
 
+  onCancelClick() {
+    this.trackClick('floating-ips::edit::cancel');
+    return this.goBack();
+  }
+
   edit() {
+    this.trackClick('floating-ips::edit::confirm');
     this.isLoading = true;
 
     return this.PciProjectAdditionalIpService.updateInstanceForFloatingIp(
