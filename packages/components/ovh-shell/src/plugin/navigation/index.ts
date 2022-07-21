@@ -22,7 +22,12 @@ export interface ClientNavigationApi {
 export function navigation(environment: Environment) {
   const getPublicURL = (application: ApplicationId) => {
     if (window.location.hostname === 'localhost') {
-      return `${window.location.origin}/#/manager`;
+      const publicURL = new URL(window.location.href);
+      const configPublicURL = new URL(
+        environment.getApplications()[application]?.publicURL,
+      );
+      publicURL.hash = configPublicURL.hash;
+      return publicURL.href;
     }
     return environment.getApplications()[application]?.publicURL;
   };
