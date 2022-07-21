@@ -12,32 +12,6 @@
     data-on-finish="$ctrl.validateCheckout()"
 >
     <oui-step-form
-        data-header="{{:: 'private_database_order_clouddb_database_type' | translate }}"
-        data-on-focus="$ctrl.selectTypeOption()"
-        data-editable="false"
-        data-navigation="false"
-        data-disabled="$ctrl.hasValidatedCheckout"
-        data-valid="$ctrl.model.type"
-    >
-        <oui-field
-            data-label="{{:: 'private_database_order_clouddb_database_question' | translate }}"
-        >
-            <oui-radio
-                data-name="modelType"
-                data-model="$ctrl.model.type"
-                data-value="$ctrl.defaultModelType"
-            >
-                <span
-                    data-translate="{{:: 'private_database_order_clouddb_offer_title' | translate }}"
-                ></span>
-            </oui-radio>
-            <span
-                data-translate="{{:: 'private_database_order_clouddb_offer_subtitle' | translate }}"
-            ></span>
-        </oui-field>
-    </oui-step-form>
-
-    <oui-step-form
         data-header="{{:: 'private_database_order_clouddb_customization' | translate }}"
         data-editable="!$ctrl.loadingDurations && !$ctrl.loadingCheckout && !$ctrl.hasValidatedCheckout"
         data-navigation="false"
@@ -68,21 +42,6 @@
                 data-model="$ctrl.model.ramSize"
                 data-items="$ctrl.ramSizeList"
                 data-placeholder="{{:: 'private_database_order_clouddb_ram_option_placeholder' | translate }}"
-                data-on-change="$ctrl.canGoToDurationStep()"
-            >
-            </oui-select>
-        </oui-field>
-
-        <oui-field
-            data-label="{{:: 'private_database_order_clouddb_datacenter' | translate }}"
-            data-size="l"
-        >
-            <oui-select
-                data-name="datacenter"
-                data-match="label"
-                data-model="$ctrl.model.datacenter"
-                data-items="$ctrl.datacenterList"
-                data-placeholder="{{:: 'private_database_order_clouddb_datacenter_placeholder' | translate }}"
                 data-on-change="$ctrl.canGoToDurationStep()"
             >
             </oui-select>

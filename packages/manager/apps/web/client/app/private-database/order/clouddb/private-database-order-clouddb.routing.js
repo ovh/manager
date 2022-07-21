@@ -14,8 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       catalog: /* @ngInject */ (user, PrivateDatabaseOrderCloudDb) =>
         PrivateDatabaseOrderCloudDb.getCloudDBCatalog(user.ovhSubsidiary),
-      datacenters: /* @ngInject */ (catalog, PrivateDatabaseOrderCloudDb) =>
-        PrivateDatabaseOrderCloudDb.constructor.getOrderableDatacenters(
+      datacenter: /* @ngInject */ (catalog, PrivateDatabaseOrderCloudDb) =>
+        PrivateDatabaseOrderCloudDb.constructor.getOrderableDatacenter(
           catalog.plans,
         ),
       /* @ngInject */
