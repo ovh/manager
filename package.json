@@ -8,6 +8,7 @@
     "docs",
     "packages/components/*",
     "packages/manager/apps/*",
+    "packages/manager/core/*",
     "packages/manager/modules/*",
     "packages/manager/tools/*",
     "packages/manager/fragments/*"
