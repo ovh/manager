@@ -1,4 +1,6 @@
+import Badge from './components/Badge';
 import Button from './components/Button';
+import Input from './components/Input';
 import Tag from './components/Tag';
 
 export default {
@@ -80,5 +82,7 @@ export default {
   components: {
     Button,
     Tag,
+    Input,
+    Badge,
   },
 };

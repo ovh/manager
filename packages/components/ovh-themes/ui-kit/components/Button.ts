@@ -4,14 +4,13 @@ import type { ComponentStyleConfig } from '@chakra-ui/theme';
 const largeSize = '3.125rem';
 const smallSize = '2rem';
 
-const disabledStyles = (initialBg: string) =>
-  {
-    return {
-      opacity: '0.5',
-      background: initialBg,
-      boxShadow: 'none',
-    }
+const disabledStyles = (initialBg: string) => {
+  return {
+    opacity: '0.5',
+    background: initialBg,
+    boxShadow: 'none',
   };
+};
 
 const Button: ComponentStyleConfig = {
   baseStyle: {
@@ -27,11 +26,11 @@ const Button: ComponentStyleConfig = {
         borderColor: 'uikit.500',
       },
       borderColor: 'uikit.700',
-      boxShadow: '0 4px 6px 0 rgba(0, 14, 156, 0.2)'
+      boxShadow: '0 4px 6px 0 rgba(0, 14, 156, 0.2)',
     },
     _active: {
       borderColor: 'uikit.800',
-    }
+    },
   },
   sizes: {
     large: {
@@ -52,7 +51,7 @@ const Button: ComponentStyleConfig = {
       py: '0.25rem',
       letterSpacing: '0.007em',
     },
-    block : {
+    block: {
       fontSize: '1rem',
       minHeight: smallSize,
       minWidth: '100%',
@@ -60,12 +59,12 @@ const Button: ComponentStyleConfig = {
       px: '0.35rem',
       py: '0.25rem',
       letterSpacing: '0.007em',
-    }
+    },
   },
   variants: {
     primary: {
       background: 'uikit.500',
-      color: "white",
+      color: 'white',
       _hover: {
         background: 'uikit.700',
       },
@@ -84,7 +83,6 @@ const Button: ComponentStyleConfig = {
         borderColor: 'uikit.500',
         _disabled: {
           ...disabledStyles('white'),
-
         },
       },
       _active: {
@@ -111,12 +109,12 @@ const Button: ComponentStyleConfig = {
         background: 'uikit.200',
         borderColor: 'uikit.200',
       },
-    }
+    },
   },
   defaultProps: {
     size: 'small',
     variant: 'primary',
-    colorScheme: 'uikit'
+    colorScheme: 'uikit',
   },
 };
 

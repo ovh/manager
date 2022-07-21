@@ -1,16 +1,63 @@
 // eslint-disable-next-line prettier/prettier
 import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 
+const chipBaseStyles = (closable?: boolean) => {
+  const hover = closable
+    ? {
+        _hover: {
+          background: 'uikit.200',
+          cursor: 'pointer',
+        },
+      }
+    : {};
+
+  const active = closable
+    ? {
+        _active: {
+          background: 'uikit.300',
+        },
+      }
+    : {};
+
+  return {
+    container: {
+      fontSize: '0.875rem',
+      height: '2rem',
+      px: closable ? '0.75rem' : '1rem',
+      py: 0,
+      transitionProperty: 'common',
+      transitionDuration: 'normal',
+      color: 'uikit.800',
+      ...hover,
+      ...active,
+    },
+    closeButton: {
+      color: 'uikit.800',
+      opacity: '1',
+      px: 0,
+      fontWeight: '200',
+      fontSize: '1rem',
+      _hover: {
+        color: 'uikit.800',
+        opacity: '1',
+      },
+    },
+  };
+};
+
 const Tag: ComponentMultiStyleConfig = {
   parts: ['container', 'label', 'closeButton'],
   baseStyle: {
     container: {
-      margin: '0 0.25rem',
-      padding: '0.15rem 0.5rem',
-      fontWeight: '700',
+      background: 'uikit.100',
+      fontWeight: '500',
       color: 'uikit.800-text',
       borderRadius: '1rem',
       lineHeight: '1',
+      margin: '0',
+    },
+    closeButton: {
+      color: 'uikit.800-text',
     },
   },
   sizes: {
@@ -19,103 +66,22 @@ const Tag: ComponentMultiStyleConfig = {
         fontSize: '1rem',
         maxWidth: '12.5rem',
         lineHeight: '1rem',
-      }
+      },
     },
-    small: {
-      container: {
-        fontSize: '0.75rem',
-        fontWeight: 800,
-      }
-    }
   },
   variants: {
-    default: {
-      container: {
-        background: 'transparent'
-      }
+    chip: {
+      ...chipBaseStyles(),
     },
-    info: {
-      container: {
-        background: 'uikit.100',
-      }
+    'closable-chip': {
+      ...chipBaseStyles(true),
     },
-    success: {
-      container: {
-        background: 'success.300',
-        color: 'success.500',
-      }
-    },
-    warning: {
-      container: {
-        background: 'warning.300',
-        color: 'warning.500',
-      }
-    },
-    error: {
-      container: {
-        background: 'error.300',
-        color: 'error.500',
-      }
-    },
-    alpha: {
-      container: {
-        background: 'product.alpha',
-        color: 'uikit.800'
-      }
-    },
-    beta: {
-      container: {
-        background: 'product.beta',
-        color: 'uikit.800'
-      }
-    },
-    new: {
-      container: {
-        background: 'product.new',
-        color: 'uikit.800',
-      }
-    },
-    soon: {
-      container: {
-        background: 'white'
-      }
-    },
-    promotion: {
-      container: {
-        background: 'promotion.500',
-        color: 'promotion.500-text'
-      }
-    },
-    'price-drop': {
-      container: {
-        background: 'product.price-drop',
-        color: 'uikit.800',
-      }
-    },
-    'sold-out': {
-      container: {
-        background: 'product.sold-out',
-        textTransform: 'uppercase'
-      }
-    },
-    'best-seller': {
-      container: {
-        background: 'uikit.200',
-        color: 'uikit.500'
-      }
-    },
-    'limited-edition': {
-      container: {
-        background: 'product.limited-edition',
-        color: 'white'
-      }
-    }
   },
   defaultProps: {
-    variant: 'default',
+    variant: 'chip',
     size: 'regular',
     colorScheme: 'uikit',
-  }
+  },
 };
 
 export default Tag;
