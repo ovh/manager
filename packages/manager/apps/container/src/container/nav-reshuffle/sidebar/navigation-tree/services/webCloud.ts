@@ -11,6 +11,7 @@ export default {
       id: 'domain-dns',
       translation: 'sidebar_domain_dns',
       features: ['web:domains', 'web:domains:zone'],
+      count: false,
       children: [
         {
           id: 'domains-operations',
