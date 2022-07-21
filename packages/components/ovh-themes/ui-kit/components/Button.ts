@@ -5,11 +5,16 @@ import type { SystemStyleObject } from '@chakra-ui/theme-tools';
 const largeSize = '3.125rem';
 const smallSize = '2rem';
 
+<<<<<<< HEAD
 const disabledStyles = (initialBg: string): SystemStyleObject => {
+=======
+const disabledStyles = (initialBg: string) => {
+>>>>>>> feat: separate tags and badges
   return {
     opacity: '0.5',
     background: initialBg,
     boxShadow: 'none',
+<<<<<<< HEAD
     cursor: 'not-allowed',
   };
 };
@@ -32,6 +37,10 @@ const secondaryStyle = {
     borderColor: 'uikit.500',
   },
 };
+=======
+  };
+};
+>>>>>>> feat: separate tags and badges
 
 const Button: ComponentStyleConfig = {
   baseStyle: {
@@ -47,7 +56,11 @@ const Button: ComponentStyleConfig = {
         borderColor: 'uikit.500',
       },
       borderColor: 'uikit.700',
+<<<<<<< HEAD
       boxShadow: 'secondary',
+=======
+      boxShadow: '0 4px 6px 0 rgba(0, 14, 156, 0.2)',
+>>>>>>> feat: separate tags and badges
     },
     _active: {
       borderColor: 'uikit.800',
@@ -73,7 +86,11 @@ const Button: ComponentStyleConfig = {
       letterSpacing: '0.007em',
     },
     block: {
+<<<<<<< HEAD
       fontSize: 'md',
+=======
+      fontSize: '1rem',
+>>>>>>> feat: separate tags and badges
       minHeight: smallSize,
       minWidth: '100%',
       lineHeight: '1rem',
@@ -93,14 +110,18 @@ const Button: ComponentStyleConfig = {
         background: 'uikit.800',
       },
     },
-    secondary: secondaryStyle,
-    menu: {
-      ...secondaryStyle,
-      _active: {
-        // eslint-disable-next-line no-underscore-dangle
-        ...secondaryStyle._active,
-        background: 'uikit.500',
-        color: 'white',
+    secondary: {
+      background: 'white',
+      color: 'uikit.500',
+      _disabled: {
+        ...disabledStyles('white'),
+      },
+      _hover: {
+        background: 'uikit.100',
+        borderColor: 'uikit.500',
+        _disabled: {
+          ...disabledStyles('white'),
+        },
       },
     },
     iconMenu: {

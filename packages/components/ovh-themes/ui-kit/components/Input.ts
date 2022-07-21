@@ -1,5 +1,6 @@
 // eslint-disable-next-line prettier/prettier
 import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
+<<<<<<< HEAD
 import type { SystemStyleObject } from '@chakra-ui/theme-tools';
 
 import { inputAnatomy as parts } from '@chakra-ui/anatomy';
@@ -110,10 +111,23 @@ export const successVariantFieldStyles = {
     _focus: {
       ...stateInputStyle('success'),
     },
+=======
+
+const invalidInputStyle = {
+  background: 'error.100',
+  borderColor: 'error.300',
+  borderRadius: '2px 2px 0 0',
+  borderBottomColor: 'error.500',
+  boxShadow: 'none',
+  px: '0.25rem',
+  '::placeholder': {
+    color: 'uikit.800-text',
+>>>>>>> feat: separate tags and badges
   },
 };
 
 const Input: ComponentMultiStyleConfig = {
+<<<<<<< HEAD
   parts: parts.keys,
   baseStyle: {
     ...inputFieldStyles,
@@ -132,6 +146,30 @@ const Input: ComponentMultiStyleConfig = {
   defaultProps: {
     variant: 'default',
   },
+=======
+  parts: ['field', 'addon'],
+  baseStyle: {
+    field: {
+      borderWidth: '1px',
+      boxShadow: 'none',
+      color: 'uikit.800-text',
+      borderRadius: '2px 2px 0 0',
+      fontWeight: 600,
+    },
+  },
+  variants: {
+    flushed: {
+      field: {
+        _invalid: {
+          ...invalidInputStyle,
+          _focus: {
+            ...invalidInputStyle,
+          },
+        },
+      },
+    },
+  },
+>>>>>>> feat: separate tags and badges
 };
 
 export default Input;

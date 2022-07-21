@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import globalStyle from './foundations/global';
 import colors from './foundations/colors';
 import shadows from './foundations/shadows';
@@ -20,6 +21,11 @@ import Select from './components/Select';
 import Skeleton from './components/Skeleton';
 import Table from './components/Table';
 import Tabs from './components/Tabs';
+=======
+import Badge from './components/Badge';
+import Button from './components/Button';
+import Input from './components/Input';
+>>>>>>> feat: separate tags and badges
 import Tag from './components/Tag';
 import Textarea from './components/Textarea';
 import Tile from './components/Tile';
@@ -45,11 +51,16 @@ export default {
     Table,
     Tabs,
     Tag,
+<<<<<<< HEAD
     Textarea,
     Tile,
   },
   styles: {
     global: globalStyle,
+=======
+    Input,
+    Badge,
+>>>>>>> feat: separate tags and badges
   },
   radii,
   shadows,
