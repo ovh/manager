@@ -54,11 +54,11 @@
                     data-name="userNameDescriptionKey"
                     data-model="$ctrl.userModel.linkedMode.selected"
                 >
-                    <span data-ng-bind="$item.userNameDescriptionKey"></span>
-                    <span
+                    <span data-ng-bind=":: $item.userNameDescriptionKey"></span>
+                    <small
                         class="float-right"
-                        data-ng-bind="$item.credentialTrad"
-                    ></span>
+                        data-ng-bind=":: $item.credentialTrad"
+                    ></small>
                 </oui-select>
                 <oui-spinner
                     data-ng-if="$ctrl.userModel.linkedMode.isInProgress"

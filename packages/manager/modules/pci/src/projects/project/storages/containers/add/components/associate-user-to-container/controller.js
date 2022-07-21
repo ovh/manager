@@ -53,11 +53,11 @@ export default class CreateLinkedUserController {
   }
 
   getCredentialTranslation(user) {
-    return user.s3Credentials.length > 0
-      ? this.$translate.instant(
-          'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_credential',
-        )
-      : '';
+    return this.$translate.instant(
+      user.s3Credentials.length > 0
+        ? 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_credential'
+        : 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_not_credential',
+    );
   }
 
   isLinkedMode() {
