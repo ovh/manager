@@ -11,6 +11,9 @@
 # Applications
 /packages/manager/apps/ @ovh/team-manager-dev
 
+# Core
+/packages/manager/core/ @ovh/team-manager-core
+
 # Modules
 /packages/manager/modules/ @ovh/team-manager-dev
 
