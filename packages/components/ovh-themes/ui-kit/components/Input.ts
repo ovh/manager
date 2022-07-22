@@ -162,6 +162,12 @@ const invalidInputStyle: SystemStyleObject = {
   },
 };
 
+const readOnlyStyle: SystemStyleObject = {
+  background: 'gray.50',
+        borderColor: 'transparent',
+        borderBottomColor: 'uikit.500',
+};
+
 const Input: ComponentMultiStyleConfig = {
 <<<<<<< HEAD
   parts: parts.keys,
@@ -191,6 +197,22 @@ const Input: ComponentMultiStyleConfig = {
       fontWeight: 600,
       _placeholder: {
         color: 'uikit.800-text',
+      },
+      _disabled: {
+        opacity: 0.5,
+        _hover: {
+          ...baseInputStyles,
+          background: 'white',
+        }
+      },
+      _readOnly: {
+        ...readOnlyStyle,
+        _hover: {
+          ...readOnlyStyle,
+        },
+        _focus: {
+          ...readOnlyStyle,
+        },
       },
       ...invalidInputStyle,
     },
