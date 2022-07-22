@@ -1,6 +1,7 @@
 export const OBJECT_CONTAINER_OFFER_SWIFT = 'storage';
 export const OBJECT_CONTAINER_OFFER_STORAGE_STANDARD = 'storage-s3-standard';
 export const OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE = 'storage-s3-high-perf';
+export const OBJECT_CONTAINER_S3_STATIC_URL_INFO = 'Virtual Hosted Standard :';
 export const OBJECT_CONTAINER_OFFERS_TYPES = {
   SWIFT: 'swift',
   STORAGE_STANDARD: 'standard_s3',

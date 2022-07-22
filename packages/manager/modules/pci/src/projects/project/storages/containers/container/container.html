@@ -88,8 +88,8 @@
                 <!--Container static URL-->
                 <oui-field
                     data-ng-if="!$ctrl.archive"
-                    data-label="{{:: 'pci_projects_project_storages_containers_container_object_info_staticUrl' | translate }}"
-                    data-label-popover="{{:: 'pci_projects_project_storages_containers_container_object_info_staticUrl_help' | translate }}"
+                    data-label="{{:: $ctrl.container.s3StorageType ? $ctrl.objectS3staticUrlInfo : ('pci_projects_project_storages_containers_container_object_info_staticUrl' | translate) }}"
+                    data-label-popover="{{:: 'pci_projects_project_storages_containers_container_object_info_' + ($ctrl.container.s3StorageType ? 's3_staticUrl_help' : 'staticUrl_help') | translate }}"
                 >
                     <oui-clipboard
                         data-name="containerStaticUrl"
