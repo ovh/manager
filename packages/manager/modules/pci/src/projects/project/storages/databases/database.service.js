@@ -673,6 +673,32 @@ export default class DatabaseService {
       );
   }
 
+  getLinkedServices(projectId, engine, databaseId, servicesList) {
+    return this.getIntegrations(projectId, engine, databaseId).then(
+      (integrations) =>
+        Array.from(
+          integrations.reduce(
+            (databases, { sourceServiceId, destinationServiceId }) => {
+              if (
+                sourceServiceId === destinationServiceId ||
+                databaseId !== sourceServiceId
+              ) {
+                databases.add(
+                  servicesList.find(({ id }) => id === sourceServiceId),
+                );
+              } else if (databaseId !== destinationServiceId) {
+                databases.add(
+                  servicesList.find(({ id }) => id === destinationServiceId),
+                );
+              }
+              return databases;
+            },
+            new Set(),
+          ),
+        ),
+    );
+  }
+
   pollIntegrationStatus(projectId, engine, databaseId, integrationId) {
     return this.Poller.poll(
       `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration/${integrationId}`,

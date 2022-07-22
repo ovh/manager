@@ -1,4 +1,5 @@
 import { isEqual } from 'lodash';
+import { STRING_PARAMETER_OPTIONS } from './add.constants';
 
 export default class {
   /* @ngInject */
@@ -13,15 +14,16 @@ export default class {
       'page',
     );
     this.showNoServiceMessage = false;
-    this.isDisabledSourceSelect = true;
-    this.isDisabledDestinationSelect = true;
     this.parameters = {};
+    this.stringParameterOptions = STRING_PARAMETER_OPTIONS;
 
     // aggregate capabilities so we only have one of each type, with an array as source and destination
     // engines
     this.aggregatedIntegrationCapabilities = this.integrationCapabilities.reduce(
       (acc, curr) => {
-        const existingCapability = acc.find((c) => c.type === curr.type);
+        const existingCapability = acc.find(
+          (capability) => capability.type === curr.type,
+        );
         if (existingCapability) {
           if (!existingCapability.sourceEngines.includes(curr.sourceEngine)) {
             existingCapability.sourceEngines.push(curr.sourceEngine);
@@ -87,25 +89,36 @@ export default class {
         : null;
     // Emtpy parameters array
     this.parameters = {};
-    // Disable select inputs if needed
-    const isServiceSourceListEmpty = this.sourceServiceList.length === 0;
-    const isCurrentEngineInSourceList = sourceEngines.includes(
-      this.database.engine,
-    );
-    const isServiceDestinationListEmpty =
-      this.destinationServiceList.length === 0;
-    const isCurrentEngineInDestinationList = destinationEngines.includes(
-      this.database.engine,
-    );
-    // Disable select input if needed
-    this.isDisabledSourceSelect =
-      isServiceSourceListEmpty ||
-      (isCurrentEngineInSourceList && !isCurrentEngineInDestinationList);
-    this.isDisabledDestinationSelect =
-      isServiceDestinationListEmpty ||
-      (isCurrentEngineInDestinationList && !isCurrentEngineInSourceList);
+
     // Check if preselected data is valid
     this.checkIntegrationValidity();
+  }
+
+  get isDisabledSourceSelect() {
+    if (!this.sourceServiceList || this.sourceServiceList.length === 0) {
+      return true;
+    }
+    return (
+      this.integrationCapability.sourceEngines.includes(this.database.engine) &&
+      !this.integrationCapability.destinationEngines.includes(
+        this.database.engine,
+      )
+    );
+  }
+
+  get isDisabledDestinationSelect() {
+    if (
+      !this.destinationServiceList ||
+      this.destinationServiceList.length === 0
+    ) {
+      return true;
+    }
+    return (
+      this.integrationCapability.destinationEngines.includes(
+        this.database.engine,
+      ) &&
+      !this.integrationCapability.sourceEngines.includes(this.database.engine)
+    );
   }
 
   checkIntegrationValidity() {

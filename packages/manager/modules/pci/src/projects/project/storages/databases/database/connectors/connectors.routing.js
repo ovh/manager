@@ -83,9 +83,9 @@ export default /* @ngInject */ ($stateProvider) => {
             integrations,
             (integration) => new ServiceIntegration(integration),
           ).filter(
-            (s) =>
-              s.statusGroup === STATUS.READY &&
-              s.type === CONNECTOR_INTEGRATION_TYPE,
+            ({ statusGroup, type }) =>
+              statusGroup === STATUS.READY &&
+              type === CONNECTOR_INTEGRATION_TYPE,
           ),
         ),
       availableConnectors: /* @ngInject */ (

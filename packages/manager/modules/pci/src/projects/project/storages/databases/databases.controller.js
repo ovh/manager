@@ -1,4 +1,3 @@
-import find from 'lodash/find';
 import capitalize from 'lodash/capitalize';
 import { getCriteria } from '../../project.utils';
 import { ENGINE_LOGOS, DATABASE_TYPES } from './databases.constants';
@@ -53,38 +52,16 @@ export default class {
   deleteDatabase(database) {
     this.trackDatabases(`${optionsMenuTrackPrefix}delete_database`);
     if (isFeatureActivated('serviceIntegrationTab', database.engine)) {
-      return this.DatabaseService.getIntegrations(
+      return this.DatabaseService.getLinkedServices(
         this.projectId,
         database.engine,
         database.id,
-      ).then((integrations) => {
-        const linkedServices = integrations.reduce((acc, curr) => {
-          // if source equals destination, then the service is linked to himself
-          // this is the only scenario where we want to display it in the linked service
-          if (curr.sourceServiceId === curr.destinationServiceId) {
-            if (!acc.find((service) => service.id === curr.sourceServiceId)) {
-              acc.push(find(this.databases, { id: curr.sourceServiceId }));
-            }
-          }
-          if (
-            database.id !== curr.sourceServiceId &&
-            !acc.find((service) => service.id === curr.sourceServiceId)
-          ) {
-            acc.push(find(this.databases, { id: curr.sourceServiceId }));
-          }
-          if (
-            database.id !== curr.destinationServiceId &&
-            !acc.find((service) => service.id === curr.destinationServiceId)
-          ) {
-            acc.push(find(this.databases, { id: curr.destinationServiceId }));
-          }
-          return acc;
-        }, []);
-        if (linkedServices.length > 0) {
-          return this.goToConfirmDeleteDatabase(database, linkedServices);
-        }
-        return this.goToDeleteDatabase(database);
-      });
+        this.databases,
+      ).then((linkedServices) =>
+        linkedServices.length > 0
+          ? this.goToConfirmDeleteDatabase(database, linkedServices)
+          : this.goToDeleteDatabase(database),
+      );
     }
     return this.goToDeleteDatabase(database);
   }

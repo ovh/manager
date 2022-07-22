@@ -1,4 +1,3 @@
-import find from 'lodash/find';
 import capitalize from 'lodash/capitalize';
 import {
   MAX_IPS_DISPLAY,
@@ -192,40 +191,17 @@ export default class {
 
   deleteDatabase() {
     this.trackDashboard('general_information::delete_database');
-
     if (isFeatureActivated('serviceIntegrationTab', this.database.engine)) {
-      return this.DatabaseService.getIntegrations(
+      return this.DatabaseService.getLinkedServices(
         this.projectId,
         this.database.engine,
         this.database.id,
-      ).then((integrations) => {
-        const linkedServices = integrations.reduce((acc, curr) => {
-          // if source equals destination, then the service is linked to himself
-          // this is the only scenario where we want to display it in the linked service
-          if (curr.sourceServiceId === curr.destinationServiceId) {
-            if (!acc.find((service) => service.id === curr.sourceServiceId)) {
-              acc.push(find(this.databases, { id: curr.sourceServiceId }));
-            }
-          }
-          if (
-            this.database.id !== curr.sourceServiceId &&
-            !acc.find((service) => service.id === curr.sourceServiceId)
-          ) {
-            acc.push(find(this.databases, { id: curr.sourceServiceId }));
-          }
-          if (
-            this.database.id !== curr.destinationServiceId &&
-            !acc.find((service) => service.id === curr.destinationServiceId)
-          ) {
-            acc.push(find(this.databases, { id: curr.destinationServiceId }));
-          }
-          return acc;
-        }, []);
-        if (linkedServices.length > 0) {
-          return this.goToConfirmDeleteDatabase(linkedServices);
-        }
-        return this.goToDeleteDatabase();
-      });
+        this.databases,
+      ).then((linkedServices) =>
+        linkedServices.length > 0
+          ? this.goToConfirmDeleteDatabase(linkedServices)
+          : this.goToDeleteDatabase(),
+      );
     }
     return this.goToDeleteDatabase();
   }
