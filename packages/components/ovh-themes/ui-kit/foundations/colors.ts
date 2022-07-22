@@ -1,6 +1,9 @@
 export default {
   uikit: {
+<<<<<<< HEAD
     0: '#FFF',
+=======
+>>>>>>> feat(chakra): add form control inputs styles
     50: '#F5FEFF',
     75: '#DEF8FF',
     100: '#bef1ff',

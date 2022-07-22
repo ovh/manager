@@ -8,9 +8,13 @@
     "build": "tsc"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@chakra-ui/anatomy": "^2.0.1",
     "@chakra-ui/icons": "^2.0.4",
     "react": "^18.2.0"
+=======
+    "@chakra-ui/anatomy": "^2.0.1"
+>>>>>>> feat(chakra): add form control inputs styles
   },
   "devDependencies": {
     "@chakra-ui/react": "^2.2.4",

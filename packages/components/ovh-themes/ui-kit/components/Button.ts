@@ -6,10 +6,14 @@ const largeSize = '3.125rem';
 const smallSize = '2rem';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const disabledStyles = (initialBg: string): SystemStyleObject => {
 =======
 const disabledStyles = (initialBg: string) => {
 >>>>>>> feat: separate tags and badges
+=======
+const disabledStyles = (initialBg: string): SystemStyleObject => {
+>>>>>>> feat(chakra): add form control inputs styles
   return {
     opacity: '0.5',
     background: initialBg,
@@ -69,7 +73,11 @@ const Button: ComponentStyleConfig = {
   sizes: {
     large: {
       fontSize: 'lg',
+<<<<<<< HEAD
       height: largeSize,
+=======
+      minHeight: largeSize,
+>>>>>>> feat(chakra): add form control inputs styles
       minWidth: largeSize,
       lineHeight: '1.125rem',
       px: '0.75rem',
@@ -78,7 +86,11 @@ const Button: ComponentStyleConfig = {
     },
     small: {
       fontSize: 'md',
+<<<<<<< HEAD
       height: smallSize,
+=======
+      minHeight: smallSize,
+>>>>>>> feat(chakra): add form control inputs styles
       minWidth: smallSize,
       lineHeight: '1rem',
       px: '0.35rem',
@@ -87,10 +99,14 @@ const Button: ComponentStyleConfig = {
     },
     block: {
 <<<<<<< HEAD
+<<<<<<< HEAD
       fontSize: 'md',
 =======
       fontSize: '1rem',
 >>>>>>> feat: separate tags and badges
+=======
+      fontSize: 'md',
+>>>>>>> feat(chakra): add form control inputs styles
       minHeight: smallSize,
       minWidth: '100%',
       lineHeight: '1rem',
