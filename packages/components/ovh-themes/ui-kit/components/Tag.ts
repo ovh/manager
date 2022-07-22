@@ -1,7 +1,9 @@
 // eslint-disable-next-line prettier/prettier
 import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
+import type { PartsStyleObject } from '@chakra-ui/theme-tools';
 
-const chipBaseStyles = (closable?: boolean) => {
+
+const chipBaseStyles = (closable?: boolean): PartsStyleObject => {
   const hover = closable
     ? {
         _hover: {
@@ -21,7 +23,7 @@ const chipBaseStyles = (closable?: boolean) => {
 
   return {
     container: {
-      fontSize: '0.875rem',
+      fontSize: 'sm',
       height: '2rem',
       px: closable ? '0.75rem' : '1rem',
       py: 0,
@@ -36,7 +38,7 @@ const chipBaseStyles = (closable?: boolean) => {
       opacity: '1',
       px: 0,
       fontWeight: '200',
-      fontSize: '1rem',
+      fontSize: 'md',
       _hover: {
         color: 'uikit.800',
         opacity: '1',
@@ -51,19 +53,15 @@ const Tag: ComponentMultiStyleConfig = {
     container: {
       background: 'uikit.100',
       fontWeight: '500',
-      color: 'uikit.800-text',
       borderRadius: '1rem',
       lineHeight: '1',
       margin: '0',
-    },
-    closeButton: {
-      color: 'uikit.800-text',
     },
   },
   sizes: {
     regular: {
       container: {
-        fontSize: '1rem',
+        fontSize: 'md',
         maxWidth: '12.5rem',
         lineHeight: '1rem',
       },

@@ -1,7 +1,12 @@
+import colors from './foundations/colors';
+
 import Badge from './components/Badge';
 import Button from './components/Button';
 import Input from './components/Input';
 import Tag from './components/Tag';
+import FormLabel from './components/FormLabel';
+import FormErrorMessage from './components/FormErrorMessage';
+import Form from './components/Form';
 
 export default {
   styles: {
@@ -9,80 +14,37 @@ export default {
       '*': {
         fontFamily: 'Source Sans Pro',
       },
+      'button:focus-visible': {
+        outlineColor: 'green !important',
+        outlineStyle: 'dashed !important',
+      },
+      // This should be configurable under the component FormErrorMessage
+      // But there seems to be a bug where we can't configure that component currently
+      // Github Issue: https://github.com/chakra-ui/chakra-ui/issues/6262
+      '.chakra-form__error-message': {
+        color: 'error.500 !important',
+        fontWeight: '500 !important',
+        fontSize: 'xs !important',
+        margin: '.25rem 0 !important',
+        lineHeight: '1rem !important',
+        letterSpacing: '0.008rem !important',
+      },
     },
   },
-  colors: {
-    uikit: {
-      50: '#F5FEFF',
-      75: '#DEF8FF',
-      100: '#bef1ff',
-      200: '#85D9FD',
-      300: '#4BB2F6',
-      400: '#157EEA',
-      500: '#0050D7',
-      600: '#002DBE',
-      700: '#000E9C',
-      800: '#00185E',
-      900: '#000D1F',
-      '800-text': '#4d5592',
-    },
-    gray: {
-      50: '#f2f2f2',
-      100: '#e6e6e6',
-      200: '#ccc',
-      300: '#b3b3b3',
-      400: '#999',
-      500: '#808080',
-      600: '#666',
-      700: '#4d4d4d',
-      800: '#333',
-      900: '#1a1a1a',
-    },
-    error: {
-      100: '#faefef',
-      300: '#ffd2dd',
-      400: '#e0777c',
-      500: '#c11b1b',
-    },
-    warning: {
-      100: '#faf6ef',
-      300: '#feea86',
-      400: '#fa9b3e',
-      500: '#8b6111',
-    },
-    success: {
-      100: '#f3faef',
-      300: '#dbf2bb',
-      400: '#88c169',
-      500: '#268403',
-    },
-    promotion: {
-      300: '#ffd1f3',
-      500: '#ac246f',
-      700: '#770040',
-      900: '#420023',
-      '500-text': '#fbe155',
-    },
-    product: {
-      alpha: '#fbff47',
-      beta: '#47ff78',
-      new: '#47fffa',
-      soon: 'white',
-      'price-drop': '#ffc800',
-      'sold-out': '#d4d5de',
-      'limited-edition': '#f40',
-    },
-    delivery: {
-      '120s': '#268403',
-      '24h': '#268403',
-      '72h': '#b6c511',
-      '10d': '#ffc800',
-    },
+  shadows: {
+    // This is none because it's not the real outline property
+    // it's just a shadow on focus-visible.
+    // Outline styles are overriden in global styles.
+    outline: 'none',
   },
+  colors,
   components: {
     Button,
     Tag,
     Input,
+    FormLabel,
+    FormErrorMessage,
+    Form,
     Badge,
   },
 };

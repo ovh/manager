@@ -1,10 +1,11 @@
 // eslint-disable-next-line prettier/prettier
 import type { ComponentStyleConfig } from '@chakra-ui/theme';
+import type { SystemStyleObject } from '@chakra-ui/theme-tools';
 
 const largeSize = '3.125rem';
 const smallSize = '2rem';
 
-const disabledStyles = (initialBg: string) => {
+const disabledStyles = (initialBg: string): SystemStyleObject => {
   return {
     opacity: '0.5',
     background: initialBg,
@@ -34,7 +35,7 @@ const Button: ComponentStyleConfig = {
   },
   sizes: {
     large: {
-      fontSize: '1.125rem',
+      fontSize: 'lg',
       minHeight: largeSize,
       minWidth: largeSize,
       lineHeight: '1.125rem',
@@ -43,7 +44,7 @@ const Button: ComponentStyleConfig = {
       letterSpacing: '0.007em',
     },
     small: {
-      fontSize: '1rem',
+      fontSize: 'md',
       minHeight: smallSize,
       minWidth: smallSize,
       lineHeight: '1rem',
@@ -52,7 +53,7 @@ const Button: ComponentStyleConfig = {
       letterSpacing: '0.007em',
     },
     block: {
-      fontSize: '1rem',
+      fontSize: 'md',
       minHeight: smallSize,
       minWidth: '100%',
       lineHeight: '1rem',
