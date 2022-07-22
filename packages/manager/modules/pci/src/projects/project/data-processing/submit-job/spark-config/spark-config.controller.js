@@ -1,7 +1,7 @@
 import { filter, find } from 'lodash';
 import {
   PYTHON_ENV_FILENAME,
-  PYTHON_FILES_CONTENT_TYPES,
+  PYTHON_FILES_CONTENT_TYPE,
   JAVA_FILES_CONTENT_TYPES,
 } from './spark-config.constants';
 import {
@@ -108,8 +108,8 @@ export default class {
       .then((container) => {
         this.containerObjects = container.objects;
         // try to detect correct job type and file
-        const pythonFiles = container.objects.filter((object) =>
-          PYTHON_FILES_CONTENT_TYPES.includes(object.contentType),
+        const pythonFiles = container.objects.filter(
+          (object) => object.contentType === PYTHON_FILES_CONTENT_TYPE,
         );
         const javaFiles = container.objects.filter((object) =>
           JAVA_FILES_CONTENT_TYPES.includes(object.contentType),
