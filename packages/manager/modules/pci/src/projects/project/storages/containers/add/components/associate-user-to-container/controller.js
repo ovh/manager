@@ -28,6 +28,9 @@ export default class CreateLinkedUserController {
     this.usersCredentials = this.users.map((user) => ({
       ...user,
       credentialTrad: this.getCredentialTranslation(user),
+      userNameDescriptionKey: user.description
+        ? `${user.username} - ${user.description}`
+        : user.username,
     }));
     this.loadMessages();
   }
