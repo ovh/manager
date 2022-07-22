@@ -22,10 +22,9 @@ export default class {
       this.projectId,
       this.database.engine,
       this.database.id,
-      this.database.description,
-      this.database.plan,
-      this.selectedVersion.version,
-      this.database.flavor.name,
+      {
+        version: this.selectedVersion.name,
+      },
     )
       .then((databaseInfo) => {
         this.database.updateData(databaseInfo);

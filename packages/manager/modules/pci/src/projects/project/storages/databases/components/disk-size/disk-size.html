@@ -1,0 +1,120 @@
+<oui-tile
+    class="mb-4"
+    data-heading="{{:: 'pci_database_disk_size_title' | translate}}"
+>
+    <oui-tile-definition>
+        <oui-tile-description>
+            <ul>
+                <li>
+                    <span
+                        data-translate="pci_database_disk_size_offer_base"
+                    ></span>
+                    <span
+                        data-ng-bind="$ctrl.flavor.minDiskSize | bytes:2:false:'GB'"
+                    ></span>
+                </li>
+                <li>
+                    <span
+                        data-translate="pci_database_disk_size_additional_storage"
+                    ></span>
+                    <span
+                        data-ng-bind="$ctrl.model - $ctrl.flavor.minDiskSize | bytes:2:false:'GB'"
+                    ></span>
+                </li>
+                <li>
+                    <span
+                        data-translate="pci_database_disk_size_total_storage"
+                    ></span>
+                    <span
+                        data-ng-bind="$ctrl.model | bytes:2:false:'GB'"
+                    ></span>
+                </li>
+            </ul>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition>
+        <oui-tile-description>
+            <div class="d-flex">
+                <oui-button
+                    data-type="button"
+                    data-size="s"
+                    data-variant="secondary"
+                    data-disabled="$ctrl.model - $ctrl.step < $ctrl.min"
+                    data-on-click="$ctrl.onMinusClick()"
+                >
+                    <span class="oui-icon oui-icon-minus"></span>
+                </oui-button>
+                <input
+                    class="mx-1"
+                    name="diskSize"
+                    type="range"
+                    min="{{$ctrl.flavor.minDiskSize}}"
+                    max="{{$ctrl.max}}"
+                    step="{{$ctrl.step}}"
+                    data-ng-model="$ctrl.model"
+                    data-ng-change="$ctrl.checkRange()"
+                    list="min_mark"
+                />
+                <datalist
+                    data-ng-if="$ctrl.min !== $ctrl.flavor.minDiskSize"
+                    id="min_mark"
+                >
+                    <option value="{{$ctrl.min}}"></option>
+                </datalist>
+
+                <oui-button
+                    data-type="button"
+                    data-size="s"
+                    data-variant="secondary"
+                    data-disabled="$ctrl.model + $ctrl.step > $ctrl.max"
+                    data-on-click="$ctrl.onPlusClick()"
+                    data-aria-label="{{ ::'pci_database_disk_size_increment_label' | translate }}"
+                >
+                    <span class="oui-icon oui-icon-plus"></span>
+                </oui-button>
+            </div>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition>
+        <oui-tile-description>
+            <div>
+                <span data-translate="pci_database_disk_size_price"></span>
+                <ovh-manager-catalog-price
+                    data-price="$ctrl.flavor.additionalStorageMonthlyPrice.priceInUcents * ($ctrl.model - $ctrl.flavor.minDiskSize) / 10"
+                    data-tax="$ctrl.flavor.additionalStorageMonthlyPrice.tax * ($ctrl.model - $ctrl.flavor.minDiskSize) / 10"
+                    data-show-zero-price="true"
+                    data-interval="'month'"
+                    data-perform-rounding="false"
+                    data-maximum-fraction-digits="3"
+                >
+                </ovh-manager-catalog-price>
+            </div>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>
+<!-- <table>
+    <tr>
+        <td>flavor.minDiskSize</td>
+        <td>{{$ctrl.flavor.minDiskSize}}</td>
+    </tr>
+    <tr>
+        <td>flavor.maxDiskSize</td>
+        <td>{{$ctrl.flavor.maxDiskSize}}</td>
+    </tr>
+    <tr>
+        <td>model</td>
+        <td>{{$ctrl.model}}</td>
+    </tr>
+    <tr>
+        <td>min</td>
+        <td>{{$ctrl.min}}</td>
+    </tr>
+    <tr>
+        <td>max</td>
+        <td>{{$ctrl.max}}</td>
+    </tr>
+    <tr>
+        <td>initialValue</td>
+        <td>{{$ctrl.initialValue}}</td>
+    </tr>
+</table> -->

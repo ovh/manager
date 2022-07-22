@@ -4,7 +4,7 @@
         data-ng-repeat="flavor in $ctrl.getSortedFlavors() track by flavor.id"
         data-name="{{:: flavor.name }}"
         data-model="$ctrl.selectedFlavor"
-        data-disabled="!$ctrl.allowLowerSelection && $ctrl.currentFlavor && $ctrl.currentFlavor.compare(flavor) <= 0"
+        data-disabled="!$ctrl.allowLowerSelection && $ctrl.currentFlavor && $ctrl.currentFlavor.compare(flavor) < 0"
         data-label="{{:: $ctrl.capitalize(flavor.name) }}"
         data-values="[flavor]"
         data-variant="light"

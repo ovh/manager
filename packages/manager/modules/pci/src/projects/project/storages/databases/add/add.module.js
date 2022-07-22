@@ -13,6 +13,7 @@ import orderReview from '../components/order-review';
 import plansList from '../components/plans-list';
 import regionsList from '../../../../../components/project/regions-list';
 import inputRule from '../components/input-rule';
+import diskSize from '../components/disk-size';
 import routing from './add.routing';
 
 import command from './command';
@@ -34,6 +35,7 @@ angular
     regionsList,
     inputRule,
     command,
+    diskSize,
   ])
   .config(routing)
   .component('pciProjectStoragesDatabasesAdd', component)

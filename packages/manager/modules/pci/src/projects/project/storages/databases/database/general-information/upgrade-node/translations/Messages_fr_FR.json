@@ -9,5 +9,6 @@
   "pci_databases_general_information_upgrade_node_placeholder": "Choisissez un modèle de nœud",
   "pci_databases_general_information_upgrade_node_success": "Votre changement de modèle de nœud a bien été pris en compte. Il sera effectif dans quelques minutes.",
   "pci_databases_general_information_upgrade_node_error": "Votre changement de modèle de nœud n’a pas été correctement effectué : {{message}}",
-  "pci_databases_general_information_upgrade_node_processing": "Amélioration de votre modèle de nœud..."
+  "pci_databases_general_information_upgrade_node_processing": "Amélioration de votre modèle de nœud...",
+  "pci_databases_general_information_upgrade_node_total_price": "Total :"
 }

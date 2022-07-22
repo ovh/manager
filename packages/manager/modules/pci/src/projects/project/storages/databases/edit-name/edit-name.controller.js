@@ -32,10 +32,9 @@ export default class {
       this.projectId,
       this.database.engine,
       this.database.id,
-      this.name,
-      this.database.plan,
-      this.database.version,
-      this.database.flavor.name,
+      {
+        description: this.name,
+      },
     )
       .then(() =>
         this.goBack(this.$translate.instant('pci_databases_edit_name_success')),

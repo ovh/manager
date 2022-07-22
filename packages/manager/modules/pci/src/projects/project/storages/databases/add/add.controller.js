@@ -172,6 +172,11 @@ export default class {
     this.$timeout(() => this.getOrderData());
   }
 
+  onDiskSizeChange() {
+    // delay order data computation so it has the last value of input number
+    this.$timeout(() => this.getOrderData());
+  }
+
   getNodesSpecTranslation() {
     const { nodesCount, maxNodes } = this.model.plan;
     const prefix = 'pci_database_add_spec_nodes';
@@ -202,7 +207,9 @@ export default class {
       )?.openstackId;
       this.orderData.subnetId = this.model.subnet?.id;
     }
-
+    if (this.model.diskSize > 0) {
+      this.orderData.diskSize = this.model.diskSize;
+    }
     this.commandData = {
       orderAPIUrl: this.orderAPIUrl,
       orderData: this.orderData,
@@ -248,7 +255,8 @@ export default class {
 
   updateFlavor(flavor) {
     this.model.flavor = flavor;
-
+    this.model.disk_size =
+      flavor.minDiskSize !== flavor.maxDiskSize ? flavor.minDiskSize : 0;
     if (!flavor.supportsPrivateNetwork) {
       this.model.usePrivateNetwork = false;
       this.model.subnet = null;
@@ -385,6 +393,28 @@ export default class {
         this.$anchorScroll('addMessages');
         this.processingOrder = false;
       });
+  }
+
+  getPrice() {
+    const { flavor, plan, diskSize } = this.model;
+    const flavorTax = flavor.hourlyPrice.priceInUcents * plan.nodesCount;
+    const additionalStoragePrice =
+      diskSize > 0
+        ? ((diskSize - flavor.minDiskSize) / 10) *
+          flavor.additionalStorageHourlyPrice.priceInUcents
+        : 0;
+    return flavorTax + additionalStoragePrice;
+  }
+
+  getTax() {
+    const { flavor, plan, diskSize } = this.model;
+    const flavorTax = flavor.hourlyPrice.tax * plan.nodesCount;
+    const additionalStoragePrice =
+      diskSize > 0
+        ? ((diskSize - flavor.minDiskSize) / 10) *
+          flavor.additionalStorageHourlyPrice.tax
+        : 0;
+    return flavorTax + additionalStoragePrice;
   }
 
   $onDestroy() {

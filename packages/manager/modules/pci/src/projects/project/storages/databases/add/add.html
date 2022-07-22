@@ -81,7 +81,19 @@
                 data-user="$ctrl.user"
                 on-change="$ctrl.onFlavorChanged(selectedFlavor)"
             ></database-flavors-list>
-
+            <div
+                data-ng-if="$ctrl.model.flavor.minDiskSize !== $ctrl.model.flavor.maxDiskSize"
+            >
+                <p data-translate="pci_database_add_select_disk_size"></p>
+                <database-disk-size
+                    data-flavor="$ctrl.model.flavor"
+                    data-step="10"
+                    data-model="$ctrl.model.diskSize"
+                    data-on-change="$ctrl.onDiskSizeChange()"
+                    data-initial-value="$ctrl.model.flavor.minDiskSize"
+                >
+                </database-disk-size>
+            </div>
             <!-- Step 5 -->
             <h2 id="network" data-translate="pci_database_add_step5_title"></h2>
             <oui-message
@@ -359,13 +371,20 @@
                                     }"
                                 ></span>
                                 <span
+                                    data-ng-if="$ctrl.model.disk_size > 0"
+                                    data-translate="pci_database_add_spec_flavor_storage"
+                                    data-translate-values="{
+                                        storageSize: ($ctrl.model.disk_size | bytes:2:false:'GB')
+                                    }"
+                                ></span>
+                                <!-- <span
                                     data-ng-if="$ctrl.model.flavor.minDiskSize !== $ctrl.model.flavor.maxDiskSize"
                                     data-translate="pci_database_add_spec_flavor_storage_range"
                                     data-translate-values="{
                                         storageMinSize: ($ctrl.model.flavor.minDiskSize | bytes:2:false:'GB'),
                                         storageMaxSize: ($ctrl.model.flavor.maxDiskSize | bytes:2:false:'GB')
                                     }"
-                                ></span>
+                                ></span> -->
                             </div>
                         </div>
                         <div class="mt-2">
@@ -443,11 +462,13 @@
                                 data-translate="pci_database_common_price"
                             ></span>
                             <ovh-manager-catalog-price
-                                data-price="$ctrl.model.flavor.hourlyPrice.priceInUcents * $ctrl.model.plan.nodesCount"
-                                data-tax="$ctrl.model.flavor.hourlyPrice.tax * $ctrl.model.plan.nodesCount"
+                                data-price="$ctrl.getPrice()"
+                                data-tax="$ctrl.getTax()"
                                 data-user="$ctrl.user"
                                 data-show-zero-price="true"
                                 data-interval="'hour'"
+                                data-perform-rounding="false"
+                                data-maximum-fraction-digits="3"
                             >
                             </ovh-manager-catalog-price>
                         </div>

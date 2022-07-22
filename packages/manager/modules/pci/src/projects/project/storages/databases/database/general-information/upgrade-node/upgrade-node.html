@@ -30,12 +30,37 @@
         data-translate="pci_databases_general_information_upgrade_node_processing"
     ></span>
 </div>
+
+<database-disk-size
+    data-flavor="$ctrl.selectedFlavor"
+    data-step="10"
+    data-model="$ctrl.database.diskSize"
+    data-on-change=""
+    data-initial-value="$ctrl.diskSize"
+></database-disk-size>
+
+<div class="mb-4">
+    <span
+        data-translate="pci_databases_general_information_upgrade_node_total_price"
+    ></span>
+    <ovh-manager-catalog-price
+        data-price="$ctrl.getPrice()"
+        data-tax="$ctrl.getTax()"
+        data-user="$ctrl.user"
+        data-show-zero-price="true"
+        data-interval="'hour'"
+        data-perform-rounding="false"
+        data-maximum-fraction-digits="3"
+    >
+    </ovh-manager-catalog-price>
+</div>
 <oui-form-actions
+    class="mb-4"
     data-ng-if="!$ctrl.upgradingFlavor"
     data-submit-text="{{:: 'pci_databases_general_information_upgrade_node_confirm' | translate }}"
     data-cancel-text="{{:: 'pci_databases_general_information_upgrade_node_cancel' | translate }}"
     data-on-submit="$ctrl.upgradeNode()"
     data-on-cancel="$ctrl.cancel()"
-    data-disabled="!$ctrl.selectedFlavor || $ctrl.selectedFlavor === $ctrl.currentFlavor"
+    data-disabled="$ctrl.isButtonDisabled"
 >
 </oui-form-actions>

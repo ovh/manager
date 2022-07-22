@@ -59,10 +59,10 @@ export default class {
       this.projectId,
       this.database.engine,
       this.database.id,
-      this.database.description,
-      this.selectedPlan.name,
-      this.database.version,
-      this.selectedFlavor.name,
+      {
+        plan: this.selectedPlan.name,
+        flavor: this.selectedFlavor.name,
+      },
     )
       .then((databaseInfo) => {
         this.database.updateData(databaseInfo);

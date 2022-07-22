@@ -12,6 +12,7 @@ import orderReview from '../components/order-review';
 import plansList from '../components/plans-list';
 import regionsList from '../../../../../components/project/regions-list';
 import inputRule from '../components/input-rule';
+import diskSize from '../components/disk-size';
 import routing from './fork.routing';
 
 const moduleName = 'ovhManagerPciStoragesDatabasesFork';
@@ -29,6 +30,7 @@ angular
     plansList,
     regionsList,
     inputRule,
+    diskSize,
   ])
   .config(routing)
   .component('pciProjectStoragesDatabasesFork', component)

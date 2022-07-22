@@ -13,6 +13,9 @@ export default class {
     this.selectedFlavor = this.currentFlavor;
     this.upgradingFlavor = false;
     this.trackDatabases('config_upgrade_node', 'page');
+
+    this.database.diskSize = 700;
+    this.diskSize = this.database.diskSize;
   }
 
   onFlavorSelect(selectedFlavor) {
@@ -24,6 +27,14 @@ export default class {
     );
   }
 
+  get isButtonDisabled() {
+    return (
+      !this.selectedFlavor ||
+      (this.selectedFlavor === this.currentFlavor &&
+        this.diskSize === this.database.diskSize)
+    );
+  }
+
   upgradeNode() {
     this.trackDashboard('general_information::popin_upgrade_node_validate');
     this.upgradingFlavor = true;
@@ -31,10 +42,10 @@ export default class {
       this.projectId,
       this.database.engine,
       this.database.id,
-      this.database.description,
-      this.database.plan,
-      this.database.version,
-      this.selectedFlavor.name,
+      {
+        flavor: this.selectedFlavor.name,
+        diskSize: this.diskSize,
+      },
     )
       .then((databaseInfo) => {
         this.database.updateData(databaseInfo);
@@ -56,6 +67,24 @@ export default class {
           'error',
         ),
       );
+  }
+
+  getPrice() {
+    const flavorPrice =
+      this.selectedFlavor.hourlyPrice.priceInUcents * this.database.nodeNumber;
+    const additionalStoragePrice =
+      ((this.database.diskSize - this.selectedFlavor.minDiskSize) / 10) *
+      this.selectedFlavor.additionalStorageHourlyPrice.priceInUcents;
+    return flavorPrice + additionalStoragePrice;
+  }
+
+  getTax() {
+    const flavorTax =
+      this.selectedFlavor.hourlyPrice.tax * this.database.nodeNumber;
+    const additionalStorageTax =
+      ((this.database.diskSize - this.selectedFlavor.minDiskSize) / 10) *
+      this.selectedFlavor.additionalStorageHourlyPrice.tax;
+    return flavorTax + additionalStorageTax;
   }
 
   cancel() {

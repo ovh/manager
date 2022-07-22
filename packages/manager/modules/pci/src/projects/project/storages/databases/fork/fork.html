@@ -49,7 +49,6 @@
         data-selected-plan="$ctrl.model.plan"
         data-user="$ctrl.user"
         data-on-change="$ctrl.onPlanSelect()"
-        data-allow-lower-selection="true"
     >
     </database-plans-list>
 
@@ -82,9 +81,21 @@
         data-selected-flavor="$ctrl.model.flavor"
         data-user="$ctrl.user"
         data-on-change="$ctrl.onFlavorSelect()"
-        data-allow-lower-selection="true"
     >
     </database-flavors-list>
+    <div
+        data-ng-if="$ctrl.model.flavor.minDiskSize !== $ctrl.model.flavor.maxDiskSize"
+    >
+        <p data-translate="pci_database_fork_select_disk_size"></p>
+        <database-disk-size
+            data-flavor="$ctrl.model.flavor"
+            data-step="10"
+            data-model="$ctrl.model.diskSize"
+            data-on-change="$ctrl.onDiskSizeChange()"
+            data-initial-value="$ctrl.model.flavor.minDiskSize"
+        >
+        </database-disk-size>
+    </div>
 
     <h2>{{:: 'pci_database_fork_step5_title' | translate }}</h2>
     <oui-field

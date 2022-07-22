@@ -18,6 +18,7 @@ export default class {
     $translate,
     $q,
     $scope,
+    $timeout,
     CucCloudMessage,
     DatabaseService,
     Poller,
@@ -32,6 +33,7 @@ export default class {
     this.NAME_PATTERN = NAME_PATTERN;
     this.MIN_NAME_LENGTH = MIN_NAME_LENGTH;
     this.MAX_NAME_LENGTH = MAX_NAME_LENGTH;
+    this.$timeout = $timeout;
   }
 
   $onInit() {
@@ -183,6 +185,11 @@ export default class {
     this.prepareOrderData();
   }
 
+  onDiskSizeChange() {
+    // delay order data computation so it has the last value of input number
+    this.$timeout(() => this.prepareOrderData());
+  }
+
   prepareOrderData() {
     this.orderData = {
       description: this.model.name,
@@ -196,6 +203,9 @@ export default class {
       plan: this.model.plan.name,
       version: this.model.engine.selectedVersion.version,
     };
+    if (this.model.diskSize > 0) {
+      this.orderData.diskSize = this.model.diskSize;
+    }
     if (this.backupInstance) {
       this.orderData.backup = {
         id: this.backupInstance.id,

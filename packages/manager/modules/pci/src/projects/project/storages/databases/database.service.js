@@ -144,22 +144,12 @@ export default class DatabaseService {
     );
   }
 
-  editDatabase(
-    projectId,
-    engine,
-    databaseId,
-    description,
-    plan,
-    version,
-    flavor,
-  ) {
+  editDatabase(projectId, engine, databaseId, payload) {
     return this.$http
-      .put(`/cloud/project/${projectId}/database/${engine}/${databaseId}`, {
-        description,
-        plan,
-        version,
-        flavor,
-      })
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}`,
+        payload,
+      )
       .then(({ data }) => data);
   }
 
