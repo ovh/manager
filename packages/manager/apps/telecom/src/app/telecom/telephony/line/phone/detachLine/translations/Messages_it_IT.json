@@ -1,9 +1,9 @@
 {
   "telephony_line_phone_detach_title": "Scollega la linea di un telefono",
-  "telephony_line_phone_detach_info1": "Questa linea è attualmente associata al Plug&amp;Phone: {{phoneName}} ({{phoneMacAddress}})",
+  "telephony_line_phone_detach_info1": "Questa linea risulta attualmente associata al Plug&amp;Phone: {{phoneName}} ({{phoneMacAddress}})",
   "telephony_line_phone_detach_info2": "Per scollegarla, inserisci l'indirizzo IP pubblico del Plug&amp;Phone e clicca sul pulsante <strong>Scollega</strong>.",
   "telephony_line_phone_detach_device": "Indirizzo IP pubblico",
-  "telephony_line_phone_detach_device_action": "Separa",
-  "telephony_line_phone_detach_device_success": "La linea è stata staccata correttamente",
-  "telephony_line_phone_detach_device_error": "Si è verificato un errore, lo scollegamento della linea non è riuscito."
+  "telephony_line_phone_detach_device_action": "Scollega",
+  "telephony_line_phone_detach_device_success": "La linea è stata scollegata correttamente",
+  "telephony_line_phone_detach_device_error": "Si è verificato un errore, lo scollegamento della linea non è andato a buon fine."
 }
