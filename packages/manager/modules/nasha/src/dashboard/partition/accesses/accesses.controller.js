@@ -1,4 +1,5 @@
 import { ipBlockToNumber } from '../../../nasha.utils';
+import { NFS_PROTOCOL, READONLY_TYPE } from './accesses.constants';
 
 export default class NashaDashboardPartitionAccessesController {
   /* @ngInject */
@@ -19,7 +20,7 @@ export default class NashaDashboardPartitionAccessesController {
 
   $onInit() {
     this.typeOptions = this.aclTypeEnum.filter(({ value }) =>
-      value === 'readonly' ? this.partition.protocol === 'NFS' : true,
+      value === READONLY_TYPE ? this.partition.protocol === NFS_PROTOCOL : true,
     );
   }
 
