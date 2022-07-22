@@ -1,5 +1,6 @@
 import colors from './foundations/colors';
 
+import Alert from './components/Alert';
 import Badge from './components/Badge';
 import Button from './components/Button';
 import Input from './components/Input';
@@ -39,6 +40,7 @@ export default {
   },
   colors,
   components: {
+    Alert,
     Button,
     Tag,
     Input,
