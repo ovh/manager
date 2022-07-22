@@ -6,7 +6,7 @@
     <div data-ng-if="$ctrl.container">
         <div data-ng-if="$ctrl.addUserStep === 0">
             <p
-                data-translate="{{ 'pci_projects_project_storages_containers_container_addUser_description_' + ($ctrl.objectKey ? 'object' : 'container') + '_step_0' }}"
+                data-translate="{{:: 'pci_projects_project_storages_containers_container_addUser_description_' + ($ctrl.objectKey ? 'object' : 'container') + '_step_0' }}"
             ></p>
 
             <oui-radio-group model="$ctrl.selectedUser">
@@ -19,8 +19,8 @@
         </div>
         <div data-ng-if="$ctrl.addUserStep === 1">
             <p
-                data-translate="pci_projects_project_storages_containers_container_addUser_description_step_1"
-                data-translate-values="{container: $ctrl.container.id}"
+                data-translate="{{:: 'pci_projects_project_storages_containers_container_addUser_description_' + ($ctrl.objectKey ? 'object' : 'container') + '_step_1' }}"
+                data-translate-values="{ value: ($ctrl.objectKey ? $ctrl.objectKey : $ctrl.container.id)}"
             ></p>
             <oui-radio-group
                 model="$ctrl.selectedRole"
