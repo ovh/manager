@@ -64,13 +64,15 @@
                         <strong
                             data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName) | translate"
                         ></strong>
-                        <span class="oui-badge oui-badge_beta"
-                              data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].beta"
-                              data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_label') | translate"
+                        <span
+                            class="oui-badge oui-badge_beta"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].beta"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_label') | translate"
                         ></span>
-                        <span class="oui-badge oui-badge_new"
-                              data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].new"
-                              data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_label') | translate"
+                        <span
+                            class="oui-badge oui-badge_new"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].new"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_label') | translate"
                         ></span>
                     </oui-select-picker-label>
                     <oui-select-picker-section>
@@ -100,13 +102,15 @@
                         <strong
                             data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer) | translate"
                         ></strong>
-                        <span class="oui-badge oui-badge_beta"
-                              data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].beta"
-                              data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_label') | translate"
+                        <span
+                            class="oui-badge oui-badge_beta"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].beta"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_label') | translate"
                         ></span>
-                        <span class="oui-badge oui-badge_new"
-                              data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].new"
-                              data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_label') | translate"
+                        <span
+                            class="oui-badge oui-badge_new"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].new"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_label') | translate"
                         ></span>
                     </oui-select-picker-label>
                     <oui-select-picker-section>
@@ -180,7 +184,7 @@
         data-ng-if="$ctrl.isRightOffer()"
         data-header="{{:: 'pci_projects_project_storages_containers_add_create_or_linked_user_title' | translate }}"
         data-navigation="$ctrl.isReadyForValidation()"
-        data-name="storage_container_user"
+        data-name="storage_container_add_user"
     >
         <pci-project-storages-create-linked-user
             data-project-id="$ctrl.projectId"
