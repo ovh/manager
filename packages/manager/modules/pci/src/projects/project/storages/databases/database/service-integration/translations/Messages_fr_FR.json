@@ -6,5 +6,6 @@
   "pci_databases_service_integration_tab_type": "Type",
   "pci_databases_service_integration_tab_add": "Ajouter une intégration",
   "pci_databases_service_integration_tab_unknown_service": "Service non trouvé",
-  "pci_databases_service_integration_tab_service_ready": "L'intégration de votre service est prête"
+  "pci_databases_service_integration_tab_service_ready": "L'intégration de votre service est prête",
+  "pci_databases_service_integration_tab_service_link": "Voir le service"
 }

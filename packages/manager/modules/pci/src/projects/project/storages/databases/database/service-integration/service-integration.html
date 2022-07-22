@@ -19,12 +19,13 @@
             data-searchable
             data-filterable
         >
-            <span>{{$row.sourceServiceName}}</span>
+            <span data-ng-bind="$row.sourceServiceName"></span>
             <button
                 class="oui-link"
                 type="button"
                 data-ng-click="$ctrl.goToDatabase({id: $row.sourceServiceId})"
                 data-ng-if="$row.sourceServiceId !== $ctrl.database.id"
+                title="{{:: 'pci_databases_service_integration_tab_service_link' | translate}}"
             >
                 <span
                     class="oui-icon oui-icon-external-link"
@@ -40,12 +41,13 @@
             data-searchable
             data-filterable
         >
-            <span>{{$row.destinationServiceName}}</span>
+            <span data-ng-bind="$row.destinationServiceName"></span>
             <button
                 class="oui-link"
                 type="button"
                 data-ng-click="$ctrl.goToDatabase({id: $row.destinationServiceId})"
                 data-ng-if="$row.destinationServiceId !== $ctrl.database.id"
+                title="{{:: 'pci_databases_service_integration_tab_service_link' | translate}}"
             >
                 <span
                     class="oui-icon oui-icon-external-link"
