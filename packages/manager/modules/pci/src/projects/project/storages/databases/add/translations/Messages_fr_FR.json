@@ -19,7 +19,7 @@
   "pci_database_add_network_mode_public_incompatible": "L'offre sélectionnée n'est pas compatible avec les réseaux publics.",
   "pci_database_add_network_mode_private_incompatible": "L'offre sélectionnée n'est pas compatible avec les réseaux privés.",
   "pci_database_add_privateNetwork_label": "Réseau privé attaché",
-  "pci_database_add_privateNetwork_description": "Seuls les services (serveurs dédiés, Vms, clusters K8s, …) connectés a ce <b>réseau privé (vRack)</b> pourront communiquer avec votre base de données. ",
+  "pci_database_add_privateNetwork_description": "Seuls les services (serveurs dédiés, Vms, clusters K8s, …) connectés a ce {{htmlBoldTag}}réseau privé (vRack){{htmlBoldTagEnd}} pourront communiquer avec votre base de données. ",
   "pci_database_add_privateNetwork_add": "Créer un réseau privé",
   "pci_database_add_subnet_label": "Sous-réseau",
   "pci_database_add_subnet_description": "Vous pouvez créer un sous-réseau, mais vous perdrez votre configuration actuelle.",
