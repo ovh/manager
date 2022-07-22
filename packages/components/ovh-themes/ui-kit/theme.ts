@@ -5,6 +5,7 @@ import colors from './foundations/colors';
 import shadows from './foundations/shadows';
 import radii from './foundations/radius';
 
+<<<<<<< HEAD
 import Accordion from './components/Accordion';
 import Alert from './components/Alert';
 import Badge from './components/Badge';
@@ -27,6 +28,9 @@ import Tabs from './components/Tabs';
 import colors from './foundations/colors';
 
 >>>>>>> feat(chakra): add form control inputs styles
+=======
+import Alert from './components/Alert';
+>>>>>>> feat(chakra): add Alert component style
 import Badge from './components/Badge';
 import Button from './components/Button';
 import Input from './components/Input';
@@ -74,10 +78,14 @@ export default {
 >>>>>>> feat(chakra): add form control inputs styles
   colors,
   components: {
+<<<<<<< HEAD
     Accordion,
     Alert,
     Badge,
     Breadcrumb,
+=======
+    Alert,
+>>>>>>> feat(chakra): add Alert component style
     Button,
     Checkbox,
     Input,
