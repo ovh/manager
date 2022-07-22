@@ -68,7 +68,7 @@ export default class PciBlockStorageDetailsAddUserController {
               ? 'pci_projects_project_storages_containers_container_addUser_object_success_message'
               : 'pci_projects_project_storages_containers_container_addUser_success_message',
             {
-              container: this.container.name,
+              value: this.objectKey || this.container.name,
               name: this.selectedUser,
               role: this.$translate.instant(
                 `pci_projects_project_storages_containers_container_addUser_right_${this.selectedRole}`,
@@ -80,8 +80,11 @@ export default class PciBlockStorageDetailsAddUserController {
       .catch((err) =>
         this.goBack(
           this.$translate.instant(
-            'pci_projects_project_storages_containers_container_addUser_error_addUser',
+            this.objectKey
+              ? 'pci_projects_project_storages_containers_container_addUser_object_error_addUser'
+              : 'pci_projects_project_storages_containers_container_addUser_error_addUser',
             {
+              value: this.objectKey || this.container.name,
               message: err.message || err.data?.message,
             },
           ),
