@@ -138,13 +138,13 @@ export default /* @ngInject */ function(
     =            CHECKOUT            =
     ================================ */
 
-  self.getOrderCheckout = function getOrderCheckout() {
+  self.getOrderCheckout = function getOrderCheckout(isRetractationAllowed) {
     return OvhApiOrder.Telephony()
       .v6()
       .getAccessories({
         billingAccount: orderProcess.billingAccount,
         accessories: getAccessoryList(),
-        retractation: true,
+        retractation: isRetractationAllowed,
         shippingContactId: orderProcess.shipping.contact
           ? orderProcess.shipping.contact.id
           : undefined,
