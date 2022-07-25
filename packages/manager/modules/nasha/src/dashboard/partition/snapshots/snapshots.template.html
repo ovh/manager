@@ -127,7 +127,7 @@
             </tr>
             <!-- Custom snapshot form row -->
             <tr
-                class="oui-datagrid__row"
+                class="oui-datagrid__row form"
                 data-ng-if="$ctrl.isCustomSnapshotFormShown"
             >
                 <td class="oui-datagrid__cell">
@@ -138,7 +138,7 @@
                 <td class="oui-datagrid__cell" colspan="2">
                     <form
                         name="$ctrl.customSnapshotForm"
-                        class="d-flex justify-content-between"
+                        class="d-flex justify-content-between align-items-baseline"
                         data-ng-submit="$ctrl.createCustomSnapshot()"
                         data-ng-disabled="$ctrl.isCreatingCustomSnapshot"
                     >
@@ -151,16 +151,21 @@
                             <strong
                                 data-ng-bind="$ctrl.customSnapshotNameSeparator"
                             ></strong>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                class="oui-input"
-                                data-ng-model="$ctrl.model.customSnapshotName"
-                                required
-                            />
+                            <oui-field
+                                data-help-text="{{:: 'nasha_dashboard_partition_snapshots_create_rule' | translate }}"
+                            >
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    class="oui-input"
+                                    data-ng-model="$ctrl.model.customSnapshotName"
+                                    data-ng-pattern="$ctrl.customSnapshotNamePattern"
+                                    required
+                                />
+                            </oui-field>
                         </div>
-                        <div class="d-flex align-items-center">
+                        <div>
                             <oui-spinner
                                 data-ng-if="$ctrl.isCreatingCustomSnapshot"
                                 data-size="s"
