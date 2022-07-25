@@ -88,6 +88,7 @@ const Alert: ComponentStyleConfig = {
     container: {
       borderRadius: '0.5rem',
 <<<<<<< HEAD
+<<<<<<< HEAD
       fontSize: '16px',
       margin: '0 0 1rem',
       padding: '1rem 1.5rem',
@@ -106,17 +107,20 @@ const Alert: ComponentStyleConfig = {
     variant: 'uikit',
 =======
       fontSize: '1.5rem',
+=======
+      fontSize: '16px',
+>>>>>>> feat(chakra): fixed Alert component style
       fontWeight: 400,
       margin: '0 0 1rem',
-      padding: '1.33rem 2rem 1.33rem 2rem',
+      padding: '1rem 1.5rem',
     },
     icon: {
       lineHeight: 1,
       display: 'block',
-      fontSize: '1.5rem',
+      fontSize: '16px',
       marginLeft: '-0.5rem',
-      width: '2rem',
-      height: '2rem',
+      width: '1.5rem',
+      height: '1.5rem',
     },
   },
   variants: {
