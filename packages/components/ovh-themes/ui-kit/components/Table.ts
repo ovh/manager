@@ -17,16 +17,25 @@ const Table: ComponentMultiStyleConfig = {
       background: 'none',
       borderBottom: '1px solid',
       borderColor: 'uikit.100',
+<<<<<<< HEAD
       cursor: 'default',
     },
     tr: {
       lineHeight: '1.5',
       fontWeight: 'inherit'
+=======
+      color: 'uikit.800-text',
+      cursor: 'default',
+    },
+    tr: {
+      fontWeight: 'inherit',
+>>>>>>> feat(chakra): add Table component style
     },
     thead: {
       backgroundColor: 'uikit.100',
       border: '1px solid',
       borderColor: 'uikit.100',
+<<<<<<< HEAD
       fontWeight: 700,
     },
     th: {
@@ -37,11 +46,24 @@ const Table: ComponentMultiStyleConfig = {
     tfoot: {
       backgroundColor: 'uikit.100',
       fontWeight: 500,
+=======
+      fontWeight: '700',
+    },
+    th: {
+      color: 'uikit.800-text',
+      fontFamily: 'inherit',
+      fontWeight: 'inherit',
+      textTransform: 'none',
+    },
+    tfoot: {
+      backgroundColor: 'uikit.100',
+>>>>>>> feat(chakra): add Table component style
     },
   },
   sizes: {
     md: {
       table: {
+<<<<<<< HEAD
         fontSize: 'md',
       },
       td: {
@@ -52,6 +74,25 @@ const Table: ComponentMultiStyleConfig = {
         fontSize: 'md',
         height: '2.625rem',
         padding: '.25rem .5rem',
+=======
+        fontSize: '1rem',
+        margin: '0 0 2rem',
+      },
+      td: {
+        height: '2.5rem',
+        paddingTop: 0,
+        paddingRight: '.5rem',
+        paddingBottom: 0,
+        paddingLeft: '.5rem',
+      },
+      th: {
+        fontSize: '1rem',
+        height: '2.625rem',
+        paddingTop: '.25rem',
+        paddingRight: '.5rem',
+        paddingBottom: '.25rem',
+        paddingLeft: '.5rem',
+>>>>>>> feat(chakra): add Table component style
       },
     },
   },

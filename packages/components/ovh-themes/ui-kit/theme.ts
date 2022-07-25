@@ -11,10 +11,14 @@ import Alert from './components/Alert';
 import Badge from './components/Badge';
 import Breadcrumb from './components/Breadcrumb';
 import Button from './components/Button';
+<<<<<<< HEAD
 import Checkbox from './components/Checkbox';
 import Form from './components/Form';
 import FormError from './components/FormErrorMessage';
 import FormLabel from './components/FormLabel';
+=======
+import Table from './components/Table';
+>>>>>>> feat(chakra): add Table component style
 import Input from './components/Input';
 import Menu from './components/Menu';
 import Progress from './components/Progress';
@@ -112,7 +116,11 @@ export default {
     FormErrorMessage,
     Form,
     Badge,
+<<<<<<< HEAD
 >>>>>>> feat: separate tags and badges
+=======
+    Table,
+>>>>>>> feat(chakra): add Table component style
   },
   radii,
   shadows,
