@@ -315,6 +315,21 @@ export default class PciStoragesContainersService {
   }
 
   /**
+   * Toggle conatiner state (public / private)
+   * @param projectId {String}: project id (serviceName)
+   * @param container {Object}: container model
+   * @returns {Promise}: $http request promise
+   */
+  toggleContainerState(projectId, container) {
+    return this.$http.put(
+      `/cloud/project/${projectId}/storage/${container.id}`,
+      {
+        containerType: container.state ? 'private' : 'public',
+      },
+    );
+  }
+
+  /**
    * Create a S3 High Perf Standard Object
    * Nota: later it will be used also to create S3 Standard Storage Object
    * @param projectId {String}: project id (serviceName)
