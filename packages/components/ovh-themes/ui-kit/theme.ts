@@ -47,8 +47,10 @@ import Tile from './components/Tile';
 export default {
 =======
 import FormLabel from './components/FormLabel';
-import FormErrorMessage from './components/FormErrorMessage';
+import FormError from './components/FormErrorMessage';
 import Form from './components/Form';
+import Checkbox from './components/Checkbox';
+import Tabs from './components/Tabs';
 
 export default {
   styles: {
@@ -59,17 +61,6 @@ export default {
       'button:focus-visible': {
         outlineColor: 'green !important',
         outlineStyle: 'dashed !important',
-      },
-      // This should be configurable under the component FormErrorMessage
-      // But there seems to be a bug where we can't configure that component currently
-      // Github Issue: https://github.com/chakra-ui/chakra-ui/issues/6262
-      '.chakra-form__error-message': {
-        color: 'error.500 !important',
-        fontWeight: '500 !important',
-        fontSize: 'xs !important',
-        margin: '.25rem 0 !important',
-        lineHeight: '1rem !important',
-        letterSpacing: '0.008rem !important',
       },
     },
   },
@@ -92,6 +83,7 @@ export default {
 >>>>>>> feat(chakra): add Alert component style
     Button,
     Checkbox,
+<<<<<<< HEAD
     Input,
     Form,
     FormError,
@@ -103,6 +95,8 @@ export default {
     Skeleton,
     Table,
     Tabs,
+=======
+>>>>>>> feat(tabs): add tabs to chakra theme
     Tag,
 <<<<<<< HEAD
     Textarea,
@@ -113,14 +107,18 @@ export default {
 =======
     Input,
     FormLabel,
-    FormErrorMessage,
+    FormError,
     Form,
     Badge,
 <<<<<<< HEAD
 >>>>>>> feat: separate tags and badges
 =======
     Table,
+<<<<<<< HEAD
 >>>>>>> feat(chakra): add Table component style
+=======
+    Tabs,
+>>>>>>> feat(tabs): add tabs to chakra theme
   },
   radii,
   shadows,

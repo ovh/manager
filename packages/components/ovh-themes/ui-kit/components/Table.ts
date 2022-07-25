@@ -28,13 +28,19 @@ const Table: ComponentMultiStyleConfig = {
       cursor: 'default',
     },
     tr: {
+<<<<<<< HEAD
       fontWeight: 'inherit',
 >>>>>>> feat(chakra): add Table component style
+=======
+      fontWeight: '500',
+      lineHeight: '1.5',
+>>>>>>> feat(tabs): add tabs to chakra theme
     },
     thead: {
       backgroundColor: 'uikit.100',
       border: '1px solid',
       borderColor: 'uikit.100',
+<<<<<<< HEAD
 <<<<<<< HEAD
       fontWeight: 700,
     },
@@ -48,11 +54,14 @@ const Table: ComponentMultiStyleConfig = {
       fontWeight: 500,
 =======
       fontWeight: '700',
+=======
+      fontWeight: '900',
+>>>>>>> feat(tabs): add tabs to chakra theme
     },
     th: {
       color: 'uikit.800-text',
       fontFamily: 'inherit',
-      fontWeight: 'inherit',
+      fontWeight: '700',
       textTransform: 'none',
     },
     tfoot: {
@@ -76,7 +85,6 @@ const Table: ComponentMultiStyleConfig = {
         padding: '.25rem .5rem',
 =======
         fontSize: '1rem',
-        margin: '0 0 2rem',
       },
       td: {
         height: '2.5rem',
@@ -88,11 +96,15 @@ const Table: ComponentMultiStyleConfig = {
       th: {
         fontSize: '1rem',
         height: '2.625rem',
+<<<<<<< HEAD
         paddingTop: '.25rem',
         paddingRight: '.5rem',
         paddingBottom: '.25rem',
         paddingLeft: '.5rem',
 >>>>>>> feat(chakra): add Table component style
+=======
+        padding: '.25rem .5rem',
+>>>>>>> feat(tabs): add tabs to chakra theme
       },
     },
   },

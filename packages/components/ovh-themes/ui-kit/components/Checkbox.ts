@@ -1,4 +1,5 @@
 // eslint-disable-next-line prettier/prettier
+<<<<<<< HEAD
 import { checkboxAnatomy as parts } from '@chakra-ui/anatomy';
 import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 import type { SystemStyleObject } from "@chakra-ui/theme-tools";
@@ -57,11 +58,28 @@ const labelBaseStyle: SystemStyleObject = {
   _checked: {
     fontWeight: 700,
   },
+=======
+import type {
+  PartsStyleFunction,
+  PartsStyleObject,
+  SystemStyleFunction,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools";
+import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
+
+import { checkboxAnatomy as parts } from "@chakra-ui/anatomy";
+
+const controlBaseStyle: SystemStyleObject = {
+  fontSize: 'md',
+  lineHeight: 1.5,
+  margin: 0,
+>>>>>>> feat(tabs): add tabs to chakra theme
 };
 
 const Checkbox: ComponentMultiStyleConfig = {
   parts: parts.keys,
   baseStyle: {
+<<<<<<< HEAD
     container: containerBaseStyle,
     control: controlBaseStyle,
     icon: {
@@ -84,5 +102,13 @@ const Checkbox: ComponentMultiStyleConfig = {
     size: 'md',
   },
 };
+=======
+    control: controlBaseStyle,
+  },
+  defaultProps: {
+    colorScheme: 'uikit',
+  }
+}
+>>>>>>> feat(tabs): add tabs to chakra theme
 
 export default Checkbox;
