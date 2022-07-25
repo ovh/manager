@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import {
+  CUSTOM_SNAPSHOT_NAME_PATTERN,
   CUSTOM_SNAPSHOT_NAME_PREFIX,
   CUSTOM_SNAPSHOT_NAME_SEPARATOR,
   TRANSLATE_PREFIX,
@@ -22,6 +23,7 @@ export default class NashaDashboardPartitionSnapshotsController {
       snapshotTypes: [],
     };
 
+    this.customSnapshotNamePattern = CUSTOM_SNAPSHOT_NAME_PATTERN;
     this.customSnapshotNamePrefix = CUSTOM_SNAPSHOT_NAME_PREFIX;
     this.customSnapshotNameSeparator = CUSTOM_SNAPSHOT_NAME_SEPARATOR;
   }
