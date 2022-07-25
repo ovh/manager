@@ -24,7 +24,13 @@ export default class TelecomTelephonyLinePhoneAccessoriesResumeCtrl {
     this.loading.init = true;
     this.process = this.TucTelephonyAccessoriesOrderProcess.getOrderProcess();
 
-    return this.TucTelephonyAccessoriesOrderProcess.getOrderCheckout()
+    if (!this.process.isRetractationAllowed) {
+      this.process.retract = false;
+    }
+
+    return this.TucTelephonyAccessoriesOrderProcess.getOrderCheckout(
+      this.process.isRetractationAllowed,
+    )
       .then((order) => {
         remove(
           order.details,

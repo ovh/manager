@@ -140,7 +140,10 @@
                 </ovh-contracts-summary>
             </div>
 
-            <div class="widget-presentation">
+            <div
+                class="widget-presentation"
+                data-ng-if="$ctrl.process.isRetractationAllowed"
+            >
                 <h2
                     class="widget-presentation-title"
                     data-translate="telephony_line_phone_accessories_resume_retract_title"
