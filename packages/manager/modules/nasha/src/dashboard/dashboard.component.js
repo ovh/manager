@@ -4,6 +4,7 @@ import template from './dashboard.template.html';
 export default {
   bindings: {
     alertError: '<',
+    canCreatePartitions: '<',
     currentHref: '<',
     dashboardHref: '<',
     editNameHref: '<',
@@ -11,6 +12,7 @@ export default {
     goToPartitionsCreate: '<',
     nasha: '<',
     nashaApiUrl: '<',
+    numberOfPartitions: '<',
     reload: '<',
     serviceInfo: '<',
     serviceName: '<',
