@@ -54,7 +54,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         alert('success', message),
 
       // ENUMS
-      aclTypeEnum: (schema, $translate) =>
+      aclTypeEnum: /* @ngInject */ (schema, $translate) =>
         formatAclTypeEnum(schema, $translate),
       protocolEnum: /* @ngInject */ (schema) => formatProtocolEnum(schema),
       recordsizeEnum: /* @ngInject */ (schema, $filter) =>

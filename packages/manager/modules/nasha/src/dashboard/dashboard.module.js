@@ -3,6 +3,9 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
+import '@ovh-ux/ng-at-internet';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
+import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 
 import spaceMeterComponentsModule from '../components/space-meter';
@@ -20,9 +23,12 @@ angular
   .module(moduleName, [
     'pascalprecht.translate',
     'ui.router',
+    'ngAtInternet',
+    ngOvhFeatureFlipping,
+    ngOvhPaymentMethod,
+    ovhManagerBillingComponents,
     editNameComponentModule,
     editNameModule,
-    ovhManagerBillingComponents,
     partitionsModule,
     partitionModule,
     spaceMeterComponentsModule,
