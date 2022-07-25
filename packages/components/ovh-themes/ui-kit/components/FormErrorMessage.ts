@@ -1,16 +1,19 @@
 // eslint-disable-next-line prettier/prettier
 import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
-import { formErrorAnatomy as parts } from "@chakra-ui/anatomy";
+import { formErrorAnatomy as parts } from '@chakra-ui/anatomy';
 
-const FormErrorMessage: ComponentMultiStyleConfig = {
+const FormError: ComponentMultiStyleConfig = {
   parts: parts.keys,
   baseStyle: {
     text: {
-      color: 'uikit.500',
-      fontWeight: 500,
+      color: 'error.500',
+      fontWeight: '500',
       fontSize: 'xs',
+      margin: '.25rem 0',
+      lineHeight: '1rem',
+      letterSpacing: '0.008rem',
     },
   },
 };
 
-export default FormErrorMessage;
+export default FormError;
