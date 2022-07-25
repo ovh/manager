@@ -1,4 +1,6 @@
 {
+  "nasha_acl_type_readonly": "Lecture",
+  "nasha_acl_type_readwrite": "Lecture écriture",
   "nasha_datacenter_bhs": "Beauharnois",
   "nasha_datacenter_gra": "Gravelines",
   "nasha_datacenter_rbx": "Roubaix",

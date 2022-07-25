@@ -7,6 +7,7 @@ import component from './partitions.component';
 import routing from './partitions.routing';
 
 import metricsComponentModule from '../../components/metrics';
+import taskTrackerComponentModule from '../../components/task-tracker';
 import createModule from './create';
 import deleteModule from './delete';
 import editSizeModule from './edit-size';
@@ -19,6 +20,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     metricsComponentModule,
+    taskTrackerComponentModule,
     createModule,
     deleteModule,
     editSizeModule,

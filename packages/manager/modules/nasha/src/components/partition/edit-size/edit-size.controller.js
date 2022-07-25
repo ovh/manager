@@ -2,9 +2,9 @@ import { SIZE_MIN } from '../partition.constants';
 
 export default class NashaComponentsPartitionEditSizeController {
   /* @ngInject */
-  constructor($translate, OvhApiDedicatedNasha) {
-    this.$translate = $translate;
-    this.OvhApiDedicatedNasha = OvhApiDedicatedNasha;
+  constructor($http, TaskTrackerService) {
+    this.$http = $http;
+    this.TaskTrackerService = TaskTrackerService;
 
     this.model = { size: null };
     this.sizeMin = SIZE_MIN;
@@ -17,21 +17,18 @@ export default class NashaComponentsPartitionEditSizeController {
   }
 
   submit() {
-    const { serviceName } = this.nasha;
     const { partitionName } = this.partition;
-    const { size } = this.model;
 
-    return this.OvhApiDedicatedNasha.Partition()
-      .v6()
-      .update({ serviceName }, { partitionName, size })
-      .$promise.then(() =>
-        this.close({
-          success: this.$translate.instant(
-            'nasha_components_partition_edit_size_success',
-            { partitionName },
-          ),
+    return this.$http
+      .put(this.partitionApiUrl, this.model)
+      .then(() =>
+        this.TaskTrackerService.getTasksBy(this.taskApiUrl, {
+          operation: 'clusterLeclercPartitionUpdate',
+          status: 'todo',
+          partitionName,
         }),
       )
+      .then((tasks) => this.close({ tasks, partitionName }))
       .catch((error) => this.close({ error }));
   }
 }

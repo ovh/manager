@@ -4,7 +4,7 @@ import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import '@ovh-ux/ui-kit';
 
 import component from './task-tracker.component';
-import service from './task-tracker.service.js';
+import service from './task-tracker.service';
 
 const moduleName = 'ovhManagerComponentsTaskTracker';
 

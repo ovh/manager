@@ -52,12 +52,12 @@
                         ></oui-dropdown-trigger>
                         <div class="oui-dropdown-menu" oui-dropdown-content>
                             <oui-dropdown-item
-                                data-ng-repeat="snapshotType in $ctrl.model.snapshotTypes track by snapshotType.type"
+                                data-ng-repeat="snapshotType in $ctrl.model.snapshotTypes track by snapshotType.value"
                                 data-ng-click="$event.stopPropagation()"
                             >
                                 <oui-checkbox
-                                    data-id="snapshotType_{{ snapshotType.type }}"
-                                    data-name="snapshotType_{{ snapshotType.type }}"
+                                    data-id="snapshotType_{{ snapshotType.value }}"
+                                    data-name="snapshotType_{{ snapshotType.value }}"
                                     data-model="snapshotType.enabled"
                                 >
                                     <span

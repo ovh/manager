@@ -9,7 +9,7 @@ export default {
     nasha: '<',
     partition: '<',
     partitionApiUrl: '<',
-    trackTasks: '<',
+    goToTrackTasks: '<',
   },
   controller,
   template,

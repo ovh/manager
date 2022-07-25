@@ -1,0 +1,2 @@
+- Checker les components bindings / resolve de chaque module
+- bug si pas de customName sur le service => mettre le nom du service
