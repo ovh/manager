@@ -5,6 +5,7 @@ export default {
   bindings: {
     close: '<',
     nasha: '<',
+    nashaApiUrl: '<',
   },
   controller,
   template,

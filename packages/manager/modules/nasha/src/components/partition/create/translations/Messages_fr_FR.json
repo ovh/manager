@@ -13,6 +13,7 @@
   "nasha_components_partition_create_size_rules": "Taille autorisée : min {{ min }}GB, max {{ max }}GB",
   "nasha_components_partition_create_size": "Taille de la partition",
   "nasha_components_partition_create_submit": "Créer une partition",
-  "nasha_components_partition_create_success": "La partition {{ partitionName }} sera ajoutée dans quelques instants.",
-  "nasha_components_partition_create_title": "Créer une partition"
+  "nasha_components_partition_create_title": "Créer une partition",
+  "nasha_components_partition_create_forbid_many": "{{ names }} sont déjà utilisés par d'autres partitions",
+  "nasha_components_partition_create_forbid_one": "{{ name }} est déjà utilisé par une autre partition"
 }

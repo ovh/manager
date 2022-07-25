@@ -1,7 +1,6 @@
 <nasha-components-modal-form
     data-submit=":: $ctrl.submit()"
     data-close=":: $ctrl.close()"
-    data-loading="$ctrl.isLoading"
     data-heading="{{:: ('nasha_components_partition_create_title' | translate) }}"
     data-primary-label="{{:: ('nasha_components_partition_create_submit' | translate) }}"
     data-secondary-label="{{:: ('nasha_components_partition_create_cancel' | translate) }}"
@@ -9,6 +8,7 @@
     <oui-field
         data-label="{{:: ('nasha_components_partition_create_name' | translate) }}"
         data-help-text="{{:: ('nasha_components_partition_create_name_rules' | translate) }}"
+        data-error-messages="{ forbidOthers: $ctrl.forbidOthersMessage }"
     >
         <input
             type="text"
@@ -17,6 +17,8 @@
             class="oui-input"
             data-ng-model="$ctrl.model.partitionName"
             data-ng-pattern="$ctrl.namePattern"
+            data-forbid
+            data-forbid-others="$ctrl.partitionNames"
             required
         />
     </oui-field>
@@ -44,20 +46,20 @@
             name="description"
             class="oui-input"
             maxlength="{{:: $ctrl.descriptionMax }}"
-            data-ng-model="$ctrl.model.description"
+            data-ng-model="$ctrl.model.partitionDescription"
         />
     </oui-field>
     <oui-field
         data-label="{{:: ('nasha_components_partition_create_protocol' | translate) }}"
     >
         <oui-radio
-            data-ng-repeat="protocol in $ctrl.protocols"
+            data-ng-repeat="protocol in $ctrl.protocolEnum"
             data-model="$ctrl.model.protocol"
             data-name="prototocol-{{ protocol.value }}"
             data-value="protocol.value"
             data-required
         >
-            <oui-radio-label data-ng-bind="protocol.name"></oui-radio-label>
+            <oui-radio-label data-ng-bind="protocol.label"></oui-radio-label>
             <oui-radio-description>
                 <span
                     data-translate="{{:: ('nasha_components_partition_create_protocol_description_' + protocol.value) }}"
