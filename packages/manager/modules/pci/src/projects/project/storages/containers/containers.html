@@ -122,6 +122,19 @@
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
+                    data-on-click="$ctrl.onPublicToggle($row)"
+                    data-ng-if="!$row.s3StorageType"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_switch_to_private_label"
+                        data-ng-if="$row.state"
+                    ></span>
+                    <span
+                        data-translate="pci_projects_project_storages_containers_switch_to_public_label"
+                        data-ng-if="!$row.state"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
                     data-on-click="$ctrl.deleteContainer($row)"
                 >
                     <span
