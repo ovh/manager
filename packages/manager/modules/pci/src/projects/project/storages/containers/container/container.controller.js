@@ -3,6 +3,7 @@ import get from 'lodash/get';
 import {
   CONTAINER_DEFAULT_USER,
   CONTAINER_GUIDES,
+  OBJECT_CONTAINER_S3_STATIC_URL_INFO,
 } from '../containers.constants';
 
 export default class PciStoragesContainersContainerController {
@@ -37,6 +38,7 @@ export default class PciStoragesContainersContainerController {
         guide.links[guide.links.DEFAULT],
     }));
     this.defaultUser = CONTAINER_DEFAULT_USER;
+    this.objectS3staticUrlInfo = OBJECT_CONTAINER_S3_STATIC_URL_INFO;
   }
 
   $onInit() {
