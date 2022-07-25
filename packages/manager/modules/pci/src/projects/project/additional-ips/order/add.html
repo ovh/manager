@@ -65,7 +65,7 @@
                     data-translate="pci_additional_ip_create_step_select_region_description_failover_ip"
                     data-translate_values="{
                         guideLink: $ctrl.getAdditionalIpGuideLink(),
-                        trackLabel: 'PublicCloud::pci::projects::project::additional-ips::add::discover-failover-ip',
+                        trackLabel: $ctrl.TRACKING_GUIDE_LINKS.DISCOVER_FAILOVER_IP,
                     }"
                     data-translate-compile
                 ></p>
@@ -89,8 +89,10 @@
                 <p
                     data-translate="pci_additional_ip_create_step_select_region_description_floating_ip"
                     data-translate_values="{
-                        guideLink: $ctrl.getRegionsAvailabilityGuideLink()
+                        guideLink: $ctrl.getRegionsAvailabilityGuideLink(),
+                        trackLabel: $ctrl.TRACKING_GUIDE_LINKS.FLOATING_IP_REGION_AVAILABILITY
                     }"
+                    data-translate-compile
                 ></p>
                 <pci-project-regions-list
                     data-regions="$ctrl.regions"
@@ -132,7 +134,7 @@
                     data-translate="pci_additional_ip_create_step_attach_instance_info_failover_ip"
                     data-translate_values="{
                         guideLink: $ctrl.getAdditionalIpConfGuideLink(),
-                        trackLabel: 'PublicCloud::pci::projects::project::additional-ips::add::guide-configure-failover-ip'
+                        trackLabel: $ctrl.TRACKING_GUIDE_LINKS.FAILOVER_IP_CONFIGURATION_GUIDE
                     }"
                     data-translate-compile
                 ></p>
