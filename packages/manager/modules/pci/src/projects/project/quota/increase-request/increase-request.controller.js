@@ -49,6 +49,20 @@ export default class PciProjectQuotaIncreaseController {
     this.trackQuotaIncreasePopupDisplay();
   }
 
+  isQuotaIncreaseConfirmButtonDisabled() {
+    if (
+      this.mode === QUOTA_INCREASE_MODES.BUY_CREDITS &&
+      this.serviceOptions.length > 0
+    ) {
+      return !(this.serviceOption && this.serviceOption.planCode);
+    }
+
+    if (this.mode === QUOTA_INCREASE_MODES.CONTACT_SUPPORT) {
+      return !this.issueTypeDescription;
+    }
+    return true;
+  }
+
   trackQuotaIncreasePopupDisplay() {
     if (this.mode === QUOTA_INCREASE_MODES.BUY_CREDITS) {
       return this.trackQuotaPageElementDisplay(
