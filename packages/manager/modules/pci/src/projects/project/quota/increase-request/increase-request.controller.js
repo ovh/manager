@@ -64,7 +64,7 @@ export default class PciProjectQuotaIncreaseController {
   trackQuotaIncreasePopupDisplay() {
     if (this.mode === QUOTA_INCREASE_MODES.BUY_CREDITS) {
       return this.trackPage(
-        'PublicCloud::pci::projects::project::quota::increase',
+        'PublicCloud::pci::projects::project::quota::select-plan',
       );
     }
     if (this.mode === QUOTA_INCREASE_MODES.CONTACT_SUPPORT) {
@@ -81,7 +81,7 @@ export default class PciProjectQuotaIncreaseController {
       this.serviceOptions.length > 0
     ) {
       return this.trackClick(
-        'PublicCloud::pci::projects::project::quota::increase::cancel',
+        'PublicCloud::pci::projects::project::quota::select-plan::cancel',
       );
     }
     if (this.mode === QUOTA_INCREASE_MODES.CONTACT_SUPPORT) {
@@ -169,7 +169,9 @@ ${this.issueTypeDescription}
     const planCode =
       (this.serviceOption && this.serviceOption.planCode) || 'quota-no-plan';
     if (isNil(this.serviceOptions)) {
-      this.trackPage(`PublicCloud::quota-increase-banner::error::${planCode}`);
+      this.trackPage(
+        `PublicCloud::quota-select-plan-banner::error::${planCode}`,
+      );
       return this.goBack(
         this.$translate.instant(
           'pci_projects_project_quota_increase_error_message',
@@ -183,7 +185,7 @@ ${this.issueTypeDescription}
 
     this.isLoading = true;
     this.trackClick(
-      `PublicCloud::pci::projects::project::quota::increase::confirm_${planCode}`,
+      `PublicCloud::pci::projects::project::quota::select-plan::confirm_${planCode}`,
     );
 
     return this.pciProjectQuotaIncrease
@@ -196,8 +198,8 @@ ${this.issueTypeDescription}
         );
       })
       .then(({ data }) => {
-        this.trackClick(
-          `PublicCloud::quota-increase-banner::success::${planCode}`,
+        this.trackPage(
+          `PublicCloud::quota-select-plan-banner::success::${planCode}`,
         );
 
         this.goBack(
@@ -211,8 +213,8 @@ ${this.issueTypeDescription}
         );
       })
       .catch((err) => {
-        this.trackClick(
-          `PublicCloud::quota-increase-banner::error::${planCode}`,
+        this.trackPage(
+          `PublicCloud::quota-select-plan-banner::error::${planCode}`,
         );
         this.goBack(
           this.$translate.instant(
