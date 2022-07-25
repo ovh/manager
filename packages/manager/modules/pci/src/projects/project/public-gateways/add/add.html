@@ -73,6 +73,7 @@
         data-header="{{:: 'pci_projects_project_public_gateways_add_region_title' | translate }}"
         data-editable="!$ctrl.isLoading"
         data-on-focus="$ctrl.onRegionsFocus()"
+        data-on-submit="$ctrl.onRegionSubmit()"
     >
         <p>
             <span
@@ -98,8 +99,10 @@
     <oui-step-form
         data-header="{{:: 'pci_projects_project_public_gateways_add_attach_private_network_to_public_gateway_sub_title' | translate }}"
         data-editable="!$ctrl.isLoading"
+        data-submit-text="{{:: 'pci_projects_project_public_gateways_add_submit_label' | translate }}"
         name="public_gateways_add_private_network"
         data-valid="$ctrl.selectedPrivateNetwork.name"
+        data-prevent-next="true"
     >
         <p
             data-translate="pci_projects_project_public_gateways_add_attach_private_network_to_public_gateway_intro1"
@@ -113,6 +116,22 @@
                     data-translate="pci_projects_project_public_gateways_add_no_private_network_warning"
                 ></span>
             </oui-message>
+        </div>
+        <div class="my-3">
+            <oui-field
+                data-size="l"
+                data-label="{{:: 'pci_projects_project_public_gateways_add_modal_add_public_gateway_field_label' | translate }}"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    id="gatewayName"
+                    name="gatewayName"
+                    placeholder="{{ 'pci_projects_project_public_gateways_add_modal_add_public_gateway_field_placeholder' | translate }}"
+                    data-ng-model="$ctrl.gatewayName"
+                    required
+                />
+            </oui-field>
         </div>
         <strong
             data-translate="pci_projects_project_public_gateways_add_select_private_network"
@@ -141,31 +160,6 @@
                 ></span>
             </oui-button>
         </oui-field>
-    </oui-step-form>
-    <oui-step-form
-        data-header="{{:: 'pci_projects_project_public_gateways_add_modal_add_public_gateway_field_placeholder' | translate }}"
-        data-editable="!$ctrl.isLoading"
-        data-submit-text="{{:: 'pci_projects_project_public_gateways_add_submit_label' | translate }}"
-        name="public_gateways_add_private_network"
-        data-valid="$ctrl.gatewayName"
-        data-prevent-next="true"
-    >
-        <div class="my-3">
-            <oui-field
-                data-size="l"
-                data-label="{{:: 'pci_projects_project_public_gateways_add_modal_add_public_gateway_field_label' | translate }}"
-            >
-                <input
-                    class="oui-input"
-                    type="text"
-                    id="gatewayName"
-                    name="gatewayName"
-                    placeholder="{{ 'pci_projects_project_public_gateways_add_modal_add_public_gateway_field_placeholder' | translate }}"
-                    data-ng-model="$ctrl.gatewayName"
-                    required
-                />
-            </oui-field>
-        </div>
     </oui-step-form>
 </oui-stepper>
 

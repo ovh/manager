@@ -13,6 +13,7 @@ export default {
     defaults: '<',
     goToPrivateNetwork: '<',
     onGoBackClick: '<',
+    trackClick: '<',
   },
   controller,
   template,
