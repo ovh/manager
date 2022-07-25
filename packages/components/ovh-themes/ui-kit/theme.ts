@@ -3,6 +3,7 @@ import colors from './foundations/colors';
 import Alert from './components/Alert';
 import Badge from './components/Badge';
 import Button from './components/Button';
+import Table from './components/Table';
 import Input from './components/Input';
 import Tag from './components/Tag';
 import FormLabel from './components/FormLabel';
@@ -48,5 +49,6 @@ export default {
     FormErrorMessage,
     Form,
     Badge,
+    Table,
   },
 };

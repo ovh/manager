@@ -46,7 +46,7 @@ const Alert: ComponentStyleConfig = {
   baseStyle: {
     container: {
       borderRadius: '0.5rem',
-      fontSize: '16px',
+      fontSize: '1rem',
       fontWeight: 400,
       margin: '0 0 1rem',
       padding: '1rem 1.5rem',
@@ -54,7 +54,7 @@ const Alert: ComponentStyleConfig = {
     icon: {
       lineHeight: 1,
       display: 'block',
-      fontSize: '16px',
+      fontSize: '1rem',
       marginLeft: '-0.5rem',
       width: '1.5rem',
       height: '1.5rem',
