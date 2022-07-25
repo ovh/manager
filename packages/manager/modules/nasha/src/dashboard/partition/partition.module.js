@@ -8,6 +8,7 @@ import routing from './partition.routing';
 
 import partitionEditNameComponentModule from '../../components/partition/edit-name';
 import spaceMeterComponentModule from '../../components/space-meter';
+import taskTrackerComponentModule from '../../components/task-tracker';
 import editDescriptionModule from './edit-description';
 import editNameModule from './edit-name';
 import editSizeModule from './edit-size';
@@ -22,6 +23,7 @@ angular
     'ui.router',
     partitionEditNameComponentModule,
     spaceMeterComponentModule,
+    taskTrackerComponentModule,
     editDescriptionModule,
     editNameModule,
     editSizeModule,

@@ -8,15 +8,13 @@ export default class NashaComponentsEditNameController {
     this.$http = $http;
     this.model = { partitionName: '' };
     this.namePattern = NAME_PATTERN;
-    this.partitionNames = [];
   }
 
   $onInit() {
-    const { partitionName } = this.partition;
-    this.model.partitionName = partitionName;
-    this.partitionNames = this.partitions
-      .filter((partition) => partition.partitionName !== partitionName)
-      .map((partition) => partition.partitionName);
+    this.model.partitionName = this.partition.partitionName;
+    this.partitionNames = this.partitionNames
+      .filter((partitionName) => partitionName !== this.partition.partitionName)
+      .sort();
   }
 
   get forbidOthersMessage() {
@@ -30,14 +28,8 @@ export default class NashaComponentsEditNameController {
   }
 
   submit() {
-    const { serviceName } = this.nasha;
-    const { partitionName } = this.partition;
-
     return this.$http
-      .put(
-        `/dedicated/nasha/${serviceName}/partition/${partitionName}`,
-        this.model,
-      )
+      .put(this.partitionApiUrl, this.model)
       .then(() => this.close({ success: this.translate('success') }))
       .catch((error) => this.close({ error }));
   }

@@ -6,7 +6,7 @@ import template from './edit-name.template.html';
 export default {
   bindings: {
     ...COMPONENT_BINDINGS,
-    partitions: '<',
+    partitionNames: '<',
   },
   controller,
   template,

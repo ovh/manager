@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
     params: ListLayoutHelper.stateParams,
     resolve: {
       ...ListLayoutHelper.stateResolves,
-      apiPath: () => '/dedicated/nasha',
+      apiPath: /* @ngInject */ (baseApiUrl) => baseApiUrl,
       dataModel: () => 'dedicated.nasha.Storage',
       defaultFilterColumn: () => 'serviceName',
       header: () => NASHA_TITLE,

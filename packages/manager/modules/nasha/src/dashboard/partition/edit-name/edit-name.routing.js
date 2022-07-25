@@ -8,7 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: () => null,
-      close: /* @ngInject */ (goBack) => goBack,
+      partitionNames: /* @ngInject */ ($http, nashaApiUrl) =>
+        $http.get(`${nashaApiUrl}/partition`).then(({ data }) => data),
     },
   });
 };

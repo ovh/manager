@@ -1,45 +1,40 @@
 import { createTaskTrackerStateOptions } from '../../../components/task-tracker';
-import { STATE_NAME } from './snapshots.constants';
+import { STATE_NAME, TASK_TRACKER_STATE_NAME } from './snapshots.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const snapshotEnumKey = 'dedicated.storage.SnapshotEnum';
-
   $stateProvider.state(STATE_NAME, {
     url: '/snapshots',
     component: 'nashaDashboardPartitionSnapshots',
     resolve: {
       breadcrumb: () => null,
+      close: /* @ngInject */ (goBack, goToTrackTasks) => ({
+        tasks,
+        partitionName,
+        customSnapshotName,
+        error,
+      } = {}) =>
+        tasks
+          ? goToTrackTasks({ tasks, partitionName, customSnapshotName })
+          : goBack({ stateName: STATE_NAME, error }),
       customSnapshots: /* @ngInject */ ($http, partitionApiUrl) =>
         $http.get(`${partitionApiUrl}/customSnapshot`).then(({ data }) => data),
       goToDelete: /* @ngInject */ ($state, serviceName, partitionName) => (
         customSnapshotName,
       ) =>
-        $state.go('nasha.dashboard.partition.snapshots.delete', {
+        $state.go(`${STATE_NAME}.delete`, {
           serviceName,
           partitionName,
           customSnapshotName,
         }),
-      snapshots: /* @ngInject */ (
-        $http,
-        partitionApiUrl,
-        prepareSnapshots,
-        customSnapshots,
-        snapshotEnum,
-      ) =>
-        $http
-          .get(`${partitionApiUrl}/snapshot`)
-          .then(({ data: snapshots }) =>
-            prepareSnapshots(snapshots, customSnapshots, snapshotEnum),
-          ),
-      snapshotEnum: /* @ngInject */ (schema) =>
-        schema.models[snapshotEnumKey].enum,
-      trackTasks: /* @ngInject */ ($state) => (params) =>
-        $state.go(`${STATE_NAME}.task-tracker`, params),
+      snapshotTypes: /* @ngInject */ ($http, partitionApiUrl) =>
+        $http.get(`${partitionApiUrl}/snapshot`).then(({ data }) => data),
+      goToTrackTasks: /* @ngInject */ ($state) => (params) =>
+        $state.go(TASK_TRACKER_STATE_NAME, params),
     },
   });
 
   $stateProvider.state(
-    `${STATE_NAME}.task-tracker`,
+    TASK_TRACKER_STATE_NAME,
     createTaskTrackerStateOptions(['partitionName', 'customSnapshotName']),
   );
 };

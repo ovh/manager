@@ -3,7 +3,7 @@
         <div class="d-flex pt-4">
             <h1
                 class="word-break mb-0 oui-header-2"
-                data-ng-bind="$ctrl.nasha.customName"
+                data-ng-bind="$ctrl.name"
             ></h1>
             <button
                 type="button"
@@ -44,9 +44,7 @@
                             data-term="{{:: ('nasha_dashboard_information_name' | translate) }}"
                         >
                             <oui-tile-description>
-                                <span
-                                    data-ng-bind="$ctrl.nasha.customName"
-                                ></span>
+                                <span data-ng-bind="$ctrl.name"></span>
                             </oui-tile-description>
                             <oui-action-menu
                                 aria-label="{{:: 'nasha_dashboard_actions' | translate }}"
@@ -132,7 +130,8 @@
     </div>
     <nasha-components-edit-name
         data-ng-if="$ctrl.isEditNameModalOpened"
-        data-nasha=":: $ctrl.nasha"
         data-close=":: $ctrl.closeEditNameModal"
+        data-nasha=":: $ctrl.nasha"
+        data-nasha-api-url=":: $ctrl.nashaApiUrl"
     ></nasha-components-edit-name>
 </div>

@@ -1,7 +1,6 @@
 {
   "nasha_components_partition_delete_cancel": "Fermer",
   "nasha_components_partition_delete_submit": "Supprimer la partition",
-  "nasha_components_partition_delete_success": "La partition {{ partitionName }} sera supprimée dans quelques instants.",
   "nasha_components_partition_delete_content": "Êtes-vous certain(e) de vouloir supprimer la partition {{ partitionName }} ?",
   "nasha_components_partition_delete_title": "Supprimer une partition"
 }

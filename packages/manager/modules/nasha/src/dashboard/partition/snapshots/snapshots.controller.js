@@ -27,6 +27,15 @@ export default class NashaDashboardPartitionSnapshotsController {
   }
 
   $onInit() {
+    this.snapshots = {
+      customs: this.customSnapshots,
+      types: this.snapshotEnum.map(({ label, value }) => ({
+        enabled: this.snapshotTypes.includes(value),
+        label,
+        value,
+      })),
+    };
+
     this.resetSnapshotTypes();
   }
 
@@ -90,36 +99,29 @@ export default class NashaDashboardPartitionSnapshotsController {
 
       if (!oldType.enabled && newType.enabled) {
         promises.push(
-          this.$http
-            .post(`${this.partitionApiUrl}/snapshot`, {
-              snapshotType: newType.type,
-            })
-            .then(({ data: task }) => task),
+          this.$http.post(`${this.partitionApiUrl}/snapshot`, {
+            snapshotType: newType.type,
+          }),
         );
       }
 
       if (oldType.enabled && !newType.enabled) {
         promises.push(
-          this.$http
-            .delete(`${this.partitionApiUrl}/snapshot/${newType.type}`)
-            .then(({ data: task }) => task),
+          this.$http.delete(`${this.partitionApiUrl}/snapshot/${newType.type}`),
         );
       }
     });
 
     this.$q
       .all(promises)
-      .then((tasks) =>
-        this.trackTasks({
-          tasks,
+      .then((responses) =>
+        this.goToTrackTasks({
+          tasks: responses.map(({ data: task }) => task),
           partitionName: this.partition.partitionName,
         }),
       )
       .catch((error) => {
         this.alertError(error);
-      })
-      .finally(() => {
-        this.isUpdatingSnapshotTypes = false;
       });
   }
 
@@ -135,17 +137,14 @@ export default class NashaDashboardPartitionSnapshotsController {
     this.$http
       .post(`${this.partitionApiUrl}/customSnapshot`, { name })
       .then(({ data: task }) =>
-        this.trackTasks({
+        this.goToTrackTasks({
           tasks: [task],
-          partitionName,
           customSnapshotName: name,
+          partitionName,
         }),
       )
       .catch((error) => {
         this.alertError(error);
-      })
-      .finally(() => {
-        this.isCreatingCustomSnapshot = false;
       });
   }
 

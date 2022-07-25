@@ -1,23 +1,16 @@
 export default class NashaComponentsPartitionDeleteController {
   /* @ngInject */
-  constructor($translate, OvhApiDedicatedNasha) {
-    this.$translate = $translate;
-    this.OvhApiDedicatedNasha = OvhApiDedicatedNasha;
+  constructor($http) {
+    this.$http = $http;
   }
 
   submit() {
-    const { serviceName } = this.nasha;
-    const { partitionName } = this.partition;
-
-    return this.OvhApiDedicatedNasha.Partition()
-      .v6()
-      .delete({ serviceName, partitionName })
-      .$promise.then(() =>
+    return this.$http
+      .delete(this.partitionApiUrl)
+      .then(({ data: task }) =>
         this.close({
-          success: this.$translate.instant(
-            'nasha_components_partition_delete_success',
-            { partitionName },
-          ),
+          tasks: [task],
+          partitionName: this.partition.partitionName,
         }),
       )
       .catch((error) => this.close({ error }));

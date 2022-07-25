@@ -44,7 +44,6 @@
                 <button
                     data-ng-click="$ctrl.goToPagePartition($row.partitionName)"
                     data-ng-bind="$row.partitionName"
-                    data-ng-disabled="$row.inCreation || $row.inDeletion"
                     class="oui-button oui-button_m oui-button_link"
                 ></button>
             </oui-datagrid-column>
@@ -66,37 +65,12 @@
                 data-property="description"
                 data-title=":: ('nasha_dashboard_partitions_list_description' | translate)"
             ></oui-datagrid-column>
-            <oui-datagrid-column
-                data-title=":: ('nasha_dashboard_partitions_list_tasks' | translate)"
-            >
-                <div
-                    data-ng-repeat="task in $row.tasks"
-                    class="d-flex align-items-center"
-                >
-                    <oui-spinner data-size="s"></oui-spinner>
-                    <span
-                        class="pl-2"
-                        data-ng-bind="$ctrl.localizeOperation(task.operation)"
-                    ></span>
-                </div>
-            </oui-datagrid-column>
-            <oui-action-menu
-                data-ng-if="!$row.inCreation && !$row.inDeletion"
-                data-compact
-                data-placement="end"
-            >
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-on-click="$ctrl.goToPagePartition($row.partitionName)"
                 >
                     <span
                         data-translate="nasha_dashboard_partitions_action_show"
-                    ></span>
-                </oui-action-menu-item>
-                <oui-action-menu-item
-                    data-on-click="$ctrl.goToPagePartitionAccess($row.partitionName)"
-                >
-                    <span
-                        data-translate="nasha_dashboard_partitions_action_access"
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
@@ -107,8 +81,14 @@
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
+                    data-on-click="$ctrl.goToPagePartitionAccesses($row.partitionName)"
+                >
+                    <span
+                        data-translate="nasha_dashboard_partitions_action_access"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
                     data-on-click="$ctrl.goToTabPartitionsEditSize($row)"
-                    data-disabled="$ctrl.hasOperation($row, 'Update')"
                 >
                     <span
                         data-translate="nasha_dashboard_partitions_action_edit_size"
@@ -116,7 +96,6 @@
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-on-click="$ctrl.goToTabPartitionsZfsOptions($row)"
-                    data-disabled="$ctrl.hasOperation($row, 'ZfsOptions')"
                 >
                     <span
                         data-translate="nasha_dashboard_partitions_action_zfs_options"
@@ -126,7 +105,6 @@
                     data-on-click="$ctrl.goToTabPartitionsDelete($row)"
                 >
                     <span
-                        class="text-danger"
                         data-translate="nasha_dashboard_partitions_action_delete"
                     ></span>
                 </oui-action-menu-item>

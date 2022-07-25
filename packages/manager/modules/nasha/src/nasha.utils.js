@@ -1,10 +1,15 @@
-import { NASHA_USE_SIZE_NAME } from './nasha.constants';
+import {
+  NASHA_ACL_TYPE_ENUM,
+  NASHA_DEFAULT_ZFS_OPTIONS,
+  NASHA_PROTOCOL_ENUM,
+  NASHA_RECORD_SIZE_ENUM,
+  NASHA_SNAPSHOT_ENUM,
+  NASHA_SYNC_ENUM,
+  NASHA_USE_SIZE_NAME,
+} from './nasha.constants';
 
 export const localizeDatacenter = (datacenter, $translate) =>
   $translate.instant(`nasha_datacenter_${datacenter.toLowerCase()}`);
-
-export const localizeOperation = (operation, $translate) =>
-  $translate.instant(`nasha_operation_${operation}`);
 
 /*
  * use = {
@@ -79,24 +84,54 @@ export const preparePlans = (catalog, $filter) =>
       ),
     }));
 
-export const prepareSnapshots = (
-  snapshots,
-  customSnapshots,
-  SnapshotEnum,
-  $translate,
-) => ({
-  types: SnapshotEnum.map((type) => ({
-    type,
-    label: $translate.instant(`nasha_snapshot_type_${type}`),
-    enabled: snapshots.includes(type),
-  })),
-  customs: customSnapshots,
+export const prepareZfsOptions = ({
+  atime,
+  recordsize,
+  sync,
+} = NASHA_DEFAULT_ZFS_OPTIONS) => ({
+  atime: atime === 'on',
+  recordsize,
+  sync,
 });
 
-export const prepareTasks = (tasks, $translate) =>
-  tasks.map((task) => ({
-    ...task,
-    localeOperation: localizeOperation(task.operation, $translate),
+export const exportZfsOptions = ({ atime, recordsize, sync }) => ({
+  atime: atime ? 'on' : 'off',
+  recordsize,
+  sync,
+});
+
+export const formatRecordsizeEnum = (schema, bytesFilter) =>
+  schema.models[NASHA_RECORD_SIZE_ENUM].enum
+    .map((recordsize) => ({
+      default: recordsize === NASHA_DEFAULT_ZFS_OPTIONS.recordsize,
+      label: bytesFilter(parseInt(recordsize, 10), true),
+      value: recordsize,
+    }))
+    .sort(({ value: a }, { value: b }) => Number(a) - Number(b));
+
+export const formatSyncEnum = (schema) =>
+  schema.models[NASHA_SYNC_ENUM].enum.map((sync) => ({
+    default: sync === NASHA_DEFAULT_ZFS_OPTIONS.sync,
+    label: `${sync[0].toUpperCase()}${sync.slice(1)}`,
+    value: sync,
+  }));
+
+export const formatProtocolEnum = (schema) =>
+  schema.models[NASHA_PROTOCOL_ENUM].enum.map((protocol) => ({
+    label: protocol.replace(/_/g, ' '),
+    value: protocol,
+  }));
+
+export const formatSnapshotEnum = (schema, $translate) =>
+  schema.models[NASHA_SNAPSHOT_ENUM].enum.map((type) => ({
+    label: $translate.instant(`nasha_snapshot_type_${type}`),
+    value: type,
+  }));
+
+export const formatAclTypeEnum = (schema, $translate) =>
+  schema.models[NASHA_ACL_TYPE_ENUM].enum.map((type) => ({
+    label: $translate.instant(`nasha_acl_type_${type}`),
+    value: type,
   }));
 
 export const ipBlockToNumber = (ipBlock) =>
@@ -109,12 +144,16 @@ export const ipBlockToNumber = (ipBlock) =>
   );
 
 export default {
+  exportZfsOptions,
   ipBlockToNumber,
   localizeDatacenter,
-  localizeOperation,
+  formatAclTypeEnum,
+  formatProtocolEnum,
+  formatRecordsizeEnum,
+  formatSnapshotEnum,
+  formatSyncEnum,
   prepareNasha,
   preparePartition,
   preparePlans,
-  prepareSnapshots,
-  prepareTasks,
+  prepareZfsOptions,
 };

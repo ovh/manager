@@ -7,16 +7,19 @@ const moduleName = 'ovhManagerNashaDashboardPartitionsZfsOptionsLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('nasha.dashboard.partitions.zfs-options.**', {
-      url: '/:partitionName/zfs-options',
-      lazyLoad: (transition) =>
-        import('./zfs-options.module').then((module) =>
-          transition
-            .injector()
-            .get('$ocLazyLoad')
-            .inject(module.default),
-        ),
-    });
+    $stateProvider.state(
+      'nasha.dashboard.partitions.partition.zfs-options.**',
+      {
+        url: '/zfs-options',
+        lazyLoad: (transition) =>
+          import('./zfs-options.module').then((module) =>
+            transition
+              .injector()
+              .get('$ocLazyLoad')
+              .inject(module.default),
+          ),
+      },
+    );
   },
 );
 

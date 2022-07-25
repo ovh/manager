@@ -47,21 +47,20 @@ export default /* @ngInject */ ($stateProvider) => {
         aapi.resetCache();
         return aapi.get({ serviceName }).$promise.then(prepareNasha);
       },
-      reload: /* @ngInject */ ($state, goBack) => ({ success, error }) =>
+      nashaApiUrl: /* @ngInject */ (baseApiUrl, serviceName) =>
+        `${baseApiUrl}/${serviceName}`,
+      reload: /* @ngInject */ ($state, goBack) => ({ success, error } = {}) =>
         goBack({
           stateName: $state.current.name,
           reload: true,
           success,
           error,
         }),
-      schema: /* @ngInject */ ($http) =>
-        $http.get('/dedicated/nasha.json').then(({ data }) => data),
-      serviceInfo: /* @ngInject */ ($http, serviceName) =>
-        $http
-          .get(`/dedicated/nasha/${serviceName}/serviceInfos`)
-          .then(({ data }) => data),
+      serviceInfo: /* @ngInject */ ($http, nashaApiUrl) =>
+        $http.get(`${nashaApiUrl}/serviceInfos`).then(({ data }) => data),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
+      taskApiUrl: /* @ngInject */ (nashaApiUrl) => `${nashaApiUrl}/task`,
       user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
     },
   });

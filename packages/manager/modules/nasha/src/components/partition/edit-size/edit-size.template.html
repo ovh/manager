@@ -1,12 +1,12 @@
 <nasha-components-modal-form
     data-submit=":: $ctrl.submit()"
     data-close=":: $ctrl.close()"
-    data-heading="{{:: ('nasha_components_partition_edit_size_title' | translate) }}"
+    data-heading="{{:: ('nasha_components_partition_edit_size_title' | translate: { name: $ctrl.partition.partitionName }) }}"
     data-primary-label="{{:: ('nasha_components_partition_edit_size_submit' | translate) }}"
     data-secondary-label="{{:: ('nasha_components_partition_edit_size_cancel' | translate) }}"
 >
     <oui-field
-        data-label="{{:: ('nasha_components_partition_edit_size_label' | translate) }}"
+        data-label="{{:: ('nasha_components_partition_edit_size_label' | translate: { name: $ctrl.partition.partitionName }) }}"
         data-help-text="{{:: ('nasha_components_partition_edit_size_rules' | translate: { min: $ctrl.sizeMin, max: $ctrl.sizeMax }) }}"
     >
         <oui-numeric
