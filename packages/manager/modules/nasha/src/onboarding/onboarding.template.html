@@ -3,14 +3,18 @@
     guides="$ctrl.guides"
     image-source="$ctrl.illustration"
 >
-    <h1 data-ng-bind="$ctrl.title"></h1>
-    <p data-translate="nasha_onboarding_content"></p>
-    <oui-button
-        data-type="button"
-        data-size="l"
-        data-variant="primary"
-        data-on-click="$ctrl.goToOrder()"
-    >
-        <span data-translate="nasha_onboarding_order"></span>
-    </oui-button>
+    <onboarding-title>
+        <p data-ng-bind="$ctrl.title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <p data-translate="nasha_onboarding_content"></p>
+        <oui-button
+            data-type="button"
+            data-size="l"
+            data-variant="primary"
+            data-on-click="$ctrl.goToOrder()"
+        >
+            <span data-translate="nasha_onboarding_order"></span>
+        </oui-button>
+    </onboarding-description>
 </manager-on-boarding-layout>
