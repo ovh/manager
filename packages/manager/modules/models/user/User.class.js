@@ -31,4 +31,12 @@ export default class User {
   canHaveInvoicesByPostalMail() {
     return this.billingCountry === 'FR' && this.legalform === 'individual';
   }
+
+  isCorporation() {
+    return this.legalform === 'corporation';
+  }
+
+  isPersonalCorporation() {
+    return this.legalform === 'personalcorporation';
+  }
 }
