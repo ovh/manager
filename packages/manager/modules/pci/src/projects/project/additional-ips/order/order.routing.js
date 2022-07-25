@@ -1,8 +1,6 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 
-import { TRACKING_PREFIX } from '../additional-ips.constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.additional-ips.order', {
     url: '/order?ipType&region&instance',
@@ -54,7 +52,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
     },
     atInternet: {
-      rename: `${TRACKING_PREFIX}::add`,
+      rename: `pci::projects::project::additional-ips::add`,
     },
   });
 };
