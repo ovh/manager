@@ -22,6 +22,15 @@ export default class NashaComponentsPartitionCreateController {
   }
 
   $onInit() {
+    if (!this.canCreatePartitions) {
+      this.close({
+        error: this.$translate.instant(
+          'nasha_components_partition_create_error_max',
+        ),
+      });
+      return;
+    }
+
     this.sizeMax = this.nasha.zpoolSize;
     this.partitionNames.sort();
   }

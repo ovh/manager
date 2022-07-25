@@ -1,3 +1,5 @@
+import { MAX_PARTITIONS } from './dashboard.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   const dashboardStateName = 'nasha.dashboard';
   const editNameStateName = `${dashboardStateName}.edit-name`;
@@ -7,6 +9,8 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'nashaDashboard',
     resolve: {
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+      canCreatePartitions: /* @ngInject */ (numberOfPartitions) =>
+        numberOfPartitions < MAX_PARTITIONS,
       currentHref: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
       dashboardHref: /* @ngInject */ ($state, serviceName) => () =>
@@ -49,6 +53,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       nashaApiUrl: /* @ngInject */ (baseApiUrl, serviceName) =>
         `${baseApiUrl}/${serviceName}`,
+      numberOfPartitions: /* @ngInject */ (nashaApiUrl, $http) =>
+        $http.get(`${nashaApiUrl}/partition`).then(({ data }) => data.length),
       reload: /* @ngInject */ ($state, goBack) => ({ success, error } = {}) =>
         goBack({
           stateName: $state.current.name,
