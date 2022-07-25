@@ -2,7 +2,6 @@
     data-submit=":: $ctrl.submit()"
     data-can-submit="$ctrl.canSubmit"
     data-close=":: $ctrl.close()"
-    data-loading="$ctrl.isLoading"
     data-heading="{{:: ('nasha_components_partition_zfs_options_title' | translate) }}"
     data-primary-label="{{:: ('nasha_components_partition_zfs_options_submit' | translate) }}"
     data-secondary-label="{{:: ('nasha_components_partition_zfs_options_cancel' | translate) }}"
@@ -32,8 +31,8 @@
                 data-ng-model="$ctrl.model.recordsize"
             >
                 <option
-                    data-ng-repeat="recordsize in $ctrl.recordsizeOptions"
-                    data-ng-bind="$ctrl.getRecordSizeLabel(recordsize)"
+                    data-ng-repeat="recordsize in $ctrl.recordsizeEnum"
+                    data-ng-bind="$ctrl.getRecordsizeLabel(recordsize)"
                     value="{{ recordsize.value }}"
                 ></option>
             </select>
@@ -47,7 +46,7 @@
         data-label="{{:: ('nasha_components_partition_zfs_options_sync' | translate) }}"
     >
         <oui-radio
-            data-ng-repeat="sync in $ctrl.syncOptions track by $index"
+            data-ng-repeat="sync in $ctrl.syncEnum track by $index"
             data-model="$ctrl.model.sync"
             data-name="sync"
             data-value="sync.value"

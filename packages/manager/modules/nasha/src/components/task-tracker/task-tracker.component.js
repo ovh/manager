@@ -3,10 +3,10 @@ import template from './task-tracker.template.html';
 
 export default {
   bindings: {
-    endpoint: '<',
     goBack: '<',
     operation: '<',
     params: '<',
+    taskApiUrl: '<',
     tasks: '<',
   },
   controller,

@@ -5,6 +5,7 @@ export const SIZE_MIN = 10;
 export const COMPONENT_BINDINGS = {
   close: '<',
   nasha: '<',
+  nashaApiUrl: '<',
   partition: '<',
   partitionApiUrl: '<',
 };

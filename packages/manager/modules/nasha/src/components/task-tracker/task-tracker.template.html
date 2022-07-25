@@ -1,5 +1,5 @@
 <task-tracker
-    data-endpoint="{{ $ctrl.endpoint }}"
+    data-endpoint="{{ $ctrl.taskApiUrl }}"
     data-heading="{{:: ('nasha_components_task_tracker_operation_' + $ctrl.operation) | translate }}"
     data-on-done="$ctrl.onDone($success, $error)"
     data-tasks="$ctrl.tasks"

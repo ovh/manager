@@ -6,14 +6,10 @@
   "nasha_components_partition_zfs_options_default": "(Défaut)",
   "nasha_components_partition_zfs_options_recordsize": "ZFS recordsize",
   "nasha_components_partition_zfs_options_submit": "Modifier les paramètres",
-  "nasha_components_partition_zfs_options_success": "Les paramètres Z File System (ZFS) de la partition {{ partitionName }} seront modifiés dans quelques instants.",
   "nasha_components_partition_zfs_options_sync_always_description": "Profil très sécurisé : Au détriment des performances, vos transferts de fichiers bénéficient d'une stabilité accrue.",
-  "nasha_components_partition_zfs_options_sync_always": "Always",
   "nasha_components_partition_zfs_options_sync_disabled_description": "Profil non sécurisé : Performances très élevées, bien que très dangereux car le ZFS ignore les requêtes de transferts synchrones. (BDD, NFS, ...).",
   "nasha_components_partition_zfs_options_sync_disabled_warning": "Les administrateurs devraient seulement utiliser cette option s'ils comprennent bien ces risques.",
-  "nasha_components_partition_zfs_options_sync_disabled": "Disabled",
   "nasha_components_partition_zfs_options_sync_standard_description": "Profil sécurisé : Alliant la stabilité à des performances convenables, les fichiers sont d'abord écrit, puis tous les éléments sont nettoyés afin d'assurer la stabilité des données.",
-  "nasha_components_partition_zfs_options_sync_standard": "Standard",
   "nasha_components_partition_zfs_options_sync": "Sync",
   "nasha_components_partition_zfs_options_title": "Modifier les paramètres Z File System (ZFS)"
 }

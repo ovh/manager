@@ -18,8 +18,6 @@ export const createTaskTrackerStateOptions = (queryParams = []) => ({
     return false;
   },
   resolve: {
-    endpoint: /* @ngInject */ (serviceName) =>
-      `/dedicated/nasha/${serviceName}/task`,
     operation: /* @ngInject */ (tasks) => tasks[0].operation,
     params: /* @ngInject */ ($transition$) => {
       const params = $transition$.params();
@@ -27,10 +25,10 @@ export const createTaskTrackerStateOptions = (queryParams = []) => ({
         .filter((key) => queryParams.includes(key))
         .reduce((set, key) => ({ ...set, [key]: params[key] }), {});
     },
-    tasks: /* @ngInject */ ($transition$, endpoint, TaskTrackerService) =>
+    tasks: /* @ngInject */ ($transition$, taskApiUrl, TaskTrackerService) =>
       $transition$.params().tasks ||
       TaskTrackerService.getTasks(
-        endpoint,
+        taskApiUrl,
         $transition$.params().taskIds.split(','),
       ),
   },

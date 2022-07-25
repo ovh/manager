@@ -5,13 +5,6 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null,
-      close: /* @ngInject */ (goBack, trackTasks) => ({
-        error,
-        tasks,
-        ...otherParams
-      } = {}) =>
-        tasks ? trackTasks({ ...otherParams, tasks }) : goBack({ error }),
-      ip: /* @ngInject */ ($transition$) => $transition$.params().ip,
     },
   });
 };
