@@ -2,10 +2,9 @@ import PciEligibility from '../../classes/eligibility.class';
 
 export default class PciProjectNewVoucherCtrl {
   /* @ngInject */
-  constructor($q, pciProjectNew, atInternet) {
+  constructor($q, pciProjectNew) {
     this.$q = $q;
     this.pciProjectNew = pciProjectNew;
-    this.atInternet = atInternet;
 
     // other attributes
     this.formVisible = false;
@@ -75,6 +74,7 @@ export default class PciProjectNewVoucherCtrl {
   submitVoucher() {
     this.loading.check = true;
     this.globalLoading.isVoucherValidating = true;
+    this.trackClick('PublicCloud_new_project::confirm_voucher');
 
     return this.checkVoucherValidity(this.model.voucher.value)
       .then((eligibilityOpts) => {
@@ -173,27 +173,17 @@ export default class PciProjectNewVoucherCtrl {
   ============================== */
 
   onVoucherFormSubmit() {
-    this.atInternet.trackClick({
-      name: 'PublicCloud_new_project::confirm_voucher',
-      type: 'action',
-    });
     return this.submitVoucher();
   }
 
   onVoucherFormReset() {
-    this.atInternet.trackClick({
-      name: 'PublicCloud_new_project::delete_voucher',
-      type: 'action',
-    });
+    this.trackClick('PublicCloud_new_project::delete_voucher');
     return this.resetVoucher();
   }
 
   onAddVoucherBtnClick() {
     this.formVisible = true;
-    this.atInternet.trackClick({
-      name: 'PublicCloud_new_project::add_voucher',
-      type: 'action',
-    });
+    this.trackClick('PublicCloud_new_project::add_voucher');
   }
 
   onVoucherInputChange() {
