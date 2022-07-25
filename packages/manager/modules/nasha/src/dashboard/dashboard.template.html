@@ -121,8 +121,9 @@
                     <billing-subscription-tile
                         on-error="$ctrl.alertError(error)"
                         service-infos="$ctrl.serviceInfo"
-                        user="$ctrl.user"
-                        tracking-prefix="{{ ::$ctrl.trackingPrefix }}"
+                        service-path="{{:: $ctrl.nashaApiUrl }}"
+                        with-engagement="$ctrl.isCommitmentAvailable"
+                        tracking-prefix="nasha::dashboard"
                     ></billing-subscription-tile>
                 </div>
             </div>
