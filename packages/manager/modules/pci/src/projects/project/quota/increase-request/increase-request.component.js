@@ -10,5 +10,7 @@ export default {
     projectId: '<',
     region: '<',
     mode: '<',
+    trackPage: '<',
+    trackClick: '<',
   },
 };

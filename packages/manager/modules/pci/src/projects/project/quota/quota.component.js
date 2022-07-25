@@ -7,6 +7,7 @@ export default {
     hasDefaultPaymentMethod: '<',
     guideUrl: '<',
     guideTrackingSectionTags: '<',
+    trackPage: '<',
     trackClick: '<',
     project: '<',
     projectId: '<',
