@@ -95,19 +95,28 @@ export default class PciInstancesAddController {
     this.availableRegions = {};
     this.unavailableRegions = {};
 
-    forEach(this.regions, (locationsMap, continent) => {
-      this.availableRegions[continent] = {};
-      this.unavailableRegions[continent] = {};
-      forEach(locationsMap, (datacenters, location) => {
-        [
-          this.availableRegions[continent][location],
-          this.unavailableRegions[continent][location],
-        ] = partition(
-          datacenters,
-          (datacenter) =>
-            !datacenter.isAvailable() ||
-            this.model.flavorGroup.isAvailableInRegion(datacenter.name),
-        );
+    const planCode = `${this.model.flavorGroup.name}.consumption`;
+
+    return this.PciProjectsProjectInstanceService.getProductAvailability(
+      this.projectId,
+      planCode,
+      this.coreConfig.getUser().ovhSubsidiary,
+    ).then((productAvailability) => {
+      const productRegionsAvailables = productAvailability?.plans[0]?.regions;
+
+      forEach(this.regions, (locationsMap, continent) => {
+        this.availableRegions[continent] = {};
+        this.unavailableRegions[continent] = {};
+        forEach(locationsMap, (datacenters, location) => {
+          [
+            this.availableRegions[continent][location],
+            this.unavailableRegions[continent][location],
+          ] = partition(datacenters, (datacenter) => {
+            return productRegionsAvailables.find(
+              (productRegion) => productRegion.name === datacenter.name,
+            );
+          });
+        });
       });
     });
   }
