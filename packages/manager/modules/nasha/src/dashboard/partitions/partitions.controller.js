@@ -1,4 +1,4 @@
-import { MAX_PARTITIONS } from './partitions.constants';
+import { MAX_PARTITIONS } from '../dashboard.constants';
 
 export default class NashaDashboardPartitionsController {
   /* @ngInject */
@@ -9,11 +9,6 @@ export default class NashaDashboardPartitionsController {
 
     this.isMonitoredUpdating = false;
     this.maxPartitions = MAX_PARTITIONS;
-    this.partitionsCount = null;
-  }
-
-  get canCreatePartition() {
-    return this.partitionsCount < this.maxPartitions;
   }
 
   updateMonitored() {
@@ -48,7 +43,6 @@ export default class NashaDashboardPartitionsController {
       .$promise.then((partitions) => partitions.map(this.preparePartition))
       .then((partitions) => {
         const totalCount = partitions.length;
-        this.partitionsCount = totalCount;
         return {
           data: partitions,
           meta: { totalCount },
