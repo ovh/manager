@@ -28,6 +28,7 @@
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-error-page": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-freefax": "^6.0.0 || ^7.0.0",
+    "@ovh-ux/manager-models": "^1.13.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/manager-overthebox": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-server-sidebar": "^2.0.0 || ^3.0.0",
