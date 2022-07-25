@@ -17,6 +17,7 @@ import {
   DEFAULTS_MODEL,
   GATEWAY_TRACKING_PREFIX,
   TRACKING_PREFIX_FORM_SUBMIT,
+  TRACKING_GUIDE_LINKS,
 } from './order.constants';
 
 export default class AdditionalIpController {
@@ -44,6 +45,7 @@ export default class AdditionalIpController {
     this.PciProjectAdditionalIpService = PciProjectAdditionalIpService;
     this.CucCloudMessage = CucCloudMessage;
     this.IP_TYPE_ENUM = IP_TYPE_ENUM;
+    this.TRACKING_GUIDE_LINKS = TRACKING_GUIDE_LINKS;
   }
 
   $onInit() {

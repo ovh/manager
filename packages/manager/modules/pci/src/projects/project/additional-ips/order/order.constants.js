@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../additional-ips.constants';
+
 export const ORDER_URL = {
   EU: 'https://www.ovh.com/order/express/#/express/review?products=',
   CA: 'https://ca.ovh.com/order/express/#/express/review?products=',
@@ -88,6 +90,12 @@ export const GATEWAY_TRACKING_PREFIX =
   'PublicCloud::additional-ips-order::floating-ips-warning-banner';
 
 export const TRACKING_PREFIX_FORM_SUBMIT = 'additional-ips_add_select';
+
+export const TRACKING_GUIDE_LINKS = {
+  FLOATING_IP_REGION_AVAILABILITY: `${TRACKING_PREFIX}::add::floating-ips-region-availability`,
+  FAILOVER_IP_CONFIGURATION_GUIDE: `${TRACKING_PREFIX}::add::guide-configure-failover-ip`,
+  DISCOVER_FAILOVER_IP: `${TRACKING_PREFIX}::add::discover-failover-ip`,
+};
 
 export default {
   ORDER_URL,

@@ -25,7 +25,7 @@
   "pci_additional_ip_floating_ip": "IP flottantes (Public Cloud)",
   "pci_additional_ip_floating_ip_description": "Solution optimisée pour les cas d’utilisation Public Cloud, l’automatisation (Terraform) et le support de réseaux privés régionalisés. Disponible en modèle de facturation à l’usage.",
   "pci_additional_ip_create_step_select_region_floating_ip": "Sélectionnez une région pour votre nouvelle IP flottante",
-  "pci_additional_ip_create_step_select_region_description_floating_ip": "Vous ne trouvez pas la région que vous désirez dans la liste ? Pour en savoir plus sur la disponibilité des produits par région, <a href=\"{{ guideLink }}\" target=\"_blank\">cliquez ici.</a>",
+  "pci_additional_ip_create_step_select_region_description_floating_ip": "Vous ne trouvez pas la région que vous désirez dans la liste ? Pour en savoir plus sur la disponibilité des produits par région, <a href=\"{{ guideLink }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">cliquez ici.</a>",
   "pci_additional_ip_create_step_attach_instance_description_floating_ip": "Seules les instances avec des réseaux privés sont affichées",
   "pci_additional_ip_create_no_instance_message_floating_ip": "Aucune instance avec réseau privé n'a été trouvée dans la région sélectionnée. Veuillez en créer un avant d'attacher une IP flottante.",
   "pci_additional_ip_create_summary_step_no_gateway_warning": "Aucune Gateway utilisable n'a été trouvée dans la région sélectionnée. Une nouvelle sera créée. Veuillez saisir un nom et sélectionner une taille (des frais supplémentaires pour la passerelle seront ajoutés à votre facture).",
