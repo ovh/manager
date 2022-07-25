@@ -42,6 +42,13 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(editNameStateName, { serviceName }),
       goToPartitionsCreate: /* @ngInject */ ($state, serviceName) => () =>
         $state.go(`${dashboardStateName}.partitions.create`, { serviceName }),
+      isCommitmentAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(['billing:commitment'])
+          .then((commitmentAvailability) =>
+            commitmentAvailability.isFeatureAvailable('billing:commitment'),
+          )
+          .catch(() => false),
       nasha: /* @ngInject */ (
         OvhApiDedicatedNasha,
         serviceName,
@@ -67,7 +74,6 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       taskApiUrl: /* @ngInject */ (nashaApiUrl) => `${nashaApiUrl}/task`,
-      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
     },
   });
 };
