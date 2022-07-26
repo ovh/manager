@@ -23,7 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
     },
     atInternet: {
-      rename: 'PublicCloud::pci::projects::project::privateNetwork::delete',
+      rename: 'pci::projects::project::privateNetwork::delete',
     },
     layout: 'modal',
   });

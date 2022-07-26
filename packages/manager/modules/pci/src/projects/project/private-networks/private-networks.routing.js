@@ -143,7 +143,7 @@ export default /* @ngInject */ ($stateProvider) => {
       format: 'json',
     },
     atInternet: {
-      rename: 'PublicCloud::pci::projects::project::privateNetwork',
+      rename: 'pci::projects::project::privateNetwork',
     },
   });
 };
