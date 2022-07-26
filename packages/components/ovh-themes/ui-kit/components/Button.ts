@@ -19,6 +19,9 @@ const disabledStyles = (initialBg: string): SystemStyleObject => {
     background: initialBg,
     boxShadow: 'none',
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> feat(theme): add tile
     cursor: 'not-allowed',
   };
 };
@@ -61,10 +64,14 @@ const Button: ComponentStyleConfig = {
       },
       borderColor: 'uikit.700',
 <<<<<<< HEAD
+<<<<<<< HEAD
       boxShadow: 'secondary',
 =======
       boxShadow: '0 4px 6px 0 rgba(0, 14, 156, 0.2)',
 >>>>>>> feat: separate tags and badges
+=======
+      boxShadow: 'secondary',
+>>>>>>> feat(theme): add tile
     },
     _active: {
       borderColor: 'uikit.800',
@@ -74,10 +81,14 @@ const Button: ComponentStyleConfig = {
     large: {
       fontSize: 'lg',
 <<<<<<< HEAD
+<<<<<<< HEAD
       height: largeSize,
 =======
       minHeight: largeSize,
 >>>>>>> feat(chakra): add form control inputs styles
+=======
+      height: largeSize,
+>>>>>>> feat(theme): add tile
       minWidth: largeSize,
       lineHeight: '1.125rem',
       px: '0.75rem',
@@ -87,10 +98,14 @@ const Button: ComponentStyleConfig = {
     small: {
       fontSize: 'md',
 <<<<<<< HEAD
+<<<<<<< HEAD
       height: smallSize,
 =======
       minHeight: smallSize,
 >>>>>>> feat(chakra): add form control inputs styles
+=======
+      height: smallSize,
+>>>>>>> feat(theme): add tile
       minWidth: smallSize,
       lineHeight: '1rem',
       px: '0.35rem',

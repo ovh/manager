@@ -29,17 +29,23 @@ const Table: ComponentMultiStyleConfig = {
     },
     tr: {
 <<<<<<< HEAD
+<<<<<<< HEAD
       fontWeight: 'inherit',
 >>>>>>> feat(chakra): add Table component style
 =======
       fontWeight: '500',
       lineHeight: '1.5',
 >>>>>>> feat(tabs): add tabs to chakra theme
+=======
+      lineHeight: '1.5',
+      fontWeight: 'inherit'
+>>>>>>> feat(theme): add tile
     },
     thead: {
       backgroundColor: 'uikit.100',
       border: '1px solid',
       borderColor: 'uikit.100',
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       fontWeight: 700,
@@ -57,16 +63,23 @@ const Table: ComponentMultiStyleConfig = {
 =======
       fontWeight: '900',
 >>>>>>> feat(tabs): add tabs to chakra theme
+=======
+      fontWeight: 700,
+>>>>>>> feat(theme): add tile
     },
     th: {
       color: 'uikit.800-text',
       fontFamily: 'inherit',
-      fontWeight: '700',
       textTransform: 'none',
+      fontWeight: 'inherit',
     },
     tfoot: {
       backgroundColor: 'uikit.100',
+<<<<<<< HEAD
 >>>>>>> feat(chakra): add Table component style
+=======
+      fontWeight: 500,
+>>>>>>> feat(theme): add tile
     },
   },
   sizes: {
