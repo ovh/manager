@@ -74,7 +74,8 @@ export default class {
       this.selectedFlavor.hourlyPrice.priceInUcents * this.database.nodeNumber;
     const additionalStoragePrice =
       ((this.database.diskSize - this.selectedFlavor.minDiskSize) / 10) *
-      this.selectedFlavor.additionalStorageHourlyPrice.priceInUcents;
+      this.selectedFlavor.additionalStorageHourlyPrice.priceInUcents *
+      this.database.nodeNumber;
     return flavorPrice + additionalStoragePrice;
   }
 
@@ -83,7 +84,8 @@ export default class {
       this.selectedFlavor.hourlyPrice.tax * this.database.nodeNumber;
     const additionalStorageTax =
       ((this.database.diskSize - this.selectedFlavor.minDiskSize) / 10) *
-      this.selectedFlavor.additionalStorageHourlyPrice.tax;
+      this.selectedFlavor.additionalStorageHourlyPrice.tax *
+      this.database.nodeNumber;
     return flavorTax + additionalStorageTax;
   }
 

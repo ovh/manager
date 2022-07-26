@@ -401,7 +401,8 @@ export default class {
     const additionalStoragePrice =
       diskSize > 0
         ? ((diskSize - flavor.minDiskSize) / 10) *
-          flavor.additionalStorageHourlyPrice.priceInUcents
+          flavor.additionalStorageHourlyPrice.priceInUcents *
+          plan.nodesCount
         : 0;
     return flavorTax + additionalStoragePrice;
   }
@@ -412,7 +413,8 @@ export default class {
     const additionalStoragePrice =
       diskSize > 0
         ? ((diskSize - flavor.minDiskSize) / 10) *
-          flavor.additionalStorageHourlyPrice.tax
+          flavor.additionalStorageHourlyPrice.tax *
+          plan.nodesCount
         : 0;
     return flavorTax + additionalStoragePrice;
   }

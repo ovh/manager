@@ -4,7 +4,7 @@
   "pci_database_disk_size_additional_storage": "Stockage additionnel :",
   "pci_database_disk_size_total_storage": "Total :",
   "pci_database_disk_size_price": "Prix :",
-
+  "pci_database_disk_size_price_unit": "/ mois / nœud",
   "pci_database_disk_size_label": "Stockage additionnel",
   "pci_database_disk_size_decrement_label": "Réduire la taille du disque",
   "pci_database_disk_size_increment_label": "Augmenter la taille du disque"

@@ -80,41 +80,17 @@
             <div>
                 <span data-translate="pci_database_disk_size_price"></span>
                 <ovh-manager-catalog-price
-                    data-price="$ctrl.flavor.additionalStorageMonthlyPrice.priceInUcents * ($ctrl.model - $ctrl.flavor.minDiskSize) / 10"
-                    data-tax="$ctrl.flavor.additionalStorageMonthlyPrice.tax * ($ctrl.model - $ctrl.flavor.minDiskSize) / 10"
+                    data-price="$ctrl.getPrice()"
+                    data-tax="$ctrl.getTax()"
                     data-show-zero-price="true"
-                    data-interval="'month'"
                     data-perform-rounding="false"
                     data-maximum-fraction-digits="3"
                 >
                 </ovh-manager-catalog-price>
+                <strong
+                    data-translate="pci_database_disk_size_price_unit"
+                ></strong>
             </div>
         </oui-tile-description>
     </oui-tile-definition>
 </oui-tile>
-<!-- <table>
-    <tr>
-        <td>flavor.minDiskSize</td>
-        <td>{{$ctrl.flavor.minDiskSize}}</td>
-    </tr>
-    <tr>
-        <td>flavor.maxDiskSize</td>
-        <td>{{$ctrl.flavor.maxDiskSize}}</td>
-    </tr>
-    <tr>
-        <td>model</td>
-        <td>{{$ctrl.model}}</td>
-    </tr>
-    <tr>
-        <td>min</td>
-        <td>{{$ctrl.min}}</td>
-    </tr>
-    <tr>
-        <td>max</td>
-        <td>{{$ctrl.max}}</td>
-    </tr>
-    <tr>
-        <td>initialValue</td>
-        <td>{{$ctrl.initialValue}}</td>
-    </tr>
-</table> -->

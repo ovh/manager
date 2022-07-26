@@ -31,8 +31,8 @@ export default class Flavor {
   get additionalStorageHourlyPrice() {
     return (
       (this.availability || [])[0]?.additionaStorageHourlyPrice || {
-        priceInUcents: 100000000 / 730,
-        tax: (100000000 / 730) * 0.2,
+        priceInUcents: 10000000 / 730,
+        tax: (10000000 / 730) * 0.2,
       }
     );
   }
@@ -40,8 +40,8 @@ export default class Flavor {
   get additionalStorageMonthlyPrice() {
     return (
       (this.availability || [])[0]?.additionaStorageMonthlyPrice || {
-        priceInUcents: 100000000,
-        tax: 100000000 * 0.2,
+        priceInUcents: 10000000,
+        tax: 10000000 * 0.2,
       }
     );
   }

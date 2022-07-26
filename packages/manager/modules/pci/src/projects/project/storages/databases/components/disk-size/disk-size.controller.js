@@ -36,4 +36,20 @@ export default class DiskSizeController {
     this.model += this.step;
     this.checkRange();
   }
+
+  getPrice() {
+    const additionalStorage = this.model - this.flavor.minDiskSize;
+    return (
+      (this.flavor.additionalStorageMonthlyPrice.priceInUcents *
+        additionalStorage) /
+      10
+    );
+  }
+
+  getTax() {
+    const additionalStorage = this.model - this.flavor.minDiskSize;
+    return (
+      (this.flavor.additionalStorageMonthlyPrice.tax * additionalStorage) / 10
+    );
+  }
 }
