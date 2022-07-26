@@ -36,6 +36,7 @@
 >
     <!--Offers list-->
     <oui-step-form
+        data-position="0"
         data-ng-if="!$ctrl.archive"
         data-header="{{:: 'pci_projects_project_storages_containers_add_offer_title' | translate }}"
         data-navigation="$ctrl.container.offer"
@@ -126,6 +127,7 @@
 
     <!--Regions list-->
     <oui-step-form
+        data-position="1"
         data-name="storage_container_add_region"
         data-header="{{:: 'pci_projects_project_storages_containers_add_region_title' | translate }}"
         data-navigation="$ctrl.container.region"
@@ -145,6 +147,7 @@
 
     <!--Container types list-->
     <oui-step-form
+        data-position="2"
         data-header="{{:: 'pci_projects_project_storages_containers_add_type_title' | translate }}"
         data-ng-if="!$ctrl.archive && $ctrl.OBJECT_CONTAINER_TYPE_OFFERS.includes($ctrl.container.offer)"
         data-on-focus="$ctrl.onTypesFocus()"
@@ -181,6 +184,7 @@
 
     <!--Create/Linked user-->
     <oui-step-form
+        data-position="2"
         data-ng-if="$ctrl.isRightOffer()"
         data-header="{{:: 'pci_projects_project_storages_containers_add_create_or_linked_user_title' | translate }}"
         data-navigation="$ctrl.isReadyForValidation()"
@@ -195,6 +199,7 @@
 
     <!--Container name-->
     <oui-step-form
+        data-position="3"
         data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
         data-editable="!$ctrl.isLoading"
         data-on-cancel="$ctrl.cancel()"
