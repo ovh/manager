@@ -13,6 +13,7 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "jsx": "preserve"
   }
 }

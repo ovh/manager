@@ -10,6 +10,7 @@ const disabledStyles = (initialBg: string): SystemStyleObject => {
     opacity: '0.5',
     background: initialBg,
     boxShadow: 'none',
+    cursor: 'not-allowed',
   };
 };
 
@@ -27,7 +28,7 @@ const Button: ComponentStyleConfig = {
         borderColor: 'uikit.500',
       },
       borderColor: 'uikit.700',
-      boxShadow: '0 4px 6px 0 rgba(0, 14, 156, 0.2)',
+      boxShadow: 'secondary',
     },
     _active: {
       borderColor: 'uikit.800',
@@ -36,7 +37,7 @@ const Button: ComponentStyleConfig = {
   sizes: {
     large: {
       fontSize: 'lg',
-      minHeight: largeSize,
+      height: largeSize,
       minWidth: largeSize,
       lineHeight: '1.125rem',
       px: '0.75rem',
@@ -45,7 +46,7 @@ const Button: ComponentStyleConfig = {
     },
     small: {
       fontSize: 'md',
-      minHeight: smallSize,
+      height: smallSize,
       minWidth: smallSize,
       lineHeight: '1rem',
       px: '0.35rem',

@@ -21,23 +21,24 @@ const Table: ComponentMultiStyleConfig = {
       cursor: 'default',
     },
     tr: {
-      fontWeight: '500',
       lineHeight: '1.5',
+      fontWeight: 'inherit'
     },
     thead: {
       backgroundColor: 'uikit.100',
       border: '1px solid',
       borderColor: 'uikit.100',
-      fontWeight: '900',
+      fontWeight: 700,
     },
     th: {
       color: 'uikit.800-text',
       fontFamily: 'inherit',
-      fontWeight: '700',
       textTransform: 'none',
+      fontWeight: 'inherit',
     },
     tfoot: {
       backgroundColor: 'uikit.100',
+      fontWeight: 500,
     },
   },
   sizes: {
