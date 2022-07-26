@@ -9,11 +9,12 @@
   "dedicated_server_dashboard_upgrade_select_option_title_ram": "Seleziona un'opzione di memoria",
   "dedicated_server_dashboard_upgrade_select_option_title_storage": "Seleziona un'opzione di storage",
   "dedicated_server_dashboard_upgrade_select_option_title_composite": "Seleziona un'opzione",
-  "dedicated_server_dashboard_upgrade_select_option_description_ram": "I prezzi indicati corrispondono a un mese completo. La prima fattura di questa opzione verrà quindi calcolata al prorata temporis del mese in corso, in base alla data di rinnovo del server.",
-  "dedicated_server_dashboard_upgrade_select_option_description_storage": "I prezzi indicati si riferiscono a un mese completo. La prima fattura relativa a questa opzione verrà calcolata al prorata temporis del mese in corso, in base alla data di rinnovo del server.",
-  "dedicated_server_dashboard_upgrade_select_option_description": "Una volta effettuato il pagamento dell'aggiornamento, sarà necessario pianificare l’intervento a partire dal decimo giorno successivo al pagamento.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_1": "I prezzi indicati si riferiscono a un mese completo. La prima fattura relativa a questa opzione verrà calcolata al prorata temporis del mese in corso, in base alla data di rinnovo del server.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_1_with_interval": "I prezzi indicati si riferiscono a un periodo di {{interval}} mesi completi. La prima fattura relativa a questa opzione verrà calcolata al prorata temporis del periodo in corso, in base alla data di rinnovo del server.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_2": "Una volta effettuato il pagamento dell'aggiornamento, sarà necessario pianificare l’intervento a partire dal decimo giorno successivo al pagamento.",
   "dedicated_server_dashboard_upgrade_select_option_name": "Opzioni",
   "dedicated_server_dashboard_upgrade_select_option_price": "Prezzo mensile - +IVA/mese",
+  "dedicated_server_dashboard_upgrade_select_option_price_with_interval": "Prezzo IVA esclusa per un periodo di {{interval}} mesi",
   "dedicated_server_dashboard_upgrade_order": "Ordina",
   "dedicated_server_dashboard_upgrade_order_error": "Si è verificato un errore durante l'ordine dell'opzione: {{message}}",
   "dedicated_server_dashboard_upgrade_order_success": "L'ordine è stato generato correttamente.",
@@ -33,9 +34,5 @@
   "dedicated_server_dashboard_upgrade_intervention_success_message_ticket": "Maggiori informazioni nel ticket seguente",
   "dedicated_server_dashboard_upgrade_intervention_error": "Si è verificato un errore durante la pianificazione del tuo intervento: {{message}}",
   "dedicated_server_dashboard_upgrade_confirm": "Confermare",
-  "dedicated_server_dashboard_upgrade_cancel": "Annullare",
-  "dedicated_server_dashboard_upgrade_select_option_description_part_1": "I prezzi indicati si riferiscono a un mese completo. La prima fattura relativa a questa opzione verrà calcolata al prorata temporis del mese in corso, in base alla data di rinnovo del server.",
-  "dedicated_server_dashboard_upgrade_select_option_description_part_1_with_interval": "I prezzi indicati si riferiscono a un periodo di {{interval}} mesi completi. La prima fattura relativa a questa opzione verrà calcolata al prorata temporis del periodo in corso, in base alla data di rinnovo del server.",
-  "dedicated_server_dashboard_upgrade_select_option_description_part_2": "Una volta effettuato il pagamento dell'aggiornamento, sarà necessario pianificare l’intervento a partire dal decimo giorno successivo al pagamento.",
-  "dedicated_server_dashboard_upgrade_select_option_price_with_interval": "Prezzo IVA esclusa per un periodo di {{interval}} mesi"
+  "dedicated_server_dashboard_upgrade_cancel": "Annullare"
 }

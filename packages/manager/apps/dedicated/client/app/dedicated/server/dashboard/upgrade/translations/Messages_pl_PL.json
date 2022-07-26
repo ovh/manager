@@ -9,11 +9,12 @@
   "dedicated_server_dashboard_upgrade_select_option_title_ram": "Wybierz opcję pamięci",
   "dedicated_server_dashboard_upgrade_select_option_title_storage": "Wybierz opcję przestrzeni dyskowej",
   "dedicated_server_dashboard_upgrade_select_option_title_composite": "Wybierz opcję",
-  "dedicated_server_dashboard_upgrade_select_option_description_ram": "Podane ceny odpowiadają pełnemu miesiącowi. Pierwsza płatność za tę opcję zostanie zatem obliczona proporcjonalnie dla bieżącego miesiąca, w zależności od daty odnowienia serwera.",
-  "dedicated_server_dashboard_upgrade_select_option_description_storage": "Podane ceny odnoszą się do pełnego miesiąca. Pierwsza płatność za tę opcję zostanie zatem obliczona proporcjonalnie dla bieżącego miesiąca, w zależności od daty odnowienia Twojego serwera.",
-  "dedicated_server_dashboard_upgrade_select_option_description": "Po opłaceniu aktualizacji należy zaplanować termin interwencji na co najmniej 10 dni po dokonaniu płatności.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_1": "Podane ceny odnoszą się do pełnego miesiąca. Pierwsza płatność za tę opcję zostanie zatem obliczona proporcjonalnie dla bieżącego miesiąca, w zależności od daty odnowienia Twojego serwera.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_1_with_interval": "Podane ceny dotyczą okresu {{interval}} pełnych miesięcy. Pierwsza faktura, którą otrzymasz za tę opcję zostanie obliczona proporcjonalnie do liczby dni korzystania z usługi w danym okresie rozliczeniowym, zgodnie z datą odnowienia serwera.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_2": "Po opłaceniu aktualizacji należy zaplanować termin interwencji na co najmniej 10 dni po dokonaniu płatności.",
   "dedicated_server_dashboard_upgrade_select_option_name": "Opcje",
   "dedicated_server_dashboard_upgrade_select_option_price": "Cena miesięczna - netto/m-c",
+  "dedicated_server_dashboard_upgrade_select_option_price_with_interval": "Cena netto za okres {{interval}} miesięcy",
   "dedicated_server_dashboard_upgrade_order": "Zamów",
   "dedicated_server_dashboard_upgrade_order_error": "Wystąpił błąd podczas zamawiania opcji: {{message}}",
   "dedicated_server_dashboard_upgrade_order_success": "Twoje zamówienie zostało wygenerowane.",
@@ -33,9 +34,5 @@
   "dedicated_server_dashboard_upgrade_intervention_success_message_ticket": "Więcej informacji na temat tego zgłoszenia",
   "dedicated_server_dashboard_upgrade_intervention_error": "Wystąpił błąd podczas planowania interwencji: {{message}}",
   "dedicated_server_dashboard_upgrade_confirm": "Zatwierdź",
-  "dedicated_server_dashboard_upgrade_cancel": "Anuluj",
-  "dedicated_server_dashboard_upgrade_select_option_description_part_1": "Podane ceny odnoszą się do pełnego miesiąca. Pierwsza płatność za tę opcję zostanie zatem obliczona proporcjonalnie dla bieżącego miesiąca, w zależności od daty odnowienia Twojego serwera.",
-  "dedicated_server_dashboard_upgrade_select_option_description_part_1_with_interval": "Podane ceny dotyczą okresu {{interval}} pełnych miesięcy. Pierwsza faktura, którą otrzymasz za tę opcję zostanie obliczona proporcjonalnie do liczby dni korzystania z usługi w danym okresie rozliczeniowym, zgodnie z datą odnowienia serwera.",
-  "dedicated_server_dashboard_upgrade_select_option_description_part_2": "Po opłaceniu aktualizacji należy zaplanować termin interwencji na co najmniej 10 dni po dokonaniu płatności.",
-  "dedicated_server_dashboard_upgrade_select_option_price_with_interval": "Cena netto za okres {{interval}} miesięcy"
+  "dedicated_server_dashboard_upgrade_cancel": "Anuluj"
 }
