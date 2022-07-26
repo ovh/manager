@@ -6,7 +6,14 @@ import { PRODUCT_ID } from './order.constants';
 
 export default class NashaOrderController {
   /* @ngInject */
-  constructor($window, coreConfig, BillingService, RedirectionService) {
+  constructor(
+    $translate,
+    $window,
+    coreConfig,
+    BillingService,
+    RedirectionService,
+  ) {
+    this.$translate = $translate;
     this.$window = $window;
     this.BillingService = BillingService;
 
@@ -40,6 +47,16 @@ export default class NashaOrderController {
       displayed: false,
       modes: [],
     };
+  }
+
+  $onInit() {
+    this.plans.forEach((plan) => {
+      const key = `nasha_order_capacity_description_${plan.planCode}`;
+      const description = this.$translate.instant(key);
+      Object.assign(plan.capacity, {
+        description: (description !== key && description) || '',
+      });
+    });
   }
 
   get plan() {
