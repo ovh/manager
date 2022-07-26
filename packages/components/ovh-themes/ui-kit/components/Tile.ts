@@ -27,6 +27,7 @@ const containerBaseStyles: SystemStyleObject = {
   width: '100%',
 =======
   boxShadow: 'primary',
+  borderWidth: '1px',
   borderColor: 'gray.100',
   padding: '4',
   borderRadius: 'medium',
@@ -125,6 +126,7 @@ const groupStyles: SystemStyleObject = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const commonBoxStyles: SystemStyleObject = {
   borderColor: 'uikit.100',
   boxShadow: 'none',
@@ -133,6 +135,14 @@ const commonBoxStyles: SystemStyleObject = {
 
 =======
 >>>>>>> feat(theme): add tile
+=======
+const commonBoxStyles: SystemStyleObject = {
+  boxShadow: 'none',
+  borderColor: 'uikit.100',
+  padding: '1rem 2rem 2rem',
+};
+
+>>>>>>> feat(theme): add box variant
 const Tile: ComponentMultiStyleConfig = {
   parts: tileParts,
   baseStyle: {
@@ -165,7 +175,23 @@ const Tile: ComponentMultiStyleConfig = {
     section: sectionStyles,
     sectionDefinition: sectionDefinitionStyles,
   },
+<<<<<<< HEAD
 >>>>>>> feat(theme): add tile
+=======
+  variants: {
+    box: {
+      container: {
+        ...commonBoxStyles,
+        background: 'uikit.50',
+      },
+    },
+    'light-box': {
+      container: {
+        ...commonBoxStyles,
+      },
+    },
+  },
+>>>>>>> feat(theme): add box variant
 };
 
 export default Tile;
