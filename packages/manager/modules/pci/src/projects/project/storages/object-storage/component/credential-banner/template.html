@@ -37,14 +37,10 @@
             </oui-field>
 
             <!--User S3 credential secret key-->
-            <oui-field
-                data-label="{{:: 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label' | translate }}"
-            >
-                <oui-clipboard
-                    data-name="s3SecretKey"
-                    data-model="$ctrl.credential.secret"
-                ></oui-clipboard>
-            </oui-field>
+            <pci-project-storages-components-password-clipboard
+                data-field-secret-key-label="$ctrl.fieldSecretKeyLabel"
+                data-field-secret-key-value="$ctrl.credential.secret"
+            ></pci-project-storages-components-password-clipboard>
         </div>
     </div>
 </oui-message>
