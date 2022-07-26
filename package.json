@@ -10,8 +10,7 @@
     "packages/manager/apps/*",
     "packages/manager/core/*",
     "packages/manager/modules/*",
-    "packages/manager/tools/*",
-    "packages/manager/fragments/*"
+    "packages/manager/tools/*"
   ],
   "scripts": {
     "build": "node scripts/build.js",
