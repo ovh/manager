@@ -10,6 +10,7 @@ import 'jquery-ui/ui/widgets/draggable';
 import 'script-loader!moment/min/moment.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.js';
 import '@ovh-ux/ui-kit';
+import 'script-loader!clipboard/dist/clipboard.min.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
 import get from 'lodash/get';
