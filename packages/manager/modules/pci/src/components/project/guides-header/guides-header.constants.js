@@ -8,7 +8,8 @@ export const PUBLIC_CLOUD_GUIDES = {
   PT: 'https://docs.ovh.com/pt/public-cloud/',
   IE: 'https://docs.ovh.com/ie/en/public-cloud/',
   DEFAULT: 'https://docs.ovh.com/gb/en/public-cloud/',
-  US: 'https://support.us.ovhcloud.com/hc/en-us/categories/115000515130',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/categories/115000515130-Public-Cloud-Services',
   ASIA: 'https://docs.ovh.com/asia/en/public-cloud/',
   AU: 'https://docs.ovh.com/au/en/public-cloud/',
   CA: 'https://docs.ovh.com/ca/en/public-cloud/',
@@ -16,6 +17,9 @@ export const PUBLIC_CLOUD_GUIDES = {
   SG: 'https://docs.ovh.com/sg/en/public-cloud/',
   WE: 'https://docs.ovh.com/us/en/public-cloud/',
   WS: 'https://docs.ovh.com/us/es/public-cloud/',
+  MA: 'https://docs.ovh.com/fr/public-cloud/',
+  TN: 'https://docs.ovh.com/fr/public-cloud/',
+  SN: 'https://docs.ovh.com/fr/public-cloud/',
 };
 
 export const PUBLIC_CLOUD_STORAGE_GUIDES = {
@@ -36,6 +40,9 @@ export const PUBLIC_CLOUD_STORAGE_GUIDES = {
   SG: 'https://docs.ovh.com/sg/en/storage/',
   WE: 'https://docs.ovh.com/us/en/storage/',
   WS: 'https://docs.ovh.com/us/es/storage/',
+  MA: 'https://docs.ovh.com/fr/storage/',
+  TN: 'https://docs.ovh.com/fr/storage/',
+  SN: 'https://docs.ovh.com/fr/storage/',
 };
 
 export const FIRST_STEPS_WITH_INSTANCES = {
@@ -547,6 +554,18 @@ export const GUIDES_LIST = {
       url: REVERSE_DNS,
       key: 'reverse_dns',
       tracking: '::guides::go_to_configure_reverse_dns_instance',
+    },
+  },
+  objectStorage: {
+    public_cloud_storage_guides: {
+      url: PUBLIC_CLOUD_STORAGE_GUIDES,
+      key: 'all_storage_guides',
+      tracking: '::guides::go_to_storage',
+    },
+    public_cloud_guides: {
+      url: PUBLIC_CLOUD_GUIDES,
+      key: 'public_cloud_guides',
+      tracking: '::guides::go_to_public_cloud_storage',
     },
   },
   instances: {
