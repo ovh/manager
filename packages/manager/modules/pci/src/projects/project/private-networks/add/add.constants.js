@@ -18,10 +18,13 @@ export const GUIDE_LINKS = {
     'https://www.ovhcloud.com/en-ie/public-cloud/regions-availability/',
 };
 
+export const TRACKING_PREFIX = 'add-private-network';
+
 export default {
   DEFAULT_CIDR,
   DEFAULT_IP,
   NETWORK_ACTIVE_STATUS,
   VLAN_ID,
   GUIDE_LINKS,
+  TRACKING_PREFIX,
 };
