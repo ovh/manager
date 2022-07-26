@@ -18,6 +18,7 @@ const tileParts = [
 const containerBaseStyles: SystemStyleObject = {
   background: 'white',
   boxShadow: 'primary',
+  borderWidth: '1px',
   borderColor: 'gray.100',
   padding: '4',
   borderRadius: 'medium',
@@ -83,6 +84,12 @@ const groupStyles: SystemStyleObject = {
   },
 };
 
+const commonBoxStyles: SystemStyleObject = {
+  boxShadow: 'none',
+  borderColor: 'uikit.100',
+  padding: '1rem 2rem 2rem',
+};
+
 const Tile: ComponentMultiStyleConfig = {
   parts: tileParts,
   baseStyle: {
@@ -93,6 +100,19 @@ const Tile: ComponentMultiStyleConfig = {
     group: groupStyles,
     section: sectionStyles,
     sectionDefinition: sectionDefinitionStyles,
+  },
+  variants: {
+    box: {
+      container: {
+        ...commonBoxStyles,
+        background: 'uikit.50',
+      },
+    },
+    'light-box': {
+      container: {
+        ...commonBoxStyles,
+      },
+    },
   },
 };
 
