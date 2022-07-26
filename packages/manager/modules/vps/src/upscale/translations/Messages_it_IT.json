@@ -46,5 +46,7 @@
   "vps_upscale_elite_upgrade_success_upfront_with_payment_method": "La richiesta di modifica della configurazione è stata presa in carico. Ti è stato fatturato un importo di {{ price }} corrispondente al periodo restante incluso nell’impegno contrattuale.",
   "vps_upscale_elite_upgrade_success_without_payment_method": "Il <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">buono d’ordine</a> è stato generato correttamente. La modifica della configurazione diventerà effettiva subito dopo aver effettuato il pagamento.",
   "vps_upscale_elite_upgrade_error": "Si è verificato un errore durante la modifica della configurazione.",
-  "vps_upscale_agreements": "Ho letto e accetto le <a target=\"_blank\" href=\"{{conditions}}\" rel=\"noopener\">condizioni generali</a> e l’<a target=\"_blank\" href=\"{{policy}}\" rel=\"noopener\">informativa sulla privacy</a>."
+  "vps_upscale_agreements": "Ho letto e accetto le <a target=\"_blank\" href=\"{{conditions}}\" rel=\"noopener\">condizioni generali</a> e l’<a target=\"_blank\" href=\"{{policy}}\" rel=\"noopener\">informativa sulla privacy</a>.",
+  "vps_upscale_fail_vps_in_rescue_info": "Non è possibile effettuare l'upgrade del VPS a una soluzione superiore perché risulta attualmente in modalità Rescue.",
+  "vps_upscale_fail_vps_in_rescue_action": "Riavvia il VPS disattivando la modalità Rescue."
 }
