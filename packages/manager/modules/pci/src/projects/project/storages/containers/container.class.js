@@ -18,6 +18,7 @@ export default class Container {
     isHighPerfStorage,
     s3StorageType,
     publicUrl,
+    virtualHost,
     state,
     storageGateway,
   }) {
@@ -36,7 +37,8 @@ export default class Container {
       storedObjects,
       isHighPerfStorage,
       s3StorageType,
-      publicUrl,
+      ...(publicUrl && { publicUrl }),
+      ...(virtualHost && { virtualHost }),
       state,
       storageGateway,
     });

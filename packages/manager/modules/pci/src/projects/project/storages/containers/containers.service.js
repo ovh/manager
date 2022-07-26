@@ -195,6 +195,7 @@ export default class PciStoragesContainersService {
             ),
             id: containerId,
             publicUrl,
+            virtualHost: container.virtualHost,
             storageGateway: STORAGE_GATEWAY[
               this.coreConfig.getRegion()
             ].replace(
