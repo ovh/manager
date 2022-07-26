@@ -1,0 +1,39 @@
+<oui-field
+    class="d-inline"
+    data-label="{{:: $ctrl.fieldSecretKeyLabel }}"
+>
+    <div class="mb-0 oui-input-overlay oui-clipboard" data-ng-init="passwordClipboard = {isText: false}">
+        <input
+            class="oui-input oui-clipboard__control"
+            data-ng-attr-id="{{:: $ctrl.SECRET_KEY_INPUT_ID}}"
+            data-ng-attr-name="{{:: $ctrl.SECRET_KEY_INPUT_ID}}"
+            data-ng-attr-type="{{ passwordClipboard.isText ? 'text' : 'password' }}"
+            data-ng-value="$ctrl.fieldSecretKeyValue"
+            readonly
+        />
+        <button
+            type="button"
+            class="oui-button mr-4"
+            aria-label="{{ $ctrl.getPasswordLabel(passwordClipboard.isText) }}"
+            data-ng-click="passwordClipboard.isText = !passwordClipboard.isText;"
+        >
+            <span
+                class="oui-icon oui-icon-eye-open"
+                aria-hidden="true"
+            ></span>
+        </button>
+        <button
+            type="button"
+            class="oui-button ml-1"
+            aria-label="{{:: 'pci_projects_project_storages_components_password_clipboard_label_copy_to_clipboard' | translate }}"
+            data-ng-if="$ctrl.secretKeyClipboard"
+            data-ng-attr-id="{{:: $ctrl.SECRET_KEY_CLIPBOARD_BTN_ID}}"
+            data-clipboard-text="{{:: $ctrl.fieldSecretKeyValue}}"
+        >
+            <span
+                class="oui-icon oui-icon-copy"
+                aria-hidden="true"
+            ></span>
+        </button>
+    </div>
+</oui-field>
