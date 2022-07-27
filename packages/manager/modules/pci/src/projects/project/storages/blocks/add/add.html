@@ -36,16 +36,43 @@
             >
                 <div class="row">
                     <oui-select-picker
+                        class="d-inline-block col-md-6 col-xl-4 my-3"
                         data-ng-repeat="volumeAddon in $ctrl.consumptionVolumeAddons track by $index"
                         data-ng-if="!$ctrl.displaySelectedType || $ctrl.selectedVolumeAddon === volumeAddon"
                         data-disabled="!$ctrl.isAvailableVolumeType(volumeAddon)"
                         data-model="$ctrl.selectedVolumeAddon"
-                        class="d-inline-block col-md-6 col-xl-4 my-3"
                         data-name="type"
                         data-label="{{:: volumeAddon.blobs.technical.name }}"
                         data-values="[volumeAddon]"
                         data-variant="light"
                         data-required>
+
+                        <!--Technical Container info-->
+                        <oui-select-picker-section>
+                            <!--IOPS guaranteed-->
+                            <span data-ng-if="volumeAddon.blobs.technical.volume.iops.guaranteed"
+                                  data-translate="pci_projects_project_storages_blocks_add_type_addon_iops_guaranteed"
+                                  data-translate-values="{ iops: volumeAddon.blobs.technical.volume.iops.level, separator: ', ' }"
+                            ></span>
+
+                            <!--IOPS not guaranteed-->
+                            <span data-ng-if="!volumeAddon.blobs.technical.volume.iops.guaranteed"
+                                  data-translate="pci_projects_project_storages_blocks_add_type_addon_iops_not_guaranteed"
+                                  data-translate-values="{iops: $ctrl.constructor.getAddonVolumeIopsInfo(volumeAddon), separator: ', '}"
+                            ></span>
+
+                            <!--Max volume storage-->
+                            <span data-translate="pci_projects_project_storages_blocks_add_type_addon_capacity_max"
+                                  data-translate-values="{ capacity: (volumeAddon.blobs.technical.volume.capacity.max | bytes:0:false:'GB')}"
+                            ></span>
+
+                            <!--price/hour-->
+                            <span class="d-block"
+                                  data-translate="pci_projects_project_storages_blocks_add_type_addon_price"
+                                  data-translate-values="{ price: $ctrl.formatVolumePrice(volumeAddon.pricings[0].price) }"
+                            ></span>
+                        </oui-select-picker-section>
+
                     </oui-select-picker>
                 </div>
             </div>
