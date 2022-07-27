@@ -8,6 +8,10 @@ const controlBaseStyle: SystemStyleObject = {
   margin: 0,
   borderColor: 'uikit.500',
   boxSizing: 'border-box',
+  _focusVisible: {
+    outline: '2px dashed green',
+    outlineOffset: '2px',
+  },
   _invalid: {
     borderColor: 'error.500',
     _checked: {

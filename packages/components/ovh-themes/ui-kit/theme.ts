@@ -15,6 +15,7 @@ import Checkbox from './components/Checkbox';
 import Tabs from './components/Tabs';
 import Tile from './components/Tile';
 import Menu from './components/Menu';
+import Radio from './components/Radio';
 
 export default {
   styles: {
@@ -75,5 +76,6 @@ export default {
     Tabs,
     Tile,
     Menu,
+    Radio,
   },
 };
