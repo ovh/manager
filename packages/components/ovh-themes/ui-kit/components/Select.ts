@@ -36,8 +36,21 @@ const Select: ComponentMultiStyleConfig = {
   successVariantFieldStyles,
 } from './Input';
 
+const iconBaseStyle = (isInvalid: boolean) => {
+  return {
+    minWidth: '2rem',
+    height: '2rem',
+    margin: 0,
+    padding: 0,
+    fontSize: '2xl',
+    color: isInvalid ? 'error.500' : 'uikit.500',
+    right: '0.5',
+  };
+};
+
 const Select: ComponentMultiStyleConfig = {
   parts: parts.keys,
+<<<<<<< HEAD
   baseStyle: {
     ...inputFieldStyles,
     icon: {
@@ -50,6 +63,15 @@ const Select: ComponentMultiStyleConfig = {
       right: '0.5',
     },
 >>>>>>> feat(theme): add select theme to chakra
+=======
+  baseStyle: (props) => {
+    return {
+      ...inputFieldStyles,
+      icon: {
+        ...iconBaseStyle(props.isInvalid),
+      },
+    };
+>>>>>>> fix(select): fix color icon on status
   },
   variants: {
     default: {
@@ -57,6 +79,7 @@ const Select: ComponentMultiStyleConfig = {
     },
     warning: {
       ...warningVariantFieldStyles,
+<<<<<<< HEAD
 <<<<<<< HEAD
       icon: {
         color: 'warning.500',
@@ -79,6 +102,17 @@ const Select: ComponentMultiStyleConfig = {
     success: {
       ...successVariantFieldStyles,
 >>>>>>> feat(theme): add select theme to chakra
+=======
+      icon: {
+        color: 'warning.500',
+      },
+    },
+    success: {
+      ...successVariantFieldStyles,
+      icon: {
+        color: 'success.500',
+      },
+>>>>>>> fix(select): fix color icon on status
     },
   },
   defaultProps: {
