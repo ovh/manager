@@ -3,7 +3,7 @@
         <span data-ng-if="::$ctrl.isAsiaFormat()">
             <strong data-ng-class="{ 'd-block': $ctrl.block }">
                 <span
-                    data-ng-bind="{{'order_catalog_price_gst_excl_label' | translate}}"
+                    data-translate="order_catalog_price_gst_excl_label"
                     data-translate-values="{ price: $ctrl.getPriceText($ctrl.price) }"
                 ></span>
                 <span data-ng-if="$ctrl.interval">
