@@ -35,7 +35,7 @@
     "jsplumb": "^2.11.2",
     "moment": "^2.24.0",
     "ng-csv": "^0.3.6",
-    "ovh-api-services": "^14.0.6",
+    "ovh-api-services": "^15.0.0",
     "ovh-ngstrap": "^4.0.2",
     "punycode": "^1.4.1",
     "validator": "^13.7.0",

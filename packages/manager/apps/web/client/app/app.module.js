@@ -58,7 +58,6 @@ import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
-import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 import ngOvhProxyRequest from '@ovh-ux/ng-ovh-proxy-request';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
@@ -69,14 +68,9 @@ import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
-import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
-import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
-import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
-import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
-import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
@@ -86,7 +80,6 @@ import emailpro from '@ovh-ux/manager-emailpro';
 import exchange from '@ovh-ux/manager-exchange';
 import office from '@ovh-ux/manager-office';
 import sharepoint from '@ovh-ux/manager-sharepoint';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import WebPaas from '@ovh-ux/manager-web-paas';
 import '@ovh-ux/manager-filters';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
@@ -138,7 +131,6 @@ export default async (containerEl, shellClient) => {
     .module(
       moduleName,
       [
-        ovhManagerAccountSidebar,
         registerCoreModule(environment),
         ngPaginationFront,
         'ngOvhUtils',
@@ -163,7 +155,6 @@ export default async (containerEl, shellClient) => {
         ngOvhFeatureFlipping,
         ngOvhHttp,
         ngOvhSsoAuth,
-        ngOvhSsoAuthModalPlugin,
         ngOvhSwimmingPoll,
         ngOvhProxyRequest,
         ngOvhUserPref,
@@ -171,7 +162,6 @@ export default async (containerEl, shellClient) => {
         ngTranslateAsyncLoader,
         ngUiRouterBreadcrumb,
         ngUiRouterLayout,
-        isTopLevelApplication() ? ngUiRouterLineProgress : null,
         ovhManagerServerSidebar,
         uiRouter,
         'pascalprecht.translate',
@@ -181,11 +171,8 @@ export default async (containerEl, shellClient) => {
         ovhManagerAtInternetConfiguration,
         ovhManagerAccountMigration,
         ovhManagerBanner,
-        isTopLevelApplication() ? ovhManagerCookiePolicy : null,
         ovhManagerCatalogPrice,
-        ovhManagerNavbar,
         ovhManagerProductOffers,
-        ovhNotificationsSidebar,
         'oui',
         'ovhManagerFilters',
         emailpro,
@@ -249,11 +236,6 @@ export default async (containerEl, shellClient) => {
           set(config, 'serviceType', 'apiv6');
         }
 
-        if (/^apiv7\//.test(config.url)) {
-          set(config, 'url', config.url.replace(/^apiv7/, ''));
-          set(config, 'serviceType', 'apiv7');
-        }
-
         return config;
       },
     }))
@@ -298,16 +280,6 @@ export default async (containerEl, shellClient) => {
         set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
       },
     ])
-    .config(
-      /* @ngInject */ (ssoAuthModalPluginFctProvider) => {
-        ssoAuthModalPluginFctProvider.setOnLogout(() => {
-          shellClient.auth.logout();
-        });
-        ssoAuthModalPluginFctProvider.setOnReload(() => {
-          shellClient.navigation.reload();
-        });
-      },
-    )
     .config(
       /* @ngInject */ (ssoAuthenticationProvider) => {
         ssoAuthenticationProvider.setOnLogin(() => {
@@ -655,9 +627,7 @@ export default async (containerEl, shellClient) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          if (isTopLevelApplication()) {
-            detachPreloader();
-          } else {
+          if (!isTopLevelApplication()) {
             shellClient.ux.hidePreloader();
           }
           $rootScope.$broadcast('app:started');

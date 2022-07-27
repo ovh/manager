@@ -66,12 +66,9 @@ import isString from 'lodash/isString';
 import set from 'lodash/set';
 
 import ovhManagerBetaPreference from '@ovh-ux/manager-beta-preference';
-import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ovhManagerDashboard from '@ovh-ux/manager-telecom-dashboard';
 import ovhManagerFreefax from '@ovh-ux/manager-freefax';
-import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerOverTheBox from '@ovh-ux/manager-overthebox';
 import ovhManagerSms from '@ovh-ux/manager-sms';
 import ovhManagerTelecomTask from '@ovh-ux/manager-telecom-task';
@@ -86,12 +83,10 @@ import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhMondialRelay from '@ovh-ux/ng-ovh-mondial-relay';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
-import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-components';
 import ngOvhUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngOvhUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
-import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngOvhUiRouterTitle from '@ovh-ux/ng-ui-router-title';
 import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
@@ -102,10 +97,8 @@ import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 import ngOvhTimeline from '@ovh-ux/ng-ovh-timeline';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
-import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
@@ -174,7 +167,6 @@ export default async (containerEl, shellClient) => {
         ngOvhHttp,
         ngOvhMondialRelay,
         ngOvhSsoAuth,
-        ngOvhSsoAuthModalPlugin,
         ngOvhSwimmingPoll,
         ngOvhTelecomUniverseComponents,
         ngPaginationFront,
@@ -183,7 +175,6 @@ export default async (containerEl, shellClient) => {
         ngOvhPaymentMethod,
         ngOvhUiRouterBreadcrumb,
         ngOvhUiRouterLayout,
-        isTopLevelApplication() ? ngOvhUiRouterLineProgress : null,
         ngOvhUiRouterTitle,
         ngOvhContact,
         ngOvhLineDiagnostics,
@@ -194,19 +185,15 @@ export default async (containerEl, shellClient) => {
         ngOvhUiConfirmModal,
         'ovh-api-services',
         'ovh-ng-input-password',
-        ovhManagerAccountSidebar,
         ovhManagerAccountMigration,
         ovhManagerBetaPreference,
         registerCoreModule(environment, coreCallbacks),
-        isTopLevelApplication() ? ovhManagerCookiePolicy : null,
         ovhManagerDashboard,
         ovhManagerFreefax,
-        ovhManagerNavbar,
         ovhManagerOverTheBox,
         ovhManagerServerSidebar,
         ovhManagerSms,
         ovhManagerTelecomTask,
-        ovhNotificationsSidebar,
         'oui',
         'pascalprecht.translate',
         popoverUtils,
@@ -248,16 +235,6 @@ export default async (containerEl, shellClient) => {
 
         $compileProvider.debugInfoEnabled(telecomConfig.env !== 'prod');
         $logProvider.debugEnabled(telecomConfig.env !== 'prod');
-      },
-    )
-    .config(
-      /* @ngInject */ (ssoAuthModalPluginFctProvider) => {
-        ssoAuthModalPluginFctProvider.setOnLogout(() => {
-          shellClient.auth.logout();
-        });
-        ssoAuthModalPluginFctProvider.setOnReload(() => {
-          shellClient.navigation.reload();
-        });
       },
     )
     .config(
@@ -438,9 +415,7 @@ export default async (containerEl, shellClient) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          if (isTopLevelApplication()) {
-            detachPreloader();
-          } else {
+          if (!isTopLevelApplication()) {
             shellClient.ux.hidePreloader();
           }
           $rootScope.$broadcast('app:started');

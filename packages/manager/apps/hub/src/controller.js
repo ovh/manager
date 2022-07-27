@@ -1,5 +1,4 @@
 import { isString } from 'lodash-es';
-import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import { getShellClient } from './shell';
 
 export default class HubController {
@@ -22,19 +21,12 @@ export default class HubController {
     this.chatbotEnabled = false;
     this.coreConfig = coreConfig;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
-    this.isTopLevelApplication = isTopLevelApplication();
     this.shell = getShellClient();
     this.isAccountSidebarVisible = false;
     this.liveChatService = liveChatService;
   }
 
   async $onInit() {
-    this.navbarOptions = {
-      universe: this.coreConfig.getUniverse(),
-      toggle: {
-        event: 'sidebar:loaded',
-      },
-    };
     this.currentLanguage = this.coreConfig.getUserLanguage();
     this.me = this.coreConfig.getUser();
     const unregisterListener = this.$scope.$on('app:started', () => {

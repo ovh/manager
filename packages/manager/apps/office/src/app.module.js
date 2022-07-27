@@ -5,8 +5,6 @@ import { isString, get } from 'lodash-es';
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
-import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
 import Office from '@ovh-ux/manager-office';
@@ -19,7 +17,6 @@ export default (containerEl, environment) => {
       moduleName,
       [
         registerCoreModule(environment),
-        ngOvhUiRouterLineProgress,
         ngUiRouterBreadcrumb,
         uiRouter,
         Office,
@@ -63,7 +60,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });

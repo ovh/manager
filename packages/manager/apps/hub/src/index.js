@@ -5,21 +5,11 @@ import 'regenerator-runtime/runtime';
 import { useShellClient } from '@ovh-ux/shell';
 
 import { buildURL } from '@ovh-ux/ufrontend';
-import {
-  findAvailableLocale,
-  detectUserLocale,
-  isTopLevelApplication,
-} from '@ovh-ux/manager-config';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import { BILLING_REDIRECTIONS } from './constants';
 
 import { getShellClient, setShellClient } from './shell';
 import TRACKING from './components/at-internet/at-internet.constant';
-
-if (isTopLevelApplication()) {
-  import('@ovh-ux/manager-preloader')
-    .then(({ attach }) => attach(findAvailableLocale(detectUserLocale())))
-    .catch(() => {});
-}
 
 useShellClient('hub')
   .then(async (client) => {

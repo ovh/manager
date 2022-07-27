@@ -7,8 +7,6 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerCloudConnect from '@ovh-ux/manager-cloud-connect';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
-
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -46,7 +44,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
