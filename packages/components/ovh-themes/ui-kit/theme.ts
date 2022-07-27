@@ -14,6 +14,7 @@ import Form from './components/Form';
 import Checkbox from './components/Checkbox';
 import Tabs from './components/Tabs';
 import Tile from './components/Tile';
+import Menu from './components/Menu';
 
 export default {
   styles: {
@@ -73,5 +74,6 @@ export default {
     Table,
     Tabs,
     Tile,
+    Menu,
   },
 };

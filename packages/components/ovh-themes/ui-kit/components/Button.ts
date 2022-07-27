@@ -14,11 +14,30 @@ const disabledStyles = (initialBg: string): SystemStyleObject => {
   };
 };
 
+const secondaryStyle = {
+  background: 'white',
+  color: 'uikit.500',
+  _disabled: {
+    ...disabledStyles('white'),
+  },
+  _hover: {
+    background: 'uikit.100',
+    borderColor: 'uikit.500',
+    _disabled: {
+      ...disabledStyles('white'),
+    },
+  },
+  _active: {
+    background: 'uikit.200',
+    borderColor: 'uikit.500',
+  },
+};
+
 const Button: ComponentStyleConfig = {
   baseStyle: {
     color: 'white',
     borderRadius: '6px',
-    fontWeight: '700',
+    fontWeight: '600',
     borderWidth: '2px',
     borderColor: 'uikit.500',
     _disabled: disabledStyles('uikit.500'),
@@ -74,22 +93,22 @@ const Button: ComponentStyleConfig = {
         background: 'uikit.800',
       },
     },
-    secondary: {
-      background: 'white',
-      color: 'uikit.500',
-      _disabled: {
-        ...disabledStyles('white'),
-      },
-      _hover: {
-        background: 'uikit.100',
-        borderColor: 'uikit.500',
-        _disabled: {
-          ...disabledStyles('white'),
-        },
-      },
+    secondary: secondaryStyle,
+    menu: {
+      ...secondaryStyle,
       _active: {
-        background: 'uikit.200',
-        borderColor: 'uikit.500',
+        ...secondaryStyle._active,
+        background: 'uikit.500',
+        color: 'white',
+      },
+    },
+    iconMenu: {
+      ...secondaryStyle,
+      borderRadius: '50%',
+      _active: {
+        ...secondaryStyle._active,
+        background: 'uikit.500',
+        color: 'white',
       },
     },
     ghost: {
