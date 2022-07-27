@@ -89,18 +89,18 @@ export default class DomainDnsCtrl {
       });
   }
 
-  loadTable() {
+  loadTable(forceRefresh = false) {
     this.loading.table = true;
     this.dns.table = [];
-    return this.Domain.getTabDns(this.$stateParams.productId)
-      .then((tabDns) => {
-        this.dns.table = tabDns;
-        this.dns.original = angular.copy(tabDns);
-        this.dns.activeDns = this.$filter('filter')(tabDns.dns, {
+    return this.Domain.getTabDns(this.$stateParams.productId, forceRefresh)
+      .then(({ data: tabDns }) => {
+        this.dns.table = { dns: tabDns };
+        this.dns.original = angular.copy(this.dns.table);
+        this.dns.activeDns = this.$filter('filter')(this.dns.table.dns, {
           isUsed: true,
           toDelete: false,
         }).length;
-        this.checkPendingPropagation(tabDns.dns);
+        this.checkPendingPropagation(this.dns.table.dns);
         return this.$q.all(
           map(tabDns.dns, (nameServer) =>
             this.Domain.getNameServerStatus(
