@@ -54,6 +54,7 @@ import Tabs from './components/Tabs';
 import Tile from './components/Tile';
 import Menu from './components/Menu';
 import Radio from './components/Radio';
+import Select from './components/Select';
 
 export default {
   styles: {
@@ -168,7 +169,11 @@ export default {
 >>>>>>> feat(chakra): add action menu component
 =======
     Radio,
+<<<<<<< HEAD
 >>>>>>> feat(uikit): add radio buttons theme
+=======
+    Select,
+>>>>>>> feat(theme): add select theme to chakra
   },
   radii,
   shadows,

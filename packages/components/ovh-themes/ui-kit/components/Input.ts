@@ -164,10 +164,11 @@ const invalidInputStyle: SystemStyleObject = {
 
 const readOnlyStyle: SystemStyleObject = {
   background: 'gray.50',
-        borderColor: 'transparent',
-        borderBottomColor: 'uikit.500',
+  borderColor: 'transparent',
+  borderBottomColor: 'uikit.500',
 };
 
+<<<<<<< HEAD
 const Input: ComponentMultiStyleConfig = {
 <<<<<<< HEAD
   parts: parts.keys,
@@ -193,62 +194,85 @@ const Input: ComponentMultiStyleConfig = {
   baseStyle: {
     field: {
       borderWidth: '1px',
+=======
+export const inputFieldStyles = {
+  field: {
+    borderWidth: '1px',
+    color: 'uikit.800-text',
+    fontWeight: 600,
+    _placeholder: {
+>>>>>>> feat(theme): add select theme to chakra
       color: 'uikit.800-text',
-      fontWeight: 600,
-      _placeholder: {
-        color: 'uikit.800-text',
-      },
-      _disabled: {
-        opacity: 0.5,
-        _hover: {
-          ...baseInputStyles,
-          background: 'white',
-        }
-      },
-      _readOnly: {
-        ...readOnlyStyle,
-        _hover: {
-          ...readOnlyStyle,
-        },
-        _focus: {
-          ...readOnlyStyle,
-        },
-      },
-      ...invalidInputStyle,
     },
+    _disabled: {
+      opacity: 0.5,
+      _hover: {
+        ...baseInputStyles,
+        background: 'white',
+      },
+    },
+    _readOnly: {
+      ...readOnlyStyle,
+      _hover: {
+        ...readOnlyStyle,
+      },
+      _focus: {
+        ...readOnlyStyle,
+      },
+    },
+    ...invalidInputStyle,
+  },
+};
+
+export const defaultVariantFieldStyles = {
+  field: {
+    ...baseInputStyles,
+    _hover: {
+      background: 'uikit.100',
+      borderBottomColor: 'uikit.500',
+    },
+    _focus: {
+      ...baseInputStyles,
+      borderBottomColor: 'uikit.500',
+      background: 'uikit.50',
+    },
+  },
+};
+
+export const warningVariantFieldStyles = {
+  field: {
+    ...baseInputStyles,
+    ...stateInputStyle('warning'),
+    _focus: {
+      ...stateInputStyle('warning'),
+    },
+  },
+};
+
+export const successVariantFieldStyles = {
+  field: {
+    ...baseInputStyles,
+    ...stateInputStyle('success'),
+    _focus: {
+      ...stateInputStyle('success'),
+    },
+  },
+};
+
+const Input: ComponentMultiStyleConfig = {
+  parts: ['field', 'addon'],
+  baseStyle: {
+    ...inputFieldStyles,
   },
   variants: {
     default: {
-      field: {
-        ...baseInputStyles,
-        _hover: {
-          background: 'uikit.100',
-          borderBottomColor: 'uikit.500',
-        },
-        _focus: {
-          ...baseInputStyles,
-          borderBottomColor: 'uikit.500',
-          background: 'uikit.50',
-        },
-      },
+      ...defaultVariantFieldStyles,
     },
     warning: {
-      field: {
-        ...baseInputStyles,
-        ...stateInputStyle('warning'),
-        _focus: {
-          ...stateInputStyle('warning'),
-        },
-      },
+      ...warningVariantFieldStyles,
     },
     success: {
-      field: {
-        ...baseInputStyles,
-        ...stateInputStyle('success'),
-        _focus: {
-          ...stateInputStyle('success'),
-        },
-      },
+      ...successVariantFieldStyles,
     },
   },
   defaultProps: {

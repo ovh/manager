@@ -2,6 +2,7 @@ import { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 import { selectAnatomy as parts } from '@chakra-ui/anatomy';
 
 import {
+<<<<<<< HEAD
   defaultVariantFieldStyles,
   inputFieldStyles,
   successVariantFieldStyles,
@@ -28,6 +29,27 @@ const Select: ComponentMultiStyleConfig = {
         ...iconBaseStyle(props.isInvalid),
       },
     };
+=======
+  inputFieldStyles,
+  defaultVariantFieldStyles,
+  warningVariantFieldStyles,
+  successVariantFieldStyles,
+} from './Input';
+
+const Select: ComponentMultiStyleConfig = {
+  parts: parts.keys,
+  baseStyle: {
+    ...inputFieldStyles,
+    icon: {
+      minWidth: '2rem',
+      height: '2rem',
+      margin: 0,
+      padding: 0,
+      fontSize: '2xl',
+      color: 'uikit.500',
+      right: '0.5',
+    },
+>>>>>>> feat(theme): add select theme to chakra
   },
   variants: {
     default: {
@@ -35,6 +57,7 @@ const Select: ComponentMultiStyleConfig = {
     },
     warning: {
       ...warningVariantFieldStyles,
+<<<<<<< HEAD
       icon: {
         color: 'warning.500',
       },
@@ -51,6 +74,11 @@ const Select: ComponentMultiStyleConfig = {
       field: {
         height: 'initial',
       },
+=======
+    },
+    success: {
+      ...successVariantFieldStyles,
+>>>>>>> feat(theme): add select theme to chakra
     },
   },
   defaultProps: {
