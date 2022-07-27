@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cookie-policy@1.3.0...@ovh-ux/manager-cookie-policy@1.3.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **cookie-policy:** use sources instead of build ([#7634](https://github.com/ovh/manager/issues/7634)) ([2af44da](https://github.com/ovh/manager/commit/2af44daa5c7b2640b97b1984723e79b229cb8b28))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cookie-policy@1.2.3...@ovh-ux/manager-cookie-policy@1.3.0) (2022-06-14)
 
 

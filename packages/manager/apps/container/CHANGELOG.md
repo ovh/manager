@@ -1,3 +1,12 @@
+## [0.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.7...@ovh-ux/manager-container-app@0.3.8) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump @ovh-ux/ovh-reket to 1.0.0 ([a77f2fc](https://github.com/ovh/manager/commit/a77f2fc4fa314b0b69f17674c84a585f42b8a6db))
+
+
+
 ## [0.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.6...@ovh-ux/manager-container-app@0.3.7) (2022-07-19)
 
 

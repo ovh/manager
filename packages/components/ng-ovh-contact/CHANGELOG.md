@@ -1,3 +1,13 @@
+## [5.1.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.1.2...@ovh-ux/ng-ovh-contact@5.1.3) (2022-07-27)
+
+
+### Bug Fixes
+
+* **contact:** replace $resource call using iceberg ([e46eaaf](https://github.com/ovh/manager/commit/e46eaaf3e5f004eede27c07d89080e00fb456715))
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
 ## [5.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.1.1...@ovh-ux/ng-ovh-contact@5.1.2) (2022-06-07)
 
 

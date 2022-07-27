@@ -1,3 +1,12 @@
+## [7.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@7.1.4...@ovh-ux/manager-freefax-app@7.1.5) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
 ## [7.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@7.1.3...@ovh-ux/manager-freefax-app@7.1.4) (2022-06-07)
 
 

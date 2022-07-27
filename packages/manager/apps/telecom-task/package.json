@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-task-app",
-  "version": "6.6.0",
+  "version": "6.6.1",
   "private": true,
   "description": "Telecom task standalone application.",
   "repository": {

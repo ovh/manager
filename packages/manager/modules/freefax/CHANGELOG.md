@@ -1,3 +1,13 @@
+## [7.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.5.0...@ovh-ux/manager-freefax@7.5.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+* **freefax:** import missing ovh-api-services ([304a28d](https://github.com/ovh/manager/commit/304a28d7d95e1e8ab80e7a3cde3a0faedb31dcc2))
+
+
+
 # [7.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.4.3...@ovh-ux/manager-freefax@7.5.0) (2022-06-14)
 
 

@@ -1,3 +1,12 @@
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database-app@1.6.0...@ovh-ux/manager-enterprise-cloud-database-app@1.6.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database-app@1.5.8...@ovh-ux/manager-enterprise-cloud-database-app@1.6.0) (2022-06-14)
 
 

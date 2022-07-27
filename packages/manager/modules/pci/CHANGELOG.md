@@ -1,3 +1,12 @@
+## [5.84.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.84.0...@ovh-ux/manager-pci@5.84.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
 # [5.84.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.83.1...@ovh-ux/manager-pci@5.84.0) (2022-07-18)
 
 

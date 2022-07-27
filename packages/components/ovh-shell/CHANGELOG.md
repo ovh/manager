@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.3.0...@ovh-ux/shell@1.3.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump @ovh-ux/ovh-reket to 1.0.0 ([a77f2fc](https://github.com/ovh/manager/commit/a77f2fc4fa314b0b69f17674c84a585f42b8a6db))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.2.0...@ovh-ux/shell@1.3.0) (2022-07-18)
 
 
