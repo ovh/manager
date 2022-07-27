@@ -26,7 +26,9 @@ export function IFrameApplicationRoute({
     try {
       iframeRef.current.contentWindow.location.toString();
     } catch (error) {
-      navigate('/', { replace: true });
+      if (location.pathname !== '/') {
+        navigate('/', { replace: true });
+      }
     }
   }
 

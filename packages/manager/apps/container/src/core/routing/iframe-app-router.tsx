@@ -3,6 +3,7 @@ import { Navigate, Routes, Route } from 'react-router-dom';
 import { Application } from '@ovh-ux/manager-config/types/application';
 import { ExternalApplicationRoute } from './route/external-application-route';
 import { IFrameApplicationRoute } from './route/iframe-application-route';
+import { IndexRoute } from './route/index-route';
 import { Redirections } from './redirections';
 
 export interface IFrameAppRouterProps {
@@ -82,7 +83,7 @@ export function IFrameAppRouter({
       {defaultRoute}
       {routes}
       {redirections}
-      <Route path="*" element={<Navigate to="/" replace={true} />} />
+      <Route path="*" element={<IndexRoute />} />
     </Routes>
   );
 }
