@@ -1205,5 +1205,7 @@
   "server_nutanix_cluster_node_warning_2": "Le recomendamos que realice las modificaciones de configuración directamente desde el panel de control del servidor asociado a su cluster Nutanix: {{clusterNodeDashboardLink}}",
   "server_nutanix_cluster_node_warning_3": "Puede consultar todas las acciones de facturación asociadas a este servidor en su cluster Nutanix: {{clusterDashboardLink}}",
   "server_rtm_eol_info": "Información importante sobre la obsolescencia de Real Time Monitoring: el servicio seguirá funcionando hasta el 30 de junio de 2022. A partir de esa fecha, sus datos de consumo dejarán de mostrarse, sin que ello afecte al funcionamiento de su servidor.",
-  "server_configuration_gateway_ip": "Gateway IPv4"
+  "server_configuration_gateway_ip": "Gateway IPv4",
+  "server_configuration_gateway_ipv4": "Gateway IPv4",
+  "server_configuration_gateway_ipv6": "Gateway IPv6"
 }
