@@ -4,6 +4,8 @@
 
 <div>
     <oui-stepper data-on-finish="$ctrl.add()">
+
+        <!--Regions list-->
         <oui-step-form
             data-header="{{:: 'pci_projects_project_storages_blocks_add_region_title' | translate }}"
             data-loading="$ctrl.loadings.regions"
@@ -21,6 +23,7 @@
             ></pci-project-regions-list>
         </oui-step-form>
 
+        <!--Volume types-->
         <oui-step-form
             data-header="{{:: 'pci_projects_project_storages_blocks_add_type_title' | translate }}"
             data-on-focus="$ctrl.onTypesFocus()"
@@ -78,6 +81,7 @@
             </div>
         </oui-step-form>
 
+        <!--Volume capacity-->
         <oui-step-form
             data-header="{{:: 'pci_projects_project_storages_blocks_add_size_title' | translate }}"
             data-loading="$ctrl.loadings.size"
@@ -103,13 +107,33 @@
                     data-translate="pci_projects_project_storages_blocks_add_size_unit"
                 ></span>
 
-                <p
-                    data-translate="pci_projects_project_storages_blocks_add_submit_price_text"
-                    data-translate-values="{ price: $ctrl.estimatedPrice.monthly.text }"
-                ></p>
+                <!--Additional info-->
+                <div class="mb-2" data-ng-if="$ctrl.selectedVolumeAddon.blobs">
+
+                    <!--Bandwidth-->
+                    <p class="m-0"
+                       data-ng-if=":: $ctrl.isHighSpeedGen2Volume()"
+                       data-translate="pci_projects_project_storages_blocks_add_size_bandwidth"
+                       data-translate-values="{ bandwidth: $ctrl.computeBandwidthToAllocate() }"
+                    ></p>
+
+                    <!--IOPS High Speed Gen2-->
+                    <p class="m-0"
+                       data-ng-if=":: $ctrl.isHighSpeedGen2Volume()"
+                       data-translate="pci_projects_project_storages_blocks_add_size_iops"
+                       data-translate-values="{ iops: $ctrl.computeIopsToAllocate() }"
+                    ></p>
+
+                    <!--Price estimation-->
+                    <p data-translate="pci_projects_project_storages_blocks_add_submit_price_text"
+                       data-translate-values="{ price: $ctrl.estimatedPrice.monthly.text }"
+                    ></p>
+
+                </div>
             </oui-field>
         </oui-step-form>
 
+        <!--Container name-->
         <oui-step-form
             data-header="{{:: 'pci_projects_project_storages_blocks_add_name_title' | translate }}"
             data-editable="!$ctrl.loadings.save"
@@ -126,6 +150,7 @@
             </oui-field>
         </oui-step-form>
 
+        <!--Container config validation-->
         <oui-step-form
             data-header="{{:: 'pci_projects_project_storages_blocks_add_submit_title' | translate }}"
             data-submit-text="{{:: 'pci_projects_project_storages_blocks_add_submit_label' | translate }}"
