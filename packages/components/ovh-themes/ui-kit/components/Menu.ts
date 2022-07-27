@@ -6,9 +6,6 @@ import { menuAnatomy as parts } from "@chakra-ui/anatomy"
 const Menu: ComponentStyleConfig = {
   parts: parts.keys, // button, item, list, groupTitle, command, divider
   baseStyle: {
-    button: {
-      borderRadius: '50%',
-    },
     list: {
       minWidth: '8.75rem',
       maxWidth: '18.75rem',
@@ -65,6 +62,11 @@ const Menu: ComponentStyleConfig = {
   },
   variants: {
     compact: {
+      button: {
+        borderRadius: '50%',
+        width: '1.5rem',
+        height: '1.5rem',
+      },
       list: {
         marginTop: 0,
         _before: {
