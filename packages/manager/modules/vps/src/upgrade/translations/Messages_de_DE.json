@@ -57,5 +57,7 @@
   "vps_upgrade_summary_price_monthly_engaged_without_payment_method_one_month": "Wenn Sie diese Auswahl bestätigen, werden Sie zu einem Bestellschein weitergeleitet. Dort können Sie den fälligen zusätzlichen Betrag von {{ price }} für den verbleibenden Monat Ihres Abonnements bezahlen.",
   "vps_upgrade_summary_price_monthly_engaged_without_payment_method_many_month": "Wenn Sie diese Auswahl bestätigen, werden Sie zu einem Bestellschein weitergeleitet. Dort können Sie den fälligen zusätzlichen Betrag von {{ price }} für die verbleibenden {{monthCount }} Monate Ihres Abonnements bezahlen.",
   "vps_upgrade_summary_price_upfront": "Wenn Sie diese Auswahl bestätigen, werden Sie zu einem Bestellschein weitergeleitet. Dort können Sie den anteiligen Betrag von {{ price }} bezahlen, der zusätzlich fällig wird.",
-  "vps_upgrade_new_configuration_refresh_time": "Nachdem Ihre Zahlung entgegengenommen wurde, wird die neue Konfiguration in ungefähr zwei Stunden aktiv. Um sie nutzen zu können, müssen Sie Ihren VPS neu starten."
+  "vps_upgrade_new_configuration_refresh_time": "Nachdem Ihre Zahlung entgegengenommen wurde, wird die neue Konfiguration in ungefähr zwei Stunden aktiv. Um sie nutzen zu können, müssen Sie Ihren VPS neu starten.",
+  "vps_upgrade_fail_vps_in_rescue_info": "Ihr VPS befindet sich im Rescue-Modus. Ein Wechsel zu einem umfangreicheren Angebot ist daher nicht möglich.",
+  "vps_upgrade_fail_vps_in_rescue_action": "Bitte deaktivieren Sie den Rescue-Modus und starten Sie Ihren VPS neu."
 }

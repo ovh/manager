@@ -13,6 +13,8 @@ export default /* @ngInject */ function($stateProvider) {
         vpsUpgrade.getUpgrade(serviceName, planCode, {
           quantity: 1,
         }),
+      getRebootLink: /* @ngInject */ ($state) => () =>
+        $state.href('vps.detail.dashboard.reboot'),
       performUpscale: /* @ngInject */ (
         defaultPaymentMethod,
         serviceName,

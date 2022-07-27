@@ -16,5 +16,7 @@
   "vps_dashboard_tile_configuration_upgrade_no_payment_method_success": "Votre demande a bien été prise en compte. L'upgrade démarrera une fois le paiement du bon de commande suivant <a target=\"_blank\" rel=\"noopener\" href=\"{{ href }}\">{{ orderId }}</a> reçu.",
   "vps_dashboard_tile_configuration_upgrade_error": "Une erreur est survenue lors de l'amélioration de votre VPS.",
   "vps_dashboard_tile_configuration_upgrade_catched_error": "Ce VPS n'est pas compatible pour le plan demandé ou vous avez déjà une demande d'upgrade en cours pour ce VPS.",
-  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK"
+  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_info": "Vous ne pouvez pas faire évoluer votre VPS vers une offre supérieure car celui-ci est actuellement en mode rescue.",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_action": "Merci de bien vouloir redémarrer votre VPS au préalable en désactivant le mode rescue."
 }

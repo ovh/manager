@@ -37,12 +37,19 @@ export default class {
         );
       })
       .catch((error) => {
-        this.goBackToMigrate(
-          `${this.$translate.instant(
+        let errorMessage;
+        if (error?.status === 400 && this.stateVps.state === 'rescued') {
+          errorMessage = `${this.$translate.instant(
+            'vps_dashboard_migrate_fail_vps_in_rescue_info',
+          )} <a href="${this.getRebootLink()}">${this.$translate.instant(
+            'vps_dashboard_migrate_fail_vps_in_rescue_action',
+          )}</a>`;
+        } else {
+          errorMessage = `${this.$translate.instant(
             'vps_dashboard_migrate_confirm_error',
-          )} ${get(error, 'data.message')}`,
-          'error',
-        );
+          )} ${get(error, 'data.message')}`;
+        }
+        this.goBackToMigrate(errorMessage, 'error');
       })
       .finally(() => {
         this.loading = false;

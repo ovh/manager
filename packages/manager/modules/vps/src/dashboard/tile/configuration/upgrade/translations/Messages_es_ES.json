@@ -16,5 +16,7 @@
   "vps_dashboard_tile_configuration_upgrade_error": "Se ha producido un error al mejorar su VPS.",
   "vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront": "Al hacer clic en «Confirmar y pagar», deberá abonar un importe total de {{ price }} total correspondiente al período restante del compromiso.",
   "vps_dashboard_tile_configuration_upgrade_catched_error": "Este VPS no es compatible con el plan solicitado o ya hay registrada una solicitud de mejora (upgrade) para este VPS.",
-  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK"
+  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_info": "No es posible pasar a un modelo superior de VPS, ya que el servidor está actualmente en modo de rescate.",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_action": "Por favor, reinicie el VPS desactivando previamente el modo de rescate."
 }
