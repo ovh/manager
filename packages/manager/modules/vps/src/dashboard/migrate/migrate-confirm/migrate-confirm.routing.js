@@ -13,6 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
       selectedPlan: /* @ngInject */ ($transition$) => {
         return $transition$.params().selectedPlan;
       },
+      getRebootLink: /* @ngInject */ ($state) => () =>
+        $state.href('vps.detail.dashboard.reboot'),
       migrationConfirmTrackingPrefix: /* @ngInject */ (
         vpsMigration,
         selectedPlan,

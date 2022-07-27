@@ -5,7 +5,7 @@
     dismissable="true"
     on-dismiss="$ctrl.errorMessage = null;"
 >
-    <span data-ng-bind="$ctrl.errorMessage"></span>
+    <span data-ng-bind-html="$ctrl.errorMessage"></span>
 </oui-message>
 
 <section id="upscaleSection" class="container-fluid mt-4 ml-4">

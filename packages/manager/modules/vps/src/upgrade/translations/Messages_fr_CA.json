@@ -57,5 +57,7 @@
   "vps_upgrade_summary_price_monthly_engaged_without_payment_method_one_month": "En validant ce choix, vous serez redirigé(e) vers un bon de commande pour régler la somme supplémentaire de {{ price }} pour le mois restant de votre engagement.",
   "vps_upgrade_summary_price_monthly_engaged_without_payment_method_many_month": "En validant ce choix, vous serez redirigé(e) vers un bon de commande pour régler la somme supplémentaire de {{ price }} pour les {{ monthCount }} mois restants de votre engagement.",
   "vps_upgrade_summary_price_upfront": "En validant ce choix, vous serez redirigé(e) vers un bon de commande pour régler la somme de {{ price }} due du prorata temporis.",
-  "vps_upgrade_new_configuration_refresh_time": "Dès acceptation de votre paiement, un délai d’environ deux heures est nécessaire pour que la nouvelle configuration soit active. Un redémarrage de votre VPS sera requis pour en bénéficier."
+  "vps_upgrade_new_configuration_refresh_time": "Dès acceptation de votre paiement, un délai d’environ deux heures est nécessaire pour que la nouvelle configuration soit active. Un redémarrage de votre VPS sera requis pour en bénéficier.",
+  "vps_upgrade_fail_vps_in_rescue_info": "Vous ne pouvez pas faire évoluer votre VPS vers une offre supérieure car celui-ci est actuellement en mode rescue.",
+  "vps_upgrade_fail_vps_in_rescue_action": "Merci de bien vouloir redémarrer votre VPS au préalable en désactivant le mode rescue."
 }

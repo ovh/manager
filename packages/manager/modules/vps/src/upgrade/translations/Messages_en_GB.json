@@ -57,5 +57,7 @@
   "vps_upgrade_summary_price_monthly_engaged_without_payment_method_one_month": "By confirming this choice, you will be redirected to a purchase order to pay the additional amount of {{ price }}, for the remaining month of your subscription period.",
   "vps_upgrade_summary_price_monthly_engaged_without_payment_method_many_month": "By confirming this choice, you will be redirected to a purchase order to pay the additional amount of {{ price }}, for the remaining {{ monthCount }} months of your subscription period.",
   "vps_upgrade_summary_price_upfront": "By confirming this choice, you will be redirected to a purchase order to pay a sum of {{ price }}, due on a pro rata basis.",
-  "vps_upgrade_new_configuration_refresh_time": "Once your payment has been accepted, you will need to wait approximately 2 hours for the new configuration to be applied. You will then need to reboot your VPS."
+  "vps_upgrade_new_configuration_refresh_time": "Once your payment has been accepted, you will need to wait approximately 2 hours for the new configuration to be applied. You will then need to reboot your VPS.",
+  "vps_upgrade_fail_vps_in_rescue_info": "You cannot upgrade your VPS to a higher solution, as it is currently in rescue mode.",
+  "vps_upgrade_fail_vps_in_rescue_action": "Please reboot your VPS beforehand by disabling rescue mode."
 }
