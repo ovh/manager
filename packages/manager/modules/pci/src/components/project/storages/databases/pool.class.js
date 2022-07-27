@@ -12,6 +12,7 @@ export default class Pool {
     userId,
     userName,
     port,
+    sslMode,
   }) {
     Object.assign(this, {
       databaseId,
@@ -26,6 +27,7 @@ export default class Pool {
       userId,
       userName,
       port,
+      sslMode,
     });
   }
 
