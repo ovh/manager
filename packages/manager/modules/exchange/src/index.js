@@ -2,6 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 import '@ovh-ux/ng-at-internet';
+import '@ovh-ux/ng-ovh-user-pref';
 
 import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -25,6 +26,7 @@ angular
     'ui.router',
     'oc.lazyLoad',
     'ngAtInternet',
+    'ngOvhUserPref',
   ])
   .config(
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {

@@ -49,7 +49,7 @@
     "jsurl": "0.1.5",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^14.0.6",
+    "ovh-api-services": "^15.0.0",
     "ovh-ui-kit-bs": "^4.1.5"
   }
 }

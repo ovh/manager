@@ -9,7 +9,6 @@ import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerOtb from '@ovh-ux/manager-overthebox';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
 
@@ -49,7 +48,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });

@@ -6,7 +6,6 @@ export default /* @ngInject */ function TelephonyMediator(
   $http,
   iceberg,
   OvhApiTelephony,
-  TelephonyVoipService,
   TelephonyGroup,
   TelephonyGroupFax,
   TelephonyGroupLine,

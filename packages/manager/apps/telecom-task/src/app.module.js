@@ -8,8 +8,6 @@ import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerTelecomTask from '@ovh-ux/manager-telecom-task';
 
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
-
 export default (containerEl, environment) => {
   const moduleName = 'telecomTaskApp';
   angular
@@ -29,7 +27,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });

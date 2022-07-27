@@ -44,7 +44,7 @@
     "@ovh-ux/component-rollup-config": "^11.0.0 || ^12.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.10",
+    "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/translate-async-loader": "^1.0.8",
     "@ovh-ux/ui-kit": "^6.1.0",
     "angular": "^1.5.0",
@@ -53,7 +53,7 @@
     "bs4": "twbs/bootstrap#v4.0.0-beta",
     "flag-icon-css": "^3.2.1",
     "moment": "^2.20.1",
-    "ovh-api-services": "^14.0.6",
+    "ovh-api-services": "^15.0.0",
     "ui-select": "^0.19.8"
   }
 }

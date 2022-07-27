@@ -12,7 +12,6 @@ import { isString, get } from 'lodash-es';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import '@ovh-ux/manager-pci';
 
@@ -64,7 +63,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });

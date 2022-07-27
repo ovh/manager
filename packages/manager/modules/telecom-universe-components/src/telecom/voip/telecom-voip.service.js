@@ -27,7 +27,6 @@ import groupBy from 'lodash/groupBy';
  *    and their services in one API call. It's used for example to display sidebar menu.</p>
  *  <p>This will be used to replace telecom/telephony factories
  *    and services like it has been done in a bad way :-)</p>
- *  <p>Groups cache will be removed and everything will be refreshed by APIv7 calls.</p>
  */
 export default class {
   /* @ngInject */
@@ -45,8 +44,7 @@ export default class {
    *  Fetch all (billing accounts and associated services) of connected user.
    *
    *  @param {Boolean} [withError=true]   Either return billingAccounts and services
-   *                                      with error or not. Should be replaced with better filters
-   *                                      when APIv7 will be able to filter by status code (SOON!!).
+   *                                      with error or not.
    *
    *  @return {Promise} That returns all services grouped by billing accounts.
    */

@@ -8,8 +8,6 @@ import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
-
 import './index.scss';
 
 export default (containerEl, environment) => {
@@ -58,7 +56,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });

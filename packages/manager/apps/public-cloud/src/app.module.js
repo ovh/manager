@@ -16,21 +16,14 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 import isString from 'lodash/isString';
 
-import navbar from '@ovh-ux/manager-navbar';
-import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
-import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
-import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
-import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -78,20 +71,14 @@ export default async (containerEl, shellClient) => {
         darkMode,
         ngAnimate,
         ngUiRouterBreadcrumb,
-        isTopLevelApplication() ? ngUiRouterLineProgress : null,
         ngOvhApiWrappers,
         ngOvhFeatureFlipping,
         ngOvhPaymentMethod,
-        ngOvhSsoAuthModalPlugin,
         ngOvhUserPref,
-        navbar,
         'oui',
-        ovhManagerAccountSidebar,
         registerCoreModule(environment, coreCallbacks),
-        isTopLevelApplication() ? ovhManagerCookiePolicy : null,
         ovhManagerMfaEnrollment,
         ovhManagerPci,
-        ovhNotificationsSidebar,
         uiRouter,
       ].filter(isString),
     ) // Remove null because __NG_APP_INJECTIONS__ can be null
@@ -99,16 +86,6 @@ export default async (containerEl, shellClient) => {
     .service('publicCloud', service)
     .config(
       /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
-    )
-    .config(
-      /* @ngInject */ (ssoAuthModalPluginFctProvider) => {
-        ssoAuthModalPluginFctProvider.setOnLogout(() => {
-          shellClient.auth.logout();
-        });
-        ssoAuthModalPluginFctProvider.setOnReload(() => {
-          shellClient.navigation.reload();
-        });
-      },
     )
     .config(
       /* @ngInject */ (ssoAuthenticationProvider) => {
@@ -219,9 +196,7 @@ export default async (containerEl, shellClient) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          if (isTopLevelApplication()) {
-            detachPreloader();
-          } else {
+          if (!isTopLevelApplication()) {
             shellClient.ux.hidePreloader();
           }
           $rootScope.$broadcast('app:started');

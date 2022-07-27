@@ -4,8 +4,6 @@ import has from 'lodash/has';
 import isString from 'lodash/isString';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
-import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import Anthos from '@ovh-ux/manager-anthos';
 import errorPage from './error';
@@ -20,7 +18,6 @@ export default (containerEl, environment) => {
       moduleName,
       [
         registerCoreModule(environment),
-        ngOvhUiRouterLineProgress,
         ngUiRouterBreadcrumb,
         uiRouter,
         errorPage,
@@ -39,7 +36,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
