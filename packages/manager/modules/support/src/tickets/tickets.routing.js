@@ -1,5 +1,3 @@
-import component from './tickets.component';
-
 export const state = {
   name: 'support.tickets',
   params: {
@@ -72,7 +70,7 @@ export const state = {
   },
   url: '/tickets?archived&filters&pageNumber&pageSize&sortBy&sortOrder',
   views: {
-    'support@support': component.name,
+    'support@support': 'supportTicketsDataGrid',
   },
 };
 
