@@ -1205,5 +1205,7 @@
   "server_nutanix_cluster_node_warning_2": "Wir empfehlen Ihnen, Ihre Konfiguration direkt im Dashboard des Servers zu bearbeiten, der mit Ihrem Nutanix-Cluster verbunden ist. Zum Dashboard: {{clusterNodeDashboardLink}}",
   "server_nutanix_cluster_node_warning_3": "Alle mit diesem Server verbundenen Abrechnungen sehen Sie in Ihrem Nutanix-Cluster: {{clusterDashboardLink}}",
   "server_rtm_eol_info": "Wichtige Informationen zur Einstellung des veralterten Dienstes Real Time Monitoring. Dieser Dienst wird nur noch bis zum 30. Juni 2022 betrieben. Nach diesem Datum wird die Anzeige der Daten Ihrer Nutzung eingestellt. Dies hat keine Auswirkungen auf den Betrieb Ihres Servers.",
-  "server_configuration_gateway_ip": "IPv4 Gateway"
+  "server_configuration_gateway_ip": "IPv4 Gateway",
+  "server_configuration_gateway_ipv4": "IPv4 Gateway",
+  "server_configuration_gateway_ipv6": "IPv6 Gateway"
 }
