@@ -44,16 +44,19 @@ const secondaryStyle = {
     borderColor: 'uikit.500',
   },
 };
+<<<<<<< HEAD
 =======
   };
 };
 >>>>>>> feat: separate tags and badges
+=======
+>>>>>>> feat(chakra): add action menu component
 
 const Button: ComponentStyleConfig = {
   baseStyle: {
     color: 'white',
     borderRadius: '6px',
-    fontWeight: '700',
+    fontWeight: '600',
     borderWidth: '2px',
     borderColor: 'uikit.500',
     _disabled: disabledStyles('uikit.500'),
@@ -141,25 +144,23 @@ const Button: ComponentStyleConfig = {
         background: 'uikit.800',
       },
     },
-    secondary: {
-      background: 'white',
-      color: 'uikit.500',
-      _disabled: {
-        ...disabledStyles('white'),
-      },
-      _hover: {
-        background: 'uikit.100',
-        borderColor: 'uikit.500',
-        _disabled: {
-          ...disabledStyles('white'),
-        },
+    secondary: secondaryStyle,
+    menu: {
+      ...secondaryStyle,
+      _active: {
+        ...secondaryStyle._active,
+        background: 'uikit.500',
+        color: 'white',
       },
     },
     iconMenu: {
       ...secondaryStyle,
       borderRadius: '50%',
       _active: {
+<<<<<<< HEAD
         // eslint-disable-next-line no-underscore-dangle
+=======
+>>>>>>> feat(chakra): add action menu component
         ...secondaryStyle._active,
         background: 'uikit.500',
         color: 'white',

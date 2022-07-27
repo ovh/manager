@@ -52,6 +52,7 @@ import Form from './components/Form';
 import Checkbox from './components/Checkbox';
 import Tabs from './components/Tabs';
 import Tile from './components/Tile';
+import Menu from './components/Menu';
 
 export default {
   styles: {
@@ -158,7 +159,11 @@ export default {
 >>>>>>> feat(tabs): add tabs to chakra theme
 =======
     Tile,
+<<<<<<< HEAD
 >>>>>>> feat(theme): add tile
+=======
+    Menu,
+>>>>>>> feat(chakra): add action menu component
   },
   radii,
   shadows,
