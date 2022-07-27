@@ -1,6 +1,6 @@
 import React from 'react';
 import { startApplication } from './core';
 
-const Home = React.lazy(() => import('./home'));
+import App from './pages/App';
 
-startApplication('dedicated', Home);
+startApplication('dedicated', App);
