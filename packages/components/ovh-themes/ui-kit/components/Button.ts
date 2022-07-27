@@ -56,7 +56,7 @@ const Button: ComponentStyleConfig = {
   baseStyle: {
     color: 'white',
     borderRadius: '6px',
-    fontWeight: '600',
+    fontWeight: '700',
     borderWidth: '2px',
     borderColor: 'uikit.500',
     _disabled: disabledStyles('uikit.500'),
@@ -148,6 +148,7 @@ const Button: ComponentStyleConfig = {
     menu: {
       ...secondaryStyle,
       _active: {
+        // eslint-disable-next-line no-underscore-dangle
         ...secondaryStyle._active,
         background: 'uikit.500',
         color: 'white',
@@ -158,9 +159,13 @@ const Button: ComponentStyleConfig = {
       borderRadius: '50%',
       _active: {
 <<<<<<< HEAD
+<<<<<<< HEAD
         // eslint-disable-next-line no-underscore-dangle
 =======
 >>>>>>> feat(chakra): add action menu component
+=======
+        // eslint-disable-next-line no-underscore-dangle
+>>>>>>> feat(uikit): add radio buttons theme
         ...secondaryStyle._active,
         background: 'uikit.500',
         color: 'white',

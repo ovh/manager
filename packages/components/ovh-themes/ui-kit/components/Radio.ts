@@ -26,6 +26,10 @@ const controlStyles = {
   },
   _disabled: {
     ...applyContainerStyleColor('uikit.500'),
+<<<<<<< HEAD
+=======
+    color: 'uikit.800-text',
+>>>>>>> feat(uikit): add radio buttons theme
     _hover: {
       ...applyContainerStyleColor('uikit.500'),
     },
@@ -53,6 +57,10 @@ const controlStyles = {
 };
 
 const labelStyles = {
+<<<<<<< HEAD
+=======
+  color: 'uikit.800-text',
+>>>>>>> feat(uikit): add radio buttons theme
   _checked: {
     fontWeight: 700,
   },
@@ -72,6 +80,7 @@ const Radio: ComponentMultiStyleConfig = {
     control: controlStyles,
     label: labelStyles,
   },
+<<<<<<< HEAD
   sizes: {
     md: {
       control: {
@@ -95,6 +104,8 @@ const Radio: ComponentMultiStyleConfig = {
       },
     },
   },
+=======
+>>>>>>> feat(uikit): add radio buttons theme
   defaultProps: {
     colorScheme: 'uikit',
   },
