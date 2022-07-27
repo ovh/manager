@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
         currentFlavor: /* @ngInject */ (getCurrentFlavor) => getCurrentFlavor(),
         flavors: /* @ngInject */ (database, engine) =>
           engine.getRegion(database.version, database.plan, database.region)
-            .flavors,
+            .availableFlavors,
         onNodeUpgrade: /* @ngInject */ (goBackAndPoll) => goBackAndPoll,
       },
       atInternet: {
