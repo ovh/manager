@@ -1,3 +1,13 @@
+## [1.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.11.1...@ovh-ux/manager-support@1.11.2) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+* **support:** import missing dependency ([98beb55](https://github.com/ovh/manager/commit/98beb5579565733af402963ae6fa0a889c0114ae))
+
+
+
 ## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.11.0...@ovh-ux/manager-support@1.11.1) (2022-07-07)
 
 

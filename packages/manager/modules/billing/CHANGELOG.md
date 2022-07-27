@@ -1,3 +1,12 @@
+# [0.16.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.8...@ovh-ux/manager-billing@0.16.0-alpha.9) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
 # [0.16.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.7...@ovh-ux/manager-billing@0.16.0-alpha.8) (2022-07-18)
 
 

@@ -1,3 +1,12 @@
+## [7.12.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.12.2...@ovh-ux/ng-ovh-telecom-universe-components@7.12.3) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
 ## [7.12.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.12.1...@ovh-ux/ng-ovh-telecom-universe-components@7.12.2) (2022-06-30)
 
 

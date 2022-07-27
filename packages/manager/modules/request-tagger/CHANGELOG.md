@@ -1,3 +1,12 @@
+## [1.1.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-request-tagger@1.1.4...@ovh-ux/ng-ovh-request-tagger@1.1.5) (2022-07-27)
+
+
+### Bug Fixes
+
+* **request-tagger:** remove APIv7 reference ([7057990](https://github.com/ovh/manager/commit/705799059e782ee8f6aaaf0b15ba3df17bd18bb4))
+
+
+
 ## [1.1.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-request-tagger@1.1.3...@ovh-ux/ng-ovh-request-tagger@1.1.4) (2022-03-04)
 
 

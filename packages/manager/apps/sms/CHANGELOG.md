@@ -1,3 +1,12 @@
+## [7.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.6.3...@ovh-ux/manager-sms-app@7.6.4) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
 ## [7.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.6.2...@ovh-ux/manager-sms-app@7.6.3) (2022-06-07)
 
 

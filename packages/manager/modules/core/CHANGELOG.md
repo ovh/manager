@@ -1,3 +1,12 @@
+## [12.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.12.0...@ovh-ux/manager-core@12.12.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **core:** remove APIv7 references ([b380930](https://github.com/ovh/manager/commit/b380930236beee1401ce102b35ecd4a768bebf94))
+
+
+
 # [12.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.11.0...@ovh-ux/manager-core@12.12.0) (2022-06-14)
 
 

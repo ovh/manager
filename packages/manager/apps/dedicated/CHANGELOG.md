@@ -1,3 +1,12 @@
+## [17.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.23.0...@ovh-ux/manager-dedicated@17.23.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
 # [17.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.22.5...@ovh-ux/manager-dedicated@17.23.0) (2022-07-19)
 
 

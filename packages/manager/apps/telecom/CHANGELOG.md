@@ -1,3 +1,13 @@
+## [13.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.1...@ovh-ux/manager-telecom@13.43.2) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+* **telecom:** remove unused APIv7 references ([ee34238](https://github.com/ovh/manager/commit/ee3423860ef87331b086bdf0b19fac8850944c05))
+
+
+
 ## [13.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.0...@ovh-ux/manager-telecom@13.43.1) (2022-07-19)
 
 

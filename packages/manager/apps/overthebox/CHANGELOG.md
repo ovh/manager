@@ -1,3 +1,12 @@
+## [5.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.7.0...@ovh-ux/manager-overthebox-app@5.7.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
 # [5.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.6.7...@ovh-ux/manager-overthebox-app@5.7.0) (2022-06-14)
 
 

@@ -1,3 +1,13 @@
+## [3.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.5.3...@ovh-ux/manager-exchange@3.5.4) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+* **exchange:** add missing import ([f68885a](https://github.com/ovh/manager/commit/f68885aa53c0f1545102f3d5350a8f85b559592e))
+
+
+
 ## [3.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.5.2...@ovh-ux/manager-exchange@3.5.3) (2022-07-07)
 
 

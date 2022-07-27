@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emaildomain-app",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.0.4",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
-    "@ovh-ux/ng-ovh-payment-method": "^9.2.0",
+    "@ovh-ux/ng-ovh-payment-method": "^9.2.2",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.4",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.6.1",

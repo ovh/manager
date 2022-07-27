@@ -1,3 +1,13 @@
+## [16.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.15.0...@ovh-ux/manager-web@16.15.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+* **web:** remove APIv7 reference ([6a670b9](https://github.com/ovh/manager/commit/6a670b964a6adf34464168e67209445d27c80269))
+
+
+
 # [16.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.14.1...@ovh-ux/manager-web@16.15.0) (2022-06-14)
 
 
