@@ -17,6 +17,7 @@ import Tile from './components/Tile';
 import Menu from './components/Menu';
 import Radio from './components/Radio';
 import Select from './components/Select';
+import Textarea from './components/Textarea';
 
 export default {
   styles: {
@@ -79,5 +80,6 @@ export default {
     Menu,
     Radio,
     Select,
+    Textarea,
   },
 };
