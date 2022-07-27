@@ -16,6 +16,7 @@ import Tabs from './components/Tabs';
 import Tile from './components/Tile';
 import Menu from './components/Menu';
 import Radio from './components/Radio';
+import Select from './components/Select';
 
 export default {
   styles: {
@@ -77,5 +78,6 @@ export default {
     Tile,
     Menu,
     Radio,
+    Select,
   },
 };
