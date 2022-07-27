@@ -55,6 +55,7 @@ import Tile from './components/Tile';
 import Menu from './components/Menu';
 import Radio from './components/Radio';
 import Select from './components/Select';
+import Textarea from './components/Textarea';
 
 export default {
   styles: {
@@ -173,7 +174,11 @@ export default {
 >>>>>>> feat(uikit): add radio buttons theme
 =======
     Select,
+<<<<<<< HEAD
 >>>>>>> feat(theme): add select theme to chakra
+=======
+    Textarea,
+>>>>>>> feat(uikit): add textarea theme
   },
   radii,
   shadows,
