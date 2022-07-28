@@ -47,6 +47,13 @@ const Select: ComponentMultiStyleConfig = {
       },
     },
   },
+  sizes: {
+    md: {
+      field: {
+        height: 'initial',
+      },
+    },
+  },
   defaultProps: {
     variant: 'default',
   },

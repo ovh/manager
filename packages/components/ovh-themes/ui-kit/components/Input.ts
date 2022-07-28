@@ -1,17 +1,16 @@
 // eslint-disable-next-line prettier/prettier
+import { inputAnatomy as parts } from "@chakra-ui/anatomy"
 import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 import type { SystemStyleObject } from '@chakra-ui/theme-tools';
 
 // The properties couldn't be put in the baseStyles
 // They seem to be overidden by the variants and not merged
 const commonInputStyles: SystemStyleObject = {
-  //px: '0.25rem',
-  //py: '0.25rem',
   boxShadow: 'none',
   borderRadius: 'small small 0 0',
   lineHeight: 1.25,
+  minHeight: '2rem',
   padding: '.313rem .25rem',
-  //height: '2.2rem',
 };
 
 const baseInputStyles: SystemStyleObject = {
@@ -23,10 +22,10 @@ const stateInputStyle = (
   state: 'error' | 'warning' | 'success',
 ): SystemStyleObject => {
   return {
+    ...commonInputStyles,
     background: `${state}.100`,
     borderColor: `${state}.300`,
     borderBottomColor: `${state}.500`,
-    ...commonInputStyles,
   };
 };
 
@@ -44,20 +43,21 @@ const invalidInputStyle: SystemStyleObject = {
 
 const readOnlyStyle: SystemStyleObject = {
   background: 'gray.50',
-  borderBottomColor: 'uikit.500',
-  borderColor: 'transparent',
+  borderColor: 'transparent transparent uikit.500 transparent',
+  cursor: 'not-allowed',
 };
 
 export const inputFieldStyles = {
   field: {
     borderWidth: '1px',
     color: 'uikit.800-text',
-    fontWeight: 600,
+    fontWeight: 400,
     _placeholder: {
       color: 'uikit.800-text',
       fontWeight: 500,
     },
     _disabled: {
+      cursor: 'not-allowed',
       opacity: 0.5,
       _hover: {
         ...baseInputStyles,
@@ -113,7 +113,7 @@ export const successVariantFieldStyles = {
 };
 
 const Input: ComponentMultiStyleConfig = {
-  parts: ['field', 'addon'],
+  parts: parts.keys,
   baseStyle: {
     ...inputFieldStyles,
   },

@@ -80,10 +80,18 @@ const Radio: ComponentMultiStyleConfig = {
         borderWidth: '.125rem',
         height: '1rem',
         width: '1rem',
-        _checked:{
+        _checked: {
           _before: {
             height: '.5rem',
             width: '.5rem',
+          },
+        },
+        _disabled: {
+          _checked: {
+            _before: {
+              height: '.5rem',
+              width: '.5rem',
+            },
           },
         },
       },
