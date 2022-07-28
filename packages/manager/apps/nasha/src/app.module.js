@@ -16,7 +16,6 @@ import ovhManagerFilters from '@ovh-ux/manager-filters';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
-import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import 'ovh-api-services';
 
 import './index.scss';
@@ -33,7 +32,6 @@ export default (containerEl, environment) => {
         ngUiRouterBreadcrumb,
         ngOvhUtils,
         ngUiRouterLayout,
-        ngUiRouterLineProgress,
         registerCoreModule(environment),
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
