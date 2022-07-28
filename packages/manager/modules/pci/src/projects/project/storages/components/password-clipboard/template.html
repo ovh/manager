@@ -9,6 +9,8 @@
             data-ng-attr-name="{{:: $ctrl.SECRET_KEY_INPUT_ID}}"
             data-ng-attr-type="{{ passwordClipboard.isText ? 'text' : 'password' }}"
             data-ng-value="$ctrl.fieldSecretKeyValue"
+            data-ng-click="$ctrl.onClipboardClick()"
+            data-oui-tooltip="{{ $ctrl.model.tooltipText }}"
             readonly
         />
         <button
@@ -26,7 +28,7 @@
             type="button"
             class="oui-button ml-1"
             aria-label="{{:: 'pci_projects_project_storages_components_password_clipboard_label_copy_to_clipboard' | translate }}"
-            data-ng-if="$ctrl.secretKeyClipboard"
+            data-ng-if="$ctrl.model.clipboard"
             data-ng-attr-id="{{:: $ctrl.SECRET_KEY_CLIPBOARD_BTN_ID}}"
             data-clipboard-text="{{:: $ctrl.fieldSecretKeyValue}}"
         >
