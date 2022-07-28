@@ -74,6 +74,21 @@ const Radio: ComponentMultiStyleConfig = {
     control: controlStyles,
     label: labelStyles,
   },
+  sizes: {
+    md: {
+      control: {
+        borderWidth: '.125rem',
+        height: '1rem',
+        width: '1rem',
+        _checked:{
+          _before: {
+            height: '.5rem',
+            width: '.5rem',
+          },
+        },
+      },
+    },
+  },
   defaultProps: {
     colorScheme: 'uikit',
   },

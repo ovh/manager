@@ -1,6 +1,6 @@
 // eslint-disable-next-line prettier/prettier
-import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 import { formAnatomy as parts } from "@chakra-ui/anatomy"
+import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 
 
 const Form: ComponentMultiStyleConfig = {
@@ -8,9 +8,9 @@ const Form: ComponentMultiStyleConfig = {
   baseStyle: {
     helperText: {
       color: 'uikit.700',
-      lineHeight: '1rem',
       fontSize: 'xs',
       fontWeight: 500,
+      lineHeight: '1rem',
       margin: '.25rem 0',
     }
   }

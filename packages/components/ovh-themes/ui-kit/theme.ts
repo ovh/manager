@@ -24,43 +24,41 @@ export default {
     global: {
       '*': {
         fontFamily: 'Source Sans Pro',
+        letterSpacing: '0.12px',
       },
       'h1, h2, h3, h4, h5, h6': {
         color: 'uikit.800',
         lineHeight: 1.5,
       },
       h1: {
-        fontWeight: 300,
         fontSize: '7xl',
+        fontWeight: 300,
       },
       h2: {
-        fontWeight: 300,
         fontSize: '5xl',
+        fontWeight: 300,
       },
       h3: {
-        fontWeight: 400,
         fontSize: '4xl',
+        fontWeight: 400,
       },
       h4: {
-        fontWeight: 400,
         fontSize: '1.75rem',
+        fontWeight: 400,
       },
       h5: {
-        fontWeight: 700,
         fontSize: 'xl',
+        fontWeight: 700,
       },
       h6: {
-        fontWeight: 700,
         fontSize: 'lg',
+        fontWeight: 700,
       },
       'button:focus-visible': {
         outlineColor: 'green !important',
         outlineStyle: 'dashed !important',
         outlineWidth: '2px !important',
       },
-      // 'chakra-menu__menu-button > span': {
-      //   fontWeight: '700 !important',
-      // },
     },
   },
   shadows,

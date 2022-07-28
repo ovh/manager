@@ -5,12 +5,13 @@ import type { SystemStyleObject } from '@chakra-ui/theme-tools';
 // The properties couldn't be put in the baseStyles
 // They seem to be overidden by the variants and not merged
 const commonInputStyles: SystemStyleObject = {
-  px: '0.25rem',
-  py: '0.25rem',
+  //px: '0.25rem',
+  //py: '0.25rem',
   boxShadow: 'none',
-  borderRadius: '2px 2px 0 0',
+  borderRadius: 'small small 0 0',
   lineHeight: 1.25,
-  height: '2.2rem',
+  padding: '.313rem .25rem',
+  //height: '2.2rem',
 };
 
 const baseInputStyles: SystemStyleObject = {
@@ -43,8 +44,8 @@ const invalidInputStyle: SystemStyleObject = {
 
 const readOnlyStyle: SystemStyleObject = {
   background: 'gray.50',
-  borderColor: 'transparent',
   borderBottomColor: 'uikit.500',
+  borderColor: 'transparent',
 };
 
 export const inputFieldStyles = {
@@ -54,6 +55,7 @@ export const inputFieldStyles = {
     fontWeight: 600,
     _placeholder: {
       color: 'uikit.800-text',
+      fontWeight: 500,
     },
     _disabled: {
       opacity: 0.5,
@@ -126,7 +128,15 @@ const Input: ComponentMultiStyleConfig = {
       ...successVariantFieldStyles,
     },
   },
+  sizes: {
+    md: {
+      field: {
+        height: 'initial',
+      },
+    },
+  },
   defaultProps: {
+    size: 'md',
     variant: 'default',
   },
 };

@@ -7,11 +7,11 @@ const FormError: ComponentMultiStyleConfig = {
   baseStyle: {
     text: {
       color: 'error.500',
-      fontWeight: '500',
       fontSize: 'xs',
-      margin: '.25rem 0',
-      lineHeight: '1rem',
+      fontWeight: '500',
       letterSpacing: '0.008rem',
+      lineHeight: '1rem',
+      margin: '.25rem 0',
     },
   },
 };
