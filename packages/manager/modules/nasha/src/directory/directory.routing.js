@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
           onClick: () => $state.go('nasha.order'),
         },
       }),
-      breadcrumb: () => null,
+      hideBreadcrumb: () => true,
     },
   });
 };
