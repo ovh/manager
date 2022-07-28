@@ -76,8 +76,10 @@ const Checkbox: ComponentMultiStyleConfig = {
   sizes: {
     md: {
       icon: {
-        height: 'calc(1rem - 2px)',
         width: 'calc(1rem - 2px)',
+        height: 'calc(1rem - 2px)',
+        transitionProperty: 'unset',
+        transitionDuration: 'unset'
       },
     },
   },

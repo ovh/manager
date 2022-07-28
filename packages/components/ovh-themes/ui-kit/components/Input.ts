@@ -1,7 +1,8 @@
 // eslint-disable-next-line prettier/prettier
-import { inputAnatomy as parts } from "@chakra-ui/anatomy"
 import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 import type { SystemStyleObject } from '@chakra-ui/theme-tools';
+
+import { inputAnatomy as parts } from "@chakra-ui/anatomy"
 
 // The properties couldn't be put in the baseStyles
 // They seem to be overidden by the variants and not merged
@@ -11,6 +12,7 @@ const commonInputStyles: SystemStyleObject = {
   lineHeight: 1.25,
   minHeight: '2rem',
   padding: '.313rem .25rem',
+  height: '2rem',
 };
 
 const baseInputStyles: SystemStyleObject = {
@@ -43,7 +45,8 @@ const invalidInputStyle: SystemStyleObject = {
 
 const readOnlyStyle: SystemStyleObject = {
   background: 'gray.50',
-  borderColor: 'transparent transparent uikit.500 transparent',
+  borderColor: 'gray.50',
+  borderBottomColor: 'uikit.500',
   cursor: 'not-allowed',
 };
 
@@ -128,15 +131,7 @@ const Input: ComponentMultiStyleConfig = {
       ...successVariantFieldStyles,
     },
   },
-  sizes: {
-    md: {
-      field: {
-        height: 'initial',
-      },
-    },
-  },
   defaultProps: {
-    size: 'md',
     variant: 'default',
   },
 };

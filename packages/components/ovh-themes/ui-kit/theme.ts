@@ -54,7 +54,7 @@ export default {
         fontSize: 'lg',
         fontWeight: 700,
       },
-      'button:focus-visible': {
+      'button:focus-visible, a:focus-visible': {
         outlineColor: 'green !important',
         outlineStyle: 'dashed !important',
         outlineWidth: '2px !important',
