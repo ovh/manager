@@ -18,6 +18,17 @@
             </oui-guide-menu-item>
         </oui-guide-menu>
     </oui-header>
+    <oui-header
+        heading="{{ :: $ctrl.container.name }}"
+        data-ng-if="!$ctrl.archive"
+    ></oui-header>
+    <!--return to conatiner-->
+    <oui-back-button
+        data-ng-if="!$ctrl.archive"
+        data-on-click="$ctrl.goToStorageContainers()"
+        data-previous-page="{{:: 'pci_projects_project_storages_containers_container_back_button_label' | translate }}"
+    >
+    </oui-back-button>
 
     <!--Banner messages sections-->
     <section>
