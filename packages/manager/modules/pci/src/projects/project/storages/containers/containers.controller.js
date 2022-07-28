@@ -24,6 +24,16 @@ export default class PciStoragesContainersController {
     this.criteria = getCriteria('id', this.containerId);
     this.publicToggleLoading = false;
     this.hasHighPerformanceStorage = this.hasHighPerformanceStorage();
+    this.columnsParameters = [
+      {
+        name: 'id',
+        hidden: !this.archive,
+      },
+      {
+        name: 'state',
+        hidden: !this.archive,
+      },
+    ];
   }
 
   onPublicToggle(container) {
@@ -72,5 +82,9 @@ export default class PciStoragesContainersController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  isSwiftType(container) {
+    return !this.archive && !container.s3StorageType;
   }
 }
