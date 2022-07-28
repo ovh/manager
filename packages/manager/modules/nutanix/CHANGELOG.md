@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.3.0...@ovh-ux/manager-nutanix@1.3.1) (2022-07-28)
+
+
+### Bug Fixes
+
+* **nutanix:** modify content of nutanix redeploy ([#7478](https://github.com/ovh/manager/issues/7478)) ([dce58f7](https://github.com/ovh/manager/commit/dce58f7cf881d968cf16b261ba5c9f09de44131c))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.2.3...@ovh-ux/manager-nutanix@1.3.0) (2022-07-19)
 
 
