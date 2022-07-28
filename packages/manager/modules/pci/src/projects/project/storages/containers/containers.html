@@ -39,6 +39,7 @@
         ></cui-message-container>
 
         <oui-datagrid
+            data-columns-parameters="$ctrl.columnsParameters"
             data-rows="$ctrl.containers"
             criteria="$ctrl.criteria"
             on-criteria-change="$ctrl.onListParamsChange($criteria)"
@@ -56,6 +57,14 @@
                     data-ng-bind="::$value"
                     class="text-truncate"
                 ></a>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pci_projects_project_storages_containers_id_label' | translate"
+                data-property="id"
+                data-type="string"
+                data-sortable
+                data-filterable
+            >
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_region_label' | translate"
@@ -123,7 +132,7 @@
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-on-click="$ctrl.onPublicToggle($row)"
-                    data-ng-if="!$row.s3StorageType"
+                    data-ng-if="$ctrl.isSwiftType($row)"
                 >
                     <span
                         data-translate="pci_projects_project_storages_containers_switch_to_private_label"
@@ -142,6 +151,20 @@
                     ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
+            <oui-datagrid-column
+                data-title=":: 'pci_projects_project_storages_containers_public_label' | translate"
+                data-property="state"
+                data-sortable
+                data-filterable
+            >
+                <oui-switch
+                    model="$value"
+                    disabled="$row.id === $ctrl.loadingContainer"
+                    on-change="$ctrl.onPublicToggle($row)"
+                    data-ng-if="!$row.isHighPerfStorage"
+                >
+                </oui-switch>
+            </oui-datagrid-column>
 
             <oui-datagrid-topbar>
                 <button
