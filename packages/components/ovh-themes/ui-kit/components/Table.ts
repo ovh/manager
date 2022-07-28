@@ -44,17 +44,14 @@ const Table: ComponentMultiStyleConfig = {
   sizes: {
     md: {
       table: {
-        fontSize: '1rem',
+        fontSize: 'md',
       },
       td: {
         height: '2.5rem',
-        paddingTop: 0,
-        paddingRight: '.5rem',
-        paddingBottom: 0,
-        paddingLeft: '.5rem',
+        padding: '0 .5rem',
       },
       th: {
-        fontSize: '1rem',
+        fontSize: 'md',
         height: '2.625rem',
         padding: '.25rem .5rem',
       },

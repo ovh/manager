@@ -24,7 +24,6 @@ export default {
     global: {
       '*': {
         fontFamily: 'Source Sans Pro',
-        fontWeight: 400,
       },
       'h1, h2, h3, h4, h5, h6': {
         color: 'uikit.800',
@@ -59,6 +58,9 @@ export default {
         outlineStyle: 'dashed !important',
         outlineWidth: '2px !important',
       },
+      // 'chakra-menu__menu-button > span': {
+      //   fontWeight: '700 !important',
+      // },
     },
   },
   shadows,

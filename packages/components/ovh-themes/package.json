@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/manager-themes",
   "version": "0.0.0",
+  "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "scripts": {

@@ -17,6 +17,9 @@ const controlBaseStyle: SystemStyleObject = {
     _checked: {
       background: 'error.500',
     },
+    _hover: {
+      borderColor: 'error.500',
+    }
   },
   _disabled: {
     borderColor: 'uikit.500',
@@ -67,7 +70,15 @@ const Checkbox: ComponentMultiStyleConfig = {
     control: controlBaseStyle,
     label: labelBaseStyle,
   },
+  variants: {
+    default: {
+      icon: {
+        fontSize: '0.9rem',
+      },
+    },
+  },
   defaultProps: {
+    variant: 'default',
     colorScheme: 'uikit',
   },
 };
