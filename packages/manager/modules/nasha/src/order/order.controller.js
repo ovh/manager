@@ -68,19 +68,24 @@ export default class NashaOrderController {
   }
 
   finish() {
+    const { pricing } = this.payment.value;
+    const includeDuration =
+      pricing.duration !== 'P1M' && pricing.interval !== 1;
+    const products = [
+      {
+        productId: PRODUCT_ID,
+        planCode: this.plan.planCode,
+        quantity: 1,
+        pricingMode: this.payment.value.pricingMode,
+        ...(includeDuration && { duration: pricing.duration }),
+        configuration: [
+          { label: 'datacenter', values: [this.datacenter.value] },
+        ],
+      },
+    ];
+
     return this.$window.open(
-      `${this.expressOrderUrl}${`?products=${JSURL.stringify([
-        {
-          productId: PRODUCT_ID,
-          planCode: this.plan.planCode,
-          pricingMode: this.payment.value.pricingMode,
-          quantity: 1,
-          duration: this.payment.value.pricing.duration,
-          configuration: [
-            { label: 'datacenter', values: [this.datacenter.value] },
-          ],
-        },
-      ])}`}`,
+      `${this.expressOrderUrl}?products=${JSURL.stringify(products)}`,
       '_blank',
     );
   }
