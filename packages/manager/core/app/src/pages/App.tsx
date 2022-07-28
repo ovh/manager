@@ -16,8 +16,9 @@ export default function App(): JSX.Element {
       <div>Breadcrumb</div>
       <Routes>
         <Route path="vps">
+          <Route index element={<Navigate to="/vps/1" />} />
           <Route
-            index
+            path=":page"
             element={
               <Suspense fallback="">
                 <Listing />
@@ -32,14 +33,17 @@ export default function App(): JSX.Element {
               </Suspense>
             }
           />
-          <Route
-            path=":serviceId"
-            element={
-              <Suspense fallback="">
-                <Dashboard />
-              </Suspense>
-            }
-          />
+          <Route path="details">
+            <Route index element={<Navigate to="/vps" />} />
+            <Route
+              path=":serviceId"
+              element={
+                <Suspense fallback="">
+                  <Dashboard />
+                </Suspense>
+              }
+            />
+          </Route>
         </Route>
         <Route index element={<Navigate to="/vps" />} />
         <Route path="*" element={<div>404 page</div>} />
