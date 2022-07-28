@@ -4,10 +4,12 @@
     <oui-message class="mb-2" type="warning" dismissable>
         <div data-translate="nutanix_redeploy_warning_info_1"></div>
         <div data-translate="nutanix_redeploy_warning_info_2"></div>
-        <div data-translate="nutanix_redeploy_warning_info_3"></div>
-        <div data-translate="nutanix_redeploy_warning_info_4"></div>
-        <div data-translate="nutanix_redeploy_warning_info_5"></div>
-        <div data-translate="nutanix_redeploy_warning_info_6"></div>
+        <ul>
+            <li data-translate="nutanix_redeploy_warning_info_3"></li>
+            <li data-translate="nutanix_redeploy_warning_info_4"></li>
+            <li data-translate="nutanix_redeploy_warning_info_5"></li>
+            <li data-translate="nutanix_redeploy_warning_info_6"></li>
+        </ul>
     </oui-message>
     <oui-stepper current-index="$ctrl.activeStep">
         <oui-step-form
@@ -45,12 +47,12 @@
             <ul class="list-unstyled">
                 <li>
                     <span
-                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL + ' :'"
+                        data-translate="nutanix_redeploy_prism_central"
                     ></span>
                     <ul>
                         <li class="align-bottom">
                             <span
-                                data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_TYPE + ' :'"
+                                data-ng-bind="('nutanix_redeploy_prism_central_type'| translate) + ' :'"
                             ></span>
                             <span
                                 class="font-weight-bold text-capitalize"
@@ -64,7 +66,7 @@
                         </li>
                         <li class="align-bottom">
                             <span
-                                data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_VIP + ' :'"
+                                data-ng-bind="('nutanix_redeploy_prism_central_vip' | translate) + ' :'"
                             ></span>
                             <span
                                 class="font-weight-bold"
@@ -78,7 +80,7 @@
                         </li>
                         <li class="align-bottom">
                             <span
-                                data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_IP + ' :'"
+                                data-ng-bind="('nutanix_redeploy_prism_central_ip' | translate) + ' :'"
                             ></span>
                             <span
                                 data-ng-if="$ctrl.initalConfig.prismCentral.ips.length > 0"
@@ -95,7 +97,7 @@
                 </li>
                 <li class="align-bottom">
                     <span
-                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_ELEMENT_VIP + ' :'"
+                        data-ng-bind="('nutanix_redeploy_prism_element_vip' | translate) + ' :'"
                     ></span>
                     <span
                         class="font-weight-bold"
@@ -109,7 +111,7 @@
                 </li>
                 <li class="align-bottom">
                     <span
-                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.GATEWAY_CIDR + ' :'"
+                        data-ng-bind="('nutanix_redeploy_gateway_CIDR' | translate) + ' :'"
                     ></span>
                     <span
                         class="font-weight-bold"
@@ -123,7 +125,7 @@
                 </li>
                 <li class="align-bottom">
                     <span
-                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.REPLICATION_FACTOR + ' :'"
+                        data-ng-bind="('nutanix_redeploy_replication_factor' | translate) + ' :'"
                     ></span>
                     <span
                         class="font-weight-bold"
@@ -137,7 +139,7 @@
                 </li>
                 <li class="align-bottom">
                     <span
-                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.ERASURE_CODING + ' :'"
+                        data-ng-bind="('nutanix_redeploy_erasure_coding' | translate) + ' :'"
                     ></span>
                     <span
                         class="font-weight-bold"
@@ -151,7 +153,7 @@
                 </li>
                 <li class="align-bottom">
                     <span
-                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.AOS + ' :'"
+                        data-ng-bind="('nutanix_redeploy_aos' | translate) + ' :'"
                     ></span>
                     <span
                         class="font-weight-bold"
@@ -187,13 +189,14 @@
                         <oui-field
                             data-error-messages="{ 
                                 ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
-                                uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate)
+                                uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate),
+                                pattern: ('nutanix_redeploy_custom_config_ip_format_error' | translate)
                             }"
                         >
                             <label
                                 for="nodeAhvIp{{$index}}"
                                 class="ml-2 font-weight-normal"
-                                data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.NODE_AHV_IP"
+                                data-translate="nutanix_redeploy_node_ahv_ip"
                             ></label>
                             <input
                                 class="oui-input w-50 mt-1"
@@ -209,13 +212,14 @@
                         <oui-field
                             data-error-messages="{ 
                                 ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
-                                uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate)
+                                uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate),
+                                pattern: ('nutanix_redeploy_custom_config_ip_format_error' | translate)
                             }"
                         >
                             <label
                                 for="nodeCvmIp{{$index}}"
                                 class="ml-2 font-weight-normal"
-                                data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.NODE_CVM_IP"
+                                data-translate="nutanix_redeploy_node_cvm_ip"
                             ></label>
                             <input
                                 class="oui-input w-50 mt-1"
@@ -232,7 +236,7 @@
                 </div>
                 <div class="mb-3">
                     <h5
-                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.REPLICATION_FACTOR"
+                        data-translate="nutanix_redeploy_replication_factor"
                     ></h5>
                     <p
                         data-translate="nutanix_redeploy_replication_description"
@@ -247,9 +251,7 @@
                     ></oui-select-picker>
                 </div>
                 <div class="mb-3">
-                    <h5
-                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.ERASURE_CODING"
-                    ></h5>
+                    <h5 data-translate="nutanix_redeploy_erasure_coding"></h5>
                     <p
                         data-translate="nutanix_redeploy_erasure_coding_description"
                     ></p>
@@ -269,25 +271,26 @@
                         data-translate="nutanix_redeploy_prism_central_description"
                     ></p>
                     <oui-field
-                        data-label="{{:: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_TYPE}}"
+                        data-label="{{:: 'nutanix_redeploy_prism_central_type' | translate}}"
                         data-label-popover="{{:: 'nutanix_redeploy_prism_central_type_description' | translate}}"
                     >
                         <oui-select
                             class="w-50 mt-1"
                             data-name="prismCentralType"
-                            data-title="{{:: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_TYPE }}"
-                            data-placeholder="{{::$ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_TYPE }}"
+                            data-title="{{:: 'nutanix_redeploy_prism_central_type' | translate}}"
+                            data-placeholder="{{:: 'nutanix_redeploy_prism_central_type' | translate}}"
                             data-model="$ctrl.config.prismCentral.type"
                             data-items="$ctrl.prismCentralTypes"
                             data-on-change="$ctrl.onPrismCentralTypeChange(modelValue)"
                         ></oui-select>
                     </oui-field>
                     <oui-field
-                        data-label="{{:: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_VIP}}"
+                        data-label="{{:: 'nutanix_redeploy_prism_central_vip' | translate}}"
                         data-label-popover="{{:: 'nutanix_redeploy_prism_central_virtual_ip_description' | translate}}"
                         data-error-messages="{ 
                             ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
-                            uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate)
+                            uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate),
+                            pattern: ('nutanix_redeploy_custom_config_ip_format_error' | translate)
                         }"
                     >
                         <input
@@ -307,7 +310,7 @@
                         <div class="row ml-1 mb-2">
                             <label
                                 class="oui-field__label"
-                                data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_IP"
+                                data-translate="nutanix_redeploy_prism_central_ip"
                             ></label>
                             <button
                                 type="button"
@@ -350,7 +353,7 @@
                 </div>
                 <div class="mb-3">
                     <h5
-                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_ELEMENT_VIP"
+                        data-translate="nutanix_redeploy_prism_element_vip"
                     ></h5>
                     <p
                         data-translate="nutanix_redeploy_prism_element_vip_description"
@@ -358,7 +361,8 @@
                     <oui-field
                         data-error-messages="{ 
                             ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
-                            uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate)
+                            uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate),
+                            pattern: ('nutanix_redeploy_custom_config_ip_format_error' | translate)
                         }"
                     >
                         <input
@@ -374,9 +378,7 @@
                     </oui-field>
                 </div>
                 <div class="mb-3">
-                    <h5
-                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.GATEWAY_CIDR"
-                    ></h5>
+                    <h5 data-translate="nutanix_redeploy_gateway_CIDR"></h5>
                     <p
                         data-translate="nutanix_redeploy_prism_element_gateway_cidr_description"
                     ></p>
@@ -393,7 +395,7 @@
                     </oui-field>
                 </div>
                 <div class="mb-3">
-                    <h5 data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.AOS"></h5>
+                    <h5 data-translate="nutanix_redeploy_aos"></h5>
                     <p
                         data-translate="nutanix_redeploy_prism_element_aos_description"
                     ></p>

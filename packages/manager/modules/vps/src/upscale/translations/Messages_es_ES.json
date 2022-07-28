@@ -45,5 +45,7 @@
   "vps_upscale_elite_upgrade_success_monthly_with_payment_method": "La configuración se ha modificado correctamente. Deberá abonar un importe de {{ price }} equivalente a la parte proporcional al período restante del mes en curso.",
   "vps_upscale_elite_upgrade_success_upfront_with_payment_method": "La configuración se ha modificado correctamente. Deberá abonar un importe de {{ price }} correspondiente al período restante del compromiso.",
   "vps_upscale_elite_upgrade_success_without_payment_method": "La <a class=\"oui-link\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">orden de pedido</a> se ha generado correctamente. La configuración se modificará una vez realizado el pago.",
-  "vps_upscale_elite_upgrade_error": "Se ha producido un error al modificar la configuración."
+  "vps_upscale_elite_upgrade_error": "Se ha producido un error al modificar la configuración.",
+  "vps_upscale_fail_vps_in_rescue_info": "No es posible pasar a un modelo superior de VPS, ya que el servidor está actualmente en modo de rescate.",
+  "vps_upscale_fail_vps_in_rescue_action": "Por favor, reinicie el VPS desactivando previamente el modo de rescate."
 }

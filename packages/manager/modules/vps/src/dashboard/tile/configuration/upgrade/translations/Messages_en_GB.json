@@ -16,5 +16,7 @@
   "vps_dashboard_tile_configuration_upgrade_error": "An error has occurred upgrading your VPS.",
   "vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront": "By clicking “Confirm and pay”, you will be billed a total of {{ price }} for the remaining period of your contract.",
   "vps_dashboard_tile_configuration_upgrade_catched_error": "This VPS is not compatible with the plan selected, or you already have an ongoing upgrade request for this VPS.",
-  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK"
+  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_info": "You cannot upgrade your VPS to a higher solution, as it is currently in rescue mode.",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_action": "Please reboot your VPS beforehand by disabling rescue mode."
 }

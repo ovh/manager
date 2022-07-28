@@ -24,5 +24,7 @@
   "vps_upgrade_summary_price_monthly_engaged_without_payment_method_one_month": "Po zatwierdzeniu tego wyboru zostaniesz przekierowany do zamówienia, abyś mógł zrealizować dodatkową płatność w wysokości {{price}} za dni miesiąca pozostałe do końca umowy.",
   "vps_upgrade_summary_price_monthly_engaged_without_payment_method_many_month": "Po zatwierdzeniu tego wyboru zostaniesz przekierowany do zamówienia, abyś mógł zrealizować dodatkową płatność w wysokości {{price}} za {{ monthCount }} miesiące/cy pozostałe/łych do końca umowy.",
   "vps_upgrade_summary_price_upfront": "Po zatwierdzeniu tego wyboru zostaniesz przekierowany do zamówienia, abyś mógł zrealizować płatność w wysokości {{price}} za dni miesiąca pozostałe do końca umowy.",
-  "vps_upgrade_new_configuration_refresh_time": "Nowa konfiguracja stanie się aktywna po około dwóch godzinach od zaksięgowania Twojej płatności. Konieczne jest również zrestartowanie VPS."
+  "vps_upgrade_new_configuration_refresh_time": "Nowa konfiguracja stanie się aktywna po około dwóch godzinach od zaksięgowania Twojej płatności. Konieczne jest również zrestartowanie VPS.",
+  "vps_upgrade_fail_vps_in_rescue_info": "Nie możesz zmienić oferty VPS na wyższą, ponieważ znajduje się on obecnie w trybie rescue.",
+  "vps_upgrade_fail_vps_in_rescue_action": "Prosimy o ponowne uruchomienie serwera VPS poprzez wyłączenie trybu rescue."
 }

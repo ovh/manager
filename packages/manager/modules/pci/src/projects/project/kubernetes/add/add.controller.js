@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import some from 'lodash/some';
 
 import Datacenter from '../../../../components/project/regions-list/datacenter.class';
-import { KUBE_CONTAINER_MESSAGES, READY_STATUS } from './add.constants';
+import { KUBE_CONTAINER_MESSAGES } from './add.constants';
 
 export default class {
   /* @ngInject */
@@ -14,7 +14,6 @@ export default class {
     CucCloudMessage,
     Kubernetes,
     OvhApiCloudProjectKube,
-    Poller,
   ) {
     this.$translate = $translate;
     this.$q = $q;
@@ -22,7 +21,6 @@ export default class {
     this.CucCloudMessage = CucCloudMessage;
     this.Kubernetes = Kubernetes;
     this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
-    this.Poller = Poller;
 
     this.KUBE_CONTAINER_MESSAGES = KUBE_CONTAINER_MESSAGES;
   }
@@ -93,9 +91,6 @@ export default class {
       this.cluster.network.gateway,
       options,
     )
-      .then((response) =>
-        this.checkKubernetesStatus(this.projectId, response.data.id),
-      )
       .then(() =>
         this.goBack(this.$translate.instant('kubernetes_add_success')),
       )
@@ -121,22 +116,6 @@ export default class {
       .finally(() => {
         this.isAdding = false;
       });
-  }
-
-  checkKubernetesStatus(serviceName, kubeId) {
-    this.OvhApiCloudProjectKube.v6().resetQueryCache();
-    this.OvhApiCloudProjectKube.v6().resetCache();
-    return this.Poller.poll(
-      `/cloud/project/${serviceName}/kube/${kubeId}`,
-      {},
-      {
-        method: 'get',
-        retryMaxAttempts: 6,
-        successRule: {
-          status: READY_STATUS,
-        },
-      },
-    );
   }
 
   loadFlavors(region) {

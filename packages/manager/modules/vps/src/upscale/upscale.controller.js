@@ -375,6 +375,23 @@ export default class UpscaleController {
     );
   }
 
+  handleError(error, isEliteUpgrade, messages) {
+    if (error?.status === 400 && this.vps.state === 'rescued') {
+      this.errorMessage = `${this.$translate.instant(
+        'vps_upscale_fail_vps_in_rescue_info',
+      )} <a href="${this.getRebootLink()}">${this.$translate.instant(
+        'vps_upscale_fail_vps_in_rescue_action',
+      )}</a>`;
+    } else {
+      const errorMessage = isEliteUpgrade
+        ? this.$translate.instant(messages.eliteUpgrade)
+        : this.$translate.instant(messages.normalUpgrade);
+
+      this.errorMessage = `${errorMessage} ${get(error, 'data.message')}`;
+    }
+    this.scrollToTop();
+  }
+
   fetchUpscaleInformation(_planCode) {
     this.loading.getUpscaleInformation = true;
     let planCode = _planCode;
@@ -394,18 +411,16 @@ export default class UpscaleController {
           this.connectedUser.language,
         );
       })
-      .catch((error) => {
-        const errorMessage = UpscaleController.isRangeElite(
-          this.range.formattedName,
-        )
-          ? this.$translate.instant(
-              'vps_upscale_get_configuration_information_error',
-            )
-          : this.$translate.instant('vps_upscale_get_information_error');
-
-        this.errorMessage = `${errorMessage} ${get(error, 'data.message')}`;
-        this.scrollToTop();
-      })
+      .catch((error) =>
+        this.handleError(
+          error,
+          UpscaleController.isRangeElite(this.range.formattedName),
+          {
+            eliteUpgrade: 'vps_upscale_get_configuration_information_error',
+            normalUpgrade: 'vps_upscale_get_information_error',
+          },
+        ),
+      )
       .finally(() => {
         this.loading.getUpscaleInformation = false;
       });
@@ -483,17 +498,12 @@ export default class UpscaleController {
           }),
         );
       })
-      .catch((error) => {
-        let errorMessage = this.$translate.instant('vps_upscale_error');
-        if (this.isEliteUpgrade) {
-          errorMessage = this.$translate.instant(
-            'vps_upscale_elite_upgrade_error',
-          );
-        }
-
-        this.errorMessage = `${errorMessage} ${get(error, 'data.message')}`;
-        this.scrollToTop();
-      })
+      .catch((error) =>
+        this.handleError(error, this.isEliteUpgrade, {
+          eliteUpgrade: 'vps_upscale_elite_upgrade_error',
+          normalUpgrade: 'vps_upscale_error',
+        }),
+      )
       .finally(() => {
         this.loading.performUpscale = false;
       });

@@ -19,6 +19,8 @@ export default class Region {
       .sort((a, b) => b.compare(a));
     this.hasSufficientQuota = true;
     this.isDefault = some(availability, 'default');
+
+    this.availableFlavors = this.flavors.filter((f) => !f.isDeprecated);
   }
 
   hasEnoughQuota() {
