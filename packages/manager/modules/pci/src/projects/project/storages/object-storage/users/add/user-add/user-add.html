@@ -7,7 +7,6 @@
         data-secondary-label="{{:: 'pci_projects_project_users_add_cancel_label' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
         data-primary-disabled="!$ctrl.canUserBeCreated()"
-        data-secondary-disabled="$ctrl.disable"
         data-loading="$ctrl.isLoading"
     >
         <p
@@ -23,9 +22,7 @@
                 data-translate="pci_projects_project_users_add_existing_user"
             ></span>
         </oui-radio>
-        <oui-field data-ng-if="$ctrl.isUserLinkedModeActive()"
-                   data-size="xl"
-        >
+        <oui-field data-ng-if="$ctrl.isUserLinkedModeActive()" data-size="xl">
             <oui-select
                 data-name="userList"
                 data-model="$ctrl.userModel"
@@ -51,9 +48,10 @@
                 data-translate="pci_projects_project_users_add_create_user"
             ></span>
         </oui-radio>
-        <oui-field data-ng-if="$ctrl.isUserCreationModeActive()"
-                   data-label="{{:: 'pci_projects_project_users_add_description_label' | translate }}"
-                   data-size="xl"
+        <oui-field
+            data-ng-if="$ctrl.isUserCreationModeActive()"
+            data-label="{{:: 'pci_projects_project_users_add_description_label' | translate }}"
+            data-size="xl"
         >
             <input
                 class="oui-input"
