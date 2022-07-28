@@ -74,6 +74,10 @@ export default class CreateLinkedUserController {
     );
   }
 
+  isUsersListSelectable() {
+    return this.users.length && !this.userModel.linkedMode.credential;
+  }
+
   canGenerateS3CredentialModeLinked() {
     const { isInProgress, credential, selected } = this.userModel.linkedMode;
     return !isInProgress && !credential && selected;

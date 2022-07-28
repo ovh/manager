@@ -48,7 +48,7 @@
             <div class="d-flex align-items-center">
                 <oui-select
                     class="w-100 mr-2"
-                    data-disabled="!$ctrl.users.length"
+                    data-disabled="!$ctrl.isUsersListSelectable()"
                     data-items="$ctrl.usersCredentials"
                     data-match="userNameDescriptionKey"
                     data-name="userNameDescriptionKey"
