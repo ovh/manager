@@ -1,44 +1,41 @@
-
 // eslint-disable-next-line prettier/prettier
 import type { ComponentStyleConfig } from '@chakra-ui/theme';
 import { alertAnatomy as parts } from "@chakra-ui/anatomy"
 
-const computeContainerColors = (props: any) => {
+const computeContainerStyle = (props: any) => {
   const { status } = props;
+
+  let containerStyle;
   switch (status) {
     case 'success': {
-      return {
-        container: {
-          background: 'success.300',
-          color: 'success.500',
-        }
+      containerStyle = {
+        background: 'success.300',
+        color: 'success.500',
       };
+      break;
     }
     case 'warning': {
-      return {
-        container: {
-          background: 'warning.300',
-          color: 'warning.500',
-        }
+      containerStyle = {
+        background: 'warning.300',
+        color: 'warning.500',
       };
+      break;
     }
     case 'error': {
-      return {
-        container: {
-          background: 'error.300',
-          color: 'error.500',
-        }
+      containerStyle = {
+        background: 'error.300',
+        color: 'error.500',
       };
+      break;
     }
     case 'info':
     default:
-      return {
-        container: {
-          background: 'uikit.100',
-          color: 'uikit.800-text',
-        }
+      containerStyle = {
+        background: 'uikit.100',
+        color: 'uikit.800-text',
       };
   }
+  return { container: containerStyle };
 }
 
 const Alert: ComponentStyleConfig = {
@@ -46,26 +43,22 @@ const Alert: ComponentStyleConfig = {
   baseStyle: {
     container: {
       borderRadius: '0.5rem',
-      fontSize: '1rem',
-      fontWeight: 400,
+      fontSize: '16px',
       margin: '0 0 1rem',
       padding: '1rem 1.5rem',
     },
     icon: {
-      lineHeight: 1,
-      display: 'block',
-      fontSize: '1rem',
+      height: '1.5rem',
       marginLeft: '-0.5rem',
       width: '1.5rem',
-      height: '1.5rem',
     },
   },
   variants: {
-    uikit: computeContainerColors,
+    uikit: computeContainerStyle,
   },
   defaultProps: {
-    variant: 'uikit',
     colorScheme: 'uikit',
+    variant: 'uikit',
   },
 };
 
