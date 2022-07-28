@@ -24,6 +24,7 @@ export default class PciUsersAddController {
     this.isLoading = false;
     this.addExistingUser = 'addExistingUser';
     this.createNewUser = 'createNewUser';
+
     this.allUserList = this.allUserList.map((userList) => ({
       ...userList,
       asCredentials: this.usersCredentials.find(
@@ -36,6 +37,12 @@ export default class PciUsersAddController {
             'pci_projects_project_users_add_as_no_credentials',
           ),
     }));
+    this.usersWithoutCredentials = this.allUserList.filter(
+      ({ s3Credentials }) => !s3Credentials.length,
+    );
+    this.isUserCouldGenerateCredentails =
+      this.usersWithoutCredentials?.length > 0;
+
     [this.userModel] = this.allUserList;
   }
 
