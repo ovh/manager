@@ -18,9 +18,11 @@
     "start:watch": "lerna exec --stream --parallel --scope='manager-react-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.4",
     "@chakra-ui/react": "^2.2.4",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
+    "@ovh-ux/manager-config": "^6.0.0",
     "@ovh-ux/shell": "^1.0.0",
     "framer-motion": "^6.5.1",
     "i18next": "^21.8.14",
