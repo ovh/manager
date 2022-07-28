@@ -1,3 +1,20 @@
+# [5.85.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.84.1...@ovh-ux/manager-pci@5.85.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* **pci.storage.databases:** datatr-57 - deprecated availabilities ([#7571](https://github.com/ovh/manager/issues/7571)) ([4224736](https://github.com/ovh/manager/commit/42247366642c2eb2ff7afe4680b20ec37d3dccbe))
+* remove deprecated field for pool page ([#7646](https://github.com/ovh/manager/issues/7646)) ([cf6708a](https://github.com/ovh/manager/commit/cf6708afc45525e60257e0aaf121ac668c76c614))
+
+
+### Features
+
+* **kubernetes.add:** remove client pooling after the creation a container ([#7545](https://github.com/ovh/manager/issues/7545)) ([d9b3416](https://github.com/ovh/manager/commit/d9b3416e38e828958c286b52b8e6094185874df4))
+* **storages.blocks.add:** add extra info for each volume type ([#7481](https://github.com/ovh/manager/issues/7481)) ([44cde89](https://github.com/ovh/manager/commit/44cde89abade105ab8ef48e59bd46b86aa577928))
+* **storages.blocks.add:** add iops and bandwidth info ([#7426](https://github.com/ovh/manager/issues/7426)) ([bb1b890](https://github.com/ovh/manager/commit/bb1b890f72df9d00a8bd08cbe05036337a8bdd92))
+
+
+
 ## [5.84.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.84.0...@ovh-ux/manager-pci@5.84.1) (2022-07-27)
 
 

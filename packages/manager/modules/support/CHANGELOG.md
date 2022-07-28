@@ -1,3 +1,12 @@
+# [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.11.2...@ovh-ux/manager-support@1.12.0) (2022-07-28)
+
+
+### Features
+
+* **support:** align Support ticket view for US region with EU ([#7425](https://github.com/ovh/manager/issues/7425)) ([3b49cbe](https://github.com/ovh/manager/commit/3b49cbe3bdb4c3f843602dff42b6792eb3a5d0bd))
+
+
+
 ## [1.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.11.1...@ovh-ux/manager-support@1.11.2) (2022-07-27)
 
 

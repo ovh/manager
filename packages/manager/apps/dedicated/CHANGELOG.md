@@ -1,3 +1,18 @@
+# [17.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.23.1...@ovh-ux/manager-dedicated@17.24.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* **dedicated:** not able to edit ACL IP HPC ([#7567](https://github.com/ovh/manager/issues/7567)) ([d2f16ea](https://github.com/ovh/manager/commit/d2f16ea4f4947b7d404f064ba1ab71fc7009b3e9))
+
+
+### Features
+
+* **dedicated:** display the IPv6 gateway for baremetal servers ([#7565](https://github.com/ovh/manager/issues/7565)) ([eecabe9](https://github.com/ovh/manager/commit/eecabe9e84a1c0593f34e37e32ed1fd12bf9b9c7))
+* **support:** align Support ticket view for US region with EU ([#7425](https://github.com/ovh/manager/issues/7425)) ([3b49cbe](https://github.com/ovh/manager/commit/3b49cbe3bdb4c3f843602dff42b6792eb3a5d0bd))
+
+
+
 ## [17.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.23.0...@ovh-ux/manager-dedicated@17.23.1) (2022-07-27)
 
 
