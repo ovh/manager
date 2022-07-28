@@ -10,7 +10,7 @@
   "ovhManagerSupport_tickets_grid_action_goToTicket": "Details anzeigen",
   "ovhManagerSupport_ticket_serviceName_none": "Anderer Dienst",
   "ovhManagerSupport_ticket_state_closed": "Geschlossen",
-  "ovhManagerSupport_ticket_state_open": "Wird bearbeitet",
+  "ovhManagerSupport_ticket_state_open": "Wird ausgeführt",
   "ovhManagerSupport_ticket_state_unknown": "Unbekannt",
   "ovhManagerSupport_ticket_type_criticalIntervention": "Kritischer Eingriff",
   "ovhManagerSupport_ticket_type_genericRequest": "Allgemeine Anfrage",
