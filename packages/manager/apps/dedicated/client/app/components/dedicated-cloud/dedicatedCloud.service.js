@@ -6,7 +6,6 @@ import indexOf from 'lodash/indexOf';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 import isUndefined from 'lodash/isUndefined';
-import pick from 'lodash/pick';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
 import some from 'lodash/some';
@@ -791,7 +790,10 @@ class DedicatedCloudService {
           serviceName,
           networkAccessId: entry.id,
         },
-        data: pick(entry, 'description'),
+        data: {
+          description: entry.description,
+          network: entry.network,
+        },
       },
     );
   }

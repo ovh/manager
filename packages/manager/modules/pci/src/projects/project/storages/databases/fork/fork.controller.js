@@ -169,7 +169,7 @@ export default class {
 
   onRegionSelect() {
     this.model.flavor = find(
-      this.model.region.flavors,
+      this.model.region.availableFlavors,
       (flavor) => flavor.name === this.model.flavor.name,
     );
     this.onFlavorSelect();

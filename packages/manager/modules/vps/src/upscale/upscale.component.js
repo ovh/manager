@@ -8,6 +8,7 @@ export default {
     connectedUser: '<',
     defaultPaymentMethod: '<',
     getUpscaleInformation: '<',
+    getRebootLink: '<',
     performUpscale: '<',
     scrollToTop: '<',
     upscaleOptions: '<',

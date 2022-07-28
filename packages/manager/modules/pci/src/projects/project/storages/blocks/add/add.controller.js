@@ -4,6 +4,12 @@ import get from 'lodash/get';
 import BlockStorage from '../block.class';
 import Region from '../region.class';
 
+const VOLUMES_PLAN_CODE = {
+  STANDARD: 'volume.classic.consumption',
+  HIGH_SPEED: 'volume.high-speed.consumption',
+  HIGH_SPEED_GEN_2: 'volume.high-speed-gen2.consumption',
+};
+
 export default class PciBlockStorageAddController {
   /* @ngInject */
   constructor(
@@ -11,12 +17,14 @@ export default class PciBlockStorageAddController {
     $timeout,
     $translate,
     CucCloudMessage,
+    CucCurrencyService,
     PciProjectStorageBlockService,
   ) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
+    this.CucCurrencyService = CucCurrencyService;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
   }
 
@@ -109,6 +117,44 @@ export default class PciBlockStorageAddController {
 
     return (
       region && volumePlan?.regions.some(({ name }) => name === region.name)
+    );
+  }
+
+  formatVolumePrice(price) {
+    const convertPrice = this.CucCurrencyService.convertUcentsToCurrency(price);
+    const priceCurrency = this.CucCurrencyService.getCurrentCurrency();
+
+    return `${convertPrice}${priceCurrency}`;
+  }
+
+  static getAddonVolumeIopsInfo(volumeAddon) {
+    const { iops } = volumeAddon.blobs.technical.volume;
+
+    return iops.max || iops.level;
+  }
+
+  computeBandwidthToAllocate() {
+    const { bandwidth } = this.selectedVolumeAddon.blobs.technical;
+    const allocatedBandwidth = this.storage.size * bandwidth.level;
+    const maxBandwidthInMb = bandwidth.max * 1000;
+
+    return allocatedBandwidth <= maxBandwidthInMb
+      ? `${allocatedBandwidth} ${bandwidth.unit}`
+      : `${maxBandwidthInMb} ${bandwidth.unit}`;
+  }
+
+  computeIopsToAllocate() {
+    const { volume } = this.selectedVolumeAddon.blobs.technical;
+    const allocatedIops = this.storage.size * volume.iops.level;
+
+    return allocatedIops <= volume.iops.max
+      ? `${allocatedIops} ${volume.iops.unit}`
+      : `${volume.iops.max} ${volume.iops.unit}`;
+  }
+
+  isHighSpeedGen2Volume() {
+    return (
+      this.selectedVolumeAddon?.planCode === VOLUMES_PLAN_CODE.HIGH_SPEED_GEN_2
     );
   }
 

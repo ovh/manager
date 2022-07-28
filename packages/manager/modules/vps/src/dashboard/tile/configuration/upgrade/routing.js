@@ -163,17 +163,22 @@ export default /* @ngInject */ ($stateProvider) => {
         return $translate.instant(translationKey);
       },
 
+      getRebootLink: /* @ngInject */ ($state) => () =>
+        $state.href('vps.detail.dashboard.reboot'),
+
       primaryAction: /* @ngInject */ (
         $translate,
         $window,
         atInternet,
         configurationTile,
         coreURLBuilder,
+        getRebootLink,
         goBack,
         goToUpgradeSuccess,
         hasDefaultPaymentMethod,
         loaders,
         serviceName,
+        stateVps,
         upgradeInfo,
         upgradeOrderId,
         upgradeSuccess,
@@ -234,15 +239,19 @@ export default /* @ngInject */ ($stateProvider) => {
               },
             );
           })
-          .catch((error) =>
-            goBack(
-              `${$translate.instant(
-                'vps_dashboard_tile_configuration_upgrade_error',
-              )} ${get(error, 'data.message', error.message)}`,
-              'error',
-              error,
-            ),
-          )
+          .catch((error) => {
+            const errorMessage =
+              error?.status === 400 && stateVps.state === 'rescued'
+                ? `${$translate.instant(
+                    'vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_info',
+                  )} <a href="${getRebootLink()}">${$translate.instant(
+                    'vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_action',
+                  )}</a>`
+                : `${$translate.instant(
+                    'vps_dashboard_tile_configuration_upgrade_error',
+                  )} ${get(error, 'data.message', error.message)}`;
+            return goBack(errorMessage, 'error', error);
+          })
           .finally(() => {
             set(loaders, 'upgrade', false);
           });

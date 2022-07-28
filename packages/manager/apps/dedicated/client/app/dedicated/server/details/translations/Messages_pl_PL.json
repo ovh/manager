@@ -1205,5 +1205,7 @@
   "server_nutanix_cluster_node_warning_2": "Zalecamy przeprowadzenie wszystkich zmian konfiguracji bezpośrednio na dashboardzie serwera powiązanego z klastrem Nutanix: {{clusterNodeDashboardLink}}",
   "server_nutanix_cluster_node_warning_3": "Wszystkie operacje płatnicze związane z tym serwerem są widoczne w klastrze Nutanix: {{clusterDashboardLink}}",
   "server_rtm_eol_info": "Ważna informacja dotycząca usługi Real Time Monitoring - usługa będzie działać do 30 czerwca 2022. Po tym terminie wstrzymamy wyświetlanie danych dotyczących zużycia. Nie będzie to miało wpływu na działanie serwera.",
-  "server_configuration_gateway_ip": "Brama IPv4"
+  "server_configuration_gateway_ip": "Brama IPv4",
+  "server_configuration_gateway_ipv4": "Brama IPv4",
+  "server_configuration_gateway_ipv6": "Brama IPv6"
 }

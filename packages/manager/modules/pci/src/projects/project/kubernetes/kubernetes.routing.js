@@ -81,12 +81,14 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       clusterId: /* @ngInject */ ($transition$) => $transition$.params().id,
-      kubernetes: /* @ngInject */ (OvhApiCloudProjectKube, projectId) =>
-        OvhApiCloudProjectKube.v6()
+      kubernetes: /* @ngInject */ (OvhApiCloudProjectKube, projectId) => {
+        OvhApiCloudProjectKube.v6().resetQueryCache();
+        return OvhApiCloudProjectKube.v6()
           .query({
             serviceName: projectId,
           })
-          .$promise.then((kubernetes) => map(kubernetes, (id) => ({ id }))),
+          .$promise.then((kubernetes) => map(kubernetes, (id) => ({ id })));
+      },
 
       autoscaling: () => ({
         autoscale: false,

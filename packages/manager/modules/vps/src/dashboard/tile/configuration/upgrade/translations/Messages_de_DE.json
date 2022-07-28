@@ -16,5 +16,7 @@
   "vps_dashboard_tile_configuration_upgrade_error": "Bei der Erweiterung Ihres VPS ist ein Fehler aufgetreten.",
   "vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront": "Wenn Sie auf „bestätigen und bezahlen“ klicken, wird Ihnen insgesamt {{ price }} für die verbleibende Vertragslaufzeit berechnet.",
   "vps_dashboard_tile_configuration_upgrade_catched_error": "Dieser VPS ist entweder nicht mit dem angefragten Angebot kompatibel, oder Sie haben bereits ein Upgrade für diesen VPS bestellt.",
-  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK"
+  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_info": "Ihr VPS befindet sich im Rescue-Modus. Ein Wechsel zu einem umfangreicheren Angebot ist daher nicht möglich.",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_action": "Bitte deaktivieren Sie den Rescue-Modus und starten Sie Ihren VPS neu."
 }
