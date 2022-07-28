@@ -2,7 +2,7 @@
 import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 import type { SystemStyleObject } from '@chakra-ui/theme-tools';
 
-import { inputAnatomy as parts } from "@chakra-ui/anatomy"
+import { inputAnatomy as parts } from '@chakra-ui/anatomy';
 
 // The properties couldn't be put in the baseStyles
 // They seem to be overidden by the variants and not merged

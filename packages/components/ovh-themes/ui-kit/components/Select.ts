@@ -2,20 +2,19 @@ import { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 import { selectAnatomy as parts } from '@chakra-ui/anatomy';
 
 import {
-  inputFieldStyles,
   defaultVariantFieldStyles,
-  warningVariantFieldStyles,
+  inputFieldStyles,
   successVariantFieldStyles,
+  warningVariantFieldStyles,
 } from './Input';
 
 const iconBaseStyle = (isInvalid: boolean) => {
   return {
-    minWidth: '2rem',
-    height: '2rem',
-    margin: 0,
-    padding: 0,
-    fontSize: '2xl',
     color: isInvalid ? 'error.500' : 'uikit.500',
+    fontSize: '2xl',
+    margin: 0,
+    minWidth: '2rem',
+    padding: 0,
     right: '0.5',
   };
 };

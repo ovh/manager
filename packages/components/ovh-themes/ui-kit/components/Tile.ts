@@ -17,13 +17,13 @@ const tileParts = [
 
 const containerBaseStyles: SystemStyleObject = {
   background: 'white',
-  boxShadow: 'primary',
   borderWidth: '1px',
   borderColor: 'gray.100',
-  padding: '4',
   borderRadius: 'medium',
-  width: '100%',
+  boxShadow: 'primary',
   height: 'fit-content',
+  padding: '4',
+  width: '100%',
 };
 
 const headingBaseStyles: SystemStyleObject = {
@@ -39,26 +39,26 @@ const buttonStyles: SystemStyleObject = {
   ...Button.baseStyle,
   ...Button.variants?.ghost,
   boxShadow: 'none',
-  width: '100%',
   borderRadius: 0,
   display: 'flex',
   flex: 1,
-  padding: '.25rem .5rem',
+  height: '10',
   justifyContent: 'space-between',
+  padding: '.25rem .5rem',
   transitionProperty: 'common',
   transitionDuration: 'normal',
-  height: '10',
+  width: '100%',
 };
 
 const sectionStyles: SystemStyleObject = {
-  borderTopWidth: '1px',
   borderTopColor: 'gray.50',
+  borderTopWidth: '1px',
   lineHeight: 1.5,
 };
 
 const sectionDefinitionStyles: SystemStyleObject = {
-  display: 'flex',
   alignItems: 'center',
+  display: 'flex',
   justifyContent: 'space-between',
   padding: '.5rem .25rem',
   title: {
@@ -73,10 +73,10 @@ const sectionDefinitionStyles: SystemStyleObject = {
 };
 
 const groupStyles: SystemStyleObject = {
-  lineHeight: 1.5,
   color: 'uikit.800-text',
-  letterSpacing: '0.007rem',
   fontSize: 'md',
+  letterSpacing: '0.007rem',
+  lineHeight: 1.5,
   marginTop: '4',
   'div:last-of-type': {
     borderBottomWidth: '1px',
@@ -85,8 +85,8 @@ const groupStyles: SystemStyleObject = {
 };
 
 const commonBoxStyles: SystemStyleObject = {
-  boxShadow: 'none',
   borderColor: 'uikit.100',
+  boxShadow: 'none',
   padding: '1rem 2rem 2rem',
 };
 
@@ -94,11 +94,11 @@ const Tile: ComponentMultiStyleConfig = {
   parts: tileParts,
   baseStyle: {
     container: containerBaseStyles,
-    heading: headingBaseStyles,
     content: contentBaseStyles,
-    sectionButton: buttonStyles,
     group: groupStyles,
+    heading: headingBaseStyles,
     section: sectionStyles,
+    sectionButton: buttonStyles,
     sectionDefinition: sectionDefinitionStyles,
   },
   variants: {

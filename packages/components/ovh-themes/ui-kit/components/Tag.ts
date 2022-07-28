@@ -2,7 +2,6 @@
 import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 import type { PartsStyleObject } from '@chakra-ui/theme-tools';
 
-
 const chipBaseStyles = (closable?: boolean): PartsStyleObject => {
   const hover = closable
     ? {
@@ -34,6 +33,8 @@ const chipBaseStyles = (closable?: boolean): PartsStyleObject => {
       ...active,
     },
     closeButton: {
+      width: '1rem',
+      height: '1rem',
       color: 'uikit.800',
       opacity: '1',
       px: 0,
