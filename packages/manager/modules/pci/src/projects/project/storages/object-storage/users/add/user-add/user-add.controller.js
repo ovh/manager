@@ -22,7 +22,6 @@ export default class PciUsersAddController {
 
   $onInit() {
     this.isLoading = false;
-    this.disable = true;
     this.addExistingUser = 'addExistingUser';
     this.createNewUser = 'createNewUser';
     this.allUserList = this.allUserList.map((userList) => ({
@@ -42,7 +41,6 @@ export default class PciUsersAddController {
 
   onChange(action) {
     this.model = action;
-    this.disable = false;
   }
 
   onCancel() {
