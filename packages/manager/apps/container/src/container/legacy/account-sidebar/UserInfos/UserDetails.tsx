@@ -10,18 +10,27 @@ const UserDetails = ({
   cssBaseClassName = '',
   user = {} as User,
 }: Props): JSX.Element => {
-  const { organisation, email, nichandle } = user;
+  const { organisation, email, nichandle, auth } = user;
 
   return (
     <p>
-      {organisation && (
-        <span className={`d-block ${cssBaseClassName}_text-small`}>
-          {organisation}
+      {auth.method !== 'provider' && (
+        <>
+          {organisation && (
+            <span className={`d-block ${cssBaseClassName}_text-small`}>
+              {organisation}
+            </span>
+          )}
+          <span className={`d-block ${cssBaseClassName}_text-small text-break`}>
+            {email}
+          </span>
+        </>
+      )}
+      {auth.method === 'provider' && (
+        <span className={`d-block ${cssBaseClassName}_text-small text-break`}>
+          {auth.user}
         </span>
       )}
-      <span className={`d-block ${cssBaseClassName}_text-small text-break`}>
-        {email}
-      </span>
       {email !== nichandle && (
         <span className={`d-block ${cssBaseClassName}_text-small`}>
           {nichandle}

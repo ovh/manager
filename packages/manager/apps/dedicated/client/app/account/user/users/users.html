@@ -1,7 +1,7 @@
-<div>
+<div data-ui-view>
     <div data-ovh-alert="userUsers"></div>
 
-    <oui-message data-type="info">
+    <oui-message data-ng-if="$ctrl.identityProvider == null" data-type="info">
         <span
             class="d-block"
             data-translate="user_users_info"
@@ -16,6 +16,19 @@
         </span>
     </oui-message>
 
+    <oui-message
+        data-ng-if="$ctrl.identityProvider != null"
+        data-type="info"
+        class="mb-4"
+    >
+        <span
+            class="d-block"
+            data-translate="user_users_sso_info"
+            data-translate-values="{nichandle: $ctrl.me.nichandle}"
+        >
+        </span>
+    </oui-message>
+
     <!-- USER ADD BTN -->
     <button
         id="btnAddUser"
@@ -24,12 +37,32 @@
         data-ng-click="setAction('users/add/user-users-add', user)"
         data-ng-disabled="$ctrl.usersLoading"
         data-ng-class="{'disabled': $ctrl.usersLoading}"
+        data-ng-if="$ctrl.identityProvider == null"
     >
         <span data-translate="user_users_add_user"></span>
     </button>
 
+    <!-- CONNECT SSO BTN -->
+    <button
+        id="btnSSO"
+        type="button"
+        class="btn btn-primary float-right my-4"
+        data-ng-click="setAction('users/sso/add/user-users-sso-add', user)"
+        data-ng-disabled="$ctrl.usersLoading"
+        data-ng-class="{'disabled': $ctrl.usersLoading}"
+        data-ng-if="$ctrl.identityProvider == null"
+    >
+        <span data-translate="user_users_sso_add"></span>
+    </button>
+
+    <h4
+        class="mb-4 border-bottom ng-scope"
+        data-translate="user_users_sso_section_title"
+        data-ng-if="$ctrl.identityProvider != null"
+    ></h4>
+
     <!-- USERS LIST -->
-    <div class="table-responsive">
+    <div data-ng-if="$ctrl.identityProvider == null" class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -152,7 +185,10 @@
             </tbody>
         </table>
     </div>
+
+    <!-- USERS PAGINATION -->
     <div
+        data-ng-if="$ctrl.identityProvider == null"
         data-pagination-front
         data-items="$ctrl.userIds"
         data-paginated-items="$ctrl.users"
@@ -162,6 +198,210 @@
         data-transform-item="$ctrl.onTransformItem(item)"
         data-on-transform-item-done="$ctrl.onTransformItemDone(items)"
         data-page-placeholder="{{  'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+    ></div>
+
+    <!-- SSO IDENTITY PROVIDER -->
+    <div data-ng-show="$ctrl.identityProvider != null" class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th
+                        data-translate="user_users_sso_service_url"
+                        scope="col"
+                    ></th>
+                    <th
+                        data-translate="user_users_sso_creation_date"
+                        scope="col"
+                    ></th>
+                    <th
+                        data-translate="user_users_sso_last_update_date"
+                        colspan="2"
+                        scope="col"
+                    ></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a
+                            data-ng-bind="$ctrl.identityProvider.ssoServiceUrl"
+                            data-ng-href="{{ '#/useraccount/users/sso' }}"
+                        >
+                        </a>
+                    </td>
+                    <td
+                        data-ng-bind="$ctrl.identityProvider.creation | date"
+                    ></td>
+                    <td
+                        data-ng-bind="$ctrl.identityProvider.lastUpdate | date"
+                    ></td>
+
+                    <td class="text-right">
+                        <div data-uib-dropdown data-dropdown-append-to-body>
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                data-uib-dropdown-toggle
+                            >
+                                <span
+                                    class="ovh-font ovh-font-dots align-top"
+                                    aria-hidden="true"
+                                >
+                                </span>
+                            </button>
+                            <ul
+                                data-uib-dropdown-menu
+                                class="dropdown-menu dropdown-menu-right"
+                            >
+                                <li>
+                                    <a
+                                        data-translate="user_users_sso_details"
+                                        data-ng-href="{{ '#/useraccount/users/sso' }}"
+                                    >
+                                    </a>
+                                </li>
+                                <li>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="setAction('users/sso/update/user-users-sso-update', user)"
+                                        data-translate="user_users_sso_update"
+                                    ></button>
+                                </li>
+                                <li>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="setAction('users/sso/delete/user-users-sso-delete', user)"
+                                        data-translate="user_users_sso_delete"
+                                    ></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h4
+        class="mb-4 border-bottom ng-scope"
+        data-translate="user_users_groups_section_title"
+        data-ng-if="$ctrl.identityProvider != null"
+    ></h4>
+
+    <!-- GROUPS ADD BTN -->
+    <button
+        type="button"
+        class="btn btn-primary mb-4"
+        data-ng-click="setAction('users/groups/add/user-users-groups-add', user)"
+        data-ng-disabled="$ctrl.usersLoading"
+        data-ng-class="{'disabled': $ctrl.usersLoading}"
+        data-ng-if="$ctrl.identityProvider != null"
+    >
+        <span data-translate="user_users_groups_add"></span>
+    </button>
+
+    <!-- IDENTITY PROVIDER GROUPS MAPPING -->
+    <div data-ng-show="$ctrl.identityProvider != null" class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th
+                        data-translate="user_users_groups_name"
+                        scope="col"
+                    ></th>
+                    <th
+                        data-translate="user_users_groups_role"
+                        scope="col"
+                    ></th>
+                    <th
+                        data-translate="user_users_groups_description"
+                        scope="col"
+                    ></th>
+                    <th
+                        data-translate="user_users_sso_creation_date"
+                        scope="col"
+                    ></th>
+                    <th
+                        data-translate="user_users_sso_last_update_date"
+                        colspan="2"
+                        scope="col"
+                    ></th>
+                </tr>
+            </thead>
+            <tbody
+                data-ng-show="$ctrl.groupsArray.length > 0 && !$ctrl.groupsLoading"
+            >
+                <tr data-ng-repeat="group in $ctrl.groupsArray track by $index">
+                    <td>
+                        <strong data-ng-bind="group.name"> </strong>
+                    </td>
+                    <td data-ng-bind="group.role"></td>
+                    <td>
+                        <span
+                            data-ng-bind="group.shortDescription"
+                            data-oui-tooltip="{{ group.description }}"
+                        >
+                        </span>
+                    </td>
+                    <td data-ng-bind="group.creation | date"></td>
+                    <td data-ng-bind="group.lastUpdate | date"></td>
+
+                    <td class="text-right">
+                        <div data-uib-dropdown data-dropdown-append-to-body>
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                data-uib-dropdown-toggle
+                            >
+                                <span
+                                    class="ovh-font ovh-font-dots align-top"
+                                    aria-hidden="true"
+                                >
+                                </span>
+                            </button>
+                            <ul
+                                data-uib-dropdown-menu
+                                class="dropdown-menu dropdown-menu-right"
+                            >
+                                <li>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="setAction('users/groups/update/user-users-groups-update', group)"
+                                        data-translate="user_users_groups_update"
+                                    ></button>
+                                </li>
+                                <li>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="setAction('users/groups/delete/user-users-groups-delete', group)"
+                                        data-translate="user_users_groups_delete"
+                                    ></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- GROUPS PAGINATION -->
+    <div
+        data-ng-if="$ctrl.identityProvider != null"
+        data-pagination-front
+        data-items="$ctrl.groupIds"
+        data-paginated-items="$ctrl.groupsArray"
+        data-current-page="currentPage"
+        data-items-per-page="itemsPerPage"
+        data-nb-pages="nbPages"
+        data-transform-item="$ctrl.onTransformGroup(item)"
+        data-on-transform-item-done="$ctrl.onTransformGroupDone(items)"
+        data-page-placeholder="{{ 'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
         data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
     ></div>
 </div>

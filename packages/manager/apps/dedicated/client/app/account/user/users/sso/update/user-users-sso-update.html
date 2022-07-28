@@ -1,0 +1,46 @@
+<div data-ng-controller="UserAccountUsersSSOUpdateCtrl as $ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateSSO"
+        data-wizard-title="::'user_users_sso_update_modal_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="$ctrl.userAccountUsersSSOUpdateForm.$valid"
+        >
+            <p data-translate="user_users_sso_update_modal_info"></p>
+
+            <h2
+                class="wizard-title-sub"
+                data-translate="user_users_sso_update_modal_step1_question"
+                data-translate-values="{login: $ctrl.user.login}"
+            ></h2>
+
+            <div class="text-center" data-ng-if="$ctrl.loader">
+                <oui-spinner data-size="s"></oui-spinner>
+            </div>
+
+            <form
+                name="$ctrl.userAccountUsersSSOUpdateForm"
+                data-ng-if="!$ctrl.loader"
+            >
+                <div class="form-group">
+                    <label
+                        class="control-label"
+                        for="groupAttributeName"
+                        data-translate="user_users_sso_update_modal_group_attribute_name"
+                    >
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="groupAttributeName"
+                        name="groupAttributeName"
+                        data-ng-model="$ctrl.identityProvider.groupAttributeName"
+                    />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

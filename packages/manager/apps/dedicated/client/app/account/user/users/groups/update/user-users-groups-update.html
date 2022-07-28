@@ -1,0 +1,76 @@
+<div data-ng-controller="UserAccountUsersGroupsUpdateCtrl as $ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateGroup"
+        data-wizard-title="::'user_users_groups_update_modal_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="$ctrl.userAccountUsersGroupsUpdateForm.$valid"
+        >
+            <p data-translate="user_users_groups_update_modal_info"></p>
+
+            <h2
+                class="wizard-title-sub"
+                data-translate="user_users_groups_update_modal_step1_question"
+                data-translate-values="{login: $ctrl.user.login}"
+            ></h2>
+
+            <div class="text-center" data-ng-if="$ctrl.loader">
+                <oui-spinner data-size="s"></oui-spinner>
+            </div>
+
+            <form
+                name="$ctrl.userAccountUsersGroupsUpdateForm"
+                data-ng-if="!$ctrl.loader"
+            >
+                <div class="form-group">
+                    <label
+                        class="control-label"
+                        for="xml-metadata"
+                        data-translate="user_users_groups_update_modal_group_description"
+                    >
+                    </label>
+
+                    <textarea
+                        class="py-2 form-control"
+                        id="groupDescription"
+                        name="groupDescription"
+                        rows="5"
+                        data-ng-model="$ctrl.group.description"
+                    >
+                    </textarea>
+                </div>
+                <div class="form-group">
+                    <label
+                        class="control-label"
+                        for="group"
+                        data-translate="user_users_role"
+                    >
+                    </label>
+                    <select
+                        class="form-control"
+                        id="role"
+                        name="role"
+                        required
+                        data-ng-model="$ctrl.group.role"
+                    >
+                        <option
+                            value="ADMIN"
+                            data-translate="user_roles_admin"
+                        ></option>
+                        <option
+                            value="REGULAR"
+                            data-translate="user_roles_regular"
+                        ></option>
+                        <option
+                            value="UNPRIVILEGED"
+                            data-translate="user_roles_unprivileged"
+                        ></option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

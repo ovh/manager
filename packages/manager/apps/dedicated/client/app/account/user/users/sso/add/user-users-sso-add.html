@@ -1,0 +1,69 @@
+<div data-ng-controller="UserAccountUsersSSOAddCtrl as $ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="addSSO"
+        data-wizard-title="::'user_users_sso_add_modal_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="$ctrl.userAccountUsersSSOAddForm.$valid"
+        >
+            <p data-translate="user_users_sso_add_modal_info"></p>
+
+            <p
+                class="text-danger"
+                data-translate="user_users_sso_add_modal_warning"
+            ></p>
+
+            <h2
+                class="wizard-title-sub"
+                data-translate="user_users_sso_add_modal_step1_question"
+                data-translate-values="{login: $ctrl.user.login}"
+            ></h2>
+
+            <div class="text-center" data-ng-if="$ctrl.loader">
+                <oui-spinner data-size="s"></oui-spinner>
+            </div>
+
+            <form
+                name="$ctrl.userAccountUsersSSOAddForm"
+                data-ng-if="!$ctrl.loader"
+            >
+                <div class="form-group">
+                    <label
+                        class="control-label"
+                        for="groupAttributeName"
+                        data-translate="user_users_sso_add_modal_group_attribute_name"
+                    >
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="groupAttributeName"
+                        name="groupAttributeName"
+                        data-ng-model="$ctrl.identityProvider.groupAttributeName"
+                    />
+                </div>
+                <div class="form-group">
+                    <label
+                        class="control-label"
+                        for="xml-metadata"
+                        data-translate="user_users_sso_add_modal_xml_metadata"
+                    >
+                    </label>
+
+                    <textarea
+                        class="py-2 form-control"
+                        id="xml-metadata"
+                        name="xml-metadata"
+                        rows="5"
+                        data-ng-model="$ctrl.identityProvider.metadata"
+                        required
+                    >
+                    </textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

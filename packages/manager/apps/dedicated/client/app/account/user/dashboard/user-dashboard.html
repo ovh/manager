@@ -10,11 +10,23 @@
                     <div class="oui-tile__definition d-flex min-w-0">
                         <span class="oui-icon mr-3 oui-icon-user"></span>
                         <div class="word-break min-w-0">
-                            <div class="mb-4">
+                            <div
+                                data-ng-if=":: $ctrl.user.auth.method !== $ctrl.authMethodProvider"
+                                class="mb-4"
+                            >
                                 <strong
                                     data-ng-bind=":: $ctrl.user.firstname + ' ' + $ctrl.user.name"
                                 ></strong>
                                 <p data-ng-bind="::$ctrl.user.email"></p>
+                            </div>
+                            <div
+                                data-ng-if=":: $ctrl.user.auth.method === $ctrl.authMethodProvider"
+                                class="mb-4"
+                            >
+                                <strong
+                                    data-ng-bind=":: $ctrl.user.organisation"
+                                ></strong>
+                                <p data-ng-bind="::$ctrl.user.auth.user"></p>
                             </div>
                             <dl>
                                 <dt
