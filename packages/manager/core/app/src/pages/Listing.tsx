@@ -1,30 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { Link, Text } from '@chakra-ui/react';
-import Listing, { ListingRange, ListingService } from '../components/Listing';
+import Listing, { ListingData, ListingState } from '../components/Listing';
 
-interface VpsService extends ListingService {
+type MyService = {
+  id: string;
+  num: number;
   name: string;
   serviceId: string;
   reverse: string;
   model: string;
   location: string;
   status: string;
-}
+};
 
-function initMockData(t: (key: string) => string) {
-  const services: VpsService[] = [];
-  const listingHeader = [
-    t('name'),
-    t('reverse'),
-    t('model'),
-    t('location'),
-    t('status'),
-  ];
-  for (let i = 1; i <= 150; i += 1) {
+function initServices() {
+  const services: MyService[] = [];
+  for (let i = 1; i <= 500; i += 1) {
     services.push({
-      id: i,
+      id: `${i}`,
+      num: i * i,
       name: `Service name #${i}`,
       serviceId: '123',
       reverse: `127.0.0.1.eu`,
@@ -33,47 +27,92 @@ function initMockData(t: (key: string) => string) {
       status: 'normal',
     });
   }
-  return { listingHeader, services };
+  return services;
 }
 
-function renderVps(service: VpsService, column: keyof VpsService): JSX.Element {
-  if (column === 'name') {
-    return <Link href="#">{service[column]}</Link>;
-  }
-  return <Text>{service[column]}</Text>;
+function initColumns(t: (key: string) => string) {
+  const render = (id: keyof MyService) => (service: MyService) => {
+    return <>{service[id]}</>;
+  };
+  return [
+    {
+      label: t('id'),
+      render: render('id'),
+      sort: (a: MyService, b: MyService) => Number(a.id) - Number(b.id),
+    },
+    {
+      label: t('numeric'),
+      render: render('num'),
+      sort: (a: MyService, b: MyService) => a.num - b.num,
+    },
+    {
+      label: t('name'),
+      render: render('name'),
+      sort: (a: MyService, b: MyService) => a.name.localeCompare(b.name),
+    },
+    {
+      label: t('reverse'),
+      render: render('reverse'),
+    },
+    {
+      label: t('model'),
+      render: render('model'),
+    },
+    {
+      label: t('location'),
+      render: render('location'),
+    },
+    {
+      label: t('status'),
+      render: render('status'),
+    },
+  ];
 }
 
 export default function ListingPage(): JSX.Element {
   const { t } = useTranslation('listing');
-  const navigate = useNavigate();
-  const { page: pageParam } = useParams();
-  const [searchParams] = useSearchParams();
+  const [columns] = useState(initColumns(t));
+  const [services] = useState(initServices());
 
-  const { listingHeader, services } = initMockData(t);
-  const currentPage = Number(pageParam) || 1;
-  const defaultPageSize = 10;
-  const pageSize = Number(searchParams.get('pageSize')) || defaultPageSize;
+  const [listingState, setListingState] = useState<ListingState<MyService>>({
+    currentPage: 1,
+    pageSize: 10,
+  });
+  const [data, setData] = useState<ListingData<MyService>>();
+  const { currentPage, pageSize, sort } = listingState;
 
-  const fetchVps = ({ start, end }: ListingRange) => {
-    return Promise.resolve({
-      services: services.slice(start, end),
-      totalCount: services.length,
-    });
+  const fetchServices = () => {
+    const start = (currentPage - 1) * pageSize;
+    const end = start + pageSize;
+    let items = sort ? services.sort(sort.column.sort) : services;
+    if (sort?.reverse) {
+      items = items.reverse();
+    }
+    setTimeout(
+      () =>
+        setData({
+          items: items.slice(start, end),
+          total: services.length,
+        }),
+      1000,
+    );
   };
 
-  const paginationChangeHandler = (page: number, size: number) => {
-    const search = size !== defaultPageSize ? `?pageSize=${size}` : '';
-    navigate(`/vps/${page}${search}`);
+  useEffect(() => {
+    fetchServices();
+  }, [listingState]);
+
+  const listingChangeHandler = (state: ListingState<MyService>) => {
+    setListingState(state);
+    setData(null);
   };
 
   return (
     <Listing
-      currentPage={currentPage}
-      pageSize={pageSize}
-      header={listingHeader}
-      fetchServices={fetchVps}
-      renderService={renderVps}
-      onPaginationChange={paginationChangeHandler}
+      columns={columns}
+      data={data}
+      state={listingState}
+      onChange={listingChangeHandler}
     />
   );
 }

@@ -6,42 +6,39 @@ import Pagination, { PaginationDisplayMode } from './Pagination';
 
 export type ListingPaginationProps = {
   currentPage: number;
+  pageSize: number;
   itemsCount: number;
-  itemsPerPage?: number;
   availablePageSize?: number[];
-  onChange: (a: { currentPage: number; itemsPerPage: number }) => void;
+  onChange: (currentPage: number, pageSize: number) => void;
 };
 
 export default function ListingPagination({
   currentPage,
+  pageSize,
   itemsCount,
-  itemsPerPage = 10,
   availablePageSize = [10, 25, 50, 100, 300],
   onChange,
 }: ListingPaginationProps): JSX.Element {
   const { t } = useTranslation('common');
-  const pageCount = Math.ceil(itemsCount / itemsPerPage);
-  const selectablePageSizes = availablePageSize.slice(
-    0,
-    availablePageSize.findIndex((size) => size >= itemsCount) + 1,
-  );
+  const pageCount = Math.ceil(itemsCount / pageSize);
+
   const pageChangeHandler = (page: number) => {
-    onChange({ currentPage: page, itemsPerPage });
+    onChange(Math.min(page, Math.ceil(itemsCount / pageSize)), pageSize);
   };
-  const pageSizeChangeHandler = (pageSize: number) => {
-    onChange({
-      currentPage: Math.min(currentPage, Math.ceil(itemsCount / pageSize)),
-      itemsPerPage: pageSize,
-    });
+
+  const pageSizeChangeHandler = (size: number) => {
+    onChange(Math.min(currentPage, Math.ceil(itemsCount / size)), size);
   };
+
   return (
     <HStack>
       {itemsCount > availablePageSize[0] && (
         <Select
           w="auto"
+          value={pageSize}
           onChange={(e) => pageSizeChangeHandler(Number(e.target.value))}
         >
-          {selectablePageSizes.map((size) => (
+          {availablePageSize.map((size) => (
             <option key={size} value={size}>
               {size}
             </option>
