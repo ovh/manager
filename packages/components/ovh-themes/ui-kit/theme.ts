@@ -1,3 +1,4 @@
+import globalStyle from './foundations/global';
 import colors from './foundations/colors';
 import shadows from './foundations/shadows';
 import radii from './foundations/radius';
@@ -23,60 +24,7 @@ import Textarea from './components/Textarea';
 import Tile from './components/Tile';
 
 export default {
-  styles: {
-    global: {
-      body: {
-        color: 'uikit.800-text',
-        fontFamily: 'Source Sans Pro',
-        letterSpacing: '0.12px',
-      },
-      a: {
-        color: 'uikit.500',
-        cursor: 'pointer',
-        fontWeight: 600,
-        _hover: {
-          color: 'uikit.700',
-          textDecoration: 'underline',
-        },
-      },
-      'h1, h2, h3, h4, h5, h6': {
-        color: 'uikit.800',
-        lineHeight: 1.5,
-      },
-      h1: {
-        fontSize: '7xl',
-        fontWeight: 300,
-      },
-      h2: {
-        fontSize: '5xl',
-        fontWeight: 300,
-      },
-      h3: {
-        fontSize: '4xl',
-        fontWeight: 400,
-      },
-      h4: {
-        fontSize: '1.75rem',
-        fontWeight: 400,
-      },
-      h5: {
-        fontSize: 'xl',
-        fontWeight: 700,
-      },
-      h6: {
-        fontSize: 'lg',
-        fontWeight: 700,
-      },
-      'button:focus-visible, a:focus-visible': {
-        outlineColor: 'green !important',
-        outlineStyle: 'dashed !important',
-        outlineWidth: '2px !important',
-      },
-    },
-  },
-  shadows,
   colors,
-  radii,
   components: {
     Alert,
     Badge,
@@ -98,4 +46,9 @@ export default {
     Textarea,
     Tile,
   },
+  styles: {
+    global: globalStyle,
+  },
+  radii,
+  shadows,
 };
