@@ -53,10 +53,8 @@ const readOnlyStyle: SystemStyleObject = {
 export const inputFieldStyles = {
   field: {
     borderWidth: '1px',
-    color: 'uikit.800-text',
     fontWeight: 400,
     _placeholder: {
-      color: 'uikit.800-text',
       fontWeight: 500,
     },
     _disabled: {

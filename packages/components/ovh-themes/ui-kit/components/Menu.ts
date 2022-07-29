@@ -18,7 +18,6 @@ const Menu: ComponentStyleConfig = {
       textAlign: 'initial',
     },
     groupTitle: {
-      color: 'uikit.800-text',
       fontSize: '.875rem',
       fontWeight: '700',
       lineHeight: '1rem',

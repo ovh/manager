@@ -17,7 +17,6 @@ const Table: ComponentMultiStyleConfig = {
       background: 'none',
       borderBottom: '1px solid',
       borderColor: 'uikit.100',
-      color: 'uikit.800-text',
       cursor: 'default',
     },
     tr: {
@@ -31,7 +30,6 @@ const Table: ComponentMultiStyleConfig = {
       fontWeight: 700,
     },
     th: {
-      color: 'uikit.800-text',
       fontFamily: 'inherit',
       textTransform: 'none',
       fontWeight: 'inherit',

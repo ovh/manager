@@ -50,16 +50,12 @@ const containerBaseStyle: SystemStyleObject = {
 };
 
 const labelBaseStyle: SystemStyleObject = {
-  color: 'uikit.800-text',
   fontWeight: 500,
   fontSize: 'md',
   letterSpacing: '.008rem',
   lineHeight: 1.5,
   _checked: {
     fontWeight: 700,
-  },
-  _disabled: {
-    color: 'uikit.800-text',
   },
 };
 

@@ -6,7 +6,6 @@ const Badge: ComponentStyleConfig = {
   baseStyle: {
     padding: '0.15rem 0.5rem',
     fontWeight: '700',
-    color: 'uikit.800-text',
     borderRadius: '1rem',
     lineHeight: '1',
     margin: '0',

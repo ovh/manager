@@ -26,7 +26,6 @@ const controlStyles = {
   },
   _disabled: {
     ...applyContainerStyleColor('uikit.500'),
-    color: 'uikit.800-text',
     _hover: {
       ...applyContainerStyleColor('uikit.500'),
     },
@@ -54,7 +53,6 @@ const controlStyles = {
 };
 
 const labelStyles = {
-  color: 'uikit.800-text',
   _checked: {
     fontWeight: 700,
   },

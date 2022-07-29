@@ -3,7 +3,6 @@ import type { ComponentStyleConfig } from '@chakra-ui/theme';
 
 const FormInput: ComponentStyleConfig = {
   baseStyle: {
-    color: 'uikit.800-text',
     fontSize: 'xs',
     fontWeight: '700',
     lineHeight: '1.5',

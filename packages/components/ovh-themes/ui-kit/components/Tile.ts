@@ -31,10 +31,6 @@ const headingBaseStyles: SystemStyleObject = {
   marginBottom: '4',
 };
 
-const contentBaseStyles: SystemStyleObject = {
-  color: 'uikit.800-text',
-};
-
 const buttonStyles: SystemStyleObject = {
   ...Button.baseStyle,
   ...Button.variants?.ghost,
@@ -73,7 +69,6 @@ const sectionDefinitionStyles: SystemStyleObject = {
 };
 
 const groupStyles: SystemStyleObject = {
-  color: 'uikit.800-text',
   fontSize: 'md',
   letterSpacing: '0.007rem',
   lineHeight: 1.5,
@@ -94,7 +89,6 @@ const Tile: ComponentMultiStyleConfig = {
   parts: tileParts,
   baseStyle: {
     container: containerBaseStyles,
-    content: contentBaseStyles,
     group: groupStyles,
     heading: headingBaseStyles,
     section: sectionStyles,
