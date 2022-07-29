@@ -34,9 +34,7 @@ export function startApplication(
   root.render(
     <React.StrictMode>
       <ChakraProvider>
-        <OvhApplication name={appName}>
           <AppComponent />
-        </OvhApplication>
       </ChakraProvider>
     </React.StrictMode>,
   );

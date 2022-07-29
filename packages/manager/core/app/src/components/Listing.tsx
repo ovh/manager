@@ -1,8 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import {
-  Checkbox,
+  Button,
   Flex,
   VStack,
+  Skeleton,
   Spacer,
   Table,
   TableContainer,
@@ -12,108 +13,134 @@ import {
   Tr,
   Th,
 } from '@chakra-ui/react';
+import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 
 import ListingPagination from './ListingPagination';
 
-export type ListingRange = {
-  start: number;
-  end: number;
+export type ListingSorter<T> = (a: T, b: T) => number;
+
+export type ListingColumn<T> = {
+  label: string;
+  sort?: ListingSorter<T>;
+  render: (item: T) => JSX.Element;
 };
 
-export type ListingService = {
-  id: string | number;
-};
-
-export type ListingFetchResult<T extends ListingService> = {
-  services: T[];
-  totalCount: number;
-};
-
-export type ListingProps<T extends ListingService> = {
+export type ListingState<T> = {
   currentPage: number;
   pageSize: number;
-  header: string[];
-  fetchServices: (changes: ListingRange) => Promise<ListingFetchResult<T>>;
-  renderService: (service: T, column: keyof T) => JSX.Element;
-  onPaginationChange: (currentPage: number, pageSize: number) => void;
+  sort?: {
+    column: ListingColumn<T>;
+    reverse: boolean;
+  };
 };
 
-export default function Listing<T extends ListingService>({
-  currentPage,
-  pageSize,
-  header,
-  fetchServices,
-  renderService,
-  onPaginationChange,
-}: ListingProps<T>): JSX.Element {
-  const [listingData, setListingData] = useState<ListingFetchResult<T>>(null);
+export type ListingData<T> = {
+  total: number;
+  items: T[];
+};
 
-  const paginationChangeHandler = ({
-    currentPage: page,
-    itemsPerPage: size,
-  }: {
-    currentPage: number;
-    itemsPerPage: number;
-  }) => {
-    onPaginationChange(page, size);
+export type ListingProps<T> = {
+  columns: ListingColumn<T>[];
+  data?: ListingData<T>;
+  state: ListingState<T>;
+  onChange: (state: ListingState<T>) => void;
+};
+
+interface ListingItem {
+  id: string;
+};
+
+export default function Listing<T extends ListingItem>({
+  columns,
+  data,
+  state,
+  onChange,
+}: ListingProps<T>): JSX.Element {
+  const { currentPage, pageSize } = state;
+
+  const paginationChangeHandler = (page: number, size: number) => {
+    onChange({ ...state, currentPage: page, pageSize: size });
   };
 
-  useEffect(() => {
-    const start = (currentPage - 1) * pageSize;
-    const end = start + pageSize;
-    fetchServices({ start, end }).then((result) => {
-      if (result.services.length === 0) {
-        onPaginationChange(Math.ceil(result.totalCount / pageSize), pageSize);
-      } else {
-        setListingData(result);
-      }
+  const columnClickHandler = (column: ListingColumn<T>) => {
+    const reverse = state.sort?.column === column ? !state.sort.reverse : false;
+    onChange({
+      ...state,
+      sort: {
+        column,
+        reverse,
+      },
     });
-  }, [currentPage, pageSize]);
+  };
 
-  const columns = useMemo(
-    () => [
-      <Th key="selector">
-        <Checkbox></Checkbox>
-      </Th>,
-      ...header.map((column) => <Th key={column}>{column}</Th>),
-    ],
-    [header],
-  );
-
-  const cells = useMemo(
+  const columnsData = useMemo(
     () =>
-      listingData?.services.map((service) => (
-        <Tr key={service.id}>
-          {[
-            <Td key="selector">
-              <Checkbox></Checkbox>
-            </Td>,
-            ...header.map((column) => (
-              <Td key={column}>{renderService(service, column as keyof T)}</Td>
-            )),
-          ]}
-        </Tr>
-      )),
-    [listingData, header],
+      columns.map((column) => {
+        if (column.sort) {
+          return (
+            <Th key={column.label}>
+              <Button
+                variant="ghost"
+                onClick={() => columnClickHandler(column)}
+              >
+                {column.label}
+                {state.sort?.column === column && state.sort?.reverse && (
+                  <ChevronDownIcon ml={2} />
+                )}
+                {state.sort?.column === column && !state.sort?.reverse && (
+                  <ChevronUpIcon ml={2} />
+                )}
+              </Button>
+            </Th>
+          );
+        }
+        return <Th key={column.label}>{column.label}</Th>;
+      }),
+    [columns, state],
   );
+
+  const placeholder = useMemo(() => {
+    return [...Array(10).keys()].map((row) => (
+      <Tr key={`${row}`}>
+        {columns.map((column, col) => (
+          <Td key={`${col}-${row}`}>
+            <Skeleton isLoaded={false}>
+              <span>&nbsp;</span>
+            </Skeleton>
+          </Td>
+        ))}
+      </Tr>
+    ));
+  }, []);
+
+  const cells = useMemo(() => {
+    if (!data?.items) return placeholder;
+    return data.items.map((item) => (
+      <Tr key={item.id}>
+        {columns.map(({ label, render }) => (
+          <Td key={`${label}-${item.id}`}>{render(item)}</Td>
+        ))}
+      </Tr>
+    ));
+  }, [data, columns]);
 
   return (
     <VStack align="left">
       <TableContainer>
         <Table>
           <Thead>
-            <Tr>{columns}</Tr>
+            <Tr>{columnsData}</Tr>
           </Thead>
           <Tbody>{cells}</Tbody>
         </Table>
       </TableContainer>
-      {listingData && (
+      {data && (
         <Flex>
           <Spacer />
           <ListingPagination
             currentPage={currentPage}
-            itemsCount={listingData?.totalCount}
-            itemsPerPage={pageSize}
+            pageSize={pageSize}
+            itemsCount={data.total}
             onChange={paginationChangeHandler}
           />
         </Flex>
