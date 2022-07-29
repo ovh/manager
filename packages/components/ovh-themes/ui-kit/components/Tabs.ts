@@ -30,6 +30,7 @@ const Tabs: ComponentMultiStyleConfig = {
         _selected: {
           background: 'uikit.50',
           borderColor: 'uikit.100',
+          color: 'uikit.800-text',
           _hover: {
             background: 'uikit.50',
           },
