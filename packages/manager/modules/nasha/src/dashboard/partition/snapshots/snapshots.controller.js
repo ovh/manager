@@ -16,6 +16,7 @@ export default class NashaDashboardPartitionSnapshotsController {
 
     this.isCreatingCustomSnapshot = false;
     this.isCustomSnapshotFormShown = false;
+    this.isWarningDismissed = false;
     this.isUpdatingSnapshotTypes = false;
 
     this.model = {

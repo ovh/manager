@@ -14,7 +14,22 @@
             data-translate="nasha_dashboard_partition_snapshots_create"
         ></span>
     </oui-button>
-
+    <oui-message
+        class="mt-3 mb-4"
+        data-ng-if="$ctrl.isCustomSnapshotFormShown && !$ctrl.isWarningDismissed"
+        data-type="warning"
+        data-on-dismiss="$ctrl.isWarningDismissed = true"
+        data-dismissable
+    >
+        <p
+            class="my-0"
+            data-translate="nasha_dashboard_partition_snapshots_warning_1"
+        ></p>
+        <p
+            class="my-0"
+            data-translate="nasha_dashboard_partition_snapshots_warning_2"
+        ></p>
+    </oui-message>
     <table class="oui-datagrid" aria-label="snapshots">
         <thead>
             <tr>
