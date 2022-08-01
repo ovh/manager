@@ -1,4 +1,8 @@
 {
   "manager_hub_notification_warning": "{{ content }}",
-  "manager_hub_skip_to_main_content": "Przejdź do głównej sekcji"
+  "manager_hub_skip_to_main_content": "Przejdź do głównej sekcji",
+  "manager_hub_domain_repricing_part_1": "Zmiana cen domen",
+  "manager_hub_domain_repricing_part_2": "Od 15 sierpnia 2022 ceny odnowienia domen ulegają zmianie.",
+  "manager_hub_domain_repricing_part_3": "Aby nadal korzystać z aktualnych cen, odnów swoje domeny przed upływem tego terminu.",
+  "manager_hub_domain_repricing_part_4": "Listę rozszerzeń, których to dotyczy oraz nowy cennik znajdziesz w e-mailu wysłanym 13 lipca."
 }
