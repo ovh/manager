@@ -4503,9 +4503,9 @@
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
 "@ovh-ux/ui-kit@^6.1.0":
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.1.0.tgz#28229393ba5da6f75a607aacb0abab8bd161ea55"
-  integrity sha512-dX5KMTdYgyB0JCxes+8+LEoWsvl3jLfYYACXx2AN08DN7wbsM3yuaIjI6b+ESZEkgYFFDTMuKslZ78szYCrx/g==
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.1.2.tgz#a15d4555fe42df76bc4c9ff341fa372ee72408e3"
+  integrity sha512-d6KKWvvtUAqSanynV4T21LPWYfahZucIJ6zhwF6WcTXXrKo2gt7tbkkEy9Vc/YhP4Iqa8LtEiWsq8XdAGr+w4g==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
