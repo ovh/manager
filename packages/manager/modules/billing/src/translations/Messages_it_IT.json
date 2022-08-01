@@ -908,5 +908,11 @@
   "statements_operation_description_refund_unknown": "Rimborso",
   "billing_date_range_choose_custom_date": "Definisci un periodo",
   "billing_date_range_text": "Dal {{t0}} al {{t1}}",
-  "billing_price_ttc_label": "{{price}} IVA incl."
+  "billing_price_ttc_label": "{{price}} IVA incl.",
+  "billing_guides_header": "Guide",
+  "billing_guides_header_manage_payment_methods_guides": "Gestisci i tuoi metodi di pagamento",
+  "billing_guides_header_managing_orders_guides": "Gestire i miei ordini OVHcloud",
+  "billing_guides_header_purchase_order_guides": "Nozione di numero d’ordine o Purchase Order (PO)",
+  "billing_guides_header_managing_bills_guides": "Gestire le mie fatture OVHcloud",
+  "billing_guides_header_automatic_renewal_guides": "Gestire il rinnovo dei miei servizi"
 }

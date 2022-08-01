@@ -908,5 +908,11 @@
   "statements_operation_description_refund_unknown": "Refund",
   "billing_date_range_choose_custom_date": "Define the period ",
   "billing_date_range_text": "From {{t0}} to {{t1}}",
-  "billing_price_ttc_label": "{{price}} incl. VAT"
+  "billing_price_ttc_label": "{{price}} incl. VAT",
+  "billing_guides_header": "Guides",
+  "billing_guides_header_manage_payment_methods_guides": "Managing payment methods ",
+  "billing_guides_header_managing_orders_guides": "Managing OVHcloud orders",
+  "billing_guides_header_purchase_order_guides": "Concept of Order Number or Purchase Order (PO)",
+  "billing_guides_header_managing_bills_guides": "Managing OVHcloud bills",
+  "billing_guides_header_automatic_renewal_guides": "Managing renewal for your services"
 }

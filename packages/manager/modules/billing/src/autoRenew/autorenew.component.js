@@ -33,6 +33,8 @@ export default {
     serviceTypes: '<',
     sort: '<',
     sshLink: '<',
+    guides: '<',
+    trackClick: '<',
   },
   controller,
   template,

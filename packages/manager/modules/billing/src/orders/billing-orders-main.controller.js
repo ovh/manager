@@ -7,27 +7,26 @@ export default class BillingOrdersMainCtrl {
   /* @ngInject */
   constructor(
     $translate,
-    constants,
     currentUser,
     featuresAvailabilities,
     purchasesOrdersSectionState,
     ordersSectionState,
+    guides,
+    trackClick,
   ) {
     this.$translate = $translate;
     this.featuresAvailabilities = featuresAvailabilities;
-    this.constants = constants;
     this.currentUser = currentUser;
     this.purchasesOrdersSectionState = purchasesOrdersSectionState;
     this.ordersSectionState = ordersSectionState;
+    this.guides = guides;
+    this.trackClick = trackClick;
   }
 
   $onInit() {
-    const CUSTOMER_URLS =
-      this.constants.urls[this.currentUser.ovhSubsidiary] ||
-      this.constants.urls.FR;
-
-    this.billingGuideUrl = CUSTOMER_URLS.guides.billing;
-    this.purchaseOrdersGuideUrl = CUSTOMER_URLS.guides.purchaseOrders;
+    if (!this.isAvailable()) {
+      delete this.guides.url.my_orders.purchase_order;
+    }
   }
 
   isAvailable() {

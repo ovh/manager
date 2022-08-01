@@ -85,6 +85,12 @@ export default class AutorenewCtrl {
           : column,
       );
     }
+
+    if (!this.isAutorenewManagementAvailable) {
+      delete this.guides.url.my_services.automatic_renewal;
+      this.hideHeaderGuide =
+        Object.keys(this.guides.url.my_services).length === 0;
+    }
   }
 
   descriptionOfHeading() {
