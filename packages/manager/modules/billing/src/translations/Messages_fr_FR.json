@@ -908,5 +908,11 @@
   "statements_operation_description_refund_unknown": "Remboursement",
   "billing_date_range_choose_custom_date": "Définir une période",
   "billing_date_range_text": "Du {{t0}} au {{t1}}",
-  "billing_price_ttc_label": "{{price}} TTC"
+  "billing_price_ttc_label": "{{price}} TTC",
+  "billing_guides_header": "Guides",
+  "billing_guides_header_manage_payment_methods_guides": "Gérer mes moyens de paiement",
+  "billing_guides_header_managing_orders_guides": "Gérer mes commandes OVHcloud",
+  "billing_guides_header_purchase_order_guides": "Notion de Numéro de commande ou Purchase Order (PO)",
+  "billing_guides_header_managing_bills_guides": "Gérer mes factures OVHcloud",
+  "billing_guides_header_automatic_renewal_guides": "Gérer le renouvellement de mes services"
 }

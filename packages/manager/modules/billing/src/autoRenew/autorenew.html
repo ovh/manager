@@ -21,6 +21,21 @@
             ><span data-translate="billing_ssh_title"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
+    <oui-guide-menu
+        data-ng-if="!$ctrl.hideHeaderGuide"
+        data-text="{{:: 'billing_guides_header' | translate }}"
+    >
+        <oui-guide-menu-item
+            data-ng-repeat="guide in $ctrl.guides.url.my_services track by $index"
+            data-href="{{:: guide.url }}"
+            data-on-click="$ctrl.trackClick($ctrl.guides.tracking.my_services + guide.tracking)"
+            data-external
+        >
+            <span
+                data-translate="{{:: 'billing_guides_header_' + guide.key }}"
+            ></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
 </oui-header>
 
 <div data-ui-view>

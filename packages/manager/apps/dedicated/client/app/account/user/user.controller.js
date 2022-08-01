@@ -9,6 +9,8 @@ export default class UserAccountCtrl {
     constants,
     coreConfig,
     supportLevel,
+    guides,
+    trackClick,
   ) {
     // dependencies injections
     this.$location = $location;
@@ -22,6 +24,8 @@ export default class UserAccountCtrl {
     this.USERACCOUNT_BASE_URL = 'account/user/';
     this.originUrl =
       this.$location.search().redirectTo || this.$location.search().redirectto;
+    this.guides = guides;
+    this.trackClick = trackClick;
   }
 
   $onInit() {
