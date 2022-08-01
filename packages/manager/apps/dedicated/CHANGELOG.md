@@ -1,3 +1,13 @@
+## [17.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.24.0...@ovh-ux/manager-dedicated@17.24.1) (2022-08-01)
+
+
+### Bug Fixes
+
+* update links to use shell client navigation plugin ([6b766e7](https://github.com/ovh/manager/commit/6b766e7be5c18249d8ce06b0cc2dd974360e9a6d))
+* **useraccount:** support link in emails ([7de9f64](https://github.com/ovh/manager/commit/7de9f6491de3a3aaa8c1da6b6293c61bec4618f1))
+
+
+
 # [17.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.23.1...@ovh-ux/manager-dedicated@17.24.0) (2022-07-28)
 
 

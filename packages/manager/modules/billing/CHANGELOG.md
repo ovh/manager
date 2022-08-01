@@ -1,3 +1,12 @@
+# [0.16.0-alpha.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.9...@ovh-ux/manager-billing@0.16.0-alpha.10) (2022-08-01)
+
+
+### Bug Fixes
+
+* update links to use shell client navigation plugin ([6b766e7](https://github.com/ovh/manager/commit/6b766e7be5c18249d8ce06b0cc2dd974360e9a6d))
+
+
+
 # [0.16.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.8...@ovh-ux/manager-billing@0.16.0-alpha.9) (2022-07-27)
 
 

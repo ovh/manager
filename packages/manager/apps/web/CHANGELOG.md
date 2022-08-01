@@ -1,3 +1,13 @@
+## [16.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.15.1...@ovh-ux/manager-web@16.15.2) (2022-08-01)
+
+
+### Bug Fixes
+
+* update links to use shell client navigation plugin ([6b766e7](https://github.com/ovh/manager/commit/6b766e7be5c18249d8ce06b0cc2dd974360e9a6d))
+* **domain:** links to ordered and associated hosting ([4a70c26](https://github.com/ovh/manager/commit/4a70c263af2c12dcb5dc192e5cbb31765bbb1198))
+
+
+
 ## [16.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.15.0...@ovh-ux/manager-web@16.15.1) (2022-07-27)
 
 

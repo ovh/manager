@@ -1,3 +1,13 @@
+## [0.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.8...@ovh-ux/manager-container-app@0.3.9) (2022-08-01)
+
+
+### Bug Fixes
+
+* **container:** add email delegation in pnr sidebar ([569028e](https://github.com/ovh/manager/commit/569028e0e03e9b67c4576070e0f92aef54d96df0))
+* **email:** wording ([8b62aa3](https://github.com/ovh/manager/commit/8b62aa397415bc471c657244c3c783e349d4eb50))
+
+
+
 ## [0.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.7...@ovh-ux/manager-container-app@0.3.8) (2022-07-27)
 
 
