@@ -1,3 +1,12 @@
+## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda-app@1.5.1...@ovh-ux/manager-cda-app@1.5.2) (2022-08-01)
+
+
+### Bug Fixes
+
+* **cda:** add missing babel polyfill dependency ([097b65a](https://github.com/ovh/manager/commit/097b65a5fe21d0c0a3f5fec8ae93a61bf9c6d171))
+
+
+
 ## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda-app@1.5.0...@ovh-ux/manager-cda-app@1.5.1) (2022-07-27)
 
 

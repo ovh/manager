@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.3.1...@ovh-ux/manager-cda@1.3.2) (2022-08-01)
+
+
+### Bug Fixes
+
+* **cda:** onboarding routing ([42f3951](https://github.com/ovh/manager/commit/42f3951f19f021b031c0ecf30e4fd441e779af49))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.3.0...@ovh-ux/manager-cda@1.3.1) (2022-07-27)
 
 

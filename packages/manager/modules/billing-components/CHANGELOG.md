@@ -1,3 +1,12 @@
+## [3.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.10.3...@ovh-ux/manager-billing-components@3.10.4) (2022-08-01)
+
+
+### Bug Fixes
+
+* update links to use shell client navigation plugin ([6b766e7](https://github.com/ovh/manager/commit/6b766e7be5c18249d8ce06b0cc2dd974360e9a6d))
+
+
+
 ## [3.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.10.2...@ovh-ux/manager-billing-components@3.10.3) (2022-07-18)
 
 
