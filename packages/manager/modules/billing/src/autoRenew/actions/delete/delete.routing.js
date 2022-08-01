@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import kebabCase from 'lodash/kebabCase';
 import { BillingService } from '@ovh-ux/manager-models';
 
@@ -49,8 +48,8 @@ export default /* @ngInject */ ($stateProvider) => {
       supportPhoneNumber: /* @ngInject */ (constants, currentUser) =>
         constants.SUPPORT[currentUser.ovhSubsidiary],
       confirmTermination: /* @ngInject */ (
+        $http,
         atInternet,
-        BillingAutoRenew,
         service,
       ) => () => {
         atInternet.trackClick({
@@ -60,12 +59,8 @@ export default /* @ngInject */ ($stateProvider) => {
           chapter2: 'account',
           chapter3: 'billing',
         });
-        service.setForResiliation();
-        return BillingAutoRenew.updateService({
-          serviceId: service.domain,
-          serviceType: service.serviceType,
-          renew: service.renew,
-          route: get(service, 'route.url'),
+        return $http.put(`/services/${service.serviceId}`, {
+          terminationPolicy: 'terminateAtExpirationDate',
         });
       },
       questions: /* @ngInject */ (BillingTerminate, service) =>
