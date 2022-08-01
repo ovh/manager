@@ -1207,5 +1207,7 @@
   "server_rtm_eol_info": "Ważna informacja dotycząca usługi Real Time Monitoring - usługa będzie działać do 30 czerwca 2022. Po tym terminie wstrzymamy wyświetlanie danych dotyczących zużycia. Nie będzie to miało wpływu na działanie serwera.",
   "server_configuration_gateway_ip": "Brama IPv4",
   "server_configuration_gateway_ipv4": "Brama IPv4",
-  "server_configuration_gateway_ipv6": "Brama IPv6"
+  "server_configuration_gateway_ipv6": "Brama IPv6",
+  "server_configuration_firewall_asa_EOL": "Przypomnienie: Zgodnie z wcześniejszymi zapowiedziami, aktywne usługi Cisco Firewall ASA powiązane z serwerami dedykowanymi zostaną zakończone o godzinie 10:00 UTC w dniu 31 sierpnia 2022 roku, czyli w dniu zakończenia wsparcia.",
+  "server_configuration_firewall_asa_EOL_link": "Dowiedz się więcej."
 }
