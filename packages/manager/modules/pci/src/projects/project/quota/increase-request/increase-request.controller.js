@@ -1,7 +1,11 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 import isNil from 'lodash/isNil';
-import { ISSUE_TYPE_IDS, QUOTA_INCREASE_MODES } from './increase.constants';
+import {
+  ISSUE_TYPE_IDS,
+  QUOTA_INCREASE_MODES,
+  TRACK,
+} from './increase.constants';
 
 export default class PciProjectQuotaIncreaseController {
   /* @ngInject */
@@ -63,14 +67,10 @@ export default class PciProjectQuotaIncreaseController {
 
   trackQuotaIncreasePopupDisplay() {
     if (this.mode === QUOTA_INCREASE_MODES.BUY_CREDITS) {
-      return this.trackPage(
-        'PublicCloud::pci::projects::project::quota::select-plan',
-      );
+      return this.trackPage(`${TRACK.BASE}::${TRACK.SELECT_PLAN}`);
     }
     if (this.mode === QUOTA_INCREASE_MODES.CONTACT_SUPPORT) {
-      return this.trackPage(
-        'PublicCloud::pci::projects::project::quota::increase-contact',
-      );
+      return this.trackPage(`${TRACK.BASE}::${TRACK.CONTACT_SUPPORT}`);
     }
     return null;
   }
@@ -81,12 +81,12 @@ export default class PciProjectQuotaIncreaseController {
       this.serviceOptions.length > 0
     ) {
       return this.trackClick(
-        'PublicCloud::pci::projects::project::quota::select-plan::cancel',
+        `${TRACK.BASE}::${TRACK.SELECT_PLAN}::${TRACK.CANCEL}`,
       );
     }
     if (this.mode === QUOTA_INCREASE_MODES.CONTACT_SUPPORT) {
       return this.trackClick(
-        'PublicCloud::pci::projects::project::quota::increase-contact::cancel',
+        `${TRACK.BASE}::${TRACK.CONTACT_SUPPORT}::${TRACK.CANCEL}`,
       );
     }
     return null;
@@ -107,7 +107,7 @@ export default class PciProjectQuotaIncreaseController {
 
   increaseQuotaBySupport() {
     if (isNil(this.issueType)) {
-      this.trackPage('PublicCloud::quota-contact-banner::error');
+      this.trackPage(`${TRACK.BASE_CONTACT_SUPPORT_BANNER}::${TRACK.ERROR}`);
       return this.goBack(
         this.$translate.instant(
           'pci_projects_project_quota_increase_error_message',
@@ -121,7 +121,7 @@ export default class PciProjectQuotaIncreaseController {
 
     this.isLoading = true;
     this.trackClick(
-      'PublicCloud::pci::projects::project::quota::increase-contact::confirm',
+      `${TRACK.BASE}::${TRACK.CONTACT_SUPPORT}::${TRACK.CONFIRM}`,
     );
 
     return this.OvhApiSupport.v6()
@@ -138,7 +138,9 @@ ${this.issueTypeDescription}
         `,
       })
       .$promise.then(({ ticketId }) => {
-        this.trackPage('PublicCloud::quota-contact-banner::success');
+        this.trackPage(
+          `${TRACK.BASE_CONTACT_SUPPORT_BANNER}::${TRACK.SUCCESS}`,
+        );
         this.goBack(
           this.$translate.instant(
             'pci_projects_project_quota_increase_success_message',
@@ -149,7 +151,7 @@ ${this.issueTypeDescription}
         );
       }, 'success')
       .catch((err) => {
-        this.trackPage('PublicCloud::quota-contact-banner::error');
+        this.trackPage(`${TRACK.BASE_CONTACT_SUPPORT_BANNER}::${TRACK.ERROR}`);
         this.goBack(
           this.$translate.instant(
             'pci_projects_project_quota_increase_error_message',
@@ -170,7 +172,7 @@ ${this.issueTypeDescription}
       (this.serviceOption && this.serviceOption.planCode) || 'quota-no-plan';
     if (isNil(this.serviceOptions)) {
       this.trackPage(
-        `PublicCloud::quota-select-plan-banner::error::${planCode}`,
+        `${TRACK.BASE_SELECT_PLAN_BANNER}::${TRACK.ERROR}::${planCode}`,
       );
       return this.goBack(
         this.$translate.instant(
@@ -185,7 +187,7 @@ ${this.issueTypeDescription}
 
     this.isLoading = true;
     this.trackClick(
-      `PublicCloud::pci::projects::project::quota::select-plan::confirm_${planCode}`,
+      `${TRACK.BASE}::${TRACK.SELECT_PLAN}::${TRACK.CONFIRM}_${planCode}`,
     );
 
     return this.pciProjectQuotaIncrease
@@ -199,7 +201,7 @@ ${this.issueTypeDescription}
       })
       .then(({ data }) => {
         this.trackPage(
-          `PublicCloud::quota-select-plan-banner::success::${planCode}`,
+          `${TRACK.BASE_SELECT_PLAN_BANNER}::${TRACK.SUCCESS}::${planCode}`,
         );
 
         this.goBack(
@@ -214,7 +216,7 @@ ${this.issueTypeDescription}
       })
       .catch((err) => {
         this.trackPage(
-          `PublicCloud::quota-select-plan-banner::error::${planCode}`,
+          `${TRACK.BASE_SELECT_PLAN_BANNER}::${TRACK.ERROR}::${planCode}`,
         );
         this.goBack(
           this.$translate.instant(
