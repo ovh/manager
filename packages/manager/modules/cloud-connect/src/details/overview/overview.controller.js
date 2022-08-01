@@ -65,6 +65,9 @@ export default class CloudConnectOverviewCtrl {
           'YYYY/MM/DD',
         ).format('LL');
         this.loadServices(serviceInfos.serviceId);
+        this.getCancelTerminationUrl(serviceInfos.domain).then((url) => {
+          this.cancelTerminationUrl = url;
+        });
         return serviceInfos;
       });
   }

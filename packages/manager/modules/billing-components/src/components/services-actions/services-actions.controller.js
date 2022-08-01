@@ -2,7 +2,9 @@ import { RENEW_URL, SERVICE_TYPE } from './service-actions.constants';
 
 export default class ServicesActionsCtrl {
   /* @ngInject */
-  constructor(atInternet, coreConfig, coreURLBuilder) {
+  constructor($injector, $q, atInternet, coreConfig, coreURLBuilder) {
+    this.$injector = $injector;
+    this.$q = $q;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
     this.coreConfig = coreConfig;
@@ -12,17 +14,37 @@ export default class ServicesActionsCtrl {
     );
 
     this.SERVICE_TYPE = SERVICE_TYPE;
+    this.isLoading = true;
   }
 
   $onInit() {
+    let fetchAutoRenewLink = this.$q.when();
+    if (!this.billingManagementAvailability) {
+      this.autorenewLink = null;
+    } else if (this.$injector.has('shellClient')) {
+      fetchAutoRenewLink = this.$injector
+        .get('shellClient')
+        .navigation.getURL('dedicated', '#/billing/autorenew')
+        .then((url) => {
+          this.autorenewLink = url;
+        });
+    } else {
+      this.autorenewLink = this.coreURLBuilder.buildURL(
+        'dedicated',
+        '#/billing/autorenew',
+      );
+    }
+    return fetchAutoRenewLink.finally(() => {
+      this.isLoading = false;
+      this.initLinks();
+    });
+  }
+
+  initLinks() {
     const serviceTypeParam = this.service.serviceType
       ? `&serviceType=${this.service.serviceType}`
       : '';
     this.user = this.coreConfig.getUser();
-
-    this.autorenewLink = this.billingManagementAvailability
-      ? this.coreURLBuilder.buildURL('dedicated', '#/billing/autorenew')
-      : null;
 
     this.commitmentLink =
       (this.getCommitmentLink && this.getCommitmentLink(this.service)) ||

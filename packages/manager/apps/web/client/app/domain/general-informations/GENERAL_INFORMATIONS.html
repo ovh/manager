@@ -207,10 +207,9 @@
                 >
                     <oui-tile-description>
                         <a
-                            data-ng-if="::$ctrl.orderedHosting"
+                            data-ng-if="::$ctrl.orderedHosting && $ctrl.orderedHostingLink"
                             data-ng-bind="::$ctrl.orderedHosting"
-                            data-ng-href="#/hosting/{{::$ctrl.orderedHosting}}?tab=GENERAL_INFORMATIONS"
-                            target="_top"
+                            data-ng-href="{{$ctrl.orderedHostingLink}}"
                         >
                         </a>
                         <span
@@ -241,12 +240,11 @@
                             data-ng-if="!$ctrl.loading.associatedHosting && $ctrl.hasAssociatedHostings"
                         >
                             <li
-                                data-ng-repeat="hosting in $ctrl.associatedHostings track by $index"
+                                data-ng-repeat="hosting in $ctrl.associatedHostingsDetails track by $index"
                             >
                                 <a
-                                    data-ng-bind="::hosting"
-                                    data-ng-href="#/hosting/{{::hosting}}?tab=MULTISITE"
-                                    target="_top"
+                                    data-ng-bind="::hosting.hosting"
+                                    data-ng-href="{{::hosting.url}}"
                                 >
                                 </a>
                             </li>
@@ -411,7 +409,6 @@
                             data-ng-href="{{ $ctrl.optinLink}}"
                             class="oui-button oui-button_secondary"
                             data-translate="domain_dashboard_whois_button"
-                            target="_top"
                         ></a>
                         <span
                             data-ng-if="!$ctrl.isWhoisOptinAllowed"
@@ -430,7 +427,6 @@
                             data-ng-href="{{ $ctrl.emailObfuscationLink }}"
                             class="oui-button oui-button_secondary"
                             data-translate="domain_dashboard_obfuscated_email_regenerate_button"
-                            target="_top"
                         ></a>
                     </oui-tile-description>
                 </oui-tile-definition>
