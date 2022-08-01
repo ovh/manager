@@ -1,4 +1,4 @@
-import { HORIZON_LINK } from './users.constants';
+import { HORIZON_LINK, HORIZON_LINK_TRUSTED } from './users.constants';
 import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -27,10 +27,9 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
       openStackHorizonLink: /* @ngInject */ (coreConfig) => (user) =>
-        HORIZON_LINK[coreConfig.getRegion()].replace(
-          '{username}',
-          user.username,
-        ),
+        (coreConfig.getUser().isTrusted ? HORIZON_LINK_TRUSTED : HORIZON_LINK)[
+          coreConfig.getRegion()
+        ].replace('{username}', user.username),
       downloadOpenStackOpenRc: /* @ngInject */ ($state, projectId) => (user) =>
         $state.go('pci.projects.project.users.download-openrc', {
           projectId,
