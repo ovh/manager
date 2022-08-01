@@ -96,17 +96,11 @@
                                 data-translate="data_processing_price_details_driver"
                             ></span>
                             <strong
-                                data-translate="data_processing_price_details_memory_gib"
-                                data-translate-values="{
-                                memory: $ctrl.pricesData.memory.driver.base,
-                            }"
+                                data-ng-bind="$ctrl.pricesData.memory.driver.base | bytes:0:false:'GB'"
                             ></strong>
                             <span> + </span>
                             <strong
-                                data-translate="data_processing_price_details_memory_gib"
-                                data-translate-values="{
-                                memory: $ctrl.pricesData.memory.driver.overhead,
-                            }"
+                                data-ng-bind="$ctrl.pricesData.memory.driver.overhead | bytes:0:false:'GB'"
                             ></strong>
                             <span
                                 data-translate="data_processing_price_details_memory_overhead"
@@ -120,17 +114,11 @@
                             <span> x </span>
                             <span>(</span>
                             <strong
-                                data-translate="data_processing_price_details_memory_gib"
-                                data-translate-values="{
-                                memory: $ctrl.pricesData.memory.worker.base,
-                            }"
+                                data-ng-bind="$ctrl.pricesData.memory.worker.base | bytes:0:false:'GB'"
                             ></strong>
                             <span> + </span>
                             <strong
-                                data-translate="data_processing_price_details_memory_gib"
-                                data-translate-values="{
-                                memory: $ctrl.pricesData.memory.worker.overhead,
-                            }"
+                                data-ng-bind="$ctrl.pricesData.memory.worker.overhead | bytes:0:false:'GB'"
                             ></strong>
                             <span
                                 data-translate="data_processing_price_details_memory_overhead"
