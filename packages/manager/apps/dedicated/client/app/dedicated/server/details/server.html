@@ -47,6 +47,24 @@
     <!-- Real Time monitoring EOL -->
     <div class="alert-server" data-ovh-alert="rtm_eol_info"></div>
 
+    <!-- Firewall Cisco ASA EOL -->
+    <oui-message
+        class="mb-3"
+        data-type="info"
+        data-ng-if="$ctrl.firewallAsaIsEnabled"
+    >
+        <span data-translate="server_configuration_firewall_asa_EOL"></span>
+        <a
+            data-ng-href="{{ :: $ctrl.linkFirewallCiscoAsa }}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span
+                data-translate="server_configuration_firewall_asa_EOL_link"
+            ></span>
+        </a>
+    </oui-message>
+
     <oui-header-tabs>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.getTabItemUrl('dashboard') }}"
