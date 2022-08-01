@@ -3,6 +3,7 @@ import colors from './foundations/colors';
 import shadows from './foundations/shadows';
 import radii from './foundations/radius';
 
+import Accordion from './components/Accordion';
 import Alert from './components/Alert';
 import Badge from './components/Badge';
 import Breadcrumb from './components/Breadcrumb';
@@ -26,6 +27,7 @@ import Tile from './components/Tile';
 export default {
   colors,
   components: {
+    Accordion,
     Alert,
     Badge,
     Breadcrumb,

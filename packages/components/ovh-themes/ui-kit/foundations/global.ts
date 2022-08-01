@@ -85,14 +85,14 @@ export default {
   },
   /* List */
   ul: {
-    listStyle:'none',
+    listStyle: 'none',
     ul: {
       paddingLeft: '.75rem',
-    }
+    },
   },
   'ul.separated > li': {
     borderBottom: '1px solid',
-    borderColor: 'uikit.200'
+    borderColor: 'uikit.200',
   },
   /* Paragraph */
   p: {

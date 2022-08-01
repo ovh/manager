@@ -1,5 +1,6 @@
 export default {
   uikit: {
+    0: '#FFF',
     50: '#F5FEFF',
     75: '#DEF8FF',
     100: '#bef1ff',

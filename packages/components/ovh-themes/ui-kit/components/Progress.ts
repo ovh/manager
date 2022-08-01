@@ -17,11 +17,13 @@ const Progress: ComponentStyleConfig = {
       lineHeight: '1.67',
       marginTop: '.25rem',
       top:'calc(100% + 1rem)',
+      position: 'initial',
+      display: 'block',
+      transform: 'none'
     },
     track: {
       borderRadius: '.3125rem',
-      my: '.5rem',
-      overflow: '',
+      overflow: 'unset',
     },
   },
   sizes: {

@@ -1,8 +1,8 @@
 // eslint-disable-next-line prettier/prettier
-import type { ComponentStyleConfig } from '@chakra-ui/theme';
+import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 import { menuAnatomy as parts } from '@chakra-ui/anatomy';
 
-const Menu: ComponentStyleConfig = {
+const Menu: ComponentMultiStyleConfig = {
   parts: parts.keys, // button, item, list, groupTitle, command, divider
   baseStyle: {
     list: {
@@ -11,7 +11,6 @@ const Menu: ComponentStyleConfig = {
       borderRadius: 'medium',
       boxShadow: 'primary',
       margin: 0,
-      marginTop: '-0.625rem',
       maxWidth: '18.75rem',
       minWidth: '8.75rem',
       padding: 0,
