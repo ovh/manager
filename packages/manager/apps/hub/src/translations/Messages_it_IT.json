@@ -1,4 +1,8 @@
 {
   "manager_hub_notification_warning": "{{ content }}",
-  "manager_hub_skip_to_main_content": "Vai al contenuto principale"
+  "manager_hub_skip_to_main_content": "Vai al contenuto principale",
+  "manager_hub_domain_repricing_part_1": "Variazione delle tariffe dei domini",
+  "manager_hub_domain_repricing_part_2": "A partire dal 15 agosto 2022, il prezzo di rinnovo dei domini subirà un aumento.",
+  "manager_hub_domain_repricing_part_3": "Per continuare a usufruire delle tariffe attuali, ti consigliamo di rinnovarli prima di questa data.",
+  "manager_hub_domain_repricing_part_4": "La lista delle estensioni interessate dalla variazione e le nuove tariffe applicate sono disponibili nell'email inviata il 13 luglio."
 }
