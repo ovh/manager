@@ -1207,5 +1207,7 @@
   "server_rtm_eol_info": "Informazione importante sull'obsolescenza di Real Time Monitoring: il servizio continuerà a funzionare fino al 30 giugno 2022. A partire da questa data la visualizzazione dei dati di consumo verrà interrotta, senza impatto sul funzionamento del tuo server.",
   "server_configuration_gateway_ip": "Gateway IPv4",
   "server_configuration_gateway_ipv4": "Gateway IPv4",
-  "server_configuration_gateway_ipv6": "Gateway IPv6"
+  "server_configuration_gateway_ipv6": "Gateway IPv6",
+  "server_configuration_firewall_asa_EOL": "Promemoria: Come già comunicato, i servizi attivi Cisco Firewall ASA associati ai server dedicati saranno dismessi il 31 agosto 2022 alle 10:00 UTC, data di fine supporto.",
+  "server_configuration_firewall_asa_EOL_link": "Scopri di più"
 }
