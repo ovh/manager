@@ -27,6 +27,7 @@ export default class PciBlockStorageContainersContainerObjectAddController {
         this.projectId,
         this.container.region,
         this.container.name,
+        this.prefix,
         this.files,
       );
     } else {
@@ -65,11 +66,12 @@ export default class PciBlockStorageContainersContainerObjectAddController {
       });
   }
 
-  addHighPerfObjects(serviceName, regionName, containerName, files) {
+  addHighPerfObjects(serviceName, regionName, containerName, prefix, files) {
     return this.PciProjectStorageContainersService.addHighPerfObjects(
       serviceName,
       regionName,
       containerName,
+      prefix,
       files,
     );
   }
