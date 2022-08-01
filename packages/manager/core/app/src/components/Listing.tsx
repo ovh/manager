@@ -1,37 +1,31 @@
 import React, { useMemo } from 'react';
 import {
-  Button,
   Flex,
   VStack,
-  Skeleton,
   Spacer,
   Table,
   TableContainer,
-  Thead,
   Tbody,
   Td,
   Tr,
-  Th,
 } from '@chakra-ui/react';
-import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 
+import ListingHeader, { ListingHeaderSorting } from './ListingHeader';
 import ListingPagination from './ListingPagination';
+import ListingPlaceholder from './ListingPlaceholder';
 
-export type ListingSorter<T> = (a: T, b: T) => number;
+export type ListingColumnSortingFunction<T> = (a: T, b: T) => number;
 
 export type ListingColumn<T> = {
   label: string;
-  sort?: ListingSorter<T>;
   render: (item: T) => JSX.Element;
+  sort?: ListingColumnSortingFunction<T>;
 };
 
 export type ListingState<T> = {
   currentPage: number;
   pageSize: number;
-  sort?: {
-    column: ListingColumn<T>;
-    reverse: boolean;
-  };
+  sort?: ListingHeaderSorting<T>;
 };
 
 export type ListingData<T> = {
@@ -46,9 +40,9 @@ export type ListingProps<T> = {
   onChange: (state: ListingState<T>) => void;
 };
 
-interface ListingItem {
+export interface ListingItem {
   id: string;
-};
+}
 
 export default function Listing<T extends ListingItem>({
   columns,
@@ -58,63 +52,11 @@ export default function Listing<T extends ListingItem>({
 }: ListingProps<T>): JSX.Element {
   const { currentPage, pageSize } = state;
 
-  const paginationChangeHandler = (page: number, size: number) => {
-    onChange({ ...state, currentPage: page, pageSize: size });
-  };
-
-  const columnClickHandler = (column: ListingColumn<T>) => {
-    const reverse = state.sort?.column === column ? !state.sort.reverse : false;
-    onChange({
-      ...state,
-      sort: {
-        column,
-        reverse,
-      },
-    });
-  };
-
-  const columnsData = useMemo(
-    () =>
-      columns.map((column) => {
-        if (column.sort) {
-          return (
-            <Th key={column.label}>
-              <Button
-                variant="ghost"
-                onClick={() => columnClickHandler(column)}
-              >
-                {column.label}
-                {state.sort?.column === column && state.sort?.reverse && (
-                  <ChevronDownIcon ml={2} />
-                )}
-                {state.sort?.column === column && !state.sort?.reverse && (
-                  <ChevronUpIcon ml={2} />
-                )}
-              </Button>
-            </Th>
-          );
-        }
-        return <Th key={column.label}>{column.label}</Th>;
-      }),
-    [columns, state],
-  );
-
-  const placeholder = useMemo(() => {
-    return [...Array(10).keys()].map((row) => (
-      <Tr key={`${row}`}>
-        {columns.map((column, col) => (
-          <Td key={`${col}-${row}`}>
-            <Skeleton isLoaded={false}>
-              <span>&nbsp;</span>
-            </Skeleton>
-          </Td>
-        ))}
-      </Tr>
-    ));
-  }, []);
-
   const cells = useMemo(() => {
-    if (!data?.items) return placeholder;
+    if (!data?.items)
+      return (
+        <ListingPlaceholder columnsCount={columns.length} linesCount={10} />
+      );
     return data.items.map((item) => (
       <Tr key={item.id}>
         {columns.map(({ label, render }) => (
@@ -128,9 +70,11 @@ export default function Listing<T extends ListingItem>({
     <VStack align="left">
       <TableContainer>
         <Table>
-          <Thead>
-            <Tr>{columnsData}</Tr>
-          </Thead>
+          <ListingHeader
+            columns={columns}
+            sort={state.sort}
+            onColumnSort={(sort) => onChange({ ...state, sort })}
+          />
           <Tbody>{cells}</Tbody>
         </Table>
       </TableContainer>
@@ -141,7 +85,9 @@ export default function Listing<T extends ListingItem>({
             currentPage={currentPage}
             pageSize={pageSize}
             itemsCount={data.total}
-            onChange={paginationChangeHandler}
+            onChange={(page, size) =>
+              onChange({ ...state, currentPage: page, pageSize: size })
+            }
           />
         </Flex>
       )}
