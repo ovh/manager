@@ -57,10 +57,10 @@
                 >
                 </pci-project-data-processing-metrics-chart>
                 <!-- Tile item :: Active tasks -->
-                <span class="information-tile__definition"
-                    >{{ :: 'data_processing_details_charts_num_active_tasks' |
-                    translate }}</span
-                >
+                <span
+                    class="information-tile__definition"
+                    data-translate="data_processing_details_charts_num_active_tasks"
+                ></span>
                 <div
                     class="chart__nodata-container"
                     data-ng-if="$ctrl.metrics.activeTasks.data.length === 0"
@@ -77,10 +77,10 @@
                 >
                 </pci-project-data-processing-metrics-chart>
                 <!-- Tile item :: Blockmanager disk -->
-                <span class="information-tile__definition"
-                    >{{ :: 'data_processing_details_charts_blockmanager_disk' |
-                    translate }}</span
-                >
+                <span
+                    class="information-tile__definition"
+                    data-translate="data_processing_details_charts_blockmanager_disk"
+                ></span>
                 <div
                     class="chart__nodata-container"
                     data-ng-if="$ctrl.metrics.blockManagerDiskUsed.data.length === 0"
