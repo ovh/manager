@@ -15,8 +15,6 @@ export function useShell() {
   return shell;
 }
 
-export { OvhApplication } from './ovh-application';
-
 export function createContainerElement() {
   const body = document.querySelector('body');
   const divContainer = document.createElement('div');
@@ -34,7 +32,9 @@ export function startApplication(
   root.render(
     <React.StrictMode>
       <ChakraProvider>
+        <OvhApplication name={appName}>
           <AppComponent />
+        </OvhApplication>
       </ChakraProvider>
     </React.StrictMode>,
   );

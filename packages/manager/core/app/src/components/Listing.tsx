@@ -14,18 +14,16 @@ import ListingHeader, { ListingHeaderSorting } from './ListingHeader';
 import ListingPagination from './ListingPagination';
 import ListingPlaceholder from './ListingPlaceholder';
 
-export type ListingColumnSortingFunction<T> = (a: T, b: T) => number;
-
 export type ListingColumn<T> = {
+  key: string;
   label: string;
-  render: (item: T) => JSX.Element;
-  sort?: ListingColumnSortingFunction<T>;
+  renderer?: (item: T) => JSX.Element;
 };
 
-export type ListingState<T> = {
+export type ListingState = {
   currentPage: number;
   pageSize: number;
-  sort?: ListingHeaderSorting<T>;
+  sort?: ListingHeaderSorting;
 };
 
 export type ListingData<T> = {
@@ -36,15 +34,11 @@ export type ListingData<T> = {
 export type ListingProps<T> = {
   columns: ListingColumn<T>[];
   data?: ListingData<T>;
-  state: ListingState<T>;
-  onChange: (state: ListingState<T>) => void;
+  state: ListingState;
+  onChange: (state: ListingState) => void;
 };
 
-export interface ListingItem {
-  id: string;
-}
-
-export default function Listing<T extends ListingItem>({
+export default function Listing<T>({
   columns,
   data,
   state,
@@ -57,10 +51,12 @@ export default function Listing<T extends ListingItem>({
       return (
         <ListingPlaceholder columnsCount={columns.length} linesCount={10} />
       );
-    return data.items.map((item) => (
-      <Tr key={item.id}>
-        {columns.map(({ label, render }) => (
-          <Td key={`${label}-${item.id}`}>{render(item)}</Td>
+    return data.items.map((item, index) => (
+      <Tr key={index}>
+        {columns.map(({ key, renderer }) => (
+          <Td key={`${key}-${index}`}>
+            {renderer ? renderer(item) : item[key as keyof T]}
+          </Td>
         ))}
       </Tr>
     ));
