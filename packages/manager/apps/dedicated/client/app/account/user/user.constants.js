@@ -17,6 +17,9 @@ export const ACCOUNT_INFORMATIONS = {
   SG: 'https://docs.ovh.com/sg/en/customer/',
   WE: 'https://docs.ovh.com/us/en/customer/',
   WS: 'https://docs.ovh.com/us/es/customer/',
+  MA: 'https://docs.ovh.com/fr/customer/',
+  TN: 'https://docs.ovh.com/fr/customer/',
+  SN: 'https://docs.ovh.com/fr/customer/',
 };
 
 export const GUIDES_LIST = {
