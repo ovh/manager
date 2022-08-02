@@ -1,156 +1,55 @@
-import get from 'lodash/get';
-import map from 'lodash/map';
-import set from 'lodash/set';
-
-import groupPortaByNumbers from './portabilities.service';
-import { PORTABILITY_STATUS } from './portabilities.constants';
+import {
+  PORTABILITY_STATUS,
+  PORTABILITY_STEPS_GUIDE,
+  PORTABILITY_COUNTRY,
+  PORTABILITY_STEPS_STATUS,
+} from './portabilities.constants';
 
 export default class TelecomTelephonyAliasPortabilitiesCtrl {
   /* @ngInject */
-  constructor($q, $stateParams, $translate, OvhApiTelephony, TucToast) {
+  constructor(
+    $q,
+    $stateParams,
+    $translate,
+    TucToast,
+    TelephonyPortabilitiesService,
+  ) {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
     this.$q = $q;
-    this.OvhApiTelephony = OvhApiTelephony;
     this.TucToast = TucToast;
+    this.TelephonyPortabilitiesService = TelephonyPortabilitiesService;
+    this.PORTABILITY_STEPS_GUIDE = PORTABILITY_STEPS_GUIDE;
+    this.PORTABILITY_STEPS_STATUS = PORTABILITY_STEPS_STATUS;
   }
 
   $onInit() {
-    this.loading = {
-      cancel: false,
-    };
-
-    this.init();
-  }
-
-  init() {
     this.isLoading = true;
-    this.fetchPortability()
+    this.collapseStatus = null;
+
+    return this.TelephonyPortabilitiesService.fetchPortability(
+      this.$stateParams.billingAccount,
+    )
       .then((result) => {
-        this.numbers = groupPortaByNumbers(result);
+        this.numbers = this.groupPortabilityByNumbers(result);
+        this.guideStepUrl = this.selectGuides();
       })
       .catch((error) => {
         this.TucToast.error(
           this.$translate.instant('telephony_alias_portabilities_load_error', {
-            error: get(error, 'data.message'),
+            error: error?.data?.message,
           }),
         );
         return this.$q.reject(error);
       })
       .finally(() => {
+        this.collapseStatus = Object.keys(this.numbers).map(() => false);
         this.isLoading = false;
       });
   }
 
-  fetchPortability() {
-    return this.OvhApiTelephony.Portability()
-      .v6()
-      .query({
-        billingAccount: this.$stateParams.billingAccount,
-      })
-      .$promise.then((ids) =>
-        this.$q.all(
-          map(ids, (id) =>
-            this.OvhApiTelephony.Portability()
-              .v6()
-              .get({
-                billingAccount: this.$stateParams.billingAccount,
-                id,
-              })
-              .$promise.then((porta) =>
-                this.$q
-                  .all({
-                    steps: this.OvhApiTelephony.Portability()
-                      .v6()
-                      .getStatus({
-                        billingAccount: this.$stateParams.billingAccount,
-                        id,
-                      }).$promise,
-                    canBeCancelled: this.OvhApiTelephony.Portability()
-                      .v6()
-                      .canBeCancelled({
-                        billingAccount: this.$stateParams.billingAccount,
-                        id,
-                      }).$promise,
-                    documentAttached: this.OvhApiTelephony.Portability()
-                      .PortabilityDocument()
-                      .v6()
-                      .query({
-                        billingAccount: this.$stateParams.billingAccount,
-                        id,
-                      }).$promise,
-                  })
-                  .then((results) => {
-                    set(porta, 'steps', results.steps);
-                    set(porta, 'canBeCancelled', results.canBeCancelled.value);
-                    set(porta, 'documentAttached', results.documentAttached);
-                    if (results.documentAttached.length > 0) {
-                      return this.$q
-                        .all(
-                          results.documentAttached.map(
-                            (documentId) =>
-                              this.OvhApiTelephony.Portability()
-                                .PortabilityDocument()
-                                .v6()
-                                .getDocument(
-                                  {
-                                    billingAccount: this.$stateParams
-                                      .billingAccount,
-                                    id,
-                                  },
-                                  {
-                                    documentId,
-                                  },
-                                ).$promise,
-                          ),
-                        )
-                        .then((documents) => {
-                          set(porta, 'uploadedDocuments', documents);
-                          return porta;
-                        });
-                    }
-                    return porta;
-                  }),
-              ),
-          ),
-        ),
-      );
-  }
-
-  confirmCancelPortability(portability) {
-    this.loading.cancel = true;
-
-    return this.OvhApiTelephony.Portability()
-      .v6()
-      .cancel(
-        {
-          billingAccount: this.$stateParams.billingAccount,
-          id: portability.id,
-        },
-        {},
-      )
-      .$promise.then(() => {
-        this.TucToast.success(
-          this.$translate.instant(
-            'telephony_alias_portabilities_cancel_success',
-          ),
-        );
-        return this.init();
-      })
-      .catch((error) => {
-        this.TucToast.error(
-          [
-            this.$translate.instant(
-              'telephony_alias_portabilities_cancel_error',
-            ),
-            get(error, 'data.message'),
-          ].join(' '),
-        );
-        return this.$q.reject(error);
-      })
-      .finally(() => {
-        this.loading.cancel = false;
-      });
+  toggleAccordion(collapsId) {
+    this.collapseStatus[collapsId] = this.collapseStatus[collapsId] === false;
   }
 
   checkPortabilityStatus(index) {
@@ -163,5 +62,36 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
       PORTABILITY_STATUS.formSent,
       PORTABILITY_STATUS.formReceived,
     ].includes(this.numbers[index].lastStepDone.name);
+  }
+
+  groupPortabilityByNumbers = function groupPortabilityByNumbers(
+    portabilities,
+  ) {
+    return portabilities.flatMap((portability) =>
+      portability.numbersList.map((number) => ({
+        number,
+        portability,
+        lastStepDone: portability.steps
+          .slice()
+          .reverse()
+          .find((step) => step.status === this.PORTABILITY_STEPS_STATUS.done),
+      })),
+    );
+  };
+
+  selectGuides() {
+    const portaFr = this.numbers.filter(
+      (porta) =>
+        porta.portability.portabilityCountry === PORTABILITY_COUNTRY.FR,
+    );
+
+    const portaBe = this.numbers.filter(
+      (porta) =>
+        porta.portability.portabilityCountry === PORTABILITY_COUNTRY.BE,
+    );
+
+    return portaFr.length >= portaBe.length
+      ? PORTABILITY_STEPS_GUIDE.FR
+      : PORTABILITY_STEPS_GUIDE.BE;
   }
 }

@@ -1,0 +1,11 @@
+<oui-modal
+    data-heading="{{:: 'telephony_alias_portabilities_cancel_title' | translate }}"
+    data-primary-action="$ctrl.cancelPortability()"
+    data-primary-label="{{ $ctrl.isCancelling ? 'telephony_alias_portabilities_cancel_doing' : 'telephony_alias_portabilities_cancel_yes' | translate }}"
+    data-primary-disabled="$ctrl.isCancelling"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'telephony_alias_portabilities_cancel_no' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <p data-translate="telephony_alias_portabilities_cancel_confirm"></p>
+</oui-modal>

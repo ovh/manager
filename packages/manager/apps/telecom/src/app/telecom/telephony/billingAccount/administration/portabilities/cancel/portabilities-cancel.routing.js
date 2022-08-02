@@ -1,17 +1,15 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.alias.details.portabilities.attach',
+    'telecom.telephony.billingAccount.administration.portabilities.cancel',
     {
-      url: '/attach?portabilityId',
+      url: '/cancel?portabilityId',
       views: {
         modal: {
-          component: 'portabilitiesAttach',
+          component: 'portabilitiesCancel',
         },
       },
       layout: 'modal',
       resolve: {
-        billingAccount: /* @ngInject */ ($transition$) =>
-          $transition$.params().billingAccount,
         portabilityId: /* @ngInject */ ($transition$) =>
           $transition$.params().portabilityId,
         goBack: /* @ngInject */ (goToPortabilities) => goToPortabilities,
