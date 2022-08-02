@@ -3,15 +3,15 @@ import { Button, Thead, Tr, Th } from '@chakra-ui/react';
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import { ListingColumn } from './Listing';
 
-export type ListingHeaderSorting<T> = {
-  column?: ListingColumn<T>;
+export type ListingHeaderSorting = {
+  key?: string;
   reverse?: boolean;
 };
 
 export type ListingHeaderProps<T> = {
   columns: ListingColumn<T>[];
-  sort: ListingHeaderSorting<T>;
-  onColumnSort: (sort: ListingHeaderSorting<T>) => void;
+  sort: ListingHeaderSorting;
+  onColumnSort: (sort: ListingHeaderSorting) => void;
 };
 
 export default function ListingHeader<T>({
@@ -22,30 +22,27 @@ export default function ListingHeader<T>({
   return (
     <Thead>
       <Tr>
-        {columns.map((column) => {
-          if (column.sort) {
-            return (
-              <Th key={column.label}>
-                <Button
-                  variant="ghost"
-                  onClick={() => {
-                    const reverse =
-                      sort?.column === column ? !sort?.reverse : false;
-                    onColumnSort({ column, reverse });
-                  }}
-                >
-                  {column.label}
-                  {sort?.column === column && sort?.reverse && (
-                    <ChevronDownIcon ml={2} />
-                  )}
-                  {sort?.column === column && !sort?.reverse && (
-                    <ChevronUpIcon ml={2} />
-                  )}
-                </Button>
-              </Th>
-            );
-          }
-          return <Th key={column.label}>{column.label}</Th>;
+        {columns.map(({ key, label }) => {
+          return (
+            <Th key={key}>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  const reverse = sort?.key === key ? !sort?.reverse : false;
+                  onColumnSort({ key, reverse });
+                }}
+              >
+                {label}
+                {sort?.key === key && sort?.reverse && (
+                  <ChevronDownIcon ml={2} />
+                )}
+                {sort?.key === key && !sort?.reverse && (
+                  <ChevronUpIcon ml={2} />
+                )}
+              </Button>
+            </Th>
+          );
+          return <Th key={key}>{label}</Th>;
         })}
       </Tr>
     </Thead>
