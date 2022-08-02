@@ -215,6 +215,18 @@ export default class {
   }
 
   /**
+   * Checks if at least one chart has data
+   */
+  hasCharts() {
+    return (
+      this.metrics.totalMemory.data.length +
+        this.metrics.activeTasks.data.length +
+        this.metrics.blockManagerDiskUsed.data.length >
+      0
+    );
+  }
+
+  /**
    * Whether current job is in a (pre-)running state
    * @return {boolean} true if job is Submitted, Pending, Running
    */
