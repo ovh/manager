@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     atInternet: {
-      rename: 'PublicCloud::pci::projects::project::public-gateway::delete',
+      rename: 'pci::projects::project::public-gateway::delete',
     },
   });
 };
