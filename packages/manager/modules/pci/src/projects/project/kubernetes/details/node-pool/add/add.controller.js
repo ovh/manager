@@ -120,4 +120,8 @@ export default class {
     this.sendKubeTrack('details::nodepools::add::cancel');
     this.goBack();
   }
+
+  isBillingWarningMessageDisplayed() {
+    return this.nodePool.monthlyBilling && this.nodePool.autoscaling.autoscale;
+  }
 }

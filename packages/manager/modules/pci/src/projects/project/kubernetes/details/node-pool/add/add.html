@@ -64,7 +64,8 @@
         <node-pool-autoscaling
             data-is-edit-mode="false"
             data-node-pool="$ctrl.nodePool"
-            data-display-node-pool-sizing="$ctrl.displayNodePoolSizing">
+            data-display-node-pool-sizing="$ctrl.displayNodePoolSizing"
+        >
         </node-pool-autoscaling>
     </oui-step-form>
 
@@ -94,6 +95,14 @@
             data-disabled="false"
         >
         </pci-project-flavor-billing>
+        <oui-message
+            data-type="warning"
+            data-ng-if="$ctrl.isBillingWarningMessageDisplayed()"
+        >
+            <p
+                data-translate="kube_add_billing_auto_scaling_monthly_warning"
+            ></p>
+        </oui-message>
         <p data-translate="kube_add_billing_type_payment_method"></p>
 
         <div data-ng-if="$ctrl.isAdding" class="d-flex align-items-center">
