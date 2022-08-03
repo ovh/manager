@@ -14,6 +14,7 @@ export default {
     goToEditGateway: '<',
     goToPrivateNetwork: '<',
     goToAddPublicGateway: '<',
+    trackClick: '<',
   },
   controller,
   template,
