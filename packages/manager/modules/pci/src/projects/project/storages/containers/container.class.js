@@ -38,7 +38,7 @@ export default class Container {
       state,
       storageGateway,
     });
-    this.storedObjects = this.storedObjects || this.objectsCount;
+    this.storedObjects = this.storedObjects || this.objectsCount || 0;
     this.storedBytes = this.storedBytes || this.objectsSize;
     this.id = this.id || this.name;
     this.region = this.region || OPENIO_DEFAULT_REGION;
