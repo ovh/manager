@@ -416,10 +416,11 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
       isAdditionalIpsAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
-        const featureName = 'public-cloud:additional-ips';
         return ovhFeatureFlipping
-          .checkFeatureAvailability(featureName)
-          .then((feature) => feature.isFeatureAvailable(featureName));
+          .checkFeatureAvailability(PCI_FEATURES.PRODUCTS.ADDITIONAL_IP)
+          .then((feature) =>
+            feature.isFeatureAvailable(PCI_FEATURES.PRODUCTS.ADDITIONAL_IP),
+          );
       },
     },
   });
