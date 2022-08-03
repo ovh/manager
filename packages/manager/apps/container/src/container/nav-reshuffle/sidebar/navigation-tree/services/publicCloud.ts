@@ -125,7 +125,13 @@ const pciNode: Node = {
     {
       id: 'pci-network',
       translation: 'sidebar_pci_network',
-      features: ['load-balancer', 'private-network', 'failover-ip'],
+      features: [
+        'load-balancer',
+        'private-network',
+        'failover-ip',
+        'additional-ips',
+        'public-gateways',
+      ],
       forceVisibility: true,
       children: [
         {
@@ -159,6 +165,28 @@ const pciNode: Node = {
             hash: '#/pci/projects/{projectId}/failover-ips',
           },
           features: ['failover-ip'],
+          forceVisibility: true,
+        },
+        {
+          id: 'pci-additional-ips',
+          translation: 'sidebar_pci_additional_ips',
+          serviceType: 'CLOUD_PROJECT_ADDITIONAL_IP',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/additional-ips',
+          },
+          features: ['additional-ips'],
+          forceVisibility: true,
+        },
+        {
+          id: 'pci-public-gateways',
+          translation: 'sidebar_pci_public_gateways',
+          serviceType: 'CLOUD_PROJECT_PUBLIC_GATEWAYS',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/public-gateways',
+          },
+          features: ['public-gateways'],
           forceVisibility: true,
         },
       ],
