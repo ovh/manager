@@ -120,5 +120,6 @@
   "sidebar_assistance_live_chat": "Live Chat",
   "sidebar_assistance_onboarding": "Visita guiada",
   "sidebar_clipboard_copy": "Copiar para a área de transferência",
-  "sidebar_billing_ssh": "Chaves SSH"
+  "sidebar_billing_ssh": "Chaves SSH",
+  "sidebar_email_delegated": "Delegações de e-mails"
 }

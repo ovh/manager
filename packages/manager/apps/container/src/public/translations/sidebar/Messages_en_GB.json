@@ -120,5 +120,6 @@
   "sidebar_assistance_onboarding": "Guided tour",
   "sidebar_clipboard_copy": "Copy to clipboard",
   "sidebar_pci_load_error": "An error has occurred retrieving the list of projects",
-  "sidebar_billing_ssh": "My SSH keys"
+  "sidebar_billing_ssh": "My SSH keys",
+  "sidebar_email_delegated": "Email delegations"
 }
