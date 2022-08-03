@@ -147,16 +147,6 @@ export default class {
   }
 
   prepareJobPayload() {
-    let args = '';
-    if (this.state.jobConfig.currentArgument.length > 0) {
-      this.state.jobConfig.arguments.push({
-        title: this.state.jobConfig.currentArgument,
-      });
-      this.state.jobConfig.currentArgument = '';
-    }
-    if (this.state.jobConfig.arguments.length > 0) {
-      args = this.state.jobConfig.arguments.map((o) => o.title).join(',');
-    }
     if (this.state.jobSizing?.driverMemoryGb) {
       const payload = {
         containerName: this.state.jobConfig.swiftContainer,
@@ -171,8 +161,7 @@ export default class {
           },
           {
             name: 'arguments',
-            // handle iceberg limitation concerning arrays. We use comma-delimited string
-            value: args,
+            value: this.state.jobConfig.arguments.replaceAll(' ', ','),
           },
           {
             name: 'driver_memory',
@@ -214,6 +203,12 @@ export default class {
           name: 'main_class_name',
           value: this.state.jobConfig.mainClass,
         });
+      }
+      if (this.state.jobConfig.ttl.enabled) {
+        payload.ttl = moment.duration(
+          this.state.jobConfig.ttl.time,
+          this.state.jobConfig.ttl.unit.name,
+        );
       }
       this.orderData = payload;
     }

@@ -1,7 +1,8 @@
 import { filter, find } from 'lodash';
 import {
-  ARGUMENTS_VALIDATION_PATTERN,
   PYTHON_ENV_FILENAME,
+  PYTHON_FILES_CONTENT_TYPE,
+  JAVA_FILES_CONTENT_TYPES,
 } from './spark-config.constants';
 import {
   JOB_TYPE_JAVA,
@@ -11,15 +12,15 @@ import { nameGenerator } from '../../data-processing.utils';
 
 export default class {
   /* @ngInject */
-  constructor($scope, SparkConfigService) {
+  constructor($scope, SparkConfigService, $translate) {
     this.$scope = $scope;
     // create state
     this.state = {};
     this.swiftContainers = {};
     this.swiftContainersInRegion = {};
-    this.currentArgument = '';
     this.sparkConfigService = SparkConfigService;
     this.containerObjects = [];
+    this.$translate = $translate;
   }
 
   $onInit() {
@@ -28,12 +29,16 @@ export default class {
     this.swiftContainers = [];
     // initialize component state
     this.state = {
-      arguments: [],
-      currentArgument: '',
+      arguments: '',
       jobName: nameGenerator(),
       mainApplicationCodeFileNotFound: false, // used by UI to show a warning when file is not found
       mainApplicationCodeFileInvalid: false, // used by UI to show a warning when main application file is invalid
       pythonEnvironmentMissing: false, // used by UI to show a warning when environment.yml file is missing
+      ttl: {
+        enabled: false,
+        unit: null,
+        time: 10,
+      },
     };
     this.sparkConfigService
       .listContainers(this.projectId)
@@ -49,6 +54,31 @@ export default class {
       },
       true,
     );
+
+    this.units = [
+      {
+        name: 'minutes',
+        description: this.$translate.instant(
+          'data_processing_submit_job_stepper_spark_select_unit_minutes',
+        ),
+      },
+      {
+        name: 'hours',
+        multiplier: 60,
+        description: this.$translate.instant(
+          'data_processing_submit_job_stepper_spark_select_unit_hours',
+        ),
+      },
+      {
+        name: 'days',
+        multiplier: 1440,
+        description: this.$translate.instant(
+          'data_processing_submit_job_stepper_spark_select_unit_days',
+        ),
+      },
+    ];
+
+    [this.state.ttl.unit] = this.units;
 
     this.onChangeHandler(this.state);
   }
@@ -77,6 +107,22 @@ export default class {
       .listObjects(this.projectId, containerId)
       .then((container) => {
         this.containerObjects = container.objects;
+        // try to detect correct job type and file
+        const pythonFiles = container.objects.filter(
+          (object) => object.contentType === PYTHON_FILES_CONTENT_TYPE,
+        );
+        const javaFiles = container.objects.filter((object) =>
+          JAVA_FILES_CONTENT_TYPES.includes(object.contentType),
+        );
+        if (pythonFiles.length > 0) {
+          this.state.jobType = JOB_TYPE_PYTHON;
+          this.state.mainApplicationCode = pythonFiles[0].name;
+        } else if (javaFiles.length > 0) {
+          this.state.jobType = JOB_TYPE_JAVA;
+          this.state.mainApplicationCode = javaFiles[0].name;
+        } else if (this.state.mainApplicationCode) {
+          this.state.mainApplicationCode = '';
+        }
         // handle case where customer started by code filename before selecting container
         this.onMainApplicationCodeChangeHandler();
       });
@@ -91,10 +137,8 @@ export default class {
     // check for proper JAR (just a warning, no blocking error in case MIME type is wrong in Object Storage)
     this.state.mainApplicationCodeFileInvalid =
       fileObject &&
-      this.state.jobType === 'java' &&
-      fileObject.contentType !== 'application/java-archive' &&
-      fileObject.contentType !== 'application/x-java-archive' &&
-      fileObject.contentType !== 'application/x-jar';
+      this.state.jobType === JOB_TYPE_JAVA &&
+      !JAVA_FILES_CONTENT_TYPES.includes(fileObject.contentType);
     // check if file exists
     this.state.mainApplicationCodeFileNotFound = fileObject === undefined;
     // check if environment file exists
@@ -104,10 +148,7 @@ export default class {
     );
     this.state.pythonEnvironmentMissing =
       !environmentFileObject && this.state.jobType === JOB_TYPE_PYTHON;
-    // check for field global validity (files exist)
-    this.valid =
-      !this.state.pythonEnvironmentMissing &&
-      !this.state.mainApplicationCodeFileNotFound;
+    this.checkValidity();
     this.onChangeHandler(this.state);
   }
 
@@ -117,28 +158,19 @@ export default class {
     this.onChangeHandler(this.state);
   }
 
-  /**
-   * Handler to add current arguments to the chips argument list
-   * @param evt <enter> key event
-   */
-  onSubmitArgumentHandler(evt) {
-    evt.preventDefault();
-    evt.stopPropagation();
-    const arg = evt.target.value;
-    // validate argument against authorized pattern
-    if (arg.match(ARGUMENTS_VALIDATION_PATTERN)) {
-      this.state.arguments.push({
-        title: arg,
-      });
-      this.state.currentArgument = '';
-    }
-    this.onChangeHandler(this.state);
+  checkValidity() {
+    // check for field global validity (files exist)
+    this.valid =
+      !this.state.pythonEnvironmentMissing &&
+      !this.state.mainApplicationCodeFileNotFound &&
+      !(this.state.jobType === JOB_TYPE_JAVA && !this.state.mainClass);
   }
 
   /**
    * Handler to manage Main Class field changes
    */
   onMainClassChangeHandler() {
+    this.checkValidity();
     this.onChangeHandler(this.state);
   }
 }
