@@ -14,7 +14,7 @@ export const PCI_FEATURES = {
     LOAD_BALANCER: 'load-balancer',
     PRIVATE_NETWORK: 'private-network',
     FAILOVER_IP: 'failover-ip',
-    ADDITIONAL_IP: 'public-cloud:additional-ips',
+    ADDITIONAL_IP: 'additional-ips',
     KUBERNETES: 'kubernetes',
     PRIVATE_REGISTRY: 'private-registry',
     WORKFLOW_MANAGEMENT: 'workflow-management',
@@ -26,7 +26,7 @@ export const PCI_FEATURES = {
     DATA_PROCESSING: 'data-processing',
     LOGS_DATA_PLATFORM: 'logs-data-platform',
     HORIZON: 'horizon',
-    PUBLIC_GATEWAYS: 'public-cloud:public-gateways',
+    PUBLIC_GATEWAYS: 'public-gateways',
   },
   INSTANCE_FLAVORS_CATEGORY: {
     GENERAL: 'instance:flavors-category-general',
