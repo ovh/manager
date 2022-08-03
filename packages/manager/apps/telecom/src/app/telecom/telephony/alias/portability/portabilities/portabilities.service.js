@@ -54,6 +54,15 @@ export default class TelecomTelephonyAliasPortabilitiesService {
       .catch((error) => this.$q.reject(error));
   }
 
+  relaunchPortability(billingAccount, id, changesForPortability) {
+    return this.$http
+      .post(`/telephony/${billingAccount}/portability/${id}/relaunch`, {
+        parameters: changesForPortability,
+      })
+      .then(({ data }) => data)
+      .catch((error) => this.$q.reject(error));
+  }
+
   documentAttached(billingAccount, id) {
     return this.$http
       .get(`/telephony/${billingAccount}/portability/${id}/document`)
@@ -76,6 +85,7 @@ export default class TelecomTelephonyAliasPortabilitiesService {
   changeRequired(billingAccount, id) {
     return this.$http
       .get(`/telephony/${billingAccount}/portability/${id}/relaunch`)
-      .then(({ data }) => data);
+      .then(({ data }) => data)
+      .catch(() => null);
   }
 }

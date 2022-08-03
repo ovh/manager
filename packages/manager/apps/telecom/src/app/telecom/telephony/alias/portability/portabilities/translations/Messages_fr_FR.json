@@ -39,5 +39,6 @@
   "telephony_alias_portabilities_attach_list_files": "Liste des documents envoyés",
   "telephony_alias_portabilities_attach_file_name": "Nom du document",
   "telephony_alias_portabilities_attach_delete": "Supprimer",
-  "telephony_alias_portabilities_step_guide": "Guide des étapes"
+  "telephony_alias_portabilities_step_guide": "Guide des étapes",
+  "telephony_alias_portabilities_relaunch": "Corriger et relancer la portabilité"
 }

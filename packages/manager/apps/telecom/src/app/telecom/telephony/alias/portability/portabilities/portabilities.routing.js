@@ -51,6 +51,17 @@ export default /* @ngInject */ ($stateProvider) => {
               portabilityId: portability.id,
             },
           ),
+        goToRelaunchPortability: /* @ngInject */ ($state, billingAccount) => (
+          portability,
+        ) =>
+          $state.go(
+            'telecom.telephony.billingAccount.alias.details.portabilities.relaunch',
+            {
+              billingAccount,
+              portabilityId: portability.id,
+              changeRequired: portability.changeRequired,
+            },
+          ),
         goToPortabilities: /* @ngInject */ (
           $state,
           billingAccount,

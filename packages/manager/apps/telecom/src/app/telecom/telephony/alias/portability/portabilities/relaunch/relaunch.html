@@ -1,0 +1,49 @@
+<form name="form" enctype="multipart/form-data" novalidate>
+    <oui-modal
+        data-heading="{{:: 'telephony_alias_portabilities_relaunch_title' | translate }}"
+        data-primary-action="$ctrl.relaunchPortability()"
+        data-primary-label="{{ $ctrl.isRelaunching ? 'telephony_alias_portabilities_relaunch_doing' : 'telephony_alias_portabilities_relaunch_submit' | translate }}"
+        data-primary-disabled="$ctrl.isRelaunching || form.$invalid"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'telephony_alias_portabilities_relaunch_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+    >
+        <oui-collapsible
+            data-heading="{{ 'telephony_alias_portabilities_relaunch_required_fields' | translate }}"
+            data-group="collapsible_relaunch"
+            data-expanded="$ctrl.changeRequired.mandatoryParameters.length > 0"
+            data-ng-if="$ctrl.changeRequired.mandatoryParameters.length > 0"
+        >
+            <oui-field
+                label="{{ 'telephony_alias_portabilities_relaunch_label_' + field | translate }}"
+                data-ng-repeat="field in $ctrl.changeRequired.mandatoryParameters track by $index"
+            >
+                <input
+                    class="oui-input"
+                    name="field_{{field}}"
+                    type="text"
+                    data-ng-model="$ctrl.model.mandatoryParameters[field]"
+                    required
+                />
+            </oui-field>
+        </oui-collapsible>
+
+        <oui-collapsible
+            data-heading="{{ 'telephony_alias_portabilities_relaunch_optional_fields' | translate }}"
+            data-group="collapsible_relaunch"
+            data-ng-if="$ctrl.changeRequired.optionalParameters.length > 0"
+        >
+            <oui-field
+                label="{{ 'telephony_alias_portabilities_relaunch_label_' + field | translate }}"
+                data-ng-repeat="field in $ctrl.changeRequired.optionalParameters track by $index"
+            >
+                <input
+                    class="oui-input"
+                    name="field_{{field}}"
+                    type="text"
+                    data-ng-model="$ctrl.model.optionalParameters[field]"
+                />
+            </oui-field>
+        </oui-collapsible>
+    </oui-modal>
+</form>

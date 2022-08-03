@@ -79,6 +79,17 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
     );
   };
 
+  hasChangeRequired(porta, step) {
+    if (step) {
+      return (
+        step.status === this.PORTABILITY_STEPS_STATUS.error &&
+        (porta.portability.changeRequired?.mandatoryParameters?.length > 0 ||
+          porta.portability.changeRequired?.optionalParameters?.length > 0)
+      );
+    }
+    return porta.portability.error && !porta.lastStepDone;
+  }
+
   selectGuides() {
     const portaFr = this.numbers.filter(
       (porta) =>

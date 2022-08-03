@@ -10,6 +10,7 @@ export default {
     deleteDocument: '<',
     documentId: '<',
     goToCancelPortability: '<',
+    goToRelaunchPortability: '<',
     serviceName: '<',
   },
   controller,

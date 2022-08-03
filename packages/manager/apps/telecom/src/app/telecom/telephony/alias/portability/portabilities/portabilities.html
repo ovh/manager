@@ -146,54 +146,81 @@
                             </oui-collapsible>
                         </div>
                         <div>
+                            <oui-button
+                                data-variant="link"
+                                data-icon-right="oui-icon-arrow-right"
+                                data-ng-click="$ctrl.goToRelaunchPortability(portability)"
+                                data-ng-if=":: $ctrl.hasChangeRequired(porta)"
+                                class="mb-2"
+                            >
+                                <span
+                                    data-translate="{{ 'telephony_alias_portabilities_relaunch' }}"
+                                ></span>
+                            </oui-button>
                             <!-- PORTABILITY STEPS TIMELINE -->
                             <div
                                 class="oui-progress-tracker oui-progress-tracker_vertical"
                             >
                                 <ol class="oui-progress-tracker__steps">
-                                    <li
+                                    <div
                                         data-ng-repeat="step in portability.steps track by $index"
-                                        data-ng-class="{
-                                        'oui-progress-tracker__step oui-progress-tracker__step_disabled': step.status === $ctrl.PORTABILITY_STEPS_STATUS.todo,
-                                        'oui-progress-tracker__step oui-progress-tracker__step_active': step.status === $ctrl.PORTABILITY_STEPS_STATUS.doing,
-                                        'oui-progress-tracker__step oui-progress-tracker__step_complete': step.status === $ctrl.PORTABILITY_STEPS_STATUS.done,
-                                        'oui-progress-tracker__step oui-progress-tracker__step_error': step.status === $ctrl.PORTABILITY_STEPS_STATUS.error,
-                                    }"
                                     >
-                                        <span
-                                            class="oui-progress-tracker__status"
+                                        <li
+                                            data-ng-class="{
+                                            'oui-progress-tracker__step oui-progress-tracker__step_disabled': step.status === $ctrl.PORTABILITY_STEPS_STATUS.todo,
+                                            'oui-progress-tracker__step oui-progress-tracker__step_active': step.status === $ctrl.PORTABILITY_STEPS_STATUS.doing,
+                                            'oui-progress-tracker__step oui-progress-tracker__step_complete': step.status === $ctrl.PORTABILITY_STEPS_STATUS.done,
+                                            'oui-progress-tracker__step oui-progress-tracker__step_error': step.status === $ctrl.PORTABILITY_STEPS_STATUS.error,
+                                        }"
                                         >
                                             <span
-                                                class="oui-progress-tracker__label"
+                                                class="oui-progress-tracker__status"
                                             >
                                                 <span
-                                                    data-translate="telephony_alias_portabilities_step_name_{{ step.name }}"
+                                                    class="oui-progress-tracker__label"
                                                 >
-                                                </span>
-                                                <strong
-                                                    class="ml-2"
-                                                    data-ng-if="step.duration.quantity > 0 && step.duration.unit !== 'NA'"
-                                                    data-ng-bind=":: step.duration.quantity > 1 ? 'telephony_alias_portabilities_step_duration_'
-                                                    + step.duration.unit + 's' : 'telephony_alias_portabilities_step_duration_'
-                                                    + step.duration.unit | translate:{ duration: step.duration.quantity }"
-                                                >
-                                                </strong>
-                                                <span
-                                                    data-ng-if="step.status === $ctrl.PORTABILITY_STEPS_STATUS.error"
-                                                    class="oui-badge oui-badge_error"
-                                                    data-ng-bind="step.infos.reason"
-                                                >
-                                                </span>
-                                                <span
-                                                    class="float-right"
-                                                    data-ng-if="step.doneDate && step.status === $ctrl.PORTABILITY_STEPS_STATUS.done"
-                                                    data-translate="telephony_alias_portabilities_step_done_on"
-                                                    data-translate-values="{ date: (step.doneDate | date) }"
-                                                >
+                                                    <span
+                                                        data-translate="telephony_alias_portabilities_step_name_{{ step.name }}"
+                                                    >
+                                                    </span>
+                                                    <strong
+                                                        class="ml-2"
+                                                        data-ng-if="step.duration.quantity > 0 && step.duration.unit !== 'NA'"
+                                                        data-ng-bind=":: step.duration.quantity > 1 ? 'telephony_alias_portabilities_step_duration_'
+                                                        + step.duration.unit + 's' : 'telephony_alias_portabilities_step_duration_'
+                                                        + step.duration.unit | translate:{ duration: step.duration.quantity }"
+                                                    >
+                                                    </strong>
+                                                    <span
+                                                        data-ng-if="step.status === $ctrl.PORTABILITY_STEPS_STATUS.error"
+                                                        class="oui-badge oui-badge_error"
+                                                        data-ng-bind="step.infos.reason"
+                                                    >
+                                                    </span>
+                                                    <span
+                                                        class="float-right"
+                                                        data-ng-if="step.doneDate && step.status === $ctrl.PORTABILITY_STEPS_STATUS.done"
+                                                        data-translate="telephony_alias_portabilities_step_done_on"
+                                                        data-translate-values="{ date: (step.doneDate | date) }"
+                                                    >
+                                                    </span>
                                                 </span>
                                             </span>
-                                        </span>
-                                    </li>
+                                        </li>
+                                        <li>
+                                            <oui-button
+                                                data-variant="link"
+                                                data-icon-right="oui-icon-arrow-right"
+                                                data-ng-click="$ctrl.goToRelaunchPortability(portability)"
+                                                data-ng-if=":: $ctrl.hasChangeRequired(porta,step)"
+                                                class="mb-2"
+                                            >
+                                                <span
+                                                    data-translate="{{ 'telephony_alias_portabilities_relaunch' }}"
+                                                ></span>
+                                            </oui-button>
+                                        </li>
+                                    </div>
                                 </ol>
                             </div>
                             <!-- timeline -->
