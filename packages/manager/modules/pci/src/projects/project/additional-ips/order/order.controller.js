@@ -2,8 +2,6 @@ import JSURL from 'jsurl';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
-import set from 'lodash/set';
-import isFunction from 'lodash/isFunction';
 import isNumber from 'lodash/isNumber';
 import min from 'lodash/min';
 import map from 'lodash/map';
@@ -19,6 +17,7 @@ import {
   TRACKING_PREFIX_FORM_SUBMIT,
   TRACKING_GUIDE_LINKS,
 } from './order.constants';
+import { setDefaultSelections } from '../../../../components/project/stepper-defaults-selection/stepper-defaults-selection.utils';
 
 export default class AdditionalIpController {
   /* @ngInject */
@@ -60,6 +59,7 @@ export default class AdditionalIpController {
     this.snatEnabled = false;
     this.confirmAndProceed = false;
     this.gatewayPrice = null;
+    this.loadingDefaultValues = false;
     this.ip = {
       quantity: 1,
       instance: null,
@@ -68,7 +68,7 @@ export default class AdditionalIpController {
     };
     this.loadMessages();
     this.initIp();
-    this.setDefaultSelections();
+    this.setDefaults();
   }
 
   static getMaximumQuantity(product) {
@@ -392,58 +392,16 @@ export default class AdditionalIpController {
     );
   }
 
-  getDefaultValue(field) {
-    let defaultValue;
-    if (this.defaults[field.name] !== undefined) {
-      defaultValue =
-        isFunction(field.getDefault) &&
-        field.getDefault(
-          this.defaults[field.name],
-          this[field.availableOptions],
-        );
-    }
-    return defaultValue;
-  }
-
-  onChangeAfterDefaultValueSet(methodToCall, params) {
-    if (this[methodToCall] && isFunction(this[methodToCall])) {
-      return this[methodToCall].call(
-        this,
-        ...params.map((prop) => get(this, prop)),
-      );
-    }
-    return null;
-  }
-
-  async setDefaultSelections() {
-    this.loadingDefaultValues = true;
-    for (let i = 0; i < DEFAULTS_MODEL.length; i += 1) {
-      const step = DEFAULTS_MODEL[i];
-      for (let j = 0; j < step.fields.length; j += 1) {
-        const defaultvalue = this.getDefaultValue(step.fields[j]);
-        if (defaultvalue !== undefined) {
-          set(this, step.fields[j].model, defaultvalue);
-          // eslint-disable-next-line no-await-in-loop
-          await this.onChangeAfterDefaultValueSet(
-            step.fields[j].onChange,
-            step.fields[j].onChangeParams,
-          );
-        } else {
-          this.$timeout(() => {
-            this.currentStep = i;
-            this.loadingDefaultValues = false;
-          });
-          return;
-        }
-      }
-      this.currentStep = i;
-    }
-    this.$timeout(() => {
-      this.loadingDefaultValues = false;
-    });
-  }
-
   onGatewayModelSelection(gateway) {
     this.selectedGatewaySize = gateway;
+  }
+
+  setDefaults() {
+    this.loadingDefaultValues = true;
+    setDefaultSelections(this, DEFAULTS_MODEL, 'currentStep').finally(() => {
+      this.$timeout(() => {
+        this.loadingDefaultValues = false;
+      });
+    });
   }
 }

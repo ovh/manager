@@ -23,7 +23,7 @@ export default class PublicGatewaysController {
   }
 
   onAddPublicGatewayClick() {
-    this.trackPublicGateways('add');
+    this.trackClick('PCI_PROJECTS_PUBLIC_GATEWAY_ADD');
     return this.goToAddPublicGateway();
   }
 

@@ -17,6 +17,48 @@ export const AVAILABLE_SUBNET = [
 export const PRODUCT_NAME = 'GATEWAY';
 export const DEFAULT_IPVERSION = 4;
 
+export const DEFAULTS_MODEL = [
+  {
+    fields: [
+      {
+        name: 'gateway',
+        model: 'selectedGatewaySize',
+        availableOptions: [],
+        getDefault: (defaultValue, availableOptions) =>
+          availableOptions.find((option) => option.name === defaultValue),
+        onChange: 'onGatewaySizeSelect',
+        onChangeParams: ['selectedGatewaySize'],
+      },
+    ],
+  },
+  {
+    fields: [
+      {
+        name: 'region',
+        model: 'selectedRegion',
+        availableOptions: 'regions',
+        getDefault: (defaultValue, availableOptions) =>
+          availableOptions.find((option) => option.name === defaultValue),
+        onChange: 'onRegionChange',
+        onChangeParams: ['selectedRegion'],
+      },
+    ],
+  },
+  {
+    fields: [
+      {
+        name: 'network',
+        model: 'selectedPrivateNetwork',
+        availableOptions: 'privateNetworks',
+        getDefault: (defaultValue, availableOptions) =>
+          availableOptions.find((option) => option.id === defaultValue),
+        onChange: 'onPrivateNetworkChange',
+        onChangeParams: ['selectedPrivateNetwork'],
+      },
+    ],
+  },
+];
+
 export default {
   PUBLIC_GATEWAYS_READ_MORE_GUIDE,
   REGIONS_AVAILABILITY_URL,
