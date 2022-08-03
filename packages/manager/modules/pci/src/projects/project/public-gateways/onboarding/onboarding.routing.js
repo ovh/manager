@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null, // Hide breadcrumb.
     },
     atInternet: {
-      rename: 'PublicCloud::pci::projects::project::public-gateway::onboarding',
+      rename: 'pci::projects::project::public-gateway::onboarding',
     },
   });
 };

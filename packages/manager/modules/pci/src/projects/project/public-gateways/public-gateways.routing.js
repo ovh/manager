@@ -54,7 +54,7 @@ export default /* @ngInject */ ($stateProvider) => {
         trackPage,
       ) => (complement, type = 'action', prefix = true) => {
         const name = `${
-          prefix ? `${publicGatewaysTrackPrefix}::` : ''
+          prefix ? `${publicGatewaysTrackPrefix}` : ''
         }${complement}`;
         switch (type) {
           case 'action':
@@ -112,7 +112,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     atInternet: {
-      rename: 'PublicCloud::pci::projects::project::public-gateway',
+      rename: 'pci::projects::project::public-gateway',
     },
     translations: {
       value: ['.'],

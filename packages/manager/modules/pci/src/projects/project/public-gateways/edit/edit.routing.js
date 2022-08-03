@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
     },
     atInternet: {
-      rename: 'PublicCloud::pci::projects::project::public-gateway::update',
+      rename: 'pci::projects::project::public-gateway::update',
     },
   });
 };
