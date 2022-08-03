@@ -1,19 +1,23 @@
 import get from 'lodash/get';
+import { setDefaultSelections } from '../../../../components/project/stepper-defaults-selection/stepper-defaults-selection.utils';
 import {
   PUBLIC_GATEWAYS_READ_MORE_GUIDE,
   REGIONS_AVAILABILITY_URL,
   AVAILABLE_SUBNET,
   DEFAULT_IPVERSION,
+  DEFAULTS_MODEL,
 } from './add.constants';
 
 export default class PciPublicGatewaysAddController {
   /* @ngInject */
   constructor(
+    $timeout,
     $translate,
     coreConfig,
     PciPublicGatewaysService,
     CucCloudMessage,
   ) {
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.user = coreConfig.getUser();
     this.addPublicGatewaysReadMoreUrl =
@@ -26,6 +30,7 @@ export default class PciPublicGatewaysAddController {
   }
 
   $onInit() {
+    this.currentStep = 0;
     this.gatewayModel = {};
     this.privateNetworkModel = {};
     this.isLoading = false;
@@ -37,6 +42,8 @@ export default class PciPublicGatewaysAddController {
     this.privateNetworks = null;
     this.networkSubnet = null;
     this.gatewayName = null;
+    this.loadingDefaultValues = false;
+    this.isCustomNetwork = false;
 
     this.selectedPrivateNetwork = this.getDefaultSelectValue(
       'pci_projects_project_public_gateways_add_select_private_network',
@@ -45,6 +52,26 @@ export default class PciPublicGatewaysAddController {
       'pci_projects_project_public_gateways_add_modal_add_private_network_select_label',
     );
     this.loadMessages();
+    if (this.hasDefaultParams()) {
+      this.setDefaults(this, DEFAULTS_MODEL, this.loadingDefaultValues);
+    }
+  }
+
+  hasDefaultParams() {
+    return !!(
+      this.defaults.network &&
+      this.defaults.subnet &&
+      this.defaults.region
+    );
+  }
+
+  setDefaults() {
+    this.loadingDefaultValues = true;
+    setDefaultSelections(this, DEFAULTS_MODEL, 'currentStep').finally(() => {
+      this.$timeout(() => {
+        this.loadingDefaultValues = false;
+      });
+    });
   }
 
   getDefaultSelectValue(transKey) {
@@ -59,7 +86,7 @@ export default class PciPublicGatewaysAddController {
   }
 
   onGatewaySizeChange() {
-    this.trackPublicGateways('add::public-gateway_add_select-type');
+    this.trackClick('public-gateway_add_select-type');
     this.displaySelectedGateway = true;
   }
 
@@ -67,15 +94,26 @@ export default class PciPublicGatewaysAddController {
     this.displaySelectedRegion = false;
   }
 
+  onRegionSubmit() {
+    this.displaySelectedRegion = true;
+    this.trackClick('public-gateway_add_select-region');
+  }
+
   onRegionChange(region) {
-    this.trackPublicGateways('add::public-gateway_add_select-region');
     this.displaySelectedRegion = true;
     this.selectedRegion = region;
-    this.getSelectedRegionNetwork(this.projectId, this.selectedRegion.name);
+    this.gatewayName = this.generateGatewayName(this.selectedRegion);
+    return this.getSelectedRegionNetwork(
+      this.projectId,
+      this.selectedRegion.name,
+    );
   }
 
   getSelectedRegionNetwork(projectId, regionName) {
-    this.PciPublicGatewaysService.getPrivateNetworks(projectId, regionName)
+    return this.PciPublicGatewaysService.getPrivateNetworks(
+      projectId,
+      regionName,
+    )
       .then((network) => {
         this.privateNetworks = network;
       })
@@ -87,13 +125,16 @@ export default class PciPublicGatewaysAddController {
   }
 
   onAddPrivateNetworkClick() {
-    this.trackPublicGateways('add::add-private-network');
+    this.trackClick('public-gateway_add_add-private-network');
     this.showAddPrivateNetworkModalForm = true;
   }
 
   onCancel() {
     this.trackPublicGateways('add::add-private-network::cancel');
     this.showAddPrivateNetworkModalForm = false;
+    if (this.showAddPrivateNetworkModalForm) {
+      this.trackPublicGateways('add::add-private-network');
+    }
   }
 
   loadMessages() {
@@ -122,63 +163,114 @@ export default class PciPublicGatewaysAddController {
       .catch((error) => this.CucCloudMessage.error(get(error, 'data.message')));
   }
 
+  getSubnetById(projectId, regionName, networkId, subnetId) {
+    this.PciPublicGatewaysService.getSubnetById(
+      projectId,
+      regionName,
+      networkId,
+      subnetId,
+    )
+      .then((subnet) => {
+        this.networkSubnet = [subnet];
+      })
+      .catch((error) => this.CucCloudMessage.error(get(error, 'data.message')));
+  }
+
   onPrivateNetworkChange(selectedNetwork) {
-    this.trackPublicGateways('add::public-gateway_add_add-private-network');
-    this.getNetworkSubnet(
-      this.projectId,
-      this.selectedRegion.name,
-      selectedNetwork.id,
+    if (!selectedNetwork.isCustom) {
+      this.isCustomNetwork = false;
+      if (this.hasDefaultParams()) {
+        return this.getSubnetById(
+          this.projectId,
+          this.defaults.region,
+          selectedNetwork.id,
+          this.defaults.subnet,
+        );
+      }
+      return this.getNetworkSubnet(
+        this.projectId,
+        this.selectedRegion.name,
+        selectedNetwork.id,
+      );
+    }
+    this.isCustomNetwork = true;
+    return null;
+  }
+
+  generateGatewayName() {
+    const today = new Date().toISOString().slice(0, 10);
+    const randomNumber = Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+    return `gateway-${this.selectedRegion.name}-${today}-${randomNumber}`;
+  }
+
+  isNetworkExists() {
+    return this.privateNetworks.some(
+      (network) => network.name === this.privateNetworkModel.name,
     );
   }
 
   onAddPrivateNetworkFormSubmit() {
     this.trackPublicGateways('add::add-private-network::confirm');
-    this.isLoading = true;
     this.privateNetworkModel = {
+      id: '',
+      name: this.privateNetworkModel.name,
+      isCustom: true,
+    };
+    if (!this.isNetworkExists()) {
+      this.privateNetworks.push(this.privateNetworkModel);
+    }
+    this.isCustomNetwork = true;
+    this.selectedPrivateNetwork = this.privateNetworkModel;
+    this.showAddPrivateNetworkModalForm = false;
+  }
+
+  onSuccess() {
+    if (this.defaults.network && this.defaults.subnet && this.defaults.region) {
+      return this.goToPrivateNetwork(this.projectId);
+    }
+    return this.goToPublicGateway(
+      this.$translate.instant(
+        'pci_projects_project_public_gateways_add_success',
+      ),
+    );
+  }
+
+  onError(err) {
+    this.CucCloudMessage.error(
+      this.$translate.instant(
+        'pci_projects_project_public_gateways_add_modal_add_private_network_error',
+        { message: get(err, 'data.message', '') },
+      ),
+    );
+  }
+
+  createNetwokWithGateway() {
+    this.gatewayModel = {
       gateway: {
         name: this.gatewayName,
         model: this.getGatewayModel(this.selectedGatewaySize.product),
       },
-      name: this.privateNetworkModel.name,
+      name: this.selectedPrivateNetwork.name,
       subnet: {
         cidr: this.selectedSubnet,
         ipVersion: DEFAULT_IPVERSION,
       },
     };
-    this.PciPublicGatewaysService.addPrivateNetwork(
+    this.PciPublicGatewaysService.createNetworkWithGateway(
       this.projectId,
       this.selectedRegion.name,
-      this.privateNetworkModel,
+      this.gatewayModel,
     )
-      .then((data) => {
-        this.privateNetworks.push(data);
-        this.selectedPrivateNetwork = data.name;
-        this.getNetworkSubnet(
-          this.projectId,
-          this.selectedRegion.name,
-          data.network.id,
-        );
-        this.showAddPrivateNetworkModalForm = false;
-      })
-      .catch((err) => {
-        this.showAddPrivateNetworkModalForm = false;
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_public_gateways_add_modal_add_private_network_error',
-            { message: get(err, 'data.message', '') },
-          ),
-        );
-      })
+      .then(() => this.onSuccess())
+      .catch((err) => this.onError(err))
       .finally(() => {
         this.loading = false;
       });
   }
 
-  add() {
-    this.trackPublicGateways(
-      `add::confirm-add-public-gateway::${this.selectedGatewaySize.product}::${this.selectedRegion.datacenter.name}`,
-    );
-    this.loading = true;
+  createGateway() {
     this.gatewayModel = {
       name: this.gatewayName,
       model: this.getGatewayModel(this.selectedGatewaySize.product),
@@ -195,23 +287,20 @@ export default class PciPublicGatewaysAddController {
       this.selectedRegion.name,
       this.gatewayModel,
     )
-      .then(() => {
-        return this.goToPublicGateway(
-          this.$translate.instant(
-            'pci_projects_project_public_gateways_add_success',
-          ),
-        );
-      })
-      .catch((err) => {
-        return this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_public_gateways_add_error',
-            { message: get(err, 'data.message', '') },
-          ),
-        );
-      })
+      .then(() => this.onSuccess())
+      .catch((err) => this.onError(err))
       .finally(() => {
         this.loading = false;
       });
+  }
+
+  add() {
+    this.trackClick(
+      `confirm-add-public-gateway::${this.selectedGatewaySize.product}::${this.selectedRegion.name}`,
+    );
+    this.loading = true;
+    return this.isCustomNetwork
+      ? this.createNetwokWithGateway()
+      : this.createGateway();
   }
 }
