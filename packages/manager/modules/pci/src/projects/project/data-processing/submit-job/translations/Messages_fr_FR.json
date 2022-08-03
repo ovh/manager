@@ -55,5 +55,6 @@
   "data_processing_submit_job_spec_config_none_f": "Aucune",
   "data_processing_submit_no_container": "Aucun conteneru Swift n'a été trouvé.",
   "data_processing_submit_object_storage_link": "Cliquez ici pour en ajouter un.",
-  "data_processing_submit_job_api_equivalent": "API"
+  "data_processing_submit_job_api_equivalent": "API",
+  "data_processing_submit_job_spec_config_ttl": "TTL : "
 }

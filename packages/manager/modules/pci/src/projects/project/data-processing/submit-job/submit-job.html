@@ -52,6 +52,7 @@
                     data-on-change-handler="$ctrl.onChangeJobConfigHandler"
                     data-valid="$ctrl.isConfigureStepValid"
                     data-job-parameters="$ctrl.jobParameters"
+                    class="mb-2"
                 >
                 </pci-project-data-processing-submit-job-spark-config>
                 <!-- step 4 - job sizing -->
@@ -67,8 +68,10 @@
                     data-job-parameters="$ctrl.jobParameters"
                     data-prices="$ctrl.prices"
                     data-user="$ctrl.user"
+                    class="mb-2"
                 >
                 </pci-project-data-processing-submit-job-spark-sizing>
+                <!-- step 5 - prices & API -->
                 <h2
                     id="prices"
                     data-translate="data_processing_submit_job_stepper_prices_and_api_title"
@@ -81,7 +84,6 @@
 
                 <oui-collapsible
                     heading="{{:: 'data_processing_submit_job_api_equivalent' | translate }}"
-
                 >
                     <pci-order-command
                         data-order-api-url="$ctrl.orderAPIUrl"
@@ -247,7 +249,20 @@
                                         data-translate="data_processing_submit_job_spec_config_arguments"
                                     ></strong>
                                     <span
-                                        data-ng-bind="$ctrl.getArgumentsList()"
+                                        data-ng-bind="$ctrl.state.jobConfig.arguments"
+                                    ></span>
+                                </div>
+                                <div
+                                    data-ng-if="$ctrl.state.jobConfig.ttl.enabled"
+                                >
+                                    <strong
+                                        data-translate="data_processing_submit_job_spec_config_ttl"
+                                    ></strong>
+                                    <span
+                                        data-ng-bind="$ctrl.state.jobConfig.ttl.time"
+                                    ></span>
+                                    <span
+                                        data-ng-bind="$ctrl.state.jobConfig.ttl.unit.description"
                                     ></span>
                                 </div>
                             </div>
@@ -345,7 +360,7 @@
                             <div class="break-word">
                                 <a
                                     href=""
-                                    ng-click="$ctrl.scrollTo('prices')"
+                                    data-ng-click="$ctrl.scrollTo('prices')"
                                     data-translate="data_processing_submit_job_spec_price"
                                 ></a>
                                 <strong>
