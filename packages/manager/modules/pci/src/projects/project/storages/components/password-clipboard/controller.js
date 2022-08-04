@@ -6,7 +6,7 @@ export default class PasswordClipboardComponentController {
     this.$element = $element;
     this.$timeout = $timeout;
     this.$translate = $translate;
-
+    this.shouldDisplayPasswordInput = false;
     this.SECRET_KEY_CLIPBOARD_BTN_ID = 'secretKeyClipboardCopyBtnId';
     this.SECRET_KEY_INPUT_ID = 'secretKeyInputId';
   }
