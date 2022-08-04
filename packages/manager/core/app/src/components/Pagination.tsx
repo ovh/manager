@@ -60,7 +60,7 @@ export default function Pagination({
       )}
       <IconButton
         aria-label={t('NextPage')}
-        isDisabled={currentPage === pageRange.length}
+        isDisabled={!pageRange.length || currentPage === pageRange.length}
         icon={<ChevronRightIcon />}
         onClick={() => onPageChange(currentPage + 1)}
       />

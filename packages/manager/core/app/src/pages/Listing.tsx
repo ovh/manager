@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Badge, Flex, Spacer, Stack } from '@chakra-ui/react';
+import { Badge, Flex, Spacer, Stack, HStack } from '@chakra-ui/react';
 import Listing, { ListingData, ListingState } from '@/components/Listing';
+import FilterAdder from '@/components/FilterAdder';
 import FilterList from '@/components/FilterList';
 import SearchInput from '@/components/SearchInput';
-import { Filter, FilterComparator } from '@/api/filters';
+import { Filter, FilterComparator, FilterCategories } from '@/api/filters';
 import { listVps, Vps } from '@/api/Vps';
 
 type ListingPageState = {
@@ -42,25 +43,58 @@ export default function ListingPage(): JSX.Element {
     <Stack>
       <Flex>
         <Spacer />
-        <SearchInput
-          onSubmit={(value) => {
-            const { filters } = state;
-            filters.push({
-              key: 'name',
-              value,
-              label: 'Name',
-              comparator: FilterComparator.Includes,
-            });
-            setState({
-              ...state,
-              filters,
-              list: {
-                ...state.list,
-                currentPage: 1,
+        <HStack>
+          <SearchInput
+            onSubmit={(value) => {
+              const { filters } = state;
+              filters.push({
+                key: 'name',
+                value,
+                label: 'Name',
+                comparator: FilterComparator.Includes,
+              });
+              setState({
+                ...state,
+                filters,
+                list: {
+                  ...state.list,
+                  currentPage: 1,
+                },
+              });
+            }}
+          />
+          <FilterAdder
+            filterables={[
+              {
+                key: 'name',
+                label: 'Name',
+                comparators: FilterCategories.String,
               },
-            });
-          }}
-        />
+              {
+                key: 'zone',
+                label: 'Zone',
+                comparators: FilterCategories.String,
+              },
+            ]}
+            onAdd={(filter, value, comparator) => {
+              const { filters } = state;
+              filters.push({
+                key: filter.key,
+                value,
+                label: filter.label,
+                comparator,
+              });
+              setState({
+                ...state,
+                filters,
+                list: {
+                  ...state.list,
+                  currentPage: 1,
+                },
+              });
+            }}
+          />
+        </HStack>
       </Flex>
       <FilterList
         filters={state.filters}
