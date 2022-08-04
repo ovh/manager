@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Badge } from '@chakra-ui/react';
 import { ListingTableData } from '@/components/ListingTable';
 import { listVps, Vps } from '@/api/Vps';
-import { FilterCategories } from '@/api/filters';
+import { FilterCategories } from '@/api/filters';
 
 import Listing from '@/components/Listing';
 
