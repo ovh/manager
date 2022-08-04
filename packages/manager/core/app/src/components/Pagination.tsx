@@ -26,7 +26,7 @@ export default function Pagination({
   return (
     <HStack>
       <IconButton
-        aria-label={t('PreviousPage')}
+        aria-label={t('previous_page')}
         isDisabled={currentPage === 1}
         icon={<ChevronLeftIcon />}
         onClick={() => onPageChange(currentPage - 1)}
@@ -37,13 +37,14 @@ export default function Pagination({
             key={page}
             isActive={currentPage === page}
             onClick={() => onPageChange(page)}
+            aria-label={t('goto_page_nth', { page })}
           >
             {page}
           </Button>
         ))}
       {displayMode === PaginationDisplayMode.SelectMode && (
         <>
-          <Text>{t('Page')}</Text>
+          <Text>{t('page')}</Text>
           <Select
             w="auto"
             value={currentPage}
@@ -55,11 +56,11 @@ export default function Pagination({
               </option>
             ))}
           </Select>
-          <Text>{`${t('of')} ${pageRange.length}`}</Text>
+          <Text>{t('of_n', { count: pageRange.length })}</Text>
         </>
       )}
       <IconButton
-        aria-label={t('NextPage')}
+        aria-label={t('next_page')}
         isDisabled={!pageRange.length || currentPage === pageRange.length}
         icon={<ChevronRightIcon />}
         onClick={() => onPageChange(currentPage + 1)}

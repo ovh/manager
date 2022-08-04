@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 // import { useEnvironment } from '../core';
 
@@ -8,7 +7,6 @@ const Listing = React.lazy(() => import('./Listing'));
 const Dashboard = React.lazy(() => import('./Dashboard'));
 
 export default function App(): JSX.Element {
-  const { t } = useTranslation('home');
   // const env = useEnvironment();
   return (
     <HashRouter>

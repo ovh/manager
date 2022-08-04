@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   FormControl,
@@ -35,8 +36,9 @@ export default function FilterAdder({
   filterables,
   onAdd,
 }: FilterAdderProps): JSX.Element {
+  const { t } = useTranslation('common');
   if (!filterables?.length) {
-    return <Button disabled>Filter</Button>;
+    return <Button disabled>{t('filter')}</Button>;
   }
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState(filterables[0]);
@@ -54,7 +56,7 @@ export default function FilterAdder({
           rightIcon={isOpen ? <SmallCloseIcon /> : undefined}
           onClick={() => setIsOpen(!isOpen)}
         >
-          Filter
+          {t('filter')}
         </Button>
       </PopoverTrigger>
       <Portal>
@@ -71,7 +73,7 @@ export default function FilterAdder({
             >
               <VStack>
                 <FormControl>
-                  <FormLabel>Column</FormLabel>
+                  <FormLabel>{t('column')}</FormLabel>
                   <Select
                     value={filter.key}
                     onChange={(e) =>
@@ -88,7 +90,7 @@ export default function FilterAdder({
                   </Select>
                 </FormControl>
                 <FormControl>
-                  <FormLabel>Condition</FormLabel>
+                  <FormLabel>{t('condition')}</FormLabel>
                   <Select
                     value={comparator}
                     onChange={(e) =>
@@ -97,13 +99,13 @@ export default function FilterAdder({
                   >
                     {filter.comparators.map((comp) => (
                       <option key={comp} value={comp}>
-                        {comp}
+                        {t(`filter_${comp}`)}
                       </option>
                     ))}
                   </Select>
                 </FormControl>
                 <FormControl>
-                  <FormLabel>Value</FormLabel>
+                  <FormLabel>{t('value')}</FormLabel>
                   <Input
                     value={value}
                     onChange={(event) => setValue(event.target.value)}
@@ -115,7 +117,7 @@ export default function FilterAdder({
                   disabled={value === ''}
                   onClick={() => {}}
                 >
-                  Add
+                  {t('add')}
                 </Button>
               </VStack>
             </form>

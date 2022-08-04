@@ -45,11 +45,11 @@ export default function ListingPagination({
               </option>
             ))}
           </Select>
-          <Text>{`${t('of')} ${itemsCount} ${t('results')}`}</Text>
+          <Text>{t('of_results', { count: itemsCount })}</Text>
         </>
       )}
       {itemsCount < availablePageSize[0] && (
-        <Text>{`${itemsCount} ${t('results')}`}</Text>
+        <Text>{t('n_results', { count: itemsCount })}</Text>
       )}
       <Pagination
         currentPage={currentPage}
