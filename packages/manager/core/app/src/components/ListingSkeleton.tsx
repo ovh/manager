@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Skeleton, Td, Tr } from '@chakra-ui/react';
 
-export default function ListingPlaceholder({
+export default function ListingSkeleton({
   columnsCount,
   linesCount,
 }: {
@@ -11,7 +11,7 @@ export default function ListingPlaceholder({
   const lineRange = [...Array(linesCount).keys()];
   const columnRange = [...Array(columnsCount).keys()];
 
-  const placeholder = useMemo(
+  const skeleton = useMemo(
     () =>
       lineRange.map((row) => (
         <Tr key={`${row}`}>
@@ -27,5 +27,5 @@ export default function ListingPlaceholder({
     [columnsCount, linesCount],
   );
 
-  return <>{placeholder}</>;
+  return <>{skeleton}</>;
 }
