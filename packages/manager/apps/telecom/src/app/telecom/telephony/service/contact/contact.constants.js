@@ -1,13 +1,9 @@
-export const DIRECTORY_INFO = {
-  status: {
-    todo: 'todo',
-    doing: 'doing',
-    error: 'error',
-  },
-  type: {
-    delete: 'deletion',
-    create: 'creation',
-  },
+export const DIRECTORY_INFO_STATUS = {
+  todo: 'todo',
+  doing: 'doing',
+  error: 'error',
+  problem: 'problem',
+  done: 'done',
 };
 
 export const WAY_NUMBER_EXTRA = [
@@ -173,7 +169,7 @@ export const REGEX = {
 };
 
 export default {
-  DIRECTORY_INFO,
+  DIRECTORY_INFO_STATUS,
   DIRECTORY_WAY_NUMBER_EXTRA_ENUM,
   LEGAL_FORM_ENUM,
   AVAILABLE_FIELDS,
