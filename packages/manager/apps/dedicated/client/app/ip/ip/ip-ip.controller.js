@@ -641,7 +641,7 @@ export default /* @ngInject */
     }, 300);
   }
   if ($location.search().action === 'mitigation' && $location.search().ip) {
-    trackPage(`${TRACKING_PREFIX}::enable-permanent-mitigation`);
+    $scope.trackPage(`${TRACKING_PREFIX}::enable-permanent-mitigation`);
 
     $timeout(() => {
       $scope.setAction('ip/mitigation/update/ip-ip-mitigation-update', {
