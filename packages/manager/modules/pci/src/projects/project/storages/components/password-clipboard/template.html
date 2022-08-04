@@ -1,13 +1,10 @@
-<oui-field
-    class="d-inline"
-    data-label="{{:: $ctrl.fieldSecretKeyLabel }}"
->
-    <div class="mb-0 oui-input-overlay oui-clipboard" data-ng-init="passwordClipboard = {isText: false}">
+<oui-field class="d-inline" data-label="{{:: $ctrl.fieldSecretKeyLabel }}">
+    <div class="mb-0 oui-input-overlay oui-clipboard">
         <input
             class="oui-input oui-clipboard__control"
             data-ng-attr-id="{{:: $ctrl.SECRET_KEY_INPUT_ID}}"
             data-ng-attr-name="{{:: $ctrl.SECRET_KEY_INPUT_ID}}"
-            data-ng-attr-type="{{ passwordClipboard.isText ? 'text' : 'password' }}"
+            data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput? 'text' : 'password' }}"
             data-ng-value="$ctrl.fieldSecretKeyValue"
             data-ng-click="$ctrl.onClipboardClick()"
             data-oui-tooltip="{{ $ctrl.model.tooltipText }}"
@@ -16,12 +13,12 @@
         <button
             type="button"
             class="oui-button mr-4"
-            aria-label="{{ $ctrl.getPasswordLabel(passwordClipboard.isText) }}"
-            data-ng-click="passwordClipboard.isText = !passwordClipboard.isText;"
+            aria-label="{{ $ctrl.getPasswordLabel($ctrl.shouldDisplayPasswordInput) }}"
+            data-ng-click="$ctrl.shouldDisplayPasswordInput = !$ctrl.shouldDisplayPasswordInput"
         >
             <span
-                class="oui-icon oui-icon-eye-open"
                 aria-hidden="true"
+                data-ng-class="'oui-icon oui-icon-eye-' + ($ctrl.shouldDisplayPasswordInput ? 'open': 'closed')"
             ></span>
         </button>
         <button
@@ -32,10 +29,7 @@
             data-ng-attr-id="{{:: $ctrl.SECRET_KEY_CLIPBOARD_BTN_ID}}"
             data-clipboard-text="{{:: $ctrl.fieldSecretKeyValue}}"
         >
-            <span
-                class="oui-icon oui-icon-copy"
-                aria-hidden="true"
-            ></span>
+            <span class="oui-icon oui-icon-copy" aria-hidden="true"></span>
         </button>
     </div>
 </oui-field>
