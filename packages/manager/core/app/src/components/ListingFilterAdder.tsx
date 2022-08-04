@@ -33,7 +33,7 @@ export default function ListingFilterAdder<T>({
 }: ListingFilterAdderProps<T>): JSX.Element {
   const { t } = useTranslation('common');
   if (!columns?.length) {
-    return <Button disabled>{t('filter')}</Button>;
+    return undefined;
   }
   const [isOpen, setIsOpen] = useState(false);
   const [column, setColumn] = useState(columns[0]);
