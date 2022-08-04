@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Badge, Flex, Spacer, Stack } from '@chakra-ui/react';
 import Listing, { ListingData, ListingState } from '@/components/Listing';
+import FilterList from '@/components/FilterList';
 import SearchInput from '@/components/SearchInput';
+import { Filter, FilterComparator } from '@/api/filters';
 import { listVps, Vps } from '@/api/Vps';
 
 type ListingPageState = {
   list: ListingState;
-  search: string;
+  filters: Filter[];
 };
 
 export default function ListingPage(): JSX.Element {
@@ -15,7 +17,7 @@ export default function ListingPage(): JSX.Element {
       currentPage: 1,
       pageSize: 10,
     },
-    search: '',
+    filters: [],
   });
   const [services, setServices] = useState<ListingData<Vps>>();
 
@@ -25,10 +27,7 @@ export default function ListingPage(): JSX.Element {
     listVps({
       currentPage,
       pageSize,
-      search: {
-        key: 'name',
-        value: state.search,
-      },
+      filters: state.filters,
       sortBy: sort?.key,
       sortReverse: sort?.reverse,
     }).then(({ totalCount, data }) =>
@@ -44,17 +43,34 @@ export default function ListingPage(): JSX.Element {
       <Flex>
         <Spacer />
         <SearchInput
-          onSubmit={(value) =>
+          onSubmit={(value) => {
+            const { filters } = state;
+            filters.push({
+              key: 'name',
+              value,
+              label: 'Name',
+              comparator: FilterComparator.Includes,
+            });
             setState({
+              ...state,
+              filters,
               list: {
                 ...state.list,
                 currentPage: 1,
               },
-              search: value,
-            })
-          }
+            });
+          }}
         />
       </Flex>
+      <FilterList
+        filters={state.filters}
+        onChange={(filters) =>
+          setState({
+            ...state,
+            filters,
+          })
+        }
+      />
       <Listing
         columns={[
           {

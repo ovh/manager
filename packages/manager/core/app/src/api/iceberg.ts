@@ -1,3 +1,5 @@
+import { Filter, FilterComparator } from '@/api/filters';
+
 export type FetchPaginatedParams = {
   route: string;
   page: number;
@@ -6,15 +8,26 @@ export type FetchPaginatedParams = {
     key: string;
     value: string;
   };
+  filters?: Filter[];
   sortBy?: string;
   sortReverse?: boolean;
 };
 
-export async function fetchPaginated({
+function getComparatorOperand(comparator: FilterComparator) {
+  switch (comparator) {
+    case FilterComparator.Includes:
+      return 'like';
+    default:
+      // @TODO implement other comparators
+      throw new Error(`Missing comparator implementation: '${comparator}'`);
+  }
+}
+
+export async function fetchIceberg({
   route,
   page,
   pageSize,
-  search,
+  filters,
   sortBy,
   sortReverse,
 }: FetchPaginatedParams) {
@@ -27,10 +40,15 @@ export async function fetchPaginated({
     headers['x-pagination-sort'] = sortBy;
     headers['x-pagination-sort-order'] = sortReverse ? 'DESC' : 'ASC';
   }
-  if (search) {
-    headers['x-pagination-filter'] = `${encodeURIComponent(
-      search.key,
-    )}:like=%25${encodeURIComponent(search.value)}%25`;
+  if (filters && filters.length) {
+    headers['x-pagination-filter'] = filters
+      .map(
+        ({ comparator, key, value }) =>
+          `${encodeURIComponent(key)}:${getComparatorOperand(
+            comparator,
+          )}=%25${encodeURIComponent(value)}%25`,
+      )
+      .join('&');
   }
   const response = await fetch(`/engine/api${route}`, { headers });
   const data = await response.json();
@@ -39,4 +57,4 @@ export async function fetchPaginated({
   return { data, totalCount };
 }
 
-export default fetchPaginated;
+export default fetchIceberg;

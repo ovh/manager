@@ -1,4 +1,5 @@
-import { fetchPaginated } from '.';
+import { Filter } from '@/api/filters';
+import { fetchIceberg } from '@/api/iceberg';
 
 export type Vps = {
   name: string;
@@ -13,27 +14,26 @@ type VpsList = {
   data: Vps[];
 };
 
+export type ListVpsParams = {
+  currentPage: number;
+  pageSize: number;
+  filters?: Filter[];
+  sortBy?: string;
+  sortReverse?: boolean;
+};
+
 export async function listVps({
   currentPage,
   pageSize,
-  search,
+  filters,
   sortBy,
   sortReverse,
-}: {
-  currentPage: number;
-  pageSize: number;
-  search?: {
-    key: string;
-    value: string;
-  };
-  sortBy?: string;
-  sortReverse?: boolean;
-}): Promise<VpsList> {
-  return fetchPaginated({
+}: ListVpsParams): Promise<VpsList> {
+  return fetchIceberg({
     route: '/vps',
     page: currentPage,
     pageSize,
-    search,
+    filters,
     sortBy,
     sortReverse,
   });
