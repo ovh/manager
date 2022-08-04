@@ -41,8 +41,8 @@ export default function FilterList({
   };
   return (
     <HStack>
-      {filters.map((filter) => (
-        <Tag key={filter.key}>
+      {filters.map((filter, index) => (
+        <Tag key={`${filter.key}-${index}`}>
           <TagLabel>{`${filter.label} ${getFilterComparatorLabel(
             filter.comparator,
           )} ${filter.value}`}</TagLabel>

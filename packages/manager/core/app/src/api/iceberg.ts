@@ -13,12 +13,28 @@ export type FetchPaginatedParams = {
   sortReverse?: boolean;
 };
 
-function getComparatorOperand(comparator: FilterComparator) {
+function icebergFilter(comparator: FilterComparator, value: string) {
+  const v = encodeURIComponent(value);
   switch (comparator) {
     case FilterComparator.Includes:
-      return 'like';
+      return `like=%25${v}%25`;
+    case FilterComparator.StartsWith:
+      return `like=${v}%25`;
+    case FilterComparator.EndsWith:
+      return `like=%25${v}`;
+    case FilterComparator.IsEqual:
+      return `eq=${v}`;
+    case FilterComparator.IsDifferent:
+      return `ne=${v}`;
+    case FilterComparator.IsLower:
+      return `lt=${v}`;
+    case FilterComparator.IsHigher:
+      return `gt=${v}`;
+    case FilterComparator.IsBefore:
+      return `lt=${v}`;
+    case FilterComparator.IsAfter:
+      return `gt=${v}`;
     default:
-      // @TODO implement other comparators
       throw new Error(`Missing comparator implementation: '${comparator}'`);
   }
 }
@@ -33,20 +49,18 @@ export async function fetchIceberg({
 }: FetchPaginatedParams) {
   const headers: Record<string, string> = {
     'x-pagination-mode': 'CachedObjectList-Pages',
-    'x-pagination-number': `${page}`,
-    'x-pagination-size': `${pageSize}`,
+    'x-pagination-number': `${encodeURIComponent(page)}`,
+    'x-pagination-size': `${encodeURIComponent(pageSize)}`,
   };
   if (sortBy) {
-    headers['x-pagination-sort'] = sortBy;
+    headers['x-pagination-sort'] = encodeURIComponent(sortBy);
     headers['x-pagination-sort-order'] = sortReverse ? 'DESC' : 'ASC';
   }
   if (filters && filters.length) {
     headers['x-pagination-filter'] = filters
       .map(
         ({ comparator, key, value }) =>
-          `${encodeURIComponent(key)}:${getComparatorOperand(
-            comparator,
-          )}=%25${encodeURIComponent(value)}%25`,
+          `${encodeURIComponent(key)}:${icebergFilter(comparator, value)}`,
       )
       .join('&');
   }
