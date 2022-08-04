@@ -19,6 +19,7 @@
             data-editable="!$ctrl.loaders.isSubmitting"
             data-position="0"
             name="private_network_add_name"
+            data-on-submit="$ctrl.trackPrivateNetworks('private-network_add_select-region', 'action', false)"
         >
             <pci-project-regions-list
                 data-regions="$ctrl.regions"
@@ -35,6 +36,7 @@
             data-submit-text="{{ ( $ctrl.isGatewayAvailableInRegion ? 'pci_projects_project_network_private_create_next' : 'pci_projects_project_network_private_create_submit' )| translate }}"
             data-position="1"
             data-editable="!$ctrl.loaders.isSubmitting"
+            data-on-submit="$ctrl.trackPrivateNetworks('private-network_add_select-configuration', 'action', false)"
         >
             <oui-field
                 data-label="{{:: ('pci_projects_project_network_private_create_name' | translate)}}"
@@ -86,7 +88,7 @@
                     <oui-checkbox
                         data-model="$ctrl.configureVlanId"
                         data-disabled="$ctrl.mandatoryVlanId"
-                        data-on-change="$ctrl.setVlanId(modelValue)"
+                        data-on-change="$ctrl.onSetVlanIdChange(modelValue)"
                     >
                         <span
                             data-translate="pci_projects_project_network_private_create_configure_choose_vlan"
@@ -137,6 +139,7 @@
                 <oui-checkbox
                     class="mb-2"
                     data-model="$ctrl.configuration.dhcp"
+                    data-on-change="$ctrl.onEnableDhcpChange(modelValue)"
                 >
                     <span
                         data-translate="pci_projects_project_network_private_create_enable_dhcp"
@@ -184,6 +187,7 @@
                     data-model="$ctrl.configuration.enableGatewayIp"
                     data-ng-if="$ctrl.configuration.dhcp"
                     data-disabled="$ctrl.configuration.createGateway"
+                    data-on-change="$ctrl.onDefaultGatewayChange(modelValue)"
                 >
                     <span
                         data-translate="pci_projects_project_network_private_create_announce_first_address"
