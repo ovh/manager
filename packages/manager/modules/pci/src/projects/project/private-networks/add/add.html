@@ -14,11 +14,11 @@
         data-on-finish="$ctrl.onCreatePrivateNetworkClick()"
     >
         <oui-step-form
+            name="private_network_add_select_region"
             data-loading="$ctrl.loaders.isInitiating"
             data-header="{{:: 'pci_projects_project_network_private_create_localisation' | translate }}"
             data-editable="!$ctrl.loaders.isSubmitting"
             data-position="0"
-            name="private_network_add_name"
             data-on-submit="$ctrl.trackPrivateNetworks('private-network_add_select-region', 'action', false)"
         >
             <pci-project-regions-list
@@ -29,14 +29,14 @@
             ></pci-project-regions-list>
         </oui-step-form>
         <oui-step-form
+            name="private_network_add_select_configuration"
             data-header="{{:: 'pci_projects_project_network_private_create_configure' | translate }}"
-            name="private_network_add_region"
             data-loading="$ctrl.loaders.configStep"
             data-on-focus="$ctrl.onConfigurePrivateNetworkInit()"
             data-submit-text="{{ ( $ctrl.isGatewayAvailableInRegion ? 'pci_projects_project_network_private_create_next' : 'pci_projects_project_network_private_create_submit' )| translate }}"
             data-position="1"
             data-editable="!$ctrl.loaders.isSubmitting"
-            data-on-submit="$ctrl.trackPrivateNetworks('private-network_add_select-configuration', 'action', false)"
+            data-on-submit="$ctrl.onConfigurationFormSubmit()"
         >
             <oui-field
                 data-label="{{:: ('pci_projects_project_network_private_create_name' | translate)}}"
@@ -205,8 +205,8 @@
             </div>
         </oui-step-form>
         <oui-step-form
-            data-header="{{:: ('pci_projects_project_network_private_create_summary_step_title' | translate)}}"
             name="private_network_add_summary"
+            data-header="{{:: ('pci_projects_project_network_private_create_summary_step_title' | translate)}}"
             data-ng-if="$ctrl.isGatewayAvailableInRegion"
             data-position="2"
             data-submit-text="{{ 'pci_projects_project_network_private_create_submit' | translate }}"
