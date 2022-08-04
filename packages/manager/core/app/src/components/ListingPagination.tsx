@@ -33,19 +33,24 @@ export default function ListingPagination({
   return (
     <HStack>
       {itemsCount > availablePageSize[0] && (
-        <Select
-          w="auto"
-          value={pageSize}
-          onChange={(e) => pageSizeChangeHandler(Number(e.target.value))}
-        >
-          {availablePageSize.map((size) => (
-            <option key={size} value={size}>
-              {size}
-            </option>
-          ))}
-        </Select>
+        <>
+          <Select
+            w="auto"
+            value={pageSize}
+            onChange={(e) => pageSizeChangeHandler(Number(e.target.value))}
+          >
+            {availablePageSize.map((size) => (
+              <option key={size} value={size}>
+                {size}
+              </option>
+            ))}
+          </Select>
+          <Text>{`${t('of')} ${itemsCount} ${t('results')}`}</Text>
+        </>
       )}
-      <Text>{`${t('of')} ${itemsCount} ${t('results')}`}</Text>
+      {itemsCount < availablePageSize[0] && (
+        <Text>{`${itemsCount} ${t('results')}`}</Text>
+      )}
       <Pagination
         currentPage={currentPage}
         pageCount={pageCount}

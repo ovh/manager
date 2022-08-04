@@ -16,11 +16,16 @@ type VpsList = {
 export async function listVps({
   currentPage,
   pageSize,
+  search,
   sortBy,
   sortReverse,
 }: {
   currentPage: number;
   pageSize: number;
+  search?: {
+    key: string;
+    value: string;
+  };
   sortBy?: string;
   sortReverse?: boolean;
 }): Promise<VpsList> {
@@ -28,6 +33,7 @@ export async function listVps({
     route: '/vps',
     page: currentPage,
     pageSize,
+    search,
     sortBy,
     sortReverse,
   });
