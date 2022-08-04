@@ -18,7 +18,7 @@ export const GUIDE_LINKS = {
     'https://www.ovhcloud.com/en-ie/public-cloud/regions-availability/',
 };
 
-export const TRACKING_PREFIX = 'add-private-network';
+export const TRACKING_PREFIX = 'PublicCloud::add-private-network';
 
 export default {
   DEFAULT_CIDR,
