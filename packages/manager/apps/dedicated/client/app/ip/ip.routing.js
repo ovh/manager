@@ -5,7 +5,7 @@ const allowByoipFeatureName = 'ip:byoip';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip', {
-    url: '/ip?serviceName&page&pageSize',
+    url: '/ip?action&ip&serviceName&page&pageSize',
     template,
     controller,
     reloadOnSearch: false,
