@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   IconButton,
   Input,
@@ -16,6 +17,7 @@ export default function SearchInput({
   onSubmit,
   placeholder,
 }: SearchInputProps): JSX.Element {
+  const { t } = useTranslation('common');
   const [value, setValue] = useState('');
   return (
     <InputGroup w="auto">
@@ -28,7 +30,7 @@ export default function SearchInput({
       >
         <Input
           value={value}
-          placeholder={placeholder || 'Search'}
+          placeholder={placeholder || t('search')}
           onChange={(event) => setValue(event.target.value)}
         />
         <InputRightElement
@@ -37,7 +39,7 @@ export default function SearchInput({
               type="submit"
               variant="ghost"
               icon={<SearchIcon />}
-              aria-label="Search"
+              aria-label={t('search')}
             />
           }
         />

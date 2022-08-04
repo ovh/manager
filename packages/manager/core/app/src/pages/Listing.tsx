@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Badge, Flex, Spacer, Stack, HStack } from '@chakra-ui/react';
 import Listing, { ListingData, ListingState } from '@/components/Listing';
 import FilterAdder from '@/components/FilterAdder';
@@ -13,6 +14,7 @@ type ListingPageState = {
 };
 
 export default function ListingPage(): JSX.Element {
+  const { t } = useTranslation('common');
   const [state, setState] = useState<ListingPageState>({
     list: {
       currentPage: 1,
@@ -50,7 +52,7 @@ export default function ListingPage(): JSX.Element {
               filters.push({
                 key: 'name',
                 value,
-                label: 'Name',
+                label: t('name'),
                 comparator: FilterComparator.Includes,
               });
               setState({
@@ -67,12 +69,12 @@ export default function ListingPage(): JSX.Element {
             filterables={[
               {
                 key: 'name',
-                label: 'Name',
+                label: t('name'),
                 comparators: FilterCategories.String,
               },
               {
                 key: 'zone',
-                label: 'Zone',
+                label: t('zone'),
                 comparators: FilterCategories.String,
               },
             ]}
@@ -109,15 +111,15 @@ export default function ListingPage(): JSX.Element {
         columns={[
           {
             key: 'name',
-            label: 'Name',
+            label: t('name'),
           },
           {
             key: 'zone',
-            label: 'Zone',
+            label: t('zone'),
           },
           {
             key: 'state',
-            label: 'State',
+            label: t('state'),
             renderer: (vps) => <Badge>{vps.state}</Badge>,
           },
         ]}
