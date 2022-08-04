@@ -3,22 +3,22 @@ import { Button, Thead, Tr, Th } from '@chakra-ui/react';
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import { ListingColumn } from './Listing';
 
-export type ListingHeaderSorting = {
+export type ListingHeadSorting = {
   key?: string;
   reverse?: boolean;
 };
 
-export type ListingHeaderProps<T> = {
+export type ListingHeadProps<T> = {
   columns: ListingColumn<T>[];
-  sort: ListingHeaderSorting;
-  onColumnSort: (sort: ListingHeaderSorting) => void;
+  sort: ListingHeadSorting;
+  onColumnSort: (sort: ListingHeadSorting) => void;
 };
 
-export default function ListingHeader<T>({
+export default function ListingHead<T>({
   columns = [],
   sort = null,
   onColumnSort,
-}: ListingHeaderProps<T>): JSX.Element {
+}: ListingHeadProps<T>): JSX.Element {
   return (
     <Thead>
       <Tr>

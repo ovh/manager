@@ -1,69 +1,65 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, HStack, IconButton, Select, Text } from '@chakra-ui/react';
-import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { HStack, Select, Text } from '@chakra-ui/react';
 
-export enum PaginationDisplayMode {
-  ButtonMode,
-  SelectMode,
-}
+import PageSelector, { PageSelectorDisplayMode } from './PageSelector';
 
-type PaginationProps = {
+export type PaginationProps = {
   currentPage: number;
-  pageCount: number;
-  onPageChange: (page: number) => void;
-  displayMode: PaginationDisplayMode;
+  pageSize: number;
+  itemsCount: number;
+  availablePageSize?: number[];
+  onChange: (currentPage: number, pageSize: number) => void;
 };
 
 export default function Pagination({
-  currentPage = 1,
-  pageCount = 1,
-  onPageChange = () => {},
-  displayMode = PaginationDisplayMode.ButtonMode,
+  currentPage,
+  pageSize,
+  itemsCount,
+  availablePageSize = [10, 25, 50, 100, 300],
+  onChange,
 }: PaginationProps): JSX.Element {
   const { t } = useTranslation('common');
-  const pageRange = [...Array(pageCount).keys()].map((p) => p + 1);
+  const pageCount = Math.ceil(itemsCount / pageSize);
+
+  const pageChangeHandler = (page: number) => {
+    onChange(Math.min(page, Math.ceil(itemsCount / pageSize)), pageSize);
+  };
+
+  const pageSizeChangeHandler = (size: number) => {
+    onChange(Math.min(currentPage, Math.ceil(itemsCount / size)), size);
+  };
+
   return (
     <HStack>
-      <IconButton
-        aria-label={t('previous_page')}
-        isDisabled={currentPage === 1}
-        icon={<ChevronLeftIcon />}
-        onClick={() => onPageChange(currentPage - 1)}
-      />
-      {displayMode === PaginationDisplayMode.ButtonMode &&
-        pageRange.map((page) => (
-          <Button
-            key={page}
-            isActive={currentPage === page}
-            onClick={() => onPageChange(page)}
-            aria-label={t('goto_page_nth', { page })}
-          >
-            {page}
-          </Button>
-        ))}
-      {displayMode === PaginationDisplayMode.SelectMode && (
+      {itemsCount > availablePageSize[0] && (
         <>
-          <Text>{t('page')}</Text>
           <Select
             w="auto"
-            value={currentPage}
-            onChange={(e) => onPageChange(Number(e.target.value))}
+            value={pageSize}
+            onChange={(e) => pageSizeChangeHandler(Number(e.target.value))}
           >
-            {pageRange.map((page) => (
-              <option key={page} value={page}>
-                {page}
+            {availablePageSize.map((size) => (
+              <option key={size} value={size}>
+                {size}
               </option>
             ))}
           </Select>
-          <Text>{t('of_n', { count: pageRange.length })}</Text>
+          <Text>{t('of_results', { count: itemsCount })}</Text>
         </>
       )}
-      <IconButton
-        aria-label={t('next_page')}
-        isDisabled={!pageRange.length || currentPage === pageRange.length}
-        icon={<ChevronRightIcon />}
-        onClick={() => onPageChange(currentPage + 1)}
+      {itemsCount < availablePageSize[0] && (
+        <Text>{t('n_results', { count: itemsCount })}</Text>
+      )}
+      <PageSelector
+        currentPage={currentPage}
+        pageCount={pageCount}
+        onPageChange={pageChangeHandler}
+        displayMode={
+          pageCount > 5
+            ? PageSelectorDisplayMode.SelectMode
+            : PageSelectorDisplayMode.ButtonMode
+        }
       />
     </HStack>
   );

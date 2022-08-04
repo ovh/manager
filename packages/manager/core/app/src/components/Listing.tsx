@@ -1,92 +1,120 @@
-import React, { useMemo } from 'react';
-import {
-  Flex,
-  VStack,
-  Spacer,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Tr,
-} from '@chakra-ui/react';
-
-import ListingHeader, { ListingHeaderSorting } from './ListingHeader';
-import ListingPagination from './ListingPagination';
-import ListingPlaceholder from './ListingPlaceholder';
+import React, { useEffect, useState } from 'react';
+import { Flex, Spacer, Stack, HStack } from '@chakra-ui/react';
+import { Filter, FilterComparator } from '@/api/filters';
+import ListingTable, {
+  ListingTableData,
+  ListingTableState,
+} from './ListingTable';
+import ListingFilterAdder from '@/components/ListingFilterAdder';
+import ListingFilters from '@/components/ListingFilters';
+import SearchInput from '@/components/SearchInput';
 
 export type ListingColumn<T> = {
   key: string;
   label: string;
   renderer?: (item: T) => JSX.Element;
-};
-
-export type ListingState = {
-  currentPage: number;
-  pageSize: number;
-  sort?: ListingHeaderSorting;
-};
-
-export type ListingData<T> = {
-  total: number;
-  items: T[];
+  sortable?: boolean;
+  filterable?: FilterComparator[];
+  search?: boolean;
 };
 
 export type ListingProps<T> = {
   columns: ListingColumn<T>[];
-  data?: ListingData<T>;
-  state: ListingState;
+  data: ListingTableData<T>;
   onChange: (state: ListingState) => void;
+};
+
+export type ListingState = {
+  table: ListingTableState;
+  filters: Filter[];
 };
 
 export default function Listing<T>({
   columns,
   data,
-  state,
   onChange,
 }: ListingProps<T>): JSX.Element {
-  const { currentPage, pageSize } = state;
+  const [state, setState] = useState<ListingState>({
+    table: {
+      currentPage: 1,
+      pageSize: 10,
+    },
+    filters: [],
+  });
+  const searchColumn = columns.find((c) => c.search);
 
-  const cells = useMemo(() => {
-    if (!data?.items)
-      return (
-        <ListingPlaceholder columnsCount={columns.length} linesCount={10} />
-      );
-    return data.items.map((item, index) => (
-      <Tr key={index}>
-        {columns.map(({ key, renderer }) => (
-          <Td key={`${key}-${index}`}>
-            {renderer ? renderer(item) : item[key as keyof T]}
-          </Td>
-        ))}
-      </Tr>
-    ));
-  }, [data, columns]);
+  useEffect(() => {
+    onChange(state);
+  }, [state]);
 
   return (
-    <VStack align="left">
-      <TableContainer>
-        <Table>
-          <ListingHeader
-            columns={columns}
-            sort={state.sort}
-            onColumnSort={(sort) => onChange({ ...state, sort })}
+    <Stack>
+      <Flex>
+        <Spacer />
+        <HStack>
+          {searchColumn && (
+            <SearchInput
+              onSubmit={(value) => {
+                const { filters } = state;
+                filters.push({
+                  key: searchColumn.key,
+                  value,
+                  label: searchColumn.label,
+                  comparator: FilterComparator.Includes,
+                });
+                setState({
+                  ...state,
+                  filters,
+                  table: {
+                    ...state.table,
+                    currentPage: 1,
+                  },
+                });
+              }}
+            />
+          )}
+          <ListingFilterAdder
+            columns={columns.filter((c) => c.filterable)}
+            onAdd={(column, value, comparator) => {
+              const { filters } = state;
+              filters.push({
+                key: column.key,
+                value,
+                label: column.label,
+                comparator,
+              });
+              setState({
+                ...state,
+                filters,
+                table: {
+                  ...state.table,
+                  currentPage: 1,
+                },
+              });
+            }}
           />
-          <Tbody>{cells}</Tbody>
-        </Table>
-      </TableContainer>
-      {data && (
-        <Flex>
-          <Spacer />
-          <ListingPagination
-            currentPage={currentPage}
-            pageSize={pageSize}
-            itemsCount={data.total}
-            onChange={(page, size) =>
-              onChange({ ...state, currentPage: page, pageSize: size })
-            }
-          />
-        </Flex>
-      )}
-    </VStack>
+        </HStack>
+      </Flex>
+      <ListingFilters
+        filters={state.filters}
+        onChange={(filters) =>
+          setState({
+            ...state,
+            filters,
+          })
+        }
+      />
+      <ListingTable
+        columns={columns}
+        data={data}
+        state={state.table}
+        onChange={(table) =>
+          setState({
+            ...state,
+            table,
+          })
+        }
+      />
+    </Stack>
   );
 }
