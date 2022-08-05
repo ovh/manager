@@ -40,13 +40,16 @@ export default function ListingTable<T>({
   onChange,
 }: ListingTableProps<T>): JSX.Element {
   const { currentPage, pageSize } = state;
+  const visibleColumns = columns.filter((c) => !c.hidden);
 
   const cells = useMemo(() => {
     if (!data?.items)
-      return <ListingSkeleton columnsCount={columns.length} linesCount={10} />;
+      return (
+        <ListingSkeleton columnsCount={visibleColumns.length} linesCount={10} />
+      );
     return data.items.map((item, index) => (
       <Tr key={index}>
-        {columns.map(({ key, renderer }) => (
+        {visibleColumns.map(({ key, renderer }) => (
           <Td key={`${key}-${index}`}>
             {renderer ? renderer(item) : item[key as keyof T]}
           </Td>

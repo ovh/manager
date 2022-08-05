@@ -4,7 +4,7 @@ export default function useJsonSearchParam<T>(
   param: string,
 ): [T, (data: T) => void] {
   const [searchParams, setSearchParams] = useSearchParams();
-  const saveValue = (data: T) => {
+  const updateValue = (data: T) => {
     try {
       if (data === undefined || data === null) {
         searchParams.delete(param);
@@ -24,5 +24,5 @@ export default function useJsonSearchParam<T>(
     // skip
   }
 
-  return [value, saveValue];
+  return [value, updateValue];
 }
