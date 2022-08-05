@@ -9,6 +9,8 @@ import {
 
 import { getShellClient, setShellClient } from './shell';
 
+// test
+
 if (isTopLevelApplication()) {
   import('@ovh-ux/manager-preloader')
     .then(({ attach }) => attach(findAvailableLocale(detectUserLocale())))

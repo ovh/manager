@@ -14,6 +14,7 @@ import { BILLING_REDIRECTIONS } from './constants';
 
 import { getShellClient, setShellClient } from './shell';
 import TRACKING from './components/at-internet/at-internet.constant';
+// test
 
 if (isTopLevelApplication()) {
   import('@ovh-ux/manager-preloader')
