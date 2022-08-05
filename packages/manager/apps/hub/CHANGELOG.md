@@ -1,3 +1,12 @@
+## [3.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.22.2...@ovh-ux/manager-hub-app@3.22.3) (2022-08-02)
+
+
+### Bug Fixes
+
+* **hub:** add ephemeral banner for domains repricing ([#7561](https://github.com/ovh/manager/issues/7561)) ([6c9fb3f](https://github.com/ovh/manager/commit/6c9fb3f665783b4e36828165518c0ee34b953932))
+
+
+
 ## [3.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.22.1...@ovh-ux/manager-hub-app@3.22.2) (2022-07-27)
 
 

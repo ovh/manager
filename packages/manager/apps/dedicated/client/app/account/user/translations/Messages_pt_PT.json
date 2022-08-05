@@ -608,5 +608,6 @@
   "user_account_advanced_title": "Configurações avançadas",
   "user_ipRestrictions_warning_last_ip_with_deny": "Altere a regra predefinida para \"Autorizado\" para poder eliminar o último endereço IP.",
   "user_account": "A minha conta",
-  "user_account_description": "Administre a sua conta de cliente. Nesta secção, poderá gerir a segurança da sua conta, o seu nível de suporte e os seus utilizadores. Também pode consultar os e-mails recebidos associados aos seus serviços."
+  "user_account_description": "Administre a sua conta de cliente. Nesta secção, poderá gerir a segurança da sua conta, o seu nível de suporte e os seus utilizadores. Também pode consultar os e-mails recebidos associados aos seus serviços.",
+  "user_account_guides_header": "Manuais"
 }

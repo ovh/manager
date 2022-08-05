@@ -23,9 +23,15 @@ export const BYOI_STARTING_MESSAGE = 'starting';
 
 export const SERVICE_TYPE = 'DEDICATED_SERVER';
 
+export const GUIDES_FIREWALL_CISCO_ASA_EOL = {
+  fr_FR: 'https://docs.ovh.com/fr/dedicated/cisco-asa-eol/',
+  default: 'https://docs.ovh.com/gb/en/dedicated/cisco-asa-eol/',
+};
+
 export default {
   BYOI_STARTING_MESSAGE,
   BYOI_STATUS_ENUM,
+  GUIDES_FIREWALL_CISCO_ASA_EOL,
   NEW_RANGE,
   NO_AUTORENEW_COUNTRIES,
   SERVICE_TYPE,

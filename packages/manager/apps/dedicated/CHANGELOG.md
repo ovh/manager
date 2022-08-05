@@ -1,3 +1,18 @@
+# [17.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.24.1...@ovh-ux/manager-dedicated@17.25.0) (2022-08-02)
+
+
+### Bug Fixes
+
+* **billing:** add missing links guides for certain subs ([0cd3871](https://github.com/ovh/manager/commit/0cd38716c45a1448a2eb94aaa9fb85127bd74a69))
+* **dedicated.server:** add banner firewall cisco asa eol ([#7575](https://github.com/ovh/manager/issues/7575)) ([09b57f1](https://github.com/ovh/manager/commit/09b57f1a78b82e54879a6c4128d3804609c25eb0))
+
+
+### Features
+
+* **billing:** guide menu links implementation ([#7625](https://github.com/ovh/manager/issues/7625)) ([e28e592](https://github.com/ovh/manager/commit/e28e5921393366a05af35a53349c5b04aa1c587b))
+
+
+
 ## [17.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.24.0...@ovh-ux/manager-dedicated@17.24.1) (2022-08-01)
 
 

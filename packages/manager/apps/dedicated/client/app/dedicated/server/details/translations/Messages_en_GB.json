@@ -1206,5 +1206,8 @@
   "server_nutanix_cluster_node_warning_1": "This dedicated server is part of a Nutanix cluster: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "We recommend making all of the configuration changes directly in the dashboard of the server linked to your Nutanix cluster: {{clusterNodeDashboardLink}}",
   "server_nutanix_cluster_node_warning_3": "All billing actions linked to this server are visible on your Nutanix cluster: {{clusterDashboardLink}}",
-  "server_rtm_eol_info": "Important information - the Real Time Monitoring Service will soon be obsolete. It will continue running until 30 June 2022. After this date, we will stop displaying your consumption data. This will not affect your server’s operation."
+  "server_rtm_eol_info": "Important information - the Real Time Monitoring Service will soon be obsolete. It will continue running until 30 June 2022. After this date, we will stop displaying your consumption data. This will not affect your server’s operation.",
+  "server_configuration_gateway_ip": "IPv4 Gateway",
+  "server_configuration_firewall_asa_EOL": "Reminder: As previously announced, the active Cisco Firewall ASA services associated with dedicated servers will be stopped on 31 August 2022 at 10:00 UTC, which is the support end date.",
+  "server_configuration_firewall_asa_EOL_link": "Find out more."
 }

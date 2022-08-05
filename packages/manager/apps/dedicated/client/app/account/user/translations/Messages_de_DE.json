@@ -608,5 +608,6 @@
   "user_account_advanced_title": "Erweiterte Einstellungen",
   "user_ipRestrictions_warning_last_ip_with_deny": "Bitte ändern Sie die Standardregel in „Erlaubt“, um die letzte IP-Adresse löschen zu können.",
   "user_account": "Mein Account",
-  "user_account_description": "Verwalten Sie Ihr Kundenkonto. In dieser Rubrik verwalten Sie die Sicherheit Ihres Kontos, Ihre Supportstufe und Ihre Benutzerkonten. Sie können auch die im Zusammenhang mit Ihren Diensten erhaltenen E-Mails einsehen."
+  "user_account_description": "Verwalten Sie Ihr Kundenkonto. In dieser Rubrik verwalten Sie die Sicherheit Ihres Kontos, Ihre Supportstufe und Ihre Benutzerkonten. Sie können auch die im Zusammenhang mit Ihren Diensten erhaltenen E-Mails einsehen.",
+  "user_account_guides_header": "Anleitungen"
 }

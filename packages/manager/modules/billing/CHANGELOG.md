@@ -1,3 +1,17 @@
+# [0.17.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.10...@ovh-ux/manager-billing@0.17.0-alpha.0) (2022-08-02)
+
+
+### Bug Fixes
+
+* **billing:** add missing links guides for certain subs ([0cd3871](https://github.com/ovh/manager/commit/0cd38716c45a1448a2eb94aaa9fb85127bd74a69))
+
+
+### Features
+
+* **billing:** guide menu links implementation ([#7625](https://github.com/ovh/manager/issues/7625)) ([e28e592](https://github.com/ovh/manager/commit/e28e5921393366a05af35a53349c5b04aa1c587b))
+
+
+
 # [0.16.0-alpha.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.9...@ovh-ux/manager-billing@0.16.0-alpha.10) (2022-08-01)
 
 

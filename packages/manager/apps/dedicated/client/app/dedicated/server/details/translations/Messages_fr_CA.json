@@ -559,6 +559,8 @@
   "server_configuration_firewall_asa_disable_step1_question": "Souhaitez-vous réellement désactiver le firewall Cisco ASA pour votre serveur <span class=\"normal italic\">{{t0}}</span> ?",
   "server_configuration_firewall_asa_disable_success": "La demande de désactivation du firewall Cisco ASA a bien été prise en compte et sera effective dans quelques minutes.",
   "server_configuration_firewall_asa_disable_fail": "Une erreur est survenue lors de l'désactivation du firewall Cisco ASA",
+  "server_configuration_firewall_asa_EOL": "Rappel: Comme annoncé préalablement, les services actifs Cisco Firewall ASA associés aux serveurs dédiés seront arrêtés au 31 Août 2022 à 10:00 UTC, date de fin de support.",
+  "server_configuration_firewall_asa_EOL_link": "En savoir plus.",
   "server_configuration_task_loading_error": "Une erreur est survenue lors de la récupération des tâches",
   "server_configuration_task_last_action": "Dernière action",
   "server_configuration_task_function": "Tâche",
