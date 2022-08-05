@@ -5,6 +5,7 @@ import ListingTable, {
   ListingTableData,
   ListingTableState,
 } from './ListingTable';
+import ListingColumnToggler from '@/components/ListingColumnToggler';
 import ListingFilterAdder from '@/components/ListingFilterAdder';
 import ListingFilters from '@/components/ListingFilters';
 import SearchInput from '@/components/SearchInput';
@@ -16,6 +17,7 @@ export type ListingColumn<T> = {
   sortable?: boolean;
   filterable?: FilterComparator[];
   search?: boolean;
+  hidden?: boolean;
 };
 
 export type ListingProps<T> = {
@@ -23,6 +25,7 @@ export type ListingProps<T> = {
   data: ListingTableData<T>;
   initialState?: ListingState;
   onChange: (state: ListingState) => void;
+  onColumnsChange: (columns: ListingColumn<T>[]) => void;
 };
 
 export type ListingState = {
@@ -37,6 +40,7 @@ export default function Listing<T>({
   data,
   initialState,
   onChange,
+  onColumnsChange,
 }: ListingProps<T>): JSX.Element {
   const [state, setState] = useState<ListingState>(
     initialState || {
@@ -98,6 +102,19 @@ export default function Listing<T>({
                 },
               });
             }}
+          />
+          <ListingColumnToggler
+            columns={columns}
+            onColumnVisibilityChange={(column, isVisible) =>
+              onColumnsChange(
+                columns.map((c) => {
+                  if (c === column) {
+                    return { ...column, hidden: !isVisible };
+                  }
+                  return c;
+                }),
+              )
+            }
           />
         </HStack>
       </Flex>

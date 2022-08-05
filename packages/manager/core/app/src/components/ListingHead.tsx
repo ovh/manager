@@ -19,10 +19,11 @@ export default function ListingHead<T>({
   sort = null,
   onColumnSort,
 }: ListingHeadProps<T>): JSX.Element {
+  const visibleColumns = columns.filter((c) => !c.hidden);
   return (
     <Thead>
       <Tr>
-        {columns.map(({ key, label }) => {
+        {visibleColumns.map(({ key, label }) => {
           return (
             <Th key={key}>
               <Button
