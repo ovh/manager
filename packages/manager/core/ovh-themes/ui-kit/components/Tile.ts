@@ -1,4 +1,4 @@
-import { SystemStyleObject } from '@chakra-ui/theme-tools';
+import { SystemStyleObject } from '@chakra-ui/system';
 // eslint-disable-next-line prettier/prettier
 import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 import Button from './Button';

@@ -1,6 +1,6 @@
 // eslint-disable-next-line prettier/prettier
 import { alertAnatomy as parts } from "@chakra-ui/anatomy"
-import type { ComponentStyleConfig } from '@chakra-ui/theme';
+import { ComponentStyleConfig } from '@chakra-ui/theme';
 
 const computeContainerStyle = (props: any) => {
   const { status } = props;
@@ -36,7 +36,7 @@ const computeContainerStyle = (props: any) => {
       };
   }
   return { container: containerStyle };
-}
+};
 
 const Alert: ComponentStyleConfig = {
   parts: parts.keys, // container, icon, title, description, spinner

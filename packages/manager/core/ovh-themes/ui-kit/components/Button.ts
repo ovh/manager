@@ -1,5 +1,5 @@
 import { ComponentStyleConfig } from '@chakra-ui/theme';
-import { SystemStyleObject } from '@chakra-ui/theme-tools';
+import { SystemStyleObject } from '@chakra-ui/system';
 
 const largeSize = '3.125rem';
 const smallSize = '2rem';

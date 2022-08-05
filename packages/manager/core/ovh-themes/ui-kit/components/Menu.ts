@@ -1,6 +1,6 @@
 import { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 import { menuAnatomy as parts } from '@chakra-ui/anatomy';
-import { SystemStyleFunction } from '@chakra-ui/theme-tools';
+import { SystemStyleFunction } from '@chakra-ui/system';
 
 // const itemStyle: SystemStyleFunction = (props) => {
 //   console.log(props);
