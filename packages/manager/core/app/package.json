@@ -11,8 +11,8 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "build": "vite build",
-    "dev": "vite",
+    "build": "tsc && vite build",
+    "dev": "tsc && vite",
     "start": "lerna exec --stream --scope='manager-react-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='manager-react-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='manager-react-app' --include-dependencies -- npm run dev:watch --if-present"
