@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '@chakra-ui/react';
-import { ListingTableData } from '@/components/ListingTable';
 import { listVps, Vps } from '@/api/Vps';
 import { FilterCategories } from '@/api/filters';
 
-import Listing from '@/components/Listing';
+import Listing, { ListingData, ListingState } from '@/components/Listing';
+import useJsonSearchParam from '@/hooks/useJsonSearchParam';
 
 export default function ListingPage(): JSX.Element {
   const { t } = useTranslation('common');
-  const [services, setServices] = useState<ListingTableData<Vps>>();
+  const [initialState, saveState] = useJsonSearchParam<ListingState>('list');
+  const [services, setServices] = useState<ListingData<Vps>>();
 
   return (
     <Listing
@@ -32,9 +33,11 @@ export default function ListingPage(): JSX.Element {
         },
       ]}
       data={services}
+      initialState={initialState}
       onChange={(state) => {
         const { currentPage, pageSize, sort } = state.table;
         setServices(null);
+        saveState(state);
         listVps({
           currentPage,
           pageSize,

@@ -21,6 +21,7 @@ export type ListingColumn<T> = {
 export type ListingProps<T> = {
   columns: ListingColumn<T>[];
   data: ListingTableData<T>;
+  initialState?: ListingState;
   onChange: (state: ListingState) => void;
 };
 
@@ -29,18 +30,23 @@ export type ListingState = {
   filters: Filter[];
 };
 
+export type ListingData<T> = ListingTableData<T>;
+
 export default function Listing<T>({
   columns,
   data,
+  initialState,
   onChange,
 }: ListingProps<T>): JSX.Element {
-  const [state, setState] = useState<ListingState>({
-    table: {
-      currentPage: 1,
-      pageSize: 10,
+  const [state, setState] = useState<ListingState>(
+    initialState || {
+      table: {
+        currentPage: 1,
+        pageSize: 10,
+      },
+      filters: [],
     },
-    filters: [],
-  });
+  );
   const searchColumn = columns.find((c) => c.search);
 
   useEffect(() => {
