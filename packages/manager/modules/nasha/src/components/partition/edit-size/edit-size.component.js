@@ -8,6 +8,7 @@ export default {
     partition: '<',
     partitionApiUrl: '<',
     taskApiUrl: '<',
+    trackClick: '<',
   },
   controller,
   template,

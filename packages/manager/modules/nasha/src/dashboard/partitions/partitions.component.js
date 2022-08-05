@@ -21,6 +21,7 @@ export default {
     serviceInfo: '<',
     serviceName: '<',
     urlRenew: '<',
+    trackClick: '<',
   },
   controller,
   template,

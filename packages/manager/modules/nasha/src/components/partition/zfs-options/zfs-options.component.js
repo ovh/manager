@@ -8,6 +8,7 @@ export default {
     partitionApiUrl: '<',
     recordsizeEnum: '<',
     syncEnum: '<',
+    trackClick: '<',
   },
   controller,
   template,

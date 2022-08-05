@@ -1,4 +1,7 @@
-import { MAX_PARTITIONS } from '../dashboard.constants';
+import {
+  MAX_PARTITIONS,
+  PREFIX_TRACKING_DASHBOARD_PARTITIONS,
+} from '../dashboard.constants';
 
 export default class NashaDashboardPartitionsController {
   /* @ngInject */
@@ -13,6 +16,11 @@ export default class NashaDashboardPartitionsController {
 
   updateMonitored() {
     const { monitored } = this.nasha;
+
+    this.trackClick(
+      PREFIX_TRACKING_DASHBOARD_PARTITIONS,
+      `usage-notification::${monitored ? 'enable' : 'disable'}`,
+    );
 
     this.isMonitoredUpdating = true;
 
@@ -49,5 +57,10 @@ export default class NashaDashboardPartitionsController {
         };
       })
       .catch((error) => this.alertError({ error }));
+  }
+
+  onPartitionsCreateClick() {
+    this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITIONS, 'create-partition');
+    return this.goToTabPartitionsCreate();
   }
 }

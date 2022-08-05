@@ -1,5 +1,8 @@
 import illustration from './assets/instance.png';
-import { GUIDES } from './onboarding.constants';
+import {
+  GUIDES,
+  PREFIX_TRACKING_ONBOARDING_GUIDES,
+} from './onboarding.constants';
 import { NASHA_TITLE } from '../nasha.constants';
 
 export default class NashaOnboardingController {
@@ -14,5 +17,6 @@ export default class NashaOnboardingController {
       description: $translate.instant(`nasha_onboarding_${guide.id}_content`),
       link: guide.link[ovhSubsidiary] || guide.link.WW,
     }));
+    this.PREFIX_TRACKING_ONBOARDING_GUIDES = PREFIX_TRACKING_ONBOARDING_GUIDES;
   }
 }

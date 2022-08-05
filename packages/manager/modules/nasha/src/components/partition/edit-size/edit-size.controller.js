@@ -1,4 +1,7 @@
-import { SIZE_MIN } from '../partition.constants';
+import {
+  SIZE_MIN,
+  PREFIX_TRACKING_DASHBOARD_PARTITION_UPDATE,
+} from '../partition.constants';
 
 export default class NashaComponentsPartitionEditSizeController {
   /* @ngInject */
@@ -17,6 +20,8 @@ export default class NashaComponentsPartitionEditSizeController {
   }
 
   submit() {
+    this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITION_UPDATE, 'confirm');
+
     const { partitionName } = this.partition;
 
     return this.$http
@@ -30,5 +35,10 @@ export default class NashaComponentsPartitionEditSizeController {
       )
       .then((tasks) => this.close({ tasks, partitionName }))
       .catch((error) => this.close({ error }));
+  }
+
+  onCancelClick() {
+    this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITION_UPDATE, 'cancel');
+    return this.close();
   }
 }

@@ -6,5 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
       goToOrder: /* @ngInject */ ($state) => () => $state.go('nasha.order'),
     },
+    atInternet: {
+      rename: 'nasha::onboarding',
+    },
   });
 };

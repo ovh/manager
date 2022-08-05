@@ -9,6 +9,7 @@ export default {
     nashaApiUrl: '<',
     partitionNames: '<',
     protocolEnum: '<',
+    trackClick: '<',
   },
   controller,
   template,

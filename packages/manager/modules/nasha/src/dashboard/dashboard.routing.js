@@ -75,5 +75,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().serviceName,
       taskApiUrl: /* @ngInject */ (nashaApiUrl) => `${nashaApiUrl}/task`,
     },
+    atInternet: {
+      rename: 'nasha::dashboard',
+    },
   });
 };

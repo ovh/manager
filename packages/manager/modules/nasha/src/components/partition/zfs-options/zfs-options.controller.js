@@ -2,6 +2,7 @@ import isEqual from 'lodash/isEqual';
 
 import { prepareZfsOptions, exportZfsOptions } from '../../../nasha.utils';
 import { TRANSLATE_PREFIX } from './zfs-options.constants';
+import { PREFIX_TRACKING_DASHBOARD_PARTITION_ZFS_OPTION } from '../partition.constants';
 
 export default class NashaComponentsPartitionZfsOptionsController {
   /* @ngInject */
@@ -55,6 +56,7 @@ export default class NashaComponentsPartitionZfsOptionsController {
   }
 
   submit() {
+    this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITION_ZFS_OPTION, 'confirm');
     return this.$http
       .post(`${this.partitionApiUrl}/options`, this.exportedModel)
       .then(({ data: task }) =>
@@ -64,6 +66,11 @@ export default class NashaComponentsPartitionZfsOptionsController {
         }),
       )
       .catch((error) => this.close({ error }));
+  }
+
+  onCancelClick() {
+    this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITION_ZFS_OPTION, 'cancel');
+    return this.close();
   }
 
   translate(key, values) {

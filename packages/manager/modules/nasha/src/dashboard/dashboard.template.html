@@ -107,7 +107,7 @@
                                     variant="link"
                                     icon-right="oui-icon-arrow-right"
                                     data-disabled="!$ctrl.canCreatePartitions"
-                                    data-on-click="$ctrl.goToPartitionsCreate()"
+                                    data-on-click="$ctrl.onClickOnGoToPartitionsCreate()"
                                 >
                                     <span
                                         data-translate="nasha_dashboard_configuration_link"
@@ -124,6 +124,9 @@
                         service-path="{{:: $ctrl.nashaApiUrl }}"
                         with-engagement="$ctrl.isCommitmentAvailable"
                         tracking-prefix="nasha::dashboard"
+                        commit-impression-data=":: $ctrl.shouldReengage() ?
+                            $ctrl.RECOMMIT_IMPRESSION_TRACKING_DATA :
+                            $ctrl.COMMIT_IMPRESSION_TRACKING_DATA"
                     ></billing-subscription-tile>
                 </div>
             </div>

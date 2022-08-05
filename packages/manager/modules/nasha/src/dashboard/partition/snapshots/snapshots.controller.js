@@ -5,6 +5,7 @@ import {
   CUSTOM_SNAPSHOT_NAME_PREFIX,
   CUSTOM_SNAPSHOT_NAME_SEPARATOR,
   TRANSLATE_PREFIX,
+  PREFIX_TRACKING_SNAPSHOT_POLICY,
 } from './snapshots.constants';
 
 export default class NashaDashboardPartitionSnapshotsController {
@@ -74,6 +75,8 @@ export default class NashaDashboardPartitionSnapshotsController {
   }
 
   showCustomSnapshotForm() {
+    this.trackClick(PREFIX_TRACKING_SNAPSHOT_POLICY, 'create-snapshot');
+
     this.isCustomSnapshotFormShown = true;
     this.model.customSnapshotName = [
       this.partition.partitionName,
@@ -132,6 +135,8 @@ export default class NashaDashboardPartitionSnapshotsController {
   }
 
   createCustomSnapshot() {
+    this.trackClick(PREFIX_TRACKING_SNAPSHOT_POLICY, 'confirm-create-snapshot');
+
     const { partitionName } = this.partition;
     const name = [
       this.customSnapshotNamePrefix,
@@ -153,6 +158,16 @@ export default class NashaDashboardPartitionSnapshotsController {
         this.isCreatingCustomSnapshot = false;
         this.alertError(error);
       });
+  }
+
+  onCancelCustomSnapshotClick() {
+    this.trackClick(PREFIX_TRACKING_SNAPSHOT_POLICY, 'cancel-create-snapshot');
+    return this.hideCustomSnapshotForm();
+  }
+
+  onDeleteClick(customSnapshot) {
+    this.trackClick(PREFIX_TRACKING_SNAPSHOT_POLICY, 'delete-snapshot');
+    return this.goToDelete(customSnapshot);
   }
 
   translate(key, values) {

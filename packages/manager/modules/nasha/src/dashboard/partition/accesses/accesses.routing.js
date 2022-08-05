@@ -24,6 +24,9 @@ export default /* @ngInject */ ($stateProvider) => {
       goToTrackTasks: /* @ngInject */ ($state) => (params) =>
         $state.go(taskTrackerStateName, params),
     },
+    atInternet: {
+      rename: 'nasha::partition::acl',
+    },
   });
 
   $stateProvider.state(

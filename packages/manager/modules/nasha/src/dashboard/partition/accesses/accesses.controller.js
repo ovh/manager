@@ -1,5 +1,9 @@
 import { ipBlockToNumber } from '../../../nasha.utils';
-import { NFS_PROTOCOL, READONLY_TYPE } from './accesses.constants';
+import {
+  NFS_PROTOCOL,
+  READONLY_TYPE,
+  PREFIX_TRACKING_ACL,
+} from './accesses.constants';
 
 export default class NashaDashboardPartitionAccessesController {
   /* @ngInject */
@@ -115,6 +119,8 @@ export default class NashaDashboardPartitionAccessesController {
   }
 
   showAccessForm() {
+    this.trackClick(PREFIX_TRACKING_ACL, 'add-access');
+
     let promise = this.$q.when();
 
     if (!this.authorizedAccesses) {
@@ -162,7 +168,14 @@ export default class NashaDashboardPartitionAccessesController {
     }
   }
 
+  onCancelAccessFormClick() {
+    this.trackClick(PREFIX_TRACKING_ACL, 'cancel-add-access');
+    return this.hideAccessForm();
+  }
+
   createAccess() {
+    this.trackClick(PREFIX_TRACKING_ACL, 'confirm-add-access');
+
     const { partitionName } = this.partition;
     const {
       ip: { ip },
@@ -179,5 +192,10 @@ export default class NashaDashboardPartitionAccessesController {
       .catch((error) => {
         this.alertError(error);
       });
+  }
+
+  onDeleteClick(ip) {
+    this.trackClick(PREFIX_TRACKING_ACL, 'delete-access');
+    return this.goToDelete(ip);
   }
 }

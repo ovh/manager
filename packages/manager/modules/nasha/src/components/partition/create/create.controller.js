@@ -2,6 +2,7 @@ import {
   DESCRIPTION_MAX,
   NAME_PATTERN,
   SIZE_MIN,
+  PREFIX_TRACKING_DASHBOARD_PARTITION_CREATE,
 } from '../partition.constants';
 
 export default class NashaComponentsPartitionCreateController {
@@ -36,6 +37,10 @@ export default class NashaComponentsPartitionCreateController {
   }
 
   submit() {
+    this.trackClick(
+      PREFIX_TRACKING_DASHBOARD_PARTITION_CREATE,
+      `confirm_${this.model.protocol}`,
+    );
     return this.$http
       .post(`${this.nashaApiUrl}/partition`, this.model)
       .then(({ data: task }) =>
@@ -45,5 +50,10 @@ export default class NashaComponentsPartitionCreateController {
         }),
       )
       .catch((error) => this.close({ error }));
+  }
+
+  onCancelClick() {
+    this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITION_CREATE, 'cancel');
+    return this.close();
   }
 }

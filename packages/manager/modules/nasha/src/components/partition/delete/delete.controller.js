@@ -1,3 +1,5 @@
+import { PREFIX_TRACKING_DASHBOARD_PARTITION_DELETE } from '../partition.constants';
+
 export default class NashaComponentsPartitionDeleteController {
   /* @ngInject */
   constructor($http) {
@@ -5,6 +7,7 @@ export default class NashaComponentsPartitionDeleteController {
   }
 
   submit() {
+    this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITION_DELETE, 'confirm');
     return this.$http
       .delete(this.partitionApiUrl)
       .then(({ data: task }) =>
@@ -14,5 +17,10 @@ export default class NashaComponentsPartitionDeleteController {
         }),
       )
       .catch((error) => this.close({ error }));
+  }
+
+  onCancelClick() {
+    this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITION_DELETE, 'cancel');
+    return this.close();
   }
 }

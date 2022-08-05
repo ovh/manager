@@ -17,6 +17,7 @@ export default {
     reload: '<',
     serviceInfo: '<',
     serviceName: '<',
+    trackClick: '<',
   },
   controller,
   template,

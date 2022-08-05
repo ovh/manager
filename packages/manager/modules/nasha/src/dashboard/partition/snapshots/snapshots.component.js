@@ -11,6 +11,7 @@ export default {
     snapshotEnum: '<',
     snapshotTypes: '<',
     goToTrackTasks: '<',
+    trackClick: '<',
   },
   controller,
   template,

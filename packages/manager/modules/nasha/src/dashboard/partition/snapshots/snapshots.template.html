@@ -128,7 +128,7 @@
                         <span data-ng-bind="customSnapshot"></span>
                         <div class="d-flex align-items-center">
                             <oui-button
-                                data-on-click="$ctrl.goToDelete(customSnapshot)"
+                                data-on-click="$ctrl.onDeleteClick(customSnapshot)"
                                 data-translate-attr="{ title: 'nasha_dashboard_partition_snapshots_delete' }"
                             >
                                 <span
@@ -198,7 +198,7 @@
                                 ></span>
                             </oui-button>
                             <oui-button
-                                data-on-click="$ctrl.hideCustomSnapshotForm()"
+                                data-on-click="$ctrl.onCancelCustomSnapshotClick()"
                                 data-disabled="$ctrl.isCreatingCustomSnapshot"
                                 data-translate-attr="{ title: 'nasha_dashboard_partition_snapshots_hide_form' }"
                             >
