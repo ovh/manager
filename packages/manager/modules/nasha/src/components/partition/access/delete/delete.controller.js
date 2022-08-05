@@ -1,3 +1,5 @@
+import { PREFIX_TRACKING_PARTITION_ACL } from '../../partition.constants';
+
 export default class NashaComponentsPartitionAccessDeleteController {
   /* @ngInject */
   constructor($http) {
@@ -5,6 +7,8 @@ export default class NashaComponentsPartitionAccessDeleteController {
   }
 
   submit() {
+    this.trackClick(PREFIX_TRACKING_PARTITION_ACL, 'confirm-delete-access');
+
     return this.$http
       .delete(`${this.partitionApiUrl}/access/${encodeURIComponent(this.ip)}`)
       .then(({ data: task }) =>
@@ -15,5 +19,10 @@ export default class NashaComponentsPartitionAccessDeleteController {
         }),
       )
       .catch((error) => this.close({ error }));
+  }
+
+  onCancelClick() {
+    this.trackClick(PREFIX_TRACKING_PARTITION_ACL, 'cancel-delete-access');
+    return this.close();
   }
 }

@@ -2,6 +2,7 @@ import {
   NASHA_ALERT_ID,
   NASHA_BASE_API_URL,
   NASHA_TITLE,
+  PREFIX_TRACKING_NASHA,
 } from './nasha.constants';
 import {
   formatAclTypeEnum,
@@ -41,6 +42,12 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       breadcrumb: () => NASHA_TITLE,
       schema: /* @ngInject */ ($http, baseApiUrl) =>
         $http.get(`${baseApiUrl}.json`).then(({ data }) => data),
+      trackClick: /* @ngInject */ (atInternet) => (subPrefixTracking, hit) => {
+        atInternet.trackClick({
+          name: `${PREFIX_TRACKING_NASHA}::${subPrefixTracking}::${hit}`,
+          type: 'action',
+        });
+      },
 
       // ALERTS
       alert: /* @ngInject */ (Alerter) => (type, message) =>

@@ -64,6 +64,9 @@ export default /* @ngInject */ ($stateProvider) => {
       ...goToPagePartitionResolve,
       ...goToTabPartitionsResolve,
     },
+    atInternet: {
+      rename: 'nasha::dashboard::nasha-partitions',
+    },
   });
 
   $stateProvider.state(

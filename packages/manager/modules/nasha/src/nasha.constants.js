@@ -14,6 +14,8 @@ export const NASHA_DEFAULT_ZFS_OPTIONS = {
   sync: 'standard',
 };
 
+export const PREFIX_TRACKING_NASHA = 'nasha';
+
 export default {
   NASHA_ACL_TYPE_ENUM,
   NASHA_ALERT_ID,
@@ -25,4 +27,5 @@ export default {
   NASHA_SYNC_ENUM,
   NASHA_TITLE,
   NASHA_USE_SIZE_NAME,
+  PREFIX_TRACKING_NASHA,
 };

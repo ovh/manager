@@ -7,6 +7,7 @@ export default {
     ip: '<',
     partition: '<',
     partitionApiUrl: '<',
+    trackClick: '<',
   },
   controller,
   template,
