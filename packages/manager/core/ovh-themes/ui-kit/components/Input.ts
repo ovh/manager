@@ -1,6 +1,6 @@
 // eslint-disable-next-line prettier/prettier
 import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
-import type { Anatomy, PartsStyleObject, SystemStyleObject } from '@chakra-ui/theme-tools';
+import type { PartsStyleObject, SystemStyleObject } from '@chakra-ui/system';
 
 import { inputAnatomy as parts } from '@chakra-ui/anatomy';
 

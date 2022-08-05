@@ -1,6 +1,6 @@
 // eslint-disable-next-line prettier/prettier
 import type { ComponentMultiStyleConfig } from '@chakra-ui/theme';
-import type { PartsStyleObject } from '@chakra-ui/theme-tools';
+import type { PartsStyleObject } from '@chakra-ui/system';
 
 const chipBaseStyles = (closable?: boolean): PartsStyleObject => {
   const hover = closable

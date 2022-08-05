@@ -3,7 +3,7 @@ import { Box, useMultiStyleConfig, chakra, Button } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
 // eslint-disable-next-line prettier/prettier
-import type { StyleFunctionProps } from '@chakra-ui/theme-tools';
+import type { StyleFunctionProps } from '@chakra-ui/system';
 
 const TileHeading = (props = {} as Partial<StyleFunctionProps>) => {
   const { variant, title, ...rest } = props;
