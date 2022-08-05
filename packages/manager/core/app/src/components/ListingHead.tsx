@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Thead, Tr, Th } from '@chakra-ui/react';
-import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, ChevronUpIcon } from '@ovh-ux/manager-themes';
 import { ListingColumn } from './Listing';
 
 export type ListingHeadSorting = {
@@ -26,7 +26,7 @@ export default function ListingHead<T>({
           return (
             <Th key={key}>
               <Button
-                variant="ghost"
+                variant="table"
                 onClick={() => {
                   const reverse = sort?.key === key ? !sort?.reverse : false;
                   onColumnSort({ key, reverse });

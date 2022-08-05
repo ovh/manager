@@ -1,9 +1,14 @@
 import React, { useContext } from 'react';
+
+import { UIKitTheme } from '@ovh-ux/manager-themes';
+
 import { createRoot } from 'react-dom/client';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { ApplicationId } from '@ovh-ux/manager-config/types/application';
 import OvhApplication from './ovh-application';
 import OvhContext from './ovh-context';
+
+const theme = extendTheme(UIKitTheme);
 
 export function useEnvironment() {
   const { environment } = useContext(OvhContext);
@@ -31,7 +36,7 @@ export function startApplication(
   const AppComponent = app;
   root.render(
     <React.StrictMode>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <OvhApplication name={appName}>
           <AppComponent />
         </OvhApplication>

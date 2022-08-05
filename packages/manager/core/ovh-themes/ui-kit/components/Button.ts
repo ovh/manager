@@ -17,8 +17,8 @@ const tableStyle = {
   background: 'uikit.100',
   borderColor: 'uikit.100',
   _disabled: {
-    ...disabledStyles('white'),
-    borderColor: 'white',
+    ...disabledStyles('transparent'),
+    borderColor: 'transparent',
   },
 };
 
@@ -111,10 +111,7 @@ const Button: ComponentStyleConfig = {
         boxShadow: 'none',
       },
       _active: {
-        ...tableStyle,
-        background: 'uikit.300',
-        color: 'uikit.500',
-        boxShadow: 'none',
+        borderColor: 'uikit.100',
       },
     },
     menu: {
