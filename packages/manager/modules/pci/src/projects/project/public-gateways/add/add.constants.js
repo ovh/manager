@@ -22,12 +22,7 @@ export const DEFAULTS_MODEL = [
     fields: [
       {
         name: 'gateway',
-        model: 'selectedGatewaySize',
-        availableOptions: [],
-        getDefault: (defaultValue, availableOptions) =>
-          availableOptions.find((option) => option.name === defaultValue),
-        onChange: 'onGatewaySizeSelect',
-        onChangeParams: ['selectedGatewaySize'],
+        skipFieldSelection: true,
       },
     ],
   },

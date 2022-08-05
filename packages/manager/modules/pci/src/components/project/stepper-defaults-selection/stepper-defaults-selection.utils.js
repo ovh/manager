@@ -33,9 +33,13 @@ export const setDefaultSelections = (
   return new Promise((resolve) => {
     (async () => {
       const thisObj = configObj;
-      for (let i = 0; i < DEFAULTS_MODEL.length; i += 1) {
+      let terminate = false;
+      for (let i = 0; i < DEFAULTS_MODEL.length && !terminate; i += 1) {
         const step = DEFAULTS_MODEL[i];
         for (let j = 0; j < step.fields.length; j += 1) {
+          if (step.fields[j].skipFieldSelection) {
+            break;
+          }
           const defaultvalue = getDefaultValue(step.fields[j], thisObj);
           if (defaultvalue !== undefined) {
             set(thisObj, step.fields[j].model, defaultvalue);
@@ -47,7 +51,7 @@ export const setDefaultSelections = (
             );
           } else {
             thisObj[currentStep] = i;
-            resolve();
+            terminate = true;
           }
         }
         thisObj[currentStep] = i;
