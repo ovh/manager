@@ -23,6 +23,7 @@
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@ovh-ux/manager-config": "^6.0.0",
+    "@ovh-ux/manager-themes": "^0.0.0",
     "@ovh-ux/shell": "^1.0.0",
     "framer-motion": "^6.5.1",
     "i18next": "^21.8.14",
