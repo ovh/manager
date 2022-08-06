@@ -609,5 +609,6 @@
   "user_ipRestrictions_warning_last_ip_with_deny": "Modifica la regola predefinita in \"Autorizzato\" per poter eliminare l'ultimo indirizzo IP.",
   "user_account": "Il tuo account",
   "user_account_description": "Gestisci il tuo account cliente. In questa sezione puoi gestire la sicurezza dell’account, il livello di supporto e gli utenti. È inoltre possibile consultare le email ricevute relative ai propri servizi.",
-  "user_account_guides_header": "Guide"
+  "user_account_guides_header": "Guide",
+  "user_account_guides_header_account_informations_guides": "Informazioni dell'account"
 }

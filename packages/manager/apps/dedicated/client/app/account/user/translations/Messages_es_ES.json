@@ -609,5 +609,6 @@
   "user_ipRestrictions_warning_last_ip_with_deny": "Cambie la regla por defecto a «Autorizado» para poder eliminar la última dirección IP.",
   "user_account": "Mi cuenta",
   "user_account_description": "Administre su cuenta de cliente. Desde aquí podrá gestionar la seguridad de su cuenta, el nivel de soporte y los usuarios. También puede consultar los mensajes recibidos relacionados con sus servicios.",
-  "user_account_guides_header": "Guías"
+  "user_account_guides_header": "Guías",
+  "user_account_guides_header_account_informations_guides": "Información de la cuenta"
 }
