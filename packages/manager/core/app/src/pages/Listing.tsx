@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Badge, Link } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
-import { listNutanix, Nutanix } from '@/api/nutanix';
+import { listNutanix, fetchNutanixMetaInfos, Nutanix } from '@/api/nutanix';
 import { FilterCategories } from '@/api/filters';
 
 import Listing, { ListingColumn, ListingData } from '@/components/Listing';
 import useListingSearchParams from '@/hooks/useListingSearchParams';
 
+const getStatusBadgeVariant = (nutanix: Nutanix) => {
+  switch (nutanix.status) {
+    case 'Active':
+      return 'success';
+    case 'Deploying':
+      return 'warning';
+    case 'Error':
+      return 'error';
+    default:
+      return 'infos';
+  }
+};
+
 export default function ListingPage(): JSX.Element {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('nutanix');
   const searchParams = useListingSearchParams();
   const [columns, setColumns] = useState<ListingColumn<Nutanix>[]>([
     {
@@ -18,6 +32,11 @@ export default function ListingPage(): JSX.Element {
       filterable: FilterCategories.String,
       search: true,
       hidden: searchParams.isColumnHidden('serviceName'),
+      renderer: (nutanix) => (
+        <Link as={RouterLink} to={`/nutanix/details/${nutanix.serviceName}`}>
+          {nutanix.serviceName}
+        </Link>
+      ),
     },
     {
       key: 'node_count',
@@ -29,12 +48,16 @@ export default function ListingPage(): JSX.Element {
       key: 'status',
       label: t('status'),
       hidden: searchParams.isColumnHidden('status'),
-      renderer: (nutanix) => <Badge>{nutanix.status}</Badge>,
+      renderer: (nutanix) => (
+        <Badge variant={getStatusBadgeVariant(nutanix)}>{nutanix.status}</Badge>
+      ),
     },
     {
       key: 'location',
       label: t('location'),
       hidden: searchParams.isColumnHidden('location'),
+      renderer: (nutanix) =>
+        fetchNutanixMetaInfos(nutanix).then(({ region }) => <>{region}</>),
     },
     {
       key: 'admin',

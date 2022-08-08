@@ -1,0 +1,8 @@
+{
+  "cluster_name": "Nom du cluster",
+  "node_count": "Nombre de nœuds",
+  "status": "Status du node",
+  "localisation": "Localisation",
+  "administration_interface": "Interface d'administration",
+  "prism_central_url": "URL Prism Central"
+}

@@ -37,6 +37,10 @@ type NutanixList = {
   data: Nutanix[];
 };
 
+type NutanixMetaInfos = {
+  region: string;
+};
+
 export type ListNutanixParams = {
   currentPage: number;
   pageSize: number;
@@ -60,6 +64,16 @@ export async function listNutanix({
     sortBy,
     sortReverse,
   });
+}
+
+export async function fetchNutanixMetaInfos(
+  nutanix: Nutanix,
+): Promise<NutanixMetaInfos> {
+  const serverId = nutanix.targetSpec.nodes[0].server;
+  // @TODO externalize fetchApi
+  const response = await fetch(`/engine/api/dedicated/server/${serverId}`);
+  const data = await response.json();
+  return { region: data.datacenter };
 }
 
 export default Nutanix;

@@ -14,6 +14,7 @@ import { ListingColumn } from './Listing';
 import ListingHead, { ListingHeadSorting } from './ListingHead';
 import Pagination from './Pagination';
 import ListingSkeleton from './ListingSkeleton';
+import ListingTableCell from './ListingTableCell';
 
 export type ListingTableState = {
   currentPage: number;
@@ -49,9 +50,9 @@ export default function ListingTable<T>({
       );
     return data.items.map((item, index) => (
       <Tr key={index}>
-        {visibleColumns.map(({ key, renderer }) => (
-          <Td key={`${key}-${index}`}>
-            {renderer ? renderer(item) : item[key as keyof T]}
+        {visibleColumns.map((column) => (
+          <Td key={`${column.key}-${index}`}>
+            <ListingTableCell item={item} column={column} />
           </Td>
         ))}
       </Tr>
