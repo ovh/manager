@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.1.1...@ovh-ux/manager-email-domain@1.1.2) (2022-08-08)
+
+
+### Bug Fixes
+
+* **general-information:** handle check for target top ([#7714](https://github.com/ovh/manager/issues/7714)) ([a5c04eb](https://github.com/ovh/manager/commit/a5c04eb6ac0459e1d57f48c181cf0c81470eb5a1))
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.1.0...@ovh-ux/manager-email-domain@1.1.1) (2022-07-27)
 
 

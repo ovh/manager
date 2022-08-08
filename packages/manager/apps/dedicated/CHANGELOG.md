@@ -1,3 +1,18 @@
+## [17.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.25.0...@ovh-ux/manager-dedicated@17.25.1) (2022-08-08)
+
+
+### Bug Fixes
+
+* **double-authentication:** display translated content ([#7713](https://github.com/ovh/manager/issues/7713)) ([20d0944](https://github.com/ovh/manager/commit/20d09445c960b0a8928f69ae7d11dfbad1d0b00c))
+* **ip:** allow direct access to actions through url ([#7715](https://github.com/ovh/manager/issues/7715)) ([cfe8192](https://github.com/ovh/manager/commit/cfe8192fdaf00326b43bc9c01d3cbbad6b0992da))
+
+
+### Reverts
+
+* Revert "fix(ip): allow direct access to actions through url (#7715)" ([32fc679](https://github.com/ovh/manager/commit/32fc679912822df857e08c3eda1ec6c5255513b9)), closes [#7715](https://github.com/ovh/manager/issues/7715)
+
+
+
 # [17.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.24.1...@ovh-ux/manager-dedicated@17.25.0) (2022-08-02)
 
 

@@ -1,3 +1,12 @@
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.13.1...@ovh-ux/manager-models@1.14.0) (2022-08-08)
+
+
+### Features
+
+* **models:** add is corporation or personalcorporation method ([f3d316b](https://github.com/ovh/manager/commit/f3d316be9b60a57e63f3380c08460fe49af91964))
+
+
+
 ## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.13.0...@ovh-ux/manager-models@1.13.1) (2022-03-02)
 
 

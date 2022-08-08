@@ -1,3 +1,12 @@
+## [13.43.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.2...@ovh-ux/manager-telecom@13.43.3) (2022-08-08)
+
+
+### Bug Fixes
+
+* **phone.accessories:** allow restriction based on legal form ([d769dea](https://github.com/ovh/manager/commit/d769dead00acad6ac6292f122e3b3fd6856d6347))
+
+
+
 ## [13.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.1...@ovh-ux/manager-telecom@13.43.2) (2022-07-27)
 
 
