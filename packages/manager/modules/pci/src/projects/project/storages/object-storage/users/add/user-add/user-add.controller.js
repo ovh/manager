@@ -37,9 +37,14 @@ export default class PciUsersAddController {
             'pci_projects_project_users_add_as_no_credentials',
           ),
     }));
-    this.usersWithoutCredentials = this.allUserList.filter(
-      ({ s3Credentials }) => !s3Credentials.length,
-    );
+    this.usersWithoutCredentials = this.allUserList
+      .filter(({ s3Credentials }) => !s3Credentials.length)
+      .map((user) => ({
+        ...user,
+        userNameDescriptionKey: user.description
+          ? `${user.username} - ${user.description}`
+          : user.username,
+      }));
     this.isUserCouldGenerateCredentails =
       this.usersWithoutCredentials?.length > 0;
 
