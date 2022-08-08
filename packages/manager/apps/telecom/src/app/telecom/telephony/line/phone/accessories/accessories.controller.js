@@ -33,6 +33,8 @@ export default class TelephonyLinePhoneAccessoriesCtrl {
         this.process = this.TucTelephonyAccessoriesOrderProcess.init(
           this.billingAccount,
         );
+        this.process.isRetractationAllowed =
+          !this.user.isCorporation() && !this.user.isPersonalCorporation();
         this.line = group.getLine(this.serviceName);
         return this.OvhApiTelephony.Line()
           .v6()

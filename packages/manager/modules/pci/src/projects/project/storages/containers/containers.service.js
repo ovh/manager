@@ -377,15 +377,21 @@ export default class PciStoragesContainersService {
     });
   }
 
-  addHighPerfObjects(serviceName, regionName, containerName, files) {
+  addHighPerfObjects(serviceName, regionName, containerName, prefix, files) {
     return this.$q.all(
       map(files, (file) =>
-        this.addHighPerfObject(serviceName, regionName, containerName, file),
+        this.addHighPerfObject(
+          serviceName,
+          regionName,
+          containerName,
+          prefix,
+          file,
+        ),
       ),
     );
   }
 
-  addHighPerfObject(serviceName, regionName, containerName, file) {
+  addHighPerfObject(serviceName, regionName, containerName, prefix, file) {
     const config = {
       headers: {
         'Content-Type': file.type,
@@ -398,7 +404,7 @@ export default class PciStoragesContainersService {
         {
           expire: OPENIO_PRESIGN_EXPIRE,
           method: 'PUT',
-          object: file.name,
+          object: PciStoragesContainersService.getFilePath(prefix, file),
         },
       )
       .then((res) => res.data)

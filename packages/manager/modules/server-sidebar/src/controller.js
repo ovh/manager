@@ -461,6 +461,13 @@ export default class OvhManagerServerSidebarController {
                   menuItem.addSearchKey(service.serviceName);
                 }
 
+                // add search keys from API
+                if (has(service, 'searchParams')) {
+                  each(service.searchParams, (searchParam) => {
+                    menuItem.addSearchKey(searchParam);
+                  });
+                }
+
                 // add searchKeys from type definition in item searchKeys
                 if (
                   has(typeServices.type, 'searchKeys') &&
