@@ -9,7 +9,7 @@ import words from 'lodash/words';
 import head from 'lodash/head';
 
 import {
-  DIRECTORY_INFO,
+  DIRECTORY_INFO_STATUS,
   DIRECTORY_WAY_NUMBER_EXTRA_ENUM,
   LEGAL_FORM_ENUM,
   AVAILABLE_FIELDS,
@@ -24,6 +24,7 @@ export default class TelecomTelephonyServiceContactCtrl {
     $timeout,
     $translate,
     OvhApiTelephony,
+    goToContactDirectory,
     TucToast,
     TucToastError,
     tucTelephonyBulk,
@@ -35,11 +36,12 @@ export default class TelecomTelephonyServiceContactCtrl {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.OvhApiTelephony = OvhApiTelephony;
+    this.goToContactDirectory = goToContactDirectory;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
     this.tucTelephonyBulk = tucTelephonyBulk;
     this.TelecomTelephonyServiceContactService = TelecomTelephonyServiceContactService;
-    this.DIRECTORY_INFO = DIRECTORY_INFO;
+    this.DIRECTORY_INFO_STATUS = DIRECTORY_INFO_STATUS;
     this.DIRECTORY_WAY_NUMBER_EXTRA_ENUM = DIRECTORY_WAY_NUMBER_EXTRA_ENUM;
     this.LEGAL_FORM_ENUM = LEGAL_FORM_ENUM;
     this.AVAILABLE_FIELDS = AVAILABLE_FIELDS;
@@ -399,7 +401,7 @@ export default class TelecomTelephonyServiceContactCtrl {
     )
       .then(() => {
         this.directory = angular.copy(this.directoryForm);
-        this.TucToast.success(
+        this.goToContactDirectory(
           this.$translate.instant('telephony_service_contact_success'),
         );
       })
@@ -462,27 +464,19 @@ export default class TelecomTelephonyServiceContactCtrl {
   }
 
   getStatusLabel() {
-    if (this.directoryForm.status.includes(DIRECTORY_INFO.status.error)) {
-      return this.$translate.instant('telephony_service_contact_sync_error');
-    }
-    if (
-      this.directoryForm.status.includes(
-        DIRECTORY_INFO.status.todo || DIRECTORY_INFO.status.doing,
-      )
-    ) {
-      if (
-        this.directoryForm.displayUniversalDirectory ||
-        (!this.directoryForm.displayUniversalDirectory &&
-          this.directoryForm.modificationType.includes(
-            DIRECTORY_INFO.type.delete,
-          ))
-      ) {
+    switch (this.directoryForm.status) {
+      case DIRECTORY_INFO_STATUS.todo:
+      case DIRECTORY_INFO_STATUS.doing:
         return this.$translate.instant(
           'telephony_service_contact_sync_pending',
         );
-      }
-      return this.$translate.instant('telephony_service_contact_sync_na');
+      case DIRECTORY_INFO_STATUS.error:
+      case DIRECTORY_INFO_STATUS.problem:
+        return this.$translate.instant('telephony_service_contact_sync_error');
+      case DIRECTORY_INFO_STATUS.done:
+        return this.$translate.instant('telephony_service_contact_sync');
+      default:
+        return this.$translate.instant('telephony_service_contact_sync_na');
     }
-    return this.$translate.instant('telephony_service_contact_sync');
   }
 }
