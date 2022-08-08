@@ -57,7 +57,12 @@ export default function ListingPage(): JSX.Element {
       label: t('location'),
       hidden: searchParams.isColumnHidden('location'),
       renderer: (nutanix) =>
-        fetchNutanixMetaInfos(nutanix).then(({ region }) => <>{region}</>),
+        fetchNutanixMetaInfos(nutanix).then(({ region }) => {
+          const [, localisation, number] = (region || '').match(
+            /([^0-9]+)([0-9]*)/,
+          );
+          return <>{t(`dc_region_${localisation}`, { number })}</>;
+        }),
     },
     {
       key: 'admin',
