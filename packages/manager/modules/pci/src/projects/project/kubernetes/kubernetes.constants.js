@@ -9,6 +9,11 @@ export const SCALE_DEFAULT_VALUES = {
 };
 export const KUBE_PRODUCT_ID = 'kubernetes';
 
+export const NAME_INPUT_CONSTRAINTS = {
+  MAX_LENGTH: 64,
+  PATTERN: /^[a-zA-Z](([a-zA-Z0-9-]|_|-)*)[a-zA-Z0-9]$/,
+};
+
 export default {
   VERSION_ENUM_KEY,
   ANTI_AFFINITY_MAX_NODES,
