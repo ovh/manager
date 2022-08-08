@@ -1,3 +1,12 @@
+## [3.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.2...@ovh-ux/manager-server-sidebar@3.23.3) (2022-08-08)
+
+
+### Bug Fixes
+
+* **server-sidebar:** allow to use search params from API ([639d6e1](https://github.com/ovh/manager/commit/639d6e18cdfaf28fca6c82b2f2c739d5a395d10a))
+
+
+
 ## [3.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.1...@ovh-ux/manager-server-sidebar@3.23.2) (2022-07-25)
 
 

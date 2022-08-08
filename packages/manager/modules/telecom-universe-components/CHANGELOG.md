@@ -1,3 +1,12 @@
+# [7.13.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.12.3...@ovh-ux/ng-ovh-telecom-universe-components@7.13.0) (2022-08-08)
+
+
+### Features
+
+* **tuc:** add flag to set retractation option on order ([3605655](https://github.com/ovh/manager/commit/3605655f55f5cc328e1ba8f52583d1683c5a7b93))
+
+
+
 ## [7.12.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.12.2...@ovh-ux/ng-ovh-telecom-universe-components@7.12.3) (2022-07-27)
 
 
