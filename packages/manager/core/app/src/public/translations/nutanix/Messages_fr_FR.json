@@ -2,7 +2,23 @@
   "cluster_name": "Nom du cluster",
   "node_count": "Nombre de nœuds",
   "status": "Status du node",
-  "localisation": "Localisation",
+  "location": "Localisation",
   "administration_interface": "Interface d'administration",
-  "prism_central_url": "URL Prism Central"
+  "prism_central_url": "URL Prism Central",
+
+  "dc_region_eri": "Londres (ERI{{number}}) - Angleterre",
+  "dc_region_bhs": "Beauharnois (BHS{{number}}) - Canada",
+  "dc_region_dc": "Beauharnois (DC{{number}}) - Canada",
+  "dc_region_p": "Paris (P{{number}}) - France",
+  "dc_region_gra": "Gravelines (GRA{{number}}) - France",
+  "dc_region_hil": "Hillsboro (HIL{{number}}) - États-Unis",
+  "dc_region_lim": "Limburg (LIM{{number}}) - Allemagne",
+  "dc_region_rbx": "Roubaix (RBX{{number}}) - France",
+  "dc_region_sbg": "Strasbourg (SBG{{number}}) - France",
+  "dc_region_sgp": "Singapour (SGP{{number}}) - Asie",
+  "dc_region_syd": "Sydney (SYD{{number}}) - Australie",
+  "dc_region_vin": "Vint Hill (VIN{{number}}) - États-Unis",
+  "dc_region_waw": "Varsovie (WAW{{number}}) - Pologne",
+  "dc_region_rbx-hz": "Roubaix (RBXHZ) - France",
+  "dc_region_gsw": "(GSW) - France"
 }
