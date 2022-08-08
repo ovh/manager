@@ -99,9 +99,11 @@ export default class PciStoragesObjectStorageService {
       .then(({ data }) => data);
   }
 
-  downloadRclone(projectId, { id: userId }, region) {
+  downloadRclone(projectId, { id: userId }, region, serviceType) {
     return this.$http
-      .get(`/cloud/project/${projectId}/user/${userId}/rclone?region=${region}`)
+      .get(
+        `/cloud/project/${projectId}/user/${userId}/rclone?region=${region}&service=${serviceType}`,
+      )
       .then(({ data }) => data);
   }
 
