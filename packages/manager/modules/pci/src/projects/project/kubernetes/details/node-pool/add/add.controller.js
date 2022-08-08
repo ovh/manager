@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 
 import { NODE_POOL_NAME_REGEX } from './add.constants';
+import { NAME_INPUT_CONSTRAINTS } from '../../../kubernetes.constants';
 
 export default class {
   /* @ngInject */
@@ -8,6 +9,7 @@ export default class {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.Kubernetes = Kubernetes;
+    this.inputConstraints = NAME_INPUT_CONSTRAINTS;
   }
 
   $onInit() {
@@ -20,6 +22,7 @@ export default class {
       monthlyBilling: false,
       autoscaling: this.autoscaling,
     };
+
     this.loadMessages();
     this.loadFlavors(this.region.name);
   }
