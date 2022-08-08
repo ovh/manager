@@ -609,5 +609,6 @@
   "user_ipRestrictions_warning_last_ip_with_deny": "Zmień domyślną regułę na „Dozwolony”, aby można było usunąć ostatni adres IP.",
   "user_account": "Moje konto",
   "user_account_description": "Zarządzaj kontem klienta. W tej sekcji możesz zarządzać swoim kontem, poziomem wsparcia oraz użytkownikami. Możesz również sprawdzić wiadomości e-mail dotyczące Twoich usług. ",
-  "user_account_guides_header": "Przewodniki"
+  "user_account_guides_header": "Przewodniki",
+  "user_account_guides_header_account_informations_guides": "Informacje o koncie"
 }
