@@ -609,5 +609,6 @@
   "user_account_advanced_title": "Advanced settings",
   "user_account": "My account",
   "user_account_description": "Manage your customer account. In this topic, you manage your account security, support level, and users. You can also check the emails received for your services.",
-  "user_account_guides_header": "Guides"
+  "user_account_guides_header": "Guides",
+  "user_account_guides_header_account_informations_guides": "Account information"
 }
