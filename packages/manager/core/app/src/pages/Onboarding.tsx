@@ -17,9 +17,9 @@ export default function OnboardingPage(): JSX.Element {
   ];
   return (
     <Onboarding
-      title={t('VPS')}
-      description={t('VPS lorem ipsum')}
-      cta="https://ovh.com/vps"
+      title={t('nutanix')}
+      description={t('Nutanix lorem ipsum')}
+      cta="https://ovh.com/nutanix"
       guides={guides}
     />
   );

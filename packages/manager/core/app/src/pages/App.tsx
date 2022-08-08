@@ -12,7 +12,7 @@ export default function App(): JSX.Element {
     <HashRouter>
       <div>Breadcrumb</div>
       <Routes>
-        <Route path="vps">
+        <Route path="nutanix">
           <Route
             index
             element={
@@ -30,7 +30,7 @@ export default function App(): JSX.Element {
             }
           />
           <Route path="details">
-            <Route index element={<Navigate to="/vps" />} />
+            <Route index element={<Navigate to="/nutanix" />} />
             <Route
               path=":serviceId"
               element={
@@ -41,7 +41,7 @@ export default function App(): JSX.Element {
             />
           </Route>
         </Route>
-        <Route index element={<Navigate to="/vps" />} />
+        <Route index element={<Navigate to="/nutanix" />} />
         <Route path="*" element={<div>404 page</div>} />
       </Routes>
     </HashRouter>
