@@ -1,3 +1,12 @@
+# [0.17.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.17.0-alpha.0...@ovh-ux/manager-billing@0.17.0-alpha.1) (2022-08-09)
+
+
+### Bug Fixes
+
+* **autorenew.delete:** replace aapi with `/services` ([#7707](https://github.com/ovh/manager/issues/7707)) ([3918eec](https://github.com/ovh/manager/commit/3918eec8895451b91d77c9354146bb39c4160bd1))
+
+
+
 # [0.17.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.10...@ovh-ux/manager-billing@0.17.0-alpha.0) (2022-08-02)
 
 

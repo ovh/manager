@@ -1,3 +1,12 @@
+## [13.43.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.3...@ovh-ux/manager-telecom@13.43.4) (2022-08-09)
+
+
+### Bug Fixes
+
+* **telephony:** status update not working in contact section ([#7728](https://github.com/ovh/manager/issues/7728)) ([449fa26](https://github.com/ovh/manager/commit/449fa26671e940da97d4662deea19edcc903ca45))
+
+
+
 ## [13.43.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.2...@ovh-ux/manager-telecom@13.43.3) (2022-08-08)
 
 
