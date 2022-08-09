@@ -29,6 +29,7 @@ export default function PageSelector({
         aria-label={t('previous_page')}
         isDisabled={currentPage === 1}
         icon={<ChevronLeftIcon />}
+        variant="secondary"
         onClick={() => onPageChange(currentPage - 1)}
       />
       {displayMode === PageSelectorDisplayMode.ButtonMode &&
@@ -38,6 +39,7 @@ export default function PageSelector({
             isActive={currentPage === page}
             disabled={page === currentPage}
             onClick={() => onPageChange(page)}
+            variant={currentPage === page ? 'primary' : 'secondary'}
             aria-label={t('goto_page_nth', { page })}
           >
             {page}
@@ -64,6 +66,7 @@ export default function PageSelector({
         aria-label={t('next_page')}
         isDisabled={!pageRange.length || currentPage === pageRange.length}
         icon={<ChevronRightIcon />}
+        variant="secondary"
         onClick={() => onPageChange(currentPage + 1)}
       />
     </HStack>
