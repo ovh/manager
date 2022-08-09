@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { FilterIcon } from '@ovh-ux/manager-themes';
 import { ListingColumn } from './Listing';
-import { FilterComparator } from '@/api/filters';
+import { FilterCategories, FilterComparator } from '@/api/filters';
 
 export type ListingFilterAdderProps<T> = {
   columns: ListingColumn<T>[];
@@ -102,6 +102,11 @@ export default function ListingFilterAdder<T>({
                   <FormLabel>{t('value')}</FormLabel>
                   <Input
                     value={value}
+                    type={
+                      column.filterable === FilterCategories.Numeric
+                        ? 'number'
+                        : 'text'
+                    }
                     onChange={(event) => setValue(event.target.value)}
                   />
                 </FormControl>

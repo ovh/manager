@@ -7,11 +7,17 @@ export async function initI18n(locale: string) {
     .use(initReactI18next)
     .use(Backend)
     .init({
-      lng: locale,
-      fallbackLng: 'fr_FR',
+      lng: locale?.replace('_', '-'),
+      fallbackLng: 'fr-FR',
       ns: [],
+      compatibilityJSON: 'v3', // see https://www.i18next.com/misc/json-format#i18next-json-v3
       backend: {
-        loadPath: '/translations/{{ns}}/Messages_{{lng}}.json',
+        loadPath: (lngs, namespaces) => {
+          const [ns] = namespaces;
+          const [lng] = lngs;
+          return `/translations/${ns}/Messages_${lng.replace('-', '_')}.json`;
+        },
+        allowMultiLoading: false,
       },
     });
 }

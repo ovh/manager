@@ -5,7 +5,7 @@ import OvhContext, { initOvhContext, OvhContextType } from './ovh-context';
 
 async function init(name: ApplicationId) {
   const context = await initOvhContext(name);
-  await initI18n(context.environment.userLocale);
+  await initI18n(context.environment.getUserLocale());
   return context;
 }
 
