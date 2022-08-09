@@ -31,6 +31,7 @@ export default function ListingPage(): JSX.Element {
       label: t('cluster_name'),
       filterable: FilterCategories.String,
       search: true,
+      sortable: true,
       hidden: searchParams.isColumnHidden('serviceName'),
       renderer: (nutanix) => (
         <Link as={RouterLink} to={`/nutanix/details/${nutanix.serviceName}`}>
@@ -41,12 +42,14 @@ export default function ListingPage(): JSX.Element {
     {
       key: 'node_count',
       label: t('node_count'),
+      sortable: true,
       hidden: searchParams.isColumnHidden('node_count'),
       renderer: (nutanix) => <span>{nutanix.targetSpec.nodes.length}</span>,
     },
     {
       key: 'status',
       label: t('status'),
+      sortable: true,
       hidden: searchParams.isColumnHidden('status'),
       renderer: (nutanix) => (
         <Badge variant={getStatusBadgeVariant(nutanix)}>

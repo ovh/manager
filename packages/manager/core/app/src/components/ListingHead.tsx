@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Thead, Tr, Th } from '@chakra-ui/react';
-import { ChevronDownIcon, ChevronUpIcon } from '@ovh-ux/manager-themes';
+import { SortDownIcon, SortUpIcon } from '@ovh-ux/manager-themes';
 import { ListingColumn } from './Listing';
 
 export type ListingHeadSorting = {
@@ -23,24 +23,25 @@ export default function ListingHead<T>({
   return (
     <Thead>
       <Tr>
-        {visibleColumns.map(({ key, label }) => {
+        {visibleColumns.map(({ key, label, sortable }) => {
           return (
-            <Th p={0} key={key}>
-              <Button
-                variant="table"
-                onClick={() => {
-                  const reverse = sort?.key === key ? !sort?.reverse : false;
-                  onColumnSort({ key, reverse });
-                }}
-              >
-                {label}
-                {sort?.key === key && sort?.reverse && (
-                  <ChevronDownIcon ml={2} />
-                )}
-                {sort?.key === key && !sort?.reverse && (
-                  <ChevronUpIcon ml={2} />
-                )}
-              </Button>
+            <Th key={key}>
+              {sortable && (
+                <Button
+                  variant="table"
+                  onClick={() => {
+                    const reverse = sort?.key === key ? !sort?.reverse : false;
+                    onColumnSort({ key, reverse });
+                  }}
+                >
+                  {label}
+                  {sort?.key === key && sort?.reverse && (
+                    <SortDownIcon ml={2} />
+                  )}
+                  {sort?.key === key && !sort?.reverse && <SortUpIcon ml={2} />}
+                </Button>
+              )}
+              {!sortable && label}
             </Th>
           );
           return <Th key={key}>{label}</Th>;

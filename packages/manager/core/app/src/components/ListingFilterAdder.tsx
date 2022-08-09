@@ -14,6 +14,7 @@ import {
   Select,
   VStack,
 } from '@chakra-ui/react';
+import { FilterIcon } from '@ovh-ux/manager-themes';
 import { ListingColumn } from './Listing';
 import { FilterComparator } from '@/api/filters';
 
@@ -46,7 +47,11 @@ export default function ListingFilterAdder<T>({
   return (
     <Popover isOpen={isOpen} onClose={() => setIsOpen(false)} placement="auto">
       <PopoverTrigger>
-        <Button onClick={() => setIsOpen(!isOpen)} variant="secondary">
+        <Button
+          leftIcon={<FilterIcon />}
+          onClick={() => setIsOpen(!isOpen)}
+          variant="secondary"
+        >
           {t('filter')}
         </Button>
       </PopoverTrigger>
