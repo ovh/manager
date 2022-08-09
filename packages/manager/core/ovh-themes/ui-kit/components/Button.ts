@@ -113,6 +113,7 @@ const Button: ComponentStyleConfig = {
       _active: {
         borderColor: 'uikit.100',
       },
+      padding: 0,
     },
     menu: {
       ...secondaryStyle,
