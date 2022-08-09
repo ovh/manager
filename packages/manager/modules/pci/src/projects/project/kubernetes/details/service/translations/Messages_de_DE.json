@@ -70,5 +70,6 @@
   "kube_service_access_security_oidc_menu_action_sr_only": "Aktionen",
   "kube_service_access_security_oidc_menu_action_add_provider": "Einen OIDC-Anbieter konfigurieren",
   "kube_service_access_security_oidc_menu_action_set_provider": "OIDC-Anbieter bearbeiten",
-  "kube_service_access_security_oidc_menu_action_remove_provider": "OIDC-Anbieter löschen"
+  "kube_service_access_security_oidc_menu_action_remove_provider": "OIDC-Anbieter löschen",
+  "kube_service_installation_information": "<a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">Diese Anleitung<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> hilft Ihnen bei der Installation des Kubernetes Dashboards. Das Kubernetes Dashboard ist eine Webanwendung zur Verwaltung Ihrer Cluster. Die Kubernetes Community wartet diese Anwendung."
 }
