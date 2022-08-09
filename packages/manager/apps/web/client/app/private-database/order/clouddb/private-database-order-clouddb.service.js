@@ -101,11 +101,12 @@ export default class PrivateDatabaseOrderCloudDb {
     }));
   }
 
-  static getOrderableDatacenters(plans) {
+  static getOrderableDatacenter(plans) {
+    // there is only one available datacenter per geographical zone
     return PrivateDatabaseOrderCloudDb.filterOrderableItems(
       plans,
       DATACENTER_CONFIGURATION_KEY,
-    );
+    )[0];
   }
 
   static getOrderableEngines(plans) {

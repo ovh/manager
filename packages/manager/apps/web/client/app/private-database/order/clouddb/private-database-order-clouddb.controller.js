@@ -26,7 +26,6 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
   initializeCustomizationOptions() {
     this.model.engine = undefined;
     this.model.ramSize = undefined;
-    this.model.datacenter = undefined;
 
     this.engineList = orderBy(
       this.engines.map((engine) => {
@@ -57,17 +56,10 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
         })),
       'value',
     );
-
-    this.datacenterList = this.datacenters.map((datacenter) => ({
-      label: this.$translate.instant(
-        `private_database_order_clouddb_datacenter_${datacenter}`,
-      ),
-      value: datacenter,
-    }));
   }
 
   canGoToDurationStep() {
-    if (this.model.engine && this.model.ramSize && this.model.datacenter) {
+    if (this.model.engine && this.model.ramSize) {
       this.currentIndex += 1;
     }
   }
@@ -112,7 +104,7 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
   prepareCheckout() {
     this.loadingCheckout = true;
     const checkoutData = {
-      datacenter: this.model.datacenter.value,
+      datacenter: this.datacenter,
       engine: this.model.engine.value,
       ramSize: this.model.ramSize.value,
       duration: this.model.duration.duration,

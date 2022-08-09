@@ -2,11 +2,6 @@
   "private_database_order_clouddb_title": "Commander une base de données Cloud Databases",
   "private_database_order_clouddb_subtitle": "L’offre Cloud Databases nécessite un service ayant accès au réseau internet public.",
 
-  "private_database_order_clouddb_database_type": "Type de base de données",
-  "private_database_order_clouddb_database_question": "Quel offre de base de données voulez-vous ?",
-  "private_database_order_clouddb_offer_title": "Cloud Databases",
-  "private_database_order_clouddb_offer_subtitle" : "Idéales en complément de tous nos produits Cloud OVH comme nos VPS, serveurs dédiés, instances Public Cloud et Web Hosting Cloud Web",
-
   "private_database_order_clouddb_customization": "Personnalisation",
   "private_database_order_clouddb_server_version": "Version du serveur",
   "private_database_order_clouddb_server_version_placeholder": "Sélectionnez la version du serveur",
@@ -18,10 +13,6 @@
 
   "private_database_order_clouddb_ram_option": "RAM",
   "private_database_order_clouddb_ram_option_placeholder": "Sélectionnez la quantité de RAM",
-
-  "private_database_order_clouddb_datacenter": "Datacenter",
-  "private_database_order_clouddb_datacenter_placeholder": "Sélectionnez le datacenter",
-  "private_database_order_clouddb_datacenter_gra1": "Gravelines 1",
 
   "private_database_order_clouddb_duration": "Choisissez la durée",
   "private_database_order_clouddb_duration_month": "{{ number }} mois",
