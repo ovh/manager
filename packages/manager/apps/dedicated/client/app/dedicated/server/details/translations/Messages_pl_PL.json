@@ -559,6 +559,8 @@
   "server_configuration_firewall_asa_disable_step1_question": "Czy na pewno chcesz wyłączyć firewall Cisco ASA dla serwera <span class=\"normal italic\">{{t0}}</span>?",
   "server_configuration_firewall_asa_disable_success": "Zlecenie wyłączenia firewalla Cisco ASA zostało przyjęte. Operacja zostanie wykonana w ciągu kilku minut.",
   "server_configuration_firewall_asa_disable_fail": "Wystąpił błąd podczas wyłączania firewalla Cisco ASA.",
+  "server_configuration_firewall_asa_EOL": "Przypomnienie: Zgodnie z wcześniejszymi zapowiedziami, aktywne usługi Cisco Firewall ASA powiązane z serwerami dedykowanymi zostaną zakończone o godzinie 10:00 UTC w dniu 31 sierpnia 2022 roku, czyli w dniu zakończenia wsparcia.",
+  "server_configuration_firewall_asa_EOL_link": "Dowiedz się więcej.",
   "server_configuration_task_loading_error": "Wystąpił błąd podczas pobierania zadań.",
   "server_configuration_task_last_action": "Ostatnia operacja",
   "server_configuration_task_function": "Zadanie",
@@ -1206,8 +1208,5 @@
   "server_nutanix_cluster_node_warning_1": "Ten serwer dedykowany jest częścią klastra Nutanix: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "Zalecamy przeprowadzenie wszystkich zmian konfiguracji bezpośrednio na dashboardzie serwera powiązanego z klastrem Nutanix: {{clusterNodeDashboardLink}}",
   "server_nutanix_cluster_node_warning_3": "Wszystkie operacje płatnicze związane z tym serwerem są widoczne w klastrze Nutanix: {{clusterDashboardLink}}",
-  "server_rtm_eol_info": "Ważna informacja dotycząca usługi Real Time Monitoring - usługa będzie działać do 30 czerwca 2022. Po tym terminie wstrzymamy wyświetlanie danych dotyczących zużycia. Nie będzie to miało wpływu na działanie serwera.",
-  "server_configuration_gateway_ip": "Brama IPv4",
-  "server_configuration_firewall_asa_EOL": "Przypomnienie: Zgodnie z wcześniejszymi zapowiedziami, aktywne usługi Cisco Firewall ASA powiązane z serwerami dedykowanymi zostaną zakończone o godzinie 10:00 UTC w dniu 31 sierpnia 2022 roku, czyli w dniu zakończenia wsparcia.",
-  "server_configuration_firewall_asa_EOL_link": "Dowiedz się więcej."
+  "server_rtm_eol_info": "Ważna informacja dotycząca usługi Real Time Monitoring - usługa będzie działać do 30 czerwca 2022. Po tym terminie wstrzymamy wyświetlanie danych dotyczących zużycia. Nie będzie to miało wpływu na działanie serwera."
 }

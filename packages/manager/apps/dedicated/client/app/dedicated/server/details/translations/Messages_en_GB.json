@@ -559,6 +559,8 @@
   "server_configuration_firewall_asa_disable_step1_question": "Are you sure you want to disable the Cisco ASA firewall on your <span class=\"normal italic\">{{t0}}</span> server?",
   "server_configuration_firewall_asa_disable_success": "The request to disable the Cisco ASA firewall has been processed, and will be effective within a few minutes.",
   "server_configuration_firewall_asa_disable_fail": "An error has occurred disabling the Cisco ASA firewall",
+  "server_configuration_firewall_asa_EOL": "Reminder: As previously announced, the active Cisco Firewall ASA services associated with dedicated servers will be stopped on 31 August 2022 at 10:00 UTC, which is the support end date.",
+  "server_configuration_firewall_asa_EOL_link": "Find out more.",
   "server_configuration_task_loading_error": "An error has occurred retrieving the tasks",
   "server_configuration_task_last_action": "Most recent action",
   "server_configuration_task_function": "Task",
@@ -1206,8 +1208,5 @@
   "server_nutanix_cluster_node_warning_1": "This dedicated server is part of a Nutanix cluster: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "We recommend making all of the configuration changes directly in the dashboard of the server linked to your Nutanix cluster: {{clusterNodeDashboardLink}}",
   "server_nutanix_cluster_node_warning_3": "All billing actions linked to this server are visible on your Nutanix cluster: {{clusterDashboardLink}}",
-  "server_rtm_eol_info": "Important information - the Real Time Monitoring Service will soon be obsolete. It will continue running until 30 June 2022. After this date, we will stop displaying your consumption data. This will not affect your server’s operation.",
-  "server_configuration_gateway_ip": "IPv4 Gateway",
-  "server_configuration_firewall_asa_EOL": "Reminder: As previously announced, the active Cisco Firewall ASA services associated with dedicated servers will be stopped on 31 August 2022 at 10:00 UTC, which is the support end date.",
-  "server_configuration_firewall_asa_EOL_link": "Find out more."
+  "server_rtm_eol_info": "Important information - the Real Time Monitoring Service will soon be obsolete. It will continue running until 30 June 2022. After this date, we will stop displaying your consumption data. This will not affect your server’s operation."
 }
