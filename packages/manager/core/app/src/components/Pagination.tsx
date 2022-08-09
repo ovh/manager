@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HStack, Select, Text } from '@chakra-ui/react';
 
@@ -23,12 +23,24 @@ export default function Pagination({
   const pageCount = Math.ceil(itemsCount / pageSize);
 
   const pageChangeHandler = (page: number) => {
-    onChange(Math.min(page, Math.ceil(itemsCount / pageSize)), pageSize);
+    onChange(
+      Math.min(page, itemsCount ? Math.ceil(itemsCount / pageSize) : 1),
+      pageSize,
+    );
   };
 
   const pageSizeChangeHandler = (size: number) => {
-    onChange(Math.min(currentPage, Math.ceil(itemsCount / size)), size);
+    onChange(
+      Math.min(currentPage, itemsCount ? Math.ceil(itemsCount / size) : 1),
+      size,
+    );
   };
+
+  useEffect(() => {
+    if (itemsCount === 0 && currentPage > 1) {
+      pageChangeHandler(1);
+    }
+  }, []);
 
   return (
     <HStack>

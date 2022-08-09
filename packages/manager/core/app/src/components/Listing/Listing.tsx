@@ -5,8 +5,8 @@ import ListingTable, {
   ListingTableData,
   ListingTableState,
 } from './ListingTable';
-import ListingFilterAdder from '@/components/ListingFilterAdder';
-import ListingFilters from '@/components/ListingFilters';
+import ListingFilterAdder from './ListingFilterAdder';
+import ListingFilters from './ListingFilters';
 import SearchInput from '@/components/SearchInput';
 
 export type ListingColumn<T> = {
@@ -46,6 +46,9 @@ export default function Listing<T>({
       table: {
         currentPage: 1,
         pageSize: 10,
+        sort: {
+          key: columns[0].key,
+        },
       },
       filters: [],
     },
@@ -68,7 +71,6 @@ export default function Listing<T>({
                 filters.push({
                   key: searchColumn.key,
                   value,
-                  label: searchColumn.label,
                   comparator: FilterComparator.Includes,
                 });
                 setState({
@@ -89,7 +91,6 @@ export default function Listing<T>({
               filters.push({
                 key: column.key,
                 value,
-                label: column.label,
                 comparator,
               });
               setState({
@@ -105,6 +106,7 @@ export default function Listing<T>({
         </HStack>
       </Flex>
       <ListingFilters
+        columns={columns}
         filters={state.filters}
         onChange={(filters) =>
           setState({

@@ -14,7 +14,6 @@ export type Filter = {
   key: string;
   value: string;
   comparator: FilterComparator;
-  label?: string;
 };
 
 export const FilterCategories = {

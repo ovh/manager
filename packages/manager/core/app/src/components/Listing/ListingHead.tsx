@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Flex, Spacer, Thead, Tr, Th } from '@chakra-ui/react';
 import { SortDownIcon, SortUpIcon } from '@ovh-ux/manager-themes';
 import { ListingColumn } from './Listing';
-import ListingColumnToggler from '@/components/ListingColumnToggler';
+import ListingColumnToggler from './ListingColumnToggler';
 
 export type ListingHeadSorting = {
   key?: string;
