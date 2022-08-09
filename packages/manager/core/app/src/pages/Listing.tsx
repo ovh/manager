@@ -49,7 +49,9 @@ export default function ListingPage(): JSX.Element {
       label: t('status'),
       hidden: searchParams.isColumnHidden('status'),
       renderer: (nutanix) => (
-        <Badge variant={getStatusBadgeVariant(nutanix)}>{nutanix.status}</Badge>
+        <Badge variant={getStatusBadgeVariant(nutanix)}>
+          {t(`status_${nutanix.status.toLowerCase()}`)}
+        </Badge>
       ),
     },
     {

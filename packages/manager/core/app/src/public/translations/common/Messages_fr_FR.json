@@ -16,6 +16,7 @@
   "name": "Nom",
   "next_page": "Page suivante",
   "n_results": "{{count}} résultats",
+  "no_results": "Aucun résultat",
   "of_n": "sur {{count}}",
   "of_results": "sur {{count}} résultats",
   "page": "Page",
