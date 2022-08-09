@@ -6,7 +6,7 @@ import {
   InputGroup,
   InputRightElement,
 } from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons';
+import { SearchIcon } from '@ovh-ux/manager-themes';
 
 export type SearchInputProps = {
   onSubmit: (search: string) => void;

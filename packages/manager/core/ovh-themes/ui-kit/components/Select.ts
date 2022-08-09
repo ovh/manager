@@ -21,7 +21,7 @@ const iconBaseStyle = (isInvalid: boolean) => {
 
 const Select: ComponentMultiStyleConfig = {
   parts: parts.keys,
-  baseStyle: (props) => {
+  baseStyle: (props: any) => {
     return {
       ...inputFieldStyles,
       icon: {
