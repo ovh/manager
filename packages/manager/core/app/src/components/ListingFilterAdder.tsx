@@ -14,7 +14,6 @@ import {
   Select,
   VStack,
 } from '@chakra-ui/react';
-import { SmallCloseIcon } from '@chakra-ui/icons';
 import { ListingColumn } from './Listing';
 import { FilterComparator } from '@/api/filters';
 
@@ -45,14 +44,9 @@ export default function ListingFilterAdder<T>({
   }, [column]);
 
   return (
-    <Popover isOpen={isOpen} placement="auto">
+    <Popover isOpen={isOpen} onClose={() => setIsOpen(false)} placement="auto">
       <PopoverTrigger>
-        <Button
-          rightIcon={isOpen ? <SmallCloseIcon /> : undefined}
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {t('filter')}
-        </Button>
+        <Button onClick={() => setIsOpen(!isOpen)}>{t('filter')}</Button>
       </PopoverTrigger>
       <Portal>
         <PopoverContent>
