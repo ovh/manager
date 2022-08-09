@@ -105,16 +105,6 @@ function IconCard({ iconProps, iconName, Icon }: any) {
   );
 }
 
-const TemplateIcon: Story<typeof Icon> = (args) => <Icon {...args} />;
-
-export const Basic = TemplateIcon.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Basic.args = {
-  boxSize: '1rem',
-  color: '#4D5592',
-  focusable: false,
-};
-
 const TemplateSystemIcons: Story<typeof Icon> = (args) => (
   <Flex flexWrap="wrap">
     <IconCard iconProps={args} iconName={'AddIcon'} Icon={AddIcon} />
