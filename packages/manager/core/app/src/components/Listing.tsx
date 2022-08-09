@@ -5,7 +5,6 @@ import ListingTable, {
   ListingTableData,
   ListingTableState,
 } from './ListingTable';
-import ListingColumnToggler from '@/components/ListingColumnToggler';
 import ListingFilterAdder from '@/components/ListingFilterAdder';
 import ListingFilters from '@/components/ListingFilters';
 import SearchInput from '@/components/SearchInput';
@@ -103,19 +102,6 @@ export default function Listing<T>({
               });
             }}
           />
-          <ListingColumnToggler
-            columns={columns}
-            onColumnVisibilityChange={(column, isVisible) =>
-              onColumnsChange(
-                columns.map((c) => {
-                  if (c === column) {
-                    return { ...column, hidden: !isVisible };
-                  }
-                  return c;
-                }),
-              )
-            }
-          />
         </HStack>
       </Flex>
       <ListingFilters
@@ -137,6 +123,7 @@ export default function Listing<T>({
             table,
           })
         }
+        onColumnsChange={onColumnsChange}
       />
     </Stack>
   );

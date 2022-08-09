@@ -11,7 +11,7 @@ import {
   Portal,
   VStack,
 } from '@chakra-ui/react';
-import { SettingsIcon } from '@chakra-ui/icons';
+import { SettingsIcon } from '@ovh-ux/manager-themes';
 import { ListingColumn } from './Listing';
 
 export type ListingColumnTogglerProps<T> = {
@@ -35,7 +35,7 @@ export default function ListingColumnToggler<T>({
         <IconButton
           aria-label={t('columns')}
           icon={<SettingsIcon />}
-          variant="secondary"
+          variant="ghost"
         />
       </PopoverTrigger>
       <Portal>
