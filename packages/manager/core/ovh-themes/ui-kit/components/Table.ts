@@ -33,6 +33,7 @@ const Table: ComponentMultiStyleConfig = {
       fontFamily: 'inherit',
       textTransform: 'none',
       fontWeight: 'inherit',
+      backgroundColor: 'uikit.100',
     },
     tfoot: {
       backgroundColor: 'uikit.100',
