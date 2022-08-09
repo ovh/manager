@@ -1,4 +1,4 @@
-import { Alert, AlertIcon, CloseButton } from '@chakra-ui/react';
+import { Alert, AlertIcon, CloseButton, Stack } from '@chakra-ui/react';
 import {
   CloseIcon,
   ErrorCircleIcon,
@@ -67,3 +67,16 @@ const TemplateDismissable = () => (
   </Alert>
 );
 export const Dismissable = TemplateDismissable.bind({});
+
+const TemplateAll = () => (
+  <Stack spacing={6}>
+    <TemplateInfo />
+    <TemplateNoIcon />
+    <TemplateSuccess />
+    <TemplateWarning />
+    <TemplateError />
+    <TemplateDismissable />
+  </Stack>
+);
+
+export const All = TemplateAll.bind({});

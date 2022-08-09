@@ -10,7 +10,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "tsc -w"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.4"
