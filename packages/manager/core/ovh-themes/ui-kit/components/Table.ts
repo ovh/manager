@@ -34,6 +34,7 @@ const Table: ComponentMultiStyleConfig = {
       textTransform: 'none',
       fontWeight: 'inherit',
       backgroundColor: 'uikit.100',
+      letterSpacing: '0.12px',
     },
     tfoot: {
       backgroundColor: 'uikit.100',
