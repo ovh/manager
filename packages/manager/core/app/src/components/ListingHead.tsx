@@ -25,7 +25,7 @@ export default function ListingHead<T>({
       <Tr>
         {visibleColumns.map(({ key, label }) => {
           return (
-            <Th key={key}>
+            <Th p={0} key={key}>
               <Button
                 variant="table"
                 onClick={() => {

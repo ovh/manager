@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Flex,
   VStack,
@@ -40,6 +41,7 @@ export default function ListingTable<T>({
   state,
   onChange,
 }: ListingTableProps<T>): JSX.Element {
+  const { t } = useTranslation('common');
   const { currentPage, pageSize } = state;
   const visibleColumns = columns.filter((c) => !c.hidden);
 
@@ -47,6 +49,14 @@ export default function ListingTable<T>({
     if (!data?.items)
       return (
         <ListingSkeleton columnsCount={visibleColumns.length} linesCount={10} />
+      );
+    if (data.items.length === 0)
+      return (
+        <Tr>
+          <Td colSpan={columns.length} textAlign="center">
+            {t('no_results')}
+          </Td>
+        </Tr>
       );
     return data.items.map((item, index) => (
       <Tr key={index}>
