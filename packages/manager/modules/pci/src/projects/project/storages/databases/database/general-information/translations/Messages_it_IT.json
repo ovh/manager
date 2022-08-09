@@ -75,5 +75,13 @@
   "pci_databases_general_information_path_label": "Percorso",
   "pci_databases_general_information_reset_password": "Rigenera la password",
   "pci_databases_general_information_reset_password_success": "La password dell'utente {{ user }} è stata rigenerata correttamente: <code>{{ password }}</code>. Annotala perché non potrà essere recuperata in seguito.",
-  "pci_databases_general_information_reset_password_error": "Si è verificato un errore durante la modifica della password dell'utente {{ user }}: {{ message }}."
+  "pci_databases_general_information_reset_password_error": "Si è verificato un errore durante la modifica della password dell'utente {{ user }}: {{ message }}.",
+  "pci_databases_general_information_maintenance_time_label": "Orario della manutenzione (UTC)",
+  "pci_databases_general_information_backup_time_label": "Orario del backup (UTC)",
+  "pci_databases_general_information_manage_maintenances": "Gestisci le manutenzioni",
+  "pci_databases_general_information_manage_backups": "Gestisci i backup",
+  "pci_databases_general_information_update_maintenance_time_success": "L'orario della manutenzione è stato modificato correttamente",
+  "pci_databases_general_information_update_maintenance_time_error": "Si è verificato un errore durante la modifica dell'orario della manutenzione",
+  "pci_databases_general_information_update_backup_time_success": "L'orario del backup è stato modificato correttamente",
+  "pci_databases_general_information_update_backup_time_error": "Si è verificato un errore durante la modifica dell'orario del backup"
 }

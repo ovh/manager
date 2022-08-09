@@ -75,5 +75,13 @@
   "pci_databases_general_information_path_label": "Path",
   "pci_databases_general_information_reset_password": "Regenerar la contraseña",
   "pci_databases_general_information_reset_password_success": "La contraseña del usuario {{ user }} se ha regenerado correctamente: <code>{{ password }}</code>. Tenga en cuenta que no podrá recuperarla más adelante.",
-  "pci_databases_general_information_reset_password_error": "Se ha producido un error al modificar la contraseña del usuario {{ user }}: {{ message }}."
+  "pci_databases_general_information_reset_password_error": "Se ha producido un error al modificar la contraseña del usuario {{ user }}: {{ message }}.",
+  "pci_databases_general_information_maintenance_time_label": "Hora de mantenimiento (UTC)",
+  "pci_databases_general_information_backup_time_label": "Hora del backup (UTC)",
+  "pci_databases_general_information_manage_maintenances": "Gestionar las operaciones de mantenimiento",
+  "pci_databases_general_information_manage_backups": "Gestionar los backup",
+  "pci_databases_general_information_update_maintenance_time_success": "La hora de mantenimiento se ha modificado correctamente.",
+  "pci_databases_general_information_update_maintenance_time_error": "Se ha producido un error al modificar la hora de mantenimiento.",
+  "pci_databases_general_information_update_backup_time_success": "La hora del backup se ha modificado correctamente.",
+  "pci_databases_general_information_update_backup_time_error": "Se ha producido un error al modificar la hora del backup."
 }

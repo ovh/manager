@@ -8,5 +8,8 @@
   "pci_databases_backup_region": "Standort",
   "pci_databases_backup_informations_title": "Datenbank-Backups",
   "pci_databases_backup_informations_retention": "Rückhaltedauer",
-  "pci_databases_backup_name": "Name"
+  "pci_databases_backup_name": "Name",
+  "pci_databases_backup_time": "Zeitpunkt für Backups (UTC)",
+  "pci_databases_backup_time_update_success": "Der Zeitpunkt für Backups wurde geändert.",
+  "pci_databases_backup_time_update_error": "Bei der Änderung der Backup-Zeit ist ein Fehler aufgetreten."
 }

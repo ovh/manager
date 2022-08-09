@@ -8,5 +8,8 @@
   "pci_databases_backup_region": "Localización",
   "pci_databases_backup_informations_title": "Copias de seguridad de la base de datos",
   "pci_databases_backup_informations_retention": "Duración de retención",
-  "pci_databases_backup_name": "Nombre"
+  "pci_databases_backup_name": "Nombre",
+  "pci_databases_backup_time": "Hora del backup (UTC)",
+  "pci_databases_backup_time_update_success": "La hora del backup se ha modificado correctamente.",
+  "pci_databases_backup_time_update_error": "Se ha producido un error al modificar la hora del backup."
 }

@@ -75,5 +75,13 @@
   "pci_databases_general_information_path_label": "Path",
   "pci_databases_general_information_reset_password": "Wygeneruj ponownie hasło",
   "pci_databases_general_information_reset_password_success": "Hasło użytkownika {{user}} zostało poprawnie wygenerowane: <code>{{password}}</code>. Zapisz je, ponieważ nie będzie można go później odzyskać.",
-  "pci_databases_general_information_reset_password_error": "Wystąpił błąd podczas modyfikacji hasła dla użytkownika {{user}}: {{message}}."
+  "pci_databases_general_information_reset_password_error": "Wystąpił błąd podczas modyfikacji hasła dla użytkownika {{user}}: {{message}}.",
+  "pci_databases_general_information_maintenance_time_label": "Godzina prac konserwacyjnych (UTC)",
+  "pci_databases_general_information_backup_time_label": "Godzina tworzenia kopii zapasowych (UTC)",
+  "pci_databases_general_information_manage_maintenances": "Zarządzanie pracami konserwacyjnymi",
+  "pci_databases_general_information_manage_backups": "Zarządzanie kopiami zapasowymi",
+  "pci_databases_general_information_update_maintenance_time_success": "Godzina prac konserwacyjnych została zmieniona",
+  "pci_databases_general_information_update_maintenance_time_error": "Wystąpił błąd podczas zmiany godziny prac konserwacyjnych.",
+  "pci_databases_general_information_update_backup_time_success": "Godzina tworzenia kopii zapasowych została zmieniona.",
+  "pci_databases_general_information_update_backup_time_error": "Wystąpił błąd podczas zmiany godziny tworzenia kopii zapasowych"
 }

@@ -75,5 +75,13 @@
   "pci_databases_general_information_path_label": "Pfad",
   "pci_databases_general_information_reset_password": "Passwort neu generieren",
   "pci_databases_general_information_reset_password_success": "Das Passwort des Nutzers {{ user }} wurde neu erstellt: <code>{{ password }}</code>. Bitte notieren Sie dieses, da es später nicht mehr abgerufen werden kann.",
-  "pci_databases_general_information_reset_password_error": "Bei der Änderung des Passworts des Nutzers {{ user }} ist ein Fehler aufgetreten: {{ message }}."
+  "pci_databases_general_information_reset_password_error": "Bei der Änderung des Passworts des Nutzers {{ user }} ist ein Fehler aufgetreten: {{ message }}.",
+  "pci_databases_general_information_maintenance_time_label": "Zeitpunkt für Wartungen (UTC)",
+  "pci_databases_general_information_backup_time_label": "Zeitpunkt für Backups (UTC)",
+  "pci_databases_general_information_manage_maintenances": "Wartungsarbeiten verwalten",
+  "pci_databases_general_information_manage_backups": "Backups verwalten",
+  "pci_databases_general_information_update_maintenance_time_success": "Der Zeitpunkt für Wartungen wurde geändert.",
+  "pci_databases_general_information_update_maintenance_time_error": "Bei der Änderung des Zeitpunkts der Wartung ist ein Fehler aufgetreten.",
+  "pci_databases_general_information_update_backup_time_success": "Der Zeitpunkt für Backups wurde geändert.",
+  "pci_databases_general_information_update_backup_time_error": "Bei der Änderung der Backup-Zeit ist ein Fehler aufgetreten."
 }

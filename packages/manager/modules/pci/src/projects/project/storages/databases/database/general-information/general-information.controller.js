@@ -47,6 +47,9 @@ export default class {
       this.KARAPACE_URL = KARAPACE_URL;
     }
     [this.endpoint] = this.database.endpoints;
+
+    this.maintenanceTime = this.database.maintenanceTime;
+    this.backupTime = this.database.backupTime;
   }
 
   downloadCertificate() {
@@ -204,6 +207,68 @@ export default class {
       });
     }
     return this.goToDeleteDatabase();
+  }
+
+  updateMaintenanceTime() {
+    this.trackDashboard('general_information::update_maintenance_time');
+    return this.DatabaseService.updateDatabaseEngineProperties(
+      this.projectId,
+      this.database.engine,
+      this.database.id,
+      { maintenanceTime: `${this.maintenanceTime}:00` },
+    );
+  }
+
+  handleMaintenanceTimeSuccess() {
+    this.database.updateData({
+      maintenanceTime: this.maintenanceTime,
+    });
+    return this.CucCloudMessage.success(
+      this.$translate.instant(
+        'pci_databases_general_information_update_maintenance_time_success',
+      ),
+      this.messageContainer,
+    );
+  }
+
+  showMaintenanceError() {
+    return this.CucCloudMessage.error(
+      this.$translate.instant(
+        'pci_databases_general_information_update_maintenance_time_error',
+      ),
+      this.messageContainer,
+    );
+  }
+
+  updateBackupTime() {
+    this.trackDashboard('general_information::update_backup_time');
+    return this.DatabaseService.updateDatabaseEngineProperties(
+      this.projectId,
+      this.database.engine,
+      this.database.id,
+      { backupTime: `${this.backupTime}:00` },
+    );
+  }
+
+  handleBackupTimeSuccess() {
+    this.database.updateData({
+      backupTime: this.backupTime,
+    });
+    return this.CucCloudMessage.success(
+      this.$translate.instant(
+        'pci_databases_general_information_update_backup_time_success',
+      ),
+      this.messageContainer,
+    );
+  }
+
+  showBackupError() {
+    return this.CucCloudMessage.error(
+      this.$translate.instant(
+        'pci_databases_general_information_update_backup_time_error',
+      ),
+      this.messageContainer,
+    );
   }
 
   onRestApiStatusChange(enableRestApi) {
