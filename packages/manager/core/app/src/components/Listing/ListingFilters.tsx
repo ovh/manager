@@ -2,16 +2,19 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { HStack, Tag, TagLabel, TagCloseButton } from '@chakra-ui/react';
 import { Filter } from '@/api/filters';
+import { ListingColumn } from './Listing';
 
-export type ListingFiltersProps = {
+export type ListingFiltersProps<T> = {
+  columns: ListingColumn<T>[];
   filters: Filter[];
   onChange: (filters: Filter[]) => void;
 };
 
-export default function ListingFilters({
+export default function ListingFilters<T>({
+  columns,
   filters,
   onChange,
-}: ListingFiltersProps): JSX.Element {
+}: ListingFiltersProps<T>): JSX.Element {
   const { t } = useTranslation('common');
   const removeFilter = (toRemove: Filter) => {
     onChange(filters.filter((f) => f !== toRemove));
@@ -20,9 +23,9 @@ export default function ListingFilters({
     <HStack>
       {filters.map((filter, index) => (
         <Tag key={`${filter.key}-${index}`}>
-          <TagLabel>{`${filter.label} ${t(`filter_${filter.comparator}`)} ${
-            filter.value
-          }`}</TagLabel>
+          <TagLabel>{`${
+            columns.find(({ key }) => key === filter.key).label
+          } ${t(`filter_${filter.comparator}`)} ${filter.value}`}</TagLabel>
           <TagCloseButton onClick={() => removeFilter(filter)} />
         </Tag>
       ))}

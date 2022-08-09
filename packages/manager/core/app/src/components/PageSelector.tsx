@@ -36,8 +36,7 @@ export default function PageSelector({
         pageRange.map((page) => (
           <Button
             key={page}
-            isActive={currentPage === page}
-            disabled={page === currentPage}
+            isDisabled={page === currentPage}
             onClick={() => onPageChange(page)}
             variant={currentPage === page ? 'primary' : 'secondary'}
             aria-label={t('goto_page_nth', { page })}

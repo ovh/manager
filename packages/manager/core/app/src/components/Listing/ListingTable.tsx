@@ -13,9 +13,9 @@ import {
 
 import { ListingColumn } from './Listing';
 import ListingHead, { ListingHeadSorting } from './ListingHead';
-import Pagination from './Pagination';
 import ListingSkeleton from './ListingSkeleton';
 import ListingTableCell from './ListingTableCell';
+import Pagination from '@/components/Pagination';
 
 export type ListingTableState = {
   currentPage: number;
