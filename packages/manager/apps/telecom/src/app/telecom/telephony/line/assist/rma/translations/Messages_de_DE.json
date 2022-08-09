@@ -32,5 +32,17 @@
   "telephony_line_assist_rma_step_name_validation": "Validation du changement de téléphone",
   "telephony_line_assist_rma_step_status_todo": "Pausiert",
   "telephony_line_assist_rma_step_status_done": "Validiert",
-  "telephony_line_assist_rma_pdf_download": "Télécharger le bon de retour"
+  "telephony_line_assist_rma_pdf_download": "Den Rückgabeschein herunterladen",
+  "telephony_line_assist_rma_step_name_dispatchJustification": "Begründung des Versands",
+  "telephony_line_assist_rma_equipment_out_of_order": "Außer Betrieb genommene Geräte melden",
+  "telephony_line_assist_rma_keeping_line": "Die Telefonleitung ohne Hardware beibehalten",
+  "telephony_line_assist_rma_terminate_line": "Die dazugehörige Telefonleitung kündigen",
+  "telephony_line_assist_rma_modal_yes": "Ja",
+  "telephony_line_assist_rma_modal_no": "Nein",
+  "telephony_line_assist_rma_cancel_modal_content": "Möchten Sie diese RMA abbrechen?",
+  "telephony_line_assist_rma_equipment_out_of_order_modal_content": "Möchten Sie ein dediziertes Gerät melden? {{ breakLine }} (Sie werden dann auf die Seite zur Störungsmeldung weitergeleitet)",
+  "telephony_line_assist_rma_keeping_line_modal_content": "Möchten Sie die Telefonleitung ohne Hardware beibehalten?",
+  "telephony_line_assist_rma_terminate_line_modal_content": "Möchten Sie die dazugehörige Telefonleitung kündigen?",
+  "telephony_line_assist_rma_keeping_line_success": "Anfrage zur konversen Abstimmung der Leitung ohne Hardware erfolgreich durchgeführt",
+  "telephony_line_assist_rma_terminate_line_success": "Anfrage zur Kündigung der Leitung erfolgreich durchgeführt"
 }

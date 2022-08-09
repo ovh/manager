@@ -1,3 +1,59 @@
+# [0.16.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.8...@ovh-ux/manager-billing@0.16.0-alpha.9) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
+# [0.16.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.7...@ovh-ux/manager-billing@0.16.0-alpha.8) (2022-07-18)
+
+
+### Bug Fixes
+
+* **autorenew:** add missing translation for office licenses ([#7496](https://github.com/ovh/manager/issues/7496)) ([65ba9c0](https://github.com/ovh/manager/commit/65ba9c0707b0929e29d9249ffb817fa4d6d70814))
+
+
+
+# [0.16.0-alpha.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.6...@ovh-ux/manager-billing@0.16.0-alpha.7) (2022-07-11)
+
+
+### Bug Fixes
+
+* **billing.order:** remove double title if purchase order isnt available ([28ada16](https://github.com/ovh/manager/commit/28ada16dea58edb277b76a2d1f75daaa1ce1a49f))
+* **i18n:** add missing translations [CDS 1720] ([946fee2](https://github.com/ovh/manager/commit/946fee235409cbf9049b353a84950f0017d6c6bf))
+
+
+
+# [0.16.0-alpha.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.5...@ovh-ux/manager-billing@0.16.0-alpha.6) (2022-06-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1686] ([cc3662e](https://github.com/ovh/manager/commit/cc3662e58f9b19bc094c5d7b1949cacff8282c24))
+* remove unused translations [CDS] ([13fede8](https://github.com/ovh/manager/commit/13fede8026bc27124b1872ecf62db5aab148a4e0))
+* **i18n:** add missing translations [CDS 1681] ([1aadfaa](https://github.com/ovh/manager/commit/1aadfaa39570cc1c99f27466c1aff51724a6e3e5))
+* **i18n:** add missing translations [CDS 1682] ([a007bc4](https://github.com/ovh/manager/commit/a007bc4e115bfac35e34e22132c5289c8a2e046f))
+* **i18n:** add missing translations [CDS 1683] ([b861a84](https://github.com/ovh/manager/commit/b861a8496001a216624958993c749be09947040e))
+* **i18n:** add missing translations [CDS 1685] ([e479ef4](https://github.com/ovh/manager/commit/e479ef4b94efd365f203129588d57f69ec18f316))
+
+
+
+# [0.16.0-alpha.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.4...@ovh-ux/manager-billing@0.16.0-alpha.5) (2022-06-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1686] ([d635e86](https://github.com/ovh/manager/commit/d635e86ec5c5ae2a607b5ba87d34022c96581537))
+* remove unused translations [CDS] ([25f031d](https://github.com/ovh/manager/commit/25f031d3edbf95d2eb9eeaba84e3ac7908ea3b6a))
+* **i18n:** add missing translations [CDS 1681] ([d6d0f26](https://github.com/ovh/manager/commit/d6d0f2661141b8950a1bf5dae17e4a33c3a0ba12))
+* **i18n:** add missing translations [CDS 1682] ([4cb9878](https://github.com/ovh/manager/commit/4cb9878b02b3f555da9241e4fb0bfb6500261522))
+* **i18n:** add missing translations [CDS 1683] ([4703079](https://github.com/ovh/manager/commit/470307920c30d2bdb0591f940373e6af437690a4))
+* **i18n:** add missing translations [CDS 1685] ([f085329](https://github.com/ovh/manager/commit/f085329cea82b2057064485d27e6944506ed814b))
+
+
+
 # [0.16.0-alpha.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.16.0-alpha.3...@ovh-ux/manager-billing@0.16.0-alpha.4) (2022-06-22)
 
 

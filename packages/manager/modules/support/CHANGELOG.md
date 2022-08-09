@@ -1,3 +1,31 @@
+# [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.11.2...@ovh-ux/manager-support@1.12.0) (2022-07-28)
+
+
+### Features
+
+* **support:** align Support ticket view for US region with EU ([#7425](https://github.com/ovh/manager/issues/7425)) ([3b49cbe](https://github.com/ovh/manager/commit/3b49cbe3bdb4c3f843602dff42b6792eb3a5d0bd))
+
+
+
+## [1.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.11.1...@ovh-ux/manager-support@1.11.2) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+* **support:** import missing dependency ([98beb55](https://github.com/ovh/manager/commit/98beb5579565733af402963ae6fa0a889c0114ae))
+
+
+
+## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.11.0...@ovh-ux/manager-support@1.11.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* **tickets.new-ticket:** add missing translation ([#7404](https://github.com/ovh/manager/issues/7404)) ([f439190](https://github.com/ovh/manager/commit/f4391904e767fd03d1f2f3cfe97a896dab59506c))
+
+
+
 # [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.10.0...@ovh-ux/manager-support@1.11.0) (2022-06-14)
 
 

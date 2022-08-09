@@ -181,11 +181,20 @@ export const TELEPHONY_CONFIG = {
           path: '/telephony/:billingAccount/services',
           stateParams: ['billingAccount', 'serviceName'],
           app: [TELECOM],
+          sort: false, // sort is already done on 2api side
           getPrefix: ({ type }) =>
             `server_sidebar_item_telephony_prefix_${TELEPHONY_SERVICES_DATA[type].prefix}`,
           getState: ({ type }) => TELEPHONY_SERVICES_DATA[type].state,
         },
       ],
+    },
+  ],
+  children: [
+    {
+      id: 'telephony_repayments',
+      state: 'telecom.telephony.repayments.index',
+      icon: 'oui-icon oui-icon-receipt_concept',
+      app: [TELECOM],
     },
   ],
   icon: 'ovh-font ovh-font-phone',

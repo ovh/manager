@@ -8,10 +8,6 @@ export const DEFAULT_REQUEST_TYPES = [
     urlPrefix: '/engine/2api',
   },
   {
-    type: 'apiv7',
-    urlPrefix: '/engine/apiv7',
-  },
-  {
     type: 'ws',
     urlPrefix: '/engine/ws',
   },

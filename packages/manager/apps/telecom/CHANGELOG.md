@@ -1,3 +1,96 @@
+## [13.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.1...@ovh-ux/manager-telecom@13.43.2) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+* **telecom:** remove unused APIv7 references ([ee34238](https://github.com/ovh/manager/commit/ee3423860ef87331b086bdf0b19fac8850944c05))
+
+
+
+## [13.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.0...@ovh-ux/manager-telecom@13.43.1) (2022-07-19)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([e77b109](https://github.com/ovh/manager/commit/e77b1099810a968e1d1c682ea5e8adef9c46cfcf))
+
+
+
+# [13.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.42.3...@ovh-ux/manager-telecom@13.43.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** fix can not dissociate phone ([#7299](https://github.com/ovh/manager/issues/7299)) ([bd422e4](https://github.com/ovh/manager/commit/bd422e4704f11bcf69043b2497706d1cd5127bb3))
+* **telephony.rma:** add change type for RMA Unknown ([#7325](https://github.com/ovh/manager/issues/7325)) ([41af23d](https://github.com/ovh/manager/commit/41af23d9c2e833c9773e629666c7f5bc02ad19e8))
+
+
+### Features
+
+* **telecom.telephony:** add reset password white label manager ([#7286](https://github.com/ovh/manager/issues/7286)) ([dec44e4](https://github.com/ovh/manager/commit/dec44e43e04fcde9d8a28b55b6109ea363f0cdee))
+
+
+
+## [13.42.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.42.2...@ovh-ux/manager-telecom@13.42.3) (2022-07-11)
+
+
+### Bug Fixes
+
+* **telecom.voip:** add status doing for directory status sync ([#7505](https://github.com/ovh/manager/issues/7505)) ([8a80bf6](https://github.com/ovh/manager/commit/8a80bf6f03011ac889dbaafdefef19d2ecf00620))
+
+
+
+## [13.42.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.42.1...@ovh-ux/manager-telecom@13.42.2) (2022-07-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1706] ([1e48e5b](https://github.com/ovh/manager/commit/1e48e5baa72b66c34f44fd274c2a53e63722fb17))
+
+
+
+## [13.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.42.0...@ovh-ux/manager-telecom@13.42.1) (2022-07-06)
+
+
+### Bug Fixes
+
+* **telephony.service.contact:** add test on variable ([#7479](https://github.com/ovh/manager/issues/7479)) ([adccfea](https://github.com/ovh/manager/commit/adccfeaafe8e7ebfe256d923b6e82262f9c441a8))
+
+
+
+# [13.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.41.4...@ovh-ux/manager-telecom@13.42.0) (2022-06-30)
+
+
+### Bug Fixes
+
+* **telecom:** text header of the Telecom manager Systran ([#7411](https://github.com/ovh/manager/issues/7411)) ([69db692](https://github.com/ovh/manager/commit/69db692a2e64a60fb5026b1359cf1a3dcc41fa81))
+
+
+### Features
+
+* **sva:** reversement new global entry and new global page ([#6910](https://github.com/ovh/manager/issues/6910)) ([859cf74](https://github.com/ovh/manager/commit/859cf741c590c3c2f99560983481d985d483a08e))
+
+
+
+## [13.41.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.41.3...@ovh-ux/manager-telecom@13.41.4) (2022-06-30)
+
+
+### Bug Fixes
+
+* **telephony.phone:** add missing accessories and phones images ([#7332](https://github.com/ovh/manager/issues/7332)) ([8a12dee](https://github.com/ovh/manager/commit/8a12deeddb289a82a8f14598002abf77a90d7162))
+
+
+
+## [13.41.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.41.2...@ovh-ux/manager-telecom@13.41.3) (2022-06-30)
+
+
+### Bug Fixes
+
+* **telephony.phone:** add missing accessories and phones images ([#7332](https://github.com/ovh/manager/issues/7332)) ([27b3c81](https://github.com/ovh/manager/commit/27b3c81ffba9f8dcf06fd469c366ee3d5685263f))
+
+
+
 ## [13.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.41.1...@ovh-ux/manager-telecom@13.41.2) (2022-06-29)
 
 

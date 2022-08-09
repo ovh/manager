@@ -1,3 +1,26 @@
+# [2.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.22.2...@ovh-ux/manager-vps@2.23.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* **vps:** display upgrade error when vps in rescue mode ([#7683](https://github.com/ovh/manager/issues/7683)) ([4835a8f](https://github.com/ovh/manager/commit/4835a8f3fb9b7924fb2c6e5e67c2e6114e25d7e7))
+
+
+### Features
+
+* **vps:** display error message on VPS upgrade error ([#6897](https://github.com/ovh/manager/issues/6897)) ([7261456](https://github.com/ovh/manager/commit/726145687f82504c7cdfebc1b5e6f5430c16558c))
+
+
+
+## [2.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.22.1...@ovh-ux/manager-vps@2.22.2) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
 ## [2.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.22.0...@ovh-ux/manager-vps@2.22.1) (2022-06-16)
 
 

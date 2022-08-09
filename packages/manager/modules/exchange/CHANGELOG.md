@@ -1,3 +1,40 @@
+## [3.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.5.3...@ovh-ux/manager-exchange@3.5.4) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+* **exchange:** add missing import ([f68885a](https://github.com/ovh/manager/commit/f68885aa53c0f1545102f3d5350a8f85b559592e))
+
+
+
+## [3.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.5.2...@ovh-ux/manager-exchange@3.5.3) (2022-07-07)
+
+
+### Bug Fixes
+
+* **account:** apply search filters ([#7484](https://github.com/ovh/manager/issues/7484)) ([3e686bb](https://github.com/ovh/manager/commit/3e686bbf59982b98fa42e6af690655575b1bfaa0))
+
+
+
+## [3.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.5.1...@ovh-ux/manager-exchange@3.5.2) (2022-06-30)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([13fede8](https://github.com/ovh/manager/commit/13fede8026bc27124b1872ecf62db5aab148a4e0))
+
+
+
+## [3.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.5.0...@ovh-ux/manager-exchange@3.5.1) (2022-06-30)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([25f031d](https://github.com/ovh/manager/commit/25f031d3edbf95d2eb9eeaba84e3ac7908ea3b6a))
+
+
+
 # [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.4.5...@ovh-ux/manager-exchange@3.5.0) (2022-06-14)
 
 

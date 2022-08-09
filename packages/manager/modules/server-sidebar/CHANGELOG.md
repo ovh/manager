@@ -1,3 +1,30 @@
+## [3.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.1...@ovh-ux/manager-server-sidebar@3.23.2) (2022-07-25)
+
+
+### Bug Fixes
+
+* **server-sidebar:** add argument sort for disable sort ([#7542](https://github.com/ovh/manager/issues/7542)) ([8cd008b](https://github.com/ovh/manager/commit/8cd008b34c7a9be7f4864dc9da5a85d6dd84ea47))
+
+
+
+## [3.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.0...@ovh-ux/manager-server-sidebar@3.23.1) (2022-07-11)
+
+
+### Bug Fixes
+
+* **sidebar:** use defined target if exists ([0e97e0a](https://github.com/ovh/manager/commit/0e97e0a06bdcc0d2d919f4d41fc9b87b08757057))
+
+
+
+# [3.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.22.0...@ovh-ux/manager-server-sidebar@3.23.0) (2022-06-30)
+
+
+### Features
+
+* **sva:** reversement new global entry and new global page ([#6910](https://github.com/ovh/manager/issues/6910)) ([859cf74](https://github.com/ovh/manager/commit/859cf741c590c3c2f99560983481d985d483a08e))
+
+
+
 # [3.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.21.5...@ovh-ux/manager-server-sidebar@3.22.0) (2022-06-14)
 
 

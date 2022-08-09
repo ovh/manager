@@ -37,7 +37,6 @@ import timeConditionFactory from './timeCondition/time-condition.factory';
 import timeConditionConditionFactory from './timeCondition/condition/condition.factory';
 import timeConditionSlotFactory from './timeCondition/slot/slot.factory';
 import mediatorService from './mediator.service';
-import voipService from './voip-service.service';
 
 const moduleName = 'ovhManagerTelecomComponentsTelecomTelephony';
 
@@ -94,7 +93,6 @@ angular
   .factory('VoipTimeConditionCondition', timeConditionConditionFactory)
   .factory('VoipTimeConditionSlot', timeConditionSlotFactory)
   .service('TelephonyMediator', mediatorService)
-  .service('TelephonyVoipService', voipService)
   .service('telephonyScheduler', schedulerService)
   .service('voipTimeCondition', timeConditionService);
 

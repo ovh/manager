@@ -55,6 +55,17 @@ const root: Node = {
           count: false,
           features: ['contact:management'],
         },
+        {
+          id: 'billing_services',
+          translation: 'sidebar_billing_ssh',
+          routing: {
+            application: 'dedicated',
+            hash: '#/billing/autorenew',
+          },
+          idAttr: 'sidebar-link-services',
+          count: false,
+          region: ['US'],
+        },
       ],
     },
     {
@@ -72,6 +83,7 @@ const root: Node = {
           },
           idAttr: 'sidebar-link-services',
           count: false,
+          region: ['EU', 'CA'],
         },
         {
           id: 'billing_bills',

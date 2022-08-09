@@ -1,3 +1,30 @@
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.2.2...@ovh-ux/manager-anthos@1.2.3) (2022-07-27)
+
+
+### Bug Fixes
+
+* **anthos:** add missing package ([8d754d5](https://github.com/ovh/manager/commit/8d754d5e66d1591deff3551720f615bde784bb17))
+
+
+
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.2.1...@ovh-ux/manager-anthos@1.2.2) (2022-06-30)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([13fede8](https://github.com/ovh/manager/commit/13fede8026bc27124b1872ecf62db5aab148a4e0))
+
+
+
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.2.0...@ovh-ux/manager-anthos@1.2.1) (2022-06-30)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([25f031d](https://github.com/ovh/manager/commit/25f031d3edbf95d2eb9eeaba84e3ac7908ea3b6a))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.1.5...@ovh-ux/manager-anthos@1.2.0) (2022-06-14)
 
 

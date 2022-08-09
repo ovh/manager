@@ -38,7 +38,6 @@ angular.module('App').controller(
     $onInit() {
       this.$scope.$on('switchUniverse', (event, universe) => {
         this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
-        this.navbarOptions.universe = universe;
         this.shell.environment.setUniverse(universe);
         this.coreConfig.setUniverse(universe);
       });
@@ -62,13 +61,6 @@ angular.module('App').controller(
           });
         unregisterListener();
       });
-
-      this.navbarOptions = {
-        toggle: {
-          event: 'sidebar:loaded',
-        },
-        universe: 'server',
-      };
 
       set(this.$document, 'title', this.$translate.instant('global_app_title'));
 

@@ -1,7 +1,7 @@
 {
   "orders_page_title": "Meine Bestellungen",
   "orders_date": "Datum",
-  "orders_id": "Bestellnummer ",
+  "orders_id": "Bestellnummer",
   "orders_status": "Status",
   "orders_billing": "Abrechnung",
   "orders_guides": "Anleitungen",
@@ -9,7 +9,7 @@
   "orders_taxes_included": "Betrag inklusive Steuern",
   "orders_total_price": "Betrag",
   "orders_table_empty": "Sie haben keine Bestellungen.",
-  "orders_table_empty_with_filter": "Keine Ihrer Bestellungen erfüllt folgende Kriterien: ",
+  "orders_table_empty_with_filter": "Keine Ihrer Bestellungen entspricht diesen Kriterien:",
   "orders_informations_error": "Es ist ein Fehler aufgetreten:",
   "orders_order_status_cancelled": "Abgebrochen",
   "orders_order_status_cancelling": "Wird storniert",
@@ -20,7 +20,7 @@
   "orders_order_status_notPaid": "Unbezahlt",
   "orders_order_status_unknown": "Unbekannt",
   "orders_order_bc_expired": "Bestellung abgelaufen ",
-  "orders_order_status_filter_progress": "Wird bearbeitet",
+  "orders_order_status_filter_progress": "Wird ausgeführt",
   "orders_order_status_filter_all": "Alle ",
   "orders_order_status_filter_terminated": "Beendet ",
   "orders_order_status_filter_expired": "Abgelaufen ",
@@ -28,6 +28,5 @@
   "orders_search_input_title": "Per ID nach meinen Bestellungen suchen.",
   "orders_table_actions_tooltip": "Weitere Details zu dieser Bestellung",
   "orders_order_action_retract": "Bestellung stornieren",
-  "orders_tracking": "Bestellungsnachverfolgung",
-  "orders_page_description": "Sehen Sie Ihren Bestellungsverlauf ein und behalten Sie die aktuellen Bestellungen im Blick. Greifen Sie auf Ihre Bestellscheine zu."
+  "orders_tracking": "Bestellungsnachverfolgung"
 }

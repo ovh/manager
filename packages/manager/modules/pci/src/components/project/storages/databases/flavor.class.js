@@ -1,4 +1,5 @@
 import some from 'lodash/some';
+import { ENGINES_STATUS } from './engines.constants';
 
 export default class Flavor {
   constructor({ name, core, memory }, availability) {
@@ -37,15 +38,15 @@ export default class Flavor {
 
   get hourlyPrice() {
     return {
-      priceInUcents: this.nodeHourlyPrice.priceInUcents * this.nodesCount,
-      tax: this.nodeHourlyPrice.tax * this.nodesCount,
+      priceInUcents: this.nodeHourlyPrice.priceInUcents,
+      tax: this.nodeHourlyPrice.tax,
     };
   }
 
   get monthlyPrice() {
     return {
-      priceInUcents: this.nodeMonthlyPrice.priceInUcents * this.nodesCount,
-      tax: this.nodeMonthlyPrice.tax * this.nodesCount,
+      priceInUcents: this.nodeMonthlyPrice.priceInUcents,
+      tax: this.nodeMonthlyPrice.tax,
     };
   }
 
@@ -63,6 +64,14 @@ export default class Flavor {
 
   get isStorageRange() {
     return this.minDiskSize !== this.maxDiskSize;
+  }
+
+  get id() {
+    return `${this.availability[0].engine}-${this.availability[0].plan.name}-${this.name}`;
+  }
+
+  get isDeprecated() {
+    return this.availability[0].status === ENGINES_STATUS.DEPRECATED;
   }
 
   compare(flavor) {

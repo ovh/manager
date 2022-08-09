@@ -70,9 +70,7 @@ export const ProductNavReshuffleProvider = ({
   };
 
   const reduceOnboarding = () => {
-    if (onboardingOpenedState === ONBOARDING_OPENED_STATE_ENUM.WELCOME) {
-      setOnboardingOpenedState(ONBOARDING_OPENED_STATE_ENUM.BUTTON);
-    }
+    setOnboardingOpenedState(ONBOARDING_OPENED_STATE_ENUM.CLOSED);
   };
 
   // account sidebar

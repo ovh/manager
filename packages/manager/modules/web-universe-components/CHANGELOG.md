@@ -1,3 +1,12 @@
+## [9.7.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.7.0...@ovh-ux/ng-ovh-web-universe-components@9.7.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
 # [9.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.6.2...@ovh-ux/ng-ovh-web-universe-components@9.7.0) (2022-06-14)
 
 

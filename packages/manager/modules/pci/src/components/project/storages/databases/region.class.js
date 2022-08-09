@@ -19,16 +19,17 @@ export default class Region {
       .sort((a, b) => b.compare(a));
     this.hasSufficientQuota = true;
     this.isDefault = some(availability, 'default');
+
+    this.availableFlavors = this.flavors.filter((f) => !f.isDeprecated);
   }
 
   hasEnoughQuota() {
     return this.hasSufficientQuota;
   }
 
-  getDefaultFlavor(selectedFlavor) {
-    return this.flavors.includes(selectedFlavor)
-      ? selectedFlavor
-      : find(this.flavors, 'isDefault');
+  getDefaultFlavor() {
+    const defaultFlavor = find(this.flavors, 'isDefault');
+    return defaultFlavor || this.flavors[0];
   }
 
   getFlavor(flavorName) {

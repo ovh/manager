@@ -8,11 +8,9 @@ import { isString, get } from 'lodash-es';
 import angular from 'angular';
 import uiRouterAngularJs from '@uirouter/angularjs';
 import managerSupport from '@ovh-ux/manager-support';
-import navbar from '@ovh-ux/manager-navbar';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import { state } from './routing';
 
@@ -24,7 +22,6 @@ export default (containerEl, environment) => {
       moduleName,
       [
         managerSupport,
-        navbar,
         uiRouterAngularJs,
         ngUiRouterBreadcrumb,
         registerCoreModule(environment),
@@ -54,7 +51,6 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
-          detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });

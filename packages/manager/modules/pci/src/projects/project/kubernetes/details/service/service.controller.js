@@ -90,4 +90,31 @@ export default class KubernetesServiceCtrl {
         this.loadingKubeConfig = false;
       });
   }
+
+  isOvhDefaultGateway() {
+    const {
+      privateNetworkRoutingAsDefault,
+      defaultVrackGateway,
+    } = this.cluster.privateNetworkConfiguration;
+
+    return !privateNetworkRoutingAsDefault && !defaultVrackGateway;
+  }
+
+  isVRackDefaultGateway() {
+    const { privateNetworkConfiguration } = this.cluster;
+
+    return (
+      privateNetworkConfiguration &&
+      privateNetworkConfiguration.privateNetworkRoutingAsDefault
+    );
+  }
+
+  isCustomerDefineVRackGateway() {
+    const {
+      privateNetworkRoutingAsDefault,
+      defaultVrackGateway,
+    } = this.cluster.privateNetworkConfiguration;
+
+    return !privateNetworkRoutingAsDefault && defaultVrackGateway;
+  }
 }

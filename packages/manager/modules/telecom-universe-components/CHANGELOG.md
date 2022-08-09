@@ -1,3 +1,30 @@
+## [7.12.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.12.2...@ovh-ux/ng-ovh-telecom-universe-components@7.12.3) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
+## [7.12.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.12.1...@ovh-ux/ng-ovh-telecom-universe-components@7.12.2) (2022-06-30)
+
+
+### Bug Fixes
+
+* **telephony.phone:** add missing accessories and phones images ([#7332](https://github.com/ovh/manager/issues/7332)) ([8a12dee](https://github.com/ovh/manager/commit/8a12deeddb289a82a8f14598002abf77a90d7162))
+
+
+
+## [7.12.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.12.0...@ovh-ux/ng-ovh-telecom-universe-components@7.12.1) (2022-06-30)
+
+
+### Bug Fixes
+
+* **telephony.phone:** add missing accessories and phones images ([#7332](https://github.com/ovh/manager/issues/7332)) ([27b3c81](https://github.com/ovh/manager/commit/27b3c81ffba9f8dcf06fd469c366ee3d5685263f))
+
+
+
 # [7.12.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.11.1...@ovh-ux/ng-ovh-telecom-universe-components@7.12.0) (2022-06-14)
 
 

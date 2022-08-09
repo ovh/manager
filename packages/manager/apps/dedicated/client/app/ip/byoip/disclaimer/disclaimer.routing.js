@@ -21,8 +21,9 @@ export default /* @ngInject */ ($stateProvider) => {
       byoip: /* @ngInject */ ($transition$) => $transition$.params().byoip,
       goBack: /* @ngInject */ (goToByoipConfiguration) =>
         goToByoipConfiguration,
-      goToExpressOrder: /* @ngInject */ ($window) => (url) => {
-        return $window.open(url, '_self');
+      goToExpressOrder: /* @ngInject */ ($window, goBack) => (url) => {
+        $window.open(url, '_blank');
+        return goBack();
       },
       breadcrumb: () => null,
     },

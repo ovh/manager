@@ -19,16 +19,18 @@ export default class Engine {
       description,
     });
 
-    this.versions = versions.map((version) => {
-      return new Version(
-        version,
-        availability.filter(
-          (plan) => plan.engine === this.name && plan.version === version,
-        ),
-        plans,
-        flavors,
-      );
-    });
+    this.versions = versions
+      .map((version) => {
+        return new Version(
+          version,
+          availability.filter(
+            (plan) => plan.engine === this.name && plan.version === version,
+          ),
+          plans,
+          flavors,
+        );
+      })
+      .sort((a, b) => b.compare(a));
 
     this.selectedVersion = find(this.versions, {
       version: this.defaultVersion,
@@ -95,5 +97,10 @@ export default class Engine {
 
   getRegion(versionName, planName, regionName) {
     return this.getPlan(versionName, planName).getRegion(regionName);
+  }
+
+  getDefaultPlan() {
+    const defaultPlan = find(this.selectedVersion.plans, 'isDefault');
+    return defaultPlan || this.selectedVersion.plans[0];
   }
 }

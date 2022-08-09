@@ -118,5 +118,7 @@
   "sidebar_assistance_support_level": "Support-Level",
   "sidebar_assistance_live_chat": "Live Chat",
   "sidebar_assistance_onboarding": "Geführte Tour",
-  "sidebar_clipboard_copy": "In die Zwischenablage kopieren"
+  "sidebar_clipboard_copy": "In die Zwischenablage kopieren",
+  "sidebar_pci_load_error": "Beim Abruf der Projektliste ist ein Fehler aufgetreten",
+  "sidebar_billing_ssh": "Meine SSH-Schlüssel"
 }

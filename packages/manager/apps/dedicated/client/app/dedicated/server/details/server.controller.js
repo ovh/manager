@@ -28,6 +28,7 @@ export default class ServerCtrl {
     Poller,
     Polling,
     Server,
+    ServerFirewallAsa,
     User,
   ) {
     this.$q = $q;
@@ -43,6 +44,7 @@ export default class ServerCtrl {
     this.Poller = Poller;
     this.Polling = Polling;
     this.Server = Server;
+    this.ServerFirewallAsa = ServerFirewallAsa;
     this.User = User;
   }
 
@@ -352,7 +354,11 @@ export default class ServerCtrl {
       this.launchBringYourOwnImagePolling();
     }
 
-    return this.$q.all([this.load(), this.fetchRTMInfo()]);
+    return this.$q.all([
+      this.load(),
+      this.fetchRTMInfo(),
+      this.firewallAsaInformations(),
+    ]);
   }
 
   load() {
@@ -675,6 +681,16 @@ export default class ServerCtrl {
         null,
         'rtm_eol_info',
       );
+    });
+  }
+
+  firewallAsaInformations() {
+    return this.ServerFirewallAsa.getInformations(
+      this.$stateParams.productId,
+    ).then((informations) => {
+      if (informations.enabled) {
+        this.firewallAsaIsEnabled = true;
+      }
     });
   }
 }

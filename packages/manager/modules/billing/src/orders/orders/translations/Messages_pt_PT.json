@@ -9,7 +9,7 @@
   "orders_taxes_included": "Montante com taxas",
   "orders_total_price": "Montante",
   "orders_table_empty": "Não possui encomendas.",
-  "orders_table_empty_with_filter": "Não possui encomendas para esses critérios:",
+  "orders_table_empty_with_filter": "Não possui encomendas para estes critérios:",
   "orders_informations_error": "Ocorreu um erro:",
   "orders_order_status_cancelled": "Anulada",
   "orders_order_status_cancelling": "Cancelamento em curso",
@@ -28,6 +28,5 @@
   "orders_search_input_title": "Pesquisar as minhas encomendas por ID.",
   "orders_table_actions_tooltip": "Mais detalhes sobre esta encomenda",
   "orders_order_action_retract": "Anular a encomenda",
-  "orders_tracking": "Seguir encomenda",
-  "orders_page_description": "Consulte o seu histórico e siga as encomendas em curso. Aceda às suas notas de encomenda."
+  "orders_tracking": "Seguir encomenda"
 }

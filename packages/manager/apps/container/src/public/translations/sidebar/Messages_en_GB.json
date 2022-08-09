@@ -115,8 +115,10 @@
   "sidebar_assistance_help_center": "Help Centre",
   "sidebar_assistance_tickets": "Support requests",
   "sidebar_assistance_status": "Network status and incidents",
-  "sidebar_assistance_support_level": "Level of support",
+  "sidebar_assistance_support_level": "Support level",
   "sidebar_assistance_live_chat": "Live Chat",
   "sidebar_assistance_onboarding": "Guided tour",
-  "sidebar_clipboard_copy": "Copy to clipboard"
+  "sidebar_clipboard_copy": "Copy to clipboard",
+  "sidebar_pci_load_error": "An error has occurred retrieving the list of projects",
+  "sidebar_billing_ssh": "My SSH keys"
 }

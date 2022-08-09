@@ -32,5 +32,17 @@
   "telephony_line_assist_rma_step_name_validation": "Validation du changement de téléphone",
   "telephony_line_assist_rma_step_status_todo": "Oczekujące",
   "telephony_line_assist_rma_step_status_done": "Potwierdzone",
-  "telephony_line_assist_rma_pdf_download": "Télécharger le bon de retour"
+  "telephony_line_assist_rma_pdf_download": "Pobierz formularz zwrotu",
+  "telephony_line_assist_rma_step_name_dispatchJustification": "Uzasadnienie wysyłki",
+  "telephony_line_assist_rma_equipment_out_of_order": "Zgłoszenie awarii",
+  "telephony_line_assist_rma_keeping_line": "Zachowaj linię telefoniczną bez sprzętu",
+  "telephony_line_assist_rma_terminate_line": "Rezygnacja z przypisanej linii telefonicznej",
+  "telephony_line_assist_rma_modal_yes": "Tak",
+  "telephony_line_assist_rma_modal_no": "Nie",
+  "telephony_line_assist_rma_cancel_modal_content": "Czy chcesz anulować tą opcję RMA?",
+  "telephony_line_assist_rma_equipment_out_of_order_modal_content": "Czy chcesz zgłosić problem ze sprzętem? {{ breakLine }} (Zostaniesz przekierowany na stronę zgłoszenia awarii)",
+  "telephony_line_assist_rma_keeping_line_modal_content": "Czy chcesz zachować linię telefoniczną bez sprzętu?",
+  "telephony_line_assist_rma_terminate_line_modal_content": "Czy chcesz zrezygnować z przypisanej linii telefonicznej?",
+  "telephony_line_assist_rma_keeping_line_success": "Zlecenie konfigurowania linii bez użycia sprzętu zostało wykonane.",
+  "telephony_line_assist_rma_terminate_line_success": "Zlecenie usunięcia linii zostało wykonane."
 }

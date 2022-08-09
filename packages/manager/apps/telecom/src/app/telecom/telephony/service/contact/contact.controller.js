@@ -382,10 +382,12 @@ export default class TelecomTelephonyServiceContactCtrl {
       this.directoryForm.PJSocialNomination = this.directoryForm.socialNomination;
     }
 
-    this.directoryForm.wayNumberExtra = this.directoryForm.wayNumberExtra.replace(
-      /&nbsp;/g,
-      '',
-    );
+    if (this.directoryForm.wayNumberExtra) {
+      this.directoryForm.wayNumberExtra = this.directoryForm.wayNumberExtra.replace(
+        /&nbsp;/g,
+        '',
+      );
+    }
 
     const modified = assign(this.directory, this.directoryForm);
     this.isUpdating = true;
@@ -463,7 +465,11 @@ export default class TelecomTelephonyServiceContactCtrl {
     if (this.directoryForm.status.includes(DIRECTORY_INFO.status.error)) {
       return this.$translate.instant('telephony_service_contact_sync_error');
     }
-    if (this.directoryForm.status.includes(DIRECTORY_INFO.status.todo)) {
+    if (
+      this.directoryForm.status.includes(
+        DIRECTORY_INFO.status.todo || DIRECTORY_INFO.status.doing,
+      )
+    ) {
       if (
         this.directoryForm.displayUniversalDirectory ||
         (!this.directoryForm.displayUniversalDirectory &&

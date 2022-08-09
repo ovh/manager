@@ -9,7 +9,7 @@
   "orders_taxes_included": "Kwota brutto",
   "orders_total_price": "Kwota",
   "orders_table_empty": "Nie masz zamówień.",
-  "orders_table_empty_with_filter": "Nie posiadasz zamówień odpowiadających tym kryteriom:",
+  "orders_table_empty_with_filter": "Nie posiadasz zamówień spełniających podane kryteria:",
   "orders_informations_error": "Wystąpił błąd:",
   "orders_order_status_cancelled": "Anulowane",
   "orders_order_status_cancelling": "Trwa anulowanie",
@@ -20,7 +20,7 @@
   "orders_order_status_notPaid": "Brak płatności",
   "orders_order_status_unknown": "Nieznany",
   "orders_order_bc_expired": "Zamówienie wygasło",
-  "orders_order_status_filter_progress": "W trakcie",
+  "orders_order_status_filter_progress": "W realizacji",
   "orders_order_status_filter_all": "Wszystkie",
   "orders_order_status_filter_terminated": "Zakończone",
   "orders_order_status_filter_expired": "Wygasłe",
@@ -28,6 +28,5 @@
   "orders_search_input_title": "Wyszukaj zamówienie na podstawie identyfikatora.",
   "orders_table_actions_tooltip": "Więcej informacji na temat tego zamówienia",
   "orders_order_action_retract": "Anuluj zamówienie",
-  "orders_tracking": "Informacje o zamówieniu",
-  "orders_page_description": "Sprawdź historię i monitoruj bieżące zamówienia. Wyświetl zamówienia."
+  "orders_tracking": "Informacje o zamówieniu"
 }

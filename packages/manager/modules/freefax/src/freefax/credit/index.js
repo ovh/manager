@@ -11,7 +11,7 @@ import template from './freefax-credit.html';
 const moduleName = 'managerFreefaxCredit';
 
 angular
-  .module(moduleName, ['ngOvhContracts', 'oui'])
+  .module(moduleName, ['ngOvhContracts', 'oui', 'ovh-api-services'])
   .constant('FREEFAX_DISCRETE_CREDIT', DISCRETE_CREDIT)
   .controller('FreeFaxCreditCtrl', controller)
   .run(

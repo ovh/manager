@@ -33,5 +33,7 @@
   "pci_ai_app_list_delete_app": "Eliminar",
   "pci_ai_app_list_start_error": "Ocorreu um erro ao iniciar a AI App {{appName}}: {{message}}",
   "pci_ai_app_list_stop_error": "Ocorreu um erro ao parar a AI App {{appName}}: {{message}}",
-  "pci_ai_app_list_creator": "Utilizador"
+  "pci_ai_app_list_creator": "Utilizador",
+  "pci_ai_app_beta_warning_special_conditions": "AI Apps é um serviço abrangido pelas ",
+  "pci_ai_app_beta_warning_special_conditions_link": "Condições Especiais dos Serviços Public Cloud da OVHcloud"
 }

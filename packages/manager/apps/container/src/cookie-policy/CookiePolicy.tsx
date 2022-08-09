@@ -53,13 +53,13 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
   };
 
   useEffect(() => {
-    // Checking if cookie exists
-    if (cookies.MANAGER_TRACKING == null) {
-      setShow(true);
-    } else if (cookies.MANAGER_TRACKING === '1') {
+    // activate tracking if region is US or if tracking consent cookie is valid
+    if (environment.getRegion() === 'US' || cookies.MANAGER_TRACKING === '1') {
       trackingPlugin.setEnabled(trackingEnabled);
       trackingPlugin.setRegion(environment.getRegion());
       trackingPlugin.init();
+    } else if (cookies.MANAGER_TRACKING == null) {
+      setShow(true);
     } else {
       trackingPlugin.setEnabled(false);
     }
@@ -84,7 +84,7 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
   };
 
   return (
-    <Modal size="lg" show={show} backdrop="static" keyboard={false}>
+    <Modal size="lg" show={show} backdrop="static" keyboard={false} animation={false}>
       <Modal.Body>
         <div className="cookie-policy-modal p-1">
           <div className="img-wrapper w-100 d-flex justify-content-center align-items-center">

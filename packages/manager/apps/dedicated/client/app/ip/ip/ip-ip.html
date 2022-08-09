@@ -149,16 +149,7 @@
         <div class="row mb-3">
             <div class="col-sm-12 col-md-4">
                 <oui-tile data-heading="{{:: 'ip_order_title' | translate }}">
-                    <oui-tile-button
-                        data-ng-if="canOrderIPFO()"
-                        data-on-click="orderIPFO()"
-                    >
-                        <span data-translate="ip_order_additional_ips"></span>
-                    </oui-tile-button>
-                    <oui-tile-button
-                        data-ng-if="canOrderAgoraIPFO()"
-                        data-on-click="goToAgoraOrder()"
-                    >
+                    <oui-tile-button data-on-click="goToAgoraOrder()">
                         <span data-translate="ip_order_additional_ips"></span>
                     </oui-tile-button>
                     <oui-tile-button

@@ -1,3 +1,13 @@
+## [3.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.22.1...@ovh-ux/manager-hub-app@3.22.2) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+* **hub:** replace less variable from account-sidebar package ([7e340e5](https://github.com/ovh/manager/commit/7e340e5438f0fc8b8e3d00544b2994c95945c0e6))
+
+
+
 ## [3.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.22.0...@ovh-ux/manager-hub-app@3.22.1) (2022-06-29)
 
 

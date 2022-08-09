@@ -116,7 +116,6 @@
                     data-ng-bind="$ctrl.cluster.name"
                 ></oui-tile-description>
             </oui-tile-definition>
-
             <oui-tile-definition
                 data-term="{{:: 'kube_service_cluster_status' | translate }}"
             >
@@ -145,14 +144,39 @@
                 data-term="{{ ::'kube_service_cluster_network_attached' | translate }}"
             >
                 <oui-tile-description>
-                    <span
-                        data-ng-if="!$ctrl.cluster.privateNetworkId"
-                        data-translate="kube_service_cluster_network_public"
+
+                    <!--Public network-->
+                    <span data-ng-if="!$ctrl.cluster.privateNetworkId"
+                          data-translate="kube_service_cluster_network_public"
                     ></span>
-                    <span
-                        data-ng-if="$ctrl.cluster.privateNetworkId"
-                        data-ng-bind="$ctrl.cluster.privateNetworkName"
-                    ></span>
+
+                    <!--Private network info-->
+                    <div data-ng-if="$ctrl.cluster.privateNetworkId">
+
+                        <!--Private network name-->
+                        <span class="d-block"
+                              data-ng-bind="$ctrl.cluster.privateNetworkName"
+                        ></span>
+
+                        <!--Default OVH gateway-->
+                        <span class="d-block"
+                              data-ng-if="$ctrl.isOvhDefaultGateway()"
+                              data-translate="kube_service_cluster_network_ovh_gateway"
+                        ></span>
+
+                        <!--Default vRack gateway-->
+                        <span class="d-block"
+                              data-ng-if="$ctrl.isVRackDefaultGateway()"
+                              data-translate="kube_service_cluster_network_vrack_default_gateway"
+                        ></span>
+
+                        <!--Custom vRack gateway-->
+                        <span class="d-block"
+                              data-ng-if="$ctrl.isCustomerDefineVRackGateway()"
+                              data-translate="kube_service_cluster_network_vrack_customer_gateway"
+                              data-translate-values="{ vRackGatewayIp: $ctrl.cluster.privateNetworkConfiguration.defaultVrackGateway }"
+                        ></span>
+                    </div>
                 </oui-tile-description>
             </oui-tile-definition>
             <!-- end of network attached -->

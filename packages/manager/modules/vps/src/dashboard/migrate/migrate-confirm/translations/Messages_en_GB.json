@@ -5,5 +5,7 @@
   "vps_dashboard_migrate_confirm_label_text": "Please enter the word ‘MIGRATE’ to confirm your choice",
   "vps_dashboard_migrate_confirm_button_text": "Start migration",
   "vps_dashboard_migrate_confirm_success": "Your request has been processed. Your VPS migration is in progress. You will be sent an email once your service is up and running again.",
-  "vps_dashboard_migrate_confirm_error": "An error has occurred migrating your VPS:"
+  "vps_dashboard_migrate_confirm_error": "An error has occurred migrating your VPS:",
+  "vps_dashboard_migrate_fail_vps_in_rescue_info": "You cannot upgrade your VPS to a higher solution, as it is currently in rescue mode.",
+  "vps_dashboard_migrate_fail_vps_in_rescue_action": "Please reboot your VPS beforehand by disabling rescue mode."
 }

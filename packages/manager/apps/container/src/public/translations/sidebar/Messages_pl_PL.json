@@ -118,5 +118,7 @@
   "sidebar_assistance_support_level": "Poziom wsparcia",
   "sidebar_assistance_live_chat": "Live chat",
   "sidebar_assistance_onboarding": "Wizyta z przewodnikiem",
-  "sidebar_clipboard_copy": "Skopiuj do schowka"
+  "sidebar_clipboard_copy": "Skopiuj do schowka",
+  "sidebar_pci_load_error": "Wystąpił błąd podczas pobierania listy projektów",
+  "sidebar_billing_ssh": "Moje klucze SSH"
 }

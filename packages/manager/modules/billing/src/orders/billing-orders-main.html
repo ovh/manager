@@ -1,4 +1,4 @@
-<oui-header heading="{{:: 'orders_page_title' | translate }}">
+<oui-header heading="{{:: $ctrl.titleheading() }}">
     <oui-guide-menu
         data-text="{{:: 'orders_guides' | translate }}"
         data-ng-if="$ctrl.billingGuideUrl"

@@ -1,3 +1,17 @@
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@0.1.1...@ovh-ux/ovh-reket@1.0.0) (2022-07-27)
+
+
+### Features
+
+* **ovh-reket:** remove APIv7 configuration ([14e250f](https://github.com/ovh/manager/commit/14e250fbe672037842158372b60ccc6276477576))
+
+
+### BREAKING CHANGES
+
+* **ovh-reket:** remove v7 API configuration
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@0.1.0...@ovh-ux/ovh-reket@0.1.1) (2022-03-04)
 
 

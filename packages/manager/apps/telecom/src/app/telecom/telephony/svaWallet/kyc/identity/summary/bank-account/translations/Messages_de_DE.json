@@ -1,0 +1,6 @@
+{
+  "telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_title": "Meine Bankverbindungen",
+  "telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_cancel": "Abbrechen",
+  "telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_confirm": "Bestätigen",
+  "telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_error": "Beim Update Ihrer IBAN ist ein Fehler aufgetreten: {{ errorMessage }}"
+}

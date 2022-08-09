@@ -1,0 +1,6 @@
+{
+  "telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_title": "As minhas coordenadas bancárias",
+  "telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_cancel": "Anular",
+  "telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_confirm": "Validar",
+  "telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_error": "Ocorreu um erro aquando da atualização do seu IBAN: {{ errorMessage }}"
+}

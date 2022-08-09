@@ -1,6 +1,8 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
+import '@ovh-ux/ng-ovh-doc-url';
+import '@ovh-ux/ng-ovh-utils';
 
 import onboarding from './onboarding';
 
@@ -9,7 +11,13 @@ import service from './anthos-tenants.service';
 const moduleName = 'ovhManagerAnthosLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', onboarding])
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+    'ngOvhDocUrl',
+    'ngOvhUtils',
+    onboarding,
+  ])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('anthos', {

@@ -292,7 +292,7 @@ export default class OvhManagerServerSidebarController {
             state: isExternal ? null : get(service, 'state'),
             loadOnState: get(service, 'loadOnState'),
             url: link,
-            target: link ? '_self' : null,
+            target: service.target || (link ? '_self' : null),
             click: () => {
               this.atInternet.trackClick({
                 type: 'action',
@@ -363,9 +363,11 @@ export default class OvhManagerServerSidebarController {
             }
 
             each(
-              items.sort(({ displayName: a }, { displayName: b }) =>
-                a.localeCompare(b),
-              ),
+              get(typeServices, 'type.sort') === false // If the sorting is already done on the 2 api side
+                ? items
+                : items.sort(({ displayName: a }, { displayName: b }) =>
+                    a.localeCompare(b),
+                  ),
               (service) => {
                 const isExternal =
                   !includes(typeServices.type.app, this.universe) &&

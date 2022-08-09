@@ -41,25 +41,6 @@
                     >
                     </a>
                 </div>
-                <!-- /Skip to main content -->
-                <div data-ui-view="navbar">
-                    <ovh-manager-navbar
-                        data-navbar-options="$ctrl.navbarOptions"
-                        data-universe-click="$ctrl.openSidebar()"
-                        data-global-search-link="{{ $ctrl.globalSearchLink }}"
-                        data-ng-if="$ctrl.isTopLevelApplication"
-                    >
-                    </ovh-manager-navbar>
-                    <ovh-manager-notifications-sidebar
-                        data-ng-if="$ctrl.isTopLevelApplication"
-                    >
-                    </ovh-manager-notifications-sidebar>
-                </div>
-                <ovh-manager-account-sidebar
-                    me="$ctrl.user"
-                    data-ng-if="$ctrl.isTopLevelApplication"
-                >
-                </ovh-manager-account-sidebar>
             </div>
             <div class="d-flex w-100 h-100 position-relative">
                 <div
@@ -115,21 +96,21 @@
                                         class="container-fluid px-md-5 px-3 mt-3"
                                     >
                                         <oui-message
-                                            data-ng-if="$ctrl.currentLanguage === 'en'"
+                                            data-ng-if="$ctrl.displaySystranMessage"
                                             type="info"
                                             dismissable
                                         >
                                             <span
-                                                data-ng-bind="::$ctrl.SYSTRAN_FEEDBACK_INFO.part1"
+                                                data-translate="systran_feedback_info"
                                             ></span>
                                             <a
-                                                href="{{:: $ctrl.SYSTRAN_FEEDBACK_LINK}}"
+                                                href="{{:: $ctrl.URL_SURVEY_SYSTRAN + $ctrl.currentLanguage }}"
                                                 class="oui-link"
                                                 target="_blank"
                                                 rel="noopener"
                                             >
                                                 <span
-                                                    data-ng-bind="::$ctrl.SYSTRAN_FEEDBACK_INFO.part2"
+                                                    data-translate="systran_feedback_info_link"
                                                 ></span>
                                             </a>
                                         </oui-message>

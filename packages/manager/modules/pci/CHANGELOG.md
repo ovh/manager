@@ -1,3 +1,112 @@
+# [5.85.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.84.1...@ovh-ux/manager-pci@5.85.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* **pci.storage.databases:** datatr-57 - deprecated availabilities ([#7571](https://github.com/ovh/manager/issues/7571)) ([4224736](https://github.com/ovh/manager/commit/42247366642c2eb2ff7afe4680b20ec37d3dccbe))
+* remove deprecated field for pool page ([#7646](https://github.com/ovh/manager/issues/7646)) ([cf6708a](https://github.com/ovh/manager/commit/cf6708afc45525e60257e0aaf121ac668c76c614))
+
+
+### Features
+
+* **kubernetes.add:** remove client pooling after the creation a container ([#7545](https://github.com/ovh/manager/issues/7545)) ([d9b3416](https://github.com/ovh/manager/commit/d9b3416e38e828958c286b52b8e6094185874df4))
+* **storages.blocks.add:** add extra info for each volume type ([#7481](https://github.com/ovh/manager/issues/7481)) ([44cde89](https://github.com/ovh/manager/commit/44cde89abade105ab8ef48e59bd46b86aa577928))
+* **storages.blocks.add:** add iops and bandwidth info ([#7426](https://github.com/ovh/manager/issues/7426)) ([bb1b890](https://github.com/ovh/manager/commit/bb1b890f72df9d00a8bd08cbe05036337a8bdd92))
+
+
+
+## [5.84.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.84.0...@ovh-ux/manager-pci@5.84.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
+# [5.84.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.83.1...@ovh-ux/manager-pci@5.84.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* **instance.edit:** update is-flex accordingly ([#7559](https://github.com/ovh/manager/issues/7559)) ([f37ced2](https://github.com/ovh/manager/commit/f37ced226635f6d4d2a2dfafec1bf55fea12f73a))
+* **pci.ai:** filter internal key on jobs volumes when resubmit ([#7423](https://github.com/ovh/manager/issues/7423)) ([23d236e](https://github.com/ovh/manager/commit/23d236e4dab004be6d58f68dd20003a998c10be0))
+
+
+### Features
+
+* **kube:** allow to use custom vRack gateway ([#7420](https://github.com/ovh/manager/issues/7420)) ([859b4ef](https://github.com/ovh/manager/commit/859b4efea13f8af1b54a86a1cd7f10dad31967bb))
+* **pci.storage.databases:** change unit for network metrics from octects to megaoctects ([#7124](https://github.com/ovh/manager/issues/7124)) ([5695630](https://github.com/ovh/manager/commit/5695630808d619cb31d55356afc046a5c7e3123e))
+
+
+
+## [5.83.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.83.0...@ovh-ux/manager-pci@5.83.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1706] ([1e48e5b](https://github.com/ovh/manager/commit/1e48e5baa72b66c34f44fd274c2a53e63722fb17))
+* **i18n:** add missing translations [CDS 1718] ([abc2810](https://github.com/ovh/manager/commit/abc281084f2efd834453d9c0f99515ae022cfd3e))
+
+
+
+# [5.83.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.82.1...@ovh-ux/manager-pci@5.83.0) (2022-07-06)
+
+
+### Bug Fixes
+
+* **training:** remove HTML tag from the breadcrumb ([#7469](https://github.com/ovh/manager/issues/7469)) ([4475faf](https://github.com/ovh/manager/commit/4475faff8ac511620dffd47d039231fddf4c5f18))
+
+
+### Features
+
+* **storage.databases:** add translation for new metric ([#7373](https://github.com/ovh/manager/issues/7373)) ([853574f](https://github.com/ovh/manager/commit/853574fece430cebc862591f35b92cc2a123b4c0))
+
+
+
+## [5.82.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.82.0...@ovh-ux/manager-pci@5.82.1) (2022-07-01)
+
+
+### Bug Fixes
+
+* **storages.databases:** do not multiply the flavor price by min nodes ([#7475](https://github.com/ovh/manager/issues/7475)) ([aa7bcd3](https://github.com/ovh/manager/commit/aa7bcd38abe3618ba39970e5ff94521f598cddf0))
+
+
+
+# [5.82.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.81.0...@ovh-ux/manager-pci@5.82.0) (2022-06-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1681] ([1aadfaa](https://github.com/ovh/manager/commit/1aadfaa39570cc1c99f27466c1aff51724a6e3e5))
+* **instance:** redirect to instances page after deletion ([#7213](https://github.com/ovh/manager/issues/7213)) ([fa93819](https://github.com/ovh/manager/commit/fa938190d339dbec53697e8ab30cdd16e06c9bd3))
+
+
+### Features
+
+* **projects:** add a sorting option to the projects list ([#7321](https://github.com/ovh/manager/issues/7321)) ([6832c6e](https://github.com/ovh/manager/commit/6832c6e73f50f62d17a556c6841782782630e12e))
+* **storage.databases:** improve funnel order ([#6905](https://github.com/ovh/manager/issues/6905)) ([e88500e](https://github.com/ovh/manager/commit/e88500e3395221802987a9de6e82c3314eb89d03))
+
+
+
+# [5.81.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.80.0...@ovh-ux/manager-pci@5.81.0) (2022-06-30)
+
+
+### Bug Fixes
+
+* **containers:** encode uri for file name ([#7287](https://github.com/ovh/manager/issues/7287)) ([d2ede9a](https://github.com/ovh/manager/commit/d2ede9adc6f1d90991e1c8c02f20c52b7ffe3c6a))
+* **i18n:** add missing translations [CDS 1681] ([d6d0f26](https://github.com/ovh/manager/commit/d6d0f2661141b8950a1bf5dae17e4a33c3a0ba12))
+* **instance:** redirect to instances page after deletion ([#7213](https://github.com/ovh/manager/issues/7213)) ([ba3ec67](https://github.com/ovh/manager/commit/ba3ec67f86131e3592484e3cb7b5c910595fe8c9))
+
+
+### Features
+
+* **pci.ai.apps:** update alpha banner for ai apps ([#7228](https://github.com/ovh/manager/issues/7228)) ([8d7a52a](https://github.com/ovh/manager/commit/8d7a52aabe1464034d34a8187c088dc64e1b01b5))
+* **projects:** add a sorting option to the projects list ([#7321](https://github.com/ovh/manager/issues/7321)) ([18d8502](https://github.com/ovh/manager/commit/18d85024073827b5bcb175c0b13adc44ac8babfb))
+* **storage.databases:** improve funnel order ([#6905](https://github.com/ovh/manager/issues/6905)) ([6c1e3f0](https://github.com/ovh/manager/commit/6c1e3f01368c2b1c9b1a2337c7e7ee354523cf66))
+
+
+
 # [5.80.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.79.1...@ovh-ux/manager-pci@5.80.0) (2022-06-16)
 
 

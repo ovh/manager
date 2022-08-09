@@ -1,3 +1,12 @@
+## [2.6.1](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.6.0...@ovh-ux/sao-ovh-manager-app@2.6.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **app:** remove unused dependencies ([#7593](https://github.com/ovh/manager/issues/7593)) ([55ca65c](https://github.com/ovh/manager/commit/55ca65cb8b3879b3c5baccf4a663d0de5697fdf8))
+
+
+
 # [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.5.0...@ovh-ux/sao-ovh-manager-app@2.6.0) (2021-12-14)
 
 

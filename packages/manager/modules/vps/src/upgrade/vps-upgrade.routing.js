@@ -24,6 +24,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
+      getRebootLink: /* @ngInject */ ($state) => () =>
+        $state.href('vps.detail.dashboard.reboot'),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('vps_configuration_upgradevps_title'),
     },

@@ -3,24 +3,26 @@ import get from 'lodash/get';
 import some from 'lodash/some';
 
 import Datacenter from '../../../../components/project/regions-list/datacenter.class';
-import { READY_STATUS } from './add.constants';
+import { KUBE_CONTAINER_MESSAGES } from './add.constants';
 
 export default class {
   /* @ngInject */
   constructor(
     $translate,
     $q,
+    $anchorScroll,
     CucCloudMessage,
     Kubernetes,
     OvhApiCloudProjectKube,
-    Poller,
   ) {
     this.$translate = $translate;
     this.$q = $q;
+    this.$anchorScroll = $anchorScroll;
     this.CucCloudMessage = CucCloudMessage;
     this.Kubernetes = Kubernetes;
     this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
-    this.Poller = Poller;
+
+    this.KUBE_CONTAINER_MESSAGES = KUBE_CONTAINER_MESSAGES;
   }
 
   $onInit() {
@@ -33,7 +35,13 @@ export default class {
       region: null,
       version: null,
       name: null,
-      privateNetwork: this.defaultPrivateNetwork,
+      network: {
+        private: this.defaultPrivateNetwork,
+        gateway: {
+          enabled: false, // false -> OVHcloud gateway, true -> vRack gateway
+          ip: '',
+        },
+      },
       nodePool: {
         antiAffinity: false,
         flavor: null,
@@ -79,12 +87,10 @@ export default class {
       this.cluster.name,
       this.cluster.region.name,
       this.cluster.version,
-      this.cluster.privateNetwork.clusterRegion?.openstackId,
+      this.cluster.network.private.clusterRegion?.openstackId,
+      this.cluster.network.gateway,
       options,
     )
-      .then((response) =>
-        this.checkKubernetesStatus(this.projectId, response.data.id),
-      )
       .then(() =>
         this.goBack(this.$translate.instant('kubernetes_add_success')),
       )
@@ -104,26 +110,12 @@ export default class {
           };
         }
         this.CucCloudMessage.error(errorMessage);
+
+        this.$anchorScroll(KUBE_CONTAINER_MESSAGES);
       })
       .finally(() => {
         this.isAdding = false;
       });
-  }
-
-  checkKubernetesStatus(serviceName, kubeId) {
-    this.OvhApiCloudProjectKube.v6().resetQueryCache();
-    this.OvhApiCloudProjectKube.v6().resetCache();
-    return this.Poller.poll(
-      `/cloud/project/${serviceName}/kube/${kubeId}`,
-      {},
-      {
-        method: 'get',
-        retryMaxAttempts: 6,
-        successRule: {
-          status: READY_STATUS,
-        },
-      },
-    );
   }
 
   loadFlavors(region) {
@@ -155,7 +147,7 @@ export default class {
     ];
     if (
       !some(this.availablePrivateNetworks, {
-        id: this.cluster.privateNetwork?.id,
+        id: this.cluster.network.private?.id,
       })
     ) {
       this.cluster.privateNetwork = this.defaultPrivateNetwork;
@@ -168,6 +160,13 @@ export default class {
       enabled: isRegionEnabled || this.cluster.region.enabled,
       quota: find(this.quotas, { region: this.cluster.region.name }),
     });
+  }
+
+  isValidNetworkConfig(networkGatewayIp) {
+    const { private: privateNetwork } = this.cluster.network;
+    const isPrivateNetwork = !!privateNetwork?.id;
+
+    return !isPrivateNetwork || networkGatewayIp?.$valid;
   }
 
   onRegionSubmit() {

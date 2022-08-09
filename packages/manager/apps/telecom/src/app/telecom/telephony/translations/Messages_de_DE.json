@@ -1,3 +1,6 @@
 {
-  "telephony_breadcrumb": "Telefonie"
+  "telephony_breadcrumb": "Telefonie",
+  "telephony_view_billing_account_service_services": "Die Dienstleistungen anzeigen",
+  "telephony_table_header_action": "Aktionen",
+  "telephony_table_action_item_telephony_repayments": "Meine Auszahlungen verwalten"
 }

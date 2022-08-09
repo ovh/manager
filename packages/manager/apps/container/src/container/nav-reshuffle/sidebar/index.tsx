@@ -69,7 +69,7 @@ const Sidebar = (): JSX.Element => {
   const logoLink = navigationPlugin.getURL('hub', '#/');
 
   const shouldHideElement = (node: Node, count: number | boolean) => {
-    if (node.hideIfEmpty && !node.count) {
+    if (node.hideIfEmpty && !count) {
       return true;
     }
 
@@ -131,15 +131,31 @@ const Sidebar = (): JSX.Element => {
           },
         );
 
-        const [tree] = initTree([navigationRoot], results);
+        const region = environmentPlugin.getEnvironment().getRegion();
+        const [tree] = initTree([navigationRoot], results, region);
 
         const mxPlanNode = findNodeById(tree, 'mxplan');
-        if (
-          mxPlanNode &&
-          environmentPlugin.getEnvironment().getRegion() === 'CA'
-        ) {
+        if (mxPlanNode && region === 'CA') {
           mxPlanNode.routing.hash = '#/email_mxplan';
         }
+
+        /**
+         * US enterprise customers special case
+         */
+        ['billing_bills', 'billing_payment', 'orders'].forEach((nodeId) => {
+          const node = findNodeById(tree, nodeId);
+          if (!node) return;
+          const env = environmentPlugin.getEnvironment();
+          if (env.getRegion() === 'US' && env.user.enterprise) {
+            if (nodeId === 'orders') {
+              node.hideIfEmpty = true;
+            } else {
+              delete node.routing;
+              node.url = 'https://billing.us.ovhcloud.com/login';
+              node.isExternal = true;
+            }
+          }
+        });
 
         setNavigationTree(tree);
         setCurrentNavigationNode(tree);
@@ -169,6 +185,7 @@ const Sidebar = (): JSX.Element => {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
           'X-Pagination-Size': 5000,
+          'X-Pagination-Sort': 'description',
         },
       })
       .then((result: Array<PciProject>) => {

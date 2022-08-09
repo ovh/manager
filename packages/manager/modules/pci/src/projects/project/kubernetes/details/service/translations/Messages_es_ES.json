@@ -72,4 +72,7 @@
   "kube_service_access_security_oidc_menu_action_set_provider": "Modificar el proveedor OIDC",
   "kube_service_access_security_oidc_menu_action_remove_provider": "Eliminar el proveedor OIDC",
   "kube_service_installation_information": "<a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">Este tutorial<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> le ayudará a instalar el Kubernetes Dashboard. Kubernetes Dashboard es una aplicación web que permite gestionar sus clusters. Es mantenida por la comunidad de Kubernetes."
+  "kube_service_cluster_network_ovh_gateway": "Puerta de enlace de internet de OVHcloud",
+  "kube_service_cluster_network_vrack_default_gateway": "Puerta de enlace por defecto del vRack (DHCP)",
+  "kube_service_cluster_network_vrack_customer_gateway": "Puerta de enlace: {{ vRackGatewayIp }}"
 }

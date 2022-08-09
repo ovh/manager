@@ -1,3 +1,65 @@
+## [0.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.7...@ovh-ux/manager-container-app@0.3.8) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump @ovh-ux/ovh-reket to 1.0.0 ([a77f2fc](https://github.com/ovh/manager/commit/a77f2fc4fa314b0b69f17674c84a585f42b8a6db))
+
+
+
+## [0.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.6...@ovh-ux/manager-container-app@0.3.7) (2022-07-19)
+
+
+### Bug Fixes
+
+* **container:** close pnr sidebar on mobile outside click ([b69daf7](https://github.com/ovh/manager/commit/b69daf784c4341ea807961b7f008637b28d2194d))
+* **container:** pnr sidebar housing entry ([3805ce5](https://github.com/ovh/manager/commit/3805ce52507731b08a0cf3573fdb2157b38f2ac9))
+* **container:** sort pci projects in sidebar ([6455728](https://github.com/ovh/manager/commit/64557284c923a328189870273c6ab6456cc0a69a))
+
+
+
+## [0.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.5...@ovh-ux/manager-container-app@0.3.6) (2022-07-18)
+
+
+### Bug Fixes
+
+* **container:** remove cookie modal animation ([1b26a02](https://github.com/ovh/manager/commit/1b26a02898eead5efaabf30fb08a90ff3ddcd7d3))
+
+
+
+## [0.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.4...@ovh-ux/manager-container-app@0.3.5) (2022-07-01)
+
+
+### Bug Fixes
+
+* **container:** disable cookie policy consent for US region ([#7438](https://github.com/ovh/manager/issues/7438)) ([8e10e4f](https://github.com/ovh/manager/commit/8e10e4f261bbc8e3117588593be5ccca6935eafb))
+* **container:** node region filter ([b8348ec](https://github.com/ovh/manager/commit/b8348ec17a3bf733e5130866a1bc00420bbf9a07))
+* **container:** sidebar billing for us enterprise ([7c37995](https://github.com/ovh/manager/commit/7c3799579df389222cdacba0248ec85544fbaa78))
+* **container:** sidebar ssh key for US region ([#7439](https://github.com/ovh/manager/issues/7439)) ([85b6c28](https://github.com/ovh/manager/commit/85b6c2808acbe6d8240222573678a603ba8ad640))
+* **container:** translation &amp; ([b994672](https://github.com/ovh/manager/commit/b994672e0c5505caf004214e48544a9ea13a4c18))
+* **i18n:** add missing translations [CDS 1700] ([7ba62b9](https://github.com/ovh/manager/commit/7ba62b9f6626a75e01625fe6a6f5b9f8ade0346b))
+* **pnr:** change onboarding popover position ([57a549c](https://github.com/ovh/manager/commit/57a549c145b50eac94d5531e980bef5746065d76))
+
+
+
+## [0.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.3...@ovh-ux/manager-container-app@0.3.4) (2022-06-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1692] ([#7432](https://github.com/ovh/manager/issues/7432)) ([82d287c](https://github.com/ovh/manager/commit/82d287c1b2d959c000386a46fab16c0c1ca00c8c))
+
+
+
+## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.2...@ovh-ux/manager-container-app@0.3.3) (2022-06-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1692] ([#7432](https://github.com/ovh/manager/issues/7432)) ([20001ac](https://github.com/ovh/manager/commit/20001ac0a44ec5c601f234e634e5ade85d6bf82c))
+
+
+
 ## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.1...@ovh-ux/manager-container-app@0.3.2) (2022-06-29)
 
 

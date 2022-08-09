@@ -1,0 +1,15 @@
+{
+  "telephony_billingAccount_svaWallet_kyc_company_kind_ADMINISTRATION": "Administracja/organy lub agencje publiczne i władze regionalne",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_ASSOCIATION": "Stowarzyszenie/Organ Prawny",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_CHURCH": "Parafia lub kościół",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_CRAFTSMAN": "Specjalistyczne zawody",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_CSE": "Komitet Ekonomiczno-Społeczny",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_EARL": "Gospodarstwo rolne z ograniczoną odpowiedzialnością",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_ENDOWMENT_FUND": "Fundusz",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_FCP": "Fundusz powierniczy",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_FI": "Fundusze z osobowością prawną",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_FOUNDATION": "Fundacja",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_FOUNDATION_UNDER_UMBRELLA_FOUNDATION": "Fundacja pod egidą fundacji",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_GROUP_WITH_PUBLIC_INTEREST": "Ugrupowanie interesu publicznego, uniwersyteckie ośrodki szpitalne, publiczny zakład użyteczności publicznej, spółka inwestycyjna nieruchomości, prywatne placówki opieki zdrowotnej o znaczeniu zbiorowym",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_INSURANCE_COMPANY": "Przedsiębiorstwo ubezpieczeniowe"
+}

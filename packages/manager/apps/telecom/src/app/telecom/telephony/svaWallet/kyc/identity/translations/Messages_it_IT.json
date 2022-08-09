@@ -1,3 +1,20 @@
 {
-  "telephony_billingAccount_svaWallet_kyc_identity_representative_email": "Email"
+  "telephony_billingAccount_svaWallet_kyc_identity_representative_email": "Email",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_ADMINISTRATION": "Amministrazione/Autorità o Agenzie pubbliche e autorità regionali",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_ASSOCIATION": "Associazione/Organismo giuridico",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_CHURCH": "Parrocchia o chiesa",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_CRAFTSMAN": "Mestieri specializzati",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_CSE": "Comitato sociale ed economico",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_EARL": "Azienda agricola a responsabilità limitata",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_ENDOWMENT_FUND": "Fondo di dotazione",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_FCP": "Fondo comune di investimento",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_FI": "Fondi con personalità giuridica",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_FOUNDATION": "Fondazione semplice",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_FOUNDATION_UNDER_UMBRELLA_FOUNDATION": "Fondazione sotto l'egida di una fondazione",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_GROUP_WITH_PUBLIC_INTEREST": "Associazione di interesse pubblico, Centro ospedaliero universitario, Istituto pubblico di interesse generale, Società di investimento immobiliare, Istituti sanitari privati di interesse collettivo",
+  "telephony_billingAccount_svaWallet_kyc_company_kind_INSURANCE_COMPANY": "Compagnie di assicurazione",
+  "telephony_billingAccount_svaWallet_kyc_identity_company_crowdfundingPartner": "La tua società beneficia di un finanziamento partecipativo (Crowdfunding)",
+  "telephony_billingAccount_svaWallet_kyc_identity_company_marketplace": "La mia azienda è un marketplace",
+  "telephony_billingAccount_svaWallet_kyc_identity_company_websiteUrl": "URL del tuo sito Internet",
+  "telephony_billingAccount_svaWallet_kyc_identity_submit_edit_label": "Conferma"
 }

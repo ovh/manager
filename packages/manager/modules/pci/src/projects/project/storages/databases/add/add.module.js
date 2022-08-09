@@ -15,6 +15,8 @@ import regionsList from '../../../../../components/project/regions-list';
 import inputRule from '../components/input-rule';
 import routing from './add.routing';
 
+import command from './command';
+
 const moduleName = 'ovhManagerPciStoragesDatabasesAdd';
 
 angular
@@ -31,6 +33,7 @@ angular
     plansList,
     regionsList,
     inputRule,
+    command,
   ])
   .config(routing)
   .component('pciProjectStoragesDatabasesAdd', component)

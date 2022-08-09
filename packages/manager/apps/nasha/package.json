@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nasha-app",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "private": true,
   "description": "NAS-HA standalone application.",
   "repository": {
@@ -24,8 +24,7 @@
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-nasha": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.1.0 || ^2.0.0",
-    "@ovh-ux/manager-preloader": "^1.0.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.11",
+    "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.4",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
@@ -58,7 +57,7 @@
     "flatpickr": "^4.6.3",
     "jquery": "^2.1.3",
     "lodash-es": "^4.17.15",
-    "ovh-api-services": "^14.0.6",
+    "ovh-api-services": "^15.0.0",
     "ovh-ui-kit-bs": "^4.2.0",
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",

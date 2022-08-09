@@ -1,3 +1,48 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.3.0...@ovh-ux/manager-nutanix@1.3.1) (2022-07-28)
+
+
+### Bug Fixes
+
+* **nutanix:** modify content of nutanix redeploy ([#7478](https://github.com/ovh/manager/issues/7478)) ([dce58f7](https://github.com/ovh/manager/commit/dce58f7cf881d968cf16b261ba5c9f09de44131c))
+
+
+
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.2.3...@ovh-ux/manager-nutanix@1.3.0) (2022-07-19)
+
+
+### Features
+
+* **dedicated.server:** hgv2 new upgrade flow ([#7428](https://github.com/ovh/manager/issues/7428)) ([154a89f](https://github.com/ovh/manager/commit/154a89f19b23253326bc0071dcc0853f0ee9f5d5))
+
+
+
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.2.2...@ovh-ux/manager-nutanix@1.2.3) (2022-07-18)
+
+
+### Bug Fixes
+
+* **dashboard:** validation for scaled nutanix cluster redeploy ([#6714](https://github.com/ovh/manager/issues/6714)) ([d5305ae](https://github.com/ovh/manager/commit/d5305ae951f3dfdd658f5c11025826f4245a82eb))
+
+
+
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.2.1...@ovh-ux/manager-nutanix@1.2.2) (2022-06-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1681] ([1aadfaa](https://github.com/ovh/manager/commit/1aadfaa39570cc1c99f27466c1aff51724a6e3e5))
+
+
+
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.2.0...@ovh-ux/manager-nutanix@1.2.1) (2022-06-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1681] ([d6d0f26](https://github.com/ovh/manager/commit/d6d0f2661141b8950a1bf5dae17e4a33c3a0ba12))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.1.0...@ovh-ux/manager-nutanix@1.2.0) (2022-06-16)
 
 

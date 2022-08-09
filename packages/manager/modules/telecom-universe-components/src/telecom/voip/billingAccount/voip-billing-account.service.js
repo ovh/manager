@@ -21,7 +21,7 @@ export default class {
    *  @methodOf managerApp.service:tucVoipBillingAccount
    *
    *  @description
-   *  Get all billingAccounts of connected user using API v7.
+   *  Get all billingAccounts of connected user.
    *
    *  @return {Promise} That return an Array of TucVoipBillingAccount instances.
    */

@@ -42,15 +42,7 @@ export default class TelephonyLinePhoneOrderChoiceCtrl {
       return this.fetchMerchandiseAvailable()
         .then((result) => {
           map(result, (phone) => {
-            angular.extend(phone, {
-              brand: phone.name,
-              url: TELEPHONY_LINE_PHONE_CHOICE[phone.name]
-                ? TELEPHONY_LINE_PHONE_CHOICE[phone.name].url
-                : null,
-              img: TELEPHONY_LINE_PHONE_CHOICE[phone.name]
-                ? TELEPHONY_LINE_PHONE_CHOICE[phone.name].img
-                : null,
-            });
+            this.phoneListMap(phone);
           });
           this.merchandise = result;
         })
@@ -71,6 +63,51 @@ export default class TelephonyLinePhoneOrderChoiceCtrl {
         this.isStepLoading = false;
       });
   }
+
+  hasSuffixVersion = function hasSuffixVersion(phone) {
+    return phone.name
+      ? phone.name.match(/.v[0-9]+$/)
+      : phone.brand.match(/.v[0-9]+$/);
+  };
+
+  removeSuffixName = function removeSuffixName(phone, hasSuffix) {
+    return phone.name
+      ? phone.name.slice(0, hasSuffix.index)
+      : phone.brand.slice(0, hasSuffix.index);
+  };
+
+  extendWithoutSuffix = function extendWithoutSuffix(phone) {
+    return angular.extend(phone, {
+      brand: phone.name ? phone.name : phone.brand,
+      url: TELEPHONY_LINE_PHONE_CHOICE[phone.name ? phone.name : phone.brand]
+        ? TELEPHONY_LINE_PHONE_CHOICE[phone.name ? phone.name : phone.brand].url
+        : null,
+      img: TELEPHONY_LINE_PHONE_CHOICE[phone.name ? phone.name : phone.brand]
+        ? TELEPHONY_LINE_PHONE_CHOICE[phone.name ? phone.name : phone.brand].img
+        : null,
+    });
+  };
+
+  extendWithSuffix = function extendWithSuffix(phone) {
+    return angular.extend(phone, {
+      brand: phone.name ? phone.name : phone.brand,
+      url: TELEPHONY_LINE_PHONE_CHOICE[phone.nameWithoutSuffix]
+        ? TELEPHONY_LINE_PHONE_CHOICE[phone.nameWithoutSuffix].url
+        : null,
+      img: TELEPHONY_LINE_PHONE_CHOICE[phone.nameWithoutSuffix]
+        ? TELEPHONY_LINE_PHONE_CHOICE[phone.nameWithoutSuffix].img
+        : null,
+    });
+  };
+
+  phoneListMap = function phoneListMap(phone) {
+    const hasSuffix = this.hasSuffixVersion(phone);
+    if (hasSuffix) {
+      set(phone, 'nameWithoutSuffix', this.removeSuffixName(phone, hasSuffix));
+      return this.extendWithSuffix(phone);
+    }
+    return this.extendWithoutSuffix(phone);
+  };
 
   fetchOfferPhones(offer) {
     return this.OvhApiTelephony.v6().getLineOfferPhones({
@@ -140,14 +177,7 @@ export default class TelephonyLinePhoneOrderChoiceCtrl {
                 : `${phone.fees.value} ${phone.fees.currencyCode}`,
           });
         }
-        angular.extend(phone, {
-          url: TELEPHONY_LINE_PHONE_CHOICE[phone.brand]
-            ? TELEPHONY_LINE_PHONE_CHOICE[phone.brand].url
-            : null,
-          img: TELEPHONY_LINE_PHONE_CHOICE[phone.brand]
-            ? TELEPHONY_LINE_PHONE_CHOICE[phone.brand].img
-            : null,
-        });
+        return this.phoneListMap(phone);
       }),
     );
   }

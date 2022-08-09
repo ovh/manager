@@ -145,6 +145,9 @@ function NavReshuffleContainer(): JSX.Element {
                 ? style.iframeOverlay_visible
                 : ''
             }`}
+            onClick={() =>
+              isNavigationSidebarOpened && closeNavigationSidebar()
+            }
           ></div>
           <Preloader visible={preloaderVisible}>
             <iframe

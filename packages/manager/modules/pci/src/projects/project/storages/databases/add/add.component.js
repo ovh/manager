@@ -1,5 +1,6 @@
 import controller from './add.controller';
 import template from './add.html';
+import './add.scss';
 
 export default {
   bindings: {
@@ -14,6 +15,7 @@ export default {
     privateNetworks: '<',
     trackDatabases: '<',
     user: '<',
+    goToCommand: '<',
     redirectTarget: '<',
   },
   controller,

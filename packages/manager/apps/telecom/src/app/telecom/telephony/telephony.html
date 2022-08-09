@@ -15,6 +15,20 @@
         data-on-sort-change="$ctrl.onSortChange($sort)"
         data-columns="$ctrl.columnsConfig"
     >
+        <oui-datagrid-topbar>
+            <oui-action-menu
+                text="{{:: 'telephony_table_header_action' | translate }}"
+            >
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToTelephonyRepayments()"
+                >
+                    <span
+                        data-translate="telephony_table_action_item_telephony_repayments"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid-topbar>
+
         <oui-datagrid-column
             data-title=":: 'telephony_billing_account_label' | translate"
             data-property="billingAccount"
