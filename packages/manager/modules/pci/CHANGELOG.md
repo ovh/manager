@@ -1,3 +1,12 @@
+## [5.85.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.85.1...@ovh-ux/manager-pci@5.85.2) (2022-08-09)
+
+
+### Bug Fixes
+
+* **users:** update horizon link for trusted zone ([#7716](https://github.com/ovh/manager/issues/7716)) ([b057881](https://github.com/ovh/manager/commit/b057881ccff85831a2b6eec50e36d9fc1303f861))
+
+
+
 ## [5.85.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.85.0...@ovh-ux/manager-pci@5.85.1) (2022-08-08)
 
 
