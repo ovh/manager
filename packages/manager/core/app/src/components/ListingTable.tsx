@@ -33,6 +33,7 @@ export type ListingTableProps<T> = {
   data?: ListingTableData<T>;
   state: ListingTableState;
   onChange: (state: ListingTableState) => void;
+  onColumnsChange: (columns: ListingColumn<T>[]) => void;
 };
 
 export default function ListingTable<T>({
@@ -40,6 +41,7 @@ export default function ListingTable<T>({
   data,
   state,
   onChange,
+  onColumnsChange,
 }: ListingTableProps<T>): JSX.Element {
   const { t } = useTranslation('common');
   const { currentPage, pageSize } = state;
@@ -60,8 +62,11 @@ export default function ListingTable<T>({
       );
     return data.items.map((item, index) => (
       <Tr key={index}>
-        {visibleColumns.map((column) => (
-          <Td key={`${column.key}-${index}`}>
+        {visibleColumns.map((column, colIndex) => (
+          <Td
+            key={`${column.key}-${index}`}
+            colSpan={colIndex + 1 === visibleColumns.length ? 2 : 1}
+          >
             <ListingTableCell item={item} column={column} />
           </Td>
         ))}
@@ -77,6 +82,16 @@ export default function ListingTable<T>({
             columns={columns}
             sort={state.sort}
             onColumnSort={(sort) => onChange({ ...state, sort })}
+            onColumnVisibilityChange={(column, isVisible) =>
+              onColumnsChange(
+                columns.map((c) => {
+                  if (c === column) {
+                    return { ...column, hidden: !isVisible };
+                  }
+                  return c;
+                }),
+              )
+            }
           />
           <Tbody>{cells}</Tbody>
         </Table>

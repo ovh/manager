@@ -15,8 +15,11 @@ export default function ListingSkeleton({
     () =>
       lineRange.map((row) => (
         <Tr key={`${row}`}>
-          {columnRange.map((col) => (
-            <Td key={`${col}-${row}`}>
+          {columnRange.map((col, colIndex) => (
+            <Td
+              key={`${col}-${row}`}
+              colSpan={colIndex + 1 === columnRange.length ? 2 : 1}
+            >
               <Skeleton isLoaded={false}>
                 <span>&nbsp;</span>
               </Skeleton>
