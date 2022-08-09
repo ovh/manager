@@ -46,7 +46,9 @@ export default function ListingFilterAdder<T>({
   return (
     <Popover isOpen={isOpen} onClose={() => setIsOpen(false)} placement="auto">
       <PopoverTrigger>
-        <Button onClick={() => setIsOpen(!isOpen)}>{t('filter')}</Button>
+        <Button onClick={() => setIsOpen(!isOpen)} variant="secondary">
+          {t('filter')}
+        </Button>
       </PopoverTrigger>
       <Portal>
         <PopoverContent>

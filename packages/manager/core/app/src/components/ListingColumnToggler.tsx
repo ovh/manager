@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Checkbox,
@@ -27,13 +27,16 @@ export default function ListingColumnToggler<T>({
   onColumnVisibilityChange,
 }: ListingColumnTogglerProps<T>): JSX.Element {
   const { t } = useTranslation('common');
-  const [isOpen, setIsOpen] = useState(false);
   const visibleColumns = columns.filter((c) => !c.hidden);
 
   return (
     <Popover placement="bottom">
       <PopoverTrigger>
-        <IconButton aria-label={t('columns')} icon={<SettingsIcon />} />
+        <IconButton
+          aria-label={t('columns')}
+          icon={<SettingsIcon />}
+          variant="secondary"
+        />
       </PopoverTrigger>
       <Portal>
         <PopoverContent>
