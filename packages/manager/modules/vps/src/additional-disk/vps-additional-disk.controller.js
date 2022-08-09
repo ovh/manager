@@ -6,11 +6,12 @@ import { VPS_DISK_STATES } from './vps-additional-disk.constants';
 
 export default class {
   /* @ngInject */
-  constructor($q, $translate, CucCloudMessage, VpsService) {
+  constructor($q, $translate, CucCloudMessage, VpsService, VpsHelperService) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.VpsService = VpsService;
+    this.VpsHelperService = VpsHelperService;
 
     this.loaders = {
       init: false,
@@ -73,5 +74,9 @@ export default class {
 
   canOrder() {
     return this.hasAdditionalDiskOption && isEmpty(this.additionalDisks);
+  }
+
+  canTerminateAdditionalDisk() {
+    return this.VpsHelperService.canOptionBeterminated(this.serviceInfo);
   }
 }
