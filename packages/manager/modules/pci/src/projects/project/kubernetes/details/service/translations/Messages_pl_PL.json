@@ -71,7 +71,7 @@
   "kube_service_access_security_oidc_menu_action_add_provider": "Skonfiguruj dostawcę OIDC",
   "kube_service_access_security_oidc_menu_action_set_provider": "Zmień dostawcę OIDC",
   "kube_service_access_security_oidc_menu_action_remove_provider": "Usuń dostawcę OIDC",
-  "kube_service_installation_information": "<a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">Tutorial<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> ten pomoże Ci w uruchomieniu infrastruktury Kubernetes Dashboard. Kubernetes Dashboard to aplikacja internetowa, która umożliwia zarządzanie klastrami. Jest utrzymywana przez społeczność Kubernetesa."
+  "kube_service_installation_information": "<a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">Tutorial<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> ten pomoże Ci w uruchomieniu infrastruktury Kubernetes Dashboard. Kubernetes Dashboard to aplikacja internetowa, która umożliwia zarządzanie klastrami. Jest utrzymywana przez społeczność Kubernetesa.",
   "kube_service_cluster_network_ovh_gateway": "Brama Internetowa OVHcloud",
   "kube_service_cluster_network_vrack_default_gateway": "Domyślna brama vRack (DHCP)",
   "kube_service_cluster_network_vrack_customer_gateway": "Brama: {{ vRackGatewayIp }}"

@@ -71,7 +71,7 @@
   "kube_service_access_security_oidc_menu_action_add_provider": "Configura un provider OIDC",
   "kube_service_access_security_oidc_menu_action_set_provider": "Modifica il provider OIDC",
   "kube_service_access_security_oidc_menu_action_remove_provider": "Elimina il provider OIDC",
-  "kube_service_installation_information": "<a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">Questa guida<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> mostra come installare Kubernetes Dashboard. Kubernetes Dashboard è un'applicazione Web che permette di gestire i cluster. È mantenuta dalla Community di Kubernetes."
+  "kube_service_installation_information": "<a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">Questa guida<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> mostra come installare Kubernetes Dashboard. Kubernetes Dashboard è un'applicazione Web che permette di gestire i cluster. È mantenuta dalla Community di Kubernetes.",
   "kube_service_cluster_network_ovh_gateway": "Gateway Internet di OVHcloud",
   "kube_service_cluster_network_vrack_default_gateway": "Gateway predefinito della vRACK (DHCP)",
   "kube_service_cluster_network_vrack_customer_gateway": "Gateway: {{ vRackGatewayIp }}"
