@@ -24,6 +24,7 @@ import Tag from './components/Tag';
 import Textarea from './components/Textarea';
 import Tile from './components/Tile';
 import Popover from './components/Popover';
+import Modal from './components/Modal';
 
 export default {
   colors,
@@ -49,10 +50,11 @@ export default {
     Textarea,
     Tile,
     Popover,
-  },
-  styles: {
-    global: globalStyle,
+    Modal,
   },
   radii,
   shadows,
+  styles: {
+    global: globalStyle,
+  },
 };
