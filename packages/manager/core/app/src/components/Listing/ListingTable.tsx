@@ -4,6 +4,7 @@ import {
   Flex,
   VStack,
   Spacer,
+  Spinner,
   Table,
   TableContainer,
   Tbody,
@@ -12,15 +13,14 @@ import {
 } from '@chakra-ui/react';
 
 import { ListingColumn } from './Listing';
-import ListingHead, { ListingHeadSorting } from './ListingHead';
-import ListingSkeleton from './ListingSkeleton';
+import ListingTableHead, { ListingTableHeadSorting } from './ListingTableHead';
 import ListingTableCell from './ListingTableCell';
 import Pagination from '@/components/Pagination';
 
 export type ListingTableState = {
   currentPage: number;
   pageSize: number;
-  sort?: ListingHeadSorting;
+  sort?: ListingTableHeadSorting;
 };
 
 export type ListingTableData<T> = {
@@ -50,12 +50,16 @@ export default function ListingTable<T>({
   const cells = useMemo(() => {
     if (!data?.items)
       return (
-        <ListingSkeleton columnsCount={visibleColumns.length} linesCount={10} />
+        <Tr>
+          <Td colSpan={columns.length + 1} textAlign="center">
+            <Spinner m={4} size="lg" />
+          </Td>
+        </Tr>
       );
     if (data.items.length === 0)
       return (
         <Tr>
-          <Td colSpan={columns.length} textAlign="center">
+          <Td colSpan={columns.length + 1} textAlign="center">
             {t('no_results')}
           </Td>
         </Tr>
@@ -78,7 +82,7 @@ export default function ListingTable<T>({
     <VStack align="left">
       <TableContainer>
         <Table>
-          <ListingHead
+          <ListingTableHead
             columns={columns}
             sort={state.sort}
             onColumnSort={(sort) => onChange({ ...state, sort })}

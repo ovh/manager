@@ -4,27 +4,27 @@ import { SortDownIcon, SortUpIcon } from '@ovh-ux/manager-themes';
 import { ListingColumn } from './Listing';
 import ListingColumnToggler from './ListingColumnToggler';
 
-export type ListingHeadSorting = {
+export type ListingTableHeadSorting = {
   key?: string;
   reverse?: boolean;
 };
 
-export type ListingHeadProps<T> = {
+export type ListingTableHeadProps<T> = {
   columns: ListingColumn<T>[];
-  sort: ListingHeadSorting;
-  onColumnSort: (sort: ListingHeadSorting) => void;
+  sort: ListingTableHeadSorting;
+  onColumnSort: (sort: ListingTableHeadSorting) => void;
   onColumnVisibilityChange: (
     column: ListingColumn<T>,
     isVisible: boolean,
   ) => void;
 };
 
-export default function ListingHead<T>({
+export default function ListingTableHead<T>({
   columns = [],
   sort = null,
   onColumnSort,
   onColumnVisibilityChange,
-}: ListingHeadProps<T>): JSX.Element {
+}: ListingTableHeadProps<T>): JSX.Element {
   const visibleColumns = columns.filter((c) => !c.hidden);
   return (
     <Thead>

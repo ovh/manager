@@ -24,8 +24,10 @@ export default function SearchInput({
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          onSubmit(value);
-          setValue('');
+          if (value) {
+            onSubmit(value);
+            setValue('');
+          }
         }}
       >
         <Input
