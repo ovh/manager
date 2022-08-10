@@ -22,7 +22,7 @@ function makeRoute({
 }) {
   const { hash, path } = appConfig.container;
   const normalizedHash = (hash || '').replace(/^\//, '');
-  const target = [path, normalizedHash, '*'].join('/');
+  const target = [path || id, normalizedHash, '*'].filter((i) => i).join('/');
   return (
     <Route
       key={id}
