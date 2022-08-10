@@ -215,15 +215,6 @@ export default class {
       this.loading.redirection = false;
       this.$timeout.cancel(this.redirectionTimeout);
     }
-
-    this.atInternet.trackOrder({
-      name: `[sql-public]::${this.currentOrder.version.value}`,
-      page: 'web::payment-pending',
-      orderId: this.purchaseOrder.orderId,
-      priceTaxFree: this.purchaseOrder.prices.withoutTax.value,
-      price: this.purchaseOrder.prices.withTax.value,
-      status: 1,
-    });
     this.$window.open(this.purchaseOrder.url);
   }
 }

@@ -1,4 +1,4 @@
-import { MVTestingData, MVTestingVariables } from './config';
+import { LegacyTrackingData } from './track';
 
 declare global {
   interface Window {
@@ -15,8 +15,8 @@ export interface ATInternetTagOptions {
   secure: boolean; // force HTTPS,
   disableCookie: boolean;
   mvTesting?: {
-    set: (params: MVTestingData) => void;
-    add: (params: MVTestingVariables) => void;
+    set: (params: LegacyTrackingData) => void;
+    add: (params: LegacyTrackingData) => void;
   };
   [key: string]: any;
 }

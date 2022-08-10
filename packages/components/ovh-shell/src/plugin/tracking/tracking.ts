@@ -1,11 +1,6 @@
 import { Region } from '@ovh-ux/manager-config/types/environment/region.enum';
 import { User } from '@ovh-ux/manager-config/types/environment/user';
 import OvhAtInternet from '@ovh-ux/ovh-at-internet';
-import {
-  levelKey,
-  OrderData,
-  PageData,
-} from '@ovh-ux/ovh-at-internet/types/config';
 import { CUSTOM_VARIABLES } from './config.constants';
 
 export type TrackingPluginType<T extends TrackingPlugin> = {
@@ -18,7 +13,11 @@ export type RegionsTrackingConfig = {
 
 export interface TrackingConfig {
   config: {
-    [key: levelKey<number>]: string;
+    level1: string;
+    level2: string;
+    level3?: string;
+    level4?: string;
+    level5?: string;
   };
 }
 
@@ -75,14 +74,16 @@ export class TrackingPlugin extends OvhAtInternet {
       ...(CUSTOM_VARIABLES as Record<string, unknown>),
       ...(this.config ? this.getConfigByRegion(region) : {}),
       ...(referrerSite ? { referrerSite } : {}),
-    } as PageData;
+    };
 
     const defaultConfig = {
       ...data,
       countryCode: user?.country,
       currencyCode: user?.currency && user?.currency.code,
       visitorId: user?.customerCode,
-    } as OrderData;
+      legalform: user?.legalform,
+      subsidiary: user?.ovhSubsidiary,
+    };
 
     this.setDefaults(defaultConfig);
   }
