@@ -1,15 +1,13 @@
 import React, { Suspense } from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-// import { useEnvironment } from '../core';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 const Onboarding = React.lazy(() => import('./Onboarding'));
 const Listing = React.lazy(() => import('./Listing'));
 const Dashboard = React.lazy(() => import('./Dashboard'));
 
 export default function App(): JSX.Element {
-  // const env = useEnvironment();
   return (
-    <HashRouter>
+    <>
       <div>Breadcrumb</div>
       <Routes>
         <Route path="nutanix">
@@ -44,6 +42,6 @@ export default function App(): JSX.Element {
         <Route index element={<Navigate to="/nutanix" />} />
         <Route path="*" element={<div>404 page</div>} />
       </Routes>
-    </HashRouter>
+    </>
   );
 }
