@@ -44,11 +44,12 @@ export default /* @ngInject */ ($stateProvider) => {
           PciStoragesObjectStorageService,
           projectId,
           user,
-        ) => (regionId) =>
+        ) => (regionId, serviceType) =>
           PciStoragesObjectStorageService.downloadRclone(
             projectId,
             user,
             regionId,
+            serviceType,
           ),
         checkGlobalRegionCallBack: /* @ngInject */ () => () => null,
       },

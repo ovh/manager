@@ -32,10 +32,29 @@
                 ></span>
             </a>
         </p>
-
+        <oui-field
+            label="{{:: 'pci_projects_project_users_download-rclone_file_type_label' | translate }}"
+        >
+            <oui-radio
+                data-model="$ctrl.fileType"
+                data-name="swiftFileType"
+                data-value="$ctrl.downloadFileType.SWIFT"
+                inline
+            >
+                <span data-ng-bind="$ctrl.downloadFileType.SWIFT"></span>
+            </oui-radio>
+            <oui-radio
+                data-model="$ctrl.fileType"
+                data-name="s3FileType"
+                data-on-change="$ctrl.onChange($ctrl.addExistingUser)"
+                data-value="$ctrl.downloadFileType.S3"
+                inline
+            >
+                <span data-ng-bind="$ctrl.downloadFileType.S3"></span>
+            </oui-radio>
+        </oui-field>
         <oui-field
             data-label="{{:: (!$ctrl.hasGlobalRegions ? 'pci_projects_project_users_download-rclone_region_label' : 'pci_projects_project_users_download-rclone_region_label_global') | translate }}"
-            data-help-text="{{ :: 'pci_projects_project_users_download-rclone_region_help' | translate }}"
             data-size="xl"
         >
             <oui-select
@@ -45,6 +64,12 @@
                 data-match="label"
             >
             </oui-select>
+            <small>
+                <span
+                    data-ng-if="$ctrl.fileType === $ctrl.downloadFileType.SWIFT"
+                    data-translate="pci_projects_project_users_download-rclone_region_help"
+                ></span>
+            </small>
         </oui-field>
     </oui-modal>
 </form>

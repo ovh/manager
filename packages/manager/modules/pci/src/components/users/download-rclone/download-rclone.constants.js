@@ -13,6 +13,14 @@ export const DOWNLOAD_TYPE = 'text/plain;charset=utf-8';
 export const DOWNLOAD_RCLONE_FILENAME = 'rclone.conf';
 export const DOWNLOAD_RCLONE_FILETYPE = 'text/plain;charset=utf-8';
 export const REGION_CAPACITY = 'storage';
+export const DOWNLOAD_FILETYPE = {
+  SWIFT: 'Swift',
+  S3: 'S3',
+};
+export const RCLONE_SERVICE_TYPE = {
+  SWIFT: 'storage',
+  S3: 'storage-s3',
+};
 
 export default {
   DOWNLOAD_FILENAME,
@@ -21,4 +29,6 @@ export default {
   DOWNLOAD_RCLONE_FILENAME,
   DOWNLOAD_RCLONE_FILETYPE,
   REGION_CAPACITY,
+  DOWNLOAD_FILETYPE,
+  RCLONE_SERVICE_TYPE,
 };

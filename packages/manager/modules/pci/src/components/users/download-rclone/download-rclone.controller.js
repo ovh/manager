@@ -1,6 +1,10 @@
 import first from 'lodash/first';
 import get from 'lodash/get';
 import map from 'lodash/map';
+import {
+  DOWNLOAD_FILETYPE,
+  RCLONE_SERVICE_TYPE,
+} from './download-rclone.constants';
 
 const { saveAs } = require('file-saver');
 
@@ -10,10 +14,12 @@ export default class PciUsersDownloadRcloneController {
     this.$compile = $compile;
     this.$translate = $translate;
     this.ovhManagerRegionService = ovhManagerRegionService;
+    this.downloadFileType = DOWNLOAD_FILETYPE;
   }
 
   $onInit() {
     this.isLoading = false;
+    this.fileType = DOWNLOAD_FILETYPE.SWIFT;
     this.regions = map(this.regions, (region) => ({
       id: region,
       label: this.ovhManagerRegionService.getTranslatedMicroRegion(region),
@@ -24,7 +30,10 @@ export default class PciUsersDownloadRcloneController {
 
   downloadRclone() {
     this.isLoading = true;
-    return this.downloadRCloneConfig(this.region.id)
+    this.serviceType =
+      RCLONE_SERVICE_TYPE[this.fileType?.toUpperCase()] ||
+      RCLONE_SERVICE_TYPE.S3;
+    return this.downloadRCloneConfig(this.region.id, this.serviceType)
       .then(({ content }) => {
         const data = new Blob([content], { type: this.file.fileType });
         saveAs(data, this.file.fileName);
