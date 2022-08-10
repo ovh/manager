@@ -15,5 +15,6 @@ export default {
     trackProjectCreationError: '<',
     steps: '<',
     defaultPaymentMethod: '<',
+    trackClick: '<',
   },
 };
