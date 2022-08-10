@@ -1,0 +1,10 @@
+{
+    "tab_general": "Informations générales",
+    "tile_general_title": "Informations générales",
+    "tile_licenses_title": "Licences Nutanix",
+    "tile_billing_title": "Abonnement",
+    "tile_supportl_title": "Support",
+    "tile_network_title": "Réseau du cluster",
+    "tile_hardware_title": "Hardware",
+    "tab_nodes": "Nodes"
+}

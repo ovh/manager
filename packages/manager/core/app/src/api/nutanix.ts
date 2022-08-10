@@ -106,4 +106,10 @@ export async function fetchNutanixNodeMetaInfos(
   return response.data;
 }
 
+export async function getNutanix(serviceName: string): Promise<Nutanix> {
+  const response = await apiClient.v6.get(`/nutanix/${serviceName}`);
+  return response.json();
+}
+
+
 export default Nutanix;
