@@ -5,8 +5,10 @@ import legacy from '@vitejs/plugin-legacy';
 
 import viteOvhDevServerPlugin from './plugin/dev-server.js';
 
+const isContainerApp = process.cwd().endsWith('container');
+
 export default {
-  base: './',
+  base: isContainerApp ? './' : '/app/',
   root: resolve(process.cwd(), 'src'),
   clearScreen: false,
   publicDir: 'public',
@@ -20,7 +22,7 @@ export default {
     legacy({
       targets: ['defaults'],
     }),
-    viteOvhDevServerPlugin(),
+    viteOvhDevServerPlugin(isContainerApp),
   ],
   css: {
     preprocessorOptions: {

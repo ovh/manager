@@ -5,7 +5,7 @@ import { env } from 'process';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { proxy, sso as Sso } from '@ovh-ux/manager-dev-server-config';
 
-export default function viteOvhDevServerPlugin() {
+export default function viteOvhDevServerPlugin(isContainerApp) {
   const region = process.env.REGION || 'EU';
   return {
     name: 'vite-ovh-dev-server',
@@ -13,31 +13,33 @@ export default function viteOvhDevServerPlugin() {
       const sso = new Sso(region);
       const app = express();
 
-      if (process.env.APP) {
-        // serve application's dist locally
-        const appDistPath = path.join(
-          process.cwd(),
-          '../',
-          process.env.APP,
-          'dist',
-        );
-        const appEntryPoint = path.join(appDistPath, 'index.html');
-        if (!fs.existsSync(appEntryPoint)) {
-          app.all('/app', (req, res) => {
-            res.status(404).send('Application not found');
-          });
+      if (isContainerApp) {
+        if (process.env.APP) {
+          // serve application's dist locally
+          const appDistPath = path.join(
+            process.cwd(),
+            '../../core/',
+            process.env.APP,
+            'dist',
+          );
+          const appEntryPoint = path.join(appDistPath, 'index.html');
+          if (!fs.existsSync(appEntryPoint)) {
+            app.all('/app', (req, res) => {
+              res.status(404).send('Application not found');
+            });
+          } else {
+            app.use('/app', express.static(appDistPath));
+          }
         } else {
-          app.use('/app', express.static(appDistPath));
+          // proxy to application dev server
+          app.use(
+            '/app',
+            createProxyMiddleware({
+              target: 'http://localhost:9001/',
+              changeOrigin: true,
+            }),
+          );
         }
-      } else {
-        // proxy to application dev server
-        app.use(
-          '/app',
-          createProxyMiddleware({
-            target: 'http://localhost:9001/',
-            changeOrigin: true,
-          }),
-        );
       }
 
       app.get('/auth', sso.auth.bind(sso));
