@@ -23,8 +23,8 @@ export default function DetailsPage(): JSX.Element {
     <Tabs>
       <TabList>
         {tabs.map((tab) => (
-          <Tab key={tab.name}>
-            <Link to={tab.to}>{tab.title}</Link>
+          <Tab key={tab.name} as="a">
+            {tab.title}
           </Tab>
         ))}
       </TabList>
