@@ -6,8 +6,6 @@
             data-ng-attr-name="{{:: $ctrl.SECRET_KEY_INPUT_ID}}"
             data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput? 'text' : 'password' }}"
             data-ng-value="$ctrl.fieldSecretKeyValue"
-            data-ng-click="$ctrl.onClipboardClick()"
-            data-oui-tooltip="{{ $ctrl.model.tooltipText }}"
             readonly
         />
         <button
@@ -28,6 +26,8 @@
             data-ng-if="$ctrl.model.clipboard"
             data-ng-attr-id="{{:: $ctrl.SECRET_KEY_CLIPBOARD_BTN_ID}}"
             data-clipboard-text="{{:: $ctrl.fieldSecretKeyValue}}"
+            data-oui-tooltip="{{ $ctrl.model.tooltipText }}"
+            data-ng-click="$ctrl.onClipboardClick()"
         >
             <span class="oui-icon oui-icon-copy" aria-hidden="true"></span>
         </button>
