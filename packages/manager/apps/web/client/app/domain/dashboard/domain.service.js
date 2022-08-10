@@ -1439,16 +1439,6 @@ angular.module('services').service(
     }
 
     /**
-     *
-     * @param {string} serviceName
-     */
-    getOwoFields(serviceName) {
-      return this.OvhHttp.get(`/domain/${serviceName}/owo`, {
-        rootPath: 'apiv6',
-      });
-    }
-
-    /**
      * Get DNS Anycast details
      * @param {string} serviceName
      */
@@ -1529,12 +1519,6 @@ angular.module('services').service(
 
       if (indexOf(options, 'dnssec') !== -1) {
         queue.push(this.getDnssecStatus(serviceName).catch(catchErrorAndGoOn));
-      } else {
-        queue.push(null);
-      }
-
-      if (indexOf(options, 'owo') !== -1) {
-        queue.push(this.getOwoFields(serviceName).catch(catchErrorAndGoOn));
       } else {
         queue.push(null);
       }
