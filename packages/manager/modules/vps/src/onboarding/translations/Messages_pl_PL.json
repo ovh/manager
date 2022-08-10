@@ -15,5 +15,7 @@
   "vps_onboarding_us_guide2_title": "How to Secure a VPS",
   "vps_onboarding_us_guide2_description": "Learn the basics of securing your VPS",
   "vps_onboarding_us_guide3_title": "How to Use Snapshots on a VPS",
-  "vps_onboarding_us_guide3_description": "Learn about taking snapshots in the OVHcloud Control Panel"
+  "vps_onboarding_us_guide3_description": "Learn about taking snapshots in the OVHcloud Control Panel",
+  "vps_onboarding_description_3_us": "Nielimitowany transfer i przepustowość do 2 Gbps",
+  "vps_onboarding_traffic_infos": "Dla VPS hostowanych w Sydney i Singapurze: Transfer 1 TB/m-c w pakiecie Starter i Value, 2 TB/m-c w pakiecie Essential, 3 TB/m-c w pakiecie Comfort i 4 TB/m-c w pakiecie Elite. Przepustowość zostaje zmniejszona do 10 Mbps po przekroczeniu limitu miesięcznego."
 }
