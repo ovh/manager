@@ -9,7 +9,7 @@ import onboarding from './onboarding';
 import add from './add';
 import component from './public-gateways.component';
 import routing from './public-gateways.routing';
-import service from './public-gateways.service';
+import pciProjectGatewayService from './service';
 import deletePublicGateway from './delete';
 import editGateway from './edit';
 
@@ -26,10 +26,10 @@ angular
     deletePublicGateway,
     editGateway,
     add,
+    pciProjectGatewayService,
   ])
   .config(routing)
   .component('pciProjectPublicGateways', component)
-  .service('PciPublicGatewaysService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
