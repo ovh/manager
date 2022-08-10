@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.3.1...@ovh-ux/shell@1.4.0) (2022-08-10)
+
+
+### Features
+
+* **at-internet:** update tracking ([91a9867](https://github.com/ovh/manager/commit/91a9867d7a37111a13e6f3f68695f316fa06ca76))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.3.0...@ovh-ux/shell@1.3.1) (2022-07-27)
 
 
