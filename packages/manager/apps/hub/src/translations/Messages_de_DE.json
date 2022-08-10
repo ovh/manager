@@ -1,8 +1,4 @@
 {
   "manager_hub_notification_warning": "{{ content }}",
-  "manager_hub_skip_to_main_content": "Zum Hauptinhalt",
-  "manager_hub_domain_repricing_part_1": "Änderung der Preise für Domainnamen",
-  "manager_hub_domain_repricing_part_2": "Ab dem 15. August 2022 werden die Preise für die Verlängerung Ihrer Domainnamen angepasst.",
-  "manager_hub_domain_repricing_part_3": "Wenn Sie von den derzeit geltenden Preisen profitieren möchten, dann verlängern Sie bitte Ihre Domains vor diesem Datum.",
-  "manager_hub_domain_repricing_part_4": "Die betroffenen Domainendungen und die neuen Preise finden Sie in der E-Mail vom 13. Juli."
+  "manager_hub_skip_to_main_content": "Zum Hauptinhalt"
 }

@@ -1,8 +1,4 @@
 {
   "manager_hub_notification_warning": "{{ content }}",
-  "manager_hub_skip_to_main_content": "Skip to main content",
-  "manager_hub_domain_repricing_part_1": "Prices for your domain names are changing",
-  "manager_hub_domain_repricing_part_2": "From 15 August 2022, the renewal prices for your domain names will change.",
-  "manager_hub_domain_repricing_part_3": "Please remember to renew your domains before this date to get our current, lower prices.",
-  "manager_hub_domain_repricing_part_4": "You can find the list of relevant extensions and new prices in the email sent to you on 13 July."
+  "manager_hub_skip_to_main_content": "Skip to main content"
 }
