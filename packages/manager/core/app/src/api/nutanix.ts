@@ -111,5 +111,9 @@ export async function getNutanix(serviceName: string): Promise<Nutanix> {
   return response.json();
 }
 
+export async function getServer(nodeId: number): Promise<any> {
+  const response = await apiClient.aapi.get(`/sws/dedicated/server/${nodeId}`);
+  return response.json();
+}
 
 export default Nutanix;
