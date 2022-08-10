@@ -3,5 +3,5 @@
   "doubleauth_modal_alert_message": "Uwaga: nie dysponujesz już jednorazowym kodem zapasowym ",
   "doubleauth_modal_alert_message_1": "Uwaga: dysponujesz tylko jednym jednorazowym kodem zapasowym.",
   "doubleauth_modal_alert_message_other": "Uwaga: dysponujesz tylko liczbą <strong>{{t0}}</strong> jednorazowych kodów zapasowych.",
-  "doubleauth_modal_alert_message_regenerate": "Voulez-vous regénérer un nouveau jeu de codes de secours ?"
+  "doubleauth_modal_alert_message_regenerate": "Czy chcesz ponownie wygenerować nowy zestaw kodów zapasowych?"
 }

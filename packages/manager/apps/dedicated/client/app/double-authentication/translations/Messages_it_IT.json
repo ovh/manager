@@ -3,5 +3,5 @@
   "doubleauth_modal_alert_message": "Attenzione: non hai il codice di sicurezza temporaneo.",
   "doubleauth_modal_alert_message_1": "Attenzione: hai solo un codice di sicurezza temporaneo.",
   "doubleauth_modal_alert_message_other": "Attenzione: hai solo <strong>{{t0}}</strong> codici di sicurezza temporanei.",
-  "doubleauth_modal_alert_message_regenerate": "Vuoi rigenerare un nuovo codice di sicurezza?"
+  "doubleauth_modal_alert_message_regenerate": "Vuoi rigenerare un nuovo set di codici di sicurezza?"
 }

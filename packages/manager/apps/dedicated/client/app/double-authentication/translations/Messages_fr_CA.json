@@ -1,6 +1,6 @@
 {
   "doubleauth_modal_alert_title": "Code de secours",
-  "doubleauth_modal_alert_message": "Attention: vous ne disposez plus de code de secours à usage unique.",
+  "doubleauth_modal_alert_message": "Attention vous ne disposez plus de code de secours à usage unique.",
   "doubleauth_modal_alert_message_1": "Attention vous ne disposez plus que d'un seul code de secours à usage unique.",
   "doubleauth_modal_alert_message_other": "Attention vous ne disposez plus que de <strong>{{t0}}</strong> codes de secours à usage unique.",
   "doubleauth_modal_alert_message_regenerate": "Voulez-vous regénérer un nouveau jeu de codes de secours ?"
