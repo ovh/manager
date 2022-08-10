@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-shell-tracking",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": "true",
   "description": "ATInternet tracking library wrapper for AngularJS",
   "keywords": [

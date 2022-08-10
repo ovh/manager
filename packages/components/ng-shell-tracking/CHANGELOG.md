@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.1.1...@ovh-ux/ng-shell-tracking@0.1.2) (2022-08-10)
+
+
+### Bug Fixes
+
+* **ng-shell-tracking:** remove trackOrder deprecated method ([222cb68](https://github.com/ovh/manager/commit/222cb68c44b922454f7aa48ad061f4e6b2f72a7a))
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.1.0...@ovh-ux/ng-shell-tracking@0.1.1) (2022-06-17)
 
 

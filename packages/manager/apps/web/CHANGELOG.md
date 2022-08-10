@@ -1,3 +1,12 @@
+## [16.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.15.2...@ovh-ux/manager-web@16.15.3) (2022-08-10)
+
+
+### Bug Fixes
+
+* remove deprecated trackOrder calls ([17e0859](https://github.com/ovh/manager/commit/17e08598b9c27e67a7314864c86c2557158f889b))
+
+
+
 ## [16.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.15.1...@ovh-ux/manager-web@16.15.2) (2022-08-01)
 
 

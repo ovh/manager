@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.3.2...@ovh-ux/manager-at-internet-configuration@1.4.0) (2022-08-10)
+
+
+### Features
+
+* **at-internet-configuration:** add legalform & subsidiary ([7f7c56c](https://github.com/ovh/manager/commit/7f7c56c5a53a2377bd1b4ce7d997c6b3dc44a345))
+
+
+
 ## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.3.1...@ovh-ux/manager-at-internet-configuration@1.3.2) (2022-06-14)
 
 
