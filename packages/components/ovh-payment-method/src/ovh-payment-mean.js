@@ -1,16 +1,10 @@
 import { flatten, has } from 'lodash-es';
-
-import { AvailablePaymentMean } from './models/payment-mean/available-payment-mean.class';
 import { PaymentMeanBankAccount } from './models/payment-mean/payment-mean-bank-account.class';
 import { PaymentMeanCreditCard } from './models/payment-mean/payment-mean-credit-card.class';
 import { PaymentMeanDeferredPaymentAccount } from './models/payment-mean/payment-mean-deferred-payment-account.class';
 import { PaymentMeanPaypal } from './models/payment-mean/payment-mean-paypal.class';
 
-import {
-  AVAILABLE_PAYMENT_MEAN_TYPES,
-  DEFAULT_GET_AVAILABLE_OPTIONS,
-  DEFAULT_GET_OPTIONS,
-} from './constants';
+import { AVAILABLE_PAYMENT_MEAN_TYPES, DEFAULT_GET_OPTIONS } from './constants';
 
 import { PAYMENT_MEAN_TYPE_ENUM } from './enums/payment-mean.enum';
 
@@ -24,46 +18,6 @@ export const usePaymentMean = ({ reketInstance, region }) => {
     paymentMeanError.data = errorObject.data;
     return paymentMeanError;
   };
-
-  /*= ==============================================
-  =            Available Payment Means            =
-  =============================================== */
-
-  const getAvailablePaymentMeans = (
-    options = DEFAULT_GET_AVAILABLE_OPTIONS,
-  ) => {
-    return usedReketInstance
-      .get('/me/availableAutomaticPaymentMeans')
-      .then((availableAutomaticPaymentMeans) => {
-        const availablePaymentMeansInfos =
-          AVAILABLE_PAYMENT_MEAN_TYPES[usedRegion] || [];
-
-        return availablePaymentMeansInfos
-          .filter(({ value, registerable }) => {
-            if (!availableAutomaticPaymentMeans[value]) {
-              return false;
-            }
-
-            if (options.onlyRegisterable && !registerable) {
-              return false;
-            }
-
-            return true;
-          })
-          .map(({ value, registerable }) => {
-            const availablePaymentMean = new AvailablePaymentMean({
-              value,
-              registerable,
-            });
-
-            return options.transform
-              ? availablePaymentMean.toAvailablePaymentMethod()
-              : availablePaymentMean;
-          });
-      });
-  };
-
-  /* -----  End of Available Payment Means  ------*/
 
   /*= ===============================================
   =            Actions on payment means            =
@@ -283,7 +237,6 @@ export const usePaymentMean = ({ reketInstance, region }) => {
     addPaymentMean,
     editPaymentMean,
     deletePaymentMean,
-    getAvailablePaymentMeans,
     getPaymentMeans,
     setDefaultPaymentMean,
   };
