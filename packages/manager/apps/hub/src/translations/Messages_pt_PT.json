@@ -1,8 +1,4 @@
 {
   "manager_hub_notification_warning": "{{ content }}",
-  "manager_hub_skip_to_main_content": "Aceder ao conteúdo principal",
-  "manager_hub_domain_repricing_part_1": "Atualização de preços para domínios",
-  "manager_hub_domain_repricing_part_2": "A partir de 15 de agosto de 2022, os preços de renovação dos seus nomes de domínio serão atualizados.",
-  "manager_hub_domain_repricing_part_3": "Considere a possibilidade de renovar os seus domínios antes desta data para poder usufruir dos nossos preços atuais.",
-  "manager_hub_domain_repricing_part_4": "Consulte a lista das extensões em causa assim como os novos preços no e-mail que lhe foi enviado a 13 de julho."
+  "manager_hub_skip_to_main_content": "Aceder ao conteúdo principal"
 }
