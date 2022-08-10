@@ -15,5 +15,7 @@
   "vps_onboarding_us_guide2_title": "How to Secure a VPS",
   "vps_onboarding_us_guide2_description": "Learn the basics of securing your VPS",
   "vps_onboarding_us_guide3_title": "How to Use Snapshots on a VPS",
-  "vps_onboarding_us_guide3_description": "Learn about taking snapshots in the OVHcloud Control Panel"
+  "vps_onboarding_us_guide3_description": "Learn about taking snapshots in the OVHcloud Control Panel",
+  "vps_onboarding_description_3_us": "Traffico illimitato e banda passante fino a 2 Gbps",
+  "vps_onboarding_traffic_infos": "Per i VPS ospitati a Sydney e Singapore: 1 TB di traffico/mese per le gamme Starter e Value, 2 TB/mese per la gamma Essential, 3 TB/mese per la gamma Comfort e 4 TB/mese per la gamma Élite. La banda passante viene ridotta a 10 Mbps una volta superata la quota mensile."
 }
