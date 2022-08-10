@@ -6,6 +6,20 @@ import { clientNavigation } from '../plugin/navigation';
 import { exposeTrackingAPI } from '../plugin/tracking';
 
 export default function exposeApi(shellClient: ShellClient) {
+  const notifyHashChange = () => {
+    if (window.parent !== window.self) {
+      shellClient.invokePluginMethod({
+        plugin: 'routing',
+        method: 'onHashChange',
+        args: [
+          {
+            hash: window.location.hash,
+            path: window.location.pathname,
+          },
+        ],
+      });
+    }
+  };
   return {
     environment: {
       getEnvironment: () =>
@@ -44,21 +58,8 @@ export default function exposeApi(shellClient: ShellClient) {
         }),
     },
     routing: {
-      init: () =>
-        window.addEventListener('hashchange', () => {
-          if (window.parent !== window.self) {
-            shellClient.invokePluginMethod({
-              plugin: 'routing',
-              method: 'onHashChange',
-              args: [
-                {
-                  hash: window.location.hash,
-                  path: window.location.pathname,
-                },
-              ],
-            });
-          }
-        }),
+      init: () => window.addEventListener('hashchange', notifyHashChange),
+      onHashChange: notifyHashChange,
     },
     auth: clientAuth(shellClient),
     ux: {
