@@ -15,5 +15,7 @@
   "vps_onboarding_us_guide2_title": "How to secure a VPS",
   "vps_onboarding_us_guide2_description": "Learn the basics of securing your VPS",
   "vps_onboarding_us_guide3_title": "How to use snapshots on a VPS",
-  "vps_onboarding_us_guide3_description": "Learn about taking snapshots in the OVHcloud Control Panel"
+  "vps_onboarding_us_guide3_description": "Learn about taking snapshots in the OVHcloud Control Panel",
+  "vps_onboarding_description_3_us": "Unbegrenzter Traffic und Bandbreite mit bis zu 2 Gbit/s",
+  "vps_onboarding_traffic_infos": "Für VPS, die in Sydney und Singapur gehostet werden: 1 TB Traffic/Monat für die VPS-Reihen „Starter\" und „Value\", 2 TB/Monat für die VPS-Reihe „Essential\", 3 TB/Monat für die VPS-Reihe „Comfort\" und 4 TB/Monat für die VPS-Reihe „Elite\". Die Bandbreite wird auf 10Mbps reduziert, sobald das monatliche Kontingent überschritten ist."
 }
