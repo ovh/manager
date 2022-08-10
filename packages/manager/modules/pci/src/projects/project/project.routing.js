@@ -139,6 +139,13 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
+      trackPage: /* @ngInject */ (atInternet) => (hit) => {
+        return atInternet.trackPage({
+          name: hit,
+          type: 'action',
+        });
+      },
+
       onCreateProjectClick: /* @ngInject */ (trackClick, goToCreateProject) => (
         hit,
       ) => {

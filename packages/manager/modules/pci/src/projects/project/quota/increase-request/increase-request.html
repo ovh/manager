@@ -3,7 +3,7 @@
         data-heading="{{ 'pci_projects_project_quota_increase_title' | translate }}"
         data-primary-action="$ctrl.increaseQuota()"
         data-primary-label="{{:: 'pci_projects_project_quota_increase_submit_label' | translate }}"
-        data-primary-disabled="$ctrl.isLoading"
+        data-primary-disabled="$ctrl.isLoading || $ctrl.isQuotaIncreaseConfirmButtonDisabled()"
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{:: 'pci_projects_project_quota_increase_cancel_label' | translate }}"
         data-on-dismiss="$ctrl.goBack()"

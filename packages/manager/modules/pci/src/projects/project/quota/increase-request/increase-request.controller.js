@@ -1,13 +1,16 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 import isNil from 'lodash/isNil';
-import { ISSUE_TYPE_IDS, QUOTA_INCREASE_MODES } from './increase.constants';
+import {
+  ISSUE_TYPE_IDS,
+  QUOTA_INCREASE_MODES,
+  TRACK,
+} from './increase.constants';
 
 export default class PciProjectQuotaIncreaseController {
   /* @ngInject */
   constructor(
     $translate,
-    atInternet,
     coreURLBuilder,
     pciProjectQuotaIncrease,
     OvhApiSupport,
@@ -15,7 +18,6 @@ export default class PciProjectQuotaIncreaseController {
     PciProject,
   ) {
     this.$translate = $translate;
-    this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
     this.pciProjectQuotaIncrease = pciProjectQuotaIncrease;
     this.OvhApiSupport = OvhApiSupport;
@@ -46,18 +48,66 @@ export default class PciProjectQuotaIncreaseController {
     );
     this.QUOTA_INCREASE_MODES = QUOTA_INCREASE_MODES;
     this.projectDescription = this.PciProject.getProjectInfo().description;
+    this.trackQuotaIncreasePopupDisplay();
+  }
+
+  isQuotaIncreaseConfirmButtonDisabled() {
+    if (
+      this.mode === QUOTA_INCREASE_MODES.BUY_CREDITS &&
+      this.serviceOptions.length > 0
+    ) {
+      return !(this.serviceOption && this.serviceOption.planCode);
+    }
+
+    if (this.mode === QUOTA_INCREASE_MODES.CONTACT_SUPPORT) {
+      return !this.issueTypeDescription;
+    }
+    return true;
+  }
+
+  trackQuotaIncreasePopupDisplay() {
+    if (this.mode === QUOTA_INCREASE_MODES.BUY_CREDITS) {
+      return this.trackPage(`${TRACK.BASE}::${TRACK.SELECT_PLAN}`);
+    }
+    if (this.mode === QUOTA_INCREASE_MODES.CONTACT_SUPPORT) {
+      return this.trackPage(`${TRACK.BASE}::${TRACK.CONTACT_SUPPORT}`);
+    }
+    return null;
+  }
+
+  trackPopupCancel() {
+    if (
+      this.mode === QUOTA_INCREASE_MODES.BUY_CREDITS &&
+      this.serviceOptions.length > 0
+    ) {
+      return this.trackClick(
+        `${TRACK.BASE}::${TRACK.SELECT_PLAN}::${TRACK.CANCEL}`,
+      );
+    }
+    if (this.mode === QUOTA_INCREASE_MODES.CONTACT_SUPPORT) {
+      return this.trackClick(
+        `${TRACK.BASE}::${TRACK.CONTACT_SUPPORT}::${TRACK.CANCEL}`,
+      );
+    }
+    return null;
   }
 
   increaseQuota() {
-    if (this.mode === QUOTA_INCREASE_MODES.BUY_CREDITS) {
+    if (
+      this.mode === QUOTA_INCREASE_MODES.BUY_CREDITS &&
+      this.serviceOptions.length > 0
+    ) {
       return this.increaseQuotaByCredits();
     }
-
-    return this.increaseQuotaBySupport();
+    if (this.mode === QUOTA_INCREASE_MODES.CONTACT_SUPPORT) {
+      return this.increaseQuotaBySupport();
+    }
+    return null;
   }
 
   increaseQuotaBySupport() {
     if (isNil(this.issueType)) {
+      this.trackPage(`${TRACK.BASE_CONTACT_SUPPORT_BANNER}::${TRACK.ERROR}`);
       return this.goBack(
         this.$translate.instant(
           'pci_projects_project_quota_increase_error_message',
@@ -70,6 +120,9 @@ export default class PciProjectQuotaIncreaseController {
     }
 
     this.isLoading = true;
+    this.trackClick(
+      `${TRACK.BASE}::${TRACK.CONTACT_SUPPORT}::${TRACK.CONFIRM}`,
+    );
 
     return this.OvhApiSupport.v6()
       .createTickets({
@@ -84,19 +137,21 @@ ${this.issueTypeFieldsStr}
 ${this.issueTypeDescription}
         `,
       })
-      .$promise.then(
-        ({ ticketId }) =>
-          this.goBack(
-            this.$translate.instant(
-              'pci_projects_project_quota_increase_success_message',
-              {
-                ticketUrl: `${this.supportUrl}/tickets/${ticketId}`,
-              },
-            ),
+      .$promise.then(({ ticketId }) => {
+        this.trackPage(
+          `${TRACK.BASE_CONTACT_SUPPORT_BANNER}::${TRACK.SUCCESS}`,
+        );
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_quota_increase_success_message',
+            {
+              ticketUrl: `${this.supportUrl}/tickets/${ticketId}`,
+            },
           ),
-        'success',
-      )
-      .catch((err) =>
+        );
+      }, 'success')
+      .catch((err) => {
+        this.trackPage(`${TRACK.BASE_CONTACT_SUPPORT_BANNER}::${TRACK.ERROR}`);
         this.goBack(
           this.$translate.instant(
             'pci_projects_project_quota_increase_error_message',
@@ -105,15 +160,20 @@ ${this.issueTypeDescription}
             },
           ),
           'error',
-        ),
-      )
+        );
+      })
       .finally(() => {
         this.isLoading = false;
       });
   }
 
   increaseQuotaByCredits() {
+    const planCode =
+      (this.serviceOption && this.serviceOption.planCode) || 'quota-no-plan';
     if (isNil(this.serviceOptions)) {
+      this.trackPage(
+        `${TRACK.BASE_SELECT_PLAN_BANNER}::${TRACK.ERROR}::${planCode}`,
+      );
       return this.goBack(
         this.$translate.instant(
           'pci_projects_project_quota_increase_error_message',
@@ -126,6 +186,9 @@ ${this.issueTypeDescription}
     }
 
     this.isLoading = true;
+    this.trackClick(
+      `${TRACK.BASE}::${TRACK.SELECT_PLAN}::${TRACK.CONFIRM}_${planCode}`,
+    );
 
     return this.pciProjectQuotaIncrease
       .createCartAndAssign()
@@ -137,10 +200,10 @@ ${this.issueTypeDescription}
         );
       })
       .then(({ data }) => {
-        this.atInternet.trackClick({
-          name: `PublicCloud::pci::projects::project::quota::increase::confirm_${this.serviceOption.planCode}`,
-          type: 'action',
-        });
+        this.trackPage(
+          `${TRACK.BASE_SELECT_PLAN_BANNER}::${TRACK.SUCCESS}::${planCode}`,
+        );
+
         this.goBack(
           this.$translate.instant(
             'pci_projects_project_quota_increase_buy_success_message',
@@ -151,7 +214,10 @@ ${this.issueTypeDescription}
           'success',
         );
       })
-      .catch((err) =>
+      .catch((err) => {
+        this.trackPage(
+          `${TRACK.BASE_SELECT_PLAN_BANNER}::${TRACK.ERROR}::${planCode}`,
+        );
         this.goBack(
           this.$translate.instant(
             'pci_projects_project_quota_increase_error_message',
@@ -160,18 +226,15 @@ ${this.issueTypeDescription}
             },
           ),
           'error',
-        ),
-      )
+        );
+      })
       .finally(() => {
         this.isLoading = false;
       });
   }
 
   cancel() {
-    this.atInternet.trackClick({
-      name: 'PublicCloud::pci::projects::project::quota::increase::cancel',
-      type: 'action',
-    });
+    this.trackPopupCancel();
     this.goBack();
   }
 }
