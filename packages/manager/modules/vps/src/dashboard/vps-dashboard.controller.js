@@ -29,6 +29,7 @@ export default class {
     CucControllerHelper,
     ovhManagerRegionService,
     VpsService,
+    VpsHelperService,
     vpsUpgradeTile,
   ) {
     this.$filter = $filter;
@@ -42,6 +43,7 @@ export default class {
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.VpsService = VpsService;
+    this.VpsHelperService = VpsHelperService;
     this.vpsUpgradeTile = vpsUpgradeTile;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
     this.SERVICE_TYPE = SERVICE_TYPE;
@@ -498,5 +500,9 @@ export default class {
 
   static getActionStateParamString(params) {
     return params ? `(${JSON.stringify(params)})` : '';
+  }
+
+  canTerminateAdditionalDisk() {
+    return this.VpsHelperService.canOptionBeterminated(this.serviceInfo);
   }
 }

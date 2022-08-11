@@ -7,6 +7,7 @@ export default {
   template,
   bindings: {
     serviceName: '<',
+    serviceInfo: '<',
     vps: '<',
     isVpsNewRange: '<',
     catalog: '<',
