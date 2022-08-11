@@ -69,15 +69,17 @@ export const OnboardingIntroduction = () => {
 
   useEffect(() => {
     if (isPopoverVisible) {
-      trackingPlugin.trackImpression({
-        ...commonTrackingOptions,
-        generalPlacement: '[next]',
-        format: '[0-5]',
-      });
-      trackingPlugin.trackImpression({
-        ...commonTrackingOptions,
-        generalPlacement: '[hide]',
-        format: '[0-5]',
+      trackingPlugin.waitForConfig().then(() => {
+        trackingPlugin.trackImpression({
+          ...commonTrackingOptions,
+          generalPlacement: '[next]',
+          format: '[0-5]',
+        });
+        trackingPlugin.trackImpression({
+          ...commonTrackingOptions,
+          generalPlacement: '[hide]',
+          format: '[0-5]',
+        });
       });
     }
   }, [isPopoverVisible]);

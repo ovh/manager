@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { useEffect, Suspense } from 'react';
 
 import LegacyContainer from '@/container/legacy';
 import NavReshuffleContainer from '@/container/nav-reshuffle';
@@ -12,29 +12,35 @@ import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
 export default function Container(): JSX.Element {
   const { isLoading, betaVersion, useBeta } = useContainer();
   const shell = useShell();
-  const tracking = shell.getPlugin('tracking');
   const isNavReshuffle = betaVersion && useBeta;
-  if (isLoading) {
-    return <></>;
-  }
-  if (isNavReshuffle) {
-    if (betaVersion === 1) {
-      tracking.trackMVTest({
-        test: '[product-navigation-reshuffle]',
-        waveId: 1,
-        creation: '[full-services]',
-      });
-    } else if (betaVersion === 2) {
-      tracking.trackMVTest({
-        test: '[product-navigation-reshuffle]',
-        waveId: 1,
-        creation: '[customer-services]',
-      });
-    }
 
-    shell.getPlugin('ux').showMenuSidebar();
-  }
-  return (
+  useEffect(() => {
+    if (!isLoading) {
+      const tracking = shell.getPlugin('tracking');
+      tracking.waitForConfig().then(() => {
+        if (isNavReshuffle) {
+          if (betaVersion === 1) {
+            tracking.trackMVTest({
+              test: '[product-navigation-reshuffle]',
+              waveId: 1,
+              creation: '[full-services]',
+            });
+          } else if (betaVersion === 2) {
+            tracking.trackMVTest({
+              test: '[product-navigation-reshuffle]',
+              waveId: 1,
+              creation: '[customer-services]',
+            });
+          }
+        }
+      });
+      shell.getPlugin('ux').showMenuSidebar();
+    }
+  }, [isLoading]);
+
+  return isLoading ? (
+    <></>
+  ) : (
     <>
       <ProgressProvider>
         {isNavReshuffle ? (
