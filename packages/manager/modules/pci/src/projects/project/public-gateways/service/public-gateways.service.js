@@ -1,4 +1,4 @@
-import { GATEWAY_DEFAULT_REGION } from './public-gateways.constants';
+import { GATEWAY_DEFAULT_REGION } from '../public-gateways.constants';
 
 export default class publicGatewaysServiceClass {
   /* @ngInject */
@@ -90,5 +90,45 @@ export default class publicGatewaysServiceClass {
         params,
       )
       .then(({ data }) => data);
+  }
+
+  enableSnatOnGateway(projectId, region, gatewayId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/region/${region}/gateway/${gatewayId}/expose`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getSmallestGatewayInfo(ovhSubsidiary) {
+    return this.getGatwayCatalog({
+      ovhSubsidiary,
+      productName: 'cloud',
+    }).then((data) => {
+      // pick the variants of product with least price
+      const gatewayProducts = data.addons
+        .filter((addon) => addon.product.startsWith('publiccloud-gateway'))
+        .sort(
+          (
+            { pricings: [{ price: priceA }] },
+            { pricings: [{ price: priceB }] },
+          ) => priceA - priceB,
+        )
+        .filter(({ product }, index, arr) => product === arr[0].product);
+      const [monthlyPriceObj] = gatewayProducts.find(({ planCode }) =>
+        planCode.includes('month'),
+      )?.pricings;
+      const [hourlyPriceObj] = gatewayProducts.find(({ planCode }) =>
+        planCode.includes('hour'),
+      )?.pricings;
+      return {
+        size: gatewayProducts[0].product
+          .split('-')
+          .slice(-1)
+          .join(),
+        pricePerMonth: monthlyPriceObj.price,
+        pricePerHour: hourlyPriceObj.price,
+      };
+    });
   }
 }
