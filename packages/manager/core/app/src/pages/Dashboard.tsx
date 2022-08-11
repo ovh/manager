@@ -31,6 +31,14 @@ export default function DashboardPage(): JSX.Element {
           getDescription: ({ cluster }) => {
             return cluster.serviceName;
           },
+          actions: [
+            {
+              name: 'edit',
+              label: t('tile_general_item_name_edit'),
+              title: t('tile_general_item_name_edit'),
+              to: '',
+            },
+          ],
         },
         {
           name: 'commercial_range',

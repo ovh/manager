@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs, TabList, TabPanels, TabPanel, Tab } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link as RouterLink } from 'react-router-dom';
 
 export default function DetailsPage(): JSX.Element {
   const { t } = useTranslation('details');
@@ -20,10 +20,10 @@ export default function DetailsPage(): JSX.Element {
   ];
 
   return (
-    <Tabs>
+    <Tabs variant="light">
       <TabList>
         {tabs.map((tab) => (
-          <Tab key={tab.name} as="a">
+          <Tab key={tab.name} as={RouterLink} to={tab.to}>
             {tab.title}
           </Tab>
         ))}

@@ -1,6 +1,7 @@
 {
     "tab_general": "Informations générales",
     "tile_general_item_name": "Nom",
+    "tile_general_item_name_edit": "Modifier",
     "tile_general_item_commercial_range": "Nom commercial",
     "tile_general_item_cluster_redeploy": "Redéploiement du cluster",
     "tile_general_item_cluster_redeploy_link": "Redéployer mon cluster",
