@@ -18,7 +18,7 @@ export default function viteOvhDevServerPlugin(isContainerApp) {
           // serve application's dist locally
           const appDistPath = path.join(
             process.cwd(),
-            '../../core/',
+            '../',
             process.env.APP,
             'dist',
           );
