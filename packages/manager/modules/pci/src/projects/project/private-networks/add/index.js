@@ -10,6 +10,8 @@ import component from './add.component';
 import routing from './add.routing';
 import service from './add.service';
 
+import gatewayServiceModule from '../../public-gateways/service';
+
 const moduleName = 'ovhManagerPciPrivateNetworksAdd';
 
 angular
@@ -20,6 +22,7 @@ angular
     'oui',
     'ovh-api-services',
     'ui.router',
+    gatewayServiceModule,
   ])
   .config(routing)
   .component('pciProjectPrivateNetworksAdd', component)
