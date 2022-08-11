@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
   IconButton,
+  Link,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { EllipsisIcon, TileSection } from '@ovh-ux/manager-themes';
@@ -15,6 +16,37 @@ export default function DashboardTileList({ items, data }: any): JSX.Element {
       return '';
     }
 
+    const getMenuItem = (action: any) => {
+      if (Object.prototype.hasOwnProperty.call(action, 'to')) {
+        return (
+          <MenuItem as={RouterLink} to={action.to} aria-label={action.title}>
+            {action.label}
+          </MenuItem>
+        );
+      }
+
+      if (action.href) {
+        return (
+          <MenuItem
+            as={Link}
+            href={action.href}
+            isExternal={action.isExternal}
+            aria-label={action.title}
+          >
+            {action.label}
+          </MenuItem>
+        );
+      }
+
+      return (
+        <MenuItem
+          aria-label={action.title}
+          onClick={action?.onClick.bind(null, data)}
+        >
+          {action.label}
+        </MenuItem>
+      );
+    };
     return (
       <Menu>
         <MenuButton
@@ -24,26 +56,9 @@ export default function DashboardTileList({ items, data }: any): JSX.Element {
           icon={<EllipsisIcon />}
         />
         <MenuList>
-          {actions.map((action) =>
-            Object.prototype.hasOwnProperty.call(action, 'to') ? (
-              <MenuItem
-                as={RouterLink}
-                to={action.to}
-                key={action.name}
-                aria-label={action.title}
-              >
-                {action.label}
-              </MenuItem>
-            ) : (
-              <MenuItem
-                key={action.name}
-                aria-label={action.title}
-                onClick={action?.onClick.bind(null, data)}
-              >
-                {action.label}
-              </MenuItem>
-            ),
-          )}
+          {actions.map((action) => (
+            <Fragment key={action.name}>{getMenuItem(action)}</Fragment>
+          ))}
         </MenuList>
       </Menu>
     );
