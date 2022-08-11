@@ -19,7 +19,7 @@ export default class PciInstanceDeleteController {
       this.instance,
     )
       .then(() =>
-        this.goListingInstances(
+        this.goBack(
           this.$translate.instant(
             'pci_projects_project_instances_instance_delete_success_message',
             {
@@ -29,7 +29,7 @@ export default class PciInstanceDeleteController {
         ),
       )
       .catch((err) =>
-        this.goListingInstances(
+        this.goBack(
           this.$translate.instant(
             'pci_projects_project_instances_instance_delete_error_delete',
             {
