@@ -129,18 +129,18 @@
                     </p>
                 </oui-message>
             </div>
-            <oui-message data-type="info">
-                <p
-                    data-translate="pci_additional_ip_create_step_attach_instance_info_failover_ip"
-                    data-translate_values="{
-                        guideLink: $ctrl.getAdditionalIpConfGuideLink(),
-                        trackLabel: $ctrl.TRACKING_GUIDE_LINKS.FAILOVER_IP_CONFIGURATION_GUIDE
-                    }"
-                    data-translate-compile
-                ></p>
-            </oui-message>
 
             <div data-ng-if="$ctrl.instances.length > 0" class="mb-3">
+                <oui-message data-type="info">
+                    <p
+                        data-translate="pci_additional_ip_create_step_attach_instance_info_failover_ip"
+                        data-translate_values="{
+                            guideLink: $ctrl.getAdditionalIpConfGuideLink(),
+                            trackLabel: $ctrl.TRACKING_GUIDE_LINKS.FAILOVER_IP_CONFIGURATION_GUIDE
+                        }"
+                        data-translate-compile
+                    ></p>
+                </oui-message>
                 <oui-field
                     data-label="{{:: 'pci_additional_ips_failoverip_order_instance' | translate }}"
                     data-size="xl"
