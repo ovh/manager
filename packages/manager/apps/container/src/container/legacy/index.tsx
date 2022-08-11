@@ -99,10 +99,12 @@ function LegacyContainer(): JSX.Element {
     shell.registerPlugin('routing', routing);
     setRouter(routing.router);
     if (betaVersion) {
-      tracking.trackMVTest({
-        test: '[product-navigation-reshuffle]',
-        waveId: 1,
-        creation: '[old-nav]',
+      tracking.waitForConfig().then(() => {
+        tracking.trackMVTest({
+          test: '[product-navigation-reshuffle]',
+          waveId: 1,
+          creation: '[old-nav]',
+        });
       });
     }
   }, [iframeRef, shell]);
