@@ -8,6 +8,5 @@ export default {
     projectId: '<',
     instance: '<',
     goBack: '<',
-    goListingInstances: '<',
   },
 };
