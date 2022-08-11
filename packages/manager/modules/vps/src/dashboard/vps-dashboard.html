@@ -545,14 +545,21 @@
                             >
                             </span>
 
-                            <p class="m-0" data-ng-if="$ctrl.vpsLinkedDisk.size">
-                                <span data-translate="vps_additional_disk_current_capacity"
-                                      data-translate-values="{vpsDiskCapacity: ($ctrl.vpsLinkedDisk.size | bytes:0:false:'GB')}">
+                            <p
+                                class="m-0"
+                                data-ng-if="$ctrl.vpsLinkedDisk.size"
+                            >
+                                <span
+                                    data-translate="vps_additional_disk_current_capacity"
+                                    data-translate-values="{vpsDiskCapacity: ($ctrl.vpsLinkedDisk.size | bytes:0:false:'GB')}"
+                                >
                                 </span>
-                                <span class="oui-icon oui-icon-help-circle"
-                                      aria-hidden="true"
-                                      data-ng-if="!$ctrl.isVpsNewRange"
-                                      oui-tooltip="{{:: 'vps_additional_disk_cant_upgrade' | translate}}">
+                                <span
+                                    class="oui-icon oui-icon-help-circle"
+                                    aria-hidden="true"
+                                    data-ng-if="!$ctrl.isVpsNewRange"
+                                    oui-tooltip="{{:: 'vps_additional_disk_cant_upgrade' | translate}}"
+                                >
                                 </span>
                             </p>
                         </oui-tile-description>
@@ -566,15 +573,16 @@
                                 data-ng-if="$ctrl.actions.orderAdditionalDiskOption.isAvailable()"
                                 aria-label="{{::$ctrl.actions.orderAdditionalDiskOption.text}}"
                                 data-on-click="$ctrl.actions.orderAdditionalDiskOption.callback()"
-                            ><span
-                                data-ng-bind="::$ctrl.actions.orderAdditionalDiskOption.text"
-                            ></span>
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.orderAdditionalDiskOption.text"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.terminateAdditionalDiskOption.isAvailable()"
                                 data-disabled="!$ctrl.isVpsNewRange || !$ctrl.upgradableDisks.length"
                                 aria-label="{{:: 'vps_configuration_additional_disk_upgrade_option' | translate}}"
-                                data-on-click="$ctrl.goToUpgradeAdditionalDisk('additionalDisk')">
+                                data-on-click="$ctrl.goToUpgradeAdditionalDisk('additionalDisk')"
+                            >
                                 <span
                                     data-translate="vps_configuration_additional_disk_upgrade_option"
                                 ></span>
@@ -582,7 +590,10 @@
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.terminateAdditionalDiskOption.isAvailable()"
                                 aria-label="{{::$ctrl.actions.terminateAdditionalDiskOption.text}}"
-                                data-on-click="$ctrl.goToTerminateOption('additionalDisk')">
+                                data-on-click="$ctrl.goToTerminateOption('additionalDisk')"
+                                data-disabled="!$ctrl.canTerminateAdditionalDisk()"
+                                data-oui-tooltip="{{:: ($ctrl.canTerminateAdditionalDisk() ? '' : 'vps_configuration_desactivate_option_disabled_info') | translate}}"
+                            >
                                 <span
                                     data-ng-bind="::$ctrl.actions.terminateAdditionalDiskOption.text"
                                 ></span>
