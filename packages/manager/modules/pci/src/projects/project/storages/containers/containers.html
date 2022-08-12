@@ -182,6 +182,16 @@
                         data-ng-bind="'pci_projects_project_storages_blocks_add_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"
                     ></span>
                 </button>
+                <button
+                    class="oui-button oui-button_s oui-button_secondary float-right"
+                    data-ng-if="$ctrl.refreshContainers"
+                    data-ng-click="$ctrl.refreshContainers()"
+                >
+                    <span
+                        class="oui-icon oui-icon-refresh"
+                        aria-hidden="true"
+                    ></span>
+                </button>
             </oui-datagrid-topbar>
         </oui-datagrid>
     </div>

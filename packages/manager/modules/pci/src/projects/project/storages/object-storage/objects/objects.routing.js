@@ -85,6 +85,8 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         ),
 
+      refreshContainers: /* @ngInject */ ($state) => () => $state.reload(),
+
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant(
           'pci_projects_project_storages_containers_object_title',
