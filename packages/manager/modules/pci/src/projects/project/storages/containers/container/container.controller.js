@@ -74,8 +74,8 @@ export default class PciStoragesContainersContainerController {
       type: 'action',
     });
     let downloadPromise = null;
-    if (object.isHighPerfStorage) {
-      downloadPromise = this.downloadHighPerfObject(
+    if (object.s3StorageType) {
+      downloadPromise = this.downloadStandardS3Object(
         this.projectId,
         this.container.region,
         this.container.name,
@@ -95,8 +95,8 @@ export default class PciStoragesContainersContainerController {
       .catch((err) => this.handleDownloadError(err));
   }
 
-  downloadHighPerfObject(serviceName, regionName, containerName, object) {
-    return this.PciProjectStorageContainersService.downloadHighPerfObject(
+  downloadStandardS3Object(serviceName, regionName, containerName, object) {
+    return this.PciProjectStorageContainersService.downloadStandardS3Object(
       serviceName,
       regionName,
       containerName,
