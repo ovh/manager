@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Badge, Link } from '@chakra-ui/react';
@@ -82,29 +82,32 @@ export default function ListingPage(): JSX.Element {
     },
   ]);
   const [services, setServices] = useState<ListingData<Nutanix>>();
+  const [state, setState] = useState(searchParams.getInitialState(columns));
+
+  useEffect(() => {
+    const { currentPage, pageSize, sort } = state.table;
+    setServices(null);
+    searchParams.updateState(state);
+    listNutanix({
+      currentPage,
+      pageSize,
+      filters: state.filters,
+      sortBy: sort?.key,
+      sortReverse: sort?.reverse,
+    }).then(({ totalCount, data }) =>
+      setServices({
+        total: totalCount,
+        items: data,
+      }),
+    );
+  }, [JSON.stringify(state)]);
 
   return (
     <Listing
       columns={columns}
       data={services}
-      initialState={searchParams.getInitialState()}
-      onChange={(state) => {
-        const { currentPage, pageSize, sort } = state.table;
-        setServices(null);
-        searchParams.updateState(state);
-        listNutanix({
-          currentPage,
-          pageSize,
-          filters: state.filters,
-          sortBy: sort?.key,
-          sortReverse: sort?.reverse,
-        }).then(({ totalCount, data }) =>
-          setServices({
-            total: totalCount,
-            items: data,
-          }),
-        );
-      }}
+      state={state}
+      onChange={setState}
       onColumnsChange={(cols) => {
         setColumns(cols);
         searchParams.updateColumns(cols);
