@@ -32,7 +32,7 @@ export default class NashaComponentsPartitionCreateController {
       return;
     }
 
-    this.sizeMax = this.nasha.zpoolSize;
+    this.sizeMax = this.nasha.zpoolSize - this.partitionAllocatedSize;
     this.partitionNames.sort();
   }
 

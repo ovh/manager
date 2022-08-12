@@ -7,6 +7,7 @@ export default {
     close: '<',
     nasha: '<',
     nashaApiUrl: '<',
+    partitionAllocatedSize: '<',
     partitionNames: '<',
     protocolEnum: '<',
     trackClick: '<',

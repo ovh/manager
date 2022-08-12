@@ -1,4 +1,4 @@
-import { MAX_PARTITIONS } from './dashboard.constants';
+import { SIZE_MIN } from '../components/partition/partition.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const dashboardStateName = 'nasha.dashboard';
@@ -9,8 +9,6 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'nashaDashboard',
     resolve: {
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
-      canCreatePartitions: /* @ngInject */ (numberOfPartitions) =>
-        numberOfPartitions < MAX_PARTITIONS,
       currentHref: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
       dashboardHref: /* @ngInject */ ($state, serviceName) => () =>
@@ -60,8 +58,19 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       nashaApiUrl: /* @ngInject */ (baseApiUrl, serviceName) =>
         `${baseApiUrl}/${serviceName}`,
-      numberOfPartitions: /* @ngInject */ (nashaApiUrl, $http) =>
-        $http.get(`${nashaApiUrl}/partition`).then(({ data }) => data.length),
+      partitionAllocatedSize: /* @ngInject */ (iceberg, nashaApiUrl) =>
+        iceberg(`${nashaApiUrl}/partition`)
+          .query()
+          .expand('CachedObjectList-Pages')
+          .execute()
+          .$promise.then(({ data }) =>
+            data.reduce(
+              (totalSize, partition) => totalSize + partition.size,
+              0,
+            ),
+          ),
+      canCreatePartitions: /* @ngInject */ (partitionAllocatedSize, nasha) =>
+        partitionAllocatedSize <= nasha.zpoolSize - SIZE_MIN,
       reload: /* @ngInject */ ($state, goBack) => ({ success, error } = {}) =>
         goBack({
           stateName: $state.current.name,
