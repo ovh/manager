@@ -460,7 +460,14 @@ export default class PciStoragesContainersService {
     });
   }
 
-  addHighPerfObjects(serviceName, regionName, containerName, prefix, files) {
+  addHighPerfObjects(
+    serviceName,
+    regionName,
+    containerName,
+    prefix,
+    files,
+    s3StorageType,
+  ) {
     return this.$q.all(
       map(files, (file) =>
         this.addHighPerfObject(
@@ -469,12 +476,20 @@ export default class PciStoragesContainersService {
           containerName,
           prefix,
           file,
+          s3StorageType,
         ),
       ),
     );
   }
 
-  addHighPerfObject(serviceName, regionName, containerName, prefix, file) {
+  addHighPerfObject(
+    serviceName,
+    regionName,
+    containerName,
+    prefix,
+    file,
+    s3StorageType,
+  ) {
     const config = {
       headers: {
         'Content-Type': file.type,
@@ -483,7 +498,7 @@ export default class PciStoragesContainersService {
     };
     return this.$http
       .post(
-        `/cloud/project/${serviceName}/region/${regionName}/storage/${containerName}/presign`,
+        `/cloud/project/${serviceName}/region/${regionName}/${s3StorageType}/${containerName}/presign`,
         {
           expire: OPENIO_PRESIGN_EXPIRE,
           method: 'PUT',
@@ -553,10 +568,10 @@ export default class PciStoragesContainersService {
     return this.getObjectUrl(projectId, containerId, object);
   }
 
-  downloadHighPerfObject(serviceName, regionName, containerName, object) {
+  downloadStandardS3Object(serviceName, regionName, containerName, object) {
     return this.$http
       .post(
-        `/cloud/project/${serviceName}/region/${regionName}/storage/${containerName}/presign`,
+        `/cloud/project/${serviceName}/region/${regionName}/${object.s3StorageType}/${containerName}/presign`,
         {
           expire: OPENIO_PRESIGN_EXPIRE,
           method: 'GET',
