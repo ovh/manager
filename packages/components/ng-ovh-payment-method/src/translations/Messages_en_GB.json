@@ -25,5 +25,6 @@
   "ovh_payment_status_maintenance": "Maintenance in progress",
   "ovh_payment_status_paused": "Paused",
   "ovh_payment_status_failed": "Invalid",
-  "ovh_payment_status_null": "Information not available "
+  "ovh_payment_status_null": "Information not available ",
+  "ovh_payment_type_sepa_direct_debit": "Direct debit"
 }

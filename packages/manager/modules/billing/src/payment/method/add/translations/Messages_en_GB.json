@@ -29,5 +29,12 @@
   "billing_payment_method_add_sepa_success": "Your request to add a SEPA bank account has been processed. The request is pending an electronic signature (please check your inbox), or is being processed by our services.",
   "billing_payment_method_add_error": "An error has occurred adding your payment method: {{ errorMessage }}",
   "billing_payment_method_add_alert_add_method": "If you experience any problems adding a new payment method, please add an exception to your ad-blocker for {{ hostname }}, or log in using incognito mode on your browser, then try again. We never display ads in the OVHcloud Control Panel. Please note that your ad-blocker may interfere with our payment system.",
-  "billing_payment_method_add_alert_first_payment_failure": "Otherwise, if your first payment fails to be processed, please try creating a new payment method with the same payment card you just used. Our system will automatically bill the new card."
+  "billing_payment_method_add_alert_first_payment_failure": "Otherwise, if your first payment fails to be processed, please try creating a new payment method with the same payment card you just used. Our system will automatically bill the new card.",
+  "billing_payment_method_add_status_success": "Your new payment method has been added.",
+  "billing_payment_method_add_sepa_direct_debit_info": "By signing a direct debit mandate, you authorise OVH S.A.S to register this payment method as a default payment method for future orders. When your services reach their expiry dates, this payment method will automatically be used to pay for your services with automatic renewal and pay-as-you-go billing. You can add, delete or modify payment methods at any time via the OVHcloud Control Panel.",
+  "billing_payment_method_add_sepa_direct_debit_warning_redirection": "You will be redirected to a space where you can register your bank account and electronically sign your direct debit mandate.",
+  "billing_payment_method_add_sepa_direct_debit_warning_order": "You can then use this payment method to complete your order.",
+  "billing_payment_method_add_sepa_direct_debit_warning_owner_identity": "Warning: the bank account owner must also be the OVHcloud account owner.",
+  "billing_payment_method_add_sepa_direct_debit_data_processing_info": "The data collected is processed by OVHcloud as a data controller in order to set up your SEPA direct debit.",
+  "billing_payment_method_add_sepa_direct_debit_digital_signature_info": "To set up a SEPA direct debit, you will need to sign a mandate electronically using a solution provided by Worldline, a service provider authorised to deliver the trusted services defined by the “eIDAS” Regulation No. 910/2014 of 23 July 2014. In this context, the data is sent to Worldline."
 }
