@@ -1,7 +1,4 @@
-import {
-  MAX_PARTITIONS,
-  PREFIX_TRACKING_DASHBOARD_PARTITIONS,
-} from '../dashboard.constants';
+import { PREFIX_TRACKING_DASHBOARD_PARTITIONS } from '../dashboard.constants';
 
 export default class NashaDashboardPartitionsController {
   /* @ngInject */
@@ -11,7 +8,6 @@ export default class NashaDashboardPartitionsController {
     this.OvhApiDedicatedNashaAapi = OvhApiDedicatedNashaAapi;
 
     this.isMonitoredUpdating = false;
-    this.maxPartitions = MAX_PARTITIONS;
   }
 
   updateMonitored() {

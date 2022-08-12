@@ -6,6 +6,7 @@ export default {
     close: '<',
     nasha: '<',
     partition: '<',
+    partitionAllocatedSize: '<',
     partitionApiUrl: '<',
     taskApiUrl: '<',
     trackClick: '<',

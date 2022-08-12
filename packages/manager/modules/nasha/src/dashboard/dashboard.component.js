@@ -13,7 +13,7 @@ export default {
     isCommitmentAvailable: '<',
     nasha: '<',
     nashaApiUrl: '<',
-    numberOfPartitions: '<',
+    partitionAllocatedSize: '<',
     reload: '<',
     serviceInfo: '<',
     serviceName: '<',

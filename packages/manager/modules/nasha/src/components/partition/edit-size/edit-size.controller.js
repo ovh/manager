@@ -16,7 +16,8 @@ export default class NashaComponentsPartitionEditSizeController {
 
   $onInit() {
     this.model.size = this.partition.size;
-    this.sizeMax = this.nasha.zpoolSize;
+    this.sizeMax =
+      this.nasha.zpoolSize - this.partitionAllocatedSize + this.partition.size;
   }
 
   submit() {
