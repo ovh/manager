@@ -1,9 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.object-storage.users', {
     url: '/users',
-    views: {
-      containersView: 'pciProjectStorageObjectStorageUsers',
-    },
+    component: 'pciProjectStorageObjectStorageUsers',
     params: {
       userDetails: null,
       userCredential: null,

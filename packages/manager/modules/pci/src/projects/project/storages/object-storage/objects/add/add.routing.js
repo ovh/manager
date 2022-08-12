@@ -8,7 +8,11 @@ import { OBJECT_CONTAINER_OFFERS } from '../../../containers/containers.constant
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.object-storage.add', {
     url: '/new',
-    component: 'pciProjectStorageContainersAdd',
+    views: {
+      'objectStorageView@pci.projects.project.storages.object-storage': {
+        component: 'pciProjectStorageContainersAdd',
+      },
+    },
     resolve: {
       regions: /* @ngInject */ (PciProjectRegions, projectId) =>
         PciProjectRegions.getAvailableRegions(projectId).then((regions) => {
