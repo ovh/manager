@@ -27,5 +27,6 @@ export default {
     containersRegions: '<',
     goToRegion: '<',
     trackingPrefix: '<',
+    refreshContainers: '<?',
   },
 };
