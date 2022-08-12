@@ -20,12 +20,13 @@ export default class PciBlockStorageContainersContainerObjectAddController {
     this.isLoading = true;
     let addPromise = null;
     this.trackClick('object::add::confirm');
-    if (this.container.isHighPerfStorage) {
+    if (this.container.s3StorageType) {
       addPromise = this.addHighPerfObjects(
         this.projectId,
         this.container.region,
         this.container.name,
         this.files,
+        this.container.s3StorageType,
       );
     } else {
       addPromise = this.PciProjectStorageContainersService.addObjects(
@@ -63,12 +64,19 @@ export default class PciBlockStorageContainersContainerObjectAddController {
       });
   }
 
-  addHighPerfObjects(serviceName, regionName, containerName, files) {
+  addHighPerfObjects(
+    serviceName,
+    regionName,
+    containerName,
+    files,
+    s3StorageType,
+  ) {
     return this.PciProjectStorageContainersService.addHighPerfObjects(
       serviceName,
       regionName,
       containerName,
       files,
+      s3StorageType,
     );
   }
 
