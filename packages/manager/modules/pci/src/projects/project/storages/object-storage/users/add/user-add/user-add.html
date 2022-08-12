@@ -1,68 +1,72 @@
-<form novalidate name="user-add-form">
-    <oui-modal
-        data-heading="{{ 'pci_projects_project_users_add_title' | translate }}"
-        data-primary-label="{{:: 'pci_projects_project_users_add_submit_label' | translate }}"
-        data-primary-action="$ctrl.onSubmit($ctrl.userModel,$ctrl.model)"
-        data-secondary-action="$ctrl.onCancel()"
-        data-secondary-label="{{:: 'pci_projects_project_users_add_cancel_label' | translate }}"
-        data-on-dismiss="$ctrl.goBack()"
-        data-primary-disabled="!$ctrl.canUserBeCreated()"
-        data-loading="$ctrl.isLoading"
+<oui-modal
+    data-heading="{{ 'pci_projects_project_users_add_title' | translate }}"
+    data-primary-label="{{:: 'pci_projects_project_users_add_submit_label' | translate }}"
+    data-primary-action="$ctrl.onSubmit($ctrl.userModel,$ctrl.model)"
+    data-secondary-action="$ctrl.onCancel()"
+    data-secondary-label="{{:: 'pci_projects_project_users_add_cancel_label' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-disabled="!$ctrl.canUserBeCreated()"
+    data-loading="$ctrl.isLoading"
+>
+    <p data-translate="pci_projects_project_users_add_short_description"></p>
+    <oui-radio
+        data-ng-if="$ctrl.isUserCouldGenerateCredentails"
+        data-model="$ctrl.model"
+        data-name="addExistingUser"
+        data-on-change="$ctrl.onChange(modelValue)"
+        data-value="$ctrl.addExistingUser"
     >
-        <p
-            data-translate="pci_projects_project_users_add_short_description"
-        ></p>
-        <oui-radio
-            data-ng-if="$ctrl.isUserCouldGenerateCredentails"
-            data-model="$ctrl.model"
-            data-name="addExistingUser"
-            data-on-change="$ctrl.onChange($ctrl.addExistingUser)"
-            data-value="$ctrl.addExistingUser"
-        >
+        <oui-radio-label>
             <span
                 data-translate="pci_projects_project_users_add_existing_user"
             ></span>
-        </oui-radio>
-        <oui-field data-ng-if="$ctrl.isUserLinkedModeActive()" data-size="xl">
-            <oui-select
-                data-name="userList"
-                data-model="$ctrl.userModel"
-                data-items="$ctrl.usersWithoutCredentials"
-                data-match="username"
-            >
-                <span data-ng-bind="$item.userNameDescriptionKey"></span>
-                <small>
-                    <span
-                        class="float-right"
-                        data-ng-bind="$item.asCredentials"
-                    ></span>
-                </small>
-            </oui-select>
-        </oui-field>
-        <oui-radio
-            model="$ctrl.model"
-            name="createNewUser"
-            on-change="$ctrl.onChange($ctrl.createNewUser)"
-            value="$ctrl.createNewUser"
-        >
+        </oui-radio-label>
+        <oui-radio-description data-ng-if="$ctrl.isUserLinkedModeActive()">
+            <oui-field class="mt-2" data-size="xl">
+                <oui-select
+                    data-name="userList"
+                    data-model="$ctrl.userModel"
+                    data-items="$ctrl.usersWithoutCredentials"
+                    data-match="username"
+                >
+                    <span data-ng-bind="$item.userNameDescriptionKey"></span>
+                    <small>
+                        <span
+                            class="float-right"
+                            data-ng-bind="$item.asCredentials"
+                        ></span>
+                    </small>
+                </oui-select>
+            </oui-field>
+        </oui-radio-description>
+    </oui-radio>
+    <oui-radio
+        model="$ctrl.model"
+        name="createNewUser"
+        on-change="$ctrl.onChange(modelValue)"
+        value="$ctrl.createNewUser"
+    >
+        <oui-radio-label>
             <span
                 data-translate="pci_projects_project_users_add_create_user"
             ></span>
-        </oui-radio>
-        <oui-field
-            data-ng-if="$ctrl.isUserCreationModeActive()"
-            data-label="{{:: 'pci_projects_project_users_add_description_label' | translate }}"
-            data-size="xl"
-        >
-            <input
-                class="oui-input"
-                type="text"
-                id="description"
-                name="description"
-                data-ng-model="$ctrl.newUserDescription"
-                maxlength="255"
-                required
-            />
-        </oui-field>
-    </oui-modal>
-</form>
+        </oui-radio-label>
+        <oui-radio-description data-ng-if="$ctrl.isUserCreationModeActive()">
+            <oui-field
+                class="mt-2"
+                data-label="{{:: 'pci_projects_project_users_add_description_label' | translate }}"
+                data-size="xl"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    id="description"
+                    name="description"
+                    data-ng-model="$ctrl.newUserDescription"
+                    maxlength="255"
+                    required
+                />
+            </oui-field>
+        </oui-radio-description>
+    </oui-radio>
+</oui-modal>
