@@ -16,12 +16,12 @@
             ></span>
             <span
                 data-translate="pci_projects_project_storages_containers_container_delete_object_erase_message"
-                data-ng-if="!$ctrl.archive && !$ctrl.container.isHighPerfStorage"
+                data-ng-if="!$ctrl.archive && !$ctrl.container.s3StorageType"
             ></span>
             <span
                 data-translate="pci_projects_project_storages_containers_container_delete_warning"
                 data-translate-values="{ container: $ctrl.container.name }"
-                data-ng-if="$ctrl.container.isHighPerfStorage"
+                data-ng-if="$ctrl.container.s3StorageType"
             ></span>
         </oui-message>
     </div>
