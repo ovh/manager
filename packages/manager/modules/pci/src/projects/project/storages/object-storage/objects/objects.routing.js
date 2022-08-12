@@ -1,9 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.object-storage.objects', {
     url: '',
-    views: {
-      containersView: 'pciProjectStorageContainers',
-    },
+    component: 'pciProjectStorageContainers',
     redirectTo: (transition) =>
       transition
         .injector()
