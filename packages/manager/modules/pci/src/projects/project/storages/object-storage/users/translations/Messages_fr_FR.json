@@ -14,5 +14,5 @@
   "pci_projects_project_storages_containers_users_import_success_message": "Le téléchargment du fichier JSON lié à l’utilisateur {{user}} a été effectué avec succès.",
   "pci_projects_project_storages_containers_users_import_error_message": "Une erreur est survenue lors du téléchargement du fichier JSON lié à l’utilisateur : {{ message }}.",
   "pci_projects_project_storages_containers_users_show_secret_key_success": "La clé secrète de votre utilisateur {{user}} est {{secret}}.",
-  "pci_projects_project_storages_containers_users_add_success_field_secret_key": "Votre clé secrète"
+  "pci_projects_project_storages_containers_users_add_success_field_secret_key": "Votre clé secrète S3 :"
 }
