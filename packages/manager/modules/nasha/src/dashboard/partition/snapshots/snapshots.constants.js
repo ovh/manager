@@ -4,11 +4,13 @@ export const CUSTOM_SNAPSHOT_NAME_SEPARATOR = '-';
 export const TRANSLATE_PREFIX = 'nasha_dashboard_partition_snapshots';
 
 export const PREFIX_TRACKING_SNAPSHOT_POLICY = 'partition::snapshot-policy';
+export const MAX_CUSTOM_SNAPSHOT = 10;
 
 export default {
   CUSTOM_SNAPSHOT_NAME_PATTERN,
   CUSTOM_SNAPSHOT_NAME_PREFIX,
   CUSTOM_SNAPSHOT_NAME_SEPARATOR,
+  MAX_CUSTOM_SNAPSHOT,
   TRANSLATE_PREFIX,
   PREFIX_TRACKING_SNAPSHOT_POLICY,
 };
