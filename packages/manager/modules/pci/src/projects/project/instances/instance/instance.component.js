@@ -42,6 +42,7 @@ export default {
     ipMitigationLink: '<',
     gotToNetworks: '<',
     attachPrivateNetwork: '<',
+    detachPrivateNetwork: '<',
     scheduleAutoBackup: '<',
     guideUrl: '<',
     guideTrackingSectionTags: '<',

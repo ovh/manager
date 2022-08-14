@@ -27,6 +27,10 @@ export default class PciInstanceController {
     );
   }
 
+  onDetachPrivateNetworkClick() {
+    this.detachPrivateNetwork();
+  }
+
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
   }

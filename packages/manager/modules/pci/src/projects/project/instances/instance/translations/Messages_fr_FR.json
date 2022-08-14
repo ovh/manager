@@ -56,6 +56,7 @@
   "pci_projects_project_instances_instance_private_networks_label": "Réseau(x) privé(s)",
   "pci_projects_project_instances_instance_private_networks_action_manage_label": "Gérer les réseaux privés",
   "pci_projects_project_instances_instance_private_networks_action_attach_label": "Attacher un réseau",
+  "pci_projects_project_instances_instance_private_networks_action_detach_label": "Détacher un réseau",
 
   "pci_projects_project_instances_instance_connection_info_label": "Informations de connexion",
 
