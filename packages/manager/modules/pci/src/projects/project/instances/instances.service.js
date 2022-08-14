@@ -518,6 +518,31 @@ export default class PciProjectInstanceService {
     return this.$q.all(promises);
   }
 
+  detachPrivateNetworks(projectId, { id: instanceId }, privateNetworks) {
+    const promises = reduce(
+      privateNetworks,
+      (results, privateNetwork) => [
+        ...results,
+        this.$http
+          .get(`/cloud/project/${projectId}/instance/${instanceId}/interface`)
+          .then(({ data: interfaces }) => {
+            interfaces.forEach((ipInterface) => {
+              if (
+                ipInterface.networkId === privateNetwork.id &&
+                ipInterface.type === 'private'
+              ) {
+                this.$http.delete(
+                  `/cloud/project/${projectId}/instance/${instanceId}/interface/${ipInterface.id}`,
+                );
+              }
+            });
+          }),
+      ],
+      [],
+    );
+    return this.$q.all(promises);
+  }
+
   update(projectId, { id: instanceId, name: instanceName }) {
     return this.OvhApiCloudProjectInstance.v6().put(
       {
