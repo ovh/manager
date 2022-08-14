@@ -160,6 +160,18 @@ export default /* @ngInject */ ($stateProvider) => {
             instanceId: instance.id,
           },
         ),
+      detachPrivateNetwork: /* @ngInject */ (
+        $state,
+        instance,
+        projectId,
+      ) => () =>
+        $state.go(
+          'pci.projects.project.baremetal.instance.detachPrivateNetwork',
+          {
+            projectId,
+            instanceId: instance.id,
+          },
+        ),
       goToInstance: /* @ngInject */ (
         $rootScope,
         CucCloudMessage,

@@ -6,6 +6,7 @@ import 'angular-translate';
 import activeMonthlyBilling from './active-monthly-billing';
 import applicationAccess from './application-access';
 import attachPrivateNetwork from './attach-private-network';
+import detachPrivateNetwork from './detach-private-network';
 import attachVolume from './attach-volume';
 import backup from './backup';
 import baremetalInstanceModule from '../../instances/instance/instance.module';
@@ -29,6 +30,7 @@ angular
     activeMonthlyBilling,
     applicationAccess,
     attachPrivateNetwork,
+    detachPrivateNetwork,
     attachVolume,
     backup,
     baremetalInstanceModule,
