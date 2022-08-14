@@ -3,10 +3,10 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
-import detachPrivateNetwork from '../../../instances/instance/detach-private-network/detach-private-network.module';
+import detachPrivateNetwork from '../detach-private-network.module';
 import routing from './detach-private-network.routing';
 
-const moduleName = 'ovhManagerPciBaremetalInstanceDetachPrivateNetwork';
+const moduleName = 'ovhManagerPciInstanceDetachPrivateNetwork';
 
 angular
   .module(moduleName, [

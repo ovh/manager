@@ -1,0 +1,34 @@
+<oui-modal
+    data-heading="{{:: 'pci_projects_project_instances_instance_detach-private-network_title' | translate}}"
+    data-primary-action="$ctrl.detachPrivateNetworks($ctrl.selectedPrivateNetworks)"
+    data-primary-label="{{:: 'pci_projects_project_instances_instance_detach-private-network_submit_label' | translate }}"
+    data-primary-disabled="$ctrl.isLoading || $ctrl.selectedPrivateNetworks.length === 0"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'pci_projects_project_instances_instance_detach-private-network_cancel_label' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+    <oui-message
+        data-ng-if="$ctrl.instance.privateNetworks.length === 0"
+        data-type="warning"
+    >
+        <span
+            data-translate="pci_projects_project_instances_instance_detach-private-network_error_no_compatible_network"
+        ></span>
+    </oui-message>
+    <oui-select
+        data-ng-if="$ctrl.instance.privateNetworks.length > 0"
+        data-name="selectedPrivateNetworks"
+        data-model="$ctrl.selectedPrivateNetworks"
+        data-placeholder="{{ :: 'pci_projects_project_instances_instance_detach-private-network_network_placeholder' | translate }}"
+        data-items="$ctrl.instance.privateNetworks"
+        data-match="name"
+        data-searchable
+        data-multiple
+        data-disabled="$ctrl.isLoading"
+    >
+    </oui-select>
+</oui-modal>

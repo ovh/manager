@@ -3,12 +3,12 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 const moduleName =
-  'ovhManagerPciBaremetalInstanceDetachPrivateNetworkLazyLoading';
+  'ovhManagerPciInstancesInstanceDetachPrivateNetworkLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'pci.projects.project.baremetal.instance.detachPrivateNetwork.**',
+      'pci.projects.project.instances.instance.detachPrivateNetwork.**',
       {
         url: '/network/private/detach',
         lazyLoad: ($transition$) => {

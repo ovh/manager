@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.baremetal.instance.detachPrivateNetwork',
+    'pci.projects.project.instances.instance.detachPrivateNetwork',
     {
       url: '/network/private/detach',
       views: {
@@ -10,7 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        goBack: /* @ngInject */ (goToInstance) => goToInstance,
+        goBack: /* @ngInject */ (goToInstance) => {
+          return goToInstance;
+        },
         privateNetworks: /* @ngInject */ (
           PciProjectsProjectInstanceService,
           instance,
