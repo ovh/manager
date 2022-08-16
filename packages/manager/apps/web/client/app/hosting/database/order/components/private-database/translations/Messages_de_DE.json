@@ -1,7 +1,6 @@
 {
   "hosting_database_order_private_title": "Bestellen Sie ein privates SQL",
   "hosting_database_order_private_description": "Sie benötigen ein Hosting, um die Optionen Private SQL und Start SQL zu bestellen.",
-  "hosting_database_order_private_step_header_type": "Typ der Datenbank",
   "hosting_database_order_private_step_header_customize": "Anpassung",
   "hosting_database_order_private_step_header_duration": "Laufzeit auswählen",
   "hosting_database_order_private_step_header_activation": "Aktivierung",
@@ -12,9 +11,6 @@
   "hosting_database_order_private_submit_pay": "Bezahlen",
   "hosting_database_order_private_cancel": "Abbrechen",
   "hosting_database_order_private_select_placeholder": "Auswählen...",
-  "hosting_database_order_private_type": "Welches Datenbankangebot bevorzugen Sie? ",
-  "hosting_database_order_private_type_label": "SQL Private",
-  "hosting_database_order_private_type_text": "Datenbanken mit garantierter RAM-Leistung für Ihr OVH Webhosting",
   "hosting_database_order_private_hosting": "Hosting-Pakete",
   "hosting_database_order_private_ram": "RAM",
   "hosting_database_order_private_version": "Version",

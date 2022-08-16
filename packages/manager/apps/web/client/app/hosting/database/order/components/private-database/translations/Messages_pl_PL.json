@@ -1,7 +1,6 @@
 {
   "hosting_database_order_private_title": "Zamów Private SQL",
   "hosting_database_order_private_description": "Musisz posiadać hosting, aby zamówić usługę Private SQL i Start SQL.",
-  "hosting_database_order_private_step_header_type": "Nazwa bazy danych",
   "hosting_database_order_private_step_header_customize": "Personalizacja",
   "hosting_database_order_private_step_header_duration": "Wybierz okres abonamentu",
   "hosting_database_order_private_step_header_activation": "Uruchom",
@@ -12,9 +11,6 @@
   "hosting_database_order_private_submit_pay": "Zapłać",
   "hosting_database_order_private_cancel": "Anuluj",
   "hosting_database_order_private_select_placeholder": "Wybierz...",
-  "hosting_database_order_private_type": "Jaką ofertę baz danych chcesz wybrać?",
-  "hosting_database_order_private_type_label": "Private SQL",
-  "hosting_database_order_private_type_text": "Bazy danych z gwarantowaną pamięcią RAM dla Twojego hostingu OVHcloud",
   "hosting_database_order_private_hosting": "Hosting",
   "hosting_database_order_private_ram": "RAM",
   "hosting_database_order_private_version": "Wersja",
