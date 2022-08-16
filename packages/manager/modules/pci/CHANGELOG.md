@@ -1,3 +1,14 @@
+# [5.86.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.85.2...@ovh-ux/manager-pci@5.86.0) (2022-08-16)
+
+
+### Features
+
+* **pci:** remove Containers tab from Kubernetes details view ([#7491](https://github.com/ovh/manager/issues/7491)) ([6770204](https://github.com/ovh/manager/commit/67702046235d232cbd7df02901d360d6bd275118))
+* **project.new:** add tracking for voucher related actions  ([#7621](https://github.com/ovh/manager/issues/7621)) ([6a8bea6](https://github.com/ovh/manager/commit/6a8bea60fb848377e6b356427482862c6e33dfe1))
+* **quota.increase-request:** implement tracking when a user request a quota increase ([#7644](https://github.com/ovh/manager/issues/7644)) ([e869c15](https://github.com/ovh/manager/commit/e869c158aa0d65c9801db121cd90c54b31fc0b11))
+
+
+
 ## [5.85.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.85.1...@ovh-ux/manager-pci@5.85.2) (2022-08-09)
 
 
