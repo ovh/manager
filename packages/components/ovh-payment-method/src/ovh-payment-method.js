@@ -18,7 +18,6 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
     deletePaymentMean,
     editPaymentMean,
     getPaymentMeans,
-    getAvailablePaymentMeans,
     setDefaultPaymentMean,
   } = usePaymentMean({ reketInstance, region });
 
@@ -49,31 +48,10 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
    */
   const getAllAvailablePaymentMethods = (
     options = DEFAULT_GET_AVAILABLE_OPTIONS,
-  ) => {
-    const availablePaymentMeansPromise =
-      usedRegion !== 'US'
-        ? getAvailablePaymentMeans(options)
-        : Promise.resolve([]);
-
-    return Promise.all([
-      availablePaymentMeansPromise,
-      getAvailablePaymentMethods(options.onlyRegisterable),
-    ]).then(([availablePaymentMeans, availablePaymentMethods]) => {
-      remove(availablePaymentMeans, ({ paymentType }) => {
-        const hasIdentical = some(
-          availablePaymentMethods,
-          (availablePaymentMethod) => {
-            const isSameValue =
-              availablePaymentMethod.paymentType === paymentType;
-            return isSameValue;
-          },
-        );
-        return hasIdentical;
-      });
-
-      return [...availablePaymentMeans, ...availablePaymentMethods];
-    });
-  };
+  ) =>
+    getAvailablePaymentMethods(options.onlyRegisterable).then(
+      (availablePaymentMethods) => availablePaymentMethods,
+    );
 
   /* -----  End of Available Payment Methods  ------*/
 
