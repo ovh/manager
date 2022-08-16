@@ -146,7 +146,7 @@ export default class Kubernetes {
       ...(gatewayConfig.enabled && {
         privateNetworkConfiguration: {
           defaultVrackGateway: gatewayConfig.ip,
-          privateNetworkRoutingAsDefault: !gatewayConfig.ip,
+          privateNetworkRoutingAsDefault: !!gatewayConfig.ip,
         },
       }),
     });
