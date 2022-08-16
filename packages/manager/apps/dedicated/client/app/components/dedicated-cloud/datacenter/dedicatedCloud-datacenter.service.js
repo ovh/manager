@@ -5,8 +5,15 @@ import map from 'lodash/map';
 
 export default class OvhManagerPccDatacenterService {
   /* @ngInject */
-  constructor(OvhApiMe) {
+  constructor($http, OvhApiMe) {
     this.OvhApiMe = OvhApiMe;
+    this.$http = $http;
+  }
+
+  getCommercialRangeName(serviceName, datacenterId) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}/datacenter/${datacenterId}`)
+      .then(({ data }) => data.commercialRangeName);
   }
 
   fetchConsumptionForAllServices() {
