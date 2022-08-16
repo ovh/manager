@@ -14,29 +14,6 @@
                 class="w-100"
                 tracking-prefix="{{ $ctrl.prefix }}"
             ></ovh-manager-hub-carousel>
-
-            <!-- This banner is ephemeral for domains repricing MANAGER-9696 -->
-            <oui-message
-                class="w-100"
-                data-ng-if="$ctrl.hasDomainRepricing"
-                data-type="info"
-            >
-                <strong
-                    data-translate="manager_hub_domain_repricing_part_1"
-                ></strong>
-                <p
-                    class="mb-0"
-                    data-translate="manager_hub_domain_repricing_part_2"
-                ></p>
-                <p
-                    class="mb-0"
-                    data-translate="manager_hub_domain_repricing_part_3"
-                ></p>
-                <p
-                    class="mb-0"
-                    data-translate="manager_hub_domain_repricing_part_4"
-                ></p>
-            </oui-message>
         </div>
         <h2 data-translate="manager_hub_dashboard_overview"></h2>
         <div class="row">

@@ -1,8 +1,4 @@
 {
   "manager_hub_notification_warning": "{{ content }}",
-  "manager_hub_skip_to_main_content": "Aller au contenu principal",
-  "manager_hub_domain_repricing_part_1": "Evolution de vos tarifs Noms de Domaine",
-  "manager_hub_domain_repricing_part_2": "A partir du 15 août 2022, les tarifs de renouvellement de vos noms de domaines évoluent.",
-  "manager_hub_domain_repricing_part_3": "Pensez à renouveler vos domaines avant cette date afin de bénéficier de nos tarifs actuels.",
-  "manager_hub_domain_repricing_part_4": "Retrouvez la liste des extensions concernées ainsi que les nouveaux tarifs dans l'email qui vous a été envoyé le 13 juillet."
+  "manager_hub_skip_to_main_content": "Aller au contenu principal"
 }
