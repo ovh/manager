@@ -8,6 +8,8 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import values from 'lodash/values';
 
+import { OPTION_NAME } from './pack-migration-process.constant';
+
 /**
  *  Service used to share data between differents steps of the pack migration process.
  */
@@ -53,7 +55,8 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
     return filter(
       values(migrationProcess.selectedOffer.options),
       (option) =>
-        option.optional && option.choosedValue > 0 && option.name !== 'gtr_ovh',
+        (option.optional && option.choosedValue > 0) ||
+        option.selected === true,
     );
   };
 
@@ -91,18 +94,8 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
     // options post params
     const migrationOptions = map(self.getOptionsSelected(), (option) => ({
       name: option.name,
-      quantity: option.choosedValue,
+      quantity: option.choosedValue || (option.selected === true ? 1 : 0),
     }));
-
-    if (
-      migrationProcess.selectedOffer.options.gtr_ovh &&
-      migrationProcess.selectedOffer.options.gtr_ovh.selected
-    ) {
-      migrationOptions.push({
-        name: 'gtr_ovh',
-        quantity: 1,
-      });
-    }
 
     postParams.options = migrationOptions;
 
@@ -280,6 +273,7 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
           'result.offers',
           map(pollResult.result.offers, (offer) => {
             set(offer, 'displayedPrice', offer.price);
+            set(offer, 'gtrComfortActivated', false);
             set(offer, 'totalSubServiceToDelete', 0);
             forEach(offer.subServicesToDelete, (subService) => {
               // eslint-disable-next-line no-param-reassign
@@ -296,13 +290,22 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
                 })),
               );
             });
-            set(offer, 'options', keyBy(offer.options, 'name'));
+            const voipOptions = offer.options
+              .filter((option) => option.name === OPTION_NAME)
+              .reduce((acc, option) => {
+                set(acc, `${option.name}_${option.optional}`, option);
+                return acc;
+              }, {});
+            let otherOptions = offer.options.filter(
+              (option) => option.name !== OPTION_NAME,
+            );
+            otherOptions = keyBy(otherOptions, 'name');
+            set(offer, 'options', { ...otherOptions, ...voipOptions });
             set(offer, 'buildings', pollResult.result.buildings);
             return offer;
           }),
         );
       }
-
       migrationProcess.migrationOffers = pollResult;
     });
   }
@@ -319,16 +322,12 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
   self.selectOffer = function selectOffer(offer) {
     migrationProcess.selectedOffer = offer;
     if (
-      includes(migrationProcess.selectedOffer.offerName.toLowerCase(), 'ftth')
+      !migrationProcess.pack.offerDescription
+        .toLowerCase()
+        .match(/ftth|fibre|fiber/) &&
+      includes(migrationProcess.selectedOffer.offerName.toLowerCase(), 'fiber')
     ) {
-      // Check if the current offer is already FTTH
-      if (
-        includes(migrationProcess.pack.offerDescription.toLowerCase(), 'ftth')
-      ) {
-        migrationProcess.currentStep = 'serviceDelete';
-      } else {
-        migrationProcess.currentStep = 'buildingDetails';
-      }
+      migrationProcess.currentStep = 'buildingDetails';
     } else if (migrationProcess.selectedOffer.totalSubServiceToDelete > 0) {
       migrationProcess.currentStep = 'serviceDelete';
     } else if (migrationProcess.selectedOffer.needNewModem) {
