@@ -1,3 +1,17 @@
+# [17.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.25.2...@ovh-ux/manager-dedicated@17.26.0) (2022-08-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1767] ([c9307ed](https://github.com/ovh/manager/commit/c9307ed44b9fe8a7700eddbdf1488203019a19aa))
+
+
+### Features
+
+* **pcc:** add a banner for pcc eol ([#7693](https://github.com/ovh/manager/issues/7693)) ([9fd286a](https://github.com/ovh/manager/commit/9fd286af78bcee633ef4952bda7c73d0bd83b29e))
+
+
+
 ## [17.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.25.1...@ovh-ux/manager-dedicated@17.25.2) (2022-08-10)
 
 
