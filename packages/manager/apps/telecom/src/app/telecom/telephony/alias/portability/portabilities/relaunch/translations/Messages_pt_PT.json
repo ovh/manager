@@ -1,0 +1,23 @@
+{
+  "telephony_alias_portabilities_relaunch_title": "Corrigir e relançar a portabilidade",
+  "telephony_alias_portabilities_relaunch_cancel": "Anular",
+  "telephony_alias_portabilities_relaunch_submit": "Relançar a portabilidade",
+  "telephony_alias_portabilities_relaunch_doing": "Lembrete em curso...",
+  "telephony_alias_portabilities_relaunch_success": "O pedido de portabilidade foi relançado.",
+  "telephony_alias_portabilities_relaunch_error": "Ups! Ocorreu um erro aquando do relançamento do seu pedido de portabilidade: {{ error }}",
+  "telephony_alias_portabilities_relaunch_label_rio": "Rio",
+  "telephony_alias_portabilities_relaunch_label_streetNumber": "Número da via",
+  "telephony_alias_portabilities_relaunch_label_streetName": "Nome da rua",
+  "telephony_alias_portabilities_relaunch_label_zip": "Código postal",
+  "telephony_alias_portabilities_relaunch_label_city": "Cidade",
+  "telephony_alias_portabilities_relaunch_label_firstName": "Nome",
+  "telephony_alias_portabilities_relaunch_label_lastName": "Nome",
+  "telephony_alias_portabilities_relaunch_label_socialNomination": "Denominação social",
+  "telephony_alias_portabilities_relaunch_label_building": "Edifício",
+  "telephony_alias_portabilities_relaunch_label_stair": "Escalada",
+  "telephony_alias_portabilities_relaunch_label_floor": "Etapa",
+  "telephony_alias_portabilities_relaunch_label_door": "Porta",
+  "telephony_alias_portabilities_relaunch_label_siret": "Siret",
+  "telephony_alias_portabilities_relaunch_required_fields": "Campos obrigatórios",
+  "telephony_alias_portabilities_relaunch_optional_fields": "Campos facultativos"
+}

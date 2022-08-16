@@ -1,0 +1,23 @@
+{
+  "telephony_alias_portabilities_relaunch_title": "Correggere e riavviare la portabilità",
+  "telephony_alias_portabilities_relaunch_cancel": "Annullare",
+  "telephony_alias_portabilities_relaunch_submit": "Riavviare la portabilità",
+  "telephony_alias_portabilities_relaunch_doing": "Ripresa in corso...",
+  "telephony_alias_portabilities_relaunch_success": "La richiesta di portabilità è stata rilanciata correttamente.",
+  "telephony_alias_portabilities_relaunch_error": "Ops! Si è verificato un errore durante il rilancio della tua richiesta di portabilità: {{ error }}",
+  "telephony_alias_portabilities_relaunch_label_rio": "Rio",
+  "telephony_alias_portabilities_relaunch_label_streetNumber": "Numero della via",
+  "telephony_alias_portabilities_relaunch_label_streetName": "Nome della via",
+  "telephony_alias_portabilities_relaunch_label_zip": "Codice postale",
+  "telephony_alias_portabilities_relaunch_label_city": "Città",
+  "telephony_alias_portabilities_relaunch_label_firstName": "Nome",
+  "telephony_alias_portabilities_relaunch_label_lastName": "Nome",
+  "telephony_alias_portabilities_relaunch_label_socialNomination": "Denominazione sociale",
+  "telephony_alias_portabilities_relaunch_label_building": "Edificio",
+  "telephony_alias_portabilities_relaunch_label_stair": "Scala",
+  "telephony_alias_portabilities_relaunch_label_floor": "Piano",
+  "telephony_alias_portabilities_relaunch_label_door": "Porta",
+  "telephony_alias_portabilities_relaunch_label_siret": "Siret",
+  "telephony_alias_portabilities_relaunch_required_fields": "Campi obbligatori",
+  "telephony_alias_portabilities_relaunch_optional_fields": "Record opzionali"
+}
