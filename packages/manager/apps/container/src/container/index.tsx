@@ -32,9 +32,9 @@ export default function Container(): JSX.Element {
               creation: '[customer-services]',
             });
           }
+          shell.getPlugin('ux').showMenuSidebar();
         }
       });
-      shell.getPlugin('ux').showMenuSidebar();
     }
   }, [isLoading]);
 
