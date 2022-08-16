@@ -81,6 +81,22 @@
         <span data-translate="dedicatedCloud_premier_sbg_order_warning"></span>
     </oui-message>
 
+    <oui-message class="mb-1" type="info" data-ng-if="$ctrl.isEOLDatacenter">
+        <strong data-translate="dedicatedCloud_datacenter_EOL_title"></strong>
+        <p
+            class="mt-2"
+            data-translate="dedicatedCloud_datacenter_EOL_part_1"
+        ></p>
+        <p data-translate="dedicatedCloud_datacenter_EOL_part_2"></p>
+        <a
+            data-ng-href="{{ :: $ctrl.guideMigration }}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span data-ng-bind=":: $ctrl.guideMigration"></span>
+        </a>
+    </oui-message>
+
     <oui-message class="mb-1" type="info" ng-if="$ctrl.surveyUrl">
         <span data-translate="dedicatedCloud_survey"></span>
         <a
