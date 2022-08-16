@@ -59,9 +59,9 @@ export default class PciStoragesUsersService {
       .then(({ data }) => data);
   }
 
-  getUsersCredentials(serviceName, usersIds) {
-    const promises = usersIds.map((userId) =>
-      this.asCredentials(serviceName, userId),
+  getUsersCredentials(serviceName, users) {
+    const promises = users.map((user) =>
+      this.asCredentials(serviceName, user.id),
     );
     return this.$q.all(promises).then((data) => data);
   }

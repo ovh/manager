@@ -24,19 +24,20 @@ export default class PciUsersAddController {
     this.isLoading = false;
     this.addExistingUser = 'addExistingUser';
     this.createNewUser = 'createNewUser';
-
-    this.allUserList = this.allUserList.map((userList) => ({
-      ...userList,
-      asCredentials: this.usersCredentials.find(
-        (credential) => credential.userId === userList.id,
-      ).asCredentials
-        ? this.$translate.instant(
-            'pci_projects_project_users_add_as_credentials',
-          )
-        : this.$translate.instant(
-            'pci_projects_project_users_add_as_no_credentials',
-          ),
-    }));
+    this.allUserList = this.allUserList
+      .filter((user) => user)
+      .map((user) => ({
+        ...user,
+        asCredentials: this.usersCredentials.find(
+          (credential) => credential.userId === user.id,
+        ).asCredentials
+          ? this.$translate.instant(
+              'pci_projects_project_users_add_as_credentials',
+            )
+          : this.$translate.instant(
+              'pci_projects_project_users_add_as_no_credentials',
+            ),
+      }));
     this.usersWithoutCredentials = this.allUserList
       .filter(({ s3Credentials }) => !s3Credentials.length)
       .map((user) => ({
