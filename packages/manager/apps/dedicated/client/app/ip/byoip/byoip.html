@@ -5,6 +5,13 @@
         data-description="{{:: 'ip_byoip_description' | translate }}"
     >
     </oui-header>
+    <oui-message
+        data-type="warning"
+        class="mb-2"
+        data-ng-if=":: $ctrl.isBannerByoipAvailable"
+    >
+        <span data-translate="ip_byoip_restriction_warning_message"></span>
+    </oui-message>
     <div data-ovh-alert="{{$ctrl.alerts.list}}"></div>
 
     <oui-stepper data-on-finish="$ctrl.orderByoip()">
