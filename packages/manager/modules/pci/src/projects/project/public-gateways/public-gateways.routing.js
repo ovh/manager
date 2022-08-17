@@ -35,11 +35,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state,
         projectId,
         trackPublicGateways,
-      ) => (gateway) => {
+      ) => (gatewayId, region) => {
         trackPublicGateways('table-option-menu::update');
         return $state.go('pci.projects.project.public-gateways.edit', {
           projectId,
-          gateway,
+          gatewayId,
+          region,
         });
       },
       goToPrivateNetwork: /* @ngInject */ ($state) => (projectId) =>
