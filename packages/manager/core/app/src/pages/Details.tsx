@@ -17,11 +17,6 @@ export default function DetailsPage(): JSX.Element {
       title: t('tab_nodes'),
       to: 'nodes',
     },
-    {
-      name: 'nodes1',
-      title: t('tab_nodes'),
-      to: 'test',
-    },
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);

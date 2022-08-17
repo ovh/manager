@@ -8,7 +8,7 @@ import Service, {
   TechnicalDetails,
   BareMetalServersDetails,
   NutanixClusterDetails,
-} from './service';
+} from '@/api/service';
 
 export type Nutanix = {
   allowedRedundancyFactor: number[];
