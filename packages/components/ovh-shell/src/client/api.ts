@@ -1,5 +1,5 @@
 import { ApplicationId } from '@ovh-ux/manager-config/types/application';
-import { Environment } from '@ovh-ux/manager-config';
+import { LANGUAGES, Environment } from '@ovh-ux/manager-config';
 import ShellClient from './shell-client';
 import { clientAuth } from '../plugin/auth';
 import { clientNavigation } from '../plugin/navigation';
@@ -57,10 +57,14 @@ export default function exposeApi(shellClient: ShellClient) {
           args: [locale],
         }),
       getAvailableLocales: () =>
-        shellClient.invokePluginMethod({
-          plugin: 'i18n',
-          method: 'getAvailableLocales',
-        }),
+        shellClient
+          .invokePluginMethod({
+            plugin: 'i18n',
+            method: 'getAvailableLocales',
+          })
+          .then((locales) => {
+            return locales as { key: string; name: string }[];
+          }),
     },
     routing: {
       listenForHashChange: () =>

@@ -8,7 +8,10 @@ import OvhContainerRoutingSync from './ovh-routing';
 async function init(name: ApplicationId) {
   const context = await initOvhContext(name);
   const availableLocales = await context.shell.i18n.getAvailableLocales();
-  await initI18n(context.environment.getUserLocale(), availableLocales.map(({ key }) => key));
+  await initI18n(
+    context.environment.getUserLocale(),
+    availableLocales.map(({ key }) => key),
+  );
   return context;
 }
 
