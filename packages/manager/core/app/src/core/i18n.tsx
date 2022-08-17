@@ -15,7 +15,9 @@ export async function initI18n(locale: string) {
         loadPath: (lngs, namespaces) => {
           const [ns] = namespaces;
           const [lng] = lngs;
-          return `/translations/${ns}/Messages_${lng.replace('-', '_')}.json`;
+          return `${
+            import.meta.env.BASE_URL
+          }translations/${ns}/Messages_${lng.replace('-', '_')}.json`;
         },
         allowMultiLoading: false,
       },
