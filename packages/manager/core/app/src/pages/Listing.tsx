@@ -34,7 +34,7 @@ export default function ListingPage(): JSX.Element {
       sortable: true,
       hidden: searchParams.isColumnHidden('serviceName'),
       renderer: (nutanix) => (
-        <Link as={RouterLink} to={`/nutanix/details/${nutanix.serviceName}`}>
+        <Link as={RouterLink} to={`/nutanix/${nutanix.serviceName}/details`}>
           {nutanix.serviceName}
         </Link>
       ),
