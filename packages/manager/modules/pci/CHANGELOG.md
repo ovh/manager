@@ -1,3 +1,12 @@
+## [5.86.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.86.0...@ovh-ux/manager-pci@5.86.1) (2022-08-17)
+
+
+### Bug Fixes
+
+* **pci:** instance delete ([3334ac1](https://github.com/ovh/manager/commit/3334ac151dee66ce1d1e5032b2157f85f67e84a5))
+
+
+
 # [5.86.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.85.2...@ovh-ux/manager-pci@5.86.0) (2022-08-16)
 
 

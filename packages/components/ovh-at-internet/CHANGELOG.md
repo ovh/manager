@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.2.0...@ovh-ux/ovh-at-internet@0.2.1) (2022-08-17)
+
+
+### Bug Fixes
+
+* **ovh-at-internet:** rename site_name attribute ([e911064](https://github.com/ovh/manager/commit/e9110643e8e6abd7452fc6867aaa2dfe37a422a9))
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.1.0...@ovh-ux/ovh-at-internet@0.2.0) (2022-08-10)
 
 

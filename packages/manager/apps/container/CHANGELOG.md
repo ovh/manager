@@ -1,3 +1,14 @@
+## [0.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.9...@ovh-ux/manager-container-app@0.3.10) (2022-08-17)
+
+
+### Bug Fixes
+
+* **container:** account menu sidebar ([16c414a](https://github.com/ovh/manager/commit/16c414a8d3dc52f95b3ecbf2f3df299d7970001d))
+* **container:** navbar classic view height ([6a13d11](https://github.com/ovh/manager/commit/6a13d11cfc7964b9b14a2447e7ee0310b02026d9))
+* **container:** send tracking after config is set ([6ee0761](https://github.com/ovh/manager/commit/6ee0761ef7e891ae92d9cf87d5561badc520a720))
+
+
+
 ## [0.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.8...@ovh-ux/manager-container-app@0.3.9) (2022-08-01)
 
 
