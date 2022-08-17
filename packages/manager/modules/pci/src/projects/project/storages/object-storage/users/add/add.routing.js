@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) =>
           PciStoragesUsersService.getUsersCredentials(
             projectId,
-            allUserList.map((user) => user.id),
+            allUserList.filter((user) => user),
           ),
       },
       atInternet: {
