@@ -58,7 +58,10 @@ export default function exposeApi(shellClient: ShellClient) {
         }),
     },
     routing: {
-      init: () => window.addEventListener('hashchange', notifyHashChange),
+      listenForHashChange: () =>
+        window.addEventListener('hashchange', notifyHashChange),
+      stopListenForHashChange: () =>
+        window.removeEventListener('hashchange', notifyHashChange),
       onHashChange: notifyHashChange,
     },
     auth: clientAuth(shellClient),
