@@ -1,3 +1,12 @@
+## [5.86.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.86.1...@ovh-ux/manager-pci@5.86.2) (2022-08-17)
+
+
+### Bug Fixes
+
+* **containers:** update open rc call ([#7807](https://github.com/ovh/manager/issues/7807)) ([414afe5](https://github.com/ovh/manager/commit/414afe529e158b484ae68ef1ac6f7a909be1cf5a))
+
+
+
 ## [5.86.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.86.0...@ovh-ux/manager-pci@5.86.1) (2022-08-17)
 
 
