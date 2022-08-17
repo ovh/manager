@@ -61,6 +61,19 @@ export class TrackingPlugin extends OvhAtInternet {
     this.configureTracking(this.region as Region, this.currentUser);
   }
 
+  waitForConfig(retryInterval = 500): Promise<RegionsTrackingConfig> {
+    return new Promise((resolve) => {
+      const checkConfig = () => {
+        if (this.config) {
+          resolve(this.config);
+        } else {
+          setTimeout(checkConfig, retryInterval);
+        }
+      };
+      checkConfig();
+    });
+  }
+
   getConfigByRegion(region: Region): TrackingConfig['config'] {
     return {
       ...(this.config[region] && this.config[region].config),

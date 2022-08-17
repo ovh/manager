@@ -20,7 +20,7 @@ export interface GenericTrackingData {
   website?: string;
   referrer?: string;
   full_url: string;
-  site_name: string;
+  site_name_1: string;
   user_agent: string;
   currency: string;
   event?: string;

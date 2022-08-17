@@ -78,7 +78,9 @@ function Navbar({ environment }: Props): JSX.Element {
           universes={universes}
           onClick={universeClickHandler}
         />
-        <div className="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end">
+        <div
+          className={`oui-navbar-list oui-navbar-list_aside oui-navbar-list_end ${style.aside}`}
+        >
           {searchURL && (
             <div className="oui-navbar-list__item">
               <Search targetURL={searchURL} />

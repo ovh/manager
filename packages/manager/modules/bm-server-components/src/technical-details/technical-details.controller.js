@@ -70,6 +70,7 @@ export default class BmServerComponentsTechnicalDetailsController {
     const freqUnit = this.$translate.instant(
       'dedicated_server_dashboard_technical_details_cpu_frequency_unit',
     );
+    const cpuNumber = get(cpu, 'number', 1);
     const cpuBrand = get(cpu, 'brand', '');
     const cpuModel = get(cpu, 'model', '');
     const cpuCores = cpu.cores ? `${cpu.cores}c` : '';
@@ -77,7 +78,9 @@ export default class BmServerComponentsTechnicalDetailsController {
     const cpuFrequency = cpu.frequency ? `${cpu.frequency} ${freqUnit}` : '';
     const cpuBoost =
       cpu.boost !== cpu.frequency ? `/${cpu.boost} ${freqUnit}` : '';
-    return `${cpuBrand} ${cpuModel} - ${cpuCores}${cpuThreads} - ${cpuFrequency}${cpuBoost}`;
+    return `${
+      cpuNumber > 1 ? `${cpuNumber}×` : ''
+    } ${cpuBrand} ${cpuModel} - ${cpuCores}${cpuThreads} - ${cpuFrequency}${cpuBoost}`;
   }
 
   formatDisks(diskUsage) {
