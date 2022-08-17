@@ -14,7 +14,6 @@ export async function initI18n(locale: string, availableLocales: string[]) {
       lng: ovhLocaleToI18next(locale),
       fallbackLng: 'fr-FR',
       ns: [],
-      compatibilityJSON: 'v3', // see https://www.i18next.com/misc/json-format#i18next-json-v3
       supportedLngs: availableLocales.map(ovhLocaleToI18next),
       backend: {
         loadPath: (lngs, namespaces) => {
