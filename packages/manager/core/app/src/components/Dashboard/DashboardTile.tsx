@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Tile } from '@ovh-ux/manager-themes';
 
-import { tileTypesEnum } from '.';
+import { TileTypesEnum, DashboardTile as DashboardTileType } from '.';
 import DashboardTileLoading from './DashboardTileLoading';
 import DashboardTileList from './DashboardTileList';
 
-export default function DashboardTile({ tile }: any): JSX.Element {
+export type DashboardTileProps = {
+  tile: DashboardTileType;
+};
+
+export default function DashboardTile({
+  tile,
+}: DashboardTileProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState();
+  const [data, setData] = useState<unknown>();
 
   const getTileContentComponent = () => {
     switch (tile.type) {
-      case tileTypesEnum.LIST:
-        return <DashboardTileList data={data} items={tile.listItems} />;
+      case TileTypesEnum.LIST:
+        return <DashboardTileList data={data} definitions={tile.definitions} />;
       default:
         return tile.content;
     }

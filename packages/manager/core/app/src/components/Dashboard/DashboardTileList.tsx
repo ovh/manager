@@ -10,13 +10,23 @@ import {
 import { Link as RouterLink } from 'react-router-dom';
 import { EllipsisIcon, TileSection } from '@ovh-ux/manager-themes';
 
-export default function DashboardTileList({ items, data }: any): JSX.Element {
-  const getActionList = (actions: any) => {
+import { DashboardTileDefinition, DashboardTileDefinitionAction } from '.';
+
+export type DashboardTileListProps = {
+  definitions: DashboardTileDefinition[];
+  data: unknown;
+};
+
+export default function DashboardTileList({
+  definitions,
+  data,
+}: DashboardTileListProps): JSX.Element {
+  const getActionList = (actions: DashboardTileDefinitionAction[]) => {
     if (!actions?.length) {
       return '';
     }
 
-    const getMenuItem = (action: any) => {
+    const getMenuItem = (action: DashboardTileDefinitionAction) => {
       if (Object.prototype.hasOwnProperty.call(action, 'to')) {
         return (
           <MenuItem as={RouterLink} to={action.to} aria-label={action.title}>
@@ -56,7 +66,7 @@ export default function DashboardTileList({ items, data }: any): JSX.Element {
           icon={<EllipsisIcon />}
         />
         <MenuList>
-          {actions.map((action) => (
+          {actions.map((action: DashboardTileDefinitionAction) => (
             <Fragment key={action.name}>{getMenuItem(action)}</Fragment>
           ))}
         </MenuList>
@@ -66,13 +76,13 @@ export default function DashboardTileList({ items, data }: any): JSX.Element {
 
   return (
     <>
-      {items.map((item: any) => {
+      {definitions.map((definition: DashboardTileDefinition) => {
         return (
           <TileSection
-            key={item.name}
-            title={item.title}
-            description={item.getDescription(data) || ''}
-            action={getActionList(item.actions)}
+            key={definition.name}
+            title={definition.title}
+            description={definition.getDescription(data) || ''}
+            action={getActionList(definition.actions)}
           ></TileSection>
         );
       })}

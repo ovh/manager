@@ -20,6 +20,9 @@ const Tabs: ComponentMultiStyleConfig = {
       borderWidth: '.125rem',
       whiteSpace: 'nowrap',
     },
+    tabpanels: {
+      padding: '1rem',
+    },
     tabpanel : {
       borderBottomRadius: 'medium',
     }
