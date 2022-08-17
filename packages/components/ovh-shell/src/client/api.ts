@@ -56,6 +56,11 @@ export default function exposeApi(shellClient: ShellClient) {
           method: 'setLocale',
           args: [locale],
         }),
+      getAvailableLocales: () =>
+        shellClient.invokePluginMethod({
+          plugin: 'i18n',
+          method: 'getAvailableLocales',
+        }),
     },
     routing: {
       listenForHashChange: () =>
