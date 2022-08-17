@@ -1,6 +1,14 @@
 import { Filter } from '@/api/filters';
 import { fetchIceberg } from '@/api/iceberg';
 import apiClient from '@/api/client';
+import ServiceInfos, { getServiceInfos as getInfos } from './serviceInfos';
+import Service, {
+  getServiceOptions,
+  getHardwareInfo,
+  TechnicalDetails,
+  BareMetalServersDetails,
+  NutanixClusterDetails,
+} from './service';
 
 export type Nutanix = {
   allowedRedundancyFactor: number[];
@@ -31,6 +39,12 @@ export type Nutanix = {
     version: string;
     vrack: string;
   };
+};
+
+export type Server = {
+  datacenter: string;
+  rack: string;
+  serviceId: number;
 };
 
 type NutanixList = {
@@ -114,6 +128,64 @@ export async function getNutanix(serviceName: string): Promise<Nutanix> {
 export async function getServer(nodeId: number): Promise<any> {
   const response = await apiClient.aapi.get(`/sws/dedicated/server/${nodeId}`);
   return response.json();
+}
+
+export function transformTechnicalDetails(
+  optionsHardwareInfo: Array<TechnicalDetails>,
+): TechnicalDetails {
+  const baremetalServers = {} as BareMetalServersDetails;
+  let nutanixCluster = {} as NutanixClusterDetails;
+  optionsHardwareInfo.forEach((hardwareInfo) => {
+    if (hardwareInfo.baremetalServers) {
+      const keys = Object.keys(
+        hardwareInfo.baremetalServers,
+      ) as (keyof typeof hardwareInfo.baremetalServers)[];
+      keys.forEach((key) => {
+        if (hardwareInfo.baremetalServers[key]) {
+          const value = hardwareInfo.baremetalServers[key] as Record<
+            string,
+            unknown
+          >;
+          if (key === 'storage' && baremetalServers.storage) {
+            baremetalServers.storage.disks = [
+              ...baremetalServers.storage.disks,
+              ...hardwareInfo.baremetalServers.storage.disks,
+            ];
+          } else {
+            baremetalServers[key] = {
+              ...value,
+              serviceId: hardwareInfo.serviceId,
+            };
+          }
+        }
+      });
+    }
+    if (hardwareInfo.nutanixCluster) {
+      // only one nutanix cluster, no need merge the results
+      nutanixCluster = hardwareInfo.nutanixCluster;
+    }
+  });
+  return {
+    baremetalServers,
+    nutanixCluster,
+  };
+}
+
+export async function getTechnicalDetails(
+  serviceId: number,
+  nodeServiceId: number,
+): Promise<TechnicalDetails> {
+  const options = await getServiceOptions(serviceId);
+  const optionsServiceId = [nodeServiceId, serviceId];
+  options.forEach((option: Service) => {
+    optionsServiceId.push(option.serviceId);
+  });
+  const optionsHardwareInfo = await Promise.all(
+    optionsServiceId.map(async (optionServiceId) =>
+      getHardwareInfo(optionServiceId),
+    ),
+  );
+  return transformTechnicalDetails(optionsHardwareInfo);
 }
 
 export default Nutanix;

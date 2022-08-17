@@ -4,8 +4,15 @@ import { useParams, Link as RouterLink } from 'react-router-dom';
 import { Link } from '@chakra-ui/react';
 import { ArrowForwardIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 
-import { getNutanix, getServiceDetails } from '@/api/nutanix';
-import Dashboard, { tileTypesEnum } from '../components/Dashboard';
+import Nutanix, {
+  getNutanix,
+  getServiceInfos,
+  getServer,
+  getTechnicalDetails,
+  Server,
+} from '@/api/nutanix';
+import Service, { getServiceDetails, TechnicalDetails } from '@/api/service';
+import Dashboard, { TileTypesEnum } from '../components/Dashboard';
 
 export default function DashboardPage(): JSX.Element {
   const { t } = useTranslation('dashboard');
@@ -15,20 +22,26 @@ export default function DashboardPage(): JSX.Element {
     {
       name: 'general',
       heading: t('tile_general_title'),
-      type: tileTypesEnum.LIST,
+      type: TileTypesEnum.LIST,
       onLoad: async () => {
-        const [cluster, serviceDetails] = await Promise.all([
-          getNutanix(serviceId),
-          getServiceDetails(serviceId),
+        const cluster = await getNutanix(serviceId);
+        const serviceInfos = await getServiceInfos(serviceId);
+        const [serviceDetails, server] = await Promise.all([
+          getServiceDetails(serviceInfos.serviceId),
+          getServer(cluster.targetSpec?.nodes[0]?.server),
         ]);
-        // const server = await getServer();
-        return { cluster, serviceDetails };
+        const technicalDetails = await getTechnicalDetails(
+          serviceInfos.serviceId,
+          server.serviceId,
+        );
+
+        return { cluster, serviceDetails, server, technicalDetails };
       },
-      listItems: [
+      definitions: [
         {
           name: 'name',
           title: t('tile_general_item_name'),
-          getDescription: ({ cluster }) => {
+          getDescription: ({ cluster }: { cluster: Nutanix }) => {
             return cluster.serviceName;
           },
           actions: [
@@ -43,7 +56,7 @@ export default function DashboardPage(): JSX.Element {
         {
           name: 'commercial_range',
           title: t('tile_general_item_commercial_range'),
-          getDescription: ({ serviceDetails }) =>
+          getDescription: ({ serviceDetails }: { serviceDetails: Service }) =>
             serviceDetails.billing.plan.invoiceName,
         },
         {
@@ -59,7 +72,7 @@ export default function DashboardPage(): JSX.Element {
         {
           name: 'admin_interface',
           title: t('tile_general_item_admin_interface'),
-          getDescription: ({ cluster }) => (
+          getDescription: ({ cluster }: { cluster: Nutanix }) => (
             <Link href={cluster.targetSpec.controlPanelURL} isExternal>
               {t('tile_general_item_admin_interface_link')} <ExternalLinkIcon />
             </Link>
@@ -68,28 +81,41 @@ export default function DashboardPage(): JSX.Element {
         {
           name: 'license',
           title: t('tile_general_item_license'),
-          getDescription: () => '',
+          getDescription: ({
+            technicalDetails,
+          }: {
+            technicalDetails: TechnicalDetails;
+          }) => technicalDetails.nutanixCluster.license.distribution,
         },
         {
           name: 'deployment_mode',
           title: t('tile_general_item_deployment_mode'),
-          getDescription: () => '',
+          getDescription: ({ cluster }: { cluster: Nutanix }) =>
+            cluster.targetSpec.rackAwareness
+              ? 'Rack awareness' // TODO: add popover
+              : 'Node awareness', // TODO: add popover
         },
         {
           name: 'replication_factor',
           title: t('tile_general_item_replication_factor'),
-          getDescription: ({ cluster }) => cluster.targetSpec.redundancyFactor,
+          getDescription: ({ cluster }: { cluster: Nutanix }) =>
+            cluster.targetSpec.redundancyFactor,
         },
         {
           name: 'datacenter',
           title: t('tile_general_item_datacenter'),
-          getDescription: () => '',
+          getDescription: ({ server }: { server: Server }) => server.datacenter,
         },
         {
           name: 'rack',
           title: t('tile_general_item_rack'),
-          getDescription: ({ cluster }) =>
-            !cluster.targetSpec.rackAwareness ? '' : '',
+          getDescription: ({
+            cluster,
+            server,
+          }: {
+            cluster: Nutanix;
+            server: Server;
+          }) => (!cluster.targetSpec.rackAwareness ? server.rack || '-' : '-'),
         },
       ],
     },

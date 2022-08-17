@@ -1,7 +1,7 @@
-import React from 'react';
-import { Tabs, TabList, TabPanels, TabPanel, Tab } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Tabs, TabList, TabPanels, Tab } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, Link as RouterLink } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 
 export default function DetailsPage(): JSX.Element {
   const { t } = useTranslation('details');
@@ -17,23 +17,33 @@ export default function DetailsPage(): JSX.Element {
       title: t('tab_nodes'),
       to: 'nodes',
     },
+    {
+      name: 'nodes1',
+      title: t('tab_nodes'),
+      to: 'test',
+    },
   ];
 
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
-    <Tabs variant="light">
+    <Tabs
+      variant="light"
+      index={activeIndex}
+      onChange={(e) => setActiveIndex(e)}
+    >
       <TabList>
-        {tabs.map((tab) => (
-          <Tab key={tab.name} as={RouterLink} to={tab.to}>
-            {tab.title}
+        {tabs.map((tab, index) => (
+          <Tab as={NavLink} key={tab.name} to={tab.to}>
+            {({ isActive }: { isActive: boolean }) => {
+              if (isActive) setActiveIndex(index);
+              return tab.title;
+            }}
           </Tab>
         ))}
       </TabList>
       <TabPanels>
-        {tabs.map((tab) => (
-          <TabPanel key={tab.name}>
-            <Outlet />
-          </TabPanel>
-        ))}
+        <Outlet />
       </TabPanels>
     </Tabs>
   );
