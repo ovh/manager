@@ -6,27 +6,66 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($q, $http, $translate, OvhApiCloudProject) {
+  constructor(
+    $q,
+    $http,
+    $translate,
+    OvhApiCloudProject,
+    OvhApiCloudProjectNetworkPrivate,
+    OvhApiCloudProjectNetworkPrivateSubnet,
+  ) {
     this.$q = $q;
     this.$http = $http;
     this.$translate = $translate;
     this.OvhApiCloudProject = OvhApiCloudProject;
+    this.OvhApiCloudProjectNetworkPrivate = OvhApiCloudProjectNetworkPrivate;
+    this.OvhApiCloudProjectNetworkPrivateSubnet = OvhApiCloudProjectNetworkPrivateSubnet;
   }
 
   getPrivateNetworks(serviceName) {
     return this.$http
       .get(`/cloud/project/${serviceName}/network/private`)
-      .then(({ data: privateNetworks }) => {
-        return sortBy(privateNetworks, 'vlanId').filter(
+      .then(({ data }) => {
+        const privateNetworks = sortBy(data, 'vlanId').filter(
           ({ status }) => !DELETING_STATUS.includes(status),
+        );
+        return this.$q.all(
+          privateNetworks.map((privateNetwork) =>
+            this.getSubnets(serviceName, privateNetwork),
+          ),
         );
       });
   }
 
-  getSubnets(serviceName, networkId) {
+  getSubnets(serviceName, privateNetwork) {
     return this.$http
-      .get(`/cloud/project/${serviceName}/network/private/${networkId}/subnet`)
-      .then((data) => data);
+      .get(
+        `/cloud/project/${serviceName}/network/private/${privateNetwork.id}/subnet`,
+      )
+      .then(({ data }) => {
+        return {
+          ...privateNetwork,
+          subnet: [
+            ...data.map((subnet) => ({
+              ...subnet,
+              allocatedIp: subnet.ipPools
+                .map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
+                .join(' ,'),
+              dhcp: subnet.ipPools
+                .map((ipPool) =>
+                  ipPool.dhcp === true
+                    ? this.$translate.instant(
+                        'pci_projects_project_network_private_dhcp_active',
+                      )
+                    : this.$translate.instant(
+                        'pci_projects_project_network_private_dhcp_suspended',
+                      ),
+                )
+                .join(),
+            })),
+          ],
+        };
+      });
   }
 
   getVrack(serviceName) {
