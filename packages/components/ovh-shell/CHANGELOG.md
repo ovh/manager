@@ -1,3 +1,12 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.4.0...@ovh-ux/shell@1.5.0) (2022-08-17)
+
+
+### Features
+
+* **ovh-shell:** add waitForConfig in tracking plugin ([41a45f1](https://github.com/ovh/manager/commit/41a45f1e3b4fb5f9a8cc7c4423eeb8abd326ccf3))
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.3.1...@ovh-ux/shell@1.4.0) (2022-08-10)
 
 

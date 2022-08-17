@@ -1,3 +1,12 @@
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.4.0...@ovh-ux/manager-bm-server-components@1.4.1) (2022-08-17)
+
+
+### Bug Fixes
+
+* **technical-details:** display `cpu.number` prefix ([#7745](https://github.com/ovh/manager/issues/7745)) ([ba9a3fb](https://github.com/ovh/manager/commit/ba9a3fb7f889da0432cfc41007a2428d2556221f))
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.3.0...@ovh-ux/manager-bm-server-components@1.4.0) (2022-07-19)
 
 
