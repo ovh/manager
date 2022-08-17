@@ -29,13 +29,17 @@
                     data-items="$ctrl.usersWithoutCredentials"
                     data-match="username"
                 >
-                    <span data-ng-bind="$item.userNameDescriptionKey"></span>
-                    <small>
-                        <span
-                            class="float-right"
-                            data-ng-bind="$item.asCredentials"
-                        ></span>
-                    </small>
+                    <div class="row">
+                        <div
+                            class="col-9 text-truncate"
+                            data-ng-bind="$item.userNameDescriptionKey"
+                        ></div>
+                        <div class="col-3">
+                            <small>
+                                <span data-ng-bind="$item.asCredentials"></span>
+                            </small>
+                        </div>
+                    </div>
                 </oui-select>
             </oui-field>
         </oui-radio-description>
