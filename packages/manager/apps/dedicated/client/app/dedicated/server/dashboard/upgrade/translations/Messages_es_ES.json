@@ -9,11 +9,12 @@
   "dedicated_server_dashboard_upgrade_select_option_title_ram": "Seleccione una opción de memoria",
   "dedicated_server_dashboard_upgrade_select_option_title_storage": "Seleccione una opción de almacenamiento",
   "dedicated_server_dashboard_upgrade_select_option_title_composite": "Seleccione una opción",
-  "dedicated_server_dashboard_upgrade_select_option_description_ram": "Los precios indicados corresponden a un mes completo. La primera factura de esta opción se calculará incluyendo la parte proporcional correspondiente al período restante del mes en curso, en función de la fecha de renovación del servidor.",
-  "dedicated_server_dashboard_upgrade_select_option_description_storage": "Los precios indicados corresponden a un mes completo. La primera factura de esta opción se calculará incluyendo la parte proporcional correspondiente al período restante del mes en curso, en función de la fecha de renovación del servidor.",
-  "dedicated_server_dashboard_upgrade_select_option_description": "Una vez realizado el pago de la mejora de sus recursos, deberá programar la fecha de la intervención una vez transcurridos diez días desde el pago.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_1": "Los precios indicados corresponden a un mes completo. La primera factura de esta opción se calculará incluyendo la parte proporcional del mes en curso correspondiente, en función de la fecha de renovación del servidor.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_1_with_interval": "Los precios indicados son válidos por un período de {{interval}} meses completos. La primera factura de esta opción se calculará incluyendo la parte proporcional del período en curso correspondiente, en función de la fecha de renovación del servidor.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_2": "Una vez realizado el pago de la mejora de sus recursos, deberá programar la fecha de la intervención una vez transcurridos diez días desde el pago.",
   "dedicated_server_dashboard_upgrade_select_option_name": "Opciones",
   "dedicated_server_dashboard_upgrade_select_option_price": "Precio mensual (IVA no incl.)",
+  "dedicated_server_dashboard_upgrade_select_option_price_with_interval": "Precio + IVA por un período de {{interval}} meses",
   "dedicated_server_dashboard_upgrade_order": "Contratar",
   "dedicated_server_dashboard_upgrade_order_error": "Se ha producido un error al contratar la opción: {{message}}",
   "dedicated_server_dashboard_upgrade_order_success": "El pedido se ha realizado correctamente.",
@@ -33,9 +34,5 @@
   "dedicated_server_dashboard_upgrade_intervention_success_message_ticket": "Más información sobre el siguiente tíquet.",
   "dedicated_server_dashboard_upgrade_intervention_error": "Se ha producido un error al programar la intervención: {{message}}",
   "dedicated_server_dashboard_upgrade_confirm": "Confirmar",
-  "dedicated_server_dashboard_upgrade_cancel": "Cancelar",
-  "dedicated_server_dashboard_upgrade_select_option_description_part_1": "Los precios indicados corresponden a un mes completo. La primera factura de esta opción se calculará incluyendo la parte proporcional del mes en curso correspondiente, en función de la fecha de renovación del servidor.",
-  "dedicated_server_dashboard_upgrade_select_option_description_part_1_with_interval": "Los precios indicados son válidos por un período de {{interval}} meses completos. La primera factura de esta opción se calculará incluyendo la parte proporcional del período en curso correspondiente, en función de la fecha de renovación del servidor.",
-  "dedicated_server_dashboard_upgrade_select_option_description_part_2": "Una vez realizado el pago de la mejora de sus recursos, deberá programar la fecha de la intervención una vez transcurridos diez días desde el pago.",
-  "dedicated_server_dashboard_upgrade_select_option_price_with_interval": "Precio + IVA por un período de {{interval}} meses"
+  "dedicated_server_dashboard_upgrade_cancel": "Cancelar"
 }

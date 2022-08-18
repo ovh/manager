@@ -26,6 +26,7 @@ import queryStatistics from './query-statistics';
 import namespaces from './namespaces';
 import connectors from './connectors';
 import advancedConfiguration from './advanced-configuration';
+import maintenances from './maintenances';
 
 const moduleName = 'ovhManagerPciStoragesDatabase';
 
@@ -55,6 +56,7 @@ angular
     namespaces,
     connectors,
     advancedConfiguration,
+    maintenances,
   ])
   .config(routing)
   .component('ovhManagerPciProjectDatabase', component)

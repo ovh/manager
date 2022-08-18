@@ -297,6 +297,39 @@ export default /* @ngInject */ ($stateProvider) => {
       nodesPerRow: () => NODES_PER_ROW,
       isFeatureActivated: /* @ngInject */ (engine) => (feature) =>
         isFeatureActivated(feature, engine.name),
+      maintenances: /* @ngInject */ (DatabaseService, database, projectId) =>
+        DatabaseService.getMaintenances(
+          projectId,
+          database.engine,
+          database.id,
+        ),
+      goToBackups: /* @ngInject */ (
+        trackDashboard,
+        $state,
+        databaseId,
+        projectId,
+      ) => () => {
+        trackDashboard('general_information::manage_backups');
+        $state.go('pci.projects.project.storages.databases.dashboard.backups', {
+          projectId,
+          databaseId,
+        });
+      },
+      goToMaintenances: /* @ngInject */ (
+        trackDashboard,
+        $state,
+        databaseId,
+        projectId,
+      ) => () => {
+        trackDashboard('general_information::maintenances');
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.maintenances',
+          {
+            projectId,
+            databaseId,
+          },
+        );
+      },
     },
   });
 };

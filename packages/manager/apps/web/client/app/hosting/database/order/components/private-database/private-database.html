@@ -13,28 +13,6 @@
         on-success=":: $ctrl.handleSuccess(checkout)"
         on-error=":: $ctrl.handleError(error)"
     >
-        <!-- DB Type -->
-        <oui-step-form
-            data-header="{{:: 'hosting_database_order_private_step_header_type' | translate }}"
-            data-editable="$ctrl.isEditable && !$ctrl.checkoutLoading"
-        >
-            <oui-field
-                data-label="{{:: 'hosting_database_order_private_type' | translate }}"
-            >
-                <oui-radio
-                    name="orderType"
-                    data-description="{{:: 'hosting_database_order_private_type_text' | translate }}"
-                    data-model="$ctrl.order.type"
-                    data-value="$ctrl.CATALOG_PRODUCT.name"
-                    data-required
-                >
-                    <span
-                        data-translate="hosting_database_order_private_type_label"
-                    ></span>
-                </oui-radio>
-            </oui-field>
-        </oui-step-form>
-
         <!-- Customization -->
         <oui-step-form
             data-header="{{:: 'hosting_database_order_private_step_header_customize' | translate }}"

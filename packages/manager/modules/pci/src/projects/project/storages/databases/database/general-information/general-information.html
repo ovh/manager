@@ -500,21 +500,60 @@
                 data-heading="{{:: 'pci_databases_general_information_configuration_title' | translate }}"
             >
                 <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_maintenance_window_label' | translate }}"
+                    data-term="{{:: 'pci_databases_general_information_maintenance_time_label' | translate }}"
                 >
                     <oui-tile-description>
-                        <span
-                            data-ng-if="!$ctrl.database.maintenanceWindow"
-                            data-translate="pci_database_common_none"
-                        ></span>
-                        <span
-                            data-ng-if="$ctrl.database.maintenanceWindow"
-                            data-translate="pci_databases_general_information_maintenance_window"
-                            data-translate-values="{
-                                startTime: $ctrl.database.maintenanceWindow.start,
-                                endTime: $ctrl.database.maintenanceWindow.end
-                            }"
-                        ></span>
+                        <pci-databases-calendar-edit
+                            data-model="$ctrl.maintenanceTime"
+                            data-init-value="$ctrl.database.maintenanceTime"
+                            data-callback="$ctrl.updateMaintenanceTime()"
+                            data-callback-success="$ctrl.handleMaintenanceTimeSuccess()"
+                            data-callback-error="$ctrl.showMaintenanceError()"
+                            data-disabled="!$ctrl.database.isActive()"
+                        ></pci-databases-calendar-edit>
+                        <button
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            type="button"
+                            data-ng-click="$ctrl.goToMaintenances()"
+                            data-ng-if="$ctrl.maintenances.length > 0"
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_manage_maintenances"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right ml-1"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-ng-if="$ctrl.isFeatureActivated('backupTab')"
+                    data-term="{{:: 'pci_databases_general_information_backup_time_label' | translate }}"
+                >
+                    <oui-tile-description>
+                        <pci-databases-calendar-edit
+                            data-model="$ctrl.backupTime"
+                            data-init-value="$ctrl.database.backupTime"
+                            data-callback="$ctrl.updateBackupTime()"
+                            data-callback-success="$ctrl.handleBackupTimeSuccess()"
+                            data-callback-error="$ctrl.showBackupError()"
+                            data-disabled="!$ctrl.database.isActive()"
+                            data-readonly="!$ctrl.isFeatureActivated('editBackupTime')"
+                        ></pci-databases-calendar-edit>
+                        <button
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            type="button"
+                            data-ng-click="$ctrl.goToBackups()"
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_manage_backups"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right ml-1"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition

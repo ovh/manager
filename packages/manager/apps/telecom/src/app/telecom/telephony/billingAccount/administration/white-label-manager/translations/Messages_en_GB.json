@@ -1,10 +1,10 @@
 {
-  "telephony_white_label_manager_title": "White label manager",
-  "telephony_white_label_manager_descrition": "The White label Manager offers you a customisable interface to your company's colours for managing OVHcloud Telecom services.",
-  "telephony_white_label_manager_checkbox_label": "I want to reset my white label manager password.",
+  "telephony_white_label_manager_title": "White-label Manager",
+  "telephony_white_label_manager_descrition": "The White-label Manager offers a customisable interface in your company's colours for managing OVHcloud Telecom services.",
+  "telephony_white_label_manager_checkbox_label": "I want to reset my White-label Manager password.",
   "telephony_white_label_manager_reset_password_title": "Password reset",
-  "telephony_white_label_manager_reset_password_description": "This procedure will reset your white label manager password.",
-  "telephony_white_label_manager_reset_password_warning": "This action will disable all user accounts in your Control Panel, and require you to reconfigure their passwords.",
+  "telephony_white_label_manager_reset_password_description": "This procedure will reset your White-label Manager password.",
+  "telephony_white_label_manager_reset_password_warning": "This action will disable all user accounts in the Control Panel, and require you to reconfigure their passwords.",
   "telephony_white_label_manager_reset_password_success": "Your password has been reset.",
   "telephony_white_label_manager_reset_password_error": "An error has occurred resetting the password. Please try again later."
 }

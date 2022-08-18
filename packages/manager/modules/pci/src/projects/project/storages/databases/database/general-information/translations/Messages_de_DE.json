@@ -32,8 +32,8 @@
   "pci_databases_general_information_upgrade_plan": "Dienst upgraden",
   "pci_databases_general_information_region_label": "Rechenzentrum",
   "pci_databases_general_information_configuration_title": "Konfiguration",
-  "pci_databases_general_information_maintenance_window_label": "Wartungsdauer",
-  "pci_databases_general_information_maintenance_window": "{{startTime}} bis {{endTime}} UTC",
+  "pci_databases_general_information_maintenance_time_label": "Zeitpunkt für Wartungen (UTC)",
+  "pci_databases_general_information_backup_time_label": "Zeitpunkt für Backups (UTC)",
   "pci_databases_general_information_private_network_label": "Verwendetes Netzwerk",
   "pci_databases_general_information_public_network_link": "Öffentliches Netzwerk",
   "pci_databases_general_information_private_network_link": "Privates Netzwerk: vRack Nr. {{vRackId}}",
@@ -41,6 +41,8 @@
   "pci_databases_general_information_allowed_ips_label": "Zugelassene IP-Adressen",
   "pci_databases_general_information_allowed_ips_none": "Keine",
   "pci_databases_general_information_manage_ips": "IP-Adressen verwalten",
+  "pci_databases_general_information_manage_maintenances": "Wartungsarbeiten verwalten",
+  "pci_databases_general_information_manage_backups": "Backups verwalten",
   "pci_databases_general_information_subscription_title": "Abonnement",
   "pci_databases_general_information_manage_billing_label": "Abrechnung verwalten",
   "pci_databases_general_information_display_billing": "Abrechnung anzeigen",
@@ -75,5 +77,9 @@
   "pci_databases_general_information_path_label": "Pfad",
   "pci_databases_general_information_reset_password": "Passwort neu generieren",
   "pci_databases_general_information_reset_password_success": "Das Passwort des Nutzers {{ user }} wurde neu erstellt: <code>{{ password }}</code>. Bitte notieren Sie dieses, da es später nicht mehr abgerufen werden kann.",
-  "pci_databases_general_information_reset_password_error": "Bei der Änderung des Passworts des Nutzers {{ user }} ist ein Fehler aufgetreten: {{ message }}."
+  "pci_databases_general_information_reset_password_error": "Bei der Änderung des Passworts des Nutzers {{ user }} ist ein Fehler aufgetreten: {{ message }}.",
+  "pci_databases_general_information_update_maintenance_time_success": "Der Zeitpunkt für Wartungen wurde geändert.",
+  "pci_databases_general_information_update_maintenance_time_error": "Bei der Änderung des Zeitpunkts der Wartung ist ein Fehler aufgetreten.",
+  "pci_databases_general_information_update_backup_time_success": "Der Zeitpunkt für Backups wurde geändert.",
+  "pci_databases_general_information_update_backup_time_error": "Bei der Änderung der Backup-Zeit ist ein Fehler aufgetreten."
 }

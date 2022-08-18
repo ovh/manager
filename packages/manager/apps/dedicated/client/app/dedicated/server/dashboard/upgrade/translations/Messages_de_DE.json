@@ -9,11 +9,12 @@
   "dedicated_server_dashboard_upgrade_select_option_title_ram": "Bitte wählen Sie eine RAM-Option",
   "dedicated_server_dashboard_upgrade_select_option_title_storage": "Bitte wählen Sie eine Storage-Option",
   "dedicated_server_dashboard_upgrade_select_option_title_composite": "Bitte wählen Sie eine Option",
-  "dedicated_server_dashboard_upgrade_select_option_description_ram": "Angezeigt werden die Preise für einen ganzen Monat. Ihre erste Rechnung für diese Option wird anteilig für den laufenden Monat und je nach Datum der Verlängerung für Ihren Server berechnet.",
-  "dedicated_server_dashboard_upgrade_select_option_description_storage": "Angegeben sind die Preise für einen ganzen Monat. Ihre erste Rechnung für diese Option wird anteilig für den laufenden Monat und je nach Datum der Verlängerung für Ihren Server berechnet.",
-  "dedicated_server_dashboard_upgrade_select_option_description": "Planen Sie bitte diesen Vorgang für ein Datum ab 10 Tagen nach erfolgter Zahlung.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_1": "Angegeben sind die Preise für einen ganzen Monat. Ihre erste Rechnung für diese Option wird anteilig für den laufenden Monat und je nach Datum der Verlängerung für Ihren Server berechnet.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_1_with_interval": "Die angegebenen Preise gelten für einen Zeitraum von {{interval}} ganzen Monaten. Ihre erste Rechnung für diese Option wird anteilig für den laufenden Zeitraum und je nach Datum der Verlängerung für Ihren Server berechnet.",
+  "dedicated_server_dashboard_upgrade_select_option_description_part_2": "Planen Sie bitte diesen Vorgang für ein Datum ab 10 Tagen nach erfolgter Zahlung.",
   "dedicated_server_dashboard_upgrade_select_option_name": "Optionen",
   "dedicated_server_dashboard_upgrade_select_option_price": "Monatlicher Preis - inkl. MwSt / Monat",
+  "dedicated_server_dashboard_upgrade_select_option_price_with_interval": "Preis inkl. MwSt für einen Zeitraum von {{interval}} Monaten",
   "dedicated_server_dashboard_upgrade_order": "Bestellen",
   "dedicated_server_dashboard_upgrade_order_error": "Bei der Bestellung der Option ist ein Fehler aufgetreten: {{message}}",
   "dedicated_server_dashboard_upgrade_order_success": "Ihre Bestellung wurde erstellt.",
@@ -33,9 +34,5 @@
   "dedicated_server_dashboard_upgrade_intervention_success_message_ticket": "Weitere Informationen finden Sie auf dem nächsten Ticket",
   "dedicated_server_dashboard_upgrade_intervention_error": "Bei der Planung des Vorgangs ist ein Fehler aufgetreten: {{message}}",
   "dedicated_server_dashboard_upgrade_confirm": "Bestätigen",
-  "dedicated_server_dashboard_upgrade_cancel": "Abbrechen",
-  "dedicated_server_dashboard_upgrade_select_option_description_part_1": "Angegeben sind die Preise für einen ganzen Monat. Ihre erste Rechnung für diese Option wird anteilig für den laufenden Monat und je nach Datum der Verlängerung für Ihren Server berechnet.",
-  "dedicated_server_dashboard_upgrade_select_option_description_part_1_with_interval": "Die angegebenen Preise gelten für einen Zeitraum von {{interval}} ganzen Monaten. Ihre erste Rechnung für diese Option wird anteilig für den laufenden Zeitraum und je nach Datum der Verlängerung für Ihren Server berechnet.",
-  "dedicated_server_dashboard_upgrade_select_option_description_part_2": "Planen Sie bitte diesen Vorgang für ein Datum ab 10 Tagen nach erfolgter Zahlung.",
-  "dedicated_server_dashboard_upgrade_select_option_price_with_interval": "Preis inkl. MwSt für einen Zeitraum von {{interval}} Monaten"
+  "dedicated_server_dashboard_upgrade_cancel": "Abbrechen"
 }

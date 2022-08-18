@@ -32,8 +32,8 @@
   "pci_databases_general_information_upgrade_plan": "Améliorer votre offre",
   "pci_databases_general_information_region_label": "Datacentre",
   "pci_databases_general_information_configuration_title": "Configuration",
-  "pci_databases_general_information_maintenance_window_label": "Plage de maintenance",
-  "pci_databases_general_information_maintenance_window": "{{startTime}} à {{endTime}} UTC",
+  "pci_databases_general_information_maintenance_time_label": "Heure de maintenance (UTC)",
+  "pci_databases_general_information_backup_time_label": "Heure de sauvegarde (UTC)",
   "pci_databases_general_information_private_network_label": "Réseau utilisé",
   "pci_databases_general_information_public_network_link": "Réseau public",
   "pci_databases_general_information_private_network_link": "Réseau privé : vRack n&deg;{{vRackId}}",
@@ -41,6 +41,8 @@
   "pci_databases_general_information_allowed_ips_label": "Adresses IP autorisées",
   "pci_databases_general_information_allowed_ips_none": "Aucune",
   "pci_databases_general_information_manage_ips": "Gérer les adresses IP",
+  "pci_databases_general_information_manage_maintenances": "Gérer les maintenances",
+  "pci_databases_general_information_manage_backups": "Gérer les sauvegardes",
   "pci_databases_general_information_subscription_title": "Abonnement",
   "pci_databases_general_information_manage_billing_label": "Gérer la facturation",
   "pci_databases_general_information_display_billing": "Afficher la facturation",
@@ -75,5 +77,9 @@
   "pci_databases_general_information_path_label": "Path",
   "pci_databases_general_information_reset_password": "Régénérer le mot de passe",
   "pci_databases_general_information_reset_password_success": "Le mot de passe de l'utilisateur {{ user }} a été régénéré avec succès : <code>{{ password }}</code>. Veuillez le noter car il ne pourra pas être récupéré par la suite.",
-  "pci_databases_general_information_reset_password_error": "Une erreur est survenue lors de la modification du mot de passe de l'utilisateur {{ user }} : {{ message }}."
+  "pci_databases_general_information_reset_password_error": "Une erreur est survenue lors de la modification du mot de passe de l'utilisateur {{ user }} : {{ message }}.",
+  "pci_databases_general_information_update_maintenance_time_success": "L'heure de maintenance a été modifiée avec succès",
+  "pci_databases_general_information_update_maintenance_time_error": "Une erreur est survenue lors de la modification de l'heure de maintenance",
+  "pci_databases_general_information_update_backup_time_success": "L'heure de sauvegarde a été modifiée avec succès",
+  "pci_databases_general_information_update_backup_time_error": "Une erreur est survenue lors de la modification de l'heure de sauvegarde"
 }

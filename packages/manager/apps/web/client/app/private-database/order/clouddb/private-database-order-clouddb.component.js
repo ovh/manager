@@ -5,7 +5,7 @@ export default {
   bindings: {
     cartId: '<',
     catalog: '<',
-    datacenters: '<',
+    datacenter: '<',
     defaultPaymentMean: '<',
     engines: '<',
     ramSizes: '<',

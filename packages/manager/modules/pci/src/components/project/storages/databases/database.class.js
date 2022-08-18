@@ -32,6 +32,8 @@ export default class Database extends Base {
     uri,
     aclsEnabled,
     endpoints,
+    maintenanceTime,
+    backupTime,
   }) {
     super();
     this.updateData({
@@ -56,6 +58,8 @@ export default class Database extends Base {
       uri,
       aclsEnabled,
       endpoints,
+      maintenanceTime,
+      backupTime,
     });
   }
 

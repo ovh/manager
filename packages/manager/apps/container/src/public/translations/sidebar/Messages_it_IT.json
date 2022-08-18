@@ -120,5 +120,6 @@
   "sidebar_assistance_onboarding": "Visita guidata",
   "sidebar_clipboard_copy": "Copiare negli appunti",
   "sidebar_pci_load_error": "Si è verificato un errore durante il recupero della lista dei progetti",
-  "sidebar_billing_ssh": "Le mie chiavi SSH"
+  "sidebar_billing_ssh": "Le mie chiavi SSH",
+  "sidebar_email_delegated": "Deleghe email"
 }

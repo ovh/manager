@@ -15,8 +15,8 @@
   "ovhManagerSupport_ticket_type_criticalIntervention": "Intervento critico",
   "ovhManagerSupport_ticket_type_genericRequest": "Richiesta generica",
   "ovhManagerSupport_ticket_lastMessageFrom_customer": "Tu",
-  "ovhManagerSupport_ticket_lastMessageFrom_support": "Supporto OVH",
+  "ovhManagerSupport_ticket_lastMessageFrom_support": "Supporto OVHcloud",
   "ovhManagerSupport_ticket_message_from_customer": "Tu",
-  "ovhManagerSupport_ticket_message_from_support": "Supporto OVH",
+  "ovhManagerSupport_ticket_message_from_support": "Supporto OVHcloud",
   "ovhManagerSupport_tickets_grid_top_archived": "Mostra i ticket archiviati"
 }

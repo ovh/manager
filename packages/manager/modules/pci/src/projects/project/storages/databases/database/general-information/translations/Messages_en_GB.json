@@ -32,8 +32,8 @@
   "pci_databases_general_information_upgrade_plan": "Upgrade your plan",
   "pci_databases_general_information_region_label": "Datacenter",
   "pci_databases_general_information_configuration_title": "Configuration",
-  "pci_databases_general_information_maintenance_window_label": "Maintenance slot",
-  "pci_databases_general_information_maintenance_window": "{{startTime}} to {{endTime}} UTC",
+  "pci_databases_general_information_maintenance_time_label": "Maintenance time (UTC)",
+  "pci_databases_general_information_backup_time_label": "Backup time (UTC)",
   "pci_databases_general_information_private_network_label": "Network used",
   "pci_databases_general_information_public_network_link": "Public network",
   "pci_databases_general_information_private_network_link": "Private network: vRack no. {{vRackId}}",
@@ -41,6 +41,8 @@
   "pci_databases_general_information_allowed_ips_label": "Authorised IP addresses",
   "pci_databases_general_information_allowed_ips_none": "None",
   "pci_databases_general_information_manage_ips": "Manage IP addresses",
+  "pci_databases_general_information_manage_maintenances": "Manage maintenance",
+  "pci_databases_general_information_manage_backups": "Manage backups",
   "pci_databases_general_information_subscription_title": "Subscription",
   "pci_databases_general_information_manage_billing_label": "Manage billing",
   "pci_databases_general_information_display_billing": "View billing",
@@ -75,5 +77,9 @@
   "pci_databases_general_information_path_label": "Path",
   "pci_databases_general_information_reset_password": "Reset the password",
   "pci_databases_general_information_reset_password_success": "The password for the {{user}} user has been regenerated: <code>{{password}}</code>. Please note it down as it cannot be retrieved later.",
-  "pci_databases_general_information_reset_password_error": "An error occurred while changing the password for the user {{user}}: {{message}}."
+  "pci_databases_general_information_reset_password_error": "An error occurred while changing the password for the user {{user}}: {{message}}.",
+  "pci_databases_general_information_update_maintenance_time_success": "Maintenance time updated",
+  "pci_databases_general_information_update_maintenance_time_error": "An error has occurred updating the maintenance time",
+  "pci_databases_general_information_update_backup_time_success": "Backup time updated",
+  "pci_databases_general_information_update_backup_time_error": "An error has occurred updating the backup time"
 }

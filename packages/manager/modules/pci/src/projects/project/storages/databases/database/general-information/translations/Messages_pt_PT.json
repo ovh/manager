@@ -32,8 +32,8 @@
   "pci_databases_general_information_upgrade_plan": "Melhorar a minha solução",
   "pci_databases_general_information_region_label": "Datacenter",
   "pci_databases_general_information_configuration_title": "Configuração",
-  "pci_databases_general_information_maintenance_window_label": "Intervalo de manutenção",
-  "pci_databases_general_information_maintenance_window": "{{startTime}} a {{endTime}} UTC",
+  "pci_databases_general_information_maintenance_time_label": "Hora de manutenção (UTC)",
+  "pci_databases_general_information_backup_time_label": "Hora de backup (UTC)",
   "pci_databases_general_information_private_network_label": "Rede utilizada",
   "pci_databases_general_information_public_network_link": "Rede pública",
   "pci_databases_general_information_private_network_link": "Rede privada: vRack n.°{{vRackId}}",
@@ -41,6 +41,8 @@
   "pci_databases_general_information_allowed_ips_label": "Endereços IP autorizados",
   "pci_databases_general_information_allowed_ips_none": "Nenhuma",
   "pci_databases_general_information_manage_ips": "Gerir os endereços IP",
+  "pci_databases_general_information_manage_maintenances": "Gerir as manutenções",
+  "pci_databases_general_information_manage_backups": "Gerir os backups",
   "pci_databases_general_information_subscription_title": "Subscrição",
   "pci_databases_general_information_manage_billing_label": "Gerir a faturação",
   "pci_databases_general_information_display_billing": "Apresentar a faturação",
@@ -75,5 +77,9 @@
   "pci_databases_general_information_path_label": "Path",
   "pci_databases_general_information_reset_password": "Gerar nova palavra-passe",
   "pci_databases_general_information_reset_password_success": "A palavra-passe do utilizador {{ user }} foi regenerada com êxito: <code>{{ password }}</code>. Tome note, pois não poderá ser recuperada mais tarde.",
-  "pci_databases_general_information_reset_password_error": "Ocorreu um erro durante a alteração da palavra-passe do utilizador {{ user }}: {{ message }}."
+  "pci_databases_general_information_reset_password_error": "Ocorreu um erro durante a alteração da palavra-passe do utilizador {{ user }}: {{ message }}.",
+  "pci_databases_general_information_update_maintenance_time_success": "A hora de manutenção foi modificada com sucesso",
+  "pci_databases_general_information_update_maintenance_time_error": "Ocorreu um erro aquando da modificação da hora de manutenção",
+  "pci_databases_general_information_update_backup_time_success": "A hora de backup foi modificada com sucesso",
+  "pci_databases_general_information_update_backup_time_error": "Ocorreu um erro aquando da modificação da hora de backup"
 }

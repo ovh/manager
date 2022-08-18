@@ -75,6 +75,11 @@ const features = {
   resetAdminUserFromDashboard: [DATABASE_TYPES.GRAFANA],
   namespacesTab: [DATABASE_TYPES.M3DB],
   connectorsTab: [DATABASE_TYPES.KAFKA_CONNECT],
+  editBackupTime: [
+    DATABASE_TYPES.MONGO_DB,
+    DATABASE_TYPES.MYSQL,
+    DATABASE_TYPES.POSTGRESQL,
+  ],
 };
 
 export default function isFeatureActivated(feature, databaseType) {

@@ -9,6 +9,7 @@ import backupsComponent from './backups.component';
 import routing from './backups.routing';
 import restore from './restore';
 import fork from './fork';
+import calendarEdit from '../../components/calendar-edit';
 
 const moduleName = 'ovhManagerPciStoragesDatabaseBackups';
 
@@ -21,6 +22,7 @@ angular
     'ui.router',
     restore,
     fork,
+    calendarEdit,
   ])
   .config(routing)
   .component('ovhManagerPciStoragesDatabaseBackupsComponent', backupsComponent)
