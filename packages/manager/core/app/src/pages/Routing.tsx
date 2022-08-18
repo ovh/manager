@@ -30,7 +30,7 @@ export default function Routing(): JSX.Element {
           }
         />
         <Route path=":serviceId">
-          <Route index element={<Navigate to="details" />} />
+          <Route index element={<Navigate to="details" replace={true} />} />
           <Route
             breadcrumb={t('generic_infos')}
             path="details"
@@ -42,7 +42,7 @@ export default function Routing(): JSX.Element {
           />
         </Route>
       </Route>
-      <Route index element={<Navigate to="/nutanix" />} />
+      <Route index element={<Navigate to="/nutanix" replace={true} />} />
       <Route path="*" element={<div>404 page</div>} />
     </>
   );
