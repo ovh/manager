@@ -22,17 +22,21 @@ export default class publicGatewaysServiceClass {
           return {
             ...gateway,
             region: regionName,
-            formattedIps: gateway.externalInformation.ips
-              .map(({ ip }) => ip)
-              .join(', '),
+            formattedIps:
+              gateway?.externalInformation?.ips
+                ?.map(({ ip }) => ip)
+                .join(', ') || '',
           };
         }),
       );
   }
 
-  addGateway(serviceName, region, gateway) {
+  addGateway(serviceName, region, networkId, subnetId, gateway) {
     return this.$http
-      .post(`/cloud/project/${serviceName}/region/${region}/gateway`, gateway)
+      .post(
+        `/cloud/project/${serviceName}/region/${region}/network/${networkId}/subnet/${subnetId}/gateway`,
+        gateway,
+      )
       .then(({ data }) => data);
   }
 
