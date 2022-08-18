@@ -1,0 +1,15 @@
+{
+  "nasha_components_partition_zfs_options_atime_deactivate": "Deaktivieren",
+  "nasha_components_partition_zfs_options_atime_description": "Deaktiviert die Notwendigkeit für den Kernel, die Dateizugriffszeit bei jeder Anfrage zu aktualisieren.",
+  "nasha_components_partition_zfs_options_atime": "Update der Zugriffszeit (atime)",
+  "nasha_components_partition_zfs_options_cancel": "Schließen",
+  "nasha_components_partition_zfs_options_default": "(Default)",
+  "nasha_components_partition_zfs_options_recordsize": "ZFS recordsize",
+  "nasha_components_partition_zfs_options_submit": "Einstellungen ändern",
+  "nasha_components_partition_zfs_options_sync_always_description": "Stark abgesichertes Profil: Ihre Dateitransfers erfolgen mit verstärkter Stabilität, was die Leistung beeinträchtigt.",
+  "nasha_components_partition_zfs_options_sync_disabled_description": "Ungesichertes Profil: Sehr hohe Performance, dafür aber mit hohem Risiko, da ZFS gleichzeitige Transfer-Anfragen ignoriert. (BDD, NFS, ...)",
+  "nasha_components_partition_zfs_options_sync_disabled_warning": "Administratoren sollten diese Option nur in Kenntnis der damit verbundenen Risiken wählen.",
+  "nasha_components_partition_zfs_options_sync_standard_description": "Gesichertes Profil: Die Kombination aus Stabilität und Performance; zunächst werden die Dateien geschrieben, dann werden alle Elemente gesäubert, um die Stabilität der Daten zu gewährleisten.",
+  "nasha_components_partition_zfs_options_sync": "Sync",
+  "nasha_components_partition_zfs_options_title": "Die Einstellungen für Z File System (ZFS) ändern"
+}

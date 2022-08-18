@@ -1,0 +1,19 @@
+{
+  "nasha_dashboard_partitions_action_access": "Zarządzanie dostępami",
+  "nasha_dashboard_partitions_action_delete": "Usuń",
+  "nasha_dashboard_partitions_action_edit_size": "Zmień rozmiar",
+  "nasha_dashboard_partitions_action_show": "Edytuj / wyświetl",
+  "nasha_dashboard_partitions_action_snapshots": "Zarządzanie snapshotami",
+  "nasha_dashboard_partitions_action_zfs_options": "Ustawienia Z File System (ZFS)",
+  "nasha_dashboard_partitions_count_title": "Liczba partycji",
+  "nasha_dashboard_partitions_count": "{{count}}/{{max}} (maksymalnie)",
+  "nasha_dashboard_partitions_create": "Utwórz partycję",
+  "nasha_dashboard_partitions_list_description": "Opis",
+  "nasha_dashboard_partitions_list_partition_name": "Nazwa partycji",
+  "nasha_dashboard_partitions_list_protocol": "Protokół",
+  "nasha_dashboard_partitions_list_use": "Rozmiar",
+  "nasha_dashboard_partitions_metrics": "Metryki ogólne",
+  "nasha_dashboard_partitions_monitored_off": "Powiadomienie o zużyciu jest wyłączone.",
+  "nasha_dashboard_partitions_monitored_on": "Powiadomienie o zużyciu jest włączone.",
+  "nasha_dashboard_partitions_title": "Partycje"
+}
