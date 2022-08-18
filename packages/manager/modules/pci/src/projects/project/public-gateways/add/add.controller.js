@@ -251,6 +251,8 @@ export default class PciPublicGatewaysAddController {
       subnet: {
         cidr: this.selectedSubnet,
         ipVersion: DEFAULT_IPVERSION,
+        enableDhcp: true,
+        enableGatewayIp: true,
       },
     };
     this.PciPublicGatewaysService.createNetworkWithGateway(
@@ -269,17 +271,12 @@ export default class PciPublicGatewaysAddController {
     this.gatewayModel = {
       name: this.gatewayName,
       model: this.getGatewayModel(this.selectedGatewaySize.product),
-      network: {
-        name: this.selectedPrivateNetwork.name,
-        subnet: {
-          cidr: this.networkSubnet[0].cidr,
-          ipVersion: DEFAULT_IPVERSION,
-        },
-      },
     };
     return this.PciPublicGatewaysService.addGateway(
       this.projectId,
       this.selectedRegion.name,
+      this.selectedPrivateNetwork.id,
+      this.networkSubnet[0].id,
       this.gatewayModel,
     )
       .then(() => this.onSuccess())
