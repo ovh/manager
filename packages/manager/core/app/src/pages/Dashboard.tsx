@@ -12,7 +12,7 @@ import Nutanix, {
   Server,
 } from '@/api/nutanix';
 import Service, { getServiceDetails, TechnicalDetails } from '@/api/service';
-import Dashboard, { TileTypesEnum } from '../components/Dashboard';
+import Dashboard, { TileTypesEnum } from '@/components/Dashboard';
 
 export default function DashboardPage(): JSX.Element {
   const { t } = useTranslation('dashboard');
@@ -129,7 +129,7 @@ export default function DashboardPage(): JSX.Element {
     },
     {
       name: 'support',
-      heading: t('tile_supportl_title'),
+      heading: t('tile_support_title'),
     },
     {
       name: 'network',

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Tabs, TabList, TabPanels, Tab } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, resolvePath, useLocation } from 'react-router-dom';
 
 export default function DetailsPage(): JSX.Element {
   const { t } = useTranslation('details');
+  const { pathname } = useLocation();
 
   const tabs = [
     {
@@ -19,21 +20,16 @@ export default function DetailsPage(): JSX.Element {
     },
   ];
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  const defaultActiveIndex = tabs.findIndex(({ to }) =>
+    pathname.endsWith(resolvePath(to).pathname),
+  );
 
   return (
-    <Tabs
-      variant="light"
-      index={activeIndex}
-      onChange={(e) => setActiveIndex(e)}
-    >
+    <Tabs variant="light" defaultIndex={defaultActiveIndex} isLazy>
       <TabList>
-        {tabs.map((tab, index) => (
+        {tabs.map((tab) => (
           <Tab as={NavLink} key={tab.name} to={tab.to}>
-            {({ isActive }: { isActive: boolean }) => {
-              if (isActive) setActiveIndex(index);
-              return tab.title;
-            }}
+            {tab.title}
           </Tab>
         ))}
       </TabList>
