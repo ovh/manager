@@ -1,3 +1,18 @@
+# [16.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.15.3...@ovh-ux/manager-web@16.16.0) (2022-08-18)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([e83fa67](https://github.com/ovh/manager/commit/e83fa67e49eea91285b4858178eb94a65db4416b))
+* **hosting.clouddb:** remove useless fields in db order ([#7639](https://github.com/ovh/manager/issues/7639)) ([2f35f48](https://github.com/ovh/manager/commit/2f35f486c9d8d11478134a28ab965e282b357826))
+
+
+### Features
+
+* **hosting.general:** add cluster names ([#7562](https://github.com/ovh/manager/issues/7562)) ([f5c49f9](https://github.com/ovh/manager/commit/f5c49f954e9643a4e9f190c401bb28a8a2b9d8b8))
+
+
+
 ## [16.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.15.2...@ovh-ux/manager-web@16.15.3) (2022-08-10)
 
 

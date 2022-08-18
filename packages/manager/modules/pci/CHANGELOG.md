@@ -1,3 +1,19 @@
+# [5.87.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.86.2...@ovh-ux/manager-pci@5.87.0) (2022-08-18)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([e83fa67](https://github.com/ovh/manager/commit/e83fa67e49eea91285b4858178eb94a65db4416b))
+* **i18n:** add missing translations [CDS 1739] ([7fb509a](https://github.com/ovh/manager/commit/7fb509aba136d4d386c81c5d00dcec4ddc637c61))
+* **i18n:** add missing translations [CDS 1751] ([4d59c5a](https://github.com/ovh/manager/commit/4d59c5a1238fe66ddc260f0f02358f85e43f79c1))
+
+
+### Features
+
+* **storage.databases:** add backup and maintenance configuration ([#7363](https://github.com/ovh/manager/issues/7363)) ([b91434f](https://github.com/ovh/manager/commit/b91434f358f08dc8fea3d6d05f9a3de58579c271))
+
+
+
 ## [5.86.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.86.1...@ovh-ux/manager-pci@5.86.2) (2022-08-17)
 
 

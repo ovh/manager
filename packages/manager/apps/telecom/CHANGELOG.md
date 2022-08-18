@@ -1,3 +1,12 @@
+## [13.43.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.4...@ovh-ux/manager-telecom@13.43.5) (2022-08-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1739] ([7fb509a](https://github.com/ovh/manager/commit/7fb509aba136d4d386c81c5d00dcec4ddc637c61))
+
+
+
 ## [13.43.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.3...@ovh-ux/manager-telecom@13.43.4) (2022-08-09)
 
 
