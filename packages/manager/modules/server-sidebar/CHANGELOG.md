@@ -1,3 +1,12 @@
+## [3.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.3...@ovh-ux/manager-server-sidebar@3.23.4) (2022-08-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1766] ([#7747](https://github.com/ovh/manager/issues/7747)) ([de27261](https://github.com/ovh/manager/commit/de272618afd55123426ba429860629743c5bc8f7))
+
+
+
 ## [3.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.2...@ovh-ux/manager-server-sidebar@3.23.3) (2022-08-08)
 
 
