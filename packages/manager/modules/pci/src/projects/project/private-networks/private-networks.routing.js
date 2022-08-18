@@ -38,10 +38,12 @@ export default /* @ngInject */ ($stateProvider) => {
       networkId: /* @ngInject */ ($transition$) => $transition$.params().id,
       privateNetworks: /* @ngInject */ (PciPrivateNetworks, projectId) =>
         PciPrivateNetworks.getPrivateNetworks(projectId),
-      goToAddPublicGateway: /* @ngInject */ ($state, projectId) => (
-        network,
-        subnet,
-      ) => {
+      goToAddPublicGateway: /* @ngInject */ (
+        $state,
+        projectId,
+        trackPrivateNetworks,
+      ) => (network, subnet) => {
+        trackPrivateNetworks(`table-option-menu::assign-public-gateway`);
         const selectedNetworkRegion = network.regions.find(
           (networkRegion) => networkRegion.region === subnet.ipPools[0].region,
         );
