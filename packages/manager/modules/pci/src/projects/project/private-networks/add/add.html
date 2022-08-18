@@ -19,7 +19,6 @@
             data-header="{{:: 'pci_projects_project_network_private_create_localisation' | translate }}"
             data-editable="!$ctrl.loaders.isSubmitting"
             data-position="0"
-            data-on-submit="$ctrl.trackPrivateNetworks('private-network_add_select-region', 'action', false)"
         >
             <pci-project-regions-list
                 data-regions="$ctrl.regions"
@@ -36,7 +35,6 @@
             data-submit-text="{{ ( $ctrl.isGatewayAvailableInRegion ? 'pci_projects_project_network_private_create_next' : 'pci_projects_project_network_private_create_submit' )| translate }}"
             data-position="1"
             data-editable="!$ctrl.loaders.isSubmitting"
-            data-on-submit="$ctrl.onConfigurationFormSubmit()"
         >
             <oui-field
                 data-label="{{:: ('pci_projects_project_network_private_create_name' | translate)}}"
@@ -211,6 +209,7 @@
             data-position="2"
             data-submit-text="{{ 'pci_projects_project_network_private_create_submit' | translate }}"
             data-editable="!$ctrl.loaders.isSubmitting"
+            data-on-focus="$ctrl.onSummaryStepInit()"
         >
             <p
                 data-translate="pci_projects_project_network_private_create_summary_step"
