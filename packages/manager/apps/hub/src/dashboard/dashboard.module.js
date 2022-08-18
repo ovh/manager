@@ -8,6 +8,7 @@ import welcome from './welcome';
 
 import component from './dashboard.component';
 import routing from './routing';
+import service from './dashboard.service';
 
 import './dashboard.scss';
 
@@ -24,6 +25,7 @@ angular
   ])
   .component('hubDashboard', component)
   .config(routing)
+  .service('hubDashboardService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

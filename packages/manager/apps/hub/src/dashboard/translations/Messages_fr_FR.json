@@ -1,5 +1,8 @@
 {
   "manager_hub_dashboard": "Tableau de bord",
   "manager_hub_dashboard_overview": "Vue d'ensemble de mon activité",
-  "manager_hub_dashboard_services": "Mes produits et services"
+  "manager_hub_dashboard_services": "Mes produits et services",
+  "manager_hub_dashboard_ipFailover_repricing_title": "Évolution des prix des adresses IPv4 additionnelles",
+  "manager_hub_dashboard_ipFailover_repricing_message": "À partir du 6 Octobre prochain, une nouvelle tarification entre en vigueur pour les adresses IPv4 additionnelles.",
+  "manager_hub_dashboard_ipFailover_repricing_link": "En savoir plus"
 }

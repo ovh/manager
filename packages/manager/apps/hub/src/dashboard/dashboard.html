@@ -6,6 +6,30 @@
         <div
             class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-between"
         >
+            <oui-message
+                data-type="info"
+                class="w-100"
+                data-ng-if="$ctrl.isVisibleIpsRepricing"
+            >
+                <strong
+                    class="d-block"
+                    data-translate="manager_hub_dashboard_ipFailover_repricing_title"
+                >
+                </strong>
+                <span
+                    data-translate="manager_hub_dashboard_ipFailover_repricing_message"
+                >
+                </span>
+                <!-- The href will be ready in september -->
+                <a
+                    data-translate="manager_hub_dashboard_ipFailover_repricing_link"
+                    data-ng-click="$ctrl.trackClickImpression()"
+                    data-ng-href=""
+                    target="_blank"
+                    rel="noopener"
+                >
+                </a>
+            </oui-message>
             <ovh-manager-banner
                 class="mb-4"
                 tracker="{{ $ctrl.prefix + '::event-banner' }}"
