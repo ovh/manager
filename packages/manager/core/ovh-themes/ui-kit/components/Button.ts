@@ -41,25 +41,61 @@ const secondaryStyle = {
   },
 };
 
+export const buttonBaseStyles: SystemStyleObject = {
+  color: 'white',
+  borderRadius: '6px',
+  fontWeight: '700',
+  borderWidth: '2px',
+  borderColor: 'uikit.500',
+  _disabled: disabledStyles('uikit.500'),
+  _hover: {
+    _disabled: {
+      ...disabledStyles('uikit.500'),
+      borderColor: 'uikit.500',
+    },
+    borderColor: 'uikit.700',
+    boxShadow: 'secondary',
+  },
+  _active: {
+    borderColor: 'uikit.800',
+  },
+};
+
+export const ghostStyles: SystemStyleObject = {
+  background: 'transparent',
+  color: 'uikit.500',
+  borderColor: 'transparent',
+  _disabled: {
+    ...disabledStyles('transparent'),
+  },
+  _hover: {
+    background: 'uikit.100',
+    borderColor: 'uikit.100',
+    _disabled: {
+      ...disabledStyles('transparent'),
+      borderColor: 'transparent',
+    },
+  },
+  _active: {
+    background: 'uikit.200',
+    borderColor: 'uikit.200',
+  },
+};
+
+export const primaryStyles = {
+  background: 'uikit.500',
+  color: 'white',
+  _hover: {
+    background: 'uikit.700',
+  },
+  _active: {
+    background: 'uikit.800',
+  },
+};
+
 const Button: ComponentStyleConfig = {
   baseStyle: {
-    color: 'white',
-    borderRadius: '6px',
-    fontWeight: '700',
-    borderWidth: '2px',
-    borderColor: 'uikit.500',
-    _disabled: disabledStyles('uikit.500'),
-    _hover: {
-      _disabled: {
-        ...disabledStyles('uikit.500'),
-        borderColor: 'uikit.500',
-      },
-      borderColor: 'uikit.700',
-      boxShadow: 'secondary',
-    },
-    _active: {
-      borderColor: 'uikit.800',
-    },
+    ...buttonBaseStyles,
   },
   sizes: {
     large: {
@@ -92,14 +128,7 @@ const Button: ComponentStyleConfig = {
   },
   variants: {
     primary: {
-      background: 'uikit.500',
-      color: 'white',
-      _hover: {
-        background: 'uikit.700',
-      },
-      _active: {
-        background: 'uikit.800',
-      },
+      ...primaryStyles,
     },
     secondary: secondaryStyle,
     table: {
@@ -135,24 +164,7 @@ const Button: ComponentStyleConfig = {
       },
     },
     ghost: {
-      background: 'transparent',
-      color: 'uikit.500',
-      borderColor: 'transparent',
-      _disabled: {
-        ...disabledStyles('transparent'),
-      },
-      _hover: {
-        background: 'uikit.100',
-        borderColor: 'uikit.100',
-        _disabled: {
-          ...disabledStyles('transparent'),
-          borderColor: 'transparent',
-        },
-      },
-      _active: {
-        background: 'uikit.200',
-        borderColor: 'uikit.200',
-      },
+      ...ghostStyles,
     },
   },
   defaultProps: {

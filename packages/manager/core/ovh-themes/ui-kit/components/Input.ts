@@ -49,7 +49,6 @@ const readOnlyStyle: SystemStyleObject = {
   background: 'gray.50',
   borderColor: 'gray.50',
   borderBottomColor: 'uikit.500',
-  cursor: 'not-allowed',
 };
 
 export const inputFieldStyles: PartsStyleObject<typeof parts> = {

@@ -2,12 +2,14 @@ import globalStyle from './foundations/global';
 import colors from './foundations/colors';
 import shadows from './foundations/shadows';
 import radii from './foundations/radius';
+import breakpoints from './foundations/breakpoints';
 
 import Accordion from './components/Accordion';
 import Alert from './components/Alert';
 import Badge from './components/Badge';
 import Breadcrumb from './components/Breadcrumb';
 import Button from './components/Button';
+import Calendar from './components/Calendar';
 import Checkbox from './components/Checkbox';
 import Form from './components/Form';
 import FormError from './components/FormErrorMessage';
@@ -34,6 +36,7 @@ export default {
     Badge,
     Breadcrumb,
     Button,
+    Calendar,
     Checkbox,
     Input,
     Form,
@@ -52,6 +55,7 @@ export default {
     Popover,
     Modal,
   },
+  breakpoints,
   radii,
   shadows,
   styles: {

@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import { Box, useMultiStyleConfig, chakra, Button } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
