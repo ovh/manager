@@ -4,8 +4,9 @@ import { ApplicationId } from '@ovh-ux/manager-config/types/application';
 import Environment from '@ovh-ux/manager-config/types/environment';
 
 type Awaited<T> = T extends PromiseLike<infer U> ? U : T;
+export type OvhContextShellType = Awaited<ReturnType<typeof useShellClient>>;
 export type OvhContextType = {
-  shell: Awaited<ReturnType<typeof useShellClient>>;
+  shell: OvhContextShellType;
   environment: Environment;
 };
 

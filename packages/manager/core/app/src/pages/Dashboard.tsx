@@ -8,7 +8,6 @@ import {
   ArrowRightIcon,
   ExternalLinkIcon,
 } from '@ovh-ux/manager-themes';
-import { useShell } from '@/core';
 
 import Nutanix, {
   getNutanix,
@@ -42,10 +41,14 @@ import SupportLevel, {
 import Vrack, { getVrack } from '@/api/vrack';
 import IpLoadBalancing, { getIpLoadBalancing } from '@/api/ipLoadbalancing';
 import Dashboard, { TileTypesEnum } from '@/components/Dashboard';
+import { useEnvironment, useShell } from '@/core';
+
+import { computeDashboardBilling } from './dashboard/billing';
 
 export default function DashboardPage(): JSX.Element {
   const { t } = useTranslation('dashboard');
-  const { serviceId } = useParams();
+  const { serviceName } = useParams();
+  const environment = useEnvironment();
   const shell = useShell();
 
   const SUPPORT_LEVELS = {
@@ -102,8 +105,8 @@ export default function DashboardPage(): JSX.Element {
       heading: t('tile_general_title'),
       type: TileTypesEnum.LIST,
       onLoad: async () => {
-        const cluster = await getNutanix(serviceId);
-        const serviceInfos = await getServiceInfos(serviceId);
+        const cluster = await getNutanix(serviceName);
+        const serviceInfos = await getServiceInfos(serviceName);
         const [serviceDetails, server] = await Promise.all([
           getServiceDetails(serviceInfos.serviceId),
           getServer(cluster),
@@ -202,7 +205,7 @@ export default function DashboardPage(): JSX.Element {
       heading: t('tile_licenses_title'),
       type: TileTypesEnum.LIST,
       onLoad: async () => {
-        const serviceInfos = await getServiceInfos(serviceId);
+        const serviceInfos = await getServiceInfos(serviceName);
         const technicalDetails = await getHardwareInfo(serviceInfos.serviceId);
 
         return { license: technicalDetails.nutanixCluster.license };
@@ -232,10 +235,7 @@ export default function DashboardPage(): JSX.Element {
         );
       },
     },
-    {
-      name: 'billing',
-      heading: t('tile_billing_title'),
-    },
+    computeDashboardBilling(serviceName, t, shell, environment, trackingPrefix),
     {
       name: 'support',
       heading: t('tile_support_title'),
@@ -243,7 +243,7 @@ export default function DashboardPage(): JSX.Element {
       onLoad: async () => {
         const [supportLevel, ticketIds] = await Promise.all([
           getSupportLevel(),
-          getSupportTicketIdsByServiceName(serviceId),
+          getSupportTicketIdsByServiceName(serviceName),
         ]);
 
         const viewTicketsUrl = await shell.navigation.getURL(
@@ -253,7 +253,7 @@ export default function DashboardPage(): JSX.Element {
             filters: JSON.stringify({
               property: 'serviceName.value',
               operator: 'is',
-              value: serviceId,
+              value: serviceName,
             }),
           },
         );
@@ -336,8 +336,8 @@ export default function DashboardPage(): JSX.Element {
       type: TileTypesEnum.LIST,
       onLoad: async () => {
         const [cluster, serviceInfos] = await Promise.all([
-          getNutanix(serviceId),
-          getServiceInfos(serviceId),
+          getNutanix(serviceName),
+          getServiceInfos(serviceName),
         ]);
         const vrack = await (cluster.targetSpec.vrack
           ? getVrack(cluster.targetSpec.vrack)
@@ -481,8 +481,8 @@ export default function DashboardPage(): JSX.Element {
       heading: t('tile_hardware_title'),
       type: TileTypesEnum.LIST,
       onLoad: async () => {
-        const cluster = await getNutanix(serviceId);
-        const serviceInfos = await getServiceInfos(serviceId);
+        const cluster = await getNutanix(serviceName);
+        const serviceInfos = await getServiceInfos(serviceName);
         const server = await getServer(cluster);
 
         const technicalDetails = await getTechnicalDetails(

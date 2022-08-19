@@ -23,7 +23,7 @@ export type ServiceInfos = {
   contactTech: string;
   creation: string;
   domain: string;
-  engagedUpTo: string;
+  engagedUpTo?: string;
   expiration: string;
   possibleRenewPeriod: number[];
   renew: {

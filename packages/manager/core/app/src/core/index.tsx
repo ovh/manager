@@ -6,7 +6,7 @@ import { UIKitTheme } from '@ovh-ux/manager-themes';
 
 import './vite-hmr';
 import OvhApplication from './ovh-application';
-import OvhContext from './ovh-context';
+import OvhContext, { OvhContextShellType } from './ovh-context';
 
 const theme = extendTheme(UIKitTheme);
 
@@ -15,7 +15,8 @@ export function useEnvironment() {
   return environment;
 }
 
-export function useShell() {
+export type { OvhContextShellType };
+export function useShell(): OvhContextShellType {
   const { shell } = useContext(OvhContext);
   return shell;
 }

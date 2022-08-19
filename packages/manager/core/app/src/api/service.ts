@@ -2,10 +2,25 @@ import { SupportLevelEnum } from './support';
 
 export type Service = {
   billing: {
+    engagement?: {
+      endRule?: {
+        possibleStrategies: string[];
+        strategy: string;
+      }
+    },
+    lifecycle: {
+      current: {
+        creationDate: string;
+      };
+    };
+    nextBillingDate: string;
     plan: {
       code: string;
       invoiceName: string;
     };
+  };
+  route: {
+    url: string;
   };
   serviceId: number;
 };

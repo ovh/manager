@@ -36,7 +36,7 @@ export default function Routing(): JSX.Element {
             </Suspense>
           }
         />
-        <Route path=":serviceId">
+        <Route path=":serviceName">
           <Route
             index
             element={
