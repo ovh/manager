@@ -5,14 +5,16 @@ export type DashboardTile = {
   heading: string;
   type?: TileTypesEnum;
   onLoad?: () => Promise<unknown>;
-  definitions?: DashboardTileDefinition[];
+  definitions?:
+    | DashboardTileDefinition[]
+    | ((data: unknown) => DashboardTileDefinition[]);
   content?: JSX.Element | string;
 };
 
 export type DashboardTileDefinition = {
   name: string;
   title: string;
-  getDescription?: (data: unknown) => unknown;
+  description?: unknown | ((data: unknown) => unknown);
   actions?: DashboardTileDefinitionAction[];
 };
 

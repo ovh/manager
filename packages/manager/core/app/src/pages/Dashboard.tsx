@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams, Link as RouterLink } from 'react-router-dom';
 import { Link } from '@chakra-ui/react';
 import { ArrowForwardIcon, ExternalLinkIcon } from '@chakra-ui/icons';
+import { startCase } from 'lodash-es';
 
 import Nutanix, {
   getNutanix,
@@ -11,7 +12,13 @@ import Nutanix, {
   getTechnicalDetails,
   Server,
 } from '@/api/nutanix';
-import Service, { getServiceDetails, TechnicalDetails } from '@/api/service';
+import Service, {
+  getServiceDetails,
+  getHardwareInfo,
+  TechnicalDetails,
+  NutanixClusterDetails,
+  NutanixClusterLicenseFeatureDetails,
+} from '@/api/service';
 import Dashboard, { TileTypesEnum } from '@/components/Dashboard';
 
 export default function DashboardPage(): JSX.Element {
@@ -41,7 +48,7 @@ export default function DashboardPage(): JSX.Element {
         {
           name: 'name',
           title: t('tile_general_item_name'),
-          getDescription: ({ cluster }: { cluster: Nutanix }) => {
+          description: ({ cluster }: { cluster: Nutanix }) => {
             return cluster.serviceName;
           },
           actions: [
@@ -56,13 +63,13 @@ export default function DashboardPage(): JSX.Element {
         {
           name: 'commercial_range',
           title: t('tile_general_item_commercial_range'),
-          getDescription: ({ serviceDetails }: { serviceDetails: Service }) =>
+          description: ({ serviceDetails }: { serviceDetails: Service }) =>
             serviceDetails.billing.plan.invoiceName,
         },
         {
           name: 'cluster_redeploy',
           title: t('tile_general_item_cluster_redeploy'),
-          getDescription: () => (
+          description: () => (
             <Link as={RouterLink} to="">
               {t('tile_general_item_cluster_redeploy_link')}{' '}
               <ArrowForwardIcon />
@@ -72,7 +79,7 @@ export default function DashboardPage(): JSX.Element {
         {
           name: 'admin_interface',
           title: t('tile_general_item_admin_interface'),
-          getDescription: ({ cluster }: { cluster: Nutanix }) => (
+          description: ({ cluster }: { cluster: Nutanix }) => (
             <Link href={cluster.targetSpec.controlPanelURL} isExternal>
               {t('tile_general_item_admin_interface_link')} <ExternalLinkIcon />
             </Link>
@@ -81,7 +88,7 @@ export default function DashboardPage(): JSX.Element {
         {
           name: 'license',
           title: t('tile_general_item_license'),
-          getDescription: ({
+          description: ({
             technicalDetails,
           }: {
             technicalDetails: TechnicalDetails;
@@ -90,7 +97,7 @@ export default function DashboardPage(): JSX.Element {
         {
           name: 'deployment_mode',
           title: t('tile_general_item_deployment_mode'),
-          getDescription: ({ cluster }: { cluster: Nutanix }) =>
+          description: ({ cluster }: { cluster: Nutanix }) =>
             cluster.targetSpec.rackAwareness
               ? 'Rack awareness' // TODO: add popover
               : 'Node awareness', // TODO: add popover
@@ -98,18 +105,18 @@ export default function DashboardPage(): JSX.Element {
         {
           name: 'replication_factor',
           title: t('tile_general_item_replication_factor'),
-          getDescription: ({ cluster }: { cluster: Nutanix }) =>
+          description: ({ cluster }: { cluster: Nutanix }) =>
             cluster.targetSpec.redundancyFactor,
         },
         {
           name: 'datacenter',
           title: t('tile_general_item_datacenter'),
-          getDescription: ({ server }: { server: Server }) => server.datacenter,
+          description: ({ server }: { server: Server }) => server.datacenter,
         },
         {
           name: 'rack',
           title: t('tile_general_item_rack'),
-          getDescription: ({
+          description: ({
             cluster,
             server,
           }: {
@@ -122,6 +129,32 @@ export default function DashboardPage(): JSX.Element {
     {
       name: 'licenses',
       heading: t('tile_licenses_title'),
+      type: TileTypesEnum.LIST,
+      onLoad: async () => {
+        const serviceInfos = await getServiceInfos(serviceId);
+        const technicalDetails = await getHardwareInfo(serviceInfos.serviceId);
+
+        return { license: technicalDetails.nutanixCluster.license };
+      },
+      definitions: ({ license }: NutanixClusterDetails) => {
+        return [
+          {
+            name: 'aol',
+            title: 'AOL',
+            description: license.edition,
+          },
+        ].concat(
+          (
+            (license?.features as NutanixClusterLicenseFeatureDetails[]) || []
+          ).map((feature: NutanixClusterLicenseFeatureDetails) => {
+            return {
+              name: feature.name,
+              title: startCase(feature.name),
+              description: t(`tile_licenses_license_enabled_${feature.value}`),
+            };
+          }),
+        );
+      },
     },
     {
       name: 'billing',

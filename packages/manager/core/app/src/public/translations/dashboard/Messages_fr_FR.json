@@ -8,6 +8,8 @@
   "tile_general_item_admin_interface": "Interface d’administration",
   "tile_general_item_admin_interface_link": "Accéder à Prism Central",
   "tile_general_item_license": "Licence",
+  "tile_licenses_license_enabled_yes": "Activé",
+  "tile_licenses_license_enabled_no": "Désactivé",
   "tile_general_item_deployment_mode": "Mode de déploiement",
   "tile_general_item_replication_factor": "Facteur de réplication",
   "tile_general_item_datacenter": "Datacentre",

@@ -19,6 +19,17 @@ export type BareMetalServersDetails = {
   vrack?: Record<string, unknown>;
 };
 
+export type NutanixClusterLicenseFeatureDetails = {
+  name: string;
+  value: string;
+};
+
+export type NutanixClusterLicenseDetails = {
+  distribution: string;
+  edition: string;
+  features: NutanixClusterLicenseFeatureDetails[];
+};
+
 export type NutanixClusterDetails = {
   cluster?: Record<string, unknown>;
   features?: Record<string, unknown>;
