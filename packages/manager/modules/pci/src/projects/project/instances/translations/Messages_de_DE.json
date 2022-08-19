@@ -51,7 +51,7 @@
   "pci_projects_project_instances_delete_label": "Löschen",
   "pci_projects_project_instances_add_label": "Instanz erstellen",
   "pci_projects_project_instances_error_query": "Beim Abrufen der Volumes ist ein Fehler aufgetreten.",
-  "pci_projects_project_instances_vrack_none": "Sie haben noch kein vRack eingerichtet.",
+  "pci_projects_project_instances_vrack_none": "Sie haben die Funktion für private Netzwerke auf Basis des vRack noch nicht aktiviert.",
   "pci_projects_project_instances_vrack_create": "vRack erstellen",
   "pci_projects_project_instances_autobackup_label": "Automatisches Backup erstellen",
   "pci_projects_project_instances_refresh": "Die Instanzen aktualisieren",
