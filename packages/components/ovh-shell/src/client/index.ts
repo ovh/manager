@@ -63,7 +63,10 @@ export function initStandaloneClientApi(
     throw new Error(`Unknown application '${appId}'`);
   }
 
-  window.location.href = buildURLIfStandalone(appConfig);
+  const url = buildURLIfStandalone(appConfig);
+  if (window.location.href !== url) {
+    window.location.href = url;
+  }
 
   const client = new StandaloneShellClient();
   client.setApplicationId(appId);
