@@ -12,7 +12,7 @@ import SearchInput from '@/components/SearchInput';
 export type ListingColumn<T> = {
   key: string;
   label: string;
-  renderer?: (item: T) => JSX.Element | Promise<JSX.Element>;
+  renderer?: ({ item }: { item: T }) => JSX.Element;
   sortable?: boolean;
   filterable?: FilterComparator[];
   search?: boolean;

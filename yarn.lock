@@ -7084,6 +7084,36 @@
     "@babel/runtime" "^7.17.9"
     hoist-non-react-statics "^3.3.2"
 
+"@tanstack/match-sorter-utils@^8.0.0-alpha.82":
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/match-sorter-utils/-/match-sorter-utils-8.1.1.tgz#895f407813254a46082a6bbafad9b39b943dc834"
+  integrity sha512-IdmEekEYxQsoLOR0XQyw3jD1GujBpRRYaGJYQUw1eOT1eUugWxdc7jomh1VQ1EKHcdwDLpLaCz/8y4KraU4T9A==
+  dependencies:
+    remove-accents "0.4.2"
+
+"@tanstack/query-core@^4.0.0-beta.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.2.1.tgz#21ff3a33f27bf038c990ea53af89cf7c7e8078fc"
+  integrity sha512-UOyOhHKLS/5i9qG2iUnZNVV3R9riJJmG9eG+hnMFIPT/oRh5UzAfjxCtBneNgPQZLDuP8y6YtRYs/n4qVAD5Ng==
+
+"@tanstack/react-query-devtools@^4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-4.2.1.tgz#decee3d1d174b253fa303d5baaa478fb0e2c0e63"
+  integrity sha512-k7Ch3qvs8U74aRMMRvNisxcxZFTzk8FDdvpQKXxSZ8fsD4ZwpM0MoUSqKsCXbfTvUI7MJiGxavy1YlvImPNO+Q==
+  dependencies:
+    "@tanstack/match-sorter-utils" "^8.0.0-alpha.82"
+    "@types/use-sync-external-store" "^0.0.3"
+    use-sync-external-store "^1.2.0"
+
+"@tanstack/react-query@^4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.2.1.tgz#1f00f03573b35a353e62fa64f904bbb0286a1808"
+  integrity sha512-w02oTOYpoxoBzD/onAGRQNeLAvggLn7WZjS811cT05WAE/4Q3br0PTp388M7tnmyYGbgOOhFq0MkhH0wIfAKqA==
+  dependencies:
+    "@tanstack/query-core" "^4.0.0-beta.1"
+    "@types/use-sync-external-store" "^0.0.3"
+    use-sync-external-store "^1.2.0"
+
 "@testing-library/dom@^8.5.0":
   version "8.11.3"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.11.3.tgz#38fd63cbfe14557021e88982d931e33fb7c1a808"
@@ -7542,6 +7572,11 @@
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
+
+"@types/use-sync-external-store@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@types/use-sync-external-store/-/use-sync-external-store-0.0.3.tgz#b6725d5f4af24ace33b36fafd295136e75509f43"
+  integrity sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==
 
 "@types/uuid@^3.4.6":
   version "3.4.10"
@@ -24166,6 +24201,11 @@ remark@^12.0.0:
     remark-stringify "^8.0.0"
     unified "^9.0.0"
 
+remove-accents@0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/remove-accents/-/remove-accents-0.4.2.tgz#0a43d3aaae1e80db919e07ae254b285d9e1c7bb5"
+  integrity sha512-7pXIJqJOq5tFgG1A2Zxti3Ht8jJF337m4sowbuHsW30ZnkQFnDzy9qBNhgzX8ZLW4+UBcXiiR7SwR6pokHsxiA==
+
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
@@ -27872,6 +27912,11 @@ use-sidecar@^1.1.2:
   dependencies:
     detect-node-es "^1.1.0"
     tslib "^2.0.0"
+
+use-sync-external-store@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
+  integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
 
 use@^3.1.0:
   version "3.1.1"
