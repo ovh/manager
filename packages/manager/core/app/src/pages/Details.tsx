@@ -25,7 +25,11 @@ export default function DetailsPage(): JSX.Element {
   );
 
   return (
-    <Tabs variant="light" defaultIndex={defaultActiveIndex} isLazy>
+    <Tabs
+      variant="light"
+      defaultIndex={defaultActiveIndex > -1 ? defaultActiveIndex : 0}
+      isLazy
+    >
       <TabList>
         {tabs.map((tab) => (
           <Tab as={NavLink} key={tab.name} to={tab.to}>
