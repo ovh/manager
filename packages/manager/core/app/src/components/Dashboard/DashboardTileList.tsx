@@ -36,7 +36,7 @@ export default function DashboardTileList({
         );
       }
 
-      if (action.href) {
+      if (Object.prototype.hasOwnProperty.call(action, 'href')) {
         return (
           <MenuItem
             as={Link}
@@ -87,7 +87,11 @@ export default function DashboardTileList({
                 ? definition.description(data)
                 : definition?.description || ''
             }
-            action={getActionList(definition.actions)}
+            action={getActionList(
+              isFunction(definition.actions)
+                ? definition.actions(data)
+                : definition.actions || [],
+            )}
           ></TileSection>
         );
       })}
