@@ -9,3 +9,4 @@ types
 /packages/manager/tools/testcafe/config/**/*.json
 /reports
 .eslintcache
+.turbo

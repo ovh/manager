@@ -15,6 +15,8 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
+    "build:turbo": "turbo run build --since=origin/master --include-dependencies",
+    "dev": "turbo run dev --since=origin/master --include-dependencies",
     "clean": "lerna clean -y && yarn run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist?(-EU|-CA|-US)\"",
     "format": "run-p format:*",
@@ -106,6 +108,7 @@
     "testcafe": "1.8.2",
     "testcafe-angular-selectors": "^0.4.1",
     "testcafe-reporter-html": "^1.4.6",
+    "turbo": "^1.4.3",
     "whatwg-fetch": "^3.6.2"
   },
   "engines": {
