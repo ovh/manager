@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { EllipsisIcon, TileSection } from '@ovh-ux/manager-themes';
+import { isFunction } from 'lodash-es';
 
 import { DashboardTileDefinition, DashboardTileDefinitionAction } from '.';
 
@@ -81,7 +82,11 @@ export default function DashboardTileList({
           <TileSection
             key={definition.name}
             title={definition.title}
-            description={definition.getDescription(data) || ''}
+            description={
+              isFunction(definition.description)
+                ? definition.description(data)
+                : definition?.description || ''
+            }
             action={getActionList(definition.actions)}
           ></TileSection>
         );
