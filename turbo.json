@@ -1,0 +1,12 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputMode": "new-only"
+    },
+    "dev": {
+      "dependsOn": ["^dev"]
+    }
+  }
+}
