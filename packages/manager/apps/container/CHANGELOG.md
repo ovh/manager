@@ -1,3 +1,12 @@
+## [0.3.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.11...@ovh-ux/manager-container-app@0.3.12) (2022-08-19)
+
+
+### Bug Fixes
+
+* **container:** pnr sidebar menu ([d84447e](https://github.com/ovh/manager/commit/d84447e39f1f5782961a3abae2cb2b2a9577c9b4))
+
+
+
 ## [0.3.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.10...@ovh-ux/manager-container-app@0.3.11) (2022-08-18)
 
 
