@@ -18,6 +18,12 @@
   "tile_licenses_title": "Licences Nutanix",
   "tile_billing_title": "Abonnement",
   "tile_support_title": "Support",
+  "tile_support_item_support_level": "Niveau de support",
+  "tile_support_item_tickets": "Tickets ouverts",
+  "tile_support_item_tickets_action_view_tickets": "Voir les tickets ouverts",
+  "tile_support_item_tickets_action_create_ticket": "Créer un ticket",
+  "tile_support_item_travaux": "Un probléme sur vos produits ?",
+  "tile_support_item_travaux_link": "Consulter nos tâches Travaux",
   "tile_network_title": "Réseau du cluster",
   "tile_hardware_title": "Hardware",
   "tab_nodes": "Nodes"

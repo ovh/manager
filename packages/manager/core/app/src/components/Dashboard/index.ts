@@ -15,7 +15,9 @@ export type DashboardTileDefinition = {
   name: string;
   title: string;
   description?: unknown | ((data: unknown) => unknown);
-  actions?: DashboardTileDefinitionAction[];
+  actions?:
+    | DashboardTileDefinitionAction[]
+    | ((data: unknown) => DashboardTileDefinitionAction[]);
 };
 
 export type DashboardTileDefinitionAction = {

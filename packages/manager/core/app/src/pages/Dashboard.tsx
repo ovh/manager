@@ -4,6 +4,7 @@ import { useParams, Link as RouterLink } from 'react-router-dom';
 import { Link } from '@chakra-ui/react';
 import { ArrowForwardIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { startCase } from 'lodash-es';
+import { useShell } from '@/core';
 
 import Nutanix, {
   getNutanix,
@@ -19,11 +20,24 @@ import Service, {
   NutanixClusterDetails,
   NutanixClusterLicenseFeatureDetails,
 } from '@/api/service';
+import SupportLevel, {
+  getSupportLevel,
+  getSupportTicketIdsByServiceName,
+} from '@/api/support';
 import Dashboard, { TileTypesEnum } from '@/components/Dashboard';
 
 export default function DashboardPage(): JSX.Element {
   const { t } = useTranslation('dashboard');
   const { serviceId } = useParams();
+  const shell = useShell();
+
+  const SUPPORT_LEVELS = {
+    standard: 'Standard',
+    premium: 'Premium',
+    'premium-accredited': 'Premium Advanced',
+    business: 'Business',
+    enterprise: 'Enterprise',
+  };
 
   const tiles = [
     {
@@ -163,6 +177,82 @@ export default function DashboardPage(): JSX.Element {
     {
       name: 'support',
       heading: t('tile_support_title'),
+      type: TileTypesEnum.LIST,
+      onLoad: async () => {
+        const [supportLevel, ticketIds] = await Promise.all([
+          getSupportLevel(),
+          getSupportTicketIdsByServiceName(serviceId),
+        ]);
+
+        const viewTicketsUrl = await shell.navigation.getURL(
+          'dedicated',
+          '#/support/tickets',
+          {
+            filters: JSON.stringify({
+              property: 'serviceName.value',
+              operator: 'is',
+              value: serviceId,
+            }),
+          },
+        );
+        const createNewTicketUrl = await shell.navigation.getURL(
+          'dedicated',
+          '#/support/tickets/new',
+          {},
+        );
+
+        return { supportLevel, ticketIds, viewTicketsUrl, createNewTicketUrl };
+      },
+      definitions: [
+        {
+          name: 'support_level',
+          title: t('tile_support_item_support_level'),
+          description: ({ supportLevel }: { supportLevel: SupportLevel }) => {
+            return SUPPORT_LEVELS[supportLevel.level] || supportLevel.level;
+          },
+        },
+        {
+          name: 'tickets',
+          title: t('tile_support_item_tickets'),
+          description: ({ ticketIds }: { ticketIds: number[] }) =>
+            ticketIds.length,
+          actions: ({
+            ticketIds,
+            viewTicketsUrl,
+            createNewTicketUrl,
+          }: {
+            ticketIds: number[];
+            viewTicketsUrl: string;
+            createNewTicketUrl: string;
+          }) => [
+            ...(ticketIds.length > 0
+              ? [
+                  {
+                    name: 'view_tickets',
+                    label: t('tile_support_item_tickets_action_view_tickets'),
+                    title: t('tile_support_item_tickets_action_view_tickets'),
+                    href: viewTicketsUrl,
+                  },
+                ]
+              : []),
+            {
+              name: 'create_ticket',
+              label: t('tile_support_item_tickets_action_create_ticket'),
+              title: t('tile_support_item_tickets_action_create_ticket'),
+              href: createNewTicketUrl,
+            },
+          ],
+        },
+        {
+          name: 'travaux',
+          title: t('tile_support_item_travaux'),
+          description: () => (
+            <Link href="https://www.status-ovhcloud.com/" isExternal>
+              {t('tile_support_item_travaux_link')} <ExternalLinkIcon />
+            </Link>
+          ),
+        },
+      ],
     },
     {
       name: 'network',
