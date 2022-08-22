@@ -12,7 +12,17 @@ export default function useListingSearchParams<T>() {
 
   const isColumnHidden = (key: string) => !isColumnVisible(key);
 
-  const getInitialState = () => initialState;
+  const getInitialState = (columns: ListingColumn<T>[]) =>
+    initialState || {
+      table: {
+        currentPage: 1,
+        pageSize: 10,
+        sort: {
+          key: columns[0].key,
+        },
+      },
+      filters: [],
+    };
 
   const updateColumns = (columns: ListingColumn<T>[]) => {
     const hidden = columns.filter((c) => c.hidden).map(({ key }) => key);

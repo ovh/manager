@@ -1,4 +1,7 @@
 {
+  "nutanix": "Nutanix",
+  "generic_infos": "Informations générales",
+
   "cluster_name": "Nom du cluster",
   "node_count": "Nombre de nœuds",
   "status": "Status du node",

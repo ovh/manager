@@ -1,49 +1,25 @@
-import React, { Suspense } from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-// import { useEnvironment } from '../core';
+import React from 'react';
+import { useRoutes } from 'react-router-dom';
+import useBreadcrumbs, {
+  createRoutesFromChildren,
+} from 'use-react-router-breadcrumbs';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import Breadcrumb from '@/components/Breadcrumb';
 
-const Onboarding = React.lazy(() => import('./Onboarding'));
-const Listing = React.lazy(() => import('./Listing'));
-const Dashboard = React.lazy(() => import('./Dashboard'));
+import Routing from './Routing';
 
-export default function App(): JSX.Element {
-  // const env = useEnvironment();
+const queryClient = new QueryClient();
+
+export default function App() {
+  const routing = createRoutesFromChildren(Routing());
   return (
-    <HashRouter>
-      <div>Breadcrumb</div>
-      <Routes>
-        <Route path="nutanix">
-          <Route
-            index
-            element={
-              <Suspense fallback="">
-                <Listing />
-              </Suspense>
-            }
-          />
-          <Route
-            path="onboarding"
-            element={
-              <Suspense fallback="">
-                <Onboarding />
-              </Suspense>
-            }
-          />
-          <Route path="details">
-            <Route index element={<Navigate to="/nutanix" />} />
-            <Route
-              path=":serviceId"
-              element={
-                <Suspense fallback="">
-                  <Dashboard />
-                </Suspense>
-              }
-            />
-          </Route>
-        </Route>
-        <Route index element={<Navigate to="/nutanix" />} />
-        <Route path="*" element={<div>404 page</div>} />
-      </Routes>
-    </HashRouter>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <Breadcrumb breadcrumbs={useBreadcrumbs(routing)} />
+        {useRoutes(routing)}
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </>
   );
 }

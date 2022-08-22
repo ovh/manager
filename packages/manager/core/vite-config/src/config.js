@@ -3,10 +3,13 @@ import { fileURLToPath } from 'url';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import legacy from '@vitejs/plugin-legacy';
 
+import IframeHmrPlugin from './plugin/iframe-hmr.js';
 import viteOvhDevServerPlugin from './plugin/dev-server.js';
 
+const isContainerApp = process.cwd().endsWith('container');
+
 export default {
-  base: './',
+  base: isContainerApp ? './' : '/app/',
   root: resolve(process.cwd(), 'src'),
   clearScreen: false,
   publicDir: 'public',
@@ -20,7 +23,8 @@ export default {
     legacy({
       targets: ['defaults'],
     }),
-    viteOvhDevServerPlugin(),
+    viteOvhDevServerPlugin(isContainerApp),
+    IframeHmrPlugin(),
   ],
   css: {
     preprocessorOptions: {
@@ -43,5 +47,9 @@ export default {
   server: {
     port: process.env.CONTAINER ? 9001 : 9000,
     strictPort: true,
+    hmr: {
+      host: 'localhost',
+      port: process.env.CONTAINER ? 9001 : 9000,
+    },
   },
 };

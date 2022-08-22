@@ -11,7 +11,7 @@ export default function useJsonSearchParam<T>(
       } else {
         searchParams.set(param, JSON.stringify(data));
       }
-      setSearchParams(searchParams);
+      setSearchParams(searchParams, { replace: true });
     } catch {
       // skip
     }

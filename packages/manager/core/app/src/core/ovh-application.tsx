@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { HashRouter } from 'react-router-dom';
 import { ApplicationId } from '@ovh-ux/manager-config/types/application';
 import initI18n from './i18n';
 import OvhContext, { initOvhContext, OvhContextType } from './ovh-context';
+import OvhContainerRoutingSync from './ovh-routing';
 
 async function init(name: ApplicationId) {
   const context = await initOvhContext(name);
-  await initI18n(context.environment.getUserLocale());
+  const availableLocales = await context.shell.i18n.getAvailableLocales();
+  await initI18n(
+    context.environment.getUserLocale(),
+    availableLocales.map(({ key }) => key),
+  );
   return context;
 }
 
@@ -24,8 +30,15 @@ export function OvhApplication({
 
   return (
     <OvhContext.Provider value={context}>
-      {context && children}
-      {!context && '…'}
+      <HashRouter>
+        {context && (
+          <>
+            <OvhContainerRoutingSync />
+            {children}
+          </>
+        )}
+        {!context && '…'}
+      </HashRouter>
     </OvhContext.Provider>
   );
 }
