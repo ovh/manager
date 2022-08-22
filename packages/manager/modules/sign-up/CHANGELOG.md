@@ -1,3 +1,12 @@
+## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.5.0...@ovh-ux/sign-up@2.5.1) (2022-08-22)
+
+
+### Bug Fixes
+
+* **sign-up:** add variable test on zipmodel ([0e6b9e5](https://github.com/ovh/manager/commit/0e6b9e513273bae000d7ca86da4ef55463c8d20c))
+
+
+
 # [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.4.0...@ovh-ux/sign-up@2.5.0) (2022-06-16)
 
 
