@@ -3,6 +3,12 @@ export type NodeRouting = {
   hash?: string;
 };
 
+export enum NodeTag {
+  ALPHA = 'alpha',
+  BETA = 'beta',
+  NEW = 'new',
+}
+
 export type Node = {
   children?: Node[];
   parent?: Node;
@@ -20,4 +26,5 @@ export type Node = {
   isExternal?: boolean;
   routing?: NodeRouting;
   region?: string[];
+  tag?: NodeTag;
 };

@@ -121,5 +121,8 @@
   "sidebar_assistance_support_level": "Niveau de support",
   "sidebar_assistance_live_chat": "Live Chat",
   "sidebar_assistance_onboarding": "Visite guidée",
-  "sidebar_clipboard_copy": "Copier dans le presse-papiers"
+  "sidebar_clipboard_copy": "Copier dans le presse-papiers",
+  "sidebar_tag_alpha": "Alpha",
+  "sidebar_tag_beta": "Beta",
+  "sidebar_tag_new": "Nouveau"
 }
