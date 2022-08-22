@@ -23,5 +23,9 @@
   "dedicatedCloud_USER_delete": "Delete this user",
   "dedicatedCloud_USER_enable": "Enable the user",
   "dedicatedCloud_USER_disable": "Disable the user",
-  "dedicatedCloud_USER_edit_load_error": "An error has occurred loading the user."
+  "dedicatedCloud_USER_edit_load_error": "An error has occurred loading the user.",
+  "dedicatedCloud_USER_encryption": "Encryption management",
+  "dedicatedCloud_USER_cancel": "Cancel",
+  "dedicatedCloud_USER_yes": "Yes",
+  "dedicatedCloud_USER_no": "No"
 }
