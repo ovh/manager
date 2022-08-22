@@ -97,6 +97,8 @@ export const TRACKING_GUIDE_LINKS = {
   DISCOVER_FAILOVER_IP: `${TRACKING_PREFIX}::add::discover-failover-ip`,
 };
 
+export const FLOATING_IP_PLAN = 'publiccloud-floatingip-floatingip';
+
 export default {
   ORDER_URL,
   IP_TYPE_ENUM,
@@ -104,4 +106,5 @@ export default {
   GUIDE_URLS,
   GATEWAY_TRACKING_PREFIX,
   TRACKING_PREFIX_FORM_SUBMIT,
+  FLOATING_IP_PLAN,
 };
