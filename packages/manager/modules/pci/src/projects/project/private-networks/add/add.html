@@ -66,15 +66,22 @@
                     <p
                         class="mb-0"
                         data-translate="pci_projects_project_network_private_create_public_gateway_decription_1"
-                        data-translate-values="{ guideLink: $ctrl.GUIDE_LINKS.PRIVATE_NETWORK_WITH_GATEWAY }"
+                        data-translate-values="{ 
+                            guideLink: $ctrl.GUIDE_LINKS.PRIVATE_NETWORK_WITH_GATEWAY,
+                            trackLabel: $ctrl.TRACKING_PREFIX + '::guide-create-private-network-with-gateway'
+                        }"
+                        data-translate-compile
                     ></p>
                     <p
                         data-translate="pci_projects_project_network_private_create_public_gateway_decription_2"
-                        data-translate-values="{ guideLink: $ctrl.GUIDE_LINKS.PRIVATE_NETWORK_WITH_GATEWAY }"
                     ></p>
                     <p
                         data-translate="pci_projects_project_network_private_create_public_gateway_footer"
-                        data-translate-values="{ guideLink: $ctrl.GUIDE_LINKS.REGION_AVAILABILITY }"
+                        data-translate-values="{
+                            guideLink: $ctrl.GUIDE_LINKS.REGION_AVAILABILITY,
+                            trackLabel: $ctrl.TRACKING_PREFIX + '::regions-availability'
+                        }"
+                        data-translate-compile
                     ></p>
                 </div>
             </section>
