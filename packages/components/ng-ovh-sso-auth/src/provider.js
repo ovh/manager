@@ -547,7 +547,7 @@ export default function() {
             }
           }
 
-          $window.location.assign(
+          $window.top.location.assign(
             destUrl +
               (urlPart.indexOf('?') > -1 ? '&' : '?') +
               params.join('&'),

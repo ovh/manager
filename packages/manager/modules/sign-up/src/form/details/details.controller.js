@@ -184,10 +184,11 @@ export default class SignUpDetailsCtrl {
       model: (...args) => {
         if (args.length) {
           const newZipModel = args[0];
-          this.zipModel.value = newZipModel.replace(
-            get(this.signUpFormCtrl.rules, 'zip.prefix'),
-            '',
-          );
+          this.zipModel.value =
+            newZipModel?.replace(
+              get(this.signUpFormCtrl.rules, 'zip.prefix'),
+              '',
+            ) || '';
           this.signUpFormCtrl.model.zip = SignUpDetailsCtrl.cleanZipCode(
             newZipModel,
             get(this.signUpFormCtrl.rules, 'zip.prefix'),
