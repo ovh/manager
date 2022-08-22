@@ -1,3 +1,12 @@
+## [5.87.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.87.0...@ovh-ux/manager-pci@5.87.1) (2022-08-22)
+
+
+### Bug Fixes
+
+* **kubernetes.create:** fix the init of default privatenetworkrouting ([#7813](https://github.com/ovh/manager/issues/7813)) ([de35b97](https://github.com/ovh/manager/commit/de35b972c510389ace71910884f6818e4f74c833))
+
+
+
 # [5.87.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.86.2...@ovh-ux/manager-pci@5.87.0) (2022-08-18)
 
 

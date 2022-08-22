@@ -1,3 +1,12 @@
+## [6.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.4.1...@ovh-ux/manager-telecom-dashboard@6.4.2) (2022-08-22)
+
+
+### Bug Fixes
+
+* **identify-check:** allow `ownerZip` to be a 4 digit value ([#7827](https://github.com/ovh/manager/issues/7827)) ([8cdfc70](https://github.com/ovh/manager/commit/8cdfc70a92666e50d00c55dde92b07ee2ccd1a11))
+
+
+
 ## [6.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.4.0...@ovh-ux/manager-telecom-dashboard@6.4.1) (2022-07-27)
 
 

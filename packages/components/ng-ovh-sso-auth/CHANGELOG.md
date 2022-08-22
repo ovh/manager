@@ -1,3 +1,12 @@
+## [4.6.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.6.1...@ovh-ux/ng-ovh-sso-auth@4.6.2) (2022-08-22)
+
+
+### Bug Fixes
+
+* **sso-auth:** add target top for redirection to signup new ([2a50689](https://github.com/ovh/manager/commit/2a50689eeb7b7d80f598b9d8369ee00fd3badc77))
+
+
+
 ## [4.6.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.6.0...@ovh-ux/ng-ovh-sso-auth@4.6.1) (2022-03-04)
 
 

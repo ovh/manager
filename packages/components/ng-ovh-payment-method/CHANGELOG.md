@@ -1,3 +1,12 @@
+## [9.2.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.2.2...@ovh-ux/ng-ovh-payment-method@9.2.3) (2022-08-22)
+
+
+### Bug Fixes
+
+* **service:** replace both validator `isValidIban` and `isValidBic` ([#7746](https://github.com/ovh/manager/issues/7746)) ([1626158](https://github.com/ovh/manager/commit/16261583ed3dd929c40fc3b05cfcb23f4bab90ad))
+
+
+
 ## [9.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.2.1...@ovh-ux/ng-ovh-payment-method@9.2.2) (2022-07-27)
 
 
