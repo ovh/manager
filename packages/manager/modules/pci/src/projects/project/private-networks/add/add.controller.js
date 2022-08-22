@@ -31,6 +31,7 @@ export default class PrivateNetworksAddCtrl {
     this.PciPublicGatewaysService = PciPublicGatewaysService;
     this.GUIDE_LINKS = GUIDE_LINKS;
     this.VLAN_ID = VLAN_ID;
+    this.TRACKING_PREFIX = TRACKING_PREFIX;
   }
 
   $onInit() {
