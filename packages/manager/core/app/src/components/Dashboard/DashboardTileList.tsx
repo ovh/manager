@@ -43,6 +43,7 @@ export default function DashboardTileList({
             href={action.href}
             isExternal={action.isExternal}
             aria-label={action.title}
+            onClick={action.onClick}
           >
             {action.label}
           </MenuItem>
