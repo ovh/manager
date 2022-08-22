@@ -24,6 +24,7 @@ const TemplateInput = () => (
 const TemplateMaxDates = () => (
   <>
     <InputCalendar
+      valueDate={new Date(2022, 7, 17)}
       maxDate={new Date(2022, 7, 18)}
       minDate={new Date(2022, 7, 11)}
     />

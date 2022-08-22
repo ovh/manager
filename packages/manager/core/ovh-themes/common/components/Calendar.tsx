@@ -121,8 +121,9 @@ export const Calendar = (props: CalendarProps) => {
   }, []);
 
   const selectDay = (day: Date) => {
-    navigation.setDate(day);
-    if (onDaySelect) onDaySelect(day);
+    const dateDisabled = isDateDisabled(day);
+    if (!dateDisabled) navigation.setDate(day);
+    if (!dateDisabled && onDaySelect) onDaySelect(day);
   };
 
   const goNext = () => {
