@@ -36,6 +36,16 @@ angular
               $ocLazyLoad.inject(mod.default || mod),
             );
           },
+        })
+        .state('cda.dashboard.**', {
+          url: '/:serviceName',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./details/cda-details.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
         });
 
       $urlRouterProvider.when(/^\/paas\/cda/, () => {
