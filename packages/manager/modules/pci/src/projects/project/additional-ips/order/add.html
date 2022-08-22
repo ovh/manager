@@ -41,10 +41,19 @@
                     </oui-select-picker-section>
                     <oui-select-picker-footer>
                         <span
+                            data-ng-if="type.name === $ctrl.IP_TYPE_ENUM.FAILOVER"
                             data-translate="pci_additional_ip_price_per_month"
                             data-translate-values="{ price: type.price }"
                         >
                         </span>
+                        <ovh-manager-catalog-price
+                            data-ng-if="type.name === $ctrl.IP_TYPE_ENUM.FLOATING"
+                            data-price="type.price * 12"
+                            data-user="$ctrl.user"
+                            data-interval="'month'"
+                            data-perform-rounding="false"
+                            data-maximum-fraction-digits="4"
+                        ></ovh-manager-catalog-price>
                     </oui-select-picker-footer>
                 </oui-select-picker>
             </div>
@@ -268,7 +277,7 @@
                     ></span>
                     <ovh-manager-catalog-price
                         data-price="$ctrl.gatewayPrice.hour"
-                        data-user="$ctrl.coreConfig.getUser()"
+                        data-user="$ctrl.user"
                         data-perform-rounding="false"
                         data-maximum-fraction-digits="4"
                         data-interval="'hour'"
