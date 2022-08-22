@@ -1,3 +1,9 @@
+import {
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
+} from '@chakra-ui/react';
 import { Calendar, InputCalendar } from '@ovh-ux/manager-themes';
 import esLocale from 'date-fns/locale/es';
 import frLocale from 'date-fns/locale/fr';
@@ -37,8 +43,18 @@ const TemplateDisabledDates = () => (
   />
 );
 
+const FormCalendarInput = () => (
+  <FormControl>
+    <FormLabel>Label</FormLabel>
+    <InputCalendar />
+    <FormHelperText>Your date here</FormHelperText>
+    <FormErrorMessage>Mandatory.</FormErrorMessage>
+  </FormControl>
+);
+
 export const Default = Template.bind({});
 export const Input = TemplateInput.bind({});
 export const MaxAndMinDates = TemplateMaxDates.bind({});
 export const DisabledDates = TemplateDisabledDates.bind({});
 export const WithLocale = TemplateLocale.bind({});
+export const WithinFormControl = FormCalendarInput.bind({});
