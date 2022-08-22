@@ -151,4 +151,27 @@ describe('Calendar', () => {
     // Expect snapshot to have a new range of years
     expect(asFragment()).toMatchSnapshot();
   });
+
+  it('disables disabled dates', () => {
+    const { asFragment } = render(
+      <Calendar
+        valueDate={selectedDate}
+        disabledDates={[new Date(2022, 5, 20), new Date(2022, 5, 11)]}
+      />,
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('disables all dates before min date and after max date', () => {
+    const { asFragment } = render(
+      <Calendar
+        valueDate={selectedDate}
+        minDate={new Date(2022, 5, 5)}
+        maxDate={new Date(2022, 5, 20)}
+      />,
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+  });
 });

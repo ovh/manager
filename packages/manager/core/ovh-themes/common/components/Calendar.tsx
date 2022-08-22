@@ -37,6 +37,7 @@ import {
   isValid,
   compareAsc,
   addMonths,
+  parse,
 } from 'date-fns';
 
 import { ChevronRightIcon, ChevronLeftIcon, CalendarIcon } from '../../index';
@@ -119,20 +120,10 @@ export const Calendar = (props: CalendarProps) => {
     else navigation.setDate(new Date());
   }, []);
 
-  useEffect(() => {
-    if (valueDate && isValid(valueDate) && isDate(valueDate))
-      navigation.setDate(valueDate);
-  }, [valueDate]);
-
   const selectDay = (day: Date) => {
     navigation.setDate(day);
     if (onDaySelect) onDaySelect(day);
   };
-
-  useEffect(() => {
-    if (isDateDisabled(cursorDate)) return;
-    if (onDaySelect) selectDay(cursorDate);
-  }, [cursorDate]);
 
   const goNext = () => {
     if (viewType === 'year') {
@@ -329,8 +320,8 @@ export const InputCalendar = (props: InputCalendarProps) => {
   );
 
   useEffect(() => {
-    if (valueDate) setSelectedDate(valueDate);
-    else setSelectedDate(new Date());
+    if (valueDate && isValid(valueDate) && isDate(valueDate))
+      setSelectedDate(valueDate);
   }, []);
 
   return (
@@ -369,7 +360,7 @@ export const InputCalendar = (props: InputCalendarProps) => {
       >
         <PopoverArrow />
         <Calendar
-          valueDate={valueDate}
+          valueDate={selectedDate}
           onDaySelect={(day) => {
             setSelectedDate(day);
           }}
