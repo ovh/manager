@@ -91,7 +91,7 @@ exports[`Input Calendar displays calendar on input click 1`] = `
           <button
             class="css-0"
           >
-            August
+            June
           </button>
           <button
             class="css-0"
@@ -173,6 +173,12 @@ exports[`Input Calendar displays calendar on input click 1`] = `
             <div
               class="css-1hg1sm5"
             >
+              <div
+                class="css-0"
+              />
+              <div
+                class="css-0"
+              />
               <div
                 class="css-0"
               />
@@ -373,7 +379,7 @@ exports[`Input Calendar displays calendar on input click 1`] = `
               >
                 <button
                   aria-disabled="false"
-                  aria-pressed="true"
+                  aria-pressed="false"
                   class="css-0"
                   type="button"
                 >
@@ -385,7 +391,7 @@ exports[`Input Calendar displays calendar on input click 1`] = `
               >
                 <button
                   aria-disabled="false"
-                  aria-pressed="false"
+                  aria-pressed="true"
                   class="css-0"
                   type="button"
                 >
@@ -536,21 +542,6 @@ exports[`Input Calendar displays calendar on input click 1`] = `
                   30
                 </button>
               </div>
-              <div
-                class="css-0"
-              >
-                <button
-                  aria-disabled="false"
-                  aria-pressed="false"
-                  class="css-0"
-                  type="button"
-                >
-                  31
-                </button>
-              </div>
-              <div
-                class="css-0"
-              />
               <div
                 class="css-0"
               />
@@ -653,7 +644,7 @@ exports[`Input Calendar renders input calendar with passed date and calendar clo
           <button
             class="css-0"
           >
-            August
+            June
           </button>
           <button
             class="css-0"
@@ -735,6 +726,12 @@ exports[`Input Calendar renders input calendar with passed date and calendar clo
             <div
               class="css-1hg1sm5"
             >
+              <div
+                class="css-0"
+              />
+              <div
+                class="css-0"
+              />
               <div
                 class="css-0"
               />
@@ -935,7 +932,7 @@ exports[`Input Calendar renders input calendar with passed date and calendar clo
               >
                 <button
                   aria-disabled="false"
-                  aria-pressed="true"
+                  aria-pressed="false"
                   class="css-0"
                   type="button"
                 >
@@ -947,7 +944,7 @@ exports[`Input Calendar renders input calendar with passed date and calendar clo
               >
                 <button
                   aria-disabled="false"
-                  aria-pressed="false"
+                  aria-pressed="true"
                   class="css-0"
                   type="button"
                 >
@@ -1098,21 +1095,6 @@ exports[`Input Calendar renders input calendar with passed date and calendar clo
                   30
                 </button>
               </div>
-              <div
-                class="css-0"
-              >
-                <button
-                  aria-disabled="false"
-                  aria-pressed="false"
-                  class="css-0"
-                  type="button"
-                >
-                  31
-                </button>
-              </div>
-              <div
-                class="css-0"
-              />
               <div
                 class="css-0"
               />
