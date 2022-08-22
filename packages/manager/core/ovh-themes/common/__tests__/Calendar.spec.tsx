@@ -2,12 +2,26 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { format } from 'date-fns';
 import esLocale from 'date-fns/locale/es';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import { chakra } from '@chakra-ui/react';
 
 import { Calendar, capitalizeFirstLetter } from '../components';
+
+expect.extend(toHaveNoViolations);
 
 const selectedDate = new Date(2022, 5, 18);
 
 describe('Calendar', () => {
+  it('has no accessibility violations', async () => {
+    const { container } = render(
+      <chakra.form>
+        <Calendar />
+      </chakra.form>,
+    );
+    const a11yResults = await axe(container);
+    expect(a11yResults).toHaveNoViolations();
+  });
+
   it('default renders correctly to current date with default locale', () => {
     render(<Calendar />);
     const currentDate = new Date();
