@@ -39,6 +39,8 @@ export default function DashboardPage(): JSX.Element {
     enterprise: 'Enterprise',
   };
 
+  const trackingPrefix = 'hpc::nutanix::cluster::dashboard';
+
   const tiles = [
     {
       name: 'general',
@@ -232,6 +234,13 @@ export default function DashboardPage(): JSX.Element {
                     label: t('tile_support_item_tickets_action_view_tickets'),
                     title: t('tile_support_item_tickets_action_view_tickets'),
                     href: viewTicketsUrl,
+                    onClick: () => {
+                      shell.tracking.trackClick({
+                        name: `${trackingPrefix}::go-to-opened-ticket`,
+                        type: 'action',
+                        customVars: {},
+                      });
+                    },
                   },
                 ]
               : []),
@@ -240,6 +249,13 @@ export default function DashboardPage(): JSX.Element {
               label: t('tile_support_item_tickets_action_create_ticket'),
               title: t('tile_support_item_tickets_action_create_ticket'),
               href: createNewTicketUrl,
+              onClick: () => {
+                shell.tracking.trackClick({
+                  name: `${trackingPrefix}::go-to-create-ticket`,
+                  type: 'action',
+                  customVars: {},
+                });
+              },
             },
           ],
         },
