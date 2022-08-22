@@ -135,7 +135,7 @@
                             ></td>
                             <td
                                 class="oui-table__cell"
-                                data-ng-bind="subnetDetail.gateway"
+                                data-ng-bind="subnetDetail.gatewayIp"
                             ></td>
                             <td
                                 class="oui-table__cell"
@@ -147,7 +147,7 @@
                             ></td>
                             <td class="oui-table__cell">
                                 <button
-                                    data-ng-if="!subnetDetail.gateway"
+                                    data-ng-if="!subnetDetail.gatewayIp"
                                     class="oui-button oui-button_ghost"
                                     data-ng-click="$ctrl.goToAddPublicGateway($row, subnetDetail)"
                                     data-oui-tooltip="{{:: 'pci_projects_project_network_private_assign_gateway' | translate}}"
