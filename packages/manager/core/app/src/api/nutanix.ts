@@ -9,6 +9,22 @@ import Service, {
   BareMetalServersDetails,
   NutanixClusterDetails,
 } from '@/api/service';
+import DedicatedServer, {
+  getDedicatedServer,
+  getDedicatedServerOption,
+  getDedicatedServerOrderableBandwidthVrack,
+  getNetwordSpecifications,
+  DedicatedServerOption,
+  NetworkSpecifications,
+  DedicatedServerBandwidthvRackOrderable,
+  DedicatedServerOptionEnum,
+} from '@/api/dedicatedServer';
+
+export type NutanixNode = {
+  ahvIp: string;
+  cvmIp: string;
+  server: string;
+};
 
 export type Nutanix = {
   allowedRedundancyFactor: number[];
@@ -22,11 +38,7 @@ export type Nutanix = {
     ipfo: string;
     iplb: string;
     name: string;
-    nodes: {
-      ahvIp: string;
-      cvmIp: string;
-      server: string;
-    }[];
+    nodes: NutanixNode[];
     prismCentral: {
       ips: string[];
       type: string;
@@ -125,12 +137,37 @@ export async function getNutanix(serviceName: string): Promise<Nutanix> {
   return response.json();
 }
 
-export async function getServer(nodeId: number): Promise<any> {
-  const response = await apiClient.aapi.get(`/sws/dedicated/server/${nodeId}`);
-  return response.json();
+export async function getServer(
+  server: string | Nutanix | NutanixNode,
+): Promise<DedicatedServer> {
+  return getDedicatedServer(determineServerServiceName(server));
 }
 
-export function transformTechnicalDetails(
+export async function getServerNetworkSpecifications(
+  server: string | Nutanix | NutanixNode,
+): Promise<NetworkSpecifications> {
+  return getNetwordSpecifications(determineServerServiceName(server));
+}
+
+export async function getServerOption(
+  server: string | Nutanix | NutanixNode,
+  serverOption: DedicatedServerOptionEnum,
+): Promise<DedicatedServerOption> {
+  return getDedicatedServerOption(
+    determineServerServiceName(server),
+    serverOption,
+  );
+}
+
+export async function getServerOrderableBandwidthVrack(
+  server: string | Nutanix | NutanixNode,
+): Promise<DedicatedServerBandwidthvRackOrderable> {
+  return getDedicatedServerOrderableBandwidthVrack(
+    determineServerServiceName(server),
+  );
+}
+
+function transformTechnicalDetails(
   optionsHardwareInfo: Array<TechnicalDetails>,
 ): TechnicalDetails {
   const baremetalServers = {} as BareMetalServersDetails;

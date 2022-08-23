@@ -25,6 +25,13 @@
   "tile_support_item_travaux": "Un probléme sur vos produits ?",
   "tile_support_item_travaux_link": "Consulter nos tâches Travaux",
   "tile_network_title": "Réseau du cluster",
+  "tile_network_item_private_bandwidth": "Bande passante privée",
+  "tile_network_item_private_bandwidth_vrack_option_released": "(non renouvelé)",
+  "tile_network_item_private_bandwidth_modify": "Modifier la bande passante privée",
+  "tile_network_item_private_bandwidth_outgoing": "sortant",
+  "tile_network_item_private_bandwidth_incoming": "entrant",
+  "tile_network_item_private_network": "Réseau privé (vRack)",
+  "tile_network_item_load_balancer_none": "Aucun Load Balancer attaché",
   "tile_hardware_title": "Hardware",
   "tab_nodes": "Nodes"
 }
