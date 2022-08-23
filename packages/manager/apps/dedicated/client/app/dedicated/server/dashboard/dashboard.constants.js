@@ -38,6 +38,8 @@ export const UPGRADE_TYPE = {
   STORAGE: 'storage',
 };
 
+export const HIDE_MRTG_FOR_SERVER_RANGES = ['scale', 'hgr'];
+
 export default {
   ELIGIBLE_FOR_UPGRADE,
   URLS,

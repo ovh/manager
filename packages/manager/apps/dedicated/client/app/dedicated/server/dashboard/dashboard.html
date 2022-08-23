@@ -868,7 +868,7 @@
     <!-- MRTG -->
     <div
         class="oui-tile mb-5"
-        data-ng-if="!$ctrl.server.isExpired && !$ctrl.technicalDetails"
+        data-ng-if="!$ctrl.server.isExpired && $ctrl.displayMRTG()"
     >
         <h4
             class="oui-tile__title oui-heading_4"
