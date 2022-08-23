@@ -9,5 +9,6 @@
   "dedicatedCloud_USER_ipfo": "IP FailOver",
   "dedicatedCloud_USER_nsx": "Interfaccia NSX",
   "dedicatedCloud_USER_edit_success": "L'utente è stato modificato correttamente.",
-  "dedicatedCloud_USER_edit_error": "Si è verificato un errore durante la modifica dell'utente."
+  "dedicatedCloud_USER_edit_error": "Si è verificato un errore durante la modifica dell'utente.",
+  "dedicatedCloud_USER_encryption": "Gestione della crittografia"
 }

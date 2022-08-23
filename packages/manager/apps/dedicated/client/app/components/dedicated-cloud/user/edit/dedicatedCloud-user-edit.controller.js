@@ -35,6 +35,7 @@ export default class {
         'canManageNetwork',
         'canManageIpFailOvers',
         'nsxRight',
+        'encryptionRight',
       ]),
     )
       .then(() => {
