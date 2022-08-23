@@ -1,3 +1,12 @@
+# [17.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.26.1...@ovh-ux/manager-dedicated@17.27.0) (2022-08-23)
+
+
+### Features
+
+*  users encryption right ([#7766](https://github.com/ovh/manager/issues/7766)) ([eaa5872](https://github.com/ovh/manager/commit/eaa5872124653d9bf8b33e0b4bcfb51674469d5f))
+
+
+
 ## [17.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.26.0...@ovh-ux/manager-dedicated@17.26.1) (2022-08-18)
 
 
