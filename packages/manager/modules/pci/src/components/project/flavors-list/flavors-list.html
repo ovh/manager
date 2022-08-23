@@ -47,10 +47,13 @@
                                     data-translate-values="{ ram: (flavor.ram | bytes:0:false:'MB') }"
                                 ></span>
                             </div>
-                            <div class="d-flex">
+                            <div
+                                class="d-flex"
+                                data-ng-if="flavor.technicalBlob.cpu.model"
+                            >
                                 <span
-                                    data-translate="pci_project_flavors_spec_core_details"
-                                    data-translate-values="{ vcores: flavor.vcpus, frequency: (flavor.frequency | number) }"
+                                    data-translate="pci_project_flavors_spec_{{ flavor.technicalBlob.cpu.model }}_details"
+                                    data-translate-values="{ vcores: flavor.technicalBlob.cpu.cores, frequency: flavor.technicalBlob.cpu.frequency }"
                                 ></span>
                             </div>
                             <div class="d-flex">
