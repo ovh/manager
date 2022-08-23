@@ -14,6 +14,8 @@ import {
   STORAGE_PRICES_LINK,
 } from '../containers.constants';
 
+import { CONTAINER_USER_ASSOCIATION_MODES } from './components/associate-user-to-container/constant';
+
 export default class PciStoragesContainersAddController {
   /* @ngInject */
   constructor(
@@ -178,16 +180,19 @@ export default class PciStoragesContainersAddController {
       this.projectId,
       this.container,
     )
-      .then(() =>
-        this.goBack(
-          this.$translate.instant(
-            'pci_projects_project_storages_containers_add_success_message',
-            {
-              container: this.container.name,
-            },
-          ),
-        ),
-      )
+      .then(() => {
+        const message =
+          this.userModel.createOrLinkedMode ===
+          CONTAINER_USER_ASSOCIATION_MODES.CREATE
+            ? 'pci_projects_project_storages_containers_add_success_message_with_user_creation'
+            : 'pci_projects_project_storages_containers_add_success_message';
+        return this.goBack(
+          this.$translate.instant(message, {
+            container: this.container.name,
+            userName: this.userModel.createMode?.user?.username,
+          }),
+        );
+      })
       .catch((err) => {
         this.CucCloudMessage.error(
           this.$translate.instant(
