@@ -7,6 +7,7 @@ export default {
     customSnapshotName: '<',
     partition: '<',
     partitionApiUrl: '<',
+    trackClick: '<',
   },
   controller,
   template,

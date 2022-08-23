@@ -6,6 +6,7 @@ export default {
     close: '<',
     partition: '<',
     partitionApiUrl: '<',
+    trackClick: '<',
   },
   controller,
   template,

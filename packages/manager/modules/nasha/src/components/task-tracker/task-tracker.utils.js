@@ -3,6 +3,7 @@ export const createTaskTrackerStateOptions = (queryParams = []) => ({
   component: 'nashaComponentsTaskTracker',
   params: {
     tasks: null,
+    trackingData: null,
   },
   redirectTo: (transition) => {
     const params = transition.params();
@@ -25,6 +26,8 @@ export const createTaskTrackerStateOptions = (queryParams = []) => ({
         .filter((key) => queryParams.includes(key))
         .reduce((set, key) => ({ ...set, [key]: params[key] }), {});
     },
+    trackingData: /* @ngInject */ ($transition$) =>
+      $transition$.params().trackingData,
     tasks: /* @ngInject */ ($transition$, taskApiUrl, TaskTrackerService) =>
       $transition$.params().tasks ||
       TaskTrackerService.getTasks(

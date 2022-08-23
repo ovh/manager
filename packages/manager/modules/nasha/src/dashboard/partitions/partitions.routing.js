@@ -50,9 +50,10 @@ export default /* @ngInject */ ($stateProvider) => {
         tasks,
         partitionName,
         error,
+        trackingData,
       } = {}) =>
         tasks
-          ? goToTrackTasks({ tasks, partitionName })
+          ? goToTrackTasks({ tasks, partitionName, trackingData })
           : goBack({ stateName, error }),
       goToTrackTasks: /* @ngInject */ ($state) => (params) =>
         $state.go(taskTrackerStateName, params),

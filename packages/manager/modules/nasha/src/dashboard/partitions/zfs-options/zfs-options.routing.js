@@ -5,5 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
     },
+    atInternet: {
+      rename: 'nasha::dashboard::nasha-partitions::zfs-options',
+    },
   });
 };

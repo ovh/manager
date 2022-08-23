@@ -55,6 +55,10 @@ export default class NashaDashboardPartitionsController {
       .catch((error) => this.alertError({ error }));
   }
 
+  onRenewClick() {
+    this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITIONS, 'renew');
+  }
+
   onPartitionsCreateClick() {
     this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITIONS, 'create-partition');
     return this.goToTabPartitionsCreate();

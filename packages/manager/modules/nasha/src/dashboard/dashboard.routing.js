@@ -1,4 +1,5 @@
 import { SIZE_MIN } from '../components/partition/partition.constants';
+import { SERVICE_TYPE } from './dashboard.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const dashboardStateName = 'nasha.dashboard';
@@ -79,7 +80,9 @@ export default /* @ngInject */ ($stateProvider) => {
           error,
         }),
       serviceInfo: /* @ngInject */ ($http, nashaApiUrl) =>
-        $http.get(`${nashaApiUrl}/serviceInfos`).then(({ data }) => data),
+        $http
+          .get(`${nashaApiUrl}/serviceInfos`)
+          .then(({ data }) => ({ ...data, serviceType: SERVICE_TYPE })),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       taskApiUrl: /* @ngInject */ (nashaApiUrl) => `${nashaApiUrl}/task`,

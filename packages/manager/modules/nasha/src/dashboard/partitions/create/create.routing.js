@@ -7,5 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
       partitionNames: /* @ngInject */ ($http, nashaApiUrl) =>
         $http.get(`${nashaApiUrl}/partition`).then(({ data }) => data),
     },
+    atInternet: {
+      rename: 'nasha::dashboard::nasha-partitions::create',
+    },
   });
 };

@@ -1,3 +1,5 @@
+import { PREFIX_TRACKING_ONBOARDING } from './onboarding.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nasha.onboarding', {
     url: '/onboarding',
@@ -7,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goToOrder: /* @ngInject */ ($state) => () => $state.go('nasha.order'),
     },
     atInternet: {
-      rename: 'nasha::onboarding',
+      rename: `nasha::${PREFIX_TRACKING_ONBOARDING}`,
     },
   });
 };

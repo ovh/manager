@@ -9,6 +9,8 @@ export default {
     params: '<',
     taskApiUrl: '<',
     tasks: '<',
+    trackClick: '<',
+    trackingData: '<',
   },
   controller,
   template,

@@ -1,4 +1,4 @@
-import { NAME_PATTERN } from './edit-name.constants';
+import { NAME_PATTERN, PREFIX_TRACKING_EDIT_NAME } from './edit-name.constants';
 
 export default class NashaComponentsEditNameController {
   /* @ngInject */
@@ -14,6 +14,7 @@ export default class NashaComponentsEditNameController {
   }
 
   submit() {
+    this.trackClick(PREFIX_TRACKING_EDIT_NAME, 'confirm');
     return this.$http
       .put(this.nashaApiUrl, this.model)
       .then(() =>
@@ -24,5 +25,10 @@ export default class NashaComponentsEditNameController {
         }),
       )
       .catch((error) => this.close({ error }));
+  }
+
+  onCancelClick() {
+    this.trackClick(PREFIX_TRACKING_EDIT_NAME, 'cancel');
+    return this.close();
   }
 }

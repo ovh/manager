@@ -1,4 +1,5 @@
 import { createTaskTrackerStateOptions } from '../../../components/task-tracker';
+import { PREFIX_TRACKING_SNAPSHOT_POLICY } from './snapshots.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const stateName = 'nasha.dashboard.partition.snapshots';
@@ -16,7 +17,15 @@ export default /* @ngInject */ ($stateProvider) => {
         error,
       } = {}) =>
         tasks
-          ? goToTrackTasks({ tasks, partitionName, customSnapshotName })
+          ? goToTrackTasks({
+              tasks,
+              partitionName,
+              customSnapshotName,
+              trackingData: {
+                prefix: PREFIX_TRACKING_SNAPSHOT_POLICY,
+                hit: 'close-delete-snapshot',
+              },
+            })
           : goBack({ stateName, error }),
       customSnapshots: /* @ngInject */ ($http, partitionApiUrl) =>
         $http.get(`${partitionApiUrl}/customSnapshot`).then(({ data }) => data),

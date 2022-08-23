@@ -94,6 +94,11 @@ export default class NashaDashboardPartitionSnapshotsController {
   }
 
   updateSnapshotTypes() {
+    this.trackClick(
+      PREFIX_TRACKING_SNAPSHOT_POLICY,
+      'confirm-update-snapshot-frequencies',
+    );
+
     const promises = [];
 
     this.isUpdatingSnapshotTypes = true;
@@ -126,6 +131,10 @@ export default class NashaDashboardPartitionSnapshotsController {
         this.goToTrackTasks({
           tasks: responses.map(({ data: task }) => task),
           partitionName: this.partition.partitionName,
+          trackingData: {
+            prefix: PREFIX_TRACKING_SNAPSHOT_POLICY,
+            hit: 'close-update-snapshot-frequencies',
+          },
         }),
       )
       .catch((error) => {
@@ -152,6 +161,10 @@ export default class NashaDashboardPartitionSnapshotsController {
           tasks: [task],
           customSnapshotName: name,
           partitionName,
+          trackingData: {
+            prefix: PREFIX_TRACKING_SNAPSHOT_POLICY,
+            hit: 'close-create-snapshot',
+          },
         }),
       )
       .catch((error) => {
@@ -168,6 +181,14 @@ export default class NashaDashboardPartitionSnapshotsController {
   onDeleteClick(customSnapshot) {
     this.trackClick(PREFIX_TRACKING_SNAPSHOT_POLICY, 'delete-snapshot');
     return this.goToDelete(customSnapshot);
+  }
+
+  onCancelSnapshotTypesClick() {
+    this.trackClick(
+      PREFIX_TRACKING_SNAPSHOT_POLICY,
+      'cancel-update-snapshot-frequencies',
+    );
+    return this.resetSnapshotTypes();
   }
 
   translate(key, values) {

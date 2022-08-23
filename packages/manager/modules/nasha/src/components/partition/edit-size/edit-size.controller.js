@@ -1,6 +1,6 @@
 import {
   SIZE_MIN,
-  PREFIX_TRACKING_DASHBOARD_PARTITION_UPDATE,
+  PREFIX_TRACKING_DASHBOARD_PARTITION_UPDATE_SIZE,
 } from '../partition.constants';
 
 export default class NashaComponentsPartitionEditSizeController {
@@ -21,7 +21,7 @@ export default class NashaComponentsPartitionEditSizeController {
   }
 
   submit() {
-    this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITION_UPDATE, 'confirm');
+    this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITION_UPDATE_SIZE, 'confirm');
 
     const { partitionName } = this.partition;
 
@@ -34,12 +34,21 @@ export default class NashaComponentsPartitionEditSizeController {
           partitionName,
         }),
       )
-      .then((tasks) => this.close({ tasks, partitionName }))
+      .then((tasks) =>
+        this.close({
+          tasks,
+          partitionName,
+          trackingData: {
+            prefix: PREFIX_TRACKING_DASHBOARD_PARTITION_UPDATE_SIZE,
+            hit: 'close',
+          },
+        }),
+      )
       .catch((error) => this.close({ error }));
   }
 
   onCancelClick() {
-    this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITION_UPDATE, 'cancel');
+    this.trackClick(PREFIX_TRACKING_DASHBOARD_PARTITION_UPDATE_SIZE, 'cancel');
     return this.close();
   }
 }

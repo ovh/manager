@@ -63,6 +63,10 @@ export default class NashaComponentsPartitionZfsOptionsController {
         this.close({
           tasks: [task],
           partitionName: this.partition.partitionName,
+          trackingData: {
+            prefix: PREFIX_TRACKING_DASHBOARD_PARTITION_ZFS_OPTION,
+            hit: 'close',
+          },
         }),
       )
       .catch((error) => this.close({ error }));

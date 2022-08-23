@@ -16,11 +16,12 @@ export default /* @ngInject */ ($stateProvider) => {
       close: /* @ngInject */ (goBack, goToTrackTasks) => ({
         tasks,
         partitionName,
+        trackingData,
         success,
         error,
       } = {}) =>
         tasks
-          ? goToTrackTasks({ tasks, partitionName })
+          ? goToTrackTasks({ tasks, partitionName, trackingData })
           : goBack({ stateName, success, error }),
       editDescriptionHref: /* @ngInject */ ($state, serviceName) => () =>
         $state.href(`${stateName}.edit-description`, { serviceName }),

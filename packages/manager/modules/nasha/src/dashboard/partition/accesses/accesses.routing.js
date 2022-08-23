@@ -14,9 +14,10 @@ export default /* @ngInject */ ($stateProvider) => {
         partitionName,
         ip,
         error,
+        trackingData,
       } = {}) =>
         tasks
-          ? goToTrackTasks({ tasks, partitionName, ip })
+          ? goToTrackTasks({ tasks, partitionName, ip, trackingData })
           : goBack({ stateName, error }),
       goToDelete: /* @ngInject */ ($state, serviceName, partitionName) => (
         ip,

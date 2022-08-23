@@ -1,6 +1,7 @@
 import illustration from './assets/instance.png';
 import {
   GUIDES,
+  PREFIX_TRACKING_ONBOARDING,
   PREFIX_TRACKING_ONBOARDING_GUIDES,
 } from './onboarding.constants';
 import { NASHA_TITLE } from '../nasha.constants';
@@ -18,5 +19,10 @@ export default class NashaOnboardingController {
       link: guide.link[ovhSubsidiary] || guide.link.WW,
     }));
     this.PREFIX_TRACKING_ONBOARDING_GUIDES = PREFIX_TRACKING_ONBOARDING_GUIDES;
+  }
+
+  onOrderClick() {
+    this.trackClick(PREFIX_TRACKING_ONBOARDING, 'add');
+    return this.goToOrder();
   }
 }

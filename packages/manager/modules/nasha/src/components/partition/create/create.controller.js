@@ -47,6 +47,10 @@ export default class NashaComponentsPartitionCreateController {
         this.close({
           tasks: [task],
           partitionName: this.model.partitionName,
+          trackingData: {
+            prefix: PREFIX_TRACKING_DASHBOARD_PARTITION_CREATE,
+            hit: 'close',
+          },
         }),
       )
       .catch((error) => this.close({ error }));

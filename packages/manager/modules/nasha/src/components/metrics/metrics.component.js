@@ -5,6 +5,7 @@ export default {
     monitoredDisabled: '<',
     nasha: '<',
     onMonitoredChanged: '&',
+    onRenewClick: '&',
     serviceInfo: '<',
     urlRenew: '@',
   },

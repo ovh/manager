@@ -16,6 +16,10 @@ export default class NashaComponentsPartitionAccessDeleteController {
           tasks: [task],
           partitionName: this.partition.partitionName,
           ip: this.ip,
+          trackingData: {
+            prefix: PREFIX_TRACKING_PARTITION_ACL,
+            hit: 'close-delete-access',
+          },
         }),
       )
       .catch((error) => this.close({ error }));

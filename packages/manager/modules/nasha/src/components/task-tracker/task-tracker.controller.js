@@ -5,6 +5,10 @@ export default class NashaComponentsTaskTracker {
   }
 
   onDone(success, error) {
+    if (this.trackingData) {
+      this.trackClick(this.trackingData.prefix, this.trackingData.hit);
+    }
+
     return this.goBack({
       reload: true,
       ...(success && {

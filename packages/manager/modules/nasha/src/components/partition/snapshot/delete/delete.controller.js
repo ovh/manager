@@ -1,3 +1,5 @@
+import { PREFIX_TRACKING_SNAPSHOT_POLICY } from '../../partition.constants';
+
 export default class NashaComponentsPartitionSnapshotDeleteController {
   /* @ngInject */
   constructor($http) {
@@ -5,6 +7,8 @@ export default class NashaComponentsPartitionSnapshotDeleteController {
   }
 
   submit() {
+    this.trackClick(PREFIX_TRACKING_SNAPSHOT_POLICY, 'confirm-delete-snapshot');
+
     const { customSnapshotName } = this;
 
     return this.$http
@@ -14,8 +18,17 @@ export default class NashaComponentsPartitionSnapshotDeleteController {
           tasks: [task],
           partitionName: this.partition.partitionName,
           customSnapshotName,
+          trackingData: {
+            prefix: PREFIX_TRACKING_SNAPSHOT_POLICY,
+            hit: 'close-delete-snapshot',
+          },
         }),
       )
       .catch((error) => this.close({ error }));
+  }
+
+  onCancelClick() {
+    this.trackClick(PREFIX_TRACKING_SNAPSHOT_POLICY, 'cancel-delete-snapshot');
+    return this.close();
   }
 }

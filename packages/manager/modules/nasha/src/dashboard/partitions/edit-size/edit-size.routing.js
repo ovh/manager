@@ -5,5 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
     },
+    atInternet: {
+      rename: 'nasha::partition::dashboard::edit-size',
+    },
   });
 };

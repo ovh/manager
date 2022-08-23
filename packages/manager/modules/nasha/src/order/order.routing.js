@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'nashaOrder',
     resolve: {
       breadcrumb: () => null,
-      cancelLink: /* @ngInject */ ($state) => $state.href('nasha'),
+      goToNasha: /* @ngInject */ ($state) => () => $state.go('nasha'),
       plans: /* @ngInject */ ($http, coreConfig, preparePlans) =>
         $http
           .get(
@@ -15,6 +15,12 @@ export default /* @ngInject */ ($stateProvider) => {
             }`,
           )
           .then(({ data: catalog }) => preparePlans(catalog)),
+      trackClickConfirmOrder: /* @ngInject */ (atInternet) => (hits) => {
+        atInternet.trackClick({
+          name: `nasha-confirm-creation::${hits}`,
+          type: 'action',
+        });
+      },
     },
   });
 };

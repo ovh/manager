@@ -187,7 +187,15 @@ export default class NashaDashboardPartitionAccessesController {
     return this.$http
       .post(`${this.partitionApiUrl}/access`, { ip, type })
       .then(({ data: task }) =>
-        this.goToTrackTasks({ tasks: [task], partitionName, ip }),
+        this.goToTrackTasks({
+          tasks: [task],
+          partitionName,
+          ip,
+          trackingData: {
+            prefix: PREFIX_TRACKING_ACL,
+            hit: 'close-add-access',
+          },
+        }),
       )
       .catch((error) => {
         this.alertError(error);

@@ -6,6 +6,8 @@ const NFS_GB = 'https://docs.ovh.com/gb/en/storage/nas-nfs/';
 const CIFS_FR = 'https://docs.ovh.com/fr/storage/nas/nas-cifs/';
 const CIFS_GB = 'https://docs.ovh.com/gb/en/storage/nas/nas-cifs/';
 
+export const PREFIX_TRACKING_ONBOARDING = 'onboarding';
+
 export const PREFIX_TRACKING_ONBOARDING_GUIDES = 'onboarding::documentation';
 
 export const GUIDES = [
@@ -89,4 +91,8 @@ export const GUIDES = [
   },
 ];
 
-export default { GUIDES, PREFIX_TRACKING_ONBOARDING_GUIDES };
+export default {
+  GUIDES,
+  PREFIX_TRACKING_ONBOARDING,
+  PREFIX_TRACKING_ONBOARDING_GUIDES,
+};

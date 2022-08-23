@@ -3,8 +3,10 @@ import template from './order.template.html';
 
 export default {
   bindings: {
-    cancelLink: '<',
+    goToNasha: '<',
     plans: '<',
+    trackClick: '<',
+    trackClickConfirmOrder: '<',
   },
   controller,
   template,

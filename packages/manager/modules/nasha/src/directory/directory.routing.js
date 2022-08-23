@@ -16,14 +16,20 @@ export default /* @ngInject */ ($stateProvider) => {
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
         $state.href('nasha.dashboard', { serviceName }),
-      topbarOptions: /* @ngInject */ ($translate, $state) => ({
+      topbarOptions: /* @ngInject */ ($translate, $state, atInternet) => ({
         cta: {
           type: 'button',
           displayed: true,
           disabled: false,
           label: $translate.instant('nasha_directory_order_label'),
           value: $translate.instant('nasha_directory_order_value'),
-          onClick: () => $state.go('nasha.order'),
+          onClick: () => {
+            atInternet.trackClick({
+              name: 'nasha::directory::add',
+              type: 'action',
+            });
+            return $state.go('nasha.order');
+          },
         },
       }),
       hideBreadcrumb: () => true,

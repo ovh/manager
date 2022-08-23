@@ -1,4 +1,7 @@
-import { DESCRIPTION_MAX } from '../partition.constants';
+import {
+  DESCRIPTION_MAX,
+  PREFIX_TRACKING_DASHBOARD_PARTITION_UPDATE_DESCRIPTION,
+} from '../partition.constants';
 
 export default class NashaComponentsPartitionEditDescriptionController {
   /* @ngInject */
@@ -14,6 +17,10 @@ export default class NashaComponentsPartitionEditDescriptionController {
   }
 
   submit() {
+    this.trackClick(
+      PREFIX_TRACKING_DASHBOARD_PARTITION_UPDATE_DESCRIPTION,
+      'confirm',
+    );
     return this.$http
       .put(this.partitionApiUrl, this.model)
       .then(() =>
@@ -24,5 +31,13 @@ export default class NashaComponentsPartitionEditDescriptionController {
         }),
       )
       .catch((error) => this.close({ error }));
+  }
+
+  onCancelClick() {
+    this.trackClick(
+      PREFIX_TRACKING_DASHBOARD_PARTITION_UPDATE_DESCRIPTION,
+      'cancel',
+    );
+    return this.close();
   }
 }

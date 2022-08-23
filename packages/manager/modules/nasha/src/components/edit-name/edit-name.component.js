@@ -6,6 +6,7 @@ export default {
     close: '<',
     nasha: '<',
     nashaApiUrl: '<',
+    trackClick: '<',
   },
   controller,
   template,

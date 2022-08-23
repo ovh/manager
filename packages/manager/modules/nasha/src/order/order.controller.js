@@ -2,7 +2,13 @@ import JSURL from 'jsurl';
 import { uniq } from 'lodash';
 import { CatalogPricing } from '@ovh-ux/manager-models';
 
-import { PRODUCT_ID } from './order.constants';
+import {
+  FORMAT_DURATION_TRACKING_ORDER,
+  FORMAT_UNIT_CAPACITY_TRACKING_ORDER,
+  PRODUCT_ID,
+  PREFIX_TRACKING_ORDER,
+  PREFIX_TRACKING_ORDER_NEXT_STEP,
+} from './order.constants';
 
 export default class NashaOrderController {
   /* @ngInject */
@@ -47,6 +53,8 @@ export default class NashaOrderController {
       displayed: false,
       modes: [],
     };
+
+    this.PREFIX_TRACKING_ORDER_NEXT_STEP = PREFIX_TRACKING_ORDER_NEXT_STEP;
   }
 
   $onInit() {
@@ -68,6 +76,8 @@ export default class NashaOrderController {
   }
 
   finish() {
+    this.trackClick(PREFIX_TRACKING_ORDER, 'confirm');
+
     const { pricing } = this.payment.value;
     const includeDuration =
       pricing.duration !== 'P1M' && pricing.interval !== 1;
@@ -83,6 +93,18 @@ export default class NashaOrderController {
         ],
       },
     ];
+
+    this.trackClickConfirmOrder(
+      `${this.plan.diskType}_${
+        this.capacity.value.capacity.value
+      }${FORMAT_UNIT_CAPACITY_TRACKING_ORDER}::${this.datacenter.value.toLowerCase()}::${
+        FORMAT_DURATION_TRACKING_ORDER.interval[this.commitment.value.duration]
+      }_${
+        this.payment.value.pricing.interval === 1
+          ? FORMAT_DURATION_TRACKING_ORDER.unit.monthly
+          : FORMAT_DURATION_TRACKING_ORDER.unit.yearly
+      }`,
+    );
 
     return this.$window.open(
       `${this.expressOrderUrl}?products=${JSURL.stringify(products)}`,
@@ -142,5 +164,14 @@ export default class NashaOrderController {
           commitment === this.commitment.value.commitment.durationInMonths,
       ),
     );
+  }
+
+  onNextStepClick(hit) {
+    return this.trackClick(PREFIX_TRACKING_ORDER, hit);
+  }
+
+  onCancelClick() {
+    this.trackClick(PREFIX_TRACKING_ORDER, 'cancel');
+    return this.goToNasha();
   }
 }

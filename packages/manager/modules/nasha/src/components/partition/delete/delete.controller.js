@@ -14,6 +14,10 @@ export default class NashaComponentsPartitionDeleteController {
         this.close({
           tasks: [task],
           partitionName: this.partition.partitionName,
+          trackingData: {
+            prefix: PREFIX_TRACKING_DASHBOARD_PARTITION_DELETE,
+            hit: 'close',
+          },
         }),
       )
       .catch((error) => this.close({ error }));
