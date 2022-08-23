@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.3.1...@ovh-ux/manager-netapp@1.3.2) (2022-08-23)
+
+
+### Bug Fixes
+
+* **volumes.create:** update unit ([#7838](https://github.com/ovh/manager/issues/7838)) ([16159bb](https://github.com/ovh/manager/commit/16159bb18fad951702fa1fd632d36667c15289a9))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.3.0...@ovh-ux/manager-netapp@1.3.1) (2022-06-16)
 
 

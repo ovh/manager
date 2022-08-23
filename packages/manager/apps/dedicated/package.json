@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "17.26.1",
+  "version": "17.27.0",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -71,12 +71,12 @@
     "@ovh-ux/ng-ovh-jquery-ui-draggable": "^2.0.4",
     "@ovh-ux/ng-ovh-order-tracking": "^1.1.1 || ^2.0.0",
     "@ovh-ux/ng-ovh-otrs": "^9.2.7",
-    "@ovh-ux/ng-ovh-payment-method": "^9.2.2",
+    "@ovh-ux/ng-ovh-payment-method": "^9.2.3",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.4",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.6",
     "@ovh-ux/ng-ovh-sidebar-menu": "^10.3.0",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.6.1",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.6.2",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",
     "@ovh-ux/ng-ovh-toaster": "^2.0.4",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.4",
