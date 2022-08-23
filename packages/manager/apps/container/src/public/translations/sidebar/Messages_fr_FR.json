@@ -22,6 +22,7 @@
   "sidebar_veeam_enterprise": "Veeam Enterprise",
   "sidebar_pci": "Public Cloud",
   "sidebar_pci_new": "Créer un projet",
+  "sidebar_pci_all": "Tous mes projets Public Cloud",
   "sidebar_pci_compute": "Compute",
   "sidebar_pci_instances": "Instances",
   "sidebar_pci_bare_metal": "Bare Metal",

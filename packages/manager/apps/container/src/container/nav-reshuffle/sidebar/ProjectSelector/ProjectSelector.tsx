@@ -21,11 +21,23 @@ const getProjectOption = (option: Record<string, unknown>): JSX.Element => {
     <div style={{ alignItems: 'center', display: 'flex' }}>
       {option.new && (
         <>
-          <span className={'oui-icon oui-icon-plus'}></span>&nbsp;
+          <span
+            className="oui-icon oui-icon-plus mr-2"
+            aria-hidden="true"
+          ></span>
           <span>{option.label}</span>
         </>
       )}
-      {!option.new && <span>{option.label}</span>}
+      {option.seeAll && (
+        <>
+          <span>{option.label}</span>
+          <span
+            className="oui-icon oui-icon-arrow-right ml-2"
+            aria-hidden="true"
+          ></span>
+        </>
+      )}
+      {option.id && <span>{option.label}</span>}
     </div>
   );
 };
@@ -36,7 +48,9 @@ type Props = {
   selectedProject: PciProject;
   onProjectChange: CallableFunction;
   onProjectCreate: CallableFunction;
+  onSeeAllProjects: CallableFunction;
   createLabel: string;
+  seeAllLabel: string;
 };
 const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   isLoading,
@@ -44,7 +58,9 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   selectedProject,
   onProjectChange,
   onProjectCreate,
+  onSeeAllProjects,
   createLabel,
+  seeAllLabel,
 }: Props): JSX.Element => {
   // Important note :
   // The any types in this bloc are there because the react select
@@ -72,6 +88,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   const [options, setOptions] = useState([]);
   const [value, setValue] = useState(null);
   const [createProjectOption, setCreateProjectOption] = useState(null);
+  const [seeAllProjectsOption, setSeeAllProjectsOption] = useState(null);
 
   useEffect(() => {
     setCreateProjectOption({
@@ -81,12 +98,20 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   }, [createLabel]);
 
   useEffect(() => {
+    setSeeAllProjectsOption({
+      seeAll: true,
+      label: seeAllLabel,
+    });
+  }, [seeAllLabel]);
+
+  useEffect(() => {
     setOptions([
       ...projects.map(({ project_id: projectId, description }) => ({
         id: projectId,
         label: description || projectId,
       })),
       ...(createProjectOption ? [createProjectOption] : []),
+      ...(seeAllProjectsOption ? [seeAllProjectsOption] : []),
     ]);
   }, [projects, createProjectOption]);
 
@@ -114,6 +139,8 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
         onChange={(option) => {
           if (option.new) {
             onProjectCreate();
+          } else if (option.seeAll) {
+            onSeeAllProjects();
           } else {
             onProjectChange(
               projects.find(
