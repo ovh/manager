@@ -1,29 +1,46 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, Link as RouterLink } from 'react-router-dom';
-import { Link } from '@chakra-ui/react';
-import { ArrowForwardIcon, ExternalLinkIcon } from '@chakra-ui/icons';
+import { Link, SimpleGrid } from '@chakra-ui/react';
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  ArrowRightIcon,
+  ExternalLinkIcon,
+} from '@ovh-ux/manager-themes';
 import { startCase } from 'lodash-es';
 import { useShell } from '@/core';
 
 import Nutanix, {
   getNutanix,
-  getServiceInfos,
   getServer,
+  getServiceInfos,
   getTechnicalDetails,
-  Server,
+  getServerNetworkSpecifications,
+  getServerOption,
 } from '@/api/nutanix';
 import Service, {
   getServiceDetails,
   getHardwareInfo,
+  getServiceOptions,
+  getServiceUpgrade,
   TechnicalDetails,
   NutanixClusterDetails,
   NutanixClusterLicenseFeatureDetails,
+  GenericProductDefinition,
 } from '@/api/service';
+import DedicatedServer, {
+  DedicatedServerOption,
+  DedicatedServerOptionEnum,
+  DedicatedServerOptionStateEnum,
+  NetworkSpecifications,
+} from '@/api/dedicatedServer';
 import SupportLevel, {
   getSupportLevel,
   getSupportTicketIdsByServiceName,
 } from '@/api/support';
+import Vrack, { getVrack } from '@/api/vrack';
+import IpLoadBalancing, { getIpLoadBalancing } from '@/api/ipLoadbalancing';
 import Dashboard, { TileTypesEnum } from '@/components/Dashboard';
 
 export default function DashboardPage(): JSX.Element {
@@ -51,7 +68,7 @@ export default function DashboardPage(): JSX.Element {
         const serviceInfos = await getServiceInfos(serviceId);
         const [serviceDetails, server] = await Promise.all([
           getServiceDetails(serviceInfos.serviceId),
-          getServer(cluster.targetSpec?.nodes[0]?.server),
+          getServer(cluster),
         ]);
         const technicalDetails = await getTechnicalDetails(
           serviceInfos.serviceId,
@@ -87,8 +104,7 @@ export default function DashboardPage(): JSX.Element {
           title: t('tile_general_item_cluster_redeploy'),
           description: () => (
             <Link as={RouterLink} to="">
-              {t('tile_general_item_cluster_redeploy_link')}{' '}
-              <ArrowForwardIcon />
+              {t('tile_general_item_cluster_redeploy_link')} <ArrowRightIcon />
             </Link>
           ),
         },
@@ -127,7 +143,8 @@ export default function DashboardPage(): JSX.Element {
         {
           name: 'datacenter',
           title: t('tile_general_item_datacenter'),
-          description: ({ server }: { server: Server }) => server.datacenter,
+          description: ({ server }: { server: DedicatedServer }) =>
+            server.datacenter,
         },
         {
           name: 'rack',
@@ -137,7 +154,7 @@ export default function DashboardPage(): JSX.Element {
             server,
           }: {
             cluster: Nutanix;
-            server: Server;
+            server: DedicatedServer;
           }) => (!cluster.targetSpec.rackAwareness ? server.rack || '-' : '-'),
         },
       ],
@@ -273,6 +290,148 @@ export default function DashboardPage(): JSX.Element {
     {
       name: 'network',
       heading: t('tile_network_title'),
+      type: TileTypesEnum.LIST,
+      onLoad: async () => {
+        const [cluster, serviceInfos] = await Promise.all([
+          getNutanix(serviceId),
+          getServiceInfos(serviceId),
+        ]);
+        const vrack = await (cluster.targetSpec.vrack
+          ? getVrack(cluster.targetSpec.vrack)
+          : Promise.resolve(null));
+        const iplb = await (cluster.targetSpec.iplb
+          ? getIpLoadBalancing(cluster.targetSpec.iplb)
+          : Promise.resolve(null));
+        const bandwidth = await getServerNetworkSpecifications(cluster);
+        const bandwidthVrackOption = await getServerOption(
+          cluster,
+          DedicatedServerOptionEnum.BANDWIDTH_VRACK,
+        );
+        const serviceOptions = await getServiceOptions(serviceInfos.serviceId);
+
+        const privateBandwidthServiceId = serviceOptions.find((service) =>
+          service.billing?.plan?.code?.startsWith('cluster-vrack-bandwidth'),
+        )?.serviceId;
+
+        const upgradeOptions = await getServiceUpgrade(
+          privateBandwidthServiceId,
+        );
+
+        const iplbUrl = await (cluster.targetSpec.iplb
+          ? shell.navigation.getURL('dedicated', '#/iplb/:serviceName', {
+              serviceName: cluster.targetSpec.iplb,
+            })
+          : Promise.resolve(null));
+
+        const vrackUrl = await (cluster.targetSpec.vrack
+          ? shell.navigation.getURL('dedicated', '#/vrack/:serviceName', {
+              serviceName: cluster.targetSpec.vrack,
+            })
+          : Promise.resolve(null));
+
+        return {
+          cluster,
+          vrack,
+          iplb,
+          bandwidth,
+          bandwidthVrackOption,
+          vrackUrl,
+          iplbUrl,
+          upgradeOptions,
+        };
+      },
+      definitions: ({
+        cluster,
+        bandwidth,
+        iplb,
+        vrack,
+        iplbUrl,
+        vrackUrl,
+        bandwidthVrackOption,
+        upgradeOptions,
+      }: {
+        cluster: Nutanix;
+        bandwidth: NetworkSpecifications;
+        iplb: IpLoadBalancing;
+        vrack: Vrack;
+        bandwidthVrackOption: DedicatedServerOption;
+        upgradeOptions: GenericProductDefinition[];
+        iplbUrl: string;
+        vrackUrl: string;
+      }) => {
+        return [
+          ...(bandwidth.vrack.bandwidth
+            ? [
+                {
+                  name: 'private_bandwidth',
+                  title: t('tile_network_item_private_bandwidth'),
+                  description: (
+                    <SimpleGrid columns={2}>
+                      <div>
+                        <ArrowUpIcon /> {bandwidth.vrack.bandwidth.value}{' '}
+                        {bandwidth.vrack.bandwidth.unit}{' '}
+                        {t('tile_network_item_private_bandwidth_outgoing')}
+                        {bandwidthVrackOption.state ===
+                          DedicatedServerOptionStateEnum.RELEASED &&
+                          t(
+                            'tile_network_item_private_bandwidth_vrack_option_released',
+                          )}
+                      </div>
+                      <div>
+                        <ArrowDownIcon /> {bandwidth.vrack.bandwidth.value}{' '}
+                        {bandwidth.vrack.bandwidth.unit}{' '}
+                        {t('tile_network_item_private_bandwidth_incoming')}
+                      </div>
+                    </SimpleGrid>
+                  ),
+                  actions: () => [
+                    ...(upgradeOptions?.length
+                      ? [
+                          {
+                            name: 'modify',
+                            label: t(
+                              'tile_network_item_private_bandwidth_modify',
+                            ),
+                            title: t(
+                              'tile_network_item_private_bandwidth_modify',
+                            ),
+                            to: '', // TODO: add modal
+                          },
+                        ]
+                      : []),
+                  ],
+                },
+              ]
+            : []),
+          {
+            name: 'ipfo',
+            title: 'IPFO',
+            description: cluster.targetSpec.ipfo, // TODO: add clipboard input
+          },
+          {
+            name: 'private_network',
+            title: t('tile_network_item_private_network'),
+            description: !cluster.targetSpec.vrack ? (
+              t('tile_network_item_load_balancer_none')
+            ) : (
+              <Link href={vrackUrl}>
+                {vrack.name || cluster.targetSpec.vrack}
+              </Link>
+            ),
+          },
+          {
+            name: 'load_balancer',
+            title: 'Load Balancer',
+            description: !cluster.targetSpec.iplb ? (
+              t('tile_network_item_load_balancer_none')
+            ) : (
+              <Link href={iplbUrl}>
+                {iplb.displayName || cluster.targetSpec.iplb}
+              </Link>
+            ),
+          },
+        ];
+      },
     },
     {
       name: 'hardware',

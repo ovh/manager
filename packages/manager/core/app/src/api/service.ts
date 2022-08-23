@@ -43,13 +43,17 @@ export type TechnicalDetails = {
   serviceId?: number;
 };
 
+export type GenericProductDefinition = {
+  planCode: string;
+};
+
 export async function getServiceDetails(serviceId: number): Promise<Service> {
-  const response = await fetch(`/engine/api/services/${serviceId}`);
+  const response = await fetch(`/engine/apiv6/services/${serviceId}`);
   return response.json();
 }
 
 export async function getServiceOptions(serviceId: number): Promise<Service[]> {
-  const response = await fetch(`/engine/api/services/${serviceId}/options`);
+  const response = await fetch(`/engine/apiv6/services/${serviceId}/options`);
   return response.json();
 }
 
@@ -57,12 +61,19 @@ export async function getHardwareInfo(
   serviceId: number,
 ): Promise<TechnicalDetails> {
   const response = await fetch(
-    `/engine/api/services/${serviceId}/technicalDetails`,
+    `/engine/apiv6/services/${serviceId}/technicalDetails`,
   );
   return {
     ...(await response.json()),
     serviceId,
   };
+}
+
+export async function getServiceUpgrade(
+  serviceId: number,
+): Promise<GenericProductDefinition[]> {
+  const response = await fetch(`/engine/apiv6/services/${serviceId}/upgrade`);
+  return response.json();
 }
 
 export default Service;
