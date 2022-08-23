@@ -50,29 +50,10 @@ export const LEGACY_FLAVORS = /eg|sp|hg|vps-ssd/;
 
 export const SSD_DISK_TYPES = [/ssd/, /nvme/, /iops/, /baremetal/, /d2/];
 
-export const CPU_FREQUENCY = {
-  'ovh.vps-ssd': 2.4,
-  'ovh.cpu': 3.1,
-  'ovh.ram': 2.4,
-  'ovh.ceph.eg': 2.3,
-  'ovh.ssd.ram': 2.4,
-  'ovh.ssd.cpu': 3.1,
-  'ovh.ssd.eg': 2.3,
-  'ovh.ssd.gpu': 3.1,
-  'ovh.ssd.gpu2': 3.1,
-  'ovh.ssd.gpu3': 3.1,
-  'ovh.raid-nvme.t1': 2.2,
-  'ovh.raid-nvme.t2': 2.2,
-  'ovh.iops': 2,
-  'ovh.d2': 2.1,
-  'ovh.baremetal': 3.5,
-};
-
 export const DEFAULT_CATALOG_ENDPOINT = '/order/catalog/public/cloud';
 
 export default {
   CATEGORIES,
-  CPU_FREQUENCY,
   DEFAULT_OS,
   FLEX_TYPE,
   LEGACY_FLAVORS,
