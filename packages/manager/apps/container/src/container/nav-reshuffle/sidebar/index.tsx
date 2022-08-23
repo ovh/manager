@@ -446,7 +446,14 @@ const Sidebar = (): JSX.Element => {
                       `#/pci/projects/new`,
                     );
                   }}
+                  onSeeAllProjects={() => {
+                    navigationPlugin.navigateTo(
+                      'public-cloud',
+                      `#/pci/projects`,
+                    );
+                  }}
                   createLabel={t('sidebar_pci_new')}
+                  seeAllLabel={t('sidebar_pci_all')}
                 />
                 {pciError && (
                   <button
