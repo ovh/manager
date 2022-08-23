@@ -40,7 +40,7 @@
                     <button
                         type="button"
                         class="btn btn-default"
-                        aria-label="{{ 'common_cancel' | translate }}"
+                        aria-label="{{ 'dedicatedCloud_USER_cancel' | translate }}"
                         data-ng-click="$ctrl.usersEntrySearchSelected = ''; $ctrl.refreshGrid();"
                         data-ng-disabled="$ctrl.searchLoading"
                     >
@@ -118,12 +118,12 @@
             data-title=":: 'dedicatedCloud_USER_token_validator' | translate"
         >
             <span
-                data-translate="common_yes"
+                data-translate="dedicatedCloud_USER_yes"
                 data-ng-if="$row.isTokenValidator"
             >
             </span>
             <span
-                data-translate="common_no"
+                data-translate="dedicatedCloud_USER_no"
                 data-ng-if="!$row.isTokenValidator"
             >
             </span>
@@ -132,12 +132,12 @@
             data-title=":: 'dedicatedCloud_USER_ip' | translate"
         >
             <span
-                data-translate="common_yes"
+                data-translate="dedicatedCloud_USER_yes"
                 data-ng-if="$row.canManageNetwork"
             >
             </span>
             <span
-                data-translate="common_no"
+                data-translate="dedicatedCloud_USER_no"
                 data-ng-if="!$row.canManageNetwork"
             >
             </span>
@@ -146,12 +146,12 @@
             data-title=":: 'dedicatedCloud_USER_ipfo' | translate"
         >
             <span
-                data-translate="common_yes"
+                data-translate="dedicatedCloud_USER_yes"
                 data-ng-if="$row.canManageIpFailOvers"
             >
             </span>
             <span
-                data-translate="common_no"
+                data-translate="dedicatedCloud_USER_no"
                 data-ng-if="!$row.canManageIpFailOvers"
             >
             </span>
@@ -160,9 +160,29 @@
             data-title=":: 'dedicatedCloud_USER_nsx' | translate"
             data-ng-if="$ctrl.nsxOptions === 'enabled'"
         >
-            <span data-translate="common_yes" data-ng-if="$row.nsxRight">
+            <span
+                data-translate="dedicatedCloud_USER_yes"
+                data-ng-if="$row.nsxRight"
+            >
             </span>
-            <span data-translate="common_no" data-ng-if="!$row.nsxRight">
+            <span
+                data-translate="dedicatedCloud_USER_no"
+                data-ng-if="!$row.nsxRight"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_USER_encryption' | translate"
+        >
+            <span
+                data-translate="dedicatedCloud_USER_yes"
+                data-ng-if="$row.encryptionRight"
+            >
+            </span>
+            <span
+                data-translate="dedicatedCloud_USER_no"
+                data-ng-if="!$row.encryptionRight"
+            >
             </span>
         </oui-datagrid-column>
         <oui-datagrid-column

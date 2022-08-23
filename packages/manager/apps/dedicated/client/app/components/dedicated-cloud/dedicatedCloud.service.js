@@ -865,6 +865,7 @@ class DedicatedCloudService {
           phoneNumber: user.phoneNumber,
           tokenValidator: user.tokenValidator,
           nsxRight: user.nsxRight,
+          encryptionRight: user.encryptionRight,
         },
       },
     ).then((task) => {

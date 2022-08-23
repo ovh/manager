@@ -23,5 +23,9 @@
   "dedicatedCloud_USER_delete": "Eliminar este usuario",
   "dedicatedCloud_USER_enable": "Activar el usuario",
   "dedicatedCloud_USER_disable": "Desactivar el usuario",
-  "dedicatedCloud_USER_edit_load_error": "Se ha producido un error al cargar los datos del usuario."
+  "dedicatedCloud_USER_edit_load_error": "Se ha producido un error al cargar los datos del usuario.",
+  "dedicatedCloud_USER_encryption": "Gestión del cifrado",
+  "dedicatedCloud_USER_cancel": "Cancelar",
+  "dedicatedCloud_USER_yes": "Sí",
+  "dedicatedCloud_USER_no": "No"
 }

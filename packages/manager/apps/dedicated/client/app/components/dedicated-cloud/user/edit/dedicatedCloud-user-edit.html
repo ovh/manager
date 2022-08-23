@@ -116,5 +116,22 @@
                 </label>
             </div>
         </oui-field>
+
+        <oui-field
+            data-label="{{:: 'dedicatedCloud_USER_encryption' | translate }}"
+        >
+            <div class="oui-switch">
+                <label class="oui-switch__label-container">
+                    <input
+                        type="checkbox"
+                        class="oui-switch__checkbox"
+                        id="encryptionRight"
+                        name="encryptionRight"
+                        data-ng-model="$ctrl.user.encryptionRight"
+                    />
+                    <span class="oui-switch__slider" aria-hidden="true"></span>
+                </label>
+            </div>
+        </oui-field>
     </oui-modal>
 </form>

@@ -23,5 +23,9 @@
   "dedicatedCloud_USER_delete": "Usuń użytkownika",
   "dedicatedCloud_USER_enable": "Aktywuj użytkownika",
   "dedicatedCloud_USER_disable": "Wyłącz użytkownika",
-  "dedicatedCloud_USER_edit_load_error": "Wystąpił błąd podczas ładowania danych użytkownika."
+  "dedicatedCloud_USER_edit_load_error": "Wystąpił błąd podczas ładowania danych użytkownika.",
+  "dedicatedCloud_USER_encryption": "Zarządzanie szyfrowaniem",
+  "dedicatedCloud_USER_cancel": "Anuluj",
+  "dedicatedCloud_USER_yes": "Tak",
+  "dedicatedCloud_USER_no": "Nie"
 }
