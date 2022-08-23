@@ -7,7 +7,7 @@
   "pci_projects_project_storages_objects_onboarding_content5": "Déposez vos fichiers statiques (vidéos, images, fichiers web…) dans un espace illimité, pour les exploiter depuis votre application ou pour les rendre accessibles sur le web via notre API S3.",
   "pci_projects_project_storages_objects_onboarding_content6": "Cet espace de stockage évolue en même temps que votre projet, sans que vous ayez besoin de le prévoir à l'avance. C'est l'endroit idéal pour le stockage de données exigeant en performances.",
   "pci_projects_project_storages_objects_onboarding_content7": "Il est capable de répondre aux enjeux du Big Data et de l'Intelligence Artificielle (IA) ou permet tout simplement de tirer le meilleur parti de vos données.",
-  "pci_projects_project_storages_objects_onboarding_action_label": "Créer un conteneur d'objet",
+  "pci_projects_project_storages_objects_onboarding_action_label": "Créer un conteneur d'objets",
   "pci_projects_project_storages_objects_onboarding_guides_object-storage-domain_title": "Placer un conteneur de l’Object Storage derriere un nom de domaine",
   "pci_projects_project_storages_objects_onboarding_guides_auto-delete-object_title": "Configurer la suppression automatique d’objets",
   "pci_projects_project_storages_objects_onboarding_guides_share-object-temporary-url_title": "Partager un objet avec une adresse temporaire",
