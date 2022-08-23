@@ -14,6 +14,7 @@
   "cpbc_billing_control_consumption_unit_price_P1M": "{{price}}/mois",
   "cpbc_billing_control_consumption_unit_price_h": "{{price}}/heure",
   "cpbc_billing_control_consumption_unit_price_GiB_h": "{{price}}/Go/heure",
+  "cpbc_billing_control_consumption_unit_price_h/node": "{{price}}/nœud/heure",
   "cpbc_billing_control_consumption_family_storage": "Storage",
   "cpbc_billing_control_consumption_family_ai-serving-engine": "ML Serving",
   "cpbc_billing_control_consumption_family_volume": "Block storage",
