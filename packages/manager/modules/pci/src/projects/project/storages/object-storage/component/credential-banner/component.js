@@ -5,6 +5,7 @@ const component = {
     user: '<',
     credential: '<',
     fieldSecretKeyLabel: '<',
+    isNewUser: '<',
   },
   template,
 };
