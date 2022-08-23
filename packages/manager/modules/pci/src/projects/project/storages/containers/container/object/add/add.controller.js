@@ -65,7 +65,14 @@ export default class PciBlockStorageContainersContainerObjectAddController {
       });
   }
 
-  addHighPerfObjects(serviceName, regionName, containerName, prefix, files, s3StorageType,) {
+  addHighPerfObjects(
+    serviceName,
+    regionName,
+    containerName,
+    prefix,
+    files,
+    s3StorageType,
+  ) {
     return this.PciProjectStorageContainersService.addHighPerfObjects(
       serviceName,
       regionName,
