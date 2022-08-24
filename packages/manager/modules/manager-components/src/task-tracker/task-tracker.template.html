@@ -1,0 +1,59 @@
+<div class="task-tracker">
+    <div class="modal d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <oui-modal
+                    data-heading="{{:: $ctrl.heading }}"
+                    data-primary-label="{{:: ('task_tracker_close' | translate) }}"
+                    data-primary-disabled="!$ctrl.isClosable"
+                    data-primary-action="$ctrl.onDone({
+                        tasks: $ctrl.tasks,
+                        success: $ctrl.isDone,
+                        error: $ctrl.errorMessage,
+                    })"
+                >
+                    <div data-ng-transclude="header"></div>
+                    <div
+                        class="oui-progress-tracker oui-progress-tracker_vertical"
+                    >
+                        <ol class="oui-progress-tracker__steps">
+                            <li
+                                class="oui-progress-tracker__step"
+                                data-ng-repeat="step in $ctrl.steps track by step.name"
+                                data-ng-class="{
+                                    'oui-progress-tracker__step_active': step.active,
+                                    'oui-progress-tracker__step_complete': step.complete,
+                                    'oui-progress-tracker__step_disabled': step.disabled,
+                                    'oui-progress-tracker__step_error': step.error,
+                                }"
+                            >
+                                <span class="oui-progress-tracker__status">
+                                    <span
+                                        class="oui-progress-tracker__label"
+                                        data-ng-class="step.error && 'oui-color-ae-500'"
+                                    >
+                                        <span
+                                            data-ng-bind="$ctrl[step.name + 'Label'] || (('task_tracker_step_' + step.name) | translate)"
+                                        ></span>
+                                        <span
+                                            data-ng-if="step.error"
+                                            class="d-block"
+                                            data-translate="task_tracker_step_error"
+                                            data-translate-values="{ message: $ctrl.errorMessage }"
+                                        ></span>
+                                    </span>
+                                    <oui-spinner
+                                        data-size="s"
+                                        data-ng-if="step.active && !$ctrl.isClosable"
+                                    ></oui-spinner>
+                                </span>
+                            </li>
+                        </ol>
+                    </div>
+                    <div data-ng-transclude="footer"></div>
+                </oui-modal>
+            </div>
+        </div>
+        <div class="oui-modal-backdrop"></div>
+    </div>
+</div>
