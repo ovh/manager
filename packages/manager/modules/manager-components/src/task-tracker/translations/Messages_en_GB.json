@@ -1,0 +1,8 @@
+{
+  "task_tracker_close": "Close",
+  "task_tracker_empty_error": "no details for this error, please contact support.",
+  "task_tracker_step_doing": "Operation in progress",
+  "task_tracker_step_done": "Operation complete",
+  "task_tracker_step_error": "There was an error: {{message}}",
+  "task_tracker_step_todo": "Operation will begin shortly"
+}
