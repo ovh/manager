@@ -65,6 +65,7 @@ const Sidebar = (): JSX.Element => {
     ServicesCount
   >(null);
   const [highlightedNode, setHighlightedNode] = useState<Node>(null);
+  const [isAssistanceOpen, setIsAssistanceOpen] = useState(true);
 
   const logoLink = navigationPlugin.getURL('hub', '#/');
 
@@ -114,6 +115,8 @@ const Sidebar = (): JSX.Element => {
       name: trackingIdComplement.replace(/[:][:]$/g, ''),
       type: 'navigation',
     });
+
+    setIsAssistanceOpen(false);
   };
 
   /** Initialize navigation tree */
@@ -410,7 +413,10 @@ const Sidebar = (): JSX.Element => {
       {currentNavigationNode.id !== 'home' && (
         <a
           className={style.sidebar_back_btn}
-          onClick={() => setCurrentNavigationNode(currentNavigationNode.parent)}
+          onClick={() => {
+            setCurrentNavigationNode(currentNavigationNode.parent);
+            setIsAssistanceOpen(false);
+          }}
         >
           <span
             className="oui-icon oui-icon-chevron-left"
@@ -452,6 +458,7 @@ const Sidebar = (): JSX.Element => {
                       `#/pci/projects`,
                     );
                   }}
+                  onMenuOpen={() => setIsAssistanceOpen(false)}
                   createLabel={t('sidebar_pci_new')}
                   seeAllLabel={t('sidebar_pci_all')}
                 />
@@ -513,7 +520,11 @@ const Sidebar = (): JSX.Element => {
       </div>
 
       <Suspense fallback="">
-        <Assistance containerURL={containerURL} />
+        <Assistance
+          containerURL={containerURL}
+          isOpen={isAssistanceOpen}
+          onToggle={(isOpen) => setIsAssistanceOpen(isOpen)}
+        />
       </Suspense>
     </div>
   );

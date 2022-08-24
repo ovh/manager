@@ -49,6 +49,7 @@ type Props = {
   onProjectChange: CallableFunction;
   onProjectCreate: CallableFunction;
   onSeeAllProjects: CallableFunction;
+  onMenuOpen?: CallableFunction;
   createLabel: string;
   seeAllLabel: string;
 };
@@ -59,6 +60,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   onProjectChange,
   onProjectCreate,
   onSeeAllProjects,
+  onMenuOpen,
   createLabel,
   seeAllLabel,
 }: Props): JSX.Element => {
@@ -135,6 +137,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
         formatOptionLabel={getProjectOption}
         options={options}
         menuPosition={'absolute'}
+        onMenuOpen={() => onMenuOpen && onMenuOpen()}
         value={value}
         onChange={(option) => {
           if (option.new) {
