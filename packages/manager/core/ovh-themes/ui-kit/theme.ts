@@ -24,6 +24,7 @@ import Table from './components/Table';
 import Tabs from './components/Tabs';
 import Tag from './components/Tag';
 import Textarea from './components/Textarea';
+import ThumbnailChoice from './components/ThumbnailChoice';
 import Tile from './components/Tile';
 import Popover from './components/Popover';
 import Modal from './components/Modal';
@@ -51,6 +52,7 @@ export default {
     Tabs,
     Tag,
     Textarea,
+    ThumbnailChoice,
     Tile,
     Popover,
     Modal,

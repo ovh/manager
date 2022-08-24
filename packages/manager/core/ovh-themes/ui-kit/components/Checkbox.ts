@@ -3,7 +3,7 @@ import { checkboxAnatomy as parts } from '@chakra-ui/anatomy';
 import { ComponentMultiStyleConfig } from '@chakra-ui/theme';
 import { SystemStyleObject } from '@chakra-ui/system';
 
-const controlBaseStyle: SystemStyleObject = {
+export const controlBaseStyle: SystemStyleObject = {
   borderColor: 'uikit.500',
   boxSizing: 'border-box',
   fontSize: 'md',
@@ -49,6 +49,13 @@ const containerBaseStyle: SystemStyleObject = {
   },
 };
 
+export const iconBaseStyle: SystemStyleObject = {
+  width: 'calc(1rem - 2px)',
+  height: 'calc(1rem - 2px)',
+  transitionProperty: 'unset',
+  transitionDuration: 'unset',
+};
+
 const labelBaseStyle: SystemStyleObject = {
   fontWeight: 500,
   fontSize: 'md',
@@ -64,24 +71,11 @@ const Checkbox: ComponentMultiStyleConfig = {
   baseStyle: {
     container: containerBaseStyle,
     control: controlBaseStyle,
-    icon: {
-      transition: 'none',
-    },
+    icon: iconBaseStyle,
     label: labelBaseStyle,
-  },
-  sizes: {
-    md: {
-      icon: {
-        width: 'calc(1rem - 2px)',
-        height: 'calc(1rem - 2px)',
-        transitionProperty: 'unset',
-        transitionDuration: 'unset',
-      },
-    },
   },
   defaultProps: {
     colorScheme: 'uikit',
-    size: 'md',
   },
 };
 

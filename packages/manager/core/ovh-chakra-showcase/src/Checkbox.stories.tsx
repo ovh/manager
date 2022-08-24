@@ -1,5 +1,9 @@
 import { Checkbox, CheckboxGroup, Stack } from '@chakra-ui/react';
-import { CheckIcon, IndeterminateIcon } from '@ovh-ux/manager-themes';
+import {
+  CheckIcon,
+  IndeterminateIcon,
+  ThumbnailCheckbox,
+} from '@ovh-ux/manager-themes';
 import { useState } from 'react';
 
 export default {
@@ -46,6 +50,21 @@ const TemplateInvalid = () => (
   </CheckboxGroup>
 );
 
+const TemplateThumbnail = () => (
+  <>
+    <ThumbnailCheckbox
+      checkboxTitle="Value A"
+      description="bla blabl ablab blabla"
+      value="va"
+    ></ThumbnailCheckbox>
+    <ThumbnailCheckbox
+      checkboxTitle="Value B"
+      description="bla blabl ablab blabla"
+      value="vb"
+    ></ThumbnailCheckbox>
+  </>
+);
+
 const TemplateIndeterminate = () => {
   const [checkedItems, setCheckedItems] = useState([false, false]);
 
@@ -78,3 +97,4 @@ export const Default = Template.bind({});
 export const Indeterminate = TemplateIndeterminate.bind({});
 export const Disabled = TemplateDisabled.bind({});
 export const Invalid = TemplateInvalid.bind({});
+export const Thumbnail = TemplateThumbnail.bind({});
