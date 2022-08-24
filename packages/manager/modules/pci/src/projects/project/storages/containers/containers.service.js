@@ -198,14 +198,24 @@ export default class PciStoragesContainersService {
       );
   }
 
-  getContainerUrl(projectId, container, file = null) {
+  getContainerUrl(
+    projectId,
+    container,
+    file = null,
+    multipartManifest = false,
+  ) {
     return this.getAccessAndToken(projectId).then(({ endpoints }) => {
-      const url = `${
+      let url = `${
         endpoints[(container.region || OPENIO_DEFAULT_REGION).toLowerCase()]
       }/${encodeURIComponent(container.name)}`;
       if (file) {
-        return `${url}/${encodeURIComponent(file)}`;
+        url += `/${encodeURIComponent(file)}`;
       }
+
+      if (multipartManifest) {
+        url += `?multipart-manifest=${multipartManifest}`;
+      }
+
       return url;
     });
   }
@@ -216,7 +226,12 @@ export default class PciStoragesContainersService {
       .then((accessToken) =>
         this.$q.all({
           accessToken,
-          url: this.getContainerUrl(projectId, container, optsParam.file),
+          url: this.getContainerUrl(
+            projectId,
+            container,
+            optsParam.file,
+            optsParam.multipartManifest,
+          ),
         }),
       )
       .then(({ accessToken, url }) =>
@@ -438,6 +453,7 @@ export default class PciStoragesContainersService {
     return this.requestContainer(projectId, container, {
       method: 'DELETE',
       file: object.name,
+      multipartManifest: 'delete',
     });
   }
 
