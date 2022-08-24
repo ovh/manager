@@ -1,4 +1,5 @@
 import Tenant from './Tenant.class';
+import { getAnthosOrderUrl } from './anthos-order';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.index', {
@@ -50,6 +51,13 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('anthos.dashboard', {
           serviceName: id,
         }),
+
+      gotoOrder: /* @ngInject */ ($window, coreConfig) => () => {
+        $window.open(
+          getAnthosOrderUrl(coreConfig.getUser().ovhSubsidiary),
+          '_blank',
+        );
+      },
     },
     atInternet: {
       rename: 'hpc::anthos::projects',

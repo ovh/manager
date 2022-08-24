@@ -1,6 +1,7 @@
 {
   "anthos_tenants": "Anthos",
   "anthos_tenants_title": "Anthos Platform",
+  "anthos_tenants_order": "Commander",
   "anthos_tenants_guides": "Guides",
   "anthos_tenants_guides_all": "Tous les guides",
   "anthos_tenants_grid_create_tenant": "Commander un hôte",
