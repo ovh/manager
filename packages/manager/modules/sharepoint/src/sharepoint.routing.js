@@ -35,6 +35,18 @@ export default /* @ngInject */ ($stateProvider) => {
           exchangeId,
           productId,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $state) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('sharepoint_order'),
+          value: $translate.instant('sharepoint_order'),
+          onClick: () => {
+            $state.go('sharepoint.order');
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
   });
