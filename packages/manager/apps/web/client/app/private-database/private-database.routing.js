@@ -28,6 +28,18 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.private-database.dashboard', {
           productId,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $state) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('private_databases_order'),
+          value: $translate.instant('private_databases_order'),
+          onClick: () => {
+            $state.go('app.private-database-order-clouddb');
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
   });
