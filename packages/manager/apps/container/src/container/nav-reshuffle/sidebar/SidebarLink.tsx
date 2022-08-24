@@ -7,6 +7,7 @@ import { useShell } from '@/context';
 
 import style from './style.module.scss';
 import { ComponentProps } from './utils';
+import SidebarLinkTag from './SidebarLinkTag';
 import { Node } from './navigation-tree/node';
 
 interface StaticLinkProps {
@@ -64,6 +65,7 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
           className={`${style.sidebar_external} oui-icon oui-icon-external-link`}
         ></span>
       )}
+      <SidebarLinkTag node={node} />
       {count > 0 && (
         <span
           className={`oui-badge oui-badge_s oui-badge_new ml-1 ${style.sidebar_chip}`}
@@ -111,6 +113,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       ) : (
         ''
       )}
+      <SidebarLinkTag node={node} />
       {count > 0 && (
         <span
           className={`oui-badge oui-badge_s oui-badge_new ml-1 ${style.sidebar_chip}`}
