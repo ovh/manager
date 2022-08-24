@@ -13,6 +13,15 @@
         data-on-sort-change="$ctrl.onSortChange($sort)"
         data-columns="$ctrl.columnsConfig"
     >
+        <oui-datagrid-topbar>
+            <oui-button
+                variant="secondary"
+                type="button"
+                data-on-click="$ctrl.gotoOrder()"
+            >
+                <span data-translate="overtheboxes_order"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
         <oui-datagrid-column
             data-title=":: 'overtheboxes_name_label' | translate"
             data-property="serviceName"

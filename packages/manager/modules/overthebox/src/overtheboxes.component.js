@@ -9,6 +9,7 @@ export default {
 
     getOvertheboxLink: '<',
     viewOverthebox: '<',
+    gotoOrder: '<',
   },
   controller,
   template,
