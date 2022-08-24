@@ -638,7 +638,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     feature: 'dedicated-nasha',
     icon: 'ovh-font ovh-font-cloudnas',
     linkId: 'DEDICATED',
-    linkPart: '#/nasha/new',
+    linkPart: '#/nasha/order',
     app: [DEDICATED],
     tracker: 'dedicated::orders::nasha::order',
   },
