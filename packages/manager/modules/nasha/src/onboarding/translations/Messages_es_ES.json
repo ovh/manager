@@ -8,5 +8,13 @@
   "nasha_onboarding_guide2_description": "Cómo montar un NAS en Windows Server a través de CIFS",
   "nasha_onboarding_guide3_title": "Preguntas frecuentes sobre los NAS",
   "nasha_onboarding_guide3_description": "¿Tiene alguna duda sobre los NAS? ¡Encuentre la respuesta a las preguntas más frecuentes!",
-  "nasha_onboarding_cta": "Contratar"
+  "nasha_onboarding_cta": "Contratar",
+  "nasha_onboarding_content": "Descubra los servicios de almacenamiento administrados basados en el sistema de archivos OpenZFS. Disfrute en solo unos clics de espacios de almacenamiento centralizados para almacenar o guardar copias de seguridad de sus datos y archivos.",
+  "nasha_onboarding_getting-started_title": "Primeros pasos con un NAS-HA",
+  "nasha_onboarding_getting-started_content": "Cómo gestionar un NAS-HA desde el área de cliente de OVHcloud",
+  "nasha_onboarding_nfs_title": "Montar un NAS a través de NFS",
+  "nasha_onboarding_nfs_content": "Cómo montar un NAS utilizando NFS",
+  "nasha_onboarding_cifs_title": "Montar un NAS en Windows Server a través de CIFS",
+  "nasha_onboarding_cifs_content": "Cómo montar un NAS en Windows Server a través del protocolo CIFS",
+  "nasha_onboarding_order": "Contratar un NAS-HA"
 }

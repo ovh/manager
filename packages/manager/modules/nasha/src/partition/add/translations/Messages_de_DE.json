@@ -1,9 +1,0 @@
-{
-  "nasha_partitions_action_add_partition_title": "Wahl des Protokolls",
-  "nasha_partitions_action_add_success": "Die Partition {{partitionName}} wird in Kürze hinzugefügt. ",
-  "nasha_partitions_action_add_failure": "Bei der Erstellung der Partition {{partitionName}} ist ein Fehler aufgetreten. ",
-  "nasha_partitions_action_add_desc_CIFS": "CIFS: das ideale Netzwerkprotokoll für Windows Server. ",
-  "nasha_partitions_action_add_desc_NFS": "NFS: das ideale Netzwerkprotokoll für Linux/Unix Server. ",
-  "nasha_partitions_action_add_desc_NFS_CIFS": "NFS CIFS: ermöglicht Datenaustausch mit Windows und Linux/Unix Servern. ",
-  "nasha_partitions_name_fail": "Name ungültig. "
-}

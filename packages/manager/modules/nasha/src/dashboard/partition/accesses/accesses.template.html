@@ -1,0 +1,128 @@
+<div class="nasha-dashboard-partition-accesses">
+    <oui-header
+        data-heading="{{:: 'nasha_dashboard_partition_accesses_heading' | translate }}"
+        data-description="{{:: 'nasha_dashboard_partition_accesses_description' | translate }}"
+    ></oui-header>
+    <h4 data-translate="nasha_dashboard_partition_accesses_subtitle"></h4>
+    <form
+        name="$ctrl.accessForm"
+        role="form"
+        data-ng-submit="$ctrl.createAccess()"
+        data-ng-disabled="!$ctrl.canCreateAccess"
+    >
+        <oui-datagrid
+            data-rows-loader="$ctrl.loadAccesses($config)"
+            ng-class="{ 'hide-pagination': $ctrl.isPaginationHidden }"
+        >
+            <oui-datagrid-topbar>
+                <oui-button
+                    data-icon-left="oui-icon-plus"
+                    data-disabled="!$ctrl.canShowAccessForm"
+                    data-on-click="$ctrl.showAccessForm()"
+                >
+                    <span
+                        data-translate="nasha_dashboard_partition_accesses_create"
+                    ></span>
+                </oui-button>
+                <oui-spinner
+                    data-ng-if="$ctrl.isLoadingAccessForm"
+                    data-size="s"
+                    class="ml-2"
+                ></oui-spinner>
+            </oui-datagrid-topbar>
+            <oui-datagrid-column
+                data-property="ip"
+                data-title="'IP'"
+                data-sortable="asc"
+                data-type="string"
+                data-filterable
+            >
+                <span data-ng-if="!$row.isForm" data-ng-bind="$row.ip"></span>
+                <oui-select
+                    data-ng-if="$row.isForm"
+                    data-name="ip"
+                    data-items="$ctrl.authorizedAccesses"
+                    data-match="ip"
+                    data-group-by="'type'"
+                    data-model="$ctrl.model.ip"
+                    data-searchable
+                    data-required
+                >
+                    <span data-ng-bind="$item.ip"></span>
+                </oui-select>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-property="type"
+                data-title=":: ('nasha_dashboard_partition_accesses_list_type' | translate)"
+                data-type="options"
+                data-type-options="$ctrl.datagridTypeOptions"
+                data-filterable
+                data-sortable
+            >
+                <span
+                    data-ng-if="!$row.isForm"
+                    data-ng-bind="$row.typeLabel"
+                ></span>
+                <oui-select
+                    data-ng-if="$row.isForm"
+                    id="type"
+                    name="type"
+                    data-model="$ctrl.model.type"
+                    data-items="$ctrl.typeOptions"
+                    data-match="label"
+                    data-required
+                >
+                    <span data-ng-bind="$item.label"></span>
+                </oui-select>
+            </oui-datagrid-column>
+            <oui-datagrid-column>
+                <div
+                    data-ng-if="$row.isForm"
+                    class="d-flex justify-content-end align-items-center"
+                >
+                    <oui-spinner
+                        data-ng-if="$ctrl.isCreatingAccess"
+                        data-size="s"
+                        class="mr-2"
+                    ></oui-spinner>
+                    <oui-button
+                        class="mr-2"
+                        data-type="submit"
+                        data-disabled="!$ctrl.canCreateAccess"
+                        data-translate-attr="{ title: 'nasha_dashboard_partition_accesses_create' }"
+                    >
+                        <span
+                            class="oui-icon oui-icon-check"
+                            aria-hidden="true"
+                        ></span>
+                    </oui-button>
+                    <oui-button
+                        data-on-click="$ctrl.onCancelAccessFormClick()"
+                        data-disabled="$ctrl.isCreatingAccess"
+                        data-translate-attr="{ title: 'nasha_dashboard_partition_accesses_hide_form' }"
+                    >
+                        <span
+                            class="oui-icon oui-icon-close"
+                            aria-hidden="true"
+                        ></span>
+                    </oui-button>
+                </div>
+                <div
+                    data-ng-if="!$row.isForm"
+                    class="d-flex justify-content-end align-items-center"
+                >
+                    <oui-button
+                        data-on-click="$ctrl.onDeleteClick($row.ip)"
+                        data-translate-attr="{ title: 'nasha_dashboard_partition_accesses_delete' }"
+                    >
+                        <span
+                            class="oui-icon oui-icon-bin"
+                            aria-hidden="true"
+                        ></span>
+                    </oui-button>
+                </div>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </form>
+    <div data-ui-view></div>
+</div>

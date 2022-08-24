@@ -1,7 +1,11 @@
-import template from './onboarding.html';
 import controller from './onboarding.controller';
+import template from './onboarding.template.html';
 
 export default {
-  template,
+  bindings: {
+    goToOrder: '<',
+    trackClick: '<',
+  },
   controller,
+  template,
 };
