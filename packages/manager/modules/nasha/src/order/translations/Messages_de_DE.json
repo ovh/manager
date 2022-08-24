@@ -1,0 +1,16 @@
+{
+  "nasha_order_title": "HA-NAS bestellen",
+  "nasha_order_diskType_header": "Platten-Typ",
+  "nasha_order_diskType_description": "Wählen Sie den Festplattentyp ganz nach Bedarf aus.",
+  "nasha_order_diskType_ssd_description": "High Performance SSD Storage",
+  "nasha_order_capacity_header": "Kapazität",
+  "nasha_order_capacity_description": "Wählen Sie die Kapazität ganz nach Bedarf.",
+  "nasha_order_capacity_description_nas-ha-ssd-36t": "Optimierte Leistung",
+  "nasha_order_capacity_description_nas-ha-ssd-36t-15t": "Kostengünstige Lösung",
+  "nasha_order_datacenter_header": "Standort des Rechenzentrums",
+  "nasha_order_datacenter_description": "Wählen Sie den Standort für Ihren Dienst.",
+  "nasha_order_commitment_header": "Vertragslaufzeit",
+  "nasha_order_commitment_description": "Sichern Sie sich mit Vertragsbindung einen Rabatt.",
+  "nasha_order_payment_header": "Zahlungsmodalitäten",
+  "nasha_order_confirm": "Bestätigen"
+}

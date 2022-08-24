@@ -1,0 +1,19 @@
+{
+  "nasha_dashboard_partition_snapshots_heading": "Gestisci le politiche di Snapshot",
+  "nasha_dashboard_partition_snapshots_description": "Crea e gestisci facilmente le regole di Snapshot in termini di periodicità e durata di conservazione. In seguito sarà possibile applicarle a volumi specifici. Gli Snapshot utilizzano la capacità di storage della tua soluzione NAS-HA.",
+  "nasha_dashboard_partition_snapshots_subtitle": "Dettagli delle politiche di Snapshot",
+  "nasha_dashboard_partition_snapshots_create": "Crea uno Snapshot manuale",
+  "nasha_dashboard_partition_snapshots_list_type": "Tipo",
+  "nasha_dashboard_partition_snapshots_list_name": "Nome",
+  "nasha_dashboard_partition_snapshots_list_options": "Opzioni",
+  "nasha_dashboard_partition_snapshots_list_snapshot_types": "Frequenze",
+  "nasha_dashboard_partition_snapshots_list_custom_snapshot": "Snapshot manuale",
+  "nasha_dashboard_partition_snapshots_frequencies_placeholder": "Seleziona frequenze",
+  "nasha_dashboard_partition_snapshots_hide_form": "Nascondi il modulo",
+  "nasha_dashboard_partition_snapshots_delete": "Elimina lo Snapshot manuale",
+  "nasha_dashboard_partition_snapshots_submit_snapshot_types": "Conferma le modifiche della frequenza",
+  "nasha_dashboard_partition_snapshots_reset_snapshot_types": "Elimina le modifiche della frequenza",
+  "nasha_dashboard_partition_snapshots_create_rule": "Sono ammessi: caratteri alfanumerici, virgole, punti, due punti e trattini",
+  "nasha_dashboard_partition_snapshots_warning_1": "Per gli Snapshot viene fornito il 20% di spazio aggiuntivo.",
+  "nasha_dashboard_partition_snapshots_warning_2": "Nel caso che questo spazio sia superato, gli Snapshot saranno salvati nello spazio di storage primario."
+}

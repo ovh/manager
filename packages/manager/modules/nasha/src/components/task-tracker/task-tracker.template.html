@@ -1,0 +1,22 @@
+<task-tracker
+    data-endpoint="{{ $ctrl.taskApiUrl }}"
+    data-heading="{{:: ('nasha_components_task_tracker_operation_' + $ctrl.operation) | translate }}"
+    data-on-done="$ctrl.onDone(success, error)"
+    data-tasks="$ctrl.tasks"
+>
+    <task-tracker-header>
+        <div class="mb-4">
+            <oui-message data-type="warning" class="d-block mb-4">
+                <span
+                    data-translate="nasha_components_task_tracker_warning"
+                ></span>
+            </oui-message>
+            <strong
+                class="d-block"
+                data-ng-repeat="(key, value) in $ctrl.params"
+                data-ng-if="value"
+                data-translate="{{:: ('nasha_components_task_tracker_param_' + key) | translate: $ctrl.params }}"
+            ></strong>
+        </div>
+    </task-tracker-header>
+</task-tracker>

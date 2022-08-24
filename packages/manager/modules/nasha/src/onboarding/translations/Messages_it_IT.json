@@ -8,5 +8,13 @@
   "nasha_onboarding_guide2_description": "Come eseguire il mount di un NAS su Windows Server tramite CIFS.",
   "nasha_onboarding_guide3_title": "Domande frequenti sul NAS",
   "nasha_onboarding_guide3_description": "Hai una domanda sul NAS? Queste sono le domande più frequenti.",
-  "nasha_onboarding_cta": "Ordina"
+  "nasha_onboarding_cta": "Ordina",
+  "nasha_onboarding_content": "Scopri le soluzioni di storage gestite basate sul file system OpenZFS. Usufruisci in pochi click di spazi di storage centralizzati per archiviare o salvare dati e file.",
+  "nasha_onboarding_getting-started_title": "Iniziare a utilizzare un NAS-HA",
+  "nasha_onboarding_getting-started_content": "Come gestire un NAS-HA dallo Spazio Cliente OVHcloud",
+  "nasha_onboarding_nfs_title": "Eseguire il mount di un NAS tramite NFS",
+  "nasha_onboarding_nfs_content": "Come effettuare il mount di un NAS tramite il protocollo NFS",
+  "nasha_onboarding_cifs_title": "Eseguire il mount di un NAS su Windows Server via CIFS",
+  "nasha_onboarding_cifs_content": "effettuare il mount di un NAS su Windows Server tramite il protocollo CIFS",
+  "nasha_onboarding_order": "Ordina un NAS-HA"
 }

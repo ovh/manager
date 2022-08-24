@@ -1,0 +1,19 @@
+{
+  "nasha_dashboard_partition_snapshots_heading": "Zarządzaj politykami wykonywania snapshotów",
+  "nasha_dashboard_partition_snapshots_description": "Twórz reguły snapshotów dotyczące częstotliwości ich wykonywania i czasu retencji i zarządzaj nimi w prosty sposób. Zastosuj je następnie w wybranych wolumenach. Snapshoty zużywają pojemność przestrzeni dyskowej Twojego rozwiązania NAS-HA.",
+  "nasha_dashboard_partition_snapshots_subtitle": "Szczegóły dotyczące reguł snapshotów",
+  "nasha_dashboard_partition_snapshots_create": "Ręczne tworzenie snapshota",
+  "nasha_dashboard_partition_snapshots_list_type": "Typ",
+  "nasha_dashboard_partition_snapshots_list_name": "Nazwa",
+  "nasha_dashboard_partition_snapshots_list_options": "Opcje",
+  "nasha_dashboard_partition_snapshots_list_snapshot_types": "Częstotliwość",
+  "nasha_dashboard_partition_snapshots_list_custom_snapshot": "Snapshot ręczny",
+  "nasha_dashboard_partition_snapshots_frequencies_placeholder": "Wybierz częstotliwość",
+  "nasha_dashboard_partition_snapshots_hide_form": "Ukryj formularz",
+  "nasha_dashboard_partition_snapshots_delete": "Usuń ręczny snapshot",
+  "nasha_dashboard_partition_snapshots_submit_snapshot_types": "Zatwierdź zmiany częstotliwości",
+  "nasha_dashboard_partition_snapshots_reset_snapshot_types": "Usuń zmiany częstotliwości",
+  "nasha_dashboard_partition_snapshots_create_rule": "Dozwolone są: znaki alfanumeryczne, przecinek, kropka, dwukropek i myślnik",
+  "nasha_dashboard_partition_snapshots_warning_1": "20% dodatkowej przestrzeni dyskowej jest dostępne dla kopii zapasowych snapshot.",
+  "nasha_dashboard_partition_snapshots_warning_2": "Jeśli zapełnisz tę przestrzeń, snapshoty będą przechowywane na Twojej podstawowej przestrzeni dyskowej."
+}

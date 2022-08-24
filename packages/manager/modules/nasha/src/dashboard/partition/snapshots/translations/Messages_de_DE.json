@@ -1,0 +1,19 @@
+{
+  "nasha_dashboard_partition_snapshots_heading": "Die Snapshots-Regeln verwalten",
+  "nasha_dashboard_partition_snapshots_description": "Erstellen und verwalten Sie unkompliziert Ihre Snapshot-Regeln zu Häufigkeit oder Aufbewahrungsdauer. Wenden Sie diese Regeln dann für bestimmte Volumes an. Snapshots nutzen die Speicherkapazität Ihrer HA-NAS Lösung.",
+  "nasha_dashboard_partition_snapshots_subtitle": "Details der Snapshot-Regeln",
+  "nasha_dashboard_partition_snapshots_create": "Manuell einen Snapshot erstellen",
+  "nasha_dashboard_partition_snapshots_list_type": "Typ",
+  "nasha_dashboard_partition_snapshots_list_name": "Name",
+  "nasha_dashboard_partition_snapshots_list_options": "Optionen",
+  "nasha_dashboard_partition_snapshots_list_snapshot_types": "Frequenzen",
+  "nasha_dashboard_partition_snapshots_list_custom_snapshot": "Manueller Snapshot",
+  "nasha_dashboard_partition_snapshots_frequencies_placeholder": "Wählen Sie Frequenzen aus",
+  "nasha_dashboard_partition_snapshots_hide_form": "Formular ausblenden",
+  "nasha_dashboard_partition_snapshots_delete": "Den manuell erstellten Snapshot löschen",
+  "nasha_dashboard_partition_snapshots_submit_snapshot_types": "Änderungen der Zeitabstände bestätigen",
+  "nasha_dashboard_partition_snapshots_reset_snapshot_types": "Änderungen der Zeitabstände löschen",
+  "nasha_dashboard_partition_snapshots_create_rule": "Zugelassen sind: alphanumerische Zeichen, Komma, Punkt, Doppelpunkt und Bindestrich",
+  "nasha_dashboard_partition_snapshots_warning_1": "Sie erhalten 20% zusätzlichen Speicherplatz für Ihre Snapshots.",
+  "nasha_dashboard_partition_snapshots_warning_2": "Wenn Sie mehr als diesen Speicherplatz verwenden, werden die Snapshots auf Ihrem primären Speicherplatz gespeichert."
+}

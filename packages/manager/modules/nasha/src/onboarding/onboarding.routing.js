@@ -1,19 +1,15 @@
+import { PREFIX_TRACKING_ONBOARDING } from './onboarding.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nasha.onboarding', {
     url: '/onboarding',
-    component: 'nashaOnboardingComponent',
+    component: 'nashaOnboarding',
     resolve: {
-      hideBreadcrumb: () => true,
-      cta: ($state) => $state.href('nasha.nasha-add'),
-      resources: /* @ngInject */ ($http) =>
-        $http.get('/dedicated/nasha').then(({ data }) => data),
+      breadcrumb: () => null,
+      goToOrder: /* @ngInject */ ($state) => () => $state.go('nasha.order'),
     },
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('resources')
-        .then((resources) =>
-          resources.length > 0 ? { state: 'app.nasha.index' } : false,
-        ),
+    atInternet: {
+      rename: `nasha::${PREFIX_TRACKING_ONBOARDING}`,
+    },
   });
 };
