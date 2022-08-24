@@ -1,4 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { getEmailProOrderUrl } from './email-pro.order';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('email-pro.index', {
@@ -26,6 +27,21 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('email-pro.dashboard', {
           productId,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('email_pro_order'),
+          value: $translate.instant('email_pro_order'),
+          onClick: () => {
+            $window.open(
+              getEmailProOrderUrl(coreConfig.getUser().ovhSubsidiary),
+              '_blank',
+            );
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
   });
