@@ -1,4 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { getDomainOrderUrl } from './domains.order';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.index', {
@@ -34,6 +35,21 @@ export default /* @ngInject */ ($stateProvider) => {
           : $state.href('app.domain.product', {
               productId: domain,
             }),
+      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('domains_order'),
+          value: $translate.instant('domains_order'),
+          onClick: () => {
+            $window.open(
+              getDomainOrderUrl(coreConfig.getUser().ovhSubsidiary),
+              '_blank',
+            );
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
   });
