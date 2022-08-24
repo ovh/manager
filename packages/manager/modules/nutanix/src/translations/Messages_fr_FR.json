@@ -1,5 +1,6 @@
 {
   "nutanix_title": "Nutanix",
+  "nutanix_order": "Commander",
   "nutanix_guides": "Guides",
   "nutanix_guides_main": "Nutanix guides",
   "nutanix_cluster_list_name": "Nom du cluster",
