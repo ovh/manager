@@ -1,4 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { getManagedBareMetalOrderUrl } from './managed-baremetal-order';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.managedBaremetal.index', {
@@ -29,6 +30,21 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.managedBaremetal.details.dashboard', {
           productId,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('managed_baremetal_order'),
+          value: $translate.instant('managed_baremetal_order'),
+          onClick: () => {
+            $window.open(
+              getManagedBareMetalOrderUrl(coreConfig.getUser().ovhSubsidiary),
+              '_blank',
+            );
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
     redirectTo: (transition) =>
