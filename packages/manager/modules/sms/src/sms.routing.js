@@ -27,6 +27,9 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName,
         }),
       hideBreadcrumb: () => true,
+      gotoOrder: /* @ngInject */ ($window) => () => {
+        $window.open('https://www.ovhtelecom.fr/sms/', '_blank');
+      },
     },
     redirectTo: (transition) =>
       transition
