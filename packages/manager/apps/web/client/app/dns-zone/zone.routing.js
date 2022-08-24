@@ -27,6 +27,18 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.zone.details', {
           productId,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $state) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('zones_order'),
+          value: $translate.instant('zones_order'),
+          onClick: () => {
+            $state.go('app.zone.new');
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
   });
