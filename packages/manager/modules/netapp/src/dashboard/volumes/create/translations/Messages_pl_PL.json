@@ -6,7 +6,7 @@
   "netapp_volume_create_protocol": "Protokół",
   "netapp_volume_create_protocol_NFS": "NFSv3",
   "netapp_volume_create_size": "Rozmiar wolumenu",
-  "netapp_volume_create_size_help": "Rozmiar wolumenu plasuje się między {{minSize}} GB a {{maxSize}} GB.",
+  "netapp_volume_create_size_help": "Rozmiar wolumenu mieści się w przedziale: {{minSize}} GB - {{maxSize}} GB",
   "netapp_volume_create_size_required": "Wpisz rozmiar wolumenu.",
   "netapp_volume_create_size_invalid_number_error": "Wprowadź poprawną liczbę.",
   "netapp_volume_create_size_minimum_error": "Minimalny wymagany rozmiar: {{minSize}} GB.",

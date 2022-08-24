@@ -494,5 +494,13 @@
   "privateDatabase_modale_cpu_throttle_tab_duration": "Dauer der Auslastung",
   "privateDatabase_modale_cpu_throttle_ongoing_cpu_throttle": "Aktuelle CPU-Auslastung",
   "privateDatabase_modale_cpu_throttle_no_cpu_throttle": "Keine CPU-Auslastung.",
-  "privateDatabase_modale_cpu_throttle_info_order": "Es wird empfohlen, Ihre Anfragen und Indizes zu verbessern, oder aber Ihre Datenbanken auf eine größere Anzahl von CloudDB-Instanzen zu verteilen."
+  "privateDatabase_modale_cpu_throttle_info_order": "Es wird empfohlen, Ihre Anfragen und Indizes zu verbessern, oder aber Ihre Datenbanken auf eine größere Anzahl von CloudDB-Instanzen zu verteilen.",
+  "privateDatabase_dashboard_datacenter_gra": "Gravelines",
+  "privateDatabase_dashboard_datacenter_gra3": "Gravelines 3",
+  "privateDatabase_dashboard_datacenter_bhs": "Beauharnois",
+  "privateDatabase_dashboard_datacenter_bhs1": "Beauharnois 1",
+  "privateDatabase_order_datacenter_gra": "Gravelines",
+  "privateDatabase_order_datacenter_gra3": "Gravelines 3",
+  "privateDatabase_order_datacenter_bhs": "Beauharnois",
+  "privateDatabase_order_datacenter_bhs1": "Beauharnois 1"
 }

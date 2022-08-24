@@ -1373,5 +1373,8 @@
   "hosting_dashboard_service_common_inactive": "Inactivo",
   "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo.",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Más"
+  "hosting_dashboard_tabs_dropdown": "Más",
+  "hosting_dashboard_service_datacenter_gra": "Gravelines",
+  "hosting_dashboard_service_datacenter_gra3": "Gravelines 3",
+  "hosting_dashboard_service_datacenter_bhs": "Beauharnois"
 }

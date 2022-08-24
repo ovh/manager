@@ -492,5 +492,13 @@
   "privateDatabase_modale_cpu_throttle_ongoing_cpu_throttle": "CPU throttle in progress",
   "privateDatabase_modale_cpu_throttle_no_cpu_throttle": "No CPU throttles.",
   "privateDatabase_modale_cpu_throttle_info_order": "We recommend improving your queries and indexes, or distributing your databases across more CloudDB instances to resolve these issues.",
-  "privateDatabase_configuration_documentation": "More information on these options"
+  "privateDatabase_configuration_documentation": "More information on these options",
+  "privateDatabase_dashboard_datacenter_gra": "Gravelines",
+  "privateDatabase_dashboard_datacenter_gra3": "Gravelines 3",
+  "privateDatabase_dashboard_datacenter_bhs": "Beauharnois",
+  "privateDatabase_dashboard_datacenter_bhs1": "Beauharnois 1",
+  "privateDatabase_order_datacenter_gra": "Gravelines",
+  "privateDatabase_order_datacenter_gra3": "Gravelines 3",
+  "privateDatabase_order_datacenter_bhs": "Beauharnois",
+  "privateDatabase_order_datacenter_bhs1": "Beauharnois 1"
 }
