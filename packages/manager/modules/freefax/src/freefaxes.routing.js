@@ -15,6 +15,9 @@ export default /* @ngInject */ ($stateProvider) => {
       viewFreefax: /* @ngInject */ ($state) => (fax) =>
         $state.go('freefaxes.freefax', { serviceName: fax.number }),
       hideBreadcrumb: () => true,
+      gotoOrder: /* @ngInject */ ($window) => () => {
+        $window.open('https://www.ovhtelecom.fr/fax/', '_blank');
+      },
     },
     redirectTo: (transition) =>
       transition

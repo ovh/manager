@@ -8,6 +8,7 @@ export default {
 
     getFreefaxLink: '<',
     viewFreefax: '<',
+    gotoOrder: '<',
   },
   controller,
   template,
