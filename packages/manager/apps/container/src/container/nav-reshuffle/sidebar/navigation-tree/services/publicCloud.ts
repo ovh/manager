@@ -1,4 +1,4 @@
-import { Node } from '../node';
+import { Node, NodeTag } from '../node';
 
 const pciNode: Node = {
   id: 'pci',
@@ -37,6 +37,7 @@ const pciNode: Node = {
           },
           features: ['pci-baremetal'],
           forceVisibility: true,
+          tag: NodeTag.ALPHA,
         },
       ],
     },
@@ -84,6 +85,7 @@ const pciNode: Node = {
           },
           features: ['databases'],
           forceVisibility: true,
+          tag: NodeTag.NEW,
         },
         {
           id: 'pci-volume-snapshot',
@@ -256,6 +258,7 @@ const pciNode: Node = {
           },
           features: ['ai-apps'],
           forceVisibility: true,
+          tag: NodeTag.ALPHA,
         },
         {
           id: 'pci-ml-serving',
@@ -286,6 +289,7 @@ const pciNode: Node = {
           },
           features: ['data-processing'],
           forceVisibility: true,
+          tag: NodeTag.NEW,
         },
         {
           id: 'pci-logs-data-platform',
