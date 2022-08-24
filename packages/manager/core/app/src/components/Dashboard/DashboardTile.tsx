@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Tile } from '@ovh-ux/manager-themes';
-import { isFunction } from 'lodash-es';
 
 import {
   TileTypesEnum,
@@ -36,7 +35,7 @@ export default function DashboardTile({
       .then((response) => {
         setData(response);
         setDefinitions(
-          isFunction(tile.definitions)
+          typeof tile.definitions === 'function'
             ? tile.definitions(response)
             : tile.definitions,
         );

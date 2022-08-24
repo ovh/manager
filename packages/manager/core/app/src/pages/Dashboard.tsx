@@ -8,7 +8,6 @@ import {
   ArrowRightIcon,
   ExternalLinkIcon,
 } from '@ovh-ux/manager-themes';
-import { startCase } from 'lodash-es';
 import { useShell } from '@/core';
 
 import Nutanix, {
@@ -219,9 +218,14 @@ export default function DashboardPage(): JSX.Element {
           (
             (license?.features as NutanixClusterLicenseFeatureDetails[]) || []
           ).map((feature: NutanixClusterLicenseFeatureDetails) => {
+            // build the title with the feature name startCased
+            let title = `${feature.name
+              .charAt(0)
+              .toUpperCase()}${feature.name.slice(1)}`;
+            title = title.match(/[A-Z]?[a-z]+[a-z]/g).join(' ');
             return {
               name: feature.name,
-              title: startCase(feature.name),
+              title,
               description: t(`tile_licenses_license_enabled_${feature.value}`),
             };
           }),
