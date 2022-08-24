@@ -33,5 +33,14 @@
   "tile_network_item_private_network": "Réseau privé (vRack)",
   "tile_network_item_load_balancer_none": "Aucun Load Balancer attaché",
   "tile_hardware_title": "Hardware",
+  "tile_hardware_item_cpu": "CPU",
+  "tile_hardware_item_ram": "RAM",
+  "tile_hardware_item_system_disk": "Disques système",
+  "tile_hardware_item_data_disk": "Disques de données",
+  "tile_hardware_item_extension_card": "Cartes d'extension",
+  "tile_hardware_item_cpu_frequency_unit": "GHz",
+  "tile_hardware_item_ram_frequency_unit": "MHz",
+  "tile_hardware_item_ram_size_unit": "Go",
+  "tile_hardware_item_ram_size_unit_tb": "To",
   "tab_nodes": "Nodes"
 }

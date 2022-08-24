@@ -28,6 +28,7 @@ import Service, {
   NutanixClusterDetails,
   NutanixClusterLicenseFeatureDetails,
   GenericProductDefinition,
+  BareMetalServerDetails,
 } from '@/api/service';
 import DedicatedServer, {
   DedicatedServerOption,
@@ -57,6 +58,44 @@ export default function DashboardPage(): JSX.Element {
   };
 
   const trackingPrefix = 'hpc::nutanix::cluster::dashboard';
+
+  const getDiskByUsage = (
+    technicalDetails: BareMetalServerDetails,
+    diskUsage: string,
+  ) => {
+    const disks = technicalDetails?.storage?.disks;
+    return disks.filter((disk) => disk.usage === diskUsage);
+  };
+
+  const getFormattedDisks = (
+    technicalDetails: BareMetalServerDetails,
+    diskUsage: string,
+  ): string[] => {
+    const disks = getDiskByUsage(technicalDetails, diskUsage);
+    if (!disks.length) {
+      return [];
+    }
+    const gbTranslated = t('tile_hardware_item_ram_size_unit');
+    const tbTranslated = t('tile_hardware_item_ram_size_unit_tb');
+    return disks.map((disk) => {
+      const number = disk.number || 1;
+      const technology = disk.technology || '';
+      const diskInterface = disk.interface || '';
+      const { capacity } = disk;
+      let capacityStr;
+
+      if (Number.isNaN(capacity)) {
+        capacityStr = '-';
+      } else if (capacity >= 1000) {
+        capacityStr = `${Math.round((100 * (capacity as number)) / 1000) /
+          100} ${tbTranslated}`;
+      } else {
+        capacityStr = `${capacity} ${gbTranslated}`;
+      }
+
+      return `${number}×${capacityStr} ${technology} ${diskInterface}`;
+    });
+  };
 
   const tiles = [
     {
@@ -436,6 +475,109 @@ export default function DashboardPage(): JSX.Element {
     {
       name: 'hardware',
       heading: t('tile_hardware_title'),
+      type: TileTypesEnum.LIST,
+      onLoad: async () => {
+        const cluster = await getNutanix(serviceId);
+        const serviceInfos = await getServiceInfos(serviceId);
+        const server = await getServer(cluster);
+
+        const technicalDetails = await getTechnicalDetails(
+          serviceInfos.serviceId,
+          server.serviceId,
+        );
+
+        return { technicalDetails: technicalDetails.baremetalServers };
+      },
+      definitions: ({
+        technicalDetails,
+      }: {
+        technicalDetails: BareMetalServerDetails;
+      }) => [
+        {
+          name: 'cpu',
+          title: t('tile_hardware_item_cpu'),
+          description: () => {
+            const cpu = technicalDetails.server?.cpu;
+            if (!cpu) {
+              return '-';
+            }
+            const cpuNumber = cpu?.number || 1;
+            const freqUnit = t('tile_hardware_item_cpu_frequency_unit');
+            const cpuBrand = cpu?.brand || '';
+            const cpuModel = cpu?.model || '';
+            const cpuCores = cpu.cores ? `${cpu.cores}c` : '';
+            const cpuThreads = cpu.threads
+              ? `${cpu.cores && '/'}${cpu.threads}t`
+              : '';
+            const cpuFrequency = cpu.frequency
+              ? `${cpu.frequency} ${freqUnit}`
+              : '';
+            const cpuBoost =
+              cpu.boost !== cpu.frequency ? `/${cpu.boost} ${freqUnit}` : '';
+            return `${
+              cpuNumber > 1 ? `${cpuNumber}×` : ''
+            } ${cpuBrand} ${cpuModel} - ${cpuCores}${cpuThreads} - ${cpuFrequency}${cpuBoost}`;
+          },
+        },
+        {
+          name: 'ram',
+          title: t('tile_hardware_item_ram'),
+          description: () => {
+            const ram = technicalDetails.memory;
+            if (!ram) {
+              return '-';
+            }
+            const freqUnit = t('tile_hardware_item_ram_frequency_unit');
+            const gbTranslated = t('tile_hardware_item_ram_size_unit');
+            const ramSize = ram.size ? `${ram.size} ${gbTranslated}` : '';
+            const ramType = ram.ramType || '';
+            const ramECC = ram.ecc ? 'ECC' : '';
+            const ramFrequency = ram.frequency
+              ? `${ram.frequency} ${freqUnit}`
+              : '';
+            return `${ramSize} ${ramType} ${ramECC} ${ramFrequency}`;
+          },
+        },
+        ...(getDiskByUsage(technicalDetails, 'os').length
+          ? [
+              {
+                name: 'system_disk',
+                title: t('tile_hardware_item_system_disk'),
+                description: () =>
+                  getFormattedDisks(
+                    technicalDetails,
+                    'os',
+                  ).map((formattedDisk, index) => (
+                    <p key={index}>{formattedDisk}</p>
+                  )),
+              },
+            ]
+          : []),
+        ...(getDiskByUsage(technicalDetails, 'data').length
+          ? [
+              {
+                name: 'data_disk',
+                title: t('tile_hardware_item_data_disk'),
+                description: () =>
+                  getFormattedDisks(
+                    technicalDetails,
+                    'data',
+                  ).map((formattedDisk, index) => (
+                    <p key={index}>{formattedDisk}</p>
+                  )),
+              },
+            ]
+          : []),
+        ...(technicalDetails.storage?.raid !== 'none'
+          ? [
+              {
+                name: 'extension_card',
+                title: t('tile_hardware_item_extension_card'),
+                description: technicalDetails.storage?.raid,
+              },
+            ]
+          : []),
+      ],
     },
   ];
 
