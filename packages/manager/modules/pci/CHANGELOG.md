@@ -1,3 +1,12 @@
+## [5.87.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.87.1...@ovh-ux/manager-pci@5.87.2) (2022-08-24)
+
+
+### Bug Fixes
+
+* **containers:** pass multipart parameter ([#7846](https://github.com/ovh/manager/issues/7846)) ([0647ac3](https://github.com/ovh/manager/commit/0647ac33b3141dce9563977b5f8c8e7ee5a73be7))
+
+
+
 ## [5.87.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.87.0...@ovh-ux/manager-pci@5.87.1) (2022-08-22)
 
 

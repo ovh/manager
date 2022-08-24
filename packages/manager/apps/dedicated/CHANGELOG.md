@@ -1,3 +1,12 @@
+## [17.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.27.0...@ovh-ux/manager-dedicated@17.27.1) (2022-08-24)
+
+
+### Bug Fixes
+
+* **server:** display MRTG tile on server dashboard ([#7853](https://github.com/ovh/manager/issues/7853)) ([06fe284](https://github.com/ovh/manager/commit/06fe2848c893cb1ce0c2287c41e50dd998905470))
+
+
+
 # [17.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.26.1...@ovh-ux/manager-dedicated@17.27.0) (2022-08-23)
 
 
