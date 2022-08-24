@@ -32,9 +32,9 @@ export default class PciStoragesObjectStorageService {
       .then(({ data }) => data);
   }
 
-  createUser(projectId, description) {
+  createUser(projectId, description, role) {
     return this.$http
-      .post(`/cloud/project/${projectId}/user`, { description })
+      .post(`/cloud/project/${projectId}/user`, { description, role })
       .then(({ data }) => data);
   }
 

@@ -2,6 +2,7 @@ import {
   NAMESPACES,
   TRACKING_S3_POLICY_ADD,
   USER_STATUS,
+  OBJECT_STORAGE_USER_ROLE,
 } from '../../users.constants';
 
 export default class PciUsersAddController {
@@ -118,6 +119,7 @@ export default class PciUsersAddController {
     return this.PciStoragesObjectStorageService.createUser(
       this.projectId,
       description,
+      OBJECT_STORAGE_USER_ROLE,
     )
       .then((user) => {
         return this.PciStoragesObjectStorageService.pollUserStatus(
