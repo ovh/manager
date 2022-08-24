@@ -1,0 +1,21 @@
+<manager-on-boarding-layout
+    class="mt-5"
+    guides="$ctrl.guides"
+    on-guide-click="$ctrl.trackClick($ctrl.PREFIX_TRACKING_ONBOARDING_GUIDES, guide.hitSuffix)"
+    image-source="$ctrl.illustration"
+>
+    <onboarding-title>
+        <p data-ng-bind="$ctrl.title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <p data-translate="nasha_onboarding_content"></p>
+        <oui-button
+            data-type="button"
+            data-size="l"
+            data-variant="primary"
+            data-on-click="$ctrl.onOrderClick()"
+        >
+            <span data-translate="nasha_onboarding_order"></span>
+        </oui-button>
+    </onboarding-description>
+</manager-on-boarding-layout>

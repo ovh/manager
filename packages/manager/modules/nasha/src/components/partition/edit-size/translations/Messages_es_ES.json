@@ -1,0 +1,8 @@
+{
+  "nasha_components_partition_edit_size_cancel": "Cerrar",
+  "nasha_components_partition_edit_size_label": "Tamaño de la partición {{ name }}",
+  "nasha_components_partition_edit_size_rules": "Tamaño permitido: mín. {{ min }} GB, máx. {{ max }} GB",
+  "nasha_components_partition_edit_size_submit": "Cambiar el tamaño",
+  "nasha_components_partition_edit_size_success": "El tamaño de la partición {{ partitionName }} va a modificarse.",
+  "nasha_components_partition_edit_size_title": "Modificar el tamaño de la partición {{ name }}"
+}

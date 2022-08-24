@@ -1,0 +1,9 @@
+{
+  "nasha_components_edit_name_forbid": "Wybierz nazwę inną niż {{name}}",
+  "nasha_components_edit_name_label": "Nazwa usługi {{name}}",
+  "nasha_components_edit_name_primary": "Zmień nazwę usługi",
+  "nasha_components_edit_name_secondary": "Zamknij",
+  "nasha_components_edit_name_success": "Nazwa została zmieniona",
+  "nasha_components_edit_name_title": "Zmień nazwę usługi {{name}}",
+  "nasha_components_edit_name_rules": "Znaki &lt; i > nie są dozwolone"
+}

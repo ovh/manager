@@ -7,6 +7,7 @@ export default {
     tooltip: '<',
     strong: '<',
     direction: '<',
+    help: '<',
   },
   controller($element) {
     'ngInject';

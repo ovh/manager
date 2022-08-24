@@ -1,9 +1,0 @@
-{
-  "nasha_partitions_action_add_partition_title": "Wybór protokołu",
-  "nasha_partitions_action_add_success": "Partycja {{partitionName}} zostanie dodana w ciągu kilku minut.",
-  "nasha_partitions_action_add_failure": "Wystąpił błąd podczas dodawania partycji {{partitionName}}.",
-  "nasha_partitions_action_add_desc_CIFS": "CIFS: protokół udostępniania zasobów zalecany dla serwerów Windows.",
-  "nasha_partitions_action_add_desc_NFS": "NFS: protokół udostępniania zasobów zalecany dla serwerów Linux/Unix.",
-  "nasha_partitions_action_add_desc_NFS_CIFS": "NFS CIFS: pozwala udostępnianie zasobów serwerom Windows i Linux/Unix.",
-  "nasha_partitions_name_fail": "Nazwa jest nieprawidłowa."
-}

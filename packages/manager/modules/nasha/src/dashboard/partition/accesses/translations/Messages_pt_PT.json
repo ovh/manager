@@ -1,0 +1,10 @@
+{
+  "nasha_dashboard_partition_accesses_heading": "Gerir a lista dos controlos de acesso (ACL)",
+  "nasha_dashboard_partition_accesses_description": "Adicione endereços ou intervalos de IP autorizados a aceder a esta partição. Por predefinição, nenhum endereço ou intervalo de IP tem autorização. Atualmente, o NAS-HA só pode ser utilizado com endereços IP OVHcloud (servidores dedicados, VPS, Public Cloud, So you Start, Kimsufi e ADSL).",
+  "nasha_dashboard_partition_accesses_subtitle": "Lista dos acessos",
+  "nasha_dashboard_partition_accesses_create": "Adicionar um novo acesso",
+  "nasha_dashboard_partition_accesses_list_type": "Tipo",
+  "nasha_dashboard_partition_accesses_ip_placeholder": "IP ou bloco de IP dos seus serviços",
+  "nasha_dashboard_partition_accesses_hide_form": "Ocultar o formulário",
+  "nasha_dashboard_partition_accesses_delete": "Alterar acesso"
+}

@@ -8,5 +8,13 @@
   "nasha_onboarding_guide2_description": "Dowiedz się, jak zamontować NAS na serwerze Windows Server przy użyciu protokołu CIFS.",
   "nasha_onboarding_guide3_title": "Najczęstsze pytania dotyczące rozwiązania NAS",
   "nasha_onboarding_guide3_description": "Masz pytanie dotyczące NAS? Oto najczęściej zadawane pytania.",
-  "nasha_onboarding_cta": "Zamów"
+  "nasha_onboarding_cta": "Zamów",
+  "nasha_onboarding_content": "Poznaj usługi zarządzanej przestrzeni dyskowej oparte na systemie plików OpenZFS. Skorzystaj za pomocą kilku kliknięć ze scentralizowanej przestrzeni dyskowej do przechowywania i zapisywania danych i plików.",
+  "nasha_onboarding_getting-started_title": "Pierwsze kroki z usługą NAS HA",
+  "nasha_onboarding_getting-started_content": "Dowiedz się, jak zarządzać usługą NAS-HA w Panelu klienta OVHcloud",
+  "nasha_onboarding_nfs_title": "Zainstaluj NAS przy użyciu protokołu NFS",
+  "nasha_onboarding_nfs_content": "Dowiedz się, jak zainstalować NAS przy użyciu protokołu NFS",
+  "nasha_onboarding_cifs_title": "Instalacja usługi NAS w systemie Windows Server przy użyciu CIFS",
+  "nasha_onboarding_cifs_content": "Dowiedz się, jak zainstalować NAS na serwerze Windows Server przy użyciu protokołu CIFS",
+  "nasha_onboarding_order": "Zamów usługę NAS-HA"
 }

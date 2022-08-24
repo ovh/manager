@@ -1,0 +1,15 @@
+{
+  "nasha_components_metrics_capacity_delay_text": "L'aggiornamento delle informazioni relative allo storage non è istantaneo.",
+  "nasha_components_metrics_capacity": "Capacità totale",
+  "nasha_components_metrics_creation_date": "Data di creazione",
+  "nasha_components_metrics_datacenter_bhs": "Beauharnois",
+  "nasha_components_metrics_datacenter_gra": "Gravelines",
+  "nasha_components_metrics_datacenter_rbx": "Roubaix",
+  "nasha_components_metrics_datacenter_sbg": "Strasburgo",
+  "nasha_components_metrics_datacenter": "Datacenter",
+  "nasha_components_metrics_expiration_date": "Data di scadenza",
+  "nasha_components_metrics_ip": "IP",
+  "nasha_components_metrics_renew": "Rinnova",
+  "nasha_components_metrics_space_usage": "Avviso di utilizzo",
+  "nasha_components_metrics_space_usage_help": "Il contatto amministratore e il contatto tecnico riceveranno un alert via email quando lo spazio occupato del NAS raggiungerà il 90%."
+}

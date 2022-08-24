@@ -1,0 +1,16 @@
+{
+  "nasha_order_title": "Commander un NAS-HA",
+  "nasha_order_diskType_header": "Type de disque",
+  "nasha_order_diskType_description": "Choisissez le type de disque en fonction de vos besoins.",
+  "nasha_order_diskType_ssd_description": "Stockage SSD hautes performances",
+  "nasha_order_capacity_header": "Capacité",
+  "nasha_order_capacity_description": "Choisissez la capacité de votre besoin.",
+  "nasha_order_capacity_description_nas-ha-ssd-36t": "Performances optimisées",
+  "nasha_order_capacity_description_nas-ha-ssd-36t-15t": "Solution économique",
+  "nasha_order_datacenter_header": "Localisation du datacenter",
+  "nasha_order_datacenter_description": "Décidez de la localisation de votre service.",
+  "nasha_order_commitment_header": "Durée d'engagement",
+  "nasha_order_commitment_description": "Bénéficiez d'une remise en vous engageant.",
+  "nasha_order_payment_header": "Modalités de paiement",
+  "nasha_order_confirm": "Valider"
+}
