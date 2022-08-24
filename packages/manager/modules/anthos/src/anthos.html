@@ -13,6 +13,15 @@
         data-messages="$ctrl.messages"
     ></cui-message-container>
     <oui-datagrid id="hpcAnthosTenantsDatagrid" data-rows="$ctrl.tenants">
+        <oui-datagrid-topbar>
+            <oui-button
+                variant="secondary"
+                type="button"
+                data-on-click="$ctrl.gotoOrder()"
+            >
+                <span data-translate="anthos_tenants_order"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
         <oui-datagrid-column
             title=":: 'anthos_tenants_grid_headers_serviceName' | translate"
             data-property="id"
