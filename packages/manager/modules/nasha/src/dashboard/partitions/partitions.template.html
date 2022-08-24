@@ -1,0 +1,104 @@
+<div class="nasha-dashboard-partitions">
+    <div class="d-flex flex-column">
+        <h4 data-translate="nasha_dashboard_partitions_metrics"></h4>
+        <nasha-components-metrics
+            class="mb-5"
+            data-nasha="$ctrl.nasha"
+            data-service-info="$ctrl.serviceInfo"
+            data-url-renew="{{ $ctrl.urlRenew }}"
+            data-on-renew-click="$ctrl.onRenewClick()"
+            data-monitored-disabled="$ctrl.isMonitoredUpdating"
+            data-on-monitored-changed="$ctrl.updateMonitored()"
+        ></nasha-components-metrics>
+        <h4 data-translate="nasha_dashboard_partitions_title"></h4>
+        <oui-datagrid
+            data-rows-loader="$ctrl.loadPartitions()"
+            data-page-size="{{ $ctrl.maxPartitions }}"
+        >
+            <oui-datagrid-topbar>
+                <oui-button
+                    data-icon-left="oui-icon-plus"
+                    data-disabled="!$ctrl.canCreatePartitions"
+                    data-on-click="$ctrl.onPartitionsCreateClick()"
+                >
+                    <span
+                        data-translate="nasha_dashboard_partitions_create"
+                    ></span>
+                </oui-button>
+            </oui-datagrid-topbar>
+            <oui-datagrid-column
+                data-property="partitionName"
+                data-title=":: ('nasha_dashboard_partitions_list_partition_name' | translate)"
+            >
+                <button
+                    data-ng-click="$ctrl.goToPagePartition($row.partitionName)"
+                    data-ng-bind="$row.partitionName"
+                    class="oui-button oui-button_m oui-button_link"
+                ></button>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-property="protocol"
+                data-title=":: ('nasha_dashboard_partitions_list_protocol' | translate)"
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-property="use"
+                data-title=":: ('nasha_dashboard_partitions_list_use' | translate)"
+            >
+                <nasha-components-space-meter
+                    data-ng-if="$row.use"
+                    data-usage="$row.use"
+                    data-help="false"
+                ></nasha-components-space-meter>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-property="partitionDescription"
+                data-title=":: ('nasha_dashboard_partitions_list_description' | translate)"
+            ></oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToPagePartition($row.partitionName)"
+                >
+                    <span
+                        data-translate="nasha_dashboard_partitions_action_show"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToPagePartitionSnapshots($row.partitionName)"
+                >
+                    <span
+                        data-translate="nasha_dashboard_partitions_action_snapshots"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToPagePartitionAccesses($row.partitionName)"
+                >
+                    <span
+                        data-translate="nasha_dashboard_partitions_action_access"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToTabPartitionsEditSize($row)"
+                >
+                    <span
+                        data-translate="nasha_dashboard_partitions_action_edit_size"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToTabPartitionsZfsOptions($row)"
+                >
+                    <span
+                        data-translate="nasha_dashboard_partitions_action_zfs_options"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToTabPartitionsDelete($row)"
+                >
+                    <span
+                        data-translate="nasha_dashboard_partitions_action_delete"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid>
+    </div>
+    <div data-ui-view></div>
+</div>

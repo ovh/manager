@@ -1,0 +1,9 @@
+{
+  "nasha_components_partition_edit_description_forbid": "Opis nie został zmieniony",
+  "nasha_components_partition_edit_description_label": "Opis partycji {{name}}",
+  "nasha_components_partition_edit_description_primary": "Zmień opis",
+  "nasha_components_partition_edit_description_rules": "Maksymalna liczba znaków: {{max}}",
+  "nasha_components_partition_edit_description_secondary": "Zamknij",
+  "nasha_components_partition_edit_description_success": "Opis partycji został zmieniony.",
+  "nasha_components_partition_edit_description_title": "Zmień opis partycji {{name}}"
+}

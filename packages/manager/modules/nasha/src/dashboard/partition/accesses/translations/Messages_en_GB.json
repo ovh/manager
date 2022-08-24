@@ -1,0 +1,10 @@
+{
+  "nasha_dashboard_partition_accesses_heading": "Manage access control list (ACL)",
+  "nasha_dashboard_partition_accesses_description": "Add IP addresses or ranges authorised to access this partition. By default, no IP addresses or ranges are authorised. Currently, HA-NAS can only be used with OVHcloud IPs (Dedicated Servers/Virtual Private Servers/Public Cloud/So you Start/Kimsufi/ADSL).",
+  "nasha_dashboard_partition_accesses_subtitle": "Access list",
+  "nasha_dashboard_partition_accesses_create": "Add a new access",
+  "nasha_dashboard_partition_accesses_list_type": "Type",
+  "nasha_dashboard_partition_accesses_ip_placeholder": "IP or IP block for your services",
+  "nasha_dashboard_partition_accesses_hide_form": "Hide form",
+  "nasha_dashboard_partition_accesses_delete": "Delete the access"
+}

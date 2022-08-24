@@ -1,0 +1,107 @@
+<div class="nasha-components-metrics col-xs-12 well top-space-p20">
+    <div class="row">
+        <div class="col-xs-12 col-lg-7">
+            <dl class="dl-horizontal">
+                <dt
+                    data-translate="nasha_components_metrics_ip"
+                    class="bottom-space-m4"
+                ></dt>
+                <dd data-ng-bind="$ctrl.nasha.ip" class="bottom-space-m8"></dd>
+                <dt
+                    data-translate="nasha_components_metrics_datacenter"
+                    class="bottom-space-m4"
+                ></dt>
+                <dd
+                    data-ng-bind="$ctrl.nasha.localeDatacenter"
+                    class="bottom-space-m8"
+                ></dd>
+                <dt
+                    data-translate="nasha_components_metrics_capacity"
+                    class="bottom-space-m4"
+                ></dt>
+                <dd class="info-total-capacity">
+                    <nasha-components-space-meter
+                        class="cloud-space-meter"
+                        data-usage="$ctrl.nasha.use"
+                        data-legend="true"
+                        data-large="true"
+                    >
+                    </nasha-components-space-meter>
+                    <span class="info-total-capacity-text">
+                        <em
+                            data-translate="nasha_components_metrics_capacity_delay_text"
+                        ></em>
+                    </span>
+                </dd>
+            </dl>
+        </div>
+
+        <div class="col-xs-12 col-lg-5 pull-right">
+            <dl class="dl-horizontal bottom-space-m0">
+                <dt
+                    data-translate="nasha_components_metrics_creation_date"
+                    class="bottom-space-m4"
+                ></dt>
+                <dd
+                    data-ng-bind="$ctrl.serviceInfo.creation | date:'mediumDate'"
+                    class="bottom-space-m8"
+                ></dd>
+                <dt
+                    data-translate="nasha_components_metrics_expiration_date"
+                    class="bottom-space-m4"
+                ></dt>
+                <dd class="bottom-space-m8">
+                    <span
+                        class="d-block"
+                        data-ng-bind="$ctrl.serviceInfo.expiration | date:'mediumDate'"
+                    ></span>
+                    <a
+                        class="oui-button oui-button_icon-right oui-button_m oui-button_link"
+                        data-ng-href="{{ $ctrl.urlRenew }}"
+                        data-ng-click="$ctrl.onRenewClick()"
+                        target="_top"
+                    >
+                        <span
+                            data-translate="nasha_components_metrics_renew"
+                        ></span>
+                        <span
+                            aria-hidden="true"
+                            class="oui-icon oui-icon-arrow-right"
+                        ></span>
+                    </a>
+                </dd>
+                <dt
+                    data-translate="nasha_components_metrics_space_usage"
+                    class="bottom-space-m4"
+                ></dt>
+                <dd class="d-flex align-items-center bottom-space-m8">
+                    <div>
+                        <label class="oui-switch pull-left">
+                            <span class="oui-switch">
+                                <label class="oui-switch__label-container">
+                                    <input
+                                        type="checkbox"
+                                        class="oui-switch__checkbox"
+                                        data-ng-model="$ctrl.nasha.monitored"
+                                        data-ng-disabled="$ctrl.monitoredDisabled"
+                                        data-ng-change="$ctrl.onMonitoredChanged($value)"
+                                    />
+                                    <span
+                                        class="oui-switch__slider"
+                                        aria-hidden="true"
+                                    ></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                    <button
+                        type="button"
+                        class="oui-popover-button ml-2"
+                        data-oui-popover="{{:: 'nasha_components_metrics_space_usage_help' | translate }}"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>

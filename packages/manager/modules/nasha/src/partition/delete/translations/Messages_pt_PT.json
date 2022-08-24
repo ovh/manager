@@ -1,6 +1,0 @@
-{
-  "nasha_partitions_action_delete_title": "Eliminar partição",
-  "nasha_partitions_delete_confirmation": "Tem a certeza de que deseja eliminar a partição {{partitionName}}?",
-  "nasha_partitions_action_delete_success": "A partição {{partitionName}} será eliminada dentro de alguns instantes.",
-  "nasha_partitions_action_delete_failure": "Ocorreu um erro aquando da eliminação da partição {{partitionName}}. {{message}}"
-}

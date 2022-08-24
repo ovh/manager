@@ -1,0 +1,73 @@
+<nasha-components-modal-form
+    data-submit=":: $ctrl.submit()"
+    data-can-submit="$ctrl.canSubmit"
+    data-close=":: $ctrl.onCancelClick()"
+    data-heading="{{:: 'nasha_components_partition_zfs_options_title' | translate }}"
+    data-primary-label="{{:: 'nasha_components_partition_zfs_options_submit' | translate }}"
+    data-secondary-label="{{:: 'nasha_components_partition_zfs_options_cancel' | translate }}"
+    data-loading="$ctrl.isLoading"
+>
+    <oui-field
+        data-label="{{:: 'nasha_components_partition_zfs_options_atime' | translate }}"
+    >
+        <oui-checkbox
+            data-description="{{:: ('nasha_components_partition_zfs_options_atime_description' | translate)  }}"
+            id="atime"
+            name="atime"
+            data-model="$ctrl.model.atime"
+        >
+            <span
+                data-translate="nasha_components_partition_zfs_options_atime_deactivate"
+            ></span>
+        </oui-checkbox>
+    </oui-field>
+    <oui-field
+        data-label="{{:: 'nasha_components_partition_zfs_options_recordsize' | translate }}"
+    >
+        <label class="oui-select">
+            <select
+                id="recordsize"
+                name="recordsize"
+                class="oui-select__input"
+                data-ng-model="$ctrl.model.recordsize"
+            >
+                <option
+                    data-ng-repeat="recordsize in $ctrl.recordsizeEnum"
+                    data-ng-bind="$ctrl.getRecordsizeLabel(recordsize)"
+                    value="{{ recordsize.value }}"
+                ></option>
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+    </oui-field>
+    <oui-field
+        data-label="{{:: 'nasha_components_partition_zfs_options_sync' | translate }}"
+    >
+        <oui-radio
+            data-ng-repeat="sync in $ctrl.syncEnum track by $index"
+            data-model="$ctrl.model.sync"
+            data-name="sync"
+            data-value="sync.value"
+        >
+            <oui-radio-label>
+                <span data-ng-bind="sync.label"></span>
+                <span
+                    data-ng-if="sync.default"
+                    data-translate="nasha_components_partition_zfs_options_default"
+                ></span>
+            </oui-radio-label>
+            <oui-radio-description>
+                <span
+                    data-translate="{{:: 'nasha_components_partition_zfs_options_sync_' + sync.value + '_description' | translate }}"
+                ></span>
+                <strong
+                    data-ng-if="sync.value === 'disabled'"
+                    data-translate="nasha_components_partition_zfs_options_sync_disabled_warning"
+                ></strong>
+            </oui-radio-description>
+        </oui-radio>
+    </oui-field>
+</nasha-components-modal-form>

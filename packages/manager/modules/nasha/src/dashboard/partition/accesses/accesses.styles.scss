@@ -1,0 +1,28 @@
+$ouiSelectWidth: 12em;
+
+.nasha-dashboard-partition-accesses {
+  oui-datagrid-topbar > * {
+    display: flex;
+    align-items: center;
+  }
+
+  oui-datagrid-cell oui-select {
+    width: $ouiSelectWidth;
+  }
+
+  .oui-datagrid-responsive {
+    overflow: inherit;
+  }
+
+  .oui-datagrid__cell:last-child {
+    width: 100%;
+  }
+
+  .oui-datagrid__cell:not(:last-child) {
+    min-width: $ouiSelectWidth;
+  }
+
+  oui-datagrid.hide-pagination oui-pagination {
+    display: none !important;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "nasha_components_partition_create_cancel": "Schließen",
+  "nasha_components_partition_create_description_rules": "maximal {{ max }} Zeichen",
+  "nasha_components_partition_create_description": "Beschreibung (optional)",
+  "nasha_components_partition_create_name_error": "Ungültiger Name",
+  "nasha_components_partition_create_name_rules": "Nur Buchstaben von A bis Z (Klein- und Großbuchstaben) sowie Zahlen sind zulässig.",
+  "nasha_components_partition_create_name": "Partitionsname",
+  "nasha_components_partition_create_protocol": "Wahl des Protokolls",
+  "nasha_components_partition_create_protocol_description_CIFS": "Für Windows Server wird dieses Austauschprotokoll empfohlen.",
+  "nasha_components_partition_create_protocol_description_NFS_CIFS": "Für den geteilten Austausch mit Windows-Servern und Linux/Unix-Servern.",
+  "nasha_components_partition_create_protocol_description_NFS": "Für Linux/Unix-Server wird dieses Austauschprotokoll empfohlen.",
+  "nasha_components_partition_create_protocol_description": "Wahl des Protokolls",
+  "nasha_components_partition_create_size_rules": "Zulässige Größe: Min.: {{ min }} GB, Max.: {{ max }} GB",
+  "nasha_components_partition_create_size": "Größe der Partition",
+  "nasha_components_partition_create_submit": "Eine Partition erstellen",
+  "nasha_components_partition_create_title": "Eine Partition erstellen",
+  "nasha_components_partition_create_forbid": "Dieser Name wird bereits für eine Partition verwendet. Bitte geben Sie einen Namen für die Partition an, der noch nicht verwendet wurde.",
+  "nasha_components_partition_create_error_max": "Es kann keine Partition erstellt werden. Es wurde bereits die maximale Anzahl an Partitionen erstellt."
+}
