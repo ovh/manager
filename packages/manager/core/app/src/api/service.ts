@@ -1,3 +1,5 @@
+import { SupportLevelEnum } from './support';
+
 export type Service = {
   billing: {
     plan: {
@@ -8,15 +10,111 @@ export type Service = {
   serviceId: number;
 };
 
-export type BareMetalServersDetails = {
-  bandwidth?: Record<string, unknown>;
-  gpu?: Record<string, unknown>;
-  memory?: Record<string, unknown>;
-  server?: Record<string, unknown>;
-  storage?: {
-    disks?: Record<string, unknown>[];
+export enum BareMetalServersStorageDiskUsageEnum {
+  CACHE = 'cache',
+  DATA = 'data',
+  OS = 'os',
+}
+
+export enum BareMetalServersServerServicesSecureComputingTechnologyEnum {
+  AMD_INFINITY = 'AMDInfinity',
+  INTEL_SGX = 'IntelSGX',
+}
+
+export type BareMetalServersServerDetails = {
+  cpu: {
+    boost: number;
+    brand: string;
+    cores: number;
+    frequency: number;
+    model: string;
+    number: number;
+    score: number;
+    threads: number;
   };
-  vrack?: Record<string, unknown>;
+  extensionCard: {
+    model: string;
+    size: string;
+  };
+  frame: {
+    dualPowerSupply: boolean;
+    maxNbDisks?: number;
+    model: string;
+    size: string;
+  };
+  network: {
+    capacity: number;
+    interfaces: number;
+  };
+  range: string;
+  services: {
+    antiddos: string;
+    includedBackup: number;
+    ipmiAvailable: boolean;
+    ipv4RangeIncluded?: string;
+    ipv6RangeIncluded?: string;
+    kvmipAvailable: boolean;
+    olaAvailable: boolean;
+    secureComputingTechnology?: BareMetalServersServerServicesSecureComputingTechnologyEnum;
+    sla: number;
+    supportLevel?: SupportLevelEnum;
+  };
+  useCase?: string;
+};
+
+export type BareMetalServersStorageDiskDetails = {
+  capacity: number;
+  dwpd?: number;
+  interface: string;
+  latency?: number;
+  number: number;
+  read?: number;
+  specs: string;
+  technology: string;
+  usage: BareMetalServersStorageDiskUsageEnum;
+  write?: number;
+};
+
+export type BareMetalServersStorageDetails = {
+  disks?: BareMetalServersStorageDiskDetails[];
+  raid: string;
+};
+
+export type BareMetalServerDetails = {
+  bandwidth?: {
+    aggregation?: {
+      upTo: number;
+    };
+    burst: number;
+    guaranteed: boolean;
+    level: number;
+    limit: number;
+  };
+  gpu?: {
+    brand: string;
+    memory: {
+      size: number;
+    };
+    model: string;
+    number: number;
+  };
+  memory?: {
+    ecc: boolean;
+    frequency: number;
+    ramType: string;
+    size: number;
+  };
+  server?: BareMetalServersServerDetails;
+  storage?: BareMetalServersStorageDetails;
+  vrack?: {
+    aggregation?: {
+      upTo: number;
+    };
+    burst: number;
+    guaranteed: boolean;
+    level: number;
+    limit: number;
+  };
 };
 
 export type NutanixClusterLicenseFeatureDetails = {
@@ -38,9 +136,8 @@ export type NutanixClusterDetails = {
 };
 
 export type TechnicalDetails = {
-  baremetalServers?: BareMetalServersDetails;
+  baremetalServers?: BareMetalServerDetails;
   nutanixCluster?: NutanixClusterDetails;
-  serviceId?: number;
 };
 
 export type GenericProductDefinition = {

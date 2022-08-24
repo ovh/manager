@@ -6,7 +6,7 @@ import Service, {
   getServiceOptions,
   getHardwareInfo,
   TechnicalDetails,
-  BareMetalServersDetails,
+  BareMetalServerDetails,
   NutanixClusterDetails,
 } from '@/api/service';
 import DedicatedServer, {
@@ -170,7 +170,7 @@ export async function getServerOrderableBandwidthVrack(
 function transformTechnicalDetails(
   optionsHardwareInfo: Array<TechnicalDetails>,
 ): TechnicalDetails {
-  const baremetalServers = {} as BareMetalServersDetails;
+  const baremetalServers = {} as BareMetalServerDetails;
   let nutanixCluster = {} as NutanixClusterDetails;
   optionsHardwareInfo.forEach((hardwareInfo) => {
     if (hardwareInfo.baremetalServers) {
@@ -179,10 +179,6 @@ function transformTechnicalDetails(
       ) as (keyof typeof hardwareInfo.baremetalServers)[];
       keys.forEach((key) => {
         if (hardwareInfo.baremetalServers[key]) {
-          const value = hardwareInfo.baremetalServers[key] as Record<
-            string,
-            unknown
-          >;
           if (key === 'storage' && baremetalServers.storage) {
             baremetalServers.storage.disks = [
               ...baremetalServers.storage.disks,
@@ -190,8 +186,8 @@ function transformTechnicalDetails(
             ];
           } else {
             baremetalServers[key] = {
-              ...value,
-              serviceId: hardwareInfo.serviceId,
+              ...hardwareInfo.baremetalServers[key],
+              // serviceId: hardwareInfo.serviceId,
             };
           }
         }
@@ -202,6 +198,7 @@ function transformTechnicalDetails(
       nutanixCluster = hardwareInfo.nutanixCluster;
     }
   });
+
   return {
     baremetalServers,
     nutanixCluster,
