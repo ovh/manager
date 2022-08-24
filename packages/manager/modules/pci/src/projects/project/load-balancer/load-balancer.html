@@ -19,7 +19,6 @@
         </oui-guide-menu>
     </oui-header>
     <div class="container-fluid px-0">
-
         <pci-maintenance-banner
             data-steins="$ctrl.steins"
             data-customer-regions="$ctrl.customerRegions"
@@ -44,6 +43,17 @@
         criteria="$ctrl.criteria"
         on-criteria-change="$ctrl.onListParamChange($criteria)"
     >
+        <oui-datagrid-topbar>
+            <oui-button
+                variant="secondary"
+                type="button"
+                data-on-click="$ctrl.gotoOrder()"
+            >
+                <span
+                    data-translate="pci_projects_project_load_balancer_list_order"
+                ></span>
+            </oui-button>
+        </oui-datagrid-topbar>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_load_balancer_list_name' | translate"
             data-property="name"
