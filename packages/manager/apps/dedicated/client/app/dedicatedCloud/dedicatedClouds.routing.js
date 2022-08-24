@@ -1,4 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { getDedicatedCloudOrderUrl } from './dedicatedClouds-order';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedCloud.index', {
@@ -38,6 +39,21 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.dedicatedCloud.details.dashboard', {
           productId,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('dedicated_clouds_order'),
+          value: $translate.instant('dedicated_clouds_order'),
+          onClick: () => {
+            $window.open(
+              getDedicatedCloudOrderUrl(coreConfig.getUser().ovhSubsidiary),
+              '_blank',
+            );
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
   });
