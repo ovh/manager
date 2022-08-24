@@ -33,6 +33,18 @@ export default /* @ngInject */ ($stateProvider) => {
           organization: domain,
           productId: domain,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $state) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('exchange_order'),
+          value: $translate.instant('exchange_order'),
+          onClick: () => {
+            $state.go('exchange.order');
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
   });
