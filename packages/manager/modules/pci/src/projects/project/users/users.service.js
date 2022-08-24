@@ -94,11 +94,12 @@ export default class PciProjectsProjectUsersService {
     }).$promise;
   }
 
-  downloadRclone(projectId, { id: userId }, region) {
+  downloadRclone(projectId, { id: userId }, region, service) {
     return this.OvhApiCloudProjectUser.v6().rclone({
       serviceName: projectId,
       userId,
       region,
+      service,
     }).$promise;
   }
 
