@@ -1,4 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { getHostingOrderUrl } from './hosting.order';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.index', {
@@ -28,6 +29,21 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.hosting.dashboard', {
           productId,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('hostings_order'),
+          value: $translate.instant('hostings_order'),
+          onClick: () => {
+            $window.open(
+              getHostingOrderUrl(coreConfig.getUser().ovhSubsidiary),
+              '_blank',
+            );
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
   });
