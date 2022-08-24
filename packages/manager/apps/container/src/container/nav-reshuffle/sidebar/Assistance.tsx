@@ -11,10 +11,14 @@ import { ComponentProps } from './utils';
 
 interface Props {
   containerURL: { appId: string; appHash: string };
+  isOpen: boolean;
+  onToggle: (isOpen: boolean) => void;
 }
 
 const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
   containerURL,
+  isOpen,
+  onToggle,
 }: Props): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const { shell } = useContext(ApplicationContext);
@@ -26,7 +30,6 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
   const reketInstance = useReket();
-  const [isOpen, setIsOpen] = useState(true);
   const [selectedItem, setSelectedItem] = useState<string>(null);
 
   const hasAdvancedSupport = ['EU', 'CA'].includes(environment.getRegion());
@@ -79,7 +82,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
 
   return (
     <ul className="mt-auto">
-      <li className="assistance_header" onClick={() => setIsOpen(!isOpen)}>
+      <li className="assistance_header" onClick={() => onToggle(!isOpen)}>
         <h2 className="d-flex justify-content-between">
           <span>{t('sidebar_assistance_title')}</span>
           <span
