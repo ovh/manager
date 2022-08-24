@@ -8,6 +8,7 @@ import {
   WEATHERMAP_URL,
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
+  HIDE_MRTG_FOR_SERVER_RANGES,
 } from './dashboard.constants';
 import { NEW_RANGE } from '../details/server.constants';
 
@@ -384,5 +385,11 @@ export default class DedicatedServerDashboard {
       .finally(() => {
         this.updatingNoIntervention = false;
       });
+  }
+
+  displayMRTG() {
+    return !HIDE_MRTG_FOR_SERVER_RANGES.includes(
+      this.technicalDetails?.server?.range,
+    );
   }
 }
