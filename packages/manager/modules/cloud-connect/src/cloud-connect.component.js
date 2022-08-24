@@ -6,6 +6,7 @@ export default {
   bindings: {
     ...ListLayoutHelper.componentBindings,
     getServiceNameLink: '<',
+    gotoOrder: '<',
     viewDetail: '<',
     orderFollowUp: '<',
   },
