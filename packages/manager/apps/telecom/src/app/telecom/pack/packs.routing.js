@@ -29,6 +29,9 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('telecom.packs.pack', {
           packName,
         }),
+      gotoOrder: /* @ngInject */ ($window) => () => {
+        $window.open('https://www.ovhtelecom.fr/offre-internet/', '_blank');
+      },
       hideBreadcrumb: () => true,
     },
     redirectTo: (transition) =>
