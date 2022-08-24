@@ -1,5 +1,6 @@
 import map from 'lodash/map';
 import { PCI_FEATURES } from '../../projects.constant';
+import { getLoadBalancerOrderUrl } from './load-balancer.order';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.loadbalancer', {
@@ -58,6 +59,13 @@ export default /* @ngInject */ ($stateProvider) => {
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_load_balancer_list_title'),
+
+      gotoOrder: /* @ngInject */ ($window, coreConfig) => () => {
+        $window.open(
+          getLoadBalancerOrderUrl(coreConfig.getUser().ovhSubsidiary),
+          '_blank',
+        );
+      },
     },
   });
 };

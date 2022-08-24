@@ -14,6 +14,7 @@ export default {
     customerRegions: '<',
     loadBalancersRegions: '<',
     goToRegion: '<',
+    gotoOrder: '<',
   },
   controller,
   template,
