@@ -1,4 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { getVrackOrderUrl } from './vrack-order';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vrack.index', {
@@ -30,6 +31,21 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('vrack.dashboard', {
           vrackId,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('vrack_order'),
+          value: $translate.instant('vrack_order'),
+          onClick: () => {
+            $window.open(
+              getVrackOrderUrl(coreConfig.getUser().ovhSubsidiary),
+              '_blank',
+            );
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
     redirectTo: (transition) =>
