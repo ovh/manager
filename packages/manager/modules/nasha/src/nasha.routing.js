@@ -18,6 +18,18 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('nasha.dashboard', {
           nashaId,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $state) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('nasha_order'),
+          value: $translate.instant('nasha_order'),
+          onClick: () => {
+            $state.go('nasha.nasha-add');
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
     redirectTo: (transition) =>

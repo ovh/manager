@@ -15,6 +15,7 @@ angular
     'ui.router',
     onboarding,
   ])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./dashboard/translations */);
 
 export default moduleName;
