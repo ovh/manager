@@ -80,6 +80,14 @@ export type BareMetalServersStorageDetails = {
   raid: string;
 };
 
+export type BareMetalServerDetailsKeys =
+  | 'bandwidth'
+  | 'gpu'
+  | 'memory'
+  | 'server'
+  | 'storage'
+  | 'vrack';
+
 export type BareMetalServerDetails = {
   bandwidth?: {
     aggregation?: {

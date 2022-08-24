@@ -8,6 +8,7 @@ import Service, {
   TechnicalDetails,
   BareMetalServerDetails,
   NutanixClusterDetails,
+  BareMetalServerDetailsKeys,
 } from '@/api/service';
 import DedicatedServer, {
   getDedicatedServer,
@@ -176,7 +177,7 @@ function transformTechnicalDetails(
     if (hardwareInfo.baremetalServers) {
       const keys = Object.keys(
         hardwareInfo.baremetalServers,
-      ) as (keyof typeof hardwareInfo.baremetalServers)[];
+      ) as BareMetalServerDetailsKeys[];
       keys.forEach((key) => {
         if (hardwareInfo.baremetalServers[key]) {
           if (key === 'storage' && baremetalServers.storage) {
@@ -185,7 +186,9 @@ function transformTechnicalDetails(
               ...hardwareInfo.baremetalServers.storage.disks,
             ];
           } else {
-            baremetalServers[key] = {
+            (baremetalServers as Record<BareMetalServerDetailsKeys, unknown>)[
+              key
+            ] = {
               ...hardwareInfo.baremetalServers[key],
               // serviceId: hardwareInfo.serviceId,
             };
