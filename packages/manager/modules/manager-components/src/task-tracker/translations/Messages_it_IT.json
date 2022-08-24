@@ -1,0 +1,8 @@
+{
+  "task_tracker_close": "Chiudi",
+  "task_tracker_empty_error": "Non sono presenti dettagli per questo errore, ti preghiamo di contattare il supporto.",
+  "task_tracker_step_doing": "Operazione in corso di esecuzione",
+  "task_tracker_step_done": "L'operazione è stata eseguita correttamente",
+  "task_tracker_step_error": "Si è verificato un errore: {{message}}",
+  "task_tracker_step_todo": "L'operazione inizierà tra pochi minuti"
+}
