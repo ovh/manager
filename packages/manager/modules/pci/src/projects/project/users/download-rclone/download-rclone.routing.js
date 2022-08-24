@@ -42,11 +42,12 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectsProjectUsersService,
         projectId,
         user,
-      ) => (regionId) =>
+      ) => (regionId, serviceType) =>
         PciProjectsProjectUsersService.downloadRclone(
           projectId,
           user,
           regionId,
+          serviceType,
         ),
       checkGlobalRegionCallBack: /* @ngInject */ (
         PciProjectsProjectUsersService,

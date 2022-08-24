@@ -10,15 +10,29 @@ const { saveAs } = require('file-saver');
 
 export default class PciUsersDownloadRcloneController {
   /* @ngInject */
-  constructor($compile, $translate, ovhManagerRegionService) {
+  constructor(
+    $compile,
+    $translate,
+    ovhManagerRegionService,
+    ovhFeatureFlipping,
+  ) {
     this.$compile = $compile;
     this.$translate = $translate;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.downloadFileType = DOWNLOAD_FILETYPE;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   $onInit() {
     this.isLoading = false;
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability('public-cloud:object-storage')
+      .then((feature) =>
+        feature.isFeatureAvailable('public-cloud:object-storage'),
+      )
+      .then((status) => {
+        this.showFileType = status;
+      });
     this.fileType = DOWNLOAD_FILETYPE.SWIFT;
     this.regions = map(this.regions, (region) => ({
       id: region,
