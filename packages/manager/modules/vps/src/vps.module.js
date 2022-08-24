@@ -15,5 +15,6 @@ angular
     ListLayoutHelper.moduleName,
     'ui.router',
   ])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./vps/translations */);
 export default moduleName;
