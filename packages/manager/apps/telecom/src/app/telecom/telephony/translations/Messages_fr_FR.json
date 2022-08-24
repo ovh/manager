@@ -1,5 +1,6 @@
 {
   "telephony_breadcrumb": "VoIP",
+  "telephony_order": "Commander",
   "telephony_page_title": "Ma Téléphonie \"{{name}}\"",
   "telephony_default_title": "Ma Téléphonie",
   "telephony_section_load_error": "Oups ! Une erreur est survenue lors du chargement de la section.",
