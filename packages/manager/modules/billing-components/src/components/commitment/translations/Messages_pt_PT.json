@@ -24,5 +24,6 @@
   "billing_commitment_payment_upfront_pay_now": "Pague {{ price }} agora",
   "billing_commitment_summary_description_periodic_end": "Depois de {{ endDate }}, o serviço será tacitamente reiniciado por um período semelhante ao último compromisso.",
   "billing_commitment_summary_description_upfront_end": "Depois de {{ engagementEndDate }}, o serviço {{ serviceName }} será tacitamente reiniciado por um período e uma modalidade de pagamento semelhantes ao seu último compromisso.",
-  "billing_commitment_service_storage_netapp": "espaço de armazenamento Enterprise File Storage"
+  "billing_commitment_service_storage_netapp": "espaço de armazenamento Enterprise File Storage",
+  "billing_commitment_service_dedicated_nasha": "serviço de armazenamento NAS-HA"
 }
