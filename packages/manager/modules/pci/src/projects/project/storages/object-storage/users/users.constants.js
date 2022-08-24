@@ -13,10 +13,13 @@ export const USER_STATUS = {
   OK: 'ok',
 };
 
+export const OBJECT_STORAGE_USER_ROLE = 'objectstore_operator';
+
 export default {
   DOWNLOAD_FILENAME,
   DOWNLOAD_TYPE,
   TRACKING_S3_POLICY,
   TRACKING_S3_POLICY_ADD,
   TRACKING_S3_POLICY_DELETE,
+  OBJECT_STORAGE_USER_ROLE,
 };
