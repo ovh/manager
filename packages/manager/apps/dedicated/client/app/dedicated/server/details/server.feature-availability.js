@@ -40,10 +40,6 @@ export default class {
     return this.deny('US');
   }
 
-  allowDedicatedServerFirewallCiscoAsa() {
-    return this.deny('US');
-  }
-
   allow(...args) {
     return Array.from(args).indexOf(this.target) > -1;
   }

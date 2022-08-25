@@ -7,7 +7,6 @@ import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
 import {
-  GUIDES_FIREWALL_CISCO_ASA_EOL,
   NO_AUTORENEW_COUNTRIES,
   BYOI_STARTING_MESSAGE,
   BYOI_STATUS_ENUM,
@@ -29,7 +28,6 @@ export default class ServerCtrl {
     Poller,
     Polling,
     Server,
-    ServerFirewallAsa,
     User,
   ) {
     this.$q = $q;
@@ -45,7 +43,6 @@ export default class ServerCtrl {
     this.Poller = Poller;
     this.Polling = Polling;
     this.Server = Server;
-    this.ServerFirewallAsa = ServerFirewallAsa;
     this.User = User;
   }
 
@@ -355,11 +352,7 @@ export default class ServerCtrl {
       this.launchBringYourOwnImagePolling();
     }
 
-    return this.$q.all([
-      this.load(),
-      this.fetchRTMInfo(),
-      this.firewallAsaInformations(),
-    ]);
+    return this.$q.all([this.load(), this.fetchRTMInfo()]);
   }
 
   load() {
@@ -682,21 +675,6 @@ export default class ServerCtrl {
         null,
         'rtm_eol_info',
       );
-    });
-  }
-
-  firewallAsaInformations() {
-    return this.ServerFirewallAsa.getInformations(
-      this.$stateParams.productId,
-    ).then((informations) => {
-      if (informations.enabled) {
-        this.firewallAsaIsEnabled = true;
-        this.User.getUser().then(({ language }) => {
-          this.linkFirewallCiscoAsa =
-            GUIDES_FIREWALL_CISCO_ASA_EOL[language] ||
-            GUIDES_FIREWALL_CISCO_ASA_EOL.default;
-        });
-      }
     });
   }
 }
