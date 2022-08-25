@@ -109,4 +109,11 @@
             </oui-numeric>
         </oui-field>
     </div>
+    <div class="mb-4" data-ng-if="$ctrl.isBillingWarningMessageDisplayed()">
+        <oui-message data-type="warning">
+            <p
+                data-translate="kubernetes_node_pool_billing_auto_scaling_monthly_warning"
+            ></p>
+        </oui-message>
+    </div>
 </div>
