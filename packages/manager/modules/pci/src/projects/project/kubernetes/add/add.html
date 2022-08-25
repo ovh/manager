@@ -1,7 +1,8 @@
 <h1 data-translate="kubernetes_add"></h1>
 
-<cui-message-container id="{{$ctrl.KUBE_CONTAINER_MESSAGES}}"
-                       data-messages="$ctrl.messages"
+<cui-message-container
+    id="{{$ctrl.KUBE_CONTAINER_MESSAGES}}"
+    data-messages="$ctrl.messages"
 ></cui-message-container>
 
 <form name="kubeAddClusterForm">
@@ -22,8 +23,9 @@
             ></pci-project-regions-list>
 
             <!--Add new region banner info-->
-            <oui-message type="info"
-                         data-ng-if="!$ctrl.displaySelectedRegion && $ctrl.cluster.region && !$ctrl.cluster.region.enabled"
+            <oui-message
+                type="info"
+                data-ng-if="!$ctrl.displaySelectedRegion && $ctrl.cluster.region && !$ctrl.cluster.region.enabled"
             >
                 <span data-translate="kubernetes_add_region_info"></span>
             </oui-message>
@@ -61,7 +63,6 @@
             data-valid="$ctrl.isValidNetworkConfig(kubeAddClusterForm['kubernetes_add_private_network'])"
             data-prevent-next="true"
         >
-
             <!--Select Public/Private network-->
             <oui-field
                 data-label="{{ :: 'kubernetes_add_private_network_label' | translate }}"
@@ -78,10 +79,11 @@
                     <span
                         data-translate="kubernetes_add_private_network_description"
                     ></span>
-                    <a data-ng-if="$ctrl.displaySelectedPrivateNetwork"
-                       data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
-                       data-translate="kubernetes_add_private_network_add"
-                       target="_top"
+                    <a
+                        data-ng-if="$ctrl.displaySelectedPrivateNetwork"
+                        data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
+                        data-translate="kubernetes_add_private_network_add"
+                        target="_top"
                     ></a>
                 </p>
             </oui-field>
@@ -91,7 +93,6 @@
                 data-ng-if="$ctrl.cluster.network.private.id"
                 data-network="$ctrl.cluster.network"
             ></gateway-management-component>
-
         </oui-step-form>
 
         <!--Select node pool configuration -->
@@ -157,6 +158,14 @@
                 data-disabled="false"
             >
             </pci-project-flavor-billing>
+            <oui-message
+                data-type="warning"
+                data-ng-if="$ctrl.isBillingWarningMessageDisplayed()"
+            >
+                <p
+                    data-translate="kubernetes_add_billing_auto_scaling_monthly_warning"
+                ></p>
+            </oui-message>
             <p data-translate="kubernetes_add_billing_type_payment_method"></p>
         </oui-step-form>
 

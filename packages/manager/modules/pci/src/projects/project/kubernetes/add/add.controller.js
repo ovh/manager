@@ -220,6 +220,13 @@ export default class {
     this.displaySelectedFlavor = false;
   }
 
+  isBillingWarningMessageDisplayed() {
+    return (
+      this.cluster.nodePool.monthlyBilling &&
+      this.cluster.nodePool.autoscaling.autoscale
+    );
+  }
+
   onNodePoolSubmit() {
     const { nodes } = this.cluster.nodePool.autoscaling;
 

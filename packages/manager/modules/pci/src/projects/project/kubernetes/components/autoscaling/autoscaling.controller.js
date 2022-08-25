@@ -133,7 +133,6 @@ export default class AutoscalingController {
 
   onAutoscaleChanged(autoscale) {
     this.init(false);
-
     AutoscalingController.triggerHandlerFunction(
       this.onAutoscalePoolChanged,
       autoscale,
@@ -196,5 +195,9 @@ export default class AutoscalingController {
       this.onHighestPoolValueChanged,
       max,
     );
+  }
+
+  isBillingWarningMessageDisplayed() {
+    return this.nodePool.monthlyBilled && this.nodePool.autoscaling.autoscale;
   }
 }
