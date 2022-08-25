@@ -51,7 +51,7 @@
   "pci_projects_project_instances_delete_label": "Usuń",
   "pci_projects_project_instances_add_label": "Utwórz instancję",
   "pci_projects_project_instances_error_query": "Wystąpił błąd podczas pobierania wolumenów.",
-  "pci_projects_project_instances_vrack_none": "Jeszcze nie skonfigurowałeś sieci vRack.",
+  "pci_projects_project_instances_vrack_none": "Nie włączyłeś jeszcze funkcji prywatnych sieci (opartych na vRack).",
   "pci_projects_project_instances_vrack_create": "Utwórz vRack",
   "pci_projects_project_instances_autobackup_label": "Utwórz automatyzowane kopie zapasowe",
   "pci_projects_project_instances_refresh": "Aktualizacja instancji",
