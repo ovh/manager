@@ -17,5 +17,6 @@
   "kubernetes_add_error_InsufficientRAMQuota": "Your project’s RAM quota is too low to perform the operation. Please increase your quota, or request fewer resources.",
   "kubernetes_add_error_InsufficientPortsQuota": "Your project’s port quota is too low to complete the operation. Please increase your quota, or request fewer resources.",
   "kubernetes_add_error_InsufficientInstancesQuota": "Your project’s instance quota is too low to complete the operation. Please increase your quota, or request fewer resources.",
-  "kubernetes_add_error_quota_link": "Increase your quota."
+  "kubernetes_add_error_quota_link": "Increase your quota.",
+  "kubernetes_add_billing_auto_scaling_monthly_warning": "Warning: You can enable auto-scaling and monthly billing at the same time for this node pool. Each time you create a node via auto-scaling, you will be billed for one node immediately on a pro rata basis for the remaining time in the current month. We recommend avoiding this combination if you anticipate that your node pool will be reduced frequently."
 }

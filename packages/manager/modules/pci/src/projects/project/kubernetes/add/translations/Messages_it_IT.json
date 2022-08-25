@@ -15,5 +15,6 @@
   "kubernetes_add_error_InsufficientRAMQuota": "La quota di RAM del tuo progetto non è sufficiente per eseguire l'operazione. Ti consigliamo di aumentare la quota disponibile o richiedere meno risorse.",
   "kubernetes_add_error_InsufficientPortsQuota": "La quota delle porte del tuo progetto non è sufficiente per eseguire l'operazione. Ti consigliamo di aumentare la quota disponibile o richiedere meno risorse.",
   "kubernetes_add_error_InsufficientInstancesQuota": "La quota di istanze del tuo progetto non è sufficiente per eseguire l'operazione. Ti consigliamo di aumentare la quota disponibile o richiedere meno risorse.",
-  "kubernetes_add_error_quota_link": "Aumenta la tua quota"
+  "kubernetes_add_error_quota_link": "Aumenta la tua quota",
+  "kubernetes_add_billing_auto_scaling_monthly_warning": "Attenzione: stai attivando simultaneamente l'autoscaling e il forfait mensile per questo nodepool. La creazione di nodi tramite autoscaling comporta la fatturazione immediata di un nodo, calcolata in base al tempo restante per il mese in corso. Consigliamo di evitare questa combinazione se si prevede che la dimensione del nodepool verrà ridotta frequentemente."
 }

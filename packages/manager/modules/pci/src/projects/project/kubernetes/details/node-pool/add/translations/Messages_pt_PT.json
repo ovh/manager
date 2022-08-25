@@ -11,5 +11,6 @@
   "kube_add_node_pool_error_InsufficientRAMQuota": "A quota de RAM do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
   "kube_add_node_pool_error_InsufficientPortsQuota": "A quota de portas do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
   "kube_add_node_pool_error_InsufficientInstancesQuota": "A quota de instâncias do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
-  "kube_add_node_pool_error_quota_link": "Aumentar a minha quota."
+  "kube_add_node_pool_error_quota_link": "Aumentar a minha quota.",
+  "kube_add_billing_auto_scaling_monthly_warning": "Atenção: ativará simultaneamente o autoscaling e o tarifário mensal para este nodepool. Todas as criações de nós através do autoscaling implicarão a faturação imediata de um nó em pro rata do tempo restante no mês em curso. Recomendamos que evite esta combinação se antecipar que o tamanho do seu nodepool seja frequentemente reduzido."
 }
