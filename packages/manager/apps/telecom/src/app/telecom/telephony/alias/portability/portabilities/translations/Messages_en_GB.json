@@ -1,6 +1,6 @@
 {
-  "telephony_alias_portabilities_back_link": "Back to number administration",
-  "telephony_alias_default_portabilities_back_link": "Back to group administration",
+  "telephony_alias_portabilities_back_link": "Number administration",
+  "telephony_alias_default_portabilities_back_link": "Group administration",
   "telephony_alias_portabilities_title": "Pending porting processes",
   "telephony_alias_portabilities_subtitle": "List of pending porting processes",
   "telephony_alias_portabilities_empty": "No pending porting requests.",
@@ -9,7 +9,7 @@
   "telephony_alias_portabilities_creation_date": "Request date",
   "telephony_alias_portabilities_reference": "Reference",
   "telephony_alias_portabilities_operator": "Operator",
-  "telephony_alias_portabilities_numbers": "Ported numbers",
+  "telephony_alias_portabilities_numbers": "No. {{ number }}",
   "telephony_alias_portabilities_duration": "Estimated duration:",
   "telephony_alias_portabilities_step": "Status",
   "telephony_alias_portabilities_planed_on": "Porting on <strong>{{ date }}</strong>",
@@ -35,9 +35,9 @@
   "telephony_alias_portabilities_step_name_requestSentToOperator": "Request sent to operator",
   "telephony_alias_portabilities_step_name_sDASequenceReceivedFromOperator": "DID sequence received from operator",
   "telephony_alias_portabilities_step_duration_NA": "N/A",
-  "telephony_alias_portabilities_step_duration_day": "day(s)",
-  "telephony_alias_portabilities_step_duration_hour": "hour(s)",
-  "telephony_alias_portabilities_step_duration_openday": "working day(s)",
+  "telephony_alias_portabilities_step_duration_day": "{{ duration }} day",
+  "telephony_alias_portabilities_step_duration_hour": "{{ duration }} hour",
+  "telephony_alias_portabilities_step_duration_openday": "{{ duration }} working day",
   "telephony_alias_portabilities_cancel": "Cancel port request?",
   "telephony_alias_portabilities_cancel_confirm": "Are you sure you want to cancel your port request?",
   "telephony_alias_portabilities_cancel_doing": "Cancelling...",
@@ -47,5 +47,11 @@
   "telephony_alias_portabilities_attach_form": "Attach my signed port authorisation form",
   "telephony_alias_portabilities_attach_list_files": "List of documents sent",
   "telephony_alias_portabilities_attach_file_name": "Document name",
-  "telephony_alias_portabilities_attach_delete": "Delete"
+  "telephony_alias_portabilities_attach_delete": "Delete",
+  "telephony_alias_portabilities_details": "Details",
+  "telephony_alias_portabilities_step_duration_days": "{{ duration }} days",
+  "telephony_alias_portabilities_step_duration_hours": "{{ duration }} hours",
+  "telephony_alias_portabilities_step_duration_opendays": "{{ duration }} working days",
+  "telephony_alias_portabilities_step_guide": "Step guide",
+  "telephony_alias_portabilities_relaunch": "Correct and relaunch portability"
 }

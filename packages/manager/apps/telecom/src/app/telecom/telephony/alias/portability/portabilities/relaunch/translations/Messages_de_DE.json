@@ -1,0 +1,23 @@
+{
+  "telephony_alias_portabilities_relaunch_title": "Die Portierung korrigieren und neu starten",
+  "telephony_alias_portabilities_relaunch_cancel": "Abbrechen",
+  "telephony_alias_portabilities_relaunch_submit": "Die Portierung neu starten",
+  "telephony_alias_portabilities_relaunch_doing": "Wird aktiviert...",
+  "telephony_alias_portabilities_relaunch_success": "Die Anfrage zur Portierung wurde erfolgreich neu gestartet.",
+  "telephony_alias_portabilities_relaunch_error": "Hoppla! Beim Neustart Ihrer Portierungsanfrage ist ein Fehler aufgetreten: {{ error }}",
+  "telephony_alias_portabilities_relaunch_label_rio": "Rio",
+  "telephony_alias_portabilities_relaunch_label_streetNumber": "Gleisnummer",
+  "telephony_alias_portabilities_relaunch_label_streetName": "Straße",
+  "telephony_alias_portabilities_relaunch_label_zip": "Postleitzahl",
+  "telephony_alias_portabilities_relaunch_label_city": "Stadt",
+  "telephony_alias_portabilities_relaunch_label_firstName": "Vorname",
+  "telephony_alias_portabilities_relaunch_label_lastName": "Name",
+  "telephony_alias_portabilities_relaunch_label_socialNomination": "Unternehmensbezeichnung",
+  "telephony_alias_portabilities_relaunch_label_building": "Gebäude",
+  "telephony_alias_portabilities_relaunch_label_stair": "Treppe",
+  "telephony_alias_portabilities_relaunch_label_floor": "Stockwerk",
+  "telephony_alias_portabilities_relaunch_label_door": "Tür",
+  "telephony_alias_portabilities_relaunch_label_siret": "Siret",
+  "telephony_alias_portabilities_relaunch_required_fields": "Pflichtfelder",
+  "telephony_alias_portabilities_relaunch_optional_fields": "Optionale Felder"
+}

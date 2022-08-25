@@ -1,0 +1,9 @@
+{
+  "telephony_alias_portabilities_cancel_title": "Cancelar la portabilidad",
+  "telephony_alias_portabilities_cancel_confirm": "¿Seguro que quiere cancelar la solicitud de portabilidad?",
+  "telephony_alias_portabilities_cancel_yes": "Sí",
+  "telephony_alias_portabilities_cancel_no": "No",
+  "telephony_alias_portabilities_cancel_doing": "Cancelando...",
+  "telephony_alias_portabilities_cancel_success": "La solicitud de portabilidad se ha cancelado correctamente.",
+  "telephony_alias_portabilities_cancel_error": "¡Vaya! Se ha producido un error al cancelar la solicitud de portabilidad."
+}

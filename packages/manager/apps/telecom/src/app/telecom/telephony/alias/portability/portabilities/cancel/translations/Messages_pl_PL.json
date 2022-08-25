@@ -1,0 +1,9 @@
+{
+  "telephony_alias_portabilities_cancel_title": "Anuluj przenoszenie",
+  "telephony_alias_portabilities_cancel_confirm": "Czy chcesz anulować zlecenie przeniesienia?",
+  "telephony_alias_portabilities_cancel_yes": "Tak",
+  "telephony_alias_portabilities_cancel_no": "Nie",
+  "telephony_alias_portabilities_cancel_doing": "Anulowanie w trakcie...",
+  "telephony_alias_portabilities_cancel_success": "Zlecenie przeniesienia zostało anulowane.",
+  "telephony_alias_portabilities_cancel_error": "Ojej! Wystąpił błąd podczas anulowania zlecenia przeniesienia."
+}

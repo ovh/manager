@@ -1,0 +1,23 @@
+{
+  "telephony_alias_portabilities_relaunch_title": "Poprawienie i wznowienie przenoszenia",
+  "telephony_alias_portabilities_relaunch_cancel": "Anuluj",
+  "telephony_alias_portabilities_relaunch_submit": "Wznów mobilność",
+  "telephony_alias_portabilities_relaunch_doing": "Trwa odtwarzanie...",
+  "telephony_alias_portabilities_relaunch_success": "Zlecenie przeniesienia zostało wznowione.",
+  "telephony_alias_portabilities_relaunch_error": "Ojej! Wystąpił błąd podczas wznawiania zlecenia przeniesienia: {{ error }}",
+  "telephony_alias_portabilities_relaunch_label_rio": "Rio",
+  "telephony_alias_portabilities_relaunch_label_streetNumber": "Numer toru",
+  "telephony_alias_portabilities_relaunch_label_streetName": "Ulica",
+  "telephony_alias_portabilities_relaunch_label_zip": "Kod pocztowy",
+  "telephony_alias_portabilities_relaunch_label_city": "Miasto",
+  "telephony_alias_portabilities_relaunch_label_firstName": "Imię",
+  "telephony_alias_portabilities_relaunch_label_lastName": "Nazwa",
+  "telephony_alias_portabilities_relaunch_label_socialNomination": "Nazwa firmy",
+  "telephony_alias_portabilities_relaunch_label_building": "Budynek",
+  "telephony_alias_portabilities_relaunch_label_stair": "Schody",
+  "telephony_alias_portabilities_relaunch_label_floor": "Piętro",
+  "telephony_alias_portabilities_relaunch_label_door": "Drzwi",
+  "telephony_alias_portabilities_relaunch_label_siret": "Numer",
+  "telephony_alias_portabilities_relaunch_required_fields": "Pola obowiązkowe",
+  "telephony_alias_portabilities_relaunch_optional_fields": "Pola opcjonalne"
+}
