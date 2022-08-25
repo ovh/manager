@@ -1,5 +1,5 @@
 import { ComponentMultiStyleConfig } from '@chakra-ui/theme';
-import { controlBaseStyle } from './Checkbox';
+import { controlBaseStyle, labelBaseStyle } from './Checkbox';
 
 const parts = ['container', 'checkbox', 'footer', 'control', 'label'];
 
@@ -70,6 +70,13 @@ const ThumbnailChoice: ComponentMultiStyleConfig = {
         _hover: {
           background: 'uikit.100',
         },
+        _invalid: {
+          borderColor: 'error.500',
+          background: 'error.300',
+          '> div': {
+            borderColor: 'error.500',
+          },
+        },
       },
       _invalid: {
         background: 'error.100',
@@ -102,6 +109,9 @@ const ThumbnailChoice: ComponentMultiStyleConfig = {
     },
     label: {
       margin: 6,
+      _checked: {
+        fontWeight: 700,
+      },
     },
     checkbox: {
       pointerEvents: 'none',

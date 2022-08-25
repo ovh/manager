@@ -1,33 +1,13 @@
-import React, {
-  createContext,
-  forwardRef,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import {
-  ComponentWithAs,
-  HTMLChakraProps,
-  StyleFunctionProps,
-  ThemingProps,
-  omitThemingProps,
-} from '@chakra-ui/system';
-// import { callAll, cx } from "@chakra-ui/shared-utils"
+import React, { createContext, useRef } from 'react';
+import { HTMLChakraProps, ThemingProps } from '@chakra-ui/system';
 import {
   chakra,
-  RadioProps,
   CheckboxProps,
-  CheckboxGroupProps,
   Box,
   useMultiStyleConfig,
   Checkbox,
   useCheckbox,
-  Flex,
-  UseCheckboxProps,
-  theme,
 } from '@chakra-ui/react';
-import { callAll, cx } from '@chakra-ui/utils';
 
 import { CheckIcon } from '../../ui-kit/ovh-components';
 
@@ -48,49 +28,20 @@ export interface ThumbnailCheckboxProps extends CheckboxProps {
 
 const CheckboxThumbnailStyleContext = createContext({} as Record<string, any>);
 
-// const CheckboxControl = (props: any) => {
-//   const { children, ...rest } = props;
-//   const styles = useContext(CheckboxThumbnailStyleContext);
-
-//   const controlStyles = {
-//     ...theme.components.Checkbox.baseStyle(props).control,
-//     ...styles.control,
-//   };
-
-//   return (
-//     <chakra.span __css={controlStyles} {...rest}>
-//       {children}
-//     </chakra.span>
-//   );
-// };
-
-// export interface ThumbnailCheckboxGroupProps extends CheckboxGroupProps {}
-
 export const ThumbnailCheckbox = (props: ThumbnailCheckboxProps) => {
-  // const {
-  //   variant,
-  //   checkboxTitle,
-  //   children,
-  //   description,
-  //   value,
-  //   footerText,
-  //   ...rest,
-  // } = props;
-  // const ownProps = omitThemingProps(props);
-
   const {
     variant,
     checkboxTitle,
     children,
     description,
     footerText,
+    icon,
     ...rest
   } = props;
   const {
     state,
     getInputProps,
     getLabelProps,
-    getCheckboxProps,
     getRootProps,
     htmlProps,
   } = useCheckbox(rest);
@@ -115,7 +66,7 @@ export const ThumbnailCheckbox = (props: ThumbnailCheckboxProps) => {
       >
         <chakra.label cursor="pointer" __css={styles.label} ref={container}>
           <Checkbox
-            icon={<CheckIcon />}
+            icon={icon || <CheckIcon />}
             {...state}
             {...inputProps}
             onKeyDown={(e) => (e.key === ' ' ? container.current?.click() : '')}
@@ -136,9 +87,3 @@ export const ThumbnailCheckbox = (props: ThumbnailCheckboxProps) => {
     </CheckboxThumbnailStyleContext.Provider>
   );
 };
-
-// export const ThumbnailChoice = (props: ThumbnailChoiceProps) => {
-
-//   const { type, ...rest} = props;
-//   // return {type === 'checkbox' ? <ThumbnailCheckbox {...rest} />: ''} ;
-// };

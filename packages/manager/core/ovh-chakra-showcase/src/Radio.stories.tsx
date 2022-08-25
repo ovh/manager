@@ -1,5 +1,6 @@
 import { Radio, RadioGroup, Stack } from '@chakra-ui/react';
 import { useState } from 'react';
+import { ThumbnailRadio } from '@ovh-ux/manager-themes';
 
 export default {
   title: 'Example/Radios',
@@ -49,6 +50,31 @@ const TemplateInvalid = () => (
   </RadioGroup>
 );
 
+const TemplateRadio = () => {
+  return (
+    <>
+      <RadioGroup defaultValue="b">
+        <ThumbnailRadio value="a" radioTitle="Value A"></ThumbnailRadio>
+        <ThumbnailRadio value="b" radioTitle="Value B">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.{' '}
+        </ThumbnailRadio>
+        <ThumbnailRadio isInvalid value="c" radioTitle="Value C">
+          Pellentesque euismod magna rutrum lectus gravida semper.{' '}
+        </ThumbnailRadio>
+        <ThumbnailRadio
+          isInvalid
+          value="d"
+          radioTitle="Value D"
+          footerText="Check this footer"
+        >
+          Pellentesque euismod magna rutrum lectus gravida semper.{' '}
+        </ThumbnailRadio>
+      </RadioGroup>
+    </>
+  );
+};
+
 export const Default = Template.bind({});
 export const Disabled = TemplateDisabled.bind({});
 export const Invalid = TemplateInvalid.bind({});
+export const Thumbnail = TemplateRadio.bind({});

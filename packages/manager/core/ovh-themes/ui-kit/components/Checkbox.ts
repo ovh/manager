@@ -57,7 +57,7 @@ export const iconBaseStyle: SystemStyleObject = {
   transitionDuration: 'unset',
 };
 
-const labelBaseStyle: SystemStyleObject = {
+export const labelBaseStyle: SystemStyleObject = {
   fontWeight: 500,
   fontSize: 'md',
   letterSpacing: '.008rem',
