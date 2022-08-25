@@ -1,19 +1,22 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.alias.details.portabilities.attach',
+    'telecom.telephony.billingAccount.administration.portabilities.relaunch',
     {
-      url: '/attach?portabilityId',
+      url: '/relaunch?portabilityId',
+      params: {
+        changeRequired: null,
+      },
       views: {
         modal: {
-          component: 'portabilitiesAttach',
+          component: 'portabilitiesRelaunch',
         },
       },
       layout: 'modal',
       resolve: {
-        billingAccount: /* @ngInject */ ($transition$) =>
-          $transition$.params().billingAccount,
         portabilityId: /* @ngInject */ ($transition$) =>
           $transition$.params().portabilityId,
+        changeRequired: /* @ngInject */ ($transition$) =>
+          $transition$.params().changeRequired,
         goBack: /* @ngInject */ (goToPortabilities) => goToPortabilities,
         breadcrumb: () => null,
       },
