@@ -1,4 +1,0 @@
-{
-  "nasha_partitions_action_update_success": "Die Größe der Partition {{partitionName}} wird in Kürze aktualisiert. ",
-  "nasha_partitions_action_update_failure": "Bei der Aktualisierung der Größe der Partition {{partitionName}} ist ein Fehler aufgetreten. "
-}

@@ -1,0 +1,8 @@
+{
+  "task_tracker_close": "Zamknij",
+  "task_tracker_empty_error": "Brak informacji na temat tego błędu. Prosimy o kontakt z pomocą.",
+  "task_tracker_step_doing": "Trwa realizacja operacji",
+  "task_tracker_step_done": "Operacja została zrealizowana",
+  "task_tracker_step_error": "Wystąpił błąd: {{message}}",
+  "task_tracker_step_todo": "Operacja rozpocznie się w ciągu kilku minut"
+}

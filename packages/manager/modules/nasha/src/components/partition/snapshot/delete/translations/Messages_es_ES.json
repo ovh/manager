@@ -1,0 +1,6 @@
+{
+  "nasha_components_partition_snapshot_delete_cancel": "Cerrar",
+  "nasha_components_partition_snapshot_delete_submit": "Eliminar el snapshot",
+  "nasha_components_partition_snapshot_delete_content": "¿Seguro que quiere eliminar el snapshot {{ name }} de la partición {{ partitionName }}?",
+  "nasha_components_partition_snapshot_delete_title": "Eliminar un snapshot"
+}

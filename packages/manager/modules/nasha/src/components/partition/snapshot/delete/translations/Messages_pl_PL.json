@@ -1,0 +1,6 @@
+{
+  "nasha_components_partition_snapshot_delete_cancel": "Zamknij",
+  "nasha_components_partition_snapshot_delete_submit": "Usuń Snapshot",
+  "nasha_components_partition_snapshot_delete_content": "Czy na pewno chcesz usunąć snapshot {{name}} z partycji {{partitionName}}?",
+  "nasha_components_partition_snapshot_delete_title": "Usuń snapshot"
+}

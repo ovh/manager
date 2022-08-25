@@ -1,0 +1,15 @@
+{
+  "nasha_components_partition_zfs_options_atime_deactivate": "Wyłącz",
+  "nasha_components_partition_zfs_options_atime_description": "Wyłącza konieczność aktualizowania przez kernel czasu dostępu do pliku przy każdym żądaniu.",
+  "nasha_components_partition_zfs_options_atime": "Aktualizacja czasu dostępu (atime)",
+  "nasha_components_partition_zfs_options_cancel": "Zamknij",
+  "nasha_components_partition_zfs_options_default": "(Domyślnie)",
+  "nasha_components_partition_zfs_options_recordsize": "ZFS recordsize",
+  "nasha_components_partition_zfs_options_submit": "Zmień parametry",
+  "nasha_components_partition_zfs_options_sync_always_description": "Profil wysoko zabezpieczony: transfer plików korzysta ze zwiększonej stabilności, kosztem wydajności.",
+  "nasha_components_partition_zfs_options_sync_disabled_description": "Profil niezabezpieczony: wydajność jest bardzo wysoka, ale profil ten jest niebezpieczny, ponieważ ZFS ignoruje synchroniczne zapytania dotyczące transferu. (BAZY DANYCH, NFS,...)",
+  "nasha_components_partition_zfs_options_sync_disabled_warning": "Opcje te powinny być używane wyłącznie przez administratorów, którzy rozumieją związane z nimi ryzyko.",
+  "nasha_components_partition_zfs_options_sync_standard_description": "Profil zabezpieczony: łączy stabilność i odpowiednią wydajność. Pliki są najpierw zapisywane, następnie wszystkie elementy są czyszczone, w celu zapewnienia stabilności danych.",
+  "nasha_components_partition_zfs_options_sync": "Sync",
+  "nasha_components_partition_zfs_options_title": "Zmień ustawienia Z File System (ZFS)"
+}

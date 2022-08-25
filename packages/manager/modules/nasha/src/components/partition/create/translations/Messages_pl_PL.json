@@ -1,0 +1,19 @@
+{
+  "nasha_components_partition_create_cancel": "Zamknij",
+  "nasha_components_partition_create_description_rules": "Maksymalna liczba znaków: {{max}}",
+  "nasha_components_partition_create_description": "Opis (opcjonalnie)",
+  "nasha_components_partition_create_name_error": "Nazwa jest nieprawidłowa",
+  "nasha_components_partition_create_name_rules": "Dozwolone są tylko litery od A do Z (małe i duże) oraz cyfry",
+  "nasha_components_partition_create_name": "Nazwa partycji",
+  "nasha_components_partition_create_protocol": "Wybór protokołu",
+  "nasha_components_partition_create_protocol_description_CIFS": "Protokół udostępniania zasobów zalecany dla serwerów Windows.",
+  "nasha_components_partition_create_protocol_description_NFS_CIFS": "Pozwala na udostępnianie zasobów serwerom Windows i Linux/Unix.",
+  "nasha_components_partition_create_protocol_description_NFS": "Protokół udostępniania zasobów zalecany dla serwerów Linux/Unix",
+  "nasha_components_partition_create_protocol_description": "Wybór protokołu",
+  "nasha_components_partition_create_size_rules": "Dozwolony rozmiar: minimalnie {{min}} GB, maksymalnie {{max}} GB",
+  "nasha_components_partition_create_size": "Rozmiar partycji",
+  "nasha_components_partition_create_submit": "Utwórz partycję",
+  "nasha_components_partition_create_title": "Utwórz partycję",
+  "nasha_components_partition_create_forbid": "Ta nazwa jest już używana przez istniejącą partycję. Prosimy o podanie nazwy partycji, która nie jest już używana.",
+  "nasha_components_partition_create_error_max": "Nie można utworzyć partycji. Osiągnięto maksymalną liczbę partycji."
+}

@@ -1,0 +1,142 @@
+<div class="nasha-dashboard">
+    <header class="oui-header" role="banner">
+        <div class="d-flex pt-4">
+            <h1
+                class="word-break mb-0 oui-header-2"
+                data-ng-bind="$ctrl.name"
+            ></h1>
+            <button
+                type="button"
+                class="btn btn-icon my-auto ml-2"
+                data-translate-attr="{ title: 'nasha_dashboard_edit' }"
+                data-ng-click="$ctrl.openEditNameModal()"
+            >
+                <span
+                    class="oui-icon oui-icon_small oui-icon-pen_concept"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </div>
+        <p data-ng-bind="$ctrl.serviceName"></p>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.dashboardHref() }}"
+                data-active="[$ctrl.dashboardHref(), $ctrl.editNameHref()].includes($ctrl.currentHref())"
+                ><span
+                    data-translate="nasha_dashboard_tab_general_information"
+                ></span
+            ></oui-header-tabs-item>
+            <oui-header-tabs-item data-state="nasha.dashboard.partitions"
+                ><span data-translate="nasha_dashboard_tab_partitions"></span
+            ></oui-header-tabs-item>
+        </oui-header-tabs>
+    </header>
+    <div data-ui-view>
+        <div class="nasha-dashboard-general-information">
+            <div class="row py-4">
+                <!-- Information -->
+                <div class="col-md-4">
+                    <oui-tile
+                        data-heading="{{:: 'nasha_dashboard_information_title' | translate }}"
+                    >
+                        <!-- Name -->
+                        <oui-tile-definition
+                            data-term="{{:: 'nasha_dashboard_information_name' | translate }}"
+                        >
+                            <oui-tile-description>
+                                <span data-ng-bind="$ctrl.name"></span>
+                            </oui-tile-description>
+                            <oui-action-menu
+                                aria-label="{{:: 'nasha_dashboard_actions' | translate }}"
+                                data-compact
+                                data-placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.goToEditName()"
+                                >
+                                    <span
+                                        data-translate="nasha_dashboard_edit"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </oui-tile-definition>
+                        <!-- ID -->
+                        <oui-tile-definition
+                            data-term="{{:: 'nasha_dashboard_information_id' | translate }}"
+                            data-description="{{:: $ctrl.nasha.serviceName }}"
+                        >
+                        </oui-tile-definition>
+                        <!-- Region -->
+                        <oui-tile-definition
+                            data-term="{{:: 'nasha_dashboard_information_datacenter' | translate }}"
+                            data-description="{{:: $ctrl.nasha.localeDatacenter }}"
+                        >
+                        </oui-tile-definition>
+                        <!-- Format -->
+                        <oui-tile-definition
+                            data-term="{{:: 'nasha_dashboard_information_disk_type' | translate }}"
+                            data-description="{{:: $ctrl.nasha.diskType }}"
+                        >
+                        </oui-tile-definition>
+                        <!-- Size -->
+                        <oui-tile-definition
+                            data-term="{{:: 'nasha_dashboard_information_disk_size' | translate }}"
+                            data-description="{{:: $ctrl.nasha.diskSize }}"
+                        >
+                        </oui-tile-definition>
+                    </oui-tile>
+                </div>
+                <!-- Configuration -->
+                <div class="col-md-4">
+                    <oui-tile
+                        data-heading="{{:: 'nasha_dashboard_configuration_title' | translate }}"
+                    >
+                        <!-- Quota -->
+                        <oui-tile-definition
+                            data-term="{{:: 'nasha_dashboard_configuration_quota' | translate }}"
+                        >
+                            <oui-tile-description>
+                                <nasha-components-space-meter
+                                    class="cloud-space-meter"
+                                    data-usage="$ctrl.nasha.use"
+                                    data-large="true"
+                                >
+                                </nasha-components-space-meter>
+                                <oui-button
+                                    size="m"
+                                    variant="link"
+                                    icon-right="oui-icon-arrow-right"
+                                    data-disabled="!$ctrl.canCreatePartitions"
+                                    data-on-click="$ctrl.onClickOnGoToPartitionsCreate()"
+                                >
+                                    <span
+                                        data-translate="nasha_dashboard_configuration_link"
+                                    ></span>
+                                </oui-button>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                    </oui-tile>
+                </div>
+                <div class="col-md-4">
+                    <billing-subscription-tile
+                        on-error="$ctrl.alertError(error)"
+                        service-infos="$ctrl.serviceInfo"
+                        service-path="{{:: $ctrl.nashaApiUrl }}"
+                        with-engagement="$ctrl.isCommitmentAvailable"
+                        tracking-prefix="nasha::dashboard"
+                        commit-impression-data=":: $ctrl.shouldReengage() ?
+                            $ctrl.RECOMMIT_IMPRESSION_TRACKING_DATA :
+                            $ctrl.COMMIT_IMPRESSION_TRACKING_DATA"
+                    ></billing-subscription-tile>
+                </div>
+            </div>
+        </div>
+        <div data-ui-view="edit"></div>
+    </div>
+    <nasha-components-edit-name
+        data-ng-if="$ctrl.isEditNameModalOpened"
+        data-close=":: $ctrl.closeEditNameModal"
+        data-nasha=":: $ctrl.nasha"
+        data-nasha-api-url=":: $ctrl.nashaApiUrl"
+    ></nasha-components-edit-name>
+</div>

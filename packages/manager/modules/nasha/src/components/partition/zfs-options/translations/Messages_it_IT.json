@@ -1,0 +1,15 @@
+{
+  "nasha_components_partition_zfs_options_atime_deactivate": "Disattiva",
+  "nasha_components_partition_zfs_options_atime_description": "Disattiva l'aggiornamento dei tempi di accesso a un file ogni volta che viene richiesto",
+  "nasha_components_partition_zfs_options_atime": "Aggiorna i tempi di accesso (atime)",
+  "nasha_components_partition_zfs_options_cancel": "Chiudi",
+  "nasha_components_partition_zfs_options_default": "(predefinito)",
+  "nasha_components_partition_zfs_options_recordsize": "ZFS recordsize",
+  "nasha_components_partition_zfs_options_submit": "Modifica le impostazioni",
+  "nasha_components_partition_zfs_options_sync_always_description": "Profilo molto sicuro: trasferimento di file con performance meno elevate ma una maggiore stabilità.",
+  "nasha_components_partition_zfs_options_sync_disabled_description": "Profilo non sicuro: performance molto elevate ma non sicure, in quanto il ZFS ignora le richieste di trasferimento sincrone (BDD, NFS...)",
+  "nasha_components_partition_zfs_options_sync_disabled_warning": "Gli amministratori dovrebbero utilizzare questa opzione solo se consapevoli di tutti i rischi.",
+  "nasha_components_partition_zfs_options_sync_standard_description": "Profilo sicuro: combinando stabilità e performance adeguate, i file vengono scritti e in seguito tutti gli elementi sono rimossi per assicurare la stabilità dei dati.",
+  "nasha_components_partition_zfs_options_sync": "Sync",
+  "nasha_components_partition_zfs_options_title": "Modifica i parametri Z File System (ZFS)"
+}

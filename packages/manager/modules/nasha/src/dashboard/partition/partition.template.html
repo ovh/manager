@@ -1,0 +1,129 @@
+<div class="nasha-partition">
+    <header class="oui-header" role="banner">
+        <div class="d-flex pt-4">
+            <h1
+                class="word-break mb-0 oui-header-2"
+                data-ng-bind="$ctrl.partition.partitionName"
+            ></h1>
+        </div>
+        <p data-ng-bind="$ctrl.nasha.serviceName"></p>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.partitionHref() }}"
+                data-active="$ctrl.isPartitionTabActive()"
+                ><span
+                    data-translate="nasha_dashboard_partition_tab_general_information"
+                ></span
+            ></oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-state="nasha.dashboard.partition.snapshots"
+                ><span
+                    data-translate="nasha_dashboard_partition_tab_snapshots"
+                ></span
+            ></oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-state="nasha.dashboard.partition.accesses"
+                ><span
+                    data-translate="nasha_dashboard_partition_tab_accesses"
+                ></span
+            ></oui-header-tabs-item>
+        </oui-header-tabs>
+    </header>
+    <div data-ui-view>
+        <div class="nasha-dashboard-partition-general-information">
+            <div class="row py-4">
+                <!-- Information -->
+                <div class="col-md-4">
+                    <oui-tile
+                        data-heading="{{:: 'nasha_dashboard_partition_information_title' | translate }}"
+                    >
+                        <!-- Name -->
+                        <oui-tile-definition
+                            data-term="{{:: 'nasha_dashboard_partition_information_name' | translate }}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-bind="$ctrl.partition.partitionName"
+                                ></span>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <!-- Description -->
+                        <oui-tile-definition
+                            data-term="{{:: 'nasha_dashboard_partition_information_description' | translate }}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-if="$ctrl.partition.partitionDescription"
+                                    data-ng-bind="$ctrl.partition.partitionDescription"
+                                ></span>
+                                <em
+                                    data-ng-if="!$ctrl.partition.partitionDescription"
+                                    data-translate="nasha_dashboard_partition_information_description_none"
+                                ></em>
+                            </oui-tile-description>
+                            <oui-action-menu
+                                aria-label="{{:: 'nasha_dashboard_partition_actions' | translate }}"
+                                data-compact
+                                data-placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.goToEditDescription()"
+                                >
+                                    <span
+                                        data-translate="nasha_dashboard_partition_edit"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </oui-tile-definition>
+                        <!-- Protocol -->
+                        <oui-tile-definition
+                            data-term="{{:: 'nasha_dashboard_partition_information_protocol' | translate }}"
+                            data-description="{{:: $ctrl.partition.protocol }}"
+                        >
+                        </oui-tile-definition>
+                        <!-- Size -->
+                        <oui-tile-definition
+                            data-term="{{:: 'nasha_dashboard_partition_information_size' | translate }}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-bind="$ctrl.partition.use.size.value"
+                                ></span>
+                                <span
+                                    data-ng-bind="$ctrl.partition.use.size.unit"
+                                ></span>
+                            </oui-tile-description>
+                            <oui-action-menu
+                                aria-label="{{:: 'nasha_dashboard_partition_actions' | translate }}"
+                                data-compact
+                                data-placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.goToEditSize()"
+                                >
+                                    <span
+                                        data-translate="nasha_dashboard_partition_edit"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </oui-tile-definition>
+                        <!-- Quota -->
+                        <oui-tile-definition
+                            data-term="{{:: 'nasha_dashboard_partition_information_quota' | translate }}"
+                        >
+                            <oui-tile-description>
+                                <nasha-components-space-meter
+                                    class="cloud-space-meter"
+                                    data-usage="$ctrl.partition.use"
+                                    data-large="true"
+                                >
+                                </nasha-components-space-meter>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                    </oui-tile>
+                </div>
+            </div>
+        </div>
+        <div data-ui-view="edit"></div>
+    </div>
+</div>
