@@ -27,6 +27,18 @@ export default /* @ngInject */ ($stateProvider) => {
           productId,
         }),
       hideBreadcrumb: () => true,
+      topbarOptions: /* @ngInject */ ($translate, $state) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('emails_domain_order'),
+          value: $translate.instant('emails_domain_order'),
+          onClick: () => {
+            $state.go('app.mx-plan');
+          },
+        },
+      }),
     },
   });
 
