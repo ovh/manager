@@ -1,0 +1,23 @@
+{
+  "telephony_alias_portabilities_relaunch_title": "Correct and relaunch portability",
+  "telephony_alias_portabilities_relaunch_cancel": "Cancel",
+  "telephony_alias_portabilities_relaunch_submit": "Relaunch portability",
+  "telephony_alias_portabilities_relaunch_doing": "Relaunching...",
+  "telephony_alias_portabilities_relaunch_success": "The request for portability has been relaunched.",
+  "telephony_alias_portabilities_relaunch_error": "Oops! An error has occurred relaunching your portability request: {{ error }}",
+  "telephony_alias_portabilities_relaunch_label_rio": "Rio",
+  "telephony_alias_portabilities_relaunch_label_streetNumber": "House number/name",
+  "telephony_alias_portabilities_relaunch_label_streetName": "Street name",
+  "telephony_alias_portabilities_relaunch_label_zip": "Postcode",
+  "telephony_alias_portabilities_relaunch_label_city": "City",
+  "telephony_alias_portabilities_relaunch_label_firstName": "First name",
+  "telephony_alias_portabilities_relaunch_label_lastName": "Name",
+  "telephony_alias_portabilities_relaunch_label_socialNomination": "Company name",
+  "telephony_alias_portabilities_relaunch_label_building": "Building",
+  "telephony_alias_portabilities_relaunch_label_stair": "Staircase",
+  "telephony_alias_portabilities_relaunch_label_floor": "Floor",
+  "telephony_alias_portabilities_relaunch_label_door": "Door",
+  "telephony_alias_portabilities_relaunch_label_siret": "SIRET",
+  "telephony_alias_portabilities_relaunch_required_fields": "Mandatory fields",
+  "telephony_alias_portabilities_relaunch_optional_fields": "Optional fields"
+}

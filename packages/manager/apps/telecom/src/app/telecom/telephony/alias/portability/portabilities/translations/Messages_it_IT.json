@@ -1,6 +1,6 @@
 {
-  "telephony_alias_portabilities_back_link": "Ritorna alla gestione del numero",
-  "telephony_alias_default_portabilities_back_link": "Ritorna all'amministrazione del gruppo",
+  "telephony_alias_portabilities_back_link": "L'amministrazione del numero",
+  "telephony_alias_default_portabilities_back_link": "L'amministrazione di gruppo",
   "telephony_alias_portabilities_title": "Portabilità in corso...",
   "telephony_alias_portabilities_subtitle": "Lista portabilità in corso",
   "telephony_alias_portabilities_empty": "Nessuna richiesta di portabilità in corso.",
@@ -9,7 +9,7 @@
   "telephony_alias_portabilities_creation_date": "Data della richiesta",
   "telephony_alias_portabilities_reference": "Referenza",
   "telephony_alias_portabilities_operator": "Operatore",
-  "telephony_alias_portabilities_numbers": "Numeri portati",
+  "telephony_alias_portabilities_numbers": "N° {{ number }}",
   "telephony_alias_portabilities_duration": "Durata stimata:",
   "telephony_alias_portabilities_step": "Stato",
   "telephony_alias_portabilities_planed_on": "Portabilità il <strong>{{ date }}</strong>",
@@ -35,9 +35,9 @@
   "telephony_alias_portabilities_step_name_requestSentToOperator": "Richiesta inviata all'operatore",
   "telephony_alias_portabilities_step_name_sDASequenceReceivedFromOperator": "sDASequence dell'operatore ricevuta",
   "telephony_alias_portabilities_step_duration_NA": "N/A",
-  "telephony_alias_portabilities_step_duration_day": "giorno/i",
-  "telephony_alias_portabilities_step_duration_hour": "ora(e)",
-  "telephony_alias_portabilities_step_duration_openday": "giorno/i feriale/i",
+  "telephony_alias_portabilities_step_duration_day": "{{ duration }} giorno",
+  "telephony_alias_portabilities_step_duration_hour": "{{ duration }} ore",
+  "telephony_alias_portabilities_step_duration_openday": "{{ duration }} giorno lavorativo",
   "telephony_alias_portabilities_cancel": "Annuler la portabilité ?",
   "telephony_alias_portabilities_cancel_confirm": "Êtes-vous sûr de vouloir annuler votre demande de portabilité ?",
   "telephony_alias_portabilities_cancel_doing": "Annullamento in corso...",
@@ -47,5 +47,11 @@
   "telephony_alias_portabilities_attach_form": "Allega il tuo modulo di richiesta della portabilità firmato",
   "telephony_alias_portabilities_attach_list_files": "Lista dei documenti inviati",
   "telephony_alias_portabilities_attach_file_name": "Nome del documento",
-  "telephony_alias_portabilities_attach_delete": "Elimina"
+  "telephony_alias_portabilities_attach_delete": "Eliminare",
+  "telephony_alias_portabilities_details": "Dettagli",
+  "telephony_alias_portabilities_step_duration_days": "{{ duration }} giorni",
+  "telephony_alias_portabilities_step_duration_hours": "{{ duration }} ore",
+  "telephony_alias_portabilities_step_duration_opendays": "{{ duration }} giorni lavorativi",
+  "telephony_alias_portabilities_step_guide": "Guida agli step",
+  "telephony_alias_portabilities_relaunch": "Correggere e riavviare la portabilità"
 }

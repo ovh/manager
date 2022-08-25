@@ -1,0 +1,9 @@
+{
+  "telephony_alias_portabilities_cancel_title": "Cancel portability",
+  "telephony_alias_portabilities_cancel_confirm": "Are you sure you want to cancel your port request?",
+  "telephony_alias_portabilities_cancel_yes": "Yes",
+  "telephony_alias_portabilities_cancel_no": "No",
+  "telephony_alias_portabilities_cancel_doing": "Cancelling...",
+  "telephony_alias_portabilities_cancel_success": "The port request has been cancelled.",
+  "telephony_alias_portabilities_cancel_error": "Oops! An error occurred while cancelling your port request."
+}

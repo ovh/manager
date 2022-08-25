@@ -1,11 +1,11 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.alias.details.portabilities.attach',
+    'telecom.telephony.billingAccount.alias.details.portabilities.cancel',
     {
-      url: '/attach?portabilityId',
+      url: '/cancel?portabilityId',
       views: {
         modal: {
-          component: 'portabilitiesAttach',
+          component: 'portabilitiesCancel',
         },
       },
       layout: 'modal',
