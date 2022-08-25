@@ -51,7 +51,7 @@
   "pci_projects_project_instances_delete_label": "Elimina",
   "pci_projects_project_instances_add_label": "Crea un'istanza",
   "pci_projects_project_instances_error_query": "Si è verificato un errore durante il recupero dei volumi.",
-  "pci_projects_project_instances_vrack_none": "Non hai ancora configurato vRack",
+  "pci_projects_project_instances_vrack_none": "Non hai ancora attivato la funzionalità di rete privata (basata sulla vRack).",
   "pci_projects_project_instances_vrack_create": "Crea una vRack",
   "pci_projects_project_instances_autobackup_label": "Crea un backup automatizzato",
   "pci_projects_project_instances_refresh": "Aggiorna le istanze",
