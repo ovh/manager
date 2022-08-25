@@ -1,3 +1,12 @@
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.7.0...@ovh-ux/manager-components@1.8.0) (2022-08-25)
+
+
+### Features
+
+* **manager-components:** add TaskTracker comp ([6643393](https://github.com/ovh/manager/commit/6643393fe7bbbff63cc5d69cf997a32ac4e0572c))
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.6.1...@ovh-ux/manager-components@1.7.0) (2022-06-14)
 
 
