@@ -45,9 +45,9 @@ export default class PciStoragesObjectStorageService {
   }
 
   getAllS3Users(projectId) {
-    return this.OvhApiCloudProjectUser.v6().query({
-      serviceName: projectId,
-    }).$promise;
+    return this.$http
+      .get(`/cloud/project/${projectId}/user`)
+      .then(({ data }) => data);
   }
 
   mapUsersToCredentials(projectId, users) {
