@@ -20,6 +20,18 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('cda.dashboard', {
           serviceName,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $window) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('cda_order'),
+          value: $translate.instant('cda_order'),
+          onClick: () => {
+            $window.open('https://www.ovh.com/fr/cloud-disk-array/', '_blank');
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
     redirectTo: (transition) =>
