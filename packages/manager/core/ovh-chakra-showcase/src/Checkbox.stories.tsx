@@ -1,4 +1,11 @@
-import { Checkbox, CheckboxGroup, Stack } from '@chakra-ui/react';
+import {
+  Badge,
+  Checkbox,
+  CheckboxGroup,
+  HStack,
+  Stack,
+  chakra,
+} from '@chakra-ui/react';
 import {
   CheckIcon,
   IndeterminateIcon,
@@ -52,15 +59,55 @@ const TemplateInvalid = () => (
 
 const TemplateThumbnail = () => (
   <>
+    <CheckboxGroup defaultValue={['ax', 'bx']}>
+      <HStack>
+        <ThumbnailCheckbox
+          isInvalid
+          checkboxTitle="Value Ax"
+          value="ax"
+        ></ThumbnailCheckbox>
+        <ThumbnailCheckbox
+          checkboxTitle="Value Bx"
+          value="bx"
+        ></ThumbnailCheckbox>
+        <ThumbnailCheckbox
+          checkboxTitle="Value Cx"
+          value="cx"
+          isDisabled
+        ></ThumbnailCheckbox>
+        <ThumbnailCheckbox
+          checkboxTitle="Value Dx"
+          value="dx"
+        ></ThumbnailCheckbox>
+      </HStack>
+    </CheckboxGroup>
+
     <ThumbnailCheckbox
       checkboxTitle="Value A"
-      description="bla blabl ablab blabla"
+      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      footerText="Lorem ipsum dolor sit amet"
       value="va"
+      isInvalid
     ></ThumbnailCheckbox>
     <ThumbnailCheckbox
       checkboxTitle="Value B"
-      description="bla blabl ablab blabla"
+      description="Pellentesque euismod magna rutrum lectus gravida semper."
+      footerText="Pellentesque habitant morbi tristique"
       value="vb"
+      defaultChecked
+    ></ThumbnailCheckbox>
+    <ThumbnailCheckbox
+      checkboxTitle={
+        <>
+          <HStack spacing="1">
+            <chakra.span>Value C </chakra.span>
+            <Badge variant="new">New</Badge>
+          </HStack>
+        </>
+      }
+      description="Pellentesque euismod magna rutrum lectus gravida semper."
+      footerText="Pellentesque habitant morbi tristique"
+      value="vc"
     ></ThumbnailCheckbox>
   </>
 );

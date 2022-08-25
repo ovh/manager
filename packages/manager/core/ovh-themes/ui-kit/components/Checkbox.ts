@@ -14,6 +14,7 @@ export const controlBaseStyle: SystemStyleObject = {
   },
   _invalid: {
     borderColor: 'error.500',
+    background: 'uikit.0',
     _checked: {
       background: 'error.500',
     },
@@ -61,6 +62,9 @@ const labelBaseStyle: SystemStyleObject = {
   fontSize: 'md',
   letterSpacing: '.008rem',
   lineHeight: 1.5,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   _checked: {
     fontWeight: 700,
   },

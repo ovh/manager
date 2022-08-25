@@ -83,26 +83,55 @@ export const ThumbnailCheckbox = (props: ThumbnailCheckboxProps) => {
     checkboxTitle,
     children,
     description,
-    value,
     footerText,
     ...rest
   } = props;
-  const { state, getInputProps, getLabelProps, getRootProps } = useCheckbox(
-    rest,
-  );
+  const {
+    state,
+    getInputProps,
+    getLabelProps,
+    getCheckboxProps,
+    getRootProps,
+    htmlProps,
+  } = useCheckbox(rest);
+  const {
+    style,
+    'aria-disabled': ard,
+    'aria-invalid': ad,
+    'aria-label': al,
+    'aria-labelledby': alb,
+    ...inputProps
+  } = getInputProps();
+  const container = useRef<any>();
 
   const styles = useMultiStyleConfig('ThumbnailChoice', { variant });
   return (
     <CheckboxThumbnailStyleContext.Provider value={styles}>
-      <Box noOfLines={0} __css={styles.container} {...getRootProps()}>
-        <chakra.input {...getInputProps()} hidden />
-        <Checkbox icon={<CheckIcon />} {...state} __css={styles.checkbox}>
-          {checkboxTitle}
-        </Checkbox>
-        <chakra.div {...getLabelProps()} __css={styles.description}>
-          {description || children}
-          {/* footer */}
-        </chakra.div>
+      <Box
+        noOfLines={0}
+        __css={styles.container}
+        {...getRootProps()}
+        {...htmlProps}
+      >
+        <chakra.label cursor="pointer" __css={styles.label} ref={container}>
+          <Checkbox
+            icon={<CheckIcon />}
+            {...state}
+            {...inputProps}
+            onKeyDown={(e) => (e.key === ' ' ? container.current?.click() : '')}
+            __css={styles.checkbox}
+          >
+            {checkboxTitle}
+          </Checkbox>
+          <chakra.div {...getLabelProps()} __css={styles.description}>
+            {description || children}
+          </chakra.div>
+        </chakra.label>
+        {footerText && (
+          <chakra.div __css={styles.footer}>
+            <chakra.p>{footerText}</chakra.p>
+          </chakra.div>
+        )}
       </Box>
     </CheckboxThumbnailStyleContext.Provider>
   );
