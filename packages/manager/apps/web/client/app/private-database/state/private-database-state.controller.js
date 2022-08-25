@@ -66,9 +66,13 @@ export default class PrivateDatabaseStateCtrl {
       this.getOomList();
     }
 
-    this.privateDatabaseService.canOrderRam(this.productId).then((canOrder) => {
-      this.canOrderRam = canOrder;
-    });
+    this.privateDatabaseService
+      .getUpgradePlans(this.productId)
+      .then((response) => {
+        if (response.length > 0) {
+          this.canOrderRam = true;
+        }
+      });
   }
 
   convertBytesSize(nb, unit, decimalWanted = 0) {

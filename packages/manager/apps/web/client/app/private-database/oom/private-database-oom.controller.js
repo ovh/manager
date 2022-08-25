@@ -20,6 +20,7 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.oomService = OomService;
       this.privateDatabaseService = PrivateDatabase;
+      this.canOrderRam = false;
     }
 
     $onInit() {
@@ -36,9 +37,11 @@ angular.module('App').controller(
       this.getOom();
 
       return this.privateDatabaseService
-        .canOrderRam(this.productId)
-        .then((canOrderRam) => {
-          this.canOrderRam = canOrderRam;
+        .getUpgradePlans(this.productId)
+        .then((response) => {
+          if (response.length > 0) {
+            this.canOrderRam = true;
+          }
         })
         .finally(() => {
           this.isLoading = false;

@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-import remove from 'lodash/remove';
+import { PLANS_CAPACITY } from './private-database-database-ram-update.constants';
 
 angular.module('App').controller(
   'PrivateDatabaseChangeRamCtrl',
@@ -26,28 +26,25 @@ angular.module('App').controller(
       this.productId = this.$stateParams.productId;
 
       this.loading = {
-        durations: null,
-        availableRam: true,
+        provisionalOrder: null,
+        availablePlans: true,
       };
 
       this.data = {
-        availableRam: [],
-        durations: {
-          available: [],
-          details: {},
-        },
+        availablePlans: [],
         ovhSubsidiary: '',
+        provisionalOrder: null,
       };
 
       this.model = {
-        capacity: null,
-        duration: null,
+        planCode: null,
         contract: false,
       };
 
       this.database = this.$scope.currentActionData;
 
-      this.$scope.sortRam = (ram) => +ram;
+      this.$scope.sortRam = (planCode) =>
+        this.constructor.getCapacityFromPlanCode(planCode);
 
       this.userService.getUser().then((user) => {
         this.data.ovhSubsidiary = user.ovhSubsidiary;
@@ -56,25 +53,19 @@ angular.module('App').controller(
       /*= =============================
              =            STEP 1            =
              ============================== */
-      this.loading.availableRam = true;
+      this.loading.availablePlans = true;
 
-      this.privateDatabaseService.listAvailableRam().then((availableRam) => {
-        this.loading.availableRam = false;
-        this.data.availableRam = availableRam;
-        if (this.database.infrastructure === 'legacy') {
-          remove(this.data.availableRam, (ram) => ram === '2048');
-        }
-
-        remove(
-          this.data.availableRam,
-          (ram) => +ram === +this.database.ram.value,
-        );
-      });
+      this.privateDatabaseService
+        .getUpgradePlans(this.productId)
+        .then((result) => {
+          this.loading.availablePlans = false;
+          this.data.availablePlans = result.map((e) => e.planCode);
+        });
 
       /*= =============================
              =            STEP 2            =
              ============================== */
-      this.$scope.getDurations = () => this.getDurations();
+      this.$scope.getProvisionalOrder = () => this.getProvisionalOrder();
 
       /*= =============================
              =            STEP 3            =
@@ -96,30 +87,22 @@ angular.module('App').controller(
         : this.$translate.instant('price_ht_label', { price: price.text });
     }
 
-    getDurations() {
-      this.loading.durations = true;
+    getProvisionalOrder() {
+      this.loading.provisionalOrder = true;
 
       this.privateDatabaseService
-        .getRamPrices(this.productId, {
-          ram: this.model.capacity,
-        })
-        .then(
-          (durations) => {
-            this.loading.durations = false;
-            this.data.durations.available = durations;
-          },
-          angular.noop,
-          (duration) => {
-            this.data.durations.available = duration;
-          },
-        );
+        .getUpgradeProvisionalOrder(this.productId, this.model.planCode)
+        .then((response) => {
+          this.loading.provisionalOrder = false;
+          this.data.provisionalOrder = response;
+        });
     }
 
     loadContracts() {
       this.model.contract = false;
       if (
-        !this.model.duration.contracts ||
-        !this.model.duration.contracts.length
+        !this.data.provisionalOrder.contracts ||
+        !this.data.provisionalOrder.contracts.length
       ) {
         this.$rootScope.$broadcast('wizard-goToStep', 5);
       }
@@ -127,8 +110,8 @@ angular.module('App').controller(
 
     backToContracts() {
       if (
-        !this.model.duration.contracts ||
-        !this.model.duration.contracts.length
+        !this.data.provisionalOrder.contracts ||
+        !this.data.provisionalOrder.contracts.length
       ) {
         this.$rootScope.$broadcast('wizard-goToStep', 2);
       }
@@ -140,11 +123,7 @@ angular.module('App').controller(
       this.$scope.resetAction();
 
       this.privateDatabaseService
-        .orderRam(
-          this.productId,
-          this.model.capacity,
-          this.model.duration.duration,
-        )
+        .upgradeOrder(this.productId, this.model.planCode)
         .then((order) => {
           this.alerter.success(
             this.$translate.instant(
@@ -168,8 +147,8 @@ angular.module('App').controller(
         });
     }
 
-    static isProrataDuration({ duration }) {
-      return /^upto/.test(duration);
+    static getCapacityFromPlanCode(planCode) {
+      return PLANS_CAPACITY[planCode];
     }
   },
 );

@@ -7,7 +7,7 @@
         data-wizard-title="'privateDatabase_change_ram_title' | translate"
     >
         <!-- Step 1: Select a capacity -->
-        <div data-wizard-step data-wizard-step-valid="ramCtrl.model.capacity">
+        <div data-wizard-step data-wizard-step-valid="ramCtrl.model.planCode">
             <form name="orderRamForm">
                 <label
                     class="oui-label"
@@ -19,9 +19,9 @@
                         class="oui-select__input"
                         name="capacity"
                         id="selectRamCapacity"
-                        data-ng-disabled="ramCtrl.loading.availableRam"
-                        data-ng-model="ramCtrl.model.capacity"
-                        data-ng-options="ram + ('unit_size_MB' | translate) for ram in ramCtrl.data.availableRam | orderBy:sortRam"
+                        data-ng-disabled="ramCtrl.loading.availablePlans"
+                        data-ng-model="ramCtrl.model.planCode"
+                        data-ng-options="ramCtrl.constructor.getCapacityFromPlanCode(planCode) + ('unit_size_MB' | translate) for planCode in ramCtrl.data.availablePlans | orderBy:sortRam"
                     >
                         <option
                             value=""
@@ -46,55 +46,25 @@
         <!-- Step 2: Durations -->
         <div
             data-wizard-step
-            data-wizard-step-on-load="getDurations"
-            data-wizard-step-valid="ramCtrl.model.duration"
+            data-wizard-step-on-load="getProvisionalOrder"
+            data-wizard-step-valid="ramCtrl.data.provisionalOrder"
         >
-            <p data-translate="privateDatabase_RAM_add_select_duration"></p>
+            <p data-translate="privateDatabase_RAM_add_tarification"></p>
 
-            <div class="text-center" data-ng-if="ramCtrl.loading.durations">
+            <div
+                class="text-center"
+                data-ng-if="ramCtrl.loading.provisionalOrder"
+            >
                 <oui-spinner></oui-spinner>
                 <span data-translate="privateDatabase_RAM_loading_order"></span>
             </div>
-
-            <form name="orderRamForm" data-ng-if="!ramCtrl.loading.durations">
-                <div
-                    class="oui-radio"
-                    data-ng-repeat="duration in (ramCtrl.data.durations.available | orderBy:'duration':false) track by $index"
-                >
-                    <input
-                        type="radio"
-                        class="oui-radio__input"
-                        id="ramDuration-{{$index}}"
-                        name="ramDuration"
-                        data-ng-model="ramCtrl.model.duration"
-                        data-ng-value="duration"
-                    />
-                    <label
-                        class="oui-radio__label-container"
-                        for="ramDuration-{{$index}}"
-                    >
-                        <span class="oui-radio__label">
-                            <span class="oui-radio__icon"></span>
-                            <span class="oui-radio__text">
-                                <span
-                                    data-ng-if="ramCtrl.constructor.isProrataDuration(duration)"
-                                    data-ng-bind-html="duration.duration | wucDuration:'longDate':{prorata:true}"
-                                >
-                                </span>
-                                <span
-                                    data-ng-if="!ramCtrl.constructor.isProrataDuration(duration)"
-                                    data-ng-bind-html="duration.duration | wucDuration:'longDate'"
-                                >
-                                </span
-                                >&nbsp;:
-                                <span
-                                    data-ng-bind-html="duration.prices | price: ramCtrl.data.ovhSubsidiary"
-                                ></span>
-                            </span>
-                        </span>
-                    </label>
-                </div>
-            </form>
+            <div data-ng-if="!ramCtrl.loading.provisionalOrder">
+                <span data-translate="privateDatabase_RAM_add_duration"> </span>
+                &nbsp;:
+                <span
+                    data-ng-bind-html="ramCtrl.data.provisionalOrder.prices | price: ramCtrl.data.ovhSubsidiary"
+                ></span>
+            </div>
         </div>
 
         <!-- Step 3: Contracts -->
@@ -104,7 +74,7 @@
             data-wizard-step-valid="ramCtrl.model.contract"
         >
             <div
-                data-contracts="ramCtrl.model.duration.contracts"
+                data-contracts="ramCtrl.data.provisionalOrder.contracts"
                 data-full-text="false"
                 data-ng-model="ramCtrl.model.contract"
             ></div>
@@ -127,7 +97,7 @@
                 <table class="table table-condensed">
                     <tbody>
                         <tr
-                            data-ng-repeat="detail in ramCtrl.model.duration.details track by $index"
+                            data-ng-repeat="detail in ramCtrl.data.provisionalOrder.details track by $index"
                         >
                             <th
                                 class="font-weight-normal"
@@ -149,7 +119,7 @@
                             ></th>
                             <td
                                 class="font-weight-bold text-right"
-                                data-ng-bind="ramCtrl.model.duration.prices.withoutTax.text"
+                                data-ng-bind="ramCtrl.data.provisionalOrder.prices.withoutTax.text"
                             ></td>
                         </tr>
                         <tr>
@@ -160,7 +130,7 @@
                             ></th>
                             <td
                                 class="font-weight-bold text-right"
-                                data-ng-bind="ramCtrl.model.duration.prices.withTax.text"
+                                data-ng-bind="ramCtrl.data.provisionalOrder.prices.withTax.text"
                             ></td>
                         </tr>
                     </tfoot>
