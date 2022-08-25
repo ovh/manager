@@ -16,4 +16,10 @@ describe('ThumbnailCheckbox', () => {
 
     expect(a11yResults).toHaveNoViolations();
   });
+
+  it('selects checkbox on click', () => {
+    const { asFragment } = render(
+      <ThumbnailCheckbox checkboxTitle={'Value B'} />,
+    );
+  });
 });
