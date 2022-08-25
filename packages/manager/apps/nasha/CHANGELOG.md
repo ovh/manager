@@ -1,3 +1,12 @@
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@2.6.1...@ovh-ux/manager-nasha-app@2.7.0) (2022-08-25)
+
+
+### Features
+
+* **nasha:** refresh NAS-HA product ([d8bd647](https://github.com/ovh/manager/commit/d8bd64785f0410e26636322086a94c3dc756c223))
+
+
+
 ## [2.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@2.6.0...@ovh-ux/manager-nasha-app@2.6.1) (2022-07-27)
 
 

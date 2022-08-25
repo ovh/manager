@@ -1,3 +1,12 @@
+## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.6.1...@ovh-ux/manager-catalog-price@1.6.2) (2022-08-25)
+
+
+### Bug Fixes
+
+* **catalog-price:** asia prices not displayed ([c4e0ef0](https://github.com/ovh/manager/commit/c4e0ef03d9921ea67b322ac7a70dedc303c8fa26))
+
+
+
 ## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.6.0...@ovh-ux/manager-catalog-price@1.6.1) (2022-07-07)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing-components",
-  "version": "3.10.4",
+  "version": "3.10.5",
   "private": true,
   "description": "OVHcloud manager billing components",
   "repository": {
@@ -20,7 +20,7 @@
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
-    "@ovh-ux/ng-ovh-payment-method": "^9.2.2",
+    "@ovh-ux/ng-ovh-payment-method": "^9.2.3",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ui-kit": "^6.1.0",
     "angular": "^1.7.5",

@@ -1,3 +1,12 @@
+## [3.23.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.4...@ovh-ux/manager-server-sidebar@3.23.5) (2022-08-25)
+
+
+### Bug Fixes
+
+* **server-sidebar:** update NAS-HA properties ([c133de0](https://github.com/ovh/manager/commit/c133de0ce79bd238ab14ad474bf447ce6983c74f))
+
+
+
 ## [3.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.3...@ovh-ux/manager-server-sidebar@3.23.4) (2022-08-18)
 
 

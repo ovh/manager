@@ -1,3 +1,12 @@
+## [12.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.12.1...@ovh-ux/manager-core@12.12.2) (2022-08-25)
+
+
+### Bug Fixes
+
+* **core:** update MA, SN, TN, SG express order url ([f8d07ac](https://github.com/ovh/manager/commit/f8d07ac7457e67f5b8a69718f1f55a2f639e6162))
+
+
+
 ## [12.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.12.0...@ovh-ux/manager-core@12.12.1) (2022-07-27)
 
 

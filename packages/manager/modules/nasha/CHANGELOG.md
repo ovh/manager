@@ -1,3 +1,13 @@
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.5.2...@ovh-ux/manager-nasha@2.6.0) (2022-08-25)
+
+
+### Features
+
+* **nasha:** change catalog product id ([bd28adb](https://github.com/ovh/manager/commit/bd28adb8627b98cbd6d926dd9de719b9eae4c258))
+* **nasha:** refresh NAS-HA product ([d8bd647](https://github.com/ovh/manager/commit/d8bd64785f0410e26636322086a94c3dc756c223))
+
+
+
 ## [2.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.5.1...@ovh-ux/manager-nasha@2.5.2) (2022-07-27)
 
 

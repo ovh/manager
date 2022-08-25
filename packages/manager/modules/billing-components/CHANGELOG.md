@@ -1,3 +1,12 @@
+## [3.10.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.10.4...@ovh-ux/manager-billing-components@3.10.5) (2022-08-25)
+
+
+### Bug Fixes
+
+* **billing-components:** add NAS-HA to commitment ([e139ee3](https://github.com/ovh/manager/commit/e139ee3a8dd5b67ae0f5673bc5f7c7a2bfcbbcc8))
+
+
+
 ## [3.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.10.3...@ovh-ux/manager-billing-components@3.10.4) (2022-08-01)
 
 
