@@ -197,7 +197,7 @@
   "common_home": "Home",
   "unit_bits_per_sec": "{{val}} bps",
   "unit_kilo_bits_per_sec": "{{val}} kB/s",
-  "unit_mega_bits_per_sec": "{{val}} MB/s",
+  "unit_mega_bits_per_sec": "{{val}} Mb/s",
   "unit_giga_bits_per_sec": "{{val}} GB/s",
   "unit_tera_bits_per_sec": "{{val}} TB/s",
   "unit_peta_bits_per_sec": "{{val}} PB/s",
