@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 
 import { ThumbnailCheckbox } from '../components';
