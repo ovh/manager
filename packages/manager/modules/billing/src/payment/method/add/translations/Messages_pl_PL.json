@@ -36,5 +36,5 @@
   "billing_payment_method_add_sepa_direct_debit_warning_order": "Następnie będziesz mógł użyć tego sposobu płatności, aby sfinalizować zamówienie.",
   "billing_payment_method_add_sepa_direct_debit_warning_owner_identity": "Uwaga: właściciel konta bankowego oraz  właściciel konta OVHcloud muszą być identyczni.",
   "billing_payment_method_add_sepa_direct_debit_data_processing_info": "Gromadzone dane są przetwarzane przez firmę OVHcloud występującą w charakterze administratora danych w celu realizacji polecenia zapłaty SEPA.",
-  "billing_payment_method_add_sepa_direct_debit_digital_signature_info": "Ustanowienie polecenia zapłaty SEPA wymaga Twojego pełnomocnictwa opatrzonego podpisem elektronicznym wygenerowanym za pomocą rozwiązania dostarczonego przez Worldline - dostawcę zaufanych usług określonych w rozporządzeniu eIDAS nr 910/2014 z dnia 23 lipca 2014 r. Dane przekazywane są Worldline wyłącznie do wskazanego wyżej celu."
+  "billing_payment_method_add_sepa_direct_debit_digital_signature_info": "Ustanowienie polecenia zapłaty SEPA wymaga Twojego pełnomocnictwa opatrzonego podpisem elektronicznym wygenerowanym za pomocą rozwiązania dostarczonego przez Worldline - dostawcę zaufanych usług określonych w rozporządzeniu eDIAS nr 910/2014 z dnia 23 lipca 2014 r. Dane przekazywane są Worldline wyłącznie do wskazanego wyżej celu."
 }

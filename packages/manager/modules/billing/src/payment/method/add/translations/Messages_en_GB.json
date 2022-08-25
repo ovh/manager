@@ -36,5 +36,5 @@
   "billing_payment_method_add_sepa_direct_debit_warning_order": "You can then use this payment method to complete your order.",
   "billing_payment_method_add_sepa_direct_debit_warning_owner_identity": "Warning: the bank account owner must also be the OVHcloud account owner.",
   "billing_payment_method_add_sepa_direct_debit_data_processing_info": "The data collected is processed by OVHcloud as a data controller in order to set up your SEPA direct debit.",
-  "billing_payment_method_add_sepa_direct_debit_digital_signature_info": "To set up a SEPA direct debit, you will need to sign a mandate electronically using a solution provided by Worldline, a service provider authorised to deliver the trusted services defined by the “eIDAS” Regulation No. 910/2014 of 23 July 2014. In this context, the data is sent to Worldline."
+  "billing_payment_method_add_sepa_direct_debit_digital_signature_info": "To set up a SEPA direct debit, you will need to sign a mandate electronically using a solution provided by Worldline, a service provider authorised to deliver the trusted services defined by the “eDIAS” Regulation No. 910/2014 of 23 July 2014. In this context, the data is sent to Worldline."
 }
