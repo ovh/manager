@@ -13,5 +13,6 @@ export default {
     file: '<',
     downloadRCloneConfig: '<',
     checkGlobalRegionCallBack: '<',
+    storageS3Regions: '<',
   },
 };

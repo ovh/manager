@@ -38,7 +38,12 @@ export default class PciUsersDownloadRcloneController {
       id: region,
       label: this.ovhManagerRegionService.getTranslatedMicroRegion(region),
     }));
+    this.storageS3Regions = map(this.storageS3Regions, (region) => ({
+      id: region,
+      label: this.ovhManagerRegionService.getTranslatedMicroRegion(region),
+    }));
     this.region = first(this.regions);
+    this.storageS3Region = first(this.storageS3Regions);
     this.hasGlobalRegions = this.checkGlobalRegionCallBack(this.regions);
   }
 
@@ -47,7 +52,11 @@ export default class PciUsersDownloadRcloneController {
     this.serviceType =
       RCLONE_SERVICE_TYPE[this.fileType?.toUpperCase()] ||
       RCLONE_SERVICE_TYPE.S3;
-    return this.downloadRCloneConfig(this.region.id, this.serviceType)
+    this.regionId =
+      this.fileType === DOWNLOAD_FILETYPE.SWIFT
+        ? this.region.id
+        : this.storageS3Region.id;
+    return this.downloadRCloneConfig(this.regionId, this.serviceType)
       .then(({ content }) => {
         const data = new Blob([content], { type: this.file.fileType });
         saveAs(data, this.file.fileName);
