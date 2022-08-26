@@ -32,16 +32,13 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           userId,
         ) => PciStoragesObjectStorageService.get(projectId, userId),
-        regions: /* @ngInject */ (PciStoragesObjectStorageService, projectId) =>
-          PciStoragesObjectStorageService.getStorageRegions(
+        regions: /* @ngInject */ (PciProject, projectId) =>
+          PciProject.getStorageRegions(
             projectId,
             REGION_CAPACITY,
           ).then((regions) => regions.map(({ name }) => name)),
-        storageS3Regions: /* @ngInject */ (
-          PciStoragesObjectStorageService,
-          projectId,
-        ) =>
-          PciStoragesObjectStorageService.getS3StorageRegions(
+        storageS3Regions: /* @ngInject */ (PciProject, projectId) =>
+          PciProject.getS3StorageRegions(
             projectId,
             S3_REGION_CAPACITY,
           ).then((regions) => regions.map(({ name }) => name)),

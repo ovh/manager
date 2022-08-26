@@ -1,4 +1,3 @@
-import first from 'lodash/first';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import {
@@ -24,7 +23,7 @@ export default class PciUsersDownloadRcloneController {
   }
 
   $onInit() {
-    this.isLoading = false;
+    this.isLoading = true;
     this.ovhFeatureFlipping
       .checkFeatureAvailability('public-cloud:object-storage')
       .then((feature) =>
@@ -32,18 +31,20 @@ export default class PciUsersDownloadRcloneController {
       )
       .then((status) => {
         this.showFileType = status;
-      });
+        this.isLoading = false;
+      })
+      .catch(() => null);
     this.fileType = DOWNLOAD_FILETYPE.SWIFT;
     this.regions = map(this.regions, (region) => ({
       id: region,
       label: this.ovhManagerRegionService.getTranslatedMicroRegion(region),
     }));
-    this.storageS3Regions = map(this.storageS3Regions, (region) => ({
+    this.storageS3Regions = this.storageS3Regions.map((region) => ({
       id: region,
       label: this.ovhManagerRegionService.getTranslatedMicroRegion(region),
     }));
-    this.region = first(this.regions);
-    this.storageS3Region = first(this.storageS3Regions);
+    [this.region] = this.regions;
+    [this.storageS3Region] = this.storageS3Regions;
     this.hasGlobalRegions = this.checkGlobalRegionCallBack(this.regions);
   }
 
