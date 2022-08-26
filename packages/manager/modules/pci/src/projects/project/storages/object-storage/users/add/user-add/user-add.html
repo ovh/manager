@@ -24,10 +24,10 @@
         <oui-radio-description data-ng-if="$ctrl.isUserLinkedModeActive()">
             <oui-field class="mt-2" data-size="xl">
                 <oui-select
-                    data-name="userList"
+                    data-name="userNameDescriptionKey"
+                    data-match="userNameDescriptionKey"
                     data-model="$ctrl.userModel"
                     data-items="$ctrl.usersWithoutCredentials"
-                    data-match="username"
                 >
                     <div class="row">
                         <div
