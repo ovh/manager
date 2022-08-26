@@ -49,8 +49,7 @@ export default class PciUsersAddController {
       }));
     this.isUserCouldGenerateCredentails =
       this.usersWithoutCredentials?.length > 0;
-
-    [this.userModel] = this.allUserList;
+    [this.userModel] = this.usersWithoutCredentials;
   }
 
   onChange(action) {
