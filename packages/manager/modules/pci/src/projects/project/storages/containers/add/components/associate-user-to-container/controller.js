@@ -25,6 +25,15 @@ export default class CreateLinkedUserController {
   }
 
   $onInit() {
+    this.setUserCredentialsList();
+    this.loadMessages();
+  }
+
+  $onDestroy() {
+    this.PciStoragesUsersService.stopPollingUserStatus(NAMESPACES.CREATE_USER);
+  }
+
+  setUserCredentialsList() {
     this.usersCredentials = this.users.map((user) => ({
       ...user,
       credentialTrad: this.getCredentialTranslation(user),
@@ -32,11 +41,6 @@ export default class CreateLinkedUserController {
         ? `${user.username} - ${user.description}`
         : user.username,
     }));
-    this.loadMessages();
-  }
-
-  $onDestroy() {
-    this.PciStoragesUsersService.stopPollingUserStatus(NAMESPACES.CREATE_USER);
   }
 
   loadMessages() {
@@ -105,7 +109,6 @@ export default class CreateLinkedUserController {
         );
       })
       .then((user) => {
-        this.users.push(user);
         this.userModel.createMode.user = user;
 
         return user;
@@ -184,14 +187,19 @@ export default class CreateLinkedUserController {
   }
 
   onCreateUserClicked(description) {
+    let newUser;
     this.trackClick(`${TRACKING_CREATE_USER}-confirm`);
     this.userModel.createMode.isInProgress = true;
     return this.createUser(description)
       .then((user) => {
+        newUser = user;
         return this.generateUserS3Credential(user);
       })
       .then((credential) => {
+        newUser.s3Credentials = [credential];
+        this.users.push(newUser);
         this.userModel.createMode.credential = credential;
+        this.setUserCredentialsList();
         this.trackPage(`${TRACKING_CREATE_USER}-success`);
         return credential;
       })
