@@ -19,7 +19,7 @@ export default class CloudProjectUsersCtrl {
         feature.isFeatureAvailable('public-cloud:object-storage'),
       )
       .then((status) => {
-        this.showGenerateS3Credentials = !status;
+        this.showSection = !status;
       });
     this.messageChannel = 'pci.projects.project.users';
     this.showRolesMatrix = false;
