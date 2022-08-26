@@ -124,25 +124,6 @@ export default class PciStoragesObjectStorageService {
       .then(({ data }) => data);
   }
 
-  getStorageRegions(projectId, regionCapacity) {
-    return this.getRegions(projectId).then((regions) => {
-      return regions.filter(({ services }) =>
-        services.find(({ name }) => name === regionCapacity),
-      );
-    });
-  }
-
-  getS3StorageRegions(projectId, regionCapacity) {
-    return this.getRegions(projectId).then((regions) => {
-      return regions.filter(({ services }) =>
-        services.find(
-          ({ name }) =>
-            name === regionCapacity[0] || name === regionCapacity[1],
-        ),
-      );
-    });
-  }
-
   /**
    * Call this to be informed where the desired status is on
    * @param serviceName {String}: concerned project

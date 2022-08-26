@@ -77,25 +77,6 @@ export default class PciProjectsProjectUsersService {
       .then(({ data }) => data);
   }
 
-  getStorageRegions(projectId, regionCapacity) {
-    return this.getRegions(projectId).then((regions) => {
-      return regions.filter(({ services }) =>
-        services.find(({ name }) => name === regionCapacity),
-      );
-    });
-  }
-
-  getS3StorageRegions(projectId, regionCapacity) {
-    return this.getRegions(projectId).then((regions) => {
-      return regions.filter(({ services }) =>
-        services.find(
-          ({ name }) =>
-            name === regionCapacity[0] || name === regionCapacity[1],
-        ),
-      );
-    });
-  }
-
   downloadOpenRc(projectId, { id: userId }, region, version) {
     return this.OvhApiCloudProjectUser.v6().openrc({
       serviceName: projectId,
