@@ -178,7 +178,7 @@
             </oui-action-menu-item>
 
             <oui-action-menu-item
-                data-ng-if="$ctrl.generateS3Credentials && $ctrl.showGenerateS3Credentials"
+                data-ng-if="$ctrl.generateS3Credentials && $ctrl.showSection"
                 data-on-click="$ctrl.generateCredentials($row)"
                 data-disabled="$ctrl.isActionDisabled()"
             >
@@ -221,7 +221,11 @@
     </oui-button>
 
     <div data-ng-if-start="$ctrl.showRolesMatrix" class="mt-2">
-        <oui-message data-type="info" class="d-inline-block">
+        <oui-message
+            data-ng-if="$ctrl.showSection"
+            data-type="info"
+            class="d-inline-block"
+        >
             <span
                 data-translate="pci_projects_project_users_high_perf_info"
             ></span>
