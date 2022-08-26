@@ -1,4 +1,5 @@
 import { Filter, FilterComparator } from '@/api/filters';
+import apiClient from '@/api/client';
 
 export type FetchPaginatedParams = {
   route: string;
@@ -47,27 +48,27 @@ export async function fetchIceberg({
   sortBy,
   sortReverse,
 }: FetchPaginatedParams) {
-  const headers: Record<string, string> = {
+  const requestHeaders: Record<string, string> = {
     'x-pagination-mode': 'CachedObjectList-Pages',
     'x-pagination-number': `${encodeURIComponent(page)}`,
     'x-pagination-size': `${encodeURIComponent(pageSize)}`,
   };
   if (sortBy) {
-    headers['x-pagination-sort'] = encodeURIComponent(sortBy);
-    headers['x-pagination-sort-order'] = sortReverse ? 'DESC' : 'ASC';
+    requestHeaders['x-pagination-sort'] = encodeURIComponent(sortBy);
+    requestHeaders['x-pagination-sort-order'] = sortReverse ? 'DESC' : 'ASC';
   }
   if (filters && filters.length) {
-    headers['x-pagination-filter'] = filters
+    requestHeaders['x-pagination-filter'] = filters
       .map(
         ({ comparator, key, value }) =>
           `${encodeURIComponent(key)}:${icebergFilter(comparator, value)}`,
       )
       .join('&');
   }
-  const response = await fetch(`/engine/api${route}`, { headers });
-  const data = await response.json();
-  const totalCount =
-    parseInt(response.headers.get('x-pagination-elements'), 10) || 0;
+  const { data, headers } = await apiClient.get(route, {
+    headers: requestHeaders,
+  });
+  const totalCount = parseInt(headers['x-pagination-elements'], 10) || 0;
   return { data, totalCount };
 }
 
