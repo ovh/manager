@@ -16,5 +16,5 @@
   "nasha_onboarding_nfs_content": "Hier erfahren Sie, wie Sie ein NAS über eine NFS-Freigabe mounten.",
   "nasha_onboarding_cifs_title": "NAS auf Windows Server mit CIFS mounten",
   "nasha_onboarding_cifs_content": "Hier erfahren Sie, wie Sie einen NAS mit CIFS auf Windows Server mounten.",
-  "nasha_onboarding_order": "HA-NAS bestellen "
+  "nasha_onboarding_order": "HA-NAS bestellen"
 }
