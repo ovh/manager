@@ -59,9 +59,18 @@
             data-size="xl"
         >
             <oui-select
+                data-ng-if="$ctrl.fileType === $ctrl.downloadFileType.SWIFT"
                 data-name="region"
                 data-model="$ctrl.region"
                 data-items="$ctrl.regions"
+                data-match="label"
+            >
+            </oui-select>
+            <oui-select
+                data-ng-if="$ctrl.fileType === $ctrl.downloadFileType.S3 && $ctrl.showFileType"
+                data-name="storageS3Regions"
+                data-model="$ctrl.storageS3Region"
+                data-items="$ctrl.storageS3Regions"
                 data-match="label"
             >
             </oui-select>

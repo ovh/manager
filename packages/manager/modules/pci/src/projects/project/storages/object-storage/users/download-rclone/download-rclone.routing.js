@@ -4,6 +4,7 @@ import {
   DOWNLOAD_RCLONE_FILENAME,
   DOWNLOAD_RCLONE_FILETYPE,
   REGION_CAPACITY,
+  S3_REGION_CAPACITY,
 } from '../../../../../../components/users/download-rclone/download-rclone.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -35,6 +36,14 @@ export default /* @ngInject */ ($stateProvider) => {
           PciStoragesObjectStorageService.getStorageRegions(
             projectId,
             REGION_CAPACITY,
+          ).then((regions) => regions.map(({ name }) => name)),
+        storageS3Regions: /* @ngInject */ (
+          PciStoragesObjectStorageService,
+          projectId,
+        ) =>
+          PciStoragesObjectStorageService.getS3StorageRegions(
+            projectId,
+            S3_REGION_CAPACITY,
           ).then((regions) => regions.map(({ name }) => name)),
         rcloneGuide: /* @ngInject */ (coreConfig) => {
           return get(RCLONE_GUIDE, coreConfig.getUser().ovhSubsidiary);
