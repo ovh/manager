@@ -10,7 +10,7 @@
   "netapp_volume_create_size_required": "Please enter the volume size.",
   "netapp_volume_create_size_invalid_number_error": "Please enter a valid number.",
   "netapp_volume_create_size_minimum_error": "Minimum size required: {{minSize}}GB",
-  "netapp_volume_create_size_maximum_error": "Maximum size permitted: {{maxSize}}GB",
+  "netapp_volume_create_size_maximum_error": "Maximum size authorised: {{maxSize}}GB",
   "netapp_volume_create_success": "Your volume has been created. You can log in once the access control rules have been configured.",
   "netapp_volume_create_error": "An error has occurred creating the volume. {{message}}"
 }
