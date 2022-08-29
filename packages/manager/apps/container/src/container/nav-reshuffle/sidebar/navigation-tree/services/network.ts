@@ -37,7 +37,7 @@ export default {
         application: 'dedicated',
         hash: '#/cloud-connect',
       },
-      features: ['veeam-cloud-connect'],
+      features: ['cloud-connect'],
     },
     {
       id: 'iplb',
