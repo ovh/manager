@@ -27,6 +27,7 @@
     "@ovh-ux/shell": "^1.0.0",
     "@tanstack/react-query": "^4.2.1",
     "@tanstack/react-query-devtools": "^4.2.1",
+    "axios": "^0.27.2",
     "framer-motion": "^6.5.1",
     "i18next": "^21.8.14",
     "i18next-http-backend": "^1.4.1",

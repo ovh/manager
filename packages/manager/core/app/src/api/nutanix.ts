@@ -1,5 +1,6 @@
 import { Filter } from '@/api/filters';
 import { fetchIceberg } from '@/api/iceberg';
+import apiClient from '@/api/client';
 
 export type Nutanix = {
   allowedRedundancyFactor: number[];
@@ -70,10 +71,8 @@ export async function fetchNutanixMetaInfos(
   nutanix: Nutanix,
 ): Promise<NutanixMetaInfos> {
   const serverId = nutanix.targetSpec.nodes[0].server;
-  // @TODO externalize fetchApi
-  const response = await fetch(`/engine/api/dedicated/server/${serverId}`);
-  const data = await response.json();
-  return { region: data.datacenter };
+  const response = await apiClient.get(`/dedicated/server/${serverId}`);
+  return { region: response.data.datacenter };
 }
 
 export default Nutanix;
