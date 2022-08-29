@@ -68,7 +68,7 @@ export default class PciStoragesContainersContainerController {
     }
     return downloadPromise
       .then((url) => {
-        this.$window.location = url;
+        this.$window.top.location = url;
       })
       .catch((err) => this.handleDownloadError(err));
   }
