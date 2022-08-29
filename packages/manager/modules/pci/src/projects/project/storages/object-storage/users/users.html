@@ -87,5 +87,12 @@
                 data-translate="pci_projects_project_storages_containers_users_add_user"
             ></span>
         </button>
+        <button
+            class="oui-button oui-button_s oui-button_secondary float-right"
+            data-ng-if="$ctrl.refreshS3Credentials"
+            data-ng-click="$ctrl.refreshS3Credentials()"
+        >
+            <span class="oui-icon oui-icon-refresh" aria-hidden="true"></span>
+        </button>
     </oui-datagrid-topbar>
 </oui-datagrid>

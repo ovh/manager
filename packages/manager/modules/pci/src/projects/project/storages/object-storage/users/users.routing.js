@@ -14,6 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().userCredential,
       trackingInfo: /* @ngInject */ ($transition$) =>
         $transition$.params().trackingInfo,
+      refreshS3Credentials: /* @ngInj ect */ ($state) => () => $state.reload(),
       goToUsersAndRoles: /* @ngInject */ (
         $state,
         atInternet,
