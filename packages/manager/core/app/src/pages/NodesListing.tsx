@@ -45,9 +45,11 @@ export default function NodesListingPage(): JSX.Element {
           as={RouterLink}
           to={`/nutanix/${serviceId}/nodes/${server.serviceName}`}
         >
-          {server.serviceName}
+          {server.displayName}
         </Link>
       ),
+      search: true,
+      sortable: true,
     },
     {
       key: 'server_type',
@@ -65,6 +67,7 @@ export default function NodesListingPage(): JSX.Element {
         }
         return <>{query.data.commercialRange}</>;
       },
+      sortable: true,
     },
     {
       key: 'status',
