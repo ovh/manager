@@ -19,6 +19,22 @@
             <p
                 data-translate="pci_projects_project_public_gateway_edit_size_info"
             ></p>
+            <div class="my-3">
+                <oui-field
+                    data-size="l"
+                    data-label="{{:: 'pci_projects_project_public_gateways_edit_public_gateway_field_label' | translate }}"
+                >
+                    <input
+                        class="oui-input"
+                        type="text"
+                        id="gatewayName"
+                        name="gatewayName"
+                        placeholder="{{ 'pci_projects_project_public_gateways_edit_public_gateway_field_placeholder' | translate }}"
+                        data-ng-model="$ctrl.gatewayDetails.name"
+                        required
+                    />
+                </oui-field>
+            </div>
             <div class="mb-3">
                 <pci-project-gateways-model-selector
                     data-ovh-subsidiary="$ctrl.ovhSubsidiary"

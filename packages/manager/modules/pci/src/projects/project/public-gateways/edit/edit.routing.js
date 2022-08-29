@@ -1,10 +1,21 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.public-gateways.edit', {
-    url: '/edit',
+    url: '/edit?gatewayId&region',
     component: 'pciProjectPublicGatewaysEdit',
-    params: { gateway: null },
+    params: {
+      gatewayId: {
+        dynamic: true,
+        type: 'string',
+      },
+      region: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     resolve: {
-      gateway: /* @ngInject */ ($transition$) => $transition$.params().gateway,
+      gatewayId: /* @ngInject */ ($transition$) =>
+        $transition$.params().gatewayId,
+      region: /* @ngInject */ ($transition$) => $transition$.params().region,
       goBack: /* @ngInject */ (goToPublicGateway) => goToPublicGateway,
       breadcrumb: () => null,
     },
