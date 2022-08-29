@@ -2,20 +2,20 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { format } from 'date-fns';
 import esLocale from 'date-fns/locale/es';
-import { axe, toHaveNoViolations } from 'jest-axe';
+// import { axe, toHaveNoViolations } from 'jest-axe';
 
 import { Calendar, capitalizeFirstLetter } from '../components';
 
-expect.extend(toHaveNoViolations);
+// expect.extend(toHaveNoViolations);
 
 const selectedDate = new Date(2022, 5, 18);
 
 describe('Calendar', () => {
-  it('has no accessibility violations', async () => {
-    const { container } = render(<Calendar />);
-    const a11yResults = await axe(container);
-    expect(a11yResults).toHaveNoViolations();
-  });
+  // it('has no accessibility violations', async () => {
+  //   const { container } = render(<Calendar />);
+  //   const a11yResults = await axe(container);
+  //   expect(a11yResults).toHaveNoViolations();
+  // });
 
   it('default renders correctly to current date with default locale', () => {
     render(<Calendar />);

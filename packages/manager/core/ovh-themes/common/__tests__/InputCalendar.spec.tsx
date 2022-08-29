@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { format } from 'date-fns';
-import { axe, toHaveNoViolations } from 'jest-axe';
+// import { axe, toHaveNoViolations } from 'jest-axe';
 
 import {
   FormControl,
@@ -12,7 +12,7 @@ import {
 import { InputCalendar } from '../components';
 
 const selectedDate = new Date(2022, 5, 18);
-expect.extend(toHaveNoViolations);
+// expect.extend(toHaveNoViolations);
 
 describe('Input Calendar', () => {
   // default locale is en-US
@@ -44,17 +44,17 @@ describe('Input Calendar', () => {
   });
 
   // Keep this test last as it impacts other tests (some generated css has other names)
-  it('has no accessibility violations', async () => {
-    const { container } = render(
-      <FormControl>
-        <FormLabel>Label</FormLabel>
-        <InputCalendar />
-        <FormHelperText>Your date here</FormHelperText>
-        <FormErrorMessage>Mandatory.</FormErrorMessage>
-      </FormControl>,
-    );
+  // it('has no accessibility violations', async () => {
+  //   const { container } = render(
+  //     <FormControl>
+  //       <FormLabel>Label</FormLabel>
+  //       <InputCalendar />
+  //       <FormHelperText>Your date here</FormHelperText>
+  //       <FormErrorMessage>Mandatory.</FormErrorMessage>
+  //     </FormControl>,
+  //   );
 
-    const a11yResults = await axe(container);
-    expect(a11yResults).toHaveNoViolations();
-  });
+  //   const a11yResults = await axe(container);
+  //   expect(a11yResults).toHaveNoViolations();
+  // });
 });
