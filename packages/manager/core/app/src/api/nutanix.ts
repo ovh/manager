@@ -42,6 +42,17 @@ type NutanixMetaInfos = {
   region: string;
 };
 
+export type NutanixNode = {
+  serviceName: string;
+  displayName: string;
+};
+
+export type NutanixNodeMetaInfos = {
+  commercialRange: string;
+  datacenter: string;
+  state: string;
+};
+
 export type ListNutanixParams = {
   currentPage: number;
   pageSize: number;
@@ -71,8 +82,28 @@ export async function fetchNutanixMetaInfos(
   nutanix: Nutanix,
 ): Promise<NutanixMetaInfos> {
   const serverId = nutanix.targetSpec.nodes[0].server;
-  const response = await apiClient.get(`/dedicated/server/${serverId}`);
+  const response = await apiClient.v6.get(`/dedicated/server/${serverId}`);
   return { region: response.data.datacenter };
+}
+
+export async function listNutanixNodes(
+  serviceName: string,
+): Promise<NutanixNode[]> {
+  const { data } = await apiClient.aapi.get(
+    `/service?external=false&type=${encodeURIComponent(
+      `/nutanix/${serviceName}`,
+    )}`,
+  );
+  return data;
+}
+
+export async function fetchNutanixNodeMetaInfos(
+  serviceName: string,
+): Promise<NutanixNodeMetaInfos> {
+  const response = await apiClient.aapi.get(
+    `/sws/dedicated/server/${serviceName}`,
+  );
+  return response.data;
 }
 
 export default Nutanix;
