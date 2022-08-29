@@ -39,10 +39,6 @@
     "start": "node -r esm scripts/start-application.js",
     "test:jest": "jest --runInBand",
     "test": "yarn lint",
-    "test:e2e:chromium": "rimraf ./reports && testcafe chromium",
-    "test:e2e:chromium:headless": "rimraf ./reports && testcafe chromium:headless",
-    "test:e2e:firefox": "rimraf ./reports && testcafe firefox",
-    "test:e2e:firefox:headless": "rimraf ./reports && testcafe firefox:headless",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "resolutions": {
@@ -105,9 +101,6 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.18.0",
-    "testcafe": "1.8.2",
-    "testcafe-angular-selectors": "^0.4.1",
-    "testcafe-reporter-html": "^1.4.6",
     "turbo": "^1.4.3",
     "whatwg-fetch": "^3.6.2"
   },
