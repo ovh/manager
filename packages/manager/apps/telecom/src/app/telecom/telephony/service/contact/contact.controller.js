@@ -93,6 +93,8 @@ export default class TelecomTelephonyServiceContactCtrl {
 
         if (this.directory.ape && this.directory.directoryServiceCode) {
           return this.TelecomTelephonyServiceContactService.fetchDirectoryServiceCode(
+            this.billingAccount,
+            this.serviceName,
             this.directory.ape,
           ).then((result) => {
             this.directoryCodes = result;
