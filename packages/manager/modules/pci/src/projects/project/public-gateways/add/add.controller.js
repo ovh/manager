@@ -128,16 +128,15 @@ export default class PciPublicGatewaysAddController {
   }
 
   onAddPrivateNetworkClick() {
-    this.trackClick('public-gateway_add_add-private-network');
     this.showAddPrivateNetworkModalForm = true;
+    if (this.showAddPrivateNetworkModalForm) {
+      this.trackPublicGateways('add::add-private-network');
+    }
   }
 
   onCancel() {
     this.trackPublicGateways('add::add-private-network::cancel');
     this.showAddPrivateNetworkModalForm = false;
-    if (this.showAddPrivateNetworkModalForm) {
-      this.trackPublicGateways('add::add-private-network');
-    }
   }
 
   loadMessages() {

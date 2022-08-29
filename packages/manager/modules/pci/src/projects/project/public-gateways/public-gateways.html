@@ -66,9 +66,14 @@
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_public_gateway_networks_connected' | translate"
             data-property="interfaces.length"
-            data-type="string"
-            data-filterable
-        ></oui-datagrid-column>
+        >
+            <oui-button
+                class="btn btn-link"
+                data-ng-bind="$row.interfaces.length"
+                data-ng-click="$ctrl.onGoToPrivateNetworkClick($row)"
+            ></oui-button>
+        </oui-datagrid-column>
+
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_public_gateway_public_ip' | translate"
             data-property="formattedIps"
@@ -89,7 +94,8 @@
             data-type="string"
             data-searchable
             data-filterable
-        ></oui-datagrid-column>
+        >
+        </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_public_gateway_status' | translate"
             data-property="status"
@@ -98,7 +104,9 @@
             data-filterable
         ></oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
-            <oui-action-menu-item on-click="$ctrl.goToEditGateway($row)">
+            <oui-action-menu-item
+                on-click="$ctrl.goToEditGateway($row.id, $row.region)"
+            >
                 <span
                     data-translate="pci_projects_project_public_gateway_modify"
                 ></span>

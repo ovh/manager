@@ -15,5 +15,7 @@
   "pci_projects_project_public_gateways_edit_spec_publiccloud-gateway-l_price": "Prix :",
   "pci_projects_project_public_gateway_edit_submit_action": "Suivant",
   "pci_projects_project_public_gateway_edit_success": "La taille du Public Gateway {{name}} a bien été modifiée.",
-  "pci_projects_project_public_gateway_edit_error": "Une erreur est survenue lors de la modification de la taille de la Public Gateway {{name}}"
+  "pci_projects_project_public_gateway_edit_error": "Une erreur est survenue lors de la modification de la taille de la Public Gateway {{name}}",
+  "pci_projects_project_public_gateways_edit_public_gateway_field_label": "Nom du public gateway",
+  "pci_projects_project_public_gateways_edit_public_gateway_field_placeholder": "Saisir un nom de public gateway"
 }
