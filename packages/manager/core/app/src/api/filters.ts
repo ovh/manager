@@ -37,3 +37,44 @@ export const FilterCategories = {
     FilterComparator.IsAfter,
   ],
 };
+
+export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
+  return items.filter((item) => {
+    let keep = true;
+    filters.forEach((filter) => {
+      const value = item[filter.key as keyof T];
+      switch (filter.comparator) {
+        case FilterComparator.Includes:
+          keep = keep && `${value}`.includes(filter.value);
+          break;
+        case FilterComparator.StartsWith:
+          keep = keep && `${value}`.startsWith(filter.value);
+          break;
+        case FilterComparator.EndsWith:
+          keep = keep && `${value}`.endsWith(filter.value);
+          break;
+        case FilterComparator.IsEqual:
+          keep = keep && `${value}` === filter.value;
+          break;
+        case FilterComparator.IsDifferent:
+          keep = keep && `${value}` !== filter.value;
+          break;
+        case FilterComparator.IsLower:
+          keep = keep && Number(value) < Number(filter.value);
+          break;
+        case FilterComparator.IsHigher:
+          keep = keep && Number(value) > Number(filter.value);
+          break;
+        case FilterComparator.IsBefore:
+          keep = keep && new Date(`${value}`) < new Date(filter.value);
+          break;
+        case FilterComparator.IsAfter:
+          keep = keep && new Date(`${value}`) > new Date(filter.value);
+          break;
+        default:
+          break;
+      }
+    });
+    return keep;
+  });
+}
