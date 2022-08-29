@@ -65,7 +65,7 @@ export async function fetchIceberg({
       )
       .join('&');
   }
-  const { data, headers } = await apiClient.get(route, {
+  const { data, headers } = await apiClient.v6.get(route, {
     headers: requestHeaders,
   });
   const totalCount = parseInt(headers['x-pagination-elements'], 10) || 0;

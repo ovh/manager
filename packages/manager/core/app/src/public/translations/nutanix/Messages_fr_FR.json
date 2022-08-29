@@ -13,6 +13,14 @@
   "status_deploying": "Déploiement",
   "status_error": "Erreur",
 
+  "node_status_ok": "Normal",
+  "node_status_error": "En erreur",
+  "node_status_hacked": "Hacké",
+  "node_status_hacked_blocked": "Hacké et bloqué",
+
+  "node_name": "Nom du node",
+  "server_type": "Type de serveur",
+
   "dc_region_eri": "Londres (ERI{{number}}) - Angleterre",
   "dc_region_bhs": "Beauharnois (BHS{{number}}) - Canada",
   "dc_region_dc": "Beauharnois (DC{{number}}) - Canada",

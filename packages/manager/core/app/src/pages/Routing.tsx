@@ -5,6 +5,7 @@ import { Route } from 'use-react-router-breadcrumbs';
 
 const Onboarding = React.lazy(() => import('./Onboarding'));
 const Listing = React.lazy(() => import('./Listing'));
+const NodesListing = React.lazy(() => import('./NodesListing'));
 const Dashboard = React.lazy(() => import('./Dashboard'));
 
 export default function Routing(): JSX.Element {
@@ -40,6 +41,16 @@ export default function Routing(): JSX.Element {
               </Suspense>
             }
           />
+          <Route path="nodes">
+            <Route
+              index
+              element={
+                <Suspense fallback="">
+                  <NodesListing />
+                </Suspense>
+              }
+            />
+          </Route>
         </Route>
       </Route>
       <Route index element={<Navigate to="/nutanix" replace={true} />} />
