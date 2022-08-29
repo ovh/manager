@@ -18,5 +18,6 @@ export default {
     userDetails: '<',
     userCredential: '<',
     trackingInfo: '<',
+    refreshS3Credentials: '<',
   },
 };
