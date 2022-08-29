@@ -47,18 +47,25 @@
         >
             <div class="d-flex align-items-center">
                 <oui-select
-                    class="w-100 mr-2"
+                    class="w-100"
                     data-disabled="!$ctrl.isUsersListSelectable()"
                     data-items="$ctrl.usersCredentials"
                     data-match="userNameDescriptionKey"
                     data-name="userNameDescriptionKey"
                     data-model="$ctrl.userModel.linkedMode.selected"
                 >
-                    <span data-ng-bind=":: $item.userNameDescriptionKey"></span>
-                    <small
-                        class="float-right"
-                        data-ng-bind=":: $item.credentialTrad"
-                    ></small>
+                    <div class="row">
+                        <div
+                            class="col-8 text-truncate"
+                            data-ng-bind=":: $item.userNameDescriptionKey"
+                        ></div>
+                        <div class="col-4">
+                            <small
+                                class="ml-4"
+                                data-ng-bind=":: $item.credentialTrad"
+                            ></small>
+                        </div>
+                    </div>
                 </oui-select>
                 <oui-spinner
                     data-ng-if="$ctrl.userModel.linkedMode.isInProgress"
