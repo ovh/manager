@@ -27,7 +27,11 @@ export default class PublicGatewaysController {
     return this.goToAddPublicGateway();
   }
 
-  onGoToPrivateNetworkClick() {
+  onGoToPrivateNetworkClick(row) {
+    if (row) {
+      this.trackPublicGateways('table-option-menu::connected-network');
+      return this.goToPrivateNetwork(this.projectId);
+    }
     this.trackPublicGateways('table-option-menu::private-network');
     return this.goToPrivateNetwork(this.projectId);
   }

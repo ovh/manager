@@ -22,6 +22,7 @@ export default class publicGatewaysServiceClass {
           return {
             ...gateway,
             region: regionName,
+            flavour: gateway.model.toUpperCase(),
             formattedIps:
               gateway?.externalInformation?.ips
                 ?.map(({ ip }) => ip)
@@ -83,6 +84,14 @@ export default class publicGatewaysServiceClass {
     return this.$http
       .delete(
         `/cloud/project/${serviceName}/region/${regionName}/gateway/${gatewayId} `,
+      )
+      .then(({ data }) => data);
+  }
+
+  fetchGatewayDetails(serviceName, region, gatewayId) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/region/${region}/gateway/${gatewayId}`,
       )
       .then(({ data }) => data);
   }

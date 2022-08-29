@@ -10,6 +10,8 @@ export default class PciPublicGatewaysEditController {
     this.isEditing = false;
     this.ovhSubsidiary = this.coreConfig.getUser().ovhSubsidiary;
     this.selectedGatewaySize = null;
+    this.gatewayDetails = null;
+    this.fetchGatewayDetails();
   }
 
   onGoBackClick() {
@@ -21,18 +23,34 @@ export default class PciPublicGatewaysEditController {
     this.selectedGatewaySize = selectedSize;
   }
 
+  fetchGatewayDetails() {
+    return this.PciPublicGatewaysService.fetchGatewayDetails(
+      this.projectId,
+      this.region,
+      this.gatewayId,
+    )
+      .then((data) => {
+        this.gatewayDetails = data;
+        return this.gatewayDetails;
+      })
+      .catch((err) => this.CucCloudMessage.error(err.data.message || err.data));
+  }
+
+  getGatewayModel = (gatewaySize) => gatewaySize.split(/[-]+/).pop();
+
   onNextClick() {
-    this.trackPublicGateways(
-      `confirm-update-public-gateway::${this.gateway.name}::${this.selectedGatewaySize.product}`,
+    this.trackClick(
+      `confirm-update-public-gateway::publiccloud-gateway-${this.gatewayDetails.model}::${this.selectedGatewaySize.product}`,
     );
     this.isEditing = true;
     this.editModel = {
-      name: this.selectedGatewaySize.product,
+      model: this.getGatewayModel(this.selectedGatewaySize.product),
+      name: this.gatewayDetails.name,
     };
     return this.PciPublicGatewaysService.editGateway(
       this.projectId,
-      this.gateway.region,
-      this.gateway.id,
+      this.region,
+      this.gatewayId,
       this.editModel,
     )
       .then(() => {
@@ -40,7 +58,7 @@ export default class PciPublicGatewaysEditController {
           this.$translate.instant(
             'pci_projects_project_public_gateway_edit_success',
             {
-              name: this.gateway.name,
+              name: this.gatewayDetails.name,
             },
           ),
         );
@@ -50,7 +68,7 @@ export default class PciPublicGatewaysEditController {
           this.$translate.instant(
             'pci_projects_project_public_gateway_edit_error',
             {
-              name: this.gateway.name,
+              name: this.gatewayDetails.name,
             },
           ),
           'error',
