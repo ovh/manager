@@ -24,7 +24,7 @@
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.1",
     "@ovh-ux/manager-product-offers": "^4.0.0 || ^5.0.0",
     "@ovh-ux/manager-web-paas": "^0.0.0 || ^1.0.0",
-    "@ovh-ux/manager-webpack-dev-server": "^2.10.0",
+    "@ovh-ux/manager-webpack-dev-server": "^2.10.0 || ^3.0.0",
     "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
@@ -63,7 +63,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^5.0.0",
+    "@ovh-ux/manager-webpack-config": "^5.0.0 || ^6.0.0",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"
