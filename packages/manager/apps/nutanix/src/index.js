@@ -1,9 +1,9 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import 'core-js/stable';
 import 'whatwg-fetch';
-import { registerApplication } from '@ovh-ux/ufrontend';
+import { bootstrapApplication } from '@ovh-ux/manager-core';
 
-registerApplication('nutanix').then(({ environment }) => {
+bootstrapApplication('nutanix').then((environment) => {
   environment.setVersion(__VERSION__);
 
   import(`./config-${environment.getRegion()}`)

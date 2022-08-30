@@ -1,9 +1,10 @@
 import 'babel-polyfill';
 import 'script-loader!jquery'; // eslint-disable-line
 import 'whatwg-fetch';
-import { registerApplication } from '@ovh-ux/ufrontend';
 
-registerApplication('cda').then(({ environment }) => {
+import { bootstrapApplication } from '@ovh-ux/manager-core';
+
+bootstrapApplication('cda').then((environment) => {
   environment.setVersion(__VERSION__);
 
   import(`./config-${environment.getRegion()}`)
