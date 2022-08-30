@@ -62,7 +62,7 @@
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^5.0.0",
+    "@ovh-ux/manager-webpack-config": "^5.0.0 || ^6.0.0",
     "glob": "^7.1.6",
     "webpack-merge": "^4.2.2"
   },
