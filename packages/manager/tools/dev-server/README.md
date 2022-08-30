@@ -34,7 +34,7 @@ const { devServer } = require('@ovh-ux/manager-dev-server');
 
 // start a dev server to serve '.' on region: ca, port: 1234 with local2API
 // return an express app
-devServer('.', 'ca', '1234', { local2API: true, localRegistry: false });
+devServer('.', 'ca', '1234', { local2API: true });
 ```
 
 
@@ -51,7 +51,6 @@ Options:
   -r, --region <region>  Region (EU|CA|US) (default: "eu")
   -p, --port <port>      server port (default: 3000)
   --local2API            Use local2API proxy (localhost:8080)
-  --localRegistry        Use localRegistry proxy (localhost:8888)
   -h, --help             output usage information
 
 ```
@@ -62,7 +61,6 @@ Options:
 * `-r, --region <region>` : Region to use (default to `eu` or `REGION` environment variable).
 * `-p, --port <port>`: Port (default to `3000`or or `PORT` environment variable)
 * `--local2API`: Use local2API proxy (to localhost:8080)
-* `--localRegistry`: Use localRegistry proxy (to localhost:8888)
 * `-h, --help`: Display help
 
 #### Examples

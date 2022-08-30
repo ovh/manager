@@ -22,16 +22,6 @@ program
     'Use local2API proxy (localhost:8080)',
     process.env.local2API || false,
   )
-  .option(
-    '--localRegistry',
-    'Use localRegistry proxy (localhost:8888)',
-    process.env.local2API || false,
-  )
-  .option(
-    '--registryUrl <registryUrl>',
-    'Add registry proxy to registryUrl',
-    process.env.registryUrl,
-  )
   .parse(process.argv);
 
 if (program.args.length === 0) {
@@ -42,6 +32,4 @@ if (program.args.length === 0) {
 const [path] = program.args;
 devServer(path, program.region, program.port, {
   local2API: program.local2API,
-  localRegistry: program.localRegistry,
-  registryUrl: program.registryUrl,
 });
