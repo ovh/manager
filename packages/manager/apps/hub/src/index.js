@@ -4,7 +4,7 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { useShellClient } from '@ovh-ux/shell';
 
-import { buildURL } from '@ovh-ux/ufrontend';
+import { buildURL } from '@ovh-ux/url-builder';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import { BILLING_REDIRECTIONS } from './constants';
 

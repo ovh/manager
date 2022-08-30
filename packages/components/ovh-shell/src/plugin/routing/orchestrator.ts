@@ -1,4 +1,4 @@
-import { buildURL } from '@ovh-ux/ufrontend';
+import { buildURL } from '@ovh-ux/url-builder';
 import RoutingConfiguration from './configuration';
 
 interface ILocation {
