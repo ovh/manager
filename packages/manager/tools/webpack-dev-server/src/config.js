@@ -13,16 +13,7 @@ module.exports = (env) => {
     process.env.npm_package_config_region ||
     'eu'
   ).toLowerCase();
-  const proxy = [
-    serverProxy.v6(region),
-    serverProxy.registry(region, {
-      local:
-        yn(env.localRegistry) ||
-        yn(process.env.npm_package_config_localRegistry),
-      registryUrl:
-        env.registryUrl || process.env.npm_package_config_registryUrl,
-    }),
-  ];
+  const proxy = [serverProxy.v6(region)];
 
   const isContainer = env.container || process.env.CONTAINER;
 
