@@ -2,10 +2,9 @@ import 'script-loader!jquery'; // eslint-disable-line
 import 'whatwg-fetch';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import { bootstrapApplication } from '@ovh-ux/manager-core';
 
-import { registerApplication } from '@ovh-ux/ufrontend';
-
-registerApplication('carrier-sip').then(({ environment }) => {
+bootstrapApplication('carrier-sip').then((environment) => {
   environment.setVersion(__VERSION__);
 
   import(`./config-${environment.getRegion()}`)
