@@ -41,8 +41,9 @@ initShell().then((shell) => {
           ns: [], // namespaces to load by default
           backend: {
             // path construction for async load, ns: namespace, lng: locale
-            loadPath: (lng: string, ns: string) =>
-              `./translations/${ns}/Messages_${lng}.json`,
+            loadPath: (lngs: string[], namespaces: string[]) => {
+              return `./translations/${namespaces[0]}/Messages_${lngs[0]}.json`;
+            },
           },
         });
 
