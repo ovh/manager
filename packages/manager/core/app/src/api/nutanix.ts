@@ -21,7 +21,7 @@ import DedicatedServer, {
   DedicatedServerOptionEnum,
 } from '@/api/dedicatedServer';
 
-export type NutanixNode = {
+export type NutanixTargetSpecNode = {
   ahvIp: string;
   cvmIp: string;
   server: string;
@@ -39,7 +39,7 @@ export type Nutanix = {
     ipfo: string;
     iplb: string;
     name: string;
-    nodes: NutanixNode[];
+    nodes: NutanixTargetSpecNode[];
     prismCentral: {
       ips: string[];
       type: string;
@@ -134,24 +134,43 @@ export async function fetchNutanixNodeMetaInfos(
 }
 
 export async function getNutanix(serviceName: string): Promise<Nutanix> {
-  const response = await apiClient.v6.get(`/nutanix/${serviceName}`);
-  return response.json();
+  const { data } = await apiClient.v6.get(`/nutanix/${serviceName}`);
+  return data;
+}
+
+export async function getServiceInfos(
+  serviceName: string,
+): Promise<ServiceInfos> {
+  const response = await getInfos('nutanix', serviceName);
+  return response;
+}
+
+function determineServerServiceName(
+  service: string | Nutanix | NutanixTargetSpecNode,
+): string {
+  let serviceName = service as string;
+  if ((service as Nutanix).targetSpec) {
+    serviceName = (service as Nutanix).targetSpec.nodes[0].server;
+  } else if ((service as NutanixTargetSpecNode).server) {
+    serviceName = (service as NutanixTargetSpecNode).server;
+  }
+  return serviceName;
 }
 
 export async function getServer(
-  server: string | Nutanix | NutanixNode,
+  server: string | Nutanix | NutanixTargetSpecNode,
 ): Promise<DedicatedServer> {
   return getDedicatedServer(determineServerServiceName(server));
 }
 
 export async function getServerNetworkSpecifications(
-  server: string | Nutanix | NutanixNode,
+  server: string | Nutanix | NutanixTargetSpecNode,
 ): Promise<NetworkSpecifications> {
   return getNetwordSpecifications(determineServerServiceName(server));
 }
 
 export async function getServerOption(
-  server: string | Nutanix | NutanixNode,
+  server: string | Nutanix | NutanixTargetSpecNode,
   serverOption: DedicatedServerOptionEnum,
 ): Promise<DedicatedServerOption> {
   return getDedicatedServerOption(
@@ -161,7 +180,7 @@ export async function getServerOption(
 }
 
 export async function getServerOrderableBandwidthVrack(
-  server: string | Nutanix | NutanixNode,
+  server: string | Nutanix | NutanixTargetSpecNode,
 ): Promise<DedicatedServerBandwidthvRackOrderable> {
   return getDedicatedServerOrderableBandwidthVrack(
     determineServerServiceName(server),
