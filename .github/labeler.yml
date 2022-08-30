@@ -4,7 +4,6 @@ build:
 container:
   - packages/components/ovh-shell/**
   - packages/manager/apps/container/**
-  - packages/manager/modules/ufrontend/**
 continuous-integration:
   - .github/**
 dependencies:
