@@ -2,9 +2,9 @@
 import 'script-loader!jquery';
 /* eslint-enable import/no-webpack-loader-syntax */
 import 'whatwg-fetch';
-import { registerApplication } from '@ovh-ux/ufrontend';
+import { bootstrapApplication } from '@ovh-ux/manager-core';
 
-registerApplication('web-paas').then(({ environment }) => {
+bootstrapApplication('web-paas').then((environment) => {
   environment.setVersion(__VERSION__);
 
   import(`./config-${environment.getRegion()}`)

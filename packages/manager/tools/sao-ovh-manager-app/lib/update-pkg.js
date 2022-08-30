@@ -31,7 +31,6 @@ module.exports = ({ name, description, regions }) => ({
     '@ovh-ux/ng-ovh-swimming-poll': '^5.0.0',
     '@ovh-ux/ng-translate-async-loader': '^2.1.0',
     '@ovh-ux/ng-ui-router-breadcrumb': '^1.0.0',
-    '@ovh-ux/ufrontend': '^1.1.1 || ^2.0.0',
     '@ovh-ux/ui-kit': '^4.4.3',
     '@uirouter/angularjs': '^1.0.23',
     angular: '^1.7.5',

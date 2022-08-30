@@ -2,9 +2,9 @@ import 'regenerator-runtime/runtime';
 import 'script-loader!jquery'; // eslint-disable-line
 import 'script-loader!filesize/lib/filesize.js'; // eslint-disable-line
 import 'whatwg-fetch';
-import { registerApplication } from '@ovh-ux/ufrontend';
+import { bootstrapApplication } from '@ovh-ux/manager-core';
 
-registerApplication('email-domain').then(({ environment }) => {
+bootstrapApplication('email-domain').then((environment) => {
   environment.setVersion(__VERSION__);
 
   import(`./config-${environment.getRegion()}`)
