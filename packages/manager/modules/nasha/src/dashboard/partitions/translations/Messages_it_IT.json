@@ -5,8 +5,6 @@
   "nasha_dashboard_partitions_action_show": "Modifica/Visualizza",
   "nasha_dashboard_partitions_action_snapshots": "Gestisci gli Snapshot",
   "nasha_dashboard_partitions_action_zfs_options": "Parametri Z File System (ZFS)",
-  "nasha_dashboard_partitions_count_title": "Numero di partizioni",
-  "nasha_dashboard_partitions_count": "{{ count }}/{{ max }} (massimo)",
   "nasha_dashboard_partitions_create": "Crea una partizione",
   "nasha_dashboard_partitions_list_description": "Descrizione",
   "nasha_dashboard_partitions_list_partition_name": "Nome della partizione",
