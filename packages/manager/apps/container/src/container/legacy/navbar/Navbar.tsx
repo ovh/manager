@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
-import { listen } from '@ovh-ux/ufrontend';
 
 import Account from './Account';
 import Brand from './Brand';
-import { MESSAGES } from './constants';
 import Hamburger from './HamburgerMenu';
 import style from './navbar.module.scss';
 import Search from './Search';
@@ -31,7 +29,7 @@ function Navbar({ environment }: Props): JSX.Element {
   );
 
   const [universes, setUniverses] = useState<Universe[]>([]);
-  const [searchURL, setSearchURL] = useState<string>();
+  const [searchURL] = useState<string>();
   const [currentUniverse, setCurrentUniverse] = useState<string>();
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const { setIsNotificationsSidebarVisible } = useHeader();
@@ -42,9 +40,6 @@ function Navbar({ environment }: Props): JSX.Element {
       setCurrentUniverse(environment.getUniverse());
     });
 
-    listen(MESSAGES.navbarSearch, ({ url }) => {
-      setSearchURL(url);
-    });
     fetchUniverses().then((u) => mounted && setUniverses(u));
     return () => {
       mounted = false;
