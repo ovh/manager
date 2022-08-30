@@ -50,7 +50,7 @@
     "ui-select": "^0.19.8"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^5.0.0",
+    "@ovh-ux/manager-webpack-config": "^5.0.0 || ^6.0.0",
     "glob": "^7.1.4",
     "webpack": "^4.44.2",
     "webpack-merge": "^4.2.2"
