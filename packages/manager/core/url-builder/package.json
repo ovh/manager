@@ -12,6 +12,7 @@
   "author": "OVH SAS",
   "sideEffects": false,
   "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
