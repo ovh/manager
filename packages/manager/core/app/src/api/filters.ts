@@ -45,19 +45,27 @@ export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
       const value = item[filter.key as keyof T];
       switch (filter.comparator) {
         case FilterComparator.Includes:
-          keep = keep && `${value}`.includes(filter.value);
+          keep =
+            keep &&
+            `${value}`.toLowerCase().includes(filter.value.toLowerCase());
           break;
         case FilterComparator.StartsWith:
-          keep = keep && `${value}`.startsWith(filter.value);
+          keep =
+            keep &&
+            `${value}`.toLowerCase().startsWith(filter.value.toLowerCase());
           break;
         case FilterComparator.EndsWith:
-          keep = keep && `${value}`.endsWith(filter.value);
+          keep =
+            keep &&
+            `${value}`.toLowerCase().endsWith(filter.value.toLowerCase());
           break;
         case FilterComparator.IsEqual:
-          keep = keep && `${value}` === filter.value;
+          keep =
+            keep && `${value}`.toLowerCase() === filter.value.toLowerCase();
           break;
         case FilterComparator.IsDifferent:
-          keep = keep && `${value}` !== filter.value;
+          keep =
+            keep && `${value}`.toLowerCase() !== filter.value.toLowerCase();
           break;
         case FilterComparator.IsLower:
           keep = keep && Number(value) < Number(filter.value);
