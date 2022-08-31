@@ -1,3 +1,5 @@
+import apiClient from '@/api/client';
+
 export enum RenewalTypeEnum {
   automaticForcedProduct = 'automaticForcedProduct',
   automaticV2012 = 'automaticV2012',
@@ -42,10 +44,10 @@ export async function getServiceInfos(
   serviceType: string,
   serviceName: string,
 ): Promise<ServiceInfos> {
-  const response = await fetch(
-    `/engine/api/${serviceType}/${serviceName}/serviceInfos`,
+  const { data } = await apiClient.v6.get(
+    `/${serviceType}/${serviceName}/serviceInfos`,
   );
-  return response.json();
+  return data;
 }
 
 export default ServiceInfos;

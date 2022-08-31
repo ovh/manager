@@ -335,6 +335,9 @@ export default function DashboardPage(): JSX.Element {
       heading: t('tile_network_title'),
       type: TileTypesEnum.LIST,
       onLoad: async () => {
+        let bandwidth;
+        let bandwidthVrackOption;
+
         const [cluster, serviceInfos] = await Promise.all([
           getNutanix(serviceId),
           getServiceInfos(serviceId),
@@ -345,11 +348,31 @@ export default function DashboardPage(): JSX.Element {
         const iplb = await (cluster.targetSpec.iplb
           ? getIpLoadBalancing(cluster.targetSpec.iplb)
           : Promise.resolve(null));
-        const bandwidth = await getServerNetworkSpecifications(cluster);
-        const bandwidthVrackOption = await getServerOption(
-          cluster,
-          DedicatedServerOptionEnum.BANDWIDTH_VRACK,
-        );
+
+        try {
+          bandwidth = await getServerNetworkSpecifications(cluster);
+        } catch (error) {
+          if (error.response.status === 404) {
+            bandwidth = {};
+          } else {
+            throw new Error(error);
+          }
+        }
+
+        try {
+          bandwidthVrackOption = await getServerOption(
+            cluster,
+            DedicatedServerOptionEnum.BANDWIDTH_VRACK,
+          );
+        } catch (error) {
+          if (error.response.status === 404) {
+            bandwidthVrackOption = {
+              state: DedicatedServerOptionStateEnum.NOT_SUBSCRIBED,
+            };
+          } else {
+            throw new Error(error);
+          }
+        }
         const serviceOptions = await getServiceOptions(serviceInfos.serviceId);
 
         const privateBandwidthServiceId = serviceOptions.find((service) =>

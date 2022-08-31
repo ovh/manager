@@ -1,4 +1,5 @@
-import { SupportLevelEnum } from './support';
+import apiClient from '@/api/client';
+import { SupportLevelEnum } from '@/api/support';
 
 export type Service = {
   billing: {
@@ -153,23 +154,23 @@ export type GenericProductDefinition = {
 };
 
 export async function getServiceDetails(serviceId: number): Promise<Service> {
-  const response = await fetch(`/engine/apiv6/services/${serviceId}`);
-  return response.json();
+  const { data } = await apiClient.v6.get(`/services/${serviceId}`);
+  return data;
 }
 
 export async function getServiceOptions(serviceId: number): Promise<Service[]> {
-  const response = await fetch(`/engine/apiv6/services/${serviceId}/options`);
-  return response.json();
+  const { data } = await apiClient.v6.get(`/services/${serviceId}/options`);
+  return data;
 }
 
 export async function getHardwareInfo(
   serviceId: number,
 ): Promise<TechnicalDetails> {
-  const response = await fetch(
-    `/engine/apiv6/services/${serviceId}/technicalDetails`,
+  const { data } = await apiClient.v6.get(
+    `/services/${serviceId}/technicalDetails`,
   );
   return {
-    ...(await response.json()),
+    ...data,
     serviceId,
   };
 }
@@ -177,8 +178,8 @@ export async function getHardwareInfo(
 export async function getServiceUpgrade(
   serviceId: number,
 ): Promise<GenericProductDefinition[]> {
-  const response = await fetch(`/engine/apiv6/services/${serviceId}/upgrade`);
-  return response.json();
+  const { data } = await apiClient.v6.get(`/services/${serviceId}/upgrade`);
+  return data;
 }
 
 export default Service;

@@ -5,6 +5,7 @@ export type DashboardTile = {
   heading: string;
   type?: TileTypesEnum;
   onLoad?: () => Promise<unknown>;
+  onError?: (error?: Error) => string;
   definitions?:
     | DashboardTileDefinition[]
     | ((data: unknown) => DashboardTileDefinition[]);

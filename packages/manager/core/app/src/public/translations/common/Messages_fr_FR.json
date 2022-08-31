@@ -45,5 +45,8 @@
   "server_datacenter_VIN": "Vint Hill (VIN{{number}}) - États-Unis",
   "server_datacenter_WAW": "Varsovie (WAW{{number}}) - Pologne",
   "server_datacenter_RBX_HZ": "Roubaix (RBXHZ) - France",
-  "server_datacenter_GSW": "(GSW) - France"
+  "server_datacenter_GSW": "(GSW) - France",
+
+  "dashboard_tile_load_error": "Une erreur est survenue lors du chargement de la tuile.",
+  "dashboard_tile_load_error_retry": "Recharger"
 }

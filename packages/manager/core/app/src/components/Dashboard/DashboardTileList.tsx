@@ -15,6 +15,7 @@ import { DashboardTileDefinition, DashboardTileDefinitionAction } from '.';
 export type DashboardTileListProps = {
   definitions: DashboardTileDefinition[];
   data: unknown;
+  isLoading?: boolean;
 };
 
 export default function DashboardTileList({

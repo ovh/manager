@@ -1,3 +1,5 @@
+import apiClient from '@/api/client';
+
 export enum SupportLevelEnum {
   BUSINESS = 'business',
   ENTERPRISE = 'enterprise',
@@ -18,10 +20,10 @@ export async function getSupportLevel(): Promise<SupportLevel> {
 export async function getSupportTicketIdsByServiceName(
   serviceName: string,
 ): Promise<number[]> {
-  const response = await fetch(
-    `/engine/api/support/tickets?serviceName=${serviceName}`,
+  const { data } = await apiClient.v6.get(
+    `/support/tickets?serviceName=${serviceName}`,
   );
-  return response.json();
+  return data;
 }
 
 export default SupportLevel;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Tile } from '@ovh-ux/manager-themes';
+import { withErrorBoundary } from 'react-error-boundary';
 
 import {
   TileTypesEnum,
@@ -7,16 +8,17 @@ import {
   DashboardTileDefinition,
 } from '.';
 import DashboardTileLoading from './DashboardTileLoading';
+import DashboardTileError from './DashboardTileError';
 import DashboardTileList from './DashboardTileList';
 
 export type DashboardTileProps = {
   tile: DashboardTileType;
 };
 
-export default function DashboardTile({
-  tile,
-}: DashboardTileProps): JSX.Element {
+function DashboardTile({ tile }: DashboardTileProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingInError, setLoadingInError] = useState(false);
+  const [loadingError, setLoadingError] = useState<string>();
   const [data, setData] = useState<unknown>();
   const [definitions, setDefinitions] = useState<DashboardTileDefinition[]>();
 
@@ -40,8 +42,18 @@ export default function DashboardTile({
             : tile.definitions,
         );
       })
+      .catch((error) => {
+        setData({});
+        setDefinitions([]);
+        setLoadingInError(true);
+        setLoadingError(tile.onError?.(error) || '');
+      })
       .finally(() => setIsLoading(false));
   }, []);
+
+  if (loadingInError) {
+    throw new Error(loadingError);
+  }
 
   return (
     <Tile title={tile.heading}>
@@ -50,3 +62,8 @@ export default function DashboardTile({
     </Tile>
   );
 }
+
+export default withErrorBoundary(DashboardTile, {
+  FallbackComponent: DashboardTileError,
+  resetKeys: ['loadingError'],
+});

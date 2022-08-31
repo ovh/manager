@@ -44,6 +44,7 @@ export enum DedicatedServerOptionEnum {
 export enum DedicatedServerOptionStateEnum {
   RELEASED = 'released',
   SUSCRIBED = 'subscribed',
+  NOT_SUBSCRIBED = 'not-subscribed',
 }
 
 export type UnitAndValue = {
@@ -158,58 +159,18 @@ export async function getDedicatedServer(
 export async function getNetwordSpecifications(
   serviceName: string,
 ): Promise<NetworkSpecifications> {
-  const response = await fetch(
-    `/engine/apiv6/dedicated/server/${serviceName}/specifications/network`,
+  const { data } = await apiClient.v6.get(
+    `/dedicated/server/${serviceName}/specifications/network`,
   );
-  return response.json();
+  return data;
 }
 
 export async function getDedicatedServerOption(
   serviceName: string,
   serverOption: DedicatedServerOptionEnum,
 ): Promise<DedicatedServerOption> {
-  const response = await fetch(
-    `/engine/apiv6/dedicated/server/${serviceName}/option/${serverOption}`,
-  );
-  return response.json();
-}
-
-export async function getDedicatedServerTasks(
-  serviceName: string,
-  options: IcebergOptions,
-) {
-  return fetchIceberg<DedicatedServerTask>({
-    route: `/dedicated/server/${serviceName}/task`,
-    ...options,
-  }).then(({ totalCount, data }) => ({
-    totalCount,
-    data: data.map((task) => ({
-      ...task,
-      doneDate: new Date(task.doneDate),
-      lastUpdate: new Date(task.lastUpdate),
-      startDate: new Date(task.startDate),
-    })),
-  }));
-}
-
-export async function getDedicatedServerInterventions(
-  serviceName: string,
-  page: number,
-  pageSize: number,
-): Promise<{
-  count: number;
-  list: {
-    results: DedicatedServerIntervention[];
-  };
-}> {
-  const { data } = await apiClient.aapi.get(
-    `/sws/dedicated/server/${serviceName}/interventions`,
-    {
-      params: {
-        count: pageSize,
-        offset: (page - 1) * pageSize,
-      },
-    },
+  const { data } = await apiClient.v6.get(
+    `/dedicated/server/${serviceName}/option/${serverOption}`,
   );
   return data;
 }
@@ -217,10 +178,10 @@ export async function getDedicatedServerInterventions(
 export async function getDedicatedServerOrderableBandwidthVrack(
   serviceName: string,
 ): Promise<DedicatedServerBandwidthvRackOrderable> {
-  const response = await fetch(
-    `/engine/apiv6/dedicated/server/${serviceName}/orderable/bandwidthvRack`,
+  const { data } = await apiClient.v6.get(
+    `/dedicated/server/${serviceName}/orderable/bandwidthvRack`,
   );
-  return response.json();
+  return data;
 }
 
 export async function getDedicatedServerGetIpmiFeature(

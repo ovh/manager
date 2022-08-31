@@ -33,6 +33,7 @@
     "i18next-http-backend": "^1.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-error-boundary": "^3.1.4",
     "react-i18next": "^11.18.1",
     "react-router-dom": "^6.3.0",
     "use-react-router-breadcrumbs": "^3.2.1"

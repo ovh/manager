@@ -1,3 +1,5 @@
+import apiClient from '@/api/client';
+
 export type Vrack = {
   serviceName?: string;
   description: string;
@@ -5,8 +7,7 @@ export type Vrack = {
 };
 
 export async function getVrack(serviceName: string): Promise<Vrack> {
-  const response = await fetch(`/engine/api/vrack/${serviceName}`);
-  const data = await response.json();
+  const { data } = await apiClient.v6.get(`/vrack/${serviceName}`);
   return {
     serviceName,
     ...data,

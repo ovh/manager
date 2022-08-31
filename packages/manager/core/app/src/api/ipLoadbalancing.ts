@@ -1,3 +1,5 @@
+import apiClient from '@/api/client';
+
 export enum SslConfigurationEnum {
   INTERMEDIATE = 'intermediate',
   MODERN = 'modern',
@@ -34,8 +36,8 @@ export type IpLoadBalancing = {
 export async function getIpLoadBalancing(
   serviceName: string,
 ): Promise<IpLoadBalancing> {
-  const response = await fetch(`/engine/api/ipLoadbalancing/${serviceName}`);
-  return response.json();
+  const { data } = await apiClient.v6.get(`/ipLoadbalancing/${serviceName}`);
+  return data;
 }
 
 export default IpLoadBalancing;
