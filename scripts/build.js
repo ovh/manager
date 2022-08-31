@@ -73,23 +73,6 @@ function getAllDeps(packages) {
 }
 
 /**
- * Find dependencies on a given workspace location.
- * @param  {string} workspace Absolute path.
- * @return {string[]}           List of packages' name.
- */
-async function getPackagesByWorkspace(workspace) {
-  try {
-    const workspacePackages = projectPackages
-      .filter(({ location }) => location.startsWith(workspace))
-      .map(({ name }) => name);
-
-    return getDependencies(workspacePackages);
-  } catch (error) {
-    return [];
-  }
-}
-
-/**
  * Find all packages that requires to be built based on a package list.
  * @param  {string[]} packages List of packages requested to be built.
  * @return {string[]}          List of packages that requires to be built.
@@ -249,10 +232,6 @@ program
     '-p, --package [package]',
     'Scope build to a specific package and its dependencies',
   )
-  .option(
-    '-w, --workspace [workspace]',
-    'Scope build to a specific workspace, its packages and their dependencies',
-  )
   .option('--verbose', 'output extra debugging')
   .action(async () => {
     process.env.VERBOSE = program.verbose;
@@ -262,11 +241,7 @@ program
 
     let packagesInfos = [];
 
-    if (program.workspace) {
-      packagesInfos = await getPackagesByWorkspace(
-        path.resolve(program.workspace),
-      );
-    } else if (program.package) {
+    if (program.package) {
       // TODO: use variadic option instead of passing an array.
       packagesInfos = await getPackagesByPackagesName([program.package]);
     } else if (program.optimize) {
