@@ -1,45 +1,31 @@
 import React from 'react';
 import { Tabs, TabList, TabPanels, Tab } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, NavLink, resolvePath, useLocation } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
-export default function DetailsPage(): JSX.Element {
+type DetailsPageProps = {
+  tabIndex: number;
+  children: JSX.Element;
+};
+
+export default function DetailsPage({
+  tabIndex,
+  children,
+}: DetailsPageProps): JSX.Element {
   const { t } = useTranslation('details');
-  const { pathname } = useLocation();
-
-  const tabs = [
-    {
-      name: 'general',
-      title: t('tab_general'),
-      to: '',
-    },
-    {
-      name: 'nodes',
-      title: t('tab_nodes'),
-      to: 'nodes',
-    },
-  ];
-
-  const defaultActiveIndex = tabs.findIndex(({ to }) =>
-    pathname.endsWith(resolvePath(to).pathname),
-  );
+  const { serviceId } = useParams();
 
   return (
-    <Tabs
-      variant="light"
-      defaultIndex={defaultActiveIndex > -1 ? defaultActiveIndex : 0}
-      isLazy
-    >
+    <Tabs variant="light" isLazy defaultIndex={tabIndex}>
       <TabList>
-        {tabs.map((tab) => (
-          <Tab as={NavLink} key={tab.name} to={tab.to}>
-            {tab.title}
-          </Tab>
-        ))}
+        <Tab as={NavLink} to={`/nutanix/${serviceId}`}>
+          {t('tab_general')}
+        </Tab>
+        <Tab as={NavLink} to={`/nutanix/${serviceId}/nodes`}>
+          {t('tab_nodes')}
+        </Tab>
       </TabList>
-      <TabPanels>
-        <Outlet />
-      </TabPanels>
+      <TabPanels>{children}</TabPanels>
     </Tabs>
   );
 }

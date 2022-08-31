@@ -7,6 +7,7 @@ const Onboarding = React.lazy(() => import('./Onboarding'));
 const Listing = React.lazy(() => import('./Listing'));
 const Details = React.lazy(() => import('./Details'));
 const NodesListing = React.lazy(() => import('./NodesListing'));
+const NodeDetails = React.lazy(() => import('./NodeDetails'));
 const Dashboard = React.lazy(() => import('./Dashboard'));
 
 export default function Routing(): JSX.Element {
@@ -32,26 +33,42 @@ export default function Routing(): JSX.Element {
           }
         />
         <Route path=":serviceId">
-          <Route index element={<Navigate to="details" replace={true} />} />
           <Route
-            breadcrumb={t('generic_infos')}
-            path="details"
+            index
             element={
               <Suspense fallback="">
-                <Details />
+                <Details tabIndex={0}>
+                  <Dashboard />
+                </Details>
               </Suspense>
             }
-          >
-            <Route index element={<Dashboard />} />
-              <Route path="nodes">
-                <Route
-                  index
-                  element={
-                    <Suspense fallback="">
-                      <NodesListing />
-                    </Suspense>
-                  }
-                />
+          />
+          <Route path="nodes">
+            <Route
+              index
+              element={
+                <Suspense fallback="">
+                  <Details tabIndex={1}>
+                    <NodesListing />
+                  </Details>
+                </Suspense>
+              }
+            />
+            <Route
+              path=":nodeId"
+              element={
+                <Suspense fallback="">
+                  <NodeDetails />
+                </Suspense>
+              }
+            >
+              <Route index element={<span>Infos TODO</span>} />
+              <Route
+                path="interventions"
+                element={<span>Interventions TODO</span>}
+              />
+              <Route path="ipmi" element={<span>IPMI TODO</span>} />
+              <Route path="tasks" element={<span>TASKS TODO</span>} />
             </Route>
           </Route>
         </Route>

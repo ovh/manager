@@ -47,7 +47,7 @@ export default function NodesListingPage(): JSX.Element {
       renderer: ({ item: server }) => (
         <Link
           as={RouterLink}
-          to={`/nutanix/${serviceId}/details/nodes/${server.serviceName}`}
+          to={`/nutanix/${serviceId}/nodes/${server.serviceName}`}
         >
           {server.displayName}
         </Link>
