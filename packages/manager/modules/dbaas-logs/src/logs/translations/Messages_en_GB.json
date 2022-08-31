@@ -723,5 +723,7 @@
   "logs_home_service_type_enterprise": "Enterprise",
   "logs_order_selection_details_standard_description_7": "14-day/1-month/3-month/1-year retention options",
   "logs_order_selection_details_enterprise_description_4": "customisable retention, on request",
-  "dbaas_logs": "Logs Data Platform"
+  "dbaas_logs": "Logs Data Platform",
+  "logs_index_access_osd_webui": "Access your OpenSearch Dashboards instance",
+  "logs_index_access_os_api": "OpenSearch access"
 }
