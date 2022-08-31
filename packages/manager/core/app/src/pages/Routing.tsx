@@ -9,6 +9,7 @@ const Details = React.lazy(() => import('./Details'));
 const NodesListing = React.lazy(() => import('./NodesListing'));
 const NodeDetails = React.lazy(() => import('./NodeDetails'));
 const NodeInterventions = React.lazy(() => import('./NodeInterventions'));
+const NodeTasks = React.lazy(() => import('./NodeTasks'));
 const Dashboard = React.lazy(() => import('./Dashboard'));
 
 export default function Routing(): JSX.Element {
@@ -73,7 +74,14 @@ export default function Routing(): JSX.Element {
                 }
               />
               <Route path="ipmi" element={<span>IPMI TODO</span>} />
-              <Route path="tasks" element={<span>TASKS TODO</span>} />
+              <Route
+                path="tasks"
+                element={
+                  <Suspense fallback="">
+                    <NodeTasks />
+                  </Suspense>
+                }
+              />
             </Route>
           </Route>
         </Route>

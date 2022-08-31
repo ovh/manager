@@ -1,5 +1,5 @@
 import { Filter } from '@/api/filters';
-import { fetchIceberg } from '@/api/iceberg';
+import { fetchIceberg, FetchPaginatedParams } from '@/api/iceberg';
 import apiClient from '@/api/client';
 import ServiceInfos, { getServiceInfos as getInfos } from './serviceInfos';
 import Service, {
@@ -170,6 +170,38 @@ export async function getNodeInterventions(
     },
   );
   return data;
+}
+
+export type NodeTask = {
+  lastUpdate: Date;
+  function: string;
+  comment: string;
+  status: string;
+};
+
+export type NodeTasksList = {
+  totalCount: number;
+  data: NodeTask[];
+};
+
+export async function getNodeTasks(
+  serviceName: string,
+  {
+    page,
+    pageSize,
+    filters,
+    sortBy,
+    sortReverse,
+  }: Partial<FetchPaginatedParams>,
+): Promise<NodeTasksList> {
+  return fetchIceberg({
+    route: `/dedicated/server/${serviceName}/task`,
+    page,
+    pageSize,
+    filters,
+    sortBy,
+    sortReverse,
+  });
 }
 
 function determineServerServiceName(
