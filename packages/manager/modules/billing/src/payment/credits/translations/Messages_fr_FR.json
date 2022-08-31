@@ -24,6 +24,7 @@
   "billing_credit_balance_movements_operation_debit_refund_old": "Émission de l'avoir <a href=\"{{refundUrl}}\" target=\"_blank\">{{ refundId }}</a>",
   "billing_credit_balance_movements_operation_debit_refund": "Émission de l'avoir",
   "billing_credit_balance_movements_operation_debit_refund_deduction": "Déduction de l'avoir",
+  "billing_credit_balance_movements_operation_expiration": "Expiration",
   "billing_credit_balance_movements_load_error": "Une erreur est survenue lors du chargement des mouvements de votre bon d'achat.",
   "billing_credit_back": "Retourner à mes bons d'achat",
   "billing_credit_sbg_title": "Opérations concernant vos mesures commerciales SBG",
