@@ -4,7 +4,6 @@
 
 <div>
     <oui-stepper data-on-finish="$ctrl.add()">
-
         <!--Regions list-->
         <oui-step-form
             data-header="{{:: 'pci_projects_project_storages_blocks_add_region_title' | translate }}"
@@ -48,34 +47,37 @@
                         data-label="{{:: volumeAddon.blobs.technical.name }}"
                         data-values="[volumeAddon]"
                         data-variant="light"
-                        data-required>
-
+                        data-required
+                    >
                         <!--Technical Container info-->
                         <oui-select-picker-section>
                             <!--IOPS guaranteed-->
-                            <span data-ng-if="volumeAddon.blobs.technical.volume.iops.guaranteed"
-                                  data-translate="pci_projects_project_storages_blocks_add_type_addon_iops_guaranteed"
-                                  data-translate-values="{ iops: volumeAddon.blobs.technical.volume.iops.level, separator: ', ' }"
+                            <span
+                                data-ng-if="volumeAddon.blobs.technical.volume.iops.guaranteed"
+                                data-translate="pci_projects_project_storages_blocks_add_type_addon_iops_guaranteed"
+                                data-translate-values="{ iops: volumeAddon.blobs.technical.volume.iops.level, separator: ', ' }"
                             ></span>
 
                             <!--IOPS not guaranteed-->
-                            <span data-ng-if="!volumeAddon.blobs.technical.volume.iops.guaranteed"
-                                  data-translate="pci_projects_project_storages_blocks_add_type_addon_iops_not_guaranteed"
-                                  data-translate-values="{iops: $ctrl.constructor.getAddonVolumeIopsInfo(volumeAddon), separator: ', '}"
+                            <span
+                                data-ng-if="!volumeAddon.blobs.technical.volume.iops.guaranteed"
+                                data-translate="pci_projects_project_storages_blocks_add_type_addon_iops_not_guaranteed"
+                                data-translate-values="{iops: $ctrl.constructor.getAddonVolumeIopsInfo(volumeAddon), separator: ', '}"
                             ></span>
 
                             <!--Max volume storage-->
-                            <span data-translate="pci_projects_project_storages_blocks_add_type_addon_capacity_max"
-                                  data-translate-values="{ capacity: (volumeAddon.blobs.technical.volume.capacity.max | bytes:0:false:'GB')}"
+                            <span
+                                data-translate="pci_projects_project_storages_blocks_add_type_addon_capacity_max"
+                                data-translate-values="{ capacity: (volumeAddon.blobs.technical.volume.capacity.max | bytes:0:false:'GB')}"
                             ></span>
 
                             <!--price/hour-->
-                            <span class="d-block"
-                                  data-translate="pci_projects_project_storages_blocks_add_type_addon_price"
-                                  data-translate-values="{ price: $ctrl.formatVolumePrice(volumeAddon.pricings[0].price) }"
+                            <span
+                                class="d-block"
+                                data-translate="pci_projects_project_storages_blocks_add_type_addon_price"
+                                data-translate-values="{ price: $ctrl.formatVolumePrice(volumeAddon.pricings[0].price) }"
                             ></span>
                         </oui-select-picker-section>
-
                     </oui-select-picker>
                 </div>
             </div>
@@ -109,26 +111,27 @@
 
                 <!--Additional info-->
                 <div class="mb-2" data-ng-if="$ctrl.selectedVolumeAddon.blobs">
-
                     <!--Bandwidth-->
-                    <p class="m-0"
-                       data-ng-if=":: $ctrl.isHighSpeedGen2Volume()"
-                       data-translate="pci_projects_project_storages_blocks_add_size_bandwidth"
-                       data-translate-values="{ bandwidth: $ctrl.computeBandwidthToAllocate() }"
+                    <p
+                        class="m-0"
+                        data-ng-if="$ctrl.isHighSpeedGen2Volume()"
+                        data-translate="pci_projects_project_storages_blocks_add_size_bandwidth"
+                        data-translate-values="{ bandwidth: $ctrl.computeBandwidthToAllocate() }"
                     ></p>
 
                     <!--IOPS High Speed Gen2-->
-                    <p class="m-0"
-                       data-ng-if=":: $ctrl.isHighSpeedGen2Volume()"
-                       data-translate="pci_projects_project_storages_blocks_add_size_iops"
-                       data-translate-values="{ iops: $ctrl.computeIopsToAllocate() }"
+                    <p
+                        class="m-0"
+                        data-ng-if="$ctrl.isHighSpeedGen2Volume()"
+                        data-translate="pci_projects_project_storages_blocks_add_size_iops"
+                        data-translate-values="{ iops: $ctrl.computeIopsToAllocate() }"
                     ></p>
 
                     <!--Price estimation-->
-                    <p data-translate="pci_projects_project_storages_blocks_add_submit_price_text"
-                       data-translate-values="{ price: $ctrl.estimatedPrice.monthly.text }"
+                    <p
+                        data-translate="pci_projects_project_storages_blocks_add_submit_price_text"
+                        data-translate-values="{ price: $ctrl.estimatedPrice.monthly.text }"
                     ></p>
-
                 </div>
             </oui-field>
         </oui-step-form>
@@ -165,8 +168,7 @@
                 data-translate-values="{ price: $ctrl.estimatedPrice.monthly.text }"
             ></div>
 
-            <pci-trusted-zone-banner
-                data-ng-if="$ctrl.isTrustedZone">
+            <pci-trusted-zone-banner data-ng-if="$ctrl.isTrustedZone">
             </pci-trusted-zone-banner>
         </oui-step-form>
     </oui-stepper>
