@@ -11,10 +11,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "build": "yarn build:eu && yarn build:ca && yarn build:us",
-    "build:ca": "webpack --env.production --env.region='CA' && mv dist dist-CA",
-    "build:eu": "webpack --env.production && mv dist dist-EU",
-    "build:us": "webpack --env.production --env.region='US' && mv dist dist-US",
+    "build": "webpack --env.production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-veeam-cloud-connect-app' --include-dependencies -- npm run build --if-present",
