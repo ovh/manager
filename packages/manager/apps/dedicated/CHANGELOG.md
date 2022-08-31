@@ -1,3 +1,12 @@
+# [17.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.27.1...@ovh-ux/manager-dedicated@17.28.0) (2022-08-31)
+
+
+### Features
+
+* **payment.credits:** add expiration type ([#7906](https://github.com/ovh/manager/issues/7906)) ([056fc2f](https://github.com/ovh/manager/commit/056fc2fe7b3f276db41d76b4e0cb413200fd7d0c))
+
+
+
 ## [17.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.27.0...@ovh-ux/manager-dedicated@17.27.1) (2022-08-24)
 
 

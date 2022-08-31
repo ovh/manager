@@ -1,3 +1,12 @@
+# [0.18.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.17.0-alpha.2...@ovh-ux/manager-billing@0.18.0-alpha.0) (2022-08-31)
+
+
+### Features
+
+* **payment.credits:** add expiration type ([#7906](https://github.com/ovh/manager/issues/7906)) ([056fc2f](https://github.com/ovh/manager/commit/056fc2fe7b3f276db41d76b4e0cb413200fd7d0c))
+
+
+
 # [0.17.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.17.0-alpha.1...@ovh-ux/manager-billing@0.17.0-alpha.2) (2022-08-18)
 
 
