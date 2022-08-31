@@ -1,3 +1,13 @@
+## [5.87.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.87.2...@ovh-ux/manager-pci@5.87.3) (2022-08-31)
+
+
+### Bug Fixes
+
+* **block-storage:** remove one time binding on ng-if ([#7876](https://github.com/ovh/manager/issues/7876)) ([514b6bb](https://github.com/ovh/manager/commit/514b6bb4160b0b2345801d11e6ceede6b61708f3))
+* **storages.container:** allow download container item ([#7895](https://github.com/ovh/manager/issues/7895)) ([9d3bdd6](https://github.com/ovh/manager/commit/9d3bdd6d2b53b6ab6493aad9f0389e4b34a684d1))
+
+
+
 ## [5.87.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.87.1...@ovh-ux/manager-pci@5.87.2) (2022-08-24)
 
 

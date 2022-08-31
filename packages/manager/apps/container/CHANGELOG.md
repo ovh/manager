@@ -1,3 +1,12 @@
+## [0.3.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.12...@ovh-ux/manager-container-app@0.3.13) (2022-08-31)
+
+
+### Bug Fixes
+
+* **pnr:** set right feature name for cloud-connect ([#7872](https://github.com/ovh/manager/issues/7872)) ([b9240e3](https://github.com/ovh/manager/commit/b9240e305b45496a9d4a00e4da0a1865283e1439))
+
+
+
 ## [0.3.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.11...@ovh-ux/manager-container-app@0.3.12) (2022-08-19)
 
 

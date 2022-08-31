@@ -1,3 +1,12 @@
+## [13.43.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.5...@ovh-ux/manager-telecom@13.43.6) (2022-08-31)
+
+
+### Bug Fixes
+
+* **telephony.service.contact:** fix `getDirectoryServiceCode` call ([#7889](https://github.com/ovh/manager/issues/7889)) ([67d131a](https://github.com/ovh/manager/commit/67d131a0f7a34f8c552814a002166cb2efe5a620)), closes [#6901](https://github.com/ovh/manager/issues/6901)
+
+
+
 ## [13.43.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.4...@ovh-ux/manager-telecom@13.43.5) (2022-08-18)
 
 
