@@ -1,8 +1,7 @@
 import { Filter, FilterComparator } from '@/api/filters';
 import apiClient from '@/api/client';
 
-export type FetchPaginatedParams = {
-  route: string;
+export type IcebergOptions = {
   page: number;
   pageSize: number;
   search?: {
@@ -12,6 +11,13 @@ export type FetchPaginatedParams = {
   filters?: Filter[];
   sortBy?: string;
   sortReverse?: boolean;
+};
+
+export type IcebergFetchParams = { route: string } & IcebergOptions;
+
+export type IcebergFetchResult<T> = {
+  data: T[];
+  totalCount: number;
 };
 
 function icebergFilter(comparator: FilterComparator, value: string) {
@@ -40,14 +46,14 @@ function icebergFilter(comparator: FilterComparator, value: string) {
   }
 }
 
-export async function fetchIceberg({
+export async function fetchIceberg<T>({
   route,
   page,
   pageSize,
   filters,
   sortBy,
   sortReverse,
-}: FetchPaginatedParams) {
+}: IcebergFetchParams): Promise<IcebergFetchResult<T>> {
   const requestHeaders: Record<string, string> = {
     'x-pagination-mode': 'CachedObjectList-Pages',
     'x-pagination-number': `${encodeURIComponent(page)}`,

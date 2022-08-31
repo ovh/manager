@@ -1,5 +1,5 @@
 import { Filter } from '@/api/filters';
-import { fetchIceberg, FetchPaginatedParams } from '@/api/iceberg';
+import { fetchIceberg, IcebergOptions } from '@/api/iceberg';
 import apiClient from '@/api/client';
 import ServiceInfos, { getServiceInfos as getInfos } from './serviceInfos';
 import Service, {
@@ -60,11 +60,6 @@ export type Server = {
   serviceId: number;
 };
 
-type NutanixList = {
-  totalCount: number;
-  data: Nutanix[];
-};
-
 type NutanixMetaInfos = {
   region: string;
 };
@@ -99,8 +94,8 @@ export async function listNutanix({
   filters,
   sortBy,
   sortReverse,
-}: ListNutanixParams): Promise<NutanixList> {
-  return fetchIceberg({
+}: ListNutanixParams) {
+  return fetchIceberg<Nutanix>({
     route: '/nutanix',
     page: currentPage,
     pageSize,
@@ -179,28 +174,13 @@ export type NodeTask = {
   status: string;
 };
 
-export type NodeTasksList = {
-  totalCount: number;
-  data: NodeTask[];
-};
-
 export async function getNodeTasks(
   serviceName: string,
-  {
-    page,
-    pageSize,
-    filters,
-    sortBy,
-    sortReverse,
-  }: Partial<FetchPaginatedParams>,
-): Promise<NodeTasksList> {
-  return fetchIceberg({
+  options: IcebergOptions,
+) {
+  return fetchIceberg<NodeTask>({
     route: `/dedicated/server/${serviceName}/task`,
-    page,
-    pageSize,
-    filters,
-    sortBy,
-    sortReverse,
+    ...options,
   });
 }
 
