@@ -8,6 +8,7 @@ const Listing = React.lazy(() => import('./Listing'));
 const Details = React.lazy(() => import('./Details'));
 const NodesListing = React.lazy(() => import('./NodesListing'));
 const NodeDetails = React.lazy(() => import('./NodeDetails'));
+const NodeInterventions = React.lazy(() => import('./NodeInterventions'));
 const Dashboard = React.lazy(() => import('./Dashboard'));
 
 export default function Routing(): JSX.Element {
@@ -65,7 +66,11 @@ export default function Routing(): JSX.Element {
               <Route index element={<span>Infos TODO</span>} />
               <Route
                 path="interventions"
-                element={<span>Interventions TODO</span>}
+                element={
+                  <Suspense fallback="">
+                    <NodeInterventions />
+                  </Suspense>
+                }
               />
               <Route path="ipmi" element={<span>IPMI TODO</span>} />
               <Route path="tasks" element={<span>TASKS TODO</span>} />

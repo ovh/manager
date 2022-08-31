@@ -13,7 +13,8 @@ export async function initI18n(locale: string, availableLocales: string[]) {
     .init({
       lng: ovhLocaleToI18next(locale),
       fallbackLng: 'fr-FR',
-      ns: [],
+      ns: ['common'],
+      defaultNS: 'common',
       supportedLngs: availableLocales.map(ovhLocaleToI18next),
       backend: {
         loadPath: (lngs, namespaces) => {

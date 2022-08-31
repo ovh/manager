@@ -80,6 +80,11 @@ export type NutanixNodeMetaInfos = {
   state: string;
 };
 
+export type NutanixNodeIntervention = {
+  date: Date;
+  type: string;
+};
+
 export type ListNutanixParams = {
   currentPage: number;
   pageSize: number;
@@ -143,6 +148,28 @@ export async function getServiceInfos(
 ): Promise<ServiceInfos> {
   const response = await getInfos('nutanix', serviceName);
   return response;
+}
+
+export async function getNodeInterventions(
+  serviceName: string,
+  count = 10,
+  offset = 1,
+): Promise<{
+  count: number;
+  list: {
+    results: NutanixNodeIntervention[];
+  };
+}> {
+  const { data } = await apiClient.aapi.get(
+    `/sws/dedicated/server/${serviceName}/interventions`,
+    {
+      params: {
+        count,
+        offset,
+      },
+    },
+  );
+  return data;
 }
 
 function determineServerServiceName(

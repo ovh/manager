@@ -27,7 +27,8 @@
   "state": "État",
   "value": "Valeur",
   "zone": "Zone",
-
+  "date": "Date",
+  "type": "Type",
   "server_datacenter_ERI": "Londres (ERI{{number}}) - Angleterre",
   "server_datacenter_BHS": "Beauharnois (BHS{{number}}) - Canada",
   "server_datacenter_DC": "Beauharnois (DC{{number}}) - Canada",
