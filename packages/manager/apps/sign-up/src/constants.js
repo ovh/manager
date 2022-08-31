@@ -23,7 +23,22 @@ export const HOME_PAGE = {
   WS: 'https://www.ovh.com/us/es/',
 };
 
-export const OVH_LOGO = 'https://eu.api.ovh.com/images/com-square-bichro.png';
+const LOGO_CONFIG = {
+  default: 'assets/img/logo/logo-ovhcloud.png',
+  set:
+    'assets/img/logo/logo-ovhcloudx2.png 2x, assets/img/logo/logo-ovhcloudx3.png 3x',
+};
+
+const US_LOGO_CONFIG = {
+  default: 'assets/img/logo/logo-ovhcloud-tm.png',
+  set:
+    'assets/img/logo/logo-ovhcloud-tmx2.png 2x, assets/img/logo/logo-ovhcloud-tmx3.png 3x',
+};
+
+export const LOGO_SRC = {
+  default: LOGO_CONFIG,
+  US: US_LOGO_CONFIG,
+};
 
 export const SANITIZATION = {
   regex: /^\s*(?:(?:(?:https?|ftp|file|blob):\/\/(?:(?:(?:[^./?#]+\.)*(?:ovh|(?:ovhcloud(?=\.com))|(?:ovhtelecom(?=\.fr))|(?:ovh-hosting(?=\.fi))|soyoustart|kimsufi)\.(?:com|net|org|ovh|co\.uk|com\.tn|cz|de|es|eu|fi|fr|ie|it|lt|ma|nl|pl|pt|sn|uk|us))|localhost|127\.0\.0\.1)(?::\d+)?)|data:image)(?:\/|$)/i,
@@ -31,6 +46,6 @@ export const SANITIZATION = {
 
 export default {
   HOME_PAGE,
-  OVH_LOGO,
+  LOGO_SRC,
   SANITIZATION,
 };
