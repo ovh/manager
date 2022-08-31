@@ -35,5 +35,6 @@
   "billing_credit_sbg_legal_info3": "***The voucher and any credit notes relating to the SBG commercial measures are attached to your customer account. Please note that you cannot change the connecting customer account. They are valid until 31 August 2022 inclusive. After this date they will no longer be usable, and will not be replaced or refunded. The voucher and credit notes may not be transferred, sold or transmitted in any way, free of charge or for a fee, to a third party. They cannot be used on So you Start and Kimsufi services. The voucher is not replaceable or refundable. In the event of an incident that prevents OVHcloud from processing your order, it is cancelled, and the voucher amount used for the order is credited back to the voucher, without any extension to its validity period. If you use your right of withdrawal for a service order paid in whole or in part with part or all of the voucher, the amount paid with the voucher is non-refundable in cash format, and is credited back to the voucher without any extension to its validity.",
   "billing_credit_balance_movements_operation_debit_refund_old": "Issuing credit note <a href=\"{{refundUrl}}\" target=\"_blank\">{{ refundId }}</a>",
   "billing_credit_balance_movements_operation_debit_refund": "Issue of credit note",
-  "billing_credit_balance_movements_operation_debit_refund_deduction": "Credit note deduction"
+  "billing_credit_balance_movements_operation_debit_refund_deduction": "Credit note deduction",
+  "billing_credit_balance_movements_operation_expiration": "Expiry"
 }
