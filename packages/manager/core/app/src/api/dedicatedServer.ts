@@ -1,3 +1,6 @@
+import { fetchIceberg, IcebergOptions } from '@/api/iceberg';
+import apiClient from '@/api/client';
+
 export enum BandwidthTypeEnum {
   IMRPOVER = 'improved',
   INCLUDED = 'included',
@@ -49,9 +52,31 @@ export type UnitAndValue = {
 };
 
 export type DedicatedServer = {
+  commercialRange: string;
   datacenter: string;
   rack: string;
   serviceId: number;
+  state: string;
+};
+
+export type DedicatedServerTask = {
+  comment: string;
+  doneDate: Date;
+  function: string;
+  lastUpdate: Date;
+  needSchedule: boolean;
+  note: string;
+  plannedInterventionId: number;
+  startDate: Date;
+  status: string;
+  taskId: number;
+  ticketReference: string;
+};
+
+export type DedicatedServerIntervention = {
+  date: Date;
+  interventionId: string;
+  type: string;
 };
 
 export type NetworkSpecifications = {
@@ -120,10 +145,10 @@ export type DedicatedServerBandwidthvRackOrderable = {
 export async function getDedicatedServer(
   serviceName: string,
 ): Promise<DedicatedServer> {
-  const response = await fetch(
-    `/engine/2api/sws/dedicated/server/${serviceName}`,
+  const response = await apiClient.aapi.get(
+    `/sws/dedicated/server/${serviceName}`,
   );
-  return response.json();
+  return response.data;
 }
 
 export async function getNetwordSpecifications(
@@ -143,6 +168,46 @@ export async function getDedicatedServerOption(
     `/engine/apiv6/dedicated/server/${serviceName}/option/${serverOption}`,
   );
   return response.json();
+}
+
+export async function getDedicatedServerTasks(
+  serviceName: string,
+  options: IcebergOptions,
+) {
+  return fetchIceberg<DedicatedServerTask>({
+    route: `/dedicated/server/${serviceName}/task`,
+    ...options,
+  }).then(({ totalCount, data }) => ({
+    totalCount,
+    data: data.map((task) => ({
+      ...task,
+      doneDate: new Date(task.doneDate),
+      lastUpdate: new Date(task.lastUpdate),
+      startDate: new Date(task.startDate),
+    })),
+  }));
+}
+
+export async function getDedicatedServerInterventions(
+  serviceName: string,
+  page: number,
+  pageSize: number,
+): Promise<{
+  count: number;
+  list: {
+    results: DedicatedServerIntervention[];
+  };
+}> {
+  const { data } = await apiClient.aapi.get(
+    `/sws/dedicated/server/${serviceName}/interventions`,
+    {
+      params: {
+        count: pageSize,
+        offset: (page - 1) * pageSize,
+      },
+    },
+  );
+  return data;
 }
 
 export async function getDedicatedServerOrderableBandwidthVrack(

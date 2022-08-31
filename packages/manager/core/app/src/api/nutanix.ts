@@ -12,8 +12,10 @@ import Service, {
 } from '@/api/service';
 import DedicatedServer, {
   getDedicatedServer,
+  getDedicatedServerInterventions,
   getDedicatedServerOption,
   getDedicatedServerOrderableBandwidthVrack,
+  getDedicatedServerTasks,
   getNetwordSpecifications,
   DedicatedServerOption,
   NetworkSpecifications,
@@ -69,17 +71,6 @@ export type NutanixNode = {
   displayName: string;
 };
 
-export type NutanixNodeMetaInfos = {
-  commercialRange: string;
-  datacenter: string;
-  state: string;
-};
-
-export type NutanixNodeIntervention = {
-  date: Date;
-  type: string;
-};
-
 export type ListNutanixParams = {
   currentPage: number;
   pageSize: number;
@@ -124,13 +115,8 @@ export async function listNutanixNodes(
   return data;
 }
 
-export async function fetchNutanixNodeMetaInfos(
-  serviceName: string,
-): Promise<NutanixNodeMetaInfos> {
-  const response = await apiClient.aapi.get(
-    `/sws/dedicated/server/${serviceName}`,
-  );
-  return response.data;
+export async function fetchNutanixNodeMetaInfos(serviceName: string) {
+  return getDedicatedServer(serviceName);
 }
 
 export async function getNutanix(serviceName: string): Promise<Nutanix> {
@@ -147,41 +133,17 @@ export async function getServiceInfos(
 
 export async function getNodeInterventions(
   serviceName: string,
-  count = 10,
-  offset = 1,
-): Promise<{
-  count: number;
-  list: {
-    results: NutanixNodeIntervention[];
-  };
-}> {
-  const { data } = await apiClient.aapi.get(
-    `/sws/dedicated/server/${serviceName}/interventions`,
-    {
-      params: {
-        count,
-        offset,
-      },
-    },
-  );
-  return data;
+  page: number,
+  pageSize: number,
+) {
+  return getDedicatedServerInterventions(serviceName, page, pageSize);
 }
-
-export type NodeTask = {
-  lastUpdate: Date;
-  function: string;
-  comment: string;
-  status: string;
-};
 
 export async function getNodeTasks(
   serviceName: string,
   options: IcebergOptions,
 ) {
-  return fetchIceberg<NodeTask>({
-    route: `/dedicated/server/${serviceName}/task`,
-    ...options,
-  });
+  return getDedicatedServerTasks(serviceName, options);
 }
 
 function determineServerServiceName(

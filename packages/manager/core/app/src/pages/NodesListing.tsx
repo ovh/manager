@@ -8,8 +8,8 @@ import {
   fetchNutanixNodeMetaInfos,
   listNutanixNodes,
   NutanixNode,
-  NutanixNodeMetaInfos,
 } from '@/api/nutanix';
+import { DedicatedServer } from '@/api/dedicatedServer';
 
 import Listing, { ListingColumn } from '@/components/Listing';
 import DatacenterLabel from '@/components/DatacenterLabel';
@@ -29,7 +29,7 @@ const getStatusBadgeVariant = (status: string) => {
   }
 };
 
-type ListingNode = NutanixNode & Partial<NutanixNodeMetaInfos>;
+type ListingNode = NutanixNode & Partial<DedicatedServer>;
 
 export default function NodesListingPage(): JSX.Element {
   const { t } = useTranslation('nutanix');

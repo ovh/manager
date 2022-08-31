@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { Badge } from '@chakra-ui/react';
-import { getNodeTasks, NodeTask } from '@/api/nutanix';
+import { getNodeTasks } from '@/api/nutanix';
+import { DedicatedServerTask } from '@/api/dedicatedServer';
 import Listing, { ListingColumn } from '@/components/Listing';
 import DatePretty from '@/components/DatePretty';
 import useListingSearchParams from '@/hooks/useListingSearchParams';
@@ -27,7 +28,7 @@ export default function NodeTasksPage(): JSX.Element {
   const { t } = useTranslation('node-tasks');
   const { nodeId } = useParams();
   const searchParams = useListingSearchParams();
-  const [columns, setColumns] = useState<ListingColumn<NodeTask>[]>([
+  const [columns, setColumns] = useState<ListingColumn<DedicatedServerTask>[]>([
     {
       key: 'action',
       label: t('last_action'),

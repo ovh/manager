@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
-import { getNodeInterventions, NutanixNodeIntervention } from '@/api/nutanix';
+import { getNodeInterventions } from '@/api/nutanix';
+import { DedicatedServerIntervention } from '@/api/dedicatedServer';
 import Listing, { ListingColumn } from '@/components/Listing';
 import DatePretty from '@/components/DatePretty';
 import useListingSearchParams from '@/hooks/useListingSearchParams';
@@ -12,7 +13,7 @@ export default function NodeInterventionsPage(): JSX.Element {
   const { nodeId } = useParams();
   const searchParams = useListingSearchParams();
   const [columns, setColumns] = useState<
-    ListingColumn<NutanixNodeIntervention>[]
+    ListingColumn<DedicatedServerIntervention>[]
   >([
     {
       key: 'date',
@@ -31,12 +32,10 @@ export default function NodeInterventionsPage(): JSX.Element {
   const { data: services, isLoading } = useQuery(
     ['nutanix_node_intervention', nodeId, pageSize, currentPage],
     () =>
-      getNodeInterventions(nodeId, pageSize, (currentPage - 1) * pageSize).then(
-        (result) => ({
-          total: result.count,
-          items: result.list.results,
-        }),
-      ),
+      getNodeInterventions(nodeId, currentPage, pageSize).then((result) => ({
+        total: result.count,
+        items: result.list.results,
+      })),
     { staleTime: 5 * 60 * 1000 },
   );
 
