@@ -7,7 +7,6 @@ import {
   DashboardTile as DashboardTileType,
   DashboardTileDefinition,
 } from '.';
-import DashboardTileLoading from './DashboardTileLoading';
 import DashboardTileError from './DashboardTileError';
 import DashboardTileList from './DashboardTileList';
 
@@ -56,8 +55,7 @@ function DashboardTile({ tile }: DashboardTileProps): JSX.Element {
   }
 
   return (
-    <Tile title={tile.heading}>
-      {isLoading && <DashboardTileLoading />}
+    <Tile title={tile.heading} isLoading={isLoading}>
       {!isLoading && getTileContentComponent()}
     </Tile>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, useMultiStyleConfig, chakra, Button } from '@chakra-ui/react';
+import { Box, useMultiStyleConfig, chakra, Button, Skeleton } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
 // eslint-disable-next-line prettier/prettier
@@ -51,6 +51,34 @@ const TileSectionDefinition = (props = {} as Partial<StyleFunctionProps>) => {
   )
 }
 
+export const TileSectionLoading = (props= {} as Partial<StyleFunctionProps>) => {
+  const { variant, ...rest } = props;
+  const styles = useMultiStyleConfig('Tile', { variant });
+  const { title: titleStyles, description: descriptionStyles } = styles.sectionDefinition as any;
+
+  return (
+    <>
+      {Array(4)
+        .fill(null)
+        .map((item: any, index: number) => (
+          <chakra.div __css={styles.section} {...rest} key={index}>
+            <chakra.span __css={styles.sectionDefinition} {...rest}>
+              <chakra.dl flex={1}>
+                <chakra.dt __css={titleStyles}>
+                  <Skeleton mb='2' height={'1rem'}></Skeleton>
+                </chakra.dt>
+                <chakra.dd __css={descriptionStyles}>
+                  <Skeleton height={'1rem'}></Skeleton>
+                </chakra.dd>
+              </chakra.dl>
+            </chakra.span>
+          </chakra.div>
+        ))
+      }
+    </>
+  );
+};
+
 export const TileSection = (props = {} as Partial<StyleFunctionProps>) => {
   const { variant, sectionType,...rest } = props;
   const styles = useMultiStyleConfig('Tile', { variant });
@@ -74,14 +102,20 @@ export const TileSectionGroup = (props = {} as Partial<StyleFunctionProps>) => {
 };
 
 export const Tile = (props = {} as Partial<StyleFunctionProps>) => {
-  const { variant, title, children, ...rest } = props;
+  const { variant, title, children } = props;
+  const { isLoading, ...restProps } = props;
   const styles = useMultiStyleConfig('Tile', { variant });
 
   return (
-    <Box __css={styles.container} {...rest}>
-      {title && <TileHeading {...props} />}
+    <Box __css={styles.container} {...restProps}>
+      {title && <TileHeading {...restProps} />}
 
-      <chakra.div __css={styles.content}>{children}</chakra.div>
+      <chakra.div __css={styles.content}>
+        {isLoading
+          ? <TileSectionLoading {...restProps} />
+          : children
+        }
+      </chakra.div>
     </Box>
   );
 };
