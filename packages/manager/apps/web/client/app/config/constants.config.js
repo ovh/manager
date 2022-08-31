@@ -797,6 +797,7 @@ module.exports = {
       { value: 10, label: '10 - RSASHA512' },
       { value: 13, label: '13 - ECDSAP256SHA256' },
       { value: 14, label: '14 - ECDSAP384SHA384' },
+      { value: 15, label: '15 - ED25519' },
     ],
     ORDER_URL: {
       CZ: 'https://www.ovh.cz/order/express/#/express/review?products=',
