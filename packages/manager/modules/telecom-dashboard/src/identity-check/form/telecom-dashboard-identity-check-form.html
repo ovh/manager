@@ -116,7 +116,7 @@
                         placeholder="{{ 'telecom_dashboard_identity_check_form_ownerZip' | translate }}"
                         type="text"
                         data-ng-model="$ctrl.model.ownerZip"
-                        data-ng-pattern="/^\d{4}$/"
+                        data-ng-pattern="/^\d{4,5}$/"
                         required
                     />
                 </oui-field>
