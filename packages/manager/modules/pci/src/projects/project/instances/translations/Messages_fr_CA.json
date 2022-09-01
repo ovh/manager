@@ -63,7 +63,7 @@
 
   "pci_projects_project_instances_error_query": "Une erreur est survenue lors de la récupération des volumes",
 
-  "pci_projects_project_instances_vrack_none": "Vous n'avez pas encore configuré de vRack",
+  "pci_projects_project_instances_vrack_none": "Vous n'avez pas encore activé la fonctionnalité de réseaux privés (basé sur vRack).",
   "pci_projects_project_instances_vrack_create": "Créer un vRack",
   "pci_projects_project_instances_autobackup_label": "Créer une sauvegarde automatisée",
   "pci_projects_project_instances_refresh": "Actualiser les instances"

@@ -27,7 +27,6 @@ export default /* @ngInject */ ($stateProvider) => {
           'dedicated-server:backup',
           'dedicated-server:changeOwner',
           'dedicated-server:dns',
-          'dedicated-server:firewall',
           'dedicated-server:upgradeWithTicket',
         ]),
       ola: /* @ngInject */ ($stateParams, interfaces, specifications) =>

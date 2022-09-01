@@ -17,5 +17,6 @@
   "kubernetes_add_error_InsufficientRAMQuota": "Das Quota für RAM Ihres Projekts reicht für diesen Vorgang nicht aus. Sie haben die Möglichkeit, Ihr Quota zu steigern, oder aber weniger Ressourcen anzufordern.",
   "kubernetes_add_error_InsufficientPortsQuota": "Das Quota für Ports Ihres Projekts reicht für diesen Vorgang nicht aus. Sie haben die Möglichkeit, Ihr Quota zu steigern, oder aber weniger Ressourcen anzufordern.",
   "kubernetes_add_error_InsufficientInstancesQuota": "Das Quota für Instanzen Ihres Projekts reicht für diesen Vorgang nicht aus. Sie haben die Möglichkeit, Ihr Quota zu steigern, oder aber weniger Ressourcen anzufordern.",
-  "kubernetes_add_error_quota_link": "Mein Quota erhöhen."
+  "kubernetes_add_error_quota_link": "Mein Quota erhöhen.",
+  "kubernetes_add_billing_auto_scaling_monthly_warning": "Bitte beachten Sie: Sie aktivieren gleichzeitig Autoscaling und die Monatspauschale für diesen Nodepool. Jede Erstellung von Nodes durch Autoscaling führt zur sofortigen anteiligen Abrechnung eines Nodes je nach verbleibender Zeit im laufenden Monat. Können Sie bereits absehen, dass Sie den Nodepool häufig reduzieren werden? Dann raten wir von dieser Kombination ab."
 }

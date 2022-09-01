@@ -11,6 +11,13 @@ export default /* @ngInject */ ($stateProvider) => {
         billingAccount: /* @ngInject */ ($transition$) =>
           $transition$.params().billingAccount,
         serviceName: () => 'default',
+        backToAdministrationGroup: /* @ngInject */ (
+          $state,
+          billingAccount,
+        ) => () =>
+          $state.href('telecom.telephony.billingAccount.administration', {
+            billingAccount,
+          }),
         attachMandate: /* @ngInject */ ($state, billingAccount) => (
           portability,
         ) =>
@@ -31,6 +38,27 @@ export default /* @ngInject */ ($stateProvider) => {
               billingAccount,
               portabilityId: portability.id,
               documentId,
+            },
+          ),
+        goToCancelPortability: /* @ngInject */ ($state, billingAccount) => (
+          portability,
+        ) =>
+          $state.go(
+            'telecom.telephony.billingAccount.administration.portabilities.cancel',
+            {
+              billingAccount,
+              portabilityId: portability.id,
+            },
+          ),
+        goToRelaunchPortability: /* @ngInject */ ($state, billingAccount) => (
+          portability,
+        ) =>
+          $state.go(
+            'telecom.telephony.billingAccount.administration.portabilities.relaunch',
+            {
+              billingAccount,
+              portabilityId: portability.id,
+              changeRequired: portability.changeRequired,
             },
           ),
         goToPortabilities: /* @ngInject */ (

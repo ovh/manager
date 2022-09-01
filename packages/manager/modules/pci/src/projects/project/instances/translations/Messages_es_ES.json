@@ -51,7 +51,7 @@
   "pci_projects_project_instances_delete_label": "Eliminar",
   "pci_projects_project_instances_add_label": "Crear una instancia",
   "pci_projects_project_instances_error_query": "Se ha producido un error al cargar los volúmenes.",
-  "pci_projects_project_instances_vrack_none": "Todavía no ha configurado ningún vRack.",
+  "pci_projects_project_instances_vrack_none": "Todavía no ha activado la funcionalidad de redes privadas (basada en el vRack).",
   "pci_projects_project_instances_vrack_create": "Crear un vRack",
   "pci_projects_project_instances_autobackup_label": "Crear un backup automatizado",
   "pci_projects_project_instances_refresh": "Actualizar las instancias",

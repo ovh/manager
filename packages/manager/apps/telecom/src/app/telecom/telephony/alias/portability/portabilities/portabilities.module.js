@@ -4,10 +4,13 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
 import attach from './attach/attach.module';
+import cancelPortability from './cancel/cancel.module';
 import deleteDoc from './delete/delete.module';
+import relaunchPortability from './relaunch/relaunch.module';
 
 import component from './portabilities.component';
 import routing from './portabilities.routing';
+import service from './portabilities.service';
 
 import './portabilities.less';
 
@@ -19,10 +22,13 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     attach,
+    cancelPortability,
     deleteDoc,
+    relaunchPortability,
   ])
   .config(routing)
   .component('portabilities', component)
+  .service('TelephonyPortabilitiesService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

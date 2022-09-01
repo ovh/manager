@@ -9,10 +9,6 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       layout: 'modal',
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
       resolve: {
         billingAccount: /* @ngInject */ ($transition$) =>
           $transition$.params().billingAccount,
