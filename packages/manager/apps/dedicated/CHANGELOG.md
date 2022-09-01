@@ -1,3 +1,12 @@
+# [17.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.28.1...@ovh-ux/manager-dedicated@17.29.0) (2022-09-01)
+
+
+### Features
+
+* **billing:** update on SBG voucher expiration ([#7863](https://github.com/ovh/manager/issues/7863)) ([b8d4765](https://github.com/ovh/manager/commit/b8d47656dc23d637fca641f34cf3c7fe5b19f8be))
+
+
+
 ## [17.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.28.0...@ovh-ux/manager-dedicated@17.28.1) (2022-09-01)
 
 

@@ -1,3 +1,12 @@
+# [0.19.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.18.0-alpha.0...@ovh-ux/manager-billing@0.19.0-alpha.0) (2022-09-01)
+
+
+### Features
+
+* **billing:** update on SBG voucher expiration ([#7863](https://github.com/ovh/manager/issues/7863)) ([b8d4765](https://github.com/ovh/manager/commit/b8d47656dc23d637fca641f34cf3c7fe5b19f8be))
+
+
+
 # [0.18.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.17.0-alpha.2...@ovh-ux/manager-billing@0.18.0-alpha.0) (2022-08-31)
 
 
