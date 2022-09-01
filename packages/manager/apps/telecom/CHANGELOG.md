@@ -1,3 +1,12 @@
+# [13.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.6...@ovh-ux/manager-telecom@13.44.0) (2022-09-01)
+
+
+### Features
+
+* **telecom.voip:** add relaunch portability in error ([#7722](https://github.com/ovh/manager/issues/7722)) ([b9d558d](https://github.com/ovh/manager/commit/b9d558d984b0d1f63265e7f6d8fb6197e9775f5c))
+
+
+
 ## [13.43.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.5...@ovh-ux/manager-telecom@13.43.6) (2022-08-31)
 
 

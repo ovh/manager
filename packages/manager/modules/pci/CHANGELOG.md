@@ -1,3 +1,13 @@
+# [5.88.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.87.3...@ovh-ux/manager-pci@5.88.0) (2022-09-01)
+
+
+### Features
+
+* **instance.create:** edit a warning message when creating an instance ([#7721](https://github.com/ovh/manager/issues/7721)) ([39e1e4c](https://github.com/ovh/manager/commit/39e1e4caf42de9ad3332d16afc1fd4c265d26500))
+* **pci:** add warning message in kubernates billing ([#7725](https://github.com/ovh/manager/issues/7725)) ([d29e8cb](https://github.com/ovh/manager/commit/d29e8cb54ca1fb35effed58addd2ed0b4011fdef))
+
+
+
 ## [5.87.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.87.2...@ovh-ux/manager-pci@5.87.3) (2022-08-31)
 
 
