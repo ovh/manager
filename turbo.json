@@ -3,7 +3,8 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputMode": "new-only"
+      "outputMode": "new-only",
+      "outputs": ["dist/**", "types/**"]
     },
     "dev": {
       "dependsOn": ["^dev"]
