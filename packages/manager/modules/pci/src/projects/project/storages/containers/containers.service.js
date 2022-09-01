@@ -234,9 +234,13 @@ export default class PciStoragesContainersService {
       s3StorageType,
       container.region,
     ).then(({ endpoints }) => {
-      const url = `${
-        endpoints[(container.region || OPENIO_DEFAULT_REGION).toLowerCase()]
-      }/${encodeURIComponent(container.name)}`;
+      const url = !s3StorageType
+        ? `${
+            endpoints[(container.region || OPENIO_DEFAULT_REGION).toLowerCase()]
+          }/${encodeURIComponent(container.name)}`
+        : `${
+            endpoints[(container.region || OPENIO_DEFAULT_REGION).toLowerCase()]
+          }`;
       if (file) {
         return `${url}/${encodeURIComponent(file)}`;
       }
