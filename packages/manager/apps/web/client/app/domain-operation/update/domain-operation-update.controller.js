@@ -202,13 +202,6 @@ angular.module('App').controller(
             );
           }
         }
-        if (!arg.readOnly) {
-          rtn = this.domainOperationService.updateOperation({
-            id: this.operation.id,
-            key: arg.key,
-            data: { value: arg.value },
-          });
-        }
         return rtn;
       });
 
