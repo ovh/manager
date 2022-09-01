@@ -180,6 +180,13 @@
                                 data-translate="telephony_group_billing_deposit_movement_destination_subtitle"
                             ></h2>
                         </header>
+                        <div
+                            class="alert alert-danger"
+                            role="alert"
+                            data-ng-if="BillingAccountDepositMovementCtrl.target && BillingAccountDepositMovementCtrl.targetError"
+                            data-translate="telephony_group_billing_deposit_movement_error_destination"
+                        ></div>
+
                         <div class="form-group">
                             <label
                                 for="target"
@@ -192,6 +199,7 @@
                                 name="target"
                                 id="target"
                                 required
+                                data-ng-change="BillingAccountDepositMovementCtrl.onChangeTarget()"
                                 data-ng-model="BillingAccountDepositMovementCtrl.target"
                                 data-ng-options="item.value as item.label disable when item.disable for item in BillingAccountDepositMovementCtrl.targets"
                                 data-ng-disabled="!BillingAccountDepositMovementCtrl.source || BillingAccountDepositMovementCtrl.loading.submit"
@@ -205,7 +213,7 @@
                             ></label>
                             <p
                                 class="form-control-static"
-                                data-ng-if="BillingAccountDepositMovementCtrl.target.securityDeposit"
+                                data-ng-if="BillingAccountDepositMovementCtrl.target.securityDeposit && BillingAccountDepositMovementCtrl.canTransferSecurityDepositOnTarget"
                             >
                                 <span
                                     data-ng-bind="BillingAccountDepositMovementCtrl.target.securityDeposit.text"
@@ -223,7 +231,7 @@
                             ></label>
                             <p
                                 class="form-control-static"
-                                data-ng-if="BillingAccountDepositMovementCtrl.amount && BillingAccountDepositMovementCtrl.target.securityDeposit"
+                                data-ng-if="BillingAccountDepositMovementCtrl.amount && BillingAccountDepositMovementCtrl.target.securityDeposit && BillingAccountDepositMovementCtrl.canTransferSecurityDepositOnTarget"
                             >
                                 <span
                                     data-ng-bind="(BillingAccountDepositMovementCtrl.amount + BillingAccountDepositMovementCtrl.target.securityDeposit.value) | currency : BillingAccountDepositMovementCtrl.currency : 2"
@@ -239,7 +247,7 @@
                         <button
                             type="submit"
                             class="btn btn-primary"
-                            data-ng-disabled="!depositMovementForm.$valid || !(BillingAccountDepositMovementCtrl.amount > 0) || BillingAccountDepositMovementCtrl.loading.submit"
+                            data-ng-disabled="!depositMovementForm.$valid || !(BillingAccountDepositMovementCtrl.amount > 0) || BillingAccountDepositMovementCtrl.canTransferSecurityDepositOnTarget || BillingAccountDepositMovementCtrl.loading.submit"
                             data-translate="telephony_group_billing_deposit_movement_submit"
                         ></button>
                     </div>
