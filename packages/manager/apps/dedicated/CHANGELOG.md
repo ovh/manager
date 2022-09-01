@@ -1,3 +1,13 @@
+## [17.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.28.0...@ovh-ux/manager-dedicated@17.28.1) (2022-09-01)
+
+
+### Bug Fixes
+
+* **dedicated.server:** clean code cisco asa ([#7789](https://github.com/ovh/manager/issues/7789)) ([f01f7aa](https://github.com/ovh/manager/commit/f01f7aa956e6c2844546d6988448900cf75c752a))
+* **dedicated.server:** size change for class ip-clipboard ([#7883](https://github.com/ovh/manager/issues/7883)) ([d28a67b](https://github.com/ovh/manager/commit/d28a67bcaf33b02019b9df7036297e0fe0d401ea))
+
+
+
 # [17.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.27.1...@ovh-ux/manager-dedicated@17.28.0) (2022-08-31)
 
 
