@@ -15,8 +15,8 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
-    "build:turbo": "turbo run build --since=origin/master --include-dependencies",
-    "dev": "turbo run dev --since=origin/master --include-dependencies",
+    "build:turbo": "turbo run build",
+    "dev": "turbo run dev",
     "clean": "lerna clean -y && yarn run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist?(-EU|-CA|-US)\"",
     "format": "run-p format:*",
