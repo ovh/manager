@@ -51,22 +51,41 @@ export default class PciStoragesContainersService {
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
   }
 
-  getAccessAndToken(projectId) {
-    return this.OvhApiCloudProjectStorage.v6()
-      .access({
-        projectId,
-      })
-      .$promise.then(({ token, endpoints }) => ({
-        token,
-        endpoints: reduce(
-          endpoints,
-          (result, endpoint) => ({
-            ...result,
-            [endpoint.region.toLowerCase()]: endpoint.url,
-          }),
-          {},
-        ),
-      }));
+  getAccessAndToken(projectId, s3StorageType, selectedRegion) {
+    if (!s3StorageType) {
+      return this.OvhApiCloudProjectStorage.v6()
+        .access({
+          projectId,
+        })
+        .$promise.then(({ token, endpoints }) => ({
+          token,
+          endpoints: reduce(
+            endpoints,
+            (result, endpoint) => ({
+              ...result,
+              [endpoint.region.toLowerCase()]: endpoint.url,
+            }),
+            {},
+          ),
+        }));
+    }
+
+    const s3Type =
+      s3StorageType === 'storage'
+        ? OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE
+        : OBJECT_CONTAINER_OFFER_STORAGE_STANDARD;
+    return this.getRegions(projectId, selectedRegion).then((region) => {
+      const regionDetails = region.services.find(({ name }) => name === s3Type);
+      return {
+        endpoints: { [selectedRegion.toLowerCase()]: regionDetails.endpoint },
+      };
+    });
+  }
+
+  getRegions(projectId, selectedRegion) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/region/${selectedRegion}`)
+      .then(({ data }) => data);
   }
 
   getArchivePassword(projectId, { region }) {
@@ -172,7 +191,12 @@ export default class PciStoragesContainersService {
       .then((container) =>
         this.$q.all({
           container,
-          publicUrl: this.getContainerUrl(projectId, container),
+          publicUrl: this.getContainerUrl(
+            projectId,
+            container,
+            null,
+            s3StorageType,
+          ),
         }),
       )
       .then(
@@ -204,8 +228,12 @@ export default class PciStoragesContainersService {
       );
   }
 
-  getContainerUrl(projectId, container, file = null) {
-    return this.getAccessAndToken(projectId).then(({ endpoints }) => {
+  getContainerUrl(projectId, container, file = null, s3StorageType) {
+    return this.getAccessAndToken(
+      projectId,
+      s3StorageType,
+      container.region,
+    ).then(({ endpoints }) => {
       const url = `${
         endpoints[(container.region || OPENIO_DEFAULT_REGION).toLowerCase()]
       }/${encodeURIComponent(container.name)}`;
