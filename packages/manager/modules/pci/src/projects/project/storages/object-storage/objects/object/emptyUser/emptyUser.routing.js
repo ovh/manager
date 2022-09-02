@@ -23,6 +23,21 @@ export default /* @ngInject */ ($stateProvider) => {
             'pci.projects.project.storages.object-storage.users.add',
           );
         },
+
+        goToUsers: /* @ngInject */ (
+          $state,
+          atInternet,
+          trackingPrefix,
+        ) => () => {
+          atInternet.trackClick({
+            name: `${trackingPrefix}add-user::goto-users`,
+            type: 'action',
+          });
+          return $state.go(
+            'pci.projects.project.storages.object-storage.users',
+          );
+        },
+
         goBack: /* @ngInject */ (
           goToStorageContainers,
           atInternet,
