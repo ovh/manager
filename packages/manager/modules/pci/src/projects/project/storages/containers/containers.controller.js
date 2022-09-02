@@ -69,7 +69,7 @@ export default class PciStoragesContainersController {
 
   loadMessages() {
     this.messageHandler = this.CucCloudMessage.subscribe(
-      'pci.projects.project.storages.containers',
+      'pci.projects.project.storages.containers.container',
       {
         onMessage: () => this.refreshMessages(),
       },
