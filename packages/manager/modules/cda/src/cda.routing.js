@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: () => '/dedicated/ceph',
       dataModel: () => 'dedicated.ceph.clusterGet.response',
       defaultFilterColumn: () => 'serviceName',
-      header: () => 'Ceph Cluster',
+      header: /* @ngInject */ ($translate) => $translate.instant('cda_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
         $state.href('cda.dashboard', {
