@@ -17,7 +17,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad', overTheBox]).config(
         url: '/overTheBox',
         redirectTo: 'overTheBoxes.index',
         resolve: {
-          breadcrumb: () => 'OverTheBox',
+          breadcrumb: () => 'Over The Box',
         },
       })
       .state('overTheBoxes.onboarding.**', {
