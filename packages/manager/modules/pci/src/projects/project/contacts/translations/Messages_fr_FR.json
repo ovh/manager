@@ -20,5 +20,5 @@
   "common_cancel": "Annuler",
   "cpb_rights_note": "NB : Les contacts en lecture/écriture disposent de droits (modifications de l'infrastructure, utilisation du stockage) pouvant engendrer des coûts supplémentaires. Les contacts en lecture seule ne peuvent mener aucune action sur le projet. Le moyen de paiement par défaut du contact facturation est utilisé pour chacune des factures.",
   "cpb_rights_table_nichandle": "Identifiant client",
-  "pci_projects_project_contacts_title": "Contacts et droits"
+  "pci_projects_project_contacts_title": "Contacts & droits"
 }

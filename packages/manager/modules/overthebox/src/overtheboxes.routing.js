@@ -7,6 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'ovhManagerOverTheBoxes',
     params: ListLayoutHelper.stateParams,
     resolve: {
+      header: /* @ngInject */ ($translate) =>
+        $translate.instant('overtheboxes_title'),
       apiPath: () => '/overTheBox',
       ...ListLayoutHelper.stateResolves,
       defaultFilterColumn: () => 'serviceName',

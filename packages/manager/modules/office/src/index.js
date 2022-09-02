@@ -22,8 +22,10 @@ angular
           url: '/office/license',
           template: '<div ui-view></div>',
           redirectTo: 'office.index',
-          breadcrumb: /* @ngInject */ ($translate) =>
-            $translate.instant('office_title'),
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('office_title'),
+          },
         })
         .state('office.index.**', {
           url: '',

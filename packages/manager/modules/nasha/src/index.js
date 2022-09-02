@@ -3,6 +3,9 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import 'angular-translate';
+import ngOvhTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+
 import '@ovh-ux/ng-ui-router-breadcrumb';
 
 const moduleName = 'ovhManagerNashaLazyLoading';
@@ -13,6 +16,8 @@ angular
     'oc.lazyLoad',
     'ovhManagerCore',
     'ngUiRouterBreadcrumb',
+    'pascalprecht.translate',
+    ngOvhTranslateAsyncLoader,
   ])
   .config(
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
@@ -30,7 +35,8 @@ angular
           redirectTo: 'nasha.index',
           template: '<div ui-view></div>',
           resolve: {
-            breadcrumb: () => 'NASHA',
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('nasha_title'),
           },
         })
         .state('nasha.index.**', {
@@ -63,5 +69,6 @@ angular
         );
       });
     },
-  );
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
 export default moduleName;

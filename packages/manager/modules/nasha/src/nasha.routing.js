@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: () => '/dedicated/nasha',
       dataModel: () => 'dedicated.nasha.Storage',
       defaultFilterColumn: () => 'serviceName',
-      header: () => 'NASHA',
+      header: /* @ngInject */ ($translate) => $translate.instant('nasha_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({
         serviceName: nashaId,
