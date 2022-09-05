@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Application } from '@ovh-ux/manager-config';
+import { Application } from '@ovh-ux/manager-config/types/application';
 
 export interface ExternalApplicationRouteProps {
   appConfig: Application;

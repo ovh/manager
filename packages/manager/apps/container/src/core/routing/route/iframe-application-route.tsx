@@ -1,6 +1,6 @@
 import { useEffect, useState, RefObject } from 'react';
 import { useLocation, useMatch, useNavigate } from 'react-router-dom';
-import { Application } from '@ovh-ux/manager-config';
+import { Application } from '@ovh-ux/manager-config/types/application';
 
 import { appendSlash, removeHashbang } from './utils';
 
