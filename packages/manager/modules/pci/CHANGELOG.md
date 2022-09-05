@@ -1,3 +1,12 @@
+## [5.88.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.88.0...@ovh-ux/manager-pci@5.88.1) (2022-09-05)
+
+
+### Bug Fixes
+
+* **pci:** update back link target to avoid reload ([#7916](https://github.com/ovh/manager/issues/7916)) ([1053747](https://github.com/ovh/manager/commit/10537472d5fdf9e13ae0da727d060aa96d90626d))
+
+
+
 # [5.88.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.87.3...@ovh-ux/manager-pci@5.88.0) (2022-09-01)
 
 

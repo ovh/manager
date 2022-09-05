@@ -1,3 +1,12 @@
+## [6.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.4.2...@ovh-ux/manager-telecom-dashboard@6.4.3) (2022-09-05)
+
+
+### Bug Fixes
+
+* **identity-check:** allow 4 and 5 digits zipcode ([#7927](https://github.com/ovh/manager/issues/7927)) ([514091d](https://github.com/ovh/manager/commit/514091d2d73d896d951c5acab913912f2d47d899))
+
+
+
 ## [6.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.4.1...@ovh-ux/manager-telecom-dashboard@6.4.2) (2022-08-22)
 
 

@@ -1,3 +1,12 @@
+## [13.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.44.0...@ovh-ux/manager-telecom@13.44.1) (2022-09-05)
+
+
+### Bug Fixes
+
+* **telephony:** check can transfer deposit on target selection ([#7921](https://github.com/ovh/manager/issues/7921)) ([911d4e9](https://github.com/ovh/manager/commit/911d4e9bae1eb2d790525da620c9a48f0dbfd4e9))
+
+
+
 # [13.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.43.6...@ovh-ux/manager-telecom@13.44.0) (2022-09-01)
 
 

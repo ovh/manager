@@ -1,3 +1,12 @@
+## [16.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.16.0...@ovh-ux/manager-web@16.16.1) (2022-09-05)
+
+
+### Bug Fixes
+
+* **domain-operation.update:** prevent update operation twice ([#7892](https://github.com/ovh/manager/issues/7892)) ([391ad88](https://github.com/ovh/manager/commit/391ad8883dbc7df2180a861a8f2116099afc61db))
+
+
+
 # [16.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.15.3...@ovh-ux/manager-web@16.16.0) (2022-08-18)
 
 
