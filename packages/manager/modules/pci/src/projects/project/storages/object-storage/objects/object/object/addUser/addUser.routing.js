@@ -30,7 +30,10 @@ export default /* @ngInject */ ($stateProvider) => {
         availableUsers: /* @ngInject */ (
           PciStoragesObjectStorageService,
           projectId,
-        ) => PciStoragesObjectStorageService.getS3Users(projectId),
+        ) =>
+          PciStoragesObjectStorageService.getS3Users(projectId).filter(
+            (user) => user.status === 'ok',
+          ),
         goToUsersAndRoles: /* @ngInject */ ($state) => () =>
           $state.go('pci.projects.project.users'),
         goBack: /* @ngInject */ (goToStorageContainer) => goToStorageContainer,
