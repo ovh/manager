@@ -71,7 +71,7 @@ function LegacyContainer(): JSX.Element {
         </div>
         <div className={style.managerShell_content}>
           {isMfaEnrollmentVisible && (
-            <Suspense fallback="">
+              <Suspense fallback="">
               <MfaEnrollment
                 forced={isMfaEnrollmentForced}
                 onHide={hideMfaEnrollment}
