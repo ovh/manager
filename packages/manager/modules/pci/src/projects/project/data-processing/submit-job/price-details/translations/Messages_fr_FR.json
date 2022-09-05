@@ -1,12 +1,11 @@
 {
   "data_processing_price_details_estimation": "Estimation du prix",
-  "data_processing_price_details_description": "Le récapitulatif ci-dessous est une estimation du coût de votre job, et peut évoluer en fonction des resources utilisées.",
+  "data_processing_price_details_description": "Le récapitulatif ci-dessous est une estimation du coût de votre job, et peut évoluer en fonction des ressources utilisées.",
   "data_processing_price_details_cores": "Cores",
   "data_processing_price_details_memory": "Mémoire",
   "data_processing_price_details_estimated_price": "Prix estimé",
   "data_processing_price_details_driver": "Driver : ",
   "data_processing_price_details_workers": "Executors : ",
-  "data_processing_price_details_memory_gib": "{{memory  | number:2}} GiB",
   "data_processing_price_details_memory_overhead": "overhead",
   "data_processing_price_details_price_per_core": "Prix par core : ",
   "data_processing_price_details_price_per_gib": "Prix par GiB : ",

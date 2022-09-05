@@ -8,7 +8,7 @@ import {
   JOB_TYPE_JAVA,
   JOB_TYPE_PYTHON,
 } from '../../data-processing.constants';
-import { nameGenerator } from '../../data-processing.utils';
+import { nameGenerator } from '../../../../../name-generator.constant';
 
 export default class {
   /* @ngInject */
