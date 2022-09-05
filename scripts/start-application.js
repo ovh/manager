@@ -10,6 +10,12 @@ import inquirer from 'inquirer';
 const applicationsWorkspace = 'packages/manager/apps';
 
 /**
+ * Container application package name
+ * @type {string}
+ */
+const containerPackageName = '@ovh-ux/manager-container-app';
+
+/**
  * List all applications available for a given workspace.
  * @return {Array} Applications' list.
  */
@@ -63,6 +69,8 @@ const questions = [
     name: 'container',
     message: 'Start the application inside the container?',
     default: false,
+    // Skip for container
+    when: ({ packageName }) => packageName !== containerPackageName,
   },
 ];
 
@@ -76,12 +84,11 @@ inquirer
      * {@link https://github.com/ovh/manager/tree/master/packages/manager/tools/webpack-dev-server#env | webpack dev server }
      */
     process.env.REGION = region;
-
     try {
       if (container) {
         await concurrently(
           [
-            'yarn workspace @ovh-ux/manager-container-app run start:dev',
+            `yarn workspace ${containerPackageName} run start:dev`,
             `CONTAINER=1 yarn workspace ${packageName} run start:dev`,
           ],
           {
