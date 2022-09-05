@@ -1,15 +1,17 @@
 import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { HashRouter } from 'react-router-dom';
 
 import { initShell } from '@ovh-ux/shell';
 import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
-import ReactDOM from 'react-dom';
 import { initReactI18next } from 'react-i18next';
 import { Environment } from '@ovh-ux/manager-config/types';
 
 import Container from '@/container';
 import { ApplicationProvider } from '@/context';
 import { initSso } from '@/core/sso';
+import { setupDevApplication } from '@/core/dev';
 import { ContainerProvider } from '@/core/container';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -29,6 +31,8 @@ initShell().then((shell) => {
   const locale = environment.getUserLocale();
   const config = () => import(`./config-${environment.getRegion()}.js`);
 
+  setupDevApplication(shell);
+
   config()
     .catch(() => {})
     .then(() => {
@@ -47,15 +51,17 @@ initShell().then((shell) => {
           },
         });
 
-      ReactDOM.render(
+      const root = createRoot(document.querySelector('#app'));
+      root.render(
         <React.StrictMode>
           <ApplicationProvider environment={environment} shell={shell}>
             <ContainerProvider>
-              <Container />
+              <HashRouter>
+                <Container />
+              </HashRouter>
             </ContainerProvider>
           </ApplicationProvider>
         </React.StrictMode>,
-        document.querySelector('#app'),
       );
     });
 });
