@@ -1,10 +1,12 @@
+import { UseQueryResult } from '@tanstack/react-query';
+
 export { default } from './Dashboard';
 
 export type DashboardTile = {
   name: string;
   heading: string;
   type?: TileTypesEnum;
-  onLoad?: () => Promise<unknown>;
+  loadingQueries?: Record<string, UseQueryResult>;
   onError?: (error?: Error) => string;
   definitions?:
     | DashboardTileDefinition[]

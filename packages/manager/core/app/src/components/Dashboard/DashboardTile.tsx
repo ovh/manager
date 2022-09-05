@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Tile } from '@ovh-ux/manager-themes';
 import { withErrorBoundary } from 'react-error-boundary';
 
-import {
-  TileTypesEnum,
-  DashboardTile as DashboardTileType,
-  DashboardTileDefinition,
-} from '.';
+import { TileTypesEnum, DashboardTile as DashboardTileType } from '.';
 import DashboardTileError from './DashboardTileError';
 import DashboardTileList from './DashboardTileList';
 
@@ -15,11 +11,36 @@ export type DashboardTileProps = {
 };
 
 function DashboardTile({ tile }: DashboardTileProps): JSX.Element {
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadingInError, setLoadingInError] = useState(false);
-  const [loadingError, setLoadingError] = useState<string>();
-  const [data, setData] = useState<unknown>();
-  const [definitions, setDefinitions] = useState<DashboardTileDefinition[]>();
+  const loadingQueries = tile?.loadingQueries || {};
+  const tileIsLoading = Object.values(loadingQueries).some(({ isLoading }) => {
+    return isLoading;
+  });
+  const loadingInError = Object.values(loadingQueries).some(({ isError }) => {
+    return isError;
+  });
+
+  if (tileIsLoading) {
+    return <Tile title={tile.heading} isLoading={tileIsLoading}></Tile>;
+  }
+
+  if (loadingInError) {
+    // find the error and throw it
+    const { error } = Object.values(loadingQueries).find(({ isError }) => {
+      return isError;
+    });
+    throw error;
+  }
+
+  // build data
+  const data = {} as Record<string, unknown>;
+  Object.keys(loadingQueries).forEach((queryKey) => {
+    data[queryKey] = loadingQueries[queryKey].data;
+  });
+
+  const definitions =
+    typeof tile.definitions === 'function'
+      ? tile.definitions(data)
+      : tile.definitions || [];
 
   const getTileContentComponent = () => {
     switch (tile.type) {
@@ -30,38 +51,9 @@ function DashboardTile({ tile }: DashboardTileProps): JSX.Element {
     }
   };
 
-  useEffect(() => {
-    const loadingPromise = tile.onLoad ? tile.onLoad() : Promise.resolve(true);
-    loadingPromise
-      .then((response) => {
-        setData(response);
-        setDefinitions(
-          typeof tile.definitions === 'function'
-            ? tile.definitions(response)
-            : tile.definitions,
-        );
-      })
-      .catch((error) => {
-        setData({});
-        setDefinitions([]);
-        setLoadingInError(true);
-        setLoadingError(tile.onError?.(error) || '');
-      })
-      .finally(() => setIsLoading(false));
-  }, []);
-
-  if (loadingInError) {
-    throw new Error(loadingError);
-  }
-
-  return (
-    <Tile title={tile.heading} isLoading={isLoading}>
-      {!isLoading && getTileContentComponent()}
-    </Tile>
-  );
+  return <Tile title={tile.heading}>{getTileContentComponent()}</Tile>;
 }
 
 export default withErrorBoundary(DashboardTile, {
   FallbackComponent: DashboardTileError,
-  resetKeys: ['loadingError'],
 });

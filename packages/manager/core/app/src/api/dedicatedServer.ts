@@ -159,20 +159,37 @@ export async function getDedicatedServer(
 export async function getNetwordSpecifications(
   serviceName: string,
 ): Promise<NetworkSpecifications> {
-  const { data } = await apiClient.v6.get(
-    `/dedicated/server/${serviceName}/specifications/network`,
-  );
-  return data;
+  try {
+    const { data } = await apiClient.v6.get(
+      `/dedicated/server/${serviceName}/specifications/network`,
+    );
+    return data;
+  } catch (error) {
+    if (error.response.status === 404) {
+      return null;
+    }
+    throw new Error(error);
+  }
 }
 
 export async function getDedicatedServerOption(
   serviceName: string,
   serverOption: DedicatedServerOptionEnum,
 ): Promise<DedicatedServerOption> {
-  const { data } = await apiClient.v6.get(
-    `/dedicated/server/${serviceName}/option/${serverOption}`,
-  );
-  return data;
+  try {
+    const { data } = await apiClient.v6.get(
+      `/dedicated/server/${serviceName}/option/${serverOption}`,
+    );
+    return data;
+  } catch (error) {
+    if (error.response.status === 404) {
+      return {
+        option: null,
+        state: DedicatedServerOptionStateEnum.NOT_SUBSCRIBED,
+      };
+    }
+    throw new Error(error);
+  }
 }
 
 export async function getDedicatedServerOrderableBandwidthVrack(

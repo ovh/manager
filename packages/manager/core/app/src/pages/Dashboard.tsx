@@ -1,30 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, Link as RouterLink } from 'react-router-dom';
 import { Link, SimpleGrid } from '@chakra-ui/react';
+import { useQuery } from '@tanstack/react-query';
 import {
   ArrowDownIcon,
   ArrowUpIcon,
   ArrowRightIcon,
   ExternalLinkIcon,
 } from '@ovh-ux/manager-themes';
-import { useShell } from '@/core';
 
+import { useShell } from '@/core';
 import Nutanix, {
   getNutanix,
   getServer,
   getServiceInfos,
-  getTechnicalDetails,
+  getNutanixFullTechnicalDetails,
   getServerNetworkSpecifications,
   getServerOption,
 } from '@/api/nutanix';
 import Service, {
   getServiceDetails,
-  getHardwareInfo,
+  getTechnicalDetails,
   getServiceOptions,
   getServiceUpgrade,
   TechnicalDetails,
-  NutanixClusterDetails,
   NutanixClusterLicenseFeatureDetails,
   GenericProductDefinition,
   BareMetalServerDetails,
@@ -47,6 +47,7 @@ export default function DashboardPage(): JSX.Element {
   const { t } = useTranslation('dashboard');
   const { serviceId } = useParams();
   const shell = useShell();
+  const [actionUrls, setActionUrls] = useState<Record<string, unknown>>({});
 
   const SUPPORT_LEVELS = {
     standard: 'Standard',
@@ -96,24 +97,223 @@ export default function DashboardPage(): JSX.Element {
     });
   };
 
+  const clusterQuery = useQuery(
+    ['nutanix', serviceId],
+    async () => getNutanix(serviceId),
+    {
+      staleTime: 60 * 1000,
+      refetchInterval: 60 * 1000,
+    },
+  );
+
+  const serviceInfosQuery = useQuery(
+    ['nutanix_service_details', serviceId],
+    async () => getServiceInfos(serviceId),
+    {
+      staleTime: 60 * 1000,
+      refetchInterval: 60 * 1000,
+    },
+  );
+
+  const { data: nutanixCluster } = clusterQuery;
+  const { data: nutanixServiceInfos } = serviceInfosQuery;
+
+  const serviceDetailsQuery = useQuery(
+    ['service_details', nutanixServiceInfos?.serviceId],
+    async () => getServiceDetails(nutanixServiceInfos?.serviceId),
+    {
+      enabled: !!nutanixServiceInfos?.serviceId,
+      staleTime: 60 * 1000,
+      refetchInterval: 60 * 1000,
+    },
+  );
+
+  const serverQuery = useQuery(
+    ['nutanix_metaInfos', serviceId],
+    async () => getServer(nutanixCluster),
+    {
+      enabled: !!nutanixCluster?.targetSpec?.nodes?.[0]?.server,
+      staleTime: 60 * 1000,
+      refetchInterval: 60 * 1000,
+    },
+  );
+
+  const { data: nutanixServer } = serverQuery;
+
+  const fullTechnicalDetailsQuery = useQuery(
+    [
+      'nutanix_techical_details',
+      nutanixServiceInfos?.serviceId,
+      nutanixServer?.serviceId,
+    ],
+    async () =>
+      getNutanixFullTechnicalDetails(
+        nutanixServiceInfos?.serviceId,
+        nutanixServer?.serviceId,
+      ),
+    {
+      enabled: !!nutanixServiceInfos?.serviceId && !!nutanixServer?.serviceId,
+      staleTime: 60 * 1000,
+      refetchInterval: 60 * 1000,
+    },
+  );
+
+  const nutanixServiceTechnicalDetailsQuery = useQuery(
+    ['service_technical_details', nutanixServiceInfos?.serviceId],
+    async () => getTechnicalDetails(nutanixServiceInfos?.serviceId),
+    {
+      enabled: !!nutanixServiceInfos?.serviceId,
+      staleTime: 60 * 1000,
+      refetchInterval: 60 * 1000,
+    },
+  );
+
+  const supportLevelQuery = useQuery(['me_support_level'], async () =>
+    getSupportLevel(),
+  );
+
+  const supportTicketsQuery = useQuery(
+    ['support_tickets', serviceId],
+    async () => getSupportTicketIdsByServiceName(serviceId),
+    {
+      staleTime: 60 * 1000,
+      refetchInterval: 60 * 1000,
+    },
+  );
+
+  const vrackQuery = useQuery(
+    ['vrack', serviceId],
+    async () =>
+      nutanixCluster?.targetSpec?.vrack
+        ? getVrack(nutanixCluster?.targetSpec?.vrack)
+        : Promise.resolve(null),
+    {
+      enabled: !!nutanixCluster,
+      staleTime: 60 * 1000,
+      refetchInterval: 60 * 1000,
+    },
+  );
+
+  const iplbQuery = useQuery(
+    ['ip_load_balancing', serviceId],
+    async () =>
+      nutanixCluster?.targetSpec?.iplb
+        ? getIpLoadBalancing(nutanixCluster?.targetSpec?.iplb)
+        : Promise.resolve(null),
+    {
+      enabled: !!nutanixCluster,
+      staleTime: 60 * 1000,
+      refetchInterval: 60 * 1000,
+    },
+  );
+
+  const bandwidthQuery = useQuery(
+    ['dedicated_server_specifications_network', serviceId],
+    async () => getServerNetworkSpecifications(nutanixCluster),
+    {
+      enabled: !!nutanixCluster?.targetSpec?.nodes?.[0]?.server,
+      staleTime: 60 * 1000,
+      refetchInterval: 60 * 1000,
+    },
+  );
+
+  const bandwidthVrackOptionQuery = useQuery(
+    [
+      'dedicated_server_option',
+      serviceId,
+      DedicatedServerOptionEnum.BANDWIDTH_VRACK,
+    ],
+    async () =>
+      getServerOption(
+        nutanixCluster,
+        DedicatedServerOptionEnum.BANDWIDTH_VRACK,
+      ),
+    {
+      enabled: !!nutanixCluster?.targetSpec?.nodes?.[0]?.server,
+      staleTime: 60 * 1000,
+      refetchInterval: 60 * 1000,
+    },
+  );
+
+  const serviceOptionsQuery = useQuery(
+    ['services_option', nutanixServiceInfos?.serviceId],
+    async () => getServiceOptions(nutanixServiceInfos?.serviceId),
+    {
+      enabled: !!nutanixServiceInfos?.serviceId,
+      staleTime: 60 * 1000,
+      refetchInterval: 60 * 1000,
+    },
+  );
+
+  const { data: serviceOptions } = serviceOptionsQuery;
+
+  const privateBandwidthServiceId = serviceOptions?.find((service) =>
+    service.billing?.plan?.code?.startsWith('cluster-vrack-bandwidth'),
+  )?.serviceId;
+
+  const upgradeOptionsQuery = useQuery(
+    ['services_upgrade', privateBandwidthServiceId],
+    async () => getServiceUpgrade(privateBandwidthServiceId),
+    {
+      enabled: !!privateBandwidthServiceId,
+      staleTime: 60 * 1000,
+      refetchInterval: 60 * 1000,
+    },
+  );
+
+  useEffect(() => {
+    Promise.all([
+      shell.navigation.getURL('dedicated', '#/support/tickets', {
+        filters: JSON.stringify({
+          property: 'serviceName.value',
+          operator: 'is',
+          value: serviceId,
+        }),
+      }),
+      shell.navigation.getURL('dedicated', '#/support/tickets/new', {}),
+    ]).then(([viewTicketsUrl, createNewTicketUrl]) =>
+      setActionUrls({
+        ...actionUrls,
+        viewTicketsUrl,
+        createNewTicketUrl,
+      }),
+    );
+  }, []);
+
+  useEffect(() => {
+    if (nutanixCluster) {
+      Promise.all([
+        nutanixCluster.targetSpec.iplb
+          ? shell.navigation.getURL('dedicated', '#/iplb/:serviceName', {
+              serviceName: nutanixCluster.targetSpec.iplb,
+            })
+          : Promise.resolve(null),
+        nutanixCluster.targetSpec.vrack
+          ? shell.navigation.getURL('dedicated', '#/vrack/:serviceName', {
+              serviceName: nutanixCluster.targetSpec.vrack,
+            })
+          : Promise.resolve(null),
+      ]).then(([iplbUrl, vrackUrl]) =>
+        setActionUrls({
+          ...actionUrls,
+          iplbUrl,
+          vrackUrl,
+        }),
+      );
+    }
+  }, [nutanixCluster]);
+
   const tiles = [
     {
       name: 'general',
       heading: t('tile_general_title'),
       type: TileTypesEnum.LIST,
-      onLoad: async () => {
-        const cluster = await getNutanix(serviceId);
-        const serviceInfos = await getServiceInfos(serviceId);
-        const [serviceDetails, server] = await Promise.all([
-          getServiceDetails(serviceInfos.serviceId),
-          getServer(cluster),
-        ]);
-        const technicalDetails = await getTechnicalDetails(
-          serviceInfos.serviceId,
-          server.serviceId,
-        );
-
-        return { cluster, serviceDetails, server, technicalDetails };
+      loadingQueries: {
+        cluster: clusterQuery,
+        serviceInfos: serviceInfosQuery,
+        serviceDetails: serviceDetailsQuery,
+        server: serverQuery,
+        technicalDetails: fullTechnicalDetailsQuery,
       },
       definitions: [
         {
@@ -201,13 +401,16 @@ export default function DashboardPage(): JSX.Element {
       name: 'licenses',
       heading: t('tile_licenses_title'),
       type: TileTypesEnum.LIST,
-      onLoad: async () => {
-        const serviceInfos = await getServiceInfos(serviceId);
-        const technicalDetails = await getHardwareInfo(serviceInfos.serviceId);
-
-        return { license: technicalDetails.nutanixCluster.license };
+      loadingQueries: {
+        technicalDetails: nutanixServiceTechnicalDetailsQuery,
       },
-      definitions: ({ license }: NutanixClusterDetails) => {
+      definitions: ({
+        technicalDetails,
+      }: {
+        technicalDetails: TechnicalDetails;
+      }) => {
+        const { license } = technicalDetails.nutanixCluster;
+
         return [
           {
             name: 'aol',
@@ -240,30 +443,9 @@ export default function DashboardPage(): JSX.Element {
       name: 'support',
       heading: t('tile_support_title'),
       type: TileTypesEnum.LIST,
-      onLoad: async () => {
-        const [supportLevel, ticketIds] = await Promise.all([
-          getSupportLevel(),
-          getSupportTicketIdsByServiceName(serviceId),
-        ]);
-
-        const viewTicketsUrl = await shell.navigation.getURL(
-          'dedicated',
-          '#/support/tickets',
-          {
-            filters: JSON.stringify({
-              property: 'serviceName.value',
-              operator: 'is',
-              value: serviceId,
-            }),
-          },
-        );
-        const createNewTicketUrl = await shell.navigation.getURL(
-          'dedicated',
-          '#/support/tickets/new',
-          {},
-        );
-
-        return { supportLevel, ticketIds, viewTicketsUrl, createNewTicketUrl };
+      loadingQueries: {
+        supportLevel: supportLevelQuery,
+        ticketIds: supportTicketsQuery,
       },
       definitions: [
         {
@@ -278,22 +460,14 @@ export default function DashboardPage(): JSX.Element {
           title: t('tile_support_item_tickets'),
           description: ({ ticketIds }: { ticketIds: number[] }) =>
             ticketIds.length,
-          actions: ({
-            ticketIds,
-            viewTicketsUrl,
-            createNewTicketUrl,
-          }: {
-            ticketIds: number[];
-            viewTicketsUrl: string;
-            createNewTicketUrl: string;
-          }) => [
+          actions: ({ ticketIds }: { ticketIds: number[] }) => [
             ...(ticketIds.length > 0
               ? [
                   {
                     name: 'view_tickets',
                     label: t('tile_support_item_tickets_action_view_tickets'),
                     title: t('tile_support_item_tickets_action_view_tickets'),
-                    href: viewTicketsUrl,
+                    href: actionUrls.viewTicketsUrl as string,
                     onClick: () => {
                       shell.tracking.trackClick({
                         name: `${trackingPrefix}::go-to-opened-ticket`,
@@ -308,7 +482,7 @@ export default function DashboardPage(): JSX.Element {
               name: 'create_ticket',
               label: t('tile_support_item_tickets_action_create_ticket'),
               title: t('tile_support_item_tickets_action_create_ticket'),
-              href: createNewTicketUrl,
+              href: actionUrls.createNewTicketUrl as string,
               onClick: () => {
                 shell.tracking.trackClick({
                   name: `${trackingPrefix}::go-to-create-ticket`,
@@ -334,85 +508,19 @@ export default function DashboardPage(): JSX.Element {
       name: 'network',
       heading: t('tile_network_title'),
       type: TileTypesEnum.LIST,
-      onLoad: async () => {
-        let bandwidth;
-        let bandwidthVrackOption;
-
-        const [cluster, serviceInfos] = await Promise.all([
-          getNutanix(serviceId),
-          getServiceInfos(serviceId),
-        ]);
-        const vrack = await (cluster.targetSpec.vrack
-          ? getVrack(cluster.targetSpec.vrack)
-          : Promise.resolve(null));
-        const iplb = await (cluster.targetSpec.iplb
-          ? getIpLoadBalancing(cluster.targetSpec.iplb)
-          : Promise.resolve(null));
-
-        try {
-          bandwidth = await getServerNetworkSpecifications(cluster);
-        } catch (error) {
-          if (error.response.status === 404) {
-            bandwidth = {};
-          } else {
-            throw new Error(error);
-          }
-        }
-
-        try {
-          bandwidthVrackOption = await getServerOption(
-            cluster,
-            DedicatedServerOptionEnum.BANDWIDTH_VRACK,
-          );
-        } catch (error) {
-          if (error.response.status === 404) {
-            bandwidthVrackOption = {
-              state: DedicatedServerOptionStateEnum.NOT_SUBSCRIBED,
-            };
-          } else {
-            throw new Error(error);
-          }
-        }
-        const serviceOptions = await getServiceOptions(serviceInfos.serviceId);
-
-        const privateBandwidthServiceId = serviceOptions.find((service) =>
-          service.billing?.plan?.code?.startsWith('cluster-vrack-bandwidth'),
-        )?.serviceId;
-
-        const upgradeOptions = await getServiceUpgrade(
-          privateBandwidthServiceId,
-        );
-
-        const iplbUrl = await (cluster.targetSpec.iplb
-          ? shell.navigation.getURL('dedicated', '#/iplb/:serviceName', {
-              serviceName: cluster.targetSpec.iplb,
-            })
-          : Promise.resolve(null));
-
-        const vrackUrl = await (cluster.targetSpec.vrack
-          ? shell.navigation.getURL('dedicated', '#/vrack/:serviceName', {
-              serviceName: cluster.targetSpec.vrack,
-            })
-          : Promise.resolve(null));
-
-        return {
-          cluster,
-          vrack,
-          iplb,
-          bandwidth,
-          bandwidthVrackOption,
-          vrackUrl,
-          iplbUrl,
-          upgradeOptions,
-        };
+      loadingQueries: {
+        cluster: clusterQuery,
+        bandwidth: bandwidthQuery,
+        iplb: iplbQuery,
+        vrack: vrackQuery,
+        upgradeOptions: upgradeOptionsQuery,
+        bandwidthVrackOption: bandwidthVrackOptionQuery,
       },
       definitions: ({
         cluster,
         bandwidth,
         iplb,
         vrack,
-        iplbUrl,
-        vrackUrl,
         bandwidthVrackOption,
         upgradeOptions,
       }: {
@@ -422,8 +530,6 @@ export default function DashboardPage(): JSX.Element {
         vrack: Vrack;
         bandwidthVrackOption: DedicatedServerOption;
         upgradeOptions: GenericProductDefinition[];
-        iplbUrl: string;
-        vrackUrl: string;
       }) => {
         return [
           ...(bandwidth.vrack.bandwidth
@@ -480,7 +586,7 @@ export default function DashboardPage(): JSX.Element {
             description: !cluster.targetSpec.vrack ? (
               t('tile_network_item_load_balancer_none')
             ) : (
-              <Link href={vrackUrl}>
+              <Link href={actionUrls.vrackUrl as string}>
                 {vrack.name || cluster.targetSpec.vrack}
               </Link>
             ),
@@ -491,7 +597,7 @@ export default function DashboardPage(): JSX.Element {
             description: !cluster.targetSpec.iplb ? (
               t('tile_network_item_load_balancer_none')
             ) : (
-              <Link href={iplbUrl}>
+              <Link href={actionUrls.iplbUrl as string}>
                 {iplb.displayName || cluster.targetSpec.iplb}
               </Link>
             ),
@@ -503,108 +609,103 @@ export default function DashboardPage(): JSX.Element {
       name: 'hardware',
       heading: t('tile_hardware_title'),
       type: TileTypesEnum.LIST,
-      onLoad: async () => {
-        const cluster = await getNutanix(serviceId);
-        const serviceInfos = await getServiceInfos(serviceId);
-        const server = await getServer(cluster);
-
-        const technicalDetails = await getTechnicalDetails(
-          serviceInfos.serviceId,
-          server.serviceId,
-        );
-
-        return { technicalDetails: technicalDetails.baremetalServers };
+      loadingQueries: {
+        technicalDetails: fullTechnicalDetailsQuery,
       },
       definitions: ({
         technicalDetails,
       }: {
-        technicalDetails: BareMetalServerDetails;
-      }) => [
-        {
-          name: 'cpu',
-          title: t('tile_hardware_item_cpu'),
-          description: () => {
-            const cpu = technicalDetails.server?.cpu;
-            if (!cpu) {
-              return '-';
-            }
-            const cpuNumber = cpu?.number || 1;
-            const freqUnit = t('tile_hardware_item_cpu_frequency_unit');
-            const cpuBrand = cpu?.brand || '';
-            const cpuModel = cpu?.model || '';
-            const cpuCores = cpu.cores ? `${cpu.cores}c` : '';
-            const cpuThreads = cpu.threads
-              ? `${cpu.cores && '/'}${cpu.threads}t`
-              : '';
-            const cpuFrequency = cpu.frequency
-              ? `${cpu.frequency} ${freqUnit}`
-              : '';
-            const cpuBoost =
-              cpu.boost !== cpu.frequency ? `/${cpu.boost} ${freqUnit}` : '';
-            return `${
-              cpuNumber > 1 ? `${cpuNumber}×` : ''
-            } ${cpuBrand} ${cpuModel} - ${cpuCores}${cpuThreads} - ${cpuFrequency}${cpuBoost}`;
+        technicalDetails: TechnicalDetails;
+      }) => {
+        const { baremetalServers } = technicalDetails;
+
+        return [
+          {
+            name: 'cpu',
+            title: t('tile_hardware_item_cpu'),
+            description: () => {
+              const cpu = baremetalServers.server?.cpu;
+              if (!cpu) {
+                return '-';
+              }
+              const cpuNumber = cpu?.number || 1;
+              const freqUnit = t('tile_hardware_item_cpu_frequency_unit');
+              const cpuBrand = cpu?.brand || '';
+              const cpuModel = cpu?.model || '';
+              const cpuCores = cpu.cores ? `${cpu.cores}c` : '';
+              const cpuThreads = cpu.threads
+                ? `${cpu.cores && '/'}${cpu.threads}t`
+                : '';
+              const cpuFrequency = cpu.frequency
+                ? `${cpu.frequency} ${freqUnit}`
+                : '';
+              const cpuBoost =
+                cpu.boost !== cpu.frequency ? `/${cpu.boost} ${freqUnit}` : '';
+              return `${
+                cpuNumber > 1 ? `${cpuNumber}×` : ''
+              } ${cpuBrand} ${cpuModel} - ${cpuCores}${cpuThreads} - ${cpuFrequency}${cpuBoost}`;
+            },
           },
-        },
-        {
-          name: 'ram',
-          title: t('tile_hardware_item_ram'),
-          description: () => {
-            const ram = technicalDetails.memory;
-            if (!ram) {
-              return '-';
-            }
-            const freqUnit = t('tile_hardware_item_ram_frequency_unit');
-            const gbTranslated = t('tile_hardware_item_ram_size_unit');
-            const ramSize = ram.size ? `${ram.size} ${gbTranslated}` : '';
-            const ramType = ram.ramType || '';
-            const ramECC = ram.ecc ? 'ECC' : '';
-            const ramFrequency = ram.frequency
-              ? `${ram.frequency} ${freqUnit}`
-              : '';
-            return `${ramSize} ${ramType} ${ramECC} ${ramFrequency}`;
+          {
+            name: 'ram',
+            title: t('tile_hardware_item_ram'),
+            description: () => {
+              const ram = baremetalServers.memory;
+              if (!ram) {
+                return '-';
+              }
+              const freqUnit = t('tile_hardware_item_ram_frequency_unit');
+              const gbTranslated = t('tile_hardware_item_ram_size_unit');
+              const ramSize = ram.size ? `${ram.size} ${gbTranslated}` : '';
+              const ramType = ram.ramType || '';
+              const ramECC = ram.ecc ? 'ECC' : '';
+              const ramFrequency = ram.frequency
+                ? `${ram.frequency} ${freqUnit}`
+                : '';
+              return `${ramSize} ${ramType} ${ramECC} ${ramFrequency}`;
+            },
           },
-        },
-        ...(getDiskByUsage(technicalDetails, 'os').length
-          ? [
-              {
-                name: 'system_disk',
-                title: t('tile_hardware_item_system_disk'),
-                description: () =>
-                  getFormattedDisks(
-                    technicalDetails,
-                    'os',
-                  ).map((formattedDisk, index) => (
-                    <p key={index}>{formattedDisk}</p>
-                  )),
-              },
-            ]
-          : []),
-        ...(getDiskByUsage(technicalDetails, 'data').length
-          ? [
-              {
-                name: 'data_disk',
-                title: t('tile_hardware_item_data_disk'),
-                description: () =>
-                  getFormattedDisks(
-                    technicalDetails,
-                    'data',
-                  ).map((formattedDisk, index) => (
-                    <p key={index}>{formattedDisk}</p>
-                  )),
-              },
-            ]
-          : []),
-        ...(technicalDetails.storage?.raid !== 'none'
-          ? [
-              {
-                name: 'extension_card',
-                title: t('tile_hardware_item_extension_card'),
-                description: technicalDetails.storage?.raid,
-              },
-            ]
-          : []),
-      ],
+          ...(getDiskByUsage(baremetalServers, 'os').length
+            ? [
+                {
+                  name: 'system_disk',
+                  title: t('tile_hardware_item_system_disk'),
+                  description: () =>
+                    getFormattedDisks(
+                      baremetalServers,
+                      'os',
+                    ).map((formattedDisk, index) => (
+                      <p key={index}>{formattedDisk}</p>
+                    )),
+                },
+              ]
+            : []),
+          ...(getDiskByUsage(baremetalServers, 'data').length
+            ? [
+                {
+                  name: 'data_disk',
+                  title: t('tile_hardware_item_data_disk'),
+                  description: () =>
+                    getFormattedDisks(
+                      baremetalServers,
+                      'data',
+                    ).map((formattedDisk, index) => (
+                      <p key={index}>{formattedDisk}</p>
+                    )),
+                },
+              ]
+            : []),
+          ...(baremetalServers.storage?.raid !== 'none'
+            ? [
+                {
+                  name: 'extension_card',
+                  title: t('tile_hardware_item_extension_card'),
+                  description: baremetalServers.storage?.raid,
+                },
+              ]
+            : []),
+        ];
+      },
     },
   ];
 

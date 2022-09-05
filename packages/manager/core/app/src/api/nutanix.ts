@@ -4,7 +4,7 @@ import apiClient from '@/api/client';
 import ServiceInfos, { getServiceInfos as getInfos } from './serviceInfos';
 import Service, {
   getServiceOptions,
-  getHardwareInfo,
+  getTechnicalDetails,
   TechnicalDetails,
   BareMetalServerDetails,
   NutanixClusterDetails,
@@ -228,7 +228,7 @@ function transformTechnicalDetails(
   };
 }
 
-export async function getTechnicalDetails(
+export async function getNutanixFullTechnicalDetails(
   serviceId: number,
   nodeServiceId: number,
 ): Promise<TechnicalDetails> {
@@ -239,7 +239,7 @@ export async function getTechnicalDetails(
   });
   const optionsHardwareInfo = await Promise.all(
     optionsServiceId.map(async (optionServiceId) =>
-      getHardwareInfo(optionServiceId),
+      getTechnicalDetails(optionServiceId),
     ),
   );
   return transformTechnicalDetails(optionsHardwareInfo);

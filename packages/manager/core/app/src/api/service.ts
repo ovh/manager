@@ -163,7 +163,7 @@ export async function getServiceOptions(serviceId: number): Promise<Service[]> {
   return data;
 }
 
-export async function getHardwareInfo(
+export async function getTechnicalDetails(
   serviceId: number,
 ): Promise<TechnicalDetails> {
   const { data } = await apiClient.v6.get(

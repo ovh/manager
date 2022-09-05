@@ -21,6 +21,7 @@ export type DashboardTileListProps = {
 export default function DashboardTileList({
   definitions,
   data,
+  isLoading,
 }: DashboardTileListProps): JSX.Element {
   const getActionList = (actions: DashboardTileDefinitionAction[]) => {
     if (!actions?.length) {
@@ -81,6 +82,7 @@ export default function DashboardTileList({
       {definitions.map((definition: DashboardTileDefinition) => {
         return (
           <TileSection
+            isLoading={isLoading}
             key={definition.name}
             title={definition.title}
             description={
