@@ -1,9 +1,5 @@
-import forEach from 'lodash/forEach';
 import filter from 'lodash/filter';
-import get from 'lodash/get';
 import map from 'lodash/map';
-import reduce from 'lodash/reduce';
-import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 
 export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingDepositMovementCtrl(
@@ -87,55 +83,44 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingDep
       (item) => item.value.billingAccount !== self.source.billingAccount,
     );
 
-    // disable target if not the same billing contact than source
-    // build a billingAccount->promise object of all the requests to canTransferSecurityDeposit
-    return $q
-      .all(
-        reduce(
-          targets,
-          (obj, value) => {
-            const billingAccount = get(value, 'value.billingAccount');
-            // eslint-disable-next-line no-param-reassign
-            obj[billingAccount] = OvhApiTelephony.v6()
-              .canTransferSecurityDeposit(
-                {
-                  billingAccount: self.source.billingAccount,
-                },
-                {
-                  billingAccountDestination: billingAccount,
-                },
-              )
-              .$promise.then((data) => data.value)
-              .catch((err) => {
-                if (err.status === 400) {
-                  // means that deposit cannot be transfered
-                  return false;
-                }
-                return $q.reject(err);
-              });
-            return obj;
+    self.targets = targets;
+    self.target = null;
+    return targets;
+  };
+
+  self.onChangeTarget = function onChangeTarget() {
+    self.targetError = false;
+    self.canTransferSecurityDepositOnTarget = false;
+    if (self.target) {
+      return OvhApiTelephony.v6()
+        .canTransferSecurityDeposit(
+          {
+            billingAccount: self.source.billingAccount,
           },
-          {},
-        ),
-      )
-      .then((billingAccountTransfertStatus) => {
-        forEach(targets, (target) => {
-          set(
-            target,
-            'disable',
-            !billingAccountTransfertStatus[get(target, 'value.billingAccount')],
+          {
+            billingAccountDestination: self.target.billingAccount,
+          },
+        )
+        .$promise.then((data) => data.value)
+        .catch((err) => {
+          if (err.status === 400) {
+            return false;
+          }
+          return $q.reject(err);
+        })
+        .then((canTransferSecurityDeposit) => {
+          self.canTransferSecurityDepositOnTarget = canTransferSecurityDeposit;
+          self.targetError = !canTransferSecurityDeposit;
+        })
+        .catch(() => {
+          TucToast.error(
+            $translate.instant(
+              'telephony_group_billing_deposit_movement_capability_error',
+            ),
           );
         });
-        self.targets = targets;
-      })
-      .catch((err) => {
-        TucToast.error(
-          $translate.instant(
-            'telephony_group_billing_deposit_movement_capability_error',
-          ),
-        );
-        return $q.reject(err);
-      });
+    }
+    return $q.resolve();
   };
 
   self.getEnabledBillingAccounts = function getEnabledBillingAccounts() {
