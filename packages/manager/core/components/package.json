@@ -22,7 +22,7 @@
     "@ovh-ux/manager-config": "^6.0.0",
     "@ovh-ux/manager-core-api": "^0.0.0",
     "@ovh-ux/manager-react-core-application": "^0.0.0",
-    "@ovh-ux/manager-themes": "^0.0.0",
+    "@ovh-ux/manager-themes": "^0.1.1",
     "@ovh-ux/shell": "^1.0.0",
     "react": "^18.2.0",
     "react-i18next": "^11.18.1",
