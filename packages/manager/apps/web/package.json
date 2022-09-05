@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "16.16.0",
+  "version": "16.16.1",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -49,12 +49,12 @@
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-order-tracking": "^1.1.1 || ^2.0.0",
-    "@ovh-ux/ng-ovh-payment-method": "^9.2.2",
+    "@ovh-ux/ng-ovh-payment-method": "^9.2.3",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.4",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.6",
     "@ovh-ux/ng-ovh-sidebar-menu": "^10.3.0",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.6.1",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.6.2",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.4",
     "@ovh-ux/ng-ovh-utils": "^14.0.17",
