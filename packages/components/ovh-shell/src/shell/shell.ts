@@ -20,6 +20,9 @@ export default class Shell {
   }
 
   setMessageBus(bus: IMessageBus) {
+    if (this.messageBus) {
+      this.messageBus.cleanup();
+    }
     this.messageBus = bus;
     this.messageBus.onReceive((data: IShellMessage<unknown>) => {
       if (data.type === ShellMessageType.PLUGIN_INVOCATION) {

@@ -20,6 +20,7 @@ export interface Container {
   enabled: boolean;
   isDefault: boolean;
   path: string;
+  hash?: string;
   containerURL: string;
 }
 
