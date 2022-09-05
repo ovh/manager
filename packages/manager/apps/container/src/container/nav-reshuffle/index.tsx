@@ -6,8 +6,8 @@ import React, {
   useState,
 } from 'react';
 
-import { plugin, IFrameMessageBus } from '@ovh-ux/shell';
-import { Redirect, Route } from 'react-router-dom';
+import { IFrameMessageBus } from '@ovh-ux/shell';
+import { IFrameAppRouter } from '@/core/routing';
 import ApplicationContext from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
@@ -25,10 +25,13 @@ import usePreloader from '../common/Preloader/usePreloader';
 function NavReshuffleContainer(): JSX.Element {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState(null);
-  const [router, setRouter] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
   const { shell } = useContext(ApplicationContext);
   const { isStarted: isProgressAnimating } = useProgress();
+  const applications = shell
+    .getPlugin('environment')
+    .getEnvironment()
+    .getApplications();
 
   const preloaderVisible = usePreloader(shell);
 
@@ -52,74 +55,8 @@ function NavReshuffleContainer(): JSX.Element {
     shell.setMessageBus(new IFrameMessageBus(iframeRef.current));
   }, [iframeRef]);
 
-  useEffect(() => {
-    const routing = plugin.routing.initRouting(shell, iframeRef.current);
-
-    // Hub application redirections
-    routing.addRoute(
-      <Route exact path="/catalog">
-        <Redirect to="/hub/catalog" />
-      </Route>,
-    );
-
-    // useraccount redirection, preserving path and search params
-    routing.addRoute(
-      <Route
-        path="/useraccount"
-        component={({ location }: { location: Location }) => (
-          <Redirect
-            to={{
-              ...location,
-              pathname: location.pathname.replace(
-                /^\/useraccount/,
-                '/dedicated/useraccount',
-              ),
-            }}
-          />
-        )}
-      />,
-    );
-
-    // billing redirection, preserving path and search params
-    routing.addRoute(
-      <Route
-        path="/billing"
-        component={({ location }: { location: Location }) => (
-          <Redirect
-            to={{
-              ...location,
-              pathname: location.pathname.replace(
-                /^\/billing/,
-                '/dedicated/billing',
-              ),
-            }}
-          />
-        )}
-      />,
-    );
-
-    // Telecom application redirections
-    [
-      'freefax/:id?',
-      'pack/:id?',
-      'sms/:id?',
-      'task',
-      'telephony/:id?',
-      'orders',
-      'overTheBox/:id?',
-    ].forEach((telecomRoute) =>
-      routing.addRoute(
-        <Redirect from={`/${telecomRoute}`} to={`/telecom/${telecomRoute}`} />,
-      ),
-    );
-
-    shell.registerPlugin('routing', routing);
-    setRouter(routing.router);
-  }, [iframeRef, shell]);
-
   return (
     <div className={style.navReshuffle}>
-      {router}
       <div
         className={`${style.sidebar} ${
           isNavigationSidebarOpened ? '' : style.hidden
@@ -150,12 +87,18 @@ function NavReshuffleContainer(): JSX.Element {
             }
           ></div>
           <Preloader visible={preloaderVisible}>
-            <iframe
-              title="app"
-              role="document"
-              src="about:blank"
-              ref={iframeRef}
-            ></iframe>
+            <>
+              <IFrameAppRouter
+                iframeRef={iframeRef}
+                configuration={applications}
+              />
+              <iframe
+                title="app"
+                role="document"
+                src="about:blank"
+                ref={iframeRef}
+              ></iframe>
+            </>
           </Preloader>
         </div>
         <Suspense fallback="">

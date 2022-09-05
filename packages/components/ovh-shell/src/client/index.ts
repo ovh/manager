@@ -50,7 +50,7 @@ export function initIFrameClientApi(appId: ApplicationId) {
   const clientApi = client.getApi();
   client.setApplicationId(appId);
   client.setMessageBus(new IFrameMessageBus());
-  clientApi.routing.init();
+  clientApi.routing.listenForHashChange();
   return Promise.resolve(clientApi);
 }
 
