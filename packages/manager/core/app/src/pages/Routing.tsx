@@ -9,6 +9,8 @@ const Details = React.lazy(() => import('./Details'));
 const NodesListing = React.lazy(() => import('./NodesListing'));
 const NodeDetails = React.lazy(() => import('./NodeDetails'));
 const NodeInterventions = React.lazy(() => import('./NodeInterventions'));
+const NodeIpmi = React.lazy(() => import('./NodeIpmi'));
+const NodeIpmiRestart = React.lazy(() => import('./NodeIpmiRestart'));
 const NodeTasks = React.lazy(() => import('./NodeTasks'));
 const Dashboard = React.lazy(() => import('./Dashboard'));
 
@@ -64,7 +66,11 @@ export default function Routing(): JSX.Element {
                 </Suspense>
               }
             >
-              <Route index element={<span>Infos TODO</span>} />
+              <Route
+                index
+                element={<Navigate to="./details" replace={true} />}
+              />
+              <Route path="details" element={<span>Infos TODO</span>} />
               <Route
                 path="interventions"
                 element={
@@ -73,7 +79,23 @@ export default function Routing(): JSX.Element {
                   </Suspense>
                 }
               />
-              <Route path="ipmi" element={<span>IPMI TODO</span>} />
+              <Route
+                path="ipmi"
+                element={
+                  <Suspense fallback="">
+                    <NodeIpmi />
+                  </Suspense>
+                }
+              >
+                <Route
+                  path="restart"
+                  element={
+                    <Suspense fallback="">
+                      <NodeIpmiRestart />
+                    </Suspense>
+                  }
+                />
+              </Route>
               <Route
                 path="tasks"
                 element={

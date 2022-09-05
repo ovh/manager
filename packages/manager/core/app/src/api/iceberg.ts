@@ -2,8 +2,8 @@ import { Filter, FilterComparator } from '@/api/filters';
 import apiClient from '@/api/client';
 
 export type IcebergOptions = {
-  page: number;
-  pageSize: number;
+  page?: number;
+  pageSize?: number;
   search?: {
     key: string;
     value: string;
@@ -20,8 +20,8 @@ export type IcebergFetchResult<T> = {
   totalCount: number;
 };
 
-function icebergFilter(comparator: FilterComparator, value: string) {
-  const v = encodeURIComponent(value);
+function icebergFilter(comparator: FilterComparator, value: string | string[]) {
+  const v = encodeURIComponent(`${value}`);
   switch (comparator) {
     case FilterComparator.Includes:
       return `like=%25${v}%25`;
@@ -41,6 +41,10 @@ function icebergFilter(comparator: FilterComparator, value: string) {
       return `lt=${v}`;
     case FilterComparator.IsAfter:
       return `gt=${v}`;
+    case FilterComparator.IsIn: {
+      const arr = (value as string[]).map(encodeURIComponent).join(',');
+      return `in=${arr}`;
+    }
     default:
       throw new Error(`Missing comparator implementation: '${comparator}'`);
   }
@@ -56,8 +60,8 @@ export async function fetchIceberg<T>({
 }: IcebergFetchParams): Promise<IcebergFetchResult<T>> {
   const requestHeaders: Record<string, string> = {
     'x-pagination-mode': 'CachedObjectList-Pages',
-    'x-pagination-number': `${encodeURIComponent(page)}`,
-    'x-pagination-size': `${encodeURIComponent(pageSize)}`,
+    'x-pagination-number': `${encodeURIComponent(page || 1)}`,
+    'x-pagination-size': `${encodeURIComponent(pageSize || 5000)}`,
   };
   if (sortBy) {
     requestHeaders['x-pagination-sort'] = encodeURIComponent(sortBy);

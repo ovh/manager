@@ -144,10 +144,14 @@ export type DedicatedServerBandwidthvRackOrderable = {
 
 export async function getDedicatedServer(
   serviceName: string,
+  v6?: boolean,
 ): Promise<DedicatedServer> {
-  const response = await apiClient.aapi.get(
-    `/sws/dedicated/server/${serviceName}`,
-  );
+  let response;
+  if (v6) {
+    response = await apiClient.v6.get(`/dedicated/server/${serviceName}`);
+  } else {
+    response = await apiClient.aapi.get(`/sws/dedicated/server/${serviceName}`);
+  }
   return response.data;
 }
 
@@ -217,6 +221,32 @@ export async function getDedicatedServerOrderableBandwidthVrack(
     `/engine/apiv6/dedicated/server/${serviceName}/orderable/bandwidthvRack`,
   );
   return response.json();
+}
+
+export async function getDedicatedServerGetIpmiFeature(
+  serviceName: string,
+): Promise<{
+  activated: boolean;
+  supportedFeatures: {
+    kvmipHtml5URL: boolean;
+    kvmipJnlp: boolean;
+    serialOverLanSshKey: boolean;
+    serialOverLanURL: boolean;
+  };
+}> {
+  const { data } = await apiClient.v6.get(
+    `/dedicated/server/${serviceName}/features/ipmi`,
+  );
+  return data;
+}
+
+export async function dedicatedServerIpmiRestart(
+  serviceName: string,
+): Promise<DedicatedServerTask> {
+  const { data } = await apiClient.v6.post(
+    `/dedicated/server/${serviceName}/features/ipmi/resetInterface`,
+  );
+  return data;
 }
 
 export default DedicatedServer;

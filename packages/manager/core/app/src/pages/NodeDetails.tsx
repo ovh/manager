@@ -16,7 +16,7 @@ export default function NodeDetailsPage(): JSX.Element {
     {
       name: 'general',
       title: t('tab_infos'),
-      to: useResolvedPath('').pathname,
+      to: useResolvedPath('details').pathname,
     },
     {
       name: 'interventions',
@@ -36,7 +36,7 @@ export default function NodeDetailsPage(): JSX.Element {
   ];
 
   const tabIndex = Math.max(
-    tabs.findIndex(({ to }) => pathname === to),
+    tabs.findIndex(({ to }) => pathname.startsWith(to)),
     0,
   );
 

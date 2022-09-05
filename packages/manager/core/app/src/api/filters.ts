@@ -8,11 +8,12 @@ export enum FilterComparator {
   IsHigher = 'is_higher',
   IsBefore = 'is_before',
   IsAfter = 'is_after',
+  IsIn = 'is_in',
 }
 
 export type Filter = {
   key: string;
-  value: string;
+  value: string | string[];
   comparator: FilterComparator;
 };
 
@@ -43,41 +44,39 @@ export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
     let keep = true;
     filters.forEach((filter) => {
       const value = item[filter.key as keyof T];
+      const comp = filter.value as string;
       switch (filter.comparator) {
         case FilterComparator.Includes:
-          keep =
-            keep &&
-            `${value}`.toLowerCase().includes(filter.value.toLowerCase());
+          keep = keep && `${value}`.toLowerCase().includes(comp.toLowerCase());
           break;
         case FilterComparator.StartsWith:
           keep =
-            keep &&
-            `${value}`.toLowerCase().startsWith(filter.value.toLowerCase());
+            keep && `${value}`.toLowerCase().startsWith(comp.toLowerCase());
           break;
         case FilterComparator.EndsWith:
-          keep =
-            keep &&
-            `${value}`.toLowerCase().endsWith(filter.value.toLowerCase());
+          keep = keep && `${value}`.toLowerCase().endsWith(comp.toLowerCase());
           break;
         case FilterComparator.IsEqual:
-          keep =
-            keep && `${value}`.toLowerCase() === filter.value.toLowerCase();
+          keep = keep && `${value}`.toLowerCase() === comp.toLowerCase();
           break;
         case FilterComparator.IsDifferent:
-          keep =
-            keep && `${value}`.toLowerCase() !== filter.value.toLowerCase();
+          keep = keep && `${value}`.toLowerCase() !== comp.toLowerCase();
           break;
         case FilterComparator.IsLower:
-          keep = keep && Number(value) < Number(filter.value);
+          keep = keep && Number(value) < Number(comp);
           break;
         case FilterComparator.IsHigher:
-          keep = keep && Number(value) > Number(filter.value);
+          keep = keep && Number(value) > Number(comp);
           break;
         case FilterComparator.IsBefore:
-          keep = keep && new Date(`${value}`) < new Date(filter.value);
+          keep = keep && new Date(`${value}`) < new Date(comp);
           break;
         case FilterComparator.IsAfter:
-          keep = keep && new Date(`${value}`) > new Date(filter.value);
+          keep = keep && new Date(`${value}`) > new Date(comp);
+          break;
+        case FilterComparator.IsIn:
+          keep =
+            keep && !!(filter.value as string[]).find((i) => i === `${value}`);
           break;
         default:
           break;
