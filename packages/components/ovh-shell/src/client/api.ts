@@ -1,11 +1,25 @@
 import { ApplicationId } from '@ovh-ux/manager-config/types/application';
-import { Environment } from '@ovh-ux/manager-config';
+import { LANGUAGES, Environment } from '@ovh-ux/manager-config';
 import ShellClient from './shell-client';
 import { clientAuth } from '../plugin/auth';
 import { clientNavigation } from '../plugin/navigation';
 import { exposeTrackingAPI } from '../plugin/tracking';
 
 export default function exposeApi(shellClient: ShellClient) {
+  const notifyHashChange = () => {
+    if (window.parent !== window.self) {
+      shellClient.invokePluginMethod({
+        plugin: 'routing',
+        method: 'onHashChange',
+        args: [
+          {
+            hash: window.location.hash,
+            path: window.location.pathname,
+          },
+        ],
+      });
+    }
+  };
   return {
     environment: {
       getEnvironment: () =>
@@ -42,23 +56,22 @@ export default function exposeApi(shellClient: ShellClient) {
           method: 'setLocale',
           args: [locale],
         }),
+      getAvailableLocales: () =>
+        shellClient
+          .invokePluginMethod({
+            plugin: 'i18n',
+            method: 'getAvailableLocales',
+          })
+          .then((locales) => {
+            return locales as { key: string; name: string }[];
+          }),
     },
     routing: {
-      init: () =>
-        window.addEventListener('hashchange', () => {
-          if (window.parent !== window.self) {
-            shellClient.invokePluginMethod({
-              plugin: 'routing',
-              method: 'onHashChange',
-              args: [
-                {
-                  hash: window.location.hash,
-                  path: window.location.pathname,
-                },
-              ],
-            });
-          }
-        }),
+      listenForHashChange: () =>
+        window.addEventListener('hashchange', notifyHashChange),
+      stopListenForHashChange: () =>
+        window.removeEventListener('hashchange', notifyHashChange),
+      onHashChange: notifyHashChange,
     },
     auth: clientAuth(shellClient),
     ux: {
