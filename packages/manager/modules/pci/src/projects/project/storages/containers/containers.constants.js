@@ -14,7 +14,7 @@ export const OBJECT_CONTAINER_OFFERS = [
 ];
 export const OBJECT_CONTAINER_OFFERS_LABELS = {
   [OBJECT_CONTAINER_OFFER_SWIFT]: { beta: false, new: false },
-  [OBJECT_CONTAINER_OFFER_STORAGE_STANDARD]: { beta: true, new: false },
+  [OBJECT_CONTAINER_OFFER_STORAGE_STANDARD]: { beta: false, new: true },
   [OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE]: { beta: false, new: true },
 };
 export const OBJECT_CONTAINER_TYPE_OFFERS = [OBJECT_CONTAINER_OFFER_SWIFT];

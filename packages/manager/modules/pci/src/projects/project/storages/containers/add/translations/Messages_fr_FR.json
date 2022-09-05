@@ -10,7 +10,7 @@
   "pci_projects_project_storages_containers_add_offer_storage_description": "Solution basique pour le stockage sans besoin particulier en matière de performance. Il s’agit du stockage objet natif d’OpenStack, avec les API Swift.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_description": "Solution idéale de stockage pour les grosses volumétries de données au meilleur prix. Une large gamme d’API S3 est disponible avec cette solution.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf_description": "Solution adaptée aux besoins les plus exigeants pour lesquels le stockage doit être accompagné de hautes performances en lecture et écriture.",
-  "pci_projects_project_storages_containers_add_offer_storage-s3-standard_label": "Beta",
+  "pci_projects_project_storages_containers_add_offer_storage-s3-standard_label": "Nouveau",
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf_label": "Nouveau",
   "pci_projects_project_storages_containers_add_region_title": "Sélectionnez une localisation",
   "pci_projects_project_storages_containers_add_type_title": "Sélectionnez un type de conteneur",
