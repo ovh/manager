@@ -79,6 +79,7 @@ export default class PciStoragesContainersAddController {
       createOrLinkedMode: null,
     };
 
+    this.setUsersForContainerCreation();
     this.preselectStepItem();
   }
 
@@ -105,6 +106,10 @@ export default class PciStoragesContainersAddController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  setUsersForContainerCreation() {
+    this.users = this.allUserList.filter((user) => user.status === 'ok');
   }
 
   isRightOffer() {

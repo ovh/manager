@@ -29,7 +29,10 @@ export default /* @ngInject */ ($stateProvider) => {
         availableUsers: /* @ngInject */ (
           PciStoragesObjectStorageService,
           projectId,
-        ) => PciStoragesObjectStorageService.getS3Users(projectId),
+        ) =>
+          PciStoragesObjectStorageService.getS3Users(projectId).filter(
+            (user) => user.status === 'ok',
+          ),
         container: /* @ngInject */ (
           PciProjectStorageContainersService,
           projectId,
