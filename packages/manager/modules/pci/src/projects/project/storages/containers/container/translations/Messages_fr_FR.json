@@ -10,7 +10,7 @@
   "pci_projects_project_storages_containers_container_archive_info_staticUrl": "Adresse du serveur pour rsync/sftp/scp :",
   "pci_projects_project_storages_containers_container_object_info_staticUrl": "Valeur de l'enregistrement CNAME/TXT :",
   "pci_projects_project_storages_containers_container_object_info_staticUrl_help": "Utilisez le conteneur \"Hébergement statique\" sur un domaine ou sous-domaine. Modifiez simplement la zone DNS en ajoutant un enregistrement CNAME avec cette valeur.",
-  "pci_projects_project_storages_containers_container_object_info_s3_staticUrl_help": "Exposez vos conteneurs et vos objets sur le web en paramétrant les droits d'accès (par objets), donnant un accès public, ils sont ensuite accessibles par l'adresse Virtual Hosted-Style.",
+  "pci_projects_project_storages_containers_container_object_info_s3_staticUrl_help": "Exposez vos conteneurs et vos objets sur le web en paramétrant les droits d'accès (par objet), donnant un accès public. Ils sont ensuite accessibles par l'adresse Virtual Hosted-Style.",
   "pci_projects_project_storages_containers_container_archive_info_user": "Nom de l'utilisateur : {{ user }}",
   "pci_projects_project_storages_containers_container_archive_info_password": "Mot de passe (la concaténation des champs suivant) :",
   "pci_projects_project_storages_containers_container_name_label": "Nom",
