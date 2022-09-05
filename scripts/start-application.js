@@ -1,4 +1,5 @@
 import { existsSync, readdirSync, readFileSync } from 'fs';
+import { basename } from 'path';
 import concurrently from 'concurrently';
 import execa from 'execa';
 import inquirer from 'inquirer';
@@ -68,11 +69,19 @@ const questions = [
     type: 'confirm',
     name: 'container',
     message: 'Start the application inside the container?',
-    default: false,
+    default: true,
     // Skip for container
     when: ({ packageName }) => packageName !== containerPackageName,
   },
 ];
+
+async function getApplicationId(packageName) {
+  return basename(
+    JSON.parse((await execa('yarn', ['workspaces', 'info'])).stdout)[
+      packageName
+    ].location,
+  );
+}
 
 inquirer
   .prompt(questions)
@@ -86,9 +95,10 @@ inquirer
     process.env.REGION = region;
     try {
       if (container) {
+        const appId = await getApplicationId(packageName);
         await concurrently(
           [
-            `yarn workspace ${containerPackageName} run start:dev`,
+            `VITE_CONTAINER_APP=${appId} yarn workspace ${containerPackageName} run start:dev`,
             `CONTAINER=1 yarn workspace ${packageName} run start:dev`,
           ],
           {
