@@ -26,4 +26,9 @@ export default class DirectClientMessageBus implements IMessageBus {
   onReceive<T>(callback: (message: T) => void): void {
     this.listeners.push(callback);
   }
+
+  cleanup(): void {
+    this.listeners = [];
+    this.peers = [];
+  }
 }
