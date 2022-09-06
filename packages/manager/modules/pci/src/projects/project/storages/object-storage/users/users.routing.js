@@ -14,7 +14,18 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().userCredential,
       trackingInfo: /* @ngInject */ ($transition$) =>
         $transition$.params().trackingInfo,
-      refreshS3Credentials: /* @ngInj ect */ ($state) => () => $state.reload(),
+      refreshS3Credentials: /* @ngInject */ ($state, projectId) => () => {
+        return $state.go(
+          'pci.projects.project.storages.object-storage.users',
+          {
+            projectId,
+            userDetails: null,
+          },
+          {
+            reload: true,
+          },
+        );
+      },
       goToUsersAndRoles: /* @ngInject */ (
         $state,
         atInternet,
@@ -82,11 +93,11 @@ export default /* @ngInject */ ($stateProvider) => {
         type = 'success',
       ) => {
         const reload = message && type === 'success';
-
         const promise = $state.go(
           'pci.projects.project.storages.object-storage.users',
           {
             projectId,
+            userDetails: null,
           },
           {
             reload,
