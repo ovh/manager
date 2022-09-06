@@ -6,6 +6,7 @@ import {
   TRACKING_CREATE_USER,
   TRACKING_PREFIX,
   USER_STATUS,
+  OBJECT_STORAGE_USER_ROLE,
 } from './constant';
 
 export default class CreateLinkedUserController {
@@ -99,6 +100,7 @@ export default class CreateLinkedUserController {
   createUser(description) {
     return this.PciStoragesUsersService.createUser(this.projectId, {
       description,
+      role: OBJECT_STORAGE_USER_ROLE,
     })
       .then((user) => {
         return this.PciStoragesUsersService.pollUserStatus(
