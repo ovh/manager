@@ -1,3 +1,12 @@
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.8.0...@ovh-ux/manager-dbaas-logs@1.8.1) (2022-09-06)
+
+
+### Bug Fixes
+
+* **logs:** update translations ([#7635](https://github.com/ovh/manager/issues/7635)) ([1af41db](https://github.com/ovh/manager/commit/1af41db11c62c830dcf4a1e6adaa302dc91e7fe8))
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.7.1...@ovh-ux/manager-dbaas-logs@1.8.0) (2022-07-19)
 
 

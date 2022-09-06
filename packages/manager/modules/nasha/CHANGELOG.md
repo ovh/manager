@@ -1,3 +1,16 @@
+## [2.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.6.0...@ovh-ux/manager-nasha@2.6.1) (2022-09-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1804] ([53091b3](https://github.com/ovh/manager/commit/53091b3aa44d2639ce95204ecd4617bbf3322a95))
+* **i18n:** add missing translations [CDS 1808] ([bf61efb](https://github.com/ovh/manager/commit/bf61efb2f24f1a3c71fb8b44263995c9bff96f3c))
+* **i18n:** add missing translations [CDS 1813] ([be18f2e](https://github.com/ovh/manager/commit/be18f2e2731f178d2067047359cb843562d3c542))
+* **i18n:** add missing translations [CDS 1818] ([159133f](https://github.com/ovh/manager/commit/159133fc4cd2003b0772f3bd49e9c3042a542494))
+* remove unused translations [CDS] ([f3492f8](https://github.com/ovh/manager/commit/f3492f88c104c6de836d7bfb9cabdb710832e1b6))
+
+
+
 # [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.5.2...@ovh-ux/manager-nasha@2.6.0) (2022-08-25)
 
 
