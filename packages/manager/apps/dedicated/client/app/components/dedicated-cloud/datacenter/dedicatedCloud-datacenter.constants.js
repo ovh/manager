@@ -11,8 +11,6 @@ export const DEDICATED_CLOUD_DATACENTER = {
 };
 
 export const COMMERCIAL_RANGE_NAME_EOL = [
-  'sddc_2018',
-  'sddc_2016',
   'dedicated_cloud_2016',
   'cdi_2018',
   'legacy',
