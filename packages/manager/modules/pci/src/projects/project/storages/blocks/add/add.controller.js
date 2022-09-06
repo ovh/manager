@@ -133,14 +133,26 @@ export default class PciBlockStorageAddController {
     return iops.max || iops.level;
   }
 
+  static getDisplayUnit(unit) {
+    const perGB = '/GB';
+    if (unit.endsWith(perGB)) {
+      return unit.slice(0, unit.lastIndexOf(perGB));
+    }
+    return unit;
+  }
+
   computeBandwidthToAllocate() {
     const { bandwidth } = this.selectedVolumeAddon.blobs.technical;
     const allocatedBandwidth = this.storage.size * bandwidth.level;
     const maxBandwidthInMb = bandwidth.max * 1000;
 
     return allocatedBandwidth <= maxBandwidthInMb
-      ? `${allocatedBandwidth} ${bandwidth.unit}`
-      : `${maxBandwidthInMb} ${bandwidth.unit}`;
+      ? `${allocatedBandwidth} ${PciBlockStorageAddController.getDisplayUnit(
+          bandwidth.unit,
+        )}`
+      : `${maxBandwidthInMb} ${PciBlockStorageAddController.getDisplayUnit(
+          bandwidth.unit,
+        )}`;
   }
 
   computeIopsToAllocate() {
@@ -148,8 +160,10 @@ export default class PciBlockStorageAddController {
     const allocatedIops = this.storage.size * volume.iops.level;
 
     return allocatedIops <= volume.iops.max
-      ? `${allocatedIops} ${volume.iops.unit}`
-      : `${volume.iops.max} ${volume.iops.unit}`;
+      ? `${allocatedIops} ${PciBlockStorageAddController.getDisplayUnit(
+          volume.iops.unit,
+        )}`
+      : `${volume.iops.max} ${volume.iops.maxUnit}`;
   }
 
   isHighSpeedGen2Volume() {
