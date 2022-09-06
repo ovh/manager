@@ -108,9 +108,20 @@ angular.module('services').service(
      * Get content of summary tabs
      * @param {string} serviceName
      */
-    getTabDns(serviceName) {
-      return this.OvhHttp.get(`/sws/domain/${serviceName}/dns`, {
-        rootPath: '2api',
+    getTabDns(serviceName, forceRefresh) {
+      let headers = {
+        'X-Pagination-Mode': 'CachedObjectList-Pages',
+      };
+
+      if (forceRefresh) {
+        headers = {
+          ...headers,
+          Pragma: 'no-cache',
+        };
+      }
+
+      return this.$http.get(`/domain/${serviceName}/nameServer`, {
+        headers,
       });
     }
 

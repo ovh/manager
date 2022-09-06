@@ -494,5 +494,13 @@
   "privateDatabase_modale_cpu_throttle_ongoing_cpu_throttle": "Nasycenie CPU trakcie",
   "privateDatabase_modale_cpu_throttle_no_cpu_throttle": "Brak nasycenia CPU.",
   "privateDatabase_modale_cpu_throttle_info_order": "Jeśli chcesz zaradzić tym problemom, zalecamy, abyś zoptymalizował zapytania i indeksy lub rozdzielił bazy danych na więcej instancji CloudDB.",
-  "privateDatabase_configuration_documentation": "Więcej informacji na temat tych opcji"
+  "privateDatabase_configuration_documentation": "Więcej informacji na temat tych opcji",
+  "privateDatabase_dashboard_datacenter_gra": "Gravelines",
+  "privateDatabase_dashboard_datacenter_gra3": "Gravelines 3",
+  "privateDatabase_dashboard_datacenter_bhs": "Beauharnois",
+  "privateDatabase_dashboard_datacenter_bhs1": "Beauharnois 1",
+  "privateDatabase_order_datacenter_gra": "Gravelines",
+  "privateDatabase_order_datacenter_gra3": "Gravelines 3",
+  "privateDatabase_order_datacenter_bhs": "Beauharnois",
+  "privateDatabase_order_datacenter_bhs1": "Beauharnois 1"
 }

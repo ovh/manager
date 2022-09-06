@@ -1,14 +1,4 @@
 {
-  "nasha_onboarding_title": "HA-NAS Server",
-  "nasha_onboarding_description_bold": "3 TB bis 36 TB zusätzlicher Speicherplatz für Ihre OVHcloud Lösungen",
-  "nasha_onboarding_description": "Mit HA-NAS Storage von OVHcloud erhalten Sie eine zentrale Plattform für Speicherung und Backup Ihrer Daten. Der Zugriff erfolgt über den Hauptserver. Bei Problemen übernimmt der sekundäre Server den Dienst und garantiert so eine hohe Verfügbarkeit Ihrer Daten.",
-  "nasha_onboarding_guide1_title": "Erste Schritte mit HA-NAS",
-  "nasha_onboarding_guide1_description": "Hier erfahren Sie, wie Sie einen HA-NAS über Ihr OVHcloud Kundencenter verwalten",
-  "nasha_onboarding_guide2_title": "Mounten Ihres NAS auf Windows Server via CIFS",
-  "nasha_onboarding_guide2_description": "Hier erfahren Sie, wie Sie einen NAS via CIFS auf Windows Server mounten.",
-  "nasha_onboarding_guide3_title": "Häufig gestellte Fragen zu NAS",
-  "nasha_onboarding_guide3_description": "Sie haben eine Frage zum NAS? Hier sind die am häufigsten gestellten Fragen und Antworten.",
-  "nasha_onboarding_cta": "Bestellen",
   "nasha_onboarding_content": "Lernen Sie die gemanagten Storage-Dienste auf Basis des Dateisystems OpenZFS kennen. Mit wenigen Klicks stehen zentralisierte Storage-Bereiche bereit, um Ihre Daten und Dateien zu speichern oder zu sichern.",
   "nasha_onboarding_getting-started_title": "Erste Schritte mit HA-NAS",
   "nasha_onboarding_getting-started_content": "So verwalten Sie einen HA-NAS über Ihr OVHcloud Kundencenter.",
@@ -16,5 +6,5 @@
   "nasha_onboarding_nfs_content": "Hier erfahren Sie, wie Sie ein NAS über eine NFS-Freigabe mounten.",
   "nasha_onboarding_cifs_title": "NAS auf Windows Server mit CIFS mounten",
   "nasha_onboarding_cifs_content": "Hier erfahren Sie, wie Sie einen NAS mit CIFS auf Windows Server mounten.",
-  "nasha_onboarding_order": "HA-NAS bestellen "
+  "nasha_onboarding_order": "HA-NAS bestellen"
 }

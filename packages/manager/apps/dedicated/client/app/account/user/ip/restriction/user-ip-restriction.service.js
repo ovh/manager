@@ -8,10 +8,20 @@ export default /* @ngInject */ function UserAccountIpRestrictionsService(
 
   this.getList = function getList() {
     return $http
-      .get('/sws/me-access-restriction-ip', {
-        serviceType: 'aapi',
+      .get('/me/accessRestriction/ip', {
+        headers: {
+          Pragma: 'no-cache',
+          'X-Pagination-Mode': 'CachedObjectList-Pages',
+          'X-Pagination-Size': '5000',
+        },
       })
-      .then(getSuccessDataOrReject);
+      .then(getSuccessDataOrReject)
+      .then((data) => {
+        return data.map((ipRestriction) => ({
+          ...ipRestriction,
+          rule: ipRestriction.rule.toUpperCase(),
+        }));
+      });
   };
 
   this.updateRestriction = function updateRestriction(restriction) {

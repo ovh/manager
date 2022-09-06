@@ -723,5 +723,7 @@
   "logs_home_service_type_enterprise": "Enterprise",
   "logs_order_selection_details_standard_description_7": "czas retencji do wyboru: 14 dni/1 miesiąc/3 miesiące/1 rok",
   "logs_order_selection_details_enterprise_description_4": "czas retencji z możliwością dostosowania na żądanie",
-  "dbaas_logs": "Logs Data Platform"
+  "dbaas_logs": "Logs Data Platform",
+  "logs_index_access_osd_webui": "Dostęp do Twojej instancji OpenSearch Dashboards",
+  "logs_index_access_os_api": "Dostęp OpenSearch"
 }
