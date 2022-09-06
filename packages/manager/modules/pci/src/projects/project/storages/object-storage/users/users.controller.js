@@ -90,7 +90,7 @@ export default class PciStoragesContainersUsersController {
         'pci_projects_project_storages_containers_users_show_secret_key_success',
         {
           user: user.username,
-          secret: `<code>${user.s3Credentials[0].secret}</code>`,
+          secret: `<code class="code-break">${user.s3Credentials[0].secret}</code>`,
         },
       ),
     });
