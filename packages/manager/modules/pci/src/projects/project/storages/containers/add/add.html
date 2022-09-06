@@ -127,6 +127,7 @@
     <!--Regions list-->
     <oui-step-form
         data-position="1"
+        data-ng-if="!$ctrl.archive"
         data-name="storage_container_add_region"
         data-header="{{:: 'pci_projects_project_storages_containers_add_region_title' | translate }}"
         data-navigation="$ctrl.container.region"
@@ -200,6 +201,53 @@
     <!--Container name-->
     <oui-step-form
         data-position="3"
+        data-ng-if="!$ctrl.archive"
+        data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
+        data-editable="!$ctrl.isLoading"
+        data-on-cancel="$ctrl.cancel()"
+        data-cancel-text="{{:: 'pci_projects_project_storages_containers_add_cancel_label' | translate }}"
+        data-submit-text="{{:: 'pci_projects_project_storages_containers_add_submit_label' | translate }}"
+        name="storage_container_add_name"
+    >
+        <oui-field
+            data-size="xl"
+            data-help-text="{{ ::'pci_projects_project_storages_containers_add_pattern_help_storage-s3-high-perf' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="name"
+                data-ng-model="$ctrl.container.name"
+                data-ng-pattern="$ctrl.OBJECT_CONTAINER_NAME_PATTERN[$ctrl.container.offer]"
+                data-ng-required="true"
+            />
+        </oui-field>
+    </oui-step-form>
+
+    <!--Archive container steps-->
+    <oui-step-form
+        data-position="0"
+        data-ng-if="$ctrl.archive"
+        data-name="storage_container_add_region"
+        data-header="{{:: 'pci_projects_project_storages_containers_add_region_title' | translate }}"
+        data-navigation="$ctrl.container.region"
+        data-on-focus="$ctrl.onRegionsFocus()"
+        data-on-submit="$ctrl.onRegionChange()"
+        data-editable="!$ctrl.isLoading"
+        data-valid="$ctrl.container.region"
+        data-prevent-next
+    >
+        <pci-project-regions-list
+            data-ng-if="$ctrl.archive || $ctrl.currrentStep > 0"
+            data-regions="$ctrl.container.offer ? $ctrl.regions[$ctrl.container.offer] : $ctrl.regions"
+            data-selected-region="$ctrl.container.region"
+            data-display-selected-region="$ctrl.displaySelectedRegion"
+        ></pci-project-regions-list>
+    </oui-step-form>
+
+    <oui-step-form
+        data-position="1"
+        data-ng-if="$ctrl.archive"
         data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
         data-editable="!$ctrl.isLoading"
         data-on-cancel="$ctrl.cancel()"
