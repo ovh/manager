@@ -1,3 +1,12 @@
+## [3.23.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.6...@ovh-ux/manager-server-sidebar@3.23.7) (2022-09-06)
+
+
+### Bug Fixes
+
+* **server-sidebar:** restore private database menu ([1c53f0e](https://github.com/ovh/manager/commit/1c53f0eacb0abf8b9543231886f60ec5aa2f11aa))
+
+
+
 ## [3.23.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.5...@ovh-ux/manager-server-sidebar@3.23.6) (2022-09-06)
 
 
