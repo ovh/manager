@@ -107,6 +107,24 @@ export const HOSTING_CONFIG = {
   feature: 'hosting',
 };
 
+export const PRIVATE_DATABASE_CONFIG = {
+  id: 'privateDatabases',
+  loadOnState: 'app.private-database.dashboard',
+  types: [
+    {
+      path: '/hosting/privateDatabase',
+      category: 'PRIVATE_DATABASE',
+      state: 'app.private-database.dashboard',
+      stateParams: ['productId'],
+      icon: 'ovh-font ovh-font-database',
+      app: [WEB],
+    },
+  ],
+  icon: 'ovh-font ovh-font-database',
+  app: [WEB],
+  feature: 'private-database',
+};
+
 export const EMAIL_PRO_CONFIG = {
   id: 'emailPros',
   loadOnState: 'email-pro.dashboard',
@@ -253,6 +271,7 @@ export const PSH_CONFIG = {
 export const WEB_SIDEBAR_CONFIG = [
   DOMAIN_CONFIG,
   HOSTING_CONFIG,
+  PRIVATE_DATABASE_CONFIG,
   EMAIL_PRO_CONFIG,
   EMAIL_CONFIG,
   MICROSOFT_CONFIG,
