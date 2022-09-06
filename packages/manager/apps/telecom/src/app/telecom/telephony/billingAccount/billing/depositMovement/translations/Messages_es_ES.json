@@ -17,5 +17,6 @@
   "telephony_group_billing_deposit_movement_error_amount_min": "El valor mínimo de este campo es {{ min }}.",
   "telephony_group_billing_deposit_movement_error_amount_max": "El valor máximo de este campo es {{ max }}.",
   "telephony_group_billing_deposit_movement_capability_error": "¡Vaya! No hemos podido verificar los grupos de facturación transferibles.",
-  "telephony_group_billing_deposit_movement_breadcrumb": "Transferencia de sus depósitos de garantía"
+  "telephony_group_billing_deposit_movement_breadcrumb": "Transferencia de sus depósitos de garantía",
+  "telephony_group_billing_deposit_movement_error_destination": "Su depósito de garantía no puede transferirse a este grupo"
 }

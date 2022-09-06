@@ -13,7 +13,7 @@
   "nasha_dashboard_partition_snapshots_delete": "Eliminar a snapshot manual",
   "nasha_dashboard_partition_snapshots_submit_snapshot_types": "Validar as alterações de frequência",
   "nasha_dashboard_partition_snapshots_reset_snapshot_types": "Eliminar as alterações de frequências",
-  "nasha_dashboard_partition_snapshots_create_rule": "São autorizados: caracteres alfanuméricos, vírgulas, pontos, dois pontos e travessões",
+  "nasha_dashboard_partition_snapshots_create_rule": "São autorizados: caracteres alfanuméricos, ponto, dois pontos e travessão",
   "nasha_dashboard_partition_snapshots_warning_1": "Tem à sua disposição 20% de espaço adicional para as suas snapshots.",
   "nasha_dashboard_partition_snapshots_warning_2": "Caso ultrapasse este espaço, as snapshots serão armazenadas no seu espaço de armazenamento primário."
 }
