@@ -249,4 +249,19 @@ export async function dedicatedServerIpmiRestart(
   return data;
 }
 
+export async function dedicatedServerIpmiTest(
+  serviceName: string,
+  ttl: 1 | 3 | 5 | 10 | 15,
+  type: 'http' | 'password' | 'ping',
+): Promise<DedicatedServerTask> {
+  const { data } = await apiClient.v6.post(
+    `/dedicated/server/${serviceName}/features/ipmi/test`,
+    {
+      ttl,
+      type,
+    },
+  );
+  return data;
+}
+
 export default DedicatedServer;

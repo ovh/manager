@@ -9,8 +9,8 @@ const Details = React.lazy(() => import('./Details'));
 const NodesListing = React.lazy(() => import('./NodesListing'));
 const NodeDetails = React.lazy(() => import('./NodeDetails'));
 const NodeInterventions = React.lazy(() => import('./NodeInterventions'));
-const NodeIpmi = React.lazy(() => import('./NodeIpmi'));
-const NodeIpmiRestart = React.lazy(() => import('./NodeIpmiRestart'));
+const NodeIpmi = React.lazy(() => import('./ipmi/NodeIpmi'));
+const NodeIpmiRestart = React.lazy(() => import('./ipmi/NodeIpmiRestart'));
 const NodeTasks = React.lazy(() => import('./NodeTasks'));
 const Dashboard = React.lazy(() => import('./Dashboard'));
 

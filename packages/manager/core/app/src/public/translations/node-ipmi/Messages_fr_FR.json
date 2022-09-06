@@ -20,5 +20,8 @@
   "ipmi_server_state_error": "En erreur",
   "ipmi_server_state_hacked": "Hacké",
   "ipmi_server_state_hackedBlocked": "Hacké et bloqué",
-  "impi_server_disabled": "Le statut du serveur est <bold>{{state}}</bold>. Le module IPMI est donc désactivé."
+  "impi_server_disabled": "Le statut du serveur est <bold>{{state}}</bold>. Le module IPMI est donc désactivé.",
+  "ipmi_test_http": "Test d'accès au module IPMI (http)",
+  "ipmi_test_password": "Initialisation d'une session IPMI (authentification)",
+  "ipmi_test_ping": "Test d'accès au module IPMI (ping)"
 }

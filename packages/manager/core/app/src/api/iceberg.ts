@@ -42,8 +42,11 @@ function icebergFilter(comparator: FilterComparator, value: string | string[]) {
     case FilterComparator.IsAfter:
       return `gt=${v}`;
     case FilterComparator.IsIn: {
-      const arr = (value as string[]).map(encodeURIComponent).join(',');
-      return `in=${arr}`;
+      const valueArray = value as string[];
+      if (valueArray.length === 1) {
+        return `eq=${valueArray[0]}`;
+      }
+      return `in=${valueArray.map(encodeURIComponent).join(',')}`;
     }
     default:
       throw new Error(`Missing comparator implementation: '${comparator}'`);

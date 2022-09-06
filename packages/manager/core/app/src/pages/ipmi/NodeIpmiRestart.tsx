@@ -12,8 +12,8 @@ import {
 } from '@chakra-ui/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useQueryClient } from '@tanstack/react-query';
 import { dedicatedServerIpmiRestart } from '@/api/dedicatedServer';
-import useDedicatedServerTasks from '@/hooks/useDedicatedServerTasks';
 
 export default function NodeIpmiRestart(): JSX.Element {
   const { isOpen } = useDisclosure({
@@ -21,13 +21,13 @@ export default function NodeIpmiRestart(): JSX.Element {
   });
   const { t } = useTranslation('node-ipmi');
   const { nodeId } = useParams();
-  const { reload: reloadTasks } = useDedicatedServerTasks(nodeId);
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const onRestart = () => {
     dedicatedServerIpmiRestart(nodeId).then(() => {
       onClose();
-      reloadTasks();
+      queryClient.invalidateQueries(['dedicated_server_tasks', nodeId]);
     });
   };
   return (

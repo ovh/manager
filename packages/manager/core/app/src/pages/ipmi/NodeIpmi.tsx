@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -21,37 +21,22 @@ import {
   WarningCircleIcon,
   Tile,
 } from '@ovh-ux/manager-themes';
-import useDedicatedServerTasks from '@/hooks/useDedicatedServerTasks';
+import { FilterComparator } from '@/api/filters';
 import {
   getDedicatedServer,
   getDedicatedServerGetIpmiFeature,
+  getDedicatedServerTasks,
 } from '@/api/dedicatedServer';
 import { useEnvironment } from '@/core';
-
-export const IPMI_GUIDES: Record<string, string> = {
-  CZ: 'https://docs.ovh.com/cz/cs/dedicated/pouziti-ipmi-dedikovane-servery/',
-  DE: 'https://docs.ovh.com/de/dedicated/verwendung-ipmi-dedicated-server/',
-  ES: 'https://docs.ovh.com/es/dedicated/utilizar-ipmi-servidor-dedicado/',
-  FI:
-    'https://docs.ovh.com/fi/dedicated/ipmi-konsolin-kaytto-dedikoidut-palvelimet/',
-  FR: 'https://docs.ovh.com/fr/dedicated/utilisation-ipmi-serveurs-dedies/',
-  QC: 'https://docs.ovh.com/fr/dedicated/utilisation-ipmi-serveurs-dedies/',
-  IT: 'https://docs.ovh.com/it/dedicated/utilizzo-ipmi-server-dedicati/',
-  LT: 'https://docs.ovh.com/lt/dedicated/use-ipmi-dedicated-servers/',
-  NL: 'https://docs.ovh.com/nl/dedicated/gebruik-ipmi-dedicated-servers/',
-  PL: 'https://docs.ovh.com/pl/dedicated/uzywanie-ipmi-serwery-dedykowane/',
-  PT: 'https://docs.ovh.com/pt/dedicated/usar-ipmi-servidores-dedicados/',
-  IE: 'https://docs.ovh.com/ie/en/dedicated/use-ipmi-dedicated-servers/',
-  US:
-    'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/#testing-and-rebooting-the-ipmi',
-  DEFAULT: 'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
-};
+import NodeIpmiTest from './NodeIpmiTest';
+import { IPMI_GUIDES } from './nodeIpmi.constants';
 
 export default function NodeIpmiPage(): JSX.Element {
   const { t } = useTranslation('node-ipmi');
   const navigate = useNavigate();
   const environment = useEnvironment();
   const { nodeId } = useParams();
+  const [testIpmi, setTestIpmi] = useState(false);
   const guideURL =
     IPMI_GUIDES[environment.getUser().ovhSubsidiary] || IPMI_GUIDES.DEFAULT;
 
@@ -60,8 +45,25 @@ export default function NodeIpmiPage(): JSX.Element {
     () => getDedicatedServerGetIpmiFeature(nodeId),
   );
 
-  const { pendingTasks, isPendingTasksLoading } = useDedicatedServerTasks(
-    nodeId,
+  const { data: pendingTasks, isLoading: isPendingTasksLoading } = useQuery(
+    ['dedicated_server_tasks', nodeId],
+    async () => {
+      const { data } = await getDedicatedServerTasks(nodeId, {
+        filters: [
+          {
+            key: 'status',
+            value: ['todo', 'init', 'doing'],
+            comparator: FilterComparator.IsIn,
+          },
+        ],
+      });
+      return data;
+    },
+    {
+      staleTime: 5 * 60 * 1000,
+      refetchInterval: 10 * 1000,
+      refetchOnWindowFocus: 'always',
+    },
   );
 
   const { data: server, isLoading: isServerLoading } = useQuery(
@@ -150,13 +152,25 @@ export default function NodeIpmiPage(): JSX.Element {
               <Button
                 variant="secondary"
                 w="100%"
+                mb={2}
                 onClick={() => navigate('./restart')}
               >
                 {t('ipmi_restart')}
               </Button>
-              <Button variant="secondary" w="100%" mt={2}>
+              <Button
+                variant="secondary"
+                w="100%"
+                mb={4}
+                disabled={testIpmi}
+                onClick={() => setTestIpmi(true)}
+              >
                 {t('ipmi_test')}
               </Button>
+              <NodeIpmiTest
+                serviceName={nodeId}
+                testing={testIpmi}
+                onTestingDone={() => setTestIpmi(false)}
+              />
             </Box>
           </SimpleGrid>
           <Text mt={4}>{t('ipmi_info_1')}</Text>
