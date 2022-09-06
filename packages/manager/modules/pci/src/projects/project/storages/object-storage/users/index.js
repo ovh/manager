@@ -15,6 +15,8 @@ import importPolicy from './import';
 import downloadRclone from './download-rclone';
 import addUser from './add';
 
+import './users.less';
+
 const moduleName = 'ovhManagerPciStoragesObjectStorageUserList';
 
 angular
