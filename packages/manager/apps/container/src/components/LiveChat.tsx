@@ -2,7 +2,8 @@ import React from 'react';
 import VirtualAgent from './VirtualAgent';
 
 interface LiveChatProps {
-  locale: string;
+  language: string;
+  subsidiary: string;
   open?: boolean;
   onClose?: () => void;
 }
@@ -10,11 +11,8 @@ interface LiveChatProps {
 const LiveChat: React.FC<ComponentProps<LiveChatProps>> = (
   props: LiveChatProps,
 ): JSX.Element => {
-  const { locale, open } = props;
-  const language = locale.split('_')[0];
-  const baseURL = 'https://chat.ovh.com/system/templates/livechat-manager';
-
-  const url = `${baseURL}/germany/lc-de.html`;
+  const { language, open, subsidiary } = props;
+  const url = `https://chat.ovh.com/system/templates/liveChat-manager/STD/${subsidiary}_${language}/docs/index2.html`;
 
   return (
     <VirtualAgent

@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 
+import { Environment } from '@ovh-ux/manager-config';
 import LegacyContainer from '@/container/legacy';
 import NavReshuffleContainer from '@/container/nav-reshuffle';
 import { useShell } from '@/context';
@@ -19,7 +20,11 @@ export default function Container(): JSX.Element {
     setChatbotOpen,
   } = useContainer();
   const shell = useShell();
-  const locale = shell.getPlugin('i18n').getLocale();
+  const environment: Environment = shell
+    .getPlugin('environment')
+    .getEnvironment();
+  const language = environment.getUserLanguage();
+  const { ovhSubsidiary } = environment.getUser();
 
   const isNavReshuffle = betaVersion && useBeta;
 
@@ -64,7 +69,8 @@ export default function Container(): JSX.Element {
           </>
         )}
         <LiveChat
-          locale={locale}
+          language={language}
+          subsidiary={ovhSubsidiary}
           open={chatbotOpen}
           onClose={() => shell.getPlugin('ux').closeChatbot()}
           style={{ position: 'absolute' }}
