@@ -1,3 +1,14 @@
+## [1.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.3.2...@ovh-ux/manager-netapp@1.3.3) (2022-09-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1797] ([ac6bab4](https://github.com/ovh/manager/commit/ac6bab476c8384c01c98f107251b1deb18da6f5f))
+* **i18n:** add missing translations [CDS 1805] ([4ee5480](https://github.com/ovh/manager/commit/4ee54805b1fad5108521697c52776df69e803122))
+* **i18n:** add missing translations [CDS 1814] ([b646528](https://github.com/ovh/manager/commit/b6465282cb0d17cff30dd9e684e8062771e6aa35))
+
+
+
 ## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.3.1...@ovh-ux/manager-netapp@1.3.2) (2022-08-23)
 
 

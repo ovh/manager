@@ -1,3 +1,23 @@
+# [16.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.16.1...@ovh-ux/manager-web@16.17.0) (2022-09-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1797] ([ac6bab4](https://github.com/ovh/manager/commit/ac6bab476c8384c01c98f107251b1deb18da6f5f))
+
+
+### Features
+
+* **dnssec:** add ED25519 dnssec algorythme ([da430f3](https://github.com/ovh/manager/commit/da430f3668ccc50dc3654565192723e4a447d788)), closes [#7640](https://github.com/ovh/manager/issues/7640)
+* **dnssec:** add ED25519 dnssec algorythme ([#7640](https://github.com/ovh/manager/issues/7640)) ([70ec1a5](https://github.com/ovh/manager/commit/70ec1a5fbb78b3168457b6b7d3a667a2d5cfcd96))
+
+
+### Performance Improvements
+
+* **domain.dns:** switch api call ([#7677](https://github.com/ovh/manager/issues/7677)) ([625a84d](https://github.com/ovh/manager/commit/625a84d7779d937260b1185f7f32d6ae5ee9e17d))
+
+
+
 ## [16.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.16.0...@ovh-ux/manager-web@16.16.1) (2022-09-05)
 
 

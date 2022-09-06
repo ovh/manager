@@ -1,3 +1,13 @@
+## [3.23.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.5...@ovh-ux/manager-server-sidebar@3.23.6) (2022-09-06)
+
+
+### Bug Fixes
+
+* **hosting.clouddb:** remove privateSQL from command menu ([#7735](https://github.com/ovh/manager/issues/7735)) ([0d05949](https://github.com/ovh/manager/commit/0d05949f10b529db2b383ba6c696ac2605dfbb16))
+* **i18n:** add missing translations [CDS 1793] ([e82074c](https://github.com/ovh/manager/commit/e82074c6c70ae04f8bf4cd6fc3a98e96d73a313c))
+
+
+
 ## [3.23.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.4...@ovh-ux/manager-server-sidebar@3.23.5) (2022-08-25)
 
 

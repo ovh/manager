@@ -1,3 +1,12 @@
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.5.0...@ovh-ux/shell@1.5.1) (2022-09-06)
+
+
+### Bug Fixes
+
+* **ovh-shell:** avoid redirection loop in dev ([#7778](https://github.com/ovh/manager/issues/7778)) ([489ea1c](https://github.com/ovh/manager/commit/489ea1c25b1ea750ab3e9e35f67cdd55aeaf05cf))
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.4.0...@ovh-ux/shell@1.5.0) (2022-08-17)
 
 
