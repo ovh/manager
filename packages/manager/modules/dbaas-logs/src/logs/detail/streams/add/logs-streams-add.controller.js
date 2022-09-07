@@ -1,3 +1,5 @@
+import pull from 'lodash/pull';
+
 export default class LogsStreamsAddCtrl {
   /* @ngInject */
   constructor(
@@ -7,6 +9,8 @@ export default class LogsStreamsAddCtrl {
     $translate,
     LogsStreamsService,
     LogsTokensService,
+    LogsEncryptionKeysService,
+    LogsHelperService,
     CucControllerHelper,
     CucCloudMessage,
     LogsConstants,
@@ -18,6 +22,8 @@ export default class LogsStreamsAddCtrl {
     this.serviceName = this.$stateParams.serviceName;
     this.LogsStreamsService = LogsStreamsService;
     this.LogsTokensService = LogsTokensService;
+    this.LogsEncryptionKeysService = LogsEncryptionKeysService;
+    this.LogsHelperService = LogsHelperService;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.LogsConstants = LogsConstants;
@@ -32,6 +38,7 @@ export default class LogsStreamsAddCtrl {
       SecondStep: { price: '' },
     };
     this.availableRetentions = [];
+    this.encryptionEnabled = false;
     this.initLoaders();
   }
 
@@ -116,6 +123,11 @@ export default class LogsStreamsAddCtrl {
         this.indexingStoragePrice.SecondStep.price =
           indexingSecondStepPrice.price.text;
       });
+    this.encryptionKeys = this.CucControllerHelper.request.getHashLoader({
+      loaderFunction: () =>
+        this.LogsEncryptionKeysService.getEncryptionKeys(this.serviceName),
+    });
+    this.encryptionKeys.load();
 
     if (this.$stateParams.streamId) {
       this.isEdit = true;
@@ -126,7 +138,11 @@ export default class LogsStreamsAddCtrl {
             this.$stateParams.streamId,
           ),
       });
-      this.stream.load();
+      this.stream.load().then(() => {
+        if (this.stream.data.encryptionKeysIds.length > 0) {
+          this.encryptionEnabled = true;
+        }
+      });
     } else {
       this.isEdit = false;
       this.stream = this.LogsStreamsService.getNewStream();
@@ -209,6 +225,27 @@ export default class LogsStreamsAddCtrl {
     return this.$translate.instant('logs_streams_pause_indexing_detail', {
       t0: this.stream.data.indexingMaxSize,
     });
+  }
+
+  updateSelectedEncryptionKeys(checked, encryptionKeyId) {
+    if (checked) {
+      this.stream.data.encryptionKeysIds.push(encryptionKeyId);
+    } else {
+      pull(this.stream.data.encryptionKeysIds, encryptionKeyId);
+    }
+  }
+
+  updateEncryption(checked) {
+    if (checked === false) {
+      this.stream.data.encryptionKeysIds = [];
+    } else if (
+      this.encryptionKeys.data.length <=
+      this.LogsConstants.MAX_ENCRYPTION_KEY_PER_STREAM
+    ) {
+      this.encryptionKeys.data.forEach((entry) => {
+        this.stream.data.encryptionKeysIds.push(entry.encryptionKeyId);
+      });
+    }
   }
 
   /**

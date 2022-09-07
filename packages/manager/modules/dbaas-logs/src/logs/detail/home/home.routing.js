@@ -84,6 +84,15 @@ export default /* @ngInject */ ($stateProvider) => {
         isAccountDisabled
           ? $q.when(null)
           : LogsAliasesService.getAliasesIds(serviceName),
+      encryptionKeysIds: /* @ngInject */ (
+        $q,
+        isAccountDisabled,
+        LogsEncryptionKeysService,
+        serviceName,
+      ) =>
+        isAccountDisabled
+          ? $q.when(null)
+          : LogsEncryptionKeysService.getEncryptionKeysIds(serviceName),
       breadcrumb: () => null,
     },
   });
