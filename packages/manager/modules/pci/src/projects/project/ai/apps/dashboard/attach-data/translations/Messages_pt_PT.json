@@ -2,7 +2,7 @@
   "pci_apps_tab_attach_data_title": "Associar dados",
   "pci_apps_tab_attach_data_page_title": "Associar containers de dados",
   "pci_apps_tab_attach_data_page_title_git": "Associar repositórios Git públicos",
-  "pci_apps_tab_attach_data_page_description": "Se necessário, pode associar containers Object Storage da OVHcloud à sua AI App. Uma vez associados os containers, estes serão temporariamente carregados e colocados em cache perto da sua instância, de forma a reduzir a latência e melhorar o desempenho. A boa prática é associar um container aos seus dados de entrada e outro aos seus dados de saída.",
+  "pci_apps_tab_attach_data_page_description": "Se necessário, pode associar containers Object Storage da OVHcloud à sua app. Uma vez associados os containers, estes serão temporariamente carregados e colocados em cache perto da sua instância, de forma a reduzir a latência e melhorar o desempenho. A boa prática é associar um container aos seus dados de entrada e outro aos seus dados de saída.",
   "pci_apps_tab_attach_data_page_description_link": "Saber mais sobre o armazenamento de dados.",
   "pci_apps_tab_attach_data_page_volumes_column_name": "Nome",
   "pci_apps_tab_attach_data_page_volumes_column_type": "Tipo",

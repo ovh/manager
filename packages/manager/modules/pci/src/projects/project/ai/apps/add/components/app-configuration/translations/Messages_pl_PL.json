@@ -1,7 +1,7 @@
 {
-  "pci_app_add_configuration_name": "Nazwa AI App",
+  "pci_app_add_configuration_name": "Nazwa aplikacji",
   "pci_app_add_configuration_label": "Etykiety",
-  "pci_app_add_configuration_label_description": "Możesz dodać etykiety do Twojej AI App. Przydatne do filtrowania lub zabezpieczania za pomocą tokena na konkretnej etykiecie",
+  "pci_app_add_configuration_label_description": "Możesz dodać etykiety do aplikacji. Przydatne do filtrowania lub zabezpieczania za pomocą tokena na konkretnej etykiecie",
   "pci_app_add_configuration_label_field_key": "Klucz",
   "pci_app_add_configuration_label_field_key_error_key_already_exist": "Ten klucz już istnieje",
   "pci_app_add_configuration_label_field_value": "Wartość",
@@ -9,11 +9,11 @@
   "pci_app_add_configuration_label_btn_remove": "Usuń etykietę",
   "pci_app_add_configuration_label_quantity": "{{ numberOfLabels }} / {{ maxLabels }} etykieta(-y)",
   "pci_app_add_privacy_settings_item_restricted": "Ograniczony dostęp",
-  "pci_app_add_privacy_settings_item_restricted_description": "Dostęp do AI App jest ograniczony procedurą uwierzytelniania.",
+  "pci_app_add_privacy_settings_item_restricted_description": "Dostęp do aplikacji jest ograniczony procedurą uwierzytelniania.",
   "pci_app_add_privacy_settings_item_public": "Dostęp publiczny",
-  "pci_app_add_privacy_settings_item_public_description": "Twoja AI App jest dostępna dla wszystkich za pośrednictwem adresu URL lub API. Każdy może uzyskać dostęp do Twojej aplikacji i powiązanych z nią danych.",
+  "pci_app_add_privacy_settings_item_public_description": "Aplikacja jest dostępna dla wszystkich dzięki URL lub API. Każdy może uzyskać dostęp do Twojej aplikacji i powiązanych z nią danych.",
   "pci_app_add_privacy_settings_item_public_warning": "Zachowaj ostrożność w stosunku do danych wrażliwych.",
-  "pci_app_add_privacy_title": "Reguła dostępu do Twojej  AI App",
+  "pci_app_add_privacy_title": "Zasada dostępu do Twojej aplikacji",
   "pci_app_add_settings_port": "Port HTTP",
-  "pci_app_add_settings_port_help": "Port HTTP, do którego przypisana jest  AI App."
+  "pci_app_add_settings_port_help": "Port HTTP, z którym powiązana jest Twoja aplikacja."
 }

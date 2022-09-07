@@ -1,7 +1,7 @@
 {
   "pci_apps_general_information_info_title": "Allgemeine Informationen",
   "pci_apps_general_information_info_app_url": "Zugangs-URL",
-  "pci_apps_general_information_info_app_name": "Name der AI App",
+  "pci_apps_general_information_info_app_name": "Name der App",
   "pci_apps_general_information_info_app_container": "Verbundene Container",
   "pci_apps_general_information_info_app_container_total": "{{ xContainer }} Container",
   "pci_apps_general_information_info_app_container_swift_total": "{{ xContainer }} Swift-Container",
@@ -43,7 +43,7 @@
   "pci_apps_general_information_resources_quantity": "Ressourcen",
   "pci_apps_general_information_resources_info": "GPU/CPU/RAM pro Ressource",
   "pci_apps_general_information_resources_local_storage": "Lokaler Speicher pro Ressource",
-  "pci_apps_general_information_resources_monitoring": "Monitoring der AI App in Echtzeit",
+  "pci_apps_general_information_resources_monitoring": "Echtzeit-Monitoring der App",
   "pci_apps_general_information_resources_monitoring_access_to_graph": "Zu den Dashboards",
-  "pci_apps_general_information_snippet_title": "Verwendung Ihrer AI App"
+  "pci_apps_general_information_snippet_title": "Verwendung Ihrer App"
 }

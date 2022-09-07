@@ -1,8 +1,8 @@
 {
-  "pci_ai_apps_delete_success": "La tua AI App è stata eliminata correttamente.",
-  "pci_ai_apps_delete_error": "Si è verificato un errore durante l'eliminazione di AI App: {{ message }}",
-  "pci_ai_apps_delete": "Elimina l'AI App",
-  "pci_ai_apps_delete_warning": "Vuoi davvero eliminare l'AI App {{ appId }}?",
-  "pci_ai_apps_delete_common_delete": "Elimina",
-  "pci_ai_apps_delete_common_cancel": "Annulla"
+  "pci_ai_apps_delete_success": "La tua App è stata eliminata correttamente",
+  "pci_ai_apps_delete_error": "Si è verificato un errore durante l'eliminazione dell'App: {{ message }}",
+  "pci_ai_apps_delete": "Eliminazione dell'App",
+  "pci_ai_apps_delete_warning": "Vuoi davvero eliminare l'App {{ appId }}?",
+  "pci_ai_apps_delete_common_delete": "Eliminare",
+  "pci_ai_apps_delete_common_cancel": "Annullare"
 }

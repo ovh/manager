@@ -47,7 +47,7 @@
   "sidebar_pci_workflow": "Workflow Management",
   "sidebar_pci_ai_notebooks": "AI Notebooks",
   "sidebar_pci_ai_training": "AI Training",
-  "sidebar_pci_ai_app": "AI Apps",
+  "sidebar_pci_ai_app": "AI Deploy",
   "sidebar_pci_ml_serving": "ML Serving",
   "sidebar_pci_data_processing": "Datenverarbeitung",
   "sidebar_pci_logs_data_platform": "Logs Data Platform",

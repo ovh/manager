@@ -1,0 +1,16 @@
+{
+  "pci_ai_title": "AI Deploy",
+  "pci_ai_apps_title": "AI Deploy",
+  "pci_ai_tokens_title": "Tokeny",
+  "pci_ai_tokens_list_title": "Moje tokeny AI",
+  "pci_ai_tokens_description_1": "Tokeny uwierzytelniające to rodzaj unikalnych tokenów niezbędnych do uzyskania dostępu do Twoich aplikacji, AI Notebooks i AI Jobs.",
+  "pci_ai_tokens_name": "Nazwa",
+  "pci_ai_tokens_label_selector": "Wybór etykiet",
+  "pci_ai_tokens_region": "Region",
+  "pci_ai_tokens_role": "Rola",
+  "pci_ai_tokens_add_token": "Nowy token",
+  "pci_ai_tokens_delete": "Usuń",
+  "pci_ai_tokens_update": "Wygeneruj ponownie",
+  "pci_ai_tokens_role_name_ai_training_operator": "AI Platform - Operator",
+  "pci_ai_tokens_role_name_ai_training_read": "AI Platform - Tylko odczyt"
+}

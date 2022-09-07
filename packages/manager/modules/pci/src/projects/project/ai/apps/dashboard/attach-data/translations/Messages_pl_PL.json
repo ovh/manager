@@ -2,7 +2,7 @@
   "pci_apps_tab_attach_data_title": "Przypisz dane",
   "pci_apps_tab_attach_data_page_title": "Przypisz kontenery danych",
   "pci_apps_tab_attach_data_page_title_git": "Przypisz publiczne repozytoria Git",
-  "pci_apps_tab_attach_data_page_description": "W razie potrzeby możesz przypisać kontenery Object Storage OVHcloud do Twojej AI App. Po przypisaniu zostaną one tymczasowo załadowane i umieszczone w pamięci cache w pobliżu Twojej instancji, aby skrócić czas odpowiedzi i zwiększyć wydajność. Dobrym rozwiązaniem jest powiązanie jednego kontenera z danymi wejściowymi, a drugiego z danymi wyjściowymi.",
+  "pci_apps_tab_attach_data_page_description": "W razie potrzeby możesz przypisać do aplikacji kontenery Object Storage. Po przypisaniu zostaną one tymczasowo załadowane i umieszczone w pamięci cache w pobliżu Twojej instancji, aby skrócić czas odpowiedzi i zwiększyć wydajność. Dobrym rozwiązaniem jest powiązanie jednego kontenera z danymi wejściowymi, a drugiego z danymi wyjściowymi.",
   "pci_apps_tab_attach_data_page_description_link": "Więcej informacji o przechowywaniu danych.",
   "pci_apps_tab_attach_data_page_volumes_column_name": "Nazwa",
   "pci_apps_tab_attach_data_page_volumes_column_type": "Typ",

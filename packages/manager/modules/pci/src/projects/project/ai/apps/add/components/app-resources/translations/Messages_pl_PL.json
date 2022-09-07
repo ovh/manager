@@ -1,5 +1,5 @@
 {
-  "pci_app_add_resources_replicas": "Liczba instancji, na których zostanie wdrożona AI App",
+  "pci_app_add_resources_replicas": "Liczba instancji, na których zostanie uruchomiona aplikacja",
   "pci_app_add_resources_usecase": "Typ instancji",
   "pci_app_add_resources_usecase_item_cpu": "CPU",
   "pci_app_add_resources_usecase_item_gpu": "GPU",

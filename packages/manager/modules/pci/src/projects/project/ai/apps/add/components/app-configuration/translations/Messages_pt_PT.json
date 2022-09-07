@@ -1,7 +1,7 @@
 {
-  "pci_app_add_configuration_name": "Nome da sua AI App",
+  "pci_app_add_configuration_name": "Nome da sua app",
   "pci_app_add_configuration_label": "Etiquetas",
-  "pci_app_add_configuration_label_description": "Pode adicionar etiquetas à sua AI App. Útil para a filtragem ou a segurança por token numa etiqueta precisa",
+  "pci_app_add_configuration_label_description": "Pode adicionar etiquetas à sua app. Útil para a filtragem ou a segurança por token numa etiqueta precisa",
   "pci_app_add_configuration_label_field_key": "Chave",
   "pci_app_add_configuration_label_field_key_error_key_already_exist": "Esta chave já existe",
   "pci_app_add_configuration_label_field_value": "Valor",
@@ -9,11 +9,11 @@
   "pci_app_add_configuration_label_btn_remove": "Eliminar o label",
   "pci_app_add_configuration_label_quantity": "{{ numberOfLabels }} / {{ maxLabels }} label(s)",
   "pci_app_add_privacy_settings_item_restricted": "Acesso restrito",
-  "pci_app_add_privacy_settings_item_restricted_description": "O acesso à sua AI App é limitado por uma autenticação.",
+  "pci_app_add_privacy_settings_item_restricted_description": "O acesso à sua app é limitado por uma autenticação.",
   "pci_app_add_privacy_settings_item_public": "Acesso público",
-  "pci_app_add_privacy_settings_item_public_description": "A sua AI App está acessível a toda a gente graças ao seu URL ou API. Qualquer pessoa pode aceder à sua aplicação e aos dados que lhe estão associados.",
+  "pci_app_add_privacy_settings_item_public_description": "A sua app está acessível a toda a gente graças ao seu URL ou API. Qualquer pessoa pode aceder à sua aplicação e aos dados que lhe estão associados.",
   "pci_app_add_privacy_settings_item_public_warning": "Seja prudente com os dados sensíveis.",
-  "pci_app_add_privacy_title": "Regra de acesso à sua AI App",
+  "pci_app_add_privacy_title": "Regra de acesso à sua app",
   "pci_app_add_settings_port": "Porta HTTP",
-  "pci_app_add_settings_port_help": "Porta HTTP na qual a AI App está associada."
+  "pci_app_add_settings_port_help": "Porta HTTP na qual a app está associada."
 }
