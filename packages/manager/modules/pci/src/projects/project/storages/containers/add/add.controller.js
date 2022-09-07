@@ -78,8 +78,7 @@ export default class PciStoragesContainersAddController {
       },
       createOrLinkedMode: null,
     };
-
-    this.setUsersForContainerCreation();
+    if (!this.archive) this.setUsersForContainerCreation();
     this.preselectStepItem();
   }
 
