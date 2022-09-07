@@ -9,13 +9,29 @@
                 data-translate="{{:: 'pci_projects_project_storages_containers_container_addUser_description_' + ($ctrl.objectKey ? 'object' : 'container') + '_step_0' }}"
             ></p>
 
-            <oui-radio-group model="$ctrl.selectedUser">
-                <oui-radio
-                    ng-repeat="user in $ctrl.availableUsers track by $index"
-                    value="user.id"
-                    ><span data-ng-bind="user.description"></span
-                ></oui-radio>
-            </oui-radio-group>
+            <oui-field
+                data-size="xl"
+                data-label="{{:: 'pci_projects_project_storages_containers_container_addUser_select_user_label' | translate }}"
+            >
+                <oui-select
+                    class="w-100"
+                    data-items="$ctrl.usersCredentials"
+                    data-match="addUserNameDescriptionKey"
+                    data-name="addUserNameDescriptionKey"
+                    data-model="$ctrl.selectedUser"
+                >
+                    <div class="row">
+                        <div class="col-8 text-truncate"
+                             data-ng-bind=":: $item.addUserNameDescriptionKey"
+                        ></div>
+                        <div class="col-4">
+                            <small class="ml-4"
+                                   data-ng-bind=":: $item.credentialTrad"
+                            ></small>
+                        </div>
+                    </div>
+                </oui-select>
+            </oui-field>
         </div>
         <div data-ng-if="$ctrl.addUserStep === 1">
             <p

@@ -22,9 +22,31 @@ export default class PciBlockStorageDetailsAddUserController {
     this.selectedUser = null;
     this.selectedRole = null;
     this.addUserStep = 0;
-    if (this.availableUsers.length === 1) {
-      this.selectedUser = this.availableUsers[0].id;
-    }
+
+    this.setUserCredentialsList();
+    this.preselectFirstUser();
+  }
+
+  setUserCredentialsList() {
+    this.usersCredentials = this.availableUsers.map((user) => ({
+      ...user,
+      credentialTrad: this.getCredentialTranslation(user),
+      addUserNameDescriptionKey: user.description
+        ? `${user.username} - ${user.description}`
+        : user.username,
+    }));
+  }
+
+  getCredentialTranslation(user) {
+    return this.$translate.instant(
+      user.s3Credentials.length > 0
+        ? 'pci_projects_project_storages_containers_container_addUser_select_user_has_credential'
+        : 'pci_projects_project_storages_containers_container_addUser_select_user_has_not_credential',
+    );
+  }
+
+  preselectFirstUser() {
+    [this.selectedUser] = this.usersCredentials || [];
   }
 
   stepBack() {
@@ -52,10 +74,11 @@ export default class PciBlockStorageDetailsAddUserController {
       }add-user::confirm`,
       type: 'action',
     });
+
     this.isLoading = true;
     return this.$http
       .post(
-        `/cloud/project/${this.projectId}/region/${this.container.region}/storage/${this.container.name}/policy/${this.selectedUser}`,
+        `/cloud/project/${this.projectId}/region/${this.container.region}/storage/${this.container.name}/policy/${this.selectedUser.id}`,
         {
           roleName: this.selectedRole,
           objectKey: this.objectKey,
@@ -69,7 +92,7 @@ export default class PciBlockStorageDetailsAddUserController {
               : 'pci_projects_project_storages_containers_container_addUser_success_message',
             {
               value: this.objectKey || this.container.name,
-              name: this.selectedUser,
+              name: this.selectedUser.description,
               role: this.$translate.instant(
                 `pci_projects_project_storages_containers_container_addUser_right_${this.selectedRole}`,
               ),
