@@ -25,11 +25,15 @@ import { PENDING_STATUS } from './nodeIpmi.constants';
 type NodeIpmiSolProps = {
   serviceName: string;
   onAccessReady: () => void;
+  serialOverLanURL: boolean;
+  serialOverLanSshKey: boolean;
 };
 
 export default function NodeIpmiSol({
   serviceName,
   onAccessReady,
+  serialOverLanURL,
+  serialOverLanSshKey,
 }: NodeIpmiSolProps): JSX.Element {
   const { t } = useTranslation('node-ipmi');
   const [accessTask, setAccessTask] = useState<DedicatedServerTask>();
@@ -42,6 +46,7 @@ export default function NodeIpmiSol({
 
   const { data: sshKeys } = useQuery(['ssh_keys'], getSshKeys, {
     staleTime: 5 * 60 * 1000,
+    enabled: serialOverLanSshKey,
   });
 
   useQuery(
@@ -112,31 +117,37 @@ export default function NodeIpmiSol({
       <h5>{t('ipmi_sol_title')}</h5>
       <Text mt={4}>{t('ipmi_sol_info')}</Text>
       <Divider my={2} />
-      <Button
-        variant="secondary"
-        w="100%"
-        disabled={!!accessRequest}
-        onClick={() => {
-          setAccessRequest('serialOverLanURL');
-        }}
-      >
-        {PENDING_STATUS.includes(accessTask?.status) &&
-          accessRequest === 'serialOverLanURL' && <Spinner size="sm" mr={4} />}
-        {t('ipmi_sol_browser')}
-      </Button>
-      {accessURL && (
-        <Button
-          as={Link}
-          variant="secondary"
-          mt={2}
-          w="100%"
-          href={accessURL}
-          isExternal={true}
-        >
-          {t('ipmi_sol_console')}
-        </Button>
+      {serialOverLanURL && (
+        <>
+          <Button
+            variant="secondary"
+            w="100%"
+            disabled={!!accessRequest}
+            onClick={() => {
+              setAccessRequest('serialOverLanURL');
+            }}
+          >
+            {PENDING_STATUS.includes(accessTask?.status) &&
+              accessRequest === 'serialOverLanURL' && (
+                <Spinner size="sm" mr={4} />
+              )}
+            {t('ipmi_sol_browser')}
+          </Button>
+          {accessURL && (
+            <Button
+              as={Link}
+              variant="secondary"
+              mt={2}
+              w="100%"
+              href={accessURL}
+              isExternal={true}
+            >
+              {t('ipmi_sol_console')}
+            </Button>
+          )}
+          <Divider my={2} />
+        </>
       )}
-      <Divider my={2} />
       {sshKeys?.length && (
         <FormControl>
           <FormLabel>{t('ipmi_sol_ssh')}</FormLabel>

@@ -40,7 +40,6 @@ export default function NodeIpmiPage(): JSX.Element {
   const [accessReady, setAccessReady] = useState(false);
   const guideURL =
     IPMI_GUIDES[environment.getUser().ovhSubsidiary] || IPMI_GUIDES.DEFAULT;
-  const hasSOL = environment.getRegion() !== 'US';
 
   const { data: ipmi, isLoading: isIpmiLoading } = useQuery(
     ['dedicated_server_ipmi', nodeId],
@@ -85,6 +84,11 @@ export default function NodeIpmiPage(): JSX.Element {
 
   const canConfigureIpmi =
     ipmi.activated && server.state === 'ok' && blockingTasks.length === 0;
+
+  const hasSOL =
+    environment.getRegion() !== 'US' &&
+    (ipmi.supportedFeatures.serialOverLanURL ||
+      ipmi.supportedFeatures.serialOverLanSshKey);
 
   return (
     <>
@@ -141,6 +145,10 @@ export default function NodeIpmiPage(): JSX.Element {
                 <NodeIpmiSol
                   serviceName={nodeId}
                   onAccessReady={() => setAccessReady(true)}
+                  serialOverLanURL={ipmi.supportedFeatures.serialOverLanURL}
+                  serialOverLanSshKey={
+                    ipmi.supportedFeatures.serialOverLanSshKey
+                  }
                 />
               </Tile>
             )}
