@@ -381,17 +381,34 @@ export default class PciStoragesContainersService {
   addContainer(projectId, containerModel) {
     const { containerType } = containerModel;
 
-    return this.manageContainerCreation(projectId, containerModel).then(
-      (container) => {
-        let returnPromise = this.$q.resolve();
-        if (containerType === OBJECT_CONTAINER_TYPE_STATIC) {
-          returnPromise = this.setContainerAsStatic(projectId, container);
-        } else if (containerType === OBJECT_CONTAINER_TYPE_PUBLIC) {
-          returnPromise = this.setContainerAsPublic(projectId, container);
-        }
-        return returnPromise;
+    return (containerModel.archive
+      ? this.addStorageContainer(
+          projectId,
+          containerModel.region.name,
+          containerModel.name,
+          containerModel.archive,
+        )
+      : this.manageContainerCreation(projectId, containerModel)
+    ).then((container) => {
+      let returnPromise = this.$q.resolve();
+      if (containerType === OBJECT_CONTAINER_TYPE_STATIC) {
+        returnPromise = this.setContainerAsStatic(projectId, container);
+      } else if (containerType === OBJECT_CONTAINER_TYPE_PUBLIC) {
+        returnPromise = this.setContainerAsPublic(projectId, container);
+      }
+      return returnPromise;
+    });
+  }
+
+  addStorageContainer(projectId, region, name, archive) {
+    return this.OvhApiCloudProjectStorage.v6().save(
+      { projectId },
+      {
+        archive,
+        containerName: name,
+        region,
       },
-    );
+    ).$promise;
   }
 
   setContainerAsStatic(projectId, container) {
