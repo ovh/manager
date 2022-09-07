@@ -4,6 +4,7 @@ import {
   CUSTOM_SNAPSHOT_NAME_PATTERN,
   CUSTOM_SNAPSHOT_NAME_PREFIX,
   CUSTOM_SNAPSHOT_NAME_SEPARATOR,
+  MAX_CUSTOM_SNAPSHOT,
   TRANSLATE_PREFIX,
   PREFIX_TRACKING_SNAPSHOT_POLICY,
 } from './snapshots.constants';
@@ -28,6 +29,8 @@ export default class NashaDashboardPartitionSnapshotsController {
     this.customSnapshotNamePattern = CUSTOM_SNAPSHOT_NAME_PATTERN;
     this.customSnapshotNamePrefix = CUSTOM_SNAPSHOT_NAME_PREFIX;
     this.customSnapshotNameSeparator = CUSTOM_SNAPSHOT_NAME_SEPARATOR;
+
+    this.MAX_CUSTOM_SNAPSHOT = MAX_CUSTOM_SNAPSHOT;
   }
 
   $onInit() {
@@ -41,6 +44,12 @@ export default class NashaDashboardPartitionSnapshotsController {
     };
 
     this.resetSnapshotTypes();
+
+    this.snapshotsCount = `${
+      this.customSnapshots.length
+    }/${MAX_CUSTOM_SNAPSHOT} (${this.$translate.instant(
+      'nasha_dashboard_partition_snapshots_count_max',
+    )})`;
   }
 
   get canUpdateSnapshotTypes() {

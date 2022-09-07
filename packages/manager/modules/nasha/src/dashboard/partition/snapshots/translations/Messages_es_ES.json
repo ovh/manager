@@ -15,5 +15,7 @@
   "nasha_dashboard_partition_snapshots_reset_snapshot_types": "Eliminar los cambios de frecuencias",
   "nasha_dashboard_partition_snapshots_create_rule": "Solo se autorizan los caracteres alfanuméricos, los puntos, los dos puntos y los guiones.",
   "nasha_dashboard_partition_snapshots_warning_1": "El 20 % del espacio adicional se utiliza para los snapshots.",
-  "nasha_dashboard_partition_snapshots_warning_2": "Si supera este espacio, los snapshots se almacenarán en su espacio de almacenamiento principal."
+  "nasha_dashboard_partition_snapshots_warning_2": "Si supera este espacio, los snapshots se almacenarán en su espacio de almacenamiento principal.",
+  "nasha_dashboard_partition_snapshots_count_title": "Número de snapshots",
+  "nasha_dashboard_partition_snapshots_count_max": "máximo"
 }
