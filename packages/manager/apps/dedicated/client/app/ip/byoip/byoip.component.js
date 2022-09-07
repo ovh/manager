@@ -7,6 +7,7 @@ export default {
     getToken: '<',
     goToDisclaimer: '<',
     goBack: '<',
+    isBannerByoipAvailable: '<',
   },
   name: 'ipByoipComponent',
   controller,

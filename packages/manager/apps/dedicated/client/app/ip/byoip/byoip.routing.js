@@ -29,6 +29,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      isBannerByoipAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('ip:bannerByoip')
+          .then((feature) => feature.isFeatureAvailable('ip:bannerByoip')),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('ip_byoip'),
     },

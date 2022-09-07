@@ -38,5 +38,6 @@
   "ip_byoip_region_WAW": "Varsavia (WAW{{number}}) - Polonia",
   "ip_byoip_region_RBX_HZ": "Roubaix (RBXHZ) - Francia",
   "ip_byoip_region_GSW": "(GSW) - Francia",
-  "ip_byoip_cancel_text": "Annulla"
+  "ip_byoip_cancel_text": "Annulla",
+  "ip_byoip_restriction_warning_message": "Il servizio Bring Your Own IP è al momento disponibile in accesso limitato. Per maggiori informazioni, contatta un consulente commerciale OVHcloud."
 }
