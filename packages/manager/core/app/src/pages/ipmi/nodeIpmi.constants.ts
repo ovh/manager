@@ -17,4 +17,6 @@ export const IPMI_GUIDES: Record<string, string> = {
   DEFAULT: 'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
 };
 
-export default { IPMI_GUIDES };
+export const PENDING_STATUS = ['init', 'todo', 'doing'];
+
+export default { IPMI_GUIDES, PENDING_STATUS };

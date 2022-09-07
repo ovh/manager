@@ -7,10 +7,7 @@ import {
   Box,
   Button,
   Divider,
-  FormControl,
-  FormLabel,
   Link,
-  Select,
   SimpleGrid,
   Text,
 } from '@chakra-ui/react';
@@ -19,6 +16,7 @@ import { useQuery } from '@tanstack/react-query';
 import {
   ErrorCircleIcon,
   WarningCircleIcon,
+  SuccessCircleIcon,
   Tile,
 } from '@ovh-ux/manager-themes';
 import { FilterComparator } from '@/api/filters';
@@ -31,14 +29,18 @@ import { useEnvironment } from '@/core';
 import NodeIpmiTest from './NodeIpmiTest';
 import { IPMI_GUIDES } from './nodeIpmi.constants';
 
+const NodeIpmiSol = React.lazy(() => import('./NodeIpmiSol'));
+
 export default function NodeIpmiPage(): JSX.Element {
   const { t } = useTranslation('node-ipmi');
   const navigate = useNavigate();
   const environment = useEnvironment();
   const { nodeId } = useParams();
   const [testIpmi, setTestIpmi] = useState(false);
+  const [accessReady, setAccessReady] = useState(false);
   const guideURL =
     IPMI_GUIDES[environment.getUser().ovhSubsidiary] || IPMI_GUIDES.DEFAULT;
+  const hasSOL = environment.getRegion() !== 'US';
 
   const { data: ipmi, isLoading: isIpmiLoading } = useQuery(
     ['dedicated_server_ipmi', nodeId],
@@ -61,7 +63,7 @@ export default function NodeIpmiPage(): JSX.Element {
     },
     {
       staleTime: 5 * 60 * 1000,
-      refetchInterval: 10 * 1000,
+      refetchInterval: 30 * 1000,
       refetchOnWindowFocus: 'always',
     },
   );
@@ -109,6 +111,12 @@ export default function NodeIpmiPage(): JSX.Element {
           <Text>{t('ipmi_pending_task')}</Text>
         </Alert>
       )}
+      {accessReady && (
+        <Alert status="success">
+          <AlertIcon as={SuccessCircleIcon} />
+          <Text>{t('ipmi_browser_access_ready')}</Text>
+        </Alert>
+      )}
       {canConfigureIpmi && (
         <Box m={4}>
           <SimpleGrid
@@ -128,26 +136,14 @@ export default function NodeIpmiPage(): JSX.Element {
                 {t('kvm_applet')}
               </Button>
             </Tile>
-            <Tile>
-              <h5>{t('ipmi_sol_title')}</h5>
-              <Text mt={4}>{t('ipmi_sol_info')}</Text>
-              <Divider my={2} />
-              <Button variant="secondary" w="100%">
-                {t('ipmi_sol_browser')}
-              </Button>
-              <Divider my={2} />
-              <FormControl>
-                <FormLabel>{t('ipmi_sol_ssh')}</FormLabel>
-                <Select
-                  value={'b'}
-                  onChange={(e) => console.log(e.target.value)}
-                >
-                  <option key={'a'} value={'b'}>
-                    test
-                  </option>
-                </Select>
-              </FormControl>
-            </Tile>
+            {hasSOL && (
+              <Tile>
+                <NodeIpmiSol
+                  serviceName={nodeId}
+                  onAccessReady={() => setAccessReady(true)}
+                />
+              </Tile>
+            )}
             <Box>
               <Button
                 variant="secondary"

@@ -23,5 +23,8 @@
   "impi_server_disabled": "Le statut du serveur est <bold>{{state}}</bold>. Le module IPMI est donc désactivé.",
   "ipmi_test_http": "Test d'accès au module IPMI (http)",
   "ipmi_test_password": "Initialisation d'une session IPMI (authentification)",
-  "ipmi_test_ping": "Test d'accès au module IPMI (ping)"
+  "ipmi_test_ping": "Test d'accès au module IPMI (ping)",
+  "ipmi_sol_console": "Accéder à la console (SOL)",
+  "ipmi_browser_access_ready": "La connexion au module IPMI avec votre navigateur est prête.",
+  "ipmi_ssh_select": "Sélectionnez une clé SSH"
 }

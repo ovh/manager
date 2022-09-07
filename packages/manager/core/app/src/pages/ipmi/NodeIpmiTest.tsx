@@ -9,14 +9,13 @@ import {
   DedicatedServerTask,
   getDedicatedServerTasks,
 } from '@/api/dedicatedServer';
+import { PENDING_STATUS } from './nodeIpmi.constants';
 
 type NodeIpmiTestProps = {
   serviceName: string;
   testing: boolean;
   onTestingDone: () => void;
 };
-
-const PENDING_STATUS = ['init', 'todo', 'doing'];
 
 function getTaskIcon(task?: DedicatedServerTask): JSX.Element {
   switch (task?.status) {
