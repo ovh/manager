@@ -10,9 +10,14 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        goToUsersAndRoles: /* @ngInject */ ($state) => () =>
-          $state.go('pci.projects.project.users'),
+        goToUsers: /* @ngInject */ ($state) => () => {
+          return $state.go(
+            'pci.projects.project.storages.object-storage.users',
+          );
+        },
+
         goBack: /* @ngInject */ (goToStorageContainer) => goToStorageContainer,
+
         breadcrumb: () => null,
       },
     },

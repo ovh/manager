@@ -5,6 +5,6 @@ export default {
   bindings: {
     projectId: '<',
     goBack: '<',
-    goToUsersAndRoles: '<',
+    goToUsers: '<',
   },
 };
