@@ -25,5 +25,5 @@
   "billing_commitment_summary_description_periodic_end": "Nach dem {{ engagementEndDate }} wird Ihr Dienst stillschweigend erneut für eine Laufzeit aktiviert, die Ihrer letzten Vertragslaufzeit entspricht.",
   "billing_commitment_summary_description_upfront_end": "Nach dem {{ engagementEndDate }} wird Ihr Dienst {{ serviceName }} stillschweigend wieder aktiviert. Die Dauer und Zahlungsart entsprechen Ihrem letzten Abonnement.",
   "billing_commitment_service_storage_netapp": "Enterprise File Storage Speicherplatz",
-  "billing_commitment_service_dedicated_nasha": "HA-NAS Storage Angebote"
+  "billing_commitment_service_dedicated_nasha": "HA-NAS Storage Dienst"
 }

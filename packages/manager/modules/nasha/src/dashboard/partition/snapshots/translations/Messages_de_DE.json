@@ -13,7 +13,7 @@
   "nasha_dashboard_partition_snapshots_delete": "Den manuell erstellten Snapshot löschen",
   "nasha_dashboard_partition_snapshots_submit_snapshot_types": "Änderungen der Zeitabstände bestätigen",
   "nasha_dashboard_partition_snapshots_reset_snapshot_types": "Änderungen der Zeitabstände löschen",
-  "nasha_dashboard_partition_snapshots_create_rule": "Zugelassen sind: alphanumerische Zeichen, Komma, Punkt, Doppelpunkt und Bindestrich",
+  "nasha_dashboard_partition_snapshots_create_rule": "Zugelassen sind: alphanumerische Zeichen, Doppelpunkt und Gedankenstrich",
   "nasha_dashboard_partition_snapshots_warning_1": "Sie erhalten 20% zusätzlichen Speicherplatz für Ihre Snapshots.",
   "nasha_dashboard_partition_snapshots_warning_2": "Wenn Sie mehr als diesen Speicherplatz verwenden, werden die Snapshots auf Ihrem primären Speicherplatz gespeichert."
 }
