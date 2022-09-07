@@ -233,6 +233,89 @@
                     ></span>
                 </oui-checkbox>
             </oui-field>
+
+            <oui-field
+                label="{{:: 'logs_streams_encryption_title' | translate }}"
+            >
+                <oui-checkbox
+                    name="stream_encryption"
+                    id="stream_encryption"
+                    data-model="ctrl.encryptionEnabled"
+                    disabled="ctrl.encryptionKeys.data.length === 0"
+                    data-on-change="ctrl.updateEncryption(modelValue)"
+                    data-description="ctrl.getEncryptionKeyLink()"
+                >
+                    <oui-checkbox-label
+                        data-translate="logs_streams_encryption_detail"
+                    ></oui-checkbox-label>
+                    <oui-checkbox-description>
+                        <span
+                            data-translate="logs_encryption_keys_goto_1"
+                        ></span>
+                        <a
+                            target="_blank"
+                            ui-sref="dbaas-logs.detail.encryption-keys.home({serviceName: ctrl.serviceName})"
+                            class="oui-link oui-link_icon"
+                            data-translate="logs_encryption_keys_goto_2"
+                        >
+                        </a>
+                    </oui-checkbox-description>
+                </oui-checkbox>
+
+                <div
+                    id="encryption_keys"
+                    class="ml-5 mt-3"
+                    data-ng-show="ctrl.encryptionEnabled && !ctrl.encryptionKeys.loading"
+                >
+                    <div
+                        class="oui-message oui-message_no-icon w-50 mb-3"
+                        data-ng-if="ctrl.encryptionKeys.data.length > ctrl.LogsConstants.MAX_ENCRYPTION_KEY_PER_STREAM"
+                        data-ng-class="{
+                            'oui-message_info' : ctrl.stream.data.encryptionKeysIds.length <= ctrl.LogsConstants.MAX_ENCRYPTION_KEY_PER_STREAM,
+                            'oui-message_error' : ctrl.stream.data.encryptionKeysIds.length > ctrl.LogsConstants.MAX_ENCRYPTION_KEY_PER_STREAM
+                        }"
+                    >
+                        <p class="oui-message__body">
+                            {{ 'logs_streams_encryption_max_keys' |
+                            translate:{maxKeys:
+                            ctrl.LogsConstants.MAX_ENCRYPTION_KEY_PER_STREAM} }}
+                            (
+                            <strong
+                                >{{ ctrl.stream.data.encryptionKeysIds.length }}
+                                / {{
+                                ctrl.LogsConstants.MAX_ENCRYPTION_KEY_PER_STREAM
+                                }}</strong
+                            >
+                            )
+                        </p>
+                    </div>
+
+                    <div
+                        data-ng-repeat="encryptionKey in ctrl.encryptionKeys.data track by $index"
+                    >
+                        <oui-field>
+                            <oui-checkbox
+                                name="{{ encryptionKey.encryptionKeyId }}"
+                                id="{{ encryptionKey.encryptionKeyId }}"
+                                data-model="ctrl.stream.data.encryptionKeysIds.includes(encryptionKey.encryptionKeyId)"
+                                data-description="{{ encryptionKey.fingerprint }}"
+                                data-on-change="ctrl.updateSelectedEncryptionKeys(modelValue, encryptionKey.encryptionKeyId)"
+                            >
+                                <i
+                                    class="fa fa-info-circle"
+                                    data-ng-if="encryptionKey.isEditable === false"
+                                    data-oui-tooltip="{{:: 'logs_encryption_keys_recovery_key_tooltip' | translate }}"
+                                    data-oui-tooltip-placement="top"
+                                ></i>
+                                <span>
+                                    <strong>{{ encryptionKey.title }}</strong>
+                                    - {{ encryptionKey.uid }}
+                                </span>
+                            </oui-checkbox>
+                        </oui-field>
+                    </div>
+                </div>
+            </oui-field>
         </div>
 
         <oui-form-actions
