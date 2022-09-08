@@ -1,7 +1,7 @@
 {
-  "pci_app_add_configuration_name": "Nombre de su AI App",
+  "pci_app_add_configuration_name": "Nombre de su app",
   "pci_app_add_configuration_label": "Labels",
-  "pci_app_add_configuration_label_description": "Puede añadir labels a su AI App. Esta opción resulta útil para filtrar o proteger mediante token en un label concreto",
+  "pci_app_add_configuration_label_description": "Puede añadir labels a su app. Esta opción resulta útil para filtrar o proteger mediante token en un label concreto",
   "pci_app_add_configuration_label_field_key": "Clave",
   "pci_app_add_configuration_label_field_key_error_key_already_exist": "Esta clave ya existe.",
   "pci_app_add_configuration_label_field_value": "Valor",
@@ -9,11 +9,11 @@
   "pci_app_add_configuration_label_btn_remove": "Eliminar el label",
   "pci_app_add_configuration_label_quantity": "{{ numberOfLabels }} / {{ maxLabels }} label(s)",
   "pci_app_add_privacy_settings_item_restricted": "Acceso restringido",
-  "pci_app_add_privacy_settings_item_restricted_description": "El acceso a su AI App está restringido por autenticación.",
+  "pci_app_add_privacy_settings_item_restricted_description": "El acceso a su app está restringido por autenticación.",
   "pci_app_add_privacy_settings_item_public": "Acceso público",
-  "pci_app_add_privacy_settings_item_public_description": "Todos los usuarios pueden acceder a su AI App a través de su URL o API. Cualquier usuario puede acceder a su aplicación y a los datos asociados.",
+  "pci_app_add_privacy_settings_item_public_description": "Todos los usuarios pueden acceder a su app a través de su URL o API. Cualquier usuario puede acceder a su app y a los datos asociados.",
   "pci_app_add_privacy_settings_item_public_warning": "¡Preste especial atención a sus datos sensibles!",
-  "pci_app_add_privacy_title": "Regla de acceso a su AI App",
+  "pci_app_add_privacy_title": "Regla de acceso a su app",
   "pci_app_add_settings_port": "Puerto HTTP",
-  "pci_app_add_settings_port_help": "Puerto HTTP al que está asociada su AI App."
+  "pci_app_add_settings_port_help": "Puerto HTTP al que está asociada su app."
 }

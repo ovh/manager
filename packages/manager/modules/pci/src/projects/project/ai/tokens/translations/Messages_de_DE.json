@@ -1,0 +1,16 @@
+{
+  "pci_ai_title": "AI Deploy",
+  "pci_ai_apps_title": "AI Deploy",
+  "pci_ai_tokens_title": "Token",
+  "pci_ai_tokens_list_title": "Meine AI Token",
+  "pci_ai_tokens_description_1": "Token bezeichnen einzigartige Authentifizierungstoken für den Zugriff auf Ihre Apps, AI Notebooks und AI Jobs.",
+  "pci_ai_tokens_name": "Name",
+  "pci_ai_tokens_label_selector": "Wahl der Label",
+  "pci_ai_tokens_region": "Region",
+  "pci_ai_tokens_role": "Rolle",
+  "pci_ai_tokens_add_token": "Neuer Token",
+  "pci_ai_tokens_delete": "Löschen",
+  "pci_ai_tokens_update": "Neu erstellen",
+  "pci_ai_tokens_role_name_ai_training_operator": "AI Platform - Operator",
+  "pci_ai_tokens_role_name_ai_training_read": "AI Platform - nur Lesen"
+}

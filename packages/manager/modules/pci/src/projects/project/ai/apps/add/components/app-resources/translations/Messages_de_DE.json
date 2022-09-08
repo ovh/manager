@@ -1,5 +1,5 @@
 {
-  "pci_app_add_resources_replicas": "Anzahl der Instanzen, auf denen Ihre AI App eingesetzt wird",
+  "pci_app_add_resources_replicas": "Anzahl der Instanzen, auf denen Ihre App eingesetzt wird",
   "pci_app_add_resources_usecase": "Instanz-Typ",
   "pci_app_add_resources_usecase_item_cpu": "CPU",
   "pci_app_add_resources_usecase_item_gpu": "GPU",

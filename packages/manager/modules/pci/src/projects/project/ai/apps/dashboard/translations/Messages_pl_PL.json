@@ -1,6 +1,6 @@
 {
   "pci_apps_dashboard_info_tab_title": "Informacje ogólne",
   "pci_apps_dashboard_attach_data_tab_title": "Powiązane dane",
-  "pci_apps_dashboard_banner_user_and_roles_info": "Możesz wygenerować token dla tej AI App za pośrednictwem specjalnej strony",
+  "pci_apps_dashboard_banner_user_and_roles_info": "Możesz wygenerować token dla tej aplikacji na dedykowanej stronie ",
   "pci_apps_dashboard_banner_user_and_roles_info_link": "Wygeneruj token."
 }
