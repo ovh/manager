@@ -13,6 +13,7 @@ const NodeIpmi = React.lazy(() => import('./ipmi/NodeIpmi'));
 const NodeIpmiRestart = React.lazy(() => import('./ipmi/NodeIpmiRestart'));
 const NodeTasks = React.lazy(() => import('./NodeTasks'));
 const Dashboard = React.lazy(() => import('./Dashboard'));
+const Redeploy = React.lazy(() => import('./Redeploy'));
 
 export default function Routing(): JSX.Element {
   const { t } = useTranslation('nutanix');
@@ -106,6 +107,14 @@ export default function Routing(): JSX.Element {
               />
             </Route>
           </Route>
+          <Route
+            path="redeploy"
+            element={
+              <Suspense fallback="">
+                <Redeploy />
+              </Suspense>
+            }
+          ></Route>
         </Route>
       </Route>
       <Route index element={<Navigate to="/nutanix" replace={true} />} />
