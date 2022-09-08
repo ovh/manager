@@ -1,62 +1,29 @@
-<form
-    name="dedicatedServerMonitoringUpdateForm"
-    id="dedicatedServerMonitoringUpdateForm"
-    data-ng-submit="$ctrl.update()"
+<oui-modal
+    data-heading="{{:: 'server_configuration_monitoring_update_modal_title' | translate }}"
+    data-primary-label="{{:: 'wizard_confirm' | translate }}"
+    data-secondary-label="{{:: 'wizard_cancel' | translate }}"
+    data-primary-action="$ctrl.update()"
+    data-secondary-action="$ctrl.close()"
+    data-on-dismiss="$ctrl.close()"
+    data-loading="$ctrl.isLoading || $ctrl.isUpdating"
 >
-    <div class="modal-header">
-        <button
-            type="button"
-            class="close pull-right"
-            aria-label="{{ ::'wizard_cancel' | translate }}"
-            data-ng-click="$ctrl.close()"
-        >
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+    <p data-translate="server_configuration_monitoring_update_modal_intro"></p>
 
-    <div class="modal-body">
-        <div
-            class="text-center"
-            data-ng-if="$ctrl.isLoading || $ctrl.isUpdating"
-        >
-            <oui-spinner></oui-spinner>
-        </div>
-        <div data-ng-if="!$ctrl.isLoading && !$ctrl.isUpdating">
-            <h3
-                class="modal-title"
-                data-ng-if="$ctrl.server.monitored"
-                data-translate="server_configuration_monitoring_deactivate_title"
-            ></h3>
-            <h3
-                class="modal-title"
-                data-ng-if="!$ctrl.server.monitored"
-                data-translate="server_configuration_monitoring_activate_title_button"
-            ></h3>
-            <p
-                data-ng-if="$ctrl.server.monitored"
-                data-translate="server_configuration_monitoring_deactivate_question"
-                data-translate-values="{ t0: $ctrl.server.name }"
-            ></p>
-            <p
-                data-ng-if="!$ctrl.server.monitored"
-                data-translate="server_configuration_monitoring_activate_question"
-                data-translate-values="{ t0: $ctrl.server.name }"
-            ></p>
-        </div>
-    </div>
-
-    <div class="modal-footer">
-        <button
-            type="button"
-            class="btn btn-default"
-            data-ng-click="$ctrl.close()"
-            data-translate="wizard_cancel"
-        ></button>
-        <button
-            type="submit"
-            class="btn btn-primary"
-            data-ng-disabled="$ctrl.isLoading || $ctrl.isUpdating"
-            data-translate="wizard_confirm"
-        ></button>
-    </div>
-</form>
+    <oui-radio
+        data-name="monitoring-status"
+        data-model="$ctrl.selectedOption"
+        data-value="option"
+        data-ng-repeat="option in $ctrl.monitoringOptions track by $index"
+    >
+        <oui-radio-label>
+            <span
+                data-translate="server_configuration_monitoring_update_modal_status_{{option.status}}"
+            ></span>
+        </oui-radio-label>
+        <oui-radio-description>
+            <span
+                data-translate="server_configuration_monitoring_update_modal_description_status_{{option.status}}"
+            ></span>
+        </oui-radio-description>
+    </oui-radio>
+</oui-modal>
