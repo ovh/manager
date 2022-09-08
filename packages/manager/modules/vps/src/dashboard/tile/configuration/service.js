@@ -96,8 +96,16 @@ export default class ConfigurationTileService {
       };
     }
 
+    const availableUpgradePlancodes = this.availableUpgrades.map(
+      (upgrade) => upgrade.planCode,
+    );
+    // Exclude all products which aren't listed in available upgrades
+    const availableCatalogProducts = this.catalog.products.filter((product) =>
+      availableUpgradePlancodes.includes(product.name),
+    );
+
     // get next ram plan infos
-    const nextRamVps = find(this.catalog.products, ({ blobs }) => {
+    const nextRamVps = find(availableCatalogProducts, ({ blobs }) => {
       if (!get(blobs, 'technical')) {
         return false;
       }
@@ -122,7 +130,7 @@ export default class ConfigurationTileService {
       : null;
 
     // get next storage plan infos
-    const nextStorageVps = find(this.catalog.products, ({ blobs }) => {
+    const nextStorageVps = find(availableCatalogProducts, ({ blobs }) => {
       if (!get(blobs, 'technical')) {
         return false;
       }
