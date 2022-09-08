@@ -19,27 +19,30 @@ import {
   DedicatedServerTask,
   getDedicatedServerIpmiAccess,
   getDedicatedServerTasks,
+  IpmiAccessType,
 } from '@/api/dedicatedServer';
 import { PENDING_STATUS } from './nodeIpmi.constants';
 
 type NodeIpmiSolProps = {
   serviceName: string;
+  disabled?: boolean;
   onAccessReady: () => void;
+  onAccessRequest: (type: IpmiAccessType) => void;
   serialOverLanURL: boolean;
   serialOverLanSshKey: boolean;
 };
 
 export default function NodeIpmiSol({
   serviceName,
+  disabled,
   onAccessReady,
+  onAccessRequest,
   serialOverLanURL,
   serialOverLanSshKey,
 }: NodeIpmiSolProps): JSX.Element {
   const { t } = useTranslation('node-ipmi');
   const [accessTask, setAccessTask] = useState<DedicatedServerTask>();
-  const [accessRequest, setAccessRequest] = useState<
-    'serialOverLanURL' | 'serialOverLanSshKey'
-  >();
+  const [accessRequest, setAccessRequest] = useState<IpmiAccessType>();
   const [accessURL, setAccessURL] = useState<string>();
   const [accessHost, setAccessHost] = useState<string>();
   const [selectedSshKey, setSelectedSshKey] = useState<string>();
@@ -112,6 +115,10 @@ export default function NodeIpmiSol({
     }
   }, [selectedSshKey]);
 
+  useEffect(() => {
+    onAccessRequest(accessRequest);
+  }, [accessRequest]);
+
   return (
     <>
       <h5>{t('ipmi_sol_title')}</h5>
@@ -122,7 +129,7 @@ export default function NodeIpmiSol({
           <Button
             variant="secondary"
             w="100%"
-            disabled={!!accessRequest}
+            disabled={disabled || !!accessRequest}
             onClick={() => {
               setAccessRequest('serialOverLanURL');
             }}
@@ -154,7 +161,7 @@ export default function NodeIpmiSol({
           <Select
             value={selectedSshKey}
             onChange={(e) => setSelectedSshKey(e.target.value)}
-            disabled={!!accessRequest}
+            disabled={disabled || !!accessRequest}
             placeholder={t('ipmi_ssh_select')}
           >
             {sshKeys.map((key) => (

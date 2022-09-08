@@ -5,4 +5,13 @@ export async function getSshKeys(): Promise<string[]> {
   return data;
 }
 
-export default { getSshKeys };
+export type Geolocation = {
+  continent: string;
+  countryCode: string;
+  ip: string;
+};
+
+export async function getGeolocation(): Promise<Geolocation> {
+  const { data } = await apiClient.v6.post(`/me/geolocation`);
+  return data;
+}

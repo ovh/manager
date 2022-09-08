@@ -264,13 +264,15 @@ export async function dedicatedServerIpmiTest(
   return data;
 }
 
+export type IpmiAccessType =
+  | 'kvmipHtml5URL'
+  | 'kvmipJnlp'
+  | 'serialOverLanURL'
+  | 'serialOverLanSshKey';
+
 export async function getDedicatedServerIpmiAccess(
   serviceName: string,
-  type:
-    | 'kvmipHtml5URL'
-    | 'kvmipJnlp'
-    | 'serialOverLanURL'
-    | 'serialOverLanSshKey',
+  type: IpmiAccessType,
 ): Promise<{ expiration: Date; value: string }> {
   const { data } = await apiClient.v6.get(
     `/dedicated/server/${serviceName}/features/ipmi/access`,
@@ -289,12 +291,9 @@ export async function getDedicatedServerIpmiAccess(
 export async function dedicatedServerIpmiAccess(
   serviceName: string,
   ttl: 1 | 3 | 5 | 10 | 15,
-  type:
-    | 'kvmipHtml5URL'
-    | 'kvmipJnlp'
-    | 'serialOverLanURL'
-    | 'serialOverLanSshKey',
+  type: IpmiAccessType,
   sshKey?: string,
+  ipToAllow?: string,
 ): Promise<DedicatedServerTask> {
   const { data } = await apiClient.v6.post(
     `/dedicated/server/${serviceName}/features/ipmi/access`,
@@ -302,6 +301,7 @@ export async function dedicatedServerIpmiAccess(
       ttl,
       type,
       sshKey,
+      ipToAllow,
     },
   );
   return data;

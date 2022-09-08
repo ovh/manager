@@ -6,7 +6,6 @@ import {
   AlertIcon,
   Box,
   Button,
-  Divider,
   Link,
   SimpleGrid,
   Text,
@@ -24,11 +23,13 @@ import {
   getDedicatedServer,
   getDedicatedServerGetIpmiFeature,
   getDedicatedServerTasks,
+  IpmiAccessType,
 } from '@/api/dedicatedServer';
 import { useEnvironment } from '@/core';
 import NodeIpmiTest from './NodeIpmiTest';
 import { IPMI_GUIDES } from './nodeIpmi.constants';
 
+const NodeIpmiKvm = React.lazy(() => import('./NodeIpmiKvm'));
 const NodeIpmiSol = React.lazy(() => import('./NodeIpmiSol'));
 
 export default function NodeIpmiPage(): JSX.Element {
@@ -38,6 +39,7 @@ export default function NodeIpmiPage(): JSX.Element {
   const { nodeId } = useParams();
   const [testIpmi, setTestIpmi] = useState(false);
   const [accessReady, setAccessReady] = useState(false);
+  const [accessRequest, setAccessRequest] = useState<IpmiAccessType>();
   const guideURL =
     IPMI_GUIDES[environment.getUser().ovhSubsidiary] || IPMI_GUIDES.DEFAULT;
 
@@ -129,22 +131,20 @@ export default function NodeIpmiPage(): JSX.Element {
             spacingY={3}
           >
             <Tile>
-              <h5>{t('kvm_title')}</h5>
-              <Text mt={4}>{t('kvm_info')}</Text>
-              <Divider my={2} />
-              <Button variant="secondary" w="100%">
-                {t('kvm_browser')}
-              </Button>
-              <Divider my={2} />
-              <Button variant="secondary" w="100%">
-                {t('kvm_applet')}
-              </Button>
+              <NodeIpmiKvm
+                disabled={!!accessRequest}
+                serviceName={nodeId}
+                onAccessReady={() => setAccessReady(true)}
+                onAccessRequest={setAccessRequest}
+              />
             </Tile>
             {hasSOL && (
               <Tile>
                 <NodeIpmiSol
                   serviceName={nodeId}
+                  disabled={!!accessRequest}
                   onAccessReady={() => setAccessReady(true)}
+                  onAccessRequest={setAccessRequest}
                   serialOverLanURL={ipmi.supportedFeatures.serialOverLanURL}
                   serialOverLanSshKey={
                     ipmi.supportedFeatures.serialOverLanSshKey

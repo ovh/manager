@@ -25,6 +25,8 @@
   "ipmi_test_password": "Initialisation d'une session IPMI (authentification)",
   "ipmi_test_ping": "Test d'accès au module IPMI (ping)",
   "ipmi_sol_console": "Accéder à la console (SOL)",
+  "ipmi_kvm_applet_download": "Télécharger l'applet java",
+  "ipmi_kvm_console": "Accéder à la console (KVM)",
   "ipmi_browser_access_ready": "La connexion au module IPMI avec votre navigateur est prête.",
   "ipmi_ssh_select": "Sélectionnez une clé SSH"
 }
