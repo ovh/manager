@@ -15,6 +15,7 @@ export default {
     goToResiliation: '<',
     goToSgxIntroduction: '<',
     goToSgxManage: '<',
+    goToMonitoringUpdate: '<',
     isCommitmentAvailable: '<',
     monitoringProtocolEnum: '<',
     ola: '<',
