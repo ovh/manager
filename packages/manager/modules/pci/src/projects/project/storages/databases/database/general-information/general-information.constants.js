@@ -17,7 +17,13 @@ export const WARNING_MESSAGES = {
 
 export const KARAPACE_URL = 'https://karapace.io/';
 
+export const NEW_SUPPORT_TICKET_PARAMS = {
+  CATEGORY_NAME: 'assistance',
+  BASE_SERVICE_TYPE: 'managed_',
+};
+
 export default {
   WARNING_MESSAGES,
   KARAPACE_URL,
+  NEW_SUPPORT_TICKET_PARAMS,
 };

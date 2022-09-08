@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
 import { NODES_PER_ROW } from '../../databases.constants';
+import { NEW_SUPPORT_TICKET_PARAMS } from './general-information.constants';
 import isFeatureActivated from '../../features.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -111,6 +112,18 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToSupportPage: /* @ngInject */ (coreURLBuilder, database) => () => {
+        const url = coreURLBuilder.buildURL(
+          'dedicated',
+          '/support/tickets/new',
+          {
+            categoryName: NEW_SUPPORT_TICKET_PARAMS.CATEGORY_NAME,
+            serviceTypeName:
+              NEW_SUPPORT_TICKET_PARAMS.BASE_SERVICE_TYPE + database.engine,
+          },
+        );
+        window.location.replace(url);
+      },
       goToFork: /* @ngInject */ ($state, database) => () =>
         $state.go('pci.projects.project.storages.databases.fork', {
           database,
