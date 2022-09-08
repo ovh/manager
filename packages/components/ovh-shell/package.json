@@ -24,6 +24,7 @@
     "@ovh-ux/ovh-at-internet": "^0.1.0 || ^0.2.0",
     "@ovh-ux/ovh-reket": "^1.0.0",
     "@ovh-ux/url-builder": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/request-tagger": "^0.0.0 || ^1.0.0",
     "@types/react": "^17.0.24",
     "@types/react-router-dom": "^5.3.0",
     "dompurify": "^2.3.3",
