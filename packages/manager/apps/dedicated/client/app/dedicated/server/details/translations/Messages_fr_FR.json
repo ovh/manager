@@ -168,6 +168,7 @@
   "server_configuration_reboot_successfull": "Votre serveur {{t0}} a été redémarré.",
   "server_configuration_reboot_fail_task": "Une erreur est survenue lors du redémarrage de votre serveur.",
   "server_configuration_monitoring_activate_title": "Activer le monitoring",
+  "server_configuration_monitoring_cta_setting": "Configurer",
   "server_configuration_monitoring_activate_question": "Etes-vous certain(e) de vouloir activer le monitoring sur le serveur {{t0}} ?",
   "server_configuration_monitoring_activate_success": "Le monitoring est activé sur le serveur {{t0}}",
   "server_configuration_monitoring_activate_failed": "Une erreur est survenue lors de l'activation du monitoring sur le serveur {{t0}}",
