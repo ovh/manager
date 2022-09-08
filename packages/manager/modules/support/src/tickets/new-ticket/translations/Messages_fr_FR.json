@@ -155,5 +155,7 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Un projet à étudier?",
   "ovhManagerSupport_new_business_2": "Merci de nous détailler vos besoins en nous envoyant un e-mail à l'adresse :",
-  "ovhManagerSupport_new_business_3": "Les demandes d'assistances reçues à cette adresse ne seront pas traitées."
+  "ovhManagerSupport_new_business_3": "Les demandes d'assistances reçues à cette adresse ne seront pas traitées.",
+  "ovhManagerSupport_new_serviceType_publiccloud_gateway": "Gateway",
+  "ovhManagerSupport_new_serviceType_publiccloud_floating_ip": "Floating Ips"
 }
