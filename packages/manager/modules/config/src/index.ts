@@ -1,4 +1,5 @@
 import { useReket } from '@ovh-ux/ovh-reket';
+import { getHeaders } from '@ovh-ux/request-tagger';
 import Environment, { User } from './environment';
 import { Region } from './environment/region.enum';
 
@@ -26,6 +27,7 @@ export const fetchConfiguration = async (
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
       Accept: 'application/json',
+      ...getHeaders('/engine/2api/configuration'),
     },
     credentials: 'same-origin',
   };
