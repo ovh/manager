@@ -331,10 +331,10 @@
                             class="oui-badge"
                             data-ng-class="{
                                     'oui-badge_success': $ctrl.server.monitored,
-                                    'oui-badge_error': !$ctrl.server.monitored
+                                    'oui-badge_warning': !$ctrl.server.monitored
                                 }"
-                            data-translate="{{'server_configuration_monitoring_' + ($ctrl.server.monitored && 'activated' || 'disabled')}}"
-                            data-oui-tooltip="{{ ($ctrl.server.monitored && 'server_configuration_monitoring_activate_information' | translate) || ('server_configuration_monitoring_deactivate_information' | translate) }}"
+                            data-translate="server_configuration_monitoring_status_{{$ctrl.getMonitoringStatus()}}"
+                            data-oui-tooltip="{{ ('server_configuration_monitoring_status_tooltip_' + $ctrl.getMonitoringStatus()) | translate }}"
                             data-oui-tooltip-placement="top-start"
                         ></span>
                     </oui-tile-description>
