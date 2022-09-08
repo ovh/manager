@@ -9,7 +9,8 @@
 >
     <p
         class="oui-modal__text"
-        data-ng-bind="$ctrl.TERMINATE_INFO[$ctrl.vpsOption] | translate:{ date: ($ctrl.expirationDate ) }"
+        data-translate="{{ $ctrl.TERMINATE_INFO[$ctrl.vpsOption] }}"
+        data-translate-values="{date: $ctrl.expirationDate}"
     ></p>
     <p
         class="oui-modal__text text-danger"
