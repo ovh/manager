@@ -21,6 +21,9 @@ export default class {
 
   $onInit() {
     this.interventionData = {
+      minDate: moment()
+        .add(MIN_INTERVENTION_GAP, 'days')
+        .format('YYYY-MM-DD'),
       backupDone: false,
       selectedDate: null,
       selectedSlot: null,
@@ -47,6 +50,8 @@ export default class {
   }
 
   onInterventionDateChange([selectedDate]) {
+    if (!selectedDate) return;
+    if (selectedDate === this.interventionData.selectedDate) return;
     this.loadingTimeSlots = true;
     let periodStart = moment(selectedDate).subtract(1, 'days');
     periodStart = (periodStart.isBefore(this.interventionData.minDate)
@@ -56,7 +61,7 @@ export default class {
     const periodEnd = moment(selectedDate)
       .add(1, 'days')
       .format('YYYY-MM-DD');
-    return this.$http
+    this.$http
       .get(
         `/dedicated/server/${this.serverName}/task/${this.upgradeTask.taskId}/availableTimeslots`,
         {
@@ -129,12 +134,6 @@ export default class {
       .finally(() => {
         this.orderInProgress = false;
       });
-  }
-
-  prepareInterventionData() {
-    this.interventionData.minDate = moment()
-      .add(MIN_INTERVENTION_GAP, 'days')
-      .toISOString();
   }
 
   scheduleIntervention() {
