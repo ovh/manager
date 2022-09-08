@@ -4,11 +4,11 @@ import map from 'lodash/map';
 import some from 'lodash/some';
 
 import {
+  COMMIT_IMPRESSION_TRACKING_DATA,
+  HIDE_MRTG_FOR_SERVER_RANGES,
+  RECOMMIT_IMPRESSION_TRACKING_DATA,
   URLS,
   WEATHERMAP_URL,
-  COMMIT_IMPRESSION_TRACKING_DATA,
-  RECOMMIT_IMPRESSION_TRACKING_DATA,
-  HIDE_MRTG_FOR_SERVER_RANGES,
 } from './dashboard.constants';
 import { NEW_RANGE } from '../details/server.constants';
 
@@ -243,6 +243,23 @@ export default class DedicatedServerDashboard {
       .finally(() => {
         this.serverStatsLoad.loading = false;
       });
+  }
+
+  getMonitoringStatus() {
+    const { monitored, noIntervention } = this.server;
+    let monitoringStatus = 'disabled';
+
+    // proactive intervention
+    if (monitored && !noIntervention) {
+      monitoringStatus = 'proactive';
+    }
+
+    // no proactive intervention
+    if (monitored && noIntervention) {
+      monitoringStatus = 'no-proactive';
+    }
+
+    return monitoringStatus;
   }
 
   goToMonitoring() {
