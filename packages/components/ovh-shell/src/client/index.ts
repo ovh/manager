@@ -4,6 +4,7 @@ import {
   Application,
   ApplicationId,
 } from '@ovh-ux/manager-config';
+import { getHeaders } from '@ovh-ux/request-tagger';
 
 import ShellClient from './shell-client';
 import StandaloneShellClient from './standalone-shell-client';
@@ -15,6 +16,7 @@ function fetchApplications(): Promise<Record<string, Application>> {
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
       Accept: 'application/json',
+      ...getHeaders('/engine/2api/applications'),
     },
     credentials: 'same-origin',
   });
