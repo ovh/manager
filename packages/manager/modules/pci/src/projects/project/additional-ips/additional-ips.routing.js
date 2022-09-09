@@ -2,7 +2,7 @@ import map from 'lodash/map';
 import { TABS, TRACKING_PREFIX } from './additional-ips.constants';
 import { PCI_FEATURES } from '../../projects.constant';
 
-const getStateToNavigate = (activeTab = TABS.FAILOVER_IP) =>
+const getStateToNavigate = (activeTab = TABS.FLOATING_IP) =>
   activeTab === TABS.FLOATING_IP
     ? 'pci.projects.project.additional-ips.floating-ips'
     : 'pci.projects.project.additional-ips.failover-ips';
