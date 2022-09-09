@@ -1,4 +1,4 @@
-export default class {
+export default class DashboardIntegrationsCtrl {
   $onInit() {
     this.integrationTypes = this.integrations
       .reduce((integrationsByType, integration) => {

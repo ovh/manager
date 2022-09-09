@@ -94,30 +94,29 @@ export default class {
     this.checkIntegrationValidity();
   }
 
-  get isDisabledSourceSelect() {
-    if (!this.sourceServiceList || this.sourceServiceList.length === 0) {
+  checkDisabledSelect(serviceList, includedList, excludedList) {
+    if (!serviceList || serviceList.length === 0) {
       return true;
     }
     return (
-      this.integrationCapability.sourceEngines.includes(this.database.engine) &&
-      !this.integrationCapability.destinationEngines.includes(
-        this.database.engine,
-      )
+      includedList.includes(this.database.engine) &&
+      excludedList.includes(this.database.engine)
+    );
+  }
+
+  get isDisabledSourceSelect() {
+    return this.checkDisabledSelect(
+      this.sourceServiceList,
+      this.integrationCapability?.sourceEngines,
+      this.integrationCapability?.destinationEngines,
     );
   }
 
   get isDisabledDestinationSelect() {
-    if (
-      !this.destinationServiceList ||
-      this.destinationServiceList.length === 0
-    ) {
-      return true;
-    }
-    return (
-      this.integrationCapability.destinationEngines.includes(
-        this.database.engine,
-      ) &&
-      !this.integrationCapability.sourceEngines.includes(this.database.engine)
+    return this.checkDisabledSelect(
+      this.destinationServiceList,
+      this.integrationCapability?.destinationEngines,
+      this.integrationCapability?.sourceEngines,
     );
   }
 
