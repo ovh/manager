@@ -13,7 +13,7 @@
     "packages/manager/tools/*"
   ],
   "scripts": {
-    "build": "node scripts/build.js",
+    "build": "yarn run build:turbo",
     "build:turbo": "turbo run build",
     "dev": "turbo run dev",
     "clean": "lerna clean -y && yarn run clean:dist && rimraf node_modules",
