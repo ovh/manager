@@ -77,20 +77,20 @@ export default /* @ngInject */ ($stateProvider) => {
       upgradeInfo: /* @ngInject */ (
         $q,
         configurationTile,
-        serviceName,
+        serviceInfos,
         upgradeSuccess,
         upgradeType,
         vpsUpgrade,
+        defaultPaymentMethod,
       ) => {
         if (upgradeSuccess) {
           return true;
         }
-
         return vpsUpgrade
           .getUpgrade(
-            serviceName,
-            get(configurationTile.upgrades, `${upgradeType}.plan.planCode`),
-            { quantity: 1 },
+            serviceInfos.serviceId,
+            get(configurationTile.upgrades, `${upgradeType}.plan`),
+            defaultPaymentMethod != null,
           )
           .catch((error) => {
             if (error.status === 400) {

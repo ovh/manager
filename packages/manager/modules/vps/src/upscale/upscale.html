@@ -233,7 +233,7 @@
         </oui-step-form>
         <oui-step-form
             header="{{:: 'vps_upscale_user_conditions_agreements' | translate }}"
-            on-focus="$ctrl.fetchUpscaleInformation($ctrl.planCode)"
+            on-focus="$ctrl.fetchUpscaleInformation()"
             loading="$ctrl.loading.getUpscaleInformation"
             editable="!$ctrl.loading.performUpscale"
             prevent-next="true"

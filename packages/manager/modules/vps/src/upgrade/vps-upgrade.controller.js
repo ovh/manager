@@ -257,7 +257,7 @@ export default class VpsUpgradeCtrl {
       })
       .then(({ availableUpgrades, availableOffers }) => {
         // map available upgrades by adding details with the informations
-        // provided by /order/upgrade/vps API response
+        // provided by /services/vpsServiceId/upgrade API response
         const availableUpgrade = map(availableUpgrades, (upgradeParam) => {
           const upgrade = upgradeParam;
           upgrade.isCurrentOffer = false;
