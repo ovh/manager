@@ -27,7 +27,7 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
         load: () => {
           this.isLoading = true;
           return this.OrderPrivateBandwidthService.getBareMetalPrivateBandwidthOptions(
-            this.serverName,
+            this.serviceId,
           )
             .then((plans) => {
               this.plans = BmServerComponentsOrderPrivateBandwidthCtrl.getValidBandwidthPlans(
@@ -62,8 +62,9 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
         load: () => {
           this.isLoading = true;
           return this.OrderPrivateBandwidthService.getBareMetalPrivateBandwidthOrder(
-            this.serverName,
+            this.serviceId,
             this.model.plan,
+            this.getServiceUpgradeParams(),
           )
             .then((res) => {
               res.bandwidth = find(this.plans, {
@@ -108,9 +109,9 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
       this.isLoading = true;
       this.atTrack(`${this.trackingPrefix}confirm`);
       return this.OrderPrivateBandwidthService.bareMetalPrivateBandwidthPlaceOrder(
-        this.serverName,
+        this.serviceId,
         this.model.plan,
-        this.region === 'US' || this.model.autoPay,
+        this.getServiceUpgradeParams(),
       )
         .then((result) => {
           this.model.orderUrl = result.order.url;
@@ -126,6 +127,20 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
     this.$window.open(this.model.orderUrl, '_blank');
   }
 
+  static getIntervalUnit(duration) {
+    switch (duration.slice(-1)) {
+      case 'h': {
+        return 'hour';
+      }
+      case 'Y': {
+        return 'year';
+      }
+      default: {
+        return 'month';
+      }
+    }
+  }
+
   static getValidBandwidthPlans(plans) {
     const list = map(plans, (plan) => {
       // Not to include already included plans (existing plan)
@@ -137,6 +152,17 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
         return {
           ...plan,
           bandwidth,
+          prices: plan.prices.map((price) => {
+            if (price.capacities.includes('renew')) {
+              return {
+                ...price,
+                intervalUnit: BmServerComponentsOrderPrivateBandwidthCtrl.getIntervalUnit(
+                  price.duration,
+                ),
+              };
+            }
+            return price;
+          }),
         };
       }
       return null;
@@ -158,5 +184,18 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
         message,
       });
     }
+  }
+
+  getServiceUpgradeParams() {
+    const { duration, pricingMode } = this.plans
+      .find(({ planCode }) => planCode === this.model.plan)
+      ?.prices?.find(({ capacities }) => capacities.includes('renew'));
+    return {
+      autoPayWithPreferredPaymentMethod:
+        this.region === 'US' || this.model.autoPay,
+      duration,
+      pricingMode,
+      quantity: 1,
+    };
   }
 }
