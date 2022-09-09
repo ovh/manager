@@ -200,7 +200,7 @@ export default class SupportNewIssuesFormController {
     if (this.bindings.service.exists) {
       this.bindings.service.isUnknown = isEmpty(this.bindings.service.values);
 
-      if (this.bindings.service.values.length === 1) {
+      if (this.bindings.service.values?.length === 1) {
         this.bindings.service.value = head(this.bindings.service.values);
       }
     }
