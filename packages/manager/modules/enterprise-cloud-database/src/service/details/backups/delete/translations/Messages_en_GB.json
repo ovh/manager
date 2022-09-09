@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_backups_delete_confirmation": "Are you sure you want to delete your backup: {{ name }}?",
-  "enterprise_cloud_database_backups_delete_title": "Delete backup",
-  "enterprise_cloud_database_backups_delete_success": "Request to delete backup {{ name }} taken and it will be deleted shortly.",
-  "enterprise_cloud_database_backups_delete_error": "Unable to delete backup: {{ message }}"
-}

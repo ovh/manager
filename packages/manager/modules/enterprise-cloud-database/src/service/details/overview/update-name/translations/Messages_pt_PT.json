@@ -1,5 +1,0 @@
-{
-  "enterprise_cloud_database_name_change_title": "Atualizar o nome do cluster",
-  "enterprise_cloud_database_name_change_success": "Nome do cluster atualizado com êxito",
-  "enterprise_cloud_database_name_change_error": "Não é possível atualizar o nome: {{ message }}"
-}

@@ -1,7 +1,0 @@
-{
-  "price_ht_label": "{{ price }} s/IVA",
-  "price_ttc_label": "{{ price }} IVA incl.",
-  "price_free": "Incluído",
-  "price_gst_excl_label": "{{ price }} + IVA",
-  "price_gst_incl_label": "{{ price }} c/ IVA incl."
-}

@@ -1,7 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_settings_create_security_group_title": "Dodanie grupy zabezpieczeń",
-  "enterprise_cloud_database_service_details_settings_create_security_group_description": "Grupy zabezpieczeń umożliwiają zgromadzenie kilku reguł zabezpieczeń, co ułatwia zarządzanie.",
-  "enterprise_cloud_database_service_details_settings_create_security_group_choose_group_name": "Wybierz nazwę",
-  "enterprise_cloud_database_service_details_settings_create_security_group_success": "Grupa zabezpieczeń została dodana.",
-  "enterprise_cloud_database_service_details_settings_create_security_group_error": "Wystąpił błąd podczas tworzenia grupy zabezpieczeń: {{message}}"
-}

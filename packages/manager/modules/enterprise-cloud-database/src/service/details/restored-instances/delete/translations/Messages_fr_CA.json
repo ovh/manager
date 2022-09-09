@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_restored_instance_delete_confirmation": "Êtes-vous sur de vouloir supprimer la restauration : {{ restoredInstance }} ?",
-  "enterprise_cloud_database_restored_instance_delete_title": "Supprimer la restauration",
-  "enterprise_cloud_database_restored_instance_delete_success": "La restauration suivante est en cours de suppression : {{ instanceId }}",
-  "enterprise_cloud_database_restored_instance_delete_error": "Impossible de supprimer la restauration : {{ message }}"
-}

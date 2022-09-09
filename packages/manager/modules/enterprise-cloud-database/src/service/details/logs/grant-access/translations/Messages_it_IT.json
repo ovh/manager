@@ -1,9 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_logs_grant_access_title": "Autorizza l’accesso",
-  "enterprise_cloud_database_service_details_logs_grant_access_description": "Autorizza gratuitamente l’accesso a OVHcloud Logs Data Platform per permettere la consultazione dei log del cluster",
-  "enterprise_cloud_database_service_details_logs_grant_access_label": "Inserisci il nome utente OVHcloud Logs Data Platform",
-  "enterprise_cloud_database_service_details_logs_grant_access_note": "Nota",
-  "enterprise_cloud_database_service_details_logs_grant_access_action": "Autorizza l’accesso",
-  "enterprise_cloud_database_service_details_logs_grant_access_success": "Accesso autorizzato per l’account OVHcloud Logs Data Platform '{{ldpName}}'",
-  "enterprise_cloud_database_service_details_logs_grant_access_error": "Si è verificato un errore durante l’associazione con OVHcloud Logs Data Platform: {{message}}"
-}

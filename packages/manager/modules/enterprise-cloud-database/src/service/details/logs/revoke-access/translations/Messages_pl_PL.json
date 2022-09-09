@@ -1,8 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_logs_revoke_access_title": "Usunięcie prawa dostępu",
-  "enterprise_cloud_database_service_details_logs_revoke_access_description": "Usunięcie prawa dostępu do konta OVHcloud Logs Data Platform {{ldpName}} Po wykonaniu tej czynności konto nie będzie już miało dostępu do dzienników zdarzeń (logów).",
-  "enterprise_cloud_database_service_details_logs_revoke_access_warning": "Operacja ta nie może być anulowana.",
-  "enterprise_cloud_database_service_details_logs_revoke_access_action": "Usunięcie prawa dostępu",
-  "enterprise_cloud_database_service_details_logs_revoke_access_success": "Prawo dostępu dla konta OVHcloud Logs Data Platform {{ldpName}} zostało wycofane",
-  "enterprise_cloud_database_service_details_logs_revoke_access_error": "Wystąpił błąd podczas wycofywania dostępu do konta OVHcloud Logs Data Platform: {{message}}"
-}

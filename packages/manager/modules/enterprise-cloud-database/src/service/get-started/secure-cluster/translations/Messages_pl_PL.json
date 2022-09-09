@@ -1,8 +1,0 @@
-{
-  "enterprise_cloud_database_service_get_started_secure_cluster_name": "Zmień nazwę klastra",
-  "enterprise_cloud_database_service_get_started_secure_cluster_name_help": "Nazwa klastra musi zawierać od 1 do 255 znaków. Dozwolone są tylko duże i małe litery, znaki \"-\" lub \"_\" oraz cyfry.",
-  "enterprise_cloud_database_service_get_started_secure_cluster_name_placeholder": "Wpisz nazwę klastra",
-  "enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_title": "Reguły autoryzacji połączenia",
-  "enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_description1": "Domyślnie klaster nie akceptuje połączeń zewnętrznych.",
-  "enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_description2": "Aby zezwolić na połączenia, wprowadź co najmniej jedną regułę. Żadne inne źródła nie będą akceptowane."
-}

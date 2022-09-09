@@ -1,9 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_logs_grant_access_title": "Nadanie prawa dostępu",
-  "enterprise_cloud_database_service_details_logs_grant_access_description": "Nadaj bezpłatnie dostęp dla usługi OVHcloud Logs Data Platform i uzyskaj dostęp do dzienników zdarzeń (logami) klastra.",
-  "enterprise_cloud_database_service_details_logs_grant_access_label": "Wprowadź nazwę użytkownika OVHcloud Logs Data Platform",
-  "enterprise_cloud_database_service_details_logs_grant_access_note": "Notatka",
-  "enterprise_cloud_database_service_details_logs_grant_access_action": "Nadanie prawa dostępu",
-  "enterprise_cloud_database_service_details_logs_grant_access_success": "Prawo dostępu do OVHcloud Logs Data Platform '{{ldpName}}' zostało udzielone",
-  "enterprise_cloud_database_service_details_logs_grant_access_error": "Wystąpił błąd podczas łączenia z OVHcloud Logs Data Platform: {{message}}"
-}

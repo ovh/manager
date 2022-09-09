@@ -1,5 +1,0 @@
-{
-  "enterprise_cloud_database_service_security_group_help": "Nazwa klastra musi zawierać od 1 do 63 znaków. Dozwolone są tylko duże i małe litery, znaki \"-\" lub \"_\" oraz cyfry.",
-  "enterprise_cloud_database_service_security_group": "Grupa zabezpieczeń",
-  "enterprise_cloud_database_service_security_group_placeholder": "Nazwa grupy zabezpieczeń"
-}

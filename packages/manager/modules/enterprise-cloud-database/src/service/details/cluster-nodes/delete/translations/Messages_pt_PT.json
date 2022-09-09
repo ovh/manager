@@ -1,9 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_title": "Eliminar réplicas",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_description": "Selecionar o número de réplicas a eliminar",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_warning": "Esta ação não poderá ser anulada.",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_enter": "Introduza a palavra \"DELETE\" no seguinte campo para confirmar esta ação.",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_info": "Em caso de eliminação durante o período de compromisso, não será aplicável qualquer reembolso.",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_success": "O pedido de eliminação de {{replicaCount}} réplica(s) foi criado com êxito e está a ser tratado.",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_error": "Ocorreu um erro ao eliminar réplicas: {{message}}"
-}

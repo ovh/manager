@@ -1,7 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_settings_delete_rule_title": "Usuń regułę",
-  "enterprise_cloud_database_service_details_settings_delete_rule_description": "Czy na pewno chcesz usunąć {{source}} z listy autoryzowanych źródeł?",
-  "enterprise_cloud_database_service_details_settings_delete_rule_warning": "Czynność ta spowoduje nieodwracalne usunięcie tej reguły.",
-  "enterprise_cloud_database_service_details_settings_delete_rule_success": "Polecenie usunięcia regułuy {{source}} zostało utworzone i jest aktualnie przetwarzane.",
-  "enterprise_cloud_database_service_details_settings_delete_rule_error": "Wystąpił błąd podczas usuwania reguły : {{message}}"
-}

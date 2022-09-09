@@ -64,12 +64,5 @@ angular.module('App').config(
         '/cloud-connect',
       );
     });
-
-    $urlRouterProvider.when(/^\/enterprise-cloud-database\/service/, () => {
-      window.location.href = window.location.href.replace(
-        '/enterprise-cloud-database/service',
-        '/enterprise-cloud-database',
-      );
-    });
   },
 );

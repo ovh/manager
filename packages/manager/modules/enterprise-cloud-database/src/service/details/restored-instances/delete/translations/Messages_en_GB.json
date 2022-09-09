@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_restored_instance_delete_confirmation": "Are you sure you want to delete the following restored instance: {{ restoredInstance }}?",
-  "enterprise_cloud_database_restored_instance_delete_title": "Delete restored instance",
-  "enterprise_cloud_database_restored_instance_delete_success": "restored instance will be deleted: {{ instanceId }}",
-  "enterprise_cloud_database_restored_instance_delete_error": "Unable to delete restored instance: {{ message }}"
-}

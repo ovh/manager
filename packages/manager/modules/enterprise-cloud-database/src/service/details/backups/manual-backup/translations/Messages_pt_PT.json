@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_backups_manual_title": "Lançar um backup manual",
-  "enterprise_cloud_database_backups_manual_name": "Nome do backup",
-  "enterprise_cloud_database_backups_manual_backup_success": "O pedido de criação de backup foi criado com êxito: {{ name }}",
-  "enterprise_cloud_database_backups_manual_backup_error": "Não foi possível criar o backup: {{ message }}"
-}
