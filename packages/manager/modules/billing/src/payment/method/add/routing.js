@@ -5,7 +5,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   const name = 'app.account.billing.payment.method.add';
 
   $stateProvider.state(name, {
-    url: '/add?callbackUrl',
+    url: '/add?callbackUrl&status',
     views: {
       '@app.account.billing.payment': {
         component: component.name,
@@ -130,13 +130,34 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
               selectedPaymentMethodType?.paymentType ===
                 OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT
                 ? 'billing_payment_method_add_sepa_success'
-                : 'billing_payment_method_add_success',
+                : 'billing_payment_method_add_status_success',
             ),
           },
           get($transition$.params(), 'from', null),
         );
       },
-
+      goToPaymentListPage: /* @ngInject */ (
+        $transition$,
+        $translate,
+        goPaymentList,
+      ) => {
+        const { status } = $transition$.params();
+        const MESSAGE_TYPE = {
+          error: 'error',
+          failure: 'error',
+          pending: 'info',
+          cancel: 'error',
+          success: 'success',
+        };
+        if (status) {
+          goPaymentList({
+            type: MESSAGE_TYPE[status],
+            text: $translate.instant(
+              `billing_payment_method_add_status_${status}`,
+            ),
+          });
+        }
+      },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('billing_payment_method_add_title'),
     },

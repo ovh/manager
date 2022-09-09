@@ -25,5 +25,6 @@
   "ovh_payment_status_maintenance": "Konserwacja w trakcie",
   "ovh_payment_status_paused": "Pauza",
   "ovh_payment_status_failed": "Nieprawidłowy",
-  "ovh_payment_status_null": "Informacja niedostępna"
+  "ovh_payment_status_null": "Informacja niedostępna",
+  "ovh_payment_type_sepa_direct_debit": "Polecenie zapłaty"
 }
