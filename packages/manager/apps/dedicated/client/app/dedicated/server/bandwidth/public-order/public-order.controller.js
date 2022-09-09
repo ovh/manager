@@ -20,7 +20,7 @@ export default class {
         isLoading: () => this.isLoading,
         load: () => {
           this.isLoading = true;
-          return this.Server.getBareMetalPublicBandwidthOptions(this.serverName)
+          return this.Server.getBareMetalPublicBandwidthOptions(this.serviceId)
             .then((plans) => {
               this.plans = this.Server.getValidBandwidthPlans(plans);
               this.plans.sort(
@@ -47,8 +47,9 @@ export default class {
         load: () => {
           this.isLoading = true;
           return this.Server.getBareMetalPublicBandwidthOrder(
-            this.serverName,
+            this.serviceId,
             this.model.plan,
+            this.getServiceUpgradeParams(),
           )
             .then((res) => {
               res.bandwidth = find(this.plans, {
@@ -91,9 +92,9 @@ export default class {
       this.isLoading = true;
       this.atTrack(`${this.trackingPrefix}confirm`);
       this.Server.bareMetalPublicBandwidthPlaceOrder(
-        this.serverName,
+        this.serviceId,
         this.model.plan,
-        this.region === 'US' || this.model.autoPay,
+        this.getServiceUpgradeParams(),
       )
         .then((result) => {
           this.model.orderUrl = result.order.url;
@@ -111,5 +112,18 @@ export default class {
 
   seeOrder() {
     this.$window.open(this.model.orderUrl, '_blank');
+  }
+
+  getServiceUpgradeParams() {
+    const { duration, pricingMode } = this.plans
+      .find(({ planCode }) => planCode === this.model.plan)
+      ?.prices?.find(({ capacities }) => capacities.includes('renew'));
+    return {
+      autoPayWithPreferredPaymentMethod:
+        this.region === 'US' || this.model.autoPay,
+      duration,
+      pricingMode,
+      quantity: 1,
+    };
   }
 }
