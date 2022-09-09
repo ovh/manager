@@ -404,6 +404,15 @@ export default class DedicatedServerDashboard {
       });
   }
 
+  onMonitoringUpdateClick() {
+    this.atInternet.trackClick({
+      name: 'dedicated::dedicated-server::server::dashboard::update-monitoring',
+      type: 'action',
+    });
+
+    return this.goToMonitoringUpdate();
+  }
+
   displayMRTG() {
     return !HIDE_MRTG_FOR_SERVER_RANGES.includes(
       this.technicalDetails?.server?.range,
