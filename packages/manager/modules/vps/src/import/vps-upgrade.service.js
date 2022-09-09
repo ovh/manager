@@ -11,23 +11,45 @@ export default class VpsUpgradeService {
     this.upgradeTaskPolling = null;
   }
 
-  getAvailableUpgrades(serviceName) {
+  static getPlanUpgradeParams(plan, autoPayWithPreferredPaymentMethod) {
+    const { duration, pricingMode } =
+      plan.prices.find(({ capacities = [] }) => capacities.includes('renew')) ||
+      {};
+    return {
+      autoPayWithPreferredPaymentMethod,
+      duration,
+      pricingMode,
+      quantity: 1,
+    };
+  }
+
+  getAvailableUpgrades(serviceId) {
     return this.$http
-      .get(`/order/upgrade/vps/${serviceName}`)
+      .get(`/services/${serviceId}/upgrade`)
       .then(({ data }) => data);
   }
 
-  getUpgrade(serviceName, planCode, params) {
+  getUpgrade(serviceId, plan, autoPayWithPreferredPaymentMethod) {
     return this.$http
-      .get(`/order/upgrade/vps/${serviceName}/${planCode}`, {
-        params,
-      })
+      .post(
+        `/services/${serviceId}/upgrade/${plan.planCode}/simulate `,
+        VpsUpgradeService.getPlanUpgradeParams(
+          plan,
+          autoPayWithPreferredPaymentMethod,
+        ),
+      )
       .then(({ data }) => data);
   }
 
-  startUpgrade(serviceName, planCode, httpData) {
+  startUpgrade(serviceId, plan, autoPayWithPreferredPaymentMethod) {
     return this.$http
-      .post(`/order/upgrade/vps/${serviceName}/${planCode}`, httpData)
+      .post(
+        `/services/${serviceId}/upgrade/${plan.planCode}/execute `,
+        VpsUpgradeService.getPlanUpgradeParams(
+          plan,
+          autoPayWithPreferredPaymentMethod,
+        ),
+      )
       .then(({ data }) => data);
   }
 

@@ -392,14 +392,10 @@ export default class UpscaleController {
     this.scrollToTop();
   }
 
-  fetchUpscaleInformation(_planCode) {
+  fetchUpscaleInformation() {
     this.loading.getUpscaleInformation = true;
-    let planCode = _planCode;
-    if (!planCode) {
-      planCode = this.range.planCode;
-    }
 
-    return this.getUpscaleInformation(planCode)
+    return this.getUpscaleInformation(this.range)
       .then(({ order }) => {
         this.order = order;
         this.order.prices.withoutTax.unit = Price.UNITS.CENTS;
@@ -478,9 +474,8 @@ export default class UpscaleController {
     });
 
     this.loading.performUpscale = true;
-    const planCode = this.planCode || this.range.planCode;
 
-    return this.performUpscale(planCode)
+    return this.performUpscale(this.range)
       .then((upscaleOrder) => {
         const baseKey = this.isEliteUpgrade
           ? 'vps_upscale_elite_upgrade_success'
