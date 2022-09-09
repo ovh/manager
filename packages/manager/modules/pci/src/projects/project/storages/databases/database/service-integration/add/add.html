@@ -53,25 +53,20 @@
             data-translate-values="{serviceName: $ctrl.database.description}"
         ></p>
     </oui-message>
-
-    <div class="row">
-        <div class="col">
-            <oui-field
-                data-label="{{:: 'pci_databases_service_integration_add_type_label' | translate }}"
-            >
-                <oui-select
-                    data-model="$ctrl.integrationCapability"
-                    data-name="type"
-                    data-items="$ctrl.aggregatedIntegrationCapabilities"
-                    data-match="type"
-                    data-placeholder="{{:: 'pci_databases_service_integration_add_type_placeholder_label' | translate}}"
-                    data-on-change="$ctrl.handleIntegrationChange(modelValue)"
-                    data-required
-                >
-                </oui-select>
-            </oui-field>
-        </div>
-    </div>
+    <oui-field
+        data-label="{{:: 'pci_databases_service_integration_add_type_label' | translate }}"
+    >
+        <oui-select
+            data-model="$ctrl.integrationCapability"
+            data-name="type"
+            data-items="$ctrl.aggregatedIntegrationCapabilities"
+            data-match="type"
+            data-placeholder="{{:: 'pci_databases_service_integration_add_type_placeholder_label' | translate}}"
+            data-on-change="$ctrl.handleIntegrationChange(modelValue)"
+            data-required
+        >
+        </oui-select>
+    </oui-field>
     <div class="row">
         <div class="col">
             <oui-field
