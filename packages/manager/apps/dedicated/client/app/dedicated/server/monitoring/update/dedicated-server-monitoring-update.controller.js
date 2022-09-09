@@ -1,12 +1,23 @@
+import { MONITORING_TRACKING_PREFIX } from './dedicated-server-monitoring-update.constants';
+
 angular.module('App').controller(
   'DedicatedServerMonitoringUpdateCtrl',
   class DedicatedServerMonitoringUpdateCtrl {
-    constructor($q, $stateParams, $state, Alerter, $translate, Server) {
+    constructor(
+      $q,
+      $stateParams,
+      $state,
+      $translate,
+      atInternet,
+      Alerter,
+      Server,
+    ) {
       this.$q = $q;
       this.$stateParams = $stateParams;
       this.$state = $state;
-      this.Alerter = Alerter;
       this.$translate = $translate;
+      this.atInternet = atInternet;
+      this.Alerter = Alerter;
       this.Server = Server;
     }
 
@@ -15,19 +26,24 @@ angular.module('App').controller(
       this.isLoading = false;
       this.isUpdating = false;
       this.monitoringOptions = [
-        { status: 'disabled', settings: { monitoring: false } },
+        {
+          status: 'disabled',
+          settings: { monitoring: false },
+          tracking: 'disabled',
+        },
         {
           status: 'proactive',
           settings: { monitoring: true, noIntervention: false },
+          tracking: 'enable-with-intervention',
         },
         {
           status: 'no-proactive',
           settings: { monitoring: true, noIntervention: true },
+          tracking: 'enable-without-intervention',
         },
       ];
 
       this.isLoading = true;
-      console.log('ZM:: onInit', this);
       return this.Server.getSelected(this.$stateParams.productId)
         .then((server) => {
           this.server = server;
@@ -65,11 +81,39 @@ angular.module('App').controller(
       });
     }
 
+    trackClick(hit) {
+      return this.atInternet.trackClick({
+        name: `${MONITORING_TRACKING_PREFIX}::${hit}`,
+        type: 'action',
+      });
+    }
+
+    trackConfirmClick(hit) {
+      return this.atInternet.trackClick({
+        name: `dedicated-server::monitoring-update-confirm::${hit}`,
+        type: 'action',
+      });
+    }
+
+    trackBannerMessages(statusHit, monitoringOptionHit) {
+      return this.atInternet.trackClick({
+        name: `dedicated-server::monitoring-update-banner::${statusHit}::${monitoringOptionHit}`,
+        type: 'action',
+      });
+    }
+
+    close() {
+      return this.$state.go('^');
+    }
+
     /**
      * Update monitoring.
      * @return {Promise}
      */
     update() {
+      this.trackClick('confirm');
+      this.trackConfirmClick(this.selectedOption.tracking);
+
       const { monitoring, noIntervention } = this.selectedOption.settings;
 
       this.isUpdating = true;
@@ -79,6 +123,8 @@ angular.module('App').controller(
         noIntervention, // reset no-intervention to monitored value
       )
         .then(() => {
+          this.trackBannerMessages('success', this.selectedOption.tracking);
+
           const monitoringOption =
             !monitoring || noIntervention ? 'no-proactive' : 'proactive';
 
@@ -95,6 +141,8 @@ angular.module('App').controller(
           return this.close();
         })
         .catch((err) => {
+          this.trackBannerMessages('error', this.selectedOption.tracking);
+
           this.Alerter.error(
             this.$translate.instant(
               'server_configuration_monitoring_update_modal_update_request_failed',
@@ -109,8 +157,10 @@ angular.module('App').controller(
         });
     }
 
-    close() {
-      this.$state.go('^');
+    onCloseClick() {
+      this.trackClick('cancel');
+
+      return this.close();
     }
   },
 );
