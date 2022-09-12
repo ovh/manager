@@ -56,7 +56,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return promise;
         },
         breadcrumb: /* @ngInject */ ($translate) =>
-          $translate.instant('pci_databases_allowed_query-statistics'),
+          $translate.instant('pci_databases_allowed_query_statistics'),
       },
       atInternet: {
         ignore: true,
