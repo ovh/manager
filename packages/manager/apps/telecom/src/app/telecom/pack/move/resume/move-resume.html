@@ -240,7 +240,7 @@
             </div>
 
             <div
-                data-ng-if="$ctrl.choosedAdditionalOptions.length === 0 || (!$ctrl.offer.selected.offer.options.gtr_10ho && !$ctrl.offer.selected.offer.options.gtr_10ho.selected)"
+                data-ng-if="$ctrl.choosedAdditionalOptions.length === 0 || !$ctrl.constructor.isOneOptionSelected($ctrl.offer.selected.offer)"
             >
                 <p
                     data-translate="pack_move_confirm_new_offer_price"

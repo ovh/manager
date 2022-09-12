@@ -31,12 +31,11 @@ export default class MoveResumeCtrl {
         (option.choosedValue > 0 || option.selected === true),
     );
 
-    let gtrComfortSelected = 0;
-    angular.forEach(this.choosedAdditionalOptions, (option) => {
-      if (option.name.match(/^gtr_\d{1,2}m_/)) {
-        gtrComfortSelected = 1;
-      }
-    });
+    const gtrComfortSelected = this.choosedAdditionalOptions.some((option) =>
+      option.name.match(/^gtr_\d{1,2}m_/),
+    )
+      ? 1
+      : 0;
 
     const modemRental =
       this.offer.selected.offer.prices.modemRental.price?.value || 0;
@@ -119,6 +118,12 @@ export default class MoveResumeCtrl {
       text: priceText,
       value,
     };
+  }
+
+  static isOneOptionSelected(selectedOffer) {
+    return selectedOffer.options.some((option) => {
+      return option.name.startsWith('gtr_') && option.selected === true;
+    });
   }
 
   getFirstMensuality() {
