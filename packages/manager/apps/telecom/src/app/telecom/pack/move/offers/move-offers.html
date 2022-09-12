@@ -77,19 +77,23 @@
 
                                 <!-- Other promotion -->
                                 <div
-                                    data-ng-if="offer.prices.promotion && offer.prices.promotion.id === $ctrl.PROMO_DISPLAY.PROMO_FTTH_2020" class="oui-message oui-message_info mt-2">
-                                        <span class="oui-message__icon oui-icon oui-icon-info-circle" aria-hidden="true"></span>
-                                        <div
-                                            data-translate="pack_move_promotion_description"
-                                            data-translate-values="{ 'endDate' : (offer.prices.promotion.endDate | date : short) }"
-                                        >
-                                        </div>
-                                        <strong
-                                            data-ng-if="offer.prices.promotion.subscription.duration === $ctrl.PROMO_DISPLAY.P3M.key"
-                                            data-translate="pack_move_promotion_subscription_months_offered"
-                                            data-translate-values="{ 'duration' :  $ctrl.PROMO_DISPLAY.P3M.value }"
-                                        >
-                                        </strong>
+                                    data-ng-if="offer.prices.promotion && offer.prices.promotion.id === $ctrl.PROMO_DISPLAY.PROMO_FTTH_2020"
+                                    class="oui-message oui-message_info mt-2"
+                                >
+                                    <span
+                                        class="oui-message__icon oui-icon oui-icon-info-circle"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <div
+                                        data-translate="pack_move_promotion_description"
+                                        data-translate-values="{ 'endDate' : (offer.prices.promotion.endDate | date : short) }"
+                                    ></div>
+                                    <strong
+                                        data-ng-if="offer.prices.promotion.subscription.duration === $ctrl.PROMO_DISPLAY.P3M.key"
+                                        data-translate="pack_move_promotion_subscription_months_offered"
+                                        data-translate-values="{ 'duration' :  $ctrl.PROMO_DISPLAY.P3M.value }"
+                                    >
+                                    </strong>
                                 </div>
                             </td>
                         </tr>
@@ -149,28 +153,88 @@
                                 ></span>
 
                                 <!-- Other Promotion -->
-                                <div data-ng-if="offer.prices.promotion.id=='FTTH_MIGRATION_AND_ADRESSMOVE_2020'" class="oui-message oui-message_info mt-2">
-                                    <span class="oui-message__icon oui-icon oui-icon-info-circle" aria-hidden="true"></span>
+                                <div
+                                    data-ng-if="offer.prices.promotion.id=='FTTH_MIGRATION_AND_ADRESSMOVE_2020'"
+                                    class="oui-message oui-message_info mt-2"
+                                >
+                                    <span
+                                        class="oui-message__icon oui-icon oui-icon-info-circle"
+                                        aria-hidden="true"
+                                    ></span>
                                     <div
                                         data-translate="telecom_pack_migration_promotion_description"
                                         data-translate-values="{ 'endDate' : (offer.prices.promotion.endDate | date : short) }"
-                                    >
-                                    </div>
+                                    ></div>
                                     <strong
                                         data-translate="telecom_pack_migration_promotion_installation_fees_offered"
                                     >
                                     </strong>
-                                    <br/>
+                                    <br />
                                     <del>
                                         <span
                                             class="text-small"
-                                            data-ng-bind-html="offer.prices.promotion.installFee.discount.text | tucFormatPrice: { withoutTax: false }">
+                                            data-ng-bind-html="offer.prices.promotion.installFee.discount.text | tucFormatPrice: { withoutTax: false }"
+                                        >
                                         </span>
                                         <span
                                             data-translate="common_without_tax"
                                         ></span>
                                     </del>
                                 </div>
+                            </td>
+                        </tr>
+                        <!-- PROVIDER INFRA -->
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                scope="row"
+                                data-translate="pack_move_provider_infra_costs"
+                            ></th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                /
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <span
+                                    data-ng-if="offer.prices.providerOrange.price"
+                                    data-ng-bind-html="offer.prices.providerOrange.price.text | tucFormatPrice"
+                                ></span>
+                                <span
+                                    data-ng-if="offer.prices.providerAI.price"
+                                    data-ng-bind-html="offer.prices.providerAI.price.text | tucFormatPrice"
+                                ></span>
+                            </td>
+                        </tr>
+                        <!-- GTR Comfort fees -->
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                scope="row"
+                                data-translate="pack_move_comfort_activation"
+                            ></th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                /
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <span
+                                    data-ng-if="offer.gtrComfortActivated"
+                                    data-ng-bind-html="offer.prices.gtrComfortFees.price.text | tucFormatPrice"
+                                ></span>
                             </td>
                         </tr>
                         <tr class="table-comparison__property">
@@ -304,7 +368,7 @@
                                     data-ng-repeat="option in offer.options track by $index"
                                 >
                                     <div
-                                        data-ng-if="option.name === 'voip_line'"
+                                        data-ng-if="$ctrl.constructor.showVoipLineOption(option, offer.firstVoipLineFull)"
                                     >
                                         <strong
                                             class="d-block"
@@ -324,7 +388,7 @@
                                                 data-model="option.choosedValue"
                                                 min="0"
                                                 max="option.optional"
-                                                data-on-change="$ctrl.constructor.updateOfferDisplayedPrice(modelValue, offer, option.name, $row)"
+                                                data-on-change="$ctrl.constructor.updateOfferDisplayedPrice(modelValue, offer, option.name, $row); $ctrl.constructor.updateSelectedVoipLineOption(modelValue, offer, option)"
                                             >
                                             </oui-numeric>
                                             <span
@@ -721,12 +785,14 @@
                                 data-ng-repeat="offer in $ctrl.offers track by $index"
                             >
                                 <div
-                                    data-ng-repeat="option in offer.options track by $index"
+                                    data-ng-repeat="option in offer.options | orderBy: 'optionalPrice.value' track by $index"
                                 >
-                                    <div data-ng-if="option.name === 'gtr_ovh'">
+                                    <div
+                                        data-ng-if="$ctrl.constructor.isGtrOption(option.name)"
+                                    >
                                         <strong
                                             class="d-block"
-                                            data-translate="pack_move_gtr_available"
+                                            data-translate="{{ 'pack_move_' + option.name + '_available' }}"
                                         >
                                         </strong>
                                         <label class="d-block">
@@ -736,7 +802,8 @@
                                                 <input
                                                     type="checkbox"
                                                     data-ng-model="option.selected"
-                                                    data-ng-change="$ctrl.constructor.updateOfferDisplayedPrice(modelValue, offer, option.name)"
+                                                    data-ng-change="$ctrl.constructor.updateOfferDisplayedPrice(modelValue, offer, option.name);
+                                                                    $ctrl.constructor.updateSelectedGtrOption(modelValue, offer, option.name)"
                                                 />
                                             </div>
                                             <span
@@ -754,7 +821,7 @@
                                 </div>
                                 <strong
                                     class="d-block text-muted"
-                                    data-ng-if="!$ctrl.constructor.isOptionAvailable(offer, 'gtr_ovh')"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable(offer, 'gtr_10ho')"
                                     data-translate="pack_move_option_unavailable"
                                 >
                                 </strong>

@@ -181,14 +181,29 @@ export default class PackMoveOffersCtrl {
     let totalOfferPrice = offer.prices.price.price
       ? offer.prices.price.price.value
       : 0;
+    let optionComfort = false;
 
     offer.options.forEach((option) => {
-      if (option.name === 'gtr_ovh' && option.selected) {
-        totalOfferPrice += option.optionalPrice.value;
+      if (
+        option.name.match(/^gtr_/) &&
+        option.selected !== null &&
+        optionName.match(/^gtr_/)
+      ) {
+        let val = option.selected === true ? 1 : 0;
+        if (option.name !== optionName) {
+          val = 0;
+        } else if (
+          optionName.match(/^gtr_\d{1,2}m_/) &&
+          option.selected === true
+        ) {
+          optionComfort = true;
+        }
+        totalOfferPrice += val * option.optionalPrice.value;
+        set(offer, 'gtrComfortActivated', optionComfort);
       } else if (option.name === optionName) {
         totalOfferPrice += value * option.optionalPrice.value;
       } else if (
-        option.name !== 'gtr_ovh' &&
+        !option.name.match(/^gtr_/) &&
         !isUndefined(option.choosedValue)
       ) {
         totalOfferPrice += option.choosedValue * option.optionalPrice.value;
@@ -210,8 +225,42 @@ export default class PackMoveOffersCtrl {
     set(offer, 'displayedPrice', displayedPrice);
   }
 
+  static updateSelectedGtrOption(value, offer, optionName) {
+    angular.forEach(offer.options, (option) => {
+      if (
+        option.name.match(/^gtr_/) &&
+        option.selected !== null &&
+        optionName.match(/^gtr_/)
+      ) {
+        if (option.name !== optionName) {
+          option.selected = false; // eslint-disable-line no-param-reassign
+        }
+      }
+    });
+  }
+
   static isChosen(option) {
     return option.choosedValue > 0;
+  }
+
+  static isGtrOption(optionName) {
+    return optionName.match(/^gtr_/) ? 1 : 0;
+  }
+
+  static updateSelectedVoipLineOption(value, offer, option) {
+    if (option.optional === 2) {
+      set(offer, 'firstVoipLineFull', value);
+    }
+  }
+
+  static showVoipLineOption(option, firstVoipLineFull) {
+    if (
+      option.name === 'voip_line' &&
+      (option.optional === 2 || firstVoipLineFull === 2)
+    ) {
+      return true;
+    }
+    return false;
   }
 
   selectOffer(offer) {
