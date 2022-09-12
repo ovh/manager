@@ -1,3 +1,12 @@
+## [0.3.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.13...@ovh-ux/manager-container-app@0.3.14) (2022-09-12)
+
+
+### Bug Fixes
+
+* **container:** update react-i18n usage ([da0b884](https://github.com/ovh/manager/commit/da0b884760dfd967b63ac8a34cc04d24beb0bd98))
+
+
+
 ## [0.3.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.12...@ovh-ux/manager-container-app@0.3.13) (2022-08-31)
 
 

@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-dev-server@2.10.0...@ovh-ux/manager-webpack-dev-server@3.0.0) (2022-09-12)
+
+
+### Code Refactoring
+
+* **webpack-dev-server:** remove registry proxy ([825dc50](https://github.com/ovh/manager/commit/825dc5031e3d73c7f68e146f878e618040e05c03))
+
+
+### BREAKING CHANGES
+
+* **webpack-dev-server:** remove registry proxy
+
+
+
 # [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-dev-server@2.9.0...@ovh-ux/manager-webpack-dev-server@2.10.0) (2022-06-30)
 
 

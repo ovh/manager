@@ -1,3 +1,17 @@
+# [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server@3.0.0...@ovh-ux/manager-dev-server@4.0.0) (2022-09-12)
+
+
+### Code Refactoring
+
+* **dev-server:** remove registry proxy ([1b47b39](https://github.com/ovh/manager/commit/1b47b3916722e88e1459ae029735e6e399745065))
+
+
+### BREAKING CHANGES
+
+* **dev-server:** remove registry options
+
+
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server@2.0.0...@ovh-ux/manager-dev-server@3.0.0) (2022-03-04)
 
 
