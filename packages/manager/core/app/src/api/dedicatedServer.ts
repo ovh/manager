@@ -192,6 +192,46 @@ export async function getDedicatedServerOption(
   }
 }
 
+export async function getDedicatedServerTasks(
+  serviceName: string,
+  options: IcebergOptions,
+) {
+  return fetchIceberg<DedicatedServerTask>({
+    route: `/dedicated/server/${serviceName}/task`,
+    ...options,
+  }).then(({ totalCount, data }) => ({
+    totalCount,
+    data: data.map((task) => ({
+      ...task,
+      doneDate: new Date(task.doneDate),
+      lastUpdate: new Date(task.lastUpdate),
+      startDate: new Date(task.startDate),
+    })),
+  }));
+}
+
+export async function getDedicatedServerInterventions(
+  serviceName: string,
+  page: number,
+  pageSize: number,
+): Promise<{
+  count: number;
+  list: {
+    results: DedicatedServerIntervention[];
+  };
+}> {
+  const { data } = await apiClient.aapi.get(
+    `/sws/dedicated/server/${serviceName}/interventions`,
+    {
+      params: {
+        count: pageSize,
+        offset: (page - 1) * pageSize,
+      },
+    },
+  );
+  return data;
+}
+
 export async function getDedicatedServerOrderableBandwidthVrack(
   serviceName: string,
 ): Promise<DedicatedServerBandwidthvRackOrderable> {
