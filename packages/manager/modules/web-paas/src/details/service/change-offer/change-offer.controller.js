@@ -160,8 +160,9 @@ export default class {
     set(this.selectedProject, 'quantity', 1);
     this.getTotalPrice();
     return this.WebPaas.getUpgradeCheckoutInfo(
-      this.selectedProject.serviceId,
+      this.serviceInfo.serviceId,
       this.selectedPlan,
+      this.selectedProject.quantity,
     )
       .then(({ contracts, prices, cart }) => {
         this.cart = cart;
@@ -178,7 +179,7 @@ export default class {
     this.trackChangeOffer('confirm');
     this.orderInProgress = true;
     return this.WebPaas.checkoutUpgrade(
-      this.selectedProject.serviceId,
+      this.serviceInfo.serviceId,
       this.selectedPlan,
       this.selectedProject.quantity,
     )

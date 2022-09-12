@@ -28,6 +28,19 @@ export const commonResolves = {
       },
     );
   },
+  addOnServiceId: (WebPaas, serviceInfo, addonType) => {
+    if (addonType === ADDON_TYPE.STORAGE) {
+      return WebPaas.getAddOnServiceId(
+        serviceInfo.serviceId,
+        ADDON_TYPE.ENVIRONMENT,
+      ).then((stagingServiceId) =>
+        WebPaas.getAddOnServiceId(stagingServiceId, ADDON_TYPE.STORAGE).then(
+          (serviceId) => serviceId,
+        ),
+      );
+    }
+    return WebPaas.getAddOnServiceId(serviceInfo.serviceId, addonType);
+  },
   getOrderUrl: /* @ngInject */ () => (orderId) =>
     buildURL('dedicated', '#/billing/orders', {
       status: 'all',
