@@ -10,10 +10,12 @@
   "manager_billing_subscription_contacts_billing": "Fatturazione",
   "manager_billing_subscription_contacts_management": "Gestisci i contatti",
   "manager_billing_subscription_error": "Si è verificato un errore durante il recupero delle informazioni: {{ message }}",
-  "manager_billing_subscription_engagement_commit": "Sottoscrivi un impegno contrattuale e usufruisci di uno sconto",
-  "manager_billing_subscription_engagement_commit_again": "Sottoscrivi un nuovo impegno contrattuale e usufruisci di uno sconto",
+  "manager_billing_subscription_engagement_commit": "Impegnarsi",
+  "manager_billing_subscription_engagement_commit_again": "Riimpegnare",
   "manager_billing_subscription_engagement_status_engaged": "Termina il {{ endDate }}",
   "manager_billing_subscription_engagement_status_engaged_expired": "Terminato il {{ endDate }}",
   "manager_billing_subscription_engagement_status_engaged_renew": "Si rinnova il {{ endDate }}",
-  "manager_billing_subscription_engagement_status_commitement_pending": "L’impegno contrattuale del servizio comincerà il {{ nextBillingDate }}"
+  "manager_billing_subscription_engagement_status_commitement_pending": "L’impegno contrattuale del servizio comincerà il {{ nextBillingDate }}",
+  "manager_billing_subscription_engagement_commit_with_discount": "Sottoscrivi un impegno contrattuale e usufruisci di uno sconto",
+  "manager_billing_subscription_engagement_commit_again_with_discount": "Sottoscrivi un nuovo impegno contrattuale e usufruisci di uno sconto"
 }
