@@ -1,6 +1,6 @@
 {
   "pci_project_flavors_category_definition_balanced": "Instanzen zur allgemeinen Nutzung bieten Ihnen ein ausgewogenes Verhältnis zwischen RAM und Performance.",
-  "pci_project_flavors_category_definition_baremetal": "Die Bare-Metal-Instanzen bieten physische, auf Abruf bereite Server, die binnen weniger Minuten geliefert und auf Stunden- oder Monatsbasis abgerechnet werden.",
+  "pci_project_flavors_category_definition_baremetal": "Die Metal-Instanzen bieten physische Server on demand. Sie werden binnen weniger Minuten bereitgestellt und stündlich oder monatlich abgerechnet.",
   "pci_project_flavors_category_definition_cpu": "Instanzen mit optimierter Rechenleistung sind ideal für parallele Rechenoperationen und Anwendungen, die eine deutlich höhere CPU-Frequenz benötigen.",
   "pci_project_flavors_category_definition_ram": "Instanzen mit optimiertem Arbeitsspeicher sind perfekt für Ihre Datenbanken, Analysen und Berechnungen im Arbeitsspeicher sowie andere RAM-intensive Anwendungen.",
   "pci_project_flavors_category_definition_accelerated": "Instanzen mit beschleunigter Rechenleistung (GPU, FPGA) sind bis zu 1000 mal schneller als herkömmliche CPU bei bestimmten Anwendungen (Rendering, Video-Transkodierung, Bioinformatik, Big Data, Deep Learning etc.).",
@@ -9,7 +9,7 @@
   "pci_project_flavors_category_definition_none": "Es sind keine Modelle in dieser Kategorie verfügbar.",
   "pci_project_flavors_disk_size": "Der Speicherplatz ist geringer als der des aktuellen Modells.",
   "pci_project_flavors_spec_ram": "{{ram}} RAM",
-  "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",
+  "pci_project_flavors_spec_core_details": "{{vcores}} Cores ({{frequency}} GHz)",
   "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mbit/s",
   "pci_project_flavors_spec_nvme": "{{capacity}} NVMe",
   "pci_project_flavors_spec_nvme_multiple": "{{count}} x {{capacity}} NVMe",
@@ -19,5 +19,6 @@
   "pci_project_flavors_quota_info": "Das Quota Ihres Projekts erlaubt es nicht, eine Maschine dieser Art in dieser Region hinzuzufügen.",
   "pci_project_flavors_quota_manage": "Mein Quota verwalten.",
   "pci_project_flavors_category_new": "Neu",
-  "pci_project_flavors_category_definition_discovery": "Instanzen mit geteilten Ressourcen (Discovery) sind geeignet für Tests sowie Präproduktions-und Entwicklungsumgebungen. Ihre Performance kann im Laufe der Zeit leicht variieren."
+  "pci_project_flavors_category_definition_discovery": "Instanzen mit geteilten Ressourcen (Discovery) sind geeignet für Tests sowie Präproduktions-und Entwicklungsumgebungen. Ihre Performance kann im Laufe der Zeit leicht variieren.",
+  "pci_project_flavors_spec_vCore_details": "{{vcores}} vCores ({{frequency}} GHz)"
 }

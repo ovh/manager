@@ -1,7 +1,7 @@
 {
   "pci_project_flavors_category_new": "Nouveau",
   "pci_project_flavors_category_definition_balanced": "Les instances à usage général offrent un équilibre entre RAM et performances.",
-  "pci_project_flavors_category_definition_baremetal": "Les instances bare metal proposent des serveurs physiques à la demande, livrés en quelques minutes et facturés à l'heure ou au mois.",
+  "pci_project_flavors_category_definition_baremetal": "Les instances metal proposent des serveurs physiques à la demande, livrés en quelques minutes et facturés à l'heure ou au mois.",
   "pci_project_flavors_category_definition_cpu": "Les instances de calcul optimisé sont idéales pour les applications nécessitant des fréquences de calculs importantes ou de la parallélisation de tâches.",
   "pci_project_flavors_category_definition_ram": "Les instances à mémoire optimisée sont recommandées pour vos bases de données, analyses et calculs en mémoire, ainsi que d'autres applicatifs gourmands en RAM.",
   "pci_project_flavors_category_definition_accelerated": "Les instances de calcul accéléré (GPU, FPGA) sont jusqu'à 1 000 fois plus rapides qu'un CPU sur certaines applications (rendering, transcodage vidéo, bio-informatique, Big Data, deep learning, etc.)",
@@ -12,7 +12,8 @@
   "pci_project_flavors_disk_size": "L'espace disque est inférieur à celui du modèle actuel",
 
   "pci_project_flavors_spec_ram": "{{ram}} RAM",
-  "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",
+  "pci_project_flavors_spec_vCore_details": "{{vcores}} vCores ({{frequency}} GHz)",
+  "pci_project_flavors_spec_core_details": "{{vcores}} cores ({{frequency}} GHz)",
   "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mbit/s",
   "pci_project_flavors_spec_nvme": "{{capacity}} NVMe",
   "pci_project_flavors_spec_nvme_multiple": "{{count}} x {{capacity}} NVMe",

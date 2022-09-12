@@ -8,5 +8,6 @@
   "pci_projects_project_instances_instance_backup_success_message": "El backup {{ backup }} se está creando...",
   "pci_projects_project_instances_instance_backup_error_backup": "Se ha producido un error al crear el backup {{ backup }}: {{ message }}.",
   "pci_projects_project_instances_instance_backup_warning_iops_message": "Solo se realizará la copia de seguridad del disco raíz (sistema operativo). No se guardará ningún dato desde los periféricos NVMe. Para realizar copias de seguridad de estos datos deberá utilizar sus propias herramientas.",
-  "pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message": "El precio mostrado corresponde al precio del servicio. El recargo correspondiente a la zona de confianza (Trusted Zone) se añade a la facturación mensual global."
+  "pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message": "El precio mostrado corresponde al precio del servicio. El recargo correspondiente a la zona de confianza (Trusted Zone) se añade a la facturación mensual global.",
+  "pci_projects_project_instances_instance_backup_warning_message_baremetal": "La instancia se detendrá y entrará en modo de rescate para poder crear la copia de seguridad. Una vez realizada la copia de seguridad, la instancia se reiniciará. La duración de esta operación dependerá del tamaño de los discos."
 }
