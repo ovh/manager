@@ -141,7 +141,7 @@ export default function DashboardPage(): JSX.Element {
           name: 'cluster_redeploy',
           title: t('tile_general_item_cluster_redeploy'),
           description: () => (
-            <Link as={RouterLink} to="">
+            <Link as={RouterLink} to="redeploy">
               {t('tile_general_item_cluster_redeploy_link')} <ArrowRightIcon />
             </Link>
           ),
