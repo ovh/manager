@@ -90,10 +90,7 @@ export default class PciInstanceEditController {
   }
 
   onFlavorChange(flavorGroup) {
-    if (
-      flavorGroup &&
-      (this.instance.image || this.instance.volumes.length > 0)
-    ) {
+    if (flavorGroup) {
       const flavorType =
         this.instance?.image?.type || this.instance.flavor.osType;
       if (!this.defaultFlavor) {
@@ -113,7 +110,7 @@ export default class PciInstanceEditController {
   }
 
   canSwitchToFlex() {
-    if (this.model.flavorGroup) {
+    if (this.model.flavorGroup && this.defaultFlavor && this.instance.image) {
       return (
         this.model.flavorGroup.hasFlexOption() &&
         this.defaultFlavor.disk <=
