@@ -1,9 +1,9 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import 'whatwg-fetch';
 import 'core-js/stable';
-import { registerApplication } from '@ovh-ux/ufrontend';
+import { bootstrapApplication } from '@ovh-ux/manager-core';
 
-registerApplication('dbaas-logs').then(({ environment }) => {
+bootstrapApplication('dbaas-logs').then((environment) => {
   environment.setVersion(__VERSION__);
 
   import(`./config-${environment.getRegion()}`)

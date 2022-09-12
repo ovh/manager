@@ -1,6 +1,6 @@
 import find from 'lodash/find';
 import set from 'lodash/set';
-import { buildURL } from '@ovh-ux/ufrontend';
+import { buildURL } from '@ovh-ux/url-builder';
 import Addon from '../../addon.class';
 import { ADDON_FAMILY, ADDON_TYPE } from '../../web-paas.constants';
 

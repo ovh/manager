@@ -1,3 +1,17 @@
+# [6.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@5.0.0...@ovh-ux/manager-webpack-config@6.0.0) (2022-09-12)
+
+
+### Build System
+
+* **webpack-config:** bump @ovh-ux/manager-webpack-dev-server ([e3cfb38](https://github.com/ovh/manager/commit/e3cfb38f98f812cf681c0e10cb7c9b4f88ee17e7))
+
+
+### BREAKING CHANGES
+
+* **webpack-config:** remove registry proxy configuration
+
+
+
 # [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@4.0.5...@ovh-ux/manager-webpack-config@5.0.0) (2022-03-04)
 
 

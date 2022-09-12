@@ -1,4 +1,4 @@
-import { buildURL, buildURLs } from '@ovh-ux/ufrontend';
+import { buildURL, buildURLs } from '@ovh-ux/url-builder';
 
 export default class CoreUrlBuilder {
   /* @ngInject */

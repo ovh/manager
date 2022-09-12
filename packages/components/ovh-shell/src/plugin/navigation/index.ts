@@ -1,6 +1,6 @@
 import { Environment } from '@ovh-ux/manager-config';
-import { buildURL } from '@ovh-ux/ufrontend';
-import { ParamValueType } from '@ovh-ux/ufrontend/dist/types/url-builder';
+import { buildURL } from '@ovh-ux/url-builder';
+import { ParamValueType } from '@ovh-ux/url-builder/dist/types/url-builder';
 import { ApplicationId } from '@ovh-ux/manager-config/types/application';
 
 import ShellClient from '../../client/shell-client';

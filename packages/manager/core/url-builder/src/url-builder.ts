@@ -49,7 +49,10 @@ export const buildURL = (
   path: string,
   params: Record<string, ParamValueType>,
 ): string => {
-  let { url: buildedPath, params: queryObject } = buildURLPattern(path, params);
+  const urlPattern = buildURLPattern(path, params);
+  let { url: buildedPath } = urlPattern;
+  const { params: queryObject } = urlPattern;
+
   if (baseURL.includes('#') && buildedPath.includes('#')) {
     buildedPath = buildedPath.replace('#', '');
   }

@@ -1,8 +1,8 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import 'whatwg-fetch';
-import { registerApplication } from '@ovh-ux/ufrontend';
+import { bootstrapApplication } from '@ovh-ux/manager-core';
 
-registerApplication('metrics').then(({ environment }) => {
+bootstrapApplication('metrics').then((environment) => {
   environment.setVersion(__VERSION__);
 
   import(`./config-${environment.getRegion()}`)
