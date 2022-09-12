@@ -1,6 +1,6 @@
 {
   "pci_project_flavors_category_definition_balanced": "Le istanze per utilizzo generico offrono un buon rapporto RAM/performance.",
-  "pci_project_flavors_category_definition_baremetal": "Le istanze bare metal offrono server fisici on demand, disponibili in pochi minuti e fatturati su base oraria o mensile.",
+  "pci_project_flavors_category_definition_baremetal": "Le istanze Bare Metal offrono server fisici on demand, consegnati in pochi minuti e fatturati su base oraria o mensile.",
   "pci_project_flavors_category_definition_cpu": "Le istanze di calcolo ottimizzato sono ideali per le applicazioni che richiedono frequenze di calcolo elevate o la parallelizzazione dei task.",
   "pci_project_flavors_category_definition_ram": "Le istanze con memoria ottimizzata sono consigliate per database, analisi, calcoli in memoria e altre applicazioni che richiedono grandi quantità di RAM.",
   "pci_project_flavors_category_definition_accelerated": "Le istanze con calcolo accelerato (GPU, FPGA) hanno una velocità fino a 1.000 volte superiore rispetto a una CPU su alcune applicazioni (rendering, transcoding video, bioinformatica, Big Data, Deep Learning, ecc...)",
@@ -9,7 +9,7 @@
   "pci_project_flavors_category_definition_none": "Nessun modello disponibile per questa categoria",
   "pci_project_flavors_disk_size": "Lo spazio disco è inferiore a quello disponibile sul modello corrente",
   "pci_project_flavors_spec_ram": "{{ram}} RAM",
-  "pci_project_flavors_spec_core_details": "{{vcores}} vCore ({{frequency}} GHz)",
+  "pci_project_flavors_spec_core_details": "{{vcores}} core ({{frequency}} GHz)",
   "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mbit/s",
   "pci_project_flavors_spec_nvme": "{{capacity}} NVMe",
   "pci_project_flavors_spec_nvme_multiple": "{{count}} x {{capacity}} NVMe",
@@ -19,5 +19,6 @@
   "pci_project_flavors_quota_info": "La quota del tuo progetto non consente di aggiungere macchine di questo tipo in questa Region. ",
   "pci_project_flavors_quota_manage": "Gestisci la quota",
   "pci_project_flavors_category_new": "Nuovo",
-  "pci_project_flavors_category_definition_discovery": "Le istanze con risorse condivise (Discovery) sono adatte per le fasi di test e validazione e per gli ambienti di sviluppo. Le performance possono variare leggermente nel corso del tempo."
+  "pci_project_flavors_category_definition_discovery": "Le istanze con risorse condivise (Discovery) sono adatte per le fasi di test e validazione e per gli ambienti di sviluppo. Le performance possono variare leggermente nel corso del tempo.",
+  "pci_project_flavors_spec_vCore_details": "{{vcores}} vCore ({{frequency}} GHz)"
 }
