@@ -1,3 +1,12 @@
+## [5.88.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.88.1...@ovh-ux/manager-pci@5.88.2) (2022-09-12)
+
+
+### Bug Fixes
+
+* **instance.edit:** instance flavor edit ([#7968](https://github.com/ovh/manager/issues/7968)) ([1ab42ff](https://github.com/ovh/manager/commit/1ab42ffcd7a0076341560c985b24d77215dbfa65))
+
+
+
 ## [5.88.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.88.0...@ovh-ux/manager-pci@5.88.1) (2022-09-05)
 
 
