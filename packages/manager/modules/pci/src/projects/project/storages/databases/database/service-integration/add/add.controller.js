@@ -100,7 +100,7 @@ export default class {
     }
     return (
       includedList.includes(this.database.engine) &&
-      excludedList.includes(this.database.engine)
+      !excludedList.includes(this.database.engine)
     );
   }
 

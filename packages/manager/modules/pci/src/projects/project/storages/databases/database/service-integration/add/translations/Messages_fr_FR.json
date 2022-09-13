@@ -12,7 +12,7 @@
   "pci_databases_service_integration_add_error_no_current_service": "Vous devez selectionner le service {{serviceName}} comme source ou destination.",
   "pci_databases_service_integration_add_error_existing_integration": "Une intégration similaire existe déjà.",
   "pci_databases_service_integration_add_error_no_available_service_1": "Vous ne disposez pas de service permettant d'ajouter ce type d'intégration. Veuillez",
-  "pci_databases_service_integration_add_error_no_available_service_2": "ayant pour moteur un de ceux listés ci-dessous: ",
+  "pci_databases_service_integration_add_error_no_available_service_2": "ayant pour moteur un de ceux listés ci-dessous, ainsi qu'un type de réseau {{networkType === 'public' ? 'publique' : 'privé'}} : ",
   "pci_databases_service_integration_add_error_no_available_service_link": "ajouter un service",
   "pci_databases_service_integration_add_string_parameter_description": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points."
 }
