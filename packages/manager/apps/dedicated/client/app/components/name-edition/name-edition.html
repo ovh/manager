@@ -1,12 +1,9 @@
 <div class="oui-modal oui-modal_shadow">
-    <form
-        name="updateNameForm"
-        novalidate
-        data-ng-submit="$ctrl.updateDescription()"
-    >
+    <form name="updateNameForm" novalidate>
         <oui-modal
             data-primary-label="{{ :: 'common_change' | translate }}"
             data-primary-disabled="updateNameForm.$invalid"
+            data-primary-action="$ctrl.updateDescription()"
             data-secondary-label="{{ :: 'common_cancel' | translate }}"
             data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
             data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
