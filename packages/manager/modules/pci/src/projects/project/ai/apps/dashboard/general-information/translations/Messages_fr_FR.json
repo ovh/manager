@@ -10,6 +10,7 @@
   "pci_apps_general_information_info_app_tags_tag_add": "Ajouter un label",
   "pci_apps_general_information_info_app_tags_tag_remove_success": "Le label a bien été supprimé.",
   "pci_apps_general_information_info_app_tags_tag_remove_fail": "Une erreur est survenue lors de la suppression du label : {{ message }}.",
+  "pci_apps_general_information_info_app_probe": "Sonde de disponibilité",
   "pci_apps_general_information_info_app_env": "Environnement",
   "pci_apps_general_information_info_app_env_confidentiality": "Confidentialité",
   "pci_apps_general_information_info_app_env_confidentiality_true": "Publique",

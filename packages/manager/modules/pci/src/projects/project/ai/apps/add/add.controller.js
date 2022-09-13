@@ -34,6 +34,11 @@ export default class AppAddController {
       preset: null,
       port: 8080,
       useCase: null,
+      probe: {
+        enabled: false,
+        path: null,
+        port: 8080,
+      },
       resource: {
         nbResources: 1,
         usage: 'cpu',
@@ -87,6 +92,16 @@ export default class AppAddController {
     });
   }
 
+  static buildProbe(probe) {
+    const { enabled, path, port } = probe;
+    return enabled
+      ? {
+          path,
+          port,
+        }
+      : null;
+  }
+
   static convertAppModel(appModel) {
     const {
       name,
@@ -98,6 +113,7 @@ export default class AppAddController {
       privacy,
       replicas,
       preset,
+      probe,
     } = appModel;
 
     return {
@@ -117,6 +133,7 @@ export default class AppAddController {
           replicas,
         },
       },
+      probe: AppAddController.buildProbe(probe),
     };
   }
 

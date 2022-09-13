@@ -59,6 +59,7 @@
     oui-tooltip-placement="top"
     type="button"
     data-ng-click="$ctrl.onClickAdvancedImage()"
+    data-ng-if="$ctrl.presets.length > 0"
 >
     <span data-translate="pci_app_submit_select_image_advanced"></span>
 </button>
@@ -67,7 +68,7 @@
     data-size="xl"
     data-help-text="{{:: 'pci_app_submit_select_image_tips' | translate  }}"
     data-label="{{:: 'pci_app_submit_select_image_name' | translate }}"
-    data-ng-if="$ctrl.showAdvancedImage"
+    data-ng-if="$ctrl.showAdvancedImage || $ctrl.presets.length === 0"
 >
     <input
         class="oui-input"
