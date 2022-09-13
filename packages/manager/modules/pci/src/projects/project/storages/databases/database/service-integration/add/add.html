@@ -25,11 +25,12 @@
             </button>
             <span
                 data-translate="pci_databases_service_integration_add_error_no_available_service_2"
+                data-translate-values="{networkType: $ctrl.database.networkType}"
             ></span>
         </div>
         <ul>
             <li
-                data-ng-repeat="engine in $ctrl.expectedEngines track by id"
+                data-ng-repeat="engine in $ctrl.expectedEngines track by engine"
                 data-ng-bind="engine"
             ></li>
         </ul>

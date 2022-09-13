@@ -16,11 +16,12 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: () => null,
         goBack: /* @ngInject */ (goBackToServiceIntegration) =>
           goBackToServiceIntegration,
-        servicesList: /* @ngInject */ (DatabaseService, projectId) =>
+        servicesList: /* @ngInject */ (DatabaseService, database, projectId) =>
           DatabaseService.getAllDatabases(projectId).then((databases) =>
             databases
               .map((db) => new Database(db))
-              .filter((db) => db.isActive()),
+              .filter((db) => db.isActive())
+              .filter((db) => db.networkType === database.networkType),
           ),
       },
       atInternet: {
