@@ -1,4 +1,8 @@
-import { APP_LABELS, APP_PRIVACY_SETTINGS } from '../../add.constants';
+import {
+  APP_LABELS,
+  APP_PRIVACY_SETTINGS,
+  APP_PROBE,
+} from '../../add.constants';
 import { nameGenerator } from '../../../../../data-processing/data-processing.utils';
 
 export default class AppConfigurationController {
@@ -9,6 +13,7 @@ export default class AppConfigurationController {
   constructor() {
     this.APP_LABELS = APP_LABELS;
     this.APP_PRIVACY_SETTINGS = APP_PRIVACY_SETTINGS;
+    this.APP_PROBE = APP_PROBE;
   }
 
   $onInit() {

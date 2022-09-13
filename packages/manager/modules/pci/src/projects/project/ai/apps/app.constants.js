@@ -49,6 +49,15 @@ export const APP_STORAGE_INFO = {
   CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/data/',
 };
 
+export const APP_DOCKER_IMAGE_PORTFOLIO = {
+  DEFAULT: 'https://docs.ovh.com/gb/en/publiccloud/ai/deploy/apps-portfolio',
+};
+
+export const APP_CUSTOM_DOCKER_IMAGE_DOC = {
+  DEFAULT:
+    'https://docs.ovh.com/gb/en/publiccloud/ai/deploy/build-use-custom-image',
+};
+
 export const APP_MULTIPLY_SIGN = ' × ';
 
 export default {
@@ -60,5 +69,7 @@ export default {
   APP_STORAGE_INFO,
   APP_POLLER_NAMESPACES,
   APP_FRAMEWORK_INFO,
+  APP_DOCKER_IMAGE_PORTFOLIO,
+  APP_CUSTOM_DOCKER_IMAGE_DOC,
   APP_MULTIPLY_SIGN,
 };

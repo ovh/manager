@@ -1,3 +1,7 @@
+export const APP_IMAGE = {
+  PLACEHOLDER: 'ovhcom/ai-deploy-hello-world:latest',
+};
+
 export const APP_LABELS = {
   MAX_CHARS: 15,
   MAX_ITEMS: 10,
@@ -17,7 +21,16 @@ export const APP_ATTACH_STORAGE = {
   MAX_VOLUMES: 10,
 };
 
+export const APP_PROBE = {
+  MIN_PATH_LENGTH: 1,
+  MAX_PATH_LENGTH: 1000,
+  PATH_REGEX: '^[a-zA-Z0-9._-/]+$',
+  MIN_PORT: 1024,
+  MAX_PORT: 65535,
+};
+
 export default {
+  APP_IMAGE,
   APP_LABELS,
   APP_PRIVACY_SETTINGS,
 };
