@@ -192,14 +192,104 @@
                 data-heading="{{:: 'pci_apps_general_information_resources_title' | translate }}"
                 data-loading="$ctrl.loading.instance"
             >
+                <!-- Scaling -->
                 <oui-tile-definition
-                    data-term="{{:: 'pci_apps_general_information_replicas' | translate }}"
+                    data-term="{{:: 'pci_apps_general_information_scaling' | translate}}"
                 >
                     <oui-tile-description>
-                        {{ :: $ctrl.app.replicas }}
+                        <!-- static -->
+                        <span ng-if="$ctrl.app.spec.scalingStrategy.fixed">
+                            <div
+                                class="d-flex justify-content-between align-items-center"
+                            >
+                                <span
+                                    data-translate="pci_apps_general_information_scaling_static"
+                                ></span>
+                                <button
+                                    class="oui-button oui-button_ghost"
+                                    data-ng-click="$ctrl.staticScaling = !$ctrl.staticScaling"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-pen"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </div>
+                            <ul>
+                                <li>
+                                    <span
+                                        data-translate="pci_apps_general_information_replicas"
+                                    ></span>
+                                    <span
+                                        data-ng-bind="$ctrl.app.spec.scalingStrategy.fixed.replicas"
+                                    ></span>
+                                </li>
+                            </ul>
+                        </span>
+                        <!-- autoscaling -->
+                        <span ng-if="$ctrl.app.spec.scalingStrategy.automatic">
+                            <div
+                                class="d-flex justify-content-between align-items-center"
+                            >
+                                <span
+                                    data-translate="pci_apps_general_information_scaling_static"
+                                ></span>
+                                <button
+                                    class="oui-button oui-button_ghost"
+                                    data-ng-click="$ctrl.staticScaling = !$ctrl.staticScaling"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-pen"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </div>
+                            <ul>
+                                <li>
+                                    <span
+                                        data-translate="pci_apps_general_information_min_replicas"
+                                    ></span>
+                                    <span
+                                        data-ng-bind="$ctrl.app.spec.scalingStrategy.automatic.replicasMin"
+                                    ></span>
+                                </li>
+                                <li>
+                                    <span
+                                        data-translate="pci_apps_general_information_max_replicas"
+                                    ></span>
+                                    <span
+                                        data-ng-bind="$ctrl.app.spec.scalingStrategy.automatic.replicasMax"
+                                    ></span>
+                                </li>
+                                <li class="align-bottom">
+                                    <span
+                                        data-translate="pci_apps_general_information_trigger_resource"
+                                    ></span>
+                                    <span
+                                        data-ng-bind="$ctrl.app.spec.scalingStrategy.automatic.resourceType"
+                                    ></span>
+                                    <span
+                                        data-ng-if="$ctrl.app.spec.scalingStrategy.automatic.resourceType === 'CPU'"
+                                        class="oui-icon oui-icon-component_concept"
+                                    ></span>
+                                    <span
+                                        data-ng-if="$ctrl.app.spec.scalingStrategy.automatic.resourceType === 'RAM'"
+                                        class="oui-icon oui-icon-ram_concept"
+                                    ></span>
+                                </li>
+                                <li>
+                                    <span
+                                        data-translate="pci_apps_general_information_trigger_resource_threshold"
+                                    ></span>
+                                    <span
+                                        data-ng-bind="$ctrl.app.spec.scalingStrategy.automatic.averageUsageTarget"
+                                    ></span>
+                                    <span>%</span>
+                                </li>
+                            </ul>
+                        </span>
                     </oui-tile-description>
                 </oui-tile-definition>
-                <!--Resource quantity-->
                 <oui-tile-definition
                     data-term="{{:: 'pci_apps_general_information_resources_quantity' | translate }}"
                 >

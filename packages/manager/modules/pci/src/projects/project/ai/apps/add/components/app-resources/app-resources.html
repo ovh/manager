@@ -147,23 +147,123 @@
         ></oui-numeric>
     </oui-field>
 
+    <p class="oui-heading_5 mb-2">
+        <strong data-translate="pci_app_add_resources_scaling"></strong>
+    </p>
+
+    <div class="mb-2">
+        <span data-translate="pci_app_add_resources_scaling_description"></span>
+        <a href="">
+            <span
+                data-translate="pci_app_add_resources_scaling_description_link"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </div>
+
     <oui-field
+        label="{{:: 'pci_app_add_resources_scaling_switch_label' | translate}}"
+    >
+        <oui-switch model="$ctrl.appModel.scalingStrategy.autoscaling">
+        </oui-switch>
+        <strong
+            class="d-inline-block mx-2"
+            data-ng-bind="($ctrl.appModel.scalingStrategy.autoscaling ? 'pci_app_add_resources_scaling_switch_label_enabled':'pci_app_add_resources_scaling_switch_label_disabled') | translate"
+        >
+        </strong>
+    </oui-field>
+
+    <oui-field
+        data-ng-if="!$ctrl.appModel.scalingStrategy.autoscaling"
         class="mt-2"
-        data-label="{{:: 'pci_app_add_resources_replicas' | translate}}"
-        data-help-text="{{:: 'pci_app_add_resources_replicas_help_text' | translate}}"
+        data-label="{{:: 'pci_app_add_resources_scaling_replicas' | translate}}"
+        data-help-text="{{:: 'pci_app_add_resources_scaling_replicas_help_text' | translate}}"
     >
         <oui-numeric
             name="replicas"
-            data-model="$ctrl.appModel.replicas"
-            data-min="1"
-            data-max="$ctrl.RESOURCES_REPLICAS_MAX_FLAVOR"
+            data-model="$ctrl.appModel.scalingStrategy.fixed.replicas"
+            data-min="$ctrl.APP_SCALING_SETTINGS.FIXED.MIN_REPLICAS"
+            data-max="$ctrl.APP_SCALING_SETTINGS.FIXED.MAX_REPLICAS"
+            data-required
         ></oui-numeric>
     </oui-field>
 
+    <div data-ng-if="$ctrl.appModel.scalingStrategy.autoscaling">
+        <!-- min replicas-->
+        <oui-field
+            class="mt-2 col"
+            data-label="{{:: 'pci_app_add_resources_scaling_min_replicas' | translate}}"
+        >
+            <oui-numeric
+                name="replicasMin"
+                data-model="$ctrl.appModel.scalingStrategy.automatic.replicasMin"
+                data-min="$ctrl.APP_SCALING_SETTINGS.AUTOMATIC.MIN_MIN_REPLICAS"
+                data-max="$ctrl.APP_SCALING_SETTINGS.AUTOMATIC.MAX_MIN_REPLICAS"
+                data-required
+            ></oui-numeric>
+        </oui-field>
+        <!-- max replicas-->
+        <oui-field
+            class="mt-2 col"
+            data-label="{{:: 'pci_app_add_resources_scaling_max_replicas' | translate}}"
+        >
+            <oui-numeric
+                name="replicasMax"
+                data-model="$ctrl.appModel.scalingStrategy.automatic.replicasMax"
+                data-min="$ctrl.appModel.scalingStrategy.automatic.replicasMin"
+                data-max="$ctrl.APP_SCALING_SETTINGS.AUTOMATIC.MAX_MAX_REPLICAS"
+                data-required
+            ></oui-numeric>
+        </oui-field>
+        <!-- resource -->
+        <oui-field
+            class="mt-2 col"
+            data-label="{{:: 'pci_app_add_resources_scaling_trigger_resource' | translate}}"
+            data-help-text="{{:: 'pci_app_add_resources_scaling_trigger_resource_help_text' | translate}}"
+        >
+            <oui-radio-group
+                name="resourceType"
+                data-model="$ctrl.appModel.scalingStrategy.automatic.resourceType"
+                data-required
+            >
+                <oui-radio
+                    data-ng-repeat="resource in $ctrl.AUTOMATIC_SCALING_RESOURCE_TYPES track by $index"
+                    data-inline
+                    data-value="resource"
+                >
+                    <span data-ng-bind="resource"></span>
+                </oui-radio>
+            </oui-radio-group>
+        </oui-field>
+        <!-- threshold -->
+        <oui-field
+            class="mt-2 col"
+            data-label="{{:: 'pci_app_add_resources_scaling_trigger_threshold' | translate}}"
+            data-help-text="{{:: 'pci_app_add_resources_scaling_trigger_threshold_help_text' | translate}}"
+        >
+            <oui-numeric
+                name="threshold"
+                data-model="$ctrl.appModel.scalingStrategy.automatic.averageUsageTarget"
+                data-min="$ctrl.APP_SCALING_SETTINGS.AUTOMATIC.MIN_THRESHOLD"
+                data-max="$ctrl.APP_SCALING_SETTINGS.AUTOMATIC.MAX_THRESHOLD"
+                data-required
+            ></oui-numeric>
+        </oui-field>
+        <!-- price alert-->
+        <oui-message data-type="warning"
+            ><span
+                data-translate="pci_app_add_resources_scaling_price_warning"
+            ></span
+        ></oui-message>
+    </div>
+
     <p data-translate="pci_app_add_resources_total"></p>
     <ovh-manager-catalog-price
-        data-price="($ctrl.resourcePriceInUcents + $ctrl.partnerPriceInUcents) * $ctrl.appModel.resource.nbResources * $ctrl.appModel.replicas"
-        data-tax="($ctrl.resourcePriceTax + $ctrl.partnerPriceTax) * $ctrl.appModel.resource.nbResources * $ctrl.appModel.replicas"
+        data-price="$ctrl.price"
+        data-tax="$ctrl.tax"
         data-user="$ctrl.user"
         data-show-zero-price="true"
         data-interval="'hour'"
