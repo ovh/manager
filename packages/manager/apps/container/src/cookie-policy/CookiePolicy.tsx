@@ -33,6 +33,11 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
     trackingPlugin.setRegion(environment.getRegion());
     trackingPlugin.init();
 
+    trackingPlugin.trackClick({
+      type: 'action',
+      name: 'cookie-banner-manager::accept',
+    });
+
     setShow(false);
   };
 
@@ -84,7 +89,13 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
   };
 
   return (
-    <Modal size="lg" show={show} backdrop="static" keyboard={false} animation={false}>
+    <Modal
+      size="lg"
+      show={show}
+      backdrop="static"
+      keyboard={false}
+      animation={false}
+    >
       <Modal.Body>
         <div className="cookie-policy-modal p-1">
           <div className="img-wrapper w-100 d-flex justify-content-center align-items-center">
