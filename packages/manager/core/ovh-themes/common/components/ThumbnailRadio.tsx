@@ -67,13 +67,12 @@ export const ThumbnailRadio = forwardRef<ThumbnailRadioProps, 'input'>(
 
     return (
       <chakra.label
-        {...getRootProps()}
+        {...getRootProps(radioProps)}
         __css={styles.container}
         display="block"
         paddingTop={0}
-        {...getCheckboxProps(props)}
       >
-        <input {...inputProps} hidden />
+        <input {...inputProps} />
 
         <Box margin={6}>
           <chakra.p {...getLabelProps()} __css={styles.label} margin={0}>
