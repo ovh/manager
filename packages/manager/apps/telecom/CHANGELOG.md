@@ -1,3 +1,12 @@
+## [13.44.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.44.1...@ovh-ux/manager-telecom@13.44.2) (2022-09-14)
+
+
+### Bug Fixes
+
+* **telecom:** display correct unit for megabits per second ([#7864](https://github.com/ovh/manager/issues/7864)) ([55c7e9f](https://github.com/ovh/manager/commit/55c7e9f304aa137385460e7908eed53b2d215255))
+
+
+
 ## [13.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.44.0...@ovh-ux/manager-telecom@13.44.1) (2022-09-05)
 
 
