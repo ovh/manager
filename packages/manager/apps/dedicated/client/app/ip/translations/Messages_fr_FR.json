@@ -1,5 +1,6 @@
 {
   "module_ip_dashboard_title": "Gérer les IPs",
+  "module_ip_dashboard_order_IP_action_label": "Commander une IP",
   "ip_dashboard_error": "Une erreur est survenue lors du chargement de vos informations.",
   "ip_services_error": "Une erreur est survenue lors du chargement de ces services : {{t0}}. Veuillez réessayer plus tard.",
   "ip_block_error": "Une erreur est survenue lors du chargement des informations de {{t0}}.",
@@ -485,7 +486,7 @@
   "ip_order_finish_error": "Une erreur est survenue lors de la commande d'IPs additionnelles.",
   "ip_order_free_activation_fee": "Pour les serveurs dont l'abonnement des IPs additionnelles est offert, ces frais d'activation ne seront pas refacturés à l'issu du renouvellement du serveur.",
   "ip_organisation_title": "Gérer mes organisations",
-  "ip_organisation_button": "Gérer mes organisations",
+  "ip_organisation_button": "Gérer mes organisation",
   "ip_organisation_table_organisation": "Organisation",
   "ip_organisation_table_type": "Type",
   "ip_organisation_table_lastname": "Nom",
