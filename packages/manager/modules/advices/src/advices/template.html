@@ -19,8 +19,8 @@
                     data-ng-bind="advice.localizedDescription"
                 ></span>
                 <oui-tile-button
-                    data-href="{{ ::advice.href }}"
-                    data-ng-click="$ctrl.onClick(advice)"
+                    data-href="{{:: advice.href || advice.url }}"
+                    data-on-click="$ctrl.onClick(advice)"
                     aria-label="{{ ::advice.ariaLabel || advice.localizedName }}"
                     external="advice.external"
                     top="!advice.external"
