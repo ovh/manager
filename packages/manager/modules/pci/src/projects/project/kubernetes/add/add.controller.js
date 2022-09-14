@@ -3,6 +3,7 @@ import get from 'lodash/get';
 import some from 'lodash/some';
 
 import Datacenter from '../../../../components/project/regions-list/datacenter.class';
+import { NAME_INPUT_CONSTRAINTS } from '../kubernetes.constants';
 import { KUBE_CONTAINER_MESSAGES } from './add.constants';
 
 export default class {
@@ -22,6 +23,7 @@ export default class {
     this.Kubernetes = Kubernetes;
     this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
 
+    this.inputConstraints = NAME_INPUT_CONSTRAINTS;
     this.KUBE_CONTAINER_MESSAGES = KUBE_CONTAINER_MESSAGES;
   }
 

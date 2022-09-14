@@ -14,6 +14,7 @@
         <oui-field
             data-size="m"
             data-label="{{:: 'kube_add_node_pool_name_label' | translate }}"
+            data-error-messages="{'pattern' : ('kube_add_node_pool_name_input_pattern_validation_error' | translate)}"
         >
             <input
                 class="oui-input"
@@ -21,9 +22,8 @@
                 id="name"
                 name="name"
                 data-ng-model="$ctrl.nodePool.name"
-                required
-                maxlength="50"
-                data-ng-pattern="$ctrl.NODE_POOL_NAME_REGEX"
+                data-ng-maxlength="$ctrl.inputConstraints.MAX_LENGTH"
+                data-ng-pattern="$ctrl.inputConstraints.PATTERN"
             />
         </oui-field>
     </oui-step-form>
