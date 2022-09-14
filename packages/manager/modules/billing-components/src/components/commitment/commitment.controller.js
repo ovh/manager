@@ -73,6 +73,9 @@ export default class {
     )
       .then((availableEngagements) => {
         this.availableEngagements = availableEngagements;
+        this.hasDiscountAvailable = this.BillingService.hasDiscountAvailable(
+          this.availableEngagements,
+        );
       })
       .catch((error) => {
         this.error = error.data?.message || error.message;

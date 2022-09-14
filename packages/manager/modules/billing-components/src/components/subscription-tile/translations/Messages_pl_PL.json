@@ -10,10 +10,12 @@
   "manager_billing_subscription_contacts_billing": "Płatności",
   "manager_billing_subscription_contacts_management": "Zarządzanie kontaktami",
   "manager_billing_subscription_error": "Wystąpił błąd podczas pobierania informacji: {{message}}",
-  "manager_billing_subscription_engagement_commit": "Wybierz opcję umowy terminowej i skorzystaj z rabatu",
-  "manager_billing_subscription_engagement_commit_again": "Wybierz ponowie opcję umowy terminowej i skorzystaj z rabatu",
+  "manager_billing_subscription_engagement_commit": "Wybierz opcję umowy terminowej",
+  "manager_billing_subscription_engagement_commit_again": "Przedłuż umowę terminową",
   "manager_billing_subscription_engagement_status_engaged": "Kończy się w dniu {{endDate}}",
   "manager_billing_subscription_engagement_status_engaged_expired": "Zakończona dnia {{endDate}}",
   "manager_billing_subscription_engagement_status_engaged_renew": "Odnowienie w dniu {{endDate}}",
-  "manager_billing_subscription_engagement_status_commitement_pending": "Płatność za usługę od {{nextBillingDate}}"
+  "manager_billing_subscription_engagement_status_commitement_pending": "Płatność za usługę od {{nextBillingDate}}",
+  "manager_billing_subscription_engagement_commit_with_discount": "Wybierz opcję umowy terminowej i skorzystaj z rabatu",
+  "manager_billing_subscription_engagement_commit_again_with_discount": "Przedłuż umowę terminową i skorzystaj z rabatu"
 }

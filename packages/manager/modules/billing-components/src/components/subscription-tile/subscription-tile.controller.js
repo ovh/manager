@@ -61,11 +61,11 @@ export default class ServicesActionsCtrl {
         return this.$q.all({
           serviceInfos,
           service: this.BillingService.getService(serviceInfos.serviceId),
-          canBeEngaged: this.withEngagement
-            ? this.BillingService.getAvailableEngagement(serviceInfos.serviceId)
-                .then((availableEngagements) => availableEngagements.length > 0)
-                .catch(() => false)
-            : this.$q.when(false),
+          availableEngagements: this.BillingService.getAvailableEngagement(
+            serviceInfos.serviceId,
+          )
+            .then((availableEngagements) => availableEngagements)
+            .catch(() => []),
           hasPendingEngagement: this.withEngagement
             ? this.BillingService.getPendingEngagement(serviceInfos.serviceId)
                 .then(() => true)
@@ -73,36 +73,48 @@ export default class ServicesActionsCtrl {
             : this.$q.when(false),
         });
       })
-      .then(({ canBeEngaged, service, serviceInfos, hasPendingEngagement }) => {
-        this.service = service;
-        this.serviceInfos = new ServiceInfos({
-          ...serviceInfos,
-          id: serviceInfos.serviceId,
-          serviceId: serviceInfos.domain,
-          canBeEngaged: canBeEngaged && serviceInfos.canCommit(),
-          engagementDetails: service.billing.engagement,
+      .then(
+        ({
+          availableEngagements,
+          service,
+          serviceInfos,
           hasPendingEngagement,
-        });
-        this.commitmentLink =
-          this.goToCommit() ||
-          this.coreURLBuilder.buildURL(
-            'dedicated',
-            `#/billing/autorenew/${serviceInfos.serviceId}/commitment`,
+        }) => {
+          this.hasDiscountAvailable = this.BillingService.hasDiscountAvailable(
+            availableEngagements,
           );
-        this.isAutoCommitmentStrategy =
-          this.serviceInfos.engagementDetails?.endRule?.strategy ===
-          AUTO_COMMITMENT_STRATEGY;
-        if (
-          this.withEngagement &&
-          ServicesActionsCtrl.showCommit(
-            this.serviceInfos,
-            this.service.isEngaged(),
-            this.highlightEngagement,
-          )
-        ) {
-          this.trackImpression();
-        }
-      })
+          this.service = service;
+          this.serviceInfos = new ServiceInfos({
+            ...serviceInfos,
+            id: serviceInfos.serviceId,
+            serviceId: serviceInfos.domain,
+            canBeEngaged: this.withEngagement
+              ? availableEngagements.length > 0 && serviceInfos.canCommit()
+              : false,
+            engagementDetails: service.billing.engagement,
+            hasPendingEngagement,
+          });
+          this.commitmentLink =
+            this.goToCommit() ||
+            this.coreURLBuilder.buildURL(
+              'dedicated',
+              `#/billing/autorenew/${serviceInfos.serviceId}/commitment`,
+            );
+          this.isAutoCommitmentStrategy =
+            this.serviceInfos.engagementDetails?.endRule?.strategy ===
+            AUTO_COMMITMENT_STRATEGY;
+          if (
+            this.withEngagement &&
+            ServicesActionsCtrl.showCommit(
+              this.serviceInfos,
+              this.service.isEngaged(),
+              this.highlightEngagement,
+            )
+          ) {
+            this.trackImpression();
+          }
+        },
+      )
       .catch((error) =>
         this.onError({
           error: this.$translate.instant('manager_billing_subscription_error', {

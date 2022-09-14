@@ -10,10 +10,12 @@
   "manager_billing_subscription_contacts_billing": "Billing",
   "manager_billing_subscription_contacts_management": "Manage contacts",
   "manager_billing_subscription_error": "An error has occurred retrieving information: {{ message }}",
-  "manager_billing_subscription_engagement_commit": "Subscribe and get a discount",
-  "manager_billing_subscription_engagement_commit_again": "Re-subscribe and get a discount",
+  "manager_billing_subscription_engagement_commit": "Commit",
+  "manager_billing_subscription_engagement_commit_again": "Re-commit",
   "manager_billing_subscription_engagement_status_engaged": "Ends {{ endDate }}",
   "manager_billing_subscription_engagement_status_engaged_expired": "Ended {{ endDate }}",
   "manager_billing_subscription_engagement_status_engaged_renew": "Renews on {{endDate}}",
-  "manager_billing_subscription_engagement_status_commitement_pending": "Your service commitment will begin from {{nextBillingDate}}"
+  "manager_billing_subscription_engagement_status_commitement_pending": "Your service commitment will begin from {{nextBillingDate}}",
+  "manager_billing_subscription_engagement_commit_with_discount": "Commit and get a discount",
+  "manager_billing_subscription_engagement_commit_again_with_discount": "Re-commit and get a discount"
 }

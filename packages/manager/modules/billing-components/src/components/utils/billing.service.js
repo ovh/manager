@@ -46,6 +46,20 @@ export default class BillingService {
       );
   }
 
+  hasDiscountAvailable(availableEngagement) {
+    this.totalSavings = 0;
+    const upfront = availableEngagement.find((commitment) =>
+      commitment.isUpfront(),
+    );
+    const periodic = availableEngagement.find((commitment) =>
+      commitment.isPeriodic(),
+    );
+    if (upfront && periodic) {
+      this.totalSavings = periodic.getPriceDiff(upfront);
+    }
+    return this.totalSavings.value?.toFixed(2) > 0;
+  }
+
   getPendingEngagement(serviceId) {
     return this.$http
       .get(`/services/${serviceId}/billing/engagement/request`)

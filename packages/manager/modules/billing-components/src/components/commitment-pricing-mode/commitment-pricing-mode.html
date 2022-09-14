@@ -1,6 +1,6 @@
 <div>
     <span
-        data-ng-if="!$ctrl.isHideableDiscount && $ctrl.discount"
+        data-ng-if="!$ctrl.isHideableDiscount && $ctrl.discount && $ctrl.hasDiscount"
         data-translate="billing_commitment_payment_description"
         data-translate-values="{ discount: $ctrl.discount }"
     ></span>
@@ -23,6 +23,7 @@
                         data-translate-values="{ price: $ctrl.upfrontSavings.amountToPay }"
                     ></p>
                     <p
+                        data-ng-if="$ctrl.hasDiscount"
                         data-translate="billing_commitment_savings"
                         data-translate-values="{ price: $ctrl.upfrontSavings.amountSaved }"
                     ></p>
@@ -35,7 +36,7 @@
                         data-translate-values="{ price: engagement.pricing.monthlyPrice.text,  duration: engagement.durationInMonths}"
                     ></p>
                     <p
-                        data-ng-if="$ctrl.hasSavings()"
+                        data-ng-if="$ctrl.hasSavings() && $ctrl.hasDiscount"
                         data-translate="billing_commitment_savings"
                         data-translate-values="{ price: $ctrl.duration.savings.text }"
                     ></p>
