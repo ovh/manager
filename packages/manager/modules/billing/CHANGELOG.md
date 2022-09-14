@@ -1,3 +1,17 @@
+# [0.20.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.19.0-alpha.0...@ovh-ux/manager-billing@0.20.0-alpha.0) (2022-09-14)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([dd63f5c](https://github.com/ovh/manager/commit/dd63f5c493f54ecbcf88745659608e2982ec411e))
+
+
+### Features
+
+* **payment:** sepa integration with worldline on payments page ([#7149](https://github.com/ovh/manager/issues/7149)) ([0675f4e](https://github.com/ovh/manager/commit/0675f4e098cf3cd9fe3ac22ee9c8e8f6943d5c6e))
+
+
+
 # [0.19.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.18.0-alpha.0...@ovh-ux/manager-billing@0.19.0-alpha.0) (2022-09-01)
 
 

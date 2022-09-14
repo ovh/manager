@@ -1,3 +1,12 @@
+# [9.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.2.3...@ovh-ux/ng-ovh-payment-method@9.3.0) (2022-09-14)
+
+
+### Features
+
+* **payment:** sepa integration with worldline on payments page ([#7149](https://github.com/ovh/manager/issues/7149)) ([0675f4e](https://github.com/ovh/manager/commit/0675f4e098cf3cd9fe3ac22ee9c8e8f6943d5c6e))
+
+
+
 ## [9.2.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.2.2...@ovh-ux/ng-ovh-payment-method@9.2.3) (2022-08-22)
 
 

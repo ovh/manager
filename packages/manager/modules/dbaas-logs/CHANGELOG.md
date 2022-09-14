@@ -1,3 +1,12 @@
+## [1.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.8.1...@ovh-ux/manager-dbaas-logs@1.8.2) (2022-09-14)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([a6b7b71](https://github.com/ovh/manager/commit/a6b7b71f2d9108d429d574329e41726c9fec6edb))
+
+
+
 ## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.8.0...@ovh-ux/manager-dbaas-logs@1.8.1) (2022-09-06)
 
 

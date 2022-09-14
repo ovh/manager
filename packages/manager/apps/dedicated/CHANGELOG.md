@@ -1,3 +1,18 @@
+# [17.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.29.1...@ovh-ux/manager-dedicated@17.30.0) (2022-09-14)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([a6b7b71](https://github.com/ovh/manager/commit/a6b7b71f2d9108d429d574329e41726c9fec6edb))
+
+
+### Features
+
+* **payment:** sepa integration with worldline on payments page ([#7149](https://github.com/ovh/manager/issues/7149)) ([0675f4e](https://github.com/ovh/manager/commit/0675f4e098cf3cd9fe3ac22ee9c8e8f6943d5c6e))
+* remove enterprise-cloud-db for eol ([#7341](https://github.com/ovh/manager/issues/7341)) ([1479a20](https://github.com/ovh/manager/commit/1479a209b0507f32fa3d588d4a1ced2f31bcd393))
+
+
+
 ## [17.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.29.0...@ovh-ux/manager-dedicated@17.29.1) (2022-09-14)
 
 

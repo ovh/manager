@@ -1,3 +1,18 @@
+## [13.44.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.44.2...@ovh-ux/manager-telecom@13.44.3) (2022-09-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1820] ([d919cbd](https://github.com/ovh/manager/commit/d919cbda982798bd2003dedc53f14efce340fe9f))
+* remove unused translations [CDS] ([a6b7b71](https://github.com/ovh/manager/commit/a6b7b71f2d9108d429d574329e41726c9fec6edb))
+
+
+### Reverts
+
+* **telecom:** display correct unit for megabits per second ([0eb3bf4](https://github.com/ovh/manager/commit/0eb3bf45353c71f434af67d1e4c66ada0385df92)), closes [#7864](https://github.com/ovh/manager/issues/7864)
+
+
+
 ## [13.44.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.44.1...@ovh-ux/manager-telecom@13.44.2) (2022-09-14)
 
 
