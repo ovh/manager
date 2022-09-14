@@ -24,8 +24,7 @@
                 ></span>
             </button>
             <span
-                data-translate="pci_databases_service_integration_add_error_no_available_service_2"
-                data-translate-values="{networkType: $ctrl.database.networkType}"
+                data-ng-bind=":: 'pci_databases_service_integration_add_error_no_available_service_2_' + $ctrl.database.networkType | translate"
             ></span>
         </div>
         <ul>
