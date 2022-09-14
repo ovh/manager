@@ -1,5 +1,4 @@
 build:
-  - packages/manager/tools/!(testcafe)/**
   - scripts/**
 container:
   - packages/components/ovh-shell/**
@@ -15,8 +14,6 @@ documentation:
   - ./**/*.md
   - CONTRIBUTORS
   - MAINTAINERS
-tests:
-  - packages/manager/tools/testcafe/**
 translation required:
   - packages/**/Messages_fr_FR.json
 universe-public-cloud:

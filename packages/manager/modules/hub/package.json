@@ -12,8 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-models": "^1.0.0",
-    "@ovh-ux/testcafe-manager": "^1.0.0"
+    "@ovh-ux/manager-models": "^1.0.0"
   },
   "devDependencies": {
     "@ovh-ux/ui-kit": "^6.1.0",
