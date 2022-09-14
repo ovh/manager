@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_backups_delete_confirmation": "Tem a certeza de que quer eliminar o backup: {{ name }}?",
-  "enterprise_cloud_database_backups_delete_title": "Eliminar o backup",
-  "enterprise_cloud_database_backups_delete_success": "O seguinte backup está a ser eliminado: {{ name }}",
-  "enterprise_cloud_database_backups_delete_error": "Não foi possível eliminar o backup: {{ message }}"
-}

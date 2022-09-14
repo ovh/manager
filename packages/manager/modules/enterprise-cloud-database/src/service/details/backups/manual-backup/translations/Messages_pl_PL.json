@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_backups_manual_title": "Uruchom ręczne wykonywanie kopii zapasowych",
-  "enterprise_cloud_database_backups_manual_name": "Nazwa kopii zapasowej",
-  "enterprise_cloud_database_backups_manual_backup_success": "Zlecenie utworzenia kopii zapasowej zostało zarejestrowane: {{name}}",
-  "enterprise_cloud_database_backups_manual_backup_error": "Nie można utworzyć kopii zapasowej: {{message}}."
-}

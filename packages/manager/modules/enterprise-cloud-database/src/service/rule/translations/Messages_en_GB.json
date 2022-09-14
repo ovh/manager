@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_service_rule": "Add a rule",
-  "enterprise_cloud_database_service_rule_description": "Access restrictions on specific ports or IPv6 addresses are not currently supported",
-  "enterprise_cloud_database_service_rule_help": "Must be an IPv4 (e.g. 192.168.0.1) or a network range (e.g. 192.168.0.0/24)",
-  "enterprise_cloud_database_service_rule_placeholder": "Enter an IPv4 address or network range"
-}

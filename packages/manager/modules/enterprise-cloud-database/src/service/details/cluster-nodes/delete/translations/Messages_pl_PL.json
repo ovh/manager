@@ -1,9 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_title": "Usuń repliki",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_description": "Wybierz liczbę replik, które chcesz usunąć",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_warning": "Operacja ta nie może być anulowana.",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_enter": "Aby potwierdzić operację, wprowadź „DELETE” w poniższym polu.",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_info": "W przypadku usunięcia repliki w okresie trwania umowy koszty nie zostaną zwrócone.",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_success": "Polecenie usunięcia {{replicaCount}} repliki zostało utworzone i jest aktualnie przetwarzane.",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_error": "Wystąpił błąd podczas usuwania replik: {{message}}"
-}

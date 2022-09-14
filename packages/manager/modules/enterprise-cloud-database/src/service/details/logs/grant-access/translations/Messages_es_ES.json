@@ -1,9 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_logs_grant_access_title": "Conceder acceso",
-  "enterprise_cloud_database_service_details_logs_grant_access_description": "Conceder a la cuenta Logs Data Platform acceso gratis a los registros de eventos (logs) de su cluster.",
-  "enterprise_cloud_database_service_details_logs_grant_access_label": "Introduzca su nombre de usuario Logs Data Platform.",
-  "enterprise_cloud_database_service_details_logs_grant_access_note": "Nota",
-  "enterprise_cloud_database_service_details_logs_grant_access_action": "Conceder acceso",
-  "enterprise_cloud_database_service_details_logs_grant_access_success": "Acceso concedido a Logs Data Platform {{ldpName}}.",
-  "enterprise_cloud_database_service_details_logs_grant_access_error": "Se ha producido un error durante el emparejamiento con Logs Data Platform: {{message}}."
-}

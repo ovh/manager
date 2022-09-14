@@ -1,5 +1,5 @@
 {
-  "pci_app_add_resources_replicas": "Número de instancias en las que se desplegará su AI App",
+  "pci_app_add_resources_replicas": "Número de instancias en las que se desplegará su app.",
   "pci_app_add_resources_usecase": "Tipo de instancias",
   "pci_app_add_resources_usecase_item_cpu": "CPU",
   "pci_app_add_resources_usecase_item_gpu": "GPU",

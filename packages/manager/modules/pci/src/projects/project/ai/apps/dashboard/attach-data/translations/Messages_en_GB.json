@@ -2,7 +2,7 @@
   "pci_apps_tab_attach_data_title": "Attach data",
   "pci_apps_tab_attach_data_page_title": "Attach data containers",
   "pci_apps_tab_attach_data_page_title_git": "Attach public Git repositories",
-  "pci_apps_tab_attach_data_page_description": "If necessary, you can attach OVHcloud Object Storage containers to your AI App. Once they are attached, they will be temporarily loaded and cached near your instance, to minimise latency and improve performance. The best practice is to attach one container with your incoming data, and another with your outgoing data.",
+  "pci_apps_tab_attach_data_page_description": "If necessary, you can attach OVHcloud Object Storage containers to your app. Once they are attached, they will be temporarily loaded and cached near your instance, to minimise latency and improve performance. The best practice is to attach one container with your incoming data, and another with your outgoing data.",
   "pci_apps_tab_attach_data_page_description_link": "Learn more about data storage.",
   "pci_apps_tab_attach_data_page_volumes_column_name": "Name",
   "pci_apps_tab_attach_data_page_volumes_column_type": "Type",

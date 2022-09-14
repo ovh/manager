@@ -1,5 +1,5 @@
 {
-  "pci_app_add_review": "Configuración de su AI App",
+  "pci_app_add_review": "Configuración de su app",
   "pci_app_add_review_region": "Región",
   "pci_app_add_review_price_partner": "Precio de la licencia {{ partner }}",
   "pci_app_add_review_price_partner_free": "Gratis para {{ partner }}",

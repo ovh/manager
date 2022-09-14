@@ -1,8 +1,0 @@
-{
-  "enterprise_cloud_database_password_change_title": "Mettre à jour le mot de passe",
-  "enterprise_cloud_database_password_change_confirm": "Confirmer le mot de passe",
-  "enterprise_cloud_database_password_change_success": "Mot de passe mis à jour avec succès",
-  "enterprise_cloud_database_password_change_error": "Impossible de mettre à jour le mot de passe : {{ message }}",
-  "enterprise_cloud_database_password_change_confirm_placeholder": "Répéter le mot de passe",
-  "enterprise_cloud_database_password_change_confirm_error": "Non concordance des mots de passe"
-}

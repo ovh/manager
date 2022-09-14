@@ -1,5 +1,0 @@
-{
-  "enterprise_cloud_database_service_security_group": "Gruppo di sicurezza",
-  "enterprise_cloud_database_service_security_group_help": "Il nome del gruppo di sicurezza deve contenere tra 1 e 63 caratteri. Sono accettati esclusivamente lettere maiuscole, minuscole, numeri e i simboli “-” e “_”.",
-  "enterprise_cloud_database_service_security_group_placeholder": "Nome del gruppo di sicurezza"
-}

@@ -17,5 +17,6 @@
   "telephony_group_billing_deposit_movement_error_amount_min": "The minimum value for this field is {{ min }}.",
   "telephony_group_billing_deposit_movement_error_amount_max": "The maximum value for this field is {{ max }}.",
   "telephony_group_billing_deposit_movement_capability_error": "Oops! Unable to verify transferrable billing groups.",
-  "telephony_group_billing_deposit_movement_breadcrumb": "Transfer your security deposits"
+  "telephony_group_billing_deposit_movement_breadcrumb": "Transfer your security deposits",
+  "telephony_group_billing_deposit_movement_error_destination": "Your security deposit cannot be transferred to this group"
 }

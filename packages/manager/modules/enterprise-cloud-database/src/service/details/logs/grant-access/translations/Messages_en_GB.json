@@ -1,9 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_logs_grant_access_title": "Grant access",
-  "enterprise_cloud_database_service_details_logs_grant_access_description": "Grant access to OVH Logs Data Platform account to access this cluster logs.",
-  "enterprise_cloud_database_service_details_logs_grant_access_label": "Enter OVH Logs Data Platform service name",
-  "enterprise_cloud_database_service_details_logs_grant_access_note": "Note",
-  "enterprise_cloud_database_service_details_logs_grant_access_action": "Grant access",
-  "enterprise_cloud_database_service_details_logs_grant_access_success": "Access granted to OVH Logs Data Platform '{{ldpName}}'",
-  "enterprise_cloud_database_service_details_logs_grant_access_error": "An error occurred while granting access to OVH Logs Data Platform: {{message}}"
-}

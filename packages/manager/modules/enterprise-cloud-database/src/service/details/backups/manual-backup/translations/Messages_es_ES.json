@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_backups_manual_title": "Ejecutar una copia de seguridad manual",
-  "enterprise_cloud_database_backups_manual_name": "Nombre de la copia de seguridad",
-  "enterprise_cloud_database_backups_manual_backup_success": "La solicitud de creación de la copia de seguridad se ha creado: {{ name }}.",
-  "enterprise_cloud_database_backups_manual_backup_error": "No se ha podido crear la copia de seguridad: {{ message }}."
-}

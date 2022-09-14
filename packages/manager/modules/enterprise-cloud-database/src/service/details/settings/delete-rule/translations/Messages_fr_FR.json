@@ -1,7 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_settings_delete_rule_title": "Supprimer la règle",
-  "enterprise_cloud_database_service_details_settings_delete_rule_description": "Êtes-vous sûr de vouloir supprimer {{source}} de la liste des sources autorisées ?",
-  "enterprise_cloud_database_service_details_settings_delete_rule_warning": "Cela supprimera cette règle de manière irréversible.",
-  "enterprise_cloud_database_service_details_settings_delete_rule_success": "Requête de suppression de règle {{source}} créée avec succès et en cours de traitement",
-  "enterprise_cloud_database_service_details_settings_delete_rule_error": "Une erreur est survenue lors de la suppression de la règle : {{message}}"
-}

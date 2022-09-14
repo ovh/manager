@@ -1,8 +1,0 @@
-{
-  "enterprise_cloud_database_password_change_title": "Update password",
-  "enterprise_cloud_database_password_change_confirm": "Confirm password",
-  "enterprise_cloud_database_password_change_success": "Password updated successfully",
-  "enterprise_cloud_database_password_change_error": "Unable to update password: {{ message }}",
-  "enterprise_cloud_database_password_change_confirm_placeholder": "Repeat password",
-  "enterprise_cloud_database_password_change_confirm_error": "Password mismatch"
-}

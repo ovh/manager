@@ -1,7 +1,7 @@
 {
   "pci_apps_general_information_info_title": "Informacje ogólne",
   "pci_apps_general_information_info_app_url": "Adres URL dostępu",
-  "pci_apps_general_information_info_app_name": "Nazwa AI App",
+  "pci_apps_general_information_info_app_name": "Nazwa aplikacji",
   "pci_apps_general_information_info_app_container": "Przyłączone kontenery",
   "pci_apps_general_information_info_app_container_total": "{{ xContainer }} kontener(y/ów)",
   "pci_apps_general_information_info_app_container_swift_total": "{{ xContainer }} kontener(y/ów) Swift",
@@ -43,7 +43,7 @@
   "pci_apps_general_information_resources_quantity": "Zasoby",
   "pci_apps_general_information_resources_info": "GPU/CPU/RAM dla zasobu",
   "pci_apps_general_information_resources_local_storage": "Lokalna przestrzeń dyskowa dla zasobu",
-  "pci_apps_general_information_resources_monitoring": "Monitoring w czasie rzeczywistym AI App",
+  "pci_apps_general_information_resources_monitoring": "Monitoring aplikacji w czasie rzeczywistym",
   "pci_apps_general_information_resources_monitoring_access_to_graph": "Dostęp do dashboardów",
-  "pci_apps_general_information_snippet_title": "Korzystanie z AI App"
+  "pci_apps_general_information_snippet_title": "Korzystanie z aplikacji"
 }

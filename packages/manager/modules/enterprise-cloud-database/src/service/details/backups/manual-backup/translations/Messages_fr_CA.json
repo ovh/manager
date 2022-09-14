@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_backups_manual_title": "Lancer une sauvegarde manuelle",
-  "enterprise_cloud_database_backups_manual_name": "Nom de la sauvegarde",
-  "enterprise_cloud_database_backups_manual_backup_success": "Requête de création de sauvegarde créee avec succès : {{ name }}",
-  "enterprise_cloud_database_backups_manual_backup_error": "Impossible de créer la sauvegarde : {{ message }}"
-}

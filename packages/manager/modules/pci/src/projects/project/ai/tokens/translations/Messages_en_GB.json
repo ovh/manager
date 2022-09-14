@@ -1,9 +1,9 @@
 {
-  "pci_ai_title": "AI Apps",
-  "pci_ai_apps_title": "AI Apps",
+  "pci_ai_title": "AI Deploy",
+  "pci_ai_apps_title": "AI Deploy",
   "pci_ai_tokens_title": "Tokens",
   "pci_ai_tokens_list_title": "My AI tokens",
-  "pci_ai_tokens_description_1": "Tokens are unique authentication tokens needed to access your AI Apps, AI Notebooks and AI Jobs.",
+  "pci_ai_tokens_description_1": "AI tokens are unique authentication tokens required to access your apps, AI Notebooks and AI Jobs.",
   "pci_ai_tokens_name": "Name",
   "pci_ai_tokens_label_selector": "Label Selector",
   "pci_ai_tokens_region": "Region",

@@ -1,7 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_settings_create_security_group_title": "Aggiungi un gruppo di sicurezza",
-  "enterprise_cloud_database_service_details_settings_create_security_group_description": "I gruppi di sicurezza consentono di raggruppare più regole di sicurezza per facilitarne la gestione.",
-  "enterprise_cloud_database_service_details_settings_create_security_group_choose_group_name": "Scegli un nome",
-  "enterprise_cloud_database_service_details_settings_create_security_group_success": "Gruppo di sicurezza aggiunto correttamente",
-  "enterprise_cloud_database_service_details_settings_create_security_group_error": "Si è verificato un errore durante la creazione del gruppo di sicurezza: {{message}}"
-}
