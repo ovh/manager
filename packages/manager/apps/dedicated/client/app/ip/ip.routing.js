@@ -35,6 +35,14 @@ export default /* @ngInject */ ($stateProvider) => {
         ovhFeatureFlipping
           .checkFeatureAvailability(allowByoipFeatureName)
           .then((feature) => feature.isFeatureAvailable(allowByoipFeatureName)),
+      goToByoipConfiguration: /* @ngInject */ ($state, trackClick) => () => {
+        trackClick('bring-your-own-ip');
+        return $state.go('app.ip.byoip');
+      },
+      goToAgoraOrder: /* @ngInject */ ($state, trackPage) => () => {
+        trackPage('order');
+        return $state.go('app.ip.dashboard.agora-order');
+      },
       breadcrumb: /* @ngInject */ ($translate) => $translate.instant('ip_ip'),
     },
     atInternet: {

@@ -1,3 +1,5 @@
+import { BRING_YOUR_OWN_IP } from './ip.constant';
+
 export default /* @ngInject */ function IpMainCtrl(
   $scope,
   $timeout,
@@ -8,14 +10,18 @@ export default /* @ngInject */ function IpMainCtrl(
   currentUser,
   dashboardLink,
   goToOrganisation,
+  goToByoipConfiguration,
+  goToAgoraOrder,
 ) {
   $scope.currentUser = currentUser;
   this.currentActiveLink = currentActiveLink;
   this.dashboardLink = dashboardLink;
 
   $scope.goToOrganisation = () => goToOrganisation();
-
+  $scope.goToByoipConfiguration = goToByoipConfiguration;
+  $scope.goToAgoraOrder = goToAgoraOrder;
   $scope.worldPart = coreConfig.getRegion();
+  $scope.BRING_YOUR_OWN_IP = BRING_YOUR_OWN_IP;
 
   // ---
 
