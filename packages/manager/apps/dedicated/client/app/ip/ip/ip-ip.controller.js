@@ -126,6 +126,7 @@ export default /* @ngInject */
     ipFeatureAvailability.allowIPFailoverOrder() && orderIpAvailable;
   $scope.canOrderAgoraIPFO = () =>
     ipFeatureAvailability.allowIPFailoverAgoraOrder() && orderIpAvailable;
+  $scope.canExportCsv = () => $scope.state.loaded !== $scope.state.total;
   $scope.goToAgoraOrder = goToAgoraOrder;
   $scope.goToByoipConfiguration = goToByoipConfiguration;
 
