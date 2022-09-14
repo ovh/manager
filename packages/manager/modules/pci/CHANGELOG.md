@@ -1,3 +1,12 @@
+# [5.89.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.88.3...@ovh-ux/manager-pci@5.89.0) (2022-09-14)
+
+
+### Features
+
+* **pci.ai.apps:** rename ai apps ([#7648](https://github.com/ovh/manager/issues/7648)) ([fa57a08](https://github.com/ovh/manager/commit/fa57a08c4ff868027051d765482cccd81be97748))
+
+
+
 ## [5.88.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.88.2...@ovh-ux/manager-pci@5.88.3) (2022-09-14)
 
 

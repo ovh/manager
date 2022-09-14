@@ -1,3 +1,17 @@
+# [3.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.7...@ovh-ux/manager-server-sidebar@3.24.0) (2022-09-14)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([dd63f5c](https://github.com/ovh/manager/commit/dd63f5c493f54ecbcf88745659608e2982ec411e))
+
+
+### Features
+
+* remove enterprise-cloud-db for eol ([#7341](https://github.com/ovh/manager/issues/7341)) ([1479a20](https://github.com/ovh/manager/commit/1479a209b0507f32fa3d588d4a1ced2f31bcd393))
+
+
+
 ## [3.23.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.6...@ovh-ux/manager-server-sidebar@3.23.7) (2022-09-06)
 
 
