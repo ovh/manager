@@ -1,8 +1,8 @@
 {
-  "billing_commitment_commit": "Comprometer-se e beneficiar de um desconto",
-  "billing_commitment_commit_again": "Comprometer-se novamente e beneficiar de um desconto",
-  "billing_commitment_none": "Atualmente, não tem nenhum compromisso para o seu serviço {{ serviceName }}. A partir de hoje, pode usufruir de um desconto ao contratar o seu {{ serviceType }} com compromisso.",
-  "billing_commitment_commit_again_description": "Atualmente, tem um compromisso para o seu serviço {{ serviceName }} até {{ endDate }}. Pode continuar a beneficiar de um preço especial ao contratar novamente o seu {{ serviceType }} com compromisso.",
+  "billing_commitment_commit": "Subscrever com compromisso",
+  "billing_commitment_commit_again": "Voltar a subscrever com compromisso",
+  "billing_commitment_none": "Atualmente, não tem nenhum compromisso para o seu serviço {{ serviceName }}.",
+  "billing_commitment_commit_again_description": "Atualmente, tem um compromisso para o seu serviço {{ serviceName }} até {{ endDate }}. A partir de agora, pode prolongar o seu compromisso para o período à sua escolha.",
   "billing_commitment_service_dedicated_server": "servidor dedicado",
   "billing_commitment_duration": "Selecione uma duração de compromisso",
   "billing_commitment_duration_current_price": "Preço atual predefinido {{ price }}/mês",
@@ -25,5 +25,9 @@
   "billing_commitment_summary_description_periodic_end": "Depois de {{ endDate }}, o serviço será tacitamente reiniciado por um período semelhante ao último compromisso.",
   "billing_commitment_summary_description_upfront_end": "Depois de {{ engagementEndDate }}, o serviço {{ serviceName }} será tacitamente reiniciado por um período e uma modalidade de pagamento semelhantes ao seu último compromisso.",
   "billing_commitment_service_storage_netapp": "espaço de armazenamento Enterprise File Storage",
-  "billing_commitment_service_dedicated_nasha": "serviço de armazenamento NAS-HA"
+  "billing_commitment_service_dedicated_nasha": "serviço de armazenamento NAS-HA",
+  "billing_commitment_commit_with_discount": "Subscrever com compromisso e beneficiar de um desconto",
+  "billing_commitment_commit_again_with_discount": "Voltar a subscrever com compromisso e beneficiar de um desconto",
+  "billing_commitment_none_with_discount": "Atualmente, não tem nenhum compromisso para o seu serviço {{ serviceName }}. A partir de hoje, pode usufruir de um desconto ao contratar o seu {{ serviceType }} com compromisso.",
+  "billing_commitment_commit_again_description_with_discount": "Atualmente, tem um compromisso para o seu serviço {{ serviceName }} até {{ endDate }}. Pode continuar a beneficiar de um preço especial ao contratar novamente o seu {{ serviceType }} com compromisso."
 }
