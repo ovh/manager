@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <oui-back-button on-click="$ctrl.goBack()">
         <span
-            data-ng-if="!$ctrl.service.isEngaged()"
-            data-translate="billing_commitment_commit"
+            data-ng-if="!$ctrl.service.isEngaged() && !$ctrl.isLoadingService"
+            data-translate="{{ $ctrl.hasDiscountAvailable ? 'billing_commitment_commit_with_discount' : 'billing_commitment_commit'}}"
         ></span>
         <span
-            data-ng-if="$ctrl.service.isEngaged()"
-            data-translate="billing_commitment_commit_again"
+            data-ng-if="$ctrl.service.isEngaged() && !$ctrl.isLoadingService"
+            data-translate="{{ $ctrl.hasDiscountAvailable ? 'billing_commitment_commit_again_with_discount' : 'billing_commitment_commit_again' }}"
         ></span>
     </oui-back-button>
 
@@ -15,10 +15,10 @@
         <span data-ng-bind="$ctrl.error"></span>
     </oui-message>
 
-    <div>
+    <div data-ng-if="!$ctrl.isLoadingService">
         <p
             data-ng-if="!$ctrl.service.isEngaged() || $ctrl.service.isEngagementExpired()"
-            data-translate="billing_commitment_none"
+            data-translate="{{ $ctrl.hasDiscountAvailable ? 'billing_commitment_none_with_discount' : 'billing_commitment_none' }}"
             data-translate-values="{
                 serviceName: $ctrl.service.name,
                 serviceType:(('billing_commitment_service_' + $ctrl.service.productType) | translate)
@@ -26,7 +26,7 @@
         ></p>
         <p
             data-ng-if="$ctrl.service.isEngaged() && !$ctrl.service.isEngagementExpired()"
-            data-translate="billing_commitment_commit_again_description"
+            data-translate="{{ $ctrl.hasDiscountAvailable ? 'billing_commitment_commit_again_description_with_discount' : 'billing_commitment_commit_again_description' }}"
             data-translate-values="{
                 serviceName: $ctrl.service.name,
                 endDate: $ctrl.service.engagementEndDate || $ctrl.service.expirationDate,
@@ -68,6 +68,7 @@
                 pricing-mode="$ctrl.model.engagement"
                 pricing-modes="$ctrl.pricingModes"
                 duration="$ctrl.model.duration"
+                has-discount="$ctrl.hasDiscountAvailable"
             >
             </billing-commitment-pricing-mode>
         </oui-step-form>

@@ -74,11 +74,11 @@
             >
                 <span
                     data-ng-if="!$ctrl.service.isEngaged()"
-                    data-translate="manager_billing_subscription_engagement_commit"
+                    data-translate="{{ :: $ctrl.hasDiscountAvailable ? 'manager_billing_subscription_engagement_commit_with_discount' : 'manager_billing_subscription_engagement_commit' }}"
                 ></span>
                 <span
                     data-ng-if="$ctrl.highlightEngagement"
-                    data-translate="manager_billing_subscription_engagement_commit_again"
+                    data-translate="{{ :: $ctrl.hasDiscountAvailable ? 'manager_billing_subscription_engagement_commit_again_with_discount' : 'manager_billing_subscription_engagement_commit_again' }}"
                 ></span>
                 <span
                     class="oui-icon oui-icon-arrow-right"
