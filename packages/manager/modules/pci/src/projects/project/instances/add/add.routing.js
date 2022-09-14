@@ -41,12 +41,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
       regions: /* @ngInject */ (PciProjectsProjectInstanceService, projectId) =>
         PciProjectsProjectInstanceService.getAvailablesRegions(projectId),
-
-      cancelLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.instances', {
-          projectId,
-        }),
-
       quotaLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.quota', {
           projectId,
@@ -84,6 +78,43 @@ export default /* @ngInject */ ($stateProvider) => {
         });
 
         return EXCLUDE_FLAVOR_CATEGORIES.concat(toExclude);
+      },
+      getProductCatalog: /* @ngInject */ (
+        PciProjectsProjectInstanceService,
+        catalogEndpoint,
+        coreConfig,
+      ) =>
+        PciProjectsProjectInstanceService.getCatalog(
+          catalogEndpoint,
+          coreConfig.getUser(),
+        ).then((data) => {
+          return data.addons
+            .filter(
+              (addon) =>
+                (addon.product.startsWith('publiccloud-gateway') &&
+                  addon.planCode.startsWith('gateway.s.month.consumption')) ||
+                (addon.product.startsWith(
+                  'publiccloud-floatingip-floatingip',
+                ) &&
+                  addon.planCode.startsWith(
+                    'floatingip.floatingip.month.consumption',
+                  )),
+            )
+            .reverse();
+        }),
+      addInstanceTrackPrefix: /* @ngInject */ () =>
+        `PublicCloud::pci::projects::project::instances::`,
+      trackAddInstance: /* @ngInject */ (
+        atInternet,
+        addInstanceTrackPrefix,
+      ) => (complement, prefix = true) => {
+        const name = `${
+          prefix ? `${addInstanceTrackPrefix}` : ''
+        }${complement}`;
+        return atInternet.trackClick({
+          name,
+          type: 'action',
+        });
       },
     },
   });

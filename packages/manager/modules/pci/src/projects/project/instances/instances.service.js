@@ -305,16 +305,15 @@ export default class PciProjectInstanceService {
   }
 
   getPrivateNetworks(projectId) {
-    return this.OvhApiCloudProjectNetwork.Private()
-      .v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise.then((networks) =>
-        filter(networks, {
-          type: 'private',
-        }),
-      );
+    return this.$http
+      .get(`/cloud/project/${projectId}/network/private`)
+      .then(({ data }) => data);
+  }
+
+  getSubnets(projectId, networkId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/network/private/${networkId}/subnet`)
+      .then(({ data }) => data);
   }
 
   getPublicNetwork(projectId) {
@@ -445,7 +444,7 @@ export default class PciProjectInstanceService {
   }
 
   save(
-    projectId,
+    serviceName,
     {
       autobackup,
       flavorId,
@@ -460,11 +459,8 @@ export default class PciProjectInstanceService {
     number = 1,
   ) {
     if (number > 1) {
-      return this.OvhApiCloudProjectInstance.v6().bulk(
-        {
-          serviceName: projectId,
-        },
-        {
+      return this.$http
+        .post(`/cloud/project/${serviceName}/instance/bulk`, {
           autobackup,
           flavorId,
           imageId,
@@ -475,14 +471,11 @@ export default class PciProjectInstanceService {
           sshKeyId,
           userData,
           number,
-        },
-      ).$promise;
+        })
+        .then(({ data }) => data);
     }
-    return this.OvhApiCloudProjectInstance.v6().save(
-      {
-        serviceName: projectId,
-      },
-      {
+    return this.$http
+      .post(`/cloud/project/${serviceName}/instance`, {
         autobackup,
         flavorId,
         imageId,
@@ -492,8 +485,8 @@ export default class PciProjectInstanceService {
         region,
         sshKeyId,
         userData,
-      },
-    ).$promise;
+      })
+      .then(({ data }) => data);
   }
 
   attachPrivateNetworks(projectId, { id: instanceId }, privateNetworks) {
@@ -603,5 +596,62 @@ export default class PciProjectInstanceService {
         {},
       );
     });
+  }
+
+  getSubnetGateways(serviceName, region, subnetId) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/region/${region}/gateway`, {
+        params: {
+          subnetId,
+        },
+      })
+      .then(({ data }) => data);
+  }
+
+  getGateways(serviceName, region) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/region/${region}/gateway`)
+      .then(({ data }) => data);
+  }
+
+  getFloatingIps(serviceName, region) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/region/${region}/floatingip`)
+      .then(({ data }) => data);
+  }
+
+  getFloatingIpGateway(serviceName, region, gatewayId) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/region/${region}/gateway/${gatewayId} `,
+      )
+      .then(({ data }) => data);
+  }
+
+  createAndAttachFloatingIp(serviceName, region, instanceId, floatingIp) {
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/region/${region}/instance/${instanceId}/floatingip`,
+        floatingIp,
+      )
+      .then(({ data }) => data);
+  }
+
+  associateFloatingIp(serviceName, region, instanceId, floatingIp) {
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/region/${region}/instance/${instanceId}/associateFloatingip`,
+        floatingIp,
+      )
+      .then(({ data }) => data);
+  }
+
+  enableDhcp(serviceName, networkId, dhcpModel) {
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/network/private/${networkId}/subnet`,
+        dhcpModel,
+      )
+      .then(({ data }) => data);
   }
 }
