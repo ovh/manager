@@ -1,16 +1,21 @@
 import get from 'lodash/get';
+import { NAME_INPUT_CONSTRAINTS } from '../../../kubernetes.constants';
 
 export default class {
   /* @ngInject */
   constructor($translate, OvhApiCloudProjectKube) {
     this.$translate = $translate;
     this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
+    this.inputConstraints = NAME_INPUT_CONSTRAINTS;
   }
 
   $onInit() {
     this.isEditing = false;
+    this.name = this.cluster && this.cluster.name;
+  }
 
-    this.name = this.cluster.name;
+  isEditDisabled() {
+    return !(this.name && this.name.match(this.inputConstraints.PATTERN));
   }
 
   edit() {

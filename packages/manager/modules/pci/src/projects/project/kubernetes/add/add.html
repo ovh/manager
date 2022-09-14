@@ -181,6 +181,7 @@
             <oui-field
                 data-size="m"
                 data-label="{{:: 'kubernetes_add_name' | translate }}"
+                data-error-messages="{'pattern' : ('kubernetes_add_cluster_name_input_pattern_validation_error' | translate)}"
             >
                 <input
                     class="oui-input"
@@ -188,7 +189,8 @@
                     id="name"
                     name="name"
                     data-ng-model="$ctrl.cluster.name"
-                    required
+                    data-ng-maxlength="$ctrl.inputConstraints.MAX_LENGTH"
+                    data-ng-pattern="$ctrl.inputConstraints.PATTERN"
                 />
             </oui-field>
 
