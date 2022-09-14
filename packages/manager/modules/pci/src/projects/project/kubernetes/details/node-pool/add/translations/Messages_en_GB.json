@@ -12,5 +12,6 @@
   "kube_add_node_pool_error_InsufficientPortsQuota": "Your project’s port quota is too low to complete the operation. Please increase your quota, or request fewer resources.",
   "kube_add_node_pool_error_InsufficientInstancesQuota": "Your project’s instance quota is too low to complete the operation. Please increase your quota, or request fewer resources.",
   "kube_add_node_pool_error_quota_link": "Increase your quota.",
-  "kube_add_billing_auto_scaling_monthly_warning": "Warning: You can enable auto-scaling and monthly billing at the same time for this node pool. Each time you create a node via auto-scaling, you will be billed for one node immediately on a pro rata basis for the remaining time in the current month. We recommend avoiding this combination if you anticipate that your node pool will be reduced frequently."
+  "kube_add_billing_auto_scaling_monthly_warning": "Warning: You can enable auto-scaling and monthly billing at the same time for this node pool. Each time you create a node via auto-scaling, you will be billed for one node immediately on a pro rata basis for the remaining time in the current month. We recommend avoiding this combination if you anticipate that your node pool will be reduced frequently.",
+  "kube_add_node_pool_name_input_pattern_validation_error": "The name must start with an alphabetical character, end with an alpha-numeric character, and the only special characters allowed are hyphens and underscores."
 }
