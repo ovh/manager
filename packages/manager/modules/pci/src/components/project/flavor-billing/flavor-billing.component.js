@@ -10,5 +10,6 @@ export default {
     monthlyBilling: '=?',
     disabled: '<?',
     offer: '<?',
+    addons: '<?',
   },
 };

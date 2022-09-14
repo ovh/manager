@@ -2,5 +2,11 @@
   "pci_project_flavors_billing_hourly": "Horaire",
   "pci_project_flavors_billing_monthly": "Mensuel",
   "pci_project_flavors_billing_price_hourly": "{{price}} HT/h",
-  "pci_project_flavors_billing_price_monthly": "{{price}} HT/mois"
+  "pci_project_flavors_billing_price_hourly_price_label": "Prix :",
+  "pci_project_flavors_billing_price_monthly": "{{price}} HT/mois",
+  "pci_project_flavors_billing_addons_price_monthly": "{{price}} HT/mois",
+  "pci_project_flavors_billing_price_monthly_instance_price_label": "Instance Prix :",
+  "pci_project_flavors_billing_price_monthly_gateway_price_label": "Gateway :",
+  "pci_project_flavors_billing_price_monthly_floatingip_price_label": "Floating IP :",
+  "pci_projects_project_instances_add_total_price_label": "Total :"
 }
