@@ -1,3 +1,12 @@
+## [1.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.3.3...@ovh-ux/manager-cda@1.3.4) (2022-09-14)
+
+
+### Bug Fixes
+
+* **cda:** remove duplicate lazy loading state registration ([f16a7e3](https://github.com/ovh/manager/commit/f16a7e373f41425e4af14f3385f1105eff46b2bb))
+
+
+
 ## [1.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.3.2...@ovh-ux/manager-cda@1.3.3) (2022-08-22)
 
 

@@ -1,3 +1,12 @@
+## [17.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.29.0...@ovh-ux/manager-dedicated@17.29.1) (2022-09-14)
+
+
+### Bug Fixes
+
+* **dedicated:** server upgrade intervention date ([#7964](https://github.com/ovh/manager/issues/7964)) ([cea69b5](https://github.com/ovh/manager/commit/cea69b5458bbf7651edf925c528185625fabf43a))
+
+
+
 # [17.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.28.1...@ovh-ux/manager-dedicated@17.29.0) (2022-09-01)
 
 

@@ -1,3 +1,13 @@
+## [5.88.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.88.2...@ovh-ux/manager-pci@5.88.3) (2022-09-14)
+
+
+### Bug Fixes
+
+* **containers:** pass multipart parameter ([9b0289a](https://github.com/ovh/manager/commit/9b0289acd087ef946f8689665a6ab8cdc26e6bbc))
+* **pci.block-storage:** display correct unit ([#7951](https://github.com/ovh/manager/issues/7951)) ([ab1c071](https://github.com/ovh/manager/commit/ab1c071b0991d83f0b9f8ea5a7787451fb1793fb))
+
+
+
 ## [5.88.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.88.1...@ovh-ux/manager-pci@5.88.2) (2022-09-12)
 
 
