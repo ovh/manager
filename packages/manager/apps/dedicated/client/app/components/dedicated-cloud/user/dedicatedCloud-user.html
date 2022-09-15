@@ -281,4 +281,82 @@
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>
+
+    <h2 data-translate="dedicatedCloud_user_management_activeDirectories"></h2>
+
+    <oui-datagrid
+        id="pcc-active-directories-datagrid"
+        rows-loader="$ctrl.loadActiveDirectories($config)"
+        customizable
+    >
+        <oui-datagrid-topbar>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary float-right"
+                data-ng-click="$ctrl.refreshActiveDirectoriesGrid()"
+            >
+                <span class="oui-icon oui-icon-refresh"></span>
+            </button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_USER_AD_description' | translate"
+            data-property="description"
+            data-sortable="asc"
+            data-searchable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_USER_AD_ip' | translate"
+            data-property="ip"
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_USER_AD_ldap_hostName' | translate"
+            data-property="ldapHostname"
+            data-sortable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_USER_AD_ldap_port' | translate"
+            data-property="ldapTcpPort"
+            data-sortable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_USER_AD_domain' | translate"
+            data-property="domainName"
+            data-sortable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_USER_AD_domainAlias' | translate"
+            data-property="domainAlias"
+            data-sortable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_USER_AD_bindUser' | translate"
+            data-property="username"
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_USER_AD_status' | translate"
+            data-property="state"
+            data-type="options"
+            data-type-options="$ctrl.getActiveDirectoryStateEnumFilter()"
+            data-sortable
+            data-filterable
+        >
+            <span
+                data-translate="{{ 'dedicatedCloud_USER_AD_status_' + $value }}"
+            ></span>
+        </oui-datagrid-column>
+    </oui-datagrid>
 </div>

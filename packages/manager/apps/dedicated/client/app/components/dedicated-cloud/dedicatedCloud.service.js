@@ -1,3 +1,4 @@
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import assign from 'lodash/assign';
 import camelCase from 'lodash/camelCase';
 import flatten from 'lodash/flatten';
@@ -23,16 +24,21 @@ const moduleName = 'ovhManagerPccService';
 class DedicatedCloudService {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $cacheFactory,
     $rootScope,
+    iceberg,
     OvhApiDedicatedCloud,
     OvhHttp,
     Poll,
     Poller,
   ) {
+    this.ListLayoutHelper = ListLayoutHelper;
+    this.$http = $http;
     this.$q = $q;
     this.$rootScope = $rootScope;
+    this.iceberg = iceberg;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
     this.OvhHttp = OvhHttp;
     this.Poll = Poll;
@@ -530,6 +536,53 @@ class DedicatedCloudService {
     });
   }
 
+  /* ------- FEDERATION -------*/
+
+  getFederationStatus(serviceName) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}/federation`)
+      .then(({ data }) => data);
+  }
+
+  getActiveDirectories(serviceName, params) {
+    const {
+      filters,
+      pageSize,
+      offset,
+      sort,
+      sortOrder,
+      defaultFilterColumn,
+    } = params;
+
+    let request = this.iceberg(
+      `/dedicatedCloud/${serviceName}/federation/activeDirectory`,
+    )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort || defaultFilterColumn, sortOrder);
+
+    if (filters.length > 0) {
+      request = this.filterIceberg(request, filters);
+    }
+
+    return this.$q
+      .resolve(request.execute(null).$promise)
+      .then(({ data }) => data);
+  }
+
+  filterIceberg(request, filters) {
+    let filterRequest = request;
+    filters.forEach(({ field, comparator, reference }) => {
+      filterRequest = filterRequest.addFilter(
+        field,
+        this.ListLayoutHelper.FILTER_OPERATORS[comparator],
+        this.ListLayoutHelper.mapFilterForIceberg(comparator, reference),
+      );
+    });
+    return filterRequest;
+  }
   /* ------- USER -------*/
 
   getUsers(serviceName, name) {
