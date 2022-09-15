@@ -32,7 +32,7 @@ export default function DashboardTile({
   useEffect(() => {
     const loadingPromise = tile.onLoad ? tile.onLoad() : Promise.resolve(true);
     loadingPromise
-      .then((response) => {
+      .then((response: any) => {
         setData(response);
         setDefinitions(
           typeof tile.definitions === 'function'
