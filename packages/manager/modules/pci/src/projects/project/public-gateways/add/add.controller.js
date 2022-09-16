@@ -45,6 +45,7 @@ export default class PciPublicGatewaysAddController {
     this.gatewayName = null;
     this.loadingDefaultValues = false;
     this.isCustomNetwork = false;
+    this.isCreatingGateway = false;
 
     this.selectedPrivateNetwork = this.getDefaultSelectValue(
       'pci_projects_project_public_gateways_add_select_private_network',
@@ -262,7 +263,7 @@ export default class PciPublicGatewaysAddController {
       .then(() => this.onSuccess())
       .catch((err) => this.onError(err))
       .finally(() => {
-        this.loading = false;
+        this.isCreatingGateway = false;
       });
   }
 
@@ -281,7 +282,7 @@ export default class PciPublicGatewaysAddController {
       .then(() => this.onSuccess())
       .catch((err) => this.onError(err))
       .finally(() => {
-        this.loading = false;
+        this.isCreatingGateway = false;
       });
   }
 
@@ -289,7 +290,7 @@ export default class PciPublicGatewaysAddController {
     this.trackClick(
       `confirm-add-public-gateway::${this.selectedGatewaySize.product}::${this.selectedRegion.name}`,
     );
-    this.loading = true;
+    this.isCreatingGateway = true;
     return this.isCustomNetwork
       ? this.createNetwokWithGateway()
       : this.createGateway();
