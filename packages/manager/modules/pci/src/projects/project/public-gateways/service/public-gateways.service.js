@@ -2,8 +2,9 @@ import { GATEWAY_DEFAULT_REGION } from '../public-gateways.constants';
 
 export default class publicGatewaysServiceClass {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, Poller) {
     this.$http = $http;
+    this.Poller = Poller;
   }
 
   getGatwayCatalog(params) {
@@ -33,12 +34,20 @@ export default class publicGatewaysServiceClass {
   }
 
   addGateway(serviceName, region, networkId, subnetId, gateway) {
+    const addGatewayNamespace = 'gateway-creation';
     return this.$http
       .post(
         `/cloud/project/${serviceName}/region/${region}/network/${networkId}/subnet/${subnetId}/gateway`,
         gateway,
       )
-      .then(({ data }) => data);
+      .then(({ data: { id } }) =>
+        this.checkOperationStatus(serviceName, id, addGatewayNamespace),
+      )
+      .then(() =>
+        this.Poller.kill({
+          namespace: addGatewayNamespace,
+        }),
+      );
   }
 
   getPrivateNetworks(serviceName, regionName) {
@@ -64,12 +73,20 @@ export default class publicGatewaysServiceClass {
   }
 
   createNetworkWithGateway(serviceName, regionName, gateway) {
+    const addNetworkGatewayNamespace = 'network-gateway-creation';
     return this.$http
       .post(
         `/cloud/project/${serviceName}/region/${regionName}/network`,
         gateway,
       )
-      .then(({ data }) => data);
+      .then(({ data: { id } }) =>
+        this.checkOperationStatus(serviceName, id, addNetworkGatewayNamespace),
+      )
+      .then(() =>
+        this.Poller.kill({
+          namespace: addNetworkGatewayNamespace,
+        }),
+      );
   }
 
   getRegions(serviceName, params) {
@@ -81,11 +98,19 @@ export default class publicGatewaysServiceClass {
   }
 
   deleteGateway(serviceName, regionName, gatewayId) {
+    const deleteGatewayNamespace = 'gateway-deletion';
     return this.$http
       .delete(
         `/cloud/project/${serviceName}/region/${regionName}/gateway/${gatewayId} `,
       )
-      .then(({ data }) => data);
+      .then(({ data: { id } }) =>
+        this.checkOperationStatus(serviceName, id, deleteGatewayNamespace),
+      )
+      .then(() =>
+        this.Poller.kill({
+          namespace: deleteGatewayNamespace,
+        }),
+      );
   }
 
   fetchGatewayDetails(serviceName, region, gatewayId) {
@@ -143,5 +168,19 @@ export default class publicGatewaysServiceClass {
         pricePerHour: hourlyPriceObj.price,
       };
     });
+  }
+
+  checkOperationStatus(serviceName, operationId, namespace) {
+    return this.Poller.poll(
+      `/cloud/project/${serviceName}/operation/${operationId}`,
+      {},
+      {
+        method: 'get',
+        successRule: {
+          status: 'completed',
+        },
+        namespace,
+      },
+    );
   }
 }
