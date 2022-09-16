@@ -1,8 +1,9 @@
 export default class KycIdentitySummaryBankAccountController {
   /* @ngInject */
-  constructor(ovhPaymentMethodHelper) {
+  constructor(ovhPaymentMethodHelper, $translate) {
     this.isOpenModal = false;
     this.isValidIban = ovhPaymentMethodHelper.isValidIban;
+    this.$translate = $translate;
   }
 
   $onInit() {
@@ -22,6 +23,14 @@ export default class KycIdentitySummaryBankAccountController {
     this.errorMessage = null;
 
     this.isLoading = true;
+    if (!this.isValidIban(this.model.iban)) {
+      this.errorMessage = this.$translate.instant(
+        'telephony_billingAccount_svaWallet_kyc_identity_iban_format_error',
+      );
+      this.isLoading = false;
+      return Promise.reject(this.errorMessage);
+    }
+
     return this.saveWalletIban(this.model)
       .then(() => {
         this.isOpenModal = false;

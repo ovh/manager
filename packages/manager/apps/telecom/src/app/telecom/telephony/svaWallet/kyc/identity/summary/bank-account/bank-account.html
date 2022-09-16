@@ -77,7 +77,6 @@
 
                         <oui-field
                             label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
-                            data-error-messages="{ iban: ('telephony_billingAccount_svaWallet_kyc_identity_iban_format_error' | translate) }"
                             size="xl"
                         >
                             <input
@@ -86,7 +85,6 @@
                                 placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
                                 type="text"
                                 data-ng-model="$ctrl.model.iban"
-                                data-ui-validate="{ iban: '!$ctrl.isValidIban($ctrl.model.iban)' }"
                                 required
                             />
                         </oui-field>
