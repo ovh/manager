@@ -1,3 +1,12 @@
+## [13.44.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.44.3...@ovh-ux/manager-telecom@13.44.4) (2022-09-16)
+
+
+### Bug Fixes
+
+* **iban:** remove useless validator ([#8013](https://github.com/ovh/manager/issues/8013)) ([72cea8b](https://github.com/ovh/manager/commit/72cea8ba1cf7e0463012a16d4fc6d981925a4f71))
+
+
+
 ## [13.44.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.44.2...@ovh-ux/manager-telecom@13.44.3) (2022-09-14)
 
 

@@ -1,3 +1,12 @@
+## [16.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.17.0...@ovh-ux/manager-web@16.17.1) (2022-09-16)
+
+
+### Bug Fixes
+
+* **domain.operation:** restore update operation argument with more check ([#8015](https://github.com/ovh/manager/issues/8015)) ([5430928](https://github.com/ovh/manager/commit/54309280041e198ef2ab2f7582c66c75a3ecea56))
+
+
+
 # [16.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.16.1...@ovh-ux/manager-web@16.17.0) (2022-09-06)
 
 
