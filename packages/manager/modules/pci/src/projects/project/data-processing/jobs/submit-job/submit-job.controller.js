@@ -1,10 +1,10 @@
 import { find } from 'lodash';
 import animateScrollTo from 'animated-scroll-to';
-import { API_GUIDES } from '../../project.constants';
+import { API_GUIDES } from '../../../project.constants';
 import {
   SUBMIT_JOB_API_GUIDES,
   GIB_IN_MIB,
-} from '../data-processing.constants';
+} from '../../data-processing.constants';
 
 export default class {
   /* @ngInject */

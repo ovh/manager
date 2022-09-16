@@ -1,8 +1,5 @@
 import { find, unzip } from 'lodash';
-import {
-  getDataProcessingUiUrl,
-  formatDuration,
-} from '../../data-processing.utils';
+import { formatDuration, getDataProcessingUiUrl } from '../../../data-processing.utils';
 import {
   DATA_PROCESSING_STATUS_TO_CLASS,
   DATA_PROCESSING_STATUSES,
