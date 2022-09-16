@@ -8,6 +8,7 @@ export default {
     goBack: '<',
     lab: '<',
     projectId: '<',
+    showJobs: '<',
     activateLab: '<',
   },
 };

@@ -144,8 +144,8 @@ export const PCI_FEATURES_STATES = {
     ADD: 'pci.projects.project.serving.add',
   },
   DATA_PROCESSING: {
-    LIST: 'pci.projects.project.data-processing',
-    ADD: 'pci.projects.project.data-processing.submit-job',
+    LIST: 'pci.projects.project.data-processing.jobs',
+    ADD: 'pci.projects.project.data-processing.jobs.submit-job',
   },
   PROJECT_MANAGEMENT: {
     USERS_ROLES: 'pci.projects.project.users',
