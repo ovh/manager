@@ -86,7 +86,7 @@ const UserAccountMenu = ({
           </p>
         )}
         {isProvider && (
-          <p className="mb-0" data-navi-id="account-email">
+          <p className="mb-0" data-navi-id="account-username">
             <strong>{user.auth.user}</strong>
           </p>
         )}
@@ -101,7 +101,7 @@ const UserAccountMenu = ({
         )}
 
         {isProvider && (
-          <p className={`${style.ssoBadge} oui-badge oui-badge_warning`} data-navi-id="account-email">
+          <p className={`ml-0 oui-badge oui-badge_warning`} data-navi-id="account-auth-method">
             <strong>{t(`user_account_menu_role_provider`)}</strong>
           </p>
         )}

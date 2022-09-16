@@ -2,18 +2,11 @@ import get from 'lodash/get';
 
 export default class UserAccountUsersSSOAddCtrl {
   /* @ngInject */
-  constructor(
-    $scope,
-    coreConfig,
-    UseraccountUsersService,
-    Alerter,
-    $translate,
-  ) {
+  constructor($scope, UseraccountUsersService, Alerter, $translate) {
     this.$scope = $scope;
     this.usersService = UseraccountUsersService;
     this.alerter = Alerter;
     this.$translate = $translate;
-    this.me = coreConfig.getUser();
     this.user = {
       group: 'DEFAULT',
     };

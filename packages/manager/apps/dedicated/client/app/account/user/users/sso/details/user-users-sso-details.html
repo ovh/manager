@@ -2,20 +2,15 @@
 </oui-header>
 <div>
     <a
-        class="d-inline-block col-md-12 mb-12"
+        class="col-md-12 mb-3"
         data-ng-href="{{'#/useraccount/users' }}"
         title="{{ 'user_users_sso_detail_back' | translate }}"
-        style="margin-bottom: 1rem;"
     >
-        <span class="fa fa-chevron-left mr-2" aria-hidden="true"> </span>
+        <span class="fa fa-chevron-left mr-2" aria-hidden="true"></span>
         <span data-translate="user_users_sso_detail_back"></span>
     </a>
 
-    <div
-        class="col-md-8 mb-8"
-        data-ng-if="identityProvider != null"
-        style="margin-bottom: 3rem;"
-    >
+    <div class="col-md-8 mb-5" data-ng-if="identityProvider != null">
         <oui-tile
             data-heading="{{:: 'user_users_sso_detail_idp_title' | translate }}"
         >
@@ -48,15 +43,16 @@
             >
                 <li>
                     <strong
-                        >{{::
-                        'user_users_sso_detail_idp_signing_certificates_subject
-                        '| translate }}</strong
-                    >: {{ idpSigningCertificate.subject }} |
+                        data-translate="user_users_sso_detail_idp_signing_certificates_subject"
+                    ></strong>
+                    <span ng-bind="idpSigningCertificate.subject"></span>
+                    <span> | </span>
                     <strong
-                        >{{::
-                        'user_users_sso_detail_idp_signing_certificates_expiration'
-                        | translate }}</strong
-                    >: {{ idpSigningCertificate.expiration | date }}
+                        data-translate="user_users_sso_detail_idp_signing_certificates_expiration"
+                    ></strong>
+                    <span
+                        ng-bind="idpSigningCertificate.expiration | date"
+                    ></span>
                 </li>
             </ul>
         </oui-tile>
