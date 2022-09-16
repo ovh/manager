@@ -151,9 +151,13 @@
         <strong data-translate="pci_app_add_resources_scaling"></strong>
     </p>
 
-    <div class="mb-2">
+    <p class="mb-2">
         <span data-translate="pci_app_add_resources_scaling_description"></span>
-        <a href="">
+        <a
+            data-ng-href="{{:: $ctrl.getScalingInfoLink() }}"
+            target="_blank"
+            rel="noopener"
+        >
             <span
                 data-translate="pci_app_add_resources_scaling_description_link"
             ></span>
@@ -162,7 +166,7 @@
                 aria-hidden="true"
             ></span>
         </a>
-    </div>
+    </p>
 
     <oui-field
         label="{{:: 'pci_app_add_resources_scaling_switch_label' | translate}}"

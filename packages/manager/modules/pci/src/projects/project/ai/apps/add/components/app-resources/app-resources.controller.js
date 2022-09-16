@@ -5,6 +5,8 @@ import {
   APP_SCALING_SETTINGS,
 } from '../../add.constants';
 
+import { APP_SCALING_INFO } from '../../../app.constants';
+
 const RESOURCES_SCALE_MIN_FLAVOR = 1;
 
 export default class AppResourcesController {
@@ -66,6 +68,12 @@ export default class AppResourcesController {
     this.appModel.resource.flavor = null;
     this.appModel.resource.flavorType = flavorType;
     this.selectDefaultFlavor(flavorType);
+  }
+
+  getScalingInfoLink() {
+    return (
+      APP_SCALING_INFO[this.user.ovhSubsidiary] || APP_SCALING_INFO.DEFAULT
+    );
   }
 
   get price() {
