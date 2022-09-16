@@ -15,6 +15,8 @@
     >
         <oui-step-form
             name="private_network_add_select_region"
+            data-valid="$ctrl.configuration.region.name"
+            data-prevent-next="true"
             data-loading="$ctrl.loaders.isInitiating"
             data-header="{{:: 'pci_projects_project_network_private_create_localisation' | translate }}"
             data-editable="!$ctrl.loaders.isSubmitting"
@@ -29,10 +31,12 @@
         </oui-step-form>
         <oui-step-form
             name="private_network_add_select_configuration"
+            data-valid="$ctrl.privateNetworkName"
+            data-prevent-next="true"
             data-header="{{:: 'pci_projects_project_network_private_create_configure' | translate }}"
             data-loading="$ctrl.loaders.configStep"
             data-on-focus="$ctrl.onConfigurePrivateNetworkInit()"
-            data-submit-text="{{ ( $ctrl.isGatewayAvailableInRegion ? 'pci_projects_project_network_private_create_next' : 'pci_projects_project_network_private_create_submit' )| translate }}"
+            data-submit-text="{{ ( $ctrl.configuration.createGateway ? 'pci_projects_project_network_private_create_next' : 'pci_projects_project_network_private_create_submit' )| translate }}"
             data-position="1"
             data-editable="!$ctrl.loaders.isSubmitting"
         >
@@ -145,6 +149,7 @@
                     class="mb-2"
                     data-model="$ctrl.configuration.dhcp"
                     data-on-change="$ctrl.onEnableDhcpChange(modelValue)"
+                    data-disabled="$ctrl.configuration.createGateway"
                 >
                     <span
                         data-translate="pci_projects_project_network_private_create_enable_dhcp"
@@ -200,7 +205,7 @@
                 </oui-checkbox>
             </section>
             <div
-                data-ng-if="$ctrl.loaders.isSubmitting && !$ctrl.isGatewayAvailableInRegion"
+                data-ng-if="$ctrl.loaders.isSubmitting && !$ctrl.configuration.createGateway"
                 class="d-flex flex-wrap flex-md-nowrap align-items-center"
             >
                 <oui-spinner data-size="m"></oui-spinner>
@@ -212,7 +217,7 @@
         <oui-step-form
             name="private_network_add_summary"
             data-header="{{:: ('pci_projects_project_network_private_create_summary_step_title' | translate)}}"
-            data-ng-if="$ctrl.isGatewayAvailableInRegion"
+            data-ng-if="$ctrl.configuration.createGateway"
             data-position="2"
             data-submit-text="{{ 'pci_projects_project_network_private_create_submit' | translate }}"
             data-editable="!$ctrl.loaders.isSubmitting"
