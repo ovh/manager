@@ -1,21 +1,15 @@
-import template from './data-processing.html';
 import controller from './data-processing.controller';
+import template from './data-processing.html';
 
 export default {
-  template,
   controller,
+  template,
   bindings: {
     pciFeatureRedirect: '<',
-    jobs: '<',
-    submitJob: '<',
-    showJob: '<',
-    projectId: '<',
-    terminateJob: '<',
-    getPricesFromCatalog: '<',
-    jobId: '<',
-    onListParamChange: '<',
-    guideUrl: '<',
-    guideTrackingSectionTags: '<',
+    homeLink: '<',
+    jobsLink: '<',
+    notebooksLink: '<',
+    currentActiveLink: '<',
     trackClick: '<',
   },
 };

@@ -1,0 +1,11 @@
+{
+  "data_processing_home_jobs_tile_title": "Jobs",
+  "data_processing_home_notebooks_tile_title": "Notebooks for Apache Spark",
+  "data_processing_home_button_new_notebook": "Lancer un nouveau notebook",
+  "data_processing_home_go_to_notebooks": "Voir tous les notebooks",
+  "data_processing_home_button_new_job": "Lancer un nouveau job",
+  "data_processing_home_go_to_jobs": "Voir tous les jobs",
+  "data_processing_home_info_jobs": "Démarrez des jobs Apache Spark à la demande, en spécifiant la quantité de RAM et de vCPU à utiliser. Téléchargez votre code sous format de JAR ou de code Python dans un conteneur Swift et exécutez-le en soumettant un job. Vous pourrez suivre l'exécution de votre job à l'aide de logs et de métriques en temps réel.",
+  "data_processing_home_info_notebooks": "Démarrez vos notebooks Jupyter dans le cloud, et grâce au kernel Python pour Apache Spark, lancez vos jobs de data processing à la demande directement depuis vos notebooks.",
+  "data_processing_home_spark_trademark": "<a class=\"oui-link oui-link_icon\" href=\"https://spark.apache.org/\" target=\"_blank\" rel=\"noopener\">Apache Spark<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>, Spark, Apache, le logo Apache, et le logo du projet Apache Spark sont des marques appartenant à la Apache Software Foundation."
+}
