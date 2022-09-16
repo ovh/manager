@@ -2,14 +2,8 @@ import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) =>
   $stateProvider.state('pci.projects.project.data-processing', {
-    url: '/data-processing?id',
+    url: '/data-processing',
     component: 'pciProjectDataProcessing',
-    params: {
-      id: {
-        dynamic: true,
-        type: 'string',
-      },
-    },
     onEnter: /* @ngInject */ (pciFeatureRedirect) => {
       return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.DATA_PROCESSING);
     },
@@ -19,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) =>
           if (!authorization.data.authorized) {
             return { state: 'pci.projects.project.data-processing.onboarding' };
           }
-          return false;
+          return { state: 'pci.projects.project.data-processing.home' };
         },
       ),
     resolve: {
@@ -27,39 +21,21 @@ export default /* @ngInject */ ($stateProvider) =>
         $translate.instant('data_processing_title'),
       authorization: /* @ngInject */ (dataProcessingService, projectId) =>
         dataProcessingService.getAuthorization(projectId),
-      submitJob: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.data-processing.submit-job', {
+      currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
+        $state.href($state.current.name, $transition$.params()),
+
+      jobsLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.data-processing.jobs', {
           projectId,
         }),
-      showJob: /* @ngInject */ ($state, projectId) => (jobId) =>
-        $state.go(
-          'pci.projects.project.data-processing.job-details.dashboard',
-          {
-            projectId,
-            jobId,
-          },
-          {
-            reload: true,
-          },
-        ),
-      showJobs: /* @ngInject */ ($state, projectId) => () =>
-        $state.go(
-          'pci.projects.project.data-processing',
-          { projectId },
-          {
-            reload: true,
-          },
-        ),
-      terminateJob: /* @ngInject */ ($state, projectId) => (jobId, jobName) => {
-        $state.go('pci.projects.project.data-processing.terminate', {
+      homeLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.data-processing.home', {
           projectId,
-          jobId,
-          jobName,
-        });
-      },
-      jobId: /* @ngInject */ ($transition$) => $transition$.params().id,
-      lab: /* @ngInject */ (PciProjectLabsService, projectId) =>
-        PciProjectLabsService.getLabByName(projectId, 'dataProcessing'),
+        }),
+      notebooksLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.data-processing.notebooks', {
+          projectId,
+        }),
     },
     atInternet: {
       rename: 'public-cloud::pci::projects::project::data-processing',
