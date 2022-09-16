@@ -124,6 +124,7 @@ export default class PrivateNetworksAddCtrl {
   onCreateGatewayChange(modelValue) {
     this.trackCheckBoxClick(modelValue, 'create-public-gateway');
     if (modelValue) {
+      this.configuration.dhcp = true;
       this.configuration.enableGatewayIp = true;
     }
   }
@@ -176,13 +177,12 @@ export default class PrivateNetworksAddCtrl {
   }
 
   getNextAvailableVlanId() {
-    return (
-      this.networks.find(
-        ({ vlanId }) =>
-          vlanId !== DEFAULT_VLAN_ID &&
-          !this.networks.some(({ vlanId: nextId }) => nextId === vlanId + 1),
-      )?.vlanId + 1
+    const network = this.networks.find(
+      ({ vlanId }) =>
+        vlanId !== DEFAULT_VLAN_ID &&
+        !this.networks.some(({ vlanId: nextId }) => nextId === vlanId + 1),
     );
+    return network ? network.vlanId + 1 : VLAN_ID.MIN;
   }
 
   regenerateNetworkAddress(vlanId) {
@@ -234,7 +234,12 @@ export default class PrivateNetworksAddCtrl {
   }
 
   enableSnatOnGateway() {
-    if (this.gateway && !this.gateway.externalInformation && this.enableSNAT) {
+    if (
+      this.configuration.createGateway &&
+      this.gateway &&
+      !this.gateway.externalInformation &&
+      this.enableSNAT
+    ) {
       return this.PciPublicGatewaysService.enableSnatOnGateway(
         this.projectId,
         this.configuration.region?.name,
@@ -247,7 +252,7 @@ export default class PrivateNetworksAddCtrl {
   createPrivateNetwork() {
     let gateway;
     let vlanId;
-    if (!this.gateway && this.isGatewayAvailableInRegion) {
+    if (this.configuration.createGateway && !this.gateway) {
       gateway = {
         name: this.gatewayName,
         model: this.gatewaySize,
@@ -273,7 +278,7 @@ export default class PrivateNetworksAddCtrl {
   }
 
   associateNetworkToGateway(subnet) {
-    if (this.gateway) {
+    if (this.configuration.createGateway && this.gateway) {
       return this.PciPrivateNetworksAdd.associateGatewayToNetwork(
         this.projectId,
         this.configuration.region?.name,
@@ -297,7 +302,7 @@ export default class PrivateNetworksAddCtrl {
         this.associateNetworkToGateway(subnetDetails),
       )
       .then(() => {
-        this.goBack(
+        return this.goBack(
           this.$translate.instant(
             'pci_projects_project_network_private_create_success',
           ),
