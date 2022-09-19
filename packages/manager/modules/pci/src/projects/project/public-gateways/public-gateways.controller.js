@@ -1,3 +1,5 @@
+import ipaddr from 'ipaddr.js';
+
 const CONTAINER_NAME = 'pci.projects.project.public-gateways';
 
 export default class PublicGatewaysController {
@@ -9,6 +11,27 @@ export default class PublicGatewaysController {
 
   $onInit() {
     this.loadMessages();
+    this.formatIps();
+  }
+
+  formatIps() {
+    this.gateways = this.gateways.map((gateway) => {
+      const ipv4 = [];
+      const ipv6 = [];
+      if (gateway.externalInformation) {
+        gateway.externalInformation.ips.forEach((ip) => {
+          if (ipaddr.parse(ip.ip)?.kind() === 'ipv6') {
+            ipv6.push(ip.ip);
+          } else {
+            ipv4.push(ip.ip);
+          }
+        });
+      }
+      return {
+        ...gateway,
+        formattedIps: [...ipv4, ...ipv6].join(', ') || '',
+      };
+    });
   }
 
   loadMessages() {
