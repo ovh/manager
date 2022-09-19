@@ -24,10 +24,6 @@ export default class publicGatewaysServiceClass {
             ...gateway,
             region: regionName,
             flavour: gateway.model.toUpperCase(),
-            formattedIps:
-              gateway?.externalInformation?.ips
-                ?.map(({ ip }) => ip)
-                .join(', ') || '',
           };
         }),
       );
