@@ -1,0 +1,28 @@
+<div class="dedicatedCloud-users" data-ui-view="pccUserView">
+    <h2
+        data-translate="dedicatedCloud_user_management_authorization_vsphere"
+    ></h2>
+
+    <dedicated-cloud-vsphere-users
+        data-add-user="$ctrl.addUser"
+        data-dedicated-cloud="$ctrl.dedicatedCloud"
+        data-delete-user="$ctrl.deleteUser"
+        data-disable-user="$ctrl.disableUser"
+        data-edit-user="$ctrl.editUser"
+        data-enable-user="$ctrl.enableUser"
+        data-modify-user-rights="$ctrl.modifyUserRights"
+        data-options-available="$ctrl.optionsAvailable"
+        data-password-reset="$ctrl.passwordReset"
+        data-product-id="$ctrl.productId"
+        data-set-message="$ctrl.setMessage"
+    >
+    </dedicated-cloud-vsphere-users>
+
+    <h2 data-translate="dedicatedCloud_user_management_activeDirectories"></h2>
+
+    <dedicated-cloud-active-directories
+        data-dedicated-cloud="$ctrl.dedicatedCloud"
+        data-product-id="$ctrl.productId"
+    >
+    </dedicated-cloud-active-directories>
+</div>

@@ -11,7 +11,7 @@ import operation from '../operation';
 import routing from './managed-baremetal.routing';
 import security from '../security';
 import servicePackUpgrade from '../service-pack/upgrade';
-import user from '../user';
+import user from '../users';
 
 const moduleName = 'managedBaremetalModule';
 
