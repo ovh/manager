@@ -90,7 +90,7 @@
         </li>
 
         <!-- IP DELETE -->
-        <li data-ng-if="ipBlock.type == 'FAILOVER'">
+        <li data-ng-if="ipBlock.type == 'FAILOVER' && !ipBlock.bringYourOwnIp">
             <button
                 type="button"
                 class="btn btn-link"

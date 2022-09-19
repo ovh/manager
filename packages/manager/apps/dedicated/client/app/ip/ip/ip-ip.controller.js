@@ -679,4 +679,10 @@ export default /* @ngInject */
   };
 
   refreshAlerts();
+
+  $scope.canDeleteByoip = function canDeleteByoip(ipBlock) {
+    return (
+      ipBlock.type === 'FAILOVER' && ipBlock.isUniq && !ipBlock.bringYourOwnIp
+    );
+  };
 };

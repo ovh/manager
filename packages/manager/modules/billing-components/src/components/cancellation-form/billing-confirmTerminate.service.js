@@ -61,4 +61,13 @@ export default class BillingTerminate {
         },
       ).$promise;
   }
+
+  terminateByoipService(serviceName) {
+    return this.OvhHttp.post('/ip/service/{serviceName}/terminate', {
+      rootPath: 'apiv6',
+      urlParams: {
+        serviceName,
+      },
+    });
+  }
 }

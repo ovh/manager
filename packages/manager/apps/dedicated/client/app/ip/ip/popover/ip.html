@@ -306,7 +306,7 @@
         </li>
 
         <!-- IP DELETE -->
-        <li data-ng-if="ipBlock.type === 'FAILOVER' && ipBlock.isUniq">
+        <li data-ng-if="canDeleteByoip(ipBlock)">
             <button
                 type="button"
                 class="btn btn-link"
