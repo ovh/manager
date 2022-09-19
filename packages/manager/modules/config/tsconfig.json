@@ -12,7 +12,8 @@
     "sourceMap": true,
     "allowJs": true,
     "declaration": true,
-    "declarationDir": "types"
+    "declarationDir": "types",
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "types"]

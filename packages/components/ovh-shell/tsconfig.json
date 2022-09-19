@@ -12,7 +12,8 @@
     "sourceMap": true,
     "declaration": true,
     "declarationDir": "./types",
-    "jsx": "react"
+    "jsx": "react",
+    "skipLibCheck": true
   },
   "exclude": ["node_modules", "dist", "types", "__tests__"]
 }
