@@ -243,6 +243,8 @@ export default {
         model = omit(model, 'email');
         model = omit(model, 'commercialCommunicationsApproval');
         model = omit(model, 'managerLanguage');
+        model = omit(model, 'ovhSubsidiary');
+        model = omit(model, 'ovhCompany');
 
         let promise = $http
           .put(`${config.swsProxyRootPath}me`, model)
