@@ -125,7 +125,7 @@ export default class DomainTabZoneDnsCtrl {
       ])
       .then(
         (results) => {
-          [defaults, activated] = results;
+          [defaults, { data: activated }] = results;
         },
         (err) => {
           if (err[0].code !== 404 || err[1].code) {
@@ -143,7 +143,7 @@ export default class DomainTabZoneDnsCtrl {
           )
           .map((value) => value.targetToDisplay.slice(0, -1))
           .sort();
-        this.activatedDns = get(activated, 'dns', [])
+        this.activatedDns = activated
           .filter((dns) => dns.isUsed)
           .map((value) => value.host)
           .sort();
