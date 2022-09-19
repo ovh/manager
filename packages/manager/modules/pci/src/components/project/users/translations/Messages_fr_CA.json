@@ -17,7 +17,7 @@
 
   "pci_projects_project_users_horizon_label": "Ouvrir OpenStack Horizon",
   "pci_projects_project_users_openrc_label": "Télécharger le fichier RC d'OpenStack",
-  "pci_projects_project_users_rclone_label": "Télécharger un fichier de configuration rClone",
+  "pci_projects_project_users_rclone_label": "Télécharger un fichier de configuration rclone",
   "pci_projects_project_users_token_label": "Générer un token OpenStack",
   "pci_projects_project_users_password_label": "Regénérer un mot de passe",
   "pci_projects_project_users_modify_password_label": "Régénérer le mot de passe",

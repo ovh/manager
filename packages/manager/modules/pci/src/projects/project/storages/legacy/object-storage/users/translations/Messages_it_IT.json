@@ -4,7 +4,7 @@
   "pci_projects_project_storages_containers_users_description": "Descrizione",
   "pci_projects_project_storages_containers_users_import_json": "Importa S3 Policy (JSON)",
   "pci_projects_project_storages_containers_users_download_json": "Scarica S3 Policy (JSON)",
-  "pci_projects_project_storages_containers_users_user_management": "Gestione utenti",
+  "pci_projects_project_storages_containers_users_user_management": "Gestione degli utenti",
   "pci_projects_project_storages_containers_users_user_description": "Per aggiungere nuovi utenti, è necessario crearli nella sezione \"Users &amp; Roles\".",
   "pci_projects_project_storages_containers_users_user_description_warning": "Una volta creato l'utente, sarà necessario generare le credenziali S3 nella sezione \"Users &amp; Roles\".",
   "pci_projects_project_storages_containers_users_add_user": "Aggiungi utenti",

@@ -7,7 +7,7 @@
   "pci_projects_project_storages_containers_container_addUser_description_step_1": "Defina a função do seu utilizador no container {{container}}.",
   "pci_projects_project_storages_containers_container_addUser_submit_label": "Confirmar",
   "pci_projects_project_storages_containers_container_addUser_next_label": "Seguinte",
-  "pci_projects_project_storages_containers_container_addUser_cancel_label": "Cancelar",
+  "pci_projects_project_storages_containers_container_addUser_cancel_label": "Anular",
   "pci_projects_project_storages_containers_container_addUser_back_label": "Retroceder",
   "pci_projects_project_storages_containers_container_addUser_right_admin": "Administrador",
   "pci_projects_project_storages_containers_container_addUser_right_readWrite": "Leitura e escrita",

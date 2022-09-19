@@ -16,7 +16,7 @@
   "pci_projects_project_storages_blocks_add_object_label": "Criar um container de objetos",
   "pci_projects_project_storages_containers_id_label": "ID",
   "pci_projects_project_storages_containers_object_description": "Aloje o seu catálogo de dados na nossa solução Object Storage. Pode administrar estes dados a partir da sua aplicação graças às API S3.",
-  "pci_projects_project_storages_containers_offer_label": "Oferta",
+  "pci_projects_project_storages_containers_offer_label": "Plano",
   "pci_projects_project_storages_containers_public_label": "Público",
   "pci_projects_project_storages_containers_view_add_user_label": "Adicionar um utilizador a um container",
   "pci_projects_project_storages_containers_offer_high_performance": "High Performance",

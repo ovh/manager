@@ -4,7 +4,7 @@
   "pci_projects_project_storages_objects_onboarding_content2": "Get unlimited storage on demand, accessible via the API.",
   "pci_projects_project_storages_objects_onboarding_content3": "Object Storage involves placing your data in an unlimited space, accessible directly via an HTTP API. You can integrate access to this data from your applications, using the range of existing OpenStack Swift libraries. Object Storage offers access rights administration, along with intelligent storage features such as version and expiry date management, and syncing between different locations.",
   "pci_projects_project_storages_objects_onboarding_content4": "Your data is secured through triple-replication to guarantee its life expectancy, and you get usage-based billing from the first GB used.",
-  "pci_projects_project_storages_objects_onboarding_action_label": "Create an object container",
+  "pci_projects_project_storages_objects_onboarding_action_label": "Create an object container ",
   "pci_projects_project_storages_objects_onboarding_guides_object-storage-domain_title": "Configure a domain name on your Object Storage container",
   "pci_projects_project_storages_objects_onboarding_guides_object-storage-domain_description": "",
   "pci_projects_project_storages_objects_onboarding_guides_auto-delete-object_title": "Configure automatic object deletion",
@@ -12,5 +12,11 @@
   "pci_projects_project_storages_objects_onboarding_guides_share-object-temporary-url_title": "Share an object via a temporary URL",
   "pci_projects_project_storages_objects_onboarding_guides_share-object-temporary-url_description": "Find out how to share an object via a temporary URL",
   "pci_projects_project_storages_objects_onboarding_guides_sync-object-containers_title": "Synchronise object containers",
-  "pci_projects_project_storages_objects_onboarding_guides_sync-object-containers_description": ""
+  "pci_projects_project_storages_objects_onboarding_guides_sync-object-containers_description": "",
+  "pci_projects_project_storages_objects_onboarding_content5": "Upload your static files (videos, images, web files, etc.) in an unlimited space, to use them from your application or make them accessible on the web via our S3 API.",
+  "pci_projects_project_storages_objects_onboarding_content6": "This storage space can be scaled up as your project grows, and you don't need to plan for it in advance. It’s the perfect place to store performance-intensive data.",
+  "pci_projects_project_storages_objects_onboarding_content7": "It is able to meet the challenges of big data and artificial intelligence (AI), or it can simply be used to unleash the full potential of your data.",
+  "pci_projects_project_storages_objects_onboarding_guides_getting-started-with-s3_title": "Getting started with S3 Object Storage",
+  "pci_projects_project_storages_objects_onboarding_guides_storage_title": "Storage and backups",
+  "pci_projects_project_storages_objects_onboarding_guides_storage_description": "Get started with your OVHcloud storage and backup products"
 }

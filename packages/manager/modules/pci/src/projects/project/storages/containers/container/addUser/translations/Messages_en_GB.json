@@ -13,7 +13,10 @@
   "pci_projects_project_storages_containers_container_addUser_right_readWrite": "Read and write",
   "pci_projects_project_storages_containers_container_addUser_right_readOnly": "Read only",
   "pci_projects_project_storages_containers_container_addUser_right_deny": "Deny",
-  "pci_projects_project_storages_containers_container_addUser_success_message": "Your {{name}} user has been added to the {{container}} container as {{role}}.",
-  "pci_projects_project_storages_containers_container_addUser_object_success_message": "Your {{name}} user has been added to the {{container}} object as {{role}}.",
-  "pci_projects_project_storages_containers_container_addUser_error_addUser": "Your user has not been correctly added to the {{container}} container: {{message}}"
+  "pci_projects_project_storages_containers_container_addUser_success_message": "Your {{name}} user has been added to the {{value}} container as {{role}}.",
+  "pci_projects_project_storages_containers_container_addUser_object_success_message": "Your {{name}} user has been added to the {{value}} object as {{role}}.",
+  "pci_projects_project_storages_containers_container_addUser_error_addUser": "Unable to add user to the {{value}} container: {{message}}",
+  "pci_projects_project_storages_containers_container_addUser_description_container_step_1": "Define the role of your user on the {{value}} container.",
+  "pci_projects_project_storages_containers_container_addUser_description_object_step_1": "Set your user's role on the {{value}} object.",
+  "pci_projects_project_storages_containers_container_addUser_object_error_addUser": "Unable to add user to the {{value}} object: {{message}}"
 }

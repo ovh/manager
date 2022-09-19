@@ -4,7 +4,7 @@
   "pci_projects_project_storages_containers_container_object_info_storedObjects": "Objekte: {{ count }}",
   "pci_projects_project_storages_containers_container_info_storedBytes": "Verwendeter Speicherplatz: {{ bytes }}",
   "pci_projects_project_storages_containers_container_info_publicUrl": "Container-URL:",
-  "pci_projects_project_storages_containers_container_info_publicUrl_help": "Diese Information ist notwendig, um Ihre Objekte über die API abzurufen oder zu bearbeiten. Weitere Informationen finden Sie in unserer Dokumentation.",
+  "pci_projects_project_storages_containers_container_info_publicUrl_help": "Diese Information ist notwendig, um Ihre Objekte per API abzurufen oder zu bearbeiten. Weitere Informationen dazu finden Sie in den Anleitungen.",
   "pci_projects_project_storages_containers_container_archive_info_staticUrl": "Serveradresse für rsync/sftp/scp:",
   "pci_projects_project_storages_containers_container_object_info_staticUrl": "Wert des CNAME-/TXT-Eintrags:",
   "pci_projects_project_storages_containers_container_object_info_staticUrl_help": "Um den Container „Statisches Hosting\" für eine Domain oder Subdomain zu verwenden, bearbeiten Sie einfach die DNS-Zone und fügen Sie einen CNAME-Eintrag mit diesem Wert hinzu.",

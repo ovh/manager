@@ -1,6 +1,6 @@
 {
   "pci_projects_project_storages_containers_users_title": "Adicionar utilizadores",
-  "pci_projects_project_storages_containers_users_username": "Nome do utilizador",
+  "pci_projects_project_storages_containers_users_username": "Nome de utilizador",
   "pci_projects_project_storages_containers_users_description": "Descrição",
   "pci_projects_project_storages_containers_users_import_json": "Importar S3 Policy (JSON)",
   "pci_projects_project_storages_containers_users_download_json": "Download da S3 Policy (JSON)",

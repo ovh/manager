@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_users_add_title": "Einen S3-Nutzer hinzufügen",
+  "pci_projects_project_users_add_short_description": "Bitte fügen Sie Ihrem Container einen Nutzer hinzu, um auf den Object Storage zuzugreifen. Wählen Sie dazu einen bestehenden Nutzer aus, oder erstellen Sie einen neuen. Jedem Nutzer (OpenStack) wird ein oder mehrere Paare von S3-Schlüsseln, die S3-Zugangsdaten, zugewiesen. Sie bestehen jeweils aus einem „Access Key“ und einem „Secret Key“.",
+  "pci_projects_project_users_add_submit_label": "Erstellen",
+  "pci_projects_project_users_add_cancel_label": "Abbrechen",
+  "pci_projects_project_users_add_description_label": "Beschreibung des Nutzers",
+  "pci_projects_project_users_add_existing_user": "Einen bestehenden Nutzer auswählen",
+  "pci_projects_project_users_add_create_user": "Einen neuen Nutzer erstellen",
+  "pci_projects_project_users_add_success_message": "Die S3-Login-Daten für den Nutzer {{user}} wurden erstellt.",
+  "pci_projects_project_users_add_error_message": "Die S3-Login-Daten für den Nutzer {{user}} konnten nicht erstellt werden.",
+  "pci_projects_project_users_add_username": "Ihr OpenStack-Nutzername:",
+  "pci_projects_project_users_add_description": "Ihre Beschreibung:",
+  "pci_projects_project_users_add_accesskey": "Ihr S3-Zugangsschlüssel:",
+  "pci_projects_project_users_add_secretkey": "Ihr geheimer S3-Schlüssel:",
+  "pci_projects_project_users_add_as_no_credentials": "Keine Zugangsdaten",
+  "pci_projects_project_users_add_as_credentials": "Erstellte Zugangsdaten"
+}
