@@ -14,7 +14,11 @@ const UserDetails = ({
 
   return (
     <p>
-      {auth.method !== 'provider' && (
+      {
+      auth.method === 'provider' ?
+        <span className={`d-block ${cssBaseClassName}_text-small text-break`}>
+          {auth.user}
+        </span> :
         <>
           {organisation && (
             <span className={`d-block ${cssBaseClassName}_text-small`}>
@@ -24,13 +28,9 @@ const UserDetails = ({
           <span className={`d-block ${cssBaseClassName}_text-small text-break`}>
             {email}
           </span>
-        </>
-      )}
-      {auth.method === 'provider' && (
-        <span className={`d-block ${cssBaseClassName}_text-small text-break`}>
-          {auth.user}
-        </span>
-      )}
+        </> 
+      }
+
       {email !== nichandle && (
         <span className={`d-block ${cssBaseClassName}_text-small`}>
           {nichandle}

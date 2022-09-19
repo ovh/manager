@@ -15,6 +15,7 @@ export default class UserAccountUsersSSOUpdateCtrl {
       metadata: null,
       groupAttributeName: null,
     };
+    this.newGroupAttributeName = '';
   }
 
   $onInit() {
@@ -24,6 +25,12 @@ export default class UserAccountUsersSSOUpdateCtrl {
 
   updateSSO() {
     this.loader = true;
+
+    if (this.identityProvider == null) {
+      return;
+    }
+
+    this.identityProvider.groupAttributeName = this.newGroupAttributeName;
 
     this.usersService
       .updateIdentityProvider(this.identityProvider)
@@ -54,6 +61,7 @@ export default class UserAccountUsersSSOUpdateCtrl {
       .getIdentityProvider()
       .then((identityProvider) => {
         this.identityProvider = identityProvider;
+        this.newGroupAttributeName = this.identityProvider.groupAttributeName;
       })
       .catch(() => {
         this.identityProvider = null;

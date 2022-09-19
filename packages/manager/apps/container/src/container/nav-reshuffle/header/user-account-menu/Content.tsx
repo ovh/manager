@@ -80,16 +80,9 @@ const UserAccountMenu = ({
             </strong>
           </p>
         )}
-        {!isProvider && (
-          <p className="mb-0" data-navi-id="account-email">
-            <strong>{user.email}</strong>
-          </p>
-        )}
-        {isProvider && (
-          <p className="mb-0" data-navi-id="account-username">
-            <strong>{user.auth.user}</strong>
-          </p>
-        )}
+        <p className="mb-0" data-navi-id={ isProvider ? "account-username" : "account-email" }>
+          <strong>{ isProvider? user.auth.user : user.email }</strong>
+        </p>
         {user.email !== user.nichandle && (
           <p className="mb-0">
             <Trans

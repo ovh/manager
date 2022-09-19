@@ -24,7 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
     controller: ssoDetailsController,
     controllerAs: '$ctrl',
     resolve: {
-      breadcrumb: /* @ngInjet */ ($translate) =>
+      breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('user_users_title'),
     },
   });
