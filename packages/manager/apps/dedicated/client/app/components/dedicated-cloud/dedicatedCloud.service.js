@@ -585,16 +585,30 @@ class DedicatedCloudService {
   }
   /* ------- USER -------*/
 
-  getUsers(serviceName, name) {
-    return this.OvhHttp.get('/dedicatedCloud/{serviceName}/user', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceName,
-      },
-      params: {
-        name,
-      },
-    });
+  getUsers(serviceName, params) {
+    const {
+      filters,
+      pageSize,
+      offset,
+      sort,
+      sortOrder,
+      defaultFilterColumn,
+    } = params;
+
+    let request = this.iceberg(`/dedicatedCloud/${serviceName}/user`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort || defaultFilterColumn, sortOrder);
+
+    if (filters.length > 0) {
+      request = this.filterIceberg(request, filters);
+    }
+
+    return this.$q
+      .resolve(request.execute(null).$promise)
+      .then(({ data }) => data);
   }
 
   getUserDetail(serviceName, userId) {
