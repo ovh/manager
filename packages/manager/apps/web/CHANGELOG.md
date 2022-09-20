@@ -1,3 +1,12 @@
+## [16.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.17.1...@ovh-ux/manager-web@16.17.2) (2022-09-20)
+
+
+### Bug Fixes
+
+* **web.domain:** display DNS server usage warning ([#7984](https://github.com/ovh/manager/issues/7984)) ([99ea327](https://github.com/ovh/manager/commit/99ea327896e163c92f705941d9a77b8496b40303))
+
+
+
 ## [16.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.17.0...@ovh-ux/manager-web@16.17.1) (2022-09-16)
 
 

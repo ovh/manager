@@ -1,3 +1,12 @@
+## [17.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.30.0...@ovh-ux/manager-dedicated@17.30.1) (2022-09-20)
+
+
+### Bug Fixes
+
+* **user.account:** omit some update properties ([#8012](https://github.com/ovh/manager/issues/8012)) ([3e2c235](https://github.com/ovh/manager/commit/3e2c2355687d19f33b36b6405d70e9cff8bee45e))
+
+
+
 # [17.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.29.1...@ovh-ux/manager-dedicated@17.30.0) (2022-09-14)
 
 

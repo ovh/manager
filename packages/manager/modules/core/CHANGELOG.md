@@ -1,3 +1,12 @@
+## [12.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.12.2...@ovh-ux/manager-core@12.12.3) (2022-09-20)
+
+
+### Bug Fixes
+
+* **redirection.constants:** update expressOrder URL for IE customers ([#8026](https://github.com/ovh/manager/issues/8026)) ([67d74fc](https://github.com/ovh/manager/commit/67d74fcb9299ef35fdd56f7813753a0f7f8186b0))
+
+
+
 ## [12.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.12.1...@ovh-ux/manager-core@12.12.2) (2022-08-25)
 
 
