@@ -50,12 +50,23 @@ export default /* @ngInject */ ($stateProvider) => {
     atInternet: {
       ignore: true, // this tell AtInternet to not track this state
     },
-    onEnter: /* @ngInject */ (atInternet, activeStep, step, numProjects) => {
+    onEnter: /* @ngInject */ (
+      atInternet,
+      activeStep,
+      step,
+      numProjects,
+      model,
+    ) => {
       activeStep(step.name);
       atInternet.trackPage({
         name: 'PublicCloud::pci::projects::new::payment',
         pciCreationNumProjects: numProjects,
       });
+      if (model.voucher.valid) {
+        atInternet.trackPage({
+          name: `PublicCloud_new_project_free_voucher::${model.voucher.value}::payment`,
+        });
+      }
     },
     resolve: {
       callback: /* @ngInject */ ($location) => $location.search(),
