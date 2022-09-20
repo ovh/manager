@@ -105,15 +105,25 @@ export default /* @ngInject */ ($stateProvider) => {
       addInstanceTrackPrefix: /* @ngInject */ () =>
         `PublicCloud::pci::projects::project::instances::`,
       trackAddInstance: /* @ngInject */ (
-        atInternet,
         addInstanceTrackPrefix,
-      ) => (complement, prefix = true) => {
+        trackClick,
+        trackPage,
+      ) => (complement, type = 'action', prefix = true) => {
         const name = `${
           prefix ? `${addInstanceTrackPrefix}` : ''
         }${complement}`;
-        return atInternet.trackClick({
-          name,
-          type: 'action',
+        return type === 'page' ? trackPage(name) : trackClick(name, type);
+      },
+      trackClick: /* @ngInject */ (atInternet) => (hit, type = 'action') => {
+        atInternet.trackClick({
+          name: hit,
+          type,
+        });
+      },
+
+      trackPage: /* @ngInject */ (atInternet) => (hit) => {
+        atInternet.trackPage({
+          name: hit,
         });
       },
     },
