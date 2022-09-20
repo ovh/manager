@@ -1,11 +1,20 @@
 <div class="pci-project-new h-100">
     <account-migration-notification></account-migration-notification>
-    <div class="container h-100">
-        <div class="row minh-100">
+    <div class="container row h-100">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-8 minh-100">
             <div
-                class="col-lg-10 py-5 minh-100 bg-white pci-project-new-view"
+                class="py-5 minh-100 bg-white pci-project-new-view"
                 data-ui-view
             ></div>
+        </div>
+        <div
+            class="col-lg-1 promotion-banner-container"
+            data-ng-if="$ctrl.model"
+        >
+            <pci-new-project-promotion-banner
+                data-voucher="$ctrl.model.voucher"
+            />
         </div>
     </div>
 </div>
