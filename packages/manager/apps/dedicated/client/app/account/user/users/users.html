@@ -203,7 +203,10 @@
 
     <!-- SSO IDENTITY PROVIDER -->
     <div data-ng-show="$ctrl.identityProvider != null" class="table-responsive">
-        <table class="table table-hover">
+        <table
+            class="table table-hover"
+            aria-label="{{:: 'user_users_sso_table_description' | translate }}"
+        >
             <thead>
                 <tr>
                     <th
@@ -305,7 +308,10 @@
 
     <!-- IDENTITY PROVIDER GROUPS MAPPING -->
     <div data-ng-show="$ctrl.identityProvider != null" class="table-responsive">
-        <table class="table table-hover">
+        <table
+            class="table table-hover"
+            aria-label="{{:: 'user_users_groups_table_description' | translate }}"
+        >
             <thead>
                 <tr>
                     <th

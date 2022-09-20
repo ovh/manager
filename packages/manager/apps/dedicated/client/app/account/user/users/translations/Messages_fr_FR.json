@@ -84,6 +84,8 @@
   "user_users_sso_detail_idp_signing_certificates": "Certificats de signature",
   "user_users_sso_detail_idp_signing_certificates_subject": "Sujet",
   "user_users_sso_detail_idp_signing_certificates_expiration": "Expiration",
+  "user_users_sso_section_title": "Service SSO",
+  "user_users_sso_table_description": "Service SSO",
   "user_users_groups_name": "Nom",
   "user_users_groups_default_group": "Groupe par défaut",
   "user_users_groups_role": "Rôle",
@@ -91,7 +93,6 @@
   "user_users_groups_description": "Description",
   "user_users_groups_creation": "Création",
   "user_users_groups_add": "Déclarer un groupe",
-  "user_users_sso_section_title": "Service SSO",
   "user_users_groups_section_title": "Groupes",
   "user_users_groups_add_modal_title": "Déclarer un groupe",
   "user_users_groups_add_modal_info": "Afin que l'identité récupérée via l'identity provider soit liée à un rôle OVHcloud, il est nécessaire de déclarer les groupes de l'identity provider et de les mapper à un privilège OVHcloud.",
@@ -112,5 +113,6 @@
   "user_users_groups_update_success_message": "Le groupe a été modifié avec succès.",
   "user_users_groups_update_error_message": "Une erreur est survenue lors de la mise à jour du groupe",
   "user_users_groups_update_modal_group_description": "Description du groupe",
-  "user_users_groups_update": "Modifier le groupe"
+  "user_users_groups_update": "Modifier le groupe",
+  "user_users_groups_table_description": "Groupes de l'identity provider"
 }
