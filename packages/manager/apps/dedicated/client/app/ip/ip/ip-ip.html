@@ -145,48 +145,9 @@
 
         <oui-spinner data-ng-if="loading.alerts" size="s"> </oui-spinner>
 
-        <!-- Buttons -->
-        <div class="row mb-3">
-            <div class="col-sm-12 col-md-4">
-                <oui-tile data-heading="{{:: 'ip_order_title' | translate }}">
-                    <oui-tile-button data-on-click="goToAgoraOrder()">
-                        <span data-translate="ip_order_additional_ips"></span>
-                    </oui-tile-button>
-                    <oui-tile-button
-                        data-on-click="goToByoipConfiguration()"
-                        data-ng-if="isByoipAvailable"
-                    >
-                        <span data-ng-bind=":: BRING_YOUR_OWN_IP"></span>
-                    </oui-tile-button>
-                </oui-tile>
-            </div>
-
-            <!-- Buttons -->
-            <div class="col-sm-12 col-md-4">
-                <oui-tile
-                    data-heading="{{:: 'ip_administration_title' | translate }}"
-                >
-                    <oui-tile-button
-                        data-disabled="(state.loaded)!=state.total"
-                        data-on-click="exportCsv(ipsList)"
-                    >
-                        <span data-translate="ip_export"></span>
-                    </oui-tile-button>
-                    <oui-tile-button
-                        data-ng-if="canImportIPFO()"
-                        data-on-click="importIPFO()"
-                    >
-                        <span data-translate="ip_migration"></span>
-                    </oui-tile-button>
-                    <oui-tile-button data-on-click="displayOrganisation()">
-                        <span data-translate="ip_organisation_button"></span>
-                    </oui-tile-button>
-                </oui-tile>
-            </div>
-        </div>
         <h4 data-translate="ip_addresses_grid_header"></h4>
         <div class="float-right">
-            <oui-dropdown>
+            <oui-dropdown placement="end">
                 <button
                     type="button"
                     class="oui-button oui-button_secondary oui-button_s"
@@ -210,6 +171,8 @@
                 </oui-dropdown-content>
             </oui-dropdown>
             <oui-button
+                data-oui-tooltip="{{:: 'ip_export' | translate }}"
+                data-oui-tooltip-placement="left"
                 type="button"
                 class="oui-button_secondary"
                 disabled="canExportCsv()"
