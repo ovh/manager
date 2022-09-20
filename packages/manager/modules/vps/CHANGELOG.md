@@ -1,3 +1,12 @@
+## [2.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.23.3...@ovh-ux/manager-vps@2.23.4) (2022-09-20)
+
+
+### Bug Fixes
+
+* **vps.upgrade:** filter catalog products listed in available upgrades ([#7965](https://github.com/ovh/manager/issues/7965)) ([af1ef47](https://github.com/ovh/manager/commit/af1ef47c46f0fd6a3971543ad989ed7f537553a8))
+
+
+
 ## [2.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.23.2...@ovh-ux/manager-vps@2.23.3) (2022-08-11)
 
 
