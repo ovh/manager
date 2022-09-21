@@ -101,6 +101,7 @@ import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
@@ -154,6 +155,7 @@ export default async (containerEl, shellClient) => {
         'ngAria',
         registerAtInternet(shellClient.tracking),
         ngAtInternetUiRouterPlugin,
+        ovhManagerAtInternetConfiguration,
         'ngCookies',
         'ngCsv',
         'ngFlash',
@@ -285,9 +287,14 @@ export default async (containerEl, shellClient) => {
           .catch(() => {});
       },
     )
-    .config(() => {
-      shellClient.tracking.setConfig(TRACKING);
+    .config(async () => {
+      await shellClient.tracking.setConfig(TRACKING);
     })
+    .config(
+      /* @ngInject */ (atInternetConfigurationProvider) => {
+        atInternetConfigurationProvider.setSkipInit(true);
+      },
+    )
     /*= =========  INTERCEPT ERROR IF NO TRANSLATION FOUND  ========== */
     .factory('translateInterceptor', ($q) => {
       const regexp = new RegExp(/Messages\w+\.json$/i);
