@@ -19,6 +19,7 @@ export default {
     privateNetworksRegions: '<',
     goToRegion: '<',
     goToAddPublicGateway: '<',
+    gateways: '<',
   },
   controller,
   template,
