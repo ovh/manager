@@ -37,7 +37,9 @@ angular
 
             if ($state.current.name === '') {
               $transitions.onSuccess({}, () => {
-                redirectToMFA();
+                if (!$state.is('app.account.user.security.mfa')) {
+                  redirectToMFA();
+                }
               });
             } else {
               redirectToMFA();
