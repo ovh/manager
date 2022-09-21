@@ -35,9 +35,11 @@
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
-
+    <oui-spinner
+        data-ng-if="$ctrl.isLoading && !$ctrl.availableNetworks"
+    ></oui-spinner>
     <pci-project-private-networks-empty
-        data-ng-if="$ctrl.privateNetworks.length === 0"
+        data-ng-if="$ctrl.availableNetworks.length === 0"
     >
         <oui-button
             data-variant="primary"
@@ -50,8 +52,8 @@
     </pci-project-private-networks-empty>
     <oui-datagrid
         class="private-network-data-grid"
-        data-rows="$ctrl.privateNetworks"
-        data-ng-if="$ctrl.privateNetworks.length > 0"
+        data-rows="$ctrl.availableNetworks"
+        data-ng-if="$ctrl.availableNetworks.length > 0"
         criteria="$ctrl.criteria"
         on-criteria-change="$ctrl.onListParamChange($criteria)"
     >
@@ -133,10 +135,19 @@
                                 class="oui-table__cell"
                                 data-ng-bind="subnetDetail.cidr"
                             ></td>
-                            <td
-                                class="oui-table__cell"
-                                data-ng-bind="subnetDetail.gatewayIp"
-                            ></td>
+                            <td class="oui-table__cell">
+                                <div class="d-flex flex-column">
+                                    <span
+                                        class="mb-1"
+                                        data-ng-if="subnetDetail.gatewayName"
+                                        data-ng-bind="subnetDetail.gatewayName"
+                                    ></span>
+                                    <span
+                                        data-ng-if="subnetDetail.gatewayIp && subnetDetail.dhcp"
+                                        data-ng-bind="subnetDetail.gatewayIp"
+                                    ></span>
+                                </div>
+                            </td>
                             <td
                                 class="oui-table__cell"
                                 data-ng-bind="subnetDetail.dhcp"
