@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_storages_cold_archive_title": "Cold Archive",
+  "pci_projects_project_storages_cold_archive_description": "Classe de stockage d'archives qui offre le stockage sécurisé le plus économique pour les données à longue durée de vie, rarement consultées.",
+
+  "pci_projects_project_storages_cold_archive_tabs_tab_archives": "Mes conteneurs",
+  "pci_projects_project_storages_cold_archive_tabs_tab_users": "Utilisateurs S3"
+}
