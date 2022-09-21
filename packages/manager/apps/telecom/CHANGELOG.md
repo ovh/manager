@@ -1,3 +1,12 @@
+## [13.44.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.44.4...@ovh-ux/manager-telecom@13.44.5) (2022-09-21)
+
+
+### Bug Fixes
+
+* **tracking:** update tracking configuration ([#8046](https://github.com/ovh/manager/issues/8046)) ([0c59a2b](https://github.com/ovh/manager/commit/0c59a2b60c4835b9766a7dab7864d92e70ea9839))
+
+
+
 ## [13.44.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.44.3...@ovh-ux/manager-telecom@13.44.4) (2022-09-16)
 
 
