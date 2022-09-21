@@ -1,3 +1,12 @@
+## [3.10.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.10.6...@ovh-ux/manager-billing-components@3.10.7) (2022-09-21)
+
+
+### Bug Fixes
+
+* **billing.commitment:** change content if no discount ([#7875](https://github.com/ovh/manager/issues/7875)) ([10fbe0d](https://github.com/ovh/manager/commit/10fbe0d31aa4d0ba73f0429f330affe38255e722))
+
+
+
 ## [3.10.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.10.5...@ovh-ux/manager-billing-components@3.10.6) (2022-09-14)
 
 

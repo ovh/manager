@@ -1,3 +1,12 @@
+## [2.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.6.2...@ovh-ux/manager-nasha@2.6.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **nasha:** snapshot policies limit to 10 ([#7788](https://github.com/ovh/manager/issues/7788)) ([fe99a3b](https://github.com/ovh/manager/commit/fe99a3b4e5aa75f92fb0fe538109c3ffa5235157))
+
+
+
 ## [2.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.6.1...@ovh-ux/manager-nasha@2.6.2) (2022-09-14)
 
 
