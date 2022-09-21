@@ -25,47 +25,17 @@ export default class {
   getPrivateNetworks(serviceName) {
     return this.$http
       .get(`/cloud/project/${serviceName}/network/private`)
-      .then(({ data }) => {
-        const privateNetworks = sortBy(data, 'vlanId').filter(
+      .then(({ data }) =>
+        sortBy(data, 'vlanId').filter(
           ({ status }) => !DELETING_STATUS.includes(status),
-        );
-        return this.$q.all(
-          privateNetworks.map((privateNetwork) =>
-            this.getSubnets(serviceName, privateNetwork),
-          ),
-        );
-      });
+        ),
+      );
   }
 
-  getSubnets(serviceName, privateNetwork) {
+  getSubnets(serviceName, id) {
     return this.$http
-      .get(
-        `/cloud/project/${serviceName}/network/private/${privateNetwork.id}/subnet`,
-      )
-      .then(({ data }) => {
-        return {
-          ...privateNetwork,
-          subnet: [
-            ...data.map((subnet) => ({
-              ...subnet,
-              allocatedIp: subnet.ipPools
-                .map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
-                .join(' ,'),
-              dhcp: subnet.ipPools
-                .map((ipPool) =>
-                  ipPool.dhcp === true
-                    ? this.$translate.instant(
-                        'pci_projects_project_network_private_dhcp_active',
-                      )
-                    : this.$translate.instant(
-                        'pci_projects_project_network_private_dhcp_suspended',
-                      ),
-                )
-                .join(),
-            })),
-          ],
-        };
-      });
+      .get(`/cloud/project/${serviceName}/network/private/${id}/subnet`)
+      .then(({ data }) => data);
   }
 
   getVrack(serviceName) {
@@ -93,6 +63,12 @@ export default class {
       .delete(
         `/cloud/project/${serviceName}/network/private/${networkId}/subnet/${subnetId}`,
       )
+      .then(({ data }) => data);
+  }
+
+  getGateways(serviceName) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/aggregated/gateway`)
       .then(({ data }) => data);
   }
 }
