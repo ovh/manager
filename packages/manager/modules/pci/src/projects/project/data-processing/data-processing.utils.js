@@ -447,6 +447,18 @@ export const isJobRunning = (job) =>
   ].includes(job.status);
 
 /**
+ * Determine whether notebook is in a running state (opposed to a final state)
+ * @param notebook {*} Job to check
+ * @return {boolean} true if notebook is in a running state
+ */
+export const isNotebookRunning = (notebook) =>
+  [
+    DATA_PROCESSING_STATUSES.PENDING,
+    DATA_PROCESSING_STATUSES.RUNNING,
+    DATA_PROCESSING_STATUSES.SUBMITTED,
+  ].includes(notebook.status);
+
+/**
  * Get a CSS class name from a given job status
  * @param status
  * @return {string|any}
