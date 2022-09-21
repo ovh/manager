@@ -1,3 +1,12 @@
+# [3.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.24.0...@ovh-ux/manager-server-sidebar@3.25.0) (2022-09-21)
+
+
+### Features
+
+* **dedicated:** modify the url of dedicatd server ([#7893](https://github.com/ovh/manager/issues/7893)) ([86d1d26](https://github.com/ovh/manager/commit/86d1d26011561fb64f38ca3ee97d4b7f25d0f030))
+
+
+
 # [3.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.23.7...@ovh-ux/manager-server-sidebar@3.24.0) (2022-09-14)
 
 

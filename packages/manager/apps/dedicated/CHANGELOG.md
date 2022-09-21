@@ -1,3 +1,19 @@
+# [17.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.30.1...@ovh-ux/manager-dedicated@17.31.0) (2022-09-21)
+
+
+### Bug Fixes
+
+* **dedicated:** remove customer from banner message ([2d912dd](https://github.com/ovh/manager/commit/2d912dd7d64ade94795af8c25d9ae29deb26dd33))
+* **dedicated:** show ip range not ip on ACL edit ([#7724](https://github.com/ovh/manager/issues/7724)) ([83b9831](https://github.com/ovh/manager/commit/83b983116b5c0cdc3a860524afa5fff8cf2af474))
+* **ip.byoip:** add message banner restricted access mode ([#7800](https://github.com/ovh/manager/issues/7800)) ([b7687d7](https://github.com/ovh/manager/commit/b7687d76f323d29c988c57b6bab04ec890f64298))
+
+
+### Features
+
+* **dedicated:** modify the url of dedicatd server ([#7893](https://github.com/ovh/manager/issues/7893)) ([86d1d26](https://github.com/ovh/manager/commit/86d1d26011561fb64f38ca3ee97d4b7f25d0f030))
+
+
+
 ## [17.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.30.0...@ovh-ux/manager-dedicated@17.30.1) (2022-09-20)
 
 

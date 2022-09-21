@@ -1,3 +1,12 @@
+# [5.90.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.89.0...@ovh-ux/manager-pci@5.90.0) (2022-09-21)
+
+
+### Features
+
+* **kubernetes.add:** add input validation error message ([#7726](https://github.com/ovh/manager/issues/7726)) ([566349f](https://github.com/ovh/manager/commit/566349fe13632b3c17e9787ded1319daefe35eef))
+
+
+
 # [5.89.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.88.3...@ovh-ux/manager-pci@5.89.0) (2022-09-14)
 
 
