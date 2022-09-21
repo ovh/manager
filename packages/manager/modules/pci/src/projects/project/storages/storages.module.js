@@ -7,6 +7,7 @@ import cloudArchive from './cloud-archives';
 import databases from './databases';
 import instanceBackups from './instance-backups';
 import objectStorage from './object-storage';
+import coldArchive from './cold-archive';
 import snapshots from './snapshots';
 import routing from './storages.routing';
 
@@ -20,6 +21,7 @@ angular
     instanceBackups,
     snapshots,
     objectStorage,
+    coldArchive,
     'oui',
     'ui.router',
     'ovhManagerFilters',

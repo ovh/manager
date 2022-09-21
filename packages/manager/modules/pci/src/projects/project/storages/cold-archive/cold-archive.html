@@ -1,0 +1,28 @@
+<div data-ui-view>
+    <oui-header
+        class="mb-3"
+        data-heading="{{:: 'pci_projects_project_storages_cold_archive_title' | translate }}"
+        data-description="{{:: 'pci_projects_project_storages_cold_archive_description' | translate }}"
+    >
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.archivesLink }}"
+                data-active="!$ctrl.isUserTabActive()"
+                ><span
+                    data-translate="pci_projects_project_storages_cold_archive_tabs_tab_archives"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.userListLink }}"
+                data-active="$ctrl.isUserTabActive()"
+                ><span
+                    data-translate="pci_projects_project_storages_cold_archive_tabs_tab_users"
+                ></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+    <div
+        class="container-fluid w-100 h-100 pt-4 px-3 px-md-5"
+        data-ui-view="containersView"
+    ></div>
+</div>
