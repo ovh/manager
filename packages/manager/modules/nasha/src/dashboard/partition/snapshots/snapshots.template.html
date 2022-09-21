@@ -4,10 +4,16 @@
         data-description="{{:: 'nasha_dashboard_partition_snapshots_description' | translate }}"
     ></oui-header>
     <h4 data-translate="nasha_dashboard_partition_snapshots_subtitle"></h4>
+    <p class="d-flex flex-column">
+        <strong
+            data-translate="nasha_dashboard_partition_snapshots_count_title"
+        ></strong>
+        <span data-ng-bind=":: $ctrl.snapshotsCount"> </span>
+    </p>
     <oui-button
         class="mb-2"
         data-icon-left="oui-icon-plus"
-        data-disabled="$ctrl.isCustomSnapshotFormShown"
+        data-disabled="$ctrl.isCustomSnapshotFormShown || !($ctrl.customSnapshots.length < $ctrl.MAX_CUSTOM_SNAPSHOT)"
         data-on-click="$ctrl.showCustomSnapshotForm()"
     >
         <span

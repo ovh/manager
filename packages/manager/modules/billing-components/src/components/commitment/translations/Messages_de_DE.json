@@ -1,8 +1,8 @@
 {
-  "billing_commitment_commit": "Abonnement mit fester Laufzeit bestellen und Vorzugspreis sichern",
-  "billing_commitment_commit_again": "Abonnement mit fester Laufzeit verlängern und Vorzugspreis sichern",
-  "billing_commitment_none": "Derzeit besteht keine feste Vertragslaufzeit für Ihren Dienst {{ serviceName }}. Ab jetzt können Sie von einem Rabatt profitieren, indem Sie Ihren Dienst {{ serviceType }} für eine bestimmte Vertragslaufzeit abonnieren.",
-  "billing_commitment_commit_again_description": "Sie haben Ihren Dienst {{ serviceName }} derzeit bis zum {{ endDate }} abonniert. Sie können den Vorzugspreis weiterhin erhalten, indem Sie das Abonnement für Ihren {{ serviceType }} Dienst verlängern.",
+  "billing_commitment_commit": "Vertragsbindung eingehen",
+  "billing_commitment_commit_again": "Vertrag verlängern",
+  "billing_commitment_none": "Derzeit besteht keine feste Vertragslaufzeit für Ihren Dienst {{ serviceName }}.",
+  "billing_commitment_commit_again_description": "Sie haben Ihren Dienst {{ serviceName }} derzeit bis zum {{ endDate }} abonniert. Ab sofort können Sie Ihren Vertrag um die Dauer Ihrer Wahl verlängern.",
   "billing_commitment_service_dedicated_server": "Dedicated Server",
   "billing_commitment_duration": "Wählen Sie eine Vertragslaufzeit aus",
   "billing_commitment_duration_current_price": "Aktueller Standardpreis {{ price }} / Monat",
@@ -25,5 +25,9 @@
   "billing_commitment_summary_description_periodic_end": "Nach dem {{ engagementEndDate }} wird Ihr Dienst stillschweigend erneut für eine Laufzeit aktiviert, die Ihrer letzten Vertragslaufzeit entspricht.",
   "billing_commitment_summary_description_upfront_end": "Nach dem {{ engagementEndDate }} wird Ihr Dienst {{ serviceName }} stillschweigend wieder aktiviert. Die Dauer und Zahlungsart entsprechen Ihrem letzten Abonnement.",
   "billing_commitment_service_storage_netapp": "Enterprise File Storage Speicherplatz",
-  "billing_commitment_service_dedicated_nasha": "HA-NAS Storage Dienst"
+  "billing_commitment_service_dedicated_nasha": "HA-NAS Storage Angebote",
+  "billing_commitment_commit_with_discount": "Abonnement mit fester Laufzeit bestellen und Vorzugspreis sichern",
+  "billing_commitment_commit_again_with_discount": "Abonnement mit fester Laufzeit verlängern und Vorzugspreis sichern",
+  "billing_commitment_none_with_discount": "Derzeit besteht keine feste Vertragslaufzeit für Ihren Dienst {{ serviceName }}. Ab jetzt können Sie von einem Rabatt profitieren, indem Sie Ihren Dienst {{ serviceType }} für eine bestimmte Vertragslaufzeit abonnieren.",
+  "billing_commitment_commit_again_description_with_discount": "Sie haben Ihren Dienst {{ serviceName }} derzeit bis zum {{ endDate }} abonniert. Sie können den Vorzugspreis weiterhin erhalten, indem Sie das Abonnement für Ihren {{ serviceType }} Dienst verlängern."
 }

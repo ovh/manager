@@ -15,5 +15,7 @@
   "nasha_dashboard_partition_snapshots_reset_snapshot_types": "Usuń zmiany częstotliwości",
   "nasha_dashboard_partition_snapshots_create_rule": "Dozwolone są: znaki alfanumeryczne, kropka, dwukropek i myślnik",
   "nasha_dashboard_partition_snapshots_warning_1": "20% dodatkowej przestrzeni dyskowej jest dostępne dla kopii zapasowych snapshot.",
-  "nasha_dashboard_partition_snapshots_warning_2": "Jeśli zapełnisz tę przestrzeń, snapshoty będą przechowywane na Twojej podstawowej przestrzeni dyskowej."
+  "nasha_dashboard_partition_snapshots_warning_2": "Jeśli zapełnisz tę przestrzeń, snapshoty będą przechowywane na Twojej podstawowej przestrzeni dyskowej.",
+  "nasha_dashboard_partition_snapshots_count_title": "Liczba snapshotów",
+  "nasha_dashboard_partition_snapshots_count_max": "maksymalnie"
 }

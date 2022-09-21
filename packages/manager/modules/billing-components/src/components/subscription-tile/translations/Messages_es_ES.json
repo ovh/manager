@@ -10,10 +10,12 @@
   "manager_billing_subscription_contacts_billing": "Facturación",
   "manager_billing_subscription_contacts_management": "Editar los contactos",
   "manager_billing_subscription_error": "Se ha producido un error al cargar la información: {{ message }}",
-  "manager_billing_subscription_engagement_commit": "Contratar con compromiso de permanencia y disfrutar de un descuento",
-  "manager_billing_subscription_engagement_commit_again": "Volver a contratar con compromiso de permanencia y disfrutar de un descuento",
+  "manager_billing_subscription_engagement_commit": "Contratar con compromiso de permanencia",
+  "manager_billing_subscription_engagement_commit_again": "Volver a contratar con compromiso de permanencia",
   "manager_billing_subscription_engagement_status_engaged": "Finaliza el {{ endDate }}",
   "manager_billing_subscription_engagement_status_engaged_expired": "Finalizado el {{ endDate }}",
   "manager_billing_subscription_engagement_status_engaged_renew": "Renovación prevista el {{ endDate }}",
-  "manager_billing_subscription_engagement_status_commitement_pending": "El compromiso de permanencia del servicio comenzará el {{ nextBillingDate }}"
+  "manager_billing_subscription_engagement_status_commitement_pending": "El compromiso de permanencia del servicio comenzará el {{ nextBillingDate }}",
+  "manager_billing_subscription_engagement_commit_with_discount": "Contratar con compromiso de permanencia y disfrutar de un descuento",
+  "manager_billing_subscription_engagement_commit_again_with_discount": "Volver a contratar con compromiso de permanencia y disfrutar de un descuento"
 }

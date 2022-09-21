@@ -2,6 +2,7 @@
     <oui-modal
         data-on-dismiss="$ctrl.goBack()"
         data-primary-label="{{:: 'pci_projects_project_kubernetes_details_service_name_edit' | translate}}"
+        data-primary-disabled="$ctrl.isEditDisabled()"
         data-secondary-action="$ctrl.onRenameModalCancel()"
         data-secondary-label="{{:: 'pci_projects_project_kubernetes_details_service_name_cancel' | translate}}"
         data-loading="$ctrl.isEditing"
@@ -13,6 +14,7 @@
         ></p>
         <oui-field
             data-label="{{::'pci_projects_project_kubernetes_details_service_name_custom' | translate}}"
+            data-error-messages="{'pattern' : ('pci_projects_project_kubernetes_details_service_name_input_pattern_validation_error' | translate)}"
         >
             <input
                 type="text"
@@ -20,7 +22,8 @@
                 name="clusterName"
                 class="oui-input"
                 data-ng-model="$ctrl.name"
-                required
+                data-ng-maxlength="$ctrl.inputConstraints.MAX_LENGTH"
+                data-ng-pattern="$ctrl.inputConstraints.PATTERN"
             />
         </oui-field>
     </oui-modal>

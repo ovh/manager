@@ -7,6 +7,7 @@ export default {
     pricingMode: '=',
     pricingModes: '<',
     duration: '<',
+    hasDiscount: '<',
   },
   controller,
   template,
