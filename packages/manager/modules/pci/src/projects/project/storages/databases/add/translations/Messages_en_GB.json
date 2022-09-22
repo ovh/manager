@@ -14,12 +14,12 @@
   "pci_database_add_step5_title": "Configure your options",
   "pci_database_add_name": "Name your database service",
   "pci_database_add_network_mode_label": "Network type",
-  "pci_database_add_network_mode_public": "Public",
-  "pci_database_add_network_mode_private": "Private",
+  "pci_database_add_network_mode_public": "Public network (internet) ",
+  "pci_database_add_network_mode_private": "Private network (vRack)",
   "pci_database_add_network_mode_public_incompatible": "The solution selected is not compatible with public networks.",
   "pci_database_add_network_mode_private_incompatible": "The solution selected is not compatible with private networks.",
   "pci_database_add_privateNetwork_label": "Private network attached",
-  "pci_database_add_privateNetwork_description": "By default, databases have a public network. You can also add a private network, but you will lose the configuration you have just set up.",
+  "pci_database_add_privateNetwork_description": "Only the services (dedicated servers, VMs, K8s clusters, etc.) connected to this private network (vRack) can communicate with your database. ",
   "pci_database_add_privateNetwork_add": "Create a private network",
   "pci_database_add_subnet_label": "Subnetwork",
   "pci_database_add_subnet_description": "You can create a subnet, but you will lose your current configuration.",
@@ -61,5 +61,9 @@
   "pci_database_add_spec_nodes_range_single": "{{min}} nodes included, up to {{max}} nodes",
   "pci_database_add_show_command": "See the API equivalent",
   "pci_database_add_spec_name_popover": "The name of your cluster is automatically generated. You can change it later.",
-  "pci_database_add_spec_logo_alt": "Engine logo"
+  "pci_database_add_spec_logo_alt": "Engine logo",
+  "pci_database_add_network_mode_helper": "To find out more about configuring a private network, view the guide: {{link}}",
+  "pci_database_add_network_mode_helper_link": "Public Cloud vRack",
+  "pci_database_add_network_mode_public_popover": "The public network enables connections from any authorised source IP connected to the internet (your computer, a remote server, etc.)",
+  "pci_database_add_network_mode_private_popover": "The private network does not allow public connectivity, and only allows connections from within your vRack."
 }

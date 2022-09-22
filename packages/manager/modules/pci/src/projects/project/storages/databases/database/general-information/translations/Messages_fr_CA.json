@@ -81,5 +81,6 @@
   "pci_databases_general_information_update_maintenance_time_success": "L'heure de maintenance a été modifiée avec succès",
   "pci_databases_general_information_update_maintenance_time_error": "Une erreur est survenue lors de la modification de l'heure de maintenance",
   "pci_databases_general_information_update_backup_time_success": "L'heure de sauvegarde a été modifiée avec succès",
-  "pci_databases_general_information_update_backup_time_error": "Une erreur est survenue lors de la modification de l'heure de sauvegarde"
+  "pci_databases_general_information_update_backup_time_error": "Une erreur est survenue lors de la modification de l'heure de sauvegarde",
+  "pci_databases_general_information_uri_network_info": "Votre service est configuré avec une connectivité <b>réseau privé</b>, cela signifie que seuls les services à l'intérieur de ce réseau vRack peuvent se connecter à votre base de données."
 }
