@@ -1,0 +1,22 @@
+.spinner__label {
+  vertical-align: top;
+}
+
+.addnotebook__error {
+  color: #e36947;
+
+  .addnotebook__errormessage {
+    vertical-align: top;
+    padding-left: 5px;
+  }
+
+  .oui-icon {
+    color: #b04020;
+  }
+}
+.order-summary {
+  z-index: 1009;
+}
+.break-word {
+  word-break: break-word;
+}
