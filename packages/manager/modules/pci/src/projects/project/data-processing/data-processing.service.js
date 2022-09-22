@@ -196,36 +196,6 @@ export default class DataProcessingService {
   }
 
   /**
-   * Retrieve a single job
-   * @param projectId string Project id containing the job
-   * @param jobId string Job id
-   * @return {Promise<any>}
-   */
-  getNotebook(projectId, notebookId) {
-    // The execute function will skip the cache as the job status are changing too quickly and can create an understanding problem for the service user
-    return this.OvhApiCloudProjectDataProcessingJobs.get()
-      .execute(
-        {
-          serviceName: projectId,
-          jobId: notebookId,
-        },
-        true,
-      )
-      .$promise.then(() => {
-        const status = Math.random() > 0.5 ? 'Running' : 'Terminated';
-        return {
-          id: 'c6d0d1d0-82b2-479d-8b89-95901e829d00',
-          name: 'Malicious Loki',
-          editorLink: 'http://google.com',
-          privacy: 'private',
-          framework: 'Spark 3.3.0',
-          status,
-          region: 'GRA',
-        };
-      });
-  }
-
-  /**
    * Retrieve capabilities
    * @param projectId string Project to get capabilities from
    * @return {Promise<any>}
