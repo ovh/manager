@@ -10,5 +10,7 @@ export default {
     projectId: '<',
     terminateNotebook: '<',
     goBack: '<',
+    openLiveCodeEditor: '<',
+    capabilities: '<',
   },
 };
