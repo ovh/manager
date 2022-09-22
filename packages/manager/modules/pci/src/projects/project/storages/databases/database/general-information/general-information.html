@@ -260,6 +260,11 @@
                             <oui-clipboard
                                 model="$ctrl.endpoint.uri"
                             ></oui-clipboard>
+                            <span
+                                class="word-break"
+                                data-ng-if="$ctrl.privateNetwork"
+                                data-translate="pci_databases_general_information_uri_network_info"
+                            ></span>
                         </oui-tile-description>
                     </oui-tile-description>
                 </oui-tile-definition>

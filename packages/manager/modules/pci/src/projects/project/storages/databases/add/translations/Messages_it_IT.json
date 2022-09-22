@@ -14,12 +14,12 @@
   "pci_database_add_step5_title": "Configura le opzioni",
   "pci_database_add_name": "Assegna un nome al servizio di database",
   "pci_database_add_network_mode_label": "Tipo di rete",
-  "pci_database_add_network_mode_public": "Pubblica",
-  "pci_database_add_network_mode_private": "Privata",
+  "pci_database_add_network_mode_public": "Rete pubblica (Internet) ",
+  "pci_database_add_network_mode_private": "Rete privata (vRack)",
   "pci_database_add_network_mode_public_incompatible": "Il servizio selezionato non è compatibile con le reti pubbliche.",
   "pci_database_add_network_mode_private_incompatible": "Il servizio selezionato non è compatibile con le reti private.",
   "pci_database_add_privateNetwork_label": "Rete privata associata",
-  "pci_database_add_privateNetwork_description": "I database possiedono di default una rete pubblica. È possibile aggiungere anche una rete privata, ma in questo caso verrà persa la configurazione appena definita.",
+  "pci_database_add_privateNetwork_description": "Solo i servizi (server dedicati, Vms, cluster K8s, ecc...) connessi alla rete privata (vRack) potranno comunicare con il tuo database. ",
   "pci_database_add_privateNetwork_add": "Crea una rete privata",
   "pci_database_add_subnet_label": "Sottorete",
   "pci_database_add_subnet_description": "È possibile creare una sottorete, ma verrà persa la configurazione corrente.",
@@ -61,5 +61,9 @@
   "pci_database_add_spec_nodes_range_single": "{{min}} nodi inclusi, fino a {{max}} nodi",
   "pci_database_add_show_command": "Visualizza l’API equivalente",
   "pci_database_add_spec_name_popover": "Il nome del cluster è generato automaticamente. Potrai modificarlo in seguito.",
-  "pci_database_add_spec_logo_alt": "Logo del motore"
+  "pci_database_add_spec_logo_alt": "Logo del motore",
+  "pci_database_add_network_mode_helper": "Per maggiori informazioni sulla configurazione di una rete privata, consulta la guida: {{ link }}",
+  "pci_database_add_network_mode_helper_link": "vRack Public Cloud",
+  "pci_database_add_network_mode_public_popover": "La rete pubblica permette la connessione da qualsiasi IP sorgente autorizzato e collegato a Internet (il tuo computer, un server remoto, ...)",
+  "pci_database_add_network_mode_private_popover": "La rete privata non permette la connettività pubblica e autorizza solo le connessioni provenienti dall'interno della vRack."
 }

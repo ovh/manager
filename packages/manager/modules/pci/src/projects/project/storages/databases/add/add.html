@@ -108,19 +108,55 @@
                         data-value="false"
                         data-disabled="$ctrl.loadingSubnets || !$ctrl.model.flavor.supportsPublicNetwork"
                     >
-                        <span
-                            data-translate="pci_database_add_network_mode_public"
-                        ></span>
+                        <div class="d-flex align-items-center">
+                            <span
+                                data-translate="pci_database_add_network_mode_public"
+                            ></span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                data-oui-popover="{{'pci_database_add_network_mode_public_popover' | translate}}"
+                                data-oui-popover-placement="right"
+                            ></button>
+                        </div>
                     </oui-radio>
                     <oui-radio
                         data-value="true"
                         data-disabled="$ctrl.loadingSubnets || !$ctrl.model.flavor.supportsPrivateNetwork"
                     >
-                        <span
-                            data-translate="pci_database_add_network_mode_private"
-                        ></span>
+                        <div class="d-flex align-items-center">
+                            <span
+                                data-translate="pci_database_add_network_mode_private"
+                            ></span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                data-oui-popover="{{'pci_database_add_network_mode_private_popover' | translate}}"
+                                data-oui-popover-placement="right"
+                            ></button>
+                        </div>
                     </oui-radio>
                 </oui-radio-group>
+                <div class="oui-field__helper">
+                    <span
+                        data-translate="pci_database_add_network_mode_helper"
+                        data-translate-values="{
+                        link: 
+                        '<a 
+                            class=&quot oui-link_icon &quot 
+                            href=&quot' + $ctrl.privateNetworkGuideUrl + '&quot 
+                            target=&quot _blank &quot 
+                        >
+                            <span>{{:: 'pci_database_add_network_mode_helper_link' | translate}}</span>
+                            <span 
+                                class=&quot oui-icon oui-icon-external-link &quot 
+                                aria-hidden=&quot true &quot 
+                            ></span>
+                        </a>',
+                    }"
+                    >
+                    </span>
+                </div>
             </oui-field>
 
             <div data-ng-if="$ctrl.model.usePrivateNetwork">

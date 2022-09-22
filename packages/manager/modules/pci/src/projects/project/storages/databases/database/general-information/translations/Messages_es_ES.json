@@ -81,5 +81,6 @@
   "pci_databases_general_information_update_maintenance_time_success": "La hora de mantenimiento se ha modificado correctamente.",
   "pci_databases_general_information_update_maintenance_time_error": "Se ha producido un error al modificar la hora de mantenimiento.",
   "pci_databases_general_information_update_backup_time_success": "La hora del backup se ha modificado correctamente.",
-  "pci_databases_general_information_update_backup_time_error": "Se ha producido un error al modificar la hora del backup."
+  "pci_databases_general_information_update_backup_time_error": "Se ha producido un error al modificar la hora del backup.",
+  "pci_databases_general_information_uri_network_info": "Su servicio está configurado con una conectividad de <b>red privada</b>, por lo que solo los servicios dentro de esta red vRack podrán conectarse a su base de datos."
 }
