@@ -75,7 +75,7 @@ export default class {
       this.project,
       this.addon,
       this.quantity,
-      this.addOnServiceId,
+      this.addonServiceId,
     )
       .then(({ contracts, prices, cart }) => {
         this.cart = cart;
@@ -110,7 +110,7 @@ export default class {
       this.project.serviceId,
       this.addon,
       this.quantity,
-      this.addOnServiceId,
+      this.addonServiceId,
     )
       .then(({ order }) => this.onAddonOrderSuccess(order))
       .catch((error) =>

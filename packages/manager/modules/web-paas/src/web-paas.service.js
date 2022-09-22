@@ -75,12 +75,12 @@ export default class WebPaasService {
       });
   }
 
-  getAddOnServiceId(serviceId, addOnType) {
+  getAddonServiceId(serviceId, addonType) {
     return this.$http
       .get(`/services/${serviceId}/options`)
       .then(
         ({ data }) =>
-          data.find((addOn) => addOn.resource?.product?.name === addOnType)
+          data.find((addon) => addon.resource?.product?.name === addonType)
             ?.serviceId,
       );
   }
@@ -341,9 +341,9 @@ export default class WebPaasService {
       .finally(() => this.deleteCart());
   }
 
-  getAddonSummary(project, addon, quantity, addOnServiceId) {
+  getAddonSummary(project, addon, quantity, addonServiceId) {
     if (addon.serviceName && addon.environmentServiceName === undefined) {
-      return this.getUpgradeCheckoutInfo(addOnServiceId, addon, quantity);
+      return this.getUpgradeCheckoutInfo(addonServiceId, addon, quantity);
     }
 
     return this.createCart()
@@ -388,11 +388,11 @@ export default class WebPaasService {
     return this.OvhApiOrderCart.getCheckout({ cartId: cart.cartId }).$promise;
   }
 
-  checkoutAddon(cart, serviceName, selectedPlan, quantity, addOnServiceId) {
+  checkoutAddon(cart, serviceName, selectedPlan, quantity, addonServiceId) {
     if (cart) {
       return this.goToExpressOrderOption(serviceName, selectedPlan, quantity);
     }
-    return this.checkoutUpgrade(addOnServiceId, selectedPlan, quantity);
+    return this.checkoutUpgrade(addonServiceId, selectedPlan, quantity);
   }
 
   getAdditionalOption(serviceName, project) {

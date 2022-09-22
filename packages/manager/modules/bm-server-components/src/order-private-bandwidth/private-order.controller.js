@@ -187,14 +187,14 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
   }
 
   getServiceUpgradeParams() {
-    const { duration, pricingMode } = this.plans
-      .find(({ planCode }) => planCode === this.model.plan)
-      ?.prices?.find(({ capacities }) => capacities.includes('renew'));
+    const renewPrice = this.plans
+      .find((plan) => plan.planCode === this.model.plan)
+      ?.prices?.find((price) => price.capacities.includes('renew'));
     return {
       autoPayWithPreferredPaymentMethod:
         this.region === 'US' || this.model.autoPay,
-      duration,
-      pricingMode,
+      duration: renewPrice?.duration,
+      pricingMode: renewPrice?.pricingMode,
       quantity: 1,
     };
   }
