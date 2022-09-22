@@ -51,7 +51,7 @@ export const APP_ATTACH_STORAGE = {
 export const APP_PROBE = {
   MIN_PATH_LENGTH: 1,
   MAX_PATH_LENGTH: 1000,
-  PATH_REGEX: '^[a-zA-Z0-9._-/]+$',
+  PATH_REGEX: /^([\w-._/]*)$/,
   MIN_PORT: 1024,
   MAX_PORT: 65535,
 };
