@@ -13,6 +13,7 @@ export default {
     goToStopApp: '<',
     goToDeleteApp: '<',
     goToGenerateToken: '<',
+    goToUpdateScaling: '<',
     preset: '<',
   },
   controller,
