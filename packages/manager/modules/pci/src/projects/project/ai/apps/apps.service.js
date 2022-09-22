@@ -169,6 +169,15 @@ export default class AppService {
       .then(({ data }) => data);
   }
 
+  updateScalingStrategy(serviceName, appId, strategy) {
+    return this.$http
+      .put(
+        `/cloud/project/${serviceName}/ai/app/${appId}/scalingstrategy`,
+        strategy,
+      )
+      .then(({ data }) => data);
+  }
+
   static getPriceIndex(flavorId) {
     return `ai-app.${flavorId}.minute.consumption`;
   }

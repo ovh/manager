@@ -24,6 +24,15 @@ export default /* @ngInject */ ($stateProvider) => {
           appId: app.id,
         }),
 
+      goToUpdateScaling: /* @ngInject */ ($state, projectId, app) => () =>
+        $state.go(
+          'pci.projects.project.ai.apps.dashboard.general-information.update-scaling',
+          {
+            projectId,
+            appId: app.id,
+          },
+        ),
+
       preset: /* @ngInject */ (projectId, AppService, app) => {
         if (app.spec.partnerId) {
           return AppService.getPreset(

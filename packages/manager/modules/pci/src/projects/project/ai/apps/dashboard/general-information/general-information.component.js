@@ -14,6 +14,7 @@ export default {
     goToDeleteApp: '<',
     goToGenerateToken: '<',
     goToUpdateAppImage: '<',
+    goToUpdateScaling: '<',
     preset: '<',
   },
   controller,
