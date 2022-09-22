@@ -5,7 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/terminate',
       views: {
         modal: {
-          component: 'pciProjectDataProcessingQuickTerminateNotebookModal',
+          component: 'pciDataProcessingNotebooksTerminateNotebook',
         },
       },
       layout: 'modal',
