@@ -9,7 +9,9 @@ export default class AppReviewController {
 
   $onInit() {
     const { nbResources } = this.appModel.resource;
-    const { replicas } = this.appModel;
+    const replicas = this.appModel.scalingStrategy.autoscaling
+      ? this.appModel.scalingStrategy.automatic.replicasMin
+      : this.appModel.scalingStrategy.fixed.replicas;
 
     const multiplier = nbResources * replicas * 60;
 

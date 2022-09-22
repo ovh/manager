@@ -30,7 +30,15 @@
   "pci_apps_general_information_life_cycle_status_FAILED": "Echoué",
   "pci_apps_general_information_life_cycle_status_ERROR": "Erreur",
 
-  "pci_apps_general_information_replicas": "Réplicas",
+  "pci_apps_general_information_scaling": "Dimensionnement",
+  "pci_apps_general_information_scaling_static": "Dimensionnement fixe",
+  "pci_apps_general_information_scaling_auto": "Dimensionnement automatique (Autoscaling)",
+
+  "pci_apps_general_information_replicas": "Réplicas :",
+  "pci_apps_general_information_min_replicas": "Minimum de réplicas :",
+  "pci_apps_general_information_max_replicas": "Maximum de réplicas :",
+  "pci_apps_general_information_trigger_resource": "Métrique surveillée :",
+  "pci_apps_general_information_trigger_resource_threshold": "Seuil de déclenchement :",
   "pci_apps_general_information_life_cycle_action_start": "Démarrer",
   "pci_apps_general_information_life_cycle_action_stop": "Arrêter",
   "pci_apps_general_information_life_cycle_action_delete": "Supprimer",

@@ -49,6 +49,9 @@ export const APP_STORAGE_INFO = {
   CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/data/',
 };
 
+export const APP_SCALING_INFO = {
+  DEFAULT: 'https://docs.ovh.com/gb/en/publiccloud/ai/deploy/apps-deployments',
+};
 export const APP_MULTIPLY_SIGN = ' × ';
 
 export default {
@@ -60,5 +63,6 @@ export default {
   APP_STORAGE_INFO,
   APP_POLLER_NAMESPACES,
   APP_FRAMEWORK_INFO,
+  APP_SCALING_INFO,
   APP_MULTIPLY_SIGN,
 };
