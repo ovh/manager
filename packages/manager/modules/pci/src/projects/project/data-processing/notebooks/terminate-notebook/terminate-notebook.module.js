@@ -4,7 +4,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import component from '../../components/terminate-notebook/terminate-notebook.component';
+import component from '../../components/terminate-notebook';
 import routing from './terminate-notebook.routing';
 
 const moduleName = 'ovhManagerPciProjectDataProcessingQuickTerminateModal';
