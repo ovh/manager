@@ -1,3 +1,12 @@
+## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@2.3.1...@ovh-ux/mfa-enrollment@2.3.2) (2022-09-22)
+
+
+### Bug Fixes
+
+* **mfa:** avoid mfa-enrollment loop ([#8050](https://github.com/ovh/manager/issues/8050)) ([be1bc8e](https://github.com/ovh/manager/commit/be1bc8ed17c6daed4a67f5e1c44a2dcb09bfb738))
+
+
+
 ## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@2.3.0...@ovh-ux/mfa-enrollment@2.3.1) (2022-06-17)
 
 
