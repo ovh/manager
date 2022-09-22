@@ -1,26 +1,10 @@
-import {
-  DATA_PROCESSING_STATUS_TO_CLASS,
-  DATA_PROCESSING_STATUSES,
-} from '../../data-processing.constants';
+import { DATA_PROCESSING_NOTEBOOKS_STATUSES } from '../../data-processing.constants';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $scope,
-    $timeout,
-    $window,
-    CucCloudMessage,
-    dataProcessingService,
-    ovhManagerRegionService,
-    atInternet,
-  ) {
-    this.$scope = $scope;
-    this.$timeout = $timeout;
-    this.$window = $window;
-    this.cucCloudMessage = CucCloudMessage;
+  constructor(dataProcessingService, ovhManagerRegionService, atInternet) {
     this.dataProcessingService = dataProcessingService;
     this.ovhManagerRegionService = ovhManagerRegionService;
-    this.DATA_PROCESSING_STATUS_TO_CLASS = DATA_PROCESSING_STATUS_TO_CLASS;
     this.atInternet = atInternet;
   }
 
@@ -30,16 +14,9 @@ export default class {
    */
   isNotebookRunning() {
     return [
-      DATA_PROCESSING_STATUSES.PENDING,
-      DATA_PROCESSING_STATUSES.RUNNING,
-      DATA_PROCESSING_STATUSES.SUBMITTED,
-    ].includes(this.notebook.status);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  formatDateToCalendar(dt) {
-    // this method needs to use current instance of moment, so it cannot static
-    return moment(dt).calendar();
+      DATA_PROCESSING_NOTEBOOKS_STATUSES.STARTING,
+      DATA_PROCESSING_NOTEBOOKS_STATUSES.RUNNING,
+    ].includes(this.notebook.status.state);
   }
 
   onNotebookStopClick() {

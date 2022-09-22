@@ -1,7 +1,9 @@
 import template from './terminate-notebook.html';
 import controller from './terminate-notebook.controller';
 
-const component = {
+export default {
+  controller,
+  template,
   bindings: {
     goBack: '<',
     projectId: '<',
@@ -9,8 +11,4 @@ const component = {
     notebookId: '<',
     notebookName: '<',
   },
-  template,
-  controller,
 };
-
-export default component;
