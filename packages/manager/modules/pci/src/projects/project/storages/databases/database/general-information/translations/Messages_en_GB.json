@@ -81,5 +81,6 @@
   "pci_databases_general_information_update_maintenance_time_success": "Maintenance time updated",
   "pci_databases_general_information_update_maintenance_time_error": "An error has occurred updating the maintenance time",
   "pci_databases_general_information_update_backup_time_success": "Backup time updated",
-  "pci_databases_general_information_update_backup_time_error": "An error has occurred updating the backup time"
+  "pci_databases_general_information_update_backup_time_error": "An error has occurred updating the backup time",
+  "pci_databases_general_information_uri_network_info": "Your service is configured with <b>private network</b> connectivity, which means that only services within this vRack network can connect to your database."
 }
