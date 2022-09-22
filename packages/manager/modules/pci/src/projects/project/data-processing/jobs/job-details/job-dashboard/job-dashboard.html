@@ -35,6 +35,13 @@
                 data-description="{{ $ctrl.job.creationDate | date:short }}"
             >
             </oui-tile-definition>
+            <!-- Tile item :: Created -->
+            <oui-tile-definition
+                data-term="{{ :: 'data_processing_details_information_notebook_name_label' | translate }}"
+                data-description="{{ $ctrl.job.notebook }}"
+                data-ng-if="{{ $ctrl.job.notebook }}"
+            >
+            </oui-tile-definition>
             <!-- Tile item :: Elapsed time -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_details_information_elapsed_label' | translate }}"
