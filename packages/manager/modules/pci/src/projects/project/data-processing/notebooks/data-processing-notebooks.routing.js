@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) =>
         ),
       showNotebook: /* @ngInject */ ($state, projectId) => (notebookId) =>
         $state.go(
-          'pci.projects.project.data-processing.notebooks.notebook-details.dashboard',
+          'pci.projects.project.data-processing.notebooks.details',
           {
             projectId,
             notebookId,
@@ -39,12 +39,10 @@ export default /* @ngInject */ ($stateProvider) =>
         ),
       terminateNotebook: /* @ngInject */ ($state, projectId) => (
         notebookId,
-        notebookName,
       ) => {
         $state.go('pci.projects.project.data-processing.notebooks.terminate', {
           projectId,
           notebookId,
-          notebookName,
         });
       },
       deleteNotebook: /* @ngInject */ ($state, projectId) => (
