@@ -6,8 +6,7 @@ import '@ovh-ux/ui-kit';
 
 import component from './terminate-notebook.component';
 
-const moduleName =
-  'ovhManagerPciDataProcessingNotebooksTerminateNotebookLazyLoading';
+const moduleName = 'ovhManagerPciDataProcessingNotebooksTerminateNotebook';
 
 angular
   .module(moduleName, [
@@ -15,7 +14,10 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('pciDataProcessingNotebooksTerminateNotebook', component)
+  .component(
+    'ovhManagerPciProjectDataProcessingNotebooksTerminateNotebook',
+    component,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

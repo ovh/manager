@@ -1,6 +1,6 @@
 <oui-header
     class="notebook-title__header"
-    data-heading="{{ $ctrl.notebook.name }}"
+    data-heading="{{ $ctrl.notebook.spec.name }}"
     data-description="{{ $ctrl.notebook.id }}"
 >
     <oui-guide-menu
@@ -39,7 +39,7 @@
             <!-- Tile item :: Nom -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_notebooks_details_information_name_label' | translate }}"
-                data-description="{{ $ctrl.notebook.name }}"
+                data-description="{{ $ctrl.notebook.spec.name }}"
             >
             </oui-tile-definition>
             <!--Editor-->
@@ -51,22 +51,22 @@
                         size="m"
                         icon-right="oui-icon-external-link"
                         data-disabled="!$ctrl.isNotebookRunning()"
-                        data-on-click="$ctrl.onOpenLiveCodeEditorClick($ctrl.notebook.spec.env.editorId)"
+                        data-on-click="$ctrl.openLiveCodeEditor()"
                     >
-                        jupyterlab
+                        JupyterLab
                     </oui-button>
                 </oui-tile-description>
             </oui-tile-definition>
             <!-- Tile item :: Region -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_notebooks_details_information_region_label' | translate }}"
-                data-description="{{ $ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.notebook.region) }}"
+                data-description="{{ $ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.notebook.spec.region) }}"
             >
             </oui-tile-definition>
             <!-- Tile item :: Framework -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_notebooks_details_information_framework_label' | translate }}"
-                data-description="{{ $ctrl.notebook.framework }}"
+                data-description="{{ $ctrl.notebook.spec.env.engineName + ' ' + $ctrl.notebook.spec.env.engineVersion}}"
             >
             </oui-tile-definition>
             <!-- Tile item :: Privacy -->
@@ -75,12 +75,6 @@
             >
                 <oui-tile-description
                     data-translate="data_processing_notebooks_details_information_privacy_public_label"
-                    data-ng-if="::$ctrl.notebook.privacy !== 'private'"
-                >
-                </oui-tile-description>
-                <oui-tile-description
-                    data-translate="data_processing_notebooks_details_information_privacy_private_label"
-                    data-ng-if="::$ctrl.notebook.privacy === 'private'"
                 >
                 </oui-tile-description>
             </oui-tile-definition>
@@ -98,7 +92,7 @@
             >
                 <oui-tile-description>
                     <pci-project-data-processing-notebook-status
-                        data-status="$ctrl.notebook.status"
+                        data-status="$ctrl.notebook.status.state"
                     ></pci-project-data-processing-notebook-status>
                 </oui-tile-description>
 
@@ -134,10 +128,10 @@
                 </oui-action-menu>
             </oui-tile-definition>
 
-            <!-- Tile item :: Creation Date -->
+            <!-- Tile item :: Last start date -->
             <oui-tile-definition
-                data-term="{{ :: 'data_processing_notebooks_details_lifecycle_creation_date_label' | translate }}"
-                data-description="{{ $ctrl.formatDateToCalendar($ctrl.notebook.creationDate) }}"
+                data-term="{{ :: 'data_processing_notebooks_details_lifecycle_last_start_date_label' | translate }}"
+                data-description="{{::$ctrl.notebook.status.lastStartedAt | date: 'medium'}}"
             >
             </oui-tile-definition>
         </oui-tile>
@@ -165,32 +159,12 @@
                 </oui-tile-description>
 
                 <oui-tile-description
-                    data-translate="data_processing_notebooks_details_resources_cluster_DP1-1_label"
-                    data-translate-values="{'htPrice': 0.1, 'ttcPrice': 0.1}"
-                >
-                </oui-tile-description>
-
-                <oui-tile-description
-                    data-translate="data_processing_notebooks_details_resources_cluster_DP1-2_label"
-                    data-translate-values="{'htPrice': 0.1, 'ttcPrice': 0.1}"
-                >
-                </oui-tile-description>
-
-                <oui-tile-description
-                    data-translate="data_processing_notebooks_details_resources_cluster_DP1-3_label"
-                    data-translate-values="{'htPrice': 0.1, 'ttcPrice': 0.1}"
-                >
-                </oui-tile-description>
-
-                <oui-tile-description
-                    data-translate="data_processing_notebooks_details_resources_cluster_DP1-4_label"
-                    data-translate-values="{'htPrice': 0.1, 'ttcPrice': 0.1}"
-                >
-                </oui-tile-description>
-
-                <oui-tile-description
-                    data-translate="data_processing_notebooks_details_resources_cluster_DP1-5_label"
-                    data-translate-values="{'htPrice': 0.1, 'ttcPrice': 0.1}"
+                    data-ng-repeat="template in $ctrl.capabilities.templates track by template.id"
+                    data-translate="data_processing_notebooks_details_resources_cluster_description_label"
+                    data-translate-values="{'clusterName': template.name, 
+                    'driverCores': template.driver_cores, 'driverMemory': template.driverMemory, 'driverMemoryOverhead': template.driverMemory_overhead, 
+                    'executorCores': template.executor_cores, 'executorMemory': template.executorMemory, 'executorMemoryOverhead': template.executorMemory_overhead,
+                    'executorNumber': template.executorNum, 'htPrice': 0.1, 'ttcPrice': 0.1}"
                 >
                 </oui-tile-description>
             </oui-tile-definition>

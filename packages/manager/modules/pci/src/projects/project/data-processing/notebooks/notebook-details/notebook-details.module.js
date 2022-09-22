@@ -6,7 +6,7 @@ import routing from './notebook-details.routing';
 
 import dataProcessingNotebookDetailsComponent from './notebook-details.component';
 import notebookStatus from '../notebook-status';
-import terminateJob from '../terminate-notebook';
+import terminateNotebook from '../terminate-notebook';
 
 const moduleName = 'ovhManagerPciProjectDataProcessingNotebookDetails';
 
@@ -15,7 +15,7 @@ angular
     'ui.router',
     angularTranslate,
     notebookStatus,
-    terminateJob,
+    terminateNotebook,
   ])
   .config(routing)
   .component(

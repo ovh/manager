@@ -1,11 +1,3 @@
-.actions-tile__browse-btn .oui-button:disabled,
-.actions-tile__browse-btn .oui-button:disabled:hover,
-.actions-tile__browse-btn .oui-button:disabled:focus {
-  background-color: white;
-  border: 0;
-  color: #d5d7dc;
-}
-
 .information-tile__definition {
   display: flex;
   color: #999;
@@ -26,8 +18,4 @@
 
 .notebook-details__content {
   margin-top: 2rem;
-}
-
-.details__action-button__danger .oui-button_ghost {
-  color: #b94a48;
 }

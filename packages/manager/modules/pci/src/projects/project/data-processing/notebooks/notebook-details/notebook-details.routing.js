@@ -17,6 +17,11 @@ export default /* @ngInject */ ($stateProvider) =>
           projectId,
           notebookId,
         ) => dataProcessingService.getNotebook(projectId, notebookId),
+        capabilities: /* @ngInject */ (
+          // retrieve job from service
+          dataProcessingService,
+          projectId,
+        ) => dataProcessingService.getNotebookCapabilities(projectId),
         terminateNotebook: /* @ngInject */ (
           $state,
           projectId,
@@ -30,6 +35,8 @@ export default /* @ngInject */ ($stateProvider) =>
             },
           );
         },
+        openLiveCodeEditor: /* @ngInject */ ($window, notebook) => () =>
+          $window.open(notebook.status.url, '_blank'),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant(
             'data_processing_notebooks_details_dashboard_label',
