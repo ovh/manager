@@ -76,25 +76,25 @@ export default class AppResourcesController {
     );
   }
 
-  get price() {
+  computeTotalPrice(resourcePrice, partnerPrice) {
     const replicas = this.appModel.scalingStrategy.autoscaling
       ? this.appModel.scalingStrategy.automatic.replicasMin
       : this.appModel.scalingStrategy.fixed.replicas;
     return (
-      (this.resourcePriceInUcents + this.partnerPriceInUcents) *
+      (resourcePrice + partnerPrice) *
       this.appModel.resource.nbResources *
       replicas
     );
   }
 
-  get tax() {
-    const replicas = this.appModel.scalingStrategy.autoscaling
-      ? this.appModel.scalingStrategy.automatic.replicasMin
-      : this.appModel.scalingStrategy.fixed.replicas;
-    return (
-      (this.resourcePriceTax + this.partnerPriceTax) *
-      this.appModel.resource.nbResources *
-      replicas
+  get price() {
+    return this.computeTotalPrice(
+      this.resourcePriceInUcents,
+      this.partnerPriceInUcents,
     );
+  }
+
+  get tax() {
+    return this.computeTotalPrice(this.resourcePriceTax, this.partnerPriceTax);
   }
 }

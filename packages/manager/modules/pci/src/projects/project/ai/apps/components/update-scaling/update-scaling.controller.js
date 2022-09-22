@@ -59,18 +59,19 @@ export default class UpdateScalingCtrl {
       this.app.spec.resources.cpu + this.app.spec.resources.gpu;
   }
 
-  get price() {
+  computeTotalPrice(resourcePrice) {
     const replicas = this.autoscaling
       ? this.automaticStrategyModel.replicasMin
       : this.fixedStrategyModel.replicas;
-    return this.resourcePriceInUcents * this.nbResources * replicas;
+    return resourcePrice * this.nbResources * replicas;
+  }
+
+  get price() {
+    return this.computeTotalPrice(this.resourcePriceInUcents);
   }
 
   get tax() {
-    const replicas = this.autoscaling
-      ? this.automaticStrategyModel.replicasMin
-      : this.fixedStrategyModel.replicas;
-    return this.resourcePriceTax * this.nbResources * replicas;
+    return this.computeTotalPrice(this.resourcePriceTax);
   }
 
   getScalingInfoLink() {
