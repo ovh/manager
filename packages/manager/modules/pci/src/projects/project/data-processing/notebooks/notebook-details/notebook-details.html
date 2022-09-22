@@ -1,0 +1,199 @@
+<oui-header
+    class="notebook-title__header"
+    data-heading="{{ $ctrl.notebook.name }}"
+    data-description="{{ $ctrl.notebook.id }}"
+>
+    <oui-guide-menu
+        data-text="{{ :: 'pci_project_guides_header' | translate }}"
+    >
+        <oui-guide-menu-item
+            data-ng-repeat="guide in $ctrl.guideUrl.data_processing track by $index"
+            data-href="{{:: guide.url }}"
+            data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.data_processing + guide.tracking)"
+            data-external
+        >
+            <span
+                data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+            ></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            data-state="pci.projects.project.data-processing.notebooks.details"
+            data-state-params="{ notebookId: $ctrl.notebook.id }"
+            data-active
+            ><span
+                data-translate="data_processing_notebooks_details_dashboard_label"
+            ></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+</oui-header>
+<div class="notebook-details__content">
+    <!-- Tile :: Information -->
+    <div class="col-md-4">
+        <oui-tile
+            class="h-100"
+            data-heading="{{ ::'data_processing_notebooks_details_information_label' | translate }}"
+        >
+            <!-- Tile item :: Nom -->
+            <oui-tile-definition
+                data-term="{{ :: 'data_processing_notebooks_details_information_name_label' | translate }}"
+                data-description="{{ $ctrl.notebook.name }}"
+            >
+            </oui-tile-definition>
+            <!--Editor-->
+            <oui-tile-definition
+                data-term="{{:: 'data_processing_notebooks_details_information_editor_label' | translate }}"
+            >
+                <oui-tile-description>
+                    <oui-button
+                        size="m"
+                        icon-right="oui-icon-external-link"
+                        data-disabled="!$ctrl.isNotebookRunning()"
+                        data-on-click="$ctrl.onOpenLiveCodeEditorClick($ctrl.notebook.spec.env.editorId)"
+                    >
+                        jupyterlab
+                    </oui-button>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <!-- Tile item :: Region -->
+            <oui-tile-definition
+                data-term="{{ :: 'data_processing_notebooks_details_information_region_label' | translate }}"
+                data-description="{{ $ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.notebook.region) }}"
+            >
+            </oui-tile-definition>
+            <!-- Tile item :: Framework -->
+            <oui-tile-definition
+                data-term="{{ :: 'data_processing_notebooks_details_information_framework_label' | translate }}"
+                data-description="{{ $ctrl.notebook.framework }}"
+            >
+            </oui-tile-definition>
+            <!-- Tile item :: Privacy -->
+            <oui-tile-definition
+                data-term="{{ :: 'data_processing_notebooks_details_information_privacy_label' | translate }}"
+            >
+                <oui-tile-description
+                    data-translate="data_processing_notebooks_details_information_privacy_public_label"
+                    data-ng-if="::$ctrl.notebook.privacy !== 'private'"
+                >
+                </oui-tile-description>
+                <oui-tile-description
+                    data-translate="data_processing_notebooks_details_information_privacy_private_label"
+                    data-ng-if="::$ctrl.notebook.privacy === 'private'"
+                >
+                </oui-tile-description>
+            </oui-tile-definition>
+        </oui-tile>
+    </div>
+    <!-- Tile :: Lifecycle -->
+    <div class="col-md-4">
+        <oui-tile
+            class="h-100"
+            data-heading="{{ ::'data_processing_notebooks_details_lifecycle_label' | translate }}"
+        >
+            <!-- Tile item :: Status -->
+            <oui-tile-definition
+                data-term="{{ :: 'data_processing_notebooks_details_lifecycle_status_label' | translate }}"
+            >
+                <oui-tile-description>
+                    <pci-project-data-processing-notebook-status
+                        data-status="$ctrl.notebook.status"
+                    ></pci-project-data-processing-notebook-status>
+                </oui-tile-description>
+
+                <oui-action-menu
+                    aria-label="Actions"
+                    data-compact
+                    data-placement="end"
+                >
+                    <oui-action-menu-item
+                        data-on-click="$ctrl.onNotebookStartClick($ctrl.notebook.id)"
+                        data-disabled="$ctrl.isNotebookRunning()"
+                    >
+                        <span
+                            data-translate="data_processing_notebooks_details_lifecycle_start_label"
+                        ></span>
+                    </oui-action-menu-item>
+                    <oui-action-menu-item
+                        data-on-click="$ctrl.onNotebookStopClick($ctrl.notebook.id)"
+                        data-disabled="!$ctrl.isNotebookRunning()"
+                    >
+                        <span
+                            data-translate="data_processing_notebooks_details_lifecycle_stop_label"
+                        ></span>
+                    </oui-action-menu-item>
+                    <oui-action-menu-item
+                        data-on-click="$ctrl.onDeleteNotebookClick()"
+                        data-disabled="$ctrl.isNotebookRunning()"
+                    >
+                        <span
+                            data-translate="data_processing_notebooks_details_lifecycle_delete_label"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-tile-definition>
+
+            <!-- Tile item :: Creation Date -->
+            <oui-tile-definition
+                data-term="{{ :: 'data_processing_notebooks_details_lifecycle_creation_date_label' | translate }}"
+                data-description="{{ $ctrl.formatDateToCalendar($ctrl.notebook.creationDate) }}"
+            >
+            </oui-tile-definition>
+        </oui-tile>
+    </div>
+    <!-- Tile :: Configuration -->
+    <div class="col-md-4">
+        <oui-tile
+            class="h-100"
+            data-heading="{{ ::'data_processing_notebooks_details_resources_label' | translate }}"
+        >
+            <oui-tile-definition
+                data-term="{{ :: 'data_processing_notebooks_details_resources_notebook_label' | translate }}"
+            >
+                <oui-tile-description
+                    data-translate="data_processing_notebooks_details_resources_notebook_NB1-1_label"
+                >
+                </oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition
+                data-term="{{ :: 'data_processing_notebooks_details_resources_cluster_label' | translate }}"
+            >
+                <oui-tile-description
+                    data-translate="data_processing_notebooks_details_resources_cluster_description"
+                >
+                </oui-tile-description>
+
+                <oui-tile-description
+                    data-translate="data_processing_notebooks_details_resources_cluster_DP1-1_label"
+                    data-translate-values="{'htPrice': 0.1, 'ttcPrice': 0.1}"
+                >
+                </oui-tile-description>
+
+                <oui-tile-description
+                    data-translate="data_processing_notebooks_details_resources_cluster_DP1-2_label"
+                    data-translate-values="{'htPrice': 0.1, 'ttcPrice': 0.1}"
+                >
+                </oui-tile-description>
+
+                <oui-tile-description
+                    data-translate="data_processing_notebooks_details_resources_cluster_DP1-3_label"
+                    data-translate-values="{'htPrice': 0.1, 'ttcPrice': 0.1}"
+                >
+                </oui-tile-description>
+
+                <oui-tile-description
+                    data-translate="data_processing_notebooks_details_resources_cluster_DP1-4_label"
+                    data-translate-values="{'htPrice': 0.1, 'ttcPrice': 0.1}"
+                >
+                </oui-tile-description>
+
+                <oui-tile-description
+                    data-translate="data_processing_notebooks_details_resources_cluster_DP1-5_label"
+                    data-translate-values="{'htPrice': 0.1, 'ttcPrice': 0.1}"
+                >
+                </oui-tile-description>
+            </oui-tile-definition>
+        </oui-tile>
+    </div>
+</div>

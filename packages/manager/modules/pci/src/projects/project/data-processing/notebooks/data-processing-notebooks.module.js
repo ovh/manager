@@ -6,6 +6,7 @@ import routing from './data-processing-notebooks.routing';
 import dataProcessingComponentNotebooks from './data-processing-notebooks.component';
 import dataProcessingService from '../data-processing.service';
 import notebookStatus from './notebook-status';
+import notebookDetails from './notebook-details';
 import labs from '../../../../components/project/labs';
 import terminateNotebook from './terminate-notebook';
 import deleteNotebook from './delete-notebook';
@@ -21,6 +22,7 @@ angular
     labs,
     terminateNotebook,
     deleteNotebook,
+    notebookDetails,
   ])
   .config(routing)
   .component(
