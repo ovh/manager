@@ -58,6 +58,10 @@ export const APP_CUSTOM_DOCKER_IMAGE_DOC = {
     'https://docs.ovh.com/gb/en/publiccloud/ai/deploy/build-use-custom-image',
 };
 
+export const APP_SCALING_INFO = {
+  DEFAULT: 'https://docs.ovh.com/gb/en/publiccloud/ai/deploy/apps-deployments',
+};
+
 export const APP_MULTIPLY_SIGN = ' × ';
 
 export default {
@@ -71,5 +75,6 @@ export default {
   APP_FRAMEWORK_INFO,
   APP_DOCKER_IMAGE_PORTFOLIO,
   APP_CUSTOM_DOCKER_IMAGE_DOC,
+  APP_SCALING_INFO,
   APP_MULTIPLY_SIGN,
 };
