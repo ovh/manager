@@ -14,12 +14,12 @@
   "pci_database_add_step5_title": "Konfigurieren Sie Ihre Optionen",
   "pci_database_add_name": "Benennen Sie Ihren Datenbankdienst",
   "pci_database_add_network_mode_label": "Netzwerktyp",
-  "pci_database_add_network_mode_public": "Öffentlich",
-  "pci_database_add_network_mode_private": "Privat",
+  "pci_database_add_network_mode_public": "Öffentliches Netzwerk (Internet) ",
+  "pci_database_add_network_mode_private": "Privates Netzwerk (vRack)",
   "pci_database_add_network_mode_public_incompatible": "Das gewählte Angebot ist nicht mit öffentlichen Netzwerken kompatibel.",
   "pci_database_add_network_mode_private_incompatible": "Das gewählte Angebot ist nicht mit privaten Netzwerken kompatibel.",
   "pci_database_add_privateNetwork_label": "Verbundenes privates Netzwerk",
-  "pci_database_add_privateNetwork_description": "Die Datenbanken haben standardmäßig ein öffentliches Netzwerk. Sie können auch ein privates Netzwerk hinzufügen. Dann geht jedoch die Konfiguration verloren, die Sie gerade vorgenommen haben.",
+  "pci_database_add_privateNetwork_description": "Nur die mit diesem privaten Netzwerk (vRack) verbundenen Dienste (Dedicated Server, VMS, K8s-Cluster..) können mit Ihrer Datenbank kommunizieren. ",
   "pci_database_add_privateNetwork_add": "Privates Netzwerk erstellen",
   "pci_database_add_subnet_label": "Subnetzwerk",
   "pci_database_add_subnet_description": "Sie können ein Subnetz erstellen. In diesem Fall geht jedoch die aktuelle Konfiguration verloren.",
@@ -61,5 +61,9 @@
   "pci_database_add_spec_nodes_range_single": "{{min}} Node inklusive, bis zu {{max}} Nodes",
   "pci_database_add_show_command": "Das API-Äquivalent anzeigen",
   "pci_database_add_spec_name_popover": "Der Name Ihres Clusters wird automatisch generiert. Danach haben Sie die Möglichkeit, ihn zu ändern.",
-  "pci_database_add_spec_logo_alt": "Logo der Engine"
+  "pci_database_add_spec_logo_alt": "Logo der Engine",
+  "pci_database_add_network_mode_helper": "Weitere Informationen zur Konfiguration eines privaten Netzwerks finden Sie in der Anleitung: {{ link }}",
+  "pci_database_add_network_mode_helper_link": "Public Cloud vRack",
+  "pci_database_add_network_mode_public_popover": "Das öffentliche Netzwerk ermöglicht die Verbindung von jeder autorisierten Quell-IP aus, die mit dem Internet verbunden ist, zum Beispiel Ihr Computer oder ein Remote Server.",
+  "pci_database_add_network_mode_private_popover": "Das private Netzwerk lässt keine öffentliche Konnektivität zu, sondern nur Verbindungen innerhalb Ihres vRack."
 }

@@ -81,5 +81,6 @@
   "pci_databases_general_information_update_maintenance_time_success": "Godzina prac konserwacyjnych została zmieniona",
   "pci_databases_general_information_update_maintenance_time_error": "Wystąpił błąd podczas zmiany godziny prac konserwacyjnych.",
   "pci_databases_general_information_update_backup_time_success": "Godzina tworzenia kopii zapasowych została zmieniona.",
-  "pci_databases_general_information_update_backup_time_error": "Wystąpił błąd podczas zmiany godziny tworzenia kopii zapasowych"
+  "pci_databases_general_information_update_backup_time_error": "Wystąpił błąd podczas zmiany godziny tworzenia kopii zapasowych",
+  "pci_databases_general_information_uri_network_info": "Dla Twojej usługi skonfigurowana została <b>sieć prywatna</b>. Oznacza to, że tylko usługi w obrębie tej sieci vRack mogą się łączyć z Twoją bazą danych."
 }
