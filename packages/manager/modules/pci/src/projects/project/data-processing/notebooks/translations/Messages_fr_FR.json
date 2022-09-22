@@ -17,7 +17,7 @@
   "data_processing_notebook_status_stopped": "Arrêté",
   "data_processing_notebook_status_stopping": "Arrêt",
   "data_processing_notebook_status_unknown": "Inconnu",
-  "data_processing_create_button_label": "Créer un notebook",
+  "data_processing_create_notebook_button_label": "Créer un notebook",
   "data_processing_list_button_notebook_details": "Détails",
   "data_processing_list_button_notebook_start": "Démarrer",
   "data_processing_list_button_notebook_stop": "Arrêter",

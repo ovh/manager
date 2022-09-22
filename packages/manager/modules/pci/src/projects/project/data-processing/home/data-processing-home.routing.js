@@ -8,6 +8,13 @@ export default /* @ngInject */ ($stateProvider) =>
         $state.go('pci.projects.project.data-processing.jobs.submit-job', {
           projectId,
         }),
+      addNotebook: /* @ngInject */ ($state, projectId) => () =>
+        $state.go(
+          'pci.projects.project.data-processing.notebooks.add-notebook',
+          {
+            projectId,
+          },
+        ),
       showJobs: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.data-processing.jobs', { projectId }),
     },

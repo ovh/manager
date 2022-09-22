@@ -9,6 +9,7 @@ import notebookStatus from './notebook-status';
 import notebookDetails from './notebook-details';
 import labs from '../../../../components/project/labs';
 import terminateNotebook from './terminate-notebook';
+import addNotebook from './add-notebook';
 import deleteNotebook from './delete-notebook';
 import { convertMemory, formatDuration } from '../data-processing.utils';
 
@@ -22,6 +23,7 @@ angular
     labs,
     terminateNotebook,
     deleteNotebook,
+    addNotebook,
     notebookDetails,
   ])
   .config(routing)

@@ -14,4 +14,12 @@ export default class {
     });
     this.submitJob();
   }
+
+  onAddNotebookClick() {
+    this.atInternet.trackClick({
+      name: 'public-cloud::pci::projects::project::data-processing::add-job',
+      type: 'action',
+    });
+    this.addNotebook();
+  }
 }
