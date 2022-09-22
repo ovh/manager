@@ -44,7 +44,7 @@ export default class AdvicesCtrl {
             recommendationAdvices,
           );
 
-          adviceGroups.forEach((adviceGroup) => {
+          this.adviceGroups.forEach((adviceGroup) => {
             this.trackImpressions(adviceGroup.advices);
           });
         },
@@ -102,8 +102,9 @@ export default class AdvicesCtrl {
     });
 
     return (
-      localizedAdvices.length > 0 &&
+      this.adviceType !== 'retention' &&
       this.isRecommenderSystemRightRegions &&
+      localizedAdvices.length > 0 &&
       ['fr_FR', 'en_GB'].includes(this.coreConfig.getUserLocale())
     );
   }
