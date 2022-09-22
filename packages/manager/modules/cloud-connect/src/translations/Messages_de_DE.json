@@ -34,5 +34,6 @@
   "cloud_connect_order_follow_up_label_CREATE_SERVICE_KEY": "Erstellen des Service-Key",
   "cloud_connect_order_follow_up_label_SEND_SERVICE_KEY": "Versand des Service-Key",
   "cloud_connect_order_follow_up_label_CHECK_LIGHT": "Optische Konnektivität",
-  "cloud_connect_order_follow_up_label_FINALIZING": "Abschluss"
+  "cloud_connect_order_follow_up_label_FINALIZING": "Abschluss",
+  "cloud_connect_order": "Bestellen"
 }

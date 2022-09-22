@@ -1,5 +1,5 @@
 {
-  "pci_projects_project_network_private": "Redes privadas",
+  "pci_projects_project_network_private": "Private Network",
   "pci_projects_project_network_private_error": "Ocorreu um erro ao carregar as informações {{ message }}",
   "pci_projects_project_network_private_create": "Criar uma rede privada",
   "pci_projects_project_network_private_name": "Nome",

@@ -8,5 +8,6 @@
   "anthos_tenants_grid_headers_displayName": "Nome",
   "anthos_tenants_grid_headers_location": "Datacenter",
   "anthos_tenants_grid_headers_version": "Versione",
-  "anthos_tenants_grid_headers_vrackId": "vRack"
+  "anthos_tenants_grid_headers_vrackId": "vRack",
+  "anthos_tenants_order": "Ordina"
 }

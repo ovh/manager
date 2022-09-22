@@ -8,5 +8,6 @@
   "anthos_tenants_grid_headers_displayName": "Nazwa",
   "anthos_tenants_grid_headers_location": "Centrum danych",
   "anthos_tenants_grid_headers_version": "Wersja",
-  "anthos_tenants_grid_headers_vrackId": "vRack"
+  "anthos_tenants_grid_headers_vrackId": "vRack",
+  "anthos_tenants_order": "Zamów"
 }

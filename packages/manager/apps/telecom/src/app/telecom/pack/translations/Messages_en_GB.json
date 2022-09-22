@@ -4,5 +4,6 @@
   "packs_description_label": "Description",
   "packs_num_service_label": "Internet access ",
   "packs_view_label": "Pack details",
-  "pack_internet_access_title": "Internet access "
+  "pack_internet_access_title": "Internet access ",
+  "packs_order": "Order"
 }

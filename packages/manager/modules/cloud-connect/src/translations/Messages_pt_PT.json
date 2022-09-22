@@ -34,5 +34,6 @@
   "cloud_connect_order_follow_up_label_CREATE_SERVICE_KEY": "Geração da chave de serviço",
   "cloud_connect_order_follow_up_label_SEND_SERVICE_KEY": "Envio da chave de serviço",
   "cloud_connect_order_follow_up_label_CHECK_LIGHT": "Ligação ótica",
-  "cloud_connect_order_follow_up_label_FINALIZING": "Finalização"
+  "cloud_connect_order_follow_up_label_FINALIZING": "Finalização",
+  "cloud_connect_order": "Encomendar"
 }

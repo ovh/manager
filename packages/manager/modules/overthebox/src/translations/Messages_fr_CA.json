@@ -1,0 +1,14 @@
+{
+  "overtheboxes_title": "Over The Box",
+  "overtheboxes_order": "Commander",
+  "overtheboxes_name_label": "Service",
+  "overtheboxes_description_label": "Description",
+  "overtheboxes_status_label": "Statut",
+  "overtheboxes_status_label_active": "OK",
+  "overtheboxes_status_label_creating": "Création en cours",
+  "overtheboxes_status_label_deleted": "Supprimé",
+  "overtheboxes_status_label_suspended": "Suspendu",
+  "overtheboxes_status_label_toCreate": "A créer",
+  "overtheboxes_status_label_toDelete": "A supprimer",
+  "overtheboxes_view_overthebox_label": "Détails de l'OverTheBox"
+}

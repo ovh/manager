@@ -1,3 +1,4 @@
 {
-  "zones_title": "DNS zones"
+  "zones_title": "DNS zones",
+  "zones_order": "Order"
 }

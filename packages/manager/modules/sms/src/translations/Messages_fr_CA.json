@@ -1,5 +1,6 @@
 {
   "sms_title": "SMS",
+  "sms_order": "Commander",
   "sms_name_label": "Nom",
   "sms_description_label": "Description",
   "sms_status_label": "Statut",

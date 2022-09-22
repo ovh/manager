@@ -1,6 +1,8 @@
 {
-  "telephony_breadcrumb": "Telefonia",
+  "telephony_breadcrumb": "VoIP",
   "telephony_view_billing_account_service_services": "Sprawdź usługi",
   "telephony_table_header_action": "Operacje",
-  "telephony_table_action_item_telephony_repayments": "Zarządzanie zwrotami"
+  "telephony_table_action_item_telephony_repayments": "Zarządzanie zwrotami",
+  "telephony_order": "Zamów",
+  "telephony_title": "VoIP"
 }

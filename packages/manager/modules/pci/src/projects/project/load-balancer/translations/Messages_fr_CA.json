@@ -1,5 +1,6 @@
 {
   "pci_projects_project_load_balancer_list_title": "Load Balancer",
+  "pci_projects_project_load_balancer_list_order": "Commander",
   "pci_projects_project_load_balancer_list_name": "Nom",
   "pci_projects_project_load_balancer_list_id": "ID",
   "pci_projects_project_load_balancer_list_status": "Statut",

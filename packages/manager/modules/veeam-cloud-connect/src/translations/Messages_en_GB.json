@@ -1,3 +1,4 @@
 {
-  "veeam_cc_title": "Veeam Cloud Connect"
+  "veeam_cc_title": "Veeam Cloud Connect",
+  "veeam_cc_order": "Order"
 }

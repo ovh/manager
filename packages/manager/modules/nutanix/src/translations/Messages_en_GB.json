@@ -12,5 +12,6 @@
   "nutanix_cluster_list_status_error": "Error",
   "nutanix_cluster_list_prism_central_url": "Prism Central URL",
   "nutanix_cluster_admin_interface": "Administration interface",
-  "nutanix_cluster_list_localisation_value": "{{dcName}} ({{rackName}} rack)"
+  "nutanix_cluster_list_localisation_value": "{{dcName}} ({{rackName}} rack)",
+  "nutanix_order": "Order"
 }
