@@ -98,7 +98,7 @@ export default class AppAddController {
     });
   }
 
-  static buildScalingeBody(scalingStrategy) {
+  static buildScalingBody(scalingStrategy) {
     const { autoscaling, automatic, fixed } = scalingStrategy;
     return autoscaling ? { automatic } : { fixed };
   }
@@ -128,7 +128,7 @@ export default class AppAddController {
       partnerId: preset?.partner?.id,
       volumes: AppAddController.buildVolumesBody(volumes),
       unsecureHttp: APP_PRIVACY_SETTINGS.PUBLIC === privacy,
-      scalingStrategy: AppAddController.buildScalingeBody(scalingStrategy),
+      scalingStrategy: AppAddController.buildScalingBody(scalingStrategy),
     };
   }
 
