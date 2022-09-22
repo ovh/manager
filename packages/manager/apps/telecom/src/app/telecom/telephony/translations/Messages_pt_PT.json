@@ -1,5 +1,8 @@
 {
   "telephony_view_billing_account_service_services": "Ver os serviços",
   "telephony_table_header_action": "Ações",
-  "telephony_table_action_item_telephony_repayments": "Gerir os meus reembolsos"
+  "telephony_table_action_item_telephony_repayments": "Gerir os meus reembolsos",
+  "telephony_breadcrumb": "VoIP",
+  "telephony_order": "Encomendar",
+  "telephony_title": "VoIP"
 }

@@ -1,5 +1,5 @@
 {
-  "emails_domain_title": "Emails",
+  "emails_domain_title": "MX Plan",
   "emails_domain_delegate_title": "Email delegations",
   "emails_contacts_management": "Contacts",
   "emails_common_plan": "Subscription",
@@ -12,5 +12,6 @@
   "emails_common_back": "Back",
   "emails_common_upgrade_account": "Change solution",
   "emails_select_placeholder": "Select...",
-  "emails_required_fields": "Fields followed by an asterisk are mandatory."
+  "emails_required_fields": "Fields followed by an asterisk are mandatory.",
+  "emails_domain_order": "Order"
 }

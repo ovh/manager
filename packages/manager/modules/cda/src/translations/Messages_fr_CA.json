@@ -1,3 +1,4 @@
 {
-  "cda_title": "Ceph cluster"
+  "cda_title": "Cloud Disk Array",
+  "cda_order": "Commander"
 }
