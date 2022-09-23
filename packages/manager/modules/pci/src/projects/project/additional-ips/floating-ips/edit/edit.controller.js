@@ -38,35 +38,49 @@ export default class AdditionalIpsFloatingIpsEditController {
         instances: this.PciProjectsProjectInstanceService.getAllInstanceDetails(
           this.projectId,
         ),
-        gateway: this.PciProjectAdditionalIpService.getGatewayDetails(
-          this.projectId,
-          this.ip.region,
-          this.ip.associatedEntity.gatewayId,
-        ),
         privateNetworks: this.PciProjectAdditionalIpService.getPrivateNetworks(
           this.projectId,
         ),
       })
-      .then(({ instances, gateway, privateNetworks }) => {
-        const privateNetworkId = AdditionalIpsFloatingIpsEditController.getPrivateNetworkIdFromGateway(
-          privateNetworks,
-          gateway.interfaces[0]?.networkId,
-        );
-        // instance must be attached to private network only and must be present in the same private network as Floating IP
+      .then(({ instances, privateNetworks }) => {
         this.instances = instances.filter(
           (instance) =>
             !instance.ipAddresses.some(
               (ipAddress) => ipAddress.type !== 'private',
-            ) &&
-            instance.ipAddresses.find(
-              (ipAddress) => ipAddress.networkId === privateNetworkId,
             ),
         );
+        this.privateNetworks = privateNetworks;
         this.setDefaultInstance();
-        this.loadPrivateNetworks(this.instance);
-        this.setDefaultPrivateNetwork();
-        this.isLoading = false;
+        if (!this.ip?.associatedEntity?.gatewayId) {
+          this.isLoading = false;
+        } else {
+          this.loadInstanceToEdit();
+        }
       });
+  }
+
+  loadInstanceToEdit() {
+    this.isLoading = true;
+    this.PciProjectAdditionalIpService.getGatewayDetails(
+      this.projectId,
+      this.ip.region,
+      this.ip.associatedEntity.gatewayId,
+    ).then((gateway) => {
+      const privateNetworkId = AdditionalIpsFloatingIpsEditController.getPrivateNetworkIdFromGateway(
+        this.privateNetworks,
+        gateway.interfaces[0]?.networkId,
+      );
+      // instance must be attached to private network only and must be present in the same private network as Floating IP
+      this.instances = this.instances.filter((instance) =>
+        instance.ipAddresses.find(
+          (ipAddress) => ipAddress.networkId === privateNetworkId,
+        ),
+      );
+      this.setDefaultInstance();
+      this.loadPrivateNetworks(this.instance);
+      this.setDefaultPrivateNetwork();
+      this.isLoading = false;
+    });
   }
 
   setDefaultInstance() {
