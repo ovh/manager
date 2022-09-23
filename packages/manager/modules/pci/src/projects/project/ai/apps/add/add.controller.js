@@ -112,7 +112,7 @@ export default class AppAddController {
         }
       : null;
   }
-  
+
   static buildScalingBody(scalingStrategy) {
     const { autoscaling, automatic, fixed } = scalingStrategy;
     return autoscaling ? { automatic } : { fixed };
