@@ -42,6 +42,8 @@ export default /* @ngInject */ ($stateProvider) => {
           userId: user.userId,
           user,
         }),
+      goToImportUser: /* @ngInject */ ($state) => () =>
+        $state.go('app.managedBaremetal.details.users.import'),
       modifyUserRights: /* @ngInject */ ($state) => (userId) =>
         $state.go('app.managedBaremetal.details.users.user.rights', {
           userId,

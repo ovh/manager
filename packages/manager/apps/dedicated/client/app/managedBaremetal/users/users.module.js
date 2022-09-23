@@ -5,6 +5,7 @@ import deleteUser from './vsphere-users/delete';
 import disable from './vsphere-users/disable';
 import edit from './vsphere-users/edit';
 import enable from './vsphere-users/enable';
+import importUser from './vsphere-users/import';
 import passwordReset from './vsphere-users/password-reset';
 import rights from './vsphere-users/rights';
 import routing from './users.routes';
@@ -19,6 +20,7 @@ angular
     disable,
     edit,
     enable,
+    importUser,
     passwordReset,
     rights,
     userComponent,

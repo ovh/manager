@@ -591,6 +591,15 @@ class DedicatedCloudService {
     });
     return filterRequest;
   }
+
+  grantActiveDirectory(serviceName, activeDirectoryId, params, type) {
+    return this.$http
+      .post(
+        `/dedicatedCloud/${serviceName}/federation/activeDirectory/${activeDirectoryId}/grantActiveDirectory${type}`,
+        params,
+      )
+      .then(({ data }) => data);
+  }
   /* ------- USER -------*/
 
   getUsers(serviceName, params) {

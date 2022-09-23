@@ -1,5 +1,6 @@
 {
   "dedicatedCloud_USER_add_user": "Créer un utilisateur",
+  "dedicatedCloud_USER_import_user": "Importer un utilisateur",
   "dedicatedCloud_USER_name": "Identifiant",
   "dedicatedCloud_USER_firstname": "Prénom",
   "dedicatedCloud_USER_lastname": "Nom",

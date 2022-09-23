@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     views: {
       modal: {
-        component: 'dedicatedCloudUserDelete',
+        component: 'dedicatedCloudVsphereUserDelete',
       },
     },
     layout: 'modal',
