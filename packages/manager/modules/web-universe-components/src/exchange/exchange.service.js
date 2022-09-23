@@ -446,6 +446,7 @@ export default class Exchange {
     offset = 1,
     searchValues = [],
     accountType = '',
+    company = '',
   ) {
     return this.services.OvhHttp.get(
       `/sws/exchange/${organizationName}/${exchangeService}/accounts`,
@@ -457,6 +458,7 @@ export default class Exchange {
           searchValues,
           configurableOnly: 0,
           typeLicence: accountType,
+          company,
         },
       },
     );
