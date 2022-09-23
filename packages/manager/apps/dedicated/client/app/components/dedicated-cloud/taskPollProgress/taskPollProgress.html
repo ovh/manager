@@ -1,0 +1,36 @@
+<span data-translate="dedicatedCloud_task_progress_operation"></span>
+<span
+    class="ml-1"
+    data-translate="{{ 'dedicatedCloud_task_progress_operation_' + $ctrl.task.name }}"
+>
+</span>
+<span
+    class="ml-2"
+    data-translate="dedicatedCloud_task_progress_task_reference"
+    data-translate-values="{ task: $ctrl.task.taskId }"
+>
+</span>
+<div class="progress">
+    <div
+        class="progress-bar"
+        role="progressbar"
+        aria-valuenow="{{ $ctrl.task.progress }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        data-ng-class="{
+            'progress-bar-info': $ctrl.task.state === $ctrl.TASK_STATE.todo || $ctrl.task.state === $ctrl.TASK_STATE.doing,
+            'progress-bar-success': $ctrl.task.state === $ctrl.TASK_STATE.done,
+            'progress-bar-warning': $ctrl.task.state === $ctrl.TASK_STATE.canceled,
+            'progress-bar-danger': $ctrl.task.state === $ctrl.TASK_STATE.error,
+        }"
+        data-ng-style="{ 'width': $ctrl.task.progress + '%' }"
+    >
+        <span class="progress-bar-label">
+            <span
+                data-translate="{{ 'dedicatedCloud_task_progress_state_' + $ctrl.task.state }}"
+            ></span>
+            <span data-ng-bind="$ctrl.task.percentage"></span>
+        </span>
+    </div>
+</div>
+<span data-ng-bind="$ctrl.task.description"></span>
