@@ -225,6 +225,10 @@ export default class ExchangeAccountHomeController {
       (criterium) => criterium.value,
     );
 
+    const companyFilter = parameters.criteria.find(
+      ({ property }) => property === 'company',
+    );
+
     const accountTypeFilters = map(
       filter(
         parameters.criteria,
@@ -236,6 +240,8 @@ export default class ExchangeAccountHomeController {
     this.gridParameters.accountTypeFilter =
       accountTypeFilters.length === 2 ? '' : accountTypeFilters[0];
 
+    this.gridParameters.company = companyFilter?.value;
+
     return this.Exchange.fetchAccounts(
       this.organization,
       this.productId,
@@ -243,6 +249,7 @@ export default class ExchangeAccountHomeController {
       parameters.offset - 1,
       this.gridParameters.searchValues,
       this.gridParameters.accountTypeFilter,
+      this.gridParameters.company,
     )
       .then((accounts) => {
         this.accounts = this.formatAccountsForDatagrid(
