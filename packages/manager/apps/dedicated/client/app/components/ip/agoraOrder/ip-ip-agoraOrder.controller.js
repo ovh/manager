@@ -53,6 +53,7 @@ export default class AgoraIpOrderCtrl {
 
     this.loading = {};
     this.user = this.$state.params.user;
+    this.catalogName = this.$state.params.catalogName;
 
     // need to be scoped because of how wizard-step works
     this.$scope.loadServices = this.loadServices.bind(this);
@@ -216,6 +217,7 @@ export default class AgoraIpOrderCtrl {
     } else {
       ipOffersPromise = this.IpAgoraOrder.getIpOffers(
         this.user.ovhSubsidiary,
+        this.catalogName,
       ).then((ipOffers) => {
         let ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
         if (this.model.selectedService.type === PRODUCT_TYPES.vps.typeName) {
