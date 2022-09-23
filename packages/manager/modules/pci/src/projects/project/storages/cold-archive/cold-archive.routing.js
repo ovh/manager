@@ -1,9 +1,12 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive', {
     url: '/cold-archive',
-    component: 'ovhManagerPciProjectStorageColdArchive',
+    component: 'ovhManagerPciProjectsProjectStoragesColdArchive',
     resolve: {
-      breadcrumb: () => null,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant(
+          'pci_projects_project_storages_cold_archive_breadcrumb',
+        ),
     },
   });
 };
