@@ -3,7 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/rights',
     views: {
       'pccUserView@app.managedBaremetal.details.users':
-        'dedicatedCloudUserRights',
+        'dedicatedCloudVsphereUserRights',
     },
     resolve: {
       editRight: /* @ngInject */ ($state, userId) => (rightId) =>

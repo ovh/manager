@@ -14,6 +14,7 @@ export default {
     passwordReset: '<',
     productId: '<',
     setMessage: '<',
+    goToImportUser: '<',
   },
   controller,
   template,

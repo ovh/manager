@@ -42,6 +42,8 @@ export default /* @ngInject */ ($stateProvider) => {
           userId: user.userId,
           user,
         }),
+      goToImportUser: /* @ngInject */ ($state) => () =>
+        $state.go('app.dedicatedCloud.details.users.import'),
       modifyUserRights: /* @ngInject */ ($state) => (userId) =>
         $state.go('app.dedicatedCloud.details.users.user.rights', {
           userId,
