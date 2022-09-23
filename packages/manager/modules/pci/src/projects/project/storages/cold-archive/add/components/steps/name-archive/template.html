@@ -1,0 +1,20 @@
+<div class="w-75" data-ng-if="$ctrl.displayNameArchiveStep">
+    <!--archive name field-->
+    <oui-field
+        class="mb-2"
+        data-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_name_archive_field_name' | translate}}">
+        <input
+            type="text"
+            class="oui-input"
+            data-ng-init="labelKeyId = 'nameArchiveLabelKey'"
+            data-ng-attr-name="{{labelKeyId}}"
+            data-ng-attr-id="{{labelKeyId}}"
+            data-ng-model="$ctrl.archiveModel.name"
+            data-ng-pattern="$ctrl.COLD_ARCHIVE_NAME_ARCHIVE_PATTERN"
+            required
+        />
+    </oui-field>
+
+    <!--description-->
+    <p data-translate="pci_projects_project_storages_cold_archive_add_step_name_archive_description"></p>
+</div>
