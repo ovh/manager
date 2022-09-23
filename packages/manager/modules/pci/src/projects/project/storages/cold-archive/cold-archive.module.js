@@ -4,25 +4,23 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
-import 'ovh-api-services';
 
 import routing from './cold-archive.routing';
 import service from './cold-archive.service';
 import component from './cold-archive.component';
 
-const moduleName = 'ovhManagerPciStoragesColdArchive';
+const moduleName = 'ovhManagerPciProjectsProjectStoragesColdArchive';
 
 angular
   .module(moduleName, [
     'ngTranslateAsyncLoader',
     'oui',
-    'ovh-api-services',
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
   ])
   .config(routing)
-  .component('ovhManagerPciProjectStorageColdArchive', component)
+  .component('ovhManagerPciProjectsProjectStoragesColdArchive', component)
   .service('PciStoragesColdArchiveService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
