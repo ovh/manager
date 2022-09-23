@@ -58,18 +58,33 @@ angular.module('App').controller(
              ============================== */
       this.loading.availableRam = true;
 
-      this.privateDatabaseService.listAvailableRam().then((availableRam) => {
-        this.loading.availableRam = false;
-        this.data.availableRam = availableRam;
-        if (this.database.infrastructure === 'legacy') {
-          remove(this.data.availableRam, (ram) => ram === '2048');
-        }
+      this.privateDatabaseService
+        .getUpgradePlans(this.productId)
+        .then((result) => {
+          this.data.availableRam = result.map(
+            (e) => e.planCode.match(/[0-9]+/)?.[0],
+          );
+          if (this.database.infrastructure === 'legacy') {
+            remove(this.data.availableRam, (ram) => ram === '2048');
+          }
 
-        remove(
-          this.data.availableRam,
-          (ram) => +ram === +this.database.ram.value,
-        );
-      });
+          remove(
+            this.data.availableRam,
+            (ram) => +ram === +this.database.ram.value,
+          );
+        })
+        .catch((err) => {
+          this.alerter.alertFromSWS(
+            this.$translate.instant(
+              'privateDatabase_order_RAM_step1_loading_error',
+            ),
+            err,
+            this.$scope.alerts.main,
+          );
+        })
+        .finally(() => {
+          this.loading.availableRam = false;
+        });
 
       /*= =============================
              =            STEP 2            =
