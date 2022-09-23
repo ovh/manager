@@ -13,6 +13,7 @@ export default {
     passwordReset: '<',
     productId: '<',
     setMessage: '<',
+    goToImportUser: '<',
   },
   template,
 };

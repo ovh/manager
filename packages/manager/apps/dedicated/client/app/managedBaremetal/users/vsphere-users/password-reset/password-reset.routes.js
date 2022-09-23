@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     views: {
       modal: {
-        component: 'dedicatedCloudUserPasswordReset',
+        component: 'dedicatedCloudVsphereUserPasswordReset',
       },
     },
     layout: 'modal',

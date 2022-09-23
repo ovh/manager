@@ -8,13 +8,23 @@
     customizable
 >
     <oui-datagrid-topbar>
-        <button
-            type="button"
-            class="btn btn-default"
+        <oui-button
             data-ng-click="$ctrl.addUser($ctrl.passwordPolicy)"
             data-ng-if="$ctrl.dedicatedCloud.solution !== 'VCLOUD'"
-            data-translate="dedicatedCloud_USER_add_user"
-        ></button>
+            type="button"
+            variant="secondary"
+        >
+            <span data-translate="dedicatedCloud_USER_add_user"></span>
+        </oui-button>
+
+        <oui-button
+            data-ng-click="$ctrl.goToImportUser()"
+            data-ng-if="$ctrl.federationEnabled"
+            type="button"
+            variant="secondary"
+        >
+            <span data-translate="dedicatedCloud_USER_import_user"></span>
+        </oui-button>
 
         <button
             type="button"
