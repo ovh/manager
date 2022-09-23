@@ -1,17 +1,17 @@
 import angular from 'angular';
+
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import routing from './cold-archive.routing';
-import service from './cold-archive.service';
-import component from './cold-archive.component';
+import component from './add.component';
+import routing from './add.routing';
 
-import coldArchiveAdd from './add';
+import coldArchiveConfigurationStepNameArchive from './components/steps/name-archive';
 
-const moduleName = 'ovhManagerPciProjectsProjectStoragesColdArchive';
+const moduleName = 'ovhManagerPciProjectsProjectStoragesColdArchiveAdd';
 
 angular
   .module(moduleName, [
@@ -20,11 +20,10 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    coldArchiveAdd,
+    coldArchiveConfigurationStepNameArchive,
   ])
   .config(routing)
-  .component('ovhManagerPciProjectsProjectStoragesColdArchive', component)
-  .service('PciStoragesColdArchiveService', service)
+  .component('pciProjectsProjectStoragesColdArchiveAdd', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

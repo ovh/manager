@@ -1,0 +1,60 @@
+<div>
+    <oui-header data-heading="{{:: 'pci_projects_project_storages_cold_archive_add_title' | translate }}">
+        <oui-guide-menu
+            data-text="{{:: 'pci_projects_project_storages_cold_archive_add_guides_title' | translate }}"
+        >
+
+        </oui-guide-menu>
+    </oui-header>
+
+    <!--Description and link-->
+    <p data-translate="pci_projects_project_storages_cold_archive_add_description"></p>
+    <a
+        data-ng-href="{{:: $ctrl.checkPricesLink }}"
+        data-ng-click="$ctrl.onCheckPricesLinkClick()"
+        target="_blank"
+        rel="noopener"
+    >
+        <span data-translate="pci_projects_project_storages_cold_archive_add_description_link"></span>
+        <span
+            class="oui-icon oui-icon-external-link"
+            aria-hidden="true"
+        ></span>
+    </a>
+
+</div>
+
+<!--Banner messages-->
+<div class="mt-4" id="addMessages">
+    <!--Dynamic banner message-->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <!--Region archive storage info-->
+    <oui-message
+        data-type="info"
+    >
+        <span
+            data-translate="pci_projects_project_storages_cold_archive_add_step_name_archive_localisation_banner_info"
+        ></span>
+    </oui-message>
+</div>
+
+<!--Cold Archive configuration steps-->
+<oui-stepper data-on-finish="$ctrl.onArchiveSubmit()">
+    <!--Name archive-->
+    <oui-step-form
+        data-ng-init="stepConfig = $ctrl.stepper.nameArchiveStep"
+        data-name="{{:: stepConfig.name}}"
+        data-header="{{ $ctrl.getNameArchiveStepHeader(stepConfig.display) }}"
+        data-on-focus="stepConfig.display = true"
+        data-on-submit="stepConfig.display = false"
+        data-prevent-next="true"
+    >
+        <cold-archive-name-archive
+            data-display-name-archive-step="stepConfig.display"
+            data-archive-model="$ctrl.archiveModel"
+        ></cold-archive-name-archive>
+    </oui-step-form>
+</oui-stepper>
