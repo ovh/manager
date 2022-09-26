@@ -81,11 +81,11 @@ export default class PciProjectAdditionalIpService {
     );
   }
 
-  updateInstanceForFloatingIp(projectId, region, instanceId, floatingipId, ip) {
+  updateInstanceForFloatingIp(projectId, region, instanceId, floatingIpId, ip) {
     return this.$http.post(
-      `/cloud/project/${projectId}/region/${region}/instance/${instanceId}/associateFloatingip`,
+      `/cloud/project/${projectId}/region/${region}/instance/${instanceId}/associateFloatingIp`,
       {
-        floatingipId,
+        floatingIpId,
         ip,
       },
     );
