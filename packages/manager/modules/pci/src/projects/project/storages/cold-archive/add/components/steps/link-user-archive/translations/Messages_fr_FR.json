@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_title": "Associer un utilisateur",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_description": "Vous avez la possibilité de définir l’accès à vos containers à vos utilisateurs prédéfinis ou créer de nouveaux utilisateurs et obtenir vos clés d'accès.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select": "Sélectionner un utilisateur existant",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_label": "Sélectionner un utilisateur",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_credential": "Credentials générés",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_no_credential": "Pas de credentials",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_cta_cancel": "Annuler",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_cta_linked": "Associer",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create": "Créer un nouvel utilisateur",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_label": "Description de l'utilisateur",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_cta_create": "Créer",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_cta_cancel": "Annuler",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label": "Votre clé secrète S3 :",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_success": "Les informations d'identification S3 pour l'utilisateur {{userName}} ont été générées.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_fail": "Les informations d'identification S3 n'ont pas été générées."
+}
