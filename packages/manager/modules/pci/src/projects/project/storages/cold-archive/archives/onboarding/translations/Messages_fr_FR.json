@@ -1,0 +1,13 @@
+{
+  "pci_projects_project_storages_cold_archives_onboarding_title": "Cold Archive",
+  "pci_projects_project_storages_cold_archives_onboarding_content1": "Vous n'avez pas encore créé de service Cold Archive.",
+  "pci_projects_project_storages_cold_archives_onboarding_content2": "Archivez vos données sur le long terme au meilleur prix dans une infrastructure sécurisée et résiliente, s’appuyant sur des bandes magnétiques.",
+  "pci_projects_project_storages_cold_archives_onboarding_action_label": "Créer un conteneur d'objet",
+
+  "pci_projects_project_storages_cold_archives_onboarding_guides_s3-getting-started_title": "Débuter avec S3 Object Storage",
+  "pci_projects_project_storages_cold_archives_onboarding_guides_s3-getting-started_description": "",
+  "pci_projects_project_storages_cold_archives_onboarding_guides_s3-limitaion_title": "S3 Object Storage - Limites techniques ",
+  "pci_projects_project_storages_cold_archives_onboarding_guides_s3-limitaion_description": "",
+  "pci_projects_project_storages_cold_archives_onboarding_guides_cold-archive-getting-started_title": "Découvrir Cold Archive",
+  "pci_projects_project_storages_cold_archives_onboarding_guides_cold-archive-getting-started_description": ""
+}
