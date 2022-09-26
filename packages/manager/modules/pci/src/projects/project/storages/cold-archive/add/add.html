@@ -45,16 +45,39 @@
 <oui-stepper data-on-finish="$ctrl.onArchiveSubmit()">
     <!--Name archive-->
     <oui-step-form
-        data-ng-init="stepConfig = $ctrl.stepper.nameArchiveStep"
-        data-name="{{:: stepConfig.name}}"
-        data-header="{{ $ctrl.getNameArchiveStepHeader(stepConfig.display) }}"
-        data-on-focus="stepConfig.display = true"
-        data-on-submit="stepConfig.display = false"
+        data-ng-init="nameArchiveStep = $ctrl.stepper.nameArchiveStep"
+        data-name="{{:: nameArchiveStep.name}}"
+        data-header="{{ $ctrl.getNameArchiveStepHeader(nameArchiveStep.display) }}"
+        data-on-focus="nameArchiveStep.display = true"
+        data-on-submit="nameArchiveStep.display = false"
         data-prevent-next="true"
     >
         <cold-archive-name-archive
-            data-display-name-archive-step="stepConfig.display"
+            data-display-name-archive-step="nameArchiveStep.display"
             data-archive-model="$ctrl.archiveModel"
         ></cold-archive-name-archive>
+    </oui-step-form>
+
+    <!--Link user to archive-->
+    <oui-step-form
+        data-ng-init="linkUserArchiveStep = $ctrl.stepper.linkUserArchiveStep"
+        data-name="{{:: linkUserArchiveStep.name}}"
+        data-header="{{:: 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_header' | translate }}"
+        data-submit-text="{{:: 'pci_projects_project_storages_cold_archive_add_action_create' | translate }}"
+        data-loading-text="{{:: 'pci_projects_project_storages_cold_archive_add_action_create_pending' | translate }}"
+        data-on-focus="linkUserArchiveStep.display = true"
+        data-on-submit="linkUserArchiveStep.display = false"
+        data-editable="!$ctrl.isArchiveCreationInProgress"
+        data-loading="$ctrl.isArchiveCreationInProgress"
+        data-navigation="$ctrl.isReadyForValidation()"
+        data-prevent-next="true"
+    >
+        <cold-archive-link-user-archive
+            data-project-id="$ctrl.projectId"
+            data-user-model="$ctrl.userModel"
+            data-archive-model="$ctrl.archiveModel"
+            data-users="$ctrl.users"
+            data-display-link-user-archive-step="linkUserArchiveStep.display"
+        ></cold-archive-link-user-archive>
     </oui-step-form>
 </oui-stepper>
