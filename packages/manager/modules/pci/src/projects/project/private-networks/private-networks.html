@@ -137,11 +137,12 @@
                             ></td>
                             <td class="oui-table__cell">
                                 <div class="d-flex flex-column">
-                                    <span
-                                        class="mb-1"
+                                    <a
                                         data-ng-if="subnetDetail.gatewayName"
                                         data-ng-bind="subnetDetail.gatewayName"
-                                    ></span>
+                                        data-ng-href="{{:: $ctrl.gatewaysLink }}"
+                                    ></a>
+
                                     <span
                                         data-ng-if="subnetDetail.gatewayIp && subnetDetail.dhcp"
                                         data-ng-bind="subnetDetail.gatewayIp"
