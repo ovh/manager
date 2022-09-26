@@ -3,11 +3,11 @@
   "pci_projects_project_storages_containers_container_archive_info_storedObjects": "Archivos: {{ count }}",
   "pci_projects_project_storages_containers_container_object_info_storedObjects": "Objetos: {{ count }}",
   "pci_projects_project_storages_containers_container_info_storedBytes": "Espacio utilizado: {{ bytes }}",
-  "pci_projects_project_storages_containers_container_info_publicUrl": "URL del contenedor:",
+  "pci_projects_project_storages_containers_container_info_publicUrl": "Endpoint",
   "pci_projects_project_storages_containers_container_info_publicUrl_help": "Esta información es necesaria para descargar o manipular los objetos a través de la API. Para más información, consulte nuestras guías.",
   "pci_projects_project_storages_containers_container_archive_info_staticUrl": "Dirección del servidor para rsync/sftp/scp:",
   "pci_projects_project_storages_containers_container_object_info_staticUrl": "Valor del registro CNAME/TXT:",
-  "pci_projects_project_storages_containers_container_object_info_staticUrl_help": "Para utilizar el contenedor «alojamiento estático» en un dominio o subdominio, solo tiene que editar la zona DNS añadiendo un registro CNAME con este valor.",
+  "pci_projects_project_storages_containers_container_object_info_staticUrl_help": "Utilice el contenedor «Alojamiento estático» en un dominio o subdominio. Modifique la zona DNS añadiendo un registro CNAME con este valor.",
   "pci_projects_project_storages_containers_container_archive_info_user": "Nombre de usuario: {{ user }}",
   "pci_projects_project_storages_containers_container_archive_info_password": "Contraseña (la concatenación de los siguientes campos):",
   "pci_projects_project_storages_containers_container_name_label": "Nombre",
@@ -28,5 +28,12 @@
   "pci_projects_project_storages_containers_container_object_error_download": "Se ha producido un error al descargar el objeto: {{ message }}.",
   "pci_projects_project_storages_containers_container_archive_error_unseal": "Se ha producido un error al descongelar el archivo: {{ message }}.",
   "pci_projects_project_storages_containers_container_archive_success_unseal": "Descongelando el archivo {{archive}}...",
-  "pci_projects_project_storages_containers_container_add_user_label": "Añadir un usuario a mi objeto"
+  "pci_projects_project_storages_containers_container_add_user_label": "Añadir un usuario a mi objeto",
+  "pci_projects_project_storages_containers_container_info_id": "ID",
+  "pci_projects_project_storages_containers_container_documentation_title_rclone": "Object Storage con Rclone",
+  "pci_projects_project_storages_containers_container_documentation_description_rclone": "Descubra cómo sincronizar el Object Storage de OVHcloud a través de Rclone.",
+  "pci_projects_project_storages_containers_container_documentation_title_veeam": "Object Storage S3 con Veeam",
+  "pci_projects_project_storages_containers_container_documentation_description_veeam": "Configure Veeam para utilizar su espacio de almacenamiento S3 Object Storage.",
+  "pci_projects_project_storages_containers_container_documentation_title_s3-limitation": "Limitaciones técnicas de Object Storage S3",
+  "pci_projects_project_storages_containers_container_documentation_description_s3-limitation": "Consulte las limitaciones técnicas de la solución S3 Object Storage."
 }

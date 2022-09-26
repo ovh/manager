@@ -13,6 +13,7 @@ export default {
     defaultPassword: '<?',
     deleteObject: '<',
     goToAddUserOnObject: '<',
+    goToStorageContainers: '<',
     guideUrl: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',

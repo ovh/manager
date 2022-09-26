@@ -26,6 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
             containerId,
             container.isHighPerfStorage,
             container.region,
+            container.s3StorageType,
           );
         },
         goBack: /* @ngInject */ (goToStorageContainers) =>

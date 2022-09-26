@@ -1,4 +1,9 @@
-import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from './users.constants';
+import {
+  DOWNLOAD_FILENAME,
+  DOWNLOAD_TYPE,
+  TRACKING_S3_POLICY,
+  TRACKING_S3_POLICY_ADD,
+} from './users.constants';
 
 const { saveAs } = require('file-saver');
 
@@ -18,6 +23,9 @@ export default class PciStoragesContainersUsersController {
 
   $onInit() {
     this.loadMessages();
+    if (this.trackingInfo)
+      this.trackPage(`${TRACKING_S3_POLICY_ADD}${this.trackingInfo}`);
+    else this.trackPage(`${TRACKING_S3_POLICY}`);
   }
 
   loadMessages() {
@@ -74,5 +82,24 @@ export default class PciStoragesContainersUsersController {
           'pci.projects.project.storages.object-storage.users',
         ),
       );
+  }
+
+  showSecretKey(user) {
+    this.CucCloudMessage.success({
+      textHtml: this.$translate.instant(
+        'pci_projects_project_storages_containers_users_show_secret_key_success',
+        {
+          user: user.username,
+          secret: `<code class="code-break">${user.s3Credentials[0].secret}</code>`,
+        },
+      ),
+    });
+  }
+
+  trackPage(page) {
+    this.atInternet.trackPage({
+      name: `${this.trackingPrefix}${page}`,
+      type: 'navigation',
+    });
   }
 }

@@ -5,7 +5,11 @@ export default /* @ngInject */ ($stateProvider) => {
     'pci.projects.project.storages.object-storage.objects.object',
     {
       url: '/{containerId}',
-      component: 'pciProjectStorageContainersContainer',
+      views: {
+        'objectStorageView@pci.projects.project.storages.object-storage': {
+          component: 'pciProjectStorageContainersContainer',
+        },
+      },
       params: {
         defaultCriteria: null,
       },
@@ -26,6 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
             containerId,
             container.isHighPerfStorage,
             container.region,
+            container.s3StorageType,
           );
         },
 

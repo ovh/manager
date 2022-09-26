@@ -1,5 +1,5 @@
 {
   "pci_projects_project_storages_containers_container_empty_user_title": "Añadir un usuario a mi contenedor",
-  "pci_projects_project_storages_containers_container_empty_user_description": "Cree los usuarios que quiera añadir en la sección «Users &amp; Roles».",
-  "pci_projects_project_storages_containers_container_empty_user_label": "Acceder a «Users &amp; Roles»."
+  "pci_projects_project_storages_containers_container_empty_user_description": "Es necesario crear un usuario y generar claves S3 en la sección «Usuarios S3».",
+  "pci_projects_project_storages_containers_container_empty_user_label": "Acceder a «Usuarios S3»"
 }

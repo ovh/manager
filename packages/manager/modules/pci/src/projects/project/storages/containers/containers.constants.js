@@ -1,11 +1,25 @@
 export const OBJECT_CONTAINER_OFFER_SWIFT = 'storage';
+export const OBJECT_CONTAINER_OFFER_STORAGE_STANDARD = 'storage-s3-standard';
 export const OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE = 'storage-s3-high-perf';
+export const OBJECT_CONTAINER_S3_STATIC_URL_INFO = 'Virtual Hosted-Style :';
+export const OBJECT_CONTAINER_OFFERS_TYPES = {
+  SWIFT: 'swift',
+  STORAGE_STANDARD: 'standard_s3',
+  HIGH_PERFORMANCE: 'high_performance',
+};
 export const OBJECT_CONTAINER_OFFERS = [
-  OBJECT_CONTAINER_OFFER_SWIFT,
+  OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
+  OBJECT_CONTAINER_OFFER_SWIFT,
 ];
+export const OBJECT_CONTAINER_OFFERS_LABELS = {
+  [OBJECT_CONTAINER_OFFER_SWIFT]: { beta: false, new: false },
+  [OBJECT_CONTAINER_OFFER_STORAGE_STANDARD]: { beta: false, new: true },
+  [OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE]: { beta: false, new: true },
+};
 export const OBJECT_CONTAINER_TYPE_OFFERS = [OBJECT_CONTAINER_OFFER_SWIFT];
 export const OBJECT_CONTAINER_NAME_PATTERN = {
+  [OBJECT_CONTAINER_OFFER_STORAGE_STANDARD]: /^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$/,
   [OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE]: /^[a-z0-9]([a-z0-9.-]{1,61})[a-z0-9]$/,
 };
 
@@ -88,7 +102,53 @@ export const OPENIO_DEFAULT_REGION = 'SBG';
 
 export const OPENIO_PRESIGN_EXPIRE = 3600;
 
+export const CONTAINER_GUIDES = [
+  {
+    id: 'rclone',
+    links: {
+      DEFAULT: 'https://docs.ovh.com/gb/en/storage/sync-rclone-object-storage/',
+      FR: 'https://docs.ovh.com/fr/storage/sync-rclone-object-storage/',
+      DE: 'https://docs.ovh.com/de/storage/sync-Rclone-object-storage/',
+      GB: 'https://docs.ovh.com/gb/en/storage/sync-rclone-object-storage/',
+      CA: 'https://docs.ovh.com/ca/en/storage/sync-rclone-object-storage/',
+      ES: 'https://docs.ovh.com/es/storage/sync-rclone-object-storage/',
+      IT: 'https://docs.ovh.com/it/storage/sync-rclone-object-storage/',
+      PT: 'https://docs.ovh.com/pt/storage/sync-rclone-object-storage/',
+    },
+    link: '',
+  },
+  {
+    id: 'veeam',
+    links: {
+      DEFAULT: 'https://docs.ovh.com/gb/en/storage/s3/veeam/',
+      FR: 'https://docs.ovh.com/fr/storage/s3/veeam/',
+      DE: 'https://docs.ovh.com/de/storage/s3/veeam/',
+      GB: 'https://docs.ovh.com/gb/en/storage/s3/veeam/',
+      CA: 'https://docs.ovh.com/ca/en/storage/s3/veeam/',
+      ES: 'https://docs.ovh.com/es/storage/s3/veeam/',
+      IT: 'https://docs.ovh.com/it/storage/s3/veeam/',
+      PT: 'https://docs.ovh.com/pt/storage/s3/veeam/',
+    },
+    link: '',
+  },
+  {
+    id: 's3-limitation',
+    links: {
+      DEFAULT: 'https://docs.ovh.com/gb/en/storage/s3/limitations/',
+      FR: 'https://docs.ovh.com/fr/storage/s3/limitations/',
+      DE: 'https://docs.ovh.com/de/storage/s3/limitations/',
+      GB: 'https://docs.ovh.com/gb/en/storage/s3/limitations/',
+      CA: 'https://docs.ovh.com/ca/en/storage/s3/limitations/',
+      ES: 'https://docs.ovh.com/es/storage/s3/limitations/',
+      IT: 'https://docs.ovh.com/it/storage/s3/limitations/',
+      PT: 'https://docs.ovh.com/pt/storage/s3/limitations/',
+    },
+    link: '',
+  },
+];
+
 export default {
+  OBJECT_CONTAINER_OFFERS_TYPES,
   OBJECT_CONTAINER_OFFER_SWIFT,
   OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
   OBJECT_CONTAINER_OFFERS,
@@ -123,4 +183,6 @@ export default {
   X_CONTAINER_READ,
   X_CONTAINER_READ_PUBLIC_VALUE,
   X_STORAGE_POLICY,
+
+  CONTAINER_GUIDES,
 };
