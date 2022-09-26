@@ -10,6 +10,7 @@ import component from './add.component';
 import routing from './add.routing';
 
 import coldArchiveConfigurationStepNameArchive from './components/steps/name-archive';
+import coldArchiveConfigurationStepLinkUserArchive from './components/steps/link-user-archive';
 
 const moduleName = 'ovhManagerPciProjectsProjectStoragesColdArchiveAdd';
 
@@ -21,6 +22,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     coldArchiveConfigurationStepNameArchive,
+    coldArchiveConfigurationStepLinkUserArchive,
   ])
   .config(routing)
   .component('pciProjectsProjectStoragesColdArchiveAdd', component)

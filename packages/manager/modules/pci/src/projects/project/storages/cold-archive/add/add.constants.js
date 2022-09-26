@@ -20,6 +20,18 @@ export const CHECK_PRICES_DOC_LINK = {
   WE: 'https://www.ovhcloud.com/en/public-cloud/prices/#',
 };
 
+export const COLD_ARCHIVE_ADD_MESSAGES_ID =
+  'pci.projects.project.storages.cold-archive.add';
+
+export const COLD_ARCHIVE_LINKED_MODES = {
+  LINKED: 'LINKED',
+  CREATE: 'CREATE',
+};
+
+export const COLD_ARCHIVE_DEFAULT_REGION = 'RBX-ARCHIVE';
+
 export default {
   CHECK_PRICES_DOC_LINK,
+  COLD_ARCHIVE_ADD_MESSAGES_ID,
+  COLD_ARCHIVE_DEFAULT_REGION,
 };
