@@ -72,7 +72,10 @@ export default /* @ngInject */ ($stateProvider) => {
         PciPrivateNetworks.getVrackCreationOperation(projectId),
       gateways: /* @ngInject */ (PciPrivateNetworks, projectId) =>
         PciPrivateNetworks.getGateways(projectId),
-
+      gatewaysLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.public-gateways', {
+          projectId,
+        }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_network_private'),
 
