@@ -2,11 +2,23 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive', {
     url: '/cold-archive',
     component: 'ovhManagerPciProjectsProjectStoragesColdArchive',
-    resolve: {
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant(
-          'pci_projects_project_storages_cold_archive_breadcrumb',
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('containers')
+        .then((containers) =>
+          containers.length === 0
+            ? {
+                state: 'pci.projects.project.storages.cold-archive.onboarding',
+              }
+            : false,
         ),
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) => {
+        return $translate.instant(
+          'pci_projects_project_storages_cold_archive_breadcrumb',
+        );
+      },
 
       userList: /* @ngInject */ (projectId, allUserList) =>
         allUserList.filter((user) => user?.s3Credentials?.length > 0),
@@ -45,6 +57,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+
+      containers: /* @ngInject */ (PciStoragesColdArchiveService, projectId) =>
+        PciStoragesColdArchiveService.getAllColdArchives(projectId),
     },
   });
 };
