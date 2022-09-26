@@ -20,6 +20,7 @@ export default {
     goToRegion: '<',
     goToAddPublicGateway: '<',
     gateways: '<',
+    gatewaysLink: '<',
   },
   controller,
   template,
