@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_users_add_title": "Añadir un usuario S3",
+  "pci_projects_project_users_add_short_description": "Añada un usuario a su contenedor para acceder al almacenamiento de objetos. Puede seleccionar un usuario existente o crear uno nuevo. Cada usuario (OpenStack) se asociará a uno o más pares de claves S3 compuestas cada una por una clave de acceso («Access Key») y una clave secreta («Secret Key»).",
+  "pci_projects_project_users_add_submit_label": "Crear",
+  "pci_projects_project_users_add_cancel_label": "Cancelar",
+  "pci_projects_project_users_add_description_label": "Descripción del usuario",
+  "pci_projects_project_users_add_existing_user": "Seleccionar un usuario existente",
+  "pci_projects_project_users_add_create_user": "Crear un nuevo usuario",
+  "pci_projects_project_users_add_success_message": "Se han generado las claves de conexión S3 del usuario {{user}}.",
+  "pci_projects_project_users_add_error_message": "No se han podido generar las claves de conexión S3 para el usuario {{user}}.",
+  "pci_projects_project_users_add_username": "Su nombre de usuario OpenStack:",
+  "pci_projects_project_users_add_description": "Su descripción:",
+  "pci_projects_project_users_add_accesskey": "Su clave de acceso S3:",
+  "pci_projects_project_users_add_secretkey": "Su clave secreta S3:",
+  "pci_projects_project_users_add_as_no_credentials": "Sin claves",
+  "pci_projects_project_users_add_as_credentials": "Claves generadas"
+}

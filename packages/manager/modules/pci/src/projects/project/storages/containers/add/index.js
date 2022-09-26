@@ -8,13 +8,14 @@ import 'ovh-api-services';
 import 'angular-ui-bootstrap';
 
 import regionsList from '../../../../../components/project/regions-list';
+import associateUserToContainer from './components/associate-user-to-container';
+
 import component from './add.component';
 
 const moduleName = 'ovhManagerPciStoragesContainersAdd';
 
 angular
   .module(moduleName, [
-    regionsList,
     'ngTranslateAsyncLoader',
     'oui',
     'ovh-api-services',
@@ -22,6 +23,8 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ui.bootstrap',
+    regionsList,
+    associateUserToContainer,
   ])
   .component('pciProjectStorageContainersAdd', component)
   .run(/* @ngTranslationsInject:json ./translations */);

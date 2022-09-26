@@ -12,5 +12,12 @@ export default {
     goToUsersAndRoles: '<',
     goToUsers: '<',
     trackingPrefix: '<',
+    downloadOpenStackRclone: '<',
+    goToAddUser: '<',
+    goToUsersBanner: '<',
+    userDetails: '<',
+    userCredential: '<',
+    trackingInfo: '<',
+    refreshS3Credentials: '<',
   },
 };

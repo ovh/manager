@@ -8,22 +8,27 @@ import databases from './databases';
 import instanceBackups from './instance-backups';
 import objectStorage from './object-storage';
 import snapshots from './snapshots';
+import storagesComponents from './components';
+
 import routing from './storages.routing';
+import storageUsersService from './storage-users.service';
 
 const moduleName = 'ovhManagerPciStorages';
 
 angular
   .module(moduleName, [
+    'oui',
+    'ui.router',
+    'ovhManagerFilters',
     blocks,
     cloudArchive,
     databases,
     instanceBackups,
     snapshots,
     objectStorage,
-    'oui',
-    'ui.router',
-    'ovhManagerFilters',
+    storagesComponents,
   ])
+  .service('PciStoragesUsersService', storageUsersService)
   .config(routing);
 
 export default moduleName;

@@ -5,8 +5,8 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
 
-import component from './download-rclone.component';
 import routing from './download-rclone.routing';
+import rClone from '../../../../components/users/download-rclone';
 
 const moduleName = 'ovhManagerPciUsersDownloadRclone';
 
@@ -17,16 +17,15 @@ angular
     'ovh-api-services',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    rClone,
   ])
   .config(routing)
-  .component('pciProjectUsersDownloadRclone', component)
   .config(
     /* @ngInject */ ($compileProvider) => {
       $compileProvider.aHrefSanitizationWhitelist(
         /^\s*(https?|s?ftp|mailto|tel|file|data):/,
       );
     },
-  )
-  .run(/* @ngTranslationsInject:json ./translations */);
+  );
 
 export default moduleName;

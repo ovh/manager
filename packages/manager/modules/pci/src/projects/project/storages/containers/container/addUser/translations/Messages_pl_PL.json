@@ -13,7 +13,10 @@
   "pci_projects_project_storages_containers_container_addUser_right_readWrite": "Read and write",
   "pci_projects_project_storages_containers_container_addUser_right_readOnly": "Read only",
   "pci_projects_project_storages_containers_container_addUser_right_deny": "Deny",
-  "pci_projects_project_storages_containers_container_addUser_success_message": "Użytkownik {{name}} został dodany do kontenera {{container}} jako {{role}}.",
-  "pci_projects_project_storages_containers_container_addUser_object_success_message": "Użytkownik {{name}} został dodany do obiektu {{container}} jako {{role}}.",
-  "pci_projects_project_storages_containers_container_addUser_error_addUser": "Użytkownik nie został poprawnie dodany do kontenera {{container}}: {{message}}"
+  "pci_projects_project_storages_containers_container_addUser_success_message": "Użytkownik {{name}} został dodany do kontenera {{value}} jako {{role}}.",
+  "pci_projects_project_storages_containers_container_addUser_object_success_message": "Użytkownik {{name}} został dodany do obiektu {{value}} jako {{role}}.",
+  "pci_projects_project_storages_containers_container_addUser_error_addUser": "Użytkownik nie został poprawnie dodany do kontenera {{value}}: {{message}}",
+  "pci_projects_project_storages_containers_container_addUser_description_container_step_1": "Zdefiniuj rolę użytkownika w kontenerze {{value}}.",
+  "pci_projects_project_storages_containers_container_addUser_description_object_step_1": "Zdefiniuj rolę użytkownika w obiekcie {{value}}.",
+  "pci_projects_project_storages_containers_container_addUser_object_error_addUser": "Użytkownik nie został poprawnie dodany do obiektu {{value}}: {{message}}"
 }

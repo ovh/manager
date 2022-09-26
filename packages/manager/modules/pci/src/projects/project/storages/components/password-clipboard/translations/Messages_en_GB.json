@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_components_password_clipboard_label_show_password": "Show password",
+  "pci_projects_project_storages_components_password_clipboard_label_hide_password": "Hide password",
+  "pci_projects_project_storages_components_password_clipboard_label_copy_to_clipboard": "Copy to clipboard",
+  "pci_projects_project_storages_components_password_clipboard_tooltip_action_copy": "Copy to clipboard",
+  "pci_projects_project_storages_components_password_clipboard_tooltip_action_copied": "Copied",
+  "pci_projects_project_storages_components_password_clipboard_tooltip_action_copy_not_supported": "Copying to clipboard is not supported. Please copy the text manually."
+}

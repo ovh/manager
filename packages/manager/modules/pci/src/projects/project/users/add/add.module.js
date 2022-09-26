@@ -7,6 +7,9 @@ import routing from './add.routing';
 
 const moduleName = 'ovhManagerPciUsersAdd';
 
-angular.module(moduleName, [roles, userAdd, 'ui.router']).config(routing);
+angular
+  .module(moduleName, [roles, userAdd, 'ui.router'])
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

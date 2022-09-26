@@ -19,8 +19,25 @@ export default /* @ngInject */ ($stateProvider) => {
             name: `${trackingPrefix}add-user::goto-users-roles`,
             type: 'action',
           });
-          return $state.go('pci.projects.project.users');
+          return $state.go(
+            'pci.projects.project.storages.object-storage.users.add',
+          );
         },
+
+        goToUsers: /* @ngInject */ (
+          $state,
+          atInternet,
+          trackingPrefix,
+        ) => () => {
+          atInternet.trackClick({
+            name: `${trackingPrefix}add-user::goto-users`,
+            type: 'action',
+          });
+          return $state.go(
+            'pci.projects.project.storages.object-storage.users',
+          );
+        },
+
         goBack: /* @ngInject */ (
           goToStorageContainers,
           atInternet,

@@ -15,7 +15,7 @@
   "pci_projects_project_users_status_pending": "Oczekujące",
   "pci_projects_project_users_horizon_label": "Otwórz OpenStack Horizon",
   "pci_projects_project_users_openrc_label": "Pobierz plik RC OpenStack",
-  "pci_projects_project_users_rclone_label": "Pobierz plik konfiguracyjny rClone",
+  "pci_projects_project_users_rclone_label": "Pobierz plik konfiguracyjny rclone",
   "pci_projects_project_users_token_label": "Wygeneruj token Openstack",
   "pci_projects_project_users_password_label": "Wygeneruj ponownie hasło.",
   "pci_projects_project_users_modify_password_label": "Wygeneruj hasło",

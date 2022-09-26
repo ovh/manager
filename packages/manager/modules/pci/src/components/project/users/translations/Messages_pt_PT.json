@@ -15,7 +15,7 @@
   "pci_projects_project_users_status_pending": "Em espera",
   "pci_projects_project_users_horizon_label": "Abrir OpenStack Horizon",
   "pci_projects_project_users_openrc_label": "Descarregar o ficheiro RC do OpenStack",
-  "pci_projects_project_users_rclone_label": "Transferir um ficheiro de configuração rClone",
+  "pci_projects_project_users_rclone_label": "Transferir um ficheiro de configuração rclone",
   "pci_projects_project_users_token_label": "Gerar um token OpenStack",
   "pci_projects_project_users_password_label": "Reinicializar uma palavra-passe",
   "pci_projects_project_users_modify_password_label": "Gerar nova palavra-passe",

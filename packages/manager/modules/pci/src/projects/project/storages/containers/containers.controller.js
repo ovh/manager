@@ -1,13 +1,22 @@
 import find from 'lodash/find';
 import { getCriteria } from '../../project.utils';
 
+import { OBJECT_CONTAINER_OFFERS_TYPES } from './containers.constants';
+
 export default class PciStoragesContainersController {
   /* @ngInject */
-  constructor($translate, $http, CucCloudMessage) {
+  constructor(
+    $translate,
+    $http,
+    CucCloudMessage,
+    PciProjectStorageContainersService,
+  ) {
     this.$translate = $translate;
     this.$http = $http;
     this.CucCloudMessage = CucCloudMessage;
     this.publicToggleLoading = false;
+    this.OBJECT_CONTAINER_OFFERS_TYPES = OBJECT_CONTAINER_OFFERS_TYPES;
+    this.PciProjectStorageContainersService = PciProjectStorageContainersService;
   }
 
   $onInit() {
@@ -15,14 +24,24 @@ export default class PciStoragesContainersController {
     this.criteria = getCriteria('id', this.containerId);
     this.publicToggleLoading = false;
     this.hasHighPerformanceStorage = this.hasHighPerformanceStorage();
+    this.columnsParameters = [
+      {
+        name: 'id',
+        hidden: !this.archive,
+      },
+      {
+        name: 'state',
+        hidden: !this.archive,
+      },
+    ];
   }
 
   onPublicToggle(container) {
     this.loadingContainer = container.id;
-    return this.$http
-      .put(`/cloud/project/${this.projectId}/storage/${container.id}`, {
-        containerType: container.state ? 'private' : 'public',
-      })
+    return this.PciProjectStorageContainersService.toggleContainerState(
+      this.projectId,
+      container,
+    )
       .then(() =>
         this.CucCloudMessage.success(
           this.$translate.instant(
@@ -50,7 +69,7 @@ export default class PciStoragesContainersController {
 
   loadMessages() {
     this.messageHandler = this.CucCloudMessage.subscribe(
-      'pci.projects.project.storages.containers',
+      'pci.projects.project.storages.containers.container',
       {
         onMessage: () => this.refreshMessages(),
       },
@@ -63,5 +82,9 @@ export default class PciStoragesContainersController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  isSwiftType(container) {
+    return !this.archive && !container.s3StorageType;
   }
 }

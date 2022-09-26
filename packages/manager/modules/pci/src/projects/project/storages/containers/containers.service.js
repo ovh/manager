@@ -13,22 +13,24 @@ import Container from './container.class';
 import ContainerObject from './container-object.class';
 
 import {
+  CONTAINER_COMMERCIAL_NAME,
+  CONTAINER_DEFAULT_PASSWORD,
   CONTAINER_DEFAULT_PASSWORD_TENANTNAME,
   CONTAINER_DEFAULT_PASSWORD_USERNAME,
-  CONTAINER_DEFAULT_PASSWORD,
   OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
-  OBJECT_CONTAINER_TYPE_STATIC,
+  OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
+  OBJECT_CONTAINER_OFFER_SWIFT,
   OBJECT_CONTAINER_TYPE_PUBLIC,
+  OBJECT_CONTAINER_TYPE_STATIC,
   OBJECT_TYPE_SEALED,
   OPENIO_DEFAULT_REGION,
   OPENIO_PRESIGN_EXPIRE,
+  PUBLIC_CLOUD_PRODUCT_NAME,
   STORAGE_GATEWAY,
   X_AUTH_TOKEN,
   X_CONTAINER_HEADERS_REGEX,
   X_CONTAINER_READ,
   X_CONTAINER_READ_PUBLIC_VALUE,
-  CONTAINER_COMMERCIAL_NAME,
-  PUBLIC_CLOUD_PRODUCT_NAME,
 } from './containers.constants';
 
 export default class PciStoragesContainersService {
@@ -49,22 +51,41 @@ export default class PciStoragesContainersService {
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
   }
 
-  getAccessAndToken(projectId) {
-    return this.OvhApiCloudProjectStorage.v6()
-      .access({
-        projectId,
-      })
-      .$promise.then(({ token, endpoints }) => ({
-        token,
-        endpoints: reduce(
-          endpoints,
-          (result, endpoint) => ({
-            ...result,
-            [endpoint.region.toLowerCase()]: endpoint.url,
-          }),
-          {},
-        ),
-      }));
+  getAccessAndToken(projectId, s3StorageType, selectedRegion) {
+    if (!s3StorageType) {
+      return this.OvhApiCloudProjectStorage.v6()
+        .access({
+          projectId,
+        })
+        .$promise.then(({ token, endpoints }) => ({
+          token,
+          endpoints: reduce(
+            endpoints,
+            (result, endpoint) => ({
+              ...result,
+              [endpoint.region.toLowerCase()]: endpoint.url,
+            }),
+            {},
+          ),
+        }));
+    }
+
+    const s3Type =
+      s3StorageType === 'storage'
+        ? OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE
+        : OBJECT_CONTAINER_OFFER_STORAGE_STANDARD;
+    return this.getRegions(projectId, selectedRegion).then((region) => {
+      const regionDetails = region.services.find(({ name }) => name === s3Type);
+      return {
+        endpoints: { [selectedRegion.toLowerCase()]: regionDetails.endpoint },
+      };
+    });
+  }
+
+  getRegions(projectId, selectedRegion) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/region/${selectedRegion}`)
+      .then(({ data }) => data);
   }
 
   getArchivePassword(projectId, { region }) {
@@ -148,13 +169,14 @@ export default class PciStoragesContainersService {
     containerId,
     isHighPerfStorage = false,
     containerRegion,
+    s3StorageType,
   ) {
     let promise = null;
     const region = containerRegion || OPENIO_DEFAULT_REGION;
-    if (isHighPerfStorage) {
+    if (s3StorageType) {
       promise = this.$http
         .get(
-          `/cloud/project/${projectId}/region/${region}/storage/${containerId}`,
+          `/cloud/project/${projectId}/region/${region}/${s3StorageType}/${containerId}`,
         )
         .then(({ data }) => {
           return { ...data, region };
@@ -169,7 +191,12 @@ export default class PciStoragesContainersService {
       .then((container) =>
         this.$q.all({
           container,
-          publicUrl: this.getContainerUrl(projectId, container),
+          publicUrl: this.getContainerUrl(
+            projectId,
+            container,
+            null,
+            s3StorageType,
+          ),
         }),
       )
       .then(
@@ -178,16 +205,19 @@ export default class PciStoragesContainersService {
             ...container,
             state: container.public,
             isHighPerfStorage,
+            s3StorageType,
             objects: map(
               container.objects,
               (object) =>
                 new ContainerObject({
                   ...object,
                   isHighPerfStorage,
+                  s3StorageType,
                 }),
             ),
             id: containerId,
             publicUrl,
+            virtualHost: container.virtualHost,
             storageGateway: STORAGE_GATEWAY[
               this.coreConfig.getRegion()
             ].replace(
@@ -198,11 +228,19 @@ export default class PciStoragesContainersService {
       );
   }
 
-  getContainerUrl(projectId, container, file = null) {
-    return this.getAccessAndToken(projectId).then(({ endpoints }) => {
-      const url = `${
-        endpoints[(container.region || OPENIO_DEFAULT_REGION).toLowerCase()]
-      }/${encodeURIComponent(container.name)}`;
+  getContainerUrl(projectId, container, file = null, s3StorageType) {
+    return this.getAccessAndToken(
+      projectId,
+      s3StorageType,
+      container.region,
+    ).then(({ endpoints }) => {
+      const url = !s3StorageType
+        ? `${
+            endpoints[(container.region || OPENIO_DEFAULT_REGION).toLowerCase()]
+          }/${encodeURIComponent(container.name)}`
+        : `${
+            endpoints[(container.region || OPENIO_DEFAULT_REGION).toLowerCase()]
+          }`;
       if (file) {
         return `${url}/${encodeURIComponent(file)}`;
       }
@@ -245,10 +283,121 @@ export default class PciStoragesContainersService {
     );
   }
 
-  addHighPerfStorageContainer(projectId, region, name) {
+  manageContainerCreation(projectId, container) {
+    const { offer } = container;
+
+    switch (offer) {
+      case OBJECT_CONTAINER_OFFER_SWIFT:
+        return this.addSwiftStandardObjectContainer(projectId, container);
+
+      case OBJECT_CONTAINER_OFFER_STORAGE_STANDARD:
+        return this.addS3StandardObjectContainer(projectId, container);
+
+      case OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE:
+        return this.addS3HighPerfStandardContainer(projectId, container);
+
+      default:
+        return this.$q.reject({
+          data: {
+            message: `${offer}: unknown container offer!`,
+          },
+        });
+    }
+  }
+
+  /**
+   * Used to create a SWIFT container object
+   * @param projectId {String}: project id (serviceName)
+   * @param container {Object}: container model
+   * @returns {Promise}: $http request promise
+   */
+  addSwiftStandardObjectContainer(projectId, container) {
+    const { region, name, archive } = container;
+
     return this.$http
-      .post(`/cloud/project/${projectId}/region/${region}/storage`, { name })
+      .post(`/cloud/project/${projectId}/storage`, {
+        archive,
+        containerName: name,
+        region: region.name,
+      })
       .then(({ data }) => data);
+  }
+
+  /**
+   * Create a S3 Standard Storage Object
+   * Nota: used temporary time to have a full support from
+   * /cloud/project/{projectId}/region/{region}/storage
+   * @param projectId {String}: project id (serviceName)
+   * @param container {Object}: container model
+   * @returns {Promise}: $http request promise
+   */
+  addS3StandardObjectContainer(projectId, container) {
+    const { region, name, ownerId } = container;
+
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/region/${region.name}/storageStandard`,
+        {
+          name,
+          ownerId,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  /**
+   * Toggle conatiner state (public / private)
+   * @param projectId {String}: project id (serviceName)
+   * @param container {Object}: container model
+   * @returns {Promise}: $http request promise
+   */
+  toggleContainerState(projectId, container) {
+    return this.$http.put(
+      `/cloud/project/${projectId}/storage/${container.id}`,
+      {
+        containerType: container.state ? 'private' : 'public',
+      },
+    );
+  }
+
+  /**
+   * Create a S3 High Perf Standard Object
+   * Nota: later it will be used also to create S3 Standard Storage Object
+   * @param projectId {String}: project id (serviceName)
+   * @param container {Object}: container model
+   * @returns {Promise}: $http request promise
+   */
+  addS3HighPerfStandardContainer(projectId, container) {
+    const { region, name, ownerId } = container;
+
+    return this.$http
+      .post(`/cloud/project/${projectId}/region/${region.name}/storage`, {
+        name,
+        ownerId,
+      })
+      .then(({ data }) => data);
+  }
+
+  addContainer(projectId, containerModel) {
+    const { containerType } = containerModel;
+
+    return (containerModel.archive
+      ? this.addStorageContainer(
+          projectId,
+          containerModel.region.name,
+          containerModel.name,
+          containerModel.archive,
+        )
+      : this.manageContainerCreation(projectId, containerModel)
+    ).then((container) => {
+      let returnPromise = this.$q.resolve();
+      if (containerType === OBJECT_CONTAINER_TYPE_STATIC) {
+        returnPromise = this.setContainerAsStatic(projectId, container);
+      } else if (containerType === OBJECT_CONTAINER_TYPE_PUBLIC) {
+        returnPromise = this.setContainerAsPublic(projectId, container);
+      }
+      return returnPromise;
+    });
   }
 
   addStorageContainer(projectId, region, name, archive) {
@@ -260,21 +409,6 @@ export default class PciStoragesContainersService {
         region,
       },
     ).$promise;
-  }
-
-  addContainer(projectId, { archive, containerType, offer, name, region }) {
-    return (offer === OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE
-      ? this.addHighPerfStorageContainer(projectId, region.name, name)
-      : this.addStorageContainer(projectId, region.name, name, archive)
-    ).then((container) => {
-      let returnPromise = this.$q.resolve();
-      if (containerType === OBJECT_CONTAINER_TYPE_STATIC) {
-        returnPromise = this.setContainerAsStatic(projectId, container);
-      } else if (containerType === OBJECT_CONTAINER_TYPE_PUBLIC) {
-        returnPromise = this.setContainerAsPublic(projectId, container);
-      }
-      return returnPromise;
-    });
   }
 
   setContainerAsStatic(projectId, container) {
@@ -312,9 +446,9 @@ export default class PciStoragesContainersService {
     );
 
     return this.$q.all(promises).then(() => {
-      if (container.isHighPerfStorage) {
+      if (container.s3StorageType) {
         return this.$http.delete(
-          `/cloud/project/${projectId}/region/${container.region}/storage/${container.name}`,
+          `/cloud/project/${projectId}/region/${container.region}/${container.s3StorageType}/${container.name}`,
         );
       }
       return this.OvhApiCloudProjectStorage.v6().delete({
@@ -375,7 +509,14 @@ export default class PciStoragesContainersService {
     });
   }
 
-  addHighPerfObjects(serviceName, regionName, containerName, prefix, files) {
+  addHighPerfObjects(
+    serviceName,
+    regionName,
+    containerName,
+    prefix,
+    files,
+    s3StorageType,
+  ) {
     return this.$q.all(
       map(files, (file) =>
         this.addHighPerfObject(
@@ -384,12 +525,20 @@ export default class PciStoragesContainersService {
           containerName,
           prefix,
           file,
+          s3StorageType,
         ),
       ),
     );
   }
 
-  addHighPerfObject(serviceName, regionName, containerName, prefix, file) {
+  addHighPerfObject(
+    serviceName,
+    regionName,
+    containerName,
+    prefix,
+    file,
+    s3StorageType,
+  ) {
     const config = {
       headers: {
         'Content-Type': file.type,
@@ -398,7 +547,7 @@ export default class PciStoragesContainersService {
     };
     return this.$http
       .post(
-        `/cloud/project/${serviceName}/region/${regionName}/storage/${containerName}/presign`,
+        `/cloud/project/${serviceName}/region/${regionName}/${s3StorageType}/${containerName}/presign`,
         {
           expire: OPENIO_PRESIGN_EXPIRE,
           method: 'PUT',
@@ -415,11 +564,17 @@ export default class PciStoragesContainersService {
       });
   }
 
-  deleteHighPerfObject(projectId, containerId, objectKey, containerRegion) {
+  deleteS3Object(
+    projectId,
+    containerId,
+    objectKey,
+    containerRegion,
+    s3StorageType,
+  ) {
     const region = containerRegion || OPENIO_DEFAULT_REGION;
     return this.$http
       .delete(
-        `/cloud/project/${projectId}/region/${region}/storage/${containerId}/object/${encodeURIComponent(
+        `/cloud/project/${projectId}/region/${region}/${s3StorageType}/${containerId}/object/${encodeURIComponent(
           objectKey,
         )}`,
       )
@@ -427,12 +582,13 @@ export default class PciStoragesContainersService {
   }
 
   deleteObject(projectId, container, object) {
-    if (container.isHighPerfStorage) {
-      return this.deleteHighPerfObject(
+    if (container.s3StorageType) {
+      return this.deleteS3Object(
         projectId,
         container.id,
         object.name,
         container.region,
+        container.s3StorageType,
       );
     }
     return this.requestContainer(projectId, container, {
@@ -463,10 +619,10 @@ export default class PciStoragesContainersService {
     return this.getObjectUrl(projectId, containerId, object);
   }
 
-  downloadHighPerfObject(serviceName, regionName, containerName, object) {
+  downloadStandardS3Object(serviceName, regionName, containerName, object) {
     return this.$http
       .post(
-        `/cloud/project/${serviceName}/region/${regionName}/storage/${containerName}/presign`,
+        `/cloud/project/${serviceName}/region/${regionName}/${object.s3StorageType}/${containerName}/presign`,
         {
           expire: OPENIO_PRESIGN_EXPIRE,
           method: 'GET',
