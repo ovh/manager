@@ -1,0 +1,166 @@
+<div class="w-75" data-ng-if="$ctrl.displayLinkUserArchiveStep">
+
+    <!--Description -->
+    <p data-translate="pci_projects_project_storages_cold_archive_add_step_link_user_archive_description"></p>
+
+    <!--Messages-->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <!--Linked-Create btns-->
+    <div
+        data-ng-if="!$ctrl.userModel.createOrLinkedMode"
+        class="d-inline-block mb-1"
+    >
+        <!--Linked btn-->
+        <oui-button
+            data-variant="link"
+            data-disabled="!$ctrl.usersCredentials.length"
+            data-on-click="$ctrl.onLinkedModeClicked()"
+        >
+            <span
+                data-translate="pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select"
+            ></span>
+        </oui-button>
+
+        <!--Create btn-->
+        <oui-button
+            data-variant="secondary"
+            data-icon-left="oui-icon-plus"
+            data-disabled="$ctrl.disabled"
+            data-on-click="$ctrl.onCreateModeClicked()"
+        >
+            <span
+                data-translate="pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create"
+            ></span>
+        </oui-button>
+    </div>
+
+    <!--Linked existed user-->
+    <div data-ng-if="$ctrl.isLinkedMode()">
+        <!--Users list-->
+        <oui-field
+            data-size="xl"
+            data-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_label' | translate }}"
+        >
+            <div class="d-flex align-items-center">
+                <oui-select
+                    class="w-100"
+                    data-disabled="!$ctrl.isUsersListSelectable()"
+                    data-items="$ctrl.usersCredentials"
+                    data-match="userNameDescriptionKey"
+                    data-name="userNameDescriptionKey"
+                    data-model="$ctrl.userModel.linkedMode.selected"
+                >
+                    <div class="row">
+                        <div
+                            class="col-sm-4 col-md-8 text-truncate"
+                            data-ng-bind=":: $item.userNameDescriptionKey"
+                        ></div>
+                        <div class="col-sm-8 col-md-4 text-truncate text-right">
+                            <small
+                                data-ng-bind=":: $item.credentialTrad"
+                            ></small>
+                        </div>
+                    </div>
+                </oui-select>
+                <oui-spinner
+                    data-ng-if="$ctrl.userModel.linkedMode.isInProgress"
+                    size="s"
+                ></oui-spinner>
+            </div>
+        </oui-field>
+
+        <!--User credential overview inform-->
+        <storages-components-user-credential-banner
+            data-ng-if="$ctrl.userModel.linkedMode.credential"
+            data-is-new-user="false"
+            data-user="$ctrl.userModel.linkedMode.selected"
+            data-credential="$ctrl.userModel.linkedMode.credential"
+            data-field-secret-key-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label' | translate}}"
+        ></storages-components-user-credential-banner>
+
+        <!--Linked user btns-->
+        <div class="d-inline-block mb-3">
+            <!--Cancel btn-->
+            <oui-button
+                data-variant="link"
+                data-disabled="$ctrl.userModel.linkedMode.isInProgress"
+                data-on-click="$ctrl.onCancelLinkedUserClicked()"
+            >
+                <span
+                    data-translate="pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_cta_cancel"
+                ></span>
+            </oui-button>
+
+            <!--Linked btn-->
+            <oui-button
+                data-variant="secondary"
+                data-disabled="!$ctrl.canGenerateS3CredentialModeLinked()"
+                data-on-click="$ctrl.onLinkedUserClicked($ctrl.userModel.linkedMode.selected)"
+            >
+                <span
+                    data-translate="pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_cta_linked"
+                ></span>
+            </oui-button>
+        </div>
+    </div>
+
+    <!--Create new user-->
+    <div data-ng-if="$ctrl.isCreateMode()">
+        <!--User input value-->
+        <oui-field
+            data-ng-if="!$ctrl.userModel.createMode.credential"
+            data-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label' | translate }}"
+        >
+            <div class="d-flex align-items-center">
+                <input
+                    class="oui-input mr-2"
+                    type="text"
+                    name="username"
+                    data-ng-model="$ctrl.userModel.createMode.description"
+                    required
+                />
+                <oui-spinner
+                    data-ng-if="$ctrl.userModel.createMode.isInProgress"
+                    size="s"
+                ></oui-spinner>
+            </div>
+        </oui-field>
+
+        <!--User credential overview information-->
+        <storages-components-user-credential-banner
+            data-ng-if="$ctrl.userModel.createMode.credential"
+            data-is-new-user="true"
+            data-user="$ctrl.userModel.createMode.user"
+            data-credential="$ctrl.userModel.createMode.credential"
+            data-field-secret-key-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label' | translate}}"
+        ></storages-components-user-credential-banner>
+
+        <!--Create user btns-->
+        <div class="d-inline-block mb-3">
+            <!--Cancel btn-->
+            <oui-button
+                data-variant="link"
+                data-disabled="$ctrl.userModel.createMode.isInProgress"
+                data-on-click="$ctrl.onCancelCreateUserClicked()"
+            >
+                <span
+                    data-translate="pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_cta_cancel"
+                ></span>
+            </oui-button>
+
+            <!--Create btn-->
+            <oui-button
+                data-variant="primary"
+                data-disabled="!$ctrl.canGenerateS3CredentialModeCreate()"
+                data-on-click="$ctrl.onCreateUserClicked($ctrl.userModel.createMode.description)"
+            >
+                <span
+                    data-translate="pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_cta_create"
+                ></span>
+            </oui-button>
+        </div>
+    </div>
+</div>
