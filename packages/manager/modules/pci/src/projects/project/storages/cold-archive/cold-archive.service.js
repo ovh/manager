@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import 'moment';
 
 export default class PciStoragesColdArchiveService {
@@ -82,5 +83,15 @@ export default class PciStoragesColdArchiveService {
         `/cloud/project/${serviceName}/region/${regionName}/coldArchive/${archiveName}/restore`,
       )
       .then(({ data }) => data);
+  }
+
+  /**
+   * The implementation of this function will be done in
+   * the scope of the task MANAGER-9179 which list the Cold
+   * archives associated to the user account.
+   */
+  // eslint-disable-next-line class-methods-use-this
+  getAllColdArchives() {
+    return [];
   }
 }
