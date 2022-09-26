@@ -4,10 +4,12 @@ import 'oclazyload';
 
 import '@ovh-ux/manager-core';
 
+import archives from './archives';
+
 const moduleName = 'ovhManagerPciStoragesColdArchiveLazyloading';
 
 angular
-  .module(moduleName, ['ui.router', 'ovhManagerCore', 'oc.lazyLoad'])
+  .module(moduleName, ['ui.router', 'ovhManagerCore', 'oc.lazyLoad', archives])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('pci.projects.project.storages.cold-archive.**', {
