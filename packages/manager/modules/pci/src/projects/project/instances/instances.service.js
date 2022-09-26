@@ -23,6 +23,7 @@ export default class PciProjectInstanceService {
   constructor(
     $http,
     $q,
+    Poller,
     CucPriceHelper,
     ovhManagerRegionService,
     OvhApiCloudProject,
@@ -38,6 +39,7 @@ export default class PciProjectInstanceService {
   ) {
     this.$http = $http;
     this.$q = $q;
+    this.Poller = Poller;
     this.CucPriceHelper = CucPriceHelper;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
@@ -486,7 +488,16 @@ export default class PciProjectInstanceService {
         sshKeyId,
         userData,
       })
-      .then(({ data }) => data);
+      .then(({ data: { id } }) => {
+        const url = `/cloud/project/${serviceName}/instance/${id}`;
+        const saveInstanceNamespace = 'instance-creation';
+        const status = 'ACTIVE';
+        return this.checkOperationStatus(url, saveInstanceNamespace, status);
+      })
+      .then((data) => {
+        this.Poller.kill({ namespace: 'instance-creation' });
+        return data;
+      });
   }
 
   attachPrivateNetworks(projectId, { id: instanceId }, privateNetworks) {
@@ -620,28 +631,24 @@ export default class PciProjectInstanceService {
       .then(({ data }) => data);
   }
 
-  getFloatingIpGateway(serviceName, region, gatewayId) {
+  createAndAttachFloatingIp(serviceName, region, instanceId, floatingIpModel) {
     return this.$http
-      .get(
-        `/cloud/project/${serviceName}/region/${region}/gateway/${gatewayId} `,
+      .post(
+        `/cloud/project/${serviceName}/region/${region}/instance/${instanceId}/floatingIp`,
+        {
+          ...floatingIpModel,
+        },
       )
       .then(({ data }) => data);
   }
 
-  createAndAttachFloatingIp(serviceName, region, instanceId, floatingIp) {
+  associateFloatingIp(serviceName, region, instanceId, floatingIpModel) {
     return this.$http
       .post(
-        `/cloud/project/${serviceName}/region/${region}/instance/${instanceId}/floatingip`,
-        floatingIp,
-      )
-      .then(({ data }) => data);
-  }
-
-  associateFloatingIp(serviceName, region, instanceId, floatingIp) {
-    return this.$http
-      .post(
-        `/cloud/project/${serviceName}/region/${region}/instance/${instanceId}/associateFloatingip`,
-        floatingIp,
+        `/cloud/project/${serviceName}/region/${region}/instance/${instanceId}/associateFloatingIp`,
+        {
+          ...floatingIpModel,
+        },
       )
       .then(({ data }) => data);
   }
@@ -653,5 +660,41 @@ export default class PciProjectInstanceService {
         dhcpModel,
       )
       .then(({ data }) => data);
+  }
+
+  createGateway(serviceName, region, networkId, subnetId, gatewayModel) {
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/region/${region}/network/${networkId}/subnet/${subnetId}/gateway`,
+        gatewayModel,
+      )
+      .then(({ data: { id } }) => {
+        const url = `/cloud/project/${serviceName}/operation/${id}`;
+        const createGatewayNamespace = 'gateway-creation';
+        const status = 'completed';
+        return this.checkOperationStatus(url, createGatewayNamespace, status);
+      })
+      .then((data) => {
+        this.Poller.kill({ namespace: 'gateway-creation' });
+        return data;
+      });
+  }
+
+  getGatewayById(serviceName, region, gatewayId) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/region/${region}/gateway/${gatewayId} `,
+      )
+      .then(({ data }) => data);
+  }
+
+  checkOperationStatus(url, namespace, status) {
+    return this.Poller.poll(url, null, {
+      method: 'get',
+      successRule: {
+        status,
+      },
+      namespace,
+    });
   }
 }
