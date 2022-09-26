@@ -258,7 +258,7 @@ export default {
     NB_INSTANCE: 'logs-input-container-unit',
     NB_SHARD: 'logs-index-shards-unit',
     INDEXED_DOCUMENTS: 'logs-index-documents-in-gb',
-    KIBANA: 'logs-kibana-unit',
+    KIBANA: 'logs-osd-unit',
     STREAM: 'logs-indexed-in-gb',
   },
   COLDSTORAGE_INCREMENT: 1,
