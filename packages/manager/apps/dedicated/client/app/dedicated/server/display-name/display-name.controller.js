@@ -31,7 +31,6 @@ angular.module('App').controller(
 
       return this.Server.updateDisplayName({
         serviceId: this.dedicatedServer.serviceId,
-        serviceName: this.dedicatedServer.name,
         displayName: this.displayName,
       })
         .then(() => {

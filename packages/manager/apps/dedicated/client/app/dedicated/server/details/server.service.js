@@ -298,22 +298,9 @@ export default class ServerF {
     });
   }
 
-  updateDisplayName({ serviceId, serviceName, displayName }) {
-    return this.OvhHttp.put('/service/{serviceId}', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceId,
-      },
-      data: {
-        resource: {
-          displayName,
-        },
-      },
-      broadcast: 'global_display_name_change',
-      broadcastParam: {
-        serviceName,
-        displayName,
-      },
+  updateDisplayName({ serviceId, displayName }) {
+    return this.$http.put(`/services/${serviceId}`, {
+      displayName,
     });
   }
 
