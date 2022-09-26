@@ -60,6 +60,11 @@ export default class {
     this.ipv4 = null;
     this.cloudDatabases = [];
 
+    this.cloudDatabaseOrderHref = this.coreURLBuilder.buildURL(
+      'web',
+      '#/order-cloud-db',
+    );
+
     this.refresh();
   }
 
@@ -195,15 +200,13 @@ export default class {
   goToCloudDatabase(database) {
     const { serviceName } = database;
     this.$window.open(
-      this.coreConfig.isRegion('EU')
-        ? this.coreURLBuilder.buildURL(
-            'web',
-            '#/configuration/private_database/:serviceName',
-            {
-              serviceName,
-            },
-          )
-        : null,
+      this.coreURLBuilder.buildURL(
+        'web',
+        '#/configuration/private_database/:serviceName',
+        {
+          serviceName,
+        },
+      ),
     );
   }
 }
