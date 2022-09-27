@@ -6,6 +6,7 @@ export default {
     trackClick: '<',
     archivesLink: '<',
     userListLink: '<',
+    goToArchives: '<',
   },
   template,
 };
