@@ -5,6 +5,7 @@ export default {
   bindings: {
     dedicatedCloud: '<',
     productId: '<',
+    goToAddFederation: '<',
   },
   controller,
   template,
