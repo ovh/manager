@@ -29,10 +29,16 @@
         </div>
         <oui-header-tabs>
             <oui-header-tabs-item
-                href="{{ $ctrl.dashboardLink }}"
-                active="$ctrl.dashboardLink === $ctrl.currentActiveLink()"
+                href="{{ dashboardLink }}"
+                active="dashboardLink === currentActiveLink()"
             >
                 <span data-translate="ip_ip"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{ failoverLink }}"
+                active="failoverLink === currentActiveLink()"
+            >
+                <span data-translate="ip_failover"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
     </header>

@@ -13,6 +13,7 @@ import ipFilterByService from './filters/ip/ipFilterByService/ipServiceCollapsed
 import ipFirewallRulePort from './filters/ip/ipFirewallRulePort/ipFirewallRulePort';
 import ipPunycode from './filters/ip/ipPunycode/ipPunycode';
 import byoip from './byoip';
+import failover from './failover';
 
 import routing from './ip.routing';
 
@@ -31,6 +32,7 @@ angular
     uiRouter,
     'ui.bootstrap',
     byoip,
+    failover,
   ])
   .config(routing)
   .filter('availableIpText', availableTextFilter)

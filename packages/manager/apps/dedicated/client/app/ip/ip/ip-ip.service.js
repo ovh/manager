@@ -7,10 +7,8 @@ import union from 'lodash/union';
 import { IP_TYPE } from './ip-ip.constant';
 
 export default /* @ngInject */ function Ip(
-  $rootScope,
   $http,
   $q,
-  constants,
   IpRange,
   $location,
   OvhHttp,
@@ -409,4 +407,37 @@ export default /* @ngInject */ function Ip(
 
         return destinationIps;
       });
+
+  this.fetchAlerts = ({ ips, serviceType }) => {
+    const alerts = {
+      mitigation: [],
+      antihack: [],
+      arp: [],
+      spam: [],
+    };
+    const params = {
+      extras: true,
+      pageSize: 5000,
+      ...(serviceType && { type: serviceType }),
+    };
+    const ipsPromise = ips
+      ? $q.when(ips)
+      : $http
+          .get('/ips', {
+            params,
+            serviceType: 'aapi',
+          })
+          .then(({ data }) => data.data);
+    return ipsPromise
+      .then((ipList) => {
+        ipList.forEach((ip) => {
+          const { antihack, mitigation, arp, spam } = ip.alerts;
+          antihack.forEach((alert) => alerts.antihack.push({ ip, alert }));
+          mitigation.forEach((alert) => alerts.mitigation.push({ ip, alert }));
+          arp.forEach((alert) => alerts.arp.push({ ip, alert }));
+          spam.forEach((alert) => alerts.spam.push({ ip, alert }));
+        });
+      })
+      .then(() => alerts);
+  };
 }
