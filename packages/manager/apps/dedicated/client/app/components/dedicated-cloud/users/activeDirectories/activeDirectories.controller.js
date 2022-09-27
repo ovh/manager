@@ -31,16 +31,10 @@ export default class DedicatedCloudActiveDirectoriesCtrl {
       defaultFilterColumn,
     };
 
-    return this.$q
-      .resolve(this.DedicatedCloud.getActiveDirectories(this.productId, params))
-      .then((activeDirectories) => {
-        return {
-          data: activeDirectories.slice(offset - 1, offset - 1 + pageSize),
-          meta: {
-            totalCount: activeDirectories.length,
-          },
-        };
-      });
+    return this.DedicatedCloud.getActiveDirectories(
+      this.productId,
+      params,
+    ).then(({ data, meta }) => ({ data, meta }));
   }
 
   refreshActiveDirectoriesGrid() {
