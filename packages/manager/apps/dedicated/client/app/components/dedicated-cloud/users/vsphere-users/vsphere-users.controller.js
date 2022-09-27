@@ -58,21 +58,19 @@ export default class DedicatedCloudVsphereUsersCtrl {
       defaultFilterColumn,
     };
 
-    return this.$q
-      .resolve(this.DedicatedCloud.getUsers(this.productId, params))
-      .then((users) => {
+    return this.DedicatedCloud.getUsers(this.productId, params).then(
+      ({ data: users, meta }) => {
         const userFormat = users.map((user) => {
           set(user, 'loginUsername', user.login.split('@')[0]);
           set(user, 'loginDomain', user.login.split('@')[1]);
           return user;
         });
         return {
-          data: userFormat.slice(offset - 1, offset - 1 + pageSize),
-          meta: {
-            totalCount: userFormat.length,
-          },
+          data: userFormat,
+          meta,
         };
-      });
+      },
+    );
   }
 
   static criteriaMap(criteria, defaultFilterColumn) {
