@@ -3,9 +3,47 @@ import template from './ip.html';
 
 const allowByoipFeatureName = 'ip:byoip';
 
+export const listRouting = {
+  reloadOnSearch: false,
+  resolve: {
+    goToDashboard: /* @ngInject */ ($state) => () =>
+      $state.go('app.ip.dashboard'),
+    goToAntispam: /* @ngInject */ ($state) => (ip) =>
+      $state.go('app.ip.dashboard.ip.antispam', {
+        ip: ip.ip,
+      }),
+    goToFirewall: /* @ngInject */ ($state) => (ip) =>
+      $state.go('app.ip.dashboard.ip.firewall', {
+        ip: ip.ip,
+      }),
+    goToGameFirewall: /* @ngInject */ ($state) => (ip) =>
+      $state.go('app.ip.dashboard.ip.game-firewall', {
+        ip: ip.ip,
+      }),
+    goToAgoraOrder: /* @ngInject */ ($state, trackPage) => () => {
+      trackPage('order');
+      return $state.go('app.ip.dashboard.agora-order');
+    },
+    goToByoipConfiguration: /* @ngInject */ ($state, trackClick) => () => {
+      trackClick('bring-your-own-ip');
+      return $state.go('app.ip.byoip');
+    },
+    breadcrumb: () => null,
+    hideBreadcrumb: () => true,
+    orderIpAvailable: /* @ngInject */ (coreConfig, ovhFeatureFlipping) => {
+      const universe = coreConfig.getUniverse() === 'server' ? 'server' : 'hpc';
+      return ovhFeatureFlipping
+        .checkFeatureAvailability(`ip:order:${universe}`)
+        .then((featureAvailability) =>
+          featureAvailability.isFeatureAvailable(`ip:order:${universe}`),
+        );
+    },
+  },
+};
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip', {
-    url: '/ip?serviceName&page&pageSize',
+    url: '/ip?serviceType&page&pageSize',
     template,
     controller,
     reloadOnSearch: false,
@@ -25,6 +63,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       dashboardLink: /* @ngInject */ ($transition$, $state) =>
         $state.href('app.ip.dashboard', $transition$.params()),
+      failoverLink: /* @ngInject */ ($transition$, $state) =>
+        $state.href('app.ip.failover', $transition$.params()),
       ipLbLink: /* @ngInject */ ($transition$, $state) =>
         $state.href('app.ip.dashboard.iplb', $transition$.params()),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
@@ -47,6 +87,15 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     atInternet: {
       rename: 'dedicated::ip::dashboard',
+    },
+  });
+
+  $stateProvider.state('app.ip.dashboard.ip', {
+    url: '/:ip',
+    redirectTo: 'app.ip.dashboard',
+    resolve: {
+      ip: /* @ngInject */ ($transition$) => $transition$.params().ip,
+      breadcrumb: /* @ngInject */ (ip) => ip,
     },
   });
 };
