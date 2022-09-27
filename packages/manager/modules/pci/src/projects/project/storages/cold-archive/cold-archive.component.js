@@ -4,9 +4,11 @@ export default {
   bindings: {
     pciFeatureRedirect: '<',
     trackClick: '<',
+    trackPage: '<',
     archivesLink: '<',
     userListLink: '<',
     goToArchives: '<',
+    goToAddColdArchive: '<',
   },
   template,
 };

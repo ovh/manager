@@ -1,13 +1,11 @@
 import reduce from 'lodash/reduce';
 import illustration from './assets/ColdStorage.png';
-import { COLD_ARCHIVE_TRACKING_PREFIX } from '../../cold-archives.constants';
-import { GUIDES } from './onboarding.constants';
+import { GUIDES, TRACKING } from './onboarding.constants';
 
 export default class PciStorageObjectsOnboardingController {
   /* @ngInject */
-  constructor($translate, atInternet) {
+  constructor($translate) {
     this.$translate = $translate;
-    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -31,16 +29,12 @@ export default class PciStorageObjectsOnboardingController {
   }
 
   addColdArchive() {
-    this.atInternet.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING_PREFIX}::onboarding::add_a_user`,
-      type: 'action',
-    });
+    this.trackClick(TRACKING.ONBOARDING_CREATE_USER);
+    this.goToAddColdArchive();
   }
 
   onDocumentationClick(guide) {
-    this.atInternet.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING_PREFIX}::onboarding::documentation::${guide.id}`,
-      type: 'action',
-    });
+    const TRACKING_SUB_STRING = `docs::${guide.id}`;
+    this.trackClick(TRACKING_SUB_STRING);
   }
 }
