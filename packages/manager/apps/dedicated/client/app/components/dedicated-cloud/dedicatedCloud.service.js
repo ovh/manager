@@ -580,6 +580,12 @@ class DedicatedCloudService {
       }));
   }
 
+  postActiveDirectories(serviceName, params) {
+    return this.$http
+      .post(`/dedicatedCloud/${serviceName}/federation/activeDirectory`, params)
+      .then(({ data }) => data);
+  }
+
   filterIceberg(request, filters) {
     let filterRequest = request;
     filters.forEach(({ field, comparator, reference }) => {

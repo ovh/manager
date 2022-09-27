@@ -42,6 +42,8 @@ export default /* @ngInject */ ($stateProvider) => {
           userId: user.userId,
           user,
         }),
+      goToAddFederation: /* @ngInject */ ($state) => () =>
+        $state.go('app.dedicatedCloud.details.users.federation-add'),
       goToImportUser: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedCloud.details.users.import'),
       modifyUserRights: /* @ngInject */ ($state) => (userId) =>
