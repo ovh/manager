@@ -14,6 +14,7 @@ export default {
     productId: '<',
     setMessage: '<',
     goToImportUser: '<',
+    goToAddFederation: '<',
   },
   template,
 };
