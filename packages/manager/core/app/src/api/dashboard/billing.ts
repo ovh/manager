@@ -1,7 +1,8 @@
+import { OvhContextShellType } from '@ovh-ux/manager-react-core';
+
 import { checkFeaturesAvailability } from '@/api/features';
 import { getServiceInfos } from '@/api/nutanix';
 import { getServiceDetails } from '@/api/service';
-import { OvhContextShellType } from '@/core';
 
 import { SERVICE_TYPE } from '@/consts/services';
 
@@ -50,12 +51,12 @@ export type BillingContacts = {
 
 type EngagementDetails = {
   endRule?: EndRule;
-}
+};
 
 type EndRule = {
   possibleStrategies: string[];
   strategy: string;
-}
+};
 
 type RenewalMode = {
   // whether or not renewal is automatically renewed
@@ -67,25 +68,33 @@ type RenewalMode = {
   type: string; // TODO stop using this and simply use automatic field?
 };
 
-export async function fetchBillingData(serviceName: string, shell: OvhContextShellType): Promise<BillingData> {
+export async function fetchBillingData(
+  serviceName: string,
+  shell: OvhContextShellType,
+): Promise<BillingData> {
   const serviceType = SERVICE_TYPE.NUTANIX; // TODO pass that from parent
 
   const serviceInfos = await getServiceInfos(serviceName);
   const serviceDetails = await getServiceDetails(serviceInfos?.serviceId);
   const features = await checkFeaturesAvailability(
-    [ 'billing:management', 'contact', 'contact:management' ],
-    'dedicated'
+    ['billing:management', 'contact', 'contact:management'],
+    'dedicated',
   );
   const featureBillingManagementAvailable = features['billing:management'];
   const featureContactAvailable = features['contact'];
   const featureContactManagementAvailable = features['contact:management'];
 
-  const autorenewLink = featureBillingManagementAvailable ? (
-    `${await shell.navigation.getURL('dedicated', '#/billing/autorenew', null)}`
-  ) : null;
+  const autorenewLink = featureBillingManagementAvailable
+    ? `${await shell.navigation.getURL(
+        'dedicated',
+        '#/billing/autorenew',
+        null,
+      )}`
+    : null;
   const billingLink = `${await shell.navigation.getURL(
-    'dedicated', '#/billing/history',
-    undefined
+    'dedicated',
+    '#/billing/history',
+    undefined,
   )}`;
   const contactManagemenLink = `${await shell.navigation.getURL(
     'dedicated',
@@ -97,11 +106,13 @@ export async function fetchBillingData(serviceName: string, shell: OvhContextShe
   let recreditLink;
   if (serviceType === SERVICE_TYPE.SMS) {
     buyingLink = `${await shell.navigation.getURL(
-      'telecom', '#/sms/:serviceName/order',
+      'telecom',
+      '#/sms/:serviceName/order',
       { serviceName: this.serviceId },
     )}`;
     recreditLink = `${await shell.navigation.getURL(
-      'telecom', '#/sms/:serviceName/options/recredit',
+      'telecom',
+      '#/sms/:serviceName/options/recredit',
       { serviceName: this.serviceId },
     )}`;
   }
@@ -117,7 +128,9 @@ export async function fetchBillingData(serviceName: string, shell: OvhContextShe
       billing: serviceInfos?.contactBilling,
       tech: serviceInfos?.contactTech,
     },
-    creationDate: new Date(serviceDetails?.billing?.lifecycle?.current?.creationDate),
+    creationDate: new Date(
+      serviceDetails?.billing?.lifecycle?.current?.creationDate,
+    ),
     engagedUpTo: serviceInfos?.engagedUpTo,
     engagementDetails: serviceDetails?.billing?.engagement,
     featureBillingManagementAvailable,

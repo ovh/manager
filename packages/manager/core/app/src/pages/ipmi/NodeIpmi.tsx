@@ -18,6 +18,8 @@ import {
   SuccessCircleIcon,
   Tile,
 } from '@ovh-ux/manager-themes';
+import { useEnvironment } from '@ovh-ux/manager-react-core';
+
 import { FilterComparator } from '@/api/filters';
 import {
   getDedicatedServer,
@@ -25,7 +27,6 @@ import {
   getDedicatedServerTasks,
   IpmiAccessType,
 } from '@/api/dedicatedServer';
-import { useEnvironment } from '@/core';
 import NodeIpmiTest from './NodeIpmiTest';
 import { IPMI_GUIDES } from './nodeIpmi.constants';
 

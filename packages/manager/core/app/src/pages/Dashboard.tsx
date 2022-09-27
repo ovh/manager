@@ -8,6 +8,7 @@ import {
   ArrowRightIcon,
   ExternalLinkIcon,
 } from '@ovh-ux/manager-themes';
+import { useEnvironment, useShell } from '@ovh-ux/manager-react-core';
 
 import Nutanix, {
   getNutanix,
@@ -41,7 +42,6 @@ import SupportLevel, {
 import Vrack, { getVrack } from '@/api/vrack';
 import IpLoadBalancing, { getIpLoadBalancing } from '@/api/ipLoadbalancing';
 import Dashboard, { TileTypesEnum } from '@/components/Dashboard';
-import { useEnvironment, useShell } from '@/core';
 
 import { computeDashboardBilling } from './dashboard/billing';
 

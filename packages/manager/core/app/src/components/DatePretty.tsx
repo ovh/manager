@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useShell } from '@/core';
+import { useShell } from '@ovh-ux/manager-react-core';
 
 export type DatePrettyProps = {
   date: Date;

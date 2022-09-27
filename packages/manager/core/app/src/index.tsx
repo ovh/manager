@@ -1,4 +1,4 @@
-import { startApplication } from './core';
+import { startApplication } from '@ovh-ux/manager-react-core';
 
 import App from './pages/App';
 
