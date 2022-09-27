@@ -1,4 +1,4 @@
-import { COLD_ARCHIVE_TRACKING_PREFIX } from '../../cold-archives.constants';
+import { TRACKING } from './onboarding.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -6,6 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/onboarding',
       component: 'pciProjectStorageColdArchiveOnboarding',
+      onEnter: /* @ngInject */ (trackPage) => {
+        trackPage(TRACKING.ONBOARDING_PAGE_VISITE);
+      },
       redirectTo: (transition) =>
         transition
           .injector()
@@ -19,9 +22,6 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
-      },
-      atInternet: {
-        rename: `${COLD_ARCHIVE_TRACKING_PREFIX}::onboarding`,
       },
     },
   );

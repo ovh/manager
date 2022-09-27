@@ -22,8 +22,5 @@ export default /* @ngInject */ ($stateProvider) => {
           'pci_projects_project_storages_containers_object_title',
         ),
     },
-    atInternet: {
-      rename: 'pci::projects::project::storages::cold-archives',
-    },
   });
 };
