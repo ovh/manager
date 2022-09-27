@@ -4,5 +4,9 @@ import template from './onboarding.html';
 export default {
   controller,
   template,
-  bindings: {},
+  bindings: {
+    trackClick: '<',
+    trackPage: '<',
+    goToAddColdArchive: '<',
+  },
 };
