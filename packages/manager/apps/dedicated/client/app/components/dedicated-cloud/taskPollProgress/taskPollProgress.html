@@ -18,7 +18,7 @@
         aria-valuemin="0"
         aria-valuemax="100"
         data-ng-class="{
-            'progress-bar-info': $ctrl.task.state === $ctrl.TASK_STATE.todo || $ctrl.task.state === $ctrl.TASK_STATE.doing,
+            'progress-bar-info': $ctrl.task.state === $ctrl.TASK_STATE.todo || $ctrl.task.state === $ctrl.TASK_STATE.doing || $ctrl.task.state === $ctrl.TASK_STATE.waitingForChilds,
             'progress-bar-success': $ctrl.task.state === $ctrl.TASK_STATE.done,
             'progress-bar-warning': $ctrl.task.state === $ctrl.TASK_STATE.canceled,
             'progress-bar-danger': $ctrl.task.state === $ctrl.TASK_STATE.error,
