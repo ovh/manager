@@ -270,9 +270,6 @@ export default class IpLoadBalancerFrontendsEditCtrl {
     if (this.type === 'udp') {
       delete request.allowedSource;
     }
-    if (request.httpHeader) {
-      request.httpHeader = request.httpHeader.split(',');
-    }
 
     delete request.protocol;
     return request;
