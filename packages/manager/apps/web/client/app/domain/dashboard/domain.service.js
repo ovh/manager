@@ -1556,7 +1556,14 @@ angular.module('services').service(
         .all(queue)
         .then((results) => {
           const data = results[0] || {};
-          [, data.dnssec, data.owner, data.dns, data.dnsanycast] = results;
+          [
+            ,
+            data.dnssec,
+            data.owo,
+            data.owner,
+            data.dns,
+            data.dnsanycast,
+          ] = results;
 
           if (!isEmpty(data.domain) && isString(data.domain)) {
             data.displayName = punycode.toUnicode(data.domain);
