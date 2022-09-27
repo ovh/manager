@@ -11,7 +11,7 @@ interface LiveChatProps {
 const LiveChat: React.FC<ComponentProps<LiveChatProps>> = (
   props: LiveChatProps,
 ): JSX.Element => {
-  const { language, open, subsidiary } = props;
+  const { language, open, subsidiary, ...rest } = props;
   const url = `https://chat.ovh.com/system/templates/liveChat-manager/STD/${subsidiary}_${language}/docs/index2.html`;
 
   return (
@@ -28,7 +28,7 @@ const LiveChat: React.FC<ComponentProps<LiveChatProps>> = (
         bottom: '10px',
         right: '10px',
       }}
-      {...props}
+      {...rest}
     />
   );
 };

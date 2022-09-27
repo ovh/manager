@@ -35,6 +35,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const [useBeta, setUseBeta] = useState(false);
 
   const [isChatbotEnabled, setIsChatbotEnabled] = useState(false);
+  const [isLivechatEnabled, setIsLivechatEnabled] = useState(false);
 
   let containerContext: ContainerContextType = useContext(ContainerContext);
 
@@ -43,6 +44,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       'pnr:betaV1': boolean;
       'pnr:betaV2': boolean;
       chatbot: boolean;
+      livechat: boolean;
     }
     const getBetaVersion = (value: CurrentContextAvailability) => {
       if (isBetaForced()) {
@@ -58,12 +60,13 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     };
 
     return reketInstance
-      .get(`/feature/chatbot,pnr:betaV1,pnr:betaV2/availability`, {
+      .get(`/feature/chatbot,livechat,pnr:betaV1,pnr:betaV2/availability`, {
         requestType: 'aapi',
       })
       .then((value: CurrentContextAvailability) => ({
         version: getBetaVersion(value),
         chatbot: !!value.chatbot,
+        livechat: !!value.livechat,
       }))
       .catch(() => ({
         version: '',
@@ -129,9 +132,11 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
    */
   useEffect(() => {
     fetchFeatureAvailability()
-      .then(({ version, chatbot }) => {
+      .then(({ version, chatbot, livechat }) => {
         setBetaVersion(version);
         setIsChatbotEnabled(chatbot);
+        // Livechat is the new Chatbot that is used in the Container
+        setIsLivechatEnabled(livechat);
         if (version) {
           return fetchBetaChoice();
         }
@@ -143,7 +148,14 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   useEffect(() => {
     uxPlugin.onChatbotVisibilityChange(async () => {
       const chatbotVisibility = await uxPlugin.isChatbotVisible();
-      setChatbotOpen(chatbotVisibility);
+      if (isLivechatEnabled)
+        setChatbotOpen(chatbotVisibility);
+      else if (isChatbotEnabled) {
+        if (chatbotVisibility)
+          shell.getPlugin('ux').openChatbot();
+        else
+          shell.getPlugin('ux').closeChatbot();
+      }
     });
   }, []);
 
