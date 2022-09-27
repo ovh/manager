@@ -9,13 +9,15 @@ export default /* @ngInject */ function IpMainCtrl(
   currentActiveLink,
   currentUser,
   dashboardLink,
+  failoverLink,
   goToOrganisation,
   goToByoipConfiguration,
   goToAgoraOrder,
 ) {
   $scope.currentUser = currentUser;
-  this.currentActiveLink = currentActiveLink;
-  this.dashboardLink = dashboardLink;
+  $scope.currentActiveLink = currentActiveLink;
+  $scope.dashboardLink = dashboardLink;
+  $scope.failoverLink = failoverLink;
 
   $scope.goToOrganisation = () => goToOrganisation();
   $scope.goToByoipConfiguration = goToByoipConfiguration;
