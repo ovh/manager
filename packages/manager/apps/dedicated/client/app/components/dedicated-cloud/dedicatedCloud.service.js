@@ -560,7 +560,7 @@ class DedicatedCloudService {
       .query()
       .expand('CachedObjectList-Pages')
       .limit(pageSize)
-      .offset(offset)
+      .offset(Math.ceil(offset / (pageSize || 1)))
       .sort(sort || defaultFilterColumn, sortOrder);
 
     if (filters.length > 0) {
@@ -569,7 +569,15 @@ class DedicatedCloudService {
 
     return this.$q
       .resolve(request.execute(null).$promise)
-      .then(({ data }) => data);
+      .then(({ data, headers }) => ({
+        data,
+        meta: {
+          totalCount: headers['x-pagination-elements'],
+          currentOffset: headers['x-pagination-number'],
+          pageCount: headers['x-pagination-total'],
+          pageSize: headers['x-pagination-size'],
+        },
+      }));
   }
 
   filterIceberg(request, filters) {
@@ -599,7 +607,7 @@ class DedicatedCloudService {
       .query()
       .expand('CachedObjectList-Pages')
       .limit(pageSize)
-      .offset(offset)
+      .offset(Math.ceil(offset / (pageSize || 1)))
       .sort(sort || defaultFilterColumn, sortOrder);
 
     if (filters.length > 0) {
@@ -608,7 +616,15 @@ class DedicatedCloudService {
 
     return this.$q
       .resolve(request.execute(null).$promise)
-      .then(({ data }) => data);
+      .then(({ data, headers }) => ({
+        data,
+        meta: {
+          totalCount: headers['x-pagination-elements'],
+          currentOffset: headers['x-pagination-number'],
+          pageCount: headers['x-pagination-total'],
+          pageSize: headers['x-pagination-size'],
+        },
+      }));
   }
 
   getUserDetail(serviceName, userId) {
