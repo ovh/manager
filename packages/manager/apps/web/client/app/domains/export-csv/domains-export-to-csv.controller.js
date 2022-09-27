@@ -60,12 +60,11 @@ angular.module('App').controller(
             const hasOrganisationName = isEmpty(
               get(value, 'organisationName', ''),
             );
-            if (hasOrganisationName) {
-              return get(value, 'organisationName');
+            const ownerDetails = `${value?.firstName} ${value?.lastName}, ${value?.address?.city}, ${value?.address?.zip}, ${value?.address?.country}, ${value?.phone}, ${value?.email}`;
+            if (hasOrganisationName && value?.legalForm === 'individual') {
+              return trim(ownerDetails);
             }
-            return trim(
-              `${get(value, 'firstName', '')} ${get(value, 'lastName', '')}`,
-            );
+            return trim(`${value?.organisationName}, ${ownerDetails}`);
           },
         },
         { label: 'creation_date', modelKey: 'creation', checked: false },
