@@ -1,6 +1,0 @@
-{
-  "hosting_database_order_private_title": "Zamówienie prywatnego kodu SQL",
-  "hosting_database_order_private_error": "Wystąpił błąd podczas zamawiania bazy danych SQL: {{message}}",
-  "hosting_database_order_private_success": "<a href=\"{{orderUrl}}\" target=\"_blank\">Zamówienie</a> zostało wygenerowane. Twoja usługa zostanie włączona, kiedy ją zatwierdzisz.",
-  "hosting_database_order_private_success_activation": "Twoja aktywacja była udana. Twój produkt zostanie aktywowany w ciągu kilku chwil."
-}
