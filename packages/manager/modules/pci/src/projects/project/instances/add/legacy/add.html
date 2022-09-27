@@ -1,0 +1,427 @@
+<h1 data-translate="pci_projects_project_instances_add_title"></h1>
+
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+<oui-stepper
+    data-current-index="$ctrl.currentStep"
+    data-on-finish="$ctrl.create()"
+>
+    <oui-step-form
+        id="flavor"
+        name="instances_add_flavor"
+        data-header="{{ (($ctrl.currentStep > 0)
+            ? 'pci_projects_project_instances_add_flavor_selected_title'
+            : 'pci_projects_project_instances_add_flavor_title')
+            | translate: {
+                model: ($ctrl.model.flavorGroup.name | uppercase),
+                price: $ctrl.model.flavorGroup.prices.monthly.text
+            } }}"
+        data-valid="$ctrl.model.flavorGroup"
+        data-editable="!$ctrl.isLoading"
+        data-navigation="$ctrl.model.flavorGroup"
+        data-on-focus="$ctrl.onFlavorFocus()"
+        data-on-submit="$ctrl.onFlavorChange()"
+    >
+        <pci-project-flavors-list
+            data-service-name="{{:: $ctrl.projectId }}"
+            data-selected-flavor="$ctrl.model.flavorGroup"
+            data-display-selected-flavor="$ctrl.displaySelectedFlavor"
+            data-selected-category="{{:: $ctrl.selectedCategory }}"
+            data-include-categories="$ctrl.includeCategories"
+            data-exclude-categories="$ctrl.excludeCategories"
+            data-on-change="$ctrl.onFlavorCategorySelect(flavor, category)"
+            data-catalog-endpoint="$ctrl.catalogEndpoint"
+        >
+        </pci-project-flavors-list>
+    </oui-step-form>
+
+    <oui-step-form
+        name="instances_add_region"
+        data-header="{{
+            (($ctrl.currentStep > 1)
+                ? 'pci_projects_project_instances_add_region_selected_title'
+                : 'pci_projects_project_instances_add_region_title') | translate: {
+                    location: $ctrl.model.location
+                }
+            }}"
+        data-valid="$ctrl.model.datacenter && $ctrl.isRegionAvailable($ctrl.model.datacenter)"
+        data-prevent-next="true"
+        data-navigation="$ctrl.model.datacenter"
+        data-on-focus="$ctrl.onRegionFocus()"
+        data-on-submit="$ctrl.onRegionChange()"
+        data-editable="!$ctrl.isLoading"
+    >
+        <div
+            data-ng-if="!$ctrl.displaySelectedRegion && $ctrl.currentStep === 1"
+        >
+            <oui-tabs class="mb-4">
+                <oui-tabs-item
+                    data-ng-repeat="(continent, datacentersLocation) in $ctrl.availableRegions track by continent"
+                    data-heading="{{:: continent }}"
+                >
+                    <div class="container-fluid px-0">
+                        <div class="row">
+                            <oui-select-picker
+                                class="d-inline-block col-md-6 col-xl-3 my-3"
+                                data-ng-repeat="(location, datacenters) in datacentersLocation track by location"
+                                data-ng-if="datacenters.length"
+                                data-label="{{ location }}"
+                                data-variant="light"
+                                data-picture="{{ ::datacenters[0].icon }}"
+                                data-model="$ctrl.model.datacenter"
+                                data-on-change="$ctrl.model.location = location"
+                                data-match="name"
+                                data-values="datacenters"
+                            >
+                            </oui-select-picker>
+                        </div>
+                        <oui-checkbox
+                            data-ng-if="$ctrl.constructor.hasRegions($ctrl.unavailableRegions[continent])"
+                            data-model="$ctrl.showNonAvailableRegions"
+                        >
+                            <span
+                                data-translate="pci_projects_project_instances_add_region_display_nonavailable"
+                            ></span>
+                        </oui-checkbox>
+                        <div data-ng-if="$ctrl.showNonAvailableRegions">
+                            <div class="row">
+                                <oui-select-picker
+                                    class="d-inline-block col-md-6 col-xl-3 my-3"
+                                    data-ng-repeat="(location, datacenters) in $ctrl.unavailableRegions[continent] track by location"
+                                    data-ng-if="datacenters.length"
+                                    data-label="{{ location }}"
+                                    data-disabled="true"
+                                    data-variant="light"
+                                    data-picture="{{ ::datacenters[0].icon }}"
+                                    data-model="$ctrl.model.datacenter"
+                                    data-match="name"
+                                    data-values="datacenters"
+                                >
+                                </oui-select-picker>
+                            </div>
+                            <div
+                                class="d-flex justify-content-between"
+                                data-ng-if="$ctrl.constructor.hasRegions($ctrl.unavailableRegions[continent])"
+                            >
+                                <span
+                                    data-translate="pci_project_instances_instance_add_region_unavailable"
+                                ></span>
+                                <button
+                                    type="button"
+                                    class="oui-button oui-button_ghost"
+                                    data-ng-click="$ctrl.currentStep = 0"
+                                >
+                                    <span
+                                        data-translate="pci_project_instances_instance_add_choose_model"
+                                    ></span>
+                                    <i
+                                        class="oui-icon button-icon oui-icon-arrow-right"
+                                        aria-hidden="true"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div
+                            data-ng-if="$ctrl.model.datacenter && !$ctrl.isRegionAvailable($ctrl.model.datacenter)"
+                            data-ng-switch="$ctrl.getUnavailabilityReason($ctrl.model.datacenter)"
+                        >
+                            <p
+                                class="warning-text"
+                                data-ng-switch-when="INACTIVE"
+                                data-ng-bind-html="'pci_project_instances_instance_add_region_activate' | translate: {
+                                    regionsLink: $ctrl.regionsLink
+                                }"
+                            ></p>
+                            <p
+                                class="warning-text"
+                                data-ng-switch-default
+                                data-ng-bind-html="'pci_project_instances_instance_add_region_quota' | translate: {
+                                    quotaLink: $ctrl.quotaLink
+                                }"
+                            ></p>
+                        </div>
+                    </div>
+                </oui-tabs-item>
+            </oui-tabs>
+            <p
+                data-ng-if="$ctrl.model.datacenter && $ctrl.model.datacenter.hasExtraBandwidthCost()"
+                data-translate="pci_project_instances_instance_add_region_bandwidth_extra"
+                data-translate-values="{
+                    price: $ctrl.getBandwidthExtraCost($ctrl.model.datacenter)
+                }"
+            ></p>
+        </div>
+    </oui-step-form>
+
+    <oui-step-form
+        name="instances_add_image"
+        data-header="{{:: 'pci_projects_project_instances_add_image_title' | translate }}"
+        data-valid="$ctrl.model.image"
+        data-editable="!$ctrl.isLoading"
+        data-on-focus="$ctrl.onImageFocus()"
+        data-on-submit="$ctrl.onImageChange()"
+        data-navigation="$ctrl.showImageNavigation()"
+    >
+        <pci-project-images-list
+            data-ng-if="$ctrl.currentStep >= 2"
+            data-display-selected-image="$ctrl.displaySelectedImage"
+            data-flavor-type="$ctrl.model.flavorGroup.name"
+            data-os-types="$ctrl.model.flavorGroup.osTypes"
+            data-region="$ctrl.model.datacenter.name"
+            data-service-name="{{:: $ctrl.projectId }}"
+            data-selected-image="$ctrl.model.image"
+            data-is-image-compatible="$ctrl.model.isImageCompatible"
+        >
+            <div class="d-flex justify-content-between">
+                <span
+                    data-translate="pci_projects_project_instances_add_image_not_available"
+                ></span>
+                <button
+                    type="button"
+                    class="oui-button oui-button_ghost"
+                    data-ng-click="$ctrl.currentStep = 0"
+                >
+                    <span
+                        data-translate="pci_project_instances_instance_add_choose_model"
+                    ></span>
+                    <i
+                        class="oui-icon button-icon oui-icon-arrow-right"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+            </div>
+        </pci-project-images-list>
+
+        <pci-project-instance-ssh-keys
+            data-ng-if="$ctrl.model.image.type === 'linux'"
+            data-region="$ctrl.model.datacenter.name"
+            data-selected-key="$ctrl.model.sshKey"
+            data-service-name="{{:: $ctrl.projectId }}"
+        >
+        </pci-project-instance-ssh-keys>
+    </oui-step-form>
+
+    <oui-step-form
+        data-header="{{ :: 'pci_projects_project_instances_add_instance_title' | translate }}"
+        data-on-focus="$ctrl.onInstanceFocus()"
+        data-on-submit="$ctrl.onInstanceChange()"
+        data-editable="!$ctrl.isLoading"
+        data-valid="$ctrl.automatedBackup.selected ? $ctrl.automatedBackup.schedule : true"
+        name="instances_add_configuration"
+    >
+        <oui-field
+            data-label="{{ 'pci_projects_project_instances_add_numInstances_label' | translate }}"
+            data-label-popover="{{ 'pci_projects_project_instances_add_same_numInstances_configuration' | translate }}"
+        >
+            <oui-numeric
+                id="modelNumber"
+                data-name="number"
+                data-min="1"
+                data-max="$ctrl.quota.getMaxNumberOfInstances($ctrl.flavor)"
+                data-model="$ctrl.model.number"
+            >
+            </oui-numeric>
+
+            <div class="oui-field__helper">
+                <span
+                    data-translate="pci_projects_project_instances_add_numInstances_help"
+                    data-translate-values="{
+                        num: $ctrl.quota.getMaxNumberOfInstances($ctrl.flavor),
+                        flavor: $ctrl.flavor.name,
+                        region: $ctrl.model.datacenter.microRegion.text,
+                    }"
+                ></span>
+                <a
+                    data-ng-href="{{:: $ctrl.quotaLink }}"
+                    data-translate="pci_projects_project_instances_add_numInstances_quotaLink_label"
+                    target="_top"
+                ></a>
+            </div>
+        </oui-field>
+
+        <oui-checkbox
+            class="mb-4"
+            model="$ctrl.model.isInstanceFlex"
+            name="instance-flex"
+            data-ng-if="$ctrl.model.flavorGroup.hasFlexOption()"
+            data-on-change="$ctrl.onFlexChange(modelValue)"
+        >
+            <oui-checkbox-label>
+                <span
+                    data-translate="pci_projects_project_instances_add_instance_flex"
+                ></span>
+            </oui-checkbox-label>
+            <oui-checkbox-description>
+                <span
+                    data-translate="pci_projects_project_instances_add_instance_flex_help"
+                ></span>
+            </oui-checkbox-description>
+        </oui-checkbox>
+
+        <oui-field
+            data-label="{{ :: 'pci_projects_project_instances_add_name_label' | translate }}"
+            data-size="xl"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="name"
+                name="name"
+                ng-model="$ctrl.instance.name"
+                ng-pattern="$ctrl.instanceNamePattern"
+                required
+            />
+
+            <div class="oui-field__helper">
+                <span
+                    data-translate="pci_projects_project_instances_add_name_help"
+                ></span>
+                <span
+                    class="d-inline-block"
+                    data-ng-if="$ctrl.model.number > 1"
+                    data-translate="pci_projects_project_instances_add_name_multiple_help"
+                ></span>
+            </div>
+        </oui-field>
+
+        <div
+            class="oui-box mb-4"
+            data-ng-if="$ctrl.model.image.type === 'linux'"
+        >
+            <oui-field
+                data-label="{{ 'pci_projects_project_instances_add_script_label' | translate }}"
+                data-help-text="{{ 'pci_projects_project_instances_add_script_help' | translate }}"
+                data-size="xl"
+            >
+                <oui-textarea
+                    data-ng-show="$ctrl.showUserData"
+                    data-id="userData"
+                    data-name="userData_value"
+                    data-rows="5"
+                    data-model="$ctrl.instance.userData"
+                >
+                </oui-textarea>
+                <oui-button
+                    data-ng-if="!$ctrl.showUserData"
+                    data-variant="secondary"
+                    data-type="button"
+                    data-on-click="$ctrl.showUserData = true"
+                >
+                    <span
+                        data-translate="pci_projects_project_instances_add_script_add_label"
+                    ></span>
+                </oui-button>
+            </oui-field>
+        </div>
+
+        <oui-field
+            data-ng-if="!$ctrl.disablePrivateNetworks"
+            data-label="{{ :: 'pci_projects_project_instances_add_privateNetwork_label' | translate }}"
+        >
+            <oui-select
+                data-name="privateNetwork"
+                data-model="$ctrl.selectedPrivateNetwork"
+                data-items="$ctrl.availablePrivateNetworks"
+                data-match="name"
+                data-on-change="$ctrl.onPrivateNetworkChange()"
+                data-searchable
+            >
+            </oui-select>
+            <p>
+                <span
+                    data-translate="pci_projects_project_instances_add_privateNetwork_description"
+                ></span>
+                <a
+                    data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
+                    data-translate="pci_projects_project_instances_add_privateNetwork_add"
+                    target="_top"
+                ></a>
+            </p>
+        </oui-field>
+
+        <div data-ng-if="$ctrl.automatedBackup.available">
+            <oui-checkbox
+                class="mb-4"
+                model="$ctrl.automatedBackup.selected"
+                name="automatedBackup"
+            >
+                <oui-checkbox-label>
+                    <span
+                        data-translate="pci_projects_project_instances_add_automated_backup_label"
+                    ></span>
+                </oui-checkbox-label>
+                <oui-checkbox-description>
+                    <span
+                        data-translate="pci_projects_project_instances_add_automated_backup_infos"
+                    ></span>
+                </oui-checkbox-description>
+                <span
+                    class="recommended-tag ml-2 oui-badge"
+                    data-translate="pci_projects_project_instances_add_automated_backup_recommended"
+                ></span>
+            </oui-checkbox>
+            <p>
+                <strong
+                    data-translate="pci_workflow_create_monthly_backup_price"
+                    data-translate-values="{ price : $ctrl.automatedBackup.price.price.text }"
+                ></strong>
+            </p>
+            <pci-projects-project-workflow-schedule
+                data-ng-if="$ctrl.automatedBackup.selected"
+                data-schedule="$ctrl.automatedBackup.schedule"
+                data-is-edit-mode="true"
+                data-is-customizable="false"
+            >
+            </pci-projects-project-workflow-schedule>
+            <oui-message
+                data-ng-if="$ctrl.automatedBackup.selected && $ctrl.flavor.isType('IOPS')"
+                type="warning"
+            >
+                <p
+                    data-translate="pci_projects_project_instances_add_instance_is_iops"
+                ></p>
+            </oui-message>
+        </div>
+    </oui-step-form>
+
+    <oui-step-form
+        data-header="{{ :: 'pci_projects_project_instances_add_billing_title' | translate }}"
+        data-submit-text="{{ :: 'pci_projects_project_instances_add_submit_label' | translate }}"
+        data-cancel-text="{{ :: 'pci_projects_project_instances_add_cancel_label' | translate }}"
+        data-cancel-href="{{$ctrl.cancelLink}}"
+        data-editable="!$ctrl.isLoading"
+        name="instances_add_billing"
+    >
+        <p>
+            <span
+                data-translate="pci_projects_project_instances_add_billing_montly_discount_message"
+            ></span>
+            <span
+                class="d-inline-block"
+                data-translate="pci_projects_project_instances_add_billing_short_period_message"
+            ></span>
+        </p>
+        <pci-project-flavor-billing
+            data-flavor="$ctrl.flavor"
+            data-number="$ctrl.model.number"
+            data-monthly-billing="$ctrl.instance.monthlyBilling"
+            data-offer="$ctrl.offer"
+        >
+        </pci-project-flavor-billing>
+
+        <pci-trusted-zone-banner data-ng-if="$ctrl.isTrustedZone">
+        </pci-trusted-zone-banner>
+    </oui-step-form>
+</oui-stepper>
+
+<div data-ng-if="$ctrl.isLoading">
+    <oui-spinner></oui-spinner>
+    <p
+        data-ng-if="$ctrl.model.number === 1"
+        data-translate="pci_projects_project_instances_add_save_form"
+    ></p>
+    <p
+        data-ng-if="$ctrl.model.number > 1"
+        data-translate="pci_projects_project_instances_add_save_multiple_form"
+    ></p>
+</div>
