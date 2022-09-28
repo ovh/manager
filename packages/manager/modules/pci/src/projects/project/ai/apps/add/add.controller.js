@@ -45,6 +45,11 @@ export default class AppAddController {
       preset: null,
       port: 8080,
       useCase: null,
+      probe: {
+        enabled: false,
+        path: null,
+        port: 8080,
+      },
       resource: {
         nbResources: 1,
         usage: 'cpu',
@@ -98,6 +103,16 @@ export default class AppAddController {
     });
   }
 
+  static buildProbe(probe) {
+    const { enabled, path, port } = probe;
+    return enabled
+      ? {
+          path,
+          port,
+        }
+      : null;
+  }
+
   static buildScalingBody(scalingStrategy) {
     const { autoscaling, automatic, fixed } = scalingStrategy;
     return autoscaling ? { automatic } : { fixed };
@@ -114,6 +129,7 @@ export default class AppAddController {
       privacy,
       scalingStrategy,
       preset,
+      probe,
     } = appModel;
 
     return {
@@ -128,6 +144,7 @@ export default class AppAddController {
       partnerId: preset?.partner?.id,
       volumes: AppAddController.buildVolumesBody(volumes),
       unsecureHttp: APP_PRIVACY_SETTINGS.PUBLIC === privacy,
+      probe: AppAddController.buildProbe(probe),
       scalingStrategy: AppAddController.buildScalingBody(scalingStrategy),
     };
   }

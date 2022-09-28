@@ -76,6 +76,18 @@
                     data-ng-bind="$ctrl.getResourceInfo()"
                 ></oui-tile-description>
             </oui-tile-definition>
+            <!-- Custom probe -->
+            <oui-tile-definition
+                data-ng-if="$ctrl.appModel.probe.enabled"
+                data-term="{{:: 'pci_app_add_review_probe' | translate }}"
+            >
+                <oui-tile-description>
+                    <code
+                        data-ng-bind="$ctrl.appModel.probe.path + ':' + $ctrl.appModel.probe.port"
+                    ></code>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <!-- Scaling -->
             <oui-tile-definition
                 data-term="{{:: 'pci_app_add_review_scaling' | translate}}"
             >

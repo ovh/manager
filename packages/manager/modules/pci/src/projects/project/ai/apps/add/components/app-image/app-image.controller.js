@@ -1,3 +1,9 @@
+import { APP_IMAGE } from '../../add.constants';
+import {
+  APP_CUSTOM_DOCKER_IMAGE_DOC,
+  APP_DOCKER_IMAGE_PORTFOLIO,
+} from '../../../app.constants';
+
 export default class AppImageController {
   /* @ngInject */
   constructor(coreConfig) {
@@ -6,6 +12,14 @@ export default class AppImageController {
 
   $onInit() {
     this.showAdvancedImage = false;
+    this.APP_IMAGE = APP_IMAGE;
+
+    this.docImagesDockerPortfolioUrl =
+      APP_DOCKER_IMAGE_PORTFOLIO[this.user.ovhSubsidiary] ||
+      APP_DOCKER_IMAGE_PORTFOLIO.DEFAULT;
+    this.docDockerBuildUrl =
+      APP_CUSTOM_DOCKER_IMAGE_DOC[this.user.ovhSubsidiary] ||
+      APP_CUSTOM_DOCKER_IMAGE_DOC.DEFAULT;
   }
 
   onClickAdvancedImage() {

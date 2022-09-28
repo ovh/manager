@@ -166,3 +166,56 @@
         </oui-select-picker>
     </div>
 </div>
+<!--Readiness probe-->
+<div>
+    <p class="oui-heading_5 mb-2">
+        <strong data-translate="pci_app_add_readiness_probe"></strong>
+    </p>
+    <p data-translate="pci_app_add_readiness_probe_description"></p>
+
+    <oui-field
+        label="{{:: 'pci_app_add_readiness_probe_switch_label' | translate}}"
+    >
+        <oui-switch data-model="$ctrl.appModel.probe.enabled" name="oui-switch">
+        </oui-switch>
+        <strong
+            class="d-inline-block mx-2"
+            data-ng-bind="($ctrl.appModel.probe.enabled ? 'pci_app_add_readiness_probe_switch_enabled':'pci_app_add_readiness_probe_switch_disabled') | translate"
+        >
+        </strong>
+    </oui-field>
+    <oui-field
+        data-help-text="{{:: 'pci_app_add_readiness_probe_path_help_text' | translate }}"
+        data-label="{{:: 'pci_app_add_readiness_probe_path_label' | translate}}"
+        data-ng-if="$ctrl.appModel.probe.enabled"
+    >
+        <input
+            class="oui-input"
+            type="text"
+            id="probe-path"
+            name="probe-path"
+            placeholder="/health"
+            data-ng-minlength="$ctrl.APP_PROBE.MIN_PATH_LENGTH"
+            data-ng-maxlength="$ctrl.APP_PROBE.MAX_PATH_LENGTH"
+            data-ng-pattern="$ctrl.APP_PROBE.PATH_REGEX"
+            data-ng-model="$ctrl.appModel.probe.path"
+            required
+        />
+    </oui-field>
+    <oui-field
+        data-help-text="{{:: 'pci_app_add_readiness_probe_port_help_text' | translate }}"
+        data-label="{{:: 'pci_app_add_readiness_probe_port_label' | translate}}"
+        data-ng-if="$ctrl.appModel.probe.enabled"
+    >
+        <input
+            class="oui-input"
+            type="number"
+            id="probe-port"
+            name="probe-port"
+            data-ng-model="$ctrl.appModel.probe.port"
+            data-ng-min="$ctrl.APP_PROBE.MIN_PORT"
+            data-ng-max="$ctrl.APP_PROBE.MAX_PORT"
+            required
+        />
+    </oui-field>
+</div>
