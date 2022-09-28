@@ -72,17 +72,15 @@
                 <td>
                     <span data-ng-bind="ipBlock.ipBlock"></span>
                     <span
-                        data-ng-if="ipBlock.bringYourOwnIp"
+                        data-ng-if="showBYOIPBadge && ipBlock.bringYourOwnIp"
                         data-ng-bind="'BYOIP'"
                         class="oui-badge oui-badge_info"
                     ></span>
                     <span
-                        class="label label-info ml-2"
-                        data-ng-if="ipBlock.type == 'FAILOVER'"
-                        title="{{:: 'ip_failover' | translate }}"
+                        data-ng-if="showFOBadge && ipBlock.type == 'FAILOVER'"
                         data-translate="ip_failover_short"
-                    >
-                    </span>
+                        class="oui-badge oui-badge_info"
+                    ></span>
                     <small
                         class="ip-description d-block text-truncate"
                         data-ng-if="ipBlock.description"
@@ -185,17 +183,15 @@
                         data-ng-bind="ip.ip"
                     ></span>
                     <span
-                        data-ng-if="ip.bringYourOwnIp"
+                        data-ng-if="showBYOIPBadge && ip.bringYourOwnIp"
                         data-ng-bind="'BYOIP'"
                         class="oui-badge oui-badge_info"
                     ></span>
                     <span
-                        class="label label-info ml-2"
-                        data-ng-if="ipBlock.isUniq && ipBlock.type == 'FAILOVER'"
-                        title="{{:: 'ip_failover' | translate }}"
+                        data-ng-if="showFOBadge && ipBlock.isUniq && ipBlock.type == 'FAILOVER'"
                         data-translate="ip_failover_short"
-                    >
-                    </span>
+                        class="oui-badge oui-badge_info"
+                    ></span>
                     <small
                         class="ip-description d-block text-truncate"
                         data-ng-if="ipBlock.description"
