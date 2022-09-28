@@ -526,12 +526,8 @@
   "vps_new_range_available_introduction": "Gama serwerów VPS zmienia się, podobnie jak Panel klienta.",
   "vps_new_range_available_call_to_upgrade_1": "Aby skorzystać z nowych funkcji, <a href=\"{{href}}\">zamów nowy model VPS&lt;/a></a> w Panelu klienta, przenieś dane, a następnie zrezygnuj ze starego serwera.",
   "vps_new_range_available_call_to_upgrade_2": "W tym celu wymień Twoją maszynę <a href=\"{{href}}\">za pomocą kilku kliknięć.</a>",
-  "vps_database_version_mariadb_103": "MariaDB 10.3",
-  "vps_database_version_mariadb_104": "MariaDB 10.4",
-  "vps_database_version_mariadb_105": "MariaDB 10.5",
-  "vps_database_version_mysql_80": "MySQL 8.0",
-  "vps_database_version_redis_60": "Redis 6.0",
   "vps_configuration_additional_disk_upgrade_option": "Zwiększ rozmiar dysku",
   "vps_additional_disk_current_capacity": "Rozmiar dysku: {{vpsDiskCapacity}}",
-  "vps_additional_disk_cant_upgrade": "Jeśli chcesz zmienić parametry dodatkowego dysku, najpierw przeprowadź migrację do nowej gamy VPS, klikając „Migracja serwera VPS” powyżej."
+  "vps_additional_disk_cant_upgrade": "Jeśli chcesz zmienić parametry dodatkowego dysku, najpierw przeprowadź migrację do nowej gamy VPS, klikając „Migracja serwera VPS” powyżej.",
+  "vps_configuration_desactivate_option_disabled_info": "Dodatkowy dysk może zostać usunięty po wygaśnięciu umowy terminowej na VPS."
 }

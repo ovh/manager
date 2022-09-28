@@ -526,12 +526,8 @@
   "vps_new_range_available_introduction": "Nuestras gamas de VPS se actualizan, y con ellas su área de cliente.",
   "vps_new_range_available_call_to_upgrade_1": "Para disfrutar de las novedades, <a href=\"{{href}}\">contrate un nuevo modelo</a> en su área de cliente, transfiera sus datos y dé de baja su antiguo servidor.",
   "vps_new_range_available_call_to_upgrade_2": "Para disfrutar de las novedades, actualice su máquina <a href=\"{{href}}\">en solo unos clics.</a>",
-  "vps_database_version_mariadb_103": "MariaDB 10.3",
-  "vps_database_version_mariadb_104": "MariaDB 10.4",
-  "vps_database_version_mariadb_105": "MariaDB 10.5",
-  "vps_database_version_mysql_80": "MySQL 8.0",
-  "vps_database_version_redis_60": "Redis 6.0",
   "vps_configuration_additional_disk_upgrade_option": "Aumentar el tamaño del disco",
   "vps_additional_disk_current_capacity": "Capacidad del disco: {{vpsDiskCapacity}}",
-  "vps_additional_disk_cant_upgrade": "Si quiere mejorar su disco adicional, deberá migrar primero a la nueva gama de VPS haciendo clic en «Migrar mi VPS»."
+  "vps_additional_disk_cant_upgrade": "Si quiere mejorar su disco adicional, deberá migrar primero a la nueva gama de VPS haciendo clic en «Migrar mi VPS».",
+  "vps_configuration_desactivate_option_disabled_info": "Podrá dar de baja el disco adicional una vez finalizado el compromiso de permanencia de su VPS."
 }

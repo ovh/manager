@@ -5,5 +5,7 @@
   "vps_additional_disk_upgrade_action_upgrade_success": "O tamanho do seu disco foi aumentado com sucesso.",
   "vps_additional_disk_upgrade_action_upgrade_error": "Ocorreu um erro aquando do aumento do tamanho do disco.",
   "vps_additional_disk_upgrade_action_upgrade": "Aumentar",
-  "vps_additional_disk_upgrade_action_cancel": "Anular"
+  "vps_additional_disk_upgrade_action_cancel": "Anular",
+  "vps_additional_disk_upgrade_action_upgrade_success_info": "O seu pedido relativo ao aumento do seu disco foi bem recebido.",
+  "vps_additional_disk_upgrade_action_upgrade_payment_info": "Por favor, valide a sua encomenda utilizando um método de pagamento válido através da seguinte ligação."
 }

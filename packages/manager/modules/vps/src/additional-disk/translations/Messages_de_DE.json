@@ -1,5 +1,6 @@
 {
   "vps_additional_disk": "Zusätzliche Festplatte",
   "vps_additional_disk_actions_increase_disk": "Festplattengröße erhöhen",
-  "vps_additional_disk_actions_terminate": "Kündigen"
+  "vps_additional_disk_actions_terminate": "Kündigen",
+  "vps_additional_disk_actions_terminate_disabled_info": "Die zusätzliche Festplatte ist kündbar, sobald die Vertragslaufzeit Ihres VPS abgelaufen ist."
 }

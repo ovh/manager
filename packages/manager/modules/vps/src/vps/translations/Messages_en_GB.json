@@ -526,12 +526,8 @@
   "vps_new_range_available_introduction": "Our VPS ranges are changing, and so is the OVHcloud Control Panel.",
   "vps_new_range_available_call_to_upgrade_1": "To get the very latest updates, <a href=\"{{href}}\">order a new model</a> via the OVHcloud Control Panel, transfer your data, then cancel your old server.",
   "vps_new_range_available_call_to_upgrade_2": "To get the most out of our technology, upgrade your machine <a href=\"{{href}}\">in just a few clicks.</a>",
-  "vps_database_version_mariadb_103": "MariaDB 10.3",
-  "vps_database_version_mariadb_104": "MariaDB 10.4",
-  "vps_database_version_mariadb_105": "MariaDB 10.5",
-  "vps_database_version_mysql_80": "MySQL 8.0",
-  "vps_database_version_redis_60": "Redis 6.0",
   "vps_configuration_additional_disk_upgrade_option": "Increase the disk size",
   "vps_additional_disk_current_capacity": "Disk capacity: {{vpsDiskCapacity}}",
-  "vps_additional_disk_cant_upgrade": "If you would like to upgrade your additional disk, you will need to migrate to the new VPS range first by clicking “Migrate my VPS” above."
+  "vps_additional_disk_cant_upgrade": "If you would like to upgrade your additional disk, you will need to migrate to the new VPS range first by clicking “Migrate my VPS” above.",
+  "vps_configuration_desactivate_option_disabled_info": "The additional disk may be cancelled once your VPS subscription has ended."
 }
