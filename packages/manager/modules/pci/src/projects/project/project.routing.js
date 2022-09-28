@@ -2,7 +2,11 @@ import {
   GUIDES_LIST,
   GUIDE_TRACKING_TAG,
 } from '../../components/project/guides-header/guides-header.constants';
-import { ACTIONS, LEGACY_PLAN_CODES, LINKS } from './project.constants';
+import {
+  ACTIONS,
+  LEGACY_PLAN_CODES,
+  DOCUMENTATION_LINKS,
+} from './project.constants';
 import { PCI_FEATURES } from '../projects.constant';
 
 const isLegacy = (planCode) => LEGACY_PLAN_CODES.includes(planCode);
@@ -119,7 +123,9 @@ export default /* @ngInject */ ($stateProvider) => {
        * Available links
        */
       links: /* @ngInject */ (pciFeatures) =>
-        LINKS.filter(({ feature }) => pciFeatures.isFeatureAvailable(feature)),
+        DOCUMENTATION_LINKS.filter(({ feature }) =>
+          pciFeatures.isFeatureAvailable(feature),
+        ),
 
       /**
        * Available actions
@@ -169,6 +175,20 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         });
       },
+
+      vouchersCreditDetails: /* @ngInject */ (PciProject, projectId) =>
+        PciProject.getVouchersCreditDetails(projectId).then(
+          (vouchersCreditInfos) =>
+            vouchersCreditInfos.map((voucherCredit) => {
+              const { data } = voucherCredit;
+              return {
+                voucher: data.voucher,
+                description: data.description,
+                balance: data.available_credit.text,
+                expirationDate: moment(data.validity.to).format('LLL'),
+              };
+            }),
+        ),
     },
   });
 };

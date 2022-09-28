@@ -1,8 +1,9 @@
 export default class {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, $q) {
     this.project = {};
     this.$http = $http;
+    this.$q = $q;
   }
 
   getProjectInfo() {
@@ -50,5 +51,19 @@ export default class {
         ),
       );
     });
+  }
+
+  getVouchersCreditDetails(serviceName) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/credit`)
+      .then((creditIds) => {
+        return this.$q.all(
+          creditIds?.data.map((creditId) =>
+            this.$http.get(`/cloud/project/${serviceName}/credit/${creditId}`),
+          ),
+        );
+      })
+      .then((creditsDetails) => creditsDetails)
+      .catch(() => []);
   }
 }
