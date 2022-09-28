@@ -1,4 +1,12 @@
 <div class="ip-failover">
     <p data-translate="ip_failover_text"></p>
+    <div class="d-flex align-items-center justify-content-end">
+        <span class="mr-2" data-translate="ip_failover_unused_filter"></span>
+        <oui-switch
+            data-name="unusedFilter"
+            data-ng-model="$ctrl.unusedFilter"
+            data-on-change="$ctrl.toggleUnusedFilter()"
+        ></oui-switch>
+    </div>
     <div ui-view="list"></div>
 </div>

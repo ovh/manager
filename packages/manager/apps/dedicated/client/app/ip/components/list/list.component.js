@@ -3,6 +3,7 @@ import template from './list.html';
 
 export default {
   bindings: {
+    badges: '<',
     goToAntispam: '<',
     goToFirewall: '<',
     goToGameFirewall: '<',
