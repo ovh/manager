@@ -39,7 +39,7 @@ export default /* @ngInject */ function IpMainCtrl(
     $scope.currentAction = action;
     $scope.currentActionData = data;
     if ($scope.currentAction) {
-      $scope.stepPath = `ip/${$scope.currentAction}.html`;
+      $scope.stepPath = `${$scope.currentAction}.html`;
       $('#currentAction').modal({
         keyboard: false,
         backdrop: 'static',
