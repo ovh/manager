@@ -340,5 +340,27 @@
                 <span class="fa fa-refresh" aria-hidden="true"></span>
             </button>
         </oui-datagrid-topbar>
+        <oui-datagrid-row-detail>
+            <div class="text-center" data-ng-if="$row.privateIpV4.length === 0">
+                <span
+                    class="oui-datagrid-empty__placeholder"
+                    data-translate="pci_projects_project_instances_no_data"
+                ></span>
+            </div>
+            <div class="d-flex" data-ng-if="$row.privateIpV4.length > 0">
+                <div class="font-weight-bold">
+                    <span
+                        data-translate="pci_projects_project_instances_private_ip"
+                    ></span>
+                </div>
+                <div class="d-flex flex-wrap ml-5">
+                    <span
+                        class="mr-3"
+                        data-ng-repeat="ips in $row.privateIpV4"
+                        data-ng-bind="ips.ip"
+                    ></span>
+                </div>
+            </div>
+        </oui-datagrid-row-detail>
     </oui-datagrid>
 </div>
