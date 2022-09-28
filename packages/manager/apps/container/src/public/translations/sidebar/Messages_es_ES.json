@@ -121,5 +121,6 @@
   "sidebar_clipboard_copy": "Copiar al portapapeles",
   "sidebar_pci_load_error": "Se ha producido un error al cargar la lista de proyectos.",
   "sidebar_billing_ssh": "Mis claves SSH",
-  "sidebar_email_delegated": "Delegaciones de correo"
+  "sidebar_email_delegated": "Delegaciones de correo",
+  "sidebar_domain_operations": "Operaciones en curso"
 }

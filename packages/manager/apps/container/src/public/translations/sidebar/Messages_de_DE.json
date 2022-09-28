@@ -121,5 +121,6 @@
   "sidebar_clipboard_copy": "In die Zwischenablage kopieren",
   "sidebar_pci_load_error": "Beim Abruf der Projektliste ist ein Fehler aufgetreten",
   "sidebar_billing_ssh": "Meine SSH-Schlüssel",
-  "sidebar_email_delegated": "Delegieren der Verwaltung von E-Mails"
+  "sidebar_email_delegated": "Delegieren der Verwaltung von E-Mails",
+  "sidebar_domain_operations": "Laufende Operationen"
 }

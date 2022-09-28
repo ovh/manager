@@ -121,5 +121,6 @@
   "sidebar_clipboard_copy": "Skopiuj do schowka",
   "sidebar_pci_load_error": "Wystąpił błąd podczas pobierania listy projektów",
   "sidebar_billing_ssh": "Moje klucze SSH",
-  "sidebar_email_delegated": "Delegowanie uprawnień do e-maili"
+  "sidebar_email_delegated": "Delegowanie uprawnień do e-maili",
+  "sidebar_domain_operations": "Operacje w toku"
 }
