@@ -125,5 +125,6 @@
   "sidebar_pci_all": "Todos mis proyectos Public Cloud",
   "sidebar_tag_alpha": "Alfa",
   "sidebar_tag_beta": "Beta",
-  "sidebar_tag_new": "Novedad"
+  "sidebar_tag_new": "Novedad",
+  "sidebar_domain_operations": "Operaciones en curso"
 }
