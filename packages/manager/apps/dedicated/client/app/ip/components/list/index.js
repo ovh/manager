@@ -37,8 +37,8 @@ angular
   .component('ipList', component)
   .run(
     /* @ngInject */ ($templateCache) => {
-      $templateCache.put('ip/ip/popover/ip.html', popoverIpTemplate);
-      $templateCache.put('ip/ip/popover/ipBlock.html', popoverIpBlockTemplate);
+      $templateCache.put('ip/popover/ip.html', popoverIpTemplate);
+      $templateCache.put('ip/popover/ipBlock.html', popoverIpBlockTemplate);
     },
   )
   .run(/* @ngTranslationsInject:json ./translations */)
