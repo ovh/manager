@@ -5,7 +5,13 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import toInteger from 'lodash/toInteger';
 
-import { IP_TYPE, TRACKING_PREFIX } from './list.constant';
+import {
+  IP_TYPE,
+  TRACKING_PREFIX,
+  BADGE_BYOIP,
+  BADGE_FO,
+  BADGES,
+} from './list.constant';
 
 export default class IpListController {
   /* @ngInject */
@@ -76,6 +82,8 @@ export default class IpListController {
       spam: [],
     };
     $scope.IP_TYPE = IP_TYPE;
+    $scope.showBYOIPBadge = (self.badges || BADGES).includes(BADGE_BYOIP);
+    $scope.showFOBadge = (self.badges || BADGES).includes(BADGE_FO);
 
     // pagination
     $scope.pageNumber = toInteger($stateParams.page) || 1;
@@ -226,6 +234,7 @@ export default class IpListController {
 
     function refreshTable() {
       const params = {
+        ...$scope.params,
         extras: true,
         pageSize: $scope.pageSize,
         pageNumber: $scope.pageNumber,
@@ -431,6 +440,11 @@ export default class IpListController {
 
     $scope.$on('organisation.change.done', () => {
       init();
+      refreshTable();
+    });
+
+    $scope.$on('ips.table.params', (event, params) => {
+      $scope.params = { ...$scope.params, ...params };
       refreshTable();
     });
 
