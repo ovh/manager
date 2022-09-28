@@ -1,7 +1,7 @@
 <div data-ui-view>
     <div data-ovh-alert="userUsers"></div>
 
-    <oui-message data-ng-if="$ctrl.identityProvider == null" data-type="info">
+    <oui-message data-ng-if="!$ctrl.identityProvider" data-type="info">
         <span
             class="d-block"
             data-translate="user_users_info"
@@ -44,7 +44,7 @@
 
     <!-- CONNECT SSO BTN -->
     <button
-        id="btnSSO"
+        id="btnSso"
         type="button"
         class="btn btn-primary float-right my-4"
         data-ng-click="setAction('users/sso/add/user-users-sso-add', user)"

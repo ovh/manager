@@ -1,8 +1,6 @@
-import get from 'lodash/get';
-
-export default class UserAccountUsersSSOAddCtrl {
+export default class UserAccountUsersSsoAddCtrl {
   /* @ngInject */
-  constructor($scope, UseraccountUsersService, Alerter, $translate) {
+  constructor($scope, $translate, Alerter, UseraccountUsersService) {
     this.$scope = $scope;
     this.usersService = UseraccountUsersService;
     this.alerter = Alerter;
@@ -18,29 +16,25 @@ export default class UserAccountUsersSSOAddCtrl {
   }
 
   $onInit() {
-    this.$scope.addSSO = this.addSSO.bind(this);
+    this.$scope.addSso = this.addSso.bind(this);
   }
 
-  addSSO() {
+  addSso() {
     this.loader = true;
 
     this.usersService
       .addIdentityProvider(this.identityProvider)
       .then(() => {
-        this.alerter.success(
-          this.$translate.instant('user_users_sso_add_success_message', {
-            login: this.user.login,
-          }),
+        return this.alerter.success(
+          this.$translate.instant('user_users_sso_add_success_message'),
           'userUsers',
         );
       })
       .catch((err) => {
-        this.alerter.error(
-          `${this.$translate.instant('user_users_sso_add_error_message')} ${get(
-            err,
-            'message',
-            err,
-          )}`,
+        return this.alerter.error(
+          `${this.$translate.instant('user_users_sso_add_error_message')} ${
+            err.data.message
+          }`,
           'userUsers',
         );
       })

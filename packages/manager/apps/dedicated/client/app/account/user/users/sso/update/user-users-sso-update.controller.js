@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-export default class UserAccountUsersSSOUpdateCtrl {
+export default class UserAccountUsersSsoUpdateCtrl {
   /* @ngInject */
   constructor($scope, UseraccountUsersService, Alerter, $translate) {
     this.$scope = $scope;
@@ -19,11 +19,11 @@ export default class UserAccountUsersSSOUpdateCtrl {
   }
 
   $onInit() {
-    this.$scope.updateSSO = this.updateSSO.bind(this);
+    this.$scope.updateSso = this.updateSso.bind(this);
     this.initIdentityProvider();
   }
 
-  updateSSO() {
+  updateSso() {
     this.loader = true;
 
     if (this.identityProvider == null) {
@@ -35,7 +35,7 @@ export default class UserAccountUsersSSOUpdateCtrl {
     this.usersService
       .updateIdentityProvider(this.identityProvider)
       .then(() => {
-        this.alerter.success(
+        return this.alerter.success(
           this.$translate.instant('user_users_sso_update_success_message', {
             login: this.user.login,
           }),
@@ -43,7 +43,7 @@ export default class UserAccountUsersSSOUpdateCtrl {
         );
       })
       .catch((err) => {
-        this.alerter.error(
+        return this.alerter.error(
           `${this.$translate.instant(
             'user_users_sso_update_error_message',
           )} ${get(err, 'message', err)}`,

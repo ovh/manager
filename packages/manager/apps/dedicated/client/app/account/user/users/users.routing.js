@@ -5,7 +5,7 @@ import ssoDetailsController from './sso/details/user-users-sso-details.controlle
 
 export default /* @ngInject */ ($stateProvider) => {
   const name = 'app.account.user.users';
-  const nameSSODetails = 'app.account.user.users.ssoDetails';
+  const nameSsoDetails = 'app.account.user.users.ssoDetails';
 
   $stateProvider.state(name, {
     url: '/users',
@@ -18,7 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
 
-  $stateProvider.state(nameSSODetails, {
+  $stateProvider.state(nameSsoDetails, {
     url: '/sso',
     template: ssoDetailsTemplate,
     controller: ssoDetailsController,

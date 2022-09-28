@@ -1,8 +1,6 @@
-import get from 'lodash/get';
-
 export default class UserAccountUsersGroupsDeleteCtrl {
   /* @ngInject */
-  constructor($scope, UseraccountGroupsService, Alerter, $translate) {
+  constructor($scope, $translate, Alerter, UseraccountGroupsService) {
     this.$scope = $scope;
     this.groupsService = UseraccountGroupsService;
     this.alerter = Alerter;
@@ -21,16 +19,16 @@ export default class UserAccountUsersGroupsDeleteCtrl {
     this.groupsService
       .deleteGroup(this.group)
       .then(() => {
-        this.alerter.success(
+        return this.alerter.success(
           this.$translate.instant('user_users_groups_delete_success_message'),
           'userUsers',
         );
       })
       .catch((err) => {
-        this.alerter.error(
+        return this.alerter.error(
           `${this.$translate.instant(
             'user_users_groups_delete_error_message',
-          )} ${get(err, 'message', err)}`,
+          )} ${err.data.message}`,
           'userUsers',
         );
       })

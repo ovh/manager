@@ -1,37 +1,33 @@
 <oui-header heading="{{:: 'user_users_sso_detail_title' | translate }}">
 </oui-header>
 <div>
-    <a
-        class="col-md-12 mb-3"
-        data-ng-href="{{'#/useraccount/users' }}"
-        title="{{ 'user_users_sso_detail_back' | translate }}"
-    >
+    <a class="col-md-12 mb-3" data-ng-href="{{'#/useraccount/users' }}">
         <span class="fa fa-chevron-left mr-2" aria-hidden="true"></span>
         <span data-translate="user_users_sso_detail_back"></span>
     </a>
 
-    <div class="col-md-8 mb-5" data-ng-if="identityProvider != null">
+    <div class="col-md-8 mb-5" data-ng-if="$ctrl.identityProvider != null">
         <oui-tile
             data-heading="{{:: 'user_users_sso_detail_idp_title' | translate }}"
         >
             <oui-tile-definition
                 data-term="{{:: 'user_users_sso_detail_idp_sso_service_url' | translate }}"
-                data-description="{{:: identityProvider.ssoServiceUrl }}"
+                data-description="{{:: $ctrl.identityProvider.ssoServiceUrl }}"
             >
             </oui-tile-definition>
             <oui-tile-definition
                 data-term="{{:: 'user_users_sso_detail_idp_group_attribute_name' | translate }}"
-                data-description="{{:: identityProvider.groupAttributeName}}"
+                data-description="{{:: $ctrl.identityProvider.groupAttributeName}}"
             >
             </oui-tile-definition>
             <oui-tile-definition
                 data-term="{{:: 'user_users_sso_detail_idp_creation' | translate }}"
-                data-description="{{:: identityProvider.creation | date }}"
+                data-description="{{:: $ctrl.identityProvider.creation | date }}"
             >
             </oui-tile-definition>
             <oui-tile-definition
                 data-term="{{:: 'user_users_sso_detail_idp_last_update' | translate }}"
-                data-description="{{:: identityProvider.lastUpdate | date }}"
+                data-description="{{:: $ctrl.identityProvider.lastUpdate | date }}"
             >
             </oui-tile-definition>
             <oui-tile-definition
@@ -39,19 +35,19 @@
             >
             </oui-tile-definition>
             <ul
-                data-ng-repeat="idpSigningCertificate in identityProvider.idpSigningCertificates"
+                data-ng-repeat="idpSigningCertificate in $ctrl.identityProvider.idpSigningCertificates"
             >
                 <li>
                     <strong
                         data-translate="user_users_sso_detail_idp_signing_certificates_subject"
                     ></strong>
-                    <span ng-bind="idpSigningCertificate.subject"></span>
+                    <span data-ng-bind="idpSigningCertificate.subject"></span>
                     <span> | </span>
                     <strong
                         data-translate="user_users_sso_detail_idp_signing_certificates_expiration"
                     ></strong>
                     <span
-                        ng-bind="idpSigningCertificate.expiration | date"
+                        data-ng-bind="idpSigningCertificate.expiration | date"
                     ></span>
                 </li>
             </ul>

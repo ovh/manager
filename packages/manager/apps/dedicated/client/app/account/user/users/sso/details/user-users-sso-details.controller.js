@@ -1,20 +1,19 @@
-export default /* @ngInject */ function UserAccountUsersSSODetailsCtrl(
-  $scope,
-  UseraccountUsersService,
-) {
-  function initIdentityProvider() {
-    UseraccountUsersService.getIdentityProvider()
+export default class UserAccountUsersSsoDetailsCtrl {
+  /* @ngInject */
+  constructor($scope, UseraccountUsersService) {
+    this.$scope = $scope;
+    this.useraccountUsersService = UseraccountUsersService;
+    this.identityProvider = null;
+  }
+
+  $onInit() {
+    this.useraccountUsersService
+      .getIdentityProvider()
       .then((identityProvider) => {
-        $scope.identityProvider = identityProvider;
+        this.identityProvider = identityProvider;
       })
       .catch(() => {
-        $scope.identityProvider = null;
+        this.identityProvider = null;
       });
   }
-
-  function init() {
-    initIdentityProvider();
-  }
-
-  init();
 }

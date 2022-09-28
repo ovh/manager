@@ -1,8 +1,6 @@
-import get from 'lodash/get';
-
-export default class UserAccountUsersSSODeleteCtrl {
+export default class UserAccountUsersSsoDeleteCtrl {
   /* @ngInject */
-  constructor($scope, UseraccountUsersService, Alerter, $translate) {
+  constructor($scope, $translate, Alerter, UseraccountUsersService) {
     this.$scope = $scope;
     this.usersService = UseraccountUsersService;
     this.alerter = Alerter;
@@ -12,25 +10,25 @@ export default class UserAccountUsersSSODeleteCtrl {
   }
 
   $onInit() {
-    this.$scope.deleteSSO = this.deleteSSO.bind(this);
+    this.$scope.deleteSso = this.deleteSso.bind(this);
   }
 
-  deleteSSO() {
+  deleteSso() {
     this.loader = true;
 
     this.usersService
       .deleteIdentityProvider(this.user)
       .then(() => {
-        this.alerter.success(
+        return this.alerter.success(
           this.$translate.instant('user_users_sso_delete_success_message'),
           'userUsers',
         );
       })
       .catch((err) => {
-        this.alerter.error(
-          `${this.$translate.instant(
-            'user_users_sso_delete_error_message',
-          )} ${get(err, 'message', err)}`,
+        return this.alerter.error(
+          `${this.$translate.instant('user_users_sso_delete_error_message')} ${
+            err.data.message
+          }`,
           'userUsers',
         );
       })

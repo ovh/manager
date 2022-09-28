@@ -1,10 +1,10 @@
-import get from 'lodash/get';
-
 export default class UserAccountUsersGroupsUpdateCtrl {
   /* @ngInject */
-  constructor($scope, UseraccountGroupsService) {
+  constructor($scope, $translate, Alerter, UseraccountGroupsService) {
     this.$scope = $scope;
     this.groupsService = UseraccountGroupsService;
+    this.alerter = Alerter;
+    this.$translate = $translate;
     this.user = {
       group: 'DEFAULT',
     };
@@ -22,18 +22,16 @@ export default class UserAccountUsersGroupsUpdateCtrl {
     this.groupsService
       .updateGroup(this.group)
       .then(() => {
-        this.alerter.success(
-          this.$translate.instant('user_users_groups_update_success_message', {
-            login: this.user.login,
-          }),
+        return this.alerter.success(
+          this.$translate.instant('user_users_groups_update_success_message'),
           'userUsers',
         );
       })
       .catch((err) => {
-        this.alerter.error(
+        return this.alerter.error(
           `${this.$translate.instant(
             'user_users_groups_update_error_message',
-          )} ${get(err, 'message', err)}`,
+          )} ${err.data.message}`,
           'userUsers',
         );
       })

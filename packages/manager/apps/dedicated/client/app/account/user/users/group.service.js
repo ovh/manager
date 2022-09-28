@@ -1,57 +1,50 @@
 export default class UseraccountGroupsService {
   /* @ngInject */
-  constructor(OvhHttp) {
-    this.ovhHttp = OvhHttp;
+  constructor($http, $rootScope) {
+    this.$http = $http;
+    this.$rootScope = $rootScope;
+  }
+
+  broadcast(broadcast, response) {
+    return this.$rootScope.$broadcast(broadcast, response);
   }
 
   getGroups() {
-    return this.ovhHttp.get('/me/identity/group', {
-      rootPath: 'apiv6',
-    });
+    return this.$http.get('/me/identity/group').then(({ data }) => data);
   }
 
   getGroup(group) {
-    return this.ovhHttp.get('/me/identity/group/{group}', {
-      rootPath: 'apiv6',
-      urlParams: {
-        group,
-      },
-    });
+    return this.$http
+      .get(`/me/identity/group/${group}`)
+      .then(({ data }) => data);
   }
 
   addGroup(group) {
-    return this.ovhHttp.post('/me/identity/group', {
-      rootPath: 'apiv6',
-      data: {
+    return this.$http
+      .post('/me/identity/group', {
         name: group.name,
         description: group.description,
         role: group.role,
-      },
-      broadcast: 'useraccount.security.users.refresh',
-    });
+      })
+      .then(({ data }) => data)
+      .then((response) => {
+        this.broadcast('useraccount.security.users.refresh', response);
+        return response;
+      });
   }
 
   updateGroup(group) {
-    return this.ovhHttp.put('/me/identity/group/{group}', {
-      rootPath: 'apiv6',
-      urlParams: {
-        group: group.name,
-      },
-      data: {
+    return this.$http
+      .put(`/me/identity/group/${group.name}`, {
         description: group.description,
         role: group.role,
-      },
-      broadcast: 'useraccount.security.users.refresh',
-    });
+      })
+      .then(() => this.broadcast('useraccount.security.users.refresh', {}));
   }
 
   deleteGroup(group) {
-    return this.ovhHttp.delete('/me/identity/group/{group}', {
-      rootPath: 'apiv6',
-      urlParams: {
-        group: group.name,
-      },
-      broadcast: 'useraccount.security.users.refresh',
-    });
+    return this.$http
+      .delete(`/me/identity/group/${group.name}`)
+      .then(() => this.broadcast('useraccount.security.users.refresh', {}));
   }
 }

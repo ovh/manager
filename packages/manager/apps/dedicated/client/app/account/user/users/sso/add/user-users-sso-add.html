@@ -1,13 +1,13 @@
-<div data-ng-controller="UserAccountUsersSSOAddCtrl as $ctrl">
+<div data-ng-controller="UserAccountUsersSsoAddCtrl as $ctrl">
     <div
         data-wizard
         data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="addSSO"
+        data-wizard-on-finish="addSso"
         data-wizard-title="::'user_users_sso_add_modal_title' | translate"
     >
         <div
             data-wizard-step
-            data-wizard-step-valid="$ctrl.userAccountUsersSSOAddForm.$valid"
+            data-wizard-step-valid="$ctrl.userAccountUsersSsoAddForm.$valid"
         >
             <p data-translate="user_users_sso_add_modal_info"></p>
 
@@ -27,7 +27,7 @@
             </div>
 
             <form
-                name="$ctrl.userAccountUsersSSOAddForm"
+                name="$ctrl.userAccountUsersSsoAddForm"
                 data-ng-if="!$ctrl.loader"
             >
                 <div class="form-group">
