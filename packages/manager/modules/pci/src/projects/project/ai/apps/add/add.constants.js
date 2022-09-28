@@ -1,3 +1,7 @@
+export const APP_IMAGE = {
+  PLACEHOLDER: 'ovhcom/ai-deploy-hello-world:latest',
+};
+
 export const AUTOMATIC_SCALING_RESOURCE_TYPES = {
   CPU: 'CPU',
   RAM: 'RAM',
@@ -44,9 +48,19 @@ export const APP_ATTACH_STORAGE = {
   MAX_VOLUMES: 10,
 };
 
+export const APP_PROBE = {
+  MIN_PATH_LENGTH: 1,
+  MAX_PATH_LENGTH: 1000,
+  PATH_REGEX: /^([\w-._/]*)$/,
+  MIN_PORT: 1024,
+  MAX_PORT: 65535,
+};
+
 export default {
+  APP_IMAGE,
   AUTOMATIC_SCALING_RESOURCE_TYPES,
   APP_SCALING_SETTINGS,
   APP_LABELS,
   APP_PRIVACY_SETTINGS,
+  APP_PROBE,
 };

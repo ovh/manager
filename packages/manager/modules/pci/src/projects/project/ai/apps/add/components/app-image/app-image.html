@@ -59,45 +59,59 @@
     oui-tooltip-placement="top"
     type="button"
     data-ng-click="$ctrl.onClickAdvancedImage()"
+    data-ng-if="$ctrl.presets.length > 0"
 >
     <span data-translate="pci_app_submit_select_image_advanced"></span>
 </button>
 
-<oui-field
-    data-size="xl"
-    data-help-text="{{:: 'pci_app_submit_select_image_tips' | translate  }}"
-    data-label="{{:: 'pci_app_submit_select_image_name' | translate }}"
-    data-ng-if="$ctrl.showAdvancedImage"
->
-    <input
-        class="oui-input"
-        type="text"
-        id="image"
-        name="image"
-        data-ng-model="$ctrl.image"
-    />
-    <button
-        type="button"
-        class="oui-popover-button"
-        data-oui-popover="{{:: 'pci_app_submit_select_image_tips_help' | translate }}"
-    ></button>
-    <a
-        target="_blank"
-        class="oui-button oui-button_ghost"
-        rel="noopener"
-        data-ng-href="{{ $ctrl.docDockerBuildUrl }}"
+<div data-ng-if="$ctrl.showAdvancedImage || $ctrl.presets.length === 0">
+    <p data-translate="pci_app_submit_select_image_tips"></p>
+    <oui-field
+        class="mb-0"
+        data-size="xl"
+        data-label="{{:: 'pci_app_submit_select_image_name' | translate }}"
     >
-        <span data-translate="pci_app_submit_select_image_custom_doc"></span>
-        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
-    </a>
-</oui-field>
-<div data-ng-if="$ctrl.showAdvancedImage" class="mb-4">
-    <ovh-manager-catalog-price
-        data-price="$ctrl.defaultPrice.priceInUcents * 60"
-        data-tax="$ctrl.defaultPrice.tax * 60"
-        data-user="$ctrl.user"
-        data-show-zero-price="true"
-        data-interval="'hour'"
-    >
-    </ovh-manager-catalog-price>
+        <input
+            class="oui-input mb-3"
+            type="text"
+            id="image"
+            name="image"
+            data-ng-model="$ctrl.image"
+            placeholder="{{:: $ctrl.APP_IMAGE.PLACEHOLDER}}"
+        />
+        <div class="align-middle mx-2">
+            <span class="oui-icon oui-icon-info" aria-hidden="true"></span>
+            <a
+                target="_blank"
+                class="oui-link align-bottom"
+                rel="noopener"
+                data-ng-href="{{ $ctrl.docImagesDockerPortfolioUrl }}"
+            >
+                <span
+                    data-translate="pci_app_submit_select_image_portfolio"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </div>
+        <div class="align-middle mx-2">
+            <span class="oui-icon oui-icon-info" aria-hidden="true"></span>
+            <a
+                target="_blank"
+                class="oui-link align-bottom"
+                rel="noopener"
+                data-ng-href="{{ $ctrl.docDockerBuildUrl }}"
+            >
+                <span
+                    data-translate="pci_app_submit_select_image_custom_doc"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </div>
+    </oui-field>
 </div>

@@ -64,6 +64,18 @@
                     </oui-tile-description>
                 </oui-tile-definition>
 
+                <!-- Custom probe -->
+                <oui-tile-definition
+                    data-ng-if="$ctrl.app.spec.probe"
+                    data-term="{{:: 'pci_apps_general_information_info_app_probe' | translate }}"
+                >
+                    <oui-tile-description>
+                        <code
+                            data-ng-bind="$ctrl.app.spec.probe.path + ':' + $ctrl.app.spec.probe.port"
+                        ></code>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
                 <!--Confidentiality-->
                 <oui-tile-definition
                     data-term="{{:: 'pci_apps_general_information_info_app_env_confidentiality' | translate }}"
