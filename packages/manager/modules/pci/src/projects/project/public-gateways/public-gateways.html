@@ -55,7 +55,13 @@
             data-searchable
             data-type="string"
             data-filterable
-        ></oui-datagrid-column>
+        >
+            <span
+                class="d-block font-weight-bold"
+                data-ng-bind="$row.name"
+            ></span>
+            <span class="d-block" data-ng-bind="$row.id"></span>
+        </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_public_gateway_region' | translate"
             data-property="region"
@@ -124,5 +130,27 @@
                 ></span>
             </oui-action-menu-item>
         </oui-action-menu>
+        <oui-datagrid-row-detail>
+            <div class="text-center" data-ng-if="$row.interfaces.length === 0">
+                <span
+                    class="oui-datagrid-empty__placeholder"
+                    data-translate="pci_projects_project_public_gateway_no_data"
+                ></span>
+            </div>
+            <div class="d-flex" data-ng-if="$row.interfaces.length > 0">
+                <div class="font-weight-bold">
+                    <span
+                        data-translate="pci_projects_project_public_gateway_private_ip"
+                    ></span>
+                </div>
+                <div class="d-flex flex-wrap ml-5">
+                    <span
+                        class="mr-3"
+                        data-ng-repeat="interface in $row.interfaces"
+                        data-ng-bind="interface.ip"
+                    ></span>
+                </div>
+            </div>
+        </oui-datagrid-row-detail>
     </oui-datagrid>
 </div>
