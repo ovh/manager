@@ -1,6 +1,6 @@
 {
   "data_processing_details_logs_title": "Logs",
-  "data_processing_details_logs_swift": "Votre job est terminé. Vous pouvez télécharger ses logs ci-dessous. Vous pouvez également les retourver dans votre",
+  "data_processing_details_logs_swift": "Votre job est terminé. Vous pouvez télécharger ses logs ci-dessous. Vous pouvez également les retrouver dans votre",
   "data_processing_details_logs_swift_link": "conteneur d'objets \"odp-logs\".",
   "data_processing_details_logs_swift_download_label": "Télécharger les logs",
   "data_processing_details_logs_default_message": "En attente de logs…",
