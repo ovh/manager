@@ -19,5 +19,7 @@
   "data_processing_submit_job_stepper_spark_arguments_warning": "Attention : Pour stocker des données confidentielles (identifiants...), préférez l'utilisation d'un fichier de configuration.",
   "data_processing_submit_job_stepper_spark_select_unit_minutes": "minute(s)",
   "data_processing_submit_job_stepper_spark_select_unit_hours": "heure(s)",
-  "data_processing_submit_job_stepper_spark_select_unit_days": "jour(s)"
+  "data_processing_submit_job_stepper_spark_select_unit_days": "jour(s)",
+  "data_processing_submit_job_stepper_spark_ttl_title": "Time to live (optionnel)",
+  "data_processing_submit_job_stepper_spark_ttl_checkbox": "Arrêter le job au bout de"
 }

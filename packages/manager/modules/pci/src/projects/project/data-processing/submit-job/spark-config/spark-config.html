@@ -200,16 +200,18 @@
         </div>
         <div class="row">
             <div class="col">
-                <span>
-                    Time to live (optionnel)
-                </span>
+                <span
+                    data-translate="data_processing_submit_job_stepper_spark_ttl_title"
+                ></span>
                 <div class="d-flex align-items-center">
                     <oui-checkbox
                         model="$ctrl.state.ttl.enabled"
                         name="oui-checkbox-1"
                         inline
                     >
-                        Arrêter le job au bout de
+                        <span
+                            data-translate="data_processing_submit_job_stepper_spark_ttl_checkbox"
+                        ></span>
                     </oui-checkbox>
                     <label class="d-inline-block w-auto">
                         <oui-numeric min="1" model="$ctrl.state.ttl.time">
