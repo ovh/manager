@@ -105,7 +105,7 @@
         >
             <div
                 data-ng-if="model.service.serviceType"
-                data-ng-include="'ip/ip/legacyOrder/' + model.service.serviceType + '.html'"
+                data-ng-include="'ip/legacyOrder/' + model.service.serviceType + '.html'"
                 data-ng-hide="loading.form"
             ></div>
 
@@ -128,7 +128,7 @@
 
             <div
                 data-ng-if="model.service.serviceType"
-                data-ng-include="'ip/ip/legacyOrder/durations' + (model.service.serviceType === 'PCC' ? 'PCC' : '') + '.html'"
+                data-ng-include="'ip/legacyOrder/durations' + (model.service.serviceType === 'PCC' ? 'PCC' : '') + '.html'"
             ></div>
         </div>
 
