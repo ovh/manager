@@ -13,7 +13,7 @@ angular
   .service('IpAgoraOrder', service)
   .run(
     /* @ngInject */ ($templateCache) => {
-      $templateCache.put('ip/ip/agoraOrder/ip-ip-agoraOrder.html', template);
+      $templateCache.put('ip/agoraOrder/ip-ip-agoraOrder.html', template);
     },
   )
   .run(/* @ngTranslationsInject:json ./translations */);
