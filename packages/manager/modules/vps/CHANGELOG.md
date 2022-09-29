@@ -1,3 +1,12 @@
+## [2.23.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.23.4...@ovh-ux/manager-vps@2.23.5) (2022-09-29)
+
+
+### Bug Fixes
+
+* **dashboard:** fix `goToCommit` and `goToCancelCommit` URL ([#8082](https://github.com/ovh/manager/issues/8082)) ([5a6c54e](https://github.com/ovh/manager/commit/5a6c54ef1f113a7b2338777b68df8ad6cc77e868))
+
+
+
 ## [2.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.23.3...@ovh-ux/manager-vps@2.23.4) (2022-09-20)
 
 

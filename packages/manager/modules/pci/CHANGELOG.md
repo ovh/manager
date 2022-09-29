@@ -1,3 +1,12 @@
+# [5.91.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.90.0...@ovh-ux/manager-pci@5.91.0) (2022-09-29)
+
+
+### Features
+
+* **storage.databases:**  improve network step ([#7460](https://github.com/ovh/manager/issues/7460)) ([49db05c](https://github.com/ovh/manager/commit/49db05c74a62b74a152346f6f58e8bc944613b92))
+
+
+
 # [5.90.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.89.0...@ovh-ux/manager-pci@5.90.0) (2022-09-21)
 
 
