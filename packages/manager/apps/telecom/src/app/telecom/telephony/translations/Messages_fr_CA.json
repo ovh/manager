@@ -1,5 +1,6 @@
 {
-  "telephony_breadcrumb": "Téléphonie",
+  "telephony_breadcrumb": "VoIP",
+  "telephony_order": "Commander",
   "telephony_page_title": "Ma Téléphonie \"{{name}}\"",
   "telephony_default_title": "Ma Téléphonie",
   "telephony_section_load_error": "Oups ! Une erreur est survenue lors du chargement de la section.",
@@ -124,7 +125,7 @@
   "telephony_common_time_condition_import_configuration_processing": "Import des plages horaires en cours",
   "telephony_common_time_condition_import_configuration_success": "Plages horaires importées.",
   "telephony_common_time_condition_import_configuration_error": "Echec lors de l'import des plages horaires.",
-  "telephony_title": "Téléphonie",
+  "telephony_title": "VoIP",
   "telephony_billing_account_label": "Groupe de facturation",
   "telephony_description_label": "Description",
   "telephony_num_service_label": "Services",

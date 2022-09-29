@@ -86,6 +86,21 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('nutanix.dashboard', {
           serviceName,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $window) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('nutanix_order'),
+          value: $translate.instant('nutanix_order'),
+          onClick: () => {
+            $window.open(
+              'https://www.ovhcloud.com/fr/hosted-private-cloud/nutanix/',
+              '_blank',
+            );
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
     atInternet: {

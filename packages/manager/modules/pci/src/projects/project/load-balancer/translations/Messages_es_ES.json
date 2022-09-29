@@ -8,5 +8,6 @@
   "pci_projects_project_load_balancer_list_reqs": "Peticiones / segundo",
   "pci_projects_project_load_balancer_guide_using_load_balancer": "Configurar un servicio Kubernetes con un Load Balancer",
   "pci_projects_project_load_balancer_list_region": "Región",
-  "pci_projects_project_load_balancer_list_id": "ID"
+  "pci_projects_project_load_balancer_list_id": "ID",
+  "pci_projects_project_load_balancer_list_order": "Contratar"
 }

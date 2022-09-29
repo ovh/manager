@@ -7,6 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'ovhManagerOverTheBoxes',
     params: ListLayoutHelper.stateParams,
     resolve: {
+      header: /* @ngInject */ ($translate) =>
+        $translate.instant('overtheboxes_title'),
       apiPath: () => '/overTheBox',
       ...ListLayoutHelper.stateResolves,
       defaultFilterColumn: () => 'serviceName',
@@ -22,6 +24,9 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('overTheBoxes.overTheBox.details', {
           serviceName,
         }),
+      gotoOrder: /* @ngInject */ ($window) => () => {
+        $window.open('https://www.ovhtelecom.fr/overthebox/', '_blank');
+      },
       hideBreadcrumb: () => true,
     },
     redirectTo: (transition) =>

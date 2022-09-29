@@ -11,7 +11,18 @@ export default {
       id: 'domain-dns',
       translation: 'sidebar_domain_dns',
       features: ['web:domains', 'web:domains:zone'],
+      count: false,
       children: [
+        {
+          id: 'domains-operations',
+          translation: 'sidebar_domain_operations',
+          routing: {
+            application: 'web',
+            hash: '#/domain/operation',
+          },
+          count: false,
+          features: ['web:domains'],
+        },
         {
           id: 'domains',
           translation: 'sidebar_domain',

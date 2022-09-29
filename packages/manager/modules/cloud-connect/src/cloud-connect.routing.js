@@ -1,5 +1,6 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { GUIDELINK } from './cloud-connect.constants';
+import { getCloudConnectOrderUrl } from './cloud-connect.order';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -33,6 +34,12 @@ export default /* @ngInject */ ($stateProvider) => {
             ovhCloudConnectId,
           }),
         hideBreadcrumb: () => true,
+        gotoOrder: /* @ngInject */ ($window, coreConfig) => () => {
+          $window.open(
+            getCloudConnectOrderUrl(coreConfig.getUser().ovhSubsidiary),
+            '_blank',
+          );
+        },
       },
       redirectTo: (transition) =>
         transition
