@@ -1,3 +1,12 @@
+# [5.92.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.91.0...@ovh-ux/manager-pci@5.92.0) (2022-09-29)
+
+
+### Features
+
+* **pci-object-storage:** add s3 beta standard object offer ([be26204](https://github.com/ovh/manager/commit/be26204a9f3fa54516b39770078779dbf6969eb4))
+
+
+
 # [5.91.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.90.0...@ovh-ux/manager-pci@5.91.0) (2022-09-29)
 
 

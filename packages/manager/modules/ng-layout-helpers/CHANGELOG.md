@@ -1,3 +1,12 @@
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.5.1...@ovh-ux/manager-ng-layout-helpers@2.6.0) (2022-09-29)
+
+
+### Features
+
+* **pci-object-storage:** add s3 beta standard object offer ([be26204](https://github.com/ovh/manager/commit/be26204a9f3fa54516b39770078779dbf6969eb4))
+
+
+
 ## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.5.0...@ovh-ux/manager-ng-layout-helpers@2.5.1) (2022-07-27)
 
 
