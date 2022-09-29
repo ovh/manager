@@ -81,13 +81,25 @@ export default class PciProjectAdditionalIpService {
     );
   }
 
-  updateInstanceForFloatingIp(projectId, region, instanceId, floatingIpId, ip) {
+  updateInstanceForFloatingIp(
+    projectId,
+    ipDetails,
+    instanceId,
+    floatingIpId,
+    ip,
+    gateway,
+  ) {
+    const { region, associatedEntity } = ipDetails;
+    const params = {
+      floatingIpId,
+      ip,
+    };
+    if (!associatedEntity?.gatewayId && gateway === null) {
+      params.gateway = null;
+    }
     return this.$http.post(
       `/cloud/project/${projectId}/region/${region}/instance/${instanceId}/associateFloatingIp`,
-      {
-        floatingIpId,
-        ip,
-      },
+      params,
     );
   }
 }
