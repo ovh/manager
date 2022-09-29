@@ -1,0 +1,5 @@
+{
+  "pci_projects_project_storages_components_credential_username_label": "Votre nom d'utilisateur S3",
+  "pci_projects_project_storages_components_credential_access_key_label": "Votre clé d'accès :",
+  "pci_projects_project_storages_components_credential_secret_key_label": "Votre clé secrète :"
+}
