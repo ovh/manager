@@ -1,3 +1,18 @@
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.7.0...@ovh-ux/manager-office@2.8.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+* **translations:** update section naming ([#7449](https://github.com/ovh/manager/issues/7449)) ([19c1bbc](https://github.com/ovh/manager/commit/19c1bbce79f351303c2b013839bf7768331a2e8a))
+
+
+### Features
+
+* **office:** add order cta to listing ([e7fd5cf](https://github.com/ovh/manager/commit/e7fd5cfda2f31c5a3ac7eb4050f254ea02c31f88))
+
+
+
 # [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.6.2...@ovh-ux/manager-office@2.7.0) (2022-06-14)
 
 

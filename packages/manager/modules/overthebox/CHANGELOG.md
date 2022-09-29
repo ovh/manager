@@ -1,3 +1,18 @@
+# [6.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.8.2...@ovh-ux/manager-overthebox@6.9.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+* **translations:** update section naming ([#7449](https://github.com/ovh/manager/issues/7449)) ([19c1bbc](https://github.com/ovh/manager/commit/19c1bbce79f351303c2b013839bf7768331a2e8a))
+
+
+### Features
+
+* **overthebox:** add order cta to listing ([951a8a5](https://github.com/ovh/manager/commit/951a8a5ca6d466bfb8b4d75adde4af1ab2b13c3d))
+
+
+
 ## [6.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.8.1...@ovh-ux/manager-overthebox@6.8.2) (2022-07-27)
 
 

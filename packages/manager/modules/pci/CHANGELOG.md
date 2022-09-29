@@ -1,3 +1,19 @@
+# [5.93.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.92.0...@ovh-ux/manager-pci@5.93.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+* **pci:** private network add link target ([#7847](https://github.com/ovh/manager/issues/7847)) ([5f19e31](https://github.com/ovh/manager/commit/5f19e310afabf91c6a2aa6a6f90f5152d9b93f6b))
+* **translations:** update section naming ([#7449](https://github.com/ovh/manager/issues/7449)) ([19c1bbc](https://github.com/ovh/manager/commit/19c1bbce79f351303c2b013839bf7768331a2e8a))
+
+
+### Features
+
+* **load-balancer:** add order cta to listing ([9dea10e](https://github.com/ovh/manager/commit/9dea10e32e55ce5c75602b12adc241a88e5a91ee))
+
+
+
 # [5.92.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.91.0...@ovh-ux/manager-pci@5.92.0) (2022-09-29)
 
 

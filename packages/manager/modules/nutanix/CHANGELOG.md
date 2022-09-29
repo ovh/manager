@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.3.1...@ovh-ux/manager-nutanix@1.4.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+
+
+### Features
+
+* **nutanix:** add order cta to listing ([3d4cb6c](https://github.com/ovh/manager/commit/3d4cb6cb73ded9e987adca771145c41714ba23e7))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.3.0...@ovh-ux/manager-nutanix@1.3.1) (2022-07-28)
 
 

@@ -1,3 +1,18 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.4.2...@ovh-ux/manager-vrack@1.5.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+* **translations:** update section naming ([#7449](https://github.com/ovh/manager/issues/7449)) ([19c1bbc](https://github.com/ovh/manager/commit/19c1bbce79f351303c2b013839bf7768331a2e8a))
+
+
+### Features
+
+* **vrack:** add order cta to listing ([5155c92](https://github.com/ovh/manager/commit/5155c921c9a38694ec2e4c9f91425075e0ae66c5))
+
+
+
 ## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.4.1...@ovh-ux/manager-vrack@1.4.2) (2022-07-27)
 
 

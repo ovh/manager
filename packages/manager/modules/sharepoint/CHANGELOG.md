@@ -1,3 +1,17 @@
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.6.1...@ovh-ux/manager-sharepoint@2.7.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+
+
+### Features
+
+* **sharepoint:** add order cta to listing ([102bbd3](https://github.com/ovh/manager/commit/102bbd3ebeb6085da58e9847b43f89575a34476c))
+
+
+
 ## [2.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.6.0...@ovh-ux/manager-sharepoint@2.6.1) (2022-07-27)
 
 
