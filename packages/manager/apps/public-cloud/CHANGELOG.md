@@ -1,3 +1,12 @@
+## [4.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.20.0...@ovh-ux/manager-public-cloud@4.20.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* **public-cloud:** remove custom styles on oui-tile link ([#7522](https://github.com/ovh/manager/issues/7522)) ([ed0c0ab](https://github.com/ovh/manager/commit/ed0c0abf56ed194eca5a1184b8339a0cc4d8215a))
+
+
+
 # [4.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.19.2...@ovh-ux/manager-public-cloud@4.20.0) (2022-09-29)
 
 

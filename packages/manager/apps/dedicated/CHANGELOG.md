@@ -1,3 +1,20 @@
+# [17.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.31.0...@ovh-ux/manager-dedicated@17.32.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+* **translations:** update section naming ([#7449](https://github.com/ovh/manager/issues/7449)) ([19c1bbc](https://github.com/ovh/manager/commit/19c1bbce79f351303c2b013839bf7768331a2e8a))
+
+
+### Features
+
+* **dedicated:** add order cta on dedicated cloud listing ([0945ac7](https://github.com/ovh/manager/commit/0945ac75ae498452f6d3a677b609d58e352d0949))
+* **dedicated:** add order cta on managedBaremetal listing ([25d3dec](https://github.com/ovh/manager/commit/25d3dec7e5ea1ad65a4a71c20b11a4fd72fb7214))
+* **dedicated:** add order cta to cdn listing ([d2b5700](https://github.com/ovh/manager/commit/d2b5700c1ee3ac26b8503efe9c41a3ed8c5608eb))
+
+
+
 # [17.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.30.1...@ovh-ux/manager-dedicated@17.31.0) (2022-09-21)
 
 

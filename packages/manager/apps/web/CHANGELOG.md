@@ -1,3 +1,21 @@
+# [16.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.17.2...@ovh-ux/manager-web@16.18.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+* **translations:** update section naming ([#7449](https://github.com/ovh/manager/issues/7449)) ([19c1bbc](https://github.com/ovh/manager/commit/19c1bbce79f351303c2b013839bf7768331a2e8a))
+
+
+### Features
+
+* **web:** add domain order cta on listing ([7a0ae1b](https://github.com/ovh/manager/commit/7a0ae1b2804eebcfa64b08d5915b8fbd64855938))
+* **web:** add hosting order cta to listing ([a9067db](https://github.com/ovh/manager/commit/a9067dbf78adf293c933d049529e1c4f67ccd068))
+* **web:** add order cta for zone listing ([a72910f](https://github.com/ovh/manager/commit/a72910fc77d477e87000ec0aadf8d8140577c265))
+* **web:** add order cta to private database listing ([3c07835](https://github.com/ovh/manager/commit/3c078355fb396bcaebdfc575b489bf36c5b6a4c2))
+
+
+
 ## [16.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.17.1...@ovh-ux/manager-web@16.17.2) (2022-09-20)
 
 

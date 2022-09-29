@@ -1,3 +1,18 @@
+# [7.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.5.1...@ovh-ux/manager-freefax@7.6.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+* **translations:** update section naming ([#7449](https://github.com/ovh/manager/issues/7449)) ([19c1bbc](https://github.com/ovh/manager/commit/19c1bbce79f351303c2b013839bf7768331a2e8a))
+
+
+### Features
+
+* **freefax:** add order cta to listing ([e1b5829](https://github.com/ovh/manager/commit/e1b5829bea005983fd86578d585dfe9bf15d91ec))
+
+
+
 ## [7.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.5.0...@ovh-ux/manager-freefax@7.5.1) (2022-07-27)
 
 

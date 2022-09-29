@@ -1,3 +1,19 @@
+# [13.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.44.5...@ovh-ux/manager-telecom@13.45.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+* **translations:** update section naming ([#7449](https://github.com/ovh/manager/issues/7449)) ([19c1bbc](https://github.com/ovh/manager/commit/19c1bbce79f351303c2b013839bf7768331a2e8a))
+
+
+### Features
+
+* **telecom:** add order cta to pack listing ([0c42a51](https://github.com/ovh/manager/commit/0c42a513061583daaee3367d27b1dadad5208573))
+* **telecom:** add order cta to voip listing ([b0aa071](https://github.com/ovh/manager/commit/b0aa07168b9aa7d1c7cbe2f1eaa6858477c028e8))
+
+
+
 ## [13.44.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.44.4...@ovh-ux/manager-telecom@13.44.5) (2022-09-21)
 
 

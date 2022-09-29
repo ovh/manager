@@ -1,3 +1,17 @@
+# [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.5.4...@ovh-ux/manager-exchange@3.6.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+
+
+### Features
+
+* **exchange:** add order cta to listing ([6b93c91](https://github.com/ovh/manager/commit/6b93c9120f4abf60e53bf049a9d7c9fed8a892a7))
+
+
+
 ## [3.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.5.3...@ovh-ux/manager-exchange@3.5.4) (2022-07-27)
 
 

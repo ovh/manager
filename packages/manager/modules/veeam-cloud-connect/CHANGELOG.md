@@ -1,3 +1,17 @@
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@2.3.1...@ovh-ux/manager-veeam-cloud-connect@2.4.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+
+
+### Features
+
+* **veeam-cc:** add order cta to listing ([b3b0d35](https://github.com/ovh/manager/commit/b3b0d355d8a6ccade9916cc840e9c77051b8cf84))
+
+
+
 ## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@2.3.0...@ovh-ux/manager-veeam-cloud-connect@2.3.1) (2022-07-27)
 
 

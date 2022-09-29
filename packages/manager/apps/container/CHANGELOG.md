@@ -1,3 +1,23 @@
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.4.0...@ovh-ux/manager-container-app@0.5.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **container:** add missing sidebar tags ([#7837](https://github.com/ovh/manager/issues/7837)) ([8259704](https://github.com/ovh/manager/commit/825970400c0ea07a6bbcf7f9c6325f92519d99f4))
+* **container:** add pci see all projects option ([#7840](https://github.com/ovh/manager/issues/7840)) ([d583e9c](https://github.com/ovh/manager/commit/d583e9cbd06f1b1cc12361850ef45ac6c4e02f6f))
+* **container:** cookie policy modal accept tracking ([#7783](https://github.com/ovh/manager/issues/7783)) ([1cf2f13](https://github.com/ovh/manager/commit/1cf2f13cfa9943a761a5489ab6fb9561640b1bda))
+* **container:** pnr assistance auto hide ([#7844](https://github.com/ovh/manager/issues/7844)) ([9e0b0b9](https://github.com/ovh/manager/commit/9e0b0b9396d3a1f809788de56a21bdb028e77bd4))
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+* **i18n:** add missing translations [CDS 1857] ([e0f86e1](https://github.com/ovh/manager/commit/e0f86e15f0b032c0788de2430292936b881e47b1))
+* **translations:** update section naming ([#7449](https://github.com/ovh/manager/issues/7449)) ([19c1bbc](https://github.com/ovh/manager/commit/19c1bbce79f351303c2b013839bf7768331a2e8a))
+
+
+### Features
+
+* **pnr:** add domain operations sidebar entry ([#7532](https://github.com/ovh/manager/issues/7532)) ([82d635a](https://github.com/ovh/manager/commit/82d635a685780caec52d7d19d0a5d7edcacbc8dd))
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.3.14...@ovh-ux/manager-container-app@0.4.0) (2022-09-14)
 
 
