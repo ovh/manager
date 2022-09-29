@@ -616,6 +616,14 @@ class DedicatedCloudService {
       .then(({ data }) => data);
   }
 
+  deleteActiveDirectory(serviceName, activeDirectoryId) {
+    return this.$http
+      .delete(
+        `/dedicatedCloud/${serviceName}/federation/activeDirectory/${activeDirectoryId}`,
+      )
+      .then(({ data }) => data);
+  }
+
   /* ------- USER -------*/
 
   getUsers(serviceName, params) {
