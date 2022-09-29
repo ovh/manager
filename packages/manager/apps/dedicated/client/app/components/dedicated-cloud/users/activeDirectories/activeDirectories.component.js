@@ -6,6 +6,7 @@ export default {
     dedicatedCloud: '<',
     productId: '<',
     goToAddFederation: '<',
+    goToEditFederation: '<',
   },
   controller,
   template,

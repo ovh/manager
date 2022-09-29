@@ -44,6 +44,10 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       goToAddFederation: /* @ngInject */ ($state) => () =>
         $state.go('app.managedBaremetal.details.users.federation-add'),
+      goToEditFederation: /* @ngInject */ ($state) => (activeDirectory) =>
+        $state.go('app.managedBaremetal.details.users.federation-edit', {
+          activeDirectory,
+        }),
       goToImportUser: /* @ngInject */ ($state) => () =>
         $state.go('app.managedBaremetal.details.users.import'),
       modifyUserRights: /* @ngInject */ ($state) => (userId) =>

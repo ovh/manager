@@ -606,6 +606,16 @@ class DedicatedCloudService {
       )
       .then(({ data }) => data);
   }
+
+  changePropertiesActiveDirectory(serviceName, activeDirectoryId, params) {
+    return this.$http
+      .post(
+        `/dedicatedCloud/${serviceName}/federation/activeDirectory/${activeDirectoryId}/changeProperties`,
+        params,
+      )
+      .then(({ data }) => data);
+  }
+
   /* ------- USER -------*/
 
   getUsers(serviceName, params) {
