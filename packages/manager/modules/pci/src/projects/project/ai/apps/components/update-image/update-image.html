@@ -6,6 +6,7 @@
     data-secondary-label="{{:: 'pci_app_update_app_image_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isUpdating"
+    data-primary-disabled="!$ctrl.imageName"
 >
     <oui-message data-type="info">
         <span data-translate="pci_app_update_app_image_message"></span>
