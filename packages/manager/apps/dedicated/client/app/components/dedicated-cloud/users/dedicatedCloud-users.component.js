@@ -15,6 +15,7 @@ export default {
     setMessage: '<',
     goToImportUser: '<',
     goToAddFederation: '<',
+    goToDeleteFederation: '<',
     goToEditFederation: '<',
   },
   template,

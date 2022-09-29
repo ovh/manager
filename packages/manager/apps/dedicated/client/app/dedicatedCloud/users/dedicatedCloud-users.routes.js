@@ -44,6 +44,10 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       goToAddFederation: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedCloud.details.users.federation-add'),
+      goToDeleteFederation: /* @ngInject */ ($state) => (activeDirectory) =>
+        $state.go('app.dedicatedCloud.details.users.federation-delete', {
+          activeDirectory,
+        }),
       goToEditFederation: /* @ngInject */ ($state) => (activeDirectory) =>
         $state.go('app.dedicatedCloud.details.users.federation-edit', {
           activeDirectory,

@@ -17,5 +17,6 @@
   "dedicatedCloud_USER_AD_status_unknown": "Inconnu",
   "dedicatedCloud_USER_AD_status_updating": "En cours de mise à jour",
   "dedicatedCloud_USER_AD_add_federation": "Ajouter un Active Directory LDAPs",
-  "dedicatedCloud_USER_AD_edit": "Modifier l'Active Directory"
+  "dedicatedCloud_USER_AD_edit": "Modifier l'Active Directory",
+  "dedicatedCloud_USER_AD_delete": "Supprimer l'Active Directory"
 }

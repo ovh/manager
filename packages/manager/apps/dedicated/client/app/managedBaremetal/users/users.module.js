@@ -6,6 +6,7 @@ import disable from './vsphere-users/disable';
 import edit from './vsphere-users/edit';
 import enable from './vsphere-users/enable';
 import federationAdd from './activeDirectories/add';
+import federationDelete from './activeDirectories/delete';
 import federationEdit from './activeDirectories/edit';
 import importUser from './vsphere-users/import';
 import passwordReset from './vsphere-users/password-reset';
@@ -23,6 +24,7 @@ angular
     edit,
     enable,
     federationAdd,
+    federationDelete,
     federationEdit,
     importUser,
     passwordReset,
