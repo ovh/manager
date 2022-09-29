@@ -5,11 +5,16 @@ import Container from '../container.class';
 
 import {
   OBJECT_CONTAINER_NAME_PATTERN,
+  OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
+  OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   OBJECT_CONTAINER_OFFERS,
+  OBJECT_CONTAINER_OFFERS_LABELS,
   OBJECT_CONTAINER_TYPE_OFFERS,
   OBJECT_CONTAINER_TYPES,
   STORAGE_PRICES_LINK,
 } from '../containers.constants';
+
+import { CONTAINER_USER_ASSOCIATION_MODES } from './components/associate-user-to-container/constant';
 
 export default class PciStoragesContainersAddController {
   /* @ngInject */
@@ -30,8 +35,10 @@ export default class PciStoragesContainersAddController {
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
     this.storagePricesLink =
       STORAGE_PRICES_LINK[ovhSubsidiary] || STORAGE_PRICES_LINK.DEFAULT;
+
     this.OBJECT_CONTAINER_NAME_PATTERN = OBJECT_CONTAINER_NAME_PATTERN;
     this.OBJECT_CONTAINER_OFFERS = OBJECT_CONTAINER_OFFERS;
+    this.OBJECT_CONTAINER_OFFERS_LABELS = OBJECT_CONTAINER_OFFERS_LABELS;
     this.OBJECT_CONTAINER_TYPE_OFFERS = OBJECT_CONTAINER_TYPE_OFFERS;
   }
 
@@ -57,6 +64,21 @@ export default class PciStoragesContainersAddController {
     });
     this.container.region = null;
 
+    this.userModel = {
+      linkedMode: {
+        selected: null,
+        credential: null,
+        isInProgress: false, // HTTP request
+      },
+      createMode: {
+        user: null, // once generate new user
+        credential: null, // new s3 user credential
+        description: null, // new s3 user description
+        isInProgress: false,
+      },
+      createOrLinkedMode: null,
+    };
+    if (!this.archive) this.setUsersForContainerCreation();
     this.preselectStepItem();
   }
 
@@ -83,6 +105,33 @@ export default class PciStoragesContainersAddController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  setUsersForContainerCreation() {
+    this.users = this.allUserList.filter((user) => user.status === 'ok');
+  }
+
+  isRightOffer() {
+    return [
+      OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
+      OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
+    ].includes(this.container.offer);
+  }
+
+  isReadyForValidation() {
+    const { createOrLinkedMode } = this.userModel;
+    const { createMode, linkedMode } = this.userModel;
+
+    return (
+      createOrLinkedMode &&
+      ((createMode.user && createMode.description) || linkedMode.selected)
+    );
+  }
+
+  getUserOwnerId() {
+    const { createMode, linkedMode } = this.userModel;
+
+    return createMode?.user?.id || linkedMode?.selected?.id;
   }
 
   onContainerSolutionChange() {
@@ -130,20 +179,24 @@ export default class PciStoragesContainersAddController {
       type: 'action',
     });
     this.isLoading = true;
+    this.container.ownerId = this.getUserOwnerId();
     return this.PciProjectStorageContainersService.addContainer(
       this.projectId,
       this.container,
     )
-      .then(() =>
-        this.goBack(
-          this.$translate.instant(
-            'pci_projects_project_storages_containers_add_success_message',
-            {
-              container: this.container.name,
-            },
-          ),
-        ),
-      )
+      .then(() => {
+        const message =
+          this.userModel.createOrLinkedMode ===
+          CONTAINER_USER_ASSOCIATION_MODES.CREATE
+            ? 'pci_projects_project_storages_containers_add_success_message_with_user_creation'
+            : 'pci_projects_project_storages_containers_add_success_message';
+        return this.goBack(
+          this.$translate.instant(message, {
+            container: this.container.name,
+            userName: this.userModel.createMode?.user?.username,
+          }),
+        );
+      })
       .catch((err) => {
         this.CucCloudMessage.error(
           this.$translate.instant(

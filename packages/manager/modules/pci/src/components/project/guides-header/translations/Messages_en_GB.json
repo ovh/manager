@@ -29,5 +29,6 @@
   "pci_project_guides_header_managing_a_custom_image": "Managing a custom image (EN)",
   "pci_project_guides_header_deploying_a_custom_model": "Deploying a custom model (EN)",
   "pci_project_guides_header_models_definition": "Models - definition (EN)",
-  "pci_project_guides_header_exporting_a_tensorflow_model": "Exporting a TensorFlow model (EN)"
+  "pci_project_guides_header_exporting_a_tensorflow_model": "Exporting a TensorFlow model (EN)",
+  "pci_project_guides_header_public_cloud_guides": "All Public Cloud guides"
 }

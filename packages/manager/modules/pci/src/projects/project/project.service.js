@@ -20,9 +20,35 @@ export default class {
       .catch(() => ({}));
   }
 
-  getCustomerRegions(serviceName) {
+  getCustomerRegions(serviceName, withPaginationMode = false) {
+    const requestHeader = withPaginationMode
+      ? {
+          'X-Pagination-Mode': 'CachedObjectList-Pages',
+        }
+      : null;
     return this.$http
-      .get(`/cloud/project/${serviceName}/region`)
+      .get(`/cloud/project/${serviceName}/region`, {
+        headers: requestHeader,
+      })
       .then(({ data: regions }) => regions);
+  }
+
+  getStorageRegions(projectId, regionCapacity) {
+    return this.getCustomerRegions(projectId, true).then((regions) => {
+      return regions.filter(({ services }) =>
+        services.find(({ name }) => name === regionCapacity),
+      );
+    });
+  }
+
+  getS3StorageRegions(projectId, regionCapacity) {
+    return this.getCustomerRegions(projectId, true).then((regions) => {
+      return regions.filter(({ services }) =>
+        services.find(
+          ({ name }) =>
+            name === regionCapacity[0] || name === regionCapacity[1],
+        ),
+      );
+    });
   }
 }

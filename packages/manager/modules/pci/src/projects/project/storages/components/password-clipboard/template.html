@@ -1,0 +1,35 @@
+<oui-field class="d-inline" data-label="{{:: $ctrl.fieldSecretKeyLabel }}">
+    <div class="mb-0 oui-input-overlay oui-clipboard">
+        <input
+            class="oui-input oui-clipboard__control"
+            data-ng-attr-id="{{:: $ctrl.SECRET_KEY_INPUT_ID}}"
+            data-ng-attr-name="{{:: $ctrl.SECRET_KEY_INPUT_ID}}"
+            data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput? 'text' : 'password' }}"
+            data-ng-value="$ctrl.fieldSecretKeyValue"
+            readonly
+        />
+        <button
+            type="button"
+            class="oui-button mr-4"
+            aria-label="{{ $ctrl.getPasswordLabel($ctrl.shouldDisplayPasswordInput) }}"
+            data-ng-click="$ctrl.shouldDisplayPasswordInput = !$ctrl.shouldDisplayPasswordInput"
+        >
+            <span
+                aria-hidden="true"
+                data-ng-class="'oui-icon oui-icon-eye-' + ($ctrl.shouldDisplayPasswordInput ? 'closed': 'open')"
+            ></span>
+        </button>
+        <button
+            type="button"
+            class="oui-button ml-1"
+            aria-label="{{:: 'pci_projects_project_storages_components_password_clipboard_label_copy_to_clipboard' | translate }}"
+            data-ng-if="$ctrl.model.clipboard"
+            data-ng-attr-id="{{:: $ctrl.SECRET_KEY_CLIPBOARD_BTN_ID}}"
+            data-clipboard-text="{{:: $ctrl.fieldSecretKeyValue}}"
+            data-oui-tooltip="{{ $ctrl.model.tooltipText }}"
+            data-ng-click="$ctrl.onClipboardClick()"
+        >
+            <span class="oui-icon oui-icon-copy" aria-hidden="true"></span>
+        </button>
+    </div>
+</oui-field>

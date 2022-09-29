@@ -1,0 +1,14 @@
+{
+  "pci_projects_project_users_download-rclone_title": "Download rclone configuration file",
+  "pci_projects_project_users_download-rclone_submit_label": "Download",
+  "pci_projects_project_users_download-rclone_cancel_label": "Cancel",
+  "pci_projects_project_users_download-rclone_content": "You are about to download a configuration file to connect to rclone.",
+  "pci_projects_project_users_download-rclone_more_link": "Find out more",
+  "pci_projects_project_users_download-rclone_region_label": "Select the region for this file:",
+  "pci_projects_project_users_download-rclone_region_help": "For security reasons, the configuration file doesn't include your password. You must add your password manually by editing the configuration file.",
+  "pci_projects_project_users_download-rclone_success_message": "The rclone configuration file has started downloading — if it has not started downloading ",
+  "pci_projects_project_users_download-rclone_success_message_link": "click here",
+  "pci_projects_project_users_download-rclone_error_rclone": "An error has occurred downloading the rclone configuration file: {{message}}.",
+  "pci_projects_project_users_download-rclone_region_label_global": "Select the region in which this file will apply (only the regions offering Object Storage and Cloud Archive services are listed):",
+  "pci_projects_project_users_download-rclone_file_type_label": "File type"
+}

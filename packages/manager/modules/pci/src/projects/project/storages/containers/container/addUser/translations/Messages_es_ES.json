@@ -13,7 +13,10 @@
   "pci_projects_project_storages_containers_container_addUser_right_readWrite": "Read and write",
   "pci_projects_project_storages_containers_container_addUser_right_readOnly": "Read only",
   "pci_projects_project_storages_containers_container_addUser_right_deny": "Deny",
-  "pci_projects_project_storages_containers_container_addUser_success_message": "Se ha añadido el usuario {{ name }} al contenedor {{ container }} como {{ role }}.",
-  "pci_projects_project_storages_containers_container_addUser_object_success_message": "Se ha añadido el usuario {{ name }} al objeto {{ container }} como {{ role }}.",
-  "pci_projects_project_storages_containers_container_addUser_error_addUser": "El usuario no se ha añadido correctamente al contenedor {{ container }}: {{ message }}."
+  "pci_projects_project_storages_containers_container_addUser_success_message": "Se ha añadido el usuario {{ name }} al contenedor {{ value }} como {{ role }}.",
+  "pci_projects_project_storages_containers_container_addUser_object_success_message": "Se ha añadido el usuario {{ name }} al objeto {{ value }} como {{ role }}.",
+  "pci_projects_project_storages_containers_container_addUser_error_addUser": "El usuario no se ha añadido correctamente al contenedor {{ value }}: {{ message }}.",
+  "pci_projects_project_storages_containers_container_addUser_description_container_step_1": "Indique el rol del usuario en el contenedor {{value}}.",
+  "pci_projects_project_storages_containers_container_addUser_description_object_step_1": "Indique el rol del usuario en el objeto {{value}}.",
+  "pci_projects_project_storages_containers_container_addUser_object_error_addUser": "El usuario no se ha añadido correctamente al objeto{{ value }}: {{ message }}."
 }

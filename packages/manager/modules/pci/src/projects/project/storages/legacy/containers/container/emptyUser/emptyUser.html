@@ -1,0 +1,13 @@
+<oui-modal
+    data-heading="{{:: 'pci_projects_project_storages_containers_container_empty_user_title' | translate }}"
+    data-primary-action="$ctrl.goToUsersAndRoles()"
+    data-primary-label="{{ ::'pci_projects_project_storages_containers_container_empty_user_label' | translate }}"
+    data-primary-disabled="$ctrl.isLoading"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'pci_projects_project_storages_containers_container_addUser_cancel_label' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <span
+        data-translate="pci_projects_project_storages_containers_container_empty_user_description"
+    ></span>
+</oui-modal>

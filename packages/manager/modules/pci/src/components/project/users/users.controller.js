@@ -4,14 +4,23 @@ import { ACTIVE_STATUS, PENDING_STATUS } from './users.constants';
 
 export default class CloudProjectUsersCtrl {
   /* @ngInject */
-  constructor($q, $translate, atInternet, CucCloudMessage) {
+  constructor($q, $translate, atInternet, CucCloudMessage, ovhFeatureFlipping) {
     this.$q = $q;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   $onInit() {
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability('public-cloud:object-storage')
+      .then((feature) =>
+        feature.isFeatureAvailable('public-cloud:object-storage'),
+      )
+      .then((status) => {
+        this.showSection = !status;
+      });
     this.messageChannel = 'pci.projects.project.users';
     this.showRolesMatrix = false;
     this.isDescriptionAvailable = some(

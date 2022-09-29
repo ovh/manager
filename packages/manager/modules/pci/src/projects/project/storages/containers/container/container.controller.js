@@ -1,6 +1,10 @@
 import get from 'lodash/get';
 
-import { CONTAINER_DEFAULT_USER } from '../containers.constants';
+import {
+  CONTAINER_DEFAULT_USER,
+  CONTAINER_GUIDES,
+  OBJECT_CONTAINER_S3_STATIC_URL_INFO,
+} from '../containers.constants';
 
 export default class PciStoragesContainersContainerController {
   /* @ngInject */
@@ -8,6 +12,7 @@ export default class PciStoragesContainersContainerController {
     $q,
     $translate,
     $window,
+    coreConfig,
     atInternet,
     CucCloudMessage,
     PciProjectStorageContainersService,
@@ -15,11 +20,25 @@ export default class PciStoragesContainersContainerController {
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
+    this.coreConfig = coreConfig;
     this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
 
+    this.guides = CONTAINER_GUIDES.map((guide) => ({
+      ...guide,
+      title: $translate.instant(
+        `pci_projects_project_storages_containers_container_documentation_title_${guide.id}`,
+      ),
+      description: $translate.instant(
+        `pci_projects_project_storages_containers_container_documentation_description_${guide.id}`,
+      ),
+      link:
+        guide.links[coreConfig.getUser().ovhSubsidiary] ||
+        guide.links[guide.links.DEFAULT],
+    }));
     this.defaultUser = CONTAINER_DEFAULT_USER;
+    this.objectS3staticUrlInfo = OBJECT_CONTAINER_S3_STATIC_URL_INFO;
   }
 
   $onInit() {
@@ -28,8 +47,11 @@ export default class PciStoragesContainersContainerController {
         name: 'retrievalState',
         hidden: !this.archive,
       },
+      {
+        name: 'contentType',
+        hidden: this.container.s3StorageType,
+      },
     ];
-
     this.loadMessages();
   }
 
@@ -52,8 +74,8 @@ export default class PciStoragesContainersContainerController {
       type: 'action',
     });
     let downloadPromise = null;
-    if (object.isHighPerfStorage) {
-      downloadPromise = this.downloadHighPerfObject(
+    if (object.s3StorageType) {
+      downloadPromise = this.downloadStandardS3Object(
         this.projectId,
         this.container.region,
         this.container.name,
@@ -73,8 +95,8 @@ export default class PciStoragesContainersContainerController {
       .catch((err) => this.handleDownloadError(err));
   }
 
-  downloadHighPerfObject(serviceName, regionName, containerName, object) {
-    return this.PciProjectStorageContainersService.downloadHighPerfObject(
+  downloadStandardS3Object(serviceName, regionName, containerName, object) {
+    return this.PciProjectStorageContainersService.downloadStandardS3Object(
       serviceName,
       regionName,
       containerName,
@@ -121,5 +143,12 @@ export default class PciStoragesContainersContainerController {
           'error',
         ),
       );
+  }
+
+  onDocumentationClick(guide) {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}object::documentation::${guide.id}`,
+      type: 'action',
+    });
   }
 }

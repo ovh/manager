@@ -39,6 +39,7 @@
         ></cui-message-container>
 
         <oui-datagrid
+            data-columns-parameters="$ctrl.columnsParameters"
             data-rows="$ctrl.containers"
             criteria="$ctrl.criteria"
             on-criteria-change="$ctrl.onListParamsChange($criteria)"
@@ -73,24 +74,13 @@
                 data-filterable
             ></oui-datagrid-column>
             <oui-datagrid-column
-                data-title=":: 'pci_projects_project_storages_containers_containerType_label' | translate"
-                data-property="containerType"
-                data-sortable
-                data-type="string"
-            >
-                <span
-                    data-ng-if="$row.containerType"
-                    data-ng-bind="'pci_projects_project_storages_containers_containerType_' + $row.containerType | translate"
-                ></span>
-            </oui-datagrid-column>
-            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_offer_label' | translate"
                 data-type="string"
                 data-sortable
                 data-filterable
             >
                 <span
-                    data-ng-bind=":: 'pci_projects_project_storages_containers_offer_' + ($row.isHighPerfStorage ? 'high_performance' : 'swift') | translate"
+                    data-ng-bind=":: 'pci_projects_project_storages_containers_offer_' + ($row.s3StorageType == null ? $ctrl.OBJECT_CONTAINER_OFFERS_TYPES.SWIFT : ($row.isHighPerfStorage ? $ctrl.OBJECT_CONTAINER_OFFERS_TYPES.HIGH_PERFORMANCE : $ctrl.OBJECT_CONTAINER_OFFERS_TYPES.STORAGE_STANDARD)) | translate"
                 ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
@@ -114,10 +104,22 @@
                 <span data-ng-if="!$value">-</span>
             </oui-datagrid-column>
 
+            <oui-datagrid-column
+                data-title=":: 'pci_projects_project_storages_containers_containerType_label' | translate"
+                data-property="containerType"
+                data-sortable
+                data-type="string"
+            >
+                <span
+                    data-ng-if="$row.containerType"
+                    data-ng-bind="'pci_projects_project_storages_containers_containerType_' + $row.containerType | translate"
+                ></span>
+            </oui-datagrid-column>
+
             <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-on-click="$ctrl.goToAddUserContainer($row)"
-                    data-ng-if="$row.isHighPerfStorage"
+                    data-ng-if="$row.s3StorageType"
                 >
                     <span
                         data-translate="pci_projects_project_storages_containers_view_add_user_label"
@@ -126,6 +128,19 @@
                 <oui-action-menu-item data-on-click="$ctrl.viewContainer($row)">
                     <span
                         data-ng-bind="'pci_projects_project_storages_containers_view_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.onPublicToggle($row)"
+                    data-ng-if="$ctrl.isSwiftType($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_switch_to_private_label"
+                        data-ng-if="$row.state"
+                    ></span>
+                    <span
+                        data-translate="pci_projects_project_storages_containers_switch_to_public_label"
+                        data-ng-if="!$row.state"
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
@@ -165,6 +180,16 @@
                     ></span>
                     <span
                         data-ng-bind="'pci_projects_project_storages_blocks_add_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"
+                    ></span>
+                </button>
+                <button
+                    class="oui-button oui-button_s oui-button_secondary float-right"
+                    data-ng-if="$ctrl.refreshContainers"
+                    data-ng-click="$ctrl.refreshContainers()"
+                >
+                    <span
+                        class="oui-icon oui-icon-refresh"
+                        aria-hidden="true"
                     ></span>
                 </button>
             </oui-datagrid-topbar>

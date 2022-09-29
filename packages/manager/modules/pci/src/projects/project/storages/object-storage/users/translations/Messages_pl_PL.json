@@ -1,13 +1,18 @@
 {
-  "pci_projects_project_storages_containers_users_title": "Dodaj użytkowników",
+  "pci_projects_project_storages_containers_users_title": "Zarządzanie poświadczeniami S3",
   "pci_projects_project_storages_containers_users_username": "Nazwa użytkownika",
   "pci_projects_project_storages_containers_users_description": "Opis",
   "pci_projects_project_storages_containers_users_import_json": "Importuj S3 Policy (JSON)",
   "pci_projects_project_storages_containers_users_download_json": "Pobierz S3 Policy (JSON)",
   "pci_projects_project_storages_containers_users_user_management": "Zarządzanie użytkownikami",
-  "pci_projects_project_storages_containers_users_user_description": "Aby dodać nowych użytkowników, utwórz ich w sekcji „User &amp; roles”",
+  "pci_projects_project_storages_containers_users_user_description": "W tej sekcji możesz dodać nowego użytkownika S3, uzyskać klucz dostępowy oraz klucz tajny i zarządzać polityką S3.",
   "pci_projects_project_storages_containers_users_user_description_warning": "Po utworzeniu użytkownika konieczne jest wygenerowanie dla niego certyfikatu S3 w sekcji „Users &amp; Roles”.",
-  "pci_projects_project_storages_containers_users_add_user": "Dodaj użytkowników",
+  "pci_projects_project_storages_containers_users_add_user": "Dodaj użytkownika",
   "pci_projects_project_storages_containers_users_import_success_message": "Pobranie pliku JSON powiązanego z użytkownikiem {{user}} zostało wykonane.",
-  "pci_projects_project_storages_containers_users_import_error_message": "Wystąpił błąd podczas pobierania pliku JSON powiązanego z użytkownikiem: {{message}}"
+  "pci_projects_project_storages_containers_users_import_error_message": "Wystąpił błąd podczas pobierania pliku JSON powiązanego z użytkownikiem: {{message}}",
+  "pci_projects_project_storages_containers_users_accesskey": "Klucz dostępu",
+  "pci_projects_project_storages_containers_users_download_rclone_file": "Pobierz plik rclone",
+  "pci_projects_project_storages_containers_users_see_secret_key": "Wyświetl tajny klucz",
+  "pci_projects_project_storages_containers_users_show_secret_key_success": "Tajny klucz dla Twojego użytkownika {{user}} to {{secret}}.",
+  "pci_projects_project_storages_containers_users_add_success_field_secret_key": "Twój tajny klucz S3:"
 }

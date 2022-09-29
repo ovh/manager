@@ -9,6 +9,7 @@ export default class PciBlockStorageContainersContainerObjectAddController {
   }
 
   $onInit() {
+    this.trackClick('add');
     this.isLoading = false;
 
     this.prefix = '/';
@@ -18,17 +19,15 @@ export default class PciBlockStorageContainersContainerObjectAddController {
   addObjects() {
     this.isLoading = true;
     let addPromise = null;
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}object::add::confirm`,
-      type: 'action',
-    });
-    if (this.container.isHighPerfStorage) {
+    this.trackClick('object::add::confirm');
+    if (this.container.s3StorageType) {
       addPromise = this.addHighPerfObjects(
         this.projectId,
         this.container.region,
         this.container.name,
         this.prefix,
         this.files,
+        this.container.s3StorageType,
       );
     } else {
       addPromise = this.PciProjectStorageContainersService.addObjects(
@@ -66,21 +65,33 @@ export default class PciBlockStorageContainersContainerObjectAddController {
       });
   }
 
-  addHighPerfObjects(serviceName, regionName, containerName, prefix, files) {
+  addHighPerfObjects(
+    serviceName,
+    regionName,
+    containerName,
+    prefix,
+    files,
+    s3StorageType,
+  ) {
     return this.PciProjectStorageContainersService.addHighPerfObjects(
       serviceName,
       regionName,
       containerName,
       prefix,
       files,
+      s3StorageType,
     );
   }
 
   cancel() {
+    this.trackClick('object::add::cancel');
+    return this.goBack();
+  }
+
+  trackClick(action) {
     this.atInternet.trackClick({
-      name: `${this.trackingPrefix}object::add::cancel`,
+      name: `${this.trackingPrefix}${action}`,
       type: 'action',
     });
-    return this.goBack();
   }
 }

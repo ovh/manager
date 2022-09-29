@@ -1,13 +1,18 @@
 {
-  "pci_projects_project_storages_containers_users_title": "Adicionar utilizadores",
+  "pci_projects_project_storages_containers_users_title": "Gestão das credenciais S3",
   "pci_projects_project_storages_containers_users_username": "Nome do utilizador",
   "pci_projects_project_storages_containers_users_description": "Descrição",
   "pci_projects_project_storages_containers_users_import_json": "Importar S3 Policy (JSON)",
   "pci_projects_project_storages_containers_users_download_json": "Download da S3 Policy (JSON)",
   "pci_projects_project_storages_containers_users_user_management": "Gestão de utilizadores",
-  "pci_projects_project_storages_containers_users_user_description": "Para adicionar novos utilizadores, deve criá-los na secção \"Utilizadores e funções\"",
+  "pci_projects_project_storages_containers_users_user_description": "Esta secção permite-lhe adicionar um novo utilizador S3, obter a sua chave de acesso e a sua chave secreta e gerir as S3 Policies.",
   "pci_projects_project_storages_containers_users_user_description_warning": "Depois de criar o utilizador, será necessário gerar as credenciais S3 na secção \"Utilizadores e funções\".",
-  "pci_projects_project_storages_containers_users_add_user": "Adicionar utilizadores",
+  "pci_projects_project_storages_containers_users_add_user": "Adicionar um utilizador",
   "pci_projects_project_storages_containers_users_import_success_message": "O download do ficheiro JSON associado ao utilizador {{user}} foi efetuado com êxito.",
-  "pci_projects_project_storages_containers_users_import_error_message": "Ocorreu um erro aquando do download do ficheiro JSON associado ao utilizador: {{ message }}."
+  "pci_projects_project_storages_containers_users_import_error_message": "Ocorreu um erro aquando do download do ficheiro JSON associado ao utilizador: {{ message }}.",
+  "pci_projects_project_storages_containers_users_accesskey": "Chave de acesso",
+  "pci_projects_project_storages_containers_users_download_rclone_file": "Descarregar o ficheiro rclone",
+  "pci_projects_project_storages_containers_users_see_secret_key": "Ver a chave secreta",
+  "pci_projects_project_storages_containers_users_show_secret_key_success": "A chave secreta do seu utilizador {{user}} é {{secret}}.",
+  "pci_projects_project_storages_containers_users_add_success_field_secret_key": "A sua chave secreta S3:"
 }

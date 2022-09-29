@@ -3,11 +3,11 @@
   "pci_projects_project_storages_containers_container_archive_info_storedObjects": "Archive: {{ count }}",
   "pci_projects_project_storages_containers_container_object_info_storedObjects": "Objekte: {{ count }}",
   "pci_projects_project_storages_containers_container_info_storedBytes": "Verwendeter Speicherplatz: {{ bytes }}",
-  "pci_projects_project_storages_containers_container_info_publicUrl": "Container-URL:",
+  "pci_projects_project_storages_containers_container_info_publicUrl": "Endpoint",
   "pci_projects_project_storages_containers_container_info_publicUrl_help": "Diese Information ist notwendig, um Ihre Objekte über die API abzurufen oder zu bearbeiten. Weitere Informationen finden Sie in unserer Dokumentation.",
   "pci_projects_project_storages_containers_container_archive_info_staticUrl": "Serveradresse für rsync/sftp/scp:",
   "pci_projects_project_storages_containers_container_object_info_staticUrl": "Wert des CNAME-/TXT-Eintrags:",
-  "pci_projects_project_storages_containers_container_object_info_staticUrl_help": "Um den Container „Statisches Hosting\" für eine Domain oder Subdomain zu verwenden, bearbeiten Sie einfach die DNS-Zone und fügen Sie einen CNAME-Eintrag mit diesem Wert hinzu.",
+  "pci_projects_project_storages_containers_container_object_info_staticUrl_help": "Verwenden Sie den Container „Statisches Hosting“ für eine Domain oder Subdomain. Ändern Sie einfach die DNS-Zone: Fügen Sie dazu einen CNAME-Eintrag mit diesem Wert hinzu.",
   "pci_projects_project_storages_containers_container_archive_info_user": "Benutzername: {{ user }}",
   "pci_projects_project_storages_containers_container_archive_info_password": "Passwort (Konkatenation der folgenden Felder):",
   "pci_projects_project_storages_containers_container_name_label": "Name",
@@ -28,5 +28,12 @@
   "pci_projects_project_storages_containers_container_object_error_download": "Beim Download des Objekts ist ein Fehler aufgetreten: {{ message }}.",
   "pci_projects_project_storages_containers_container_archive_error_unseal": "Bei der Freigabe des Archivs ist ein Fehler aufgetreten: {{ message }}.",
   "pci_projects_project_storages_containers_container_archive_success_unseal": "Das Archiv {{ archive }} wird freigegeben.",
-  "pci_projects_project_storages_containers_container_add_user_label": "Einen Nutzer zu meinem Objekt hinzufügen"
+  "pci_projects_project_storages_containers_container_add_user_label": "Einen Nutzer zu meinem Objekt hinzufügen",
+  "pci_projects_project_storages_containers_container_info_id": "ID",
+  "pci_projects_project_storages_containers_container_documentation_title_rclone": "Object Storage mit Rclone",
+  "pci_projects_project_storages_containers_container_documentation_description_rclone": "Hier erfahren Sie, wie OVHcloud Object Storage mit Rclone synchronisiert werden kann.",
+  "pci_projects_project_storages_containers_container_documentation_title_veeam": "S3 Object Storage mit Veeam",
+  "pci_projects_project_storages_containers_container_documentation_description_veeam": "Konfigurieren Sie Veeam und nutzen Sie Ihren S3 Object Storage-Speicherplatz.",
+  "pci_projects_project_storages_containers_container_documentation_title_s3-limitation": "Die technischen Grenzen des S3 Object Storage",
+  "pci_projects_project_storages_containers_container_documentation_description_s3-limitation": "Hier erklären wir die technisch bedingten Grenzen der Lösung S3 Object Storage."
 }

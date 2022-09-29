@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_containers_users_delete_title": "Usuń użytkownika",
+  "pci_projects_project_storages_containers_users_delete_label": "Usuń",
+  "pci_projects_project_storages_containers_users_delete_question": "Czy na pewno chcesz usunąć tego użytkownika z listy użytkowników S3?",
+  "pci_projects_project_storages_containers_users_delete_success": "Użytkownik {{user}} został usunięty z listy użytkowników S3.",
+  "pci_projects_project_storages_containers_users_delete_error": "Wystąpił błąd podczas usuwania użytkownika: {{message}}",
+  "pci_projects_project_storages_containers_users_delete_cancel": "Anuluj"
+}

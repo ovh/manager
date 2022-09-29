@@ -21,8 +21,12 @@ export default {
     viewContainer: '<',
     getStateName: '<',
     steins: '<',
+    userList: '<',
+    allUserList: '<',
     customerRegions: '<',
     containersRegions: '<',
     goToRegion: '<',
+    trackingPrefix: '<',
+    refreshContainers: '<?',
   },
 };

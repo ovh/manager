@@ -34,7 +34,9 @@
     data-on-finish="$ctrl.add()"
     data-current-index="$ctrl.currrentStep"
 >
+    <!--Offers list-->
     <oui-step-form
+        data-position="0"
         data-ng-if="!$ctrl.archive"
         data-header="{{:: 'pci_projects_project_storages_containers_add_offer_title' | translate }}"
         data-navigation="$ctrl.container.offer"
@@ -54,13 +56,31 @@
                     data-ng-if="$ctrl.regions[offerName] && $ctrl.regions[offerName].length > 0"
                     data-name="{{:: offerName }}_offers"
                     data-model="$ctrl.container.offer"
-                    data-label="{{:: ('pci_projects_project_storages_containers_add_offer_' + offerName) | translate }}"
-                    data-description="{{:: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_description') | translate }}"
                     data-values="[offerName]"
                     data-variant="light"
                     data-on-change="$ctrl.onContainerSolutionChange()"
                     data-required
                 >
+                    <oui-select-picker-label>
+                        <span
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName) | translate"
+                        ></span>
+                        <span
+                            class="oui-badge oui-badge_beta"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].beta"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_label') | translate"
+                        ></span>
+                        <span
+                            class="oui-badge oui-badge_new"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].new"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_label') | translate"
+                        ></span>
+                    </oui-select-picker-label>
+                    <oui-select-picker-section>
+                        <p
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_description') | translate"
+                        ></p>
+                    </oui-select-picker-section>
                 </oui-select-picker>
             </div>
         </div>
@@ -73,19 +93,41 @@
                     class="d-inline-block col-md-6 col-xl-4 my-3"
                     data-name="selected-offer"
                     data-model="$ctrl.container.offer"
-                    data-label="{{ ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer) | translate }}"
-                    data-description="{{ ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_description') | translate }}"
                     data-values="[$ctrl.container.offer]"
                     data-variant="light"
                     data-on-change="$ctrl.onContainerSolutionChange()"
                     data-required
                 >
+                    <oui-select-picker-label>
+                        <strong
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer) | translate"
+                        ></strong>
+                        <span
+                            class="oui-badge oui-badge_beta"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].beta"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_label') | translate"
+                        ></span>
+                        <span
+                            class="oui-badge oui-badge_new"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].new"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_label') | translate"
+                        ></span>
+                    </oui-select-picker-label>
+                    <oui-select-picker-section>
+                        <p
+                            class="text-justify"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_description') | translate"
+                        ></p>
+                    </oui-select-picker-section>
                 </oui-select-picker>
             </div>
         </div>
     </oui-step-form>
 
+    <!--Regions list-->
     <oui-step-form
+        data-position="1"
+        data-ng-if="!$ctrl.archive"
         data-name="storage_container_add_region"
         data-header="{{:: 'pci_projects_project_storages_containers_add_region_title' | translate }}"
         data-navigation="$ctrl.container.region"
@@ -103,7 +145,9 @@
         ></pci-project-regions-list>
     </oui-step-form>
 
+    <!--Container types list-->
     <oui-step-form
+        data-position="2"
         data-header="{{:: 'pci_projects_project_storages_containers_add_type_title' | translate }}"
         data-ng-if="!$ctrl.archive && $ctrl.OBJECT_CONTAINER_TYPE_OFFERS.includes($ctrl.container.offer)"
         data-on-focus="$ctrl.onTypesFocus()"
@@ -138,7 +182,72 @@
         </div>
     </oui-step-form>
 
+    <!--Create/Linked user-->
     <oui-step-form
+        data-position="2"
+        data-ng-if="$ctrl.isRightOffer()"
+        data-header="{{:: 'pci_projects_project_storages_containers_add_create_or_linked_user_title' | translate }}"
+        data-navigation="$ctrl.isReadyForValidation()"
+        data-name="storage_container_add_user"
+    >
+        <pci-project-storages-create-linked-user
+            data-project-id="$ctrl.projectId"
+            data-users="$ctrl.users"
+            data-user-model="$ctrl.userModel"
+            data-field-secret-key-label=":: 'pci_projects_project_storages_containers_add_create_or_linked_user_success_field_secret_key' | translate"
+        ></pci-project-storages-create-linked-user>
+    </oui-step-form>
+
+    <!--Container name-->
+    <oui-step-form
+        data-position="3"
+        data-ng-if="!$ctrl.archive"
+        data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
+        data-editable="!$ctrl.isLoading"
+        data-on-cancel="$ctrl.cancel()"
+        data-cancel-text="{{:: 'pci_projects_project_storages_containers_add_cancel_label' | translate }}"
+        data-submit-text="{{:: 'pci_projects_project_storages_containers_add_submit_label' | translate }}"
+        name="storage_container_add_name"
+    >
+        <oui-field
+            data-size="xl"
+            data-help-text="{{ ::'pci_projects_project_storages_containers_add_pattern_help_storage-s3-high-perf' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="name"
+                data-ng-model="$ctrl.container.name"
+                data-ng-pattern="$ctrl.OBJECT_CONTAINER_NAME_PATTERN[$ctrl.container.offer]"
+                data-ng-required="true"
+            />
+        </oui-field>
+    </oui-step-form>
+
+    <!--Archive container steps-->
+    <oui-step-form
+        data-position="0"
+        data-ng-if="$ctrl.archive"
+        data-name="storage_container_add_region"
+        data-header="{{:: 'pci_projects_project_storages_containers_add_region_title' | translate }}"
+        data-navigation="$ctrl.container.region"
+        data-on-focus="$ctrl.onRegionsFocus()"
+        data-on-submit="$ctrl.onRegionChange()"
+        data-editable="!$ctrl.isLoading"
+        data-valid="$ctrl.container.region"
+        data-prevent-next
+    >
+        <pci-project-regions-list
+            data-ng-if="$ctrl.archive || $ctrl.currrentStep > 0"
+            data-regions="$ctrl.container.offer ? $ctrl.regions[$ctrl.container.offer] : $ctrl.regions"
+            data-selected-region="$ctrl.container.region"
+            data-display-selected-region="$ctrl.displaySelectedRegion"
+        ></pci-project-regions-list>
+    </oui-step-form>
+
+    <oui-step-form
+        data-position="1"
+        data-ng-if="$ctrl.archive"
         data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
         data-editable="!$ctrl.isLoading"
         data-on-cancel="$ctrl.cancel()"

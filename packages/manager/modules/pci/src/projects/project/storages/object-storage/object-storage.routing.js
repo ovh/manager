@@ -21,8 +21,10 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       archive: () => false,
+
       trackingPrefix: () =>
         'PublicCloud::pci::projects::project::storages::objects::',
+
       containers: /* @ngInject */ (
         PciProjectStorageContainersService,
         archive,
@@ -36,20 +38,38 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.storages.object-storage.objects', {
           projectId,
         }),
+
+      userList: /* @ngInject */ (projectId, allUserList) =>
+        allUserList.filter((user) => user?.s3Credentials?.length > 0),
+
+      allUserList: /* @ngInject */ (
+        projectId,
+        PciStoragesObjectStorageService,
+      ) =>
+        PciStoragesObjectStorageService.getAllS3Users(projectId).then((users) =>
+          PciStoragesObjectStorageService.mapUsersToCredentials(
+            projectId,
+            users,
+          ),
+        ),
+
       isUserTabActive: /* @ngInject */ ($transition$, $state) => () => {
         return $state
           .href($state.current.name, $transition$.params())
           .includes('users');
       },
+
       userListLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.storages.object-storage.users', {
           projectId,
         }),
+
       onGuideLinkClick: /* @ngInject */ (atInternet, trackingPrefix) => () =>
         atInternet.trackClick({
           name: `${trackingPrefix}onboarding::documentation::object_guide`,
           type: 'action',
         }),
+
       goToStorageContainers: /* @ngInject */ (
         CucCloudMessage,
         $state,
@@ -71,7 +91,7 @@ export default /* @ngInject */ ($stateProvider) => {
           promise.then(() =>
             CucCloudMessage[type](
               message,
-              'pci.projects.project.storages.containers',
+              'pci.projects.project.storages.containers.container',
             ),
           );
         }
