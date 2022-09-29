@@ -7,9 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
       redirectTo: (transition) =>
         transition
           .injector()
-          .getAsync('containers')
-          .then((containers) =>
-            containers.length > 0
+          .getAsync('containersResponseObj')
+          .then(({ resources, errors }) =>
+            resources.length === 0 && errors.length === 0
               ? {
                   state: 'pci.projects.project.storages.object-storage.objects',
                 }

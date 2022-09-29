@@ -141,27 +141,45 @@ export default class PciStoragesContainersService {
       });
   }
 
-  getAll(projectId, isArchive = null, withObjects = false) {
-    const queryParams = {
+  getAll(
+    projectId,
+    isArchive = null,
+    withObjects = false,
+    includeErrors = false,
+  ) {
+    const params = {
       serviceName: projectId,
       withObjects,
     };
 
     if (isArchive === true) {
-      queryParams.archive = true;
+      params.archive = true;
     } else if (isArchive === false) {
-      queryParams.archive = false;
+      params.archive = false;
     }
 
-    return this.OvhApiCloudProjectStorage.Aapi()
-      .query(queryParams)
-      .$promise.then((containers) =>
-        map(
-          containers,
+    return this.$http
+      .get(`/cloud/project/${projectId}/storages`, {
+        params,
+        serviceType: 'aapi',
+      })
+      .then(({ data }) => {
+        if (includeErrors) {
+          return {
+            resources: map(
+              data.resources,
+              (container) =>
+                new Container({ ...container, state: container.public }),
+            ),
+            errors: data.errors,
+          };
+        }
+        return map(
+          data.resources,
           (container) =>
             new Container({ ...container, state: container.public }),
-        ),
-      );
+        );
+      });
   }
 
   getContainer(
