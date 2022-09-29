@@ -1,5 +1,5 @@
 {
-  "emails_domain_title": "E-Mails",
+  "emails_domain_title": "MX Plan",
   "emails_domain_delegate_title": "Delegieren der Verwaltung von E-Mails",
   "emails_contacts_management": "Kontakte",
   "emails_common_plan": "Abonnement",
@@ -12,5 +12,6 @@
   "emails_common_back": "Zurück",
   "emails_common_upgrade_account": "Zu einem anderen Angebot wechseln",
   "emails_select_placeholder": "Auswahl...",
-  "emails_required_fields": "Die Felder mit Asterisk sind Pflichtfelder."
+  "emails_required_fields": "Die Felder mit Asterisk sind Pflichtfelder.",
+  "emails_domain_order": "Bestellen"
 }

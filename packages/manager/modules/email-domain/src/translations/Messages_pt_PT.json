@@ -1,5 +1,5 @@
 {
-  "emails_domain_title": "E-mails",
+  "emails_domain_title": "MX Plan",
   "emails_domain_delegate_title": "Delegações de e-mails",
   "emails_contacts_management": "Contactos",
   "emails_common_plan": "Subscrição",
@@ -12,5 +12,6 @@
   "emails_common_back": "Retroceder",
   "emails_common_upgrade_account": "Mudar de oferta",
   "emails_select_placeholder": "Selecione...",
-  "emails_required_fields": "Os campos com asterisco são de preenchimento obrigatório."
+  "emails_required_fields": "Os campos com asterisco são de preenchimento obrigatório.",
+  "emails_domain_order": "Encomendar"
 }

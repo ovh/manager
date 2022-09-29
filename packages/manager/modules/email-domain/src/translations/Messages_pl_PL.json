@@ -1,5 +1,5 @@
 {
-  "emails_domain_title": "E-maile",
+  "emails_domain_title": "MX Plan",
   "emails_domain_delegate_title": "Delegowanie uprawnień do e-maili",
   "emails_contacts_management": "Kontakty",
   "emails_common_plan": "Abonament",
@@ -12,5 +12,6 @@
   "emails_common_back": "Powrót",
   "emails_common_upgrade_account": "Zmień ofertę",
   "emails_select_placeholder": "Wybierz...",
-  "emails_required_fields": "Pola oznaczone gwiazdką są obowiązkowe."
+  "emails_required_fields": "Pola oznaczone gwiazdką są obowiązkowe.",
+  "emails_domain_order": "Zamów"
 }

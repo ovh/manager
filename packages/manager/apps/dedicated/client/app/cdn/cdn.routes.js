@@ -1,4 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { getCdnOrderUrl } from './cdn.order';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.networks.cdn.index', {
@@ -10,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: () => '/cdn/dedicated',
       dataModel: () => 'cdnanycast.Anycast',
       defaultFilterColumn: () => 'service',
-      header: () => 'CDN',
+      header: /* @ngInject */ ($translate) => $translate.instant('cdn_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({
         service: productId,
@@ -18,6 +19,21 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.networks.cdn.dedicated', {
           productId,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('cdn_order'),
+          value: $translate.instant('cdn_order'),
+          onClick: () => {
+            $window.open(
+              getCdnOrderUrl(coreConfig.getUser().ovhSubsidiary),
+              '_blank',
+            );
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
     redirectTo: (transition) =>

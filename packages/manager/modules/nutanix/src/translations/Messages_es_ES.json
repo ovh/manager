@@ -12,5 +12,6 @@
   "nutanix_cluster_list_status_error": "Error",
   "nutanix_cluster_list_prism_central_url": "URL Prism Central",
   "nutanix_cluster_admin_interface": "Interfaz de administración",
-  "nutanix_cluster_list_localisation_value": "{{dcName}} (rack {{rackName}})"
+  "nutanix_cluster_list_localisation_value": "{{dcName}} (rack {{rackName}})",
+  "nutanix_order": "Contratar"
 }

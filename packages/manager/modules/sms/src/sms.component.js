@@ -12,5 +12,6 @@ export default {
 
     getSmsLink: '<',
     viewSms: '<',
+    gotoOrder: '<',
   },
 };

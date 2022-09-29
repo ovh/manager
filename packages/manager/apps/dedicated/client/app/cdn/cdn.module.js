@@ -9,6 +9,7 @@ const moduleName = 'ovhManagerCdn';
 
 angular
   .module(moduleName, ['oui', ListLayoutHelper.moduleName, 'ui.router'])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./dedicated/translations */);
 
 export default moduleName;

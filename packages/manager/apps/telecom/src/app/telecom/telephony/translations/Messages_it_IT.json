@@ -1,7 +1,9 @@
 {
-  "telephony_breadcrumb": "Telefonia",
+  "telephony_breadcrumb": "VoIP",
   "telephony_infrastructure_other_line_additional_label": "(escluso il numero OVHcloud)",
   "telephony_view_billing_account_service_services": "Visualizza i servizi",
   "telephony_table_header_action": "Azioni",
-  "telephony_table_action_item_telephony_repayments": "Gestisci i tuoi rimborsi"
+  "telephony_table_action_item_telephony_repayments": "Gestisci i tuoi rimborsi",
+  "telephony_order": "Ordina",
+  "telephony_title": "VoIP"
 }

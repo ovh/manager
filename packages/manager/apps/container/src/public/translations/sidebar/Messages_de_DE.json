@@ -57,7 +57,7 @@
   "sidebar_pci_ssh_keys": "SSH-Schlüssel",
   "sidebar_pci_billing": "Abrechnung",
   "sidebar_pci_credits_vouchers": "Guthaben und Gutscheine",
-  "sidebar_pci_contacts_rights": "Contact and Rights",
+  "sidebar_pci_contacts_rights": "Kontakt &amp; Rechte",
   "sidebar_pci_project_settings": "Project Settings",
   "sidebar_storage": "Speicherdienste",
   "sidebar_nasha": "HA-NAS",
@@ -73,7 +73,7 @@
   "sidebar_network": "Network",
   "sidebar_vrack": "Privates vRack Netzwerk",
   "sidebar_cloud_connect": "OVHcloud Connect",
-  "sidebar_iplb": "OVHcloud Load Balancer",
+  "sidebar_iplb": "Loadbalancer",
   "sidebar_ip": "Öffentliche IP-Adressen",
   "sidebar_cdn": "CDN Infrastruktur",
   "sidebar_domain_dns": "Domains & DNS",
@@ -87,7 +87,7 @@
   "sidebar_web_paas": "Web PaaS",
   "sidebar_platform_sh": "Web PaaS powered by Platform.sh",
   "sidebar_emails": "E-Mails",
-  "sidebar_email_pro": "E-Mail Pro",
+  "sidebar_email_pro": "E-Mail für Profis",
   "sidebar_exchange": "Exchange",
   "sidebar_mxplan": "MX Plan",
   "sidebar_microsoft": "Microsoft",
@@ -121,5 +121,10 @@
   "sidebar_clipboard_copy": "In die Zwischenablage kopieren",
   "sidebar_pci_load_error": "Beim Abruf der Projektliste ist ein Fehler aufgetreten",
   "sidebar_billing_ssh": "Meine SSH-Schlüssel",
-  "sidebar_email_delegated": "Delegieren der Verwaltung von E-Mails"
+  "sidebar_email_delegated": "Delegieren der Verwaltung von E-Mails",
+  "sidebar_pci_all": "Meine Public Cloud-Projekte",
+  "sidebar_tag_alpha": "Alpha",
+  "sidebar_tag_beta": "Beta",
+  "sidebar_tag_new": "Neu",
+  "sidebar_domain_operations": "Laufende Operationen"
 }

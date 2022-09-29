@@ -1,4 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { getVpsOrderUrl } from './vps-order';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.index', {
@@ -14,12 +15,27 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: () => '/vps',
       dataModel: () => 'vps.VPS',
       defaultFilterColumn: () => 'name',
-      header: () => 'VPS',
+      header: /* @ngInject */ ($translate) => $translate.instant('vps_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ name: serviceName }) =>
         $state.href('vps.detail', {
           serviceName,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('vps_common_order'),
+          value: $translate.instant('vps_common_order'),
+          onClick: () => {
+            $window.open(
+              getVpsOrderUrl(coreConfig.getUser().ovhSubsidiary),
+              '_blank',
+            );
+          },
+        },
+      }),
       hideBreadcrumb: () => true,
     },
     redirectTo: (transition) => {

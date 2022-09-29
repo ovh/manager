@@ -110,6 +110,13 @@ $selected: #00185e;
     color: #0050d7 !important;
   }
 
+  &_tag {
+    font-weight: normal !important;
+    color: white !important;
+    background-color: #4d5592 !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+
   &_arrow {
     font-size: 1.5rem;
     float: right;

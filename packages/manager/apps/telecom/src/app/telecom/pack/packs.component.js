@@ -8,6 +8,7 @@ export default {
   bindings: {
     ...ListLayoutHelper.componentBindings,
     loadResource: '<',
+    gotoOrder: '<',
 
     getPackLink: '<',
     viewPack: '<',

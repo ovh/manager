@@ -8,5 +8,6 @@ export default {
     user: '<',
     tenants: '<',
     getServiceNameLink: '<',
+    gotoOrder: '<',
   },
 };

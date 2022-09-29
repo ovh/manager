@@ -1,4 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { getVeeamOrderUrl } from './veeam.order';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('veeam-cloud-connect.index', {
@@ -21,6 +22,21 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('veeam-cloud-connect.detail', {
           serviceName,
         }),
+      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('veeam_cc_order'),
+          value: $translate.instant('veeam_cc_order'),
+          onClick: () => {
+            $window.open(
+              getVeeamOrderUrl(coreConfig.getUser().ovhSubsidiary),
+              '_blank',
+            );
+          },
+        },
+      }),
       hideBreadcrumb: /* @ngInject */ () => true,
     },
     redirectTo: (transition) => {

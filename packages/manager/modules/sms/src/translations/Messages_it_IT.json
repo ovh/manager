@@ -5,5 +5,6 @@
   "sms_status_label": "Stato",
   "sms_status_label_enable": "OK",
   "sms_status_label_disable": "Disattivo",
-  "sms_view_sms_label": "Dettagli"
+  "sms_view_sms_label": "Dettagli",
+  "sms_order": "Ordina"
 }

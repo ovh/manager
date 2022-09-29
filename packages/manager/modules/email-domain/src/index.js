@@ -17,7 +17,8 @@ angular
         template: '<div ui-view></div>',
         redirectTo: 'app.email.index',
         resolve: {
-          breadcrumb: () => 'Emails',
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('emails_domain_title'),
         },
       });
 
