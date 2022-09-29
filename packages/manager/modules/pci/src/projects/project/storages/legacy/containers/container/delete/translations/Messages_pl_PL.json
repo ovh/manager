@@ -1,7 +1,7 @@
 {
   "pci_projects_project_storages_containers_container_delete_archive_title": "Usuń kontener archiwów",
   "pci_projects_project_storages_containers_container_delete_object_title": "Usuń kontener obiektów",
-  "pci_projects_project_storages_containers_container_delete_submit_label": "Potwierdź",
+  "pci_projects_project_storages_containers_container_delete_submit_label": "Zatwierdź",
   "pci_projects_project_storages_containers_container_delete_cancel_label": "Anuluj",
   "pci_projects_project_storages_containers_container_delete_archive_erase_message": "Wszystkie dane przechowywane w kontenerze archiwów zostaną utracone.",
   "pci_projects_project_storages_containers_container_delete_object_erase_message": "Wszystkie dane przechowywane w kontenerze obiektów zostaną utracone.",

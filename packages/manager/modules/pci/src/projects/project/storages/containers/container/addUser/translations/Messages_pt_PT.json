@@ -18,5 +18,8 @@
   "pci_projects_project_storages_containers_container_addUser_error_addUser": "O seu utilizador não foi corretamente adicionado ao container {{ value }}: {{ message }}.",
   "pci_projects_project_storages_containers_container_addUser_description_container_step_1": "Defina a função do seu utilizador no container {{value}}.",
   "pci_projects_project_storages_containers_container_addUser_description_object_step_1": "Defina a função do seu utilizador no objeto {{value}}.",
-  "pci_projects_project_storages_containers_container_addUser_object_error_addUser": "O seu utilizador não foi corretamente adicionado ao objeto {{ value }}: {{ message }}."
+  "pci_projects_project_storages_containers_container_addUser_object_error_addUser": "O seu utilizador não foi corretamente adicionado ao objeto {{ value }}: {{ message }}.",
+  "pci_projects_project_storages_containers_container_addUser_select_user_label": "Selecionar um utilizador",
+  "pci_projects_project_storages_containers_container_addUser_select_user_has_credential": "Credenciais geradas",
+  "pci_projects_project_storages_containers_container_addUser_select_user_has_not_credential": "Sem credenciais"
 }

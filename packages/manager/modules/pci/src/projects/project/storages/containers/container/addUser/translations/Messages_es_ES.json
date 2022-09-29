@@ -18,5 +18,8 @@
   "pci_projects_project_storages_containers_container_addUser_error_addUser": "El usuario no se ha añadido correctamente al contenedor {{ value }}: {{ message }}.",
   "pci_projects_project_storages_containers_container_addUser_description_container_step_1": "Indique el rol del usuario en el contenedor {{value}}.",
   "pci_projects_project_storages_containers_container_addUser_description_object_step_1": "Indique el rol del usuario en el objeto {{value}}.",
-  "pci_projects_project_storages_containers_container_addUser_object_error_addUser": "El usuario no se ha añadido correctamente al objeto{{ value }}: {{ message }}."
+  "pci_projects_project_storages_containers_container_addUser_object_error_addUser": "El usuario no se ha añadido correctamente al objeto{{ value }}: {{ message }}.",
+  "pci_projects_project_storages_containers_container_addUser_select_user_label": "Seleccionar un usuario",
+  "pci_projects_project_storages_containers_container_addUser_select_user_has_credential": "Claves generadas",
+  "pci_projects_project_storages_containers_container_addUser_select_user_has_not_credential": "Sin claves"
 }
