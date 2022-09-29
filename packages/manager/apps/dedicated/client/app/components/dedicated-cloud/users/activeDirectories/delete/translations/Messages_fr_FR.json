@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_USER_AD_delete_title": "Supprimer votre Active Directory",
+  "dedicatedCloud_USER_AD_delete_content": "Assurez-vous d'avoir supprimé tous les utilisateurs et groupes importés depuis cet Active Directory avant de le supprimer. Êtes-vous sûr de vouloir supprimer l'Active Directory {{ name }} ?",
+  "dedicatedCloud_USER_AD_delete_button_close": "Fermer",
+  "dedicatedCloud_USER_AD_delete_button_confirm": "Confirmer",
+  "dedicatedCloud_USER_AD_delete_error": "La suppression de l'Active Directory n'a pas pu être effectuée."
+}
