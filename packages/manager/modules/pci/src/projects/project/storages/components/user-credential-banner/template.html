@@ -1,0 +1,50 @@
+<oui-message type="success" dismissable>
+
+    <!--Description-->
+    <p
+        data-translate="{{:: $ctrl.isNewUser ? 'pci_projects_project_storages_containers_add_create_user_success_message' : 'pci_projects_project_storages_containers_add_linked_user_success_message'}}"
+        data-translate-values="{ username: '<strong>'+$ctrl.user.username+'</strong>' }"
+    ></p>
+
+    <!---->
+    <div class="row">
+        <div class="col-md-6 col-lg-5">
+            <!--User username info-->
+            <oui-field
+                data-label="{{:: 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label' | translate }}"
+            >
+                <oui-clipboard
+                    data-name="username"
+                    data-model="$ctrl.user.username"
+                ></oui-clipboard>
+            </oui-field>
+
+            <!--User description info-->
+            <oui-field
+                data-label="{{:: 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label' | translate }}"
+            >
+                <oui-clipboard
+                    data-name="description"
+                    data-model="$ctrl.user.description"
+                ></oui-clipboard>
+            </oui-field>
+        </div>
+        <div class="col-md-6 col-lg-5">
+            <!--User S3 credential access key-->
+            <oui-field
+                data-label="{{:: 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label' | translate }}"
+            >
+                <oui-clipboard
+                    data-name="s3AccessKey"
+                    data-model="$ctrl.credential.access"
+                ></oui-clipboard>
+            </oui-field>
+
+            <!--User S3 credential secret key-->
+            <pci-project-storages-components-password-clipboard
+                data-field-secret-key-label="$ctrl.fieldSecretKeyLabel"
+                data-field-secret-key-value="$ctrl.credential.secret"
+            ></pci-project-storages-components-password-clipboard>
+        </div>
+    </div>
+</oui-message>
