@@ -1,3 +1,12 @@
+# [4.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.19.2...@ovh-ux/manager-public-cloud@4.20.0) (2022-09-29)
+
+
+### Features
+
+* **pci-object-storage:** add s3 beta standard object offer ([be26204](https://github.com/ovh/manager/commit/be26204a9f3fa54516b39770078779dbf6969eb4))
+
+
+
 ## [4.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.19.1...@ovh-ux/manager-public-cloud@4.19.2) (2022-07-27)
 
 
