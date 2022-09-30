@@ -33,6 +33,7 @@ export default class IpListController {
     IpVirtualMac,
     Validator,
     atInternet,
+    ipFeatureAvailability,
   ) {
     this.$http = $http;
     this.$location = $location;
@@ -51,6 +52,7 @@ export default class IpListController {
     this.IpVirtualMac = IpVirtualMac;
     this.Validator = Validator;
     this.atInternet = atInternet;
+    this.ipFeatureAvailability = ipFeatureAvailability;
   }
 
   $onInit() {
@@ -73,6 +75,7 @@ export default class IpListController {
       IpVirtualMac,
       Validator,
       atInternet,
+      ipFeatureAvailability,
     } = this;
 
     $scope.alerts = {
@@ -596,6 +599,13 @@ export default class IpListController {
     };
 
     $scope.setAction = $scope.$parent.setAction;
+    $scope.canImportIPFO = () => ipFeatureAvailability.allowIPFailoverImport();
+    $scope.canExportCsv = () => $scope.state.loaded !== $scope.state.total;
+    $scope.importIPFO = function importIPFO() {
+      self.trackPage('import-failover');
+      self.trackClick('import');
+      $scope.setAction('ip/legacyOrder/migrate/ip-ip-legacyOrder-migrate');
+    };
 
     refreshAlerts();
     refreshTable();
