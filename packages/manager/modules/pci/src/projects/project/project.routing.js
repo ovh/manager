@@ -178,14 +178,15 @@ export default /* @ngInject */ ($stateProvider) => {
 
       vouchersCreditDetails: /* @ngInject */ (PciProject, projectId) =>
         PciProject.getVouchersCreditDetails(projectId).then(
-          (vouchersCreditInfos) =>
-            vouchersCreditInfos.map((voucherCredit) => {
-              const { data } = voucherCredit;
+          (vouchersCreditDetails) =>
+            vouchersCreditDetails.map((voucherCreditDetails) => {
               return {
-                voucher: data.voucher,
-                description: data.description,
-                balance: data.available_credit.text,
-                expirationDate: moment(data.validity.to).format('LLL'),
+                voucher: voucherCreditDetails.voucher,
+                description: voucherCreditDetails.description,
+                balance: voucherCreditDetails.available_credit.text,
+                expirationDate: moment(voucherCreditDetails.validity.to).format(
+                  'LLL',
+                ),
               };
             }),
         ),
