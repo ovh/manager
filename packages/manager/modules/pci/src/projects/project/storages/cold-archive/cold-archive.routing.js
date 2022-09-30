@@ -62,23 +62,21 @@ export default /* @ngInject */ ($stateProvider) => {
 
       containers: /* @ngInject */ (PciStoragesColdArchiveService, projectId) =>
         PciStoragesColdArchiveService.getAllColdArchives(projectId),
-      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+
+      goToAddColdArchive: /* @ngInject */ ($state) => () =>
+        $state.go('pci.projects.project.storages.cold-archive.add'),
+
+      trackClick: /* @ngInject */ (atInternet) => (hit) =>
         atInternet.trackClick({
           name: `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`,
           type: 'action',
-        });
-      },
-      goToAddColdArchive: /* @ngInject */ ($state) => () => {
-        return $state.go('pci.projects.project.storages.cold-archive.add');
-      },
-      trackPage: /* @ngInject */ (atInternet) => {
-        return (hit) => {
-          atInternet.trackPage({
-            name: `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`,
-            type: 'action',
-          });
-        };
-      },
+        }),
+
+      trackPage: /* @ngInject */ (atInternet) => (hit) =>
+        atInternet.trackPage({
+          name: `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`,
+          type: 'action',
+        }),
     },
   });
 };
