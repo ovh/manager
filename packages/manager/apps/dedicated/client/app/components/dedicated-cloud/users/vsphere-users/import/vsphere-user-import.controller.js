@@ -18,6 +18,8 @@ export default class VSphereUserImportController {
       cancelModal: false,
     };
 
+    this.userNamePattern = null;
+
     this.model = {
       type: null,
       userExample: null,
@@ -54,6 +56,10 @@ export default class VSphereUserImportController {
   }
 
   onFederationChange(modelValue) {
+    this.userNamePattern = /^\w+(@modelValue.domainName)*$/.source.replace(
+      'modelValue.domainName',
+      modelValue.domainName,
+    );
     this.model.userExample = `${this.$translate.instant(
       'dedicatedCloud_USER_import_user_example',
     )}@${modelValue.domainName}`;
