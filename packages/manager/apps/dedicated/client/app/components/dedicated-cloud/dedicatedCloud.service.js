@@ -568,7 +568,7 @@ class DedicatedCloudService {
     }
 
     return this.$q
-      .resolve(request.execute(null).$promise)
+      .resolve(request.execute(null, true).$promise)
       .then(({ data, headers }) => ({
         data,
         meta: {
@@ -624,7 +624,7 @@ class DedicatedCloudService {
     }
 
     return this.$q
-      .resolve(request.execute(null).$promise)
+      .resolve(request.execute(null, true).$promise)
       .then(({ data, headers }) => ({
         data,
         meta: {
