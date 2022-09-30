@@ -7,7 +7,7 @@
   "ip_service_error": "Une erreur est survenue lors du chargement des informations du service {{t0}}.",
   "ip": "IP et Sécurité",
   "ip_month": "mois",
-  "ip_ip": "Toutes le IPs",
+  "ip_ip": "Toutes les IP",
   "ip_iplb": "IP Load Balancing",
   "ip_ipv4": "IPv4",
   "ip_ipv6": "IPv6",
