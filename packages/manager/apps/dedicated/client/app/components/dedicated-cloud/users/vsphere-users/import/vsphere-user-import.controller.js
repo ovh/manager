@@ -20,7 +20,7 @@ export default class VSphereUserImportController {
 
     this.model = {
       type: null,
-      userExample: { user: null, group: null },
+      userExample: null,
       groupName: null,
       userName: null,
       domainName: null,
@@ -54,11 +54,8 @@ export default class VSphereUserImportController {
   }
 
   onFederationChange(modelValue) {
-    this.model.userExample.user = `${this.$translate.instant(
+    this.model.userExample = `${this.$translate.instant(
       'dedicatedCloud_USER_import_user_example',
-    )}@${modelValue.domainName}`;
-    this.model.userExample.group = `${this.$translate.instant(
-      'dedicatedCloud_USER_import_group_example',
     )}@${modelValue.domainName}`;
     this.model.activeDirectoryId = modelValue.activeDirectoryId;
   }
