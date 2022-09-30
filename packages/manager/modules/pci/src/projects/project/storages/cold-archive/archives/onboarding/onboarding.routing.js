@@ -6,8 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/onboarding',
       component: 'pciProjectStorageColdArchiveOnboarding',
-      onEnter: /* @ngInject */ (trackPage) => {
-        trackPage(TRACKING.ONBOARDING_PAGE_VISITE);
+      atInternet: {
+        rename: TRACKING.ONBOARDING_PAGE_VISITE,
       },
       redirectTo: (transition) =>
         transition

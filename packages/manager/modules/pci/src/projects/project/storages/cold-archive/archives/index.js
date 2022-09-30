@@ -4,7 +4,6 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
-import 'ovh-api-services';
 
 import onboarding from './onboarding';
 
@@ -17,7 +16,6 @@ angular
     onboarding,
     'ngTranslateAsyncLoader',
     'oui',
-    'ovh-api-services',
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
