@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import 'moment';
 
 export default class PciStoragesColdArchiveService {

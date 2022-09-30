@@ -1,8 +1,9 @@
 import reduce from 'lodash/reduce';
 import illustration from './assets/ColdStorage.png';
-import { GUIDES, TRACKING } from './onboarding.constants';
+import { TRACKING } from './onboarding.constants';
+import { GUIDES } from '../../cold-archives.constants';
 
-export default class PciStorageObjectsOnboardingController {
+export default class PciStorageColdArchivesOnboardingController {
   /* @ngInject */
   constructor($translate) {
     this.$translate = $translate;
@@ -30,7 +31,7 @@ export default class PciStorageObjectsOnboardingController {
 
   addColdArchive() {
     this.trackClick(TRACKING.ONBOARDING_CREATE_USER);
-    this.goToAddColdArchive();
+    return this.goToAddColdArchive();
   }
 
   onDocumentationClick(guide) {
