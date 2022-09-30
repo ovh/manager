@@ -1,4 +1,5 @@
 export default class IpFailoverController {
+  /* @ngInject */
   constructor($scope) {
     this.$scope = $scope;
     this.unusedFilter = false;
