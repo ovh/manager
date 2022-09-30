@@ -18,6 +18,29 @@
                 ></oui-tile-definition>
 
                 <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_info_app_image' | translate }}"
+                >
+                    <oui-tile-description>
+                        <input
+                            class="oui-input"
+                            readonly
+                            data-ng-model="$ctrl.app.spec.image"
+                        />
+                        <oui-button
+                            data-size="m"
+                            data-variant="link"
+                            data-icon-right="oui-icon-pen"
+                            data-on-click="$ctrl.onUpdateAppImageClick()"
+                            data-disabled="false"
+                        >
+                            <span
+                                data-translate="pci_apps_general_information_info_app_image_action_update"
+                            ></span>
+                        </oui-button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <oui-tile-definition
                     data-term="{{:: 'pci_apps_general_information_info_app_url' | translate }}"
                     data-description="{{:: $ctrl.app.accessUrl }}"
                 >
