@@ -364,7 +364,7 @@
         data-submit-text="{{ :: 'pci_projects_project_instances_add_privateNetwork_next' | translate }}"
         data-valid="!$ctrl.isGatewayLoading"
         data-on-submit="$ctrl.onModeSubmit()"
-        data-navigation="!$ctrl.enableModeSubmit() && !$ctrl.isGatewayLoading"
+        data-navigation="$ctrl.showNetworkNavigation()"
     >
         <p
             class="font-weight-bold"
@@ -407,11 +407,12 @@
                     data-searchable
                 >
                 </oui-select>
-                <p>
+                <p data-ng-if="$ctrl.currentStep < 5">
                     <span
                         data-translate="pci_projects_project_instances_add_privateNetwork_description"
                     ></span>
                     <button
+                        data-ng-if="$ctrl.isPrivateMode()"
                         type="button"
                         class="oui-link oui-link_icon"
                         data-ng-click="$ctrl.onAddPrivateNetworkClick()"
@@ -424,6 +425,12 @@
                             aria-hidden="true"
                         ></span>
                     </button>
+                    <a
+                        data-ng-if="!$ctrl.isPrivateMode()"
+                        data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
+                        data-translate="pci_projects_project_instances_add_privateNetwork_add"
+                        target="_top"
+                    ></a>
                 </p>
             </oui-field>
         </div>
@@ -539,7 +546,7 @@
         </p>
         <oui-message
             data-type="warning"
-            data-ng-if="$ctrl.subnetGateways.length === 0 && !$ctrl.isLoadBillingStep && $ctrl.isAttachFloatingIPAvailable"
+            data-ng-if="($ctrl.subnetGateways.length === 0 || $ctrl.subnetGateways.length > 1) && !$ctrl.isLoadBillingStep && $ctrl.isAttachFloatingIPAvailable"
         >
             <p
                 data-translate="pci_projects_project_instances_add_billing_gateway_info"
@@ -568,7 +575,7 @@
         </oui-message>
         <oui-message
             data-type="warning"
-            data-ng-if="$ctrl.selectedPrivateNetwork.subnet[0].gatewayIp === null"
+            data-ng-if="$ctrl.subnetGateways.length > 0 && $ctrl.selectedPrivateNetwork.subnet[0].gatewayIp === null"
         >
             <p
                 data-translate="pci_projects_project_instances_add_billing_gateway_DHCP_info"
@@ -636,9 +643,6 @@
                         ></p>
 
                         <div data-ng-if="!$ctrl.isLoading">
-                            <p
-                                data-translate="pci_projects_project_instances_add_modal_description"
-                            ></p>
                             <oui-field
                                 data-size="l"
                                 data-label="{{:: 'pci_projects_project_instances_add_modal_add_private_network_field_label' | translate }}"
