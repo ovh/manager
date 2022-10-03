@@ -19,6 +19,7 @@ export default class AdditionalIpsFloatingIpsEditController {
   }
 
   $onInit() {
+    this.gateway = null;
     this.loadInstances();
   }
 
@@ -112,13 +113,13 @@ export default class AdditionalIpsFloatingIpsEditController {
   edit() {
     this.trackClick('floating-ips::edit::confirm');
     this.isLoading = true;
-
     return this.PciProjectAdditionalIpService.updateInstanceForFloatingIp(
       this.projectId,
-      this.ip.region,
+      this.ip,
       this.instance.id,
       this.serviceName,
       this.privateNetwork?.ip,
+      this.gateway,
     )
       .then(() => {
         this.ip.routedTo = this.instance.id;
