@@ -59,8 +59,6 @@ export default /* @ngInject */
       });
   }
 
-  $scope.canImportIPFO = () => ipFeatureAvailability.allowIPFailoverImport();
-  $scope.canExportCsv = () => $scope.state.loaded !== $scope.state.total;
   $scope.goToAgoraOrder = goToAgoraOrder;
   $scope.goToByoipConfiguration = goToByoipConfiguration;
 
@@ -127,18 +125,6 @@ export default /* @ngInject */
     goToOrganisation().then(() =>
       $scope.$broadcast('ips.organisation.display'),
     );
-  };
-
-  $scope.exportCsv = function exportCsv(ipsList) {
-    trackPage('export-csv');
-    trackClick('export-csv');
-    $scope.setAction('ip/export-csv/ip-ip-export-csv', { ipsList });
-  };
-
-  $scope.importIPFO = function importIPFO() {
-    trackPage('import-failover');
-    trackClick('import');
-    $scope.setAction('ip/legacyOrder/migrate/ip-ip-legacyOrder-migrate');
   };
 
   if ($location.search().action === 'firewall' && $location.search().ip) {
