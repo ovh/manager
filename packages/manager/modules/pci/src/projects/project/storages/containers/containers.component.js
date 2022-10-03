@@ -28,5 +28,7 @@ export default {
     goToRegion: '<',
     trackingPrefix: '<',
     refreshContainers: '<?',
+    goBackWithTrackingPage: '<',
+    trackPage: '<',
   },
 };

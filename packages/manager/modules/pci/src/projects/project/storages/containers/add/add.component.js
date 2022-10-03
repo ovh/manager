@@ -14,5 +14,7 @@ export default {
     user: '<',
     allUserList: '<',
     redirectTarget: '<',
+    goBackWithTrackingPage: '<',
+    trackPage: '<',
   },
 };

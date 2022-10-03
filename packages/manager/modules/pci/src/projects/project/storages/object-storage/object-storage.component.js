@@ -1,4 +1,5 @@
 import template from './object-storage.html';
+import controller from './object-storage.controller';
 
 export default {
   bindings: {
@@ -17,6 +18,9 @@ export default {
     userListLink: '<',
     onGuideLinkClick: '<',
     trackingPrefix: '<',
+    tagPageParams: '<',
+    trackPage: '<',
   },
   template,
+  controller,
 };
