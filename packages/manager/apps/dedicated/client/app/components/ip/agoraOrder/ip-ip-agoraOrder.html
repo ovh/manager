@@ -5,6 +5,7 @@
     data-wizard-on-finish="redirectToPaymentPage"
     data-wizard-title=":: 'ip_additional_order' | translate"
 >
+    <!--Step 1: select a service-->
     <div
         data-wizard-step
         data-wizard-step-on-previous="trackPrevious"
@@ -56,6 +57,7 @@
         </div>
     </div>
 
+    <!--Step 2: select an offer-->
     <div
         data-wizard-step
         data-wizard-step-on-load="manageLoadIpOffers"
@@ -77,7 +79,7 @@
                     data-ng-model="ctrl.model.params.selectedOffer"
                     data-ng-change="ctrl.onSelectedOfferChange()"
                     data-ng-disabled="!ctrl.ipOffers.length"
-                    data-ng-options="offer as (offer.productShortName + ' - ' + offer.price.text) group by offer.productRegion for offer in ctrl.ipOffers | orderBy:'price.value' track by offer.planCode+offer.maximumQuantity"
+                    data-ng-options="offer as (ctrl.getOfferContent(offer)) group by offer.productRegion for offer in ctrl.ipOffers | orderBy:'price.value' track by offer.planCode+offer.maximumQuantity"
                 >
                     <option
                         value=""
@@ -93,7 +95,7 @@
                     data-ng-model="ctrl.model.params.selectedOffer"
                     data-ng-change="ctrl.onSelectedOfferChange()"
                     data-ng-disabled="!ctrl.ipOffers.length"
-                    data-ng-options="offer as (offer.productName + ' - ' + offer.price.text) for offer in ctrl.ipOffers | orderBy:'price.value' track by offer.planCode+offer.maximumQuantity"
+                    data-ng-options="offer as (ctrl.getOfferContent(offer)) for offer in ctrl.ipOffers | orderBy:'price.value' track by offer.planCode+offer.maximumQuantity"
                 >
                     <option
                         value=""
@@ -197,6 +199,7 @@
         </div>
     </div>
 
+    <!--Step 3: Resume and validation-->
     <div
         data-wizard-step
         data-wizard-step-on-previous="trackPrevious"
