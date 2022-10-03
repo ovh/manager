@@ -7,10 +7,10 @@
   "pci_additional_ips_onboarding_content5_heading": "IP flottantes du Public Cloud :",
   "pci_additional_ips_onboarding_content5_description": "convient le mieux aux cas d’usage Public Cloud, à l’automatisation du cloud (Terraform) ou aux réseaux privés régionalisés. La configuration du système de endpoint est automatique.",
   "pci_additional_ips_onboarding_action_buy": "Créer une IP additionnelle",
-  "pci_additional_ips_onboarding_guides_service_agnostic_public_ip_title": "IP publiques additionnelles chez OVHcloud",
-  "pci_additional_ips_onboarding_guides_service_agnostic_public_ip_description": "Choisissez celui qui vous convient le mieux : IP Failover vs IP flottantes",
-  "pci_additional_ips_onboarding_guides_persistent-failover-ip-configuration_title": "Configuration IP Failover",
-  "pci_additional_ips_onboarding_guides_persistent-failover-ip-configuration_description": "Apprenez à configurer des adresses IP supplémentaires pour vos services.",
+  "pci_additional_ips_onboarding_guides_additional_public_ips_title": "IP publiques additionnelles chez OVHcloud",
+  "pci_additional_ips_onboarding_guides_additional_public_ips_description": "Choisissez celui qui vous convient le mieux : IP Failover vs IP flottantes",
+  "pci_additional_ips_onboarding_guides_configure_additional_ip_title": "Configuration IP Failover",
+  "pci_additional_ips_onboarding_guides_configure_additional_ip_description": "Apprenez à configurer des adresses IP supplémentaires pour vos services.",
   "pci_additional_ips_onboarding_guides_configure_floating_ip_title": "Configurer une IP flottante",
   "pci_additional_ips_onboarding_guides_configure_floating_ip_description": "Découvrez comment exposer vos services publiquement de manière cloud native."
 }
