@@ -13,8 +13,8 @@ import uniq from 'lodash/uniq';
 import {
   IP_LOCATION_GROUPS,
   PRODUCT_TYPES,
-  VPS_MAX_QUANTITY,
   TRACKING_PREFIX,
+  VPS_MAX_QUANTITY,
 } from './ip-ip-agoraOrder.constant';
 
 export default class AgoraIpOrderCtrl {
@@ -199,6 +199,12 @@ export default class AgoraIpOrderCtrl {
       });
     }
     return this.loadIpOffers();
+  }
+
+  getOfferContent(offer) {
+    return `${offer.productShortName} - ${
+      offer.price.text
+    }/${this.$translate.instant('ip_month')}`;
   }
 
   loadIpOffers() {
