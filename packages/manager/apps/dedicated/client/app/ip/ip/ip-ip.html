@@ -146,41 +146,6 @@
         <oui-spinner data-ng-if="loading.alerts" size="s"> </oui-spinner>
 
         <h4 data-translate="ip_addresses_grid_header"></h4>
-        <div class="float-right">
-            <oui-dropdown placement="end">
-                <button
-                    type="button"
-                    class="oui-button oui-button_secondary oui-button_s"
-                    oui-dropdown-trigger
-                >
-                    <span
-                        class="oui-icon oui-icon-settings"
-                        aria-hidden="true"
-                    ></span>
-                </button>
-                <oui-dropdown-content>
-                    <oui-dropdown-item
-                        on-click="importIPFO()"
-                        data-ng-if="canImportIPFO()"
-                    >
-                        <span data-translate="ip_migration"></span>
-                    </oui-dropdown-item>
-                    <oui-dropdown-item on-click="displayOrganisation()">
-                        <span data-translate="ip_organisation_button"></span>
-                    </oui-dropdown-item>
-                </oui-dropdown-content>
-            </oui-dropdown>
-            <oui-button
-                data-oui-tooltip="{{:: 'ip_export' | translate }}"
-                data-oui-tooltip-placement="left"
-                type="button"
-                class="oui-button_secondary"
-                disabled="canExportCsv()"
-                on-click="exportCsv(ipsList)"
-            >
-                <span class="oui-icon oui-icon-export_concept"></span>
-            </oui-button>
-        </div>
 
         <div class="form-group w-25" data-ng-if="serviceTypes.length">
             <label
