@@ -9,6 +9,7 @@ import routing from './cold-archive.routing';
 import service from './cold-archive.service';
 import component from './cold-archive.component';
 
+import coldArchiveOnboarding from './onboarding';
 import coldArchiveAdd from './add';
 
 const moduleName = 'ovhManagerPciProjectsProjectStoragesColdArchive';
@@ -20,6 +21,7 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    coldArchiveOnboarding,
     coldArchiveAdd,
   ])
   .config(routing)
