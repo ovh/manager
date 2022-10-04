@@ -12,5 +12,6 @@
   "pci_databases_query_statistics_datagrid_total": "Totale (ms)",
   "pci_databases_query_statistics_datagrid_reset_button_text": "Reimposta",
   "pci_databases_query_statistics_reset_error": "Si è verificato un errore durante la reinizializzazione delle statistiche della richiesta. Ti preghiamo di riprovare.",
-  "pci_databases_query_statistics_reset_success": "Le statistiche delle richieste sono state ripristinate correttamente."
+  "pci_databases_query_statistics_reset_success": "Le statistiche delle richieste sono state ripristinate correttamente.",
+  "pci_databases_allowed_query_statistics": "Statistiche delle query"
 }
