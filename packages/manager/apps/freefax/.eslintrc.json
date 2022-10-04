@@ -1,8 +1,0 @@
-{
-  "globals": {
-    "__NODE_ENV__": true,
-    "__VERSION__": true,
-    "__NG_APP_INJECTIONS__": true,
-    "moment": true
-  }
-}
