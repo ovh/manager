@@ -20,15 +20,14 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderNonGeographica
 
   /**
    * Get a preselection of specific numbers
-   * @param  {String} country be | ch | de | es | fr | gb
    * @return {Promise}
    */
-  function getSpecificNumbers(country) {
+  function getSpecificNumbers() {
     self.loading.numbers = true;
     return OvhApiTelephony.Number()
       .Aapi()
       .orderableByRange({
-        country,
+        country: 'fr',
         billingAccount: $stateParams.billingAccount,
         type: 'nogeographic',
         range: '*',
@@ -315,7 +314,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderNonGeographica
         self.form.legalform = user.legalform;
         self.form.organisation = user.organisation;
 
-        return getSpecificNumbers(user.country);
+        return getSpecificNumbers();
       })
       .finally(() => {
         self.loading.init = false;
