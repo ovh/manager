@@ -1,7 +1,0 @@
-{
-  "mfa_enrollment_title": "Zabezpiecz swoje konto weryfikacją dwuetapową!",
-  "mfa_enrollment_info1": "Zabezpieczenie w postaci samego hasła nie zawsze jest wystarczające. Zalecamy aktywację weryfikacji dwuetapowej dla konta klienta.",
-  "mfa_enrollment_info2": "Aktywując weryfikację dwuetapową, zwiększasz poziom bezpieczeństwa i chronisz swoje dane. Do połączenia oprócz hasła do konta wymagany jest kod weryfikacyjny wysłany przez SMS lub klucz zabezpieczający.",
-  "mfa_enrollment_go": "Zaczynamy!",
-  "mfa_enrollment_cancel": "Nie teraz"
-}
