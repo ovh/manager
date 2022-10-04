@@ -1,0 +1,7 @@
+{
+  "mfa_enrollment_title": "Proteggi il tuo account con la doppia autenticazione",
+  "mfa_enrollment_info1": "La sicurezza apportata da una semplice password non è sempre sufficiente. Consigliamo fortemente di attivare sull’account l’autenticazione a due fattori",
+  "mfa_enrollment_info2": "per aumentare il livello di sicurezza e proteggere i tuoi dati. Per permettere la connessione viene richiesto, oltre alla password associata all’account, il codice di convalida ricevuto via SMS sul proprio telefono o una chiave di sicurezza.",
+  "mfa_enrollment_go": "Iniziamo!",
+  "mfa_enrollment_cancel": "Non adesso"
+}
