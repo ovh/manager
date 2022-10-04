@@ -83,7 +83,6 @@ import { serverBandwidth } from '@ovh-ux/manager-components';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerBilling from '@ovh-ux/manager-billing';
 import ovhManagerDbaasLogs from '@ovh-ux/manager-dbaas-logs';
-import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import ovhManagerNasha from '@ovh-ux/manager-nasha';
 import ovhManagerNetapp from '@ovh-ux/manager-netapp';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
@@ -182,7 +181,6 @@ export default async (containerEl, shellClient) => {
         managedBaremetal,
         moduleLicense,
         otrs,
-        ovhManagerMfaEnrollment,
         'ngMessages',
         ngAtInternetUiRouterPlugin,
         ngOvhApiWrappers,

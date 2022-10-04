@@ -18,7 +18,6 @@ import has from 'lodash/has';
 import isString from 'lodash/isString';
 
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
@@ -78,7 +77,6 @@ export default async (containerEl, shellClient) => {
         ngOvhUserPref,
         'oui',
         registerCoreModule(environment, coreCallbacks),
-        ovhManagerMfaEnrollment,
         ovhManagerPci,
         uiRouter,
       ].filter(isString),
