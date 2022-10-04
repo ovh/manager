@@ -1,7 +1,7 @@
 import reduce from 'lodash/reduce';
 import illustration from './assets/ColdStorage.png';
 import { TRACKING } from './onboarding.constants';
-import { GUIDES } from '../../cold-archives.constants';
+import { GUIDES } from '../cold-archives.constants';
 
 export default class PciStorageColdArchivesOnboardingController {
   /* @ngInject */
