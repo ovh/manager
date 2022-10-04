@@ -18,6 +18,8 @@ import Progress from '../common/Progress';
 import Preloader from '../common/Preloader';
 import usePreloader from '../common/Preloader/usePreloader';
 import useContainer from '@/core/container';
+import useMfaEnrollment from '@/container/mfa-enrollment';
+import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
 
 function LegacyContainer(): JSX.Element {
   const iframeRef = useRef(null);
@@ -31,6 +33,12 @@ function LegacyContainer(): JSX.Element {
     .getPlugin('environment')
     .getEnvironment()
     .getApplications();
+
+  const {
+    isMfaEnrollmentForced,
+    isMfaEnrollmentVisible,
+    hideMfaEnrollment,
+  } = useMfaEnrollment();
 
   useEffect(() => {
     setIframe(iframeRef.current);
@@ -62,6 +70,14 @@ function LegacyContainer(): JSX.Element {
           <LegacyHeader />
         </div>
         <div className={style.managerShell_content}>
+          {isMfaEnrollmentVisible && (
+            <Suspense fallback="">
+              <MfaEnrollment
+                forced={isMfaEnrollmentForced}
+                onHide={hideMfaEnrollment}
+              />
+            </Suspense>
+          )}
           <Preloader visible={preloaderVisible}>
             <>
               <IFrameAppRouter
