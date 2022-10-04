@@ -1,7 +1,0 @@
-{
-  "mfa_enrollment_title": "Sécurisez votre compte grâce à la double authentification !",
-  "mfa_enrollment_info1": "La sécurité apportée par un simple mot de passe n'est pas toujours suffisante. Nous vous recommandons fortement d'activer la validation en deux étapes de votre compte.",
-  "mfa_enrollment_info2": "En l'activant, vous augmentez votre niveau de sécurité et protégez vos données. En plus d'un mot de passe du compte, un code validation envoyé par SMS sur votre téléphone ou une clé de sécurité est demandée afin de permettre la connexion.",
-  "mfa_enrollment_go": "C'est parti !",
-  "mfa_enrollment_cancel": "Pas maintenant"
-}

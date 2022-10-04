@@ -74,7 +74,6 @@ import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
-import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import emailDomain from '@ovh-ux/manager-email-domain';
 import emailpro from '@ovh-ux/manager-emailpro';
 import exchange from '@ovh-ux/manager-exchange';
@@ -167,7 +166,6 @@ export default async (containerEl, shellClient) => {
         'pascalprecht.translate',
         ngTailLogs,
         'ovh-api-services',
-        ovhManagerMfaEnrollment,
         ovhManagerAtInternetConfiguration,
         ovhManagerAccountMigration,
         ovhManagerBanner,
