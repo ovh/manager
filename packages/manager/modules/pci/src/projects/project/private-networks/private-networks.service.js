@@ -1,8 +1,5 @@
 import sortBy from 'lodash/sortBy';
-import {
-  DELETING_STATUS,
-  VRACK_CREATION_ACTION,
-} from './private-networks.constants';
+import { VRACK_CREATION_ACTION } from './private-networks.constants';
 
 export default class {
   /* @ngInject */
@@ -24,18 +21,37 @@ export default class {
 
   getPrivateNetworks(serviceName) {
     return this.$http
-      .get(`/cloud/project/${serviceName}/network/private`)
-      .then(({ data }) =>
-        sortBy(data, 'vlanId').filter(
-          ({ status }) => !DELETING_STATUS.includes(status),
-        ),
-      );
+      .get(`/cloud/project/${serviceName}/aggregated/network`)
+      .then(({ data }) => {
+        const privateNetworks = {};
+        data.resources.forEach((network) => {
+          if (network.visibility === 'private') {
+            if (!privateNetworks[network.vlanId]) {
+              const { id, region, ...rest } = network;
+              privateNetworks[network.vlanId] = {
+                ...rest,
+                subnets: [{ region, networkId: id }],
+              };
+            } else {
+              const { id, region } = network;
+              privateNetworks[network.vlanId].subnets.push({
+                region,
+                networkId: id,
+              });
+            }
+          }
+        });
+        return sortBy(Object.values(privateNetworks), 'vlanId');
+      });
   }
 
-  getSubnets(serviceName, id) {
+  getSubnets(serviceName, region, networkId) {
     return this.$http
-      .get(`/cloud/project/${serviceName}/network/private/${id}/subnet`)
-      .then(({ data }) => data);
+      .get(
+        `/cloud/project/${serviceName}/region/${region}/network/${networkId}/subnet`,
+      )
+      .then(({ data }) => data[0])
+      .catch(() => {});
   }
 
   getVrack(serviceName) {
@@ -58,10 +74,10 @@ export default class {
       );
   }
 
-  deleteSubnet(serviceName, networkId, subnetId) {
+  deleteSubnet(serviceName, region, networkId) {
     return this.$http
       .delete(
-        `/cloud/project/${serviceName}/network/private/${networkId}/subnet/${subnetId}`,
+        `/cloud/project/${serviceName}/region/${region}/network/${networkId}`,
       )
       .then(({ data }) => data);
   }
