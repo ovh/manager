@@ -20971,10 +20971,10 @@ outvariant@^1.2.1:
   resolved "https://registry.yarnpkg.com/outvariant/-/outvariant-1.3.0.tgz#c39723b1d2cba729c930b74bf962317a81b9b1c9"
   integrity sha512-yeWM9k6UPfG/nzxdaPlJkB2p08hCg4xP6Lx99F+vP8YF7xyZVfTmJjrrNalkmzudD4WFvNLVudQikqUmF8zhVQ==
 
-ovh-api-services@^16.0.0:
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-16.0.0.tgz#5d3f8ef29bbdae90b2982c3e06b8f77438029413"
-  integrity sha512-+0IR61XLd9LmeU3NtXZ0YfNgySaku84uSAoZTdIs7KgyJMlV12aGjb5nG4ZGBhQkhIewwxBc2+76eqxu8GE1Bw==
+ovh-api-services@^17.0.0:
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-17.0.0.tgz#9c5e70a97c2587115d9e67de8e5cada06d7eabb4"
+  integrity sha512-FdM22lwPPVS7+OCPyNzFMxzzt3mg1OSof5bdVY6TKOz8y93eBHMW41Fd0huL0kwKkfV+j08AhQLEIiujQuL9Hw==
   dependencies:
     lodash "^4.17.21"
 
