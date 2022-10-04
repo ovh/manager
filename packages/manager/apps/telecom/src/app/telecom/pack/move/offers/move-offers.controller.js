@@ -102,6 +102,8 @@ export default class PackMoveOffersCtrl {
             ...offer,
             displayedPrice: offer.prices.price.price,
             eligibilityReference: this.eligibilityReference,
+            firstVoipLineFull: 0,
+            lastVoipLineSelected: 0,
           }));
         }
         return this.listOffers;
@@ -138,6 +140,8 @@ export default class PackMoveOffersCtrl {
             ...offer,
             displayedPrice: offer.prices.price.price,
             eligibilityReference: this.eligibilityReferenceFiber,
+            firstVoipLineFull: 0,
+            lastVoipLineSelected: 0,
           }));
         }
         return this.listOffersFiber;
@@ -177,18 +181,23 @@ export default class PackMoveOffersCtrl {
     return !!find(this.offers, (offer) => offer.totalSubServiceToDelete > 0);
   }
 
-  static updateOfferDisplayedPrice(value, offer, optionName) {
+  static updateOfferDisplayedPrice(value, offer, optionName, optional) {
     let totalOfferPrice = offer.prices.price.price
       ? offer.prices.price.price.value
       : 0;
 
     offer.options.forEach((option) => {
-      if (option.name === 'gtr_ovh' && option.selected) {
-        totalOfferPrice += option.optionalPrice.value;
-      } else if (option.name === optionName) {
+      if (option.name.startsWith('gtr_') && option.selected !== null) {
+        const val = option.selected === true ? 1 : 0;
+        totalOfferPrice += val * option.optionalPrice.value;
+      } else if (
+        option.name === optionName &&
+        ((option.name === 'voip_line' && option.optional === optional) ||
+          option.name !== 'voip_line')
+      ) {
         totalOfferPrice += value * option.optionalPrice.value;
       } else if (
-        option.name !== 'gtr_ovh' &&
+        !option.name.startsWith('gtr_') &&
         !isUndefined(option.choosedValue)
       ) {
         totalOfferPrice += option.choosedValue * option.optionalPrice.value;
@@ -210,8 +219,69 @@ export default class PackMoveOffersCtrl {
     set(offer, 'displayedPrice', displayedPrice);
   }
 
+  static updateSelectedGtrOption(offer, optionName) {
+    let optionComfort = false;
+    offer.options.forEach((option) => {
+      if (
+        option.name.startsWith('gtr_') &&
+        option.selected !== null &&
+        optionName.startsWith('gtr_')
+      ) {
+        if (option.name !== optionName) {
+          set(option, 'selected', false);
+        }
+        if (optionName.match(/^gtr_\d{1,2}m_/) && option.selected === true) {
+          optionComfort = true;
+        }
+        set(offer, 'gtrComfortActivated', optionComfort);
+      }
+    });
+  }
+
+  updateOfferPriceAndGtr(value, offer, optionName) {
+    this.constructor.updateSelectedGtrOption(offer, optionName);
+    this.constructor.updateOfferDisplayedPrice(value, offer, optionName);
+  }
+
   static isChosen(option) {
     return option.choosedValue > 0;
+  }
+
+  static isGtrOption(optionName) {
+    return optionName.startsWith('gtr_');
+  }
+
+  static isGtrOptionExist(offer) {
+    return offer.options.some((option) => option.name.startsWith('gtr_'));
+  }
+
+  static updateSelectedVoipLineOption(value, offer, option) {
+    if (option.optional === 2) {
+      set(offer, 'firstVoipLineFull', value);
+    } else if (option.optional === 98) {
+      set(offer, 'lastVoipLineSelected', value);
+    }
+  }
+
+  static showVoipLineOption(option, offer) {
+    if (
+      option.name === 'voip_line' &&
+      ((option.optional === 2 && offer.lastVoipLineSelected === 0) ||
+        (option.optional === 98 && offer.firstVoipLineFull === 2))
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  updateOfferPriceAndVoipLine(value, offer, option) {
+    this.constructor.updateOfferDisplayedPrice(
+      value,
+      offer,
+      option.name,
+      option.optional,
+    );
+    this.constructor.updateSelectedVoipLineOption(value, offer, option);
   }
 
   selectOffer(offer) {
