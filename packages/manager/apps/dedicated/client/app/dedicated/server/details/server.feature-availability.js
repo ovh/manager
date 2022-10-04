@@ -21,15 +21,15 @@ export default class {
   }
 
   allowDedicatedServerBandwidthOption() {
-    return this.allow('EU', 'CA');
+    return this.allow('EU', 'CA', 'US');
   }
 
   allowDedicatedServerOrderBandwidthOption() {
-    return this.allow('EU', 'CA');
+    return this.allow('EU', 'CA', 'US');
   }
 
   allowDedicatedServerOrderVrackBandwidthOption() {
-    return this.allow('EU', 'CA');
+    return this.allow('EU', 'CA', 'US');
   }
 
   allowDedicatedServerOrderTrafficOption() {
