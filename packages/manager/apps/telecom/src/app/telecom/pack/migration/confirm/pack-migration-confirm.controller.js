@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
-import { PROMO_DISPLAY } from '../pack-migration.constant';
+import { PROMO_DISPLAY, QUANTITY } from '../pack-migration.constant';
 
 export default class TelecomPackMigrationConfirmCtrl {
   /* @ngInject */
@@ -24,29 +24,47 @@ export default class TelecomPackMigrationConfirmCtrl {
     };
 
     this.PROMO_DISPLAY = PROMO_DISPLAY;
+    this.QUANTITY = QUANTITY;
 
     this.modemTransportPrice = 9.99;
 
     this.process = this.TucPackMigrationProcess.getMigrationProcess();
     this.choosedAdditionalOptions = this.TucPackMigrationProcess.getOptionsSelected();
 
-    const modemRental = this.process.selectedOffer.modemRental
-      ? this.process.selectedOffer.modemRental.value
+    const gtrComfortSelected = this.choosedAdditionalOptions.some((option) =>
+      option.name.match(/^gtr_\d{1,2}m_/),
+    )
+      ? 1
       : 0;
+
+    const modemRental = this.process.selectedOffer.modemRental?.value || 0;
     const firstYearPromo = this.process.selectedOffer.firstYearPromo
       ? this.process.selectedOffer.price.value -
         this.process.selectedOffer.firstYearPromo.value
+      : 0;
+    const providerOrange =
+      this.process.selectedOffer.providerOrange?.value || 0;
+    const providerAI = this.process.selectedOffer.providerAI?.value || 0;
+    const gtrComfortFees = this.process.selectedOffer.gtrComfortFees
+      ? gtrComfortSelected * this.process.selectedOffer.gtrComfortFees.value
       : 0;
 
     let totalOfferPrice = 0;
     if (this.choosedAdditionalOptions.length === 0) {
       totalOfferPrice =
-        this.process.selectedOffer.price.value - firstYearPromo + modemRental;
+        this.process.selectedOffer.price.value -
+        firstYearPromo +
+        modemRental +
+        providerOrange +
+        providerAI;
     } else {
       totalOfferPrice =
         this.process.selectedOffer.displayedPrice.value -
         firstYearPromo +
-        modemRental;
+        modemRental +
+        providerOrange +
+        providerAI +
+        gtrComfortFees;
     }
     this.process.selectedOffer.displayedPrice = this.TucPackMigrationProcess.getPriceStruct(
       totalOfferPrice,
@@ -129,6 +147,18 @@ export default class TelecomPackMigrationConfirmCtrl {
       .finally(() => {
         this.loading.migrate = false;
       });
+  }
+
+  static isGtrOption(optionName) {
+    return optionName.startsWith('gtr_') ? 1 : 0;
+  }
+
+  static isOneOptionSelected(selectedOffer) {
+    return Object.entries(selectedOffer.options).some(
+      ([optionName, option]) => {
+        return optionName.startsWith('gtr_') && option.selected === true;
+      },
+    );
   }
 
   /* -----  End of ACTIONS  ------*/
