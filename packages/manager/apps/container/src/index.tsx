@@ -7,6 +7,7 @@ import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 import { Environment } from '@ovh-ux/manager-config/types';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import Container from '@/container';
 import { ApplicationProvider } from '@/context';
@@ -52,15 +53,19 @@ initShell().then((shell) => {
         });
 
       const root = createRoot(document.querySelector('#app'));
+      const queryClient = new QueryClient();
+
       root.render(
         <React.StrictMode>
-          <ApplicationProvider environment={environment} shell={shell}>
-            <ContainerProvider>
-              <HashRouter>
-                <Container />
-              </HashRouter>
-            </ContainerProvider>
-          </ApplicationProvider>
+          <QueryClientProvider client={queryClient}>
+            <ApplicationProvider environment={environment} shell={shell}>
+              <ContainerProvider>
+                <HashRouter>
+                  <Container />
+                </HashRouter>
+              </ContainerProvider>
+            </ApplicationProvider>
+          </QueryClientProvider>
         </React.StrictMode>,
       );
     });
