@@ -9,12 +9,17 @@ import routing from './onboarding.routing';
 
 const moduleName = 'ovhManagerPciAiDashboardOnboarding';
 
+import aiPipeline from '../components/ai-pipeline';
+import aiGuideComponent from '../components/ai-guide';
+
 angular
   .module(moduleName, [
     'ui.router',
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    aiPipeline,
+    aiGuideComponent,
   ])
   .config(routing)
   .component('pciProjectAiDashboardOnboarding', component)
