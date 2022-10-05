@@ -9,12 +9,15 @@ import routing from './home.routing';
 
 const moduleName = 'ovhManagerPciAiDashboardHome';
 
+import aiGuideComponent from '../../components/ai-guide';
+
 angular
   .module(moduleName, [
-    'ui.router',
-    'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    'oui',
+    'ui.router',
+    aiGuideComponent,
   ])
   .config(routing)
   .component('pciProjectAiDashboardHome', component)
