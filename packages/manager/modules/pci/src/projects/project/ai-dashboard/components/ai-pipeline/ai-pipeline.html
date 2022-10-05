@@ -1,0 +1,128 @@
+<div class="row align-items-flex-start">
+    <div class="col">
+        <div class="d-flex flex-column align-items-center">
+            <img data-ng-src="{{::$ctrl.images.stock}}" alt="stock" />
+            <strong data-translate="pci_ai_dashboard_pipeline_stock"></strong>
+            <oui-button
+                data-variant="link"
+                data-icon-right="oui-icon-arrow-right"
+                data-on-click="$ctrl.onStorageClick()"
+                data-ng-class="{
+                    'mb-4': $ctrl.hasData
+                }"
+            >
+                <span
+                    data-translate="pci_ai_dashboard_pipeline_stock_link"
+                ></span>
+            </oui-button>
+        </div>
+    </div>
+    <div class="col">
+        <div class="d-flex flex-column align-items-center">
+            <img data-ng-src="{{::$ctrl.images.explore}}" alt="explore" />
+            <strong data-translate="pci_ai_dashboard_pipeline_explore"></strong>
+            <oui-button
+                class="mb-2"
+                data-variant="link"
+                data-icon-right="oui-icon-arrow-right"
+                data-on-click="$ctrl.onNotebookClick()"
+            >
+                <span
+                    data-translate="pci_ai_dashboard_pipeline_explore_link"
+                ></span>
+            </oui-button>
+            <!-- status-->
+            <div
+                class="d-flex justify-content-center"
+                data-ng-if="$ctrl.hasData"
+            >
+                <span class="oui-badge px-3 py-1 oui-badge_success">
+                    <span
+                        data-translate="pci_ai_dashboard_pipeline_running"
+                        data-translate-values="{nbServices: $ctrl.runningNotebooks}"
+                    >
+                    </span>
+                </span>
+                <span class="oui-badge px-3 py-1 oui-badge_warning">
+                    <span
+                        data-translate="pci_ai_dashboard_pipeline_stopped"
+                        data-translate-values="{nbServices: $ctrl.stoppedNotebooks}"
+                    >
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="d-flex flex-column align-items-center">
+            <img data-ng-src="{{::$ctrl.images.train}}" alt="train" />
+            <strong data-translate="pci_ai_dashboard_pipeline_train"></strong>
+            <oui-button
+                class="mb-2"
+                data-variant="link"
+                data-icon-right="oui-icon-arrow-right"
+                data-on-click="$ctrl.onTrainingClick()"
+            >
+                <span
+                    data-translate="pci_ai_dashboard_pipeline_train_link"
+                ></span>
+            </oui-button>
+            <!-- status-->
+            <div
+                class="d-flex justify-content-center"
+                data-ng-if="$ctrl.hasData"
+            >
+                <span class="oui-badge px-3 py-1 oui-badge_success">
+                    <span
+                        data-translate="pci_ai_dashboard_pipeline_running"
+                        data-translate-values="{nbServices: $ctrl.runningTrainings}"
+                    >
+                    </span>
+                </span>
+                <span class="oui-badge px-3 py-1 oui-badge_warning">
+                    <span
+                        data-translate="pci_ai_dashboard_pipeline_stopped"
+                        data-translate-values="{nbServices: $ctrl.stoppedTrainings}"
+                    >
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="d-flex flex-column align-items-center">
+            <img data-ng-src="{{::$ctrl.images.serve}}" alt="serve" />
+            <strong data-translate="pci_ai_dashboard_pipeline_serve"></strong>
+            <oui-button
+                class="mb-2"
+                data-variant="link"
+                data-icon-right="oui-icon-arrow-right"
+                data-on-click="$ctrl.onDeployClick()"
+            >
+                <span
+                    data-translate="pci_ai_dashboard_pipeline_serve_link"
+                ></span>
+            </oui-button>
+            <!-- status-->
+            <div
+                class="d-flex justify-content-center"
+                data-ng-if="$ctrl.hasData"
+            >
+                <span class="oui-badge px-3 py-1 oui-badge_success">
+                    <span
+                        data-translate="pci_ai_dashboard_pipeline_running"
+                        data-translate-values="{nbServices: $ctrl.runningApps}"
+                    >
+                    </span>
+                </span>
+                <span class="oui-badge px-3 py-1 oui-badge_warning">
+                    <span
+                        data-translate="pci_ai_dashboard_pipeline_stopped"
+                        data-translate-values="{nbServices: $ctrl.stoppedApps}"
+                    >
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

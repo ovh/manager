@@ -20,6 +20,7 @@ export const PCI_FEATURES = {
     KUBERNETES: 'kubernetes',
     PRIVATE_REGISTRY: 'private-registry',
     WORKFLOW_MANAGEMENT: 'workflow-management',
+    AI_DASHBOARD: 'ai-dashboard',
     NOTEBOOKS: 'notebooks',
     AI_APPS: 'ai-apps',
     TRAINING: 'training',

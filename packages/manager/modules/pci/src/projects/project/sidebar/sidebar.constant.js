@@ -151,6 +151,15 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
   {
     subitems: [
       {
+        id: 'ai-dashboard',
+        new: true,
+        options: {
+          state: 'pci.projects.project.ai-dashboard',
+        },
+        title: 'AI Dashboard',
+        feature: PCI_FEATURES.PRODUCTS.AI_DASHBOARD,
+      },
+      {
         id: 'notebooks',
         options: {
           state: 'pci.projects.project.notebooks',
