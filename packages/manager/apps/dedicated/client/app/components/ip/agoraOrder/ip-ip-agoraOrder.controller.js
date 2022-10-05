@@ -102,12 +102,11 @@ export default class AgoraIpOrderCtrl {
   }
 
   createOfferDto(ipOffer) {
-    const maximumQuantity = get(
-      ipOffer.details.pricings.default.find(
-        (price) => head(price.capacities) === 'renew',
-      ),
-      'maximumQuantity',
+    const { default: defaultPricing } = ipOffer.details.pricings;
+    const renewCapacity = defaultPricing.find((price) =>
+      price.capacities.find((capacity) => capacity === 'renew'),
     );
+    const { maximumQuantity } = renewCapacity;
 
     const countryCodes = ipOffer.details.product.configurations.find(
       (config) => config.name === 'country',
