@@ -1,7 +1,8 @@
 {
   "data_processing_details_metrics_token_modal_title": "Access monitoring",
   "data_processing_details_metrics_token_modal_dismiss_button": "Close",
-  "data_processing_details_metrics_token_modal_description_1": "You can access detailed metrics for your job via <a href=\"{{grafana_url}}\" target=\"_blank\">Grafana</a>.",
-  "data_processing_details_metrics_token_modal_description_2": "<a href=\"{{docs_monitoring_url}}\">See the documentation</a>",
-  "data_processing_details_metrics_token_modal_token_label": "Use the token below to access your metrics"
+  "data_processing_details_metrics_token_modal_description_1": "You can access detailed metrics for your job via ",
+  "data_processing_details_metrics_token_modal_description_2": "View documentation",
+  "data_processing_details_metrics_token_modal_token_label": "Use the token below to access your metrics",
+  "data_processing_details_metrics_token_modal_grafana_button": "Access Grafana"
 }
