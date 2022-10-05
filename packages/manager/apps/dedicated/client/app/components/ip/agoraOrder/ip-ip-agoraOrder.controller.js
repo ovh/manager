@@ -229,9 +229,7 @@ export default class AgoraIpOrderCtrl {
         let ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
         if (this.model.selectedService.type === PRODUCT_TYPES.vps.typeName) {
           ipOfferDetails = ipOfferDetails
-            .filter(({ productShortName }) =>
-              productShortName.includes('failover'),
-            )
+            .filter(({ planCode }) => planCode.includes('failover'))
             .map((offer) => ({
               ...offer,
               quantities: range(1, VPS_MAX_QUANTITY + 1),
