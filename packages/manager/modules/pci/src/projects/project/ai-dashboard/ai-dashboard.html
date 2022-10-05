@@ -40,6 +40,13 @@
         >
             <span data-translate="pci_ai_dashboard_tab_users_tokens"></span>
         </oui-header-tabs-item>
+
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.cliLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.cliLink"
+        >
+            <span data-translate="pci_ai_dashboard_tab_cli"></span>
+        </oui-header-tabs-item>
     </oui-header-tabs>
     <div class="container-fluid" data-ui-view="aiDashboardTabUiView"></div>
 </div>

@@ -13,6 +13,7 @@ export default {
     currentActiveLink: '<',
     homeLink: '<',
     usersTokensLink: '<',
+    cliLink: '<',
   },
   controller,
   template,
