@@ -28,6 +28,9 @@ export default class DedicatedCloudTaskPollProgressCtrl {
       if (STATUS_POLL_READY.includes(task.state)) {
         return this.$timeout(() => this.getTaskPool(), DEFAULT_TIMER);
       }
+      if (this.trackingTaskTag[task.state]) {
+        this.trackPage(this.trackingTaskTag[task.state]);
+      }
       this.loaders.action = false;
       return task;
     });

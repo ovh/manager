@@ -50,9 +50,18 @@ export const FIELD_NAME = {
 
 export const DEFAULT_LDAP_TCP_PORT = 636;
 
+export const TRACKING_PREFIX = 'add-active-directory';
+
+export const TRACKING_TASK_TAG = {
+  done: `${TRACKING_PREFIX}-success`,
+  error: `${TRACKING_PREFIX}-error`,
+};
+
 export default {
   DEFAULT_LDAP_TCP_PORT,
   FIELD_NAME,
   GUIDE_FEDERATION,
   PLACEHOLDER,
+  TRACKING_PREFIX,
+  TRACKING_TASK_TAG,
 };
