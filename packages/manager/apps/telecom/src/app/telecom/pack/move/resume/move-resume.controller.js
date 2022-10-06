@@ -136,12 +136,12 @@ export default class MoveResumeCtrl {
     const day = moment(this.offer.selected.meetingSlots.slot.startDate).format(
       'DD/MM/YYYY',
     );
-    const start = moment(this.offer.selected.meetingSlots.slot.startDate)
-      .utc()
-      .format('HH:mm');
-    const end = moment(this.offer.selected.meetingSlots.slot.endDate)
-      .utc()
-      .format('HH:mm');
+    const start = moment(
+      this.offer.selected.meetingSlots.slot.startDate,
+    ).format('HH:mm');
+    const end = moment(this.offer.selected.meetingSlots.slot.endDate).format(
+      'HH:mm',
+    );
     return this.$translate.instant('pack_move_contract_meeting', {
       day,
       start,
