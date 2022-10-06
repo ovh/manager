@@ -1,4 +1,4 @@
-import { GATEWAY_DEFAULT_REGION } from '../public-gateways.constants';
+import { GATEWAY_DEFAULT_REGION } from '../gateways.constants';
 
 export default class publicGatewaysServiceClass {
   /* @ngInject */

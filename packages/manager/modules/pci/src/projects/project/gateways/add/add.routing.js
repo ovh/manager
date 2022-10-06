@@ -1,7 +1,7 @@
 import { PRODUCT_NAME } from './add.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.public-gateways.add', {
+  $stateProvider.state('pci.projects.project.gateways.add', {
     url: '/new?network&subnet&region',
     component: 'pciProjectPublicGatewaysAdd',
     params: {

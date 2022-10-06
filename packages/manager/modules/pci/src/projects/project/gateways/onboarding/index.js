@@ -2,16 +2,16 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerPciPublicGatewaysLazyLoading';
+const moduleName = 'ovhManagerPciPublicGatewaysOnboardingLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('pci.projects.project.public-gateways.**', {
-      url: '/public-gateways',
+    $stateProvider.state('pci.projects.project.gateways.onboarding.**', {
+      url: '/onboarding',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./public-gateways.module').then((mod) =>
+        return import('./onboarding.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },

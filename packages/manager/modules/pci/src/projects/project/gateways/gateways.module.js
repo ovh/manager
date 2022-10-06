@@ -7,13 +7,13 @@ import 'ovh-api-services';
 
 import onboarding from './onboarding';
 import add from './add';
-import component from './public-gateways.component';
-import routing from './public-gateways.routing';
+import component from './gateways.component';
+import routing from './gateways.routing';
 import pciProjectGatewayService from './service';
 import deletePublicGateway from './delete';
 import editGateway from './edit';
 
-import './public-gateways.less';
+import './gateways.less';
 
 const moduleName = 'ovhManagerPciPublicGateways';
 angular

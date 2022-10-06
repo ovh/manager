@@ -3,7 +3,7 @@ import 'angular-translate';
 import '@uirouter/angularjs';
 import '@ovh-ux/manager-core';
 
-import gatewayServiceModule from '../../public-gateways/service';
+import gatewayServiceModule from '../../gateways/service';
 
 import routing from './order.routing';
 import component from './order.component';

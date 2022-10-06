@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.public-gateways.edit', {
+  $stateProvider.state('pci.projects.project.gateways.edit', {
     url: '/edit?gatewayId&region',
     component: 'pciProjectPublicGatewaysEdit',
     params: {
