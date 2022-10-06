@@ -9,7 +9,7 @@
                     model="$ctrl.model.message"
                     rows="4"
                     required
-                    on-change="$ctrl.getMessageDetails()"
+                    on-change="$ctrl.getMessageDetailsDebounced()"
                 >
                 </oui-textarea>
             </oui-field>
@@ -67,7 +67,7 @@
                         name="noStopClause"
                         id="noStopClause"
                         model="$ctrl.model.noStopClause"
-                        on-change="$ctrl.getMessageDetails(modelValue)"
+                        on-change="$ctrl.getMessageDetailsDebounced()"
                     >
                         <span data-translate="sms_no_stop_clause_label"></span>
                     </oui-checkbox>

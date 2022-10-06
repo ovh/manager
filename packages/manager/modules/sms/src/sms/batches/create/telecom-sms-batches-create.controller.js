@@ -16,6 +16,7 @@ export default class SmsBatchesCreateController {
       contacts: [],
       receivers: [],
       immediate: true,
+      noStopClause: false,
     };
 
     this.classes = this.smsClasses.map((smsClass) => ({
