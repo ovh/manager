@@ -9,10 +9,6 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         type: 'string',
       },
-      subnet: {
-        dynamic: true,
-        type: 'string',
-      },
       region: {
         dynamic: true,
         type: 'string',
@@ -23,7 +19,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('pci_projects_project_public_gateways_add_title'),
       defaults: /* @ngInject */ ($transition$) => ({
         network: $transition$.params().network,
-        subnet: $transition$.params().subnet,
         region: $transition$.params().region,
       }),
       regions: /* @ngInject */ (
@@ -50,7 +45,7 @@ export default /* @ngInject */ ($stateProvider) => {
         defaults,
       ) => () => {
         trackPublicGateways('add::back');
-        if (defaults.network && defaults.subnet && defaults.region) {
+        if (defaults.network && defaults.region) {
           return goToPrivateNetwork(projectId);
         }
         return goBack();

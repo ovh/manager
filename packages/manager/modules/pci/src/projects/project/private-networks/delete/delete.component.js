@@ -6,7 +6,7 @@ export default {
     goBack: '<',
     projectId: '<',
     networkId: '<',
-    subnetId: '<',
+    region: '<',
     trackPrivateNetworks: '<',
     onCancelClick: '<',
   },
