@@ -6,6 +6,8 @@ export default {
     goBack: '<',
     productId: '<',
     activeDirectory: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
   controller,
   template,

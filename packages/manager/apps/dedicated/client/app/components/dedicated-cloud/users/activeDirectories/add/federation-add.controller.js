@@ -3,6 +3,8 @@ import {
   FIELD_NAME,
   GUIDE_FEDERATION,
   PLACEHOLDER,
+  TRACKING_PREFIX,
+  TRACKING_TASK_TAG,
 } from './federation-add.constant';
 
 export default class FederationAddCtrl {
@@ -16,6 +18,7 @@ export default class FederationAddCtrl {
   $onInit() {
     this.FIELD_NAME = FIELD_NAME;
     this.PLACEHOLDER = PLACEHOLDER;
+    this.TRACKING_TASK_TAG = TRACKING_TASK_TAG;
 
     this.guideFederationLink =
       GUIDE_FEDERATION[this.user.ovhSubsidiary] || GUIDE_FEDERATION.DEFAULT;
@@ -44,6 +47,7 @@ export default class FederationAddCtrl {
   }
 
   onSubmit() {
+    this.trackClick(`${TRACKING_PREFIX}::confirm`);
     this.loaders.submitting = true;
 
     if (!this.model.ldapTcpPort) {
@@ -57,6 +61,7 @@ export default class FederationAddCtrl {
         this.task = data;
       })
       .catch(({ data: err }) => {
+        this.trackPage(`${TRACKING_PREFIX}-error`);
         this.alerter.error(
           `${this.$translate.instant('dedicatedCloud_USER_AD_ADD_error')} ${
             err.message
@@ -69,11 +74,17 @@ export default class FederationAddCtrl {
       });
   }
 
-  clickOnClose() {
+  onCloseClick() {
+    this.trackClick(`${TRACKING_PREFIX}::done`);
     if (this.task.state === 'done') {
       this.goBack(false, null, true);
     } else {
       this.loaders.submitted = false;
     }
+  }
+
+  onGoBackClick() {
+    this.trackClick(`${TRACKING_PREFIX}::back`);
+    return this.goBack();
   }
 }

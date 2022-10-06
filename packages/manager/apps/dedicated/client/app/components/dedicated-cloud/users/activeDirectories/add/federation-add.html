@@ -2,7 +2,7 @@
     data-heading="{{ 'dedicatedCloud_USER_AD_ADD_title' | translate }}"
     data-description="{{ 'dedicatedCloud_USER_AD_ADD_description' | translate }}"
 >
-    <oui-back-button data-on-click="$ctrl.goBack()"> </oui-back-button>
+    <oui-back-button data-on-click="$ctrl.onGoBackClick()"> </oui-back-button>
 </oui-header>
 
 <div class="alert-server mt-3 mb-3" data-ovh-alert="federationAddAlert"></div>
@@ -213,6 +213,8 @@
                     data-loaders="$ctrl.loaders"
                     data-product-id="$ctrl.productId"
                     data-task="$ctrl.task"
+                    data-tracking-task-tag="$ctrl.TRACKING_TASK_TAG"
+                    data-track-page="$ctrl.trackPage"
                 >
                 </dedicated-cloud-task-poll-progress>
             </div>
@@ -220,7 +222,7 @@
                 <oui-button
                     size="l"
                     variant="primary"
-                    data-on-click="$ctrl.clickOnClose()"
+                    data-on-click="$ctrl.onCloseClick()"
                     disabled="$ctrl.loaders.action"
                 >
                     <span

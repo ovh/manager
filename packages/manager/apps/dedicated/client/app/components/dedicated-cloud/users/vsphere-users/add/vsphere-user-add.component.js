@@ -6,6 +6,8 @@ export default {
     goBack: '<',
     passwordPolicy: '<',
     productId: '<',
+    trackClick: '<',
+    goBackWithTrackingPage: '<',
   },
   controller,
   template,

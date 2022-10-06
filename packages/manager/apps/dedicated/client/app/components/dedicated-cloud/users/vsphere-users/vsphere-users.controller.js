@@ -105,4 +105,14 @@ export default class DedicatedCloudVsphereUsersCtrl {
         row.name !== 'infraadmin')
     );
   }
+
+  onAddUserClick() {
+    this.trackClick('add');
+    return this.addUser(this.passwordPolicy);
+  }
+
+  onGoToImportUserClick() {
+    this.trackClick('import');
+    return this.goToImportUser();
+  }
 }
