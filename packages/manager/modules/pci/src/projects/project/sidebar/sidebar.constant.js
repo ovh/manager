@@ -120,9 +120,9 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
       {
         id: 'public-gateways',
         options: {
-          state: 'pci.projects.project.public-gateways',
+          state: 'pci.projects.project.gateways',
         },
-        title: 'Public Gateways',
+        title: 'Gateway',
         feature: PCI_FEATURES.PRODUCTS.PUBLIC_GATEWAYS,
       },
     ],

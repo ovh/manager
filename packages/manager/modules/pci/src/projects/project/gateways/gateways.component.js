@@ -1,5 +1,5 @@
-import controller from './public-gateways.controller';
-import template from './public-gateways.html';
+import controller from './gateways.controller';
+import template from './gateways.html';
 
 export default {
   bindings: {

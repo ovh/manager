@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.public-gateways.delete', {
+  $stateProvider.state('pci.projects.project.gateways.delete', {
     url: '/delete',
     params: { gateway: null },
     views: {

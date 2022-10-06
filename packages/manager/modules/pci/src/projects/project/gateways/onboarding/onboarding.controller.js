@@ -35,10 +35,10 @@ export default class PciPublicGatewaysOnboardingController {
 
   loadMessages() {
     this.CucCloudMessage.unSubscribe(
-      'pci.projects.project.public-gateways.onboarding',
+      'pci.projects.project.gateways.onboarding',
     );
     this.messageHandler = this.CucCloudMessage.subscribe(
-      'pci.projects.project.public-gateways.onboarding',
+      'pci.projects.project.gateways.onboarding',
       {
         onMessage: () => this.refreshMessages(),
       },
