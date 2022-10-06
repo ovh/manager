@@ -21,13 +21,3 @@ $ yarn && cd packages/manager/apps/foo && yarn run start:dev
 ```
 
 Now you are able to visit `http://localhost:9000/#!/foo` (route based on the module name).
-
-### Split a module
-
-```sh
-$ yarn run split --help
-```
-
-![](/manager/assets/img/split-module-1.png)
-
-![](/manager/assets/img/split-module-2.png)
