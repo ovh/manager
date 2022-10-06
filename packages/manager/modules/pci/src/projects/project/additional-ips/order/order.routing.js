@@ -33,7 +33,10 @@ export default /* @ngInject */ ($stateProvider) => {
           ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
           productName: 'cloud',
         }),
-      breadcrumb: /* @ngInject */ () => null,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate
+          .refresh()
+          .then(() => $translate.instant('pci_additional_ip_create')),
       goBack: /* @ngInject */ (goToAdditionalIps) => goToAdditionalIps,
       instances: /* @ngInject */ (
         PciProjectsProjectInstanceService,
