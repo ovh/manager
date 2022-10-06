@@ -3,6 +3,8 @@ import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
+// comment to force the build of public-cloud app.
+// To be removed after the QA validation of the ticket fix/MANAGER-10107
 
 import activeMonthlyBilling from './active-monthly-billing';
 import add from './add';
