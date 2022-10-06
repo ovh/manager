@@ -27,12 +27,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state,
         projectId,
         trackPrivateNetworks,
-      ) => (networkId, subnetId) => {
+      ) => (networkId, region) => {
         trackPrivateNetworks(`table-option-menu::delete`);
         return $state.go('pci.projects.project.privateNetwork.delete', {
           projectId,
           networkId,
-          subnetId,
+          region,
         });
       },
       networkId: /* @ngInject */ ($transition$) => $transition$.params().id,
@@ -42,24 +42,20 @@ export default /* @ngInject */ ($stateProvider) => {
         $state,
         projectId,
         trackPrivateNetworks,
-      ) => (network, subnet) => {
+      ) => (network) => {
         trackPrivateNetworks(`table-option-menu::assign-public-gateway`);
-        const selectedNetworkRegion = network.regions.find(
-          (networkRegion) => networkRegion.region === subnet.ipPools[0].region,
-        );
         return $state.go('pci.projects.project.public-gateways.add', {
           projectId,
-          network: selectedNetworkRegion.openstackId,
-          subnet: subnet.id,
-          region: subnet.ipPools[0].region,
+          network: network.networkId,
+          region: network.region,
         });
       },
       privateNetworksRegions: /* @ngInject */ (privateNetworks) =>
         Array.from(
           new Set(
             privateNetworks.reduce(
-              (acc, { regions }) =>
-                acc.concat(regions.map(({ region }) => region)),
+              (acc, { subnets }) =>
+                acc.concat(subnets.map(({ region }) => region)),
               [],
             ),
           ),
