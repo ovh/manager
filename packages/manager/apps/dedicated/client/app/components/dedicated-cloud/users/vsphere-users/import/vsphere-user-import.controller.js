@@ -1,4 +1,8 @@
-import { DEFAULT_FILTER_COLUMN } from './vsphere-user-import.constant';
+import {
+  DEFAULT_FILTER_COLUMN,
+  TRACKING_PREFIX,
+  TRACKING_TASK_TAG,
+} from './vsphere-user-import.constant';
 
 export default class VSphereUserImportController {
   /* @ngInject */
@@ -6,9 +10,13 @@ export default class VSphereUserImportController {
     this.$q = $q;
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
+    this.boundOnCloseClick = this.onCloseClick.bind(this);
+    this.boundOnCancelClick = this.onCancelClick.bind(this);
   }
 
   $onInit() {
+    this.TRACKING_TASK_TAG = TRACKING_TASK_TAG;
+
     this.task = null;
 
     this.loaders = {
@@ -71,6 +79,7 @@ export default class VSphereUserImportController {
   }
 
   importUser() {
+    this.trackClick(`${TRACKING_PREFIX}::confirm`);
     this.loaders.action = true;
 
     const params =
@@ -83,28 +92,33 @@ export default class VSphereUserImportController {
       this.model.activeDirectoryId,
       params,
       this.model.type,
-    ).then(
-      (data) => {
+    )
+      .then((data) => {
         this.task = data;
-      },
-      ({ data: err }) => {
+      })
+      .catch(({ data: err }) => {
         this.loaders.action = false;
-        this.goBack(
-          `${this.$translate.instant('dedicatedCloud_USER_import_error')} ${
-            err.message
-          }`,
-          'danger',
-        );
-      },
-    );
+        return this.goBackWithTrackingPage({
+          message: `${this.$translate.instant(
+            'dedicatedCloud_USER_import_error',
+          )} ${err.message || err}`,
+          type: 'danger',
+          trackingTag: `${TRACKING_PREFIX}-error`,
+        });
+      });
   }
 
-  close() {
+  onCloseClick() {
+    this.trackClick(`${TRACKING_PREFIX}::done`);
     if (this.task.state === 'done') {
       this.loaders.cancelModal = true;
-      this.goBack(false, null, true);
-    } else {
-      this.goBack();
+      return this.goBack(false, null, true);
     }
+    return this.goBack();
+  }
+
+  onCancelClick() {
+    this.trackClick(`${TRACKING_PREFIX}::cancel`);
+    return this.goBack();
   }
 }

@@ -9,7 +9,7 @@
 >
     <oui-datagrid-topbar>
         <oui-button
-            data-ng-click="$ctrl.addUser($ctrl.passwordPolicy)"
+            data-ng-click="$ctrl.onAddUserClick()"
             data-ng-if="$ctrl.dedicatedCloud.solution !== 'VCLOUD'"
             type="button"
             variant="secondary"
@@ -18,7 +18,7 @@
         </oui-button>
 
         <oui-button
-            data-ng-click="$ctrl.goToImportUser()"
+            data-ng-click="$ctrl.onGoToImportUserClick()"
             data-ng-if="$ctrl.federationEnabled"
             type="button"
             variant="secondary"

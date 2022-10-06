@@ -14,7 +14,16 @@ export const FIELD_NAME = {
   password: `password${FIELD}`,
 };
 
+export const TRACKING_PREFIX = 'update-active-directory';
+
+export const TRACKING_TASK_TAG = {
+  done: `${TRACKING_PREFIX}-success`,
+  error: `${TRACKING_PREFIX}-error`,
+};
+
 export default {
   FIELD_NAME,
   PLACEHOLDER,
+  TRACKING_PREFIX,
+  TRACKING_TASK_TAG,
 };

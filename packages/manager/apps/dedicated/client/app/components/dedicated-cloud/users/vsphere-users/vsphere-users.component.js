@@ -15,6 +15,8 @@ export default {
     productId: '<',
     setMessage: '<',
     goToImportUser: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
   controller,
   template,

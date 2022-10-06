@@ -7,6 +7,8 @@ export default {
     loaders: '=',
     productId: '<',
     task: '=',
+    trackingTaskTag: '<',
+    trackPage: '<',
   },
   controller,
   template,

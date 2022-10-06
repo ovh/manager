@@ -8,6 +8,8 @@ export default {
     goToAddFederation: '<',
     goToDeleteFederation: '<',
     goToEditFederation: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
   controller,
   template,
