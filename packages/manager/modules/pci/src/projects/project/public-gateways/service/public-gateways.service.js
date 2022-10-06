@@ -15,6 +15,19 @@ export default class publicGatewaysServiceClass {
       .then(({ data }) => data);
   }
 
+  getAggregatedGateways(projectId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/aggregated/gateway`)
+      .then(({ data }) =>
+        data.resources.map((gateway) => {
+          return {
+            ...gateway,
+            flavour: gateway.model.toUpperCase(),
+          };
+        }),
+      );
+  }
+
   getGateways(serviceName, regionName = GATEWAY_DEFAULT_REGION) {
     return this.$http
       .get(`/cloud/project/${serviceName}/region/${regionName}/gateway`)
@@ -23,7 +36,6 @@ export default class publicGatewaysServiceClass {
           return {
             ...gateway,
             region: regionName,
-            flavour: gateway.model.toUpperCase(),
           };
         }),
       );

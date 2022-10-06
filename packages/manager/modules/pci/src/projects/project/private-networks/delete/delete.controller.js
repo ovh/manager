@@ -17,8 +17,8 @@ export default class {
     this.isDeleting = true;
     return this.PciPrivateNetworks.deleteSubnet(
       this.projectId,
+      this.region,
       this.networkId,
-      this.subnetId,
     )
       .then(() => {
         return this.goBack(

@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 import { getCriteria } from '../project.utils';
 import { PRIVATE_NETWORK_LIST } from './private-networks.constants';
 
@@ -17,68 +19,55 @@ export default class {
     this.loadMessages();
     this.isLoading = false;
     this.criteria = getCriteria('id', this.networkId);
-    this.availableNetworks = null;
     this.gatewaySubnetObj = null;
-    this.getNetworksSubnet();
     this.buildGatewaySubnetObj();
   }
 
-  getNetworksSubnet() {
-    this.isLoading = true;
+  getSubnets(row) {
+    set(row, 'loading', true);
     return this.$q
       .all(
-        this.privateNetworks.map((privateNetwork) =>
-          this.getSubnets(privateNetwork),
+        row.subnets.map(({ region, networkId }) =>
+          this.PciPrivateNetworks.getSubnets(this.projectId, region, networkId),
         ),
       )
-      .then((data) => {
-        this.isLoading = false;
-        this.availableNetworks = [...data];
-        return this.availableNetworks;
-      });
-  }
-
-  getSubnets(network) {
-    return this.PciPrivateNetworks.getSubnets(this.projectId, network.id)
-      .then((data) => {
-        return {
-          ...network,
-          subnet: [
-            ...data.map((subnet) => ({
-              ...subnet,
-              gatewayName: this.gatewaySubnetObj[subnet.id],
-              allocatedIp: subnet.ipPools
-                .map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
-                .join(' ,'),
-              dhcp: subnet.ipPools
-                .map((ipPool) =>
-                  ipPool.dhcp === true
-                    ? this.$translate.instant(
-                        'pci_projects_project_network_private_dhcp_active',
-                      )
-                    : this.$translate.instant(
-                        'pci_projects_project_network_private_dhcp_suspended',
-                      ),
-                )
-                .join(),
-            })),
-          ],
-        };
+      .then((subnets) => {
+        set(
+          row,
+          'subnets',
+          row.subnets.map((subnet, index) => {
+            if (subnets[index]) {
+              return {
+                ...subnet,
+                ...subnets[index],
+                allocatedIp: subnets[index].allocationPools
+                  .map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
+                  .join(' ,'),
+                gatewayName: this.gatewaySubnetObj[subnet.networkId],
+              };
+            }
+            return subnet;
+          }),
+        );
+        set(row, 'loading', false);
+        return row;
       })
       .catch((error) => {
+        set(row, 'loading', false);
         this.CucCloudMessage.error(
           this.$translate.instant(
             'pci_projects_project_network_private_error',
             { message: error?.data?.message },
           ),
         );
+        return row;
       });
   }
 
   buildGatewaySubnetObj() {
     this.gatewaySubnetObj = this.gateways.resources.reduce((acc, item) => {
-      item.interfaces.forEach(({ subnetId }) => {
-        acc[subnetId] = item.name;
+      item.interfaces.forEach(({ networkId }) => {
+        acc[networkId] = item.name;
       });
       return acc;
     }, {});
