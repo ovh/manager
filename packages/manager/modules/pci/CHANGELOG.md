@@ -1,3 +1,12 @@
+## [5.93.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.93.0...@ovh-ux/manager-pci@5.93.1) (2022-10-06)
+
+
+### Bug Fixes
+
+* **storage.database.query-statistics:** add missing breadcrumb ([#7979](https://github.com/ovh/manager/issues/7979)) ([d05fe8f](https://github.com/ovh/manager/commit/d05fe8ff81d5aefc23ab3bdd842b64f5d5602148))
+
+
+
 # [5.93.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.92.0...@ovh-ux/manager-pci@5.93.0) (2022-09-29)
 
 

@@ -1,3 +1,12 @@
+## [13.45.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.45.0...@ovh-ux/manager-telecom@13.45.1) (2022-10-06)
+
+
+### Bug Fixes
+
+* **telephony:** do not use user country for non-geographic order ([#8075](https://github.com/ovh/manager/issues/8075)) ([0f4474f](https://github.com/ovh/manager/commit/0f4474f37d9d52e53f49f6501b25a462c4542378))
+
+
+
 # [13.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.44.5...@ovh-ux/manager-telecom@13.45.0) (2022-09-29)
 
 
