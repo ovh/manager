@@ -60,11 +60,7 @@ export default class PciPublicGatewaysAddController {
   }
 
   hasDefaultParams() {
-    return !!(
-      this.defaults.network &&
-      this.defaults.subnet &&
-      this.defaults.region
-    );
+    return !!(this.defaults.network && this.defaults.region);
   }
 
   setDefaults() {
@@ -182,14 +178,6 @@ export default class PciPublicGatewaysAddController {
   onPrivateNetworkChange(selectedNetwork) {
     if (!selectedNetwork.isCustom) {
       this.isCustomNetwork = false;
-      if (this.hasDefaultParams()) {
-        return this.getSubnetById(
-          this.projectId,
-          this.defaults.region,
-          selectedNetwork.id,
-          this.defaults.subnet,
-        );
-      }
       return this.getNetworkSubnet(
         this.projectId,
         this.selectedRegion.name,
@@ -222,7 +210,7 @@ export default class PciPublicGatewaysAddController {
   }
 
   onSuccess() {
-    if (this.defaults.network && this.defaults.subnet && this.defaults.region) {
+    if (this.defaults.network && this.defaults.region) {
       return this.goToPrivateNetwork(this.projectId);
     }
     return this.goToPublicGateway(

@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     params: {
       networkId: null,
-      subnetId: null,
+      region: null,
     },
     resolve: {
       goBack: /* @ngInject */ (goToPrivateNetworks) => goToPrivateNetworks,
@@ -18,8 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       networkId: /* @ngInject */ ($transition$) =>
         $transition$.params().networkId,
-      subnetId: /* @ngInject */ ($transition$) =>
-        $transition$.params().subnetId,
+      region: /* @ngInject */ ($transition$) => $transition$.params().region,
       breadcrumb: () => null,
     },
     atInternet: {

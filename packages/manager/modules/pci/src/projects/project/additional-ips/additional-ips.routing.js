@@ -88,30 +88,10 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
-      getFloatingIps: /* @ngInject */ (
-        $http,
-        $q,
-        OvhApiCloudProjectRegion,
-        projectId,
-      ) => () =>
-        OvhApiCloudProjectRegion.v6()
-          .query({
-            serviceName: projectId,
-          })
-          .$promise.then((regions) => {
-            return $q
-              .all(
-                regions.map((region) =>
-                  $http
-                    .get(
-                      `/cloud/project/${projectId}/region/${region}/floatingip `,
-                    )
-                    .then(({ data }) => data.map((ip) => ({ ...ip, region })))
-                    .catch(() => []),
-                ),
-              )
-              .then((floatingIpsData) => floatingIpsData.flat());
-          }),
+      getFloatingIps: /* @ngInject */ ($http, projectId) => () =>
+        $http
+          .get(`/cloud/project/${projectId}/aggregated/floatingip`)
+          .then(({ data }) => data.resources),
 
       goToAdditionalIps: ($state, CucCloudMessage, projectId) => (
         message = false,

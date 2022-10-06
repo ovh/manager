@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_public_gateway_title'),
       gateways: /* @ngInject */ (PciPublicGatewaysService, projectId) =>
-        PciPublicGatewaysService.getGateways(projectId),
+        PciPublicGatewaysService.getAggregatedGateways(projectId),
       goToAddPublicGateway: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.public-gateways.add', {
           projectId,
