@@ -1,3 +1,4 @@
+import JSURL from 'jsurl';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import flattenDeep from 'lodash/flattenDeep';
@@ -13,8 +14,8 @@ import uniq from 'lodash/uniq';
 import {
   IP_LOCATION_GROUPS,
   PRODUCT_TYPES,
-  VPS_MAX_QUANTITY,
   TRACKING_PREFIX,
+  VPS_MAX_QUANTITY,
 } from './ip-ip-agoraOrder.constant';
 
 export default class AgoraIpOrderCtrl {
@@ -53,6 +54,7 @@ export default class AgoraIpOrderCtrl {
 
     this.loading = {};
     this.user = this.$state.params.user;
+    this.catalogName = this.$state.params.catalogName;
 
     // need to be scoped because of how wizard-step works
     this.$scope.loadServices = this.loadServices.bind(this);
@@ -100,12 +102,11 @@ export default class AgoraIpOrderCtrl {
   }
 
   createOfferDto(ipOffer) {
-    const maximumQuantity = get(
-      ipOffer.details.pricings.default.find(
-        (price) => head(price.capacities) === 'renew',
-      ),
-      'maximumQuantity',
+    const { default: defaultPricing } = ipOffer.details.pricings;
+    const renewCapacity = defaultPricing.find((price) =>
+      price.capacities.find((capacity) => capacity === 'renew'),
     );
+    const { maximumQuantity } = renewCapacity;
 
     const countryCodes = ipOffer.details.product.configurations.find(
       (config) => config.name === 'country',
@@ -201,6 +202,12 @@ export default class AgoraIpOrderCtrl {
     return this.loadIpOffers();
   }
 
+  getOfferContent(offer) {
+    return `${offer.productShortName} - ${
+      offer.price.text
+    }/${this.$translate.instant('ip_month')}`;
+  }
+
   loadIpOffers() {
     this.model.params = {};
     let ipOffersPromise;
@@ -216,13 +223,12 @@ export default class AgoraIpOrderCtrl {
     } else {
       ipOffersPromise = this.IpAgoraOrder.getIpOffers(
         this.user.ovhSubsidiary,
+        this.catalogName,
       ).then((ipOffers) => {
         let ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
         if (this.model.selectedService.type === PRODUCT_TYPES.vps.typeName) {
           ipOfferDetails = ipOfferDetails
-            .filter(({ productShortName }) =>
-              productShortName.includes('failover'),
-            )
+            .filter(({ planCode }) => planCode.includes('failover'))
             .map((offer) => ({
               ...offer,
               quantities: range(1, VPS_MAX_QUANTITY + 1),

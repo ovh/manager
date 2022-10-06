@@ -3,10 +3,14 @@ import controller from './ip-ip-agoraOrder.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip.dashboard.agora-order', {
-    url: '/agoraOrder',
+    url: '/agoraOrder?{catalogName:string}',
     params: {
       service: null,
       user: {},
+      catalogName: {
+        type: 'string',
+        value: 'ip',
+      },
     },
     views: {
       modal: {
