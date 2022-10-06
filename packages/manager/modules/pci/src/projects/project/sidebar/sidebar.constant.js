@@ -114,7 +114,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         options: {
           state: 'pci.projects.project.additional-ips',
         },
-        title: 'Additional IP',
+        title: 'Public IPs',
         feature: PCI_FEATURES.PRODUCTS.ADDITIONAL_IP,
       },
       {
