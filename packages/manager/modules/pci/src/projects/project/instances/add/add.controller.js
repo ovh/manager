@@ -28,6 +28,7 @@ export default class PciInstancesAddController {
     $q,
     $translate,
     coreConfig,
+    $timeout,
     CucCloudMessage,
     cucUcentsToCurrencyFilter,
     PciProjectsProjectInstanceService,
@@ -36,6 +37,7 @@ export default class PciInstancesAddController {
   ) {
     this.$q = $q;
     this.$translate = $translate;
+    this.$timeout = $timeout;
     this.coreConfig = coreConfig;
     this.user = coreConfig.getUser();
     this.CucCloudMessage = CucCloudMessage;
@@ -123,7 +125,7 @@ export default class PciInstancesAddController {
     this.isAttachFloatingIPAvailable = false;
     this.isCreateFloatingIPClicked = false;
     this.privateNetworkModel = {};
-    this.subnetGateways = null;
+    this.subnetGateways = [];
     this.isCustomNetwork = false;
     this.isGatewayLoading = false;
     this.isLoadBillingStep = false;
@@ -429,7 +431,9 @@ export default class PciInstancesAddController {
         'pci_projects_project_instances_add_privateNetwork_none',
       ),
     };
-    if (this.subnetGateways) this.subnetGateways.length = 0;
+    if (this.subnetGateways) {
+      this.subnetGateways = [];
+    }
     if (this.isPrivateMode()) {
       this.isCreateFloatingIPClicked = false;
       this.isAttachFloatingIPAvailable = false;
@@ -475,7 +479,6 @@ export default class PciInstancesAddController {
       modelValue.subnet &&
       this.selectedMode.name !== this.instanceModeEnum[1].mode
     ) {
-      this.isGatewayLoading = true;
       this.getSubnetGateways(modelValue.subnet[0].id).then((data) => {
         this.subnetGateways = data;
       });
@@ -532,12 +535,7 @@ export default class PciInstancesAddController {
         });
       })
       .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_instances_add_common_error',
-            { message: get(err, 'data.message', '') },
-          ),
-        );
+        this.handleError(err);
       })
       .finally(() => {
         this.isIpLoading = false;
@@ -545,6 +543,7 @@ export default class PciInstancesAddController {
   }
 
   getSubnetGateways(id) {
+    this.isGatewayLoading = true;
     return this.PciProjectsProjectInstanceService.getSubnetGateways(
       this.projectId,
       this.model.datacenter.name,
@@ -552,12 +551,7 @@ export default class PciInstancesAddController {
     )
       .then((data) => data)
       .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_instances_add_common_error',
-            { message: get(err, 'data.message', '') },
-          ),
-        );
+        this.handleError(err);
       })
       .finally(() => {
         this.isGatewayLoading = false;
@@ -566,39 +560,48 @@ export default class PciInstancesAddController {
 
   onModeSubmit() {
     this.addons = [];
-    if (this.isPrivateMode() && this.isAttachFloatingIPAvailable) {
+    if (
+      this.isPrivateMode() &&
+      this.isAttachFloatingIPAvailable &&
+      this.selectedPrivateNetwork
+    ) {
       this.isLoadBillingStep = true;
-      this.getSubnetGateways(this.selectedPrivateNetwork.subnet[0].id)
-        .then((data) => {
-          this.subnetGateways = data;
+      if (this.selectedPrivateNetwork?.isCustom) {
+        this.subnetGateways = [];
+        return this.$timeout(() => {
           this.addPricing();
-          if (this.selectedPrivateNetwork.subnet[0].gatewayIp === null) {
-            this.enableDhcp();
-          }
-          this.isGatewayLoading = false;
-        })
-        .catch((err) => {
-          this.CucCloudMessage.error(
-            this.$translate.instant(
-              'pci_projects_project_instances_add_common_error',
-              { message: get(err, 'data.message', '') },
-            ),
-          );
-        })
-        .finally(() => {
           this.isLoadBillingStep = false;
         });
+      }
+      if (this.selectedPrivateNetwork.subnet?.[0]) {
+        return this.getSubnetGateways(this.selectedPrivateNetwork.subnet[0].id)
+          .then((data) => {
+            this.subnetGateways = data;
+            this.addPricing();
+            if (this.selectedPrivateNetwork.subnet[0]?.gatewayIp === null) {
+              this.enableDhcp();
+            }
+            this.isGatewayLoading = false;
+          })
+          .catch((err) => {
+            this.handleError(err);
+          })
+          .finally(() => {
+            this.isLoadBillingStep = false;
+          });
+      }
     }
+    return null;
   }
 
-  enableModeSubmit() {
-    if (
-      this.selectedMode.name !== this.instanceModeEnum[1].mode &&
-      this.subnetGateways
-    ) {
-      return this.subnetGateways.length > 0 && !this.isGatewayLoading;
+  showNetworkNavigation() {
+    if (!this.isPrivateMode()) {
+      return !this.isGatewayLoading && this.subnetGateways.length === 0;
     }
-    return this.isPrivateMode() && !this.selectedPrivateNetwork.id;
+    return (
+      this.selectedPrivateNetwork.isCustom ||
+      this.selectedPrivateNetwork.id !== ''
+    );
   }
 
   addPricing() {
@@ -640,18 +643,21 @@ export default class PciInstancesAddController {
     )
       .then((data) => data)
       .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_instances_add_common_error',
-            { message: get(err, 'data.message', '') },
-          ),
-        );
+        this.isLoading = false;
+        return this.handleError(err);
       });
   }
 
   create() {
-    this.isLoading = true;
+    this.trackCreate();
+    return this.selectedPrivateNetwork?.isCustom &&
+      this.isAttachFloatingIPAvailable
+      ? this.createNetworkWithGateway()
+      : this.createInstance();
+  }
 
+  createInstance() {
+    this.isLoading = true;
     if (this.model.image.type !== 'linux') {
       this.instance.userData = null;
     }
@@ -664,7 +670,6 @@ export default class PciInstancesAddController {
       };
     }
 
-    this.trackCreate();
     return this.PciProjectsProjectInstanceService.save(
       this.projectId,
       this.instance,
@@ -680,7 +685,11 @@ export default class PciInstancesAddController {
         if (!this.isPrivateMode()) {
           return this.goBack(message, 'success');
         }
-        if (this.subnetGateways.length === 0) {
+        if (
+          this.subnetGateways?.length === 0 &&
+          this.isAttachFloatingIPAvailable &&
+          !this.selectedPrivateNetwork?.isCustom
+        ) {
           return this.createGateway(instanceId, ips, message);
         }
         return this.onCreateInstanceSuccess(instanceId, ips, message);
@@ -709,6 +718,62 @@ export default class PciInstancesAddController {
         );
       }
     }
+    return this.goBack(message, 'success');
+  }
+
+  createNetworkWithGateway() {
+    this.isLoading = true;
+    let openStackId;
+    this.gatewayName = getAutoGeneratedName(
+      `gateway-${this.model.datacenter.name.toLowerCase()}`,
+    );
+    return this.PciPublicGatewaysService.getSmallestGatewayInfo(
+      this.user.ovhSubsidiary,
+    )
+      .then((data) => {
+        this.selectedGatewaySize = data.size;
+        this.gatewayModel = {
+          gateway: {
+            name: this.gatewayName,
+            model: this.selectedGatewaySize,
+          },
+          name: this.selectedPrivateNetwork.name,
+          subnet: {
+            cidr: this.selectedSubnet,
+            ipVersion: 4,
+            enableDhcp: true,
+            enableGatewayIp: true,
+          },
+        };
+        return this.PciProjectsProjectInstanceService.createNetworkWithGateway(
+          this.projectId,
+          this.model.datacenter.name,
+          this.gatewayModel,
+        );
+      })
+      .then(({ resourceId }) => {
+        openStackId = resourceId;
+        return this.PciProjectsProjectInstanceService.getPrivateNetworks(
+          this.projectId,
+        );
+      })
+      .then((data) => {
+        const filterNetwork = data.find((network) => {
+          return network.regions.some(
+            (region) => region.openstackId === openStackId,
+          );
+        });
+        this.instance.networks = [
+          {
+            networkId: filterNetwork.id,
+          },
+        ];
+        this.createInstance();
+      })
+      .catch((err) => {
+        this.isLoading = false;
+        return this.handleError(err);
+      });
   }
 
   createGateway(instanceId, ips, message) {
@@ -736,27 +801,10 @@ export default class PciInstancesAddController {
           this.gatewayModel,
         );
       })
-      .then(({ resourceId }) => this.getGatewayById(resourceId))
-      .then((data) => {
-        this.createdGateway = data;
-        return this.onCreateInstanceSuccess(instanceId, ips, message);
-      });
-  }
-
-  getGatewayById(id) {
-    return this.PciProjectsProjectInstanceService.getGatewayById(
-      this.projectId,
-      this.model.datacenter.name,
-      id,
-    )
-      .then((data) => data)
+      .then(() => this.onCreateInstanceSuccess(instanceId, ips, message))
       .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_instances_add_common_error',
-            { message: get(err, 'data.message', '') },
-          ),
-        );
+        this.isLoading = false;
+        return this.handleError(err);
       });
   }
 
@@ -782,12 +830,21 @@ export default class PciInstancesAddController {
     this.CucCloudMessage.error(message, 'pci.projects.project.instances.add');
   }
 
+  handleError(err) {
+    this.CucCloudMessage.error(
+      this.$translate.instant(
+        'pci_projects_project_instances_add_common_error',
+        { message: get(err, 'data.message', '') },
+      ),
+    );
+  }
+
   createAndAttachFloatingIp(instanceId, ip, message) {
     this.isLoading = true;
     this.floatingIpModel = {
       gateway: {
-        model: this.subnetGateways[0]?.model || this.createdGateway.model,
-        name: this.subnetGateways[0]?.name || this.createdGateway.name,
+        model: this.subnetGateways[0]?.model || this.selectedGatewaySize,
+        name: this.subnetGateways[0]?.name || this.gatewayName,
       },
       ip,
     };
@@ -799,12 +856,7 @@ export default class PciInstancesAddController {
     )
       .then(() => this.goBack(message, 'success'))
       .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_instances_add_common_error',
-            { message: get(err, 'data.message', '') },
-          ),
-        );
+        this.handleError(err);
       })
       .finally(() => {
         this.isLoading = false;
@@ -816,8 +868,8 @@ export default class PciInstancesAddController {
     this.floatingIpModel = {
       floatingIpId,
       gateway: {
-        model: this.subnetGateways[0]?.model || this.createdGateway.model,
-        name: this.subnetGateways[0]?.name || this.createdGateway.name,
+        model: this.subnetGateways[0]?.model || this.selectedGatewaySize,
+        name: this.subnetGateways[0]?.name || this.gatewayName,
       },
       ip,
     };
@@ -829,12 +881,7 @@ export default class PciInstancesAddController {
     )
       .then(() => this.goBack(message, 'success'))
       .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_instances_add_common_error',
-            { message: get(err, 'data.message', '') },
-          ),
-        );
+        this.handleError(err);
       })
       .finally(() => {
         this.isLoading = false;

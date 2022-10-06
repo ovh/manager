@@ -460,6 +460,8 @@ export default class PciProjectInstanceService {
     },
     number = 1,
   ) {
+    const saveInstanceNamespace = 'instance-creation';
+    const status = 'ACTIVE';
     if (number > 1) {
       return this.$http
         .post(`/cloud/project/${serviceName}/instance/bulk`, {
@@ -474,7 +476,14 @@ export default class PciProjectInstanceService {
           userData,
           number,
         })
-        .then(({ data }) => data);
+        .then(({ data: { id } }) => {
+          const url = `/cloud/project/${serviceName}/instance/${id}`;
+          return this.checkOperationStatus(url, saveInstanceNamespace, status);
+        })
+        .then((data) => {
+          this.Poller.kill({ namespace: saveInstanceNamespace });
+          return data;
+        });
     }
     return this.$http
       .post(`/cloud/project/${serviceName}/instance`, {
@@ -490,12 +499,10 @@ export default class PciProjectInstanceService {
       })
       .then(({ data: { id } }) => {
         const url = `/cloud/project/${serviceName}/instance/${id}`;
-        const saveInstanceNamespace = 'instance-creation';
-        const status = 'ACTIVE';
         return this.checkOperationStatus(url, saveInstanceNamespace, status);
       })
       .then((data) => {
-        this.Poller.kill({ namespace: 'instance-creation' });
+        this.Poller.kill({ namespace: saveInstanceNamespace });
         return data;
       });
   }
@@ -632,6 +639,7 @@ export default class PciProjectInstanceService {
   }
 
   createAndAttachFloatingIp(serviceName, region, instanceId, floatingIpModel) {
+    const createAndAssociateFloatingIp = 'create-associate-floatingIp';
     return this.$http
       .post(
         `/cloud/project/${serviceName}/region/${region}/instance/${instanceId}/floatingIp`,
@@ -639,10 +647,23 @@ export default class PciProjectInstanceService {
           ...floatingIpModel,
         },
       )
-      .then(({ data }) => data);
+      .then(({ data: { id } }) => {
+        const url = `/cloud/project/${serviceName}/operation/${id}`;
+        const status = 'completed';
+        return this.checkOperationStatus(
+          url,
+          createAndAssociateFloatingIp,
+          status,
+        );
+      })
+      .then((data) => {
+        this.Poller.kill({ namespace: createAndAssociateFloatingIp });
+        return data;
+      });
   }
 
   associateFloatingIp(serviceName, region, instanceId, floatingIpModel) {
+    const associateFloatingIP = 'associate-floatingIp';
     return this.$http
       .post(
         `/cloud/project/${serviceName}/region/${region}/instance/${instanceId}/associateFloatingIp`,
@@ -650,7 +671,15 @@ export default class PciProjectInstanceService {
           ...floatingIpModel,
         },
       )
-      .then(({ data }) => data);
+      .then(({ data: { id } }) => {
+        const url = `/cloud/project/${serviceName}/operation/${id}`;
+        const status = 'completed';
+        return this.checkOperationStatus(url, associateFloatingIP, status);
+      })
+      .then((data) => {
+        this.Poller.kill({ namespace: associateFloatingIP });
+        return data;
+      });
   }
 
   enableDhcp(serviceName, networkId, dhcpModel) {
@@ -663,6 +692,7 @@ export default class PciProjectInstanceService {
   }
 
   createGateway(serviceName, region, networkId, subnetId, gatewayModel) {
+    const createGatewayNamespace = 'gateway-creation';
     return this.$http
       .post(
         `/cloud/project/${serviceName}/region/${region}/network/${networkId}/subnet/${subnetId}/gateway`,
@@ -670,22 +700,35 @@ export default class PciProjectInstanceService {
       )
       .then(({ data: { id } }) => {
         const url = `/cloud/project/${serviceName}/operation/${id}`;
-        const createGatewayNamespace = 'gateway-creation';
         const status = 'completed';
         return this.checkOperationStatus(url, createGatewayNamespace, status);
       })
       .then((data) => {
-        this.Poller.kill({ namespace: 'gateway-creation' });
+        this.Poller.kill({ namespace: createGatewayNamespace });
         return data;
       });
   }
 
-  getGatewayById(serviceName, region, gatewayId) {
+  createNetworkWithGateway(serviceName, regionName, gateway) {
+    const addNetworkGatewayNamespace = 'network-gateway-creation';
     return this.$http
-      .get(
-        `/cloud/project/${serviceName}/region/${region}/gateway/${gatewayId} `,
+      .post(
+        `/cloud/project/${serviceName}/region/${regionName}/network`,
+        gateway,
       )
-      .then(({ data }) => data);
+      .then(({ data: { id } }) => {
+        const url = `/cloud/project/${serviceName}/operation/${id}`;
+        const status = 'completed';
+        return this.checkOperationStatus(
+          url,
+          addNetworkGatewayNamespace,
+          status,
+        );
+      })
+      .then((data) => {
+        this.Poller.kill({ namespace: addNetworkGatewayNamespace });
+        return data;
+      });
   }
 
   checkOperationStatus(url, namespace, status) {
