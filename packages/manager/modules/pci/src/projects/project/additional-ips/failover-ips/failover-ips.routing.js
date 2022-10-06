@@ -11,7 +11,12 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      breadcrumb: /* @ngInject */ () => null,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate
+          .refresh()
+          .then(() =>
+            $translate.instant('pci_additional_ips_failover_ip_title'),
+          ),
       additionalIp: /* @ngInject */ ($transition$) => $transition$.params().ip,
       additionalIpsRegions: /* @ngInject */ (failoverIps) =>
         Array.from(new Set(failoverIps.map(({ geoloc }) => geoloc))),

@@ -173,7 +173,7 @@ const pciNode: Node = {
           serviceType: 'CLOUD_PROJECT_ADDITIONAL_IP',
           routing: {
             application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/additional-ips',
+            hash: '#/pci/projects/{projectId}/public-ips',
           },
           features: ['additional-ips'],
           forceVisibility: true,
