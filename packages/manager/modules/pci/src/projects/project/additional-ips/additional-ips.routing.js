@@ -9,7 +9,7 @@ const getStateToNavigate = (activeTab = TABS.FLOATING_IP) =>
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.additional-ips', {
-    url: '/additional-ips',
+    url: '/public-ips',
     component: 'pciProjectAdditionalIps',
     translations: {
       format: 'json',
