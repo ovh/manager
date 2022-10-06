@@ -610,11 +610,17 @@
         data-ng-if="$ctrl.model.number > 1 && !$ctrl.isPrivateMode()"
         data-translate="pci_projects_project_instances_add_save_multiple_form"
     ></p>
-    <p
+    <div
         data-ng-if="$ctrl.model.number === 1 && $ctrl.isPrivateMode() && $ctrl.isAttachFloatingIPAvailable &&
-        $ctrl.selectedFloatingIP"
-        data-translate="pci_projects_project_instances_add_attaching_floating_ip"
-    ></p>
+    $ctrl.selectedFloatingIP"
+    >
+        <p
+            data-translate="pci_projects_project_instances_add_private_mode1"
+        ></p>
+        <p
+            data-translate="pci_projects_project_instances_add_private_mode2"
+        ></p>
+    </div>
 </div>
 
 <div data-ng-if="$ctrl.showAddPrivateNetworkModalForm">
