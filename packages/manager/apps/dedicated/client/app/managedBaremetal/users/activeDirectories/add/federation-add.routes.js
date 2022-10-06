@@ -10,5 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicatedCloud_USER_AD_ADD_title'),
     },
+    atInternet: {
+      rename:
+        'dedicated::managedBaremetal::details::users::add-active-directory',
+    },
   });
 };

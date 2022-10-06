@@ -16,5 +16,9 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicatedCloud_USER_AD_delete_title'),
     },
+    atInternet: {
+      rename:
+        'dedicated::managedBaremetal::details::users::delete-active-directory',
+    },
   });
 };

@@ -2,10 +2,18 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.managedBaremetal.details.users', {
     url: '/users',
     reloadOnSearch: false,
+    params: {
+      trackingTag: null,
+    },
     views: {
       pccView: 'dedicatedCloudUsers',
     },
     resolve: {
+      tagPageParams: /* @ngInject */ (trackPage, $transition$) => {
+        if ($transition$.params().trackingTag) {
+          trackPage($transition$.params().trackingTag);
+        }
+      },
       goBack: /* @ngInject */ (goBackToState) => (
         message = false,
         type = 'success',
@@ -17,6 +25,32 @@ export default /* @ngInject */ ($stateProvider) => {
           type,
           reload,
         );
+      },
+      goBackWithTrackingPage: /* @ngInject */ (
+        $state,
+        $timeout,
+        currentService,
+        setMessage,
+      ) => ({
+        message = false,
+        type = 'success',
+        reload = undefined,
+        trackingTag = null,
+      }) => {
+        const promise = $state.go(
+          'app.managedBaremetal.details.users',
+          { productId: currentService.serviceName, trackingTag },
+          {
+            reload:
+              reload === undefined ? message && type === 'success' : reload,
+          },
+        );
+
+        if (message) {
+          promise.then(() => $timeout(() => setMessage(message, type)));
+        }
+
+        return promise;
       },
       addUser: /* @ngInject */ ($state) => (passwordPolicy) =>
         $state.go('app.managedBaremetal.details.users.add', {
@@ -63,6 +97,15 @@ export default /* @ngInject */ ($stateProvider) => {
           passwordPolicy,
           user,
           userId: user.userId,
+        }),
+      trackClick: /* @ngInject */ (atInternet) => (hit) =>
+        atInternet.trackClick({
+          name: `dedicated::managedBaremetal::details::users::${hit}`,
+          type: 'action',
+        }),
+      trackPage: /* @ngInject */ (atInternet) => (hit) =>
+        atInternet.trackPage({
+          name: `dedicated::managedBaremetal::details::users::${hit}`,
         }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('managed_baremetal_user'),

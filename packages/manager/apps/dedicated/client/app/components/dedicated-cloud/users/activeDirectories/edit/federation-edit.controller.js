@@ -1,4 +1,9 @@
-import { FIELD_NAME, PLACEHOLDER } from './federation-edit.constant';
+import {
+  FIELD_NAME,
+  PLACEHOLDER,
+  TRACKING_PREFIX,
+  TRACKING_TASK_TAG,
+} from './federation-edit.constant';
 
 export default class ActiveDirectoriesEditController {
   /* @ngInject */
@@ -10,6 +15,7 @@ export default class ActiveDirectoriesEditController {
   $onInit() {
     this.FIELD_NAME = FIELD_NAME;
     this.PLACEHOLDER = PLACEHOLDER;
+    this.TRACKING_TASK_TAG = TRACKING_TASK_TAG;
 
     this.task = null;
 
@@ -34,6 +40,7 @@ export default class ActiveDirectoriesEditController {
   }
 
   editFederation() {
+    this.trackClick(`${TRACKING_PREFIX}::confirm`);
     this.loaders.action = true;
 
     return this.DedicatedCloud.changePropertiesActiveDirectory(
@@ -56,11 +63,11 @@ export default class ActiveDirectoriesEditController {
   }
 
   close() {
+    this.trackClick(`${TRACKING_PREFIX}::done`);
     if (this.task.state === 'done') {
       this.loaders.cancelModal = true;
-      this.goBack(false, null, true);
-    } else {
-      this.goBack();
+      return this.goBack(false, null, true);
     }
+    return this.goBack();
   }
 }

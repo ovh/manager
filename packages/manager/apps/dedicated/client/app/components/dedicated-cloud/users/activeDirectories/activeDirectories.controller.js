@@ -81,4 +81,9 @@ export default class DedicatedCloudActiveDirectoriesCtrl {
 
     return filter;
   }
+
+  onAddFederationClick() {
+    this.trackClick('add-active-directory');
+    return this.goToAddFederation();
+  }
 }

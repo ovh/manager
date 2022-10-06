@@ -5,6 +5,9 @@ export default {
   bindings: {
     goBack: '<',
     productId: '<',
+    trackClick: '<',
+    trackPage: '<',
+    goBackWithTrackingPage: '<',
   },
   controller,
   template,

@@ -1,10 +1,14 @@
 import validator from 'validator';
 
+import { TRACKING_PREFIX } from './vsphere-user-add.constant';
+
 export default class {
   /* @ngInject */
   constructor($translate, DedicatedCloud) {
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
+    this.boundAddUser = this.addUser.bind(this);
+    this.boundOnCancel = this.onCancel.bind(this);
   }
 
   $onInit() {
@@ -29,19 +33,22 @@ export default class {
   }
 
   addUser() {
+    this.trackClick(`${TRACKING_PREFIX}::confirm`);
     this.loaders.add = true;
     this.DedicatedCloud.addUser(this.productId, this.newUser).then(
-      () => {
-        this.goBack(this.$translate.instant('dedicatedCloud_users_add_start'));
-      },
-      (err) => {
-        this.goBack(
-          `${this.$translate.instant(
+      () =>
+        this.goBackWithTrackingPage({
+          message: this.$translate.instant('dedicatedCloud_users_add_start'),
+          trackingTag: `${TRACKING_PREFIX}-success`,
+        }),
+      (err) =>
+        this.goBackWithTrackingPage({
+          message: `${this.$translate.instant(
             'dedicatedCloud_users_add_error',
           )} ${err.message || err}`,
-          'danger',
-        );
-      },
+          type: 'danger',
+          trackingTag: `${TRACKING_PREFIX}-error`,
+        }),
     );
   }
 
@@ -107,5 +114,10 @@ export default class {
     }
 
     return validator.isEmail(value);
+  }
+
+  onCancel() {
+    this.trackClick(`${TRACKING_PREFIX}::cancel`);
+    return this.goBack();
   }
 }

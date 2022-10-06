@@ -1,8 +1,8 @@
 <div
     data-wizard
     data-wizard-title=":: 'dedicatedCloud_USER_import_title' | translate"
-    data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
-    data-wizard-on-finish="$ctrl.close.bind($ctrl)"
+    data-wizard-on-cancel=":: $ctrl.boundOnCancelClick"
+    data-wizard-on-finish=":: $ctrl.boundOnCloseClick"
     data-wizard-hide-cancel-button="currentStep !== 1"
     data-wizard-hide-close-button="currentStep !== 1"
     data-wizard-confirm-button-text=":: 'dedicatedCloud_USER_import_button_close' | translate"
@@ -104,6 +104,8 @@
             data-loaders="$ctrl.loaders"
             data-product-id="$ctrl.productId"
             data-task="$ctrl.task"
+            data-tracking-task-tag="$ctrl.TRACKING_TASK_TAG"
+            data-track-page="$ctrl.trackPage"
         >
         </dedicated-cloud-task-poll-progress>
     </div>
