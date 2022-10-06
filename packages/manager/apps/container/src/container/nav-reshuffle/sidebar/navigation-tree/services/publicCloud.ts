@@ -184,7 +184,7 @@ const pciNode: Node = {
           serviceType: 'CLOUD_PROJECT_PUBLIC_GATEWAYS',
           routing: {
             application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/public-gateways',
+            hash: '#/pci/projects/{projectId}/gateway',
           },
           features: ['public-gateways'],
           forceVisibility: true,

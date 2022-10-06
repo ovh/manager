@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.public-gateways', {
-    url: '/public-gateways',
+  $stateProvider.state('pci.projects.project.gateways', {
+    url: '/gateway',
     component: 'pciProjectPublicGateways',
     redirectTo: (transition) =>
       transition
@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .getAsync('gateways')
         .then((gateways) =>
           gateways.length === 0
-            ? { state: 'pci.projects.project.public-gateways.onboarding' }
+            ? { state: 'pci.projects.project.gateways.onboarding' }
             : false,
         ),
     resolve: {
@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
       gateways: /* @ngInject */ (PciPublicGatewaysService, projectId) =>
         PciPublicGatewaysService.getAggregatedGateways(projectId),
       goToAddPublicGateway: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.public-gateways.add', {
+        $state.go('pci.projects.project.gateways.add', {
           projectId,
         }),
       goToDeleteGateway: /* @ngInject */ (
@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
         trackPublicGateways,
       ) => (gateway) => {
         trackPublicGateways('table-option-menu::delete');
-        return $state.go('pci.projects.project.public-gateways.delete', {
+        return $state.go('pci.projects.project.gateways.delete', {
           projectId,
           gateway,
         });
@@ -37,7 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
         trackPublicGateways,
       ) => (gatewayId, region) => {
         trackPublicGateways('table-option-menu::update');
-        return $state.go('pci.projects.project.public-gateways.edit', {
+        return $state.go('pci.projects.project.gateways.edit', {
           projectId,
           gatewayId,
           region,
@@ -91,7 +91,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => (message = false, type = 'success') => {
         const reload = message && type === 'success';
         const promise = $state.go(
-          'pci.projects.project.public-gateways',
+          'pci.projects.project.gateways',
           {
             projectId,
           },
@@ -102,10 +102,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         if (message) {
           promise.then(() =>
-            CucCloudMessage[type](
-              message,
-              'pci.projects.project.public-gateways',
-            ),
+            CucCloudMessage[type](message, 'pci.projects.project.gateways'),
           );
         }
 

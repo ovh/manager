@@ -44,7 +44,7 @@ export default /* @ngInject */ ($stateProvider) => {
         trackPrivateNetworks,
       ) => (network) => {
         trackPrivateNetworks(`table-option-menu::assign-public-gateway`);
-        return $state.go('pci.projects.project.public-gateways.add', {
+        return $state.go('pci.projects.project.gateways.add', {
           projectId,
           network: network.networkId,
           region: network.region,
@@ -69,7 +69,7 @@ export default /* @ngInject */ ($stateProvider) => {
       gateways: /* @ngInject */ (PciPrivateNetworks, projectId) =>
         PciPrivateNetworks.getGateways(projectId),
       gatewaysLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.public-gateways', {
+        $state.href('pci.projects.project.gateways', {
           projectId,
         }),
       breadcrumb: /* @ngInject */ ($translate) =>
