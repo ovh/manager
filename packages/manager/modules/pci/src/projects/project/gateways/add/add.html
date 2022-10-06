@@ -162,12 +162,19 @@
                 ></span>
             </oui-button>
         </oui-field>
+
+        <div
+            data-ng-if="$ctrl.isCreatingGateway"
+            class="mt-2 d-inline-flex flex-row"
+        >
+            <oui-spinner size="m"></oui-spinner>
+            <span
+                class="ml-1"
+                data-translate="pci_projects_project_public_gateways_add_creating_wait_message"
+            ></span>
+        </div>
     </oui-step-form>
 </oui-stepper>
-
-<div data-ng-if="$ctrl.isCreatingGateway">
-    <oui-spinner size="m"></oui-spinner>
-</div>
 
 <div data-ng-if="$ctrl.showAddPrivateNetworkModalForm">
     <div class="modal d-block" tabindex="-1">
