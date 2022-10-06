@@ -41,7 +41,7 @@ import pciMaintenanceBanner from '../../components/pci-maintenance-banner';
 import projectComponent from './project.component';
 import service from './project.service';
 
-import publicGateways from './public-gateways';
+import gateways from './gateways';
 
 import './project.less';
 
@@ -84,7 +84,7 @@ angular
     training,
     pciAnnouncementBanner,
     pciMaintenanceBanner,
-    publicGateways,
+    gateways,
   ])
   .config(routing)
   .component('pciProject', projectComponent)

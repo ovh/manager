@@ -1,6 +1,6 @@
 import ipaddr from 'ipaddr.js';
 
-const CONTAINER_NAME = 'pci.projects.project.public-gateways';
+const CONTAINER_NAME = 'pci.projects.project.gateways';
 
 export default class PublicGatewaysController {
   /* @ngInject */

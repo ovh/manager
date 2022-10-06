@@ -43,7 +43,7 @@
   "sidebar_pci_private_network": "Private Network",
   "sidebar_pci_failover_ip": "IP Failover",
   "sidebar_pci_additional_ips": "Additional IP",
-  "sidebar_pci_public_gateways": "Public Gateways",
+  "sidebar_pci_public_gateways": "Gateway",
   "sidebar_pci_kubernetes": "Managed Kubernetes Service",
   "sidebar_pci_kubernetes_load_balancer": "Kubernetes Load Balancer",
   "sidebar_pci_private_registry": "Managed Private Registry",
