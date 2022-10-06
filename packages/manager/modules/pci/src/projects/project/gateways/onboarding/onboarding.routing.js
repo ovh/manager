@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.public-gateways.onboarding', {
+  $stateProvider.state('pci.projects.project.gateways.onboarding', {
     url: '/onboarding',
     component: 'pciProjectPublicGatewaysOnboarding',
     redirectTo: (transition) =>
@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .getAsync('gateways')
         .then((gateways) =>
           gateways.length > 0
-            ? { state: 'pci.projects.project.public-gateways' }
+            ? { state: 'pci.projects.project.gateways' }
             : false,
         ),
     resolve: {

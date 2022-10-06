@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import service from './public-gateways.service';
+import service from './gateways.service';
 
 const moduleName = 'ovhManagerPciPublicGatewaysService';
 

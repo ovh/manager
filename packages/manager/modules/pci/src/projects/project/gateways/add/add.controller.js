@@ -137,11 +137,9 @@ export default class PciPublicGatewaysAddController {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe(
-      'pci.projects.project.public-gateways.add',
-    );
+    this.CucCloudMessage.unSubscribe('pci.projects.project.gateways.add');
     this.messageHandler = this.CucCloudMessage.subscribe(
-      'pci.projects.project.public-gateways.add',
+      'pci.projects.project.gateways.add',
       {
         onMessage: () => this.refreshMessages(),
       },

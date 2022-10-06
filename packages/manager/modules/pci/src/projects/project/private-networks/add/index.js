@@ -10,7 +10,7 @@ import component from './add.component';
 import routing from './add.routing';
 import service from './add.service';
 
-import gatewayServiceModule from '../../public-gateways/service';
+import gatewayServiceModule from '../../gateways/service';
 
 const moduleName = 'ovhManagerPciPrivateNetworksAdd';
 
