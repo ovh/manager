@@ -70,8 +70,8 @@ export default class IpAgoraOrder {
       ]);
   }
 
-  getIpOffers(ovhSubsidiary = 'US') {
-    return this.OvhHttp.get('/order/catalog/formatted/ip', {
+  getIpOffers(ovhSubsidiary = 'US', catalogName = 'ip') {
+    return this.OvhHttp.get(`/order/catalog/formatted/${catalogName}`, {
       rootPath: 'apiv6',
       params: {
         ovhSubsidiary,
