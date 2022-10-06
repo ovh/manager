@@ -136,6 +136,11 @@ export default function exposeApi(shellClient: ShellClient) {
           method: 'onChatbotClose',
           args: [reduced],
         }),
+      openLiveChat: () =>
+        shellClient.invokePluginMethod<void>({
+          plugin: 'ux',
+          method: 'openLiveChat',
+        }),
       openChatbot: () =>
         shellClient.invokePluginMethod<void>({
           plugin: 'ux',

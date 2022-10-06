@@ -164,6 +164,10 @@ export class UXPlugin implements IUXPlugin {
   }
 
   openChatbot(): void {
+    this.shell.emitEvent('ux:open-chatbot');
+  }
+
+  openLiveChat(): void {
     this.shellUX.openChatbot();
   }
 

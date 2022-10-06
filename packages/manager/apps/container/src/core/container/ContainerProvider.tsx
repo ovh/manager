@@ -134,12 +134,19 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     fetchFeatureAvailability()
       .then(({ version, chatbot, livechat }) => {
         setBetaVersion(version);
-        setIsChatbotEnabled(chatbot);
         // Livechat is the new Chatbot that is used in the Container
-        setIsLivechatEnabled(livechat);
+        if (livechat) {
+          setIsLivechatEnabled(livechat);
+          setIsChatbotEnabled(false);
+        }else if (chatbot) {
+          setIsLivechatEnabled(false)
+          setIsChatbotEnabled(chatbot)
+        }
+
         if (version) {
           return fetchBetaChoice();
         }
+
         return null;
       })
       .finally(() => setIsLoading(false));
@@ -150,14 +157,8 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       const chatbotVisibility = await uxPlugin.isChatbotVisible();
       if (isLivechatEnabled)
         setChatbotOpen(chatbotVisibility);
-      else if (isChatbotEnabled) {
-        if (chatbotVisibility)
-          shell.getPlugin('ux').openChatbot();
-        else
-          shell.getPlugin('ux').closeChatbot();
-      }
     });
-  }, []);
+  }, [isLivechatEnabled])
 
   containerContext = {
     createBetaChoice,
@@ -165,6 +166,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     betaVersion,
     useBeta,
     isChatbotEnabled,
+    isLivechatEnabled,
     isLoading,
     updateBetaChoice,
     chatbotOpen,
