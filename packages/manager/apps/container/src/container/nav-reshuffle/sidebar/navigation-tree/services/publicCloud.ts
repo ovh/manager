@@ -126,7 +126,6 @@ const pciNode: Node = {
       id: 'pci-network',
       translation: 'sidebar_pci_network',
       features: [
-        'load-balancer',
         'private-network',
         'failover-ip',
         'additional-ips',
@@ -134,17 +133,6 @@ const pciNode: Node = {
       ],
       forceVisibility: true,
       children: [
-        {
-          id: 'pci-load-balancer',
-          translation: 'sidebar_pci_load_balancer',
-          serviceType: 'CLOUD_PROJECT_LOADBALANCER',
-          routing: {
-            application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/load-balancer',
-          },
-          features: ['load-balancer'],
-          forceVisibility: true,
-        },
         {
           id: 'pci-private-network',
           translation: 'sidebar_pci_private_network',
