@@ -8,11 +8,24 @@ import {
 
 export default class DedicatedCloudActiveDirectoriesCtrl {
   /* @ngInject */
-  constructor($q, $translate, DedicatedCloud, ouiDatagridService) {
-    this.$q = $q;
+  constructor($translate, DedicatedCloud, ouiDatagridService) {
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
     this.ouiDatagridService = ouiDatagridService;
+  }
+
+  $onInit() {
+    this.loading = true;
+
+    return this.DedicatedCloud.securityOptionsCompatibility(this.productId)
+      .then((data) => {
+        this.hasAdvancedSecurity = !!data.find(
+          (elm) => elm.name === 'advancedSecurity' && elm.state !== 'disabled',
+        );
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   loadActiveDirectories({ offset, pageSize, sort, criteria }) {
