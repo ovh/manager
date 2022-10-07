@@ -1,9 +1,9 @@
 import { listRouting } from '../ip.routing';
 
-import controller from './failover.controller';
-import template from './failover.template.html';
-
-import { FAILOVER_SERVICE_TYPE } from './failover.constants';
+import {
+  FAILOVER_FILTERS_CHAPTER_1,
+  FAILOVER_SERVICE_TYPE,
+} from './failover.constants';
 import { BADGE_BYOIP } from '../components/list/list.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -13,19 +13,13 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       serviceType: null,
     },
-    views: {
-      '': {
-        controller,
-        controllerAs: '$ctrl',
-        template,
-      },
-      'list@app.ip.failover': {
-        component: 'ipList',
-      },
-    },
+    component: 'ipFailover',
     resolve: {
       ...listRouting.resolve,
       badges: () => [BADGE_BYOIP],
+      trackingData: () => ({
+        filtersChapter1: FAILOVER_FILTERS_CHAPTER_1,
+      }),
       serviceType: () => FAILOVER_SERVICE_TYPE,
     },
   });
