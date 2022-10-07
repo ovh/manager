@@ -1,12 +1,28 @@
 <div class="ip-failover">
     <p data-translate="ip_failover_text"></p>
-    <div class="d-flex align-items-center justify-content-end">
-        <span class="mr-2" data-translate="ip_failover_unused_filter"></span>
-        <oui-switch
-            data-name="unusedFilter"
-            data-ng-model="$ctrl.unusedFilter"
-            data-on-change="$ctrl.toggleUnusedFilter()"
-        ></oui-switch>
-    </div>
-    <div ui-view="list"></div>
+    <ip-list
+        badges="$ctrl.badges"
+        go-to-antispam="$ctrl.goToAntispam"
+        go-to-firewall="$ctrl.goToFirewall"
+        go-to-game-firewall="$ctrl.goToGameFirewall"
+        go-to-organisation="$ctrl.goToOrganisation"
+        order-ip-available="$ctrl.orderIpAvailable"
+        service-type="$ctrl.serviceType"
+        set-action="$parent.setAction"
+        track-click="$ctrl.trackClick"
+        track-page="$ctrl.trackPage"
+        tracking-data="$ctrl.trackingData"
+    >
+        <ip-list-filters>
+            <span
+                class="mr-2"
+                data-translate="ip_failover_unused_filter"
+            ></span>
+            <oui-switch
+                data-name="unusedFilter"
+                data-model="$ctrl.unusedFilter"
+                data-on-change="$ctrl.toggleUnusedFilter()"
+            ></oui-switch>
+        </ip-list-filters>
+    </ip-list>
 </div>

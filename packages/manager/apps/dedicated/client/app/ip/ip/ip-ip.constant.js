@@ -16,9 +16,12 @@ export const SERVICE_TYPES = [
   'xdsl',
 ];
 
+export const IP_FILTERS_CHAPTER_1 = 'all_ips_filter';
+
 export default {
   IP_TYPE,
   BRING_YOUR_OWN_IP,
   SERVICE_TYPES,
   TRACKING_PREFIX,
+  IP_FILTERS_CHAPTER_1,
 };

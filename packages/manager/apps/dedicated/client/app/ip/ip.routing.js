@@ -55,10 +55,14 @@ export default /* @ngInject */ ($stateProvider) => {
           name: `${trackingPrefix}::${hit}`,
         });
       },
-      trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (hit) => {
+      trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (
+        hit,
+        { chapter1, usePrefix = true } = {},
+      ) => {
         atInternet.trackClick({
-          name: `${trackingPrefix}::${hit}`,
+          name: `${usePrefix ? `${trackingPrefix}::` : ''}${hit}`,
           type: 'action',
+          chapter1,
         });
       },
       dashboardLink: /* @ngInject */ ($transition$, $state) =>

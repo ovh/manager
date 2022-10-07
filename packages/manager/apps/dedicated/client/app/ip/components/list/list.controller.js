@@ -87,6 +87,7 @@ export default class IpListController {
     $scope.IP_TYPE = IP_TYPE;
     $scope.showBYOIPBadge = (self.badges || BADGES).includes(BADGE_BYOIP);
     $scope.showFOBadge = (self.badges || BADGES).includes(BADGE_FO);
+    $scope.advancedModeFilter = true;
 
     // pagination
     $scope.pageNumber = toInteger($stateParams.page) || 1;
@@ -559,6 +560,13 @@ export default class IpListController {
       $scope.setAction('ip/export-csv/ip-ip-export-csv', { ipsList });
     };
 
+    $scope.onAdvancedModeFilterChanged = function onAdvancedModeFilterChanged() {
+      self.trackClick(
+        `advanced_mode_${$scope.advancedModeFilter ? 'on' : 'off'}`,
+        { usePrefix: false, chapter1: self.trackingData?.filtersChapter1 },
+      );
+    };
+
     if (
       $location.search().action === 'toggleFirewall' &&
       $location.search().ip
@@ -598,7 +606,7 @@ export default class IpListController {
       });
     };
 
-    $scope.setAction = $scope.$parent.setAction;
+    $scope.setAction = self.setAction || $scope.$parent.setAction;
     $scope.canImportIPFO = () => ipFeatureAvailability.allowIPFailoverImport();
     $scope.canExportCsv = () => $scope.state.loaded !== $scope.state.total;
     $scope.importIPFO = function importIPFO() {
