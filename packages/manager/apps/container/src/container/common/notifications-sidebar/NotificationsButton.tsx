@@ -12,12 +12,16 @@ function NavbarNotifications(): JSX.Element {
   const { t } = useTranslation('navbar');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
-  const { readAllNotifications, notificationsCount } = useNotifications();
+  const { notifications, readAllNotifications } = useNotifications();
 
   const {
     isNotificationsSidebarVisible,
     setIsNotificationsSidebarVisible,
   } = useHeader();
+
+  const notificationsCount = (notifications || []).filter(({ isActive }) =>
+    isActive(),
+  ).length;
 
   function onClick(): void {
     trackingPlugin.trackClick({

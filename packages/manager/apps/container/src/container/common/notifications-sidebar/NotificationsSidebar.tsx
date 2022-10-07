@@ -1,64 +1,47 @@
 import React, { useEffect, useState } from 'react';
-
-import { Environment } from '@ovh-ux/manager-config';
 import { groupBy } from 'lodash-es';
 
-import { MAX_NOTIFICATIONS } from './constants';
+import { useApplication } from '@/context';
+import { useHeader } from '@/context/header';
+import useNotifications from '@/core/notifications';
+import { fromNow } from '@/helpers/dateHelper';
+
 import Notifications from './Notifications/Notifications';
 import style from './notifications-sidebar.module.scss';
 
-import { useHeader } from '@/context/header';
-import useNotifications, { Notification } from '@/core/notifications';
-import useDate from '@/helpers/useDate';
+interface NotificationGroup {
+  date: string;
+  fromNow: string;
+}
 
 type NotificationByDate = Record<string, Notification[]>;
 
-type Props = {
-  environment?: Environment;
-};
-
-const NotificationsSidebar = ({
-  environment = {} as Environment,
-}: Props): JSX.Element => {
-  const locale = environment.getUserLocale();
-  const { fromNow } = useDate();
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+const NotificationsSidebar = () => {
+  const { isNotificationsSidebarVisible } = useHeader();
+  const { notifications, isNotificationsLoading } = useNotifications();
   const [groupedNotifications, setGroupedNotifications] = useState<
     NotificationByDate
   >({});
+  const locale = useApplication().environment.getUserLocale();
 
-  const { isNotificationsSidebarVisible } = useHeader();
-  const {
-    notifications,
-    loadNotifications,
-    setNotificationsCount,
-    getActiveNotifications,
-  } = useNotifications();
-
-  const getGroupedNotifications = async (
-    notificationToDisplay: Notification[],
-  ): Promise<NotificationByDate> => {
-    if (!notificationToDisplay) {
+  const getGroupedNotifications = async (): Promise<NotificationByDate> => {
+    if (!notifications) {
       return groupBy([] as Notification[]);
     }
 
-    const allDates = [
-      ...new Set(notificationToDisplay.map(({ date }) => date)),
-    ];
-    interface Group {
-      date: string;
-      fromNow: string;
-    }
+    const allDates = [...new Set(notifications.map(({ date }) => date))];
 
-    const groups: Group[] = await Promise.all(
+    const groups: NotificationGroup[] = await Promise.all(
       allDates.map(async (date) => {
         const dateFromNow = await fromNow(date, locale);
         return { date, fromNow: dateFromNow };
       }),
     );
     const dateGroups = groups.reduce(
-      (all: Record<string, Group>, { date, fromNow: dateFromNow }) => {
+      (
+        all: Record<string, NotificationGroup>,
+        { date, fromNow: dateFromNow },
+      ) => {
         return {
           ...all,
           [date]: dateFromNow,
@@ -67,56 +50,15 @@ const NotificationsSidebar = ({
       {},
     );
 
-    return groupBy(notificationToDisplay, ({ date }) => dateGroups[date]);
+    return groupBy(notifications, ({ date }) => dateGroups[date]);
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    loadNotifications().finally(() => {
-      setIsLoading(false);
-    });
-  }, [locale]);
-
-  useEffect(() => {
-    const notificationToDisplay =
-      notifications.length > MAX_NOTIFICATIONS
-        ? notifications.slice(0, MAX_NOTIFICATIONS)
-        : notifications;
-
-    if (notificationToDisplay.length === 0) {
-      setNotificationsCount(0);
-      setGroupedNotifications({});
-    } else {
-      const updateNotifications = async () => {
-        setNotificationsCount(
-          getActiveNotifications(notificationToDisplay).length,
-        );
-        setGroupedNotifications(
-          await getGroupedNotifications(notificationToDisplay),
-        );
-      };
-      updateNotifications();
-    }
+    const updateNotifications = async () => {
+      setGroupedNotifications(await getGroupedNotifications());
+    };
+    updateNotifications();
   }, [notifications]);
-
-  let notificationsContent;
-  if (isLoading) {
-    notificationsContent = <Notifications.Loading />;
-  } else if (notifications.length === 0) {
-    notificationsContent = <Notifications.Empty />;
-  } else {
-    notificationsContent = (
-      <>
-        {Object.keys(groupedNotifications).map((groupTime: string, index) => (
-          <Notifications.Group
-            notifications={groupedNotifications[groupTime]}
-            title={groupTime}
-            key={index}
-          />
-        ))}
-      </>
-    );
-  }
 
   return (
     <div
@@ -125,7 +67,30 @@ const NotificationsSidebar = ({
       } ${isNotificationsSidebarVisible && style.notificationsSidebar_toggle}`}
       role="menu"
     >
-      <Notifications>{notificationsContent}</Notifications>
+      <Notifications>
+        <>
+          {isNotificationsLoading && <Notifications.Loading />}
+          {!isNotificationsLoading && (
+            <>
+              {!notifications.length ? (
+                <Notifications.Empty />
+              ) : (
+                <>
+                  {Object.keys(groupedNotifications).map(
+                    (groupTime: string, index) => (
+                      <Notifications.Group
+                        notifications={groupedNotifications[groupTime]}
+                        title={groupTime}
+                        key={index}
+                      />
+                    ),
+                  )}
+                </>
+              )}
+            </>
+          )}
+        </>
+      </Notifications>
     </div>
   );
 };
