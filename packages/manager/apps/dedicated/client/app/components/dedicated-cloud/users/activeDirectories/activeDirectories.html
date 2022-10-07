@@ -1,3 +1,7 @@
+<oui-message data-ng-if="$ctrl.hasAdvancedSecurity" class="mb-2" type="info">
+    <span data-translate="dedicatedCloud_USER_AD_unavailable"> </span>
+</oui-message>
+
 <oui-datagrid
     id="pcc-active-directories-datagrid"
     rows-loader="$ctrl.loadActiveDirectories($config)"
@@ -7,6 +11,7 @@
         <oui-button
             variant="secondary"
             data-ng-click="$ctrl.goToAddFederation()"
+            data-disabled="$ctrl.loading || $ctrl.hasAdvancedSecurity"
         >
             <span data-translate="dedicatedCloud_USER_AD_add_federation"></span>
         </oui-button>
