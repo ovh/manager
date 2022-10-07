@@ -44,33 +44,45 @@ export default /* @ngInject */ ($stateProvider) => {
         $q,
         PciProjectsProjectInstanceService,
         projectId,
+        getFloatingIps,
       ) =>
-        PciProjectsProjectInstanceService.getAll(projectId)
-          .then((instances) =>
-            $q.all(
-              map(instances, (instance) =>
-                PciProjectsProjectInstanceService.getInstanceFlavor(
-                  projectId,
-                  instance,
-                ).then(
-                  (flavor) =>
-                    new Instance({
-                      ...instance,
-                      flavor,
-                    }),
-                ),
+        $q
+          .all({
+            instances: PciProjectsProjectInstanceService.getAll(projectId),
+            floatingIps: getFloatingIps(),
+          })
+          .then(({ instances, floatingIps }) => {
+            const updatedInstances = map(instances, (instance) => ({
+              ...instance,
+              floatingIp: floatingIps.find((floatingIp) =>
+                instance.ipAddresses.some(({ ip }) => ip === floatingIp.ip),
               ),
-            ),
-          )
-          .then((instances) =>
-            filter(
-              instances,
-              (instance) =>
-                !find(TYPES_TO_EXCLUDE, (pattern) =>
-                  pattern.test(get(instance, 'flavor.type')),
+            }));
+            return $q
+              .all(
+                updatedInstances.map((instance) => {
+                  return PciProjectsProjectInstanceService.getInstanceFlavor(
+                    projectId,
+                    instance,
+                  ).then(
+                    (flavor) =>
+                      new Instance({
+                        ...instance,
+                        flavor,
+                      }),
+                  );
+                }),
+              )
+              .then((data) =>
+                filter(
+                  data,
+                  (instance) =>
+                    !find(TYPES_TO_EXCLUDE, (pattern) =>
+                      pattern.test(get(instance, 'flavor.type')),
+                    ),
                 ),
-            ),
-          ),
+              );
+          }),
       instanceId: /* @ngInject */ ($transition$) => $transition$.params().id,
 
       instancesRegions: /* @ngInject */ (instances) =>
@@ -422,6 +434,14 @@ export default /* @ngInject */ ($stateProvider) => {
             feature.isFeatureAvailable(PCI_FEATURES.PRODUCTS.ADDITIONAL_IP),
           );
       },
+      getFloatingIps: /* @ngInject */ ($http, projectId) => () =>
+        $http
+          .get(`/cloud/project/${projectId}/aggregated/floatingip`)
+          .then(({ data }) => data.resources),
+      floatingIpsLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.additional-ips.floating-ips', {
+          projectId,
+        }),
     },
   });
 };
