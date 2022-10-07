@@ -1048,6 +1048,12 @@ class DedicatedCloudService {
       );
   }
 
+  securityOptionsCompatibility(serviceName) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}/securityOptions/compatibilityMatrix`)
+      .then(({ data }) => data);
+  }
+
   /* --- Virtual Machine Encryption KMS --- */
   getVMEncryptionKMSList(serviceName) {
     return this.OvhApiDedicatedCloud.VMEncryption()
