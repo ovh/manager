@@ -11,7 +11,7 @@
         data-on-finish="$ctrl.redirectToPaymentPage()"
     >
         <oui-step-form
-            id="flavor"
+            data-id="service"
             data-name="service_selection"
             data-header="{{:: 'ip_order_step1_question' | translate}}"
             data-valid="$ctrl.model.selectedService"
@@ -53,12 +53,13 @@
             </div>
         </oui-step-form>
         <oui-step-form
-            data-name="product_selection"
+            data-id="offer"
+            data-name="offer_selection"
             data-header="{{:: 'ip_agora_table_header_offer' | translate }}"
             data-navigation="$ctrl.model.params.selectedOffer"
             data-on-cancel="$ctrl.resumeOrder()"
             data-editable="!$ctrl.isLoading"
-            data-valid="$ctrl.model.params.selectedCountry"
+            data-valid="$ctrl.model.params.selectedCountry || $ctrl.isPrivateCloudOffer"
             data-submit-text="{{:: 'ip_agora_table_submit_text' | translate }}"
             data-cancel-text="{{:: 'ip_agora_table_cancel_text' | translate}}"
             data-prevent-next
@@ -69,7 +70,7 @@
             <div class="row px-2 mb-2">
                 <div
                     class="col-4 px-1"
-                    data-ng-show="$ctrl.showFailoverSelection()"
+                    data-ng-show="$ctrl.isFailoverShowable()"
                 >
                     <oui-select-picker
                         class="text-center"
@@ -85,22 +86,24 @@
                         data-required
                     >
                         <oui-select-picker-description>
-                            <strong>
-                                <h4
+                            <h4>
+                                <strong
                                     class="text-center"
                                     data-translate="ip_agora_failover_ip_title"
-                                ></h4>
-                                <p
+                                ></strong>
+                            </h4>
+                            <p>
+                                <strong
                                     class="text-center"
                                     data-translate="ipv4Failover_price_label"
-                                ></p>
-                            </strong>
+                                ></strong>
+                            </p>
                         </oui-select-picker-description>
                     </oui-select-picker>
                 </div>
                 <div
                     class="col-4 px-1"
-                    data-ng-show="$ctrl.showBlockSelection()"
+                    data-ng-show="$ctrl.canShowBlockSelection()"
                 >
                     <oui-select-picker
                         data-ng-if="!$ctrl.loading.ipOffers"
@@ -114,16 +117,18 @@
                         data-required
                     >
                         <oui-select-picker-description>
-                            <strong>
-                                <h4
+                            <h4>
+                                <strong
                                     class="text-center"
                                     data-translate="ip_agora_block_ip_title"
-                                ></h4>
-                                <p
+                                ></strong>
+                            </h4>
+                            <p>
+                                <strong
                                     class="text-center"
                                     data-translate="ipv4Block_price_label"
-                                ></p>
-                            </strong>
+                                ></strong>
+                            </p>
                             <p
                                 class="text-center"
                                 data-translate="ipv4Block_description"
@@ -141,19 +146,19 @@
                     data-ng-show="!$ctrl.model.params.selectedOffer.isIpBlockOffer"
                 >
                     <div class="row">
-                        <strong>
-                            <p
+                        <p>
+                            <strong
                                 data-translate="{{ 'ip_agora_select_quantity_title' | translate }}"
-                            ></p>
-                        </strong>
+                            ></strong>
+                        </p>
                     </div>
                     <div class="row oui-box h-12 w-50 mb-2">
                         <div class="col-6">
-                            <strong>
-                                <p
+                            <p>
+                                <strong
                                     data-translate="{{ 'ip_agora_failover_ip_title' | translate }}"
-                                ></p>
-                            </strong>
+                                ></strong>
+                            </p>
                         </div>
                         <div class="col-6">
                             <oui-field>
@@ -180,11 +185,11 @@
                     data-ng-show="$ctrl.model.params.selectedOffer.countries.length > 1"
                 >
                     <div class="row">
-                        <strong>
-                            <p
+                        <p>
+                            <strong
                                 data-translate="{{ 'ip_agora_ip_localisation_title' | translate }}"
-                            ></p>
-                        </strong>
+                            ></strong>
+                        </p>
                     </div>
                     <div class="row">
                         <oui-select-picker
@@ -205,14 +210,23 @@
                     data-ng-show="$ctrl.model.params.selectedOffer.isIpBlockOffer"
                     data-ng-if="!$ctrl.isPrivateCloudOffer"
                 >
-                    <strong>
-                        <p
+                    <p>
+                        <strong
                             data-translate="{{ 'ip_agora_table_header_organisation' | translate }}"
-                        ></p>
-                    </strong>
-                    <p
-                        data-ng-bind-html="'ipv4Block_organization_description' | translate: { url: $ctrl.learnOrgLink }"
-                    ></p>
+                        ></strong>
+                    </p>
+                    <span
+                        data-translate="ipv4Block_organization_description1"
+                    ></span>
+                    <a
+                        class="oui-link"
+                        data-translate="ipv4Block_organization_description2"
+                        data-ng-href="{{ $ctrl.LEARN_ORGANIZATION_LINK}}"
+                    >
+                    </a>
+                    <span
+                        data-translate="ipv4Block_organization_description3"
+                    ></span>
                     <oui-message data-type="info">
                         <span
                             data-translate="ipv4Block_organization_info_banner"

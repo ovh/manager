@@ -133,7 +133,7 @@
   "ip_agora_table_header_country": "Localisée(s) en",
   "ip_agora_table_header_organisation": "Associer une organisation",
   "ip_table_firewall": "Firewall",
-  "ip_table_manage_mac": "Modifier MAC virtuelle",
+  "ip_table_manage_mac": "Modifier votre adresse MAC virtuelle",
   "ip_table_manage_mitigation_DEFAULT_to_PERMANENT": "Mitigation : mode permanent",
   "ip_table_manage_mitigation_PERMANENT_to_AUTO": "Mitigation : mode auto",
   "ip_table_manage_mitigation_stats": "Statistiques",
