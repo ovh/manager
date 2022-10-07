@@ -18,5 +18,6 @@
   "dedicatedCloud_USER_AD_status_updating": "En cours de mise à jour",
   "dedicatedCloud_USER_AD_add_federation": "Ajouter un Active Directory LDAPs",
   "dedicatedCloud_USER_AD_edit": "Modifier l'Active Directory",
-  "dedicatedCloud_USER_AD_delete": "Supprimer l'Active Directory"
+  "dedicatedCloud_USER_AD_delete": "Supprimer l'Active Directory",
+  "dedicatedCloud_USER_AD_unavailable": "L'ajout d'un Active Directory externe au sein d'un service certifié (HDS, PCI-DSS ou SNC) est impossible au vu des contraintes de ces périmètres."
 }
