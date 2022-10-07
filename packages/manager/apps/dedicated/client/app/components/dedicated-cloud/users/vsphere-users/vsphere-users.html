@@ -225,14 +225,11 @@
             ><span data-translate="dedicatedCloud_USER_change_password"></span>
         </oui-action-menu-item>
         <oui-action-menu-item
-            data-ng-if="$ctrl.dedicatedCloud.solution !== 'SYSTEMCENTER'"
+            data-ng-if="$ctrl.canDeleteUserOrGroup($row)"
             data-on-click="$ctrl.deleteUser($row)"
-            ><span data-translate="dedicatedCloud_USER_delete"></span>
-        </oui-action-menu-item>
-        <oui-action-menu-item
-            data-ng-if="$ctrl.dedicatedCloud.solution === 'SYSTEMCENTER' && $row.name !== 'infraadmin'"
-            data-on-click="$ctrl.deleteUser($row)"
-            ><span data-translate="dedicatedCloud_USER_delete"></span>
+            ><span
+                data-translate="{{ :: $row.activeDirectoryType === 'user' ? 'dedicatedCloud_USER_user_delete' : 'dedicatedCloud_USER_group_delete' }}"
+            ></span>
         </oui-action-menu-item>
         <oui-action-menu-item
             data-ng-if="$ctrl.dedicatedCloud.solution === 'SYSTEMCENTER' && $row.name === 'infraadmin' && $row.activationState === 'disabled'"
