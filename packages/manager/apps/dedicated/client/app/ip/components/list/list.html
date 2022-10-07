@@ -1,36 +1,59 @@
-<div class="float-right">
-    <oui-dropdown placement="end">
-        <button
-            type="button"
-            class="oui-button oui-button_secondary oui-button_s"
-            oui-dropdown-trigger
-        >
-            <span class="oui-icon oui-icon-settings" aria-hidden="true"></span>
-        </button>
-        <oui-dropdown-content>
-            <oui-dropdown-item
-                data-on-click="importIPFO()"
-                data-ng-if="canImportIPFO()"
-            >
-                <span data-translate="ip_migration"></span>
-            </oui-dropdown-item>
-            <oui-dropdown-item data-on-click="displayOrganisation()">
-                <span data-translate="ip_organisation_button"></span>
-            </oui-dropdown-item>
-        </oui-dropdown-content>
-    </oui-dropdown>
-    <oui-button
-        data-oui-tooltip="{{:: 'ip_export' | translate }}"
-        data-oui-tooltip-placement="left"
-        type="button"
-        class="oui-button_secondary"
-        disabled="canExportCsv()"
-        on-click="exportCsv(ipsList)"
-    >
-        <span class="oui-icon oui-icon-export_concept"></span>
-    </oui-button>
-</div>
 <div class="table-responsive mt-3 module-ip-table-responsive">
+    <div class="mb-3 d-flex align-items-center justify-content-end">
+        <oui-dropdown>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary oui-button_s"
+                data-oui-dropdown-trigger
+            >
+                <span
+                    class="oui-icon oui-icon-settings"
+                    aria-hidden="true"
+                ></span>
+            </button>
+            <oui-dropdown-content>
+                <oui-dropdown-item
+                    data-on-click="importIPFO()"
+                    data-ng-if="canImportIPFO()"
+                >
+                    <span data-translate="ip_migration"></span>
+                </oui-dropdown-item>
+                <oui-dropdown-item data-on-click="displayOrganisation()">
+                    <span data-translate="ip_organisation_button"></span>
+                </oui-dropdown-item>
+            </oui-dropdown-content>
+        </oui-dropdown>
+        <oui-button
+            data-oui-tooltip="{{:: 'ip_export' | translate }}"
+            data-oui-tooltip-placement="left"
+            type="button"
+            class="oui-button_secondary"
+            disabled="canExportCsv()"
+            on-click="exportCsv(ipsList)"
+        >
+            <span class="oui-icon oui-icon-export_concept"></span>
+        </oui-button>
+        <div
+            class="d-flex align-items-center"
+            data-ng-transclude="actions"
+        ></div>
+    </div>
+    <div class="mb-3 d-flex align-items-center justify-content-end">
+        <span
+            class="mr-2"
+            data-translate="ip_table_filter_advanced_mode"
+        ></span>
+        <oui-switch
+            class="mr-2"
+            data-name="advancedModeFilter"
+            data-model="advancedModeFilter"
+            data-on-change="onAdvancedModeFilterChanged()"
+        ></oui-switch>
+        <div
+            class="d-flex align-items-center"
+            data-ng-transclude="filters"
+        ></div>
+    </div>
     <table class="table table-hover" id="module-ip-table" aria-label="ips">
         <thead>
             <tr>
@@ -42,21 +65,28 @@
                 <th scope="col" data-translate="ip_table_header_campus"></th>
                 <th scope="col" data-translate="ip_table_header_country"></th>
                 <th scope="col" data-translate="ip_table_header_service"></th>
+                <th scope="col" data-translate="ip_table_header_reverse"></th>
+                <th scope="col" data-translate="ip_table_header_alerts"></th>
                 <th
                     scope="col"
                     data-translate="ip_table_header_virtual_mac"
+                    data-ng-if="advancedModeFilter"
                 ></th>
-                <th scope="col" data-translate="ip_table_header_reverse"></th>
                 <th
                     scope="col"
                     data-translate="ip_table_header_mitigation"
+                    data-ng-if="advancedModeFilter"
                 ></th>
-                <th scope="col" data-translate="ip_table_header_security"></th>
+                <th
+                    scope="col"
+                    data-translate="ip_table_header_security"
+                    data-ng-if="advancedModeFilter"
+                ></th>
                 <th
                     scope="col"
                     data-translate="ip_table_header_game_mitigation"
+                    data-ng-if="advancedModeFilter"
                 ></th>
-                <th scope="col" data-translate="ip_table_header_alerts"></th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -137,9 +167,6 @@
                 <!-- Server -->
                 <td data-ng-bind="ipBlock.routedTo.serviceName || '-'"></td>
 
-                <!-- Virtual MAC -->
-                <td></td>
-
                 <!-- Reverse -->
                 <td>
                     <span
@@ -168,15 +195,6 @@
                     </ul>
                 </td>
 
-                <!-- Mitigation -->
-                <td></td>
-
-                <!-- Firewall -->
-                <td></td>
-
-                <!-- Game mitigation -->
-                <td></td>
-
                 <!-- Alerts -->
                 <td>
                     <div
@@ -189,6 +207,18 @@
                         <strong data-ng-bind="alertsCount(ipBlock)"></strong>
                     </div>
                 </td>
+
+                <!-- Virtual MAC -->
+                <td data-ng-if="advancedModeFilter"></td>
+
+                <!-- Mitigation -->
+                <td data-ng-if="advancedModeFilter"></td>
+
+                <!-- Firewall -->
+                <td data-ng-if="advancedModeFilter"></td>
+
+                <!-- Game mitigation -->
+                <td data-ng-if="advancedModeFilter"></td>
 
                 <!-- Actions -->
                 <td>
@@ -248,23 +278,6 @@
                 <!-- Server -->
                 <td data-ng-bind="ipBlock.routedTo.serviceName || '-'"></td>
 
-                <!-- VMAC -->
-                <td>
-                    <span
-                        data-ng-if="ipBlock.virtualMac.status === 'OK'"
-                        data-ng-bind="ipBlock.virtualMac.virtualMacs[ip.ip] || '-'"
-                    >
-                    </span>
-                    <span
-                        class="oui-badge"
-                        data-ng-if="ipBlock.virtualMac.status === 'PENDING'"
-                        data-translate="ip_taskpending_label"
-                        data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
-                        data-oui-tooltip-placement="top"
-                    >
-                    </span>
-                </td>
-
                 <!-- Reverse -->
                 <td>
                     <span
@@ -322,42 +335,6 @@
                     </div>
                 </td>
 
-                <!-- Mitigation -->
-                <td>
-                    <span
-                        data-ng-if="ipBlock.version === IP_TYPE.V4"
-                        data-ng-class="{
-                              'text-muted': !ip.mitigation || ip.mitigation === 'DEFAULT',
-                              'badge': ip.mitigation === 'CREATION_PENDING' || ip.mitigation === 'REMOVAL_PENDING',
-                              'font-weight-bold': ip.mitigation === 'FORCED'
-                          }"
-                        data-ng-bind="'ip_mitigation_' + (ip.mitigation || 'DEFAULT') | translate"
-                    >
-                    </span>
-                </td>
-
-                <!-- Firewall -->
-                <td>
-                    <span
-                        data-ng-if="ip.firewall && ip.firewall != 'NOT_CONFIGURED'"
-                        data-ng-class="{
-                              'badge': ip.firewall === 'ENABLE_PENDING' || ip.firewall === 'DISABLE_PENDING',
-                              'font-weight-bold': ip.firewall === 'ACTIVATED'
-                          }"
-                        data-ng-bind="'ip_firewall_' + (ip.firewall || 'NOT_CONFIGURED') | translate"
-                    >
-                    </span>
-                </td>
-
-                <!-- Game mitigation -->
-                <td>
-                    <span
-                        data-ng-if="ip.gameMitigation && ipBlock.type!='CLOUD'"
-                        data-translate="ip_game_mitigation_ACTIVATED"
-                    >
-                    </span>
-                </td>
-
                 <!-- Alerts -->
                 <td class="text-warning">
                     <span
@@ -386,6 +363,59 @@
                         data-ng-if="ip.mitigation === 'FORCED'"
                         data-oui-tooltip="{{:: 'ip_alerts_mitigation_1' | translate }}"
                         data-oui-tooltip-placement="left"
+                    >
+                    </span>
+                </td>
+
+                <!-- VMAC -->
+                <td data-ng-if="advancedModeFilter">
+                    <span
+                        data-ng-if="ipBlock.virtualMac.status === 'OK'"
+                        data-ng-bind="ipBlock.virtualMac.virtualMacs[ip.ip] || '-'"
+                    >
+                    </span>
+                    <span
+                        class="oui-badge"
+                        data-ng-if="ipBlock.virtualMac.status === 'PENDING'"
+                        data-translate="ip_taskpending_label"
+                        data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
+                        data-oui-tooltip-placement="top"
+                    >
+                    </span>
+                </td>
+
+                <!-- Mitigation -->
+                <td data-ng-if="advancedModeFilter">
+                    <span
+                        data-ng-if="ipBlock.version === IP_TYPE.V4"
+                        data-ng-class="{
+                              'text-muted': !ip.mitigation || ip.mitigation === 'DEFAULT',
+                              'badge': ip.mitigation === 'CREATION_PENDING' || ip.mitigation === 'REMOVAL_PENDING',
+                              'font-weight-bold': ip.mitigation === 'FORCED'
+                          }"
+                        data-ng-bind="'ip_mitigation_' + (ip.mitigation || 'DEFAULT') | translate"
+                    >
+                    </span>
+                </td>
+
+                <!-- Firewall -->
+                <td data-ng-if="advancedModeFilter">
+                    <span
+                        data-ng-if="ip.firewall && ip.firewall != 'NOT_CONFIGURED'"
+                        data-ng-class="{
+                              'badge': ip.firewall === 'ENABLE_PENDING' || ip.firewall === 'DISABLE_PENDING',
+                              'font-weight-bold': ip.firewall === 'ACTIVATED'
+                          }"
+                        data-ng-bind="'ip_firewall_' + (ip.firewall || 'NOT_CONFIGURED') | translate"
+                    >
+                    </span>
+                </td>
+
+                <!-- Game mitigation -->
+                <td data-ng-if="advancedModeFilter">
+                    <span
+                        data-ng-if="ip.gameMitigation && ipBlock.type!='CLOUD'"
+                        data-translate="ip_game_mitigation_ACTIVATED"
                     >
                     </span>
                 </td>
