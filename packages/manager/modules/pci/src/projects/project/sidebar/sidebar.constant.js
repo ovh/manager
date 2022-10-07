@@ -86,14 +86,6 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
   {
     subitems: [
       {
-        id: 'load-balancer',
-        options: {
-          state: 'pci.projects.project.loadbalancer',
-        },
-        title: 'Load Balancer',
-        feature: PCI_FEATURES.PRODUCTS.LOAD_BALANCER,
-      },
-      {
         id: 'private-network',
         options: {
           state: 'pci.projects.project.privateNetwork',
@@ -130,6 +122,14 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
   },
   {
     subitems: [
+      {
+        id: 'load-balancer',
+        options: {
+          state: 'pci.projects.project.loadbalancer',
+        },
+        title: 'Load Balancer',
+        feature: PCI_FEATURES.PRODUCTS.LOAD_BALANCER,
+      },
       {
         id: 'kubernetes',
         options: {
