@@ -43,6 +43,7 @@
     "flatpickr": "4.6.9"
   },
   "devDependencies": {
+    "@babel/helper-string-parser": "^7.18.10",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-angular": "^12.1.4",
     "@lerna/package-graph": "^3.18.5",
