@@ -97,4 +97,12 @@ export default class DedicatedCloudVsphereUsersCtrl {
 
     return filter;
   }
+
+  canDeleteUserOrGroup(row) {
+    return (
+      this.dedicatedCloud.solution !== 'SYSTEMCENTER' ||
+      (this.dedicatedCloud.solution === 'SYSTEMCENTER' &&
+        row.name !== 'infraadmin')
+    );
+  }
 }
