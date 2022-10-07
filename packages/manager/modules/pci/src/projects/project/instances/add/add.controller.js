@@ -578,7 +578,10 @@ export default class PciInstancesAddController {
           .then((data) => {
             this.subnetGateways = data;
             this.addPricing();
-            if (this.selectedPrivateNetwork.subnet[0]?.gatewayIp === null) {
+            if (
+              this.subnetGateways.length > 0 &&
+              this.selectedPrivateNetwork.subnet[0]?.gatewayIp === null
+            ) {
               this.enableDhcp();
             }
             this.isGatewayLoading = false;
@@ -708,9 +711,14 @@ export default class PciInstancesAddController {
     const filteredIp = ips.find(({ version: ipv4 }) => ipv4 === 4);
     if (this.isAttachFloatingIPAvailable && filteredIp) {
       if (this.isCreateFloatingIPClicked) {
-        this.createAndAttachFloatingIp(instanceId, filteredIp.ip, message);
-      } else if (this.selectedFloatingIP) {
-        this.associateFloatingIp(
+        return this.createAndAttachFloatingIp(
+          instanceId,
+          filteredIp.ip,
+          message,
+        );
+      }
+      if (this.selectedFloatingIP) {
+        return this.associateFloatingIp(
           instanceId,
           this.selectedFloatingIP.id,
           filteredIp.ip,
