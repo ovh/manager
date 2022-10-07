@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.additional-ips.failover-ips', {
-    url: '/failover-ips?ip',
+    url: '/additional-ips?ip',
     views: {
       ipView: 'pciProjectAdditionalIpsFailoverIps',
     },

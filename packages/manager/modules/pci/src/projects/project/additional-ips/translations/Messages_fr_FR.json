@@ -1,6 +1,6 @@
 {
   "pci_additional_ips_title": "IP Publiques",
-  "pci_additional_ips_failover_ip_title": "IP Failover",
+  "pci_additional_ips_failover_ip_title": "IP Additionnelle",
   "pci_additional_ips_floating_ip_title": "IP Flottantes",
   "pci_additional_ips_additional_ips_description": "Gérez les IP publiques attachées à vos services",
   "pci_additional_ips_country_US": "États-Unis",
