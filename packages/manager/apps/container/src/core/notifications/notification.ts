@@ -34,7 +34,7 @@ export interface Notification extends APINotification {
  * @param  {Object} notification A notification object returned by 2API.
  * @return {Object}
  */
-export const useNotification = (
+export const transformNotification = (
   notification: APINotification,
 ): Notification => {
   /**
@@ -100,4 +100,4 @@ export const useNotification = (
   };
 };
 
-export default useNotification;
+export default transformNotification;
