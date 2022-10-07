@@ -55,13 +55,9 @@ export default class PciProjectInstanceService {
   }
 
   getAll(projectId) {
-    return this.OvhApiCloudProjectInstance.v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise.then((instances) =>
-        map(instances, (instance) => new Instance(instance)),
-      );
+    return this.$http
+      .get(`/cloud/project/${projectId}/instance`)
+      .then(({ data }) => data.map((instance) => new Instance(instance)));
   }
 
   getAllInstanceDetails(projectId) {

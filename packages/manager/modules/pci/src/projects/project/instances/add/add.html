@@ -610,10 +610,7 @@
         data-ng-if="$ctrl.model.number > 1 && !$ctrl.isPrivateMode()"
         data-translate="pci_projects_project_instances_add_save_multiple_form"
     ></p>
-    <div
-        data-ng-if="$ctrl.model.number === 1 && $ctrl.isPrivateMode() && $ctrl.isAttachFloatingIPAvailable &&
-    $ctrl.selectedFloatingIP"
-    >
+    <div data-ng-if="$ctrl.model.number === 1 && $ctrl.isPrivateMode()">
         <p
             data-translate="pci_projects_project_instances_add_private_mode1"
         ></p>
