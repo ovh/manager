@@ -9,7 +9,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
     $stateProvider.state(
       'pci.projects.project.additional-ips.failover-ips.**',
       {
-        url: '/failover-ips',
+        url: '/additional-ips',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
