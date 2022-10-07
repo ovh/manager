@@ -1,5 +1,4 @@
 import find from 'lodash/find';
-import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
@@ -11,6 +10,7 @@ import {
   BADGE_BYOIP,
   BADGE_FO,
   BADGES,
+  SERVICE_URL_DATA,
 } from './list.constant';
 
 export default class IpListController {
@@ -34,6 +34,7 @@ export default class IpListController {
     Validator,
     atInternet,
     ipFeatureAvailability,
+    coreURLBuilder,
   ) {
     this.$http = $http;
     this.$location = $location;
@@ -53,6 +54,7 @@ export default class IpListController {
     this.Validator = Validator;
     this.atInternet = atInternet;
     this.ipFeatureAvailability = ipFeatureAvailability;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -76,6 +78,7 @@ export default class IpListController {
       Validator,
       atInternet,
       ipFeatureAvailability,
+      coreURLBuilder,
     } = this;
 
     $scope.alerts = {
@@ -88,6 +91,33 @@ export default class IpListController {
     $scope.showBYOIPBadge = (self.badges || BADGES).includes(BADGE_BYOIP);
     $scope.showFOBadge = (self.badges || BADGES).includes(BADGE_FO);
 
+    function createService(serviceName, serviceMap) {
+      if (!serviceName) {
+        return null;
+      }
+
+      let category;
+
+      if (serviceMap[serviceName]) {
+        category = serviceMap[serviceName];
+      } else {
+        category = Object.keys(SERVICE_URL_DATA).find((key) =>
+          SERVICE_URL_DATA[key].regEx?.test(serviceName),
+        );
+      }
+
+      if (!category) {
+        category = 'HOUSING';
+      }
+
+      const { universe, path } = SERVICE_URL_DATA[category];
+      return {
+        category,
+        serviceName,
+        url: coreURLBuilder.buildURL(universe, path, { serviceName }),
+      };
+    }
+
     // pagination
     $scope.pageNumber = toInteger($stateParams.page) || 1;
     $scope.pageSize = toInteger($stateParams.pageSize) || 1;
@@ -97,8 +127,8 @@ export default class IpListController {
     }
     if ($scope.pageSize < 10) {
       $scope.pageSize = 10;
-    } else if ($scope.pageSize > 300) {
-      $scope.pageSize = 300;
+    } else if ($scope.pageSize > 50) {
+      $scope.pageSize = 50;
     }
 
     function init() {
@@ -106,7 +136,6 @@ export default class IpListController {
       $scope.state = {};
       $scope.serviceType =
         self.serviceType || $location.search().serviceType || null;
-      $scope.serviceCategory = {};
       $scope.tracking = {
         'enable-permanent-mitigation': `${TRACKING_PREFIX}::enable-permanent-mitigation`,
         'create-firewall': `${TRACKING_PREFIX}::create-firewall`,
@@ -242,6 +271,8 @@ export default class IpListController {
         pageSize: $scope.pageSize,
         pageNumber: $scope.pageNumber,
       };
+      const serviceMap = {};
+
       $scope.loading.table = true;
       $scope.ipsList = [];
       if ($scope.serviceType) {
@@ -252,9 +283,8 @@ export default class IpListController {
           serviceType: 'aapi',
         })
         .then(({ data: services }) => {
-          $scope.serviceCategory = {};
           services.forEach(({ category, serviceName }) => {
-            $scope.serviceCategory[serviceName] = category;
+            serviceMap[serviceName] = category;
           });
           return $http.get('/ips', {
             params,
@@ -268,19 +298,9 @@ export default class IpListController {
             return {
               ...ip,
               collapsed: !ip.isUniq,
-              service: {
-                serviceName,
-                category: $scope.serviceCategory[serviceName],
-              },
+              service: createService(serviceName, serviceMap),
             };
           });
-          // ??
-          if ($scope.serviceName === '_PARK') {
-            $scope.ipsList = filter(
-              $scope.ipsList,
-              (ip) => !get(ip, 'routedTo.serviceName'),
-            );
-          }
           $scope.ipsList.forEach(checkIps);
         })
         .catch((error) => {

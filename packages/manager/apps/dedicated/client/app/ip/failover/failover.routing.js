@@ -12,6 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/failover',
     params: {
       serviceType: null,
+      page: 1,
+      pageSize: 10,
     },
     views: {
       '': {

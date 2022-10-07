@@ -135,7 +135,19 @@
                 ></td>
 
                 <!-- Server -->
-                <td data-ng-bind="ipBlock.routedTo.serviceName || '-'"></td>
+                <td>
+                    <a
+                        data-ng-if="ipBlock.service.url"
+                        data-ng-href="{{ ipBlock.service.url }}"
+                    >
+                        <span data-ng-bind="ipBlock.service.serviceName"></span>
+                    </a>
+                    <span
+                        data-ng-if="!ipBlock.service.url && ipBlock.routedTo.serviceName"
+                        data-ng-bind="ipBlock.routedTo.serviceName"
+                    ></span>
+                    <span data-ng-if="!ipBlock.routedTo.serviceName">-</span>
+                </td>
 
                 <!-- Virtual MAC -->
                 <td></td>
@@ -246,7 +258,19 @@
                 ></td>
 
                 <!-- Server -->
-                <td data-ng-bind="ipBlock.routedTo.serviceName || '-'"></td>
+                <td>
+                    <a
+                        data-ng-if="ipBlock.service.url"
+                        data-ng-href="{{ ipBlock.service.url }}"
+                    >
+                        <span data-ng-bind="ipBlock.service.serviceName"></span>
+                    </a>
+                    <span
+                        data-ng-if="!ipBlock.service.url && ipBlock.routedTo.serviceName"
+                        data-ng-bind="ipBlock.routedTo.serviceName"
+                    ></span>
+                    <span data-ng-if="!ipBlock.routedTo.serviceName">-</span>
+                </td>
 
                 <!-- VMAC -->
                 <td>
