@@ -44,5 +44,6 @@ export default {
     instancesRegions: '<',
     getStateName: '<',
     goToRegion: '<',
+    floatingIpsLink: '<',
   },
 };

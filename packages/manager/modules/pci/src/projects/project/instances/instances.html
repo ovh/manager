@@ -108,15 +108,28 @@
         >
             <span
                 class="ip-list"
-                data-ng-if="$row.publicIpV4.length > 1"
+                data-ng-if="$row.publicIpV4.length > 1 && !$row.floatingIp"
                 data-ng-bind="$row.publicIpV4[0].ip"
                 oui-tooltip="{{ $ctrl.getIpsForTooltip($row.publicIpV4) }}"
                 oui-tooltip-placement="top"
             ></span>
             <span
-                data-ng-if="$row.publicIpV4.length === 1"
+                data-ng-if="$row.publicIpV4.length === 1 && !$row.floatingIp"
                 data-ng-bind="$row.publicIpV4[0].ip"
             ></span>
+            <a
+                data-ng-if="$row.floatingIp && $row.publicIpV4.length === 1"
+                data-ng-href="{{:: $ctrl.floatingIpsLink}}"
+                data-ng-bind="$row.floatingIp.ip"
+            ></a>
+            <a
+                class="ip-list"
+                data-ng-if="$row.floatingIp && $row.publicIpV4.length > 1"
+                data-ng-href="{{:: $ctrl.floatingIpsLink}}"
+                data-ng-bind="$row.floatingIp.ip"
+                oui-tooltip="{{ $ctrl.getIpsForTooltip($row.publicIpV4) }}"
+                oui-tooltip-placement="top"
+            ></a>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_privateIp_label' | translate"
