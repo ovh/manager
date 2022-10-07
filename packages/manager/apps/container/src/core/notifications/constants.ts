@@ -1,3 +1,5 @@
+export const MAX_NOTIFICATIONS = 10;
+
 export const NOTIFICATION_STATUS_ENUM = {
   ACKNOWLEDGED: 'acknowledged',
   ACTIVE: 'delivered',
@@ -12,5 +14,7 @@ export const ACKNOWLEDGED_STATUS = [
 ];
 
 export default {
+  ACKNOWLEDGED_STATUS,
+  MAX_NOTIFICATIONS,
   NOTIFICATION_STATUS_ENUM,
 };
