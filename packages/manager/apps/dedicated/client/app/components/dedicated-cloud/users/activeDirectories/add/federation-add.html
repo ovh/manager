@@ -104,7 +104,7 @@
             </oui-field>
             <oui-field
                 class="col-md-6"
-                data-label="{{ 'dedicatedCloud_USER_AD_ADD_field_label_sslThumbprint' | translate }}"
+                data-label="{{ 'dedicatedCloud_USER_AD_ADD_field_label_sslThumbprint' | translate }}*"
                 data-label-popover="{{ 'dedicatedCloud_USER_AD_ADD_field_tooltip_sslThumbprint' | translate }}"
             >
                 <input
@@ -113,6 +113,7 @@
                     placeholder="{{ :: $ctrl.PLACEHOLDER.sslThumbprint }}"
                     type="text"
                     data-ng-model="$ctrl.model.sslThumbprint"
+                    required
                 />
             </oui-field>
         </div>
