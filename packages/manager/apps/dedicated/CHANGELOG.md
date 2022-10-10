@@ -1,3 +1,13 @@
+## [17.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.32.0...@ovh-ux/manager-dedicated@17.32.1) (2022-10-10)
+
+
+### Bug Fixes
+
+* **dedicated.account:** move profil tiles ([#8051](https://github.com/ovh/manager/issues/8051)) ([d31d28d](https://github.com/ovh/manager/commit/d31d28dc1607d9a40388479b5fade2aed7ae71a0))
+* **dedicated.server:** change unit display for -mrtg ([#8089](https://github.com/ovh/manager/issues/8089)) ([336f545](https://github.com/ovh/manager/commit/336f54526fec61be3082acb88b875735bdfad903))
+
+
+
 # [17.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.31.0...@ovh-ux/manager-dedicated@17.32.0) (2022-09-29)
 
 
