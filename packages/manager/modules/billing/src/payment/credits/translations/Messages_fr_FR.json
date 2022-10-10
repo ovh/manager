@@ -31,7 +31,6 @@
   "billing_credit_sbg_total_amount": "Montant global des mesures commerciales : {{amount}}",
   "billing_credit_sbg_total_balance": "Solde du bon d'achat au {{date}} : {{amount}}",
   "billing_credit_sbg_services_intro": "Vous bénéficiiez de mesures commerciales* relatives à votre (vos) service(s) impactés par l’incendie survenu sur notre site de Strasbourg (SBG).",
-  "billing_credit_sbg_services": "Voir mes services concernés",
   "billing_credit_sbg_info": "Le montant correspondant à ces mesures commerciales était mis à disposition sous la forme d’<strong>un bon d’achat** valable jusqu’au 31 août 2022 et utilisable sur tous les services OVHcloud. L’attribution de ce bon d’achat était automatique***.</strong>",
   "billing_credit_sbg_movements_intro": "Vous pouvez consulter l’historique des mouvements sur ce bon d’achat dans le tableau ci-dessous.",
   "billing_credit_sbg_tips": "A noter : Le bon d’achat était utilisé pour paiement des factures de renouvellement automatique de vos services existants et ce de manière automatique. Vous pouviez également l’utiliser pour payer vos nouvelles commandes et vos factures de renouvellement manuel.",
