@@ -1,4 +1,5 @@
 import {
+  DEFAULT_LDAP_TCP_PORT,
   FIELD_NAME,
   GUIDE_FEDERATION,
   PLACEHOLDER,
@@ -25,7 +26,7 @@ export default class FederationAddCtrl {
       description: null,
       ip: null,
       ldapHostname: null,
-      ldapTcpPort: null,
+      ldapTcpPort: DEFAULT_LDAP_TCP_PORT,
       sslThumbprint: null,
       username: null,
       password: null,
@@ -44,6 +45,11 @@ export default class FederationAddCtrl {
 
   onSubmit() {
     this.loaders.submitting = true;
+
+    if (!this.model.ldapTcpPort) {
+      this.model.ldapTcpPort = DEFAULT_LDAP_TCP_PORT;
+    }
+
     return this.DedicatedCloud.postActiveDirectories(this.productId, this.model)
       .then((data) => {
         this.loaders.submitted = true;
