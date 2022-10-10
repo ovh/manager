@@ -636,7 +636,7 @@
                         data-primary-label="{{:: 'pci_projects_project_instances_add_modal_submit_label' | translate }}"
                         data-secondary-label="{{:: 'pci_projects_project_instances_add_modal_cancel_label' | translate }}"
                         data-secondary-action="$ctrl.onCancel()"
-                        data-primary-disabled="$ctrl.addPrivateNetworkForm.$invalid"
+                        data-primary-disabled="!$ctrl.privateNetworkModel.name || $ctrl.selectedSubnet.name"
                     >
                         <div class="text-center" data-ng-if="$ctrl.isLoading">
                             <oui-spinner data-size="m"></oui-spinner>
@@ -670,6 +670,7 @@
                                     data-model="$ctrl.selectedSubnet"
                                     data-items="$ctrl.availableSubnet"
                                     data-match="name"
+                                    required
                                 >
                                 </oui-select>
                             </oui-field>
