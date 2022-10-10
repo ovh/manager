@@ -12,4 +12,6 @@ export const PROCESS_STEP = {
   offers: 'offers',
 };
 
-export default { PROMO_DISPLAY, PROCESS_STEP };
+export const QUANTITY = 1;
+
+export default { PROMO_DISPLAY, PROCESS_STEP, QUANTITY };

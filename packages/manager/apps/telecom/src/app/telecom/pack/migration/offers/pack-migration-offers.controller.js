@@ -57,13 +57,17 @@ export default class TelecomPackMigrationOffersCtrl {
   updateOfferDisplayedPrice(value, offer, optionName) {
     let totalOfferPrice = offer.price.value;
 
-    angular.forEach(offer.options, (option) => {
-      if (option.name === 'gtr_ovh' && option.selected) {
-        totalOfferPrice += option.optionalPrice.value;
-      } else if (option.name === optionName) {
+    Object.values(offer.options).forEach((option) => {
+      if (option.name.startsWith('gtr_') && option.selected !== null) {
+        const val = option.selected === true ? 1 : 0;
+        totalOfferPrice += val * option.optionalPrice.value;
+      } else if (
+        option.name === optionName ||
+        `${option.name}_${option.optional}` === optionName
+      ) {
         totalOfferPrice += value * option.optionalPrice.value;
       } else if (
-        option.name !== 'gtr_ovh' &&
+        !option.name.startsWith('gtr_') &&
         !isUndefined(option.choosedValue)
       ) {
         totalOfferPrice += option.choosedValue * option.optionalPrice.value;
@@ -75,6 +79,30 @@ export default class TelecomPackMigrationOffersCtrl {
       'displayedPrice',
       this.TucPackMigrationProcess.getPriceStruct(totalOfferPrice),
     );
+  }
+
+  static updateSelectedGtrOption(offer, optionName) {
+    let optionComfort = false;
+    Object.values(offer.options).forEach((option) => {
+      if (
+        option.name.startsWith('gtr_') &&
+        option.selected !== null &&
+        optionName.startsWith('gtr_')
+      ) {
+        if (option.name !== optionName) {
+          set(option, 'selected', false);
+        }
+        if (optionName.match(/^gtr_\d{1,2}m_/) && option.selected === true) {
+          optionComfort = true;
+        }
+        set(offer, 'gtrComfortActivated', optionComfort);
+      }
+    });
+  }
+
+  updateOfferPriceAndGtr(value, offer, optionName) {
+    this.constructor.updateSelectedGtrOption(offer, optionName);
+    this.updateOfferDisplayedPrice(value, offer, optionName);
   }
 
   selectOffer(offer) {

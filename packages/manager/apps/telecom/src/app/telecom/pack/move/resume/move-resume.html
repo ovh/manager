@@ -63,7 +63,9 @@
                                 <td
                                     class="text-right"
                                     data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
-                                >1</td>
+                                >
+                                    1
+                                </td>
                                 <td
                                     class="text-price text-right"
                                     data-ng-bind="$ctrl.offer.selected.offer.prices.price.price.text"
@@ -84,7 +86,9 @@
                                 <td
                                     class="text-right"
                                     data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
-                                >1</td>
+                                >
+                                    1
+                                </td>
                                 <td
                                     class="text-price text-right"
                                     data-ng-bind="$ctrl.getPriceStruct($ctrl.firstYearPromo, true).text"
@@ -92,7 +96,7 @@
                                 ></td>
                             </tr>
                             <tr
-                                data-ng-if="$ctrl.offer.selected.offer.modemRental"
+                                data-ng-if="$ctrl.offer.selected.offer.prices.modemRental"
                             >
                                 <th
                                     scope="row"
@@ -107,10 +111,87 @@
                                 <td
                                     class="text-right"
                                     data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
-                                >1</td>
+                                >
+                                    1
+                                </td>
                                 <td
                                     class="text-price text-right"
                                     data-ng-bind="$ctrl.offer.selected.offer.prices.modemRental.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_total' | translate }}"
+                                ></td>
+                            </tr>
+                            <tr
+                                data-ng-if="$ctrl.offer.selected.offer.prices.providerOrange.price"
+                            >
+                                <th
+                                    scope="row"
+                                    data-translate="pack_move_provider_infra_costs"
+                                    data-title="{{ 'pack_move_confirm_header_entitled' | translate }}"
+                                ></th>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.providerOrange.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_price' | translate }}"
+                                ></td>
+                                <td
+                                    class="text-right"
+                                    data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
+                                >
+                                    1
+                                </td>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.providerOrange.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_total' | translate }}"
+                                ></td>
+                            </tr>
+                            <tr
+                                data-ng-if="$ctrl.offer.selected.offer.prices.providerAI.price"
+                            >
+                                <th
+                                    scope="row"
+                                    data-translate="pack_move_provider_infra_costs"
+                                    data-title="{{ 'pack_move_confirm_header_entitled' | translate }}"
+                                ></th>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.providerAI.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_price' | translate }}"
+                                ></td>
+                                <td
+                                    class="text-right"
+                                    data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
+                                >
+                                    1
+                                </td>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.providerAI.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_total' | translate }}"
+                                ></td>
+                            </tr>
+                            <tr
+                                data-ng-if="$ctrl.offer.selected.offer.gtrComfortActivated"
+                            >
+                                <th
+                                    scope="row"
+                                    data-translate="pack_move_comfort_activation"
+                                    data-title="{{ 'pack_move_confirm_header_entitled' | translate }}"
+                                ></th>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.gtrComfortFees.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_price' | translate }}"
+                                ></td>
+                                <td
+                                    class="text-right"
+                                    data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
+                                >
+                                    1
+                                </td>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.gtrComfortFees.price.text"
                                     data-title="{{ 'pack_move_confirm_header_total' | translate }}"
                                 ></td>
                             </tr>
@@ -128,36 +209,13 @@
                                     data-title="{{ 'pack_move_confirm_header_price' | translate }}"
                                 ></td>
                                 <td
-                                    data-ng-bind="option.choosedValue"
+                                    data-ng-bind="(option.selected === true)? 1 : option.choosedValue"
                                     class="text-right"
                                     data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
                                 ></td>
                                 <td
                                     class="text-price text-right"
                                     data-ng-bind=":: $ctrl.getOptionPrice(option).text"
-                                    data-title="{{ 'pack_move_confirm_header_total' | translate }}"
-                                ></td>
-                            </tr>
-                            <tr
-                                data-ng-if="$ctrl.offer.selected.offer.options.gtr_ovh && $ctrl.offer.selected.offer.options.gtr_ovh.selected"
-                            >
-                                <th
-                                    scope="row"
-                                    data-translate="pack_move_confirm_resume_gtr_ovh"
-                                    data-title="{{ 'pack_move_confirm_header_entitled' | translate }}"
-                                ></th>
-                                <td
-                                    class="text-price text-right"
-                                    data-ng-bind="$ctrl.offer.selected.offer.options.gtr_ovh.optionalPrice.text"
-                                    data-title="{{ 'pack_move_confirm_header_price' | translate }}"
-                                ></td>
-                                <td
-                                    class="text-right"
-                                    data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
-                                >1</td>
-                                <td
-                                    class="text-price text-right"
-                                    data-ng-bind="$ctrl.offer.selected.offer.options.gtr_ovh.optionalPrice.text"
                                     data-title="{{ 'pack_move_confirm_header_total' | translate }}"
                                 ></td>
                             </tr>
@@ -182,7 +240,7 @@
             </div>
 
             <div
-                data-ng-if="$ctrl.choosedAdditionalOptions.length === 0 || (!$ctrl.offer.selected.offer.options.gtr_ovh && !$ctrl.offer.selected.offer.options.gtr_ovh.selected)"
+                data-ng-if="$ctrl.choosedAdditionalOptions.length === 0 || !$ctrl.constructor.isOneOptionSelected($ctrl.offer.selected.offer)"
             >
                 <p
                     data-translate="pack_move_confirm_new_offer_price"

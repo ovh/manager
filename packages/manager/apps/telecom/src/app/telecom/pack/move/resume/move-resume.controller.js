@@ -27,15 +27,29 @@ export default class MoveResumeCtrl {
     this.choosedAdditionalOptions = filter(
       values(this.offer.selected.offer.options),
       (option) =>
-        option.optional && option.choosedValue > 0 && option.name !== 'gtr_ovh',
+        option.optional &&
+        (option.choosedValue > 0 || option.selected === true),
     );
 
-    const modemRental = this.offer.selected.offer.prices.modemRental.price
-      ? this.offer.selected.offer.prices.modemRental.price.value
+    const gtrComfortSelected = this.choosedAdditionalOptions.some((option) =>
+      option.name.match(/^gtr_\d{1,2}m_/),
+    )
+      ? 1
       : 0;
+
+    const modemRental =
+      this.offer.selected.offer.prices.modemRental.price?.value || 0;
+    const providerOrange =
+      this.offer.selected.offer.prices.providerOrange.price?.value || 0;
+    const providerAI =
+      this.offer.selected.offer.prices.providerAI.price?.value || 0;
     const firstYearPromo = this.offer.selected.offer.prices.firstYearPromo.price
       ? this.offer.selected.offer.prices.price.price.value -
         this.offer.selected.offer.prices.firstYearPromo.price.value
+      : 0;
+    const gtrComfortFees = this.offer.selected.offer.prices.gtrComfortFees.price
+      ? gtrComfortSelected *
+        this.offer.selected.offer.prices.gtrComfortFees.price.value
       : 0;
 
     this.firstYearPromo = firstYearPromo;
@@ -46,12 +60,20 @@ export default class MoveResumeCtrl {
       totalOfferPrice =
         this.offer.selected.offer.prices.price.price.value -
         firstYearPromo +
-        modemRental;
+        modemRental +
+        providerOrange +
+        providerAI;
       displayedPrice = this.getDisplayedPrice(totalOfferPrice);
       set(this.offer.selected.offer, 'displayedPrice', displayedPrice);
     } else {
       let totalOfferPrice = this.offer.selected.offer.displayedPrice.value;
-      totalOfferPrice = totalOfferPrice - firstYearPromo + modemRental;
+      totalOfferPrice =
+        totalOfferPrice -
+        firstYearPromo +
+        modemRental +
+        providerOrange +
+        providerAI +
+        gtrComfortFees;
       this.offer.selected.offer.displayedPrice = this.getDisplayedPrice(
         totalOfferPrice,
       );
@@ -78,7 +100,8 @@ export default class MoveResumeCtrl {
   }
 
   getOptionPrice(option) {
-    const value = option.optionalPrice.value * option.choosedValue;
+    const quantity = option.selected === true ? 1 : option.choosedValue;
+    const value = option.optionalPrice.value * quantity;
     return this.getPriceStruct(value);
   }
 
@@ -95,6 +118,12 @@ export default class MoveResumeCtrl {
       text: priceText,
       value,
     };
+  }
+
+  static isOneOptionSelected(selectedOffer) {
+    return selectedOffer.options.some((option) => {
+      return option.name.startsWith('gtr_') && option.selected === true;
+    });
   }
 
   getFirstMensuality() {
@@ -204,22 +233,13 @@ export default class MoveResumeCtrl {
           (option) =>
             option.optional &&
             option.choosedValue > 0 &&
-            option.name !== 'gtr_ovh',
+            !option.name.match(/^gtr_/),
         ),
         (option) => ({
           name: option.name,
-          quantity: option.choosedValue,
+          quantity: option.choosedValue || (option.selected === true ? 1 : 0),
         }),
       );
-      if (
-        this.offer.selected.offer.options.gtr_ovh &&
-        this.offer.selected.offer.options.gtr_ovh.selected
-      ) {
-        moveOptions.push({
-          name: 'gtr_ovh',
-          quantity: 1,
-        });
-      }
       moveData.options = moveOptions;
 
       // sub service to delete post params
