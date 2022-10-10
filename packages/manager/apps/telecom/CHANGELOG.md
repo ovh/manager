@@ -1,3 +1,13 @@
+# [13.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.45.1...@ovh-ux/manager-telecom@13.46.0) (2022-10-10)
+
+
+### Features
+
+* **telecom.migration:** managed new offers options ([#7886](https://github.com/ovh/manager/issues/7886)) ([dc77930](https://github.com/ovh/manager/commit/dc77930085edb6d49ef98e99d8f535723e2c04fb))
+* **telecom.moveaddress:** manage new offers and options ([#7983](https://github.com/ovh/manager/issues/7983)) ([76a6500](https://github.com/ovh/manager/commit/76a6500e8cde36971fe68a5aa8edd63d9cc18c1b))
+
+
+
 ## [13.45.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.45.0...@ovh-ux/manager-telecom@13.45.1) (2022-10-06)
 
 

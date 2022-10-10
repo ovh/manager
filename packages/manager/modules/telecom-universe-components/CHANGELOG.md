@@ -1,3 +1,12 @@
+# [7.14.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.13.1...@ovh-ux/ng-ovh-telecom-universe-components@7.14.0) (2022-10-10)
+
+
+### Features
+
+* **telecom.migration:** managed new offers options ([#7886](https://github.com/ovh/manager/issues/7886)) ([dc77930](https://github.com/ovh/manager/commit/dc77930085edb6d49ef98e99d8f535723e2c04fb))
+
+
+
 ## [7.13.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.13.0...@ovh-ux/ng-ovh-telecom-universe-components@7.13.1) (2022-09-14)
 
 
