@@ -58,35 +58,140 @@
         <thead>
             <tr>
                 <th scope="col"></th>
-                <th
-                    scope="col"
-                    data-translate="ip_table_header_ip_address"
-                ></th>
-                <th scope="col" data-translate="ip_table_header_campus"></th>
-                <th scope="col" data-translate="ip_table_header_country"></th>
-                <th scope="col" data-translate="ip_table_header_service"></th>
-                <th scope="col" data-translate="ip_table_header_reverse"></th>
-                <th scope="col" data-translate="ip_table_header_alerts"></th>
-                <th
-                    scope="col"
-                    data-translate="ip_table_header_virtual_mac"
-                    data-ng-if="advancedModeFilter"
-                ></th>
-                <th
-                    scope="col"
-                    data-translate="ip_table_header_mitigation"
-                    data-ng-if="advancedModeFilter"
-                ></th>
-                <th
-                    scope="col"
-                    data-translate="ip_table_header_security"
-                    data-ng-if="advancedModeFilter"
-                ></th>
-                <th
-                    scope="col"
-                    data-translate="ip_table_header_game_mitigation"
-                    data-ng-if="advancedModeFilter"
-                ></th>
+                <th scope="col">
+                    <span data-translate="ip_table_header_ip_address"></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{:: 'ip_table_header_ip_address_help' | translate }}"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </th>
+                <th scope="col">
+                    <span data-translate="ip_table_header_campus"></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{:: 'ip_table_header_campus_help' | translate }}"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </th>
+                <th scope="col">
+                    <span data-translate="ip_table_header_country"></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{:: 'ip_table_header_country_help' | translate }}"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </th>
+                <th scope="col">
+                    <span data-translate="ip_table_header_service"></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{:: 'ip_table_header_service_help' | translate }}"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </th>
+                <th scope="col">
+                    <span data-translate="ip_table_header_reverse"></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{:: 'ip_table_header_reverse_help' | translate }}"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </th>
+                <th scope="col">
+                    <script type="text/ng-template" id="ip_alerts_help_ipblock.html">
+                        <ul class="m-0 p-0 ml-3">
+                            <li
+                                data-ng-if="$ctrl.alerts.spam.length"
+                                data-translate="ip_alerts_spam_help"
+                            ></li>
+                            <li
+                                data-ng-if="$ctrl.alerts.antihack.length"
+                                data-translate="ip_alerts_antihack_help"
+                            ></li>
+                            <li
+                                data-ng-if="$ctrl.alerts.mitigation.length"
+                                data-translate="ip_alerts_mitigation_help"
+                            ></li>
+                        </ul>
+                    </script>
+                    <script type="text/ng-template" id="ip_alerts_help_ip.html">
+                        <ul class="m-0 p-0 ml-3">
+                            <li
+                                data-ng-if="$ctrl.spam === 'BLOCKED_FOR_SPAM'"
+                                data-translate="ip_alerts_spam_help"
+                            ></li>
+                            <li
+                                data-ng-if="$ctrl.antihack === 'BLOCKED'"
+                                data-translate="ip_alerts_antihack_help"
+                            ></li>
+                            <li
+                                data-ng-if="$ctrl.mitigation === 'FORCED'"
+                                data-translate="ip_alerts_mitigation_help"
+                            ></li>
+                        </ul>
+                    </script>
+                    <span data-translate="ip_table_header_alerts"></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{:: 'ip_table_header_alerts_help' | translate }}"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </th>
+                <th scope="col" data-ng-if="advancedModeFilter">
+                    <span data-translate="ip_table_header_virtual_mac"></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{:: 'ip_table_header_virtual_mac_help' | translate }}"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </th>
+                <th scope="col" data-ng-if="advancedModeFilter">
+                    <span data-translate="ip_table_header_mitigation"></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{:: 'ip_table_header_mitigation_help' | translate }}"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </th>
+                <th scope="col" data-ng-if="advancedModeFilter">
+                    <script type="text/ng-template" id="ip_firewall_help.html">
+                        <span data-translate="ip_table_header_security_help"></span>
+                        (<a
+                            data-ng-href="{{:: $ctrl.securityUrl }}"
+                            target="_blank"
+                            rel="noopener"
+                        ><span data-ng-bind="$ctrl.securityUrl"></span></a>)
+                    </script>
+                    <span data-translate="ip_table_header_security"></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover
+                        data-oui-popover-scope="$ctrl"
+                        data-oui-popover-template="ip_firewall_help.html"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </th>
+                <th scope="col" data-ng-if="advancedModeFilter">
+                    <span
+                        data-translate="ip_table_header_game_mitigation"
+                    ></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{:: 'ip_table_header_game_mitigation_help' | translate }}"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -218,6 +323,15 @@
                         <span class="fa fa-warning" aria-hidden="true"> </span>
                         <strong data-ng-bind="alertsCount(ipBlock)"></strong>
                     </div>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-ng-if="alertsCount(ipBlock)"
+                        data-oui-popover
+                        data-oui-popover-template="ip_alerts_help_ipblock.html"
+                        data-oui-popover-scope="ipBlock"
+                        data-oui-popover-placement="left"
+                    ></button>
                 </td>
 
                 <!-- Virtual MAC -->
@@ -360,35 +474,44 @@
                 </td>
 
                 <!-- Alerts -->
-                <td class="text-warning">
+                <td>
                     <span
-                        class="fa fa-minus-circle"
+                        class="fa fa-minus-circle text-warning"
                         data-ng-if="ip.spam === 'BLOCKED_FOR_SPAM'"
                         data-oui-tooltip="{{:: 'ip_alerts_spam_1' | translate }}"
                         data-oui-tooltip-placement="left"
                     >
                     </span>
                     <span
-                        class="fa fa-bug"
+                        class="fa fa-bug text-warning"
                         data-ng-if="ip.antihack === 'BLOCKED'"
                         data-oui-tooltip="{{:: 'ip_alerts_antihack_1' | translate }}"
                         data-oui-tooltip-placement="left"
                     >
                     </span>
                     <span
-                        class="fa fa-minus-circle"
+                        class="fa fa-minus-circle text-warning"
                         data-ng-if="ip.arp === 'BLOCKED'"
                         data-oui-tooltip="{{:: 'ip_alerts_arp_1' | translate }}"
                         data-oui-tooltip-placement="left"
                     >
                     </span>
                     <span
-                        class="fa fa-bolt"
+                        class="fa fa-bolt text-warning"
                         data-ng-if="ip.mitigation === 'FORCED'"
                         data-oui-tooltip="{{:: 'ip_alerts_mitigation_1' | translate }}"
                         data-oui-tooltip-placement="left"
                     >
                     </span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-ng-if="(ip.spam === 'BLOCKED_FOR_SPAM' || ip.antihack === 'BLOCKED' || ip.mitigation === 'FORCED')"
+                        data-oui-popover
+                        data-oui-popover-template="ip_alerts_help_ip.html"
+                        data-oui-popover-scope="ip"
+                        data-oui-popover-placement="left"
+                    ></button>
                 </td>
 
                 <!-- VMAC -->
@@ -420,6 +543,13 @@
                         data-ng-bind="'ip_mitigation_' + (ip.mitigation || 'DEFAULT') | translate"
                     >
                     </span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-ng-if="ipBlock.version === IP_TYPE.V4"
+                        data-oui-popover="{{ 'ip_mitigation_' + (ip.mitigation || 'DEFAULT') + '_help' | translate }}"
+                        data-oui-popover-placement="left"
+                    ></button>
                 </td>
 
                 <!-- Firewall -->
@@ -433,6 +563,13 @@
                         data-ng-bind="'ip_firewall_' + (ip.firewall || 'NOT_CONFIGURED') | translate"
                     >
                     </span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-ng-if="ip.firewall && ip.firewall != 'NOT_CONFIGURED'"
+                        data-oui-popover="{{ 'ip_firewall_' + (ip.firewall || 'NOT_CONFIGURED') + '_help' | translate }}"
+                        data-oui-popover-placement="left"
+                    ></button>
                 </td>
 
                 <!-- Game mitigation -->
@@ -442,6 +579,13 @@
                         data-translate="ip_game_mitigation_ACTIVATED"
                     >
                     </span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-ng-if="ip.gameMitigation && ipBlock.type!='CLOUD'"
+                        data-oui-popover="{{:: 'ip_game_mitigation_ACTIVATED_help' | translate }}"
+                        data-oui-popover-placement="left"
+                    ></button>
                 </td>
 
                 <!-- Actions -->

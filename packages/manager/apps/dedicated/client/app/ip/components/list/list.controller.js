@@ -13,6 +13,7 @@ import {
   BADGES,
   SERVICE_URL_DATA,
   ADDITIONAL_IP,
+  SECURITY_URL,
 } from './list.constant';
 
 export default class IpListController {
@@ -37,6 +38,7 @@ export default class IpListController {
     atInternet,
     ipFeatureAvailability,
     coreURLBuilder,
+    coreConfig,
   ) {
     this.$http = $http;
     this.$location = $location;
@@ -57,6 +59,7 @@ export default class IpListController {
     this.atInternet = atInternet;
     this.ipFeatureAvailability = ipFeatureAvailability;
     this.coreURLBuilder = coreURLBuilder;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -81,6 +84,7 @@ export default class IpListController {
       atInternet,
       ipFeatureAvailability,
       coreURLBuilder,
+      coreConfig,
     } = this;
 
     $scope.alerts = {
@@ -94,6 +98,9 @@ export default class IpListController {
     $scope.showBYOIPBadge = (self.badges || BADGES).includes(BADGE_BYOIP);
     $scope.showFOBadge = (self.badges || BADGES).includes(BADGE_FO);
     $scope.advancedModeFilter = true;
+
+    this.securityUrl =
+      SECURITY_URL[coreConfig.getUser().ovhSubsidiary] || SECURITY_URL.DEFAULT;
 
     function createService(serviceName, serviceMap) {
       if (!serviceName) {
