@@ -1,3 +1,12 @@
+# [0.20.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.0...@ovh-ux/manager-billing@0.20.0-alpha.1) (2022-10-10)
+
+
+### Bug Fixes
+
+* **dedicated-billing:** remove redirect link to hub ([#8081](https://github.com/ovh/manager/issues/8081)) ([9bc6d2e](https://github.com/ovh/manager/commit/9bc6d2e75122b701555ff15fc4f5206ee23e1672))
+
+
+
 # [0.20.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.19.0-alpha.0...@ovh-ux/manager-billing@0.20.0-alpha.0) (2022-09-14)
 
 

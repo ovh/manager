@@ -1,3 +1,12 @@
+## [8.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.9.0...@ovh-ux/manager-sms@8.9.1) (2022-10-10)
+
+
+### Bug Fixes
+
+* **batches:** add default value for parameter ([#8119](https://github.com/ovh/manager/issues/8119)) ([448ffe5](https://github.com/ovh/manager/commit/448ffe5b335e9ef4850cc97538193bf92e9755bb))
+
+
+
 # [8.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.8.1...@ovh-ux/manager-sms@8.9.0) (2022-09-29)
 
 

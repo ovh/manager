@@ -1,3 +1,12 @@
+## [13.46.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.46.0...@ovh-ux/manager-telecom@13.46.1) (2022-10-10)
+
+
+### Bug Fixes
+
+* **xdsl:** remove utc time zone on address move ([#8130](https://github.com/ovh/manager/issues/8130)) ([04b82bd](https://github.com/ovh/manager/commit/04b82bde8086dc3f10a21c2ca3457529097cba54))
+
+
+
 # [13.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.45.1...@ovh-ux/manager-telecom@13.46.0) (2022-10-10)
 
 
