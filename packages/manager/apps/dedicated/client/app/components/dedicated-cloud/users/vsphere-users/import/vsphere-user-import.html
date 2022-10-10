@@ -45,6 +45,7 @@
             <oui-field
                 label="{{ :: 'dedicatedCloud_USER_import_field_label_userName' | translate }} *"
                 data-ng-if="$ctrl.model.type === 'User'"
+                data-error-messages="{ 'pattern': ('dedicatedCloud_USER_import_user_wrong_domaine' | translate) }"
             >
                 <input
                     class="oui-input"
