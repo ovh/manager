@@ -677,6 +677,7 @@ export default class PciInstancesAddController {
       this.projectId,
       this.instance,
       this.model.number,
+      this.isPrivateMode(),
     )
       .then(({ id: instanceId, ipAddresses: ips }) => {
         const message =
