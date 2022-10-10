@@ -6,7 +6,7 @@
 >
     <div data-wizard-step>
         <span
-            data-translate="dedicatedCloud_USER_delete_message"
+            data-translate="{{ :: $ctrl.user.activeDirectoryType === 'user' ? 'dedicatedCloud_USER_delete_user_message' : 'dedicatedCloud_USER_delete_group_message' }}"
             data-translate-values="{ t0: '<b>' + $ctrl.user.login + '</b>' }"
         ></span>
     </div>
