@@ -455,6 +455,7 @@ export default class PciProjectInstanceService {
       userData,
     },
     number = 1,
+    isPrivateMode,
   ) {
     const saveInstanceNamespace = 'instance-creation';
     const status = 'ACTIVE';
@@ -472,12 +473,18 @@ export default class PciProjectInstanceService {
           userData,
           number,
         })
-        .then(({ data: { id } }) => {
-          const url = `/cloud/project/${serviceName}/instance/${id}`;
-          return this.checkOperationStatus(url, saveInstanceNamespace, status);
-        })
-        .then((data) => {
-          this.Poller.kill({ namespace: saveInstanceNamespace });
+        .then(({ data }) => {
+          if (isPrivateMode) {
+            const url = `/cloud/project/${serviceName}/instance/${data.id}`;
+            return this.checkOperationStatus(
+              url,
+              saveInstanceNamespace,
+              status,
+            ).then((res) => {
+              this.Poller.kill({ namespace: saveInstanceNamespace });
+              return res;
+            });
+          }
           return data;
         });
     }
@@ -493,12 +500,18 @@ export default class PciProjectInstanceService {
         sshKeyId,
         userData,
       })
-      .then(({ data: { id } }) => {
-        const url = `/cloud/project/${serviceName}/instance/${id}`;
-        return this.checkOperationStatus(url, saveInstanceNamespace, status);
-      })
-      .then((data) => {
-        this.Poller.kill({ namespace: saveInstanceNamespace });
+      .then(({ data }) => {
+        if (isPrivateMode) {
+          const url = `/cloud/project/${serviceName}/instance/${data.id}`;
+          return this.checkOperationStatus(
+            url,
+            saveInstanceNamespace,
+            status,
+          ).then((res) => {
+            this.Poller.kill({ namespace: saveInstanceNamespace });
+            return res;
+          });
+        }
         return data;
       });
   }
