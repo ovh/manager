@@ -28,7 +28,9 @@ export default class ActiveDirectoriesEditController {
   }
 
   formIsValid() {
-    return this.model.username && this.model.password;
+    return (
+      this.model.username && this.model.password && this.model.sslThumbprint
+    );
   }
 
   editFederation() {
