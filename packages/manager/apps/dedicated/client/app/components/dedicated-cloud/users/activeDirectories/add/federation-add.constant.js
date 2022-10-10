@@ -48,7 +48,10 @@ export const FIELD_NAME = {
   ip: `ip${FIELD}`,
 };
 
+export const DEFAULT_LDAP_TCP_PORT = 636;
+
 export default {
+  DEFAULT_LDAP_TCP_PORT,
   FIELD_NAME,
   GUIDE_FEDERATION,
   PLACEHOLDER,
