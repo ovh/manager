@@ -52,7 +52,7 @@
             </oui-field>
 
             <oui-field
-                label="{{ :: 'dedicatedCloud_USER_AD_edit_field_label_sslThumbprint' | translate }}"
+                label="{{ :: 'dedicatedCloud_USER_AD_edit_field_label_sslThumbprint' | translate }} *"
             >
                 <input
                     class="oui-input"
@@ -60,6 +60,7 @@
                     type="text"
                     placeholder="{{ :: $ctrl.PLACEHOLDER.sslThumbprint }}"
                     data-ng-model="$ctrl.model.sslThumbprint"
+                    required
                 />
             </oui-field>
 
