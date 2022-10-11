@@ -4,7 +4,7 @@
   "dedicatedCloud_USER_AD_ADD_description": "Veuillez remplir le formulaire afin d'ajouter un Active Directory LDAPs",
   "dedicatedCloud_USER_AD_ADD_field_label_domainName": "Nom de domaine Active Directory",
   "dedicatedCloud_USER_AD_ADD_field_label_domainAlias": "Alias de domaine Active Directory",
-  "dedicatedCloud_USER_AD_ADD_field_label_description": "Description",
+  "dedicatedCloud_USER_AD_ADD_field_label_description": "Description (facultatif)",
   "dedicatedCloud_USER_AD_ADD_field_label_ip": "Adresse IP du serveur Active Directory",
   "dedicatedCloud_USER_AD_ADD_field_label_ldapHostname": "Nom d’hôte du serveur LDAPS Active Directory",
   "dedicatedCloud_USER_AD_ADD_field_label_ldapTcpPort": "Port du service LDAPS",
