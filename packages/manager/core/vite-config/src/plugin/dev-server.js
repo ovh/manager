@@ -1,7 +1,7 @@
 import express from 'express';
 import fs from 'fs';
 import path from 'path';
-import { env } from 'process';
+import { env, cwd } from 'process';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { proxy, sso as Sso } from '@ovh-ux/manager-dev-server-config';
 
@@ -9,7 +9,7 @@ export default function viteOvhDevServerPlugin(isContainerApp) {
   const region = process.env.REGION || 'EU';
   return {
     name: 'vite-ovh-dev-server',
-    configureServer(server) {
+    async configureServer(server) {
       const sso = new Sso(region);
       const app = express();
 
@@ -44,6 +44,19 @@ export default function viteOvhDevServerPlugin(isContainerApp) {
 
       app.get('/auth', sso.auth.bind(sso));
       app.get('/auth/check', sso.checkAuth.bind(sso));
+
+      // check if a dev config is present in current working directory where vite command is run
+      let devProxyConfig;
+      try {
+        devProxyConfig = (await import(`${cwd()}/dev.proxy.config.mjs`))
+          .default;
+      } catch (error) {
+        devProxyConfig = null;
+      }
+      // if a config is present, add a specific proxy
+      if (devProxyConfig) {
+        app.use(devProxyConfig.context, createProxyMiddleware(devProxyConfig));
+      }
 
       if (env.local2API) {
         app.use(proxy.aapi.context, createProxyMiddleware(proxy.aapi));
