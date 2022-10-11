@@ -1,3 +1,12 @@
+# [17.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.32.1...@ovh-ux/manager-dedicated@17.33.0) (2022-10-11)
+
+
+### Features
+
+* **dedicated:** add translations for license ([#7970](https://github.com/ovh/manager/issues/7970)) ([5f70f7e](https://github.com/ovh/manager/commit/5f70f7ebd58ca2e5fa13e04de4d84e918a23a97f))
+
+
+
 ## [17.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.32.0...@ovh-ux/manager-dedicated@17.32.1) (2022-10-10)
 
 
