@@ -7,6 +7,7 @@ import { PROMO_DISPLAY } from '../pack-move.constant';
 export default class PackMoveOffersCtrl {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $scope,
     $translate,
@@ -14,6 +15,7 @@ export default class PackMoveOffersCtrl {
     OvhApiPackXdslMove,
     TucToast,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$scope = $scope;
     this.$translate = $translate;
@@ -308,20 +310,28 @@ export default class PackMoveOffersCtrl {
       params.options = options;
     }
 
-    return this.OvhApiPackXdslMove.v6()
-      .servicesToDelete({ packName: this.packName }, params)
-      .$promise.then((result) => {
-        selectedOffer.subServicesToDelete = result;
-        this.$scope.$emit('offerSelected', selectedOffer);
+    this.loading.init = true;
 
-        return result;
+    this.$http
+      .post(
+        `/pack/xdsl/${this.packName}/addressMove/servicesToDeleteUnpackTerms`,
+        params,
+      )
+      .then((result) => {
+        selectedOffer.subServicesToDelete = result.data;
+        this.$scope.$emit('offerSelected', selectedOffer);
+        return result.data;
       })
       .catch((error) => {
+        // Display error message
         this.TucToast.error(
           this.$translate.instant('pack_move_choose_offer_error', {
             error,
           }),
         );
+      })
+      .finally(() => {
+        this.loading.init = false;
       });
   }
 }

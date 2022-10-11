@@ -3,6 +3,7 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 import set from 'lodash/set';
 import values from 'lodash/values';
+import moment from 'moment';
 
 import { PROMO_DISPLAY } from '../pack-move.constant';
 
@@ -82,6 +83,20 @@ export default class MoveResumeCtrl {
     if (this.offer.selected.contactOwner) {
       this.contactPhone = this.offer.selected.contactOwner.phone;
     }
+
+    this.offer.selected.offer.subServicesToDelete.forEach((service) => {
+      this.constructor.updateSubService(service, false);
+      this.constructor.updateSubService(service, true);
+    });
+
+    this.offer.selected.offer.totalSubServiceToDelete = this.constructor.getTotalService(
+      this.offer.selected.offer.subServicesToDelete,
+      false,
+    );
+    this.offer.selected.offer.totalSubServiceToKeep = this.constructor.getTotalService(
+      this.offer.selected.offer.subServicesToDelete,
+      true,
+    );
   }
 
   getDisplayedPrice(value) {
@@ -245,8 +260,20 @@ export default class MoveResumeCtrl {
       // sub service to delete post params
       if (this.offer.selected.offer.subServicesToDelete.length) {
         moveData.subServicesToDelete = [];
+        moveData.subServicesToKeep = [];
         this.offer.selected.offer.subServicesToDelete.forEach((subService) => {
           moveData.subServicesToDelete = moveData.subServicesToDelete.concat(
+            map(
+              filter(subService.services, {
+                selected: false,
+              }),
+              (service) => ({
+                service: service.name,
+                type: subService.type,
+              }),
+            ),
+          );
+          moveData.subServicesToKeep = moveData.subServicesToKeep.concat(
             map(
               filter(subService.services, {
                 selected: true,
@@ -434,11 +461,34 @@ export default class MoveResumeCtrl {
     this.moveThePack();
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  getServiceToDeleteList(subService) {
+  static getTotalService(subServices, toKeep) {
+    let count = 0;
+    subServices.forEach((service) => {
+      if (toKeep) {
+        count += service.numberToKeep;
+      } else {
+        count += service.numberToDelete;
+      }
+    });
+    return count;
+  }
+
+  static updateSubService(subService, toKeep) {
+    const count = filter(subService.services, {
+      selected: toKeep,
+    }).length;
+
+    if (toKeep) {
+      set(subService, 'numberToKeep', count);
+    } else {
+      set(subService, 'numberToDelete', count);
+    }
+  }
+
+  static getServiceList(subService, toKeep) {
     return map(
       filter(subService.services, {
-        selected: true,
+        selected: toKeep,
       }),
       'name',
     ).join(', ');

@@ -361,6 +361,64 @@
 
         <div
             class="widget-presentation"
+            data-ng-if="$ctrl.offer.selected.offer.totalSubServiceToKeep > 0"
+        >
+            <h2
+                class="widget-presentation-title"
+                data-translate="pack_move_confirm_service_to_keep_title"
+            ></h2>
+
+            <p
+                data-translate="pack_move_confirm_service_to_keep_total"
+                data-translate-values="{ count : $ctrl.offer.selected.offer.totalSubServiceToKeep }"
+            ></p>
+
+            <div class="responsive-table-line my-3">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="pack_move_confirm_service_to_keep_table_service_type"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="pack_move_confirm_service_to_keep_table_service_count"
+                                class="text-right"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="pack_move_confirm_service_to_keep_table_service_names"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            data-ng-repeat="serviceToDelete in $ctrl.offer.selected.offer.subServicesToDelete track by $index"
+                        >
+                            <th
+                                scope="row"
+                                data-translate="{{ 'pack_move_confirm_resume_' + serviceToDelete.type }}"
+                                data-title="{{ 'pack_move_confirm_service_to_keep_table_service_type' | translate }}"
+                            ></th>
+                            <td
+                                class="text-right"
+                                data-ng-bind="serviceToDelete.numberToKeep"
+                                data-title="{{ 'pack_move_confirm_service_to_keep_table_service_count' | translate }}"
+                            ></td>
+                            <td
+                                data-ng-bind="$ctrl.constructor.getServiceList(serviceToDelete, true)"
+                                data-title="{{ 'pack_move_confirm_service_to_keep_table_service_names' | translate }}"
+                                class="text-wrap"
+                            ></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div
+            class="widget-presentation"
             data-ng-if="$ctrl.offer.selected.offer.totalSubServiceToDelete > 0"
         >
             <h2
@@ -407,7 +465,7 @@
                                 data-title="{{ 'pack_move_confirm_service_to_delete_table_service_count' | translate }}"
                             ></td>
                             <td
-                                data-ng-bind="$ctrl.getServiceToDeleteList(serviceToDelete)"
+                                data-ng-bind="$ctrl.constructor.getServiceList(serviceToDelete, false)"
                                 data-title="{{ 'pack_move_confirm_service_to_delete_table_service_names' | translate }}"
                                 class="text-wrap"
                             ></td>
