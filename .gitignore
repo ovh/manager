@@ -8,3 +8,4 @@ types
 .env
 .eslintcache
 .turbo
+packages/manager/apps/**/dev.proxy.config.mjs
