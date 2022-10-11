@@ -84,7 +84,7 @@ angular.module('App').controller(
       return this.Operation.getOperationModels()
         .then((models) => {
           this.nicOperationEnum =
-            models.models['domain.NicOperationFunctionEnum'].enum;
+            models.models['domain.OperationFunctionEnum'].enum;
           this.operationStatusEnum =
             models.models['domain.OperationStatusEnum'].enum;
         })
