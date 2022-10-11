@@ -4,6 +4,7 @@
   "dedicatedCloud_USER_import_select_federation_placeholder": "Veuillez choisir l'Active Directory concerné",
   "dedicatedCloud_USER_import_user_example": "utilisateur",
   "dedicatedCloud_USER_import_user_wrong_domaine": "Le nom de domaine ne correspond pas à celui de l'Active Directory sélectionné.",
+  "dedicatedCloud_USER_import_user_already_exist": "Le nom d'utilisateur existe déjà.",
   "dedicatedCloud_USER_import_group_example": "groupe",
   "dedicatedCloud_USER_import_radio_user": "Importer un utilisateur",
   "dedicatedCloud_USER_import_radio_group": "Importer un groupe",
