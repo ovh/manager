@@ -9,7 +9,7 @@ import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.new.payment', {
-    url: '/payment?paymentStatus',
+    url: '/payment?paymentStatus&paymentType',
     views: {
       '': component.name,
 
