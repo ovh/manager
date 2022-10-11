@@ -1,71 +1,24 @@
----
-#################################
-#################################
-## Super Linter GitHub Actions ##
-#################################
-#################################
 name: Lint Code Base
 
-#
-# Documentation:
-# https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
-#
-
-#############################
-# Start the job on all push #
-#############################
 on:
   push:
     branches-ignore: [master, develop]
-    # Remove the line above to run when pushing to master
   pull_request:
     branches: [master, develop]
-
-###############
-# Set the Job #
-###############
 jobs:
   build:
-    # Name the Job
     name: Lint Code Base
-    # Set the agent to run on
     runs-on: ubuntu-latest
-
-    ##################
-    # Load all steps #
-    ##################
     steps:
-      ##########################
-      # Checkout the code base #
-      ##########################
       - name: Checkout Code
         uses: actions/checkout@v2
         with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
 
-
-      #######################################
-      # Install our own eslint dependencies #
-      #######################################
-      # We need to add these specific packages as github/super-linter doesn't embed those by default
-      # (See: https://github.com/github/super-linter/blob/main/dependencies/package.json#L11)
-      - name: Install eslint codebase dependencies
+      - name: Install repository
         run: |
-          yarn --version
-          yarn add -D -W eslint-plugin-angular@^4.0.1 eslint-plugin-markdown@^1.0.0
+          yarn install --frozen-lockfile
 
-      ################################
-      # Run Linter against code base #
-      ################################
       - name: Lint Code Base
-        uses: github/super-linter/slim@v4
-        env:
-          LINTER_RULES_PATH: /
-          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
-          TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.js
-          VALIDATE_ALL_CODEBASE: false
-          VALIDATE_JAVASCRIPT_ES: true
-          VALIDATE_TYPESCRIPT_ES: true
-          DEFAULT_BRANCH: master
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn lint
