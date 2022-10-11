@@ -1,7 +1,8 @@
 import {
-  DEFAULT_FILTER_COLUMN,
   TRACKING_PREFIX,
   TRACKING_TASK_TAG,
+  DEFAULT_FILTER_ACTIVE_DIRECTORY,
+  DEFAULT_FILTER_USERS,
 } from './vsphere-user-import.constant';
 
 export default class VSphereUserImportController {
@@ -16,6 +17,8 @@ export default class VSphereUserImportController {
 
   $onInit() {
     this.TRACKING_TASK_TAG = TRACKING_TASK_TAG;
+    this.federationList = [];
+    this.usersList = [];
 
     this.task = null;
 
@@ -40,19 +43,43 @@ export default class VSphereUserImportController {
     const params = {
       offset: null,
       pageSize: null,
-      sort: DEFAULT_FILTER_COLUMN,
       sortOrder: 'ASC',
       filters: [],
-      defaultFilterColumn: DEFAULT_FILTER_COLUMN,
     };
 
-    return this.DedicatedCloud.getActiveDirectories(this.productId, params)
-      .then(({ data: federation }) => {
-        this.federationList = federation;
+    const paramsGetActiveDirectory = {
+      ...params,
+      sort: DEFAULT_FILTER_ACTIVE_DIRECTORY,
+      defaultFilterColumn: DEFAULT_FILTER_ACTIVE_DIRECTORY,
+    };
+
+    const paramsGetUsers = {
+      ...params,
+      sort: DEFAULT_FILTER_USERS,
+      defaultFilterColumn: DEFAULT_FILTER_USERS,
+    };
+
+    return this.$q
+      .all({
+        users: this.DedicatedCloud.getUsers(this.productId, paramsGetUsers),
+        activeDirectories: this.DedicatedCloud.getActiveDirectories(
+          this.productId,
+          paramsGetActiveDirectory,
+        ),
+      })
+      .then(({ activeDirectories, users }) => {
+        this.federationList = activeDirectories.data;
+        this.usersList = users.data;
       })
       .finally(() => {
         this.loaders.init = false;
       });
+  }
+
+  userAlreadyExist(input) {
+    return this.usersList.find(
+      (value) => value.login === input || value.name === input,
+    );
   }
 
   formIsValid() {
