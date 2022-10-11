@@ -1,3 +1,7 @@
+import isEmpty from 'lodash/isEmpty';
+import isObject from 'lodash/isObject';
+
+import { VRACK_OPERATION_COMPLETED_STATUS } from './private-networks.constants';
 import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -13,12 +17,23 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('privateNetworks')
-        .then((privateNetworks) =>
-          privateNetworks.length === 0
-            ? { state: 'pci.projects.project.privateNetwork.onboarding' }
-            : false,
-        ),
+        .getAsync('operation')
+        .then((operation) => {
+          if (isObject(operation)) {
+            return VRACK_OPERATION_COMPLETED_STATUS.includes(operation.status)
+              ? false
+              : { state: 'pci.projects.project.privateNetwork.vrack' };
+          }
+
+          return transition
+            .injector()
+            .getAsync('vrack')
+            .then((vrack) =>
+              isEmpty(vrack)
+                ? { state: 'pci.projects.project.privateNetwork.vrack' }
+                : false,
+            );
+        }),
     resolve: {
       createNetwork: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.privateNetwork.add', { projectId }),

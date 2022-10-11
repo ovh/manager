@@ -1,4 +1,8 @@
-<manager-on-boarding-layout image-source="$ctrl.illustration">
+<manager-on-boarding-layout
+    data-guides="$ctrl.guides"
+    data-image-source="$ctrl.illustration"
+    data-on-guide-click="$ctrl.onDocumentationClick(guide)"
+>
     <h1 data-translate="pci_projects_project_network_private"></h1>
     <p data-translate="pci_projects_project_network_private_vrack_empty"></p>
     <strong
