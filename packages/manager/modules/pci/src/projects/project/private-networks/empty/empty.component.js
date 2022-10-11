@@ -1,10 +1,8 @@
-import illustration from './assets/private-networks.png';
 import template from './empty.html';
+import controller from './empty.controller';
 
 export default {
-  controller: () => ({
-    illustration,
-  }),
+  controller,
   template,
   transclude: true,
 };

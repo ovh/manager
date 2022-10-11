@@ -14,7 +14,6 @@ import deletePrivateNetwork from './delete';
 import vrack from './vrack';
 
 import empty from './empty';
-import onboarding from './onboarding';
 
 const moduleName = 'ovhManagerPciPrivateNetworks';
 
@@ -29,7 +28,6 @@ angular
     add,
     deletePrivateNetwork,
     vrack,
-    onboarding,
   ])
   .config(routing)
   .component('pciProjectPrivateNetworks', component)
