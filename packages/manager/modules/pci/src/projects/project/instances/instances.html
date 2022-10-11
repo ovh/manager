@@ -118,13 +118,13 @@
                 data-ng-bind="$row.publicIpV4[0].ip"
             ></span>
             <a
-                data-ng-if="$row.floatingIp && $row.publicIpV4.length === 1"
+                data-ng-if="$row.floatingIp && $row.publicIpV4.length === 0"
                 data-ng-href="{{:: $ctrl.floatingIpsLink}}"
                 data-ng-bind="$row.floatingIp.ip"
             ></a>
             <a
                 class="ip-list"
-                data-ng-if="$row.floatingIp && $row.publicIpV4.length > 1"
+                data-ng-if="$row.floatingIp && $row.publicIpV4.length > 0"
                 data-ng-href="{{:: $ctrl.floatingIpsLink}}"
                 data-ng-bind="$row.floatingIp.ip"
                 oui-tooltip="{{ $ctrl.getIpsForTooltip($row.publicIpV4) }}"
