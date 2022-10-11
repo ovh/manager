@@ -317,6 +317,7 @@ export default class PrivateNetworksAddCtrl {
           this.$translate.instant(
             'pci_projects_project_network_private_create_success',
           ),
+          'success',
         );
       })
       .catch((error) => {

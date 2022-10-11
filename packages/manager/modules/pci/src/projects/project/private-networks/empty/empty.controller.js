@@ -1,6 +1,6 @@
 import reduce from 'lodash/reduce';
 import illustration from './assets/private-networks.png';
-import { GUIDES } from './onboarding.constants';
+import { GUIDES } from './empty.constants';
 
 export default class PciPrivateNetworkEmptyController {
   /* @ngInject */
