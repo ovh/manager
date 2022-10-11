@@ -411,22 +411,7 @@
                     <span
                         data-translate="pci_projects_project_instances_add_privateNetwork_description"
                     ></span>
-                    <button
-                        data-ng-if="$ctrl.isPrivateMode()"
-                        type="button"
-                        class="oui-link oui-link_icon"
-                        data-ng-click="$ctrl.onAddPrivateNetworkClick()"
-                    >
-                        <span
-                            data-translate="pci_projects_project_instances_add_privateNetwork_add"
-                        ></span>
-                        <span
-                            class="oui-icon oui-icon-arrow-right"
-                            aria-hidden="true"
-                        ></span>
-                    </button>
                     <a
-                        data-ng-if="!$ctrl.isPrivateMode()"
                         data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
                         data-translate="pci_projects_project_instances_add_privateNetwork_add"
                         target="_top"
@@ -436,7 +421,7 @@
         </div>
         <oui-spinner
             data-size="s"
-            data-ng-if="$ctrl.isGatewayLoading"
+            data-ng-if="$ctrl.isGatewayLoading && !$ctrl.isPrivateMode()"
         ></oui-spinner>
 
         <oui-message
@@ -618,67 +603,4 @@
             data-translate="pci_projects_project_instances_add_private_mode2"
         ></p>
     </div>
-</div>
-
-<div data-ng-if="$ctrl.showAddPrivateNetworkModalForm">
-    <div class="modal d-block" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <form
-                    name="$ctrl.addPrivateNetworkForm"
-                    novalidate
-                    data-ng-submit="$ctrl.onAddPrivateNetworkFormSubmit()"
-                >
-                    <oui-modal
-                        data-heading="{{ 'pci_projects_project_instances_add_modal_title' | translate }}"
-                        data-on-dismiss="$ctrl.onCancel()"
-                        data-loading="$ctrl.loading"
-                        data-primary-label="{{:: 'pci_projects_project_instances_add_modal_submit_label' | translate }}"
-                        data-secondary-label="{{:: 'pci_projects_project_instances_add_modal_cancel_label' | translate }}"
-                        data-secondary-action="$ctrl.onCancel()"
-                        data-primary-disabled="!$ctrl.privateNetworkModel.name || $ctrl.selectedSubnet.name"
-                    >
-                        <div class="text-center" data-ng-if="$ctrl.isLoading">
-                            <oui-spinner data-size="m"></oui-spinner>
-                        </div>
-                        <p
-                            data-translate="pci_projects_project_instances_add_modal_description"
-                        ></p>
-
-                        <div data-ng-if="!$ctrl.isLoading">
-                            <oui-field
-                                data-size="l"
-                                data-label="{{:: 'pci_projects_project_instances_add_modal_add_private_network_field_label' | translate }}"
-                            >
-                                <input
-                                    class="oui-input"
-                                    type="text"
-                                    id="privateNetworkName"
-                                    name="privateNetworkName"
-                                    placeholder="{{ 'pci_projects_project_instances_add_modal_add_private_network_field_placeholder' | translate }}"
-                                    data-ng-model="$ctrl.privateNetworkModel.name"
-                                    required
-                                />
-                            </oui-field>
-                            <oui-field
-                                data-size="l"
-                                data-label="{{:: 'pci_projects_project_instances_add_private_network_select_subnet_label' | translate }}"
-                            >
-                                <oui-select
-                                    class="mr-2 mb-0"
-                                    data-name="privateNetwork"
-                                    data-model="$ctrl.selectedSubnet"
-                                    data-items="$ctrl.availableSubnet"
-                                    data-match="name"
-                                    required
-                                >
-                                </oui-select>
-                            </oui-field>
-                        </div>
-                    </oui-modal>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="oui-modal-backdrop"></div>
 </div>
