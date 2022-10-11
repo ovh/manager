@@ -56,6 +56,8 @@ export const IP_LOCATION_GROUPS = [
 
 export const VPS_MAX_QUANTITY = 16;
 export const LEARN_ORGANIZATION_LINK = 'https://docs.ovh.com/fr/';
+export const ADDITIONAL_IP = 'Additional IP';
+export const BLOCK_ADDITIONAL_IP = 'Block Additional IP';
 
 export default {
   FETCH_PRICE_MAX_TRIES,
