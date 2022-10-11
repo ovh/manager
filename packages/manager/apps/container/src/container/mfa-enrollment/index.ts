@@ -38,9 +38,7 @@ export default function useMfaEnrollment() {
     isMfaEnrollmentVisible: state !== MfaEnrollmentState.HIDE,
     isMfaEnrollmentForced: state === MfaEnrollmentState.FORCED,
     hideMfaEnrollment: () => {
-      if (state !== MfaEnrollmentState.FORCED) {
-        setState(MfaEnrollmentState.HIDE);
-      }
+      setState(MfaEnrollmentState.HIDE);
     },
   };
 }
