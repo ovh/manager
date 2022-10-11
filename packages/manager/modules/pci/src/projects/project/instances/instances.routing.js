@@ -54,8 +54,9 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(({ instances, floatingIps }) => {
             const updatedInstances = map(instances, (instance) => ({
               ...instance,
-              floatingIp: floatingIps.find((floatingIp) =>
-                instance.ipAddresses.some(({ ip }) => ip === floatingIp.ip),
+              floatingIp: floatingIps.find(
+                (floatingIp) =>
+                  floatingIp?.associatedEntity?.id === instance.id,
               ),
             }));
             return $q
