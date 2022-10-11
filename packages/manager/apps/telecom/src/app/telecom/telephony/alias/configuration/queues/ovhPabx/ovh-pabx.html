@@ -331,7 +331,7 @@
                                 name="agentSelect"
                                 class="form-control"
                                 data-ng-model="queue.agentToAdd"
-                                data-ng-options="agent as (agent.number | tucPhoneNumber) for agent in QueuesOvhPabxCtrl.getAgentsQueueToAdd(queue)"
+                                data-ng-options="agent as ((agent.number | tucPhoneNumber) + (agent.description ? ' - ' + agent.description : '')) for agent in QueuesOvhPabxCtrl.getAgentsQueueToAdd(queue)"
                                 required
                             >
                             </select>

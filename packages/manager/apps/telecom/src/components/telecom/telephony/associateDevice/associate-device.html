@@ -55,7 +55,7 @@
                                     data-ng-repeat="line in phone.associatedLines"
                                 >
                                     <span
-                                        data-ng-bind="line.serviceName | tucPhoneNumber"
+                                        data-ng-bind="(line.serviceName | tucPhoneNumber) + (line.description ? ' (' + line.description + ')' : '')"
                                     ></span>
                                 </li>
                             </ul>
