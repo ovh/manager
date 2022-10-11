@@ -9,7 +9,7 @@ import img3x from '@/assets/images/mfa/double-authentication@3x.png';
 import style from './style.module.scss';
 
 type MfaEnrollmentProps = {
-  forced?: Boolean;
+  forced?: boolean;
   onHide: CallableFunction;
 };
 
@@ -26,6 +26,7 @@ export default function MfaEnrollment({ forced, onHide }: MfaEnrollmentProps) {
       type: 'navigation',
     });
     window.top.location = mfaURL;
+    onHide();
   };
 
   return (
