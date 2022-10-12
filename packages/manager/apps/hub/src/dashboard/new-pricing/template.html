@@ -1,0 +1,189 @@
+<div class="mb-3">
+    <h2 data-translate="manager_hub_new_pricing_title"></h2>
+    <p>
+        <span data-translate="manager_hub_new_pricing_description1"></span
+        ><br />
+        <span data-translate="manager_hub_new_pricing_description2"></span>
+    </p>
+    <p data-translate="manager_hub_new_pricing_explain"></p>
+    <ul>
+        <li data-translate="manager_hub_new_pricing_explain1"></li>
+        <li data-translate="manager_hub_new_pricing_explain2"></li>
+    </ul>
+</div>
+
+<oui-datagrid data-rows="$ctrl.newPricingList">
+    <oui-datagrid-column
+        data-title=":: 'manager_hub_new_pricing_table_column_service_name' | translate"
+        data-property="serviceName"
+        data-type="string"
+        data-searchable
+        data-filterable
+        data-sortable="asc"
+    >
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        data-title=":: 'manager_hub_new_pricing_table_column_service_display_name' | translate"
+        data-property="displayName"
+        data-searchable
+        data-filterable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'manager_hub_new_pricing_table_column_service_description' | translate"
+        data-property="description"
+        data-type="string"
+    >
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        data-title=":: 'manager_hub_new_pricing_table_column_service_total_price_before_without_tax' | translate"
+        data-property="totalPriceBeforeWithoutTax"
+    >
+        <span data-ng-bind="$row.totalPriceBeforeWithoutTax.text"></span>
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        data-title=":: 'manager_hub_new_pricing_table_column_service_total_price_after_without_tax' | translate"
+        data-property="totalPriceAfterWithoutTax"
+    >
+        <span data-ng-bind="$row.totalPriceAfterWithoutTax.text"></span>
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        data-title=":: 'manager_hub_new_pricing_table_column_service_total_price_after_with_tax' | translate"
+        data-property="totalPriceAfterWithTax"
+    >
+        <span data-ng-bind="$row.totalPriceAfterWithTax.text"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'manager_hub_new_pricing_table_column_service_application_date' | translate"
+        data-property="applicationDate"
+        data-type="string"
+        data-searchable
+        data-filterable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-row-detail>
+        <div class="mt-2">
+            <div class="text-center" data-ng-if="$row.addons.length === 0">
+                <span
+                    class="oui-datagrid-empty__placeholder"
+                    data-translate="manager_hub_new_pricing_table_column_service_no_addon_data"
+                ></span>
+            </div>
+            <div class="oui-table" data-ng-if="$row.addons.length > 0">
+                <table class="oui-table">
+                    <thead class="oui-table__headers">
+                        <tr>
+                            <th
+                                class="oui-table__header oui-table__header_sortable"
+                                data-translate="manager_hub_new_pricing_table_column_service_description"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-sort-down"
+                                    aria-hidden="true"
+                                ></span>
+                            </th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="manager_hub_new_pricing_table_column_service_price_before_without_tax"
+                            ></th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="manager_hub_new_pricing_table_column_service_price_after_without_tax"
+                            ></th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="manager_hub_new_pricing_table_column_service_price_after_with_tax"
+                            ></th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="manager_hub_new_pricing_table_column_service_application_date"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody class="oui-table__body">
+                        <tr>
+                            <td class="oui-table__cell">
+                                <span data-ng-bind="$row.description"></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <span
+                                    data-ng-bind="$row.priceBeforeWithoutTax.text"
+                                ></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <span
+                                    data-ng-bind="$row.priceAfterWithoutTax.text"
+                                ></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <span
+                                    data-ng-bind="$row.priceAfterWithTax.text"
+                                ></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <span
+                                    data-ng-bind="$row.applicationDate"
+                                ></span>
+                            </td>
+                        </tr>
+                        <tr
+                            class="oui-table__row"
+                            data-ng-repeat="addon in $row.addons track by $index"
+                        >
+                            <td class="oui-table__cell">
+                                <span data-ng-bind="addon.description"></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <span
+                                    data-ng-bind="addon.priceBeforeWithoutTax.text"
+                                ></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <span
+                                    data-ng-bind="addon.priceAfterWithoutTax.text"
+                                ></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <span
+                                    data-ng-bind="addon.priceAfterWithTax.text"
+                                ></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <span
+                                    data-ng-bind="addon.applicationDate"
+                                ></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </oui-datagrid-row-detail>
+</oui-datagrid>
+
+<div class="mt-3">
+    <p>
+        <span class="text-danger">* </span>
+        <span data-translate="manager_hub_new_pricing_footer_info1"></span>
+    </p>
+    <p>
+        <span class="text-danger">** </span>
+        <span data-translate="manager_hub_new_pricing_footer_info2"></span>
+    </p>
+    <p>
+        <span data-translate="manager_hub_new_pricing_footer_info3"></span>
+        <span>
+            <a
+                data-translate="manager_hub_new_pricing_footer_info4"
+                data-ng-href="{{:: $ctrl.faqUrl }}"
+                target="_blank"
+                data-ng-click="$ctrl.trackFaqClick()"
+            >
+            </a>
+        </span>
+    </p>
+</div>

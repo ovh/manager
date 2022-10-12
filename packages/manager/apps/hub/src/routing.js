@@ -69,6 +69,8 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
             serviceType: 'aapi',
           })
           .then(({ data }) => parseErrors(data)),
+      newPricingList: /* @ngInject */ ($http) =>
+        $http.get('/me/repricing/fall22').then(({ data }) => data),
     },
   });
 

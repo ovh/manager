@@ -5,6 +5,7 @@ import ovhManagerHub from '@ovh-ux/manager-hub';
 import catalog from './catalog';
 import orderDashboard from './order-dashboard';
 import welcome from './welcome';
+import newPricing from './new-pricing';
 
 import component from './dashboard.component';
 import routing from './routing';
@@ -21,6 +22,7 @@ angular
     'ngAtInternet',
     'pascalprecht.translate',
     welcome,
+    newPricing,
   ])
   .component('hubDashboard', component)
   .config(routing)
