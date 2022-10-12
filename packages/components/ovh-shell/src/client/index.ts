@@ -1,9 +1,9 @@
 import { useReket } from '@ovh-ux/ovh-reket';
-import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import {
+  isTopLevelApplication,
   Application,
   ApplicationId,
-} from '@ovh-ux/manager-config/types/application';
+} from '@ovh-ux/manager-config';
 
 import ShellClient from './shell-client';
 import StandaloneShellClient from './standalone-shell-client';

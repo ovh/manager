@@ -1,5 +1,6 @@
 import { Environment } from './environment';
-import { User } from './user';
 
 export default Environment;
-export { User };
+export * from './region.enum';
+export * from './environment.constants';
+export * from './user';

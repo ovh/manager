@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
-import { Shell } from '@ovh-ux/shell/types';
+import { Shell } from '@ovh-ux/shell';
 
 import ApplicationContext from './application.context';
 import { HeaderProvider } from './header';
