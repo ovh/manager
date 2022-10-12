@@ -1,4 +1,4 @@
-import { Environment } from '@ovh-ux/manager-config/types';
+import { Environment } from '@ovh-ux/manager-config';
 import { useShell } from '@/context';
 
 import { Shortcut } from './Tile/shortcut';
