@@ -1,6 +1,5 @@
 import { loadFeature, defineFeature, DefineStepFunction } from 'jest-cucumber';
-import { Environment } from '@ovh-ux/manager-config';
-import { KeyPairName } from '@ovh-ux/manager-config/types/locale';
+import { Environment, KeyPairName } from '@ovh-ux/manager-config';
 
 import { i18n, I18nPlugin } from '../../../src/plugin/i18n';
 import DirectClientMessageBus from '../../../src/message-bus/direct-client';

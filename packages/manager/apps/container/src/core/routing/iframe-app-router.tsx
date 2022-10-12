@@ -1,6 +1,6 @@
 import React, { useMemo, RefObject } from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
-import { Application } from '@ovh-ux/manager-config/types/application';
+import { Application } from '@ovh-ux/manager-config';
 import { ExternalApplicationRoute } from './route/external-application-route';
 import { IFrameApplicationRoute } from './route/iframe-application-route';
 import { IndexRoute } from './route/index-route';

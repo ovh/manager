@@ -1,1 +1,1 @@
-export { buildURL, buildURLs } from './url-builder';
+export * from './url-builder';

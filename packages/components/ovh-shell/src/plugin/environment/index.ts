@@ -1,5 +1,4 @@
-import { Environment } from '@ovh-ux/manager-config';
-import { ApplicationId } from '@ovh-ux/manager-config/types/application';
+import { Environment, ApplicationId } from '@ovh-ux/manager-config';
 
 export function environment(environment: Environment) {
   const listeners: CallableFunction[] = [];
