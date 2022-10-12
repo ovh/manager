@@ -1,4 +1,4 @@
-import { Environment } from '@ovh-ux/manager-config/types';
+import { Environment } from '@ovh-ux/manager-config';
 import constants from './constants';
 import { UsefulLink } from './Link/usefulLink';
 

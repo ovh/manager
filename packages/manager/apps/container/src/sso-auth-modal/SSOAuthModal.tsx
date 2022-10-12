@@ -4,7 +4,7 @@ import { useReket } from '@ovh-ux/ovh-reket';
 import { Modal } from 'react-bootstrap';
 import { useTranslation, Trans } from 'react-i18next';
 
-import { User } from '@ovh-ux/manager-config/types';
+import { User } from '@ovh-ux/manager-config';
 
 import {
   connectedToDisconnected,

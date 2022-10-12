@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import { Shell } from '@ovh-ux/shell/types';
+import { Shell } from '@ovh-ux/shell';
 import { Modal } from 'react-bootstrap';
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
-import { User } from '@ovh-ux/manager-config/types';
+import { User } from '@ovh-ux/manager-config';
 
 import ovhCloudLogo from './assets/logo-ovhcloud.png';
 import links from './links';

@@ -1,5 +1,4 @@
-import { Region } from '@ovh-ux/manager-config/types/environment/region.enum';
-import { User } from '@ovh-ux/manager-config/types/environment/user';
+import { Region, User } from '@ovh-ux/manager-config';
 import OvhAtInternet from '@ovh-ux/ovh-at-internet';
 import { CUSTOM_VARIABLES } from './config.constants';
 

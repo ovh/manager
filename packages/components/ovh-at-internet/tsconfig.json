@@ -12,9 +12,10 @@
     "sourceMap": true,
     "allowJs": true,
     "declaration": true,
-    "declarationDir": "types",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "declarationDir": "./dist/types"
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "types"]
+  "exclude": ["node_modules", "dist"]
 }
