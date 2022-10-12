@@ -1,5 +1,5 @@
 import { Shell } from '@ovh-ux/shell';
-import { Application } from '@ovh-ux/manager-config/types/application';
+import { Application } from '@ovh-ux/manager-config';
 
 export function setupDevApplication(shell: Shell) {
   if (import.meta.env.DEV) {

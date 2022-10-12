@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { Environment } from '@ovh-ux/manager-config/types';
+import { Environment } from '@ovh-ux/manager-config';
 
 import { useShell } from '@/context';
 

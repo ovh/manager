@@ -1,5 +1,4 @@
-import { Environment } from '@ovh-ux/manager-config';
-import { Region } from '@ovh-ux/manager-config/types/environment/region.enum';
+import { Environment, Region } from '@ovh-ux/manager-config';
 
 const helpRoot = 'https://help.ovhcloud.com';
 

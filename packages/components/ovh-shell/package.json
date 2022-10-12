@@ -12,8 +12,8 @@
   "author": "OVH SAS",
   "sideEffects": "false",
   "type": "module",
-  "main": "./dist/index.js",
-  "types": "./types/index.d.ts",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc",

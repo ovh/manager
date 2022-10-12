@@ -9,14 +9,11 @@ export const HOSTNAME_REGIONS: Record<string, Region> = {
 };
 
 export { Environment, User };
-export {
-  convertLanguageFromOVHToBCP47,
-  detectUserLocale,
-  findLanguage,
-  findAvailableLocale,
-} from './locale';
+export * from './locale';
 
-export { LANGUAGES } from './locale/locale.constants';
+export * from './locale/locale.constants';
+export * from './application';
+export * from './environment';
 
 export const isTopLevelApplication = () => window.top === window.self;
 

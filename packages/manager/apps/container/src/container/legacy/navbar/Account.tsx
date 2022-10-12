@@ -3,7 +3,7 @@ import React from 'react';
 import { capitalize, truncate } from 'lodash-es';
 import { useTranslation } from 'react-i18next';
 
-import { User } from '@ovh-ux/manager-config/types/environment/user';
+import { User } from '@ovh-ux/manager-config';
 import { TRANSLATE_NAMESPACE } from './constants';
 import style from './navbar.module.scss';
 

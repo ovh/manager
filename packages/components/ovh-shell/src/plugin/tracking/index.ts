@@ -1,6 +1,8 @@
-import { ATInternetTagOptions } from '@ovh-ux/ovh-at-internet/types';
-import { LegacyTrackingData } from '@ovh-ux/ovh-at-internet/types/track';
-import { TrackingDefaults } from '@ovh-ux/ovh-at-internet/types/config';
+import {
+  ATInternetTagOptions,
+  LegacyTrackingData,
+  TrackingDefaults,
+} from '@ovh-ux/ovh-at-internet';
 import ShellClient from '../../client/shell-client';
 import { RegionsTrackingConfig } from './tracking';
 
