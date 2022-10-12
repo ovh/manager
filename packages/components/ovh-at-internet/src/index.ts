@@ -26,3 +26,6 @@ export interface ATInternetTag {
 }
 
 export { default } from './ovh-at-internet';
+export * from './config';
+export * from './constants';
+export * from './track';

@@ -1,7 +1,4 @@
-import {
-  SupportLevel,
-  User,
-} from '@ovh-ux/manager-config/types/environment/user';
+import { SupportLevel, User } from '@ovh-ux/manager-config';
 
 import { EXCLUDED_ROLES } from './constants';
 

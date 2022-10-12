@@ -1,4 +1,4 @@
-import { User } from '@ovh-ux/manager-config/types';
+import { User } from '@ovh-ux/manager-config';
 import React from 'react';
 
 type Props = {
