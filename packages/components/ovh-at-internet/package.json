@@ -20,7 +20,7 @@
   "sideEffects": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "types": "./types",
+  "types": "./dist/types/index.d.ts",
   "files": [
     "dist",
     "types"

@@ -3,7 +3,8 @@ import { Region } from '../environment/region.enum';
 import { CountryCode } from '../locale/country-code.enum';
 
 export type LangId = 'nl' | 'fr' | 'en' | 'de' | 'es' | 'it' | 'pl' | 'pt';
-
+export * from './country-code.enum';
+export * from './locale.constants';
 export interface KeyPairName {
   name: string;
   key: string;

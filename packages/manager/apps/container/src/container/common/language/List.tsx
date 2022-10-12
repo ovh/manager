@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { KeyPairName } from '@ovh-ux/manager-config/types/locale';
+import { KeyPairName } from '@ovh-ux/manager-config';
 import { useTranslation } from 'react-i18next';
 
 import style from './style.module.scss';

@@ -1,5 +1,4 @@
-import { ApplicationId } from '@ovh-ux/manager-config/types/application';
-import { LANGUAGES, Environment } from '@ovh-ux/manager-config';
+import { Environment, ApplicationId } from '@ovh-ux/manager-config';
 import ShellClient from './shell-client';
 import { clientAuth } from '../plugin/auth';
 import { clientNavigation } from '../plugin/navigation';

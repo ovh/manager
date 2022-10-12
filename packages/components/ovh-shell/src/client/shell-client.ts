@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { ApplicationId } from '@ovh-ux/manager-config/types/application';
+import { ApplicationId } from '@ovh-ux/manager-config';
 
 import exposeApi from './api';
 import IMessageBus from '../message-bus/IMessageBus';

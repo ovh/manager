@@ -11,9 +11,10 @@
     "noImplicitAny": true,
     "sourceMap": true,
     "declaration": true,
-    "declarationDir": "./types",
-    "jsx": "react",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "declarationDir": "dist/types",
+    "jsx": "react"
   },
-  "exclude": ["node_modules", "dist", "types", "__tests__"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "__tests__", "features"]
 }
