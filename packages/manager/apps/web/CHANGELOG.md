@@ -1,3 +1,12 @@
+## [16.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.18.0...@ovh-ux/manager-web@16.18.1) (2022-10-13)
+
+
+### Bug Fixes
+
+* **domain:** update owner details and dns for domain ([#8087](https://github.com/ovh/manager/issues/8087)) ([8436111](https://github.com/ovh/manager/commit/8436111311d930d30d6685160b3097c6c92920bf))
+
+
+
 # [16.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.17.2...@ovh-ux/manager-web@16.18.0) (2022-09-29)
 
 
