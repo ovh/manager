@@ -3,7 +3,9 @@ import { groupBy } from 'lodash-es';
 
 import { useApplication } from '@/context';
 import { useHeader } from '@/context/header';
-import useNotifications from '@/core/notifications';
+import useNotifications, {
+  Notification as NotificationType,
+} from '@/core/notifications';
 import { fromNow } from '@/helpers/dateHelper';
 
 import Notifications from './Notifications/Notifications';
@@ -14,7 +16,7 @@ interface NotificationGroup {
   fromNow: string;
 }
 
-type NotificationByDate = Record<string, Notification[]>;
+type NotificationByDate = Record<string, NotificationType[]>;
 
 const NotificationsSidebar = () => {
   const { isNotificationsSidebarVisible } = useHeader();
@@ -26,7 +28,7 @@ const NotificationsSidebar = () => {
 
   const getGroupedNotifications = async (): Promise<NotificationByDate> => {
     if (!notifications) {
-      return groupBy([] as Notification[]);
+      return groupBy([] as NotificationType[]);
     }
 
     const allDates = [...new Set(notifications.map(({ date }) => date))];
