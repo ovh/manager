@@ -14,7 +14,7 @@
     "declaration": true,
     "skipLibCheck": true,
     "isolatedModules": true,
-    "declarationDir": "./dist/types"
+    "declarationDir": "types"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
