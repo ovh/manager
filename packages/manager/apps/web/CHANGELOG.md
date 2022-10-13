@@ -1,3 +1,12 @@
+## [16.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.18.1...@ovh-ux/manager-web@16.18.2) (2022-10-13)
+
+
+### Bug Fixes
+
+* **domain-operation:** use `domain.OperationFunctionEnum` enum ([#8188](https://github.com/ovh/manager/issues/8188)) ([0c31c9f](https://github.com/ovh/manager/commit/0c31c9f1a92a53d48e1facc23a681206e6668ebc))
+
+
+
 ## [16.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.18.0...@ovh-ux/manager-web@16.18.1) (2022-10-13)
 
 
