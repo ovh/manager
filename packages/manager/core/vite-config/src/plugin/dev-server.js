@@ -46,16 +46,24 @@ export default function viteOvhDevServerPlugin(isContainerApp) {
       app.get('/auth/check', sso.checkAuth.bind(sso));
 
       // check if a dev config is present in current working directory where vite command is run
-      let devProxyConfig;
       try {
-        devProxyConfig = (await import(`${cwd()}/dev.proxy.config.mjs`))
+        const devProxyConfig = (await import(`${cwd()}/dev.proxy.config.mjs`))
           .default;
+        if (devProxyConfig) {
+          const addProxyConfig = (config) => {
+            app.use(config.context, createProxyMiddleware(config));
+          };
+
+          if (Array.isArray(devProxyConfig)) {
+            devProxyConfig.forEach((config) =>
+              addProxyConfig(proxy.dev(config)),
+            );
+          } else {
+            addProxyConfig(proxy.dev(devProxyConfig));
+          }
+        }
       } catch (error) {
-        devProxyConfig = null;
-      }
-      // if a config is present, add a specific proxy
-      if (devProxyConfig) {
-        app.use(devProxyConfig.context, createProxyMiddleware(devProxyConfig));
+        // No dev proxy config
       }
 
       if (env.local2API) {
