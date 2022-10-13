@@ -13,8 +13,7 @@
     "allowJs": true,
     "declaration": true,
     "declarationDir": "types",
-    "skipLibCheck": true,
-    "isolatedModules": true
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "types"]
