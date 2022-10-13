@@ -73,7 +73,7 @@
                     data-ng-show="$ctrl.isFailoverShowable()"
                 >
                     <oui-select-picker
-                        class="text-center"
+                        class="text-center h-100"
                         data-ng-if="!$ctrl.loading.ipOffers"
                         data-ng-disabled="!$ctrl.failoverIpOffers.length"
                         data-name="productName"
@@ -106,6 +106,7 @@
                     data-ng-show="$ctrl.canShowBlockSelection()"
                 >
                     <oui-select-picker
+                        class="text-center h-100"
                         data-ng-if="!$ctrl.loading.ipOffers"
                         data-name="productName"
                         data-match="productDisplayName"
