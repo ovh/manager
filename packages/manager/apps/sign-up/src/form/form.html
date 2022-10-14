@@ -24,7 +24,7 @@
             <oui-step-form
                 data-header="{{ 'sign_up_form_details_step_title' | translate }}"
                 data-on-focus="$ctrl.onStepFocus('details')"
-                data-on-cancel="$ctrl.onStepCancel('details')"
+                data-on-cancel="$ctrl.onStepFormCancel('details')"
                 data-ng-class="{ 'oui-stepper__step_form_active': $ctrl.isActiveStep('details') }"
                 data-prevent-next="true"
                 data-ng-if="!$ctrl.loading.init"
@@ -38,7 +38,7 @@
             <oui-step-form
                 data-header="{{ $ctrl.me.model.legalform !== 'individual' ? 'sign_up_form_activity_step_title' : 'sign_up_form_other_informations_step_title' | translate }}"
                 data-on-focus="$ctrl.onStepFocus('activity')"
-                data-on-cancel="$ctrl.onStepCancel('activity')"
+                data-on-cancel="$ctrl.onStepFormCancel('activity')"
                 data-ng-class="{ 'oui-stepper__step_form_active': $ctrl.isActiveStep('activity') }"
                 data-ng-if="!$ctrl.loading.init && $ctrl.isActivityStepVisible"
                 data-prevent-next="true"
