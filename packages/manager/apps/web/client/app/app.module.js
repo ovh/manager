@@ -294,7 +294,7 @@ export default async (containerEl, shellClient) => {
       ($compileProvider, $logProvider, constants) => {
         // Debug mode and logs are disabled in production
         $compileProvider.debugInfoEnabled(!constants.prodMode);
-        $compileProvider.aHrefSanitizationWhitelist(SANITIZATION.regex);
+        $compileProvider.aHrefSanitizationTrustedUrlList(SANITIZATION.regex);
         $logProvider.debugEnabled(!constants.prodMode);
       },
     ])

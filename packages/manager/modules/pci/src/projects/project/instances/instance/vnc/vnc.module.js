@@ -23,8 +23,8 @@ angular
   .config(routing)
   .config(
     /* @ngInject */ ($sceDelegateProvider) =>
-      $sceDelegateProvider.resourceUrlWhitelist([
-        ...$sceDelegateProvider.resourceUrlWhitelist(),
+      $sceDelegateProvider.trustedResourceUrlList([
+        ...$sceDelegateProvider.trustedResourceUrlList(),
         ...URL_WHITELIST,
       ]),
   )

@@ -22,7 +22,7 @@ angular
   .component('pciProjectUsersDownloadOpenRc', component)
   .config(
     /* @ngInject */ ($compileProvider) => {
-      $compileProvider.aHrefSanitizationWhitelist(
+      $compileProvider.aHrefSanitizationTrustedUrlList(
         /^\s*(https?|s?ftp|mailto|tel|file|data):/,
       );
     },
