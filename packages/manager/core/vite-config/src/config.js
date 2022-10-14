@@ -18,6 +18,9 @@ export default {
       '@': resolve(join(process.cwd(), 'src')),
     },
   },
+  define: {
+    __VERSION__: process.env.VERSION ? `'${process.env.VERSION}'` : 'null',
+  },
   plugins: [
     reactRefresh(),
     legacy({
