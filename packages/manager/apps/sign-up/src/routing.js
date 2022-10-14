@@ -57,7 +57,7 @@ export const state = {
       ssoAuthentication
         .getSsoAuthPendingPromise()
         .then(() => ssoAuthentication.user),
-    onStepCancel: /* @ngInject */ ($location, ssoAuthentication) => () => {
+    cancelStep: /* @ngInject */ ($location, ssoAuthentication) => () => {
       ssoAuthentication.logout($location.search().onsuccess);
     },
 

@@ -1,0 +1,214 @@
+<!-- search form -->
+<form
+    novalidate
+    data-ng-if="!$ctrl.displayManualForm"
+    class="mb-2"
+    name="searchForm"
+    data-ng-submit="$ctrl.submitSearch()"
+>
+    <span data-translate="siret_search_intro"></span>
+
+    <div class="oui-field__header mt-2">
+        <label
+            class="oui-field__label"
+            data-translate="siret_search_field_label"
+        ></label>
+    </div>
+    <div class="d-flex mb-2">
+        <input
+            class="mr-2 oui-input"
+            placeholder="{{ 'siret_search_field_placeholder' | translate }}"
+            name="inputSearch"
+            type="text"
+            data-ng-model="$ctrl.search"
+            required
+        />
+        <oui-button
+            data-disabled="searchForm.$invalid || $ctrl.searching"
+            data-type="submit"
+            data-size="s"
+            data-variant="primary"
+        >
+            <span data-translate="siret_search_button"></span>
+        </oui-button>
+    </div>
+</form>
+<!-- end search form -->
+
+<!-- loading search -->
+<div class="mb-2" data-ng-if="$ctrl.searching">
+    <oui-spinner></oui-spinner>
+</div>
+<!-- end loading search -->
+
+<!-- result of search -->
+<form
+    novalidate
+    class="mt-2 mb-2"
+    data-ng-if="!$ctrl.searching && !$ctrl.isFirstSearch"
+>
+    <!-- suggest form -->
+    <div data-ng-if="!$ctrl.displayManualForm">
+        <div data-ng-if="$ctrl.suggest.hasMore" class="mt-2">
+            <strong data-translate="siret_suggest_many_result_title"></strong>
+            <p data-translate="siret_suggest_many_result_description"></p>
+        </div>
+
+        <span
+            data-translate="{{ $ctrl.suggest.entryList.length === 0 ? 'siret_suggest_no_result' : 'siret_suggest_select_company' }}"
+            data-translate-values="{ search: '<strong>'+ $ctrl.search +'</strong>'}"
+            class="mb-3"
+        ></span>
+
+        <oui-field data-ng-if="$ctrl.suggest.entryList.length > 0">
+            <oui-select-picker
+                data-ng-repeat="suggest in $ctrl.suggest.entryList"
+                data-name="siretPicker"
+                data-label="{{ suggest.name }}"
+                data-on-change="$ctrl.selectSuggest(modelValue)"
+                data-values="[suggest]"
+                data-required
+            >
+                <oui-select-picker-section>
+                    <p
+                        class="mb-0"
+                        data-ng-if="$ctrl.suggest.type !== 'name'"
+                        data-ng-bind="suggest.address + ' ' + suggest.city + ' ' + suggest.country"
+                    ></p>
+                    <p
+                        class="mb-0"
+                        data-ng-bind="('siret_suggest_siren' | translate ) +' '+ suggest.primaryCNIN"
+                    ></p>
+                    <p
+                        class="mb-0"
+                        data-ng-if="$ctrl.suggest.type !== 'name'"
+                        data-ng-bind="('siret_suggest_siret' | translate ) +' '+ suggest.secondaryCNIN"
+                    ></p>
+                </oui-select-picker-section>
+            </oui-select-picker>
+        </oui-field>
+
+        <div
+            class="mt-1 mb-3"
+            data-ng-if="!$ctrl.model.companyNationalIdentificationNumber"
+        >
+            <span
+                class="align-middle"
+                data-translate="siret_suggest_no_found_company"
+            ></span>
+            <button
+                type="button"
+                data-ng-click="$ctrl.onManualFormClick()"
+                class="align-middle oui-button oui-button_s oui-button_ghost oui-button_icon-right"
+            >
+                <span data-translate="siret_suggest_add_manual"></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </div>
+
+        <oui-field
+            data-ng-if="$ctrl.suggest.type === 'siret'"
+            data-label="{{ 'siret_vat' | translate }} ({{'siret_optional' | translate }})"
+            data-label-popover="{{ 'siret_vat_helper' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="vatField"
+                data-ng-model="$ctrl.model.vat"
+                type="text"
+            />
+        </oui-field>
+    </div>
+    <!-- end suggest form -->
+
+    <!-- manual form -->
+    <div data-ng-if="$ctrl.displayManualForm">
+        <span data-translate="siret_manual_title"></span>
+
+        <div class="row mt-2">
+            <oui-field
+                class="col-lg-6"
+                data-label="{{ 'siret_manual_company_name' | translate }}"
+            >
+                <input
+                    class="oui-input"
+                    name="companyNameField"
+                    placeholder="{{ 'siret_manual_company_name' | translate }}"
+                    type="text"
+                    data-ng-model="$ctrl.model.organisation"
+                    required
+                />
+            </oui-field>
+
+            <oui-field
+                class="col-lg-6"
+                data-label="{{ 'siret_manual_company_legal_form' | translate }}"
+            >
+                <oui-select
+                    data-items="$ctrl.legalFormList"
+                    data-name="legalFormField"
+                    data-model="$ctrl.model.corporationType"
+                    data-required
+                >
+                </oui-select>
+            </oui-field>
+        </div>
+
+        <div class="row">
+            <oui-field
+                class="col-lg-3"
+                data-label="{{ 'siret_siret' | translate }} ({{ 'siret_optional' | translate }})"
+            >
+                <input
+                    class="oui-input"
+                    name="siretField"
+                    data-ng-model="$ctrl.model.companyNationalIdentificationNumber"
+                    type="text"
+                />
+            </oui-field>
+
+            <oui-field
+                class="col-lg-4"
+                data-label="{{ 'siret_vat' | translate }} ({{ 'siret_optional' | translate }})"
+                data-label-popover="{{ 'siret_vat_helper' | translate }}"
+            >
+                <input
+                    class="oui-input"
+                    name="vatField"
+                    data-ng-model="$ctrl.model.vat"
+                    type="text"
+                />
+            </oui-field>
+
+            <oui-field
+                class="col-lg-5"
+                data-label="{{ 'siret_manual_registration_date' | translate }} ({{ 'siret_optional' | translate }})"
+            >
+                <!-- for now this value isn't save, this will come later -->
+                <oui-calendar
+                    data-name="registrationDateField"
+                    data-alt-format="{{ $ctrl.siretService.dateFormat() }}"
+                    data-model="$ctrl.noSaveModel"
+                >
+                    <!-- model is madatory for oui-calendar but not use for now -->
+                </oui-calendar>
+            </oui-field>
+        </div>
+    </div>
+    <!-- end manual form -->
+
+    <!-- valid that the information is correct -->
+    <oui-checkbox
+        class="mb-4"
+        data-ng-if="$ctrl.suggest.type === 'siret' || $ctrl.displayManualForm"
+        data-name="isCorrectCheckbox"
+        data-required
+    >
+        <span data-translate="siret_information_confirmation_is_correct"></span>
+    </oui-checkbox>
+    <!-- valid that the information is correct  -->
+</form>
+<!-- end result of search -->

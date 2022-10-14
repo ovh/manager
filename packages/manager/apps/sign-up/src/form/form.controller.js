@@ -38,6 +38,15 @@ export default class SignUpFormAppCtrl {
     }
   }
 
+  onStepFormCancel(step) {
+    this.atInternet.trackPage({
+      name: `accountcreation-step${step === 'details' ? '2' : '3'}-${
+        this.me.model.legalform
+      }::cancel`,
+    });
+    return this.cancelStep(step);
+  }
+
   onStepperFinished() {
     this.saveError = null;
 
