@@ -46,4 +46,11 @@ export default class OvhSignUpActivityCtrl {
       this.onFieldError(startCase(field.$name));
     }
   }
+
+  siretFieldIsAvailable() {
+    return (
+      this.signUpFormCtrl.model.legalform === 'corporation' &&
+      this.signUpFormCtrl.model.country === 'FR'
+    );
+  }
 }

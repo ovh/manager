@@ -1,5 +1,5 @@
 <div class="sign-up-form-activity">
-    <div class="row">
+    <div class="row" data-ng-if="!$ctrl.siretFieldIsAvailable()">
         <!-- Should only be visible when country IT and legalform individual -->
         <div
             class="col-lg-6"
@@ -134,5 +134,13 @@
             </oui-field>
             <!-- /input[name="italianSDI"] -->
         </div>
+    </div>
+
+    <div data-ng-if="$ctrl.siretFieldIsAvailable()">
+        <siret-component
+            data-country="$ctrl.signUpFormCtrl.model.country"
+            data-model="$ctrl.signUpFormCtrl.model"
+            data-tracking-mode="'creation'"
+        ></siret-component>
     </div>
 </div>
