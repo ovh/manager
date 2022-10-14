@@ -26,5 +26,6 @@
   "data_processing_details_charts_total_memory": "Speicherverwendung in den letzten 5 Minuten",
   "data_processing_details_charts_num_active_tasks": "# Anzahl aktiver Aufträge in den letzten 5 Minuten",
   "data_processing_details_charts_blockmanager_disk": "Verwendung von Festplattenspeicher durch Blockmanager in den letzten 5 Minuten",
-  "data_processing_details_configuration_python_file_label": "Python-Datei"
+  "data_processing_details_configuration_python_file_label": "Python-Datei",
+  "data_processing_details_information_return_code_label": "Rückgabecode"
 }

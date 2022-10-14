@@ -26,5 +26,6 @@
   "data_processing_details_no_data": "No hay datos.",
   "data_processing_details_charts_total_memory": "Utilización de la memoria en los últimos 5 minutos (Mi)",
   "data_processing_details_charts_num_active_tasks": "# de tareas activas en los últimos 5 minutos",
-  "data_processing_details_charts_blockmanager_disk": "Utilización del disco Blockmanager en los últimos 5 minutos"
+  "data_processing_details_charts_blockmanager_disk": "Utilización del disco Blockmanager en los últimos 5 minutos",
+  "data_processing_details_information_return_code_label": "Código de devolución"
 }
