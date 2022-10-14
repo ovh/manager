@@ -5,10 +5,22 @@ const ADVICE_TYPE_ENUM = {
 
 export default class AdvicesCtrl {
   /* @ngInject */
-  constructor($http, atInternet, $element) {
+  constructor(
+    $q,
+    $http,
+    atInternet,
+    $element,
+    $translate,
+    coreConfig,
+    ovhFeatureFlipping,
+  ) {
+    this.$q = $q;
     this.$http = $http;
     this.atInternet = atInternet;
     this.$element = $element;
+    this.$translate = $translate;
+    this.coreConfig = coreConfig;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   $onInit() {
@@ -17,17 +29,42 @@ export default class AdvicesCtrl {
     }
     this.loading = true;
     this.adviceGroups = [];
-    this.loadAdvices()
-      .then((adviceGroups) => {
-        this.adviceGroups = adviceGroups;
-        adviceGroups.forEach((adviceGroup) => {
-          this.trackImpressions(adviceGroup.advices);
-        });
-      })
+
+    this.$q
+      .all([...this.fetchAllAdvices(), this.getRecommenderSystemAvailability()])
+      .then(
+        ([
+          adviceGroups,
+          recommendationAdvices,
+          isRecommenderSystemRightRegions,
+        ]) => {
+          this.isRecommenderSystemRightRegions = isRecommenderSystemRightRegions;
+          this.adviceGroups = this.getAdviceGroups(
+            adviceGroups,
+            recommendationAdvices,
+          );
+
+          this.adviceGroups.forEach((adviceGroup) => {
+            this.trackImpressions(adviceGroup.advices);
+          });
+        },
+      )
       .finally(() => {
         this.loading = false;
         this.onAdvicesLoaded(this.adviceGroups);
       });
+  }
+
+  getRecommenderSystemAvailability() {
+    const recommenderSystemId = 'advices:recommender-system';
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability(recommenderSystemId)
+      .then((feature) => feature.isFeatureAvailable(recommenderSystemId))
+      .catch(() => false); // do not show recommender system advices on error
+  }
+
+  fetchAllAdvices() {
+    return [this.loadAdvices(), this.loadRecommenderSystemAdvices()];
   }
 
   loadAdvices() {
@@ -38,6 +75,74 @@ export default class AdvicesCtrl {
       })
       .then(({ data }) => data.data.adviceGroups)
       .catch(() => []); // do not show any advices on error
+  }
+
+  loadRecommenderSystemAdvices() {
+    return this.$http
+      .get('/me/recommendations')
+      .then(({ data }) => data)
+      .catch(() => []); // do not show any advices on error
+  }
+
+  getAdviceGroups(advicesGroup, recommenderAdvices) {
+    // Applied Recommender System Advice
+    if (this.isRecommenderSystemAvailable(recommenderAdvices)) {
+      return this.formatRecommenderSystemAdvices(
+        recommenderAdvices.recommendations,
+      );
+    }
+
+    return advicesGroup;
+  }
+
+  isRecommenderSystemAvailable(recommenderAdvices) {
+    const advices = recommenderAdvices?.recommendations || [];
+    const localizedAdvices = advices.filter((advice) => {
+      return !!advice.localizedDescription[this.coreConfig.getUserLocale()];
+    });
+
+    return (
+      this.adviceType !== 'retention' &&
+      this.isRecommenderSystemRightRegions &&
+      localizedAdvices.length > 0 &&
+      ['fr_FR', 'en_GB'].includes(this.coreConfig.getUserLocale())
+    );
+  }
+
+  formatRecommenderSystemAdvices(recommendations) {
+    const advices = recommendations
+      .filter((recommendation) => {
+        return !!recommendation?.localizedDescription[
+          this.coreConfig.getUserLocale()
+        ];
+      })
+      .map(({ localizedDescription, ...rest }) => {
+        const advice = rest.advices[0]; // there is only one advice
+
+        return {
+          ...rest,
+          localizedDescription:
+            localizedDescription[this.coreConfig.getUserLocale()],
+          advices: [
+            {
+              ...advice,
+              localizedName: this.$translate.instant(
+                'advices_recommender_system_know_more',
+              ),
+              impression: {
+                campaignId: '[xsell-upsell]',
+                creation: '[recommender-system]',
+                format: '[tile]',
+                generalPlacement: `[${this.serviceType}]`,
+                detailedPlacement: `[${advice.id}]`,
+              },
+            },
+          ],
+        };
+      });
+
+    // return only one recommendation
+    return advices.length > 0 ? [advices[0]] : [];
   }
 
   getUrl() {
