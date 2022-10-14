@@ -20,25 +20,25 @@ export default class PciPublicGatewaysDeleteController {
     this.isDeleting = true;
     return this.PciPublicGatewaysService.deleteGateway(
       this.projectId,
-      this.gateway.region,
-      this.gateway.id,
+      this.region,
+      this.id,
     )
       .then(() => {
-        this.goBack(
+        return this.goBack(
           this.$translate.instant(
             'pci_projects_project_public_gateway_delete_success',
             {
-              name: this.gateway.name,
+              name: this.name,
             },
           ),
         );
       })
       .catch(() => {
-        this.goBack(
+        return this.goBack(
           this.$translate.instant(
             'pci_projects_project_public_gateway_delete_error',
             {
-              name: this.gateway.name,
+              name: this.name,
             },
           ),
           'error',
