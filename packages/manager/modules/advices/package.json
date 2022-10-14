@@ -31,7 +31,7 @@
     "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.23",
-    "angular": "^1.7.5",
-    "angular-translate": "^2.18.1"
+    "angular": "1.8.3",
+    "angular-translate": "^2.19.0"
   }
 }

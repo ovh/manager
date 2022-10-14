@@ -8446,10 +8446,15 @@ angular-chart.js@^1.1.1:
     angular "1.x"
     chart.js "2.3.x"
 
-angular-cookies@1.7.x, "angular-cookies@>=1.2.26 <1.8", angular-cookies@^1.6.0, angular-cookies@^1.7.5, angular-cookies@^1.7.8:
+angular-cookies@1.7.x, angular-cookies@^1.6.0, angular-cookies@^1.7.5, angular-cookies@^1.7.8:
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/angular-cookies/-/angular-cookies-1.7.9.tgz#0f0cd2a9d1c81e5b8d6c6711d41f0909f9d0b8e0"
   integrity sha512-3eRq/aPrtCZKDWQnc3nW3sFoMbLiHkCkyDF2O9u7VXnqvVsUPaipk5R1ZqahgcSQHQrN/F5IU4T4nrz52qAZmA==
+
+"angular-cookies@>=1.2.26 <1.9":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/angular-cookies/-/angular-cookies-1.8.3.tgz#180a41e938926790630245d22c02a8d33d1409cc"
+  integrity sha512-uRd+zWgqiVnly7+YFRosM8E9tUQeY82dAZdtvonh/CeD/sf5SKN/BNIlMlHxZtoAk72ahTIjqUQGfeHdYcSsRQ==
 
 angular-dynamic-locale@^0.1.27, angular-dynamic-locale@^0.1.37, angular-dynamic-locale@~0.1.27:
   version "0.1.37"
@@ -8519,54 +8524,47 @@ angular-sanitize@1.7.x, angular-sanitize@^1.6.9, angular-sanitize@^1.7.5, angula
   resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.7.9.tgz#6b4d5e826abdabd352b13a7c65c8c74daf6a7b15"
   integrity sha512-nB/xe7JQWF9nLvhHommAICQ3eWrfRETo0EVGFESi952CDzDa+GAJ/2BFBNw44QqQPxj1Xua/uYKrbLsOGWZdbQ==
 
-angular-translate-loader-partial@^2.11.0, angular-translate-loader-partial@^2.18.1:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/angular-translate-loader-partial/-/angular-translate-loader-partial-2.18.1.tgz#1f4ec31c32c3d7b4371e39682444f6a6b84f1f88"
-  integrity sha512-+bPzY3+F2I1tb+X5bscvZq0OGoVEVkHwPGZvaY4nhbktpshArYpvIEV+RQFUa/QNj8vQc3iQ/pruJDb8w3zIdw==
+angular-translate-loader-partial@^2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/angular-translate-loader-partial/-/angular-translate-loader-partial-2.19.0.tgz#3fccc408d44680805483bf9713d3f244b27edbb8"
+  integrity sha512-NnMw13LMV4bPQmJK7/pZOZAnPxe0M5OtUHchADs5Gye7V7feonuEnrZ8e1CKhBlv9a7IQyWoqcBa4Lnhg8gk5w==
   dependencies:
-    angular-translate "~2.18.1"
+    angular-translate "~2.19.0"
 
 angular-translate-loader-pluggable@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/angular-translate-loader-pluggable/-/angular-translate-loader-pluggable-1.3.1.tgz#6f85fe5554546c686d40170a2d0f775fb838dac5"
   integrity sha1-b4X+VVRUbGhtQBcKLQ93X7g42sU=
 
-angular-translate-loader-static-files@^2.18.1:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.18.1.tgz#ad0c3c883b18b089bdb8db02bbd366d903f857cc"
-  integrity sha512-5MuyzAROfc493kjLjKlLGLBzXiRmZIFbcWZGutDRxW5SRXSpwrH0u0hh0ENNnUyUQbe2vUspHNPIuZqlq8qIhw==
+angular-translate-loader-static-files@^2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.19.0.tgz#409290e1a652dfd582cffdf97a21657856d90dff"
+  integrity sha512-B0LiFzn+rHGgL0okl+uAcQKtmySskTlhw6vsnQODUqARV0IcgMUi2tl9RhybgGy3MbGmdF1JjJFjITCbXzWZQA==
   dependencies:
-    angular-translate "~2.18.1"
+    angular-translate "~2.19.0"
 
-angular-translate-storage-cookie@^2.13.1, angular-translate-storage-cookie@~2.18.1:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/angular-translate-storage-cookie/-/angular-translate-storage-cookie-2.18.1.tgz#8fcbdab296fa82490e00b428af1a746a17f44156"
-  integrity sha512-wiMaF/0OGN/3ilaYunfsqdLNpfGZEJK0fj4zT8yjD3XPq7Q9kM88xZ4XJiWKgodZShBljGCRzqgQbKMF7d1MLw==
+angular-translate-storage-cookie@^2.19.0, angular-translate-storage-cookie@~2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/angular-translate-storage-cookie/-/angular-translate-storage-cookie-2.19.0.tgz#a5858c2d76587321005416706f74fe65d274c285"
+  integrity sha512-U3LxHvXVzFOqp7IcYcqMUWhMiTGjHtCDXDKB1MKhTjJSKz+9pLeRseLQBMAGjvXCmMeDteURQR4HEEfzL3vFQw==
   dependencies:
-    angular-cookies ">=1.2.26 <1.8"
-    angular-translate "~2.18.1"
+    angular-cookies ">=1.2.26 <1.9"
+    angular-translate "~2.19.0"
 
-angular-translate-storage-local@^2.13.1:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/angular-translate-storage-local/-/angular-translate-storage-local-2.18.1.tgz#94740fe4d801ab7829a29a1f05e1c39054c87303"
-  integrity sha512-zPxcbIJ8tdWXtWNKLtaswynKid0w5le6WPMwiLWhgKPnyzOp/y5WLBW+JEfnZnkGE24yOGhJ6jVPgRNzelLgzg==
+angular-translate-storage-local@^2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/angular-translate-storage-local/-/angular-translate-storage-local-2.19.0.tgz#249f7d0dc9c0313bbbf065bb4702d34a3ea7b0f7"
+  integrity sha512-YrM3Y1PLi7OBd053vIhGKQ/DN3nWtQEJlj3++EcRLaGtmDu+4Fp/drzO4gKJtMQRRmJCIM3BqFSqalqijJD56Q==
   dependencies:
-    angular-translate "~2.18.1"
-    angular-translate-storage-cookie "~2.18.1"
+    angular-translate "~2.19.0"
+    angular-translate-storage-cookie "~2.19.0"
 
-angular-translate@^2.11.0, angular-translate@^2.17.0, angular-translate@^2.18.1, angular-translate@~2.18.1:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/angular-translate/-/angular-translate-2.18.1.tgz#b29ed0d2f9bac44075e7aad3284166c59e150791"
-  integrity sha512-Mw0kFBqsv5j8ItL9IhRZunIlVmIRW6iFsiTmRs9wGr2QTt8z4rehYlWyHos8qnXc/kyOYJiW50iH50CSNHGB9A==
+angular-translate@^2.19.0, angular-translate@~2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/angular-translate/-/angular-translate-2.19.0.tgz#133c75ad64727b11d96bcbb8b53cf9c7c7a9fde4"
+  integrity sha512-Z/Fip5uUT2N85dPQ0sMEe1JdF5AehcDe4tg/9mWXNDVU531emHCg53ZND9Oe0dyNiGX5rWcJKmsL1Fujus1vGQ==
   dependencies:
-    angular ">=1.2.26 <=1.7"
-
-angular-translate@^2.18.2:
-  version "2.18.2"
-  resolved "https://registry.yarnpkg.com/angular-translate/-/angular-translate-2.18.2.tgz#2a26653d179f7043c0ffa66fdf65155d01c82e06"
-  integrity sha512-aAtNieh0fUv6yM6vKuWsdswT0BbOf6kvsu+QZ15Fp10rKEienMs3M8aPWyd9IVZ5pA1GaRJir6T8OvWGG4J+Fw==
-  dependencies:
-    angular "^1.7.9"
+    angular "^1.8.0"
 
 angular-ui-bootstrap@1.3.3, angular-ui-bootstrap@^1.3.3, angular-ui-bootstrap@~1.3.3:
   version "1.3.3"
@@ -8613,15 +8611,10 @@ angular-xeditable@^0.9.0:
   dependencies:
     angular "~1.x"
 
-angular@*, angular@1.7.x, angular@1.x, "angular@>=1.2.26 <=1.7", "angular@>=1.3.0 <2.0.0", angular@^1.4.8, angular@^1.6.10, angular@^1.7.5, angular@^1.7.8, angular@~1.7.5, angular@~1.x:
-  version "1.7.9"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.9.tgz#e52616e8701c17724c3c238cfe4f9446fd570bc4"
-  integrity sha512-5se7ZpcOtu0MBFlzGv5dsM1quQDoDeUTwZrWjGtTNA7O88cD8TEk5IEKCTDa3uECV9XnvKREVUr7du1ACiWGFQ==
-
-angular@^1.7.9:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.8.0.tgz#b1ec179887869215cab6dfd0df2e42caa65b1b51"
-  integrity sha512-VdaMx+Qk0Skla7B5gw77a8hzlcOakwF8mjlW13DpIWIDlfqwAbSSLfd8N/qZnzEmQF4jC4iofInd3gE7vL8ZZg==
+angular@*, angular@1.8.3, angular@1.x, "angular@>=1.3.0 <2.0.0", angular@^1.4.8, angular@^1.8.0, angular@~1.x:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.8.3.tgz#851ad75d5163c105a7e329555ef70c90aa706894"
+  integrity sha512-5qjkWIQQVsHj4Sb5TcEs4WZWpFeVFHXwxEBHUhrny41D8UrBAd6T/6nPPAsLngJCReIOqi95W3mxdveveutpZw==
 
 angularjs-scroll-glue@^2.2.0:
   version "2.2.0"

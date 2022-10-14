@@ -23,8 +23,8 @@
     "@ovh-ux/ng-ovh-payment-method": "^9.3.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ui-kit": "^6.1.0",
-    "angular": "^1.7.5",
-    "angular-translate": "^2.18.1",
+    "angular": "1.8.3",
+    "angular-translate": "^2.19.0",
     "bootstrap": "~3.3.7",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "moment": "^2.24.0"

@@ -41,7 +41,7 @@
     "@ovh-ux/component-rollup-config": "^12.0.2"
   },
   "peerDependencies": {
-    "angular": "~1.6",
+    "angular": "1.8.3",
     "angular-sanitize": "~1.6",
     "messenger": "HubSpot/messenger#~1.4.1"
   }

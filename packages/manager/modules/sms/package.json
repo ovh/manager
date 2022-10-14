@@ -38,7 +38,7 @@
     "@ovh-ux/ng-ui-router-layout": "^4.1.0",
     "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.15",
-    "angular": "^1.7.5",
+    "angular": "1.8.3",
     "angular-messages": "^1.7.6",
     "angular-ui-validate": "^1.2.3",
     "font-awesome": "4.7.0",

@@ -24,8 +24,8 @@
     "@ovh-ux/ng-ovh-web-universe-components": "^6.0.1",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ui-kit": "^6.1.0",
-    "angular": "^1.7.9",
-    "angular-translate": "^2.18.2",
+    "angular": "1.8.3",
+    "angular-translate": "^2.19.0",
     "bootstrap": "^4.3.1",
     "moment": "^2.24.0",
     "ovh-api-services": "^14.0.6"

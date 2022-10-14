@@ -43,8 +43,8 @@
     "bootstrap": "^3.3.6"
   },
   "peerDependencies": {
-    "angular": "^1.7.5",
-    "angular-translate": "^2.18.1",
+    "angular": "1.8.3",
+    "angular-translate": "^2.19.0",
     "bootstrap": "^3.3.6",
     "font-awesome": "^4.7.0",
     "jquery": "^2.1.3",

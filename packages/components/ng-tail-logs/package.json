@@ -46,7 +46,7 @@
     "@ovh-ux/component-rollup-config": "^12.0.2"
   },
   "peerDependencies": {
-    "angular": "1.6.10",
+    "angular": "1.8.3",
     "angularjs-scroll-glue": "^2.2.0"
   }
 }

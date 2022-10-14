@@ -46,7 +46,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.4",
-    "angular": "^1.6.10",
+    "angular": "1.8.3",
     "angular-sanitize": "^1.6.0"
   }
 }

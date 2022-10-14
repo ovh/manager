@@ -40,6 +40,6 @@
   "peerDependencies": {
     "@ovh-ux/ng-at-internet": "^5.8.1",
     "@uirouter/angularjs": "^1.0.22",
-    "angular": "~1.6"
+    "angular": "1.8.3"
   }
 }

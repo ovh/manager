@@ -13,8 +13,8 @@
   "main": "src/index.js",
   "peerDependencies": {
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
-    "angular": "^1.7.0",
-    "angular-translate": "^2.18.1",
+    "angular": "1.8.3",
+    "angular-translate": "^2.19.0",
     "lodash": "^4.17.15"
   }
 }
