@@ -25,6 +25,14 @@
                 data-filterable
             ></oui-datagrid-column>
             <oui-datagrid-column
+                data-title=":: 'kube_list_id' | translate"
+                data-property="id"
+                data-type="string"
+                data-searchable
+                data-filterable
+                ><oui-clipboard data-model="$row.id"></oui-clipboard>
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'kube_nodes_flavor' | translate"
                 data-property="formattedFlavor"
                 data-type="string"
