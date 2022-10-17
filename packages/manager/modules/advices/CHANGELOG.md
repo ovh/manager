@@ -1,3 +1,12 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.4.0...@ovh-ux/manager-advices@1.5.0) (2022-10-17)
+
+
+### Features
+
+* **modules.advices:** add support recommender system advices ([#8029](https://github.com/ovh/manager/issues/8029)) ([9df3de6](https://github.com/ovh/manager/commit/9df3de65c298117f5ea7643e5fd0b474e8918193))
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.3.4...@ovh-ux/manager-advices@1.4.0) (2022-06-14)
 
 
