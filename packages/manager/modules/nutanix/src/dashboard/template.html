@@ -1,4 +1,29 @@
 <div ui-view="nodeView">
+    <oui-message
+        data-type="warning"
+        class="my-3"
+        data-ng-if="$ctrl.isLicenceRegisterDateExpired()"
+        data-track-name="hpc::nutanix::cluster::banner-register-cluster"
+    >
+        <span
+            data-translate="nutanix_dashboard_cluster_warning1"
+            data-translate-values="{ 'endDate': $ctrl.getLicenseRegistrationEndDate() }"
+        ></span>
+        <a
+            data-ng-href="{{:: $ctrl.cluster.targetSpec.controlPanelURL }}"
+            target="_blank"
+            rel="noopener"
+            data-track-on="click"
+            data-track-type="action"
+            data-track-name="hpc::nutanix::cluster::banner-register-cluster::goto-register"
+        >
+            <span data-translate="nutanix_dashboard_cluster_warning2"></span>
+            <span
+                class="oui-icon oui-icon-arrow-right"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-message>
     <oui-header
         class="mb-3"
         heading="{{:: $ctrl.serviceDetails.resource.displayName }}"
