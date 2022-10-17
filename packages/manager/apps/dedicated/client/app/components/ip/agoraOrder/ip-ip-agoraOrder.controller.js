@@ -17,6 +17,8 @@ import {
   VPS_MAX_QUANTITY,
   IP_AGORA,
   LEARN_ORGANIZATION_LINK,
+  ADDITIONAL_IP,
+  BLOCK_ADDITIONAL_IP,
 } from './ip-ip-agoraOrder.constant';
 
 export default class AgoraIpOrderCtrl {
@@ -46,6 +48,8 @@ export default class AgoraIpOrderCtrl {
     this.User = User;
     this.atInternet = atInternet;
     this.IP_AGORA = IP_AGORA;
+    this.ADDITIONAL_IP = ADDITIONAL_IP;
+    this.BLOCK_ADDITIONAL_IP = BLOCK_ADDITIONAL_IP;
   }
 
   $onInit() {

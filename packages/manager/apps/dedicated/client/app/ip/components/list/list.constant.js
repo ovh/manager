@@ -7,6 +7,7 @@ export const TRACKING_PREFIX = 'dedicated::ip::dashboard';
 export const BADGE_FO = 'FO';
 export const BADGE_BYOIP = 'BYOIP';
 export const BADGES = [BADGE_FO, BADGE_BYOIP];
+export const ADDITIONAL_IP = 'Additional IP';
 
 export const SERVICE_URL_DATA = {
   CLOUD: {

@@ -1,6 +1,10 @@
 import get from 'lodash/get';
 
-import { BRING_YOUR_OWN_IP, SERVICE_TYPES } from './ip-ip.constant';
+import {
+  BRING_YOUR_OWN_IP,
+  SERVICE_TYPES,
+  ADDITIONAL_IP,
+} from './ip-ip.constant';
 
 export default /* @ngInject */
 (
@@ -32,6 +36,7 @@ export default /* @ngInject */
     spam: [],
   };
   $scope.BRING_YOUR_OWN_IP = BRING_YOUR_OWN_IP;
+  $scope.ADDITIONAL_IP = ADDITIONAL_IP;
 
   function init() {
     $scope.loading = {};

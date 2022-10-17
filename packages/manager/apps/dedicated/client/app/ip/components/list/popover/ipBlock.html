@@ -85,7 +85,7 @@
                 type="button"
                 class="btn btn-link"
                 data-ng-click="setAction('ip/block/move/ip-ip-block-move', { ipBlock: ipBlock })"
-                data-translate="ip_table_manage_move_ipblock"
+                data-ng-bind=":: ('ip_table_manage_move_ipblock' | translate) + ADDITIONAL_IP"
             ></button>
         </li>
 
@@ -98,7 +98,7 @@
                 data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
                 data-oui-tooltip-placement="left"
                 data-ng-disabled="!ipBlock.canBeTerminated"
-                data-translate="ip_table_manage_delete_ipblock"
+                data-ng-bind=":: ('ip_table_manage_delete_ipblock' | translate) + ADDITIONAL_IP"
             ></button>
         </li>
     </ul>

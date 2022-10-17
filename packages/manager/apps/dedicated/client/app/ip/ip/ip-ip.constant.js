@@ -17,6 +17,7 @@ export const SERVICE_TYPES = [
 ];
 
 export const IP_FILTERS_CHAPTER_1 = 'all_ips_filter';
+export const ADDITIONAL_IP = 'Additional IP';
 
 export default {
   IP_TYPE,
@@ -24,4 +25,5 @@ export default {
   SERVICE_TYPES,
   TRACKING_PREFIX,
   IP_FILTERS_CHAPTER_1,
+  ADDITIONAL_IP,
 };

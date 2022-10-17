@@ -1,6 +1,6 @@
 <div>
     <oui-header
-        data-heading="{{:: 'ip_additional_order' | translate }}"
+        data-heading="{{:: ('ip_additional_order' | translate) + $ctrl.ADDITIONAL_IP}}"
         class="mb-3"
     >
     </oui-header>
@@ -13,7 +13,7 @@
         <oui-step-form
             data-id="service"
             data-name="service_selection"
-            data-header="{{:: 'ip_order_step1_question' | translate}}"
+            data-header="{{:: ('ip_order_step1_question' | translate) + $ctrl.ADDITIONAL_IP}}"
             data-valid="$ctrl.model.selectedService"
             data-editable="!$ctrl.isLoading"
             data-navigation="$ctrl.model.selectedService"
@@ -89,7 +89,7 @@
                             <h4>
                                 <strong
                                     class="text-center"
-                                    data-translate="ip_agora_failover_ip_title"
+                                    data-ng-bind=":: $ctrl.ADDITIONAL_IP"
                                 ></strong>
                             </h4>
                             <p>
@@ -119,7 +119,7 @@
                         <oui-select-picker-description>
                             <h4 class="text-center">
                                 <strong
-                                    data-translate="ip_agora_block_ip_title"
+                                    data-ng-bind=":: $ctrl.BLOCK_ADDITIONAL_IP"
                                 ></strong>
                             </h4>
                             <p class="text-center">
@@ -154,7 +154,7 @@
                         <div class="col-6">
                             <p>
                                 <strong
-                                    data-translate="{{ 'ip_agora_failover_ip_title' | translate }}"
+                                    data-ng-bind=":: $ctrl.ADDITIONAL_IP"
                                 ></strong>
                             </p>
                         </div>

@@ -3,6 +3,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 import toInteger from 'lodash/toInteger';
+import punycode from 'punycode';
 
 import {
   IP_TYPE,
@@ -11,6 +12,7 @@ import {
   BADGE_FO,
   BADGES,
   SERVICE_URL_DATA,
+  ADDITIONAL_IP,
 } from './list.constant';
 
 export default class IpListController {
@@ -88,6 +90,7 @@ export default class IpListController {
       spam: [],
     };
     $scope.IP_TYPE = IP_TYPE;
+    $scope.ADDITIONAL_IP = ADDITIONAL_IP;
     $scope.showBYOIPBadge = (self.badges || BADGES).includes(BADGE_BYOIP);
     $scope.showFOBadge = (self.badges || BADGES).includes(BADGE_FO);
     $scope.advancedModeFilter = true;

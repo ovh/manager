@@ -140,7 +140,7 @@
                     ></span>
                     <span
                         data-ng-if="showFOBadge && ipBlock.type == 'FAILOVER'"
-                        data-translate="ip_failover_short"
+                        data-ng-bind=":: ADDITIONAL_IP"
                         class="oui-badge oui-badge_info"
                     ></span>
                     <small
@@ -263,7 +263,7 @@
                     ></span>
                     <span
                         data-ng-if="showFOBadge && ipBlock.isUniq && ipBlock.type == 'FAILOVER'"
-                        data-translate="ip_failover_short"
+                        data-ng-bind=":: ADDITIONAL_IP"
                         class="oui-badge oui-badge_info"
                     ></span>
                     <small

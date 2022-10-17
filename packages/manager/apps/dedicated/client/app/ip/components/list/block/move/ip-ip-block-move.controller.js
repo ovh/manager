@@ -1,3 +1,5 @@
+import { ADDITIONAL_IP } from '../ip-ip-block.constant';
+
 export default /* @ngInject */ (
   $scope,
   $q,
@@ -11,6 +13,7 @@ export default /* @ngInject */ (
   $scope.noTasksPending = false;
   $scope.ipCanBeMovedTo = false;
   $scope.ipCanBeMovedToError = '';
+  $scope.ADDITIONAL_IP = ADDITIONAL_IP;
 
   $scope.loading = {
     init: true,
