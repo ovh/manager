@@ -9,6 +9,8 @@ export default {
     userListLink: '<',
     goToArchives: '<',
     goToAddColdArchive: '<',
+    coldArchive: '<',
+    guides: '<',
   },
   template,
 };

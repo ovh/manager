@@ -1,9 +1,18 @@
-import { COLD_ARCHIVE_TRACKING_PREFIX } from './cold-archives.constants';
+import {
+  COLD_ARCHIVE_TRACKING_PREFIX,
+  GUIDES,
+} from './cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive', {
-    url: '/cold-archive',
-    component: 'ovhManagerPciProjectsProjectStoragesColdArchive',
+    url: '/cold-archive?id',
+    component: 'pciProjectStorageContainers',
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     redirectTo: (transition) =>
       transition
         .injector()
@@ -16,11 +25,36 @@ export default /* @ngInject */ ($stateProvider) => {
             : false,
         ),
     resolve: {
+      coldArchive: () => true,
+      guides: () => GUIDES,
       breadcrumb: /* @ngInject */ ($translate) => {
         return $translate.instant(
           'pci_projects_project_storages_cold_archive_title',
         );
       },
+
+      addContainer: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.storages.cold-archives.add', {
+          projectId,
+        }),
+      viewContainer: /* @ngInject */ ($state, projectId) => (container) =>
+        $state.go('pci.projects.project.storages.cold-archives.cold-archive', {
+          projectId,
+          containerId: container.id,
+        }),
+      deleteContainer: /* @ngInject */ ($state, projectId) => (container) =>
+        $state.go('pci.projects.project.storages.cold-archives.delete', {
+          projectId,
+          containerId: container.id,
+        }),
+      containerLink: /* @ngInject */ ($state, projectId) => (container) =>
+        $state.href(
+          'pci.projects.project.storages.cold-archives.cold-archive',
+          {
+            projectId,
+            containerId: container.id,
+          },
+        ),
 
       userList: /* @ngInject */ (projectId, allUserList) =>
         allUserList.filter((user) => user?.s3Credentials?.length > 0),

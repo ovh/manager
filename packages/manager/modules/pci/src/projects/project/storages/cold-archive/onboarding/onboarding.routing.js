@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((containers) =>
             containers.length > 0
               ? {
-                  state: 'pci.projects.project.storages.cold-archive.objects',
+                  state: 'pci.projects.project.storages.cold-archive',
                 }
               : false,
           ),

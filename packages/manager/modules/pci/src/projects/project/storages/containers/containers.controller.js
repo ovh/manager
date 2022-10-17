@@ -30,10 +30,60 @@ export default class PciStoragesContainersController {
         hidden: !this.archive,
       },
       {
+        name: 'creationDate',
+        hidden: !this.coldArchive,
+      },
+      {
+        name: 'region',
+        hidden: this.coldArchive,
+      },
+      {
+        name: 'containerType',
+        hidden: this.coldArchive,
+      },
+      {
+        name: 'offer',
+        hidden: this.coldArchive,
+      },
+      {
         name: 'state',
-        hidden: !this.archive,
+        hidden: this.coldArchive,
+      },
+      {
+        name: 'status',
+        hidden: !this.coldArchive,
+      },
+      {
+        name: 'cold-archive-actions',
+        hidden: !this.coldArchive,
       },
     ];
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getColdArchiveStatusBadge(state) {
+    switch (state) {
+      case 'none':
+        return 'oui-badge oui-badge_sold-out';
+      case 'locked':
+        return 'oui-badge oui-badge_error';
+      case 'archiving':
+        return 'oui-badge oui-badge_info';
+      case 'draining':
+        return 'oui-badge oui-badge_info';
+      case 'archived':
+        return 'oui-badge oui-badge_success';
+      case 'restoring':
+        return 'oui-badge oui-badge_info';
+      case 'restored':
+        return 'oui-badge oui-badge_success';
+      case 'deleting':
+        return 'oui-badge oui-badge_warning';
+      case 'flushed':
+        return 'oui-badge oui-badge_error';
+      default:
+        return 'oui-badge';
+    }
   }
 
   onPublicToggle(container) {

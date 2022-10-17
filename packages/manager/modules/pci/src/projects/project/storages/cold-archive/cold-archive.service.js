@@ -85,12 +85,20 @@ export default class PciStoragesColdArchiveService {
   }
 
   /**
-   * The implementation of this function will be done in
-   * the scope of the task MANAGER-9179 which list the Cold
-   * archives associated to the user account.
+   * mock api call
    */
   // eslint-disable-next-line class-methods-use-this
   getAllColdArchives() {
-    return [];
+    return this.$http
+      .get('http://localhost:3200/mock_api/storage/cold/mock/all')
+      .then(({ data }) => {
+        // eslint-disable-next-line no-shadow
+        return data.map(({ data }) => data);
+      });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getArchivePassword() {
+    return '';
   }
 }
