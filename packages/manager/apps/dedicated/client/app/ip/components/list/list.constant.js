@@ -8,6 +8,7 @@ export const BADGE_FO = 'FO';
 export const BADGE_BYOIP = 'BYOIP';
 export const BADGES = [BADGE_FO, BADGE_BYOIP];
 export const ADDITIONAL_IP = 'Additional IP';
+export const LEARN_ORGANIZATION_LINK = 'https://docs.ovh.com/';
 
 export const SERVICE_URL_DATA = {
   CLOUD: {
@@ -90,4 +91,5 @@ export default {
   TRACKING_PREFIX,
   SERVICE_URL_DATA,
   SECURITY_URL,
+  LEARN_ORGANIZATION_LINK,
 };

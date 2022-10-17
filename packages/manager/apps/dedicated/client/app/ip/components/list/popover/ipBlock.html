@@ -23,6 +23,15 @@
                 data-ng-bind="ipBlock.description && ('ip_description_edit_title' | translate) || ('ip_description_new_title' | translate)"
             ></button>
         </li>
+        <!-- Edit or Association -->
+        <li>
+            <button
+                type="button"
+                class="btn btn-link"
+                data-ng-click="goToEditOrAssociate(ipBlock)"
+                data-translate="ip_edit_or_assosiate_title"
+            ></button>
+        </li>
 
         <!-- MOVE TO ANOTHER SERVICE -->
         <li data-ng-if="ipBlock.version === IP_TYPE.V4">
