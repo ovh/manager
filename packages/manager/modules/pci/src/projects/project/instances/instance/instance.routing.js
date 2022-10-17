@@ -30,12 +30,17 @@ export default /* @ngInject */ ($stateProvider) => {
       reverseDnsLink: /* @ngInject */ (coreURLBuilder) =>
         coreURLBuilder.buildURL('dedicated', '#/configuration/ip'),
 
-      ipMitigationLink: /* @ngInject */ (coreURLBuilder, instance) => {
+      ipMitigationLink: /* @ngInject */ (
+        coreURLBuilder,
+        instance,
+        projectId,
+      ) => {
         const ip = get(head(instance.publicIpV4), 'ip');
         return coreURLBuilder.buildURL('dedicated', '#/configuration/ip', {
           action: 'mitigation',
           ip,
           ipBlock: ip,
+          serviceName: projectId,
         });
       },
 
