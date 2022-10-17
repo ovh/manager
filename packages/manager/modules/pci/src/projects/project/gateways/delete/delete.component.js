@@ -5,9 +5,10 @@ export default {
   bindings: {
     goBack: '<',
     projectId: '<',
-    gatewayId: '<',
+    id: '<',
+    name: '<',
+    region: '<',
     trackPublicGateways: '<',
-    gateway: '<',
   },
   controller,
   template,
