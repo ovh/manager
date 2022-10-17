@@ -1,4 +1,4 @@
-export const PRODUCT_ID = 'nasha';
+export const PRODUCT_ID = 'nashaPreprod';
 
 export const PREFIX_TRACKING_ORDER = 'order';
 
