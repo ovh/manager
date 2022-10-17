@@ -24,11 +24,13 @@ export default /* @ngInject */ ($stateProvider) => {
         $state,
         projectId,
         trackPublicGateways,
-      ) => (gateway) => {
+      ) => (id, name, region) => {
         trackPublicGateways('table-option-menu::delete');
         return $state.go('pci.projects.project.gateways.delete', {
           projectId,
-          gateway,
+          id,
+          name,
+          region,
         });
       },
       goToEditGateway: /* @ngInject */ (
