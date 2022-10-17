@@ -18,5 +18,6 @@
   "pci_projects_project_storages_containers_container_addUser_error_addUser": "Unable to add user to the {{value}} container: {{message}}",
   "pci_projects_project_storages_containers_container_addUser_description_container_step_1": "Define the role of your user on the {{value}} container.",
   "pci_projects_project_storages_containers_container_addUser_description_object_step_1": "Set your user's role on the {{value}} object.",
-  "pci_projects_project_storages_containers_container_addUser_object_error_addUser": "Unable to add user to the {{value}} object: {{message}}"
+  "pci_projects_project_storages_containers_container_addUser_object_error_addUser": "Unable to add user to the {{value}} object: {{message}}",
+  "pci_projects_project_storages_containers_container_addUser_select_user_label": "Select a user"
 }
