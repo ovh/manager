@@ -641,14 +641,14 @@ export default /* @ngInject */
     }, 300);
   }
   if ($location.search().action === 'mitigation' && $location.search().ip) {
-    $scope.trackPage(`${TRACKING_PREFIX}::enable-permanent-mitigation`);
+    trackPage(`${TRACKING_PREFIX}::enable-permanent-mitigation`);
 
     $timeout(() => {
       $scope.setAction('ip/mitigation/update/ip-ip-mitigation-update', {
         ipBlock: $location.search().ipBlock,
         ip: $location.search().ip,
       });
-    }, 300);
+    }, 500);
   }
   if ($location.search().action === 'reverse' && $location.search().ip) {
     $timeout(() => {
