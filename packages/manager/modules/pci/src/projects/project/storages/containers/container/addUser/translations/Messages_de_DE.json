@@ -18,5 +18,6 @@
   "pci_projects_project_storages_containers_container_addUser_error_addUser": "Der Nutzer wurde dem Container {{ value }} nicht korrekt hinzugefügt: {{ message }}",
   "pci_projects_project_storages_containers_container_addUser_description_container_step_1": "Legen Sie die Rolle des Nutzers für den Container {{value}} fest.",
   "pci_projects_project_storages_containers_container_addUser_description_object_step_1": "Legen Sie die Rolle des Nutzers für das Objekt {{value}} fest.",
-  "pci_projects_project_storages_containers_container_addUser_object_error_addUser": "Der Nutzer wurde dem Objekt {{ value }} nicht korrekt hinzugefügt: {{ message }}"
+  "pci_projects_project_storages_containers_container_addUser_object_error_addUser": "Der Nutzer wurde dem Objekt {{ value }} nicht korrekt hinzugefügt: {{ message }}",
+  "pci_projects_project_storages_containers_container_addUser_select_user_label": "Nutzer auswählen"
 }
