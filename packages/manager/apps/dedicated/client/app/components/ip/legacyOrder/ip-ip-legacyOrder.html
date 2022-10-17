@@ -4,7 +4,7 @@
         data-wizard-bread-crumb="true"
         data-wizard-on-cancel="cancel"
         data-wizard-on-finish="confirmOrder"
-        data-wizard-title=":: 'ip_additional_order' | translate"
+        data-wizard-title=":: ('ip_additional_order' | translate) + ADDITIONAL_IP"
     >
         <!-- Step 1: Select a service -->
         <div
@@ -14,7 +14,9 @@
             data-wizard-step-valid="model.service && orderableIp && !orderableIpError && !loading.serviceCanBeOrdered"
         >
             <div data-ng-show="!loading.services && servicesList.length">
-                <p data-translate="ip_order_step1_question"></p>
+                <p
+                    data-ng-bind=":: ('ip_order_step1_question' | translate) + ADDITIONAL_IP"
+                ></p>
                 <form name="ipIpOrderForm">
                     <div
                         class="form-group"

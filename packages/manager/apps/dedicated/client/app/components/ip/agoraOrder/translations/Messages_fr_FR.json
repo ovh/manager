@@ -3,8 +3,6 @@
   "ip_agora_table_header_quantity": "Quantité",
   "ip_agora_table_header_country": "Localisée(s) en",
   "ip_agora_table_header_organisation": "Associer une organisation",
-  "ip_agora_failover_ip_title": "Additional IP",
-  "ip_agora_block_ip_title": "Bloc Additional IP",
   "ip_agora_select_quantity_title": "Choisissez votre quantité",
   "ip_agora_ip_localisation_title": "IP localisation",
   "ipv4_select_placeholder": "Selectionner une taille",

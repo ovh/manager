@@ -1,3 +1,5 @@
+import { ADDITIONAL_IP } from '../ip-ip-block.constant';
+
 export default /* @ngInject */ (
   $scope,
   $rootScope,
@@ -7,6 +9,7 @@ export default /* @ngInject */ (
   atInternet,
 ) => {
   $scope.data = $scope.currentActionData;
+  $scope.ADDITIONAL_IP = ADDITIONAL_IP;
   atInternet.trackPage({
     name: $scope.data?.tracking,
   });
