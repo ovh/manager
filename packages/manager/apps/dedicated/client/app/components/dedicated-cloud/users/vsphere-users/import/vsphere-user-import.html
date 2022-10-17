@@ -75,7 +75,9 @@
             <oui-field
                 label="{{ :: 'dedicatedCloud_USER_import_field_label_groupName' | translate }} *"
                 data-ng-if="$ctrl.model.type === 'Group'"
-                data-error-messages="{ 'userAlreadyExist': ('dedicatedCloud_USER_import_user_already_exist' | translate)}"
+                data-error-messages="{  'pattern': ('dedicatedCloud_USER_import_user_wrong_domaine' | translate),
+                                        'userAlreadyExist': ('dedicatedCloud_USER_import_user_already_exist' | translate)
+                                    }"
             >
                 <input
                     class="oui-input"
@@ -83,6 +85,7 @@
                     type="text"
                     placeholder="{{ :: 'dedicatedCloud_USER_import_group_example' | translate }}"
                     data-ng-model="$ctrl.model.groupName"
+                    data-ng-pattern="$ctrl.userNamePattern"
                     data-ui-validate="{ userAlreadyExist: '!$ctrl.userAlreadyExist($value)' }"
                     required
                 />
