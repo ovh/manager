@@ -13,11 +13,13 @@ module.exports = (env) => {
     process.env.npm_package_config_region ||
     'eu'
   ).toLowerCase();
-  const proxy = [serverProxy.v6(region)];
+
+  const envConfig = env.config || {};
+  const proxy = [serverProxy.v6(region, envConfig)];
 
   const isContainer = env.container || process.env.CONTAINER;
 
-  const sso = new Sso(region);
+  const sso = new Sso(region, envConfig);
 
   if (yn(env.local2API) || yn(process.env.npm_package_config_local2API)) {
     proxy.unshift(serverProxy.aapi);
