@@ -35,5 +35,7 @@
   "pci_projects_project_storages_containers_container_documentation_title_veeam": "Object Storage S3 z Veeam",
   "pci_projects_project_storages_containers_container_documentation_description_veeam": "Skonfiguruj Veeam, aby korzystać z przestrzeni dyskowej S3 Object Storage.",
   "pci_projects_project_storages_containers_container_documentation_title_s3-limitation": "Ograniczenia techniczne Object Storage S3",
-  "pci_projects_project_storages_containers_container_documentation_description_s3-limitation": "Zapoznaj się z technicznymi ograniczeniami oferty S3 Object Storage"
+  "pci_projects_project_storages_containers_container_documentation_description_s3-limitation": "Zapoznaj się z technicznymi ograniczeniami oferty S3 Object Storage",
+  "pci_projects_project_storages_containers_container_back_button_label": "Twoje kontenery",
+  "pci_projects_project_storages_containers_container_object_info_s3_staticUrl_help": "Udostępniaj kontenery i obiekty w sieci. Ustaw uprawnienia dostępu (dla każdego obiektu) i zapewnij dostęp  publiczny. Kontenery i obiekty będą następnie dostępne za pośrednictwem adresu Virtual Hosted-Style."
 }
