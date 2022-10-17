@@ -4,8 +4,8 @@ const TARGET = {
   us: 'https://us.ovhcloud.com',
 };
 
-module.exports = (region) => ({
-  target: TARGET[region.toLowerCase()],
+module.exports = (region, config = {}) => ({
+  target: config.host ? `https://${config.host}` : TARGET[region.toLowerCase()],
   context: ['/engine', '/auth'],
   changeOrigin: true,
   logLevel: 'silent',
