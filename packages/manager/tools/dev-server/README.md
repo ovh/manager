@@ -50,6 +50,7 @@ Options:
   -V, --version          output the version number
   -r, --region <region>  Region (EU|CA|US) (default: "eu")
   -p, --port <port>      server port (default: 3000)
+  -h, --host <host>      host
   --local2API            Use local2API proxy (localhost:8080)
   -h, --help             output usage information
 
@@ -60,6 +61,7 @@ Options:
 * `-V, --version` : Display version number
 * `-r, --region <region>` : Region to use (default to `eu` or `REGION` environment variable).
 * `-p, --port <port>`: Port (default to `3000`or or `PORT` environment variable)
+* `-h, --host <host>`: Define custom host
 * `--local2API`: Use local2API proxy (to localhost:8080)
 * `-h, --help`: Display help
 
