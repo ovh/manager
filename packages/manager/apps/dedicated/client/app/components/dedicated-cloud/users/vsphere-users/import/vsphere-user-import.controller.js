@@ -34,8 +34,8 @@ export default class VSphereUserImportController {
     this.model = {
       type: null,
       userExample: null,
-      groupName: null,
-      userName: null,
+      groupName: '',
+      userName: '',
       domainName: null,
       activeDirectoryId: null,
     };
@@ -77,8 +77,10 @@ export default class VSphereUserImportController {
   }
 
   userAlreadyExist(input) {
-    return this.usersList.find(
-      (value) => value.login === input || value.name === input,
+    return this.usersList.find((value) =>
+      value.name === input.includes('@')
+        ? input.slice(0, input.indexOf('@'))
+        : input,
     );
   }
 
