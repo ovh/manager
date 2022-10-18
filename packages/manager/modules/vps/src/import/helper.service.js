@@ -1,3 +1,5 @@
+import 'moment';
+
 export default class VpsHelperService {
   static extractConfigurationFromPlanCode(planCode) {
     const [cores, memory, storage] = planCode.match(/\d+/g);
@@ -17,4 +19,12 @@ export default class VpsHelperService {
       storage: { disks: [{ capacity: storage }] },
     };
   }
+
+  canOptionBeterminated = (serviceInfo) => {
+    // can be terminated if no commitment
+    return (
+      !serviceInfo.engagedUpTo ||
+      moment().isAfter(moment(serviceInfo.engagedUpTo).add(1, 'days'))
+    );
+  };
 }

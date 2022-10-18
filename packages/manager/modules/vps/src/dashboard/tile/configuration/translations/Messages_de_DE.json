@@ -5,7 +5,7 @@
   "vps_dashboard_tile_configuration_memory_add": "Arbeitsspeicher hinzufügen",
   "vps_dashboard_tile_configuration_memory_add_upscale": "RAM hinzufügen und dazu zur nächsthöheren Serverreihe wechseln.",
   "vps_dashboard_tile_configuration_memory_double": "Den Arbeitsspeicher zum Preis von {{ price }}/Monat verdoppeln",
-  "vps_dashboard_tile_configuration_storage": "Storage",
+  "vps_dashboard_tile_configuration_storage": "Speicher",
   "vps_dashboard_tile_configuration_storage_add": "Speicherkapazität erhöhen",
   "vps_dashboard_tile_configuration_storage_add_upscale": "Speicherkapazität hinzufügen und dazu zur nächsthöheren Serverreihe wechseln.",
   "vps_dashboard_tile_configuration_storage_double": "Den Speicherplatz zum Preis von {{ price }}/Monat verdoppeln",

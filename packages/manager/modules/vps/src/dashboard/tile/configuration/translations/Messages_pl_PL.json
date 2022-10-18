@@ -5,7 +5,7 @@
   "vps_dashboard_tile_configuration_memory_add": "Dodaj pamięć",
   "vps_dashboard_tile_configuration_memory_add_upscale": "Dodaj pamięć i zmień gamę na wyższą.",
   "vps_dashboard_tile_configuration_memory_double": "Zwiększ dwukrotnie pamięć za {{price}}/m-c",
-  "vps_dashboard_tile_configuration_storage": "Storage",
+  "vps_dashboard_tile_configuration_storage": "Przestrzeń dyskowa",
   "vps_dashboard_tile_configuration_storage_add": "Zwiększ przestrzeń dyskową",
   "vps_dashboard_tile_configuration_storage_add_upscale": "Zwiększ przestrzeń dyskową i zmień gamę na wyższą.",
   "vps_dashboard_tile_configuration_storage_double": "Zwiększ dwukrotnie przestrzeń dyskową za {{price}}/m-c",

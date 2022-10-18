@@ -13,20 +13,24 @@ export default class VpsOrderDiskCtrl {
   constructor(
     $translate,
     $window,
+    atInternet,
     coreConfig,
     CucCloudMessage,
     connectedUser,
     OvhApiOrder,
     stateVps,
+    goBack,
   ) {
     // dependencies injections
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
     this.connectedUser = connectedUser;
     this.OvhApiOrder = OvhApiOrder;
     this.stateVps = stateVps;
+    this.goBack = goBack;
 
     // other attributes used in view
     this.chunkedDiskOptions = null;
@@ -60,6 +64,10 @@ export default class VpsOrderDiskCtrl {
   ============================== */
 
   onAdditionalDiskOrderStepperFinish() {
+    this.atInternet.trackClick({
+      name: `vps::detail::additional-disk::order::confirm_${this.model.disk?.capacity?.value}`,
+      type: 'action',
+    });
     let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
       this.coreConfig.getRegion(),
       this.connectedUser.ovhSubsidiary,
