@@ -15,7 +15,7 @@ export type PciProject = {
   unleash: boolean;
 };
 
-const getProjectOption = (option: Record<string, unknown>): JSX.Element => {
+const getProjectOption = (option: Record<string, any>): JSX.Element => {
   return (
     <div style={{ alignItems: 'center', display: 'flex' }}>
       {option.new && (
