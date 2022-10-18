@@ -24,7 +24,7 @@
             <!-- Tile item :: Created -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_details_information_creation_date_label' | translate }}"
-                data-description="{{ $ctrl.formatDateToCalendar($ctrl.job.creationDate) }}"
+                data-description="{{ $ctrl.job.creationDate | date:short }}"
             >
             </oui-tile-definition>
             <!-- Tile item :: Elapsed time -->

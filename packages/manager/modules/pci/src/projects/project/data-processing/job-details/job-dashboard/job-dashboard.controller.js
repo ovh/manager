@@ -245,12 +245,6 @@ export default class {
     ].includes(this.job.status);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  formatDateToCalendar(dt) {
-    // this method needs to use current instance of moment, so it cannot static
-    return moment(dt).calendar();
-  }
-
   onSparkUIClick() {
     this.atInternet.trackClick({
       name:
