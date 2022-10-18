@@ -1,3 +1,6 @@
 {
-  "vps_additional_disk": "Disco adicional"
+  "vps_additional_disk": "Disco adicional",
+  "vps_additional_disk_actions_increase_disk": "Aumentar o tamanho do disco",
+  "vps_additional_disk_actions_terminate": "Rescindir",
+  "vps_additional_disk_actions_terminate_disabled_info": "O disco adicional poderá ser rescindido assim que o período de compromisso do seu VPS terminar."
 }

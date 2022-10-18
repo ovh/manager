@@ -7,11 +7,11 @@ import map from 'lodash/map';
 import 'moment';
 
 import {
-  DASHBOARD_FEATURES,
-  SERVICE_TYPE,
   COMMIT_IMPRESSION_TRACKING_DATA,
-  RECOMMIT_IMPRESSION_TRACKING_DATA,
+  DASHBOARD_FEATURES,
   MIGRATION_STATUS,
+  RECOMMIT_IMPRESSION_TRACKING_DATA,
+  SERVICE_TYPE,
 } from './vps-dashboard.constants';
 import { CHANGE_OWNER_URL, RENEW_URL } from '../vps/constants';
 
@@ -29,6 +29,7 @@ export default class {
     CucControllerHelper,
     ovhManagerRegionService,
     VpsService,
+    VpsHelperService,
     vpsUpgradeTile,
   ) {
     this.$filter = $filter;
@@ -42,6 +43,7 @@ export default class {
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.VpsService = VpsService;
+    this.VpsHelperService = VpsHelperService;
     this.vpsUpgradeTile = vpsUpgradeTile;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
     this.SERVICE_TYPE = SERVICE_TYPE;
@@ -175,10 +177,10 @@ export default class {
           this.VpsService.getDiskInfo(this.serviceName, elem),
         );
         return this.$q.all(promises).then((diskInfos) => {
-          this.additionnalDisks = this.VpsService.showOnlyAdditionalDisk(
+          this.additionalDisks = this.VpsService.showOnlyAdditionalDisk(
             diskInfos,
           );
-          this.canOrderDisk = isEmpty(this.additionnalDisks);
+          this.canOrderDisk = isEmpty(this.additionalDisks);
         });
       })
       .catch((error) => {
@@ -498,5 +500,9 @@ export default class {
 
   static getActionStateParamString(params) {
     return params ? `(${JSON.stringify(params)})` : '';
+  }
+
+  canTerminateAdditionalDisk() {
+    return this.VpsHelperService.canOptionBeterminated(this.serviceInfo);
   }
 }
