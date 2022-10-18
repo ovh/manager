@@ -22,16 +22,18 @@ export default class {
           description: v.description,
         })),
       }));
+      this.onChange(this.availableEngines[0].versions[0]);
     }
   }
 
   /**
    * Handle change events
    */
-  onChange({ engine, version }) {
+  onChange(selectedJob) {
+    this.jobType = selectedJob;
     this.onChangeHandler({
-      engine,
-      version,
+      engine: selectedJob.engine,
+      version: selectedJob.version,
     });
   }
 }

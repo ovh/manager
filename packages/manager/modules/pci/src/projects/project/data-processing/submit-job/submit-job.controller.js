@@ -1,6 +1,10 @@
 import { find } from 'lodash';
+import animateScrollTo from 'animated-scroll-to';
 import { API_GUIDES } from '../../project.constants';
-import { SUBMIT_JOB_API_GUIDES } from '../data-processing.constants';
+import {
+  SUBMIT_JOB_API_GUIDES,
+  GIB_IN_MIB,
+} from '../data-processing.constants';
 
 export default class {
   /* @ngInject */
@@ -42,6 +46,24 @@ export default class {
       API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
     this.submitJobGuideUrl =
       SUBMIT_JOB_API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
+
+    this.scrollToOptions = {
+      element: document.getElementsByClassName('pci-project-content')[0],
+      offset: 0,
+      horizontal: false,
+    };
+
+    this.$scope.$watch(
+      '$ctrl.state',
+      () => {
+        this.prepareJobPayload();
+      },
+      true,
+    );
+  }
+
+  scrollTo(id) {
+    animateScrollTo(document.getElementById(id), this.scrollToOptions);
   }
 
   /**
@@ -60,6 +82,7 @@ export default class {
       name: region,
       hasEnoughQuota: () => true,
     }));
+    this.onChangeRegionHandler(this.regions[0]);
   }
 
   /**
@@ -80,8 +103,9 @@ export default class {
    * Handler for region selector change
    * @param name Name of the selected region
    */
-  onChangeRegionHandler({ name }) {
-    this.state.region = name;
+  onChangeRegionHandler(region) {
+    this.state.region = region;
+    this.updateAvailableJobParameters();
   }
 
   /**
@@ -94,6 +118,7 @@ export default class {
       ...jobType,
       templates: e.templates,
     };
+    this.updateAvailableRegions();
   }
 
   onSubmitJobSizingHandler() {
@@ -122,90 +147,135 @@ export default class {
   }
 
   prepareJobPayload() {
-    let args = '';
-    if (this.state.jobConfig.currentArgument.length > 0) {
-      this.state.jobConfig.arguments.push({
-        title: this.state.jobConfig.currentArgument,
-      });
-      this.state.jobConfig.currentArgument = '';
-    }
-    if (this.state.jobConfig.arguments.length > 0) {
-      args = this.state.jobConfig.arguments.map((o) => o.title).join(',');
-    }
-    const payload = {
-      containerName: this.state.jobConfig.swiftContainer,
-      engine: this.state.jobEngine.engine,
-      engineVersion: this.state.jobEngine.version,
-      name: this.state.jobConfig.jobName,
-      region: this.state.region,
-      engineParameters: [
-        {
-          name: 'main_application_code',
-          value: this.state.jobConfig.mainApplicationCode,
-        },
-        {
-          name: 'arguments',
-          // handle iceberg limitation concerning arrays. We use comma-delimited string
-          value: args,
-        },
-        {
-          name: 'driver_memory',
-          value: (this.state.jobSizing.driverMemoryGb * 1024).toString(),
-        },
-        {
-          name: 'executor_memory',
-          value: (this.state.jobSizing.workerMemoryGb * 1024).toString(),
-        },
-        {
-          name: 'driver_memory_overhead',
-          value: this.state.jobSizing.driverMemoryOverheadMb.toString(),
-        },
-        {
-          name: 'executor_memory_overhead',
-          value: this.state.jobSizing.workerMemoryOverheadMb.toString(),
-        },
-        {
-          name: 'driver_cores',
-          value: this.state.jobSizing.driverCores.toString(),
-        },
-        {
-          name: 'executor_num',
-          value: this.state.jobSizing.workerCount.toString(),
-        },
-        {
-          name: 'executor_cores',
-          value: this.state.jobSizing.workerCores.toString(),
-        },
-        {
-          name: 'job_type',
-          value: this.state.jobConfig.jobType,
-        },
-      ],
-    };
-    if (this.state.jobConfig.jobType === 'java') {
-      payload.engineParameters.push({
-        name: 'main_class_name',
-        value: this.state.jobConfig.mainClass,
-      });
+    if (this.state.jobSizing?.driverMemoryGb) {
+      const payload = {
+        containerName: this.state.jobConfig.swiftContainer,
+        engine: this.state.jobEngine.engine,
+        engineVersion: this.state.jobEngine.version,
+        name: this.state.jobConfig.jobName,
+        region: this.state.region.name,
+        engineParameters: [
+          {
+            name: 'main_application_code',
+            value: this.state.jobConfig.mainApplicationCode,
+          },
+          {
+            name: 'arguments',
+            value: this.state.jobConfig.arguments.replaceAll(' ', ','),
+          },
+          {
+            name: 'driver_memory',
+            value: (this.state.jobSizing.driverMemoryGb * 1024).toString(),
+          },
+          {
+            name: 'executor_memory',
+            value: (this.state.jobSizing.workerMemoryGb * 1024).toString(),
+          },
+          {
+            name: 'driver_memory_overhead',
+            value: this.state.jobSizing.driverMemoryOverheadMb.toString(),
+          },
+          {
+            name: 'executor_memory_overhead',
+            value: this.state.jobSizing.workerMemoryOverheadMb.toString(),
+          },
+          {
+            name: 'driver_cores',
+            value: this.state.jobSizing.driverCores.toString(),
+          },
+          {
+            name: 'executor_num',
+            value: this.state.jobSizing.workerCount.toString(),
+          },
+          {
+            name: 'executor_cores',
+            value: this.state.jobSizing.workerCores.toString(),
+          },
+          {
+            name: 'job_type',
+            value: this.state.jobConfig.jobType,
+          },
+        ],
+      };
+
+      if (this.state.jobConfig.jobType === 'java') {
+        payload.engineParameters.push({
+          name: 'main_class_name',
+          value: this.state.jobConfig.mainClass,
+        });
+      }
+      if (this.state.jobConfig.ttl.enabled) {
+        payload.ttl = moment.duration(
+          this.state.jobConfig.ttl.time,
+          this.state.jobConfig.ttl.unit.name,
+        );
+      }
+      this.orderData = payload;
     }
 
-    this.orderData = payload;
     this.orderAPIUrl = `POST /cloud/project/${this.projectId}/dataProcessing/jobs`;
+
+    // Compute prices and taxes
+    const {
+      workerMemoryGb,
+      driverMemoryGb,
+      workerCount,
+      workerMemoryOverheadMb,
+      driverMemoryOverheadMb,
+      driverCores,
+      workerCores,
+    } = this.state.jobSizing;
+    const driverMemoryOverheadGb = driverMemoryOverheadMb / GIB_IN_MIB;
+    const workerMemoryOverheadGb = workerMemoryOverheadMb / GIB_IN_MIB;
+    const totalMemory =
+      (workerMemoryGb + workerMemoryOverheadGb) * workerCount +
+      (driverMemoryGb + driverMemoryOverheadGb);
+
+    this.jobPrices = {
+      workerCount,
+      cores: {
+        worker: workerCores,
+        driver: driverCores,
+        price: this.prices.core.priceInUcents,
+        tax: this.prices.core.tax,
+        totalPrice:
+          (driverCores + workerCores * workerCount) *
+          this.prices.core.priceInUcents,
+        totalTax:
+          (driverCores + workerCores * workerCount) * this.prices.core.tax,
+      },
+      memory: {
+        driver: {
+          base: driverMemoryGb,
+          overhead: driverMemoryOverheadGb,
+        },
+        worker: {
+          base: workerMemoryGb,
+          overhead: workerMemoryOverheadMb / GIB_IN_MIB,
+        },
+        total: totalMemory,
+        price: this.prices.memory.priceInUcents,
+        tax: this.prices.memory.tax,
+        totalPrice: totalMemory * this.prices.memory.priceInUcents,
+        totalTax: totalMemory * this.prices.memory.tax,
+      },
+    };
   }
 
   onSubmitJobHandler() {
+    this.prepareJobPayload();
     const lastIndex = this.currentIndex;
     this.isSubmitting = true;
 
     this.dataProcessingService
       .submitJob(this.projectId, this.orderData)
-      .then(() => {
+      .then(({ data }) => {
         this.atInternet.trackClick({
           name:
             'public-cloud::pci::projects::project::data-processing::submit-job::submit',
           type: 'action',
         });
-        this.goBack();
+        this.goToDashboard(data.id);
       })
       .catch((error) => {
         if (
@@ -229,5 +299,9 @@ export default class {
         }
         this.submitRetries += 1;
       });
+  }
+
+  getArgumentsList() {
+    return this.state.jobConfig.arguments.map((a) => a.title).join(' ');
   }
 }
