@@ -126,5 +126,7 @@
   "sidebar_tag_alpha": "Alpha",
   "sidebar_tag_beta": "Wersja Beta",
   "sidebar_tag_new": "Nowość",
-  "sidebar_domain_operations": "Operacje w toku"
+  "sidebar_domain_operations": "Operacje w toku",
+  "sidebar_pci_additional_ips": "Publiczne adresy IP",
+  "sidebar_pci_public_gateways": "Gateway"
 }

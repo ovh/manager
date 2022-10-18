@@ -4,7 +4,7 @@
   "pci_projects_project_network_private_create": "Crear una red privada",
   "pci_projects_project_network_private_name": "Nombre",
   "pci_projects_project_network_private_region": "Localizaciones",
-  "pci_projects_project_network_private_vlan_id": "VLAN ID",
+  "pci_projects_project_network_private_vlan_id": "ID de VLAN",
   "pci_projects_project_network_private_address": "Dirección de red privada (CIDR)",
   "pci_projects_project_network_private_delete": "Eliminar",
   "pci_projects_project_network_private_id": "ID"

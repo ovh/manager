@@ -1,0 +1,15 @@
+{
+  "pci_additional_ips_ip_block": "Blok IP",
+  "pci_additional_ips_geoloc": "Kraj",
+  "pci_additional_ips_id": "Przypisana usługa",
+  "pci_additional_ips_routedTo": "Przypisana instancja",
+  "pci_additional_ips_import_failover_ip": "Importuj adres Additional IP",
+  "pci_additional_ips_update_instance": "Zmień przypisaną instancję",
+  "pci_additional_ips_delete": "Usuń",
+  "pci_additional_ips_mitigation": "Włącz/Wyłącz mitygację",
+  "pci_additional_ips_firewall": "Konfiguracja zapory",
+  "pci_additional_ips_actions": "Operacje",
+  "pci_additional_ips_order": "Dodaj nowy adres IP",
+  "pci_additional_ips_manage_network_security": "Zarządzaj bezpieczeństwem sieci",
+  "pci_additional_ips_manage_ip_failover_service": "Zarządzaj usługą Additional IP"
+}
