@@ -22,7 +22,7 @@ export const listRouting = {
       }),
     goToAgoraOrder: /* @ngInject */ ($state, trackPage) => () => {
       trackPage('order');
-      return $state.go('app.ip.dashboard.agora-order');
+      return $state.go('app.ip.agora-order');
     },
     goToByoipConfiguration: /* @ngInject */ ($state, trackClick) => () => {
       trackClick('bring-your-own-ip');
@@ -96,7 +96,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       goToAgoraOrder: /* @ngInject */ ($state, trackPage) => () => {
         trackPage('order');
-        return $state.go('app.ip.dashboard.agora-order');
+        return $state.go('app.ip.agora-order');
       },
       breadcrumb: /* @ngInject */ ($translate) => $translate.instant('ip_ip'),
     },
