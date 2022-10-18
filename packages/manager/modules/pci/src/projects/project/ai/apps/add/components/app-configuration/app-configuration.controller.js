@@ -1,5 +1,5 @@
 import { APP_LABELS, APP_PRIVACY_SETTINGS } from '../../add.constants';
-import { nameGenerator } from '../../../../../data-processing/data-processing.utils';
+import { nameGenerator } from '../../../../../../../name-generator.constant';
 
 export default class AppConfigurationController {
   static createLabel(key = null, value = null) {
