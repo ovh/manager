@@ -1,4 +1,4 @@
-import { BRING_YOUR_OWN_IP } from './ip.constant';
+import { BRING_YOUR_OWN_IP, ADDITIONAL_IP } from './ip.constant';
 
 export default /* @ngInject */ function IpMainCtrl(
   $scope,
@@ -24,6 +24,7 @@ export default /* @ngInject */ function IpMainCtrl(
   $scope.goToAgoraOrder = goToAgoraOrder;
   $scope.worldPart = coreConfig.getRegion();
   $scope.BRING_YOUR_OWN_IP = BRING_YOUR_OWN_IP;
+  $scope.ADDITIONAL_IP = ADDITIONAL_IP;
 
   // ---
 

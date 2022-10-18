@@ -2,11 +2,15 @@ import template from './ip-ip-agoraOrder.html';
 import controller from './ip-ip-agoraOrder.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.ip.dashboard.agora-order', {
+  $stateProvider.state('app.ip.agora-order', {
     url: '/agoraOrder?{catalogName:string}',
-    template,
-    controller,
-    controllerAs: '$ctrl',
+    views: {
+      ipview: {
+        template,
+        controller,
+        controllerAs: '$ctrl',
+      },
+    },
     params: {
       service: null,
       user: {},
