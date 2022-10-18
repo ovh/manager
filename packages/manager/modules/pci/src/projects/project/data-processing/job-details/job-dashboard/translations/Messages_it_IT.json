@@ -26,5 +26,6 @@
   "data_processing_details_charts_total_memory": "Utilizzo della memoria negli ultimi 5 minuti (Mi)",
   "data_processing_details_charts_num_active_tasks": "# di task attivi negli ultimi 5 minuti",
   "data_processing_details_charts_blockmanager_disk": "Utilizzo del disco Blockmanager negli ultimi 5 minuti",
-  "data_processing_details_configuration_python_file_label": "File Python"
+  "data_processing_details_configuration_python_file_label": "File Python",
+  "data_processing_details_information_return_code_label": "Codice di ritorno"
 }
