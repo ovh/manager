@@ -17,7 +17,17 @@ export default /* @ngInject */ ($stateProvider) => {
         jobId: /* @ngInject */ ($transition$) => $transition$.params().jobId,
         metricsToken: /* @ngInject */ (dataProcessingService, projectId) =>
           dataProcessingService.getMetricsToken(projectId),
-        goBack: /* @ngInject */ (showJob, jobId) => () => showJob(jobId),
+        goBack: /* @ngInject */ ($state, projectId, jobId) => () =>
+          $state.go(
+            'pci.projects.project.data-processing.job-details.dashboard',
+            {
+              projectId,
+              jobId,
+            },
+            {
+              reload: false,
+            },
+          ),
       },
     },
   );

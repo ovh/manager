@@ -17,14 +17,15 @@ const memoryConversions = {
 /**
  * Format a given duration in milliseconds to a hh:mm:ss string
  * @param value Duration in ms
+ * @param humanize Use moment's humanize format
  * @return {string} formatted string
  */
-export const formatDuration = (value) => {
+export const formatDuration = (value, humanize = false) => {
   const duration = moment.duration(value);
-  return (
-    Math.floor(duration.asHours()) +
-    moment.utc(duration.asMilliseconds()).format(':mm:ss')
-  );
+  return humanize
+    ? duration.humanize()
+    : Math.floor(duration.asHours()) +
+        moment.utc(duration.asMilliseconds()).format(':mm:ss');
 };
 
 /**
@@ -69,8 +70,10 @@ export const summarizeSparkJob = (job) => {
     type: 'Spark',
     status: startCase(job.status.toLowerCase()),
     duration: job.endDate
-      ? (moment(job.endDate) - moment(job.creationDate)).valueOf()
-      : 0,
+      ? (
+          moment(job.endDate) - moment(job.startDate || job.creationDate)
+        ).valueOf()
+      : (moment() - moment(job.startDate || job.creationDate)).valueOf(),
     engineParameters,
   };
   return sparkJob;

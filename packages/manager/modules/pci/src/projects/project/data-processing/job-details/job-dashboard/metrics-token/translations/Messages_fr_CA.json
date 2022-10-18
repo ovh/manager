@@ -1,7 +1,8 @@
 {
   "data_processing_details_metrics_token_modal_title": "Accéder au monitoring",
+  "data_processing_details_metrics_token_modal_grafana_button": "Accéder à Grafana",
   "data_processing_details_metrics_token_modal_dismiss_button": "Fermer",
-  "data_processing_details_metrics_token_modal_description_1": "Vous pouvez accéder aux métriques détaillées de votre job via <a href=\"{{grafana_url}}\" target=\"_blank\">Grafana</a>.",
-  "data_processing_details_metrics_token_modal_description_2": "<a href=\"{{docs_monitoring_url}}\">Voir la documentation</a>",
+  "data_processing_details_metrics_token_modal_description_1": "Vous pouvez accéder aux métriques détaillées de votre job via ",
+  "data_processing_details_metrics_token_modal_description_2": "Voir la documentation",
   "data_processing_details_metrics_token_modal_token_label": "Utilisez le jeton ci-dessous pour accéder à vos métriques"
 }
