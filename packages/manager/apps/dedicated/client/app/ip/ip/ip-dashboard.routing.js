@@ -21,6 +21,11 @@ export default /* @ngInject */ ($stateProvider) => {
         component: 'ipList',
       },
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('hasAnyIp')
+        .then((hasAnyIp) => (hasAnyIp ? false : 'app.ip.onboarding')),
     resolve: {
       ...listRouting.resolve,
       trackingData: () => ({

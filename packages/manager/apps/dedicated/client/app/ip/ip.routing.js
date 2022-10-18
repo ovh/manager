@@ -47,8 +47,19 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller,
     reloadOnSearch: false,
-    redirectTo: 'app.ip.dashboard',
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('hasAnyIp')
+        .then((hasAnyIp) => `app.ip.${hasAnyIp ? 'dashboard' : 'onboarding'}`),
     resolve: {
+      hasAnyIp: /* @ngInject */ (iceberg) =>
+        iceberg('/ip')
+          .query()
+          .expand('CachedObjectList-Pages')
+          .limit(1)
+          .execute(null, true)
+          .$promise.then(({ data: [ip] }) => !!ip),
       trackingPrefix: () => 'dedicated::ip::dashboard',
       trackPage: /* @ngInject */ (atInternet, trackingPrefix) => (hit) => {
         atInternet.trackPage({
