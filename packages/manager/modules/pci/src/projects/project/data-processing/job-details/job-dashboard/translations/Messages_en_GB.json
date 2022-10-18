@@ -26,5 +26,6 @@
   "data_processing_details_no_data": "No data",
   "data_processing_details_charts_total_memory": "Memory usage in the last 5 minutes (Mi)",
   "data_processing_details_charts_num_active_tasks": "# active tasks in the last 5 minutes",
-  "data_processing_details_charts_blockmanager_disk": "BlockManager disk usage in the last 5 minutes"
+  "data_processing_details_charts_blockmanager_disk": "BlockManager disk usage in the last 5 minutes",
+  "data_processing_details_information_return_code_label": "Return code"
 }
