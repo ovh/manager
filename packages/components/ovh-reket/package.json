@@ -25,6 +25,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ovh-reket' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
+    "@ovh-ux/manager-core-sso": "^0.0.0",
     "@ovhcloud/reket-axios-client": "^0.2.1",
     "@ovhcloud/reket-core": "^0.2.1"
   },
