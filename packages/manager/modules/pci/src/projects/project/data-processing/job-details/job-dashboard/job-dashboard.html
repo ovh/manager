@@ -24,70 +24,83 @@
             <!-- Tile item :: Created -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_details_information_creation_date_label' | translate }}"
-                data-description="{{ $ctrl.formatDateToCalendar($ctrl.job.creationDate) }}"
+                data-description="{{ $ctrl.job.creationDate | date:short }}"
             >
             </oui-tile-definition>
             <!-- Tile item :: Elapsed time -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_details_information_elapsed_label' | translate }}"
-                data-description="{{ $ctrl.job.duration | dataProcessingDuration }}"
             >
+                <oui-tile-description>
+                    <span
+                        data-ng-bind="($ctrl.isJobPending() ? 0 : $ctrl.job.duration) | dataProcessingDuration"
+                    ></span>
+                </oui-tile-description>
             </oui-tile-definition>
-            <!-- Tile item :: Total memory -->
-            <span
-                class="information-tile__definition"
-                data-translate="data_processing_details_charts_total_memory"
-            ></span>
-            <div
-                class="chart__nodata-container"
-                ng-if="$ctrl.metrics.totalMemory.data.length === 0"
-            >
-                <span data-translate="data_processing_details_no_data"></span>
+            <!--Charts -->
+            <div data-ng-if="$ctrl.hasCharts()">
+                <!-- Tile item :: Total memory -->
+                <span
+                    class="information-tile__definition"
+                    data-translate="data_processing_details_charts_total_memory"
+                ></span>
+                <div
+                    class="chart__nodata-container"
+                    data-ng-if="$ctrl.metrics.totalMemory.data.length === 0"
+                >
+                    <span
+                        data-translate="data_processing_details_no_data"
+                    ></span>
+                </div>
+                <pci-project-data-processing-metrics-chart
+                    data-ng-if="$ctrl.metrics.totalMemory.data.length !== 0"
+                    class="chart__container"
+                    data-data="$ctrl.metrics.totalMemory.data"
+                    data-labels="$ctrl.metrics.totalMemory.labels"
+                    data-unit="Mi"
+                >
+                </pci-project-data-processing-metrics-chart>
+                <!-- Tile item :: Active tasks -->
+                <span
+                    class="information-tile__definition"
+                    data-translate="data_processing_details_charts_num_active_tasks"
+                ></span>
+                <div
+                    class="chart__nodata-container"
+                    data-ng-if="$ctrl.metrics.activeTasks.data.length === 0"
+                >
+                    <span
+                        data-translate="data_processing_details_no_data"
+                    ></span>
+                </div>
+                <pci-project-data-processing-metrics-chart
+                    data-ng-if="$ctrl.metrics.activeTasks.data.length !== 0"
+                    class="chart__container"
+                    data-data="$ctrl.metrics.activeTasks.data"
+                    data-labels="$ctrl.metrics.activeTasks.labels"
+                >
+                </pci-project-data-processing-metrics-chart>
+                <!-- Tile item :: Blockmanager disk -->
+                <span
+                    class="information-tile__definition"
+                    data-translate="data_processing_details_charts_blockmanager_disk"
+                ></span>
+                <div
+                    class="chart__nodata-container"
+                    data-ng-if="$ctrl.metrics.blockManagerDiskUsed.data.length === 0"
+                >
+                    <span
+                        data-translate="data_processing_details_no_data"
+                    ></span>
+                </div>
+                <pci-project-data-processing-metrics-chart
+                    data-ng-if="$ctrl.metrics.blockManagerDiskUsed.data.length !== 0"
+                    class="chart__container"
+                    data-data="$ctrl.metrics.blockManagerDiskUsed.data"
+                    data-labels="$ctrl.metrics.blockManagerDiskUsed.labels"
+                >
+                </pci-project-data-processing-metrics-chart>
             </div>
-            <pci-project-data-processing-metrics-chart
-                ng-if="$ctrl.metrics.totalMemory.data.length !== 0"
-                class="chart__container"
-                data-data="$ctrl.metrics.totalMemory.data"
-                data-labels="$ctrl.metrics.totalMemory.labels"
-                data-unit="Mi"
-            >
-            </pci-project-data-processing-metrics-chart>
-            <!-- Tile item :: Active tasks -->
-            <span class="information-tile__definition"
-                >{{ :: 'data_processing_details_charts_num_active_tasks' |
-                translate }}</span
-            >
-            <div
-                class="chart__nodata-container"
-                ng-if="$ctrl.metrics.activeTasks.data.length === 0"
-            >
-                <span data-translate="data_processing_details_no_data"></span>
-            </div>
-            <pci-project-data-processing-metrics-chart
-                ng-if="$ctrl.metrics.activeTasks.data.length !== 0"
-                class="chart__container"
-                data-data="$ctrl.metrics.activeTasks.data"
-                data-labels="$ctrl.metrics.activeTasks.labels"
-            >
-            </pci-project-data-processing-metrics-chart>
-            <!-- Tile item :: Blockmanager disk -->
-            <span class="information-tile__definition"
-                >{{ :: 'data_processing_details_charts_blockmanager_disk' |
-                translate }}</span
-            >
-            <div
-                class="chart__nodata-container"
-                ng-if="$ctrl.metrics.blockManagerDiskUsed.data.length === 0"
-            >
-                <span data-translate="data_processing_details_no_data"></span>
-            </div>
-            <pci-project-data-processing-metrics-chart
-                ng-if="$ctrl.metrics.blockManagerDiskUsed.data.length !== 0"
-                class="chart__container"
-                data-data="$ctrl.metrics.blockManagerDiskUsed.data"
-                data-labels="$ctrl.metrics.blockManagerDiskUsed.labels"
-            >
-            </pci-project-data-processing-metrics-chart>
         </oui-tile>
     </div>
     <!-- Tile :: Actions -->
@@ -205,6 +218,13 @@
                 data-term="{{ ::'data_processing_details_configuration_arguments_label' | translate }}"
                 title="{{ $ctrl.job.engine_parameters.arguments }}"
                 data-description="{{ $ctrl.job.engineParameters.arguments }}"
+            >
+            </oui-tile-definition>
+            <oui-tile-definition
+                data-ng-if="$ctrl.job.ttl"
+                data-term="Time To Live (TTL)"
+                title="Time To Live (TTL)"
+                data-description="{{ $ctrl.formatDuration($ctrl.job.ttl, true) }}"
             >
             </oui-tile-definition>
         </oui-tile>

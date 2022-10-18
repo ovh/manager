@@ -1,7 +1,8 @@
 {
-  "data_processing_details_metrics_token_modal_title": "Auf das Monitoring zugreifen",
+  "data_processing_details_metrics_token_modal_title": "Zugang zum Monitoring",
   "data_processing_details_metrics_token_modal_dismiss_button": "Schließen",
-  "data_processing_details_metrics_token_modal_description_1": "Sie können über <a href=\"{{grafana_url}}\" target=\"_blank\">Grafana</a> auf die detaillierten Angaben Ihres Auftrags zugreifen.",
-  "data_processing_details_metrics_token_modal_description_2": "<a href=\"{{docs_monitoring_url}}\">Die Dokumentation aufrufen</a>",
-  "data_processing_details_metrics_token_modal_token_label": "Nutzen Sie das untenstehende Token, um auf Ihre Messwerte zuzugreifen."
+  "data_processing_details_metrics_token_modal_description_1": "Auf die detaillierten Metriken Ihres Auftrags haben Sie Zugriff über ",
+  "data_processing_details_metrics_token_modal_description_2": "Die Dokumentation anzeigen",
+  "data_processing_details_metrics_token_modal_token_label": "Nutzen Sie das untenstehende Token, um auf Ihre Messwerte zuzugreifen.",
+  "data_processing_details_metrics_token_modal_grafana_button": "Zugang zu Grafana"
 }

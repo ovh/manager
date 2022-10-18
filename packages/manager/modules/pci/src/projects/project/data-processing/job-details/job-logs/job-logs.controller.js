@@ -7,10 +7,9 @@ export default class {
   constructor(
     $scope,
     $timeout,
-    $uibModal,
-    CucCloudMessage,
     dataProcessingJobLogsService,
     PciStoragesContainersService,
+    $window,
   ) {
     this.$scope = $scope;
     this.$timeout = $timeout;
@@ -19,8 +18,7 @@ export default class {
     this.logger = dataProcessingJobLogsService;
     this.formatLogsDate = formatLogsDate;
     this.moment = moment;
-    // let's do some binding
-    this.downloadLogs = this.downloadLogs.bind(this);
+    this.$window = $window;
   }
 
   $onInit() {
@@ -35,20 +33,13 @@ export default class {
     return DATA_PROCESSING_ENDED_JOBS.includes(this.job.status.toUpperCase());
   }
 
-  downloadLogs() {
-    // Get all the object storages available
-    return this.PciStoragesContainersService.getAll(this.projectId, false).then(
-      (containers) => {
-        // The logs are stored inside the 'odp-logs' storage so we're looking for this one
-        const container = containers.find(
-          (storage) => storage.name === 'odp-logs',
-        );
-        // If we find it, we get the id and redirect to the object storage page
-        if (container) {
-          return this.redirectToObjectStorage(this.projectId, container.id);
-        }
-        return null;
-      },
-    );
+  downloadObject(object) {
+    this.PciStoragesContainersService.downloadObject(
+      this.projectId,
+      this.logContainer.id,
+      object,
+    ).then((url) => {
+      this.$window.location = url;
+    });
   }
 }
