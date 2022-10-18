@@ -15,6 +15,14 @@
                     ></pci-project-data-processing-job-status>
                 </oui-tile-description>
             </oui-tile-definition>
+            <!-- Tile item :: Return Code -->
+            <oui-tile-definition
+                data-term="{{ :: 'data_processing_details_information_return_code_label' | translate }}"
+                title="{{ ::'data_processing_details_information_return_code_label' | translate }}"
+                data-description="{{ $ctrl.job.returnCode }}"
+                data-ng-if="$ctrl.job.returnCode !== undefined"
+            >
+            </oui-tile-definition>
             <!-- Tile item :: Region -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_details_information_region_label' | translate }}"
