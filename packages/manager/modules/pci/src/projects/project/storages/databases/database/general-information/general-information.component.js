@@ -23,6 +23,7 @@ export default {
     goToBackups: '<',
     goToMaintenances: '<',
     goToFork: '<',
+    goToIntegrations: '<',
     vRack: '<',
     vRackLink: '<',
     latestPlan: '<',

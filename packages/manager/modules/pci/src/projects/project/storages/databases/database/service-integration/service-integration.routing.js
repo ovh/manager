@@ -1,8 +1,6 @@
 import map from 'lodash/map';
 import ServiceIntegration from '../../../../../../components/project/storages/databases/serviceIntegration.class';
 import { DATABASE_TYPES } from '../../databases.constants';
-import { ENGINES_NAMES } from '../../../../../../components/project/storages/databases/engines.constants';
-import Database from '../../../../../../components/project/storages/databases/database.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -31,35 +29,23 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return promise;
         },
-        servicesList: /* @ngInject */ (
+        integrationCapabilities: /* @ngInject */ (
           DatabaseService,
           database,
           projectId,
-        ) => {
-          switch (database.engine) {
-            case DATABASE_TYPES.KAFKA_MIRROR_MAKER:
-            case DATABASE_TYPES.KAFKA_CONNECT:
-              return DatabaseService.getDatabases(
-                projectId,
-                DATABASE_TYPES.KAFKA,
-              );
-            case DATABASE_TYPES.M3AGGEGATOR:
-              return DatabaseService.getDatabases(
-                projectId,
-                DATABASE_TYPES.M3DB,
-              );
-            default:
-              return [];
-          }
-        },
+        ) =>
+          DatabaseService.getIntegrationCapabilities(
+            projectId,
+            database.engine,
+            database.id,
+          ),
         serviceIntegrationList: /* @ngInject */ (
           database,
           DatabaseService,
           projectId,
           CucCloudMessage,
           $translate,
-          servicesList,
-          engineName,
+          databases,
         ) =>
           DatabaseService.getIntegrations(
             projectId,
@@ -68,7 +54,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ).then((integrations) => {
             const serviceIntegrations = map(integrations, (i) => {
               const serviceIntegration = new ServiceIntegration(i);
-              serviceIntegration.setSourceServiceName(servicesList);
+              serviceIntegration.setServicesNames(databases);
               return serviceIntegration;
             });
             serviceIntegrations.forEach((i) => {
@@ -82,9 +68,6 @@ export default /* @ngInject */ ($stateProvider) => {
                   CucCloudMessage.success(
                     $translate.instant(
                       'pci_databases_service_integration_tab_service_ready',
-                      {
-                        engineName,
-                      },
                     ),
                   );
                   i.updateData(integrationInfos);
@@ -101,19 +84,6 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceIntegrationList.forEach((s) =>
             DatabaseService.stopPollingIntegrationStatus(database.id, s.id),
           ),
-        addableServicesList: /* @ngInject */ (
-          servicesList,
-          serviceIntegrationList,
-        ) =>
-          servicesList
-            .map((service) => new Database(service))
-            .filter(
-              (service) =>
-                service.isStatusGroupReady() &&
-                !serviceIntegrationList.find(
-                  (integration) => integration.sourceServiceId === service.id,
-                ),
-            ),
         replicationsList: /* @ngInject */ (
           DatabaseService,
           database,
@@ -161,17 +131,6 @@ export default /* @ngInject */ ($stateProvider) => {
               integration: serviceIntegration,
             },
           ),
-        engineName: /* @ngInject */ (database) => {
-          switch (database.engine) {
-            case DATABASE_TYPES.M3AGGEGATOR:
-              return ENGINES_NAMES.m3db;
-            case DATABASE_TYPES.KAFKA_CONNECT:
-            case DATABASE_TYPES.KAFKA_MIRROR_MAKER:
-              return ENGINES_NAMES.kafka;
-            default:
-              return null;
-          }
-        },
       },
       atInternet: {
         ignore: true,
