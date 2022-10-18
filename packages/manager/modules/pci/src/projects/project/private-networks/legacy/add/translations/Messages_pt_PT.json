@@ -19,7 +19,7 @@
   "pci_projects_project_network_private_create_name": "Nome da rede privada",
   "pci_projects_project_network_private_create_name_placeholder": "Inserir um nome de rede privada",
   "pci_projects_project_network_private_create_submit": "Criar",
-  "pci_projects_project_network_private_create_loading": "A criação da rede privada está em curso. Esta operação poderá demorar alguns minutos",
+  "pci_projects_project_network_private_create_loading": "Criação da rede privada em curso. Esta operação poderá levar alguns minutos.",
   "pci_projects_project_network_private_create_success": "A rede privada foi criada com êxito",
   "pci_projects_project_network_private_create_error": "Ocorreu um erro ao criar a rede privada: {{ message }}"
 }

@@ -26,6 +26,8 @@
   "cpbc_billing_control_consumption_family_databases": "Databases",
   "cpbc_billing_control_consumption_family_data-processing-job": "Data Processing",
   "cpbc_billing_control_consumption_family_ai-notebook": "Notebook",
+  "cpbc_billing_control_consumption_family_floatingip": "Floating IP",
+  "cpbc_billing_control_consumption_family_gateway": "Gateway",
   "cpbc_billing_control_consumption_quantity_hour": "x {{ quantity }} heure(s)",
   "cpbc_billing_control_consumption_quantity_month": "x {{ quantity }} mois",
   "cpbc_billing_control_consumption_quantity_h": "x {{ quantity }} heure(s)",

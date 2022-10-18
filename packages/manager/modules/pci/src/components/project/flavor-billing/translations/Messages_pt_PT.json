@@ -1,6 +1,12 @@
 {
- "pci_project_flavors_billing_hourly": "À hora",
- "pci_project_flavors_billing_monthly": "Mensal",
- "pci_project_flavors_billing_price_hourly": "{{price}} s/IVA/h",
- "pci_project_flavors_billing_price_monthly": "{{price}} s/IVA/mês"
+  "pci_project_flavors_billing_hourly": "À hora",
+  "pci_project_flavors_billing_monthly": "Mensal",
+  "pci_project_flavors_billing_price_hourly": "{{price}} s/IVA/h",
+  "pci_project_flavors_billing_price_monthly": "{{price}} s/IVA/mês",
+  "pci_project_flavors_billing_price_hourly_price_label": "Preço:",
+  "pci_project_flavors_billing_addons_price_monthly": "{{price}} s/IVA/mês",
+  "pci_project_flavors_billing_price_monthly_instance_price_label": "Instância Preço:",
+  "pci_project_flavors_billing_price_monthly_gateway_price_label": "Gateway:",
+  "pci_project_flavors_billing_price_monthly_floatingip_price_label": "IP flutuante:",
+  "pci_projects_project_instances_add_total_price_label": "Total:"
 }

@@ -1,7 +1,7 @@
 {
   "pci_projects_project_network_private": "Reti private",
   "pci_projects_project_network_private_vrack_empty": "Non hai ancora creato reti private.",
-  "pci_projects_project_network_private_vrack_deploy": "Implementa reti private nella vRack OVH per collegare tra loro le tue istanze, indipendentemente dalla loro localizzazione.",
-  "pci_projects_project_network_private_vrack_explanation_1": "Le reti private vengono create on demand e istantaneamente. Garantiscono un isolamento di livello 2 e possono ospitare un servizio DHCP per fornire automaticamente gli indirizzi IP alle istanze. Ciascuna rete può essere limitata a una sola localizzazione o essere estesa a tutte le Region del progetto.",
-  "pci_projects_project_network_private_vrack_explanation_2": "Le tue reti private sono incapsulate nella vRack per poter essere collegate, tramite un ID VLAN comune,  ad altre soluzioni OVH connesse alla stessa vRack."
+  "pci_projects_project_network_private_vrack_deploy": "Crea reti private basate sulla vRack di OVHcloud per collegare tra loro le istanze, indipendentemente dalla loro localizzazione.",
+  "pci_projects_project_network_private_vrack_explanation_1": "Le reti private sono create on demand e in modo istantaneo. Garantiscono un isolamento di livello 2 e possono ospitare un servizio DHCP per consentire l'assegnazione automatica degli IP alle istanze. Ogni rete può essere limitata a una sola ubicazione o estendersi a tutte le localizzazioni del progetto.",
+  "pci_projects_project_network_private_vrack_explanation_2": "Le reti private sono incapsulate nella vRack. In questo modo possono essere connesse ad altre soluzioni di OVHcloud associate alla stessa vRack, utilizzando un VLAN ID comune."
 }

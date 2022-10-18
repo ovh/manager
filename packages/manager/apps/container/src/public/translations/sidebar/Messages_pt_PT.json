@@ -126,5 +126,7 @@
   "sidebar_tag_alpha": "Alpha",
   "sidebar_tag_beta": "Beta",
   "sidebar_tag_new": "Novo",
-  "sidebar_domain_operations": "Operações em curso"
+  "sidebar_domain_operations": "Operações em curso",
+  "sidebar_pci_additional_ips": "IP públicos",
+  "sidebar_pci_public_gateways": "Gateway"
 }

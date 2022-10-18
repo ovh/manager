@@ -145,5 +145,7 @@
   "ovhManagerSupport_new_serviceType_managed_kafka_connect": "Public Cloud databases for Kafka Connect",
   "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud databases for Cassandra",
   "ovhManagerSupport_new_serviceType_ai_notebook": "AI Notebooks",
-  "ovhManagerSupport_new_serviceType_license_office_prepaid": "Licença Microsoft 365"
+  "ovhManagerSupport_new_serviceType_license_office_prepaid": "Licença Microsoft 365",
+  "ovhManagerSupport_new_serviceType_publiccloud_gateway": "Gateway",
+  "ovhManagerSupport_new_serviceType_publiccloud_floating_ip": "IP flutuante"
 }

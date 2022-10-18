@@ -3,9 +3,15 @@
   "pci_projects_project_network_private_error": "Ocorreu um erro ao carregar as informações {{ message }}",
   "pci_projects_project_network_private_create": "Criar uma rede privada",
   "pci_projects_project_network_private_name": "Nome",
-  "pci_projects_project_network_private_region": "Localizações",
+  "pci_projects_project_network_private_region": "Região",
   "pci_projects_project_network_private_vlan_id": "VLAN ID",
   "pci_projects_project_network_private_address": "Endereço da rede privada (CIDR)",
   "pci_projects_project_network_private_delete": "Eliminar",
-  "pci_projects_project_network_private_id": "ID"
+  "pci_projects_project_network_private_id": "ID",
+  "pci_projects_project_network_private_gateway": "Gateway",
+  "pci_projects_project_network_private_dhcp_active": "ativo",
+  "pci_projects_project_network_private_dhcp_suspended": "suspenso",
+  "pci_projects_project_network_private_ip_allocation": "Endereços IP atribuídos",
+  "pci_projects_project_network_private_assign_gateway": "Atribuir uma instância Gateway",
+  "pci_projects_project_network_private_no_data": "Nenhum dado disponível."
 }
