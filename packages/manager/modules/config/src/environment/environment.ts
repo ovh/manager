@@ -124,7 +124,11 @@ export class Environment implements IEnvironment {
   }
 
   getApplication(): Application {
+<<<<<<< HEAD
     return this.applications?.[this.applicationName];
+=======
+    return (this.applications || {})[this.applicationName as ApplicationId];
+>>>>>>> 7ae96a7c76 (feat(generator): add generator v1)
   }
 
   setUniverse(universe: string): void {
