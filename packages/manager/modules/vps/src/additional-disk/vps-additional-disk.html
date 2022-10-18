@@ -12,22 +12,19 @@
         <span data-translate="vps_tab_additional_disk_not_available"></span>
     </div>
 
-    <div data-ng-if="$ctrl.hasAdditionalDiskOption && !$ctrl.loaders.disk">
-        <p
-            data-ng-if="$ctrl.canOrder()"
-            data-translate="vps_tab_additional_disk_count"
-        ></p>
-        <button
-            class="oui-button oui-button_primary"
-            data-translate="vps_additional_disk_add_button"
-            data-ng-if="$ctrl.canOrder()"
-            data-ui-sref="vps.detail.additional-disk.order"
-        ></button>
-
-        <oui-datagrid
-            data-ng-if="!$ctrl.canOrder()"
-            data-rows="$ctrl.additionnalDisks"
-        >
+    <div data-ng-if="!$ctrl.loaders.disk">
+        <oui-datagrid data-rows="$ctrl.additionalDisks">
+            <oui-datagrid-topbar>
+                <oui-button
+                    data-variant="secondary"
+                    data-disabled="!$ctrl.canOrder()"
+                    data-on-click="$ctrl.goToOrderAdditionalDisk()"
+                >
+                    <span
+                        data-translate="vps_additional_disk_add_button"
+                    ></span>
+                </oui-button>
+            </oui-datagrid-topbar>
             <oui-datagrid-column
                 data-title="'vps_tab_additional_disk_header_id' | translate"
                 data-property="id"
@@ -45,9 +42,41 @@
                 data-property="state"
             >
                 <span
-                    data-ng-bind="'vps_tab_additional_disk_state_' + $row.state | translate"
-                ></span>
+                    class="oui-badge"
+                    data-ng-init="diskStateInfo = $ctrl.constructor.getDiskStateInfo($row)"
+                    data-ng-class="{
+                        'oui-badge_success': diskStateInfo.success,
+                        'oui-badge_warning': diskStateInfo.warning,
+                        'oui-badge_error': diskStateInfo.error,
+                    }"
+                >
+                    <span
+                        data-ng-bind="'vps_tab_additional_disk_state_' + $row.state | translate"
+                    ></span>
+                </span>
             </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
+                <!--Upgrade disk: increase capacity-->
+                <oui-action-menu-item
+                    data-disabled="!$ctrl.isVpsNewRange || !$ctrl.upgradableDisks.length"
+                    data-on-click="$ctrl.goToUpgradeDisk($row)"
+                >
+                    <span
+                        data-translate="vps_additional_disk_actions_increase_disk"
+                    ></span>
+                </oui-action-menu-item>
+
+                <!--Terminate a disk-->
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToTerminateDisk($row)"
+                    data-disabled="!$ctrl.canTerminateAdditionalDisk()"
+                    data-oui-tooltip="{{:: ($ctrl.canTerminateAdditionalDisk() ? '' : 'vps_additional_disk_actions_terminate_disabled_info') | translate}}"
+                >
+                    <span
+                        data-translate="vps_additional_disk_actions_terminate"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
         </oui-datagrid>
     </div>
 </section>

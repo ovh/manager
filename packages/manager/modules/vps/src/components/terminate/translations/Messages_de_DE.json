@@ -1,0 +1,9 @@
+{
+  "vps_additional_disk_terminate_title": "Option kündigen: zusätzliche Festplatte",
+  "vps_additional_disk_terminate_info_part_1": "Die Kündigung der optionalen zusätzlichen Festplatte wird am Datum der Verlängerung gültig: {{date}}",
+  "vps_additional_disk_terminate_info_part_2": "Diese Aktion kann nicht rückgängig gemacht werden.",
+  "vps_additional_disk_terminate_action_terminate_success": "Ihre Kündigung der zusätzlichen Festplatte ist registriert und wird in Kürze durchgeführt.",
+  "vps_additional_disk_terminate_action_terminate_error": "Bei der Kündigung der Option ist ein Fehler aufgetreten.",
+  "vps_additional_disk_terminate_action_terminate": "Kündigen",
+  "vps_additional_disk_terminate_action_cancel": "Abbrechen"
+}

@@ -1,9 +1,11 @@
 import 'moment';
 import {
   TITLES,
+  TERMINATE_INFO,
   TRACKING_INFO,
   TRACKING_PREFIX,
-} from './vps-option-terminate.constants';
+  TERMINATE_SUCCESS_INFO,
+} from './terminate.constants';
 
 export default class VpsOptionTerminateCtrl {
   /* @ngInject */
@@ -21,6 +23,7 @@ export default class VpsOptionTerminateCtrl {
     this.CucControllerHelper = CucControllerHelper;
 
     this.TITLES = TITLES;
+    this.TERMINATE_INFO = TERMINATE_INFO;
   }
 
   $onInit() {
@@ -71,9 +74,7 @@ export default class VpsOptionTerminateCtrl {
         this.VpsService.cancelOption(this.serviceName, this.vpsOption)
           .then(() =>
             this.CucCloudMessage.success(
-              this.$translate.instant(
-                'vps_configuration_cancel_option_cancel_success',
-              ),
+              this.$translate.instant(TERMINATE_SUCCESS_INFO[this.vpsOption]),
             ),
           )
           .catch((err) =>
