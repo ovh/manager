@@ -1,7 +1,7 @@
-import find from 'lodash/find';
 import capitalize from 'lodash/capitalize';
 import { getCriteria } from '../../project.utils';
 import { ENGINE_LOGOS, DATABASE_TYPES } from './databases.constants';
+import isFeatureActivated from './features.constants';
 
 const optionsMenuTrackPrefix = 'table::options_menu::';
 
@@ -51,26 +51,17 @@ export default class {
 
   deleteDatabase(database) {
     this.trackDatabases(`${optionsMenuTrackPrefix}delete_database`);
-    if (
-      [DATABASE_TYPES.KAFKA, DATABASE_TYPES.KAFKA_MIRROR_MAKER].includes(
-        database.engine,
-      )
-    ) {
-      return this.DatabaseService.getIntegrations(
+    if (isFeatureActivated('serviceIntegrationTab', database.engine)) {
+      return this.DatabaseService.getLinkedServices(
         this.projectId,
         database.engine,
         database.id,
-      ).then((integrations) => {
-        const linkedServices = integrations.map((integration) =>
-          database.engine === DATABASE_TYPES.KAFKA
-            ? find(this.databases, { id: integration.destinationServiceId })
-            : find(this.databases, { id: integration.sourceServiceId }),
-        );
-        if (linkedServices.length > 0) {
-          return this.goToConfirmDeleteDatabase(database, linkedServices);
-        }
-        return this.goToDeleteDatabase(database);
-      });
+        this.databases,
+      ).then((linkedServices) =>
+        linkedServices.length > 0
+          ? this.goToConfirmDeleteDatabase(database, linkedServices)
+          : this.goToDeleteDatabase(database),
+      );
     }
     return this.goToDeleteDatabase(database);
   }
