@@ -1,5 +1,8 @@
 import { find, unzip } from 'lodash';
-import { getDataProcessingUiUrl } from '../../data-processing.utils';
+import {
+  getDataProcessingUiUrl,
+  formatDuration,
+} from '../../data-processing.utils';
 import {
   DATA_PROCESSING_STATUS_TO_CLASS,
   DATA_PROCESSING_STATUSES,
@@ -36,7 +39,9 @@ export default class {
     this.containerService = PciStoragesContainersService;
     this.atInternet = atInternet;
     this.containerId = null;
+    this.pollTimer = null;
     this.metricsTimer = null;
+    this.formatDuration = formatDuration;
     // setup metrics retrieval
     this.warp10 = $resource(
       WARP10_URL,
@@ -78,12 +83,12 @@ export default class {
       }
     });
     // start metrics retrieval
-    this.queryMetrics();
+    this.pollData();
   }
 
   $onDestroy() {
-    if (this.metricsTimer !== null) {
-      this.$timeout.cancel(this.metricsTimer);
+    if (this.pollTimer !== null) {
+      this.$timeout.cancel(this.pollTimer);
     }
   }
 
@@ -91,13 +96,14 @@ export default class {
    * Query metrics from OVH metrics backend
    * If job is still running, we query each METRICS_REFRESH_INTERVAL to update charts
    */
-  queryMetrics() {
+  pollData() {
     this.queryMetricsTotalMemory();
     this.queryMetricsActiveTasks();
     this.queryMetricsDiskUsed();
+    this.queryJob();
     if (this.job.endDate === null) {
-      this.metricsTimer = this.$timeout(
-        () => this.queryMetrics(),
+      this.pollTimer = this.$timeout(
+        () => this.pollData(),
         METRICS_REFRESH_INTERVAL,
       );
     }
@@ -123,6 +129,14 @@ export default class {
       startDate,
       endDate,
     };
+  }
+
+  queryJob() {
+    this.dataProcessingService
+      .getJob(this.projectId, this.job.id)
+      .then((job) => {
+        this.job = job;
+      });
   }
 
   /**
@@ -201,6 +215,18 @@ export default class {
   }
 
   /**
+   * Checks if at least one chart has data
+   */
+  hasCharts() {
+    return (
+      this.metrics.totalMemory.data.length +
+        this.metrics.activeTasks.data.length +
+        this.metrics.blockManagerDiskUsed.data.length >
+      0
+    );
+  }
+
+  /**
    * Whether current job is in a (pre-)running state
    * @return {boolean} true if job is Submitted, Pending, Running
    */
@@ -212,10 +238,11 @@ export default class {
     ].includes(this.job.status);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  formatDateToCalendar(dt) {
-    // this method needs to use current instance of moment, so it cannot static
-    return moment(dt).calendar();
+  isJobPending() {
+    return [
+      DATA_PROCESSING_STATUSES.PENDING,
+      DATA_PROCESSING_STATUSES.SUBMITTED,
+    ].includes(this.job.status);
   }
 
   onSparkUIClick() {
