@@ -1,9 +1,13 @@
 {
   "pci_databases_service_integration_tab_title": "Integrazione dei servizi",
-  "pci_databases_service_integration_tab_descritpion": "L'integrazione di servizi permette di connettere diverse soluzioni {{engineName}}.",
+  "pci_databases_service_integration_tab_descritpion": "L'integrazione di servizi permette di connettere diverse soluzioni.",
   "pci_databases_service_integration_tab_service": "Servizio {{engineName}}",
-  "pci_databases_service_integration_tab_add": "Aggiungi un {{engineName}}",
+  "pci_databases_service_integration_tab_add": "Aggiungere un'integrazione",
   "pci_databases_service_integration_tab_no_service": "Non è possibile aggiungere un {{engineName}} perché non sono presenti o non disponi più di servizi {{engineName}} da connettere.",
   "pci_databases_service_integration_tab_unknown_service": "Servizio non trovato",
-  "pci_databases_service_integration_tab_service_ready": "L'integrazione del servizio {{engineName}} è pronta."
+  "pci_databases_service_integration_tab_service_ready": "L'integrazione del servizio è pronta",
+  "pci_databases_service_integration_tab_source_service": "Source",
+  "pci_databases_service_integration_tab_destination_service": "Destinazione",
+  "pci_databases_service_integration_tab_type": "Tipo",
+  "pci_databases_service_integration_tab_service_link": "Visualizza il servizio"
 }
