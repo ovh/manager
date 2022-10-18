@@ -16,5 +16,10 @@
   "data_processing_submit_job_stepper_spark_invalid_jar_label": "Uwaga: Zdaje się, że ten plik nie jest prawidłowym plikiem JAR (typ MIME nie pasuje do typu pliku JAR). ",
   "data_processing_submit_job_stepper_spark_not_found_file_label": "Zdaje się, że ten plik nie istnieje w wybranym kontenerze.",
   "data_processing_submit_job_stepper_spark_no_python_environment_label": "Plik środowiska Python 'environment.yml' nie istnieje w wybranym kontenerze.",
-  "data_processing_submit_job_stepper_spark_arguments_warning": "Uwaga: Do przechowywania danych poufnych (login, hasło, etc.) użyj pliku konfiguracyjnego."
+  "data_processing_submit_job_stepper_spark_arguments_warning": "Uwaga: Do przechowywania danych poufnych (login, hasło, etc.) użyj pliku konfiguracyjnego.",
+  "data_processing_submit_job_stepper_spark_select_unit_minutes": "minucie/minutach",
+  "data_processing_submit_job_stepper_spark_select_unit_hours": "godzinie/godzinach",
+  "data_processing_submit_job_stepper_spark_select_unit_days": "dniu/dniach",
+  "data_processing_submit_job_stepper_spark_ttl_title": "Time to live (opcjonalnie)",
+  "data_processing_submit_job_stepper_spark_ttl_checkbox": "Zatrzymaj zadanie po"
 }

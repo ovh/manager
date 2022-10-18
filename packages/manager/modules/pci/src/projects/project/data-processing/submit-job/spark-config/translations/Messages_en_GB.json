@@ -16,5 +16,10 @@
   "data_processing_submit_job_stepper_spark_invalid_jar_label": "Warning: This file does not appear to be a valid JAR (MIME type does not match a JAR file).",
   "data_processing_submit_job_stepper_spark_not_found_file_label": "This file does not seem to exist in the container selected.",
   "data_processing_submit_job_stepper_spark_no_python_environment_label": "The 'environment.yml' Python file does not exist in the container selected.",
-  "data_processing_submit_job_stepper_spark_arguments_warning": "Important: To store confidential data (e.g. credentials), it is best to use a configuration file."
+  "data_processing_submit_job_stepper_spark_arguments_warning": "Warning: To store confidential data (e.g. credentials), it is best to use a configuration file.",
+  "data_processing_submit_job_stepper_spark_select_unit_minutes": "minute(s)",
+  "data_processing_submit_job_stepper_spark_select_unit_hours": "hour(s)",
+  "data_processing_submit_job_stepper_spark_select_unit_days": "day(s)",
+  "data_processing_submit_job_stepper_spark_ttl_title": "Time to live (optional)",
+  "data_processing_submit_job_stepper_spark_ttl_checkbox": "Stop job after"
 }
