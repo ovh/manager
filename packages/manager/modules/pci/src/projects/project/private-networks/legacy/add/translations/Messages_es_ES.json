@@ -17,9 +17,9 @@
   "pci_projects_project_network_private_create_localisation_gateway": "Activar la puerta de enlace predeterminada",
   "pci_projects_project_network_private_create_name_step": "Asignar un nombre a la red privada",
   "pci_projects_project_network_private_create_name": "Nombre de la red privada",
-  "pci_projects_project_network_private_create_name_placeholder": "Asigne un nombre a la red privada.",
+  "pci_projects_project_network_private_create_name_placeholder": "Introducir un nombre de red privada",
   "pci_projects_project_network_private_create_submit": "Crear",
-  "pci_projects_project_network_private_create_loading": "Creando la red privada... La operación podría tardar unos minutos.",
+  "pci_projects_project_network_private_create_loading": "Creando la red privada... Esta operación puede tardar unos minutos.",
   "pci_projects_project_network_private_create_success": "Se ha creado la red privada.",
   "pci_projects_project_network_private_create_error": "Se ha producido un error al crear la red privada: {{ message }}."
 }

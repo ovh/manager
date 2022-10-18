@@ -1,0 +1,7 @@
+{
+  "pci_additional_ips_floating_ips_floating_ip_terminate_title": "Möchten Sie wirklich die Floating IP {{ ip }} löschen?",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_confirm": "Bestätigen",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_cancel": "Abbrechen",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_success_info": "Die IP {{ ip }} wurde gelöscht.",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_failure_info": "Beim Löschen der IP {{ ip }} ist ein Fehler aufgetreten: {{ error }}"
+}

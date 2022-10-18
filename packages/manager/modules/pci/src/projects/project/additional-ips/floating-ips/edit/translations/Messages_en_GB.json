@@ -1,0 +1,11 @@
+{
+  "pci_additional_ips_floatingips_edit": "Modify associated instance ",
+  "pci_additional_ips_floatingips_edit_submit_label": "Attach",
+  "pci_additional_ips_floatingips_edit_cancel_label": "Exit",
+  "pci_additional_ips_floatingips_edit_description": "Select the instance you want to attach the {{serviceName}} IP address to.",
+  "pci_additional_ips_floatingips_edit_select_instance": "Select an instance",
+  "pci_additional_ips_floatingips_edit_select_ip": "Select a network/IP",
+  "pci_additional_ips_floatingips_edit_success": "The instance attached to the IP {{ip}} has been edited.",
+  "pci_additional_ips_floatingips_edit_error": "An error has occurred editing the attached instance: {{error}}",
+  "pci_additional_ips_floatingips_edit_gateway_error": "We couldn't find a Gateway in the selected private network that is required to attach this floating IP. Please create one first, or select another instance/private network."
+}
