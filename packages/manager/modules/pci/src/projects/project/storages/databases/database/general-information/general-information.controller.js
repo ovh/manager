@@ -18,6 +18,7 @@ export default class {
     ovhManagerRegionService,
     DatabaseService,
     CucControllerHelper,
+    coreConfig,
   ) {
     this.$translate = $translate;
     this.capitalize = capitalize;
@@ -26,6 +27,7 @@ export default class {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.DatabaseService = DatabaseService;
     this.DATABASE_TYPES = DATABASE_TYPES;
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {
@@ -50,6 +52,8 @@ export default class {
 
     this.maintenanceTime = this.database.maintenanceTime;
     this.backupTime = this.database.backupTime;
+    const { supportLevel } = this.user;
+    this.supportLevel = `pci_databases_general_information_support_level_${supportLevel.level}`;
   }
 
   downloadCertificate() {
