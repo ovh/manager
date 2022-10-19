@@ -277,7 +277,7 @@ export default class AgoraIpOrderCtrl {
                 blockIpOfferDetails,
                 ipOffersByRegion,
                 countries,
-              );
+              ).sort((a, b) => a.price.value - b.price.value);
             } else {
               this.ipOffers = AgoraIpOrderCtrl.filterOfferDetailsFromServiceName(
                 ipOfferDetails,
