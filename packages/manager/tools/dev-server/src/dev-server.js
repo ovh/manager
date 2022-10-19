@@ -9,9 +9,9 @@ module.exports = (
   path,
   region = defaultRegion,
   port = defautPort,
-  { local2API = false },
+  { local2API = false, host = undefined },
 ) => {
-  const sso = new Sso(region);
+  const sso = new Sso(region, { host });
 
   const app = express();
 
@@ -24,7 +24,7 @@ module.exports = (
     app.use(proxy.aapi.context, createProxyMiddleware(proxy.aapi));
   }
 
-  const v6Proxy = proxy.v6(region);
+  const v6Proxy = proxy.v6(region, { host });
   app.use(createProxyMiddleware(v6Proxy.context, v6Proxy));
 
   console.log('');

@@ -3,31 +3,30 @@ const base64url = require('base64url');
 const cookie = require('cookie');
 const proxy = require('request');
 
-const CONFIG = {
+const REGION_CONFIG = {
   ssoAuth: {
-    eu: {
-      host: 'www.ovh.com',
-      baseUrl: 'https://www.ovh.com/cgi-bin/crosslogin.cgi',
-      devLoginUrl: 'https://www.ovh.com/auth/requestDevLogin/',
-    },
-    ca: {
-      host: 'ca.ovh.com',
-      devLoginUrl: 'https://ca.ovh.com/auth/requestDevLogin/',
-      baseUrl: 'https://ca.ovh.com/cgi-bin/crosslogin.cgi',
-    },
-    us: {
-      host: 'us.ovhcloud.com',
-      devLoginUrl: 'https://us.ovhcloud.com/auth/requestDevLogin/',
-      baseUrl: 'https://us.ovhcloud.com/cgi-bin/crosslogin.cgi',
-    },
+    eu: 'www.ovh.com',
+    ca: 'ca.ovh.com',
+    us: 'us.ovhcloud.com',
   },
 };
+
+const buildConfig = (host) => ({
+  host,
+  devLoginUrl: `https://${host}/auth/requestDevLogin/`,
+  baseUrl: `https://${host}/cgi-bin/crosslogin.cgi`,
+  authURL: `https://${host}/auth`,
+});
 
 module.exports = class Sso {
   config;
 
-  constructor(region) {
-    this.config = CONFIG.ssoAuth[region.toLowerCase()];
+  constructor(region, config = {}) {
+    if (config.host) {
+      this.config = buildConfig(config.host);
+    } else {
+      this.config = buildConfig(REGION_CONFIG.ssoAuth[region.toLowerCase()]);
+    }
   }
 
   login(req, res) {
@@ -113,6 +112,11 @@ module.exports = class Sso {
         },
       );
     });
+
+    if (redirectionUrl.startsWith('/')) {
+      res.redirect(`${this.config.authURL}${redirectionUrl}`);
+      return;
+    }
 
     res.redirect(redirectionUrl);
   }
