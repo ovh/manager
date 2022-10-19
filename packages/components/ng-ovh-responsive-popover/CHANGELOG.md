@@ -1,3 +1,24 @@
+# [6.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-responsive-popover@5.0.6...@ovh-ux/ng-ovh-responsive-popover@6.0.0) (2022-10-19)
+
+
+### Bug Fixes
+
+* **ng-ovh-responsive-popover:** fix buttons hidden ([6323cb2](https://github.com/ovh/manager/commit/6323cb2992ffcf9b1dc92ab354df940b0ef12e13))
+* **ng-ovh-responsive-popover:** import directive module ([2b7fcd9](https://github.com/ovh/manager/commit/2b7fcd9be8b9b38a5ec6efdfd4c575170a73d740))
+* **ng-ovh-responsive-popover:** remove jquery dep ([e249142](https://github.com/ovh/manager/commit/e249142fdfbffcdea736c4ce7ed908e2f53a380c))
+
+
+### Code Refactoring
+
+* **ng-ovh-responsive-popover:** replace jquery by vanilla js ([1ec254d](https://github.com/ovh/manager/commit/1ec254de3de0d66ab49697e956ddd316083d1235))
+
+
+### BREAKING CHANGES
+
+* **ng-ovh-responsive-popover:** use of classList removes compatibility with IE 11 browser and older versions
+
+
+
 ## [5.0.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-responsive-popover@5.0.5...@ovh-ux/ng-ovh-responsive-popover@5.0.6) (2022-03-04)
 
 

@@ -1,3 +1,12 @@
+## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@5.0.0...@ovh-ux/manager-dev-server-config@5.0.1) (2022-10-19)
+
+
+### Bug Fixes
+
+* **dev-server-config:** allow to define custom host ([b59706d](https://github.com/ovh/manager/commit/b59706d20a3cf221ada6ab7779d14268dac84e9b))
+
+
+
 # [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@4.0.0...@ovh-ux/manager-dev-server-config@5.0.0) (2022-09-12)
 
 

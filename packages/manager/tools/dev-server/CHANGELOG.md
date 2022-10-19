@@ -1,3 +1,12 @@
+## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server@4.0.0...@ovh-ux/manager-dev-server@4.0.1) (2022-10-19)
+
+
+### Bug Fixes
+
+* **dev-server:** allow to define custom host ([37030dc](https://github.com/ovh/manager/commit/37030dcfda4011ce417adc09788b96879f018400))
+
+
+
 # [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server@3.0.0...@ovh-ux/manager-dev-server@4.0.0) (2022-09-12)
 
 

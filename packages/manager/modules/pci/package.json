@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "5.93.1",
+  "version": "5.93.2",
   "private": true,
   "description": "Public Cloud Instance product.",
   "repository": {
@@ -44,11 +44,11 @@
     "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
-    "@ovh-ux/ng-ovh-contracts": "^4.2.0",
+    "@ovh-ux/ng-ovh-contracts": "^4.2.1",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
     "@ovh-ux/ng-ovh-payment-method": "^9.3.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.4",
-    "@ovh-ux/ng-ovh-responsive-popover": "^5.0.6 || ^6.0.0",
+    "@ovh-ux/ng-ovh-responsive-popover": "^6.0.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.4",
     "@ovh-ux/ng-pagination-front": "^10.1.0",

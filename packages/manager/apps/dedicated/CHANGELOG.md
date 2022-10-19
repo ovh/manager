@@ -1,3 +1,12 @@
+## [17.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.33.0...@ovh-ux/manager-dedicated@17.33.1) (2022-10-19)
+
+
+### Bug Fixes
+
+* **ip:** allow direct access to actions through url ([#7980](https://github.com/ovh/manager/issues/7980)) ([125bda0](https://github.com/ovh/manager/commit/125bda0c889483d8d0a69c205bb75cb6a4a213e9))
+
+
+
 # [17.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.32.1...@ovh-ux/manager-dedicated@17.33.0) (2022-10-11)
 
 
