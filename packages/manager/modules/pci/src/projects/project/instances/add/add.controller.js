@@ -335,7 +335,11 @@ export default class PciInstancesAddController {
     if (!isEmpty(this.model.datacenter)) {
       this.quota = new Quota(this.model.datacenter.quota.instance);
       this.generateInstanceName();
-      if (this.automatedBackup.available) {
+      if (
+        this.PciProjectsProjectInstanceService.automatedBackupIsAvailable(
+          this.flavor.type,
+        )
+      ) {
         this.automatedBackup.selected = false;
         this.automatedBackup.schedule = null;
         return this.getBackupPrice().then((price) => {
