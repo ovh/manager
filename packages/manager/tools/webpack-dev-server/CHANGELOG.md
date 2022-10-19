@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-dev-server@3.0.0...@ovh-ux/manager-webpack-dev-server@3.0.1) (2022-10-19)
+
+
+### Bug Fixes
+
+* **webpack-dev-server:** allow to define custom config ([0dbcad6](https://github.com/ovh/manager/commit/0dbcad6a72b2c0f053fbb5b06707b0dca10ed75e))
+
+
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-dev-server@2.10.0...@ovh-ux/manager-webpack-dev-server@3.0.0) (2022-09-12)
 
 

@@ -1,3 +1,12 @@
+## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.6.0...@ovh-ux/manager-exchange@3.6.1) (2022-10-19)
+
+
+### Bug Fixes
+
+* **account:** fix account filtering by company name ([5efc7de](https://github.com/ovh/manager/commit/5efc7debc4879689c4c6a410449fceb9af51e8f8))
+
+
+
 # [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.5.4...@ovh-ux/manager-exchange@3.6.0) (2022-09-29)
 
 

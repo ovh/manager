@@ -1,3 +1,12 @@
+## [4.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.2.0...@ovh-ux/ng-ovh-contracts@4.2.1) (2022-10-19)
+
+
+### Bug Fixes
+
+* **ng-ovh-contracts:** remove useless dep ([270f3f2](https://github.com/ovh/manager/commit/270f3f255d1ce2b1722918cf7a14a43fde94e5bc))
+
+
+
 # [4.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.1.0...@ovh-ux/ng-ovh-contracts@4.2.0) (2022-06-14)
 
 
