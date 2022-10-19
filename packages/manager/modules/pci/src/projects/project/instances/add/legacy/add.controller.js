@@ -15,7 +15,10 @@ import Quota from '../../../../../components/project/instance/quota/quota.class'
 import { PATTERN } from '../../../../../components/project/instance/name/constants';
 import Instance from '../../../../../components/project/instance/instance.class';
 
-import { BANDWIDTH_OUT } from './add.constants';
+import {
+  BANDWIDTH_OUT,
+  FILTER_PRIVATE_NETWORK_BAREMETAL,
+} from './add.constants';
 
 export default class PciInstancesAddController {
   /* @ngInject */
@@ -76,7 +79,6 @@ export default class PciInstancesAddController {
     this.selectedPrivateNetwork = this.defaultPrivateNetwork;
     this.availablePrivateNetworks = [this.defaultPrivateNetwork];
     this.automatedBackup = {
-      available: !this.coreConfig.isRegion('US'),
       selected: false,
       schedule: null,
       price: null,
@@ -93,19 +95,28 @@ export default class PciInstancesAddController {
     this.availableRegions = {};
     this.unavailableRegions = {};
 
-    forEach(this.regions, (locationsMap, continent) => {
-      this.availableRegions[continent] = {};
-      this.unavailableRegions[continent] = {};
-      forEach(locationsMap, (datacenters, location) => {
-        [
-          this.availableRegions[continent][location],
-          this.unavailableRegions[continent][location],
-        ] = partition(
-          datacenters,
-          (datacenter) =>
-            !datacenter.isAvailable() ||
-            this.model.flavorGroup.isAvailableInRegion(datacenter.name),
-        );
+    const planCode = `${this.model.flavorGroup.name}.consumption`;
+
+    return this.PciProjectsProjectInstanceService.getProductAvailability(
+      this.projectId,
+      planCode,
+      this.coreConfig.getUser().ovhSubsidiary,
+    ).then((productAvailability) => {
+      const productRegionsAvailables = productAvailability?.plans[0]?.regions;
+
+      forEach(this.regions, (locationsMap, continent) => {
+        this.availableRegions[continent] = {};
+        this.unavailableRegions[continent] = {};
+        forEach(locationsMap, (datacenters, location) => {
+          [
+            this.availableRegions[continent][location],
+            this.unavailableRegions[continent][location],
+          ] = partition(datacenters, (datacenter) => {
+            return productRegionsAvailables.find(
+              (productRegion) => productRegion.name === datacenter.name,
+            );
+          });
+        });
       });
     });
   }
@@ -164,7 +175,11 @@ export default class PciInstancesAddController {
             find(network.regions, {
               region: this.instance.region,
               status: 'ACTIVE',
-            }),
+            }) &&
+            // For metal instances we only have vlan 0 available
+            this.model.flavorGroup.type === FILTER_PRIVATE_NETWORK_BAREMETAL
+              ? network.vlanId === 0
+              : network.vlanId !== null,
           ),
           (privateNetwork) => ({
             ...privateNetwork,
@@ -198,12 +213,16 @@ export default class PciInstancesAddController {
 
     this.onFlexChange(false);
 
-    if (this.model.image.type !== 'linux') {
+    if (!this.isLinuxImageType()) {
       this.model.sshKey = null;
       this.instance.sshKeyId = null;
     } else {
       this.instance.sshKeyId = get(this.model.sshKey, 'id');
     }
+  }
+
+  isLinuxImageType() {
+    return this.model.image?.type?.includes('linux');
   }
 
   getBackupPrice() {
@@ -217,7 +236,7 @@ export default class PciInstancesAddController {
     return (
       this.model.image &&
       this.model.isImageCompatible &&
-      (this.model.image.type !== 'linux' || this.model.sshKey)
+      (!this.isLinuxImageType() || this.model.sshKey)
     );
   }
 
@@ -225,7 +244,11 @@ export default class PciInstancesAddController {
     if (!isEmpty(this.model.datacenter)) {
       this.quota = new Quota(this.model.datacenter.quota.instance);
       this.generateInstanceName();
-      if (this.automatedBackup.available) {
+      if (
+        this.PciProjectsProjectInstanceService.automatedBackupIsAvailable(
+          this.flavor.type,
+        )
+      ) {
         this.automatedBackup.selected = false;
         this.automatedBackup.schedule = null;
         return this.getBackupPrice().then((price) => {
@@ -327,11 +350,16 @@ export default class PciInstancesAddController {
   create() {
     this.isLoading = true;
 
-    if (this.model.image.type !== 'linux') {
+    if (!this.isLinuxImageType()) {
       this.instance.userData = null;
     }
 
-    if (this.automatedBackup.available && this.automatedBackup.selected) {
+    if (
+      this.PciProjectsProjectInstanceService.automatedBackupIsAvailable(
+        this.flavor.type,
+      ) &&
+      this.automatedBackup.selected
+    ) {
       const { schedule } = this.automatedBackup;
       this.instance.autobackup = {
         cron: `${schedule.cronPattern.minutes} ${schedule.cronPattern.hour} ${schedule.cronPattern.dom} ${schedule.cronPattern.month} ${schedule.cronPattern.dow}`,
