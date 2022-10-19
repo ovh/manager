@@ -1,3 +1,12 @@
+## [5.0.14](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-actions-menu@5.0.13...@ovh-ux/ng-ovh-actions-menu@5.0.14) (2022-10-19)
+
+
+### Bug Fixes
+
+* **ng-ovh-actions-menu:** remove jquery dep ([b4ddbb9](https://github.com/ovh/manager/commit/b4ddbb93884aafa7818e7f9b8995124cc85cc2e8))
+
+
+
 ## [5.0.13](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-actions-menu@5.0.12...@ovh-ux/ng-ovh-actions-menu@5.0.13) (2022-06-29)
 
 

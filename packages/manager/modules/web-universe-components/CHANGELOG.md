@@ -1,3 +1,12 @@
+# [9.8.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.7.1...@ovh-ux/ng-ovh-web-universe-components@9.8.0) (2022-10-19)
+
+
+### Features
+
+* **wuc:** add company param to fetch accounts ([d902257](https://github.com/ovh/manager/commit/d9022572dc9224535942bae60195bdc87ffd8664))
+
+
+
 ## [9.7.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.7.0...@ovh-ux/ng-ovh-web-universe-components@9.7.1) (2022-07-27)
 
 
