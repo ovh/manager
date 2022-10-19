@@ -20,11 +20,11 @@ export default /* @ngInject */ function(matchmedia, responsivePopover) {
       let isMobileDetected = false;
       let mediaQueryHandler = false;
       let scrollPosition;
-      const resetFixedBody = function(scrollTo) {
-        $('body')
-          .removeClass('responsive-popover-fixed-body')
-          .css('top', '')
-          .scrollTop(scrollTo);
+      const resetFixedBody = function resetFixedBody(scrollTo) {
+        const bodyElement = document.querySelector('body');
+        bodyElement.classList.remove('responsive-popover-fixed-body');
+        bodyElement.style.top = '';
+        bodyElement.scrollTop = scrollTo;
       };
 
       // on method returns a function that remove the media query listener
@@ -33,11 +33,12 @@ export default /* @ngInject */ function(matchmedia, responsivePopover) {
         isMobileDetected = mediaQueryList.matches;
 
         if (isMobileDetected) {
-          scrollPosition = $('body').scrollTop();
+          const bodyElement = document.querySelector('body');
+          scrollPosition = bodyElement.scrollTop;
           iElement.addClass('popover-full-screen');
-          $('body')
-            .css('top', `${scrollPosition * -1}px`)
-            .addClass('responsive-popover-fixed-body');
+
+          bodyElement.style.top = `${scrollPosition * -1}px`;
+          bodyElement.classList.add('responsive-popover-fixed-body');
         } else {
           iElement.removeClass('popover-full-screen');
           resetFixedBody(scrollPosition);

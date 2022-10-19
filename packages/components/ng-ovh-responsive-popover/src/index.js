@@ -27,6 +27,7 @@ import 'matchmedia-ng';
 
 import ngOvhResponsivePopoverPopup from './popup';
 
+import classDirective from './class/ovh-angular-responsive-popover-class';
 import directive from './directive';
 import provider from './provider';
 
@@ -39,6 +40,7 @@ angular
     'matchmedia-ng',
     'ui.bootstrap',
     ngOvhResponsivePopoverPopup,
+    classDirective,
   ])
   .directive('responsivePopover', directive)
   .provider('responsivePopover', provider);
