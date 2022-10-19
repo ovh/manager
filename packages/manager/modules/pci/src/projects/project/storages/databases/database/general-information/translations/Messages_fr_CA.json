@@ -61,11 +61,6 @@
   "pci_databases_general_information_certificate_label": "Certificat CA",
   "pci_databases_general_information_certificate_link": "Voir",
   "pci_databases_general_information_certificate_download": "Télécharger",
-  "pci_databases_general_information_service_integration_title": "Intégration de services",
-  "pci_databases_general_information_kafka_mirror_maker_label": "Kafka Mirror Maker",
-  "pci_databases_general_information_m3_aggregator_label": "M3 Aggregator",
-  "pci_databases_general_information_kafka_connect_label": "Kafka Connect",
-  "pci_databases_general_information_integration_none": "Aucun",
   "pci_databases_general_information_kafka_rest_api_label": "Kafka API REST",
   "pci_databases_general_information_kafka_rest_api_content": "Interface HTTP REST pour un cluster Kafka (basée sur le projet {{ projectLink }}).",
   "pci_databases_general_information_kafka_rest_api_enable": "Activer",
@@ -82,5 +77,9 @@
   "pci_databases_general_information_update_maintenance_time_error": "Une erreur est survenue lors de la modification de l'heure de maintenance",
   "pci_databases_general_information_update_backup_time_success": "L'heure de sauvegarde a été modifiée avec succès",
   "pci_databases_general_information_update_backup_time_error": "Une erreur est survenue lors de la modification de l'heure de sauvegarde",
-  "pci_databases_general_information_uri_network_info": "Votre service est configuré avec une connectivité <b>réseau privé</b>, cela signifie que seuls les services à l'intérieur de ce réseau vRack peuvent se connecter à votre base de données."
+  "pci_databases_general_information_uri_network_info": "Votre service est configuré avec une connectivité <b>réseau privé</b>, cela signifie que seuls les services à l'intérieur de ce réseau vRack peuvent se connecter à votre base de données.",
+  "pci_databases_general_information_support_title": "Support",
+  "pci_databases_general_information_support_level_label": "Niveau de support",
+  "pci_databases_general_information_support_level_standard": "Standard",
+  "pci_databases_general_information_support_create_ticket_label": "Créer un ticket"
 }
