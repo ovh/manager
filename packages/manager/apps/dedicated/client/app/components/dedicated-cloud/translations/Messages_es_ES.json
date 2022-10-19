@@ -10,7 +10,7 @@
   "dedicatedCloud_discount": "Precio más bajo",
   "dedicatedCloud_discount_explanation": "El precio final se calcula al generar la orden de pedido. Limitado a disponibilidad de stock. Aplicable solo al mes en curso.",
   "dedicatedCloud_discount_AMD": "Disfrute de un descuento del 35% en el precio de los Host XL y XL+ de la gama Enterprise 2014 v2, hasta agotar existencias.",
-  "dedicatedCloud_description": "Apellidos",
+  "dedicatedCloud_description": "Nombre",
   "dedicatedCloud_description_modify_title": "Cambiar el nombre",
   "dedicatedCloud_connection_policy": "Política de conexión",
   "dedicatedCloud_billing": "Facturación",
