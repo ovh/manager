@@ -24,6 +24,7 @@ export default {
     goToMaintenances: '<',
     goToFork: '<',
     goToIntegrations: '<',
+    goToSupportPage: '<',
     vRack: '<',
     vRackLink: '<',
     latestPlan: '<',
