@@ -20,7 +20,24 @@ export default class ActiveDirectoriesDeleteController {
     this.loaders = {
       action: false,
       cancelModal: false,
+      init: true,
     };
+
+    return this.dedicatedCloud
+      .getUsers(this.productId, {
+        filters: [
+          {
+            comparator: 'is',
+            field: 'activeDirectoryId',
+            reference: [this.activeDirectory.activeDirectoryId],
+          },
+        ],
+      })
+      .then(({ meta }) => {
+        this.userCount = meta.totalCount;
+        this.loaders.init = false;
+        return this.userCount;
+      });
   }
 
   deleteFederation() {
