@@ -1,3 +1,12 @@
+## [9.3.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.3.0...@ovh-ux/ng-ovh-payment-method@9.3.1) (2022-10-20)
+
+
+### Bug Fixes
+
+* **dedicated.ovh-payment:** make legal notice default payment ([f4e57ff](https://github.com/ovh/manager/commit/f4e57ffd2bb251b6939af1e6594602711e792a06))
+
+
+
 # [9.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.2.3...@ovh-ux/ng-ovh-payment-method@9.3.0) (2022-09-14)
 
 
