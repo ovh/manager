@@ -12,11 +12,23 @@
     data-wizard-keydown-disabled
     data-wizard-bread-crumb
 >
-    <div data-wizard-step>
-        <form name="editFederationForm" novalidate>
+    <div
+        data-wizard-step
+        data-wizard-step-valid="!$ctrl.loaders.init && $ctrl.userCount === '0'"
+    >
+        <div class="text-center" data-ng-if="$ctrl.loaders.init">
+            <oui-spinner></oui-spinner>
+        </div>
+        <form
+            name="editFederationForm"
+            data-ng-if="!$ctrl.loaders.init"
+            novalidate
+        >
             <p
-                data-translate="dedicatedCloud_USER_AD_delete_content"
-                data-translate-values="{ name: '<strong>{{ $ctrl.activeDirectory.ldapHostname }}</strong>' }"
+                data-translate="{{ $ctrl.userCount > 0 ? 'dedicatedCloud_USER_AD_delete_unavailable' : 'dedicatedCloud_USER_AD_delete_available' }}"
+                data-translate-values="{ name: '<strong>{{ $ctrl.activeDirectory.ldapHostname }}</strong>',
+                                        count: '<strong>{{ $ctrl.userCount }}</strong>',
+                                        }"
             ></p>
         </form>
     </div>
