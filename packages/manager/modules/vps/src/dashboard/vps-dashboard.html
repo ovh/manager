@@ -40,6 +40,7 @@
 <oui-message data-ng-if="$ctrl.vpsMigrationTaskInError" data-type="error">
     <p data-translate="vps_dashboard_migration_in_error"></p>
 </oui-message>
+
 <section>
     <div class="row d-lg-flex mb-3">
         <div class="col-xm-12 col-md-4" data-ng-if="$ctrl.isVpsNewRange">
@@ -537,11 +538,30 @@
                                 data-translate="{{ 'vps_status_' + ($ctrl.hasAdditionalDisk && !$ctrl.canOrderDisk ? 'enabled' : 'disabled') }}"
                             >
                             </span>
+
                             <span
                                 data-ng-if="!$ctrl.tabSummary.additionalDisk.optionAvailable"
                                 data-translate="vps_option_unavailable"
                             >
                             </span>
+
+                            <p
+                                class="m-0"
+                                data-ng-if="$ctrl.vpsLinkedDisk.size"
+                            >
+                                <span
+                                    data-translate="vps_additional_disk_current_capacity"
+                                    data-translate-values="{vpsDiskCapacity: ($ctrl.vpsLinkedDisk.size | bytes:0:false:'GB')}"
+                                >
+                                </span>
+                                <span
+                                    class="oui-icon oui-icon-help-circle"
+                                    aria-hidden="true"
+                                    data-ng-if="!$ctrl.isVpsNewRange"
+                                    oui-tooltip="{{:: 'vps_additional_disk_cant_upgrade' | translate}}"
+                                >
+                                </span>
+                            </p>
                         </oui-tile-description>
                         <oui-action-menu
                             data-disabled="$ctrl.isMigrating"
@@ -559,9 +579,22 @@
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.terminateAdditionalDiskOption.isAvailable()"
+                                data-disabled="!$ctrl.isVpsNewRange || !$ctrl.upgradableDisks.length"
+                                aria-label="{{:: 'vps_configuration_additional_disk_upgrade_option' | translate}}"
+                                data-on-click="$ctrl.goToUpgradeAdditionalDisk('additionalDisk')"
+                            >
+                                <span
+                                    data-translate="vps_configuration_additional_disk_upgrade_option"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-ng-if="$ctrl.actions.terminateAdditionalDiskOption.isAvailable()"
                                 aria-label="{{::$ctrl.actions.terminateAdditionalDiskOption.text}}"
                                 data-on-click="$ctrl.goToTerminateOption('additionalDisk')"
-                                ><span
+                                data-disabled="!$ctrl.canTerminateAdditionalDisk()"
+                                data-oui-tooltip="{{:: ($ctrl.canTerminateAdditionalDisk() ? '' : 'vps_configuration_desactivate_option_disabled_info') | translate}}"
+                            >
+                                <span
                                     data-ng-bind="::$ctrl.actions.terminateAdditionalDiskOption.text"
                                 ></span>
                             </oui-action-menu-item>

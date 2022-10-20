@@ -19,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
       format: 'json',
     },
     resolve: {
+      goBack: /* @ngInject */ ($state) => () => $state.go('^'),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('vps_order_additionnal_disk_title'),
     },

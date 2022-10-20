@@ -1,0 +1,34 @@
+<oui-modal
+    data-heading="{{:: 'vps_additional_disk_upgrade_title' | translate }}"
+    data-primary-action="$ctrl.onUpgradeAdditionalDiskClick()"
+    data-primary-label="{{:: 'vps_additional_disk_upgrade_action_upgrade' | translate }}"
+    data-secondary-action="$ctrl.onCancelUpgradeAdditionalDiskClick()"
+    data-secondary-label="{{:: 'vps_additional_disk_upgrade_action_cancel' | translate }}"
+    data-loading="$ctrl.isUpgrading"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <!--Into-->
+    <p
+        data-translate="vps_additional_disk_upgrade_info"
+        data-translate-values="{ newDiskCapacity: ($ctrl.selectedDiskModel.capacity | bytes:0:false:'GB') }"
+    ></p>
+
+    <!--Upgradable disks-->
+    <oui-select-picker
+        ng-repeat="disk in $ctrl.upgradableDisks track by $index"
+        name="{{:: disk.planCode }}"
+        values="[disk]"
+        model="$ctrl.selectedDiskModel"
+    >
+        <oui-select-picker-label class="w-100">
+            <span data-ng-bind=":: disk.capacity | bytes:0:false:'GB'"></span>
+        </oui-select-picker-label>
+        <oui-select-picker-section>
+            <span
+                data-translate="vps_additional_disk_upgrade_prices_month_period"
+                data-translate-values="{ price: $ctrl.constructor.getDiskPrice(disk), currency: $ctrl.customerCurrency }"
+            >
+            </span>
+        </oui-select-picker-section>
+    </oui-select-picker>
+</oui-modal>

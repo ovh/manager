@@ -26,8 +26,9 @@ import ovhManagerVpsDashboardReverseDns from './modal/reverse-dns';
 import ovhManagerVpsDashboardSnapshotDelete from './modal/snapshot-delete';
 import ovhManagerVpsDashboardSnapshotRestore from './modal/snapshot-restore';
 import ovhManagerVpsDashboardSnapshotTake from './modal/snapshot-take';
-import ovhManagerVpsDashboardTerminate from './terminate';
 import ovhManagerVpsDashboardTerminateOption from './modal/terminate-option';
+import ovhManagerVpsDashboardTerminate from './terminate';
+import ovhManagerVpsDashboardAdditionalDiskUpgrade from './additional-disk/upgrade';
 import ovhManagerVpsDashboardTile from './tile';
 import vpsStateInfo from './components/vps-state-info';
 import vpsAnnouncementBanner from './components/vps-announcement-banner';
@@ -56,11 +57,12 @@ angular
     ovhManagerVpsDashboardSnapshotDelete,
     ovhManagerVpsDashboardSnapshotRestore,
     ovhManagerVpsDashboardSnapshotTake,
-    ovhManagerVpsDashboardTerminateOption,
+    ovhManagerVpsDashboardAdditionalDiskUpgrade,
     ovhManagerVpsDashboardTile,
     vpsStateInfo,
     vpsAnnouncementBanner,
     ovhManagerVpsDashboardMigrate,
+    ovhManagerVpsDashboardTerminateOption,
     'ui.router',
   ])
   .service('vpsUpgradeTile', vpsUpgradeTileService)

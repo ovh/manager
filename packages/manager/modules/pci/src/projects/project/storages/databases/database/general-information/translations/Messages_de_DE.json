@@ -82,5 +82,9 @@
   "pci_databases_general_information_update_maintenance_time_error": "Bei der Änderung des Zeitpunkts der Wartung ist ein Fehler aufgetreten.",
   "pci_databases_general_information_update_backup_time_success": "Der Zeitpunkt für Backups wurde geändert.",
   "pci_databases_general_information_update_backup_time_error": "Bei der Änderung der Backup-Zeit ist ein Fehler aufgetreten.",
-  "pci_databases_general_information_uri_network_info": "Ihr Dienst ist für <b>private Netzwerkkonnektivität</b> konfiguriert. Daher können sich nur Dienste innerhalb des vRack Netzwerks mit Ihrer Datenbank verbinden."
+  "pci_databases_general_information_uri_network_info": "Ihr Dienst ist für <b>private Netzwerkkonnektivität</b> konfiguriert. Daher können sich nur Dienste innerhalb des vRack Netzwerks mit Ihrer Datenbank verbinden.",
+  "pci_databases_general_information_support_title": "Support",
+  "pci_databases_general_information_support_level_label": "Support-Level",
+  "pci_databases_general_information_support_level_standard": "Standard",
+  "pci_databases_general_information_support_create_ticket_label": "Ein Ticket erstellen"
 }

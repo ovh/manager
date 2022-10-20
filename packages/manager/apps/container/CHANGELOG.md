@@ -1,3 +1,12 @@
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.5.0...@ovh-ux/manager-container-app@0.5.1) (2022-10-20)
+
+
+### Bug Fixes
+
+* **container.helpcenter:** update helpcenter link ([0aea04a](https://github.com/ovh/manager/commit/0aea04af0f52997ab8584f1cfdc1a95fcc4fe6f5))
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.4.0...@ovh-ux/manager-container-app@0.5.0) (2022-09-29)
 
 

@@ -24,6 +24,7 @@ import QueryStatistics from '../../../../components/project/storages/databases/q
 import Namespace from '../../../../components/project/storages/databases/namespace.class';
 import AvailableConnector from '../../../../components/project/storages/databases/availableConnector.class';
 import Connector from '../../../../components/project/storages/databases/connector.class';
+import IntegrationCapability from '../../../../components/project/storages/databases/integrationCapability.class';
 
 export default class DatabaseService {
   /* @ngInject */
@@ -647,6 +648,20 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
+  getIntegrationCapabilities(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/capabilities/integration`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data: integrationCapabilities }) =>
+        integrationCapabilities.map(
+          (integrationCapability) =>
+            new IntegrationCapability(integrationCapability),
+        ),
+      );
+  }
+
   getIntegrations(projectId, engine, databaseId) {
     return this.$http
       .get(
@@ -656,6 +671,32 @@ export default class DatabaseService {
       .then(({ data: integrations }) =>
         integrations.map((integration) => new ServiceIntegration(integration)),
       );
+  }
+
+  getLinkedServices(projectId, engine, databaseId, servicesList) {
+    return this.getIntegrations(projectId, engine, databaseId).then(
+      (integrations) =>
+        Array.from(
+          integrations.reduce(
+            (databases, { sourceServiceId, destinationServiceId }) => {
+              if (
+                sourceServiceId === destinationServiceId ||
+                databaseId !== sourceServiceId
+              ) {
+                databases.add(
+                  servicesList.find(({ id }) => id === sourceServiceId),
+                );
+              } else if (databaseId !== destinationServiceId) {
+                databases.add(
+                  servicesList.find(({ id }) => id === destinationServiceId),
+                );
+              }
+              return databases;
+            },
+            new Set(),
+          ),
+        ),
+    );
   }
 
   pollIntegrationStatus(projectId, engine, databaseId, integrationId) {
@@ -677,13 +718,23 @@ export default class DatabaseService {
     });
   }
 
-  addIntegration(projectId, engine, databaseId, service) {
+  addIntegration(
+    projectId,
+    engine,
+    databaseId,
+    sourceServiceId,
+    destinationServiceId,
+    type,
+    parameters,
+  ) {
     return this.$http
       .post(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration`,
         {
-          sourceServiceId: service.id,
-          destinationServiceId: databaseId,
+          sourceServiceId,
+          destinationServiceId,
+          type,
+          parameters,
         },
       )
       .then(({ data }) => data);

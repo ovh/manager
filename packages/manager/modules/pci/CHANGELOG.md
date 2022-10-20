@@ -1,3 +1,22 @@
+# [5.94.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.93.2...@ovh-ux/manager-pci@5.94.0) (2022-10-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1884] ([#8227](https://github.com/ovh/manager/issues/8227)) ([2bcf26f](https://github.com/ovh/manager/commit/2bcf26f6b01eeef357dca10108c787368440882b))
+
+
+### Features
+
+* **pci.ai:** datatr-102 add new editor translations keys ([#8066](https://github.com/ovh/manager/issues/8066)) ([1c8d233](https://github.com/ovh/manager/commit/1c8d2334bd35b61cb2ce5272292f39f8a7b938f8))
+* **pci.data-processing:** adding return code to the job dashboard ([#7987](https://github.com/ovh/manager/issues/7987)) ([0fffe4d](https://github.com/ovh/manager/commit/0fffe4df448ffe65c8582a5f3fb228b8e7c0b897))
+* **pci.data-processing:** datatr-2 - jobs order funnel ([#7480](https://github.com/ovh/manager/issues/7480)) ([d7afc0c](https://github.com/ovh/manager/commit/d7afc0c7adad24c8e97eb8a48fc99d4858d94e8c))
+* **pci.data-processing:** datatr-3 - improve jobs dashboard  ([#7473](https://github.com/ovh/manager/issues/7473)) ([3db4262](https://github.com/ovh/manager/commit/3db4262898b88a1e105b5aa08221803306f38a01))
+* **pci.storage.databases:** datatr-30 - add new services integrations ([#7186](https://github.com/ovh/manager/issues/7186)) ([0599a3b](https://github.com/ovh/manager/commit/0599a3b43d0ca7103fb66ec4c9da59499ddca63c))
+* **storage.support:** add support component to a database general info view ([#7879](https://github.com/ovh/manager/issues/7879)) ([fdd3d8b](https://github.com/ovh/manager/commit/fdd3d8b42ecdb65550f7dbfe4bffeb36eddf37da))
+
+
+
 ## [5.93.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.93.1...@ovh-ux/manager-pci@5.93.2) (2022-10-19)
 
 

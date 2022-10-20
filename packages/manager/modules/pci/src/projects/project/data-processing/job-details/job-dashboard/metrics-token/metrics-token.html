@@ -1,19 +1,21 @@
 <oui-modal
     data-heading="{{ ::'data_processing_details_metrics_token_modal_title' | translate }}"
-    data-primary-action="$ctrl.closeModal()"
-    data-primary-label="{{ ::'data_processing_details_metrics_token_modal_dismiss_button' | translate }}"
+    data-primary-action="$ctrl.goToGrafana()"
+    data-primary-label="{{ ::'data_processing_details_metrics_token_modal_grafana_button' | translate }}"
+    data-secondary-action="$ctrl.closeModal()"
+    data-secondary-label="{{ ::'data_processing_details_metrics_token_modal_dismiss_button' | translate }}"
     data-on-dismiss="$ctrl.closeModal()"
 >
     <span
         data-translate="data_processing_details_metrics_token_modal_description_1"
-        data-translate-values="{ grafana_url: $ctrl.grafanaUrl }"
-    >
-    </span>
-    <span
+    ></span>
+    <a href="{{$ctrl.grafanaUrl}}" target="_blank" rel="noopener">Grafana</a>.
+    <a
+        href="{{$ctrl.docsMonitoringUrl}}"
+        target="_blank"
+        rel="noopener"
         data-translate="data_processing_details_metrics_token_modal_description_2"
-        data-translate-values="{ docs_monitoring_url: $ctrl.docsMonitoringUrl }"
-    >
-    </span>
+    ></a>
     <div
         data-translate="data_processing_details_metrics_token_modal_token_label"
     ></div>

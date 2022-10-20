@@ -3,7 +3,7 @@ import uniq from 'lodash/uniq';
 import filter from 'lodash/filter';
 import map from 'lodash/map';
 import head from 'lodash/head';
-import { nameGenerator } from '../../../data-processing/data-processing.utils';
+import { nameGenerator } from '../../../../../name-generator.constant';
 import {
   DISCORD_URL,
   DOC_DOCKER_BUILD_URL,

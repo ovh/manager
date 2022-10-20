@@ -853,6 +853,15 @@ export default /* @ngInject */ function VpsService(
     );
   };
 
+  this.upgradeAdditionalDisk = function upgradeAdditionalDisk(
+    serviceName,
+    planCode,
+  ) {
+    return $http
+      .post(`/order/upgrade/vpsAdditionalDisk/${serviceName}/${planCode}`)
+      .then(({ data }) => data);
+  };
+
   this.getOptionStatus = function getOptionStatus(serviceName, option) {
     return this.getSelectedVps(serviceName).then((vps) =>
       $http
@@ -1396,6 +1405,28 @@ export default /* @ngInject */ function VpsService(
       .get([swsVpsProxypass, serviceName, 'disks', id].join('/'))
       .then((response) => response.data)
       .catch(CucServiceHelper.errorHandler('vps_dashboard_loading_error'));
+  };
+
+  this.getUpgradableAdditionalDisk = function getUpgradableAdditionalDisk(
+    catalog,
+    vpsLinkedDisk,
+  ) {
+    return $http
+      .get(`/order/upgrade/vpsAdditionalDisk/${vpsLinkedDisk.serviceName}`)
+      .then(({ data }) => data)
+      .then((disks) =>
+        disks.map((disk) => {
+          return {
+            ...disk,
+            capacity: catalog.products.find(
+              ({ name }) => name === disk.productName,
+            ).blobs.technical.storage.disks[0].capacity,
+          };
+        }),
+      )
+      .then((disks) =>
+        disks.filter(({ capacity }) => capacity > vpsLinkedDisk.size),
+      );
   };
 
   this.showOnlyAdditionalDisk = function showOnlyAdditionalDisk(disks) {

@@ -82,5 +82,9 @@
   "pci_databases_general_information_update_maintenance_time_error": "Si è verificato un errore durante la modifica dell'orario della manutenzione",
   "pci_databases_general_information_update_backup_time_success": "L'orario del backup è stato modificato correttamente",
   "pci_databases_general_information_update_backup_time_error": "Si è verificato un errore durante la modifica dell'orario del backup",
-  "pci_databases_general_information_uri_network_info": "Il servizio è configurato con una connettività di <b>rete privata</b>, il che significa che solo i servizi all'interno della rete vRack possono connettersi al tuo database."
+  "pci_databases_general_information_uri_network_info": "Il servizio è configurato con una connettività di <b>rete privata</b>, il che significa che solo i servizi all'interno della rete vRack possono connettersi al tuo database.",
+  "pci_databases_general_information_support_title": "Supporto",
+  "pci_databases_general_information_support_level_label": "Livello di supporto",
+  "pci_databases_general_information_support_level_standard": "Standard",
+  "pci_databases_general_information_support_create_ticket_label": "Creare un ticket"
 }

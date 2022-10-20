@@ -1,4 +1,3 @@
-import find from 'lodash/find';
 import capitalize from 'lodash/capitalize';
 import {
   MAX_IPS_DISPLAY,
@@ -9,6 +8,7 @@ import {
   WARNING_MESSAGES,
   KARAPACE_URL,
 } from './general-information.constants';
+import isFeatureActivated from '../../features.constants';
 
 export default class {
   /* @ngInject */
@@ -18,6 +18,7 @@ export default class {
     ovhManagerRegionService,
     DatabaseService,
     CucControllerHelper,
+    coreConfig,
   ) {
     this.$translate = $translate;
     this.capitalize = capitalize;
@@ -26,6 +27,7 @@ export default class {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.DatabaseService = DatabaseService;
     this.DATABASE_TYPES = DATABASE_TYPES;
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {
@@ -50,6 +52,8 @@ export default class {
 
     this.maintenanceTime = this.database.maintenanceTime;
     this.backupTime = this.database.backupTime;
+    const { supportLevel } = this.user;
+    this.supportLevel = `pci_databases_general_information_support_level_${supportLevel.level}`;
   }
 
   downloadCertificate() {
@@ -153,6 +157,13 @@ export default class {
     this.goToAllowedIPs();
   }
 
+  manageIntegrations() {
+    this.trackDashboard(
+      'general_information::configuration::manage_integrations',
+    );
+    this.goToIntegrations();
+  }
+
   loadMessages() {
     this.CucCloudMessage.unSubscribe(this.messageContainer);
     this.messageHandler = this.CucCloudMessage.subscribe(
@@ -184,27 +195,17 @@ export default class {
 
   deleteDatabase() {
     this.trackDashboard('general_information::delete_database');
-
-    if (
-      [DATABASE_TYPES.KAFKA, DATABASE_TYPES.KAFKA_MIRROR_MAKER].includes(
-        this.database.engine,
-      )
-    ) {
-      return this.DatabaseService.getIntegrations(
+    if (isFeatureActivated('serviceIntegrationTab', this.database.engine)) {
+      return this.DatabaseService.getLinkedServices(
         this.projectId,
         this.database.engine,
         this.database.id,
-      ).then((integrations) => {
-        const linkedServices = integrations.map((integration) =>
-          this.database.engine === DATABASE_TYPES.KAFKA
-            ? find(this.databases, { id: integration.destinationServiceId })
-            : find(this.databases, { id: integration.sourceServiceId }),
-        );
-        if (linkedServices.length > 0) {
-          return this.goToConfirmDeleteDatabase(linkedServices);
-        }
-        return this.goToDeleteDatabase();
-      });
+        this.databases,
+      ).then((linkedServices) =>
+        linkedServices.length > 0
+          ? this.goToConfirmDeleteDatabase(linkedServices)
+          : this.goToDeleteDatabase(),
+      );
     }
     return this.goToDeleteDatabase();
   }
