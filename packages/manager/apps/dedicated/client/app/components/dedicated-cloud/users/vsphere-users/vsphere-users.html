@@ -69,6 +69,7 @@
         data-property="firstName"
         data-filterable
         data-sortable
+        data-hidden
     >
     </oui-datagrid-column>
     <oui-datagrid-column
@@ -76,6 +77,7 @@
         data-property="lastName"
         data-filterable
         data-sortable
+        data-hidden
     >
     </oui-datagrid-column>
     <oui-datagrid-column
@@ -88,6 +90,7 @@
         data-title=":: 'dedicatedCloud_USER_phone' | translate"
         data-property="phoneNumber"
         data-filterable
+        data-hidden
     >
     </oui-datagrid-column>
     <oui-datagrid-column
@@ -139,7 +142,6 @@
         data-title=":: 'dedicatedCloud_USER_encryption' | translate"
         data-property="encryptionRight"
         data-type="boolean"
-        data-hidden
         data-filterable
     >
         <span
@@ -153,7 +155,6 @@
         data-type="options"
         data-type-options="$ctrl.getUsersStateEnumFilter()"
         data-filterable
-        data-hidden
     >
         <span
             data-ng-if="$ctrl.dedicatedCloud.solution !== 'SYSTEMCENTER' || $row.name !== 'infraadmin'"
