@@ -5,12 +5,15 @@ import { env, cwd } from 'process';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { proxy, sso as Sso } from '@ovh-ux/manager-dev-server-config';
 
-export default function viteOvhDevServerPlugin(isContainerApp) {
+export default function viteOvhDevServerPlugin({
+  isContainerApp,
+  config: envConfig,
+}) {
   const region = process.env.REGION || 'EU';
   return {
     name: 'vite-ovh-dev-server',
     async configureServer(server) {
-      const sso = new Sso(region);
+      const sso = new Sso(region, envConfig);
       const app = express();
 
       if (isContainerApp) {
@@ -70,7 +73,7 @@ export default function viteOvhDevServerPlugin(isContainerApp) {
         app.use(proxy.aapi.context, createProxyMiddleware(proxy.aapi));
       }
 
-      const v6Proxy = proxy.v6(region);
+      const v6Proxy = proxy.v6(region, envConfig);
       app.use(createProxyMiddleware(v6Proxy.context, v6Proxy));
 
       server.middlewares.use(app);

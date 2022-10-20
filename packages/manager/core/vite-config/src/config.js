@@ -8,51 +8,57 @@ import viteOvhDevServerPlugin from './plugin/dev-server.js';
 
 const isContainerApp = process.cwd().endsWith('container');
 
-export default {
-  base: isContainerApp ? './' : '/app/',
-  root: resolve(process.cwd(), 'src'),
-  clearScreen: false,
-  publicDir: 'public',
-  resolve: {
-    alias: {
-      '@': resolve(join(process.cwd(), 'src')),
-    },
-  },
-  define: {
-    __VERSION__: process.env.VERSION ? `'${process.env.VERSION}'` : 'null',
-  },
-  plugins: [
-    reactRefresh(),
-    legacy({
-      targets: ['defaults'],
-    }),
-    viteOvhDevServerPlugin(isContainerApp),
-    IframeHmrPlugin(),
-  ],
-  css: {
-    preprocessorOptions: {
-      scss: {
-        includePaths: [
-          resolve(
-            dirname(fileURLToPath(import.meta.url)),
-            '../../../../../node_modules',
-          ),
-        ],
+const getBaseConfig = (config) => {
+  const envConfig = config || {};
+
+  return {
+    base: isContainerApp ? './' : '/app/',
+    root: resolve(process.cwd(), 'src'),
+    clearScreen: false,
+    publicDir: 'public',
+    resolve: {
+      alias: {
+        '@': resolve(join(process.cwd(), 'src')),
       },
     },
-  },
-  build: {
-    outDir: resolve(process.cwd(), 'dist'),
-    emptyOutDir: true,
-    minify: true,
-    sourcemap: true,
-  },
-  server: {
-    port: process.env.CONTAINER ? 9001 : 9000,
-    strictPort: true,
-    hmr: {
-      host: 'localhost',
-      port: process.env.CONTAINER ? 9001 : 9000,
+    define: {
+      __VERSION__: process.env.VERSION ? `'${process.env.VERSION}'` : 'null',
     },
-  },
+    plugins: [
+      reactRefresh(),
+      legacy({
+        targets: ['defaults'],
+      }),
+      viteOvhDevServerPlugin({ isContainerApp, config: envConfig }),
+      IframeHmrPlugin(),
+    ],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          includePaths: [
+            resolve(
+              dirname(fileURLToPath(import.meta.url)),
+              '../../../../../node_modules',
+            ),
+          ],
+        },
+      },
+    },
+    build: {
+      outDir: resolve(process.cwd(), 'dist'),
+      emptyOutDir: true,
+      minify: true,
+      sourcemap: true,
+    },
+    server: {
+      port: process.env.CONTAINER ? 9001 : 9000,
+      strictPort: true,
+      hmr: {
+        host: 'localhost',
+        port: process.env.CONTAINER ? 9001 : 9000,
+      },
+    },
+  };
 };
+
+export default getBaseConfig;
