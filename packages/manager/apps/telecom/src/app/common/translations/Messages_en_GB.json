@@ -202,7 +202,7 @@
   "unit_tera_bits_per_sec": "{{val}} Tb/s",
   "unit_peta_bits_per_sec": "{{val}} Pb/s",
   "unit_generic_per_sec": "{{val}}",
-  "unit_kilo_generic_per_sec": "{{val}} kb",
+  "unit_kilo_generic_per_sec": "{{val}} Kb",
   "unit_mega_generic_per_sec": "{{val}} Mb",
   "unit_giga_generic_per_sec": "{{val}} Gb",
   "unit_tera_generic_per_sec": "{{val}} Tb",
