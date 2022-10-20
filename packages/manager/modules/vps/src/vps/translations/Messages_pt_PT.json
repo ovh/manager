@@ -212,7 +212,7 @@
   "vps_configuration_cancel_option_title_veeam": "Rescindir a opção Backup automatizado",
   "vps_configuration_cancel_option_title_automatedbackup": "Rescindir a opção Backup automatizado",
   "vps_configuration_cancel_option_title_windows": "Rescindir a opção Windows",
-  "vps_configuration_cancel_option_title_additionaldisk": "Rescindir a opção de discos adicionais",
+  "vps_configuration_cancel_option_title_additionaldisk": "Rescindir a opção: disco adicional",
   "vps_configuration_cancel_option_step1_info": "O cancelamento do serviço terá efeito a partir da data de renovação: {{ date }}.",
   "vps_configuration_cancel_option_step1_warn": "Esta ação é irreversível e não pode ser anulada.",
   "vps_configuration_cancel_option_cancel_success": "A opção foi rescindida.",
