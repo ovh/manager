@@ -3,7 +3,7 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { act, waitFor } from '@testing-library/react';
 import { Environment, User } from '@ovh-ux/manager-config';
-import { renderWithNotifications } from '../__test-utils__/contextRenders';
+import { renderWithShell } from '../__test-utils__/contextRenders';
 
 import Navbar from '../../container/legacy/navbar/Navbar';
 

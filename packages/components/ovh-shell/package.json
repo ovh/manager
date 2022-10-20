@@ -12,6 +12,7 @@
   "author": "OVH SAS",
   "sideEffects": "false",
   "type": "module",
+  "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "scripts": {
@@ -23,8 +24,8 @@
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/ovh-at-internet": "^0.1.0 || ^0.2.0",
     "@ovh-ux/ovh-reket": "^1.0.0",
-    "@ovh-ux/url-builder": "^0.0.0 || ^1.0.0",
     "@ovh-ux/request-tagger": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/url-builder": "^0.0.0 || ^1.0.0",
     "@types/react": "^17.0.24",
     "@types/react-router-dom": "^5.3.0",
     "dompurify": "^2.3.3",
