@@ -16,6 +16,7 @@ export function setupDevApplication(shell: Shell) {
     // disable container for all applications
     Object.entries(apps).forEach(([, appConfig]) => {
       const conf = appConfig as Application;
+      conf.container.isDefault = false;
       conf.container.enabled = false;
     });
 
