@@ -1,8 +1,8 @@
 {
   "pci_databases_service_integration_delete_confirm": "Bestätigen",
   "pci_databases_service_integration_delete_cancel": "Abbrechen",
-  "pci_databases_service_integration_delete": "Einen {{engineName}}-Dienst entfernen",
-  "pci_databases_service_integration_delete_description": "Sie sind im Begriff, Ihren {{engineName}}-Dienst zu entfernen. Möchten Sie fortfahren?",
-  "pci_databases_service_integration_delete_success_message": "Ihr Dienst {{engineName}} {{service}} wurde entfernt.",
-  "pci_databases_service_integration_delete_error_message": "Beim Löschen Ihres Dienstes ist ein Fehler aufgetreten: {{message}}"
+  "pci_databases_service_integration_delete": "Integration löschen",
+  "pci_databases_service_integration_delete_description": "Sie sind im Begriff, Ihre Integration {{integrationType}} zu löschen. Möchten Sie fortfahren?",
+  "pci_databases_service_integration_delete_success_message": "Ihre Integration {{integrationType}} wurde gelöscht.",
+  "pci_databases_service_integration_delete_error_message": "Beim Löschen Ihrer Integration ist ein Fehler aufgetreten: {{message}}."
 }

@@ -1,0 +1,9 @@
+{
+  "vps_additional_disk_terminate_title": "Dar de baja la opción de disco adicional",
+  "vps_additional_disk_terminate_info_part_1": "La opción de disco adicional se dará de baja en la fecha de renovación: {{date}}",
+  "vps_additional_disk_terminate_info_part_2": "Esta acción es irreversible y no se puede cancelar.",
+  "vps_additional_disk_terminate_action_terminate_success": "La solicitud de baja de la opción de disco adicional se ha registrado y será efectiva en unos minutos.",
+  "vps_additional_disk_terminate_action_terminate_error": "Se ha producido un error al dar de baja la opción.",
+  "vps_additional_disk_terminate_action_terminate": "Dar de baja",
+  "vps_additional_disk_terminate_action_cancel": "Cancelar"
+}

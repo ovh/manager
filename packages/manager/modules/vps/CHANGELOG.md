@@ -1,3 +1,17 @@
+# [2.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.24.0...@ovh-ux/manager-vps@2.25.0) (2022-10-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1898] ([17ef3be](https://github.com/ovh/manager/commit/17ef3beb539dfe56e98d802f885b1a38365c0238))
+
+
+### Features
+
+* **vps:** upgrade option to vps additional disk ([#7832](https://github.com/ovh/manager/issues/7832)) ([4c77560](https://github.com/ovh/manager/commit/4c7756023cea07cfa83e7d802dd847aef899fcce))
+
+
+
 # [2.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.23.5...@ovh-ux/manager-vps@2.24.0) (2022-09-29)
 
 

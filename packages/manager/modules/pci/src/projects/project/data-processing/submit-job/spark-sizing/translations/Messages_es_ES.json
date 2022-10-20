@@ -17,5 +17,7 @@
   "data_processing_submit_job_stepper_spark_worker_memory_overhead_label": "Memoria overhead del executor",
   "data_processing_submit_job_stepper_spark_estimated_price": "Precio estimado: ",
   "data_processing_submit_job_stepper_spark_free": "Gratuito",
-  "data_processing_submit_job_stepper_spark_memory_overhead_autocompute_label": "Calcular automáticamente"
+  "data_processing_submit_job_stepper_spark_memory_overhead_autocompute_label": "Calcular automáticamente",
+  "data_processing_submit_job_stepper_spark_driver_gib": "GiB",
+  "data_processing_submit_job_stepper_spark_driver_mib": "MiB"
 }

@@ -1,0 +1,9 @@
+{
+  "vps_additional_disk_terminate_title": "Rescindir a opção: disco adicional",
+  "vps_additional_disk_terminate_info_part_1": "A rescisão da opção disco adicional entrará em vigor na data de renovação: {{date}}",
+  "vps_additional_disk_terminate_info_part_2": "Esta ação é irreversível e não pode ser anulada.",
+  "vps_additional_disk_terminate_action_terminate_success": "O seu pedido de rescisão do disco adicional foi corretamente tomado em conta e será efetivo em breve.",
+  "vps_additional_disk_terminate_action_terminate_error": "Ocorreu um erro durante a rescisão da opção.",
+  "vps_additional_disk_terminate_action_terminate": "Rescindir",
+  "vps_additional_disk_terminate_action_cancel": "Anular"
+}

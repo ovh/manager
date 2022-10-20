@@ -3,6 +3,7 @@ import ServiceIntegration from '../../../../../../components/project/storages/da
 import Replication from '../../../../../../components/project/storages/databases/replication.class';
 import { DATABASE_TYPES } from '../../databases.constants';
 import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
+import { REPLICATION_INTEGRATION_TYPE } from './replications.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -53,7 +54,7 @@ export default /* @ngInject */ ($stateProvider) => {
           database,
           DatabaseService,
           projectId,
-          kafkaServicesList,
+          databases,
         ) =>
           DatabaseService.getIntegrations(
             projectId,
@@ -62,12 +63,16 @@ export default /* @ngInject */ ($stateProvider) => {
           ).then((integrations) =>
             map(integrations, (i) => {
               const serviceIntegration = new ServiceIntegration(i);
-              serviceIntegration.setSourceServiceName(kafkaServicesList);
+              serviceIntegration.setServicesNames(databases);
               return serviceIntegration;
             }),
           ),
         readyServiceIntegrationList: /* @ngInject */ (serviceIntegrationList) =>
-          serviceIntegrationList.filter((s) => s.statusGroup === STATUS.READY),
+          serviceIntegrationList.filter(
+            (s) =>
+              s.statusGroup === STATUS.READY &&
+              s.type === REPLICATION_INTEGRATION_TYPE,
+          ),
         goToAddReplication: /* @ngInject */ (
           $state,
           databaseId,

@@ -12,5 +12,8 @@ export default {
     increaseQuotaLink: '<',
     prices: '<',
     user: '<',
+    containers: '<',
+    goToObjectStorage: '<',
+    goToDashboard: '<',
   },
 };

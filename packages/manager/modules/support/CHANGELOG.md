@@ -1,3 +1,17 @@
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.12.1...@ovh-ux/manager-support@1.13.0) (2022-10-20)
+
+
+### Bug Fixes
+
+* **dedicated.support:** add standard s3 on support tickets ([be78a76](https://github.com/ovh/manager/commit/be78a7601283db42d051d0b8369c1240a4bba932))
+
+
+### Features
+
+* **storage.support:** add support component to a database general info view ([#7879](https://github.com/ovh/manager/issues/7879)) ([fdd3d8b](https://github.com/ovh/manager/commit/fdd3d8b42ecdb65550f7dbfe4bffeb36eddf37da))
+
+
+
 ## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.12.0...@ovh-ux/manager-support@1.12.1) (2022-08-18)
 
 

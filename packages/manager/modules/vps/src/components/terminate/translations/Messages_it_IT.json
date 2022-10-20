@@ -1,0 +1,9 @@
+{
+  "vps_additional_disk_terminate_title": "Disattiva l'opzione: disco aggiuntivo",
+  "vps_additional_disk_terminate_info_part_1": "La disattivazione dell'opzione di disco aggiuntivo entrerà in vigore alla data di rinnovo: {{date}}",
+  "vps_additional_disk_terminate_info_part_2": "Questa azione è irreversibile e non può essere annullata.",
+  "vps_additional_disk_terminate_action_terminate_success": "La richiesta di disattivazione dell'opzione di disco aggiuntivo è stata presa in carico e a breve diventerà effettiva.",
+  "vps_additional_disk_terminate_action_terminate_error": "Si è verificato un errore durante la disattivazione dell'opzione.",
+  "vps_additional_disk_terminate_action_terminate": "Disattiva",
+  "vps_additional_disk_terminate_action_cancel": "Annullare"
+}

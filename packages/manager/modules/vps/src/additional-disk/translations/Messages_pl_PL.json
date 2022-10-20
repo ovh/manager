@@ -1,3 +1,6 @@
 {
-  "vps_additional_disk": "Dodatkowy dysk"
+  "vps_additional_disk": "Dodatkowy dysk",
+  "vps_additional_disk_actions_increase_disk": "Zwiększ rozmiar dysku",
+  "vps_additional_disk_actions_terminate": "Zrezygnuj",
+  "vps_additional_disk_actions_terminate_disabled_info": "Dodatkowy dysk może zostać usunięty po wygaśnięciu umowy terminowej na VPS."
 }

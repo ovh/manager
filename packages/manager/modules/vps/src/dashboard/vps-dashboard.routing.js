@@ -41,6 +41,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('vps.detail.dashboard.snapshot-restore'),
       goToTerminateOption: /* @ngInject */ ($state) => (vpsOption) =>
         $state.go('vps.detail.dashboard.terminate-option', { vpsOption }),
+      goToUpgradeAdditionalDisk: /* @ngInject */ ($state) => (vpsOption) =>
+        $state.go('vps.detail.dashboard.additional-disk-upgrade', {
+          vpsOption,
+        }),
       goToMonitoringSla: /* @ngInject */ ($state) => (view, state) => {
         const preview = view || false;
         return $state.go('vps.detail.dashboard.monitoring-sla', {
@@ -154,6 +158,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('vps.detail.dashboard.migrate'),
       breadcrumb: () => null,
       trackingPrefix: () => 'vps::detail::dashboard',
+
+      upgradableDisks: /* @ngInject */ (catalog, vpsLinkedDisk, VpsService) =>
+        vpsLinkedDisk?.serviceName
+          ? VpsService.getUpgradableAdditionalDisk(catalog, vpsLinkedDisk)
+          : [],
 
       stein: /* @ngInject */ ($http, stateVps) =>
         $http
