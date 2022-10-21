@@ -6,6 +6,7 @@ export default {
     projectId: '<',
     quotas: '<',
     project: '<',
+    projects: '<',
     user: '<',
     pciFeatures: '<',
     isTrustedZone: '<',
