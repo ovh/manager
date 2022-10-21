@@ -566,7 +566,10 @@ export default class PciInstancesAddController {
     if (!this.isPrivateMode()) {
       return !this.isGatewayLoading && this.subnetGateways.length === 0;
     }
-    return this.selectedPrivateNetwork.id !== '';
+    return (
+      this.selectedPrivateNetwork.id !== '' &&
+      (!this.isAttachFloatingIPAvailable || this.selectedFloatingIP)
+    );
   }
 
   addPricing() {
