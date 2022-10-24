@@ -26,7 +26,9 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       coldArchive: () => true,
+
       guides: () => GUIDES,
+
       breadcrumb: /* @ngInject */ ($translate) => {
         return $translate.instant(
           'pci_projects_project_storages_cold_archive_title',
@@ -37,16 +39,19 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.storages.cold-archives.add', {
           projectId,
         }),
+
       viewContainer: /* @ngInject */ ($state, projectId) => (container) =>
         $state.go('pci.projects.project.storages.cold-archives.cold-archive', {
           projectId,
           containerId: container.id,
         }),
+
       deleteContainer: /* @ngInject */ ($state, projectId) => (container) =>
         $state.go('pci.projects.project.storages.cold-archives.delete', {
           projectId,
           containerId: container.id,
         }),
+
       containerLink: /* @ngInject */ ($state, projectId) => (container) =>
         $state.href(
           'pci.projects.project.storages.cold-archives.cold-archive',
@@ -59,16 +64,20 @@ export default /* @ngInject */ ($stateProvider) => {
       userList: /* @ngInject */ (projectId, allUserList) =>
         allUserList.filter((user) => user?.s3Credentials?.length > 0),
 
-      allUserList: /* @ngInject */ (
-        projectId,
-        PciStoragesObjectStorageService,
-      ) =>
-        PciStoragesObjectStorageService.getAllS3Users(projectId).then((users) =>
-          PciStoragesObjectStorageService.mapUsersToCredentials(
-            projectId,
-            users,
-          ),
+      allUserList: /* @ngInject */ (projectId, PciStoragesColdArchiveService) =>
+        PciStoragesColdArchiveService.getAllS3Users(projectId).then((users) =>
+          PciStoragesColdArchiveService.mapUsersToCredentials(projectId, users),
         ),
+
+      isUserTabActive: /* @ngInject */ ($transition$, $state) => () =>
+        $state
+          .href($state.current.name, $transition$.params())
+          .includes('users'),
+
+      userListLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.storages.cold-archive.users', {
+          projectId,
+        }),
 
       goToArchives: ($state, projectId, CucCloudMessage) => (
         message = false,
@@ -99,6 +108,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToAddColdArchive: /* @ngInject */ ($state) => () =>
         $state.go('pci.projects.project.storages.cold-archive.add'),
+
+      trackingPrefix: () =>
+        'PublicCloud::pci::projects::project::storages::cold_archive::',
 
       trackClick: /* @ngInject */ (atInternet) => (hit) =>
         atInternet.trackClick({
