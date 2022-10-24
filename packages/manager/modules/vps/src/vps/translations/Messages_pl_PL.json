@@ -212,7 +212,7 @@
   "vps_configuration_cancel_option_title_veeam": "Rezygnacja ze zautomatyzowanego backupu",
   "vps_configuration_cancel_option_title_automatedbackup": "Rezygnacja ze zautomatyzowanego backupu",
   "vps_configuration_cancel_option_title_windows": "Rezygnacja z opcji Windows",
-  "vps_configuration_cancel_option_title_additionaldisk": "Rezygnacja z opcji dodatkowych dysków",
+  "vps_configuration_cancel_option_title_additionaldisk": "Zrezygnuj z opcji: dodatkowy dysk",
   "vps_configuration_cancel_option_step1_info": "Rezygnacja z opcji stanie się skuteczna w dniu odnowienia usługi, czyli {{ date }}.",
   "vps_configuration_cancel_option_step1_warn": "Operacja ta jest nieodwracalna i nie można jej anulować.",
   "vps_configuration_cancel_option_cancel_success": "Opcja została usunięta.",

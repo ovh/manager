@@ -5,7 +5,7 @@
   "vps_additional_disk_upgrade_action_upgrade_success": "Your disk size has been increased.",
   "vps_additional_disk_upgrade_action_upgrade_error": "An error has occurred increasing the disk size.",
   "vps_additional_disk_upgrade_action_upgrade": "Increase",
-  "vps_additional_disk_upgrade_action_cancel": "Cancel",
+  "vps_additional_disk_upgrade_action_cancel": "Exit",
   "vps_additional_disk_upgrade_action_upgrade_success_info": "Your disk upgrade request has been processed.",
   "vps_additional_disk_upgrade_action_upgrade_payment_info": "Please confirm your order with a payment method by following this link."
 }

@@ -145,5 +145,9 @@
   "ovhManagerSupport_new_serviceType_managed_kafka_connect": "Public Cloud databases for Kafka Connect",
   "ovhManagerSupport_new_serviceType_managed_cassandra": "Public Cloud databases for Cassandra",
   "ovhManagerSupport_new_serviceType_ai_notebook": "AI Notebooks",
-  "ovhManagerSupport_new_serviceType_license_office_prepaid": "Licencja Microsoft 365"
+  "ovhManagerSupport_new_serviceType_license_office_prepaid": "Licencja Microsoft 365",
+  "ovhManagerSupport_new_serviceType_publiccloud_storage": "Object Storage S3 Standard",
+  "ovhManagerSupport_new_serviceType_publiccloud_storage_highperf": "Object Storage S3 High Perf",
+  "ovhManagerSupport_new_serviceType_publiccloud_storage_swift": "Object Storage Swift Standard",
+  "ovhManagerSupport_new_serviceType_publiccloud_storage_swift_archive": "Object Storage Swift Archive"
 }

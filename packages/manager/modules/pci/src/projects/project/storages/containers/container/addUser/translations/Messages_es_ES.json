@@ -4,7 +4,8 @@
   "pci_projects_project_storages_containers_container_addUser_object_title": "Añadir un usuario a mi objeto",
   "pci_projects_project_storages_containers_container_addUser_description_container_step_0": "Seleccione el usuario que quiere añadir al contenedor. Si no aparece en esta lista, deberá crearlo en la sección dedicada.",
   "pci_projects_project_storages_containers_container_addUser_description_object_step_0": "Seleccione el usuario que quiere añadir a su objeto. Si no aparece en la lista, deberá crearlo en la sección dedicada.",
-  "pci_projects_project_storages_containers_container_addUser_description_step_1": "Indique el rol del usuario en el contenedor {{container}}.",
+  "pci_projects_project_storages_containers_container_addUser_description_container_step_1": "Indique el rol del usuario en el contenedor {{value}}.",
+  "pci_projects_project_storages_containers_container_addUser_description_object_step_1": "Indique el rol del usuario en el objeto {{value}}.",
   "pci_projects_project_storages_containers_container_addUser_submit_label": "Confirmar",
   "pci_projects_project_storages_containers_container_addUser_next_label": "Siguiente",
   "pci_projects_project_storages_containers_container_addUser_cancel_label": "Cancelar",
@@ -13,11 +14,11 @@
   "pci_projects_project_storages_containers_container_addUser_right_readWrite": "Read and write",
   "pci_projects_project_storages_containers_container_addUser_right_readOnly": "Read only",
   "pci_projects_project_storages_containers_container_addUser_right_deny": "Deny",
+  "pci_projects_project_storages_containers_container_addUser_select_user_label": "Seleccionar un usuario",
+  "pci_projects_project_storages_containers_container_addUser_select_user_has_credential": "Claves generadas",
+  "pci_projects_project_storages_containers_container_addUser_select_user_has_not_credential": "Sin claves",
   "pci_projects_project_storages_containers_container_addUser_success_message": "Se ha añadido el usuario {{ name }} al contenedor {{ value }} como {{ role }}.",
   "pci_projects_project_storages_containers_container_addUser_object_success_message": "Se ha añadido el usuario {{ name }} al objeto {{ value }} como {{ role }}.",
   "pci_projects_project_storages_containers_container_addUser_error_addUser": "El usuario no se ha añadido correctamente al contenedor {{ value }}: {{ message }}.",
-  "pci_projects_project_storages_containers_container_addUser_description_container_step_1": "Indique el rol del usuario en el contenedor {{value}}.",
-  "pci_projects_project_storages_containers_container_addUser_description_object_step_1": "Indique el rol del usuario en el objeto {{value}}.",
-  "pci_projects_project_storages_containers_container_addUser_object_error_addUser": "El usuario no se ha añadido correctamente al objeto{{ value }}: {{ message }}.",
-  "pci_projects_project_storages_containers_container_addUser_select_user_label": "Seleccionar un usuario"
+  "pci_projects_project_storages_containers_container_addUser_object_error_addUser": "El usuario no se ha añadido correctamente al objeto{{ value }}: {{ message }}."
 }

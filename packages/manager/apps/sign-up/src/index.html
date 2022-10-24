@@ -8,12 +8,7 @@
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
     </head>
-    <body
-        class="sign-up-app"
-        data-ng-app="ovhSignUpApp"
-        data-ng-strict-di
-        data-ng-controller="SignUpCtrl as $ctrl"
-    >
+    <body class="sign-up-app" data-ng-controller="SignUpCtrl as $ctrl">
         <div class="container">
             <div class="py-3 py-md-5 px-3">
                 <a
@@ -22,11 +17,8 @@
                     target="_top"
                 >
                     <img
-                        src="assets/img/logo/logo-ovhcloud.png"
-                        srcset="
-                            assets/img/logo/logo-ovhcloudx2.png 2x,
-                            assets/img/logo/logo-ovhcloudx3.png 3x
-                        "
+                        data-ng-src="{{$ctrl.logoSrc.default}}"
+                        data-ng-srcset="{{$ctrl.logoSrc.set}}"
                         alt="OVHcloud"
                         class="app-logo"
                     />

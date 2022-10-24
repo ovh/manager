@@ -10,7 +10,7 @@
   "pci_projects_project_storages_containers_container_object_info_staticUrl_help": "Para utilizar el contenedor «alojamiento estático» en un dominio o subdominio, solo tiene que editar la zona DNS añadiendo un registro CNAME con este valor.",
   "pci_projects_project_storages_containers_container_archive_info_user": "Nombre de usuario: {{ user }}",
   "pci_projects_project_storages_containers_container_archive_info_password": "Contraseña (la concatenación de los siguientes campos):",
-  "pci_projects_project_storages_containers_container_name_label": "Apellido",
+  "pci_projects_project_storages_containers_container_name_label": "Nombre",
   "pci_projects_project_storages_containers_container_lastModified_label": "Última modificación",
   "pci_projects_project_storages_containers_container_size_label": "Tamaño",
   "pci_projects_project_storages_containers_container_contentType_label": "Tipo",

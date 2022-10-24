@@ -1,16 +1,17 @@
 import get from 'lodash/get';
 
-import { HOME_PAGE, OVH_LOGO } from './constants';
+import { HOME_PAGE, LOGO_SRC } from './constants';
 
 export default class SignUpCtrl {
   /* @ngInject */
-  constructor(ssoAuthentication) {
+  constructor(coreConfig, ssoAuthentication) {
     // dependencies injections
+    this.coreConfig = coreConfig;
     this.ssoAuthentication = ssoAuthentication;
 
     // other attributes used in view
     this.logoUrl = null;
-    this.logoSrc = OVH_LOGO;
+    this.logoSrc = LOGO_SRC.default;
   }
 
   /* ============================
@@ -18,13 +19,14 @@ export default class SignUpCtrl {
   ============================= */
 
   $onInit() {
-    return this.ssoAuthentication.getSsoAuthPendingPromise().then(() => {
-      this.logoUrl = get(
-        HOME_PAGE,
-        this.ssoAuthentication.user.ovhSubsidiary,
-        HOME_PAGE.default,
-      );
-    });
+    this.logoSrc =
+      this.coreConfig.getRegion() === 'US' ? LOGO_SRC.US : LOGO_SRC.default;
+
+    this.logoUrl = get(
+      HOME_PAGE,
+      this.coreConfig.getUser().ovhSubsidiary,
+      HOME_PAGE.default,
+    );
   }
 
   /* -----  End of Hooks  ------ */

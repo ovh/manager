@@ -212,7 +212,7 @@
   "vps_configuration_cancel_option_title_veeam": "Dar de baja la opción del backup automatizado",
   "vps_configuration_cancel_option_title_automatedbackup": "Dar de baja la opción del backup automatizado",
   "vps_configuration_cancel_option_title_windows": "Dar de baja la opción Windows",
-  "vps_configuration_cancel_option_title_additionaldisk": "Dar de baja la opción de los discos adicionales",
+  "vps_configuration_cancel_option_title_additionaldisk": "Dar de baja la opción de disco adicional",
   "vps_configuration_cancel_option_step1_info": "Esta opción se dará de baja en la fecha de renovación, es decir, el {{ date }}.",
   "vps_configuration_cancel_option_step1_warn": "Esta acción es irreversible y no se puede cancelar.",
   "vps_configuration_cancel_option_cancel_success": "Hemos dado de baja esta opción.",
