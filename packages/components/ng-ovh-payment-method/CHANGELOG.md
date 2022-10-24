@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [9.3.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.3.1...@ovh-ux/ng-ovh-payment-method@9.3.2) (2022-10-24)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-payment-method
+
+
+
+
+
 ## [9.3.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.3.0...@ovh-ux/ng-ovh-payment-method@9.3.1) (2022-10-20)
 
 
@@ -861,6 +874,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * add get available methods and new payment method ([2e8943d](https://github.com/ovh-ux/ng-payment-method/commit/2e8943d))
-
-
-

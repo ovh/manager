@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.5.1...@ovh-ux/manager-exchange-app@0.5.2) (2022-10-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.5.0...@ovh-ux/manager-exchange-app@0.5.1) (2022-07-27)
 
 
@@ -185,6 +198,3 @@
 ### Features
 
 * init standalone app ([a12277c](https://github.com/ovh/manager/commit/a12277c853a62db78d0517d90762ee287108b8dc))
-
-
-

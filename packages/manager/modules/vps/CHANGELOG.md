@@ -1,3 +1,20 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.25.0...@ovh-ux/manager-vps@2.25.1) (2022-10-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1899] ([fbd0ddf](https://github.com/ovh/manager/commit/fbd0ddf500d0ac2c2e2ecb5bdaffda60ac4493a2))
+* **i18n:** add missing translations [CDS 1902] ([f72e885](https://github.com/ovh/manager/commit/f72e88547ee1073d97840e777834a2918e600af7))
+
+
+
+
+
 # [2.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.24.0...@ovh-ux/manager-vps@2.25.0) (2022-10-20)
 
 
@@ -1325,6 +1342,3 @@ Signed-off-by: Antoine Leblanc <ant.leblanc@gmail.com>
 
 * **vps:** add @ovh-ux/manager-vps module ([7fd7979](https://github.com/ovh/manager/commit/7fd7979abff2d2c8262b4cfee787f45cde018b7b))
 * **vps:** migrate vps ([c27a0b3](https://github.com/ovh/manager/commit/c27a0b31007881ac29a9257a527d67e562737957))
-
-
-

@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@2.7.0...@ovh-ux/manager-nasha-app@2.7.1) (2022-10-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-nasha-app
+
+
+
+
+
 # [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@2.6.1...@ovh-ux/manager-nasha-app@2.7.0) (2022-08-25)
 
 
@@ -376,6 +389,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### BREAKING CHANGES
 
 * **nasha:** init @ovh-ux/manager-nasha module
-
-
-

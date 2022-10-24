@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.8.1...@ovh-ux/manager-vps-app@1.8.2) (2022-10-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-vps-app
+
+
+
+
+
 ## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.8.0...@ovh-ux/manager-vps-app@1.8.1) (2022-07-27)
 
 
@@ -465,6 +478,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 * **vps:** add @ovh-ux/manager-vps module ([7fd7979](https://github.com/ovh/manager/commit/7fd7979abff2d2c8262b4cfee787f45cde018b7b))
 * **vps:** migrate vps ([c27a0b3](https://github.com/ovh/manager/commit/c27a0b31007881ac29a9257a527d67e562737957))
-
-
-
