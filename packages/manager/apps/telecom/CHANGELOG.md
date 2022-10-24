@@ -1,3 +1,20 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [13.46.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.46.1...@ovh-ux/manager-telecom@13.46.2) (2022-10-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1877] ([be1ab4c](https://github.com/ovh/manager/commit/be1ab4c8dcbac68b5eb9635ea9ecdb3e111178e7))
+* remove unused translations [CDS] ([0b1eb80](https://github.com/ovh/manager/commit/0b1eb80e3ee1d7877ab56057df75a98a58b86b29))
+
+
+
+
+
 ## [13.46.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.46.0...@ovh-ux/manager-telecom@13.46.1) (2022-10-10)
 
 
@@ -4962,6 +4979,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 <a name="6.6.41"></a>
 ## 6.6.41 (2017-07-10)
-
-
-

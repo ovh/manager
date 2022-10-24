@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.7.3...@ovh-ux/manager-support-app@2.7.4) (2022-10-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-support-app
+
+
+
+
+
 ## [2.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.7.2...@ovh-ux/manager-support-app@2.7.3) (2022-07-27)
 
 
@@ -387,6 +400,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * **support:** create the app ([cd11aed](https://github.com/ovh/manager/commit/cd11aed8be15672f22d71aa8d312dfe99467134a))
-
-
-

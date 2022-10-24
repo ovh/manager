@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [3.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.5.1...@ovh-ux/manager-pci-app@3.5.2) (2022-10-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
 ## [3.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.5.0...@ovh-ux/manager-pci-app@3.5.1) (2022-07-27)
 
 
@@ -544,6 +557,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * **pci:** add @ovh-ux/manager-pci package ([#230](https://github.com/ovh-ux/manager/issues/230)) ([9c36a75](https://github.com/ovh-ux/manager/commit/9c36a75))
-
-
-

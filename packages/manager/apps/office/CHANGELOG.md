@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-office-app@0.5.1...@ovh-ux/manager-office-app@0.5.2) (2022-10-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-office-app
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-office-app@0.5.0...@ovh-ux/manager-office-app@0.5.1) (2022-07-27)
 
 
@@ -175,6 +188,3 @@
 ### Features
 
 * init standalone app ([43d040b](https://github.com/ovh/manager/commit/43d040b997a7d1afdac8598c44eded7e478c2a1f))
-
-
-

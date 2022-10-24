@@ -1,3 +1,27 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [5.94.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.94.0...@ovh-ux/manager-pci@5.94.1) (2022-10-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1836] ([#8008](https://github.com/ovh/manager/issues/8008)) ([32d5dac](https://github.com/ovh/manager/commit/32d5dac9d797e73630ba56c5520b819d5f807673))
+* **i18n:** add missing translations [CDS 1860] ([ac96118](https://github.com/ovh/manager/commit/ac96118a2b95430fd6185c2ecd24a2bb28748d8c))
+* **i18n:** add missing translations [CDS 1862] ([29d3c5f](https://github.com/ovh/manager/commit/29d3c5fa1f87b9f1557688651975d6620aa2f8ef))
+* **i18n:** add missing translations [CDS 1869] ([0639165](https://github.com/ovh/manager/commit/06391652280e9448652b0a6c2d23ab7d77c82c65))
+* **i18n:** add missing translations [CDS 1873] ([93074f6](https://github.com/ovh/manager/commit/93074f61da15b64115e78d121b0436c1e50ede7a))
+* **i18n:** add missing translations [CDS 1874] ([33aaa27](https://github.com/ovh/manager/commit/33aaa27409147edeeaf2da9227e540db02a1200e))
+* **i18n:** add missing translations [CDS 1897] ([0ec2298](https://github.com/ovh/manager/commit/0ec22984d0e7280fe3e34fd19063b2a145681aa9))
+* **i18n:** add missing translations [CDS 1902] ([f72e885](https://github.com/ovh/manager/commit/f72e88547ee1073d97840e777834a2918e600af7))
+* remove unused translations [CDS] ([1936610](https://github.com/ovh/manager/commit/19366105418c53629c9fd8f67ce95fb575b2264d))
+
+
+
+
+
 # [5.94.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.93.2...@ovh-ux/manager-pci@5.94.0) (2022-10-20)
 
 
@@ -5000,6 +5024,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * **pci:** add @ovh-ux/manager-pci package ([#230](https://github.com/ovh-ux/manager/issues/230)) ([9c36a75](https://github.com/ovh-ux/manager/commit/9c36a75))
-
-
-

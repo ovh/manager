@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.20.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.1...@ovh-ux/manager-billing@0.20.0-alpha.2) (2022-10-24)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([0b1eb80](https://github.com/ovh/manager/commit/0b1eb80e3ee1d7877ab56057df75a98a58b86b29))
+
+
+
+
+
 # [0.20.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.0...@ovh-ux/manager-billing@0.20.0-alpha.1) (2022-10-10)
 
 
@@ -716,6 +732,3 @@
 
 * **billing:** set new content for split payment modal ([#5144](https://github.com/ovh/manager/issues/5144)) ([6e16b8c](https://github.com/ovh/manager/commit/6e16b8c0534571fc30384b58d0cf08e2de101429))
 * **dedicated:** move billing section into new module ([46975aa](https://github.com/ovh/manager/commit/46975aad8609e7678dc28ceac4bc8f36006045a6))
-
-
-

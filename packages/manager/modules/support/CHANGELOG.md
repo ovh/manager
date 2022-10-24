@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.13.0...@ovh-ux/manager-support@1.13.1) (2022-10-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1902] ([f72e885](https://github.com/ovh/manager/commit/f72e88547ee1073d97840e777834a2918e600af7))
+
+
+
+
+
 # [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.12.1...@ovh-ux/manager-support@1.13.0) (2022-10-20)
 
 
@@ -742,6 +758,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * **support:** import translations ([88bc8ac](https://github.com/ovh-ux/manager/commit/88bc8ac))
-
-
-

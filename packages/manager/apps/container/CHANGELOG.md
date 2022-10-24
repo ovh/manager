@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.5.1...@ovh-ux/manager-container-app@0.5.2) (2022-10-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1873] ([93074f6](https://github.com/ovh/manager/commit/93074f61da15b64115e78d121b0436c1e50ede7a))
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.5.0...@ovh-ux/manager-container-app@0.5.1) (2022-10-20)
 
 
@@ -398,6 +414,3 @@
 * **app-shell:** use ux plugin in appShell ([6dd3aeb](https://github.com/ovh/manager/commit/6dd3aebdd2d2c142a6b8060623518308d0c49271))
 * **ux:** init plugin ([773266e](https://github.com/ovh/manager/commit/773266ebaeec9adb5378a24f0e7fe5d676036d3c))
 * **uxplugin:** integrate plugin in shell and hub ([4fd51aa](https://github.com/ovh/manager/commit/4fd51aa3eda219b80e96d2e18bcf530d6972bd28))
-
-
-

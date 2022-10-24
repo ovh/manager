@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.5.1...@ovh-ux/manager-emailpro-app@0.5.2) (2022-10-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-emailpro-app
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.5.0...@ovh-ux/manager-emailpro-app@0.5.1) (2022-07-27)
 
 
@@ -177,6 +190,3 @@
 ### Features
 
 * init standalone app ([733adc8](https://github.com/ovh/manager/commit/733adc852932ec3856428d638e5d7aa9f605a39c))
-
-
-

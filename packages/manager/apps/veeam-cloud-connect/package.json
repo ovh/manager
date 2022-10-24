@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-cloud-connect-app",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "private": true,
   "description": "Veeam Cloud Connect standalone application.",
   "repository": {

@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [3.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.22.3...@ovh-ux/manager-hub-app@3.22.4) (2022-10-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
 ## [3.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.22.2...@ovh-ux/manager-hub-app@3.22.3) (2022-08-02)
 
 
@@ -1190,6 +1203,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * **hub:** init manager-hub app and module ([#2140](https://github.com/ovh/manager/issues/2140)) ([df3d840](https://github.com/ovh/manager/commit/df3d84088ca6c6d66f3e7adb2b0890677719540c))
-
-
-
