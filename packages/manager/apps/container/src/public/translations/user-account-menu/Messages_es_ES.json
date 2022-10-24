@@ -41,5 +41,6 @@
   "user_account_menu_user_id": "Identificador: <strong>{{nichandle}}</strong>",
   "user_account_menu_profile": "Mi perfil",
   "user_account_menu_beta_feedback": "¿Quiere darnos su opinión?",
-  "user_account_menu_beta_feedback_text": "¡Ayúdenos a mejorar los servicios de OVHcloud!"
+  "user_account_menu_beta_feedback_text": "¡Ayúdenos a mejorar los servicios de OVHcloud!",
+  "user_account_menu_role_provider": "Conectado por SSO"
 }
