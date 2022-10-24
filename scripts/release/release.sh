@@ -133,7 +133,7 @@ main() {
 
 "
 
-  update_sonar_version "$tag"
+  update_sonar_version "$next_tag"
   version "$next_tag"
 
   #For each package generate formatted section in release note
