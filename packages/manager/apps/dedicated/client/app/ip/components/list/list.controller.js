@@ -11,7 +11,6 @@ import {
   BADGE_BYOIP,
   BADGE_FO,
   BADGES,
-  SERVICE_URL_DATA,
   ADDITIONAL_IP,
   SECURITY_URL,
 } from './list.constant';
@@ -83,16 +82,10 @@ export default class IpListController {
       Validator,
       atInternet,
       ipFeatureAvailability,
-      coreURLBuilder,
       coreConfig,
     } = this;
+    let cancelFetch;
 
-    $scope.alerts = {
-      mitigation: [],
-      antihack: [],
-      arp: [],
-      spam: [],
-    };
     $scope.IP_TYPE = IP_TYPE;
     $scope.ADDITIONAL_IP = ADDITIONAL_IP;
     $scope.showBYOIPBadge = (self.badges || BADGES).includes(BADGE_BYOIP);
@@ -101,33 +94,6 @@ export default class IpListController {
 
     this.securityUrl =
       SECURITY_URL[coreConfig.getUser().ovhSubsidiary] || SECURITY_URL.DEFAULT;
-
-    function createService(serviceName, serviceMap) {
-      if (!serviceName) {
-        return null;
-      }
-
-      let category;
-
-      if (serviceMap[serviceName]) {
-        category = serviceMap[serviceName];
-      } else {
-        category = Object.keys(SERVICE_URL_DATA).find((key) =>
-          SERVICE_URL_DATA[key].regEx?.test(serviceName),
-        );
-      }
-
-      if (!category) {
-        category = 'HOUSING';
-      }
-
-      const { universe, path } = SERVICE_URL_DATA[category];
-      return {
-        category,
-        serviceName,
-        url: coreURLBuilder.buildURL(universe, path, { serviceName }),
-      };
-    }
 
     // pagination
     $scope.pageNumber = toInteger($stateParams.page) || 1;
@@ -181,17 +147,20 @@ export default class IpListController {
     }
 
     function checkIps(ipBlock) {
-      // Refresh alerts for this ipBlock
-      set(ipBlock, 'alerts', {
-        mitigation: [],
-        antihack: [],
-        arp: [],
-        spam: [],
-      });
-
       if (!(ipBlock.ips && ipBlock.ips.length)) {
+        Object.assign(ipBlock, {
+          hasSpamAlerts: ipBlock.alerts.spam?.length > 0,
+          hasAntihackAlerts: ipBlock.alerts.antihack?.length > 0,
+          hasMitigationAlerts: ipBlock.alerts.mitigation?.length > 0,
+        });
         return;
       }
+
+      Object.assign(ipBlock, {
+        hasSpamAlerts: false,
+        hasAntihackAlerts: false,
+        hasMitigationAlerts: false,
+      });
 
       angular.forEach(ipBlock.ips, (ip) => {
         // Stop all pending polling for this ipBlock/ip
@@ -242,86 +211,63 @@ export default class IpListController {
           });
         }
 
+        Object.assign(ip, {
+          hasSpamAlerts: ip.spam === 'BLOCKED_FOR_SPAM',
+          hasAntihackAlerts: ip.antihack === 'BLOCKED',
+          hasMitigationAlerts: ip.mitigation === 'FORCED',
+        });
+
         // Alerts
-        if (ip.spam === 'BLOCKED_FOR_SPAM') {
-          ipBlock.alerts.spam.push(ip.ip);
+        if (ip.hasSpamAlerts) {
+          Object.assign(ipBlock, { hasSpamAlerts: true });
         }
-        if (ip.antihack === 'BLOCKED') {
-          ipBlock.alerts.antihack.push(ip.ip);
+        if (ip.hasAntihackAlerts) {
+          Object.assign(ipBlock, { hasAntihackAlerts: true });
         }
-        if (ip.arp === 'BLOCKED') {
-          ipBlock.alerts.arp.push(ip.ip);
-        }
-        if (ip.mitigation === 'FORCED') {
-          ipBlock.alerts.mitigation.push(ip.ip);
+        if (ip.hasMitigationAlerts) {
+          Object.assign(ipBlock, { hasMitigationAlerts: true });
         }
       });
     }
 
-    function refreshAlerts(ips) {
-      $scope.loading.alerts = true;
-      $scope.alerts = {
-        mitigation: [],
-        antihack: [],
-        arp: [],
-        spam: [],
-      };
-      return Ip.fetchAlerts({ ips, serviceType: $scope.serviceType })
-        .then((alerts) => {
-          $scope.alerts = alerts;
-        })
-        .finally(() => {
-          $scope.loading.alerts = false;
-        });
-    }
-
     function refreshTable() {
-      const params = {
-        ...$scope.params,
-        extras: true,
-        pageSize: $scope.pageSize,
-        pageNumber: $scope.pageNumber,
-      };
-      const serviceMap = {};
+      if (cancelFetch) {
+        cancelFetch();
+      }
 
       $scope.loading.table = true;
       $scope.ipsList = [];
-      if ($scope.serviceType) {
-        params.type = $scope.serviceType;
-      }
-      return $http
-        .get('/sws/products/services', {
-          serviceType: 'aapi',
-        })
-        .then(({ data: services }) => {
-          services.forEach(({ category, serviceName }) => {
-            serviceMap[serviceName] = category;
-          });
-          return $http.get('/ips', {
-            params,
-            serviceType: 'aapi',
-          });
-        })
-        .then(({ data: { count, data } }) => {
+
+      const { cancel, request } = Ip.fetchIps({
+        serviceType: $scope.serviceType,
+        otherParams: $scope.params,
+        pageNumber: $scope.pageNumber,
+        pageSize: $scope.pageSize,
+      });
+      cancelFetch = cancel;
+      request
+        .then(({ count, ips }) => {
           $scope.ipsCount = count;
-          $scope.ipsList = map(data, (ip) => {
-            const serviceName = get(ip, 'routedTo.serviceName');
+          $scope.ipsList = map(ips, (ip) => {
             return {
               ...ip,
               collapsed: !ip.isUniq,
-              service: createService(serviceName, serviceMap),
             };
           });
           $scope.ipsList.forEach(checkIps);
         })
         .catch((error) => {
+          if (error?.xhrStatus === 'abort') {
+            return;
+          }
           Alerter.error(`
-                ${$translate.instant('ip_dashboard_error')}
-                <br />
-                ${get(error, 'data.message') || get(error, 'data', error)}
-              `);
+            ${$translate.instant('ip_dashboard_error')}
+            <br />
+            ${get(error, 'data.message') || get(error, 'data', error)}
+          `);
         })
         .finally(() => {
+          cancelFetch = null;
           $scope.loading.table = false;
         });
     }
@@ -360,31 +306,6 @@ export default class IpListController {
       $location.search('page', $scope.pageNumber);
       $location.search('pageSize', $scope.pageSize);
       refreshTable();
-    };
-
-    $scope.alertsCount = function alertsCount(ipBlock) {
-      return (
-        get(ipBlock, 'alerts.spam', []).length +
-        get(ipBlock, 'alerts.antihack', []).length +
-        get(ipBlock, 'alerts.arp', []).length +
-        get(ipBlock, 'alerts.mitigation', []).length
-      );
-    };
-
-    $scope.alertsTooltip = function alertsTooltip(ipBlock) {
-      const spam = $translate
-        .instant('ip_alerts_spam_other')
-        .replace('{}', ipBlock.alerts.spam.length);
-      const hack = $translate
-        .instant('ip_alerts_antihack_other')
-        .replace('{}', ipBlock.alerts.antihack.length);
-      const arp = $translate
-        .instant('ip_alerts_arp_other')
-        .replace('{}', ipBlock.alerts.arp.length);
-      const mitigation = $translate
-        .instant('ip_alerts_mitigation_other')
-        .replace('{}', ipBlock.alerts.mitigation.length);
-      return `${spam}, ${hack}, ${arp}, ${mitigation}`;
     };
 
     // Return a promise !
@@ -469,7 +390,6 @@ export default class IpListController {
     $scope.$on('ips.table.reload', () => {
       init();
       refreshTable();
-      refreshAlerts();
     });
 
     $scope.$on('organisation.change.done', () => {
@@ -480,6 +400,12 @@ export default class IpListController {
     $scope.$on('ips.table.params', (event, params) => {
       $scope.params = { ...$scope.params, ...params };
       refreshTable();
+    });
+
+    $scope.$on('$destroy', () => {
+      if (cancelFetch) {
+        cancelFetch();
+      }
     });
 
     $scope.displayAntispam = function displayAntispam(ipBlock, ip) {
@@ -645,7 +571,6 @@ export default class IpListController {
       $scope.setAction('ip/legacyOrder/migrate/ip-ip-legacyOrder-migrate');
     };
 
-    refreshAlerts();
     refreshTable();
   }
 }

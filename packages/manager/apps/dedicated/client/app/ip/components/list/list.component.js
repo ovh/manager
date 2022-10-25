@@ -1,5 +1,6 @@
 import controller from './list.controller';
 import template from './list.html';
+import './list.styles.scss';
 
 export default {
   bindings: {

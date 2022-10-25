@@ -230,14 +230,10 @@
             ></button>
         </li>
 
-        <li
-            class="divider"
-            data-ng-if="ip.spam === 'BLOCKED_FOR_SPAM' || ip.arp === 'BLOCKED'"
-            role="separator"
-        ></li>
+        <li class="divider" data-ng-if="ip.hasSpamAlerts" role="separator"></li>
 
         <!-- SPAM::UNBLOCK -->
-        <li data-ng-if="ip.spam === 'BLOCKED_FOR_SPAM'">
+        <li data-ng-if="ip.hasSpamAlerts">
             <button
                 type="button"
                 class="btn btn-link"
@@ -247,22 +243,12 @@
         </li>
 
         <!-- ANTIHACK::UNBLOCK -->
-        <li data-ng-if="ip.antihack === 'BLOCKED'">
+        <li data-ng-if="ip.hasAntihackAlerts">
             <button
                 type="button"
                 class="btn btn-link"
                 data-ng-click="setAction('ip/antihack/ip-ip-antihack', { ipBlock: ipBlock, ip: ip })"
                 data-translate="ip_table_manage_view_antihack"
-            ></button>
-        </li>
-
-        <!-- ARP::UNBLOCK -->
-        <li data-ng-if="ip.arp === 'BLOCKED'">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/arp/ip-ip-arp', { ipBlock: ipBlock, ip: ip })"
-                data-translate="ip_table_manage_view_arp"
             ></button>
         </li>
 
