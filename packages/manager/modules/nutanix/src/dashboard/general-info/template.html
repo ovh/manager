@@ -38,7 +38,12 @@
                         data-size="s"
                     ></oui-spinner>
                     <span
-                        data-ng-if="!$ctrl.loadingServicesDetails"
+                        data-ng-if="!$ctrl.loadingServicesDetails && $ctrl.clusterTechnicalDetails.license.edition !== $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+                        data-ng-bind="$ctrl.commercialName"
+                    >
+                    </span>
+                    <span
+                        data-ng-if="!$ctrl.loadingServicesDetails && $ctrl.clusterTechnicalDetails.license.edition === $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
                         data-ng-bind="$ctrl.servicesDetails.billing.plan.invoiceName"
                     >
                     </span>
@@ -75,40 +80,32 @@
             <!-- administration interface -->
             <oui-tile-definition
                 term="{{:: 'nutanix_dashboard_cluster_admin_interface' | translate }}"
-            >
-            </oui-tile-definition>
-            <oui-tile-button
-                data-ng-href="{{:: $ctrl.cluster.targetSpec.controlPanelURL }}"
-                data-on-click="$ctrl.trackClick('go-to-prism-central')"
-                external
-            >
-                <span
-                    data-translate="nutanix_dashboard_cluster_access_admin_interface"
-                ></span>
-            </oui-tile-button>
-
-            <!-- license -->
-            <oui-tile-definition
-                term="{{:: 'nutanix_dashboard_cluster_licence' | translate }}"
+                term-popover="{{:: 'nutanix_dashboard_cluster_admin_interface_info' | translate }}"
             >
                 <oui-tile-description>
-                    <oui-spinner
-                        data-ng-if="$ctrl.loadingTechnicalDetails"
-                        data-size="s"
+                    <a
+                        class="oui-button oui-button_secondary"
+                        data-ng-href="{{:: $ctrl.cluster.targetSpec.controlPanelURL }}"
+                        target="_blank"
+                        rel="noopener"
+                        data-translate="nutanix_dashboard_cluster_access_admin_interface"
                     >
-                    </oui-spinner>
-                    <span
-                        data-ng-if="!$ctrl.loadingTechnicalDetails && $ctrl.clusterTechnicalDetails"
-                        class="text-capitalize"
-                        data-ng-bind=":: $ctrl.clusterTechnicalDetails.license.distribution"
-                    >
-                    </span>
+                    </a>
                 </oui-tile-description>
             </oui-tile-definition>
 
-            <!-- deployment mode -->
+            <!-- type of pack -->
             <oui-tile-definition
-                term="{{:: 'nutanix_dashboard_cluster_deployment_mode' | translate }}"
+                term="{{:: 'nutanix_dashboard_cluster_type_of_pack' | translate }}"
+            >
+                <oui-tile-description>
+                    <span data-ng-bind="$ctrl.typeOfPack"></span>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- Fault Tolerance Domain -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_fault_tolerance_domain' | translate }}"
             >
                 <oui-tile-description>
                     <div class="oui-tile__description">
@@ -137,7 +134,7 @@
             <!-- replication factor -->
             <oui-tile-definition
                 term="{{:: 'nutanix_dashboard_cluster_replication_factor' | translate }}"
-                description="{{:: $ctrl.cluster.targetSpec.redundancyFactor }}"
+                description="{{$ctrl.REPLICATION_FACTOR_PREFIX}}{{:: $ctrl.cluster.targetSpec.redundancyFactor }}"
             >
             </oui-tile-definition>
 
@@ -170,7 +167,16 @@
     </div>
 
     <!-- Licence details -->
-    <div class="col-md-6 col-lg-4 mb-3">
+    <oui-spinner
+        class="col-md-6 col-lg-4 mb-3"
+        data-ng-if="$ctrl.loadingTechnicalDetails"
+        data-size="s"
+    >
+    </oui-spinner>
+    <div
+        class="col-md-6 col-lg-4 mb-3"
+        data-ng-if="!$ctrl.loadingTechnicalDetails && $ctrl.clusterTechnicalDetails.license.edition !== $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+    >
         <nutanix-licence-tile
             service-name="$ctrl.serviceName"
             service-id="$ctrl.serviceInfo.serviceId"
