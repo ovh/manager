@@ -77,11 +77,12 @@ export default class VSphereUserImportController {
   }
 
   userAlreadyExist(input) {
-    return this.usersList.find((value) =>
-      value.name === input.includes('@')
-        ? input.slice(0, input.indexOf('@'))
-        : input,
-    );
+    return this.usersList.find((value) => {
+      if (input.includes('@')) {
+        return value.name === input.slice(0, input.indexOf('@'));
+      }
+      return value.name === input;
+    });
   }
 
   formIsValid() {
