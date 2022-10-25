@@ -11,6 +11,7 @@ import component from './cold-archive.component';
 
 import coldArchiveOnboarding from './onboarding';
 import coldArchiveAdd from './add';
+import users from './users';
 
 const moduleName = 'ovhManagerPciProjectsProjectStoragesColdArchive';
 
@@ -23,6 +24,7 @@ angular
     'ui.router',
     coldArchiveOnboarding,
     coldArchiveAdd,
+    users,
   ])
   .config(routing)
   .component('ovhManagerPciProjectsProjectStoragesColdArchive', component)
