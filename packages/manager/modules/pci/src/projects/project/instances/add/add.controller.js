@@ -20,6 +20,7 @@ import {
   AVAILABLE_SUBNET,
   INSTANCE_MODES_ENUM,
   INSTANCE_READ_MORE_GUIDE,
+  FLOATING_IP_AVAILABILITY_INFO_LINK,
 } from './add.constants';
 
 export default class PciInstancesAddController {
@@ -33,6 +34,7 @@ export default class PciInstancesAddController {
     cucUcentsToCurrencyFilter,
     PciProjectsProjectInstanceService,
     PciPublicGatewaysService,
+    PciProjectAdditionalIpService,
     atInternet,
   ) {
     this.$q = $q;
@@ -51,6 +53,8 @@ export default class PciInstancesAddController {
       INSTANCE_READ_MORE_GUIDE.ALL_GUIDE.DEFAULT;
     this.instanceModeEnum = INSTANCE_MODES_ENUM;
     this.currency = coreConfig.getUser().currency.symbol;
+    this.PciProjectAdditionalIpService = PciProjectAdditionalIpService;
+    this.FLOATING_IP_AVAILABILITY_INFO_LINK = FLOATING_IP_AVAILABILITY_INFO_LINK;
   }
 
   $onInit() {
@@ -119,7 +123,7 @@ export default class PciInstancesAddController {
     this.loadMessages();
     [this.selectedMode] = this.modes;
     this.showAddPrivateNetworkModalForm = false;
-    this.isAttachFloatingIPAvailable = false;
+    this.isAttachFloatingIP = false;
     this.isCreateFloatingIPClicked = false;
     this.subnetGateways = [];
     this.isCustomNetwork = false;
@@ -407,6 +411,18 @@ export default class PciInstancesAddController {
 
   onModeFocus() {
     this.displaySelectedMode = false;
+    this.isFloatingIpAvailable = false;
+    this.PciProjectAdditionalIpService.getRegions(
+      this.projectId,
+      this.user.ovhSubsidiary,
+    ).then((regions) => {
+      this.isFloatingIpAvailable = regions.some(
+        ({ name }) => name === this.model.datacenter.name,
+      );
+      if (!this.isFloatingIpAvailable) {
+        this.isAttachFloatingIP = false;
+      }
+    });
   }
 
   onModeChange() {
@@ -441,7 +457,7 @@ export default class PciInstancesAddController {
     }
     if (this.isPrivateMode()) {
       this.isCreateFloatingIPClicked = false;
-      this.isAttachFloatingIPAvailable = false;
+      this.isAttachFloatingIP = false;
       this.selectedPrivateNetwork = {
         id: '',
         name: this.$translate.instant(
@@ -543,7 +559,7 @@ export default class PciInstancesAddController {
     this.addons = [];
     if (
       this.isPrivateMode() &&
-      this.isAttachFloatingIPAvailable &&
+      this.isAttachFloatingIP &&
       this.selectedPrivateNetwork
     ) {
       this.isLoadBillingStep = true;
@@ -577,20 +593,20 @@ export default class PciInstancesAddController {
     }
     return (
       this.selectedPrivateNetwork.id !== '' &&
-      (!this.isAttachFloatingIPAvailable || this.selectedFloatingIP)
+      (!this.isAttachFloatingIP || this.selectedFloatingIP)
     );
   }
 
   addPricing() {
     if (
-      this.isAttachFloatingIPAvailable &&
+      this.isAttachFloatingIP &&
       this.subnetGateways.length === 0 &&
       this.selectedFloatingIP.id
     ) {
       this.addons = [...this.addons, { gateway: this.defaultGateway }];
     }
     if (
-      this.isAttachFloatingIPAvailable &&
+      this.isAttachFloatingIP &&
       this.subnetGateways.length === 0 &&
       !this.selectedFloatingIP.id
     ) {
@@ -600,7 +616,7 @@ export default class PciInstancesAddController {
         { floatingIp: this.getProductCatalog },
       ];
     } else if (
-      this.isAttachFloatingIPAvailable &&
+      this.isAttachFloatingIP &&
       !this.selectedFloatingIP.id &&
       this.subnetGateways.length > 0
     ) {
@@ -660,10 +676,7 @@ export default class PciInstancesAddController {
         if (!this.isPrivateMode()) {
           return this.goBack(message, 'success');
         }
-        if (
-          this.subnetGateways?.length === 0 &&
-          this.isAttachFloatingIPAvailable
-        ) {
+        if (this.subnetGateways?.length === 0 && this.isAttachFloatingIP) {
           return this.createGateway(instanceId, ips, message);
         }
         return this.onCreateInstanceSuccess(instanceId, ips, message);
@@ -680,7 +693,7 @@ export default class PciInstancesAddController {
 
   onCreateInstanceSuccess(instanceId, ips, message) {
     const filteredIp = ips.find(({ version: ipv4 }) => ipv4 === 4);
-    if (this.isAttachFloatingIPAvailable && filteredIp) {
+    if (this.isAttachFloatingIP && filteredIp) {
       if (this.isCreateFloatingIPClicked) {
         return this.createAndAttachFloatingIp(
           instanceId,

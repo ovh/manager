@@ -7,11 +7,11 @@ import floatingIps from './floating-ips';
 import onboarding from './onboarding';
 import order from './order';
 import imports from './imports';
+import PciProjectAdditionalIpService from './service';
 
 import component from './additional-ips.component';
 import routing from './additional-ips.routing';
 import instancesModule from '../instances/instances.module';
-import service from './service';
 
 const moduleName = 'ovhManagerPciProjectAdditionalIps';
 
@@ -25,10 +25,10 @@ angular
     instancesModule,
     onboarding,
     order,
+    PciProjectAdditionalIpService,
   ])
   .config(routing)
   .component('pciProjectAdditionalIps', component)
-  .service('PciProjectAdditionalIpService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
