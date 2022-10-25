@@ -10,44 +10,6 @@ export const BADGES = [BADGE_FO, BADGE_BYOIP];
 export const ADDITIONAL_IP = 'Additional IP';
 export const LEARN_ORGANIZATION_LINK = 'https://docs.ovh.com/';
 
-export const SERVICE_URL_DATA = {
-  CLOUD: {
-    universe: 'public-cloud',
-    path: '#/pci/projects/:serviceName',
-    regEx: /^[a-z0-9]{32}$/,
-  },
-  VRACK: {
-    universe: 'dedicated',
-    path: '#/vrack/:serviceName',
-    regEx: /^pn/,
-  },
-  DEDICATED: {
-    universe: 'dedicated',
-    path: '#/server/:serviceName',
-    regEx: /^ns/,
-  },
-  HOUSING: {
-    universe: 'dedicated',
-    path: '#/housing/:serviceName',
-    regEx: null,
-  },
-  PRIVATE_CLOUD: {
-    universe: 'dedicated',
-    path: '#/dedicated_cloud/:serviceName',
-    regEx: /^pcc/,
-  },
-  VPS: {
-    universe: 'dedicated',
-    path: '#/vps/:serviceName/dashboard',
-    regEx: /^vps/,
-  },
-  IP_LOAD_BALANCING: {
-    universe: 'dedicated',
-    path: '#/iplb/:serviceName/home',
-    regEx: /^loadbalancer/,
-  },
-};
-
 export const SECURITY_URL = {
   DEFAULT:
     'https://www.ovhcloud.com/en/security/anti-ddos/ddos-attack-mitigation/',
@@ -89,7 +51,6 @@ export default {
   BADGES,
   IP_TYPE,
   TRACKING_PREFIX,
-  SERVICE_URL_DATA,
   SECURITY_URL,
   LEARN_ORGANIZATION_LINK,
 };

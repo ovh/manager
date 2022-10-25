@@ -17,7 +17,7 @@ import popoverIpBlockTemplate from './popover/ipBlock.html';
 
 import component from './list.component';
 
-const moduleName = 'ovhManagerIpList';
+const moduleName = 'ovhManagerIpComponentsList';
 
 angular
   .module(moduleName, [

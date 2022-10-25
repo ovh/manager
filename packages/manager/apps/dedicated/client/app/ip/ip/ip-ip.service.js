@@ -4,7 +4,7 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import union from 'lodash/union';
 
-import { IP_TYPE } from './ip-ip.constant';
+import { IP_TYPE, SERVICE_URL_DATA } from './ip-ip.constant';
 
 export default /* @ngInject */ function Ip(
   $http,
@@ -12,6 +12,7 @@ export default /* @ngInject */ function Ip(
   IpRange,
   $location,
   OvhHttp,
+  coreURLBuilder,
 ) {
   const self = this;
   const aapiIpPath = '/sws/module/ip';
@@ -408,36 +409,103 @@ export default /* @ngInject */ function Ip(
         return destinationIps;
       });
 
-  this.fetchAlerts = ({ ips, serviceType }) => {
+  this.fetchAlerts = ({ serviceType }) => {
     const alerts = {
-      mitigation: [],
       antihack: [],
-      arp: [],
+      mitigation: [],
       spam: [],
     };
-    const params = {
-      extras: true,
+    const { cancel, request } = this.fetchIps({
+      serviceType,
       pageSize: 5000,
-      ...(serviceType && { type: serviceType }),
+    });
+    return {
+      cancel,
+      request: request.then(({ ips }) => {
+        ips.forEach((ip) => {
+          Object.keys(alerts).forEach((key) => {
+            if (ip.alerts[key]) {
+              ip.alerts[key].forEach((alert) =>
+                alerts[key].push({ ip, alert }),
+              );
+            }
+          });
+        });
+        return alerts;
+      }),
     };
-    const ipsPromise = ips
-      ? $q.when(ips)
-      : $http
+  };
+
+  this.fetchIps = ({
+    serviceType,
+    otherParams,
+    pageNumber = 1,
+    pageSize = 10,
+    extras = true,
+  }) => {
+    const params = {
+      ...otherParams,
+      ...(serviceType && { type: serviceType }),
+      extras,
+      pageNumber,
+      pageSize,
+    };
+    const canceller = $q.defer();
+    const cancel = () => {
+      canceller.resolve();
+    };
+    const request = $q
+      .all({
+        services: this.getServicesList(),
+        ips: $http
           .get('/ips', {
             params,
             serviceType: 'aapi',
+            timeout: canceller.promise,
           })
-          .then(({ data }) => data.data);
-    return ipsPromise
-      .then((ipList) => {
-        ipList.forEach((ip) => {
-          const { antihack, mitigation, arp, spam } = ip.alerts;
-          antihack.forEach((alert) => alerts.antihack.push({ ip, alert }));
-          mitigation.forEach((alert) => alerts.mitigation.push({ ip, alert }));
-          arp.forEach((alert) => alerts.arp.push({ ip, alert }));
-          spam.forEach((alert) => alerts.spam.push({ ip, alert }));
-        });
+          .then(({ data }) => data),
       })
-      .then(() => alerts);
+      .then(({ services, ips: { count, data: ips } }) => {
+        const serviceMap = {};
+        services.forEach(({ category, serviceName }) => {
+          serviceMap[serviceName] = category;
+        });
+        ips.forEach((ip) => {
+          const serviceName = ip.routedTo?.serviceName;
+          let category;
+
+          if (!serviceName) {
+            Object.assign(ip, { service: null });
+            return;
+          }
+
+          if (serviceMap[serviceName]) {
+            category = serviceMap[serviceName];
+          } else {
+            category = Object.keys(SERVICE_URL_DATA).find((key) =>
+              SERVICE_URL_DATA[key].regEx?.test(serviceName),
+            );
+          }
+
+          if (!category) {
+            category = 'HOUSING';
+          }
+
+          const { universe, path } = SERVICE_URL_DATA[category];
+          Object.assign(ip, {
+            service: {
+              category,
+              serviceName,
+              url: coreURLBuilder.buildURL(universe, path, { serviceName }),
+            },
+          });
+        });
+        return { count, ips };
+      });
+
+    return {
+      request,
+      cancel,
+    };
   };
 }

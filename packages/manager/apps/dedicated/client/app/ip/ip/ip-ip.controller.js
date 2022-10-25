@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 import {
   BRING_YOUR_OWN_IP,
   SERVICE_TYPES,
@@ -10,9 +8,7 @@ export default /* @ngInject */
 (
   $http,
   $location,
-  $q,
   $scope,
-  $state,
   $stateParams,
   $translate,
   Alerter,
@@ -22,19 +18,11 @@ export default /* @ngInject */
   goToAgoraOrder,
   goToByoipConfiguration,
   Ip,
-  ipFeatureAvailability,
-  trackPage,
   trackClick,
   isByoipAvailable,
 ) => {
   $scope.isByoipAvailable = isByoipAvailable;
 
-  $scope.alerts = {
-    mitigation: [],
-    antihack: [],
-    arp: [],
-    spam: [],
-  };
   $scope.BRING_YOUR_OWN_IP = BRING_YOUR_OWN_IP;
   $scope.ADDITIONAL_IP = ADDITIONAL_IP;
 
@@ -43,7 +31,6 @@ export default /* @ngInject */
     $scope.state = {};
     $scope.services = [];
     $scope.serviceTypes = [];
-    $scope.selectedService = null;
     $scope.selectedServiceType = null;
     $scope.serviceType = $stateParams.serviceType || null;
   }
@@ -67,48 +54,14 @@ export default /* @ngInject */
   $scope.goToAgoraOrder = goToAgoraOrder;
   $scope.goToByoipConfiguration = goToByoipConfiguration;
 
-  $scope.singleService = () =>
-    $scope.serviceType && $scope.serviceType !== 'failover';
-
   Ip.getPriceForParking().then((price) => {
     $scope.parkPrice = price;
   });
-
-  function refreshAlerts(ips) {
-    $scope.loading.alerts = true;
-    $scope.alerts = {
-      mitigation: [],
-      antihack: [],
-      arp: [],
-      spam: [],
-    };
-    return Ip.fetchAlerts({ ips, serviceType: $scope.serviceType })
-      .then((alerts) => {
-        $scope.alerts = alerts;
-      })
-      .finally(() => {
-        $scope.loading.alerts = false;
-      });
-  }
 
   $scope.selectServiceType = (serviceType) => {
     $scope.serviceType = serviceType === 'all' ? null : serviceType;
     $location.search('serviceType', $scope.serviceType);
     $scope.$broadcast('ips.table.reload');
-    refreshAlerts();
-  };
-
-  $scope.navigateToService = (serviceName) => {
-    $state.go('app.ip', { page: 1, serviceName }, { reload: true });
-  };
-
-  $scope.alertsCount = function alertsCount() {
-    return (
-      get($scope, 'alerts.spam', []).length +
-      get($scope, 'alerts.antihack', []).length +
-      get($scope, 'alerts.arp', []).length +
-      get($scope, 'alerts.mitigation', []).length
-    );
   };
 
   $scope.$on('organisation.change.done', () => {
@@ -145,6 +98,5 @@ export default /* @ngInject */
   }
 
   init();
-  refreshAlerts();
   fetchServiceTypes();
 };
