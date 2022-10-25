@@ -156,7 +156,7 @@
                                     data-ng-repeat="offer in $ctrl.process.migrationOffers.result.offers track by $index"
                                 >
                                     <span
-                                        ng-if="offer.installFees"
+                                        ng-if="offer.installFees && offer.promotion.id!='FTTH_MIGRATION_AND_ADRESSMOVE_2020'"
                                         data-ng-bind-html="offer.installFees.text | tucFormatPrice"
                                     ></span>
 
@@ -239,7 +239,7 @@
                                 >
                                     <span
                                         data-ng-if="offer.gtrComfortActivated"
-                                        data-ng-bind-html="offer.gtrComfortFees.text | tucFormatPrice"
+                                        data-ng-bind-html="offer.gtrComfortFees.text | tucFormatPrice: { withoutTax: false }"
                                     ></span>
                                     <span
                                         data-ng-if="!offer.gtrComfortActivated"
