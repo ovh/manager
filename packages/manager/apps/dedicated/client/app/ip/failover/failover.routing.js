@@ -7,14 +7,26 @@ import {
 import { BADGE_BYOIP } from '../components/list/list.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.ip.failover', {
+  const state = 'app.ip.failover';
+  const params = {
+    serviceType: null,
+    page: null,
+    pageSize: null,
+  };
+
+  $stateProvider.state(state, {
     ...listRouting,
     url: '/failover',
-    params: {
-      serviceType: null,
-      page: 1,
-      pageSize: 10,
+    redirectTo: (transition) => {
+      if (transition.from().name === state) {
+        return false;
+      }
+      const { serviceType, page, pageSize } = transition.params();
+      return [serviceType, page, pageSize].some((param) => param !== null)
+        ? { state, params }
+        : false;
     },
+    params,
     component: 'ipFailover',
     resolve: {
       ...listRouting.resolve,

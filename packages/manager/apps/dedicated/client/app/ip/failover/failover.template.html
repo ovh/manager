@@ -1,17 +1,21 @@
 <div class="ip-failover">
+    <ip-alerts
+        class="d-block mb-4"
+        data-service-type="$ctrl.serviceType"
+    ></ip-alerts>
     <p data-translate="ip_failover_text"></p>
     <ip-list
-        badges="$ctrl.badges"
-        go-to-antispam="$ctrl.goToAntispam"
-        go-to-firewall="$ctrl.goToFirewall"
-        go-to-game-firewall="$ctrl.goToGameFirewall"
-        go-to-organisation="$ctrl.goToOrganisation"
-        order-ip-available="$ctrl.orderIpAvailable"
-        service-type="$ctrl.serviceType"
-        set-action="$parent.setAction"
-        track-click="$ctrl.trackClick"
-        track-page="$ctrl.trackPage"
-        tracking-data="$ctrl.trackingData"
+        data-badges="$ctrl.badges"
+        data-go-to-antispam="$ctrl.goToAntispam"
+        data-go-to-firewall="$ctrl.goToFirewall"
+        data-go-to-game-firewall="$ctrl.goToGameFirewall"
+        data-go-to-organisation="$ctrl.goToOrganisation"
+        data-order-ip-available="$ctrl.orderIpAvailable"
+        data-service-type="$ctrl.serviceType"
+        data-set-action="$parent.setAction"
+        data-track-click="$ctrl.trackClick"
+        data-track-page="$ctrl.trackPage"
+        data-tracking-data="$ctrl.trackingData"
     >
         <ip-list-filters>
             <span

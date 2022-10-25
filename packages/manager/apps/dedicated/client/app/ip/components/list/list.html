@@ -1,4 +1,6 @@
-<div class="table-responsive mt-3 module-ip-table-responsive">
+<div
+    class="ip-components-list table-responsive mt-3 module-ip-table-responsive"
+>
     <div class="mb-3 d-flex align-items-center justify-content-end">
         <oui-dropdown>
             <button
@@ -104,37 +106,28 @@
                     ></button>
                 </th>
                 <th scope="col">
-                    <script type="text/ng-template" id="ip_alerts_help_ipblock.html">
-                        <ul class="m-0 p-0 ml-3">
-                            <li
-                                data-ng-if="$ctrl.alerts.spam.length"
-                                data-translate="ip_alerts_spam_help"
-                            ></li>
-                            <li
-                                data-ng-if="$ctrl.alerts.antihack.length"
-                                data-translate="ip_alerts_antihack_help"
-                            ></li>
-                            <li
-                                data-ng-if="$ctrl.alerts.mitigation.length"
-                                data-translate="ip_alerts_mitigation_help"
-                            ></li>
-                        </ul>
-                    </script>
-                    <script type="text/ng-template" id="ip_alerts_help_ip.html">
-                        <ul class="m-0 p-0 ml-3">
-                            <li
-                                data-ng-if="$ctrl.spam === 'BLOCKED_FOR_SPAM'"
-                                data-translate="ip_alerts_spam_help"
-                            ></li>
-                            <li
-                                data-ng-if="$ctrl.antihack === 'BLOCKED'"
-                                data-translate="ip_alerts_antihack_help"
-                            ></li>
-                            <li
-                                data-ng-if="$ctrl.mitigation === 'FORCED'"
-                                data-translate="ip_alerts_mitigation_help"
-                            ></li>
-                        </ul>
+                    <script type="text/ng-template" id="ip_alerts_help.html">
+                        <div
+                            class="text-right"
+                            data-ng-if="$ctrl.hasSpamAlerts"
+                        >
+                            <strong data-trnaslate="ip_alerts_spam_noun"></strong>
+                            <span data-trnaslate="ip_alerts_spam_help"></span>
+                        </div>
+                        <div
+                            class="text-right"
+                            data-ng-if="$ctrl.hasAntihackAlerts"
+                        >
+                            <strong data-trnaslate="ip_alerts_antihack_noun"></strong>
+                            <span data-trnaslate="ip_alerts_antihack_help"></span>
+                        </div>
+                        <div
+                            class="text-right"
+                            data-ng-if="$ctrl.hasMitigationAlerts"
+                        >
+                            <strong data-trnaslate="ip_alerts_mitigation_noun"></strong>
+                            <span data-trnaslate="ip_alerts_mitigation_help"></span>
+                        </div>
                     </script>
                     <span data-translate="ip_table_header_alerts"></span>
                     <button
@@ -319,23 +312,21 @@
                 <!-- Alerts -->
                 <td>
                     <div
-                        class="text-warning"
-                        data-ng-if="alertsCount(ipBlock)"
-                        data-oui-tooltip="{{ alertsTooltip(ipBlock) }}"
-                        data-oui-tooltip-placement="left"
+                        class="d-flex justify-content-center align-items-center ip-components-list__alerts"
+                        data-ng-if="ipBlock.hasSpamAlerts || ipBlock.hasAntihackAlerts || ipBlock.hasMitigationAlerts"
                     >
-                        <span class="fa fa-warning" aria-hidden="true"> </span>
-                        <strong data-ng-bind="alertsCount(ipBlock)"></strong>
+                        <span
+                            class="fa fa-warning text-danger lead mb-0"
+                            aria-hidden="true"
+                            data-oui-popover
+                            data-oui-popover-template="ip_alerts_help.html"
+                            data-oui-popover-placement="left"
+                            data-oui-popover-scope="ipBlock"
+                            data-oui-popover-open="popover[ipBlock.ipBlock]"
+                            data-ng-mouseover="popover[ipBlock.ipBlock] = true"
+                            data-ng-mouseleave="popover[ipBlock.ipBlock] = false"
+                        ></span>
                     </div>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-ng-if="alertsCount(ipBlock)"
-                        data-oui-popover
-                        data-oui-popover-template="ip_alerts_help_ipblock.html"
-                        data-oui-popover-scope="ipBlock"
-                        data-oui-popover-placement="left"
-                    ></button>
                 </td>
 
                 <!-- Virtual MAC -->
@@ -365,9 +356,6 @@
             <tr
                 data-ng-if="!ipBlock.refreshing && !ipBlock.collapsed"
                 data-ng-repeat="ip in ipBlock.ips track by ip.ip"
-                data-ng-class="{
-                    'error': ip.spam === 'BLOCKED_FOR_SPAM' || ip.antihack === 'BLOCKED' || ip.arp === 'BLOCKED' || ip.mitigation === 'FORCED'
-                }"
             >
                 <th scope="row"></th>
 
@@ -484,43 +472,22 @@
 
                 <!-- Alerts -->
                 <td>
-                    <span
-                        class="fa fa-minus-circle text-warning"
-                        data-ng-if="ip.spam === 'BLOCKED_FOR_SPAM'"
-                        data-oui-tooltip="{{:: 'ip_alerts_spam_1' | translate }}"
-                        data-oui-tooltip-placement="left"
+                    <div
+                        class="d-flex justify-content-center align-items-center ip-components-list__alerts"
+                        data-ng-if="ip.hasSpamAlerts || ip.hasAntihackAlerts || ip.hasMitigationAlerts"
                     >
-                    </span>
-                    <span
-                        class="fa fa-bug text-warning"
-                        data-ng-if="ip.antihack === 'BLOCKED'"
-                        data-oui-tooltip="{{:: 'ip_alerts_antihack_1' | translate }}"
-                        data-oui-tooltip-placement="left"
-                    >
-                    </span>
-                    <span
-                        class="fa fa-minus-circle text-warning"
-                        data-ng-if="ip.arp === 'BLOCKED'"
-                        data-oui-tooltip="{{:: 'ip_alerts_arp_1' | translate }}"
-                        data-oui-tooltip-placement="left"
-                    >
-                    </span>
-                    <span
-                        class="fa fa-bolt text-warning"
-                        data-ng-if="ip.mitigation === 'FORCED'"
-                        data-oui-tooltip="{{:: 'ip_alerts_mitigation_1' | translate }}"
-                        data-oui-tooltip-placement="left"
-                    >
-                    </span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-ng-if="(ip.spam === 'BLOCKED_FOR_SPAM' || ip.antihack === 'BLOCKED' || ip.mitigation === 'FORCED')"
-                        data-oui-popover
-                        data-oui-popover-template="ip_alerts_help_ip.html"
-                        data-oui-popover-scope="ip"
-                        data-oui-popover-placement="left"
-                    ></button>
+                        <span
+                            class="fa fa-warning text-danger lead mb-0"
+                            aria-hidden="true"
+                            data-oui-popover
+                            data-oui-popover-template="ip_alerts_help.html"
+                            data-oui-popover-placement="left"
+                            data-oui-popover-scope="ip"
+                            data-oui-popover-open="popover[ip.ip]"
+                            data-ng-mouseover="popover[ip.ip] = true"
+                            data-ng-mouseleave="popover[ip.ip] = false"
+                        ></span>
+                    </div>
                 </td>
 
                 <!-- VMAC -->
@@ -547,7 +514,7 @@
                         data-ng-class="{
                               'text-muted': !ip.mitigation || ip.mitigation === 'DEFAULT',
                               'badge': ip.mitigation === 'CREATION_PENDING' || ip.mitigation === 'REMOVAL_PENDING',
-                              'font-weight-bold': ip.mitigation === 'FORCED'
+                              'font-weight-bold': ip.hasMitigationAlerts
                           }"
                         data-ng-bind="'ip_mitigation_' + (ip.mitigation || 'DEFAULT') | translate"
                     >
