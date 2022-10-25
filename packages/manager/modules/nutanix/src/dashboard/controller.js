@@ -14,6 +14,15 @@ export default class NutanixDashboardCtrl {
     this.nutanixGuideUrl =
       GUIDE_URL.ALL_GUIDE[this.user.ovhSubsidiary] ||
       GUIDE_URL.ALL_GUIDE.DEFAULT;
+    this.trackWarning();
+  }
+
+  trackWarning() {
+    if (this.isLicenceRegisterDateExpired()) {
+      this.atInternet.trackPage({
+        name: 'hpc::nutanix::cluster::banner-register-cluster',
+      });
+    }
   }
 
   getLicenseRegistrationEndDate() {
