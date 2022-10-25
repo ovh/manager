@@ -1,3 +1,5 @@
+import { MONITORING_TRACKING_PREFIX } from './dedicated-server-monitoring-update.constants';
+
 angular.module('App').config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
@@ -11,6 +13,9 @@ angular.module('App').config(
         layout: 'modal',
         resolve: {
           breadcrumb: () => null,
+        },
+        atInternet: {
+          rename: MONITORING_TRACKING_PREFIX,
         },
       },
     );

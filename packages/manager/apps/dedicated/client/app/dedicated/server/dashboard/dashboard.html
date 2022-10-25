@@ -331,37 +331,22 @@
                             class="oui-badge"
                             data-ng-class="{
                                     'oui-badge_success': $ctrl.server.monitored,
-                                    'oui-badge_error': !$ctrl.server.monitored
+                                    'oui-badge_warning': !$ctrl.server.monitored
                                 }"
-                            data-translate="{{'server_configuration_monitoring_' + ($ctrl.server.monitored && 'activated' || 'disabled')}}"
-                            data-oui-tooltip="{{ ($ctrl.server.monitored && 'server_configuration_monitoring_activate_information' | translate) || ('server_configuration_monitoring_deactivate_information' | translate) }}"
+                            data-translate="server_configuration_monitoring_status_{{$ctrl.getMonitoringStatus()}}"
+                            data-oui-tooltip="{{ ('server_configuration_monitoring_status_tooltip_' + $ctrl.getMonitoringStatus()) | translate }}"
                             data-oui-tooltip-placement="top-start"
                         ></span>
                     </oui-tile-description>
-                    <oui-action-menu
-                        aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_configuration_monitoring' | translate)} }}"
-                        data-compact
-                        data-placement="end"
-                        data-disabled="$ctrl.ola.isConfigured() || $ctrl.updatingNoIntervention"
-                        data-ng-if="!$ctrl.server.isExpired"
-                    >
-                        <oui-action-menu-item
-                            data-ui-sref="app.dedicated-server.server.dashboard.monitoringUpdate"
-                            data-ng-if="$ctrl.server.monitored"
+                    <oui-tile-description>
+                        <oui-button
+                            data-variant="link"
+                            data-icon-right="oui-icon-chevron-right"
+                            data-on-click="$ctrl.onMonitoringUpdateClick()"
                         >
-                            <span
-                                data-translate="server_configuration_monitoring_deactivate_title_button"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-ui-sref="app.dedicated-server.server.dashboard.monitoringUpdate"
-                            data-ng-if="!$ctrl.server.monitored"
-                        >
-                            <span
-                                data-translate="server_configuration_monitoring_activate_title_button"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
+                            <span translate="server_configuration_monitoring_cta_setting"></span>
+                        </oui-button>
+                    </oui-tile-description>
                 </oui-tile-definition>
                 <!-- No intervention -->
                 <!--
