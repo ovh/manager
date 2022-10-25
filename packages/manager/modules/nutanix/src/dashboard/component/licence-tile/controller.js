@@ -4,12 +4,14 @@ import NutanixLicences from './licences.class';
 
 export default class NutanixLicenceTileCtrl {
   /* @ngInject */
-  constructor(NutanixService) {
+  constructor(atInternet, NutanixService) {
+    this.atInternet = atInternet;
     this.NutanixService = NutanixService;
   }
 
   $onInit() {
     this.loadingTechnicalDetails = true;
+    this.defaultLicenseLength = 12;
     this.loadTechnicalDetails(this.serviceId)
       .then(({ license, features }) => {
         const licenceFeatures = isArray(license.features)
@@ -33,5 +35,13 @@ export default class NutanixLicenceTileCtrl {
     if (isFunction(this.onError)) {
       this.onError({ error });
     }
+  }
+
+  toggleLicenseDetails() {
+    this.atInternet.trackClick({
+      name: 'hpc::nutanix::cluster::dashboard::see-more-options',
+      type: 'action',
+    });
+    this.expand = !this.expand;
   }
 }
