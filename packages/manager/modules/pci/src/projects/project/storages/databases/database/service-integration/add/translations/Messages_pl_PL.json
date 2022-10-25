@@ -2,7 +2,6 @@
   "pci_databases_service_integration_add_confirm": "Zatwierdź",
   "pci_databases_service_integration_add_cancel": "Anuluj",
   "pci_databases_service_integration_add": "Dodaj integrację",
-  "pci_databases_service_integration_add_service_label": "Wybierz usługę {{engineName}}:",
   "pci_databases_service_integration_add_success_message": "Integracja {{integrationType}} została dodana.",
   "pci_databases_service_integration_add_error_message": "Wystąpił błąd podczas dodawania integracji {{integrationType}}: {{message}}",
   "pci_databases_service_integration_add_type_label": "Rodzaj integracji",

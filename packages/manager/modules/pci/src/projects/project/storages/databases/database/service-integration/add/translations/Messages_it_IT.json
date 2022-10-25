@@ -2,7 +2,6 @@
   "pci_databases_service_integration_add_confirm": "Conferma",
   "pci_databases_service_integration_add_cancel": "Annulla",
   "pci_databases_service_integration_add": "Aggiungere un'integrazione",
-  "pci_databases_service_integration_add_service_label": "Seleziona un servizio {{engineName}}:",
   "pci_databases_service_integration_add_success_message": "L'integrazione {{integrationType}} è stata aggiunta correttamente.",
   "pci_databases_service_integration_add_error_message": "Si è verificato un errore durante l'aggiunta dell’integrazione {{integrationType}}: {{message}}",
   "pci_databases_service_integration_add_type_label": "Tipo di integrazione",
