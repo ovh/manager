@@ -7,7 +7,7 @@
   "pci_projects_project_network_private_region": "Région",
   "pci_projects_project_network_private_gateway": "Passerelle",
   "pci_projects_project_network_private_dhcp_active": "actif",
-  "pci_projects_project_network_private_dhcp_suspended": "suspendu",
+  "pci_projects_project_network_private_dhcp_disabled": "désactivé",
   "pci_projects_project_network_private_ip_allocation": "Adresse IP allouées",
   "pci_projects_project_network_private_assign_gateway": "Assigner une instance Gateway",
   "pci_projects_project_network_private_delete": "Supprimer",
