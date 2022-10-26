@@ -1,4 +1,9 @@
 import { BRING_YOUR_OWN_IP, ADDITIONAL_IP } from './ip.constant';
+import {
+  DASHBOARD_TRACKING_PREFIX,
+  DASHBOARD_TRACKING_HIT,
+} from './ip/ip-ip.constant';
+import { FAILOVER_TRACKING_HIT } from './failover/failover.constants';
 
 export default /* @ngInject */ function IpMainCtrl(
   $scope,
@@ -13,6 +18,7 @@ export default /* @ngInject */ function IpMainCtrl(
   goToOrganisation,
   goToByoipConfiguration,
   goToAgoraOrder,
+  trackClick,
 ) {
   $scope.currentUser = currentUser;
   $scope.currentActiveLink = currentActiveLink;
@@ -69,4 +75,32 @@ export default /* @ngInject */ function IpMainCtrl(
       'polling_action',
     );
   });
+
+  $scope.onAgoraOrderButtonClick = function onAgoraOrderButtonClick() {
+    trackClick(
+      DASHBOARD_TRACKING_PREFIX.DEFAULT,
+      DASHBOARD_TRACKING_HIT.AGORA_ORDER,
+    );
+    goToAgoraOrder();
+  };
+
+  $scope.onByoipConfigurationButtonClick = function onByoipConfigurationButtonClick() {
+    trackClick(
+      DASHBOARD_TRACKING_PREFIX.DEFAULT,
+      DASHBOARD_TRACKING_HIT.BYOIP_CONFIGURATION,
+    );
+    goToByoipConfiguration();
+  };
+
+  $scope.onDashboardTabClick = function onDashboardTabClick() {
+    if (dashboardLink !== currentActiveLink()) {
+      trackClick(DASHBOARD_TRACKING_PREFIX.DEFAULT, DASHBOARD_TRACKING_HIT.TAB);
+    }
+  };
+
+  $scope.onFailoverTabClick = function onFailoverTabClick() {
+    if (failoverLink !== currentActiveLink()) {
+      trackClick(DASHBOARD_TRACKING_PREFIX.DEFAULT, FAILOVER_TRACKING_HIT.TAB);
+    }
+  };
 }
