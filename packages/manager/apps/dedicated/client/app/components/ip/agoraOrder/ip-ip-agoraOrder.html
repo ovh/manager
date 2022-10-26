@@ -51,6 +51,10 @@
                     </label>
                 </oui-field>
             </div>
+            <div
+                data-ng-show="!$ctrl.loading.services && !$ctrl.services.length"
+                data-translate="ip_order_noservices"
+            ></div>
         </oui-step-form>
         <oui-step-form
             data-id="offer"
