@@ -1,4 +1,4 @@
-import { TRACKING_PREFIX } from '../list.constant';
+import { TRACKING_PREFIX, LEARN_ORGANIZATION_LINK } from '../list.constant';
 
 export default class IpOrganisationController {
   /* @ngInject */
@@ -24,7 +24,7 @@ export default class IpOrganisationController {
     this.$scope.alert = 'ip_organisation_alerter';
     this.$scope.loadingOrganisation = false;
     this.$scope.organisations = null;
-
+    this.$scope.LEARN_ORGANIZATION_LINK = LEARN_ORGANIZATION_LINK;
     this.$scope.$on('ips.organisation.display', () => {
       this.$scope.organisations = null;
       this.loadOrganisations();

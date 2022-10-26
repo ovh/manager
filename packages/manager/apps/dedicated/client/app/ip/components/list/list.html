@@ -192,6 +192,10 @@
                         data-oui-popover-placement="top"
                     ></button>
                 </th>
+                <th
+                    scope="col"
+                    data-translate="ip_table_header_organisation"
+                ></th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -345,6 +349,11 @@
 
                 <!-- Game mitigation -->
                 <td data-ng-if="advancedModeFilter"></td>
+
+                <!-- Organization -->
+                <td data-ng-if="advancedModeFilter">
+                    <span data-ng-bind="ipBlock.organisationId"></span>
+                </td>
 
                 <!-- Actions -->
                 <td>
@@ -586,6 +595,14 @@
                         data-oui-popover="{{:: 'ip_game_mitigation_ACTIVATED_help' | translate }}"
                         data-oui-popover-placement="left"
                     ></button>
+                </td>
+                <!-- Organisation -->
+                <td data-ng-if="advancedModeFilter">
+                    <span
+                        data-ng-if="ipBlock.organisationId"
+                        data-ng-bind="ipBlock.organisationId"
+                    >
+                    </span>
                 </td>
 
                 <!-- Actions -->
