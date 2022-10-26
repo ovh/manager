@@ -5,7 +5,7 @@
                 <span data-translate="module_ip_dashboard_title"></span>
                 <oui-button
                     class="oui-button_secondary"
-                    data-on-click="goToAgoraOrder()"
+                    data-on-click="onAgoraOrderButtonClick()"
                 >
                     <i
                         class="oui-icon oui-icon-add pr-1"
@@ -17,7 +17,7 @@
                 </oui-button>
                 <oui-button
                     class="oui-button_secondary"
-                    data-on-click="goToByoipConfiguration()"
+                    data-on-click="onByoipConfigurationButtonClick()"
                 >
                     <i
                         class="oui-icon oui-icon-add pr-1"
@@ -31,12 +31,14 @@
             <oui-header-tabs-item
                 href="{{ dashboardLink }}"
                 active="dashboardLink === currentActiveLink()"
+                data-ng-click="onDashboardTabClick()"
             >
                 <span data-translate="ip_ip"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 href="{{ failoverLink }}"
                 active="failoverLink === currentActiveLink()"
+                data-ng-click="onFailoverTabClick()"
             >
                 <span data-ng-bind=":: ADDITIONAL_IP"></span>
             </oui-header-tabs-item>

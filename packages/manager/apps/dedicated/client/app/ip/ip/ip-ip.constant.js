@@ -16,7 +16,6 @@ export const SERVICE_TYPES = [
   'xdsl',
 ];
 
-export const IP_FILTERS_CHAPTER_1 = 'all_ips_filter';
 export const ADDITIONAL_IP = 'Additional IP';
 
 export const SERVICE_URL_DATA = {
@@ -57,12 +56,24 @@ export const SERVICE_URL_DATA = {
   },
 };
 
+export const DASHBOARD_TRACKING_PREFIX = {
+  DEFAULT: 'dashboard',
+  FILTERS: 'all_ips_filter',
+};
+export const DASHBOARD_TRACKING_HIT = {
+  AGORA_ORDER: 'order_next-step-1',
+  BYOIP_CONFIGURATION: 'bring-your-own-ip',
+  EXPORT: 'export-csv',
+  TAB: 'all-ips-tab',
+};
+
 export default {
   IP_TYPE,
   BRING_YOUR_OWN_IP,
   SERVICE_TYPES,
   TRACKING_PREFIX,
-  IP_FILTERS_CHAPTER_1,
   ADDITIONAL_IP,
   SERVICE_URL_DATA,
+  DASHBOARD_TRACKING_PREFIX,
+  DASHBOARD_TRACKING_HIT,
 };

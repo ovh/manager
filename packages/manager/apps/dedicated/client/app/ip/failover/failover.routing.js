@@ -1,8 +1,9 @@
 import { listRouting } from '../ip.routing';
 
+import { TRACKING_PREFIX } from '../ip.constant';
 import {
-  FAILOVER_FILTERS_CHAPTER_1,
   FAILOVER_SERVICE_TYPE,
+  FAILOVER_TRACKING_PREFIX,
 } from './failover.constants';
 import { BADGE_BYOIP } from '../components/list/list.constant';
 
@@ -32,9 +33,13 @@ export default /* @ngInject */ ($stateProvider) => {
       ...listRouting.resolve,
       badges: () => [BADGE_BYOIP],
       trackingData: () => ({
-        filtersChapter1: FAILOVER_FILTERS_CHAPTER_1,
+        prefix: FAILOVER_TRACKING_PREFIX.DEFAULT,
+        filtersPrefix: FAILOVER_TRACKING_PREFIX.FILTERS,
       }),
       serviceType: () => FAILOVER_SERVICE_TYPE,
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}::${FAILOVER_TRACKING_PREFIX.DEFAULT}`,
     },
   });
 };
