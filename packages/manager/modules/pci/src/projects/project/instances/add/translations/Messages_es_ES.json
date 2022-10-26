@@ -85,5 +85,7 @@
   "pci_projects_project_instances_add_modal_add_private_network_field_placeholder": "Introducir un nombre de red privada",
   "pci_projects_project_instances_add_private_network_select_subnet_label": "Seleccione una subred",
   "pci_projects_project_instances_add_modal_submit_label": "Añadir",
-  "pci_projects_project_instances_add_modal_cancel_label": "Cancelar"
+  "pci_projects_project_instances_add_modal_cancel_label": "Cancelar",
+  "pci_projects_project_instances_add_billing_gateway_detail_s_size": "Tamaño S",
+  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly": "(por {{gatewayPrice}}/mes facturados por horas)"
 }

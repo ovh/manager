@@ -88,19 +88,28 @@ export default /* @ngInject */ ($stateProvider) => {
           catalogEndpoint,
           coreConfig.getUser(),
         ).then((data) => {
-          return data.addons
-            .filter(
-              (addon) =>
-                (addon.product.startsWith('publiccloud-gateway') &&
-                  addon.planCode.startsWith('gateway.s.month.consumption')) ||
-                (addon.product.startsWith(
-                  'publiccloud-floatingip-floatingip',
-                ) &&
-                  addon.planCode.startsWith(
-                    'floatingip.floatingip.month.consumption',
-                  )),
+          const floatingIpProducts = data.addons
+            .filter((addon) =>
+              addon.product.startsWith('publiccloud-floatingip-floatingip'),
             )
-            .reverse();
+            .sort(
+              (
+                { pricings: [{ price: priceA }] },
+                { pricings: [{ price: priceB }] },
+              ) => priceA - priceB,
+            )
+            .filter(({ product }, index, arr) => product === arr[0].product);
+          const [monthlyPriceObj] = floatingIpProducts.find(({ planCode }) =>
+            planCode.includes('month'),
+          )?.pricings;
+          const [hourlyPriceObj] = floatingIpProducts.find(({ planCode }) =>
+            planCode.includes('hour'),
+          )?.pricings;
+          return {
+            product: floatingIpProducts[0].product,
+            pricePerMonth: monthlyPriceObj.price,
+            pricePerHour: hourlyPriceObj.price,
+          };
         }),
       addInstanceTrackPrefix: /* @ngInject */ () =>
         `PublicCloud::pci::projects::project::instances::`,

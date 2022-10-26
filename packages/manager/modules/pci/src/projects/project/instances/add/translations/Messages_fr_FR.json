@@ -71,8 +71,8 @@
 
   "pci_projects_project_instances_add_billing_gateway_info": "Nous avons détecté des composants manquants : <strong>Gateway</strong>",
   "pci_projects_project_instances_add_billing_gateway_detail": "La flavor sélectionnée est :",
-  "pci_projects_project_instances_add_billing_gateway_detail_publiccloud-gateway-s_size": "Taille S",
-  "pci_projects_project_instances_add_billing_gateway_detail_publiccloud-gateway-s_price": "(au prix de {{gatewayPrice}}/mois facturés à l’heure)",
+  "pci_projects_project_instances_add_billing_gateway_detail_s_size": "Taille S",
+  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly": "(au prix de {{gatewayPrice}}/mois facturés à l’heure)",
   "pci_projects_project_instances_add_billing_gateway_snat_info": "Nous avons détecté l'utilisation d'une passerelle existante mais sans l'option SNAT activée. Nous devons l'activer pour vous",
   "pci_projects_project_instances_add_billing_gateway_DHCP_info": "Nous avons détecté une passerelle existante à utiliser mais sans l'option de route DHCP par défaut annoncée. Nous devons l'activer pour vous.",
   "pci_projects_project_instances_add_privateNetwork_next": "Suivant",

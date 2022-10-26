@@ -8,5 +8,6 @@
   "pci_project_flavors_billing_price_monthly_instance_price_label": "Cena instancji:",
   "pci_project_flavors_billing_price_monthly_gateway_price_label": "Gateway:",
   "pci_project_flavors_billing_price_monthly_floatingip_price_label": "Floating IP:",
-  "pci_projects_project_instances_add_total_price_label": "Razem:"
+  "pci_projects_project_instances_add_total_price_label": "Razem:",
+  "pci_project_flavors_billing_addons_price_hourly": "{{price}} netto/godz."
 }
