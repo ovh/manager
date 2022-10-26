@@ -13,6 +13,7 @@ import {
   BADGES,
   ADDITIONAL_IP,
   SECURITY_URL,
+  IP_COMPONENTS_LIST_TRACKING_HIT,
 } from './list.constant';
 
 export default class IpListController {
@@ -432,7 +433,10 @@ export default class IpListController {
     };
 
     $scope.displayOrganisation = function displayOrganisation() {
-      self.trackClick('manage-organisation');
+      self.trackClick(
+        self.trackingData.prefix,
+        IP_COMPONENTS_LIST_TRACKING_HIT.ORGANISATION,
+      );
       self
         .goToOrganisation()
         .then(() => $scope.$broadcast('ips.organisation.display'));
@@ -518,15 +522,25 @@ export default class IpListController {
 
     $scope.exportCsv = function exportCsv(ipsList) {
       self.trackPage('export-csv');
-      self.trackClick('export-csv');
+      self.trackClick(
+        self.trackingData.prefix,
+        IP_COMPONENTS_LIST_TRACKING_HIT.EXPORT,
+      );
       $scope.setAction('ip/export-csv/ip-ip-export-csv', { ipsList });
     };
 
     $scope.onAdvancedModeFilterChanged = function onAdvancedModeFilterChanged() {
-      self.trackClick(
-        `advanced_mode_${$scope.advancedModeFilter ? 'on' : 'off'}`,
-        { usePrefix: false, chapter1: self.trackingData?.filtersChapter1 },
-      );
+      $timeout(() => {
+        atInternet.trackClick({
+          type: 'action',
+          name: [
+            self.trackingData.filtersPrefix,
+            $scope.advancedModeFilter
+              ? IP_COMPONENTS_LIST_TRACKING_HIT.ADVANCED_MODE_ON
+              : IP_COMPONENTS_LIST_TRACKING_HIT.ADVANCED_MODE_OFF,
+          ].join('::'),
+        });
+      });
     };
 
     if (
@@ -573,7 +587,10 @@ export default class IpListController {
     $scope.canExportCsv = () => $scope.state.loaded !== $scope.state.total;
     $scope.importIPFO = function importIPFO() {
       self.trackPage('import-failover');
-      self.trackClick('import');
+      self.trackClick(
+        self.trackingData.prefix,
+        IP_COMPONENTS_LIST_TRACKING_HIT.IMPORT,
+      );
       $scope.setAction('ip/legacyOrder/migrate/ip-ip-legacyOrder-migrate');
     };
 

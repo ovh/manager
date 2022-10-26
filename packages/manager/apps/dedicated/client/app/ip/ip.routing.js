@@ -1,6 +1,8 @@
 import controller from './ip.controller';
 import template from './ip.html';
 
+import { TRACKING_PREFIX } from './ip.constant';
+
 const allowByoipFeatureName = 'ip:byoip';
 
 export const listRouting = {
@@ -60,20 +62,15 @@ export default /* @ngInject */ ($stateProvider) => {
           .limit(1)
           .execute(null, true)
           .$promise.then(({ data: [ip] }) => !!ip),
-      trackingPrefix: () => 'dedicated::ip::dashboard',
-      trackPage: /* @ngInject */ (atInternet, trackingPrefix) => (hit) => {
+      trackPage: /* @ngInject */ (atInternet) => (...hits) => {
         atInternet.trackPage({
-          name: `${trackingPrefix}::${hit}`,
+          name: [TRACKING_PREFIX, ...hits].join('::'),
         });
       },
-      trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (
-        hit,
-        { chapter1, usePrefix = true } = {},
-      ) => {
+      trackClick: /* @ngInject */ (atInternet) => (...hits) => {
         atInternet.trackClick({
-          name: `${usePrefix ? `${trackingPrefix}::` : ''}${hit}`,
+          name: [TRACKING_PREFIX, ...hits].join('::'),
           type: 'action',
-          chapter1,
         });
       },
       dashboardLink: /* @ngInject */ ($transition$, $state) =>
@@ -90,8 +87,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ovhFeatureFlipping
           .checkFeatureAvailability(allowByoipFeatureName)
           .then((feature) => feature.isFeatureAvailable(allowByoipFeatureName)),
-      goToByoipConfiguration: /* @ngInject */ ($state, trackClick) => () => {
-        trackClick('bring-your-own-ip');
+      goToByoipConfiguration: /* @ngInject */ ($state) => () => {
         return $state.go('app.ip.byoip');
       },
       goToAgoraOrder: /* @ngInject */ ($state, trackPage) => () => {
@@ -99,9 +95,6 @@ export default /* @ngInject */ ($stateProvider) => {
         return $state.go('app.ip.agora-order');
       },
       breadcrumb: /* @ngInject */ ($translate) => $translate.instant('ip_ip'),
-    },
-    atInternet: {
-      rename: 'dedicated::ip::dashboard',
     },
   });
 

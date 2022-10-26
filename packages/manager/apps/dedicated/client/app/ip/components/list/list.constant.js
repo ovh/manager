@@ -47,10 +47,19 @@ export const SECURITY_URL = {
   WS: 'https://www.ovhcloud.com/es/security/anti-ddos/ddos-attack-mitigation/',
 };
 
+export const IP_COMPONENTS_LIST_TRACKING_HIT = {
+  ADVANCED_MODE_ON: 'advanced_mode_on',
+  ADVANCED_MODE_OFF: 'advanced_mode_off',
+  EXPORT: 'export-csv',
+  IMPORT: 'import',
+  ORGANISATION: 'manage-organisation',
+};
+
 export default {
   BADGES,
   IP_TYPE,
   TRACKING_PREFIX,
   SECURITY_URL,
   LEARN_ORGANIZATION_LINK,
+  IP_COMPONENTS_LIST_TRACKING_HIT,
 };
