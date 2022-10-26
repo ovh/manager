@@ -1,5 +1,5 @@
 {
-  "ip_onboarding_title": "Les Ips flottantes",
+  "ip_onboarding_title": "Additional IP",
   "ip_onboarding_subtitle": "Ajoutez de la flexibilité à vos applications avec Additional IP",
   "ip_onboarding_content_header": "La plupart des produits OVHcloud incluent une adresse IPv4 statique pré-configurée. Pour une flexibilité exceptionnelle, ces produits peuvent également être utilisés avec des Additional IP (anciennement connues sous le nom d’IP failover), qui sont des adresses IP pouvant être facilement attribuées et déplacées d’un service à l’autre. Elles sont disponibles sous deux formats",
   "ip_onboarding_content_footer": "Vous pouvez attribuer une Additional IP (adresse individuel ou bloc) à tout service compatible au sein du même campus. Un campus est un groupe de datacenters partageant le même emplacement géographique. Pour plus d'informations veuillez consulter notre page dédiée",
