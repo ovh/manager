@@ -127,8 +127,17 @@ export default class PciInstancesAddController {
     this.isLoadBillingStep = false;
     this.floatingIps = null;
     this.addons = [];
-    [this.defaultGateway, this.defaultFloatingIp] = this.getProductCatalog;
+    this.getSmallestGatewayInfo();
+    this.defaultFloatingIp = this.getProductCatalog;
     this.isIpLoading = false;
+  }
+
+  getSmallestGatewayInfo() {
+    return this.PciPublicGatewaysService.getSmallestGatewayInfo(
+      this.user.ovhSubsidiary,
+    ).then((data) => {
+      this.defaultGateway = data;
+    });
   }
 
   getDefaultSelectValue(transKey) {
@@ -578,20 +587,24 @@ export default class PciInstancesAddController {
       this.subnetGateways.length === 0 &&
       this.selectedFloatingIP.id
     ) {
-      this.addons = [...this.addons, this.defaultGateway];
+      this.addons = [...this.addons, { gateway: this.defaultGateway }];
     }
     if (
       this.isAttachFloatingIPAvailable &&
       this.subnetGateways.length === 0 &&
       !this.selectedFloatingIP.id
     ) {
-      this.addons = [...this.addons, ...this.getProductCatalog];
+      this.addons = [
+        ...this.addons,
+        { gateway: this.defaultGateway },
+        { floatingIp: this.getProductCatalog },
+      ];
     } else if (
       this.isAttachFloatingIPAvailable &&
       !this.selectedFloatingIP.id &&
       this.subnetGateways.length > 0
     ) {
-      this.addons = [...this.addons, this.defaultFloatingIp];
+      this.addons = [...this.addons, { floatingIp: this.defaultFloatingIp }];
     }
   }
 

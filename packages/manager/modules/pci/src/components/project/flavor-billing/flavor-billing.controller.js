@@ -8,12 +8,8 @@ export default class FlavorBillingController {
     this.monthly = this.monthlyBilling === true;
     this.number = this.number || 1;
     this.disabled = this.disabled || false;
-    this.defaultGateway = this.addons?.find((addon) =>
-      addon.product?.startsWith('publiccloud-gateway'),
-    );
-    this.defaultFloatingIP = this.addons?.find((addon) =>
-      addon.product?.startsWith('publiccloud-floatingip'),
-    );
+    this.defaultGateway = this.addons?.find((addon) => addon.gateway);
+    this.defaultFloatingIP = this.addons?.find((addon) => addon.floatingIp);
   }
 
   set flavor(flavor) {
@@ -44,12 +40,23 @@ export default class FlavorBillingController {
 
   formatAddonsPrice = (price = 0) => price / 100000000;
 
-  getAddOnPrice() {
+  getAddOnPriceMonthly() {
     if (this.addons) {
       return (
         this.prices.monthly.value +
-        this.formatAddonsPrice(this.defaultGateway?.pricings[0]?.price) +
-        this.formatAddonsPrice(this.defaultFloatingIP?.pricings[0]?.price)
+        this.formatAddonsPrice(this.defaultGateway?.gateway.pricePerMonth) +
+        this.formatAddonsPrice(this.defaultFloatingIP?.floatingIp.pricePerMonth)
+      );
+    }
+    return null;
+  }
+
+  getAddOnPriceHourly() {
+    if (this.addons) {
+      return (
+        this.prices.hourly.value +
+        this.formatAddonsPrice(this.defaultGateway?.gateway.pricePerHour) +
+        this.formatAddonsPrice(this.defaultFloatingIP?.floatingIp.pricePerHour)
       );
     }
     return null;
