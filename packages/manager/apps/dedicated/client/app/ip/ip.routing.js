@@ -85,7 +85,7 @@ export default /* @ngInject */ ($stateProvider) => {
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       goToOrganisation: /* @ngInject */ ($state) => () =>
-        $state.go('app.ip.dashboard.organisation'),
+        $state.go('app.ip.organisation'),
       isByoipAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
           .checkFeatureAvailability(allowByoipFeatureName)
