@@ -576,6 +576,12 @@ export default class IpListController {
       );
     };
 
+    $scope.goToEditOrAssociate = function goToEditOrAssociate(ipBlock) {
+      $scope.setAction('ip/block/editAssociate/ip-ip-block-edit-associate', {
+        ipBlock,
+      });
+    };
+
     $scope.goToUpdateReverse = function goToUpdateReverse(ipBlock, ip) {
       self.trackPage('update-reverse');
       $scope.setAction('ip/reverse/update/ip-ip-reverse-update', {
