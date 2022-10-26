@@ -438,8 +438,9 @@
         <div data-ng-if="$ctrl.isPrivateMode()">
             <oui-checkbox
                 class="mb-3"
-                data-model="$ctrl.isAttachFloatingIPAvailable"
+                data-model="$ctrl.isAttachFloatingIP"
                 data-on-change="$ctrl.onAttachIPChange(modelValue)"
+                data-disabled="!$ctrl.isFloatingIpAvailable"
             >
                 <oui-checkbox-label>
                     <span
@@ -452,6 +453,17 @@
                     ></span>
                 </oui-checkbox-description>
             </oui-checkbox>
+            <oui-message
+                data-type="warning"
+                data-ng-if="!$ctrl.isFloatingIpAvailable"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_add_attach_floating_ip_availability_info"
+                    data-translate-values="{
+                        guideLink: $ctrl.FLOATING_IP_AVAILABILITY_INFO_LINK
+                    }"
+                ></span>
+            </oui-message>
             <oui-message data-type="info">
                 <p
                     data-translate="pci_projects_project_instances_add_attch_floating_ip_banner_description1"
@@ -479,9 +491,7 @@
                 </p>
             </oui-message>
         </div>
-        <div
-            data-ng-if="$ctrl.isAttachFloatingIPAvailable && $ctrl.isPrivateMode()"
-        >
+        <div data-ng-if="$ctrl.isAttachFloatingIP && $ctrl.isPrivateMode()">
             <oui-spinner
                 data-size="s"
                 data-ng-if="$ctrl.isIpLoading"
@@ -531,7 +541,7 @@
         </p>
         <oui-message
             data-type="warning"
-            data-ng-if="($ctrl.subnetGateways.length === 0 || $ctrl.subnetGateways.length > 1) && !$ctrl.isLoadBillingStep && $ctrl.isAttachFloatingIPAvailable"
+            data-ng-if="($ctrl.subnetGateways.length === 0 || $ctrl.subnetGateways.length > 1) && !$ctrl.isLoadBillingStep && $ctrl.isAttachFloatingIP"
         >
             <p
                 data-translate="pci_projects_project_instances_add_billing_gateway_info"

@@ -87,5 +87,6 @@
   "pci_projects_project_instances_add_modal_submit_label": "Add",
   "pci_projects_project_instances_add_modal_cancel_label": "Exit",
   "pci_projects_project_instances_add_billing_gateway_detail_s_size": "Size S",
-  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly": "(for {{gatewayPrice}}/month billed per hour)"
+  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly": "(for {{gatewayPrice}}/month billed per hour)",
+  "pci_projects_project_instances_add_attach_floating_ip_availability_info": "This option may not be available in the selected region. To learn more about product availability by region, <a href=\"{{ guideLink }}\" target=\"_blank\">click here</a>."
 }

@@ -18,6 +18,9 @@ export const INSTANCE_READ_MORE_GUIDE = {
   },
 };
 
+export const FLOATING_IP_AVAILABILITY_INFO_LINK =
+  'https://www.ovhcloud.com/en/public-cloud/regions-availability/';
+
 export default {
   BANDWIDTH_OUT,
   EXCLUDE_FLAVOR_CATEGORIES,
