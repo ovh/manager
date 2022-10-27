@@ -34,6 +34,7 @@ export default class Database extends Base {
     endpoints,
     maintenanceTime,
     backupTime,
+    disk,
   }) {
     super();
     this.updateData({
@@ -60,6 +61,7 @@ export default class Database extends Base {
       endpoints,
       maintenanceTime,
       backupTime,
+      disk,
     });
   }
 
