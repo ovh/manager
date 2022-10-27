@@ -122,18 +122,17 @@
                     memorySize: ($ctrl.getCurrentFlavor($row).memory | bytes:2:false:'GB')
                 })"
             ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_database_storage_label' | translate"
+            data-property="disk.size"
+            data-type="number"
+            data-sortable
+            data-filterable
+        >
             <span
-                ng-if="$ctrl.getCurrentFlavor($row).hasStorage && !$ctrl.getCurrentFlavor($row).isStorageRange"
-                data-ng-bind="' / ' + ( 'pci_database_node_type_storage' | translate:{
-                    storageSize: ($ctrl.getCurrentFlavor($row).minDiskSize | bytes:2:false:'GB')
-                })"
-            ></span>
-            <span
-                ng-if="$ctrl.getCurrentFlavor($row).hasStorage && $ctrl.getCurrentFlavor($row).isStorageRange"
-                data-ng-bind="' / ' + ( 'pci_database_node_type_storage_range' | translate:{
-                    storageMinSize: ($ctrl.getCurrentFlavor($row).minDiskSize | bytes:2:false:'GB'),
-                    storageMaxSize: ($ctrl.getCurrentFlavor($row).maxDiskSize | bytes:2:false:'GB')
-                })"
+                data-ng-if="$row.disk.size > 0"
+                data-ng-bind="$row.disk.size | bytes:2:false:'GB'"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
