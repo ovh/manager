@@ -11,6 +11,7 @@ export default /* @ngInject */
   $scope,
   $stateParams,
   $translate,
+  $timeout,
   Alerter,
   goToAntispam,
   goToFirewall,
@@ -20,14 +21,26 @@ export default /* @ngInject */
   Ip,
   trackClick,
   isByoipAvailable,
+  goToGameFirewall,
+  orderIpAvailable,
+  trackPage,
+  trackingData,
 ) => {
   $scope.isByoipAvailable = isByoipAvailable;
 
   $scope.BRING_YOUR_OWN_IP = BRING_YOUR_OWN_IP;
   $scope.ADDITIONAL_IP = ADDITIONAL_IP;
 
+  $scope.goToAntispam = goToAntispam;
+  $scope.goToFirewall = goToFirewall;
+  $scope.goToGameFirewall = goToGameFirewall;
+  $scope.goToOrganisation = goToOrganisation;
+  $scope.orderIpAvailable = orderIpAvailable;
+  $scope.trackClick = trackClick;
+  $scope.trackPage = trackPage;
+  $scope.trackingData = trackingData;
+
   function init() {
-    $scope.loading = {};
     $scope.state = {};
     $scope.services = [];
     $scope.serviceTypes = [];
@@ -61,7 +74,10 @@ export default /* @ngInject */
   $scope.selectServiceType = (serviceType) => {
     $scope.serviceType = serviceType === 'all' ? null : serviceType;
     $location.search('serviceType', $scope.serviceType);
-    $scope.$broadcast('ips.table.reload');
+    $location.search('page', 1);
+    $timeout(() => {
+      $scope.$broadcast('ips.table.reload');
+    });
   };
 
   $scope.$on('organisation.change.done', () => {

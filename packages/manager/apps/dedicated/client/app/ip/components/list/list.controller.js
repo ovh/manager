@@ -14,6 +14,8 @@ import {
   ADDITIONAL_IP,
   SECURITY_URL,
   IP_COMPONENTS_LIST_TRACKING_HIT,
+  PAGE_SIZE_MIN,
+  PAGE_SIZE_MAX,
 } from './list.constant';
 
 export default class IpListController {
@@ -24,7 +26,6 @@ export default class IpListController {
     $q,
     $rootScope,
     $scope,
-    $stateParams,
     $timeout,
     $translate,
     Alerter,
@@ -45,7 +46,6 @@ export default class IpListController {
     this.$q = $q;
     this.$rootScope = $rootScope;
     this.$scope = $scope;
-    this.$stateParams = $stateParams;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.Alerter = Alerter;
@@ -70,7 +70,6 @@ export default class IpListController {
       $q,
       $rootScope,
       $scope,
-      $stateParams,
       $timeout,
       $translate,
       Alerter,
@@ -96,24 +95,26 @@ export default class IpListController {
     this.securityUrl =
       SECURITY_URL[coreConfig.getUser().ovhSubsidiary] || SECURITY_URL.DEFAULT;
 
-    // pagination
-    $scope.pageNumber = toInteger($stateParams.page) || 1;
-    $scope.pageSize = toInteger($stateParams.pageSize) || 1;
-    $scope.paginationOffset = 1 + ($scope.pageNumber - 1) * $scope.pageSize;
-    if ($scope.pageNumber < 1) {
-      $scope.pageNumber = 1;
-    }
-    if ($scope.pageSize < 10) {
-      $scope.pageSize = 10;
-    } else if ($scope.pageSize > 50) {
-      $scope.pageSize = 50;
-    }
-
     function init() {
+      // pagination
+      const { page, pageSize } = $location.search();
+      $scope.pageNumber = toInteger(page) || 1;
+      $scope.pageSize = toInteger(pageSize) || PAGE_SIZE_MIN;
+      if ($scope.pageNumber < 1) {
+        $scope.pageNumber = 1;
+      }
+      if ($scope.pageSize < PAGE_SIZE_MIN) {
+        $scope.pageSize = PAGE_SIZE_MIN;
+      } else if ($scope.pageSize > PAGE_SIZE_MAX) {
+        $scope.pageSize = PAGE_SIZE_MAX;
+      }
+      $scope.paginationOffset = 1 + ($scope.pageNumber - 1) * $scope.pageSize;
+
       $scope.loading = {};
       $scope.state = {};
       $scope.serviceType =
         self.serviceType || $location.search().serviceType || null;
+
       $scope.tracking = {
         'enable-permanent-mitigation': `${TRACKING_PREFIX}::enable-permanent-mitigation`,
         'create-firewall': `${TRACKING_PREFIX}::create-firewall`,

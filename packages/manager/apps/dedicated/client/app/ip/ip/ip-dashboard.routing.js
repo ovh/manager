@@ -13,15 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       serviceName: '',
     },
-    views: {
-      '': {
-        controller,
-        template,
-      },
-      'list@app.ip.dashboard': {
-        component: 'ipList',
-      },
-    },
+    controller,
+    template,
     redirectTo: (transition) =>
       transition
         .injector()

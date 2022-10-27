@@ -19,6 +19,7 @@ export default {
   transclude: {
     actions: '?ipListActions',
     filters: '?ipListFilters',
+    header: '?ipListHeader',
   },
   controller,
   template,

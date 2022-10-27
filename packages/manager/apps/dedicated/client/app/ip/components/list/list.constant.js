@@ -54,6 +54,8 @@ export const IP_COMPONENTS_LIST_TRACKING_HIT = {
   IMPORT: 'import',
   ORGANISATION: 'manage-organisation',
 };
+export const PAGE_SIZE_MIN = 10;
+export const PAGE_SIZE_MAX = 50;
 
 export default {
   BADGES,
@@ -62,4 +64,6 @@ export default {
   SECURITY_URL,
   LEARN_ORGANIZATION_LINK,
   IP_COMPONENTS_LIST_TRACKING_HIT,
+  PAGE_SIZE_MIN,
+  PAGE_SIZE_MAX,
 };
