@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.95.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.94.1...@ovh-ux/manager-pci@5.95.0) (2022-10-27)
+
+
+### Features
+
+* **pci.project:** add repricing banner ([#8275](https://github.com/ovh/manager/issues/8275)) ([4f2db8c](https://github.com/ovh/manager/commit/4f2db8c1add1a913035d8d3e89d50b52891d56f9))
+
+
+
+
+
 ## [5.94.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.94.0...@ovh-ux/manager-pci@5.94.1) (2022-10-24)
 
 
