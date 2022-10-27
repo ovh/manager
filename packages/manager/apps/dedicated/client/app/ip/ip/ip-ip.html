@@ -1,23 +1,18 @@
 <div>
-    <div class="text-center" data-ng-if="loading.init">
-        <oui-spinner></oui-spinner>
-    </div>
-
-    <div data-ng-if="!loading.init" ui-view>
-        <ip-alerts
-            class="d-block mb-4"
-            data-service-type="serviceType"
-        ></ip-alerts>
-
-        <h4 data-translate="ip_addresses_grid_header"></h4>
-
-        <div class="form-group w-25" data-ng-if="serviceTypes.length">
-            <label
-                class="control-label"
-                for="serviceTypeSelector"
-                data-translate="ip_table_header_service"
-            >
-            </label>
+    <ip-alerts class="d-block mb-4" data-service-type="serviceType"></ip-alerts>
+    <h4 data-translate="ip_addresses_grid_header"></h4>
+    <ip-list
+        data-go-to-antispam="goToAntispam"
+        data-go-to-firewall="goToFirewall"
+        data-go-to-game-firewall="goToGameFirewall"
+        data-go-to-organisation="goToOrganisation"
+        data-order-ip-available="orderIpAvailable"
+        data-set-action="$parent.setAction"
+        data-track-click="trackClick"
+        data-track-page="trackPage"
+        data-tracking-data="trackingData"
+    >
+        <ip-list-header data-ng-if="serviceTypes.length">
             <select
                 class="form-control"
                 id="serviceTypeSelector"
@@ -26,18 +21,6 @@
                 data-ng-change="selectServiceType(selectedServiceType)"
                 data-ng-options="serviceType as (('ip_filter_service_type_' + serviceType) | translate) for serviceType in serviceTypes"
             ></select>
-        </div>
-        <!-- ?? -->
-        <div data-ng-if="filters.service.serviceName === '_PARK' && parkPrice">
-            <p>
-                <span data-translate="ip_filter_services__PARK"></span>
-                <strong
-                    class="text-danger"
-                    data-ng-bind-html="('price_ht_label' | translate:{ t0: parkPrice }) + ' / ' + ('ip_month' | translate) + ' / ' + ('ip_ip' | translate)"
-                >
-                </strong>
-            </p>
-        </div>
-    </div>
-    <div ui-view="list"></div>
+        </ip-list-header>
+    </ip-list>
 </div>

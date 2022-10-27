@@ -1,61 +1,71 @@
 <div
     class="ip-components-list table-responsive mt-3 module-ip-table-responsive"
 >
-    <div class="mb-3 d-flex align-items-center justify-content-end">
-        <oui-dropdown>
-            <button
-                type="button"
-                class="oui-button oui-button_secondary oui-button_s"
-                data-oui-dropdown-trigger
-            >
-                <span
-                    class="oui-icon oui-icon-settings"
-                    aria-hidden="true"
-                ></span>
-            </button>
-            <oui-dropdown-content>
-                <oui-dropdown-item
-                    data-on-click="importIPFO()"
-                    data-ng-if="canImportIPFO()"
+    <div class="mb-3 d-flex align-items-center">
+        <div class="d-flex w-50" data-ng-transclude="header"></div>
+        <div class="d-flex w-50 flex-column align-items-end">
+            <div class="mb-3 d-flex align-items-center">
+                <oui-dropdown>
+                    <button
+                        type="button"
+                        class="oui-button oui-button_secondary oui-button_s"
+                        data-oui-dropdown-trigger
+                    >
+                        <span
+                            class="oui-icon oui-icon-settings"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+                    <oui-dropdown-content>
+                        <oui-dropdown-item
+                            data-on-click="importIPFO()"
+                            data-ng-if="canImportIPFO()"
+                        >
+                            <span data-translate="ip_migration"></span>
+                        </oui-dropdown-item>
+                        <oui-dropdown-item
+                            data-on-click="displayOrganisation()"
+                        >
+                            <span
+                                data-translate="ip_organisation_button"
+                            ></span>
+                        </oui-dropdown-item>
+                    </oui-dropdown-content>
+                </oui-dropdown>
+                <oui-button
+                    data-oui-tooltip="{{:: 'ip_export' | translate }}"
+                    data-oui-tooltip-placement="left"
+                    type="button"
+                    class="oui-button_secondary"
+                    disabled="canExportCsv()"
+                    on-click="exportCsv(ipsList)"
                 >
-                    <span data-translate="ip_migration"></span>
-                </oui-dropdown-item>
-                <oui-dropdown-item data-on-click="displayOrganisation()">
-                    <span data-translate="ip_organisation_button"></span>
-                </oui-dropdown-item>
-            </oui-dropdown-content>
-        </oui-dropdown>
-        <oui-button
-            data-oui-tooltip="{{:: 'ip_export' | translate }}"
-            data-oui-tooltip-placement="left"
-            type="button"
-            class="oui-button_secondary"
-            disabled="canExportCsv()"
-            on-click="exportCsv(ipsList)"
-        >
-            <span class="oui-icon oui-icon-export_concept"></span>
-        </oui-button>
-        <div
-            class="d-flex align-items-center"
-            data-ng-transclude="actions"
-        ></div>
+                    <span class="oui-icon oui-icon-export_concept"></span>
+                </oui-button>
+                <div
+                    class="d-flex align-items-center"
+                    data-ng-transclude="actions"
+                ></div>
+            </div>
+            <div class="d-flex align-items-center">
+                <span
+                    class="mr-2"
+                    data-translate="ip_table_filter_advanced_mode"
+                ></span>
+                <oui-switch
+                    class="mr-2"
+                    data-name="advancedModeFilter"
+                    data-model="advancedModeFilter"
+                    data-on-change="onAdvancedModeFilterChanged()"
+                ></oui-switch>
+                <div
+                    class="d-flex align-items-center"
+                    data-ng-transclude="filters"
+                ></div>
+            </div>
+        </div>
     </div>
-    <div class="mb-3 d-flex align-items-center justify-content-end">
-        <span
-            class="mr-2"
-            data-translate="ip_table_filter_advanced_mode"
-        ></span>
-        <oui-switch
-            class="mr-2"
-            data-name="advancedModeFilter"
-            data-model="advancedModeFilter"
-            data-on-change="onAdvancedModeFilterChanged()"
-        ></oui-switch>
-        <div
-            class="d-flex align-items-center"
-            data-ng-transclude="filters"
-        ></div>
-    </div>
+
     <table class="table table-hover" id="module-ip-table" aria-label="ips">
         <thead>
             <tr>
