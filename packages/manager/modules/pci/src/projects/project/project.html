@@ -44,24 +44,33 @@
                                 <oui-header-tabs-item
                                     ui-sref="pci.projects.project({ serviceName: $ctrl.project.project_id })"
                                     active="$ctrl.$state.is('pci.projects.project')"
-                                    ><span
-                                        data-translate="pci_projects_project_home"
-                                    ></span>
+                                ><span
+                                    data-translate="pci_projects_project_home"
+                                ></span>
                                 </oui-header-tabs-item>
                                 <oui-header-tabs-item
                                     ui-sref="pci.projects.project.edit({ serviceName: $ctrl.project.project_id })"
                                     active="$ctrl.$state.is('pci.projects.project.edit', { serviceName: $ctrl.project.project_id })"
-                                    ><span
-                                        data-translate="pci_projects_project_parameters"
-                                    ></span>
+                                ><span
+                                    data-translate="pci_projects_project_parameters"
+                                ></span>
                                 </oui-header-tabs-item>
                             </oui-header-tabs>
                         </oui-header>
-                        <div class="py-5" data-ui-view="contentTab">
+                        <div class="py-2" data-ui-view="contentTab">
+
+                            <!--Used to inform about main product info-->
                             <pci-announcement-banner
                                 data-get-state-name="$ctrl.getStateName()"
                                 data-on-go-to-region="$ctrl.goToRegion()"
                             ></pci-announcement-banner>
+
+                            <!--Info about prices change-->
+                            <repricing-banner
+                                data-ng-if="$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.REPRICING_BANNER)"
+                                data-projects="$ctrl.projects"
+                                data-track-click="$ctrl.trackClick"
+                            ></repricing-banner>
 
                             <oui-message
                                 data-type="warning"

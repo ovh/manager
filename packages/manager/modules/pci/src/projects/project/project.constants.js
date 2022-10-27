@@ -1,4 +1,4 @@
-import { PCI_FEATURES } from '../projects.constant';
+import { PCI_FEATURES as IMPORT_PCI_FEATURES } from '../projects.constant';
 
 import ASSET_INSTANCES from './assets/instances.png';
 import ASSET_DATABASES from './assets/databases.png';
@@ -8,6 +8,8 @@ import ASSET_OBJECTSTORAGE from './assets/objectstorage.png';
 import ASSET_BLOCKSTORAGE from './assets/blockstorage.png';
 import ASSET_IPFAILOVER from './assets/ipfailover.png';
 import ASSET_PRIVATENETWORK from './assets/privatenetwork.png';
+
+export const PCI_FEATURES = IMPORT_PCI_FEATURES;
 
 export const PRODUCT_IMAGES = {
   instances: ASSET_INSTANCES,
@@ -173,4 +175,5 @@ export default {
   PCI_HDS_ADDON,
   LEGACY_PLAN_CODES,
   API_GUIDES,
+  PCI_FEATURES,
 };
