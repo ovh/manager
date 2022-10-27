@@ -318,7 +318,9 @@ angular
             $scope.installation.desktopType = templateList.category.sort(
               (a, b) => a.localeCompare(b),
             );
-            $scope.installation.familyType = templateList.family;
+            $scope.installation.familyType = templateList.family.sort((a, b) =>
+              a.localeCompare(b),
+            );
             $scope.installation.distributionList =
               templateList.templates.results;
             $scope.installation.selectDesktopType = head(
