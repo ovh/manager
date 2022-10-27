@@ -63,6 +63,9 @@ export const PCI_FEATURES = {
     SETUP_ADDITIONAL_DISK: 'public-cloud:link-setup-additional-disk',
     DEPLOY_INSTANCE: 'public-cloud:link-deploy-instance',
   },
+  BANNERS: {
+    REPRICING_BANNER: 'public-cloud:project:repricing-banner',
+  },
   OTHERS: {
     PUBLIC_CLOUD: 'public-cloud',
     CREATE_PROJECT: 'public-cloud:create-project',
