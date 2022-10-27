@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "4.20.2",
+  "version": "4.20.3",
   "private": true,
   "description": "OVHcloud Public Cloud control panel.",
   "repository": {
@@ -31,7 +31,7 @@
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-error-page": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
-    "@ovh-ux/manager-pci": "^5.94.1",
+    "@ovh-ux/manager-pci": "^5.95.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
     "@ovh-ux/mfa-enrollment": "^1.0.0 || ^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.9.1",
