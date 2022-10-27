@@ -1,8 +1,8 @@
 import { Shell } from '@ovh-ux/shell';
 import { useEffect, useState } from 'react';
 
-const usePreloader = (shell: Shell, defaultValue = false) => {
-  const [visible, setVisible] = useState(defaultValue);
+const usePreloader = (shell: Shell, iframe: HTMLIFrameElement) => {
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const onShowPreloader = () => {
@@ -20,6 +20,16 @@ const usePreloader = (shell: Shell, defaultValue = false) => {
       shell.getPlugin('ux').removeOnHidePreloader(onHidePreloader);
     };
   }, [shell]);
+
+  useEffect(() => {
+    if (iframe) {
+      const showPreloader = () => {
+        shell.getPlugin('ux').showPreloader();
+      };
+      iframe.addEventListener('load', showPreloader);
+      return () => iframe?.removeEventListener('load', showPreloader);
+    }
+  }, [iframe]);
 
   return visible;
 };
