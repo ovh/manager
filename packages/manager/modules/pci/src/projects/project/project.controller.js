@@ -1,7 +1,11 @@
 import angular from 'angular';
 import isNil from 'lodash/isNil';
 
-import { COMMUNITY_LINKS, PRODUCT_IMAGES } from './project.constants';
+import {
+  COMMUNITY_LINKS,
+  PRODUCT_IMAGES,
+  PCI_FEATURES,
+} from './project.constants';
 
 export default class ProjectController {
   /* @ngInject */
@@ -34,6 +38,7 @@ export default class ProjectController {
         ({ regions }) => isNil(regions) || coreConfig.isRegion(regions),
       );
 
+    this.PCI_FEATURES = PCI_FEATURES;
     this.communityLinks = filterByRegion(COMMUNITY_LINKS);
   }
 
