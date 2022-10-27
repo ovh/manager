@@ -33,7 +33,7 @@ function NavReshuffleContainer(): JSX.Element {
     .getEnvironment()
     .getApplications();
 
-  const preloaderVisible = usePreloader(shell);
+  const preloaderVisible = usePreloader(shell, iframe);
 
   const productNavReshuffle = useProductNavReshuffle();
   const {
