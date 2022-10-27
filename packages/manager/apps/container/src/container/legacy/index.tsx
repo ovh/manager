@@ -26,7 +26,7 @@ function LegacyContainer(): JSX.Element {
 
   const { shell } = useContext(ApplicationContext);
   const { isStarted: isProgressAnimating } = useProgress();
-  const preloaderVisible = usePreloader(shell);
+  const preloaderVisible = usePreloader(shell, iframe);
   const applications = shell
     .getPlugin('environment')
     .getEnvironment()
