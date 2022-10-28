@@ -8,6 +8,7 @@ import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 
 import routing from './user-infos.routing';
+import component from './user-infos.component';
 import service from './user-infos.service';
 
 const moduleName = 'ovhManagerDedicatedAccountUserInfos';
@@ -23,6 +24,7 @@ angular
     'ui.router',
   ])
   .config(routing)
+  .component('userAccountComponent', component)
   .service('userAccountServiceInfos', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 

@@ -12,5 +12,6 @@ export default {
     isValid: '=',
     formCtrl: '<?',
     onFieldError: '<?',
+    mode: '<',
   },
 };
