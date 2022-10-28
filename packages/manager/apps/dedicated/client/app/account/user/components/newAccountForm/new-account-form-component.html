@@ -5,7 +5,7 @@
     data-ng-bind="$ctrl.initError"
 ></div>
 
-<div class="text-center" data-ng-if="!$ctrl.loaded">
+<div class="text-center" data-ng-if="$ctrl.loading">
     <oui-spinner data-size="l"></oui-spinner>
 </div>
 
@@ -14,22 +14,34 @@
     name="ovhSignupForm"
     data-ng-if="$ctrl.rules"
     data-ng-submit="$ctrl.submit()"
+    novalidate
 >
     <!-- FORM SECTIONS -->
     <fieldset
         data-ng-form="{{:: 'form_part_' + section }}"
         data-ng-repeat="section in ::$ctrl.getSections() track by $index"
-        data-ng-if="$ctrl.getRulesBySection(section).length || section === 'account'"
+        data-ng-if="$ctrl.getRulesBySection(section).length"
     >
-        <div data-ng-attr-id="{{:: 'ovh_form_content_' + section }}">
+        <h3 data-translate="{{ :: 'signup_section_' + section }}"></h3>
+        <div data-ng-attr-id="{{ :: 'ovh_form_content_' + section }}">
             <!-- SECTION FIELDS -->
             <new-account-form-field
                 data-ng-repeat="rule in $ctrl.getRulesBySection(section) track by rule.fieldName"
                 data-rule="rule"
-                data-ng-if="rule.fieldName !== 'phoneCountry'"
+                data-ng-if="rule.fieldName !== 'phoneCountry' && !($ctrl.siretFieldIsAvailable() && section === 'activity')"
                 data-fieldset=":: ovhSignupForm['form_part_' + section]"
             >
             </new-account-form-field>
+
+            <!-- SECTION ACTIVITY FOR ONLY CORPORATION FR -->
+            <siret-component
+                class="col-sm-12"
+                data-country="$ctrl.model.country"
+                data-model="$ctrl.model"
+                data-tracking-mode="'modification'"
+                data-mode="'modification'"
+                data-ng-if="$ctrl.siretFieldIsAvailable() && section === 'activity'"
+            ></siret-component>
         </div>
     </fieldset>
 
@@ -39,29 +51,21 @@
     <!-- FOOTER BUTTONS -->
     <div class="mb-5">
         <button
-            class="oui-button oui-button_primary float-right"
-            data-ng-disabled="ovhSignupForm.$invalid || (!$ctrl.hasChanges() && !$ctrl.submitError)"
+            class="oui-button oui-button_primary"
+            data-ng-disabled="ovhSignupForm.$invalid || (!$ctrl.hasChanges() && !$ctrl.submitError) || $ctrl.isSubmitting"
             type="submit"
-            data-ng-if="!$ctrl.isSubmitting"
             data-track-on="click"
             data-track-name="account::myaccount::profile::validation_profile_edit"
             data-track-type="action"
         >
-            <span data-translate="user_account_OK"></span>
+            <span
+                data-ng-if="!$ctrl.isSubmitting"
+                data-translate="user_account_OK"
+            ></span>
+            <span
+                data-ng-if="$ctrl.isSubmitting"
+                data-translate="user_agreements_accepting"
+            ></span>
         </button>
-        <button
-            class="btn btn-primary float-right"
-            data-ng-disabled="true"
-            type="button"
-            data-ng-if="$ctrl.isSubmitting"
-            data-translate="user_agreements_accepting"
-        ></button>
-        <button
-            class="btn btn-default"
-            data-ng-disabled="ovhSignupForm.$pristine || $ctrl.isSubmitting || (!$ctrl.hasChanges() && !ovhSignupForm.$invalid && !$ctrl.submitError)"
-            data-ng-click="$ctrl.cancel()"
-            type="button"
-            data-translate="user_account_cancel"
-        ></button>
     </div>
 </form>
