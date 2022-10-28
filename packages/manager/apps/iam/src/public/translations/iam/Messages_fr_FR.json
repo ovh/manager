@@ -1,0 +1,8 @@
+{
+  "iam_title": "IAM (gestion des identités et des accès)",
+  "iam_tab_policies": "Gestion des policies",
+  "iam_tab_groups": "Gestion des groupes",
+  "iam_breadcrumb_home": "IAM",
+  "iam_breadcrumb_groups": "Gestion des groupes",
+  "iam_breadcrumb_groups_add": "Ajout d'un groupe"
+}
