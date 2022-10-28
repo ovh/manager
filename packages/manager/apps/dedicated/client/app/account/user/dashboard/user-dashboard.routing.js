@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       user: /* @ngInject */ (currentUser) => currentUser,
+      authMethodProvider: /* @ngInject */ () => 'provider',
       lastBill: /* @ngInject */ (OvhApiMeBillIceberg) =>
         OvhApiMeBillIceberg.query()
           .expand('CachedObjectList-Pages')
