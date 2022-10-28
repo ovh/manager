@@ -1,0 +1,13 @@
+{
+  "group_create": "Créer un nouveau groupe",
+  "group_create_title": "IAM : créer un nouveau groupe de resources",
+  "group_name": "Nom du groupe",
+  "group_resources": "Ressources liées au groupe",
+  "group_created_at": "Créé le",
+  "group_updated_at": "Mis à jour le",
+  "group_actions": "{{name}}: actions sur le groupe de resources",
+  "group_action_edit": "Modifier le groupe",
+  "group_action_edit_title": "{{name}}: modifier le groupe de resources",
+  "group_action_delete": "Supprimer le groupe",
+  "group_action_delete_title": "{{name}}: supprimer le groupe de resources"
+}
