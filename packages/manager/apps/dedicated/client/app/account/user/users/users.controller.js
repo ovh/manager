@@ -22,7 +22,12 @@ export default class UserAccountUsersCtrl {
     this.me = coreConfig.getUser();
     this.userIds = [];
     this.users = [];
+    this.groupsArray = [];
+    this.groupIds = [];
     this.usersLoading = true;
+    this.groupsLoading = true;
+    this.identityProvider = null;
+    this.descriptionMaxSize = 40;
 
     this.$scope.$on('useraccount.security.users.refresh', () => {
       this.$onInit();
@@ -32,14 +37,18 @@ export default class UserAccountUsersCtrl {
   $onInit() {
     this.userIds = [];
     this.users = [];
+    this.groupIds = [];
+    this.groupsArray = [];
     this.usersLoading = true;
+    this.initIdentityProvider();
     return this.groupsService
       .getGroups()
-      .then((groups) =>
-        this.$q.all(
+      .then((groups) => {
+        this.groupIds = groups;
+        return this.$q.all(
           map(groups, (groupName) => this.groupsService.getGroup(groupName)),
-        ),
-      )
+        );
+      })
       .then((groupsArray) => {
         this.groups = groupsArray.reduce((result, item) => {
           // eslint-disable-next-line no-param-reassign
@@ -62,10 +71,12 @@ export default class UserAccountUsersCtrl {
       })
       .finally(() => {
         this.usersLoading = false;
+        this.groupsLoading = false;
       });
   }
 
   onTransformItem(userId) {
+    this.usersLoading = true;
     return this.usersService.getUser(userId).then((user) => {
       set(user, 'role', this.groups[user.group].role);
       return user;
@@ -74,5 +85,33 @@ export default class UserAccountUsersCtrl {
 
   onTransformItemDone() {
     this.usersLoading = false;
+  }
+
+  onTransformGroup(groupName) {
+    this.groupsLoading = true;
+    return this.groupsService.getGroup(groupName).then((group) => {
+      const shortDescription =
+        group.description != null &&
+        group.description.length > this.descriptionMaxSize
+          ? `${group.description.substring(0, this.descriptionMaxSize)}...`
+          : group.description;
+      set(group, 'shortDescription', shortDescription);
+      return group;
+    });
+  }
+
+  onTransformGroupDone() {
+    this.groupsLoading = false;
+  }
+
+  initIdentityProvider() {
+    this.usersService
+      .getIdentityProvider()
+      .then((identityProvider) => {
+        this.identityProvider = identityProvider;
+      })
+      .catch(() => {
+        this.identityProvider = null;
+      });
   }
 }
