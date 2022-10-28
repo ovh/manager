@@ -1,4 +1,5 @@
 <!-- search form -->
+
 <form
     novalidate
     data-ng-if="!$ctrl.displayManualForm"
@@ -119,7 +120,7 @@
         </div>
 
         <oui-field
-            data-ng-if="$ctrl.suggest.type === 'siret'"
+            data-ng-if="$ctrl.suggest.type === 'siret' && $ctrl.mode !== 'modification'"
             data-label="{{ 'siret_vat' | translate }} ({{'siret_optional' | translate }})"
             data-label-popover="{{ 'siret_vat_helper' | translate }}"
         >
@@ -139,12 +140,12 @@
     <div data-ng-if="$ctrl.displayManualForm">
         <oui-button
             variant="link"
-            icon-left="oui-icon-arrow-left"
+            icon-left="{{ $ctrl.mode === 'modification' ? 'oui-icon-search' : 'oui-icon-arrow-left' }}"
             data-on-click="$ctrl.goToSearchMode()"
         >
-            <span data-translate="siret_search_assistant"></span>
+            <span data-translate="{{ $ctrl.mode === 'modification' ? 'siret_update_search_assistant' : 'siret_search_assistant' }}"></span>
         </oui-button>
-        <p class="mt-2" data-translate="siret_manual_title"></p>
+        <p data-ng-if="$ctrl.mode !== 'modification'" class="mt-2" data-translate="siret_manual_title"></p>
 
         <div class="row mt-2">
             <oui-field

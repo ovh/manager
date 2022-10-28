@@ -10,5 +10,6 @@ export default {
     rules: '<',
     trackingMode: '<',
     isValid: '=',
+    mode: '<',
   },
 };

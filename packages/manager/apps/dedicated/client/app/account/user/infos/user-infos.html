@@ -2,41 +2,41 @@
     <!-- EMAIL VALIDATION FORM -->
     <h1
         data-translate="user_account_task_change_email_validation_title"
-        data-ng-if="controls.validateEmailChange"
+        data-ng-if="$ctrl.controls.validateEmailChange"
     ></h1>
 
-    <div class="text-center" data-ng-if="loading">
+    <div class="text-center" data-ng-if="$ctrl.loading">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
-    <div data-ng-if="!loading">
-        <div data-ovh-alert="{{alerts.dashboardInfos}}"></div>
+    <div data-ng-if="!$ctrl.loading">
+        <div data-ovh-alert="{{$ctrl.alerts.dashboardInfos}}"></div>
         <div data-ovh-alert="InfoAlert"></div>
 
         <!-- ACCOUNT VALIDATION -->
         <div
             class="row d-md-flex"
-            data-ng-if="!controls.validateEmailChange && controls.taskEmailChangeTodo && user"
+            data-ng-if="!$ctrl.controls.validateEmailChange && $ctrl.controls.taskEmailChangeTodo && $ctrl.user"
         >
             <div class="col-md-10 col-lg-8">
                 <div class="alert alert-info" role="alert">
-                    <p data-ng-bind="user.email || '/'" class="mb-3"></p>
+                    <p data-ng-bind="$ctrl.user.email || '/'" class="mb-3"></p>
                     <p class="mb-3">
                         <span
                             class="label label-info"
                             data-translate="user_account_email_pending_validation"
-                            data-translate-values="{ t0: controls.taskEmailChangeTodo.newEmail }"
+                            data-translate-values="{ t0: $ctrl.controls.taskEmailChangeTodo.newEmail }"
                         >
                         </span>
                     </p>
                     <p
                         class="mb-3"
                         data-translate="user_account_email_validation_help"
-                        data-translate-values="{ t0: user.email }"
+                        data-translate-values="{ t0: $ctrl.user.email }"
                     ></p>
                     <oui-button
                         data-variant="primary"
-                        data-on-click="validateTaskWithToken()"
+                        data-on-click="$ctrl.validateTaskWithToken()"
                     >
                         <span
                             data-translate="user_account_email_token_received"
@@ -45,8 +45,8 @@
                     <oui-button
                         data-variant="secondary"
                         class="ml-2"
-                        data-disabled="requestingToken"
-                        data-on-click="requestChangeEmailToken(controls.taskEmailChangeTodo.newEmail)"
+                        data-disabled="$ctrl.requestingToken"
+                        data-on-click="$ctrl.requestChangeEmailToken(controls.taskEmailChangeTodo.newEmail)"
                     >
                         <span
                             data-translate="user_account_email_token_resend"
@@ -57,11 +57,11 @@
         </div>
 
         <!-- EMAIL VALIDATION FORM -->
-        <div data-ng-if="controls.validateEmailChange">
+        <div data-ng-if="$ctrl.controls.validateEmailChange">
             <button
                 type="button"
                 class="btn btn-link mb-4"
-                data-ng-click="resetInfoView()"
+                data-ng-click="$ctrl.resetInfoView()"
             >
                 <span class="fa fa-chevron-left mr-2" aria-hidden="true">
                 </span>
@@ -71,13 +71,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <strong
-                        data-ng-bind="'user_account_task_change_email_validation' | translate:{ t0: controls.validateEmailChange.data.newEmail }"
+                        data-ng-bind="'user_account_task_change_email_validation' | translate:{ t0: $ctrl.controls.validateEmailChange.data.newEmail }"
                     >
                     </strong>
 
                     <div
                         class="text-center"
-                        data-ng-if="controls.validateEmailChange.loading"
+                        data-ng-if="$ctrl.controls.validateEmailChange.loading"
                     >
                         <oui-spinner data-size="l"></oui-spinner>
                     </div>
@@ -85,8 +85,8 @@
                     <form
                         role="form"
                         name="validateEmailForm"
-                        data-ng-if="!controls.validateEmailChange.loading"
-                        data-ng-submit="acceptEmail()"
+                        data-ng-if="!$ctrl.controls.validateEmailChange.loading"
+                        data-ng-submit="$ctrl.acceptEmail()"
                     >
                         <div class="form-group">
                             <label
@@ -99,7 +99,7 @@
                                 class="form-control"
                                 type="text"
                                 data-ng-required
-                                data-ng-model="controls.validateEmailChange.token"
+                                data-ng-model="$ctrl.controls.validateEmailChange.token"
                                 autofocus
                             />
                         </div>
@@ -108,18 +108,18 @@
                             <button
                                 type="button"
                                 class="btn btn-default mr-4"
-                                data-ng-disabled="!controls.validateEmailChange.token ||
-                                                      !controls.validateEmailChange.taskId || controls.validateEmailChange.error
-                                                      || controls.validateEmailChange.loading"
-                                data-ng-click="refuseEmail()"
+                                data-ng-disabled="!$ctrl.controls.validateEmailChange.token ||
+                                                      !$ctrl.controls.validateEmailChange.taskId || $ctrl.controls.validateEmailChange.error
+                                                      || $ctrl.controls.validateEmailChange.loading"
+                                data-ng-click="$ctrl.refuseEmail()"
                                 data-translate="user_account_email_token_refuse"
                             ></button>
                             <button
                                 type="submit"
                                 class="btn btn-primary"
-                                data-ng-disabled="!controls.validateEmailChange.token ||
-                                                      !controls.validateEmailChange.taskId || controls.validateEmailChange.error
-                                                      || controls.validateEmailChange.loading"
+                                data-ng-disabled="!$ctrl.controls.validateEmailChange.token ||
+                                                      !$ctrl.controls.validateEmailChange.taskId || $ctrl.controls.validateEmailChange.error
+                                                      || $ctrl.controls.validateEmailChange.loading"
                                 data-translate="user_account_email_token_accept"
                             ></button>
                         </div>
@@ -129,15 +129,19 @@
         </div>
 
         <!-- ACCOUNT MODIFICATIONS -->
-        <div class="row d-md-flex" data-ng-if="!controls.validateEmailChange">
+        <div
+            class="row d-md-flex"
+            data-ng-if="!$ctrl.controls.validateEmailChange"
+        >
             <div class="col-md-10 col-lg-6">
                 <new-account-form
-                    data-ng-if="user"
-                    data-model="user"
+                    data-ng-if="$ctrl.user"
+                    data-model="$ctrl.user"
                     data-action="update"
-                    data-readonly="readOnlyProperties"
-                    data-on-submit="onProfileUpdate()"
-                    data-on-cancel="onProfileUpdate()"
+                    data-readonly="$ctrl.readOnlyProperties"
+                    data-on-submit="$ctrl.onProfileUpdate()"
+                    data-on-cancel="$ctrl.onProfileUpdate()"
+                    data-user-account-service-infos="$ctrl.userAccountServiceInfos"
                 >
                 </new-account-form>
             </div>
