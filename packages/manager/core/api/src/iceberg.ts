@@ -1,5 +1,5 @@
 import { Filter, FilterComparator } from './filters';
-import apiClient from './client';
+import apiClient, { ApiClientVersions } from './client';
 
 export type IcebergOptions = {
   page?: number;
@@ -13,7 +13,10 @@ export type IcebergOptions = {
   sortReverse?: boolean;
 };
 
-export type IcebergFetchParams = { route: string } & IcebergOptions;
+export type IcebergFetchParams = {
+  route: string;
+  apiVersion?: ApiClientVersions;
+} & IcebergOptions;
 
 export type IcebergFetchResult<T> = {
   data: T[];
@@ -60,6 +63,7 @@ export async function fetchIceberg<T>({
   filters,
   sortBy,
   sortReverse,
+  apiVersion = ApiClientVersions.v6,
 }: IcebergFetchParams): Promise<IcebergFetchResult<T>> {
   const requestHeaders: Record<string, string> = {
     'x-pagination-mode': 'CachedObjectList-Pages',
@@ -78,7 +82,7 @@ export async function fetchIceberg<T>({
       )
       .join('&');
   }
-  const { data, headers } = await apiClient.v6.get(route, {
+  const { data, headers } = await apiClient[apiVersion].get(route, {
     headers: requestHeaders,
   });
   const totalCount = parseInt(headers['x-pagination-elements'], 10) || 0;
