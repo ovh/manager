@@ -41,12 +41,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
       regions: /* @ngInject */ (PciProjectsProjectInstanceService, projectId) =>
         PciProjectsProjectInstanceService.getAvailablesRegions(projectId),
-
-      cancelLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.instances', {
-          projectId,
-        }),
-
       quotaLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.quota', {
           projectId,
@@ -84,6 +78,62 @@ export default /* @ngInject */ ($stateProvider) => {
         });
 
         return EXCLUDE_FLAVOR_CATEGORIES.concat(toExclude);
+      },
+      getProductCatalog: /* @ngInject */ (
+        PciProjectsProjectInstanceService,
+        catalogEndpoint,
+        coreConfig,
+      ) =>
+        PciProjectsProjectInstanceService.getCatalog(
+          catalogEndpoint,
+          coreConfig.getUser(),
+        ).then((data) => {
+          const floatingIpProducts = data.addons
+            .filter((addon) =>
+              addon.product.startsWith('publiccloud-floatingip-floatingip'),
+            )
+            .sort(
+              (
+                { pricings: [{ price: priceA }] },
+                { pricings: [{ price: priceB }] },
+              ) => priceA - priceB,
+            )
+            .filter(({ product }, index, arr) => product === arr[0].product);
+          const [monthlyPriceObj] = floatingIpProducts.find(({ planCode }) =>
+            planCode.includes('month'),
+          )?.pricings;
+          const [hourlyPriceObj] = floatingIpProducts.find(({ planCode }) =>
+            planCode.includes('hour'),
+          )?.pricings;
+          return {
+            product: floatingIpProducts[0].product,
+            pricePerMonth: monthlyPriceObj.price,
+            pricePerHour: hourlyPriceObj.price,
+          };
+        }),
+      addInstanceTrackPrefix: /* @ngInject */ () =>
+        `PublicCloud::pci::projects::project::instances::`,
+      trackAddInstance: /* @ngInject */ (
+        addInstanceTrackPrefix,
+        trackClick,
+        trackPage,
+      ) => (complement, type = 'action', prefix = true) => {
+        const name = `${
+          prefix ? `${addInstanceTrackPrefix}` : ''
+        }${complement}`;
+        return type === 'page' ? trackPage(name) : trackClick(name, type);
+      },
+      trackClick: /* @ngInject */ (atInternet) => (hit, type = 'action') => {
+        atInternet.trackClick({
+          name: hit,
+          type,
+        });
+      },
+
+      trackPage: /* @ngInject */ (atInternet) => (hit) => {
+        atInternet.trackPage({
+          name: hit,
+        });
       },
     },
   });

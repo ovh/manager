@@ -1,0 +1,73 @@
+<div data-ui-view>
+    <oui-datagrid data-rows="$ctrl.floatingIps">
+        <oui-datagrid-topbar>
+            <oui-button
+                variant="secondary"
+                data-on-click="$ctrl.onAddAdditionalIpClick()"
+            >
+                <i class="oui-icon oui-icon-plus" aria-hidden="true"></i>
+                <span
+                    data-translate="pci_additional_ips_add_additional_ip"
+                ></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title=":: 'pci_additional_ips_floating_ip_grid_ip' | translate"
+            data-property="ip"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_additional_ips_floating_ip_grid_region' | translate"
+            data-property="region"
+            data-type="string"
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_additional_ips_floating_ip_grid_associated_service' | translate"
+            data-property="associatedEntity.id"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_additional_ips_floating_ip_grid_assocated_endpoint' | translate"
+            data-property="instance.name"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <a
+                data-ng-if="$row.instance"
+                data-ng-href="{{:: $ctrl.goToInstance($row.instance.id)}}"
+                data-ng-bind="$row.instance.name"
+            ></a>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToEditInstance($row.id)"
+            >
+                <span
+                    data-translate="pci_additional_ips_floating_ip_grid_modify_associated_instance"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-href="{{:: $ctrl.IP_PAGE_LINK }}"
+                data-on-click="$ctrl.trackClick('floating-ips::table-option-menu::manage-network')"
+            >
+                <span
+                    data-translate="pci_additional_ips_floating_ip_grid_manage_network_security"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.goToTerminate($row.id)">
+                <span
+                    data-translate="pci_additional_ips_floating_ip_grid_delete"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

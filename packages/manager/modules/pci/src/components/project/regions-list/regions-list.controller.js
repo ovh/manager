@@ -29,6 +29,23 @@ export default class RegionsListController {
     }
   }
 
+  static sortRegionsOnMicroCode(regions) {
+    // macroRegion is 'GRA' and microRegion is 'GRA9', 'GRA11'
+    // sort treating microRegion as number
+    return regions.sort(
+      (
+        {
+          macroRegion: { code: macroA = '' },
+          microRegion: { code: microA = '' },
+        },
+        {
+          macroRegion: { code: macroB = '' },
+          microRegion: { code: microB = '' },
+        },
+      ) => +microA.replace(macroA, '') - +microB.replace(macroB, ''),
+    );
+  }
+
   updateRegions() {
     const formattedRegions = map(this.regions, (region) => ({
       ...this.ovhManagerRegionService.getRegion(region.name),
@@ -55,14 +72,20 @@ export default class RegionsListController {
           continentRegions = filter(formattedRegions, { continent });
         }
 
+        const groupedRegions = groupBy(continentRegions, 'macroRegion.text');
+        Object.keys(groupedRegions).forEach((key) => {
+          groupedRegions[key] = RegionsListController.sortRegionsOnMicroCode(
+            groupedRegions[key],
+          );
+        });
+
         return {
           ...result,
-          [continent]: groupBy(continentRegions, 'macroRegion.text'),
+          [continent]: groupedRegions,
         };
       },
       {},
     );
-
     if (this.selectedRegion) {
       this.region = find(
         formattedRegions,

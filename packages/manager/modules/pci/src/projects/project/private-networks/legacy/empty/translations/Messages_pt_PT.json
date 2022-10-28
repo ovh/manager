@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_network_private": "Redes privadas",
+  "pci_projects_project_network_private_vrack_empty": "Ainda não criou nenhuma rede privada.",
+  "pci_projects_project_network_private_vrack_deploy": "Implemente redes privadas na vRack da OVH para ligar as suas instâncias, independentemente da sua localização.",
+  "pci_projects_project_network_private_vrack_explanation_1": "As redes privadas são criadas a pedido e de forma instantânea. Garantem um isolamento de nível 2 e podem acolher um serviço DHCP para fornecer automaticamente o endereçamento IP às suas instâncias. Cada uma destas redes pode ser reduzida a uma localização ou alargada ao conjunto das localizações do seu projeto.",
+  "pci_projects_project_network_private_vrack_explanation_2": "As suas redes privadas estão encapsuladas no vRack. Desta forma, podem ser ligadas a outras soluções da OVHcloud associadas a este mesmo vRack, utilizando um VLAN ID comum."
+}

@@ -5,6 +5,7 @@ export default {
   bindings: {
     goBack: '<',
     projectId: '<',
+    trackPrivateNetworks: '<',
   },
   controller,
   template,

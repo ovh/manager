@@ -13,6 +13,7 @@ import rights from './rights';
 import sshKeys from './instance/ssh-keys';
 import storages from './storages';
 import repricingBanner from './repricing-banner';
+import gateways from './gateways';
 
 const moduleName = 'ovhManagerPciComponentsProject';
 
@@ -29,6 +30,7 @@ angular.module(moduleName, [
   sshKeys,
   storages,
   repricingBanner,
+  gateways,
 ]);
 
 export default moduleName;

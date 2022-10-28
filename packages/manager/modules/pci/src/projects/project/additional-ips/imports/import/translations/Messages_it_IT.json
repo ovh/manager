@@ -1,0 +1,8 @@
+{
+  "pci_additional_ips_failoverip_imports_import_title": "Conferma",
+  "pci_additional_ips_failoverip_imports_import_submit_label": "Importa",
+  "pci_additional_ips_failoverip_imports_import_cancel_label": "Annullare",
+  "pci_additional_ips_failoverip_imports_import_description": "Vuoi davvero importare questo Additional IP?",
+  "pci_additional_ips_imports_import_success": "L'IP Failover {{ ip }} sarà importato sul tuo progetto tra qualche minuto.",
+  "pci_additional_ips_imports_import_error": "Si è verificato un errore durante l'importazione dell’IP {{ ip }}: {{ error }}."
+}

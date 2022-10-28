@@ -1,0 +1,15 @@
+{
+  "pci_additional_ips_ip_block": "IP block",
+  "pci_additional_ips_geoloc": "Country",
+  "pci_additional_ips_id": "Associated service",
+  "pci_additional_ips_routedTo": "Associated instance",
+  "pci_additional_ips_import_failover_ip": "Import an Additional IP",
+  "pci_additional_ips_update_instance": "Update attached instance ",
+  "pci_additional_ips_delete": "Delete",
+  "pci_additional_ips_mitigation": "Enable/Disable mitigation ",
+  "pci_additional_ips_firewall": "Configure the firewall ",
+  "pci_additional_ips_actions": "Actions",
+  "pci_additional_ips_order": "Add a new IP",
+  "pci_additional_ips_manage_network_security": "Manage network security",
+  "pci_additional_ips_manage_ip_failover_service": "Manage Additional IP service"
+}

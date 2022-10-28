@@ -10,11 +10,48 @@
         data-disabled="$ctrl.disabled && !$ctrl.monthly"
     >
         <oui-select-picker-section data-ng-if="$ctrl.prices">
-            <span
-                data-translate="pci_project_flavors_billing_price_monthly"
-                data-translate-values="{ price: $ctrl.formatPrice($ctrl.prices.monthly) }"
-            >
-            </span>
+            <p>
+                <strong
+                    data-translate="pci_project_flavors_billing_price_monthly_instance_price_label"
+                ></strong>
+                <span
+                    data-translate="pci_project_flavors_billing_price_monthly"
+                    data-translate-values="{ price: $ctrl.formatPrice($ctrl.prices.monthly) }"
+                >
+                </span>
+            </p>
+            <div data-ng-if="$ctrl.addons.length > 0">
+                <p data-ng-if="$ctrl.defaultGateway">
+                    <strong
+                        data-translate="pci_project_flavors_billing_price_monthly_gateway_price_label"
+                    ></strong>
+                    <span
+                        data-translate="pci_project_flavors_billing_addons_price_monthly"
+                        data-translate-values="{ price: $ctrl.formatPrice($ctrl.formatAddonsPrice($ctrl.defaultGateway.gateway.pricePerMonth)) }"
+                    >
+                    </span>
+                </p>
+                <p data-ng-if="$ctrl.defaultFloatingIP">
+                    <strong
+                        data-translate="pci_project_flavors_billing_price_monthly_floatingip_price_label"
+                    ></strong>
+                    <span
+                        data-translate="pci_project_flavors_billing_addons_price_monthly"
+                        data-translate-values="{ price: $ctrl.formatPrice($ctrl.formatAddonsPrice($ctrl.defaultFloatingIP.floatingIp.pricePerMonth)) }"
+                    >
+                    </span>
+                </p>
+                <p class="mt-5">
+                    <strong
+                        data-translate="pci_projects_project_instances_add_total_price_label"
+                    ></strong>
+                    <span
+                        data-translate="pci_project_flavors_billing_addons_price_monthly"
+                        data-translate-values="{ price: $ctrl.getAddOnPriceMonthly() }"
+                    >
+                    </span>
+                </p>
+            </div>
         </oui-select-picker-section>
     </oui-select-picker>
     <oui-select-picker
@@ -36,19 +73,56 @@
             ></pci-project-offer-badge>
         </oui-select-picker-picture>
         <oui-select-picker-section data-ng-if="$ctrl.prices">
-            <span
-                data-translate="pci_project_flavors_billing_price_hourly"
-                data-translate-values="{ price: $ctrl.formatPrice($ctrl.prices.hourly) }"
-            >
-            </span>
-            <strong
-                class="ml-2"
-                data-ng-if="$ctrl.offer"
-                data-ng-bind="$ctrl.offer.value"
-                data-ng-style="{
-                'color': $ctrl.offer.highlight.color
-            }"
-            ></strong>
+            <p>
+                <strong
+                    data-translate="pci_project_flavors_billing_price_hourly_price_label"
+                ></strong>
+                <span
+                    data-translate="pci_project_flavors_billing_price_hourly"
+                    data-translate-values="{ price: $ctrl.formatPrice($ctrl.prices.hourly) }"
+                >
+                </span>
+                <strong
+                    class="ml-2"
+                    data-ng-if="$ctrl.offer"
+                    data-ng-bind="$ctrl.offer.value"
+                    data-ng-style="{
+                    'color': $ctrl.offer.highlight.color
+                }"
+                ></strong>
+            </p>
+            <div data-ng-if="$ctrl.addons.length > 0">
+                <p data-ng-if="$ctrl.defaultGateway">
+                    <strong
+                        data-translate="pci_project_flavors_billing_price_monthly_gateway_price_label"
+                    ></strong>
+                    <span
+                        data-translate="pci_project_flavors_billing_addons_price_hourly"
+                        data-translate-values="{ price: $ctrl.formatPrice($ctrl.formatAddonsPrice($ctrl.defaultGateway.gateway.pricePerHour)) }"
+                    >
+                    </span>
+                </p>
+                <p data-ng-if="$ctrl.defaultFloatingIP">
+                    <strong
+                        data-translate="pci_project_flavors_billing_price_monthly_floatingip_price_label"
+                    ></strong>
+                    <span
+                        data-translate="pci_project_flavors_billing_addons_price_hourly"
+                        data-translate-values="{ price: $ctrl.formatPrice($ctrl.formatAddonsPrice($ctrl.defaultFloatingIP.floatingIp.pricePerHour)) }"
+                    >
+                    </span>
+                </p>
+                <p class="mt-5">
+                    <strong
+                        data-translate="pci_projects_project_instances_add_total_price_label"
+                    ></strong>
+                    <span
+                        data-translate="pci_project_flavors_billing_addons_price_hourly"
+                        data-translate-values="{ price: $ctrl.getAddOnPriceHourly() }"
+                    >
+                    </span>
+                </p>
+            </div>
         </oui-select-picker-section>
     </oui-select-picker>
 </div>

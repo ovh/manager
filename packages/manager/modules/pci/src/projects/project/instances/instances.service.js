@@ -23,6 +23,7 @@ export default class PciProjectInstanceService {
   constructor(
     $http,
     $q,
+    Poller,
     CucPriceHelper,
     ovhManagerRegionService,
     OvhApiCloudProject,
@@ -38,6 +39,7 @@ export default class PciProjectInstanceService {
   ) {
     this.$http = $http;
     this.$q = $q;
+    this.Poller = Poller;
     this.CucPriceHelper = CucPriceHelper;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
@@ -53,13 +55,9 @@ export default class PciProjectInstanceService {
   }
 
   getAll(projectId) {
-    return this.OvhApiCloudProjectInstance.v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise.then((instances) =>
-        map(instances, (instance) => new Instance(instance)),
-      );
+    return this.$http
+      .get(`/cloud/project/${projectId}/instance`)
+      .then(({ data }) => data.map((instance) => new Instance(instance)));
   }
 
   getAllInstanceDetails(projectId) {
@@ -305,16 +303,15 @@ export default class PciProjectInstanceService {
   }
 
   getPrivateNetworks(projectId) {
-    return this.OvhApiCloudProjectNetwork.Private()
-      .v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise.then((networks) =>
-        filter(networks, {
-          type: 'private',
-        }),
-      );
+    return this.$http
+      .get(`/cloud/project/${projectId}/network/private`)
+      .then(({ data }) => data);
+  }
+
+  getSubnets(projectId, networkId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/network/private/${networkId}/subnet`)
+      .then(({ data }) => data);
   }
 
   getPublicNetwork(projectId) {
@@ -445,7 +442,7 @@ export default class PciProjectInstanceService {
   }
 
   save(
-    projectId,
+    serviceName,
     {
       autobackup,
       flavorId,
@@ -458,13 +455,13 @@ export default class PciProjectInstanceService {
       userData,
     },
     number = 1,
+    isPrivateMode,
   ) {
+    const saveInstanceNamespace = 'instance-creation';
+    const status = 'ACTIVE';
     if (number > 1) {
-      return this.OvhApiCloudProjectInstance.v6().bulk(
-        {
-          serviceName: projectId,
-        },
-        {
+      return this.$http
+        .post(`/cloud/project/${serviceName}/instance/bulk`, {
           autobackup,
           flavorId,
           imageId,
@@ -475,14 +472,24 @@ export default class PciProjectInstanceService {
           sshKeyId,
           userData,
           number,
-        },
-      ).$promise;
+        })
+        .then(({ data }) => {
+          if (isPrivateMode) {
+            const url = `/cloud/project/${serviceName}/instance/${data.id}`;
+            return this.checkOperationStatus(
+              url,
+              saveInstanceNamespace,
+              status,
+            ).then((res) => {
+              this.Poller.kill({ namespace: saveInstanceNamespace });
+              return res;
+            });
+          }
+          return data;
+        });
     }
-    return this.OvhApiCloudProjectInstance.v6().save(
-      {
-        serviceName: projectId,
-      },
-      {
+    return this.$http
+      .post(`/cloud/project/${serviceName}/instance`, {
         autobackup,
         flavorId,
         imageId,
@@ -492,8 +499,21 @@ export default class PciProjectInstanceService {
         region,
         sshKeyId,
         userData,
-      },
-    ).$promise;
+      })
+      .then(({ data }) => {
+        if (isPrivateMode) {
+          const url = `/cloud/project/${serviceName}/instance/${data.id}`;
+          return this.checkOperationStatus(
+            url,
+            saveInstanceNamespace,
+            status,
+          ).then((res) => {
+            this.Poller.kill({ namespace: saveInstanceNamespace });
+            return res;
+          });
+        }
+        return data;
+      });
   }
 
   attachPrivateNetworks(projectId, { id: instanceId }, privateNetworks) {
@@ -602,6 +622,131 @@ export default class PciProjectInstanceService {
         }),
         {},
       );
+    });
+  }
+
+  getSubnetGateways(serviceName, region, subnetId) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/region/${region}/gateway`, {
+        params: {
+          subnetId,
+        },
+      })
+      .then(({ data }) => data);
+  }
+
+  getGateways(serviceName, region) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/region/${region}/gateway`)
+      .then(({ data }) => data);
+  }
+
+  getFloatingIps(serviceName, region) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/region/${region}/floatingip`)
+      .then(({ data }) => data);
+  }
+
+  createAndAttachFloatingIp(serviceName, region, instanceId, floatingIpModel) {
+    const createAndAssociateFloatingIp = 'create-associate-floatingIp';
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/region/${region}/instance/${instanceId}/floatingIp`,
+        {
+          ...floatingIpModel,
+        },
+      )
+      .then(({ data: { id } }) => {
+        const url = `/cloud/project/${serviceName}/operation/${id}`;
+        const status = 'completed';
+        return this.checkOperationStatus(
+          url,
+          createAndAssociateFloatingIp,
+          status,
+        );
+      })
+      .then((data) => {
+        this.Poller.kill({ namespace: createAndAssociateFloatingIp });
+        return data;
+      });
+  }
+
+  associateFloatingIp(serviceName, region, instanceId, floatingIpModel) {
+    const associateFloatingIP = 'associate-floatingIp';
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/region/${region}/instance/${instanceId}/associateFloatingIp`,
+        {
+          ...floatingIpModel,
+        },
+      )
+      .then(({ data: { id } }) => {
+        const url = `/cloud/project/${serviceName}/operation/${id}`;
+        const status = 'completed';
+        return this.checkOperationStatus(url, associateFloatingIP, status);
+      })
+      .then((data) => {
+        this.Poller.kill({ namespace: associateFloatingIP });
+        return data;
+      });
+  }
+
+  enableDhcp(serviceName, networkId, dhcpModel) {
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/network/private/${networkId}/subnet`,
+        dhcpModel,
+      )
+      .then(({ data }) => data);
+  }
+
+  createGateway(serviceName, region, networkId, subnetId, gatewayModel) {
+    const createGatewayNamespace = 'gateway-creation';
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/region/${region}/network/${networkId}/subnet/${subnetId}/gateway`,
+        gatewayModel,
+      )
+      .then(({ data: { id } }) => {
+        const url = `/cloud/project/${serviceName}/operation/${id}`;
+        const status = 'completed';
+        return this.checkOperationStatus(url, createGatewayNamespace, status);
+      })
+      .then((data) => {
+        this.Poller.kill({ namespace: createGatewayNamespace });
+        return data;
+      });
+  }
+
+  createNetworkWithGateway(serviceName, regionName, gateway) {
+    const addNetworkGatewayNamespace = 'network-gateway-creation';
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/region/${regionName}/network`,
+        gateway,
+      )
+      .then(({ data: { id } }) => {
+        const url = `/cloud/project/${serviceName}/operation/${id}`;
+        const status = 'completed';
+        return this.checkOperationStatus(
+          url,
+          addNetworkGatewayNamespace,
+          status,
+        );
+      })
+      .then((data) => {
+        this.Poller.kill({ namespace: addNetworkGatewayNamespace });
+        return data;
+      });
+  }
+
+  checkOperationStatus(url, namespace, status) {
+    return this.Poller.poll(url, null, {
+      method: 'get',
+      successRule: {
+        status,
+      },
+      namespace,
     });
   }
 }

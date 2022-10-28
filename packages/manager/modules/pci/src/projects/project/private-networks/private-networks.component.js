@@ -5,7 +5,7 @@ export default {
   bindings: {
     pciFeatureRedirect: '<',
     createNetwork: '<',
-    deleteNetwork: '<',
+    deleteSubnet: '<',
     guideUrl: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',
@@ -18,6 +18,9 @@ export default {
     customerRegions: '<',
     privateNetworksRegions: '<',
     goToRegion: '<',
+    goToAddPublicGateway: '<',
+    gateways: '<',
+    gatewaysLink: '<',
   },
   controller,
   template,
