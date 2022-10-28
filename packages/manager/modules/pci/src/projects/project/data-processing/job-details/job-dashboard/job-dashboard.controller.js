@@ -101,7 +101,7 @@ export default class {
     this.queryMetricsActiveTasks();
     this.queryMetricsDiskUsed();
     this.queryJob();
-    if (this.job.endDate === null) {
+    if (!this.job.endDate) {
       this.pollTimer = this.$timeout(
         () => this.pollData(),
         METRICS_REFRESH_INTERVAL,
