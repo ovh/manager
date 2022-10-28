@@ -15,10 +15,7 @@
     "declaration": true,
     "allowJs": true,
     "declarationDir": "./dist/types",
-    "jsx": "react",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "jsx": "react"
   },
   "exclude": ["node_modules", "dist", "types", "src/__tests__"]
 }

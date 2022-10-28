@@ -1,0 +1,6 @@
+{
+  "of_results_one": "sur {{count}} résultat",
+  "of_results_other": "sur {{count}} résultats",
+  "n_results_one": "{{count}} résultat",
+  "n_results_other": "{{count}} résultats"
+}

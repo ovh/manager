@@ -19,7 +19,7 @@ export default function Pagination({
   availablePageSize = [10, 25, 50, 100, 300],
   onChange,
 }: PaginationProps): JSX.Element {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('pagination');
   const pageCount = Math.ceil(itemsCount / pageSize);
 
   const pageChangeHandler = (page: number) => {

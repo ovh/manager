@@ -15,7 +15,7 @@ export default function ListingFilters<T>({
   filters,
   onChange,
 }: ListingFiltersProps<T>): JSX.Element {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('listing');
   const removeFilter = (toRemove: Filter) => {
     onChange(filters.filter((f) => f !== toRemove));
   };

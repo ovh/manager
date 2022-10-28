@@ -26,7 +26,7 @@ export default function ListingColumnToggler<T>({
   columns,
   onColumnVisibilityChange,
 }: ListingColumnTogglerProps<T>): JSX.Element {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('listing');
   const visibleColumns = columns.filter((c) => !c.hidden);
 
   return (
