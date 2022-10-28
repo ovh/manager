@@ -17,7 +17,7 @@ export default function SearchInput({
   onSubmit,
   placeholder,
 }: SearchInputProps): JSX.Element {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('searchInput');
   const [value, setValue] = useState('');
   return (
     <InputGroup w="auto">

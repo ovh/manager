@@ -21,7 +21,7 @@ export default function PageSelector({
   onPageChange = () => {},
   displayMode = PageSelectorDisplayMode.ButtonMode,
 }: PageSelectorProps): JSX.Element {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('pageSelector');
   const pageRange = [...Array(pageCount).keys()].map((p) => p + 1);
   return (
     <HStack>

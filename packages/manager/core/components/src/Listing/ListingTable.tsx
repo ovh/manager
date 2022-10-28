@@ -12,10 +12,11 @@ import {
   Tr,
 } from '@chakra-ui/react';
 
-import { ListingColumn } from './Listing';
+import { ListingActionColumnProps, ListingColumn } from './Listing';
 import ListingTableHead, { ListingTableHeadSorting } from './ListingTableHead';
 import ListingTableCell from './ListingTableCell';
-import Pagination from '@/Pagination';
+import Pagination from '../Pagination';
+import ActionMenu from '../ActionMenu';
 
 export type ListingTableState = {
   currentPage: number;
@@ -34,6 +35,7 @@ export type ListingTableProps<T> = {
   state: ListingTableState;
   onChange: (state: ListingTableState) => void;
   onColumnsChange: (columns: ListingColumn<T>[]) => void;
+  actionColumn?: ListingActionColumnProps;
 };
 
 export default function ListingTable<T>({
@@ -42,10 +44,42 @@ export default function ListingTable<T>({
   state,
   onChange,
   onColumnsChange,
+  actionColumn,
 }: ListingTableProps<T>): JSX.Element {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('listing');
   const { currentPage, pageSize } = state;
   const visibleColumns = columns.filter((c) => !c.hidden);
+
+  const getActionColumn = (item: T): JSX.Element => {
+    const actions = actionColumn.actions.map((action) => {
+      return {
+        ...action,
+        label:
+          typeof action.label === 'function'
+            ? action.label(item)
+            : action.label,
+        title:
+          typeof action.title === 'function'
+            ? action.title(item)
+            : action.title,
+        to: typeof action.to === 'function' ? action.to(item) : action.to,
+      };
+    });
+
+    return (
+      <Td colSpan={2} textAlign="right">
+        <ActionMenu
+          compact={true}
+          disabled={
+            typeof actionColumn.disabled === 'function'
+              ? actionColumn.disabled(item)
+              : actionColumn.disabled
+          }
+          actions={actions}
+        ></ActionMenu>
+      </Td>
+    );
+  };
 
   const cells = useMemo(() => {
     if (!data?.items)
@@ -69,11 +103,14 @@ export default function ListingTable<T>({
         {visibleColumns.map((column, colIndex) => (
           <Td
             key={`${column.key}-${index}`}
-            colSpan={colIndex + 1 === visibleColumns.length ? 2 : 1}
+            colSpan={
+              colIndex + 1 === visibleColumns.length && !actionColumn ? 2 : 1
+            }
           >
             <ListingTableCell item={item} column={column} />
           </Td>
         ))}
+        {actionColumn && getActionColumn(item)}
       </Tr>
     ));
   }, [data, columns]);

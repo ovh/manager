@@ -1,0 +1,19 @@
+{
+  "add": "Ajouter",
+  "confirm": "Confirmer",
+  "cancel": "Annuler",
+  "column": "Colonne",
+  "condition": "Condition",
+  "filter": "Filtrer",
+  "filter_includes": "contient",
+  "filter_starts_with": "commence par",
+  "filter_ends_with": "se termine par",
+  "filter_is_equal": "est égal à",
+  "filter_is_different": "est différent de",
+  "filter_is_lower": "est plus petit que",
+  "filter_is_higher": "est plus grand que",
+  "filter_is_before": "est avant",
+  "filter_is_after": "est après",
+  "value": "Valeur",
+  "no_results": "Aucun résultat"
+}

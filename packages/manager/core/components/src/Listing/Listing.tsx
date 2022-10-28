@@ -1,13 +1,19 @@
 import React from 'react';
 import { Flex, Spacer, Stack, HStack } from '@chakra-ui/react';
 import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
-import SearchInput from '@/SearchInput';
+
 import ListingTable, {
   ListingTableData,
   ListingTableState,
 } from './ListingTable';
 import ListingFilterAdder from './ListingFilterAdder';
 import ListingFilters from './ListingFilters';
+import ActionMenu, {
+  ActionMenuProps,
+  MenuActionButtonProps,
+} from '../ActionMenu';
+import SearchInput from '../SearchInput';
+import ActionButton, { ActionButtonProps } from '../ActionButton';
 
 export type ListingColumn<T> = {
   key: string;
@@ -19,12 +25,32 @@ export type ListingColumn<T> = {
   hidden?: boolean;
 };
 
+type MainActionButtonProps = ActionMenuProps | ActionButtonProps;
+type ListingActionColumnActionProps = Omit<
+  MenuActionButtonProps,
+  'label' | 'title' | 'to'
+> & {
+  label: string | ((data?: unknown) => string);
+  title?: string | ((data?: unknown) => string);
+  to?: string | ((data?: unknown) => string);
+};
+
+export type ListingActionColumnProps = Omit<
+  ActionMenuProps,
+  'disabled' | 'actions'
+> & {
+  disabled?: boolean | ((data?: unknown) => boolean);
+  actions?: ListingActionColumnActionProps[];
+};
+
 export type ListingProps<T> = {
   columns: ListingColumn<T>[];
   data: ListingTableData<T>;
   state: ListingState;
   onChange: (state: ListingState) => void;
   onColumnsChange: (columns: ListingColumn<T>[]) => void;
+  actionButton?: MainActionButtonProps;
+  actionColumn?: ListingActionColumnProps;
 };
 
 export type ListingState = {
@@ -34,17 +60,37 @@ export type ListingState = {
 
 export type ListingData<T> = ListingTableData<T>;
 
+const getMainActionButton = (
+  actionButtonProp: MainActionButtonProps,
+): JSX.Element => {
+  if (!actionButtonProp) {
+    return <></>;
+  }
+
+  const actionMenuProp = actionButtonProp as ActionMenuProps;
+
+  if (!actionMenuProp.actions) {
+    return <ActionButton {...(actionButtonProp as ActionButtonProps)} />;
+  }
+
+  return <ActionMenu {...actionMenuProp} />;
+};
+
 export default function Listing<T>({
   columns,
   data,
   state,
   onChange,
   onColumnsChange,
+  actionButton,
+  actionColumn,
 }: ListingProps<T>): JSX.Element {
   const searchColumn = columns.find((c) => c.search);
+
   return (
     <Stack>
       <Flex>
+        {getMainActionButton(actionButton)}
         <Spacer />
         <HStack>
           {searchColumn && (
@@ -109,6 +155,7 @@ export default function Listing<T>({
           })
         }
         onColumnsChange={onColumnsChange}
+        actionColumn={actionColumn}
       />
     </Stack>
   );

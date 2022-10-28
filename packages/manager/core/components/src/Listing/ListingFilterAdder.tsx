@@ -32,7 +32,7 @@ export default function ListingFilterAdder<T>({
   columns,
   onAdd,
 }: ListingFilterAdderProps<T>): JSX.Element {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('listing');
   if (!columns?.length) {
     return undefined;
   }
