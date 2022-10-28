@@ -1,0 +1,7 @@
+{
+  "pci_additional_ips_floating_ips_floating_ip_terminate_title": "Czy na pewno chcesz usunąć Floating IP {{ip}}?",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_confirm": "Zatwierdź",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_cancel": "Anuluj",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_success_info": "Adres IP {{ip}} został usunięty.",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_failure_info": "Wystąpił błąd podczas usuwania adresu IP {{ip}}: {{error}}"
+}

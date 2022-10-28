@@ -7,6 +7,7 @@ export default {
   bindings: {
     pciFeatureRedirect: '<',
     addInstance: '<',
+    assignFloatingIp: '<',
     betaWarning: '<',
     createBackupInstance: '<',
     deleteInstance: '<',
@@ -21,6 +22,7 @@ export default {
     instanceLink: '<',
     instanceId: '<',
     instances: '<',
+    isAdditionalIpsAvailable: '<',
     projectId: '<',
     onListParamChange: '<',
     refreshInstances: '<',
@@ -42,5 +44,6 @@ export default {
     instancesRegions: '<',
     getStateName: '<',
     goToRegion: '<',
+    floatingIpsLink: '<',
   },
 };

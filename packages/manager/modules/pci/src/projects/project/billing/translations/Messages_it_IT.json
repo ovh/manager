@@ -39,5 +39,7 @@
   "cpbc_billing_control_consumption_plan_data-processing-job.core.minute.consumption": "Processori (vCore)",
   "cpbc_billing_control_consumption_plan_data-processing-job.memory-gib.minute.consumption": "Memoria (RAM)",
   "cpbc_billing_control_consumption_current_period": "Il consumo attuale visualizzato è calcolato tra {{ from }} e {{ to }}",
-  "cpbc_billing_control_consumption_history": "Storico"
+  "cpbc_billing_control_consumption_history": "Storico",
+  "cpbc_billing_control_consumption_family_floatingip": "Floating IP",
+  "cpbc_billing_control_consumption_family_gateway": "Gateway"
 }

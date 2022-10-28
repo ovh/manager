@@ -61,7 +61,7 @@
         on-criteria-change="$ctrl.onListParamChange($criteria)"
     >
         <oui-datagrid-column
-            title=":: 'pci_projects_project_instances_name_label' | translate"
+            title=":: 'pci_projects_project_instances_name_id_label' | translate"
             data-property="name"
             data-type="string"
             data-searchable
@@ -74,14 +74,7 @@
                 data-ng-bind="$value"
             ></a>
             <span data-ng-if="$row.isDeleting()" data-ng-bind="$value"></span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            title=":: 'pci_projects_project_instances_name_id' | translate"
-            data-property="id"
-            data-type="string"
-            data-filterable
-            data-sortable
-        >
+            <p data-ng-bind="$row.id"></p>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_region_label' | translate"
@@ -114,19 +107,44 @@
             data-property="ipAddresses"
         >
             <span
-                class="d-block"
-                data-ng-repeat="ipAddress in $row.publicIpV4 track by $index"
-                data-ng-bind="ipAddress.ip"
+                class="ip-list"
+                data-ng-if="$row.publicIpV4.length > 1 && !$row.floatingIp"
+                data-ng-bind="$row.publicIpV4[0].ip"
+                oui-tooltip="{{ $ctrl.getIpsForTooltip($row.publicIpV4) }}"
+                oui-tooltip-placement="top"
             ></span>
+            <span
+                data-ng-if="$row.publicIpV4.length === 1 && !$row.floatingIp"
+                data-ng-bind="$row.publicIpV4[0].ip"
+            ></span>
+            <a
+                data-ng-if="$row.floatingIp && $row.publicIpV4.length === 0"
+                data-ng-href="{{:: $ctrl.floatingIpsLink}}"
+                data-ng-bind="$row.floatingIp.ip"
+            ></a>
+            <a
+                class="ip-list"
+                data-ng-if="$row.floatingIp && $row.publicIpV4.length > 0"
+                data-ng-href="{{:: $ctrl.floatingIpsLink}}"
+                data-ng-bind="$row.floatingIp.ip"
+                oui-tooltip="{{ $ctrl.getIpsForTooltip($row.publicIpV4) }}"
+                oui-tooltip-placement="top"
+            ></a>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_privateIp_label' | translate"
             data-property="ipAddresses"
         >
             <span
-                class="d-block"
-                data-ng-repeat="ipAddress in $row.privateIpV4 track by $index"
-                data-ng-bind="ipAddress.ip"
+                class="ip-list"
+                data-ng-if="$row.privateIpV4.length > 1"
+                data-ng-bind="$row.privateIpV4[0].ip"
+                oui-tooltip="{{ $ctrl.getIpsForTooltip($row.privateIpV4) }}"
+                oui-tooltip-placement="top"
+            ></span>
+            <span
+                data-ng-if="$row.privateIpV4.length === 1"
+                data-ng-bind="$row.privateIpV4[0].ip"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -181,6 +199,15 @@
             >
                 <span
                     data-translate="pci_projects_project_instances_edit_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.isAdditionalIpsAvailable"
+                data-disabled="$row.hasPublicIpV4() && $row.hasPublicIpV6()"
+                data-on-click="$ctrl.assignFloatingIp($row)"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_assign_floating_ip_label"
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
@@ -326,5 +353,27 @@
                 <span class="fa fa-refresh" aria-hidden="true"></span>
             </button>
         </oui-datagrid-topbar>
+        <oui-datagrid-row-detail>
+            <div class="text-center" data-ng-if="$row.privateIpV4.length === 0">
+                <span
+                    class="oui-datagrid-empty__placeholder"
+                    data-translate="pci_projects_project_instances_no_data"
+                ></span>
+            </div>
+            <div class="d-flex" data-ng-if="$row.privateIpV4.length > 0">
+                <div class="font-weight-bold">
+                    <span
+                        data-translate="pci_projects_project_instances_private_ip"
+                    ></span>
+                </div>
+                <div class="d-flex flex-wrap ml-5">
+                    <span
+                        class="mr-3"
+                        data-ng-repeat="ips in $row.privateIpV4"
+                        data-ng-bind="ips.ip"
+                    ></span>
+                </div>
+            </div>
+        </oui-datagrid-row-detail>
     </oui-datagrid>
 </div>

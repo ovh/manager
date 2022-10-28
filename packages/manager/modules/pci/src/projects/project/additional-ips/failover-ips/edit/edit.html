@@ -1,0 +1,24 @@
+<oui-modal
+    data-heading="{{:: 'pci_additional_ips_failoverips_edit' | translate}}"
+    data-primary-action="$ctrl.edit()"
+    data-primary-label="{{:: 'pci_additional_ips_failoverips_edit_submit_label' | translate }}"
+    data-primary-disabled="$ctrl.isLoading || !$ctrl.instance || $ctrl.instance.id === $ctrl.ip.routedTo"
+    data-secondary-action="$ctrl.onCancelClick()"
+    data-secondary-label="{{:: 'pci_additional_ips_failoverips_edit_cancel_label' | translate }}"
+    data-on-dismiss="$ctrl.onCancelClick()"
+    data-loading="$ctrl.isLoading"
+>
+    <p
+        data-translate="pci_additional_ips_failoverips_edit_description"
+        data-translate-values="{ serviceName: $ctrl.ip.ip }"
+    ></p>
+    <oui-select
+        data-model="$ctrl.instance"
+        data-placeholder="{{ ::'pci_additional_ips_failoverips_edit_select_instance' | translate }}"
+        data-items="$ctrl.instances"
+        data-disable-items="!$item.canAttachIPFO()"
+        data-match="name"
+        data-required
+    >
+    </oui-select>
+</oui-modal>

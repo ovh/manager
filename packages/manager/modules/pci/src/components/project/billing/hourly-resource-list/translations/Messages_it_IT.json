@@ -14,5 +14,7 @@
   "cpbc_hourly_training_title": "AI Training",
   "cpbc_hourly_data_processing_title": "Data Processing",
   "cpbc_hourly_databases_title": "Database",
-  "cpbc_hourly_notebooks_title": "AI Notebooks"
+  "cpbc_hourly_notebooks_title": "AI Notebooks",
+  "cpbc_hourly_floating_ip_title": "Floating IP",
+  "cpbc_hourly_gateway_title": "Gateway"
 }

@@ -16,6 +16,7 @@ import dataProcessing from './data-processing';
 import edit from './edit';
 import errorModal from '../new/error-modal';
 import failoverIps from './failover-ips';
+import additionalIps from './additional-ips';
 import inactive from './inactive';
 import instances from './instances';
 import kubernetes from './kubernetes';
@@ -37,9 +38,10 @@ import training from './training';
 import workflow from './workflow';
 import pciAnnouncementBanner from '../../components/pci-announcement-banner';
 import pciMaintenanceBanner from '../../components/pci-maintenance-banner';
-
 import projectComponent from './project.component';
 import service from './project.service';
+
+import gateways from './gateways';
 
 import './project.less';
 
@@ -57,6 +59,7 @@ angular
     edit,
     errorModal,
     failoverIps,
+    additionalIps,
     inactive,
     instances,
     loadBalancer,
@@ -81,6 +84,7 @@ angular
     training,
     pciAnnouncementBanner,
     pciMaintenanceBanner,
+    gateways,
   ])
   .config(routing)
   .component('pciProject', projectComponent)

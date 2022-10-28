@@ -10,7 +10,7 @@ import component from './add.component';
 import routing from './add.routing';
 import service from './add.service';
 
-import popoverTemplate from './api-guide.popover.html';
+import gatewayServiceModule from '../../gateways/service';
 
 const moduleName = 'ovhManagerPciPrivateNetworksAdd';
 
@@ -22,18 +22,11 @@ angular
     'oui',
     'ovh-api-services',
     'ui.router',
+    gatewayServiceModule,
   ])
   .config(routing)
   .component('pciProjectPrivateNetworksAdd', component)
   .service('PciPrivateNetworksAdd', service)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(
-    /* @ngInject */ ($templateCache) => {
-      $templateCache.put(
-        'pci/projects/project/network/private-networks/add/api-guide.popover.html',
-        popoverTemplate,
-      );
-    },
-  );
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

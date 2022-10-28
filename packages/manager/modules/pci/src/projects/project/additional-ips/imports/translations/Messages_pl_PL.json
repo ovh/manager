@@ -1,0 +1,7 @@
+{
+  "pci_additional_ips_failoverip_imports_title": "Importuj adres Additional IP",
+  "pci_additional_ips_failoverip_imports_block": "Additional IP",
+  "pci_additional_ips_failoverip_imports_geoloc": "Kraj",
+  "pci_additional_ips_failoverip_imports_id": "Przypisana usługa",
+  "pci_additional_ips_failoverip_imports_importIp": "Importuj ten adres Additional IP"
+}
