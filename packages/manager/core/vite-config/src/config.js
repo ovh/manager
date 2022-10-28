@@ -1,7 +1,8 @@
-import { dirname, join, resolve } from 'path';
+import { dirname, join, resolve, parse } from 'path';
 import { fileURLToPath } from 'url';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import legacy from '@vitejs/plugin-legacy';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 import IframeHmrPlugin from './plugin/iframe-hmr.js';
 import viteOvhDevServerPlugin from './plugin/dev-server.js';
@@ -31,6 +32,20 @@ const getBaseConfig = (config) => {
       }),
       viteOvhDevServerPlugin({ isContainerApp, config: envConfig }),
       IframeHmrPlugin(),
+      viteStaticCopy({
+        targets: [
+          {
+            flatten: false,
+            src:
+              '../../../../../node_modules/@ovh-ux/manager-react-core-components/src/**/assets/translations/**/*.json',
+            dest: 'translations',
+            rename: (name, extension, fullPath) => {
+              const { dir, base } = parse(fullPath);
+              return `${dir.split('/').pop()}/${base}`;
+            },
+          },
+        ],
+      }),
     ],
     css: {
       preprocessorOptions: {
