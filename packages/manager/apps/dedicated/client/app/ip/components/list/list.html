@@ -96,6 +96,15 @@
                         data-oui-popover-placement="top"
                     ></button>
                 </th>
+                <th scope="col" data-ng-if="advancedModeFilter">
+                    <span data-translate="ip_table_header_virtual_mac"></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{:: 'ip_table_header_virtual_mac_help' | translate }}"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </th>
                 <th scope="col">
                     <span data-translate="ip_table_header_reverse"></span>
                     <button
@@ -106,43 +115,11 @@
                     ></button>
                 </th>
                 <th scope="col">
-                    <script type="text/ng-template" id="ip_alerts_help.html">
-                        <div
-                            class="text-right"
-                            data-ng-if="$ctrl.hasSpamAlerts"
-                        >
-                            <strong data-trnaslate="ip_alerts_spam_noun"></strong>
-                            <span data-trnaslate="ip_alerts_spam_help"></span>
-                        </div>
-                        <div
-                            class="text-right"
-                            data-ng-if="$ctrl.hasAntihackAlerts"
-                        >
-                            <strong data-trnaslate="ip_alerts_antihack_noun"></strong>
-                            <span data-trnaslate="ip_alerts_antihack_help"></span>
-                        </div>
-                        <div
-                            class="text-right"
-                            data-ng-if="$ctrl.hasMitigationAlerts"
-                        >
-                            <strong data-trnaslate="ip_alerts_mitigation_noun"></strong>
-                            <span data-trnaslate="ip_alerts_mitigation_help"></span>
-                        </div>
-                    </script>
-                    <span data-translate="ip_table_header_alerts"></span>
+                    <span data-translate="ip_table_header_organisation"></span>
                     <button
                         type="button"
                         class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_alerts_help' | translate }}"
-                        data-oui-popover-placement="top"
-                    ></button>
-                </th>
-                <th scope="col" data-ng-if="advancedModeFilter">
-                    <span data-translate="ip_table_header_virtual_mac"></span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_virtual_mac_help' | translate }}"
+                        data-oui-popover="{{:: 'ip_table_header_organisation_help' | translate }}"
                         data-oui-popover-placement="top"
                     ></button>
                 </th>
@@ -185,10 +162,38 @@
                         data-oui-popover-placement="top"
                     ></button>
                 </th>
-                <th
-                    scope="col"
-                    data-translate="ip_table_header_organisation"
-                ></th>
+                <th scope="col">
+                    <script type="text/ng-template" id="ip_alerts_help.html">
+                        <div
+                            class="text-right"
+                            data-ng-if="$ctrl.hasSpamAlerts"
+                        >
+                            <strong data-translate="ip_alerts_spam_noun"></strong>
+                            <span data-translate="ip_alerts_spam_help"></span>
+                        </div>
+                        <div
+                            class="text-right"
+                            data-ng-if="$ctrl.hasAntihackAlerts"
+                        >
+                            <strong data-translate="ip_alerts_antihack_noun"></strong>
+                            <span data-translate="ip_alerts_antihack_help"></span>
+                        </div>
+                        <div
+                            class="text-right"
+                            data-ng-if="$ctrl.hasMitigationAlerts"
+                        >
+                            <strong data-translate="ip_alerts_mitigation_noun"></strong>
+                            <span data-translate="ip_alerts_mitigation_help"></span>
+                        </div>
+                    </script>
+                    <span data-translate="ip_table_header_alerts"></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{:: 'ip_table_header_alerts_help' | translate }}"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -281,6 +286,9 @@
                     <span data-ng-if="!ipBlock.routedTo.serviceName">-</span>
                 </td>
 
+                <!-- Virtual MAC -->
+                <td data-ng-if="advancedModeFilter"></td>
+
                 <!-- Reverse -->
                 <td>
                     <span
@@ -309,6 +317,20 @@
                     </ul>
                 </td>
 
+                <!-- Organisation -->
+                <td>
+                    <span data-ng-bind="ipBlock.organisationId"></span>
+                </td>
+
+                <!-- Mitigation -->
+                <td data-ng-if="advancedModeFilter"></td>
+
+                <!-- Firewall -->
+                <td data-ng-if="advancedModeFilter"></td>
+
+                <!-- Game mitigation -->
+                <td data-ng-if="advancedModeFilter"></td>
+
                 <!-- Alerts -->
                 <td>
                     <div
@@ -327,23 +349,6 @@
                             data-ng-mouseleave="popover[ipBlock.ipBlock] = false"
                         ></span>
                     </div>
-                </td>
-
-                <!-- Virtual MAC -->
-                <td data-ng-if="advancedModeFilter"></td>
-
-                <!-- Mitigation -->
-                <td data-ng-if="advancedModeFilter"></td>
-
-                <!-- Firewall -->
-                <td data-ng-if="advancedModeFilter"></td>
-
-                <!-- Game mitigation -->
-                <td data-ng-if="advancedModeFilter"></td>
-
-                <!-- Organization -->
-                <td data-ng-if="advancedModeFilter">
-                    <span data-ng-bind="ipBlock.organisationId"></span>
                 </td>
 
                 <!-- Actions -->
@@ -413,6 +418,23 @@
                     <span data-ng-if="!ipBlock.routedTo.serviceName">-</span>
                 </td>
 
+                <!-- VMAC -->
+                <td data-ng-if="advancedModeFilter">
+                    <span
+                        data-ng-if="ipBlock.virtualMac.status === 'OK'"
+                        data-ng-bind="ipBlock.virtualMac.virtualMacs[ip.ip] || '-'"
+                    >
+                    </span>
+                    <span
+                        class="oui-badge"
+                        data-ng-if="ipBlock.virtualMac.status === 'PENDING'"
+                        data-translate="ip_taskpending_label"
+                        data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
+                        data-oui-tooltip-placement="top"
+                    >
+                    </span>
+                </td>
+
                 <!-- Reverse -->
                 <td>
                     <span
@@ -470,39 +492,11 @@
                     </div>
                 </td>
 
-                <!-- Alerts -->
+                <!-- Organisation -->
                 <td>
-                    <div
-                        class="d-flex justify-content-center align-items-center ip-components-list__alerts"
-                        data-ng-if="ip.hasSpamAlerts || ip.hasAntihackAlerts || ip.hasMitigationAlerts"
-                    >
-                        <span
-                            class="fa fa-warning text-danger lead mb-0"
-                            aria-hidden="true"
-                            data-oui-popover
-                            data-oui-popover-template="ip_alerts_help.html"
-                            data-oui-popover-placement="left"
-                            data-oui-popover-scope="ip"
-                            data-oui-popover-open="popover[ip.ip]"
-                            data-ng-mouseover="popover[ip.ip] = true"
-                            data-ng-mouseleave="popover[ip.ip] = false"
-                        ></span>
-                    </div>
-                </td>
-
-                <!-- VMAC -->
-                <td data-ng-if="advancedModeFilter">
                     <span
-                        data-ng-if="ipBlock.virtualMac.status === 'OK'"
-                        data-ng-bind="ipBlock.virtualMac.virtualMacs[ip.ip] || '-'"
-                    >
-                    </span>
-                    <span
-                        class="oui-badge"
-                        data-ng-if="ipBlock.virtualMac.status === 'PENDING'"
-                        data-translate="ip_taskpending_label"
-                        data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
-                        data-oui-tooltip-placement="top"
+                        data-ng-if="ipBlock.organisationId"
+                        data-ng-bind="ipBlock.organisationId"
                     >
                     </span>
                 </td>
@@ -563,13 +557,24 @@
                         data-oui-popover-placement="left"
                     ></button>
                 </td>
-                <!-- Organisation -->
-                <td data-ng-if="advancedModeFilter">
-                    <span
-                        data-ng-if="ipBlock.organisationId"
-                        data-ng-bind="ipBlock.organisationId"
+                <!-- Alerts -->
+                <td>
+                    <div
+                        class="d-flex justify-content-center align-items-center ip-components-list__alerts"
+                        data-ng-if="ip.hasSpamAlerts || ip.hasAntihackAlerts || ip.hasMitigationAlerts"
                     >
-                    </span>
+                        <span
+                            class="fa fa-warning text-danger lead mb-0"
+                            aria-hidden="true"
+                            data-oui-popover
+                            data-oui-popover-template="ip_alerts_help.html"
+                            data-oui-popover-placement="left"
+                            data-oui-popover-scope="ip"
+                            data-oui-popover-open="popover[ip.ip]"
+                            data-ng-mouseover="popover[ip.ip] = true"
+                            data-ng-mouseleave="popover[ip.ip] = false"
+                        ></span>
+                    </div>
                 </td>
 
                 <!-- Actions -->
