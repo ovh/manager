@@ -140,6 +140,7 @@
   "ip_table_header_game_mitigation": "Firewall Game",
   "ip_table_header_game_mitigation_help": "Disponibilité de la protection anti-DDoS game pour le service.",
   "ip_table_header_organisation": "Organisation",
+  "ip_table_header_organisation_help": "Une organisation représente l’entité responsable d’un bloc IP donné (par exemple, votre entreprise).",
   "ip_table_header_alerts": "Alertes",
   "ip_table_header_alerts_help": "Alertes concernant l’adresse IP ou le bloc Additional IP.",
   "ip_table_header_visiblecols_btn": "Configurer",
