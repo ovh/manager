@@ -32,7 +32,6 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 import { initAtInternet } from './components/at-internet';
-import darkMode from './components/dark-mode';
 
 import './assets/theme/default/index.less';
 import './index.scss';
@@ -69,7 +68,6 @@ export default async (containerEl, shellClient) => {
       [
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
         initAtInternet(shellClient.tracking),
-        darkMode,
         ngAnimate,
         ngUiRouterBreadcrumb,
         ngOvhApiWrappers,
