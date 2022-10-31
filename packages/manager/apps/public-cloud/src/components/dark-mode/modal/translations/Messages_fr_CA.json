@@ -1,8 +1,0 @@
-{
-  "public_cloud_components_dark_mode_modal_title": "Activation du mode sombre (Alpha Version)",
-  "public_cloud_components_dark_mode_modal_paragraph_1": "Bravo ! Vous avez découvert la combinaison de touches vous permettant d’activer le mode sombre sur votre espace client Public Cloud.",
-  "public_cloud_components_dark_mode_modal_paragraph_2": "Vous pourrez revenir à tout moment au mode clair en saisissant la même combinaison de touches.",
-  "public_cloud_components_dark_mode_modal_question": "Êtes-vous sûr(e) de vouloir activer le mode sombre ?",
-  "public_cloud_components_dark_mode_label_activate": "Activer",
-  "public_cloud_components_dark_mode_label_cancel": "Annuler"
-}
