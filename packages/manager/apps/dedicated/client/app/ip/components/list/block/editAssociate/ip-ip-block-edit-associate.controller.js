@@ -11,7 +11,7 @@ export default /* @ngInject */ (
   $scope.ipBlock = $scope.data.ipBlock;
   $scope.model = {
     blockIpdetails: { description: null, netname: null },
-    organisationDetails: null,
+    organisationDetails: $scope.ipBlock.organisationId,
   };
   IpOrganisation.getBlockIpDetails($scope.ipBlock).then((data) => {
     $scope.model.blockIpdetails.netname = data.netname;
