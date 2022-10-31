@@ -1,8 +1,0 @@
-{
-  "public_cloud_components_dark_mode_modal_title": "Aktivieren des Dark-Modus (Alpha-Version)",
-  "public_cloud_components_dark_mode_modal_paragraph_1": "Glückwunsch! Sie haben die Tastenkombination entdeckt, mit der Sie den Dark-Modus auf Ihrem Public-Cloud-Client-Space aktivieren können.",
-  "public_cloud_components_dark_mode_modal_paragraph_2": "Sie können jederzeit in den Löschmodus zurückkehren, indem Sie die gleiche Tastenkombination eingeben.",
-  "public_cloud_components_dark_mode_modal_question": "Sind Sie sicher, dass Sie den Dark-Modus aktivieren möchten?",
-  "public_cloud_components_dark_mode_label_activate": "Aktivieren",
-  "public_cloud_components_dark_mode_label_cancel": "Abbrechen"
-}
