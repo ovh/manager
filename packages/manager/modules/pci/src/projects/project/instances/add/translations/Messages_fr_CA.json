@@ -85,6 +85,9 @@
   "pci_projects_project_instances_add_save_form": "Création de l'instance en cours",
   "pci_projects_project_instances_add_save_multiple_form": "Création des instances en cours",
 
+  "pci_projects_project_instances_add_instance_confirmation_info": "Vous êtes sur le point de créer une Instance. Nous tenons à vous informer que la création de cette instance peut prendre quelques minutes. Souhaitez-vous continuer ?",
+  "pci_projects_project_instances_add_instance_confirmation_create": "OK, allons-y",
+  "pci_projects_project_instances_add_instance_confirmation_cancel": "Non",
   "pci_projects_project_instances_add_private_mode1": "Votre instance est en cours de création. La configuration de tous les composants peut prendre quelques minutes.",
   "pci_projects_project_instances_add_private_mode2": "Veuillez ne pas quitter ou rafraîchir cette page car cela pourrait avoir un impact sur le processus de création.",
 

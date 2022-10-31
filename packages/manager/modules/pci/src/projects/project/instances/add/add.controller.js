@@ -645,6 +645,18 @@ export default class PciInstancesAddController {
       });
   }
 
+  onCreateFormStepperSubmit() {
+    if (this.isPrivateMode()) {
+      this.confirmPrivateInstanceCreation = true;
+      return null;
+    }
+    return this.create();
+  }
+
+  onCancelCreateInstanceConfirmation() {
+    this.confirmPrivateInstanceCreation = false;
+  }
+
   create() {
     this.isLoading = true;
     this.trackCreate();
@@ -687,6 +699,8 @@ export default class PciInstancesAddController {
       .finally(() => {
         if (!this.isPrivateMode()) {
           this.isLoading = false;
+        } else {
+          this.confirmPrivateInstanceCreation = false;
         }
       });
   }
@@ -765,6 +779,11 @@ export default class PciInstancesAddController {
     }
 
     this.CucCloudMessage.error(message, 'pci.projects.project.instances.add');
+    this.$timeout(() => {
+      document
+        .getElementById('create-instance-error-container')
+        .scrollIntoView(true);
+    });
   }
 
   handleError(err) {
