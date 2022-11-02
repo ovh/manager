@@ -1,11 +1,12 @@
 .pci-new-project-promotion-banner {
   color: white;
+  background-color: white;
 
   .promotion-banner {
-    cursor: pointer;
+    text-align: center;
+    margin: auto;
     background: linear-gradient(180deg, #000e9c, #0050d7) 0% 0% no-repeat
       padding-box;
-    width: 340px;
 
     h4,
     h5 {
