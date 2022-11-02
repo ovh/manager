@@ -3,8 +3,6 @@ import './automated-emails/error-report/hosting-automated-emails-error-report.co
 import './automated-emails/hosting-automated-emails.controller';
 import './automated-emails/hosting-automated-emails.service';
 import './automated-emails/request/hosting-automated-emails-request.controller';
-import './bandwidth/order/hosting-bandwidth-order.controller';
-import './bandwidth/order/hosting-bandwidth-order.service';
 import './boost/disable/hosting-boost-disable.controller';
 import './boost/enable/hosting-boost-enable.controller';
 import './boost/hosting-boost.controller';
@@ -81,8 +79,6 @@ import './multisite/logs/hosting-multisite-logs.controller';
 import './multisite/order/hosting-multisite-order.controller';
 import './multisite/update/hosting-multisite-update.controller';
 import './offer/upgrade/hosting-offer-upgrade.controller';
-import './order/hosting-order-option';
-import './order/hosting-order.service';
 import './ovhconfig/hosting-ovhconfig.controller';
 import './ovhconfig/hosting-ovhconfig.service';
 import './runtimes/add/hosting-runtimes-add.controller';
