@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.8.2...@ovh-ux/manager-dbaas-logs@1.8.3) (2022-11-02)
+
+
+### Bug Fixes
+
+* **dbaas-logs:** osd price reference ([#8076](https://github.com/ovh/manager/issues/8076)) ([def9467](https://github.com/ovh/manager/commit/def9467be8f8c376bda8079e26e231f1a7da97f7))
+
+
+
+
+
 ## [1.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.8.1...@ovh-ux/manager-dbaas-logs@1.8.2) (2022-09-14)
 
 
@@ -364,6 +380,3 @@
 ### BREAKING CHANGES
 
 * Init dbaas logs app and module
-
-
-

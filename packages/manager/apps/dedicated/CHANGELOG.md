@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.33.2...@ovh-ux/manager-dedicated@17.34.0) (2022-11-02)
+
+
+### Features
+
+* **sp-sso-identity:** add sso feature in user account ([4ea0250](https://github.com/ovh/manager/commit/4ea02509d029f2423c09f574ae7fc414919b03c2))
+
+
+
+
+
 ## [17.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.33.1...@ovh-ux/manager-dedicated@17.33.2) (2022-10-24)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.13.1...@ovh-ux/manager-support@1.14.0) (2022-11-02)
+
+
+### Features
+
+* **pci.project:** l3 services ([#7431](https://github.com/ovh/manager/issues/7431)) ([68a051d](https://github.com/ovh/manager/commit/68a051d9ba23c5a68dd119326119300f4c1acba0))
+
+
+
+
+
 ## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.13.0...@ovh-ux/manager-support@1.13.1) (2022-10-24)
 
 
