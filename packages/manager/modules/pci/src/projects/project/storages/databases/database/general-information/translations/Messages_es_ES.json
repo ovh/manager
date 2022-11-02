@@ -86,5 +86,6 @@
   "pci_databases_general_information_support_title": "Soporte",
   "pci_databases_general_information_support_level_label": "Nivel de soporte",
   "pci_databases_general_information_support_level_standard": "Standard",
-  "pci_databases_general_information_support_create_ticket_label": "Crear un tíquet"
+  "pci_databases_general_information_support_create_ticket_label": "Crear un tíquet",
+  "pci_databases_general_information_storage_label": "Almacenamiento"
 }
