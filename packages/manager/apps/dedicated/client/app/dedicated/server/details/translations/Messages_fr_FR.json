@@ -631,6 +631,7 @@
   "server_configuration_installation_ovh_desktop_BASIC": "Basique",
   "server_configuration_installation_ovh_desktop_CUSTOMER": "Personnalisé",
   "server_configuration_installation_ovh_desktop_DATABASE": "Base de données",
+  "server_configuration_installation_ovh_desktop_ERP": "ERP",
   "server_configuration_installation_ovh_desktop_HOSTING": "Hébergement",
   "server_configuration_installation_ovh_desktop_MANAGEMENT": "Interface d'Administration",
   "server_configuration_installation_ovh_desktop_OTHER": "Autre",
