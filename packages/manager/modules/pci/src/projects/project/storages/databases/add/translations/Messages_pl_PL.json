@@ -65,5 +65,6 @@
   "pci_database_add_network_mode_helper": "Więcej informacji na temat konfiguracji sieci prywatnej znajdziesz w przewodniku: {{link}}",
   "pci_database_add_network_mode_helper_link": "vRack Public Cloud",
   "pci_database_add_network_mode_public_popover": "Sieć publiczna umożliwia połączenie z dowolnego autoryzowanego źródła IP podłączonego do Internetu (Twój komputer, zdalny serwer, etc.)",
-  "pci_database_add_network_mode_private_popover": "Sieć prywatna nie pozwala na połączenie z siecią publiczną i dopuszcza jedynie połączenia w ramach usługi vRack."
+  "pci_database_add_network_mode_private_popover": "Sieć prywatna nie pozwala na połączenie z siecią publiczną i dopuszcza jedynie połączenia w ramach usługi vRack.",
+  "pci_database_add_spec_storage": "Przestrzeń dyskowa:"
 }
