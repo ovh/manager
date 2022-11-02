@@ -81,5 +81,6 @@
   "pci_databases_general_information_support_title": "Support",
   "pci_databases_general_information_support_level_label": "Support-Level",
   "pci_databases_general_information_support_level_standard": "Standard",
-  "pci_databases_general_information_support_create_ticket_label": "Ein Ticket erstellen"
+  "pci_databases_general_information_support_create_ticket_label": "Ein Ticket erstellen",
+  "pci_databases_general_information_storage_label": "Speicher"
 }

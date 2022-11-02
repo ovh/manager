@@ -31,5 +31,6 @@
   "pci_database_node_type_storage_range": "{{storageMinSize}} a {{storageMaxSize}} de armazenamento SSD",
   "pci_database_node_type_label": "Modelo de nó",
   "pci_database_footer_part_1": "Todos os nomes de produtos, logótipos e marcas são propriedade dos respetivos proprietários. Todos os nomes de empresas, produtos e serviços utilizados neste website destinam-se apenas para efeitos de identificação. A utilização desses nomes, logótipos e marcas não implica qualquer aprovação.",
-  "pci_database_footer_part_2": "*Redis é uma marca da Redis Ltd. Todos os direitos conexos são reservados à Redis Ltd. Qualquer utilização pela OVH SAS é unicamente a título de referência e não indica nenhum patrocínio, apoio ou filiação entre a Redis e a OVH SAS."
+  "pci_database_footer_part_2": "*Redis é uma marca da Redis Ltd. Todos os direitos conexos são reservados à Redis Ltd. Qualquer utilização pela OVH SAS é unicamente a título de referência e não indica nenhum patrocínio, apoio ou filiação entre a Redis e a OVH SAS.",
+  "pci_database_storage_label": "Armazenamento útil"
 }
