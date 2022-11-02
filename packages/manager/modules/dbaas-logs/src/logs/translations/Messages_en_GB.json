@@ -367,7 +367,7 @@
   "streams_alerts_condition_field_value": "The alert is triggered when the <strong>{{field}}</strong> field has had a value <strong>{{thresholdType}} {{constraintType}}</strong> of <strong>{{threshold}}</strong> in the last <strong>{{time}}</strong> minutes. The {{queryFilter}} filter is applied, and <strong>{{backlog}}</strong> messages will be included in the notification.",
   "streams_alerts_condition_field_content_value": "The alert is triggered when a message with the <strong>{{field}}</strong> field containing the value <strong>\"{{value}}\"</strong> is received. The {{queryFilter}} filter is applied, and <strong>{{backlog}}</strong> messages will be included in the notification.",
   "streams_disk_full": "Disk full",
-  "streams_45_days": " days",
+  "streams_45_days": "45 days",
   "create_alert": "Create an alert with the following as a condition",
   "counter_alert": "A number of messages",
   "numeric_alert": "A field aggregation",
@@ -721,6 +721,5 @@
   "logs_tile_subscription_contact_admin": "Administrator",
   "logs_tile_subscription_contact_billing": "Billing",
   "logs_tile_subscription_contact_technical": "Technical",
-  "logs_order": "Order",
-  "inputs_info_exposedport": "TCP port exposed"
+  "logs_order": "Order"
 }
