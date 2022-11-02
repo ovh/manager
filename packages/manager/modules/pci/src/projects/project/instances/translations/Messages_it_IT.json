@@ -61,5 +61,9 @@
   "pci_projects_project_instances_status_UNSHELVING": "Riattivazione in corso",
   "pci_projects_project_instances_shelve_label": "Sospesa",
   "pci_projects_project_instances_unshelve_label": "Riattiva",
-  "pci_projects_project_instances_name_id": "ID"
+  "pci_projects_project_instances_name_id": "ID",
+  "pci_projects_project_instances_name_id_label": "Nome/ID",
+  "pci_projects_project_instances_assign_floating_ip_label": "Assegnare un Floating IP",
+  "pci_projects_project_instances_private_ip": "IP privati",
+  "pci_projects_project_instances_no_data": "Nessun dato disponibile"
 }

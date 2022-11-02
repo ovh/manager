@@ -32,6 +32,8 @@ const UserAccountMenu = ({
     .getEnvironment()
     .getUser();
 
+  const isProvider = user.auth.method === 'provider';
+
   const onLougoutBtnClick = () => {
     trackingPlugin.trackClick({
       name: 'topnav::user_widget::logout',
@@ -78,8 +80,8 @@ const UserAccountMenu = ({
             </strong>
           </p>
         )}
-        <p className="mb-0" data-navi-id="account-email">
-          <strong>{user.email}</strong>
+        <p className="mb-0" data-navi-id={ isProvider ? "account-username" : "account-email" }>
+          <strong>{ isProvider? user.auth.user : user.email }</strong>
         </p>
         {user.email !== user.nichandle && (
           <p className="mb-0">
@@ -90,6 +92,13 @@ const UserAccountMenu = ({
             ></Trans>
           </p>
         )}
+
+        {isProvider && (
+          <p className={`ml-0 oui-badge oui-badge_warning`} data-navi-id="account-auth-method">
+            <strong>{t(`user_account_menu_role_provider`)}</strong>
+          </p>
+        )}
+
         {!user.enterprise && (
           <UserDefaultPaymentMethod
             defaultPaymentMethod={defaultPaymentMethod}

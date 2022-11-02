@@ -297,6 +297,14 @@ export default class CloudProjectBillingService {
     this.initResourceUsage('databases', 'databases');
   }
 
+  initFloatingIP() {
+    this.initResourceUsage('floatingip', 'floatingIP');
+  }
+
+  initGateway() {
+    this.initResourceUsage('gateway', 'gateway');
+  }
+
   getConsumptionDetails(hourlyBillingInfo, monthlyBillingInfo) {
     return this.getDataInitialized().then(() => {
       this.data.hourlyBilling = hourlyBillingInfo;
@@ -318,6 +326,8 @@ export default class CloudProjectBillingService {
           this.initTraining(),
           this.initDataprocessing(),
           this.initDatabases(),
+          this.initFloatingIP(),
+          this.initGateway(),
         ])
         .then(() => {
           this.data.totals.monthly.total = this.constructor.roundNumber(
@@ -337,8 +347,10 @@ export default class CloudProjectBillingService {
               this.data.totals.hourly.serving +
               this.data.totals.hourly.training +
               this.data.totals.hourly.dataProcessing +
-              this.data.totals.hourly.databases,
-            2,
+              this.data.totals.hourly.databases +
+              this.data.totals.hourly.floatingIP +
+              this.data.totals.hourly.gateway +
+              2,
           );
           this.data.totals.total = this.constructor.roundNumber(
             this.data.totals.monthly.total + this.data.totals.hourly.total,
@@ -358,6 +370,8 @@ export default class CloudProjectBillingService {
       snapshots: [],
       volumes: [],
       bandwidthByRegions: [],
+      floatingIP: [],
+      gateway: [],
       billing: {},
       totals: {
         total: 0,

@@ -10,6 +10,7 @@
   "user_account_menu_support_level_premium-accredited_trusted": "Zone de confiance Premium Advanced",
   "user_account_menu_support_level_business_trusted": "Zone de confiance Business",
   "user_account_menu_support_level_enterprise_trusted": "Zone de confiance Enterprise",
+  "user_account_menu_role_provider": "Connecté en SSO",
   "user_account_menu_user_id": "Identifiant : <strong>{{nichandle}}</strong>",
   "user_account_menu_profile": "Mon profil",
   "user_account_menu_logout": "Me déconnecter",

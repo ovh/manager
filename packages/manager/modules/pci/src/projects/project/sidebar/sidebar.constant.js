@@ -86,14 +86,6 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
   {
     subitems: [
       {
-        id: 'load-balancer',
-        options: {
-          state: 'pci.projects.project.loadbalancer',
-        },
-        title: 'Load Balancer',
-        feature: PCI_FEATURES.PRODUCTS.LOAD_BALANCER,
-      },
-      {
         id: 'private-network',
         options: {
           state: 'pci.projects.project.privateNetwork',
@@ -109,11 +101,35 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         title: 'Failover IP',
         feature: PCI_FEATURES.PRODUCTS.FAILOVER_IP,
       },
+      {
+        id: 'additional-ips',
+        options: {
+          state: 'pci.projects.project.additional-ips',
+        },
+        title: 'Public IPs',
+        feature: PCI_FEATURES.PRODUCTS.ADDITIONAL_IP,
+      },
+      {
+        id: 'public-gateways',
+        options: {
+          state: 'pci.projects.project.gateways',
+        },
+        title: 'Gateway',
+        feature: PCI_FEATURES.PRODUCTS.PUBLIC_GATEWAYS,
+      },
     ],
     title: 'Network',
   },
   {
     subitems: [
+      {
+        id: 'load-balancer',
+        options: {
+          state: 'pci.projects.project.loadbalancer',
+        },
+        title: 'Load Balancer',
+        feature: PCI_FEATURES.PRODUCTS.LOAD_BALANCER,
+      },
       {
         id: 'kubernetes',
         options: {

@@ -1,0 +1,5 @@
+{
+  "pci_instances_create_private_network_warning_info": "Para associar um IP flutuante a esta instância, deve antes ter configurado uma rede privada nesta última na região selecionada.",
+  "pci_instances_create_private_network_warning_submit_label": "Criar uma rede privada",
+  "pci_instances_create_private_network_warning_cancel_label": "Anular"
+}

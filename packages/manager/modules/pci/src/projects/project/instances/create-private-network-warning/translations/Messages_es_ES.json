@@ -1,0 +1,5 @@
+{
+  "pci_instances_create_private_network_warning_info": "Para asociar una Floating IP a esta instancia, deberá configurar previamente una red privada en la región seleccionada.",
+  "pci_instances_create_private_network_warning_submit_label": "Crear una red privada",
+  "pci_instances_create_private_network_warning_cancel_label": "Cancelar"
+}

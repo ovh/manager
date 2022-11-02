@@ -11,9 +11,20 @@ export const VLAN_ID = {
   MAX: 4000,
 };
 
+export const GUIDE_LINKS = {
+  PRIVATE_NETWORK_WITH_GATEWAY:
+    'https://docs.ovh.com/gb/en/public-cloud/creating-private-network-with-gateway/',
+  REGION_AVAILABILITY:
+    'https://www.ovhcloud.com/en-ie/public-cloud/regions-availability/',
+};
+
+export const TRACKING_PREFIX = 'PublicCloud::add-private-network';
+
 export default {
   DEFAULT_CIDR,
   DEFAULT_IP,
   NETWORK_ACTIVE_STATUS,
   VLAN_ID,
+  GUIDE_LINKS,
+  TRACKING_PREFIX,
 };

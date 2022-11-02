@@ -1,0 +1,54 @@
+<div data-ui-view>
+    <oui-header
+        data-heading="{{:: 'pci_additional_ips_title' | translate }}"
+        data-description="{{:: 'pci_additional_ips_additional_ips_description' | translate}}"
+        class="mb-3"
+    >
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.floatingIpsLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.floatingIpsLink"
+            >
+                <span
+                    data-translate="pci_additional_ips_floating_ip_title"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.failoverIpsLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.failoverIpsLink"
+            >
+                <span
+                    data-translate="pci_additional_ips_failover_ip_title"
+                ></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item href="{{:: $ctrl.guideUrl }}" data-external>
+                <span
+                    data-translate="pci_project_guides_header_all_guides"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+    <pci-maintenance-banner
+        data-steins="$ctrl.steins"
+        data-customer-regions="$ctrl.customerRegions"
+        data-product-regions="$ctrl.additionalIpsRegions"
+        data-is-list-page="true"
+        data-product-name=":: 'pci_additional_ips_title' | translate"
+    ></pci-maintenance-banner>
+
+    <pci-announcement-banner
+        data-get-state-name="$ctrl.getStateName()"
+        data-on-go-to-region="$ctrl.goToRegion()"
+    ></pci-announcement-banner>
+
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <div data-ui-view="ipView"></div>
+</div>

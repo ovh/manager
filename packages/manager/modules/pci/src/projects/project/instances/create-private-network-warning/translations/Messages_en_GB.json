@@ -1,0 +1,5 @@
+{
+  "pci_instances_create_private_network_warning_info": "To attach a floating IP to this instance, you first need to configure a private network on it in the selected region.",
+  "pci_instances_create_private_network_warning_submit_label": "Create a private network",
+  "pci_instances_create_private_network_warning_cancel_label": "Exit"
+}

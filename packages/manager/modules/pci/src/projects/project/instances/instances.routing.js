@@ -44,33 +44,46 @@ export default /* @ngInject */ ($stateProvider) => {
         $q,
         PciProjectsProjectInstanceService,
         projectId,
+        getFloatingIps,
       ) =>
-        PciProjectsProjectInstanceService.getAll(projectId)
-          .then((instances) =>
-            $q.all(
-              map(instances, (instance) =>
-                PciProjectsProjectInstanceService.getInstanceFlavor(
-                  projectId,
-                  instance,
-                ).then(
-                  (flavor) =>
-                    new Instance({
-                      ...instance,
-                      flavor,
-                    }),
-                ),
+        $q
+          .all({
+            instances: PciProjectsProjectInstanceService.getAll(projectId),
+            floatingIps: getFloatingIps(),
+          })
+          .then(({ instances, floatingIps }) => {
+            const updatedInstances = map(instances, (instance) => ({
+              ...instance,
+              floatingIp: floatingIps.find(
+                (floatingIp) =>
+                  floatingIp?.associatedEntity?.id === instance.id,
               ),
-            ),
-          )
-          .then((instances) =>
-            filter(
-              instances,
-              (instance) =>
-                !find(TYPES_TO_EXCLUDE, (pattern) =>
-                  pattern.test(get(instance, 'flavor.type')),
+            }));
+            return $q
+              .all(
+                updatedInstances.map((instance) => {
+                  return PciProjectsProjectInstanceService.getInstanceFlavor(
+                    projectId,
+                    instance,
+                  ).then(
+                    (flavor) =>
+                      new Instance({
+                        ...instance,
+                        flavor,
+                      }),
+                  );
+                }),
+              )
+              .then((data) =>
+                filter(
+                  data,
+                  (instance) =>
+                    !find(TYPES_TO_EXCLUDE, (pattern) =>
+                      pattern.test(get(instance, 'flavor.type')),
+                    ),
                 ),
-            ),
-          ),
+              );
+          }),
       instanceId: /* @ngInject */ ($transition$) => $transition$.params().id,
 
       instancesRegions: /* @ngInject */ (instances) =>
@@ -80,83 +93,213 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.instances.add', {
           projectId,
         }),
-      viewInstance: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.instances.instance', {
-          projectId,
-          instanceId: instance.id,
-        }),
-      editInstance: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.instances.instance.edit', {
-          projectId,
-          instanceId: instance.id,
-        }),
-      enableMonthlyBillingInstance: /* @ngInject */ ($state, projectId) => (
-        instance,
+      trackingPrefix: /* @ngInject */ () =>
+        `PublicCloud::pci::projects::project::instances`,
+      trackGridAction: /* @ngInject */ (atInternet, trackingPrefix) => (
+        label,
       ) =>
-        $state.go('pci.projects.project.instances.active-monthly-billing', {
+        atInternet.trackClick({
+          name: `${trackingPrefix}::table-option-menu::${label}`,
+          type: 'action',
+        }),
+      viewInstance: /* @ngInject */ ($state, projectId, trackGridAction) => (
+        instance,
+      ) => {
+        trackGridAction('details');
+        return $state.go('pci.projects.project.instances.instance', {
           projectId,
           instanceId: instance.id,
-        }),
-      createBackupInstance: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.instances.backup', {
+        });
+      },
+      editInstance: /* @ngInject */ ($state, projectId, trackGridAction) => (
+        instance,
+      ) => {
+        trackGridAction('edit');
+        return $state.go('pci.projects.project.instances.instance.edit', {
           projectId,
           instanceId: instance.id,
-        }),
-      startRescueInstance: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.instances.rescue', {
+        });
+      },
+      checkFloatingIpAvailability: /* @ngInject */ (
+        $http,
+        coreConfig,
+        projectId,
+      ) => (region) => {
+        const product = 'floatingip';
+        return $http
+          .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
+            params: {
+              product,
+              ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
+            },
+          })
+          .then(({ data: { products } }) => {
+            return products
+              .find(({ name }) => name === product)
+              ?.regions.some(({ name }) => name === region);
+          });
+      },
+      assignFloatingIp: /* @ngInject */ (
+        $state,
+        projectId,
+        trackGridAction,
+        checkFloatingIpAvailability,
+      ) => (instance) => {
+        trackGridAction('assign-floating-ip');
+        if (instance.privateIpV4.length === 0) {
+          return $state.go(
+            'pci.projects.project.instances.create-private-network-warning',
+            {
+              projectId,
+              instanceId: instance.id,
+            },
+          );
+        }
+        return checkFloatingIpAvailability(instance.region).then(
+          (isFloatingIpAvailableInInstanceRegion) => {
+            return isFloatingIpAvailableInInstanceRegion
+              ? $state.go('pci.projects.project.additional-ips.order', {
+                  projectId,
+                  ipType: 'floating_ip',
+                  region: instance.region,
+                  instance: instance.id,
+                })
+              : null;
+          },
+        );
+      },
+      enableMonthlyBillingInstance: /* @ngInject */ (
+        $state,
+        projectId,
+        trackGridAction,
+      ) => (instance) => {
+        trackGridAction('active-monthly-billing');
+        return $state.go(
+          'pci.projects.project.instances.active-monthly-billing',
+          {
+            projectId,
+            instanceId: instance.id,
+          },
+        );
+      },
+      createBackupInstance: /* @ngInject */ (
+        $state,
+        projectId,
+        trackGridAction,
+      ) => (instance) => {
+        trackGridAction('create-backup');
+        return $state.go('pci.projects.project.instances.backup', {
           projectId,
           instanceId: instance.id,
-        }),
-      endRescueInstance: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.instances.unrescue', {
+        });
+      },
+      startRescueInstance: /* @ngInject */ (
+        $state,
+        projectId,
+        trackGridAction,
+      ) => (instance) => {
+        trackGridAction('reboot');
+        return $state.go('pci.projects.project.instances.rescue', {
           projectId,
           instanceId: instance.id,
-        }),
-      softRebootInstance: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.instances.soft-reboot', {
+        });
+      },
+      endRescueInstance: /* @ngInject */ (
+        $state,
+        projectId,
+        trackGridAction,
+      ) => (instance) => {
+        trackGridAction('exit-rescue');
+        return $state.go('pci.projects.project.instances.unrescue', {
           projectId,
           instanceId: instance.id,
-        }),
-      hardRebootInstance: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.instances.hard-reboot', {
+        });
+      },
+      softRebootInstance: /* @ngInject */ (
+        $state,
+        projectId,
+        trackGridAction,
+      ) => (instance) => {
+        trackGridAction('hot-reboot');
+        return $state.go('pci.projects.project.instances.soft-reboot', {
           projectId,
           instanceId: instance.id,
-        }),
-      startInstance: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.instances.start', {
+        });
+      },
+      hardRebootInstance: /* @ngInject */ (
+        $state,
+        projectId,
+        trackGridAction,
+      ) => (instance) => {
+        trackGridAction('cold-reboot');
+        return $state.go('pci.projects.project.instances.hard-reboot', {
           projectId,
           instanceId: instance.id,
-        }),
-      shelveInstance: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.instances.shelve', {
+        });
+      },
+      startInstance: /* @ngInject */ ($state, projectId, trackGridAction) => (
+        instance,
+      ) => {
+        trackGridAction('boot');
+        return $state.go('pci.projects.project.instances.start', {
           projectId,
           instanceId: instance.id,
-        }),
-      stopInstance: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.instances.stop', {
+        });
+      },
+      shelveInstance: /* @ngInject */ ($state, projectId, trackGridAction) => (
+        instance,
+      ) => {
+        trackGridAction('suspend');
+        return $state.go('pci.projects.project.instances.shelve', {
           projectId,
           instanceId: instance.id,
-        }),
-      unshelveInstance: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.instances.unshelve', {
+        });
+      },
+      stopInstance: /* @ngInject */ ($state, projectId, trackGridAction) => (
+        instance,
+      ) => {
+        trackGridAction('stop');
+        return $state.go('pci.projects.project.instances.stop', {
           projectId,
           instanceId: instance.id,
-        }),
-      reinstallInstance: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.instances.reinstall', {
+        });
+      },
+      unshelveInstance: /* @ngInject */ (
+        $state,
+        projectId,
+        trackGridAction,
+      ) => (instance) => {
+        trackGridAction('reactivate');
+        return $state.go('pci.projects.project.instances.unshelve', {
           projectId,
           instanceId: instance.id,
-        }),
+        });
+      },
+      reinstallInstance: /* @ngInject */ (
+        $state,
+        projectId,
+        trackGridAction,
+      ) => (instance) => {
+        trackGridAction('reinstall');
+        return $state.go('pci.projects.project.instances.reinstall', {
+          projectId,
+          instanceId: instance.id,
+        });
+      },
       resumeInstance: /* @ngInject */ ($state, projectId) => (instance) =>
         $state.go('pci.projects.project.instances.resume', {
           projectId,
           instanceId: instance.id,
         }),
-      deleteInstance: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.instances.delete', {
+      deleteInstance: /* @ngInject */ ($state, projectId, trackGridAction) => (
+        instance,
+      ) => {
+        trackGridAction('delete');
+        return $state.go('pci.projects.project.instances.delete', {
           projectId,
           instanceId: instance.id,
-        }),
+        });
+      },
       instanceLink: /* @ngInject */ ($state, projectId) => (instance) =>
         $state.href('pci.projects.project.instances.instance', {
           projectId,
@@ -166,11 +309,17 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.privateNetwork.vrack.new', {
           projectId,
         }),
-      scheduleAutoBackup: /* @ngInject */ ($state, projectId) => (instance) =>
-        $state.go('pci.projects.project.workflow.new', {
+      scheduleAutoBackup: /* @ngInject */ (
+        $state,
+        projectId,
+        trackGridAction,
+      ) => (instance) => {
+        trackGridAction('create-automatic-backup');
+        return $state.go('pci.projects.project.workflow.new', {
           projectId,
           selectedInstance: instance,
-        }),
+        });
+      },
       vrack: /* @ngInject */ (PciPrivateNetworks, projectId) =>
         PciPrivateNetworks.getVrack(projectId),
       goToInstances: /* @ngInject */ (CucCloudMessage, $state, projectId) => (
@@ -279,6 +428,21 @@ export default /* @ngInject */ ($stateProvider) => {
           }
         });
       },
+      isAdditionalIpsAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
+        return ovhFeatureFlipping
+          .checkFeatureAvailability(PCI_FEATURES.PRODUCTS.ADDITIONAL_IP)
+          .then((feature) =>
+            feature.isFeatureAvailable(PCI_FEATURES.PRODUCTS.ADDITIONAL_IP),
+          );
+      },
+      getFloatingIps: /* @ngInject */ ($http, projectId) => () =>
+        $http
+          .get(`/cloud/project/${projectId}/aggregated/floatingip`)
+          .then(({ data }) => data.resources),
+      floatingIpsLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.additional-ips.floating-ips', {
+          projectId,
+        }),
     },
   });
 };

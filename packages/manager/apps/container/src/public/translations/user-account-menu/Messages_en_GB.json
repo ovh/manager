@@ -41,5 +41,6 @@
   "user_account_menu_user_id": "ID: <strong>{{nichandle}}</strong>",
   "user_account_menu_profile": "My profile ",
   "user_account_menu_beta_feedback": "Share your feedback!",
-  "user_account_menu_beta_feedback_text": "Help us improve OVHcloud"
+  "user_account_menu_beta_feedback_text": "Help us improve OVHcloud",
+  "user_account_menu_role_provider": "Connected via SSO"
 }
