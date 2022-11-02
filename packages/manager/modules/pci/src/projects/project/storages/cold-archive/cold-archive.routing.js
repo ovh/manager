@@ -1,4 +1,7 @@
-import { COLD_ARCHIVE_TRACKING_PREFIX } from './cold-archives.constants';
+import {
+  COLD_ARCHIVE_TRACKING_PREFIX,
+  REGION,
+} from './cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive', {
@@ -22,19 +25,27 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
+      trackingPrefix: () =>
+        'PublicCloud::pci::projects::project::storages::cold_archive::',
+
       userList: /* @ngInject */ (projectId, allUserList) =>
         allUserList.filter((user) => user?.s3Credentials?.length > 0),
 
-      allUserList: /* @ngInject */ (
-        projectId,
-        PciStoragesObjectStorageService,
-      ) =>
-        PciStoragesObjectStorageService.getAllS3Users(projectId).then((users) =>
-          PciStoragesObjectStorageService.mapUsersToCredentials(
-            projectId,
-            users,
-          ),
+      allUserList: /* @ngInject */ (projectId, PciStoragesColdArchiveService) =>
+        PciStoragesColdArchiveService.getAllS3Users(projectId).then((users) =>
+          PciStoragesColdArchiveService.mapUsersToCredentials(projectId, users),
         ),
+
+      isUserTabActive: /* @ngInject */ ($transition$, $state) => () =>
+        $state.is(
+          'pci.projects.project.storages.cold-archive.users',
+          $transition$.params(),
+        ),
+
+      userListLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.storages.cold-archive.users', {
+          projectId,
+        }),
 
       goToArchives: ($state, projectId, CucCloudMessage) => (
         message = false,
@@ -60,8 +71,10 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
+      // The region parameter is for now hard-coded.
+      // waiting the API fix https://projects.dsi.ovh/browse/PCINT-3514
       containers: /* @ngInject */ (PciStoragesColdArchiveService, projectId) =>
-        PciStoragesColdArchiveService.getAllColdArchives(projectId),
+        PciStoragesColdArchiveService.getArchiveContainers(projectId, REGION),
 
       goToAddColdArchive: /* @ngInject */ ($state) => () =>
         $state.go('pci.projects.project.storages.cold-archive.add'),

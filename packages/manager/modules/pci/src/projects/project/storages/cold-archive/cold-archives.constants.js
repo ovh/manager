@@ -1,6 +1,8 @@
 export const COLD_ARCHIVE_TRACKING_PREFIX =
   'PublicCloud::pci::projects::project::storages::cold_archive';
 
+export const REGION = 'RBX-ARCHIVE';
+
 export const GUIDES = [
   {
     id: 'cold-archive-getting-started',
