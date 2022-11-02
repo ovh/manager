@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.96.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.95.0...@ovh-ux/manager-pci@5.96.0) (2022-11-02)
+
+
+### Bug Fixes
+
+* **pci.project:** add confirm step for private instance creation ([#8269](https://github.com/ovh/manager/issues/8269)) ([a2b5692](https://github.com/ovh/manager/commit/a2b56924d6d0d7175e83397dee4e99d0056ade88))
+
+
+### Features
+
+* **pci.project:** l3 services ([#7431](https://github.com/ovh/manager/issues/7431)) ([68a051d](https://github.com/ovh/manager/commit/68a051d9ba23c5a68dd119326119300f4c1acba0))
+
+
+
+
+
 # [5.95.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.94.1...@ovh-ux/manager-pci@5.95.0) (2022-10-27)
 
 

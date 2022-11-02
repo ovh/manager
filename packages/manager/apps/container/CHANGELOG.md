@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.5.2...@ovh-ux/manager-container-app@0.6.0) (2022-11-02)
+
+
+### Features
+
+* **pci.project:** l3 services ([#7431](https://github.com/ovh/manager/issues/7431)) ([68a051d](https://github.com/ovh/manager/commit/68a051d9ba23c5a68dd119326119300f4c1acba0))
+* **sp-sso-identity:** add sso feature in user account ([4ea0250](https://github.com/ovh/manager/commit/4ea02509d029f2423c09f574ae7fc414919b03c2))
+
+
+
+
+
 ## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.5.1...@ovh-ux/manager-container-app@0.5.2) (2022-10-24)
 
 
