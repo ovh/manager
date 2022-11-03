@@ -76,22 +76,35 @@ export default /* @ngInject */ ($stateProvider) => {
       scrollToTop: () => () => {
         document.getElementById('vpsHeader').scrollIntoView();
       },
-      stateVps: /* @ngInject */ ($q, serviceName, OvhApiVps) =>
+      vpsVersion: /* @ngInject */ (serviceName, coreConfig, OvhApiVps) => {
+        if (coreConfig.isRegion('US')) {
+          return null; // version API is not required for US VPS
+        }
+
+        return OvhApiVps.v6().version({
+          serviceName,
+        }).$promise;
+      },
+      stateVps: /* @ngInject */ (
+        $q,
+        serviceName,
+        vpsVersion,
+        coreConfig,
+        OvhApiVps,
+      ) =>
         OvhApiVps.v6()
           .get({
             serviceName,
           })
-          .$promise.then((stateVps) =>
-            OvhApiVps.v6()
-              .version({
-                serviceName,
-              })
-              .$promise.then((response) => {
-                const vpsState = stateVps;
-                vpsState.isLegacy = response.version !== 2;
-                return vpsState;
-              }),
-          )
+          .$promise.then((stateVps) => {
+            const vpsState = stateVps;
+            const isUsRegion = coreConfig.isRegion('US');
+            const isLegacyVpsVersion = vpsVersion?.version !== 2;
+
+            vpsState.isLegacy = isLegacyVpsVersion && !isUsRegion;
+
+            return vpsState;
+          })
           .catch((error) => {
             if (error.status === 404) {
               return $q.reject(error);
