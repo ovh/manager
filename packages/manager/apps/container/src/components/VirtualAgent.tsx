@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { useLocalStorage } from 'react-use';
+import dialogPolyfill from 'dialog-polyfill';
 import styles from './virtualAgentStyles.module.scss';
 
 interface VirtualAgentProps {
@@ -96,7 +97,9 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
     return mediaQuery.removeEventListener('change', handleBreakpointChange);
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    dialogPolyfill.registerDialog(dialog.current);
+
     if (useStorage) {
       if (storage) {
         start(
@@ -134,7 +137,7 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
       mainFrame.current.contentWindow.focus();
       setStorage('started');
     } else {
-      dialog.current.close();
+      if (dialog?.current?.open) dialog.current.close();
 
       if (started && reduced) setStorage('reduced');
       else removeStorage();
@@ -152,8 +155,11 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
     >
       <dialog
         ref={dialog}
-        className={`w-100 p-0 border-0 ${styles.dialog}`}
+        className={`w-100 p-0 border-0 ${styles.dialog} ${
+          dialog?.current?.open ? '' : styles.hidden
+        }`}
         title={name}
+        open
       >
         <article
           className={`${styles.dialog_content} d-flex h-100 flex-column`}
@@ -192,7 +198,6 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
           </div>
         </article>
       </dialog>
-
       {started && (
         <div
           role="group"
