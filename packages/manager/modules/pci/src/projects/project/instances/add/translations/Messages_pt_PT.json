@@ -89,7 +89,7 @@
   "pci_projects_project_instances_add_billing_gateway_detail_s_size": "Tamanho S",
   "pci_projects_project_instances_add_billing_gateway_detail_price_monthly": "(ao preço de {{gatewayPrice}}/mês, faturação à hora)",
   "pci_projects_project_instances_add_attach_floating_ip_availability_info": "Esta opção pode não estar disponível na região selecionada. Para saber mais sobre a disponibilidade dos produtos por região, <a href=\"{{ guideLink }}\" target=\"_blank\">clique aqui</a>.",
-  "pci_projects_project_instances_add_instance_confirmation_info": "Está prestes a criar uma Instância. Atenção: a criação desta instância pode demorar alguns minutos. Deseja continuar?",
+  "pci_projects_project_instances_add_instance_confirmation_info": "Está prestes a criar uma Instância. Gostaríamos de o informar que a criação desta instância pode demorar alguns minutos. Deseja continuar?",
   "pci_projects_project_instances_add_instance_confirmation_create": "OK, vamos lá",
   "pci_projects_project_instances_add_instance_confirmation_cancel": "Não"
 }
