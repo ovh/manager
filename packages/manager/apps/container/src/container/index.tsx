@@ -1,6 +1,5 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 
-import { Environment } from '@ovh-ux/manager-config';
 import LegacyContainer from '@/container/legacy';
 import NavReshuffleContainer from '@/container/nav-reshuffle';
 import { useShell } from '@/context';
@@ -9,24 +8,10 @@ import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
 import { ProgressProvider } from '@/context/progress';
 import CookiePolicy from '@/cookie-policy/CookiePolicy';
 import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
-import LiveChat from '@/components/LiveChat';
 
 export default function Container(): JSX.Element {
-  const {
-    isLoading,
-    betaVersion,
-    useBeta,
-    chatbotOpen,
-    chatbotReduced,
-    setChatbotReduced,
-  } = useContainer();
+  const { isLoading, betaVersion, useBeta } = useContainer();
   const shell = useShell();
-  const environment: Environment = shell
-    .getPlugin('environment')
-    .getEnvironment();
-  const language = environment.getUserLanguage();
-  const { ovhSubsidiary } = environment.getUser();
-
   const isNavReshuffle = betaVersion && useBeta;
 
   useEffect(() => {
@@ -65,21 +50,9 @@ export default function Container(): JSX.Element {
             <NavReshuffleContainer />
           </ProductNavReshuffleProvider>
         ) : (
-          <>
-            <LegacyContainer />
-          </>
+          <LegacyContainer />
         )}
-        <LiveChat
-          language={language}
-          subsidiary={ovhSubsidiary}
-          open={chatbotOpen}
-          reduced={chatbotReduced}
-          onReduce={() => setChatbotReduced(true)}
-          onClose={() => shell.getPlugin('ux').closeChatbot()}
-          style={{ position: 'absolute' }}
-        ></LiveChat>
       </ProgressProvider>
-
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>

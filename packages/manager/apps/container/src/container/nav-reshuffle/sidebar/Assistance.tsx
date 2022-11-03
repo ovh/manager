@@ -7,7 +7,7 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import SidebarLink from './SidebarLink';
 import style from './style.module.scss';
-import useContainer from '@/core/container';
+import { ComponentProps } from './utils';
 
 interface Props {
   containerURL: { appId: string; appHash: string };
@@ -22,7 +22,6 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
 }: Props): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const { shell } = useContext(ApplicationContext);
-  const { isChatbotEnabled, setChatbotReduced } = useContainer();
 
   const environment = shell
     .getPluginManager()
@@ -165,11 +164,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
                   count: false,
                 }}
                 onClick={() => {
-                  if (isChatbotEnabled) shell.getPlugin('ux').openChatbot();
-                  else {
-                    shell.getPlugin('ux').openLiveChat();
-                    setChatbotReduced(false);
-                  }
+                  shell.getPlugin('ux').openChatbot();
                   trackNode('assistance_live_chat');
                   closeNavigationSidebar();
                 }}

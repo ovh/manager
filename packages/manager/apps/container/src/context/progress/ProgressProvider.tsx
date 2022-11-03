@@ -5,7 +5,7 @@ import ProgressContext from './progress.context';
 import { useShell } from '@/context';
 
 type Props = {
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element;
   isStarted?: boolean;
 };
 

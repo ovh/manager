@@ -21,7 +21,6 @@ import Progress from '../common/Progress';
 import { useProgress } from '@/context/progress';
 import Preloader from '../common/Preloader';
 import usePreloader from '../common/Preloader/usePreloader';
-import LiveChat from '@/components/LiveChat';
 
 function NavReshuffleContainer(): JSX.Element {
   const iframeRef = useRef(null);
