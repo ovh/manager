@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
-import { ComponentProps } from '../utils';
 
 export type PciProject = {
   access: string;

@@ -190,19 +190,6 @@
                                     memorySize: ($ctrl.getCurrentFlavor().memory | bytes:2:false:'GB')
                                 })"
                             ></span>
-                            <span
-                                ng-if="$ctrl.getCurrentFlavor().hasStorage && !$ctrl.getCurrentFlavor().isStorageRange"
-                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_storage' | translate:{
-                                    storageSize: ($ctrl.getCurrentFlavor().minDiskSize | bytes:2:false:'GB')
-                                })"
-                            ></span>
-                            <span
-                                ng-if="$ctrl.getCurrentFlavor().hasStorage && $ctrl.getCurrentFlavor().isStorageRange"
-                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_storage_range' | translate:{
-                                    storageMinSize: ($ctrl.getCurrentFlavor().minDiskSize | bytes:2:false:'GB'),
-                                    storageMaxSize: ($ctrl.getCurrentFlavor().maxDiskSize | bytes:2:false:'GB')
-                                })"
-                            ></span>
                             <button
                                 class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                                 data-ng-if="$ctrl.database.flavor !== $ctrl.highestFlavor"
@@ -218,6 +205,16 @@
                                 ></span>
                             </button>
                         </oui-tile-description>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_storage_label' | translate }}"
+                    data-ng-if="$ctrl.database.disk.size > 0"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind="($ctrl.database.disk.size | bytes:2:false:'GB')"
+                        ></span>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition

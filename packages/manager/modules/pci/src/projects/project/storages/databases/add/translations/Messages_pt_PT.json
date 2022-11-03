@@ -65,5 +65,6 @@
   "pci_database_add_network_mode_helper": "Para saber mais sobre a configuração de uma rede privada, consulte o seguinte manual: {{ link }}",
   "pci_database_add_network_mode_helper_link": "vRack do Public Cloud",
   "pci_database_add_network_mode_public_popover": "A rede pública permite a ligação a partir de qualquer IP de origem autorizado e ligado à Internet (o seu computador, um servidor remoto, etc.).",
-  "pci_database_add_network_mode_private_popover": "A rede privada não permite a ligação pública e apenas autoriza as ligações provenientes do interior do seu vRack."
+  "pci_database_add_network_mode_private_popover": "A rede privada não permite a ligação pública e apenas autoriza as ligações provenientes do interior do seu vRack.",
+  "pci_database_add_spec_storage": "Armazenamento:"
 }

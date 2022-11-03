@@ -182,4 +182,16 @@ export class ShellUX implements IShellUx {
   removeOnHidePreloader(callback: CallableFunction) {
     this.preloader.removeOnHide(callback);
   }
+
+  openChatbot() {
+    this.chatbot.show();
+  }
+
+  closeChatbot() {
+    this.chatbot.hide();
+  }
+
+  onChatbotVisibilityChange(callback: CallableFunction) {
+    this.chatbot.onVisibilityChange(callback);
+  }
 }

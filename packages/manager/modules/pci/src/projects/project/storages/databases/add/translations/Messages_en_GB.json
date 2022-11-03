@@ -65,5 +65,6 @@
   "pci_database_add_network_mode_helper": "To find out more about configuring a private network, view the guide: {{link}}",
   "pci_database_add_network_mode_helper_link": "Public Cloud vRack",
   "pci_database_add_network_mode_public_popover": "The public network enables connections from any authorised source IP connected to the internet (your computer, a remote server, etc.)",
-  "pci_database_add_network_mode_private_popover": "The private network does not allow public connectivity, and only allows connections from within your vRack."
+  "pci_database_add_network_mode_private_popover": "The private network does not allow public connectivity, and only allows connections from within your vRack.",
+  "pci_database_add_spec_storage": "Storage:"
 }

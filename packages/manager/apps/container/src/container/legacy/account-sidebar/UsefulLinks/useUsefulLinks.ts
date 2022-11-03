@@ -18,7 +18,11 @@ const useUsefulLinks = (): UseUsefulLinks => {
     .getEnvironment();
   const region = environment.getRegion();
   const user = environment.getUser();
-  const { isChatbotEnabled } = useContainer();
+  const {
+    isChatbotEnabled,
+    isLivechatEnabled,
+    setChatbotReduced,
+  } = useContainer();
   const { setIsAccountSidebarVisible } = useHeader();
 
   const getUsefulLinks = (): UsefulLink[] => {
@@ -31,14 +35,16 @@ const useUsefulLinks = (): UseUsefulLinks => {
         tracking: `${trackingPrefix}::go-to-helpcenter`,
         icon: 'oui-icon oui-icon-lifebuoy_concept',
       },
-      ...(isChatbotEnabled
+      ...(isChatbotEnabled || isLivechatEnabled
         ? [
             {
               id: 'chatbot',
               action: () => {
-                uxPlugin.toggleAccountSidebarVisibility();
-                setIsAccountSidebarVisible(uxPlugin.isAccountSidebarVisible());
-                uxPlugin.openChatbot();
+                if (isChatbotEnabled) shell.getPlugin('ux').openChatbot();
+                else {
+                  shell.getPlugin('ux').openLiveChat();
+                  setChatbotReduced(false);
+                }
               },
               icon: 'oui-icon oui-icon-speech-bubble_concept',
             },

@@ -380,27 +380,26 @@
                                     }"
                                 ></span>
                             </div>
-                            <div
-                                class="d-flex"
+                        </div>
+                        <div class="mt-2">
+                            <button
+                                type="button"
+                                class="oui-link"
+                                data-ng-click="$ctrl.scrollTo('flavor')"
+                                data-translate="pci_database_add_spec_storage"
                                 data-ng-if="$ctrl.model.flavor.maxDiskSize > 0"
-                            >
+                            ></button>
+                        </div>
+                        <div
+                            class="d-flex flex-column mb-2 pl-2"
+                            data-ng-if="$ctrl.model.flavor.maxDiskSize > 0"
+                        >
+                            <div class="d-flex">
                                 <span
                                     class="oui-icon oui-icon-hardware-ssd_concept mr-2"
                                 ></span>
                                 <span
-                                    data-ng-if="$ctrl.model.flavor.minDiskSize === $ctrl.model.flavor.maxDiskSize"
-                                    data-translate="pci_database_add_spec_flavor_storage"
-                                    data-translate-values="{
-                                        storageSize: ($ctrl.model.flavor.minDiskSize | bytes:2:false:'GB')
-                                    }"
-                                ></span>
-                                <span
-                                    data-ng-if="$ctrl.model.flavor.minDiskSize !== $ctrl.model.flavor.maxDiskSize"
-                                    data-translate="pci_database_add_spec_flavor_storage_range"
-                                    data-translate-values="{
-                                        storageMinSize: ($ctrl.model.flavor.minDiskSize | bytes:2:false:'GB'),
-                                        storageMaxSize: ($ctrl.model.flavor.maxDiskSize | bytes:2:false:'GB')
-                                    }"
+                                    data-ng-bind="$ctrl.model.flavor.minDiskSize | bytes:2:false:'GB'"
                                 ></span>
                             </div>
                         </div>
