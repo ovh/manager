@@ -1,7 +1,7 @@
 {
   "pci_additional_ips_ip_block": "IP block",
   "pci_additional_ips_geoloc": "Country",
-  "pci_additional_ips_id": "Associated service",
+  "pci_additional_ips_id": "Attached service",
   "pci_additional_ips_routedTo": "Associated instance",
   "pci_additional_ips_import_failover_ip": "Import an Additional IP",
   "pci_additional_ips_update_instance": "Update attached instance ",
