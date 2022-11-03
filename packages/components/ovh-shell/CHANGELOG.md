@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.6.0...@ovh-ux/shell@1.6.1) (2022-11-03)
+
+
+### Bug Fixes
+
+* **container:** revert create virtual agent and new Livechat ([#8331](https://github.com/ovh/manager/issues/8331)) ([9da0033](https://github.com/ovh/manager/commit/9da003384a1ad0d0aaefe2d24455967792569a76))
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.5.1...@ovh-ux/shell@1.6.0) (2022-11-02)
 
 

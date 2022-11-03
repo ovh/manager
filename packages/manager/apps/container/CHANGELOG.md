@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.7.0...@ovh-ux/manager-container-app@0.7.1) (2022-11-03)
+
+
+### Bug Fixes
+
+* **container:** revert create virtual agent and new Livechat ([#8331](https://github.com/ovh/manager/issues/8331)) ([9da0033](https://github.com/ovh/manager/commit/9da003384a1ad0d0aaefe2d24455967792569a76))
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.6.0...@ovh-ux/manager-container-app@0.7.0) (2022-11-02)
 
 

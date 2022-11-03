@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "16.18.4",
+  "version": "16.18.5",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -66,7 +66,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
     "@ovh-ux/ng-ui-router-layout": "^4.1.0",
-    "@ovh-ux/shell": "^1.6.0",
+    "@ovh-ux/shell": "^1.6.1",
     "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.23",
     "URIjs": "^1.14.0",

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/shell",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "private": true,
   "description": "Communication and interaction between applications",
   "repository": {
