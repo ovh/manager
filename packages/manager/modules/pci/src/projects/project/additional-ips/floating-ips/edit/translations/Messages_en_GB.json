@@ -1,5 +1,5 @@
 {
-  "pci_additional_ips_floatingips_edit": "Modify associated instance ",
+  "pci_additional_ips_floatingips_edit": "Update attached instance ",
   "pci_additional_ips_floatingips_edit_submit_label": "Attach",
   "pci_additional_ips_floatingips_edit_cancel_label": "Exit",
   "pci_additional_ips_floatingips_edit_description": "Select the instance you want to attach the {{serviceName}} IP address to.",

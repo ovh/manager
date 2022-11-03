@@ -1,5 +1,5 @@
 {
-  "pci_projects_project_network_private_create": "Crea una rete privata",
+  "pci_projects_project_network_private_create": "Creare una rete privata",
   "pci_projects_project_network_private_create_init_error": "Si è verificato un errore durante il caricamento delle informazioni: {{ message }}",
   "pci_projects_project_network_private_create_configure": "Configura la tua rete privata",
   "pci_projects_project_network_private_create_configure_address": "Indirizzo della rete privata:",
