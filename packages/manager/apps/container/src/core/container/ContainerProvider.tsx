@@ -11,7 +11,6 @@ import {
 // eslint-disable-next-line prettier/prettier
 import type { BetaVersion, ContainerContext as ContainerContextType} from './context';
 import ContainerContext from './context';
-import { useShell } from '@/context';
 
 
 export const BETA_V1 = 1;
@@ -19,12 +18,8 @@ export const BETA_V2 = 2;
 
 export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const reketInstance = useReket();
-  const shell = useShell();
-  const uxPlugin = shell.getPlugin('ux');
   const preferenceKey = 'NAV_RESHUFFLE_BETA_ACCESS';
   const [isLoading, setIsLoading] = useState(true);
-  const [chatbotOpen, setChatbotOpen] = useState(false);
-  const [chatbotReduced, setChatbotReduced] = useState(false);
 
   // true if we should we ask the user if he want to test beta version
   const [askBeta, setAskBeta] = useState(false);
@@ -36,7 +31,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const [useBeta, setUseBeta] = useState(false);
 
   const [isChatbotEnabled, setIsChatbotEnabled] = useState(false);
-  const [isLivechatEnabled, setIsLivechatEnabled] = useState(false);
 
   let containerContext: ContainerContextType = useContext(ContainerContext);
 
@@ -45,7 +39,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       'pnr:betaV1': boolean;
       'pnr:betaV2': boolean;
       chatbot: boolean;
-      livechat: boolean;
     }
     const getBetaVersion = (value: CurrentContextAvailability) => {
       if (isBetaForced()) {
@@ -61,13 +54,12 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     };
 
     return reketInstance
-      .get(`/feature/chatbot,livechat,pnr:betaV1,pnr:betaV2/availability`, {
+      .get(`/feature/chatbot,pnr:betaV1,pnr:betaV2/availability`, {
         requestType: 'aapi',
       })
       .then((value: CurrentContextAvailability) => ({
         version: getBetaVersion(value),
         chatbot: !!value.chatbot,
-        livechat: !!value.livechat,
       }))
       .catch(() => ({
         version: '',
@@ -133,34 +125,16 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
    */
   useEffect(() => {
     fetchFeatureAvailability()
-      .then(({ version, chatbot, livechat }) => {
+      .then(({ version, chatbot }) => {
         setBetaVersion(version);
-        // Livechat is the new Chatbot that is used in the Container
-        if (livechat) {
-          setIsLivechatEnabled(livechat);
-          setIsChatbotEnabled(false);
-        }else if (chatbot) {
-          setIsLivechatEnabled(false)
-          setIsChatbotEnabled(chatbot)
-        }
-
+        setIsChatbotEnabled(chatbot);
         if (version) {
           return fetchBetaChoice();
         }
-
         return null;
       })
       .finally(() => setIsLoading(false));
   }, []);
-
-  useEffect(() => {
-    uxPlugin.onChatbotVisibilityChange(async () => {
-      const chatbotVisibility = await uxPlugin.isChatbotVisible();
-      if (isLivechatEnabled){
-        setChatbotOpen(chatbotVisibility);
-      }
-    });
-  }, [isLivechatEnabled])
 
   containerContext = {
     createBetaChoice,
@@ -168,13 +142,8 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     betaVersion,
     useBeta,
     isChatbotEnabled,
-    isLivechatEnabled,
     isLoading,
     updateBetaChoice,
-    chatbotOpen,
-    setChatbotOpen,
-    chatbotReduced,
-    setChatbotReduced,
   };
 
   return (
