@@ -257,7 +257,9 @@ export default class PciInstancesAddController {
             ).then((data) => {
               return {
                 ...privateNetwork,
-                subnet: [...data],
+                subnet: data.filter(
+                  (subnet) => subnet.ipPools[0].region === this.instance.region,
+                ),
               };
             });
           }
@@ -267,7 +269,7 @@ export default class PciInstancesAddController {
       .then((data) => {
         this.availablePrivateNetworks = [
           this.defaultPrivateNetwork,
-          ...data.filter(({ subnet }) => subnet && subnet.length === 1),
+          ...data.filter(({ subnet }) => subnet?.length > 0),
         ];
         return this.availablePrivateNetworks;
       });

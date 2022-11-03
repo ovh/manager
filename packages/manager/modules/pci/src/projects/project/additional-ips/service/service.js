@@ -65,7 +65,7 @@ export default class PciProjectAdditionalIpService {
   createFloatingIp(projectId, regionName, instanceId, ip, gateway = null) {
     return this.$http
       .post(
-        `/cloud/project/${projectId}/region/${regionName}/instance/${instanceId}/floatingip`,
+        `/cloud/project/${projectId}/region/${regionName}/instance/${instanceId}/floatingIp`,
         {
           ip,
           ...(gateway && { gateway }),
