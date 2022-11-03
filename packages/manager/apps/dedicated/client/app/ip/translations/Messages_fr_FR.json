@@ -221,7 +221,7 @@
   "ip_description_field": "Description",
   "ip_description_new_title": "Ajouter une description",
   "ip_description_edit_title": "Editer la description",
-  "ip_edit_or_assosiate_title": "Editer/ Associer une association",
+  "ip_edit_or_assosiate_title": "Editer/ Associer une organization",
   "ip_edit_or_assosiate_editor_tab": "Editer",
   "ip_edit_or_assosiate_asso_tab": "Associer une organisation",
   "ip_edit_or_assosiate_edit_submit_button": "Editor",
