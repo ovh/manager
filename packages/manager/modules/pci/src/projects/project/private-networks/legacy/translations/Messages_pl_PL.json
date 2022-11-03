@@ -5,7 +5,7 @@
   "pci_projects_project_network_private_name": "Nazwa",
   "pci_projects_project_network_private_region": "Lokalizacje",
   "pci_projects_project_network_private_vlan_id": "VLAN ID",
-  "pci_projects_project_network_private_address": "Adres sieci prywatnej (CIDR):",
+  "pci_projects_project_network_private_address": "Adres prywatnej sieci (CIDR):",
   "pci_projects_project_network_private_delete": "Usuń",
   "pci_projects_project_network_private_id": "ID"
 }
