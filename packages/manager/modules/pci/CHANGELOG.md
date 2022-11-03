@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.96.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.96.1...@ovh-ux/manager-pci@5.96.2) (2022-11-03)
+
+
+### Bug Fixes
+
+* **pci.instances:** display private networks ([#8334](https://github.com/ovh/manager/issues/8334)) ([492ba53](https://github.com/ovh/manager/commit/492ba533086cb4a2176fb5aaf7e0ec492584f6af))
+* **pci.project:** update create floating ip endpoint ([#8329](https://github.com/ovh/manager/issues/8329)) ([30190fa](https://github.com/ovh/manager/commit/30190fa1d377500c0b6cc9d0d67b9603a85aed87))
+
+
+
+
+
 ## [5.96.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.96.0...@ovh-ux/manager-pci@5.96.1) (2022-11-02)
 
 
