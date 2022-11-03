@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.6.0...@ovh-ux/manager-container-app@0.7.0) (2022-11-02)
+
+
+### Features
+
+* **livechat:** create virtual agent and new Livechat ([a7500d7](https://github.com/ovh/manager/commit/a7500d7def6210aa19bde5b2a99a4bdf6152d5a2))
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.5.2...@ovh-ux/manager-container-app@0.6.0) (2022-11-02)
 
 
