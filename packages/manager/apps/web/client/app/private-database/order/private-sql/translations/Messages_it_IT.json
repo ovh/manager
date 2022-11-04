@@ -1,6 +1,0 @@
-{
-  "private_database_order_private_sql_title": "Ordina un SQL Privato",
-  "private_database_order_private_sql_error": "Si è verificato un errore durante l'ordine del database SQL: {{message}}",
-  "private_database_order_private_sql_success": "Il tuo <a href=\"{{orderUrl}}\" target=\"_blank\">buono d’ordine</a>è stato generato correttamente! Una volta convalidato, il servizio verrà attivato.",
-  "private_database_order_private_sql_success_activation": "Attivazione eseguita correttamente La soluzione scelta sarà attiva entro pochi minuti."
-}

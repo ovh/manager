@@ -1,6 +1,0 @@
-{
-  "hosting_database_order_private_title": "Bestellen Sie ein privates SQL",
-  "hosting_database_order_private_error": "Bei der Bestellung einer SQL-Datenbank ist ein Fehler aufgetreten: {{message}}",
-  "hosting_database_order_private_success": "Ihr <a href=\"{{orderUrl}}\" target=\"_blank\">Bestellformular</a> wurde erfolgreich generiert. Ihr Produkt wird aktiviert, sobald Sie es validiert haben.",
-  "hosting_database_order_private_success_activation": "Ihre Aktivierung wurde erfolgreich abgeschlossen. Ihr Produkt wird in wenigen Minuten aktiviert."
-}
