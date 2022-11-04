@@ -500,5 +500,6 @@
   "privateDatabase_order_datacenter_gra": "Gravelines",
   "privateDatabase_order_datacenter_gra3": "Gravelines 3",
   "privateDatabase_order_datacenter_bhs": "Beauharnois",
-  "privateDatabase_order_datacenter_bhs1": "Beauharnois 1"
+  "privateDatabase_order_datacenter_bhs1": "Beauharnois 1",
+  "privateDatabase_order_RAM_step1_loading_error": "An error has occurred loading information."
 }
