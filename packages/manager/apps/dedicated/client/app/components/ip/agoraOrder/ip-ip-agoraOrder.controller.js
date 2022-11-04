@@ -124,7 +124,11 @@ export default class AgoraIpOrderCtrl {
           `country_${countryCode.toUpperCase()}`,
         ),
         icon: this.$translate.instant(
-          `oui-flag oui-flag_${countryCode.toLowerCase()}`,
+          `oui-flag oui-flag_${
+            countryCode.toLowerCase() === 'uk'
+              ? 'gb'
+              : countryCode.toLowerCase()
+          }`,
         ),
       })),
 
