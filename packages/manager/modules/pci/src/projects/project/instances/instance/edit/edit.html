@@ -216,7 +216,12 @@
                     data-ng-if="$ctrl.instance.flavor.id !== $ctrl.editInstance.flavorId"
                 >
                     <span
-                        data-ng-bind=":: $ctrl.imageEditMessage | translate"
+                        class="d-inline-block"
+                        data-translate="pci_projects_project_instances_instance_edit_change_instance_modele_message_part_1"
+                    ></span>
+                    <span
+                        class="d-inline-block"
+                        data-translate="pci_projects_project_instances_instance_edit_change_instance_modele_message_part_2"
                     ></span>
                 </oui-message>
 
