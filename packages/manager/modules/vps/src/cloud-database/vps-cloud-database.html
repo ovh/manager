@@ -6,12 +6,14 @@
         data-ng-if="!$ctrl.loading && (!$ctrl.cloudDatabases || $ctrl.cloudDatabases.length === 0)"
     >
         <p data-translate="vps_tab_cloud_database_description"></p>
-        <oui-button
-            data-variant="primary"
-            data-ui-sref="vps.detail.cloud-database.order"
+        <a
+            class="oui-button oui-button_primary"
+            href="{{ $ctrl.cloudDatabaseOrderHref }}"
+            rel="noopener"
+            target="_blank"
         >
             <span data-translate="vps_common_order"></span>
-        </oui-button>
+        </a>
     </div>
 
     <div
@@ -102,14 +104,15 @@
             </oui-action-menu-item>
         </oui-action-menu>
         <oui-datagrid-topbar>
-            <button
+            <a
                 class="oui-button oui-button_primary"
-                type="button"
-                data-ui-sref="vps.detail.cloud-database.order"
+                href="{{ $ctrl.cloudDatabaseOrderHref }}"
+                rel="noopener"
+                target="_blank"
             >
                 <span aria-hidden="true" class="oui-icon oui-icon-add"></span>
                 <span data-translate="vps_tab_cloud_database_order"></span>
-            </button>
+            </a>
         </oui-datagrid-topbar>
     </oui-datagrid>
 </section>
