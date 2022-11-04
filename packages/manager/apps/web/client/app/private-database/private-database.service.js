@@ -1,6 +1,5 @@
 import clone from 'lodash/clone';
 import filter from 'lodash/filter';
-import findIndex from 'lodash/findIndex';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import map from 'lodash/map';
@@ -40,6 +39,7 @@ export default class PrivateDatabase {
 
     this.swsProxypassPath = 'apiv6/hosting/privateDatabase';
     this.swsProxypassOrderPath = 'apiv6/order/hosting/privateDatabase';
+    this.swsProxypassUpgradePath = 'apiv6/order/upgrade/cloudDB';
 
     this.rootPath = 'apiv6';
 
@@ -468,92 +468,21 @@ export default class PrivateDatabase {
   /*
         ORDER
     */
-  orderDuration(version, ram) {
+  getUpgradePlans(serviceName) {
     return this.$http
-      .get(`${this.swsProxypassOrderPath}/new`, { params: { version, ram } })
-      .then((response) => response.data)
-      .catch((err) => this.$q.reject(err.data));
-  }
-
-  orderPrice(version, ram, duration) {
-    return this.$http
-      .get(`${this.swsProxypassOrderPath}/new/${duration}`, {
-        params: { version, ram },
-      })
-      .then((response) => response.data)
-      .catch((err) => this.$q.reject(err.data));
-  }
-
-  orderPrivateDatabase(version, ram, duration, datacenter) {
-    return this.$http
-      .post(`${this.swsProxypassOrderPath}/new/${duration}`, {
-        version,
-        ram,
-        offer: 'classic',
-        datacenter,
-      })
-      .then((response) => response.data)
-      .catch((err) => this.$q.reject(err.data));
-  }
-
-  orderDBaaS(version, ram, duration, datacenter) {
-    return this.$http
-      .post(`${this.swsProxypassOrderPath}/new/${duration}`, {
-        version,
-        ram,
-        offer: 'public',
-        datacenter,
-      })
-      .then((response) => response.data)
-      .catch((err) => this.$q.reject(err.data));
-  }
-
-  canOrder(serviceName) {
-    return this.$http
-      .get(this.swsProxypassOrderPath)
-      .then(
-        (response) =>
-          findIndex(response.data, (service) => service === serviceName) !== -1,
-      )
-      .catch(() => false);
+      .get(`${this.swsProxypassUpgradePath}/${serviceName}`)
+      .then((response) => {
+        return response.data;
+      });
   }
 
   canOrderRam(serviceName) {
-    return this.canOrder(serviceName).then((canOrder) => {
-      if (canOrder) {
-        return this.getParentServiceId(serviceName).then(
-          ({ parentServiceId }) => {
-            if (parentServiceId === null) {
-              return this.$http
-                .get(`${this.swsProxypassOrderPath}/${serviceName}`)
-                .then(
-                  (response) =>
-                    findIndex(
-                      response.data,
-                      (service) => service === 'ram' || service === 'upgrade',
-                    ) !== -1,
-                );
-            }
-            return false;
-          },
-        );
+    return this.getUpgradePlans(serviceName).then((response) => {
+      if (response.length > 0) {
+        return true;
       }
       return false;
     });
-  }
-
-  listAvailableRam() {
-    return this.$http
-      .get(`apiv6/order.json?d=${Date.now()}`)
-      .then((response) => {
-        if (get(response, 'data.models', false)) {
-          return response.data.models[
-            'hosting.PrivateDatabase.AvailableRamSizeEnum'
-          ].enum;
-        }
-        return [];
-      })
-      .catch(() => []);
   }
 
   listAvailableRamDurations(serviceName, opts) {
@@ -604,14 +533,6 @@ export default class PrivateDatabase {
       .then(() => defer.resolve(durationsTab))
       .catch(() => defer.resolve(durationsTab));
     return defer.promise;
-  }
-
-  orderRamorderRam(serviceName, ram, duration) {
-    return this.$http
-      .post(`${this.swsProxypassOrderPath}/${serviceName}/ram/${duration}`, {
-        ram,
-      })
-      .then((res) => res.data);
   }
 
   orderRam(serviceName, ram, duration) {
