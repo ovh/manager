@@ -77,11 +77,9 @@ export default class PciStoragesContainersService {
           users,
         };
         if (users.length > 0) {
-          promises.openrc = this.OvhApiCloudProjectUser.Aapi().openrc({
-            serviceName: projectId,
-            userId: users[0].id,
-            region,
-          }).$promise;
+          promises.openrc = this.$http.get(
+            `/cloud/project/${projectId}/user/${users[0].id}/openrc?region=${region}`,
+          );
         }
         return this.$q.all(promises);
       })
