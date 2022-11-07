@@ -1,4 +1,3 @@
-import filter from 'lodash/filter';
 import find from 'lodash/find';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -41,13 +40,14 @@ export default /* @ngInject */ ($stateProvider) => {
       instances: /* @ngInject */ (
         PciProjectsProjectInstanceService,
         projectId,
-      ) =>
-        PciProjectsProjectInstanceService.getAllInstanceDetails(
-          projectId,
-        ).then((instances) =>
-          filter(instances, ({ ipAddresses }) =>
-            find(ipAddresses, { type: 'private' }),
-          ),
+      ) => PciProjectsProjectInstanceService.getAllInstanceDetails(projectId),
+      additionalIpInstances: /* @ngInject */ (instances) =>
+        instances.filter(({ ipAddresses }) =>
+          find(ipAddresses, { type: 'public' }),
+        ),
+      floatingIpInstances: /* @ngInject */ (instances) =>
+        instances.filter(({ ipAddresses }) =>
+          find(ipAddresses, { type: 'private' }),
         ),
       createInstanceUrl: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.instances.add', {

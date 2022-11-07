@@ -53,7 +53,6 @@ export default class AdditionalIpController {
   $onInit() {
     this.currentStep = 0;
     this.user = this.coreConfig.getUser();
-    this.allInstances = this.instances;
     this.filteredInstances = [];
     this.privateNetworks = [];
     this.gateways = [];
@@ -235,7 +234,7 @@ export default class AdditionalIpController {
   }
 
   filterInstances(regionName) {
-    this.filteredInstances = filter(this.instances, (instance) => {
+    this.filteredInstances = filter(this.floatingIpInstances, (instance) => {
       return instance.region === regionName;
     });
   }
