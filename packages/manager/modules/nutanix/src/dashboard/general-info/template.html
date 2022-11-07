@@ -39,7 +39,7 @@
                     ></oui-spinner>
                     <span
                         data-ng-if="!$ctrl.loadingServicesDetails && $ctrl.clusterTechnicalDetails.license.edition !== $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
-                        data-ng-bind="$ctrl.commercialName"
+                        data-ng-bind="$ctrl.servicesDetails.billing.plan.invoiceName"
                     >
                     </span>
                     <span

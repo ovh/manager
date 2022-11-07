@@ -4,7 +4,6 @@ import {
   REPLICATION_FACTOR_PREFIX,
   TYPE_OF_PACK,
   NUTANIX_INVOICE_TYPE,
-  NUTANIX_COMMERCIAL_NAME,
   NUTANIX_PERSONAL_LICENSE_EDITION,
   GENERAL_INFO_TILE_TITLE,
 } from './constants';
@@ -53,14 +52,12 @@ export default class NutanixGeneralInfoCtrl {
       )
     ) {
       this.typeOfPack = TYPE_OF_PACK.STANDARD_PACK;
-      this.commercialName = NUTANIX_COMMERCIAL_NAME.STANDARD;
     } else if (
       this.nutanixPlanDetails.invoiceName.includes(
         NUTANIX_INVOICE_TYPE.ADVANCED,
       )
     ) {
       this.typeOfPack = TYPE_OF_PACK.ADVANCED_PACK;
-      this.commercialName = NUTANIX_COMMERCIAL_NAME.ADVANCED;
     } else if (
       this.nutanixPlanDetails.invoiceName.includes(NUTANIX_INVOICE_TYPE.BYOL)
     ) {
