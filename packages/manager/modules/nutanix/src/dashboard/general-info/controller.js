@@ -6,6 +6,7 @@ import {
   NUTANIX_INVOICE_TYPE,
   NUTANIX_COMMERCIAL_NAME,
   NUTANIX_PERSONAL_LICENSE_EDITION,
+  GENERAL_INFO_TILE_TITLE,
 } from './constants';
 import { CLUSTER_STATUS } from '../../constants';
 
@@ -19,6 +20,7 @@ export default class NutanixGeneralInfoCtrl {
     this.NutanixService = NutanixService;
     this.REPLICATION_FACTOR_PREFIX = REPLICATION_FACTOR_PREFIX;
     this.NUTANIX_PERSONAL_LICENSE_EDITION = NUTANIX_PERSONAL_LICENSE_EDITION;
+    this.GENERAL_INFO_TILE_TITLE = GENERAL_INFO_TILE_TITLE;
   }
 
   $onInit() {
