@@ -21,6 +21,11 @@ export const NUTANIX_COMMERCIAL_NAME = {
   ADVANCED: 'Ultimate cluster',
 };
 
+export const GENERAL_INFO_TILE_TITLE = {
+  FAULT_TOLENRANCE_DOMAIN: 'Fault Tolerance Domain',
+  REPLICATION_FACTOR: 'Replication Factor',
+};
+
 export const NUTANIX_PERSONAL_LICENSE_EDITION = 'Personal license';
 
 export default {
@@ -31,4 +36,5 @@ export default {
   NUTANIX_INVOICE_TYPE,
   NUTANIX_COMMERCIAL_NAME,
   NUTANIX_PERSONAL_LICENSE_EDITION,
+  GENERAL_INFO_TILE_TITLE,
 };

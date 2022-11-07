@@ -105,7 +105,7 @@
 
             <!-- Fault Tolerance Domain -->
             <oui-tile-definition
-                term="{{:: 'nutanix_dashboard_cluster_fault_tolerance_domain' | translate }}"
+                term="{{:: $ctrl.GENERAL_INFO_TILE_TITLE.FAULT_TOLENRANCE_DOMAIN }}"
             >
                 <oui-tile-description>
                     <div class="oui-tile__description">
@@ -133,7 +133,7 @@
 
             <!-- replication factor -->
             <oui-tile-definition
-                term="{{:: 'nutanix_dashboard_cluster_replication_factor' | translate }}"
+                term="{{:: $ctrl.GENERAL_INFO_TILE_TITLE.REPLICATION_FACTOR }}"
                 description="{{$ctrl.REPLICATION_FACTOR_PREFIX}}{{:: $ctrl.cluster.targetSpec.redundancyFactor }}"
             >
             </oui-tile-definition>
