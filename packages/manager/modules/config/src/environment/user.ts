@@ -12,7 +12,7 @@ export interface Auth {
   roles: string[];
   description: string;
   method: string;
-  user: User;
+  user: string;
 }
 
 export interface User {
