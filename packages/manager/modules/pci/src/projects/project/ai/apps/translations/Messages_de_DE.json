@@ -1,5 +1,5 @@
 {
-  "pci_ai_app_beta_warning": "Während der Testphase „Alpha“ sind die Verfügbarkeit der Infrastruktur und der Fortbestand der Daten nicht gewährleistet. Verwenden Sie diesen Dienst nicht für Anwendungen, die gerade aufgebaut werden, solange diese Phase nicht abgeschlossen ist.",
+  "pci_ai_app_beta_warning": "Während der Testphase „Beta“ sind die Verfügbarkeit der Infrastruktur und der Fortbestand der Daten nicht gewährleistet. Verwenden Sie diesen Dienst nicht für Anwendungen, die gerade aufgebaut werden, solange diese Phase nicht abgeschlossen ist.",
   "pci_ai_title": "AI Deploy",
   "pci_ai_apps_title": "Apps",
   "pci_ai_tokens_title": "Token",

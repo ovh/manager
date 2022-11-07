@@ -1,7 +1,7 @@
 {
   "pci_app_add_configuration_name": "Your app name",
   "pci_app_add_configuration_label": "Labels",
-  "pci_app_add_configuration_label_description": "You can add labels to your app. Useful for filtering or securing by token on a specific label",
+  "pci_app_add_configuration_label_description": "You can add labels to your app. This is useful for filtering or securing by token on a specific label.",
   "pci_app_add_configuration_label_field_key": "Key",
   "pci_app_add_configuration_label_field_key_error_key_already_exist": "This key already exists",
   "pci_app_add_configuration_label_field_value": "Value",
@@ -15,5 +15,14 @@
   "pci_app_add_privacy_settings_item_public_warning": "Please ensure that you take great care with sensitive data.",
   "pci_app_add_privacy_title": "App access rule",
   "pci_app_add_settings_port": "HTTP port",
-  "pci_app_add_settings_port_help": "The HTTP port your app is linked to."
+  "pci_app_add_settings_port_help": "The HTTP port your app is linked to.",
+  "pci_app_add_readiness_probe": "Readiness probe",
+  "pci_app_add_readiness_probe_description": "To determine when your application is ready to receive a HTTP request, you can configure a fully-customised readiness probe (Kubernetes Readiness probe) by adding an API endpoint and port.",
+  "pci_app_add_readiness_probe_switch_label": "Use a readiness probe",
+  "pci_app_add_readiness_probe_switch_enabled": "Readiness probe enabled",
+  "pci_app_add_readiness_probe_switch_disabled": "Readiness probe disabled",
+  "pci_app_add_readiness_probe_path_label": "API endpoint for readiness probe",
+  "pci_app_add_readiness_probe_path_help_text": "This is the API endpoint for the readiness probe. Must return a 2XX or 3XX status",
+  "pci_app_add_readiness_probe_port_label": "Probe port",
+  "pci_app_add_readiness_probe_port_help_text": "Enables you to configure a specific port for this API access path"
 }

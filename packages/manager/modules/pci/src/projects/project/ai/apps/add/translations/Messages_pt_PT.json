@@ -1,7 +1,7 @@
 {
   "pci_app_add_title": "Implementar uma app",
   "pci_app_add_description": "Inicie as suas apps na cloud de forma rápida e simples.",
-  "pci_app_add_banner_token_description": "Tenha em atenção que se pretender aceder à sua app, será necessário criar um token.",
+  "pci_app_add_banner_token_description": "Tenha em atenção que, se pretender aceder à sua aplicação, será necessário criar um token.",
   "pci_app_add_banner_token_description_link": "Criar um token imediatamente",
   "pci_app_add_configuration_title": "Configure a sua app",
   "pci_app_add_configuration_title_selected": "Nome da app: {{ app }} ({{ labelsLength }} etiqueta(s)) / Região: {{region}} / Acesso: {{ privacy }}",

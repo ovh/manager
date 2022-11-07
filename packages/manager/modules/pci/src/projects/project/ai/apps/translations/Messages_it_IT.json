@@ -1,5 +1,5 @@
 {
-  "pci_ai_app_beta_warning": "Durante la fase alfa, la disponibilità dell’infrastruttura e la perennità dei dati non sono garantite. Fino al termine di questa fase consigliamo quindi di non utilizzare questo servizio per applicazioni in produzione.",
+  "pci_ai_app_beta_warning": "Durante la fase beta la disponibilità dell’infrastruttura e la perennità dei dati non sono garantite. Fino al termine di questa fase consigliamo quindi di non utilizzare questo servizio per applicazioni in produzione.",
   "pci_ai_title": "AI Deploy",
   "pci_ai_apps_title": "Apps",
   "pci_ai_tokens_title": "Token",

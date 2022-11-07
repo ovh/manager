@@ -5,6 +5,7 @@
   "pci_app_submit_select_image_advanced": "Ihre eigene Anwendung einsetzen (Docker Image)",
   "pci_app_submit_select_image_name": "Zugriffspfad zu Ihrem Docker Image",
   "pci_app_submit_select_image_tips_help": "Angenommen werden Images, die in einem privaten oder öffentlichen Register gehostet werden (GitHub, GitLab, DockerHub...)",
-  "pci_app_submit_select_image_custom_doc": "So erstellen Sie ein personalisiertes Docker-Image",
-  "pci_app_submit_select_start_from": "Ab"
+  "pci_app_submit_select_image_custom_doc": "Erstellen Sie Ihr personalisiertes Docker Image",
+  "pci_app_submit_select_start_from": "Ab",
+  "pci_app_submit_select_image_portfolio": "Lernen Sie unser Angebot an gebrauchsfertigen AI-Anwendungen kennen"
 }
