@@ -16,11 +16,6 @@ export const NUTANIX_INVOICE_TYPE = {
   BYOL: 'Bring Your Own Licence',
 };
 
-export const NUTANIX_COMMERCIAL_NAME = {
-  STANDARD: 'Standard cluster',
-  ADVANCED: 'Ultimate cluster',
-};
-
 export const GENERAL_INFO_TILE_TITLE = {
   FAULT_TOLENRANCE_DOMAIN: 'Fault Tolerance Domain',
   REPLICATION_FACTOR: 'Replication Factor',
@@ -34,7 +29,6 @@ export default {
   REPLICATION_FACTOR_PREFIX,
   TYPE_OF_PACK,
   NUTANIX_INVOICE_TYPE,
-  NUTANIX_COMMERCIAL_NAME,
   NUTANIX_PERSONAL_LICENSE_EDITION,
   GENERAL_INFO_TILE_TITLE,
 };
