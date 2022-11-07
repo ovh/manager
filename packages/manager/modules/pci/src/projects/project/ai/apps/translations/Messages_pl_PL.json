@@ -1,5 +1,5 @@
 {
-  "pci_ai_app_beta_warning": "Na etapie testów alfa dostępność infrastruktury i trwałość danych nie są gwarantowane. Nie używaj tej usługi do aplikacji produkcyjnych, dopóki ten etap testów nie zostanie zakończony.",
+  "pci_ai_app_beta_warning": "W fazie testów beta dostępność infrastruktury i trwałość danych nie są gwarantowane. Nie używaj tej usługi do aplikacji produkcyjnych, dopóki ten etap testów nie zostanie zakończony.",
   "pci_ai_title": "AI Deploy",
   "pci_ai_apps_title": "Aplikacje",
   "pci_ai_tokens_title": "Tokeny",

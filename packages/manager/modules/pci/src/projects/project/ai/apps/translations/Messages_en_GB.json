@@ -33,7 +33,7 @@
   "pci_ai_app_list_stop_error": "An error has occurred attempting to stop the {{appName}} app: {{message}}",
   "pci_ai_app_list_creator": "User",
   "pci_ai_app_list_status_STOPPING": "Stopping",
-  "pci_ai_app_beta_warning": "During the alpha-testing phase, the infrastructure’s availability and data longevity are not guaranteed. Please do not use this service for applications that are in production, as this phase is not complete.",
+  "pci_ai_app_beta_warning": "During the beta testing phase, the infrastructure’s availability and data longevity are not guaranteed. Please do not use this service for applications that are in production, as this phase is not complete.",
   "pci_ai_app_beta_warning_special_conditions": "AI Apps has changed its name to AI Deploy. AI Deploy is covered by ",
   "pci_ai_app_beta_warning_special_conditions_link": "OVHcloud Public Cloud Special Conditions"
 }

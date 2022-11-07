@@ -28,7 +28,7 @@
   "pci_apps_general_information_life_cycle_status_DELETED": "Gelöscht",
   "pci_apps_general_information_life_cycle_status_FAILED": "Fehlgeschlagen",
   "pci_apps_general_information_life_cycle_status_ERROR": "Fehler",
-  "pci_apps_general_information_replicas": "Replikas",
+  "pci_apps_general_information_replicas": "Replikas:",
   "pci_apps_general_information_life_cycle_action_start": "Starten",
   "pci_apps_general_information_life_cycle_action_stop": "Anhalten",
   "pci_apps_general_information_life_cycle_action_delete": "Löschen",
@@ -45,5 +45,15 @@
   "pci_apps_general_information_resources_local_storage": "Lokaler Speicher pro Ressource",
   "pci_apps_general_information_resources_monitoring": "Echtzeit-Monitoring der App",
   "pci_apps_general_information_resources_monitoring_access_to_graph": "Zu den Dashboards",
-  "pci_apps_general_information_snippet_title": "Verwendung Ihrer App"
+  "pci_apps_general_information_snippet_title": "Verwendung Ihrer App",
+  "pci_apps_general_information_info_app_image": "Docker Image",
+  "pci_apps_general_information_info_app_image_action_update": "Image aktualisieren",
+  "pci_apps_general_information_info_app_probe": "Verfügbarkeitsprobe",
+  "pci_apps_general_information_scaling": "Dimensionierung",
+  "pci_apps_general_information_scaling_static": "Festgelegte Dimensionierung",
+  "pci_apps_general_information_scaling_auto": "Automatische Dimensionierung (Autoscaling)",
+  "pci_apps_general_information_min_replicas": "Mindestanzahl an Replikas:",
+  "pci_apps_general_information_max_replicas": "Höchstzahl an Replikas:",
+  "pci_apps_general_information_trigger_resource": "Überwachte Metrik:",
+  "pci_apps_general_information_trigger_resource_threshold": "Schwellenwert:"
 }

@@ -4,8 +4,17 @@
   "pci_app_add_review_price_partner": "Preis der Lizenz {{ partner }}",
   "pci_app_add_review_price_partner_free": "Geschenkt von {{ partner }}",
   "pci_app_add_review_price_resource": "Preis der ausgewählten Ressourcen",
-  "pci_app_add_review_price_resource_free": "Ressource von OVHcloud während der Alpha-Phase geschenkt",
+  "pci_app_add_review_price_resource_free": "Die Ressource(n) stellt Ihnen OVHcloud während der Beta-Phase gratis zur Verfügung.",
   "pci_app_add_review_price_total": "Gesamtpreis",
   "pci_app_add_review_price_info": "{{ price }} inkl. MwSt. / Stunde",
-  "pci_app_add_review_resources": "Modell und Anzahl der ausgewählten Instanz(en)"
+  "pci_app_add_review_resources": "Modell und Anzahl der ausgewählten Replika(s)",
+  "pci_app_add_review_scaling": "Dimensionierung",
+  "pci_app_add_review_scaling_static": "Festgelegte Dimensionierung",
+  "pci_app_add_review_scaling_auto": "Automatische Dimensionierung (Autoscaling)",
+  "pci_app_add_review_scaling_replicas": "Replikas: ",
+  "pci_app_add_review_scaling_min_replicas": "Mindestanzahl an Replikas:",
+  "pci_app_add_review_scaling_max_replicas": "Höchstzahl an Replikas:",
+  "pci_app_add_review_scaling_trigger_resource": "Überwachte Metrik:",
+  "pci_app_add_review_scaling_trigger_resource_threshold": "Schwellenwert:",
+  "pci_app_add_review_probe": "Verfügbarkeitsprobe"
 }

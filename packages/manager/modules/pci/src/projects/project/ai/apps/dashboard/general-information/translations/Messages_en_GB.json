@@ -27,7 +27,7 @@
   "pci_apps_general_information_life_cycle_status_DELETED": "Deleted",
   "pci_apps_general_information_life_cycle_status_FAILED": "Failed",
   "pci_apps_general_information_life_cycle_status_ERROR": "Error",
-  "pci_apps_general_information_replicas": "Replicas",
+  "pci_apps_general_information_replicas": "Replicas:",
   "pci_apps_general_information_life_cycle_action_delete": "Delete",
   "pci_apps_general_information_life_cycle_running_duration_time": "Runtime",
   "pci_apps_general_information_life_cycle_running_billing": "View billing",
@@ -45,5 +45,15 @@
   "pci_apps_general_information_snippet_title": "Using your app",
   "pci_apps_general_information_life_cycle_status_STOPPING": "Stopping",
   "pci_apps_general_information_life_cycle_action_start": "Start",
-  "pci_apps_general_information_life_cycle_action_stop": "Stop"
+  "pci_apps_general_information_life_cycle_action_stop": "Stop",
+  "pci_apps_general_information_info_app_image": "Docker Image",
+  "pci_apps_general_information_info_app_image_action_update": "Update image",
+  "pci_apps_general_information_info_app_probe": "Readiness probe",
+  "pci_apps_general_information_scaling": "Scaling",
+  "pci_apps_general_information_scaling_static": "Fixed scaling",
+  "pci_apps_general_information_scaling_auto": "Auto-scaling",
+  "pci_apps_general_information_min_replicas": "Minimum number of replicas:",
+  "pci_apps_general_information_max_replicas": "Maximum number of replicas:",
+  "pci_apps_general_information_trigger_resource": "Metric monitored:",
+  "pci_apps_general_information_trigger_resource_threshold": "Trigger threshold:"
 }

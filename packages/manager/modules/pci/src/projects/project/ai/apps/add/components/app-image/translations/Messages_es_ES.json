@@ -1,10 +1,11 @@
 {
-  "pci_app_submit_select_image_tips": "Introduzca la ruta de acceso a su imagen Docker. Puede ser un registro público (GitHub, Gitlab, DockerHub, etc.) o privado.",
+  "pci_app_submit_select_image_tips": "Introduzca la ruta de acceso a su imagen Docker. Puede ser un registro público (GitHub, GitLab, DockerHub...) o privado.",
   "pci_app_submit_select_image_preset_info": "Descripción",
   "pci_app_submit_select_image_advanced_tips": "Desplegar su propia aplicación",
   "pci_app_submit_select_image_advanced": "Desplegar su propia aplicación (imagen Docker)",
   "pci_app_submit_select_image_name": "Ruta de acceso a su imagen Docker",
   "pci_app_submit_select_image_tips_help": "Se aceptan las imágenes alojadas en un registro público o privado (GitHub, GitLab, DockerHub, etc.).",
-  "pci_app_submit_select_image_custom_doc": "Cómo crear una imagen Docker personalizada",
-  "pci_app_submit_select_start_from": "Desde"
+  "pci_app_submit_select_image_custom_doc": "Cree su propia imagen Docker personalizada",
+  "pci_app_submit_select_start_from": "Desde",
+  "pci_app_submit_select_image_portfolio": "Descubra nuestra cartera de aplicaciones AI listas para usar"
 }
