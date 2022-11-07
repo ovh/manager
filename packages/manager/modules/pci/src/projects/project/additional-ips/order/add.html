@@ -117,12 +117,12 @@
             data-header="{{:: 'pci_additional_ip_create_step_attach_instance' | translate }}"
             data-editable="!$ctrl.creatingFloatingIp"
             data-on-submit="$ctrl.createAdditionalIp()"
-            data-navigation="$ctrl.instances.length > 0"
+            data-navigation="$ctrl.additionalIpInstances.length > 0"
             data-submit-text="{{:: 'pci_additional_ip_create_action_label' | translate }}"
             data-required
             data-name="additional_ip_create_step_attach_instance"
         >
-            <div data-ng-if="$ctrl.instances.length === 0">
+            <div data-ng-if="$ctrl.additionalIpInstances.length === 0">
                 <oui-message data-type="error">
                     <p>
                         <span
@@ -139,7 +139,10 @@
                 </oui-message>
             </div>
 
-            <div data-ng-if="$ctrl.instances.length > 0" class="mb-3">
+            <div
+                data-ng-if="$ctrl.additionalIpInstances.length > 0"
+                class="mb-3"
+            >
                 <oui-message data-type="info">
                     <p
                         data-translate="pci_additional_ip_create_step_attach_instance_info_failover_ip"
@@ -158,7 +161,7 @@
                         name="instance"
                         data-placeholder="{{:: 'pci_additional_ip_create_step_attach_instance_label' | translate }}"
                         data-model="$ctrl.ip.instance"
-                        data-items="$ctrl.instances"
+                        data-items="$ctrl.additionalIpInstances"
                         data-match="name"
                         data-required
                     >
