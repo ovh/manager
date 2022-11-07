@@ -20,8 +20,8 @@ module.exports = ({ name, description }) => ({
     '@ovh-ux/ng-ui-router-breadcrumb': '^1.0.0',
     '@ovh-ux/ui-kit': '^4.4.3',
     '@uirouter/angularjs': '^1.0.23',
-    angular: '^1.7.5',
-    'angular-translate': '^2.18.1',
+    angular: '1.8.3',
+    'angular-translate': '^2.19.0',
     oclazyload: '^1.1.0',
   },
 });
