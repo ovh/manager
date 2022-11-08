@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.34.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.34.2...@ovh-ux/manager-dedicated@17.34.3) (2022-11-08)
+
+
+### Bug Fixes
+
+* **dedicated.server:** display proper price ([#8258](https://github.com/ovh/manager/issues/8258)) ([0e6ee0b](https://github.com/ovh/manager/commit/0e6ee0b449238c4ad05601775f55baf55a311350))
+* **dedicated.servers:** sort by family the os ([#8303](https://github.com/ovh/manager/issues/8303)) ([389bd99](https://github.com/ovh/manager/commit/389bd9967bf30272eb499e162f495c5f07df5ac8))
+
+
+
+
+
 ## [17.34.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.34.1...@ovh-ux/manager-dedicated@17.34.2) (2022-11-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

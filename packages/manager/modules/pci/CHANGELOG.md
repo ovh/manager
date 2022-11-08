@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.97.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.96.2...@ovh-ux/manager-pci@5.97.0) (2022-11-08)
+
+
+### Bug Fixes
+
+* **pci-container:** modify the open rc api call ([#8285](https://github.com/ovh/manager/issues/8285)) ([e4db567](https://github.com/ovh/manager/commit/e4db56732c1ee77ad14c1e59afe31f0f52f5b724))
+* **pci.objectstorage:** add tracking on creation object storage ([#8121](https://github.com/ovh/manager/issues/8121)) ([f5c081f](https://github.com/ovh/manager/commit/f5c081fff8ec77130168a3cb72439bd77814f155))
+* **pci.users:** display username while openstack token generation ([#8207](https://github.com/ovh/manager/issues/8207)) ([36c454a](https://github.com/ovh/manager/commit/36c454a4e75cf2afbd6c568c4bf2fdb59f236b49))
+* **pci:** change message about resizing instance ([#8144](https://github.com/ovh/manager/issues/8144)) ([742cda9](https://github.com/ovh/manager/commit/742cda96e69c1397a381326f43bb10f5a3b846b6))
+* **pci:** display selected region on form submit ([#8341](https://github.com/ovh/manager/issues/8341)) ([d35b02f](https://github.com/ovh/manager/commit/d35b02f5f328fbc6fe458ea0ce4ed116998686dc))
+
+
+### Features
+
+* **project.kube:** add kube & node pool ids in clipboard ([#8241](https://github.com/ovh/manager/issues/8241)) ([3704334](https://github.com/ovh/manager/commit/37043344bdac7530a12400029d217704d7ce1e68))
+* **telecom:** implement missed service type ([#8298](https://github.com/ovh/manager/issues/8298)) ([9790b8a](https://github.com/ovh/manager/commit/9790b8abb4152904e3faa71290a8619908898dff))
+
+
+
+
+
 ## [5.96.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.96.1...@ovh-ux/manager-pci@5.96.2) (2022-11-03)
 
 

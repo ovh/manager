@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.46.4...@ovh-ux/manager-telecom@13.47.0) (2022-11-08)
+
+
+### Bug Fixes
+
+* **telecom:** display correct unit for megabits per second ([#8003](https://github.com/ovh/manager/issues/8003)) ([15340d8](https://github.com/ovh/manager/commit/15340d8f27ba192718f5cbe0625bbd635c0ed106))
+
+
+### Features
+
+* **telecom:** implement missed service type ([#8298](https://github.com/ovh/manager/issues/8298)) ([9790b8a](https://github.com/ovh/manager/commit/9790b8abb4152904e3faa71290a8619908898dff))
+
+
+
+
+
 ## [13.46.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.46.3...@ovh-ux/manager-telecom@13.46.4) (2022-11-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

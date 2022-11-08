@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.18.5...@ovh-ux/manager-web@16.19.0) (2022-11-08)
+
+
+### Features
+
+* **hosting.general:** replace privateSQL orders by cloudDB ([#8085](https://github.com/ovh/manager/issues/8085)) ([318bb8f](https://github.com/ovh/manager/commit/318bb8f905ab3ef338b8af5fc08a0be35ed66eb2))
+* **private-database.upgrade:** deprecate order/hosting routes ([#8072](https://github.com/ovh/manager/issues/8072)) ([097b9f4](https://github.com/ovh/manager/commit/097b9f4300408acea1058b3a572afde1dc6384a5))
+
+
+
+
+
 ## [16.18.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.18.4...@ovh-ux/manager-web@16.18.5) (2022-11-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
