@@ -1,7 +1,6 @@
 import React, {
   CSSProperties,
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -104,20 +103,20 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
     }
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (agentStarted) {
       start(agentStarted, false);
     }
   }, [agentStarted]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!agentReduced) {
       setReduced(false);
       if (onReduce) onReduce();
     }
   }, [agentReduced]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (started && !reduced) {
       dialog.current.show();
       // This next line is for the focus when clicking with the keyboard
@@ -146,7 +145,7 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
       <dialog
         ref={dialog}
         className={`w-100 p-0 border-0 ${styles.dialog} ${
-          started && reduced ? styles.hidden : ''
+          !dialog?.current?.open ? styles.hidden : styles.visible
         }`}
         title={name}
         open

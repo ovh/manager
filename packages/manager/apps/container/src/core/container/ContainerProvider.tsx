@@ -156,9 +156,9 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   useEffect(() => {
     uxPlugin.onChatbotVisibilityChange(async () => {
       const chatbotVisibility = await uxPlugin.isChatbotVisible();
-      // if (isLivechatEnabled){
+      if (isLivechatEnabled) {
         setChatbotOpen(chatbotVisibility);
-      // }
+      }
     });
   }, [isLivechatEnabled])
 
