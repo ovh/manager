@@ -26,6 +26,8 @@
   "pci_database_add_subnet_add": "Create subnet",
   "pci_database_add_subnet_loading": "Loading subnets",
   "pci_database_add_step6_title": "Database service configuration",
+  "pci_database_add_command_description": "With the following command, you can create your service using our API.",
+  "pci_database_add_command_documentation_link": "Click here for documentation.",
   "pci_database_add_create_database": "Create a database service",
   "pci_database_add_create_database_processing": "Creating service...",
   "pci_database_add_create_database_success": "Your service is being created, and will be available in a few minutes.",
@@ -33,8 +35,6 @@
   "pci_database_add_name_min_rule": "Minimum {{min}} characters",
   "pci_database_add_name_max_rule": "Maximum {{max}} characters",
   "pci_database_add_name_pattern_rule": "May contain numbers, letters, underscores, dashes and full stops only.",
-  "pci_database_add_command_description": "With the following command, you can create your service using our API.",
-  "pci_database_add_command_documentation_link": "Click here for documentation.",
   "pci_database_add_footer_part_1": "All product names, logos, and brands are property of their respective owners. All company, product and service names used in this website are for identification purposes only. Use of these names, logos, and brands does not imply endorsement.",
   "pci_database_add_footer_part_2": "*Redis is a trademark of Redis Ltd. Any rights therein are reserved to Redis Ltd. Any use by OVH SAS  is for referential purposes only and does not indicate any sponsorship, endorsement or affiliation between Redis and OVH SAS.",
   "pci_database_add_spec_heading": "Your order",
@@ -48,8 +48,7 @@
   "pci_database_add_spec_flavor": "Node template:",
   "pci_database_add_spec_flavor_CPU": "{{cpu}} CPU",
   "pci_database_add_spec_flavor_RAM": "{{ram}} RAM",
-  "pci_database_add_spec_flavor_storage": "{{storageSize}} SSD storage",
-  "pci_database_add_spec_flavor_storage_range": "{{storageMinSize}} to {{storageMaxSize}} SSD storage",
+  "pci_database_add_spec_storage": "Storage:",
   "pci_database_add_spec_network": "Network type:",
   "pci_database_add_spec_network_name": "Network:",
   "pci_database_add_spec_network_subnetwork": "Subnet:",
@@ -65,6 +64,5 @@
   "pci_database_add_network_mode_helper": "To find out more about configuring a private network, view the guide: {{link}}",
   "pci_database_add_network_mode_helper_link": "Public Cloud vRack",
   "pci_database_add_network_mode_public_popover": "The public network enables connections from any authorised source IP connected to the internet (your computer, a remote server, etc.)",
-  "pci_database_add_network_mode_private_popover": "The private network does not allow public connectivity, and only allows connections from within your vRack.",
-  "pci_database_add_spec_storage": "Storage:"
+  "pci_database_add_network_mode_private_popover": "The private network does not allow public connectivity, and only allows connections from within your vRack."
 }

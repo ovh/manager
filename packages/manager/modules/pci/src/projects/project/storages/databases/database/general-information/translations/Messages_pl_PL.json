@@ -9,8 +9,7 @@
   "pci_databases_general_information_node_type_label": "Model węzła",
   "pci_databases_general_information_node_type_cpu": "{{coreNumber}} CPU",
   "pci_databases_general_information_node_type_memory": "{{memorySize}} RAM",
-  "pci_databases_general_information_node_type_storage": "{{storageSize}} przestrzeni dyskowej SSD",
-  "pci_databases_general_information_node_type_storage_range": "od {{storageMinSize}} do {{storageMaxSize}} przestrzeni dyskowej SSD",
+  "pci_databases_general_information_storage_label": "Przestrzeń dyskowa",
   "pci_databases_general_information_upgrade_node": "Ulepsz model węzła",
   "pci_databases_general_information_service_label": "Usługa",
   "pci_databases_general_information_service_URI_label": "URI",
@@ -81,6 +80,5 @@
   "pci_databases_general_information_support_title": "Dział Wsparcia Klienta",
   "pci_databases_general_information_support_level_label": "Poziom wsparcia",
   "pci_databases_general_information_support_level_standard": "Standard",
-  "pci_databases_general_information_support_create_ticket_label": "Utwórz zgłoszenie",
-  "pci_databases_general_information_storage_label": "Przestrzeń dyskowa"
+  "pci_databases_general_information_support_create_ticket_label": "Utwórz zgłoszenie"
 }

@@ -26,6 +26,8 @@
   "pci_database_add_subnet_add": "Utwórz podsieć",
   "pci_database_add_subnet_loading": "Pobieranie podsieci",
   "pci_database_add_step6_title": "Konfiguracja usługi bazy danych",
+  "pci_database_add_command_description": "Poniższe zamówienie pozwala na utworzenie usługi za pomocą naszego API.",
+  "pci_database_add_command_documentation_link": "Kliknij tutaj, aby uzyskać dostęp do dokumentacji.",
   "pci_database_add_create_database": "Utwórz usługę bazy danych",
   "pci_database_add_create_database_processing": "Trwa zakładanie usługi",
   "pci_database_add_create_database_success": "Trwa tworzenie usługi. Będzie ona dostępna za kilka minut.",
@@ -33,8 +35,6 @@
   "pci_database_add_name_min_rule": "Minimum {{min}} znaków",
   "pci_database_add_name_max_rule": "Maksimum {{max}} znaków",
   "pci_database_add_name_pattern_rule": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki.",
-  "pci_database_add_command_description": "Poniższe zamówienie pozwala na utworzenie usługi za pomocą naszego API.",
-  "pci_database_add_command_documentation_link": "Kliknij tutaj, aby uzyskać dostęp do dokumentacji.",
   "pci_database_add_footer_part_1": "Wszystkie nazwy produktów, logo i znaki towarowe należą do ich właścicieli. Wszystkie nazwy firm, produktów i usług użyte na tej stronie internetowej służą wyłącznie do celów identyfikacyjnych. Używanie tych nazw, logo i znaków towarowych nie oznacza zgody na ich wykorzystanie.",
   "pci_database_add_footer_part_2": "*Redis jest znakiem towarowym firmy Redis Ltd. Wszystkie prawa z nim związane są zastrzeżone dla Redis Ltd. Użycie go przez OVH SAS w jakiejkolwiek formie ma charakter wyłącznie referencyjny i nie oznacza sponsorowania, wspierania lub powiązania pomiędzy Redis a OVH SAS.",
   "pci_database_add_spec_heading": "Twoje zamówienie",
@@ -48,8 +48,7 @@
   "pci_database_add_spec_flavor": "Model węzła:",
   "pci_database_add_spec_flavor_CPU": "{{cpu}}",
   "pci_database_add_spec_flavor_RAM": "{{ram}} RAM",
-  "pci_database_add_spec_flavor_storage": "{{storageSize}} przestrzeni dyskowej SSD",
-  "pci_database_add_spec_flavor_storage_range": "od {{storageMinSize}} do {{storageMaxSize}} przestrzeni dyskowej SSD",
+  "pci_database_add_spec_storage": "Przestrzeń dyskowa:",
   "pci_database_add_spec_network": "Typ sieci:",
   "pci_database_add_spec_network_name": "Sieć:",
   "pci_database_add_spec_network_subnetwork": "Podsieć:",
@@ -65,6 +64,5 @@
   "pci_database_add_network_mode_helper": "Więcej informacji na temat konfiguracji sieci prywatnej znajdziesz w przewodniku: {{link}}",
   "pci_database_add_network_mode_helper_link": "vRack Public Cloud",
   "pci_database_add_network_mode_public_popover": "Sieć publiczna umożliwia połączenie z dowolnego autoryzowanego źródła IP podłączonego do Internetu (Twój komputer, zdalny serwer, etc.)",
-  "pci_database_add_network_mode_private_popover": "Sieć prywatna nie pozwala na połączenie z siecią publiczną i dopuszcza jedynie połączenia w ramach usługi vRack.",
-  "pci_database_add_spec_storage": "Przestrzeń dyskowa:"
+  "pci_database_add_network_mode_private_popover": "Sieć prywatna nie pozwala na połączenie z siecią publiczną i dopuszcza jedynie połączenia w ramach usługi vRack."
 }
