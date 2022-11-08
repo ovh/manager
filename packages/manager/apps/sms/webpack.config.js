@@ -60,6 +60,10 @@ module.exports = (env = {}) => {
         path.resolve(__dirname, '../../../node_modules'),
       ],
       mainFields: ['module', 'browser', 'main'],
+      fallback: {
+        stream: require.resolve('stream-browserify'),
+        os: require.resolve('os-browserify/browser'),
+      },
     },
     plugins: [
       new webpack.ContextReplacementPlugin(

@@ -54,6 +54,10 @@ module.exports = (env = {}) => {
       filename: '[name].[chunkhash].bundle.js',
     },
     resolve: {
+      fallback: {
+        stream: require.resolve('stream-browserify'),
+        os: require.resolve('os-browserify/browser'),
+      },
       modules: [
         './node_modules',
         path.resolve(__dirname, 'node_modules'),
