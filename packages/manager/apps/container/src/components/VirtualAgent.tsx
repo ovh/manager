@@ -7,6 +7,8 @@ import React, {
 } from 'react';
 import { useLocalStorage } from 'react-use';
 import dialogPolyfill from 'dialog-polyfill';
+import { useMediaQuery } from 'react-responsive';
+
 import styles from './virtualAgentStyles.module.scss';
 
 interface VirtualAgentProps {
@@ -51,9 +53,10 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
     `virtual_agent_${name}_state`,
   );
   const tabletBreakpoint = 1200;
-  const [isMobile, setIsMobile] = useState(
-    window.matchMedia(`(max-width: ${tabletBreakpoint}px)`).matches,
-  );
+
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${tabletBreakpoint}px)`,
+  });
 
   const toggle = () => {
     setReduced(!reduced);
@@ -83,19 +86,6 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
 
     return { background: defaultColor };
   };
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(`(max-width: ${tabletBreakpoint}px)`);
-    const handleBreakpointChange = (media: MediaQueryListEvent) => {
-      setIsMobile(media.matches);
-    };
-
-    mediaQuery.addEventListener('change', (media) =>
-      handleBreakpointChange(media),
-    );
-
-    return mediaQuery.removeEventListener('change', handleBreakpointChange);
-  }, []);
 
   useEffect(() => {
     dialogPolyfill.registerDialog(dialog.current);
@@ -156,7 +146,7 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
       <dialog
         ref={dialog}
         className={`w-100 p-0 border-0 ${styles.dialog} ${
-          dialog?.current?.open ? '' : styles.hidden
+          started && reduced ? styles.hidden : ''
         }`}
         title={name}
         open
