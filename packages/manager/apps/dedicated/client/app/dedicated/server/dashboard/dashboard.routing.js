@@ -201,6 +201,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return $state.go('app.dedicated-server.server.dashboard.sgx.manage');
       },
+      goToMonitoringUpdate: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.monitoringUpdate', {
+          productId: serverName,
+        }),
       monitoringProtocolEnum: /* @ngInject */ (Server) =>
         Server.getModels().then(
           (models) =>
@@ -274,6 +278,15 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       changeOwnerAvailable: /* @ngInject */ (features) =>
         features.isFeatureAvailable('dedicated-server:changeOwner'),
+
+      isMonitoringOptionsAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
+        const id = 'dedicated-server:monitoring-options';
+        return ovhFeatureFlipping
+          .checkFeatureAvailability([id])
+          .then((orderAvailability) => orderAvailability.isFeatureAvailable(id))
+          .catch(() => false);
+      },
+
       upgradeTask: /* @ngInject */ ($http, $q, serverName) =>
         $http
           .get(
