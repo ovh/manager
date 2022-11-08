@@ -1,4 +1,4 @@
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
@@ -55,7 +55,7 @@ module.exports = (env = {}) => {
           { from: path.resolve(__dirname, './client/assets'), to: 'assets' },
           {
             from: path.resolve(__dirname, './client/**/*.html'),
-            context: 'client/app',
+            context: path.resolve(__dirname, 'client'),
           },
           {
             from: foundNodeModulesFolder('angular-i18n'),
