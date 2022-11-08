@@ -145,7 +145,9 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
     >
       <dialog
         ref={dialog}
-        className={`w-100 p-0 border-0 ${styles.dialog}`}
+        className={`w-100 p-0 border-0 ${styles.dialog} ${
+          started && reduced ? styles.hidden : ''
+        }`}
         title={name}
         open
       >
