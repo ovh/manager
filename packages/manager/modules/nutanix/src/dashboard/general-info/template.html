@@ -59,7 +59,7 @@
                         type="button"
                         class="oui-link"
                         data-ng-class="{'disabled': $ctrl.clusterRedeploying}"
-                        data-ng-click="$ctrl.goToRedeploy()"
+                        data-ng-click="$ctrl.redeployCluster()"
                         data-ng-disabled="$ctrl.clusterRedeploying"
                         data-track-on="click"
                         data-track-type="action"
@@ -228,4 +228,30 @@
             technical-details="$ctrl.technicalDetails"
         ></server-technical-details>
     </div>
+</div>
+
+// redeploy cluster warning modal
+<div
+    data-ng-if="$ctrl.showRedeployWarningModal && $ctrl.clusterTechnicalDetails.license.edition === $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+>
+    <div class="modal d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <oui-modal
+                    data-heading="{{ :: 'nutanix_dashboard_cluster_redeploy_modal_header' | translate }}"
+                    data-type="warning"
+                    data-primary-label="{{:: 'nutanix_dashboard_cluster_redeploy_modal_continue' | translate }}"
+                    data-primary-action="$ctrl.goToRedeploy()"
+                    data-secondary-action=":: $ctrl.onCancel()"
+                    data-secondary-label="{{:: 'nutanix_dashboard_cluster_redeploy_modal_cancel' | translate }}"
+                    on-dismiss="$ctrl.onCancel()"
+                >
+                    <p
+                        data-translate="nutanix_dashboard_cluster_redeploy_modal_description"
+                    ></p>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
 </div>
