@@ -1,6 +1,6 @@
-const getMonorepoPackages = require('get-monorepo-packages');
-const path = require('path');
-const pick = require('lodash/pick');
+import getMonorepoPackages from 'get-monorepo-packages';
+import path from 'path';
+import pick from 'lodash/pick.js';
 
 // Get all workspaces defined in the `package.json` file.
 const { workspaces } = require('./../../../../package.json');
