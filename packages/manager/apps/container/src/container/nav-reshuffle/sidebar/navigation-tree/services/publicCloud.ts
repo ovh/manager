@@ -38,6 +38,7 @@ const pciNode: Node = {
         'snapshot',
         'instance-backup',
         'archive',
+        'cold-archive',
       ],
       forceVisibility: true,
       children: [
@@ -62,18 +63,6 @@ const pciNode: Node = {
           },
           features: ['object-storage'],
           forceVisibility: true,
-        },
-        {
-          id: 'pci-databases',
-          translation: 'sidebar_pci_databases',
-          serviceType: 'CLOUD_PROJECT_DATABASE',
-          routing: {
-            application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/storages/databases',
-          },
-          features: ['databases'],
-          forceVisibility: true,
-          tag: NodeTag.NEW,
         },
         {
           id: 'pci-volume-snapshot',
@@ -107,6 +96,30 @@ const pciNode: Node = {
           },
           features: ['archive'],
           forceVisibility: true,
+        },
+        {
+          id: 'pci-cold-archive',
+          translation: 'sidebar_pci_cold_archive',
+          serviceType: 'CLOUD_PROJECT_STORAGE_COLD_ARCHIVES',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/storages/cold-archive',
+          },
+          features: ['cold-archive'],
+          forceVisibility: true,
+          tag: NodeTag.NEW,
+        },
+        {
+          id: 'pci-databases',
+          translation: 'sidebar_pci_databases',
+          serviceType: 'CLOUD_PROJECT_DATABASE',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/storages/databases',
+          },
+          features: ['databases'],
+          forceVisibility: true,
+          tag: NodeTag.NEW,
         },
       ],
     },
