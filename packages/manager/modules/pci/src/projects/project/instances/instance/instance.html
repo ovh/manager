@@ -8,7 +8,7 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-ng-if="!$ctrl.vncDisabled"
+            data-ng-if="!$ctrl.vncDisabled && $ctrl.PciProjectsProjectInstanceService.vncConsoleIsAvailable($ctrl.instance.flavor.type)"
             data-href="{{ $ctrl.consoleLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.consoleLink"
             ><span

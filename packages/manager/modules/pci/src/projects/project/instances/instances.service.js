@@ -19,6 +19,7 @@ import {
   FLAVORS_WITHOUT_AUTOMATED_BACKUP,
   FLAVORS_WITHOUT_SOFT_REBOOT,
   FLAVORS_WITHOUT_SUSPEND,
+  FLAVORS_WITHOUT_VNC,
 } from './instances.constants';
 
 export default class PciProjectInstanceService {
@@ -59,6 +60,7 @@ export default class PciProjectInstanceService {
     this.PciProjectRegions = PciProjectRegions;
     this.FLAVORS_WITHOUT_SOFT_REBOOT = FLAVORS_WITHOUT_SOFT_REBOOT;
     this.FLAVORS_WITHOUT_SUSPEND = FLAVORS_WITHOUT_SUSPEND;
+    this.FLAVORS_WITHOUT_VNC = FLAVORS_WITHOUT_VNC;
   }
 
   getAll(projectId) {
@@ -785,5 +787,9 @@ export default class PciProjectInstanceService {
     return !this.FLAVORS_WITHOUT_SUSPEND.find((value) =>
       value.test(flavorType),
     );
+  }
+
+  vncConsoleIsAvailable(flavorType) {
+    return !this.FLAVORS_WITHOUT_VNC.find((value) => value.test(flavorType));
   }
 }
