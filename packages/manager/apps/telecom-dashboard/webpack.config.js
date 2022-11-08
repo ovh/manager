@@ -59,6 +59,10 @@ module.exports = (env = {}) => {
         path.resolve(__dirname, 'node_modules'),
         path.resolve(__dirname, '../../../node_modules'),
       ],
+      fallback: {
+        stream: require.resolve('stream-browserify'),
+        os: require.resolve('os-browserify/browser'),
+      },
       mainFields: ['module', 'browser', 'main'],
     },
     plugins: [

@@ -11,7 +11,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "build": "webpack --env.production",
+    "build": "webpack --env production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-telecom' --include-dependencies -- npm run build --if-present",
@@ -128,6 +128,7 @@
     "ngSmoothScroll": "d-oliveros/angular-smooth-scroll#~1.7.1",
     "oclazyload": "^1.1.0",
     "office-ui-fabric-core": "^11.0.0",
+    "os-browserify": "^0.3.0",
     "ovh-api-services": "^16.0.0",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ng-input-password": "^1.2.5",
@@ -136,6 +137,7 @@
     "popper.js": "^1.16.1",
     "punycode": "^1.4.1",
     "regenerator-runtime": "^0.13.7",
+    "stream-browserify": "^3.0.0",
     "ui-select": "^0.19.8",
     "urijs": "^1.18.0",
     "validator": "^13.7.0",
@@ -144,8 +146,8 @@
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^5.0.0 || ^6.0.0",
     "glob": "^7.1.4",
-    "webpack": "^4.44.2",
-    "webpack-merge": "^4.2.2"
+    "webpack": "^5.74.0",
+    "webpack-merge": "^5.0.2"
   },
   "regions": [
     "EU"

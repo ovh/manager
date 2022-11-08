@@ -1,5 +1,5 @@
 const glob = require('glob');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 const webpack = require('webpack');

@@ -11,7 +11,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "build": "webpack --env.production",
+    "build": "webpack --env production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-dedicated' --include-dependencies -- npm run build --if-present",
@@ -154,8 +154,8 @@
     "@ovh-ux/manager-webpack-config": "^5.0.0 || ^6.0.0",
     "eslint-plugin-angular": "^4.0.1",
     "glob": "^7.1.4",
-    "webpack": "^4.44.2",
-    "webpack-merge": "^4.2.2"
+    "webpack": "^5.74.0",
+    "webpack-merge": "^5.0.2"
   },
   "regions": [
     "CA",

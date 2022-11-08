@@ -11,7 +11,7 @@ module.exports = ({ name, description, regions }) => ({
   license: 'BSD-3-Clause',
   author: 'OVH SAS',
   scripts: {
-    build: 'webpack --env.production',
+    build: 'webpack --env production',
     dev: 'webpack-dev-server',
     'dev:watch': 'yarn run dev',
     start: `lerna exec --stream --scope='@ovh-ux/manager-${name}-app' --include-dependencies -- npm run build --if-present`,

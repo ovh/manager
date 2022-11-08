@@ -11,7 +11,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "build": "webpack --env.production",
+    "build": "webpack --env production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-overthebox-app' --include-dependencies -- npm run build --if-present",
@@ -52,10 +52,12 @@
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
+    "os-browserify": "^0.3.0",
     "ovh-api-services": "^16.0.0",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ui-kit-bs": "^4.2.0",
     "regenerator-runtime": "^0.13.7",
+    "stream-browserify": "^3.0.0",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
