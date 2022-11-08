@@ -1,6 +1,0 @@
-{
-  "private_database_order_private_sql_title": "Bestellen Sie ein privates SQL",
-  "private_database_order_private_sql_error": "Bei der Bestellung einer SQL-Datenbank ist ein Fehler aufgetreten: {{message}}",
-  "private_database_order_private_sql_success": "Ihr <a href=\"{{orderUrl}}\" target=\"_blank\">Bestellformular</a> wurde erfolgreich generiert. Ihr Produkt wird aktiviert, sobald Sie es validiert haben.",
-  "private_database_order_private_sql_success_activation": "Ihre Aktivierung wurde erfolgreich abgeschlossen. Ihr Produkt wird in wenigen Minuten aktiviert."
-}

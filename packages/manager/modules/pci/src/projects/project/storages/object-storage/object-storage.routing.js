@@ -4,6 +4,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.object-storage', {
     url: '/objects',
     component: 'pciProjectStorageObjectStorage',
+    params: {
+      trackingTag: null,
+    },
     onEnter: /* @ngInject */ (pciFeatureRedirect) => {
       return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.OBJECT_STORAGE);
     },
@@ -21,6 +24,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       archive: () => false,
+      tagPageParams: /* @ngInject */ ($transition$) =>
+        $transition$.params().trackingTag,
 
       trackingPrefix: () =>
         'PublicCloud::pci::projects::project::storages::objects::',
@@ -98,6 +103,40 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+
+      goBackWithTrackingPage: /* @ngInject */ (
+        $state,
+        projectId,
+        CucCloudMessage,
+      ) => ({
+        message = false,
+        type = 'success',
+        reload = undefined,
+        trackingTag = null,
+      }) => {
+        const promise = $state.go(
+          'pci.projects.project.storages.object-storage.objects',
+          { projectId, trackingTag },
+          {
+            reload:
+              reload === undefined ? message && type === 'success' : reload,
+          },
+        );
+
+        if (message) {
+          promise.then(() => {
+            return CucCloudMessage[type](
+              message,
+              'pci.projects.project.storages.containers.container',
+            );
+          });
+        }
+        return promise;
+      },
+      trackPage: /* @ngInject */ (atInternet) => (hit) =>
+        atInternet.trackPage({
+          name: `PublicCloud_object_storage${hit}`,
+        }),
 
       breadcrumb: () => null,
     },

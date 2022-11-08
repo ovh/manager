@@ -171,11 +171,16 @@ export default class PciStoragesContainersAddController {
   }
 
   add() {
+    const containerOffer =
+      this.container.offer === 'storage' ? 'standard' : this.container.offer;
+    const containerTypeOffer = this.container.containerType
+      ? `${this.container.containerType}::`
+      : '';
+    const dataCenterLocation = this.container.region.datacenterLocation;
+
     this.atInternet.trackClick({
-      name: `storage_container_create_${
-        this.container.offer === 'storage' ? 'standard' : this.container.offer
-      }_${this.container.region?.datacenterLocation}_${this.container
-        .containerType || 'standard'}`,
+      name: `storage_container_create_${containerOffer}_${dataCenterLocation}_${this
+        .container.containerType || 'standard'}`,
       type: 'action',
     });
     this.isLoading = true;
@@ -190,15 +195,20 @@ export default class PciStoragesContainersAddController {
           CONTAINER_USER_ASSOCIATION_MODES.CREATE
             ? 'pci_projects_project_storages_containers_add_success_message_with_user_creation'
             : 'pci_projects_project_storages_containers_add_success_message';
-        return this.goBack(
-          this.$translate.instant(message, {
+
+        return this.goBackWithTrackingPage({
+          message: this.$translate.instant(message, {
             container: this.container.name,
             userName: this.userModel.createMode?.user?.username,
           }),
-        );
+          trackingTag: `_add::${containerOffer}_${dataCenterLocation}::${containerTypeOffer}creation_confirmation`,
+        });
       })
       .catch((err) => {
-        this.CucCloudMessage.error(
+        this.trackPage(
+          `_add::${containerOffer}_${dataCenterLocation}::${containerTypeOffer}creation_error`,
+        );
+        return this.CucCloudMessage.error(
           this.$translate.instant(
             'pci_projects_project_storages_containers_add_error_post',
             { message: get(err, 'data.message', '') },

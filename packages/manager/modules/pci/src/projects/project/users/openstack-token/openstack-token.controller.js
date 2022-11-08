@@ -12,6 +12,7 @@ export default class PciUsersOpenstackTokenController {
     this.user = {
       id: this.userId,
       password: null,
+      username: this.user.username,
     };
     this.token = null;
   }

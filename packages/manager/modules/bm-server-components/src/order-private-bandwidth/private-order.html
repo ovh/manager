@@ -46,10 +46,12 @@
                     </div>
                     <div class="col-md-3 pl-0">
                         <ovh-manager-catalog-price
-                            data-price="plan.prices[2].priceInUcents"
+                            data-price="plan.prices[2].priceInUcents / plan.prices[2].interval"
                             data-tax="plan.prices[2].tax"
                             data-interval-unit="{{plan.prices[2].intervalUnit}}"
                             data-user="$ctrl.user"
+                            data-perform-rounding="false"
+                            data-maximum-fraction-digits="3"
                         >
                         </ovh-manager-catalog-price>
                     </div>
