@@ -1,6 +1,4 @@
 const devServerConfig = require('@ovh-ux/manager-dev-server-config');
-const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const yn = require('yn');
 
 const serverProxy = { ...devServerConfig.proxy };
@@ -29,20 +27,18 @@ module.exports = (env) => {
   }
   return {
     mode: 'development',
-    plugins: [
-      new DuplicatePackageCheckerPlugin(),
-      new FriendlyErrorsWebpackPlugin(),
-    ],
     devServer: {
-      before(app) {
-        app.get('/auth', sso.auth.bind(sso));
-        app.get('/auth/check', sso.checkAuth.bind(sso));
+      setupMiddlewares(middlewares, devServer) {
+        devServer.app.get('/auth', sso.auth.bind(sso));
+        devServer.app.get('/auth/check', sso.checkAuth.bind(sso));
+        return middlewares;
       },
-      clientLogLevel: 'none',
-      logLevel: 'silent',
       host: env.host || process.env.npm_package_config_host || 'localhost',
       https: env.https || yn(process.env.npm_package_config_https) || false,
-      overlay: true,
+      client: {
+        overlay: true,
+        logging: 'none',
+      },
       port:
         env.port ||
         Number.parseInt(process.env.npm_package_config_port, 10) ||
@@ -50,6 +46,8 @@ module.exports = (env) => {
           ? 9001
           : 9000,
       proxy,
+    },
+    output: {
       publicPath: isContainer ? '/app' : '/',
     },
   };
