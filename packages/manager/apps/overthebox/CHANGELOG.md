@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [5.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.7.1...@ovh-ux/manager-overthebox-app@5.7.2) (2022-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-overthebox-app
+
+
+
+
+
 ## [5.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.7.0...@ovh-ux/manager-overthebox-app@5.7.1) (2022-07-27)
 
 
@@ -474,6 +487,3 @@ yarn add @ovh-ux/manager-core
 ### Features
 
 * add new worspace to test overTheBox module in standalone ([b6ec049](https://github.com/ovh-ux/manager/commit/b6ec049))
-
-
-

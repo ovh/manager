@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.4.1...@ovh-ux/manager-bm-server-components@1.4.2) (2022-11-08)
+
+
+### Bug Fixes
+
+* **dedicated.server:** display proper price ([#8258](https://github.com/ovh/manager/issues/8258)) ([0e6ee0b](https://github.com/ovh/manager/commit/0e6ee0b449238c4ad05601775f55baf55a311350))
+
+
+
+
+
 ## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.4.0...@ovh-ux/manager-bm-server-components@1.4.1) (2022-08-17)
 
 
@@ -95,6 +111,3 @@
 ### BREAKING CHANGES
 
 * init `@ovh-ux/manager-bm-server-components` module
-
-
-

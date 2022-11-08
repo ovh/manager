@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [7.14.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.14.0...@ovh-ux/ng-ovh-telecom-universe-components@7.14.1) (2022-11-08)
+
+
+### Bug Fixes
+
+* **telecom:** display correct unit for megabits per second ([#8003](https://github.com/ovh/manager/issues/8003)) ([15340d8](https://github.com/ovh/manager/commit/15340d8f27ba192718f5cbe0625bbd635c0ed106))
+
+
+
+
+
 # [7.14.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.13.1...@ovh-ux/ng-ovh-telecom-universe-components@7.14.0) (2022-10-10)
 
 
@@ -866,6 +882,3 @@ Signed-off-by: Frederic Espiau <frederic.espiau@corp.ovh.com>
 
 
 ## 1.0.1 (2018-11-16)
-
-
-

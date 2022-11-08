@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.25.1...@ovh-ux/manager-vps@2.26.0) (2022-11-08)
+
+
+### Features
+
+* **vps.clouddb:** clean clouddb order page ([#8073](https://github.com/ovh/manager/issues/8073)) ([92c7ad6](https://github.com/ovh/manager/commit/92c7ad6fd724a45a1ccfa5d6585e6a70d4fc7d47))
+
+
+
+
+
 ## [2.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.25.0...@ovh-ux/manager-vps@2.25.1) (2022-10-24)
 
 

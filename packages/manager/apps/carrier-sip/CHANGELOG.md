@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@2.5.1...@ovh-ux/manager-carrier-sip-app@2.5.2) (2022-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-carrier-sip-app
+
+
+
+
+
 ## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@2.5.0...@ovh-ux/manager-carrier-sip-app@2.5.1) (2022-07-27)
 
 
@@ -400,6 +413,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### BREAKING CHANGES
 
 * **carrier.sip:** init `@ovh-ux/manager-carrier-sip-app` application.
-
-
-
