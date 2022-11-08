@@ -18,6 +18,8 @@ export const FLAVORS_WITHOUT_SOFT_REBOOT = [/baremetal/];
 
 export const FLAVORS_WITHOUT_SUSPEND = [/baremetal/];
 
+export const FLAVORS_WITHOUT_VNC = [/baremetal/];
+
 export const POLLER_INSTANCE_NAMESPACE = {
   SHELVE: 'cloud.project.instance.shelve',
   UNSHELVE: 'cloud.project.instance.unshelve',
@@ -43,6 +45,7 @@ export default {
   FLAVORS_WITHOUT_AUTOMATED_BACKUP,
   FLAVORS_WITHOUT_SOFT_REBOOT,
   FLAVORS_WITHOUT_SUSPEND,
+  FLAVORS_WITHOUT_VNC,
   POLLER_INSTANCE_NAMESPACE,
   TYPES_TO_EXCLUDE,
   FLAVORS_FEATURES_FLIPPING_MAP,
