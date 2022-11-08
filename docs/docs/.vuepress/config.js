@@ -1,9 +1,9 @@
-const fs = require('fs');
-const { logger } = require('@vuepress/shared-utils');
+import fs from 'fs';
+import { defaultTheme } from '@vuepress/theme-default';
+import { searchPlugin } from '@vuepress/plugin-search';
+import { groupedWorkspaces } from './cli/prebuild';
 
-const { groupedWorkspaces } = require('./cli/prebuild');
-
-module.exports = {
+export default {
   base: '/manager/',
   title: 'Manager',
   description: 'OVHcloud Control Panel Documentation',
@@ -11,24 +11,27 @@ module.exports = {
     ['link', { rel: 'icon', href: `/assets/img/favicon.png` }],
     ['link', { rel: 'apple-touch-icon', href: `/assets/img/touchicon-180.png` }],
   ],
-  themeConfig: {
+  plugins: [
+    searchPlugin({}),
+  ],
+  theme: defaultTheme({
     docsDir: 'docs/docs',
     editLinks: true,
     logo: '/assets/img/logo-ovhcloud.svg',
-    nav: [
+    navbar: [
       { text: 'Guide', link: '/guide/' },
       { text: 'How To', link: '/how-to/' },
       {
         text: 'Links',
-        items: [
+        children: [
           { text: 'Manager', link: 'https://ovh.com/manager' },
           {
             text: 'Stay Tuned',
-            items: [{ text: 'Discussions', link: 'https://github.com/ovh/manager/discussions' }],
+            children: [{ text: 'Discussions', link: 'https://github.com/ovh/manager/discussions' }],
           },
           {
             text: 'Contributing',
-            items: [
+            children: [
               {
                 text: 'Contribute',
                 link: '/contributing',
@@ -37,7 +40,7 @@ module.exports = {
           },
           {
             text: 'Help',
-            items: [
+            children: [
               {
                 text: 'Issues',
                 link: 'https://github.com/ovh/manager/issues',
@@ -46,7 +49,7 @@ module.exports = {
           },
           {
             text: 'Resources',
-            items: [
+            children: [
               { text: 'API Console', link: 'https://api.ovh.com/console' },
               { text: 'Blog', link: 'https://www.ovh.com/blog/' },
               {
@@ -81,20 +84,18 @@ module.exports = {
         },
       ],
     },
-  },
+  }),
   extendCli(cli) {
     cli
       .command('prebuild [targetDir]', '')
       .option('--debug', 'display info in debug mode')
       .action((dir = '.') => {
-        logger.wait('Pre-building file...');
         // Output to a static file.
         return fs.writeFile(
           `${dir}/.vuepress/public/assets/json/packages.json`,
           JSON.stringify(groupedWorkspaces),
           (err) => {
             if (err) throw err;
-            logger.success('Pre-build file has been successfully generated.');
           },
         );
       });

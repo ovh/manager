@@ -4,13 +4,14 @@
   "private": true,
   "description": "Manager documentation deployed with GitHub Pages",
   "scripts": {
-    "build": "vuepress prebuild docs && vuepress build docs",
+    "build": "vuepress build docs",
     "deploy": "yarn run build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation [skip ci]\"",
-    "dev": "vuepress prebuild docs && vuepress dev docs"
+    "dev": "vuepress dev docs"
   },
   "devDependencies": {
+    "@vuepress/plugin-search": "^2.0.0-beta.53",
     "get-monorepo-packages": "^1.2.0",
     "gh-pages": "^2.2.0",
-    "vuepress": "^1.7.1"
+    "vuepress-webpack": "^2.0.0-beta.53"
   }
 }

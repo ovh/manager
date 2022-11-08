@@ -46,8 +46,6 @@
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-angular": "^17.1.0",
-    "@lerna/package-graph": "^3.18.5",
-    "@lerna/project": "^3.21.0",
     "@ovh-ux/codename-generator": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",

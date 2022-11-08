@@ -1,10 +1,10 @@
 ---
 home: true
-actionText: Get Started →
-actionLink: /guide/
+actions:
+  - text: Get Started →
+    link: /guide/
 footer: BSD 3-Clause Licensed | Copyright © 2020-present OVH SAS
 ---
-
 <div class="features">
   <div class="feature">
     <h2>Application</h2>
@@ -14,7 +14,7 @@ footer: BSD 3-Clause Licensed | Copyright © 2020-present OVH SAS
       rel="noopener noreferrer"
       target="_blank">
       ovh.com/manager
-      <icon-external-link/>
+      <external-link-icon/>
     </a>
   </div>
   <div class="feature">
@@ -25,7 +25,7 @@ footer: BSD 3-Clause Licensed | Copyright © 2020-present OVH SAS
       rel="noopener noreferrer"
       target="_blank">
       ovhcloud.com
-      <icon-external-link/>
+      <external-link-icon/>
     </a>
   </div>
   <div class="feature">
@@ -36,7 +36,7 @@ footer: BSD 3-Clause Licensed | Copyright © 2020-present OVH SAS
       rel="noopener noreferrer"
       target="_blank">
       docs.ovh.com
-      <icon-external-link/>
+      <external-link-icon/>
     </a>
   </div>
 </div>

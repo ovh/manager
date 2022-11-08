@@ -1,0 +1,15 @@
+:root {
+  --c-brand: #0050d7;
+  --c-text: #00185e;
+  --c-text-lightest: #00185e;
+}
+
+.navbar {
+  .site-name {
+    display: none;
+  }
+  .search-box {
+    order: -1;
+    margin-right: 1rem;
+  }
+}
