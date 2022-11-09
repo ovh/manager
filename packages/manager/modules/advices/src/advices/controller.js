@@ -1,7 +1,4 @@
-const ADVICE_TYPE_ENUM = {
-  RETENTION: 'retention',
-  UPSELL_CROSS_SELL: 'upsell-cross-sell',
-};
+import { ADVICE_TYPE_ENUM, RECOMMENDER_SYSTEM } from './constants';
 
 export default class AdvicesCtrl {
   /* @ngInject */
@@ -79,7 +76,12 @@ export default class AdvicesCtrl {
 
   loadRecommenderSystemAdvices() {
     return this.$http
-      .get('/me/recommendations')
+      .get('/me/recommendations', {
+        params: {
+          max: RECOMMENDER_SYSTEM.MAX_RECOMMENDATION,
+          range: this.recommanderRange,
+        },
+      })
       .then(({ data }) => data)
       .catch(() => []); // do not show any advices on error
   }
@@ -139,10 +141,16 @@ export default class AdvicesCtrl {
             },
           ],
         };
-      });
+      })
+      .reduce((advicesAcc, advice) => {
+        if (advicesAcc.length < RECOMMENDER_SYSTEM.MAX_RECOMMENDATION) {
+          advicesAcc.push(advice);
+        }
 
-    // return only one recommendation
-    return advices.length > 0 ? [advices[0]] : [];
+        return advicesAcc;
+      }, []); // get only the max souhaitable advices number;
+
+    return advices;
   }
 
   getUrl() {

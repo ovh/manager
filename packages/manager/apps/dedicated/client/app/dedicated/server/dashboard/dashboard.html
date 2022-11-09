@@ -322,8 +322,10 @@
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
-                <!-- Monitoring -->
+
+                <!--Legacy monitoring options-->
                 <oui-tile-definition
+                    data-ng-if="!$ctrl.isMonitoringOptionsAvailable"
                     data-term="{{ ::'server_configuration_monitoring' | translate }}"
                 >
                     <oui-tile-description>
@@ -346,7 +348,7 @@
                         data-ng-if="!$ctrl.server.isExpired"
                     >
                         <oui-action-menu-item
-                            data-ui-sref="app.dedicated-server.server.dashboard.monitoringUpdate"
+                            data-ui-sref="app.dedicated-server.server.dashboard.monitoringLegacyUpdate"
                             data-ng-if="$ctrl.server.monitored"
                         >
                             <span
@@ -354,7 +356,7 @@
                             ></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
-                            data-ui-sref="app.dedicated-server.server.dashboard.monitoringUpdate"
+                            data-ui-sref="app.dedicated-server.server.dashboard.monitoringLegacyUpdate"
                             data-ng-if="!$ctrl.server.monitored"
                         >
                             <span
@@ -363,6 +365,36 @@
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
+
+                <!--Monitoring options-->
+                <oui-tile-definition
+                    data-ng-if="$ctrl.isMonitoringOptionsAvailable"
+                    data-term="{{ ::'server_configuration_monitoring' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
+                                    'oui-badge_success': $ctrl.server.monitored,
+                                    'oui-badge_warning': !$ctrl.server.monitored
+                                }"
+                            data-translate="server_configuration_monitoring_status_{{$ctrl.getMonitoringStatus()}}"
+                            data-oui-tooltip="{{ ('server_configuration_monitoring_status_tooltip_' + $ctrl.getMonitoringStatus()) | translate }}"
+                            data-oui-tooltip-placement="top-start"
+                        ></span>
+                    </oui-tile-description>
+                    <oui-tile-description>
+                        <oui-button
+                            data-variant="link"
+                            data-icon-right="oui-icon-chevron-right"
+                            data-on-click="$ctrl.onMonitoringUpdateClick()"
+                        >
+                            <span translate="server_configuration_monitoring_cta_setting"></span>
+                        </oui-button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+
                 <!-- No intervention -->
                 <!--
                 TODO: Needs to be uncommented (relates to MANAGER-7799).
@@ -845,6 +877,7 @@
         <div class="col-md-4 mb-3" data-ng-if="!$ctrl.server.isExpired">
             <ovh-advices
                 service-type="dedicated-server"
+                recommander-range="baremetal"
                 service-name="{{ ::$ctrl.server.name }}"
             >
             </ovh-advices>

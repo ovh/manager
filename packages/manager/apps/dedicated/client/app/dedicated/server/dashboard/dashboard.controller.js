@@ -245,6 +245,23 @@ export default class DedicatedServerDashboard {
       });
   }
 
+  getMonitoringStatus() {
+    const { monitored, noIntervention } = this.server;
+    let monitoringStatus = 'disabled';
+
+    // proactive intervention
+    if (monitored && !noIntervention) {
+      monitoringStatus = 'proactive';
+    }
+
+    // no proactive intervention
+    if (monitored && noIntervention) {
+      monitoringStatus = 'no-proactive';
+    }
+
+    return monitoringStatus;
+  }
+
   goToMonitoring() {
     return this.$state.go('app.dedicated-server.server.dashboard.monitoring');
   }
@@ -385,6 +402,15 @@ export default class DedicatedServerDashboard {
       .finally(() => {
         this.updatingNoIntervention = false;
       });
+  }
+
+  onMonitoringUpdateClick() {
+    this.atInternet.trackClick({
+      name: 'dedicated::dedicated-server::server::dashboard::update-monitoring',
+      type: 'action',
+    });
+
+    return this.goToMonitoringUpdate();
   }
 
   displayMRTG() {

@@ -5,10 +5,11 @@ export default {
   controller,
   template,
   bindings: {
+    additionalIpInstances: '<',
     createInstanceUrl: '<',
     defaults: '<',
+    floatingIpInstances: '<',
     goBack: '<',
-    instances: '<',
     projectId: '<',
     publicCloudCatalog: '<',
     trackClick: '<',
