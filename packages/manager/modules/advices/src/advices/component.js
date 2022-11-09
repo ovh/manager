@@ -92,6 +92,11 @@ export default {
     adviceType: '@',
 
     /**
+     * Type of recommender system advice. Available values are ['baremetal', 'domain', 'public_cloud', 'saas', 'vps', 'web', 'telephony', 'netapp']
+     */
+    recommanderRange: '@',
+
+    /**
      * callback handler called on load of advices
      * @type {Function}
      */
