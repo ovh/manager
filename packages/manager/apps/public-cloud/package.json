@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "4.20.9",
+  "version": "4.20.10",
   "private": true,
   "description": "OVHcloud Public Cloud control panel.",
   "repository": {
@@ -57,7 +57,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
     "@ovh-ux/ng-ui-router-layout": "^4.1.0",
-    "@ovh-ux/shell": "^1.6.1",
+    "@ovh-ux/shell": "^1.7.0",
     "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",

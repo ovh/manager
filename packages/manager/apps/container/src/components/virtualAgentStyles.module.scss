@@ -5,6 +5,14 @@ $toggle-button-size: 54px;
   height: fit-content !important;
 }
 
+.hidden {
+  visibility: hidden !important;
+}
+
+.visible {
+  visibility: visible !important;
+}
+
 .virtualAgent {
   z-index: 950;
   width: 320px;

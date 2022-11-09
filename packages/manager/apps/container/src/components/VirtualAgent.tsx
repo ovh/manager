@@ -1,11 +1,13 @@
 import React, {
   CSSProperties,
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
 import { useLocalStorage } from 'react-use';
+import dialogPolyfill from 'dialog-polyfill';
+import { useMediaQuery } from 'react-responsive';
+
 import styles from './virtualAgentStyles.module.scss';
 
 interface VirtualAgentProps {
@@ -50,9 +52,10 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
     `virtual_agent_${name}_state`,
   );
   const tabletBreakpoint = 1200;
-  const [isMobile, setIsMobile] = useState(
-    window.matchMedia(`(max-width: ${tabletBreakpoint}px)`).matches,
-  );
+
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${tabletBreakpoint}px)`,
+  });
 
   const toggle = () => {
     setReduced(!reduced);
@@ -84,19 +87,8 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
   };
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia(`(max-width: ${tabletBreakpoint}px)`);
-    const handleBreakpointChange = (media: MediaQueryListEvent) => {
-      setIsMobile(media.matches);
-    };
+    dialogPolyfill.registerDialog(dialog.current);
 
-    mediaQuery.addEventListener('change', (media) =>
-      handleBreakpointChange(media),
-    );
-
-    return mediaQuery.removeEventListener('change', handleBreakpointChange);
-  }, []);
-
-  useLayoutEffect(() => {
     if (useStorage) {
       if (storage) {
         start(
@@ -111,20 +103,20 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
     }
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (agentStarted) {
       start(agentStarted, false);
     }
   }, [agentStarted]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!agentReduced) {
       setReduced(false);
       if (onReduce) onReduce();
     }
   }, [agentReduced]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (started && !reduced) {
       dialog.current.show();
       // This next line is for the focus when clicking with the keyboard
@@ -134,7 +126,7 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
       mainFrame.current.contentWindow.focus();
       setStorage('started');
     } else {
-      dialog.current.close();
+      if (dialog?.current?.open) dialog.current.close();
 
       if (started && reduced) setStorage('reduced');
       else removeStorage();
@@ -152,8 +144,11 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
     >
       <dialog
         ref={dialog}
-        className={`w-100 p-0 border-0 ${styles.dialog}`}
+        className={`w-100 p-0 border-0 ${styles.dialog} ${
+          !dialog?.current?.open ? styles.hidden : styles.visible
+        }`}
         title={name}
+        open
       >
         <article
           className={`${styles.dialog_content} d-flex h-100 flex-column`}
@@ -192,7 +187,6 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
           </div>
         </article>
       </dialog>
-
       {started && (
         <div
           role="group"
