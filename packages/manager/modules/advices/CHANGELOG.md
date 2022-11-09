@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.5.0...@ovh-ux/manager-advices@1.6.0) (2022-11-09)
+
+
+### Features
+
+* **apps:** scope rs recommendations ([#8328](https://github.com/ovh/manager/issues/8328)) ([16a40f9](https://github.com/ovh/manager/commit/16a40f9cf5aa4cfcd2b483bcfed5e974ab31dded))
+
+
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.4.0...@ovh-ux/manager-advices@1.5.0) (2022-10-17)
 
 
@@ -126,6 +142,3 @@
 * **uscs:** init `@ovh-ux/manager-advices` module
 
 Signed-off-by: Ravindra Adireddy <ravindra.adireddy@ovhcloud.com>
-
-
-

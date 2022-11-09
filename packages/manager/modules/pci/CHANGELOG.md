@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.98.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.97.0...@ovh-ux/manager-pci@5.98.0) (2022-11-09)
+
+
+### Bug Fixes
+
+* **pci.project:** instances for additional ip order ([fc4c706](https://github.com/ovh/manager/commit/fc4c70668a1f6fc10921602c74c9ba7ffb7c6df1))
+
+
+### Features
+
+* **apps:** scope rs recommendations ([#8328](https://github.com/ovh/manager/issues/8328)) ([16a40f9](https://github.com/ovh/manager/commit/16a40f9cf5aa4cfcd2b483bcfed5e974ab31dded))
+
+
+
+
+
 # [5.97.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.96.2...@ovh-ux/manager-pci@5.97.0) (2022-11-08)
 
 

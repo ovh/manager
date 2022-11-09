@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.47.0...@ovh-ux/manager-telecom@13.48.0) (2022-11-09)
+
+
+### Features
+
+* **apps:** scope rs recommendations ([#8328](https://github.com/ovh/manager/issues/8328)) ([16a40f9](https://github.com/ovh/manager/commit/16a40f9cf5aa4cfcd2b483bcfed5e974ab31dded))
+
+
+
+
+
 # [13.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.46.4...@ovh-ux/manager-telecom@13.47.0) (2022-11-08)
 
 

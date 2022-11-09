@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.26.0...@ovh-ux/manager-vps@2.27.0) (2022-11-09)
+
+
+### Features
+
+* **apps:** scope rs recommendations ([#8328](https://github.com/ovh/manager/issues/8328)) ([16a40f9](https://github.com/ovh/manager/commit/16a40f9cf5aa4cfcd2b483bcfed5e974ab31dded))
+
+
+
+
+
 # [2.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.25.1...@ovh-ux/manager-vps@2.26.0) (2022-11-08)
 
 
