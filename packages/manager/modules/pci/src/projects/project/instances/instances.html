@@ -202,7 +202,7 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-ng-if="$ctrl.isAdditionalIpsAvailable"
+                data-ng-if="$ctrl.isAdditionalIpsAvailable && $ctrl.PciProjectsProjectInstanceService.additionalIpsIsAvailable($row.flavor.type)"
                 data-disabled="$row.hasPublicIpV4() && $row.hasPublicIpV6()"
                 data-on-click="$ctrl.assignFloatingIp($row)"
             >

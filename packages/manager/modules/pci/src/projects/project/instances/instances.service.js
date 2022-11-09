@@ -20,6 +20,7 @@ import {
   FLAVORS_WITHOUT_SOFT_REBOOT,
   FLAVORS_WITHOUT_SUSPEND,
   FLAVORS_WITHOUT_VNC,
+  FLAVORS_WITHOUT_ADDITIONAL_IPS,
 } from './instances.constants';
 
 export default class PciProjectInstanceService {
@@ -61,6 +62,7 @@ export default class PciProjectInstanceService {
     this.FLAVORS_WITHOUT_SOFT_REBOOT = FLAVORS_WITHOUT_SOFT_REBOOT;
     this.FLAVORS_WITHOUT_SUSPEND = FLAVORS_WITHOUT_SUSPEND;
     this.FLAVORS_WITHOUT_VNC = FLAVORS_WITHOUT_VNC;
+    this.FLAVORS_WITHOUT_ADDITIONAL_IPS = FLAVORS_WITHOUT_ADDITIONAL_IPS;
   }
 
   getAll(projectId) {
@@ -791,5 +793,11 @@ export default class PciProjectInstanceService {
 
   vncConsoleIsAvailable(flavorType) {
     return !this.FLAVORS_WITHOUT_VNC.find((value) => value.test(flavorType));
+  }
+
+  additionalIpsIsAvailable(flavorType) {
+    return !this.FLAVORS_WITHOUT_ADDITIONAL_IPS.find((value) =>
+      value.test(flavorType),
+    );
   }
 }
