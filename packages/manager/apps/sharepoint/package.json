@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sharepoint-app",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "private": true,
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-sharepoint-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-advices": "^1.6.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.1.0 || ^2.0.0",

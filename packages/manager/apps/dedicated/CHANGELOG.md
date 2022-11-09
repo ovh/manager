@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.34.3...@ovh-ux/manager-dedicated@17.35.0) (2022-11-09)
+
+
+### Features
+
+* **apps:** scope rs recommendations ([#8328](https://github.com/ovh/manager/issues/8328)) ([16a40f9](https://github.com/ovh/manager/commit/16a40f9cf5aa4cfcd2b483bcfed5e974ab31dded))
+* **dedicated.server:** baremetal monitoring options ([#8354](https://github.com/ovh/manager/issues/8354)) ([b375268](https://github.com/ovh/manager/commit/b3752684f346d240eaa9f53b12c6ed751638a139))
+
+
+
+
+
 ## [17.34.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.34.2...@ovh-ux/manager-dedicated@17.34.3) (2022-11-08)
 
 

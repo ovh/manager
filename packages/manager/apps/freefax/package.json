@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-freefax-app",
-  "version": "7.1.7",
+  "version": "7.1.8",
   "private": true,
   "description": "Freefax standalone application.",
   "repository": {
@@ -19,7 +19,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-freefax-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-advices": "^1.6.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-freefax": "^6.0.0 || ^7.0.0",
