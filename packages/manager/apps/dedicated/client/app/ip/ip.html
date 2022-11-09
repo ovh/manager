@@ -46,6 +46,30 @@
     </header>
 
     <div>
+        <oui-message
+            class="mb-3"
+            data-ng-if="isRepricingBannerShown"
+            data-type="info"
+        >
+            <div class="font-weight-bold">
+                <p data-translate="ip_repricing_banner" class="mb-0"></p>
+                <ul>
+                    <li data-translate="ip_repricing_banner_list_item_1"></li>
+                    <li data-translate="ip_repricing_banner_list_item_2"></li>
+                </ul>
+            </div>
+            <oui-button
+                data-variant="link"
+                data-size="s"
+                data-on-click="onRepricingBannerClick()"
+            >
+                <span data-translate="ip_repricing_banner_link"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </oui-button>
+        </oui-message>
         <div data-ovh-alert></div>
         <div data-ovh-alert="polling_action"></div>
         <div data-ovh-alert="otrs_alert"></div>

@@ -19,6 +19,9 @@ export default /* @ngInject */ function IpMainCtrl(
   goToByoipConfiguration,
   goToAgoraOrder,
   trackClick,
+  trackPage,
+  isRepricingBannerShown,
+  openBannerRepricePage,
 ) {
   $scope.currentUser = currentUser;
   $scope.currentActiveLink = currentActiveLink;
@@ -31,6 +34,21 @@ export default /* @ngInject */ function IpMainCtrl(
   $scope.worldPart = coreConfig.getRegion();
   $scope.BRING_YOUR_OWN_IP = BRING_YOUR_OWN_IP;
   $scope.ADDITIONAL_IP = ADDITIONAL_IP;
+
+  $scope.isRepricingBannerShown = isRepricingBannerShown;
+  $scope.onRepricingBannerClick = function onRepricingBannerClick() {
+    openBannerRepricePage();
+    trackClick(
+      DASHBOARD_TRACKING_PREFIX.DEFAULT,
+      DASHBOARD_TRACKING_HIT.REPRICING_BANNER,
+    );
+  };
+  if (isRepricingBannerShown) {
+    trackPage(
+      DASHBOARD_TRACKING_PREFIX.DEFAULT,
+      DASHBOARD_TRACKING_PREFIX.REPRICING_BANNER,
+    );
+  }
 
   // ---
 

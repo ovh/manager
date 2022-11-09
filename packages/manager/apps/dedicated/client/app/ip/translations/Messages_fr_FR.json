@@ -728,5 +728,9 @@
   "ip_order_title": "Commander",
   "ip_order_additional_ips": "IP additionnelles",
   "ip_administration_title": "Administrer",
-  "ip_addresses_grid_header": "Mes adresses IP publiques et services associés"
+  "ip_addresses_grid_header": "Mes adresses IP publiques et services associés",
+  "ip_repricing_banner": "La tarification de vos adresses IPv4 additionnelles (Additional IP) évolue.",
+  "ip_repricing_banner_list_item_1": "Depuis le 6 octobre 2022, pour vos nouvelles adresses.",
+  "ip_repricing_banner_list_item_2": "A partir du 1er décembre 2022, pour vos adresses existantes (commandées avant le 6 octobre 2022).",
+  "ip_repricing_banner_link": "Plus d'informations"
 }

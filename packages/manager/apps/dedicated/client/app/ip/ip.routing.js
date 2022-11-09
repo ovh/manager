@@ -1,7 +1,14 @@
 import controller from './ip.controller';
 import template from './ip.html';
 
-import { TRACKING_PREFIX } from './ip.constant';
+import {
+  TRACKING_PREFIX,
+  REPRICING_BANNER_URL,
+  REPRICING_BANNER_DATE_MIN,
+  REPRICING_BANNER_DATE_MAX,
+  REPRICING_BANNER_DATE_CREATION,
+  IP_SERVICE_PATH,
+} from './ip.constant';
 
 const allowByoipFeatureName = 'ip:byoip';
 
@@ -62,6 +69,36 @@ export default /* @ngInject */ ($stateProvider) => {
           .limit(1)
           .execute(null, true)
           .$promise.then(({ data: [ip] }) => !!ip),
+      isRepricingBannerShown: /* @ngInject */ ($q, hasAnyIp, iceberg) => {
+        if (
+          !hasAnyIp ||
+          !moment().isBetween(
+            REPRICING_BANNER_DATE_MIN,
+            REPRICING_BANNER_DATE_MAX,
+          )
+        ) {
+          return $q.when(false);
+        }
+        return iceberg('/services')
+          .query()
+          .expand('CachedObjectList-Pages')
+          .addFilter('route.path', 'eq', IP_SERVICE_PATH)
+          .addFilter(
+            'billing.lifecycle.current.creationDate',
+            'lt',
+            moment(REPRICING_BANNER_DATE_CREATION).toISOString(),
+          )
+          .limit(1)
+          .execute()
+          .$promise.then(({ data: [ip] }) => !!ip);
+      },
+      openBannerRepricePage: (coreConfig) => () =>
+        window.open(
+          REPRICING_BANNER_URL[coreConfig.getUser().ovhSubsidiary] ||
+            REPRICING_BANNER_URL.DEFAULT,
+          '_blank',
+          'noopener',
+        ),
       trackPage: /* @ngInject */ (atInternet) => (...hits) => {
         atInternet.trackPage({
           name: [TRACKING_PREFIX, ...hits].join('::'),

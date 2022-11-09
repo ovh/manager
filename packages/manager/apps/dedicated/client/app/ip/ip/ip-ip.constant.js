@@ -59,12 +59,14 @@ export const SERVICE_URL_DATA = {
 export const DASHBOARD_TRACKING_PREFIX = {
   DEFAULT: 'dashboard',
   FILTERS: 'all_ips_filter',
+  REPRICING_BANNER: 'banner-ip-reprice',
 };
 export const DASHBOARD_TRACKING_HIT = {
   AGORA_ORDER: 'order_next-step-1',
   BYOIP_CONFIGURATION: 'bring-your-own-ip',
   EXPORT: 'export-csv',
   TAB: 'all-ips-tab',
+  REPRICING_BANNER: 'banner-ip-reprice-about',
 };
 
 export default {
