@@ -40,7 +40,16 @@ export default /* @ngInject */ ($stateProvider) => {
       instances: /* @ngInject */ (
         PciProjectsProjectInstanceService,
         projectId,
-      ) => PciProjectsProjectInstanceService.getAllInstanceDetails(projectId),
+      ) =>
+        PciProjectsProjectInstanceService.getAllInstanceDetails(
+          projectId,
+        ).then((instances) =>
+          instances.filter(({ flavor }) =>
+            PciProjectsProjectInstanceService.additionalIpsIsAvailable(
+              flavor.type,
+            ),
+          ),
+        ),
       additionalIpInstances: /* @ngInject */ (instances) =>
         instances.filter(({ ipAddresses }) =>
           find(ipAddresses, { type: 'public' }),
