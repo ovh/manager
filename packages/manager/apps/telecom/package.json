@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom",
-  "version": "13.48.0",
+  "version": "13.48.1",
   "private": true,
   "description": "OVHcloud Telecom control panel.",
   "repository": {
@@ -70,7 +70,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
     "@ovh-ux/ng-ui-router-layout": "^4.1.0",
     "@ovh-ux/ng-ui-router-title": "^3.0.4",
-    "@ovh-ux/shell": "^1.6.1",
+    "@ovh-ux/shell": "^1.7.0",
     "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.23",
     "CSV-JS": "^1.0.0",
