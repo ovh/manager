@@ -2,6 +2,9 @@ export const DEFAULT_PROJECT_KEY = 'PUBLIC_CLOUD_DEFAULT_PROJECT';
 export const QUOTA_THRESHOLD = 80;
 
 export const PCI_FEATURES = {
+  PROJECT: {
+    PAYEMENT_SEPA_DIRECT_DEBIT: 'public-cloud:project:sepa-direct-debit',
+  },
   PRODUCTS: {
     INSTANCE: 'instance',
     BAREMETAL: 'pci-baremetal',

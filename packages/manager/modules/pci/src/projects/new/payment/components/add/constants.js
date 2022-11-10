@@ -1,3 +1,5 @@
+import { PCI_FEATURES as FEATURES } from '../../../../projects.constant';
+
 export const PAYMENT_METHOD_AUTHORIZED_ENUM = {
   BANK_ACCOUNT: 'bankAccount',
   CREDIT: 'credit',
@@ -18,6 +20,8 @@ export const CREDIT_PROVISIONING = {
   PLAN_CODE: 'credit.default',
   PRICE_MODE: 'default',
 };
+
+export const PCI_FEATURES = FEATURES;
 
 export default {
   PAYMENT_METHOD_AUTHORIZED_ENUM,

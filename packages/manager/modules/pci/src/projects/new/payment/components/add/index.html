@@ -15,6 +15,7 @@
         <oui-select-picker
             class="col-md-6 m-0 mb-3"
             data-ng-repeat="authorizedPaymentMethod in $ctrl.authorizedPaymentMethods track by $index"
+            data-ng-if="$ctrl.isAuthorizedToUseSepaDirectDebit(authorizedPaymentMethod)"
             data-disabled="$ctrl.globalLoading.finalize"
             data-name="paymentType"
             data-model="$ctrl.model.paymentMethod"

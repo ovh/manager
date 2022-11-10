@@ -7,6 +7,7 @@ import {
   CREDIT_PROVISIONING,
   PAYMENT_METHOD_AUTHORIZED_ENUM,
   PREFERRED_PAYMENT_METHOD_ORDER,
+  PCI_FEATURES,
 } from './constants';
 
 export default class PciProjectNewPaymentMethodAddCtrl {
@@ -23,8 +24,11 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     this.coreConfig = coreConfig;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
 
+    this.PCI_FEATURES = PCI_FEATURES;
+
     // other attributes
     this.customerCurrency = coreConfig.getUser().currency.symbol;
+
     this.authorizedPaymentMethods = null;
 
     this.paymentSectionHref = coreURLBuilder.buildURL(
@@ -60,6 +64,20 @@ export default class PciProjectNewPaymentMethodAddCtrl {
       ).price / uCent;
 
     return priceInCent / 100; // To get the price in currency base
+  }
+
+  isAuthorizedToUseSepaDirectDebit(authorizedPaymentMethod) {
+    const SEPA_DIRECT_DEBIT = 'SEPA_DIRECT_DEBIT';
+    const isSepaDirectDebitMethod =
+      authorizedPaymentMethod.paymentType === SEPA_DIRECT_DEBIT;
+
+    return (
+      !isSepaDirectDebitMethod ||
+      (isSepaDirectDebitMethod &&
+        this.pciFeatures.isFeatureAvailable(
+          PCI_FEATURES.PROJECT.PAYEMENT_SEPA_DIRECT_DEBIT,
+        ))
+    );
   }
 
   /* -----  End of Helpers  ------ */
