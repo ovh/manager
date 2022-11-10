@@ -55,6 +55,7 @@ export const TRACKING_PREFIX = 'add-active-directory';
 export const TRACKING_TASK_TAG = {
   done: `${TRACKING_PREFIX}-success`,
   error: `${TRACKING_PREFIX}-error`,
+  canceled: `${TRACKING_PREFIX}-canceled`,
 };
 
 export default {
