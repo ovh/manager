@@ -16,10 +16,19 @@ import {
 
 export default class NewAccountFormController {
   /* @ngInject */
-  constructor($q, $http, $timeout, coreConfig, Alerter, $translate) {
+  constructor(
+    $q,
+    $http,
+    $timeout,
+    atInternet,
+    coreConfig,
+    Alerter,
+    $translate,
+  ) {
     this.$q = $q;
     this.$http = $http;
     this.$timeout = $timeout;
+    this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.Alerter = Alerter;
     this.$translate = $translate;
@@ -209,6 +218,10 @@ export default class NewAccountFormController {
 
   // on form submit callback
   submit() {
+    this.atInternet.trackClick({
+      name: 'dedicated::account::user::infos::save',
+      type: 'action',
+    });
     this.isSubmitting = true;
     this.submitError = null;
 
@@ -251,6 +264,10 @@ export default class NewAccountFormController {
       .updateUseraccountInfos(model)
       .then((result) => {
         if (result !== 'null') {
+          this.atInternet.trackPage({
+            name: 'edit-profil-confirm-banner::error',
+            type: 'navigation',
+          });
           return this.$q.reject(result);
         }
         return result;
