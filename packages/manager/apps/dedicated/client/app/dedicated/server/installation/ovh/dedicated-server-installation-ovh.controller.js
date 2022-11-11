@@ -675,6 +675,8 @@ angular
                 partitionSchemesList.templateOsFileSystemEnum;
               $scope.constants.partitionTypeList =
                 partitionSchemesList.templatePartitionTypeEnum;
+              $scope.informations.softRaidOnlyMirroring =
+                partitionSchemesList.softRaidOnlyMirroring;
 
               // if hardware Raid
               if ($scope.installation.hardwareRaid.raid) {
@@ -958,7 +960,18 @@ angular
 
       // ------Add partition------
 
+      function getRandomMountPoint() {
+        const alphabet = 'defghijklmnopqrstuvwxyz'; // mountpoint character will be within c and z alphabet
+        return `${alphabet.charAt(
+          Math.floor(Math.random() * alphabet.length),
+        )}:`;
+      }
+
       $scope.displayNewPartition = function displayNewPartition() {
+        $scope.newPartition.mountPoint = $scope.informations
+          .softRaidOnlyMirroring
+          ? getRandomMountPoint()
+          : $scope.newPartition.mountPoint;
         const raidList = $scope.getRaidList($scope.installation.nbDiskUse);
         clearError();
         $scope.newPartition.raid =
@@ -1733,8 +1746,20 @@ angular
 
       // return range between 1 and nbdisque of server if > 1
       $scope.getNbDisqueList = function getNbDisqueList(nbdisk) {
-        if (nbdisk > 1) {
+        if (nbdisk > 1 && !$scope.informations.softRaidOnlyMirroring) {
           return range(1, nbdisk + 1);
+        }
+        if (nbdisk > 1 && $scope.informations.softRaidOnlyMirroring) {
+          // For softRaidOnlyMirroring: Disks used for installation list should be limited to 2
+          $scope.informations.nbDisk =
+            $scope.informations.nbDisk > 2 ? 2 : $scope.informations.nbDisk;
+          $scope.installation.nbDiskUse =
+            $scope.installation.nbDiskUse === 1
+              ? $scope.installation.nbDiskUse
+              : 2;
+          $scope.informations.totalSize =
+            $scope.informations.diskSize * $scope.installation.nbDiskUse;
+          return range(1, 3);
         }
         return [nbdisk];
       };
