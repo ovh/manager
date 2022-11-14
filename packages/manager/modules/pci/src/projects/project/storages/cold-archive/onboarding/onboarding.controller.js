@@ -18,10 +18,10 @@ export default class PciStorageColdArchivesOnboardingController {
         {
           ...guide,
           title: this.$translate.instant(
-            `pci_projects_project_storages_cold_archives_onboarding_guides_${guide.id}_title`,
+            `pci_projects_project_storages_cold_archives_guides_${guide.id}_title`,
           ),
           description: this.$translate.instant(
-            `pci_projects_project_storages_cold_archives_onboarding_guides_${guide.id}_description`,
+            `pci_projects_project_storages_cold_archives_guides_${guide.id}_description`,
           ),
         },
       ],
