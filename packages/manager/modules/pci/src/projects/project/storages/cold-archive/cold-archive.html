@@ -1,26 +1,62 @@
-<div data-ui-view="coldArchiveView">
+<div class="cold-archive" data-ui-view="coldArchiveView">
     <oui-header
         class="mb-3"
-        data-heading="{{:: 'pci_projects_project_storages_cold_archive_title' | translate }}"
-        data-description="{{:: 'pci_projects_project_storages_cold_archive_description' | translate }}"
+        data-ng-if="$ctrl.containers.length"
+        id="cold-archive-header"
+        data-heading="{{:: 'pci_projects_project_storages_cold_archive_label' | translate }}"
     >
-        <oui-header-tabs>
-            <oui-header-tabs-item
-                data-href="{{:: $ctrl.archivesLink }}"
-                data-active="!$ctrl.isUserTabActive()"
-                ><span
-                    data-translate="pci_projects_project_storages_cold_archive_tabs_tab_archives"
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.guides track by $index"
+                data-href="{{:: guide.link }}"
+                data-on-click="$ctrl.trackClick(guide.id)"
+                data-external
+            >
+                <span
+                    data-ng-bind=":: 'pci_projects_project_storages_cold_archives_guides_' + guide.id + '_title' | translate"
                 ></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-href="{{:: $ctrl.userListLink }}"
-                data-active="$ctrl.isUserTabActive()"
-                ><span
-                    data-translate="pci_projects_project_storages_cold_archive_tabs_tab_users"
-                ></span>
-            </oui-header-tabs-item>
-        </oui-header-tabs>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
     </oui-header>
+
+    <div>
+        <!--Description and link-->
+        <p
+            data-translate="pci_projects_project_storages_cold_archive_description"
+        ></p>
+        <a
+            data-ng-href="{{:: $ctrl.priceLink }}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span
+                data-translate="pci_projects_project_storages_cold_archive_price_link"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </div>
+
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.goToColdArchiveContainers }}"
+            data-active="!$ctrl.isUserTabActive()"
+            ><span
+                data-translate="pci_projects_project_storages_cold_archive_tabs_tab_archives"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.userListLink }}"
+            data-active="$ctrl.isUserTabActive()"
+            ><span
+                data-translate="pci_projects_project_storages_cold_archive_tabs_tab_users"
+            ></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
     <div
         class="container-fluid w-100 h-100 pt-4 px-3 px-md-5"
         data-ui-view
