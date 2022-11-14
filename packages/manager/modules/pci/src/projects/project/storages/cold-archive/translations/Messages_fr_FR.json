@@ -1,7 +1,30 @@
 {
-  "pci_projects_project_storages_cold_archive_breadcrumb": "Cold Archive",
-  "pci_projects_project_storages_cold_archive_title": "Cold Archive",
-  "pci_projects_project_storages_cold_archive_description": "Classe de stockage d'archives qui offre le stockage sécurisé le plus économique pour les données à longue durée de vie, rarement consultées.",
-  "pci_projects_project_storages_cold_archive_tabs_tab_archives": "Mes conteneurs",
-  "pci_projects_project_storages_cold_archive_tabs_tab_users": "Utilisateurs S3"
+  "pci_projects_project_storages_cold_archive_label": "Cold Archive",
+  "pci_projects_project_storages_cold_archive_description": "Classe de stockage d'archives qui offre le stockage sécurisé le plus économique pour les données à longue durée de vie.",
+  "pci_projects_project_storages_cold_archive_price_link": "Consultez les prix.",
+
+  "pci_projects_project_storages_cold_archive_tabs_tab_archives": "Mes archives",
+  "pci_projects_project_storages_cold_archive_tabs_tab_users": "Utilisateurs S3",
+
+  "pci_projects_project_storages_cold_archives_guides_cold-archive-getting-started_title": "Premier pas avec la classe de stockage cold archive",
+  "pci_projects_project_storages_cold_archives_guides_cold-archive-getting-started_description": "Apprendre à créer un bucket, uploader sa donnée, archiver, lister, désarchiver",
+  "pci_projects_project_storages_cold_archives_guides_billing_title": "Comprendre la facturation",
+  "pci_projects_project_storages_cold_archives_guides_billing_description": "Découvrez les règles de facturation",
+  "pci_projects_project_storages_cold_archives_guides_monitoring_title": "Monitorer ses archives",
+  "pci_projects_project_storages_cold_archives_guides_monitoring_description": "Comprendre les états des archives et les monitorer",
+
+  "pci_projects_project_storages_cold_archive_container_label": "Containers",
+  "pci_projects_project_storages_cold_archive_containers_creation_date_label": "Date de création",
+  "pci_projects_project_storages_cold_archive_containers_add_container_label": "Créer une archive",
+  "pci_projects_project_storages_cold_archive_containers_status_label": "Status",
+  "pci_projects_project_storages_containers_status_none": "Actif",
+  "pci_projects_project_storages_containers_status_restored": "Restauré",
+  "pci_projects_project_storages_containers_status_restoring": "En cours de restauration",
+  "pci_projects_project_storages_containers_status_archived": "Archivé",
+  "pci_projects_project_storages_containers_status_archiving": "En cours d'achivage",
+  "pci_projects_project_storages_containers_status_deleting": "En cours de suppression",
+  "pci_projects_project_storages_containers_status_flushed": "Vidé",
+  "pci_projects_project_storages_cold_archive_container_action_archive": "Archiver",
+  "pci_projects_project_storages_cold_archive_container_action_restore": "Restaurer",
+  "pci_projects_project_storages_cold_archive_container_action_delete": "Supprimer"
 }
