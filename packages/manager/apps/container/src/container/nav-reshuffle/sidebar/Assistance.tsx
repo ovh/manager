@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useReket } from '@ovh-ux/ovh-reket';
 import { useURL } from '@/container/common/urls-constants';
 import ApplicationContext from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
@@ -22,7 +21,11 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
 }: Props): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const { shell } = useContext(ApplicationContext);
-  const { isChatbotEnabled, setChatbotReduced } = useContainer();
+  const {
+    isChatbotEnabled,
+    isLivechatEnabled,
+    setChatbotReduced,
+  } = useContainer();
 
   const environment = shell
     .getPluginManager()
@@ -30,27 +33,11 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
     .getEnvironment();
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
-  const reketInstance = useReket();
   const [selectedItem, setSelectedItem] = useState<string>(null);
 
   const hasAdvancedSupport = ['EU', 'CA'].includes(environment.getRegion());
-  const [hasChatbot, setHashChatbot] = useState(false);
 
   const { closeNavigationSidebar, openOnboarding } = useProductNavReshuffle();
-
-  useEffect(() => {
-    const initChatbot = async () => {
-      const results: Record<string, boolean> = await reketInstance.get(
-        `/feature/chatbot/availability`,
-        {
-          requestType: 'aapi',
-        },
-      );
-
-      setHashChatbot(results.chatbot);
-    };
-    initChatbot();
-  }, []);
 
   useEffect(() => {
     const { appId, appHash } = containerURL;
@@ -157,7 +144,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
               />
             </li>
           )}
-          {hasChatbot && (
+          {(isChatbotEnabled || isLivechatEnabled) && (
             <li>
               <SidebarLink
                 node={{
