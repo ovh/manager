@@ -6,7 +6,7 @@ import {
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive', {
     url: '/cold-archive',
-    component: 'ovhManagerPciProjectsProjectStoragesColdArchive',
+    component: 'pciProjectStorageColdArchive',
     redirectTo: (transition) =>
       transition
         .injector()
@@ -16,17 +16,36 @@ export default /* @ngInject */ ($stateProvider) => {
             ? {
                 state: 'pci.projects.project.storages.cold-archive.onboarding',
               }
-            : false,
+            : {
+                state: 'pci.projects.project.storages.cold-archive.containers',
+              },
         ),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) => {
         return $translate.instant(
-          'pci_projects_project_storages_cold_archive_title',
+          'pci_projects_project_storages_cold_archive_label',
         );
       },
 
       trackingPrefix: () =>
         'PublicCloud::pci::projects::project::storages::cold_archive::',
+
+      addContainer: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.storages.cold-archives.add', {
+          projectId,
+        }),
+
+      viewContainer: /* @ngInject */ ($state, projectId) => (container) =>
+        $state.go('pci.projects.project.storages.cold-archives.cold-archive', {
+          projectId,
+          containerId: container.id,
+        }),
+
+      deleteContainer: /* @ngInject */ ($state, projectId) => (container) =>
+        $state.go('pci.projects.project.storages.cold-archives.delete', {
+          projectId,
+          containerId: container.id,
+        }),
 
       userList: /* @ngInject */ (projectId, allUserList) =>
         allUserList.filter((user) => user?.s3Credentials?.length > 0),
@@ -47,10 +66,16 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
-      goToArchives: ($state, projectId, CucCloudMessage) => (
-        message = false,
-        type = 'success',
-      ) => {
+      goToColdArchiveContainers: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.storages.cold-archive', {
+          projectId,
+        }),
+
+      goToColdArchiveContainersWithMessage: (
+        $state,
+        projectId,
+        CucCloudMessage,
+      ) => (message = false, type = 'success') => {
         const reload = message && type === 'success';
         const state = 'pci.projects.project.storages.cold-archive';
 
@@ -76,8 +101,10 @@ export default /* @ngInject */ ($stateProvider) => {
       containers: /* @ngInject */ (PciStoragesColdArchiveService, projectId) =>
         PciStoragesColdArchiveService.getArchiveContainers(projectId, REGION),
 
-      goToAddColdArchive: /* @ngInject */ ($state) => () =>
-        $state.go('pci.projects.project.storages.cold-archive.add'),
+      goToAddColdArchive: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.storages.cold-archive.add', {
+          projectId,
+        }),
 
       trackClick: /* @ngInject */ (atInternet) => (hit) =>
         atInternet.trackClick({

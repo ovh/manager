@@ -9,10 +9,11 @@ export default {
     userList: '<',
     allUserList: '<',
     userListLink: '<',
-    archivesLink: '<',
-    goToArchives: '<',
+    goToColdArchiveContainers: '<',
+    goToColdArchiveContainersWithMessage: '<',
     goToAddColdArchive: '<',
     trackingPrefix: '<',
+    containers: '<',
   },
   template,
 };
