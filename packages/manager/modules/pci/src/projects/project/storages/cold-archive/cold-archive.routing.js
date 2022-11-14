@@ -1,6 +1,8 @@
 import {
   COLD_ARCHIVE_TRACKING_PREFIX,
+  CHECK_PRICES_DOC_LINK,
   REGION,
+  GUIDES,
 } from './cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -21,6 +23,12 @@ export default /* @ngInject */ ($stateProvider) => {
               },
         ),
     resolve: {
+      guides: () => GUIDES,
+
+      priceLink: /* @ngInject */ (coreConfig) =>
+        CHECK_PRICES_DOC_LINK[coreConfig.getUser().ovhSubsidiary] ||
+        CHECK_PRICES_DOC_LINK.DEFAULT,
+
       breadcrumb: /* @ngInject */ ($translate) => {
         return $translate.instant(
           'pci_projects_project_storages_cold_archive_label',
@@ -78,7 +86,6 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => (message = false, type = 'success') => {
         const reload = message && type === 'success';
         const state = 'pci.projects.project.storages.cold-archive';
-
         const promise = $state.go(
           state,
           {
@@ -117,6 +124,11 @@ export default /* @ngInject */ ($stateProvider) => {
           name: `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`,
           type: 'action',
         }),
+
+      scrollToTop: /* @ngInject */ ($anchorScroll, $location) => () => {
+        $location.hash('cold-archive-header');
+        $anchorScroll();
+      },
     },
   });
 };
