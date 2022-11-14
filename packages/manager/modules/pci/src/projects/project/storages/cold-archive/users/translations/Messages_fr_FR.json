@@ -3,6 +3,7 @@
   "pci_projects_project_storages_containers_users_username": "Nom d'utilisateur",
   "pci_projects_project_storages_containers_users_description": "Description",
   "pci_projects_project_storages_containers_users_accesskey": "Clé d'accès",
+  "pci_projects_project_storages_containers_users_creation_date": "Date de création",
   "pci_projects_project_storages_containers_users_import_json": "Importer S3 Policy (JSON)",
   "pci_projects_project_storages_containers_users_download_json": "Télécharger S3 Policy (JSON)",
   "pci_projects_project_storages_containers_users_download_rclone_file": "Télécharger le fichier rclone",
@@ -13,6 +14,6 @@
   "pci_projects_project_storages_containers_users_add_user": "Ajouter un utilisateur",
   "pci_projects_project_storages_containers_users_import_success_message": "Le téléchargment du fichier JSON lié à l’utilisateur {{user}} a été effectué avec succès.",
   "pci_projects_project_storages_containers_users_import_error_message": "Une erreur est survenue lors du téléchargement du fichier JSON lié à l’utilisateur : {{ message }}.",
-  "pci_projects_project_storages_containers_users_show_secret_key_success": "La clé secrète de votre utilisateur {{user}} est {{secret}}.",
+  "pci_projects_project_storages_containers_users_show_secret_key_success": "La clé secrète de votre utilisateur <strong>{{user}}</strong> est {{secret}}.",
   "pci_projects_project_storages_containers_users_add_success_field_secret_key": "Votre clé secrète S3 :"
 }
