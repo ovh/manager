@@ -80,7 +80,8 @@ export default class PciStoragesContainersUsersController {
   }
 
   showSecretKey(user) {
-    this.CucCloudMessage.success({
+    this.scrollToTop();
+    this.CucCloudMessage.info({
       textHtml: this.$translate.instant(
         'pci_projects_project_storages_containers_users_show_secret_key_success',
         {
