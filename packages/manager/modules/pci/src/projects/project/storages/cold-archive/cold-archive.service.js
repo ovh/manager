@@ -1,5 +1,6 @@
 import map from 'lodash/map';
 import 'moment';
+import { DATE_FORMAT } from './cold-archives.constants';
 
 export default class PciStoragesColdArchiveService {
   /* @ngInject */
@@ -10,6 +11,7 @@ export default class PciStoragesColdArchiveService {
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
   }
 
+  /* ****** Manage S3 Users  ********** */
   getUserDetails(projectId, userId) {
     return this.$http
       .get(`/cloud/project/${projectId}/user/${userId}`)
@@ -45,9 +47,15 @@ export default class PciStoragesColdArchiveService {
   }
 
   getAllS3Users(projectId) {
-    return this.$http
-      .get(`/cloud/project/${projectId}/user`)
-      .then(({ data }) => data);
+    return this.$http.get(`/cloud/project/${projectId}/user`).then(({ data }) =>
+      data.map((user) => {
+        const updatedUser = user;
+        updatedUser.creationDate = moment(user.creationDate).format(
+          DATE_FORMAT,
+        );
+        return updatedUser;
+      }),
+    );
   }
 
   mapUsersToCredentials(projectId, users) {
@@ -59,7 +67,6 @@ export default class PciStoragesColdArchiveService {
         }))
         .catch(() => null),
     );
-
     return this.$q.all(usersCredentialsPromises);
   }
 
@@ -143,10 +150,19 @@ export default class PciStoragesColdArchiveService {
     );
   }
 
+  /* ****** Manage Archive containers  ********** */
   getArchiveContainers(serviceName, regionName) {
     return this.$http
       .get(`/cloud/project/${serviceName}/region/${regionName}/coldArchive`)
-      .then(({ data }) => data);
+      .then(({ data }) =>
+        data.map((container) => {
+          const updatedContainer = container;
+          updatedContainer.createdAt = moment(container.createdAt).format(
+            DATE_FORMAT,
+          );
+          return updatedContainer;
+        }),
+      );
   }
 
   createArchiveContainer(serviceName, regionName, coldArchive) {
@@ -218,5 +234,18 @@ export default class PciStoragesColdArchiveService {
         `/cloud/project/${serviceName}/region/${regionName}/coldArchive/${archiveName}/restore`,
       )
       .then(({ data }) => data);
+  }
+
+  /**
+   * Mock API Call
+   * [TODO]: To be deleted when about to merge with the release branch.
+   */
+  getAllColdArchives() {
+    return this.$http
+      .get('http://localhost:3200/mock_api/storage/cold/mock/all')
+      .then(({ data }) => {
+        // eslint-disable-next-line no-shadow
+        return data.map(({ data }) => data);
+      });
   }
 }
