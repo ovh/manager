@@ -13,7 +13,9 @@ export default {
     goToColdArchiveContainersWithMessage: '<',
     goToAddColdArchive: '<',
     trackingPrefix: '<',
+    guides: '<',
     containers: '<',
+    priceLink: '<',
   },
   template,
 };
