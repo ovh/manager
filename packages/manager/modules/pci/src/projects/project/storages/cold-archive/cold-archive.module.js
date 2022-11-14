@@ -12,6 +12,7 @@ import component from './cold-archive.component';
 import coldArchiveOnboarding from './onboarding';
 import coldArchiveAdd from './add';
 import users from './users';
+import containers from './containers';
 
 const moduleName = 'ovhManagerPciProjectsProjectStoragesColdArchive';
 
@@ -24,10 +25,11 @@ angular
     'ui.router',
     coldArchiveOnboarding,
     coldArchiveAdd,
+    containers,
     users,
   ])
   .config(routing)
-  .component('ovhManagerPciProjectsProjectStoragesColdArchive', component)
+  .component('pciProjectStorageColdArchive', component)
   .service('PciStoragesColdArchiveService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
