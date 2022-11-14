@@ -1,27 +1,28 @@
 <div>
-    <oui-header data-heading="{{:: 'pci_projects_project_storages_cold_archive_add_title' | translate }}">
+    <oui-header
+        data-heading="{{:: 'pci_projects_project_storages_cold_archive_add_title' | translate }}"
+    >
         <oui-guide-menu
             data-text="{{:: 'pci_projects_project_storages_cold_archive_add_guides_title' | translate }}"
         >
-
         </oui-guide-menu>
     </oui-header>
 
     <!--Description and link-->
-    <p data-translate="pci_projects_project_storages_cold_archive_add_description"></p>
+    <p
+        data-translate="pci_projects_project_storages_cold_archive_add_description"
+    ></p>
     <a
-        data-ng-href="{{:: $ctrl.checkPricesLink }}"
+        data-ng-href="{{:: $ctrl.priceLink }}"
         data-ng-click="$ctrl.onCheckPricesLinkClick()"
         target="_blank"
         rel="noopener"
     >
-        <span data-translate="pci_projects_project_storages_cold_archive_add_description_link"></span>
         <span
-            class="oui-icon oui-icon-external-link"
-            aria-hidden="true"
+            data-translate="pci_projects_project_storages_cold_archive_add_description_link"
         ></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
     </a>
-
 </div>
 
 <!--Banner messages-->
@@ -32,9 +33,7 @@
     ></cui-message-container>
 
     <!--Region archive storage info-->
-    <oui-message
-        data-type="info"
-    >
+    <oui-message data-type="info">
         <span
             data-translate="pci_projects_project_storages_cold_archive_add_step_name_archive_localisation_banner_info"
         ></span>
