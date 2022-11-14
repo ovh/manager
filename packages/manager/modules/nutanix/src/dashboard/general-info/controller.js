@@ -28,6 +28,7 @@ export default class NutanixGeneralInfoCtrl {
     this.technicalDetails = this.getTechnicalDetails.baremetalServers;
     this.setPrivateBandwidthServiceId();
     this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
+    this.showRedeployWarningModal = false;
   }
 
   loadServcesDetails() {
@@ -78,5 +79,21 @@ export default class NutanixGeneralInfoCtrl {
       name: `${this.trackingPrefix}::${trackText}`,
       type: 'action',
     });
+  }
+
+  redeployCluster() {
+    if (
+      this.clusterTechnicalDetails.license.edition !==
+        this.NUTANIX_PERSONAL_LICENSE_EDITION &&
+      !this.showRedeployWarningModal
+    ) {
+      return this.goToRedeploy();
+    }
+    this.showRedeployWarningModal = true;
+    return null;
+  }
+
+  onCancel() {
+    this.showRedeployWarningModal = false;
   }
 }
