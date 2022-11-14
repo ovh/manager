@@ -5,7 +5,11 @@ export default /* @ngInject */ ($stateProvider) => {
     'pci.projects.project.storages.cold-archive.onboarding',
     {
       url: '/onboarding',
-      component: 'pciProjectStorageColdArchiveOnboarding',
+      views: {
+        'coldArchiveView@pci.projects.project.storages.cold-archive': {
+          component: 'pciProjectStorageColdArchiveOnboarding',
+        },
+      },
       atInternet: {
         rename: TRACKING.ONBOARDING_PAGE_VISITE,
       },
@@ -16,7 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((containers) =>
             containers.length > 0
               ? {
-                  state: 'pci.projects.project.storages.cold-archive.objects',
+                  state:
+                    'pci.projects.project.storages.cold-archive.containers',
                 }
               : false,
           ),
