@@ -1,4 +1,5 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
+import DirectClientMessageBus from '../../src/message-bus/direct-client';
 import IFrameMessageBus from '../../src/message-bus/iframe';
 
 const feature = loadFeature('../../features/message-bus/iframe.feature', {
@@ -92,14 +93,20 @@ defineFeature(feature, (test) => {
 
   test('Message bus receives a message', ({ given, when, and, then }) => {
     let iframeMessageBus: IFrameMessageBus;
-    const log = jest.fn((entry) => entry);
+    const log = vi.fn((message) => message);
+    const listeners: Array<CallableFunction> = [];
 
     given('I have a message bus instance', () => {
       iframeMessageBus = new IFrameMessageBus();
+      window.parent.addEventListener('message', (event) => {
+        listeners.forEach((listener) => {
+          listener(event.data.message);
+        });
+      });
     });
 
     when('My message bus receives a callback', () => {
-      iframeMessageBus.onReceive(log);
+      listeners.push(log);
     });
 
     and('A post message is called', () => {

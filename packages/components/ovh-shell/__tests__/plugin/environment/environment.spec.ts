@@ -34,7 +34,7 @@ defineFeature(feature, (test) => {
     });
 
     and('A custom action is setted on universe change', () => {
-      onUniverseChangeCallback = jest.fn(() => 'action');
+      onUniverseChangeCallback = vi.fn(() => 'action');
       envPlugin.onUniverseChange(onUniverseChangeCallback);
     });
 

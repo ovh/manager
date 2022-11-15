@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { IShellMessage } from '../common';
 import IMessageBus from './IMessageBus';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { format } from 'date-fns';
-import esLocale from 'date-fns/locale/es';
+import { es as esLocale } from 'date-fns/locale';
 // import { axe, toHaveNoViolations } from 'jest-axe';
 
 import { Calendar, capitalizeFirstLetter } from '../components';

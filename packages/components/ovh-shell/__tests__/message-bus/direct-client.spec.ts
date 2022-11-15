@@ -13,8 +13,8 @@ defineFeature(feature, (test) => {
     let appClientMessageBus;
     let shellClientMessageBus;
     const sampleAppMessage = {};
-    const appReceiveHandler = jest.fn();
-    const shellReceiveHandler = jest.fn();
+    const appReceiveHandler = vi.fn();
+    const shellReceiveHandler = vi.fn();
 
     given(
       'A direct message bus configured between the application and the shell',
@@ -44,8 +44,8 @@ defineFeature(feature, (test) => {
     let appClientMessageBus;
     let shellClientMessageBus;
     const sampleShellMessage = {};
-    const appReceiveHandler = jest.fn();
-    const shellReceiveHandler = jest.fn();
+    const appReceiveHandler = vi.fn();
+    const shellReceiveHandler = vi.fn();
 
     given(
       'A direct message bus configured between the application and the shell',
@@ -79,9 +79,9 @@ defineFeature(feature, (test) => {
     let appClientMessageBus;
     let shellClientMessageBus;
     let otherClientMessageBus;
-    const appReceiveHandler = jest.fn();
-    const shellReceiveHandler = jest.fn();
-    const otherReceiveHandler = jest.fn();
+    const appReceiveHandler = vi.fn();
+    const shellReceiveHandler = vi.fn();
+    const otherReceiveHandler = vi.fn();
     const sampleMessage = {};
 
     given('Multiple direct message bus', () => {

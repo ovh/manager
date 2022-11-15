@@ -2,26 +2,25 @@ import { loadFeature, defineFeature } from 'jest-cucumber';
 import DirectClientMessageBus from '../../src/message-bus/direct-client';
 import Shell from '../../src/shell/shell';
 import ShellClient from '../../src/client/shell-client';
-import { initStandaloneClientApi } from '../../src/client';
+import {
+  buildURLIfStandalone,
+  initStandaloneClientApi,
+} from '../../src/client';
 import { IShellPluginMethodCall } from '../../src/common';
 
 const feature = loadFeature('../../features/client/shell-client.feature', {
   loadRelativePath: true,
 });
-
 const windowLocation = window.location;
-const setHrefSpy = jest.fn((href) => href);
 
 defineFeature(feature, (test) => {
   beforeEach(() => {
-    delete window.location;
+    Object.defineProperty(window, 'location', {});
     window.location = {
       ...window.location,
       hash: '',
+      href: '',
     };
-    Object.defineProperty(window.location, 'href', {
-      set: setHrefSpy,
-    });
   });
 
   afterEach(() => {
@@ -33,7 +32,7 @@ defineFeature(feature, (test) => {
     const shellMessageBus = new DirectClientMessageBus();
     const shell = new Shell();
     const shellClient = new ShellClient();
-    const callback = jest.fn((param: string) => param);
+    const callback = vi.fn((param: string) => param);
     const pluginName = 'test';
 
     given('I have one plugin registered in my shell', () => {
@@ -71,8 +70,8 @@ defineFeature(feature, (test) => {
     const shellMessageBus = new DirectClientMessageBus();
     const shell = new Shell();
     const shellClient = new ShellClient();
-    const callback = jest.fn((param: string) => param);
-    const callback2 = jest.fn((param: string) => param);
+    const callback = vi.fn((param: string) => param);
+    const callback2 = vi.fn((param: string) => param);
 
     given(
       'My shell and shell client are configured with a direct message bus',
@@ -103,7 +102,8 @@ defineFeature(feature, (test) => {
   });
 
   test('Redirection of contained applications', ({ given, when, then }) => {
-    let appConfig = null;
+    let appConfig: any = {};
+    let url = '';
 
     given('An application configuration where the container is enabled', () => {
       appConfig = {
@@ -119,16 +119,17 @@ defineFeature(feature, (test) => {
           publicURL: 'http://container/#/hub',
         },
       };
+      window.location.hostname = 'container';
     });
 
     when('The application is initialized as a standalone application', () => {
-      initStandaloneClientApi('hub', appConfig);
+      url = buildURLIfStandalone(appConfig.hub);
     });
 
     then(
       "The client should be redirected to the application's publicURL",
       () => {
-        expect(setHrefSpy).toHaveBeenCalledWith('http://container/#/hub');
+        expect(url).toBe('http://container/#/hub');
       },
     );
 
@@ -136,14 +137,14 @@ defineFeature(feature, (test) => {
       'The application is initialized as a standalone application and an hash',
       () => {
         window.location.hash = '#/foo';
-        initStandaloneClientApi('hub', appConfig);
+        url = buildURLIfStandalone(appConfig.hub);
       },
     );
 
     then(
       "The client should be redirected to the application's publicURL concatened with the hash",
       () => {
-        expect(setHrefSpy).toHaveBeenCalledWith('http://container/#/hub/foo');
+        expect(url).toBe('http://container/#/hub/foo');
       },
     );
   });

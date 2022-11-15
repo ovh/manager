@@ -66,7 +66,7 @@ defineFeature(feature, (test) => {
     });
 
     and('A custom action', () => {
-      customAction = jest.fn(() => 'action');
+      customAction = vi.fn(() => 'action');
       uxShell.onSidebarVisibilityChange('foo', customAction);
     });
 

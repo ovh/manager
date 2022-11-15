@@ -49,7 +49,7 @@ describe('Plugin availability', () => {
     const testFunction = () => expectedResult;
     const pluginManager = new PluginManager();
     pluginManager.registerPlugin('1', {
-      testCall: jest.fn(testFunction),
+      testCall: vi.fn(testFunction),
     });
 
     // Act
@@ -70,7 +70,7 @@ describe('Plugin Invokation', () => {
 
     // Act
     pluginManager.registerPlugin('1', {
-      testCall: jest.fn(testFunction),
+      testCall: vi.fn(testFunction),
     });
     const callInvocationSignature: IShellPluginMethodCall = {
       plugin: '1',

@@ -7,8 +7,8 @@ const feature = loadFeature('../../../features/plugin/auth/auth.feature', {
 
 defineFeature(feature, (test) => {
   let authPlugin;
-  const loginFn = jest.fn();
-  const logoutFn = jest.fn();
+  const loginFn = vi.fn();
+  const logoutFn = vi.fn();
 
   test('Log in', ({ given, when, then }) => {
     given('An authentication plugin', () => {

@@ -8,7 +8,7 @@ const feature = loadFeature('../../features/client/client-init.feature', {
 
 defineFeature(feature, (test) => {
   afterEach(() => {
-    delete window.location;
+    Object.defineProperty(window, 'location', {});
   });
 
   test('Open app without container when standalone', ({
