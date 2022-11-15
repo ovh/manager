@@ -80,5 +80,8 @@
   "pci_databases_general_information_support_title": "Support",
   "pci_databases_general_information_support_level_label": "Niveau de support",
   "pci_databases_general_information_support_level_standard": "Standard",
-  "pci_databases_general_information_support_create_ticket_label": "Créer un ticket"
+  "pci_databases_general_information_support_create_ticket_label": "Créer un ticket",
+  "pci_databases_general_information_storage_type_local-ssd": "Disque SSD local",
+  "pci_databases_general_information_storage_type_high-speed": "Disque distant de première génération",
+  "pci_databases_general_information_storage_type_high-speed-gen2": "Disque distant de deuxième génération"
 }

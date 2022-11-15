@@ -212,9 +212,15 @@
                     data-ng-if="$ctrl.database.disk.size > 0"
                 >
                     <oui-tile-description>
-                        <span
+                        <p
+                            class="mb-1"
                             data-ng-bind="($ctrl.database.disk.size | bytes:2:false:'GB')"
-                        ></span>
+                        ></p>
+                        <p
+                            class="mb-0"
+                            data-ng-if="$ctrl.database.disk.type"
+                            data-ng-bind="('pci_databases_general_information_storage_type_' + $ctrl.database.disk.type) | translate"
+                        ></p>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
