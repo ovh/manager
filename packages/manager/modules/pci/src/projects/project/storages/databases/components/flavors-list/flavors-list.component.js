@@ -1,5 +1,6 @@
 import controller from './flavors-list.controller';
 import template from './flavors-list.html';
+import './style.scss';
 
 export default {
   bindings: {
@@ -9,6 +10,7 @@ export default {
     selectedFlavor: '=',
     user: '<',
     allowLowerSelection: '<?',
+    showMonthlyPrices: '<?',
   },
   controller,
   template,

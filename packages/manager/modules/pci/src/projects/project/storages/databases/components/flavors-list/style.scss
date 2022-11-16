@@ -1,0 +1,28 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+database-flavors-list {
+  tr.table-single-select-row {
+    td {
+      cursor: pointer !important;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $p-050;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      td {
+        cursor: not-allowed !important;
+      }
+    }
+
+    &.selected {
+      td {
+        font-weight: 800 !important;
+        background-color: $p-075;
+      }
+    }
+  }
+}
