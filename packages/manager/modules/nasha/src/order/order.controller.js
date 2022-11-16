@@ -140,7 +140,14 @@ export default class NashaOrderController {
   capacityFocus() {
     this.capacity.plans = this.plans
       .filter(({ diskType }) => diskType === this.diskType.value)
-      .sort(({ capacity: { value: a } }, { capacity: { value: b } }) => a - b);
+      .sort((planA, planB) => {
+        const capacityA = planA.capacity.value;
+        const capacityB = planB.capacity.value;
+        if (capacityA - capacityB) {
+          return capacityA - capacityB;
+        }
+        return planA.defaultPrice.price - planB.defaultPrice.price;
+      });
   }
 
   datacenterFocus() {
