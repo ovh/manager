@@ -349,8 +349,8 @@ export default class CloudProjectBillingService {
               this.data.totals.hourly.dataProcessing +
               this.data.totals.hourly.databases +
               this.data.totals.hourly.floatingIP +
-              this.data.totals.hourly.gateway +
-              2,
+              this.data.totals.hourly.gateway,
+            2,
           );
           this.data.totals.total = this.constructor.roundNumber(
             this.data.totals.monthly.total + this.data.totals.hourly.total,
