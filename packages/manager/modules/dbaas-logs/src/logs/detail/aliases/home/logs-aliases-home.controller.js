@@ -89,7 +89,7 @@ export default class LogsAliasesHomeCtrl {
           alias: alias.name,
         }),
       })
-      .then(() => this.delete(alias));
+      .then(() => this.remove(alias));
   }
 
   /**
@@ -98,12 +98,12 @@ export default class LogsAliasesHomeCtrl {
    * @param {any} alias to delete
    * @memberof LogsAliasesHomeCtrl
    */
-  delete(alias) {
+  remove(alias) {
     this.delete = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.LogsAliasesService.deleteAlias(this.serviceName, alias)
           .then(() => this.initLoaders())
-          .catch(() => this.CucControllerHelper.scrollPageToTop()),
+          .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     this.delete.load();
   }

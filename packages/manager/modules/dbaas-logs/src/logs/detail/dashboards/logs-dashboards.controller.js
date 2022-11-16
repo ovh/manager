@@ -89,7 +89,7 @@ export default class LogsDashboardsCtrl {
           dashboardName: dashboard.title,
         }),
       })
-      .then(() => this.delete(dashboard));
+      .then(() => this.remove(dashboard));
   }
 
   /**
@@ -98,7 +98,7 @@ export default class LogsDashboardsCtrl {
    * @param {any} dashboard to delete
    * @memberof LogsDashboardsCtrl
    */
-  delete(dashboard) {
+  remove(dashboard) {
     this.delete = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.LogsDashboardsService.deleteDashboard(this.serviceName, dashboard)
