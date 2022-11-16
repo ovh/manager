@@ -10,9 +10,14 @@ export const CLUSTER_STATUS = {
 };
 export const NUTANIX_SERVICE_TYPE = 'NUTANIX';
 
+export const CLUSTER_LIST_TITLE = {
+  TYPE_OF_PACK: 'Type of pack',
+};
+
 export default {
   CLUSTER_STATUS,
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   NUTANIX_SERVICE_TYPE,
+  CLUSTER_LIST_TITLE,
 };
