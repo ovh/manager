@@ -1,11 +1,5 @@
 import { TRACKING_PREFIX } from '../additional-ips.constants';
 
-export const ORDER_URL = {
-  EU: 'https://www.ovh.com/order/express/#/express/review?products=',
-  CA: 'https://ca.ovh.com/order/express/#/express/review?products=',
-  US: 'https://us.ovhcloud.com/order/express/#/express/review?products=',
-};
-
 export const GUIDE_URLS = {
   FAILOVER_IP: {
     DEFAULT: 'https://www.ovhcloud.com/en/bare-metal/ip/',
@@ -100,7 +94,6 @@ export const TRACKING_GUIDE_LINKS = {
 export const FLOATING_IP_PLAN = 'publiccloud-floatingip-floatingip';
 
 export default {
-  ORDER_URL,
   IP_TYPE_ENUM,
   REGIONS,
   GUIDE_URLS,

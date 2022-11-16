@@ -3,13 +3,18 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import isNumber from 'lodash/isNumber';
 import min from 'lodash/min';
-import { ORDER_URL } from './order.constants';
 
 export default class FailoverIpController {
   /* @ngInject */
-  constructor($window, coreConfig, OvhApiOrderCloudProjectIp) {
+  constructor(
+    $window,
+    coreConfig,
+    OvhApiOrderCloudProjectIp,
+    RedirectionService,
+  ) {
     this.$window = $window;
     this.coreConfig = coreConfig;
+    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
     this.OvhApiOrderCloudProjectIp = OvhApiOrderCloudProjectIp;
   }
 
@@ -89,12 +94,13 @@ export default class FailoverIpController {
         },
       ],
     };
+
     this.$window.open(
-      `${get(ORDER_URL, this.coreConfig.getRegion())}${JSURL.stringify([
-        order,
-      ])}`,
+      `${this.expressOrderUrl}?products=${JSURL.stringify([order])}`,
       '_blank',
+      'noopener',
     );
+
     this.goBack();
   }
 }
