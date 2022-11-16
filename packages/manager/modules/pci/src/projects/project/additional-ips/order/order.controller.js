@@ -7,7 +7,6 @@ import min from 'lodash/min';
 import map from 'lodash/map';
 import { TABS } from '../additional-ips.constants';
 import {
-  ORDER_URL,
   IP_TYPE_ENUM,
   REGIONS,
   GUIDE_URLS,
@@ -34,6 +33,7 @@ export default class AdditionalIpController {
     PciProjectAdditionalIpService,
     CucCloudMessage,
     PciPublicGatewaysService,
+    RedirectionService,
   ) {
     this.$q = $q;
     this.$window = $window;
@@ -41,6 +41,7 @@ export default class AdditionalIpController {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
+    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
     this.OvhApiOrderCloudProjectIp = OvhApiOrderCloudProjectIp;
     this.OvhApiOrderCatalogFormatted = OvhApiOrderCatalogFormatted;
     this.PciProjectAdditionalIpService = PciProjectAdditionalIpService;
@@ -118,13 +119,13 @@ export default class AdditionalIpController {
         },
       ],
     };
+
     this.$window.open(
-      `${get(ORDER_URL, this.coreConfig.getRegion())}${JSURL.stringify([
-        order,
-      ])}`,
+      `${this.expressOrderUrl}?products=${JSURL.stringify([order])}`,
       '_blank',
       'noopener',
     );
+
     this.goBack();
   }
 
