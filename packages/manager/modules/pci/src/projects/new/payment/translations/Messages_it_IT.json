@@ -17,5 +17,6 @@
   "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link": "Stato dell'ordine",
   "pci_project_new_payment_check_anti_fraud_case_fraud_refused": "In seguito a un'analisi dei dati associati al tuo ordine o relativi al tuo account,  sembra che questi non presentino tutte le garanzie necessarie in termini di sicurezza della transazione. Per poter procedere all'elaborazione e al pagamento dell’ordine e all'esecuzione del contratto, ti invitiamo a ripetere l'acquisto utilizzando un altro metodo di pagamento. Puoi anche contattare uno dei nostri consulenti tramite la sezione \"Aiuto\" del tuo account, per fornirci gli elementi utili al buon esito della transazione. In caso contrario, la transazione non sarà presa in considerazione.",
   "pci_project_new_payment_btn_return": "Indietro",
-  "pci_project_new_payment_btn_continue_add_credit_card": "Continua"
+  "pci_project_new_payment_btn_continue_add_credit_card": "Continua",
+  "pci_project_new_payment_btn_continue_sepa_direct_debit": "Aggiungi il tuo conto bancario"
 }

@@ -17,5 +17,6 @@
   "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link": "Order tracking",
   "pci_project_new_payment_check_anti_fraud_case_fraud_refused": "Based on an analysis of your order and account data, we believe that these do not meet all the necessary guarantees in terms of transaction security. To process your order, pay for it and execute the contract, please renew your purchase using another payment method. You can also contact one of our advisors via the help section of your account, to provide us with the information needed to complete the transaction. If not, this will not be taken into account.",
   "pci_project_new_payment_btn_return": "Back",
-  "pci_project_new_payment_btn_continue_add_credit_card": "Next"
+  "pci_project_new_payment_btn_continue_add_credit_card": "Next",
+  "pci_project_new_payment_btn_continue_sepa_direct_debit": "Add my bank account"
 }
