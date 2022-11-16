@@ -442,7 +442,7 @@
                 class="mb-3"
                 data-model="$ctrl.isAttachFloatingIP"
                 data-on-change="$ctrl.onAttachIPChange(modelValue)"
-                data-disabled="!$ctrl.isFloatingIpAvailable"
+                data-disabled="!$ctrl.isFloatingIpAvailable || !$ctrl.PciProjectsProjectInstanceService.additionalIpsIsAvailable($ctrl.flavor.type)"
             >
                 <oui-checkbox-label>
                     <span
@@ -464,6 +464,14 @@
                     data-translate-values="{
                         guideLink: $ctrl.FLOATING_IP_AVAILABILITY_INFO_LINK
                     }"
+                ></span>
+            </oui-message>
+            <oui-message
+                data-type="warning"
+                data-ng-if="!$ctrl.PciProjectsProjectInstanceService.additionalIpsIsAvailable($ctrl.flavor.type)"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_add_attach_floating_ip_availability_flavorType_warning"
                 ></span>
             </oui-message>
             <oui-message data-type="info">
