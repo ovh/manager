@@ -180,6 +180,7 @@ export default class LogsAliasesService {
       alias,
     )
       .$promise.then((operation) => {
+        this.getAliases(serviceName);
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,

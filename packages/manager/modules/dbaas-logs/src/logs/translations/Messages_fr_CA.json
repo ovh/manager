@@ -464,6 +464,7 @@
   "inputs_info_title": "Informations utiles",
   "inputs_info_description": "Cliquez sur les options proposées pour les copier dans votre presse-papiers.",
   "inputs_info_hostname": "Nom de l'hôte",
+  "inputs_info_exposedport": "Port TCP exposé",
   "inputs_info_ipaddress": "(Adresse) IP publique",
   "inputs_info_certificate": "Type de certificat",
   "inputs_logs_title": "Sortie console de {{inputTitle}}",

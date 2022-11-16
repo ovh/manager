@@ -721,5 +721,6 @@
   "logs_tile_subscription_contact_admin": "Administrator",
   "logs_tile_subscription_contact_billing": "Abrechnung",
   "logs_tile_subscription_contact_technical": "Technisch",
-  "logs_order": "Bestellen"
+  "logs_order": "Bestellen",
+  "inputs_info_exposedport": "Exponierter TCP-Port"
 }
