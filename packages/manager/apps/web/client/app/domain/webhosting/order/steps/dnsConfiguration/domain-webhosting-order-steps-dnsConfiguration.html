@@ -29,7 +29,7 @@
             data-translate="domain_webhosting_order_dns_configuration_enable_hosting_help"
         ></span>
     </div>
-    <div>
+    <div data-ng-if="$ctrl.emailDnsConfigurationAvailable">
         <oui-checkbox
             class="d-inline-block"
             data-model="$ctrl.dnsConfiguration.enableEmails"
