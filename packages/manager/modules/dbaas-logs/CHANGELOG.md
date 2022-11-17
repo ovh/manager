@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.8.3...@ovh-ux/manager-dbaas-logs@1.8.4) (2022-11-17)
+
+
+### Bug Fixes
+
+* cascade alias and dashboard removal ([#8098](https://github.com/ovh/manager/issues/8098)) ([084ca19](https://github.com/ovh/manager/commit/084ca1956cc5f94ccddaceaec5a15395f0490d86))
+
+
+
+
+
 ## [1.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.8.2...@ovh-ux/manager-dbaas-logs@1.8.3) (2022-11-02)
 
 

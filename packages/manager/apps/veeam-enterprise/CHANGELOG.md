@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise-app@1.6.1...@ovh-ux/manager-veeam-enterprise-app@1.6.2) (2022-11-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-enterprise-app
+
+
+
+
+
 ## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise-app@1.6.0...@ovh-ux/manager-veeam-enterprise-app@1.6.1) (2022-07-27)
 
 
@@ -363,6 +376,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 * **veeam-enterprise:** add standalone module ([5fac8f4](https://github.com/ovh/manager/commit/5fac8f4cc45c924f53fc875641191fc7a96117cb))
 * **veeam-enterprise:** migrate veeam-enterprise ([7bf5fd3](https://github.com/ovh/manager/commit/7bf5fd367375e38e141dc97ae04cd3b5a3a6d46b))
-
-
-

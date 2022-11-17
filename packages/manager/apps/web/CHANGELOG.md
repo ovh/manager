@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.20.1...@ovh-ux/manager-web@16.20.2) (2022-11-17)
+
+
+### Bug Fixes
+
+* **domain.order-hosting:** remove useless option in canada ([#8276](https://github.com/ovh/manager/issues/8276)) ([4c02327](https://github.com/ovh/manager/commit/4c023276a901deb888613d4b1cbc0d7a2ffd4e71))
+
+
+
+
+
 ## [16.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.20.0...@ovh-ux/manager-web@16.20.1) (2022-11-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

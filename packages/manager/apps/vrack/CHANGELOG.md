@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@1.6.1...@ovh-ux/manager-vrack-app@1.6.2) (2022-11-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
 ## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@1.6.0...@ovh-ux/manager-vrack-app@1.6.1) (2022-07-27)
 
 
@@ -421,6 +434,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * **vrack:** add vrack module & app ([da0f424](https://github.com/ovh-ux/manager/commit/da0f424))
-
-
-

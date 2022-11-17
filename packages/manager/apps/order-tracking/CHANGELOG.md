@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.5.2](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.5.1...@ovh-ux/order-tracking-app@2.5.2) (2022-11-17)
+
+**Note:** Version bump only for package @ovh-ux/order-tracking-app
+
+
+
+
+
 ## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.5.0...@ovh-ux/order-tracking-app@2.5.1) (2022-07-27)
 
 
@@ -352,6 +365,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### BREAKING CHANGES
 
 * **order-tracking:** Add order-tracking component
-
-
-

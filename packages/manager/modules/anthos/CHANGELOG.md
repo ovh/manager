@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.3.0...@ovh-ux/manager-anthos@1.3.1) (2022-11-17)
+
+
+### Bug Fixes
+
+* **pcc.anthos:** remove cta order for eosales of anthos ([#8347](https://github.com/ovh/manager/issues/8347)) ([7450a5b](https://github.com/ovh/manager/commit/7450a5bad68424a0fba3cff6912eb8cda56e8611))
+
+
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.2.3...@ovh-ux/manager-anthos@1.3.0) (2022-09-29)
 
 

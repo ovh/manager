@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [12.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.12.3...@ovh-ux/manager-core@12.12.4) (2022-11-17)
+
+
+### Bug Fixes
+
+* **pci:** fix url express order in redirection service module ([c155f77](https://github.com/ovh/manager/commit/c155f77d4b82f8436d5416ba44f0e552cb3240b2))
+
+
+
+
+
 ## [12.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.12.2...@ovh-ux/manager-core@12.12.3) (2022-09-20)
 
 
@@ -1016,6 +1032,3 @@ yarn add @ovh-ux/manager-core
 
 
 # [1.0.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@0.0.0...@ovh-ux/manager-core@1.0.0-alpha.0) (2018-11-26)
-
-
-

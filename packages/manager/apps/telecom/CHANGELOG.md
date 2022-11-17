@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.48.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.48.1...@ovh-ux/manager-telecom@13.48.2) (2022-11-17)
+
+
+### Bug Fixes
+
+* **telecom:** cannot choose trunk during portability ([#8254](https://github.com/ovh/manager/issues/8254)) ([4993a54](https://github.com/ovh/manager/commit/4993a54eed347dea3c2ccde3bfebd29e768f76bc))
+
+
+
+
+
 ## [13.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.48.0...@ovh-ux/manager-telecom@13.48.1) (2022-11-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
