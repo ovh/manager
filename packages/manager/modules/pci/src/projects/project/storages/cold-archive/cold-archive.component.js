@@ -9,8 +9,6 @@ export default {
     userList: '<',
     allUserList: '<',
     userListLink: '<',
-    goToColdArchiveContainers: '<',
-    goToColdArchiveContainersWithMessage: '<',
     goToAddColdArchive: '<',
     trackingPrefix: '<',
     guides: '<',
