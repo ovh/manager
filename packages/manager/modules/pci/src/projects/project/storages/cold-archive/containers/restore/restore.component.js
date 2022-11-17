@@ -1,0 +1,14 @@
+import controller from './restore.controller';
+import template from './restore.html';
+
+export default {
+  controller,
+  template,
+  bindings: {
+    projectId: '<',
+    containerName: '<',
+    trackClick: '<',
+    trackPage: '<',
+    goBack: '<',
+  },
+};
