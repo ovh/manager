@@ -10,7 +10,7 @@ export default {
     goToAddColdArchive: '<',
     goToAddUserContainer: '<',
     archiveContainer: '<',
-    restaureContainer: '<',
+    restoreContainer: '<',
     deleteContainer: '<',
     scrollToTop: '<',
     guides: '<',
