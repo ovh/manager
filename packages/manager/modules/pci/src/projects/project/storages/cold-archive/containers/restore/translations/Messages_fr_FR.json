@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_containers_container_cold_archive_restore_title": "Voulez-vous restaurer votre archive ?",
+  "pci_projects_project_storages_containers_container_cold_archive_restore_submit_label": "Confirmer",
+  "pci_projects_project_storages_containers_container_cold_archive_restore_cancel_label": "Annuler",
+
+  "pci_projects_project_storages_containers_container_cold_archive_restore_success_message": "Le conteneur {{ container }} a été restauré.",
+  "pci_projects_project_storages_containers_container_cold_archive_restore_error_message": "Une erreur est survenue lors de la restauration du conteneur {{ container }} : {{ message }}."
+}
