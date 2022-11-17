@@ -2,7 +2,9 @@
     <!--archive name field-->
     <oui-field
         class="mb-2"
-        data-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_name_archive_field_name' | translate}}">
+        data-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_name_archive_field_name' | translate}}"
+        data-help-text="{{ ::'pci_projects_project_storages_cold_archive_add_step_name_archive_description' | translate }}"
+    >
         <input
             type="text"
             class="oui-input"
@@ -14,7 +16,4 @@
             required
         />
     </oui-field>
-
-    <!--description-->
-    <p data-translate="pci_projects_project_storages_cold_archive_add_step_name_archive_description"></p>
 </div>
