@@ -28,7 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
         // [TODO] : To be implemented in the use case MANAGER-9330.
         goToAddUserContainer: /* @ngInject */ () => () => {},
         archiveContainer: /* @ngInject */ () => () => {},
-        restaureContainer: /* @ngInject */ () => () => {},
+        restoreContainer: /* @ngInject */ () => () => {},
         deleteContainer: /* @ngInject */ () => () => {},
       },
     },
