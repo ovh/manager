@@ -1,7 +1,8 @@
 <div class="w-75" data-ng-if="$ctrl.displayLinkUserArchiveStep">
-
     <!--Description -->
-    <p data-translate="pci_projects_project_storages_cold_archive_add_step_link_user_archive_description"></p>
+    <p
+        data-translate="pci_projects_project_storages_cold_archive_add_step_link_user_archive_description"
+    ></p>
 
     <!--Messages-->
     <cui-message-container
@@ -112,7 +113,7 @@
         <!--User input value-->
         <oui-field
             data-ng-if="!$ctrl.userModel.createMode.credential"
-            data-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label' | translate }}"
+            data-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_description_label' | translate }}"
         >
             <div class="d-flex align-items-center">
                 <input
