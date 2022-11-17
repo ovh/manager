@@ -42,8 +42,24 @@ export const GUIDES = [
     link: 'https://docs.ovh.com/fr/storage/s3/limitations/',
   },
 ];
+const COLD_ARCHIVE_ROOT_STATE = 'pci.projects.project.storages.cold-archive';
+export const COLD_ARCHIVE_STATES = {
+  ROOT: COLD_ARCHIVE_ROOT_STATE,
+  ONBOARDING: `${COLD_ARCHIVE_ROOT_STATE}.onboarding`,
+  CONTAINERS: `${COLD_ARCHIVE_ROOT_STATE}.containers`,
+  CONTAINER_ADD: `${COLD_ARCHIVE_ROOT_STATE}.containers.add`,
+  CONTAINER_ARCHIVE: `${COLD_ARCHIVE_ROOT_STATE}.containers.archive`,
+  CONTAINER_RESTORE: `${COLD_ARCHIVE_ROOT_STATE}.containers.restore`,
+  CONTAINER_DELETE: `${COLD_ARCHIVE_ROOT_STATE}.containers.delete`,
+  S3_USERS: `${COLD_ARCHIVE_ROOT_STATE}.users`,
+  S3_USERS_ADD: `${COLD_ARCHIVE_ROOT_STATE}.users.add`,
+  S3_USERS_IMPORT_POLICY: `${COLD_ARCHIVE_ROOT_STATE}.users.import-policy`,
+  S3_USERS_DOWNLOAD_RCLONE: `${COLD_ARCHIVE_ROOT_STATE}.users.download-rclone`,
+  S3_USERS_DELETE: `${COLD_ARCHIVE_ROOT_STATE}.users.delete`,
+};
 
 export default {
+  COLD_ARCHIVE_STATES,
   COLD_ARCHIVE_TRACKING_PREFIX,
   CHECK_PRICES_DOC_LINK,
   REGION,
