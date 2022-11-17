@@ -59,12 +59,6 @@ export default /* @ngInject */ ($stateProvider) => {
         },
 
         refreshContainers: /* @ngInject */ ($state) => () => $state.reload(),
-
-        // [TODO] : To be implemented in the use case MANAGER-9330.
-        goToAddUserContainer: /* @ngInject */ () => () => {},
-        archiveContainer: /* @ngInject */ () => () => {},
-        restoreContainer: /* @ngInject */ () => () => {},
-        deleteContainer: /* @ngInject */ () => () => {},
       },
     },
   );
