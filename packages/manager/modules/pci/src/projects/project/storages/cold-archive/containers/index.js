@@ -9,10 +9,13 @@ import 'angular-ui-bootstrap';
 import component from './containers.component';
 import routing from './containers.routing';
 
+import deleteContainer from './delete';
+
 const moduleName = 'ovhManagerPciStoragesColdArchiveContainersList';
 
 angular
   .module(moduleName, [
+    deleteContainer,
     'ngTranslateAsyncLoader',
     'oui',
     'ovhManagerCore',
