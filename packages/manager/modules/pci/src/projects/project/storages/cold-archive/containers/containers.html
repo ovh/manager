@@ -53,7 +53,7 @@
             >
                 <span
                     class="{{$ctrl.getStatusClass($row.status)}}"
-                    data-ng-bind="'pci_projects_project_storages_containers_status_' + $row.status | translate"
+                    data-translate="{{ 'pci_projects_project_storages_containers_status_' + $row.status }}"
                 ></span>
             </oui-datagrid-column>
             <oui-datagrid-column>
@@ -85,7 +85,7 @@
                         aria-hidden="true"
                     ></span>
                     <span
-                        data-ng-bind="'pci_projects_project_storages_cold_archive_containers_add_container_label' | translate"
+                        data-translate="{{:: 'pci_projects_project_storages_cold_archive_containers_add_container_label' }}"
                     ></span>
                 </button>
                 <button
