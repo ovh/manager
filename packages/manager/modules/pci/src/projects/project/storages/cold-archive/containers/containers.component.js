@@ -6,13 +6,17 @@ export default {
   template,
   bindings: {
     containers: '<',
+    containerName: '<',
     refreshContainers: '<',
     goToAddColdArchive: '<',
     goToAddUserContainer: '<',
     archiveContainer: '<',
     restoreContainer: '<',
-    deleteContainer: '<',
+    goToDeleteContainer: '<',
     scrollToTop: '<',
     guides: '<',
+    goBack: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
 };
