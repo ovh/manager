@@ -12,6 +12,7 @@ export default {
     goToAddUserContainer: '<',
     goToDeleteContainer: '<',
     goToArchiveContainer: '<',
+    goToRestoreContainer: '<',
     scrollToTop: '<',
     guides: '<',
     goBack: '<',

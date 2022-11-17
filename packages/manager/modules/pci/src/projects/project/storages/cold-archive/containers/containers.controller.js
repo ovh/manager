@@ -45,8 +45,8 @@ export default class PciStoragesContainersUsersController {
 
   getAction(action) {
     const ACTIONS = {
-      archive: this.archiveContainer,
-      restore: this.restoreContainer,
+      archive: this.goToArchiveContainer,
+      restore: this.goToRestoreContainer,
       delete: this.goToDeleteContainer,
     };
     return ACTIONS[action];
