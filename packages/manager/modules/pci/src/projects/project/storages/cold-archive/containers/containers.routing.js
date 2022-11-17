@@ -46,6 +46,18 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           );
         },
+        goToRestoreContainer: /* @ngInject */ ($state, projectId) => (
+          container,
+        ) => {
+          const { name } = container;
+          return $state.go(
+            'pci.projects.project.storages.cold-archive.containers.restore',
+            {
+              projectId,
+              containerName: name,
+            },
+          );
+        },
         goBack: ($state, projectId, CucCloudMessage) => (
           message = false,
           type = 'success',
