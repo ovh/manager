@@ -42,8 +42,27 @@ export const GUIDES = [
     link: 'https://docs.ovh.com/fr/storage/s3/limitations/',
   },
 ];
+const COLD_ARCHIVE_ROOT_STATE = 'pci.projects.project.storages.cold-archive';
+export const COLD_ARCHIVE_STATES = {
+  ROOT: COLD_ARCHIVE_ROOT_STATE,
+  ONBOARDING: `${COLD_ARCHIVE_ROOT_STATE}.onboarding`,
+  CONTAINERS: `${COLD_ARCHIVE_ROOT_STATE}.containers`,
+  CONTAINERS_CONTAINER: `${COLD_ARCHIVE_ROOT_STATE}.containers.container`,
+  CONTAINERS_CONTAINER_ADD: `${COLD_ARCHIVE_ROOT_STATE}.containers.add`,
+  CONTAINERS_CONTAINER_ARCHIVE: `${COLD_ARCHIVE_ROOT_STATE}.containers.archive`,
+  CONTAINERS_CONTAINER_RESTORE: `${COLD_ARCHIVE_ROOT_STATE}.containers.restore`,
+  CONTAINERS_CONTAINER_DELETE: `${COLD_ARCHIVE_ROOT_STATE}.containers.delete`,
+  CONTAINERS_CONTAINER_ADD_USER: `${COLD_ARCHIVE_ROOT_STATE}.containers.add-user`,
+  CONTAINERS_CONTAINER_OBJECTS_DELETE: `${COLD_ARCHIVE_ROOT_STATE}.containers.delete-objects`,
+  S3_USERS: `${COLD_ARCHIVE_ROOT_STATE}.users`,
+  S3_USERS_ADD: `${COLD_ARCHIVE_ROOT_STATE}.users.add`,
+  S3_USERS_IMPORT_POLICY: `${COLD_ARCHIVE_ROOT_STATE}.users.import-policy`,
+  S3_USERS_DOWNLOAD_RCLONE: `${COLD_ARCHIVE_ROOT_STATE}.users.download-rclone`,
+  S3_USERS_DELETE: `${COLD_ARCHIVE_ROOT_STATE}.users.delete`,
+};
 
 export default {
+  COLD_ARCHIVE_STATES,
   COLD_ARCHIVE_TRACKING_PREFIX,
   CHECK_PRICES_DOC_LINK,
   REGION,
