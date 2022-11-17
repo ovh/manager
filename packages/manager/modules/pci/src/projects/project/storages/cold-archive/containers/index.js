@@ -11,6 +11,7 @@ import routing from './containers.routing';
 
 import deleteContainer from './delete';
 import archiveContainer from './archive';
+import restoreContainer from './restore';
 
 const moduleName = 'ovhManagerPciStoragesColdArchiveContainersList';
 
@@ -18,6 +19,7 @@ angular
   .module(moduleName, [
     deleteContainer,
     archiveContainer,
+    restoreContainer,
     'ngTranslateAsyncLoader',
     'oui',
     'ovhManagerCore',
