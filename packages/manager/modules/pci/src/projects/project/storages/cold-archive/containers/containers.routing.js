@@ -22,6 +22,41 @@ export default /* @ngInject */ ($stateProvider) => {
             'pci_projects_project_storages_cold_archive_container_label',
           );
         },
+        goToDeleteContainer: /* @ngInject */ ($state, projectId) => (
+          container,
+        ) => {
+          const { name } = container;
+          return $state.go(
+            'pci.projects.project.storages.cold-archive.containers.delete',
+            {
+              projectId,
+              containerName: name,
+            },
+          );
+        },
+        goBack: ($state, projectId, CucCloudMessage) => (
+          message = false,
+          type = 'success',
+        ) => {
+          const reload = message && type === 'success';
+          const state = 'pci.projects.project.storages.cold-archive.containers';
+
+          const promise = $state.go(
+            state,
+            {
+              projectId,
+            },
+            {
+              reload,
+            },
+          );
+
+          if (message) {
+            promise.then(() => CucCloudMessage[type](message, state));
+          }
+
+          return promise;
+        },
 
         refreshContainers: /* @ngInject */ ($state) => () => $state.reload(),
 
