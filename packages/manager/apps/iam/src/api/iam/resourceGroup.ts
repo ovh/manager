@@ -6,22 +6,23 @@ import apiClient, {
 
 import { IamApiResourceGroup, IamApiResourceGroupData } from '../types';
 
-export const listResourceGroup = ({
-  page,
-  pageSize,
-  filters,
-  sortBy,
-  sortReverse,
-}: IcebergOptions) => {
-  return fetchIceberg<IamApiResourceGroup>({
-    route: '/iam/resourceGroup',
-    page,
-    pageSize,
-    filters,
-    sortBy,
-    sortReverse,
-    apiVersion: ApiClientVersions.v2,
-  });
+export const listResourceGroup = async (icebergOptions?: IcebergOptions) => {
+  if (icebergOptions) {
+    const { page, pageSize, filters, sortBy, sortReverse } = icebergOptions;
+
+    return fetchIceberg<IamApiResourceGroup>({
+      route: '/iam/resourceGroup',
+      page,
+      pageSize,
+      filters,
+      sortBy,
+      sortReverse,
+      apiVersion: ApiClientVersions.v2,
+    });
+  }
+
+  const { data } = await apiClient.v2.get('/iam/resourceGroup');
+  return data;
 };
 
 export const getResourceGroup = async (

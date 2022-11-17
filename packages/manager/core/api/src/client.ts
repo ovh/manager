@@ -24,7 +24,7 @@ export const ws = axios.create({
 
 export const v2 = axios.create({
   ...defaultAxiosConfig,
-  baseURL: '/engine/v2',
+  baseURL: '/engine/api/v2',
 });
 
 export const apiClient = { v6, aapi, ws, v2 };

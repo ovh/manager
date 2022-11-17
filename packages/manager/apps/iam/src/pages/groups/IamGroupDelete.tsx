@@ -47,7 +47,7 @@ export default function IamGroupDelete() {
   const onDeleteResourceGroupBtnClick = async () => {
     try {
       await deleteResourceGroup(resourceGroupId);
-      queryClient.invalidateQueries(['iam_resource_group']);
+      queryClient.removeQueries(['iam_resource_group']);
       setOnClose({
         type: 'success',
         message: (

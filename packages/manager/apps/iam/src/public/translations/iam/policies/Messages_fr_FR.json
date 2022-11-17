@@ -1,1 +1,12 @@
-{}
+{
+  "policy_create": "Créer une nouvelle policy",
+  "policy_create_title": "IAM : créer une nouvelle policy",
+  "policy_name": "Nom",
+  "policy_created_at": "Créé le",
+  "policy_updated_at": "Mis à jour le",
+  "policy_actions": "{{name}}: actions sur la policy",
+  "policy_action_edit": "Modifier la policy",
+  "policy_action_edit_title": "{{name}}: modifier la policy",
+  "policy_action_delete": "Supprimer la policy",
+  "policy_action_delete_title": "{{name}}: supprimer la policy"
+}

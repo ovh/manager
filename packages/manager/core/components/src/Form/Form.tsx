@@ -32,7 +32,7 @@ export default function Form(props: FormProps): JSX.Element {
   // create a JSON Schema Form component with chakra ui theme applied
   const JSForm = withTheme(ChakraUITheme);
 
-  const { schema, uiSchema, formData, onSubmit } = props;
+  const { schema, uiSchema, formData, onSubmit, onChange } = props;
 
   const onFormSubmit = (data: IChangeEvent, e: React.FormEvent) => {
     if (!data.errors.length) {
@@ -48,6 +48,7 @@ export default function Form(props: FormProps): JSX.Element {
       validator={validator}
       noHtml5Validate={true}
       showErrorList={false}
+      onChange={onChange}
       onSubmit={onFormSubmit}
     ></JSForm>
   );

@@ -1,32 +1,27 @@
 import React, { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
 import {
   Form,
   MessageBox,
   MessageBoxMessage,
 } from '@ovh-ux/manager-react-core-components';
 import { useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
+import { createResourceGroup } from '@/api';
 import useResourceGroupForm, {
   IamResourceGroupFormData,
 } from '@/hooks/useResourceGroupForm';
-import { editResourceGroup } from '@/api';
 
-export default function IamGroupEdit(): JSX.Element {
-  const { t } = useTranslation('iam/groups/edit');
-  const [editError, setEditError] = useState<MessageBoxMessage>();
-  const { resourceGroupId } = useParams();
+export default function IamPolicies() {
+  const { t } = useTranslation(['iam/groups/add', 'iam/groups']);
+  const [createError, setCreateError] = useState<MessageBoxMessage>();
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const {
-    isFormLoading,
-    schema,
-    formData,
-    getGroupPayload,
-  } = useResourceGroupForm(resourceGroupId);
+  const { isFormLoading, schema, getGroupPayload } = useResourceGroupForm();
 
-  const editGroup = async ({
+  const queryClient = useQueryClient();
+
+  const createGroup = async ({
     formData: submittedData,
   }: {
     formData: IamResourceGroupFormData;
@@ -35,18 +30,18 @@ export default function IamGroupEdit(): JSX.Element {
 
     try {
       // POST to the API
-      await editResourceGroup(resourceGroupId, groupPayload);
+      await createResourceGroup(groupPayload);
       // invalidate query cache
-      queryClient.invalidateQueries(['iam_resource_group']);
+      queryClient.removeQueries(['iam_resource_group']);
       // navigate to parent page
-      navigate('../..', {
+      navigate('..', {
         state: {
           actionResult: {
             type: 'success',
             message: (
               <Trans
                 t={t}
-                i18nKey="edit_success"
+                i18nKey="create_success"
                 values={{ name: groupPayload.name }}
               ></Trans>
             ),
@@ -54,9 +49,9 @@ export default function IamGroupEdit(): JSX.Element {
         },
       });
     } catch (error) {
-      setEditError({
+      setCreateError({
         type: 'error',
-        message: <Trans t={t} i18nKey="edit_error"></Trans>,
+        message: <Trans t={t} i18nKey="create_error"></Trans>,
         error,
       });
     }
@@ -64,12 +59,11 @@ export default function IamGroupEdit(): JSX.Element {
 
   return (
     <>
-      {editError && <MessageBox {...editError} dismissable={true} />}
+      {createError && <MessageBox {...createError} dismissable={true} />}
       <Form
         schema={schema}
-        formData={formData}
         isLoading={isFormLoading}
-        onSubmit={editGroup}
+        onSubmit={createGroup}
       ></Form>
     </>
   );

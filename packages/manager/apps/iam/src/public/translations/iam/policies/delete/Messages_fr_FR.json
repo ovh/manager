@@ -1,0 +1,6 @@
+{
+  "policy_delete_title": "Suppression d'une policy",
+  "policy_delete_confirm": "Êtes-vous certain de vouloir supprimer la policy <strong>{{ name }}</strong> ?",
+  "policy_delete_success": "La policy <strong>{{ name }}</strong> a bien été supprimée.",
+  "policy_delete_error": "Une erreur est survenue lors de la suppression de la policy <strong>{{ name }}</strong>."
+}

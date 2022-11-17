@@ -14,6 +14,7 @@ export const SwitchWidget = ({
   required,
   label,
   uiSchema,
+  value,
 }: WidgetProps) => {
   const onChangeEvent = ({
     target: { checked },
@@ -49,6 +50,7 @@ export const SwitchWidget = ({
         onChange={onChangeEvent}
         onBlur={onBlurEvent}
         onFocus={onFocusEvent}
+        isChecked={typeof value === 'undefined' ? false : value}
       />
     </FormControl>
   );

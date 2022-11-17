@@ -8,31 +8,29 @@ import {
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import { createResourceGroup } from '@/api';
-import useResourceGroupForm, {
-  IamResourceGroupFormData,
-} from '@/hooks/useResourceGroupForm';
+import { createPolicy } from '@/api/iam';
+import usePolicyForm, { IamPolicyFormData } from '@/hooks/usePolicyForm';
 
-export default function IamPolicies() {
-  const { t } = useTranslation(['iam/groups/add', 'iam/groups']);
+export default function IamPolicyAdd() {
+  const { t } = useTranslation(['iam/policies/add', 'iam/policies']);
   const [createError, setCreateError] = useState<MessageBoxMessage>();
   const navigate = useNavigate();
-  const { isFormLoading, schema, getGroupPayload } = useResourceGroupForm();
+  const { isFormLoading, schema, uiSchema, getPolicyPayload } = usePolicyForm();
 
   const queryClient = useQueryClient();
 
   const createGroup = async ({
     formData: submittedData,
   }: {
-    formData: IamResourceGroupFormData;
+    formData: IamPolicyFormData;
   }) => {
-    const groupPayload = getGroupPayload(submittedData);
+    const groupPayload = getPolicyPayload(submittedData);
 
     try {
       // POST to the API
-      await createResourceGroup(groupPayload);
+      await createPolicy(groupPayload);
       // invalidate query cache
-      queryClient.invalidateQueries(['iam_resource_group']);
+      queryClient.removeQueries(['iam_resource_group']);
       // navigate to parent page
       navigate('..', {
         state: {
@@ -62,6 +60,7 @@ export default function IamPolicies() {
       {createError && <MessageBox {...createError} dismissable={true} />}
       <Form
         schema={schema}
+        uiSchema={uiSchema}
         isLoading={isFormLoading}
         onSubmit={createGroup}
       ></Form>

@@ -37,13 +37,13 @@ export function startApplication(
   const root = createRoot(createContainerElement());
   const AppComponent = app;
   root.render(
-    <React.StrictMode>
+    // <React.StrictMode>
       <ChakraProvider theme={theme}>
         <OvhApplication name={appName}>
           <AppComponent />
         </OvhApplication>
       </ChakraProvider>
-    </React.StrictMode>,
+    // </React.StrictMode>,
   );
 }
 
