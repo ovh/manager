@@ -1,0 +1,19 @@
+<oui-modal
+    data-heading="{{ 'pci_projects_project_storages_containers_container_cold_archive_delete_title' | translate }}"
+    data-primary-action="$ctrl.deleteContainer()"
+    data-primary-label="{{:: 'pci_projects_project_storages_containers_container_cold_archive_delete_submit_label' | translate }}"
+    data-primary-disabled="$ctrl.isLoading"
+    data-secondary-action="$ctrl.cancel()"
+    data-on-dismiss="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_projects_project_storages_containers_container_cold_archive_delete_cancel_label' | translate }}"
+    data-loading="$ctrl.isLoading"
+>
+    <div>
+        <oui-message data-type="warning">
+            <span
+                data-translate="pci_projects_project_storages_containers_container_cold_archive_delete_warning"
+                data-translate-values="{ container: $ctrl.container.name }"
+            ></span>
+        </oui-message>
+    </div>
+</oui-modal>
