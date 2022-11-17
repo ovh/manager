@@ -49,12 +49,6 @@ export default /* @ngInject */ ($stateProvider) => {
           containerId: container.id,
         }),
 
-      deleteContainer: /* @ngInject */ ($state, projectId) => (container) =>
-        $state.go('pci.projects.project.storages.cold-archives.delete', {
-          projectId,
-          containerId: container.id,
-        }),
-
       userList: /* @ngInject */ (projectId, allUserList) =>
         allUserList.filter((user) => user?.s3Credentials?.length > 0),
 
@@ -79,30 +73,6 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
-      goToColdArchiveContainersWithMessage: (
-        $state,
-        projectId,
-        CucCloudMessage,
-      ) => (message = false, type = 'success') => {
-        const reload = message && type === 'success';
-        const state = 'pci.projects.project.storages.cold-archive';
-        const promise = $state.go(
-          state,
-          {
-            projectId,
-          },
-          {
-            reload,
-          },
-        );
-
-        if (message) {
-          promise.then(() => CucCloudMessage[type](message, state));
-        }
-
-        return promise;
-      },
-
       // The region parameter is for now hard-coded.
       // waiting the API fix PCINT-3514
       containers: /* @ngInject */ (PciStoragesColdArchiveService, projectId) =>
@@ -120,9 +90,9 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
 
       trackPage: /* @ngInject */ (atInternet) => (hit) =>
-        atInternet.trackPage({
+        atInternet.trackClick({
           name: `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`,
-          type: 'action',
+          type: 'page',
         }),
 
       scrollToTop: /* @ngInject */ ($anchorScroll, $location) => () => {
