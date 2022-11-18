@@ -114,6 +114,7 @@ export default class IpListController {
       $scope.state = {};
       $scope.serviceType =
         self.serviceType || $location.search().serviceType || null;
+      $scope.params = self.params || null;
 
       $scope.tracking = {
         'enable-permanent-mitigation': `${TRACKING_PREFIX}::enable-permanent-mitigation`,

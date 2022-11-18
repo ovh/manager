@@ -5,6 +5,7 @@ export default {
   bindings: {
     badges: '<',
     goToAntispam: '<',
+    goToFailover: '<',
     goToFirewall: '<',
     goToGameFirewall: '<',
     goToOrganisation: '<',
@@ -13,6 +14,7 @@ export default {
     trackClick: '<',
     trackPage: '<',
     trackingData: '<',
+    unusedFilter: '<',
   },
   controller,
   template,
