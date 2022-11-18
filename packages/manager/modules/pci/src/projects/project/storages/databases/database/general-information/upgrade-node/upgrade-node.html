@@ -24,6 +24,7 @@
     data-selected-flavor="$ctrl.selectedFlavor"
     data-user="$ctrl.user"
 ></database-flavors-list>
+
 <div data-ng-if="$ctrl.upgradingFlavor">
     <oui-spinner data-size="s"></oui-spinner>
     <span
@@ -31,6 +32,7 @@
     ></span>
 </div>
 <oui-form-actions
+    class="mb-4"
     data-ng-if="!$ctrl.upgradingFlavor"
     data-submit-text="{{:: 'pci_databases_general_information_upgrade_node_confirm' | translate }}"
     data-cancel-text="{{:: 'pci_databases_general_information_upgrade_node_cancel' | translate }}"

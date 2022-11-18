@@ -16,6 +16,7 @@ import routing from './general-information.routing';
 import upgradePlan from './upgrade-plan';
 import upgradeVersion from './upgrade-version';
 import upgradeNode from './upgrade-node';
+import upgradeStorage from './upgrade-storage';
 
 import calendarEdit from '../../components/calendar-edit';
 import dashboardIntegrations from '../../components/dashboard-integrations';
@@ -38,6 +39,7 @@ angular
     upgradePlan,
     upgradeVersion,
     upgradeNode,
+    upgradeStorage,
     calendarEdit,
     dashboardIntegrations,
   ])

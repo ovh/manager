@@ -193,6 +193,11 @@ export default class {
     this.goToUpgradeNode();
   }
 
+  upgradeStorage() {
+    this.trackDashboard('general_information::upgrade_storage');
+    this.goToUpgradeStorage();
+  }
+
   deleteDatabase() {
     this.trackDashboard('general_information::delete_database');
     if (isFeatureActivated('serviceIntegrationTab', this.database.engine)) {

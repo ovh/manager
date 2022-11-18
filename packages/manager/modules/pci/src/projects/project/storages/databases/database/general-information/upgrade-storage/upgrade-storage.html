@@ -1,0 +1,54 @@
+<oui-back-button
+    data-previous-page="{{:: 'pci_databases_general_information_upgrade_storage_back' | translate }}"
+    data-on-click="$ctrl.goBack()"
+>
+    <span
+        data-translate="pci_databases_general_information_upgrade_storage"
+    ></span>
+</oui-back-button>
+<oui-message type="warning">
+    <span
+        data-translate="pci_databases_general_information_upgrade_storage_warning"
+    ></span>
+</oui-message>
+<p
+    data-translate="pci_databases_general_information_upgrade_storage_description"
+    data-translate-values="{
+        flavorName: $ctrl.flavor.name,
+        includedStorage: ($ctrl.flavor.minDiskSize | bytes:2:false:'GB'),
+        addableStorage: ($ctrl.flavor.maxDiskSize - $ctrl.flavor.minDiskSize | bytes:2:false:'GB'),
+        step: $ctrl.flavor.stepDiskSize
+    }"
+></p>
+
+<database-disk-size
+    data-min="0"
+    data-max="($ctrl.flavor.maxDiskSize - $ctrl.flavor.minDiskSize)"
+    data-initial-value="($ctrl.database.disk.size - $ctrl.flavor.minDiskSize)"
+    data-step="$ctrl.flavor.stepDiskSize"
+    data-model="$ctrl.additionalDiskSize"
+    data-prices="{
+            hourly: $ctrl.flavor.hourlyPricePerGB,
+            monthly: $ctrl.flavor.monthlyPricePerGB,
+        }"
+    data-nodes="$ctrl.database.nodes.length"
+    data-show-monthly-prices="$ctrl.showMonthlyPrices"
+>
+</database-disk-size>
+
+<div data-ng-if="$ctrl.upgradingStorage">
+    <oui-spinner data-size="s"></oui-spinner>
+    <span
+        data-translate="pci_databases_general_information_upgrade_storage_processing"
+    ></span>
+</div>
+<oui-form-actions
+    class="mb-4"
+    data-ng-if="!$ctrl.upgradingStorage"
+    data-submit-text="{{:: 'pci_databases_general_information_upgrade_storage_confirm' | translate }}"
+    data-cancel-text="{{:: 'pci_databases_general_information_upgrade_storage_cancel' | translate }}"
+    data-on-submit="$ctrl.upgradeStorage()"
+    data-on-cancel="$ctrl.cancel()"
+    data-disabled="($ctrl.flavor.minDiskSize + $ctrl.additionalDiskSize) <= $ctrl.database.disk.size"
+>
+</oui-form-actions>

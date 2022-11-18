@@ -38,7 +38,7 @@ export default class Flavor {
   }
 
   get stepDiskSize() {
-    return (this.availability || [])[0]?.stepDiskSize;
+    return (this.availability || [])[0]?.stepDiskSize || 10;
   }
 
   get nodesCount() {
