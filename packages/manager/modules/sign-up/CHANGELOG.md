@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.5.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.5.1...@ovh-ux/sign-up@2.5.2) (2022-11-18)
+
+
+### Bug Fixes
+
+* **sign-up:** filter read only params ([34cae4f](https://github.com/ovh/manager/commit/34cae4fdeacfa211c924df943889f9dd6b811e7b))
+
+
+
+
+
 ## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.5.0...@ovh-ux/sign-up@2.5.1) (2022-08-22)
 
 
@@ -498,6 +514,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * sign-up app ([#971](https://github.com/ovh-ux/manager/issues/971)) ([040dffa](https://github.com/ovh-ux/manager/commit/040dffa))
-
-
-
