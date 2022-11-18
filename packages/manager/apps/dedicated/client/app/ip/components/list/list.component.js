@@ -10,6 +10,7 @@ export default {
     goToGameFirewall: '<',
     goToOrganisation: '<',
     orderIpAvailable: '<',
+    params: '<',
     serviceType: '<',
     setAction: '<',
     trackClick: '<',

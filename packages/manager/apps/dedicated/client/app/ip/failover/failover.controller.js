@@ -10,9 +10,6 @@ export default class IpFailoverController {
 
   toggleUnusedFilter() {
     this.unusedFilter = !this.unusedFilter;
-    this.$scope.$broadcast('ips.table.params', {
-      serviceName: this.unusedFilter ? 'null' : null,
-    });
     this.atInternet.trackClick({
       type: 'action',
       name: [
@@ -22,5 +19,6 @@ export default class IpFailoverController {
           : FAILOVER_TRACKING_HIT.UNUSED_OFF,
       ].join('::'),
     });
+    this.goToFailover({ unused: this.unusedFilter ? '1' : '0' });
   }
 }
