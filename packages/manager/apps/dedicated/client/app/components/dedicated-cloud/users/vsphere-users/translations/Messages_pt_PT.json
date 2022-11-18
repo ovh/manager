@@ -27,5 +27,13 @@
   "dedicatedCloud_USER_encryption": "Gestão da encriptação",
   "dedicatedCloud_USER_cancel": "Anular",
   "dedicatedCloud_USER_yes": "Sim",
-  "dedicatedCloud_USER_no": "Não"
+  "dedicatedCloud_USER_no": "Não",
+  "dedicatedCloud_USER_import_user": "Importar um utilizador",
+  "dedicatedCloud_USER_state_creating": "Criação em curso",
+  "dedicatedCloud_USER_state_deleting": "Eliminação em curso",
+  "dedicatedCloud_USER_state_delivered": "Ativado",
+  "dedicatedCloud_USER_state_error": "Erro",
+  "dedicatedCloud_USER_state_disabled": "Desativado",
+  "dedicatedCloud_USER_user_delete": "Eliminar este utilizador",
+  "dedicatedCloud_USER_group_delete": "Eliminar este grupo"
 }

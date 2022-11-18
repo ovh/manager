@@ -2,7 +2,7 @@
   "dedicatedCloud_user_management_authorization_vsphere": "Gestión de las autorizaciones de usuario en el cliente vSphere",
   "dedicatedCloud_USER_add_user": "Crear un usuario",
   "dedicatedCloud_search_user": "Buscar un usuario",
-  "dedicatedCloud_USER_name": "Usuario",
+  "dedicatedCloud_USER_name": "Identificador",
   "dedicatedCloud_USER_firstname": "Nombre",
   "dedicatedCloud_USER_lastname": "Nombre",
   "dedicatedCloud_USER_mail": "Email",
@@ -27,5 +27,13 @@
   "dedicatedCloud_USER_encryption": "Gestión del cifrado",
   "dedicatedCloud_USER_cancel": "Cancelar",
   "dedicatedCloud_USER_yes": "Sí",
-  "dedicatedCloud_USER_no": "No"
+  "dedicatedCloud_USER_no": "No",
+  "dedicatedCloud_USER_import_user": "Importar un usuario",
+  "dedicatedCloud_USER_state_creating": "Creando...",
+  "dedicatedCloud_USER_state_deleting": "Eliminando...",
+  "dedicatedCloud_USER_state_delivered": "Activado",
+  "dedicatedCloud_USER_state_error": "En error",
+  "dedicatedCloud_USER_state_disabled": "Desactivado",
+  "dedicatedCloud_USER_user_delete": "Eliminar este usuario",
+  "dedicatedCloud_USER_group_delete": "Eliminar este grupo"
 }

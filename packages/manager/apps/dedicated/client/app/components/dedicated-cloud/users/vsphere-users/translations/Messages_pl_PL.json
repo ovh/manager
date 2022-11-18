@@ -4,7 +4,7 @@
   "dedicatedCloud_search_user": "Wyszukiwanie użytkownika",
   "dedicatedCloud_USER_name": "Identyfikator",
   "dedicatedCloud_USER_firstname": "Imię",
-  "dedicatedCloud_USER_lastname": "Nazwisko",
+  "dedicatedCloud_USER_lastname": "Nazwa",
   "dedicatedCloud_USER_mail": "E-mail",
   "dedicatedCloud_USER_phone": "Numer telefonu",
   "dedicatedCloud_USER_token_validator": "Token validator",
@@ -27,5 +27,13 @@
   "dedicatedCloud_USER_encryption": "Zarządzanie szyfrowaniem",
   "dedicatedCloud_USER_cancel": "Anuluj",
   "dedicatedCloud_USER_yes": "Tak",
-  "dedicatedCloud_USER_no": "Nie"
+  "dedicatedCloud_USER_no": "Nie",
+  "dedicatedCloud_USER_import_user": "Importuj użytkownika",
+  "dedicatedCloud_USER_state_creating": "Trwa tworzenie",
+  "dedicatedCloud_USER_state_deleting": "Trwa usuwanie",
+  "dedicatedCloud_USER_state_delivered": "Włączone",
+  "dedicatedCloud_USER_state_error": "Błąd",
+  "dedicatedCloud_USER_state_disabled": "Wyłączony",
+  "dedicatedCloud_USER_user_delete": "Usuń tego użytkownika",
+  "dedicatedCloud_USER_group_delete": "Usuń tę grupę"
 }
