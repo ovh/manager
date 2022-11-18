@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import { CONTAINER_USER_ASSOCIATION_MODES } from '../../containers/add/components/associate-user-to-container/constant';
 import {
   COLD_ARCHIVE_ADD_MESSAGES_ID,
   COLD_ARCHIVE_DEFAULT_REGION,
@@ -101,22 +100,7 @@ export default class ColdArchiveConfigurationController {
         ownerId,
       })
       .then(() => {
-        const { createOrLinkedMode, createMode, linkedMode } = this.userModel;
-        const isCreateMode =
-          createOrLinkedMode === CONTAINER_USER_ASSOCIATION_MODES.CREATE;
-        const message = isCreateMode
-          ? 'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_linked_user'
-          : 'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_no_linked_user';
-        const userName = isCreateMode
-          ? createMode.user.description
-          : linkedMode.selected.name;
-
-        return this.goToColdArchiveContainersWithMessage(
-          this.$translate.instant(message, {
-            container: this.archiveModel.name,
-            userName,
-          }),
-        );
+        return this.goToArchives();
       })
       .catch((err) => {
         this.cucCloudMessage.error(
