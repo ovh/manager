@@ -1,5 +1,5 @@
 {
-  "pci_additional_ips_floating_ips_floating_ip_terminate_title": "Souhaitez-vous réellement supprimer l'IP flottante {{ ip }} ?",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_title": "Souhaitez-vous réellement supprimer cette Floating IP {{ ip }} ?",
   "pci_additional_ips_floating_ips_floating_ip_terminate_confirm": "Confirmer",
   "pci_additional_ips_floating_ips_floating_ip_terminate_cancel": "Annuler",
   "pci_additional_ips_floating_ips_floating_ip_terminate_success_info": "L'IP {{ ip }} a bien été supprimée.",
