@@ -1,0 +1,20 @@
+{
+  "dedicatedCloud_task_progress_operation": "Operacja:",
+  "dedicatedCloud_task_progress_operation_addUser": "Dodanie użytkownika",
+  "dedicatedCloud_task_progress_operation_addFederationAccessNetwork": "Dodanie Active Directory",
+  "dedicatedCloud_task_progress_operation_removeFederationAccessNetwork": "Usunięcie Active Directory",
+  "dedicatedCloud_task_progress_operation_updateFederationAccessNetwork": "Edycja Active Directory",
+  "dedicatedCloud_task_progress_task_reference": "Zadanie: {{task}}",
+  "dedicatedCloud_task_progress_state_done": "Zakończone",
+  "dedicatedCloud_task_progress_state_canceled": "Anulowane",
+  "dedicatedCloud_task_progress_state_doing": "W realizacji",
+  "dedicatedCloud_task_progress_state_error": "Błąd",
+  "dedicatedCloud_task_progress_state_problem": "Problem",
+  "dedicatedCloud_task_progress_state_todo": "Do wykonania",
+  "dedicatedCloud_task_progress_state_fixing": "Interwencja w trakcie",
+  "dedicatedCloud_task_progress_state_toCancel": "Do anulowania",
+  "dedicatedCloud_task_progress_state_toCreate": "Do utworzenia",
+  "dedicatedCloud_task_progress_state_unknown": "Nieznany",
+  "dedicatedCloud_task_progress_state_waitingForChilds": "Oczekujące",
+  "dedicatedCloud_task_progress_state_waitingTodo": "Do zaplanowania"
+}

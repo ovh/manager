@@ -8,7 +8,7 @@ import license from '../license';
 import operation from '../operation';
 import security from '../security';
 import servicePackUpgrade from '../service-pack/upgrade';
-import user from '../user';
+import user from '../users';
 
 import routing from './dedicatedCloud.routing';
 
