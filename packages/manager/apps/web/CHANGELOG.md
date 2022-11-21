@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.20.2...@ovh-ux/manager-web@16.20.3) (2022-11-21)
+
+
+### Bug Fixes
+
+* **domain:** don't send empty body in request post ([d4976ec](https://github.com/ovh/manager/commit/d4976ec1bac457f426e71f1c27d52aa50e14f8f3))
+
+
+
+
+
 ## [16.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.20.1...@ovh-ux/manager-web@16.20.2) (2022-11-17)
 
 

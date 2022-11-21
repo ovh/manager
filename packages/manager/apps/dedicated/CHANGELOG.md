@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.36.0...@ovh-ux/manager-dedicated@17.37.0) (2022-11-21)
+
+
+### Features
+
+* **pcc.user:** pcc federation ([#8035](https://github.com/ovh/manager/issues/8035)) ([9aa96c3](https://github.com/ovh/manager/commit/9aa96c3f1f29c2d37a9f8fbb0e32d8eeb95598c3))
+
+
+
+
+
 # [17.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.35.1...@ovh-ux/manager-dedicated@17.36.0) (2022-11-17)
 
 

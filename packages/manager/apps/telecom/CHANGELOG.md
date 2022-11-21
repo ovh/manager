@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.48.2...@ovh-ux/manager-telecom@13.49.0) (2022-11-21)
+
+
+### Features
+
+* **telecom:** add lines informations on listings ([f77435f](https://github.com/ovh/manager/commit/f77435f6bea399402de98c9c0946264bd6b162bd))
+
+
+
+
+
 ## [13.48.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.48.1...@ovh-ux/manager-telecom@13.48.2) (2022-11-17)
 
 

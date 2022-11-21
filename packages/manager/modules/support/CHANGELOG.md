@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.14.0...@ovh-ux/manager-support@1.14.1) (2022-11-21)
+
+
+### Bug Fixes
+
+* **dedicated.helpcenter:** add modal for helpcenter for ca and eu ([#8281](https://github.com/ovh/manager/issues/8281)) ([5b23c90](https://github.com/ovh/manager/commit/5b23c90a685b2f60f64fddc9ce8a0a36ebe37316))
+
+
+
+
+
 # [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.13.1...@ovh-ux/manager-support@1.14.0) (2022-11-02)
 
 

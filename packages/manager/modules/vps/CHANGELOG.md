@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.27.0...@ovh-ux/manager-vps@2.27.1) (2022-11-21)
+
+
+### Bug Fixes
+
+* **modules.vps:** remove api version for us region ([3fabe1b](https://github.com/ovh/manager/commit/3fabe1b715c104f58d39c456c76fb41d89637f42))
+* **modules.vps:** unblock vps memory upgrade ([141d7a7](https://github.com/ovh/manager/commit/141d7a7b909f3a5e5ddf9cf413dfec3acd6e5e16))
+
+
+
+
+
 # [2.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.26.0...@ovh-ux/manager-vps@2.27.0) (2022-11-09)
 
 
