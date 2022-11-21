@@ -3,6 +3,7 @@ import statusTemplate from './templates/status.html';
 import prismUrl from './templates/prismUrl.html';
 import serviceLink from './templates/serviceLink.html';
 import localizationTemplate from './templates/localization.html';
+import { CLUSTER_LIST_TITLE } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.index', {
@@ -61,10 +62,10 @@ export default /* @ngInject */ ($stateProvider) => {
             property: 'targetSpec.nodes',
           },
           {
-            title: $translate.instant('nutanix_cluster_list_licence'),
-            property: 'targetSpec.license',
+            title: CLUSTER_LIST_TITLE.TYPE_OF_PACK,
+            property: 'serviceName',
             template:
-              "<span class='text-capitalize' data-ng-bind='::$row.getLicense()'></span>",
+              "<a data-ng-href='{{ $ctrl.getServiceNameLink($row) }}' target='_top' data-translate='nutanix_cluster_list_pack_type_details'></a",
           },
           {
             title: $translate.instant('nutanix_cluster_list_status'),
