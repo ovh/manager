@@ -9,25 +9,20 @@ angular.module('App').controller(
     /* @ngInject */
     constructor(
       $document,
-      $rootScope,
       $scope,
       $state,
       $timeout,
       $transitions,
       $translate,
       coreConfig,
-      ovhFeatureFlipping,
     ) {
       this.$document = $document;
-      this.$rootScope = $rootScope;
       this.$scope = $scope;
       this.$state = $state;
       this.$timeout = $timeout;
       this.$transitions = $transitions;
       this.$translate = $translate;
       this.coreConfig = coreConfig;
-      this.ovhFeatureFlipping = ovhFeatureFlipping;
-      this.chatbotEnabled = false;
       this.isTopLevelApplication = isTopLevelApplication();
       this.shell = getShellClient();
       this.shell.ux.isMenuSidebarVisible().then((isMenuSidebarVisible) => {
@@ -40,26 +35,6 @@ angular.module('App').controller(
         this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
         this.shell.environment.setUniverse(universe);
         this.coreConfig.setUniverse(universe);
-      });
-
-      this.currentLanguage = this.coreConfig.getUserLanguage();
-      this.user = this.coreConfig.getUser();
-      const unregisterListener = this.$scope.$on('app:started', () => {
-        const CHATBOT_FEATURE = 'chatbot';
-        this.ovhFeatureFlipping
-          .checkFeatureAvailability(CHATBOT_FEATURE)
-          .then((featureAvailability) => {
-            this.chatbotEnabled = featureAvailability.isFeatureAvailable(
-              CHATBOT_FEATURE,
-            );
-            if (this.chatbotEnabled) {
-              this.$rootScope.$broadcast(
-                'ovh-chatbot:enable',
-                this.chatbotEnabled,
-              );
-            }
-          });
-        unregisterListener();
       });
 
       set(this.$document, 'title', this.$translate.instant('global_app_title'));
@@ -100,14 +75,6 @@ angular.module('App').controller(
 
     $onDestroy() {
       this.hooksToUnsubscribe.forEach((hook) => hook());
-    }
-
-    onChatbotOpen() {
-      this.shell.ux.onChatbotOpen();
-    }
-
-    onChatbotClose(reduced) {
-      this.shell.ux.onChatbotClose(reduced);
     }
   },
 );
