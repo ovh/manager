@@ -57,7 +57,7 @@
   "pci_database_add_spec_nodes_single": "{{nodes}} węzeł",
   "pci_database_add_spec_nodes_range": "{{min}} węzłów zawartych w ofercie, do {{max}} węzłów",
   "pci_database_add_spec_nodes_range_single": "{{min}} węzły zawarte w ofercie, do {{max}} węzłów",
-  "pci_database_add_show_command": "Sprawdź ekwiwalent API",
+  "pci_database_add_show_command": "Odpowiednik API i Terraform",
   "pci_database_add_spec_name_popover": "Nazwa klastra jest generowana automatycznie. Możesz to zmienić później.",
   "pci_database_add_spec_logo_alt": "Logo silnika",
   "pci_database_add_network_mode_helper": "Więcej informacji na temat konfiguracji sieci prywatnej znajdziesz w przewodniku: {{link}}",
