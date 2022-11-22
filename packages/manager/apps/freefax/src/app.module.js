@@ -12,7 +12,7 @@ import ovhManagerFreeFax from '@ovh-ux/manager-freefax';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 
-import controller from './controller';
+// import controller from './controller';
 
 import './index.scss';
 
@@ -29,7 +29,7 @@ export default (containerEl, environment) => {
       ngOvhPaymentMethod,
       ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
     ])
-    .controller('FreefaxAppController', controller)
+    // .controller('FreefaxAppController', controller)
     .config(
       /* @ngInject */ (ovhFeatureFlippingProvider) => {
         ovhFeatureFlippingProvider.setApplicationName(
