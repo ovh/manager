@@ -21,7 +21,7 @@
   "pci_projects_project_storages_containers_status_restored": "Restauré",
   "pci_projects_project_storages_containers_status_restoring": "En cours de restauration",
   "pci_projects_project_storages_containers_status_archived": "Archivé",
-  "pci_projects_project_storages_containers_status_archiving": "En cours d'achivage",
+  "pci_projects_project_storages_containers_status_archiving": "En cours d'archivage",
   "pci_projects_project_storages_containers_status_deleting": "En cours de suppression",
   "pci_projects_project_storages_containers_status_flushed": "Vidé",
   "pci_projects_project_storages_cold_archive_container_action_archive": "Archiver",

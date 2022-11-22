@@ -1,10 +1,9 @@
 <div data-ui-view>
-    <div>
-        <cui-message-container
-            data-messages="$ctrl.messages"
-        ></cui-message-container>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+></cui-message-container>
 
-        <oui-datagrid data-rows="$ctrl.containers">
+    <oui-datagrid data-rows="$ctrl.containers">
             <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_name_label' | translate"
                 data-property="name"
@@ -100,5 +99,4 @@
                 </button>
             </oui-datagrid-topbar>
         </oui-datagrid>
-    </div>
 </div>
