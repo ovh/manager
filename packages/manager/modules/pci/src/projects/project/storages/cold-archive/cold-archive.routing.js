@@ -104,7 +104,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       // The region parameter is for now hard-coded.
-      // waiting the API fix https://projects.dsi.ovh/browse/PCINT-3514
+      // waiting the API fix PCINT-3514
       containers: /* @ngInject */ (PciStoragesColdArchiveService, projectId) =>
         PciStoragesColdArchiveService.getArchiveContainers(projectId, REGION),
 
