@@ -1,0 +1,20 @@
+import React, { Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Navigate, useRoutes } from 'react-router-dom';
+
+const {{pascalCase appName}} = React.lazy(() => import('./{{pascalCase appName}}'));
+
+export default function {{pascalCase appName}}Routing(): JSX.Element {
+  const { t } = useTranslation('{{appName}}');
+
+  return useRoutes([
+    {
+      path: '{{appName}}',
+      element: (
+        <Suspense fallback="">
+          <{{pascalCase appName}} />
+        </Suspense>
+      ),
+    }
+  ]);
+};

@@ -1,0 +1,36 @@
+{
+  "name": "{{ packageName }}",
+  "version": "0.0.0",
+  "description": "{{ description }}",
+  "private": "true",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/apps/{{ appName }}"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "tsc && vite",
+    "start": "lerna exec --stream --scope='{{ packageName }}' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='{{ packageName }}' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='{{ packageName }}' --include-dependencies -- npm run dev:watch --if-present"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.2.4",
+    "@ovh-ux/manager-core-api": "^0.0.0",
+    "@ovh-ux/manager-react-core-application": "^0.0.0",
+    "@ovh-ux/manager-react-core-components": "^0.0.0",
+    "@tanstack/react-query": "^4.2.1",
+    "@tanstack/react-query-devtools": "^4.2.1",
+    "react": "^18.2.0",
+    "react-i18next": "^11.18.1",
+    "react-router-dom": "^6.3.0"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-vite-config": "^0.0.0 || ^1.0.0",
+    "typescript": "^4.3.2",
+    "vite": "^3.0.2"
+  }
+}
