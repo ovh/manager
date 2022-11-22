@@ -13,7 +13,7 @@ const pciNode: Node = {
     {
       id: 'pci-compute',
       translation: 'sidebar_pci_compute',
-      features: ['instance', 'pci-baremetal'],
+      features: ['instance'],
       forceVisibility: true,
       children: [
         {
@@ -26,18 +26,6 @@ const pciNode: Node = {
           },
           features: ['instance'],
           forceVisibility: true,
-        },
-        {
-          id: 'pci-bare-metal',
-          translation: 'sidebar_pci_bare_metal',
-          serviceType: 'CLOUD_PROJECT_INSTANCE_BAREMETAL',
-          routing: {
-            application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/baremetal',
-          },
-          features: ['pci-baremetal'],
-          forceVisibility: true,
-          tag: NodeTag.ALPHA,
         },
       ],
     },
