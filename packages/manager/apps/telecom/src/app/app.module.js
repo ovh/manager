@@ -429,17 +429,6 @@ export default async (containerEl, shellClient) => {
           unregisterHook();
         });
       },
-    )
-    .run(
-      /* @ngInject */ ($rootScope) => {
-        shellClient.ux.onOpenChatbot(() => {
-          $rootScope.$emit('ovh-chatbot:open');
-        });
-
-        shellClient.ux.onReduceChatbot(() => {
-          $rootScope.$emit('ovh-chatbot:close', false);
-        });
-      },
     );
 
   import('./app.bundle').then(() =>
