@@ -1784,6 +1784,35 @@ angular
         );
       };
 
+      $scope.getEndOfLifeMessage = function getEndOfLifeMessage(distribution) {
+        // decoding &#34; codes to '"' by using replace
+        return `
+              ${$translate.instant(
+                'dedicated_servers_installation_template_wizard_prefix_message',
+              )}
+              ${$filter('date')(distribution.endOfInstall, 'mediumDate')}
+              ${$translate.instant(
+                'dedicated_servers_installation_ovhcloud_template_wizard_message',
+                {
+                  osDescription: distribution.description,
+                },
+              )}`.replaceAll(/&#34;/g, '"');
+      };
+
+      // Return false if endOfInstall is undefined or 2999-12-31
+      $scope.showEndOfLifeMessage = function showEndOfLifeMessage(
+        endOfInstall,
+        showWarning,
+      ) {
+        if (!endOfInstall) return false;
+        const endOfInstallDate = moment.utc(endOfInstall);
+        if (endOfInstallDate.isSame(moment.utc('2999-12-31'))) return false;
+        const period = moment().add(6, 'months');
+        return showWarning
+          ? endOfInstallDate.isBefore(period)
+          : endOfInstallDate.isAfter(period);
+      };
+
       // Display size with unit (recursive)
       $scope.getDisplaySize = function getDisplaySize(
         octetsSize,
