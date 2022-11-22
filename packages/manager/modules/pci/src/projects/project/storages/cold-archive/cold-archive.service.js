@@ -235,17 +235,4 @@ export default class PciStoragesColdArchiveService {
       )
       .then(({ data }) => data);
   }
-
-  /**
-   * Mock API Call
-   * [TODO]: To be deleted when about to merge with the release branch.
-   */
-  getAllColdArchives() {
-    return this.$http
-      .get('http://localhost:3200/mock_api/storage/cold/mock/all')
-      .then(({ data }) => {
-        // eslint-disable-next-line no-shadow
-        return data.map(({ data }) => data);
-      });
-  }
 }
