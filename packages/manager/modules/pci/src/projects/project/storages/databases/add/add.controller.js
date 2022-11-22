@@ -5,10 +5,9 @@ import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 import capitalize from 'lodash/capitalize';
 import animateScrollTo from 'animated-scroll-to';
-import { API_GUIDES } from '../../../project.constants';
 import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
 import { ENGINE_LOGOS } from '../databases.constants';
-import { ORDER_KEYS, PRIVATE_NETWORK_GUIDE } from './add.constants';
+import { getOrderDataFromModel, PRIVATE_NETWORK_GUIDE } from './add.constants';
 import { nameGenerator } from '../../../../../name-generator.constant';
 
 export default class {
@@ -30,7 +29,6 @@ export default class {
     this.DatabaseService = DatabaseService;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.ENGINE_LOGOS = ENGINE_LOGOS;
-    this.orderKeys = ORDER_KEYS;
     this.nameGenerator = nameGenerator;
     this.capitalize = capitalize;
   }
@@ -63,8 +61,6 @@ export default class {
       id: '',
       name: this.$translate.instant('pci_database_common_none'),
     };
-    this.apiGuideUrl =
-      API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
     this.privateNetworkGuideUrl =
       PRIVATE_NETWORK_GUIDE[this.user.ovhSubsidiary] ||
       PRIVATE_NETWORK_GUIDE.DEFAULT;
@@ -158,7 +154,6 @@ export default class {
       .finally(() => {
         this.loadingSubnets = false;
       });
-    this.getOrderData();
   }
 
   isNetworkSelected() {
@@ -169,42 +164,18 @@ export default class {
 
   onNetworkTypeChange(usePrivateNetwork) {
     if (!usePrivateNetwork) this.model.subnet = null;
-    this.getOrderData();
   }
 
-  onNodeNumberChange() {
-    // delay order data computation so it has the last value of input number
-    this.$timeout(() => this.getOrderData());
-  }
-
-  getOrderData() {
-    this.orderAPIUrl = `POST /cloud/project/${this.projectId}/database/${this.model.engine.name}`;
-    this.orderData = {
-      description: this.model.name,
-      nodesPattern: {
-        flavor: this.model.flavor.name,
-        number: this.model.plan.nodesCount,
-        region: this.model.region.name,
-      },
-      plan: this.model.plan.name,
-      disk: {
-        size: this.model.disk.initialSize + this.model.disk.additionalDiskSize,
-      },
-      version: this.model.engine.selectedVersion.version,
-    };
-    if (this.model.usePrivateNetwork && this.model.subnet?.id?.length > 0) {
-      this.orderData.networkId = this.model.privateNetwork.regions?.find(
-        (region) => region.region === this.model.subnet?.ipPools[0].region,
-      )?.openstackId;
-      this.orderData.subnetId = this.model.subnet?.id;
-    }
-
-    this.commandData = {
-      orderAPIUrl: this.orderAPIUrl,
-      orderData: this.orderData,
-      orderKeys: this.orderKeys,
-      apiGuideUrl: this.apiGuideUrl,
-    };
+  getNodesSpecTranslation() {
+    const { nodesCount, maxNodes } = this.model.plan;
+    const prefix = 'pci_database_add_spec_nodes';
+    const range = nodesCount === maxNodes ? '' : '_range';
+    const single = nodesCount === 1 ? '_single' : '';
+    const translateKey = `${prefix}${range}${single}`;
+    return this.$translate.instant(translateKey, {
+      min: nodesCount,
+      max: maxNodes,
+    });
   }
 
   onEngineChanged(engine) {
@@ -284,7 +255,6 @@ export default class {
         ),
       ];
     }
-    this.getOrderData();
   }
 
   getSyncPlan(engine) {
@@ -329,7 +299,7 @@ export default class {
 
   trackAndGoToCommand() {
     this.trackDatabases(`databases_config_page::basket::goto_api_equivalent`);
-    this.goToCommand(this.commandData);
+    this.goToCommand(this.model);
   }
 
   trackNamePopover() {
@@ -373,10 +343,11 @@ export default class {
     this.CucCloudMessage.flushMessages(this.messageContainer);
     this.trackDatabases(`config_create_database::${this.model.engine.name}`);
     this.trackDatabases(
-      `PublicCloud_create_new_database::${this.model.engine.name}::${this.orderData.plan}::${this.orderData.nodesPattern.flavor}`,
+      `PublicCloud_create_new_database::${this.model.engine.name}::${this.model.plan.name}::${this.model.flavor.name}`,
       'action',
       false,
     );
+    const orderData = getOrderDataFromModel(this.model);
     // We only need to check the lab for BETA status
     const createDatabasePromise =
       this.model.engine.selectedVersion.status === ENGINES_STATUS.BETA
@@ -384,13 +355,13 @@ export default class {
             this.DatabaseService.createDatabase(
               this.projectId,
               this.model.engine.name,
-              this.orderData,
+              orderData,
             ),
           )
         : this.DatabaseService.createDatabase(
             this.projectId,
             this.model.engine.name,
-            this.orderData,
+            orderData,
           );
 
     return createDatabasePromise
