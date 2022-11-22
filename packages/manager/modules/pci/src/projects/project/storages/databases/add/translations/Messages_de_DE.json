@@ -57,7 +57,7 @@
   "pci_database_add_spec_nodes_single": "{{nodes}} Node",
   "pci_database_add_spec_nodes_range": "{{min}} Nodes inklusive, bis zu {{max}} Nodes",
   "pci_database_add_spec_nodes_range_single": "{{min}} Node inklusive, bis zu {{max}} Nodes",
-  "pci_database_add_show_command": "Das API-Äquivalent anzeigen",
+  "pci_database_add_show_command": "API- und Terraform-Äquivalent",
   "pci_database_add_spec_name_popover": "Der Name Ihres Clusters wird automatisch generiert. Danach haben Sie die Möglichkeit, ihn zu ändern.",
   "pci_database_add_spec_logo_alt": "Logo der Engine",
   "pci_database_add_network_mode_helper": "Weitere Informationen zur Konfiguration eines privaten Netzwerks finden Sie in der Anleitung: {{ link }}",
