@@ -8,7 +8,6 @@ export default {
     me: '<',
     billingServices: '<',
     expand: '<',
-    showLivechat: '<',
     expandProducts: '<',
     notifications: '<',
     order: '<',
