@@ -85,7 +85,7 @@ export default class PciStoragesContainersUsersController {
       textHtml: this.$translate.instant(
         'pci_projects_project_storages_containers_users_show_secret_key_success',
         {
-          user: user.username,
+          user: `<strong>${user.username}</strong>`,
           secret: `<code class="text-break">${user.s3Credentials[0].secret}</code>`,
         },
       ),
