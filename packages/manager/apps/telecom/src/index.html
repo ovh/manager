@@ -83,15 +83,6 @@
                                     <account-migration-notification></account-migration-notification>
                                     <ovh-browser-alert></ovh-browser-alert>
 
-                                    <ovh-chatbot
-                                        data-ng-if="$ctrl.chatbotEnabled"
-                                        data-language="{{$ctrl.currentLanguage}}"
-                                        data-country="{{$ctrl.user.ovhSubsidiary}}"
-                                        data-support-level="{{$ctrl.user.supportLevel.level}}"
-                                        data-on-open="$ctrl.onChatbotOpen()"
-                                        data-on-close="$ctrl.onChatbotClose(reduced)"
-                                    ></ovh-chatbot>
-
                                     <div
                                         class="container-fluid px-md-5 px-3 mt-3"
                                     >
