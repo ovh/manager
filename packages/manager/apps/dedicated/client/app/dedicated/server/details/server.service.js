@@ -936,10 +936,7 @@ export default class ServerF {
     const newPartition = angular.copy(partition);
     newPartition.filesystem = camelCase(newPartition.fileSystem);
     newPartition.mountpoint = newPartition.mountPoint;
-    newPartition.size = {
-      value: newPartition.partitionSize,
-      unit: 'MB',
-    };
+    newPartition.size = newPartition.partitionSize;
     newPartition.type = camelCase(newPartition.typePartition);
     newPartition.raid = newPartition.raid
       ? parseInt(newPartition.raid.replace(/_/g, ''), 10)
