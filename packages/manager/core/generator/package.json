@@ -1,0 +1,11 @@
+{
+  "name": "@ovh-ux/manager-generator",
+  "version": "0.0.0",
+  "private": true,
+  "description": "",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "devDependencies": {
+    "plop": "^3.1.1"
+  }
+}
