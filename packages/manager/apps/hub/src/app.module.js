@@ -22,7 +22,6 @@ import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import { initHubAtInternet } from './components/at-internet';
 import errorPage from './components/error-page';
 import dashboard from './dashboard';
-import liveChatService from './livechat-service';
 
 import controller from './controller';
 import routing from './routing';
@@ -81,7 +80,6 @@ export default async (containerEl, shellClient) => {
       },
     )
     .controller('HubController', controller)
-    .service('liveChatService', liveChatService)
     .config(
       /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
     )
@@ -193,17 +191,6 @@ export default async (containerEl, shellClient) => {
           }
           $rootScope.$broadcast('app:started');
           unregisterHook();
-        });
-      },
-    )
-    .run(
-      /* @ngInject */ ($rootScope) => {
-        shellClient.ux.onOpenChatbot(() => {
-          $rootScope.$emit('ovh-chatbot:open');
-        });
-
-        shellClient.ux.onReduceChatbot(() => {
-          $rootScope.$emit('ovh-chatbot:close', false);
         });
       },
     );

@@ -34,7 +34,7 @@ const transformOrder = ($q, lastOrder, OrderTracking) => {
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app', {
-    url: '?livechat',
+    url: '',
     abstract: true,
     redirectTo: 'app.dashboard',
     resolve: {
@@ -58,11 +58,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           })
           .then((data) => data.data.length),
       trackingPrefix: () => 'hub::dashboard::activity::payment-status',
-      showLivechat: /* @ngInject */ ($transition$, liveChatService) => {
-        const livechat = $transition$.params().livechat === 'open';
-        liveChatService.setShowLivechat(livechat);
-        return livechat;
-      },
       refresh: /* @ngInject */ ($http) => (type) =>
         $http
           .get(`/hub/${type}`, {

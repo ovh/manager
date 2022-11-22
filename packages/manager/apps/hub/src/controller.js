@@ -3,50 +3,13 @@ import { getShellClient } from './shell';
 
 export default class HubController {
   /* @ngInject */
-  constructor(
-    $document,
-    $http,
-    $scope,
-    $state,
-    $rootScope,
-    coreConfig,
-    ovhFeatureFlipping,
-    liveChatService,
-  ) {
+  constructor($document) {
     this.$document = $document;
-    this.$http = $http;
-    this.$scope = $scope;
-    this.$state = $state;
-    this.$rootScope = $rootScope;
-    this.chatbotEnabled = false;
-    this.coreConfig = coreConfig;
-    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.shell = getShellClient();
     this.isAccountSidebarVisible = false;
-    this.liveChatService = liveChatService;
   }
 
   async $onInit() {
-    this.currentLanguage = this.coreConfig.getUserLanguage();
-    this.me = this.coreConfig.getUser();
-    const unregisterListener = this.$scope.$on('app:started', () => {
-      const CHATBOT_FEATURE = 'chatbot';
-      this.ovhFeatureFlipping
-        .checkFeatureAvailability(CHATBOT_FEATURE)
-        .then((featureAvailability) => {
-          this.chatbotEnabled = featureAvailability.isFeatureAvailable(
-            CHATBOT_FEATURE,
-          );
-          if (this.chatbotEnabled) {
-            this.showLivechat = this.liveChatService.getShowLivechat();
-            this.$rootScope.$broadcast(
-              'ovh-chatbot:enable',
-              this.chatbotEnabled,
-            );
-          }
-        });
-      unregisterListener();
-    });
     this.isAccountSidebarVisible = await this.shell.ux.isAccountSidebarVisible();
   }
 
@@ -60,13 +23,5 @@ export default class HubController {
       const [element] = this.$document.find(`#${id}`);
       element.focus();
     }
-  }
-
-  onChatbotOpen() {
-    this.shell.ux.onChatbotOpen();
-  }
-
-  onChatbotClose(reduced) {
-    this.shell.ux.onChatbotClose(reduced);
   }
 }
