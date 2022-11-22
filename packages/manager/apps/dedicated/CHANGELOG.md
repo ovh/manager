@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.36.0...@ovh-ux/manager-dedicated@17.37.0) (2022-11-21)
+
+
+### Features
+
+* **pcc.user:** pcc federation ([#8035](https://github.com/ovh/manager/issues/8035)) ([9aa96c3](https://github.com/ovh/manager/commit/9aa96c3f1f29c2d37a9f8fbb0e32d8eeb95598c3))
+
+
+
+
+
+# [17.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.35.1...@ovh-ux/manager-dedicated@17.36.0) (2022-11-17)
+
+
+### Bug Fixes
+
+* **dedicated.os:** display text when os is not install ([#8348](https://github.com/ovh/manager/issues/8348)) ([7669fb8](https://github.com/ovh/manager/commit/7669fb8358ea08a14821157f2626c63f10f95f44))
+* **dedicated:** updated vmsUrl constant to new url for EU and CA regions ([#8343](https://github.com/ovh/manager/issues/8343)) ([4f3f864](https://github.com/ovh/manager/commit/4f3f8644a6410c7d40765a1552ae34bdb3813606))
+
+
+### Features
+
+* **dedicated:** adding new OS usage ERP ([#8327](https://github.com/ovh/manager/issues/8327)) ([fcc8672](https://github.com/ovh/manager/commit/fcc86722e0d14f192da9dfbae2ed98ae96a84e9f))
+
+
+
+
+
+## [17.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.35.0...@ovh-ux/manager-dedicated@17.35.1) (2022-11-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 # [17.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.34.3...@ovh-ux/manager-dedicated@17.35.0) (2022-11-09)
 
 

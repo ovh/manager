@@ -510,9 +510,13 @@ export default class PciInstancesAddController {
       modelValue.subnet &&
       this.selectedMode.name !== this.instanceModeEnum[1].mode
     ) {
-      this.getSubnetGateways(modelValue.subnet[0].id).then((data) => {
-        this.subnetGateways = data;
-      });
+      this.getSubnetGateways(modelValue.subnet[0].id)
+        .then((data) => {
+          this.subnetGateways = data;
+        })
+        .catch(() => {
+          this.subnetGateways = [];
+        });
     }
     this.subnetGateways = [];
   }
@@ -549,9 +553,6 @@ export default class PciInstancesAddController {
       id,
     )
       .then((data) => data)
-      .catch((err) => {
-        this.handleError(err);
-      })
       .finally(() => {
         this.isGatewayLoading = false;
       });
@@ -591,7 +592,11 @@ export default class PciInstancesAddController {
 
   showNetworkNavigation() {
     if (!this.isPrivateMode()) {
-      return !this.isGatewayLoading && this.subnetGateways.length === 0;
+      return (
+        !this.isGatewayLoading &&
+        this.subnetGateways &&
+        this.subnetGateways.length === 0
+      );
     }
     return (
       this.selectedPrivateNetwork.id !== '' &&

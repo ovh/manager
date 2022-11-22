@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.6.3...@ovh-ux/manager-nasha@2.6.4) (2022-11-17)
+
+
+### Bug Fixes
+
+* **nasha.order:** sorting products by price ([#8165](https://github.com/ovh/manager/issues/8165)) ([dd89ee7](https://github.com/ovh/manager/commit/dd89ee7d412744a7c73eef0bbde5adba1a3c09ae))
+
+
+
+
+
 ## [2.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.6.2...@ovh-ux/manager-nasha@2.6.3) (2022-09-21)
 
 
@@ -425,6 +441,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### BREAKING CHANGES
 
 * **nasha:** init @ovh-ux/manager-nasha module
-
-
-

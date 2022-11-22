@@ -1,3 +1,4 @@
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import assign from 'lodash/assign';
 import camelCase from 'lodash/camelCase';
 import flatten from 'lodash/flatten';
@@ -23,16 +24,21 @@ const moduleName = 'ovhManagerPccService';
 class DedicatedCloudService {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $cacheFactory,
     $rootScope,
+    iceberg,
     OvhApiDedicatedCloud,
     OvhHttp,
     Poll,
     Poller,
   ) {
+    this.ListLayoutHelper = ListLayoutHelper;
+    this.$http = $http;
     this.$q = $q;
     this.$rootScope = $rootScope;
+    this.iceberg = iceberg;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
     this.OvhHttp = OvhHttp;
     this.Poll = Poll;
@@ -530,18 +536,128 @@ class DedicatedCloudService {
     });
   }
 
+  /* ------- FEDERATION -------*/
+
+  getFederationStatus(serviceName) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}/federation`)
+      .then(({ data }) => data);
+  }
+
+  getActiveDirectories(serviceName, params) {
+    const {
+      filters,
+      pageSize,
+      offset,
+      sort,
+      sortOrder,
+      defaultFilterColumn,
+    } = params;
+
+    let request = this.iceberg(
+      `/dedicatedCloud/${serviceName}/federation/activeDirectory`,
+    )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(Math.ceil(offset / (pageSize || 1)))
+      .sort(sort || defaultFilterColumn, sortOrder);
+
+    if (filters.length > 0) {
+      request = this.filterIceberg(request, filters);
+    }
+
+    return this.$q
+      .resolve(request.execute(null, true).$promise)
+      .then(({ data, headers }) => ({
+        data,
+        meta: {
+          totalCount: headers['x-pagination-elements'],
+          currentOffset: headers['x-pagination-number'],
+          pageCount: headers['x-pagination-total'],
+          pageSize: headers['x-pagination-size'],
+        },
+      }));
+  }
+
+  postActiveDirectories(serviceName, params) {
+    return this.$http
+      .post(`/dedicatedCloud/${serviceName}/federation/activeDirectory`, params)
+      .then(({ data }) => data);
+  }
+
+  filterIceberg(request, filters) {
+    let filterRequest = request;
+    filters.forEach(({ field, comparator, reference }) => {
+      filterRequest = filterRequest.addFilter(
+        field,
+        this.ListLayoutHelper.FILTER_OPERATORS[comparator],
+        this.ListLayoutHelper.mapFilterForIceberg(comparator, reference),
+      );
+    });
+    return filterRequest;
+  }
+
+  grantActiveDirectory(serviceName, activeDirectoryId, params, type) {
+    return this.$http
+      .post(
+        `/dedicatedCloud/${serviceName}/federation/activeDirectory/${activeDirectoryId}/grantActiveDirectory${type}`,
+        params,
+      )
+      .then(({ data }) => data);
+  }
+
+  changePropertiesActiveDirectory(serviceName, activeDirectoryId, params) {
+    return this.$http
+      .post(
+        `/dedicatedCloud/${serviceName}/federation/activeDirectory/${activeDirectoryId}/changeProperties`,
+        params,
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteActiveDirectory(serviceName, activeDirectoryId) {
+    return this.$http
+      .delete(
+        `/dedicatedCloud/${serviceName}/federation/activeDirectory/${activeDirectoryId}`,
+      )
+      .then(({ data }) => data);
+  }
+
   /* ------- USER -------*/
 
-  getUsers(serviceName, name) {
-    return this.OvhHttp.get('/dedicatedCloud/{serviceName}/user', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceName,
-      },
-      params: {
-        name,
-      },
-    });
+  getUsers(serviceName, params) {
+    const {
+      filters,
+      pageSize,
+      offset,
+      sort,
+      sortOrder,
+      defaultFilterColumn,
+    } = params;
+
+    let request = this.iceberg(`/dedicatedCloud/${serviceName}/user`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(Math.ceil(offset / (pageSize || 1)))
+      .sort(sort || defaultFilterColumn, sortOrder);
+
+    if (filters.length > 0) {
+      request = this.filterIceberg(request, filters);
+    }
+
+    return this.$q
+      .resolve(request.execute(null, true).$promise)
+      .then(({ data, headers }) => ({
+        data,
+        meta: {
+          totalCount: headers['x-pagination-elements'],
+          currentOffset: headers['x-pagination-number'],
+          pageCount: headers['x-pagination-total'],
+          pageSize: headers['x-pagination-size'],
+        },
+      }));
   }
 
   getUserDetail(serviceName, userId) {
@@ -930,6 +1046,12 @@ class DedicatedCloudService {
       .then((results) =>
         results.some((optionInfo) => optionInfo !== 'disabled'),
       );
+  }
+
+  securityOptionsCompatibility(serviceName) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}/securityOptions/compatibilityMatrix`)
+      .then(({ data }) => data);
   }
 
   /* --- Virtual Machine Encryption KMS --- */

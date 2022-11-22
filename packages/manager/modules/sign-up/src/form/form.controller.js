@@ -11,6 +11,7 @@ import {
   ENUM_TRANSLATION_RULES,
   MODEL_DEBOUNCE_DELAY,
   OVH_SUBSIDIARY_ITEM_NAME,
+  READ_ONLY_PARAMS,
 } from './form.constants';
 import { WatchableModel } from '../watchableModel.class';
 
@@ -199,7 +200,10 @@ export default class SignUpFormCtrl {
     return this.signUp.getNic().then(({ ovhSubsidiary }) => {
       this.ovhSubsidiary = ovhSubsidiary;
       return this.signUp.getCreationRulesParams().then((params) => {
-        this.initModel(params);
+        const filterParams = params.filter((param) => {
+          return !READ_ONLY_PARAMS.includes(param.name);
+        });
+        this.initModel(filterParams);
         set(this.me, 'model', this.model);
         return this.getRules();
       });

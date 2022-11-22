@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.6.1...@ovh-ux/shell@1.7.0) (2022-11-09)
+
+
+### Features
+
+* **livechat:** create virtual agent and new Livechat ([#8364](https://github.com/ovh/manager/issues/8364)) ([23ba4ae](https://github.com/ovh/manager/commit/23ba4ae940f76906322266a9d5c3ebad4b92f710))
+
+
+
+
+
 ## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.6.0...@ovh-ux/shell@1.6.1) (2022-11-03)
 
 

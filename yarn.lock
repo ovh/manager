@@ -10481,6 +10481,11 @@ df-tab-menu@^0.3.0:
   resolved "https://registry.yarnpkg.com/df-tab-menu/-/df-tab-menu-0.3.1.tgz#363a76486ab3de25dc1709c3f0c2cb429574108c"
   integrity sha1-Njp2SGqz3iXcFwnD8MLLQpV0EIw=
 
+dialog-polyfill@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/dialog-polyfill/-/dialog-polyfill-0.5.6.tgz#7507b4c745a82fcee0fa07ce64d835979719599a"
+  integrity sha512-ZbVDJI9uvxPAKze6z146rmfUZjBqNEwcnFTVamQzXH+svluiV7swmVIGr7miwADgfgt1G2JQIytypM9fbyhX4w==
+
 diff-sequences@^26.6.2:
   version "26.6.2"
   resolved "https://registry.yarnpkg.com/diff-sequences/-/diff-sequences-26.6.2.tgz#48ba99157de1923412eed41db6b6d4aa9ca7c0b1"

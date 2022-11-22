@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_USER_delete_title": "Elimina un utente",
+  "dedicatedCloud_USER_delete_message": "Vuoi davvero eliminare l'utente <b>{{t0}}</b>?",
+  "dedicatedCloud_USER_delete_success": "La richiesta di eliminazione dell'utente  {{t0}} è stata presa in carico",
+  "dedicatedCloud_USER_delete_fail": "Si è verificato un errore durante l'eliminazione dell'utente {{t0}}",
+  "dedicatedCloud_USER_delete_user_title": "Elimina un utente",
+  "dedicatedCloud_USER_delete_group_title": "Elimina un gruppo",
+  "dedicatedCloud_USER_delete_user_message": "Vuoi davvero eliminare l'utente {{t0}}?",
+  "dedicatedCloud_USER_delete_group_message": "Vuoi davvero eliminare il gruppo {{t0}}?"
+}

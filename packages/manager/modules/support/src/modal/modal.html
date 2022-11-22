@@ -1,0 +1,36 @@
+<oui-modal
+    class="beta-modal"
+    data-on-dismiss="$ctrl.goBack()"
+    data-secondary-action="$ctrl.goBack()"
+>
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-6">
+            <h1
+                data-translate="modal_beta_help_center_description"
+                class="oui-color-p-500"
+            ></h1>
+            <p
+                data-translate="modal_beta_help_center_please_note"
+                class="oui-color-p-500"
+            ></p>
+            <oui-button ng-click="$ctrl.onClick()" variant="primary">
+                <span data-translate="modal_beta_help_center_access"></span
+            ></oui-button>
+
+            <oui-button
+                data-on-click="$ctrl.goBack()"
+                data-variant="link"
+                data-variant-nav="next"
+            >
+                <span data-translate="modal_beta_help_center_later"></span>
+            </oui-button>
+        </div>
+        <div class="col-6">
+            <img
+                class="float-right w-80 p-3"
+                data-ng-src="{{ $ctrl.illustration }}"
+                alt="{{ 'modal_description_image' | translate }}"
+            />
+        </div>
+    </div>
+</oui-modal>

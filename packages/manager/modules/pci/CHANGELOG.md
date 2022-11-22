@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.98.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.98.1...@ovh-ux/manager-pci@5.98.2) (2022-11-17)
+
+
+### Bug Fixes
+
+* **pci:** change url express order for additional ip ([#8384](https://github.com/ovh/manager/issues/8384)) ([cdb7059](https://github.com/ovh/manager/commit/cdb705934de6ddea7a8cf6126df67ecdc4debae3))
+* **pci:** correct estimates next invoice ([#8382](https://github.com/ovh/manager/issues/8382)) ([be7c009](https://github.com/ovh/manager/commit/be7c009877f20b58d701b843cc933698cf1c45c4))
+
+
+
+
+
+## [5.98.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.98.0...@ovh-ux/manager-pci@5.98.1) (2022-11-10)
+
+
+### Bug Fixes
+
+* **pci:** instance creation in gateway unavailable region ([#8359](https://github.com/ovh/manager/issues/8359)) ([5039fc5](https://github.com/ovh/manager/commit/5039fc518a1c148b26d400d79743c6576e048f02))
+
+
+
+
+
 # [5.98.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.97.0...@ovh-ux/manager-pci@5.98.0) (2022-11-09)
 
 

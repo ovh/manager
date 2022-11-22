@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "16.20.0",
+  "version": "16.20.3",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -25,7 +25,7 @@
     "@ovh-ux/manager-banner": "^1.1.3",
     "@ovh-ux/manager-catalog-price": "^1.0.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/manager-core": "^12.12.4",
     "@ovh-ux/manager-email-domain": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-emailpro": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-error-page": "^1.0.0 || ^2.0.0",
@@ -66,7 +66,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
     "@ovh-ux/ng-ui-router-layout": "^4.1.0",
-    "@ovh-ux/shell": "^1.6.1",
+    "@ovh-ux/shell": "^1.7.0",
     "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.23",
     "URIjs": "^1.14.0",

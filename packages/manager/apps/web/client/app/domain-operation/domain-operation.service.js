@@ -72,7 +72,6 @@ angular.module('services').service(
     relaunchOperation(id) {
       return this.OvhHttp.post(`/me/task/domain/${id}/relaunch`, {
         rootPath: 'apiv6',
-        data: {},
         broadcast: 'domains.operations.relaunched',
       });
     }
@@ -84,7 +83,6 @@ angular.module('services').service(
     cancelOperation(id) {
       return this.OvhHttp.post(`/me/task/domain/${id}/cancel`, {
         rootPath: 'apiv6',
-        data: {},
         broadcast: 'domains.operations.cancelled',
       });
     }
@@ -96,7 +94,6 @@ angular.module('services').service(
     accelerateOperation(id) {
       return this.OvhHttp.post(`/me/task/domain/${id}/accelerate`, {
         rootPath: 'apiv6',
-        data: {},
         broadcast: 'domains.operations.accelerated',
       });
     }
