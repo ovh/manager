@@ -156,6 +156,18 @@ export const API_GUIDES = {
   SG: 'https://docs.ovh.com/sg/en/api/first-steps-with-ovh-api/',
 };
 
+export const TERRAFORM_GUIDES = {
+  DEFAULT: 'https://docs.ovh.com/gb/en/publiccloud/databases/order-terraform/',
+  ASIA: 'https://docs.ovh.com/asia/en/publiccloud/databases/order-terraform/',
+  AU: 'https://docs.ovh.com/au/en/publiccloud/databases/order-terraform/',
+  CA: 'https://docs.ovh.com/ca/en/publiccloud/databases/order-terraform/',
+  FR: 'https://docs.ovh.com/fr/publiccloud/databases/order-terraform/',
+  GB: 'https://docs.ovh.com/gb/en/publiccloud/databases/order-terraform/',
+  IE: 'https://docs.ovh.com/ie/en/publiccloud/databases/order-terraform/',
+  QC: 'https://docs.ovh.com/ca/fr/publiccloud/databases/order-terraform/',
+  SG: 'https://docs.ovh.com/sg/en/publiccloud/databases/order-terraform/',
+};
+
 export const PCI_HDS_ADDON = {
   productName: 'cloud',
   family: 'certification-hds',
@@ -175,5 +187,6 @@ export default {
   PCI_HDS_ADDON,
   LEGACY_PLAN_CODES,
   API_GUIDES,
+  TERRAFORM_GUIDES,
   PCI_FEATURES,
 };

@@ -141,16 +141,16 @@
                     <span
                         data-translate="pci_database_add_network_mode_helper"
                         data-translate-values="{
-                        link: 
-                        '<a 
-                            class=&quot oui-link_icon &quot 
-                            href=&quot' + $ctrl.privateNetworkGuideUrl + '&quot 
-                            target=&quot _blank &quot 
+                        link:
+                        '<a
+                            class=&quot oui-link_icon &quot
+                            href=&quot' + $ctrl.privateNetworkGuideUrl + '&quot
+                            target=&quot _blank &quot
                         >
                             <span>{{:: 'pci_database_add_network_mode_helper_link' | translate}}</span>
-                            <span 
-                                class=&quot oui-icon oui-icon-external-link &quot 
-                                aria-hidden=&quot true &quot 
+                            <span
+                                class=&quot oui-icon oui-icon-external-link &quot
+                                aria-hidden=&quot true &quot
                             ></span>
                         </a>',
                     }"
@@ -459,16 +459,6 @@
                                 ></span>
                             </div>
                         </div>
-                        <oui-button
-                            block
-                            on-click="$ctrl.trackAndGoToCommand()"
-                            class="mb-2 mt-2"
-                            icon-left="oui-icon-app-script_concept"
-                        >
-                            <span
-                                data-translate="pci_database_add_show_command"
-                            ></span>
-                        </oui-button>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition>
@@ -508,6 +498,13 @@
                         ></span>
                     </div>
                 </oui-button>
+                <div class="mt-2">
+                    <a
+                        href=""
+                        data-translate="pci_database_add_show_command"
+                        data-ng-click="$ctrl.trackAndGoToCommand()"
+                    ></a>
+                </div>
             </oui-tile>
         </div>
     </div>

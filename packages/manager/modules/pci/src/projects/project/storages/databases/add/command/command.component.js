@@ -6,6 +6,7 @@ const component = {
     goBack: '<',
     projectId: '<',
     data: '<',
+    user: '<',
   },
   template,
   controller,
