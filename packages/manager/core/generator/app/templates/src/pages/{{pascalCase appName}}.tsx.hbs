@@ -1,0 +1,13 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Heading } from '@chakra-ui/react';
+
+export default function {{pascalCase appName}}() {
+  const { t } = useTranslation('{{appName}}');
+
+  return (
+    <div>
+      <Heading>{t('title')}</Heading>
+    </div>
+  );
+}
