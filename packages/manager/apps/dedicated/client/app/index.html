@@ -128,15 +128,6 @@
             </div>
         </div>
 
-        <ovh-chatbot
-            data-ng-if="$ctrl.chatbotEnabled"
-            data-language="{{$ctrl.currentLanguage}}"
-            data-country="{{$ctrl.user.ovhSubsidiary}}"
-            data-support-level="{{$ctrl.user.supportLevel.level}}"
-            data-on-open="$ctrl.onChatbotOpen()"
-            data-on-close="$ctrl.onChatbotClose(reduced)"
-        ></ovh-chatbot>
-
         <div id="otrs-popup" data-otrs-popup></div>
         <script>
             var CKEDITOR_BASEPATH =
