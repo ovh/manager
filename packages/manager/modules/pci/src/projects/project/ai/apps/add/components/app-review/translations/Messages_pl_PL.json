@@ -4,8 +4,17 @@
   "pci_app_add_review_price_partner": "Cena licencji {{ partner }}",
   "pci_app_add_review_price_partner_free": "Oferowana przez {{ partner }}",
   "pci_app_add_review_price_resource": "Cena wybranych zasobów",
-  "pci_app_add_review_price_resource_free": "Zasoby oferowane przez OVHcloud w trakcie trwania fazy alfa",
+  "pci_app_add_review_price_resource_free": "Zasób/zasoby oferowane przez OVHcloud w fazie beta",
   "pci_app_add_review_price_total": "Cena całkowita",
   "pci_app_add_review_price_info": "{{ price }} netto / godzina",
-  "pci_app_add_review_resources": "Model i liczba wybranych instancji"
+  "pci_app_add_review_resources": "Model i liczba wybranych replik",
+  "pci_app_add_review_scaling": "Skalowanie",
+  "pci_app_add_review_scaling_static": "Stałe skalowanie",
+  "pci_app_add_review_scaling_auto": "Automatyczne skalowanie (Autoscaling)",
+  "pci_app_add_review_scaling_replicas": "Repliki: ",
+  "pci_app_add_review_scaling_min_replicas": "Minimalna liczba replik:",
+  "pci_app_add_review_scaling_max_replicas": "Maksymalna liczba replik:",
+  "pci_app_add_review_scaling_trigger_resource": "Monitorowana metryka:",
+  "pci_app_add_review_scaling_trigger_resource_threshold": "Próg uruchomienia:",
+  "pci_app_add_review_probe": "Sonda dostępności"
 }

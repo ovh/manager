@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import find from 'lodash/find';
 import { merge } from 'lodash';
-import { APP_PRIVACY_SETTINGS } from './add.constants';
+import { APP_PRIVACY_SETTINGS, APP_SCALING_SETTINGS } from './add.constants';
 
 export default class AppAddController {
   /* @ngInject */
@@ -30,10 +30,26 @@ export default class AppAddController {
       privacy: APP_PRIVACY_SETTINGS.RESTRICTED,
       region: null,
       image: null,
-      replicas: 1,
+      scalingStrategy: {
+        autoscaling: false,
+        fixed: {
+          replicas: APP_SCALING_SETTINGS.FIXED.DEFAULT_REPLICAS,
+        },
+        automatic: {
+          averageUsageTarget: APP_SCALING_SETTINGS.AUTOMATIC.DEFAULT_THRESHOLD,
+          replicasMax: APP_SCALING_SETTINGS.AUTOMATIC.DEFAULT_MAX_REPLICAS,
+          replicasMin: APP_SCALING_SETTINGS.AUTOMATIC.DEFAULT_MIN_REPLICAS,
+          resourceType: APP_SCALING_SETTINGS.AUTOMATIC.DEFAULT_RESOURCE,
+        },
+      },
       preset: null,
       port: 8080,
       useCase: null,
+      probe: {
+        enabled: false,
+        path: null,
+        port: 8080,
+      },
       resource: {
         nbResources: 1,
         usage: 'cpu',
@@ -87,6 +103,21 @@ export default class AppAddController {
     });
   }
 
+  static buildProbe(probe) {
+    const { enabled, path, port } = probe;
+    return enabled
+      ? {
+          path,
+          port,
+        }
+      : null;
+  }
+
+  static buildScalingBody(scalingStrategy) {
+    const { autoscaling, automatic, fixed } = scalingStrategy;
+    return autoscaling ? { automatic } : { fixed };
+  }
+
   static convertAppModel(appModel) {
     const {
       name,
@@ -96,8 +127,9 @@ export default class AppAddController {
       region,
       resource,
       privacy,
-      replicas,
+      scalingStrategy,
       preset,
+      probe,
     } = appModel;
 
     return {
@@ -112,11 +144,8 @@ export default class AppAddController {
       partnerId: preset?.partner?.id,
       volumes: AppAddController.buildVolumesBody(volumes),
       unsecureHttp: APP_PRIVACY_SETTINGS.PUBLIC === privacy,
-      scalingStrategy: {
-        fixed: {
-          replicas,
-        },
-      },
+      probe: AppAddController.buildProbe(probe),
+      scalingStrategy: AppAddController.buildScalingBody(scalingStrategy),
     };
   }
 

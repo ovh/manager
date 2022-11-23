@@ -70,6 +70,16 @@ export default class {
     this.trackApps('dashboard::access_graph_dashboard');
   }
 
+  onUpdateAppImageClick() {
+    this.trackApps('dashboard::update_app_image');
+    return this.goToUpdateAppImage();
+  }
+
+  onUpdateScalingClick() {
+    this.trackApps('dashboard::update_app_scaling');
+    return this.goToUpdateScaling();
+  }
+
   onStartAppClick() {
     this.trackApps('dashboard::start_app');
     return this.goToStartApp();

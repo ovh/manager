@@ -1,10 +1,11 @@
 {
-  "pci_app_submit_select_image_tips": "Inserisci il percorso di accesso dell’immagine Docker Può essere un registro pubblico (GitHub, GitLab, Docker Hub, ecc...) o privato",
+  "pci_app_submit_select_image_tips": "Inserire il percorso di accesso dell’immagine Docker Può essere un registro pubblico (GitHub, Gitlab, DockerHub...) o privato",
   "pci_app_submit_select_image_preset_info": "Descrizione",
   "pci_app_submit_select_image_advanced_tips": "Esegui la tua applicazione",
   "pci_app_submit_select_image_advanced": "Esegui la tua applicazione (immagine Docker)",
   "pci_app_submit_select_image_name": "Percorso di accesso dell’immagine Docker",
   "pci_app_submit_select_image_tips_help": "Sono accettate immagini ospitate su registri pubblici o privati (GitHub, GitLab, DockerHub, ecc...)",
-  "pci_app_submit_select_image_custom_doc": "Come creare un'immagine Docker personalizzata",
-  "pci_app_submit_select_start_from": "A partire da"
+  "pci_app_submit_select_image_custom_doc": "Crea la tua immagine Docker personalizzata",
+  "pci_app_submit_select_start_from": "A partire da",
+  "pci_app_submit_select_image_portfolio": "Scopri il nostro portfolio di applicazioni IA pronte all'uso"
 }

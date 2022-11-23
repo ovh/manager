@@ -96,6 +96,14 @@ export default class AppService {
       .then(({ data }) => data);
   }
 
+  updateAppImage(serviceName, appId, imageurl) {
+    return this.$http
+      .put(`/cloud/project/${serviceName}/ai/app/${appId}/image`, {
+        url: imageurl,
+      })
+      .then(({ data }) => data);
+  }
+
   getAppCommand(serviceName, appSpec) {
     return this.$http
       .post(`/cloud/project/${serviceName}/ai/app/command`, appSpec)
@@ -158,6 +166,15 @@ export default class AppService {
   authorized(serviceName) {
     return this.$http
       .post(`/cloud/project/${serviceName}/ai/authorization`)
+      .then(({ data }) => data);
+  }
+
+  updateScalingStrategy(serviceName, appId, strategy) {
+    return this.$http
+      .put(
+        `/cloud/project/${serviceName}/ai/app/${appId}/scalingstrategy`,
+        strategy,
+      )
       .then(({ data }) => data);
   }
 

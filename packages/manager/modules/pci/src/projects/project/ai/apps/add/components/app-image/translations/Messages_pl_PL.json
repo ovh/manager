@@ -5,6 +5,7 @@
   "pci_app_submit_select_image_advanced": "Uruchom swoją własną aplikację (obraz Docker)",
   "pci_app_submit_select_image_name": "Ścieżka dostępu Twojego obrazu Docker",
   "pci_app_submit_select_image_tips_help": "Obrazy przechowywane w prywatnym lub publicznym rejestrze są akceptowane (GitHub, GitLab, DockerHub, ...)",
-  "pci_app_submit_select_image_custom_doc": "Dowiedz się, jak utworzyć spersonalizowany obraz Docker",
-  "pci_app_submit_select_start_from": "Od"
+  "pci_app_submit_select_image_custom_doc": "Stwórz własny spersonalizowany obraz Docker",
+  "pci_app_submit_select_start_from": "Od",
+  "pci_app_submit_select_image_portfolio": "Poznaj naszą ofertę aplikacji AI gotowych do użycia"
 }

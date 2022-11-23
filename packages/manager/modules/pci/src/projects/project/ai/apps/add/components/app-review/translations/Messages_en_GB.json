@@ -4,8 +4,17 @@
   "pci_app_add_review_price_partner": "Licence price {{partner}}",
   "pci_app_add_review_price_partner_free": "Free for {{partner}}",
   "pci_app_add_review_price_resource": "Selected resource prices",
-  "pci_app_add_review_price_resource_free": "Resources offered in seconds by OVHcloud during alpha-testing",
+  "pci_app_add_review_price_resource_free": "Resources offered by OVHcloud during the beta testing phase",
   "pci_app_add_review_price_total": "Total cost",
   "pci_app_add_review_price_info": "{{price}} ex. VAT/hour",
-  "pci_app_add_review_resources": "Model and number of instances chosen"
+  "pci_app_add_review_resources": "Model and number of replicas chosen",
+  "pci_app_add_review_scaling": "Scaling",
+  "pci_app_add_review_scaling_static": "Fixed scaling",
+  "pci_app_add_review_scaling_auto": "Auto-scaling",
+  "pci_app_add_review_scaling_replicas": "Replicas: ",
+  "pci_app_add_review_scaling_min_replicas": "Minimum number of replicas:",
+  "pci_app_add_review_scaling_max_replicas": "Maximum number of replicas:",
+  "pci_app_add_review_scaling_trigger_resource": "Metric monitored:",
+  "pci_app_add_review_scaling_trigger_resource_threshold": "Trigger threshold:",
+  "pci_app_add_review_probe": "Readiness probe"
 }

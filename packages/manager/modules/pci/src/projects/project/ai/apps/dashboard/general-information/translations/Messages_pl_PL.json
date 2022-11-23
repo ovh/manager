@@ -28,7 +28,7 @@
   "pci_apps_general_information_life_cycle_status_DELETED": "Usunięto",
   "pci_apps_general_information_life_cycle_status_FAILED": "Błąd",
   "pci_apps_general_information_life_cycle_status_ERROR": "Błąd",
-  "pci_apps_general_information_replicas": "Repliki",
+  "pci_apps_general_information_replicas": "Repliki:",
   "pci_apps_general_information_life_cycle_action_start": "Uruchom",
   "pci_apps_general_information_life_cycle_action_stop": "Zatrzymaj",
   "pci_apps_general_information_life_cycle_action_delete": "Usuń",
@@ -45,5 +45,15 @@
   "pci_apps_general_information_resources_local_storage": "Lokalna przestrzeń dyskowa dla zasobu",
   "pci_apps_general_information_resources_monitoring": "Monitoring aplikacji w czasie rzeczywistym",
   "pci_apps_general_information_resources_monitoring_access_to_graph": "Dostęp do dashboardów",
-  "pci_apps_general_information_snippet_title": "Korzystanie z aplikacji"
+  "pci_apps_general_information_snippet_title": "Korzystanie z aplikacji",
+  "pci_apps_general_information_info_app_image": "Obraz Docker",
+  "pci_apps_general_information_info_app_image_action_update": "Aktualizacja obrazu",
+  "pci_apps_general_information_info_app_probe": "Sonda dostępności",
+  "pci_apps_general_information_scaling": "Skalowanie",
+  "pci_apps_general_information_scaling_static": "Stałe skalowanie",
+  "pci_apps_general_information_scaling_auto": "Automatyczne skalowanie (Autoscaling)",
+  "pci_apps_general_information_min_replicas": "Minimalna liczba replik:",
+  "pci_apps_general_information_max_replicas": "Maksymalna liczba replik:",
+  "pci_apps_general_information_trigger_resource": "Monitorowana metryka:",
+  "pci_apps_general_information_trigger_resource_threshold": "Próg uruchomienia:"
 }

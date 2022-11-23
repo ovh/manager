@@ -1,7 +1,7 @@
 {
   "pci_app_add_configuration_name": "Der Name Ihrer App",
   "pci_app_add_configuration_label": "Label",
-  "pci_app_add_configuration_label_description": "Sie können Ihrer App Label hinzufügen. Das ist hilfreich für das Filtern oder Sichern nach Token für ein bestimmtes Label",
+  "pci_app_add_configuration_label_description": "Sie können Ihrer App Label hinzufügen. So lässt sich leicht nach einem bestimmten Label filtern oder mit einem Token sichern.",
   "pci_app_add_configuration_label_field_key": "Schlüssel",
   "pci_app_add_configuration_label_field_key_error_key_already_exist": "Dieser Schlüssel besteht bereits",
   "pci_app_add_configuration_label_field_value": "Wert",
@@ -15,5 +15,14 @@
   "pci_app_add_privacy_settings_item_public_warning": "Bitte seien Sie vorsichtig beim Umgang mit sensiblen Daten.",
   "pci_app_add_privacy_title": "Zugangsregel für Ihre App",
   "pci_app_add_settings_port": "HTTP Port",
-  "pci_app_add_settings_port_help": "HTTP-Port, mit dem Ihre App verbunden ist."
+  "pci_app_add_settings_port_help": "HTTP-Port, mit dem Ihre App verbunden ist.",
+  "pci_app_add_readiness_probe": "Verfügbarkeitsprobe",
+  "pci_app_add_readiness_probe_description": "Erstellen Sie eine Probe für die Bereitschaft Ihrer Anwendung, HTTP-Anfragen anzunehmen: eine Kubernetes Readiness Probe. Sie lässt sich durch das Hinzufügen eines API-Endpoints und eines Ports individuell einstellen.",
+  "pci_app_add_readiness_probe_switch_label": "Eine Verfügbarkeitsprobe verwenden",
+  "pci_app_add_readiness_probe_switch_enabled": "Verfügbarkeitsprobe aktiviert",
+  "pci_app_add_readiness_probe_switch_disabled": "Verfügbarkeitsprobe deaktiviert",
+  "pci_app_add_readiness_probe_path_label": "API-Endpoint der Probe",
+  "pci_app_add_readiness_probe_path_help_text": "API-Endpoint der Verfügbarkeitsprobe Muss einen Status von 2XX oder 3XX zurückmelden",
+  "pci_app_add_readiness_probe_port_label": "Port der Probe",
+  "pci_app_add_readiness_probe_port_help_text": "Hiermit können Sie einen bestimmten Port für diesen API-Zugriffspfad konfigurieren."
 }

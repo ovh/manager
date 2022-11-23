@@ -1,7 +1,7 @@
 {
   "pci_app_add_configuration_name": "Nome della tua App",
   "pci_app_add_configuration_label": "Label",
-  "pci_app_add_configuration_label_description": "È possibile aggiungere label all’App. Utile per filtrare o proteggere via token un label specifico",
+  "pci_app_add_configuration_label_description": "È possibile aggiungere label all’App. Utile per i filtri e la protezione tramite token su un label preciso",
   "pci_app_add_configuration_label_field_key": "Chiave",
   "pci_app_add_configuration_label_field_key_error_key_already_exist": "Questa chiave esiste già",
   "pci_app_add_configuration_label_field_value": "Valore",
@@ -15,5 +15,14 @@
   "pci_app_add_privacy_settings_item_public_warning": "Ti consigliamo di prestare attenzione ai dati sensibili.",
   "pci_app_add_privacy_title": "Regola di accesso all’App",
   "pci_app_add_settings_port": "Porta HTTP",
-  "pci_app_add_settings_port_help": "Porta HTTP a cui è collegata l’App."
+  "pci_app_add_settings_port_help": "Porta HTTP a cui è collegata l’App.",
+  "pci_app_add_readiness_probe": "Sonda di disponibilità",
+  "pci_app_add_readiness_probe_description": "Per determinare quando la tua applicazione è pronta a ricevere una richiesta HTTP, è possibile configurare una sonda di disponibilità (Kubernetes Readiness probe) totalmente personalizzata tramite l'aggiunta di un endpoint API e di una porta.",
+  "pci_app_add_readiness_probe_switch_label": "Utilizzare una sonda di disponibilità",
+  "pci_app_add_readiness_probe_switch_enabled": "Sonda di disponibilità attivata",
+  "pci_app_add_readiness_probe_switch_disabled": "Sonda di disponibilità disattivata",
+  "pci_app_add_readiness_probe_path_label": "Endpoint API della sonda",
+  "pci_app_add_readiness_probe_path_help_text": "Endpoint API della sonda di disponibilità Deve restituire uno stato 2XX o 3XX",
+  "pci_app_add_readiness_probe_port_label": "Porta della sonda",
+  "pci_app_add_readiness_probe_port_help_text": "Permette di configurare una porta specifica per questa chiamata API"
 }
