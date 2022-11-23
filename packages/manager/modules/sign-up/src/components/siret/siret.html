@@ -126,6 +126,8 @@
                 class="oui-input"
                 name="vatField"
                 data-ng-model="$ctrl.model.vat"
+                data-ng-required="$ctrl.rules.vat.mandatory"
+                data-ng-pattern="$ctrl.rules.vat.regularExpression"
                 type="text"
             />
         </oui-field>
@@ -147,6 +149,7 @@
                     placeholder="{{ 'siret_manual_company_name' | translate }}"
                     type="text"
                     data-ng-model="$ctrl.model.organisation"
+                    data-ng-required="$ctrl.rules.organisation.mandatory"
                     required
                 />
             </oui-field>
@@ -159,6 +162,7 @@
                     data-items="$ctrl.legalFormList"
                     data-name="legalFormField"
                     data-model="$ctrl.model.corporationType"
+                    data-ng-required="$ctrl.rules.corporationType.mandatory"
                     data-required
                 >
                 </oui-select>
@@ -174,6 +178,8 @@
                     class="oui-input"
                     name="siretField"
                     data-ng-model="$ctrl.model.companyNationalIdentificationNumber"
+                    data-ng-required="$ctrl.rules.companyNationalIdentificationNumber.mandatory"
+                    data-ng-pattern="$ctrl.rules.companyNationalIdentificationNumber.regularExpression"
                     type="text"
                 />
             </oui-field>
@@ -187,6 +193,8 @@
                     class="oui-input"
                     name="vatField"
                     data-ng-model="$ctrl.model.vat"
+                    data-ng-required="$ctrl.rules.vat.mandatory"
+                    data-ng-pattern="$ctrl.rules.vat.regularExpression"
                     type="text"
                 />
             </oui-field>
