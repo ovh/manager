@@ -53,6 +53,7 @@ export default class FederationAddCtrl {
     if (!this.model.ldapTcpPort) {
       this.model.ldapTcpPort = DEFAULT_LDAP_TCP_PORT;
     }
+    this.model.baseDnForGroups = this.model.baseDnForUsers;
 
     return this.DedicatedCloud.postActiveDirectories(this.productId, this.model)
       .then((data) => {

@@ -154,29 +154,15 @@
         <div class="col-sm-12">
             <oui-field
                 class="col-md-6"
-                data-label="{{ 'dedicatedCloud_USER_AD_ADD_field_label_baseDnForUsers' | translate }}"
-                data-label-popover="{{ 'dedicatedCloud_USER_AD_ADD_field_tooltip_baseDnForUsers' | translate }}"
+                data-label="{{ 'dedicatedCloud_USER_AD_ADD_field_label_baseDn' | translate }}"
+                data-label-popover="{{ 'dedicatedCloud_USER_AD_ADD_field_tooltip_baseDn' | translate }}"
             >
                 <input
                     class="oui-input"
-                    name="{{ :: $ctrl.FIELD_NAME.baseDnForUsers }}"
-                    placeholder="{{ :: $ctrl.PLACEHOLDER.baseDnForUsers }}"
+                    name="{{ :: $ctrl.FIELD_NAME.baseDn }}"
+                    placeholder="{{ :: $ctrl.PLACEHOLDER.baseDn }}"
                     type="text"
                     data-ng-model="$ctrl.model.baseDnForUsers"
-                    required
-                />
-            </oui-field>
-            <oui-field
-                class="col-md-6"
-                data-label="{{ 'dedicatedCloud_USER_AD_ADD_field_label_baseDnForGroups' | translate }}"
-                data-label-popover="{{ 'dedicatedCloud_USER_AD_ADD_field_tooltip_baseDnForGroups' | translate }}"
-            >
-                <input
-                    class="oui-input"
-                    name="{{ :: $ctrl.FIELD_NAME.baseDnForGroups }}"
-                    placeholder="{{ :: $ctrl.PLACEHOLDER.baseDnForGroups }}"
-                    type="text"
-                    data-ng-model="$ctrl.model.baseDnForGroups"
                     required
                 />
             </oui-field>
