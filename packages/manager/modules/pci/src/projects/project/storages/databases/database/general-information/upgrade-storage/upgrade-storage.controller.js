@@ -9,7 +9,37 @@ export default class UpgradeStorageCtrll {
 
   $onInit() {
     this.trackDatabases('config_upgrade_storage', 'page');
-    this.additionalDiskSize = this.database.disk.size - this.flavor.minDiskSize;
+
+    this.originallyAddedDiskSize =
+      this.database.disk.size - this.flavor.minDiskSize;
+    this.additionalDiskSize = this.originallyAddedDiskSize;
+
+    // compute initial price and tax
+    this.initialPrice =
+      this.database.nodes.length *
+      (this.flavor.hourlyPrice.priceInUcents +
+        this.flavor.hourlyPricePerGB.priceInUcents *
+          this.originallyAddedDiskSize);
+    this.initialTax =
+      this.database.nodes.length *
+      (this.flavor.hourlyPrice.tax +
+        this.flavor.hourlyPricePerGB.tax * this.originallyAddedDiskSize);
+  }
+
+  get priceDelta() {
+    const newPrice =
+      this.database.nodes.length *
+      (this.flavor.hourlyPrice.priceInUcents +
+        this.flavor.hourlyPricePerGB.priceInUcents * this.additionalDiskSize);
+    return newPrice - this.initialPrice;
+  }
+
+  get taxDelta() {
+    const newTax =
+      this.database.nodes.length *
+      (this.flavor.hourlyPrice.tax +
+        this.flavor.hourlyPricePerGB.tax * this.additionalDiskSize);
+    return newTax - this.initialTax;
   }
 
   upgradeStorage() {

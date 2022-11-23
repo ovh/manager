@@ -6,49 +6,122 @@
         data-translate="pci_databases_general_information_upgrade_storage"
     ></span>
 </oui-back-button>
-<oui-message type="warning">
-    <span
-        data-translate="pci_databases_general_information_upgrade_storage_warning"
-    ></span>
-</oui-message>
-<p
-    data-translate="pci_databases_general_information_upgrade_storage_description"
-    data-translate-values="{
-        flavorName: $ctrl.flavor.name,
-        includedStorage: ($ctrl.flavor.minDiskSize | bytes:2:false:'GB'),
-        addableStorage: ($ctrl.flavor.maxDiskSize - $ctrl.flavor.minDiskSize | bytes:2:false:'GB'),
-        step: $ctrl.flavor.stepDiskSize
-    }"
-></p>
+<div class="row bm-4">
+    <div class="col-lg-9">
+        <oui-message type="warning">
+            <span
+                data-translate="pci_databases_general_information_upgrade_storage_warning"
+            ></span>
+        </oui-message>
+        <p
+            data-translate="pci_databases_general_information_upgrade_storage_description"
+            data-translate-values="{
+                flavorName: $ctrl.flavor.name,
+                includedStorage: ($ctrl.flavor.minDiskSize | bytes:2:false:'GB'),
+                addableStorage: ($ctrl.flavor.maxDiskSize - $ctrl.flavor.minDiskSize | bytes:2:false:'GB'),
+                step: $ctrl.flavor.stepDiskSize
+            }"
+        ></p>
+        <database-disk-size
+            data-min="0"
+            data-max="($ctrl.flavor.maxDiskSize - $ctrl.flavor.minDiskSize)"
+            data-initial-value="$ctrl.originallyAddedDiskSize"
+            data-step="$ctrl.flavor.stepDiskSize"
+            data-model="$ctrl.additionalDiskSize"
+            data-prices="{
+                    hourly: $ctrl.flavor.hourlyPricePerGB,
+                    monthly: $ctrl.flavor.monthlyPricePerGB,
+                }"
+            data-nodes="$ctrl.database.nodes.length"
+            data-show-prices="false"
+            data-show-monthly-prices="$ctrl.showMonthlyPrices"
+        >
+        </database-disk-size>
+    </div>
+    <div class="col-lg-3">
+        <div class="order-summary sticky-top mb-3">
+            <oui-tile
+                class="full-height"
+                data-heading="{{:: 'pci_databases_general_information_upgrade_storage_summary_title' | translate}}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_upgrade_storage_summary_storage' | translate}}"
+                >
+                    <oui-tile-description>
+                        <div class="d-flex flex-column">
+                            <span
+                                data-ng-bind="($ctrl.database.disk.size | bytes:2:false:'GB')"
+                            ></span>
+                            <span
+                                data-ng-if="$ctrl.additionalDiskSize - $ctrl.originallyAddedDiskSize > 0"
+                                class="oui-color-as-500 bold"
+                                data-ng-bind="'+ ' + ($ctrl.additionalDiskSize - $ctrl.originallyAddedDiskSize | bytes:2:false:'GB')"
+                            ></span>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
 
-<database-disk-size
-    data-min="0"
-    data-max="($ctrl.flavor.maxDiskSize - $ctrl.flavor.minDiskSize)"
-    data-initial-value="($ctrl.database.disk.size - $ctrl.flavor.minDiskSize)"
-    data-step="$ctrl.flavor.stepDiskSize"
-    data-model="$ctrl.additionalDiskSize"
-    data-prices="{
-            hourly: $ctrl.flavor.hourlyPricePerGB,
-            monthly: $ctrl.flavor.monthlyPricePerGB,
-        }"
-    data-nodes="$ctrl.database.nodes.length"
-    data-show-monthly-prices="$ctrl.showMonthlyPrices"
->
-</database-disk-size>
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_upgrade_storage_summary_price' | translate}}"
+                >
+                    <oui-tile-description>
+                        <div class="d-flex flex-column">
+                            <span>
+                                <ovh-manager-catalog-price
+                                    data-price="$ctrl.initialPrice"
+                                    data-tax="$ctrl.initialTax"
+                                    data-user="$ctrl.user"
+                                    data-show-zero-price="true"
+                                    data-perform-rounding="false"
+                                    data-maximum-fraction-digits="3"
+                                >
+                                </ovh-manager-catalog-price>
+                                <span
+                                    data-translate="pci_databases_general_information_upgrade_storage_summary_price_hourly_unit"
+                                ></span>
+                            </span>
+                            <span
+                                class="oui-color-as-500 bold"
+                                data-ng-if="$ctrl.additionalDiskSize - $ctrl.originallyAddedDiskSize > 0"
+                            >
+                                +<ovh-manager-catalog-price
+                                    data-price="$ctrl.priceDelta"
+                                    data-tax="$ctrl.taxDelta"
+                                    data-user="$ctrl.user"
+                                    data-show-zero-price="true"
+                                    data-perform-rounding="false"
+                                    data-maximum-fraction-digits="3"
+                                >
+                                </ovh-manager-catalog-price>
+                                <span
+                                    data-translate="pci_databases_general_information_upgrade_storage_summary_price_hourly_unit"
+                                ></span>
+                            </span>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
 
-<div data-ng-if="$ctrl.upgradingStorage">
-    <oui-spinner data-size="s"></oui-spinner>
-    <span
-        data-translate="pci_databases_general_information_upgrade_storage_processing"
-    ></span>
+                <oui-button
+                    variant="primary"
+                    block
+                    on-click="$ctrl.upgradeStorage()"
+                    disabled="(($ctrl.flavor.minDiskSize + $ctrl.additionalDiskSize) <= $ctrl.database.disk.size) || $ctrl.upgradingStorage"
+                >
+                    <span
+                        data-ng-if="!$ctrl.upgradingStorage"
+                        data-translate="pci_databases_general_information_upgrade_storage_confirm"
+                    ></span>
+                    <div
+                        data-ng-if="$ctrl.upgradingStorage"
+                        class="d-flex justify-content-center"
+                    >
+                        <oui-spinner class="mr-2" data-size="s"></oui-spinner>
+                        <span
+                            data-translate="pci_databases_general_information_upgrade_storage_processing"
+                        ></span>
+                    </div>
+                </oui-button>
+            </oui-tile>
+        </div>
+    </div>
 </div>
-<oui-form-actions
-    class="mb-4"
-    data-ng-if="!$ctrl.upgradingStorage"
-    data-submit-text="{{:: 'pci_databases_general_information_upgrade_storage_confirm' | translate }}"
-    data-cancel-text="{{:: 'pci_databases_general_information_upgrade_storage_cancel' | translate }}"
-    data-on-submit="$ctrl.upgradeStorage()"
-    data-on-cancel="$ctrl.cancel()"
-    data-disabled="($ctrl.flavor.minDiskSize + $ctrl.additionalDiskSize) <= $ctrl.database.disk.size"
->
-</oui-form-actions>

@@ -13,6 +13,7 @@ export default {
     prices: '<',
     nodes: '<',
     showMonthlyPrices: '<',
+    showPrices: '<',
   },
   template,
   controller,

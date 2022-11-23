@@ -1,5 +1,10 @@
-<div class="d-flex align-items-center">
-    <div class="w-100">
+<div class="row">
+    <div
+        data-ng-class="{
+        'col-12': !$ctrl.showPrices,
+        'col-sm-9 col-md-10': $ctrl.showPrices
+    }"
+    >
         <div class="d-flex justify-content-between">
             <span data-ng-if="$ctrl.min === 0">Aucun</span>
             <span
@@ -17,14 +22,17 @@
                 max="{{$ctrl.max}}"
                 step="{{$ctrl.step}}"
                 data-ng-model="$ctrl.model"
-                data-ng-on-change="$ctrl.checkRange()"
+                data-ng-change="$ctrl.checkRange()"
             />
         </div>
         <div class="text-center">
             <span data-ng-bind="$ctrl.model | bytes:2:false:'GB'"></span>
         </div>
     </div>
-    <div class="d-flex flex-column ml-5 align-items-end">
+    <div
+        class="col-sm-3 col-md-2 d-flex align-items-center flex-wrap"
+        data-ng-if="$ctrl.showPrices"
+    >
         <ovh-manager-catalog-price
             class="w-max-content"
             data-price="$ctrl.price"
@@ -32,10 +40,15 @@
             data-show-zero-price="true"
             data-perform-rounding="false"
             data-maximum-fraction-digits="5"
-            data-interval="$ctrl.showMonthlyPrices ? 'month' : 'hour'"
         >
         </ovh-manager-catalog-price>
-        <!-- <strong data-ng-if="!$ctrl.showMonthlyPrices" data-translate="pci_database_disk_size_price_unit_hour"></strong>
-        <strong data-ng-if="$ctrl.showMonthlyPrices" data-translate="pci_database_disk_size_price_unit_month"></strong> -->
+        <strong
+            data-ng-if="!$ctrl.showMonthlyPrices"
+            data-translate="pci_database_disk_size_price_unit_hour"
+        ></strong>
+        <strong
+            data-ng-if="$ctrl.showMonthlyPrices"
+            data-translate="pci_database_disk_size_price_unit_month"
+        ></strong>
     </div>
 </div>

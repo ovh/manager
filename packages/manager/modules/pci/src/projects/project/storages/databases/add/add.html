@@ -119,6 +119,7 @@
                         }"
                     data-nodes="$ctrl.model.plan.nodesCount"
                     data-show-monthly-prices="$ctrl.showMonthlyPrices"
+                    data-show-prices="true"
                 >
                 </database-disk-size>
             </div>
@@ -293,48 +294,6 @@
             <oui-tile
                 data-heading="{{:: 'pci_database_add_spec_heading' | translate }}"
             >
-                <oui-tile-definition>
-                    <oui-tile-description>
-                        <div
-                            class="d-flex align-items-center justify-content-between"
-                        >
-                            <span
-                                data-translate="pci_database_add_price_unit_switch_label"
-                            ></span>
-                            <!-- <div class="btn-group" role="group" aria-label="Basic example">
-                                <oui-button 
-                                    data-variant="{{$ctrl.showMonthlyPrices ? 'link' : 'secondary'}}" 
-                                    data-on-click="$ctrl.showMonthlyPrices = false;">
-                                    Heure
-                                </oui-button>
-                                <oui-button 
-                                    data-variant="{{$ctrl.showMonthlyPrices ? 'secondary' : 'link'}}" 
-                                    data-on-click="$ctrl.showMonthlyPrices = true;">
-                                    Mois
-                                </oui-button>
-                            </div> -->
-                            <oui-switch
-                                class="d-inline-block"
-                                name="switch-price-unit"
-                                model="$ctrl.showMonthlyPrices"
-                            >
-                            </oui-switch>
-                        </div>
-                        <!-- <oui-field class="my-2 no-bottom-margin">
-                            <oui-switch
-                                class="d-inline-block"
-                                name="switch-price-unit"
-                                model="$ctrl.showMonthlyPrices"
-                            >
-                            </oui-switch>
-                            <label
-                                class="d-inline-block mx-2"
-                                data-translate="pci_database_add_price_unit_switch_label"
-                            >
-                            </label>
-                        </oui-field> -->
-                    </oui-tile-description>
-                </oui-tile-definition>
                 <oui-tile-definition>
                     <oui-tile-description>
                         <div>
@@ -562,6 +521,19 @@
                 </oui-tile-definition>
                 <oui-tile-definition>
                     <oui-tile-description>
+                        <div
+                            class="d-flex align-items-center justify-content-between"
+                        >
+                            <span
+                                data-translate="pci_database_add_price_unit_switch_label"
+                            ></span>
+                            <oui-switch
+                                class="d-inline-block"
+                                name="switch-price-unit"
+                                model="$ctrl.showMonthlyPrices"
+                            >
+                            </oui-switch>
+                        </div>
                         <div class="d-flex justify-content-between">
                             <span
                                 data-translate="pci_database_common_price"
