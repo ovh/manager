@@ -8,6 +8,7 @@
     <ovh-sign-up-form
         data-action="create"
         data-me="$ctrl.me"
+        data-model="$ctrl.model"
         data-on-rules-updated="$ctrl.onRulesUpdated.bind($ctrl)"
     >
         <oui-stepper
@@ -42,6 +43,7 @@
                 data-ng-class="{ 'oui-stepper__step_form_active': $ctrl.isActiveStep('activity') }"
                 data-ng-if="!$ctrl.loading.init && $ctrl.isActivityStepVisible"
                 data-prevent-next="true"
+                data-valid="$ctrl.isValid"
             >
                 <div data-ui-view="activity"></div>
             </oui-step-form>

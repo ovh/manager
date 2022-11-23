@@ -7,6 +7,6 @@ export default {
     action: '@',
     me: '<',
     onRulesUpdated: '&',
-    model: '<',
+    model: '=',
   },
 };
