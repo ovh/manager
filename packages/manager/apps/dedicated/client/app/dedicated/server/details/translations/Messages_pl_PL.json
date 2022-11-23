@@ -1125,5 +1125,6 @@
   "server_configuration_monitoring_update_modal_description_status_no-proactive": "Twój serwer jest monitorowany. Będziesz otrzymywał alerty pocztą elektroniczną na adres przypisany do kontaktu technicznego. OVHcloud nie będzie interweniować na Twojej maszynie, jeśli nie otrzyma od Ciebie takiej dyspozycji.",
   "server_configuration_monitoring_update_modal_update_proactive_request_success": "Interwencje na serwerze {{serverName}} są włączone.",
   "server_configuration_monitoring_update_modal_update_no-proactive_request_success": "Interwencje na serwerze {{serverName}} zostały wyłączone.",
-  "server_configuration_monitoring_update_modal_update_request_failed": "Wystąpił błąd podczas zmiany opcji monitoringu."
+  "server_configuration_monitoring_update_modal_update_request_failed": "Wystąpił błąd podczas zmiany opcji monitoringu.",
+  "server_configuration_installation_ovh_desktop_ERP": "ERP"
 }
