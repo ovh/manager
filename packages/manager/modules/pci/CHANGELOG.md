@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.99.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.98.2...@ovh-ux/manager-pci@5.99.0) (2022-11-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1931] ([3067386](https://github.com/ovh/manager/commit/30673861430bdd5f99798fc4acf481d31dfffbdc))
+
+
+### Features
+
+* **pci.ai.apps:** add scaling option ([#8001](https://github.com/ovh/manager/issues/8001)) ([47a453b](https://github.com/ovh/manager/commit/47a453be0cc73564239322c83caab52b6998d786))
+* **pci.ai.apps:** allow docker image update ([#8002](https://github.com/ovh/manager/issues/8002)) ([de33fc6](https://github.com/ovh/manager/commit/de33fc609c22f7583ea330c79fb6a87af9c7854c))
+* **pci.ai.apps:** change alpha tag to beta ([#7996](https://github.com/ovh/manager/issues/7996)) ([48effff](https://github.com/ovh/manager/commit/48effff89ca4a560c3e2d64fd61c17b85d3cab9d))
+* **pci.ai.apps:** custom readiness probe ([#7995](https://github.com/ovh/manager/issues/7995)) ([d934eea](https://github.com/ovh/manager/commit/d934eea8421c76493bf2cd59520f93953905cd9a))
+
+
+
+
+
 ## [5.98.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.98.1...@ovh-ux/manager-pci@5.98.2) (2022-11-17)
 
 
