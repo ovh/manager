@@ -1125,5 +1125,6 @@
   "server_configuration_monitoring_update_modal_description_status_no-proactive": "Ihr Server wird überwacht. Sie erhalten per E-Mail Benachrichtigungen an die Adresse, die Ihrer technischen Kundenkennung zugeordnet ist. OVHcloud greift nur auf Ihrer Maschine ein, wenn Sie dies veranlassen.",
   "server_configuration_monitoring_update_modal_update_proactive_request_success": "Die Eingriffe auf dem Server {{serverName}} sind aktiviert.",
   "server_configuration_monitoring_update_modal_update_no-proactive_request_success": "Die Eingriffe auf dem Server {{serverName}} sind deaktiviert.",
-  "server_configuration_monitoring_update_modal_update_request_failed": "Beim Wechsel der Monitoring-Option ist ein Fehler aufgetreten."
+  "server_configuration_monitoring_update_modal_update_request_failed": "Beim Wechsel der Monitoring-Option ist ein Fehler aufgetreten.",
+  "server_configuration_installation_ovh_desktop_ERP": "ERP"
 }
