@@ -14,7 +14,7 @@
   "dedicatedCloud_USER_AD_status_toCreate": "Por crear",
   "dedicatedCloud_USER_AD_status_toDelete": "Pendiente de eliminar",
   "dedicatedCloud_USER_AD_status_toUpdate": "Pendiente de actualizar",
-  "dedicatedCloud_USER_AD_status_unknown": "Desconocido",
+  "dedicatedCloud_USER_AD_status_unknown": "Desconocida",
   "dedicatedCloud_USER_AD_status_updating": "Actualizando...",
   "dedicatedCloud_USER_AD_add_federation": "Añadir un Active Directory LDAPS",
   "dedicatedCloud_USER_AD_edit": "Modificar el Active Directory",

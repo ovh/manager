@@ -1,5 +1,5 @@
 {
-  "dedicatedCloud_USER_change_password": "Modifica la password",
+  "dedicatedCloud_USER_change_password": "Modificare la password",
   "dedicatedCloud_users_password_reset_not_allowed": "Per modificare la tua password, accedi all’interfaccia Web certificata disponibile all'indirizzo:",
   "dedicatedCloud_USER_change_password_confirmation": "Inserisci la nuova password per l'utente &lt;b>{{t0}}&lt;/b>:",
   "dedicatedCloud_USER_change_password_new": "Nuova password",

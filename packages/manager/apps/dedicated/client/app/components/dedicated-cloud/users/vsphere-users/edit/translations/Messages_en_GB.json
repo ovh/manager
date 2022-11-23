@@ -1,7 +1,7 @@
 {
   "dedicatedCloud_USER_modify": "Edit",
   "dedicatedCloud_USER_firstname": "First name",
-  "dedicatedCloud_USER_lastname": "Name",
+  "dedicatedCloud_USER_lastname": "Surname",
   "dedicatedCloud_USER_mail": "Email",
   "dedicatedCloud_USER_phone": "Telephone number",
   "dedicatedCloud_USER_token_validator": "Token validator",
