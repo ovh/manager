@@ -8,12 +8,10 @@
     data-secondary-label="{{:: 'pci_projects_project_storages_containers_container_cold_archive_delete_cancel_label' | translate }}"
     data-loading="$ctrl.isLoading"
 >
-    <div>
-        <oui-message data-type="warning">
-            <span
-                data-translate="pci_projects_project_storages_containers_container_cold_archive_delete_warning"
-                data-translate-values="{ container: $ctrl.container.name }"
-            ></span>
-        </oui-message>
-    </div>
+    <oui-message data-type="warning">
+        <span
+            data-translate="pci_projects_project_storages_containers_container_cold_archive_delete_warning"
+            data-translate-values="{ container: $ctrl.container.name }"
+        ></span>
+    </oui-message>
 </oui-modal>
