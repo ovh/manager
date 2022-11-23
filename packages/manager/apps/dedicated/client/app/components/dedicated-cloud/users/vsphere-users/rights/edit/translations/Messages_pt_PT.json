@@ -2,7 +2,7 @@
   "dedicatedCloud_USER_right_title": "Alteração das permissões de acesso",
   "dedicatedCloud_USER_right_datacenter_title": "Datacenter: <b>{{t0}}</b>",
   "dedicatedCloud_USER_right_vsphere": "Acesso à interface vSphere",
-  "dedicatedCloud_USER_right_vsphere_help": "Permissões globais de utilizador no vSphere ",
+  "dedicatedCloud_USER_right_vsphere_help": "Permissões globais de utilizador no vSphere",
   "dedicatedCloud_USER_right_vsphere_ADMIN": "Reservado à OVHcloud (administradores apenas)",
   "dedicatedCloud_USER_right_vsphere_admin": "Reservado à OVHcloud (administradores apenas)",
   "dedicatedCloud_USER_right_vsphere_DISABLED": "Sem acesso",
