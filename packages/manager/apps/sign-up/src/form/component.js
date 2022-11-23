@@ -8,7 +8,7 @@ export default {
   bindings: {
     me: '<',
     isActiveStep: '<',
-    onStepCancel: '<',
+    cancelStep: '<',
     onStepFocus: '<',
     finishSignUp: '<',
   },
