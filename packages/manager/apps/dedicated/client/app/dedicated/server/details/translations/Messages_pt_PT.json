@@ -1125,5 +1125,6 @@
   "server_configuration_monitoring_update_modal_description_status_no-proactive": "O seu servidor é monitorizado e receberá os alertas por e-mail no endereço associado ao seu NIC Tech. A OVHcloud não intervirá na sua máquina sem um pedido direto da sua parte.",
   "server_configuration_monitoring_update_modal_update_proactive_request_success": "As intervenções no servidor {{serverName}} estão ativas.",
   "server_configuration_monitoring_update_modal_update_no-proactive_request_success": "As intervenções estão desativadas no servidor {{serverName}}.",
-  "server_configuration_monitoring_update_modal_update_request_failed": "Ocorreu um erro aquando da alteração da opção de monitorização."
+  "server_configuration_monitoring_update_modal_update_request_failed": "Ocorreu um erro aquando da alteração da opção de monitorização.",
+  "server_configuration_installation_ovh_desktop_ERP": "ERP"
 }
