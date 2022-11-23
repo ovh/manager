@@ -1,6 +1,6 @@
 {
   "dedicatedCloud_USER_add_user": "Create User",
-  "dedicatedCloud_USER_add_user_name": "Name",
+  "dedicatedCloud_USER_add_user_name": "Surname",
   "dedicatedCloud_USER_add_user_password_error": "The password is incorrect ",
   "dedicatedCloud_USER_add_user_password": "Password",
   "dedicatedCloud_USER_add_user_mail": "Email",
