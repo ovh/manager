@@ -90,9 +90,8 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
 
       trackPage: /* @ngInject */ (atInternet) => (hit) =>
-        atInternet.trackClick({
+        atInternet.trackPage({
           name: `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`,
-          type: 'page',
         }),
 
       scrollToTop: /* @ngInject */ ($anchorScroll, $location) => () => {
