@@ -1,20 +1,17 @@
 import { find } from 'lodash';
 import animateScrollTo from 'animated-scroll-to';
 import { API_GUIDES } from '../../../project.constants';
-import { SUBMIT_JOB_API_GUIDES } from '../../data-processing.constants';
-import { nameGenerator } from '../../data-processing.utils';
+import { nameGenerator } from '../../../../../name-generator.constant';
 import { NOTEBOOK_PRIVACY_SETTINGS } from './privacy-selector/privacy-selector.constants';
 
 export default class {
   /* @ngInject */
   constructor(
     $scope,
-    $state,
     dataProcessingService,
     ovhManagerRegionService,
     atInternet,
   ) {
-    this.$state = $state;
     this.$scope = $scope;
     this.dataProcessingService = dataProcessingService;
     this.ovhManagerRegionService = ovhManagerRegionService;
@@ -30,29 +27,20 @@ export default class {
     this.state = {
       name: nameGenerator(),
       region: null,
-      privacy: NOTEBOOK_PRIVACY_SETTINGS.RESTRICTED,
-      jobEngine: {},
-      jobSizing: {},
-      jobConfig: {},
+      privacy: NOTEBOOK_PRIVACY_SETTINGS.PUBLIC,
+      notebookEngine: {},
+      notebookSizing: {},
+      notebookConfig: {},
     };
 
-    this.selectedNotebookSizing = 'NB1-1';
-    this.selectedClusterSizing = 'CP1-1';
     // we use this trick to trigger a state update of child component. This circumvent the missing
     // onChange event on oui-field components.
-    this.jobSizingValidate = false;
-    this.submitRetries = 0;
-    this.isSubmitting = false;
     this.badRequestErrorMessage = '';
-    this.isConfigureStepValid = false;
-    this.currentIndex = 0;
   }
 
   $onInit() {
     this.apiGuideUrl =
       API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
-    this.submitJobGuideUrl =
-      SUBMIT_JOB_API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
 
     this.scrollToOptions = {
       element: document.getElementsByClassName('pci-project-content')[0],
@@ -63,7 +51,7 @@ export default class {
     this.$scope.$watch(
       '$ctrl.state',
       () => {
-        this.prepareJobPayload();
+        this.prepareNotebookPayload();
       },
       true,
     );
@@ -77,13 +65,9 @@ export default class {
    * Fetch available regions from capabilities and update binding
    */
   updateAvailableRegions() {
-    const engine = find(
-      this.capabilities,
-      (e) => e.name === this.state.jobEngine.engine,
-    );
     const version = find(
-      engine.availableVersions,
-      (v) => v.name === this.state.jobEngine.version,
+      this.capabilities.availableVersions,
+      (v) => v.name === this.state.notebookEngine.version,
     );
     this.regions = version.availableRegions.map((region) => ({
       name: region,
@@ -93,47 +77,32 @@ export default class {
   }
 
   /**
-   * Fetch available job parameters from capabilities and update binding
-   */
-  updateAvailableJobParameters() {
-    const engine = find(
-      this.capabilities,
-      (e) => e.name === this.state.jobEngine.engine,
-    );
-    this.jobParameters = {};
-    engine.parameters.forEach((jobParameter) => {
-      this.jobParameters[jobParameter.name] = jobParameter;
-    });
-  }
-
-  /**
    * Handler for region selector change
    * @param name Name of the selected region
    */
   onChangeRegionHandler(region) {
     this.state.region = region;
-    this.updateAvailableJobParameters();
   }
 
   /**
-   * Handler for job type selector job
-   * @param jobType Selected job type
+   * Handler for notebook type selector
+   * @param notebookType Selected notebook type
    */
-  onChangeNotebookTypeHandler(jobType) {
-    const e = find(this.capabilities, (o) => o.name === jobType.engine);
-    this.state.jobEngine = {
-      ...jobType,
+  onChangeNotebookTypeHandler(notebookType) {
+    const e = find(
+      this.capabilities.availableVersions,
+      (o) => o.name === notebookType.version,
+    );
+    this.state.notebookEngine = {
+      ...notebookType,
       templates: e.templates,
     };
     this.updateAvailableRegions();
   }
 
-  onChangeSizingHandler() {
-    this.state.jobSizing.notebook = this.selectedNotebookSizing;
-    this.state.jobSizing.cluster = this.selectedClusterSizing;
-    // trigger job sizing component values update
-    this.jobSizingValidate = !this.jobSizingValidate;
-    console.log(this.selectedNotebookSizing);
+  onChangeSizingHandler(selectedSizing) {
+    this.state.notebookSizing.notebook = selectedSizing.notebook;
+    this.state.notebookSizing.cluster = selectedSizing.cluster;
   }
 
   /**
@@ -144,174 +113,33 @@ export default class {
     this.state.privacy = privacy;
   }
 
-  /**
-   * Parse API error responses to extract the message and make it compatible with translations
-   */
-  parseSubmitErrorMessage(errorMessage) {
-    this.badRequestErrorMessage = errorMessage
-      .replace(
-        /Client::BadRequest::|Client::UnprocessableEntity::/gi,
-        'data_processing_submit_job_error_message_',
-      )
-      .replace(/\./g, '_');
-  }
+  prepareNotebookPayload() {
+    const payload = {
+      env: {
+        engine: this.state.notebookEngine.engine,
+        engineVersion: this.state.notebookEngine.version,
+      },
+      name: this.state.name,
+      region: this.state.region.name,
+    };
 
-  prepareJobPayload() {
-    if (this.state.jobSizing?.driverMemoryGb) {
-      const payload = {
-        containerName: this.state.jobConfig.swiftContainer,
-        engine: this.state.jobEngine.engine,
-        engineVersion: this.state.jobEngine.version,
-        name: this.state.jobConfig.jobName,
-        region: this.state.region.name,
-        engineParameters: [
-          {
-            name: 'main_application_code',
-            value: this.state.jobConfig.mainApplicationCode,
-          },
-          {
-            name: 'arguments',
-            value: this.state.jobConfig.arguments.replaceAll(' ', ','),
-          },
-          {
-            name: 'driver_memory',
-            value: (this.state.jobSizing.driverMemoryGb * 1024).toString(),
-          },
-          {
-            name: 'executor_memory',
-            value: (this.state.jobSizing.workerMemoryGb * 1024).toString(),
-          },
-          {
-            name: 'driver_memory_overhead',
-            value: this.state.jobSizing.driverMemoryOverheadMb.toString(),
-          },
-          {
-            name: 'executor_memory_overhead',
-            value: this.state.jobSizing.workerMemoryOverheadMb.toString(),
-          },
-          {
-            name: 'driver_cores',
-            value: this.state.jobSizing.driverCores.toString(),
-          },
-          {
-            name: 'executor_num',
-            value: this.state.jobSizing.workerCount.toString(),
-          },
-          {
-            name: 'executor_cores',
-            value: this.state.jobSizing.workerCores.toString(),
-          },
-          {
-            name: 'job_type',
-            value: this.state.jobConfig.jobType,
-          },
-        ],
-      };
-
-      if (this.state.jobConfig.jobType === 'java') {
-        payload.engineParameters.push({
-          name: 'main_class_name',
-          value: this.state.jobConfig.mainClass,
-        });
-      }
-      if (this.state.jobConfig.ttl.enabled) {
-        payload.ttl = moment.duration(
-          this.state.jobConfig.ttl.time,
-          this.state.jobConfig.ttl.unit.name,
-        );
-      }
-      this.orderData = payload;
-    }
+    this.orderData = payload;
 
     this.orderAPIUrl = `POST /cloud/project/${this.projectId}/dataProcessing/notebooks`;
-
-    // Compute prices and taxes
-    const {
-      workerMemoryGb,
-      driverMemoryGb,
-      workerCount,
-      workerMemoryOverheadMb,
-      driverMemoryOverheadMb,
-      driverCores,
-      workerCores,
-    } = this.state.jobSizing;
-    const driverMemoryOverheadGb = driverMemoryOverheadMb;
-    const workerMemoryOverheadGb = workerMemoryOverheadMb;
-    const totalMemory =
-      (workerMemoryGb + workerMemoryOverheadGb) * workerCount +
-      (driverMemoryGb + driverMemoryOverheadGb);
-
-    this.jobPrices = {
-      workerCount,
-      cores: {
-        worker: workerCores,
-        driver: driverCores,
-        price: this.prices.core.priceInUcents,
-        tax: this.prices.core.tax,
-        totalPrice:
-          (driverCores + workerCores * workerCount) *
-          this.prices.core.priceInUcents,
-        totalTax:
-          (driverCores + workerCores * workerCount) * this.prices.core.tax,
-      },
-      memory: {
-        driver: {
-          base: driverMemoryGb,
-          overhead: driverMemoryOverheadGb,
-        },
-        worker: {
-          base: workerMemoryGb,
-          overhead: workerMemoryOverheadMb,
-        },
-        total: totalMemory,
-        price: this.prices.memory.priceInUcents,
-        tax: this.prices.memory.tax,
-        totalPrice: totalMemory * this.prices.memory.priceInUcents,
-        totalTax: totalMemory * this.prices.memory.tax,
-      },
-    };
   }
 
-  onSubmitJobHandler() {
-    this.prepareJobPayload();
-    const lastIndex = this.currentIndex;
-    this.isSubmitting = true;
+  onAddNotebookHandler() {
+    this.prepareNotebookPayload();
 
     this.dataProcessingService
-      .submitJob(this.projectId, this.orderData)
+      .createNotebook(this.projectId, this.orderData)
       .then(({ data }) => {
         this.atInternet.trackClick({
           name:
-            'public-cloud::pci::projects::project::data-processing::submit-job::submit',
+            'public-cloud::pci::projects::project::data-processing::submit-notebook::submit',
           type: 'action',
         });
         this.goToDashboard(data.id);
-      })
-      .catch((error) => {
-        if (
-          error.status !== 400 &&
-          error.status !== 422 &&
-          this.submitRetries < 2
-        ) {
-          this.onSubmitJobHandler();
-        } else {
-          if (error.status === 400 || error.status === 422) {
-            this.parseSubmitErrorMessage(error.data.data.class);
-          }
-          this.isSubmitting = false;
-          this.currentIndex = lastIndex - 1;
-          // this is a trick to circumvent limitations of the stepper component.
-          // in case of error, it allows user to submit again through the stepper.
-          setTimeout(() => {
-            this.currentIndex = lastIndex;
-            this.$scope.$apply();
-          }, 0);
-        }
-        this.submitRetries += 1;
       });
-  }
-
-  getArgumentsList() {
-    return this.state.jobConfig.arguments.map((a) => a.title).join(' ');
   }
 }

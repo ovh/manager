@@ -6,7 +6,7 @@ import routing from './notebook-details.routing';
 
 import dataProcessingNotebookDetailsComponent from './notebook-details.component';
 import notebookStatus from '../notebook-status';
-import terminateNotebook from '../terminate-notebook';
+import terminateNotebook from './terminate-notebook';
 
 const moduleName = 'ovhManagerPciProjectDataProcessingNotebookDetails';
 
