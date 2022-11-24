@@ -1,3 +1,17 @@
+import { COLD_ARCHIVE_STATES as STATES } from '../cold-archives.constants';
+
+export const COLD_ARCHIVE_STATES = STATES;
+
+export const COLD_ARCHIVE_CONTAINER_STATUS = {
+  ARCHIVED: 'archived',
+  ARCHIVING: 'archiving',
+  DELETING: 'deleting',
+  FLUSHED: 'flushed',
+  NONE: 'none',
+  RESTORED: 'restored',
+  RESTORING: 'restoring',
+};
+
 export const CONTAINER_STATUS_OPTIONS = {
   none: {
     actions: ['archive', 'delete'],
@@ -31,4 +45,5 @@ export const CONTAINER_STATUS_OPTIONS = {
 
 export default {
   CONTAINER_STATUS_OPTIONS,
+  COLD_ARCHIVE_STATES,
 };

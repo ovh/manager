@@ -4,7 +4,7 @@ import {
 } from '../../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINER_RESTORE, {
+  $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_RESTORE, {
     url: '/restore?containerName',
     views: {
       modal: {

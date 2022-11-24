@@ -1,3 +1,5 @@
+import { COLD_ARCHIVE_STATES } from './containers.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.storages.cold-archive.containers',
@@ -11,8 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((containers) =>
             containers.length === 0
               ? {
-                  state:
-                    'pci.projects.project.storages.cold-archive.onboarding',
+                  state: COLD_ARCHIVE_STATES.ONBOARDING,
                 }
               : false,
           ),
@@ -22,48 +23,70 @@ export default /* @ngInject */ ($stateProvider) => {
             'pci_projects_project_storages_cold_archive_container_label',
           );
         },
+
+        goToContainer: /* @ngInject */ ($state, projectId) => (container) => {
+          const { name } = container;
+          return $state.go(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER, {
+            projectId,
+            containerName: name,
+          });
+        },
+
+        goToAddUserToContainer: /* @ngInject */ ($state, projectId) => (
+          container,
+        ) => {
+          return $state.go(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_ADD_USER, {
+            projectId,
+            container,
+          });
+        },
+
         goToDeleteContainer: /* @ngInject */ ($state, projectId) => (
           container,
         ) => {
           const { name } = container;
-          return $state.go(
-            'pci.projects.project.storages.cold-archive.containers.delete',
-            {
-              projectId,
-              containerName: name,
-            },
-          );
+          return $state.go(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_DELETE, {
+            projectId,
+            containerName: name,
+          });
         },
+
+        goToDeleteContainerObjects: /* @ngInject */ ($state, projectId) => (
+          container,
+        ) => {
+          const { name } = container;
+          return $state.go(COLD_ARCHIVE_STATES.CONTAINER_OBJECTS_DELETE, {
+            projectId,
+            containerName: name,
+          });
+        },
+
         goToArchiveContainer: /* @ngInject */ ($state, projectId) => (
           container,
         ) => {
           const { name } = container;
-          return $state.go(
-            'pci.projects.project.storages.cold-archive.containers.archive',
-            {
-              projectId,
-              containerName: name,
-            },
-          );
+          return $state.go(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_ARCHIVE, {
+            projectId,
+            containerName: name,
+          });
         },
+
         goToRestoreContainer: /* @ngInject */ ($state, projectId) => (
           container,
         ) => {
           const { name } = container;
-          return $state.go(
-            'pci.projects.project.storages.cold-archive.containers.restore',
-            {
-              projectId,
-              containerName: name,
-            },
-          );
+          return $state.go(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_RESTORE, {
+            projectId,
+            containerName: name,
+          });
         },
+
         goBack: ($state, projectId, CucCloudMessage) => (
           message = false,
           type = 'success',
         ) => {
           const reload = message && type === 'success';
-          const state = 'pci.projects.project.storages.cold-archive.containers';
+          const state = COLD_ARCHIVE_STATES.CONTAINERS;
 
           const promise = $state.go(
             state,
