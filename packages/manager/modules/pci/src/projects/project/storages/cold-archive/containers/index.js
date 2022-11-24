@@ -9,6 +9,7 @@ import 'angular-ui-bootstrap';
 import component from './containers.component';
 import routing from './containers.routing';
 
+import addUser from './add-user';
 import deleteContainer from './delete';
 import archiveContainer from './archive';
 import restoreContainer from './restore';
@@ -17,15 +18,16 @@ const moduleName = 'ovhManagerPciStoragesColdArchiveContainersList';
 
 angular
   .module(moduleName, [
-    deleteContainer,
-    archiveContainer,
-    restoreContainer,
     'ngTranslateAsyncLoader',
     'oui',
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
     'ui.bootstrap',
+    addUser,
+    deleteContainer,
+    archiveContainer,
+    restoreContainer,
   ])
   .component('pciProjectStorageColdArchiveContainers', component)
   .config(routing)
