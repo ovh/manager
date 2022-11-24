@@ -36,7 +36,7 @@ export default class SiretCtrl {
           identifier: this.search,
         })
         .then((suggest) => {
-          this.trackPage(suggest.entryList.length > 0 ? 'list' : 'no-result');
+          this.trackPage(suggest.entryList?.length > 0 ? 'list' : 'no-result');
           this.suggest = suggest;
         })
         .finally(() => {
