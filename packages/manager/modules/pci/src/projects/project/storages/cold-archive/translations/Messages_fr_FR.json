@@ -24,6 +24,9 @@
   "pci_projects_project_storages_containers_status_archiving": "En cours d'archivage",
   "pci_projects_project_storages_containers_status_deleting": "En cours de suppression",
   "pci_projects_project_storages_containers_status_flushed": "Vidé",
+  "pci_projects_project_storages_cold_archive_container_action_add_user": "Ajouter un utilisateur",
+  "pci_projects_project_storages_cold_archive_container_action_see_objects": "Voir les objets",
+  "pci_projects_project_storages_cold_archive_container_action_delete_objects": "Supprimer les objets",
   "pci_projects_project_storages_cold_archive_container_action_archive": "Archiver",
   "pci_projects_project_storages_cold_archive_container_action_restore": "Restaurer",
   "pci_projects_project_storages_cold_archive_container_action_delete": "Supprimer"
