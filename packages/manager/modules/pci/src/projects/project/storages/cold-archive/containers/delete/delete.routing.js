@@ -4,7 +4,7 @@ import {
 } from '../../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINER_DELETE, {
+  $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_DELETE, {
     url: '/delete?containerName',
     views: {
       modal: {
