@@ -1,6 +1,4 @@
-import { startCase } from 'lodash';
-
-export default class {
+export default class NotebookTypeSelectorCtrl {
   /* @ngInject */
   constructor($translate) {
     this.$translate = $translate;
@@ -10,20 +8,21 @@ export default class {
 
   $onChanges() {
     if (this.notebookEngines) {
-      this.availableEngines = Object.values(this.notebookEngines).map(
-        (engine) => ({
-          name: startCase(engine.name),
+      this.availableEngines = [
+        {
+          name: 'Spark',
           description: this.$translate.instant(
-            `data_processing_add_notebook_${engine.name}_description`,
+            `data_processing_add_notebook_spark_description`,
           ),
-          versions: engine.availableVersions.map((v) => ({
-            id: `${engine.name}@${v.name}`,
-            engine: engine.name,
+          versions: this.notebookEngines.map((v) => ({
+            id: `spark@${v.name}`,
+            engine: 'spark',
             version: v.name,
             description: v.description,
           })),
-        }),
-      );
+        },
+      ];
+
       this.onChange(this.availableEngines[0].versions[0]);
     }
   }

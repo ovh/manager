@@ -112,6 +112,18 @@ export default class DataProcessingService {
   }
 
   /**
+   * Create a new notebook
+   * @param projectId string Id of the project to create the notebook to
+   * @param notebook the payload describing the notebook
+   * @return {Promise<any>}
+   */
+  createNotebook(projectId, notebook) {
+    return this.$http
+      .post(`/cloud/project/${projectId}/dataProcessing/notebooks`, notebook)
+      .then(({ data }) => data);
+  }
+
+  /**
    * delete a notebook
    * @param projectId string the project id
    * @param notebookId string the notebook id

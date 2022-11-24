@@ -1,6 +1,6 @@
 import { NOTEBOOK_PRIVACY_SETTINGS } from './privacy-selector.constants';
 
-export default class {
+export default class PrivacySelectorCtrl {
   /* @ngInject */
   constructor($translate) {
     this.$translate = $translate;

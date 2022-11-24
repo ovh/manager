@@ -6,8 +6,7 @@ export default {
   controller,
   bindings: {
     onChangeHandler: '<',
-    selectedNotebookSizing: '<',
-    selectedClusterSizing: '<',
+    availableClusterTemplate: '<',
     projectId: '<',
   },
 };
