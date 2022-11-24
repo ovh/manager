@@ -11,29 +11,21 @@ export default /* @ngInject */ ($stateProvider) =>
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('data_processing_add_notebook_title'),
         capabilities: /* @ngInject */ (dataProcessingService, projectId) =>
-          dataProcessingService.getCapabilities(projectId),
+          dataProcessingService.getNotebookCapabilities(projectId),
         goBack: /* @ngInject */ (showNotebooks) => showNotebooks,
-        increaseQuotaLink: /* @ngInject */ ($state, projectId) =>
-          $state.href('pci.projects.project.quota.increase', {
-            projectId,
-          }),
         prices: /* @ngInject */ (dataProcessingService, projectId) =>
           dataProcessingService.getPricesFromCatalog(projectId),
         user: /* @ngInject */ (SessionService) => SessionService.getUser(),
-        goToObjectStorage: /* @ngInject */ ($state, projectId) => () =>
-          $state.go('pci.projects.project.storages.object-storage.add', {
-            projectId,
-          }),
         aiNotebookLink: /* @ngInject */ ($state, projectId) => () =>
           $state.href('pci.projects.project.notebooks.add', {
             projectId,
           }),
-        goToDashboard: /* @ngInject */ ($state, projectId) => (jobId) =>
+        goToDashboard: /* @ngInject */ ($state, projectId) => (notebookId) =>
           $state.go(
-            'pci.projects.project.data-processing.job-details.dashboard',
+            'pci.projects.project.data-processing.notebooks.details',
             {
               projectId,
-              jobId,
+              notebookId,
             },
             {
               reload: true,

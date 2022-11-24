@@ -7,7 +7,7 @@
         data-name="notebookSizing"
         data-label="{{:: item.name}}"
         data-model="$ctrl.selectedNotebookTemplate"
-        data-on-change="$ctrl.onChangeNotebook(item)"
+        data-on-change="$ctrl.onChangeSelectedTemplate()"
         data-values="[item.name]"
     >
         <oui-select-picker-section>
@@ -41,48 +41,48 @@
 <div class="row">
     <!--Settings public-->
     <oui-select-picker
-        data-ng-repeat="item in $ctrl.availableClusterTemplate"
+        data-ng-repeat="item in $ctrl.availableClusterTemplate track by item.id"
         class="d-inline-block col-md-6 col-xl-3 my-3"
         data-name="clusterSizing"
         data-label="{{:: item.name}}"
         data-model="$ctrl.selectedClusterTemplate"
-        data-on-change="$ctrl.onChangeCluster(item)"
+        data-on-change="$ctrl.onChangeSelectedTemplate()"
         data-values="[item.name]"
     >
         <oui-select-picker-section>
             <p
                 class="mb-0"
                 data-translate="data_processing_add_notebook_template_driver_cpu"
-                data-translate-values="{'nbCpu': item.DriverCPU}"
+                data-translate-values="{'nbCpu': item.driverCores}"
             ></p>
             <p
                 class="mb-0"
                 data-translate="data_processing_add_notebook_template_driver_ram"
-                data-translate-values="{'nbGio': item.DriverMemory / 1024}"
+                data-translate-values="{'nbGio': item.driverMemory / 1024}"
             ></p>
             <p
                 class="mb-0"
                 data-translate="data_processing_add_notebook_template_driver_ram_overhead"
-                data-translate-values="{'nbGio': item.DriverMemoryOverhead / 1024}"
+                data-translate-values="{'nbGio': item.driverMemoryOverhead / 1024}"
             ></p>
             <p
                 class="mb-0"
                 data-translate="data_processing_add_notebook_template_executor_cpu"
-                data-translate-values="{'nbCpu': item.ExecutorCPU}"
+                data-translate-values="{'nbCpu': item.executorCores}"
             ></p>
             <p
                 class="mb-0"
                 data-translate="data_processing_add_notebook_template_executor_ram"
-                data-translate-values="{'nbGio': item.ExecutorMemory / 1024}"
+                data-translate-values="{'nbGio': item.executorMemory / 1024}"
             ></p>
             <p
                 class="mb-0"
                 data-translate="data_processing_add_notebook_template_executor_ram_overhead"
-                data-translate-values="{'nbGio': item.ExecutorMemoryOverhead / 1024}"
+                data-translate-values="{'nbGio': item.executorMemoryOverhead / 1024}"
             ></p>
             <p
                 data-translate="data_processing_add_notebook_template_executor_nb"
-                data-translate-values="{'nbExc': item.ExecutorNb}"
+                data-translate-values="{'nbExc': item.executorNum}"
             ></p>
         </oui-select-picker-section>
         <oui-select-picker-section>

@@ -8,6 +8,7 @@ export default {
     notebook: '<',
     projectId: '<',
     terminateNotebook: '<',
+    showNotebook: '<',
     goBack: '<',
     openLiveCodeEditor: '<',
     capabilities: '<',
