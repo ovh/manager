@@ -1,4 +1,4 @@
-import { GIB_IN_MIB } from '../../data-processing.constants';
+import { GIB_IN_MIB } from '../../../data-processing.constants';
 import { MEMORY_OVERHEAD_RATIO } from './spark-sizing.constants';
 
 export default class {

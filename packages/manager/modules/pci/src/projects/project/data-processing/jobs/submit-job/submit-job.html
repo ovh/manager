@@ -4,72 +4,42 @@
         class="mb-2"
         data-heading="{{ ::'data_processing_submit_job_title' | translate }}"
     ></oui-header>
-    <!-- page content -->
-    <p data-translate="data_processing_submit_job_description_1"></p>
-    <p data-translate="data_processing_submit_job_description_2"></p>
+    <oui-message data-ng-if="$ctrl.containers.length === 0" data-type="warning">
+        <span data-translate="data_processing_submit_no_container"></span>
+        <a href="" data-ng-click="$ctrl.goToObjectStorage()">
+            <span
+                data-translate="data_processing_submit_object_storage_link"
+            ></span>
+        </a>
+    </oui-message>
 
-    <!-- stepper -->
-    <oui-stepper data-current-index="$ctrl.currentIndex">
-        <!-- step 1 - select job type -->
-        <oui-step-form
-            data-prevent-next="true"
-            data-valid="$ctrl.state.jobEngine.engine !== undefined"
-            data-header="{{ ::'data_processing_submit_job_stepper_job_type_title' | translate }}"
-        >
-            <pci-project-data-processing-submit-job-type-selector
-                data-job-engines="$ctrl.capabilities"
-                data-on-change-handler="$ctrl.onChangeJobTypeHandler"
-            >
-            </pci-project-data-processing-submit-job-type-selector>
-        </oui-step-form>
-        <!-- step 2 - select region -->
-        <oui-step-form
-            data-header="{{ ::'data_processing_submit_job_stepper_region_title' | translate }}"
-            data-prevent-next="true"
-            data-on-focus="$ctrl.updateAvailableRegions()"
-        >
-            <pci-project-data-processing-submit-job-region-selector
-                data-regions="$ctrl.regions"
-                data-display-selected-region="$ctrl.displaySelectedRegion"
-                data-on-change-handler="$ctrl.onChangeRegionHandler"
-            >
-            </pci-project-data-processing-submit-job-region-selector>
-        </oui-step-form>
-        <!-- step 3 - job sizing -->
-        <oui-step-form
-            data-header="{{ ::'data_processing_submit_job_stepper_sizing_title' | translate }}"
-            data-prevent-next="true"
-            data-on-focus="$ctrl.updateAvailableJobParameters()"
-            data-on-submit="$ctrl.onSubmitJobSizingHandler(form)"
-        >
-            <pci-project-data-processing-submit-job-spark-sizing
-                data-ng-if="$ctrl.jobParameters"
-                data-project-id="$ctrl.projectId"
-                data-templates="$ctrl.state.jobEngine.templates"
-                data-values="$ctrl.state.jobSizing"
-                data-validate="$ctrl.jobSizingValidate"
-                data-job-parameters="$ctrl.jobParameters"
-                data-prices="$ctrl.prices"
-                data-user="$ctrl.user"
-            >
-            </pci-project-data-processing-submit-job-spark-sizing>
-        </oui-step-form>
-        <!-- step 4 - configure job -->
-        <oui-step-form
-            data-header="{{ ::'data_processing_submit_job_stepper_configure_title' | translate }}"
-            data-prevent-next="true"
-            data-valid="$ctrl.isConfigureStepValid"
-            data-on-submit="$ctrl.prepareJobPayload()"
-        >
-            <pci-project-data-processing-submit-job-spark-config
-                data-project-id="$ctrl.projectId"
-                data-region="$ctrl.state.region"
-                data-on-change-handler="$ctrl.onChangeJobConfigHandler"
-                data-valid="$ctrl.isConfigureStepValid"
-                data-job-parameters="$ctrl.jobParameters"
-            >
-            </pci-project-data-processing-submit-job-spark-config>
-        </oui-step-form>
+    <div class="row">
+        <div class="col-lg-9">
+            <!-- page content -->
+            <p data-translate="data_processing_submit_job_description_1"></p>
+            <p data-translate="data_processing_submit_job_description_2"></p>
+            <form novalidate>
+                <!-- step 1 - select job type -->
+                <h2
+                    id="engine"
+                    data-translate="data_processing_submit_job_stepper_job_type_title"
+                ></h2>
+                <pci-project-data-processing-submit-job-type-selector
+                    data-job-engines="$ctrl.capabilities"
+                    data-on-change-handler="$ctrl.onChangeJobTypeHandler"
+                >
+                </pci-project-data-processing-submit-job-type-selector>
+                <!-- step 2 - select region -->
+                <h2
+                    id="region"
+                    data-translate="data_processing_submit_job_stepper_region_title"
+                ></h2>
+                <pci-project-data-processing-submit-job-region-selector
+                    data-regions="$ctrl.regions"
+                    data-selected-region="$ctrl.state.region"
+                    data-on-change-handler="$ctrl.onChangeRegionHandler"
+                >
+                </pci-project-data-processing-submit-job-region-selector>
 
         <oui-step-form
             data-header="{{ ::'data_processing_submit_job_stepper_submit_title' | translate }}"
