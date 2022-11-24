@@ -55,12 +55,20 @@
         </div>
 
         <span
+            data-ng-if="!$ctrl.suggest.error"
             data-translate="{{ $ctrl.suggest.entryList.length === 0 ? 'siret_suggest_no_result' : 'siret_suggest_select_company' }}"
-            data-translate-values="{ search: '<strong>'+ $ctrl.search +'</strong>'}"
+            data-translate-values="{ search: '<strong>'+ $ctrl.suggest.searched +'</strong>'}"
             class="mb-3"
         ></span>
 
-        <oui-field data-ng-if="$ctrl.suggest.entryList.length > 0">
+        <span
+            data-ng-if="$ctrl.suggest.error"
+            data-translate="siret_suggest_error"
+            data-translate-values="{ message: $ctrl.suggest.message }"
+            class="mb-3"
+        ></span>
+
+        <oui-field class="mt-2" data-ng-if="$ctrl.suggest.entryList.length > 0">
             <oui-select-picker
                 data-ng-repeat="suggest in $ctrl.suggest.entryList"
                 data-name="siretPicker"
@@ -88,10 +96,7 @@
             </oui-select-picker>
         </oui-field>
 
-        <div
-            class="mt-1 mb-3"
-            data-ng-if="!$ctrl.model.companyNationalIdentificationNumber"
-        >
+        <div class="mt-1 mb-3">
             <span
                 class="align-middle"
                 data-translate="siret_suggest_no_found_company"
@@ -101,9 +106,12 @@
                 data-ng-click="$ctrl.onManualFormClick()"
                 class="align-middle oui-button oui-button_s oui-button_ghost oui-button_icon-right"
             >
-                <span data-translate="siret_suggest_add_manual"></span>
                 <span
-                    class="oui-icon oui-icon-arrow-right"
+                    class="align-middle"
+                    data-translate="siret_suggest_add_manual"
+                ></span>
+                <span
+                    class="align-middle oui-icon oui-icon-arrow-right"
                     aria-hidden="true"
                 ></span>
             </button>
