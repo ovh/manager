@@ -4,14 +4,6 @@
         class="mb-2"
         data-heading="{{ ::'data_processing_add_notebook_title' | translate }}"
     ></oui-header>
-    <oui-message data-ng-if="$ctrl.conatiners.length === 0" data-type="warning">
-        <span data-translate="data_processing_add_no_container"></span>
-        <a href="" data-ng-click="$ctrl.goToObjectStorage()">
-            <span
-                data-translate="data_processing_add_object_storage_link"
-            ></span>
-        </a>
-    </oui-message>
 
     <div class="row">
         <div class="col-lg-9">
@@ -50,7 +42,7 @@
                     data-translate="data_processing_add_notebook_stepper_notebook_type_title"
                 ></h2>
                 <pci-project-data-processing-add-notebook-type-selector
-                    data-notebook-engines="$ctrl.capabilities"
+                    data-notebook-engines="$ctrl.capabilities.availableVersions"
                     data-on-change-handler="$ctrl.onChangeNotebookTypeHandler"
                 >
                 </pci-project-data-processing-add-notebook-type-selector>
@@ -82,9 +74,8 @@
                     data-translate="data_processing_add_notebook_stepper_sizing_title"
                 ></h2>
                 <pci-project-data-processing-add-notebook-notebook-sizing
-                    data-selected-notebook-sizing="$ctrl.selectedNotebookSizing"
-                    data-selected-cluster-sizing="$ctrl.selectedClusterSizing"
                     data-on-change-handler="$ctrl.onChangeSizingHandler"
+                    data-available-cluster-template="$ctrl.capabilities.templates"
                 >
                 </pci-project-data-processing-add-notebook-notebook-sizing>
                 <!-- step 5 - API -->
@@ -150,7 +141,7 @@
                                     ></a>
                                     <span
                                         class="text-capitalize"
-                                        data-ng-bind="$ctrl.state.jobEngine.engine"
+                                        data-ng-bind="$ctrl.state.notebookEngine.engine"
                                     ></span>
                                 </div>
                             </div>
@@ -162,7 +153,7 @@
                                     <span
                                         data-translate="data_processing_add_notebook_spec_engine_version"
                                         data-translate-values="{
-                                            version: $ctrl.state.jobEngine.version
+                                            version: $ctrl.state.notebookEngine.version
                                         }"
                                     ></span>
                                 </div>
@@ -206,7 +197,7 @@
                                         data-translate="data_processing_add_notebook_spec_sizing_notebook"
                                     ></span>
                                     <span
-                                        data-ng-bind="$ctrl.state.notebook"
+                                        data-ng-bind="$ctrl.state.notebookSizing.notebook"
                                     ></span>
                                 </div>
                             </div>
@@ -218,7 +209,7 @@
                                         data-translate="data_processing_add_notebook_spec_sizing_cluster"
                                     ></span>
                                     <span
-                                        data-ng-bind="$ctrl.state.cluster"
+                                        data-ng-bind="$ctrl.state.notebookSizing.cluster"
                                     ></span>
                                 </div>
                             </div>
@@ -247,51 +238,17 @@
                         </oui-tile-description>
                     </oui-tile-definition>
                     <oui-button
-                        variant="primary"
+                        data-variant="primary"
                         block
-                        on-click="$ctrl.onAddNotebookHandler()"
-                        disabled="$ctrl.isaddting || !$ctrl.isConfigureStepValid || !$ctrl.state.notebookConfig.notebookName"
+                        data-on-click="$ctrl.onAddNotebookHandler()"
+                        data-disabled="!$ctrl.state.name"
                     >
                         <span
-                            data-ng-if="!$ctrl.isaddting"
                             data-translate="data_processing_add_notebook_stepper_add_notebook_button"
                         ></span>
-                        <div
-                            data-ng-if="$ctrl.isaddting"
-                            class="d-flex justify-content-center"
-                        >
-                            <oui-spinner
-                                class="mr-2"
-                                data-size="s"
-                            ></oui-spinner>
-                            <span
-                                data-translate="data_processing_add_notebook_stepper_add_processing"
-                            ></span>
-                        </div>
                     </oui-button>
                 </oui-tile>
             </div>
         </div>
-    </div>
-    <div
-        class="addnotebook__error"
-        data-ng-if="$ctrl.addRetries>0 && !$ctrl.isaddting"
-    >
-        <span class="oui-icon oui-icon-error-circle"></span>
-        <span
-            class="addnotebook__errormessage"
-            data-ng-if="$ctrl.badRequestErrorMessage.length == 0"
-            >{{ ::'data_processing_add_notebook_error_label' | translate}}</span
-        >
-        <span
-            class="addnotebook__errormessage"
-            data-ng-if="$ctrl.badRequestErrorMessage.length > 0 && $ctrl.badRequestErrorMessage != 'data_processing_add_notebook_error_message_odp_project_notEnoughQuotas'"
-            data-ng-bind-html="$ctrl.badRequestErrorMessage | translate"
-        ></span>
-        <span
-            class="addnotebook__errormessage"
-            data-ng-if="$ctrl.badRequestErrorMessage.length > 0 && $ctrl.badRequestErrorMessage == 'data_processing_add_notebook_error_message_odp_project_notEnoughQuotas'"
-            data-ng-bind-html="'data_processing_add_notebook_error_message_odp_project_notEnoughQuotas' | translate: { url: $ctrl.increaseQuotaLink }"
-        ></span>
     </div>
 </section>
