@@ -17,7 +17,9 @@ export default class DedicatedCloudActiveDirectoriesCtrl {
   $onInit() {
     this.loading = true;
 
-    return this.DedicatedCloud.securityOptionsCompatibility(this.productId)
+    return this.DedicatedCloud.securityOptionsCompatibility(this.productId, {
+      showIncompatible: false,
+    })
       .then((data) => {
         this.hasAdvancedSecurity = !!data.find(
           (elm) => elm.name === 'advancedSecurity' && elm.state !== 'disabled',

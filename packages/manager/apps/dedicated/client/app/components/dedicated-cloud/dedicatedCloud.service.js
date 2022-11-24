@@ -1048,9 +1048,12 @@ class DedicatedCloudService {
       );
   }
 
-  securityOptionsCompatibility(serviceName) {
+  securityOptionsCompatibility(serviceName, params) {
     return this.$http
-      .get(`/dedicatedCloud/${serviceName}/securityOptions/compatibilityMatrix`)
+      .get(
+        `/dedicatedCloud/${serviceName}/securityOptions/compatibilityMatrix`,
+        { params },
+      )
       .then(({ data }) => data);
   }
 
