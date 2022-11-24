@@ -6,6 +6,7 @@
   "siret_suggest_select_company": "Sélectionnez votre entreprise :",
   "siret_suggest_many_result_title": "Votre recherche comporte un grand nombre de résultats.",
   "siret_suggest_many_result_description": "Si vous ne trouvez pas votre entreprise, veuillez préciser votre recherche ou saisir votre numéro SIRET :",
+  "siret_suggest_error": "Une erreur est survenue : {{message}}",
   "siret_suggest_no_result": "Nous n'avons pas trouvé \"{{search}}\"",
   "siret_suggest_no_found_company": "Vous ne trouvez pas votre entreprise ?",
   "siret_suggest_add_manual": "Ajoutez-la manuellement",
