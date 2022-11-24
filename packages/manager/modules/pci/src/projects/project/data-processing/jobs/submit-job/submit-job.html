@@ -4,120 +4,105 @@
         class="mb-2"
         data-heading="{{ ::'data_processing_submit_job_title' | translate }}"
     ></oui-header>
-    <oui-message data-ng-if="$ctrl.containers.length === 0" data-type="warning">
-        <span data-translate="data_processing_submit_no_container"></span>
-        <a href="" data-ng-click="$ctrl.goToObjectStorage()">
+    <!-- page content -->
+    <p data-translate="data_processing_submit_job_description_1"></p>
+    <p data-translate="data_processing_submit_job_description_2"></p>
+
+    <!-- stepper -->
+    <oui-stepper data-current-index="$ctrl.currentIndex">
+        <!-- step 1 - select job type -->
+        <oui-step-form
+            data-prevent-next="true"
+            data-valid="$ctrl.state.jobEngine.engine !== undefined"
+            data-header="{{ ::'data_processing_submit_job_stepper_job_type_title' | translate }}"
+        >
+            <pci-project-data-processing-submit-job-type-selector
+                data-job-engines="$ctrl.capabilities"
+                data-on-change-handler="$ctrl.onChangeJobTypeHandler"
+            >
+            </pci-project-data-processing-submit-job-type-selector>
+        </oui-step-form>
+        <!-- step 2 - select region -->
+        <oui-step-form
+            data-header="{{ ::'data_processing_submit_job_stepper_region_title' | translate }}"
+            data-prevent-next="true"
+            data-on-focus="$ctrl.updateAvailableRegions()"
+        >
+            <pci-project-data-processing-submit-job-region-selector
+                data-regions="$ctrl.regions"
+                data-display-selected-region="$ctrl.displaySelectedRegion"
+                data-on-change-handler="$ctrl.onChangeRegionHandler"
+            >
+            </pci-project-data-processing-submit-job-region-selector>
+        </oui-step-form>
+        <!-- step 3 - job sizing -->
+        <oui-step-form
+            data-header="{{ ::'data_processing_submit_job_stepper_sizing_title' | translate }}"
+            data-prevent-next="true"
+            data-on-focus="$ctrl.updateAvailableJobParameters()"
+            data-on-submit="$ctrl.onSubmitJobSizingHandler(form)"
+        >
+            <pci-project-data-processing-submit-job-spark-sizing
+                data-ng-if="$ctrl.jobParameters"
+                data-project-id="$ctrl.projectId"
+                data-templates="$ctrl.state.jobEngine.templates"
+                data-values="$ctrl.state.jobSizing"
+                data-validate="$ctrl.jobSizingValidate"
+                data-job-parameters="$ctrl.jobParameters"
+                data-prices="$ctrl.prices"
+                data-user="$ctrl.user"
+            >
+            </pci-project-data-processing-submit-job-spark-sizing>
+        </oui-step-form>
+        <!-- step 4 - configure job -->
+        <oui-step-form
+            data-header="{{ ::'data_processing_submit_job_stepper_configure_title' | translate }}"
+            data-prevent-next="true"
+            data-valid="$ctrl.isConfigureStepValid"
+            data-on-submit="$ctrl.prepareJobPayload()"
+        >
+            <pci-project-data-processing-submit-job-spark-config
+                data-project-id="$ctrl.projectId"
+                data-region="$ctrl.state.region"
+                data-on-change-handler="$ctrl.onChangeJobConfigHandler"
+                data-valid="$ctrl.isConfigureStepValid"
+                data-job-parameters="$ctrl.jobParameters"
+            >
+            </pci-project-data-processing-submit-job-spark-config>
+        </oui-step-form>
+
+        <oui-step-form
+            data-header="{{ ::'data_processing_submit_job_stepper_submit_title' | translate }}"
+            data-submit-text="{{ ::'data_processing_submit_job_button_label' | translate }}"
+            data-prevent-next="true"
+            data-on-submit="$ctrl.onSubmitJobHandler()"
+        >
+            <pci-order-command
+                data-order-api-url="$ctrl.orderAPIUrl"
+                data-order-data="$ctrl.orderData"
+                data-help-link="$ctrl.submitJobGuideUrl"
+                data-auto-height="true"
+                data-user="$ctrl.user"
+            >
+                <p
+                    data-translate="data_processing_submit_job_command_description"
+                ></p>
+                <a
+                    class="oui-link_icon"
+                    target="_blank"
+                    rel="noopener"
+                    data-ng-href="{{$ctrl.apiGuideUrl}}"
+                ><span
+                data-translate="data_processing_submit_job_command_documentation_link"
+            ></span>
             <span
-                data-translate="data_processing_submit_object_storage_link"
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
             ></span>
         </a>
-    </oui-message>
-
-    <div class="row">
-        <div class="col-lg-9">
-            <!-- page content -->
-            <p data-translate="data_processing_submit_job_description_1"></p>
-            <p data-translate="data_processing_submit_job_description_2"></p>
-            <form novalidate>
-                <!-- step 1 - select job type -->
-                <h2
-                    id="engine"
-                    data-translate="data_processing_submit_job_stepper_job_type_title"
-                ></h2>
-                <pci-project-data-processing-submit-job-type-selector
-                    data-job-engines="$ctrl.capabilities"
-                    data-on-change-handler="$ctrl.onChangeJobTypeHandler"
-                >
-                </pci-project-data-processing-submit-job-type-selector>
-                <!-- step 2 - select region -->
-                <h2
-                    id="region"
-                    data-translate="data_processing_submit_job_stepper_region_title"
-                ></h2>
-                <pci-project-data-processing-submit-job-region-selector
-                    data-regions="$ctrl.regions"
-                    data-selected-region="$ctrl.state.region"
-                    data-on-change-handler="$ctrl.onChangeRegionHandler"
-                >
-                </pci-project-data-processing-submit-job-region-selector>
-
-                <!-- step 3 - configure job -->
-                <h2
-                    id="config"
-                    data-translate="data_processing_submit_job_stepper_configure_title"
-                ></h2>
-                <pci-project-data-processing-submit-job-spark-config
-                    data-project-id="$ctrl.projectId"
-                    data-region="$ctrl.state.region.name"
-                    data-on-change-handler="$ctrl.onChangeJobConfigHandler"
-                    data-valid="$ctrl.isConfigureStepValid"
-                    data-job-parameters="$ctrl.jobParameters"
-                    class="mb-2"
-                >
-                </pci-project-data-processing-submit-job-spark-config>
-                <!-- step 4 - job sizing -->
-                <h2
-                    id="sizing"
-                    data-translate="data_processing_submit_job_stepper_sizing_title"
-                ></h2>
-                <pci-project-data-processing-submit-job-spark-sizing
-                    data-ng-if="$ctrl.jobParameters"
-                    data-project-id="$ctrl.projectId"
-                    data-templates="$ctrl.state.jobEngine.templates"
-                    data-values="$ctrl.state.jobSizing"
-                    data-job-parameters="$ctrl.jobParameters"
-                    data-prices="$ctrl.prices"
-                    data-user="$ctrl.user"
-                    class="mb-2"
-                >
-                </pci-project-data-processing-submit-job-spark-sizing>
-                <!-- step 5 - prices & API -->
-                <h2
-                    id="prices"
-                    data-translate="data_processing_submit_job_stepper_prices_and_api_title"
-                ></h2>
-                <pci-project-data-processing-submit-price-details
-                    user="$ctrl.user"
-                    prices-data="$ctrl.jobPrices"
-                    worker-count="$ctrl.state.jobSizing.workerCount"
-                ></pci-project-data-processing-submit-price-details>
-
-                <oui-collapsible
-                    heading="{{:: 'data_processing_submit_job_api_equivalent' | translate }}"
-                >
-                    <pci-order-command
-                        data-order-api-url="$ctrl.orderAPIUrl"
-                        data-order-data="$ctrl.orderData"
-                        data-help-link="$ctrl.submitJobGuideUrl"
-                        data-auto-height="true"
-                        data-user="$ctrl.user"
-                    >
-                        <p
-                            data-translate="data_processing_submit_job_command_description"
-                        ></p>
-                        <a
-                            class="oui-link_icon"
-                            target="_blank"
-                            rel="noopener"
-                            data-ng-href="{{$ctrl.apiGuideUrl}}"
-                        >
-                            <span
-                                data-translate="data_processing_submit_job_command_documentation_link"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-external-link"
-                                aria-hidden="true"
-                            ></span>
-                        </a>
-                    </pci-order-command>
-                </oui-collapsible>
-            </form>
-        </div>
-        <div class="col-lg-3">
-            <div class="order-summary sticky-top mb-3">
-                <oui-tile
-                    data-heading="{{:: 'data_processing_submit_job_spec_heading' | translate }}"
-                >
+    </pci-order-command>
+</oui-step-form>
+</oui-stepper>
                     <oui-tile-definition>
                         <oui-tile-description>
                             <!-- Job type -->
@@ -403,6 +388,13 @@
                 </oui-tile>
             </div>
         </div>
+
+    <div class="submitjob__spinner" data-ng-if="$ctrl.isSubmitting">
+        <oui-spinner size="s"></oui-spinner>
+        <span class="spinner__label"
+            >{{ ::'data_processing_submit_job_spinner_label' | translate
+            }}</span
+        >
     </div>
     <div
         class="submitjob__error"
