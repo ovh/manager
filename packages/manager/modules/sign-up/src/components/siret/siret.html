@@ -134,7 +134,14 @@
 
     <!-- manual form -->
     <div data-ng-if="$ctrl.displayManualForm">
-        <span data-translate="siret_manual_title"></span>
+        <oui-button
+            variant="link"
+            icon-left="oui-icon-arrow-left"
+            data-on-click="$ctrl.goToSearchMode()"
+        >
+            <span data-translate="siret_search_assistant"></span>
+        </oui-button>
+        <p class="mt-2" data-translate="siret_manual_title"></p>
 
         <div class="row mt-2">
             <oui-field
