@@ -28,5 +28,6 @@
   "siret_manual_company_legal_form_SNC": "Société en nom collectif (SNC)",
   "siret_manual_company_legal_form_SCS": "Société en commandite simple (SCS)",
   "siret_manual_company_legal_form_SCA": "Société en commandite par actions (SCA)",
+  "siret_manual_company_legal_form_SCOP": "Société coopérative de production (Scop)",
   "siret_manual_registration_date": "Date d'immatriculation"
 }
