@@ -66,6 +66,11 @@ export default class SiretCtrl {
     this.displayManualForm = true;
   }
 
+  goToSearchMode() {
+    this.isFirstSearch = true;
+    this.displayManualForm = false;
+  }
+
   trackClick(hit) {
     this.atInternet.trackClick({
       name: `${this.trackingPrefix}${hit}`,
