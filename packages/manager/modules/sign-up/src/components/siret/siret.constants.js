@@ -10,6 +10,7 @@ export const LEGAL_FORM = [
   'SNC',
   'SCS',
   'SCA',
+  'SCOP',
 ];
 
 export const TRACKING_PREFIX = {
