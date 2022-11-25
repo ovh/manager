@@ -3,6 +3,7 @@
   "siret_search_field_label": "N° SIRET (recommandé), N° SIREN ou nom de l'entreprise",
   "siret_search_field_placeholder": "N° SIRET, N° SIREN ou nom de l'entreprise",
   "siret_search_button": "Chercher",
+  "siret_search_assistant": "Retour à l'assistant de recherche",
   "siret_suggest_select_company": "Sélectionnez votre entreprise :",
   "siret_suggest_many_result_title": "Votre recherche comporte un grand nombre de résultats.",
   "siret_suggest_many_result_description": "Si vous ne trouvez pas votre entreprise, veuillez préciser votre recherche ou saisir votre numéro SIRET :",
