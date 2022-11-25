@@ -13,7 +13,7 @@
   "siret_suggest_siren": "SIREN :",
   "siret_vat": "N° TVA",
   "siret_siret": "N° SIRET",
-  "siret_vat_helper": "Le numéro de TVA est une mention obligation à faire figurer sur vos factures pour tout montant supérieur à 150€.",
+  "siret_vat_helper": "Le numéro de TVA est une mention obligatoire à faire figurer sur vos factures pour tout montant supérieur à 150€.",
   "siret_optional": "facultatif",
   "siret_information_confirmation_is_correct": "Je confirme l'exactitude des informations",
   "siret_manual_title": "Ajoutez votre entreprise manuellement :",
