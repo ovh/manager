@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.37.0...@ovh-ux/manager-dedicated@17.37.1) (2022-11-28)
+
+
+### Bug Fixes
+
+* **pcc.user:** non is translated to cancel instead of no ([#8434](https://github.com/ovh/manager/issues/8434)) ([bfae570](https://github.com/ovh/manager/commit/bfae570ab6d6cb9336b74a88d2b89686398c5bf8))
+
+
+
+
+
 # [17.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.36.0...@ovh-ux/manager-dedicated@17.37.0) (2022-11-21)
 
 

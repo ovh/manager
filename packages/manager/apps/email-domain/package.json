@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emaildomain-app",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "private": true,
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/manager-core": "^12.12.4",
+    "@ovh-ux/manager-core": "^12.12.5",
     "@ovh-ux/manager-email-domain": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.0.0 || ^2.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",

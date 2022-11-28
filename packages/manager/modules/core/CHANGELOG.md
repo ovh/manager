@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.12.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.12.4...@ovh-ux/manager-core@12.12.5) (2022-11-28)
+
+
+### Bug Fixes
+
+* **nas-ha:** fix redirection guide ca and order express url ([#8396](https://github.com/ovh/manager/issues/8396)) ([b44242f](https://github.com/ovh/manager/commit/b44242f38ab7458c60f97009e797d8835aa8eb9d))
+
+
+
+
+
 ## [12.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.12.3...@ovh-ux/manager-core@12.12.4) (2022-11-17)
 
 
