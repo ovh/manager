@@ -2,8 +2,7 @@ import { DATA_PROCESSING_GUIDE_URL } from '../data-processing.constants';
 
 export default class {
   /* @ngInject */
-  constructor($state, atInternet) {
-    this.$state = $state;
+  constructor(atInternet) {
     this.atInternet = atInternet;
     this.guideUrl = DATA_PROCESSING_GUIDE_URL;
   }
