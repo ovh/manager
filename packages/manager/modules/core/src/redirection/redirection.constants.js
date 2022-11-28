@@ -57,13 +57,13 @@ export default {
   CA: {
     guides: {
       home: {
-        ASIA: `${guidesRoot}/ca/en/`,
-        AU: `${guidesRoot}/ca/en/`,
+        ASIA: `${guidesRoot}/asia/en/`,
+        AU: `${guidesRoot}/au/en/`,
         CA: `${guidesRoot}/ca/en/`,
         QC: `${guidesRoot}/ca/fr/`,
-        SG: `${guidesRoot}/ca/en/`,
-        WE: `${guidesRoot}/ca/en/`,
-        WS: `${guidesRoot}/ca/en/`,
+        SG: `${guidesRoot}/sg/en/`,
+        WE: `${guidesRoot}/us/en/`,
+        WS: `${guidesRoot}/us/es/`,
       },
     },
     help: {
@@ -83,7 +83,7 @@ export default {
       QC: 'https://ca.ovh.com/fr/order/express/#/express/review',
       SG: 'https://ca.ovh.com/sg/order/express/#/express/review',
       WE: 'https://us.ovh.com/us/order/express/#/express/review',
-      WS: 'https://us.ovh.com/us/es/order/express/#/express/review',
+      WS: 'https://us.ovh.com/es/order/express/#/express/review',
       DEFAULT: 'https://us.ovh.com/us/order/express/#/express/review',
     },
   },
