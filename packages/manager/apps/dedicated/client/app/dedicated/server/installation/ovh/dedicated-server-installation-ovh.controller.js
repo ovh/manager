@@ -25,6 +25,7 @@ angular
     raid1: 'raid1',
     raid5: 'raid5',
     raid6: 'raid6',
+    raid7: 'raid7',
     raid10: 'raid10',
     raid50: 'raid50',
     raid60: 'raid60',
@@ -539,6 +540,11 @@ angular
                 realRemainingSize =
                   remainingSize -
                   (remainingSize / $scope.installation.nbDiskUse) * 2;
+                break;
+              case '_7':
+                realRemainingSize =
+                  remainingSize -
+                  (remainingSize / $scope.installation.nbDiskUse) * 3;
                 break;
               case '_10':
                 realRemainingSize =
@@ -1764,6 +1770,9 @@ angular
       // return list of available raid
       $scope.getRaidList = function getRaidList(nbDisk) {
         if (nbDisk !== null && $scope.constants.raidList !== null) {
+          if (nbDisk >= 7) {
+            return $scope.constants.raidList[7];
+          }
           if (nbDisk >= 4) {
             if (nbDisk % 2 === 0) {
               return $scope.constants.raidList[4] || [];
@@ -1819,6 +1828,16 @@ angular
             $scope.informations.raidController
           ) {
             set(option, 'partition.realSize', option.partition.partitionSize);
+          } else if (option.partition.raid === '_7') {
+            const { nbDiskUse: nbDisks } = $scope.installation;
+            const nbParityDisks = 3;
+            const nbDataDisks = nbDisks - nbParityDisks;
+            const realSizeRatio = nbDataDisks / nbDisks;
+            set(
+              option,
+              'partition.realSize',
+              option.partition.partitionSize / realSizeRatio,
+            );
           } else if (option.partition.raid) {
             switch (option.partition.raid) {
               case '_0':
@@ -2050,6 +2069,11 @@ angular
               TEMPLATE_OS_HARDWARE_RAID_ENUM.raid60,
             );
           }
+          if (nbOfDisk >= 7) {
+            $scope.informations.hardwareRaid.availableRaids.push(
+              TEMPLATE_OS_HARDWARE_RAID_ENUM.raid7,
+            );
+          }
           if (nbOfDisk >= 6) {
             $scope.informations.hardwareRaid.availableRaids.push(
               TEMPLATE_OS_HARDWARE_RAID_ENUM.raid50,
@@ -2100,6 +2124,9 @@ angular
             case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid10:
               minDisksPerArray = 2;
               minDisks = 4;
+              break;
+            case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid7:
+              minDisks = 7;
               break;
             case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid6:
               minDisks = 4;
@@ -2203,6 +2230,10 @@ angular
             case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid10:
               $scope.installation.hardwareRaid.availableSpace =
                 grappe * diskSize;
+              break;
+            case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid7:
+              $scope.installation.hardwareRaid.availableSpace =
+                (nbOfDisks - 3) * diskSize;
               break;
             case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid6:
               $scope.installation.hardwareRaid.availableSpace =
