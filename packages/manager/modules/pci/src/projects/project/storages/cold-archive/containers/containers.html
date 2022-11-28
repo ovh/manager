@@ -56,7 +56,10 @@
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column>
-            <oui-action-menu data-ng-if="$ctrl.constructor.isAvailableActions($row)" data-compact>
+            <oui-action-menu
+                data-ng-if="$ctrl.constructor.isActionsAvailable($row)"
+                data-compact
+            >
                 <!--Action: add user-->
                 <oui-action-menu-item
                     data-ng-if="$ctrl.constructor.isActionAddUserAvailable($row)"
@@ -115,6 +118,20 @@
                 >
                     <span
                         data-translate="pci_projects_project_storages_cold_archive_container_action_delete"
+                    ></span>
+                </oui-action-menu-item>
+
+                <!--Action: go to virtualHost-->
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.constructor.isActionVirtualHostAvailable($row)"
+                    data-on-click="$ctrl.goToContainerVirtualHost($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_cold_archive_container_action_virtual_host"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-external-link"
+                        aria-hidden="true"
                     ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
