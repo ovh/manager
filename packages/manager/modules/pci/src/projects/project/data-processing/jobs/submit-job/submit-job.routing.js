@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) =>
         }),
       goToDashboard: /* @ngInject */ ($state, projectId) => (jobId) =>
         $state.go(
-          'pci.projects.project.data-processing.job-details.dashboard',
+          'pci.projects.project.data-processing.jobs.job-details.dashboard',
           {
             projectId,
             jobId,
