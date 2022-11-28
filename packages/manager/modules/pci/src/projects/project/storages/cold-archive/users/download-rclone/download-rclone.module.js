@@ -4,10 +4,11 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
+import component from './download-rclone.component';
 import routing from './download-rclone.routing';
-import rClone from '../../../../../../components/users/download-rclone';
 
-const moduleName = 'ovhManagerPciUsersObjectStorageDownloadRcloneABC';
+const moduleName =
+  'ovhManagerPciProjectsProjectStoragesColdArchiveUsersDownloadRclone';
 
 angular
   .module(moduleName, [
@@ -15,8 +16,11 @@ angular
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
-    rClone,
   ])
+  .component(
+    'pciProjectsProjectStoragesColdArchiveUsersDownloadRclone',
+    component,
+  )
   .config(routing)
   .config(
     /* @ngInject */ ($compileProvider) => {
@@ -24,6 +28,7 @@ angular
         /^\s*(https?|s?ftp|mailto|tel|file|data):/,
       );
     },
-  );
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
