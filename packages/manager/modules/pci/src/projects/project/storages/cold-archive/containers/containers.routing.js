@@ -54,11 +54,13 @@ export default /* @ngInject */ ($stateProvider) => {
         goToDeleteContainerObjects: /* @ngInject */ ($state, projectId) => (
           container,
         ) => {
-          const { name } = container;
-          return $state.go(COLD_ARCHIVE_STATES.CONTAINER_OBJECTS_DELETE, {
-            projectId,
-            containerName: name,
-          });
+          return $state.go(
+            COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_OBJECTS_DELETE,
+            {
+              projectId,
+              container,
+            },
+          );
         },
 
         goToArchiveContainer: /* @ngInject */ ($state, projectId) => (

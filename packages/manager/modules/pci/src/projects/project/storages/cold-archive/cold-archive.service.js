@@ -196,7 +196,7 @@ export default class PciStoragesColdArchiveService {
       .then(({ data }) => data);
   }
 
-  cleaningArchiveContainer(serviceName, regionName, archiveName) {
+  deleteArchiveContainer(serviceName, regionName, archiveName) {
     return this.$http
       .post(
         `/cloud/project/${serviceName}/region/${regionName}/coldArchive/${archiveName}/destroy`,
@@ -204,12 +204,30 @@ export default class PciStoragesColdArchiveService {
       .then(({ data }) => data);
   }
 
-  destroyArchiveContainer(serviceName, regionName, archiveName, objectKey) {
+  deleteArchiveContainerObject(
+    serviceName,
+    regionName,
+    archiveName,
+    objectKey,
+  ) {
     return this.$http
       .delete(
         `/cloud/project/${serviceName}/region/${regionName}/coldArchive/${archiveName}/object/${objectKey}`,
       )
       .then(({ data }) => data);
+  }
+
+  deleteArchiveContainerObjects(serviceName, regionName, archiveName, objects) {
+    const promises = objects.map(({ key }) => {
+      return this.pciStoragesColdArchiveService.deleteContainerObjects(
+        serviceName,
+        regionName,
+        archiveName,
+        key,
+      );
+    });
+
+    return this.$q.all(promises).then(({ data }) => data);
   }
 
   createArchiveContainerPolicy(serviceName, regionName, archiveName, userId) {
