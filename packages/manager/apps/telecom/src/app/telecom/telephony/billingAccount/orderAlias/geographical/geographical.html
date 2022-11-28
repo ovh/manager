@@ -129,7 +129,7 @@
                         </div>
                         <telecom-telephony-billing-account-order-alias-number-choice
                             name="offerChoice"
-                            data-ng-if="AliasOrderGeographicalCtrl.prices"
+                            data-ng-if="AliasOrderGeographicalCtrl.prices && !AliasOrderGeographicalCtrl.loading.numbers"
                             data-ng-model="AliasOrderGeographicalCtrl.form"
                             data-ng-disabled="AliasOrderGeographicalCtrl.loading.init || AliasOrderGeographicalCtrl.loading.numbers  || AliasOrderGeographicalCtrl.loading.order"
                             data-choices="AliasOrderGeographicalCtrl.predefinedNumbers"
