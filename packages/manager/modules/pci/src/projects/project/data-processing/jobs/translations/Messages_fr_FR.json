@@ -7,7 +7,7 @@
   "data_processing_job_type": "Type",
   "data_processing_job_cores_ram": "vCores/RAM",
   "data_processing_job_ram": "RAM",
-  "data_processing_job_cores_abbreviation": "c",
+  "data_processing_job_spec": "{{vcores}}c/{{ram}}",
   "data_processing_job_creation_date": "Créé",
   "data_processing_job_status": "Statut",
   "data_processing_job_status_pending": "En attente",
