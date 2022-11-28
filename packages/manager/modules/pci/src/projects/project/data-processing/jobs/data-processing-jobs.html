@@ -7,8 +7,8 @@
         <oui-datagrid
             data-rows-loader="$ctrl.getJobs($config)"
             data-refreshable
-            criteria="$ctrl.criteria"
-            on-criteria-change="$ctrl.onListParamChange($criteria)"
+            data-criteria="$ctrl.criteria"
+            data-on-criteria-change="$ctrl.onListParamChange($criteria)"
         >
             <oui-datagrid-column
                 data-title="::'data_processing_job_name' | translate"
@@ -60,19 +60,19 @@
                 data-sortable
             >
                 <span
-                    >{{ $row.vcores }}{{ ::
-                    'data_processing_job_cores_abbreviation' | translate }}/{{
-                    $row.ram }}</span
-                >
+                    data-translate="data_processing_job_spec"
+                    data-translate-values="{ vcores: $row.vcores, ram: $row.ram }"
+                ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title="::'data_processing_job_creation_date' | translate"
                 data-property="creationDate"
                 data-sortable="desc"
             >
-                <span title="{{ $ctrl.formatDate($row.creationDate) }}"
-                    >{{ $ctrl.formatDateFromNow($row.creationDate) }}</span
-                >
+                <span
+                    title="{{ $ctrl.formatDate($row.creationDate) }}"
+                    data-ng-bind="$ctrl.formatDateFromNow($row.creationDate)"
+                ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title="::'data_processing_job_status' | translate"

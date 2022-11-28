@@ -11,13 +11,11 @@ import { getCriteria } from '../../project.utils';
 export default class {
   /* @ngInject */
   constructor(
-    $state,
     CucCloudMessage,
     dataProcessingService,
     ovhManagerRegionService,
     atInternet,
   ) {
-    this.$state = $state;
     this.cucCloudMessage = CucCloudMessage;
     this.dataProcessingService = dataProcessingService;
     this.ovhManagerRegionService = ovhManagerRegionService;
