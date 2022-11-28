@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nasha-app",
-  "version": "2.7.2",
+  "version": "2.7.3",
   "private": true,
   "description": "NAS-HA standalone application.",
   "repository": {
@@ -23,7 +23,7 @@
     "@ovh-ux/manager-catalog-price": "^1.4.1",
     "@ovh-ux/manager-components": "^1.0.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/manager-core": "^12.12.4",
+    "@ovh-ux/manager-core": "^12.12.5",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-models": "^1.11.1",
     "@ovh-ux/manager-nasha": "^2.6.4",

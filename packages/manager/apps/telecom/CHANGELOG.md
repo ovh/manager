@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.49.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.49.0...@ovh-ux/manager-telecom@13.49.1) (2022-11-28)
+
+
+### Bug Fixes
+
+* **telecom:** display correct numbers for selection ([#8445](https://github.com/ovh/manager/issues/8445)) ([8dad81c](https://github.com/ovh/manager/commit/8dad81cb5e0db4b6f50f0eab78191d398f0683c9))
+
+
+
+
+
 # [13.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.48.2...@ovh-ux/manager-telecom@13.49.0) (2022-11-21)
 
 

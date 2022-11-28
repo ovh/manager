@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@6.6.3...@ovh-ux/manager-telecom-dashboard-app@6.6.4) (2022-11-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom-dashboard-app
+
+
+
+
+
 ## [6.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@6.6.2...@ovh-ux/manager-telecom-dashboard-app@6.6.3) (2022-11-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom-dashboard-app
