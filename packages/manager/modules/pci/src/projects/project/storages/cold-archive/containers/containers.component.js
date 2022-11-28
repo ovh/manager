@@ -14,6 +14,7 @@ export default {
     goToDeleteContainerObjects: '<',
     goToArchiveContainer: '<',
     goToRestoreContainer: '<',
+    goToContainerVirtualHost: '<',
     goToContainer: '<',
     scrollToTop: '<',
     guides: '<',

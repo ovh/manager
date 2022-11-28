@@ -83,6 +83,10 @@ export default /* @ngInject */ ($stateProvider) => {
           });
         },
 
+        goToContainerVirtualHost: /* @ngInject */ ($window) => (container) => {
+          return $window.open(container.virtualHost, '_blank');
+        },
+
         goBack: ($state, projectId, CucCloudMessage) => (
           message = false,
           type = 'success',
