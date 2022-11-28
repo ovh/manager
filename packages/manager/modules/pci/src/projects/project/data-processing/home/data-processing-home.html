@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <oui-tile
                     class="h-100"
-                    heading="{{ :: 'data_processing_home_jobs_tile_title' | translate }}"
+                    data-heading="{{ :: 'data_processing_home_jobs_tile_title' | translate }}"
                 >
                     <oui-tile-definition>
                         <oui-tile-actions
@@ -47,7 +47,7 @@
                         </oui-tile-actions>
                     </oui-tile-definition>
 
-                    <oui-message type="info">
+                    <oui-message data-type="info">
                         <span
                             data-translate="data_processing_home_info_jobs"
                         ></span>
@@ -102,7 +102,7 @@
                         </oui-tile-actions>
                     </oui-tile-definition>
 
-                    <oui-message type="info">
+                    <oui-message data-type="info">
                         <span
                             data-translate="data_processing_home_info_notebooks"
                         ></span>
@@ -114,6 +114,16 @@
             <div class="col-md-12">
                 <div class="oui-box oui-box_light">
                     <p class="mt-4">
+                        <a
+                            class="oui-link oui-link_icon"
+                            href="https://spark.apache.org/"
+                            target="_blank"
+                            rel="noopener"
+                            >Apache Spark<span
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></span
+                        ></a>
                         <span
                             data-translate="data_processing_home_spark_trademark"
                         ></span>
