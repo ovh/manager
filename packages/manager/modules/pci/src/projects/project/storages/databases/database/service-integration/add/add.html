@@ -65,6 +65,10 @@
             data-on-change="$ctrl.handleIntegrationChange(modelValue)"
             data-required
         >
+            <span data-ng-bind="$item.type"></span><br />
+            <small
+                data-translate="pci_databases_service_integration_{{$item.type.toLowerCase()}}"
+            ></small>
         </oui-select>
     </oui-field>
     <div class="row">
