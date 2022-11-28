@@ -119,7 +119,6 @@ export default class AdditionalIpController {
         },
       ],
     };
-
     this.$window.open(
       `${this.expressOrderUrl}?products=${JSURL.stringify([order])}`,
       '_blank',
@@ -246,7 +245,11 @@ export default class AdditionalIpController {
     } = this.publicCloudCatalog?.addons.find(
       (addon) => addon.product === FLOATING_IP_PLAN,
     );
-    const failoverIpPrice = `0${this.user.currency.symbol}`;
+
+    const failoverIpPrice = `${get(
+      this.ipFailoverFormattedCatalog,
+      'plans[0].details.pricings.default[0].price.text',
+    )}`;
     this.ipTypes = map(IP_TYPE_ENUM, (type) => {
       return {
         name: type,
@@ -266,6 +269,7 @@ export default class AdditionalIpController {
     this.loadProducts().then((products) => {
       const [product] = products;
       this.ip.product = product;
+
       const configurations = get(product, 'details.product.configurations');
       this.failOverIpCountries = get(
         find(configurations, { name: 'country' }),
