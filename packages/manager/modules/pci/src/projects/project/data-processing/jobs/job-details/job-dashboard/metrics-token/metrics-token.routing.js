@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
           dataProcessingService.getMetricsToken(projectId),
         goBack: /* @ngInject */ ($state, projectId, jobId) => () =>
           $state.go(
-            'pci.projects.project.data-processing.job-details.dashboard',
+            'pci.projects.project.data-processing.jobs.job-details.dashboard',
             {
               projectId,
               jobId,
