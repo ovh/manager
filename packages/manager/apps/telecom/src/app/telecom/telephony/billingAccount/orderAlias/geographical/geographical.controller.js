@@ -305,6 +305,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderGeographicalCt
     self.billingAccount = $stateParams.billingAccount;
     self.loading = {
       init: true,
+      numbers: false,
     };
 
     self.preAmount = TELEPHONY_NUMBER_OFFER.preAmount.map((elt) => ({
