@@ -1,5 +1,4 @@
 {
-  "pci_app_add_resources_replicas": "Número de instancias en las que se desplegará su app.",
   "pci_app_add_resources_usecase": "Tipo de réplicas",
   "pci_app_add_resources_usecase_item_cpu": "CPU",
   "pci_app_add_resources_usecase_item_gpu": "GPU",
@@ -17,11 +16,6 @@
   "pci_app_add_resources_number_of_resources_type_cpu": "Recursos CPU",
   "pci_app_add_resources_number_of_resources_type_gpu": "Recursos GPU",
   "pci_app_add_resources_number_of_resources_number_of_resource": "Número de CPU",
-  "pci_app_add_resources_replicas_help_text": "Despliegue en un mínimo de 2 instancias para disfrutar de alta disponibilidad",
-  "pci_app_add_resources_flavor_count": "Tamaño de réplica",
-  "pci_app_add_resources_total": "Precio total del despliegue",
-  "pci_app_add_resources_resource_price": "Precio del recurso",
-  "pci_app_add_resources_partner_price": "Precio de la licencia",
   "pci_app_add_resources_scaling": "Dimensionamiento",
   "pci_app_add_resources_scaling_description": "Seleccione la estrategia de despliegue más adecuada para su app: elija un dimensionamiento fijo del número de réplicas en las que se desplegará su app, o bien indique un mínimo y un máximo de réplicas en sus despliegues para optimizar dinámicamente su rendimiento y adaptarse al número de peticiones mediante la opción de «autoscaling».",
   "pci_app_add_resources_scaling_description_link": "Más información",
@@ -36,5 +30,9 @@
   "pci_app_add_resources_scaling_trigger_resource_help_text": "Métrica que activará el autoscaling",
   "pci_app_add_resources_scaling_trigger_threshold": "Umbral de activación (%)",
   "pci_app_add_resources_scaling_trigger_threshold_help_text": "Valor de la métrica, en porcentaje.",
-  "pci_app_add_resources_scaling_price_warning": "El precio total del despliegue se calcula en función del número mínimo de réplicas seleccionado. Tenga en cuenta que el coste total puede aumentar cuando el autoscaling está activado."
+  "pci_app_add_resources_scaling_price_warning": "El precio total del despliegue se calcula en función del número mínimo de réplicas seleccionado. Tenga en cuenta que el coste total puede aumentar cuando el autoscaling está activado.",
+  "pci_app_add_resources_flavor_count": "Tamaño de réplica",
+  "pci_app_add_resources_total": "Precio total del despliegue",
+  "pci_app_add_resources_resource_price": "Precio del recurso",
+  "pci_app_add_resources_partner_price": "Precio de la licencia"
 }
