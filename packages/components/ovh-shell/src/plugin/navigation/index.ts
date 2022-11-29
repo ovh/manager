@@ -1,7 +1,5 @@
-import { Environment } from '@ovh-ux/manager-config';
-import { buildURL } from '@ovh-ux/url-builder';
-import { ParamValueType } from '@ovh-ux/url-builder/dist/types/url-builder';
-import { ApplicationId } from '@ovh-ux/manager-config/types/application';
+import { Environment, ApplicationId } from '@ovh-ux/manager-config';
+import { buildURL, ParamValueType } from '@ovh-ux/url-builder';
 
 import ShellClient from '../../client/shell-client';
 
@@ -22,7 +20,12 @@ export interface ClientNavigationApi {
 export function navigation(environment: Environment) {
   const getPublicURL = (application: ApplicationId) => {
     if (window.location.hostname === 'localhost') {
-      return `${window.location.origin}/#/manager`;
+      const publicURL = new URL(window.location.href);
+      const configPublicURL = new URL(
+        environment.getApplications()[application]?.publicURL,
+      );
+      publicURL.hash = configPublicURL.hash;
+      return publicURL.href;
     }
     return environment.getApplications()[application]?.publicURL;
   };

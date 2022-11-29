@@ -5,6 +5,7 @@ import DirectClientMessageBus from '../message-bus/direct-client';
 import authenticationPlugin from '../plugin/auth';
 import environmentPlugin from '../plugin/environment';
 import navigationPlugin from '../plugin/navigation';
+import routingPlugin from '../plugin/routing';
 import { i18n as i18nPlugin } from '../plugin/i18n';
 import { UXPlugin, UXPluginType } from '../plugin/ux';
 import {
@@ -37,6 +38,9 @@ export function initShell(): Promise<Shell> {
 
     // register authentication plugin
     shell.getPluginManager().registerPlugin('auth', authenticationPlugin());
+
+    // register environment plugin
+    shell.getPluginManager().registerPlugin('routing', routingPlugin());
 
     // register environment plugin
     shell

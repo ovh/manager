@@ -132,7 +132,7 @@ export default {
     {
       id: 'bmc-databases',
       translation: 'sidebar_databases',
-      features: ['logs-data-platform', 'enterprise-cloud-database'],
+      features: ['logs-data-platform'],
       children: [
         {
           id: 'pci-logs-data-platform',
@@ -143,16 +143,6 @@ export default {
             hash: '#/dbaas/logs',
           },
           features: ['logs-data-platform'],
-        },
-        {
-          id: 'enterprise-cloud-db',
-          translation: 'sidebar_enterprise_cloud_db',
-          serviceType: 'CLOUDDB_ENTERPRISE_CLUSTER',
-          routing: {
-            application: 'dedicated',
-            hash: '#/enterprise-cloud-database',
-          },
-          features: ['enterprise-cloud-database'],
         },
       ],
     },

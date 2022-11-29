@@ -22,10 +22,6 @@ module.exports = {
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
     '\\.(png|jpg|svg|ttf|woff|woff2)$': 'identity-obj-proxy',
     '^lodash-es$': 'lodash',
-    '^@ovh-ux/shell$': '<rootDir>/packages/components/ovh-shell/src',
-    '^@ovh-ux/ovh-reket$': '<rootDir>/packages/components/ovh-reket/src',
-    '^@ovh-ux/url-builder$': '<rootDir>/packages/manager/core/url-builder/src',
-    '^@ovh-ux/manager-config$': '<rootDir>/packages/manager/modules/config/src',
   },
   watchPlugins: [
     'jest-watch-typeahead/filename',

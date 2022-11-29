@@ -2,8 +2,8 @@ import React from 'react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { act, waitFor } from '@testing-library/react';
-import { Environment, User } from '@ovh-ux/manager-config/types';
-import { renderWithNotifications } from '../__test-utils__/contextRenders';
+import { Environment, User } from '@ovh-ux/manager-config';
+import { renderWithShell } from '../__test-utils__/contextRenders';
 
 import Navbar from '../../container/legacy/navbar/Navbar';
 
@@ -58,7 +58,7 @@ describe('UI testing of the navbar', () => {
     let render = null;
 
     await act(async () => {
-      render = await renderWithNotifications(
+      render = await renderWithShell(
         <Navbar environment={environment as Environment}></Navbar>,
         { environment },
       );

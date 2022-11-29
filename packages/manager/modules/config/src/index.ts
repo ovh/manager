@@ -1,4 +1,5 @@
 import { useReket } from '@ovh-ux/ovh-reket';
+import { getHeaders } from '@ovh-ux/request-tagger';
 import Environment, { User } from './environment';
 import { Region } from './environment/region.enum';
 
@@ -9,14 +10,11 @@ export const HOSTNAME_REGIONS: Record<string, Region> = {
 };
 
 export { Environment, User };
-export {
-  convertLanguageFromOVHToBCP47,
-  detectUserLocale,
-  findLanguage,
-  findAvailableLocale,
-} from './locale';
+export * from './locale';
 
-export { LANGUAGES } from './locale/locale.constants';
+export * from './locale/locale.constants';
+export * from './application';
+export * from './environment';
 
 export const isTopLevelApplication = () => window.top === window.self;
 
@@ -29,6 +27,7 @@ export const fetchConfiguration = async (
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
       Accept: 'application/json',
+      ...getHeaders('/engine/2api/configuration'),
     },
     credentials: 'same-origin',
   };

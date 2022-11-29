@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Environment } from '@ovh-ux/manager-config/types';
+import { Environment } from '@ovh-ux/manager-config';
 import Details from './Details';
 import Icon from './Icon';
 import usePaymentMethod, { PaymentMethodType } from './usePaymentMethod';
