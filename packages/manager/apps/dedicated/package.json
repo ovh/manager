@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "17.37.2",
+  "version": "17.37.3",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -54,7 +54,7 @@
     "@ovh-ux/manager-vps": "^2.27.1",
     "@ovh-ux/manager-vrack": "^1.5.1",
     "@ovh-ux/mfa-enrollment": "^2.3.3",
-    "@ovh-ux/ng-at-internet": "^5.9.2",
+    "@ovh-ux/ng-at-internet": "^5.9.3",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.2",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.15",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
