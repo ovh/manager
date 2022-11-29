@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Suspense } from 'react';
 
+import { useLocation, Location } from 'react-router-dom';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
@@ -32,9 +33,17 @@ interface ServicesCount {
   errors?: Array<ServicesCountError>;
 }
 
+const parseContainerURL = (
+  location: Location,
+): { appId: string; appHash: string } => {
+  const [, appId, appHash] = /^\/([^/]*)(.*)/.exec(location.pathname);
+  return { appId, appHash: `${appHash}${location.search}` };
+};
+
 const Sidebar = (): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
+  const location = useLocation();
   const trackingPlugin = shell.getPlugin('tracking');
   const navigationPlugin = shell.getPlugin('navigation');
   const environmentPlugin = shell.getPlugin('environment');
@@ -42,9 +51,7 @@ const Sidebar = (): JSX.Element => {
   const reketInstance = useReket();
   const { betaVersion } = useContainer();
 
-  const [containerURL, setContainerURL] = useState(
-    routingPlugin.parseContainerURL(),
-  );
+  const [containerURL, setContainerURL] = useState(parseContainerURL(location));
   const {
     closeNavigationSidebar,
     currentNavigationNode,
@@ -210,12 +217,8 @@ const Sidebar = (): JSX.Element => {
 
   /** Watch URL changes to update selected menu dynamically */
   useEffect(() => {
-    const listener = () => {
-      setContainerURL(routingPlugin.parseContainerURL());
-    };
-    window.addEventListener('hashchange', listener);
-    return () => window.removeEventListener('hashchange', listener);
-  }, []);
+    setContainerURL(parseContainerURL(location));
+  }, [location]);
 
   /**
    * When routing changes, try to select the corresponding entry

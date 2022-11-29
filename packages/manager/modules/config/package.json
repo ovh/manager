@@ -16,10 +16,9 @@
   "sideEffects": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "types": "./types",
+  "types": "./dist/types",
   "files": [
-    "dist",
-    "types"
+    "dist"
   ],
   "scripts": {
     "build": "tsc",
@@ -32,9 +31,7 @@
   },
   "dependencies": {
     "@ovh-ux/ovh-reket": "^1.0.0",
+    "@ovh-ux/request-tagger": "^0.0.0 || ^1.0.0",
     "lodash-es": "^4.17.15"
-  },
-  "devDependencies": {
-    "typescript": "^4.3.2"
   }
 }

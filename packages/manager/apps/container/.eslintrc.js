@@ -8,6 +8,9 @@ module.exports = {
       version: 'detect',
     },
   },
+  globals: {
+    '__VERSION__': true,
+  },
   rules: {
     'import/extensions': 'off',
   },

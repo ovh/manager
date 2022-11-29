@@ -6,8 +6,8 @@ import React, {
   useState,
 } from 'react';
 
-import { plugin, IFrameMessageBus } from '@ovh-ux/shell';
-import { Redirect, Route } from 'react-router-dom';
+import { IFrameMessageBus } from '@ovh-ux/shell';
+import { IFrameAppRouter } from '@/core/routing';
 
 import NavReshuffleBetaAccessModal from '@/container/common/pnr-beta-modal';
 import ApplicationContext from '@/context';
@@ -22,12 +22,15 @@ import useContainer from '@/core/container';
 function LegacyContainer(): JSX.Element {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState<HTMLIFrameElement>(null);
-  const [router, setRouter] = useState(null);
   const { betaVersion } = useContainer();
 
   const { shell } = useContext(ApplicationContext);
   const { isStarted: isProgressAnimating } = useProgress();
-  const preloaderVisible = usePreloader(shell);
+  const preloaderVisible = usePreloader(shell, iframe);
+  const applications = shell
+    .getPlugin('environment')
+    .getEnvironment()
+    .getApplications();
 
   useEffect(() => {
     setIframe(iframeRef.current);
@@ -35,69 +38,7 @@ function LegacyContainer(): JSX.Element {
   }, [iframeRef]);
 
   useEffect(() => {
-    const routing = plugin.routing.initRouting(shell, iframeRef.current);
     const tracking = shell.getPlugin('tracking');
-
-    // Hub application redirections
-    routing.addRoute(
-      <Route exact path="/catalog">
-        <Redirect to="/hub/catalog" />
-      </Route>,
-    );
-
-    // useraccount redirection, preserving path and search params
-    routing.addRoute(
-      <Route
-        path="/useraccount"
-        component={({ location }: { location: Location }) => (
-          <Redirect
-            to={{
-              ...location,
-              pathname: location.pathname.replace(
-                /^\/useraccount/,
-                '/dedicated/useraccount',
-              ),
-            }}
-          />
-        )}
-      />,
-    );
-
-    // billing redirection, preserving path and search params
-    routing.addRoute(
-      <Route
-        path="/billing"
-        component={({ location }: { location: Location }) => (
-          <Redirect
-            to={{
-              ...location,
-              pathname: location.pathname.replace(
-                /^\/billing/,
-                '/dedicated/billing',
-              ),
-            }}
-          />
-        )}
-      />,
-    );
-
-    // Telecom application redirections
-    [
-      'freefax/:id?',
-      'pack/:id?',
-      'sms/:id?',
-      'task',
-      'telephony/:id?',
-      'orders',
-      'overTheBox/:id?',
-    ].forEach((telecomRoute) =>
-      routing.addRoute(
-        <Redirect from={`/${telecomRoute}`} to={`/telecom/${telecomRoute}`} />,
-      ),
-    );
-
-    shell.registerPlugin('routing', routing);
-    setRouter(routing.router);
     if (betaVersion) {
       tracking.waitForConfig().then(() => {
         tracking.trackMVTest({
@@ -107,14 +48,13 @@ function LegacyContainer(): JSX.Element {
         });
       });
     }
-  }, [iframeRef, shell]);
+  }, []);
 
   return (
     <>
       <Progress isAnimating={isProgressAnimating}></Progress>
 
       <div className={style.managerShell}>
-        {router}
         <Suspense fallback="">
           <NavReshuffleBetaAccessModal />
         </Suspense>
@@ -123,12 +63,18 @@ function LegacyContainer(): JSX.Element {
         </div>
         <div className={style.managerShell_content}>
           <Preloader visible={preloaderVisible}>
-            <iframe
-              title="app"
-              role="document"
-              src="about:blank"
-              ref={iframeRef}
-            ></iframe>
+            <>
+              <IFrameAppRouter
+                iframeRef={iframeRef}
+                configuration={applications}
+              />
+              <iframe
+                title="app"
+                role="document"
+                src="about:blank"
+                ref={iframeRef}
+              ></iframe>
+            </>
           </Preloader>
         </div>
       </div>

@@ -1,7 +1,11 @@
 import { existsSync, readdirSync, readFileSync } from 'fs';
+import { basename } from 'path';
 import concurrently from 'concurrently';
 import execa from 'execa';
 import inquirer from 'inquirer';
+import inquirerPrompt from 'inquirer-autocomplete-prompt';
+
+inquirer.registerPrompt('autocomplete', inquirerPrompt);
 
 /**
  * Workspace location for all applications.
@@ -43,36 +47,49 @@ const getApplications = () =>
       };
     });
 
+const applications = getApplications();
+
+const filterApplications = (search) =>
+  !search
+    ? applications
+    : applications.filter(({ name }) => name.indexOf(search) !== -1);
+
+const getApplicationRegions = (packageName) =>
+  applications.find(({ value }) => value === packageName).regions;
+
 /**
  * Ask for both packageName and region to start the corresponding application.
  */
 const questions = [
   {
-    type: 'list',
+    type: 'autocomplete',
     name: 'packageName',
     message: 'Which application do you want to start?',
-    choices: getApplications,
+    source: (answer, input) => filterApplications(input),
   },
   {
     type: 'list',
     name: 'region',
     message: 'Please specify the region:',
-    choices({ packageName }) {
-      const { regions } = getApplications().find(
-        ({ value }) => value === packageName,
-      );
-      return regions;
-    },
+    choices: ({ packageName }) => getApplicationRegions(packageName),
   },
   {
     type: 'confirm',
     name: 'container',
     message: 'Start the application inside the container?',
-    default: false,
+    default: true,
     // Skip for container
     when: ({ packageName }) => packageName !== containerPackageName,
   },
 ];
+
+async function getApplicationId(packageName) {
+  return basename(
+    JSON.parse((await execa('yarn', ['workspaces', 'info'])).stdout)[
+      packageName
+    ].location,
+  );
+}
 
 inquirer
   .prompt(questions)
@@ -86,9 +103,10 @@ inquirer
     process.env.REGION = region;
     try {
       if (container) {
+        const appId = await getApplicationId(packageName);
         await concurrently(
           [
-            `yarn workspace ${containerPackageName} run start:dev`,
+            `VITE_CONTAINER_APP=${appId} yarn workspace ${containerPackageName} run start:dev`,
             `CONTAINER=1 yarn workspace ${packageName} run start:dev`,
           ],
           {

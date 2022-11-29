@@ -1,5 +1,5 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
-import { Application } from '@ovh-ux/manager-config/types/application';
+import { Application } from '@ovh-ux/manager-config';
 import { buildURLIfStandalone } from '../../src/client';
 
 const feature = loadFeature('../../features/client/client-init.feature', {

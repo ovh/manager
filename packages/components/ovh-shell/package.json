@@ -13,7 +13,8 @@
   "sideEffects": "false",
   "type": "module",
   "main": "./dist/index.js",
-  "types": "./types/index.d.ts",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
@@ -23,21 +24,16 @@
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/ovh-at-internet": "^0.1.0 || ^0.2.0",
     "@ovh-ux/ovh-reket": "^1.0.0",
+    "@ovh-ux/request-tagger": "^0.0.0 || ^1.0.0",
     "@ovh-ux/url-builder": "^0.0.0 || ^1.0.0",
     "@types/react": "^17.0.24",
     "@types/react-router-dom": "^5.3.0",
     "dompurify": "^2.3.3",
     "jest-cucumber": "^3.0.1",
-    "nanoid": "^3.1.25",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-i18next": "^11.11.4",
-    "react-router-dom": "^5.3.0"
+    "nanoid": "^3.1.25"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.31.2",
-    "@typescript-eslint/parser": "^4.31.2",
-    "typescript": "^4.4.3"
+    "@typescript-eslint/parser": "^4.31.2"
   }
 }

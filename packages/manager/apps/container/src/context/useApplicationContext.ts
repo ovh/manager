@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { Shell } from '@ovh-ux/shell/types';
+import { Shell } from '@ovh-ux/shell';
 
 import ApplicationContext, {
   ApplicationContextType,

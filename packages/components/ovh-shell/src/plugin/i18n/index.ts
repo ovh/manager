@@ -1,5 +1,4 @@
-import { Environment, LANGUAGES } from '@ovh-ux/manager-config';
-import { KeyPairName } from '@ovh-ux/manager-config/types/locale';
+import { Environment, LANGUAGES, KeyPairName } from '@ovh-ux/manager-config';
 
 import Shell from '../../shell/shell';
 

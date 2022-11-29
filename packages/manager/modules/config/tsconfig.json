@@ -3,7 +3,7 @@
     "target": "es2015",
     "moduleResolution": "Node",
     "lib": ["dom"],
-    "module": "ES2015",
+    "module": "esnext",
     "removeComments": true,
     "outDir": "dist",
     "esModuleInterop": true,
@@ -12,8 +12,9 @@
     "sourceMap": true,
     "allowJs": true,
     "declaration": true,
-    "declarationDir": "types"
+    "skipLibCheck": true,
+    "declarationDir": "dist/types"
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "types"]
+  "exclude": ["node_modules", "dist"]
 }

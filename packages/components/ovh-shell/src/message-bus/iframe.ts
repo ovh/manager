@@ -8,10 +8,12 @@ export default class IFrameMessageBus implements IMessageBus {
 
   listeners: CallableFunction[];
 
+  onMessage: (event: MessageEvent) => void;
+
   constructor(iframe: HTMLIFrameElement = null) {
     this.iframe = iframe;
     this.listeners = [];
-    window.addEventListener('message', (event) => {
+    this.onMessage = (event) => {
       // check if origins are the same
       if (event.origin !== window.location.origin) {
         return;
@@ -22,7 +24,8 @@ export default class IFrameMessageBus implements IMessageBus {
           listener(data.message);
         });
       }
-    });
+    };
+    window.addEventListener('message', this.onMessage);
   }
 
   send<T>(message: IShellMessage<T>): void {
@@ -47,5 +50,10 @@ export default class IFrameMessageBus implements IMessageBus {
 
   onReceive<T>(callback: (message: T) => void): void {
     this.listeners.push(callback);
+  }
+
+  cleanup(): void {
+    window.removeEventListener('message', this.onMessage);
+    this.listeners = [];
   }
 }
