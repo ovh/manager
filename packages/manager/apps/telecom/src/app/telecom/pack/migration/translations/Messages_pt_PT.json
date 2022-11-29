@@ -105,7 +105,7 @@
   "telecom_pack_migration_confirm_no_commitment": "Ce changement d’offre n’est sujet à aucun réengagement.",
   "telecom_pack_migration_confirm_commitment": "Un réengagement de {{ month }} mois débutera à la date de facturation.",
   "telecom_pack_migration_confirm_new_offer_price": "Votre nouvel abonnement mensuel s'élève à : <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">HT/mois</span>, applicable dès livraison de votre nouvel accès. Vous en serez informé par e-mail.",
-  "telecom_pack_migration_confirm_shipping": "Vous avez sélectionné le mode de livraison de votre nouveau modem par transporteur (+ <span class=\"text-price\">{{ transportPrice }} €</span> <span class=\"text-infos\">HT</span>). Votre première mensualité sera donc de <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">HT</span>.",
+  "telecom_pack_migration_confirm_shipping": "Selecionou o modo de entrega do seu novo modem por transportador (+ {{ transportPrice }}€ + IVA).",
   "telecom_pack_migration_confirm_service_to_delete_title": "Services qui seront supprimés",
   "telecom_pack_migration_confirm_service_to_delete_total": "No total, {{count}} serviços serão eliminados durante a alteração da oferta.",
   "telecom_pack_migration_confirm_service_to_delete_table_service_type": "Tipo de serviço",
@@ -151,7 +151,7 @@
   "telecom_pack_migration_pto_yes_not_known": "J'ai un boîtier mais je ne connais pas son numéro",
   "telecom_pack_migration_promotion_installation_fees_offered": "Sem custos de instalação",
   "telecom_pack_migration_confirm_provider_infra": "Custos suplementares",
-  "telecom_pack_migration_confirm_comfort_activation": "Taxas de ativação da opção Confort",
+  "telecom_pack_migration_confirm_comfort_activation": "As taxas de ativação da opção Confort são de {{ price }} + IVA",
   "telecom_pack_migration_confirm_resume_contact_owner": "Informações de contacto",
   "telecom_pack_migration_confirm_resume_contact_phone": "Número de telefone através do qual poderá ser contactado, se necessário",
   "telecom_pack_migration_confirm_resume_phone_form_error": "O número introduzido deve ser válido.",
@@ -159,5 +159,7 @@
   "telecom_pack_migration_confirm_service_to_keep_total": "No total, {{count}} serviços serão conservados durante a alteração da oferta.",
   "telecom_pack_migration_confirm_service_to_keep_table_service_type": "Tipo de serviço",
   "telecom_pack_migration_confirm_service_to_keep_table_service_count": "Número de serviços a conservar",
-  "telecom_pack_migration_confirm_service_to_keep_table_service_names": "Nomes dos serviços a conservar"
+  "telecom_pack_migration_confirm_service_to_keep_table_service_names": "Nomes dos serviços a conservar",
+  "telecom_pack_migration_confirm_first_mensuality": "A sua primeira mensalidade será de {{ price }} + IVA.",
+  "telecom_pack_migration_confirm_install_fees": "As taxas de instalação são de {{ price }} + IVA"
 }

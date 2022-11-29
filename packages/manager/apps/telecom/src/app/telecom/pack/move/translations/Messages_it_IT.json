@@ -112,5 +112,8 @@
   "pack_move_service_delete_explain": "Seleziona i servizi che devono essere mantenuti al momento della modifica dell'offerta, gli altri saranno eliminati.</br>Alcuni servizi potrebbero non essere selezionabili. Questi servizi saranno obbligatoriamente eliminati al momento della modifica dell'offerta.",
   "pack_move_service_delete_count_multiple": "Seleziona i {{count}} servizi",
   "pack_move_service_delete_count_single": "Seleziona il servizio",
-  "pack_move_service_delete_confirm": "Conferma la selezione dei servizi"
+  "pack_move_service_delete_confirm": "Conferma la selezione dei servizi",
+  "pack_move_creation_line_fees": "Spese di creazione di linee",
+  "pack_move_confirm_shipping": "Hai selezionato la modalità di consegna del tuo nuovo modem tramite corriere (+ {{ price }} € +IVA).",
+  "pack_move_confirm_first_mensuality": "La tua prima mensilità sarà quindi di {{ price }} +IVA."
 }

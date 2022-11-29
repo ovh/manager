@@ -105,7 +105,7 @@
   "telecom_pack_migration_confirm_no_commitment": "This change of plan is not subject to any new commitment periods.",
   "telecom_pack_migration_confirm_commitment": "A new commitment period of {{ month }} months will begin on the billing date.",
   "telecom_pack_migration_confirm_new_offer_price": "Your new monthly subscription is: <span class=\"text-price\">{{ price }}</span><span class=\"text-infos\">/month ex. VAT</span> and will be applicable as soon as your new access is delivered. You will receive confirmation via email.",
-  "telecom_pack_migration_confirm_shipping": "You have selected courier as the delivery mode for your new modem (+ €<span class=\"text-price\">{{ transportPrice }}</span> <span class=\"text-infos\">ex. VAT</span>). Your first monthly payment will be <span class=\"text-price\">{{ price }} </span>ex. <span class=\"text-infos\">VAT</span>.",
+  "telecom_pack_migration_confirm_shipping": "You have selected the delivery method for your new modem by transporter (+ €{{ transportPrice }} ex. VAT).",
   "telecom_pack_migration_confirm_service_to_delete_title": "Services to be deleted",
   "telecom_pack_migration_confirm_service_to_delete_total": "A total of {{count}} services will be deleted during the solution change.",
   "telecom_pack_migration_confirm_service_to_delete_table_service_type": "Type of service",
@@ -161,7 +161,7 @@
   "telecom_pack_migration_confirm_first_year_promo": "Reduced price for the first year",
   "telecom_pack_migration_confirm_modem_rental": "Modem location",
   "telecom_pack_migration_confirm_provider_infra": "Additional fees",
-  "telecom_pack_migration_confirm_comfort_activation": "Comfort activation fee",
+  "telecom_pack_migration_confirm_comfort_activation": "The Comfort option activation fee is {{ price }} ex. VAT",
   "telecom_pack_migration_pack_access_error": "We are unable to load information for your pack.",
   "telecom_pack_migration_buildings_title": "Buildings attached to the line",
   "telecom_pack_migration_buildings_available": "We have found the following buildings attached to your line. Please select a building.",
@@ -179,5 +179,7 @@
   "telecom_pack_migration_confirm_service_to_keep_total": "A total of {{count}} services will be retained during the solution change.",
   "telecom_pack_migration_confirm_service_to_keep_table_service_type": "Type of service",
   "telecom_pack_migration_confirm_service_to_keep_table_service_count": "Number of services to retain",
-  "telecom_pack_migration_confirm_service_to_keep_table_service_names": "Names of services to keep"
+  "telecom_pack_migration_confirm_service_to_keep_table_service_names": "Names of services to keep",
+  "telecom_pack_migration_confirm_first_mensuality": "Your first monthly payment will be {{ price }} ex. VAT.",
+  "telecom_pack_migration_confirm_install_fees": "Setup fees are {{ price }} ex. VAT"
 }

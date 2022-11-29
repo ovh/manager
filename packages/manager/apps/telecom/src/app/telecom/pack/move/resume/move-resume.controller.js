@@ -52,29 +52,34 @@ export default class MoveResumeCtrl {
       ? gtrComfortSelected *
         this.offer.selected.offer.prices.gtrComfortFees.price.value
       : 0;
+    const installFees = this.offer.selected.offer.prices.promotion
+      ? 0
+      : this.offer.selected.offer.prices.installFees.price?.value || 0;
+    const creationLineFees =
+      this.offer.selected.offer.prices.creationLineFees.price?.value || 0;
 
     this.firstYearPromo = firstYearPromo;
 
-    let displayedPrice;
+    let totalOfferPrice;
     if (this.choosedAdditionalOptions.length === 0) {
-      let totalOfferPrice = 0;
       totalOfferPrice =
         this.offer.selected.offer.prices.price.price.value -
         firstYearPromo +
         modemRental +
         providerOrange +
         providerAI;
-      displayedPrice = this.getDisplayedPrice(totalOfferPrice);
-      set(this.offer.selected.offer, 'displayedPrice', displayedPrice);
+      set(
+        this.offer.selected.offer,
+        'displayedPrice',
+        this.getDisplayedPrice(totalOfferPrice),
+      );
     } else {
-      let totalOfferPrice = this.offer.selected.offer.displayedPrice.value;
       totalOfferPrice =
-        totalOfferPrice -
+        this.offer.selected.offer.displayedPrice.value -
         firstYearPromo +
         modemRental +
         providerOrange +
-        providerAI +
-        gtrComfortFees;
+        providerAI;
       this.offer.selected.offer.displayedPrice = this.getDisplayedPrice(
         totalOfferPrice,
       );
@@ -96,6 +101,20 @@ export default class MoveResumeCtrl {
     this.offer.selected.offer.totalSubServiceToKeep = this.constructor.getTotalService(
       this.offer.selected.offer.subServicesToDelete,
       true,
+    );
+    let firstMensuality =
+      totalOfferPrice + gtrComfortFees + installFees + creationLineFees;
+
+    if (
+      this.offer.selected.offer.needNewModem &&
+      this.offer.selected.shipping.mode === 'transporter'
+    ) {
+      firstMensuality += this.modemTransportPrice;
+    }
+    set(
+      this.offer.selected.offer,
+      'firstMensuality',
+      this.getPriceStruct(firstMensuality),
     );
   }
 
@@ -139,12 +158,6 @@ export default class MoveResumeCtrl {
     return selectedOffer.options.some((option) => {
       return option.name.startsWith('gtr_') && option.selected === true;
     });
-  }
-
-  getFirstMensuality() {
-    return this.getPriceStruct(
-      this.offer.selected.offer.displayedPrice.value + 9.99,
-    );
   }
 
   getMeeting() {
@@ -492,5 +505,11 @@ export default class MoveResumeCtrl {
       }),
       'name',
     ).join(', ');
+  }
+
+  displayPrice(key, value) {
+    return this.$translate.instant(key, {
+      price: `<span class="text-price">${value}</span>`,
+    });
   }
 }

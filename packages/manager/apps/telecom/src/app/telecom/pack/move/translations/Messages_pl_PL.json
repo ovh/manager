@@ -122,5 +122,8 @@
   "pack_move_service_delete_explain": "Wybierz usługi, które należy zachować podczas zmiany oferty. Pozostałe zostaną usunięte.</br>Niektóre usługi mogą nie być wybierane. Usługi te zostaną obowiązkowo usunięte podczas zmiany oferty.",
   "pack_move_service_delete_count_multiple": "Wybierz {{count}} usługi",
   "pack_move_service_delete_count_single": "Wybierz usługę",
-  "pack_move_service_delete_confirm": "Potwierdź wybór usług"
+  "pack_move_service_delete_confirm": "Potwierdź wybór usług",
+  "pack_move_creation_line_fees": "Opłata za utworzenie linii",
+  "pack_move_confirm_shipping": "Wybrałeś sposób dostawy nowego modemu dla każdego przewoźnika (+ € netto).",
+  "pack_move_confirm_first_mensuality": "Twoim pierwszym miesięcznym terminem rozliczenia jest {{ price }} netto."
 }

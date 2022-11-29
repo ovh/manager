@@ -203,7 +203,7 @@
   "pack_move_confirm_no_commitment": "Este cambio de solución no está sujeto a ninguna ampliación de compromiso.",
   "pack_move_confirm_commitment": "Un nuevo compromiso de {{ month }} meses comenzará a aplicarse en la fecha de facturación.",
   "pack_move_confirm_new_offer_price": "Su nueva suscripción mensual es de: <span class=\"text-price\">{{ price }}</span><span class=\"text-infos\">/mes + IVA</span>, aplicable a partir de la entrega del nuevo acceso. Le informaremos por correo electrónico.",
-  "pack_move_confirm_shipping": "Ha seleccionado el modo de entrega del nuevo módem por transportista (+<span class=\"text-price\">{{ transportPrice }} €</span><span class=\"text-infos\"> + IVA</span>). Su primera cuota mensual será de <span class=\"text-price\">{{ price }}</span><span class=\"text-infos\"> + IVA</span>.",
+  "pack_move_confirm_shipping": "Ha seleccionado el modo de entrega del nuevo módem por transportista (+ {{ price }} € + IVA).",
   "pack_move_confirm_service_to_delete_title": "Servicios que se eliminarán",
   "pack_move_confirm_service_to_delete_total": "Al cambiar de producto, se eliminarán un total de {{count}} servicios.",
   "pack_move_confirm_service_to_delete_table_service_type": "Tipo de servicio",
@@ -270,5 +270,7 @@
   "pack_move_confirm_service_to_keep_total": "Al cambiar de producto, se conservarán un total de {{count}} servicios.",
   "pack_move_confirm_service_to_keep_table_service_type": "Tipo de servicio",
   "pack_move_confirm_service_to_keep_table_service_count": "Número de servicios a conservar",
-  "pack_move_confirm_service_to_keep_table_service_names": "Nombres de los servicios a conservar"
+  "pack_move_confirm_service_to_keep_table_service_names": "Nombres de los servicios a conservar",
+  "pack_move_creation_line_fees": "Gastos de creación de líneas",
+  "pack_move_confirm_first_mensuality": "Su primera cuota mensual será de {{ price }} + IVA."
 }

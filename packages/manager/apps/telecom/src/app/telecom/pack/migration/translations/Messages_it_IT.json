@@ -105,7 +105,7 @@
   "telecom_pack_migration_confirm_no_commitment": "La modifica di questa offerta non comporta la sottoscrizione di nessun nuovo impegno contrattuale.",
   "telecom_pack_migration_confirm_commitment": "Alla data di fatturazione inizierà un nuovo impegno contrattuale di {{ month }} mesi.",
   "telecom_pack_migration_confirm_new_offer_price": "Il tuo nuovo abbonamento mensile è di <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">+IVA/mese</span>, applicabile a partire dalla consegna del tuo nuovo accesso. Verrai informato via email.",
-  "telecom_pack_migration_confirm_shipping": "Per la consegna del tuo nuovo modem hai scelto la modalità tramite corriere (+ <span class=\"text-price\">{{ transportPrice }} €</span> <span class=\"text-infos\">+IVA</span>). La tua prima mensilità corrisponderà quindi a <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">+IVA</span>.",
+  "telecom_pack_migration_confirm_shipping": "Hai selezionato la modalità di consegna del tuo nuovo modem tramite corriere (+ {{ transportPrice }} € +IVA).",
   "telecom_pack_migration_confirm_service_to_delete_title": "Servizi che verranno eliminati",
   "telecom_pack_migration_confirm_service_to_delete_total": "Durante la modifica dell'offerta verranno eliminati {{count}} servizi.",
   "telecom_pack_migration_confirm_service_to_delete_table_service_type": "Tipo di servizio",
@@ -151,7 +151,7 @@
   "telecom_pack_migration_pto_yes_not_known": "Hai un box ottico ma non sai dove si trova il suo codice",
   "telecom_pack_migration_promotion_installation_fees_offered": "Spese di attivazione incluse",
   "telecom_pack_migration_confirm_provider_infra": "Costi aggiuntivi",
-  "telecom_pack_migration_confirm_comfort_activation": "Spese di attivazione dell'opzione Confort",
+  "telecom_pack_migration_confirm_comfort_activation": "Le spese di attivazione dell'opzione Confort sono di {{ price }} +IVA",
   "telecom_pack_migration_confirm_resume_contact_owner": "Informazioni di contatto",
   "telecom_pack_migration_confirm_resume_contact_phone": "Numero di telefono sul quale potrai essere contattato se necessario",
   "telecom_pack_migration_confirm_resume_phone_form_error": "Il numero inserito deve essere valido.",
@@ -160,5 +160,7 @@
   "telecom_pack_migration_confirm_service_to_keep_total": "Durante la modifica dell'offerta, verranno conservati complessivamente {{count}} servizi.",
   "telecom_pack_migration_confirm_service_to_keep_table_service_type": "Tipo di servizio",
   "telecom_pack_migration_confirm_service_to_keep_table_service_count": "Numero di servizi da conservare",
-  "telecom_pack_migration_confirm_service_to_keep_table_service_names": "Nomi dei servizi da conservare"
+  "telecom_pack_migration_confirm_service_to_keep_table_service_names": "Nomi dei servizi da conservare",
+  "telecom_pack_migration_confirm_first_mensuality": "La tua prima mensilità sarà quindi di {{ price }} +IVA.",
+  "telecom_pack_migration_confirm_install_fees": "Le spese di installazione sono di {{ price }} +IVA"
 }

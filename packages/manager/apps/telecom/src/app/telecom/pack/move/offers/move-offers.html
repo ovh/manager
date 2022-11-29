@@ -77,7 +77,7 @@
 
                                 <!-- Other promotion -->
                                 <div
-                                    data-ng-if="offer.prices.promotion && offer.prices.promotion.id === $ctrl.PROMO_DISPLAY.PROMO_FTTH_2020"
+                                    data-ng-if="offer.prices.promotion && offer.prices.promotion.id === $ctrl.PROMO_DISPLAY.PROMO_FTTH_2020 && offer.prices.promotion.subscription"
                                     class="oui-message oui-message_info mt-2"
                                 >
                                     <span
@@ -144,11 +144,11 @@
                                 data-ng-repeat="offer in $ctrl.offers track by $index"
                             >
                                 <span
-                                    ng-if="offer.prices.installFees.price"
-                                    data-ng-bind-html="offer.prices.installFees.price.text | tucFormatPrice { withoutTax: false }"
+                                    ng-if="offer.prices.installFees.price && offer.prices.promotion.id!='FTTH_MIGRATION_AND_ADRESSMOVE_2020' && offer.prices.promotion.installFees"
+                                    data-ng-bind-html="offer.prices.installFees.price.text | tucFormatPrice: { withoutTax: false }"
                                 ></span>
                                 <span
-                                    ng-if="offer.prices.installFees.price"
+                                    ng-if="offer.prices.installFees.price && offer.prices.promotion.id!='FTTH_MIGRATION_AND_ADRESSMOVE_2020'"
                                     data-translate="common_without_tax"
                                 ></span>
 
@@ -173,7 +173,7 @@
                                     <del>
                                         <span
                                             class="text-small"
-                                            data-ng-bind-html="offer.prices.promotion.installFee.discount.text | tucFormatPrice: { withoutTax: false }"
+                                            data-ng-bind-html="offer.prices.installFees.price.text | tucFormatPrice: { withoutTax: false }"
                                         >
                                         </span>
                                         <span
@@ -181,6 +181,31 @@
                                         ></span>
                                     </del>
                                 </div>
+                            </td>
+                        </tr>
+                        <!-- Creation Line fees -->
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                scope="row"
+                                data-translate="pack_move_creation_line_fees"
+                            ></th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                /
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <span
+                                    data-ng-if="offer.prices.creationLineFees.price"
+                                    data-ng-bind-html="offer.prices.creationLineFees.price.text | tucFormatPrice: {withoutTax: false }"
+                                ></span>
                             </td>
                         </tr>
                         <!-- PROVIDER INFRA -->
@@ -233,7 +258,7 @@
                             >
                                 <span
                                     data-ng-if="offer.gtrComfortActivated"
-                                    data-ng-bind-html="offer.prices.gtrComfortFees.price.text | tucFormatPrice"
+                                    data-ng-bind-html="offer.prices.gtrComfortFees.price.text | tucFormatPrice: {withoutTax: false }"
                                 ></span>
                             </td>
                         </tr>

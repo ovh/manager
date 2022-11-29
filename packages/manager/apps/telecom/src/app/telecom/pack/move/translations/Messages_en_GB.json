@@ -203,7 +203,7 @@
   "pack_move_confirm_no_commitment": "This change of plan is not subject to any new commitment periods.",
   "pack_move_confirm_commitment": "A new commitment period of {{ month }} months will begin on the billing date.",
   "pack_move_confirm_new_offer_price": "Your new monthly subscription is: <span class=\"text-price\">{{ price }}</span><span class=\"text-infos\">/month ex. VAT</span> and will be applicable as soon as your new access is delivered. You will receive confirmation via email.",
-  "pack_move_confirm_shipping": "You have selected courier as the delivery mode for your new modem (+ €<span class=\"text-price\">{{ transportPrice }}</span> <span class=\"text-infos\">ex. VAT</span>). Your first monthly payment will be <span class=\"text-price\">{{ price }} </span>ex. <span class=\"text-infos\">VAT</span>.",
+  "pack_move_confirm_shipping": "You have selected the delivery method for your new modem by transporter (+ €{{ price }} ex. VAT).",
   "pack_move_confirm_service_to_delete_title": "Services to be deleted",
   "pack_move_confirm_service_to_delete_total": "A total of {{count}} services will be deleted during the solution change.",
   "pack_move_confirm_service_to_delete_table_service_type": "Type of service",
@@ -273,5 +273,7 @@
   "pack_move_confirm_service_to_keep_total": "A total of {{count}} services will be retained during the solution change.",
   "pack_move_confirm_service_to_keep_table_service_type": "Type of service",
   "pack_move_confirm_service_to_keep_table_service_count": "Number of services to retain",
-  "pack_move_confirm_service_to_keep_table_service_names": "Names of services to keep"
+  "pack_move_confirm_service_to_keep_table_service_names": "Names of services to keep",
+  "pack_move_creation_line_fees": "Line creation fee",
+  "pack_move_confirm_first_mensuality": "Your first monthly payment will be {{ price }} ex. VAT."
 }
