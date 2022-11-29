@@ -6,7 +6,7 @@ export default {
   template,
   bindings: {
     projectId: '<',
-    containerName: '<',
+    container: '<',
     trackClick: '<',
     trackPage: '<',
     goBack: '<',

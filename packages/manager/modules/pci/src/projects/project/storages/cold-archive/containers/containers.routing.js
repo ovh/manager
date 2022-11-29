@@ -66,10 +66,9 @@ export default /* @ngInject */ ($stateProvider) => {
         goToArchiveContainer: /* @ngInject */ ($state, projectId) => (
           container,
         ) => {
-          const { name } = container;
           return $state.go(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_ARCHIVE, {
             projectId,
-            containerName: name,
+            container,
           });
         },
 

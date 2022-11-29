@@ -1,12 +1,15 @@
 <oui-modal
-    data-heading="{{ 'pci_projects_project_storages_containers_container_cold_archive_archive_title' | translate }}"
+    data-heading="{{ 'pci_projects_project_storages_cold_archive_containers_container_archive_title' | translate }}"
     data-primary-action="$ctrl.archiveContainer()"
-    data-primary-label="{{:: 'pci_projects_project_storages_containers_container_cold_archive_archive_submit_label' | translate }}"
+    data-primary-label="{{:: 'pci_projects_project_storages_cold_archive_containers_container_archive_submit_label' | translate }}"
     data-primary-disabled="$ctrl.isLoading"
     data-secondary-action="$ctrl.cancel()"
     data-on-dismiss="$ctrl.cancel()"
-    data-secondary-label="{{:: 'pci_projects_project_storages_containers_container_cold_archive_archive_cancel_label' | translate }}"
+    data-secondary-label="{{:: 'pci_projects_project_storages_cold_archive_containers_container_archive_cancel_label' | translate }}"
     data-loading="$ctrl.isLoading"
 >
-    <div></div>
+    <p
+        data-translate="pci_projects_project_storages_cold_archive_containers_container_archive_description"
+        data-translate-values="{ 'containerName': '<strong>' + $ctrl.container.name + '</strong>'}"
+    ></p>
 </oui-modal>
