@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.2.1...@ovh-ux/ng-at-internet-ui-router-plugin@3.2.2) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet-ui-router-plugin
+
+
+
+
+
 ## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.2.0...@ovh-ux/ng-at-internet-ui-router-plugin@3.2.1) (2022-03-04)
 
 
@@ -114,6 +127,3 @@
 ### BREAKING CHANGES
 
 * module is now named `ngAtInternetUiRouterPlugin`
-
-
-

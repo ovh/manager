@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [12.0.1](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@12.0.0...@ovh-ux/component-rollup-config@12.0.1) (2022-11-29)
+
+
+### Bug Fixes
+
+* **config:** remove unnecessary module resolutions ([e60d83c](https://github.com/ovh/manager/commit/e60d83c343cc15c2f306c1a748c3c06dfa573608))
+
+
+
+
+
 # [12.0.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@11.0.1...@ovh-ux/component-rollup-config@12.0.0) (2022-03-04)
 
 
@@ -602,6 +618,3 @@
 
 <a name="1.0.0"></a>
 # 1.0.0 (2018-10-19)
-
-
-

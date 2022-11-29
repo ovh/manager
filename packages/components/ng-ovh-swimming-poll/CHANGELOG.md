@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [5.0.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-swimming-poll@5.0.5...@ovh-ux/ng-ovh-swimming-poll@5.0.6) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-swimming-poll
+
+
+
+
+
 ## [5.0.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-swimming-poll@5.0.4...@ovh-ux/ng-ovh-swimming-poll@5.0.5) (2022-03-04)
 
 
@@ -87,6 +100,3 @@
 ### BREAKING CHANGES
 
 * module is now named as `ngOvhSwimmingPoll`
-
-
-

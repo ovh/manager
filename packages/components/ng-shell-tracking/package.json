@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-shell-tracking",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "description": "ATInternet tracking library wrapper for AngularJS",
   "keywords": [
@@ -36,7 +36,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-shell-tracking' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/ovh-at-internet": "^0.1.0 || ^0.2.0",
+    "@ovh-ux/ovh-at-internet": "^0.3.0",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {

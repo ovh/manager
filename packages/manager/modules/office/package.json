@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-office",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "private": true,
   "description": "Office product.",
   "repository": {
@@ -17,7 +17,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^11.0.0 || ^12.0.0"
+    "@ovh-ux/component-rollup-config": "^12.0.1"
   },
   "peerDependencies": {
     "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",

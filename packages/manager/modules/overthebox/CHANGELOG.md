@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [6.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.9.0...@ovh-ux/manager-overthebox@6.9.1) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-overthebox
+
+
+
+
+
 # [6.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.8.2...@ovh-ux/manager-overthebox@6.9.0) (2022-09-29)
 
 
@@ -846,6 +859,3 @@ yarn add @ovh-ux/manager-core
 
 
 # [1.0.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@0.0.0...@ovh-ux/manager-overthebox@1.0.0-alpha.0) (2018-11-26)
-
-
-

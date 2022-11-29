@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-at-internet",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "description": "ATInternet tracking library for OVHcloud.",
   "keywords": [
@@ -35,9 +35,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-config": "^6.5.0",
     "@types/lodash-es": "^4.17.5",
     "lodash-es": "^4.17.15"
-  },
-  "devDependencies": {}
+  }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-export-csv",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Export data as CSV file.",
   "keywords": [
     "angularjs",
@@ -36,7 +36,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-export-csv' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^11.0.0 || ^12.0.0"
+    "@ovh-ux/component-rollup-config": "^12.0.1"
   },
   "peerDependencies": {
     "angular": "^1.7.8",

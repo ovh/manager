@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.13...@ovh-ux/manager-banner@1.2.14) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-banner
+
+
+
+
+
 ## [1.2.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.12...@ovh-ux/manager-banner@1.2.13) (2022-06-07)
 
 
@@ -166,6 +179,3 @@
 ### Features
 
 * add banner module ([700ace4](https://github.com/ovh-ux/manager/commit/700ace4))
-
-
-

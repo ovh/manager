@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.4.0...@ovh-ux/manager-nutanix@1.4.1) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.3.1...@ovh-ux/manager-nutanix@1.4.0) (2022-09-29)
 
 
@@ -133,6 +146,3 @@
 ### BREAKING CHANGES
 
 * init `@ovh-ux/manager-nutanix` module
-
-
-

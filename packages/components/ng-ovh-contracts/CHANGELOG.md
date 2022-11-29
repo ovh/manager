@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [4.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.2.1...@ovh-ux/ng-ovh-contracts@4.2.2) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-contracts
+
+
+
+
+
 ## [4.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.2.0...@ovh-ux/ng-ovh-contracts@4.2.1) (2022-10-19)
 
 
@@ -220,6 +233,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 * remove jshint ([1d0287d](https://github.com/ovh-ux/ovh-angular-contracts/commit/1d0287d))
 * **controller:** avoid empty contracts array ([e4fb619](https://github.com/ovh-ux/ovh-angular-contracts/commit/e4fb619))
 * **deps:** add missing query.scrollto dependency ([63cf1b5](https://github.com/ovh-ux/ovh-angular-contracts/commit/63cf1b5))
-
-
-

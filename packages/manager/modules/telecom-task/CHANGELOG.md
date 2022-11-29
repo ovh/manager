@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [6.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-task@6.3.1...@ovh-ux/manager-telecom-task@6.3.2) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom-task
+
+
+
+
+
 ## [6.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-task@6.3.0...@ovh-ux/manager-telecom-task@6.3.1) (2022-07-27)
 
 
@@ -387,6 +400,3 @@ yarn add @ovh-ux/manager-core
 ### Features
 
 * add telecom task ([8695a33](https://github.com/ovh-ux/manager/commit/8695a33))
-
-
-

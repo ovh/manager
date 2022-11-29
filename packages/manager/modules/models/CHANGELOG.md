@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.14.0...@ovh-ux/manager-models@1.14.1) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-models
+
+
+
+
+
 # [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.13.1...@ovh-ux/manager-models@1.14.0) (2022-08-08)
 
 

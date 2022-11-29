@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-carrier-sip-app",
-  "version": "2.5.4",
+  "version": "2.5.5",
   "private": true,
   "description": "Carrier SIP Trunk standalone application.",
   "repository": {
@@ -21,18 +21,18 @@
   },
   "dependencies": {
     "@ovh-ux/manager-carrier-sip": "^1.0.0 || ^2.0.0",
-    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/manager-core": "^12.12.5",
-    "@ovh-ux/manager-telecom-styles": "^4.0.0",
+    "@ovh-ux/manager-config": "^6.5.0",
+    "@ovh-ux/manager-core": "^12.12.6",
+    "@ovh-ux/manager-telecom-styles": "^4.4.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
-    "@ovh-ux/ng-ovh-checkbox-table": "^2.0.4",
-    "@ovh-ux/ng-ovh-http": "^5.0.4",
-    "@ovh-ux/ng-ovh-mondial-relay": "^8.3.0",
-    "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.6.1",
-    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",
+    "@ovh-ux/ng-ovh-checkbox-table": "^2.0.5",
+    "@ovh-ux/ng-ovh-http": "^5.0.5",
+    "@ovh-ux/ng-ovh-mondial-relay": "^8.3.1",
+    "@ovh-ux/ng-ovh-request-tagger": "^1.1.6",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.6.3",
+    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.6",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^7.14.1",
-    "@ovh-ux/ng-translate-async-loader": "^2.1.4",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.5",
     "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.22",
     "CSV-JS": "^1.2.0",
@@ -72,7 +72,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-webpack-config": "^6.0.1",
     "glob": "^7.1.6",
     "webpack-merge": "^4.2.2"
   },

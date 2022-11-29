@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [12.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@12.0.2...@ovh-ux/manager-cloud@12.0.3) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-cloud
+
+
+
+
+
 ## [12.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@12.0.1...@ovh-ux/manager-cloud@12.0.2) (2021-02-02)
 
 
@@ -2724,6 +2737,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 * **gra5:** add GRA5 ([cf8bd39](https://github.com/ovh-ux/ovh-manager-cloud/commit/cf8bd39))
 * **iplb:** add ui-kit form component ([87ed997](https://github.com/ovh-ux/ovh-manager-cloud/commit/87ed997))
 * **pci:** categories ([839173f](https://github.com/ovh-ux/ovh-manager-cloud/commit/839173f))
-
-
-

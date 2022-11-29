@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [4.6.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.6.2...@ovh-ux/ng-ovh-sso-auth@4.6.3) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-sso-auth
+
+
+
+
+
 ## [4.6.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.6.1...@ovh-ux/ng-ovh-sso-auth@4.6.2) (2022-08-22)
 
 

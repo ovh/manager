@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-actions-menu",
-  "version": "5.0.14",
+  "version": "5.0.15",
   "description": "An actions menu gives the opportunity to group a set of actions available for a specific context under a single menu",
   "keywords": [
     "actions-menu",
@@ -35,7 +35,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-actions-menu' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^11.0.0 || ^12.0.0"
+    "@ovh-ux/component-rollup-config": "^12.0.1"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-responsive-popover": "^6.0.0",

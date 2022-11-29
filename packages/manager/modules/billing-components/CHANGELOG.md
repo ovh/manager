@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [3.10.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.10.8...@ovh-ux/manager-billing-components@3.10.9) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
 ## [3.10.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.10.7...@ovh-ux/manager-billing-components@3.10.8) (2022-09-29)
 
 
@@ -787,6 +800,3 @@ Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
 * init billing module
 
 Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
-
-
-

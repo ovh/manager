@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-task-app",
-  "version": "6.6.4",
+  "version": "6.6.5",
   "private": true,
   "description": "Telecom task standalone application.",
   "repository": {
@@ -19,18 +19,18 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-telecom-task-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/manager-core": "^12.12.5",
-    "@ovh-ux/manager-telecom-styles": "^4.0.0",
-    "@ovh-ux/manager-telecom-task": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/ng-ovh-checkbox-table": "^2.0.4",
-    "@ovh-ux/ng-ovh-http": "^5.0.4",
-    "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.6.1",
-    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",
+    "@ovh-ux/manager-config": "^6.5.0",
+    "@ovh-ux/manager-core": "^12.12.6",
+    "@ovh-ux/manager-telecom-styles": "^4.4.1",
+    "@ovh-ux/manager-telecom-task": "^6.3.2",
+    "@ovh-ux/ng-ovh-checkbox-table": "^2.0.5",
+    "@ovh-ux/ng-ovh-http": "^5.0.5",
+    "@ovh-ux/ng-ovh-request-tagger": "^1.1.6",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.6.3",
+    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.6",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^7.14.1",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
-    "@ovh-ux/ng-ui-router-title": "^3.0.4",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.7",
+    "@ovh-ux/ng-ui-router-title": "^3.0.5",
     "@ovh-ux/ui-kit": "^6.1.0",
     "@uirouter/angularjs": "^1.0.23",
     "CSV-JS": "^1.2.0",
@@ -60,7 +60,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-webpack-config": "^6.0.1",
     "glob": "^7.1.6",
     "webpack-merge": "^4.2.2"
   },

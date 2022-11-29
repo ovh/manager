@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-container-app",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "private": true,
   "description": "OVHcloud Manager Container.",
   "repository": {
@@ -25,12 +25,12 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-dedicated' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/manager-vite-config": "^0.0.0 || ^1.0.0",
-    "@ovh-ux/ovh-payment-method": "^0.0.2",
-    "@ovh-ux/ovh-reket": "^1.0.0",
-    "@ovh-ux/request-tagger": "^0.0.0 || ^1.0.0",
-    "@ovh-ux/shell": "^1.7.0",
+    "@ovh-ux/manager-config": "^6.5.0",
+    "@ovh-ux/manager-vite-config": "^0.1.0",
+    "@ovh-ux/ovh-payment-method": "^0.0.3",
+    "@ovh-ux/ovh-reket": "^1.0.1",
+    "@ovh-ux/request-tagger": "^0.1.0",
+    "@ovh-ux/shell": "^1.8.0",
     "@ovh-ux/ui-kit": "^6.1.0",
     "@popperjs/core": "^2.11.4",
     "@tanem/react-nprogress": "^5.0.0",

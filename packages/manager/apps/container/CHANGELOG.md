@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.8.0...@ovh-ux/manager-container-app@0.9.0) (2022-11-29)
+
+
+### Bug Fixes
+
+* **config:** remove unnecessary module resolutions ([e60d83c](https://github.com/ovh/manager/commit/e60d83c343cc15c2f306c1a748c3c06dfa573608))
+* **container:** default dev app ([#8267](https://github.com/ovh/manager/issues/8267)) ([cd907d6](https://github.com/ovh/manager/commit/cd907d6cadd91024ee9a8d3952a721844cb0d565))
+* **container:** inject VERSION in request tagger ([62e0614](https://github.com/ovh/manager/commit/62e061459db4cdb0e7dd880ed7a47de06449824c))
+* **container:** preloader ([98ed839](https://github.com/ovh/manager/commit/98ed83976526ff1db2955d532aebb6fcb43016a8))
+* **enterprise-clouddb:** remove entry in beta sidebar ([4c8f2b7](https://github.com/ovh/manager/commit/4c8f2b7941e9e0e2da82513a61b782ec48d0e58f))
+* yarn.lock conflicts ([13c1d52](https://github.com/ovh/manager/commit/13c1d520c0e5914965ca4cbe6602064910ac53c6))
+
+
+### Features
+
+* **container:** add tanstack react-query ([62d2f1c](https://github.com/ovh/manager/commit/62d2f1c22a7fe0811575926b8e8cbbf81735840b))
+* **container:** shell routing improvements ([7122b4d](https://github.com/ovh/manager/commit/7122b4dde1786c75f4ef5933f1b50037243bc003))
+* rebase and fix conflicts ([8f3abbe](https://github.com/ovh/manager/commit/8f3abbe14e4559190d73ab0cf86465735cd7a561))
+
+
+
+
+
 # [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.7.1...@ovh-ux/manager-container-app@0.8.0) (2022-11-09)
 
 

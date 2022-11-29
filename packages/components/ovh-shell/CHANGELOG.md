@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.7.0...@ovh-ux/shell@1.8.0) (2022-11-29)
+
+
+### Bug Fixes
+
+* **config:** remove unnecessary module resolutions ([e60d83c](https://github.com/ovh/manager/commit/e60d83c343cc15c2f306c1a748c3c06dfa573608))
+* **ovh-shell:** use request tagger ([ccbda77](https://github.com/ovh/manager/commit/ccbda775f70dae3bd1b95c3f7b337e3c8450386b))
+* **ts:** fix ts import errors ([58ad060](https://github.com/ovh/manager/commit/58ad060b9d4b6f9634268b5cf4bde98301bbbc98))
+
+
+### Features
+
+* **container:** shell routing improvements ([7122b4d](https://github.com/ovh/manager/commit/7122b4dde1786c75f4ef5933f1b50037243bc003))
+
+
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.6.1...@ovh-ux/shell@1.7.0) (2022-11-09)
 
 
