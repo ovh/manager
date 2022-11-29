@@ -1,5 +1,4 @@
 {
-  "pci_app_add_resources_replicas": "Anzahl der Instanzen, auf denen Ihre App eingesetzt wird",
   "pci_app_add_resources_usecase": "Art der Replikas",
   "pci_app_add_resources_usecase_item_cpu": "CPU",
   "pci_app_add_resources_usecase_item_gpu": "GPU",
@@ -17,11 +16,6 @@
   "pci_app_add_resources_number_of_resources_type_cpu": "CPU-Ressourcen",
   "pci_app_add_resources_number_of_resources_type_gpu": "GPU-Ressourcen",
   "pci_app_add_resources_number_of_resources_number_of_resource": "Anzahl der CPU",
-  "pci_app_add_resources_replicas_help_text": "Sichern Sie sich Hochverfügbarkeit mit einem Einsatz auf mindestens 2 Instanzen.",
-  "pci_app_add_resources_flavor_count": "Replika-Größe",
-  "pci_app_add_resources_total": "Gesamtpreis der Bereitstellung",
-  "pci_app_add_resources_resource_price": "Preis der Ressource",
-  "pci_app_add_resources_partner_price": "Preis der Lizenz",
   "pci_app_add_resources_scaling": "Dimensionierung",
   "pci_app_add_resources_scaling_description": "Wählen Sie die optimale Deployment-Strategie für Ihre App: Entscheiden Sie sich entweder für eine feste Anzahl an Replikas, auf denen Ihre App eingerichtet wird, oder geben Sie ein Mindest- und eine Höchstzahl an Replikas für Ihre Deployments an. So optimieren Sie ihre Leistung dynamisch und mit der Autoscaling-Option je nach Anzahl der Anfragen.",
   "pci_app_add_resources_scaling_description_link": "Mehr Informationen",
@@ -36,5 +30,9 @@
   "pci_app_add_resources_scaling_trigger_resource_help_text": "Metrik für das Auslösen von Autoscaling",
   "pci_app_add_resources_scaling_trigger_threshold": "Schwellenwert (%)",
   "pci_app_add_resources_scaling_trigger_threshold_help_text": "Wert der Metrik in %",
-  "pci_app_add_resources_scaling_price_warning": "Der Gesamtpreis der Bereitstellung wird anhand der Mindestanzahl der ausgewählten Replikas berechnet. Bitte beachten Sie, dass diese Kosten bei aktiviertem Autoscaling steigen können."
+  "pci_app_add_resources_scaling_price_warning": "Der Gesamtpreis der Bereitstellung wird anhand der Mindestanzahl der ausgewählten Replikas berechnet. Bitte beachten Sie, dass diese Kosten bei aktiviertem Autoscaling steigen können.",
+  "pci_app_add_resources_flavor_count": "Replika-Größe",
+  "pci_app_add_resources_total": "Gesamtpreis der Bereitstellung",
+  "pci_app_add_resources_resource_price": "Preis der Ressource",
+  "pci_app_add_resources_partner_price": "Preis der Lizenz"
 }
