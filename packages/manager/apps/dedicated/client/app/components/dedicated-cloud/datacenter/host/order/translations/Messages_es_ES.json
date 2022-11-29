@@ -3,7 +3,7 @@
   "dedicatedCloud_host_order_info_EPCC": "Puede personalizar su cloud privado añadiendo hosts. A continuación, será redirigido a una nueva pestaña en la que podrá finalizar la contratación.",
   "dedicatedCloud_host_order_select": "Seleccionar un tipo de host:",
   "dedicatedCloud_host_order_host": "Host",
-  "dedicatedCloud_host_order_price": "Precio",
+  "dedicatedCloud_host_order_price": "Consultar nuestros precios",
   "dedicatedCloud_host_order_speed": "Velocidad de CPU",
   "dedicatedCloud_host_order_memory": "RAM",
   "dedicatedCloud_host_order_cores": "Número de núcleos",
