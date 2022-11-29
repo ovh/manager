@@ -38,6 +38,12 @@ export default class {
         hit: 'sms::service::dashboard::shortcuts::order',
       },
       {
+        name: 'credit_transfer',
+        sref: 'sms.service.dashboard.creditTransfer',
+        text: this.$translate.instant('sms_actions_credit_transfer'),
+        hit: 'sms::service::dashboard::shortcuts::transfer-credit',
+      },
+      {
         name: 'manage_recipient_new',
         sref: 'sms.service.receivers',
         text: this.$translate.instant('sms_actions_create_contact'),
