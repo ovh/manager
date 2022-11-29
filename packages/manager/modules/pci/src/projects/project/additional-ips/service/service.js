@@ -62,6 +62,14 @@ export default class PciProjectAdditionalIpService {
       .then(({ data }) => data);
   }
 
+  getIpFailoverFormattedCatalog(params) {
+    return this.$http
+      .get(`/order/catalog/formatted/ip`, {
+        params,
+      })
+      .then(({ data }) => data);
+  }
+
   createFloatingIp(projectId, regionName, instanceId, ip, gateway = null) {
     return this.$http
       .post(

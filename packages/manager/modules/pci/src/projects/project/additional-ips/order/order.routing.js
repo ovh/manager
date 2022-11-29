@@ -32,6 +32,14 @@ export default /* @ngInject */ ($stateProvider) => {
           ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
           productName: 'cloud',
         }),
+      ipFailoverFormattedCatalog: /* @ngInject */ (
+        PciProjectAdditionalIpService,
+        coreConfig,
+      ) =>
+        PciProjectAdditionalIpService.getIpFailoverFormattedCatalog({
+          ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
+          productName: 'ip-failover',
+        }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate
           .refresh()
