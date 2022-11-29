@@ -57,9 +57,13 @@ export default class ImagesList {
     return map(image, (imageDetails) => pick(imageDetails, ['id', 'region']));
   }
 
-  getImages(serviceName) {
+  getImages(serviceName, region = null) {
     return this.$http
-      .get(`/cloud/project/${serviceName}/image`)
+      .get(`/cloud/project/${serviceName}/image`, {
+        params: {
+          region,
+        },
+      })
       .then(({ data: images }) =>
         images.map((image) => {
           return {
