@@ -104,6 +104,7 @@
   "ovhManagerSupport_new_serviceType_other": "Autre demande",
   "ovhManagerSupport_new_serviceType_ai_training_job": "AI Training",
   "ovhManagerSupport_new_serviceType_ai_notebook": "AI Notebooks",
+  "ovhManagerSupport_new_serviceType_ai_app": "AI Deploy",
   "ovhManagerSupport_new_serviceType_webpaas": "Web PaaS",
   "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos",
   "ovhManagerSupport_new_serviceType_managed_mysql": "Public Cloud databases for MySQL",
