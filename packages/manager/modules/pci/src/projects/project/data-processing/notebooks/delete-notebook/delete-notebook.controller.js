@@ -1,7 +1,6 @@
 export default class {
   /* @ngInject */
-  constructor($state, dataProcessingService) {
-    this.$state = $state;
+  constructor(dataProcessingService) {
     this.dataProcessingService = dataProcessingService;
     this.deleteNotebook = this.deleteNotebook.bind(this);
   }
