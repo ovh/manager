@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.6](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.5.5...@ovh-ux/sign-up-app@2.5.6) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
 ## [2.5.5](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.5.4...@ovh-ux/sign-up-app@2.5.5) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

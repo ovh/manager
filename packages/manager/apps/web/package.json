@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "16.20.5",
+  "version": "16.20.6",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -39,7 +39,7 @@
     "@ovh-ux/manager-sharepoint": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-web-paas": "^1.5.2",
     "@ovh-ux/mfa-enrollment": "^2.3.3",
-    "@ovh-ux/ng-at-internet": "^5.9.2",
+    "@ovh-ux/ng-at-internet": "^5.9.3",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.2",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.15",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
