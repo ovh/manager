@@ -4,6 +4,7 @@ import template from './add.html';
 export default {
   bindings: {
     projectId: '<',
+    guides: '<',
     checkPricesLink: '<',
     stepper: '<',
     userModel: '<',
