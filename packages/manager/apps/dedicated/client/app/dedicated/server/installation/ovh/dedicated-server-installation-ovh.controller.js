@@ -2217,8 +2217,10 @@ angular
               break;
             default:
               $scope.installation.hardwareRaid.availableSpace =
-                $scope.installation.hardwareRaid.totalSpace;
+                diskSize * nbOfDisks;
           }
+          $scope.informations.totalSize =
+            $scope.installation.hardwareRaid.availableSpace;
         }
       };
 
@@ -2299,6 +2301,8 @@ angular
         } else {
           $scope.reduceModal();
         }
+        $scope.loadPartiton();
+        $scope.installation.partitionSchemeModels = false;
       };
 
       $scope.checkCustomPrevFinal = function checkCustomPrevFinal() {
