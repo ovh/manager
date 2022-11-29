@@ -612,68 +612,6 @@
                                     </strong>
                                 </td>
                             </tr>
-                            <!-- HUBIC ACCOUNT -->
-                            <tr class="table-comparison__property">
-                                <th
-                                    class="table-comparison__cell table-comparison__property-name--sublevel"
-                                    scope="row"
-                                >
-                                    <span
-                                        class="ovh-font ovh-font-cloud table-comparison__property-icon"
-                                        aria-hidden="true"
-                                    ></span>
-                                    <span
-                                        data-translate="telecom_pack_migration_hubic_title"
-                                    ></span>
-                                </th>
-                                <td
-                                    class="table-comparison__cell table-comparison__value table-comparison--item-base"
-                                    data-translate-attr="{ 'data-title' : 'telecom_pack_migration_current_offer' }"
-                                    data-translate-values="{ offerName : $ctrl.process.pack.offerDescription }"
-                                >
-                                    <div
-                                        data-ng-if="$ctrl.process.pack.options.hubic"
-                                    >
-                                        <strong
-                                            class="d-block"
-                                            data-translate="{{ $ctrl.process.pack.options.hubic.total > 1 ? 'telecom_pack_migration_hubic_accounts_included' : 'telecom_pack_migration_hubic_account_included' }}"
-                                            data-translate-values="{ number : $ctrl.process.pack.options.hubic.total }"
-                                        >
-                                        </strong>
-                                        <span
-                                            class="d-block"
-                                            data-translate="{{ $ctrl.process.pack.options.hubic.used > 1 ? 'telecom_pack_migration_accounts_activated' : 'telecom_pack_migration_account_activated' }}"
-                                            data-translate-values="{ number : $ctrl.process.pack.options.hubic.used }"
-                                        >
-                                        </span>
-                                    </div>
-                                    <strong
-                                        class="d-block text-muted"
-                                        data-ng-if="!$ctrl.process.pack.options.hubic"
-                                        data-translate="telecom_pack_migration_option_unavailable"
-                                    >
-                                    </strong>
-                                </td>
-                                <td
-                                    class="table-comparison__cell table-comparison__value"
-                                    data-title="{{ offer.description }}"
-                                    data-ng-repeat="offer in $ctrl.process.migrationOffers.result.offers track by $index"
-                                >
-                                    <strong
-                                        class="d-block"
-                                        data-ng-if="offer.options.hubic_perso"
-                                        data-translate="{{ offer.options.hubic_perso.included > 1 ? 'telecom_pack_migration_hubic_accounts_included' : 'telecom_pack_migration_hubic_account_included' }}"
-                                        data-translate-values="{ number : offer.options.hubic_perso.included }"
-                                    >
-                                    </strong>
-                                    <strong
-                                        class="d-block text-muted"
-                                        data-ng-if="!offer.options.hubic_perso"
-                                        data-translate="telecom_pack_migration_option_unavailable"
-                                    >
-                                    </strong>
-                                </td>
-                            </tr>
                             <!-- ECOFAX -->
                             <tr class="table-comparison__property">
                                 <th

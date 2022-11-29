@@ -99,5 +99,17 @@
   "pack_move_confirm_resume_gtr_5m_4ho": "GTR 4HO &amp; KOMFORT 5M Option",
   "pack_move_confirm_resume_gtr_5m_10ho": "GTR 10HO &amp; KOMFORT 5M Option",
   "pack_move_confirm_resume_gtr_20m_4ho": "GTR 4HO &amp; KOMFORT 20M Option",
-  "pack_move_confirm_resume_gtr_20m_10ho": "GTR 10HO &amp; KOMFORT 20M Option"
+  "pack_move_confirm_resume_gtr_20m_10ho": "GTR 10HO &amp; KOMFORT 20M Option",
+  "pack_move_services_to_delete": "Dienstleistungen außerhalb des Pakets",
+  "pack_move_offer_services_to_delete_explain": "Im nächsten Schritt finden Sie die Wahl der zu löschenden/zu speichernden Dienstleistungen.",
+  "pack_move_confirm_service_to_delete_total": "Beim Wechsel des Angebots werden insgesamt {{count}} Dienstleistungen gelöscht.",
+  "pack_move_confirm_service_to_keep_title": "Dienstleistungen, die beibehalten werden",
+  "pack_move_confirm_service_to_keep_total": "Während des Angebotswechsels werden insgesamt {{count}} Dienstleistungen beibehalten.",
+  "pack_move_confirm_service_to_keep_table_service_type": "Diensttyp",
+  "pack_move_confirm_service_to_keep_table_service_count": "Anzahl der zu speichernden Dienstleistungen",
+  "pack_move_confirm_service_to_keep_table_service_names": "Namen der zu speichernden Dienstleistungen",
+  "pack_move_service_delete_explain": "Bitte wählen Sie die Dienste aus, die beim Wechsel des Angebots beibehalten werden sollen, die übrigen werden gelöscht.</br>Einige Dienstleistungen können nicht ausgewählt werden. Diese Dienstleistungen werden beim Wechsel des Angebots automatisch gelöscht.",
+  "pack_move_service_delete_count_multiple": "Die {{count}} Dienste auswählen",
+  "pack_move_service_delete_count_single": "Dienstleistung auswählen",
+  "pack_move_service_delete_confirm": "Auswahl der Dienste bestätigen"
 }

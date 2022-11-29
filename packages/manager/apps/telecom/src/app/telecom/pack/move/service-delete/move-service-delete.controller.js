@@ -1,6 +1,4 @@
 import chunk from 'lodash/chunk';
-import every from 'lodash/every';
-import filter from 'lodash/filter';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
@@ -12,12 +10,17 @@ export default class MoveServiceDeleteCtrl {
 
   $onInit() {
     this.subServicesToDelete.forEach((subService) => {
+      set(subService, 'numberServices', subService.numberToDelete);
       set(
         subService,
         'services',
-        map(subService.services, (service, index, originalArray) => ({
-          name: service,
-          selected: originalArray.length === subService.numberToDelete,
+        map(subService.services, (service) => ({
+          name: service.service,
+          isAllowed: service.isAllowed,
+          renewPeriod: service.renewPeriod,
+          renewPrice: service.renewPrice,
+          price: service.price,
+          selected: false,
         })),
       );
     });
@@ -25,19 +28,16 @@ export default class MoveServiceDeleteCtrl {
     this.chunkedSubServices = chunk(this.subServicesToDelete, 2);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  selectedSubServiceToDeleteReached(subService) {
-    const count = filter(subService.services, {
-      selected: true,
-    }).length;
-
-    return count === subService.numberToDelete;
+  static selectSubServices(modelValue, subService) {
+    subService.services.forEach((service) => {
+      if (service.isAllowed) {
+        set(service, 'selected', modelValue);
+      }
+    });
   }
 
-  isValidSelection() {
-    return every(this.subServicesToDelete, (subService) =>
-      this.selectedSubServiceToDeleteReached(subService),
-    );
+  static hasKeepableSubServices(subService) {
+    return subService.services.some((service) => service.isAllowed);
   }
 
   next() {
