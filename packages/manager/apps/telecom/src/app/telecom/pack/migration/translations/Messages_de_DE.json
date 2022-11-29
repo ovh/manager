@@ -105,7 +105,7 @@
   "telecom_pack_migration_confirm_no_commitment": "Ce changement d’offre n’est sujet à aucun réengagement.",
   "telecom_pack_migration_confirm_commitment": "Un réengagement de {{ month }} mois débutera à la date de facturation.",
   "telecom_pack_migration_confirm_new_offer_price": "Votre nouvel abonnement mensuel s'élève à : <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">HT/mois</span>, applicable dès livraison de votre nouvel accès. Vous en serez informé par e-mail.",
-  "telecom_pack_migration_confirm_shipping": "Vous avez sélectionné le mode de livraison de votre nouveau modem par transporteur (+ <span class=\"text-price\">{{ transportPrice }} €</span> <span class=\"text-infos\">HT</span>). Votre première mensualité sera donc de <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">HT</span>.",
+  "telecom_pack_migration_confirm_shipping": "Sie haben den Liefermodus Ihres neuen Routers pro Luftfahrtunternehmen ausgewählt (+ {{ transportPrice }} € ohne MwSt).",
   "telecom_pack_migration_confirm_service_to_delete_title": "Services qui seront supprimés",
   "telecom_pack_migration_confirm_service_to_delete_total": "Beim Wechsel des Angebots werden insgesamt {{count}} Dienstleistungen gelöscht.",
   "telecom_pack_migration_confirm_service_to_delete_table_service_type": "Diensttyp",
@@ -151,7 +151,7 @@
   "telecom_pack_migration_pto_yes_not_known": "J'ai un boîtier mais je ne connais pas son numéro",
   "telecom_pack_migration_promotion_installation_fees_offered": "Setup gratis",
   "telecom_pack_migration_confirm_provider_infra": "Zusatzkosten",
-  "telecom_pack_migration_confirm_comfort_activation": "Aktivierungsgebühr für die Komfortoption",
+  "telecom_pack_migration_confirm_comfort_activation": "Die Aktivierungsgebühr für die Komfortoption beträgt {{ price }} zzgl. MwSt.",
   "telecom_pack_migration_confirm_resume_contact_owner": "Kontakt-Informationen",
   "telecom_pack_migration_confirm_resume_contact_phone": "Telefonnummer, unter der Sie bei Bedarf kontaktiert werden können",
   "telecom_pack_migration_confirm_resume_phone_form_error": "Die angegebene Nummer muss gültig sein.",
@@ -160,5 +160,7 @@
   "telecom_pack_migration_confirm_service_to_keep_total": "Während des Angebotswechsels werden insgesamt {{count}} Dienstleistungen beibehalten.",
   "telecom_pack_migration_confirm_service_to_keep_table_service_type": "Diensttyp",
   "telecom_pack_migration_confirm_service_to_keep_table_service_count": "Anzahl der zu speichernden Dienstleistungen",
-  "telecom_pack_migration_confirm_service_to_keep_table_service_names": "Namen der zu speichernden Dienstleistungen"
+  "telecom_pack_migration_confirm_service_to_keep_table_service_names": "Namen der zu speichernden Dienstleistungen",
+  "telecom_pack_migration_confirm_first_mensuality": "Ihre erste Monatsrate beträgt also {{ price }} ohne MwSt.",
+  "telecom_pack_migration_confirm_install_fees": "Die Einrichtungsgebühr beträgt {{ price }} ohne MwSt"
 }
