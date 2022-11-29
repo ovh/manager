@@ -1,5 +1,4 @@
 {
-  "pci_app_add_resources_replicas": "Liczba instancji, na których zostanie uruchomiona aplikacja",
   "pci_app_add_resources_usecase": "Rodzaj replik",
   "pci_app_add_resources_usecase_item_cpu": "CPU",
   "pci_app_add_resources_usecase_item_gpu": "GPU",
@@ -17,11 +16,6 @@
   "pci_app_add_resources_number_of_resources_type_cpu": "Zasoby CPU",
   "pci_app_add_resources_number_of_resources_type_gpu": "Zasoby GPU",
   "pci_app_add_resources_number_of_resources_number_of_resource": "Liczba CPU",
-  "pci_app_add_resources_replicas_help_text": "Uruchom na co najmniej 2 instancjach, aby zyskać wysoką dostępność",
-  "pci_app_add_resources_flavor_count": "Rozmiar repliki",
-  "pci_app_add_resources_total": "Całkowita cena wdrożenia",
-  "pci_app_add_resources_resource_price": "Cena zasobu",
-  "pci_app_add_resources_partner_price": "Cena licencji",
   "pci_app_add_resources_scaling": "Skalowanie",
   "pci_app_add_resources_scaling_description": "W zależności od preferencji wybierz strategię wdrażania, która najlepiej pasuje do Twojej aplikacji: wybierz stałą liczbę replik, na których aplikacja zostanie wdrożona lub wskaż minimalną i maksymalną liczbę replik dla wdrożeń. Dzięki temu dynamicznie zoptymalizujesz ich wydajność i dostosujesz do liczby żądań za pomocą opcji Autoscaling.",
   "pci_app_add_resources_scaling_description_link": "Więcej informacji",
@@ -36,5 +30,9 @@
   "pci_app_add_resources_scaling_trigger_resource_help_text": "Metryka, która będzie działać jako element uruchamiający Autoscaling",
   "pci_app_add_resources_scaling_trigger_threshold": "Próg uruchomienia (%)",
   "pci_app_add_resources_scaling_trigger_threshold_help_text": "Wartość metryki, w procentach.",
-  "pci_app_add_resources_scaling_price_warning": "Łączną cenę wdrożenia oblicza się na podstawie minimalnej liczby wybranych replik. Pamiętaj, że koszt ten może wzrosnąć, gdy Autoscaling jest włączony."
+  "pci_app_add_resources_scaling_price_warning": "Łączną cenę wdrożenia oblicza się na podstawie minimalnej liczby wybranych replik. Pamiętaj, że koszt ten może wzrosnąć, gdy Autoscaling jest włączony.",
+  "pci_app_add_resources_flavor_count": "Rozmiar repliki",
+  "pci_app_add_resources_total": "Całkowita cena wdrożenia",
+  "pci_app_add_resources_resource_price": "Cena zasobu",
+  "pci_app_add_resources_partner_price": "Cena licencji"
 }
