@@ -75,10 +75,9 @@ export default /* @ngInject */ ($stateProvider) => {
         goToRestoreContainer: /* @ngInject */ ($state, projectId) => (
           container,
         ) => {
-          const { name } = container;
           return $state.go(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_RESTORE, {
             projectId,
-            containerName: name,
+            container,
           });
         },
 
