@@ -111,5 +111,8 @@
   "pack_move_service_delete_explain": "Bitte wählen Sie die Dienste aus, die beim Wechsel des Angebots beibehalten werden sollen, die übrigen werden gelöscht.</br>Einige Dienstleistungen können nicht ausgewählt werden. Diese Dienstleistungen werden beim Wechsel des Angebots automatisch gelöscht.",
   "pack_move_service_delete_count_multiple": "Die {{count}} Dienste auswählen",
   "pack_move_service_delete_count_single": "Dienstleistung auswählen",
-  "pack_move_service_delete_confirm": "Auswahl der Dienste bestätigen"
+  "pack_move_service_delete_confirm": "Auswahl der Dienste bestätigen",
+  "pack_move_creation_line_fees": "Kosten für die Erstellung einer Leitung",
+  "pack_move_confirm_shipping": "Sie haben den Liefermodus Ihres neuen Routers pro Luftfahrtunternehmen ausgewählt (+ {{ price }} € ohne MwSt).",
+  "pack_move_confirm_first_mensuality": "Ihre erste Monatsrate beträgt also {{ price }} ohne MwSt."
 }
