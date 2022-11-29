@@ -7,13 +7,11 @@ import { DATA_PROCESSING_GUIDE_URL } from '../data-processing.constants';
 export default class {
   /* @ngInject */
   constructor(
-    $state,
     CucCloudMessage,
     dataProcessingService,
     ovhManagerRegionService,
     atInternet,
   ) {
-    this.$state = $state;
     this.cucCloudMessage = CucCloudMessage;
     this.dataProcessingService = dataProcessingService;
     this.ovhManagerRegionService = ovhManagerRegionService;
