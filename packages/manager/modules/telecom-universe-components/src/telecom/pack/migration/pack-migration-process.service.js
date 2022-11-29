@@ -115,10 +115,21 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
     // sub service to delete post params
     if (migrationProcess.selectedOffer.subServicesToDelete.length) {
       postParams.subServicesToDelete = [];
-      angular.forEach(
-        migrationProcess.selectedOffer.subServicesToDelete,
+      postParams.subServicesToKeep = [];
+      migrationProcess.selectedOffer.subServicesToDelete.forEach(
         (subService) => {
           postParams.subServicesToDelete = postParams.subServicesToDelete.concat(
+            map(
+              filter(subService.services, {
+                selected: false,
+              }),
+              (service) => ({
+                service: service.name,
+                type: subService.type,
+              }),
+            ),
+          );
+          postParams.subServicesToKeep = postParams.subServicesToKeep.concat(
             map(
               filter(subService.services, {
                 selected: true,

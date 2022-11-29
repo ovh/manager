@@ -293,6 +293,63 @@
 
         <div
             class="widget-presentation"
+            data-ng-if="!$ctrl.loading.migrate && $ctrl.process.selectedOffer.totalSubServiceToKeep > 0"
+        >
+            <h2
+                class="widget-presentation-title"
+                data-translate="telecom_pack_migration_confirm_service_to_keep_title"
+            ></h2>
+
+            <p
+                data-translate="telecom_pack_migration_confirm_service_to_keep_total"
+                data-translate-values="{ count : $ctrl.process.selectedOffer.totalSubServiceToKeep }"
+            ></p>
+
+            <div class="responsive-table-line my-3">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="telecom_pack_migration_confirm_service_to_keep_table_service_type"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="telecom_pack_migration_confirm_service_to_keep_table_service_count"
+                                class="text-right"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="telecom_pack_migration_confirm_service_to_keep_table_service_names"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            data-ng-repeat="serviceToDelete in $ctrl.process.selectedOffer.subServicesToDelete track by $index"
+                        >
+                            <th
+                                scope="row"
+                                data-translate="{{ 'telecom_pack_migration_confirm_resume_' + serviceToDelete.type }}"
+                                data-title="{{ 'telecom_pack_migration_confirm_service_to_keep_table_service_type' | translate }}"
+                            ></th>
+                            <td
+                                class="text-right"
+                                data-ng-bind="serviceToDelete.numberToKeep"
+                                data-title="{{ 'telecom_pack_migration_confirm_service_to_keep_table_service_count' | translate }}"
+                            ></td>
+                            <td
+                                data-ng-bind="$ctrl.constructor.getServiceList(serviceToDelete, true)"
+                                data-title="{{ 'telecom_pack_migration_confirm_service_to_keep_table_service_names' | translate }}"
+                            ></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div
+            class="widget-presentation"
             data-ng-if="!$ctrl.loading.migrate && $ctrl.process.selectedOffer.totalSubServiceToDelete > 0"
         >
             <h2
@@ -339,7 +396,7 @@
                                 data-title="{{ 'telecom_pack_migration_confirm_service_to_delete_table_service_count' | translate }}"
                             ></td>
                             <td
-                                data-ng-bind="$ctrl.constructor.getServiceToDeleteList(serviceToDelete)"
+                                data-ng-bind="$ctrl.constructor.getServiceList(serviceToDelete, false)"
                                 data-title="{{ 'telecom_pack_migration_confirm_service_to_delete_table_service_names' | translate }}"
                             ></td>
                         </tr>

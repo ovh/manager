@@ -13,23 +13,67 @@
             data-translate="{{ 'pack_move_confirm_resume_' + subService.type }}"
         ></h2>
 
-        <h3
-            data-translate="{{ subService.numberToDelete === 1 ? 'pack_move_service_delete_count_single' : 'pack_move_service_delete_count_multiple' }}"
-            data-translate-values="{ count: subService.numberToDelete }"
-        ></h3>
+        <oui-checkbox
+            class="mb-2"
+            model="subService.selected"
+            on-change="$ctrl.constructor.selectSubServices(modelValue, subService)"
+            disabled="!$ctrl.constructor.hasKeepableSubServices(subService)"
+        >
+            <span
+                class="subservice-title"
+                data-translate="{{ subService.numberToDelete === 1 ? 'pack_move_service_delete_count_single' : 'pack_move_service_delete_count_multiple' }}"
+                data-translate-values="{ count: subService.numberServices }"
+            ></span>
+        </oui-checkbox>
 
         <ul class="list-unstyled">
             <li data-ng-repeat="service in subService.services track by $index">
-                <label class="my-2">
-                    <div class="d-inline-block align-middle mr-2">
-                        <input
-                            type="checkbox"
-                            data-ng-model="service.selected"
-                            data-ng-disabled="subService.services.length === subService.numberToDelete || ($ctrl.selectedSubServiceToDeleteReached(subService) && !service.selected)"
-                        />
+                <div class="row">
+                    <div class="col-xs-7 col-md-6">
+                        <oui-checkbox
+                            class="ml-4 mb-1"
+                            model="service.selected"
+                            disabled="!service.isAllowed"
+                        >
+                            <span data-ng-bind="service.name"></span>
+                        </oui-checkbox>
                     </div>
-                    <span data-ng-bind="service.name"></span>
-                </label>
+                    <div class="col-xs-5 text-right my-1">
+                        <div data-ng-if="service.price.value">
+                            <span
+                                data-translate="pack_resiliation_keeping_fee"
+                            ></span>
+                            <strong
+                                class="text-nowrap"
+                                data-translate="pack_resiliation_price_tax_free"
+                                data-translate-values=":: { price: service.price.text }"
+                            ></strong>
+                        </div>
+
+                        <div data-ng-if="service.renewPrice.value">
+                            <span
+                                data-ng-if="service.renewPeriod === 1"
+                                data-translate="pack_resiliation_monthly_pass"
+                            ></span>
+                            <span
+                                data-ng-if="service.renewPeriod !== 1 &&
+                                    service.renewPeriod !== 12"
+                                data-translate="pack_resiliation_Nthly_pass"
+                                data-translate-values="{month: service.renewPeriod}"
+                            >
+                            </span>
+                            <span
+                                data-ng-if="service.renewPeriod === 12"
+                                data-translate="pack_resiliation_annually_pass"
+                            ></span>
+                            <strong
+                                class="text-nowrap"
+                                data-translate="pack_resiliation_price_tax_free"
+                                data-translate-values="{ price: service.renewPrice.text }"
+                            ></strong>
+                        </div>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
@@ -45,7 +89,6 @@
     <button
         type="button"
         class="btn btn-primary"
-        data-ng-disabled="!$ctrl.isValidSelection()"
         data-translate="pack_move_service_delete_confirm"
         data-ng-click="$ctrl.next()"
     ></button>

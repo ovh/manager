@@ -1,5 +1,6 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
+import set from 'lodash/set';
 import map from 'lodash/map';
 
 import { PROMO_DISPLAY, QUANTITY } from '../pack-migration.constant';
@@ -69,6 +70,33 @@ export default class TelecomPackMigrationConfirmCtrl {
     this.process.selectedOffer.displayedPrice = this.TucPackMigrationProcess.getPriceStruct(
       totalOfferPrice,
     );
+
+    this.process.selectedOffer.subServicesToDelete.forEach((service) => {
+      set(
+        service,
+        'numberToKeep',
+        filter(service.services, {
+          selected: true,
+        }).length,
+      );
+
+      set(
+        service,
+        'numberToDelete',
+        filter(service.services, {
+          selected: false,
+        }).length,
+      );
+    });
+
+    this.process.selectedOffer.totalSubServiceToDelete = this.constructor.getTotalService(
+      this.process.selectedOffer.subServicesToDelete,
+      false,
+    );
+    this.process.selectedOffer.totalSubServiceToKeep = this.constructor.getTotalService(
+      this.process.selectedOffer.subServicesToDelete,
+      true,
+    );
   }
 
   /*= ==============================
@@ -87,10 +115,18 @@ export default class TelecomPackMigrationConfirmCtrl {
     );
   }
 
-  static getServiceToDeleteList(subService) {
+  static getTotalService(subServices, toKeep) {
+    let count = 0;
+    subServices.forEach((service) => {
+      count += toKeep ? service.numberToKeep : service.numberToDelete;
+    });
+    return count;
+  }
+
+  static getServiceList(subService, toKeep) {
     return map(
       filter(subService.services, {
-        selected: true,
+        selected: toKeep,
       }),
       'name',
     ).join(', ');

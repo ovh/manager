@@ -8,12 +8,14 @@ import { PROMO_DISPLAY } from '../pack-migration.constant';
 export default class TelecomPackMigrationOffersCtrl {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $translate,
     OvhApiPackXdsl,
     TucPackMigrationProcess,
     TucToast,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.OvhApiPackXdsl = OvhApiPackXdsl;
@@ -124,19 +126,28 @@ export default class TelecomPackMigrationOffersCtrl {
       params.options = options;
     }
 
-    return this.OvhApiPackXdsl.v6()
-      .servicesToDelete({ packName: this.process.pack.packName }, params)
-      .$promise.then((result) => {
-        selectedOffer.subServicesToDelete = result;
+    this.loading.init = true;
+
+    this.$http
+      .post(
+        `/pack/xdsl/${this.process.pack.packName}/migration/servicesToDeleteUnpackTerms`,
+        params,
+      )
+      .then((result) => {
+        selectedOffer.subServicesToDelete = result.data;
         this.TucPackMigrationProcess.selectOffer(selectedOffer);
-        return result;
+        return result.data;
       })
       .catch((error) => {
+        // Display error message
         this.TucToast.error(
           this.$translate.instant('telecom_pack_migration_choose_offer_error', {
             error,
           }),
         );
+      })
+      .finally(() => {
+        this.loading.init = false;
       });
   }
 
