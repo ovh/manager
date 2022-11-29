@@ -110,5 +110,17 @@
   "pack_move_confirm_resume_gtr_5m_4ho": "Opcja GTR 4HO &amp; KOMFORT 5M",
   "pack_move_confirm_resume_gtr_5m_10ho": "Opcja GTR 10HO &amp; KOMFORT 5M",
   "pack_move_confirm_resume_gtr_20m_4ho": "Opcja GTR 4HO &amp; KOMFORT 20M",
-  "pack_move_confirm_resume_gtr_20m_10ho": "Opcja GTR 10HO &amp; KOMFORT 20M"
+  "pack_move_confirm_resume_gtr_20m_10ho": "Opcja GTR 10HO &amp; KOMFORT 20M",
+  "pack_move_services_to_delete": "Usługi poza pakietem",
+  "pack_move_offer_services_to_delete_explain": "Wybór usług, które chcesz usunąć/zachować, zostanie zaproponowany na kolejnym etapie.",
+  "pack_move_confirm_service_to_delete_total": "Łącznie {{count}} usługi zostaną usunięte podczas zmiany oferty.",
+  "pack_move_confirm_service_to_keep_title": "Usługi, które będą przechowywane",
+  "pack_move_confirm_service_to_keep_total": "Łącznie {{count}} usługi zostaną zachowane podczas zmiany oferty.",
+  "pack_move_confirm_service_to_keep_table_service_type": "Typ usługi",
+  "pack_move_confirm_service_to_keep_table_service_count": "Liczba usług do zachowania",
+  "pack_move_confirm_service_to_keep_table_service_names": "Nazwy usług do zachowania",
+  "pack_move_service_delete_explain": "Wybierz usługi, które należy zachować podczas zmiany oferty. Pozostałe zostaną usunięte.</br>Niektóre usługi mogą nie być wybierane. Usługi te zostaną obowiązkowo usunięte podczas zmiany oferty.",
+  "pack_move_service_delete_count_multiple": "Wybierz {{count}} usługi",
+  "pack_move_service_delete_count_single": "Wybierz usługę",
+  "pack_move_service_delete_confirm": "Potwierdź wybór usług"
 }
