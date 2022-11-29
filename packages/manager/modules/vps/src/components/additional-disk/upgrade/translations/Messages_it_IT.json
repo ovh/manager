@@ -2,10 +2,9 @@
   "vps_additional_disk_upgrade_title": "Scegli una dimensione superiore per il disco del VPS.",
   "vps_additional_disk_upgrade_info": "Stai per aumentare la capacità del disco a {{newDiskCapacity}}.",
   "vps_additional_disk_upgrade_prices_month_period": "{{price}} {{currency}} +IVA/mese",
-  "vps_additional_disk_upgrade_action_upgrade_success": "La dimensione del disco è stata aumentata correttamente.",
+  "vps_additional_disk_upgrade_action_upgrade_success_info": "La tua richiesta di aumento del disco è stata presa in carico.",
+  "vps_additional_disk_upgrade_action_upgrade_payment_info": "Per confermare il tuo ordine, utilizza un metodo di pagamento valido, cliccando su questo link.",
   "vps_additional_disk_upgrade_action_upgrade_error": "Si è verificato un errore durante l'aumento della dimensione del disco.",
   "vps_additional_disk_upgrade_action_upgrade": "Aumentare",
-  "vps_additional_disk_upgrade_action_cancel": "Annullare",
-  "vps_additional_disk_upgrade_action_upgrade_success_info": "La tua richiesta di aumento del disco è stata presa in carico.",
-  "vps_additional_disk_upgrade_action_upgrade_payment_info": "Per confermare il tuo ordine, utilizza un metodo di pagamento valido, cliccando su questo link."
+  "vps_additional_disk_upgrade_action_cancel": "Annullare"
 }
