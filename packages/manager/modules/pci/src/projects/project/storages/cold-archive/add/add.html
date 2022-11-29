@@ -5,6 +5,16 @@
         <oui-guide-menu
             data-text="{{:: 'pci_projects_project_storages_cold_archive_add_guides_title' | translate }}"
         >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.guides track by $index"
+                data-href="{{:: guide.link }}"
+                data-on-click="$ctrl.trackClick(guide.id)"
+                data-external
+            >
+                <span
+                    data-ng-bind=":: 'pci_projects_project_storages_cold_archives_guides_' + guide.id + '_title' | translate"
+                ></span>
+            </oui-guide-menu-item>
         </oui-guide-menu>
     </oui-header>
 
