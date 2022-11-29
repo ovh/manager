@@ -1,11 +1,21 @@
 import {
   COLD_ARCHIVE_TRACKING_PREFIX,
   COLD_ARCHIVE_STATES,
-} from '../../cold-archives.constants';
+} from './archive.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_ARCHIVE, {
     url: '/archive?containerName',
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('container')
+        .then((container) =>
+          !container ? { state: COLD_ARCHIVE_STATES.CONTAINERS } : false,
+        ),
+    params: {
+      container: null,
+    },
     views: {
       modal: {
         component: 'pciStoragesColdArchiveContainersArchive',
@@ -15,8 +25,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
 
-      containerName: /* @ngInject */ ($transition$) =>
-        $transition$.params().containerName,
+      container: /* @ngInject */ ($transition$) =>
+        $transition$.params().container,
     },
     atInternet: {
       rename: `${COLD_ARCHIVE_TRACKING_PREFIX}::archive`,
