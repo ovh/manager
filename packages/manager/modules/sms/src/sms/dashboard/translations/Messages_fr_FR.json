@@ -2,6 +2,7 @@
   "sms_actions": "Je veux…",
   "sms_actions_send_sms": "Envoyer un SMS",
   "sms_actions_credit_account": "Créditer mon compte",
+  "sms_actions_credit_transfer": "Transférer des crédits",
   "sms_actions_create_contact": "Créer un contact",
   "sms_actions_create_sender": "Créer un expéditeur",
   "sms_actions_create_api_user": "Créer un utilisateur API",

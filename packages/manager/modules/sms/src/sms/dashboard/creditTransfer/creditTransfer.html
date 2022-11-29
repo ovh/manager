@@ -1,0 +1,60 @@
+<form novalidate name="modalCreditTransfer">
+    <oui-modal
+        data-heading="{{ 'sms_creditTransfer_title' | translate }}"
+        data-loading="$ctrl.loading"
+        data-primary-action="$ctrl.onSubmit()"
+        data-primary-label="{{ 'sms_creditTransfer_action_send' | translate }}"
+        data-primary-disabled="modalCreditTransfer.$invalid"
+        data-secondary-action="$ctrl.onCancel()"
+        data-secondary-label="{{ 'sms_creditTransfer_action_cancel' | translate }}"
+        data-on-dismiss="$ctrl.onCancel()"
+    >
+        <oui-field
+            data-label="{{ 'sms_creditTransfer_label_your_account' | translate }}"
+        >
+            <oui-select
+                data-items="$ctrl.accountsList"
+                data-model="$ctrl.model.serviceName"
+                data-match="displayName"
+                name="sourceAccountSelect"
+                data-on-change="$ctrl.onSourceAccountChange(modelValue)"
+                required
+            >
+                <span
+                    data-ng-bind="$item.description ? $item.name + ' (' + $item.description + ')' : $item.name"
+                ></span>
+            </oui-select>
+        </oui-field>
+
+        <oui-field
+            data-label="{{ 'sms_creditTransfer_label_account_to_credit' | translate }}"
+        >
+            <oui-select
+                data-items="$ctrl.withoutSourceAccount"
+                data-model="$ctrl.model.smsAccountTarget"
+                data-match="displayName"
+                name="destinationAccountSelect"
+                required
+            >
+                <span
+                    data-ng-bind="$item.description ? $item.name + ' (' + $item.description + ')' : $item.name"
+                ></span>
+            </oui-select>
+        </oui-field>
+
+        <oui-field
+            data-label="{{ 'sms_creditTransfer_label_number_of_credits' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="numberOfCreditInput"
+                placeholder="{{ $ctrl.maxCredit }}"
+                min="1"
+                max="{{ $ctrl.maxCredit }}"
+                type="number"
+                data-ng-model="$ctrl.model.credits"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>
