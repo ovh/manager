@@ -65,9 +65,10 @@
                 data-type="string"
                 data-sortable
             >
-                <span title="{{ $ctrl.formatDuration($row.status.duration) }}"
-                    >{{ $ctrl.formatDuration($row.status.duration) }}</span
-                >
+                <span
+                    title="{{ $ctrl.formatDuration($row.status.duration) }}"
+                    data-ng-bind="$ctrl.formatDuration($row.status.duration)"
+                ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title="::'data_processing_notebook_status' | translate"
