@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [5.9.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.9.1...@ovh-ux/ng-at-internet@5.9.2) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet
+
+
+
+
+
 ## [5.9.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.9.0...@ovh-ux/ng-at-internet@5.9.1) (2022-06-14)
 
 
@@ -204,6 +217,3 @@
 ### BREAKING CHANGES
 
 * module is now named `ngAtInternet`
-
-
-

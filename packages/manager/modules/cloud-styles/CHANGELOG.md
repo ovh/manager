@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-styles@1.3.0...@ovh-ux/manager-cloud-styles@1.3.1) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-cloud-styles
+
+
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-styles@1.2.5...@ovh-ux/manager-cloud-styles@1.3.0) (2022-06-14)
 
 
@@ -251,6 +264,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * **cloud-styles:** init module ([5778408](https://github.com/ovh-ux/manager/commit/5778408))
-
-
-

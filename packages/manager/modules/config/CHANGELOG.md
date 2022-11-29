@@ -1,3 +1,27 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [6.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@6.4.2...@ovh-ux/manager-config@6.5.0) (2022-11-29)
+
+
+### Bug Fixes
+
+* **config:** add request tagger ([f428c4d](https://github.com/ovh/manager/commit/f428c4dae4a86088f658480aef3b00e2544d3746))
+* **config:** remove unnecessary module resolutions ([e60d83c](https://github.com/ovh/manager/commit/e60d83c343cc15c2f306c1a748c3c06dfa573608))
+* **config:** user auth type ([1378a74](https://github.com/ovh/manager/commit/1378a746d33f807d23314fcb55ea8de3c076b574))
+* **ts:** fix ts import errors ([58ad060](https://github.com/ovh/manager/commit/58ad060b9d4b6f9634268b5cf4bde98301bbbc98))
+
+
+### Features
+
+* **container:** shell routing improvements ([7122b4d](https://github.com/ovh/manager/commit/7122b4dde1786c75f4ef5933f1b50037243bc003))
+
+
+
+
+
 ## [6.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@6.4.1...@ovh-ux/manager-config@6.4.2) (2022-07-27)
 
 
@@ -305,6 +329,3 @@ Signed-off-by: Cyrille Bourgois <cyrille.bourgois@corp.ovh.com>
 ### Features
 
 * init new package for manager configuration ([37358b3](https://github.com/ovh-ux/manager/commit/37358b3))
-
-
-

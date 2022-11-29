@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [5.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.1.0...@ovh-ux/ng-ovh-line-diagnostics@5.1.1) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-line-diagnostics
+
+
+
+
+
 # [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.0.12...@ovh-ux/ng-ovh-line-diagnostics@5.1.0) (2022-06-14)
 
 
@@ -264,6 +277,3 @@ is now `ngOvhLineDiagnostics`
 
 * the package is now `@ovh-ux/ng-ovh-line-diagnostics`. The module
 is now `ngOvhLineDiagnostics`
-
-
-

@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.1.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-request-tagger@1.1.5...@ovh-ux/ng-ovh-request-tagger@1.1.6) (2022-11-29)
+
+
+### Bug Fixes
+
+* **request-tagger:** use request-tagger core package ([9ebde05](https://github.com/ovh/manager/commit/9ebde05c382015b9e836385c35c1df86b1ba3927))
+
+
+
+
+
 ## [1.1.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-request-tagger@1.1.4...@ovh-ux/ng-ovh-request-tagger@1.1.5) (2022-07-27)
 
 
@@ -73,6 +89,3 @@
 
 * `@ovh-ux/manager-core` has now a dependency to
 `@ovh-ux/ng-ovh-request-tagger`
-
-
-

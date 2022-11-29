@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [3.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.25.0...@ovh-ux/manager-server-sidebar@3.25.1) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-server-sidebar
+
+
+
+
+
 # [3.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.24.0...@ovh-ux/manager-server-sidebar@3.25.0) (2022-09-21)
 
 
@@ -1366,6 +1379,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * add server-sidebar module ([#639](https://github.com/ovh-ux/manager/issues/639)) ([06be278](https://github.com/ovh-ux/manager/commit/06be278))
-
-
-

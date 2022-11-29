@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [5.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contacts@5.1.1...@ovh-ux/ng-ovh-contacts@5.1.2) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-contacts
+
+
+
+
+
 ## [5.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contacts@5.1.0...@ovh-ux/ng-ovh-contacts@5.1.1) (2022-07-27)
 
 
@@ -255,6 +268,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * **form:** add contact creation form in fieldset mode ([f1f6b41](https://github.com/ovh-ux/ng-ovh-contacts/commit/f1f6b41))
-
-
-

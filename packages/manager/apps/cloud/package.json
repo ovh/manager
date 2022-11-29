@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud",
-  "version": "12.0.2",
+  "version": "12.0.3",
   "private": true,
   "description": "Legacy application, redirects to dedicated app.",
   "repository": {
@@ -18,9 +18,8 @@
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-cloud' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-cloud' --include-dependencies -- npm run dev:watch --if-present"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-webpack-config": "^6.0.1",
     "glob": "^7.1.3",
     "webpack": "^4.44.2",
     "webpack-merge": "^4.1.4"

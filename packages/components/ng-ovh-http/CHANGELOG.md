@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [5.0.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-http@5.0.4...@ovh-ux/ng-ovh-http@5.0.5) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-http
+
+
+
+
+
 ## [5.0.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-http@5.0.3...@ovh-ux/ng-ovh-http@5.0.4) (2022-03-04)
 
 
@@ -130,6 +143,3 @@
 
 <a name="4.0.0-alpha.0"></a>
 # [4.0.0-alpha.0](https://github.com/ovh-ux/ovh-angular-http/compare/v3.0.1...v4.0.0-alpha.0) (2018-10-29)
-
-
-

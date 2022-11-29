@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@2.3.0...@ovh-ux/manager-error-page@2.3.1) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-error-page
+
+
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@2.2.0...@ovh-ux/manager-error-page@2.3.0) (2022-06-14)
 
 
@@ -144,6 +157,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### BREAKING CHANGES
 
 * @ovh-ux/manager-error-page is a peer dependency of @ovh-ux/manager-pci
-
-
-

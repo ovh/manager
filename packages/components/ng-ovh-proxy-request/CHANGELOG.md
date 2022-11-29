@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-proxy-request@2.0.4...@ovh-ux/ng-ovh-proxy-request@2.0.5) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-proxy-request
+
+
+
+
+
 ## [2.0.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-proxy-request@2.0.3...@ovh-ux/ng-ovh-proxy-request@2.0.4) (2022-03-04)
 
 
@@ -119,6 +132,3 @@
 ### Features
 
 * **ovh-angular-proxy-request:** es module refactoring ([933fdba](https://github.com/ovh-ux/ovh-angular-proxy-request/commit/933fdba))
-
-
-

@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [4.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.4.0...@ovh-ux/manager-telecom-styles@4.4.1) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom-styles
+
+
+
+
+
 # [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.3.5...@ovh-ux/manager-telecom-styles@4.4.0) (2022-06-14)
 
 
@@ -293,6 +306,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 
 # [1.0.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-universes-styles@0.0.0...@ovh-ux/manager-universes-styles@1.0.0-alpha.0) (2018-11-26)
-
-
-

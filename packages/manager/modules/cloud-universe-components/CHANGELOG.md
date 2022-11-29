@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.5.0...@ovh-ux/ng-ovh-cloud-universe-components@2.5.1) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
 # [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.8...@ovh-ux/ng-ovh-cloud-universe-components@2.5.0) (2022-06-14)
 
 
@@ -642,6 +655,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * **cui-tabs:** add cuiTabs component ([ab77e6d](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/ab77e6d))
-
-
-

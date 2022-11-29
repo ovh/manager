@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [8.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.9.1...@ovh-ux/manager-sms@8.9.2) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
 ## [8.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.9.0...@ovh-ux/manager-sms@8.9.1) (2022-10-10)
 
 
@@ -1078,6 +1091,3 @@ yarn add @ovh-ux/manager-core
 
 * **app:** add standalone app for SMS ([157a745](https://github.com/ovh-ux/manager/commit/157a745))
 * **manager-sms:** initial module import ([9aac091](https://github.com/ovh-ux/manager/commit/9aac091))
-
-
-

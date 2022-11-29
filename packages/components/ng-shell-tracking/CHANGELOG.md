@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.1.2...@ovh-ux/ng-shell-tracking@0.1.3) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-shell-tracking
+
+
+
+
+
 ## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.1.1...@ovh-ux/ng-shell-tracking@0.1.2) (2022-08-10)
 
 
@@ -22,6 +35,3 @@
 ### Features
 
 * **ng-shell-tracking:** create component ([5093f63](https://github.com/ovh/manager/commit/5093f636c710e006ec67bdf5f5197e51f555616d))
-
-
-

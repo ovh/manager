@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/shell",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "private": true,
   "description": "Communication and interaction between applications",
   "repository": {
@@ -21,11 +21,11 @@
     "dev:watch": "tsc -w"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/ovh-at-internet": "^0.1.0 || ^0.2.0",
-    "@ovh-ux/ovh-reket": "^1.0.0",
-    "@ovh-ux/request-tagger": "^0.0.0 || ^1.0.0",
-    "@ovh-ux/url-builder": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-config": "^6.5.0",
+    "@ovh-ux/ovh-at-internet": "^0.3.0",
+    "@ovh-ux/ovh-reket": "^1.0.1",
+    "@ovh-ux/request-tagger": "^0.1.0",
+    "@ovh-ux/url-builder": "^1.1.0",
     "@types/react": "^17.0.24",
     "@types/react-router-dom": "^5.3.0",
     "dompurify": "^2.3.3",

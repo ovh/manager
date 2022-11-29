@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ui-router-breadcrumb",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Display a breadcrumb based on the UI-Router state declaration.",
   "keywords": [
     "angularjs",
@@ -36,7 +36,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ui-router-breadcrumb' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^11.0.0 || ^12.0.0"
+    "@ovh-ux/component-rollup-config": "^12.0.1"
   },
   "peerDependencies": {
     "@uirouter/angularjs": "^1.0.22",
