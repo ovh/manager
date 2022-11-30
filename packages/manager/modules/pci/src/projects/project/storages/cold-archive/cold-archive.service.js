@@ -158,7 +158,7 @@ export default class PciStoragesColdArchiveService {
       .then(({ data }) =>
         data.map((container) => {
           const updatedContainer = container;
-          updatedContainer.createdAt = moment(container.createdAt).format(
+          updatedContainer.formatDate = moment(container.createdAt).format(
             DATE_FORMAT,
           );
           updatedContainer.translatedStatus = this.$translate.instant(
