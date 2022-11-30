@@ -3,7 +3,7 @@ import {
   DATA_PROCESSING_NOTEBOOKS_STATUSES,
 } from '../../data-processing.constants';
 
-export default class {
+export default class NotebookStatusCtrl {
   /* @ngInject */
   constructor($translate) {
     this.$translate = $translate;
