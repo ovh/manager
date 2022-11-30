@@ -4,7 +4,7 @@ import {
 } from '../data-processing.utils';
 import { DATA_PROCESSING_GUIDE_URL } from '../data-processing.constants';
 
-export default class {
+export default class DataProcessingNotebooksCtrl {
   /* @ngInject */
   constructor(
     CucCloudMessage,
@@ -23,6 +23,7 @@ export default class {
 
   $onInit() {
     this.subscribeToMessages();
+    this.formatDuration = DataProcessingNotebooksCtrl.formatDuration;
   }
 
   refreshMessage() {
@@ -49,9 +50,7 @@ export default class {
     );
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  formatDuration(dt) {
-    // this method needs to use current instance of moment, so it cannot static
+  static formatDuration(dt) {
     const duration = moment.duration(dt);
     const days = Math.floor(duration.asDays());
     const hours = duration.hours();
