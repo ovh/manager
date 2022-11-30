@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import {
   COLD_ARCHIVE_ADD_MESSAGES_ID,
   COLD_ARCHIVE_DEFAULT_REGION,
@@ -53,7 +52,13 @@ export default class ColdArchiveConfigurationController {
   getUserOwnerId() {
     const { createMode, linkedMode } = this.userModel;
 
-    return createMode?.user?.id || linkedMode?.selected?.id;
+    return createMode.user?.id || linkedMode.selected?.id;
+  }
+
+  getUserName() {
+    const { createMode, linkedMode } = this.userModel;
+
+    return createMode.user?.description || linkedMode.selected?.description;
   }
 
   getNameArchiveStepHeader(display) {
@@ -93,20 +98,30 @@ export default class ColdArchiveConfigurationController {
     }); */
 
     this.isArchiveCreationInProgress = true;
-    const ownerId = this.getUserOwnerId();
     return this.pciStoragesColdArchiveService
       .createArchiveContainer(this.projectId, COLD_ARCHIVE_DEFAULT_REGION, {
         ...this.archiveModel,
-        ownerId,
+        ownerId: this.getUserOwnerId(),
       })
-      .then(() => {
-        return this.goToArchives();
-      })
+      .then(() =>
+        this.goToColdArchiveContainers(
+          this.$translate.instant(
+            'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success',
+            {
+              containerName: this.archiveModel.name,
+              userName: this.getUserName(),
+            },
+          ),
+        ),
+      )
       .catch((err) => {
         this.cucCloudMessage.error(
           this.$translate.instant(
             'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_failed',
-            { message: get(err, 'data.message', '') },
+            {
+              containerName: this.archiveModel.name,
+              message: err.data?.message || err?.message || err.data,
+            },
           ),
           COLD_ARCHIVE_ADD_MESSAGES_ID,
         );
