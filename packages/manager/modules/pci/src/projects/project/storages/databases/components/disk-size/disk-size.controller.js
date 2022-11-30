@@ -1,10 +1,4 @@
 export default class DiskSizeController {
-  /* @ngInject */
-  constructor($scope, $timeout) {
-    this.$scope = $scope;
-    this.$timeout = $timeout;
-  }
-
   $onInit() {
     if (!this.initialValue) {
       this.initialValue = this.min;
