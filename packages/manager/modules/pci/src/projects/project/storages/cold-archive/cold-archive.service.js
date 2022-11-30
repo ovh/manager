@@ -4,9 +4,10 @@ import { DATE_FORMAT } from './cold-archives.constants';
 
 export default class PciStoragesColdArchiveService {
   /* @ngInject */
-  constructor($http, $q, Poller, OvhApiCloudProjectUser) {
+  constructor($http, $q, $translate, Poller, OvhApiCloudProjectUser) {
     this.$http = $http;
     this.$q = $q;
+    this.$translate = $translate;
     this.Poller = Poller;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
   }
@@ -159,6 +160,9 @@ export default class PciStoragesColdArchiveService {
           const updatedContainer = container;
           updatedContainer.createdAt = moment(container.createdAt).format(
             DATE_FORMAT,
+          );
+          updatedContainer.translatedStatus = this.$translate.instant(
+            `pci_projects_project_storages_containers_status_${container.status}`,
           );
           return updatedContainer;
         }),
