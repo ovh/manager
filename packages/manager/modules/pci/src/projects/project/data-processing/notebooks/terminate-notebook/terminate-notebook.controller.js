@@ -1,8 +1,7 @@
-export default class {
+export default class TerminatenotebookCtrl {
   /* @ngInject */
   constructor(dataProcessingService) {
     this.dataProcessingService = dataProcessingService;
-    this.stopNotebook = this.stopNotebook.bind(this);
   }
 
   stopNotebook() {

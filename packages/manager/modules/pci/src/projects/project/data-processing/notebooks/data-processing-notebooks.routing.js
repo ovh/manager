@@ -58,9 +58,7 @@ export default /* @ngInject */ ($stateProvider) =>
         });
       },
       notebooks: /* @ngInject */ (dataProcessingService, projectId) =>
-        dataProcessingService
-          .getNotebooks(projectId)
-          .then((notebooks) => notebooks.data),
+        dataProcessingService.getNotebooks(projectId).then(({ data }) => data),
       notebookId: /* @ngInject */ ($transition$) => $transition$.params().id,
       lab: /* @ngInject */ (PciProjectLabsService, projectId) =>
         PciProjectLabsService.getLabByName(projectId, 'dataProcessing'),

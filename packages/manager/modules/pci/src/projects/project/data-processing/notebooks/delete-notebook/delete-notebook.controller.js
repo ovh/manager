@@ -1,4 +1,4 @@
-export default class {
+export default class DeleteNotebookCtrl {
   /* @ngInject */
   constructor(dataProcessingService) {
     this.dataProcessingService = dataProcessingService;

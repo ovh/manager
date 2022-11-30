@@ -11,14 +11,11 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       params: {
         notebookId: null,
-        notebookName: null,
         projectId: null,
       },
       resolve: {
         notebookId: /* @ngInject */ ($transition$) =>
           $transition$.params().notebookId,
-        notebookName: /* @ngInject */ ($transition$) =>
-          $transition$.params().notebookName,
         goBack: /* @ngInject */ (showNotebooks) => showNotebooks,
       },
     },
