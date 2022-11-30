@@ -52,7 +52,7 @@
         >
             <span
                 class="{{$ctrl.getStatusClass($row.status)}}"
-                data-translate="{{ 'pci_projects_project_storages_containers_status_' + $row.status }}"
+                data-ng-bind=":: $row.translatedStatus"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column>
