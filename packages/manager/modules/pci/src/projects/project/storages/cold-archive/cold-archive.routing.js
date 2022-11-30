@@ -4,6 +4,7 @@ import {
   REGION,
   GUIDES,
 } from './cold-archives.constants';
+import { COLD_ARCHIVE_STATES } from './containers/containers.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive', {
@@ -68,11 +69,6 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
-      goToColdArchiveContainers: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.storages.cold-archive', {
-          projectId,
-        }),
-
       // The region parameter is for now hard-coded.
       // waiting the API fix PCINT-3514
       containers: /* @ngInject */ (PciStoragesColdArchiveService, projectId) =>
@@ -82,6 +78,30 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.storages.cold-archive.add', {
           projectId,
         }),
+
+      goToColdArchiveContainers: ($state, projectId, CucCloudMessage) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const reload = message && type === 'success';
+        const state = COLD_ARCHIVE_STATES.CONTAINERS;
+
+        const promise = $state.go(
+          state,
+          {
+            projectId,
+          },
+          {
+            reload,
+          },
+        );
+
+        if (message) {
+          promise.then(() => CucCloudMessage[type](message, state));
+        }
+
+        return promise;
+      },
 
       trackClick: /* @ngInject */ (atInternet) => (hit) =>
         atInternet.trackClick({
