@@ -85,29 +85,10 @@ export default /* @ngInject */ ($stateProvider) => {
           return $window.open(container.virtualHost, '_blank');
         },
 
-        goBack: ($state, projectId, CucCloudMessage) => (
+        goBack: /* @ngInject */ (goToColdArchiveContainers) => (
           message = false,
           type = 'success',
-        ) => {
-          const reload = message && type === 'success';
-          const state = COLD_ARCHIVE_STATES.CONTAINERS;
-
-          const promise = $state.go(
-            state,
-            {
-              projectId,
-            },
-            {
-              reload,
-            },
-          );
-
-          if (message) {
-            promise.then(() => CucCloudMessage[type](message, state));
-          }
-
-          return promise;
-        },
+        ) => goToColdArchiveContainers(message, type),
 
         refreshContainers: /* @ngInject */ ($state) => () => $state.reload(),
       },

@@ -46,8 +46,8 @@
 
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-href="{{:: $ctrl.goToColdArchiveContainers }}"
-            data-active="!$ctrl.isUserTabActive()"
+            data-href="{{:: $ctrl.coldArchiveContainersLink }}"
+            data-active="$ctrl.isUserColdArchiveContainersTabActive()"
             ><span
                 data-translate="pci_projects_project_storages_cold_archive_tabs_tab_archives"
             ></span>
