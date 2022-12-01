@@ -15,6 +15,7 @@ export default {
     goToPrivateNetwork: '<',
     goToAddPublicGateway: '<',
     trackClick: '<',
+    regionsLink: '<',
   },
   controller,
   template,

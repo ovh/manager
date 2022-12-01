@@ -75,7 +75,7 @@
         data-on-focus="$ctrl.onRegionsFocus()"
         data-on-submit="$ctrl.onRegionSubmit()"
         data-prevent-next="true"
-        data-valid="$ctrl.selectedRegion"
+        data-valid="$ctrl.selectedRegion.enabled"
     >
         <p>
             <span
@@ -97,6 +97,26 @@
             data-display-selected-region="$ctrl.displaySelectedRegion"
             data-on-change="$ctrl.onRegionChange(region)"
         ></pci-project-regions-list>
+        <oui-message
+            data-type="warning"
+            data-ng-if="$ctrl.selectedRegion && !$ctrl.selectedRegion.enabled && $ctrl.selectedRegion.inactive"
+        >
+            <span
+                data-translate="pci_projects_project_public_gateways_add_region_activate_line1"
+            ></span>
+            <a
+                data-ng-href="{{ $ctrl.regionsLink }}"
+                target="_self"
+                rel="noopener"
+            >
+                <span
+                    data-translate="pci_projects_project_public_gateways_add_region_activate_line2"
+                ></span>
+            </a>
+            <span
+                data-translate="pci_projects_project_public_gateways_add_region_activate_line3"
+            ></span>
+        </oui-message>
     </oui-step-form>
     <oui-step-form
         data-header="{{:: 'pci_projects_project_public_gateways_add_attach_private_network_to_public_gateway_sub_title' | translate }}"

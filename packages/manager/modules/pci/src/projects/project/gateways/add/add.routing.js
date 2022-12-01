@@ -26,15 +26,25 @@ export default /* @ngInject */ ($stateProvider) => {
         PciPublicGatewaysService,
         coreConfig,
       ) =>
-        PciPublicGatewaysService.getRegions(projectId, {
-          ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
-          product: PRODUCT_NAME.toLowerCase(),
-        }).then((data) =>
-          data.products
-            .find((product) => product.name === PRODUCT_NAME.toLowerCase())
-            .regions.map((region) => {
-              return { ...region, hasEnoughQuota: () => true };
-            }),
+        PciPublicGatewaysService.getRegionsForActivation(projectId).then(
+          (inactiveRegions) => {
+            return PciPublicGatewaysService.getRegions(projectId, {
+              ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
+              product: PRODUCT_NAME.toLowerCase(),
+            }).then((data) =>
+              data.products
+                .find((product) => product.name === PRODUCT_NAME.toLowerCase())
+                .regions.map((region) => {
+                  return {
+                    ...region,
+                    hasEnoughQuota: () => true,
+                    inactive: inactiveRegions.some(
+                      (inactiveRegion) => inactiveRegion.name === region.name,
+                    ),
+                  };
+                }),
+            );
+          },
         ),
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
       onGoBackClick: /* @ngInject */ (

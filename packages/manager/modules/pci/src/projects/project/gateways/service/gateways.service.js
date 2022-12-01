@@ -105,6 +105,12 @@ export default class publicGatewaysServiceClass {
       .then(({ data }) => data);
   }
 
+  getRegionsForActivation(serviceName) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/regionAvailable`)
+      .then(({ data }) => data);
+  }
+
   deleteGateway(serviceName, regionName, gatewayId) {
     const deleteGatewayNamespace = 'gateway-deletion';
     return this.$http

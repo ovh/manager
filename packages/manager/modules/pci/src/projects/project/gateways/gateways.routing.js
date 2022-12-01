@@ -84,6 +84,10 @@ export default /* @ngInject */ ($stateProvider) => {
           name: hit,
         });
       },
+      regionsLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.regions', {
+          projectId,
+        }),
       goBack: /* @ngInject */ (goToPublicGateway) => (message, type) =>
         goToPublicGateway(message, type),
       goToPublicGateway: /* @ngInject */ (
