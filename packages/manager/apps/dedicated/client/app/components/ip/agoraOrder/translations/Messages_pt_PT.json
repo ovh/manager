@@ -1,6 +1,19 @@
 {
-  "ip_agora_table_header_offer": "Oferta",
+  "ip_agora_table_header_offer": "Escolha a sua oferta",
   "ip_agora_table_header_quantity": "Quantidade",
   "ip_agora_table_header_country": "Localizado em",
-  "ip_agora_table_header_organisation": "Organização"
+  "ip_agora_table_header_organisation": "Associar uma organização",
+  "ip_agora_select_quantity_title": "Escolha a quantidade",
+  "ip_agora_ip_localisation_title": "Localização IP",
+  "ipv4_select_placeholder": "Escolher um tamanho",
+  "license_dashboard_title": "Encomendar um IP",
+  "ipv4Failover_price_label": "1,50€/mês + IVA",
+  "ipv4Block_description": "Bloco de endereços IPv4. Os tamanhos de blocos disponíveis variam em função do serviço associado.",
+  "ipv4Block_price_label": "1,50€/mês + IVA por endereço IP",
+  "ipv4Block_organization_description1": "Deve associar uma organização ao bloco de endereços IP. A organização representa a entidade administrativa detentora do bloco de endereços IP e deve obrigatoriamente ser declarada na base de dados pública Whois (registo mundial de endereços IP e domínios). A organização deve conter as seguintes informações de contacto: nome, tipo de RIR e endereço de e-mail.",
+  "ipv4Block_organization_description2": "Saber mais sobre as organizações.",
+  "ipv4Block_organization_description3": "Se não associar uma organização, as informações da sua conta OVHcloud (NIC) poderão ser utilizadas",
+  "ipv4Block_organization_info_banner": "O nome da organização associada ao seu bloco de endereços IP, bem como as informações de contacto correspondentes, figurarão na base de dados pública Whois",
+  "ip_agora_table_submit_text": "Prosseguir a encomenda",
+  "ip_agora_table_cancel_text": "Retroceder"
 }

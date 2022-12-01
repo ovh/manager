@@ -1,12 +1,12 @@
 {
- "pci_projects_project_failoverip_onboarding_content1": "Nie posiadasz jeszcze IP Failover.",
- "pci_projects_project_failoverip_onboarding_content2": "Przypisz i przenieś swoje publiczne adresy IP z jednej instancji do innej.",
- "pci_projects_project_failoverip_onboarding_content3": "Dzięki IP Failover możesz przypisać publiczny adres IP do instancji, a następnie przenieść go w dowolnym momencie do innej instancji w ramach Twojego projektu. Usługa ta jest szczególnie użyteczna w przypadku wdrażania modernizacji lub aktualizacji.",
- "pci_projects_project_failoverip_onboarding_content4": "Aby korzystać z IP Failover, konieczne jest przeprowadzenie konfiguracji w systemie instancji.",
- "pci_projects_project_failoverip_onboarding_action_label": "Importuj IP Failover",
- "pci_projects_project_failoverip_onboarding_action_buy": "Zamów adresy IP Failover",
- "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_title": "Zachowaj konfigurację związaną z tym adresem IP Failover",
- "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_description": "",
- "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_title": "Przenieś IP Failover",
- "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_description": ""
+  "pci_projects_project_failoverip_onboarding_content1": "Nie posiadasz jeszcze IP Failover.",
+  "pci_projects_project_failoverip_onboarding_content2": "Przypisz i przenieś swoje publiczne adresy IP z jednej instancji do innej.",
+  "pci_projects_project_failoverip_onboarding_content3": "Dzięki IP Failover możesz przypisać publiczny adres IP do instancji, a następnie przenieść go w dowolnym momencie do innej instancji w ramach Twojego projektu. Usługa ta jest szczególnie użyteczna w przypadku wdrażania modernizacji lub aktualizacji.",
+  "pci_projects_project_failoverip_onboarding_content4": "Aby korzystać z IP Failover, konieczne jest przeprowadzenie konfiguracji w systemie instancji.",
+  "pci_projects_project_failoverip_onboarding_action_label": "Importuj IP Failover",
+  "pci_projects_project_failoverip_onboarding_action_buy": "Zamów adresy IP Failover",
+  "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_title": "Zachowaj konfigurację Additional IP",
+  "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_description": "",
+  "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_title": "Przenieś adres Additional IP",
+  "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_description": ""
 }
