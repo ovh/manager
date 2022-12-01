@@ -1,0 +1,16 @@
+{
+  "ip_onboarding_title": "Dodatkowe IP",
+  "ip_onboarding_subtitle": "Zwiększ elastyczność Twoich aplikacji za pomocą Additional IP",
+  "ip_onboarding_content_header": "Większość produktów OVHcloud zawiera wstępnie skonfigurowany statyczny adres IPv4. Produkty te zapewniają wyjątkową elastyczność, ponieważ mogą być również wykorzystywane z usługą Additional IP (występującą wcześniej pod nazwą IP Failover). Dodatkowe adresy IP można łatwo przypisywać i przenosić między usługami. Są one dostępne w dwóch różnych formatach: Dostępne są w dwóch formatach.",
+  "ip_onboarding_content_footer": "Możesz przypisać Additional IP do każdej kompatybilnej usługi w ramach tego samego kampusu Kampus to grupa centrów danych znajdujących się w tej samej lokalizacji geograficznej. Aby uzyskać więcej informacji, sprawdź naszą stronę",
+  "ip_onboarding_content_list_item_1": "Pojedynczy adres (/32)",
+  "ip_onboarding_content_list_item_2": "Blok adresów IP (do /24)",
+  "ip_onboarding_order_title": "Zamów Additional IP",
+  "ip_onboarding_order_content": "Dowiedz się, jak przenieść Additional IP w Panelu klienta lub poprzez API OVHcloud",
+  "ip_onboarding_vrack_title": "Konfiguracja bloku IP w sieci vRack",
+  "ip_onboarding_vrack_content": "Dowiedz się, jak skonfigurować blok publicznych adresów IP w sieci vRack",
+  "ip_onboarding_add_title": "Dodaj blok IP",
+  "ip_onboarding_add_content": "Zamów blok IP dla usługi Hosted Private Cloud",
+  "ip_onboarding_order": "Zamów IP",
+  "ip_onboarding_byoip": "Bring your own IP"
+}
