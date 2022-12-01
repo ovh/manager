@@ -1,0 +1,18 @@
+{
+  "ip_components_alerts_load_text_with_service": "Überprüfen Sie, ob für diesen Dienst Benachrichtigungen auf Ihren IP-Adressen vorliegen.",
+  "ip_components_alerts_load_text": "Überprüfen Sie, ob Benachrichtigungen auf Ihren IPs vorliegen.",
+  "ip_components_alerts_load_link": "Alle Benachrichtigungen anzeigen",
+  "ip_components_alerts_one_alert_with_service": "1 Benachrichtigung für diesen Dienst",
+  "ip_components_alerts_many_alerts_with_service": "{} Benachrichtigungen für diesen Dienst",
+  "ip_components_alerts_one_alert": "1 Benachrichtigung",
+  "ip_components_alerts_many_alerts": "{} Benachrichtigungen",
+  "ip_components_alerts_no_alerts_with_service": "Keine Benachrichtigung für diesen Dienst",
+  "ip_components_alerts_no_alerts": "Keine Benachrichtigung",
+  "ip_components_alerts_one_spam_alert": "1 gesperrte IP-Adresse (Antispam)",
+  "ip_components_alerts_many_spam_alerts": "{} blockierte IP-Adressen (Antispam)",
+  "ip_components_alerts_one_antihack_alert": "1 gesperrte IP-Adresse (Antihack)",
+  "ip_components_alerts_many_antihack_alerts": "{} blockierte IP-Adressen (Antihack)",
+  "ip_components_alerts_one_mitigation_alert": "1 angegriffene IP-Adresse (Schadensbegrenzung)",
+  "ip_components_alerts_many_mitigation_alerts": "{} angegriffene IP-Adressen (Schadensbegrenzung)",
+  "ip_components_alerts_no_services": "keine Dienste"
+}

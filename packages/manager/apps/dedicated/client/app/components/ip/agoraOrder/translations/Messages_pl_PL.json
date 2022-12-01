@@ -1,6 +1,19 @@
 {
-  "ip_agora_table_header_offer": "Usługa",
+  "ip_agora_table_header_offer": "Wybierz ofertę",
   "ip_agora_table_header_quantity": "Ilość",
   "ip_agora_table_header_country": "Geolokalizacja IP",
-  "ip_agora_table_header_organisation": "Organizacja"
+  "ip_agora_table_header_organisation": "Przypisz organizację",
+  "ip_agora_select_quantity_title": "Wybierz ilość",
+  "ip_agora_ip_localisation_title": "Lokalizacja IP",
+  "ipv4_select_placeholder": "Wybierz rozmiar",
+  "license_dashboard_title": "Zamów IP",
+  "ipv4Failover_price_label": "7 PLN netto/m-c",
+  "ipv4Block_description": "Blok adresów IPv4. Dostępne rozmiary bloków zależą od przypisanej usługi.",
+  "ipv4Block_price_label": "7 PLN netto/m-c/adres IP",
+  "ipv4Block_organization_description1": "Należy przypisać organizację do bloku adresów IP. Organizacja oznacza jednostkę administracyjną, która posiada blok adresów IP i figuruje w publicznej bazie danych Whois (globalny rejestr adresów IP i domen). Z organizacją powiązane są następujące informacje: nazwa, typ RIR i adres e-mail.",
+  "ipv4Block_organization_description2": "Dowiedz się więcej o organizacjach.",
+  "ipv4Block_organization_description3": "Jeśli nie przypiszesz podmiotu, mogą zostać użyte Twoje dane z konta OVHcloud (NIC)",
+  "ipv4Block_organization_info_banner": "Nazwa organizacji przypisanej do Twojego bloku adresów IP oraz powiązane z nią dane kontaktowe będą wyświetlane w publicznej bazie danych WHOIS.",
+  "ip_agora_table_submit_text": "Kontynuuj zamówienie",
+  "ip_agora_table_cancel_text": "Powrót"
 }
