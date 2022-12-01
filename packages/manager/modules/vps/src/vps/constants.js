@@ -24,38 +24,6 @@ export const CHANGE_OWNER_URL = {
 
 export const FEATURE_CLOUDDATABASE = 'cloudDatabase';
 
-export const ORDER_EXPRESS_BASE_URL = {
-  EU: {
-    CZ: 'https://www.ovh.cz/order/express/#/new/express/resume',
-    DE: 'https://www.ovh.de/order/express/#/new/express/resume',
-    ES: 'https://www.ovh.es/order/express/#/new/express/resume',
-    FI: 'https://www.ovh-hosting.fi/order/express/#/new/express/resume',
-    FR: 'https://www.ovh.com/fr/order/express/#/new/express/resume',
-    GB: 'https://www.ovh.co.uk/order/express/#/new/express/resume',
-    IE: 'https://www.ovh.ie/order/express/#/new/express/resume',
-    IT: 'https://www.ovh.it/order/express/#/new/express/resume',
-    LT: 'https://www.ovh.lt/order/express/#/new/express/resume',
-    MA: 'https://www.ovh.ma/order/express/#/new/express/resume',
-    NL: 'https://www.ovh.nl/order/express/#/new/express/resume',
-    PL: 'https://www.ovh.pl/order/express/#/new/express/resume',
-    PT: 'https://www.ovh.pt/order/express/#/new/express/resume',
-    SN: 'https://www.ovh.sn/order/express/#/new/express/resume',
-    TN: 'https://www.ovh.com/tn/order/express/#/new/express/resume',
-  },
-  CA: {
-    ASIA: 'https://ca.ovh.com/asia/order/express/#/new/express/resume',
-    AU: 'https://ca.ovh.com/au/order/express/#/new/express/resume',
-    CA: 'https://ca.ovh.com/en/order/express/#/new/express/resume',
-    QC: 'https://ca.ovh.com/fr/order/express/#/new/express/resume',
-    SG: 'https://ca.ovh.com/sg/order/express/#/new/express/resume',
-    WE: 'https://us.ovh.com/us/order/express/#/new/express/resume',
-    WS: 'https://us.ovh.com/es/order/express/#/new/express/resume',
-  },
-  US: {
-    US: 'https://us.ovhcloud.com/order/express/#/express/review',
-  },
-};
-
 export const PRODUCT_NAME = 'VPS';
 
 export const RENEW_URL = {
@@ -78,7 +46,6 @@ export default {
   BOOT_MODE,
   CHANGE_OWNER_URL,
   FEATURE_CLOUDDATABASE,
-  ORDER_EXPRESS_BASE_URL,
   PRODUCT_NAME,
   RENEW_URL,
   VPS,

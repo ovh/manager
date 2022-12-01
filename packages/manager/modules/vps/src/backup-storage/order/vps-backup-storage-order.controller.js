@@ -1,8 +1,6 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 
-import { ORDER_EXPRESS_BASE_URL } from '../../vps/constants';
-
 export default class VpsBackupStorageOrderCtrl {
   /* @ngInject */
   constructor(
@@ -14,6 +12,7 @@ export default class VpsBackupStorageOrderCtrl {
     connectedUser,
     OvhApiOrder,
     stateVps,
+    RedirectionService,
   ) {
     // dependencies injections
     this.$q = $q;
@@ -24,6 +23,7 @@ export default class VpsBackupStorageOrderCtrl {
     this.connectedUser = connectedUser;
     this.OvhApiOrder = OvhApiOrder;
     this.stateVps = stateVps;
+    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
 
     // other attributes used in view
     this.ftpBackupOption = null;
@@ -55,10 +55,6 @@ export default class VpsBackupStorageOrderCtrl {
   ============================== */
 
   onFtpBackupOrderStepperFinish() {
-    let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
-      this.coreConfig.getRegion(),
-      this.connectedUser.ovhSubsidiary,
-    ]);
     const priceOptions = find(this.ftpBackupOption.prices, ({ capacities }) =>
       capacities.includes('renew'),
     );
@@ -70,17 +66,17 @@ export default class VpsBackupStorageOrderCtrl {
       pricingMode: priceOptions.pricingMode,
       quantity: 1,
     };
-    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
+    this.expressOrderUrl = `${this.expressOrderUrl}?products=${JSURL.stringify([
       expressParams,
     ])}`;
 
-    this.$window.open(expressOrderUrl, '_blank');
+    this.$window.open(this.expressOrderUrl, '_blank', 'noopener');
 
     this.CucCloudMessage.success({
       textHtml: this.$translate.instant(
         'vps_configuration_activate_ftpbackup_success',
         {
-          url: expressOrderUrl,
+          url: this.expressOrderUrl,
         },
       ),
     });
