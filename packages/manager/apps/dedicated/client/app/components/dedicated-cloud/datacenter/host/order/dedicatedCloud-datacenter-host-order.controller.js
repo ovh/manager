@@ -3,18 +3,14 @@ import head from 'lodash/head';
 import set from 'lodash/set';
 import size from 'lodash/size';
 import sortBy from 'lodash/sortBy';
-import { PRICE_LINK } from '../../dedicatedCloud-datacenter.constants';
 
 export default class {
   /* @ngInject */
-  constructor($q, $translate, OvhHttp, User, coreConfig) {
+  constructor($q, $translate, OvhHttp, User) {
     this.$q = $q;
     this.$translate = $translate;
     this.OvhHttp = OvhHttp;
     this.User = User;
-    this.coreConfig = coreConfig;
-    this.urlPrice =
-      PRICE_LINK[coreConfig.getUser().ovhSubsidiary] || PRICE_LINK.DEFAULT;
   }
 
   $onInit() {

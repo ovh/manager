@@ -3,7 +3,7 @@
   "dedicatedCloud_datastore_order_info_EPCC": "Możesz spersonalizować swoją prywatną chmurę poprzez dodanie magazynów danych (datastore). Zostaniesz przekierowany do nowej zakładki, aby sfinalizować zamówienie.",
   "dedicatedCloud_datastore_order_select": "Wybierz rodzaj datastore:",
   "dedicatedCloud_datastore_order_type": "Typ",
-  "dedicatedCloud_datastore_order_price": "Sprawdź cennik",
+  "dedicatedCloud_datastore_order_price": "Cena",
   "dedicatedCloud_datastore_order_quantity": "Ilość:",
   "dedicatedCloud_datastore_order_confirm": "Potwierdź zamówienie",
   "dedicatedCloud_datastore_order_loading_error": "Wystąpił błąd podczas pobierania informacji na temat datastore.",

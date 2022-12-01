@@ -4,7 +4,7 @@
   "dedicatedCloud_host_order_info_MBM": "Vous pouvez personnaliser votre Essentials en ajoutant des hosts. Vous serez ensuite redirigé vers un nouvel onglet pour finaliser votre commande.",
   "dedicatedCloud_host_order_select": "Sélectionner un type d'host :",
   "dedicatedCloud_host_order_host": "Host",
-  "dedicatedCloud_host_order_price": "Consulter nos tarifs",
+  "dedicatedCloud_host_order_price": "Prix",
   "dedicatedCloud_host_order_speed": "Vitesse CPU",
   "dedicatedCloud_host_order_memory": "RAM",
   "dedicatedCloud_host_order_cores": "Nombre de cores",
