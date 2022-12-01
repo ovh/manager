@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.20.6...@ovh-ux/manager-web@16.21.0) (2022-12-01)
+
+
+### Features
+
+* **hosting.order:** deprecate order/hosting routes ([#8335](https://github.com/ovh/manager/issues/8335)) ([98443d4](https://github.com/ovh/manager/commit/98443d4f039be72ecf2a41d06a2d3aaf7d62d7df))
+
+
+
+
+
 ## [16.20.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.20.5...@ovh-ux/manager-web@16.20.6) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

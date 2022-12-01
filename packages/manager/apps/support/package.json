@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support-app",
-  "version": "2.7.10",
+  "version": "2.7.11",
   "private": true,
   "description": "Support standalone application.",
   "repository": {
@@ -19,7 +19,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^6.5.0",
     "@ovh-ux/manager-core": "^12.12.6",
-    "@ovh-ux/manager-support": "^1.14.2",
+    "@ovh-ux/manager-support": "^1.15.0",
     "@ovh-ux/ng-at-internet": "^5.9.3",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.5",

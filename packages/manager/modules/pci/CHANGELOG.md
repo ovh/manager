@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.100.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.99.0...@ovh-ux/manager-pci@5.100.0) (2022-12-01)
+
+
+### Bug Fixes
+
+* **pci:** margins and polling ([#8310](https://github.com/ovh/manager/issues/8310)) ([29c4798](https://github.com/ovh/manager/commit/29c479819467f2a2c1d1626e95a4cf0b27e910d7))
+* **public-cloud.ip:** add right value of the price for ip ([#8439](https://github.com/ovh/manager/issues/8439)) ([9798350](https://github.com/ovh/manager/commit/979835060a3c17b1a6ab1f4b3abc85373928bbe7))
+
+
+### Features
+
+* **hosting.order:** deprecate order/hosting routes ([#8335](https://github.com/ovh/manager/issues/8335)) ([98443d4](https://github.com/ovh/manager/commit/98443d4f039be72ecf2a41d06a2d3aaf7d62d7df))
+* **pci.instance:** get image by region filter ([#8447](https://github.com/ovh/manager/issues/8447)) ([fa3df56](https://github.com/ovh/manager/commit/fa3df5697bcc1f1f9c02824b0d3056c7ccc9cf75))
+
+
+
+
+
 # [5.99.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.98.2...@ovh-ux/manager-pci@5.99.0) (2022-11-23)
 
 

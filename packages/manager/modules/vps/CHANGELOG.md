@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.27.1...@ovh-ux/manager-vps@2.28.0) (2022-12-01)
+
+
+### Features
+
+* **hosting.order:** deprecate order/hosting routes ([#8335](https://github.com/ovh/manager/issues/8335)) ([98443d4](https://github.com/ovh/manager/commit/98443d4f039be72ecf2a41d06a2d3aaf7d62d7df))
+
+
+
+
+
 ## [2.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.27.0...@ovh-ux/manager-vps@2.27.1) (2022-11-21)
 
 
