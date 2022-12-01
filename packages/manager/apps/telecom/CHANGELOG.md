@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.49.3...@ovh-ux/manager-telecom@13.50.0) (2022-12-01)
+
+
+### Bug Fixes
+
+* **telecom:** fix gtr comfort fees and missing install fees ([#8294](https://github.com/ovh/manager/issues/8294)) ([5560127](https://github.com/ovh/manager/commit/55601271f2225698e266bd50eaf1122420e2c99d))
+
+
+### Features
+
+* **telecom:** service for changeoffer and moveaddress ([#8215](https://github.com/ovh/manager/issues/8215)) ([eb888d4](https://github.com/ovh/manager/commit/eb888d4bdf74e8893fd15cf5a38acc66d530ae50))
+
+
+
+
+
 ## [13.49.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.49.2...@ovh-ux/manager-telecom@13.49.3) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

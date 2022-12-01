@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.37.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.37.3...@ovh-ux/manager-dedicated@17.37.4) (2022-12-01)
+
+
+### Bug Fixes
+
+* **dedicated.hardraid:** change virtualsize for install os ([#8401](https://github.com/ovh/manager/issues/8401)) ([8ab7c08](https://github.com/ovh/manager/commit/8ab7c08020e77dca7ef39a6555a668ed30a5378b))
+* **pcc.datastore:** add link of price for host and storage order ([#8361](https://github.com/ovh/manager/issues/8361)) ([9b167df](https://github.com/ovh/manager/commit/9b167df33ae2894ffedb8f8ea17048a46771919f))
+* **pcc.user:** change the regex for import user ([#8432](https://github.com/ovh/manager/issues/8432)) ([b7e69ff](https://github.com/ovh/manager/commit/b7e69ff91e0c2961df354d5070d629a8e3543147))
+
+
+### Reverts
+
+* Revert "fix(pcc.datastore): add link of price for host and storage order (#8361)" ([c31bff9](https://github.com/ovh/manager/commit/c31bff9c6a24b2c67b253b1b377685aa678dc795)), closes [#8361](https://github.com/ovh/manager/issues/8361)
+
+
+
+
+
 ## [17.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.37.2...@ovh-ux/manager-dedicated@17.37.3) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

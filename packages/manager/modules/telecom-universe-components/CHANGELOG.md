@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.15.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.14.1...@ovh-ux/ng-ovh-telecom-universe-components@7.15.0) (2022-12-01)
+
+
+### Features
+
+* **telecom:** service for changeoffer and moveaddress ([#8215](https://github.com/ovh/manager/issues/8215)) ([eb888d4](https://github.com/ovh/manager/commit/eb888d4bdf74e8893fd15cf5a38acc66d530ae50))
+
+
+
+
+
 ## [7.14.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.14.0...@ovh-ux/ng-ovh-telecom-universe-components@7.14.1) (2022-11-08)
 
 

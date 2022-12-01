@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.14.2...@ovh-ux/manager-support@1.15.0) (2022-12-01)
+
+
+### Features
+
+* **pci:** ai deploy ost renaming ([#8381](https://github.com/ovh/manager/issues/8381)) ([893fd37](https://github.com/ovh/manager/commit/893fd37e60d16a9d494c6760cdacf57022f03882))
+
+
+
+
+
 ## [1.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.14.1...@ovh-ux/manager-support@1.14.2) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-support
