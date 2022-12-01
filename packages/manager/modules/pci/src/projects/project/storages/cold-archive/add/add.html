@@ -76,9 +76,11 @@
         data-loading-text="{{:: 'pci_projects_project_storages_cold_archive_add_action_create_pending' | translate }}"
         data-on-focus="linkUserArchiveStep.display = true"
         data-on-submit="linkUserArchiveStep.display = false"
+        data-cancel-text="{{:: 'pci_projects_project_storages_cold_archive_add_action_cancel' | translate }}"
+        data-on-cancel="$ctrl.onArchiveCancel()"
         data-editable="!$ctrl.isArchiveCreationInProgress"
         data-loading="$ctrl.isArchiveCreationInProgress"
-        data-navigation="$ctrl.isReadyForValidation()"
+        data-valid="$ctrl.isReadyForValidation()"
         data-prevent-next="true"
     >
         <cold-archive-link-user-archive
