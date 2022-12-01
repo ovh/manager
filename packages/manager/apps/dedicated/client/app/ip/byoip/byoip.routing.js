@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip.byoip', {
     url: '/byoip',
     views: {
-      byoip: ipByoipComponent.name,
+      ipview: ipByoipComponent.name,
     },
     resolve: {
       plan: /* @ngInject */ (ByoipService) => ByoipService.getCatalog(),

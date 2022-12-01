@@ -2,8 +2,15 @@ import template from './ip-ip-agoraOrder.html';
 import controller from './ip-ip-agoraOrder.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.ip.dashboard.agora-order', {
+  $stateProvider.state('app.ip.agora-order', {
     url: '/agoraOrder?{catalogName:string}',
+    views: {
+      ipview: {
+        template,
+        controller,
+        controllerAs: '$ctrl',
+      },
+    },
     params: {
       service: null,
       user: {},
@@ -12,18 +19,10 @@ export default /* @ngInject */ ($stateProvider) => {
         value: 'ip',
       },
     },
-    views: {
-      modal: {
-        template,
-        controller,
-        controllerAs: 'ctrl',
-      },
-    },
     resolve: {
-      hideBreadcrumb: () => true,
-      breadcrumb: () => null,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('license_dashboard_title'),
     },
-    layout: 'modal',
     atInternet: {
       rename: 'dedicated::ip::dashboard::order',
     },
