@@ -48,8 +48,8 @@
             >
                 <oui-tile-description>
                     <oui-button
-                        size="m"
-                        icon-right="oui-icon-external-link"
+                        data-size="m"
+                        data-icon-right="oui-icon-external-link"
                         data-disabled="!$ctrl.isNotebookRunning()"
                         data-on-click="$ctrl.openLiveCodeEditor()"
                     >
@@ -162,9 +162,9 @@
                     data-ng-repeat="template in $ctrl.capabilities.templates track by template.id"
                     data-translate="data_processing_notebooks_details_resources_cluster_description_label"
                     data-translate-values="{'clusterName': template.name, 
-                    'driverCores': template.driver_cores, 'driverMemory': template.driverMemory, 'driverMemoryOverhead': template.driverMemory_overhead, 
-                    'executorCores': template.executor_cores, 'executorMemory': template.executorMemory, 'executorMemoryOverhead': template.executorMemory_overhead,
-                    'executorNumber': template.executorNum, 'htPrice': 0.1, 'ttcPrice': 0.1}"
+                    'driverCores': template.driverCores, 'driverMemory': template.driverMemory, 'driverMemoryOverhead': template.driverMemoryOverhead, 
+                    'executorCores': template.executorCores, 'executorMemory': template.executorMemory, 'executorMemoryOverhead': template.executorMemoryOverhead,
+                    'executorNumber': template.executorNum, 'htPrice': 0, 'ttcPrice': 0}"
                 >
                 </oui-tile-description>
             </oui-tile-definition>
