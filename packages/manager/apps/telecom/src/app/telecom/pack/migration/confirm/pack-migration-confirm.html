@@ -163,30 +163,6 @@
                                 ></td>
                             </tr>
                             <tr
-                                data-ng-if="$ctrl.process.selectedOffer.gtrComfortActivated"
-                            >
-                                <th
-                                    scope="row"
-                                    data-translate="telecom_pack_migration_confirm_comfort_activation"
-                                    data-title="{{ 'telecom_pack_migration_confirm_header_entitled' | translate }}"
-                                ></th>
-                                <td
-                                    class="text-price text-right"
-                                    data-ng-bind="$ctrl.process.selectedOffer.gtrComfortFees.text"
-                                    data-title="{{ 'telecom_pack_migration_confirm_header_price' | translate }}"
-                                ></td>
-                                <td
-                                    class="text-right"
-                                    data-title="{{ 'telecom_pack_migration_confirm_header_quantity' | translate }}"
-                                    data-ng-bind="$ctrl.QUANTITY"
-                                ></td>
-                                <td
-                                    class="text-price text-right"
-                                    data-ng-bind="$ctrl.process.selectedOffer.gtrComfortFees.text"
-                                    data-title="{{ 'telecom_pack_migration_confirm_header_total' | translate }}"
-                                ></td>
-                            </tr>
-                            <tr
                                 data-ng-repeat="option in $ctrl.choosedAdditionalOptions track by $index"
                             >
                                 <th
@@ -244,9 +220,7 @@
                 </p>
             </div>
 
-            <div
-                data-ng-if="$ctrl.choosedAdditionalOptions.length === 0 || !$ctrl.constructor.isOneOptionSelected($ctrl.process.selectedOffer)"
-            >
+            <div>
                 <p
                     data-translate="telecom_pack_migration_confirm_new_offer_price"
                     data-translate-values="{ price : $ctrl.process.selectedOffer.displayedPrice.text }"
@@ -257,6 +231,15 @@
                     data-ng-if="$ctrl.process.selectedOffer.promotion"
                 ></p>
                 <p
+                    data-translate="telecom_pack_migration_confirm_install_fees"
+                    data-translate-values="{ price : $ctrl.process.selectedOffer.installFees.text }"
+                    data-ng-if="$ctrl.process.selectedOffer.installFees && !$ctrl.process.selectedOffer.promotion"
+                ></p>
+                <p
+                    data-ng-bind-html="$ctrl.displayTranslatedPrice('telecom_pack_migration_confirm_comfort_activation', $ctrl.process.selectedOffer.gtrComfortFees.text)"
+                    data-ng-if="$ctrl.process.selectedOffer.gtrComfortActivated"
+                ></p>
+                <p
                     data-translate="{{ $ctrl.process.selectedOffer.engageMonths ? 'telecom_pack_migration_confirm_commitment' : 'telecom_pack_migration_confirm_no_commitment' }}"
                     data-translate-values="{ month : $ctrl.process.selectedOffer.engageMonths }"
                 ></p>
@@ -264,8 +247,12 @@
 
             <p
                 data-ng-if="$ctrl.process.selectedOffer.needNewModem && $ctrl.process.shipping.mode === 'transporter'"
-                data-translate="telecom_pack_migration_confirm_shipping"
-                data-translate-values="{ price : $ctrl.getFirstMensuality().text, transportPrice : $ctrl.modemTransportPrice }"
+                data-ng-bind-html="$ctrl.displayTranslatedPrice('telecom_pack_migration_confirm_shipping', $ctrl.modemTransportPrice)"
+            ></p>
+
+            <p
+                data-ng-bind-html="$ctrl.displayTranslatedPrice('telecom_pack_migration_confirm_first_mensuality', $ctrl.process.selectedOffer.firstMensuality.text)"
+                class="font-weight-bold"
             ></p>
         </div>
 
@@ -288,6 +275,63 @@
                         data-ui-validate="{ pattern: '$ctrl.constructor.checkContactPhone($value)' }"
                     />
                 </oui-field>
+            </div>
+        </div>
+
+        <div
+            class="widget-presentation"
+            data-ng-if="!$ctrl.loading.migrate && $ctrl.process.selectedOffer.totalSubServiceToKeep > 0"
+        >
+            <h2
+                class="widget-presentation-title"
+                data-translate="telecom_pack_migration_confirm_service_to_keep_title"
+            ></h2>
+
+            <p
+                data-translate="telecom_pack_migration_confirm_service_to_keep_total"
+                data-translate-values="{ count : $ctrl.process.selectedOffer.totalSubServiceToKeep }"
+            ></p>
+
+            <div class="responsive-table-line my-3">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="telecom_pack_migration_confirm_service_to_keep_table_service_type"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="telecom_pack_migration_confirm_service_to_keep_table_service_count"
+                                class="text-right"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="telecom_pack_migration_confirm_service_to_keep_table_service_names"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            data-ng-repeat="serviceToDelete in $ctrl.process.selectedOffer.subServicesToDelete track by $index"
+                        >
+                            <th
+                                scope="row"
+                                data-translate="{{ 'telecom_pack_migration_confirm_resume_' + serviceToDelete.type }}"
+                                data-title="{{ 'telecom_pack_migration_confirm_service_to_keep_table_service_type' | translate }}"
+                            ></th>
+                            <td
+                                class="text-right"
+                                data-ng-bind="serviceToDelete.numberToKeep"
+                                data-title="{{ 'telecom_pack_migration_confirm_service_to_keep_table_service_count' | translate }}"
+                            ></td>
+                            <td
+                                data-ng-bind="$ctrl.constructor.getServiceList(serviceToDelete, true)"
+                                data-title="{{ 'telecom_pack_migration_confirm_service_to_keep_table_service_names' | translate }}"
+                            ></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -339,7 +383,7 @@
                                 data-title="{{ 'telecom_pack_migration_confirm_service_to_delete_table_service_count' | translate }}"
                             ></td>
                             <td
-                                data-ng-bind="$ctrl.constructor.getServiceToDeleteList(serviceToDelete)"
+                                data-ng-bind="$ctrl.constructor.getServiceList(serviceToDelete, false)"
                                 data-title="{{ 'telecom_pack_migration_confirm_service_to_delete_table_service_names' | translate }}"
                             ></td>
                         </tr>

@@ -812,52 +812,5 @@
                 ></ovh-advices>
             </div>
         </div>
-
-        <div class="row d-md-flex">
-            <!-- trafficQuotaPercent -->
-            <div class="col-md-12">
-                <div
-                    class="mt-3"
-                    data-ng-if="!hosting.isExpired && hosting.trafficQuotaPercent != null && hosting.trafficQuotaPercent >= 0"
-                >
-                    <strong
-                        data-ng-bind-html="'hosting_dashboard_trafic_usage' | translate"
-                    ></strong>
-                    <div
-                        class="oui-progress mt-2"
-                        data-ng-class="{
-                            'oui-progress_success': hosting.trafficQuotaPercent <= 50,
-                            'oui-progress_warning': hosting.trafficQuotaPercent > 50 && hosting.trafficQuotaPercent <= 80,
-                            'oui-progress_error': hosting.trafficQuotaPercent > 80
-                        }"
-                    >
-                        <div
-                            class="oui-progress__bar oui-progress__bar_text-left"
-                            role="progressbar"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            aria-valuenow="{{::hosting.quotaPercent}}"
-                            data-ng-class="{
-                                'oui-progress__bar_success': hosting.trafficQuotaPercent <= 50,
-                                'oui-progress__bar_warning': hosting.trafficQuotaPercent > 50 && hosting.trafficQuotaPercent <= 80,
-                                'oui-progress__bar_error': hosting.trafficQuotaPercent > 80
-                            }"
-                            data-ng-style="{'width': hosting.trafficQuotaPercent + '%'}"
-                        >
-                            <span
-                                class="oui-progress__label"
-                                data-ng-bind="::(hosting.trafficQuotaUsed.value + ' ' + ('unit_size_'+ hosting.trafficQuotaUsed.unit | translate)) + ' / ' + (hosting.trafficQuotaSize.value + ' ' + ('unit_size_'+ hosting.trafficQuotaSize.unit | translate))"
-                            ></span>
-                        </div>
-                    </div>
-                    <button
-                        class="btn btn-block btn-default"
-                        type="button"
-                        data-translate="hosting_dashboard_service_order_bandwidth"
-                        data-ng-click="setAction('bandwidth/order/hosting-bandwidth-order')"
-                    ></button>
-                </div>
-            </div>
-        </div>
     </div>
 </div>

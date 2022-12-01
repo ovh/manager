@@ -12,6 +12,7 @@ export default {
     goBack: '<',
     projectId: '<',
     publicCloudCatalog: '<',
+    ipFailoverFormattedCatalog: '<',
     trackClick: '<',
   },
 };
