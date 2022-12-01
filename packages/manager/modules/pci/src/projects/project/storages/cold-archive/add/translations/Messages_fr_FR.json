@@ -9,6 +9,7 @@
   "pci_projects_project_storages_cold_archive_add_step_name_archive_localisation_banner_info": "Votre conteneur sera créé sur la localisation : Roubaix (RBX).",
   "pci_projects_project_storages_cold_archive_add_step_link_user_archive_header": "Associez un utilisateur à votre conteneur",
   "pci_projects_project_storages_cold_archive_add_action_create": "Ajouter le conteneur",
+  "pci_projects_project_storages_cold_archive_add_action_cancel": "Annuler",
   "pci_projects_project_storages_cold_archive_add_action_create_pending": "Conteneur en cours de création",
   "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success": "Le conteneur {{containerName}} a été créé avec succès. L'utilisateur S3 {{ userName }} est administrateur de ce conteneur.",
   "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_failed": "Une erreur est survenue lors de l'ajout du conteneur {{ containerName }} : {{ message }}."
