@@ -96,7 +96,7 @@
                                 ></td>
                             </tr>
                             <tr
-                                data-ng-if="$ctrl.offer.selected.offer.prices.modemRental"
+                                data-ng-if="$ctrl.offer.selected.offer.prices.modemRental.price"
                             >
                                 <th
                                     scope="row"
@@ -171,31 +171,6 @@
                                 ></td>
                             </tr>
                             <tr
-                                data-ng-if="$ctrl.offer.selected.offer.gtrComfortActivated"
-                            >
-                                <th
-                                    scope="row"
-                                    data-translate="pack_move_comfort_activation"
-                                    data-title="{{ 'pack_move_confirm_header_entitled' | translate }}"
-                                ></th>
-                                <td
-                                    class="text-price text-right"
-                                    data-ng-bind="$ctrl.offer.selected.offer.prices.gtrComfortFees.price.text"
-                                    data-title="{{ 'pack_move_confirm_header_price' | translate }}"
-                                ></td>
-                                <td
-                                    class="text-right"
-                                    data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
-                                >
-                                    1
-                                </td>
-                                <td
-                                    class="text-price text-right"
-                                    data-ng-bind="$ctrl.offer.selected.offer.prices.gtrComfortFees.price.text"
-                                    data-title="{{ 'pack_move_confirm_header_total' | translate }}"
-                                ></td>
-                            </tr>
-                            <tr
                                 data-ng-repeat="option in $ctrl.choosedAdditionalOptions track by $index"
                             >
                                 <th
@@ -239,9 +214,7 @@
                 </p>
             </div>
 
-            <div
-                data-ng-if="$ctrl.choosedAdditionalOptions.length === 0 || !$ctrl.constructor.isOneOptionSelected($ctrl.offer.selected.offer)"
-            >
+            <div>
                 <p
                     data-translate="pack_move_confirm_new_offer_price"
                     data-translate-values="{ price : $ctrl.offer.selected.offer.displayedPrice.text }"
@@ -252,6 +225,18 @@
                     data-ng-if="$ctrl.offer.selected.offer.prices.promotion"
                 ></p>
                 <p
+                    data-ng-bind-html="$ctrl.displayPrice('pack_move_resume_install_fees', $ctrl.offer.selected.offer.prices.installFees.price.text)"
+                    data-ng-if="!$ctrl.offer.selected.offer.prices.promotion && $ctrl.offer.selected.offer.prices.installFees.price"
+                ></p>
+                <p
+                    data-ng-bind-html="$ctrl.displayPrice('pack_move_resume_creation_line_fees', $ctrl.offer.selected.offer.prices.creationLineFees.price.text)"
+                    data-ng-if="$ctrl.offer.selected.offer.prices.creationLineFees.price"
+                ></p>
+                <p
+                    data-ng-bind-html="$ctrl.displayPrice('pack_move_resume_comfort_activation', $ctrl.offer.selected.offer.prices.gtrComfortFees.price.text)"
+                    data-ng-if="$ctrl.offer.selected.offer.gtrComfortActivated"
+                ></p>
+                <p
                     data-translate="{{ $ctrl.offer.selected.offer.engageMonths ? 'pack_move_confirm_commitment' : 'pack_move_confirm_no_commitment' }}"
                     data-translate-values="{ month : $ctrl.offer.selected.offer.engageMonths }"
                 ></p>
@@ -259,8 +244,12 @@
 
             <p
                 data-ng-if="$ctrl.offer.selected.offer.needNewModem && $ctrl.offer.selected.shipping.mode === 'transporter'"
-                data-translate="pack_move_confirm_shipping"
-                data-translate-values="{ price : $ctrl.getFirstMensuality().text, transportPrice : $ctrl.modemTransportPrice }"
+                data-ng-bind-html="$ctrl.displayPrice('pack_move_confirm_shipping', $ctrl.modemTransportPrice)"
+            ></p>
+
+            <p
+                data-ng-bind-html="$ctrl.displayPrice('pack_move_confirm_first_mensuality', $ctrl.offer.selected.offer.firstMensuality.text)"
+                class="font-weight-bold"
             ></p>
 
             <p
@@ -361,6 +350,64 @@
 
         <div
             class="widget-presentation"
+            data-ng-if="$ctrl.offer.selected.offer.totalSubServiceToKeep > 0"
+        >
+            <h2
+                class="widget-presentation-title"
+                data-translate="pack_move_confirm_service_to_keep_title"
+            ></h2>
+
+            <p
+                data-translate="pack_move_confirm_service_to_keep_total"
+                data-translate-values="{ count : $ctrl.offer.selected.offer.totalSubServiceToKeep }"
+            ></p>
+
+            <div class="responsive-table-line my-3">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="pack_move_confirm_service_to_keep_table_service_type"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="pack_move_confirm_service_to_keep_table_service_count"
+                                class="text-right"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="pack_move_confirm_service_to_keep_table_service_names"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            data-ng-repeat="serviceToDelete in $ctrl.offer.selected.offer.subServicesToDelete track by $index"
+                        >
+                            <th
+                                scope="row"
+                                data-translate="{{ 'pack_move_confirm_resume_' + serviceToDelete.type }}"
+                                data-title="{{ 'pack_move_confirm_service_to_keep_table_service_type' | translate }}"
+                            ></th>
+                            <td
+                                class="text-right"
+                                data-ng-bind="serviceToDelete.numberToKeep"
+                                data-title="{{ 'pack_move_confirm_service_to_keep_table_service_count' | translate }}"
+                            ></td>
+                            <td
+                                data-ng-bind="$ctrl.constructor.getServiceList(serviceToDelete, true)"
+                                data-title="{{ 'pack_move_confirm_service_to_keep_table_service_names' | translate }}"
+                                class="text-wrap"
+                            ></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div
+            class="widget-presentation"
             data-ng-if="$ctrl.offer.selected.offer.totalSubServiceToDelete > 0"
         >
             <h2
@@ -407,7 +454,7 @@
                                 data-title="{{ 'pack_move_confirm_service_to_delete_table_service_count' | translate }}"
                             ></td>
                             <td
-                                data-ng-bind="$ctrl.getServiceToDeleteList(serviceToDelete)"
+                                data-ng-bind="$ctrl.constructor.getServiceList(serviceToDelete, false)"
                                 data-title="{{ 'pack_move_confirm_service_to_delete_table_service_names' | translate }}"
                                 class="text-wrap"
                             ></td>

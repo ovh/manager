@@ -1,5 +1,6 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
+import set from 'lodash/set';
 import map from 'lodash/map';
 
 import { PROMO_DISPLAY, QUANTITY } from '../pack-migration.constant';
@@ -45,6 +46,9 @@ export default class TelecomPackMigrationConfirmCtrl {
     const providerOrange =
       this.process.selectedOffer.providerOrange?.value || 0;
     const providerAI = this.process.selectedOffer.providerAI?.value || 0;
+    const installFees = this.process.selectedOffer.promotion
+      ? 0
+      : this.process.selectedOffer.installFees?.value || 0;
     const gtrComfortFees = this.process.selectedOffer.gtrComfortFees
       ? gtrComfortSelected * this.process.selectedOffer.gtrComfortFees.value
       : 0;
@@ -63,11 +67,50 @@ export default class TelecomPackMigrationConfirmCtrl {
         firstYearPromo +
         modemRental +
         providerOrange +
-        providerAI +
-        gtrComfortFees;
+        providerAI;
     }
     this.process.selectedOffer.displayedPrice = this.TucPackMigrationProcess.getPriceStruct(
       totalOfferPrice,
+    );
+
+    this.process.selectedOffer.subServicesToDelete.forEach((service) => {
+      set(
+        service,
+        'numberToKeep',
+        filter(service.services, {
+          selected: true,
+        }).length,
+      );
+
+      set(
+        service,
+        'numberToDelete',
+        filter(service.services, {
+          selected: false,
+        }).length,
+      );
+    });
+
+    this.process.selectedOffer.totalSubServiceToDelete = this.constructor.getTotalService(
+      this.process.selectedOffer.subServicesToDelete,
+      false,
+    );
+    this.process.selectedOffer.totalSubServiceToKeep = this.constructor.getTotalService(
+      this.process.selectedOffer.subServicesToDelete,
+      true,
+    );
+    let firstMensuality = totalOfferPrice + gtrComfortFees + installFees;
+
+    if (
+      this.process.selectedOffer.needNewModem &&
+      this.process.shipping.mode === 'transporter'
+    ) {
+      firstMensuality += this.modemTransportPrice;
+    }
+    set(
+      this.process.selectedOffer,
+      'firstMensuality',
+      this.TucPackMigrationProcess.getPriceStruct(firstMensuality),
     );
   }
 
@@ -87,10 +130,18 @@ export default class TelecomPackMigrationConfirmCtrl {
     );
   }
 
-  static getServiceToDeleteList(subService) {
+  static getTotalService(subServices, toKeep) {
+    let count = 0;
+    subServices.forEach((service) => {
+      count += toKeep ? service.numberToKeep : service.numberToDelete;
+    });
+    return count;
+  }
+
+  static getServiceList(subService, toKeep) {
     return map(
       filter(subService.services, {
-        selected: true,
+        selected: toKeep,
       }),
       'name',
     ).join(', ');
@@ -159,6 +210,12 @@ export default class TelecomPackMigrationConfirmCtrl {
         return optionName.startsWith('gtr_') && option.selected === true;
       },
     );
+  }
+
+  displayTranslatedPrice(sentence, price) {
+    return this.$translate.instant(sentence, {
+      price: `<span class="text-price">${price}</span>`,
+    });
   }
 
   /* -----  End of ACTIONS  ------*/

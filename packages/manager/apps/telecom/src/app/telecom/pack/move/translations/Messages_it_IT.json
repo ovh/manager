@@ -100,5 +100,20 @@
   "pack_move_confirm_resume_gtr_5m_10ho": "Opzione GTR 10HO &amp; CONFORT 5M",
   "pack_move_confirm_resume_gtr_20m_4ho": "Opzione GTR 4HO &amp; CONFORT 20M",
   "pack_move_confirm_resume_gtr_20m_10ho": "Opzione GTR 10HO &amp; CONFORT 20M",
-  "pack_move_promotion_installation_fees_offered": "Spese di attivazione incluse"
+  "pack_move_promotion_installation_fees_offered": "Spese di attivazione incluse",
+  "pack_move_services_to_delete": "Servizi pack esclusi",
+  "pack_move_offer_services_to_delete_explain": "Puoi selezionare i servizi da eliminare/conservare nello step successivo.",
+  "pack_move_confirm_service_to_delete_total": "Durante la modifica dell'offerta verranno eliminati {{count}} servizi.",
+  "pack_move_confirm_service_to_keep_title": "Servizi conservati",
+  "pack_move_confirm_service_to_keep_total": "Durante la modifica dell'offerta, verranno conservati complessivamente {{count}} servizi.",
+  "pack_move_confirm_service_to_keep_table_service_type": "Tipo di servizio",
+  "pack_move_confirm_service_to_keep_table_service_count": "Numero di servizi da conservare",
+  "pack_move_confirm_service_to_keep_table_service_names": "Nomi dei servizi da conservare",
+  "pack_move_service_delete_explain": "Seleziona i servizi che devono essere mantenuti al momento della modifica dell'offerta, gli altri saranno eliminati.</br>Alcuni servizi potrebbero non essere selezionabili. Questi servizi saranno obbligatoriamente eliminati al momento della modifica dell'offerta.",
+  "pack_move_service_delete_count_multiple": "Seleziona i {{count}} servizi",
+  "pack_move_service_delete_count_single": "Seleziona il servizio",
+  "pack_move_service_delete_confirm": "Conferma la selezione dei servizi",
+  "pack_move_creation_line_fees": "Spese di creazione di linee",
+  "pack_move_confirm_shipping": "Hai selezionato la modalità di consegna del tuo nuovo modem tramite corriere (+ {{ price }} € +IVA).",
+  "pack_move_confirm_first_mensuality": "La tua prima mensilità sarà quindi di {{ price }} +IVA."
 }

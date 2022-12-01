@@ -3,6 +3,7 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 import set from 'lodash/set';
 import values from 'lodash/values';
+import moment from 'moment';
 
 import { PROMO_DISPLAY } from '../pack-move.constant';
 
@@ -51,29 +52,34 @@ export default class MoveResumeCtrl {
       ? gtrComfortSelected *
         this.offer.selected.offer.prices.gtrComfortFees.price.value
       : 0;
+    const installFees = this.offer.selected.offer.prices.promotion
+      ? 0
+      : this.offer.selected.offer.prices.installFees.price?.value || 0;
+    const creationLineFees =
+      this.offer.selected.offer.prices.creationLineFees.price?.value || 0;
 
     this.firstYearPromo = firstYearPromo;
 
-    let displayedPrice;
+    let totalOfferPrice;
     if (this.choosedAdditionalOptions.length === 0) {
-      let totalOfferPrice = 0;
       totalOfferPrice =
         this.offer.selected.offer.prices.price.price.value -
         firstYearPromo +
         modemRental +
         providerOrange +
         providerAI;
-      displayedPrice = this.getDisplayedPrice(totalOfferPrice);
-      set(this.offer.selected.offer, 'displayedPrice', displayedPrice);
+      set(
+        this.offer.selected.offer,
+        'displayedPrice',
+        this.getDisplayedPrice(totalOfferPrice),
+      );
     } else {
-      let totalOfferPrice = this.offer.selected.offer.displayedPrice.value;
       totalOfferPrice =
-        totalOfferPrice -
+        this.offer.selected.offer.displayedPrice.value -
         firstYearPromo +
         modemRental +
         providerOrange +
-        providerAI +
-        gtrComfortFees;
+        providerAI;
       this.offer.selected.offer.displayedPrice = this.getDisplayedPrice(
         totalOfferPrice,
       );
@@ -82,6 +88,34 @@ export default class MoveResumeCtrl {
     if (this.offer.selected.contactOwner) {
       this.contactPhone = this.offer.selected.contactOwner.phone;
     }
+
+    this.offer.selected.offer.subServicesToDelete.forEach((service) => {
+      this.constructor.updateSubService(service, false);
+      this.constructor.updateSubService(service, true);
+    });
+
+    this.offer.selected.offer.totalSubServiceToDelete = this.constructor.getTotalService(
+      this.offer.selected.offer.subServicesToDelete,
+      false,
+    );
+    this.offer.selected.offer.totalSubServiceToKeep = this.constructor.getTotalService(
+      this.offer.selected.offer.subServicesToDelete,
+      true,
+    );
+    let firstMensuality =
+      totalOfferPrice + gtrComfortFees + installFees + creationLineFees;
+
+    if (
+      this.offer.selected.offer.needNewModem &&
+      this.offer.selected.shipping.mode === 'transporter'
+    ) {
+      firstMensuality += this.modemTransportPrice;
+    }
+    set(
+      this.offer.selected.offer,
+      'firstMensuality',
+      this.getPriceStruct(firstMensuality),
+    );
   }
 
   getDisplayedPrice(value) {
@@ -124,12 +158,6 @@ export default class MoveResumeCtrl {
     return selectedOffer.options.some((option) => {
       return option.name.startsWith('gtr_') && option.selected === true;
     });
-  }
-
-  getFirstMensuality() {
-    return this.getPriceStruct(
-      this.offer.selected.offer.displayedPrice.value + 9.99,
-    );
   }
 
   getMeeting() {
@@ -245,8 +273,20 @@ export default class MoveResumeCtrl {
       // sub service to delete post params
       if (this.offer.selected.offer.subServicesToDelete.length) {
         moveData.subServicesToDelete = [];
+        moveData.subServicesToKeep = [];
         this.offer.selected.offer.subServicesToDelete.forEach((subService) => {
           moveData.subServicesToDelete = moveData.subServicesToDelete.concat(
+            map(
+              filter(subService.services, {
+                selected: false,
+              }),
+              (service) => ({
+                service: service.name,
+                type: subService.type,
+              }),
+            ),
+          );
+          moveData.subServicesToKeep = moveData.subServicesToKeep.concat(
             map(
               filter(subService.services, {
                 selected: true,
@@ -434,13 +474,42 @@ export default class MoveResumeCtrl {
     this.moveThePack();
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  getServiceToDeleteList(subService) {
+  static getTotalService(subServices, toKeep) {
+    let count = 0;
+    subServices.forEach((service) => {
+      if (toKeep) {
+        count += service.numberToKeep;
+      } else {
+        count += service.numberToDelete;
+      }
+    });
+    return count;
+  }
+
+  static updateSubService(subService, toKeep) {
+    const count = filter(subService.services, {
+      selected: toKeep,
+    }).length;
+
+    if (toKeep) {
+      set(subService, 'numberToKeep', count);
+    } else {
+      set(subService, 'numberToDelete', count);
+    }
+  }
+
+  static getServiceList(subService, toKeep) {
     return map(
       filter(subService.services, {
-        selected: true,
+        selected: toKeep,
       }),
       'name',
     ).join(', ');
+  }
+
+  displayPrice(key, value) {
+    return this.$translate.instant(key, {
+      price: `<span class="text-price">${value}</span>`,
+    });
   }
 }

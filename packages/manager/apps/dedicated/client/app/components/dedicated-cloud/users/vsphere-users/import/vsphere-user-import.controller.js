@@ -94,7 +94,7 @@ export default class VSphereUserImportController {
   }
 
   onFederationChange(modelValue) {
-    this.userNamePattern = /^\w+(@modelValue.domainName)*$/.source.replace(
+    this.userNamePattern = /^[^/[:;|=,+*?<>@.]+[^/[:;|=,+*?<>@]*(?:@modelValue.domainName)?$/.source.replace(
       'modelValue.domainName',
       modelValue.domainName,
     );

@@ -1,6 +1,5 @@
 import chunk from 'lodash/chunk';
-import every from 'lodash/every';
-import filter from 'lodash/filter';
+import set from 'lodash/set';
 
 export default class TelecomPackMigrationServiceDeleteCtrl {
   /* @ngInject */
@@ -10,13 +9,20 @@ export default class TelecomPackMigrationServiceDeleteCtrl {
 
   $onInit() {
     this.process = null;
+
     this.process = this.TucPackMigrationProcess.getMigrationProcess();
+
     this.process.selectedOffer.subServicesToDelete = this.process.selectedOffer.subServicesToDelete.map(
       (subService) => ({
         ...subService,
-        services: subService.services.map((service, index, originalArray) => ({
-          name: service,
-          selected: originalArray.length === subService.numberToDelete,
+        numberServices: subService.numberToDelete,
+        services: subService.services.map((service) => ({
+          name: service.service,
+          isAllowed: service.isAllowed,
+          renewPeriod: service.renewPeriod,
+          renewPrice: service.renewPrice,
+          price: service.price,
+          selected: false,
         })),
       }),
     );
@@ -30,18 +36,16 @@ export default class TelecomPackMigrationServiceDeleteCtrl {
   /*= ==============================
   =            HELPERS            =
   =============================== */
-  static selectedSubServiceToDeleteReached(subService) {
-    const count = filter(subService.services, {
-      selected: true,
-    }).length;
-
-    return count === subService.numberToDelete;
+  static selectSubServices(modelValue, subService) {
+    subService.services.forEach((service) => {
+      if (service.isAllowed) {
+        set(service, 'selected', modelValue);
+      }
+    });
   }
 
-  isValidSelection() {
-    return every(this.process.selectedOffer.subServicesToDelete, (subService) =>
-      this.constructor.selectedSubServiceToDeleteReached(subService),
-    );
+  static hasKeepableSubServices(subService) {
+    return subService.services.some((service) => service.isAllowed);
   }
 
   /* -----  End of HELPERS  ------*/
