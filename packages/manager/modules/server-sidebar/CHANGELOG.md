@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.25.1...@ovh-ux/manager-server-sidebar@3.26.0) (2022-12-01)
+
+
+### Features
+
+* ip strat batch 1 ([3836d7f](https://github.com/ovh/manager/commit/3836d7fdc1bc1e4d958d237357bf8e6d503d8e96))
+
+
+
+
+
 ## [3.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.25.0...@ovh-ux/manager-server-sidebar@3.25.1) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-server-sidebar
