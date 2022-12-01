@@ -18,19 +18,9 @@
     >
         <span data-translate="core_user_trusted_retail_prices"></span>
     </oui-message>
-
     <p
         data-ng-bind=":: ('dedicatedCloud_host_order_info_' + $ctrl.pccType) | translate"
     ></p>
-    <a
-        target="_blank"
-        rel="noopener"
-        class="oui-link_icon"
-        data-ng-href="{{ $ctrl.urlPrice}}"
-        data-translate="dedicatedCloud_host_order_price"
-    >
-        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
-    </a>
     <p data-translate="dedicatedCloud_host_order_select"></p>
     <oui-datagrid data-rows-loader="$ctrl.fetchDatagridOffers()">
         <oui-datagrid-column
@@ -61,6 +51,13 @@
             data-title=":: 'dedicatedCloud_host_order_cores' | translate"
         >
             <span data-ng-bind="$row.profile.core"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_host_order_price' | translate"
+        >
+            <span data-ng-bind="$row.prices[0].price.text"></span>
+            <br />
+            <small data-ng-bind="$row.prices[0].description"></small>
         </oui-datagrid-column>
     </oui-datagrid>
     <p data-translate="dedicatedCloud_host_order_quantity"></p>
