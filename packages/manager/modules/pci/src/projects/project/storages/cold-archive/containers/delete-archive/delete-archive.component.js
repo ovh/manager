@@ -1,5 +1,5 @@
-import controller from './delete.controller';
-import template from './delete.html';
+import controller from './delete-archive.controller';
+import template from './delete-archive.html';
 
 export default {
   controller,
