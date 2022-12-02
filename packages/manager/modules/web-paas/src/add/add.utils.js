@@ -5,8 +5,7 @@ export const commonResolves = {
       customer,
     }),
   getOrdersURL: /* @ngInject */ (coreURLBuilder) => (orderId) =>
-    coreURLBuilder.buildURL('dedicated', '#/billing/orders', {
-      status: 'all',
+    coreURLBuilder.buildURL('dedicated', '#/billing/orders/:orderId', {
       orderId,
     }),
 };
