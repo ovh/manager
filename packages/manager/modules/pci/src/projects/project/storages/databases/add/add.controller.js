@@ -6,7 +6,8 @@ import sortBy from 'lodash/sortBy';
 import animateScrollTo from 'animated-scroll-to';
 import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
 import { ENGINE_LOGOS } from '../databases.constants';
-import { getOrderDataFromModel, PRIVATE_NETWORK_GUIDE } from './add.constants';
+import { PRIVATE_NETWORK_GUIDE } from './add.constants';
+import { getOrderDataFromModel } from './add.utils';
 import { nameGenerator } from '../../../../../name-generator.constant';
 
 export default class {
