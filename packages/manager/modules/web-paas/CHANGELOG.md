@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.5.2...@ovh-ux/manager-web-paas@1.5.3) (2022-12-02)
+
+
+### Bug Fixes
+
+* **web-paas:** fix the order url redirection ([#8484](https://github.com/ovh/manager/issues/8484)) ([a3403a1](https://github.com/ovh/manager/commit/a3403a1d5d3c3b522eb0f7bcb2101bbf3ac3ff1d))
+
+
+
+
+
 ## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.5.1...@ovh-ux/manager-web-paas@1.5.2) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-paas
