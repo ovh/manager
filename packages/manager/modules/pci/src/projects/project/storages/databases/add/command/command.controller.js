@@ -1,9 +1,6 @@
 import { API_GUIDES, TERRAFORM_GUIDES } from '../../../../project.constants';
-import {
-  getOrderDataFromModel,
-  getTerraformDataFromModel,
-  ORDER_KEYS,
-} from '../add.constants';
+import { getOrderDataFromModel, getTerraformDataFromModel } from '../add.utils';
+import { ORDER_KEYS } from '../add.constants';
 
 export default class CommandCtrl {
   /* @ngInject */
