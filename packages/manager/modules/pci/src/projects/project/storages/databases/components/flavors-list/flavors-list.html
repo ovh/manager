@@ -23,7 +23,7 @@
     }"
         data-ng-click="$ctrl.handleClick(flavor)"
     >
-        <td data-ng-bind="flavor.name"></td>
+        <td class="text-capitalize" data-ng-bind="flavor.name"></td>
         <td data-ng-bind="flavor.core"></td>
         <td data-ng-bind="flavor.memory | bytes:2:false:'GB'"></td>
         <td>
