@@ -1,10 +1,9 @@
-import { find } from 'lodash';
 import animateScrollTo from 'animated-scroll-to';
 import { API_GUIDES } from '../../../project.constants';
 import { nameGenerator } from '../../../../../name-generator.constant';
 import { NOTEBOOK_PRIVACY_SETTINGS } from './privacy-selector/privacy-selector.constants';
 
-export default class {
+export default class AddNotebookCtrl {
   /* @ngInject */
   constructor(
     $scope,
@@ -65,8 +64,7 @@ export default class {
    * Fetch available regions from capabilities and update binding
    */
   updateAvailableRegions() {
-    const version = find(
-      this.capabilities.availableVersions,
+    const version = this.capabilities.availableVersions.find(
       (v) => v.name === this.state.notebookEngine.version,
     );
     this.regions = version.availableRegions.map((region) => ({
@@ -89,8 +87,7 @@ export default class {
    * @param notebookType Selected notebook type
    */
   onChangeNotebookTypeHandler(notebookType) {
-    const e = find(
-      this.capabilities.availableVersions,
+    const e = this.capabilities.availableVersions.find(
       (o) => o.name === notebookType.version,
     );
     this.state.notebookEngine = {
