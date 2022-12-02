@@ -10,10 +10,11 @@ import component from './containers.component';
 import routing from './containers.routing';
 
 import addUser from './add-user';
-import deleteContainer from './delete';
 import archiveContainer from './archive';
 import restoreContainer from './restore';
 import deleteContainerObjects from './delete-objects';
+import deleteContainer from './delete-container';
+import deleteArchive from './delete-archive';
 
 const moduleName = 'ovhManagerPciStoragesColdArchiveContainersList';
 
@@ -26,10 +27,11 @@ angular
     'ui.router',
     'ui.bootstrap',
     addUser,
-    deleteContainer,
     archiveContainer,
     restoreContainer,
     deleteContainerObjects,
+    deleteContainer,
+    deleteArchive,
   ])
   .component('pciProjectStorageColdArchiveContainers', component)
   .config(routing)
