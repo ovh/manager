@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import {
   DOWNLOAD_FILETYPE,
   RCLONE_SERVICE_TYPE,

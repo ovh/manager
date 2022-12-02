@@ -21,7 +21,7 @@ export default class PciBlockStorageDetailsRestoreController {
       .restoreArchiveContainer(
         this.projectId,
         COLD_ARCHIVE_DEFAULT_REGION,
-        this.containerName,
+        this.container.name,
       )
       .then(() => {
         this.trackPage('containers::container::restore::confirm_success');

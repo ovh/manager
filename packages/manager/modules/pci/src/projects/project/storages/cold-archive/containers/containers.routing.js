@@ -41,21 +41,32 @@ export default /* @ngInject */ ($stateProvider) => {
           });
         },
 
-        goToDeleteContainer: /* @ngInject */ ($state, projectId) => (
-          container,
-        ) => {
-          const { name } = container;
-          return $state.go(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_DELETE, {
-            projectId,
-            containerName: name,
-          });
-        },
-
         goToDeleteContainerObjects: /* @ngInject */ ($state, projectId) => (
           container,
         ) => {
           return $state.go(
             COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_OBJECTS_DELETE,
+            {
+              projectId,
+              container,
+            },
+          );
+        },
+
+        goToDeleteContainer: /* @ngInject */ ($state, projectId) => (
+          container,
+        ) => {
+          return $state.go(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_DELETE, {
+            projectId,
+            container,
+          });
+        },
+
+        goToDeleteArchive: /* @ngInject */ ($state, projectId) => (
+          container,
+        ) => {
+          return $state.go(
+            COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_ARCHIVE_DELETE,
             {
               projectId,
               container,

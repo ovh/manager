@@ -21,7 +21,7 @@ export default class PciBlockStorageDetailsArchiveController {
       .startArchiveContainer(
         this.projectId,
         COLD_ARCHIVE_DEFAULT_REGION,
-        this.containerName,
+        this.container.name,
       )
       .then(() => {
         this.trackPage('containers::container::archive::confirm_success');
@@ -30,7 +30,7 @@ export default class PciBlockStorageDetailsArchiveController {
           this.$translate.instant(
             'pci_projects_project_storages_cold_archive_containers_container_archive_success_message',
             {
-              containerName: `<strong>${this.container.name}</strong>`,
+              containerName: this.container.name,
             },
           ),
         );
