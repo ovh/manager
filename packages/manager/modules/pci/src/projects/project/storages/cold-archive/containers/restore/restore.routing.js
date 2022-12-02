@@ -5,7 +5,7 @@ import {
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_RESTORE, {
-    url: '/restore?containerName',
+    url: '/restore',
     redirectTo: (transition) =>
       transition
         .injector()

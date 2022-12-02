@@ -70,8 +70,9 @@ export default class PciStoragesColdArchiveContainersController {
       Ctrl.isActionDeleteObjectsAvailable(container),
       Ctrl.isActionArchiveAvailable(container),
       Ctrl.isActionRestoredAvailable(container),
-      Ctrl.isActionDeleteAvailable(container),
+      Ctrl.isActionDeleteContainerAvailable(container),
       Ctrl.isActionVirtualHostAvailable(container),
+      Ctrl.isActionDeleteArchiveAvailable(container),
     ].some((isActionAvailable) => isActionAvailable === true);
   }
 
@@ -82,7 +83,6 @@ export default class PciStoragesColdArchiveContainersController {
       COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED,
       COLD_ARCHIVE_CONTAINER_STATUS.RESTORING,
       COLD_ARCHIVE_CONTAINER_STATUS.RESTORED,
-      COLD_ARCHIVE_CONTAINER_STATUS.FLUSHED,
     ].includes(status);
   }
 
@@ -96,24 +96,15 @@ export default class PciStoragesColdArchiveContainersController {
     ].includes(status);
   }
 
-  static isActionDeleteObjectsAvailable({ status, objects }) {
+  static isActionDeleteObjectsAvailable({ status, objectsCount }) {
     return (
-      [
-        COLD_ARCHIVE_CONTAINER_STATUS.NONE,
-        COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVING,
-        COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED,
-        COLD_ARCHIVE_CONTAINER_STATUS.RESTORING,
-        COLD_ARCHIVE_CONTAINER_STATUS.RESTORED,
-      ].includes(status) && objects?.length > 0
+      objectsCount > 0 && [COLD_ARCHIVE_CONTAINER_STATUS.NONE].includes(status)
     );
   }
 
   static isActionArchiveAvailable({ status, objectsCount }) {
     return (
-      [
-        COLD_ARCHIVE_CONTAINER_STATUS.NONE,
-        COLD_ARCHIVE_CONTAINER_STATUS.RESTORED,
-      ].includes(status) && objectsCount > 0
+      objectsCount > 0 && [COLD_ARCHIVE_CONTAINER_STATUS.NONE].includes(status)
     );
   }
 
@@ -121,8 +112,19 @@ export default class PciStoragesColdArchiveContainersController {
     return [COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED].includes(status);
   }
 
-  static isActionDeleteAvailable({ status }) {
-    return [COLD_ARCHIVE_CONTAINER_STATUS.FLUSHED].includes(status);
+  static isActionDeleteContainerAvailable({ status, objectsCount }) {
+    return (
+      objectsCount === 0 &&
+      [COLD_ARCHIVE_CONTAINER_STATUS.NONE].includes(status)
+    );
+  }
+
+  static isActionDeleteArchiveAvailable({ status }) {
+    return [
+      COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED,
+      COLD_ARCHIVE_CONTAINER_STATUS.RESTORED,
+      COLD_ARCHIVE_CONTAINER_STATUS.FLUSHED,
+    ].includes(status);
   }
 
   static isActionVirtualHostAvailable({ virtualHost }) {

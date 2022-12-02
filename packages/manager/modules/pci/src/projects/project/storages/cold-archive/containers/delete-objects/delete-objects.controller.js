@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import { COLD_ARCHIVE_DEFAULT_REGION } from './delete-objects.constants';
 
 export default class ColdArchiveContainersDeleteObjectsController {
