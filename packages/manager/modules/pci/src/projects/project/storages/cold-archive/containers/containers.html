@@ -71,17 +71,6 @@
                     ></span>
                 </oui-action-menu-item>
 
-                <!--Action: see objects (container)-->
-                <!--TODO: will be activated once the API is ready-->
-                <!--<oui-action-menu-item
-                    data-ng-if="$ctrl.constructor.isActionSeeObjectsAvailable($row)"
-                    data-on-click="$ctrl.goToContainer($row)"
-                >
-                    <span
-                        data-translate="pci_projects_project_storages_cold_archive_container_action_see_objects"
-                    ></span>
-                </oui-action-menu-item>-->
-
                 <!--Action: archive container-->
                 <oui-action-menu-item
                     data-ng-if="$ctrl.constructor.isActionArchiveAvailable($row)"
@@ -114,11 +103,21 @@
 
                 <!--Action: delete container-->
                 <oui-action-menu-item
-                    data-ng-if="$ctrl.constructor.isActionDeleteAvailable($row)"
+                    data-ng-if="$ctrl.constructor.isActionDeleteContainerAvailable($row)"
                     data-on-click="$ctrl.goToDeleteContainer($row)"
                 >
                     <span
-                        data-translate="pci_projects_project_storages_cold_archive_container_action_delete"
+                        data-translate="pci_projects_project_storages_cold_archive_container_action_delete_container"
+                    ></span>
+                </oui-action-menu-item>
+
+                <!--Action: delete archive-->
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.constructor.isActionDeleteArchiveAvailable($row)"
+                    data-on-click="$ctrl.goToDeleteArchive($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_cold_archive_container_action_delete_archive"
                     ></span>
                 </oui-action-menu-item>
 

@@ -1,22 +1,22 @@
 import {
   COLD_ARCHIVE_TRACKING_PREFIX,
   COLD_ARCHIVE_STATES,
-} from '../../cold-archives.constants';
+} from './delete-objects.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_OBJECTS_DELETE,
     {
-      url: '/delete-objects?containerName',
+      url: '/delete-objects',
       views: {
         modal: {
           component: 'pciStoragesColdArchiveContainersDeleteObjects',
         },
       },
+      layout: 'modal',
       params: {
         container: null,
       },
-      layout: 'modal',
       redirectTo: (transition) =>
         transition
           .injector()
