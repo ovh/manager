@@ -1,6 +1,5 @@
 import find from 'lodash/find';
 import set from 'lodash/set';
-import { buildURL } from '@ovh-ux/url-builder';
 import Addon from '../../addon.class';
 import { ADDON_FAMILY, ADDON_TYPE } from '../../web-paas.constants';
 
@@ -28,9 +27,8 @@ export const commonResolves = {
       },
     );
   },
-  getOrderUrl: /* @ngInject */ () => (orderId) =>
-    buildURL('dedicated', '#/billing/orders', {
-      status: 'all',
+  getOrderUrl: /* @ngInject */ (coreURLBuilder) => (orderId) =>
+    coreURLBuilder.buildURL('dedicated', '#/billing/orders/:orderId', {
       orderId,
     }),
   breadcrumb: () => null,
