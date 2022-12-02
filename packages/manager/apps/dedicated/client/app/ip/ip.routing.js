@@ -62,13 +62,8 @@ export default /* @ngInject */ ($stateProvider) => {
         .getAsync('hasAnyIp')
         .then((hasAnyIp) => `app.ip.${hasAnyIp ? 'dashboard' : 'onboarding'}`),
     resolve: {
-      hasAnyIp: /* @ngInject */ (iceberg) =>
-        iceberg('/ip')
-          .query()
-          .expand('CachedObjectList-Pages')
-          .limit(1)
-          .execute(null, true)
-          .$promise.then(({ data: [ip] }) => !!ip),
+      hasAnyIp: /* @ngInject */ ($http) =>
+        $http.get('/ip').then(({ data: [ip] }) => !!ip),
       isRepricingBannerShown: /* @ngInject */ ($q, hasAnyIp, iceberg) => {
         if (
           !hasAnyIp ||
