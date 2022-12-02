@@ -10,9 +10,8 @@ export const URLS = {
 };
 
 export const WEATHERMAP_URL = {
-  EU: 'http://weathermap.ovh.net/',
-  CA: 'http://weathermap.ovh.net/',
   US: 'http://weathermap.ovh.net/#usa',
+  OTHERS: 'http://weathermap.ovh.net/',
 };
 
 const COMMIT_RECOMMIT_IMPRESSION_TRACKING_DATA = {

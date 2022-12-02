@@ -44,7 +44,7 @@ export default class DedicatedServerDashboard {
     this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
 
     this.servicesStateLinks = {
-      weathermap: WEATHERMAP_URL[this.user.country],
+      weathermap: WEATHERMAP_URL[this.user.country] || WEATHERMAP_URL.OTHERS,
       vms: this.constants.vmsUrl,
       status: this.constants.statusUrl,
     };
