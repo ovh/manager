@@ -1,6 +1,6 @@
-import { REGION } from '../../cold-archives.constants';
+import { COLD_ARCHIVE_DEFAULT_REGION } from './delete-archive.constants';
 
-export default class PciBlockStorageDetailsDeleteController {
+export default class ColdArchiveContainersDeleteArchiveController {
   /* @ngInject */
   constructor($translate, PciStoragesColdArchiveService) {
     this.$translate = $translate;
@@ -8,23 +8,29 @@ export default class PciBlockStorageDetailsDeleteController {
   }
 
   $onInit() {
-    this.trackPage('containers::container::delete');
+    this.trackPage('containers::container::delete-archive');
 
     this.isLoading = false;
   }
 
   deleteContainer() {
-    this.trackClick('containers::container::delete::confirm');
+    this.trackClick('containers::container::delete-archive::confirm');
 
     this.isLoading = true;
     return this.pciStoragesColdArchiveService
-      .removeArchiveContainer(this.projectId, REGION, this.containerName)
+      .removeArchiveContainer(
+        this.projectId,
+        COLD_ARCHIVE_DEFAULT_REGION,
+        this.containerName,
+      )
       .then(() => {
-        this.trackPage('containers::container::delete::confirm_success');
+        this.trackPage(
+          'containers::container::delete-archive::confirm_success',
+        );
 
         return this.goBack(
           this.$translate.instant(
-            'pci_projects_project_storages_containers_container_delete_success_message',
+            'pci_projects_project_storages_containers_container_cold_archive_delete_archive_success_message',
             {
               container: this.container?.name,
             },
@@ -32,11 +38,11 @@ export default class PciBlockStorageDetailsDeleteController {
         );
       })
       .catch((err) => {
-        this.trackPage('containers::container::delete::confirm_error');
+        this.trackPage('containers::container::delete-archive::confirm_error');
 
         return this.goBack(
           this.$translate.instant(
-            'pci_projects_project_storages_containers_container_delete_error_delete',
+            'pci_projects_project_storages_containers_container_cold_archive_delete_archive_error_delete',
             {
               message: err.data?.message || err?.message || err.data,
             },
@@ -50,7 +56,7 @@ export default class PciBlockStorageDetailsDeleteController {
   }
 
   cancel() {
-    this.trackClick('containers::container::delete::cancel');
+    this.trackClick('containers::container::delete-cancel::cancel');
 
     return this.goBack();
   }

@@ -4,10 +4,10 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import component from './delete.component';
-import routing from './delete.routing';
+import component from './delete-archive.component';
+import routing from './delete-archive.routing';
 
-const moduleName = 'ovhManagerPciStoragesColdArchiveContainersDelete';
+const moduleName = 'ovhManagerPciStoragesColdArchiveContainersDeleteArchive';
 
 angular
   .module(moduleName, [
@@ -17,7 +17,7 @@ angular
     'pascalprecht.translate',
   ])
   .config(routing)
-  .component('pciStoragesColdArchiveContainersDelete', component)
+  .component('pciStoragesColdArchiveContainersDeleteArchive', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
