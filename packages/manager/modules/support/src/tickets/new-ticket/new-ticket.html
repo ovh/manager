@@ -1,6 +1,31 @@
+<oui-message
+    class="my-3"
+    data-type="warning"
+    data-dismissable
+    data-ng-if="$ctrl.step === 'issues'"
+>
+    <p class="m-1" data-translate="ovhManagerSupport_bm_vps_customers_renew_services_issue_part_1"></p>
+    <div class="m-1">
+        <p class="my-1" data-translate="ovhManagerSupport_bm_vps_customers_renew_services_issue_part_2"></p>
+        <a
+            data-ng-href="{{::$ctrl.VPS_CUSTOMERS_RENEW_ISSUES_LINK}}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span data-translate="ovhManagerSupport_bm_vps_customers_renew_services_issue_part_2_link"></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </div>
+    <p class="m-1 mt-3" data-translate="ovhManagerSupport_bm_vps_customers_renew_services_issue_part_3"></p>
+</oui-message>
+
 <oui-back-button data-on-click="$ctrl.handleBackButton()">
     <span data-translate="ovhManagerSupport_new_back"></span>
 </oui-back-button>
+
 
 <support-new-issues-form
     data-ng-show="$ctrl.step === 'issues'"

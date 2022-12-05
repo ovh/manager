@@ -1,5 +1,6 @@
 import angular from 'angular';
 import get from 'lodash/get';
+import { VPS_CUSTOMERS_RENEW_ISSUES_LINK } from './new-ticket.constants';
 
 export default class SupportNewController {
   /* @ngInject */
@@ -28,6 +29,8 @@ export default class SupportNewController {
 
     this.guideURL = this.urls.guide;
     this.forumURL = this.urls.forum;
+
+    this.VPS_CUSTOMERS_RENEW_ISSUES_LINK = VPS_CUSTOMERS_RENEW_ISSUES_LINK;
   }
 
   onIssuesFormSubmit(result) {
