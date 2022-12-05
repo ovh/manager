@@ -10,10 +10,18 @@
             <!-- page content -->
             <p data-translate="data_processing_add_notebook_description"></p>
             <oui-message data-type="info">
-                <p
+                <span
                     data-translate="data_processing_add_notebook_description_warning_ai"
-                    data-translate-values="{'url': $ctrl.aiNotebookLink()}"
-                ></p>
+                >
+                </span>
+                <a
+                    class="oui-link oui-link_icon"
+                    data-ng-href="{{::$ctrl.aiNotebookLink()}}"
+                >
+                    <span
+                        data-translate="data_processing_add_notebook_description_warning_ai_link"
+                    ></span>
+                </a>
             </oui-message>
             <form novalidate>
                 <!-- step 1 - select notebook name -->
