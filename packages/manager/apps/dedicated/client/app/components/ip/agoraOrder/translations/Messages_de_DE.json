@@ -1,19 +1,6 @@
 {
-  "ip_agora_table_header_offer": "Wählen Sie Ihr Angebot",
+  "ip_agora_table_header_offer": "Angebot",
   "ip_agora_table_header_quantity": "Anzahl",
   "ip_agora_table_header_country": "Lokalisiert in",
-  "ip_agora_table_header_organisation": "Eine Organisation zuweisen",
-  "ip_agora_select_quantity_title": "Wählen Sie die Anzahl",
-  "ip_agora_ip_localisation_title": "IP-Standort",
-  "ipv4_select_placeholder": "Die Größe auswählen",
-  "license_dashboard_title": "Eine IP bestellen",
-  "ipv4Failover_price_label": "1,50 € inkl. MwSt./ Monat",
-  "ipv4Block_description": "IPv4-Adressblock. Die verfügbaren Größen der Adressblöcke variieren je nach dem Dienst, der mit ihnen verbunden wird.",
-  "ipv4Block_price_label": "1,50 € inkl. MwSt / Monat / IP-Adresse",
-  "ipv4Block_organization_description1": "Sie müssen eine Organisation mit Ihrem IP-Adressblock verbinden. Die Organisation stellt das Verwaltungsorgan für den IP-Adressblock dar. Sie muss zwingend in der öffentlichen Whois-Datenbank eingetragen sein, dem globalen Register für IP-Adressen und Domainnamen. Für die Organisation werden folgende Kontaktinformationen hinterlegt: Name, Regional Internet Registry (RIR) und E-Mail-Adresse.",
-  "ipv4Block_organization_description2": "Mehr zu Organisationen",
-  "ipv4Block_organization_description3": "Wenn Sie keine Organisation angeben, können die Angaben aus Ihrem OVHcloud-Account (Kundenkennung) verwendet werden.",
-  "ipv4Block_organization_info_banner": "Der Name der Organisation, die mit Ihrem IP-Adressblock verbunden ist, sowie die zugehörigen Kontaktinformationen werden in der öffentlichen Whois-Datenbank aufgeführt.",
-  "ip_agora_table_submit_text": "Mit meiner Bestellung fortfahren",
-  "ip_agora_table_cancel_text": "Zurück"
+  "ip_agora_table_header_organisation": "Organisation"
 }

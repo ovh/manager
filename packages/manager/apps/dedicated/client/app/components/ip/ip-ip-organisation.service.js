@@ -97,32 +97,13 @@ export default /* @ngInject */ function IpOrganisationService(
       if (task) {
         self.poll({
           taskId: task.taskId,
-          ipBlock: params.ipBlock,
+          ipBlock: encodeURIComponent(params.ipBlock),
           namespace: 'organisation.change',
         });
       }
 
       return task;
     });
-  };
-
-  this.getBlockIpDetails = function getBlockIpDetails(params) {
-    return OvhHttp.get('/ip/{ip}/ripe', {
-      rootPath: 'apiv6',
-      urlParams: {
-        ip: params.ipBlock,
-      },
-    }).then((data) => data);
-  };
-
-  this.modifyBlockIpDetails = function modifyBlockIpDetails(params) {
-    return OvhHttp.put(`/ip/{ip}/ripe`, {
-      rootPath: 'apiv6',
-      urlParams: {
-        ip: params.ipBlock,
-      },
-      data: params.blockIpdetails,
-    }).then((data) => data);
   };
 
   this.poll = function poll(opts) {

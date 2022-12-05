@@ -1,19 +1,6 @@
 {
-  "ip_agora_table_header_offer": "Choose your solution",
+  "ip_agora_table_header_offer": "Solution ",
   "ip_agora_table_header_quantity": "Quantity",
   "ip_agora_table_header_country": "Located in",
-  "ip_agora_table_header_organisation": "Link an organisation",
-  "ip_agora_select_quantity_title": "Select your quantity",
-  "ip_agora_ip_localisation_title": "IP",
-  "ipv4_select_placeholder": "Select a size",
-  "license_dashboard_title": "Order an IP",
-  "ipv4Failover_price_label": "£XX.XX ex. VAT/month",
-  "ipv4Block_description": "IPv4 address block. The available block sizes will vary depending on the associated service.",
-  "ipv4Block_price_label": "£XX.XX ex. VAT/month per IP address",
-  "ipv4Block_organization_description1": "You must link an organisation to your IP address block. The organisation represents the administrative entity holding the IP address block, and must be declared in the public WHOIS database (global registry of IP addresses and domain names). The organisation contains the following contact information: name, RIR type, and email address.",
-  "ipv4Block_organization_description2": "Find out more about organisations.",
-  "ipv4Block_organization_description3": "If you do not link an organisation, your OVHcloud account information (NIC handle) can be used",
-  "ipv4Block_organization_info_banner": "The organisation name linked to your IP address block will appear in the public WHOIS database, along with the corresponding contact information.",
-  "ip_agora_table_submit_text": "Continue my order",
-  "ip_agora_table_cancel_text": "Back"
+  "ip_agora_table_header_organisation": "Organisation"
 }

@@ -1,0 +1,9 @@
+{
+ "ip_table_manage_reverse": "Zmień rewers",
+ "ip_table_manage_reverse_question": "Wpisz prawidłowy rewers dla tego IP i kliknij na \"Zatwierdź\".",
+ "ip_table_manage_reverse_success": "Zmiana rewersu powiodła się.",
+ "ip_table_manage_reverse_failure": "Wystąpił błąd w trakcie zmiany rewersu. {{ message }}",
+ "ip_table_manage_reverse_confirm": "Zatwierdź",
+ "ip_table_manage_reverse_cancel": "Anuluj",
+ "ip_table_manage_reverse_invalid": "Podaj poprawny format."
+}
