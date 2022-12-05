@@ -19,7 +19,7 @@ yarn.lock @ovh/team-manager-core
 /packages/manager/modules/ @ovh/team-manager-dev
 
 # Build / Tooling
-/packages/manager/tools/ @ovh/team-manager-build
+/packages/manager/tools/ @ovh/team-manager-core @ovh/team-manager-continuous-integration
 
 # Continuous Integration
 .nvmrc @ovh/team-manager-continuous-integration
