@@ -2,22 +2,6 @@
   z-index: 1009;
 }
 
-tr.table-single-select-row {
-  cursor: pointer;
-}
-tr.table-single-select-row:hover {
-  background-color: #bef1ff;
-}
-.table-selected {
-  background-color: #def8ff;
-}
-.table-selected > td {
-  font-weight: 800 !important;
-}
-.table-single-select-row > td {
-  cursor: pointer !important;
-}
-
 oui-field.no-bottom-margin {
   .oui-field {
     margin-bottom: 0;
