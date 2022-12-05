@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-export default class UpgradeStorageCtrll {
+export default class UpgradeStorageCtrl {
   /* @ngInject */
   constructor($translate, DatabaseService) {
     this.$translate = $translate;
