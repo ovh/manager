@@ -1,4 +1,3 @@
-import './notebook-details.scss';
 import controller from './notebook-details.controller';
 import template from './notebook-details.html';
 
