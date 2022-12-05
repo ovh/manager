@@ -1,9 +1,0 @@
-{
-  "ip_table_manage_reverse": "Modify the reverse path",
-  "ip_table_manage_reverse_question": "Enter a valid reverse path for this IP, and click on \"Confirm\".",
-  "ip_table_manage_reverse_success": "The reverse path has been updated.",
-  "ip_table_manage_reverse_failure": "An error has occurred updating the reverse path. {{ message }}",
-  "ip_table_manage_reverse_confirm": "Confirm",
-  "ip_table_manage_reverse_cancel": "Cancel",
-  "ip_table_manage_reverse_invalid": "Please specify a valid format."
-}
