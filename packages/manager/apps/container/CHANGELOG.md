@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.9.0...@ovh-ux/manager-container-app@0.9.1) (2022-12-05)
+
+
+### Bug Fixes
+
+* **container:** routing redirections ([13b31f1](https://github.com/ovh/manager/commit/13b31f1c3346ee94250943882ca4be50c6be74d0))
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.8.0...@ovh-ux/manager-container-app@0.9.0) (2022-11-29)
 
 
