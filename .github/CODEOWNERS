@@ -24,3 +24,4 @@ yarn.lock @ovh/team-manager-core
 # Continuous Integration
 .nvmrc @ovh/team-manager-continuous-integration
 /scripts/ @ovh/team-manager-continuous-integration
+.github @ovh/team-manager-continuous-integration
