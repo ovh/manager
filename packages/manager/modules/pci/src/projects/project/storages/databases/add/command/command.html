@@ -4,7 +4,7 @@
     data-primary-action="$ctrl.goBack()"
 >
     <h5 data-translate="pci_databases_add_command_title"></h5>
-    <oui-tabs>
+    <oui-tabs class="mb-2">
         <oui-tabs-item data-heading="API">
             <p data-translate="pci_databases_add_command_description"></p>
             <a
@@ -69,4 +69,15 @@
             ></pci-order-command-terraform>
         </oui-tabs-item>
     </oui-tabs>
+    <a
+        class="oui-link_icon"
+        data-ng-href="{{:: $ctrl.databaseCreation }}"
+        target="_blank"
+        rel="noopener"
+    >
+        <span
+            data-translate="pci_databases_add_command_documentation_link_database_creation"
+        ></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
 </oui-modal>

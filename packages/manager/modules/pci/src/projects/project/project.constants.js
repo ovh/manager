@@ -168,6 +168,9 @@ export const TERRAFORM_GUIDES = {
   SG: 'https://docs.ovh.com/sg/en/publiccloud/databases/order-terraform/',
 };
 
+export const DATABASE_CREATION =
+  'https://github.com/ovh/public-cloud-databases-examples';
+
 export const PCI_HDS_ADDON = {
   productName: 'cloud',
   family: 'certification-hds',
@@ -188,5 +191,6 @@ export default {
   LEGACY_PLAN_CODES,
   API_GUIDES,
   TERRAFORM_GUIDES,
+  DATABASE_CREATION,
   PCI_FEATURES,
 };
