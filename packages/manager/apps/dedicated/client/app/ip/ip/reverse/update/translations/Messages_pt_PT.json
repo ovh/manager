@@ -1,0 +1,9 @@
+{
+ "ip_table_manage_reverse": "Modificar a reverse",
+ "ip_table_manage_reverse_question": "Introduza uma reverse válida para este endereço IP e clique em \"Validar\".",
+ "ip_table_manage_reverse_success": "A atualização da reverse foi efetuada.",
+ "ip_table_manage_reverse_failure": "Ocorreu um erro ao atualizar a reverse. {{ message }}",
+ "ip_table_manage_reverse_confirm": "Validar",
+ "ip_table_manage_reverse_cancel": "Anular",
+ "ip_table_manage_reverse_invalid": "Especifique um formato válido."
+}
