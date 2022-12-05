@@ -1,7 +1,8 @@
 {
   "data_processing_add_notebook_title": "Créer un notebook",
-  "data_processing_add_notebook_description": "Démarrer vos notebooks Jupyter dans le cloud et lancez des jobs Apache Spark à la demande depuis ceux-ci.",
-  "data_processing_add_notebook_description_warning_ai": "Vous cherchez plutôt à explorer vos données via un notebook permettant d'exploiter les plus grands frameworks d'intelligence artificielle (Tensorflow, PyTorch, Hugging Face ou encore Scikit-learn). <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\">Essayez les AI Notebooks</a>",
+  "data_processing_add_notebook_description": "Démarrez vos notebooks Jupyter dans le cloud et lancez des jobs Apache Spark à la demande depuis ceux-ci.",
+  "data_processing_add_notebook_description_warning_ai": "Vous cherchez plutôt à explorer vos données via un notebook permettant d'exploiter les plus grands frameworks d'intelligence artificielle (Tensorflow, PyTorch, Hugging Face ou encore Scikit-learn).",
+  "data_processing_add_notebook_description_warning_ai_link": "Essayez les AI Notebooks",
   "data_processing_add_notebook_stepper_region_title": "Sélectionner une région",
   "data_processing_add_notebook_stepper_notebook_type_title": "Sélectionner un framework",
   "data_processing_add_notebook_stepper_sizing_title": "Dimensionnement du job",
