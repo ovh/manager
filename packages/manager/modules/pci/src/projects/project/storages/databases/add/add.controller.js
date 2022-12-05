@@ -3,6 +3,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
+import capitalize from 'lodash/capitalize';
 import animateScrollTo from 'animated-scroll-to';
 import { API_GUIDES } from '../../../project.constants';
 import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
@@ -31,6 +32,7 @@ export default class {
     this.ENGINE_LOGOS = ENGINE_LOGOS;
     this.orderKeys = ORDER_KEYS;
     this.nameGenerator = nameGenerator;
+    this.capitalize = capitalize;
   }
 
   $onInit() {

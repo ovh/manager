@@ -1,10 +1,12 @@
 import get from 'lodash/get';
+import capitalize from 'lodash/capitalize';
 
 export default class UpgradeStorageCtrl {
   /* @ngInject */
   constructor($translate, DatabaseService) {
     this.$translate = $translate;
     this.DatabaseService = DatabaseService;
+    this.capitalize = capitalize;
   }
 
   $onInit() {

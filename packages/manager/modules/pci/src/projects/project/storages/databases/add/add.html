@@ -91,7 +91,7 @@
             <p
                 data-ng-if="$ctrl.model.plan.minNodes === $ctrl.model.plan.maxNodes"
                 data-translate="pci_database_add_included_nodes_offer"
-                data-translate-values="{offerName: $ctrl.model.plan.name, offerNodes: $ctrl.model.plan.minNodes}"
+                data-translate-values="{offerName: $ctrl.capitalize($ctrl.model.plan.name), offerNodes: $ctrl.model.plan.minNodes}"
             ></p>
 
             <div
@@ -101,10 +101,10 @@
                 <p
                     data-translate="pci_database_add_storage_sizing_offer"
                     data-translate-values="{
-                        flavorName: $ctrl.model.flavor.name,
-                        includedStorage: $ctrl.model.flavor.minDiskSize,
-                        addableStorage: $ctrl.model.flavor.maxDiskSize - $ctrl.model.flavor.minDiskSize,
-                        step: $ctrl.model.disk.step
+                        flavorName: $ctrl.capitalize($ctrl.model.flavor.name),
+                        includedStorage: ($ctrl.model.flavor.minDiskSize | bytes:2:false:'GB'),
+                        addableStorage: ($ctrl.model.flavor.maxDiskSize - $ctrl.model.flavor.minDiskSize| bytes:2:false:'GB'),
+                        step: ($ctrl.model.disk.step| bytes:2:false:'GB')
                     }"
                 ></p>
                 <pci-projects-project-database-disk-size

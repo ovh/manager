@@ -16,10 +16,10 @@
         <p
             data-translate="pci_databases_general_information_upgrade_storage_description"
             data-translate-values="{
-                flavorName: $ctrl.flavor.name,
+                flavorName: $ctrl.capitalize($ctrl.flavor.name),
                 includedStorage: ($ctrl.flavor.minDiskSize | bytes:2:false:'GB'),
                 addableStorage: ($ctrl.flavor.maxDiskSize - $ctrl.flavor.minDiskSize | bytes:2:false:'GB'),
-                step: $ctrl.flavor.stepDiskSize
+                step: ($ctrl.flavor.stepDiskSize| bytes:2:false:'GB')
             }"
         ></p>
         <pci-projects-project-database-disk-size
