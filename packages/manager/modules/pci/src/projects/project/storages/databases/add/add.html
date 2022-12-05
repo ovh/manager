@@ -63,14 +63,14 @@
             <!-- Step 4 -->
             <h2 id="flavor" data-translate="pci_database_add_step4_title"></h2>
             <p data-translate="pci_database_add_select_flavor"></p>
-            <database-flavors-list
+            <pci-projects-project-database-flavors-list
                 data-flavors="$ctrl.model.region.availableFlavors"
                 data-selected-flavor="$ctrl.model.flavor"
                 data-user="$ctrl.user"
                 data-on-change="$ctrl.onFlavorChanged(selectedFlavor)"
                 data-show-monthly-prices="$ctrl.showMonthlyPrices"
                 data-nodes="$ctrl.model.plan.nodesCount"
-            ></database-flavors-list>
+            ></pci-projects-project-database-flavors-list>
 
             <!-- Step 5 -->
             <h2 id="cluster" data-translate="pci_database_add_step5_title"></h2>
@@ -107,7 +107,7 @@
                         step: $ctrl.model.disk.step
                     }"
                 ></p>
-                <database-disk-size
+                <pci-projects-project-database-disk-size
                     data-min="0"
                     data-max="$ctrl.model.flavor.maxDiskSize - $ctrl.model.flavor.minDiskSize"
                     data-step="$ctrl.model.disk.step"
@@ -121,7 +121,7 @@
                     data-show-monthly-prices="$ctrl.showMonthlyPrices"
                     data-show-prices="true"
                 >
-                </database-disk-size>
+                </pci-projects-project-database-disk-size>
             </div>
 
             <!-- Step 6 -->

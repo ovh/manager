@@ -17,13 +17,13 @@
         currentNodeModel: $ctrl.currentFlavor.name
     }"
 ></p>
-<database-flavors-list
+<pci-projects-project-database-flavors-list
     data-current-flavor="$ctrl.currentFlavor"
     data-on-change="$ctrl.onFlavorSelect(selectedFlavor)"
     data-flavors="$ctrl.flavors"
     data-selected-flavor="$ctrl.selectedFlavor"
     data-user="$ctrl.user"
-></database-flavors-list>
+></pci-projects-project-database-flavors-list>
 
 <div data-ng-if="$ctrl.upgradingFlavor">
     <oui-spinner data-size="s"></oui-spinner>

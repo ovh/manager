@@ -22,7 +22,7 @@
                 step: $ctrl.flavor.stepDiskSize
             }"
         ></p>
-        <database-disk-size
+        <pci-projects-project-database-disk-size
             data-min="0"
             data-max="($ctrl.flavor.maxDiskSize - $ctrl.flavor.minDiskSize)"
             data-initial-value="$ctrl.originallyAddedDiskSize"
@@ -36,7 +36,7 @@
             data-show-prices="false"
             data-show-monthly-prices="$ctrl.showMonthlyPrices"
         >
-        </database-disk-size>
+        </pci-projects-project-database-disk-size>
     </div>
     <div class="col-lg-3">
         <div class="order-summary sticky-top mb-3">

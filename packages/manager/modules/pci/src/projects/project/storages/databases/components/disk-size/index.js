@@ -15,7 +15,7 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('databaseDiskSize', component)
+  .component('pciProjectsProjectDatabaseDiskSize', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

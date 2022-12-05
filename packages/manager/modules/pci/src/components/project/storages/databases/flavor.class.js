@@ -11,17 +11,17 @@ export default class Flavor {
     });
     this.isDefault = some(availability, 'default');
 
-    this.GBHourlyPrice = (this.availability || [])[0]?.hourlyPricePerGB;
-    this.GBMonthlyPrice = (this.availability || [])[0]?.monthlyPricePerGB;
+    this.gbHourlyPrice = (this.availability || [])[0]?.hourlyPricePerGB;
+    this.gbMonthlyPrice = (this.availability || [])[0]?.monthlyPricePerGB;
 
     this.hourlyPricePerGB = {
-      priceInUcents: this.GBHourlyPrice.priceInUcents,
-      tax: this.GBHourlyPrice.tax,
+      priceInUcents: this.gbHourlyPrice.priceInUcents,
+      tax: this.gbHourlyPrice.tax,
     };
 
     this.monthlyPricePerGB = {
-      priceInUcents: this.GBMonthlyPrice.priceInUcents,
-      tax: this.GBMonthlyPrice.tax,
+      priceInUcents: this.gbMonthlyPrice.priceInUcents,
+      tax: this.gbMonthlyPrice.tax,
     };
   }
 
