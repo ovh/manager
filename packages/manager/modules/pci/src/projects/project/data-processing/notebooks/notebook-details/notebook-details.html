@@ -147,6 +147,7 @@
             >
                 <oui-tile-description
                     data-translate="data_processing_notebooks_details_resources_notebook_NB1-1_label"
+                    data-translate-values="{clusterName: '<strong>' + $ctrl.NOTEBOOK_CLUSTER_NAME + ' :</strong>'}"
                 >
                 </oui-tile-description>
             </oui-tile-definition>
@@ -161,7 +162,7 @@
                 <oui-tile-description
                     data-ng-repeat="template in $ctrl.capabilities.templates track by template.id"
                     data-translate="data_processing_notebooks_details_resources_cluster_description_label"
-                    data-translate-values="{'clusterName': template.name, 
+                    data-translate-values="{'clusterName': '<strong>' + template.name + ' :</strong>', 
                     'driverCores': template.driverCores, 'driverMemory': template.driverMemory, 'driverMemoryOverhead': template.driverMemoryOverhead, 
                     'executorCores': template.executorCores, 'executorMemory': template.executorMemory, 'executorMemoryOverhead': template.executorMemoryOverhead,
                     'executorNumber': template.executorNum, 'htPrice': 0, 'ttcPrice': 0}"

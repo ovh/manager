@@ -84,3 +84,5 @@ export const SUBMIT_JOB_API_GUIDES = {
 };
 
 export const GIB_IN_MIB = 1024;
+
+export const NOTEBOOK_CLUSTER_NAME = 'NB1-1';

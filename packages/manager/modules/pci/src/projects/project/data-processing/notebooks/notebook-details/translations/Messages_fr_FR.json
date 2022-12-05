@@ -17,8 +17,8 @@
   "data_processing_notebooks_details_lifecycle_elapsed_label": "Temps écoulé",
   "data_processing_notebooks_details_resources_label": "Resources",
   "data_processing_notebooks_details_resources_notebook_label": "Notebook",
-  "data_processing_notebooks_details_resources_notebook_NB1-1_label": "<strong>NB1-1 :</strong> 1 vCore CPU, 4 Gio memory.",
+  "data_processing_notebooks_details_resources_notebook_NB1-1_label": "{{clusterName}} 1 vCore CPU, 4 Gio memory.",
   "data_processing_notebooks_details_resources_cluster_label": "Cluster",
   "data_processing_notebooks_details_resources_cluster_description": "Le dimensionnement du cluster se réalise par la sélection du kernel depuis JupyterLab.",
-  "data_processing_notebooks_details_resources_cluster_description_label": "<strong>{{clusterName}} :</strong> driver - {{driverCores}} vCore CPU / {{driverMemory}} Gio memory (+ {{driverMemoryOverhead}} Mio overhead), executor {{executorCores}} vCores CPU / {{executorMemory}} Gio memory (+ {{executorMemoryOverhead}} Mio overhead), {{executorNumber}} executors, {{htPrice}} &euro; HT ({{ttcPrice}} TTC) / min."
+  "data_processing_notebooks_details_resources_cluster_description_label": "{{clusterName}} driver - {{driverCores}} vCore CPU / {{driverMemory}} Gio memory (+ {{driverMemoryOverhead}} Mio overhead), executor {{executorCores}} vCores CPU / {{executorMemory}} Gio memory (+ {{executorMemoryOverhead}} Mio overhead), {{executorNumber}} executors, {{htPrice}} &euro; HT ({{ttcPrice}} TTC) / min."
 }
