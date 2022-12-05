@@ -1,11 +1,15 @@
-import { DATA_PROCESSING_NOTEBOOKS_STATUSES } from '../../data-processing.constants';
+import {
+  DATA_PROCESSING_NOTEBOOKS_STATUSES,
+  NOTEBOOK_CLUSTER_NAME,
+} from '../../data-processing.constants';
 
-export default class {
+export default class NoteBookDetailsCtrl {
   /* @ngInject */
   constructor(dataProcessingService, ovhManagerRegionService, atInternet) {
     this.dataProcessingService = dataProcessingService;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.atInternet = atInternet;
+    this.NOTEBOOK_CLUSTER_NAME = NOTEBOOK_CLUSTER_NAME;
   }
 
   /**
