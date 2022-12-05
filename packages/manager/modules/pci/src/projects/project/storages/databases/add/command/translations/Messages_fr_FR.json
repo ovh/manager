@@ -4,6 +4,7 @@
   "pci_databases_add_command_description": "La commande suivante vous permet de créer votre service grâce à notre API.",
   "pci_databases_add_command_description_terraform": "La resource suivante vous permet de créer votre service grâce à notre Terraform OVH Provider.",
   "pci_databases_add_command_documentation_link": "Cliquez-ici pour accéder à la documentation.",
+  "pci_databases_add_command_documentation_link_database_creation": "Plus d'exemples sur GitHub.",
   "pci_databases_add_command_parameters": "Paramètres :",
   "pci_databases_add_command_parameters_info": "Plus d’informations sur les paramètres disponibles :",
   "pci_databases_add_command_parameters_info_description": "Nom de votre service",

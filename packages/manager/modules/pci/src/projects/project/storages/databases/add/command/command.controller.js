@@ -1,4 +1,8 @@
-import { API_GUIDES, TERRAFORM_GUIDES } from '../../../../project.constants';
+import {
+  API_GUIDES,
+  TERRAFORM_GUIDES,
+  DATABASE_CREATION,
+} from '../../../../project.constants';
 import { getOrderDataFromModel, getTerraformDataFromModel } from '../add.utils';
 import { ORDER_KEYS } from '../add.constants';
 
@@ -18,6 +22,7 @@ export default class CommandCtrl {
       API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
     this.terraformGuideUrl =
       TERRAFORM_GUIDES[this.user.ovhSubsidiary] || TERRAFORM_GUIDES.DEFAULT;
+    this.databaseCreation = DATABASE_CREATION;
     this.orderAPIUrl = `POST /cloud/project/${this.projectId}/database/${this.data.engine.name}`;
     this.apiData = getOrderDataFromModel(this.data);
     this.terraformData = getTerraformDataFromModel(this.projectId, this.data);
