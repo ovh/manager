@@ -6,7 +6,10 @@
     }"
     >
         <div class="d-flex justify-content-between">
-            <span data-ng-if="$ctrl.min === 0">Aucun</span>
+            <span
+                data-ng-if="$ctrl.min === 0"
+                data-translate="pci_database_disk_size_none"
+            ></span>
             <span
                 data-ng-if="$ctrl.min > 0"
                 data-ng-bind="$ctrl.min | bytes:2:false:'GB'"
@@ -15,7 +18,7 @@
         </div>
         <div>
             <input
-                class="mx-1"
+                class="oui-input p-0 m-0"
                 name="diskSize"
                 type="range"
                 min="{{$ctrl.min}}"
