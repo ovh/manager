@@ -1,4 +1,9 @@
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import 'bootstrap4/scss/_functions.scss';
+@import 'bootstrap4/scss/_variables.scss';
+@import 'bootstrap4/scss/_mixins.scss';
+@import 'bootstrap4/scss/_utilities.scss';
+
 pci-projects-project-database-flavors-list {
   tr.table-single-select-row {
     td {
@@ -20,7 +25,7 @@ pci-projects-project-database-flavors-list {
 
     &.selected {
       td {
-        font-weight: 800 !important;
+        @extend .font-weight-bold;
         background-color: $p-075;
       }
     }
