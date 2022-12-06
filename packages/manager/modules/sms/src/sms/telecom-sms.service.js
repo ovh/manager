@@ -42,4 +42,28 @@ export default /* @ngInject */ ($http, $timeout, iceberg) => ({
       .post(`/sms/${serviceName}/transferCredits`, params)
       .then(({ data }) => data);
   },
+
+  getSmppSettings(serviceName) {
+    return $http
+      .get(`/sms/${serviceName}/smpp/settings`)
+      .then(({ data }) => data);
+  },
+
+  postResetSmppPassword(serviceName) {
+    return $http
+      .post(`/sms/${serviceName}/smpp/password`)
+      .then(({ data }) => data);
+  },
+
+  getAllowedIps(serviceName) {
+    return $http
+      .get(`/sms/${serviceName}/smpp/allowedIPs`)
+      .then(({ data }) => data);
+  },
+
+  putAllowedIps(serviceName, params) {
+    return $http
+      .put(`/sms/${serviceName}/smpp/allowedIPs`, params)
+      .then(({ data }) => data);
+  },
 });

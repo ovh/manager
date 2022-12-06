@@ -1,8 +1,9 @@
 export default class {
   /* @ngInject */
-  constructor($translate, smsFeatureAvailability) {
+  constructor($translate, isSmppAccount, smsFeatureAvailability) {
     this.$translate = $translate;
     this.smsFeatureAvailability = smsFeatureAvailability;
+    this.isSmppAccount = isSmppAccount;
   }
 
   $onInit() {
@@ -31,6 +32,15 @@ export default class {
         sref: 'sms.service.options.blacklist',
         text: this.$translate.instant('sms_options_blacklist'),
       },
+      ...(this.isSmppAccount
+        ? [
+            {
+              name: 'option_smpp_parameter',
+              sref: 'sms.service.options.smppParameter',
+              text: this.$translate.instant('sms_options_smpp_parameter'),
+            },
+          ]
+        : []),
     ];
   }
 }

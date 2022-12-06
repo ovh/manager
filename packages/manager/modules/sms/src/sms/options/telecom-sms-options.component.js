@@ -8,11 +8,19 @@ import manage from './manage';
 import recredit from './recredit';
 import response from './response';
 import blacklist from './blacklist';
+import smppParameter from './smppParameter';
 
 const moduleName = 'ovhManagerSmsOptionsComponent';
 
 angular
-  .module(moduleName, ['ui.router', blacklist, manage, recredit, response])
+  .module(moduleName, [
+    'ui.router',
+    blacklist,
+    manage,
+    recredit,
+    response,
+    smppParameter,
+  ])
   .config(($stateProvider) => {
     $stateProvider.state('sms.service.options', {
       url: '/options',

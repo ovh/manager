@@ -36,6 +36,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       service: /* @ngInject */ ($http, serviceName) =>
         $http.get(`/sms/${serviceName}`).then(({ data: service }) => service),
+      isSmppAccount: /* @ngInject */ (service) => service.smpp,
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       smsFeatureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>

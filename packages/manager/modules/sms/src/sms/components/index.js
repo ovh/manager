@@ -10,6 +10,8 @@ import smsOptions from './sms-options/sms-options.component';
 import smsTips from './sms-tips/sms-tips.component';
 import smsTipsCompose from './sms-tips/compose/sms-tips-compose.component';
 import smsTipsSize from './sms-tips/size/sms-tips-size.component';
+import smppSettings from './smpp-settings/smpp-settings.component';
+import serviceStatus from './service-status/service-status.component';
 
 import './components.scss';
 
@@ -26,6 +28,9 @@ angular
   .component(smsOptions.name, smsOptions)
   .component(smsTips.name, smsTips)
   .component(smsTipsCompose.name, smsTipsCompose)
-  .component(smsTipsSize.name, smsTipsSize);
+  .component(smsTipsSize.name, smsTipsSize)
+  .component(smppSettings.name, smppSettings)
+  .component(serviceStatus.name, serviceStatus)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
