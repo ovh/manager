@@ -24,7 +24,6 @@ jobs:
       - name: Install repository
         run: |
           yarn install --frozen-lockfile
-
       - name: Lint Code Base
         run: |
           yarn lint

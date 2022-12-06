@@ -1,7 +1,7 @@
 {
   "name": "@ovh-ux/iam-app",
   "version": "0.0.0",
-  "private": "true",
+  "private": true,
   "description": "",
   "repository": {
     "type": "git",
@@ -34,5 +34,10 @@
     "@rjsf/utils": "^5.0.0-beta.5",
     "typescript": "^4.3.2",
     "vite": "^3.0.2"
-  }
+  },
+  "regions": [
+    "EU",
+    "CA",
+    "US"
+  ]
 }
