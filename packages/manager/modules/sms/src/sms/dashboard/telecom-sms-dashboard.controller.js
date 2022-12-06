@@ -9,7 +9,13 @@ const RELOAD_CREDITS_HIT_NAME = 'sms::service::dashboard::report::add-credit';
 
 export default class {
   /* @ngInject */
-  constructor($translate, OvhApiSms, TucSmsMediator, TucToastError) {
+  constructor(
+    $translate,
+    OvhApiSms,
+    SmsService,
+    TucSmsMediator,
+    TucToastError,
+  ) {
     this.$translate = $translate;
     this.api = {
       sms: {
@@ -19,18 +25,23 @@ export default class {
         jobs: OvhApiSms.Jobs().v6(),
       },
     };
+    this.smsService = SmsService;
     this.TucSmsMediator = TucSmsMediator;
     this.TucToastError = TucToastError;
   }
 
   $onInit() {
     this.actions = [
-      {
-        name: 'compose_message',
-        sref: 'sms.service.sms.compose',
-        text: this.$translate.instant('sms_actions_send_sms'),
-        hit: 'sms::service::dashboard::shortcuts::compose',
-      },
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'compose_message',
+              sref: 'sms.service.sms.compose',
+              text: this.$translate.instant('sms_actions_send_sms'),
+              hit: 'sms::service::dashboard::shortcuts::compose',
+            },
+          ]
+        : []),
       {
         name: 'recredit_options',
         sref: 'sms.service.order',
@@ -43,42 +54,71 @@ export default class {
         text: this.$translate.instant('sms_actions_credit_transfer'),
         hit: 'sms::service::dashboard::shortcuts::transfer-credit',
       },
-      {
-        name: 'manage_recipient_new',
-        sref: 'sms.service.receivers',
-        text: this.$translate.instant('sms_actions_create_contact'),
-        hit: 'sms::service::dashboard::shortcuts::add-receivers',
-      },
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'manage_recipient_new',
+              sref: 'sms.service.receivers',
+              text: this.$translate.instant('sms_actions_create_contact'),
+              hit: 'sms::service::dashboard::shortcuts::add-receivers',
+            },
+          ]
+        : []),
       {
         name: 'manage_senders',
         sref: 'sms.service.senders.add',
         text: this.$translate.instant('sms_actions_create_sender'),
         hit: 'sms::service::dashboard::shortcuts::add-senders',
       },
-      {
-        name: 'manage_soapi_users',
-        sref: 'sms.service.users',
-        text: this.$translate.instant('sms_actions_create_api_user'),
-        hit: 'sms::service::dashboard::shortcuts::add-user',
-      },
-      {
-        name: 'manage_blacklisted_senders',
-        sref: 'sms.service.receivers',
-        text: this.$translate.instant('sms_actions_clean_contact_list'),
-        hit: 'sms::service::dashboard::shortcuts::clean-receivers',
-      },
-      {
-        name: 'create_campaign',
-        sref: 'sms.service.batches.create',
-        text: this.$translate.instant('sms_actions_create_campaign'),
-        hit: 'sms::service::dashboard::shortcuts::add-campaign',
-      },
-      {
-        name: 'campaign_history',
-        sref: 'sms.service.batches.history',
-        text: this.$translate.instant('sms_actions_campaign_history'),
-        hit: 'sms::service::dashboard::shortcuts::historic-campaigns',
-      },
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'manage_soapi_users',
+              sref: 'sms.service.users',
+              text: this.$translate.instant('sms_actions_create_api_user'),
+              hit: 'sms::service::dashboard::shortcuts::add-user',
+            },
+          ]
+        : []),
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'manage_blacklisted_senders',
+              sref: 'sms.service.receivers',
+              text: this.$translate.instant('sms_actions_clean_contact_list'),
+              hit: 'sms::service::dashboard::shortcuts::clean-receivers',
+            },
+          ]
+        : []),
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'create_campaign',
+              sref: 'sms.service.batches.create',
+              text: this.$translate.instant('sms_actions_create_campaign'),
+              hit: 'sms::service::dashboard::shortcuts::add-campaign',
+            },
+          ]
+        : []),
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'campaign_history',
+              sref: 'sms.service.batches.history',
+              text: this.$translate.instant('sms_actions_campaign_history'),
+              hit: 'sms::service::dashboard::shortcuts::historic-campaigns',
+            },
+          ]
+        : []),
+      ...(this.isSmppAccount
+        ? [
+            {
+              name: 'option_smpp_parameter',
+              sref: 'sms.service.options.smppParameter',
+              text: this.$translate.instant('sms_actions_smpp_parameter'),
+            },
+          ]
+        : []),
     ];
 
     this.statisticsFilters = Object.values(STATISTICS_FILTER).map((value) => ({
@@ -87,6 +127,18 @@ export default class {
     }));
 
     [this.statisticFilter] = this.statisticsFilters;
+
+    if (this.isSmppAccount) {
+      this.smppLoading = true;
+      this.smsService
+        .getSmppSettings(this.serviceName)
+        .then((result) => {
+          this.smppSettings = result;
+        })
+        .finally(() => {
+          this.smppLoading = false;
+        });
+    }
     return this.getStatistics();
   }
 

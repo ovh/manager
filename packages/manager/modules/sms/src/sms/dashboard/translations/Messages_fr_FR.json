@@ -9,6 +9,7 @@
   "sms_actions_clean_contact_list": "Nettoyer la liste des contacts",
   "sms_actions_create_campaign": "Créer une campagne",
   "sms_actions_campaign_history": "Historique des campagnes",
+  "sms_actions_smpp_parameter": "Paramétrer mon SMPP",
   "sms_consumed_credit_balance": "Solde de crédit",
   "sms_consumed_last_recharge": "Dernière recharge",
   "sms_statistics": "Statistiques",
