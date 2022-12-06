@@ -1,0 +1,47 @@
+<oui-tile
+    data-heading="{{ 'sms_component_smppSettings_title' | translate }}"
+    data-loading="$ctrl.loading"
+>
+    <oui-tile-definition
+        data-term="{{ 'sms_component_smppSettings_label_systemId' | translate }}"
+    >
+        <oui-tile-description>
+            <oui-clipboard data-model="$ctrl.serviceName"></oui-clipboard>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition
+        data-term="{{ 'sms_component_smppSettings_label_secured_endpoint' | translate }}"
+    >
+        <oui-tile-description>
+            <oui-clipboard
+                data-ng-repeat="endpoints in $ctrl.smppSettings.endpoints track by $index"
+                class="mb-2"
+                data-model="endpoints.secured"
+            >
+            </oui-clipboard>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition
+        data-term="{{ 'sms_component_smppSettings_label_unsecured' | translate }}"
+        data-term-popover="{{ 'sms_component_smppSettings_popover_unsecured' | translate }}"
+    >
+        <oui-tile-description>
+            <oui-clipboard
+                data-ng-repeat="endpoints in $ctrl.smppSettings.endpoints track by $index"
+                class="mb-2"
+                data-model="endpoints.unsecured"
+            >
+            </oui-clipboard>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition
+        data-term="{{ 'sms_component_smppSettings_label_windowing' | translate }}"
+        data-description="{{ 'sms_component_smppSettings_description_windowing' | translate: { value: $ctrl.smppSettings.windowing } }}"
+    >
+    </oui-tile-definition>
+    <oui-tile-definition
+        data-term="{{ 'sms_component_smppSettings_label_flow_rate_allowed' | translate }}"
+        data-description="{{ 'sms_component_smppSettings_description_flow_rate_allowed' | translate: { value: $ctrl.smppSettings.throughput } }}"
+    >
+    </oui-tile-definition>
+</oui-tile>
