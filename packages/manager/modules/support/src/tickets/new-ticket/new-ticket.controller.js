@@ -1,5 +1,6 @@
 import angular from 'angular';
 import get from 'lodash/get';
+import { VPS_CUSTOMERS_RENEW_ISSUES_LINK } from './new-ticket.constants';
 
 export default class SupportNewController {
   /* @ngInject */
@@ -11,6 +12,7 @@ export default class SupportNewController {
     CORE_URLS,
     OvhApiMe,
     OvhApiSupport,
+    ovhFeatureFlipping,
     SupportNewTicketService,
   ) {
     this.$q = $q;
@@ -20,6 +22,7 @@ export default class SupportNewController {
     this.CORE_URLS = CORE_URLS;
     this.OvhApiMe = OvhApiMe;
     this.OvhApiSupport = OvhApiSupport;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.SupportNewTicketService = SupportNewTicketService;
   }
 
@@ -28,6 +31,18 @@ export default class SupportNewController {
 
     this.guideURL = this.urls.guide;
     this.forumURL = this.urls.forum;
+
+    this.VPS_CUSTOMERS_RENEW_ISSUES_LINK = VPS_CUSTOMERS_RENEW_ISSUES_LINK;
+    this.getRenewalServicesIssueAvailability().then((isAvailable) => {
+      this.isRenewalServicesIssueBannerAvailable = isAvailable;
+    });
+  }
+
+  getRenewalServicesIssueAvailability() {
+    const featureId = 'support:renewal-services-issue';
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability(featureId)
+      .then((feature) => feature.isFeatureAvailable(featureId));
   }
 
   onIssuesFormSubmit(result) {

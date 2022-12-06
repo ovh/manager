@@ -1,4 +1,8 @@
 {
   "ovhManagerSupport_header": "Os meus pedidos de assistência",
-  "ovhManagerSupport_description": "Crie e siga os seus pedidos de assistência em função das suas necessidades. Pode consultá-los, selecioná-los e aceder aos pedidos já arquivados."
+  "ovhManagerSupport_description": "Crie e siga os seus pedidos de assistência em função das suas necessidades. Pode consultá-los, selecioná-los e aceder aos pedidos já arquivados.",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_1": "Se possui servidores Bare Metal ou VPS com um IP associado, pode encontrar problemas para renovar o seu serviço. Por favor, aguarde pela resolução; os seus serviços estão protegidos e não serão suspensos.",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_2": "Para seguir a evolução da situação em tempo real, subscreva o relatório de incidente:",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_2_link": "Subscrever o relatório de incidente",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_3": "Pedimos desculpa pelo incómodo."
 }
