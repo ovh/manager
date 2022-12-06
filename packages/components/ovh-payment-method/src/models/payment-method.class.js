@@ -1,5 +1,3 @@
-import { isNull } from 'lodash-es';
-
 import { PaymentMethodType } from './payment-method-type.class';
 import { PAYMENT_METHOD_STATUS_ENUM } from '../enums';
 
@@ -145,7 +143,7 @@ export class PaymentMethod {
    *  @return {Boolean} true if payment method is legacy, false otherwise.
    */
   isLegacy() {
-    return !isNull(this.original);
+    return this.original != null;
   }
 
   isValid() {

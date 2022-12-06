@@ -1,4 +1,3 @@
-import { flatten, has } from 'lodash-es';
 import { PaymentMeanBankAccount } from './models/payment-mean/payment-mean-bank-account.class';
 import { PaymentMeanCreditCard } from './models/payment-mean/payment-mean-credit-card.class';
 import { PaymentMeanDeferredPaymentAccount } from './models/payment-mean/payment-mean-deferred-payment-account.class';
@@ -37,7 +36,7 @@ export const usePaymentMean = ({ reketInstance, region }) => {
 
     const addParams = params;
 
-    if (has(addParams, 'default')) {
+    if (addParams.default) {
       addParams.setDefault = addParams.default;
       delete addParams.default;
     }
@@ -230,7 +229,7 @@ export const usePaymentMean = ({ reketInstance, region }) => {
       availablePaymentMeanTypes.map(({ value }) =>
         getPaymentMeansOfType(value, options),
       ),
-    ).then((paymentsOfType) => flatten(paymentsOfType));
+    ).then((paymentsOfType) => paymentsOfType.flat());
   };
 
   return {

@@ -1,5 +1,3 @@
-import { snakeCase } from 'lodash-es';
-
 export class PaymentMean {
   constructor(options = {}) {
     this.id = options.id;
@@ -14,9 +12,9 @@ export class PaymentMean {
   toPaymentMethod() {
     return {
       paymentMethodId: this.id,
-      paymentType: snakeCase(this.meanType).toUpperCase(),
+      paymentType: this.meanType.toUpperCase(),
       description: this.description,
-      status: snakeCase(this.state).toUpperCase(),
+      status: this.state.toUpperCase(),
       default: this.defaultPaymentMean,
       icon: this.icon,
     };

@@ -1,5 +1,3 @@
-import { find, remove, some } from 'lodash-es';
-
 import { usePaymentMean } from './ovh-payment-mean';
 import { PaymentMethod, AvailablePaymentMethod } from './models';
 import { PAYMENT_METHOD_STATUS_ENUM } from './enums';
@@ -249,11 +247,9 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
 
     return Promise.all([paymentMeansPromise, getPaymentMethods(options)]).then(
       ([paymentMeans, paymentMethods]) => {
-        remove(paymentMeans, ({ paymentMethodId }) =>
-          some(paymentMethods, {
-            paymentMeanId: paymentMethodId,
-          }),
-        );
+        // remove(paymentMeans, ({ paymentMethodId }) =>
+        //   paymentMethods.some(({ _paymentMethodId }) => _paymentMethodId === paymentMethodId)
+        // );
 
         const methods = [...paymentMeans, ...paymentMethods];
 
@@ -280,8 +276,7 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
       transform: true,
     }).then(
       (paymentMethods) =>
-        find(
-          paymentMethods,
+        paymentMethods.find(
           (method) => method.default || method.defaultPaymentMean,
         ) || null,
     );
