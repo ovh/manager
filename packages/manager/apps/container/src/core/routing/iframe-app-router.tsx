@@ -80,15 +80,9 @@ export function IFrameAppRouter({
   const redirections = useMemo(() => Redirections(), []);
   return (
     <Routes>
-<<<<<<< HEAD
       {redirections}
       {defaultRoute}
       {routes}
-=======
-      {defaultRoute}
-      {routes}
-      {redirections}
->>>>>>> 2c1cd06b91... feat(container): shell routing improvements
       <Route path="*" element={<IndexRoute />} />
     </Routes>
   );
