@@ -1,0 +1,16 @@
+{
+  "sms_options_smpp_parameter_title": "Paramètres SMPP",
+  "sms_options_smpp_parameter_allowed_ips_title": "IPs autorisées",
+  "sms_options_smpp_parameter_allowed_ips_button_add": "Ajouter une IP {{ ipCount }}",
+  "sms_options_smpp_parameter_allowed_ips_modal_button_secondary": "Annuler",
+  "sms_options_smpp_parameter_allowed_ips_modal_add_title": "Ajouter une adresse IP",
+  "sms_options_smpp_parameter_allowed_ips_modal_add_button_primary": "Envoyer",
+  "sms_options_smpp_parameter_allowed_ips_modal_label_ip": "IP",
+  "sms_options_smpp_parameter_allowed_ips_modal_delete_title": "Supprimer une adresse IP",
+  "sms_options_smpp_parameter_allowed_ips_modal_delete_content": "Vous êtes sur le point de supprimer : {{ ip }}",
+  "sms_options_smpp_parameter_allowed_ips_modal_delete_button_primary": "Supprimer",
+  "sms_options_smpp_parameter_allowed_ips_modal_add_message_success": "L'ajout de l'adresse IP a été prise en compte.",
+  "sms_options_smpp_parameter_allowed_ips_modal_add_message_error": "Une erreur est survenue lors de l'ajout de l'adresse IP.",
+  "sms_options_smpp_parameter_allowed_ips_modal_remove_message_success": "La suppression de l'IP a été prise en compte.",
+  "sms_options_smpp_parameter_allowed_ips_modal_remove_message_error": "Une erreur est survenue lors de la suppression de l'adresse IP."
+}
