@@ -161,7 +161,6 @@
   "ip_virtualmac_delete_confirmation": "Sind Sie sicher, dass Sie die virtuelle MAC-Adresse {{t0}} der IP {{t1}} löschen möchten?",
   "ip_virtualmac_delete_success": "Die virtuelle MAC-Adresse {{t0}} der IP {{t1}} wird in einigen Minuten gelöscht.",
   "ip_virtualmac_delete_failure": "Beim Löschen der virtuellen MAC-Adresse {{t0}} der IP {{t1}} ist ein Fehler aufgetreten",
-  "ip_failover": "Failover-IP",
   "ip_failover_short": "Failover",
   "ip_failover_impossible_delete": "Diese IP kann nicht gelöscht werden",
   "ip_failover_impossible_move": "Diese IP kann nicht umgezogen werden",
