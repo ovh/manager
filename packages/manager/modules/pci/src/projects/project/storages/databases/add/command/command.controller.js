@@ -4,7 +4,7 @@ import {
   DATABASE_CREATION,
 } from '../../../../project.constants';
 import { getOrderDataFromModel, getTerraformDataFromModel } from '../add.utils';
-import { ORDER_KEYS } from '../add.constants';
+import { ORDER_KEYS, ORDER_KEYS_TERRAFORM } from '../add.constants';
 
 export default class CommandCtrl {
   /* @ngInject */
@@ -12,6 +12,7 @@ export default class CommandCtrl {
     this.$translate = $translate;
     this.DatabaseService = DatabaseService;
     this.orderKeys = ORDER_KEYS;
+    this.orderKeysTerraform = ORDER_KEYS_TERRAFORM;
   }
 
   $onInit() {

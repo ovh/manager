@@ -67,6 +67,22 @@
             <pci-order-command-terraform
                 data-terraform-data="$ctrl.terraformData"
             ></pci-order-command-terraform>
+            <p data-translate="pci_databases_add_command_parameters_info"></p>
+            <dl>
+                <div
+                    data-ng-repeat="orderKeyTerraform in $ctrl.orderKeysTerraform track by $index"
+                    class="row mb-2"
+                >
+                    <dt
+                        class="col-6 col-md-4 ont-weight-normal"
+                        data-ng-bind="orderKeyTerraform"
+                    ></dt>
+                    <dd
+                        class="col-6 col-md-8 my-auto"
+                        data-translate="{{:: 'pci_databases_add_command_parameters_info_terraform_' + $ctrl.constructor.formatKey(orderKeyTerraform)}}"
+                    ></dd>
+                </div>
+            </dl>
         </oui-tabs-item>
     </oui-tabs>
     <a
