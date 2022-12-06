@@ -1,4 +1,8 @@
 {
   "ovhManagerSupport_header": "Meine Support-Anfragen",
-  "ovhManagerSupport_description": "Erstellen und verfolgen Sie Ihre Support-Anfragen ganz nach Ihren Anforderungen. Sie können sie einsehen, sortieren und auf bereits archivierte Anfragen zugreifen."
+  "ovhManagerSupport_description": "Erstellen und verfolgen Sie Ihre Support-Anfragen ganz nach Ihren Anforderungen. Sie können sie einsehen, sortieren und auf bereits archivierte Anfragen zugreifen.",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_1": "Möglicherweise kommt es zu Komplikationen bei der Verlängerung von Bare Metal-Servern oder VPS mit verbundener IP-Adresse. Bitte gedulden Sie sich, bis die Störung behoben wird. Ihre Dienste sind geschützt und werden nicht ausgesetzt.",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_2": "Wenn Sie in Echtzeit mitverfolgen möchten, wie sich die Situation entwickelt, können Sie den Störungsbericht abonnieren:",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_2_link": "Den Störungsbericht abonnieren",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_3": "Bitte entschuldigen Sie die Unannehmlichkeiten."
 }

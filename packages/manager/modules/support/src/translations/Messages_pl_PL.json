@@ -1,4 +1,8 @@
 {
   "ovhManagerSupport_header": "Moje zgłoszenia",
-  "ovhManagerSupport_description": "Twórz i monitoruj zgłoszenia w zależności od potrzeb. Możesz przeglądać, sortować i wyświetlać zarchiwizowane zgłoszenia."
+  "ovhManagerSupport_description": "Twórz i monitoruj zgłoszenia w zależności od potrzeb. Możesz przeglądać, sortować i wyświetlać zarchiwizowane zgłoszenia.",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_1": "Jeśli posiadasz serwer Bare Metal lub VPS z przypisanym adresem IP, możesz mieć problem z odnowieniem usługi. Pracujemy nad rozwiązaniem problemu. Twoje usługi są chronione i nie zostaną zawieszone.",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_2": "Aby śledzić rozwój sytuacji w czasie rzeczywistym, uzyskaj dostęp do raportu o awarii:",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_2_link": "Dostęp do raportu o awarii",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_3": "Przepraszamy za niedogodności."
 }

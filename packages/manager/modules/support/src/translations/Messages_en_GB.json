@@ -1,4 +1,8 @@
 {
   "ovhManagerSupport_header": "My support tickets ",
-  "ovhManagerSupport_description": "Create and track support requests as needed. You can view, sort, and access archived requests."
+  "ovhManagerSupport_description": "Create and track support requests as needed. You can view, sort, and access archived requests.",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_1": "If you have Bare Metal or VPS servers with an attached IP, you may experience issues renewing your service. Please wait for the resolution process to complete. Your services will be protected, and will not be suspended.",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_2": "To track the situation in real time, subscribe to the incident report:",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_2_link": "Subscribe to incident report",
+  "ovhManagerSupport_bm_vps_customers_renew_services_issue_part_3": "We apologise for the inconvenience caused."
 }
