@@ -20,7 +20,8 @@ function makeRoute({
   appConfig: Application;
   iframeRef: RefObject<HTMLIFrameElement>;
 }) {
-  const { hash, path } = appConfig.container;
+  const { path } = appConfig.container;
+  const hash = "";
   const normalizedHash = (hash || '').replace(/^\//, '');
   const target = [path || id, normalizedHash, '*'].filter((i) => i).join('/');
   return (
@@ -55,7 +56,7 @@ function makeDefaultRoute({
       index
       element={
         <Navigate
-          to={`${defaultApp.container.path}${defaultApp.container.hash || ''}`}
+          to={`${defaultApp.container.path}`}
           replace={true}
         />
       }
