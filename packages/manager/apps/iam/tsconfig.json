@@ -17,9 +17,9 @@
     "allowJs": true,
     "jsx": "react",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]
     }
   },
-  "include": ["src"],
+  "include": ["./"],
   "exclude": ["node_modules", "dist", "types", "src/__tests__"]
 }

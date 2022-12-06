@@ -1,6 +1,0 @@
-{
-  "group_delete_title": "Suppression d'un groupe",
-  "group_delete_confirm": "Êtes-vous certain de vouloir supprimer le groupe <strong>{{ name }}</strong> ?",
-  "group_delete_success": "Le groupe de resources <strong>{{ name }}</strong> a bien été supprimé.",
-  "group_delete_error": "Une erreur est survenue lors de la suppression du group de resources <strong>{{ name }}</strong>."
-}
