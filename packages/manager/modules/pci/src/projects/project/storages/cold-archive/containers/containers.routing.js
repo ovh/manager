@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.storages.cold-archive.containers',
     {
-      url: '/containers',
+      url: '',
       component: 'pciProjectStorageColdArchiveContainers',
       redirectTo: (transition) =>
         transition
@@ -18,11 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
               : false,
           ),
       resolve: {
-        breadcrumb: /* @ngInject */ ($translate) => {
-          return $translate.instant(
-            'pci_projects_project_storages_cold_archive_container_label',
-          );
-        },
+        breadcrumb: () => null,
 
         goToContainer: /* @ngInject */ ($state, projectId) => (container) => {
           const { name } = container;
