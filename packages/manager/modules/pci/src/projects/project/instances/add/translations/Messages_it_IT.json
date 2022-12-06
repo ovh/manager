@@ -91,5 +91,6 @@
   "pci_projects_project_instances_add_attach_floating_ip_availability_info": "Questa opzione potrebbe non essere disponibile nella Region selezionata. Per maggiori informazioni sulla disponibilità dei servizi per Region, <a href=\"{{ guideLink }}\" target=\"_blank\">clicca qui</a>.",
   "pci_projects_project_instances_add_instance_confirmation_info": "Stai per creare un'Istanza. Ti ricordiamo che la creazione di questa istanza potrebbe richiedere alcuni minuti. Vuoi davvero continuare?",
   "pci_projects_project_instances_add_instance_confirmation_create": "Sì",
-  "pci_projects_project_instances_add_instance_confirmation_cancel": "No"
+  "pci_projects_project_instances_add_instance_confirmation_cancel": "No",
+  "pci_projects_project_instances_add_attach_floating_ip_availability_flavorType_warning": "Non disponibile su questo tipo di istanza"
 }
