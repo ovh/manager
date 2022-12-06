@@ -11,6 +11,8 @@ export default {
 
     trackClick: '<',
     serviceName: '<',
+
+    isSmppAccount: '<',
   },
   controller,
   name: 'ovhManagerSmsDashboard',

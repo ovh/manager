@@ -1,5 +1,7 @@
 {
   "sms_page_title": "SMS \"{{name}}\"",
+  "sms_smpp_channel_qualification_marketing": "Marketing",
+  "sms_smpp_channel_qualification_transactional": "Transactionnel",
   "sms_tabs_dashboard": "Tableau de bord",
   "sms_tabs_messages_campaign": "Message et campagne",
   "sms_sublink_sms_compose": "Gestion des SMS",

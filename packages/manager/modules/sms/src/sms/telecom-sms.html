@@ -12,6 +12,7 @@
                         data-tuc-editable-service-name-title="TelecomSmsCtrl.service.getDisplayedName()"
                         data-tuc-editable-service-name-title-on-save="TelecomSmsCtrl.serviceNameSave"
                         data-tuc-editable-service-name-service-name="TelecomSmsCtrl.service.name"
+                        data-service-name-appendix="{{ TelecomSmsCtrl.serviceNameAppendix }}"
                         data-maxlength="25"
                     >
                     </tuc-editable-service-name>
@@ -24,6 +25,7 @@
                 ><span data-translate="sms_common_home"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-dropdown
+                data-ng-if="!TelecomSmsCtrl.isSmppAccount"
                 text="{{:: 'sms_tabs_messages_campaign' | translate }}"
             >
                 <oui-header-tabs-item state="sms.service.sms">
@@ -34,6 +36,7 @@
                 </oui-header-tabs-item>
             </oui-header-tabs-dropdown>
             <oui-header-tabs-dropdown
+                data-ng-if="!TelecomSmsCtrl.isSmppAccount"
                 text="{{:: 'sms_tabs_contacts' | translate }}"
             >
                 <oui-header-tabs-item state="sms.service.phonebooks">
@@ -46,8 +49,11 @@
             <oui-header-tabs-item state="sms.service.senders"
                 ><span data-translate="sms_tabs_senders"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item state="sms.service.users"
-                ><span data-translate="sms_tabs_api_users"></span>
+            <oui-header-tabs-item
+                data-ng-if="!TelecomSmsCtrl.isSmppAccount"
+                state="sms.service.users"
+            >
+                <span data-translate="sms_tabs_api_users"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item state="sms.service.options"
                 ><span data-translate="sms_tabs_options"></span>
