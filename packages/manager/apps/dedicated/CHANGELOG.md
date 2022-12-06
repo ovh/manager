@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.38.0...@ovh-ux/manager-dedicated@17.38.1) (2022-12-05)
+
+
+### Bug Fixes
+
+* revert "feat(*): ip strat batch 1" ([20af1fe](https://github.com/ovh/manager/commit/20af1fe38f4b46d3a75d7f535d8894a00c0f5c4d))
+
+
+
+
+
 # [17.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.37.4...@ovh-ux/manager-dedicated@17.38.0) (2022-12-01)
 
 

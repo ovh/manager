@@ -1,4 +1,0 @@
-{
-  "ip_failover_text": "Las Additional IP son direcciones IP públicas que pueden transferirse dinámicamente de un servicio de OVHcloud a otro. Estas direcciones están disponibles en forma de direcciones individuales o de bloques de direcciones.",
-  "ip_failover_unused_filter": "IP no utilizadas"
-}

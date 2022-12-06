@@ -1,0 +1,110 @@
+<div>
+    <oui-back-button data-on-click="$ctrl.goToDashboard()"
+        ><span data-translate="ip_organisation_title"></span>
+    </oui-back-button>
+    <button
+        class="btn btn-default mb-4"
+        type="button"
+        data-ng-click="$ctrl.goToAddOrganisation()"
+        data-translate="ip_organisation_add"
+    ></button>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th
+                        scope="col"
+                        data-translate="ip_organisation_table_organisation"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="ip_organisation_table_type"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="ip_organisation_table_lastname"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="ip_organisation_table_abuse"
+                    ></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody data-ng-show="loadingOrganisation">
+                <tr>
+                    <td colspan="6" class="text-center">
+                        <oui-spinner data-size="s"></oui-spinner>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody data-ng-show="!organisations.length && !loadingOrganisation">
+                <tr>
+                    <td
+                        colspan="6"
+                        class="text-center"
+                        data-translate="ip_organisation_table_empty"
+                    ></td>
+                </tr>
+            </tbody>
+            <tbody
+                data-ng-show="!loadingOrganisation"
+                data-ng-repeat="organisation in organisations"
+            >
+                <tr>
+                    <th scope="row">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            data-ng-click="open = !open"
+                        >
+                            <span
+                                class="fa"
+                                data-ng-class="{
+                                   'fa-chevron-right': !open,
+                                   'fa-chevron-down': open
+                               }"
+                                aria-hidden="true"
+                            >
+                            </span>
+                        </button>
+                    </th>
+                    <td data-ng-bind="organisation.organisationId"></td>
+                    <td data-ng-bind="organisation.registry"></td>
+                    <td>
+                        <span data-ng-bind="organisation.firstname"></span>
+                        <span data-ng-bind="organisation.lastname"></span>
+                    </td>
+                    <td data-ng-bind="organisation.abuse_mailbox"></td>
+                    <td>
+                        <oui-action-menu data-compact data-placement="end">
+                            <oui-action-menu-item
+                                data-on-click="$ctrl.goToUpdateOrganisation(organisation)"
+                                ><span
+                                    data-translate="ip_organisation_edit"
+                                ></span>
+                            </oui-action-menu-item>
+                        </oui-action-menu>
+                    </td>
+                </tr>
+                <tr data-ng-show="open">
+                    <td></td>
+                    <td
+                        colspan="2"
+                        data-translate="ip_organisation_table_phone"
+                    ></td>
+                    <td
+                        colspan="3"
+                        data-translate="ip_organisation_table_address"
+                    ></td>
+                </tr>
+                <tr data-ng-show="open">
+                    <td></td>
+                    <td colspan="2" data-ng-bind="organisation.phone"></td>
+                    <td colspan="3" data-ng-bind="organisation | address"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

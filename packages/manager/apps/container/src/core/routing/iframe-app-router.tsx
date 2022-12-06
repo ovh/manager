@@ -80,9 +80,9 @@ export function IFrameAppRouter({
   const redirections = useMemo(() => Redirections(), []);
   return (
     <Routes>
+      {redirections}
       {defaultRoute}
       {routes}
-      {redirections}
       <Route path="*" element={<IndexRoute />} />
     </Routes>
   );
