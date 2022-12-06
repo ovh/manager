@@ -91,5 +91,6 @@
   "pci_projects_project_instances_add_attach_floating_ip_availability_info": "Es posible que esta opción no esté disponible en la región seleccionada. Para más información sobre la disponibilidad de las soluciones por región, haga clic <a href=\"{{ guideLink }}\" target=\"_blank\">aquí</a>.",
   "pci_projects_project_instances_add_instance_confirmation_info": "Va a crear una instancia. La creación de esta instancia puede tardar algunos minutos. ¿Seguro/a que quiere continuar?",
   "pci_projects_project_instances_add_instance_confirmation_create": "Sí",
-  "pci_projects_project_instances_add_instance_confirmation_cancel": "No"
+  "pci_projects_project_instances_add_instance_confirmation_cancel": "No",
+  "pci_projects_project_instances_add_attach_floating_ip_availability_flavorType_warning": "No disponible en este tipo de instancia."
 }
