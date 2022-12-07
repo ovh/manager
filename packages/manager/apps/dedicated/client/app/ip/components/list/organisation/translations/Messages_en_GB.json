@@ -1,5 +1,0 @@
-{
-  "ip_organisation": "Organisations",
-  "ip_organisation_description1": "An organisation represents the entity responsible for an IP block (for example, your company). An organisation is made up of a set of information. These details are published in the public WHOIS database entry of the RIR managing this block. An organisation must be linked to each IP block.",
-  "ip_organisation_description2": "Find out more about organisations."
-}

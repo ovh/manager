@@ -1,0 +1,137 @@
+<div>
+    <button class="btn btn-default" data-ng-click="hideFirewall()">
+        <i class="fa fa-chevron-left"></i>
+        <span data-translate="common_back"></span>
+    </button>
+
+    <h4
+        data-translate="ip_firewall_title"
+        data-translate-values="{ t0: selectedIp }"
+    ></h4>
+
+    <div
+        class="alert alert-danger"
+        role="alert"
+        data-ng-if="rulesLoadingError"
+        data-ng-bind="rulesLoadingError"
+    ></div>
+
+    <button
+        type="button"
+        class="btn btn-primary"
+        data-ng-click="setAction('ip/firewall/rule/add/ip-ip-firewall-rule-add', { ipBlock: selectedBlock, ip: selectedIp ,tracking : tracking['ip-firewall-add-rule']})"
+        data-translate="ip_firewall_add_title"
+    ></button>
+    <div class="table-responsive mt-2" data-ng-if="!rulesLoadingError">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <span data-translate="ip_firewall_position"></span>
+                        <i
+                            class="fa fa-info-circle"
+                            data-oui-tooltip="{{:: 'ip_firewall_position_tooltip' | translate }}"
+                            data-oui-tooltip-placement="right"
+                        >
+                        </i>
+                    </th>
+                    <th scope="col" data-translate="ip_firewall_action"></th>
+                    <th scope="col" data-translate="ip_firewall_protocol"></th>
+                    <th scope="col" data-translate="ip_firewall_source_ip"></th>
+                    <th
+                        scope="col"
+                        data-translate="ip_firewall_source_port"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="ip_firewall_destination_port"
+                    ></th>
+                    <th scope="col" data-translate="ip_firewall_options"></th>
+                    <th scope="col" data-translate="ip_firewall_status"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+
+            <tbody data-ng-if="rulesLoading">
+                <tr>
+                    <td class="text-center" colspan="9">
+                        <oui-spinner data-size="s"></oui-spinner>
+                    </td>
+                </tr>
+            </tbody>
+
+            <tbody data-ng-if="rules.count == 0 && !rulesLoading">
+                <tr>
+                    <td class="text-center" colspan="9">
+                        <span data-translate="ip_firewall_table_empty"></span>
+                    </td>
+                </tr>
+            </tbody>
+
+            <tbody data-ng-if="!rulesLoading">
+                <tr data-ng-repeat="rule in rules.list.results track by $index">
+                    <th scope="row" data-ng-bind="rule.sequence"></th>
+                    <td
+                        data-translate="{{ 'ip_firewall_rule_' + rule.action }}"
+                    ></td>
+                    <td
+                        data-translate="{{ 'ip_firewall_rule_protocol_' + rule.protocol }}"
+                    ></td>
+                    <td>
+                        <span
+                            data-ng-hide="rule.source == 'any'"
+                            data-ng-bind="rule.source"
+                        >
+                        </span>
+                        <span
+                            data-ng-show="rule.source == 'any'"
+                            data-translate="ip_firewall_rule_ip_any"
+                        >
+                        </span>
+                    </td>
+                    <td
+                        data-ng-bind="rule.sourcePort | ipFirewallRulePort"
+                    ></td>
+                    <td
+                        data-ng-bind="rule.destinationPort | ipFirewallRulePort"
+                    ></td>
+                    <td data-ng-bind-html="rule.options"></td>
+                    <td>
+                        <span
+                            class="label"
+                            data-ng-class="{
+                                  'label-success': rule.state === 'ok'
+                              }"
+                            data-translate="{{ 'ip_firewall_rule_status_' + rule.state }}"
+                        >
+                        </span>
+                    </td>
+                    <td>
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            data-oui-tooltip="{{:: 'ip_firewall_remove_rule' | translate }}"
+                            data-oui-tooltip-placement="left"
+                            data-ng-click="setAction('ip/firewall/rule/delete/ip-ip-firewall-rule-delete', { ipBlock: selectedBlock, ip: selectedIp, rule: rule ,tracking : tracking['ip-firewall-delete-rule']})"
+                            data-ng-show="rule.state === 'ok'"
+                        >
+                            <span
+                                class="fa fa-trash"
+                                aria-label="{{:: 'common_delete' | translate }}"
+                                aria-hidden="true"
+                            >
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div
+            data-pagination-server-side="rulesTable"
+            data-pagination-server-side-function="loadRules"
+            data-pagination-server-side-paginated-stuff="rules"
+            data-pagination-server-side-table-loading="rulesLoading"
+        ></div>
+    </div>
+</div>
