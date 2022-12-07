@@ -74,6 +74,11 @@ angular
     100000,
     500000,
     NaN,
-  ]);
+  ])
+  .constant('SMS_ORDER_ACCOUNT_TYPE_VALUES', {
+    standard: 'both',
+    marketing: 'marketing',
+    transactional: 'transactional',
+  });
 
 export default moduleName;
