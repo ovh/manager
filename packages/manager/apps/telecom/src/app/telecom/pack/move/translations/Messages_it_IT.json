@@ -115,5 +115,8 @@
   "pack_move_service_delete_confirm": "Conferma la selezione dei servizi",
   "pack_move_creation_line_fees": "Spese di creazione di linee",
   "pack_move_confirm_shipping": "Hai selezionato la modalità di consegna del tuo nuovo modem tramite corriere (+ {{ price }} € +IVA).",
-  "pack_move_confirm_first_mensuality": "La tua prima mensilità sarà quindi di {{ price }} +IVA."
+  "pack_move_confirm_first_mensuality": "La tua prima mensilità sarà quindi di {{ price }} +IVA.",
+  "pack_move_resume_comfort_activation": "Le spese di attivazione dell'opzione Confort sono di {{ price }} +IVA.",
+  "pack_move_resume_install_fees": "Le spese di installazione sono di {{ price }} +IVA.",
+  "pack_move_resume_creation_line_fees": "Le spese di creazione della linea sono di {{ price }} +IVA."
 }

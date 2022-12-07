@@ -268,5 +268,8 @@
   "pack_move_resume_contact_phone": "Número de teléfono de contacto",
   "pack_move_resume_phone_form_error": "El número introducido debe ser válido.",
   "pack_move_building_details_error": "Se ha producido un error al cargar la información de su edificio.",
-  "pack_move_promotion_installation_fees_offered": "Sin gastos de instalación"
+  "pack_move_promotion_installation_fees_offered": "Sin gastos de instalación",
+  "pack_move_resume_comfort_activation": "Los gastos de activación de la opción Confort son de {{ price }} + IVA.",
+  "pack_move_resume_install_fees": "Los gastos de instalación son de {{ price }} + IVA.",
+  "pack_move_resume_creation_line_fees": "Los gastos de creación de líneas son de {{ price }} + IVA."
 }
