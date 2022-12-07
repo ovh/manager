@@ -16,6 +16,7 @@ export default class {
     tucDebounce,
     TucToast,
     SMS_ORDER_PREFIELDS_VALUES,
+    SMS_ORDER_ACCOUNT_TYPE_VALUES,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -29,7 +30,10 @@ export default class {
     };
     this.tucDebounce = tucDebounce;
     this.TucToast = TucToast;
-    this.constant = { SMS_ORDER_PREFIELDS_VALUES };
+    this.constant = {
+      SMS_ORDER_PREFIELDS_VALUES,
+    };
+    this.SMS_ORDER_ACCOUNT_TYPE_VALUES = SMS_ORDER_ACCOUNT_TYPE_VALUES;
     this.atInternet = atInternet;
   }
 
@@ -42,6 +46,7 @@ export default class {
     this.order = {
       account: null,
       credit: null,
+      channel: null,
       customCredit: 100,
       max: 1000000,
       min: 100,
@@ -85,8 +90,10 @@ export default class {
           // If we are on a service, preselect
           if (account.name === this.$stateParams.serviceName) {
             this.order.account = availableAccounts[idx];
+            this.order.channel = availableAccounts[idx].channel;
           }
         });
+
         const newAccount = {
           name: 'new',
           description: '',
@@ -152,6 +159,7 @@ export default class {
     this.contracts = null;
     this.prices = null;
     this.contractsAccepted = false;
+    this.order.channel = this.order.account.channel;
     if (this.isAccountCreation()) {
       return this.api.order.sms
         .getNewSmsAccount({
@@ -203,6 +211,8 @@ export default class {
           {},
           {
             quantity: this.getSelectedCredit(),
+            channel: this.order.channel,
+            smpp: ['transactional', 'marketing'].includes(this.order.channel),
           },
         )
         .$promise.then((newAccountPriceDetails) => {

@@ -4,138 +4,187 @@
     </div>
 
     <div class="widget-presentation" data-ng-if="!$ctrl.loading.init">
-        <header class="widget-presentation-header">
-            <h2
-                class="widget-presentation-title"
-                data-translate="sms_order_title"
-            ></h2>
-        </header>
+        <oui-header data-heading="{{ 'sms_order_title' | translate }}">
+        </oui-header>
 
         <form id="$ctrl.orm" name="$ctrl.orm">
             <div class="row">
-                <div class="col-md-6">
-                    <!-- ACCOUNT -->
-                    <div class="form-group">
-                        <label
-                            for="account"
-                            class="control-label"
-                            data-translate="sms_order_account_label"
-                        >
-                        </label>
-                        <select
-                            id="account"
-                            name="account"
-                            class="form-control"
-                            required
-                            data-ng-model="$ctrl.order.account"
-                            data-ng-change="$ctrl.getPrices();"
-                            data-ng-options="smsAccount as smsAccount.label for smsAccount in $ctrl.availableAccounts"
-                            data-ng-disabled="$ctrl.loading.prices"
-                        >
-                        </select>
-                    </div>
-
-                    <!-- CREDIT -->
-                    <div class="form-group" data-ng-if="$ctrl.order.account">
-                        <label
-                            for="credit"
-                            class="control-label"
-                            data-translate="sms_order_credit_label"
-                        >
-                        </label>
-                        <select
-                            id="credit"
-                            name="credit"
-                            class="form-control"
-                            required
-                            data-ng-model="$ctrl.order.credit"
-                            data-ng-change="$ctrl.getPrices(); $ctrl.order.customCredit = $ctrl.order.min"
-                            data-ng-options="credit as credit.label for credit in $ctrl.availableCredits"
-                            data-ng-disabled="$ctrl.loading.prices"
-                        >
-                        </select>
-                    </div>
-
-                    <!-- CUSTOMCREDIT -->
-                    <div
-                        class="form-group clearfix"
-                        data-ng-if="$ctrl.customCreditSelected()"
+                <!-- ACCOUNT -->
+                <div class="col-sm-12">
+                    <oui-field
+                        class="col-sm-3"
+                        data-label="{{ 'sms_order_account_label' | translate }}"
                     >
+                        <oui-select
+                            data-disabled="$ctrl.loading.prices"
+                            data-items="$ctrl.availableAccounts"
+                            data-match="label"
+                            data-model="$ctrl.order.account"
+                            data-name="availableAccountsSelect"
+                            data-on-change="$ctrl.getPrices()"
+                            data-required
+                        >
+                        </oui-select>
+                    </oui-field>
+                </div>
+
+                <div class="col-sm-12 form-group">
+                    <div class="col-sm-3">
                         <label
-                            for="customCredit"
+                            for="accountChannelPicker"
                             class="control-label"
-                            data-translate="sms_order_credit_custom_label"
+                            data-translate="sms_order_account_channel_label"
                         >
                         </label>
+                    </div>
+                    <div
+                        class="col-sm-12 mt-2 mb-2 d-flex flex-wrap align-content-stretch"
+                    >
+                        <oui-select-picker
+                            class="col-md-3"
+                            data-disabled="$ctrl.loading.prices || $ctrl.order.account.channel"
+                            name="accountChannelPicker"
+                            data-model="$ctrl.order.channel"
+                            data-label="{{ 'sms_order_account_channel_standard_title' | translate }}"
+                            data-values="[$ctrl.SMS_ORDER_ACCOUNT_TYPE_VALUES.standard]"
+                        >
+                            <oui-select-picker-section>
+                                <span
+                                    data-translate="sms_order_account_channel_standard_description"
+                                ></span>
+                            </oui-select-picker-section>
+                        </oui-select-picker>
+
+                        <oui-select-picker
+                            class="col-md-3"
+                            data-disabled="$ctrl.loading.prices || $ctrl.order.account.channel"
+                            name="accountChannelPicker"
+                            data-model="$ctrl.order.channel"
+                            data-label="{{ 'sms_order_account_channel_marketing_title' | translate }}"
+                            data-values="[$ctrl.SMS_ORDER_ACCOUNT_TYPE_VALUES.marketing]"
+                        >
+                            <oui-select-picker-section>
+                                <span
+                                    data-translate="sms_order_account_channel_marketing_description"
+                                >
+                                </span>
+                            </oui-select-picker-section>
+                            <oui-select-picker-footer>
+                                <small
+                                    data-translate="sms_order_account_channel_marketing_footer"
+                                >
+                                </small>
+                            </oui-select-picker-footer>
+                        </oui-select-picker>
+
+                        <oui-select-picker
+                            class="col-md-3"
+                            data-disabled="$ctrl.loading.prices || $ctrl.order.account.channel"
+                            name="accountChannelPicker"
+                            data-model="$ctrl.order.channel"
+                            data-label="{{ 'sms_order_account_channel_transactional_title' | translate }}"
+                            data-values="[$ctrl.SMS_ORDER_ACCOUNT_TYPE_VALUES.transactional]"
+                        >
+                            <oui-select-picker-section>
+                                <span
+                                    data-translate="sms_order_account_channel_transactional_description"
+                                ></span>
+                            </oui-select-picker-section>
+                            <oui-select-picker-footer>
+                                <small
+                                    data-translate="sms_order_account_channel_transactional_footer"
+                                ></small>
+                            </oui-select-picker-footer>
+                        </oui-select-picker>
+                    </div>
+                </div>
+
+                <!-- CREDIT -->
+                <div class="col-sm-12">
+                    <oui-field
+                        class="col-sm-3"
+                        data-label="{{ 'sms_order_credit_label' | translate }}"
+                    >
+                        <oui-select
+                            data-disabled="$ctrl.loading.prices"
+                            data-items="$ctrl.availableCredits"
+                            data-match="label"
+                            data-model="$ctrl.order.credit"
+                            data-name="creditSelect"
+                            data-on-change="$ctrl.getPrices(); $ctrl.order.customCredit = $ctrl.order.min"
+                            data-required
+                        >
+                        </oui-select>
+                    </oui-field>
+                </div>
+
+                <!-- CUSTOMCREDIT -->
+                <div
+                    class="col-sm-12"
+                    data-ng-if="$ctrl.customCreditSelected()"
+                >
+                    <oui-field
+                        class="col-sm-3"
+                        data-label="{{ 'sms_order_credit_custom_label' | translate }}"
+                    >
                         <oui-numeric
                             data-min="$ctrl.order.min"
                             data-max="$ctrl.order.max"
                             data-model="$ctrl.order.customCredit"
                             data-on-change="$ctrl.getDebouncedPrices()"
+                            name="customCreditNumeric"
                         >
                         </oui-numeric>
-                    </div>
+                    </oui-field>
+                </div>
 
-                    <div data-ng-if="!$ctrl.loading.prices">
-                        <div
-                            class="form-group"
-                            data-ng-if="detail.detailType !== 'MUTE'"
+                <div class="col-sm-12">
+                    <div class="col-sm-3" data-ng-if="!$ctrl.loading.prices">
+                        <dl
+                            class="oui-description oui-description_horizontal"
                             data-ng-repeat="detail in $ctrl.prices.details"
+                            data-ng-if="detail.detailType !== 'MUTE'"
                         >
-                            <label
-                                class="control-label"
-                                data-ng-if="detail.detailType == 'QUANTITY'"
+                            <dt
+                                data-ng-if="detail.detailType === 'QUANTITY'"
                                 data-translate="sms_order_price_quantity"
-                            >
-                            </label>
-                            <label
-                                class="control-label"
-                                data-ng-if="detail.detailType == 'GIFT'"
+                            ></dt>
+                            <dt
+                                data-ng-if="detail.detailType === 'GIFT'"
                                 data-translate="sms_order_price_gift"
-                            >
-                            </label>
-                            <p
-                                class="form-control-static font-weight-bold"
+                            ></dt>
+                            <dd
                                 data-ng-class="{
-                                   'text-success' : detail.detailType == 'GIFT',
-                                   'text-danger' : detail.detailType == 'QUANTITY'
-                               }"
+                                    'font-weight-bold text-success' : detail.detailType == 'GIFT',
+                                    'font-weight-bold' : detail.detailType == 'QUANTITY'
+                                }"
                                 data-ng-bind="detail.totalPrice.text"
-                            ></p>
-                        </div>
+                            ></dd>
+                        </dl>
 
-                        <div class="form-group">
-                            <label
-                                class="control-label"
-                                data-translate="sms_order_price_total_vat"
-                            >
-                            </label>
-                            <p
-                                class="form-control-static font-weight-bold text-danger"
+                        <dl class="oui-description oui-description_horizontal">
+                            <dt data-translate="sms_order_price_total_vat"></dt>
+                            <dd
+                                class="font-weight-bold"
                                 data-ng-bind="$ctrl.prices.prices.tax.text"
-                            ></p>
-                        </div>
-
-                        <div class="form-group">
-                            <label
-                                class="control-label"
-                                data-translate="sms_order_price_total"
-                            >
-                            </label>
-                            <p
-                                class="form-control-static font-weight-bold text-danger"
+                            ></dd>
+                            <dt data-translate="sms_order_price_total"></dt>
+                            <dd
+                                class="font-weight-bold"
                                 data-ng-bind="$ctrl.prices.prices.withTax.text"
-                            ></p>
-                        </div>
+                            ></dd>
+                        </dl>
+                    </div>
+                    <div
+                        class="col-sm-3 text-center"
+                        data-ng-if="$ctrl.loading.prices"
+                    >
+                        <oui-spinner></oui-spinner>
                     </div>
                 </div>
             </div>
 
-            <div class="text-center" data-ng-if="$ctrl.loading.prices">
-                <oui-spinner></oui-spinner>
-            </div>
-
-            <div data-ng-if="!$ctrl.loading.prices">
+            <div class="col-sm-12" data-ng-if="!$ctrl.loading.prices">
                 <ovh-contracts-summary
                     data-items="$ctrl.contracts"
                     data-model="$ctrl.contractsAccepted"
@@ -143,32 +192,17 @@
                 >
                 </ovh-contracts-summary>
 
-                <div class="checkbox">
-                    <label>
-                        <input
-                            type="checkbox"
-                            name="retract"
-                            id="retract"
-                            data-ng-model="$ctrl.retract"
-                        />
+                <oui-checkbox class="mb-4" model="$ctrl.retract" name="retract">
+                    <oui-checkbox-label class="col-sm-6">
                         <span data-translate="sms_order_retract"></span>
-                    </label>
-                </div>
-
-                <div class="form-group">
-                    <button
-                        class="btn btn-link"
-                        type="button"
-                        data-ng-click="$ctrl.showMore = !$ctrl.showMore"
-                        data-translate="sms_order_more_info"
-                    ></button>
-                    <div
-                        class="alert alert-info"
-                        role="alert"
-                        data-ng-if="$ctrl.showMore"
-                        data-translate="sms_order_retract_info"
-                    ></div>
-                </div>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            oui-popover="{{ 'sms_order_retract_info' | translate }}"
+                            oui-popover-placement="top-start"
+                        ></button>
+                    </oui-checkbox-label>
+                </oui-checkbox>
 
                 <div data-ng-if="!$ctrl.prices.url">
                     <button
