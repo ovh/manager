@@ -5,8 +5,8 @@
   "pci_projects_project_failoverip_onboarding_content4": "Ti ricordiamo che, per utilizzare un IP Failover, è necessario modificare la configurazione di sistema.",
   "pci_projects_project_failoverip_onboarding_action_label": "Importare un IP Failover",
   "pci_projects_project_failoverip_onboarding_action_buy": "Acquistare IP Failover",
-  "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_title": "Rendere persistente la configurazione di un IP Failover",
+  "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_title": "Rendere persistente la configurazione Additional IP",
   "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_description": "",
-  "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_title": "Trasferire un IP Failover",
+  "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_title": "Trasferire un Additional IP",
   "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_description": ""
 }
