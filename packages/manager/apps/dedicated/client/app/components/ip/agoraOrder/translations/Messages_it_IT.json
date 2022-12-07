@@ -1,19 +1,6 @@
 {
-  "ip_agora_table_header_offer": "Scegli la tua offerta",
+  "ip_agora_table_header_offer": "Servizio",
   "ip_agora_table_header_quantity": "Quantità",
   "ip_agora_table_header_country": "Localizzati in",
-  "ip_agora_table_header_organisation": "Associare un'organizzazione",
-  "ip_agora_select_quantity_title": "Scegli la quantità",
-  "ip_agora_ip_localisation_title": "Localizzazione IP",
-  "ipv4_select_placeholder": "Selezionare una dimensione",
-  "license_dashboard_title": "Ordinare un IP",
-  "ipv4Failover_price_label": "1,50 € +IVA/mese",
-  "ipv4Block_description": "Blocco di indirizzi IPv4 Le dimensioni dei blocchi disponibili variano in base al servizio associato.",
-  "ipv4Block_price_label": "1,50 € +IVA/mese per indirizzo IP",
-  "ipv4Block_organization_description1": "È necessario associare un'organizzazione al tuo blocco di indirizzi IP. L'organizzazione rappresenta l'entità amministrativa proprietaria del blocco di indirizzi IP e deve necessariamente essere dichiarata nel database pubblico Whois (registro mondiale degli indirizzi IP e dei domini). L'organizzazione include le seguenti informazioni di contatto: nome, tipo di RIR e indirizzo email.",
-  "ipv4Block_organization_description2": "Maggiori informazioni sulle organizzazioni.",
-  "ipv4Block_organization_description3": "Se non viene associata un'organizzazione, è possibile utilizzare le informazioni dell’account OVHcloud (NIC).",
-  "ipv4Block_organization_info_banner": "Il nome dell'organizzazione associato al blocco di indirizzi IP e le informazioni di contatto corrispondenti saranno disponibili nel database pubblico Whois",
-  "ip_agora_table_submit_text": "Continuare con l’ordine",
-  "ip_agora_table_cancel_text": "Indietro"
+  "ip_agora_table_header_organisation": "Organizzazione"
 }
