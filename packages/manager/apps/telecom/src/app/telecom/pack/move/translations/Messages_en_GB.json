@@ -271,5 +271,8 @@
   "pack_move_promotion_description": "Special offer available until {{ endDate }}",
   "pack_move_promotion_subscription_months_offered": "{{ duration }} months included",
   "pack_move_promotion_installation_fees_offered": "Setup fees included",
-  "pack_move_resume_promotion": "The setup fees and the first {{ duration }} months of your new subscription are included (excluding modem rental, additional options and transportation)."
+  "pack_move_resume_promotion": "The setup fees and the first {{ duration }} months of your new subscription are included (excluding modem rental, additional options and transportation).",
+  "pack_move_resume_comfort_activation": "The Comfort option activation fee is {{ price }} ex. VAT.",
+  "pack_move_resume_install_fees": "Setup fees are {{ price }} ex. VAT.",
+  "pack_move_resume_creation_line_fees": "Line creation costs are {{ price }} ex. VAT."
 }

@@ -114,5 +114,8 @@
   "pack_move_service_delete_confirm": "Auswahl der Dienste bestätigen",
   "pack_move_creation_line_fees": "Kosten für die Erstellung einer Leitung",
   "pack_move_confirm_shipping": "Sie haben den Liefermodus Ihres neuen Routers pro Luftfahrtunternehmen ausgewählt (+ {{ price }} € ohne MwSt).",
-  "pack_move_confirm_first_mensuality": "Ihre erste Monatsrate beträgt also {{ price }} ohne MwSt."
+  "pack_move_confirm_first_mensuality": "Ihre erste Monatsrate beträgt also {{ price }} ohne MwSt.",
+  "pack_move_resume_comfort_activation": "Die Aktivierungsgebühr für die Komfortoption beträgt {{ price }} zzgl. MwSt.",
+  "pack_move_resume_install_fees": "Die Einrichtungsgebühr beträgt {{ price }} ohne MwSt.",
+  "pack_move_resume_creation_line_fees": "Die Kosten für die Erstellung einer Leitung belaufen sich auf {{ price }} ohne MwSt."
 }
