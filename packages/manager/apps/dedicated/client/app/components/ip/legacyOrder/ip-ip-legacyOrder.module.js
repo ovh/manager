@@ -19,22 +19,22 @@ angular
   .service('IpLegacyOrder', service)
   .run(
     /* @ngInject */ ($templateCache) => {
-      $templateCache.put('ip/legacyOrder/DEDICATED.html', dedicatedTemplate);
+      $templateCache.put('ip/ip/legacyOrder/DEDICATED.html', dedicatedTemplate);
       $templateCache.put(
-        'ip/legacyOrder/durationsPCC.html',
+        'ip/ip/legacyOrder/durationsPCC.html',
         durationPccTemplate,
       );
-      $templateCache.put('ip/legacyOrder/durations.html', durationTemplate);
+      $templateCache.put('ip/ip/legacyOrder/durations.html', durationTemplate);
       $templateCache.put(
-        'ip/legacyOrder/ip-ip-legacyOrder.html',
+        'ip/ip/legacyOrder/ip-ip-legacyOrder.html',
         legacyOrderTemplate,
       );
       $templateCache.put(
-        'ip/legacyOrder/migrate/ip-ip-legacyOrder-migrate.html',
+        'ip/ip/legacyOrder/migrate/ip-ip-legacyOrder-migrate.html',
         legacyOrderMigrateTemplate,
       );
-      $templateCache.put('ip/legacyOrder/PCC.html', pccTemplate);
-      $templateCache.put('ip/legacyOrder/VPS.html', vpsTemplate);
+      $templateCache.put('ip/ip/legacyOrder/PCC.html', pccTemplate);
+      $templateCache.put('ip/ip/legacyOrder/VPS.html', vpsTemplate);
     },
   );
 

@@ -8,6 +8,7 @@ import intersection from 'lodash/intersection';
 import last from 'lodash/last';
 import map from 'lodash/map';
 import range from 'lodash/range';
+import set from 'lodash/set';
 import uniq from 'lodash/uniq';
 
 import {
@@ -58,6 +59,7 @@ export default class AgoraIpOrderCtrl {
       params: {},
       selectedService: null,
     };
+
     this.loading = {};
     this.user = this.$state.params.user;
     this.catalogName = this.$state.params.catalogName;
@@ -127,13 +129,6 @@ export default class AgoraIpOrderCtrl {
         description: this.$translate.instant(
           `country_${countryCode.toUpperCase()}`,
         ),
-        icon: this.$translate.instant(
-          `oui-flag oui-flag_${
-            countryCode.toLowerCase() === 'uk'
-              ? 'gb'
-              : countryCode.toLowerCase()
-          }`,
-        ),
       })),
 
       // Only ip block offer has a maximum quantity of 1.
@@ -165,14 +160,13 @@ export default class AgoraIpOrderCtrl {
   loadPrivateCloudIpOffers(serviceName) {
     return this.IpAgoraOrder.getPrivateCloudIpOffers(serviceName).then(
       (ipOffers) => {
-        this.blockIpOffers = ipOffers.map((offer) => {
+        this.ipOffers = map(ipOffers, (offer) => {
           const price = head(offer.prices);
           const maximumQuantity = get(price, 'maximumQuantity') || 1;
           return {
             ...offer,
             productShortName: offer.productName,
             price: price.price,
-            productDisplayName: `${offer.productName} - ${price.price.text}`,
             duration: 'P1M', // @todo use price.duration when api is fixed
             pricingMode: price.pricingMode,
             maximumQuantity,
@@ -192,8 +186,6 @@ export default class AgoraIpOrderCtrl {
     this.trackStep(2);
     this.loading.ipOffers = true;
     this.ipOffers = [];
-    this.failoverIpOffers = [];
-    this.blockIpOffers = [];
 
     if (
       this.model?.selectedService?.type ===
@@ -203,10 +195,6 @@ export default class AgoraIpOrderCtrl {
         this.model?.selectedService?.serviceName,
       ).then((isOrderable) => {
         if (!isOrderable) {
-          this.Alerter.set(
-            'alert-warning',
-            this.$translate.instant('ip_order_quota_full'),
-          );
           this.loading.ipOffers = false;
           return this.$q.reject();
         }
@@ -239,30 +227,14 @@ export default class AgoraIpOrderCtrl {
         this.user.ovhSubsidiary,
         this.catalogName,
       ).then((ipOffers) => {
-        const ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
-        let failoverIpOfferDetails;
-        let blockIpOfferDetails;
+        let ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
         if (this.model.selectedService.type === PRODUCT_TYPES.vps.typeName) {
-          failoverIpOfferDetails = ipOfferDetails
+          ipOfferDetails = ipOfferDetails
             .filter(({ planCode }) => planCode.includes('failover'))
             .map((offer) => ({
               ...offer,
               quantities: range(1, VPS_MAX_QUANTITY + 1),
             }));
-        } else if (
-          this.model.selectedService.type ===
-          PRODUCT_TYPES.dedicatedServer.typeName
-        ) {
-          blockIpOfferDetails = this.filterOffer(
-            ipOfferDetails,
-            'productShortName',
-            'block',
-          );
-          failoverIpOfferDetails = this.filterOffer(
-            ipOfferDetails,
-            'planCode',
-            'failover',
-          );
         }
 
         const ipCountryAvailablePromise = this.IpAgoraOrder.getIpCountryAvailablePromise(
@@ -276,16 +248,20 @@ export default class AgoraIpOrderCtrl {
               const ipOffersByRegion = AgoraIpOrderCtrl.getRegionsOffers(
                 countries,
               );
-              this.failoverIpOffers = this.getOfferDetails(
-                failoverIpOfferDetails,
-                ipOffersByRegion,
-                countries,
-              );
-              this.blockIpOffers = this.getOfferDetails(
-                blockIpOfferDetails,
-                ipOffersByRegion,
-                countries,
-              ).sort((a, b) => a.price.value - b.price.value);
+              this.ipOffers = ipOfferDetails
+                .filter(({ productRegion }) =>
+                  ipOffersByRegion.includes(productRegion),
+                )
+                .map((ipOffer) => {
+                  set(
+                    ipOffer,
+                    'countries',
+                    ipOffer.countries.filter(
+                      ({ code }) => countries.indexOf(code.toLowerCase()) > -1,
+                    ),
+                  );
+                  return ipOffer;
+                });
             } else {
               this.ipOffers = AgoraIpOrderCtrl.filterOfferDetailsFromServiceName(
                 ipOfferDetails,
@@ -330,10 +306,8 @@ export default class AgoraIpOrderCtrl {
     return uniq(map(this.ipOffers, 'productRegion')).sort();
   }
 
-  onSelectedOfferChange(selectedOffer) {
-    this.maxSize = IP_AGORA[selectedOffer].maxQty;
-    this.minSize = IP_AGORA[selectedOffer].minQty;
-    this.model.params.selectedQuantity = this.minSize;
+  onSelectedOfferChange() {
+    this.model.params.selectedQuantity = undefined;
     this.model.params.selectedOrganisation = null;
     this.model.params.selectedCountry = null;
 
@@ -420,47 +394,6 @@ export default class AgoraIpOrderCtrl {
       type: 'action',
     });
     return this.$state.go('^');
-  }
-
-  getOfferDetails = (offerDetails, ipOffersByRegion, countryList) => {
-    return offerDetails
-      .filter(({ productRegion }) => ipOffersByRegion.includes(productRegion))
-      .map((ipOffer) => {
-        return {
-          ...ipOffer,
-          productDisplayName: `${ipOffer.productShortName} - ${ipOffer.price.text}`,
-          countries: ipOffer.countries.filter(
-            ({ code }) => countryList.indexOf(code.toLowerCase()) > -1,
-          ),
-        };
-      });
-  };
-
-  filterOffer(ipOfferDetails, key, searchTerm) {
-    this.VPS_MAX_QUANTITY = VPS_MAX_QUANTITY;
-    return ipOfferDetails
-      .filter((data) => data[key].includes(searchTerm))
-      .map((offer) => ({
-        ...offer,
-        quantities: range(1, VPS_MAX_QUANTITY + 1),
-      }));
-  }
-
-  isFailoverShowable() {
-    return (
-      this.model.selectedService?.type === PRODUCT_TYPES.vps.typeName ||
-      this.model.selectedService?.type ===
-        PRODUCT_TYPES.dedicatedServer.typeName
-    );
-  }
-
-  canShowBlockSelection() {
-    return (
-      this.model.selectedService?.type ===
-        PRODUCT_TYPES.privateCloud.typeName ||
-      this.model.selectedService?.type ===
-        PRODUCT_TYPES.dedicatedServer.typeName
-    );
   }
 
   static stringLocaleSensitiveComparator(v1, v2) {
