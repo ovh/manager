@@ -725,9 +725,7 @@
   "ip_table_manage_delegation_ipv6block_to_add": "Reverse(s) a adicionar",
   "ip_table_manage_delegation_ipv6block_to_delete": "Reverse(s) a eliminar",
   "ip_order_title": "Encomendar",
-  "ip_order_additional_ips": "IP adicionais",
   "ip_administration_title": "Administrar",
   "ip_addresses_grid_header": "Os meus endereços IP públicos e serviços associados",
-  "ip_order_additional_ips": "IP adicionais",
-  "ip_table_header_campus": "Campus"
+  "ip_order_additional_ips": "IP adicionais"
 }

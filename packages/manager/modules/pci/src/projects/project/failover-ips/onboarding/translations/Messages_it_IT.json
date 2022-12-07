@@ -1,12 +1,12 @@
 {
- "pci_projects_project_failoverip_onboarding_content1": "Non hai ancora creato IP Failover.",
- "pci_projects_project_failoverip_onboarding_content2": "Attribuisci i tuoi IP pubblici e trasferiscili da un’istanza all’altra",
- "pci_projects_project_failoverip_onboarding_content3": "Gli IP Failover permettono di assegnare un indirizzo IP pubblico verso un’istanza e, in qualsiasi momento, trasferirlo verso un’altra macchina del tuo progetto. Questo servizio è particolarmente utile per gestire operazioni di manutenzione e aggiornamenti.",
- "pci_projects_project_failoverip_onboarding_content4": "Ti ricordiamo che, per utilizzare un IP Failover, è necessario modificare la configurazione di sistema.",
- "pci_projects_project_failoverip_onboarding_action_label": "Importare un IP Failover",
- "pci_projects_project_failoverip_onboarding_action_buy": "Acquistare IP Failover",
- "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_title": "Rendere persistente la configurazione di un IP Failover",
- "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_description": "",
- "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_title": "Trasferire un IP Failover",
- "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_description": ""
+  "pci_projects_project_failoverip_onboarding_content1": "Non hai ancora creato IP Failover.",
+  "pci_projects_project_failoverip_onboarding_content2": "Attribuisci i tuoi IP pubblici e trasferiscili da un’istanza all’altra",
+  "pci_projects_project_failoverip_onboarding_content3": "Gli IP Failover permettono di assegnare un indirizzo IP pubblico verso un’istanza e, in qualsiasi momento, trasferirlo verso un’altra macchina del tuo progetto. Questo servizio è particolarmente utile per gestire operazioni di manutenzione e aggiornamenti.",
+  "pci_projects_project_failoverip_onboarding_content4": "Ti ricordiamo che, per utilizzare un IP Failover, è necessario modificare la configurazione di sistema.",
+  "pci_projects_project_failoverip_onboarding_action_label": "Importare un IP Failover",
+  "pci_projects_project_failoverip_onboarding_action_buy": "Acquistare IP Failover",
+  "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_title": "Rendere persistente la configurazione di un IP Failover",
+  "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_description": "",
+  "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_title": "Trasferire un IP Failover",
+  "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_description": ""
 }

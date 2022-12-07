@@ -1,9 +1,9 @@
 {
- "ip_table_manage_reverse": "Modifica il reverse",
- "ip_table_manage_reverse_question": "Inserisci un reverse valido per questo IP e clicca su \"Conferma\".",
- "ip_table_manage_reverse_success": "L'aggiornamento del Reverse è stato effettuato",
- "ip_table_manage_reverse_failure": "Si è verificato un errore durante l'aggiornamento del reverse: {{ message }}",
- "ip_table_manage_reverse_confirm": "Conferma",
- "ip_table_manage_reverse_cancel": "Annulla",
- "ip_table_manage_reverse_invalid": "Inserisci un formato valido"
+  "ip_table_manage_reverse": "Modifica il reverse",
+  "ip_table_manage_reverse_question": "Inserisci un reverse valido per questo IP e clicca su \"Conferma\".",
+  "ip_table_manage_reverse_success": "L'aggiornamento del Reverse è stato effettuato",
+  "ip_table_manage_reverse_failure": "Si è verificato un errore durante l'aggiornamento del reverse: {{ message }}",
+  "ip_table_manage_reverse_confirm": "Conferma",
+  "ip_table_manage_reverse_cancel": "Annulla",
+  "ip_table_manage_reverse_invalid": "Inserisci un formato valido"
 }
