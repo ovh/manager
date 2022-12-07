@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import {
   RCLONE_GUIDE,
   DOWNLOAD_RCLONE_FILENAME,
