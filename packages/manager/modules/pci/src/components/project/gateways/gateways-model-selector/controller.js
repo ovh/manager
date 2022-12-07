@@ -1,8 +1,9 @@
 export default class PciProjectGatewayModelSelectorCtrl {
   /* @ngInject */
-  constructor(coreConfig, PciProjectGatewayModelSelectorService) {
+  constructor(coreConfig, PciProjectGatewayModelSelectorService, $translate) {
     this.coreConfig = coreConfig;
     this.PciProjectGatewayModelSelectorService = PciProjectGatewayModelSelectorService;
+    this.$translate = $translate;
   }
 
   $onInit() {
@@ -29,5 +30,18 @@ export default class PciProjectGatewayModelSelectorCtrl {
       .finally(() => {
         this.loading = false;
       });
+  }
+
+  // Manipulate unit of bandwidth manually based on level value 500 -> 500 Mbps 2000 -> 2Gbps
+  getBandwidth(bandwidthLevel) {
+    return bandwidthLevel > 1000
+      ? bandwidthLevel / 1000 +
+          this.$translate.instant(
+            'pci_projects_project_gateways_model_selector_bandwidth_unit_size_gbps',
+          )
+      : bandwidthLevel +
+          this.$translate.instant(
+            'pci_projects_project_gateways_model_selector_bandwidth_unit_size_mbps',
+          );
   }
 }
