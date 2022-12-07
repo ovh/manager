@@ -726,6 +726,10 @@
   "ip_table_manage_delegation_ipv6block_to_delete": "Rewers(y) do usunięcia",
   "ip_order_title": "Zamów",
   "ip_administration_title": "Zarządzanie",
+<<<<<<< HEAD
   "ip_addresses_grid_header": "Moje publiczne adresy IP i usługi powiązane",
   "ip_order_additional_ips": "Dodatkowe IP"
+=======
+  "ip_addresses_grid_header": "Moje publiczne adresy IP i usługi powiązane"
+>>>>>>> e03cb14583 (sync: master to develop (#8511))
 }
