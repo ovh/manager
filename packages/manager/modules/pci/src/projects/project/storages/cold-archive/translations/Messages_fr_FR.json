@@ -13,7 +13,7 @@
   "pci_projects_project_storages_cold_archives_guides_monitoring_title": "Monitorer ses archives",
   "pci_projects_project_storages_cold_archives_guides_monitoring_description": "Comprendre les états des archives et les monitorer",
 
-  "pci_projects_project_storages_cold_archive_container_label": "Containers",
+  "pci_projects_project_storages_cold_archive_container_label": "Archives",
   "pci_projects_project_storages_cold_archive_containers_creation_date_label": "Date de création",
   "pci_projects_project_storages_cold_archive_containers_add_container_label": "Créer une archive",
   "pci_projects_project_storages_cold_archive_containers_status_label": "Status",
