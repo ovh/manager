@@ -17,6 +17,7 @@ export default {
     goToSnapshotDelete: '<',
     goToSnapshotTake: '<',
     goToSnapshotRestore: '<',
+    goToSnapshotDownload: '<',
     goToTerminateOption: '<',
     goToUpgradeAdditionalDisk: '<',
     goToVpsMigration: '<',

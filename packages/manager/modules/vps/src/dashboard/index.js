@@ -25,6 +25,7 @@ import ovhManagerVpsDashboardResiliation from './resiliation';
 import ovhManagerVpsDashboardReverseDns from './modal/reverse-dns';
 import ovhManagerVpsDashboardSnapshotDelete from './modal/snapshot-delete';
 import ovhManagerVpsDashboardSnapshotRestore from './modal/snapshot-restore';
+import ovhManagerVpsDashboardSnapshotDownload from './modal/snapshot-download';
 import ovhManagerVpsDashboardSnapshotTake from './modal/snapshot-take';
 import ovhManagerVpsDashboardTerminateOption from './modal/terminate-option';
 import ovhManagerVpsDashboardTerminate from './terminate';
@@ -56,6 +57,7 @@ angular
     ovhManagerVpsDashboardReverseDns,
     ovhManagerVpsDashboardSnapshotDelete,
     ovhManagerVpsDashboardSnapshotRestore,
+    ovhManagerVpsDashboardSnapshotDownload,
     ovhManagerVpsDashboardSnapshotTake,
     ovhManagerVpsDashboardAdditionalDiskUpgrade,
     ovhManagerVpsDashboardTile,

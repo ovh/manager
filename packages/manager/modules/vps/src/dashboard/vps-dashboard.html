@@ -458,6 +458,14 @@
                                 ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
+                                aria-label="{{::$ctrl.snapshotActions.download.text}}"
+                                data-on-click="$ctrl.goToSnapshotDownload()"
+                                data-ng-if="$ctrl.snapshotActions.download.isAvailable()"
+                                ><span
+                                    data-ng-bind="::$ctrl.snapshotActions.download.text"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
                                 aria-label="{{::$ctrl.snapshotActions.terminate.text}}"
                                 data-on-click="$ctrl.goToTerminateOption('snapshot')"
                                 data-ng-if="$ctrl.tabSummary.snapshot.optionActivated && $ctrl.snapshotActions.terminate.isAvailable()"
