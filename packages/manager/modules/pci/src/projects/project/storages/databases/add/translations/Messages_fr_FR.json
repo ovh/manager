@@ -67,7 +67,7 @@
   "pci_database_add_network_mode_private_popover": "Le réseau privé ne permet pas la connectivité publique et n'autorise que les connexions en provenance de l'intérieur de votre vRack.",
   "pci_database_add_included_nodes_offer": "Votre offre {{offerName}} inclut {{offerNodes}} noeud(s).",
   "pci_database_add_storage_sizing": "Stockage additionnel",
-  "pci_database_add_storage_sizing_offer": "Votre modèle de nœud {{flavorName}} inclut {{includedStorage}} de stockage auxquels vous pouvez ajouter {{addableStorage}} de stockage supplémentaire par pas de {{step}}.",
+  "pci_database_add_storage_sizing_offer": "Votre modèle de nœud {{flavorName}} inclut {{includedStorage}} de stockage auxquels vous pouvez ajouter jusqu'à {{addableStorage}} de stockage supplémentaire par pas de {{step}}.",
   "pci_database_add_spec_storage_added": "{{total}} (dont {{included}} inclus)",
   "pci_database_add_price_unit_month": "/ mois",
   "pci_database_add_price_unit_hour": "/ heure",
