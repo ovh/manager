@@ -453,6 +453,14 @@ export default /* @ngInject */ function VpsService(
       .catch((error) => error);
   };
 
+  this.getSnapshotUrl = function getSnapshotUrl(serviceName) {
+    return $http
+      .get(`/vps/${serviceName}/snapshot/download`)
+      .then(({ data }) => {
+        return data;
+      });
+  };
+
   /*
    * Get content of secondary DNS tab
    */
