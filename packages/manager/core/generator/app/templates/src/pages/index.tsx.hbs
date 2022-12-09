@@ -12,7 +12,7 @@ import {
 
 import { get{{pascalCase appName}}Ids } from '../api/{{appName}}';
 
-export function Loader() {
+export function loader() {
   return defer({
     services: get{{pascalCase appName}}Ids(),
   });

@@ -1,17 +1,28 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { lazy, useEffect, Fragment, Suspense } from 'react';
 import {
   useLocation,
   RouteObject,
   createHashRouter,
   Outlet,
+  LoaderFunction,
+  ActionFunction,
+  LoaderFunctionArgs,
+  ActionFunctionArgs,
 } from 'react-router-dom';
 import {
   generatePreservedRoutes,
   generateRegularRoutes,
-} from 'generouted/src/core';
-import { Module, Element, buildRegularRoute } from 'generouted/react-router';
+} from 'generouted/core';
 
 import { useShell } from '.';
+
+type Element = () => JSX.Element;
+type Module = {
+  default: Element;
+  loader: LoaderFunction;
+  action: ActionFunction;
+  ErrorElement: Element;
+};
 
 function OvhContainerRoutingSync(): JSX.Element {
   const location = useLocation();
@@ -24,6 +35,26 @@ function OvhContainerRoutingSync(): JSX.Element {
     shell.routing.onHashChange();
   }, [location]);
   return undefined;
+}
+
+function buildRegularRoute(module: () => Promise<Module>, key: string) {
+  const Element = lazy(module);
+  const ErrorElement = lazy(() =>
+    module().then((module) => ({ default: module.ErrorElement || null })),
+  );
+  const index = /(?<!pages\/)index\.(jsx|tsx)$/.test(key)
+    ? { index: true }
+    : {};
+
+  return {
+    ...index,
+    element: <Suspense fallback={null} children={<Element />} />,
+    loader: async (...args: [LoaderFunctionArgs]) =>
+      module().then((mod) => mod?.loader?.(...args) || null),
+    action: async (...args: [ActionFunctionArgs]) =>
+      module().then((mod) => mod?.action?.(...args) || null),
+    errorElement: <Suspense fallback={null} children={<ErrorElement />} />,
+  };
 }
 
 export function createAppRouter() {

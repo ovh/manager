@@ -15444,9 +15444,10 @@ gaze@^1.0.0:
   dependencies:
     globule "^1.0.0"
 
-"generouted@https://github.com/Jisay/generouted.git#feat/core-export":
-  version "1.6.3"
-  resolved "https://github.com/Jisay/generouted.git#5bb520f371b6d9275bca9afa3f7b4926d3d33fce"
+generouted@^1.6.4:
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/generouted/-/generouted-1.6.4.tgz#6a163418f9881ee389c5159bc7c5f5e8477ff039"
+  integrity sha512-ffqRMgYasIOHafAhLu59IIEOgAGU2HZxyIcSE2N5N0b+ZkgXIhBuPBtlQnb5RXN4uKu8DchMtopW93lsuNqbUg==
 
 gensync@^1.0.0-beta.1:
   version "1.0.0-beta.1"
@@ -18954,7 +18955,7 @@ jstransformer@^1.0.0:
     is-promise "^2.0.0"
     promise "^7.0.1"
 
-jsurl@^0.1.4, jsurl@^0.1.5:
+jsurl@0.1.5, jsurl@^0.1.4, jsurl@^0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/jsurl/-/jsurl-0.1.5.tgz#2a5c8741de39cacafc12f448908bf34e960dcee8"
   integrity sha1-KlyHQd45ysr8EvRIkIvzTpYNzug=
@@ -26371,9 +26372,9 @@ superagent@^3.8.3:
     readable-stream "^2.3.5"
 
 superjson@^1.10.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/superjson/-/superjson-1.11.0.tgz#f6e2ae0d8fbac61c3fca09ab6739ac9678414d1b"
-  integrity sha512-6PfAg1FKhqkwWvPb2uXhH4MkMttdc17eJ91+Aoz4s1XUEDZFmLfFx/xVA3wgkPxAGy5dpozgGdK6V/n20Wj9yg==
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/superjson/-/superjson-1.12.0.tgz#7b314b982bfebc5b8e56054b8528813fdda8fc7a"
+  integrity sha512-B4tefmFqj8KDShHi2br2rz0kBlUJuQHtxMCydEuHvooL+6EscROTNWRfOLMDxW1dS/daK2zZr3C3N9DU+jXATQ==
   dependencies:
     copy-anything "^3.0.2"
 

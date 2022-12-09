@@ -19,8 +19,6 @@ const getBaseConfig = (config) => {
     resolve: {
       alias: {
         '@': resolve(join(process.cwd(), 'src')),
-        'generouted/src/core':
-          '../../../../../node_modules/generouted/src/core.ts', // temp workaround in order to import correctly the src file
       },
     },
     define: {
