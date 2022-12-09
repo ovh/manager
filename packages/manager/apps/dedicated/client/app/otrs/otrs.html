@@ -3,7 +3,7 @@
     <div data-ovh-alert></div>
     <div data-ovh-alert="otrs_popup_service"></div>
     <div data-ovh-alert="otrs_popup_status"></div>
-    <support-tickets-data-grid
+    <otrs-grid
         data-archived="$ctrl.archived"
         data-filters="$ctrl.filters"
         data-go-to-ticket="$ctrl.goToTicket"
@@ -15,7 +15,8 @@
         data-sort-order="$ctrl.sortOrder"
         data-on-grid-params-change="$ctrl.onGridParamsChange"
         data-tickets="$ctrl.tickets"
+        data-total-count="$ctrl.totalTickets"
         data-grid-column-state-type-options="$ctrl.gridColumnStateTypeOptions"
         data-grid-column-last-message-from-type-options="$ctrl.gridColumnLastMessageFromTypeOptions"
-    ></support-tickets-data-grid>
+    ></otrs-grid>
 </div>
