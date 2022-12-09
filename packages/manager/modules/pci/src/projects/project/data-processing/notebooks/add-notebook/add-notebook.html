@@ -2,7 +2,7 @@
     <!-- page header -->
     <oui-header
         class="mb-2"
-        data-heading="{{ ::'data_processing_add_notebook_title' | translate }}"
+        data-heading="{{:: 'data_processing_add_notebook_title' | translate }}"
     ></oui-header>
 
     <div class="row">
@@ -16,7 +16,7 @@
                 </span>
                 <a
                     class="oui-link oui-link_icon"
-                    data-ng-href="{{::$ctrl.aiNotebookLink()}}"
+                    data-ng-href="{{:: $ctrl.aiNotebookLink()}}"
                 >
                     <span
                         data-translate="data_processing_add_notebook_description_warning_ai_link"
