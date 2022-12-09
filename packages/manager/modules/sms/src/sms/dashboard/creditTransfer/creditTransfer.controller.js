@@ -1,8 +1,9 @@
 export default class SmsCreditTransferCtrl {
   /* @ngInject */
-  constructor($translate, SmsService) {
+  constructor($translate, SmsService, atInternet) {
     this.$translate = $translate;
     this.smsService = SmsService;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -44,6 +45,12 @@ export default class SmsCreditTransferCtrl {
 
   onSubmit() {
     this.submitting = true;
+
+    this.atInternet.trackClick(
+      `sms::service::${
+        this.isSmppAccount ? 'dashboard-smpp' : 'dashboard'
+      }::transfer-credit-confirm`,
+    );
 
     const params = {
       smsAccountTarget: this.model.smsAccountTarget.name,

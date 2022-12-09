@@ -11,6 +11,7 @@ export default class {
   /* @ngInject */
   constructor(
     $translate,
+    atInternet,
     OvhApiSms,
     SmsService,
     TucSmsMediator,
@@ -25,12 +26,17 @@ export default class {
         jobs: OvhApiSms.Jobs().v6(),
       },
     };
+    this.atInternet = atInternet;
     this.smsService = SmsService;
     this.TucSmsMediator = TucSmsMediator;
     this.TucToastError = TucToastError;
   }
 
   $onInit() {
+    this.DASHBOARD_TRACKING_PREFIX = `sms::service::${
+      this.isSmppAccount ? 'dashboard-smpp' : 'dashboard'
+    }`;
+    this.atInternet.trackPage(this.DASHBOARD_TRACKING_PREFIX);
     this.actions = [
       ...(!this.isSmppAccount
         ? [
@@ -38,7 +44,7 @@ export default class {
               name: 'compose_message',
               sref: 'sms.service.sms.compose',
               text: this.$translate.instant('sms_actions_send_sms'),
-              hit: 'sms::service::dashboard::shortcuts::compose',
+              hit: 'sms::service::dashboard::compose',
             },
           ]
         : []),
@@ -46,13 +52,13 @@ export default class {
         name: 'recredit_options',
         sref: 'sms.service.order',
         text: this.$translate.instant('sms_actions_credit_account'),
-        hit: 'sms::service::dashboard::shortcuts::order',
+        hit: `${this.DASHBOARD_TRACKING_PREFIX}::credit-account`,
       },
       {
         name: 'credit_transfer',
         sref: 'sms.service.dashboard.creditTransfer',
         text: this.$translate.instant('sms_actions_credit_transfer'),
-        hit: 'sms::service::dashboard::shortcuts::transfer-credit',
+        hit: `${this.DASHBOARD_TRACKING_PREFIX}::transfer-credit`,
       },
       ...(!this.isSmppAccount
         ? [
@@ -60,7 +66,7 @@ export default class {
               name: 'manage_recipient_new',
               sref: 'sms.service.receivers',
               text: this.$translate.instant('sms_actions_create_contact'),
-              hit: 'sms::service::dashboard::shortcuts::add-receivers',
+              hit: 'sms::service::dashboard::add-receivers',
             },
           ]
         : []),
@@ -68,7 +74,7 @@ export default class {
         name: 'manage_senders',
         sref: 'sms.service.senders.add',
         text: this.$translate.instant('sms_actions_create_sender'),
-        hit: 'sms::service::dashboard::shortcuts::add-senders',
+        hit: `${this.DASHBOARD_TRACKING_PREFIX}::add-senders`,
       },
       ...(!this.isSmppAccount
         ? [
@@ -76,7 +82,7 @@ export default class {
               name: 'manage_soapi_users',
               sref: 'sms.service.users',
               text: this.$translate.instant('sms_actions_create_api_user'),
-              hit: 'sms::service::dashboard::shortcuts::add-user',
+              hit: 'sms::service::dashboard::add-user',
             },
           ]
         : []),
@@ -86,7 +92,7 @@ export default class {
               name: 'manage_blacklisted_senders',
               sref: 'sms.service.receivers',
               text: this.$translate.instant('sms_actions_clean_contact_list'),
-              hit: 'sms::service::dashboard::shortcuts::clean-receivers',
+              hit: 'sms::service::dashboard::clean-receivers',
             },
           ]
         : []),
@@ -96,7 +102,7 @@ export default class {
               name: 'create_campaign',
               sref: 'sms.service.batches.create',
               text: this.$translate.instant('sms_actions_create_campaign'),
-              hit: 'sms::service::dashboard::shortcuts::add-campaign',
+              hit: 'sms::service::dashboard::add-campaign',
             },
           ]
         : []),
@@ -106,7 +112,7 @@ export default class {
               name: 'campaign_history',
               sref: 'sms.service.batches.history',
               text: this.$translate.instant('sms_actions_campaign_history'),
-              hit: 'sms::service::dashboard::shortcuts::historic-campaigns',
+              hit: 'sms::service::dashboard::historic-campaigns',
             },
           ]
         : []),
@@ -116,6 +122,7 @@ export default class {
               name: 'option_smpp_parameter',
               sref: 'sms.service.options.smppParameter',
               text: this.$translate.instant('sms_actions_smpp_parameter'),
+              hit: 'sms::service::dashboard-smpp::configure-smpp',
             },
           ]
         : []),

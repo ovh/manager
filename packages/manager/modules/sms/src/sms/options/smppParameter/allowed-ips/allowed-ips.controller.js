@@ -1,11 +1,12 @@
-import { MAX_ALLOWED_IP } from './allowed-ips.constant';
+import { MAX_ALLOWED_IP, TRACKING_PREFIX } from './allowed-ips.constant';
 
 export default class AllowedIpsController {
   /* @ngInject */
-  constructor($translate, SmsService, TucToast) {
+  constructor($translate, SmsService, TucToast, atInternet) {
     this.$translate = $translate;
     this.smsService = SmsService;
     this.tucToast = TucToast;
+    this.atInternet = atInternet;
     this.isOpenModalAddIp = false;
     this.isOpenModalRemoveIp = false;
     this.isSubmitting = false;
@@ -13,6 +14,7 @@ export default class AllowedIpsController {
     this.addIp = null;
     this.removeIp = null;
     this.MAX_ALLOWED_IP = MAX_ALLOWED_IP;
+    this.TRACKING_PREFIX = TRACKING_PREFIX;
   }
 
   $onInit() {
@@ -21,8 +23,10 @@ export default class AllowedIpsController {
 
   openModal(modalType, ip = null) {
     if (modalType === 'add') {
+      this.trackClick('add-ip');
       this.isOpenModalAddIp = true;
     } else {
+      this.trackClick('delete-ip');
       this.removeIp = ip;
       this.isOpenModalRemoveIp = true;
     }
@@ -47,6 +51,7 @@ export default class AllowedIpsController {
 
   submitAddIp() {
     this.isSubmitting = true;
+    this.trackClick('add-ip-confirm');
     return this.smsService
       .putAllowedIps(this.serviceName, { action: 'add', ips: [this.addIp] })
       .then(() => {
@@ -72,6 +77,7 @@ export default class AllowedIpsController {
 
   submitRemoveIp() {
     this.isSubmitting = true;
+    this.trackClick('delete-ip-confirm');
     return this.smsService
       .putAllowedIps(this.serviceName, {
         action: 'remove',
@@ -96,5 +102,9 @@ export default class AllowedIpsController {
         this.isOpenModalRemoveIp = false;
         this.isSubmitting = false;
       });
+  }
+
+  trackClick(hit) {
+    return this.atInternet.trackClick(`${TRACKING_PREFIX}${hit}`);
   }
 }

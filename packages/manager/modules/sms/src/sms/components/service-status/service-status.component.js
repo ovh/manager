@@ -7,6 +7,7 @@ export default {
     loading: '<',
     isSmppAccount: '<',
     status: '<',
+    trackingPrefix: '<',
   },
   controller,
   name: 'ovhManagerSmsServiceStatus',

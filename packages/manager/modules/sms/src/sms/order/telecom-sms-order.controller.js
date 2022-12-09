@@ -199,7 +199,9 @@ export default class {
    */
   doOrder() {
     this.atInternet.trackClick({
-      name: 'sms::order::generate_order',
+      name: `sms::order::generate_order-${
+        this.order.channel
+      }-${this.getSelectedCredit()}`,
       type: 'action',
     });
 

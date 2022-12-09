@@ -5,6 +5,7 @@ export default {
   bindings: {
     goToDashboard: '<',
     serviceName: '<',
+    isSmppAccount: '<',
   },
   controller,
   template,
