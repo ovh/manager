@@ -25,6 +25,7 @@ export default /* @ngInject */
   orderIpAvailable,
   trackPage,
   trackingData,
+  service,
 ) => {
   $scope.isByoipAvailable = isByoipAvailable;
 
@@ -39,6 +40,9 @@ export default /* @ngInject */
   $scope.trackClick = trackClick;
   $scope.trackPage = trackPage;
   $scope.trackingData = trackingData;
+  $scope.listParams = {
+    ...(service?.ip && { ip: service.ip }),
+  };
 
   function init() {
     $scope.state = {};
@@ -46,6 +50,9 @@ export default /* @ngInject */
     $scope.serviceTypes = [];
     $scope.selectedServiceType = null;
     $scope.serviceType = $stateParams.serviceType || null;
+    if ($scope.serviceType) {
+      delete $scope.listParams.ip;
+    }
   }
 
   function fetchServiceTypes() {
@@ -64,6 +71,14 @@ export default /* @ngInject */
       });
   }
 
+  function deleteServiceName() {
+    $location.search('serviceName', '');
+    delete $scope.listParams.ip;
+    $timeout(() => {
+      $scope.$broadcast('ips.table.reload');
+    });
+  }
+
   $scope.goToAgoraOrder = goToAgoraOrder;
   $scope.goToByoipConfiguration = goToByoipConfiguration;
 
@@ -75,9 +90,13 @@ export default /* @ngInject */
     $scope.serviceType = serviceType === 'all' ? null : serviceType;
     $location.search('serviceType', $scope.serviceType);
     $location.search('page', 1);
-    $timeout(() => {
-      $scope.$broadcast('ips.table.reload');
-    });
+    deleteServiceName();
+  };
+
+  $scope.onListParamDeleted = function onListParamDeleted(param) {
+    if (param === 'ip') {
+      deleteServiceName();
+    }
   };
 
   $scope.$on('organisation.change.done', () => {

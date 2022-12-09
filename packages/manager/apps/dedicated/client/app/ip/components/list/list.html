@@ -2,7 +2,22 @@
     class="ip-components-list table-responsive mt-3 module-ip-table-responsive"
 >
     <div class="mb-3 d-flex align-items-center">
-        <div class="d-flex w-50" data-ng-transclude="header"></div>
+        <div class="d-flex w-50 flex-column align-items-start">
+            <div data-ng-transclude="header"></div>
+            <button
+                class="oui-chip oui-chip_closable mt-3"
+                type="button"
+                data-ng-if="params.ip"
+                data-ng-click="$ctrl.onParamDeleted({ param: 'ip' })"
+            >
+                IP :
+                <span data-ng-bind="params.ip"></span>
+                <span
+                    class="oui-chip__close oui-icon oui-icon-close"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </div>
         <div class="d-flex w-50 flex-column align-items-end">
             <div class="mb-3 d-flex align-items-center">
                 <oui-dropdown>

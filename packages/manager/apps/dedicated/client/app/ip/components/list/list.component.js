@@ -9,6 +9,7 @@ export default {
     goToFirewall: '<',
     goToGameFirewall: '<',
     goToOrganisation: '<',
+    onParamDeleted: '&',
     orderIpAvailable: '<',
     params: '<',
     serviceType: '<',
