@@ -87,6 +87,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.domainInfos = this.$scope.ctrlDomain.domainInfos;
     this.allDom = this.$scope.ctrlDomain.allDom;
     this.allDomInfos = this.$scope.ctrlDomain.allDomInfos;
+    this.domainState = this.$scope.ctrlDomain.domainState;
     this.allDomPaymentState =
       this.allDom &&
       DomainTabGeneralInformationsCtrl.getDomainState(this.allDomInfos);
