@@ -748,7 +748,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-dedicated-server-nutanix',
     title: 'dedicated_server_nutanix',
     feature: 'dedicated-server:nutanixOrder',
-    icon: 'oui-icon oui-icon-nutanix_concept',
+    icon: 'oui-icon oui-icon-nutanix_concept_tm',
     linkId: 'dedicatedNutanixOrder',
     target: '_blank',
     external: true,
