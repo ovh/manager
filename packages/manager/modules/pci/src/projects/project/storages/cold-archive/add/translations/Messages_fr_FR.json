@@ -1,7 +1,7 @@
 {
   "pci_projects_project_storages_cold_archive_add_breadcrumb": "Créer une archive",
   "pci_projects_project_storages_cold_archive_add_title": "Créer une archive",
-  "pci_projects_project_storages_cold_archive_add_description": "Cold Archive est un service d'archivage de vos données.",
+  "pci_projects_project_storages_cold_archive_add_description": "Une archive est un conteneur conçu pour contenir des objets et des fichiers destinés à être immuables.",
   "pci_projects_project_storages_cold_archive_add_description_link": "Consultez les prix.",
   "pci_projects_project_storages_cold_archive_add_guides_title": "Guides",
   "pci_projects_project_storages_cold_archive_add_step_name_archive_header": "Nommez votre archive",
