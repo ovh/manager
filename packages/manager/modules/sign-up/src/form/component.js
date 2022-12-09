@@ -8,5 +8,6 @@ export default {
     me: '<',
     onRulesUpdated: '&',
     model: '=',
+    isValid: '=',
   },
 };
