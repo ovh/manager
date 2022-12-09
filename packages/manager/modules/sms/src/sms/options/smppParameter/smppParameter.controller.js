@@ -5,6 +5,7 @@ export default class SmsSmppParameterCtrl {
   }
 
   $onInit() {
+    this.OPTION_SMPP_TRACKING_PREFIX = 'sms::service::configure-smpp::';
     this.loading = true;
     return this.smsService
       .getSmppSettings(this.serviceName)
