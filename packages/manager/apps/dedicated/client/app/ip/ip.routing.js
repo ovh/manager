@@ -52,7 +52,7 @@ export const listRouting = {
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip', {
-    url: '/ip?action&ip&serviceType&page&pageSize&ipBlock',
+    url: '/ip?action&ip&serviceType&serviceName&page&pageSize&ipBlock',
     template,
     controller,
     reloadOnSearch: false,
@@ -100,6 +100,15 @@ export default /* @ngInject */ ($stateProvider) => {
           '_blank',
           'noopener',
         ),
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
+      service: /* @ngInject */ (serviceName, $http) => {
+        if (!serviceName) return null;
+        return $http
+          .get(`/ip/service/${encodeURIComponent(serviceName)}`)
+          .then(({ data }) => data)
+          .catch(() => null);
+      },
       trackPage: /* @ngInject */ (atInternet) => (...hits) => {
         atInternet.trackPage({
           name: [TRACKING_PREFIX, ...hits].join('::'),
