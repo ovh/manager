@@ -33,5 +33,8 @@ export default /* @ngInject */ ($stateProvider) => {
         component: component.name,
       },
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

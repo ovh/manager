@@ -2,8 +2,9 @@ import { SMPP_STATUS, SMPP_BADAGES_STATUS } from './service-status.constant';
 
 export default class SmsServiceStatusController {
   /* @ngInject */
-  constructor($translate, SmsService, coreConfig, TucToast) {
+  constructor($translate, atInternet, SmsService, coreConfig, TucToast) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.smsService = SmsService;
     this.tucToast = TucToast;
     this.emailAccount = coreConfig.getUser().email;
@@ -15,10 +16,14 @@ export default class SmsServiceStatusController {
 
   onResetPasswordBtnClick(state) {
     this.isOpenModal = state;
+    if (state) {
+      this.atInternet.trackClick(`${this.trackingPrefix}new-password`);
+    }
   }
 
   submitResetPassword() {
     this.isSubmitting = true;
+    this.atInternet.trackClick(`${this.trackingPrefix}new-password-confirm`);
     return this.smsService
       .postResetSmppPassword(this.serviceName)
       .then(() =>
