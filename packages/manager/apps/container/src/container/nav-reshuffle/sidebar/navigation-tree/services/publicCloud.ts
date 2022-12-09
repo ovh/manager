@@ -77,28 +77,6 @@ const pciNode: Node = {
           forceVisibility: true,
         },
         {
-          id: 'pci-volume-snapshot',
-          translation: 'sidebar_pci_volume_snapshot',
-          serviceType: 'CLOUD_PROJECT_VOLUME_SNAPSHOT',
-          routing: {
-            application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/storages/volume-snapshots',
-          },
-          features: ['snapshot'],
-          forceVisibility: true,
-        },
-        {
-          id: 'pci-instance-backup',
-          translation: 'sidebar_pci_instance_backup',
-          serviceType: 'CLOUD_PROJECT_SNAPSHOT',
-          routing: {
-            application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/storages/instance-backups',
-          },
-          features: ['instance-backup'],
-          forceVisibility: true,
-        },
-        {
           id: 'pci-cloud-archive',
           translation: 'sidebar_pci_cloud_archive',
           serviceType: 'CLOUD_PROJECT_STORAGE_ARCHIVES',
@@ -132,6 +110,28 @@ const pciNode: Node = {
           features: ['databases'],
           forceVisibility: true,
           tag: NodeTag.NEW,
+        },
+        {
+          id: 'pci-volume-snapshot',
+          translation: 'sidebar_pci_volume_snapshot',
+          serviceType: 'CLOUD_PROJECT_VOLUME_SNAPSHOT',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/storages/volume-snapshots',
+          },
+          features: ['snapshot'],
+          forceVisibility: true,
+        },
+        {
+          id: 'pci-instance-backup',
+          translation: 'sidebar_pci_instance_backup',
+          serviceType: 'CLOUD_PROJECT_SNAPSHOT',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/storages/instance-backups',
+          },
+          features: ['instance-backup'],
+          forceVisibility: true,
         },
       ],
     },
