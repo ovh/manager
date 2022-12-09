@@ -1,0 +1,62 @@
+import React, { Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Heading, UnorderedList, ListItem } from '@chakra-ui/react';
+import {
+  Await,
+  defer,
+  Link,
+  Navigate,
+  Outlet,
+  useLoaderData,
+} from 'react-router-dom';
+
+import { get{{pascalCase appName}}Ids } from '../api/{{appName}}';
+
+export function Loader() {
+  return defer({
+    services: get{{pascalCase appName}}Ids(),
+  });
+}
+
+export default function {{pascalCase appName}}() {
+  const { t } = useTranslation('{{appName}}');
+  const data = useLoaderData() as Record<string, unknown>;
+
+  return (
+    <div>
+      <Heading>{t('title')}</Heading>
+      <Suspense fallback="">
+        <Await resolve={data.services}>
+          {(services) => {
+            const count = services.length;
+            if (count === 0) {
+              return <Navigate to="onboarding" />;
+            }
+            if (count === 1) {
+              return (
+                <>
+                  <Outlet />
+                  <Navigate to={services[0]} />
+                </>
+              );
+            }
+            return (
+              <>
+                <Heading as="h2" size="sm">
+                  Services list
+                </Heading>
+                <UnorderedList spacing={3}>
+                  {services.map((serviceName: string) => (
+                    <ListItem key={serviceName}>
+                      <Link to={`/details/${serviceName}`}>{serviceName}</Link>
+                    </ListItem>
+                  ))}
+                </UnorderedList>
+              </>
+            );
+          }}
+        </Await>
+      </Suspense>
+    </div>
+  );
+}

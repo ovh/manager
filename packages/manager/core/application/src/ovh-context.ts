@@ -1,7 +1,6 @@
 import React from 'react';
 import { useShellClient } from '@ovh-ux/shell';
-import { ApplicationId } from '@ovh-ux/manager-config/types/application';
-import Environment from '@ovh-ux/manager-config/types/environment';
+import { ApplicationId, Environment } from '@ovh-ux/manager-config';
 
 type Awaited<T> = T extends PromiseLike<infer U> ? U : T;
 export type OvhContextShellType = Awaited<ReturnType<typeof useShellClient>>;

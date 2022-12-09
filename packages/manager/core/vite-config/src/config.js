@@ -1,6 +1,6 @@
 import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
 
 import IframeHmrPlugin from './plugin/iframe-hmr.js';
@@ -19,13 +19,15 @@ const getBaseConfig = (config) => {
     resolve: {
       alias: {
         '@': resolve(join(process.cwd(), 'src')),
+        'generouted/src/core':
+          '../../../../../node_modules/generouted/src/core.ts', // temp workaround in order to import correctly the src file
       },
     },
     define: {
       __VERSION__: process.env.VERSION ? `'${process.env.VERSION}'` : 'null',
     },
     plugins: [
-      reactRefresh(),
+      react(),
       legacy({
         targets: ['defaults'],
       }),

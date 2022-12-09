@@ -1,5 +1,10 @@
-const appGenerator = require('./app');
+import appGenerator from './app/index.js';
 
-module.exports = (plop) => {
+import autocompletePrompt from 'inquirer-autocomplete-prompt';
+
+export default (plop) => {
+  // add autocomplete prompt
+  plop.setPrompt('autocomplete', autocompletePrompt);
+
   appGenerator(plop);
 };

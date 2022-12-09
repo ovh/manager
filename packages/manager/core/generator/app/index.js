@@ -1,18 +1,24 @@
-const path = require('path');
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import fuzzy from 'fuzzy';
 
-module.exports = (plop) => {
+import { getApiPaths } from '../utils/api.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+export default (plop) => {
   plop.setGenerator('app', {
     description: 'Create a React app',
     prompts: [
       {
         type: 'input',
         name: 'appName',
-        message: 'What is the application name?',
+        message: 'What is the name of the new app?',
       },
       {
         type: 'input',
         name: 'packageName',
-        message: 'What will be the application package name?',
+        message: 'What is the packageName of the new app?',
         default: ({ appName }) => {
           return `@ovh-ux/manager-${appName}-app`;
         },
@@ -20,24 +26,27 @@ module.exports = (plop) => {
       {
         type: 'input',
         name: 'description',
-        message: 'Short description of the app:',
+        message: 'How would you describe the new app?',
+      },
+      {
+        type: 'autocomplete',
+        name: 'apiPath',
+        message: 'What API base route is used?',
+        source: async ({ appName }, input) => {
+          const paths = await getApiPaths();
+
+          return fuzzy
+            .filter(input || `${appName}`, paths)
+            .map((el) => el.original);
+        },
       },
     ],
     actions: [
       {
         type: 'addMany',
-        destination: path.join(
-          process.cwd(),
-          './packages/manager/apps/{{dashCase appName}}',
-        ),
-        templateFiles: path.join(
-          process.cwd(),
-          './packages/manager/core/generator/app/templates/**',
-        ),
-        base: path.join(
-          process.cwd(),
-          './packages/manager/core/generator/app/templates',
-        ),
+        destination: join(__dirname, '../../../apps/{{dashCase appName}}'),
+        templateFiles: join(__dirname, './templates/**'),
+        base: join(__dirname, './templates'),
       },
       ({ appName, packageName }) =>
         `App ${appName} generated. Please run \n  yarn install && yarn workspace ${packageName} run dev`,

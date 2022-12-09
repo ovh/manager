@@ -1,0 +1,52 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Heading, Tab, TabList, TabPanels, Tabs } from '@chakra-ui/react';
+import {
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+  useResolvedPath,
+} from 'react-router-dom';
+
+export default function {{pascalCase appName}}Details() {
+  const { t } = useTranslation('{{appName}}/details');
+  const { pathname } = useLocation();
+  const { serviceName } = useParams();
+
+  const tabs = [
+    {
+      name: 'general_infos',
+      title: t('tab_general'),
+      to: useResolvedPath('').pathname,
+    },
+    {
+      name: 'tab',
+      title: t('tab_second'),
+      to: useResolvedPath('tab').pathname,
+    },
+  ];
+
+  let tabIndex = [...tabs]
+    .reverse()
+    .findIndex(({ to }) => pathname.startsWith(to));
+  tabIndex = tabIndex >= 0 ? tabs.length - 1 - tabIndex : Math.max(tabIndex, 0);
+
+  return (
+    <>
+      <Heading as="h1">{serviceName}</Heading>
+      <Tabs variant="light" index={tabIndex} isLazy>
+        <TabList>
+          {tabs.map((tab) => (
+            <Tab as={NavLink} key={tab.name} to={tab.to}>
+              {tab.title}
+            </Tab>
+          ))}
+        </TabList>
+        <TabPanels>
+          <Outlet />
+        </TabPanels>
+      </Tabs>
+    </>
+  );
+}
