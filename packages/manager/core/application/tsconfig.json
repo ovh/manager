@@ -13,7 +13,7 @@
     "isolatedModules": true,
     "declaration": true,
     "declarationDir": "./dist/types",
-    "jsx": "react"
+    "jsx": "react-jsx"
   },
   "exclude": ["node_modules", "dist", "types", "**/__tests__"]
 }

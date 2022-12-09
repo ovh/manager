@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import { ApplicationId } from '@ovh-ux/manager-config/types/application';
+import { ApplicationId } from '@ovh-ux/manager-config';
 import { UIKitTheme } from '@ovh-ux/manager-themes';
+import { RouterProvider } from 'react-router-dom';
 
 import './vite-hmr';
 import OvhApplication from './ovh-application';
 import OvhContext, { OvhContextShellType } from './ovh-context';
+import { createAppRouter } from './ovh-routing';
 
 const theme = extendTheme(UIKitTheme);
 
@@ -32,15 +34,14 @@ export function createContainerElement() {
 
 export function startApplication(
   appName: ApplicationId,
-  app: React.FunctionComponent,
 ) {
   const root = createRoot(createContainerElement());
-  const AppComponent = app;
+  const appRouter = createAppRouter();
   root.render(
     <React.StrictMode>
       <ChakraProvider theme={theme}>
         <OvhApplication name={appName}>
-          <AppComponent />
+          <RouterProvider router={appRouter} />
         </OvhApplication>
       </ChakraProvider>
     </React.StrictMode>,
