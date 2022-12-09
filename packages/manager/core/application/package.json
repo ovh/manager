@@ -19,8 +19,9 @@
   "dependencies": {
     "@chakra-ui/react": "^2.2.4",
     "@ovh-ux/manager-config": "^6.0.0",
-    "@ovh-ux/manager-themes": "^0.0.0",
+    "@ovh-ux/manager-themes": "^0.1.2",
     "@ovh-ux/shell": "^1.0.0",
+    "generouted": "^1.6.4",
     "i18next": "^21.8.14",
     "i18next-http-backend": "^1.4.1",
     "react": "^18.2.0",
