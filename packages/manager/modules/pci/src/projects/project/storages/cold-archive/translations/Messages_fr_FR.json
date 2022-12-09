@@ -14,7 +14,7 @@
   "pci_projects_project_storages_cold_archive_container_label": "Archives",
   "pci_projects_project_storages_cold_archive_containers_creation_date_label": "Date de création",
   "pci_projects_project_storages_cold_archive_containers_add_container_label": "Créer une archive",
-  "pci_projects_project_storages_cold_archive_containers_status_label": "Status",
+  "pci_projects_project_storages_cold_archive_containers_status_label": "Statut",
   "pci_projects_project_storages_containers_status_none": "Actif",
   "pci_projects_project_storages_containers_status_restored": "Restauré",
   "pci_projects_project_storages_containers_status_restoring": "En cours de restauration",
