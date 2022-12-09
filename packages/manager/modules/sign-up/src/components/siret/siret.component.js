@@ -9,5 +9,6 @@ export default {
     model: '=',
     rules: '<',
     trackingMode: '<',
+    isValid: '=',
   },
 };

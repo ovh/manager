@@ -69,6 +69,7 @@ export default class SiretCtrl {
   goToSearchMode() {
     this.isFirstSearch = true;
     this.displayManualForm = false;
+    this.isValid = false;
   }
 
   trackClick(hit) {
