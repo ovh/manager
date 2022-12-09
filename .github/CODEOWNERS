@@ -4,7 +4,7 @@ yarn.lock @ovh/team-manager-core
 
 # Documentation
 *.md
-/docs/ @ovh/team-manager-documentation
+/docs/ @ovh/team-manager-core
 
 # Components
 /packages/components/ @ovh/team-manager-dev
