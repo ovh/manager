@@ -18,7 +18,7 @@
             ></p>
             <p
                 data-translate="data_processing_add_notebook_template_notebook_ram"
-                data-translate-values="{'nbGio': item.RAM / 1024}"
+                data-translate-values="{'nbGio': $ctrl.convertToGio(item.RAM)}"
             ></p>
         </oui-select-picker-section>
         <oui-select-picker-section>
@@ -58,12 +58,12 @@
             <p
                 class="mb-0"
                 data-translate="data_processing_add_notebook_template_driver_ram"
-                data-translate-values="{'nbGio': item.driverMemory / 1024}"
+                data-translate-values="{'nbGio': $ctrl.convertToGio(item.driverMemory)}"
             ></p>
             <p
                 class="mb-0"
                 data-translate="data_processing_add_notebook_template_driver_ram_overhead"
-                data-translate-values="{'nbGio': item.driverMemoryOverhead / 1024}"
+                data-translate-values="{'nbGio': $ctrl.convertToGio(item.driverMemoryOverhead)}"
             ></p>
             <p
                 class="mb-0"
@@ -73,12 +73,12 @@
             <p
                 class="mb-0"
                 data-translate="data_processing_add_notebook_template_executor_ram"
-                data-translate-values="{'nbGio': item.executorMemory / 1024}"
+                data-translate-values="{'nbGio': $ctrl.convertToGio(item.executorMemory)}"
             ></p>
             <p
                 class="mb-0"
                 data-translate="data_processing_add_notebook_template_executor_ram_overhead"
-                data-translate-values="{'nbGio': item.executorMemoryOverhead / 1024}"
+                data-translate-values="{'nbGio': $ctrl.convertToGio(item.executorMemoryOverhead)}"
             ></p>
             <p
                 data-translate="data_processing_add_notebook_template_executor_nb"
