@@ -15,6 +15,8 @@ export default {
     trackingPrefix: '<',
     user: '<',
     handleError: '<',
+    nutanixPlans: '<',
+    getTechnicalDetails: '<',
   },
   controller,
   template,

@@ -109,21 +109,24 @@
                 class="oui-tile__extra"
                 data-translate="manager_billing_subscription_contacts_billing"
             ></span>
-        </oui-tile-description>
-        <oui-tile-actions
-            ng-if="$ctrl.featuresAvailability.isFeatureAvailable('contact:management') && !$ctrl.serviceInfos.isExpired()"
-        >
-            <oui-action-menu compact placement="end">
-                <oui-action-menu-item
-                    aria-label="{{:: 'manager_billing_subscription_contacts_management' | translate }}"
-                    on-click="$ctrl.manageContacts()"
-                    ><span
+            <div
+                data-ng-if="$ctrl.featuresAvailability.isFeatureAvailable('contact:management') && !$ctrl.serviceInfos.isExpired()"
+            >
+                <a
+                    class="oui-link_icon"
+                    data-ng-href="{{:: $ctrl.contactManagementUrl }}"
+                    data-on-click="$ctrl.trackClick('manage-contacts')"
+                >
+                    <span
                         data-translate="manager_billing_subscription_contacts_management"
-                    ></span
-                ></oui-action-menu-item>
-                <div ng-transclude="contactActions"></div>
-            </oui-action-menu>
-        </oui-tile-actions>
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                        aria-hidden="true"
+                    ></span>
+                </a>
+            </div>
+        </oui-tile-description>
     </oui-tile-definition>
     <div ng-transclude="extraInformation"></div>
 </oui-tile>

@@ -39,7 +39,7 @@
     "@ovh-ux/ng-ovh-utils": "^14.0.18",
     "@ovh-ux/ng-translate-async-loader": "^2.1.5",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.7",
-    "@ovh-ux/ui-kit": "^6.1.0",
+    "@ovh-ux/ui-kit": "^6.2.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.8",

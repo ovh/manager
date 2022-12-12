@@ -543,5 +543,6 @@
   "common_subscription_contacts_billing": "Abrechnung",
   "common_subscription_contacts_tech": "Technisch",
   "common_unavailable_information": "Information nicht verfügbar",
-  "common_resiliate_contact_support": "Um diesen Dienst zu kündigen, kontaktieren Sie bitte unseren Support unter <strong>+49 (0) 681 906730</strong>. Vielen Dank für Ihr Verständnis."
+  "common_resiliate_contact_support": "Um diesen Dienst zu kündigen, kontaktieren Sie bitte unseren Support unter <strong>+49 (0) 681 906730</strong>. Vielen Dank für Ihr Verständnis.",
+  "core_pcc_top_guide_11_title": "Offizielle Dokumentation zu Nutanix"
 }
