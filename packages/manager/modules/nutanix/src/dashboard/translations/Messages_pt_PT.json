@@ -2,5 +2,7 @@
   "nutanix_dashboard_general_info": "Informações gerais",
   "nutanix_dashboard_nodes": "Nós",
   "nutanix_dashboard_guides_header": "Manuais",
-  "nutanix_dashboard_guides_header_all_guides": "Todos os manuais"
+  "nutanix_dashboard_guides_header_all_guides": "Todos os manuais",
+  "nutanix_dashboard_cluster_warning1": "Deve registar a licença Nutanix no seu cluster em Prism Central antes de [{{endDate}}]",
+  "nutanix_dashboard_cluster_warning2": "Registe a sua licença"
 }
