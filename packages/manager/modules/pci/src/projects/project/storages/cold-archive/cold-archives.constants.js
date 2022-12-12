@@ -29,17 +29,31 @@ export const CHECK_PRICES_DOC_LINK = {
 
 export const GUIDES = [
   {
-    id: 'cold-archive-getting-started',
-    link:
-      'https://docs.ovh.com/fr/storage/s3/getting-started-with-cold-archive/',
+    id: 'overview',
+    links: {
+      default:
+        'https://docs.ovh.com/en/storage/object-storage/cold-archive/overview/',
+      fr:
+        'https://docs.ovh.com/fr/storage/object-storage/cold-archive/overview/',
+    },
   },
   {
-    id: 'billing',
-    link: 'https://docs.ovh.com/gb/en/storage/s3/getting-started-with-s3/',
+    id: 'first_step',
+    links: {
+      default:
+        'https://docs.ovh.com/en/storage/object-storage/cold-archive/getting-started',
+      fr:
+        'https://docs.ovh.com/fr/storage/object-storage/cold-archive/getting-started',
+    },
   },
   {
-    id: 'monitoring',
-    link: 'https://docs.ovh.com/fr/storage/s3/limitations/',
+    id: 'manage_data',
+    links: {
+      default:
+        'https://docs.ovh.com/en/storage/object-storage/cold-archive/manage-your-data',
+      fr:
+        'https://docs.ovh.com/fr/storage/object-storage/cold-archive/manage-your-data',
+    },
   },
 ];
 const COLD_ARCHIVE_ROOT_STATE = 'pci.projects.project.storages.cold-archive';
