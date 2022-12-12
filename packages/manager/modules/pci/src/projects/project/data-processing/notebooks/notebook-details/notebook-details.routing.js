@@ -28,13 +28,24 @@ export default /* @ngInject */ ($stateProvider) =>
           notebook,
         ) => () => {
           $state.go(
-            'pci.projects.project.data-processing.notebooks.terminate',
+            'pci.projects.project.data-processing.notebooks.details.terminate',
             {
               projectId,
-              notebookId: notebook.Id,
+              notebookId: notebook.id,
             },
           );
         },
+        showNotebook: /* @ngInject */ ($state, projectId, notebookId) => () =>
+          $state.go(
+            'pci.projects.project.data-processing.notebooks.details',
+            {
+              projectId,
+              notebookId,
+            },
+            {
+              reload: true,
+            },
+          ),
         openLiveCodeEditor: /* @ngInject */ ($window, notebook) => () =>
           $window.open(notebook.status.url, '_blank'),
         breadcrumb: /* @ngInject */ ($translate) =>
