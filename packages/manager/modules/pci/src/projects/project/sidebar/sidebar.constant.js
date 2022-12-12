@@ -185,14 +185,6 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         regions: ['CA', 'EU'],
         feature: PCI_FEATURES.PRODUCTS.AI_APPS,
       },
-      {
-        id: 'serving',
-        options: {
-          state: 'pci.projects.project.serving',
-        },
-        title: 'ML Serving',
-        feature: PCI_FEATURES.PRODUCTS.SERVING,
-      },
     ],
     regions: ['EU', 'CA'],
     title: 'AI & Machine Learning',
