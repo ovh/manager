@@ -96,12 +96,11 @@
                                     data-ng-bind=":: $ctrl.ADDITIONAL_IP"
                                 ></strong>
                             </h4>
-                            <p>
-                                <strong
-                                    class="text-center"
-                                    data-translate="ipv4Failover_price_label"
-                                ></strong>
-                            </p>
+                            <ovh-manager-catalog-price
+                                data-ng-if="$ctrl.ipFailoverRIPEPrice"
+                                data-price="$ctrl.ipFailoverRIPEPrice.priceInUcents"
+                                data-interval-unit="{{ $ctrl.ipFailoverRIPEPrice.intervalUnit }}"
+                            ></ovh-manager-catalog-price>
                         </oui-select-picker-description>
                     </oui-select-picker>
                 </div>
@@ -127,9 +126,16 @@
                                     data-ng-bind=":: $ctrl.BLOCK_ADDITIONAL_IP"
                                 ></strong>
                             </h4>
-                            <p class="text-center">
+                            <p
+                                data-ng-if="$ctrl.ipFailoverRIPEPrice"
+                                class="text-center"
+                            >
+                                <ovh-manager-catalog-price
+                                    data-price="$ctrl.ipFailoverRIPEPrice.priceInUcents"
+                                    data-interval-unit="{{ $ctrl.ipFailoverRIPEPrice.intervalUnit }}"
+                                ></ovh-manager-catalog-price>
                                 <strong
-                                    data-translate="ipv4Block_price_label"
+                                    data-translate="ipv4Block_price_per_ip"
                                 ></strong>
                             </p>
                             <p
