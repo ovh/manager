@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-netapp-app",
-  "version": "0.3.7",
+  "version": "0.4.0",
   "private": true,
   "description": "NetApp standalone application",
   "repository": {
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.6.1",
-    "@ovh-ux/manager-billing-components": "^3.10.9",
+    "@ovh-ux/manager-billing-components": "^3.11.0",
     "@ovh-ux/manager-catalog-price": "^1.4.1",
     "@ovh-ux/manager-components": "^1.0.0",
     "@ovh-ux/manager-config": "^6.5.0",

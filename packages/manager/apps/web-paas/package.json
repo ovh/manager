@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-paas-app",
-  "version": "1.4.7",
+  "version": "1.5.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -18,16 +18,16 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-web-paas-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-billing-components": "^3.10.9",
+    "@ovh-ux/manager-billing-components": "^3.11.0",
     "@ovh-ux/manager-config": "^6.5.0",
     "@ovh-ux/manager-core": "^12.12.6",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.1",
-    "@ovh-ux/manager-product-offers": "^4.0.0 || ^5.0.0",
+    "@ovh-ux/manager-product-offers": "^5.3.1",
     "@ovh-ux/manager-web-paas": "^1.5.3",
     "@ovh-ux/manager-webpack-dev-server": "^2.10.0 || ^3.0.0",
     "@ovh-ux/ng-at-internet": "^5.9.3",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.5.1",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.6.0",
     "@ovh-ux/ng-ovh-contracts": "^4.2.2",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.6",
     "@ovh-ux/ng-ovh-http": "^5.0.5",

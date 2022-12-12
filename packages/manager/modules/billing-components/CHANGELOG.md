@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.10.9...@ovh-ux/manager-billing-components@3.11.0) (2022-12-12)
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
 ## [3.10.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.10.8...@ovh-ux/manager-billing-components@3.10.9) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

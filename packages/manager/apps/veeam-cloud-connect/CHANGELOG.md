@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect-app@2.6.5...@ovh-ux/manager-veeam-cloud-connect-app@2.7.0) (2022-12-12)
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
 ## [2.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect-app@2.6.4...@ovh-ux/manager-veeam-cloud-connect-app@2.6.5) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-cloud-connect-app
