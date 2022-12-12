@@ -37,8 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       rcloneGuide: /* @ngInject */ (coreConfig) => {
         return (
-          RCLONE_GUIDE[coreConfig.getUser().ovhSubsidiary] ||
-          RCLONE_GUIDE.DEFAULT
+          RCLONE_GUIDE[coreConfig.getUserLanguage()] || RCLONE_GUIDE.default
         );
       },
       goBack: /* @ngInject */ (goToUsers) => goToUsers,
