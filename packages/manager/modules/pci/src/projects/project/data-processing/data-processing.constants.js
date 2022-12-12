@@ -7,6 +7,15 @@ export const DATA_PROCESSING_STATUS_TO_CLASS = Object.freeze({
   TERMINATED: 'error',
 });
 
+export const DATA_PROCESSING_NOTEBOOKS_STATUS_TO_CLASS = Object.freeze({
+  DELETING: 'warning',
+  FAILED: 'error',
+  RUNNING: 'info',
+  STARTING: 'warning',
+  STOPPED: 'info',
+  STOPPING: 'warning',
+});
+
 export const DATA_PROCESSING_STATUSES = Object.freeze({
   PENDING: 'Pending',
   SUBMITTED: 'Submitted',
@@ -14,6 +23,15 @@ export const DATA_PROCESSING_STATUSES = Object.freeze({
   FAILED: 'Failed',
   COMPLETED: 'Completed',
   TERMINATED: 'Killed',
+});
+
+export const DATA_PROCESSING_NOTEBOOKS_STATUSES = Object.freeze({
+  DELETING: 'DELETING',
+  FAILED: 'FAILED',
+  RUNNING: 'RUNNING',
+  STARTING: 'STARTING',
+  STOPPED: 'STOPPED',
+  STOPPING: 'STOPPING',
 });
 
 export const DATA_PROCESSING_API_STATUSES = Object.freeze({
@@ -66,3 +84,5 @@ export const SUBMIT_JOB_API_GUIDES = {
 };
 
 export const GIB_IN_MIB = 1024;
+
+export const NOTEBOOK_CLUSTER_NAME = 'NB1-1';

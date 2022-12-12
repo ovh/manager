@@ -3,7 +3,8 @@ import { summarizeJob } from './data-processing.utils';
 
 export default class DataProcessingService {
   /* @ngInject */
-  constructor($q, CucPriceHelper, OvhApiCloudProjectDataProcessing) {
+  constructor($http, $q, CucPriceHelper, OvhApiCloudProjectDataProcessing) {
+    this.$http = $http;
     this.logs = [];
     this.$q = $q;
     this.CucPriceHelper = CucPriceHelper;
@@ -11,6 +12,16 @@ export default class DataProcessingService {
     this.OvhApiCloudProjectDataProcessingCapabilities = OvhApiCloudProjectDataProcessing.Capabilities().iceberg();
     this.OvhApiCloudProjectDataProcessingAuthorization = OvhApiCloudProjectDataProcessing.Authorization().iceberg();
     this.OvhApiCloudProjectDataProcessingMetrics = OvhApiCloudProjectDataProcessing.Metrics().iceberg();
+  }
+
+  static getIcebergHeaders() {
+    return {
+      headers: {
+        'X-Pagination-Mode': 'CachedObjectList-Pages',
+        'X-Pagination-Size': 50000,
+        Pragma: 'no-cache',
+      },
+    };
   }
 
   /**
@@ -72,6 +83,97 @@ export default class DataProcessingService {
           },
         };
       });
+  }
+
+  /**
+   * Retrieve list of notebooks
+   * @param projectId string List notebooks related to this project id
+   * @return {Promise<any>}
+   */
+  getNotebooks(projectId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/dataProcessing/notebooks`,
+        DataProcessingService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  /**
+   * get a notebook
+   * @param projectId string the project id
+   * @param notebookId string the notebook id
+   * @return {Promise<any>}
+   */
+  getNotebook(projectId, notebookId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/dataProcessing/notebooks/${notebookId}`)
+      .then(({ data }) => data);
+  }
+
+  /**
+   * Create a new notebook
+   * @param projectId string Id of the project to create the notebook to
+   * @param notebook the payload describing the notebook
+   * @return {Promise<any>}
+   */
+  createNotebook(projectId, notebook) {
+    return this.$http
+      .post(`/cloud/project/${projectId}/dataProcessing/notebooks`, notebook)
+      .then(({ data }) => data);
+  }
+
+  /**
+   * delete a notebook
+   * @param projectId string the project id
+   * @param notebookId string the notebook id
+   * @return {Promise<any>}
+   */
+  deleteNotebook(projectId, notebookId) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/dataProcessing/notebooks/${notebookId}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  /**
+   * start a notebook
+   * @param projectId string the project id
+   * @param notebookId string the notebook id
+   * @return {Promise<any>}
+   */
+  startNotebook(projectId, notebookId) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/dataProcessing/notebooks/${notebookId}/start`,
+      )
+      .then(({ data }) => data);
+  }
+
+  /**
+   * stop a notebook
+   * @param projectId string the project id
+   * @param notebookId string the notebook id
+   * @return {Promise<any>}
+   */
+  stopNotebook(projectId, notebookId) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/dataProcessing/notebooks/${notebookId}/stop`,
+      )
+      .then(({ data }) => data);
+  }
+
+  /**
+   * get notebooks capabilities
+   * @param projectId string the project id
+   * @return {Promise<any>}
+   */
+  getNotebookCapabilities(projectId) {
+    return this.$http
+      .put(`/cloud/project/${projectId}/dataProcessing/notebooks/capabilities`)
+      .then(({ data }) => data);
   }
 
   /**

@@ -3,6 +3,7 @@ import { get, mapValues, keyBy, startCase } from 'lodash';
 import {
   DATA_PROCESSING_STATUS_TO_CLASS,
   DATA_PROCESSING_STATUSES,
+  DATA_PROCESSING_NOTEBOOKS_STATUSES,
 } from './data-processing.constants';
 
 const memoryConversions = {
@@ -99,6 +100,17 @@ export const isJobRunning = (job) =>
     DATA_PROCESSING_STATUSES.RUNNING,
     DATA_PROCESSING_STATUSES.SUBMITTED,
   ].includes(job.status);
+
+/**
+ * Determine whether notebook is in a running state (opposed to a final state)
+ * @param notebook {*} Job to check
+ * @return {boolean} true if notebook is in a running state
+ */
+export const isNotebookRunning = (notebook) =>
+  [
+    DATA_PROCESSING_NOTEBOOKS_STATUSES.RUNNING,
+    DATA_PROCESSING_NOTEBOOKS_STATUSES.STARTING,
+  ].includes(notebook.status.state);
 
 /**
  * Get a CSS class name from a given job status
