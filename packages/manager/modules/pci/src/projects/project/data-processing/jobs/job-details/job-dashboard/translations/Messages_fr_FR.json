@@ -4,6 +4,7 @@
   "data_processing_details_information_region_label": "Région",
   "data_processing_details_information_return_code_label": "Code retour",
   "data_processing_details_information_creation_date_label": "Date de création",
+  "data_processing_details_information_notebook_name_label": "Notebook",
   "data_processing_details_information_elapsed_label": "Temps écoulé",
   "data_processing_details_actions_show_ui_label": "Accéder à l'interface graphique du job",
   "data_processing_details_actions_show_grafana_label": "Accéder au monitoring",
