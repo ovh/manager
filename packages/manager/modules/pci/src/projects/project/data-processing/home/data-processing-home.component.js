@@ -8,6 +8,7 @@ export default {
     submitJob: '<',
     showJobs: '<',
     projectId: '<',
+    addNotebook: '<',
     trackClick: '<',
   },
 };

@@ -100,6 +100,30 @@ export default class DataProcessingService {
   }
 
   /**
+   * get a notebook
+   * @param projectId string the project id
+   * @param notebookId string the notebook id
+   * @return {Promise<any>}
+   */
+  getNotebook(projectId, notebookId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/dataProcessing/notebooks/${notebookId}`)
+      .then(({ data }) => data);
+  }
+
+  /**
+   * Create a new notebook
+   * @param projectId string Id of the project to create the notebook to
+   * @param notebook the payload describing the notebook
+   * @return {Promise<any>}
+   */
+  createNotebook(projectId, notebook) {
+    return this.$http
+      .post(`/cloud/project/${projectId}/dataProcessing/notebooks`, notebook)
+      .then(({ data }) => data);
+  }
+
+  /**
    * delete a notebook
    * @param projectId string the project id
    * @param notebookId string the notebook id
@@ -138,6 +162,17 @@ export default class DataProcessingService {
       .put(
         `/cloud/project/${projectId}/dataProcessing/notebooks/${notebookId}/stop`,
       )
+      .then(({ data }) => data);
+  }
+
+  /**
+   * get notebooks capabilities
+   * @param projectId string the project id
+   * @return {Promise<any>}
+   */
+  getNotebookCapabilities(projectId) {
+    return this.$http
+      .put(`/cloud/project/${projectId}/dataProcessing/notebooks/capabilities`)
       .then(({ data }) => data);
   }
 
