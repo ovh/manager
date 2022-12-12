@@ -1,12 +1,12 @@
 {
-  "nutanix_onboarding_title": "Hosted Private Cloud powered by Nutanix",
-  "nutanix_onboarding_description": "Odkryj naszą nową, skalowalną platformę w chmurze prywatnej. Łączy ona wstępnie zainstalowane licencje Nutanix z w pełni dedykowanymi i bezpiecznymi infrastrukturami OVHcloud. Dzięki temu zyskujesz hiperkonwergentne (HCI) środowisko Nutanix gotowe do użycia w ciągu kilku godzin.",
+  "nutanix_onboarding_title": "Nutanix on OVHcloud",
+  "nutanix_onboarding_description": "Odkryj naszą nową, skalowalną platformę w chmurze prywatnej. Łączy ona wstępnie zainstalowane licencje Nutanix Cloud Platform - dostępne w pakietach lub w ramach BYOL (Bring Your Own Licence) z opcją przenoszenia licencji oraz z dedykowanymi i zatwierdzonymi przez Nutanix infrastrukturami OVHcloud. Korzystasz z hiperkonwergentnego środowiska Nutanix (HCI), które jest gotowe do użycia w ciągu kilku godzin.",
   "nutanix_onboarding_description2": "Jest to idealne rozwiązanie do realizacji strategii migracji do chmury, wdrożenia Planu Disaster Recovery (DRP) lub obsługi zwiększonych obciążeń.",
   "nutanix_onboarding_order": "Zamów",
-  "nutanix_onboarding_guide1_title": "Ogólna dokumentacja dot. programu Nutanix",
-  "nutanix_onboarding_guide1_description": "Szczegóły techniczne dotyczące infrastruktury Nutanix w OVHcloud",
-  "nutanix_onboarding_guide2_title": "Lista zawartych w ofercie usług i licencji",
-  "nutanix_onboarding_guide2_description": "Prezentacja usług i licencji zawartych w ofercie Hosted Private Cloud powered by Nutanix",
+  "nutanix_onboarding_guide1_title": "Dokumentacja ogólna",
+  "nutanix_onboarding_guide1_description": "Szczegóły techniczne infrastruktury rozwiązania Nutanix on OVHcloud",
+  "nutanix_onboarding_guide2_title": "Pakiety: lista usług i licencji Nutanix",
+  "nutanix_onboarding_guide2_description": "Prezentacja usług i licencji zawartych w pakietach Nutanix on OVHcloud",
   "nutanix_onboarding_guide3_title": "Działanie bramy OVHgateway",
   "nutanix_onboarding_guide3_description": "Dowiedz się, jak działa brama OVHgateway"
 }
