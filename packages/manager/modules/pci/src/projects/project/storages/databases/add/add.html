@@ -521,19 +521,9 @@
                 </oui-tile-definition>
                 <oui-tile-definition>
                     <oui-tile-description>
-                        <div
-                            class="d-flex align-items-center justify-content-between mb-2"
-                        >
-                            <span
-                                data-translate="pci_database_add_price_unit_switch_label"
-                            ></span>
-                            <oui-switch
-                                class="d-inline-block"
-                                name="switch-price-unit"
-                                model="$ctrl.showMonthlyPrices"
-                            >
-                            </oui-switch>
-                        </div>
+                        <pci-projects-project-database-switch-price
+                            data-show-monthly-prices="$ctrl.showMonthlyPrices"
+                        ></pci-projects-project-database-switch-price>
                         <div class="d-flex justify-content-between flex-wrap">
                             <span
                                 data-translate="pci_database_common_price"
