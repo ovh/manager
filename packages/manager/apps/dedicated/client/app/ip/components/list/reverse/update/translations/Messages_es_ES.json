@@ -1,0 +1,9 @@
+{
+  "ip_table_manage_reverse": "Cambiar el registro inverso",
+  "ip_table_manage_reverse_question": "Introduzca un registro inverso válido para la IP y haga clic en «Aceptar».",
+  "ip_table_manage_reverse_success": "Se ha actualizado el registro inverso.",
+  "ip_table_manage_reverse_failure": "Se ha producido un error al actualizar el registro inverso. {{ message }}",
+  "ip_table_manage_reverse_confirm": "Confirmar",
+  "ip_table_manage_reverse_cancel": "Cancelar",
+  "ip_table_manage_reverse_invalid": "Introduzca un formato válido."
+}
