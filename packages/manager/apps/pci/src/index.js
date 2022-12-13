@@ -3,10 +3,11 @@ import 'whatwg-fetch';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { bootstrapApplication } from '@ovh-ux/manager-core';
+import { defineApplicationVersion } from '@ovh-ux/request-tagger';
+
+defineApplicationVersion(__VERSION__);
 
 bootstrapApplication('pci').then((environment) => {
-  environment.setVersion(__VERSION__);
-
   import(`./config-${environment.getRegion()}`)
     .catch(() => {})
     .then(() => import('./app.module'))
