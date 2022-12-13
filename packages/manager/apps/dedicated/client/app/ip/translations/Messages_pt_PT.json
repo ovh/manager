@@ -111,6 +111,7 @@
   "ip_table_header_antispam": "Antispam",
   "ip_table_header_mitigation": "Mitigação",
   "ip_table_header_security": "Firewall",
+  "ip_table_header_game_mitigation": "Firewall Game",
   "ip_table_header_alerts": "Alertas",
   "ip_table_header_visiblecols_btn": "Configurar",
   "ip_table_header_visiblecols": "Colunas visíveis",

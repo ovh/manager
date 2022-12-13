@@ -105,6 +105,7 @@
   "ip_table_header_ip_address": "Indirizzo IP",
   "ip_table_header_ip_address_invalid": "Inserisci un IPv6 valido",
   "ip_table_header_country": "Paese",
+  "ip_table_header_reverse": "Reverse DNS",
   "ip_table_header_reverse_invalid": "Inserisci un Reverse valido",
   "ip_table_header_virtual_mac": "MAC virtuale",
   "ip_table_header_antispam": "Antispam",
