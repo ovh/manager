@@ -31,7 +31,7 @@
     "@ovh-ux/ovh-reket": "^1.0.1",
     "@ovh-ux/request-tagger": "^0.1.0",
     "@ovh-ux/shell": "^1.8.0",
-    "@ovh-ux/ui-kit": "^6.2.0",
+    "@ovh-ux/ui-kit": "^6.3.0",
     "@popperjs/core": "^2.11.4",
     "@tanem/react-nprogress": "^5.0.0",
     "@tanstack/react-query": "^4.9.0",
