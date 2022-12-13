@@ -155,6 +155,31 @@ describe('Version header definition', () => {
     );
     expect(versionHeader).toEqual(applicationVersion);
   });
+
+  it("doesn't overwite top application version", () => {
+    const { top } = window;
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    delete window.top;
+
+    // define applicationVersion on top Window
+    const topApplicationVersion = 'version-9876';
+    window.top = {} as Window;
+    window.top.ovhRequestTaggerApplicationVersion = topApplicationVersion;
+
+    const applicationVersion = 'version-1234';
+    defineApplicationVersion(applicationVersion);
+    const { [Header.VERSION]: versionHeader } = getHeaders(
+      '/engine/apiv6/endpoint',
+    );
+    expect(versionHeader).toEqual(applicationVersion);
+    expect(window.top.ovhRequestTaggerApplicationVersion).toEqual(
+      topApplicationVersion,
+    );
+
+    window.top = top;
+  });
 });
 
 describe('Headers override', () => {
