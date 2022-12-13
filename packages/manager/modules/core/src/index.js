@@ -265,11 +265,6 @@ export const registerCoreModule = (environment, { onLocaleChange } = {}) => {
       },
     )
     .run(
-      /* @ngInject */ (OvhNgRequestTaggerInterceptor, coreConfig) => {
-        OvhNgRequestTaggerInterceptor.setHeaderVersion(coreConfig.getVersion());
-      },
-    )
-    .run(
       /* @ngInject */ ($transitions, $translate) => {
         $transitions.onBefore({}, () => $translate.refresh());
       },
