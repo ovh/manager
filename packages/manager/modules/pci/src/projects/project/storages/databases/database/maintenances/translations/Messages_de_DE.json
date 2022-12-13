@@ -16,5 +16,6 @@
   "pci_databases_maintenances_maintenance_apply_error": "Bei der Durchführung der Wartungsarbeiten ist ein Fehler aufgetreten.",
   "pci_databases_maintenances_update_time_success": "Der Zeitpunkt der Wartung wurde geändert und gilt nun für die kommenden Wartungsarbeiten.",
   "pci_databases_maintenances_update_time_error": "Bei der Änderung des Zeitpunkts der Wartung ist ein Fehler aufgetreten.",
-  "pci_databases_maintenances_update_time": "Zeitpunkt für Wartungen (UTC)"
+  "pci_databases_maintenances_update_time": "Zeitpunkt für Wartungen (UTC)",
+  "pci_databases_maintenances_maintenance_status_PENDING": "Ausstehend"
 }
