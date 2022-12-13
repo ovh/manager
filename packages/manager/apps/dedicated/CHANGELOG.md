@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.39.0...@ovh-ux/manager-dedicated@17.39.1) (2022-12-13)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** get user details for hds activation ([ca89e29](https://github.com/ovh/manager/commit/ca89e29a5340d2e0b2aee28ba1d37a1ea8546bd6))
+
+
+
+
+
 # [17.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.38.1...@ovh-ux/manager-dedicated@17.39.0) (2022-12-12)
 
 
