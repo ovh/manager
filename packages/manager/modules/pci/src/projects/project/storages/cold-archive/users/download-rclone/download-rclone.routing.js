@@ -37,7 +37,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       rcloneGuide: /* @ngInject */ (coreConfig) => {
         return (
-          RCLONE_GUIDE[coreConfig.getUserLanguage()] || RCLONE_GUIDE.default
+          RCLONE_GUIDE[coreConfig.getUserLanguage().toUpperCase()] ||
+          RCLONE_GUIDE.DEFAULT
         );
       },
       goBack: /* @ngInject */ (goToUsers) => goToUsers,
