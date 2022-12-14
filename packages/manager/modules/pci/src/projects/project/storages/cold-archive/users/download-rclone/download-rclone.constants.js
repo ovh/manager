@@ -9,8 +9,15 @@ export const COLD_ARCHIVE_TRACKING_PREFIX = TRACKING;
 export const COLD_ARCHIVE_DEFAULT_REGION = DEFAULT_REGION;
 
 export const RCLONE_GUIDE = {
-  default: 'https://docs.ovh.com/gb/en/storage/object-storage/s3/rclone/',
-  fr: 'https://docs.ovh.com/fr/storage/object-storage/s3/rclone/',
+  DEFAULT: 'https://docs.ovh.com/en/storage/object-storage/s3/rclone/',
+  DE: 'https://docs.ovh.com/de/storage/object-storage/s3/rclone/',
+  ES: 'https://docs.ovh.com/es/storage/object-storage/s3/rclone/',
+  FR: 'https://docs.ovh.com/fr/storage/object-storage/s3/rclone/',
+  CA: 'https://docs.ovh.com/ca/storage/object-storage/s3/rclone/',
+  EN: 'https://docs.ovh.com/en/storage/object-storage/s3/rclone/',
+  IT: 'https://docs.ovh.com/it/storage/object-storage/s3/rclone/',
+  PL: 'https://docs.ovh.com/pl/storage/object-storage/s3/rclone/',
+  PT: 'https://docs.ovh.com/pt/storage/object-storage/s3/rclone/',
 };
 
 export const DOWNLOAD_FILENAME = 'rclone.conf';
