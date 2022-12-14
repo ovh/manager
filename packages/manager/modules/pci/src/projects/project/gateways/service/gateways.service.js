@@ -61,7 +61,9 @@ export default class publicGatewaysServiceClass {
   getPrivateNetworks(serviceName, regionName) {
     return this.$http
       .get(`/cloud/project/${serviceName}/region/${regionName}/network`)
-      .then(({ data }) => data);
+      .then(({ data }) =>
+        data.filter((network) => network.visibility === 'private'),
+      );
   }
 
   getSubnet(serviceName, region, networkId) {
