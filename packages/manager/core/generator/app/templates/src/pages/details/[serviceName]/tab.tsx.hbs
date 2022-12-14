@@ -1,6 +1,11 @@
 import { Heading } from '@chakra-ui/react';
+import i18next from 'i18next';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+
+export function breadcrumb() {
+  return i18next.t('{{appName}}/details/tab:crumb');
+}
 
 export default function {{pascalCase appName}}Tab() {
   const { t } = useTranslation('{{appName}}/details/tab');
