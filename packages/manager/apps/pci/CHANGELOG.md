@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.6.0...@ovh-ux/manager-pci-app@3.6.1) (2022-12-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
+# [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.5.17...@ovh-ux/manager-pci-app@3.6.0) (2022-12-12)
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
 ## [3.5.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.5.16...@ovh-ux/manager-pci-app@3.5.17) (2022-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-app

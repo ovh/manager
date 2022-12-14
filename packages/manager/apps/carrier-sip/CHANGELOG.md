@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@2.5.6...@ovh-ux/manager-carrier-sip-app@2.6.0) (2022-12-12)
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
 ## [2.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@2.5.5...@ovh-ux/manager-carrier-sip-app@2.5.6) (2022-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-carrier-sip-app

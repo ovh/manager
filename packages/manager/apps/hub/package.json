@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-app",
-  "version": "3.22.11",
+  "version": "3.23.0",
   "private": true,
   "description": "OVHcloud Dashboard control panel.",
   "repository": {
@@ -21,11 +21,11 @@
   "dependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-banner": "^1.2.14",
-    "@ovh-ux/manager-billing-components": "^3.10.9",
+    "@ovh-ux/manager-billing-components": "^3.11.0",
     "@ovh-ux/manager-config": "^6.5.0",
     "@ovh-ux/manager-core": "^12.12.6",
     "@ovh-ux/manager-error-page": "^2.3.1",
-    "@ovh-ux/manager-hub": "^3.4.2",
+    "@ovh-ux/manager-hub": "^3.5.0",
     "@ovh-ux/manager-models": "^1.14.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.1",
     "@ovh-ux/manager-trusted-nic": "^0.0.0 || ^1.0.0",
@@ -47,7 +47,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.7",
     "@ovh-ux/ng-ui-router-layout": "^4.1.1",
     "@ovh-ux/shell": "^1.8.0",
-    "@ovh-ux/ui-kit": "^6.1.0",
+    "@ovh-ux/ui-kit": "^6.2.0",
     "@ovh-ux/url-builder": "^1.1.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",

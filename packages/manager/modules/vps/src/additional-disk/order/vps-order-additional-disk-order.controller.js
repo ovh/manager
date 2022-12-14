@@ -6,8 +6,6 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 
-import { ORDER_EXPRESS_BASE_URL } from '../../vps/constants';
-
 export default class VpsOrderDiskCtrl {
   /* @ngInject */
   constructor(
@@ -20,6 +18,7 @@ export default class VpsOrderDiskCtrl {
     OvhApiOrder,
     stateVps,
     goBack,
+    RedirectionService,
   ) {
     // dependencies injections
     this.$translate = $translate;
@@ -31,6 +30,7 @@ export default class VpsOrderDiskCtrl {
     this.OvhApiOrder = OvhApiOrder;
     this.stateVps = stateVps;
     this.goBack = goBack;
+    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
 
     // other attributes used in view
     this.chunkedDiskOptions = null;
@@ -68,10 +68,7 @@ export default class VpsOrderDiskCtrl {
       name: `vps::detail::additional-disk::order::confirm_${this.model.disk?.capacity?.value}`,
       type: 'action',
     });
-    let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
-      this.coreConfig.getRegion(),
-      this.connectedUser.ovhSubsidiary,
-    ]);
+
     const priceOptions = find(this.model.disk.prices, ({ capacities }) =>
       capacities.includes('renew'),
     );
@@ -83,15 +80,15 @@ export default class VpsOrderDiskCtrl {
       pricingMode: priceOptions.pricingMode,
       quantity: 1,
     };
-    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
+    this.expressOrderUrl = `${this.expressOrderUrl}?products=${JSURL.stringify([
       expressParams,
     ])}`;
 
-    this.$window.open(expressOrderUrl, '_blank');
+    this.$window.open(this.expressOrderUrl, '_blank', 'noopener');
 
     this.CucCloudMessage.success({
       textHtml: this.$translate.instant('vps_order_additional_disk_success', {
-        url: expressOrderUrl,
+        url: this.expressOrderUrl,
       }),
     });
 

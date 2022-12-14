@@ -1,5 +1,11 @@
 {
   "nutanix_cluster_licence_title": "Licencje Nutanix",
   "nutanix_cluster_licence_enabled": "Aktywny",
-  "nutanix_cluster_licence_disabled": "Wyłączony"
+  "nutanix_cluster_licence_disabled": "Wyłączony",
+  "nutanix_cluster_licence_included": "Zawarte w cenie",
+  "nutanix_cluster_licence_not_included": "Niezawarte w cenie",
+  "nutanix_cluster_licence_show_more": "Wyświetl więcej opcji",
+  "nutanix_cluster_licence_show_less": "Wyświetl mniej opcji",
+  "nutanix_cluster_licence_show_files_objects_size": "Zawarte w cenie (maksymalnie {{size}} TB)",
+  "nutanix_cluster_licence_show_LCM": "Zawarte w ofercie (tylko upgrade software’u)"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "private": true,
   "description": "OVHcloud Nutanix product",
   "repository": {

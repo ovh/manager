@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.21.3...@ovh-ux/manager-web@16.22.0) (2022-12-12)
+
+
+### Bug Fixes
+
+* **web:** add new domain pricing mode ([#8516](https://github.com/ovh/manager/issues/8516)) ([afc7b97](https://github.com/ovh/manager/commit/afc7b97829270a7b2557b98e5f7ab10bfbb0ecda))
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
 ## [16.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.21.2...@ovh-ux/manager-web@16.21.3) (2022-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.101.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.101.1...@ovh-ux/manager-pci@5.101.2) (2022-12-13)
+
+
+### Bug Fixes
+
+* **pci:** display countries for additional ip creation ([#8417](https://github.com/ovh/manager/issues/8417)) ([fa7324d](https://github.com/ovh/manager/commit/fa7324d463d68c25320c3ea8c20ff8a4cea30eb0))
+
+
+
+
+
 ## [5.101.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.101.0...@ovh-ux/manager-pci@5.101.1) (2022-12-05)
 
 

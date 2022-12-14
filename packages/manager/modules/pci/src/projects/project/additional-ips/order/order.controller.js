@@ -1,6 +1,5 @@
 import JSURL from 'jsurl';
 import filter from 'lodash/filter';
-import find from 'lodash/find';
 import get from 'lodash/get';
 import isNumber from 'lodash/isNumber';
 import min from 'lodash/min';
@@ -28,6 +27,7 @@ export default class AdditionalIpController {
     $translate,
     atInternet,
     coreConfig,
+    iceberg,
     OvhApiOrderCloudProjectIp,
     OvhApiOrderCatalogFormatted,
     PciProjectAdditionalIpService,
@@ -42,6 +42,7 @@ export default class AdditionalIpController {
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.expressOrderUrl = RedirectionService.getURL('expressOrder');
+    this.iceberg = iceberg;
     this.OvhApiOrderCloudProjectIp = OvhApiOrderCloudProjectIp;
     this.OvhApiOrderCatalogFormatted = OvhApiOrderCatalogFormatted;
     this.PciProjectAdditionalIpService = PciProjectAdditionalIpService;
@@ -66,7 +67,6 @@ export default class AdditionalIpController {
       quantity: 1,
       instance: null,
       region: null,
-      product: null,
     };
     this.loadMessages();
     this.initIp();
@@ -96,18 +96,18 @@ export default class AdditionalIpController {
 
   orderFailoverIp() {
     this.trackClick(
-      `confirm-add-additional-ip::failover-ip::${this.ip.region}`,
+      `confirm-add-additional-ip::failover-ip::${this.ip.region?.name}`,
       false,
     );
     const order = {
-      planCode: this.ip.product.planCode,
+      planCode: this.ip.region?.planCode,
       productId: 'ip',
       pricingMode: 'default',
       quantity: this.ip.quantity,
       configuration: [
         {
           label: 'country',
-          value: this.ip.region,
+          value: this.ip.region?.name,
         },
         {
           label: 'destination',
@@ -234,9 +234,16 @@ export default class AdditionalIpController {
   }
 
   filterInstances(regionName) {
-    this.filteredInstances = filter(this.floatingIpInstances, (instance) => {
-      return instance.region === regionName;
-    });
+    if (this.selectedIpType.name === IP_TYPE_ENUM.FLOATING) {
+      this.filteredInstances = filter(this.floatingIpInstances, (instance) => {
+        return instance.region === regionName;
+      });
+    } else {
+      const country = this.ip.region?.name?.toLowerCase();
+      this.filteredInstances = this.additionalIpInstances.filter((instance) =>
+        this.countryToRegionsMapping[country].includes(instance.region),
+      );
+    }
   }
 
   initIp() {
@@ -266,20 +273,55 @@ export default class AdditionalIpController {
   }
 
   initCountries() {
-    this.loadProducts().then((products) => {
-      const [product] = products;
-      this.ip.product = product;
+    this.loadingRegions = true;
+    this.$q
+      .all({
+        products: this.loadProducts(),
+        availableCountries: this.loadAdditionalIpRegionsOnProject(),
+      })
+      .then(({ products, availableCountries }) => {
+        this.failOverIpCountries = products.reduce((acc, product) => {
+          const configObj = get(
+            product,
+            'details.product.configurations',
+            [],
+          ).find((configuration) => configuration.name === 'country');
+          configObj.values.forEach((country) => {
+            if (availableCountries.includes(country.toLowerCase())) {
+              acc.push({ name: country, planCode: product.planCode });
+            }
+          });
+          return acc;
+        }, []);
+      })
+      .finally(() => {
+        this.loadingRegions = false;
+      });
+  }
 
-      const configurations = get(product, 'details.product.configurations');
-      this.failOverIpCountries = get(
-        find(configurations, { name: 'country' }),
-        'values',
-      );
-    });
+  loadAdditionalIpRegionsOnProject() {
+    return this.iceberg(`/cloud/project/${this.projectId}/region`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data: regions }) => {
+        // country to region mapping is required to filter instances in selected country
+        // instance information has region, but user can select country
+        this.countryToRegionsMapping = {};
+        regions.forEach((region) => {
+          region.ipCountries.forEach((country) => {
+            if (this.countryToRegionsMapping[country]) {
+              this.countryToRegionsMapping[country].push(region.name);
+            } else {
+              this.countryToRegionsMapping[country] = [region.name];
+            }
+          });
+        });
+        return Object.keys(this.countryToRegionsMapping);
+      });
   }
 
   loadProducts() {
-    this.loadingRegions = true;
     return this.OvhApiOrderCatalogFormatted.v6()
       .get({
         catalogName: 'ip',
@@ -290,14 +332,11 @@ export default class AdditionalIpController {
           plans,
           (offer) =>
             /failover/.test(offer.planCode) &&
-            offer.invoiceName.includes(
-              get(REGIONS, this.coreConfig.getRegion()),
+            REGIONS[this.coreConfig.getRegion()].some((region) =>
+              offer.invoiceName.includes(region),
             ),
         ),
-      )
-      .finally(() => {
-        this.loadingRegions = false;
-      });
+      );
   }
 
   initRegions() {

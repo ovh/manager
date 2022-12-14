@@ -1,11 +1,11 @@
 {
-  "nutanix_title": "Nutanix",
+  "nutanix_title": "Nutanix on OVHcloud",
   "nutanix_guides": "Guías",
   "nutanix_guides_main": "Guías Nutanix",
   "nutanix_cluster_list_name": "Nombre del cluster",
   "nutanix_cluster_list_number_of_nodes": "Número de nodos",
   "nutanix_cluster_list_licence": "Licencia Nutanix",
-  "nutanix_cluster_list_status": "Estado del nodo",
+  "nutanix_cluster_list_status": "Estado del cluster",
   "nutanix_cluster_list_localisation": "Localización",
   "nutanix_cluster_list_status_active": "Activo",
   "nutanix_cluster_list_status_deploying": "Despliegue",
@@ -13,5 +13,7 @@
   "nutanix_cluster_list_prism_central_url": "URL Prism Central",
   "nutanix_cluster_admin_interface": "Interfaz de administración",
   "nutanix_cluster_list_localisation_value": "{{dcName}} (rack {{rackName}})",
-  "nutanix_order": "Contratar"
+  "nutanix_order": "Contratar",
+  "nutanix_cluster_list_pack_type": "Tipo de pack",
+  "nutanix_cluster_list_pack_type_details": "Ver el detalle"
 }

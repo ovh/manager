@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [9.9.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.8.0...@ovh-ux/ng-ovh-web-universe-components@9.9.0) (2022-12-12)
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
 # [9.8.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.7.1...@ovh-ux/ng-ovh-web-universe-components@9.8.0) (2022-10-19)
 
 
@@ -652,6 +668,3 @@ Another update:
 ### Bug Fixes
 
 * **deps:** upgrade npm-run-all to v4.1.5 ([8d9849a](https://github.com/ovh-ux/web-universe-components/commit/8d9849a))
-
-
-

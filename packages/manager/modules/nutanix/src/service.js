@@ -250,4 +250,14 @@ export default class NutanixService {
   getDedicatedInstallTemplateApiSchema() {
     return this.$http.get('/dedicated/server.json').then(({ data }) => data);
   }
+
+  getNutanixPlans(ovhSubsidiary) {
+    return this.$http
+      .get('/order/catalog/public/nutanix', {
+        params: {
+          ovhSubsidiary,
+        },
+      })
+      .then(({ data }) => data.plans);
+  }
 }
