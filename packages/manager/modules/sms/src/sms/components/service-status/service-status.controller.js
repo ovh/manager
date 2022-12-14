@@ -17,13 +17,17 @@ export default class SmsServiceStatusController {
   onResetPasswordBtnClick(state) {
     this.isOpenModal = state;
     if (state) {
-      this.atInternet.trackClick(`${this.trackingPrefix}new-password`);
+      this.atInternet.trackClick({
+        name: `${this.trackingPrefix}new-password`,
+      });
     }
   }
 
   submitResetPassword() {
     this.isSubmitting = true;
-    this.atInternet.trackClick(`${this.trackingPrefix}new-password-confirm`);
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}new-password-confirm`,
+    });
     return this.smsService
       .postResetSmppPassword(this.serviceName)
       .then(() =>
