@@ -39,8 +39,8 @@ export default /* @ngInject */ ($stateProvider) => {
                 `pci_projects_project_storages_cold_archives_guides_${guide.id}_description`,
               ),
               link:
-                guide.links[coreConfig.getUserLanguage()] ||
-                guide.links.default,
+                guide.links[coreConfig.getUserLanguage().toUpperCase()] ||
+                guide.links.DEFAULT,
             },
           ],
           [],

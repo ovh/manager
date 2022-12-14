@@ -25,8 +25,8 @@ export default class PciStorageColdArchivesOnboardingController {
             `pci_projects_project_storages_cold_archives_guides_${guide.id}_description`,
           ),
           link:
-            guide.links[this.coreConfig.getUserLanguage()] ||
-            guide.links.default,
+            guide.links[this.coreConfig.getUserLanguage().toUpperCase()] ||
+            guide.links.DEFAULT,
         },
       ],
       [],
@@ -39,7 +39,7 @@ export default class PciStorageColdArchivesOnboardingController {
   }
 
   onDocumentationClick(guide) {
-    const TRACKING_SUB_STRING = `docs::${guide.id}`;
+    const TRACKING_SUB_STRING = `guides::go_to_${guide.id}`;
     this.trackClick(TRACKING_SUB_STRING);
   }
 }
