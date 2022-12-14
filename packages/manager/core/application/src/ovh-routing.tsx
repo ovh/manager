@@ -10,8 +10,8 @@ import {
   ActionFunctionArgs,
 } from 'react-router-dom';
 import {
-  generatePreservedRoutes,
   generateRegularRoutes,
+  generatePreservedRoutes,
 } from 'generouted/core';
 
 import { useShell } from '.';
@@ -22,6 +22,7 @@ type Module = {
   loader: LoaderFunction;
   action: ActionFunction;
   ErrorElement: Element;
+  breadcrumb: () => unknown;
 };
 
 function OvhContainerRoutingSync(): JSX.Element {
@@ -40,7 +41,7 @@ function OvhContainerRoutingSync(): JSX.Element {
 function buildRegularRoute(module: () => Promise<Module>, key: string) {
   const Element = lazy(module);
   const ErrorElement = lazy(() =>
-    module().then((module) => ({ default: module.ErrorElement || null })),
+    module().then((mod) => ({ default: mod.ErrorElement || null })),
   );
   const index = /(?<!pages\/)index\.(jsx|tsx)$/.test(key)
     ? { index: true }
@@ -53,19 +54,38 @@ function buildRegularRoute(module: () => Promise<Module>, key: string) {
       module().then((mod) => mod?.loader?.(...args) || null),
     action: async (...args: [ActionFunctionArgs]) =>
       module().then((mod) => mod?.action?.(...args) || null),
+    handle: {
+      breadcrumb: module().then((mod) => {
+        return mod?.breadcrumb;
+      }),
+    },
     errorElement: <Suspense fallback={null} children={<ErrorElement />} />,
   };
 }
 
 export function createAppRouter() {
   const preservedRoutesBlob = import.meta.glob<Module>(
-    '/pages/(_app|404).{jsx,tsx}',
+    '/pages/(_app|404).tsx',
     { eager: true },
   );
   const regularRoutesBlob = import.meta.glob<Module>([
-    '/pages/**/[\\w[]*.{jsx,tsx}',
+    '/pages/**/[\\w[]*.tsx',
     '!**/(_app|404).*',
   ]);
+
+  // const preservedRoutes = Object.keys(preservedRoutesBlob).reduce(
+  //   (routes, key) => {
+  //     const path = key.replace(...patterns.route);
+  //     return {
+  //       ...routes,
+  //       [path]: {
+  //         element: preservedRoutesBlob[key]?.default,
+  //         breadcrumb: preservedRoutesBlob[key]?.breadcrumb,
+  //       },
+  //     };
+  //   },
+  //   {},
+  // );
 
   const preservedRoutes = generatePreservedRoutes<Element>(preservedRoutesBlob);
   const regularRoutes = generateRegularRoutes<
@@ -77,8 +97,11 @@ export function createAppRouter() {
   const App = preservedRoutes?.[appIndex] || Fragment;
   const NotFound = preservedRoutes?.['404'] || Fragment;
 
+  const appBlobKey = '/pages/_app.tsx';
+  const appBlob = import.meta.glob<Module>('/pages/_app.tsx', { eager: true });
+
   const routes = [...regularRoutes, { path: '*', element: <NotFound /> }];
-  const router = createHashRouter([
+  return createHashRouter([
     {
       element: (
         <App
@@ -90,11 +113,16 @@ export function createAppRouter() {
           }
         />
       ),
+      ...(appBlob[appBlobKey].breadcrumb
+        ? {
+            handle: {
+              breadcrumb: appBlob[appBlobKey].breadcrumb,
+            },
+          }
+        : {}),
       children: routes,
     },
   ]);
-
-  return router;
 }
 
 export default OvhContainerRoutingSync;
