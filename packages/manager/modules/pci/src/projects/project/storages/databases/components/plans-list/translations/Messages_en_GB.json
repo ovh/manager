@@ -12,5 +12,5 @@
   "pci_database_plans_list_spec_storage_unique": "{{storage}} SSD storage",
   "pci_database_plans_list_current_offer": "Current solution",
   "pci_database_plans_list_spec_private_network": "Private networks",
-  "pci_database_plans_list_spec_price_unit": " /hour/node"
+  "pci_database_plans_list_spec_price_unit": " /hour"
 }

@@ -12,5 +12,5 @@
   "pci_database_plans_list_spec_storage_unique": "{{storage}} de stockage SSD",
   "pci_database_plans_list_current_offer": "Offre actuelle",
   "pci_database_plans_list_spec_private_network": "Réseaux privés",
-  "pci_database_plans_list_spec_price_unit": " / heure / nœud"
+  "pci_database_plans_list_spec_price_unit": " / heure"
 }
