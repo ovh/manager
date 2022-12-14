@@ -33,7 +33,6 @@ import users from './users';
 import vouchers from './vouchers';
 import regions from './regions';
 import routing from './project.routing';
-import serving from './serving';
 import training from './training';
 import workflow from './workflow';
 import pciAnnouncementBanner from '../../components/pci-announcement-banner';
@@ -80,7 +79,6 @@ angular
     users,
     vouchers,
     workflow,
-    serving,
     training,
     pciAnnouncementBanner,
     pciMaintenanceBanner,

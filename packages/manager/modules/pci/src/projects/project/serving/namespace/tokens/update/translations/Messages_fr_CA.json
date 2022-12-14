@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_serving_namespace_tokens_update_success": "Votre token a été regénéré avec succès, enregistrez-le",
-  "pci_projects_project_serving_namespace_tokens_update_error": "Une erreur est survenue durant la regénération du token : {{ message }}",
-  "pci_projects_project_serving_namespace_tokens_update": "Regénération du token",
-  "pci_projects_project_serving_namespace_tokens_update_common_update": "Regénérer",
-  "pci_projects_project_serving_namespace_tokens_update_common_cancel": "Annuler",
-  "pci_projects_project_serving_namespace_tokens_update_warning": "Êtes vous sûr de vouloir regénérer {{ tokenId }} ? Votre ancien token ne sera plus valide."
-}
