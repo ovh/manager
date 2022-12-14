@@ -268,7 +268,8 @@ export default /* @ngInject */ ($stateProvider) => {
             )
           : null,
 
-      secondaryAction: /* @ngInject */ (goBack) => () => goBack(),
+      secondaryAction: /* @ngInject */ (goBack) => () =>
+        goBack(false, null, null, { reload: true }),
 
       loading: /* @ngInject */ (loaders) => () => loaders.upgrade,
     },
