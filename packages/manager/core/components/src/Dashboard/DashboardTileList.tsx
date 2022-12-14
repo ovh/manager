@@ -32,10 +32,7 @@ export default function DashboardTileList({
 }: DashboardTileListProps): JSX.Element {
   const shell = useShell();
 
-  const getActionList = (
-    actions: DashboardTileDefinitionAction[],
-    shell: OvhContextShellType,
-  ) => {
+  const getActionList = (actions: DashboardTileDefinitionAction[]) => {
     if (!actions?.length) {
       return '';
     }
@@ -72,6 +69,7 @@ export default function DashboardTileList({
                         customVars: undefined,
                         name: `${action.trackingPrefix}::${action.trackAction}`,
                         type: 'action',
+                        level2: '',
                       });
                     }
                   }
@@ -130,7 +128,6 @@ export default function DashboardTileList({
               typeof definition.actions === 'function'
                 ? definition.actions(data)
                 : definition.actions || [],
-              shell,
             )}
           ></TileSection>
         );

@@ -10,7 +10,8 @@
     "packages/manager/apps/*",
     "packages/manager/core/*",
     "packages/manager/modules/*",
-    "packages/manager/tools/*"
+    "packages/manager/tools/*",
+    "packages/manager/components/react/*"
   ],
   "scripts": {
     "build": "yarn run build:turbo",
