@@ -46,11 +46,11 @@ export default class SmsCreditTransferCtrl {
   onSubmit() {
     this.submitting = true;
 
-    this.atInternet.trackClick(
-      `sms::service::${
+    this.atInternet.trackClick({
+      name: `sms::service::${
         this.isSmppAccount ? 'dashboard-smpp' : 'dashboard'
       }::transfer-credit-confirm`,
-    );
+    });
 
     const params = {
       smsAccountTarget: this.model.smsAccountTarget.name,

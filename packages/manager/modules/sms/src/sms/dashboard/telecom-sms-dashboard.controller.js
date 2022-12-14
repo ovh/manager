@@ -36,7 +36,9 @@ export default class {
     this.DASHBOARD_TRACKING_PREFIX = `sms::service::${
       this.isSmppAccount ? 'dashboard-smpp' : 'dashboard'
     }`;
-    this.atInternet.trackPage(this.DASHBOARD_TRACKING_PREFIX);
+    this.atInternet.trackPage({
+      name: this.DASHBOARD_TRACKING_PREFIX,
+    });
     this.actions = [
       ...(!this.isSmppAccount
         ? [
