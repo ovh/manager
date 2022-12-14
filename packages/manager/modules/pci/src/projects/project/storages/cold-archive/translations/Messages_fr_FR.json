@@ -14,6 +14,7 @@
   "pci_projects_project_storages_cold_archive_container_label": "Archives",
   "pci_projects_project_storages_cold_archive_containers_creation_date_label": "Date de création",
   "pci_projects_project_storages_cold_archive_containers_add_container_label": "Créer une archive",
+  "pci_projects_project_storages_cold_archive_containers_manage_container_label": "Gérer vos archives via CLI",
   "pci_projects_project_storages_cold_archive_containers_status_label": "Statut",
   "pci_projects_project_storages_containers_status_none": "Actif",
   "pci_projects_project_storages_containers_status_restored": "Restauré",
@@ -28,5 +29,13 @@
   "pci_projects_project_storages_cold_archive_container_action_restore": "Restaurer",
   "pci_projects_project_storages_cold_archive_container_action_delete_objects": "Supprimer les objets",
   "pci_projects_project_storages_cold_archive_container_action_delete_container": "Supprimer le conteneur",
-  "pci_projects_project_storages_cold_archive_container_action_delete_archive": "Supprimer l'archive"
+  "pci_projects_project_storages_cold_archive_container_action_delete_archive": "Supprimer l'archive",
+  "pci_projects_project_storages_cold_archive_container_action_virtual_host": "Virtual Host",
+  "pci_projects_project_storages_cold_archive_container_manage": "Monitorer vos archives depuis l’espace client visuel fourni par OVH Cold Archive",
+  "pci_projects_project_storages_cold_archive_container_manage_documentation_link": "Comment configurer votre CLI",
+  "pci_projects_project_storages_cold_archive_container_manage_description_1": "Vos opérations d’archivage, comme le téléchargement, la restauration ou la suppression de vos données, se font par ligne de commandes.",
+  "pci_projects_project_storages_cold_archive_container_manage_description_2": "Par exemple, pour télécharger des données, telles que des photos, des vidéos et d’autres documents, vous devez utiliser la CLI, le SDK ou l’API S3",
+  "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "Endpoint",
+  "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Region",
+  "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Fermer"
 }
