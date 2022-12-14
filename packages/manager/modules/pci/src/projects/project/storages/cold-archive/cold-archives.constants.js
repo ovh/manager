@@ -31,28 +31,70 @@ export const GUIDES = [
   {
     id: 'overview',
     links: {
-      default:
+      DEFAULT:
         'https://docs.ovh.com/en/storage/object-storage/cold-archive/overview/',
-      fr:
+      DE:
+        'https://docs.ovh.com/de/storage/object-storage/cold-archive/overview/',
+      ES:
+        'https://docs.ovh.com/es/storage/object-storage/cold-archive/overview/',
+      FR:
         'https://docs.ovh.com/fr/storage/object-storage/cold-archive/overview/',
+      CA:
+        'https://docs.ovh.com/ca/storage/object-storage/cold-archive/overview/',
+      EN:
+        'https://docs.ovh.com/en/storage/object-storage/cold-archive/overview/',
+      IT:
+        'https://docs.ovh.com/it/storage/object-storage/cold-archive/overview/',
+      PL:
+        'https://docs.ovh.com/pl/storage/object-storage/cold-archive/overview/',
+      PT:
+        'https://docs.ovh.com/pt/storage/object-storage/cold-archive/overview/',
     },
   },
   {
-    id: 'first_step',
+    id: 'first-step',
     links: {
-      default:
+      DEFAULT:
         'https://docs.ovh.com/en/storage/object-storage/cold-archive/getting-started',
-      fr:
+      DE:
+        'https://docs.ovh.com/de/storage/object-storage/cold-archive/getting-started',
+      ES:
+        'https://docs.ovh.com/es/storage/object-storage/cold-archive/getting-started',
+      FR:
         'https://docs.ovh.com/fr/storage/object-storage/cold-archive/getting-started',
+      CA:
+        'https://docs.ovh.com/ca/storage/object-storage/cold-archive/getting-started',
+      EN:
+        'https://docs.ovh.com/en/storage/object-storage/cold-archive/getting-started',
+      IT:
+        'https://docs.ovh.com/it/storage/object-storage/cold-archive/getting-started',
+      PL:
+        'https://docs.ovh.com/pl/storage/object-storage/cold-archive/getting-started',
+      PT:
+        'https://docs.ovh.com/pt/storage/object-storage/cold-archive/getting-started',
     },
   },
   {
-    id: 'manage_data',
+    id: 'manage-your-data',
     links: {
-      default:
+      DEFAULT:
         'https://docs.ovh.com/en/storage/object-storage/cold-archive/manage-your-data',
-      fr:
+      DE:
+        'https://docs.ovh.com/de/storage/object-storage/cold-archive/manage-your-data',
+      ES:
+        'https://docs.ovh.com/es/storage/object-storage/cold-archive/manage-your-data',
+      FR:
         'https://docs.ovh.com/fr/storage/object-storage/cold-archive/manage-your-data',
+      CA:
+        'https://docs.ovh.com/ca/storage/object-storage/cold-archive/manage-your-data',
+      EN:
+        'https://docs.ovh.com/en/storage/object-storage/cold-archive/manage-your-data',
+      IT:
+        'https://docs.ovh.com/it/storage/object-storage/cold-archive/manage-your-data',
+      PL:
+        'https://docs.ovh.com/pl/storage/object-storage/cold-archive/manage-your-data',
+      PT:
+        'https://docs.ovh.com/pt/storage/object-storage/cold-archive/manage-your-data',
     },
   },
 ];
