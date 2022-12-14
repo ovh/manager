@@ -7,6 +7,7 @@ export default {
   bindings: {
     projectId: '<',
     container: '<',
+    objects: '<',
     trackClick: '<',
     trackPage: '<',
     goBack: '<',

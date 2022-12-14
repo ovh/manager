@@ -30,8 +30,8 @@ export default class ColdArchiveContainersDeleteObjectsController {
       .deleteArchiveContainerObjects(
         this.projectId,
         COLD_ARCHIVE_DEFAULT_REGION,
-        this.containerName,
-        this.container.objects,
+        this.container.name,
+        this.objects,
       )
       .then(() => {
         this.trackPage(

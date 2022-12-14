@@ -223,7 +223,7 @@ export default class PciStoragesColdArchiveService {
 
   deleteArchiveContainerObjects(serviceName, regionName, archiveName, objects) {
     const promises = objects.map(({ key }) => {
-      return this.pciStoragesColdArchiveService.deleteContainerObjects(
+      return this.deleteArchiveContainerObject(
         serviceName,
         regionName,
         archiveName,
