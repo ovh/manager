@@ -175,7 +175,7 @@ export default /* @ngInject */ ($stateProvider) => {
         goToUpgradeSuccess,
         hasDefaultPaymentMethod,
         loaders,
-        serviceName,
+        serviceInfos,
         stateVps,
         upgradeInfo,
         upgradeOrderId,
@@ -184,6 +184,7 @@ export default /* @ngInject */ ($stateProvider) => {
         VpsUpgradeService,
         from,
         to,
+        defaultPaymentMethod,
       ) => () => {
         if (upgradeSuccess) {
           return $window.location.replace(
@@ -204,12 +205,9 @@ export default /* @ngInject */ ($stateProvider) => {
         set(loaders, 'upgrade', true);
 
         return VpsUpgradeService.startUpgrade(
-          serviceName,
-          get(configurationTile.upgrades, `${upgradeType}.plan.planCode`),
-          {
-            quantity: 1,
-            autoPayWithPreferredPaymentMethod: hasDefaultPaymentMethod,
-          },
+          serviceInfos.serviceId,
+          get(configurationTile.upgrades, `${upgradeType}.plan`),
+          defaultPaymentMethod != null,
         )
           .then(({ order }) => {
             if (!hasDefaultPaymentMethod) {

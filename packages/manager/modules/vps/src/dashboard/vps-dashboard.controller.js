@@ -30,7 +30,6 @@ export default class {
     ovhManagerRegionService,
     VpsService,
     VpsHelperService,
-    vpsUpgradeTile,
     VpsUpgradeService,
   ) {
     this.$filter = $filter;
@@ -45,7 +44,6 @@ export default class {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.VpsService = VpsService;
     this.VpsHelperService = VpsHelperService;
-    this.vpsUpgradeTile = vpsUpgradeTile;
     this.VpsUpgradeService = VpsUpgradeService;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
     this.SERVICE_TYPE = SERVICE_TYPE;
