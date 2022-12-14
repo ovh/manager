@@ -9,14 +9,15 @@ export const COLD_ARCHIVE_TRACKING_PREFIX = TRACKING;
 export const COLD_ARCHIVE_DEFAULT_REGION = DEFAULT_REGION;
 
 export const RCLONE_GUIDE = {
-  DEFAULT: 'https://docs.ovh.com/gb/en/storage/sync-rclone-object-storage/',
-  FR: 'https://docs.ovh.com/fr/storage/sync-rclone-object-storage/',
-  PL: 'https://docs.ovh.com/pl/storage/sync-rclone-object-storage/',
-  GB: 'https://docs.ovh.com/gb/en/storage/sync-rclone-object-storage/',
-  DE: 'https://docs.ovh.com/de/storage/sync-rclone-object-storage/',
-  IT: 'https://docs.ovh.com/it/storage/sync-rclone-object-storage/',
-  FI: 'https://docs.ovh.com/fi/storage/sync-rclone-object-storage/',
-  IE: 'https://docs.ovh.com/ie/en/storage/sync-rclone-object-storage/',
+  DEFAULT: 'https://docs.ovh.com/en/storage/object-storage/s3/rclone/',
+  DE: 'https://docs.ovh.com/de/storage/object-storage/s3/rclone/',
+  ES: 'https://docs.ovh.com/es/storage/object-storage/s3/rclone/',
+  FR: 'https://docs.ovh.com/fr/storage/object-storage/s3/rclone/',
+  CA: 'https://docs.ovh.com/ca/storage/object-storage/s3/rclone/',
+  EN: 'https://docs.ovh.com/en/storage/object-storage/s3/rclone/',
+  IT: 'https://docs.ovh.com/it/storage/object-storage/s3/rclone/',
+  PL: 'https://docs.ovh.com/pl/storage/object-storage/s3/rclone/',
+  PT: 'https://docs.ovh.com/pt/storage/object-storage/s3/rclone/',
 };
 
 export const DOWNLOAD_FILENAME = 'rclone.conf';
