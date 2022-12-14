@@ -169,6 +169,10 @@ export default class PciStoragesColdArchiveService {
       );
   }
 
+  getArchiveEndpoint(serviceName, regionName) {
+    return this.$http.get(`/cloud/project/${serviceName}/region/${regionName}`);
+  }
+
   createArchiveContainer(serviceName, regionName, coldArchive) {
     return this.$http
       .post(
