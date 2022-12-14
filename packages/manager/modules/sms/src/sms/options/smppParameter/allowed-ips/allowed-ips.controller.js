@@ -105,6 +105,8 @@ export default class AllowedIpsController {
   }
 
   trackClick(hit) {
-    return this.atInternet.trackClick(`${TRACKING_PREFIX}${hit}`);
+    return this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}${hit}`,
+    });
   }
 }
