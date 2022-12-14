@@ -1,8 +1,8 @@
 import {
-  COLD_ARCHIVE_TRACKING_PREFIX,
   CHECK_PRICES_DOC_LINK,
-  REGION,
+  COLD_ARCHIVE_TRACKING_PREFIX,
   GUIDES,
+  REGION,
 } from './cold-archives.constants';
 import { COLD_ARCHIVE_STATES } from './containers/containers.constants';
 
@@ -34,17 +34,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
       trackingPrefix: () =>
         'PublicCloud::pci::projects::project::storages::cold_archive::',
-
-      addContainer: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.storages.cold-archives.add', {
-          projectId,
-        }),
-
-      viewContainer: /* @ngInject */ ($state, projectId) => (container) =>
-        $state.go('pci.projects.project.storages.cold-archives.cold-archive', {
-          projectId,
-          containerId: container.id,
-        }),
 
       userList: /* @ngInject */ (projectId, allUserList) =>
         allUserList.filter((user) => user?.s3Credentials?.length > 0),
@@ -88,7 +77,7 @@ export default /* @ngInject */ ($stateProvider) => {
         type = 'success',
       ) => {
         const reload = message && type === 'success';
-        const state = COLD_ARCHIVE_STATES.CONTAINERS;
+        const state = COLD_ARCHIVE_STATES.ROOT;
 
         const promise = $state.go(
           state,
@@ -101,7 +90,9 @@ export default /* @ngInject */ ($stateProvider) => {
         );
 
         if (message) {
-          promise.then(() => CucCloudMessage[type](message, state));
+          promise.then(() =>
+            CucCloudMessage[type](message, COLD_ARCHIVE_STATES.CONTAINERS),
+          );
         }
 
         return promise;
