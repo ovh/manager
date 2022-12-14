@@ -3,17 +3,40 @@ import forEach from 'lodash/forEach';
 import snakeCase from 'lodash/snakeCase';
 import some from 'lodash/some';
 
-import { PRIVATE_SQL_PLAN_CODE } from './hosting-database.constants';
+import {
+  PRIVATE_SQL_PLAN_CODE,
+  WEBHOSTING_PRODUCT_NAME,
+} from './hosting-database.constants';
 
 angular.module('services').service(
   'HostingDatabase',
   class HostingDatabase {
-    constructor($q, $rootScope, Hosting, OvhHttp, Poller) {
+    constructor(
+      $q,
+      $rootScope,
+      coreConfig,
+      Hosting,
+      OvhHttp,
+      Poller,
+      OvhApiOrderCatalogPublic,
+    ) {
       this.$q = $q;
       this.$rootScope = $rootScope;
+      this.coreConfig = coreConfig;
       this.Hosting = Hosting;
       this.OvhHttp = OvhHttp;
       this.Poller = Poller;
+      this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
+    }
+
+    /**
+     * Get agora webhosting catalog
+     */
+    getWebhostingCatalog() {
+      return this.OvhApiOrderCatalogPublic.v6().get({
+        productName: WEBHOSTING_PRODUCT_NAME,
+        ovhSubsidiary: this.coreConfig.getUser().ovhSubsidiary,
+      }).$promise;
     }
 
     /**

@@ -1,146 +1,73 @@
-import find from 'lodash/find';
-import get from 'lodash/get';
-import includes from 'lodash/includes';
-import map from 'lodash/map';
+import {
+  pricingConstants,
+  workflowConstants,
+} from '@ovh-ux/manager-product-offers';
+
+import { WEBHOSTING_PRODUCT_NAME } from '../hosting-database.constants';
 
 export default class PrivateSqlActivationController {
   /* @ngInject */
-  constructor($q, $translate, WucOrderCartService, OvhApiHostingWeb) {
+  constructor($q, $translate, OvhApiHostingWeb) {
     this.$q = $q;
     this.$translate = $translate;
-    this.WucOrderCartService = WucOrderCartService;
     this.OvhApiHostingWeb = OvhApiHostingWeb;
   }
 
   $onInit() {
-    this.loading = {
-      hosting: false,
-      checkout: false,
+    this.productOffers = {
+      pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
+      workflowOptions: {
+        catalog: this.catalog,
+        catalogItemTypeName: workflowConstants.CATALOG_ITEM_TYPE_NAMES.ADDON,
+        productName: WEBHOSTING_PRODUCT_NAME,
+        serviceNameToAddProduct: this.hosting,
+        getPlanCode: () => this.getPlanCode(),
+        onGetConfiguration: () => this.getConfiguration(),
+      },
+      workflowType: workflowConstants.WORKFLOW_TYPES.ORDER,
     };
-    this.error = {
-      hosting: null,
-      checkout: null,
+
+    this.options = {
+      isEditable: true,
+      values: this.getOptionsValues(),
     };
 
     this.acceptContracts = false;
-
-    if (this.hosting) {
-      this.onHostingChange();
-    }
   }
 
-  onHostingChange() {
-    this.loading.hosting = true;
-    this.error.hosting = null;
-    this.option = undefined;
-    this.options = map(this.privateSqlOptions, (option) => {
-      const price = get(
-        find(option.prices, { pricingMode: 'default' }),
-        'price.text',
-      );
-      const planLabel = this.$translate.instant(
-        `privatesql_activation_option_${option.planCode}`,
-      );
-      return {
-        value: option,
-        label: `${planLabel} - ${price}`,
-      };
+  getConfiguration() {
+    const conf = [
+      {
+        label: 'dc',
+        value: this.datacenter,
+      },
+      {
+        label: 'engine',
+        value: this.version.id,
+      },
+    ];
+    return conf;
+  }
+
+  getPlanCode() {
+    return this.options.value.planCode;
+  }
+
+  getPlanCodeDisplay(planCode) {
+    const diskSpace = planCode.split('-')[2];
+    return this.$translate.instant('privatesql_activation_option_private-sql', {
+      diskSpace,
     });
-    return this.fetchDataCenter()
-      .catch((error) => {
-        this.error.hosting = error;
-      })
-      .finally(() => {
-        this.loading.hosting = false;
-      });
   }
 
-  fetchDataCenter() {
-    return this.OvhApiHostingWeb.v6()
-      .get({
-        serviceName: this.hosting,
-      })
-      .$promise.then(({ datacenter }) => {
-        this.datacenter = datacenter;
-        return datacenter;
-      });
+  getOptionsValues() {
+    return this.privateSqlOptions.map((e) => ({
+      display: this.getPlanCodeDisplay(e.planCode),
+      planCode: e.planCode,
+    }));
   }
 
-  fetchCheckoutInformations() {
-    const price = find(this.option.value.prices, ({ capacities }) =>
-      includes(capacities, 'renew'),
-    );
-    this.loading.checkout = true;
-    this.error.checkout = null;
-    return this.WucOrderCartService.createNewCart(this.me.ovhSubsidiary)
-      .then(({ cartId }) => cartId)
-      .then((cartId) =>
-        this.WucOrderCartService.assignCart(cartId).then(() => cartId),
-      )
-      .then((cartId) =>
-        this.WucOrderCartService.addProductServiceOptionToCart(
-          cartId,
-          'webHosting',
-          this.hosting,
-          {
-            duration: price.duration,
-            planCode: this.option.value.planCode,
-            pricingMode: price.pricingMode,
-            quantity: price.minimumQuantity,
-          },
-        ).then(({ itemId }) => ({ itemId, cartId })),
-      )
-      .then(({ itemId, cartId }) =>
-        this.WucOrderCartService.addConfigurationItem(
-          cartId,
-          itemId,
-          'dc',
-          this.datacenter,
-        ).then(() => ({ itemId, cartId })),
-      )
-      .then(({ itemId, cartId }) =>
-        this.WucOrderCartService.addConfigurationItem(
-          cartId,
-          itemId,
-          'engine',
-          this.version.id,
-        ).then(() => cartId),
-      )
-      .then((cartId) =>
-        this.WucOrderCartService.getCheckoutInformations(
-          cartId,
-        ).then((checkout) => ({ cartId, checkout })),
-      )
-      .then(({ cartId, checkout }) => {
-        this.checkout = checkout;
-        this.cartId = cartId;
-      })
-      .catch((error) => {
-        this.error.checkout = error;
-      })
-      .finally(() => {
-        this.loading.checkout = false;
-      });
-  }
-
-  performCheckout() {
-    this.loading.checkout = true;
-    this.error.checkout = null;
-    return this.WucOrderCartService.checkoutCart(this.cartId, {
-      autoPayWithPreferredPaymentMethod: false,
-      waiveRetractionPeriod: false,
-    })
-      .then(({ url }) => {
-        this.success = this.$translate.instant(
-          'privatesql_activation_success',
-          { billUrl: url },
-        );
-      })
-      .catch((error) => {
-        this.error.checkout = error;
-      })
-      .finally(() => {
-        this.loading.checkout = false;
-      });
+  getOrderState(state) {
+    this.options.isEditable = !state.isLoading;
   }
 }
