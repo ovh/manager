@@ -31,7 +31,7 @@
     "@ovh-ux/ng-ovh-telecom-universe-components": "^7.16.0",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.7",
     "@ovh-ux/ng-ui-router-title": "^3.0.5",
-    "@ovh-ux/ui-kit": "^6.2.0",
+    "@ovh-ux/ui-kit": "^6.3.0",
     "@uirouter/angularjs": "^1.0.23",
     "CSV-JS": "^1.2.0",
     "angular": "^1.7.5",

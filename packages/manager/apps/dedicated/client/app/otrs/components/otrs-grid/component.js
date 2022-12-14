@@ -1,5 +1,5 @@
-import controller from './otrs.controller';
-import template from './otrs.html';
+import controller from './controller';
+import template from './template.html';
 
 export default {
   bindings: {
@@ -16,8 +16,9 @@ export default {
     sortBy: '<',
     sortOrder: '<',
     tickets: '<',
-    totalTickets: '<',
+    totalCount: '<',
   },
   controller,
+  name: 'supportTickets',
   template,
 };
