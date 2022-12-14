@@ -74,13 +74,6 @@ export default class {
       );
   }
 
-  getCatalog() {
-    return this.OvhApiOrderCatalogPublic.v6().get({
-      productName: PRODUCT_NAME,
-      ovhSubsidiary: this.coreConfig.getUser().ovhSubsidiary,
-    }).$promise;
-  }
-
   getCharacteristicsOfAvailableProducts(serviceName) {
     return this.$q
       .all([
