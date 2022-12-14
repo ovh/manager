@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_serving_namespace_tokens_delete_success": "Your token has been deleted.",
-  "pci_projects_project_serving_namespace_tokens_delete_error": "An error has occurred deleting the token: {{ message }}",
-  "pci_projects_project_serving_namespace_tokens_delete": "Delete a token",
-  "pci_projects_project_serving_namespace_tokens_delete_common_delete": "Delete",
-  "pci_projects_project_serving_namespace_tokens_delete_common_cancel": "Cancel",
-  "pci_projects_project_serving_namespace_tokens_delete_warning": "Are you sure you want to delete the {{ tokenId }} token?"
-}
