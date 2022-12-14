@@ -49,7 +49,16 @@
         >
             <span
                 data-translate="{{ 'streams_alerts_condition_' + $row.conditionType.toLowerCase() }}"
-                data-translate-values="{{$row}}"
+                data-translate-values="{
+                    field : $row.field,
+                    value: $row.value,
+                    constraintType: $row.constraintType.toLowerCase(),
+                    threshold: $row.threshold,
+                    thresholdType: ctrl.getThresholdType($row.thresholdType),
+                    time: $row.time,
+                    queryFilter: $row.queryFilter,
+                    backlog: $row.backlog
+                }"
             >
             </span>
         </oui-datagrid-column>
