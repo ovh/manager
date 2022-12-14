@@ -65,10 +65,11 @@ export default {
     textual: 'FIELD_CONTENT_VALUE',
   },
   thresholdType: {
-    more: 'MORE',
-    less: 'LESS',
-    lower: 'LOWER',
-    higher: 'HIGHER',
+    more: 'GT',
+    higher: 'GTE',
+    equal: 'EQ',
+    lower: 'LTE',
+    less: 'LT',
   },
   constraintType: {
     mean: 'MEAN',

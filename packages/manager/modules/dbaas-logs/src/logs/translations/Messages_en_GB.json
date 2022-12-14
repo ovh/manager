@@ -722,5 +722,10 @@
   "logs_tile_subscription_contact_billing": "Billing",
   "logs_tile_subscription_contact_technical": "Technical",
   "logs_order": "Order",
-  "inputs_info_exposedport": "TCP port exposed"
+  "inputs_info_exposedport": "TCP port exposed",
+  "add_alert_threshold_type_gt": "More than",
+  "add_alert_threshold_type_gte": "More than or equal to",
+  "add_alert_threshold_type_eq": "Equal to",
+  "add_alert_threshold_type_lte": "Less than or equal to",
+  "add_alert_threshold_type_lt": "Less than"
 }
