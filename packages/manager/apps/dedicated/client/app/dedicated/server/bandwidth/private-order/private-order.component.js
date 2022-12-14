@@ -13,5 +13,6 @@ export default {
     user: '<',
     handleError: '<',
     handleSuccess: '<',
+    serviceId: '<',
   },
 };

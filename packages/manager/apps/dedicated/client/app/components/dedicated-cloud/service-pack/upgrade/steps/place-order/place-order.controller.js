@@ -7,6 +7,7 @@ import { NAVIGATION } from '../../../../../stepper/step/step.constants';
 export default class {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $scope,
     $translate,
@@ -15,6 +16,7 @@ export default class {
     OvhApiOrder,
     servicePackUpgradePreferenceService,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$scope = $scope;
     this.$translate = $translate;
@@ -85,15 +87,34 @@ export default class {
   }
 
   placeOrder() {
-    return this.OvhApiOrder.Upgrade()
-      .PrivateCloud()
-      .v6()
-      .post({
-        serviceName: `${this.currentService.serviceName}/servicepack`,
-        planCode: `pcc-servicepack-${this.servicePackToOrder.name}`,
-        quantity: 1,
-        autoPayWithPreferredPaymentMethod: this.hasDefaultMeansOfPayment,
-      }).$promise;
+    let serviceId;
+    return this.$http
+      .get(`/services/${this.currentService.serviceInfos.serviceId}/options`)
+      .then(({ data }) => {
+        serviceId = data.find(
+          (option) =>
+            option.resource?.name ===
+            `${this.currentService.serviceName}/servicepack`,
+        )?.serviceId;
+        return this.$http.get(
+          `/services/${serviceId}/upgrade/pcc-servicepack-${this.servicePackToOrder.name}`,
+        );
+      })
+      .then(({ data }) => {
+        const renewPrice = data.prices?.find((price) =>
+          price.capacities.includes('renew'),
+        );
+        return this.$http.post(
+          `/services/${serviceId}/upgrade/pcc-servicepack-${this.servicePackToOrder.name}/execute`,
+          {
+            pricingMode: renewPrice?.pricingMode,
+            duration: renewPrice?.duration,
+            autoPayWithPreferredPaymentMethod: this.hasDefaultMeansOfPayment,
+            quantity: 1,
+          },
+        );
+      })
+      .then(({ data }) => data);
   }
 
   savePreference() {
