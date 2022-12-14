@@ -181,10 +181,10 @@
                                 >
                                 </oui-numeric>
                                 <ovh-manager-catalog-price
-                                    show-zero-price="true"
-                                    price="$ctrl.model.params.selectedOffer.price.text"
-                                >
-                                </ovh-manager-catalog-price>
+                                    data-price="$ctrl.ipFailoverRIPEPrice.priceInUcents * $ctrl.model.params.selectedQuantity"
+                                    data-interval-unit="{{ $ctrl.ipFailoverRIPEPrice.intervalUnit }}"
+                                    data-show-zero-price="true"
+                                ></ovh-manager-catalog-price>
                             </oui-field>
                         </div>
                     </div>
