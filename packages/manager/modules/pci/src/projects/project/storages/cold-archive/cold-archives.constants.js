@@ -27,6 +27,27 @@ export const CHECK_PRICES_DOC_LINK = {
   WE: 'https://www.ovhcloud.com/en/public-cloud/prices/#',
 };
 
+export const MANAGE_ARCHIVE_DOC_LINK = {
+  DEFAULT:
+    'https://docs.ovh.com/en/storage/object-storage/s3/getting-started-with-object-storage/',
+  DE:
+    'https://docs.ovh.com/de/storage/object-storage/s3/getting-started-with-object-storage/',
+  ES:
+    'https://docs.ovh.com/es/storage/object-storage/s3/getting-started-with-object-storage/',
+  FR:
+    'https://docs.ovh.com/fr/storage/object-storage/s3/getting-started-with-object-storage/',
+  CA:
+    'https://docs.ovh.com/ca/storage/object-storage/s3/getting-started-with-object-storage/',
+  EN:
+    'https://docs.ovh.com/en/storage/object-storage/s3/getting-started-with-object-storage/',
+  IT:
+    'https://docs.ovh.com/it/storage/object-storage/s3/getting-started-with-object-storage/',
+  PL:
+    'https://docs.ovh.com/pl/storage/object-storage/s3/getting-started-with-object-storage/',
+  PT:
+    'https://docs.ovh.com/pt/storage/object-storage/s3/getting-started-with-object-storage/',
+};
+
 export const GUIDES = [
   {
     id: 'overview',
@@ -105,6 +126,7 @@ export const COLD_ARCHIVE_STATES = {
   CONTAINERS: `${COLD_ARCHIVE_ROOT_STATE}.containers`,
   CONTAINERS_CONTAINER: `${COLD_ARCHIVE_ROOT_STATE}.containers.container`,
   CONTAINERS_CONTAINER_ADD: `${COLD_ARCHIVE_ROOT_STATE}.containers.add`,
+  CONTAINERS_CONTAINER_MANAGE: `${COLD_ARCHIVE_ROOT_STATE}.containers.manage`,
   CONTAINERS_CONTAINER_ARCHIVE: `${COLD_ARCHIVE_ROOT_STATE}.containers.archive`,
   CONTAINERS_CONTAINER_RESTORE: `${COLD_ARCHIVE_ROOT_STATE}.containers.restore`,
   CONTAINERS_CONTAINER_ADD_USER: `${COLD_ARCHIVE_ROOT_STATE}.containers.add-user`,
@@ -122,6 +144,7 @@ export default {
   COLD_ARCHIVE_STATES,
   COLD_ARCHIVE_TRACKING_PREFIX,
   CHECK_PRICES_DOC_LINK,
+  MANAGE_ARCHIVE_DOC_LINK,
   REGION,
   GUIDES,
   DATE_FORMAT,
