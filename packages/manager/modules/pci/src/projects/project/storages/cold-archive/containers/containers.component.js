@@ -9,6 +9,7 @@ export default {
     containerName: '<',
     refreshContainers: '<',
     goToAddColdArchive: '<',
+    goToManageContainer: '<',
     goToAddUserToContainer: '<',
     goToDeleteContainerObjects: '<',
     goToDeleteContainer: '<',

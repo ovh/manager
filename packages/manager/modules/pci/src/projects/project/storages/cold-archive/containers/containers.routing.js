@@ -26,6 +26,9 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
+      goToManageContainer: /* @ngInject */ ($state) => () =>
+        $state.go(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_MANAGE, {}),
+
       goToAddUserToContainer: /* @ngInject */ ($state, projectId) => (
         container,
       ) => {

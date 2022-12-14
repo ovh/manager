@@ -141,6 +141,21 @@
                 ></span>
             </button>
             <button
+                class="oui-button oui-button_primary"
+                data-ng-click="$ctrl.goToManageContainer()"
+                data-track-on="click"
+                data-track-name="PCI_PROJECTS_CONTAINERS_MANAGE"
+                data-track-type="navigation"
+            >
+                <span
+                    class="oui-icon oui-icon-info-circle pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    data-translate="{{:: 'pci_projects_project_storages_cold_archive_containers_manage_container_label' }}"
+                ></span>
+            </button>
+            <button
                 class="oui-button oui-button_s oui-button_secondary float-right"
                 data-ng-if="$ctrl.refreshContainers"
                 data-ng-click="$ctrl.refreshContainers()"
