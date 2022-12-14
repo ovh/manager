@@ -1,5 +1,5 @@
 {
-  "name": "@ovh-ux/manager-react-core-components",
+  "name": "@ovh-ux/manager-react-breadcrumb",
   "version": "0.0.0",
   "description": "",
   "license": "BSD-3-Clause",
@@ -17,15 +17,8 @@
     "start:watch": "tsc -w"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.4",
     "@chakra-ui/react": "^2.2.4",
-    "@ovh-ux/manager-config": "^6.0.0",
-    "@ovh-ux/manager-core-api": "^0.0.0",
-    "@ovh-ux/manager-react-core-application": "^0.0.0",
-    "@ovh-ux/manager-themes": "^0.0.0",
-    "@ovh-ux/shell": "^1.0.0",
     "react": "^18.2.0",
-    "react-i18next": "^11.18.1",
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {

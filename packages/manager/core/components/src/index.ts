@@ -1,4 +1,7 @@
-import Breadcrumb from './Breadcrumb';
+/**
+ * @TODO : move components to component/react workspace
+ */
+
 import DatacenterLabel from './DatacenterLabel';
 import DatePretty from './DatePretty';
 import Onboarding from './Onboarding';
@@ -7,7 +10,6 @@ import Pagination from './Pagination';
 import SearchInput from './SearchInput';
 
 export {
-  Breadcrumb,
   DatacenterLabel,
   DatePretty,
   Onboarding,
