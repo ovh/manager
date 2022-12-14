@@ -9,6 +9,14 @@ import {
   useResolvedPath,
 } from 'react-router-dom';
 
+import Breadcrumb, {
+  BreadcrumbHandleParams,
+} from '@ovh-ux/manager-react-breadcrumb';
+
+export function breadcrumb({ params }: BreadcrumbHandleParams) {
+  return params.serviceName;
+}
+
 export default function {{pascalCase appName}}Details() {
   const { t } = useTranslation('{{appName}}/details');
   const { pathname } = useLocation();
@@ -34,6 +42,7 @@ export default function {{pascalCase appName}}Details() {
 
   return (
     <>
+      <Breadcrumb />
       <Heading as="h1">{serviceName}</Heading>
       <Tabs variant="light" index={tabIndex} isLazy>
         <TabList>
