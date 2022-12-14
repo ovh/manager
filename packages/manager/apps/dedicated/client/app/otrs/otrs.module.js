@@ -1,7 +1,7 @@
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
-import { supportComponents } from '@ovh-ux/manager-support';
 
+import otrsComponents from './components';
 import component from './otrs.component';
 import routing from './otrs.routes';
 import service from './otrs.service';
@@ -19,7 +19,7 @@ angular
     'pascalprecht.translate',
     'ui.bootstrap',
     'ui.router',
-    supportComponents,
+    otrsComponents,
   ])
   .config(
     /* @ngInject */ (OtrsPopupProvider, coreURLBuilderProvider) => {
