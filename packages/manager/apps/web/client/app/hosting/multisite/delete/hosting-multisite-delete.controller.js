@@ -25,14 +25,37 @@ angular.module('App').controller(
         name: 'web::hosting::multisites::detach-domain',
       });
 
+      this.domain = null;
+      this.subDomain = null;
+      this.autoConfigureAvailable = null;
+
+      const { domain } = this.$scope.currentActionData;
+      if (domain.indexOf('.') === domain.lastIndexOf('.')) {
+        this.domain = domain;
+      } else {
+        this.subDomain = domain.slice(0, domain.indexOf('.'));
+        this.domain = domain.slice(this.subDomain.length + 1);
+      }
+
       this.model = {
         domains: null,
       };
+
       this.selected = {
-        autoconfigure: true,
         domain: this.$scope.currentActionData,
         wwwNeeded: false,
       };
+
+      this.HostingDomain.getRecords(this.domain, this.subDomain, null)
+        .then(() => {
+          this.selected = { ...this.selected, autoconfigure: true };
+          this.autoConfigureAvailable = true;
+        })
+        .catch(() => {
+          this.selected = { ...this.selected, autoconfigure: false };
+          this.autoConfigureAvailable = false;
+        });
+
       this.resultMessages = {
         OK: this.$translate.instant(
           'hosting_tab_DOMAINS_configuration_remove_!success',
