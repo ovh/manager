@@ -77,28 +77,26 @@ export default /* @ngInject */ ($stateProvider) => {
       upgradeInfo: /* @ngInject */ (
         $q,
         configurationTile,
-        serviceName,
+        serviceInfos,
         upgradeSuccess,
         upgradeType,
-        vpsUpgrade,
+        VpsUpgradeService,
+        defaultPaymentMethod,
       ) => {
         if (upgradeSuccess) {
           return true;
         }
+        return VpsUpgradeService.getUpgrade(
+          serviceInfos.serviceId,
+          get(configurationTile.upgrades, `${upgradeType}.plan`),
+          defaultPaymentMethod != null,
+        ).catch((error) => {
+          if (error.status === 400) {
+            return { error };
+          }
 
-        return vpsUpgrade
-          .getUpgrade(
-            serviceName,
-            get(configurationTile.upgrades, `${upgradeType}.plan.planCode`),
-            { quantity: 1 },
-          )
-          .catch((error) => {
-            if (error.status === 400) {
-              return { error };
-            }
-
-            return $q.reject(error);
-          });
+          return $q.reject(error);
+        });
       },
 
       hasDefaultPaymentMethod: /* @ngInject */ (defaultPaymentMethod) =>
@@ -183,7 +181,7 @@ export default /* @ngInject */ ($stateProvider) => {
         upgradeOrderId,
         upgradeSuccess,
         upgradeType,
-        vpsUpgrade,
+        VpsUpgradeService,
         from,
         to,
       ) => () => {
@@ -205,15 +203,14 @@ export default /* @ngInject */ ($stateProvider) => {
         // launch the upgrade
         set(loaders, 'upgrade', true);
 
-        return vpsUpgrade
-          .startUpgrade(
-            serviceName,
-            get(configurationTile.upgrades, `${upgradeType}.plan.planCode`),
-            {
-              quantity: 1,
-              autoPayWithPreferredPaymentMethod: hasDefaultPaymentMethod,
-            },
-          )
+        return VpsUpgradeService.startUpgrade(
+          serviceName,
+          get(configurationTile.upgrades, `${upgradeType}.plan.planCode`),
+          {
+            quantity: 1,
+            autoPayWithPreferredPaymentMethod: hasDefaultPaymentMethod,
+          },
+        )
           .then(({ order }) => {
             if (!hasDefaultPaymentMethod) {
               $window.open(order.url);
