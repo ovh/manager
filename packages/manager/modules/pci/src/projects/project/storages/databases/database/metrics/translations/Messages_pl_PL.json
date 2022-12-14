@@ -15,5 +15,6 @@
   "pci_databases_metrics_title_diskio_writes": "Liczba IOPS (zapis)",
   "pci_databases_metrics_title_net_receive": "Odbiór danych w sieci (MB/s)",
   "pci_databases_metrics_title_net_send": "Transmisja danych w sieci (MB/s)",
-  "pci_databases_metrics_title_mem_usage_percent": "Wykorzystana pamięć (%)"
+  "pci_databases_metrics_title_mem_usage_percent": "Wykorzystana pamięć (%)",
+  "pci_databases_metrics_title_mem_usage": "Wykorzystana pamięć (MB)"
 }
