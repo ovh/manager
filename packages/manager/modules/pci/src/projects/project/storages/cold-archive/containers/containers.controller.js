@@ -1,6 +1,6 @@
 import {
-  CONTAINER_STATUS_OPTIONS,
   COLD_ARCHIVE_CONTAINER_STATUS,
+  CONTAINER_STATUS_OPTIONS,
 } from './containers.constants';
 
 export default class PciStoragesColdArchiveContainersController {
@@ -71,7 +71,6 @@ export default class PciStoragesColdArchiveContainersController {
       Ctrl.isActionArchiveAvailable(container),
       Ctrl.isActionRestoredAvailable(container),
       Ctrl.isActionDeleteContainerAvailable(container),
-      Ctrl.isActionVirtualHostAvailable(container),
       Ctrl.isActionDeleteArchiveAvailable(container),
     ].some((isActionAvailable) => isActionAvailable === true);
   }
@@ -125,9 +124,5 @@ export default class PciStoragesColdArchiveContainersController {
       COLD_ARCHIVE_CONTAINER_STATUS.RESTORED,
       COLD_ARCHIVE_CONTAINER_STATUS.FLUSHED,
     ].includes(status);
-  }
-
-  static isActionVirtualHostAvailable({ virtualHost }) {
-    return virtualHost || false;
   }
 }

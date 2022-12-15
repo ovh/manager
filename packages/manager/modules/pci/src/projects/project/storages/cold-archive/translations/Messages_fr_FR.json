@@ -28,6 +28,5 @@
   "pci_projects_project_storages_cold_archive_container_action_restore": "Restaurer",
   "pci_projects_project_storages_cold_archive_container_action_delete_objects": "Supprimer les objets",
   "pci_projects_project_storages_cold_archive_container_action_delete_container": "Supprimer le conteneur",
-  "pci_projects_project_storages_cold_archive_container_action_delete_archive": "Supprimer l'archive",
-  "pci_projects_project_storages_cold_archive_container_action_virtual_host": "Virtual Host"
+  "pci_projects_project_storages_cold_archive_container_action_delete_archive": "Supprimer l'archive"
 }
