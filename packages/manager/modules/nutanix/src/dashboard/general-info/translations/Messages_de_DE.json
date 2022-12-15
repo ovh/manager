@@ -16,5 +16,11 @@
   "nutanix_dashboard_cluster_server_id": "Server-ID",
   "nutanix_dashboard_cluster_redeploy": "Erneute Bereitstellung des Clusters",
   "nutanix_dashboard_cluster_redeploy_link": "Meinen Cluster erneut einsetzen",
-  "nutanix_dashboard_cluster_deploying_info": "Ihr Cluster wird erneut eingesetzt."
+  "nutanix_dashboard_cluster_deploying_info": "Ihr Cluster wird erneut eingesetzt.",
+  "nutanix_dashboard_cluster_admin_interface_info": "Ihren Nutanix Cluster können Sie verwalten, indem Sie sich bei Prism Central anmelden.",
+  "nutanix_dashboard_cluster_type_of_pack": "Paket-Typ",
+  "nutanix_dashboard_cluster_redeploy_modal_header": "Erneute Bereitstellung des Clusters",
+  "nutanix_dashboard_cluster_redeploy_modal_description": "Vor der erneuten Bereitstellung Ihres Clusters muss die Nutanix-Lizenz Ihres Clusters in Prism Central deinstalliert werden.",
+  "nutanix_dashboard_cluster_redeploy_modal_continue": "Weiter",
+  "nutanix_dashboard_cluster_redeploy_modal_cancel": "Abbrechen"
 }

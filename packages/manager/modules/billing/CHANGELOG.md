@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.2...@ovh-ux/manager-billing@0.20.0-alpha.3) (2022-12-12)
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
 # [0.20.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.1...@ovh-ux/manager-billing@0.20.0-alpha.2) (2022-10-24)
 
 

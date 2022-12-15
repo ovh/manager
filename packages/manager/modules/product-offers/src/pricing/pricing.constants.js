@@ -20,6 +20,12 @@ export const PRICING_MODE = {
     DEFAULT: 'default',
     TRANSFER: 'transfer-default',
     PREMIUM: 'premium-default',
+    CREATE_PREMIUM: 'create-premium',
+    TRANSFER_PREMIUM: 'transfer-premium',
+    TRANSFER_AFTERMARKET1: 'transfer-aftermarket1',
+    TRANSFER_AFTERMARKET2: 'transfer-aftermarket2',
+    RESTORE_PREMIUM: 'restore-premium',
+    RESTORE_DEFAULT: 'restore-default',
   },
 };
 

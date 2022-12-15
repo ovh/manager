@@ -39,26 +39,6 @@ export const GUIDES = [
       US: 'https://docs.ovh.com/us/en/nutanix/available-services/',
     },
   },
-  {
-    title: 'nutanix_onboarding_guide3_title',
-    description: 'nutanix_onboarding_guide3_description',
-    links: {
-      DEFAULT: 'https://docs.ovh.com/gb/en/nutanix/ovh-gateway-documentation/',
-      DE: 'https://docs.ovh.com/de/nutanix/ovh-gateway-documentation/',
-      ES: 'https://docs.ovh.com/es/nutanix/ovh-gateway-documentation/',
-      IE: 'https://docs.ovh.com/ie/en/nutanix/ovh-gateway-documentation/',
-      IT: 'https://docs.ovh.com/it/nutanix/ovh-gateway-documentation/',
-      PL: 'https://docs.ovh.com/pl/nutanix/ovh-gateway-documentation/',
-      PT: 'https://docs.ovh.com/pt/nutanix/ovh-gateway-documentation/',
-      GB: 'https://docs.ovh.com/gb/en/nutanix/ovh-gateway-documentation/',
-      CA: 'https://docs.ovh.com/ca/en/nutanix/ovh-gateway-documentation/',
-      QC: 'https://docs.ovh.com/ca/fr/nutanix/ovh-gateway-documentation/',
-      FR: 'https://docs.ovh.com/fr/nutanix/ovh-gateway-documentation/',
-      WE: 'https://docs.ovh.com/us/en/nutanix/ovh-gateway-documentation/',
-      WS: 'https://docs.ovh.com/us/en/nutanix/ovh-gateway-documentation/',
-      US: 'https://docs.ovh.com/us/en/nutanix/ovh-gateway-documentation/',
-    },
-  },
 ];
 
 export const CTAS = {

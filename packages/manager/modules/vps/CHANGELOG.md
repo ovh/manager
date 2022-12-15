@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.28.0...@ovh-ux/manager-vps@2.28.1) (2022-12-13)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** use redirection service for express order module vps ([#8483](https://github.com/ovh/manager/issues/8483)) ([be6487b](https://github.com/ovh/manager/commit/be6487b8eeb22e07af0e1da63a850e6d5f8a3b38))
+
+
+
+
+
 # [2.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.27.1...@ovh-ux/manager-vps@2.28.0) (2022-12-01)
 
 

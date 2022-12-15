@@ -33,9 +33,9 @@ export const IP_TYPE_ENUM = {
 };
 
 export const REGIONS = {
-  EU: 'EUROPE',
-  CA: 'CANADA',
-  US: 'USA',
+  EU: ['EUROPE', 'CANADA'],
+  CA: ['EUROPE', 'CANADA'],
+  US: ['USA'],
 };
 
 export const DEFAULTS_MODEL = [

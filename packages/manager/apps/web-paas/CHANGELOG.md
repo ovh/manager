@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.4.7...@ovh-ux/manager-web-paas-app@1.5.0) (2022-12-12)
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
 ## [1.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.4.6...@ovh-ux/manager-web-paas-app@1.4.7) (2022-12-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-paas-app

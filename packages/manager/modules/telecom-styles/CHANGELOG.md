@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.4.1...@ovh-ux/manager-telecom-styles@4.5.0) (2022-12-12)
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
 ## [4.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.4.0...@ovh-ux/manager-telecom-styles@4.4.1) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom-styles

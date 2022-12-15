@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [5.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.3.0...@ovh-ux/manager-product-offers@5.3.1) (2022-12-12)
+
+
+### Bug Fixes
+
+* **web:** add new domain pricing mode ([#8516](https://github.com/ovh/manager/issues/8516)) ([afc7b97](https://github.com/ovh/manager/commit/afc7b97829270a7b2557b98e5f7ab10bfbb0ecda))
+
+
+
+
+
 # [5.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.2.0...@ovh-ux/manager-product-offers@5.3.0) (2022-06-14)
 
 
