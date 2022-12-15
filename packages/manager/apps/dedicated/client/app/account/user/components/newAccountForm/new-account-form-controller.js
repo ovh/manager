@@ -193,6 +193,7 @@ export default class NewAccountFormController {
               initialValue: this.model.companyNationalIdentificationNumber,
             },
           );
+          this.formatSiretRules(rules);
         }
 
         const displayRules = rules.map((rule) => {
@@ -363,7 +364,31 @@ export default class NewAccountFormController {
         }
       });
       this.rules = newRules;
+
+      if (this.siretFieldIsAvailable()) {
+        this.formatSiretRules(newRules);
+      }
     });
+  }
+
+  formatSiretRules(rules) {
+    this.siretModuleRules = {};
+    rules
+      .filter((rule) => {
+        return [
+          'companyNationalIdentificationNumber',
+          'vat',
+          'organisation',
+        ].includes(rule.fieldName);
+      })
+      .forEach((rule) => {
+        this.siretModuleRules[rule.fieldName] = {
+          mandatory: rule.mandatory,
+          regularExpression: rule.regularExpression,
+        };
+      });
+
+    return this.siretModuleRules;
   }
 
   // callback for when user changed a form field value

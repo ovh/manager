@@ -41,6 +41,7 @@
                 data-tracking-mode="'modification'"
                 data-mode="'modification'"
                 data-ng-if="$ctrl.siretFieldIsAvailable() && section === 'activity'"
+                data-rules="$ctrl.siretModuleRules"
             ></siret-component>
         </div>
     </fieldset>
@@ -52,7 +53,10 @@
     <div class="mb-5">
         <button
             class="oui-button oui-button_primary"
-            data-ng-disabled="ovhSignupForm.$invalid || (!$ctrl.hasChanges() && !$ctrl.submitError) || $ctrl.isSubmitting"
+            data-ng-disabled="ovhSignupForm.$invalid ||
+                (!$ctrl.hasChanges() && !$ctrl.submitError) ||
+                $ctrl.isSubmitting ||
+                ovhSignupForm.form_part_activity.searchForm"
             type="submit"
             data-track-on="click"
             data-track-name="account::myaccount::profile::validation_profile_edit"
