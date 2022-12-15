@@ -93,6 +93,7 @@ export const FIELD_NAME_LIST = {
   managerLanguage: 'managerLanguage',
   corporationType: 'corporationType',
   companyNationalIdentificationNumber: 'companyNationalIdentificationNumber',
+  organisation: 'organisation',
   vat: 'vat',
   gst: 'gst',
   phone: 'phone',
