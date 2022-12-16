@@ -931,8 +931,16 @@ export default class Exchange {
       opts.count,
       offset,
       opts.search,
+      opts.populate,
     ).then(
       (accounts) => {
+        if (opts.populate) {
+          return {
+            accounts: accounts.list.results,
+            headers: keys(accounts.list.results[0]),
+          };
+        }
+
         angular.forEach(accounts.list.results, (account) => {
           if (account.aliases > 0) {
             set(account, 'aliases', []);
@@ -1006,7 +1014,14 @@ export default class Exchange {
   /**
    * Get groups this Exchange account belongs to
    */
-  getGroups(organization, serviceName, count = 10, offset = 0, search = '') {
+  getGroups(
+    organization,
+    serviceName,
+    count = 10,
+    offset = 0,
+    search = '',
+    populate = false,
+  ) {
     return this.services.OvhHttp.get(
       '/sws/exchange/{organization}/{exchange}/groups',
       {
@@ -1020,6 +1035,7 @@ export default class Exchange {
           count,
           offset,
           search,
+          ...(populate && { populate: 'aliases,members,managers' }),
         },
       },
     );

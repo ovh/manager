@@ -76,7 +76,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
 
   exportAccounts() {
     const exportOpts = {
-      count: 1000,
+      count: 5000,
       total: this.totalAccounts,
       search: this.search,
       filter: this.filterType === 'ALL' ? null : this.filterType,
@@ -181,7 +181,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
         promise = this.services.wucExchange.prepareGroupsForCsv(
           this.$routerParams.organization,
           this.$routerParams.productId,
-          exportOpts,
+          { ...exportOpts, populate: true },
           offset,
           timeoutObject,
         );
