@@ -1,13 +1,17 @@
-export const READY_ONLY_PARAMS = [
+export const READY_ONLY_RULES_PARAMS = [
   'currency',
   'email',
   'nichandle',
-  'ovhCompany',
   'customerCode',
   'state',
-  'ovhSubsidiary',
   'commercialCommunicationsApproval',
   'managerLanguage',
+];
+
+export const READY_ONLY_PARAMS = [
+  ...READY_ONLY_RULES_PARAMS,
+  'ovhCompany',
+  'ovhSubsidiary',
 ];
 
 export const CONSENT_MARKETING_EMAIL_NAME = 'consent-marketing-email';
@@ -370,6 +374,7 @@ export default {
   ENUM_TRANSLATION_RULES,
   MODEL_DEBOUNCE_DELAY,
   READY_ONLY_PARAMS,
+  READY_ONLY_RULES_PARAMS,
   ROUTE,
   GST_SUBSIDIARIES,
   SECTIONS,

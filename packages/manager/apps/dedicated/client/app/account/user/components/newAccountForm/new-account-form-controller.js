@@ -8,6 +8,7 @@ import { LANGUAGES } from '@ovh-ux/manager-config';
 
 import {
   READY_ONLY_PARAMS,
+  READY_ONLY_RULES_PARAMS,
   CONSENT_MARKETING_EMAIL_NAME,
   GST_SUBSIDIARIES,
   SECTIONS,
@@ -96,7 +97,7 @@ export default class NewAccountFormController {
     // customer code does not belong to /rules, only displayed in the form
     params = Object.fromEntries(
       Object.entries(params).flatMap(([key, value]) => {
-        if (!READY_ONLY_PARAMS.includes(key)) {
+        if (!READY_ONLY_RULES_PARAMS.includes(key)) {
           return [[key, value]];
         }
         return [];
