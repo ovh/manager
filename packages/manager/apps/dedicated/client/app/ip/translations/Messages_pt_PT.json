@@ -699,7 +699,7 @@
   "ip_table_header_service_help": "Serviço OVHcloud associado ao endereço IP. O serviço é alcançável através do endereço IP associado.",
   "ip_table_header_ip_address_help": "Endereço IP público associado ao serviço.",
   "ip_table_header_country_help": "País de proveniência do endereço IP. Disponível apenas para IP geolocalizados (Additional IP).",
-  "ip_table_header_campus_help": "O campus define a localização dos serviços para a qual o endereço IP pode ser transferido.",
+  "ip_table_header_campus_help": "O campus define a localização do endereço IP a que o serviço está associado. No caso dos Additional IP, o campus define igualmente a localização dos serviços para onde o endereço IP pode ser transferido.",
   "ip_table_header_reverse_help": "Registo DNS que permite a resolução inversa (endereço IP para o nome do host).",
   "ip_table_header_virtual_mac_help": "Endereço MAC utilizado para rotear o endereço IP para um recurso virtualizado em modo bridge quanto aos produtos compatíveis.",
   "ip_table_header_mitigation_help": "Estado da proteção anti-DDoS",
@@ -733,5 +733,7 @@
   "ip_repricing_banner": "Alteração dos preços dos endereços IPv4 adicionais (Additional IP).",
   "ip_repricing_banner_list_item_1": "Desde 6 de outubro de 2022, para os novos endereços.",
   "ip_repricing_banner_list_item_2": "A partir de 1 de dezembro de 2022, para os endereços existentes (encomendados antes de 6 de outubro de 2022).",
-  "ip_repricing_banner_link": "Mais informações"
+  "ip_repricing_banner_link": "Mais informações",
+  "ip_unused_banner_text": "Tem endereços IP não utilizados. Como os endereços IPv4 são um recurso cada vez mais escasso, sugerimos que os liberte caso não precise deles.",
+  "ip_unused_banner_link": "Ver os meus endereços IP não utilizados."
 }

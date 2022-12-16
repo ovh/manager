@@ -699,7 +699,7 @@
   "ip_table_header_service_help": "Servicio de OVHcloud asociado a la dirección IP. Puede acceder al servicio a través de la dirección IP asociada.",
   "ip_table_header_ip_address_help": "Dirección IP pública asociada al servicio.",
   "ip_table_header_country_help": "País de procedencia de la dirección IP. Solo disponible para las IP geolocalizadas (Additional IP).",
-  "ip_table_header_campus_help": "El campus define la localización de los servicios a los que puede transferirse la dirección IP.",
+  "ip_table_header_campus_help": "El campus determina la localización de la dirección IP a la que está asociado el servicio. En el caso de las Additional IP, el campus determina la localización de los servicios a los que puede transferirse la dirección IP.",
   "ip_table_header_reverse_help": "Registro DNS que permite la resolución inversa (dirección IP hacia el nombre del host).",
   "ip_table_header_virtual_mac_help": "Dirección MAC utilizada para enrutar la dirección IP hacia un recurso virtualizado en modo «bridge» para los productos compatibles.",
   "ip_table_header_mitigation_help": "Estado de la protección anti-DDoS",
@@ -733,5 +733,7 @@
   "ip_repricing_banner": "La tarificación de las direcciones IPv4 adicionales (Additional IP) se ha actualizado.",
   "ip_repricing_banner_list_item_1": "A partir del 6 de octubre de 2022 para las nuevas direcciones.",
   "ip_repricing_banner_list_item_2": "A partir del 1 de diciembre de 2022 para las direcciones existentes (contratadas antes del 6 de octubre de 2022).",
-  "ip_repricing_banner_link": "Más información"
+  "ip_repricing_banner_link": "Más información",
+  "ip_unused_banner_text": "Tiene direcciones IP no utilizadas. Las direcciones IPv4 son un recurso cada vez más escaso, por lo que, si no las necesita, le recomendamos que las libere.",
+  "ip_unused_banner_link": "Ver mis direcciones IP no utilizadas."
 }

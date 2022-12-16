@@ -11,26 +11,29 @@ export default /* @ngInject */ function IpMainCtrl(
   $translate,
   Alerter,
   coreConfig,
-  currentActiveLink,
   currentUser,
-  dashboardLink,
-  failoverLink,
   goToOrganisation,
   goToByoipConfiguration,
   goToAgoraOrder,
+  goToDashboard,
+  goToFailover,
+  isDashboardActive,
+  isFailoverActive,
+  hasAnyUnusedIp,
   trackClick,
   trackPage,
   isRepricingBannerShown,
   openBannerRepricePage,
 ) {
   $scope.currentUser = currentUser;
-  $scope.currentActiveLink = currentActiveLink;
-  $scope.dashboardLink = dashboardLink;
-  $scope.failoverLink = failoverLink;
-
   $scope.goToOrganisation = () => goToOrganisation();
   $scope.goToByoipConfiguration = goToByoipConfiguration;
   $scope.goToAgoraOrder = goToAgoraOrder;
+  $scope.goToDashboard = goToDashboard;
+  $scope.goToFailover = goToFailover;
+  $scope.isDashboardActive = isDashboardActive;
+  $scope.isFailoverActive = isFailoverActive;
+  $scope.hasAnyUnusedIp = hasAnyUnusedIp;
   $scope.worldPart = coreConfig.getRegion();
   $scope.BRING_YOUR_OWN_IP = BRING_YOUR_OWN_IP;
   $scope.ADDITIONAL_IP = ADDITIONAL_IP;
@@ -111,14 +114,16 @@ export default /* @ngInject */ function IpMainCtrl(
   };
 
   $scope.onDashboardTabClick = function onDashboardTabClick() {
-    if (dashboardLink !== currentActiveLink()) {
+    if (!isDashboardActive()) {
       trackClick(DASHBOARD_TRACKING_PREFIX.DEFAULT, DASHBOARD_TRACKING_HIT.TAB);
     }
+    goToDashboard();
   };
 
   $scope.onFailoverTabClick = function onFailoverTabClick() {
-    if (failoverLink !== currentActiveLink()) {
+    if (!isFailoverActive()) {
       trackClick(DASHBOARD_TRACKING_PREFIX.DEFAULT, FAILOVER_TRACKING_HIT.TAB);
     }
+    goToFailover();
   };
 }

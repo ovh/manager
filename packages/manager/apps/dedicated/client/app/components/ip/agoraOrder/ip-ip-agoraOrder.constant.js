@@ -62,6 +62,8 @@ export const LEARN_ORGANIZATION_LINK = 'https://docs.ovh.com/fr/';
 export const ADDITIONAL_IP = 'Additional IP';
 export const BLOCK_ADDITIONAL_IP = 'Block Additional IP';
 
+export const IP_FAILOVER_RIPE_PLANCODE = 'ip-failover-ripe';
+
 export default {
   FETCH_PRICE_MAX_TRIES,
   IP_LOCATION_GROUPS,
@@ -71,4 +73,5 @@ export default {
   TRACKING_HIT,
   IP_AGORA,
   LEARN_ORGANIZATION_LINK,
+  IP_FAILOVER_RIPE_PLANCODE,
 };

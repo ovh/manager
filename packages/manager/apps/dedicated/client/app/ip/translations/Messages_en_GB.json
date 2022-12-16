@@ -699,7 +699,7 @@
   "ip_table_header_service_help": "OVHcloud service associated with the IP address. The service can be accessed via the associated IP address.",
   "ip_table_header_ip_address_help": "Public IP address associated with the service.",
   "ip_table_header_country_help": "The IP address country of origin. Available for geolocated IPs (Additional IPs) only.",
-  "ip_table_header_campus_help": "The campus defines the location of the services on which the IP address can be transferred.",
+  "ip_table_header_campus_help": "The campus defines the location of the IP address associated with the service. In the case of Additional IPs, the campus also defines the location of the services on which the IP address can be transferred.",
   "ip_table_header_reverse_help": "The DNS record that enables reverse resolution (IP address to host name).",
   "ip_table_header_virtual_mac_help": "The MAC address used to route the IP address to a virtualised resource in bridge mode for compatible products.",
   "ip_table_header_mitigation_help": "Anti-DDoS protection status",
@@ -733,5 +733,7 @@
   "ip_repricing_banner": "The pricing for your additional IPv4 addresses is changing.",
   "ip_repricing_banner_list_item_1": "For newly ordered IPs, this change has been in effect since 06 October 2022.",
   "ip_repricing_banner_list_item_2": "For IPs ordered before 06 October 2022, the change will come into effect from 01 December 2022 onwards.",
-  "ip_repricing_banner_link": "More information"
+  "ip_repricing_banner_link": "More information",
+  "ip_unused_banner_text": "You have unused IP addresses. Since IPv4 addresses are becoming increasingly scarce as a resource, please release them if you do not need them.",
+  "ip_unused_banner_link": "View unused IPs."
 }

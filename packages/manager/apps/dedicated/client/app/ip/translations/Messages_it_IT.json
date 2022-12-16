@@ -699,7 +699,7 @@
   "ip_table_header_service_help": "Servizio OVHcloud associato all'indirizzo IP Il servizio è raggiungibile tramite l'indirizzo IP associato.",
   "ip_table_header_ip_address_help": "Indirizzo IP pubblico associato al servizio",
   "ip_table_header_country_help": "Paese di provenienza dell'indirizzo IP. Disponibile esclusivamente per gli IP geolocalizzati (Additional IP).",
-  "ip_table_header_campus_help": "Il campus definisce la localizzazione dei servizi su cui l'indirizzo IP può essere trasferito.",
+  "ip_table_header_campus_help": "Il campus definisce la localizzazione dell'indirizzo IP a cui è associato il servizio. Nel caso degli Additional IP, il campus definisce anche la localizzazione dei servizi su cui può essere trasferito l'indirizzo IP.",
   "ip_table_header_reverse_help": "Record DNS che permette la risoluzione inversa (indirizzo IP verso hostname).",
   "ip_table_header_virtual_mac_help": "MAC address utilizzato per assegnare l'indirizzo IP a una risorsa virtualizzata in modalità bridge per i servizi compatibili.",
   "ip_table_header_mitigation_help": "Stato della protezione anti-DDoS.",
@@ -733,5 +733,7 @@
   "ip_repricing_banner": "La tariffazione degli indirizzi IPv4 aggiuntivi (Additional IP) è stata aggiornata.",
   "ip_repricing_banner_list_item_1": "Dal 6 ottobre 2022, per i nuovi indirizzi.",
   "ip_repricing_banner_list_item_2": "Dal 1° dicembre 2022, per gli indirizzi esistenti (ordinati prima del 6 ottobre 2022).",
-  "ip_repricing_banner_link": "Ulteriori informazioni"
+  "ip_repricing_banner_link": "Ulteriori informazioni",
+  "ip_unused_banner_text": "Disponi di indirizzi IP non utilizzati. Gli indirizzi IPv4 sono una risorsa sempre più rara. Se non effettivamente necessari, consigliamo pertanto di liberarli.",
+  "ip_unused_banner_link": "Visualizza i miei IP non utilizzati"
 }
