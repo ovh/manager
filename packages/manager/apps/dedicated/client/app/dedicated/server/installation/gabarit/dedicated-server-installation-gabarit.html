@@ -105,6 +105,7 @@
                                             ></button>
                                             <i
                                                 class="pl-2 fa"
+                                                aria-hidden="true"
                                                 data-ng-class="{
                                                     'fa-warning' : showEndOfLifeMessage(gabarit.endOfInstall,true),
                                                     'fa-info-circle' : showEndOfLifeMessage(gabarit.endOfInstall,false),
@@ -114,7 +115,7 @@
                                             >
                                             </i>
                                             <span
-                                                class="text-warning"
+                                                class="text-danger"
                                                 data-ng-if="showEndOfLifeMessage(gabarit.endOfInstall,true)"
                                                 data-ng-bind="gabarit.endOfInstall | date:'mediumDate'"
                                             >

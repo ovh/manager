@@ -404,16 +404,18 @@ angular
 
       $scope.getEndOfLifeMessage = function getEndOfLifeMessage(gabarit) {
         // decoding &#34; codes to '"' by using replace
-        return $translate
-          .instant(
-            'dedicated_servers_installation_customer_template_wizard_message',
-            {
-              eolDate: $filter('date')(gabarit.endOfInstall, 'mediumDate'),
-              osName: gabarit.distribution,
-              customerTemplateName: gabarit.id,
-            },
-          )
-          .replaceAll(/&#34;/g, '"');
+        return `
+        ${$translate.instant(
+          'dedicated_servers_installation_template_wizard_prefix_message',
+        )}     
+        ${$filter('date')(gabarit.endOfInstall, 'mediumDate')}        
+        ${$translate.instant(
+          'dedicated_servers_installation_customer_template_wizard_message',
+          {
+            osName: gabarit.distribution,
+            customerTemplateName: gabarit.id,
+          },
+        )}`.replaceAll(/&#34;/g, '"');
       };
 
       // return range between 1 and nbdisque of server if > 1

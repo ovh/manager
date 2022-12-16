@@ -1786,15 +1786,17 @@ angular
 
       $scope.getEndOfLifeMessage = function getEndOfLifeMessage(distribution) {
         // decoding &#34; codes to '"' by using replace
-        return $translate
-          .instant(
-            'dedicated_servers_installation_ovhcloud_template_wizard_message',
-            {
-              eolDate: $filter('date')(distribution.endOfInstall, 'mediumDate'),
-              osDescription: distribution.description,
-            },
-          )
-          .replaceAll(/&#34;/g, '"');
+        return `
+              ${$translate.instant(
+                'dedicated_servers_installation_template_wizard_prefix_message',
+              )}
+              ${$filter('date')(distribution.endOfInstall, 'mediumDate')}
+              ${$translate.instant(
+                'dedicated_servers_installation_ovhcloud_template_wizard_message',
+                {
+                  osDescription: distribution.description,
+                },
+              )}`.replaceAll(/&#34;/g, '"');
       };
 
       // Return false if endOfInstall is undefined or 2999-12-31
