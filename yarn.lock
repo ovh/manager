@@ -7007,10 +7007,39 @@
     "@babel/runtime" "^7.17.9"
     hoist-non-react-statics "^3.3.2"
 
+"@tanstack/match-sorter-utils@^8.7.0":
+  version "8.7.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/match-sorter-utils/-/match-sorter-utils-8.7.2.tgz#6308c250308e103ab476928cc4ee26cf328716f5"
+  integrity sha512-bptNeoexeDB947fWoCPwUchPSx5FA9gwzU0bkXz0du5pT8Ud2+1ob+xOgHj6EF3VN0kdXtLhwjPyhY7/dJglkg==
+  dependencies:
+    remove-accents "0.4.2"
+
 "@tanstack/query-core@4.10.3":
   version "4.10.3"
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.10.3.tgz#a6477bab9ed1ae4561ca0a59ae06f8c615c692b7"
   integrity sha512-+ME02sUmBfx3Pjd+0XtEthK8/4rVMD2jcxvnW9DSgFONpKtpjzfRzjY4ykzpDw1QEo2eoPvl7NS8J5mNI199aA==
+
+"@tanstack/query-core@4.20.2":
+  version "4.20.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.20.2.tgz#147f7dc7eecd0e21fea4926c0dd16163a8170ef9"
+  integrity sha512-50tydwMY+fZuSPHiW+mdMQHSgjR9+3xXDoLBPt1tJWyF0mZDjMetlBxLWNaFb/Aid/ml0ZE5nRUW7CZCtwzpHQ==
+
+"@tanstack/react-query-devtools@^4.2.1":
+  version "4.20.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-4.20.2.tgz#afb1ad2b559db09aca7f7e432ddd9906fd860832"
+  integrity sha512-nRmjOXjpwjhatiSqY852f9m8r2NcvnVZRSOue+PzWC/sqBrtP8kwiw45jyGBcxFoxPsjT028K3E0QXrgzSdYZA==
+  dependencies:
+    "@tanstack/match-sorter-utils" "^8.7.0"
+    superjson "^1.10.0"
+    use-sync-external-store "^1.2.0"
+
+"@tanstack/react-query@^4.2.1":
+  version "4.20.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.20.2.tgz#046781bcf03b2dff72865d90b80f6f886303b3c2"
+  integrity sha512-IPL13WpNdRFv/9p1hQg6qDKX7Jchll0m1pzevaF475OVuMB2qOpQ2tOY04ClMFUG99wY/mHCZKe7j57JTnBuOQ==
+  dependencies:
+    "@tanstack/query-core" "4.20.2"
+    use-sync-external-store "^1.2.0"
 
 "@tanstack/react-query@^4.9.0":
   version "4.10.3"
@@ -11696,6 +11725,13 @@ cookiejar@^2.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/cookiejar/-/cookiejar-2.1.2.tgz#dd8a235530752f988f9a0844f3fc589e3111125c"
   integrity sha512-Mw+adcfzPxcPeI+0WlvRrr/3lGVO0bD75SxX6811cxSh1Wbxx7xZBGK1eVtDf6si8rg2lhnUjsVLMFMfbRIuwA==
+
+copy-anything@^3.0.2:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/copy-anything/-/copy-anything-3.0.3.tgz#206767156f08da0e02efd392f71abcdf79643559"
+  integrity sha512-fpW2W/BqEzqPp29QS+MwwfisHCQZtiduTe/m8idFo0xbti9fIZ2WVhAsCv4ggFVH3AgCkVdpoOCtQC6gBrdhjw==
+  dependencies:
+    is-what "^4.1.8"
 
 copy-concurrently@^1.0.0:
   version "1.0.5"
@@ -17669,6 +17705,11 @@ is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
   integrity sha1-Sw2hRCEE0bM2NA6AeX6GXPOffXI=
+
+is-what@^4.1.8:
+  version "4.1.8"
+  resolved "https://registry.yarnpkg.com/is-what/-/is-what-4.1.8.tgz#0e2a8807fda30980ddb2571c79db3d209b14cbe4"
+  integrity sha512-yq8gMao5upkPoGEU9LsB2P+K3Kt8Q3fQFCGyNCWOAnJAMzEXVV9drYb0TXr42TTliLLhKIBvulgAXgtLLnwzGA==
 
 is-whitespace-character@^1.0.0:
   version "1.0.3"
@@ -24225,6 +24266,11 @@ remark@^12.0.0:
     remark-stringify "^8.0.0"
     unified "^9.0.0"
 
+remove-accents@0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/remove-accents/-/remove-accents-0.4.2.tgz#0a43d3aaae1e80db919e07ae254b285d9e1c7bb5"
+  integrity sha512-7pXIJqJOq5tFgG1A2Zxti3Ht8jJF337m4sowbuHsW30ZnkQFnDzy9qBNhgzX8ZLW4+UBcXiiR7SwR6pokHsxiA==
+
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
@@ -26324,6 +26370,13 @@ superagent@^3.8.3:
     mime "^1.4.1"
     qs "^6.5.1"
     readable-stream "^2.3.5"
+
+superjson@^1.10.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/superjson/-/superjson-1.12.0.tgz#7b314b982bfebc5b8e56054b8528813fdda8fc7a"
+  integrity sha512-B4tefmFqj8KDShHi2br2rz0kBlUJuQHtxMCydEuHvooL+6EscROTNWRfOLMDxW1dS/daK2zZr3C3N9DU+jXATQ==
+  dependencies:
+    copy-anything "^3.0.2"
 
 supports-color@^2.0.0:
   version "2.0.0"

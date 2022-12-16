@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w"
+    "dev": "tsc",
+    "dev:watch": "tsc -w"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.4",

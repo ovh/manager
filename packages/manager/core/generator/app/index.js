@@ -49,7 +49,7 @@ export default (plop) => {
         base: join(__dirname, './templates'),
       },
       ({ appName, packageName }) =>
-        `App ${appName} generated. Please run \n  yarn install && yarn workspace ${packageName} run dev`,
+        `App ${appName} generated. Please run \n  yarn install && yarn workspace ${packageName} run start:dev`,
     ],
   });
 };
