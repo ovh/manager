@@ -29,5 +29,9 @@
   "pci_projects_project_training_jobs_info_title_6": "Infos",
   "pci_projects_project_training_jobs_info_title_actions": "Actions",
   "pci_projects_project_training_job_logs_text_pre_running": "Le job est encore en attente de démarrage… L'onglet se rafraîchira automatiquement une fois que le job aura commencé.",
-  "pci_projects_project_training_jobs_resubmit": "Relancer"
+  "pci_projects_project_training_jobs_resubmit": "Relancer",
+
+  "pci_projects_project_training_jobs_privacy": "Confidentialité",
+  "pci_projects_project_training_jobs_privacy_public": "Accès public",
+  "pci_projects_project_training_jobs_privacy_restricted": "Accès restreint"
 }
