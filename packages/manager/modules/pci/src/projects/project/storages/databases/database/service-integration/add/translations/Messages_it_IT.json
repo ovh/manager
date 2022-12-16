@@ -15,5 +15,14 @@
   "pci_databases_service_integration_add_error_no_available_service_2_public": "che disponga di uno dei motori elencati di seguito e un tipo di rete pubblica: ",
   "pci_databases_service_integration_add_error_no_available_service_2_private": "che disponga di uno dei motori elencati di seguito e un tipo di rete privata: ",
   "pci_databases_service_integration_add_error_no_available_service_link": "aggiungere un servizio",
-  "pci_databases_service_integration_add_string_parameter_description": "Può contenere esclusivamente numeri, lettere, underscore, trattini o punti."
+  "pci_databases_service_integration_add_string_parameter_description": "Può contenere esclusivamente numeri, lettere, underscore, trattini o punti.",
+  "pci_databases_service_integration_postgresqlmetrics": "Salvare le metriche in PostgreSQL",
+  "pci_databases_service_integration_m3dbmetrics": "Salvare le metriche in M3DB",
+  "pci_databases_service_integration_kafkalogs": "Inviare i log in un cluster Kafka",
+  "pci_databases_service_integration_opensearchlogs": "Inviare i log in OpenSearch",
+  "pci_databases_service_integration_grafanadashboard": "Visualizzare le metriche in una dashboard Grafana",
+  "pci_databases_service_integration_grafanadatasource": "Visualizzare i dati in Grafana",
+  "pci_databases_service_integration_m3aggregator": "Aggregare i dati con M3 Aggregator",
+  "pci_databases_service_integration_kafkamirrormaker": "Sincronizzare i topic tra cluster Kafka",
+  "pci_databases_service_integration_kafkaconnect": "Connettere sistemi esterni a un cluster Kafka"
 }
