@@ -1,0 +1,165 @@
+<div>
+    <button
+        type="button"
+        class="btn btn-default"
+        data-ng-click="IpGameFirewallCtrl.goToDashboard()"
+    >
+        <i class="fa fa-chevron-left" aria-hidden="true"> </i>
+        <span data-translate="common_back"></span>
+    </button>
+
+    <h4
+        data-translate="ip_game_mitigation_title"
+        data-translate-values="{ t0: IpGameFirewallCtrl.datas.selectedIp }"
+    ></h4>
+
+    <div data-ng-hide="IpGameFirewallCtrl.loaders.firewall">
+        <p
+            data-ng-show="IpGameFirewallCtrl.datas.firewall.state === IpGameFirewallCtrl.constantes.OK"
+            data-ng-bind-html="('ip_game_mitigation_firewall_'+ IpGameFirewallCtrl.datas.firewall.firewallModeEnabled | translate)"
+        ></p>
+        <p
+            data-ng-show="IpGameFirewallCtrl.datas.firewall.state && IpGameFirewallCtrl.datas.firewall.state !== IpGameFirewallCtrl.constantes.OK"
+            data-ng-bind-html="('ip_game_mitigation_firewall_'+ IpGameFirewallCtrl.datas.firewall.state | translate)"
+        ></p>
+        <p
+            class="text-danger"
+            data-ng-hide="IpGameFirewallCtrl.datas.firewall.state"
+            data-ng-bind-html="'ip_game_mitigation_error' | translate"
+        ></p>
+    </div>
+
+    <div data-ovh-alert="ip_game_firewall_alert"></div>
+
+    <button
+        type="button"
+        class="btn btn-default"
+        data-ng-click="setAction('ip/firewall/game/rule/add/ip-ip-firewall-game-rule-add', {ipblock : IpGameFirewallCtrl.datas.selectedBlock, ip : IpGameFirewallCtrl.datas.selectedIp})"
+    >
+        <span data-translate="ip_game_mitigation_rule_add"></span>
+    </button>
+
+    <button
+        type="button"
+        class="btn btn-default"
+        data-ng-if="!IpGameFirewallCtrl.datas.firewall.firewallModeEnabled"
+        data-ng-disabled="IpGameFirewallCtrl.datas.firewall.state !== IpGameFirewallCtrl.constantes.OK"
+        data-ng-click="setAction('ip/firewall/game/toggle/ip-ip-firewall-game-toggle', {ipblock : IpGameFirewallCtrl.datas.selectedBlock, ip : IpGameFirewallCtrl.datas.selectedIp, firewall : IpGameFirewallCtrl.datas.firewall})"
+    >
+        <span data-translate="ip_game_mitigation_firewall_enable_button"></span>
+    </button>
+
+    <button
+        data-ng-if="IpGameFirewallCtrl.datas.firewall.firewallModeEnabled"
+        class="btn btn-default"
+        data-ng-disabled="IpGameFirewallCtrl.datas.firewall.state !== IpGameFirewallCtrl.constantes.OK"
+        data-ng-click="setAction('ip/firewall/game/toggle/ip-ip-firewall-game-toggle', {ipblock : IpGameFirewallCtrl.datas.selectedBlock, ip : IpGameFirewallCtrl.datas.selectedIp, firewall : IpGameFirewallCtrl.datas.firewall})"
+        data-translate="ip_game_mitigation_firewall_disable_button"
+    ></button>
+
+    <div class="table-responsive mt-2">
+        <table class="table table-hover" aria-label="ips">
+            <thead>
+                <tr>
+                    <th
+                        scope="col"
+                        data-translate="ip_game_mitigation_table_protocol"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="ip_game_mitigation_table_port"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="ip_game_mitigation_table_state"
+                    ></th>
+                    <th scope="col">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            data-ng-click="IpGameFirewallCtrl.refreshRules()"
+                            title="{{:: 'common_refresh' | translate }}"
+                        >
+                            <i
+                                class="fa fa-refresh"
+                                aria-hidden="true"
+                                aria-label="{{:: 'common_refresh' | translate }}"
+                            >
+                            </i>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody
+                data-ng-show="!IpGameFirewallCtrl.loaders.rules && IpGameFirewallCtrl.table.rules === null"
+            >
+                <tr>
+                    <td
+                        colspan="4"
+                        class="text-center"
+                        data-translate="ip_game_mitigation_table_error"
+                    ></td>
+                </tr>
+            </tbody>
+            <tbody
+                data-ng-show="!IpGameFirewallCtrl.loaders.rules && IpGameFirewallCtrl.table.rules.length === 0"
+            >
+                <tr>
+                    <td
+                        colspan="4"
+                        class="text-center"
+                        data-translate="ip_game_mitigation_table_empty"
+                    ></td>
+                </tr>
+            </tbody>
+            <tbody data-ng-show="IpGameFirewallCtrl.table.rules.length > 0">
+                <tr
+                    data-ng-repeat="rule in IpGameFirewallCtrl.table.rules | orderBy : '-id'"
+                >
+                    <th
+                        scope="row"
+                        data-ng-if="!rule.errorMessage"
+                        data-ng-bind="rule.protocol"
+                    ></th>
+                    <td
+                        data-ng-if="!rule.errorMessage"
+                        data-ng-bind="rule.ports.from + (rule.ports.to && rule.ports.to !== rule.ports.from ? ' - ' + rule.ports.to : '')"
+                    ></td>
+                    <td
+                        data-ng-if="!rule.errorMessage"
+                        data-translate="{{ 'ip_game_mitigation_state_' + rule.state }}"
+                    ></td>
+                    <td data-ng-if="!rule.errorMessage">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            title="{{:: 'common_delete' | translate }}"
+                            data-ng-disabled="rule.state !== IpGameFirewallCtrl.constantes.OK"
+                            data-ng-click="setAction('ip/firewall/game/rule/delete/ip-ip-firewall-game-rule-delete', {ipblock : IpGameFirewallCtrl.datas.selectedBlock, ip : IpGameFirewallCtrl.datas.selectedIp, rule : rule})"
+                        >
+                            <i
+                                class="fa fa-trash"
+                                aria-hidden="true"
+                                aria-label="{{:: 'common_delete' | translate }}"
+                            >
+                            </i>
+                        </button>
+                    </td>
+                    <td
+                        colspan="4"
+                        class="text-center text-danger"
+                        data-ng-if="rule.errorMessage"
+                        data-ng-bind="rule.errorMessage"
+                    ></td>
+                </tr>
+            </tbody>
+            <tbody data-ng-show="IpGameFirewallCtrl.loaders.rules">
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <oui-spinner data-size="s"></oui-spinner>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
