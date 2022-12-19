@@ -1,4 +1,5 @@
 import 'moment';
+import { CURL_URL, URL_GENERATION_STATUS } from './snapshot-download.constants';
 
 export default class SnapshotDownloadController {
   /* @ngInject */
@@ -19,7 +20,8 @@ export default class SnapshotDownloadController {
     this.isLoading = false;
     this.notificationMessage = null;
     this.errorMessage = null;
-    this.curlDocumentationLink = 'https://curl.se/docs/manual.html';
+    this.curlDocumentationLink = CURL_URL;
+    this.status = URL_GENERATION_STATUS;
   }
 
   trackClick(hit) {
@@ -29,15 +31,14 @@ export default class SnapshotDownloadController {
     });
   }
 
-  async generateSnapshotDownloadLink() {
+  generateSnapshotDownloadLink() {
     this.errorMessage = null;
     this.isLoading = true;
     this.VpsService.getSnapshotUrl(this.serviceName)
       .then((data) => {
-        this.isLoading = false;
         this.downloadLink = data.url;
         this.size = SnapshotDownloadController.convertSize(data.size);
-        this.downloadLinkCurlCommand = `curl "${data.url}" --output ${this.serviceName}-snapshot.bin --fail`;
+        this.downloadLinkCurlCommand = `curl "${data.url}" --output ${this.serviceName}-snapshot --fail`;
       })
       .catch((error) => {
         this.isLoading = false;
@@ -57,6 +58,9 @@ export default class SnapshotDownloadController {
           default:
             this.errorMessage = `Error ${error.status}:  ${error.message}`;
         }
+      })
+      .finally(() => {
+        this.isLoading = false;
       });
   }
 
@@ -86,14 +90,13 @@ export default class SnapshotDownloadController {
     return null;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   getMessage(status) {
     switch (status) {
-      case 'loading':
+      case this.status.LOADING:
         this.notificationMessage =
           'vps_dashboard_snapshot_download_modal_snapshot_loading_message';
         break;
-      case 'success':
+      case this.status.SUCCESS:
         this.notificationMessage =
           'vps_dashboard_snapshot_download_modal_snapshot_curl_success';
         break;
