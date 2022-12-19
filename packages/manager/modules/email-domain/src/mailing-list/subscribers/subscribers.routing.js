@@ -8,13 +8,23 @@ export default /* @ngInject */ ($stateProvider) => {
     controller,
     controllerAs: 'ctrlSubscribers',
     params: {
-      mailingList: {},
+      mailingList: null,
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('mailingList')
+        .then((mailingList) => {
+          return !mailingList
+            ? { state: 'app.email.domain.mailing-list.dashboard' }
+            : false;
+        }),
     resolve: {
-      mailingList: /* @ngInject */ ($transition$) =>
-        $transition$.params().mailingList,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('email_domain_mailing_list_moderators'),
+
+      mailingList: /* @ngInject */ ($transition$) =>
+        $transition$.params().mailingList,
     },
   });
 };
