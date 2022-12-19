@@ -41,6 +41,7 @@
     "core-js": "^3.6.5",
     "css-loader": "^4.3.0",
     "file-loader": "^4.0.0",
+    "html-minifier": "^4.0.0",
     "html-webpack-plugin": "^4.5.0",
     "http-proxy-middleware": "^0.19.1",
     "less": "~3.9.0",
