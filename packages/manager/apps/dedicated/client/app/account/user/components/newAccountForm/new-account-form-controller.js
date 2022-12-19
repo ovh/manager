@@ -196,19 +196,29 @@ export default class NewAccountFormController {
           this.formatSiretRules(rules);
         }
 
-        const displayRules = rules.map((rule) => {
-          let displayFieldName = rule.fieldName;
-          if (
-            rule.fieldName === FIELD_NAME_LIST.vat &&
-            GST_SUBSIDIARIES.includes(this.user.country)
-          ) {
-            displayFieldName = FIELD_NAME_LIST.gst;
-          }
-          return {
-            ...rule,
-            displayFieldName,
-          };
-        });
+        const displayRules = rules
+          .map((rule) => {
+            let displayFieldName = rule.fieldName;
+            if (
+              rule.fieldName === FIELD_NAME_LIST.vat &&
+              GST_SUBSIDIARIES.includes(this.user.country)
+            ) {
+              displayFieldName = FIELD_NAME_LIST.gst;
+            }
+            return {
+              ...rule,
+              displayFieldName,
+            };
+          })
+          .sort((a, b) => {
+            if (
+              Object.keys(FIELD_NAME_LIST).indexOf(a.fieldName) >
+              Object.keys(FIELD_NAME_LIST).indexOf(b.fieldName)
+            ) {
+              return 1;
+            }
+            return -1;
+          });
 
         return displayRules;
       })
