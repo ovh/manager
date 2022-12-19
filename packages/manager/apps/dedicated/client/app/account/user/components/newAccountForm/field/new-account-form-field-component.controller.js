@@ -219,10 +219,7 @@ export default class NewAccountFormFieldController {
     if (/email/.test((this.rule.fieldName || '').toLowerCase())) {
       return 'email';
     }
-    if (
-      (this.rule.fieldName || '').toLowerCase() ===
-      this.FIELD_NAME_LIST.birthday
-    ) {
+    if ((this.rule.fieldName || '') === this.FIELD_NAME_LIST.birthDay) {
       return 'date';
     }
     if (
