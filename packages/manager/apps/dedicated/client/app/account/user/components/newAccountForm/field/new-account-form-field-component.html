@@ -81,13 +81,13 @@
         <!-- PHONE INPUT -->
 
         <div
-            class="oui-input-group phone-number-field"
+            class="oui-input-group phone-number-field d-flex align-items-stretch"
             data-ng-if="$ctrl.getFieldType() === $ctrl.FIELD_NAME_LIST.phone"
         >
             <ui-select
                 data-ng-model="$ctrl.phoneCountry.country"
                 data-on-select="$ctrl.onPhonePrefixChange()"
-                data-theme="ui-select-oui-kit"
+                theme="ui-select-oui-kit"
             >
                 <ui-select-match>
                     <country-flag
