@@ -1,33 +1,104 @@
-<div data-ui-view="byoip">
-    <oui-header heading="{{:: 'module_ip_dashboard_title' | translate }}">
+<div data-ui-view="ipview">
+    <header class="oui-header">
+        <div class="oui-header__container">
+            <h1 class="oui-header__title">
+                <span data-translate="module_ip_dashboard_title"></span>
+                <oui-button
+                    class="oui-button_secondary"
+                    data-on-click="onAgoraOrderButtonClick()"
+                >
+                    <i
+                        class="oui-icon oui-icon-add pr-1"
+                        aria-hidden="true"
+                    ></i>
+                    <span
+                        data-translate="module_ip_dashboard_order_IP_action_label"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    class="oui-button_secondary"
+                    data-on-click="onByoipConfigurationButtonClick()"
+                >
+                    <i
+                        class="oui-icon oui-icon-add pr-1"
+                        aria-hidden="true"
+                    ></i>
+                    <span data-ng-bind=":: BRING_YOUR_OWN_IP"></span>
+                </oui-button>
+            </h1>
+        </div>
         <oui-header-tabs>
             <oui-header-tabs-item
-                href="{{ $ctrl.dashboardLink }}"
-                active="$ctrl.dashboardLink === $ctrl.currentActiveLink()"
+                active="isDashboardActive()"
+                data-ng-click="onDashboardTabClick()"
             >
                 <span data-translate="ip_ip"></span>
             </oui-header-tabs-item>
+            <oui-header-tabs-item
+                active="isFailoverActive()"
+                data-ng-click="onFailoverTabClick()"
+            >
+                <span data-ng-bind=":: ADDITIONAL_IP"></span>
+            </oui-header-tabs-item>
         </oui-header-tabs>
-    </oui-header>
+    </header>
 
     <div>
+        <oui-message
+            class="mb-3"
+            data-ng-if="isRepricingBannerShown"
+            data-type="info"
+        >
+            <div class="font-weight-bold">
+                <p data-translate="ip_repricing_banner" class="mb-0"></p>
+                <ul>
+                    <li data-translate="ip_repricing_banner_list_item_1"></li>
+                    <li data-translate="ip_repricing_banner_list_item_2"></li>
+                </ul>
+            </div>
+            <oui-button
+                data-variant="link"
+                data-size="s"
+                data-on-click="onRepricingBannerClick()"
+            >
+                <span data-translate="ip_repricing_banner_link"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </oui-button>
+        </oui-message>
+        <oui-message
+            class="mb-3"
+            data-ng-if="hasAnyUnusedIp"
+            data-type="warning"
+        >
+            <div class="d-flex align-items-baseline">
+                <span data-translate="ip_unused_banner_text"> </span>
+                <button
+                    class="btn btn-link"
+                    type="button"
+                    data-ng-click="goToFailover({ unused: '1' })"
+                    data-ng-if="!isFailoverActive({ unused: '1' })"
+                >
+                    <span data-translate="ip_unused_banner_link"></span>
+                </button>
+            </div>
+        </oui-message>
         <div data-ovh-alert></div>
         <div data-ovh-alert="polling_action"></div>
         <div data-ovh-alert="otrs_alert"></div>
         <div ui-view></div>
+    </div>
+</div>
+
+<div id="currentAction" class="modal fade currentAction" data-role="dialog">
+    <div class="modal-dialog">
         <div
-            id="currentAction"
-            class="modal fade currentAction"
-            data-role="dialog"
-        >
-            <div class="modal-dialog">
-                <div
-                    id="modal-container"
-                    class="modal-content"
-                    data-ng-include="stepPath"
-                ></div>
-                <div id="modal-help" class="help4wizards"></div>
-            </div>
-        </div>
+            id="modal-container"
+            class="modal-content"
+            data-ng-include="stepPath"
+        ></div>
+        <div id="modal-help" class="help4wizards"></div>
     </div>
 </div>

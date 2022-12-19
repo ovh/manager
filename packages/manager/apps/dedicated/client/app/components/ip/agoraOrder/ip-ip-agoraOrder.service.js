@@ -6,6 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 import {
   FETCH_PRICE_MAX_TRIES,
   PRODUCT_TYPES,
+  IP_FAILOVER_RIPE_PLANCODE,
 } from './ip-ip-agoraOrder.constant';
 
 export default class IpAgoraOrder {
@@ -97,6 +98,25 @@ export default class IpAgoraOrder {
       .get(`/dedicated/server/${serviceName}/orderable/ip`)
       .then(({ data: orderable }) => orderable.ipv4?.length > 0)
       .catch(() => false);
+  }
+
+  getIpFailoverRIPEPrice(ovhSubsidiary = 'FR') {
+    return this.$http
+      .get(`/order/catalog/formatted/ip?ovhSubsidiary=${ovhSubsidiary}`)
+      .then(({ data: { plans } }) => {
+        const ipFailoverRIPEPlan = plans.find(
+          ({ planCode }) => planCode === IP_FAILOVER_RIPE_PLANCODE,
+        );
+        if (!ipFailoverRIPEPlan) {
+          return null;
+        }
+        return ipFailoverRIPEPlan.details.pricings.default.find((price) =>
+          ['renew', 'installation'].every((capacity) =>
+            price.capacities.includes(capacity),
+          ),
+        );
+      })
+      .catch(() => null);
   }
 
   fetchPrices(serviceName, blockSize) {
