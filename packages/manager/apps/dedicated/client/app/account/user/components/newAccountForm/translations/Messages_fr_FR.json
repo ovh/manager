@@ -10,7 +10,7 @@
   "signup_section_contact": "Vos informations de contact",
   "signup_section_language": "Informations de languages",
   "signup_section_other": "Informations complémentaires",
-  "signup_field_date_placeholder": "aaaa-mm-jj",
+  "signup_field_date_placeholder": "jj-mm-aaaa",
   "signup_field_date_calendar": "Choisir la date",
   "signup_field_legalform": "Type de compte",
   "signup_field_country": "Pays",

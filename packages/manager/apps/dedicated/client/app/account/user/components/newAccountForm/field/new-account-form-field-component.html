@@ -59,6 +59,7 @@
         <!-- DATE PICKER INPUT -->
         <oui-calendar
             data-ng-if="$ctrl.getFieldType() === 'date'"
+            data-alt-format="{{ $ctrl.dateFormat() }}"
             placeholder="{{ 'signup_field_date_placeholder' | translate }}"
             data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
             data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"

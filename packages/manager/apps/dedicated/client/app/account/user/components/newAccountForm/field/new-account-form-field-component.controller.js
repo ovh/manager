@@ -13,8 +13,9 @@ import {
 
 export default class NewAccountFormFieldController {
   /* @ngInject */
-  constructor($filter, $scope, $timeout, $translate, atInternet) {
+  constructor($filter, $locale, $scope, $timeout, $translate, atInternet) {
     this.$filter = $filter;
+    this.$locale = $locale;
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
@@ -399,5 +400,12 @@ export default class NewAccountFormFieldController {
         this.phoneCountry.country,
       );
     }
+  }
+
+  dateFormat() {
+    return this.$locale.DATETIME_FORMATS.shortDate
+      .replace('dd', 'd')
+      .replace('MM', 'm')
+      .replace('y', 'Y');
   }
 }
