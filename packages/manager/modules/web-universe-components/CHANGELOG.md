@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.10.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.10.0...@ovh-ux/ng-ovh-web-universe-components@9.10.1) (2022-12-19)
+
+
+### Bug Fixes
+
+* **web.exchange:** get data using iceberg for export csv ([#8585](https://github.com/ovh/manager/issues/8585)) ([76083d4](https://github.com/ovh/manager/commit/76083d4d194190a994016ca3e0787314de66f97d))
+
+
+
+
+
 # [9.10.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.9.0...@ovh-ux/ng-ovh-web-universe-components@9.10.0) (2022-12-19)
 
 
