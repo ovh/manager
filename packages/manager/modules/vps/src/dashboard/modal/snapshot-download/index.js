@@ -8,7 +8,7 @@ const moduleName = 'snapshotDownloadModule';
 angular
   .module(moduleName, ['ui.router'])
   .config(routing)
-  .component('snapshotDownload', component)
+  .component('vpsSnapshotDownload', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

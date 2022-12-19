@@ -20,7 +20,6 @@ export default class {
   constructor(
     $filter,
     $q,
-    $http,
     $scope,
     $state,
     $translate,
@@ -35,7 +34,6 @@ export default class {
   ) {
     this.$filter = $filter;
     this.$q = $q;
-    this.$http = $http;
     this.$scope = $scope;
     this.$state = $state;
     this.$translate = $translate;
@@ -252,11 +250,10 @@ export default class {
         text: this.$translate.instant(
           'vps_configuration_download_snapshot_title_button',
         ),
-        callback: () => {
-          return this.$state.go('vps.detail.snapshot.download', {
+        callback: () =>
+          this.$state.go('vps.detail.snapshot.download', {
             serviceName: this.serviceName,
-          });
-        },
+          }),
         isAvailable: () =>
           this.tabSummary.snapshot.optionAvailable &&
           this.tabSummary.snapshot.creationDate &&

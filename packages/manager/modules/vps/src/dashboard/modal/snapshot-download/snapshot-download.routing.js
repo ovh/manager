@@ -3,7 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/snapshot-download',
     views: {
       modal: {
-        component: 'snapshotDownload',
+        component: 'vpsSnapshotDownload',
       },
     },
     layout: 'modal',

@@ -1,13 +1,12 @@
 <oui-modal
     data-on-dismiss="$ctrl.dismissModal()"
-    class="download-snapshot-modal"
     data-heading="{{ ::'vps_dashboard_snapshot_download_modal_title' | translate }}"
 >
     <oui-tile
         data-heading="{{ ::'vps_dashboard_snapshot_download_modal_summary' | translate }}"
         class="h-100"
     >
-        <oui-tile-definition data-ng-if="true">
+        <oui-tile-definition>
             <oui-tile-term
                 data-translate="vps_dashboard_snapshot_download_modal_service_name"
             >
@@ -16,7 +15,7 @@
             </oui-tile-description>
         </oui-tile-definition>
 
-        <oui-tile-definition data-ng-if="true">
+        <oui-tile-definition>
             <oui-tile-term
                 data-translate="vps_dashboard_snapshot_download_modal_snapshot_creation_date"
             >
@@ -45,37 +44,41 @@
             </oui-tile-description>
         </oui-tile-definition>
     </oui-tile>
-    <!-- TODO: Refactor the notification box container -->
-    <div class="notification-box-container">
+    <div class="mt-3 mb-3">
         <div
             class="notification-box oui-message oui-message_info"
-            ng-if="$ctrl.isLoading"
+            data-ng-if="$ctrl.isLoading"
         >
-            <span data-translate="{{$ctrl.getMessage('loading')}}"></span>
+            <span
+                data-translate="{{$ctrl.getMessage($ctrl.status.LOADING)}}"
+            ></span>
         </div>
 
         <div
             class="notification-box oui-message oui-message_success"
-            ng-if="$ctrl.downloadLink"
+            data-ng-if="$ctrl.downloadLink"
         >
             <span
-                data-translate="{{$ctrl.getMessage('success')}}"
+                data-translate="{{$ctrl.getMessage($ctrl.status.SUCCESS)}}"
                 data-translate-values="{ curlDocumentationLink: $ctrl.curlDocumentationLink }"
             ></span>
         </div>
 
         <div
             class="notification-box oui-message oui-message_error"
-            ng-if="$ctrl.errorMessage"
+            data-ng-if="$ctrl.errorMessage"
         >
             <span data-translate="{{$ctrl.errorMessage}}"></span>
         </div>
     </div>
 
-    <div class="button-container">
+    <div
+        class="d-flex justify-content-center mt-3"
+        data-ng-if="!$ctrl.downloadLink"
+        data-ng-hide="$ctrl.isLoading"
+    >
         <oui-button
             variant="primary"
-            ng-if="!$ctrl.downloadLink"
             data-on-click="$ctrl.generateSnapshotDownloadLink()"
             aria-label="{{ ::'vps_dashboard_snapshot_download_modal_snapshot_button_label' | translate }}"
             ><span
@@ -83,7 +86,7 @@
             ></span>
         </oui-button>
     </div>
-    <div ng-if="$ctrl.downloadLink">
+    <div data-ng-if="$ctrl.downloadLink">
         <oui-clipboard data-model="$ctrl.downloadLinkCurlCommand">
         </oui-clipboard>
         <div class="notification-box oui-message oui-message_info">
