@@ -923,11 +923,11 @@ export default class Exchange {
     );
   }
 
-  prepareGroupsForCsv(organization, serviceName, opts, offset) {
+  prepareGroupsForCsv(organizationName, exchangeService, opts, offset) {
     const queue = [];
     return this.getGroups(
-      organization,
-      serviceName,
+      organizationName,
+      exchangeService,
       opts.count,
       offset,
       opts.search,
@@ -937,19 +937,24 @@ export default class Exchange {
           if (account.aliases > 0) {
             set(account, 'aliases', []);
             queue.push(
-              this.getGroupAliasList(
-                organization,
-                serviceName,
-                account.mailingListAddress,
-                this.aliasMaxLimit,
-                offset,
-              ).then((aliases) => {
-                set(
-                  account,
-                  'aliases',
-                  aliases.list.results.map((alias) => alias.displayName),
-                );
-              }),
+              this.services
+                .iceberg(
+                  '/email/exchange/:organizationName/service/:exchangeService/mailingList/:mailingListAddress/alias',
+                )
+                .query()
+                .expand('CachedObjectList-Pages')
+                .execute({
+                  organizationName,
+                  exchangeService,
+                  mailingListAddress: account.mailingListAddress,
+                })
+                .$promise.then(({ data = [] }) => {
+                  set(
+                    account,
+                    'aliases',
+                    data.map(({ alias }) => alias),
+                  );
+                }),
             );
           } else {
             set(account, 'aliases', []);
@@ -957,19 +962,24 @@ export default class Exchange {
           if (account.managers > 0) {
             set(account, 'managers', []);
             queue.push(
-              this.getGroupManagerList(
-                organization,
-                serviceName,
-                account.mailingListAddress,
-              ).then((managers) => {
-                set(
-                  account,
-                  'managers',
-                  managers.list.results.map(
-                    (manager) => manager.displayAddress,
-                  ),
-                );
-              }),
+              this.services
+                .iceberg(
+                  '/email/exchange/:organizationName/service/:exchangeService/mailingList/:mailingListAddress/manager/account',
+                )
+                .query()
+                .expand('CachedObjectList-Pages')
+                .execute({
+                  organizationName,
+                  exchangeService,
+                  mailingListAddress: account.mailingListAddress,
+                })
+                .$promise.then(({ data = [] }) => {
+                  set(
+                    account,
+                    'managers',
+                    data.map((manager) => manager.managerEmailAddress),
+                  );
+                }),
             );
           } else {
             set(account, 'managers', []);
@@ -977,15 +987,15 @@ export default class Exchange {
           if (account.members > 0) {
             set(account, 'members', []);
             queue.push(
-              this.getGroupMembersList(
-                organization,
-                serviceName,
-                account.mailingListAddress,
-              ).then((members) => {
+              this.getGroupMembersListForCsv(
+                organizationName,
+                exchangeService,
+                account,
+              ).then((data) => {
                 set(
                   account,
                   'members',
-                  members.list.results.map((member) => member.displayAddress),
+                  data.map((member) => member.memberEmailAddress),
                 );
               }),
             );
@@ -1001,6 +1011,38 @@ export default class Exchange {
       },
       () => null,
     );
+  }
+
+  getGroupMembersListForCsv(organizationName, exchangeService, account) {
+    const deferPromise = this.services.$q.defer();
+    const memberAccount = this.services
+      .iceberg(
+        '/email/exchange/:organizationName/service/:exchangeService/mailingList/:mailingListAddress/member/account',
+      )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute({
+        organizationName,
+        exchangeService,
+        mailingListAddress: account.mailingListAddress,
+      }).$promise;
+    const memberContact = this.services
+      .iceberg(
+        '/email/exchange/:organizationName/service/:exchangeService/mailingList/:mailingListAddress/member/contact',
+      )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute({
+        organizationName,
+        exchangeService,
+        mailingListAddress: account.mailingListAddress,
+      }).$promise;
+    this.services.$q
+      .all([memberAccount, memberContact])
+      .then(([{ data: accountInfo = [] }, { data: contactInfo = [] }]) => {
+        deferPromise.resolve([...accountInfo, ...contactInfo]);
+      });
+    return deferPromise.promise;
   }
 
   /**
