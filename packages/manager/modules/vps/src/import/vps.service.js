@@ -456,9 +456,7 @@ export default /* @ngInject */ function VpsService(
   this.getSnapshotUrl = function getSnapshotUrl(serviceName) {
     return $http
       .get(`/vps/${serviceName}/snapshot/download`)
-      .then(({ data }) => {
-        return data;
-      });
+      .then(({ data }) => data);
   };
 
   /*
