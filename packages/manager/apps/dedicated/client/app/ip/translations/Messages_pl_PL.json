@@ -699,7 +699,7 @@
   "ip_table_header_service_help": "Usługa OVHcloud przypisana do adresu IP. Usługa jest dostępna za pośrednictwem przypisanego adresu IP.",
   "ip_table_header_ip_address_help": "Publiczny adres IP przypisany do usługi.",
   "ip_table_header_country_help": "Kraj pochodzenia adresu IP. Dostępne tylko dla geolokalizowanych adresów IP (Additional IP).",
-  "ip_table_header_campus_help": "Kampus określa lokalizację usług, do których może być przekazywany adres IP.",
+  "ip_table_header_campus_help": "Kampus określa lokalizację adresu IP, do którego przypisana jest usługa. W przypadku adresów Additional IP kampus określa również lokalizację usług, do których adres IP może zostać przeniesiony.",
   "ip_table_header_reverse_help": "Rekord DNS umożliwiający odwrotną translację adresów (adres IP na nazwę hosta).",
   "ip_table_header_virtual_mac_help": "Adres MAC używany do kierowania adresu IP do zwirtualizowanego zasobu w trybie bridge dla kompatybilnych produktów.",
   "ip_table_header_mitigation_help": "Status ochrony anty-DDoS.",
@@ -733,5 +733,7 @@
   "ip_repricing_banner": "Ceny dodatkowych adresów IPv4 (Additional IP) zmieniają się.",
   "ip_repricing_banner_list_item_1": "Od 6 października 2022 r. ceny nowych adresów.",
   "ip_repricing_banner_list_item_2": "Od 1 grudnia 2022 r. ceny istniejących adresów (zamówionych przed 6 października 2022).",
-  "ip_repricing_banner_link": "Więcej informacji"
+  "ip_repricing_banner_link": "Więcej informacji",
+  "ip_unused_banner_text": "Dysponujesz adresami IP, których nie używasz. Adresy IPv4 są zasobem deficytowym, zatem jeśli ich nie potrzebujesz, prosimy o ich zwolnienie.",
+  "ip_unused_banner_link": "Sprawdź nieużywane adresy IP."
 }

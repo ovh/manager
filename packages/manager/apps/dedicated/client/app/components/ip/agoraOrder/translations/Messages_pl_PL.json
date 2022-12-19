@@ -4,7 +4,7 @@
   "ip_agora_table_header_country": "Geolokalizacja IP",
   "ip_agora_table_header_organisation": "Przypisz organizację",
   "ip_agora_select_quantity_title": "Wybierz ilość",
-  "ip_agora_ip_localisation_title": "Lokalizacja IP",
+  "ip_agora_ip_localisation_title": "Lokalizacja adresu IP",
   "ipv4_select_placeholder": "Wybierz rozmiar",
   "license_dashboard_title": "Zamów IP",
   "ipv4Failover_price_label": "7 PLN netto/m-c",
@@ -15,5 +15,6 @@
   "ipv4Block_organization_description3": "Jeśli nie przypiszesz podmiotu, mogą zostać użyte Twoje dane z konta OVHcloud (NIC)",
   "ipv4Block_organization_info_banner": "Nazwa organizacji przypisanej do Twojego bloku adresów IP oraz powiązane z nią dane kontaktowe będą wyświetlane w publicznej bazie danych WHOIS.",
   "ip_agora_table_submit_text": "Kontynuuj zamówienie",
-  "ip_agora_table_cancel_text": "Powrót"
+  "ip_agora_table_cancel_text": "Powrót",
+  "ipv4Block_price_per_ip": "per adres IP"
 }

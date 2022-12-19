@@ -4,7 +4,7 @@
   "ip_agora_table_header_country": "Located in",
   "ip_agora_table_header_organisation": "Link an organisation",
   "ip_agora_select_quantity_title": "Select your quantity",
-  "ip_agora_ip_localisation_title": "IP",
+  "ip_agora_ip_localisation_title": "IP address location",
   "ipv4_select_placeholder": "Select a size",
   "license_dashboard_title": "Order an IP",
   "ipv4Failover_price_label": "£XX.XX ex. VAT/month",
@@ -15,5 +15,6 @@
   "ipv4Block_organization_description3": "If you do not link an organisation, your OVHcloud account information (NIC handle) can be used",
   "ipv4Block_organization_info_banner": "The organisation name linked to your IP address block will appear in the public WHOIS database, along with the corresponding contact information.",
   "ip_agora_table_submit_text": "Continue my order",
-  "ip_agora_table_cancel_text": "Back"
+  "ip_agora_table_cancel_text": "Back",
+  "ipv4Block_price_per_ip": "per IP"
 }

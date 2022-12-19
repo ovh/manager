@@ -1,65 +1,72 @@
-import keys from 'lodash/keys';
+import {
+  CSV_HEADERS,
+  CSV_FILENAME,
+  CSV_DATA_ENCODING,
+  CSV_DATA_SCHEME,
+  CSV_SEPARATOR,
+} from './ip-ip-export.constants';
 import { TRACKING_PREFIX } from '../list.constant';
 
 export default /* @ngInject */ (
   $scope,
-  $q,
   $translate,
+  $document,
   Alerter,
   atInternet,
+  Ip,
 ) => {
-  let timeoutObject = null;
-
-  $scope.data = $scope.currentActionData.ipsList;
+  let cancelFetch = null;
 
   $scope.loading = {
     exportCsv: false,
   };
 
-  function printCsv(datas) {
-    let csvContent = '';
-    let dataString;
-    let link;
-    let headers;
-    let fileName;
+  function fetchIps() {
+    const { serviceType, otherParams } = $scope.currentActionData;
+    const { cancel, request } = Ip.fetchIps({
+      serviceType,
+      otherParams,
+      pageNumber: 1,
+      pageSize: 5000,
+    });
+    return {
+      cancel,
+      request: request.then(({ ips }) => ips),
+    };
+  }
 
-    if (datas && timeoutObject) {
-      // get column name
-      headers = datas.headers;
-      csvContent += `${headers.join(';')}\n`;
-      angular.forEach(datas.ips, (data, index) => {
-        dataString = '';
-        angular.forEach(headers, (header) => {
-          dataString += `${data[header]};`;
-        });
-        csvContent += index < datas.ips.length ? `${dataString}\n` : dataString;
-      });
+  function formatIps(ips) {
+    return ips.map((ip) =>
+      CSV_HEADERS.reduce(
+        (object, { key, getValue }) => ({ ...object, [key]: getValue(ip) }),
+        {},
+      ),
+    );
+  }
 
-      fileName = 'export_ips.csv';
-      link = document.createElement('a');
-      if (link.download !== undefined) {
-        link.setAttribute(
-          'href',
-          `data:text/csv;charset=ISO-8859-1;base64,${btoa(csvContent)}`,
-        );
-        link.setAttribute('download', fileName);
-        link.style = 'visibility:hidden';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } else {
-        window.open(
-          `data:text/csv;charset=ISO-8859-1;base64,${btoa(csvContent)}`,
-        );
-      }
+  function formatDataURL(ips) {
+    const content = [
+      CSV_HEADERS.map(({ key }) => key).join(CSV_SEPARATOR.CELL),
+      ...ips.map((ip) => Object.values(ip).join(CSV_SEPARATOR.CELL)),
+    ].join(CSV_SEPARATOR.ROW);
+    return [
+      CSV_DATA_SCHEME,
+      Buffer.from(content).toString(CSV_DATA_ENCODING),
+    ].join(CSV_SEPARATOR.SCHEME);
+  }
 
-      Alerter.success($translate.instant('ip_export_csv_success'));
-    } else if (!datas) {
-      Alerter.error($translate.instant('ip_export_csv_error'));
+  function downloadCSV(dataURL) {
+    const link = $document[0].createElement('a');
+    if (link.download !== undefined) {
+      link.setAttribute('href', dataURL);
+      link.setAttribute('download', CSV_FILENAME);
+      link.style = 'visibility:hidden';
+      $document[0].body.appendChild(link);
+      link.click();
+      $document[0].body.removeChild(link);
+    } else {
+      window.open(dataURL);
     }
-    timeoutObject = null;
-    $scope.loading.exportCsv = false;
-    $scope.resetAction();
   }
 
   $scope.exportAccounts = function exportAccounts() {
@@ -67,32 +74,35 @@ export default /* @ngInject */ (
       name: `${TRACKING_PREFIX}::export-csv::confirm`,
       type: 'action',
     });
-    $scope.loading.exportCsv = true;
 
-    // check timeout
-    if (timeoutObject) {
-      timeoutObject.resolve();
+    if (cancelFetch) {
+      cancelFetch();
     }
 
-    // init timeout
-    timeoutObject = $q.defer();
+    const { cancel, request } = fetchIps();
 
-    // get data for csv
-    const preparedData = [];
-    angular.forEach($scope.data, (value) => {
-      preparedData.push({
-        ipBlock: value.ipBlock,
-        ipVersion: value.version,
-        type: value.type,
-        country: value.country ? value.country : '',
-        service: value.routedTo ? value.routedTo : '',
-        description: value.description ? value.description : '',
+    $scope.loading.exportCsv = true;
+    cancelFetch = cancel;
+
+    request
+      .then(formatIps)
+      .then(formatDataURL)
+      .then(downloadCSV)
+      .then(() => {
+        Alerter.success($translate.instant('ip_export_csv_success'));
+      })
+      .catch((error) => {
+        if (error?.xhrStatus === 'abort') return;
+        Alerter.error(`
+          ${$translate.instant('ip_export_csv_error')}
+          ${error.data?.message || error.message || error},
+        `);
+      })
+      .finally(() => {
+        cancelFetch = null;
+        $scope.loading.exportCsv = false;
+        $scope.resetAction();
       });
-    });
-    printCsv({
-      ips: preparedData,
-      headers: keys(preparedData[0]),
-    });
   };
 
   $scope.cancelExport = function cancelExport() {
@@ -100,7 +110,10 @@ export default /* @ngInject */ (
       name: `${TRACKING_PREFIX}::export-csv::cancel`,
       type: 'action',
     });
-    timeoutObject = null;
+    if (cancelFetch) {
+      cancelFetch();
+      cancelFetch = null;
+    }
     $scope.resetAction();
   };
 };

@@ -699,7 +699,7 @@
   "ip_table_header_service_help": "OVHcloud-Dienst, dem die IP-Adresse zugewiesen ist. Der Dienst ist über die zugewiesene IP-Adresse zugänglich.",
   "ip_table_header_ip_address_help": "Öffentliche IP-Adresse, die dem Dienst zugewiesen ist.",
   "ip_table_header_country_help": "Ursprungsland der IP-Adresse. Nur für geolokalisierte IP-Adressen (Additional IP) verfügbar.",
-  "ip_table_header_campus_help": "Der Campus legt den Standort der Dienste fest, auf die die IP-Adresse übertragen werden kann.",
+  "ip_table_header_campus_help": "Der Campus legt den Standort der IP-Adresse fest, mit der der Dienst verbunden wird. Im Fall von Additional IPs bestimmt der Campus außerdem den Standort der Dienste, auf die die IP-Adresse übertragen werden kann.",
   "ip_table_header_reverse_help": "DNS-Eintrag für Reverse-Auflösung (von IP-Adresse zu Hostname).",
   "ip_table_header_virtual_mac_help": "MAC Adresse zum Routen der IP-Adresse auf eine virtualisierte Ressource im Bridge-Modus für kompatible Produkte.",
   "ip_table_header_mitigation_help": "Status des DDoS-Schutzes",
@@ -733,5 +733,7 @@
   "ip_repricing_banner": "Die Preise für zusätzliche IPv4-Adressen (Additional IP) werden angepasst:",
   "ip_repricing_banner_list_item_1": "Seit dem 6. Oktober 2022 und für Ihre neuen Adressen.",
   "ip_repricing_banner_list_item_2": "Ab dem 1. Dezember 2022 für Ihre bestehenden Adressen, die vor dem 6. Oktober 2022 bestellt wurden.",
-  "ip_repricing_banner_link": "Mehr Informationen"
+  "ip_repricing_banner_link": "Mehr Informationen",
+  "ip_unused_banner_text": "Nicht alle Ihrer IP-Adressen werden derzeit genutzt. IPv4-Adressen werden zu einer immer knapperen Ressource. Wenn Sie sie also nicht benötigen, möchten wir Sie bitten, sie freizugeben.",
+  "ip_unused_banner_link": "Meine nicht genutzten IPs anzeigen."
 }

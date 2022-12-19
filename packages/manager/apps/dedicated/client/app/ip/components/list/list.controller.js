@@ -114,6 +114,7 @@ export default class IpListController {
       $scope.state = {};
       $scope.serviceType =
         self.serviceType || $location.search().serviceType || null;
+      $scope.params = self.params || null;
 
       $scope.tracking = {
         'enable-permanent-mitigation': `${TRACKING_PREFIX}::enable-permanent-mitigation`,
@@ -521,13 +522,16 @@ export default class IpListController {
       });
     };
 
-    $scope.exportCsv = function exportCsv(ipsList) {
+    $scope.exportCsv = function exportCsv() {
       self.trackPage('export-csv');
       self.trackClick(
         self.trackingData.prefix,
         IP_COMPONENTS_LIST_TRACKING_HIT.EXPORT,
       );
-      $scope.setAction('ip/export-csv/ip-ip-export-csv', { ipsList });
+      $scope.setAction('ip/export-csv/ip-ip-export-csv', {
+        serviceType: $scope.serviceType,
+        otherParams: $scope.params,
+      });
     };
 
     $scope.onAdvancedModeFilterChanged = function onAdvancedModeFilterChanged() {
@@ -585,7 +589,8 @@ export default class IpListController {
 
     $scope.setAction = self.setAction || $scope.$parent.setAction;
     $scope.canImportIPFO = () => ipFeatureAvailability.allowIPFailoverImport();
-    $scope.canExportCsv = () => $scope.state.loaded !== $scope.state.total;
+    $scope.canExportCsv = () =>
+      $scope.loading.table === false && $scope.ipsList?.length > 0;
     $scope.importIPFO = function importIPFO() {
       self.trackPage('import-failover');
       self.trackClick(
