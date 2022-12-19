@@ -75,6 +75,7 @@
   "ovhManagerSupport_new_serviceType_license_windows": "Licence Windows",
   "ovhManagerSupport_new_serviceType_license_worklight": "Licence Worklight",
   "ovhManagerSupport_new_serviceType_managed_mongodb": "Public Cloud databases for MongoDB",
+  "ovhManagerSupport_new_serviceType_managed_mongodb_enterprise": "Public Cloud Databases for MongoDB Entreprise",
   "ovhManagerSupport_new_serviceType_nutanix": "Nutanix",
   "ovhManagerSupport_new_serviceType_ovh_cloud_connect": "OVHcloud Connect",
   "ovhManagerSupport_new_serviceType_pack_xdsl": "Pack xDSL",
