@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.103.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.102.0...@ovh-ux/manager-pci@5.103.0) (2022-12-19)
+
+
+### Features
+
+* **dedicated.ip:** improve ip batch 1 ([#8580](https://github.com/ovh/manager/issues/8580)) ([a508be2](https://github.com/ovh/manager/commit/a508be23eb79df2832199ee3a08608c4ea7a8c81))
+
+
+
+
+
 # [5.102.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.101.2...@ovh-ux/manager-pci@5.102.0) (2022-12-19)
 
 
