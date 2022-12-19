@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.3...@ovh-ux/manager-billing@0.20.0-alpha.4) (2022-12-19)
+
+
+### Features
+
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+
+
+
+
+
 # [0.20.0-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.2...@ovh-ux/manager-billing@0.20.0-alpha.3) (2022-12-12)
 
 

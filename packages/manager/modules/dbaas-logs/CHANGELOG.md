@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.8.4...@ovh-ux/manager-dbaas-logs@1.9.0) (2022-12-19)
+
+
+### Features
+
+* **dbaas-logs:** more alert threshold type ([0754eb9](https://github.com/ovh/manager/commit/0754eb934f46e3adf1f3a1a90134793de4db4e59))
+
+
+
+
+
 ## [1.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.8.3...@ovh-ux/manager-dbaas-logs@1.8.4) (2022-11-17)
 
 

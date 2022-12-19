@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-office-app",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -33,7 +33,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.6",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.5",
     "@ovh-ux/ng-ovh-utils": "^14.0.18",
-    "@ovh-ux/ng-ovh-web-universe-components": "^9.9.0",
+    "@ovh-ux/ng-ovh-web-universe-components": "^9.10.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.5",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.7",
     "@ovh-ux/ui-kit": "^6.3.0",

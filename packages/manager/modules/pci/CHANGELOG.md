@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.102.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.101.2...@ovh-ux/manager-pci@5.102.0) (2022-12-19)
+
+
+### Bug Fixes
+
+* add new condition for pending status ([b318632](https://github.com/ovh/manager/commit/b3186329b6fe7d3014af7e08520710cfed62c9d3))
+* **pci.storages.databases:** add translation for pending status ([a3a25ea](https://github.com/ovh/manager/commit/a3a25ea186b19e1c558bfa734d7c010c985b2702))
+* **pci:** filter the private networks ([#8525](https://github.com/ovh/manager/issues/8525)) ([7d0b196](https://github.com/ovh/manager/commit/7d0b19655cc7d02cc01c392a1fc3c9ad344f8276))
+* **pci:** modify network count in gateway ([4ec1db5](https://github.com/ovh/manager/commit/4ec1db5041af5e7e46dc17a6cc8c54eb185bdf02))
+* **storage.databases:** change price unit for offers ([ef0f40d](https://github.com/ovh/manager/commit/ef0f40d6bc05b9e5bc1164f09c4e0ea03d00266d))
+
+
+### Features
+
+* **pci.storages.databases:** add new translation key ([d657fd6](https://github.com/ovh/manager/commit/d657fd6428642e659f95847d331bf390ddffd34b))
+* **project.serving:** ml-serving eol ([58a6ce0](https://github.com/ovh/manager/commit/58a6ce0e23c69446664b315bc06e73ed1eedea04))
+
+
+
+
+
 ## [5.101.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.101.1...@ovh-ux/manager-pci@5.101.2) (2022-12-13)
 
 

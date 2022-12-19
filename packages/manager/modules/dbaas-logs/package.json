@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dbaas-logs",
-  "version": "1.8.4",
+  "version": "1.9.0",
   "private": true,
   "description": "OVHcloud Logs Data Platform",
   "repository": {

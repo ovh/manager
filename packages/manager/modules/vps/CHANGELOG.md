@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.28.1...@ovh-ux/manager-vps@2.29.0) (2022-12-19)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** add reload on cancel upgrade modal ([bb861ff](https://github.com/ovh/manager/commit/bb861ff100e0b7ad78045c1946d5a2b97d0ba36e))
+* **dedicated.vps:** delete old removed provider vps upgrade ([#8571](https://github.com/ovh/manager/issues/8571)) ([2818346](https://github.com/ovh/manager/commit/28183468014cffbfcf8630657916e43511c43828))
+
+
+### Features
+
+* replace /order/upgrade API calls with /services ([#8011](https://github.com/ovh/manager/issues/8011)) ([e635a80](https://github.com/ovh/manager/commit/e635a8000ffda1fcb25cc6c941efd22d0fc9817a))
+
+
+
+
+
 ## [2.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.28.0...@ovh-ux/manager-vps@2.28.1) (2022-12-13)
 
 

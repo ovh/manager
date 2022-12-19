@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.23.0...@ovh-ux/manager-hub-app@3.24.0) (2022-12-19)
+
+
+### Features
+
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+
+
+
+
+
 # [3.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.22.11...@ovh-ux/manager-hub-app@3.23.0) (2022-12-12)
 
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.39.1...@ovh-ux/manager-dedicated@17.40.0) (2022-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1972] ([41e2ee2](https://github.com/ovh/manager/commit/41e2ee2622b2516acb58a2b7339aee5706383d0d))
+* **server.details:** fixed wrong naming case for ext3 and ext4 fs ([8459f56](https://github.com/ovh/manager/commit/8459f56b6a394e2bd8c5cbfdd2e8e7dfe3de9f9b))
+
+
+### Features
+
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+* replace /order/upgrade API calls with /services ([#8011](https://github.com/ovh/manager/issues/8011)) ([e635a80](https://github.com/ovh/manager/commit/e635a8000ffda1fcb25cc6c941efd22d0fc9817a))
+
+
+
+
+
 ## [17.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.39.0...@ovh-ux/manager-dedicated@17.39.1) (2022-12-13)
 
 

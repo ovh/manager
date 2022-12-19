@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.6.0...@ovh-ux/sign-up-app@2.7.0) (2022-12-19)
+
+
+### Bug Fixes
+
+* **signup:** add tracking error navigation ([b0c830e](https://github.com/ovh/manager/commit/b0c830e6173270ccb2aa47c62fada6264e52a090))
+
+
+### Features
+
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+
+
+
+
+
 # [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.5.6...@ovh-ux/sign-up-app@2.6.0) (2022-12-12)
 
 

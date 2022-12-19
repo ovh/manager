@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.22.0...@ovh-ux/manager-web@16.23.0) (2022-12-19)
+
+
+### Features
+
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+* **web.private-sql:** private SQL activation for db over 512MB ([acb2a00](https://github.com/ovh/manager/commit/acb2a00c383cd88e7af326d95790b5e578a45d3a))
+
+
+
+
+
 # [16.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.21.3...@ovh-ux/manager-web@16.22.0) (2022-12-12)
 
 

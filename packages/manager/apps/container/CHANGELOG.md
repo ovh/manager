@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.10.0...@ovh-ux/manager-container-app@0.11.0) (2022-12-19)
+
+
+### Features
+
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+* **project.serving:** ml-serving eol ([58a6ce0](https://github.com/ovh/manager/commit/58a6ce0e23c69446664b315bc06e73ed1eedea04))
+
+
+
+
+
 # [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.9.1...@ovh-ux/manager-container-app@0.10.0) (2022-12-12)
 
 
