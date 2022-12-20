@@ -30,7 +30,8 @@ export default /* @ngInject */ ($stateProvider) => {
         CHECK_PRICES_DOC_LINK[coreConfig.getUser().ovhSubsidiary] ||
         CHECK_PRICES_DOC_LINK.DEFAULT,
 
-      breadcrumb: () => null,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('pci_projects_project_storages_cold_archive_label'),
 
       trackingPrefix: () =>
         'PublicCloud::pci::projects::project::storages::cold_archive::',
