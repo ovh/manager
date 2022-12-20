@@ -7,7 +7,7 @@
   "pci_projects_project_storages_cold_archives_guides_overview_title": "Présentation du service Cold Archive",
   "pci_projects_project_storages_cold_archives_guides_overview_description": "Découvrez le service, les concepts et la facturation",
   "pci_projects_project_storages_cold_archives_guides_first-step_title": "Premier pas avec le service Cold Archive ",
-  "pci_projects_project_storages_cold_archives_guides_first-step_description": "Créez des conteneurs, archivez vos données, dégelez vos données, listez les metadonées...",
+  "pci_projects_project_storages_cold_archives_guides_first-step_description": "Créez des conteneurs, archivez vos données, dégelez vos données, listez les métadonées...",
   "pci_projects_project_storages_cold_archives_guides_manage-your-data_title": "Téléchargez vos données par CLI",
   "pci_projects_project_storages_cold_archives_guides_manage-your-data_description": "Téléchargez vos données par API, CLI ou SDK S3 ",
 
