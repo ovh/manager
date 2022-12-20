@@ -24,7 +24,25 @@ export default /* @ngInject */ ($stateProvider) => {
               },
         ),
     resolve: {
-      guides: () => GUIDES,
+      guides: /* @ngInject */ (coreConfig, $translate) =>
+        GUIDES.reduce(
+          (list, guide) => [
+            ...list,
+            {
+              ...guide,
+              title: $translate.instant(
+                `pci_projects_project_storages_cold_archives_guides_${guide.id}_title`,
+              ),
+              description: $translate.instant(
+                `pci_projects_project_storages_cold_archives_guides_${guide.id}_description`,
+              ),
+              link:
+                guide.links[coreConfig.getUserLanguage().toUpperCase()] ||
+                guide.links.DEFAULT,
+            },
+          ],
+          [],
+        ),
 
       priceLink: /* @ngInject */ (coreConfig) =>
         CHECK_PRICES_DOC_LINK[coreConfig.getUser().ovhSubsidiary] ||

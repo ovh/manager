@@ -5,8 +5,9 @@ import { GUIDES } from '../cold-archives.constants';
 
 export default class PciStorageColdArchivesOnboardingController {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, coreConfig) {
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -23,6 +24,9 @@ export default class PciStorageColdArchivesOnboardingController {
           description: this.$translate.instant(
             `pci_projects_project_storages_cold_archives_guides_${guide.id}_description`,
           ),
+          link:
+            guide.links[this.coreConfig.getUserLanguage().toUpperCase()] ||
+            guide.links.DEFAULT,
         },
       ],
       [],
@@ -35,7 +39,7 @@ export default class PciStorageColdArchivesOnboardingController {
   }
 
   onDocumentationClick(guide) {
-    const TRACKING_SUB_STRING = `docs::${guide.id}`;
+    const TRACKING_SUB_STRING = `guides::go_to_${guide.id}`;
     this.trackClick(TRACKING_SUB_STRING);
   }
 }
