@@ -9,29 +9,30 @@
         </span>
     </div>
 
+    <!--Payment methods-->
     <div class="row">
-        <div
-            class="col-md-6 mb-3"
+
+        <oui-select-picker
+            class="col-md-6 m-0 mb-3"
             data-ng-repeat="authorizedPaymentMethod in $ctrl.authorizedPaymentMethods track by $index"
-        >
-            <oui-radio
-                class="oui-radio_btn"
-                data-name="paymentType"
-                data-thumbnail
-                data-model="$ctrl.model.paymentMethod"
-                data-value="authorizedPaymentMethod"
-                data-on-change="$ctrl.onPaymentTypeRadioChange()"
-                data-disabled="$ctrl.globalLoading.finalize"
-            >
+            data-ng-if="$ctrl.isAuthorizedToUseSepaDirectDebit(authorizedPaymentMethod)"
+            data-disabled="$ctrl.globalLoading.finalize"
+            data-name="paymentType"
+            data-model="$ctrl.model.paymentMethod"
+            data-values="[authorizedPaymentMethod]"
+            data-on-change="$ctrl.onPaymentTypeRadioChange()">
+            <oui-select-picker-label class="w-100 text-center">
                 <span
-                    data-ng-bind="$ctrl.getPaymentMethodTypeText(authorizedPaymentMethod)"
+                    data-ng-bind=":: $ctrl.getPaymentMethodTypeText(authorizedPaymentMethod)"
                 ></span>
-            </oui-radio>
-        </div>
+            </oui-select-picker-label>
+        </oui-select-picker>
+
     </div>
 
     <!--Credit card info banner-->
     <oui-message
+        class="text-justify"
         data-type="info"
         data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard()"
     >
@@ -46,6 +47,7 @@
 
     <!--PAYPAL charged tax info banner-->
     <oui-message
+        class="text-justify"
         data-type="warning"
         data-ng-if="$ctrl.isDisplayablePaypalChargeBanner && $ctrl.model.paymentMethod.type.isPaypal()"
     >
@@ -55,6 +57,7 @@
         ></span>
     </oui-message>
 
+    <!--BANK-ACCOUNT info banner-->
     <div data-ng-if="$ctrl.model.paymentMethod.paymentType !== 'CREDIT'">
         <oui-message
             data-type="warning"
@@ -74,4 +77,42 @@
             </small>
         </p>
     </div>
+
+    <!--SEPA banner info-->
+    <div class="text-justify"
+         data-ng-if="$ctrl.model.paymentMethod.type.isSepaDirectDebit()"
+    >
+
+        <!--Description-->
+        <p
+            data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_main_info"
+            data-translate-values="{ break: '<br>' }"
+        ></p>
+
+        <!--Redirection to Worldline banner info-->
+        <oui-message data-type="warning">
+            <span
+                data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_redirect_warn"
+                data-translate-values="{ break: '<br>' }"
+            ></span>
+        </oui-message>
+
+        <!--Data collect banner info-->
+        <oui-message data-type="info">
+            <span
+                data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_collect_data_info"
+                data-translate-values="{ break: '<br>' }"
+            ></span>
+        </oui-message>
+
+    </div>
+
+    <p data-ng-if="$ctrl.model.paymentMethod.type.isPaypal()"
+    >
+        <small
+            data-translate="pci_project_new_payment_method_add_info_paypal"
+            data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"
+        >
+        </small>
+    </p>
 </div>

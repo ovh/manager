@@ -4,6 +4,7 @@
   "pci_project_new_payment_btn_continue_credit_card": "Créer mon projet",
   "pci_project_new_payment_btn_continue_add_credit_card": "Suivant",
   "pci_project_new_payment_btn_continue_bank_account": "Ajouter",
+  "pci_project_new_payment_btn_continue_sepa_direct_debit": "Ajouter mon compte bancaire",
   "pci_project_new_payment_btn_continue_credit": "Créditer et créer mon projet",
   "pci_project_new_payment_btn_return": "Retour",
   "pci_project_new_payment_btn_cancel": "Annuler",

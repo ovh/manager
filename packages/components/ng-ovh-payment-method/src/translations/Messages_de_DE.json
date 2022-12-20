@@ -26,5 +26,7 @@
   "ovh_payment_status_paused": "Angehalten",
   "ovh_payment_status_failed": "Ungültig",
   "ovh_payment_status_null": "Information nicht verfügbar ",
-  "ovh_payment_type_sepa_direct_debit": "Lastschrift"
+  "ovh_payment_type_sepa_direct_debit": "Lastschrift",
+  "ovh_payment_status_validating": "Validierung in Bearbeitung",
+  "ovh_payment_status_rejected": "Verweigert"
 }
