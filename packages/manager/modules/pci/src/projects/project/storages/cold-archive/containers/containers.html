@@ -21,7 +21,7 @@
             data-sortable
             data-filterable
         >
-            <span ng-bind="::$row.formatDate"></span>
+            <span data-ng-bind="::$row.formatDate"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_storages_containers_storedObjects_label' | translate"
@@ -146,6 +146,7 @@
                 data-track-on="click"
                 data-track-name="PCI_PROJECTS_CONTAINERS_MANAGE"
                 data-track-type="navigation"
+                type="button"
             >
                 <span
                     class="oui-icon oui-icon-info-circle pr-1"

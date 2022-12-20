@@ -36,6 +36,6 @@
   "pci_projects_project_storages_cold_archive_container_manage_description_1": "Vos opérations d’archivage, comme le téléchargement, la restauration ou la suppression de vos données, se font par ligne de commandes.",
   "pci_projects_project_storages_cold_archive_container_manage_description_2": "Par exemple, pour télécharger des données, telles que des photos, des vidéos et d’autres documents, vous devez utiliser la CLI, le SDK ou l’API S3",
   "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "Endpoint",
-  "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Region",
+  "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Région",
   "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Fermer"
 }
