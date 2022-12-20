@@ -123,6 +123,10 @@ export class Environment implements IEnvironment {
     return this.applicationName;
   }
 
+  getApplication(): Application {
+    return (this.applications || {})[this.applicationName as ApplicationId];
+  }
+
   setUniverse(universe: string): void {
     this.universe = universe;
   }
