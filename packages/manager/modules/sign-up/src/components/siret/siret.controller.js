@@ -13,6 +13,7 @@ export default class SiretCtrl {
     this.search = '';
     this.isFirstSearch = true;
     this.displayManualForm = false;
+    this.activeSelectSuggest = null;
   }
 
   $onInit() {
@@ -36,11 +37,14 @@ export default class SiretCtrl {
           identifier: this.search,
         })
         .then((suggest) => {
+          this.searching = false;
           this.trackPage(suggest.entryList?.length > 0 ? 'list' : 'no-result');
           this.suggest = suggest;
-        })
-        .finally(() => {
-          this.searching = false;
+          // To select the suggest if there is only one suggest.
+          if (suggest.entryList?.length === 1) {
+            [this.activeSelectSuggest] = suggest.entryList;
+            this.selectSuggest(this.activeSelectSuggest);
+          }
         });
     }
     return null;
