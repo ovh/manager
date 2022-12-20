@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.22.1...@ovh-ux/manager-public-cloud@4.22.2) (2022-12-20)
+
+
+### Bug Fixes
+
+* **apps:** define Application Version ([700fd68](https://github.com/ovh/manager/commit/700fd68b7934a48ddc04f1c2ef8695d20ee7c993))
+* **public-cloud:** remove chatbot ([f62d89f](https://github.com/ovh/manager/commit/f62d89ffce4349c4997558665304244159615021))
+
+
+
+
+
 ## [4.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.22.0...@ovh-ux/manager-public-cloud@4.22.1) (2022-12-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

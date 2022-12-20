@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-request-tagger",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "private": true,
   "description": "Request tagger",
   "keywords": [
@@ -33,7 +33,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-request-tagger' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/request-tagger": "^0.1.0",
+    "@ovh-ux/request-tagger": "^0.1.1",
     "lodash": "^4.17.15"
   },
   "devDependencies": {

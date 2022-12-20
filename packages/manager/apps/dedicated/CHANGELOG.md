@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.41.1...@ovh-ux/manager-dedicated@17.41.2) (2022-12-20)
+
+
+### Bug Fixes
+
+* **apps:** define Application Version ([700fd68](https://github.com/ovh/manager/commit/700fd68b7934a48ddc04f1c2ef8695d20ee7c993))
+* **dedicated:** remove chatbot ([ba8630d](https://github.com/ovh/manager/commit/ba8630d882e59c34f8a3ff8ab1b3f75be8dc322a))
+
+
+
+
+
 ## [17.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.41.0...@ovh-ux/manager-dedicated@17.41.1) (2022-12-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.6.0...@ovh-ux/manager-web-paas-app@1.6.1) (2022-12-20)
+
+
+### Bug Fixes
+
+* **apps:** define Application Version ([700fd68](https://github.com/ovh/manager/commit/700fd68b7934a48ddc04f1c2ef8695d20ee7c993))
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.5.0...@ovh-ux/manager-web-paas-app@1.6.0) (2022-12-19)
 
 

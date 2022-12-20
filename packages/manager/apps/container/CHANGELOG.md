@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.11.0...@ovh-ux/manager-container-app@0.11.1) (2022-12-20)
+
+
+### Bug Fixes
+
+* **container:** remove chatbot ([a8e85ae](https://github.com/ovh/manager/commit/a8e85aeaa76af941aaa641b610f305de0a1df4f0))
+
+
+
+
+
 # [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.10.0...@ovh-ux/manager-container-app@0.11.0) (2022-12-19)
 
 

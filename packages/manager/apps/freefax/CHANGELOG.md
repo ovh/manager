@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@7.1.15...@ovh-ux/manager-freefax-app@7.1.16) (2022-12-20)
+
+
+### Bug Fixes
+
+* **apps:** define Application Version ([700fd68](https://github.com/ovh/manager/commit/700fd68b7934a48ddc04f1c2ef8695d20ee7c993))
+* **freefax:** remove chatbot ([b0941f1](https://github.com/ovh/manager/commit/b0941f1694bce52c038bffb36c9394263d1ace89))
+
+
+
+
+
 ## [7.1.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@7.1.14...@ovh-ux/manager-freefax-app@7.1.15) (2022-12-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-freefax-app
