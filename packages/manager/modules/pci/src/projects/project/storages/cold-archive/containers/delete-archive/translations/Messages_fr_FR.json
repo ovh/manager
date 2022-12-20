@@ -1,5 +1,5 @@
 {
-  "pci_projects_project_storages_containers_container_cold_archive_delete_archive_title": "Supprimer l'archive {{containerName}} de Cold Archive",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_archive_title": "Supprimer mon archive",
   "pci_projects_project_storages_containers_container_cold_archive_delete_archive_submit_label": "Confirmer",
   "pci_projects_project_storages_containers_container_cold_archive_delete_archive_cancel_label": "Annuler",
   "pci_projects_project_storages_containers_container_cold_archive_delete_archive_archive_erase_message": "Toutes les données de l'archive {{containerName}} seront perdues.",
