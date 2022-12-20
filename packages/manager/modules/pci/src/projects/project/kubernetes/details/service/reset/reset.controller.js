@@ -61,7 +61,7 @@ export default class kubernetesResetCtrl {
       ...(this.model.network.gateway.enabled && {
         privateNetworkConfiguration: {
           defaultVrackGateway: this.model.network.gateway.ip,
-          privateNetworkRoutingAsDefault: !this.model.network.gateway.ip,
+          privateNetworkRoutingAsDefault: true,
         },
       }),
     };
