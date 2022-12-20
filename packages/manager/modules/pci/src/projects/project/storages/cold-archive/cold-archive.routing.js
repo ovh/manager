@@ -1,4 +1,3 @@
-import reduce from 'lodash/reduce';
 import {
   CHECK_PRICES_DOC_LINK,
   COLD_ARCHIVE_TRACKING_PREFIX,
@@ -26,8 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       guides: /* @ngInject */ (coreConfig, $translate) =>
-        reduce(
-          GUIDES,
+        GUIDES.reduce(
           (list, guide) => [
             ...list,
             {
