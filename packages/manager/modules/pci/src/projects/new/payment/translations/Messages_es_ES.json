@@ -17,5 +17,6 @@
   "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link": "Seguimiento del pedido",
   "pci_project_new_payment_check_anti_fraud_case_fraud_refused": "Tras un análisis de los datos asociados a su pedido o relativos a su cuenta, consideramos que estos no ofrecen todas las garantías necesarias en términos de seguridad de la transacción. Para poder tramitar su pedido, procesar el pago del mismo y ejecutar el contrato, OVHcloud le invita a realizar su compra nuevamente utilizando otra forma de pago. También puede contactar con uno de nuestros asesores en el «Centro de ayuda» de su cuenta de cliente, desde donde podrá enviar los elementos necesarios para completar la transacción. En caso contrario, no podremos tramitar la transacción.",
   "pci_project_new_payment_btn_return": "Volver",
-  "pci_project_new_payment_btn_continue_add_credit_card": "Siguiente"
+  "pci_project_new_payment_btn_continue_add_credit_card": "Siguiente",
+  "pci_project_new_payment_btn_continue_sepa_direct_debit": "Añadir una cuenta bancaria"
 }
