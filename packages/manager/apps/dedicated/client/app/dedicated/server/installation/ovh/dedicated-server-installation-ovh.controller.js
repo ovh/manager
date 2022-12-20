@@ -2017,11 +2017,41 @@ angular
       $scope.$watch('installation.hardwareRaid.raid', () => {
         $scope.clearHardwareRaidSpace();
         $scope.recalculateAvailableRaidDisks();
+        if ($scope.informations.hardwareRaid.availableDisks.length === 1) {
+          [
+            $scope.installation.hardwareRaid.disks,
+          ] = $scope.informations.hardwareRaid.availableDisks;
+          $scope.recalculateAvailableArrays();
+        }
+        if ($scope.informations.hardwareRaid.availableArrays.length === 1) {
+          [
+            $scope.installation.hardwareRaid.arrays,
+          ] = $scope.informations.hardwareRaid.availableArrays;
+          $scope.recalculateSpace();
+          if (
+            $scope.installation.hardwareRaid.disks &&
+            $scope.installation.hardwareRaid.arrays
+          ) {
+            $scope.installation.hardwareRaid.error = $scope.invalidHardRaid();
+          }
+        }
       });
 
       $scope.$watch('installation.hardwareRaid.disks', () => {
         $scope.clearHardwareRaidSpace();
         $scope.recalculateAvailableArrays();
+        if ($scope.informations.hardwareRaid.availableArrays.length === 1) {
+          [
+            $scope.installation.hardwareRaid.arrays,
+          ] = $scope.informations.hardwareRaid.availableArrays;
+          $scope.recalculateSpace();
+          if (
+            $scope.installation.hardwareRaid.disks &&
+            $scope.installation.hardwareRaid.arrays
+          ) {
+            $scope.installation.hardwareRaid.error = $scope.invalidHardRaid();
+          }
+        }
       });
 
       $scope.$watch('installation.hardwareRaid.arrays', () => {
