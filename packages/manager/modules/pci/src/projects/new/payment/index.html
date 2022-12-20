@@ -117,29 +117,6 @@
 
                 <!--"Create project" and "continue" btn for Credit and PayPal-->
                 <div data-ng-if="!$ctrl.needToCheckCustomerInformations">
-                    <!--Create project btn for Voucher (CREDIT)-->
-                    <div
-                        class="d-flex"
-                        data-ng-if="$ctrl.model.paymentMethod.paymentType === 'CREDIT'"
-                    >
-                        <oui-button
-                            data-variant="primary"
-                            data-type="submit"
-                            data-variant-nav="next"
-                            data-disabled="!$ctrl.model.credit"
-                            on-click="$ctrl.sendTrack('new_project_payment_continue')"
-                        >
-                            <span
-                                data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
-                            ></span>
-                        </oui-button>
-                        <oui-spinner
-                            class="m-2"
-                            size="s"
-                            data-ng-if="$ctrl.globalLoading.finalize"
-                        >
-                        </oui-spinner>
-                    </div>
 
                     <!--Continue btn for default payment method-->
                     <div
@@ -155,6 +132,30 @@
                         >
                             <span
                                 data-translate="pci_project_new_payment_btn_continue_default"
+                            ></span>
+                        </oui-button>
+                        <oui-spinner
+                            class="m-2"
+                            size="s"
+                            data-ng-if="$ctrl.globalLoading.finalize"
+                        >
+                        </oui-spinner>
+                    </div>
+
+                    <!--Create project btn for Voucher (CREDIT)-->
+                    <div
+                        class="d-flex"
+                        data-ng-if="$ctrl.model.paymentMethod.paymentType === 'CREDIT'"
+                    >
+                        <oui-button
+                            data-variant="primary"
+                            data-type="submit"
+                            data-variant-nav="next"
+                            data-disabled="!$ctrl.model.credit"
+                            on-click="$ctrl.sendTrack('new_project_payment_continue')"
+                        >
+                            <span
+                                data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
                             ></span>
                         </oui-button>
                         <oui-spinner
@@ -206,6 +207,30 @@
                         >
                         </span>
                     </a>
+
+                    <!--Continue btn for Worldline (SEPA_DIRECT_DEBIT)-->
+                    <div
+                        class="d-flex"
+                        data-ng-if="$ctrl.model.paymentMethod.type.isSepaDirectDebit()"
+                    >
+                        <oui-button
+                            variant="primary"
+                            type="button"
+                            on-click="$ctrl.initComponentInitialParams()"
+                            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.componentInitialParams && !$ctrl.isCheckingPaymentMethod"
+                            disabled="$ctrl.globalLoading.finalize"
+                        >
+                            <span
+                                data-translate="pci_project_new_payment_btn_continue_sepa_direct_debit"
+                            ></span>
+                        </oui-button>
+                        <oui-spinner
+                            class="m-2"
+                            size="s"
+                            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.globalLoading.finalize"
+                        >
+                        </oui-spinner>
+                    </div>
                 </div>
             </form>
 

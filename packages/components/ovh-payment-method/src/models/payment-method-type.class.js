@@ -28,6 +28,17 @@ export class PaymentMethodType {
   }
 
   /**
+   * Determine if payment method type is a SEPA direct debit.
+   *
+   * @return {Boolean}
+   */
+  isSepaDirectDebit() {
+    return (
+      this.paymentType === AVAILABLE_PAYMENT_METHOD_TYPE_ENUM.SEPA_DIRECT_DEBIT
+    );
+  }
+
+  /**
    * Determine if payment method type is a Credit Card.
    *
    * @return {Boolean}

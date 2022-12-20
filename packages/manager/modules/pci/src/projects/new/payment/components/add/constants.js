@@ -1,8 +1,11 @@
+import { PCI_FEATURES as FEATURES } from '../../../../projects.constant';
+
 export const PAYMENT_METHOD_AUTHORIZED_ENUM = {
   BANK_ACCOUNT: 'bankAccount',
   CREDIT: 'credit',
   CREDIT_CARD: 'creditCard',
   PAYPAL: 'paypal',
+  SEPA_DIRECT_DEBIT: 'sepaDirectDebit',
 };
 
 export const PREFERRED_PAYMENT_METHOD_ORDER = [
@@ -10,12 +13,15 @@ export const PREFERRED_PAYMENT_METHOD_ORDER = [
   PAYMENT_METHOD_AUTHORIZED_ENUM.PAYPAL,
   PAYMENT_METHOD_AUTHORIZED_ENUM.BANK_ACCOUNT,
   PAYMENT_METHOD_AUTHORIZED_ENUM.CREDIT,
+  PAYMENT_METHOD_AUTHORIZED_ENUM.SEPA_DIRECT_DEBIT,
 ];
 
 export const CREDIT_PROVISIONING = {
   PLAN_CODE: 'credit.default',
   PRICE_MODE: 'default',
 };
+
+export const PCI_FEATURES = FEATURES;
 
 export default {
   PAYMENT_METHOD_AUTHORIZED_ENUM,

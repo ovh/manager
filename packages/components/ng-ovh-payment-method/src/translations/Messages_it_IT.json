@@ -26,5 +26,7 @@
   "ovh_payment_status_paused": "In pausa",
   "ovh_payment_status_failed": "Non valido",
   "ovh_payment_status_null": "Informazione non disponibile",
-  "ovh_payment_type_sepa_direct_debit": "Prelievo bancario"
+  "ovh_payment_type_sepa_direct_debit": "Prelievo bancario",
+  "ovh_payment_status_validating": "In corso di convalida",
+  "ovh_payment_status_rejected": "Rifiutato"
 }
