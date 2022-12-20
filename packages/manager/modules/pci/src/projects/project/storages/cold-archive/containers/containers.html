@@ -21,7 +21,7 @@
             data-sortable
             data-filterable
         >
-        <span ng-bind="::$row.formatDate"></span>
+            <span ng-bind="::$row.formatDate"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_storages_containers_storedObjects_label' | translate"
@@ -59,6 +59,7 @@
         <oui-datagrid-column>
             <oui-action-menu
                 data-ng-if="$ctrl.constructor.isActionsAvailable($row)"
+                data-placement="left-bottom"
                 data-compact
             >
                 <!--Action: add user-->
