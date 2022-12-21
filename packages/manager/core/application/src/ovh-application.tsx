@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { ApplicationId } from '@ovh-ux/manager-config';
 
 import initI18n from './i18n';
@@ -29,8 +29,7 @@ export function OvhApplication({
 
   return (
     <OvhContext.Provider value={context}>
-      {context && <>{children}</>}
-      {!context && '…'}
+      {context && <Suspense fallback={null}>{children}</Suspense>}
     </OvhContext.Provider>
   );
 }
