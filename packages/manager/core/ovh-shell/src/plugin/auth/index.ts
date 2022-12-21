@@ -1,4 +1,7 @@
-import { redirectToLoginPage, redirectToLogoutPage } from '@ovh-ux/ovh-reket';
+import {
+  redirectToLoginPage,
+  redirectToLogoutPage,
+} from '@ovh-ux/manager-core-sso';
 import ShellClient from '../../client/shell-client';
 
 interface AuthPluginParameters {
@@ -10,8 +13,8 @@ export function auth(params: AuthPluginParameters = {}) {
   const goToLogin = params.goToLogin || redirectToLoginPage;
   const goToLogout = params.goToLogout || redirectToLogoutPage;
   return {
-    login: (): void => goToLogin(),
-    logout: (): void => goToLogout(),
+    login: goToLogin,
+    logout: goToLogout,
   };
 }
 

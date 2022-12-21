@@ -1,10 +1,28 @@
 import { Reket } from '@ovhcloud/reket-core';
 import { AxiosReketClient } from '@ovhcloud/reket-axios-client';
+import {
+  redirectToLoginPage,
+  redirectToLogoutPage,
+} from '@ovh-ux/manager-core-sso';
 
-import { DEFAULT_REQUEST_TYPES } from './constants';
-import { redirectToLoginPage, redirectToLogoutPage } from './redirections';
-
-export { redirectToLoginPage, redirectToLogoutPage } from './redirections';
+export const DEFAULT_REQUEST_TYPES = [
+  {
+    type: 'apiv6',
+    urlPrefix: '/engine/apiv6',
+  },
+  {
+    type: 'aapi',
+    urlPrefix: '/engine/2api',
+  },
+  {
+    type: 'ws',
+    urlPrefix: '/engine/ws',
+  },
+  {
+    type: 'none',
+    urlPrefix: '',
+  },
+];
 
 export const ssoAuthHookFn = (error) => {
   const rejectedError = error;
