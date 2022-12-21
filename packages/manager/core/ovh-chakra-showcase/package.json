@@ -9,8 +9,8 @@
     "showcase": "ladle serve"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.6",
-    "@chakra-ui/react": "^2.2.6",
+    "@chakra-ui/icons": "^2.0.4",
+    "@chakra-ui/react": "^2.2.4",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@ladle/react": "^2.1.0",
@@ -24,6 +24,6 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
-    "vite": "^3.0.0"
+    "vite": "^3.0.2"
   }
 }
