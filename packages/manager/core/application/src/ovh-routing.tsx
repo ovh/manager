@@ -43,9 +43,11 @@ function buildRegularRoute(module: () => Promise<Module>, key: string) {
   const ErrorElement = lazy(() =>
     module().then((mod) => ({ default: mod.ErrorElement || null })),
   );
-  const index = /(?<!pages\/)index\.(jsx|tsx)$/.test(key)
-    ? { index: true }
-    : {};
+  let index = {};
+
+  if (/index\.(jsx|tsx)$/.test(key) && !/pages\/index/.test(key)) {
+    index = { index: true };
+  }
 
   return {
     ...index,
