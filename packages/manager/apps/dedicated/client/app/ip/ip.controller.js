@@ -59,6 +59,7 @@ export default /* @ngInject */ function IpMainCtrl(
     $scope.setAction(false);
   };
 
+  // test pour build container
   $scope.$on('$locationChangeStart', () => {
     $scope.resetAction();
   });

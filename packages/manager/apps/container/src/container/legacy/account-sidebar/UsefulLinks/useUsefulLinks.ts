@@ -24,6 +24,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
     return [
       {
         id: 'helpCenter',
+        external: true,
         href: constants[region]?.help[user.ovhSubsidiary],
         tracking: `${trackingPrefix}::go-to-helpcenter`,
         icon: 'oui-icon oui-icon-lifebuoy_concept',
@@ -42,6 +43,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
         : []),
       {
         id: 'tasks',
+        external: true,
         href: constants[region]?.tasks,
         tracking: `${trackingPrefix}::go-to-ovh-status`,
         icon: 'oui-icon oui-icon-traffic-cone_concept',
