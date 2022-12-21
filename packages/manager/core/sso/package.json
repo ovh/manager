@@ -1,5 +1,5 @@
 {
-  "name": "@ovh-ux/manager-core-api",
+  "name": "@ovh-ux/manager-core-sso",
   "version": "0.0.0",
   "description": "",
   "license": "BSD-3-Clause",
@@ -15,10 +15,6 @@
     "build": "tsc",
     "dev": "tsc",
     "start:watch": "tsc -w"
-  },
-  "dependencies": {
-    "@ovh-ux/manager-core-sso": "^0.0.0",
-    "axios": "^1.1.2"
   },
   "devDependencies": {
     "typescript": "^4.3.2"

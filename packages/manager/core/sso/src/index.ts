@@ -2,17 +2,17 @@ import { DEFAULT_SSO_AUTH_URL } from './constants';
 
 const { loginUrl, logoutUrl, euLoginUrl, euLogoutUrl } = DEFAULT_SSO_AUTH_URL;
 
-const buildRedirectUrl = (url, params) => {
+const buildRedirectUrl = (url: string, params: string[]) => {
   return `${url}${url.indexOf('?') > -1 ? '&' : '?'}${params.join('&')}`;
 };
 
-const redirectTo = (url) => {
+const redirectTo = (url: string) => {
   return window.location.assign(url);
 };
 
 const isOvhTelecom = () => window.location.host === 'www.ovhtelecom.fr';
 
-export const redirectToLoginPage = (onsuccessUrl) => {
+export const redirectToLoginPage = (onsuccessUrl = '') => {
   const params = [];
 
   if (loginUrl.indexOf('onsuccess') === -1) {
@@ -25,7 +25,7 @@ export const redirectToLoginPage = (onsuccessUrl) => {
   redirectTo(buildRedirectUrl(isOvhTelecom() ? euLoginUrl : loginUrl, params));
 };
 
-export const redirectToLogoutPage = (onsuccessUrl) => {
+export const redirectToLogoutPage = (onsuccessUrl = '') => {
   const params = [];
 
   if (logoutUrl.indexOf('onsuccess') === -1) {
@@ -44,7 +44,10 @@ export const redirectToLogoutPage = (onsuccessUrl) => {
   );
 };
 
+export * from './constants';
+
 export default {
+  DEFAULT_SSO_AUTH_URL,
   redirectToLoginPage,
   redirectToLogoutPage,
 };
