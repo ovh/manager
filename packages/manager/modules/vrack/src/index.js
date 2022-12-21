@@ -52,5 +52,12 @@ angular
         },
       });
     },
-  );
+  )
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'vrack.**' }, () => $translate.refresh());
+    },
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
+
 export default moduleName;
