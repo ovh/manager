@@ -1,10 +1,18 @@
 import apiClient from '@ovh-ux/manager-core-api';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
 
-export const get{{pascalCase appName}}Ids = async (): Promise<string[]> => {
+async function fetchData() {
   const response = await apiClient.v6.get('{{ apiPath }}');
   return response.data;
+}
+
+export const QUERY_KEY = ['{{ apiPath }}'];
+
+export const get{{pascalCase appName}}Ids = async (): Promise<string[]> => {
+  return queryClient.fetchQuery(QUERY_KEY, fetchData);
 };
 
 export default {
+  QUERY_KEY,
   get{{pascalCase appName}}Ids,
 };
