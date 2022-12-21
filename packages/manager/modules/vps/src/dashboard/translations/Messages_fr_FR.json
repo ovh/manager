@@ -14,7 +14,7 @@
   "vps_dashboard_state_maintenance": "En cours de maintenance",
   "vps_dashboard_state_rescued": "En rescue",
   "vps_dashboard_state_rebooting": "En cours de redémarrage",
-  "vps_dashboard_state_running": "En cours d'exécution",
+  "vps_dashboard_state_running": "Actif",
   "vps_dashboard_state_stopped": "Arrêté",
   "vps_dashboard_state_stopping": "En cours d'extinction",
   "vps_dashboard_state_upgrading": "En cours de changement d'offre",
