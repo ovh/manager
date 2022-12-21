@@ -4,7 +4,8 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { ApplicationId } from '@ovh-ux/manager-config';
 import { UIKitTheme } from '@ovh-ux/manager-themes';
 import { RouterProvider } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './query-client';
 
 import './vite-hmr';
 import OvhApplication from './ovh-application';
@@ -19,6 +20,8 @@ export function useEnvironment() {
 }
 
 export type { OvhContextShellType };
+
+export { queryClient } from './query-client';
 
 export function useShell(): OvhContextShellType {
   const { shell } = useContext(OvhContext);
@@ -38,7 +41,6 @@ export function startApplication(
 ) {
   const root = createRoot(createContainerElement());
   const appRouter = createAppRouter();
-  const queryClient = new QueryClient();
   root.render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
