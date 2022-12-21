@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-core-sso": "^0.0.0",
     "@ovh-ux/ovh-at-internet": "^0.1.0 || ^0.2.0",
     "@ovh-ux/ovh-reket": "^1.0.0",
     "@ovh-ux/request-tagger": "^0.0.0 || ^1.0.0",
