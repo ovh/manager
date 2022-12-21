@@ -57,7 +57,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
       },
       {
         id: 'cold-archive',
-        new: true,
+        beta: true,
         options: {
           state: 'pci.projects.project.storages.cold-archive',
         },
