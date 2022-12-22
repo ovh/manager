@@ -12,6 +12,7 @@ import {
   TrackingPlugin,
   TrackingPluginType,
 } from '../plugin/tracking/tracking';
+import loggerPlugin from '../plugin/logger';
 
 function isStagingEnvironment() {
   return /\.dev$/.test(window.location.hostname);
@@ -76,6 +77,8 @@ export function initShell(): Promise<Shell> {
         'tracking',
         trackingPlugin as TrackingPluginType<TrackingPlugin>,
       );
+
+    shell.getPluginManager().registerPlugin('logger', loggerPlugin());
 
     return shell;
   });
