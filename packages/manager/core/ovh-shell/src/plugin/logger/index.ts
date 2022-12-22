@@ -30,29 +30,27 @@ function logger() {
 }
 
 export function clientLogger(shellClient: ShellClient) {
-  const { invokePluginMethod } = shellClient;
-
   return {
     log: (...args: unknown[]) =>
-      invokePluginMethod({
+      shellClient.invokePluginMethod({
         plugin: 'logger',
         method: 'log',
         args,
       }),
     info: (...args: unknown[]) =>
-      invokePluginMethod({
+      shellClient.invokePluginMethod({
         plugin: 'logger',
         method: 'info',
         args,
       }),
     warn: (...args: unknown[]) =>
-      invokePluginMethod({
+      shellClient.invokePluginMethod({
         plugin: 'logger',
         method: 'warn',
         args,
       }),
     error: (...args: unknown[]) =>
-      invokePluginMethod({
+      shellClient.invokePluginMethod({
         plugin: 'logger',
         method: 'error',
         args,
