@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.104.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.103.0...@ovh-ux/manager-pci@5.104.0) (2022-12-22)
+
+
+### Features
+
+* **apps:** sepa direct payment worldline integration ([#8203](https://github.com/ovh/manager/issues/8203)) ([618dfee](https://github.com/ovh/manager/commit/618dfeeb1565d47c1bf0e66873931e6c8932c7bb))
+
+
+
+
+
 # [5.103.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.102.0...@ovh-ux/manager-pci@5.103.0) (2022-12-19)
 
 
