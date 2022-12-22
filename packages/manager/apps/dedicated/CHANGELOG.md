@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.41.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.41.2...@ovh-ux/manager-dedicated@17.41.3) (2022-12-22)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** game firewall config ([5ebc127](https://github.com/ovh/manager/commit/5ebc1277ba9306bdd3b4063153e15301027eaeca))
+
+
+
+
+
 ## [17.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.41.1...@ovh-ux/manager-dedicated@17.41.2) (2022-12-20)
 
 
