@@ -430,7 +430,7 @@ export default class IpListController {
       self
         .goToGameFirewall(ip)
         .then(() =>
-          $scope.$broadcast('ips.gameFirewall.display', { ipBlock, ip }),
+          $rootScope.$broadcast('ips.gameFirewall.display', { ipBlock, ip }),
         );
     };
 

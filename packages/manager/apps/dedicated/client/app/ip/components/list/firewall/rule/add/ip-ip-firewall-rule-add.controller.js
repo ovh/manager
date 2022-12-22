@@ -133,7 +133,7 @@ export default /* @ngInject */ (
     $scope.loading = true;
 
     // set empty string to null values to avoid API error
-    $scope.rule.source = isEmpty(get($scope.rule, 'source', '').trim())
+    $scope.rule.source = isEmpty(get($scope.rule, 'source', '')?.trim())
       ? null
       : $scope.rule.source;
     $scope.rule.sourcePort = isEmpty(get($scope.rule, 'sourcePort', '').trim())
