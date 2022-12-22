@@ -21,10 +21,26 @@ export function setupDevApplication(shell: Shell) {
     });
 
     // enable the container only for the current dev application
-    const containerApp = apps[devApp];
+    let containerApp = apps[devApp];
 
+    // if the application configuration doesn't exist in DEV mode
+    // then it's a new application, create a default configuration to use
     if (!containerApp) {
-      throw new Error(`Application not found: '${devApp}'`);
+      const devConfig = {
+        universe: 'hub',
+        url: `https://www.ovh.com/manager/${devApp}/`,
+        publicURL: `https://www.ovh.com/manager/#/${devApp}/`,
+        container: {
+          enabled: true,
+          isDefault: true,
+          path: devApp,
+        },
+      };
+      apps[devApp] = devConfig;
+      containerApp = devConfig;
+      console.error(
+        `Application '${devApp}' doesn't exist in 2API configuration.`,
+      );
     }
 
     containerApp.container.enabled = true;
