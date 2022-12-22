@@ -9,6 +9,9 @@ const defaultAxiosConfig = {};
 function handleAuthenticationError(error: AxiosError) {
   const { response } = error;
   let { status } = response;
+  const hasCustomCredentials = !!(response.config.headers || {})[
+    'Authorization'
+  ];
 
   if (status === 403) {
     const message = (response.data as {
@@ -21,14 +24,21 @@ function handleAuthenticationError(error: AxiosError) {
       status = 401;
     }
   }
-  if (status === 401) {
+
+  // redirect to auth page if the api credentials are invalid
+  if (status === 401 && !hasCustomCredentials) {
     redirectToLogoutPage();
+    // never resolve since we are redirecting
     return new Promise(() => {});
   }
+
+  // low order session
   if (status === 471) {
     redirectToLoginPage();
+    // never resolve since we are redirecting
     return new Promise(() => {});
   }
+
   return error;
 }
 
@@ -57,5 +67,4 @@ export const v2 = axios.create({
 v2.interceptors.response.use(null, handleAuthenticationError);
 
 export const apiClient = { v6, aapi, ws, v2 };
-
 export default apiClient;
