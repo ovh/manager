@@ -3,6 +3,7 @@ import ShellClient from './shell-client';
 import { clientAuth } from '../plugin/auth';
 import { clientNavigation } from '../plugin/navigation';
 import { exposeTrackingAPI } from '../plugin/tracking';
+import { clientLogger } from '../plugin/logger';
 
 export default function exposeApi(shellClient: ShellClient) {
   const notifyHashChange = () => {
@@ -192,5 +193,6 @@ export default function exposeApi(shellClient: ShellClient) {
     },
     navigation: clientNavigation(shellClient),
     tracking: exposeTrackingAPI(shellClient),
+    logger: clientLogger(shellClient),
   };
 }
