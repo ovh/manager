@@ -1,4 +1,4 @@
-import React, { lazy, useEffect, Fragment, Suspense } from 'react';
+import { lazy, useEffect, Fragment, Suspense } from 'react';
 import {
   useLocation,
   RouteObject,
@@ -26,6 +26,14 @@ type Module = {
   breadcrumb: () => unknown;
 };
 
+function HidePreloader(): JSX.Element {
+  const shell = useShell();
+  useEffect(() => {
+    shell.ux.hidePreloader();
+  }, []);
+  return undefined;
+}
+
 function OvhContainerRoutingSync(): JSX.Element {
   const location = useLocation();
 
@@ -50,7 +58,9 @@ function DefaultErrorHandler() {
 function buildRegularRoute(module: () => Promise<Module>, key: string) {
   const Element = lazy(module);
   const ErrorElement = lazy(() =>
-    module().then((mod) => ({ default: mod.ErrorElement || DefaultErrorHandler })),
+    module().then((mod) => ({
+      default: mod.ErrorElement || DefaultErrorHandler,
+    })),
   );
   let index = {};
 
@@ -119,6 +129,7 @@ export function createAppRouter() {
           children={
             <>
               <OvhContainerRoutingSync />
+              <HidePreloader />
               <Outlet />
             </>
           }
