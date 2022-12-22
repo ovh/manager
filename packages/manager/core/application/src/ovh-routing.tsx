@@ -8,6 +8,7 @@ import {
   ActionFunction,
   LoaderFunctionArgs,
   ActionFunctionArgs,
+  useRouteError,
 } from 'react-router-dom';
 import {
   generateRegularRoutes,
@@ -38,10 +39,18 @@ function OvhContainerRoutingSync(): JSX.Element {
   return undefined;
 }
 
+function DefaultErrorHandler() {
+  const error = useRouteError();
+  if (import.meta.env.DEV) {
+    throw error;
+  }
+  return null;
+}
+
 function buildRegularRoute(module: () => Promise<Module>, key: string) {
   const Element = lazy(module);
   const ErrorElement = lazy(() =>
-    module().then((mod) => ({ default: mod.ErrorElement || null })),
+    module().then((mod) => ({ default: mod.ErrorElement || DefaultErrorHandler })),
   );
   let index = {};
 
