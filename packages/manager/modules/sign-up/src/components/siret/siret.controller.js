@@ -74,6 +74,9 @@ export default class SiretCtrl {
     this.isFirstSearch = true;
     this.displayManualForm = false;
     this.isValid = false;
+    this.search = '';
+    this.model.companyNationalIdentificationNumber = null;
+    this.model.organisation = null;
   }
 
   trackClick(hit) {
