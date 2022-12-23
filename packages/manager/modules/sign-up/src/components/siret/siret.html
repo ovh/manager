@@ -44,6 +44,7 @@
 <!-- result of search -->
 <form
     novalidate
+    name="siretForm"
     class="mt-2 mb-2"
     data-ng-if="!$ctrl.searching && !$ctrl.isFirstSearch"
 >
@@ -125,10 +126,11 @@
         >
             <input
                 class="oui-input"
-                name="vatField"
+                name="vat"
                 data-ng-model="$ctrl.model.vat"
                 data-ng-required="$ctrl.rules.vat.mandatory"
                 data-ng-pattern="$ctrl.rules.vat.regularExpression"
+                data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.vat)"
                 type="text"
             />
         </oui-field>
@@ -153,11 +155,12 @@
             >
                 <input
                     class="oui-input"
-                    name="companyNameField"
+                    name="companyName"
                     placeholder="{{ 'siret_manual_company_name' | translate }}"
                     type="text"
                     data-ng-model="$ctrl.model.organisation"
                     data-ng-required="$ctrl.rules.organisation.mandatory"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.companyName)"
                     required
                 />
             </oui-field>
@@ -168,9 +171,10 @@
             >
                 <oui-select
                     data-items="$ctrl.legalFormList"
-                    data-name="legalFormField"
+                    data-name="corporationType"
                     data-model="$ctrl.model.corporationType"
                     data-ng-required="$ctrl.rules.corporationType.mandatory"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.corporationType)"
                     data-required
                 >
                 </oui-select>
@@ -184,11 +188,12 @@
             >
                 <input
                     class="oui-input"
-                    name="siretField"
+                    name="siret"
                     data-ng-model="$ctrl.model.companyNationalIdentificationNumber"
                     data-ng-required="$ctrl.rules.companyNationalIdentificationNumber.mandatory"
                     data-ng-pattern="$ctrl.rules.companyNationalIdentificationNumber.regularExpression"
                     type="text"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.siret)"
                 />
             </oui-field>
 
@@ -199,11 +204,12 @@
             >
                 <input
                     class="oui-input"
-                    name="vatField"
+                    name="vat"
                     data-ng-model="$ctrl.model.vat"
                     data-ng-required="$ctrl.rules.vat.mandatory"
                     data-ng-pattern="$ctrl.rules.vat.regularExpression"
                     type="text"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.vat)"
                 />
             </oui-field>
 
