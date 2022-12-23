@@ -1,6 +1,6 @@
 import ShellClient from '../../client/shell-client';
 
-type LoggerFnType = 'log' | 'info' | 'warn' | 'error';
+type LoggerFnType = 'log' | 'info' | 'warn' | 'error' | 'debug';
 
 const LOCAL_STORAGE_KEY = 'MANAGER_SHELL_DEBUG';
 
@@ -26,6 +26,7 @@ function logger() {
     info: consoleLogger('info'),
     warn: consoleLogger('warn'),
     error: consoleLogger('error'),
+    debug: consoleLogger('debug'),
   };
 }
 
@@ -53,6 +54,12 @@ export function clientLogger(shellClient: ShellClient) {
       shellClient.invokePluginMethod({
         plugin: 'logger',
         method: 'error',
+        args,
+      }),
+    debug: (...args: unknown[]) =>
+      shellClient.invokePluginMethod({
+        plugin: 'logger',
+        method: 'debug',
         args,
       }),
   };
