@@ -143,9 +143,15 @@
             icon-left="{{ $ctrl.mode === 'modification' ? 'oui-icon-search' : 'oui-icon-arrow-left' }}"
             data-on-click="$ctrl.goToSearchMode()"
         >
-            <span data-translate="{{ $ctrl.mode === 'modification' ? 'siret_update_search_assistant' : 'siret_search_assistant' }}"></span>
+            <span
+                data-translate="{{ $ctrl.mode === 'modification' ? 'siret_update_search_assistant' : 'siret_search_assistant' }}"
+            ></span>
         </oui-button>
-        <p data-ng-if="$ctrl.mode !== 'modification'" class="mt-2" data-translate="siret_manual_title"></p>
+        <p
+            data-ng-if="$ctrl.mode !== 'modification'"
+            class="mt-2"
+            data-translate="siret_manual_title"
+        ></p>
 
         <div class="row mt-2">
             <oui-field
@@ -216,6 +222,7 @@
                 <oui-calendar
                     data-name="registrationDateField"
                     data-alt-format="{{ $ctrl.siretService.dateFormat() }}"
+                    placeholder="{{ 'siret_manual_registration_date_placeholder' | translate }}"
                     data-model="$ctrl.noSaveModel"
                 >
                     <!-- model is madatory for oui-calendar but not use for now -->
