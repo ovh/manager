@@ -222,6 +222,14 @@ export default class UpscaleController {
     return `vps-${rangeName}-${cores}-${memory}-${storage}`;
   }
 
+  getPlanFromSelectedRangeAndConfiguration(configuration, rangeName) {
+    const planCode = UpscaleController.getPlanCodeFromSelectedRangeAndConfiguration(
+      configuration,
+      rangeName,
+    );
+    return this.upscaleOptions.find((option) => option.planCode === planCode);
+  }
+
   static groupRanges(ranges, currentPlanCode) {
     let groupedRanges = ranges
       .filter(({ planCode }) =>
@@ -394,8 +402,13 @@ export default class UpscaleController {
 
   fetchUpscaleInformation() {
     this.loading.getUpscaleInformation = true;
-
-    return this.getUpscaleInformation(this.range)
+    const plan = this.isEliteUpgrade
+      ? this.getPlanFromSelectedRangeAndConfiguration(
+          this.rangeConfiguration,
+          this.range.formattedName.toLowerCase(),
+        )
+      : this.range;
+    return this.getUpscaleInformation(plan)
       .then(({ order }) => {
         this.order = order;
         this.order.prices.withoutTax.unit = Price.UNITS.CENTS;
@@ -474,8 +487,13 @@ export default class UpscaleController {
     });
 
     this.loading.performUpscale = true;
-
-    return this.performUpscale(this.range)
+    const plan = this.isEliteUpgrade
+      ? this.getPlanFromSelectedRangeAndConfiguration(
+          this.rangeConfiguration,
+          this.range.formattedName.toLowerCase(),
+        )
+      : this.range;
+    return this.performUpscale(plan)
       .then((upscaleOrder) => {
         const baseKey = this.isEliteUpgrade
           ? 'vps_upscale_elite_upgrade_success'
