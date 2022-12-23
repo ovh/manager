@@ -1,3 +1,5 @@
+import startCase from 'lodash/startCase';
+
 import {
   LEGAL_FORM,
   PREFIX_TRANSLATION_LEGAL_FORM,
@@ -26,8 +28,10 @@ export default class SiretCtrl {
     this.trackingPrefix = TRACKING_PREFIX[this.trackingMode];
   }
 
-  submitSearch() {
-    this.trackClick('search');
+  submitSearch(needTracking = true) {
+    if (needTracking) {
+      this.trackClick('search');
+    }
     this.isFirstSearch = false;
     if (!this.searching) {
       this.searching = true;
@@ -38,7 +42,15 @@ export default class SiretCtrl {
         })
         .then((suggest) => {
           this.searching = false;
-          this.trackPage(suggest.entryList?.length > 0 ? 'list' : 'no-result');
+          if (needTracking) {
+            if (suggest.error) {
+              this.trackPage('error');
+            } else {
+              this.trackPage(
+                suggest.entryList?.length > 0 ? 'list' : 'no-result',
+              );
+            }
+          }
           this.suggest = suggest;
           // To select the suggest if there is only one suggest.
           if (suggest.entryList?.length === 1) {
@@ -56,7 +68,7 @@ export default class SiretCtrl {
         this.suggest.type === 'name'
           ? suggestSelected.primaryCNIN
           : suggestSelected.secondaryCNIN;
-      return this.submitSearch();
+      return this.submitSearch(false);
     }
     this.model.companyNationalIdentificationNumber =
       suggestSelected.secondaryCNIN;
@@ -71,12 +83,19 @@ export default class SiretCtrl {
   }
 
   goToSearchMode() {
+    this.trackClick('search-assistant');
     this.isFirstSearch = true;
     this.displayManualForm = false;
     this.isValid = false;
     this.search = '';
     this.model.companyNationalIdentificationNumber = null;
     this.model.organisation = null;
+  }
+
+  onFieldBlur(field) {
+    if (field?.$invalid) {
+      this.onFieldError(startCase(field.$name));
+    }
   }
 
   trackClick(hit) {
