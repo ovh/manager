@@ -7,7 +7,20 @@ export default /* @ngInject */ ($stateProvider) => {
     controller: 'EmailProMXPlanMailingListsSubscribersCtrl',
     controllerAs: 'ctrlSubscribers',
     params: {
-      mailingList: {},
+      mailingList: null,
+    },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('mailingList')
+        .then((mailingList) => {
+          return !mailingList
+            ? { state: 'mxplan.dashboard.mailing-list.dashboard' }
+            : false;
+        }),
+    resolve: {
+      mailingList: /* @ngInject */ ($transition$) =>
+        $transition$.params().mailingList,
     },
   });
 };

@@ -29,11 +29,15 @@ export default class MailingListsCreateSubscriberCtrl {
     this.loading = true;
     const subscribersToAdd = uniq(this.selection);
 
-    return this.MailingLists.addSubscribers(this.$stateParams.productId, {
-      mailingList: this.mailingList.name,
-      users: subscribersToAdd,
-      type: 'subscriber',
-    })
+    return this.MailingLists.addSubscribers(
+      this.$stateParams.productId,
+      {
+        mailingList: this.mailingList.name,
+        users: subscribersToAdd,
+        type: 'subscriber',
+      },
+      75,
+    )
       .then((tasks) => {
         const task = tasks.pop();
 

@@ -37,6 +37,7 @@ export default class EmailProMXPlanMailingListsCreateSubscriberCtrl {
         users: subscribersToAdd,
         type: 'subscriber',
       },
+      75,
     )
       .then((tasks) => {
         const task = tasks.pop();

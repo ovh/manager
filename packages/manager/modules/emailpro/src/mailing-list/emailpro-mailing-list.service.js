@@ -185,6 +185,7 @@ export default class EmailProMXPlanMailingLists {
         return this.addSubscribers(
           serviceName,
           assign(opts, { users }),
+          limit,
         ).then((d) => [data].concat(d));
       }
 
