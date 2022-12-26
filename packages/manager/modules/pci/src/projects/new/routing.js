@@ -67,8 +67,8 @@ export default /* @ngInject */ ($stateProvider) => {
             const projectId = get(transition.params('from'), 'projectId');
 
             redirectState = projectId
-              ? 'pci.projects.project.error'
-              : 'pci.error';
+              ? 'pci.projects.project.quota-exceed-error'
+              : 'pci.projects.quota-exceed-error';
             redirectParams = {
               message: $translate.instant(
                 'pci_project_new_error_ask_increase_projects_quota',
@@ -80,6 +80,7 @@ export default /* @ngInject */ ($stateProvider) => {
                 'pci_project_new_error_contact_support',
               ),
               submitLink: newSupportTicketLink,
+              cancelLabel: $translate.instant('pci_project_new_error_cancel'),
             };
             trackErrorMessage =
               'pci_project_new_error_ask_increase_projects_quota';
