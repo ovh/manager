@@ -1,13 +1,14 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.error', {
-    url: '/error',
+  $stateProvider.state('pci.projects.project.quota-exceed-error', {
+    url: '/quota-exceed-error',
     views: {
       modal: {
-        component: 'pciProjectErrorModal',
+        component: 'pciProjectQuotaExceedErrorModal',
       },
     },
     layout: 'modal',
     params: {
+      cancelLabel: null,
       message: null,
       projectId: null,
       submitLabel: null,
@@ -36,6 +37,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
       submitLink: /* @ngInject */ ($transition$) =>
         $transition$.params().submitLink || null,
+
+      cancelLabel: /* @ngInject */ ($transition$) =>
+        $transition$.params().cancelLabel || null,
     },
   });
 };

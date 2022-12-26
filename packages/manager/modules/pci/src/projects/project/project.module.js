@@ -13,7 +13,6 @@ import contacts from './contacts';
 import creating from './creating';
 import dataProcessing from './data-processing';
 import edit from './edit';
-import errorModal from '../new/error-modal';
 import failoverIps from './failover-ips';
 import additionalIps from './additional-ips';
 import inactive from './inactive';
@@ -25,6 +24,7 @@ import ai from './ai';
 import sshKeys from './ssh-keys';
 import privateNetworks from './private-networks';
 import quota from './quota';
+import quotaExceedError from './quota-exceed-error';
 import privateRegistry from './private-registry';
 import sidebar from './sidebar';
 import storages from './storages';
@@ -54,7 +54,6 @@ angular
     creating,
     dataProcessing,
     edit,
-    errorModal,
     failoverIps,
     additionalIps,
     inactive,
@@ -65,6 +64,7 @@ angular
     kubernetes,
     privateNetworks,
     quota,
+    quotaExceedError,
     regions,
     privateRegistry,
     'oui',
