@@ -15,6 +15,7 @@ import newProject from './new';
 import onboarding from './onboarding';
 import project from './project';
 import remove from './remove';
+import quotaExceedError from './quota-exceed-error';
 
 import component from './projects.component';
 import routing from './projects.routing';
@@ -36,6 +37,7 @@ angular
     onboarding,
     project,
     remove,
+    quotaExceedError,
   ])
   .config(routing)
   .component('pciProjects', component)
