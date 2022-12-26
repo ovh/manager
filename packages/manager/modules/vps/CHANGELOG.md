@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.29.0...@ovh-ux/manager-vps@2.29.1) (2022-12-26)
+
+
+### Bug Fixes
+
+* **vps:** elite upgrade vps range ([a57ac1f](https://github.com/ovh/manager/commit/a57ac1fefbd8cbca78e0b783760f6a8488e8a240))
+
+
+
+
+
 # [2.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.28.1...@ovh-ux/manager-vps@2.29.0) (2022-12-19)
 
 

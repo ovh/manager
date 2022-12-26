@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.2.0...@ovh-ux/manager-email-domain@1.2.1) (2022-12-26)
+
+
+### Bug Fixes
+
+* **web:** mailing list microservice overload ([4be904e](https://github.com/ovh/manager/commit/4be904e482141078f939c8085ca7301a5b8f234f))
+
+
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.1.2...@ovh-ux/manager-email-domain@1.2.0) (2022-09-29)
 
 
@@ -130,6 +146,3 @@
 ### BREAKING CHANGES
 
 * **email-domain:** move email domain section to email-domain module
-
-
-
