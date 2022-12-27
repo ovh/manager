@@ -40,6 +40,13 @@ export default class PciBlockStorageDetailsAddUserController {
     });
   }
 
+  isFormValid() {
+    return (
+      !this.isLoading &&
+      (this.addUserStep === 0 ? this.selectedUser : this.selectedRole)
+    );
+  }
+
   addUserStorage() {
     if (this.addUserStep < 1) {
       this.addUserStep += 1;
