@@ -204,7 +204,7 @@ export default class PciStoragesColdArchiveService {
       .then(({ data }) => data);
   }
 
-  deleteArchiveContainer(serviceName, regionName, archiveName) {
+  emptyArchiveContainer(serviceName, regionName, archiveName) {
     return this.$http
       .post(
         `/cloud/project/${serviceName}/region/${regionName}/coldArchive/${archiveName}/destroy`,
