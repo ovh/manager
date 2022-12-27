@@ -33,26 +33,6 @@
     >
     </oui-datagrid-column>
     <oui-datagrid-column
-        data-title=":: 'dedicatedCloud_USER_AD_ip' | translate"
-        data-property="ip"
-        data-filterable
-    >
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        data-title=":: 'dedicatedCloud_USER_AD_ldap_hostName' | translate"
-        data-property="ldapHostname"
-        data-sortable
-        data-filterable
-    >
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        data-title=":: 'dedicatedCloud_USER_AD_ldap_port' | translate"
-        data-property="ldapTcpPort"
-        data-sortable
-        data-filterable
-    >
-    </oui-datagrid-column>
-    <oui-datagrid-column
         data-title=":: 'dedicatedCloud_USER_AD_domain' | translate"
         data-property="domainName"
         data-sortable
@@ -67,9 +47,44 @@
     >
     </oui-datagrid-column>
     <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_AD_ip' | translate"
+        data-property="ip"
+        data-sortable
+        data-filterable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_AD_ldap_hostName' | translate"
+        data-property="ldapHostname"
+        data-sortable
+        data-filterable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_AD_ldap_port' | translate"
+        data-property="ldapTcpPort"
+        data-filterable
+        data-hidden
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'dedicatedCloud_USER_AD_bindUser' | translate"
         data-property="username"
         data-filterable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_AD_baseDn' | translate"
+        data-property="baseDnForUsers"
+        data-filterable
+        data-hidden
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_AD_sslThumbprint' | translate"
+        data-property="sslThumbprint"
+        data-filterable
+        data-hidden
     >
     </oui-datagrid-column>
     <oui-datagrid-column
@@ -86,7 +101,7 @@
     </oui-datagrid-column>
     <oui-action-menu
         data-compact
-        data-ng-if="$row.state === 'delivered'"
+        data-ng-if="$row.state === 'delivered' || $row.state === 'error'"
         data-placement="end"
     >
         <oui-action-menu-item data-on-click="$ctrl.goToEditFederation($row)">
