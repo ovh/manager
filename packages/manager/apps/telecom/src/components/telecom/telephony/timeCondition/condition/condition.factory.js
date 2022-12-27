@@ -123,7 +123,11 @@ export default /* @ngInject */ (voipTimeCondition) => {
     const timePath = time ? `time${upperFirst(time)}` : 'timeFrom';
     const splittedTime = get(self, timePath).split(':');
     return moment()
-      .day(VOIP_TIMECONDITION_ORDERED_DAYS.indexOf(self.weekDay) + 1)
+      .day(
+        moment().day() === 0
+          ? VOIP_TIMECONDITION_ORDERED_DAYS.indexOf(self.weekDay) - 6
+          : VOIP_TIMECONDITION_ORDERED_DAYS.indexOf(self.weekDay) + 1,
+      )
       .hour(splittedTime[0])
       .minute(splittedTime[1])
       .second(splittedTime[2]);
