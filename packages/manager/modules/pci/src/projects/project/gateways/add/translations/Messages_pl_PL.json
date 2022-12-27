@@ -2,7 +2,7 @@
   "pci_projects_project_public_gateways_add_title": "Utwórz instancję Gateway",
   "pci_projects_project_public_gateways_add_description1": "Utwórz nową instancję Gateway, aby zapewnić bezpieczny dostęp do sieci zewnętrznych.",
   "pci_projects_project_public_gateways_add_description2": "Jest to najlepszy sposób na uzyskiwanie dostępu do zasobów internetowych z prywatnych instancji (SNAT).",
-  "pci_projects_project_public_gateways_add_description3": "Możesz również korzystać z tej usługi przy użyciu innych funkcji sieciowych, takich jak Load Balancer dla Public Cloud lub Floating IP.",
+  "pci_projects_project_public_gateways_add_description3": "Możesz go również używać z innymi funkcjami sieciowymi, takimi jak OVHcloud Load Balancer dla Public Cloud lub Floating IP.",
   "pci_projects_project_public_gateways_add_learn_more": "Dowiedz się więcej",
   "pci_projects_project_public_gateways_add_size_sub_title": "Wybierz rozmiar",
   "pci_projects_project_public_gateways_add_size_info": "Wybierz rozmiar Gateway. * Ceny nie zawierają podatku VAT.",

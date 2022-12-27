@@ -63,7 +63,7 @@
   "pci_projects_project_instances_unshelve_label": "Przywróć",
   "pci_projects_project_instances_name_id": "ID",
   "pci_projects_project_instances_name_id_label": "Nazwa/ID",
-  "pci_projects_project_instances_assign_floating_ip_label": "Przypisz adres Floating IP",
+  "pci_projects_project_instances_assign_floating_ip_label": "Przypisz Floating IP",
   "pci_projects_project_instances_private_ip": "Prywatne adresy IP",
   "pci_projects_project_instances_no_data": "Brak dostępnych danych."
 }

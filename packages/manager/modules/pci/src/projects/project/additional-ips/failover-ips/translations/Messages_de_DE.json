@@ -11,5 +11,5 @@
   "pci_additional_ips_actions": "Eingriffe",
   "pci_additional_ips_order": "Eine neue IP hinzufügen",
   "pci_additional_ips_manage_network_security": "Verwaltung der Netzwerksicherheit",
-  "pci_additional_ips_manage_ip_failover_service": "Den Service Additional IP verwalten"
+  "pci_additional_ips_manage_ip_failover_service": "Den Dienst Additional IP verwalten"
 }
