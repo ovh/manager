@@ -1,6 +1,8 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 
+import { RENEW_URL, DOMAIN_SERVICE_STATUS } from './domain.constant';
+
 angular.module('App').controller(
   'DomainCtrl',
   class DomainCtrl {
@@ -25,6 +27,7 @@ angular.module('App').controller(
       WucUser,
       WucAllDom,
       zoneCapabilities,
+      coreConfig,
     ) {
       this.$q = $q;
       this.$rootScope = $rootScope;
@@ -45,6 +48,7 @@ angular.module('App').controller(
       this.WucUser = WucUser;
       this.WucAllDom = WucAllDom;
       this.zoneCapabilities = zoneCapabilities;
+      this.coreConfig = coreConfig;
     }
 
     $onInit() {
@@ -85,7 +89,6 @@ angular.module('App').controller(
           }, 300);
         }
       };
-
       this.$scope.$on('domain.dashboard.refresh', () =>
         this.reloadDomain(true),
       );
@@ -99,15 +102,22 @@ angular.module('App').controller(
         .all({
           user: this.WucUser.getUser(),
           domain: this.Domain.getServiceInfo(this.$stateParams.productId),
+          domainService: this.Domain.getDomainsService(
+            this.$stateParams.productId,
+          ),
           allDom: this.isAllDom
             ? this.WucAllDom.getServiceInfos(this.$stateParams.allDom)
             : null,
         })
-        .then(({ user, domain, allDom }) => {
+        .then(({ user, domain, allDom, domainService }) => {
           this.isAdminOrBilling =
             domain.contactAdmin === user.nichandle ||
             domain.contactBilling === user.nichandle;
-          this.domainInfos = domain;
+          this.domainInfos = { ...domain, ...domainService };
+          this.domainState = {
+            isDomainServiceStateRestorable: this.isDomainServiceStateRestorable(),
+            isDomainServiceStateExpired: this.isDomainServiceStateExpired(),
+          };
 
           if (this.isAllDom) {
             this.allDom = this.$stateParams.allDom;
@@ -137,11 +147,25 @@ angular.module('App').controller(
       );
     }
 
+    getRenewUrl() {
+      this.user = this.coreConfig.getUser();
+      return `${RENEW_URL[this.user.ovhSubsidiary] || RENEW_URL.DEFAULT}${
+        this.domainInfos.domain
+      }`;
+    }
+
+    isDomainServiceStateRestorable() {
+      return this.domainInfos.state === DOMAIN_SERVICE_STATUS.RESTORABLE;
+    }
+
+    isDomainServiceStateExpired() {
+      return this.domainInfos.state === DOMAIN_SERVICE_STATUS.EXPIRED;
+    }
+
     loadDomain() {
       return this.Domain.getSelected(this.$stateParams.productId, true)
         .then((domain) => {
           this.domain = domain;
-
           // translation key like: "domain_configuration_dnssec_" +
           // domain.dnssecStatus > DNSSEC is not activated.
           if (!domain.dnssecStatus) {

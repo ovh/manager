@@ -135,6 +135,10 @@ angular.module('services').service(
       });
     }
 
+    getDomainsService(serviceName) {
+      return this.$http.get(`/domain/${serviceName}`).then(({ data }) => data);
+    }
+
     /**
      * Get domain service infos
      * @param {string} serviceName

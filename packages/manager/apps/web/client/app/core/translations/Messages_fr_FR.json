@@ -123,7 +123,7 @@
   "common_ipv6": "IPv6",
   "common_bitFormat": "bits",
   "common_service_expired_1": "Ce service {{t0}} est suspendu.",
-  "common_service_expired_2": "Rendez-vous dans la section Mes services pour le réactiver.",
+  "common_service_expired_2": "Renouveler",
   "common_serviceinfos_error": "Les informations concernant le service {{t0}} n'ont pas été retrouvées.",
   "common_reset_zoom": "Réinitialiser le zoom",
   "common_alerts_message_see_more": "Voir le détail des erreurs",

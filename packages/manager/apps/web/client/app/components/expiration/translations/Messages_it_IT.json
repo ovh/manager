@@ -5,5 +5,6 @@
   "expiration_resiliation_cancel_label": "Annulla disattivazione",
   "expiration_wizard_renew": "Rinnova",
   "expiration_resiliation_date": "Disattivazione prevista il <strong>{{t0}}</strong>",
-  "expiration_expiration_date": "Scade il <strong>{{t0}}</strong>"
+  "expiration_expiration_date": "Scade il <strong>{{t0}}</strong>",
+  "expiration_wizard_restore": "Ripristinare"
 }

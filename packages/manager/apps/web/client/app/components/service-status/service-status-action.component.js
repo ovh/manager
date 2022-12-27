@@ -6,6 +6,7 @@ export default {
     serviceInfos: '<',
     serviceName: '<',
     serviceType: '<',
+    domainState: '<',
   },
   controller,
   template,
