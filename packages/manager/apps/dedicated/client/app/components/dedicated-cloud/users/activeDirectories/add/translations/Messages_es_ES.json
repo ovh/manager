@@ -28,5 +28,7 @@
   "dedicatedCloud_USER_AD_ADD_submit": "Ejecutar",
   "dedicatedCloud_USER_AD_ADD_mendatory_fields": "Los campos con un asterisco (*) son obligatorios.",
   "dedicatedCloud_USER_AD_ADD_error": "No se ha podido añadir el nuevo Active Directory.",
-  "dedicatedCloud_USER_AD_ADD_button_close": "Cerrar"
+  "dedicatedCloud_USER_AD_ADD_button_close": "Cerrar",
+  "dedicatedCloud_USER_AD_ADD_field_label_baseDn": "Base DN para usuarios y grupos",
+  "dedicatedCloud_USER_AD_ADD_field_tooltip_baseDn": "Se trata del DN (Distinguished Name) desde el que se buscarán los usuarios y grupos."
 }

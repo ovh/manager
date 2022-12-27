@@ -15,6 +15,6 @@
   "dedicatedCloud_task_progress_state_toCancel": "Abzubrechen",
   "dedicatedCloud_task_progress_state_toCreate": "Zu erstellen",
   "dedicatedCloud_task_progress_state_unknown": "Unbekannt",
-  "dedicatedCloud_task_progress_state_waitingForChilds": "Ausstehend",
+  "dedicatedCloud_task_progress_state_waitingForChilds": "Warten auf Subtasks",
   "dedicatedCloud_task_progress_state_waitingTodo": "Zu planen"
 }
