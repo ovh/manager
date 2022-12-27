@@ -7,6 +7,7 @@ export default {
     hideRenewAction: '<',
     serviceType: '@',
     serviceName: '<',
+    domainState: '<',
   },
   controller: 'WucServiceExpirationDateComponentCtrl',
 };
