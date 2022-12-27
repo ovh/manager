@@ -26,7 +26,6 @@ export default {
     goToCancelResiliation: '<',
     goToResiliation: '<',
     isCommitmentAvailable: '<',
-
     hasBackupStorage: '<',
     canScheduleMigration: '<',
     isMigrating: '<',
@@ -51,6 +50,7 @@ export default {
     user: '<',
     stein: '<',
     isVpsMaintenance: '<',
+    trackPage: '<',
   },
   controller,
   name: 'ovhManagerVpsDashboard',
