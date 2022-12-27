@@ -63,7 +63,7 @@
   "pci_projects_project_instances_unshelve_label": "Reativar",
   "pci_projects_project_instances_name_id": "ID",
   "pci_projects_project_instances_name_id_label": "Nome/ID",
-  "pci_projects_project_instances_assign_floating_ip_label": "Atribuir um IP flutuante",
+  "pci_projects_project_instances_assign_floating_ip_label": "Atribuir um Floating IP",
   "pci_projects_project_instances_private_ip": "IP privados",
   "pci_projects_project_instances_no_data": "Nenhum dado disponível."
 }
