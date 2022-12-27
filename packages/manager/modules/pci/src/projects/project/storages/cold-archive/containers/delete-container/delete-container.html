@@ -2,14 +2,28 @@
     data-heading="{{ $ctrl.getHeadingContent() | translate }}"
     data-primary-action="$ctrl.deleteContainer()"
     data-primary-label="{{:: 'pci_projects_project_storages_containers_container_cold_archive_delete_submit_label' | translate }}"
-    data-primary-disabled="$ctrl.isLoading"
+    data-primary-disabled="$ctrl.isLoading || !$ctrl.terminateConfirmation || $ctrl.container.status === $ctrl.COLD_ARCHIVE_CONTAINER_STATUS.NONE"
     data-secondary-action="$ctrl.cancel()"
     data-on-dismiss="$ctrl.cancel()"
     data-secondary-label="{{:: 'pci_projects_project_storages_containers_container_cold_archive_delete_cancel_label' | translate }}"
     data-loading="$ctrl.isLoading"
 >
-    <span
-        data-translate="pci_projects_project_storages_containers_container_cold_archive_delete_description"
-        data-translate-values="{ containerName: $ctrl.container.name }"
-    ></span>
+    <oui-message data-type="warning"
+        ><span
+            data-translate="pci_projects_project_storages_containers_container_cold_archive_delete_archive_status_archived_restored_warning"
+            data-translate-values="{ containerName: $ctrl.container.name, objetsCount: $ctrl.container.objectsCount }"
+        ></span>
+    </oui-message>
+    <oui-field
+        data-label="{{:: 'pci_projects_project_storages_containers_container_cold_archive_delete_terminate_input_label' | translate }}"
+    >
+        <input
+            type="text"
+            class="oui-input"
+            name="archiveDeleteCheck"
+            data-ng-model="$ctrl.terminateConfirmation"
+            data-ng-pattern="$ctrl.TERMINATE_INPUT_PATTERN"
+            required
+        />
+    </oui-field>
 </oui-modal>
