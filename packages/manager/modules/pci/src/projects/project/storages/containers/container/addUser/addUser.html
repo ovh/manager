@@ -81,7 +81,7 @@
             data-type="submit"
             data-size="l"
             data-on-click="$ctrl.addUserStorage()"
-            data-disabled="$ctrl.isLoading || !$ctrl.selectedUser"
+            data-disabled="!$ctrl.isFormValid()"
             ><span
                 data-translate="{{
                     'pci_projects_project_storages_containers_container_addUser_' + ($ctrl.addUserStep === 0 ? 'next' : 'submit') + '_label'
