@@ -28,5 +28,7 @@
   "dedicatedCloud_USER_AD_ADD_submit": "Ausführen",
   "dedicatedCloud_USER_AD_ADD_mendatory_fields": "Felder mit Sternchen (*) sind Pflichtfelder.",
   "dedicatedCloud_USER_AD_ADD_error": "Das Hinzufügen der neuen Active Directory war nicht möglich.",
-  "dedicatedCloud_USER_AD_ADD_button_close": "Schließen"
+  "dedicatedCloud_USER_AD_ADD_button_close": "Schließen",
+  "dedicatedCloud_USER_AD_ADD_field_label_baseDn": "Basis DN für Nutzer und Gruppen",
+  "dedicatedCloud_USER_AD_ADD_field_tooltip_baseDn": "Dies ist der DN (Distinguished Name), unter dem die Nutzer und Gruppen gesucht werden."
 }
