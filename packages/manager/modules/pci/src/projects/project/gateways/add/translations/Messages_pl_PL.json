@@ -36,5 +36,8 @@
   "pci_projects_project_public_gateways_add_modal_add_private_network_error": "Wystąpił błąd podczas tworzenia prywatnej sieci: {{message}}",
   "pci_projects_project_public_gateways_add_success": "Nowy Gateway został utworzony.",
   "pci_projects_project_public_gateways_add_error": "Wystąpił błąd podczas tworzenia Gateway: {{message}}",
-  "pci_projects_project_public_gateways_add_creating_wait_message": "Trwa tworzenie Gateway. Konfiguracja wszystkich komponentów może zająć kilka minut. Prosimy nie opuszczać ani nie odświeżać tej strony, ponieważ może to zaburzyć proces tworzenia instancji."
+  "pci_projects_project_public_gateways_add_creating_wait_message": "Trwa tworzenie Gateway. Konfiguracja wszystkich komponentów może zająć kilka minut. Prosimy nie opuszczać ani nie odświeżać tej strony, ponieważ może to zaburzyć proces tworzenia instancji.",
+  "pci_projects_project_public_gateways_add_region_activate_line1": "Ten region nie został jeszcze włączony. Możesz go włączyć w zakładce ",
+  "pci_projects_project_public_gateways_add_region_activate_line2": "Limit i lokalizacja ",
+  "pci_projects_project_public_gateways_add_region_activate_line3": "a następnie powrócić do tworzenia Gateway."
 }
