@@ -73,26 +73,26 @@ export const GUIDES = [
     },
   },
   {
-    id: 'first-step',
+    id: 'getting-started-with-cold-archive',
     links: {
       DEFAULT:
-        'https://docs.ovh.com/en/storage/object-storage/cold-archive/getting-started',
+        'https://docs.ovh.com/en/storage/object-storage/cold-archive/getting-started-with-cold-archive/',
       DE:
-        'https://docs.ovh.com/de/storage/object-storage/cold-archive/getting-started',
+        'https://docs.ovh.com/de/storage/object-storage/cold-archive/getting-started-with-cold-archive/',
       ES:
-        'https://docs.ovh.com/es/storage/object-storage/cold-archive/getting-started',
+        'https://docs.ovh.com/es/storage/object-storage/cold-archive/getting-started-with-cold-archive/',
       FR:
-        'https://docs.ovh.com/fr/storage/object-storage/cold-archive/getting-started',
+        'https://docs.ovh.com/fr/storage/object-storage/cold-archive/getting-started-with-cold-archive/',
       CA:
-        'https://docs.ovh.com/ca/storage/object-storage/cold-archive/getting-started',
+        'https://docs.ovh.com/ca/storage/object-storage/cold-archive/getting-started-with-cold-archive/',
       EN:
-        'https://docs.ovh.com/en/storage/object-storage/cold-archive/getting-started',
+        'https://docs.ovh.com/en/storage/object-storage/cold-archive/getting-started-with-cold-archive/',
       IT:
-        'https://docs.ovh.com/it/storage/object-storage/cold-archive/getting-started',
+        'https://docs.ovh.com/it/storage/object-storage/cold-archive/getting-started-with-cold-archive/',
       PL:
-        'https://docs.ovh.com/pl/storage/object-storage/cold-archive/getting-started',
+        'https://docs.ovh.com/pl/storage/object-storage/cold-archive/getting-started-with-cold-archive/',
       PT:
-        'https://docs.ovh.com/pt/storage/object-storage/cold-archive/getting-started',
+        'https://docs.ovh.com/pt/storage/object-storage/cold-archive/getting-started-with-cold-archive/',
     },
   },
   {
