@@ -5,5 +5,6 @@
   "expiration_resiliation_cancel_label": "Anuluj rezygnację",
   "expiration_wizard_renew": "Odnów",
   "expiration_resiliation_date": "Zakończenie umowy <strong>{{t0}}</strong>",
-  "expiration_expiration_date": "Data wygaśnięcia: <strong>{{t0}}</strong>"
+  "expiration_expiration_date": "Data wygaśnięcia: <strong>{{t0}}</strong>",
+  "expiration_wizard_restore": "Przywróć"
 }
