@@ -36,5 +36,8 @@
   "pci_projects_project_public_gateways_add_modal_add_private_network_error": "Bei der Erstellung des privaten Netzwerks ist ein Fehler aufgetreten: {{ message }}",
   "pci_projects_project_public_gateways_add_success": "Ein neuer Gateway wurde erstellt.",
   "pci_projects_project_public_gateways_add_error": "Bei der Erstellung des Gateways ist ein Fehler aufgetreten: {{ message }}",
-  "pci_projects_project_public_gateways_add_creating_wait_message": "Ihr Gateway wird erstellt. Die Konfiguration aller Komponenten kann einige Minuten dauern. Bitte verlassen Sie diese Seite nicht und laden Sie sie nicht neu, um den Erstellungsprozess nicht zu unterbrechen."
+  "pci_projects_project_public_gateways_add_creating_wait_message": "Ihr Gateway wird erstellt. Die Konfiguration aller Komponenten kann einige Minuten dauern. Bitte verlassen Sie diese Seite nicht und laden Sie sie nicht neu, um den Erstellungsprozess nicht zu unterbrechen.",
+  "pci_projects_project_public_gateways_add_region_activate_line1": "Diese Region ist noch nicht aktiviert. Die Aktivierung erfolgt im Reiter ",
+  "pci_projects_project_public_gateways_add_region_activate_line2": "Quota und Standort. ",
+  "pci_projects_project_public_gateways_add_region_activate_line3": "Dann können Sie Ihren Gateway erstellen."
 }
