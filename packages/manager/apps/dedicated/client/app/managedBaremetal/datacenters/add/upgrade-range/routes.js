@@ -15,6 +15,20 @@ export default /* @ngInject */ ($stateProvider) => {
         upgradeCode: /* @ngInject */ ($transition$) => {
           return $transition$.params().upgradeCode;
         },
+        managementFeeServiceId: /* @ngInject */ (
+          $http,
+          dedicatedCloud,
+          productId,
+        ) =>
+          $http
+            .get(`/services/${dedicatedCloud.serviceInfos.serviceId}/options`)
+            .then(({ data }) => {
+              const managementServicename = `${productId}/managementfee`;
+              const managementFeeOption = data.find(
+                (option) => option.resource.name === managementServicename,
+              );
+              return managementFeeOption?.serviceId;
+            }),
         backButtonText: /* @ngInject */ ($translate) =>
           $translate.instant('managed_baremetal_upgrade_range'),
         breadcrumb: /* @ngInject */ ($translate) =>

@@ -27,6 +27,19 @@ export const commonResolves = {
       },
     );
   },
+  addonServiceId: /* @ngInject */ (WebPaas, serviceInfo, addonType) => {
+    if (addonType === ADDON_TYPE.STORAGE) {
+      return WebPaas.getAddonServiceId(
+        serviceInfo.serviceId,
+        ADDON_TYPE.ENVIRONMENT,
+      ).then((stagingServiceId) =>
+        WebPaas.getAddonServiceId(stagingServiceId, ADDON_TYPE.STORAGE).then(
+          (serviceId) => serviceId,
+        ),
+      );
+    }
+    return WebPaas.getAddonServiceId(serviceInfo.serviceId, addonType);
+  },
   getOrderUrl: /* @ngInject */ (coreURLBuilder) => (orderId) =>
     coreURLBuilder.buildURL('dedicated', '#/billing/orders/:orderId', {
       orderId,

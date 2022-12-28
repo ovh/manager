@@ -239,7 +239,7 @@ const pciNode: Node = {
     {
       id: 'pci-ai',
       translation: 'sidebar_pci_ai',
-      features: ['notebooks', 'ai-apps', 'training', 'serving'],
+      features: ['notebooks', 'ai-apps', 'training'],
       forceVisibility: true,
       children: [
         {
@@ -275,17 +275,6 @@ const pciNode: Node = {
           features: ['ai-apps'],
           forceVisibility: true,
           tag: NodeTag.ALPHA,
-        },
-        {
-          id: 'pci-ml-serving',
-          translation: 'sidebar_pci_ml_serving',
-          serviceType: 'CLOUD_PROJECT_AI_SERVING',
-          routing: {
-            application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/serving',
-          },
-          features: ['serving'],
-          forceVisibility: true,
         },
       ],
     },

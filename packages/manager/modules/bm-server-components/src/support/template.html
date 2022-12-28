@@ -15,23 +15,30 @@
     >
         <oui-tile-description data-ng-if="$ctrl.numberOfTickets === 0">
             <span data-ng-bind="$ctrl.numberOfTickets"></span>
+            <div class="mt-1">
+                <a
+                    class="oui-link_icon"
+                    data-ng-if="$ctrl.numberOfTickets > 0"
+                    data-ng-href="{{:: $ctrl.createNewTicketUrl }}"
+                    data-on-click="$ctrl.trackClick('go-to-create-ticket')"
+                >
+                    <span data-ng-bind="$ctrl.numberOfTickets"></span>
+                </a>
+                <a
+                    class="oui-link_icon"
+                    data-ng-href="{{:: $ctrl.createNewTicketUrl }}"
+                    data-on-click="$ctrl.trackClick('go-to-create-ticket')"
+                >
+                    <span data-translate="server_support_create_ticket"></span>
+                    <span
+                        class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                        aria-hidden="true"
+                    ></span>
+                </a>
+            </div>
         </oui-tile-description>
     </oui-tile-definition>
-    <oui-tile-button
-        class="ml-1"
-        data-ng-if="$ctrl.numberOfTickets > 0"
-        data-href="{{:: $ctrl.viewTicketsUrl }}"
-        data-on-click="$ctrl.trackClick('go-to-opened-ticket')"
-    >
-        <span data-ng-bind="$ctrl.numberOfTickets"></span>
-    </oui-tile-button>
-    <oui-tile-button
-        class="ml-1"
-        data-href="{{:: $ctrl.createNewTicketUrl }}"
-        data-on-click="$ctrl.trackClick('go-to-create-ticket')"
-    >
-        <span data-translate="server_support_create_ticket"></span>
-    </oui-tile-button>
+
     <!-- interventions -->
     <div data-ng-if="$ctrl.viewInterventionsUrl">
         <oui-tile-definition term="{{:: 'server_interventions' | translate }}">
@@ -48,14 +55,20 @@
         <oui-tile-definition
             term="{{:: 'server_problem_with_your_product' | translate }}"
         >
+            <oui-tile-description>
+                <a
+                    class="oui-link_icon"
+                    data-ng-href="{{:: $ctrl.travauxUrl }}"
+                    data-on-click="$ctrl.trackClick('go-to-ovhcloud-status')"
+                    target="_blank"
+                >
+                    <span data-translate="server_consult_travaux"></span>
+                    <span
+                        class="oui-icon oui-icon-external-link"
+                        aria-hidden="true"
+                    ></span>
+                </a>
+            </oui-tile-description>
         </oui-tile-definition>
-        <oui-tile-button
-            class="ml-1"
-            data-href="{{:: $ctrl.travauxUrl }}"
-            data-on-click="$ctrl.trackClick('go-to-ovhcloud-status')"
-            external
-        >
-            <span data-translate="server_consult_travaux"></span>
-        </oui-tile-button>
     </div>
 </oui-tile>

@@ -8,26 +8,12 @@ import {
 import { BADGE_BYOIP } from '../components/list/list.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const state = 'app.ip.failover';
-  const params = {
-    serviceType: null,
-    page: null,
-    pageSize: null,
-  };
-
-  $stateProvider.state(state, {
+  $stateProvider.state('app.ip.failover', {
     ...listRouting,
-    url: '/failover',
-    redirectTo: (transition) => {
-      if (transition.from().name === state) {
-        return false;
-      }
-      const { serviceType, page, pageSize } = transition.params();
-      return [serviceType, page, pageSize].some((param) => param !== null)
-        ? { state, params }
-        : false;
+    url: '/failover?unused',
+    params: {
+      unused: { inherit: false, value: '0' },
     },
-    params,
     component: 'ipFailover',
     resolve: {
       ...listRouting.resolve,
@@ -37,6 +23,8 @@ export default /* @ngInject */ ($stateProvider) => {
         filtersPrefix: FAILOVER_TRACKING_PREFIX.FILTERS,
       }),
       serviceType: () => FAILOVER_SERVICE_TYPE,
+      unusedFilter: /* @ngInject */ ($transition$) =>
+        $transition$.params().unused?.toString() === '1',
     },
     atInternet: {
       rename: `${TRACKING_PREFIX}::${FAILOVER_TRACKING_PREFIX.DEFAULT}`,

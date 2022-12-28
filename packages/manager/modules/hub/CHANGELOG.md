@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.6.0...@ovh-ux/manager-hub@3.6.1) (2022-12-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub
+
+
+
+
+
+# [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.5.0...@ovh-ux/manager-hub@3.6.0) (2022-12-19)
+
+
+### Features
+
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+
+
+
+
+
+# [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.4.2...@ovh-ux/manager-hub@3.5.0) (2022-12-12)
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
 ## [3.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.4.1...@ovh-ux/manager-hub@3.4.2) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub

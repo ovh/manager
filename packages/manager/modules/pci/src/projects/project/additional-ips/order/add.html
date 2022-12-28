@@ -81,10 +81,10 @@
                 <div class="row mb-3">
                     <oui-select-picker
                         class="col-md-4 mb-3"
-                        data-ng-repeat="country in $ctrl.failOverIpCountries track by country"
-                        data-name="{{:: country }}"
+                        data-ng-repeat="country in $ctrl.failOverIpCountries track by country.name"
+                        data-name="{{:: country.name }}"
                         data-model="$ctrl.ip.region"
-                        data-label="{{:: 'pci_additional_ips_country_' + country | translate }}"
+                        data-label="{{:: 'pci_additional_ips_country_' + country.name | translate }}"
                         data-values="[country]"
                         data-variant="light"
                         data-required
@@ -115,14 +115,15 @@
         <oui-step-form
             data-ng-if="$ctrl.selectedIpType.name === $ctrl.IP_TYPE_ENUM.FAILOVER"
             data-header="{{:: 'pci_additional_ip_create_step_attach_instance' | translate }}"
+            data-on-focus="$ctrl.filterInstances()"
             data-editable="!$ctrl.creatingFloatingIp"
             data-on-submit="$ctrl.createAdditionalIp()"
-            data-navigation="$ctrl.additionalIpInstances.length > 0"
+            data-navigation="$ctrl.filteredInstances.length > 0"
             data-submit-text="{{:: 'pci_additional_ip_create_action_label' | translate }}"
             data-required
             data-name="additional_ip_create_step_attach_instance"
         >
-            <div data-ng-if="$ctrl.additionalIpInstances.length === 0">
+            <div data-ng-if="$ctrl.filteredInstances.length === 0">
                 <oui-message data-type="error">
                     <p>
                         <span
@@ -139,10 +140,7 @@
                 </oui-message>
             </div>
 
-            <div
-                data-ng-if="$ctrl.additionalIpInstances.length > 0"
-                class="mb-3"
-            >
+            <div data-ng-if="$ctrl.filteredInstances.length > 0" class="mb-3">
                 <oui-message data-type="info">
                     <p
                         data-translate="pci_additional_ip_create_step_attach_instance_info_failover_ip"
@@ -161,7 +159,7 @@
                         name="instance"
                         data-placeholder="{{:: 'pci_additional_ip_create_step_attach_instance_label' | translate }}"
                         data-model="$ctrl.ip.instance"
-                        data-items="$ctrl.additionalIpInstances"
+                        data-items="$ctrl.filteredInstances"
                         data-match="name"
                         data-required
                     >

@@ -1,8 +1,6 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 
-import { ORDER_EXPRESS_BASE_URL } from '../../vps/constants';
-
 export default class VpsWindowsOrderCtrl {
   /* @ngInject */
   constructor(
@@ -14,6 +12,7 @@ export default class VpsWindowsOrderCtrl {
     connectedUser,
     OvhApiOrder,
     stateVps,
+    RedirectionService,
   ) {
     // dependencies injections
     this.$q = $q;
@@ -24,6 +23,7 @@ export default class VpsWindowsOrderCtrl {
     this.connectedUser = connectedUser;
     this.OvhApiOrder = OvhApiOrder;
     this.stateVps = stateVps;
+    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
 
     // other attributes used in view
     this.windowsOption = null;
@@ -47,10 +47,6 @@ export default class VpsWindowsOrderCtrl {
   ============================== */
 
   onWindowsOrderStepperFinish() {
-    let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
-      this.coreConfig.getRegion(),
-      this.connectedUser.ovhSubsidiary,
-    ]);
     const priceOptions = find(this.windowsOption.prices, ({ capacities }) =>
       capacities.includes('renew'),
     );
@@ -62,15 +58,15 @@ export default class VpsWindowsOrderCtrl {
       pricingMode: priceOptions.pricingMode,
       quantity: 1,
     };
-    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
+    this.expressOrderUrl = `${this.expressOrderUrl}?products=${JSURL.stringify([
       expressParams,
     ])}`;
 
-    this.$window.open(expressOrderUrl, '_blank');
+    this.$window.open(this.expressOrderUrl, '_blank', 'noopener');
 
     this.CucCloudMessage.success({
       textHtml: this.$translate.instant('vps_order_windows_order_success', {
-        url: expressOrderUrl,
+        url: this.expressOrderUrl,
       }),
     });
 

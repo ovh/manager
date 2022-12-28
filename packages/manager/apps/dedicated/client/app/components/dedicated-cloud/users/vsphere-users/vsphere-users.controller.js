@@ -58,7 +58,7 @@ export default class DedicatedCloudVsphereUsersCtrl {
       defaultFilterColumn,
     };
 
-    return this.DedicatedCloud.getUsers(this.productId, params).then(
+    return this.DedicatedCloud.getUserDetails(this.productId, params).then(
       ({ data: users, meta }) => {
         const userFormat = users.map((user) => {
           set(user, 'loginUsername', user.login.split('@')[0]);

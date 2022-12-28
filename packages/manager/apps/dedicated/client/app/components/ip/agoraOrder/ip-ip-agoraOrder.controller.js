@@ -36,6 +36,7 @@ export default class AgoraIpOrderCtrl {
     IpOrganisation,
     User,
     atInternet,
+    coreConfig,
   ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
@@ -52,6 +53,7 @@ export default class AgoraIpOrderCtrl {
     this.ADDITIONAL_IP = ADDITIONAL_IP;
     this.BLOCK_ADDITIONAL_IP = BLOCK_ADDITIONAL_IP;
     this.TRACKING_HIT = TRACKING_HIT;
+    this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
   }
 
   $onInit() {
@@ -74,10 +76,14 @@ export default class AgoraIpOrderCtrl {
       .all({
         user: this.User.getUser(),
         services: this.IpAgoraOrder.getServices(),
+        ipFailoverRIPEPrice: this.IpAgoraOrder.getIpFailoverRIPEPrice(
+          this.ovhSubsidiary,
+        ),
       })
       .then((results) => {
         this.user = results.user;
         this.services = results.services;
+        this.ipFailoverRIPEPrice = results.ipFailoverRIPEPrice;
 
         if (this.$state.params.service) {
           this.model.selectedService = find(this.services, {

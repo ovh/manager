@@ -5,7 +5,6 @@ import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 
 import component from './component';
 import routing from './routing';
-import service from './service';
 
 const moduleName = 'ovhManagerVpsDashboardTileConfigurationUpgrade';
 
@@ -17,7 +16,6 @@ angular
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .service('vpsUpgrade', service)
   .component(component.name, component);
 
 export default moduleName;

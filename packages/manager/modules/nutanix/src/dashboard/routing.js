@@ -17,6 +17,17 @@ export default /* @ngInject */ ($stateProvider) => {
         NutanixService.getServiceInfo(serviceName),
       serviceDetails: /* @ngInject */ (NutanixService, serviceInfo) =>
         NutanixService.getServiceDetails(serviceInfo.serviceId),
+      nutanixPlans: /* @ngInject */ (user, NutanixService) =>
+        NutanixService.getNutanixPlans(user.ovhSubsidiary),
+      getTechnicalDetails: /* @ngInject */ (
+        NutanixService,
+        serviceInfo,
+        server,
+      ) =>
+        NutanixService.getClusterHardwareInfo(
+          serviceInfo.serviceId,
+          server.serviceId,
+        ),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
   });

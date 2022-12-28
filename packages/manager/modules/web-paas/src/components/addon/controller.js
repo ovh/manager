@@ -71,7 +71,12 @@ export default class {
           : this.addon.quantity);
     }
 
-    this.WebPaas.getAddonSummary(this.project, this.addon, this.quantity)
+    this.WebPaas.getAddonSummary(
+      this.project,
+      this.addon,
+      this.quantity,
+      this.addonServiceId,
+    )
       .then(({ contracts, prices, cart }) => {
         this.cart = cart;
         this.contracts = contracts;
@@ -105,6 +110,7 @@ export default class {
       this.project.serviceId,
       this.addon,
       this.quantity,
+      this.addonServiceId,
     )
       .then(({ order }) => this.onAddonOrderSuccess(order))
       .catch((error) =>

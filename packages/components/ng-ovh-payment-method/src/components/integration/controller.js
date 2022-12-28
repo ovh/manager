@@ -51,23 +51,25 @@ export default class OvhPaymentMethodIntegrationCtrl {
     const callbackUrlBase = `${location.protocol}//${location.host}${
       location.pathname
     }#${this.$location.path()}?${hashParamsArray.join('&')}`;
-    return {
+    const callbacks = {
       cancel: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
         this.callbackStatusParamUrlName
-      }=cancel`,
+      }=cancel&paymentType=${this.paymentMethodType.type.paymentType}`,
       error: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
         this.callbackStatusParamUrlName
-      }=error`,
+      }=error&paymentType=${this.paymentMethodType.type.paymentType}`,
       failure: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
         this.callbackStatusParamUrlName
-      }=failure`,
+      }=failure&paymentType=${this.paymentMethodType.type.paymentType}`,
       pending: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
         this.callbackStatusParamUrlName
-      }=pending`,
+      }=pending&paymentType=${this.paymentMethodType.type.paymentType}`,
       success: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
         this.callbackStatusParamUrlName
-      }=success`,
+      }=success&paymentType=${this.paymentMethodType.type.paymentType}`,
     };
+
+    return callbacks;
   }
 
   /**

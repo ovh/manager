@@ -16,5 +16,6 @@
   "pci_databases_maintenances_maintenance_apply_error": "Ocorreu um erro aquando da aplicação da manutenção",
   "pci_databases_maintenances_update_time_success": "A hora de manutenção foi modificada com sucesso e será aplicada às próximas manutenções.",
   "pci_databases_maintenances_update_time_error": "Ocorreu um erro aquando da modificação da hora de manutenção",
-  "pci_databases_maintenances_update_time": "Hora de manutenção (UTC)"
+  "pci_databases_maintenances_update_time": "Hora de manutenção (UTC)",
+  "pci_databases_maintenances_maintenance_status_PENDING": "Em espera"
 }

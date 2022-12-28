@@ -1,8 +1,9 @@
 import { bootstrapApplication } from '@ovh-ux/manager-core';
+import { defineApplicationVersion } from '@ovh-ux/request-tagger';
+
+defineApplicationVersion(__VERSION__);
 
 bootstrapApplication('sign-up').then((environment) => {
-  environment.setVersion(__VERSION__);
-
   import(`./config-${environment.getRegion()}`)
     .catch(() => {})
     .then(() => import('./app'))

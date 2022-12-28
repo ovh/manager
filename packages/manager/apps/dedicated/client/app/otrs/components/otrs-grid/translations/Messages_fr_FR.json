@@ -1,0 +1,29 @@
+{
+  "ovhManagerSupport_tickets_grid_column_creationDate_header": "Date de création",
+  "ovhManagerSupport_tickets_grid_column_lastMessageFrom_header": "Dernier intervenant",
+  "ovhManagerSupport_tickets_grid_column_ticketNumber_header": "Numéro de ticket",
+  "ovhManagerSupport_tickets_grid_column_serviceName_header": "Service",
+  "ovhManagerSupport_tickets_grid_column_subject_header": "Sujet",
+  "ovhManagerSupport_tickets_grid_column_state_header": "État",
+  "ovhManagerSupport_tickets_grid_column_updateDate_header": "Date de dernière mise à jour",
+
+  "ovhManagerSupport_tickets_grid_top_createTicket": "Créer une demande d'assistance",
+  "ovhManagerSupport_tickets_grid_top_archived": "Afficher les tickets archivés",
+
+  "ovhManagerSupport_tickets_grid_action_goToTicket": "Voir le détail",
+
+  "ovhManagerSupport_ticket_serviceName_none": "Autre service",
+
+  "ovhManagerSupport_ticket_state_closed": "Clos",
+  "ovhManagerSupport_ticket_state_open": "En cours",
+  "ovhManagerSupport_ticket_state_unknown": "Inconnu",
+
+  "ovhManagerSupport_ticket_type_criticalIntervention": "Intervention critique",
+  "ovhManagerSupport_ticket_type_genericRequest": "Requête générique",
+
+  "ovhManagerSupport_ticket_lastMessageFrom_customer": "Vous",
+  "ovhManagerSupport_ticket_lastMessageFrom_support": "Support OVH",
+
+  "ovhManagerSupport_ticket_message_from_customer": "Vous",
+  "ovhManagerSupport_ticket_message_from_support": "Support OVH"
+}

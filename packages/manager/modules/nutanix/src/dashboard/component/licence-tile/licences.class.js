@@ -2,9 +2,9 @@ import NutanixLicence from './licence.class';
 
 export default class NutanixLicences {
   constructor(features) {
-    this.features = features.map(
-      (feature) => new NutanixLicence(feature.name, feature.value),
-    );
+    this.features = features
+      .filter((feature) => feature.name !== 'volumes')
+      .map((feature) => new NutanixLicence(feature.name, feature.value));
   }
 
   getFeatures() {

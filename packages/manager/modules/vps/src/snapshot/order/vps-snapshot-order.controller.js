@@ -1,8 +1,6 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 
-import { ORDER_EXPRESS_BASE_URL } from '../../vps/constants';
-
 export default class VpsSnapshotOrderCtrl {
   /* @ngInject */
   constructor(
@@ -15,6 +13,7 @@ export default class VpsSnapshotOrderCtrl {
     connectedUser,
     OvhApiOrder,
     stateVps,
+    RedirectionService,
   ) {
     // dependencies injections
     this.$q = $q;
@@ -26,6 +25,7 @@ export default class VpsSnapshotOrderCtrl {
     this.connectedUser = connectedUser;
     this.OvhApiOrder = OvhApiOrder;
     this.stateVps = stateVps;
+    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
 
     // other attributes used in view
     this.snapshotOption = null;
@@ -50,10 +50,7 @@ export default class VpsSnapshotOrderCtrl {
       name: 'vps::detail::snapshot::order::confirm',
       type: 'action',
     });
-    let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
-      this.coreConfig.getRegion(),
-      this.connectedUser.ovhSubsidiary,
-    ]);
+
     const expressParams = {
       productId: 'vps',
       serviceName: this.stateVps.name,
@@ -62,17 +59,18 @@ export default class VpsSnapshotOrderCtrl {
       pricingMode: this.snapshotMonthlyPrice.pricingMode,
       quantity: 1,
     };
-    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
+
+    this.expressOrderUrl = `${this.expressOrderUrl}?products=${JSURL.stringify([
       expressParams,
     ])}`;
 
-    this.$window.open(expressOrderUrl, '_blank');
+    this.$window.open(this.expressOrderUrl, '_blank', 'noopener');
 
     this.CucCloudMessage.success({
       textHtml: this.$translate.instant(
         'vps_configuration_activate_snapshot_success',
         {
-          url: expressOrderUrl,
+          url: this.expressOrderUrl,
         },
       ),
     });

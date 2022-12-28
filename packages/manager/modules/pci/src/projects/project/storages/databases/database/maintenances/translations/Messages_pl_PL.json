@@ -16,5 +16,6 @@
   "pci_databases_maintenances_maintenance_apply_error": "Wystąpił błąd podczas realizacji prac konserwacyjnych",
   "pci_databases_maintenances_update_time_success": "Godzina prac konserwacyjnych została zmodyfikowana i zostanie zastosowana podczas kolejnych prac.",
   "pci_databases_maintenances_update_time_error": "Wystąpił błąd podczas zmiany godziny prac konserwacyjnych",
-  "pci_databases_maintenances_update_time": "Godzina prac konserwacyjnych (UTC)"
+  "pci_databases_maintenances_update_time": "Godzina prac konserwacyjnych (UTC)",
+  "pci_databases_maintenances_maintenance_status_PENDING": "Oczekujące"
 }

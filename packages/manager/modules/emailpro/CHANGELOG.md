@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [3.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.3.0...@ovh-ux/manager-emailpro@3.3.1) (2022-12-26)
+
+
+### Bug Fixes
+
+* **web:** mailing list microservice overload ([4be904e](https://github.com/ovh/manager/commit/4be904e482141078f939c8085ca7301a5b8f234f))
+
+
+
+
+
 # [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.2.1...@ovh-ux/manager-emailpro@3.3.0) (2022-09-29)
 
 
@@ -574,6 +590,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * **emailpro:** import emailpro module ([9305e14](https://github.com/ovh-ux/manager/commit/9305e14))
-
-
-

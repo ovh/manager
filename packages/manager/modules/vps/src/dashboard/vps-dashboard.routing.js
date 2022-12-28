@@ -73,10 +73,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
       availableUpgrades: /* @ngInject */ (
         isVpsNewRange,
-        serviceName,
-        vpsUpgradeTile,
+        serviceInfos,
+        VpsUpgradeService,
       ) =>
-        isVpsNewRange ? vpsUpgradeTile.getAvailableUpgrades(serviceName) : [],
+        isVpsNewRange
+          ? VpsUpgradeService.getAvailableUpgrades(serviceInfos.serviceId)
+          : [],
 
       isCommitmentAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
@@ -97,8 +99,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $http.get(`/vps/${serviceName}/serviceInfos`).then(({ data }) => data),
       shouldReengage: /* @ngInject */ (vps) => vps.shouldReengage,
       user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
-      vpsUpgradeTask: /* @ngInject */ (serviceName, vpsUpgradeTile) =>
-        vpsUpgradeTile.getUpgradeTask(serviceName),
+      vpsUpgradeTask: /* @ngInject */ (serviceName, VpsUpgradeService) =>
+        VpsUpgradeService.getUpgradeTask(serviceName),
 
       vpsMigrationTask: /* @ngInject */ (serviceName, VpsTaskService) =>
         VpsTaskService.getPendingTasks(serviceName, 'migrate').then((tasks) =>

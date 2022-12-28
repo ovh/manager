@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.104.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.103.0...@ovh-ux/manager-pci@5.104.0) (2022-12-22)
+
+
+### Features
+
+* **apps:** sepa direct payment worldline integration ([#8203](https://github.com/ovh/manager/issues/8203)) ([618dfee](https://github.com/ovh/manager/commit/618dfeeb1565d47c1bf0e66873931e6c8932c7bb))
+
+
+
+
+
+# [5.103.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.102.0...@ovh-ux/manager-pci@5.103.0) (2022-12-19)
+
+
+### Features
+
+* **dedicated.ip:** improve ip batch 1 ([#8580](https://github.com/ovh/manager/issues/8580)) ([a508be2](https://github.com/ovh/manager/commit/a508be23eb79df2832199ee3a08608c4ea7a8c81))
+
+
+
+
+
+# [5.102.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.101.2...@ovh-ux/manager-pci@5.102.0) (2022-12-19)
+
+
+### Bug Fixes
+
+* add new condition for pending status ([b318632](https://github.com/ovh/manager/commit/b3186329b6fe7d3014af7e08520710cfed62c9d3))
+* **pci.storages.databases:** add translation for pending status ([a3a25ea](https://github.com/ovh/manager/commit/a3a25ea186b19e1c558bfa734d7c010c985b2702))
+* **pci:** filter the private networks ([#8525](https://github.com/ovh/manager/issues/8525)) ([7d0b196](https://github.com/ovh/manager/commit/7d0b19655cc7d02cc01c392a1fc3c9ad344f8276))
+* **pci:** modify network count in gateway ([4ec1db5](https://github.com/ovh/manager/commit/4ec1db5041af5e7e46dc17a6cc8c54eb185bdf02))
+* **storage.databases:** change price unit for offers ([ef0f40d](https://github.com/ovh/manager/commit/ef0f40d6bc05b9e5bc1164f09c4e0ea03d00266d))
+
+
+### Features
+
+* **pci.storages.databases:** add new translation key ([d657fd6](https://github.com/ovh/manager/commit/d657fd6428642e659f95847d331bf390ddffd34b))
+* **project.serving:** ml-serving eol ([58a6ce0](https://github.com/ovh/manager/commit/58a6ce0e23c69446664b315bc06e73ed1eedea04))
+
+
+
+
+
+## [5.101.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.101.1...@ovh-ux/manager-pci@5.101.2) (2022-12-13)
+
+
+### Bug Fixes
+
+* **pci:** display countries for additional ip creation ([#8417](https://github.com/ovh/manager/issues/8417)) ([fa7324d](https://github.com/ovh/manager/commit/fa7324d463d68c25320c3ea8c20ff8a4cea30eb0))
+
+
+
+
+
+## [5.101.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.101.0...@ovh-ux/manager-pci@5.101.1) (2022-12-05)
+
+
+### Bug Fixes
+
+* revert "feat(*): ip strat batch 1" ([20af1fe](https://github.com/ovh/manager/commit/20af1fe38f4b46d3a75d7f535d8894a00c0f5c4d))
+
+
+
+
+
 # [5.101.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.100.0...@ovh-ux/manager-pci@5.101.0) (2022-12-01)
 
 

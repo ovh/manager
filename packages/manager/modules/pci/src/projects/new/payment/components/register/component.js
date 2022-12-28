@@ -10,5 +10,6 @@ export default {
     model: '<',
     registerablePaymentMethods: '<',
     globalLoading: '<',
+    pciFeatures: '<',
   },
 };

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/request-tagger@0.1.0...@ovh-ux/request-tagger@0.1.1) (2022-12-20)
+
+
+### Bug Fixes
+
+* **request-tagger:** update version definition ([15bbf21](https://github.com/ovh/manager/commit/15bbf217d9df451c81035f2005237e3db483e534))
+
+
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/request-tagger@0.0.0...@ovh-ux/request-tagger@0.1.0) (2022-11-29)
 
 

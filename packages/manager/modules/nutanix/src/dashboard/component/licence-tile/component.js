@@ -7,6 +7,7 @@ export default {
     serviceId: '<',
     licenceName: '<',
     onError: '&?',
+    packType: '<',
   },
   controller,
   template,

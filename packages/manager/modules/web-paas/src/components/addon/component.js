@@ -13,6 +13,7 @@ export default {
     selectedPlan: '<',
     user: '<',
     trackTextPrefix: '<',
+    addonServiceId: '<',
   },
   controller,
   template,

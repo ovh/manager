@@ -1,12 +1,12 @@
 {
-  "nutanix_onboarding_title": "Hosted Private Cloud powered by Nutanix",
-  "nutanix_onboarding_description": "¡Descubra nuestra nueva plataforma escalable de cloud privado todo en uno! Combinamos las licencias de Nutanix Cloud Platform preinstaladas con las infraestructuras 100 % dedicadas y seguras de OVHcloud para ofrecerle un entorno hiperconvergente (HCI) Nutanix listo para usar en solo cuestión de horas.",
+  "nutanix_onboarding_title": "Nutanix on OVHcloud",
+  "nutanix_onboarding_description": "¡Descubra nuestra nueva plataforma escalable de cloud privado todo en uno! Combinamos las licencias de Nutanix Cloud Platform, tanto en forma de pack como en modalidad BYOL (Bring your Own Licence) con portabilidad de sus licencias, con las infraestructuras de OVHcloud 100 % dedicadas y autorizadas por Nutanix para ofrecerle un entorno hiperconvergente (HCI) Nutanix listo para usar en solo unas horas.",
   "nutanix_onboarding_description2": "Esta solución es ideal para migrar al cloud, implementar un plan de recuperación ante desastres (DRP) o gestionar las sobrecargas.",
   "nutanix_onboarding_order": "Contratar",
-  "nutanix_onboarding_guide1_title": "Documentación general sobre Nutanix",
-  "nutanix_onboarding_guide1_description": "Detalles técnicos de la infraestructura Nutanix en OVHcloud",
-  "nutanix_onboarding_guide2_title": "Lista de servicios y licencias incluidos",
-  "nutanix_onboarding_guide2_description": "Presentación de los servicios y licencias incluidos en la solución Hosted Private Cloud powered by Nutanix",
+  "nutanix_onboarding_guide1_title": "Documentación general",
+  "nutanix_onboarding_guide1_description": "Detalles técnicos de la infraestructura de la solución Nutanix on OVHcloud",
+  "nutanix_onboarding_guide2_title": "Solución en pack: lista de servicios y licencias Nutanix incluidos",
+  "nutanix_onboarding_guide2_description": "Presentación de los servicios y licencias incluidos en los packs Nutanix on OVHcloud",
   "nutanix_onboarding_guide3_title": "Funcionamiento de la pasarela OVHgateway (EN)",
   "nutanix_onboarding_guide3_description": "Cómo funciona la pasarela OVHgateway"
 }

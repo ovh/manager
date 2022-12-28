@@ -1,3 +1,41 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [9.10.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.10.0...@ovh-ux/ng-ovh-web-universe-components@9.10.1) (2022-12-19)
+
+
+### Bug Fixes
+
+* **web.exchange:** get data using iceberg for export csv ([#8585](https://github.com/ovh/manager/issues/8585)) ([76083d4](https://github.com/ovh/manager/commit/76083d4d194190a994016ca3e0787314de66f97d))
+
+
+
+
+
+# [9.10.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.9.0...@ovh-ux/ng-ovh-web-universe-components@9.10.0) (2022-12-19)
+
+
+### Features
+
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+
+
+
+
+
+# [9.9.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.8.0...@ovh-ux/ng-ovh-web-universe-components@9.9.0) (2022-12-12)
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
 # [9.8.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.7.1...@ovh-ux/ng-ovh-web-universe-components@9.8.0) (2022-10-19)
 
 
@@ -652,6 +690,3 @@ Another update:
 ### Bug Fixes
 
 * **deps:** upgrade npm-run-all to v4.1.5 ([8d9849a](https://github.com/ovh-ux/web-universe-components/commit/8d9849a))
-
-
-

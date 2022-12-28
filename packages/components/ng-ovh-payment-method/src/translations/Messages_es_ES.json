@@ -26,5 +26,7 @@
   "ovh_payment_status_paused": "Pausado",
   "ovh_payment_status_failed": "No válido",
   "ovh_payment_status_null": "Información no disponible",
-  "ovh_payment_type_sepa_direct_debit": "Domiciliación bancaria"
+  "ovh_payment_type_sepa_direct_debit": "Domiciliación bancaria",
+  "ovh_payment_status_validating": "Validando...",
+  "ovh_payment_status_rejected": "Denegado"
 }

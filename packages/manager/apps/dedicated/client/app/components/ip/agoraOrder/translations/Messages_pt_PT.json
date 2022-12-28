@@ -4,7 +4,7 @@
   "ip_agora_table_header_country": "Localizado em",
   "ip_agora_table_header_organisation": "Associar uma organização",
   "ip_agora_select_quantity_title": "Escolha a quantidade",
-  "ip_agora_ip_localisation_title": "Localização IP",
+  "ip_agora_ip_localisation_title": "Localização do endereço IP",
   "ipv4_select_placeholder": "Escolher um tamanho",
   "license_dashboard_title": "Encomendar um IP",
   "ipv4Failover_price_label": "1,50€/mês + IVA",
@@ -15,5 +15,6 @@
   "ipv4Block_organization_description3": "Se não associar uma organização, as informações da sua conta OVHcloud (NIC) poderão ser utilizadas",
   "ipv4Block_organization_info_banner": "O nome da organização associada ao seu bloco de endereços IP, bem como as informações de contacto correspondentes, figurarão na base de dados pública Whois",
   "ip_agora_table_submit_text": "Prosseguir a encomenda",
-  "ip_agora_table_cancel_text": "Retroceder"
+  "ip_agora_table_cancel_text": "Retroceder",
+  "ipv4Block_price_per_ip": "por endereço IP"
 }

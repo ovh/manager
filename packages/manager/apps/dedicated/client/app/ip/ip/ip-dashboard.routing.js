@@ -10,9 +10,6 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip.dashboard', {
     ...listRouting,
     url: '',
-    params: {
-      serviceName: '',
-    },
     controller,
     template,
     redirectTo: (transition) =>

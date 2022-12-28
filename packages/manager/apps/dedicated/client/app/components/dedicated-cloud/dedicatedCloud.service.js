@@ -544,7 +544,7 @@ class DedicatedCloudService {
       .then(({ data }) => data);
   }
 
-  getActiveDirectories(serviceName, params) {
+  getActiveDirectories(serviceName, params = {}) {
     const {
       filters,
       pageSize,
@@ -563,7 +563,7 @@ class DedicatedCloudService {
       .offset(Math.ceil(offset / (pageSize || 1)))
       .sort(sort || defaultFilterColumn, sortOrder);
 
-    if (filters.length > 0) {
+    if (filters?.length > 0) {
       request = this.filterIceberg(request, filters);
     }
 
@@ -626,7 +626,7 @@ class DedicatedCloudService {
 
   /* ------- USER -------*/
 
-  getUsers(serviceName, params) {
+  getUserDetails(serviceName, params = {}) {
     const {
       filters,
       pageSize,
@@ -643,7 +643,7 @@ class DedicatedCloudService {
       .offset(Math.ceil(offset / (pageSize || 1)))
       .sort(sort || defaultFilterColumn, sortOrder);
 
-    if (filters.length > 0) {
+    if (filters?.length > 0) {
       request = this.filterIceberg(request, filters);
     }
 
@@ -658,6 +658,18 @@ class DedicatedCloudService {
           pageSize: headers['x-pagination-size'],
         },
       }));
+  }
+
+  getUsers(serviceName, name) {
+    return this.OvhHttp.get('/dedicatedCloud/{serviceName}/user', {
+      rootPath: 'apiv6',
+      urlParams: {
+        serviceName,
+      },
+      params: {
+        name,
+      },
+    });
   }
 
   getUserDetail(serviceName, userId) {
@@ -1486,29 +1498,32 @@ class DedicatedCloudService {
   }
 
   /* ------- Management Fees -------*/
-  getManagementFee(serviceName, planCode, quantity) {
-    return this.OvhHttp.get(
-      `/order/upgrade/privateCloudManagementFee/${serviceName}%2Fmanagementfee/${planCode}`,
-      {
-        rootPath: 'apiv6',
-        params: {
-          quantity,
-        },
-      },
-    );
+  getManagementFeePlan(serviceId, planCode) {
+    return this.$http
+      .get(`/services/${serviceId}/upgrade/${planCode}`)
+      .then(({ data }) => data);
   }
 
-  orderManagementFee(serviceName, planCode, quantity) {
-    return this.OvhHttp.post(
-      `/order/upgrade/privateCloudManagementFee/${serviceName}%2Fmanagementfee/${planCode}`,
-      {
-        rootPath: 'apiv6',
-        data: {
-          quantity,
-          autoPayWithPreferredPaymentMethod: true,
-        },
-      },
-    );
+  getOrderDetails(serviceId, plan, quantity) {
+    return this.$http
+      .post(`/services/${serviceId}/upgrade/${plan.planCode}/simulate`, {
+        quantity,
+        duration: plan.duration,
+        pricingMode: plan.pricingMode,
+        autoPayWithPreferredPaymentMethod: true,
+      })
+      .then(({ data }) => data);
+  }
+
+  orderManagementFee(serviceId, plan, quantity) {
+    return this.$http
+      .post(`/services/${serviceId}/upgrade/${plan.planCode}/execute`, {
+        quantity,
+        duration: plan.duration,
+        pricingMode: plan.pricingMode,
+        autoPayWithPreferredPaymentMethod: true,
+      })
+      .then(({ data }) => data);
   }
 
   /* ------- Operations -------*/

@@ -11,8 +11,11 @@ export const GUIDE_URL = {
   },
 };
 
+export const LICENSE_REGISTRATION_ENDS_IN_DAYS = 90;
+
 export default {
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   GUIDE_URL,
+  LICENSE_REGISTRATION_ENDS_IN_DAYS,
 };

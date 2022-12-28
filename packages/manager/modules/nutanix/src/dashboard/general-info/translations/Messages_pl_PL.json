@@ -16,5 +16,11 @@
   "nutanix_dashboard_cluster_server_id": "ID serwera",
   "nutanix_dashboard_cluster_redeploy": "Ponowne wdrożenie klastra ",
   "nutanix_dashboard_cluster_redeploy_link": "Wdróż ponownie klaster",
-  "nutanix_dashboard_cluster_deploying_info": "Trwa ponowne wdrożenie klastra"
+  "nutanix_dashboard_cluster_deploying_info": "Trwa ponowne wdrożenie klastra",
+  "nutanix_dashboard_cluster_admin_interface_info": "Zaloguj się przez Prism Central, aby zarządzać klastrem Nutanix",
+  "nutanix_dashboard_cluster_type_of_pack": "Typ pakietu",
+  "nutanix_dashboard_cluster_redeploy_modal_header": "Ponowne wdrożenie klastra ",
+  "nutanix_dashboard_cluster_redeploy_modal_description": "Konieczne jest odinstalowanie licencji Nutanix na klastrze w Prism Central przed ponownym wdrożeniem klastra.",
+  "nutanix_dashboard_cluster_redeploy_modal_continue": "Kontynuuj",
+  "nutanix_dashboard_cluster_redeploy_modal_cancel": "Anuluj"
 }

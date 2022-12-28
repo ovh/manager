@@ -38,7 +38,12 @@
                         data-size="s"
                     ></oui-spinner>
                     <span
-                        data-ng-if="!$ctrl.loadingServicesDetails"
+                        data-ng-if="!$ctrl.loadingServicesDetails && $ctrl.clusterTechnicalDetails.license.edition !== $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+                        data-ng-bind="$ctrl.servicesDetails.billing.plan.invoiceName"
+                    >
+                    </span>
+                    <span
+                        data-ng-if="!$ctrl.loadingServicesDetails && $ctrl.clusterTechnicalDetails.license.edition === $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
                         data-ng-bind="$ctrl.servicesDetails.billing.plan.invoiceName"
                     >
                     </span>
@@ -54,7 +59,7 @@
                         type="button"
                         class="oui-link"
                         data-ng-class="{'disabled': $ctrl.clusterRedeploying}"
-                        data-ng-click="$ctrl.goToRedeploy()"
+                        data-ng-click="$ctrl.redeployCluster()"
                         data-ng-disabled="$ctrl.clusterRedeploying"
                         data-track-on="click"
                         data-track-type="action"
@@ -75,40 +80,32 @@
             <!-- administration interface -->
             <oui-tile-definition
                 term="{{:: 'nutanix_dashboard_cluster_admin_interface' | translate }}"
-            >
-            </oui-tile-definition>
-            <oui-tile-button
-                data-ng-href="{{:: $ctrl.cluster.targetSpec.controlPanelURL }}"
-                data-on-click="$ctrl.trackClick('go-to-prism-central')"
-                external
-            >
-                <span
-                    data-translate="nutanix_dashboard_cluster_access_admin_interface"
-                ></span>
-            </oui-tile-button>
-
-            <!-- license -->
-            <oui-tile-definition
-                term="{{:: 'nutanix_dashboard_cluster_licence' | translate }}"
+                term-popover="{{:: 'nutanix_dashboard_cluster_admin_interface_info' | translate }}"
             >
                 <oui-tile-description>
-                    <oui-spinner
-                        data-ng-if="$ctrl.loadingTechnicalDetails"
-                        data-size="s"
+                    <a
+                        class="oui-button oui-button_secondary"
+                        data-ng-href="{{:: $ctrl.cluster.targetSpec.controlPanelURL }}"
+                        target="_blank"
+                        rel="noopener"
+                        data-translate="nutanix_dashboard_cluster_access_admin_interface"
                     >
-                    </oui-spinner>
-                    <span
-                        data-ng-if="!$ctrl.loadingTechnicalDetails && $ctrl.clusterTechnicalDetails"
-                        class="text-capitalize"
-                        data-ng-bind=":: $ctrl.clusterTechnicalDetails.license.distribution"
-                    >
-                    </span>
+                    </a>
                 </oui-tile-description>
             </oui-tile-definition>
 
-            <!-- deployment mode -->
+            <!-- type of pack -->
             <oui-tile-definition
-                term="{{:: 'nutanix_dashboard_cluster_deployment_mode' | translate }}"
+                term="{{:: 'nutanix_dashboard_cluster_type_of_pack' | translate }}"
+            >
+                <oui-tile-description>
+                    <span data-ng-bind="$ctrl.typeOfPack"></span>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- Fault Tolerance Domain -->
+            <oui-tile-definition
+                term="{{:: $ctrl.GENERAL_INFO_TILE_TITLE.FAULT_TOLENRANCE_DOMAIN }}"
             >
                 <oui-tile-description>
                     <div class="oui-tile__description">
@@ -136,8 +133,8 @@
 
             <!-- replication factor -->
             <oui-tile-definition
-                term="{{:: 'nutanix_dashboard_cluster_replication_factor' | translate }}"
-                description="{{:: $ctrl.cluster.targetSpec.redundancyFactor }}"
+                term="{{:: $ctrl.GENERAL_INFO_TILE_TITLE.REPLICATION_FACTOR }}"
+                description="{{$ctrl.REPLICATION_FACTOR_PREFIX}}{{:: $ctrl.cluster.targetSpec.redundancyFactor }}"
             >
             </oui-tile-definition>
 
@@ -170,11 +167,21 @@
     </div>
 
     <!-- Licence details -->
-    <div class="col-md-6 col-lg-4 mb-3">
+    <oui-spinner
+        class="col-md-6 col-lg-4 mb-3"
+        data-ng-if="$ctrl.loadingTechnicalDetails"
+        data-size="s"
+    >
+    </oui-spinner>
+    <div
+        class="col-md-6 col-lg-4 mb-3"
+        data-ng-if="!$ctrl.loadingTechnicalDetails && $ctrl.clusterTechnicalDetails.license.edition !== $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+    >
         <nutanix-licence-tile
             service-name="$ctrl.serviceName"
             service-id="$ctrl.serviceInfo.serviceId"
             licence-name="$ctrl.cluster.targetSpec.license"
+            pack-type="$ctrl.typeOfPack"
             on-error="$ctrl.handleError(error)"
         >
         </nutanix-licence-tile>
@@ -221,4 +228,30 @@
             technical-details="$ctrl.technicalDetails"
         ></server-technical-details>
     </div>
+</div>
+
+<!-- redeploy cluster warning modal -->
+<div
+    data-ng-if="$ctrl.showRedeployWarningModal && $ctrl.clusterTechnicalDetails.license.edition === $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+>
+    <div class="modal d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <oui-modal
+                    data-heading="{{ :: 'nutanix_dashboard_cluster_redeploy_modal_header' | translate }}"
+                    data-type="warning"
+                    data-primary-label="{{:: 'nutanix_dashboard_cluster_redeploy_modal_continue' | translate }}"
+                    data-primary-action="$ctrl.goToRedeploy()"
+                    data-secondary-action=":: $ctrl.onCancel()"
+                    data-secondary-label="{{:: 'nutanix_dashboard_cluster_redeploy_modal_cancel' | translate }}"
+                    on-dismiss="$ctrl.onCancel()"
+                >
+                    <p
+                        data-translate="nutanix_dashboard_cluster_redeploy_modal_description"
+                    ></p>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
 </div>

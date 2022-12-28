@@ -15,8 +15,13 @@ export default /* @ngInject */ ($stateProvider) => {
       cpu: /* @ngInject */ ($transition$) => $transition$.params().cpu,
       selectedProject: /* @ngInject */ (WebPaas, projectId) =>
         WebPaas.getProjectDetails(projectId),
-      availablePlans: /* @ngInject */ (selectedProject, WebPaas, cpu) =>
-        WebPaas.getUpgradeOffers(selectedProject.serviceId).then((data) => {
+      availablePlans: /* @ngInject */ (
+        selectedProject,
+        serviceInfo,
+        WebPaas,
+        cpu,
+      ) =>
+        WebPaas.getUpgradeOffers(serviceInfo.serviceId).then((data) => {
           if (cpu) {
             return compact(
               map(data, (plan) =>

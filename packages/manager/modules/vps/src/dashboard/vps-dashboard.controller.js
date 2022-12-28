@@ -30,7 +30,7 @@ export default class {
     ovhManagerRegionService,
     VpsService,
     VpsHelperService,
-    vpsUpgradeTile,
+    VpsUpgradeService,
   ) {
     this.$filter = $filter;
     this.$q = $q;
@@ -44,7 +44,7 @@ export default class {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.VpsService = VpsService;
     this.VpsHelperService = VpsHelperService;
-    this.vpsUpgradeTile = vpsUpgradeTile;
+    this.VpsUpgradeService = VpsUpgradeService;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
     this.SERVICE_TYPE = SERVICE_TYPE;
 
@@ -93,7 +93,7 @@ export default class {
 
   $onDestroy() {
     if (this.vpsUpgradeTask) {
-      this.vpsUpgradeTile.stopUpgradeTaskPolling();
+      this.VpsUpgradeService.stopUpgradeTaskPolling();
       this.vpsUpgradeTask = null;
     }
   }
@@ -118,7 +118,7 @@ export default class {
 
   initUpgradePolling() {
     if (this.vpsUpgradeTask && !this.vpsMigrationTask) {
-      this.vpsUpgradeTile.startUpgradeTaskPolling(
+      this.VpsUpgradeService.startUpgradeTaskPolling(
         this.serviceName,
         this.vpsUpgradeTask,
         {

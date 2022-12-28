@@ -596,6 +596,11 @@ const constants = {
       pcc: {
         fr_FR: [
           {
+            title: 'core_pcc_top_guide_11_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-11',
+            url: 'https://docs.ovh.com/fr/nutanix/',
+          },
+          {
             title: 'core_pcc_top_guide_1_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-1',
             url:
@@ -641,6 +646,11 @@ const constants = {
           },
         ],
         en_GB: [
+          {
+            title: 'core_pcc_top_guide_11_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-11',
+            url: 'https://docs.ovh.com/us/en/nutanix/',
+          },
           {
             title: 'core_pcc_top_guide_3_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-3',

@@ -71,11 +71,11 @@
         ></oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_public_gateway_networks_connected' | translate"
-            data-property="interfaces.length"
+            data-property="connectedNetworkCount"
         >
             <oui-button
                 class="btn btn-link"
-                data-ng-bind="$row.interfaces.length"
+                data-ng-bind="$row.connectedNetworkCount"
                 data-ng-click="$ctrl.onGoToPrivateNetworkClick($row)"
             ></oui-button>
         </oui-datagrid-column>

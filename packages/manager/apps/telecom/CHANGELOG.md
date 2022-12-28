@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.52.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.52.2...@ovh-ux/manager-telecom@13.52.3) (2022-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [13.52.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.52.1...@ovh-ux/manager-telecom@13.52.2) (2022-12-20)
+
+
+### Bug Fixes
+
+* **apps:** define Application Version ([700fd68](https://github.com/ovh/manager/commit/700fd68b7934a48ddc04f1c2ef8695d20ee7c993))
+* **telecom:** remove chatbot ([2fed6f9](https://github.com/ovh/manager/commit/2fed6f995a543de3c3b59f24e1c432272bf48689))
+
+
+
+
+
+## [13.52.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.52.0...@ovh-ux/manager-telecom@13.52.1) (2022-12-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+# [13.52.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.51.0...@ovh-ux/manager-telecom@13.52.0) (2022-12-19)
+
+
+### Features
+
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+
+
+
+
+
+# [13.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.50.2...@ovh-ux/manager-telecom@13.51.0) (2022-12-12)
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
+## [13.50.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.50.1...@ovh-ux/manager-telecom@13.50.2) (2022-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 ## [13.50.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.50.0...@ovh-ux/manager-telecom@13.50.1) (2022-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

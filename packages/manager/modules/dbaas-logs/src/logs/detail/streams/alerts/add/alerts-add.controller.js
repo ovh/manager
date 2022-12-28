@@ -93,16 +93,7 @@ export default class LogsStreamsAlertsAddCtrl {
    * @memberof LogsStreamsAlertsAddCtrl
    */
   getThresholdTypes() {
-    if (this.alertType === this.LogsConstants.alertType.numeric) {
-      return [
-        this.LogsConstants.thresholdType.lower,
-        this.LogsConstants.thresholdType.higher,
-      ];
-    }
-    return [
-      this.LogsConstants.thresholdType.more,
-      this.LogsConstants.thresholdType.less,
-    ];
+    return Object.values(this.LogsConstants.thresholdType);
   }
 
   /**

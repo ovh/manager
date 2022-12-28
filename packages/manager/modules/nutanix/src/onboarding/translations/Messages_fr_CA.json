@@ -1,12 +1,9 @@
 {
-  "nutanix_onboarding_title": "Hosted Private Cloud powered by Nutanix",
-  "nutanix_onboarding_description": "Découvrez notre nouvelle plateforme de cloud privé tout-en-un et évolutive. Elle associe les licences de la Nutanix Cloud Platform pré-installées et les infrastructures OVHcloud 100 % dédiées et sécurisées. Et ce, pour vous fournir un environnement hyperconvergé (HCI) Nutanix prêt à l’emploi en quelques heures.",
-  "nutanix_onboarding_description2": "Cette solution est idéale pour vos stratégies de migration vers le cloud, la mise en place d'un Plan de Reprise d’Activité (PRA) ou encore des débordements de charges.",
+  "nutanix_onboarding_title": "Nutanix on OVHcloud",
+  "nutanix_onboarding_description": "Découvrez notre nouvelle plateforme de cloud privé tout-en-un et évolutive. Elle associe les licences de la Nutanix Cloud Platform, en offre packagée ou offre BYOL (Bring Your Own Licence) avec portabilité de vos licences, et les infrastructures OVHcloud dédiées et agréées Nutanix. Vous bénéficiez d'un environnement hyperconvergé (HCI) Nutanix prêt à l’emploi en quelques heures.",
   "nutanix_onboarding_order": "Commander",
-  "nutanix_onboarding_guide1_title": "Documentation générale sur Nutanix",
-  "nutanix_onboarding_guide1_description": "Les détails techniques de l'infrastructure Nutanix chez OVHcloud",
-  "nutanix_onboarding_guide2_title": "Liste des services et licences inclus",
-  "nutanix_onboarding_guide2_description": "Présentation des services et licences inclus dans l'offre Hosted Private Cloud powered by Nutanix",
-  "nutanix_onboarding_guide3_title": "Fonctionnement de la passerelle OVHgateway",
-  "nutanix_onboarding_guide3_description": "Découvrez comment fonctionne la passerelle OVHgateway"
+  "nutanix_onboarding_guide1_title": "Documentation générale",
+  "nutanix_onboarding_guide1_description": "Les détails techniques de l’infrastructure de la solution Nutanix on OVHcloud",
+  "nutanix_onboarding_guide2_title": "Offre packagée : liste des services et licences Nutanix inclus",
+  "nutanix_onboarding_guide2_description": "Présentation des services et licences inclus dans l’offre packagée Nutanix on OVHcloud"
 }

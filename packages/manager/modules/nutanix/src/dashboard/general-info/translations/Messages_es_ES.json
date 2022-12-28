@@ -16,5 +16,11 @@
   "nutanix_dashboard_cluster_server_id": "IP del servidor",
   "nutanix_dashboard_cluster_redeploy": "Redespliegue del cluster",
   "nutanix_dashboard_cluster_redeploy_link": "Redesplegar mi cluster",
-  "nutanix_dashboard_cluster_deploying_info": "Redesplegando el cluster..."
+  "nutanix_dashboard_cluster_deploying_info": "Redesplegando el cluster...",
+  "nutanix_dashboard_cluster_admin_interface_info": "Conéctese a través de Prism Central para gestionar su cluster Nutanix.",
+  "nutanix_dashboard_cluster_type_of_pack": "Tipo de pack",
+  "nutanix_dashboard_cluster_redeploy_modal_header": "Redespliegue del cluster",
+  "nutanix_dashboard_cluster_redeploy_modal_description": "Es necesario desinstalar la licencia Nutanix de su cluster en Prism Central antes de redesplegar el cluster.",
+  "nutanix_dashboard_cluster_redeploy_modal_continue": "Continuar",
+  "nutanix_dashboard_cluster_redeploy_modal_cancel": "Cancelar"
 }

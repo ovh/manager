@@ -5,6 +5,7 @@ export default {
   bindings: {
     backButtonText: '<',
     goBack: '<',
+    managementFeeServiceId: '<',
     productId: '<',
     range: '<',
     upgradeCode: '<',

@@ -41,20 +41,26 @@
                     ></span>
                 </div>
             </div>
+
+            <!-- Modify cluster Private Bandwidth -->
+            <div class="mt-2">
+                <oui-spinner
+                    data-ng-if="$ctrl.loadingUpgradeOptions"
+                    size="s"
+                ></oui-spinner>
+                <oui-button
+                    data-variant="link"
+                    data-icon-right="oui-icon-arrow-right"
+                    data-ng-if="$ctrl.privateBandwidthUpgradable && !$ctrl.loadingUpgradeOptions"
+                    data-on-click="$ctrl.goToUpgradePrivateBandwidth()"
+                >
+                    <span
+                        data-translate="nutanix_cluster_modify_private_bandwidth"
+                    ></span>
+                </oui-button>
+            </div>
         </oui-tile-description>
     </oui-tile-definition>
-
-    <!-- Modify cluster Private Bandwidth -->
-    <oui-spinner
-        data-ng-if="$ctrl.loadingUpgradeOptions"
-        size="s"
-    ></oui-spinner>
-    <oui-tile-button
-        data-ng-if="$ctrl.privateBandwidthUpgradable && !$ctrl.loadingUpgradeOptions"
-        on-click="$ctrl.goToUpgradePrivateBandwidth()"
-    >
-        <span data-translate="nutanix_cluster_modify_private_bandwidth"></span>
-    </oui-tile-button>
 
     <!-- IPFO -->
     <oui-tile-definition term="{{:: $ctrl.IPFO}}">

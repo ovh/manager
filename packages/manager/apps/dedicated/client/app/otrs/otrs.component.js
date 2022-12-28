@@ -16,6 +16,7 @@ export default {
     sortBy: '<',
     sortOrder: '<',
     tickets: '<',
+    totalTickets: '<',
   },
   controller,
   template,

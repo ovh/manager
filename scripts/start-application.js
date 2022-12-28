@@ -3,9 +3,6 @@ import { basename } from 'path';
 import concurrently from 'concurrently';
 import execa from 'execa';
 import inquirer from 'inquirer';
-import inquirerPrompt from 'inquirer-autocomplete-prompt';
-
-inquirer.registerPrompt('autocomplete', inquirerPrompt);
 
 /**
  * Workspace location for all applications.
@@ -47,31 +44,26 @@ const getApplications = () =>
       };
     });
 
-const applications = getApplications();
-
-const filterApplications = (search) =>
-  !search
-    ? applications
-    : applications.filter(({ name }) => name.indexOf(search) !== -1);
-
-const getApplicationRegions = (packageName) =>
-  applications.find(({ value }) => value === packageName).regions;
-
 /**
  * Ask for both packageName and region to start the corresponding application.
  */
 const questions = [
   {
-    type: 'autocomplete',
+    type: 'list',
     name: 'packageName',
     message: 'Which application do you want to start?',
-    source: (answer, input) => filterApplications(input),
+    choices: getApplications,
   },
   {
     type: 'list',
     name: 'region',
     message: 'Please specify the region:',
-    choices: ({ packageName }) => getApplicationRegions(packageName),
+    choices({ packageName }) {
+      const { regions } = getApplications().find(
+        ({ value }) => value === packageName,
+      );
+      return regions;
+    },
   },
   {
     type: 'confirm',

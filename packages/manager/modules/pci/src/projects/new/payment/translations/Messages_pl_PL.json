@@ -17,5 +17,6 @@
   "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link": "Informacje o zamówieniu",
   "pci_project_new_payment_check_anti_fraud_case_fraud_refused": "Po przeanalizowaniu danych powiązanych z zamówieniem lub kontem stwierdzamy, że prawdopodobnie nie spełniają one wszystkich warunków niezbędnych do zapewnienia bezpieczeństwa transakcji. Abyśmy mogli przetworzyć i sfinalizować zamówienie, dokonaj zakupu ponownie przy użyciu innego sposobu płatności. Możesz również skontaktować się z naszym konsultantem (sekcja pomocy na Twoim koncie), aby przekazać nam przydatne informacje umożliwiające sfinalizowanie transakcji. W przeciwnym razie transakcja nie zostanie zrealizowana.",
   "pci_project_new_payment_btn_return": "Powrót",
-  "pci_project_new_payment_btn_continue_add_credit_card": "Dalej"
+  "pci_project_new_payment_btn_continue_add_credit_card": "Dalej",
+  "pci_project_new_payment_btn_continue_sepa_direct_debit": "Dodaj konto bankowe"
 }

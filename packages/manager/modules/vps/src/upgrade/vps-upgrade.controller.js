@@ -22,7 +22,9 @@ export default class VpsUpgradeCtrl {
     OvhApiOrder,
     OvhApiVps,
     stateVps,
+    serviceInfo,
     getRebootLink,
+    VpsUpgradeService,
   ) {
     // dependencies injections
     this.$q = $q;
@@ -33,7 +35,9 @@ export default class VpsUpgradeCtrl {
     this.OvhApiOrder = OvhApiOrder;
     this.OvhApiVps = OvhApiVps;
     this.stateVps = stateVps;
+    this.serviceInfo = serviceInfo;
     this.getRebootLink = getRebootLink;
+    this.VpsUpgradeService = VpsUpgradeService;
 
     // other attributes used in view
     this.serviceName = this.stateVps.name;
@@ -137,14 +141,12 @@ export default class VpsUpgradeCtrl {
     this.loading.contracts = true;
     this.model.contracts = false;
 
-    return this.OvhApiOrder.Upgrade()
-      .Vps()
-      .v6()
-      .get({
-        serviceName: this.serviceName,
-        planCode: this.model.offer.offer.details.planCode,
-      })
-      .$promise.then((order) => {
+    return this.VpsUpgradeService.getUpgrade(
+      this.serviceInfo.serviceId,
+      this.model.offer.offer.details,
+      false,
+    )
+      .then((order) => {
         this.order = order.order;
         this.order.contracts = map(this.order.contracts, (contractParam) => {
           const contract = contractParam;
@@ -180,19 +182,12 @@ export default class VpsUpgradeCtrl {
   onStepperFinish() {
     this.loading.order = true;
 
-    return this.OvhApiOrder.Upgrade()
-      .Vps()
-      .v6()
-      .save(
-        {
-          serviceName: this.serviceName,
-          planCode: this.model.offer.offer.details.planCode,
-        },
-        {
-          quantity: 1,
-        },
-      )
-      .$promise.then((response) => {
+    return this.VpsUpgradeService.startUpgrade(
+      this.serviceInfo.serviceId,
+      this.model.offer.offer.details,
+      false,
+    )
+      .then((response) => {
         // open order url
         this.$window.open(response.order.url, '_blank');
 
@@ -242,22 +237,18 @@ export default class VpsUpgradeCtrl {
     this.loading.init = true;
 
     this.model.offer = null;
-
     return this.$q
       .all({
         availableUpgrades: this.OvhApiVps.v6().availableUpgrade({
           serviceName: this.serviceName,
         }).$promise,
-        availableOffers: this.OvhApiOrder.Upgrade()
-          .Vps()
-          .v6()
-          .getAvailableOffers({
-            serviceName: this.serviceName,
-          }).$promise,
+        availableOffers: this.VpsUpgradeService.getAvailableUpgrades(
+          this.serviceInfo.serviceId,
+        ),
       })
       .then(({ availableUpgrades, availableOffers }) => {
         // map available upgrades by adding details with the informations
-        // provided by /order/upgrade/vps API response
+        // provided by /services/vpsServiceId/upgrade API response
         const availableUpgrade = map(availableUpgrades, (upgradeParam) => {
           const upgrade = upgradeParam;
           upgrade.isCurrentOffer = false;

@@ -10,6 +10,7 @@
   "pci_databases_maintenances_maintenance_status_APPLYING": "En cours",
   "pci_databases_maintenances_maintenance_status_SCHEDULED": "Planifiée",
   "pci_databases_maintenances_maintenance_status_ERROR": "En erreur",
+  "pci_databases_maintenances_maintenance_status_PENDING": "En attente",
   "pci_databases_maintenances_maintenance_apply_now": "Appliquer maintenant",
   "pci_databases_maintenances_back": "Informations générales",
   "pci_databases_maintenances_maintenance_apply_success": "La maintenance a été appliquée avec succès",

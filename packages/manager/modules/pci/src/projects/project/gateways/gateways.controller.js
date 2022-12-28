@@ -1,4 +1,5 @@
 import ipaddr from 'ipaddr.js';
+import uniqBy from 'lodash/uniqBy';
 
 const CONTAINER_NAME = 'pci.projects.project.gateways';
 
@@ -29,6 +30,7 @@ export default class PublicGatewaysController {
       }
       return {
         ...gateway,
+        connectedNetworkCount: uniqBy(gateway.interfaces, 'subnetId').length,
         formattedIps: [...ipv4, ...ipv6].join(', ') || '',
       };
     });

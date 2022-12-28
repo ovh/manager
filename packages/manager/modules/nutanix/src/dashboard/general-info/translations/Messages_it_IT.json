@@ -16,5 +16,11 @@
   "nutanix_dashboard_cluster_server_id": "ID del server",
   "nutanix_dashboard_cluster_redeploy": "Nuovo deploy del cluster",
   "nutanix_dashboard_cluster_redeploy_link": "Effettua un nuovo deploy del tuo cluster",
-  "nutanix_dashboard_cluster_deploying_info": "Nuovo deploy del cluster in corso..."
+  "nutanix_dashboard_cluster_deploying_info": "Nuovo deploy del cluster in corso...",
+  "nutanix_dashboard_cluster_admin_interface_info": "Accedi via Prism Central per gestire il tuo cluster Nutanix",
+  "nutanix_dashboard_cluster_type_of_pack": "Tipo di pack",
+  "nutanix_dashboard_cluster_redeploy_modal_header": "Nuovo deploy del cluster",
+  "nutanix_dashboard_cluster_redeploy_modal_description": "Prima di eseguire un nuovo deploy del cluster è necessario disinstallare la licenza Nutanix del cluster in Prism Central.",
+  "nutanix_dashboard_cluster_redeploy_modal_continue": "Continua",
+  "nutanix_dashboard_cluster_redeploy_modal_cancel": "Annullare"
 }

@@ -16,5 +16,11 @@
   "nutanix_dashboard_cluster_server_id": "Server ID",
   "nutanix_dashboard_cluster_redeploy": "Cluster redeployment",
   "nutanix_dashboard_cluster_redeploy_link": "Redeploy cluster",
-  "nutanix_dashboard_cluster_deploying_info": "Redeploying cluster"
+  "nutanix_dashboard_cluster_deploying_info": "Redeploying cluster",
+  "nutanix_dashboard_cluster_admin_interface_info": "Please log in via Prism Central to manage your Nutanix cluster",
+  "nutanix_dashboard_cluster_type_of_pack": "Pack type",
+  "nutanix_dashboard_cluster_redeploy_modal_header": "Cluster redeployment",
+  "nutanix_dashboard_cluster_redeploy_modal_description": "You must uninstall your Nutanix licence from your cluster in Prism Central before redeploying your cluster.",
+  "nutanix_dashboard_cluster_redeploy_modal_continue": "Continue",
+  "nutanix_dashboard_cluster_redeploy_modal_cancel": "Exit"
 }

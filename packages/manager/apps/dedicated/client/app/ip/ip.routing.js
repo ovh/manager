@@ -62,13 +62,14 @@ export default /* @ngInject */ ($stateProvider) => {
         .getAsync('hasAnyIp')
         .then((hasAnyIp) => `app.ip.${hasAnyIp ? 'dashboard' : 'onboarding'}`),
     resolve: {
-      hasAnyIp: /* @ngInject */ (iceberg) =>
-        iceberg('/ip')
-          .query()
-          .expand('CachedObjectList-Pages')
-          .limit(1)
-          .execute(null, true)
-          .$promise.then(({ data: [ip] }) => !!ip),
+      fetchFirstIp: /* @ngInject */ ($http) => (params = '') =>
+        $http
+          .get(`/ip${params ? `?${params}` : ''}`)
+          .then(({ data }) => data?.[0]),
+      hasAnyIp: /* @ngInject */ (fetchFirstIp) =>
+        fetchFirstIp().then((ip) => !!ip),
+      hasAnyUnusedIp: /* @ngInject */ (fetchFirstIp) =>
+        fetchFirstIp('routedTo.serviceName=null').then((ip) => !!ip),
       isRepricingBannerShown: /* @ngInject */ ($q, hasAnyIp, iceberg) => {
         if (
           !hasAnyIp ||
@@ -110,14 +111,8 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
       },
-      dashboardLink: /* @ngInject */ ($transition$, $state) =>
-        $state.href('app.ip.dashboard', $transition$.params()),
-      failoverLink: /* @ngInject */ ($transition$, $state) =>
-        $state.href('app.ip.failover', $transition$.params()),
       ipLbLink: /* @ngInject */ ($transition$, $state) =>
         $state.href('app.ip.dashboard.iplb', $transition$.params()),
-      currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
-        $state.href($state.current.name, $transition$.params()),
       goToOrganisation: /* @ngInject */ ($state) => () =>
         $state.go('app.ip.organisation'),
       isByoipAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
@@ -131,6 +126,22 @@ export default /* @ngInject */ ($stateProvider) => {
         trackPage('order');
         return $state.go('app.ip.agora-order');
       },
+      goToOrReload: /* @ngInject */ ($state) => (state, params = {}) =>
+        $state.go(state, params, {
+          reload: $state.includes(state) ? state : false,
+          inherit: false,
+        }),
+      goToDashboard: /* @ngInject */ (goToOrReload) => () =>
+        goToOrReload('app.ip.dashboard'),
+      goToFailover: /* @ngInject */ (goToOrReload) => ({ unused = '0' } = {}) =>
+        goToOrReload('app.ip.failover', { unused }),
+      isDashboardActive: /* @ngInject */ ($state) => () =>
+        $state.includes('app.ip.dashboard'),
+      isFailoverActive: /* @ngInject */ ($state, $location) => ({
+        unused = null,
+      } = {}) =>
+        $state.includes('app.ip.failover') &&
+        (unused === null || $location.search().unused === unused),
       breadcrumb: /* @ngInject */ ($translate) => $translate.instant('ip_ip'),
     },
   });

@@ -35,7 +35,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   // user choice about using or not the beta
   const [useBeta, setUseBeta] = useState(false);
 
-  const [isChatbotEnabled, setIsChatbotEnabled] = useState(false);
   const [isLivechatEnabled, setIsLivechatEnabled] = useState(false);
 
   let containerContext: ContainerContextType = useContext(ContainerContext);
@@ -44,7 +43,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     interface CurrentContextAvailability {
       'pnr:betaV1': boolean;
       'pnr:betaV2': boolean;
-      chatbot: boolean;
       livechat: boolean;
     }
     const getBetaVersion = (value: CurrentContextAvailability) => {
@@ -61,17 +59,15 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     };
 
     return reketInstance
-      .get(`/feature/chatbot,livechat,pnr:betaV1,pnr:betaV2/availability`, {
+      .get(`/feature/livechat,pnr:betaV1,pnr:betaV2/availability`, {
         requestType: 'aapi',
       })
       .then((value: CurrentContextAvailability) => ({
         version: getBetaVersion(value),
-        chatbot: !!value.chatbot,
         livechat: !!value.livechat,
       }))
       .catch(() => ({
         version: '',
-        chatbot: false,
       }));
   };
 
@@ -133,16 +129,9 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
    */
   useEffect(() => {
     fetchFeatureAvailability()
-      .then(({ version, chatbot, livechat }) => {
+      .then(({ version, livechat }) => {
         setBetaVersion(version);
-        // Livechat is the new Chatbot that is used in the Container
-        if (livechat) {
-          setIsLivechatEnabled(livechat);
-          setIsChatbotEnabled(false);
-        }else if (chatbot) {
-          setIsLivechatEnabled(false)
-          setIsChatbotEnabled(chatbot)
-        }
+        setIsLivechatEnabled(livechat);
 
         if (version) {
           return fetchBetaChoice();
@@ -167,7 +156,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     askBeta,
     betaVersion,
     useBeta,
-    isChatbotEnabled,
     isLivechatEnabled,
     isLoading,
     updateBetaChoice,

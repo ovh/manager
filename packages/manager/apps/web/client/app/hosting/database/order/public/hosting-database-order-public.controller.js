@@ -3,7 +3,7 @@ import {
   workflowConstants,
 } from '@ovh-ux/manager-product-offers';
 
-import { PRODUCT_NAME } from './hosting-database-order-public.constants';
+import { WEBHOSTING_PRODUCT_NAME } from '../../hosting-database.constants';
 import HostingDatabaseOrderPublic from './hosting-database-order-public.service';
 
 export default class {
@@ -18,7 +18,7 @@ export default class {
       workflowOptions: {
         catalog: this.catalog,
         catalogItemTypeName: workflowConstants.CATALOG_ITEM_TYPE_NAMES.ADDON,
-        productName: PRODUCT_NAME,
+        productName: WEBHOSTING_PRODUCT_NAME,
         serviceNameToAddProduct: this.serviceName,
         getPlanCode: this.getPlanCode.bind(this),
       },

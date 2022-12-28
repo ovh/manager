@@ -9,7 +9,7 @@ import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.new.payment', {
-    url: '/payment?paymentStatus',
+    url: '/payment?paymentStatus&paymentType',
     views: {
       '': component.name,
 
@@ -122,10 +122,8 @@ export default /* @ngInject */ ($stateProvider) => {
       defaultPaymentMethod: /* @ngInject */ (paymentMethods) =>
         find(paymentMethods, { default: true }),
 
-      registerablePaymentMethods: /* @ngInject */ (
-        eligibility,
-        ovhPaymentMethod,
-      ) => ovhPaymentMethod.getAllAvailablePaymentMethodTypes(),
+      registerablePaymentMethods: /* @ngInject */ (ovhPaymentMethod) =>
+        ovhPaymentMethod.getAllAvailablePaymentMethodTypes(),
 
       dlpStatus: /* @ngInject */ ($q, pciProjectNewPayment) =>
         pciProjectNewPayment.getDlpStatus().catch((error) => {

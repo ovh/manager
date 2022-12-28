@@ -4,9 +4,13 @@ import template from './ip-ip-firewall-game.html';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip.dashboard.ip.game-firewall', {
     url: '/game-firewall',
-    template,
-    controller,
-    controllerAs: 'IpGameFirewallCtrl',
+    views: {
+      'ipview@app.ip': {
+        template,
+        controller,
+        controllerAs: 'IpGameFirewallCtrl',
+      },
+    },
     reloadOnSearch: false,
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
