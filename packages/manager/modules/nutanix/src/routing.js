@@ -3,7 +3,6 @@ import statusTemplate from './templates/status.html';
 import prismUrl from './templates/prismUrl.html';
 import serviceLink from './templates/serviceLink.html';
 import localizationTemplate from './templates/localization.html';
-import { getNutanixOrderUrl } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.index', {
@@ -62,10 +61,10 @@ export default /* @ngInject */ ($stateProvider) => {
             property: 'targetSpec.nodes',
           },
           {
-            title: $translate.instant('nutanix_cluster_list_pack_type'),
-            property: 'targetSpec.name',
+            title: $translate.instant('nutanix_cluster_list_licence'),
+            property: 'targetSpec.license',
             template:
-              "<a data-ng-href='{{ $ctrl.getServiceNameLink($row) }}' target='_top' data-translate='nutanix_cluster_list_pack_type_details'></a",
+              "<span class='text-capitalize' data-ng-bind='::$row.getLicense()'></span>",
           },
           {
             title: $translate.instant('nutanix_cluster_list_status'),
@@ -87,7 +86,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('nutanix.dashboard', {
           serviceName,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+      topbarOptions: /* @ngInject */ ($translate, $window) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -96,7 +95,7 @@ export default /* @ngInject */ ($stateProvider) => {
           value: $translate.instant('nutanix_order'),
           onClick: () => {
             $window.open(
-              getNutanixOrderUrl(coreConfig.getUser().ovhSubsidiary),
+              'https://www.ovhcloud.com/fr/hosted-private-cloud/nutanix/',
               '_blank',
             );
           },

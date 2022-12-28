@@ -61,10 +61,7 @@ export default class VSphereUserImportController {
 
     return this.$q
       .all({
-        users: this.DedicatedCloud.getUserDetails(
-          this.productId,
-          paramsGetUsers,
-        ),
+        users: this.DedicatedCloud.getUsers(this.productId, paramsGetUsers),
         activeDirectories: this.DedicatedCloud.getActiveDirectories(
           this.productId,
           paramsGetActiveDirectory,

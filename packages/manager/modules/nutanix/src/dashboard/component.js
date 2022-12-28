@@ -7,7 +7,6 @@ export default {
     cluster: '<',
     serviceDetails: '<',
     serviceInfo: '<',
-    getTechnicalDetails: '<',
   },
   controller,
   template,

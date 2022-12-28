@@ -1,6 +1,8 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 
+import { ORDER_EXPRESS_BASE_URL } from '../../vps/constants';
+
 export default class VpsVeeamOrderCtrl {
   /* @ngInject */
   constructor(
@@ -13,7 +15,6 @@ export default class VpsVeeamOrderCtrl {
     connectedUser,
     OvhApiOrder,
     stateVps,
-    RedirectionService,
   ) {
     // dependencies injections
     this.$q = $q;
@@ -25,7 +26,6 @@ export default class VpsVeeamOrderCtrl {
     this.connectedUser = connectedUser;
     this.OvhApiOrder = OvhApiOrder;
     this.stateVps = stateVps;
-    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
 
     // other attributes used in view
     this.veeamOption = null;
@@ -76,7 +76,10 @@ export default class VpsVeeamOrderCtrl {
       name: 'vps::detail::veeam::order::confirm',
       type: 'action',
     });
-
+    let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
+      this.coreConfig.getRegion(),
+      this.connectedUser.ovhSubsidiary,
+    ]);
     const priceOptions = find(this.veeamOption.prices, ({ capacities }) =>
       capacities.includes('renew'),
     );
@@ -88,17 +91,17 @@ export default class VpsVeeamOrderCtrl {
       pricingMode: priceOptions.pricingMode,
       quantity: 1,
     };
-    this.expressOrderUrl = `${this.expressOrderUrl}?products=${JSURL.stringify([
+    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
       expressParams,
     ])}`;
 
-    this.$window.open(this.expressOrderUrl, '_blank', 'noopener');
+    this.$window.open(expressOrderUrl, '_blank');
 
     this.CucCloudMessage.success({
       textHtml: this.$translate.instant(
         'vps_configuration_veeam_order_success',
         {
-          url: this.expressOrderUrl,
+          url: expressOrderUrl,
         },
       ),
     });

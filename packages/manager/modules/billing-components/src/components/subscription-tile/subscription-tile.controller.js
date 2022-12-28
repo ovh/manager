@@ -168,4 +168,9 @@ export default class ServicesActionsCtrl {
       (!isEngaged || highlightEngagement)
     );
   }
+
+  manageContacts() {
+    this.trackClick('manage-contacts');
+    this.$window.location.assign(this.contactManagementUrl);
+  }
 }
