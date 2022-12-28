@@ -1,7 +1,7 @@
 export const COLD_ARCHIVE_TRACKING_PREFIX =
   'PublicCloud::pci::projects::project::storages::cold_archive';
 
-export const REGION = 'RBX-ARCHIVE';
+export const REGION = 'rbx-archive';
 
 export const DATE_FORMAT = 'DD/MM/YYYY HH:mm';
 
