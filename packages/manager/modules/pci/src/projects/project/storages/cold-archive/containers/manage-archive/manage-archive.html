@@ -39,7 +39,9 @@
         <oui-field
             data-label="{{:: 'pci_projects_project_storages_cold_archive_containers_container_manage_region_label' | translate }}"
         >
-            <oui-clipboard data-model="$ctrl.region"></oui-clipboard>
+            <oui-clipboard
+                data-model="$ctrl.region.toLowerCase()"
+            ></oui-clipboard>
         </oui-field>
     </div>
 </oui-modal>
