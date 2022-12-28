@@ -31,13 +31,15 @@ export default class ColdArchiveContainersAddUserController {
   }
 
   setUserCredentialsList() {
-    this.usersCredentials = this.allUserList.map((user) => ({
-      ...user,
-      credentialTrad: this.getCredentialTranslation(user),
-      addUserNameDescriptionKey: user.description
-        ? `${user.username} - ${user.description}`
-        : user.username,
-    }));
+    this.usersCredentials = this.allUserList
+      .filter((user) => user?.s3Credentials.length)
+      .map((user) => ({
+        ...user,
+        credentialTrad: this.getCredentialTranslation(user),
+        addUserNameDescriptionKey: user.description
+          ? `${user.username} - ${user.description}`
+          : user.username,
+      }));
   }
 
   getCredentialTranslation(user) {
