@@ -1,0 +1,4 @@
+{
+  "ip_failover_text": "Additional IPs are public IPs that can be dynamically transferred from one OVHcloud service to another. These addresses are available as individual addresses, or as IP address blocks.",
+  "ip_failover_unused_filter": "Unused IPs"
+}

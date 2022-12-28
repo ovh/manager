@@ -1,0 +1,61 @@
+<div data-ng-controller="IpEditIpAssociateCtrl">
+    <oui-modal
+        data-primary-label="{{:: (!editTabActive ? 'ip_edit_or_assosiate_edit_submit_button' :'ip_edit_or_assosiate_asso_submit_button') | translate }}"
+        data-primary-action="onSubmit(model)"
+        data-secondary-action="resetAction()"
+        data-secondary-label="{{:: 'ip_edit_or_assosiate_cancel_button' | translate }}"
+        data-on-dismiss="resetAction()"
+        data-primary-disabled="disableSubmit"
+    >
+        <oui-header-tabs class="mb-2">
+            <oui-header-tabs-item
+                data-active="editTabActive"
+                data-on-click="getEditTabDetails()"
+                ><span data-translate="ip_edit_or_assosiate_editor_tab"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-active="!editTabActive"
+                data-on-click="getAssosicateTabDetails()"
+                ><span data-translate="ip_edit_or_assosiate_asso_tab"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+        <div data-ng-show="editTabActive && !loading">
+            <label data-translate="ip_edit_or_assosiate_editor_tab_name_label">
+            </label>
+            <input
+                type="text"
+                class="form-control"
+                data-ng-model="model.blockIpdetails.netname"
+            />
+            <label
+                class="control-label mt-2"
+                for="description"
+                data-translate="ip_edit_or_assosiate_editor_tab_description_label"
+            >
+            </label>
+            <textarea
+                id="description"
+                name="description"
+                rows="3"
+                maxlength="255"
+                class="form-control"
+                data-ng-model="model.blockIpdetails.description"
+            >
+            </textarea>
+        </div>
+        <div data-ng-show="!editTabActive && !loading">
+            <label data-translate="ip_edit_or_assosiate_asso_tab"> </label>
+            <oui-select
+                data-name="organisationId"
+                data-placeholder="{{'ip_edit_or_assosiate_asso_tab_select_placeholder' | translate}}"
+                data-match="organisationId"
+                data-model="model.organisationDetails"
+                data-items="organisations"
+            >
+            </oui-select>
+        </div>
+        <div class="text-center" data-ng-show="loading">
+            <oui-spinner></oui-spinner>
+        </div>
+    </oui-modal>
+</div>

@@ -116,6 +116,7 @@
   "ip_table_header_alerts": "Alert",
   "ip_table_header_visiblecols_btn": "Configura",
   "ip_table_header_visiblecols": "Colonne visibili",
+  "ip_table_filter_advanced_mode": "Modalità avanzata",
   "ip_agora_table_header_offer": "Scegli la tua offerta",
   "ip_agora_table_header_quantity": "Quantità",
   "ip_agora_table_header_country": "Localizzati in",
@@ -677,5 +678,9 @@
   "ip_order_title": "Ordina",
   "ip_order_additional_ips": "IP aggiuntivi",
   "ip_administration_title": "Gestisci",
-  "ip_addresses_grid_header": "I tuoi indirizzi IP pubblici e servizi associati"
+  "ip_addresses_grid_header": "I tuoi indirizzi IP pubblici e servizi associati",
+  "ip_repricing_banner": "La tariffazione degli indirizzi IPv4 aggiuntivi (Additional IP) è stata aggiornata.",
+  "ip_repricing_banner_list_item_1": "Dal 6 ottobre 2022, per i nuovi indirizzi.",
+  "ip_repricing_banner_list_item_2": "Dal 1° dicembre 2022, per gli indirizzi esistenti (ordinati prima del 6 ottobre 2022).",
+  "ip_repricing_banner_link": "Ulteriori informazioni"
 }

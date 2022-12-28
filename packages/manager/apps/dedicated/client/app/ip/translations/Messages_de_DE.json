@@ -85,7 +85,7 @@
   "ip_filter_services_title_HOSTED_SSL": "Hosted SSL",
   "ip_filter_services_title_PRIVATE_CLOUD": "Hosted Private Cloud (VMware)",
   "ip_filter_services_title_VPS": "Virtual Private Server",
-  "ip_filter_services_title_VRACK": "Privates Netzwerk vRack",
+  "ip_filter_services_title_VRACK": "Privates vRack Netzwerk",
   "ip_filter_services_title_XDSL": "Internet-Angebote",
   "ip_filter_services_title_MAIL": "Mailserver",
   "ip_filter_services_title_CLOUD": "Public Cloud",
@@ -116,6 +116,7 @@
   "ip_table_header_alerts": "Alarme",
   "ip_table_header_visiblecols_btn": "Konfigurieren",
   "ip_table_header_visiblecols": "Sichtbare Spalten",
+  "ip_table_filter_advanced_mode": "Erweiterter Modus",
   "ip_agora_table_header_offer": "Wählen Sie Ihr Angebot",
   "ip_agora_table_header_quantity": "Anzahl",
   "ip_agora_table_header_country": "Lokalisiert in",
@@ -677,5 +678,9 @@
   "ip_order_title": "Bestellen",
   "ip_order_additional_ips": "Zusätzliche IPs",
   "ip_administration_title": "Verwalten",
-  "ip_addresses_grid_header": "Meine öffentlichen IP-Adressen und dazugehörigen Dienste"
+  "ip_addresses_grid_header": "Meine öffentlichen IP-Adressen und dazugehörigen Dienste",
+  "ip_repricing_banner": "Die Preise für zusätzliche IPv4-Adressen (Additional IP) werden angepasst:",
+  "ip_repricing_banner_list_item_1": "Seit dem 6. Oktober 2022 und für Ihre neuen Adressen.",
+  "ip_repricing_banner_list_item_2": "Ab dem 1. Dezember 2022 für Ihre bestehenden Adressen, die vor dem 6. Oktober 2022 bestellt wurden.",
+  "ip_repricing_banner_link": "Mehr Informationen"
 }

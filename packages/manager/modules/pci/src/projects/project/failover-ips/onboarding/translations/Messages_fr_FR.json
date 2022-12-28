@@ -6,8 +6,8 @@
   "pci_projects_project_failoverip_onboarding_action_label": "Importer une IP Failover",
   "pci_projects_project_failoverip_onboarding_action_buy": "Acheter des IP Failover",
 
-  "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_title": "Rendre la configuration IP Fail Over persistante",
+  "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_title": "Rendre la configuration Additional IP persistante",
   "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_description": "",
-  "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_title": "Basculer une IP Fail Over",
+  "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_title": "Basculer une Additional IP",
   "pci_projects_project_failoverip_onboarding_guides_migrating-failover-ip_description": ""
 }

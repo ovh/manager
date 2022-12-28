@@ -4,8 +4,12 @@ import head from 'lodash/head';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+import JSURL from 'jsurl';
 import startsWith from 'lodash/startsWith';
-import { TRACKING_PREFIX } from '../agoraOrder/ip-ip-agoraOrder.constant';
+import {
+  TRACKING_PREFIX,
+  ADDITIONAL_IP,
+} from '../agoraOrder/ip-ip-agoraOrder.constant';
 
 export default class {
   /* @ngInject */
@@ -53,7 +57,7 @@ export default class {
     };
 
     this.$scope.loading = {};
-
+    this.$scope.ADDITIONAL_IP = ADDITIONAL_IP;
     this.$scope.getServices = () => this.getServices();
     this.$scope.canServiceBeOrdered = () => this.canServiceBeOrdered();
     this.$scope.loadOrderForm = () => this.loadOrderForm();
@@ -151,7 +155,7 @@ export default class {
         }
 
         if (get(infos, 'vpsInfos.model.version') === '2019v1') {
-          return this.$state.go('app.ip.dashboard.agora-order', {
+          return this.$state.go('app.ip.agora-order', {
             service: this.$scope.model.service,
             user: this.$scope.currentUser,
           });
