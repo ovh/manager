@@ -1,9 +1,12 @@
 {
-  "pci_projects_project_storages_containers_container_cold_archive_delete_title": "Supprimer mon archive",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_title": "Voulez-vous supprimer votre archive ?",
   "pci_projects_project_storages_containers_container_cold_archive_delete_description": "Vous êtes sur le point de supprimer le conteneur : {{ containerName }}.",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_terminate_input_label": "Entrez \"TERMINATE\" dans le champ ci-dessous pour confirmer",
   "pci_projects_project_storages_containers_container_cold_archive_delete_submit_label": "Confirmer",
   "pci_projects_project_storages_containers_container_cold_archive_delete_cancel_label": "Annuler",
   "pci_projects_project_storages_containers_container_cold_archive_delete_archive_erase_message": "Toutes les données sur le conteneur d'archive {{containerName}} seront perdues.",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_archive_status_archived_restored_warning": "Votre archive {{containerName}} contient encore {{objetsCount}} objet(s).</br>Vous êtes sur le point de vider l'archive de tout son contenu.",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_archive_status_none_description": "Votre archive ne pourrait pas être supprimer via le manager. Merci d'utiliser le AWS CLI pour cet effet.",
   "pci_projects_project_storages_containers_container_cold_archive_delete_success_message": "Le conteneur {{ containerName }} a été supprimé.",
   "pci_projects_project_storages_containers_container_cold_archive_delete_error_delete": "Une erreur est survenue lors de la suppression du conteneur {{ containerName }} : {{ message }}."
 }

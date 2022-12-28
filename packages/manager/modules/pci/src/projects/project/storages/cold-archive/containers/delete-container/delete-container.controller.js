@@ -1,4 +1,9 @@
-import { COLD_ARCHIVE_DEFAULT_REGION } from './delete-container.constants';
+import {
+  COLD_ARCHIVE_DEFAULT_REGION,
+  TERMINATE_INPUT_PATTERN,
+} from './delete-container.constants';
+
+import { COLD_ARCHIVE_CONTAINER_STATUS } from '../containers.constants';
 
 export default class ColdArchiveContainersDeleteContainerController {
   /* @ngInject */
@@ -11,6 +16,8 @@ export default class ColdArchiveContainersDeleteContainerController {
     this.trackPage('containers::container::delete-container');
 
     this.isLoading = false;
+    this.TERMINATE_INPUT_PATTERN = TERMINATE_INPUT_PATTERN;
+    this.COLD_ARCHIVE_CONTAINER_STATUS = COLD_ARCHIVE_CONTAINER_STATUS;
   }
 
   getHeadingContent() {
@@ -27,7 +34,7 @@ export default class ColdArchiveContainersDeleteContainerController {
 
     this.isLoading = true;
     return this.pciStoragesColdArchiveService
-      .removeArchiveContainer(
+      .emptyArchiveContainer(
         this.projectId,
         COLD_ARCHIVE_DEFAULT_REGION,
         this.container.name,
