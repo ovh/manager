@@ -4,11 +4,13 @@ import {
 } from './delete-container.constants';
 
 import { COLD_ARCHIVE_CONTAINER_STATUS } from '../containers.constants';
+import { MANAGE_ARCHIVE_DOC_LINK } from '../../cold-archives.constants';
 
 export default class ColdArchiveContainersDeleteContainerController {
   /* @ngInject */
-  constructor($translate, PciStoragesColdArchiveService) {
+  constructor($translate, PciStoragesColdArchiveService, coreConfig) {
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.pciStoragesColdArchiveService = PciStoragesColdArchiveService;
   }
 
@@ -29,12 +31,18 @@ export default class ColdArchiveContainersDeleteContainerController {
     );
   }
 
+  getDocumentationUrl() {
+    return MANAGE_ARCHIVE_DOC_LINK[
+      this.coreConfig.getUserLanguage().toUpperCase()
+    ];
+  }
+
   deleteContainer() {
     this.trackClick('containers::container::delete-container::confirm');
 
     this.isLoading = true;
     return this.pciStoragesColdArchiveService
-      .emptyArchiveContainer(
+      .deleteArchiveContainer(
         this.projectId,
         COLD_ARCHIVE_DEFAULT_REGION,
         this.container.name,
