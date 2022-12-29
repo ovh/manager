@@ -102,13 +102,22 @@
                     ></span>
                 </oui-action-menu-item>
 
+                <!--Action: flush container-->
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.constructor.isActionFlushContainerAvailable($row)"
+                    data-on-click="$ctrl.goToFlushArchive($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_cold_archive_container_action_flush_archive"
+                    ></span>
+                </oui-action-menu-item>
                 <!--Action: delete container-->
                 <oui-action-menu-item
                     data-ng-if="$ctrl.constructor.isActionDeleteContainerAvailable($row)"
                     data-on-click="$ctrl.goToDeleteContainer($row)"
                 >
                     <span
-                        data-translate="pci_projects_project_storages_cold_archive_container_action_delete_archive"
+                        data-translate="pci_projects_project_storages_cold_archive_container_action_delete_container"
                     ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
