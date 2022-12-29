@@ -2,6 +2,7 @@ import clone from 'lodash/clone';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
 import punycode from 'punycode';
+import { ADD_STATES } from './add.constants';
 
 export default /* @ngInject */ (
   $rootScope,
@@ -95,7 +96,7 @@ export default /* @ngInject */ (
         check2010Provider();
       },
       (failure) => {
-        $scope.resetAction();
+        $scope.closeModal();
         $scope.setMessage(
           $translate.instant('emailpro_tab_domain_add_failure'),
           failure,
@@ -131,7 +132,7 @@ export default /* @ngInject */ (
   });
 
   $scope.addDomain = function addDomain() {
-    $scope.resetAction();
+    $scope.closeModal();
     prepareModel();
 
     EmailProDomains.addDomain($scope.model).then(
@@ -175,5 +176,11 @@ export default /* @ngInject */ (
     );
   };
 
-  $scope.resetAction = () => $state.go('^');
+  $scope.closeModal = () => {
+    if (Object.values(ADD_STATES).includes($state.current?.name)) {
+      $state.go('^');
+    } else {
+      $scope.setAction(false);
+    }
+  };
 };
