@@ -59,6 +59,13 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
+      goToFlushArchive: /* @ngInject */ ($state, projectId) => (container) => {
+        return $state.go(COLD_ARCHIVE_STATES.CONTAINERS_ARCHIVE_FLUSH, {
+          projectId,
+          container,
+        });
+      },
+
       goToDeleteArchive: /* @ngInject */ ($state, projectId) => (container) => {
         return $state.go(
           COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_ARCHIVE_DELETE,

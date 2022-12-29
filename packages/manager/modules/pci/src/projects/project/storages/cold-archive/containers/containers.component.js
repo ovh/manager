@@ -13,6 +13,7 @@ export default {
     goToAddUserToContainer: '<',
     goToDeleteContainerObjects: '<',
     goToDeleteContainer: '<',
+    goToFlushArchive: '<',
     goToDeleteArchive: '<',
     goToArchiveContainer: '<',
     goToRestoreContainer: '<',
