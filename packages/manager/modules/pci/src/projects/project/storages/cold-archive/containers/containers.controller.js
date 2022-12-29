@@ -70,6 +70,7 @@ export default class PciStoragesColdArchiveContainersController {
       Ctrl.isActionDeleteObjectsAvailable(container),
       Ctrl.isActionArchiveAvailable(container),
       Ctrl.isActionRestoredAvailable(container),
+      Ctrl.isActionFlushContainerAvailable(container),
       Ctrl.isActionDeleteContainerAvailable(container),
     ].some((isActionAvailable) => isActionAvailable === true);
   }
@@ -110,10 +111,17 @@ export default class PciStoragesColdArchiveContainersController {
     return [COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED].includes(status);
   }
 
-  static isActionDeleteContainerAvailable({ status }) {
+  static isActionFlushContainerAvailable({ status }) {
     return [
       COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED,
       COLD_ARCHIVE_CONTAINER_STATUS.RESTORED,
+    ].includes(status);
+  }
+
+  static isActionDeleteContainerAvailable({ status }) {
+    return [
+      COLD_ARCHIVE_CONTAINER_STATUS.NONE,
+      COLD_ARCHIVE_CONTAINER_STATUS.FLUSHED,
     ].includes(status);
   }
 }
