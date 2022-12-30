@@ -18,6 +18,7 @@ import {
   IP_AGORA,
   ADDITIONAL_IP,
   BLOCK_ADDITIONAL_IP,
+  ALERT_ID,
 } from './ip-ip-agoraOrder.constant';
 
 export default class AgoraIpOrderCtrl {
@@ -50,6 +51,7 @@ export default class AgoraIpOrderCtrl {
     this.IP_AGORA = IP_AGORA;
     this.ADDITIONAL_IP = ADDITIONAL_IP;
     this.BLOCK_ADDITIONAL_IP = BLOCK_ADDITIONAL_IP;
+    this.ALERT_ID = ALERT_ID;
     this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
   }
 
@@ -88,8 +90,9 @@ export default class AgoraIpOrderCtrl {
         }
       })
       .catch((err) => {
-        this.Alerter.error(this.$translate.instant('ip_order_loading_error'));
-
+        this.Alerter.error(
+          this.$translate.instant('ip_order_loading_error', this.ALERT_ID),
+        );
         return this.$state.go('^').then(() => this.$q.reject(err));
       })
       .finally(() => {
@@ -206,6 +209,8 @@ export default class AgoraIpOrderCtrl {
           this.Alerter.set(
             'alert-warning',
             this.$translate.instant('ip_order_quota_full'),
+            null,
+            this.ALERT_ID,
           );
           this.loading.ipOffers = false;
           return this.$q.reject();
@@ -311,7 +316,10 @@ export default class AgoraIpOrderCtrl {
     return this.$q
       .all([ipOffersPromise, ipOrganisationPromise])
       .catch((err) => {
-        this.Alerter.error(this.$translate.instant('ip_order_loading_error'));
+        this.Alerter.error(
+          this.$translate.instant('ip_order_loading_error'),
+          this.ALERT_ID,
+        );
         this.$state.go('^');
         return this.$q.reject(err);
       })
@@ -408,7 +416,10 @@ export default class AgoraIpOrderCtrl {
         );
       })
       .catch((err) => {
-        this.Alerter.error(this.$translate.instant('ip_order_finish_error'));
+        this.Alerter.error(
+          this.$translate.instant('ip_order_finish_error'),
+          this.ALERT_ID,
+        );
         return this.$state.go('^').then(() => this.$q.reject(err));
       })
       .finally(() => this.$state.go('^'));
