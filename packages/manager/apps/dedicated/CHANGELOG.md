@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.41.5...@ovh-ux/manager-dedicated@17.42.0) (2023-01-02)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** incorrect format date ([e099558](https://github.com/ovh/manager/commit/e099558305d49c77cf8c8bf8df169f4b25aa26ae))
+* **dedicated.server:** add possibility to remove all type backup ([979e89f](https://github.com/ovh/manager/commit/979e89f1a15c95a9bd9bf669ef28f979d42ae834))
+* **dedicated:** enable weathermap link ([a4d483d](https://github.com/ovh/manager/commit/a4d483d76cd8664143d3f80702eb141cee94e41a))
+* **pcc:** add german guide links ([db676ab](https://github.com/ovh/manager/commit/db676abeaf57f0eeb7b96b70717f6ca18c63d0b1))
+
+
+### Features
+
+* **dedicated-cloud.federation:** update displayed fields ([#8423](https://github.com/ovh/manager/issues/8423)) ([f2ba1a9](https://github.com/ovh/manager/commit/f2ba1a9bb8ffb6bd7a89a7d4df96f649937c2107))
+* **dedicated:** minimize the width of disk selection ([1ec0312](https://github.com/ovh/manager/commit/1ec0312612b79dc3ef793f15b31a61d0dc28c190))
+
+
+
+
+
 ## [17.41.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.41.4...@ovh-ux/manager-dedicated@17.41.5) (2022-12-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

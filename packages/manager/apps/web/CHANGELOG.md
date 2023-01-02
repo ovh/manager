@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.23.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.23.5...@ovh-ux/manager-web@16.23.6) (2023-01-02)
+
+
+### Bug Fixes
+
+* **web.domain:** change management renewable vs restorable ([380cdb4](https://github.com/ovh/manager/commit/380cdb4e3da53b2fa15f800b0b2e3316905106c5))
+* **web.private-database:** avoid whole page load ([dbbda16](https://github.com/ovh/manager/commit/dbbda166d2aba46b2954aa511b69f4c5952b2855))
+
+
+
+
+
 ## [16.23.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.23.4...@ovh-ux/manager-web@16.23.5) (2022-12-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

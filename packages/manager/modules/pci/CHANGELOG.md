@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.105.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.104.0...@ovh-ux/manager-pci@5.105.0) (2023-01-02)
+
+
+### Bug Fixes
+
+* **pci.kube.reset:** force routing if gateway enabled ([25fdac9](https://github.com/ovh/manager/commit/25fdac92f5bc96ed88dede3d3e09af5ffdc42f25))
+* **pci.object-storage:** add user to container ([3ddc1f4](https://github.com/ovh/manager/commit/3ddc1f44f95865c26e0af102355615bb93d4fbd3))
+* **pci.project:** product name should not be translated ([9cd2be4](https://github.com/ovh/manager/commit/9cd2be4541259ee7116b6a5f42642aca471821c0))
+* **pci:** add unit for bandwidth ([fdd9242](https://github.com/ovh/manager/commit/fdd924203a88aafae9b1670fba27ab9672ad6fc5))
+* **pci:** display activate region warning message ([6b497eb](https://github.com/ovh/manager/commit/6b497eb1067ae79901e450cd16e90d553851b576))
+* **pci:** fix padding on kube project creation ([07170a1](https://github.com/ovh/manager/commit/07170a19323f5e97d7f7f226a5dd070decb24824))
+
+
+### Features
+
+* **pci.storages:** add new label service integration key ([57e57b8](https://github.com/ovh/manager/commit/57e57b8732f74e86e4b50c3c8c8a2f4a21f4c787))
+
+
+
+
+
 # [5.104.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.103.0...@ovh-ux/manager-pci@5.104.0) (2022-12-22)
 
 
