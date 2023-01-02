@@ -1,3 +1,4 @@
+import punycode from 'punycode';
 import filter from 'lodash/filter';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
@@ -54,7 +55,9 @@ export default /* @ngInject */ ($stateProvider) => {
             return filter(
               union(domains, zones),
               (domain) => !includes(domainNames, domain),
-            ).sort();
+            )
+              .map((domain) => punycode.toUnicode(domain))
+              .sort();
           }),
       getCheckout: /* @ngInject */ (cart, WucOrderCartService) => () =>
         WucOrderCartService.getCheckoutInformations(cart),
