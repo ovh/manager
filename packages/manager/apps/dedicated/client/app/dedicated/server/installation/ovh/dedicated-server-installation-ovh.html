@@ -537,7 +537,6 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th>
                                     <span
                                         class="fa fa-question-circle"
@@ -605,14 +604,6 @@
                                     'deleting': partition == installation.partitionSchemeModels[setPartition.delModel]
                                 }"
                             >
-                                <td>
-                                    <span
-                                        class="label"
-                                        data-ng-style="{ 'background': partition.progressColor }"
-                                    >
-                                        &nbsp;
-                                    </span>
-                                </td>
                                 <td
                                     class="form-group"
                                     data-ng-class="{
@@ -893,13 +884,6 @@
                                 </td>
                             </tr>
                             <tr data-ng-show="newPartition.display">
-                                <td>
-                                    <div
-                                        class="pellet"
-                                        style="margin: auto;"
-                                        data-ng-style="{ 'background': newPartition.progressColor}"
-                                    ></div>
-                                </td>
                                 <td
                                     class="form-group"
                                     data-ng-class="{
