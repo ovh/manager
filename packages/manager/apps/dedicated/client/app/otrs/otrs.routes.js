@@ -79,11 +79,20 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.otrs.tickets.details', {
           ticketId,
         }),
-      tickets: /* @ngInject */ ($translate, OvhApiSupport, archived) =>
-        OvhApiSupport.Iceberg()
+      totalTickets: /* @ngInject */ (Otrs, archived) => {
+        return Otrs.getTotalTickets(archived);
+      },
+      tickets: /* @ngInject */ (
+        $translate,
+        iceberg,
+        archived,
+        pageNumber,
+        pageSize,
+      ) =>
+        iceberg(`/support/tickets`)
           .query()
           .expand('CachedObjectList-Pages')
-          .execute({ archived }, true)
+          .execute({ archived, page: pageNumber, pageSize }, true)
           .$promise.then(({ data: tickets = [] }) =>
             tickets.map((ticket) => {
               set(ticket, 'serviceName', {

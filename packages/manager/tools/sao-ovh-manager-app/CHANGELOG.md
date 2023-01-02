@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.6.2](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.6.1...@ovh-ux/sao-ovh-manager-app@2.6.2) (2022-12-20)
+
+
+### Bug Fixes
+
+* **generator:** update application version definition ([262cb07](https://github.com/ovh/manager/commit/262cb07c75f723cb033680ce3b28631bc7819851))
+
+
+
+
+
 ## [2.6.1](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.6.0...@ovh-ux/sao-ovh-manager-app@2.6.1) (2022-07-27)
 
 
@@ -205,6 +221,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### BREAKING CHANGES
 
 * init module @ovh-ux/sao-ovh-manager-app
-
-
-

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.12.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.12.6...@ovh-ux/manager-core@12.12.7) (2022-12-20)
+
+
+### Bug Fixes
+
+* **request-tagger:** remove request tagger version AngularJS management ([f4c87f2](https://github.com/ovh/manager/commit/f4c87f2e9f7091a7e193cd5b1bf44899d648fcb4))
+
+
+
+
+
 ## [12.12.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.12.5...@ovh-ux/manager-core@12.12.6) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-core

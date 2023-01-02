@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.41.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.41.4...@ovh-ux/manager-dedicated@17.41.5) (2022-12-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [17.41.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.41.3...@ovh-ux/manager-dedicated@17.41.4) (2022-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [17.41.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.41.2...@ovh-ux/manager-dedicated@17.41.3) (2022-12-22)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** game firewall config ([5ebc127](https://github.com/ovh/manager/commit/5ebc1277ba9306bdd3b4063153e15301027eaeca))
+
+
+
+
+
+## [17.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.41.1...@ovh-ux/manager-dedicated@17.41.2) (2022-12-20)
+
+
+### Bug Fixes
+
+* **apps:** define Application Version ([700fd68](https://github.com/ovh/manager/commit/700fd68b7934a48ddc04f1c2ef8695d20ee7c993))
+* **dedicated:** remove chatbot ([ba8630d](https://github.com/ovh/manager/commit/ba8630d882e59c34f8a3ff8ab1b3f75be8dc322a))
+
+
+
+
+
+## [17.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.41.0...@ovh-ux/manager-dedicated@17.41.1) (2022-12-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [17.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.40.0...@ovh-ux/manager-dedicated@17.41.0) (2022-12-19)
+
+
+### Features
+
+* **dedicated.ip:** improve ip batch 1 ([#8580](https://github.com/ovh/manager/issues/8580)) ([a508be2](https://github.com/ovh/manager/commit/a508be23eb79df2832199ee3a08608c4ea7a8c81))
+
+
+
+
+
+# [17.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.39.1...@ovh-ux/manager-dedicated@17.40.0) (2022-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1972] ([41e2ee2](https://github.com/ovh/manager/commit/41e2ee2622b2516acb58a2b7339aee5706383d0d))
+* **server.details:** fixed wrong naming case for ext3 and ext4 fs ([8459f56](https://github.com/ovh/manager/commit/8459f56b6a394e2bd8c5cbfdd2e8e7dfe3de9f9b))
+
+
+### Features
+
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+* replace /order/upgrade API calls with /services ([#8011](https://github.com/ovh/manager/issues/8011)) ([e635a80](https://github.com/ovh/manager/commit/e635a8000ffda1fcb25cc6c941efd22d0fc9817a))
+
+
+
+
+
 ## [17.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.39.0...@ovh-ux/manager-dedicated@17.39.1) (2022-12-13)
 
 

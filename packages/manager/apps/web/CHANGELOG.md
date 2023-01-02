@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.23.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.23.4...@ovh-ux/manager-web@16.23.5) (2022-12-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [16.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.23.3...@ovh-ux/manager-web@16.23.4) (2022-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [16.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.23.2...@ovh-ux/manager-web@16.23.3) (2022-12-20)
+
+
+### Bug Fixes
+
+* **apps:** define Application Version ([700fd68](https://github.com/ovh/manager/commit/700fd68b7934a48ddc04f1c2ef8695d20ee7c993))
+* **web:** remove chatbot ([85dc1d7](https://github.com/ovh/manager/commit/85dc1d7bf00e111b0139ffa3c723f706efccb3f6))
+
+
+
+
+
+## [16.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.23.1...@ovh-ux/manager-web@16.23.2) (2022-12-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [16.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.23.0...@ovh-ux/manager-web@16.23.1) (2022-12-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [16.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.22.0...@ovh-ux/manager-web@16.23.0) (2022-12-19)
+
+
+### Features
+
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+* **web.private-sql:** private SQL activation for db over 512MB ([acb2a00](https://github.com/ovh/manager/commit/acb2a00c383cd88e7af326d95790b5e578a45d3a))
+
+
+
+
+
 # [16.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.21.3...@ovh-ux/manager-web@16.22.0) (2022-12-12)
 
 

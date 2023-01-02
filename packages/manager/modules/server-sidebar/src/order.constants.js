@@ -585,7 +585,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     title: 'ip',
     feature: 'ip',
     icon: 'ovh-font ovh-font-ip',
-    state: 'app.ip.dashboard.agora-order',
+    state: 'app.ip.agora-order',
     linkId: 'DEDICATED',
     linkPart: '#/configuration/ip?landingTo=ip&tab=ip',
     app: [DEDICATED],

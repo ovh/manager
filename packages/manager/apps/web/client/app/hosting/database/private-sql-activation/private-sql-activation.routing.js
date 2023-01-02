@@ -1,6 +1,4 @@
 import filter from 'lodash/filter';
-import orderBy from 'lodash/orderBy';
-import toLower from 'lodash/toLower';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -22,6 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
         ),
       resolve: {
+        catalog: /* @ngInject */ (HostingDatabase) =>
+          HostingDatabase.getWebhostingCatalog(),
         me: /* @ngInject */ (user) => user,
         hosting: /* @ngInject */ ($transition$) =>
           $transition$.params().productId,
@@ -31,12 +31,36 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
         versions: /* @ngInject */ (PrivateDatabase) =>
           PrivateDatabase.getOrderableDatabaseVersions('classic'),
-        services: /* @ngInject */ (OvhApiHostingWeb) =>
-          OvhApiHostingWeb.v6()
-            .query()
-            .$promise.then((services) =>
-              orderBy(services, (serviceName) => toLower(serviceName)),
+        datacenter: /* @ngInject */ (serviceName, getDatacenter) =>
+          getDatacenter(serviceName),
+        getDatacenter: /* @ngInject */ (Hosting) => async (serviceName) => {
+          const { datacenter } = await Hosting.getHosting(serviceName);
+          return datacenter;
+        },
+
+        onError: /* @ngInject */ ($translate, goToHosting) => (error) =>
+          goToHosting(
+            $translate.instant('privatesql_activation_hosting_error', {
+              message: error.data.message,
+            }),
+            'danger',
+            'app.alerts.database',
+          ),
+        onSuccess: /* @ngInject */ ($translate, goToHosting) => (
+          checkoutResult,
+        ) =>
+          goToHosting(
+            $translate.instant(
+              checkoutResult.autoPayWithPreferredPaymentMethod
+                ? 'privatesql_activation_success'
+                : 'privatesql_activation_success_bc',
+              {
+                url: checkoutResult.url,
+              },
             ),
+            'success',
+            'app.alerts.database',
+          ),
       },
     },
   );

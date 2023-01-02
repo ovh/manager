@@ -1498,29 +1498,32 @@ class DedicatedCloudService {
   }
 
   /* ------- Management Fees -------*/
-  getManagementFee(serviceName, planCode, quantity) {
-    return this.OvhHttp.get(
-      `/order/upgrade/privateCloudManagementFee/${serviceName}%2Fmanagementfee/${planCode}`,
-      {
-        rootPath: 'apiv6',
-        params: {
-          quantity,
-        },
-      },
-    );
+  getManagementFeePlan(serviceId, planCode) {
+    return this.$http
+      .get(`/services/${serviceId}/upgrade/${planCode}`)
+      .then(({ data }) => data);
   }
 
-  orderManagementFee(serviceName, planCode, quantity) {
-    return this.OvhHttp.post(
-      `/order/upgrade/privateCloudManagementFee/${serviceName}%2Fmanagementfee/${planCode}`,
-      {
-        rootPath: 'apiv6',
-        data: {
-          quantity,
-          autoPayWithPreferredPaymentMethod: true,
-        },
-      },
-    );
+  getOrderDetails(serviceId, plan, quantity) {
+    return this.$http
+      .post(`/services/${serviceId}/upgrade/${plan.planCode}/simulate`, {
+        quantity,
+        duration: plan.duration,
+        pricingMode: plan.pricingMode,
+        autoPayWithPreferredPaymentMethod: true,
+      })
+      .then(({ data }) => data);
+  }
+
+  orderManagementFee(serviceId, plan, quantity) {
+    return this.$http
+      .post(`/services/${serviceId}/upgrade/${plan.planCode}/execute`, {
+        quantity,
+        duration: plan.duration,
+        pricingMode: plan.pricingMode,
+        autoPayWithPreferredPaymentMethod: true,
+      })
+      .then(({ data }) => data);
   }
 
   /* ------- Operations -------*/

@@ -5,8 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/order-public',
     component: component.name,
     resolve: {
-      catalog: /* @ngInject */ (HostingDatabaseOrderPublicService) =>
-        HostingDatabaseOrderPublicService.getCatalog(),
+      catalog: /* @ngInject */ (HostingDatabase) =>
+        HostingDatabase.getWebhostingCatalog(),
       characteristicsOfAvailableProducts: /* @ngInject */ (
         HostingDatabaseOrderPublicService,
         serviceName,

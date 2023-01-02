@@ -4,34 +4,21 @@ export default class BmServerComponentsOrderPrivateBandwidthService {
     this.$http = $http;
   }
 
-  getBareMetalPrivateBandwidthOptions(serviceName) {
+  getBareMetalPrivateBandwidthOptions(serviceId) {
     return this.$http
-      .get(`/order/upgrade/baremetalPrivateBandwidth/${serviceName}`)
+      .get(`/services/${serviceId}/upgrade`)
       .then(({ data }) => data);
   }
 
-  getBareMetalPrivateBandwidthOrder(serviceName, planCode) {
+  getBareMetalPrivateBandwidthOrder(serviceId, planCode, params) {
     return this.$http
-      .get(
-        `/order/upgrade/baremetalPrivateBandwidth/${serviceName}/${planCode}`,
-        {
-          params: {
-            quantity: 1,
-          },
-        },
-      )
+      .post(`/services/${serviceId}/upgrade/${planCode}/simulate`, params)
       .then(({ data }) => data);
   }
 
-  bareMetalPrivateBandwidthPlaceOrder(serviceName, planCode, autoPay) {
+  bareMetalPrivateBandwidthPlaceOrder(serviceId, planCode, params) {
     return this.$http
-      .post(
-        `/order/upgrade/baremetalPrivateBandwidth/${serviceName}/${planCode}`,
-        {
-          quantity: 1,
-          autoPayWithPreferredPaymentMethod: autoPay,
-        },
-      )
+      .post(`/services/${serviceId}/upgrade/${planCode}/execute`, params)
       .then(({ data }) => data);
   }
 }

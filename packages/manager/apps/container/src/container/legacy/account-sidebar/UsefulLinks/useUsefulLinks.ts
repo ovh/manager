@@ -4,7 +4,6 @@ import { UsefulLink } from './Link/usefulLink';
 
 import { useShell } from '@/context/useApplicationContext';
 import useContainer from '@/core/container';
-import { useHeader } from '@/context/header';
 
 interface UseUsefulLinks {
   getUsefulLinks(): UsefulLink[];
@@ -18,16 +17,10 @@ const useUsefulLinks = (): UseUsefulLinks => {
     .getEnvironment();
   const region = environment.getRegion();
   const user = environment.getUser();
-  const {
-    isChatbotEnabled,
-    isLivechatEnabled,
-    setChatbotReduced,
-  } = useContainer();
-  const { setIsAccountSidebarVisible } = useHeader();
+  const { isLivechatEnabled, setChatbotReduced } = useContainer();
 
   const getUsefulLinks = (): UsefulLink[] => {
     const trackingPrefix = 'hub::sidebar::useful-links';
-    const uxPlugin = shell.getPlugin('ux');
     return [
       {
         id: 'helpCenter',
@@ -35,16 +28,13 @@ const useUsefulLinks = (): UseUsefulLinks => {
         tracking: `${trackingPrefix}::go-to-helpcenter`,
         icon: 'oui-icon oui-icon-lifebuoy_concept',
       },
-      ...(isChatbotEnabled || isLivechatEnabled
+      ...(isLivechatEnabled
         ? [
             {
               id: 'chatbot',
               action: () => {
-                if (isChatbotEnabled) shell.getPlugin('ux').openChatbot();
-                else {
-                  shell.getPlugin('ux').openLiveChat();
-                  setChatbotReduced(false);
-                }
+                shell.getPlugin('ux').openLiveChat();
+                setChatbotReduced(false);
               },
               icon: 'oui-icon oui-icon-speech-bubble_concept',
             },

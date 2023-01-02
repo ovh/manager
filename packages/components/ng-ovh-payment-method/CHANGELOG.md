@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.3.3...@ovh-ux/ng-ovh-payment-method@9.4.0) (2022-12-22)
+
+
+### Features
+
+* **apps:** sepa direct payment worldline integration ([#8203](https://github.com/ovh/manager/issues/8203)) ([618dfee](https://github.com/ovh/manager/commit/618dfeeb1565d47c1bf0e66873931e6c8932c7bb))
+
+
+
+
+
 ## [9.3.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.3.2...@ovh-ux/ng-ovh-payment-method@9.3.3) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-payment-method

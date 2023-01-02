@@ -29,5 +29,6 @@
   "privatesql_activation_version_v_redis_40": "Redis 4.0",
   "privatesql_activation_option_private-sql-512": "SQL Privato 512 MB",
   "privatesql_activation_success": "L’attivazione del database è stata eseguita correttamente. Consulta la <a href=\"{{ billUrl }}}\" target=\"_blank\" rel=\"noopener\">tua fattura</a>.",
-  "privatesql_activation_success_bc": "Il tuo <a href=\"{{ bcUrl }}\" target=\"_blank\" rel=\"noopener\">ordine</a> è stato generato. Effettua il pagamento per attivare il tuo database."
+  "privatesql_activation_success_bc": "Il tuo <a href=\"{{ bcUrl }}\" target=\"_blank\" rel=\"noopener\">ordine</a> è stato generato. Effettua il pagamento per attivare il tuo database.",
+  "privatesql_activation_option_private-sql": "SQL Privato {{diskSpace}} MB"
 }

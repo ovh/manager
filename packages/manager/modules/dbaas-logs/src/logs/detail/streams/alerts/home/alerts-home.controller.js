@@ -168,4 +168,19 @@ export default class LogsStreamsAlertsHomeCtrl {
       alertId: alert.alertId,
     });
   }
+
+  /**
+   * Return human friendly threshold type translation
+   *
+   * @param {any} thresholdType
+   * @memberof LogsStreamsAlertsHomeCtrl
+   */
+  getThresholdType(thresholdType) {
+    if (thresholdType) {
+      return this.$translate
+        .instant(`add_alert_threshold_type_${thresholdType.toLowerCase()}`)
+        .toLowerCase();
+    }
+    return thresholdType;
+  }
 }

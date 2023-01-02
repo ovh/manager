@@ -55,16 +55,5 @@
                 </div>
             </div>
         </div>
-
-        <ovh-chatbot
-            data-ng-class="{ 'sidebar-open': $ctrl.isAccountSidebarVisible }"
-            data-ng-if="$ctrl.chatbotEnabled"
-            data-language="{{$ctrl.currentLanguage}}"
-            data-country="{{$ctrl.me.ovhSubsidiary}}"
-            data-support-level="{{$ctrl.me.supportLevel.level}}"
-            data-open-at-startup="$ctrl.showLivechat"
-            data-on-open="$ctrl.onChatbotOpen()"
-            data-on-close="$ctrl.onChatbotClose(reduced)"
-        ></ovh-chatbot>
     </body>
 </html>

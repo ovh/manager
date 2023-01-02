@@ -1,0 +1,33 @@
+<div class="ip-failover">
+    <ip-alerts
+        class="d-block mb-4"
+        data-service-type="$ctrl.serviceType"
+    ></ip-alerts>
+    <p data-translate="ip_failover_text"></p>
+    <ip-list
+        data-badges="$ctrl.badges"
+        data-go-to-antispam="$ctrl.goToAntispam"
+        data-go-to-firewall="$ctrl.goToFirewall"
+        data-go-to-game-firewall="$ctrl.goToGameFirewall"
+        data-go-to-organisation="$ctrl.goToOrganisation"
+        data-order-ip-available="$ctrl.orderIpAvailable"
+        data-service-type="$ctrl.serviceType"
+        data-set-action="$parent.setAction"
+        data-track-click="$ctrl.trackClick"
+        data-track-page="$ctrl.trackPage"
+        data-tracking-data="$ctrl.trackingData"
+        data-params="{ serviceName: $ctrl.unusedFilter ? 'null' : null }"
+    >
+        <ip-list-filters>
+            <span
+                class="mr-2"
+                data-translate="ip_failover_unused_filter"
+            ></span>
+            <oui-switch
+                data-name="unusedFilter"
+                data-model="$ctrl.unusedFilter"
+                data-on-change="$ctrl.toggleUnusedFilter()"
+            ></oui-switch>
+        </ip-list-filters>
+    </ip-list>
+</div>

@@ -10,11 +10,26 @@ export default class {
       init: true,
     };
 
-    return this.DedicatedCloud.getManagementFee(
-      this.productId,
+    return this.DedicatedCloud.getManagementFeePlan(
+      this.managementFeeServiceId,
       this.upgradeCode,
       1,
     )
+      .then((data) => {
+        const renewPrice = data.prices?.find((price) =>
+          price.capacities.includes('renew'),
+        );
+        this.plan = {
+          planCode: this.upgradeCode,
+          duration: renewPrice?.duration,
+          pricingMode: renewPrice?.pricingMode,
+        };
+        return this.DedicatedCloud.getOrderDetails(
+          this.managementFeeServiceId,
+          this.plan,
+          1,
+        );
+      })
       .then((data) => {
         this.upgradePlan = data;
       })
@@ -38,8 +53,8 @@ export default class {
     this.loading.init = true;
 
     return this.DedicatedCloud.orderManagementFee(
-      this.productId,
-      this.upgradeCode,
+      this.managementFeeServiceId,
+      this.plan,
       1,
     )
       .then(() => {

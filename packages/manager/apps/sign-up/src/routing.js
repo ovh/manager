@@ -103,9 +103,9 @@ export const state = {
       },
     ],
     trackError: /* @ngInject */ (atInternet, me) => (step, field) => {
-      atInternet.trackEvent({
-        event: 'ACCOUNT_CREATION_VALIDATION',
-        page: `accountcreation-${step}-error${field}-${me.legalform}`,
+      atInternet.trackPage({
+        name: `accountcreation-${step}-error${field}-${me.legalform}`,
+        customObject: { event: 'ACCOUNT_CREATION_VALIDATION' },
       });
     },
   },

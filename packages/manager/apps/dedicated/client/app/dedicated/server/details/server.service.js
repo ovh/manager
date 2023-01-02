@@ -11,7 +11,7 @@ import snakeCase from 'lodash/snakeCase';
 import sortBy from 'lodash/sortBy';
 import uniq from 'lodash/uniq';
 
-export default class ServerF {
+export default class Server {
   /* @ngInject */
   constructor(
     $cacheFactory,
@@ -39,13 +39,6 @@ export default class ServerF {
     this.OvhHttp = OvhHttp;
     this.Polling = Polling;
     this.WucApi = WucApi;
-
-    this.OvhApiOrderBaremetalPublicBW = OvhApiOrder.Upgrade()
-      .BaremetalPublicBandwidth()
-      .v6();
-    this.OvhApiOrderBaremetalPrivateBW = OvhApiOrder.Upgrade()
-      .BaremetalPrivateBandwidth()
-      .v6();
 
     this.serverCaches = {
       ipmi: $cacheFactory('UNIVERS_DEDICATED_SERVER_IPMI'),
@@ -169,7 +162,7 @@ export default class ServerF {
     const pollPromise = this.$q.defer();
 
     this.Polling.addTaskFast(
-      ServerF.getTaskPath(productId, task.id),
+      Server.getTaskPath(productId, task.id),
       task,
       scopeId,
     )
@@ -191,7 +184,7 @@ export default class ServerF {
     const pollPromise = this.$q.defer();
 
     this.Polling.addTask(
-      ServerF.getTaskPath(productId, task.id || task.taskId),
+      Server.getTaskPath(productId, task.id || task.taskId),
       task,
       scopeId,
     )
@@ -736,8 +729,8 @@ export default class ServerF {
       },
     };
 
-    response.download.values = ServerF.fillGaps(arrayIn[0].data);
-    response.upload.values = ServerF.fillGaps(arrayIn[1].data);
+    response.download.values = Server.fillGaps(arrayIn[0].data);
+    response.upload.values = Server.fillGaps(arrayIn[1].data);
     return response;
   }
 
@@ -777,8 +770,8 @@ export default class ServerF {
           ),
         ])
         .then((results) => {
-          const pointInterval = ServerF.getPointInterval(period);
-          return ServerF.buildMRTGResponse(results, pointInterval);
+          const pointInterval = Server.getPointInterval(period);
+          return Server.buildMRTGResponse(results, pointInterval);
         }),
     );
   }
@@ -1385,6 +1378,20 @@ export default class ServerF {
       .catch(() => null);
   }
 
+  static getIntervalUnit(duration) {
+    switch (duration.slice(-1)) {
+      case 'h': {
+        return 'hour';
+      }
+      case 'Y': {
+        return 'year';
+      }
+      default: {
+        return 'month';
+      }
+    }
+  }
+
   // eslint-disable-next-line class-methods-use-this
   getValidBandwidthPlans(plans) {
     const list = map(plans, (plan) => {
@@ -1397,6 +1404,15 @@ export default class ServerF {
         return {
           ...plan,
           bandwidth,
+          prices: plan.prices.map((price) => {
+            if (price.capacities.includes('renew')) {
+              return {
+                ...price,
+                intervalUnit: Server.getIntervalUnit(price.duration),
+              };
+            }
+            return price;
+          }),
         };
       }
       return null;
@@ -1405,38 +1421,22 @@ export default class ServerF {
     return compact(list);
   }
 
-  getBareMetalPublicBandwidthOptions(serviceName) {
-    return this.OvhApiOrderBaremetalPublicBW.getPublicBandwidthOptions({
-      serviceName,
-    }).$promise;
+  getBareMetalPublicBandwidthOptions(serviceId) {
+    return this.$http
+      .get(`/services/${serviceId}/upgrade`)
+      .then(({ data }) => data);
   }
 
-  getBareMetalPublicBandwidthOrder(serviceName, planCode) {
-    this.OvhApiOrderBaremetalPublicBW.resetCache();
-    this.OvhApiOrderBaremetalPublicBW.resetQueryCache();
-
-    return this.OvhApiOrderBaremetalPublicBW.getPublicBandwidthOrder(
-      {
-        serviceName,
-        planCode,
-      },
-      {
-        quantity: 1,
-      },
-    ).$promise;
+  getBareMetalPublicBandwidthOrder(serviceId, planCode, params) {
+    return this.$http
+      .post(`/services/${serviceId}/upgrade/${planCode}/simulate`, params)
+      .then(({ data }) => data);
   }
 
-  bareMetalPublicBandwidthPlaceOrder(serviceName, planCode, autoPay) {
-    return this.OvhApiOrderBaremetalPublicBW.postPublicBandwidthPlaceOrder(
-      {
-        serviceName,
-        planCode,
-      },
-      {
-        quantity: 1,
-        autoPayWithPreferredPaymentMethod: autoPay,
-      },
-    ).$promise;
+  bareMetalPublicBandwidthPlaceOrder(serviceId, planCode, params) {
+    return this.$http
+      .post(`/services/${serviceId}/upgrade/${planCode}/execute`, params)
+      .then(({ data }) => data);
   }
 
   getHardwareSpecifications(productId) {

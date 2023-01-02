@@ -722,5 +722,10 @@
   "logs_tile_subscription_contact_billing": "Fatturazione",
   "logs_tile_subscription_contact_technical": "Tecnico",
   "logs_order": "Ordina",
-  "inputs_info_exposedport": "Porta TCP esposta"
+  "inputs_info_exposedport": "Porta TCP esposta",
+  "add_alert_threshold_type_gt": "Maggiore",
+  "add_alert_threshold_type_gte": "Maggiore o uguale",
+  "add_alert_threshold_type_eq": "Uguale",
+  "add_alert_threshold_type_lte": "Minore o uguale",
+  "add_alert_threshold_type_lt": "Minore"
 }

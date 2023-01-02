@@ -6,10 +6,13 @@ import { useShellClient } from '@ovh-ux/shell';
 
 import { buildURL } from '@ovh-ux/url-builder';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
-import { BILLING_REDIRECTIONS } from './constants';
+import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 
+import { BILLING_REDIRECTIONS } from './constants';
 import { getShellClient, setShellClient } from './shell';
 import TRACKING from './components/at-internet/at-internet.constant';
+
+defineApplicationVersion(__VERSION__);
 
 useShellClient('hub')
   .then(async (client) => {
@@ -29,8 +32,6 @@ useShellClient('hub')
     return client.environment.getEnvironment();
   })
   .then((environment) => {
-    environment.setVersion(__VERSION__);
-
     BILLING_REDIRECTIONS.forEach((redirectionRegex) => {
       const hash = window.location.hash.replace('#', '');
       if (redirectionRegex.test(hash)) {

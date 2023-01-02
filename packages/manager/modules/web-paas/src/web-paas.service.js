@@ -75,6 +75,16 @@ export default class WebPaasService {
       });
   }
 
+  getAddonServiceId(serviceId, addonType) {
+    return this.$http
+      .get(`/services/${serviceId}/options`)
+      .then(
+        ({ data }) =>
+          data.find((addon) => addon.resource?.product?.name === addonType)
+            ?.serviceId,
+      );
+  }
+
   getProjectDetails(projectId) {
     return this.$http
       .get(`/webPaaS/subscription/${projectId}`)
@@ -331,9 +341,9 @@ export default class WebPaasService {
       .finally(() => this.deleteCart());
   }
 
-  getAddonSummary(project, addon, quantity) {
+  getAddonSummary(project, addon, quantity, addonServiceId) {
     if (addon.serviceName && addon.environmentServiceName === undefined) {
-      return this.getUpgradeCheckoutInfo(addon.serviceName, addon, quantity);
+      return this.getUpgradeCheckoutInfo(addonServiceId, addon, quantity);
     }
 
     return this.createCart()
@@ -378,11 +388,11 @@ export default class WebPaasService {
     return this.OvhApiOrderCart.getCheckout({ cartId: cart.cartId }).$promise;
   }
 
-  checkoutAddon(cart, serviceName, selectedPlan, quantity) {
+  checkoutAddon(cart, serviceName, selectedPlan, quantity, addonServiceId) {
     if (cart) {
       return this.goToExpressOrderOption(serviceName, selectedPlan, quantity);
     }
-    return this.checkoutUpgrade(serviceName, selectedPlan, quantity);
+    return this.checkoutUpgrade(addonServiceId, selectedPlan, quantity);
   }
 
   getAdditionalOption(serviceName, project) {
@@ -411,32 +421,41 @@ export default class WebPaasService {
     }).$promise;
   }
 
-  getUpgradeOffers(projectId) {
+  getUpgradeOffers(serviceId) {
     return this.$http
-      .get(`/order/upgrade/webPaaS/${projectId}`)
+      .get(`/services/${serviceId}/upgrade`)
       .then(({ data }) => data);
   }
 
-  getUpgradeCheckoutInfo(serviceName, plan, quantity) {
+  static getServiceUpgradeParams(plan, quantity) {
+    const pricings = plan.pricings ? plan.pricings : plan.prices;
+    const pricing = pricings.find(({ capacities }) =>
+      capacities.includes('renew'),
+    );
+    return {
+      autoPayWithPreferredPaymentMethod: true,
+      duration:
+        pricing.duration ||
+        `P${pricing.interval}${pricing.intervalUnit[0]?.toUpperCase()}`,
+      pricingMode: pricing.pricingMode || pricing.mode,
+      quantity,
+    };
+  }
+
+  getUpgradeCheckoutInfo(serviceId, plan, quantity) {
     return this.$http
-      .get(`/order/upgrade/webPaaS/${serviceName}/${plan.planCode}`, {
-        params: {
-          quantity: quantity || plan.quantity,
-        },
-      })
+      .post(
+        `/services/${serviceId}/upgrade/${plan.planCode}/simulate`,
+        WebPaasService.getServiceUpgradeParams(plan, quantity),
+      )
       .then(({ data }) => data.order);
   }
 
-  checkoutUpgrade(serviceName, plan, quantity) {
+  checkoutUpgrade(serviceId, plan, quantity) {
     return this.$http
       .post(
-        `/order/upgrade/webPaaS/${
-          plan.serviceName ? plan.serviceName : serviceName
-        }/${plan.planCode}`,
-        {
-          autoPayWithPreferredPaymentMethod: true,
-          quantity: quantity || plan.quantity,
-        },
+        `/services/${serviceId}/upgrade/${plan.planCode}/execute`,
+        WebPaasService.getServiceUpgradeParams(plan, quantity),
       )
       .then(({ data }) => data);
   }

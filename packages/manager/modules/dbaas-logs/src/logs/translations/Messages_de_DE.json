@@ -722,5 +722,10 @@
   "logs_tile_subscription_contact_billing": "Abrechnung",
   "logs_tile_subscription_contact_technical": "Technisch",
   "logs_order": "Bestellen",
-  "inputs_info_exposedport": "Exponierter TCP-Port"
+  "inputs_info_exposedport": "Exponierter TCP-Port",
+  "add_alert_threshold_type_gt": "Mehr",
+  "add_alert_threshold_type_gte": "Mehr oder gleich",
+  "add_alert_threshold_type_eq": "Gleich",
+  "add_alert_threshold_type_lte": "Weniger oder gleich",
+  "add_alert_threshold_type_lt": "Weniger"
 }

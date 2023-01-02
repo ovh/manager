@@ -26,5 +26,7 @@
   "ovh_payment_status_maintenance": "Maintenance en cours",
   "ovh_payment_status_paused": "Mis en pause",
   "ovh_payment_status_failed": "Invalide",
+  "ovh_payment_status_validating": "En cours de validation",
+  "ovh_payment_status_rejected": "Refusé",
   "ovh_payment_status_null": "Information non-disponible"
 }

@@ -1,9 +1,6 @@
-import identity from 'lodash/identity';
-import pickBy from 'lodash/pickBy';
-import set from 'lodash/set';
-
 export default /* @ngInject */ function OtrsOtrsService(
   $compile,
+  $http,
   $q,
   $rootScope,
   coreConfig,
@@ -57,14 +54,10 @@ export default /* @ngInject */ function OtrsOtrsService(
     });
   };
 
-  this.getTickets = function getTickets(filters) {
-    if (filters.status === 'archived') {
-      set(filters, 'status', null);
-      set(filters, 'archived', true);
-    }
+  this.getTickets = function getTickets(archived, page, pageSize) {
     return OvhHttp.get('/support/tickets', {
       rootPath: 'apiv6',
-      params: pickBy(filters, identity),
+      params: { archived, page, pageSize },
     });
   };
 
@@ -139,5 +132,28 @@ export default /* @ngInject */ function OtrsOtrsService(
         serviceName,
       },
     });
+  };
+
+  this.getTotalTickets = async function getTotalTickets(archived) {
+    let low = 1;
+    let high = 10;
+    let middle;
+    let isLastPageFound = false;
+    let results;
+    while (low <= high && !isLastPageFound) {
+      middle = Math.floor((low + high) / 2);
+      // eslint-disable-next-line no-await-in-loop
+      results = await this.getTickets(archived, middle, 100);
+      if (results.length && results.length < 100) {
+        isLastPageFound = true;
+      } else if (results.length === 0) {
+        high = middle - 1;
+      } else if (results.length === 100) {
+        low = middle + 1;
+      }
+    }
+    return isLastPageFound
+      ? (middle - 1) * 100 + results.length
+      : (low - 1) * 100;
   };
 }

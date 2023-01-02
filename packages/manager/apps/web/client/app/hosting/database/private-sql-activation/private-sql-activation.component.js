@@ -5,11 +5,14 @@ export default {
   controller,
   template,
   bindings: {
+    catalog: '<',
     goToHosting: '<',
     me: '<',
     hosting: '<',
     privateSqlOptions: '<',
     versions: '<',
-    services: '<',
+    datacenter: '<?',
+    onError: '<',
+    onSuccess: '<',
   },
 };

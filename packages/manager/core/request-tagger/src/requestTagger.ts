@@ -2,6 +2,7 @@ declare global {
   interface Window {
     ovhRequestTaggerNavigationId?: string;
     ovhRequestTaggerRequestIndex?: number;
+    ovhRequestTaggerApplicationVersion?: string;
   }
 }
 
@@ -26,7 +27,6 @@ export interface HeadersOverrides {
 export const ROUTES_PREFIX = ['/engine/apiv6', '/engine/2api'];
 export const DEFAULT_ROUTES_HEADERS_OVERRIDE: HeadersOverrides = {};
 
-let applicationVersion: string;
 let currentPage = 'bootstrap';
 const headersOverride: HeadersOverrides = DEFAULT_ROUTES_HEADERS_OVERRIDE;
 
@@ -41,10 +41,10 @@ export const getNavigationId = (): string => {
 };
 
 export const defineApplicationVersion = (version: string): void => {
-  applicationVersion = version;
+  window.ovhRequestTaggerApplicationVersion = version;
 };
 
-export const getApplicationVersion = (): string => applicationVersion;
+export const getApplicationVersion = (): string => window.ovhRequestTaggerApplicationVersion;
 
 export const generateRequestId = (): string => {
   window.top.ovhRequestTaggerRequestIndex =
@@ -93,7 +93,9 @@ export const getHeaders = (url: string): Partial<Headers> => {
       [Header.NAVIGATION_ID]: getNavigationId(),
       [Header.REQUEST_ID]: generateRequestId(),
       [Header.PAGE]: currentPage,
-      ...(applicationVersion ? { [Header.VERSION]: applicationVersion } : {}),
+      ...(window.ovhRequestTaggerApplicationVersion
+        ? { [Header.VERSION]: window.ovhRequestTaggerApplicationVersion }
+        : {}),
       ...searchHeadersOverride(url),
     };
   }

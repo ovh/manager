@@ -12,6 +12,7 @@ export default {
     plans: '<',
     projectId: '<',
     selectedProject: '<',
+    serviceInfo: '<',
     user: '<',
   },
   controller,

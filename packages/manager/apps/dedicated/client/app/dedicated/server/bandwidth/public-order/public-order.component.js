@@ -10,6 +10,7 @@ export default {
     goBack: '<',
     hasDefaultPaymentMethod: '<',
     serverName: '<',
+    serviceId: '<',
     specifications: '<',
     trackingPrefix: '<',
     user: '<',

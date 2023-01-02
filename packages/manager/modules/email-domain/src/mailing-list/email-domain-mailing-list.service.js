@@ -183,7 +183,7 @@ export default class MailingLists {
       if (size(users) > 0) {
         return this.addSubscribers(
           serviceName,
-          assign(opts, { users }),
+          assign(opts, { users }, limit),
         ).then((d) => [data].concat(d));
       }
 

@@ -22,7 +22,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
 }: Props): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const { shell } = useContext(ApplicationContext);
-  const { isChatbotEnabled, setChatbotReduced } = useContainer();
+  const { setChatbotReduced } = useContainer();
 
   const environment = shell
     .getPluginManager()
@@ -34,22 +34,21 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
   const [selectedItem, setSelectedItem] = useState<string>(null);
 
   const hasAdvancedSupport = ['EU', 'CA'].includes(environment.getRegion());
-  const [hasChatbot, setHashChatbot] = useState(false);
+  const [hasLiveChat, setHashLiveChat] = useState(false);
 
   const { closeNavigationSidebar, openOnboarding } = useProductNavReshuffle();
 
   useEffect(() => {
-    const initChatbot = async () => {
+    const initLiveChat = async () => {
       const results: Record<string, boolean> = await reketInstance.get(
-        `/feature/chatbot/availability`,
+        `/feature/livechat/availability`,
         {
           requestType: 'aapi',
         },
       );
-
-      setHashChatbot(results.chatbot);
+      setHashLiveChat(results.livechat);
     };
-    initChatbot();
+    initLiveChat();
   }, []);
 
   useEffect(() => {
@@ -157,7 +156,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
               />
             </li>
           )}
-          {hasChatbot && (
+          {hasLiveChat && (
             <li>
               <SidebarLink
                 node={{
@@ -165,11 +164,8 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
                   count: false,
                 }}
                 onClick={() => {
-                  if (isChatbotEnabled) shell.getPlugin('ux').openChatbot();
-                  else {
-                    shell.getPlugin('ux').openLiveChat();
-                    setChatbotReduced(false);
-                  }
+                  shell.getPlugin('ux').openLiveChat();
+                  setChatbotReduced(false);
                   trackNode('assistance_live_chat');
                   closeNavigationSidebar();
                 }}

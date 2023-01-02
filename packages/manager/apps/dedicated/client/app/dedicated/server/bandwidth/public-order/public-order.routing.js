@@ -20,6 +20,15 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: () => null,
         hasDefaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
           ovhPaymentMethod.hasDefaultPaymentMethod(),
+        serviceId: /* @ngInject */ ($http, serviceInfos) =>
+          $http
+            .get(`/services/${serviceInfos.serviceId}/options`)
+            .then(
+              ({ data: options }) =>
+                options.find((option) =>
+                  option.resource.product.name.startsWith('bandwidth-'),
+                )?.serviceId,
+            ),
         trackingPrefix: () =>
           'dedicated::server::interfaces::bandwidth-public-order::',
       },

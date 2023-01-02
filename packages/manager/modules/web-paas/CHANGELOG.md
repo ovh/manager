@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.5.3...@ovh-ux/manager-web-paas@1.6.0) (2022-12-19)
+
+
+### Features
+
+* replace /order/upgrade API calls with /services ([#8011](https://github.com/ovh/manager/issues/8011)) ([e635a80](https://github.com/ovh/manager/commit/e635a8000ffda1fcb25cc6c941efd22d0fc9817a))
+
+
+
+
+
 ## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.5.2...@ovh-ux/manager-web-paas@1.5.3) (2022-12-02)
 
 
