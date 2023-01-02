@@ -1,0 +1,16 @@
+{
+  "ip_onboarding_title": "Additional IP",
+  "ip_onboarding_subtitle": "Add flexibility to your applications with Additional IP",
+  "ip_onboarding_content_header": "Most OVHcloud products include a pre-configured static IPv4 address. For exceptional flexibility, these products can also be used with Additional IPs (formerly known as failover IPs). These are IP addresses that can be easily assigned and moved from one service to another. They are available in two formats",
+  "ip_onboarding_content_footer": "You can assign an Additional IP (individual address or IP block) to any compatible service within the same campus. A campus is a group of datacentres that share the same geographical location. For more information, please visit our dedicated page.",
+  "ip_onboarding_content_list_item_1": "Individual address (/32)",
+  "ip_onboarding_content_list_item_2": "IP block (up to /24)",
+  "ip_onboarding_order_title": "Order an Additional IP",
+  "ip_onboarding_order_content": "Find out how to move an Additional IP via the OVHcloud Control Panel, or via the OVHcloud APIs",
+  "ip_onboarding_vrack_title": "Configure an IP block in the vRack",
+  "ip_onboarding_vrack_content": "Find out how to configure an IP block in the vRack",
+  "ip_onboarding_add_title": "Add an IP block",
+  "ip_onboarding_add_content": "Order an IP block on your Hosted Private Cloud",
+  "ip_onboarding_order": "Order an IP",
+  "ip_onboarding_byoip": "Bring Your Own IP"
+}

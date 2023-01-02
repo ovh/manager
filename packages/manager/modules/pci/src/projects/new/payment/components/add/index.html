@@ -1,17 +1,18 @@
 <div class="pci-project-new-payment-method-add">
-
     <!--Info about save payment mean-->
     <div class="mb-3">
-        <span data-translate="pci_project_new_payment_method_save_explain_part_1"></span>
-        <span class="font-weight-bold"
-              data-translate="pci_project_new_payment_method_save_explain_part_2"
+        <span
+            data-translate="pci_project_new_payment_method_save_explain_part_1"
+        ></span>
+        <span
+            class="font-weight-bold"
+            data-translate="pci_project_new_payment_method_save_explain_part_2"
         >
         </span>
     </div>
 
     <!--Payment methods-->
     <div class="row">
-
         <oui-select-picker
             class="col-md-6 m-0 mb-3"
             data-ng-repeat="authorizedPaymentMethod in $ctrl.authorizedPaymentMethods track by $index"
@@ -27,7 +28,6 @@
                 ></span>
             </oui-select-picker-label>
         </oui-select-picker>
-
     </div>
 
     <!--Credit card info banner-->
