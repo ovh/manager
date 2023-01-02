@@ -1,0 +1,15 @@
+{
+  "pci_databases_general_information_upgrade_storage": "Dodaj przestrzeń dyskową",
+  "pci_databases_general_information_upgrade_storage_back": "Informacje ogólne",
+  "pci_databases_general_information_upgrade_storage_confirm": "Zatwierdź",
+  "pci_databases_general_information_upgrade_storage_cancel": "Anuluj",
+  "pci_databases_general_information_upgrade_storage_description": "Twój model węzła {{flavorName}} zawiera {{includedStorage}} przestrzeni dyskowej, do której możesz dodać do {{addableStorage}} przestrzeni w przedziałach co {{step}}.",
+  "pci_databases_general_information_upgrade_storage_warning": "Po wprowadzeniu modyfikacji nie będziesz mógł wrócić do wcześniejszej wielkości przestrzeni dyskowej.",
+  "pci_databases_general_information_upgrade_storage_success": "Dyspozycja dodania przestrzeni dyskowej została przyjęta. Zostanie zrealizowana w ciągu kilku minut.",
+  "pci_databases_general_information_upgrade_storage_error": "Dodawanie przestrzeni dyskowej nie zostało poprawnie wykonane: {{message}}",
+  "pci_databases_general_information_upgrade_storage_processing": "Dodanie przestrzeni dyskowej...",
+  "pci_databases_general_information_upgrade_storage_summary_title": "Twój klaster",
+  "pci_databases_general_information_upgrade_storage_summary_storage": "Przestrzeń dyskowa",
+  "pci_databases_general_information_upgrade_storage_summary_price": "Cena",
+  "pci_databases_general_information_upgrade_storage_summary_price_hourly_unit": "/godz."
+}

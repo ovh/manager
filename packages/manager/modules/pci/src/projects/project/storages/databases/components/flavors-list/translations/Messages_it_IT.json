@@ -7,5 +7,12 @@
   "pci_database_flavors_list_price_monthly": "A partire da {{price}} +IVA/mese",
   "pci_database_flavors_list_current_offer": "Soluzione corrente",
   "pci_database_flavors_list_spec_storage_range": "da {{minStorage}} a {{maxStorage}} di storage SSD",
-  "pci_database_flavors_list_spec_price_unit": " /ora/nodo"
+  "pci_database_flavors_list_spec_price_unit": " /ora/nodo",
+  "pci_database_flavors_list_header_type": "Tipo",
+  "pci_database_flavors_list_header_memory": "Memoria",
+  "pci_database_flavors_list_header_storage": "Storage utile",
+  "pci_database_flavors_list_header_price_hour": "Costo/ora/nodo (stimato)",
+  "pci_database_flavors_list_header_price_month": "Costo/mese/nodo (stimato)",
+  "pci_database_flavors_list_storage_range": "Da {{min}} a {{max}}",
+  "pci_database_flavors_list_table_description": "Lista dei tipi di nodi"
 }

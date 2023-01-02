@@ -7,5 +7,12 @@
   "pci_database_flavors_list_price_monthly": "From {{price}} ex. VAT/month",
   "pci_database_flavors_list_current_offer": "Current solution",
   "pci_database_flavors_list_spec_storage_range": "from {{minStorage}} to {{maxStorage}} SSD storage",
-  "pci_database_flavors_list_spec_price_unit": " /hour/node"
+  "pci_database_flavors_list_spec_price_unit": " /hour/node",
+  "pci_database_flavors_list_header_type": "Type",
+  "pci_database_flavors_list_header_memory": "Memory",
+  "pci_database_flavors_list_header_storage": "Usable storage",
+  "pci_database_flavors_list_header_price_hour": "Cost/hour/node (estimated)",
+  "pci_database_flavors_list_header_price_month": "Cost/month/node (estimated)",
+  "pci_database_flavors_list_storage_range": "From {{min}} to {{max}}",
+  "pci_database_flavors_list_table_description": "List of node types"
 }
