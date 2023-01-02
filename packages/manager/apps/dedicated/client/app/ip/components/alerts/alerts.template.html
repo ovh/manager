@@ -1,0 +1,91 @@
+<div class="ip-components-alerts">
+    <oui-message
+        data-ng-if="$ctrl.messageType === 'warning'"
+        data-type="warning"
+    >
+        <div class="d-flex align-items-baseline">
+            <span
+                data-translate="{{ 'ip_components_alerts_load_text' + $ctrl.serviceTypeSuffix }}"
+            ></span>
+            <button
+                class="btn btn-link"
+                type="button"
+                data-ng-click="$ctrl.toggleAlerts()"
+            >
+                <span data-translate="ip_components_alerts_load_link"></span>
+                <span
+                    class="oui-icon"
+                    aria-hidden="true"
+                    data-ng-class="{
+                        'oui-icon-chevron-up': $ctrl.isResetable,
+                        'oui-icon-chevron-down': !$ctrl.isResetable,
+                    }"
+                ></span>
+            </button>
+        </div>
+        <oui-spinner
+            class="mt-2"
+            data-ng-if="$ctrl.loading"
+            data-size="s"
+        ></oui-spinner>
+        <div data-ng-if="$ctrl.alerts" class="mt-2">
+            <div>
+                <strong
+                    data-ng-pluralize
+                    data-count="$ctrl.countAlerts()"
+                    data-when="{
+                        'one': (('ip_components_alerts_one_alert' + $ctrl.serviceTypeSuffix) | translate),
+                        'other': (('ip_components_alerts_many_alerts' + $ctrl.serviceTypeSuffix) | translate),
+                    }"
+                >
+                </strong>
+                :
+            </div>
+            <ul>
+                <li
+                    data-ng-if="$ctrl.countAlerts(type)"
+                    data-ng-repeat="type in $ctrl.alertTypes track by type"
+                >
+                    <p
+                        class="mb-0"
+                        data-ng-pluralize
+                        data-count="$ctrl.countAlerts(type)"
+                        data-when="{
+                            'one': ('ip_components_alerts_one_' + type + '_alert' | translate),
+                            'other': ('ip_components_alerts_many_' + type + '_alerts' | translate)
+                        }"
+                    ></p>
+                    <p
+                        class="mb-0"
+                        data-ng-repeat="alert in $ctrl.alerts[type] track by $index"
+                    >
+                        <span
+                            data-ng-bind="alert.ip.isUniq ? alert.ip.ips[0].ip : alert.ip.ipBlock"
+                        ></span>
+                        :
+                        <a
+                            data-ng-if="alert.ip.service.url"
+                            data-ng-href="{{ alert.ip.service.url }}"
+                            data-ng-bind="alert.ip.service.serviceName"
+                        ></a>
+                        <span
+                            data-ng-if="!alert.ip.service.url"
+                            data-translate="ip_components_alerts_no_services"
+                        ></span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </oui-message>
+    <oui-message
+        data-ng-if="$ctrl.messageType === 'success'"
+        data-type="success"
+    >
+        <span
+            data-translate="{{ 'ip_components_alerts_no_alerts' + $ctrl.serviceTypeSuffix }}"
+        ></span>
+    </oui-message>
+    <oui-message data-ng-if="$ctrl.messageType === 'error'" data-type="error">
+        <span data-ng-bind="$ctrl.error"></span>
+    </oui-message>
+</div>
