@@ -34,7 +34,10 @@
             data-ng-class="alertType"
             data-ng-if="message"
         >
-            <i class="close icon-remove" data-ng-click="message = null"></i>
+            <i
+                class="close icon-remove"
+                data-ng-click="$ctrl.$scope.message = null"
+            ></i>
             <span data-ng-bind="message"></span>
         </div>
 
