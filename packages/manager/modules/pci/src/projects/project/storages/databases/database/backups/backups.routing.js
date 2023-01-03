@@ -1,3 +1,5 @@
+import { RESTORE_MODES } from './fork/fork.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.storages.databases.dashboard.backups',
@@ -55,14 +57,20 @@ export default /* @ngInject */ ($stateProvider) => {
               backupInstance,
             },
           ),
-        goToFork: /* @ngInject */ ($state) => (backupInstance, database) =>
-          $state.go(
+        goToFork: /* @ngInject */ ($state) => (backupInstance) => {
+          const stateparams = {
+            restoreMode: RESTORE_MODES.SOONEST,
+          };
+          if (backupInstance) {
+            stateparams.restoreMode = RESTORE_MODES.BACKUP;
+            stateparams.backupId = backupInstance.id;
+          }
+
+          return $state.go(
             'pci.projects.project.storages.databases.dashboard.backups.fork',
-            {
-              backupInstance,
-              database,
-            },
-          ),
+            stateparams,
+          );
+        },
         refreshBackups: /* @ngInject */ ($state) => () => {
           return $state.reload();
         },

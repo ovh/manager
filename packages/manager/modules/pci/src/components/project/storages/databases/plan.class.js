@@ -87,7 +87,16 @@ export default class Plan {
   }
 
   get specsScore() {
-    return this.maxCores + this.maxMemory + this.maxNodes + this.maxStorage;
+    return (
+      this.minCores +
+      this.maxCores +
+      this.minMemory +
+      this.maxMemory +
+      this.minNodes +
+      this.maxNodes +
+      this.minStorage +
+      this.maxStorage
+    );
   }
 
   get id() {
