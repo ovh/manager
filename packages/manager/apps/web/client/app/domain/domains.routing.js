@@ -1,11 +1,24 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { getDomainOrderUrl } from './domains.order';
 
+const { stateParams } = ListLayoutHelper;
+const { sortOrder } = stateParams;
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
-    component: 'managerListLayout',
-    params: ListLayoutHelper.stateParams,
+    views: {
+      '': {
+        component: 'managerListDomainLayout',
+      },
+    },
+    params: {
+      ...stateParams,
+      sortOrder: {
+        ...sortOrder,
+        value: 'DESC',
+      },
+    },
     redirectTo: (transition) =>
       transition
         .injector()
@@ -50,6 +63,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         },
       }),
+
       hideBreadcrumb: () => true,
     },
   });

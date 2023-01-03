@@ -5,6 +5,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import routing from './domains.routing';
+import component from './list/list-domain-layout.component';
 
 const moduleName = 'ovhManagerDomains';
 
@@ -15,6 +16,8 @@ angular
     'pascalprecht.translate',
     ListLayoutHelper.moduleName,
   ])
-  .config(routing);
+  .config(routing)
+  .component('managerListDomainLayout', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
