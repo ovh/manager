@@ -1,12 +1,9 @@
 {
   "nutanix_onboarding_title": "Nutanix on OVHcloud",
   "nutanix_onboarding_description": "Explore our new, all-in-one, scalable private cloud platform. It combines Nutanix Cloud Platform licences — either as a package or as a Bring your Own Licence (BYOL) solution — with dedicated, certified OVHcloud infrastructures. You get a ready-to-use Nutanix hyperconverged environment (HCI) in just a few hours.",
-  "nutanix_onboarding_description2": "This solution is perfect for cloud migration strategies, implementing a Disaster Recovery Plan (DRP), and handling excess workloads.",
   "nutanix_onboarding_order": "Order",
   "nutanix_onboarding_guide1_title": "General documentation",
   "nutanix_onboarding_guide1_description": "Technical details of the Nutanix on OVHcloud solution infrastructure",
   "nutanix_onboarding_guide2_title": "Pack: List of Nutanix services and licences included",
-  "nutanix_onboarding_guide2_description": "Overview of the services and licences included in the Nutanix on OVHcloud pack",
-  "nutanix_onboarding_guide3_title": "How the OVHgateway works",
-  "nutanix_onboarding_guide3_description": "Find out how the OVHgateway works"
+  "nutanix_onboarding_guide2_description": "Overview of the services and licences included in the Nutanix on OVHcloud pack"
 }

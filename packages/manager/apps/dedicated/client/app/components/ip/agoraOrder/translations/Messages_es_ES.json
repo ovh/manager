@@ -14,6 +14,5 @@
   "ipv4Block_organization_description3": "Si no tiene ninguna organización, puede utilizar la información de su cuenta de OVHcloud (NIC).",
   "ipv4Block_organization_info_banner": "El nombre de la organización asociada a su bloque de direcciones IP, así como los datos de contacto correspondientes, se incluirán en la base de datos pública Whois.",
   "ip_agora_table_submit_text": "Seguir con el pedido",
-  "ip_agora_table_cancel_text": "Volver",
-  "ipv4Block_price_per_ip": "por dirección IP"
+  "ip_agora_table_cancel_text": "Volver"
 }

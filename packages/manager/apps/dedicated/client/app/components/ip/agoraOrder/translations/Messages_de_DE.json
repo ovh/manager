@@ -14,6 +14,5 @@
   "ipv4Block_organization_description3": "Wenn Sie keine Organisation angeben, können die Angaben aus Ihrem OVHcloud-Account (Kundenkennung) verwendet werden.",
   "ipv4Block_organization_info_banner": "Der Name der Organisation, die mit Ihrem IP-Adressblock verbunden ist, sowie die zugehörigen Kontaktinformationen werden in der öffentlichen Whois-Datenbank aufgeführt.",
   "ip_agora_table_submit_text": "Mit meiner Bestellung fortfahren",
-  "ip_agora_table_cancel_text": "Zurück",
-  "ipv4Block_price_per_ip": "nach IP-Adresse"
+  "ip_agora_table_cancel_text": "Zurück"
 }
