@@ -11,7 +11,7 @@
   "ovhManagerSupport_ticket_serviceName_none": "Otro servicio",
   "ovhManagerSupport_ticket_state_closed": "Cerrado",
   "ovhManagerSupport_ticket_state_open": "En proceso",
-  "ovhManagerSupport_ticket_state_unknown": "Desconocido",
+  "ovhManagerSupport_ticket_state_unknown": "Desconocida",
   "ovhManagerSupport_ticket_type_criticalIntervention": "Intervención crítica",
   "ovhManagerSupport_ticket_type_genericRequest": "Consulta genérica",
   "ovhManagerSupport_ticket_lastMessageFrom_customer": "Usted",
