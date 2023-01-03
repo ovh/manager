@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 
+// BetaVersion enumeration
 export enum BetaVersion {
   beta1 = 1,
   beta2 = 2,
