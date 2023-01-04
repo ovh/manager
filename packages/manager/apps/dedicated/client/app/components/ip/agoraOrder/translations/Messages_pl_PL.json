@@ -14,5 +14,6 @@
   "ipv4Block_organization_description3": "Jeśli nie przypiszesz podmiotu, mogą zostać użyte Twoje dane z konta OVHcloud (NIC)",
   "ipv4Block_organization_info_banner": "Nazwa organizacji przypisanej do Twojego bloku adresów IP oraz powiązane z nią dane kontaktowe będą wyświetlane w publicznej bazie danych WHOIS.",
   "ip_agora_table_submit_text": "Kontynuuj zamówienie",
-  "ip_agora_table_cancel_text": "Powrót"
+  "ip_agora_table_cancel_text": "Powrót",
+  "ipv4Block_price_per_ip": "per adres IP"
 }
