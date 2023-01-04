@@ -284,10 +284,8 @@ export const ORDER_URLS = {
       PT: 'https://www.ovh.com/manager/sunrise/index.html#/csp2',
     },
     ovh_cloud_connect: {
-      FR:
-        'https://www.ovhcloud.com/fr/network-security/ovhcloud-connect/provider/',
-      GB:
-        'https://www.ovhcloud.com/en/network-security/ovhcloud-connect/provider/',
+      FR: 'https://www.ovhcloud.com/fr/network-security/ovhcloud-connect/',
+      GB: 'https://www.ovhcloud.com/en/network-security/ovhcloud-connect/',
     },
     dbaas_logs: {
       EU: 'https://www.ovh.com/manager/dedicated/#/dbaas/logs/welcome',
@@ -483,7 +481,10 @@ export const ORDER_URLS = {
       WE: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
       WS: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
     },
-    publicCloudKubernetes: {},
+    publicCloudKubernetes: {
+      CA:
+        'https://ca.ovh.com/manager/#/public-cloud/pci/projects/default/kubernetes/new',
+    },
     express_review_base: {
       ASIA: 'https://ca.ovh.com/asia/order/express/#/express/review',
       AU: 'https://ca.ovh.com/au/order/express/#/express/review',
@@ -510,6 +511,10 @@ export const ORDER_URLS = {
       SG: 'https://www.ovhcloud.com/en-sg/hosted-private-cloud/nutanix/',
       WE: 'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/',
       WS: 'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/',
+    },
+    ovh_cloud_connect: {
+      CA: 'https://www.ovhcloud.com/en-ca/network/ovhcloud-connect/',
+      QC: 'https://www.ovhcloud.com/fr-ca/network/ovhcloud-connect/',
     },
   },
   US: {
@@ -549,12 +554,18 @@ export const ORDER_URLS = {
     publicCloudProjectOrder: {
       US: 'https://us.ovhcloud.com/manager/public-cloud/#/pci/projects/new',
     },
-    publicCloudKubernetes: {},
+    publicCloudKubernetes: {
+      US:
+        'https://us.ovhcloud.com/manager/#/public-cloud/pci/projects/default/kubernetes/new',
+    },
     express_review_base: {
       US: 'https://us.ovhcloud.com/order/express/#/express/review',
     },
     vps: {
       US: 'https://us.ovhcloud.com/vps',
+    },
+    ovh_cloud_connect: {
+      US: 'https://us.ovhcloud.com/network/ovhcloud-connect/',
     },
   },
 };
@@ -724,7 +735,7 @@ export const SIDEBAR_ORDER_CONFIG = [
   },
   {
     id: 'order-ovh-cloud-connect',
-    feature: 'cloud-connect:order',
+    feature: 'cloud-connect',
     title: 'ovh_cloud_connect',
     icon: 'oui-icon oui-icon-line-communicating_concept',
     linkId: 'ovh_cloud_connect',
