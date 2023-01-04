@@ -1116,7 +1116,7 @@
   "server_configuration_monitoring_status_tooltip_proactive": "Interwencja w centrum danych została zlecona",
   "server_configuration_monitoring_status_tooltip_no-proactive": " Interwencja w centrum danych nie została zlecona",
   "server_configuration_monitoring_update_modal_title": "Monitoring",
-  "server_configuration_monitoring_update_modal_intro": "Monitoring SD to ping ICMP zrealizowany na serwerze w celu sprawdzenia stanu łączności.",
+  "server_configuration_monitoring_update_modal_intro": "Monitoring serwera dedykowanego realizowany jest za pomocą pakietów ICMP ping. Pozwalają one na sprawdzenie stanu łączności z serwerem.",
   "server_configuration_monitoring_update_modal_status_disabled": "Wyłączony",
   "server_configuration_monitoring_update_modal_status_proactive": "Włączony z aktywną interwencją",
   "server_configuration_monitoring_update_modal_status_no-proactive": "Włączony bez aktywnej interwencji",
