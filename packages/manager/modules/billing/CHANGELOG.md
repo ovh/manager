@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.5...@ovh-ux/manager-billing@0.20.0-alpha.6) (2023-01-02)
+
+
+### Bug Fixes
+
+* **dedicated:** skip application refresh due to bad redirect ([52f9c8c](https://github.com/ovh/manager/commit/52f9c8c69b6bdd17f264fbfadf8593d0ceda9ef9))
+
+
+
+
+
 # [0.20.0-alpha.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.4...@ovh-ux/manager-billing@0.20.0-alpha.5) (2022-12-22)
 
 

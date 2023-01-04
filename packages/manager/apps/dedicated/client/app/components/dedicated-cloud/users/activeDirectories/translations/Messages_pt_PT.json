@@ -5,7 +5,7 @@
   "dedicatedCloud_USER_AD_ldap_port": "Porta LDAP",
   "dedicatedCloud_USER_AD_domain": "Domínio",
   "dedicatedCloud_USER_AD_domainAlias": "Alias do domínio",
-  "dedicatedCloud_USER_AD_bindUser": "Utilizador importado",
+  "dedicatedCloud_USER_AD_bindUser": "Utilizador",
   "dedicatedCloud_USER_AD_status": "Estado",
   "dedicatedCloud_USER_AD_status_creating": "Criação em curso",
   "dedicatedCloud_USER_AD_status_deleting": "Eliminação em curso",
@@ -19,5 +19,7 @@
   "dedicatedCloud_USER_AD_add_federation": "Adicionar um Active Diretory LDAP",
   "dedicatedCloud_USER_AD_edit": "Modificar o Active Directory",
   "dedicatedCloud_USER_AD_delete": "Eliminar o Active Directory",
-  "dedicatedCloud_USER_AD_unavailable": "A adição de um Active Directory externo num serviço certificado (HDS, PCI-DSS ou SNC) é impossível, dadas as limitações destes perímetros."
+  "dedicatedCloud_USER_AD_unavailable": "A adição de um Active Directory externo num serviço certificado (HDS, PCI-DSS ou SNC) é impossível, dadas as limitações destes perímetros.",
+  "dedicatedCloud_USER_AD_baseDn": "Base DN",
+  "dedicatedCloud_USER_AD_sslThumbprint": "Impressão digital do certificado SSL"
 }

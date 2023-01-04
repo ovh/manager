@@ -386,11 +386,6 @@
   "add_alert_time_period_field": "Período de tiempo (minutos)",
   "add_alert_time_period_field_description": "Evaluar la condición para todos los mensajes recibidos en el número de minutos indicado.",
   "add_alert_threshold_type_field": "Tipo de límite",
-  "add_alert_threshold_type_gt": "Más",
-  "add_alert_threshold_type_gte": "Más o igual",
-  "add_alert_threshold_type_eq": "Igual",
-  "add_alert_threshold_type_lte": "Menos o igual",
-  "add_alert_threshold_type_lt": "Menos",
   "add_alert_threshold_type_field_description_message_count": "Seleccione la condición que activa la alerta: que haya más o menos mensajes que el límite indicado.",
   "add_alert_threshold_type_field_description_field_value": "Seleccione la condición que activa la alerta: que el valor sea superior o inferior al límite indicado.",
   "add_alert_threshold_field": "Límite",
@@ -465,7 +460,6 @@
   "inputs_info_title": "Información útil",
   "inputs_info_description": "Haga clic en las opciones propuestas para copiarlas al portapapeles.",
   "inputs_info_hostname": "Nombre del host",
-  "inputs_info_exposedport": "Puerto TCP expuesto",
   "inputs_info_ipaddress": "Dirección IP pública",
   "inputs_info_certificate": "Tipo de certificado",
   "inputs_logs_title": "Respuesta de la consola a {{inputTitle}}",
@@ -723,5 +717,11 @@
   "logs_tile_subscription_contact_admin": "Administrador",
   "logs_tile_subscription_contact_billing": "Facturación",
   "logs_tile_subscription_contact_technical": "Técnico",
-  "logs_order": "Contratar"
+  "logs_order": "Contratar",
+  "inputs_info_exposedport": "Puerto TCP expuesto",
+  "add_alert_threshold_type_gt": "Más",
+  "add_alert_threshold_type_gte": "Más o igual",
+  "add_alert_threshold_type_eq": "Igual",
+  "add_alert_threshold_type_lte": "Menos o igual",
+  "add_alert_threshold_type_lt": "Menos"
 }

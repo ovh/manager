@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.15.1...@ovh-ux/manager-support@1.16.0) (2023-01-02)
+
+
+### Features
+
+* **pci.storages:** add translation key in support ticket dropdown ([e580577](https://github.com/ovh/manager/commit/e580577ef45b7884f7671a5a6ec39f8b5a1bcb15))
+
+
+
+
+
 ## [1.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.15.0...@ovh-ux/manager-support@1.15.1) (2022-12-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-support

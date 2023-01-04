@@ -14,6 +14,7 @@ export default {
     goToPrivateNetwork: '<',
     onGoBackClick: '<',
     trackClick: '<',
+    regionsLink: '<',
   },
   controller,
   template,

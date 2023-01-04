@@ -2,7 +2,7 @@
   "pci_projects_project_public_gateways_add_title": "Creare un'istanza Gateway",
   "pci_projects_project_public_gateways_add_description1": "Crea una nuova istanza Gateway per accedere alle reti esterne in totale sicurezza.",
   "pci_projects_project_public_gateways_add_description2": "Questa scelta è l’opzione migliore per accedere a risorse Internet a partire da istanze private (SNAT)",
-  "pci_projects_project_public_gateways_add_description3": "e può essere utilizzata insieme ad altre funzionaltà di rete, come il Load Balancer OVHcloud per il Public Cloud e i Floating IP.",
+  "pci_projects_project_public_gateways_add_description3": "Può essere utilizzato anche con altre funzionaltà di rete, come il Load Balancer di OVHcloud per Public Cloud e i Floating IP.",
   "pci_projects_project_public_gateways_add_learn_more": "Scopri di più",
   "pci_projects_project_public_gateways_add_size_sub_title": "Selezionare la taglia",
   "pci_projects_project_public_gateways_add_size_info": "Seleziona la taglia del tuo Gateway. *I prezzi non includono l'IVA.",
@@ -36,5 +36,8 @@
   "pci_projects_project_public_gateways_add_modal_add_private_network_error": "Si è verificato un errore durante la modifica della rete privata: {{ message }}",
   "pci_projects_project_public_gateways_add_success": "Il nuovo Gateway è stato creato correttamente.",
   "pci_projects_project_public_gateways_add_error": "Si è verificato un errore durante la creazione del Gateway: {{ message }}",
-  "pci_projects_project_public_gateways_add_creating_wait_message": "Creazione del Gateway in corso... La configurazione di tutti i componenti potrebbe richiedere alcuni minuti. Non chiudere o aggiornare la pagina: questa azione potrebbe avere un impatto sul processo di creazione."
+  "pci_projects_project_public_gateways_add_creating_wait_message": "Creazione del Gateway in corso... La configurazione di tutti i componenti potrebbe richiedere alcuni minuti. Non chiudere o aggiornare la pagina: questa azione potrebbe avere un impatto sul processo di creazione.",
+  "pci_projects_project_public_gateways_add_region_activate_line1": "Questa Region non è ancora attiva. È possibile attivarla sulla scheda ",
+  "pci_projects_project_public_gateways_add_region_activate_line2": "Quota e localizzazione ",
+  "pci_projects_project_public_gateways_add_region_activate_line3": "e poi creare il tuo Gateway."
 }

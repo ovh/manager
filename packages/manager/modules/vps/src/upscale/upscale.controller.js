@@ -408,6 +408,8 @@ export default class UpscaleController {
           this.range.formattedName.toLowerCase(),
         )
       : this.range;
+    const currentPlanCode = this.upscaleRanges.find((e) => e.isCurrentRange)
+      ?.planCode;
     return this.getUpscaleInformation(plan)
       .then(({ order }) => {
         this.order = order;
@@ -420,7 +422,11 @@ export default class UpscaleController {
           this.connectedUser.language,
         );
       })
-      .catch((error) =>
+      .catch((error) => {
+        this.atInternet.trackPage({
+          name: `vps::upscale-confirm-banner::error::${currentPlanCode}_to_${plan.planCode}`,
+          type: 'navigation',
+        });
         this.handleError(
           error,
           UpscaleController.isRangeElite(this.range.formattedName),
@@ -428,8 +434,8 @@ export default class UpscaleController {
             eliteUpgrade: 'vps_upscale_get_configuration_information_error',
             normalUpgrade: 'vps_upscale_get_information_error',
           },
-        ),
-      )
+        );
+      })
       .finally(() => {
         this.loading.getUpscaleInformation = false;
       });
@@ -493,6 +499,8 @@ export default class UpscaleController {
           this.range.formattedName.toLowerCase(),
         )
       : this.range;
+    const currentPlanCode = this.upscaleRanges.find((e) => e.isCurrentRange)
+      ?.planCode;
     return this.performUpscale(plan)
       .then((upscaleOrder) => {
         const baseKey = this.isEliteUpgrade
@@ -503,7 +511,10 @@ export default class UpscaleController {
         if (this.defaultPaymentMethod) {
           key = `${baseKey}_${paymentType}_with_payment_method`;
         }
-
+        this.atInternet.trackPage({
+          name: `vps::upscale-confirm-banner::success::${currentPlanCode}_to_${plan.planCode}`,
+          type: 'navigation',
+        });
         return this.goBack(
           this.$translate.instant(key, {
             billUrl: upscaleOrder.order.url,
@@ -511,12 +522,16 @@ export default class UpscaleController {
           }),
         );
       })
-      .catch((error) =>
+      .catch((error) => {
+        this.atInternet.trackPage({
+          name: `vps::upscale-confirm-banner::error::${currentPlanCode}_to_${plan.planCode}`,
+          type: 'navigation',
+        });
         this.handleError(error, this.isEliteUpgrade, {
           eliteUpgrade: 'vps_upscale_elite_upgrade_error',
           normalUpgrade: 'vps_upscale_error',
-        }),
-      )
+        });
+      })
       .finally(() => {
         this.loading.performUpscale = false;
       });

@@ -637,12 +637,60 @@ const constants = {
           {
             title: 'core_pcc_top_guide_7_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-7',
-            url: 'https://docs.ovh.com/fr/private-cloud/suppression-d-un-hote/',
+            url:
+              'https://docs.ovh.com/fr/private-cloud/suppression-serveur-hote/#supprimer-le-serveur-hote',
           },
           {
             title: 'core_pcc_top_guide_10_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-10',
             url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=fr',
+          },
+        ],
+        de_DE: [
+          {
+            title: 'core_pcc_top_guide_1_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-1',
+            url:
+              'https://docs.ovh.com/de/private-cloud/den_vsphere_client_installieren/',
+          },
+          {
+            title: 'core_pcc_top_guide_2_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-2',
+            url:
+              'https://docs.ovh.com/de/private-cloud/virtuelle-maschine-deployen/',
+          },
+          {
+            title: 'core_pcc_top_guide_3_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-3',
+            url:
+              ' https://docs.ovh.com/de/private-cloud/ip-server-konfiguration/',
+          },
+          {
+            title: 'core_pcc_top_guide_4_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-4',
+            url:
+              'https://docs.ovh.com/de/private-cloud/nderung_der_hardware-konfiguration_einer_virtuellen_maschine/',
+          },
+          {
+            title: 'core_pcc_top_guide_5_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-5',
+            url: 'https://docs.ovh.com/de/private-cloud/verbindung_per_sftp/',
+          },
+          {
+            title: 'core_pcc_top_guide_6_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-6',
+            url: 'https://www.vmware.com/support/pubs/',
+          },
+          {
+            title: 'core_pcc_top_guide_7_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-7',
+            url: 'https://docs.ovh.com/de/private-cloud/host-server-loeschen/',
+          },
+          {
+            title: 'core_pcc_top_guide_10_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-10',
+            url:
+              'https://docs.vmware.com/de/VMware-NSX-Data-Center-for-vSphere/index.html',
           },
         ],
         en_GB: [

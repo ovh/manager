@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.3.1...@ovh-ux/manager-emailpro@3.3.2) (2023-01-02)
+
+
+### Bug Fixes
+
+* **web.emailpro:** change return of error message for tasks ([1fd6722](https://github.com/ovh/manager/commit/1fd672259380c48a1bf1471ac3780384b8350a62))
+
+
+
+
+
 ## [3.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.3.0...@ovh-ux/manager-emailpro@3.3.1) (2022-12-26)
 
 

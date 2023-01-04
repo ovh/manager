@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.52.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.52.3...@ovh-ux/manager-telecom@13.52.4) (2023-01-02)
+
+
+### Bug Fixes
+
+* **telecom.voip:** invisible time slot on sunday ([4404049](https://github.com/ovh/manager/commit/44040499a89e0e11582cc5681276f10271e58c21))
+
+
+
+
+
 ## [13.52.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.52.2...@ovh-ux/manager-telecom@13.52.3) (2022-12-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

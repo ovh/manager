@@ -15,6 +15,6 @@
   "dedicatedCloud_task_progress_state_toCancel": "Por anular",
   "dedicatedCloud_task_progress_state_toCreate": "Criação pendente",
   "dedicatedCloud_task_progress_state_unknown": "Desconhecido",
-  "dedicatedCloud_task_progress_state_waitingForChilds": "Em espera",
+  "dedicatedCloud_task_progress_state_waitingForChilds": "À espera de subtarefas",
   "dedicatedCloud_task_progress_state_waitingTodo": "Por planear"
 }

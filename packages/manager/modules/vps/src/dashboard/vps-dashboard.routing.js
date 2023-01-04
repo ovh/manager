@@ -70,7 +70,6 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
-
       availableUpgrades: /* @ngInject */ (
         isVpsNewRange,
         serviceInfos,
@@ -175,5 +174,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
       isVpsMaintenance: /* @ngInject */ (stein) => stein !== undefined,
     },
+    trackPage: /* @ngInject */ (atInternet) => (hit) =>
+      atInternet.trackPage({
+        name: `vps${hit}`,
+      }),
   });
 };
