@@ -8,7 +8,7 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-ng-if="!$ctrl.vncDisabled"
+            data-ng-if="!$ctrl.vncDisabled && $ctrl.PciProjectsProjectInstanceService.vncConsoleIsAvailable($ctrl.instance.flavor.type)"
             data-href="{{ $ctrl.consoleLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.consoleLink"
             ><span
@@ -70,7 +70,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.scheduleAutoBackup($ctrl.instance)"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && !$ctrl.coreConfig.isRegion('US')"
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && $ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($ctrl.instance.flavor.type)"
                     data-disabled="!$ctrl.instance.canCreateOrScheduleBackup()"
                 >
                     <span
@@ -112,6 +112,7 @@
                 <oui-tile-button
                     data-on-click="$ctrl.softRebootInstance()"
                     data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                    data-disabled="!$ctrl.PciProjectsProjectInstanceService.softRebootIsAvailable($ctrl.instance.flavor.type)"
                 >
                     <span
                         data-translate="pci_projects_project_instances_instance_action_softReboot_label"
@@ -127,7 +128,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.shelveInstance()"
-                    data-disabled="!$ctrl.instance.canBeShelved()"
+                    data-disabled="!$ctrl.instance.canBeShelved() || !$ctrl.PciProjectsProjectInstanceService.suspendIsAvailable($ctrl.instance.flavor.type)"
                 >
                     <span
                         data-translate="pci_projects_project_instances_instance_action_shelve_label"

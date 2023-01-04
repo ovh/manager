@@ -1,6 +1,6 @@
 {
   "pci_project_flavors_category_definition_balanced": "Las instancias de uso general ofrecen un buen equilibrio entre procesador y memoria.",
-  "pci_project_flavors_category_definition_baremetal": "Las instancias bare metal ofrecen servidores físicos bajo demanda, con entrega en cuestión de minutos y facturación mensual o por horas.",
+  "pci_project_flavors_category_definition_baremetal": "Las instancias metal ofrecen servidores físicos bajo demanda, con entrega en cuestión de minutos y facturación mensual o por horas.",
   "pci_project_flavors_category_definition_cpu": "Las instancias de cálculo optimizado son ideales para aplicaciones que requieren una alta frecuencia de cálculo o procesamiento paralelo de tareas.",
   "pci_project_flavors_category_definition_ram": "Las instancias con memoria optimizada son recomendables para bases de datos, análisis y cálculo en memoria, u otras aplicaciones que consuman mucha RAM.",
   "pci_project_flavors_category_definition_accelerated": "Las instancias de cálculo acelerado (GPU, FPGA) son hasta mil veces más rápidas que una CPU en determinadas aplicaciones (renderizado, transcodificación de vídeo, bioinformática, big data, deep learning...).",
@@ -9,7 +9,7 @@
   "pci_project_flavors_category_definition_none": "No hay ningún modelo disponible en esta categoría.",
   "pci_project_flavors_disk_size": "El espacio en disco es inferior al del modelo actual.",
   "pci_project_flavors_spec_ram": "{{ram}} RAM",
-  "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",
+  "pci_project_flavors_spec_core_details": "{{vcores}} cores ({{frequency}} GHz)",
   "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mb/s",
   "pci_project_flavors_spec_nvme": "{{capacity}} NVMe",
   "pci_project_flavors_spec_nvme_multiple": "{{count}} x {{capacity}} NVMe",
@@ -19,5 +19,6 @@
   "pci_project_flavors_quota_info": "El límite de su proyecto no permite añadir este tipo de máquina en esta región.",
   "pci_project_flavors_quota_manage": "Gestionar mis límites",
   "pci_project_flavors_category_new": "Novedad",
-  "pci_project_flavors_category_definition_discovery": "Las instancias con recursos compartidos (Discovery) son adecuadas para pruebas y entornos de desarrollo y preproducción. Su rendimiento puede variar ligeramente a lo largo del tiempo."
+  "pci_project_flavors_category_definition_discovery": "Las instancias con recursos compartidos (Discovery) son adecuadas para pruebas y entornos de desarrollo y preproducción. Su rendimiento puede variar ligeramente a lo largo del tiempo.",
+  "pci_project_flavors_spec_vCore_details": "{{vcores}} vCores ({{frequency}} GHz)"
 }
