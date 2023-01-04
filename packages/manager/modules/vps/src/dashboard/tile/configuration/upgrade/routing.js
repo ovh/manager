@@ -118,6 +118,9 @@ export default /* @ngInject */ ($stateProvider) => {
         upgradeSuccess,
         upgradeType,
         vps,
+        atInternet,
+        from,
+        to,
       ) => {
         if (upgradeSuccess) {
           return $translate.instant(
@@ -125,6 +128,10 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         }
         if (upgradeInfo.error) {
+          atInternet.trackPage({
+            name: `vps::upgrade-confirm-banner::error::${upgradeType}-${from}-to-${to}`,
+            type: 'navigation',
+          });
           return null;
         }
 
@@ -222,7 +229,6 @@ export default /* @ngInject */ ($stateProvider) => {
                 ),
               );
             }
-
             return goToUpgradeSuccess(
               {
                 upgradeStatus: 'success',
@@ -234,7 +240,17 @@ export default /* @ngInject */ ($stateProvider) => {
               },
             );
           })
+          .then(() => {
+            atInternet.trackPage({
+              name: `vps::upgrade-confirm-banner::success::${upgradeType}-${from}-to-${to}`,
+              type: 'navigation',
+            });
+          })
           .catch((error) => {
+            atInternet.trackPage({
+              name: `vps::upgrade-confirm-banner::error::${upgradeType}-${from}-to-${to}`,
+              type: 'navigation',
+            });
             const errorMessage =
               error?.status === 400 && stateVps.state === 'rescued'
                 ? `${$translate.instant(

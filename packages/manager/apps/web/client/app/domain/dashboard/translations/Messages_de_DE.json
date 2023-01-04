@@ -825,5 +825,8 @@
   "domain_dashboard_general_information_alldom_termination_info": "Ihr Paket läuft am {{ expirationDate }} ab. Die darin enthaltenen nicht gekündigten Domains <strong>werden bis zum endgültigen Ablauf Ihres Pakets kostenlos verlängert.</strong> Nach diesem Datum werden Ihre nicht gekündigten Domains einzeln abgerechnet.",
   "domain_dashboard_general_information_alldom_renewal_link": "Kündigung des Pakets stornieren",
   "domain_dashboard_general_information_alldom_termination_warning_close": "Schließen",
-  "domain_contact_owner": "Inhaber"
+  "domain_contact_owner": "Inhaber",
+  "domain_configuration_renew": "Ihr Domainname ist ausgesetzt. Sie können ihn während der Karenzzeit verlängern. Nach Ablauf dieser Frist fallen zusätzliche Kosten an.",
+  "domain_configuration_restorable": "Ihr Domainname wird gelöscht. Sie können ihn gegen zusätzliche Gebühren wieder herstellen. Klicken Sie dazu auf den Link „Wieder herstellen“. Andernfalls wird Ihr Domainname endgültig gelöscht.",
+  "domain_configuration_restorable_title_button": "Wieder herstellen"
 }

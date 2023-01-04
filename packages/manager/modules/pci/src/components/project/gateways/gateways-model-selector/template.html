@@ -16,7 +16,7 @@
             <div class="d-flex" data-ng-if="gateway.gatewayInfo[1].blobs">
                 <strong
                     data-translate="{{ 'pci_projects_project_gateways_model_selector_bandwidth'}}"
-                    data-translate-values="{ bandwidth : gateway.gatewayInfo[1].blobs.technical.bandwidth.level + ' ' +gateway.gatewayInfo[1].blobs.technical.bandwidth.maxUnit }"
+                    data-translate-values="{ bandwidth : $ctrl.getBandwidth(gateway.gatewayInfo[1].blobs.technical.bandwidth.level) }"
                 ></strong>
             </div>
             <div

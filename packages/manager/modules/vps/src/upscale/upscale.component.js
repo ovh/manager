@@ -13,7 +13,6 @@ export default {
     scrollToTop: '<',
     upscaleOptions: '<',
     vps: '<stateVps',
-
     goBack: '<',
   },
   controller,

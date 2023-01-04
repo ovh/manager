@@ -15,5 +15,14 @@
   "pci_databases_service_integration_add_error_no_available_service_2_public": "bazującej na jednej z podanych poniżej opcji, wraz z typem sieci publicznej: ",
   "pci_databases_service_integration_add_error_no_available_service_2_private": "bazującej na jednej z podanych poniżej opcji, wraz z typem sieci prywatnej: ",
   "pci_databases_service_integration_add_error_no_available_service_link": "o dodanie usługi",
-  "pci_databases_service_integration_add_string_parameter_description": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki."
+  "pci_databases_service_integration_add_string_parameter_description": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki.",
+  "pci_databases_service_integration_postgresqlmetrics": "Przechowuj metryki w PostgreSQL",
+  "pci_databases_service_integration_m3dbmetrics": "Przechowuj metryki w M3DB",
+  "pci_databases_service_integration_kafkalogs": "Wyślij logi do klastra Kafka",
+  "pci_databases_service_integration_opensearchlogs": "Wyślij logi do OpenSearch",
+  "pci_databases_service_integration_grafanadashboard": "Wyświetl metryki na dashboardzie Grafana",
+  "pci_databases_service_integration_grafanadatasource": "Wyświetl dane w Grafana",
+  "pci_databases_service_integration_m3aggregator": "Zagreguj dane za pomocą M3 Aggregator",
+  "pci_databases_service_integration_kafkamirrormaker": "Synchronizacja topików między klastrami Kafka",
+  "pci_databases_service_integration_kafkaconnect": "Połączenie systemów zewnętrznych z klastrem Kafka"
 }

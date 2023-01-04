@@ -256,7 +256,7 @@ export default class EmailPro {
         ]);
       }
       return this.getRegularTasks(serviceName, pageSize, offset).then(
-        (res) => res.list.results,
+        (res) => res.list?.results,
       );
     });
   }

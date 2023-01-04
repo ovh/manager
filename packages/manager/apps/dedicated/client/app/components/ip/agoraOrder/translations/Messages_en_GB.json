@@ -14,5 +14,6 @@
   "ipv4Block_organization_description3": "If you do not link an organisation, your OVHcloud account information (NIC handle) can be used",
   "ipv4Block_organization_info_banner": "The organisation name linked to your IP address block will appear in the public WHOIS database, along with the corresponding contact information.",
   "ip_agora_table_submit_text": "Continue my order",
-  "ip_agora_table_cancel_text": "Back"
+  "ip_agora_table_cancel_text": "Back",
+  "ipv4Block_price_per_ip": "per IP"
 }

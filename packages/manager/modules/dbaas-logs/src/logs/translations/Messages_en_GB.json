@@ -386,11 +386,6 @@
   "add_alert_time_period_field": "Time period (minutes)",
   "add_alert_time_period_field_description": "Evaluate the condition for all messages received within the given number of minutes.",
   "add_alert_threshold_type_field": "Threshold type",
-  "add_alert_threshold_type_gt": "More than",
-  "add_alert_threshold_type_gte": "More than or equal to",
-  "add_alert_threshold_type_eq": "Equal to",
-  "add_alert_threshold_type_lte": "Less than or equal to",
-  "add_alert_threshold_type_lt": "Less than",
   "add_alert_threshold_type_field_description_message_count": "Select the condition that will trigger the alert, e.g. more/fewer messages than the threshold.",
   "add_alert_threshold_type_field_description_field_value": "Select the condition that will trigger the alert, e.g. when the value is higher/lower than the threshold.",
   "add_alert_threshold_field": "Threshold",
@@ -465,7 +460,6 @@
   "inputs_info_title": "Useful information",
   "inputs_info_description": "Click on the options shown to copy them to your clipboard.",
   "inputs_info_hostname": "Host name",
-  "inputs_info_exposedport": "TCP port exposed",
   "inputs_info_ipaddress": "Public IP (address)",
   "inputs_info_certificate": "Certificate type",
   "inputs_logs_title": "Console output for {{inputTitle}}",
@@ -723,5 +717,11 @@
   "logs_tile_subscription_contact_admin": "Administrator",
   "logs_tile_subscription_contact_billing": "Billing",
   "logs_tile_subscription_contact_technical": "Technical",
-  "logs_order": "Order"
+  "logs_order": "Order",
+  "inputs_info_exposedport": "TCP port exposed",
+  "add_alert_threshold_type_gt": "More than",
+  "add_alert_threshold_type_gte": "More than or equal to",
+  "add_alert_threshold_type_eq": "Equal to",
+  "add_alert_threshold_type_lte": "Less than or equal to",
+  "add_alert_threshold_type_lt": "Less than"
 }

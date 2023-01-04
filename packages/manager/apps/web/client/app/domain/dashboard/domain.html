@@ -1,5 +1,3 @@
-<div data-ovh-alert="{{alerts.page}}"></div>
-
 <div class="text-center" data-ng-if="ctrlDomain.loading.domainInfos">
     <oui-spinner data-size="l"></oui-spinner>
 </div>
@@ -22,6 +20,7 @@
                             service-name="ctrlDomain.domain.name"
                             service-type="DOMAIN"
                             service-infos="ctrlDomain.domainInfos"
+                            data-domain-state="ctrlDomain.domainState"
                         >
                         </wuc-service-expiration-date>
                         <wuc-service-expiration-date
@@ -29,6 +28,7 @@
                             service-name="ctrlDomain.allDom"
                             service-type="ALL_DOM"
                             service-infos="ctrlDomain.allDomInfos"
+                            data-domain-state="ctrlDomain.domainState"
                         >
                         </wuc-service-expiration-date>
                     </div>
@@ -150,14 +150,31 @@
     <div
         class="alert alert-warning"
         role="alert"
-        data-ng-if="ctrlDomain.domain.isExpired"
+        data-ng-if="ctrlDomain.isDomainServiceStateExpired()"
     >
         <span
-            data-translate="common_service_expired_1"
+            data-translate="domain_configuration_renew"
             data-translate-values="{ t0: '<strong>' + ctrlDomain.domain.displayName + '</strong>' }"
         ></span>
-        <a href="{{::ctrlDomain.autorenewUrl}}"
-            ><span data-translate="common_service_expired_2"></span
+        <a href="{{::ctrlDomain.getRenewUrl()}}" target="_blank" rel="noopener"
+            ><span
+                data-translate="domain_configuration_renew_title_button"
+            ></span
+        ></a>
+    </div>
+    <div
+        class="alert alert-warning"
+        role="alert"
+        data-ng-if="ctrlDomain.isDomainServiceStateRestorable()"
+    >
+        <span
+            data-translate="domain_configuration_restorable"
+            data-translate-values="{ t0: '<strong>' + ctrlDomain.domain.displayName + '</strong>' }"
+        ></span>
+        <a href="{{::ctrlDomain.getRenewUrl()}}" target="_blank" rel="noopener"
+            ><span
+                data-translate="domain_configuration_restorable_title_button"
+            ></span
         ></a>
     </div>
 

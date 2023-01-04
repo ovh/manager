@@ -825,5 +825,8 @@
   "domain_dashboard_general_information_alldom_termination_info": "Su pack expirará el {{ expirationDate }}. Los dominios incluidos que no hayan sido dados de baja <strong>se renovarán de forma gratuita hasta la expiración definitiva del pack.</strong> A partir de esa fecha, los dominios que no hayan sido dados de baja se facturarán por separado.",
   "domain_dashboard_general_information_alldom_renewal_link": "Cancelar la baja del pack",
   "domain_dashboard_general_information_alldom_termination_warning_close": "Cerrar",
-  "domain_contact_owner": "Propietario"
+  "domain_contact_owner": "Propietario",
+  "domain_configuration_renew": "Su dominio está suspendido. Recuerde que es posible renovarlo durante el período de gracia. Una vez finalizado este período, se aplicarán cargos adicionales.",
+  "domain_configuration_restorable": "Se está eliminando su dominio. Puede restaurarlo haciendo clic en el enlace «Restaurar». Tenga en cuenta que esta acción tiene un coste adicional. Si no realiza ninguna acción, el dominio se eliminará definitivamente.",
+  "domain_configuration_restorable_title_button": "Restaurar"
 }

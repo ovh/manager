@@ -38,12 +38,20 @@
     </dl>
     <oui-action-menu data-compact data-placement="end">
         <oui-action-menu-item
-            data-ng-if="$ctrl.isExpired() || !$ctrl.isInAutoRenew()"
+            data-ng-if="$ctrl.domainState.isDomainServiceStateExpired && ($ctrl.isExpired() || !$ctrl.isInAutoRenew())"
             data-aria-label="{{ ::'status_action_wizard_renew' | translate }}"
             data-href="{{ $ctrl.orderUrl }}"
             data-external
         >
             <span data-translate="status_action_wizard_renew"></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item
+            data-ng-if="$ctrl.domainState.isDomainServiceStateRestorable && ($ctrl.isExpired() || !$ctrl.isInAutoRenew())"
+            data-aria-label="{{ ::'status_action_wizard_restore' | translate }}"
+            data-href="{{ $ctrl.orderUrl }}"
+            data-external
+        >
+            <span data-translate="status_action_wizard_restore"></span>
         </oui-action-menu-item>
         <oui-action-menu-item
             data-ng-if="!$ctrl.isExpired() && $ctrl.isInAutoRenew() && $ctrl.shouldDeleteAtExpiration()"
