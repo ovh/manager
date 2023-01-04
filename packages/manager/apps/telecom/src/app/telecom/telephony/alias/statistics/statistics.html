@@ -71,11 +71,11 @@
         <oui-datagrid class="my-5" data-rows="$ctrl.calls">
             <oui-datagrid-column
                 data-title="::'telephony_alias_statistics_calls_calling_number' | translate"
-                data-property="callerIdNumber"
+                data-property="callerIdName"
             >
                 <span
                     class="text-capitalize"
-                    data-ng-bind="$row.callerIdNumber | tucPhoneNumber"
+                    data-ng-bind="$row.callerIdName | tucPhoneNumber"
                 ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
