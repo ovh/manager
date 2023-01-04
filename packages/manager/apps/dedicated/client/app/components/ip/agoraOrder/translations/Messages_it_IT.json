@@ -14,5 +14,6 @@
   "ipv4Block_organization_description3": "Se non viene associata un'organizzazione, è possibile utilizzare le informazioni dell’account OVHcloud (NIC).",
   "ipv4Block_organization_info_banner": "Il nome dell'organizzazione associato al blocco di indirizzi IP e le informazioni di contatto corrispondenti saranno disponibili nel database pubblico Whois",
   "ip_agora_table_submit_text": "Continuare con l’ordine",
-  "ip_agora_table_cancel_text": "Indietro"
+  "ip_agora_table_cancel_text": "Indietro",
+  "ipv4Block_price_per_ip": "per indirizzo IP"
 }

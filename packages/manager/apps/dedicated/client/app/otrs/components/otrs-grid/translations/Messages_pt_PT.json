@@ -7,7 +7,7 @@
   "ovhManagerSupport_tickets_grid_column_state_header": "Estado",
   "ovhManagerSupport_tickets_grid_column_updateDate_header": "Última atualização",
   "ovhManagerSupport_tickets_grid_top_createTicket": "Criar um ticket",
-  "ovhManagerSupport_tickets_grid_action_goToTicket": "Ver detalhes",
+  "ovhManagerSupport_tickets_grid_action_goToTicket": "Ver o detalhe",
   "ovhManagerSupport_ticket_serviceName_none": "Outro serviço",
   "ovhManagerSupport_ticket_state_closed": "Encerrado",
   "ovhManagerSupport_ticket_state_open": "Em curso",
