@@ -20,5 +20,6 @@
   "pci_additional_ips_country_LT": "Lithuania",
   "pci_additional_ips_country_NL": "Netherlands",
   "pci_additional_ips_country_PT": "Portugal",
-  "pci_additional_ips_country_SG": "Singapore"
+  "pci_additional_ips_country_SG": "Singapore",
+  "pci_additional_ips_country_IN": "India"
 }

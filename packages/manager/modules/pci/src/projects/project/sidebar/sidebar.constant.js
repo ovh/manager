@@ -17,15 +17,6 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         title: 'Instances',
         feature: PCI_FEATURES.PRODUCTS.INSTANCE,
       },
-      {
-        alpha: true,
-        id: 'baremetal',
-        options: {
-          state: 'pci.projects.project.baremetal',
-        },
-        title: 'Bare Metal',
-        feature: PCI_FEATURES.PRODUCTS.BAREMETAL,
-      },
     ],
     title: 'Compute',
   },

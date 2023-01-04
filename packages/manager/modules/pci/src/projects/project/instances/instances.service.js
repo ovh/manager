@@ -16,6 +16,11 @@ import {
   BANDWIDTH_CONSUMPTION,
   BANDWIDTH_LIMIT,
   BANDWIDTH_OUT_INVOICE,
+  FLAVORS_WITHOUT_AUTOMATED_BACKUP,
+  FLAVORS_WITHOUT_SOFT_REBOOT,
+  FLAVORS_WITHOUT_SUSPEND,
+  FLAVORS_WITHOUT_VNC,
+  FLAVORS_WITHOUT_ADDITIONAL_IPS,
 } from './instances.constants';
 
 export default class PciProjectInstanceService {
@@ -24,6 +29,7 @@ export default class PciProjectInstanceService {
     $http,
     $q,
     Poller,
+    coreConfig,
     CucPriceHelper,
     ovhManagerRegionService,
     OvhApiCloudProject,
@@ -40,6 +46,7 @@ export default class PciProjectInstanceService {
     this.$http = $http;
     this.$q = $q;
     this.Poller = Poller;
+    this.coreConfig = coreConfig;
     this.CucPriceHelper = CucPriceHelper;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
@@ -52,6 +59,10 @@ export default class PciProjectInstanceService {
     this.OvhApiIp = OvhApiIp;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
     this.PciProjectRegions = PciProjectRegions;
+    this.FLAVORS_WITHOUT_SOFT_REBOOT = FLAVORS_WITHOUT_SOFT_REBOOT;
+    this.FLAVORS_WITHOUT_SUSPEND = FLAVORS_WITHOUT_SUSPEND;
+    this.FLAVORS_WITHOUT_VNC = FLAVORS_WITHOUT_VNC;
+    this.FLAVORS_WITHOUT_ADDITIONAL_IPS = FLAVORS_WITHOUT_ADDITIONAL_IPS;
   }
 
   getAll(projectId) {
@@ -441,6 +452,17 @@ export default class PciProjectInstanceService {
       });
   }
 
+  getProductAvailability(projectId, planCode, ovhSubsidiary) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
+        params: {
+          ovhSubsidiary,
+          planCode,
+        },
+      })
+      .then(({ data }) => data);
+  }
+
   save(
     serviceName,
     {
@@ -748,5 +770,34 @@ export default class PciProjectInstanceService {
       },
       namespace,
     });
+  }
+
+  automatedBackupIsAvailable(flavorType) {
+    return (
+      !this.coreConfig.isRegion('US') &&
+      !FLAVORS_WITHOUT_AUTOMATED_BACKUP.find((value) => value.test(flavorType))
+    );
+  }
+
+  softRebootIsAvailable(flavorType) {
+    return !this.FLAVORS_WITHOUT_SOFT_REBOOT.find((value) =>
+      value.test(flavorType),
+    );
+  }
+
+  suspendIsAvailable(flavorType) {
+    return !this.FLAVORS_WITHOUT_SUSPEND.find((value) =>
+      value.test(flavorType),
+    );
+  }
+
+  vncConsoleIsAvailable(flavorType) {
+    return !this.FLAVORS_WITHOUT_VNC.find((value) => value.test(flavorType));
+  }
+
+  additionalIpsIsAvailable(flavorType) {
+    return !this.FLAVORS_WITHOUT_ADDITIONAL_IPS.find((value) =>
+      value.test(flavorType),
+    );
   }
 }

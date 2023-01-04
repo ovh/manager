@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 
+import { FLAVORS_TYPE } from './backup.contants';
+
 export default class PciInstanceBackupController {
   /* @ngInject */
   constructor(
@@ -14,6 +16,7 @@ export default class PciInstanceBackupController {
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.atInternet = atInternet;
+    this.FLAVORS_TYPE = FLAVORS_TYPE;
   }
 
   $onInit() {

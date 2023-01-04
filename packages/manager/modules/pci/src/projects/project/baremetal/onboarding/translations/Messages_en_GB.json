@@ -1,7 +1,0 @@
-{
-  "pci_projects_project_baremetal_onboarding_content1": "You do not currently have any bare metal instances.",
-  "pci_projects_project_baremetal_onboarding_content2": "Our bare metal instances offer hardware servers on demand. They are delivered in a few minutes, and can be billed on an hourly or monthly basis.",
-  "pci_projects_project_baremetal_onboarding_content3": "This can be used like standard instances, via the customer interface where your usual infrastructure management tools are located - such as a CLI and orchestration tools.",
-  "pci_projects_project_baremetal_onboarding_content4": "Some features are not available on bare metal instances, like snapshots and resizing.",
-  "pci_projects_project_baremetal_onboarding_action_label": "Create an instance"
-}

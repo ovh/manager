@@ -1,4 +1,0 @@
-{
-  "pci_projects_project_baremetal_title": "Bare Metal",
-  "pci_projects_project_baremetal_beta_warning": "During the alpha-testing phase, the infrastructure’s availability and data longevity are not guaranteed. Please do not use this service for applications that are in production, as this phase is not complete."
-}
