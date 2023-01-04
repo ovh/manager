@@ -1,7 +1,7 @@
 import {
   COLD_ARCHIVE_TRACKING_PREFIX,
   COLD_ARCHIVE_STATES,
-} from './flush-archive.constants';
+} from '../../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS_ARCHIVE_FLUSH, {
