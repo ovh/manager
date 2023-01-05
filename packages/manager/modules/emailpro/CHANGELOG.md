@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.3.2...@ovh-ux/manager-emailpro@3.3.3) (2023-01-04)
+
+
+### Bug Fixes
+
+* **web:** help content for add domain action ([5aae504](https://github.com/ovh/manager/commit/5aae504053c25a7b1800a879b89387102fb3b445))
+
+
+
+
+
 ## [3.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.3.1...@ovh-ux/manager-emailpro@3.3.2) (2023-01-02)
 
 

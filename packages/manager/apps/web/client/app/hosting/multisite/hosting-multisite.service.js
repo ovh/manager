@@ -332,12 +332,14 @@ angular.module('services').service(
      * @param {string} fieldType
      */
     getRecords(domain, subDomain, fieldType) {
-      return this.OvhHttp.get(`domain/${domain}/record`, {
-        params: {
-          subDomain,
-          fieldType,
-        },
-      }).then((response) => response.data);
+      return this.$http
+        .get(`/domain/zone/${domain}/record`, {
+          params: {
+            subDomain,
+            fieldType,
+          },
+        })
+        .then(({ data }) => data);
     }
 
     /**

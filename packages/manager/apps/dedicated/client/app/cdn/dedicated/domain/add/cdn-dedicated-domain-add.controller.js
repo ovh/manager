@@ -54,8 +54,8 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, Cdn) => {
       $scope.domain.backend = $scope.newBackend.value;
     }
     $scope.resetAction();
-    Cdn.addDomain($stateParams.productId, $scope.domain).then(
-      () => {
+    Cdn.addDomain($stateParams.productId, $scope.domain)
+      .then(() => {
         $scope.setMessage(
           $translate.instant('cdn_configuration_add_domain_success', {
             t0: $scope.domain.domain,
@@ -63,13 +63,12 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, Cdn) => {
           }),
           true,
         );
-      },
-      (data) => {
+      })
+      .catch((data) => {
         $scope.setMessage(
           $translate.instant('cdn_configuration_add_domain_fail'),
-          data,
+          angular.extend(data, { type: 'ERROR' }),
         );
-      },
-    );
+      });
   };
 };

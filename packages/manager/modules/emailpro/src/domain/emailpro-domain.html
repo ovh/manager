@@ -333,11 +333,13 @@
         </div>
 
         <div class="col-md-3 mt-5 mt-lg-0" data-ng-if="canAddDomain">
-            <a
-                class="oui-button oui-button_block oui-button_secondary"
-                data-ui-sref=".add"
+            <button
+                type="button"
+                class="btn btn-block btn-default"
                 data-translate="emailpro_tab_domain_add_domain"
-            ></a>
+                data-ng-click="setAction('emailpro/domain/add/emailpro-domain-add')"
+            ></button>
         </div>
     </div>
+    <div data-ui-view></div>
 </div>

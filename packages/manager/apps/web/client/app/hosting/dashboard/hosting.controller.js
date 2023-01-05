@@ -732,7 +732,7 @@ export default class {
             this.$scope.serviceError = true;
           } else {
             this.Alerter.error(
-              this.$translate.instant('hosting_dashboard_loaing_error'),
+              this.$translate.instant('hosting_dashboard_loading_error'),
               this.$scope.alerts.page,
             );
             if (!hosting.name) {

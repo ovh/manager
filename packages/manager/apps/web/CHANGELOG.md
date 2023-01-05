@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.23.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.23.6...@ovh-ux/manager-web@16.23.7) (2023-01-04)
+
+
+### Bug Fixes
+
+* **web.hosting:** disable autoconfigure on delete external domain ([cac8031](https://github.com/ovh/manager/commit/cac8031a2e236922d7d5ab20c7349e809b37acf3))
+* **web.hosting:** fix the typing error key translation ([bfd8022](https://github.com/ovh/manager/commit/bfd80222174a2c7b642f5eb5930d2e8b7820696b))
+
+
+
+
+
 ## [16.23.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.23.5...@ovh-ux/manager-web@16.23.6) (2023-01-02)
 
 
