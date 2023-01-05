@@ -117,20 +117,17 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
-      trackClick: /* @ngInject */ (atInternet) => (hit) => {
-        console.log('Track click: ', `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`);
-        return atInternet.trackClick({
+      trackClick: /* @ngInject */ (atInternet) => (hit) =>
+        atInternet.trackClick({
           name: `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`,
           type: 'action',
-        });
-      },
+        }),
 
-      trackPage: /* @ngInject */ (atInternet) => (hit) => {
-        console.log('Track page: ', `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`);
-        return atInternet.trackPage({
+      trackPage: /* @ngInject */ (atInternet) => (hit) =>
+        atInternet.trackPage({
           name: `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`,
-        });
-      },
+          type: 'navigation',
+        }),
 
       scrollToTop: /* @ngInject */ ($anchorScroll, $location) => () => {
         $location.hash('cold-archive-header');

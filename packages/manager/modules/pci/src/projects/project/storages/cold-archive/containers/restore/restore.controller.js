@@ -1,4 +1,5 @@
 import { COLD_ARCHIVE_DEFAULT_REGION } from './restore.constants';
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 
 export default class PciBlockStorageDetailsRestoreController {
   /* @ngInject */
@@ -8,14 +9,24 @@ export default class PciBlockStorageDetailsRestoreController {
   }
 
   $onInit() {
-    this.trackPage('containers::container::restore');
-
+    this.trackRestoreModalPage();
     this.isLoading = false;
   }
 
-  restoreContainer() {
-    this.trackClick('containers::container::restore::confirm');
+  trackRestoreModalPage(action) {
+    const base = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE}`;
+    const hit = action ? `${base}::${action}` : base;
+    this.trackPage(hit);
+  }
 
+  trackRestoreModalClick(action) {
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE}::${action}`,
+    );
+  }
+
+  restoreContainer() {
+    this.trackRestoreModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
     this.isLoading = true;
     return this.pciStoragesColdArchiveService
       .restoreArchiveContainer(
@@ -24,8 +35,7 @@ export default class PciBlockStorageDetailsRestoreController {
         this.container.name,
       )
       .then(() => {
-        this.trackPage('containers::container::restore::confirm_success');
-
+        this.trackRestoreModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
         return this.goBack(
           this.$translate.instant(
             'pci_projects_project_storages_cold_archive_containers_container_restore_success_message',
@@ -36,8 +46,7 @@ export default class PciBlockStorageDetailsRestoreController {
         );
       })
       .catch((err) => {
-        this.trackPage('containers::container::restore::confirm_error');
-
+        this.trackRestoreModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
         return this.goBack(
           this.$translate.instant(
             'pci_projects_project_storages_cold_archive_containers_container_restore_error_message',
@@ -55,8 +64,7 @@ export default class PciBlockStorageDetailsRestoreController {
   }
 
   cancel() {
-    this.trackClick('containers::container::restore::cancel');
-
+    this.trackRestoreModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
     return this.goBack();
   }
 }

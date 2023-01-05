@@ -1,7 +1,4 @@
-import {
-  COLD_ARCHIVE_TRACKING_PREFIX,
-  COLD_ARCHIVE_STATES,
-} from './add-user.constants';
+import { COLD_ARCHIVE_STATES } from './add-user.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_ADD_USER, {
@@ -27,9 +24,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
       container: /* @ngInject */ ($transition$) =>
         $transition$.params().container,
-    },
-    atInternet: {
-      rename: `${COLD_ARCHIVE_TRACKING_PREFIX}::add-user`,
     },
   });
 };
