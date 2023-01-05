@@ -1,6 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
+import './index.scss';
 
 const moduleName = 'ovhManagerPciProjectLazyLoading';
 
