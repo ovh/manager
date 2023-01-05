@@ -2,11 +2,19 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 import featureFlippling from './components/feature-flipping';
+import pciNewProjectPromotionBanner from './components/pci-new-project-promotion-banner';
+import config from './config';
 
 const moduleName = 'ovhManagerPciProjectsNewLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', featureFlippling])
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+    featureFlippling,
+    config,
+    pciNewProjectPromotionBanner,
+  ])
   .config((ovhPciFeatureFlippingProvider) => {
     ovhPciFeatureFlippingProvider.addFeatures([
       {

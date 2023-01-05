@@ -1,8 +1,9 @@
 export default class {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, iceberg) {
     this.project = {};
     this.$http = $http;
+    this.iceberg = iceberg;
   }
 
   getProjectInfo() {
@@ -50,5 +51,14 @@ export default class {
         ),
       );
     });
+  }
+
+  getVouchersCreditDetails(serviceName) {
+    return this.iceberg(`/cloud/project/${serviceName}/credit`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data }) => data)
+      .catch(() => []);
   }
 }
