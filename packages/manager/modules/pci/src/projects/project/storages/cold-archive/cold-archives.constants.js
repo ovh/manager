@@ -1,6 +1,27 @@
 export const COLD_ARCHIVE_TRACKING_PREFIX =
   'PublicCloud::pci::projects::project::storages::cold_archive';
 
+export const COLD_ARCHIVE_TRACKING = {
+  PREFIX: 'PublicCloud::pci::projects::project::storages::cold_archive',
+  CONTAINERS: {
+    MAIN: 'dashboard::containers',
+    RESTORE: 'restore',
+    DELETE: 'delete',
+    ADD_USER: 'add-user',
+    ARCHIVE: 'archive',
+    DELETE_CONTAINER: 'delete-container',
+    FLUSH_CONTAINER: 'delete-container',
+  },
+  ACTIONS: {
+    CONFIRM: 'confirm',
+    CANCEL: 'cancel',
+  },
+  STATUS: {
+    SUCCESS: 'confirm_success',
+    ERROR: 'confirm_error',
+  },
+};
+
 export const REGION = 'RBX-ARCHIVE';
 
 export const DATE_FORMAT = 'DD/MM/YYYY HH:mm';
