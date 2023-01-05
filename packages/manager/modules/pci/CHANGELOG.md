@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.105.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.105.0...@ovh-ux/manager-pci@5.105.1) (2023-01-05)
+
+
+### Bug Fixes
+
+* **pci:** fix public network baremetal ext net ([5268782](https://github.com/ovh/manager/commit/52687823b56ebfab395b552cf3cd8f075ed507d3))
+* **pci:** merge instance and barematal section ([#7194](https://github.com/ovh/manager/issues/7194)) ([9e93d46](https://github.com/ovh/manager/commit/9e93d46c1dff1798d9d56b5f9dd439c2ef3be368))
+
+
+
+
+
 # [5.105.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.104.0...@ovh-ux/manager-pci@5.105.0) (2023-01-02)
 
 
