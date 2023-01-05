@@ -1,13 +1,11 @@
-import { TERMINATE_INPUT_PATTERN } from './delete-container.constants';
-
+import { TERMINATE_INPUT_PATTERN } from './flush-archive.constants';
+import { REGION } from '../../cold-archives.constants';
 import { COLD_ARCHIVE_CONTAINER_STATUS } from '../containers.constants';
-import { MANAGE_ARCHIVE_DOC_LINK, REGION } from '../../cold-archives.constants';
 
-export default class ColdArchiveContainersDeleteContainerController {
+export default class ColdArchiveContainersFlushArchiveController {
   /* @ngInject */
-  constructor($translate, PciStoragesColdArchiveService, coreConfig) {
+  constructor($translate, PciStoragesColdArchiveService) {
     this.$translate = $translate;
-    this.coreConfig = coreConfig;
     this.pciStoragesColdArchiveService = PciStoragesColdArchiveService;
   }
 
@@ -17,20 +15,14 @@ export default class ColdArchiveContainersDeleteContainerController {
     this.COLD_ARCHIVE_CONTAINER_STATUS = COLD_ARCHIVE_CONTAINER_STATUS;
   }
 
-  getDocumentationUrl() {
-    return MANAGE_ARCHIVE_DOC_LINK[
-      this.coreConfig.getUserLanguage().toUpperCase()
-    ];
-  }
+  flushArchive() {
+    this.trackClick('containers::container::flush-archive::confirm');
 
-  deleteContainer() {
     this.isLoading = true;
     return this.pciStoragesColdArchiveService
-      .deleteArchiveContainer(this.projectId, REGION, this.container.name)
+      .flushArchive(this.projectId, REGION, this.container.name)
       .then(() => {
-        this.trackPage(
-          'containers::container::delete-container::confirm_success',
-        );
+        this.trackPage('containers::container::flush-archive::confirm_success');
 
         return this.goBack(
           this.$translate.instant(
@@ -42,9 +34,7 @@ export default class ColdArchiveContainersDeleteContainerController {
         );
       })
       .catch((err) => {
-        this.trackPage(
-          'containers::container::delete-container::confirm_error',
-        );
+        this.trackPage('containers::container::flush-archive::confirm_error');
 
         return this.goBack(
           this.$translate.instant(
@@ -62,7 +52,7 @@ export default class ColdArchiveContainersDeleteContainerController {
   }
 
   cancel() {
-    this.trackClick('containers::container::delete-container::cancel');
+    this.trackClick('containers::container::flush-archive::cancel');
 
     return this.goBack();
   }

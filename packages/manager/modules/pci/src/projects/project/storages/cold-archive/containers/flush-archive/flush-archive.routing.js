@@ -4,11 +4,11 @@ import {
 } from '../../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_DELETE, {
-    url: '/delete-container',
+  $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS_ARCHIVE_FLUSH, {
+    url: '/flush-archive',
     views: {
       modal: {
-        component: 'pciStoragesColdArchiveContainersDeleteContainer',
+        component: 'pciStoragesColdArchiveContainersFlushArchive',
       },
     },
     layout: 'modal',
@@ -29,7 +29,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().container,
     },
     atInternet: {
-      rename: `${COLD_ARCHIVE_TRACKING_PREFIX}::delete-container`,
+      rename: `${COLD_ARCHIVE_TRACKING_PREFIX}::flush-archive`,
     },
   });
 };
