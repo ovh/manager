@@ -15,6 +15,7 @@ export default {
     summary: '<',
     getSummary: '<',
     trackClick: '<',
+    trackPage: '<',
     projectsLink: '<',
     setCartProjectItem: '<',
     onProgressStepClick: '<',

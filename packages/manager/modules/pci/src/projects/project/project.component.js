@@ -23,6 +23,7 @@ export default {
     goToRegion: '<',
     onCreateProjectClick: '<',
     guideUrl: '<',
+    vouchersCreditDetails: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',
     isMenuSidebarVisible: '<',
