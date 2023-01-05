@@ -54,9 +54,6 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_storages_cold_archive_label'),
 
-      trackingPrefix: () =>
-        'PublicCloud::pci::projects::project::storages::cold_archive::',
-
       userList: /* @ngInject */ (projectId, allUserList) =>
         allUserList.filter((user) => user?.s3Credentials?.length > 0),
 
@@ -120,16 +117,20 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
-      trackClick: /* @ngInject */ (atInternet) => (hit) =>
-        atInternet.trackClick({
+      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+        console.log('Track click: ', `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`);
+        return atInternet.trackClick({
           name: `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`,
           type: 'action',
-        }),
+        });
+      },
 
-      trackPage: /* @ngInject */ (atInternet) => (hit) =>
-        atInternet.trackPage({
+      trackPage: /* @ngInject */ (atInternet) => (hit) => {
+        console.log('Track page: ', `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`);
+        return atInternet.trackPage({
           name: `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`,
-        }),
+        });
+      },
 
       scrollToTop: /* @ngInject */ ($anchorScroll, $location) => () => {
         $location.hash('cold-archive-header');
