@@ -1,3 +1,5 @@
+import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive.add', {
     url: '/new',
@@ -11,6 +13,21 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant(
           'pci_projects_project_storages_cold_archive_add_breadcrumb',
         ),
+      trackAddContainerPage: /* @ngInject */ (atInternet) => (action) => {
+        const hit = `${COLD_ARCHIVE_TRACKING.ADD.PREFIX}::${action}`;
+        atInternet.trackPage({
+          name: hit,
+          type: 'page',
+        });
+      },
+
+      trackAddContainerClick: /* @ngInject */ (atInternet) => (action) => {
+        const hit = `${COLD_ARCHIVE_TRACKING.ADD.PREFIX}::${action}`;
+        atInternet.trackClick({
+          name: hit,
+          type: 'click',
+        });
+      },
 
       stepper: /* @ngInject */ () => ({
         nameArchiveStep: { name: 'cold_archive_name_archive', display: null },

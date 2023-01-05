@@ -2,6 +2,7 @@ import {
   COLD_ARCHIVE_ADD_MESSAGES_ID,
   COLD_ARCHIVE_DEFAULT_REGION,
 } from './add.constants';
+import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
 
 export default class ColdArchiveConfigurationController {
   /* @ngInject */
@@ -28,7 +29,7 @@ export default class ColdArchiveConfigurationController {
       },
       createOrLinkedMode: null,
     };
-
+    this.trackPage(COLD_ARCHIVE_TRACKING.ADD.MAIN);
     this.loadMessages();
     this.setUsersForContainerCreation();
   }
@@ -86,25 +87,17 @@ export default class ColdArchiveConfigurationController {
   }
 
   createArchive() {
-    /*
-    TODO: will be completed in another Story
-
-    this.atInternet.trackClick({
-      name: `storage_container_create_${
-        this.container.offer === 'storage' ? 'standard' : this.container.offer
-      }_${this.container.region?.datacenterLocation}_${this.container
-        .containerType || 'standard'}`,
-      type: 'action',
-    }); */
-
     this.isArchiveCreationInProgress = true;
     return this.pciStoragesColdArchiveService
       .createArchiveContainer(this.projectId, COLD_ARCHIVE_DEFAULT_REGION, {
         ...this.archiveModel,
         ownerId: this.getUserOwnerId(),
       })
-      .then(() =>
-        this.goToColdArchiveContainers(
+      .then(() => {
+        this.trackAddContainerClick(
+          `${COLD_ARCHIVE_TRACKING.ADD.CREATE}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
+        );
+        return this.goToColdArchiveContainers(
           this.$translate.instant(
             'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success',
             {
@@ -112,9 +105,12 @@ export default class ColdArchiveConfigurationController {
               userName: this.getUserName(),
             },
           ),
-        ),
-      )
+        );
+      })
       .catch((err) => {
+        this.trackAddContainerClick(
+          `${COLD_ARCHIVE_TRACKING.ADD.CREATE}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
+        );
         this.cucCloudMessage.error(
           this.$translate.instant(
             'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_failed',
@@ -132,6 +128,9 @@ export default class ColdArchiveConfigurationController {
   }
 
   onArchiveSubmit() {
+    this.trackAddContainerClick(
+      `${COLD_ARCHIVE_TRACKING.ADD.CREATE}_${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}`,
+    );
     return this.createArchive();
   }
 }

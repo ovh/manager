@@ -1,4 +1,5 @@
 import { COLD_ARCHIVE_DEFAULT_REGION } from './archive.constants';
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 
 export default class PciBlockStorageDetailsArchiveController {
   /* @ngInject */
@@ -8,14 +9,24 @@ export default class PciBlockStorageDetailsArchiveController {
   }
 
   $onInit() {
-    this.trackPage('containers::container::archive');
-
+    this.trackArchiveModalPage();
     this.isLoading = false;
   }
 
-  archiveContainer() {
-    this.trackClick('containers::container::archive::confirm');
+  trackArchiveModalPage(action) {
+    const base = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}`;
+    const hit = action ? `${base}::${action}` : base;
+    this.trackPage(hit);
+  }
 
+  trackArchiveModalClick(action) {
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}::${action}`,
+    );
+  }
+
+  archiveContainer() {
+    this.trackArchiveModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
     this.isLoading = true;
     return this.pciStoragesColdArchiveService
       .startArchiveContainer(
@@ -24,8 +35,7 @@ export default class PciBlockStorageDetailsArchiveController {
         this.container.name,
       )
       .then(() => {
-        this.trackPage('containers::container::archive::confirm_success');
-
+        this.trackArchiveModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
         return this.goBack(
           this.$translate.instant(
             'pci_projects_project_storages_cold_archive_containers_container_archive_success_message',
@@ -36,7 +46,7 @@ export default class PciBlockStorageDetailsArchiveController {
         );
       })
       .catch((err) => {
-        this.trackPage('containers::container::archive::confirm_error');
+        this.trackArchiveModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
 
         return this.goBack(
           this.$translate.instant(
@@ -55,8 +65,7 @@ export default class PciBlockStorageDetailsArchiveController {
   }
 
   cancel() {
-    this.trackClick('containers::container::archive::cancel');
-
+    this.trackArchiveModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
     return this.goBack();
   }
 }

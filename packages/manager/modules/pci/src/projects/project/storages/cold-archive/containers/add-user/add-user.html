@@ -1,6 +1,6 @@
 <oui-modal
     data-heading="{{ ::'pci_projects_project_storages_coldArchive_containers_addUser_' + ($ctrl.objectKey ? 'object' : 'container') + '_title' | translate }}"
-    data-on-dismiss="$ctrl.goBack()"
+    data-on-dismiss="$ctrl.cancel()"
     data-loading="$ctrl.isLoading"
 >
     <div data-ng-if="$ctrl.container">
