@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.42.0...@ovh-ux/manager-dedicated@17.42.1) (2023-01-04)
+
+
+### Bug Fixes
+
+* **dedicated.cdn:** fix background error message and empty error ([61a512f](https://github.com/ovh/manager/commit/61a512f050feef49da435bab2cfa78b1a00f81f2))
+
+
+
+
+
 # [17.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.41.5...@ovh-ux/manager-dedicated@17.42.0) (2023-01-02)
 
 

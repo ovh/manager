@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.2.1...@ovh-ux/manager-email-domain@1.2.2) (2023-01-04)
+
+
+### Bug Fixes
+
+* **web.mxplan:** fix display domain punycode ([a6078fb](https://github.com/ovh/manager/commit/a6078fba87d51275a70a9b6f1b7592b5fc7c8af0))
+
+
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.2.0...@ovh-ux/manager-email-domain@1.2.1) (2022-12-26)
 
 

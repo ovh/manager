@@ -1,13 +1,15 @@
 import clone from 'lodash/clone';
-import template from './emailpro-domain-add.html';
+import { ADD_STATES } from './add.constants';
 
 const state = {
   url: '/add',
-  layout: 'modal',
-  template,
+  template: `<div data-ng-init="setAction('emailpro/domain/add/emailpro-domain-add')"></div>`,
+  resolve: {
+    breadcrumb: () => null,
+  },
 };
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('email-pro.dashboard.domain.add', clone(state));
-  $stateProvider.state('mxplan.dashboard.domain.add', clone(state));
+  $stateProvider.state(ADD_STATES.EMAIL_PRO, clone(state));
+  $stateProvider.state(ADD_STATES.MXPLAN, clone(state));
 };
