@@ -21,10 +21,18 @@ export const INSTANCE_READ_MORE_GUIDE = {
 export const FLOATING_IP_AVAILABILITY_INFO_LINK =
   'https://www.ovhcloud.com/en/public-cloud/regions-availability/';
 
+export const FLAVORS_BAREMETAL = /baremetal/;
+
+export const PUBLIC_NETWORK = 'Ext-Net';
+export const PUBLIC_NETWORK_BAREMETAL = 'Ext-Net-Baremetal';
+
 export default {
   BANDWIDTH_OUT,
   INSTANCE_MODES_ENUM,
   AVAILABLE_SUBNET,
   INSTANCE_READ_MORE_GUIDE,
   FILTER_PRIVATE_NETWORK_BAREMETAL,
+  FLAVORS_BAREMETAL,
+  PUBLIC_NETWORK,
+  PUBLIC_NETWORK_BAREMETAL,
 };

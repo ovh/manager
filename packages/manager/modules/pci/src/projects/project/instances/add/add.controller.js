@@ -22,6 +22,9 @@ import {
   INSTANCE_READ_MORE_GUIDE,
   FLOATING_IP_AVAILABILITY_INFO_LINK,
   FILTER_PRIVATE_NETWORK_BAREMETAL,
+  FLAVORS_BAREMETAL,
+  PUBLIC_NETWORK,
+  PUBLIC_NETWORK_BAREMETAL,
 } from './add.constants';
 
 export default class PciInstancesAddController {
@@ -515,7 +518,12 @@ export default class PciInstancesAddController {
         this.instance.networks = [
           ...this.instance.networks,
           {
-            networkId: get(this.publicNetwork, 'id'),
+            networkId: this.publicNetwork.find((network) => {
+              if (FLAVORS_BAREMETAL.test(this.flavor.type)) {
+                return network.name === PUBLIC_NETWORK_BAREMETAL;
+              }
+              return network.name === PUBLIC_NETWORK;
+            })?.id,
           },
         ];
       }

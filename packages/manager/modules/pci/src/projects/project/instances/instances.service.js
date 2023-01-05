@@ -326,12 +326,9 @@ export default class PciProjectInstanceService {
   }
 
   getPublicNetwork(projectId) {
-    return this.OvhApiCloudProjectNetwork.Public()
-      .v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise.then(([publicNetwork]) => publicNetwork);
+    return this.$http
+      .get(`/cloud/project/${projectId}/network/public`)
+      .then(({ data }) => data);
   }
 
   getCompatiblesPrivateNetworks(projectId, instance) {
