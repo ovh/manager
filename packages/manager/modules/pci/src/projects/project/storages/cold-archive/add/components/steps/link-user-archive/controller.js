@@ -5,13 +5,20 @@ import {
   ARCHIVE_USER_STATUS,
 } from './constants';
 import { COLD_ARCHIVE_LINKED_MODES } from '../../../add.constants';
+import { COLD_ARCHIVE_TRACKING } from '../../../../cold-archives.constants';
 
 export default class ColdArchiveLinkUserArchiveController {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, PciStoragesUsersService) {
+  constructor(
+    $translate,
+    CucCloudMessage,
+    PciStoragesUsersService,
+    atInternet,
+  ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.pciStoragesUsersService = PciStoragesUsersService;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -31,6 +38,20 @@ export default class ColdArchiveLinkUserArchiveController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  trackClick(hit) {
+    this.atInternet.trackClick({
+      name: `${COLD_ARCHIVE_TRACKING.ADD.PREFIX}::${hit}`,
+      type: 'action',
+    });
+  }
+
+  trackPage(hit) {
+    this.atInternet.trackPage({
+      name: `${COLD_ARCHIVE_TRACKING.ADD.PREFIX}::${hit}`,
+      type: 'page',
+    });
   }
 
   initUsersCredentialsList() {
@@ -124,17 +145,19 @@ export default class ColdArchiveLinkUserArchiveController {
   }
 
   onLinkedModeClicked() {
-    // this.trackClick(TRACKING_ASSOCIATE_USER);
+    this.trackClick(COLD_ARCHIVE_TRACKING.ADD.ASSOCIATE.EXISTING_USER);
     this.userModel.createOrLinkedMode = COLD_ARCHIVE_LINKED_MODES.LINKED;
   }
 
   onCreateModeClicked() {
-    // this.trackClick(TRACKING_CREATE_USER);
+    this.trackClick(COLD_ARCHIVE_TRACKING.ADD.ASSOCIATE.NEW_USER);
     this.userModel.createOrLinkedMode = COLD_ARCHIVE_LINKED_MODES.CREATE;
   }
 
   onCancelCreateUserClicked() {
-    // this.trackClick(`${TRACKING_CREATE_USER}-cancel`);
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.ADD.ASSOCIATE.NEW_USER}_${COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL}`,
+    );
     this.reset();
     this.userModel.createMode.user = null;
     this.userModel.createMode.credential = null;
@@ -145,7 +168,9 @@ export default class ColdArchiveLinkUserArchiveController {
 
   onCreateUserClicked(description) {
     let newUser;
-    // this.trackClick(`${TRACKING_CREATE_USER}-confirm`);
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.ADD.ASSOCIATE.NEW_USER}_${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}`,
+    );
     this.userModel.createMode.isInProgress = true;
     return this.createUser(description)
       .then((user) => {
@@ -155,11 +180,15 @@ export default class ColdArchiveLinkUserArchiveController {
       .then((credential) => {
         newUser.s3Credentials = [credential];
         this.userModel.createMode.credential = credential;
-        // this.trackPage(`${TRACKING_CREATE_USER}-success`);
+        this.trackPage(
+          `${COLD_ARCHIVE_TRACKING.ADD.ASSOCIATE.NEW_USER}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
+        );
         return credential;
       })
       .catch(() => {
-        // this.trackPage(`${TRACKING_CREATE_USER}-error`);
+        this.trackPage(
+          `${COLD_ARCHIVE_TRACKING.ADD.ASSOCIATE.NEW_USER}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
+        );
       })
       .finally(() => {
         this.userModel.createMode.isInProgress = false;
@@ -167,14 +196,18 @@ export default class ColdArchiveLinkUserArchiveController {
   }
 
   onCancelLinkedUserClicked() {
-    // this.trackClick(`${TRACKING_ASSOCIATE_USER}-cancel`);
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.ADD.ASSOCIATE.EXISTING_USER}_${COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL}`,
+    );
     this.reset();
     this.userModel.linkedMode.selected = null;
     this.userModel.linkedMode.credential = null;
   }
 
   onLinkedUserClicked() {
-    // this.trackClick(`${TRACKING_ASSOCIATE_USER}-confirm`);
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.ADD.ASSOCIATE.EXISTING_USER}_${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}`,
+    );
 
     const { selected: user } = this.userModel.linkedMode;
     const defaultCredential = user.s3Credentials[0];
@@ -192,7 +225,9 @@ export default class ColdArchiveLinkUserArchiveController {
 
     return functionToCallPromise
       .then((credential) => {
-        // this.trackPage(`${TRACKING_ASSOCIATE_USER}-success`);
+        this.trackPage(
+          `${COLD_ARCHIVE_TRACKING.ADD.ASSOCIATE.ASSOCIATE_USER}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
+        );
         const { s3Credentials } = user;
         user.s3Credentials = s3Credentials || [];
         user.s3Credentials.push(credential);
@@ -200,7 +235,9 @@ export default class ColdArchiveLinkUserArchiveController {
         this.userModel.linkedMode.credential = credential;
       })
       .catch(() => {
-        // this.trackPage(`${TRACKING_ASSOCIATE_USER}-error`);
+        this.trackPage(
+          `${COLD_ARCHIVE_TRACKING.ADD.ASSOCIATE.ASSOCIATE_USER}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
+        );
       })
       .finally(() => {
         this.userModel.linkedMode.isInProgress = false;

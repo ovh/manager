@@ -3,6 +3,16 @@ export const COLD_ARCHIVE_TRACKING_PREFIX =
 
 export const COLD_ARCHIVE_TRACKING = {
   PREFIX: 'PublicCloud::pci::projects::project::storages::cold_archive',
+  ADD: {
+    MAIN: 'add',
+    PREFIX: 'PublicCloud_cold_archive_add_archive::create_container',
+    ASSOCIATE: {
+      NEW_USER: 'add_new_user',
+      EXISTING_USER: 'add_existing_user',
+      ASSOCIATE_USER: 'associate_user',
+    },
+    CREATE: 'create_container',
+  },
   CONTAINERS: {
     MAIN: 'dashboard::containers',
     RESTORE: 'restore',

@@ -3,6 +3,7 @@ import {
   CONTAINER_STATUS_OPTIONS,
   GUIDES,
 } from './containers.constants';
+import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
 
 export default class PciStoragesColdArchiveContainersController {
   /* @ngInject */
@@ -24,6 +25,7 @@ export default class PciStoragesColdArchiveContainersController {
     });
 
     this.loadMessages();
+    this.trackPage(COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN);
   }
 
   loadMessages() {
@@ -58,13 +60,6 @@ export default class PciStoragesColdArchiveContainersController {
       delete: this.goToDeleteContainer,
     };
     return ACTIONS[action];
-  }
-
-  trackPage(page) {
-    this.atInternet.trackPage({
-      name: `${this.trackingPrefix}${page}`,
-      type: 'navigation',
-    });
   }
 
   static isActionsAvailable(container) {
