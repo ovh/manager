@@ -698,7 +698,7 @@
   "ip_table_header_service_help": "Usługa OVHcloud przypisana do adresu IP. Usługa jest dostępna za pośrednictwem przypisanego adresu IP.",
   "ip_table_header_ip_address_help": "Publiczny adres IP przypisany do usługi.",
   "ip_table_header_country_help": "Kraj pochodzenia adresu IP. Dostępne tylko dla geolokalizowanych adresów IP (Additional IP).",
-  "ip_table_header_campus_help": "Kampus określa lokalizację adresu IP, do którego przypisana jest usługa. W przypadku adresów Additional IP kampus określa również lokalizację usług, do których adres IP może zostać przeniesiony.",
+  "ip_table_header_campus_help": "Kampus określa lokalizację adresu IP, do którego przypisana jest usługa. W przypadku dodatkowych adresów IP kampus określa również lokalizację usług, na które można przesyłać adres IP.",
   "ip_table_header_reverse_help": "Rekord DNS umożliwiający odwrotną translację adresów (adres IP na nazwę hosta).",
   "ip_table_header_virtual_mac_help": "Adres MAC używany do kierowania adresu IP do zwirtualizowanego zasobu w trybie bridge dla kompatybilnych produktów.",
   "ip_table_header_mitigation_help": "Status ochrony anty-DDoS.",
