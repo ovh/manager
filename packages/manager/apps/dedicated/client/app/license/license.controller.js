@@ -12,16 +12,15 @@ export default /* @ngInject */ (
   $translate,
   constants,
   ovhFeatureFlipping,
+  LICENCE_TYPES,
 ) => {
   $scope.licencesTableLoading = false;
   $scope.licenses = null;
   $scope.licenseTypes = {
     CPANEL: 'CPANEL',
-    DIRECTADMIN: 'DIRECTADMIN',
     PLESK: 'PLESK',
     SPLA: 'SPLA',
     SQLSERVER: 'SQLSERVER',
-    VIRTUOZZO: 'VIRTUOZZO',
     WINDOWS: 'WINDOWS',
   };
   $scope.filterType = null;
@@ -146,6 +145,10 @@ export default /* @ngInject */ (
     return `${$translate.instant(
       `license_designation_${license.type}`,
     )} ${formattedVersion}`;
+  };
+
+  $scope.canRenewLicense = (licenseType) => {
+    return LICENCE_TYPES.indexOf(licenseType) > -1;
   };
 
   const init = () => {
