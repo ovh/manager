@@ -17,7 +17,8 @@ export default /* @ngInject */ ($stateProvider) => {
       dataModel: () => 'sms.Account',
       smsStatusTypes: /* @ngInject */ (schema) =>
         get(schema.models, 'sms.StatusAccountEnum').enum,
-
+      smsChannelEnum: /* @ngInject */ (schema) =>
+        get(schema.models, 'sms.ChannelEnum').enum,
       getSmsLink: /* @ngInject */ ($state) => ({ name: serviceName }) =>
         $state.href('sms.service.dashboard', {
           serviceName,
