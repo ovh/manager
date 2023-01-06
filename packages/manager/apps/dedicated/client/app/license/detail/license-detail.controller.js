@@ -17,10 +17,8 @@ export default /* @ngInject */ function LicenseDetailsCtrl(
 
   $scope.licenseTypes = {
     CPANEL: 'CPANEL',
-    DIRECTADMIN: 'DIRECTADMIN',
     PLESK: 'PLESK',
     SPLA: 'SPLA',
-    VIRTUOZZO: 'VIRTUOZZO',
     WINDOWS: 'WINDOWS',
   };
 

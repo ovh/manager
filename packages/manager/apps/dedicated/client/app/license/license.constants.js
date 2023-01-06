@@ -1,13 +1,4 @@
-export const LICENSE_TYPES = [
-  'CLOUDLINUX',
-  'CPANEL',
-  'DIRECTADMIN',
-  'PLESK',
-  'SQLSERVER',
-  'VIRTUOZZO',
-  'WINDOWS',
-  'WORKLIGHT',
-];
+export const LICENSE_TYPES = ['CPANEL', 'PLESK', 'SQLSERVER', 'WINDOWS'];
 
 export default {
   LICENSE_TYPES,

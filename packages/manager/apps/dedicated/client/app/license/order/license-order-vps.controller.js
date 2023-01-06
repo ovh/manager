@@ -13,7 +13,6 @@ export default /* @ngInject */ (
   $translate,
   Alerter,
   License,
-  licenseFeatureAvailability,
   LicenseOrder,
   User,
 ) => {
@@ -79,21 +78,8 @@ export default /* @ngInject */ (
         languagePackNumber: null,
         powerpack: null,
       },
-      VIRTUOZZO: {
-        containerNumber: {
-          mandatory: true,
-          value: null,
-        },
-      },
       WINDOWS: {
         sqlVersion: null,
-      },
-      WORKLIGHT: {
-        lessThan1000Users: {
-          mandatory: true,
-          value: null,
-          shouldBeEqualsTo: true,
-        },
       },
     };
   }

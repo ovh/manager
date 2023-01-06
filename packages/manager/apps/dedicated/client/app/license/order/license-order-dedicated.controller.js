@@ -8,14 +8,10 @@ import set from 'lodash/set';
 import values from 'lodash/values';
 
 export default /* @ngInject */ (
-  $q,
-  $filter,
   $scope,
-  $timeout,
   $translate,
   Alerter,
   License,
-  licenseFeatureAvailability,
   LicenseOrder,
   User,
 ) => {
@@ -79,21 +75,8 @@ export default /* @ngInject */ (
         languagePackNumber: null,
         powerpack: null,
       },
-      VIRTUOZZO: {
-        containerNumber: {
-          mandatory: true,
-          value: null,
-        },
-      },
       WINDOWS: {
         sqlVersion: null,
-      },
-      WORKLIGHT: {
-        lessThan1000Users: {
-          mandatory: true,
-          value: null,
-          shouldBeEqualsTo: true,
-        },
       },
     };
   }
@@ -160,7 +143,6 @@ export default /* @ngInject */ (
         if (translateKey !== translateValue) {
           set(licenseType, 'productName', translateValue);
         }
-        console.log(licenseType);
         return licenseType;
       });
       $scope.selected.version = null;
