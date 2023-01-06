@@ -1,6 +1,7 @@
 import {
   COLD_ARCHIVE_CONTAINER_STATUS,
   CONTAINER_STATUS_OPTIONS,
+  GUIDES,
 } from './containers.constants';
 
 export default class PciStoragesColdArchiveContainersController {
@@ -18,6 +19,10 @@ export default class PciStoragesColdArchiveContainersController {
   }
 
   $onInit() {
+    this.initGuides(GUIDES).forEach((guide) => {
+      this.guides.unshift(guide);
+    });
+
     this.loadMessages();
   }
 

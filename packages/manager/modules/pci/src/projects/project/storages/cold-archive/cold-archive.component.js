@@ -11,6 +11,7 @@ export default {
     allUserList: '<',
     userListLink: '<',
     coldArchiveContainersLink: '<',
+    initGuides: '<',
     goToAddColdArchive: '<',
     goToColdArchiveContainers: '<',
     trackingPrefix: '<',
