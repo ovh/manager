@@ -7,7 +7,7 @@
         <oui-header data-heading="{{ 'sms_order_title' | translate }}">
         </oui-header>
 
-        <form id="$ctrl.orm" name="$ctrl.orm">
+        <form name="smsOrderForm">
             <div class="row">
                 <!-- ACCOUNT -->
                 <div class="col-sm-12">
@@ -47,6 +47,7 @@
                             data-model="$ctrl.order.channel"
                             data-label="{{ 'sms_order_account_channel_standard_title' | translate }}"
                             data-values="[$ctrl.SMS_ORDER_ACCOUNT_TYPE_VALUES.standard]"
+                            data-required
                         >
                             <oui-select-picker-section>
                                 <span
@@ -62,6 +63,7 @@
                             data-model="$ctrl.order.channel"
                             data-label="{{ 'sms_order_account_channel_marketing_title' | translate }}"
                             data-values="[$ctrl.SMS_ORDER_ACCOUNT_TYPE_VALUES.marketing]"
+                            data-required
                         >
                             <oui-select-picker-section>
                                 <span
@@ -84,6 +86,7 @@
                             data-model="$ctrl.order.channel"
                             data-label="{{ 'sms_order_account_channel_transactional_title' | translate }}"
                             data-values="[$ctrl.SMS_ORDER_ACCOUNT_TYPE_VALUES.transactional]"
+                            data-required
                         >
                             <oui-select-picker-section>
                                 <span
@@ -192,7 +195,12 @@
                 >
                 </ovh-contracts-summary>
 
-                <oui-checkbox class="mb-4" model="$ctrl.retract" name="retract">
+                <oui-checkbox
+                    class="mb-4"
+                    model="$ctrl.retract"
+                    name="retract"
+                    required
+                >
                     <oui-checkbox-label class="col-sm-6">
                         <span data-translate="sms_order_retract"></span>
                         <button
@@ -209,7 +217,7 @@
                         type="button"
                         role="button"
                         class="btn btn-primary"
-                        data-ng-disabled="$ctrl.loading.order || !$ctrl.contractsAccepted || !$ctrl.retract"
+                        data-ng-disabled="$ctrl.loading.order || !$ctrl.contractsAccepted || smsOrderForm.$invalid"
                         data-ng-click="$ctrl.doOrder()"
                     >
                         <span
