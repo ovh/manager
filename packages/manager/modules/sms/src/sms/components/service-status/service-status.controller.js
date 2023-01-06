@@ -34,6 +34,7 @@ export default class SmsServiceStatusController {
         this.tucToast.success(
           this.$translate.instant(
             'sms_component_serviceStatus_password_message_success',
+            { email: `<strong>${this.emailAccount}</strong>` },
           ),
         ),
       )
