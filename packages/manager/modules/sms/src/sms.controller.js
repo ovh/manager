@@ -14,6 +14,16 @@ export default class SmsCtrl extends ListLayoutHelper.ListLayoutCtrl {
     super.$onInit();
 
     this.filtersOptions = {
+      channel: {
+        hideOperators: true,
+        values: this.smsChannelEnum.reduce(
+          (smsChannels, smsChannel) => ({
+            ...smsChannels,
+            [smsChannel]: this.$translate.instant(`sms_channel_${smsChannel}`),
+          }),
+          {},
+        ),
+      },
       status: {
         hideOperators: true,
         values: this.smsStatusTypes.reduce(
@@ -31,6 +41,7 @@ export default class SmsCtrl extends ListLayoutHelper.ListLayoutCtrl {
     this.columnsConfig = [
       { name: 'name', sortable: this.getSorting('name') },
       { name: 'description', sortable: this.getSorting('description') },
+      { name: 'channel', sortable: this.getSorting('channel') },
       { name: 'status', sortable: this.getSorting('status') },
     ];
   }

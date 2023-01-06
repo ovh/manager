@@ -42,6 +42,16 @@
         >
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title=":: 'sms_channel_label' | translate"
+            data-property="channel"
+            data-type="options"
+            data-type-options="$ctrl.filtersOptions.channel"
+            data-filterable
+            data-sortable
+        >
+            <span data-translate="sms_channel_{{ $value }}"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'sms_status_label' | translate"
             data-property="status"
             data-sortable
