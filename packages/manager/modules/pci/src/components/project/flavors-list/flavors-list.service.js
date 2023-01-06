@@ -14,7 +14,6 @@ import FlavorGroup from './flavor-group.class';
 
 import {
   CATEGORIES,
-  CPU_FREQUENCY,
   DEFAULT_CATALOG_ENDPOINT,
   LEGACY_FLAVORS,
 } from './flavors-list.constants';
@@ -91,7 +90,6 @@ export default class FlavorsList {
               filter(groupedFlavors, 'available'),
               ({ id, region }) => ({ id, region }),
             ),
-            frequency: get(CPU_FREQUENCY, resource.type),
             groupName: resource.groupName.replace(/-flex/, ''),
             legacy: includes(
               get(

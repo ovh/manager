@@ -1,6 +1,6 @@
 {
   "pci_project_flavors_category_definition_balanced": "As instâncias de uso geral oferecem um equilíbrio entre RAM e desempenho.",
-  "pci_project_flavors_category_definition_baremetal": "As instâncias bare metal oferecem servidores físicos on demand, entregues em apenas alguns minutos e faturados à hora ou mensalmente.",
+  "pci_project_flavors_category_definition_baremetal": "As instâncias Bare Metal oferecem servidores físicos on demand, entregues em apenas alguns minutos e faturados à hora ou mensalmente.",
   "pci_project_flavors_category_definition_cpu": "As instâncias de cálculo otimizado são ideais para as aplicações que requerem uma alta frequência de cálculo ou processamento paralelo de tarefas.",
   "pci_project_flavors_category_definition_ram": "As instâncias de memória otimizada são recomendadas para as suas bases de dados, análises e cálculos de memória, bem como para outras aplicações que consomem muita RAM.",
   "pci_project_flavors_category_definition_accelerated": "As instâncias de cálculo acelerado (GPU, FPGA) são até mil vezes mais rápidas que um CPU em certas aplicações (rendering, transcodificação de vídeo, bio-informática, Big Data, deep learning, etc.).",
@@ -9,7 +9,7 @@
   "pci_project_flavors_category_definition_none": "Nenhum modelo disponível para esta categoria",
   "pci_project_flavors_disk_size": "Espaço de disco inferior ao do modelo atual",
   "pci_project_flavors_spec_ram": "{{ram}} RAM",
-  "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",
+  "pci_project_flavors_spec_core_details": "{{vcores}} cores ({{frequency}} GHz)",
   "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mbps",
   "pci_project_flavors_spec_nvme": "{{capacity}} NVMe",
   "pci_project_flavors_spec_nvme_multiple": "{{count}} x {{capacity}} NVMe",
@@ -19,5 +19,6 @@
   "pci_project_flavors_quota_info": "O limite do seu projeto não lhe permite adicionar este tipo de máquina nesta região.",
   "pci_project_flavors_quota_manage": "Gerir o meu limite",
   "pci_project_flavors_category_new": "Novo",
-  "pci_project_flavors_category_definition_discovery": "As instâncias de recursos partilhados (Discovery) são adaptadas a testes, receitas e ambientes de desenvolvimento. O seu desempenho pode variar ligeiramente ao longo do tempo."
+  "pci_project_flavors_category_definition_discovery": "As instâncias de recursos partilhados (Discovery) são adaptadas a testes, receitas e ambientes de desenvolvimento. O seu desempenho pode variar ligeiramente ao longo do tempo.",
+  "pci_project_flavors_spec_vCore_details": "{{vcores}} vCores ({{frequency}} GHz)"
 }
