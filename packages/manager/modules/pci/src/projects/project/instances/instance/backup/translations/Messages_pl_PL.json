@@ -8,5 +8,6 @@
   "pci_projects_project_instances_instance_backup_success_message": "Trwa tworzenie kopii instancji {{ backup }}.",
   "pci_projects_project_instances_instance_backup_error_backup": "Wystąpił błąd podczas tworzenia kopii zapasowej {{ backup }}: {{ message }}",
   "pci_projects_project_instances_instance_backup_warning_iops_message": "Zostanie wykonana tylko kopia zapasowa dysku (systemu operacyjnego). Nie zostanie wykonana żadna kopia zapasowa danych z urządzeń NVMe. Użyj do tego własnych narzędzi.",
-  "pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message": "Podana cena odpowiada cenie usługi. Dopłata za opcję Trusted Zone jest doliczana do kwoty miesięcznej faktury."
+  "pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message": "Podana cena odpowiada cenie usługi. Dopłata za opcję Trusted Zone jest doliczana do kwoty miesięcznej faktury.",
+  "pci_projects_project_instances_instance_backup_warning_message_baremetal": "Twoja instancja zostanie zatrzymana i przełączona w tryb awaryjny, aby można było utworzyć kopię zapasową. Po wykonaniu kopii zapasowej Twoja instancja zostanie ponownie uruchomiona. W zależności od rozmiaru dysków może to potrwać kilka minut."
 }
