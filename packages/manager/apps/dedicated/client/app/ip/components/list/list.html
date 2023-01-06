@@ -260,7 +260,7 @@
                         class="oui-badge oui-badge_info"
                     ></span>
                     <span
-                        data-ng-if="showFOBadge && ipBlock.type == 'FAILOVER'"
+                        data-ng-if="showFOBadge && (ipBlock.type == 'FAILOVER' || ipBlock.type == 'VRACK' || ( ipBlock.version =='IPV4' && ipBlock.type == 'PCC')) "
                         data-ng-bind=":: ADDITIONAL_IP"
                         class="oui-badge oui-badge_info"
                     ></span>
