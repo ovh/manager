@@ -92,14 +92,12 @@ import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
 import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
-import ngOvhSidebarMenu from '@ovh-ux/ng-ovh-sidebar-menu';
 import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 import ngOvhTimeline from '@ovh-ux/ng-ovh-timeline';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
-import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 
@@ -181,7 +179,6 @@ export default async (containerEl, shellClient) => {
         ngOvhContact,
         ngOvhLineDiagnostics,
         ngQAllSettled,
-        ngOvhSidebarMenu,
         ngOvhSimpleCountryList,
         ngOvhTimeline,
         ngOvhUiConfirmModal,
@@ -193,7 +190,6 @@ export default async (containerEl, shellClient) => {
         ovhManagerDashboard,
         ovhManagerFreefax,
         ovhManagerOverTheBox,
-        ovhManagerServerSidebar,
         ovhManagerSms,
         ovhManagerTelecomTask,
         'oui',
@@ -289,6 +285,11 @@ export default async (containerEl, shellClient) => {
     )
     .config(async () => {
       await shellClient.tracking.setConfig(TRACKING);
+    })
+    .provider('shellClient', {
+      $get() {
+        return shellClient;
+      },
     })
     .config(
       /* @ngInject */ (atInternetConfigurationProvider) => {

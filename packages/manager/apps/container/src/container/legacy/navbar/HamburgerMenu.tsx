@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-
 import { useTranslation } from 'react-i18next';
 
 import { TRANSLATE_NAMESPACE } from './constants';
 import style from './navbar.module.scss';
-import { Universe } from './service';
+import { Universe } from '@/hooks/useUniverses';
 import { useShell } from '@/context';
+import { useLegacyContainer } from '@/container/legacy/context';
 
 type Props = {
   universe?: string;
@@ -15,6 +15,7 @@ type Props = {
 function HamburgerMenu({ universe = '', universes }: Props): JSX.Element {
   const [opened, setOpened] = useState(false);
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
+  const { setIsResponsiveSidebarMenuOpen } = useLegacyContainer();
   const shell = useShell();
 
   function onUniverseClick({
@@ -26,8 +27,13 @@ function HamburgerMenu({ universe = '', universes }: Props): JSX.Element {
   }) {
     if (universe === destination) {
       event.preventDefault();
-      shell.getPlugin('ux').requestClientSidebarOpen();
       setOpened(false);
+      if (['hub', 'public-cloud'].includes(universe)) {
+        setIsResponsiveSidebarMenuOpen(false);
+      } else {
+        setIsResponsiveSidebarMenuOpen(true);
+      }
+      shell.getPlugin('ux').requestClientSidebarOpen();
     }
   }
 
@@ -37,7 +43,10 @@ function HamburgerMenu({ universe = '', universes }: Props): JSX.Element {
         role="button"
         type="button"
         className="oui-navbar-toggler oui-navbar-toggler_button"
-        onClick={() => setOpened(!opened)}
+        onClick={() => {
+          setOpened(!opened);
+          setIsResponsiveSidebarMenuOpen(false);
+        }}
         aria-expanded={opened}
       >
         <span className="oui-navbar-toggler__hamburger">

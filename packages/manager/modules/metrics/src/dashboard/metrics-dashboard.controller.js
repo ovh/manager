@@ -4,6 +4,7 @@ import { RENEW_URL } from './constants';
 export default class MetricsDashboardCtrl {
   /* @ngInject */
   constructor(
+    $injector,
     $scope,
     $stateParams,
     $q,
@@ -15,8 +16,8 @@ export default class MetricsDashboardCtrl {
     CucFeatureAvailabilityService,
     ovhManagerRegionService,
     MetricService,
-    SidebarMenu,
   ) {
+    this.$injector = $injector;
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$q = $q;
@@ -30,7 +31,6 @@ export default class MetricsDashboardCtrl {
     this.MetricService = MetricService;
     this.graphs = graphs;
     this.ovhManagerRegionService = ovhManagerRegionService;
-    this.SidebarMenu = SidebarMenu;
 
     this.loading = {};
     this.limit = {
@@ -187,8 +187,13 @@ export default class MetricsDashboardCtrl {
       this.configuration.description = result.data.description;
       this.$scope.$emit('changeDescription', this.configuration.description);
 
-      const menuItem = this.SidebarMenu.getItemById(this.serviceName);
-      menuItem.title = this.configuration.description;
+      if (this.$injector.has('shellClient')) {
+        const shellClient = this.$injector.get('shellClient');
+        shellClient.ux.updateMenuSidebarItemLabel(
+          this.serviceName,
+          this.configuration.description,
+        );
+      }
     });
   }
 

@@ -12,7 +12,10 @@ import { IFrameAppRouter } from '@/core/routing';
 import NavReshuffleBetaAccessModal from '@/container/common/pnr-beta-modal';
 import ApplicationContext from '@/context';
 import { useProgress } from '@/context/progress';
+import { LegacyContainerProvider } from './context';
 import LegacyHeader from './Header';
+import ServerSidebar from './server-sidebar';
+import SidebarOverlay from './server-sidebar/SidebarOverlay';
 import style from './template.module.scss';
 import Progress from '../common/Progress';
 import Preloader from '../common/Preloader';
@@ -59,42 +62,50 @@ function LegacyContainer(): JSX.Element {
   }, []);
 
   return (
-    <>
-      <Progress isAnimating={isProgressAnimating}></Progress>
+    <LegacyContainerProvider>
+      <>
+        <Progress isAnimating={isProgressAnimating}></Progress>
 
-      <div className={style.managerShell}>
-        <Suspense fallback="">
-          <NavReshuffleBetaAccessModal />
-        </Suspense>
-        <div className={style.managerShell_header}>
-          <LegacyHeader />
-        </div>
-        <div className={style.managerShell_content}>
-          {isMfaEnrollmentVisible && (
+        <div className={style.managerShell}>
+          <Suspense fallback="">
+            <NavReshuffleBetaAccessModal />
+          </Suspense>
+          <div>
+            <LegacyHeader />
+          </div>
+          <div className={style.managerShell_main}>
             <Suspense fallback="">
-              <MfaEnrollment
-                forced={isMfaEnrollmentForced}
-                onHide={hideMfaEnrollment}
-              />
+              <ServerSidebar />
             </Suspense>
-          )}
-          <Preloader visible={preloaderVisible}>
-            <>
-              <IFrameAppRouter
-                iframeRef={iframeRef}
-                configuration={applications}
-              />
-              <iframe
-                title="app"
-                role="document"
-                src="about:blank"
-                ref={iframeRef}
-              ></iframe>
-            </>
-          </Preloader>
+            <div className={style.managerShell_content}>
+              <SidebarOverlay />
+              {isMfaEnrollmentVisible && (
+                <Suspense fallback="">
+                  <MfaEnrollment
+                    forced={isMfaEnrollmentForced}
+                    onHide={hideMfaEnrollment}
+                  />
+                </Suspense>
+              )}
+              <Preloader visible={preloaderVisible}>
+                <>
+                  <IFrameAppRouter
+                    iframeRef={iframeRef}
+                    configuration={applications}
+                  />
+                  <iframe
+                    title="app"
+                    role="document"
+                    src="about:blank"
+                    ref={iframeRef}
+                  ></iframe>
+                </>
+              </Preloader>
+            </div>
+          </div>
         </div>
-      </div>
-    </>
+      </>
+    </LegacyContainerProvider>
   );
 }
 

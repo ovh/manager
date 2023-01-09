@@ -33,48 +33,13 @@
                 >
                 </a>
             </div>
-            <button
-                style="position: absolute; top: 0; left: 0; width: 48px; height: 44px; background-color: transparent; border: 0;"
-                data-ng-if="$ctrl.sidebarIsOpen"
-                data-ng-click="$ctrl.closeSidebar()"
-            ></button>
-
             <div
                 class="container-fluid h-100 w-100"
                 style="overflow: auto"
                 data-ui-view="app"
             >
                 <div class="row h-100">
-                    <ovh-manager-server-sidebar
-                        universe="'DEDICATED'"
-                        namespace="$ctrl.sidebarNamespace"
-                        data-is-open="$ctrl.sidebarIsOpen"
-                        data-on-click="$ctrl.closeSidebar()"
-                        data-ng-if="!$ctrl.isMenuSidebarVisible && !$ctrl.displayAccountSidebar"
-                    >
-                    </ovh-manager-server-sidebar>
-
-                    <div
-                        class="col-lg-2"
-                        data-ng-class="{
-                            'col-md-3': !$ctrl.isMenuSidebarVisible,
-                        }"
-                        data-ng-if="!$ctrl.isMenuSidebarVisible && $ctrl.displayAccountSidebar"
-                        data-sidebar-menu
-                        data-sidebar-namespace="'account'"
-                    ></div>
-
-                    <div
-                        class="px-0 h-100"
-                        data-ng-class="{
-                            'col-lg-12': $ctrl.isMenuSidebarVisible,
-                            'col-lg-10': !$ctrl.isMenuSidebarVisible,
-                            'col-md-9': !$ctrl.isMenuSidebarVisible,
-                            'col-md-offset-3': !$ctrl.isMenuSidebarVisible,
-                            'col-lg-offset-2': !$ctrl.isMenuSidebarVisible,
-                        }"
-                        ui-view="container"
-                    >
+                    <div class="px-0 h-100 col-lg-12" ui-view="container">
                         <!-- Skip content target -->
                         <div class="skiptarget">
                             <a id="maincontent" href>-</a>

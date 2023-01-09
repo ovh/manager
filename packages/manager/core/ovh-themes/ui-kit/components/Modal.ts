@@ -6,10 +6,6 @@ import { modalAnatomy as parts } from '@chakra-ui/anatomy';
 const Modal: ComponentStyleConfig = {
   parts: parts.keys, // overlay, dialogContainer, dialog, header, closeButton, body, footer
   baseStyle: {
-    overlay: {
-      background: 'gray.800',
-      opacity: .5,
-    },
     dialog: {
       borderRadius: 'large',
       boxShadow: 'secondary',

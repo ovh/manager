@@ -6,6 +6,8 @@ export interface IUXPlugin {
   isMenuSidebarVisible(): boolean;
   showAccountSidebar(disableToggle: boolean): void;
   showMenuSidebar(): void;
+  updateMenuSidebarItemLabel(serviceName: string, label: string): void;
+  onUpdateMenuSidebarItemLabel(callback: CallableFunction): void;
   hideAccountSidebar(): void;
   hideMenuSidebar(): void;
   isNotificationsSidebarVisible(): boolean;
@@ -29,6 +31,8 @@ export class UXPlugin implements IUXPlugin {
   private shell: Shell;
 
   private shellUX: ShellUX;
+
+  private sidebarMenuUpdateItemLabelListener?: CallableFunction;
 
   constructor(shell: Shell) {
     this.shell = shell;
@@ -69,6 +73,16 @@ export class UXPlugin implements IUXPlugin {
 
   hideMenuSidebar(): void {
     return this.shellUX.hideSidebar('menu');
+  }
+
+  onUpdateMenuSidebarItemLabel(callback: CallableFunction) {
+    this.sidebarMenuUpdateItemLabelListener = callback;
+  }
+
+  updateMenuSidebarItemLabel(serviceName: string, label: string): void {
+    if (this.sidebarMenuUpdateItemLabelListener) {
+      this.sidebarMenuUpdateItemLabelListener(serviceName, label);
+    }
   }
 
   enableAccountSidebarVisibilityToggle(): void {
