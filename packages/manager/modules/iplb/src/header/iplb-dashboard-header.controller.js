@@ -3,19 +3,19 @@ import { GUIDE_HOME_URL } from '../dashboard/iplb-url.constants';
 export default class IpLoadBalancerDashboardHeaderCtrl {
   /* @ngInject */
   constructor(
+    $injector,
     $stateParams,
     $translate,
     CucControllerHelper,
     IpLoadBalancerHomeService,
     ovhDocUrl,
-    SidebarMenu,
   ) {
+    this.$injector = $injector;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.CucControllerHelper = CucControllerHelper;
     this.IpLoadBalancerHomeService = IpLoadBalancerHomeService;
     this.ovhDocUrl = ovhDocUrl;
-    this.SidebarMenu = SidebarMenu;
     this.serviceName = $stateParams.serviceName;
 
     //  No error handling since we don't want to break anything for a title.
@@ -23,20 +23,18 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
       loaderFunction: () =>
         this.IpLoadBalancerHomeService.getConfiguration(this.serviceName),
       successHandler: () => {
-        this.menuItem.title = this.configuration.data.displayName;
+        if (this.$injector.has('shellClient')) {
+          const shellClient = this.$injector.get('shellClient');
+          shellClient.ux.updateMenuSidebarItemLabel(
+            this.serviceName,
+            this.configuration.data.displayName,
+          );
+        }
       },
     });
   }
 
   $onInit() {
-    this.menuItem = this.SidebarMenu.getItemById(this.serviceName);
-
-    //  If the menu is not yet loaded, we fetch IPLB's displayName.  Dirty patch.
-    if (!this.menuItem) {
-      this.menuItem = { title: this.serviceName };
-      this.configuration.load();
-    }
-
     this.initGuides();
   }
 
