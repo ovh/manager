@@ -231,4 +231,21 @@ export default class {
         this.loadingStats = false;
       });
   }
+
+  onGoToCreditTransfer() {
+    this.trackClick('report::transfer-credit');
+    return this.goToCreditTransfer();
+  }
+
+  onGoToCreditOrder() {
+    this.trackClick('report::add-credit');
+    return this.goToCreditOrder();
+  }
+
+  trackClick(hit) {
+    this.atInternet.trackClick({
+      name: `${this.DASHBOARD_TRACKING_PREFIX}::${hit}`,
+      type: 'action',
+    });
+  }
 }
