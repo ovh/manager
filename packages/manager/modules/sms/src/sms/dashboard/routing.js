@@ -25,6 +25,10 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           )
           .then((statisticsList) => statisticsList.flat()),
+      goToCreditTransfer: /* @ngInject */ ($state) => () =>
+        $state.go('sms.service.dashboard.creditTransfer'),
+      goToCreditOrder: /* @ngInject */ ($state) => () =>
+        $state.go('sms.service.order'),
       translationsRefresh: /* @ngInject */ ($translate) => $translate.refresh(),
       breadcrumb: () => null,
     },
