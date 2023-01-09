@@ -3,7 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { TRANSLATE_NAMESPACE } from './constants';
-import { Universe } from './service';
+import { Universe } from '@/hooks/useUniverses';
 
 type Props = {
   onClick?: CallableFunction;

@@ -46,7 +46,6 @@
     "@ovh-ux/manager-netapp": "^1.4.3",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
     "@ovh-ux/manager-nutanix": "^1.5.2",
-    "@ovh-ux/manager-server-sidebar": "^3.29.1",
     "@ovh-ux/manager-support": "^1.16.1",
     "@ovh-ux/manager-trusted-nic": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-veeam-cloud-connect": "^1.0.0 || ^2.0.0",

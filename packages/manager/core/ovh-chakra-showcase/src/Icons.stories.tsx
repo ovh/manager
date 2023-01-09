@@ -53,6 +53,15 @@ import {
   MinusIcon,
   OKIcon,
   OVHIcon,
+  OVHFontPhone,
+  OVHFontMessage,
+  OVHFontHashtag,
+  OVHFontDomain,
+  OVHFontTelecomEthernet,
+  OVHFontPrint,
+  OVHFontPublicCloud,
+  OVHFontServer2,
+  CloudEssentialIcon,
   PenIcon,
   PhoneIcon,
   PlusIcon,
@@ -78,6 +87,22 @@ import {
   UserIcon,
   WarningIcon,
   WarningCircleIcon,
+  OVHFontMail,
+  OVHFontServer,
+  OVHFontIP,
+  OVHFontCertificate,
+  OVHFontK8s,
+  OVHFontDedicatedCloud,
+  OVHFontCDA,
+  OVHFontCloudNAS,
+  OVHFontVeeam,
+  OVHFontVRack,
+  LineCommunicatingIcon,
+  ServerIcon,
+  DomainDNSIcon,
+  OVHFontHosting,
+  OVHFontDB,
+  PartnerPlatformSHIcon,
 } from '@ovh-ux/manager-themes';
 
 export default {
@@ -242,6 +267,92 @@ const TemplateSystemIcons: Story<typeof Icon> = (args) => (
     <IconCard iconProps={args} iconName={'MinusIcon'} Icon={MinusIcon} />
     <IconCard iconProps={args} iconName={'OKIcon'} Icon={OKIcon} />
     <IconCard iconProps={args} iconName={'OVHIcon'} Icon={OVHIcon} />
+    <IconCard iconProps={args} iconName={'OVHFontPhone'} Icon={OVHFontPhone} />
+    <IconCard iconProps={args} iconName={'OVHFontMail'} Icon={OVHFontMail} />
+    <IconCard
+      iconProps={args}
+      iconName={'OVHFontMessage'}
+      Icon={OVHFontMessage}
+    />
+    <IconCard
+      iconProps={args}
+      iconName={'OVHFontHashtag'}
+      Icon={OVHFontHashtag}
+    />
+    <IconCard
+      iconProps={args}
+      iconName={'OVHFontDomain'}
+      Icon={OVHFontDomain}
+    />
+    <IconCard
+      iconProps={args}
+      iconName={'OVHFontTelecomEthernet'}
+      Icon={OVHFontTelecomEthernet}
+    />
+    <IconCard iconProps={args} iconName={'OVHFontPrint'} Icon={OVHFontPrint} />
+    <IconCard
+      iconProps={args}
+      iconName={'OVHFontPublicCloud'}
+      Icon={OVHFontPublicCloud}
+    />
+    <IconCard
+      iconProps={args}
+      iconName={'OVHFontServer'}
+      Icon={OVHFontServer}
+    />
+    <IconCard iconProps={args} iconName={'OVHFontIP'} Icon={OVHFontIP} />
+    <IconCard
+      iconProps={args}
+      iconName={'OVHFontCertificate'}
+      Icon={OVHFontCertificate}
+    />
+    <IconCard iconProps={args} iconName={'OVHFontK8s'} Icon={OVHFontK8s} />
+    <IconCard
+      iconProps={args}
+      iconName={'OVHFontServer2'}
+      Icon={OVHFontServer2}
+    />
+    <IconCard
+      iconProps={args}
+      iconName={'CloudEssentialIcon'}
+      Icon={CloudEssentialIcon}
+    />
+    <IconCard
+      iconProps={args}
+      iconName={'OVHFontDedicatedCloud'}
+      Icon={OVHFontDedicatedCloud}
+    />
+    <IconCard iconProps={args} iconName={'OVHFontCDA'} Icon={OVHFontCDA} />
+    <IconCard
+      iconProps={args}
+      iconName={'OVHFontCloudNAS'}
+      Icon={OVHFontCloudNAS}
+    />
+    <IconCard iconProps={args} iconName={'OVHFontVeeam'} Icon={OVHFontVeeam} />
+    <IconCard iconProps={args} iconName={'OVHFontVRack'} Icon={OVHFontVRack} />
+    <IconCard
+      iconProps={args}
+      iconName={'LineCommunicatingIcon'}
+      Icon={LineCommunicatingIcon}
+    />
+    <IconCard iconProps={args} iconName={'ServerIcon'} Icon={ServerIcon} />
+    <IconCard
+      iconProps={args}
+      iconName={'DomainDNSIcon'}
+      Icon={DomainDNSIcon}
+    />
+    <IconCard
+      iconProps={args}
+      iconName={'OVHFontHosting'}
+      Icon={OVHFontHosting}
+    />
+    <IconCard iconProps={args} iconName={'OVHFontDB'} Icon={OVHFontDB} />
+    <IconCard
+      iconProps={args}
+      iconName={'PartnerPlatformSHIcon'}
+      Icon={PartnerPlatformSHIcon}
+    />
+
     <IconCard iconProps={args} iconName={'PenIcon'} Icon={PenIcon} />
     <IconCard iconProps={args} iconName={'PhoneIcon'} Icon={PhoneIcon} />
     <IconCard iconProps={args} iconName={'PlusIcon'} Icon={PlusIcon} />

@@ -13,8 +13,8 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
   faxLink,
   lineLink,
   phoneLink,
+  shellClient,
   TelephonyMediator,
-  SidebarMenu,
   tonesLink,
   TucToast,
 ) {
@@ -50,13 +50,9 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
     return self.line.save().then(
       () => {
         self.line.stopEdition();
-        SidebarMenu.updateItemDisplay(
-          {
-            title: self.line.getFullDisplayedName(),
-          },
+        shellClient.ux.updateMenuSidebarItemLabel(
           self.line.serviceName,
-          'telecom-telephony-section',
-          self.line.billingAccount,
+          newServiceDescription,
         );
       },
       (error) => {
