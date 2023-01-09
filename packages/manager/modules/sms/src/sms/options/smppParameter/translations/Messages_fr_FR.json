@@ -6,6 +6,7 @@
   "sms_options_smpp_parameter_allowed_ips_modal_add_title": "Ajouter une adresse IP",
   "sms_options_smpp_parameter_allowed_ips_modal_add_button_primary": "Envoyer",
   "sms_options_smpp_parameter_allowed_ips_modal_label_ip": "IP",
+  "sms_options_smpp_parameter_allowed_ips_modal_tooltip_ip": "L'adresse IP peut être de type IPv4 ou IPv6",
   "sms_options_smpp_parameter_allowed_ips_modal_delete_title": "Supprimer une adresse IP",
   "sms_options_smpp_parameter_allowed_ips_modal_delete_content": "Vous êtes sur le point de supprimer : {{ ip }}",
   "sms_options_smpp_parameter_allowed_ips_modal_delete_button_primary": "Supprimer",
