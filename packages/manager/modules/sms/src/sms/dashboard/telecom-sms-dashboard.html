@@ -109,7 +109,6 @@
                                         data-track-on="click"
                                         data-track-name="{{:: $ctrl.constructor.getTrackName() }}"
                                         data-track-type="action"
-                                        target="_top"
                                     >
                                         <span
                                             data-translate="sms_statictics_credit_reload"
@@ -177,10 +176,32 @@
                             data-ng-bind="$ctrl.statistics.stoplisted"
                         ></dd>
                         <dt data-translate="sms_consumed_credit_balance"></dt>
-                        <dd
-                            class="oui-heading_4 font-weight-bold"
-                            data-ng-bind="$ctrl.service.creditsLeft"
-                        ></dd>
+                        <dd class="oui-heading_4">
+                            <span
+                                class="font-weight-bold"
+                                data-ng-bind="$ctrl.service.creditsLeft"
+                            ></span>
+                            <oui-action-menu
+                                compact
+                                class="float-right"
+                                placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.onGoToCreditOrder()"
+                                >
+                                    <span
+                                        data-translate="sms_statictics_credit_reload"
+                                    ></span>
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.onGoToCreditTransfer()"
+                                >
+                                    <span
+                                        data-translate="sms_actions_credit_transfer"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </dd>
                     </dl>
                 </oui-tile-description>
             </oui-tile>

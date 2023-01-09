@@ -9,6 +9,9 @@ export default {
     getBatchesStatistics: '<',
     getReloadCreditLink: '<',
 
+    goToCreditTransfer: '<',
+    goToCreditOrder: '<',
+
     trackClick: '<',
     serviceName: '<',
 
