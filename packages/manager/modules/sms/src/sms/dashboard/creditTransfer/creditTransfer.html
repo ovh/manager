@@ -20,9 +20,7 @@
                 data-on-change="$ctrl.onSourceAccountChange(modelValue)"
                 required
             >
-                <span
-                    data-ng-bind="$item.description ? $item.name + ' (' + $item.description + ')' : $item.name"
-                ></span>
+                <span data-ng-bind="$item.displayName"></span>
             </oui-select>
         </oui-field>
 
@@ -36,9 +34,7 @@
                 name="destinationAccountSelect"
                 required
             >
-                <span
-                    data-ng-bind="$item.description ? $item.name + ' (' + $item.description + ')' : $item.name"
-                ></span>
+                <span data-ng-bind="$item.displayName"></span>
             </oui-select>
         </oui-field>
 
