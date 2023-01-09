@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ...stateParams,
       sortOrder: {
         ...sortOrder,
-        value: 'DESC',
+        value: 'ASC',
       },
     },
     redirectTo: (transition) =>
