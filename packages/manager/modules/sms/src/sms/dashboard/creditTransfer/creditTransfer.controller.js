@@ -64,9 +64,11 @@ export default class SmsCreditTransferCtrl {
           this.$translate.instant('sms_creditTransfer_message_success'),
         ),
       )
-      .catch(() =>
+      .catch(({ data: error }) =>
         this.goToDashboard(
-          this.$translate.instant('sms_creditTransfer_message_error'),
+          this.$translate.instant('sms_creditTransfer_message_error', {
+            error: error.message,
+          }),
           'danger',
         ),
       )
