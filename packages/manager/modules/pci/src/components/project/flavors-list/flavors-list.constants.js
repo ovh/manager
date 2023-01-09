@@ -30,7 +30,6 @@ export const CATEGORIES = [
     category: 'discovery',
     title: 'Discovery',
     pattern: /d2/,
-    isNew: true,
   },
   {
     category: 'iops',
@@ -41,6 +40,7 @@ export const CATEGORIES = [
     category: 'baremetal',
     title: 'Bare Metal',
     pattern: /baremetal/,
+    isNew: true,
   },
 ];
 
