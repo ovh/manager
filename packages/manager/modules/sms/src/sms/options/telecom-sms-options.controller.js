@@ -9,12 +9,16 @@ export default class {
   $onInit() {
     const optionTrackingPrefix = 'sms::service::options::';
     this.actions = [
-      {
-        name: 'options_manage',
-        sref: 'sms.service.options.manage',
-        text: this.$translate.instant('sms_options_manage'),
-        tracking: `${optionTrackingPrefix}general-option`,
-      },
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'options_callback',
+              sref: 'sms.service.options.callback',
+              text: this.$translate.instant('sms_options_callback'),
+              tracking: `${optionTrackingPrefix}callback-option`,
+            },
+          ]
+        : []),
       ...(this.smsFeatureAvailability.isFeatureAvailable('sms:response')
         ? [
             {

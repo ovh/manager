@@ -4,7 +4,7 @@ import '@uirouter/angularjs';
 import controller from './telecom-sms-options.controller';
 import template from './telecom-sms-options.html';
 
-import manage from './manage';
+import callback from './callback';
 import recredit from './recredit';
 import response from './response';
 import blacklist from './blacklist';
@@ -16,7 +16,7 @@ angular
   .module(moduleName, [
     'ui.router',
     blacklist,
-    manage,
+    callback,
     recredit,
     response,
     smppParameter,

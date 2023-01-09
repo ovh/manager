@@ -1,5 +1,5 @@
-import controller from './update/telecom-sms-options-manage-update.controller';
-import template from './update/telecom-sms-options-manage-update.html';
+import controller from './update/telecom-sms-options-callback-update.controller';
+import template from './update/telecom-sms-options-callback-update.html';
 
 export default class {
   /* @ngInject */
@@ -29,7 +29,7 @@ export default class {
   }
 
   /**
-   * Opens a modal to manage sms' options.
+   * Opens a modal to callback sms' options.
    * @param  {Object} service TucSmsService.
    */
   update(service) {
@@ -37,7 +37,7 @@ export default class {
       animation: true,
       template,
       controller,
-      controllerAs: 'OptionsManageUpdateCtrl',
+      controllerAs: 'OptionsCallbackUpdateCtrl',
       resolve: { service: () => service },
     });
   }
