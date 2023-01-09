@@ -76,10 +76,16 @@
                             aria-hidden="true"
                         ></span>
                     </div>
-                    <p
-                        class="help-block"
-                        data-ng-bind-html="'hosting_configuration_tab_modules_create_step1_module_default_path' | translate: { t0: defaultInstallationPath }"
-                    ></p>
+                    <p class="help-block">
+                        <span
+                            class="d-block"
+                            data-translate="hosting_configuration_tab_modules_create_step1_module_default_path_part_1"
+                            data-translate-values="{ t0: '<strong>' + defaultInstallationPath + '</strong>' }"
+                        ></span>
+                        <span
+                            data-translate="hosting_configuration_tab_modules_create_step1_module_default_path_part_2"
+                        ></span>
+                    </p>
                 </div>
 
                 <div class="mt-5" data-ng-if="model.templateSelected">
