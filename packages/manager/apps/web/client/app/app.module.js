@@ -73,7 +73,6 @@ import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
-import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import emailDomain from '@ovh-ux/manager-email-domain';
 import emailpro from '@ovh-ux/manager-emailpro';
 import exchange from '@ovh-ux/manager-exchange';
@@ -106,7 +105,7 @@ import './css/source.less';
 import './css/source.scss';
 
 import { TRACKING } from './at-internet.constants';
-import { SANITIZATION } from './constants';
+import { DOMAIN_ORDER_URL, HOSTING_ORDER_URL, SANITIZATION } from './constants';
 
 const getEnvironment = (shellClient) => {
   return shellClient.environment.getEnvironment();
@@ -161,7 +160,6 @@ export default async (containerEl, shellClient) => {
         ngTranslateAsyncLoader,
         ngUiRouterBreadcrumb,
         ngUiRouterLayout,
-        ovhManagerServerSidebar,
         uiRouter,
         'pascalprecht.translate',
         ngTailLogs,
@@ -633,6 +631,18 @@ export default async (containerEl, shellClient) => {
           unregisterHook();
         });
       },
+    )
+    .provider(
+      'DOMAIN_ORDER_URL',
+      /* @ngInject */ (coreConfigProvider) => ({
+        $get: () => HOSTING_ORDER_URL[coreConfigProvider.getRegion()],
+      }),
+    )
+    .provider(
+      'HOSTING_ORDER_URL',
+      /* @ngInject */ (coreConfigProvider) => ({
+        $get: () => DOMAIN_ORDER_URL[coreConfigProvider.getRegion()],
+      }),
     );
 
   import('./app.bundle').then(() =>

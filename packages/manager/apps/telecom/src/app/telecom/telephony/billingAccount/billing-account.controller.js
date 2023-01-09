@@ -16,7 +16,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   orderAliasLink,
   phonebookLink,
   servicesLink,
-  SidebarMenu,
+  shellClient,
   TelephonyMediator,
   TucToast,
   OvhApiOrder,
@@ -54,12 +54,9 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
     return self.group.save().then(
       () => {
         self.group.stopEdition();
-        SidebarMenu.updateItemDisplay(
-          {
-            title: self.group.getDisplayedName(),
-          },
+        shellClient.ux.updateMenuSidebarItemLabel(
           self.group.billingAccount,
-          'telecom-telephony-section',
+          newServiceName,
         );
       },
       (error) => {

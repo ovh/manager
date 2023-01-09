@@ -10,7 +10,6 @@ import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'ovh-api-services';
 
-import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 
 import dashboard from '../dashboard/dashboard.module';
@@ -39,7 +38,6 @@ angular
     dashboard,
     token,
     platform,
-    ovhManagerServerSidebar,
   ])
   .config(routing)
   .config(

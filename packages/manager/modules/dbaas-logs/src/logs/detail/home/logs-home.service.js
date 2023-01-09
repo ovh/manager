@@ -4,13 +4,14 @@ export default class LogsHomeService {
   /* @ngInject */
   constructor(
     $http,
+    $injector,
     LogsHelperService,
     LogsConstants,
     OvhApiDbaas,
     CucServiceHelper,
-    SidebarMenu,
   ) {
     this.$http = $http;
+    this.$injector = $injector;
     this.DetailsAapiService = OvhApiDbaas.Logs()
       .Details()
       .Aapi();
@@ -18,7 +19,6 @@ export default class LogsHomeService {
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;
     this.CucServiceHelper = CucServiceHelper;
-    this.SidebarMenu = SidebarMenu;
   }
 
   /**
@@ -132,7 +132,13 @@ export default class LogsHomeService {
           'logs_home_display_name_update_success',
           {},
         ).then((res) => {
-          this.changeMenuTitle(serviceName, service.displayName || serviceName);
+          if (this.$injector.has('shellClient')) {
+            const shellClient = this.$injector.get('shellClient');
+            shellClient.ux.updateMenuSidebarItemLabel(
+              serviceName,
+              service.displayName || serviceName,
+            );
+          }
           return res;
         });
       })
@@ -322,9 +328,9 @@ export default class LogsHomeService {
    * @memberof LogsHomeService
    */
   changeMenuTitle(serviceName, displayName) {
-    const menuItem = this.SidebarMenu.getItemById(serviceName);
-    if (menuItem) {
-      menuItem.title = displayName;
+    if (this.$injector.has('shellClient')) {
+      const shellClient = this.$injector.get('shellClient');
+      shellClient.ux.updateMenuSidebarItemLabel(serviceName, displayName);
     }
   }
 }
