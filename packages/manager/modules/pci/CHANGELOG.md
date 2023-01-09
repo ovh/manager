@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.106.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.105.1...@ovh-ux/manager-pci@5.106.0) (2023-01-09)
+
+
+### Features
+
+* **project.new:** add a voucher banner when a voucher is claimed in the new project view ([#8689](https://github.com/ovh/manager/issues/8689)) ([a53cc36](https://github.com/ovh/manager/commit/a53cc3631bfbca5df29003ee4d176e692c4227ef))
+
+
+
+
+
 ## [5.105.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.105.0...@ovh-ux/manager-pci@5.105.1) (2023-01-05)
 
 
