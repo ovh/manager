@@ -1,24 +1,24 @@
 import angular from 'angular';
-import controller from './telecom-sms-options-manage.controller';
-import template from './telecom-sms-options-manage.html';
+import controller from './telecom-sms-options-callback.controller';
+import template from './telecom-sms-options-callback.html';
 
-const moduleName = 'ovhManageSmsOptionsManage';
+const moduleName = 'ovhManageSmsOptionsCallback';
 
 angular
   .module(moduleName, [])
   .config(($stateProvider) => {
-    $stateProvider.state('sms.service.options.manage', {
-      url: '/manage',
+    $stateProvider.state('sms.service.options.callback', {
+      url: '/callback',
       views: {
         'smsView@sms.service': {
           template,
           controller,
-          controllerAs: 'TelecomSmsOptionsManageCtrl',
+          controllerAs: 'TelecomSmsOptionsCallbackCtrl',
         },
       },
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
-          $translate.instant('sms_options_manage_title'),
+          $translate.instant('sms_options_callback_title'),
       },
     });
   })
