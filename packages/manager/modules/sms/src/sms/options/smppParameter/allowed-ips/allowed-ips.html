@@ -56,7 +56,7 @@
                     <oui-modal
                         data-heading="{{ 'sms_options_smpp_parameter_allowed_ips_modal_add_title' | translate }}"
                         data-primary-action="$ctrl.submitAddIp()"
-                        data-primary-disabled="$ctrl.isSubmitting"
+                        data-primary-disabled="$ctrl.isSubmitting || allowIpsAddForm.$invalid"
                         data-primary-label="{{:: 'sms_options_smpp_parameter_allowed_ips_modal_add_button_primary' | translate }}"
                         data-secondary-action="$ctrl.closeModal()"
                         data-secondary-label="{{:: 'sms_options_smpp_parameter_allowed_ips_modal_button_secondary' | translate }}"
@@ -70,6 +70,8 @@
                                 name="ipField"
                                 type="text"
                                 data-ng-model="$ctrl.addIp"
+                                oui-tooltip="{{ 'sms_options_smpp_parameter_allowed_ips_modal_tooltip_ip' | translate }}"
+                                required
                             />
                         </oui-field>
                     </oui-modal>
