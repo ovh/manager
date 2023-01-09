@@ -74,7 +74,7 @@ export default class {
       .then(() => {
         const availableAccounts = toArray(
           this.TucSmsMediator.getAccounts(),
-        ).sort((a, b) => a.name.localeCompare(b.name));
+        ).sort((a, b) => a.description.localeCompare(b.description));
 
         // We have to format it to become human readable
         forEach(availableAccounts, (account, idx) => {
