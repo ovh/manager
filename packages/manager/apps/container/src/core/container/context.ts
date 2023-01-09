@@ -1,3 +1,4 @@
+import { Application } from '@ovh-ux/manager-config';
 import { createContext } from 'react';
 
 export enum BetaVersion {
@@ -5,7 +6,7 @@ export enum BetaVersion {
   beta2 = 2,
 }
 
-export type ContainerContext = {
+export type ContainerContextType = {
   createBetaChoice: (accept?: boolean) => Promise<unknown>;
   askBeta: boolean;
   betaVersion: BetaVersion;
@@ -17,10 +18,14 @@ export type ContainerContext = {
   setChatbotOpen: (isOpen: boolean) => void;
   chatbotReduced: boolean;
   setChatbotReduced: (isReduced: boolean) => void;
+  application: Application;
+  setApplication: (appConfig: Application) => void;
+  universe: string;
+  setUniverse: (universe: string) => void;
 };
 
-const ContainerContext = createContext<ContainerContext>(
-  {} as ContainerContext,
+export const ContainerContext = createContext<ContainerContextType>(
+  {} as ContainerContextType,
 );
 
 export default ContainerContext;

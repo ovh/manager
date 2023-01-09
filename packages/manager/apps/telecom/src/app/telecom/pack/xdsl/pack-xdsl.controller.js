@@ -10,7 +10,7 @@ export default class PackXdslCtrl {
     OvhApiPackXdsl,
     OvhApiXdsl,
     OvhApiXdslModem,
-    SidebarMenu,
+    shellClient,
     smoothScroll,
     TucToast,
     TucToastError,
@@ -22,7 +22,7 @@ export default class PackXdslCtrl {
     this.OvhApiXdsl = OvhApiXdsl;
     this.OvhApiPackXdsl = OvhApiPackXdsl;
     this.OvhApiXdslModem = OvhApiXdslModem;
-    this.SidebarMenu = SidebarMenu;
+    this.shellClient = shellClient;
     this.smoothScroll = smoothScroll;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
@@ -170,15 +170,9 @@ export default class PackXdslCtrl {
       )
       .$promise.then(() => {
         this.access.description = newAccessDescr;
-
-        // rename in sidebar menu
-        this.SidebarMenu.updateItemDisplay(
-          {
-            title: newAccessDescr || this.access.serviceName,
-          },
+        this.shellClient.ux.updateMenuSidebarItemLabel(
           this.serviceName,
-          'telecom-pack-section',
-          this.packName,
+          newAccessDescr,
         );
       })
       .catch((error) => {

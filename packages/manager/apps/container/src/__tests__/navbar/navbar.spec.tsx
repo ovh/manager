@@ -6,6 +6,7 @@ import { Environment, User } from '@ovh-ux/manager-config';
 import { renderWithShell } from '../__test-utils__/contextRenders';
 
 import Navbar from '../../container/legacy/navbar/Navbar';
+import { LegacyContainerProvider } from '../../container/legacy/context';
 
 const server = setupServer(
   rest.get('/engine/2api/notification', (req, res, ctx) => {
@@ -59,7 +60,9 @@ describe('UI testing of the navbar', () => {
 
     await act(async () => {
       render = await renderWithShell(
-        <Navbar environment={environment as Environment}></Navbar>,
+        <LegacyContainerProvider>
+          <Navbar environment={environment as Environment}></Navbar>
+        </LegacyContainerProvider>,
         { environment },
       );
     });

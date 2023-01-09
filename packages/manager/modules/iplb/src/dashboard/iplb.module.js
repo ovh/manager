@@ -5,7 +5,6 @@ import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 import 'angular-ui-bootstrap';
 import 'angular-chart.js';
-import '@ovh-ux/ng-ovh-sidebar-menu';
 
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
@@ -51,7 +50,6 @@ angular
     'ovh-api-services',
     'oui',
     'ui.bootstrap',
-    'ngOvhSidebarMenu',
     'ngUiRouterBreadcrumb',
     ovhManagerCore,
     ngAtInternet,

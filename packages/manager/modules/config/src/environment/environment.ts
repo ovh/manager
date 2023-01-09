@@ -128,7 +128,12 @@ export class Environment implements IEnvironment {
   }
 
   setUniverseFromApplicationId(applicationId: ApplicationId): string {
-    this.universe = this.applications[applicationId].universe;
+    const universe = this.applications[applicationId].universe;
+    // special case for hpc do not switch to 'server' universe
+    if (this.universe === 'hpc' && universe === 'server') {
+      return this.universe;
+    }
+    this.universe = universe;
     return this.universe;
   }
 

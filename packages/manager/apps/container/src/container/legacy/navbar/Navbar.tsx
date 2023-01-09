@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
 
@@ -7,15 +7,16 @@ import Brand from './Brand';
 import Hamburger from './HamburgerMenu';
 import style from './navbar.module.scss';
 import Search from './Search';
-import { fetchUniverses, getBrandURL, Universe } from './service';
 import Universes from './Universes';
 
+import useContainer from '@/core/container';
 import LanguageMenu from '@/container/common/language';
 import modalStyle from '@/container/common/modal.module.scss';
 import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
 import Notifications from '@/container/common/notifications-sidebar/NotificationsButton';
 import { useShell } from '@/context';
 import { useHeader } from '@/context/header';
+import { useUniverses } from '@/hooks/useUniverses';
 
 type Props = {
   environment: Environment;
@@ -23,40 +24,35 @@ type Props = {
 
 function Navbar({ environment }: Props): JSX.Element {
   const shell = useShell();
-  const environmentPlugin = shell.getPlugin('environment');
+  const { universe, setUniverse } = useContainer();
+  const { getUniverses, getHubUniverse } = useUniverses();
   const [userLocale, setUserLocale] = useState(
     shell.getPlugin('i18n').getLocale(),
   );
 
-  const [universes, setUniverses] = useState<Universe[]>([]);
   const [searchURL] = useState<string>();
-  const [currentUniverse, setCurrentUniverse] = useState<string>();
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const { setIsNotificationsSidebarVisible } = useHeader();
 
-  useEffect(() => {
-    let mounted = true;
-    environmentPlugin.onUniverseChange(() => {
-      setCurrentUniverse(environment.getUniverse());
-    });
+  const brandClickHandler = useCallback(
+    () =>
+      shell.getPlugin('tracking').trackClick({
+        name: `navbar::entry::logo`,
+        type: 'action',
+      }),
+    [shell],
+  );
 
-    fetchUniverses().then((u) => mounted && setUniverses(u));
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  const brandClickHandler = () =>
-    shell.getPlugin('tracking').trackClick({
-      name: `navbar::entry::logo`,
-      type: 'action',
-    });
-
-  const universeClickHandler = ({ universe }: Partial<Environment>) =>
-    shell.getPlugin('tracking').trackClick({
-      name: `navbar::entry::${universe}`,
-      type: 'action',
-    });
+  const universeClickHandler = useCallback(
+    ({ universe }: Partial<Environment>) => {
+      shell.getPlugin('tracking').trackClick({
+        name: `navbar::entry::${universe}`,
+        type: 'action',
+      });
+      setUniverse(universe);
+    },
+    [shell],
+  );
 
   return (
     <>
@@ -66,11 +62,14 @@ function Navbar({ environment }: Props): JSX.Element {
         }`}
       ></div>
       <div className={`oui-navbar ${style.navbar}`}>
-        <Hamburger universe={currentUniverse} universes={universes} />
-        <Brand targetURL={getBrandURL(universes)} onClick={brandClickHandler} />
+        <Hamburger universe={universe} universes={getUniverses()} />
+        <Brand
+          targetURL={getHubUniverse()?.url || '#'}
+          onClick={brandClickHandler}
+        />
         <Universes
-          universe={currentUniverse}
-          universes={universes}
+          universe={universe}
+          universes={getUniverses()}
           onClick={universeClickHandler}
         />
         <div
