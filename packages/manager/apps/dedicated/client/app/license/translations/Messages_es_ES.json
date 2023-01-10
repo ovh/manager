@@ -1311,5 +1311,7 @@
   "license_designation_SQLSERVER_version_sql-server-2014-license-web-edition-24-cores": "SQL Server 2014 license - Web edition - 24 cores",
   "license_designation_SQLSERVER_version_sql-server-2016-license-standard-edition-14-cores": "SQL Server 2016 license - Standard edition - 14 cores",
   "license_designation_SQLSERVER_version_sql-server-2016-license-web-edition-14-cores": "SQL Server 2016 license - Web edition - 14 cores",
-  "license_designation_WINDOWS_version_WINDOWS_SERVER_2008_WEB_EDITION_4_CPU": "Windows Server 2008 license - Web edition - 4 CPU"
+  "license_designation_WINDOWS_version_WINDOWS_SERVER_2008_WEB_EDITION_4_CPU": "Windows Server 2008 license - Web edition - 4 CPU",
+  "license_designation_CPANEL_solo_option": "1 cuenta cPanel",
+  "license_designation_CPANEL_plus_option": "31-50 cuentas cPanel"
 }
