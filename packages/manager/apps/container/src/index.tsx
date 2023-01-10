@@ -43,6 +43,16 @@ initShell().then((shell) => {
       i18n
         .use(initReactI18next)
         .use(Backend)
+        .use({
+          type: 'postProcessor',
+          name: 'normalize',
+          process: function process(value: string, key: string) {
+            if (!value) {
+              return value;
+            }
+            return value.replace(/&amp;/g, '&');
+          },
+        })
         .init({
           lng: locale,
           fallbackLng: 'fr_FR',
@@ -53,6 +63,7 @@ initShell().then((shell) => {
               return `./translations/${namespaces[0]}/Messages_${lngs[0]}.json`;
             },
           },
+          postProcess: 'normalize',
         });
 
       const root = createRoot(document.querySelector('#app'));
