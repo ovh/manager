@@ -32,6 +32,13 @@ export default class PrivateNetworksAddCtrl {
     this.GUIDE_LINKS = GUIDE_LINKS;
     this.VLAN_ID = VLAN_ID;
     this.TRACKING_PREFIX = TRACKING_PREFIX;
+    this.privateNetworkUrl =
+      GUIDE_LINKS.PRIVATE_NETWORK_WITH_GATEWAY[
+        coreConfig.getUser().ovhSubsidiary
+      ] || GUIDE_LINKS.PRIVATE_NETWORK_WITH_GATEWAY.DEFAULT;
+    this.regionsGuideUrl =
+      GUIDE_LINKS.REGION_AVAILABILITY[coreConfig.getUser().ovhSubsidiary] ||
+      GUIDE_LINKS.REGION_AVAILABILITY.DEFAULT;
   }
 
   $onInit() {
