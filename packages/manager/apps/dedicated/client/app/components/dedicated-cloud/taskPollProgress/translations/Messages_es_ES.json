@@ -1,9 +1,5 @@
 {
   "dedicatedCloud_task_progress_operation": "Operación:",
-  "dedicatedCloud_task_progress_operation_addUser": "Adición de un usuario",
-  "dedicatedCloud_task_progress_operation_addFederationAccessNetwork": "Adición de un Active Directory",
-  "dedicatedCloud_task_progress_operation_removeFederationAccessNetwork": "Eliminación de un Active Directory",
-  "dedicatedCloud_task_progress_operation_updateFederationAccessNetwork": "Edición de un Active Directory",
   "dedicatedCloud_task_progress_task_reference": "Tarea: {{ task }}",
   "dedicatedCloud_task_progress_state_done": "Finalizada",
   "dedicatedCloud_task_progress_state_canceled": "Cancelada",
