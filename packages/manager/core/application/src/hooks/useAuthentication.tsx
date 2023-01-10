@@ -1,7 +1,4 @@
-import {
-  useEnvironment as useEnv,
-  useShell,
-} from '@ovh-ux/manager-react-core-application';
+import { useEnvironment as useEnv, useShell } from '..';
 
 export function useAuthentication() {
   const env = useEnv();
