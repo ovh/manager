@@ -44,21 +44,20 @@
                                 <oui-header-tabs-item
                                     ui-sref="pci.projects.project({ serviceName: $ctrl.project.project_id })"
                                     active="$ctrl.$state.is('pci.projects.project')"
-                                ><span
-                                    data-translate="pci_projects_project_home"
-                                ></span>
+                                    ><span
+                                        data-translate="pci_projects_project_home"
+                                    ></span>
                                 </oui-header-tabs-item>
                                 <oui-header-tabs-item
                                     ui-sref="pci.projects.project.edit({ serviceName: $ctrl.project.project_id })"
                                     active="$ctrl.$state.is('pci.projects.project.edit', { serviceName: $ctrl.project.project_id })"
-                                ><span
-                                    data-translate="pci_projects_project_parameters"
-                                ></span>
+                                    ><span
+                                        data-translate="pci_projects_project_parameters"
+                                    ></span>
                                 </oui-header-tabs-item>
                             </oui-header-tabs>
                         </oui-header>
                         <div class="py-2" data-ui-view="contentTab">
-
                             <!--Used to inform about main product info-->
                             <pci-announcement-banner
                                 data-get-state-name="$ctrl.getStateName()"
@@ -105,42 +104,83 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-6 mb-4">
-                                        <h2
-                                            data-translate="pci_projects_project_documentation"
-                                        ></h2>
-                                        <ul>
-                                            <li
+                                    <div class="col-sm-4 mb-4">
+                                        <oui-tile
+                                            heading="{{ 'pci_projects_project_billing' | translate}}"
+                                            data-ng-if="$ctrl.vouchersCreditDetails.length"
+                                        >
+                                            <oui-tile-definition
+                                                data-ng-repeat="credit in $ctrl.vouchersCreditDetails track by $index"
+                                            >
+                                                <oui-tile-term
+                                                    data-translate="pci_projects_project_billing_voucher_credit"
+                                                    data-translate-values="{ voucher: credit.voucher }"
+                                                ></oui-tile-term>
+                                                <oui-tile-description
+                                                    class="billing d-flex flex-column"
+                                                >
+                                                    <span
+                                                        class="oui-color-p-800-text"
+                                                        data-ng-bind="credit.description"
+                                                    ></span>
+                                                    <span
+                                                        class="credit"
+                                                        data-ng-bind="credit.balance"
+                                                    ></span>
+                                                    <span
+                                                        class="oui-color-p-800-text"
+                                                        data-translate="pci_projects_project_billing_active_credit_balance"
+                                                        data-translate-values="{ expirationDate : credit.expirationDate }"
+                                                    >
+                                                    </span>
+                                                </oui-tile-description>
+                                            </oui-tile-definition>
+                                        </oui-tile>
+                                    </div>
+                                    <div class="col-sm-4 mb-4">
+                                        <oui-tile
+                                            heading="{{ 'pci_projects_project_documentation' | translate}}"
+                                        >
+                                            <oui-tile-definition
                                                 data-ng-repeat="link in $ctrl.links track by $index"
                                             >
-                                                <a
-                                                    data-ng-href="{{ ::link.href }}"
-                                                    target="_blank"
-                                                    rel="noopener"
-                                                    data-translate="{{ ::link.translation }}"
-                                                ></a>
-                                            </li>
-                                        </ul>
+                                                <oui-tile-term
+                                                    data-translate="{{link.term | translate}}"
+                                                ></oui-tile-term>
+                                                <oui-tile-description>
+                                                    <a
+                                                        data-ng-href="{{ ::link.href }}"
+                                                        target="_blank"
+                                                        rel="noopener"
+                                                        data-translate="{{ ::link.description }}"
+                                                    ></a>
+                                                </oui-tile-description>
+                                            </oui-tile-definition>
+                                        </oui-tile>
                                     </div>
                                     <div
-                                        class="col-sm-6 mb-4"
+                                        class="col-sm-4 mb-4"
                                         data-ng-if="$ctrl.coreConfig.getRegion() !== 'US'"
                                     >
-                                        <h2
-                                            data-translate="pci_projects_project_community"
-                                        ></h2>
-                                        <ul>
-                                            <li
+                                        <oui-tile
+                                            heading="{{ 'pci_projects_project_community' | translate}}"
+                                        >
+                                            <oui-tile-definition
                                                 data-ng-repeat="communitylink in $ctrl.communityLinks track by $index"
                                             >
-                                                <a
-                                                    data-ng-href="{{ ::communitylink.href }}"
-                                                    target="_blank"
-                                                    rel="noopener"
-                                                    data-translate="{{ ::communitylink.translation }}"
-                                                ></a>
-                                            </li>
-                                        </ul>
+                                                <oui-tile-term
+                                                    data-translate="{{communitylink.term | translate}}"
+                                                ></oui-tile-term>
+                                                <oui-tile-description>
+                                                    <a
+                                                        data-ng-href="{{ ::communitylink.href }}"
+                                                        target="_blank"
+                                                        rel="noopener"
+                                                        data-translate="{{ ::communitylink.description }}"
+                                                    ></a>
+                                                </oui-tile-description>
+                                            </oui-tile-definition>
+                                        </oui-tile>
                                     </div>
                                 </div>
                             </div>

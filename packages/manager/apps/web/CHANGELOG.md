@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.23.7...@ovh-ux/manager-web@16.24.0) (2023-01-10)
+
+
+### Features
+
+* remove mfa-enrollment module ([4280f97](https://github.com/ovh/manager/commit/4280f978c4937735773eae0787dc14e1b00ec4ab))
+
+
+
+
+
 ## [16.23.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.23.6...@ovh-ux/manager-web@16.23.7) (2023-01-04)
 
 

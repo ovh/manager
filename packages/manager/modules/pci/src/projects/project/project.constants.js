@@ -73,73 +73,59 @@ export const ACTIONS = [
   },
 ];
 
-export const LINKS = [
+export const DOCUMENTATION_LINKS = [
   {
-    translation:
-      'pci_projects_project_documentation_public_cloud_essential_information',
+    term: 'pci_projects_project_documentation_getting_started_term',
+    description:
+      'pci_projects_project_documentation_getting_started_description',
     href:
       'https://docs.ovh.com/gb/en/public-cloud/public-cloud-essential-information/',
     feature: PCI_FEATURES.LINKS.CLOUD_ESSENTIAL_INFORMATION,
   },
   {
-    translation: 'pci_projects_project_documentation_public_cloud_interface',
+    term: 'pci_projects_project_documentation_interface_term',
+    description: 'pci_projects_project_documentation_interface_description',
     href: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-interface/',
     feature: PCI_FEATURES.LINKS.PUBLIC_CLOUD_INTERFACE,
   },
   {
-    translation:
-      'pci_projects_project_documentation_get_started_with_a_public_cloud_instance',
+    term: 'pci_projects_project_documentation_instances_term',
+    description: 'pci_projects_project_documentation_instances_description',
     href:
       'https://docs.ovh.com/gb/en/public-cloud/get-started-with-a-public-cloud-instance/',
     feature: PCI_FEATURES.LINKS.START_PCI_INSTANCE,
   },
   {
-    translation:
-      'pci_projects_project_documentation_information_on_cloud_billing_options',
+    term: 'pci_projects_project_documentation_billing_term',
+    description: 'pci_projects_project_documentation_billing_description',
     href:
       'https://docs.ovh.com/gb/en/public-cloud/information-on-cloud-billing-options/',
     feature: PCI_FEATURES.LINKS.CLOUD_BILLING_OPTIONS,
   },
   {
-    translation:
-      'pci_projects_project_documentation_see_all_public_cloud_guides',
+    term: 'pci_projects_project_documentation_guides_term',
+    description: 'pci_projects_project_documentation_guides_description',
     href: 'https://docs.ovh.com/gb/en/',
     feature: PCI_FEATURES.LINKS.ALL_GUIDES,
   },
   {
-    translation:
-      'pci_projects_project_documentation_how_to_create_a_horizon_user',
-    href: 'https://support.us.ovhcloud.com/hc/en-us/articles/360008644539',
-    feature: PCI_FEATURES.LINKS.CREATE_HORIZON_USER,
-  },
-  {
-    translation:
-      'pci_projects_project_documentation_how_to_deploy_a_public_cloud_instance',
-    href: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002245164',
-    feature: PCI_FEATURES.LINKS.DEPLOY_A_PUBLIC_CLOUD_INSTANCE,
-  },
-  {
-    translation:
-      'pci_projects_project_documentation_getting_started_with_block_storage',
+    term: 'pci_projects_project_documentation_block_storage_term',
+    description: 'pci_projects_project_documentation_block_storage_description',
     href: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002157044',
     feature: PCI_FEATURES.LINKS.START_WITH_BLOCK_STORAGE,
-  },
-  {
-    translation:
-      'pci_projects_project_documentation_see_all_public_cloud_guides',
-    href: 'https://support.us.ovhcloud.com/hc/en-us/categories/115000515130',
-    feature: PCI_FEATURES.LINKS.ALL_GUIDES_US,
   },
 ];
 
 export const COMMUNITY_LINKS = [
   {
-    translation: 'pci_projects_project_community_roadmap',
+    term: 'pci_projects_project_community_roadmap_term',
+    description: 'pci_projects_project_community_roadmap_description',
     href: 'https://github.com/ovh/public-cloud-roadmap/projects',
     regions: ['EU', 'CA'],
   },
   {
-    translation: 'pci_projects_project_community_discord',
+    term: 'pci_projects_project_community_discord_term',
+    description: 'pci_projects_project_community_discord_description',
     href: 'https://discord.com/invite/C9VVJZxxd6',
     regions: ['EU', 'CA'],
   },
@@ -170,7 +156,7 @@ export const LEGACY_PLAN_CODES = ['project.legacy', 'project.2018'];
 export default {
   PRODUCT_IMAGES,
   ACTIONS,
-  LINKS,
+  DOCUMENTATION_LINKS,
   COMMUNITY_LINKS,
   PCI_HDS_ADDON,
   LEGACY_PLAN_CODES,
