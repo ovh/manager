@@ -57,30 +57,28 @@
         data-filterable
     ></oui-datagrid-column>
     <oui-action-menu data-compact data-placement="end">
-        <oui-action-menu-item data-on-click="$ctrl.goToImportPolicy($row)">
+        <oui-action-menu-item data-on-click="$ctrl.onImportPolicyClick($row)">
             <span
                 data-translate="pci_projects_project_storages_containers_users_import_json"
             ></span>
         </oui-action-menu-item>
-        <oui-action-menu-item data-on-click="$ctrl.downloadJson($row)">
+        <oui-action-menu-item data-on-click="$ctrl.onDownloadUserPolicy($row)">
             <span
                 data-translate="pci_projects_project_storages_containers_users_download_json"
             ></span>
         </oui-action-menu-item>
 
-        <oui-action-menu-item
-            data-on-click="$ctrl.downloadOpenStackRclone($row)"
-        >
+        <oui-action-menu-item data-on-click="$ctrl.onDownloadRCloneClick($row)">
             <span
                 data-translate="pci_projects_project_storages_containers_users_download_rclone_file"
             ></span>
         </oui-action-menu-item>
-        <oui-action-menu-item data-on-click="$ctrl.showSecretKey($row)">
+        <oui-action-menu-item data-on-click="$ctrl.onShowSecretKeyClick($row)">
             <span
                 data-translate="pci_projects_project_storages_containers_users_see_secret_key"
             ></span>
         </oui-action-menu-item>
-        <oui-action-menu-item data-on-click="$ctrl.goToDeleteUser($row)">
+        <oui-action-menu-item data-on-click="$ctrl.onDeleteUserClick($row)">
             <span
                 data-translate="pci_projects_project_storages_containers_delete_label"
             ></span>
@@ -89,7 +87,7 @@
     <oui-datagrid-topbar>
         <button
             class="oui-button oui-button_secondary"
-            data-ng-click="$ctrl.goToAddUser()"
+            data-ng-click="$ctrl.onAddUserClick()"
         >
             <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span>
             <span

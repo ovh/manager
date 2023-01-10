@@ -21,9 +21,5 @@ export default /* @ngInject */ ($stateProvider) => {
           allUserList.filter((user) => user),
         ),
     },
-    atInternet: {
-      rename:
-        'pci::projects::project::storages::objects::s3-policies-users::add',
-    },
   });
 };

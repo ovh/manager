@@ -1,5 +1,3 @@
-import { TRACKING } from './users.constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive.users', {
     url: '/users',
@@ -28,17 +26,8 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         );
       },
-      goToUsersAndRoles: /* @ngInject */ (
-        $state,
-        atInternet,
-        trackingPrefix,
-      ) => () => {
-        atInternet.trackClick({
-          name: `${trackingPrefix}`,
-          type: 'action',
-        });
-        return $state.go('pci.projects.project.users');
-      },
+      goToUsersAndRoles: /* @ngInject */ ($state) => () =>
+        $state.go('pci.projects.project.users'),
       goToDeleteUser: /* @ngInject */ ($state) => (user) =>
         $state.go('pci.projects.project.storages.cold-archive.users.delete', {
           userId: user.id,
@@ -77,15 +66,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         );
       },
-      goToAddUser: /* @ngInject */ (
-        $state,
-        atInternet,
-        trackingPrefix,
-      ) => () => {
-        atInternet.trackClick({
-          name: `${trackingPrefix}${TRACKING.ADD_USER}`,
-          type: 'action',
-        });
+      goToAddUser: /* @ngInject */ ($state) => () => {
         return $state.go(
           'pci.projects.project.storages.cold-archive.users.add',
         );

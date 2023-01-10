@@ -1,4 +1,5 @@
-import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE, TRACKING } from './users.constants';
+import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from './users.constants';
+import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
 
 const { saveAs } = require('file-saver');
 
@@ -18,9 +19,7 @@ export default class PciStoragesContainersUsersController {
 
   $onInit() {
     this.loadMessages();
-    if (this.trackingInfo)
-      this.trackPage(`${TRACKING.ADD_POLICY}${this.trackingInfo}`);
-    else this.trackPage(`${TRACKING.ADD_POLICY}`);
+    this.trackPage(`${COLD_ARCHIVE_TRACKING.USER.MAIN}`);
   }
 
   loadMessages() {
@@ -37,11 +36,6 @@ export default class PciStoragesContainersUsersController {
   }
 
   downloadJson(user) {
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}${TRACKING.DOWNLOAD_POLICY}`,
-      type: 'action',
-    });
-
     return this.PciStoragesColdArchiveService.getUserStoragePolicy(
       this.projectId,
       user.id,
@@ -79,8 +73,18 @@ export default class PciStoragesContainersUsersController {
       );
   }
 
-  showSecretKey(user) {
+  onAddUserClick() {
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ADD_USER}`,
+    );
+    this.goToAddUser();
+  }
+
+  onShowSecretKeyClick(user) {
     this.scrollToTop();
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DISPLAY_SECRET}`,
+    );
     this.CucCloudMessage.info({
       textHtml: this.$translate.instant(
         'pci_projects_project_storages_containers_users_show_secret_key_success',
@@ -92,10 +96,31 @@ export default class PciStoragesContainersUsersController {
     });
   }
 
-  trackPage(page) {
-    this.atInternet.trackPage({
-      name: `${this.trackingPrefix}${page}`,
-      type: 'navigation',
-    });
+  onImportPolicyClick(user) {
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.IMPORT_POLICY}`,
+    );
+    this.goToImportPolicy(user);
+  }
+
+  onDownloadUserPolicy(user) {
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_POLICY}`,
+    );
+    this.downloadJson(user);
+  }
+
+  onDeleteUserClick(user) {
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DELETE_USER}`,
+    );
+    this.goToDeleteUser(user);
+  }
+
+  onDownloadRCloneClick(user) {
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_RCLONE}`,
+    );
+    this.downloadOpenStackRclone(user);
   }
 }

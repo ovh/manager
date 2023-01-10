@@ -27,6 +27,26 @@ export const COLD_ARCHIVE_TRACKING = {
     DELETE_CONTAINER: 'delete-container',
     FLUSH_CONTAINER: 'delete-container',
   },
+  USER: {
+    MAIN: 'dashboard::s3_users',
+    ADD_USER: 'add_user',
+    CREATE_USER_MODES: {
+      NEW_USER: 'confirm_new',
+      EXISTING_USER: 'confirm_existing',
+    },
+    ACTIONS: {
+      MENU: 'action_menu',
+      DELETE_USER: 'delete_user_credentials',
+      ADD_POLICY: 'add_s3_policy',
+      DELETE_POLICY: 'delete_s3_policy',
+      IMPORT_POLICY: 'import_s3_policy',
+      DOWNLOAD_POLICY: 'download_s3_policy',
+      DOWNLOAD_RCLONE: 'download_rClone_file',
+      DISPLAY_SECRET: 'display_secret_key',
+      GENERATE_CREDENTIAL: 'generate_user_credentials',
+      DELETE_CREDENTIALS: 'delete_user_credentials',
+    },
+  },
   ACTIONS: {
     CONFIRM: 'confirm',
     CANCEL: 'cancel',

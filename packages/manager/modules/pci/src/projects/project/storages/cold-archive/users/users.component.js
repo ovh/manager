@@ -11,7 +11,6 @@ export default {
     goToDeleteUser: '<',
     goToUsersAndRoles: '<',
     goToUsers: '<',
-    trackingPrefix: '<',
     downloadOpenStackRclone: '<',
     goToAddUser: '<',
     goToUsersBanner: '<',
@@ -20,5 +19,7 @@ export default {
     trackingInfo: '<',
     refreshS3Credentials: '<',
     scrollToTop: '<',
+    trackPage: '<',
+    trackClick: '<',
   },
 };
