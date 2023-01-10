@@ -11,6 +11,7 @@
   "dedicatedCloud_USER_AD_ADD_field_label_sslThumbprint": "Huella del certificado SSL",
   "dedicatedCloud_USER_AD_ADD_field_label_username": "Nombre de usuario Active Directory",
   "dedicatedCloud_USER_AD_ADD_field_label_password": "Contraseña de usuario Active Directory",
+  "dedicatedCloud_USER_AD_ADD_field_label_baseDn": "Base DN para usuarios y grupos",
   "dedicatedCloud_USER_AD_ADD_field_tooltip_domainName": "FQDN",
   "dedicatedCloud_USER_AD_ADD_field_tooltip_domainAlias": "Nombre NetBIOS",
   "dedicatedCloud_USER_AD_ADD_field_tooltip_description": "Descripción de su elección",
@@ -20,11 +21,10 @@
   "dedicatedCloud_USER_AD_ADD_field_tooltip_sslThumbprint": "Huella del certificado SSL (SHA1 Fingerprint) del servidor LDAPS Active Directory.",
   "dedicatedCloud_USER_AD_ADD_field_tooltip_username": "Identificador del usuario del dominio que se utilizará para la conexión al servidor LDAPS. Identificador «pre-Windows 2000» en formato UPN.",
   "dedicatedCloud_USER_AD_ADD_field_tooltip_password": "Contraseña del usuario del dominio que se utilizará para la conexión al servidor LDAPS.",
+  "dedicatedCloud_USER_AD_ADD_field_tooltip_baseDn": "Se trata del DN (Distinguished Name) desde el que se buscarán los usuarios y grupos.",
   "dedicatedCloud_USER_AD_ADD_foot_information": "Antes de aceptar, recuerde autorizar a su Hosted Private Cloud a acceder al servidor LDAPS Active Directory. Esta operación se realiza durante la configuración del firewall de su Active Directory o de su empresa. Para más información, consulte nuestra documentación:",
   "dedicatedCloud_USER_AD_ADD_submit": "Ejecutar",
   "dedicatedCloud_USER_AD_ADD_mendatory_fields": "Los campos con un asterisco (*) son obligatorios.",
   "dedicatedCloud_USER_AD_ADD_error": "No se ha podido añadir el nuevo Active Directory.",
-  "dedicatedCloud_USER_AD_ADD_button_close": "Cerrar",
-  "dedicatedCloud_USER_AD_ADD_field_label_baseDn": "Base DN para usuarios y grupos",
-  "dedicatedCloud_USER_AD_ADD_field_tooltip_baseDn": "Se trata del DN (Distinguished Name) desde el que se buscarán los usuarios y grupos."
+  "dedicatedCloud_USER_AD_ADD_button_close": "Cerrar"
 }
