@@ -1,22 +1,21 @@
 import {
   NAMESPACES,
-  TRACKING,
   USER_STATUS,
   OBJECT_STORAGE_USER_ROLE,
 } from '../../users.constants';
+
+import { COLD_ARCHIVE_TRACKING } from '../../../cold-archives.constants';
 
 export default class PciUsersAddController {
   /* @ngInject */
   constructor(
     $state,
     $translate,
-    atInternet,
     CucCloudMessage,
     PciStoragesColdArchiveService,
   ) {
     this.$state = $state;
     this.$translate = $translate;
-    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciStoragesColdArchiveService = PciStoragesColdArchiveService;
   }
@@ -57,14 +56,21 @@ export default class PciUsersAddController {
   }
 
   onCancel() {
-    this.trackClick(`${TRACKING.ADD_POLICY}::cancel`);
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.USER.ADD_USER}::${COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL}`,
+    );
     return this.cancel();
   }
 
   onSubmit(user) {
-    this.trackClick(`${TRACKING.ADD_POLICY}::confirm`);
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.USER.ADD_USER}::${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}`,
+    );
     this.isLoading = true;
     if (!this.isUserCreationModeActive()) {
+      this.trackClick(
+        `${COLD_ARCHIVE_TRACKING.USER.ADD_USER}::${COLD_ARCHIVE_TRACKING.USER.CREATE_USER_MODES.EXISTING_USER}`,
+      );
       return this.getUserS3Credential(user.id)
         .then((credentials) => {
           if (credentials.length === 0)
@@ -115,21 +121,27 @@ export default class PciUsersAddController {
   }
 
   createUser(description) {
+    this.trackClick(
+      `${COLD_ARCHIVE_TRACKING.USER.ADD_USER}::${COLD_ARCHIVE_TRACKING.USER.CREATE_USER_MODES.NEW_USER}`,
+    );
     return this.PciStoragesColdArchiveService.createUser(
       this.projectId,
       description,
       OBJECT_STORAGE_USER_ROLE,
     )
-      .then((user) => {
-        return this.PciStoragesColdArchiveService.pollUserStatus(
+      .then((user) =>
+        this.PciStoragesColdArchiveService.pollUserStatus(
           this.projectId,
           user.id,
           USER_STATUS.OK,
           NAMESPACES.CREATE_USER,
-        );
-      })
+        ),
+      )
       .then((user) => user)
       .catch(() => {
+        this.trackPage(
+          `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ADD_USER}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
+        );
         return this.CucCloudMessage.error(
           this.$translate.instant(
             'pci_projects_project_users_add_error_message',
@@ -143,9 +155,16 @@ export default class PciUsersAddController {
       this.projectId,
       user.id,
     )
-      .then((data) => this.goBack(true, user, data, `-success`))
+      .then((data) => {
+        this.trackPage(
+          `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ADD_USER}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
+        );
+        return this.goBack(true, user, data, `-success`);
+      })
       .catch(() => {
-        this.trackPage(`${TRACKING.GENERATE_CREDENTIAL}-error`);
+        this.trackPage(
+          `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ADD_USER}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
+        );
         return this.CucCloudMessage.error(
           this.$translate.instant(
             'pci_projects_project_users_add_error_message',
@@ -155,19 +174,5 @@ export default class PciUsersAddController {
           ),
         );
       });
-  }
-
-  trackPage(page) {
-    this.atInternet.trackPage({
-      name: `${this.trackingPrefix}${page}`,
-      type: 'navigation',
-    });
-  }
-
-  trackClick(action) {
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}${action}`,
-      type: 'action',
-    });
   }
 }

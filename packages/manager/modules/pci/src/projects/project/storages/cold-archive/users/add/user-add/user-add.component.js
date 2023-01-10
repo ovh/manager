@@ -11,6 +11,7 @@ export default {
     allUserList: '<',
     cancel: '<',
     usersCredentials: '<',
-    trackingPrefix: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
 };
