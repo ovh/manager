@@ -22,6 +22,7 @@ export function useEnvironment() {
 export type { OvhContextShellType };
 
 export { queryClient } from './query-client';
+export * from './hooks';
 
 export function useShell(): OvhContextShellType {
   const { shell } = useContext(OvhContext);

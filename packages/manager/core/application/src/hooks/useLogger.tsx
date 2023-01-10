@@ -1,4 +1,4 @@
-import { useShell } from '@ovh-ux/manager-react-core-application';
+import { useShell } from '..';
 
 export function useLogger() {
   const shell = useShell();

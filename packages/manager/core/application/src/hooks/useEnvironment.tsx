@@ -1,11 +1,12 @@
-import { useEnvironment as useEnv } from '@ovh-ux/manager-react-core-application';
-import type { Application } from '@ovh-ux/manager-config';
+import { Application } from '@ovh-ux/manager-config';
+
+import { useEnvironment as useEnv } from '..';
 
 export function useEnvironment() {
   const env = useEnv();
 
   return {
-    get application(): Readonly<Application>{
+    get application(): Readonly<Application> {
       return env.getApplication();
     },
     get region(): string {
