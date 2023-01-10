@@ -1,7 +1,5 @@
 {
   "nutanix_cluster_licence_title": "Licenças Nutanix",
-  "nutanix_cluster_licence_enabled": "Ativado",
-  "nutanix_cluster_licence_disabled": "Desativado",
   "nutanix_cluster_licence_included": "Incluído",
   "nutanix_cluster_licence_not_included": "Não incluído",
   "nutanix_cluster_licence_show_more": "Ver mais opções",
