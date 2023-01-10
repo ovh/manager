@@ -134,8 +134,4 @@ export default class ColdArchiveConfigurationController {
   onArchiveSubmit() {
     return this.createArchive();
   }
-
-  onArchiveCancel() {
-    return this.goToColdArchiveContainers();
-  }
 }
