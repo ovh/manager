@@ -19,6 +19,10 @@ import {
   CPANEL_PRO_TYPE,
   MAX_CPANEL_PRO_ACCOUNTS,
   MAX_CPANEL_ADMIN_ACCOUNTS,
+  CPANEL_SOLO_TYPE,
+  MAX_CPANEL_SOLO_ACCOUNTS,
+  CPANEL_PLUS_TYPE,
+  MAX_CPANEL_PLUS_ACCOUNTS,
   LICENCE_TYPES,
 } from './license-order.constants';
 
@@ -230,7 +234,12 @@ export default /* @ngInject */ (
           const value = get(option, 'value');
           let count = 0;
           let displayName = null;
-          if (
+          if (includes(value, CPANEL_SOLO_TYPE)) {
+            count = MAX_CPANEL_SOLO_ACCOUNTS;
+            displayName = $translate.instant(
+              'license_designation_CPANEL_solo_option',
+            );
+          } else if (
             filter(CPANEL_PREMIER_TYPES, (cPanelType) =>
               includes(value, cPanelType),
             ).length > 0
@@ -239,6 +248,11 @@ export default /* @ngInject */ (
             displayName = $translate.instant(
               'license_designation_CPANEL_premier_option',
               { numberOfCPANEL: count },
+            );
+          } else if (includes(value, CPANEL_PLUS_TYPE)) {
+            count = MAX_CPANEL_PLUS_ACCOUNTS;
+            displayName = $translate.instant(
+              'license_designation_CPANEL_plus_option',
             );
           } else if (includes(value, CPANEL_ADMIN_TYPE)) {
             count = MAX_CPANEL_ADMIN_ACCOUNTS;
