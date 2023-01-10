@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "4.22.6",
+  "version": "4.23.0",
   "private": true,
   "description": "OVHcloud Public Cloud control panel.",
   "repository": {
@@ -92,7 +92,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^6.0.1",
+    "@ovh-ux/manager-webpack-config": "^6.1.0",
     "glob": "^7.1.4",
     "webpack": "^4.44.2",
     "webpack-merge": "^4.2.2"

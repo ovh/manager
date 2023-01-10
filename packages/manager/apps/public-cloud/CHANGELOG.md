@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.22.6...@ovh-ux/manager-public-cloud@4.23.0) (2023-01-10)
+
+
+### Features
+
+* remove mfa-enrollment module ([4280f97](https://github.com/ovh/manager/commit/4280f978c4937735773eae0787dc14e1b00ec4ab))
+
+
+
+
+
 ## [4.22.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.22.5...@ovh-ux/manager-public-cloud@4.22.6) (2023-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud
