@@ -1,8 +1,8 @@
 import {
   COLD_ARCHIVE_DEFAULT_REGION,
   COLD_ARCHIVE_STATES,
-  COLD_ARCHIVE_TRACKING_PREFIX,
 } from './delete-objects.constants';
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -47,7 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ).then(({ objects }) => objects),
       },
       atInternet: {
-        rename: `${COLD_ARCHIVE_TRACKING_PREFIX}::delete-objects`,
+        rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::delete-objects`,
       },
     },
   );

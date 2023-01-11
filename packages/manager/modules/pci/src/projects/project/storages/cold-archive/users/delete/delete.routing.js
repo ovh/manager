@@ -1,3 +1,5 @@
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.storages.cold-archive.users.delete',
@@ -11,6 +13,9 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       params: {
         userId: null,
+      },
+      atInternet: {
+        rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DELETE_POLICY}`,
       },
       resolve: {
         userId: /* @ngInject */ ($transition$) => $transition$.params().userId,
@@ -26,10 +31,6 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => PciStoragesColdArchiveService.getS3Credentials(projectId, userId),
         goBack: /* @ngInject */ (goToUsers) => goToUsers,
         breadcrumb: () => null,
-      },
-      atInternet: {
-        rename:
-          'pci::projects::project::storages::objects::s3-policies-users::delete',
       },
     },
   );

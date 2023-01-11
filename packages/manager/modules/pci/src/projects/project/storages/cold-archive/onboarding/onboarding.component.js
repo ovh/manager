@@ -6,7 +6,6 @@ export default {
   template,
   bindings: {
     trackClick: '<',
-    trackPage: '<',
     goToAddColdArchive: '<',
   },
 };

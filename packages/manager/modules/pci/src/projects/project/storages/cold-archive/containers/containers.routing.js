@@ -1,9 +1,13 @@
 import { COLD_ARCHIVE_STATES } from './containers.constants';
+import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS, {
     url: '',
     component: 'pciProjectStorageColdArchiveContainers',
+    atInternet: {
+      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}`,
+    },
     redirectTo: (transition) =>
       transition
         .injector()

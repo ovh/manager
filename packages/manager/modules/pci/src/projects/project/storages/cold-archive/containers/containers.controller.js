@@ -3,7 +3,6 @@ import {
   CONTAINER_STATUS_OPTIONS,
   GUIDES,
 } from './containers.constants';
-import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
 
 export default class PciStoragesColdArchiveContainersController {
   /* @ngInject */
@@ -25,7 +24,6 @@ export default class PciStoragesColdArchiveContainersController {
     });
 
     this.loadMessages();
-    this.trackPage(COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN);
   }
 
   loadMessages() {
@@ -39,6 +37,10 @@ export default class PciStoragesColdArchiveContainersController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  onClickOnManageContainer() {
+    this.goToManageContainer();
   }
 
   // eslint-disable-next-line class-methods-use-this

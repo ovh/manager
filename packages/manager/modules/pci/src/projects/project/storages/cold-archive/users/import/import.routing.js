@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -10,6 +11,9 @@ export default /* @ngInject */ ($stateProvider) => {
           component: 'pciStoragesColdArchiveUserListImport',
         },
       },
+      atInternet: {
+        rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.IMPORT_POLICY}`,
+      },
       layout: 'modal',
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
@@ -17,10 +21,6 @@ export default /* @ngInject */ ($stateProvider) => {
         user: /* @ngInject */ (userList, userId) =>
           find(userList, { id: parseInt(userId, 10) }),
         goBack: /* @ngInject */ (goToUsers) => goToUsers,
-      },
-      atInternet: {
-        rename:
-          'pci::projects::project::storages::cold-archive::s3-policies-users::import-file',
       },
     },
   );

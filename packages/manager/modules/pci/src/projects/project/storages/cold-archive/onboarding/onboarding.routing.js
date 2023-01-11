@@ -1,3 +1,5 @@
+import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.storages.cold-archive.onboarding',
@@ -7,6 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
         'coldArchiveView@pci.projects.project.storages.cold-archive': {
           component: 'pciProjectStorageColdArchiveOnboarding',
         },
+      },
+      atInternet: {
+        rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ONBOARDING.MAIN}`,
       },
       redirectTo: (transition) =>
         transition
