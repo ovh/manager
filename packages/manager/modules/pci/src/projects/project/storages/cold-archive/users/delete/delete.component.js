@@ -6,7 +6,6 @@ const component = {
     credentials: '<',
     goBack: '<',
     projectId: '<',
-    trackingPrefix: '<',
     user: '<',
     userId: '<',
   },

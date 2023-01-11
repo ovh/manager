@@ -11,7 +11,6 @@ export default class PciStorageColdArchivesOnboardingController {
 
   $onInit() {
     this.illustration = illustration;
-    this.trackPage(COLD_ARCHIVE_TRACKING.ONBOARDING.MAIN);
     this.guides = reduce(
       GUIDES,
       (list, guide) => [

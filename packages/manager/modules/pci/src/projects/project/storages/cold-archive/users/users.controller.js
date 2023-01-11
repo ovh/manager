@@ -19,7 +19,6 @@ export default class PciStoragesContainersUsersController {
 
   $onInit() {
     this.loadMessages();
-    this.trackPage(`${COLD_ARCHIVE_TRACKING.USER.MAIN}`);
   }
 
   loadMessages() {

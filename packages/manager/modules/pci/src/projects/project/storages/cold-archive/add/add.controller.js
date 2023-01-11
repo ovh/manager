@@ -6,8 +6,14 @@ import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
 
 export default class ColdArchiveConfigurationController {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, PciStoragesColdArchiveService) {
+  constructor(
+    $translate,
+    CucCloudMessage,
+    PciStoragesColdArchiveService,
+    atInternet,
+  ) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.cucCloudMessage = CucCloudMessage;
     this.pciStoragesColdArchiveService = PciStoragesColdArchiveService;
   }
@@ -29,9 +35,22 @@ export default class ColdArchiveConfigurationController {
       },
       createOrLinkedMode: null,
     };
-    this.trackPage(COLD_ARCHIVE_TRACKING.ADD.MAIN);
     this.loadMessages();
     this.setUsersForContainerCreation();
+  }
+
+  trackAddContainerClick(action) {
+    this.atInternet.trackClick({
+      name: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ADD.PREFIX}::${action}`,
+      type: 'click',
+    });
+  }
+
+  trackAddContainerPage(action) {
+    this.atInternet.trackPage({
+      name: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ADD.PREFIX}::${action}`,
+      type: 'navigation',
+    });
   }
 
   loadMessages() {
@@ -94,7 +113,7 @@ export default class ColdArchiveConfigurationController {
         ownerId: this.getUserOwnerId(),
       })
       .then(() => {
-        this.trackAddContainerClick(
+        this.trackAddContainerPage(
           `${COLD_ARCHIVE_TRACKING.ADD.CREATE}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
         );
         return this.goToColdArchiveContainers(
@@ -108,7 +127,7 @@ export default class ColdArchiveConfigurationController {
         );
       })
       .catch((err) => {
-        this.trackAddContainerClick(
+        this.trackAddContainerPage(
           `${COLD_ARCHIVE_TRACKING.ADD.CREATE}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
         );
         this.cucCloudMessage.error(

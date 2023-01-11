@@ -1,5 +1,5 @@
 import { TERMINATE_INPUT_PATTERN } from './flush-archive.constants';
-import { REGION } from '../../cold-archives.constants';
+import { REGION, COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 import { COLD_ARCHIVE_CONTAINER_STATUS } from '../containers.constants';
 
 export default class ColdArchiveContainersFlushArchiveController {
@@ -15,14 +15,25 @@ export default class ColdArchiveContainersFlushArchiveController {
     this.COLD_ARCHIVE_CONTAINER_STATUS = COLD_ARCHIVE_CONTAINER_STATUS;
   }
 
-  flushArchive() {
-    this.trackClick('containers::container::flush-archive::confirm');
+  trackFlushContainerModalPage(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER}::${action}`;
+    this.trackPage(hit);
+  }
 
+  trackFlushContainerModalClick(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER}::${action}`;
+    this.trackClick(hit);
+  }
+
+  flushArchive() {
+    this.trackFlushContainerModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
     this.isLoading = true;
     return this.pciStoragesColdArchiveService
       .flushArchive(this.projectId, REGION, this.container.name)
       .then(() => {
-        this.trackPage('containers::container::flush-archive::confirm_success');
+        this.trackFlushContainerModalPage(
+          `${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
+        );
 
         return this.goBack(
           this.$translate.instant(
@@ -34,7 +45,9 @@ export default class ColdArchiveContainersFlushArchiveController {
         );
       })
       .catch((err) => {
-        this.trackPage('containers::container::flush-archive::confirm_error');
+        this.trackFlushContainerModalPage(
+          `${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
+        );
 
         return this.goBack(
           this.$translate.instant(
@@ -52,8 +65,7 @@ export default class ColdArchiveContainersFlushArchiveController {
   }
 
   cancel() {
-    this.trackClick('containers::container::flush-archive::cancel');
-
+    this.trackFlushContainerModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
     return this.goBack();
   }
 }

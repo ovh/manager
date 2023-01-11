@@ -1,5 +1,4 @@
 import { TERMINATE_INPUT_PATTERN } from './delete-container.constants';
-
 import { COLD_ARCHIVE_CONTAINER_STATUS } from '../containers.constants';
 import {
   MANAGE_ARCHIVE_DOC_LINK,
@@ -19,19 +18,16 @@ export default class ColdArchiveContainersDeleteContainerController {
     this.isLoading = false;
     this.TERMINATE_INPUT_PATTERN = TERMINATE_INPUT_PATTERN;
     this.COLD_ARCHIVE_CONTAINER_STATUS = COLD_ARCHIVE_CONTAINER_STATUS;
-    this.trackDeleteContainerModalPage();
   }
 
   trackDeleteContainerModalPage(action) {
-    const base = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}`;
-    const hit = action ? `${base}::${action}` : base;
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}::${action}`;
     this.trackPage(hit);
   }
 
   trackDeleteContainerModalClick(action) {
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}::${action}`,
-    );
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}::${action}`;
+    this.trackClick(hit);
   }
 
   getDocumentationUrl() {
@@ -47,7 +43,7 @@ export default class ColdArchiveContainersDeleteContainerController {
       .deleteArchiveContainer(this.projectId, REGION, this.container.name)
       .then(() => {
         this.trackDeleteContainerModalPage(
-          COLD_ARCHIVE_TRACKING.STATUS.SUCCESS,
+          `${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
         );
         return this.goBack(
           this.$translate.instant(
@@ -59,7 +55,9 @@ export default class ColdArchiveContainersDeleteContainerController {
         );
       })
       .catch((err) => {
-        this.trackDeleteContainerModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
+        this.trackDeleteContainerModalPage(
+          `${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
+        );
 
         return this.goBack(
           this.$translate.instant(

@@ -1,4 +1,7 @@
-import { COLD_ARCHIVE_STATES } from '../../cold-archives.constants';
+import {
+  COLD_ARCHIVE_STATES,
+  COLD_ARCHIVE_TRACKING,
+} from '../../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_DELETE, {
@@ -11,6 +14,9 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     params: {
       container: null,
+    },
+    atInternet: {
+      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}`,
     },
     redirectTo: (transition) =>
       transition

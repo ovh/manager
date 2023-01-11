@@ -1,4 +1,5 @@
 import { COLD_ARCHIVE_STATES } from './restore.constants';
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_RESTORE, {
@@ -17,6 +18,9 @@ export default /* @ngInject */ ($stateProvider) => {
       modal: {
         component: 'pciStoragesColdArchiveContainersRestore',
       },
+    },
+    atInternet: {
+      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE}`,
     },
     layout: 'modal',
     resolve: {

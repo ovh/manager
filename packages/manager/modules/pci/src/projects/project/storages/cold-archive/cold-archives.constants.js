@@ -1,6 +1,3 @@
-export const COLD_ARCHIVE_TRACKING_PREFIX =
-  'PublicCloud::pci::projects::project::storages::cold_archive';
-
 export const COLD_ARCHIVE_TRACKING = {
   PREFIX: 'PublicCloud::pci::projects::project::storages::cold_archive',
   ONBOARDING: {
@@ -25,7 +22,8 @@ export const COLD_ARCHIVE_TRACKING = {
     ADD_USER: 'add-user',
     ARCHIVE: 'archive',
     DELETE_CONTAINER: 'delete-container',
-    FLUSH_CONTAINER: 'delete-container',
+    FLUSH_CONTAINER: 'flush-container',
+    MANAGE_CONTAINER: 'manage-container',
   },
   USER: {
     MAIN: 'dashboard::s3_users',
@@ -206,7 +204,6 @@ export const COLD_ARCHIVE_STATES = {
 
 export default {
   COLD_ARCHIVE_STATES,
-  COLD_ARCHIVE_TRACKING_PREFIX,
   CHECK_PRICES_DOC_LINK,
   MANAGE_ARCHIVE_DOC_LINK,
   REGION,
