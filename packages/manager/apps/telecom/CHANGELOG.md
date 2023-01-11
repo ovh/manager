@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.52.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.52.5...@ovh-ux/manager-telecom@13.52.6) (2023-01-11)
+
+
+### Bug Fixes
+
+* **telecom:** display correct international numbers ([#8730](https://github.com/ovh/manager/issues/8730)) ([ac202cd](https://github.com/ovh/manager/commit/ac202cdd29c7d55512f0c8a8e2093a6926242aa9))
+
+
+
+
+
 ## [13.52.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.52.4...@ovh-ux/manager-telecom@13.52.5) (2023-01-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
