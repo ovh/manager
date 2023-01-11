@@ -17,9 +17,7 @@
     "start:watch": "tsc -w"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.2.4",
     "@ovh-ux/manager-config": "^6.0.0",
-    "@ovh-ux/manager-themes": "^0.1.2",
     "@ovh-ux/shell": "^1.0.0",
     "@tanstack/react-query": "^4.9.0",
     "generouted": "^1.6.4",
