@@ -133,7 +133,7 @@
                         <telecom-telephony-billing-account-order-alias-number-choice
                             name="offerChoice"
                             data-ng-model="AliasOrderInternationalCtrl.form"
-                            data-ng-if="AliasOrderInternationalCtrl.prices"
+                            data-ng-if="AliasOrderInternationalCtrl.prices && !AliasOrderInternationalCtrl.loading.numbers"
                             data-choices="AliasOrderInternationalCtrl.predefinedNumbers"
                             data-prices="AliasOrderInternationalCtrl.prices"
                             data-type="geographical"
