@@ -30,7 +30,7 @@ export const CHECK_PRICES_DOC_LINK = {
 
 export const MANAGE_ARCHIVE_DOC_LINK = {
   DEFAULT:
-    'https://docs.ovh.com/en/storage/object-storage/s3/getting-started-with-object-storage/',
+    'https://docs.ovh.com/gb/en/storage/object-storage/s3/getting-started-with-object-storage/',
   DE:
     'https://docs.ovh.com/de/storage/object-storage/s3/getting-started-with-object-storage/',
   ES:
@@ -40,7 +40,7 @@ export const MANAGE_ARCHIVE_DOC_LINK = {
   CA:
     'https://docs.ovh.com/ca/storage/object-storage/s3/getting-started-with-object-storage/',
   EN:
-    'https://docs.ovh.com/en/storage/object-storage/s3/getting-started-with-object-storage/',
+    'https://docs.ovh.com/gb/en/storage/object-storage/s3/getting-started-with-object-storage/',
   IT:
     'https://docs.ovh.com/it/storage/object-storage/s3/getting-started-with-object-storage/',
   PL:
