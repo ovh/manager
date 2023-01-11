@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.42.1...@ovh-ux/manager-dedicated@17.43.0) (2023-01-10)
+
+
+### Features
+
+* remove mfa-enrollment module ([4280f97](https://github.com/ovh/manager/commit/4280f978c4937735773eae0787dc14e1b00ec4ab))
+
+
+
+
+
 ## [17.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.42.0...@ovh-ux/manager-dedicated@17.42.1) (2023-01-04)
 
 

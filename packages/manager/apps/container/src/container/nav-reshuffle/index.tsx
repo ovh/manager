@@ -21,7 +21,8 @@ import Progress from '../common/Progress';
 import { useProgress } from '@/context/progress';
 import Preloader from '../common/Preloader';
 import usePreloader from '../common/Preloader/usePreloader';
-import LiveChat from '@/components/LiveChat';
+import useMfaEnrollment from '@/container/mfa-enrollment';
+import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
 
 function NavReshuffleContainer(): JSX.Element {
   const iframeRef = useRef(null);
@@ -35,6 +36,12 @@ function NavReshuffleContainer(): JSX.Element {
     .getApplications();
 
   const preloaderVisible = usePreloader(shell, iframe);
+
+  const {
+    isMfaEnrollmentForced,
+    isMfaEnrollmentVisible,
+    hideMfaEnrollment,
+  } = useMfaEnrollment();
 
   const productNavReshuffle = useProductNavReshuffle();
   const {
@@ -87,6 +94,14 @@ function NavReshuffleContainer(): JSX.Element {
               isNavigationSidebarOpened && closeNavigationSidebar()
             }
           ></div>
+          {isMfaEnrollmentVisible && (
+            <Suspense fallback="">
+              <MfaEnrollment
+                forced={isMfaEnrollmentForced}
+                onHide={hideMfaEnrollment}
+              />
+            </Suspense>
+          )}
           <Preloader visible={preloaderVisible}>
             <>
               <IFrameAppRouter

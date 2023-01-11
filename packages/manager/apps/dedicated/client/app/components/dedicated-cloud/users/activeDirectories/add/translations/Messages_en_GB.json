@@ -11,7 +11,6 @@
   "dedicatedCloud_USER_AD_ADD_field_label_sslThumbprint": "SSL certificate thumbprint",
   "dedicatedCloud_USER_AD_ADD_field_label_username": "Active Directory username",
   "dedicatedCloud_USER_AD_ADD_field_label_password": "Active Directory user password",
-  "dedicatedCloud_USER_AD_ADD_field_label_baseDn": "Base DN for users and groups",
   "dedicatedCloud_USER_AD_ADD_field_tooltip_domainName": "FQDN",
   "dedicatedCloud_USER_AD_ADD_field_tooltip_domainAlias": "NetBIOS name",
   "dedicatedCloud_USER_AD_ADD_field_tooltip_description": "Description of your choice",
@@ -21,10 +20,11 @@
   "dedicatedCloud_USER_AD_ADD_field_tooltip_sslThumbprint": "Active Directory LDAPS server SSL certificate thumbprint (SHA1 Fingerprint).",
   "dedicatedCloud_USER_AD_ADD_field_tooltip_username": "The account name of the domain user that will connect to the LDAPS server. “Pre-Windows 2000” username in UPN format.",
   "dedicatedCloud_USER_AD_ADD_field_tooltip_password": "The password of the domain user that will connect to the LDAPS server.",
-  "dedicatedCloud_USER_AD_ADD_field_tooltip_baseDn": "This is the DN (Distinguished Name) from which users and groups will be searched.",
   "dedicatedCloud_USER_AD_ADD_foot_information": "Before you confirm, please remember to authorise your Hosted Private Cloud to access your Active Directory LDAPS server. This operation is carried out in your (or your company’s) Active Directory firewall configuration. For further information, please refer to our documentation:",
   "dedicatedCloud_USER_AD_ADD_submit": "Submit",
   "dedicatedCloud_USER_AD_ADD_mendatory_fields": "Fields followed by an asterisk (*) are mandatory.",
   "dedicatedCloud_USER_AD_ADD_error": "Unable to add new Active Directory.",
-  "dedicatedCloud_USER_AD_ADD_button_close": "Close"
+  "dedicatedCloud_USER_AD_ADD_button_close": "Close",
+  "dedicatedCloud_USER_AD_ADD_field_label_baseDn": "Base DN for users and groups",
+  "dedicatedCloud_USER_AD_ADD_field_tooltip_baseDn": "This is the DN (Distinguished Name) from which users and groups will be searched."
 }

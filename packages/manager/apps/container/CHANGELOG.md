@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.11.3...@ovh-ux/manager-container-app@0.12.0) (2023-01-10)
+
+
+### Bug Fixes
+
+* **mfa:** allow to hide mfa-enrollment screen ([11e8c3c](https://github.com/ovh/manager/commit/11e8c3c1462c30166305c8803b7d28194e361338))
+
+
+### Features
+
+* **container:** add mfa enrollment ([ac391c6](https://github.com/ovh/manager/commit/ac391c609ecc53a83b1adb7f1c9451b04a5601d5))
+
+
+
+
+
+## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.11.2...@ovh-ux/manager-container-app@0.11.3) (2023-01-05)
+
+
+### Bug Fixes
+
+* **pci:** merge instance and barematal section ([#7194](https://github.com/ovh/manager/issues/7194)) ([9e93d46](https://github.com/ovh/manager/commit/9e93d46c1dff1798d9d56b5f9dd439c2ef3be368))
+
+
+
+
+
 ## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.11.1...@ovh-ux/manager-container-app@0.11.2) (2022-12-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

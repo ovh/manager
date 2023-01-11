@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "4.22.4",
+  "version": "4.23.0",
   "private": true,
   "description": "OVHcloud Public Cloud control panel.",
   "repository": {
@@ -31,9 +31,8 @@
     "@ovh-ux/manager-core": "^12.12.7",
     "@ovh-ux/manager-error-page": "^2.3.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.1",
-    "@ovh-ux/manager-pci": "^5.105.0",
+    "@ovh-ux/manager-pci": "^5.106.0",
     "@ovh-ux/manager-telecom-styles": "^4.6.0",
-    "@ovh-ux/mfa-enrollment": "^2.3.3",
     "@ovh-ux/ng-at-internet": "^5.9.4",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.2",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.15",
@@ -92,7 +91,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^6.0.1",
+    "@ovh-ux/manager-webpack-config": "^6.1.0",
     "glob": "^7.1.4",
     "webpack": "^4.44.2",
     "webpack-merge": "^4.2.2"

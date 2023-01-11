@@ -11,5 +11,6 @@ export default {
     summary: '<',
     getSummary: '<',
     trackProjectCreationError: '<',
+    model: '<',
   },
 };
