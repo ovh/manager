@@ -1,6 +1,6 @@
 import {
   CHECK_PRICES_DOC_LINK,
-  COLD_ARCHIVE_TRACKING_PREFIX,
+  COLD_ARCHIVE_TRACKING,
   GUIDES,
   REGION,
 } from './cold-archives.constants';
@@ -10,6 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive', {
     url: '/cold-archive',
     component: 'pciProjectStorageColdArchive',
+    atInternet: {
+      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ONBOARDING.MAIN}`,
+    },
     redirectTo: (transition) =>
       transition
         .injector()
@@ -119,13 +122,13 @@ export default /* @ngInject */ ($stateProvider) => {
 
       trackClick: /* @ngInject */ (atInternet) => (hit) =>
         atInternet.trackClick({
-          name: `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`,
+          name: `${COLD_ARCHIVE_TRACKING.PREFIX}::${hit}`,
           type: 'action',
         }),
 
       trackPage: /* @ngInject */ (atInternet) => (hit) =>
         atInternet.trackPage({
-          name: `${COLD_ARCHIVE_TRACKING_PREFIX}::${hit}`,
+          name: `${COLD_ARCHIVE_TRACKING.PREFIX}::${hit}`,
           type: 'navigation',
         }),
 

@@ -1,3 +1,5 @@
+import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive.users', {
     url: '/users',
@@ -6,6 +8,9 @@ export default /* @ngInject */ ($stateProvider) => {
       userDetails: null,
       userCredential: null,
       trackingInfo: null,
+    },
+    atInternet: {
+      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.USER.MAIN}`,
     },
     resolve: {
       userDetails: /* @ngInject */ ($transition$) =>
@@ -102,9 +107,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant(
           'pci_projects_project_storages_containers_s3_users_label',
         ),
-    },
-    atInternet: {
-      ignore: true,
     },
   });
 };

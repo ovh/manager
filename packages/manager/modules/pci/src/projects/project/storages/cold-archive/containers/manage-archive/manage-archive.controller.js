@@ -8,7 +8,6 @@ export default class ColdArchiveContainersManageArchiveController {
   }
 
   $onInit() {
-    this.trackPage('containers::container::manage');
     this.isLoading = false;
   }
 
@@ -19,7 +18,6 @@ export default class ColdArchiveContainersManageArchiveController {
   }
 
   cancel() {
-    this.trackClick('containers::container::manage::cancel');
     return this.goBack();
   }
 }

@@ -42,14 +42,14 @@ export default class ColdArchiveLinkUserArchiveController {
 
   trackClick(hit) {
     this.atInternet.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING.ADD.PREFIX}::${hit}`,
+      name: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ADD.PREFIX}::${hit}`,
       type: 'action',
     });
   }
 
   trackPage(hit) {
     this.atInternet.trackPage({
-      name: `${COLD_ARCHIVE_TRACKING.ADD.PREFIX}::${hit}`,
+      name: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ADD.PREFIX}::${hit}`,
       type: 'page',
     });
   }

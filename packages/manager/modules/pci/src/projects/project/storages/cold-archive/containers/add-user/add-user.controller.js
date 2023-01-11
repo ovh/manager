@@ -27,21 +27,18 @@ export default class ColdArchiveContainersAddUserController {
     this.selectedRole = null;
     this.addUserStep = 0;
 
-    this.trackAddUserModalPage();
     this.setUserCredentialsList();
     this.preselectFirstUser();
   }
 
   trackAddUserModalPage(action) {
-    const base = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}`;
-    const hit = action ? `${base}::${action}` : base;
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}::${action}`;
     this.trackPage(hit);
   }
 
   trackAddUserModalClick(action) {
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}::${action}`,
-    );
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}::${action}`;
+    this.trackClick(hit);
   }
 
   setUserCredentialsList() {

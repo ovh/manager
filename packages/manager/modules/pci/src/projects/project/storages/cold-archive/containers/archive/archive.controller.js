@@ -9,20 +9,17 @@ export default class PciBlockStorageDetailsArchiveController {
   }
 
   $onInit() {
-    this.trackArchiveModalPage();
     this.isLoading = false;
   }
 
   trackArchiveModalPage(action) {
-    const base = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}`;
-    const hit = action ? `${base}::${action}` : base;
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}::${action}`;
     this.trackPage(hit);
   }
 
   trackArchiveModalClick(action) {
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}::${action}`,
-    );
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}::${action}`;
+    this.trackClick(hit);
   }
 
   archiveContainer() {
