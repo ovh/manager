@@ -95,9 +95,9 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderInternationalC
   };
 
   this.changeZone = function changeZone() {
-    this.loading.init = true;
+    this.loading.numbers = true;
     getSpecificNumbers(self.form.country, self.form.zone).finally(() => {
-      self.loading.init = false;
+      self.loading.numbers = false;
     });
   };
 
@@ -224,6 +224,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderInternationalC
     self.billingAccount = $stateParams.billingAccount;
     self.loading = {
       init: true,
+      numbers: false,
     };
 
     self.preAmount = TELEPHONY_NUMBER_OFFER.preAmount.map((elt) => ({
