@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Params, useMatches } from 'react-router-dom';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 
 export type BreadcrumbHandleParams = {
   data: unknown;
@@ -43,18 +42,16 @@ export default function BreadcrumbComponent(): JSX.Element {
   }
 
   return (
-    <Breadcrumb>
+    <ul>
       {crumbs.map(({ pathname, crumb }, index) => (
-        <BreadcrumbItem key={pathname}>
+        <li key={pathname}>
           {index + 1 < crumbs.length ? (
-            <BreadcrumbLink as={Link} to={pathname}>
-              {crumb}
-            </BreadcrumbLink>
+            <Link to={pathname}>{crumb}</Link>
           ) : (
             <span>{crumb}</span>
           )}
-        </BreadcrumbItem>
+        </li>
       ))}
-    </Breadcrumb>
+    </ul>
   );
 }

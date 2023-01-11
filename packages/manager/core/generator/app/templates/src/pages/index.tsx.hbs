@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Heading, UnorderedList, ListItem } from '@chakra-ui/react';
 import {
   Await,
   defer,
@@ -24,7 +23,7 @@ export default function {{pascalCase appName}}() {
 
   return (
     <div>
-      <Heading>{t('title')}</Heading>
+      <h1>{t('title')}</h1>
       <Suspense fallback="">
         <Await resolve={data.services}>
           {(services) => {
@@ -42,16 +41,17 @@ export default function {{pascalCase appName}}() {
             }
             return (
               <>
-                <Heading as="h2" size="sm">
+                <h2>
                   Services list
-                </Heading>
-                <UnorderedList spacing={3}>
+                </h2>
+                <ul>
                   {services.map((serviceName: string) => (
-                    <ListItem key={serviceName}>
+                    <li key={serviceName}>
                       <Link to={`/details/${serviceName}`}>{serviceName}</Link>
-                    </ListItem>
+                    </li>
                   ))}
-                </UnorderedList>
+
+                </ul>
               </>
             );
           }}
