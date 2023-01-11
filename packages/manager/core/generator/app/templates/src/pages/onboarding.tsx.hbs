@@ -1,13 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Heading } from '@chakra-ui/react';
 
 export default function {{pascalCase appName}}Onboarding() {
   const { t } = useTranslation('{{appName}}/onboarding');
 
   return (
     <div>
-      <Heading>{t('title')}</Heading>
+      <h1>{t('title')}</h1>
     </div>
   );
 }

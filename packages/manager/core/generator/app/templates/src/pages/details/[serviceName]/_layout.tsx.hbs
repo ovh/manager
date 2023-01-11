@@ -1,13 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Heading, Tab, TabList, TabPanels, Tabs } from '@chakra-ui/react';
-import {
-  NavLink,
-  Outlet,
-  useLocation,
-  useParams,
-  useResolvedPath,
-} from 'react-router-dom';
+import { NavLink, Outlet, useParams, useResolvedPath } from 'react-router-dom';
 
 import Breadcrumb, {
   BreadcrumbHandleParams,
@@ -19,7 +12,6 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 
 export default function {{pascalCase appName}}Details() {
   const { t } = useTranslation('{{appName}}/details');
-  const { pathname } = useLocation();
   const { serviceName } = useParams();
 
   const tabs = [
@@ -35,27 +27,18 @@ export default function {{pascalCase appName}}Details() {
     },
   ];
 
-  let tabIndex = [...tabs]
-    .reverse()
-    .findIndex(({ to }) => pathname.startsWith(to));
-  tabIndex = tabIndex >= 0 ? tabs.length - 1 - tabIndex : Math.max(tabIndex, 0);
-
   return (
     <>
       <Breadcrumb />
-      <Heading as="h1">{serviceName}</Heading>
-      <Tabs variant="light" index={tabIndex} isLazy>
-        <TabList>
-          {tabs.map((tab) => (
-            <Tab as={NavLink} key={tab.name} to={tab.to}>
-              {tab.title}
-            </Tab>
-          ))}
-        </TabList>
-        <TabPanels>
-          <Outlet />
-        </TabPanels>
-      </Tabs>
+      <h1>{serviceName}</h1>
+      <ul>
+        {tabs.map((tab) => (
+          <li key={tab.name}>
+            <NavLink to={tab.to}>{tab.title}</NavLink>
+          </li>
+        ))}
+      </ul>
+      <Outlet />
     </>
   );
 }
