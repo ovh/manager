@@ -104,14 +104,7 @@ module.exports = (opts) => {
         // load HTML files as string (raw-loader)
         {
           test: /\.html$/,
-          use: [
-            {
-              loader: 'raw-loader',
-            },
-            {
-              loader: path.resolve(__dirname, './loaders/html-minifier.js'),
-            },
-          ],
+          loader: 'raw-loader', // @TODO use html-minifier after fixing ui-kit attributes incompatibilities
         },
 
         // load images & fonts into file or convert to base64 if size < 10Kib
