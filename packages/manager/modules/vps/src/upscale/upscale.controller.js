@@ -402,12 +402,14 @@ export default class UpscaleController {
 
   fetchUpscaleInformation() {
     this.loading.getUpscaleInformation = true;
-    const plan = this.isEliteUpgrade
-      ? this.getPlanFromSelectedRangeAndConfiguration(
-          this.rangeConfiguration,
-          this.range.formattedName.toLowerCase(),
-        )
-      : this.range;
+    const plan =
+      this.isEliteUpgrade ||
+      UpscaleController.isRangeElite(this.range?.formattedName)
+        ? this.getPlanFromSelectedRangeAndConfiguration(
+            this.rangeConfiguration,
+            this.range.formattedName.toLowerCase(),
+          )
+        : this.range;
     const currentPlanCode = this.upscaleRanges.find((e) => e.isCurrentRange)
       ?.planCode;
     return this.getUpscaleInformation(plan)
@@ -493,12 +495,14 @@ export default class UpscaleController {
     });
 
     this.loading.performUpscale = true;
-    const plan = this.isEliteUpgrade
-      ? this.getPlanFromSelectedRangeAndConfiguration(
-          this.rangeConfiguration,
-          this.range.formattedName.toLowerCase(),
-        )
-      : this.range;
+    const plan =
+      this.isEliteUpgrade ||
+      UpscaleController.isRangeElite(this.range?.formattedName)
+        ? this.getPlanFromSelectedRangeAndConfiguration(
+            this.rangeConfiguration,
+            this.range.formattedName.toLowerCase(),
+          )
+        : this.range;
     const currentPlanCode = this.upscaleRanges.find((e) => e.isCurrentRange)
       ?.planCode;
     return this.performUpscale(plan)
