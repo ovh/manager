@@ -1,3 +1,15 @@
-.order-summary {
-  z-index: 1009;
+pci-project-storages-databases-add {
+  .order-summary {
+    z-index: 1009;
+  }
+
+  oui-field.no-bottom-margin {
+    .oui-field {
+      margin-bottom: 0;
+    }
+  }
+
+  .oui-tile__description {
+    word-break: break-word;
+  }
 }

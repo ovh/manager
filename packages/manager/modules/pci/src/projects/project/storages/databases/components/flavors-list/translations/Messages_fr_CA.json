@@ -1,10 +1,9 @@
 {
-  "pci_database_flavors_list_spec_ram": "{{ram}} RAM",
-  "pci_database_flavors_list_spec_core": "{{cores}} vCores",
-  "pci_database_flavors_list_spec_storage": "{{storage}} de stockage utile total",
-  "pci_database_flavors_list_spec_bandwidth": "{{ bandwidth }} Mbit/s",
-  "pci_database_flavors_list_price_hourly": "{{price}} HT/heure",
-  "pci_database_flavors_list_price_monthly": "À partir de {{price}} HT/mois",
-  "pci_database_flavors_list_current_offer": "Offre actuelle",
-  "pci_database_flavors_list_spec_price_unit": " / heure / nœud"
+  "pci_database_flavors_list_header_type": "Type",
+  "pci_database_flavors_list_header_memory": "Mémoire",
+  "pci_database_flavors_list_header_storage": "Stockage utile",
+  "pci_database_flavors_list_header_price_hour": "Coût / heure / nœud (estimé)",
+  "pci_database_flavors_list_header_price_month": "Coût / mois / nœud (estimé)",
+  "pci_database_flavors_list_storage_range": "De {{min}} à {{max}}",
+  "pci_database_flavors_list_table_description": "Liste des types de nœuds"
 }

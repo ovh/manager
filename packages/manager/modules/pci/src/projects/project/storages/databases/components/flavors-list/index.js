@@ -17,7 +17,7 @@ angular
     'pascalprecht.translate',
     ovhManagerCatalogPrice,
   ])
-  .component('databaseFlavorsList', component)
+  .component('pciProjectsProjectDatabaseFlavorsList', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
