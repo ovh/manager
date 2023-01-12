@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sign-up-app",
-  "version": "2.7.2",
+  "version": "2.7.3",
   "private": true,
   "description": "Sign-up form application.",
   "repository": {
@@ -48,7 +48,7 @@
     "ui-select": "^0.19.8"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^6.1.0",
+    "@ovh-ux/manager-webpack-config": "^6.1.1",
     "glob": "^7.1.4",
     "webpack": "^4.44.2",
     "webpack-merge": "^4.2.2"
