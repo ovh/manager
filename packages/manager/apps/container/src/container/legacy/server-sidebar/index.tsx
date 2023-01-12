@@ -3,6 +3,7 @@ import useContainer from '@/core/container';
 import { useLegacyContainer } from '@/container/legacy/context';
 import { useLocation } from 'react-router-dom';
 import style from './index.module.scss';
+import { is } from 'date-fns/locale';
 
 const AccountSidebar = React.lazy(() => import('./universe/AccountSidebar'));
 const DedicatedSidebar = React.lazy(() =>
@@ -12,6 +13,9 @@ const TelecomSidebar = React.lazy(() => import('./universe/TelecomSidebar'));
 const HostedPrivateCloudSidebar = React.lazy(() =>
   import('./universe/HostedPrivateCloudSidebar'),
 );
+const PublicCloudSidebar = React.lazy(() =>
+  import('./universe/public-cloud/PublicCloudSidebar'),
+);
 const WebSidebar = React.lazy(() => import('./universe/WebSidebar'));
 
 export default function ServerSidebarIndex() {
@@ -19,7 +23,8 @@ export default function ServerSidebarIndex() {
   const { application, universe } = useContainer();
   const [isAccountMenu, setIsAccountMenu] = useState(false);
   const location = useLocation();
-  const isUniverseMenu = ['server', 'telecom', 'web'].indexOf(universe) >= 0;
+  const isUniverseMenu =
+    ['public-cloud', 'server', 'telecom', 'web'].indexOf(universe) >= 0;
 
   useEffect(() => {
     if (universe === 'server') {
@@ -63,6 +68,12 @@ export default function ServerSidebarIndex() {
       </div>
     );
   }
+  if (universe === 'public-cloud') {
+    const isPciSidebarHidden = !/\/pci\/projects\/\w{32,}/.test(location?.pathname);
+    if (isPciSidebarHidden) {
+      return <></>;
+    }
+  }
   if (isUniverseMenu) {
     return (
       <div
@@ -71,6 +82,7 @@ export default function ServerSidebarIndex() {
         }`}
         role="navigation"
       >
+        {universe === 'public-cloud' && <PublicCloudSidebar />}
         {universe === 'server' && <DedicatedSidebar />}
         {universe === 'telecom' && <TelecomSidebar />}
         {universe === 'web' && <WebSidebar />}
