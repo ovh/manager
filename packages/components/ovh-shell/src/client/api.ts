@@ -195,6 +195,11 @@ export default function exposeApi(shellClient: ShellClient) {
           plugin: 'ux',
           method: 'hidePreloader',
         }),
+      showPreloader: () =>
+        shellClient.invokePluginMethod<void>({
+          plugin: 'ux',
+          method: 'showPreloader',
+        }),
     },
     navigation: clientNavigation(shellClient),
     tracking: exposeTrackingAPI(shellClient),
