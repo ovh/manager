@@ -112,6 +112,18 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToUpgradeStorage: /* @ngInject */ (
+        $state,
+        databaseId,
+        projectId,
+      ) => () =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.upgrade-storage',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
       goToSupportPage: /* @ngInject */ (coreURLBuilder, database) => () => {
         const url = coreURLBuilder.buildURL(
           'dedicated',

@@ -242,6 +242,29 @@ export default class DatabaseService {
             'monthlyPrice',
             get(prices, `${prefix}.month.consumption`, {}),
           );
+          // set storage prices
+          set(
+            plan,
+            'hourlyPricePerGB',
+            get(
+              prices,
+              `databases.${plan.engine.toLowerCase()}-${
+                plan.plan
+              }-additionnal-storage-gb.hour.consumption`,
+              {},
+            ),
+          );
+          set(
+            plan,
+            'monthlyPricePerGB',
+            get(
+              prices,
+              `databases.${plan.engine.toLowerCase()}-${
+                plan.plan
+              }-additionnal-storage-gb.month.consumption`,
+              {},
+            ),
+          );
           set(
             plan,
             'flavor',

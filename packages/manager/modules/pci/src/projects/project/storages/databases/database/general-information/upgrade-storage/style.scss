@@ -1,0 +1,10 @@
+ovh-manager-pci-project-database-general-information-upgrade-storage {
+  // avoid translation menu getting below summary
+  .order-summary {
+    z-index: 1009;
+  }
+
+  .oui-tile__description {
+    word-break: break-word;
+  }
+}
