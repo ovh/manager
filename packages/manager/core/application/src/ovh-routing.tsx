@@ -94,20 +94,6 @@ export function createAppRouter() {
     '!**/(_app|404).*',
   ]);
 
-  // const preservedRoutes = Object.keys(preservedRoutesBlob).reduce(
-  //   (routes, key) => {
-  //     const path = key.replace(...patterns.route);
-  //     return {
-  //       ...routes,
-  //       [path]: {
-  //         element: preservedRoutesBlob[key]?.default,
-  //         breadcrumb: preservedRoutesBlob[key]?.breadcrumb,
-  //       },
-  //     };
-  //   },
-  //   {},
-  // );
-
   const preservedRoutes = generatePreservedRoutes<Element>(preservedRoutesBlob);
   const regularRoutes = generateRegularRoutes<
     RouteObject,
