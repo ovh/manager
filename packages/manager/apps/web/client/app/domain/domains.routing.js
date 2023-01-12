@@ -4,20 +4,36 @@ import { getDomainOrderUrl } from './domains.order';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
-    component: 'managerListLayout',
+    views: {
+      '': {
+        component: 'managerListDomainLayout',
+      },
+    },
+    translations: { value: ['.'], format: 'json' },
     params: ListLayoutHelper.stateParams,
+
     redirectTo: (transition) =>
       transition
         .injector()
         .getAsync('resources')
         .then((resources) =>
-          resources.data.length === 0
+          resources.data.length === 0 && !transition.params().filter
             ? { state: 'app.domain.onboarding' }
             : false,
         ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/domain',
+      schema: /* @ngInject */ ($http) =>
+        $http.get('/domain.json').then(({ data: schema }) => schema),
+      domainStateEnum: /* @ngInject */ (schema) =>
+        schema.models['domain.DomainStateEnum'].enum,
+      domainSuspensionStateEnum: /* @ngInject */ (schema) =>
+        schema.models['domain.DomainSuspensionStateEnum'].enum,
+      domainLockStatusEnum: /* @ngInject */ (schema) =>
+        schema.models['domain.DomainLockStatusEnum'].enum,
+      domainNsTypeEnum: /* @ngInject */ (schema) =>
+        schema.models['domain.DomainNsTypeEnum'].enum,
       dataModel: () => 'domain.Domain',
       defaultFilterColumn: () => 'domain',
       header: /* @ngInject */ ($translate) =>
@@ -50,6 +66,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         },
       }),
+
       hideBreadcrumb: () => true,
     },
   });

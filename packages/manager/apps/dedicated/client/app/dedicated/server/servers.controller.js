@@ -10,6 +10,7 @@ export default class ServersCtrl {
     this.$translate = $translate;
     this.ouiDatagridService = ouiDatagridService;
   }
+  // test for qa
 
   $onInit() {
     this.criteria = JSON.parse(this.filter).map((criteria) => ({
