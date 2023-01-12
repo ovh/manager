@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@6.1.0...@ovh-ux/manager-webpack-config@6.1.1) (2023-01-11)
+
+
+### Bug Fixes
+
+* **webpack-config:** disable html minification ([cacfba6](https://github.com/ovh/manager/commit/cacfba65c724aba4c6c3487ec425470626af649d))
+
+
+
+
+
 # [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@6.0.1...@ovh-ux/manager-webpack-config@6.1.0) (2023-01-10)
 
 
