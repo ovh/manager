@@ -28,7 +28,7 @@ function HamburgerMenu({ universe = '', universes }: Props): JSX.Element {
     if (universe === destination) {
       event.preventDefault();
       setOpened(false);
-      if (['hub', 'public-cloud'].includes(universe)) {
+      if (['hub'].includes(universe)) {
         setIsResponsiveSidebarMenuOpen(false);
       } else {
         setIsResponsiveSidebarMenuOpen(true);
