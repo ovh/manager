@@ -26,7 +26,6 @@ import sshKeys from './ssh-keys';
 import privateNetworks from './private-networks';
 import quota from './quota';
 import privateRegistry from './private-registry';
-import sidebar from './sidebar';
 import storages from './storages';
 import users from './users';
 import vouchers from './vouchers';
@@ -72,7 +71,6 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
     sshKeys,
-    sidebar,
     storages,
     users,
     vouchers,
