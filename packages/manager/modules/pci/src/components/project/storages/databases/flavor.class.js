@@ -10,6 +10,19 @@ export default class Flavor {
       availability,
     });
     this.isDefault = some(availability, 'default');
+
+    this.gbHourlyPrice = (this.availability || [])[0]?.hourlyPricePerGB;
+    this.gbMonthlyPrice = (this.availability || [])[0]?.monthlyPricePerGB;
+
+    this.hourlyPricePerGB = {
+      priceInUcents: this.gbHourlyPrice.priceInUcents,
+      tax: this.gbHourlyPrice.tax,
+    };
+
+    this.monthlyPricePerGB = {
+      priceInUcents: this.gbMonthlyPrice.priceInUcents,
+      tax: this.gbMonthlyPrice.tax,
+    };
   }
 
   isNetworkSupported(networkName) {
@@ -22,6 +35,10 @@ export default class Flavor {
 
   get maxDiskSize() {
     return (this.availability || [])[0]?.maxDiskSize;
+  }
+
+  get stepDiskSize() {
+    return (this.availability || [])[0]?.stepDiskSize;
   }
 
   get nodesCount() {

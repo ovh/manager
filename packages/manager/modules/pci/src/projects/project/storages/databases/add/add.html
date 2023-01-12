@@ -39,7 +39,7 @@
             <database-engines-list
                 data-engines="$ctrl.engines"
                 data-selected-engine="$ctrl.model.engine"
-                on-change="$ctrl.onEngineChanged(selectedEngine)"
+                data-on-change="$ctrl.onEngineChanged(selectedEngine)"
             ></database-engines-list>
 
             <!-- Step 2 -->
@@ -48,7 +48,8 @@
                 data-plans="$ctrl.model.engine.selectedVersion.plans"
                 data-selected-plan="$ctrl.model.plan"
                 data-user="$ctrl.user"
-                on-change="$ctrl.onPlanChanged(selectedPlan)"
+                data-on-change="$ctrl.onPlanChanged(selectedPlan)"
+                data-show-monthly-prices="$ctrl.showMonthlyPrices"
             ></database-plans-list>
 
             <!-- Step 3 -->
@@ -56,16 +57,29 @@
             <pci-project-regions-list
                 data-regions="$ctrl.model.plan.regions"
                 data-selected-region="$ctrl.model.region"
-                on-change="$ctrl.onRegionChanged(region)"
+                data-on-change="$ctrl.onRegionChanged(region)"
             ></pci-project-regions-list>
 
             <!-- Step 4 -->
             <h2 id="flavor" data-translate="pci_database_add_step4_title"></h2>
+            <p data-translate="pci_database_add_select_flavor"></p>
+            <pci-projects-project-database-flavors-list
+                data-flavors="$ctrl.model.region.availableFlavors"
+                data-selected-flavor="$ctrl.model.flavor"
+                data-user="$ctrl.user"
+                data-on-change="$ctrl.onFlavorChanged(selectedFlavor)"
+                data-show-monthly-prices="$ctrl.showMonthlyPrices"
+                data-nodes="$ctrl.model.plan.nodesCount"
+            ></pci-projects-project-database-flavors-list>
+
+            <!-- Step 5 -->
+            <h2 id="cluster" data-translate="pci_database_add_step5_title"></h2>
+            <h3 data-translate="pci_database_add_nodes_count"></h3>
             <oui-field
-                data-label="{{ ::'pci_database_add_nodes_count' | translate }}"
+                data-ng-if="$ctrl.model.plan.minNodes !== $ctrl.model.plan.maxNodes"
+                data-label="{{ ::'pci_database_add_nodes_input_label' | translate }}"
             >
                 <oui-numeric
-                    data-disabled="$ctrl.model.plan.minNodes === $ctrl.model.plan.maxNodes"
                     data-name="nodesCount"
                     data-model="$ctrl.model.plan.nodesCount"
                     data-min="$ctrl.model.plan.minNodes"
@@ -74,16 +88,44 @@
                 >
                 </oui-numeric>
             </oui-field>
-            <p data-translate="pci_database_add_select_flavor"></p>
-            <database-flavors-list
-                data-flavors="$ctrl.model.region.availableFlavors"
-                data-selected-flavor="$ctrl.model.flavor"
-                data-user="$ctrl.user"
-                on-change="$ctrl.onFlavorChanged(selectedFlavor)"
-            ></database-flavors-list>
+            <p
+                data-ng-if="$ctrl.model.plan.minNodes === $ctrl.model.plan.maxNodes"
+                data-translate="pci_database_add_included_nodes_offer"
+                data-translate-values="{offerName: $ctrl.capitalize($ctrl.model.plan.name), offerNodes: $ctrl.model.plan.minNodes}"
+            ></p>
 
-            <!-- Step 5 -->
-            <h2 id="network" data-translate="pci_database_add_step5_title"></h2>
+            <div
+                data-ng-if="$ctrl.model.flavor.minDiskSize !== $ctrl.model.flavor.maxDiskSize"
+            >
+                <h3 data-translate="pci_database_add_storage_sizing"></h3>
+                <p
+                    data-translate="pci_database_add_storage_sizing_offer"
+                    data-translate-values="{
+                        flavorName: $ctrl.capitalize($ctrl.model.flavor.name),
+                        includedStorage: ($ctrl.model.flavor.minDiskSize | bytes:2:false:'GB'),
+                        addableStorage: ($ctrl.model.flavor.maxDiskSize - $ctrl.model.flavor.minDiskSize| bytes:2:false:'GB'),
+                        step: ($ctrl.model.disk.step| bytes:2:false:'GB')
+                    }"
+                ></p>
+                <pci-projects-project-database-disk-size
+                    data-min="0"
+                    data-max="$ctrl.model.flavor.maxDiskSize - $ctrl.model.flavor.minDiskSize"
+                    data-step="$ctrl.model.disk.step"
+                    data-model="$ctrl.model.disk.additionalDiskSize"
+                    data-on-change="$ctrl.onAdditionalDiskChange()"
+                    data-prices="{
+                            hourly: $ctrl.model.flavor.hourlyPricePerGB,
+                            monthly: $ctrl.model.flavor.monthlyPricePerGB,
+                        }"
+                    data-nodes="$ctrl.model.plan.nodesCount"
+                    data-show-monthly-prices="$ctrl.showMonthlyPrices"
+                    data-show-prices="true"
+                >
+                </pci-projects-project-database-disk-size>
+            </div>
+
+            <!-- Step 6 -->
+            <h2 id="network" data-translate="pci_database_add_step6_title"></h2>
             <oui-message
                 data-ng-if="!($ctrl.model.flavor.supportsPublicNetwork && $ctrl.model.flavor.supportsPrivateNetwork)"
                 data-type="info"
@@ -231,11 +273,11 @@
                 </div>
             </div>
 
-            <!-- Step 6 -->
+            <!-- Step 7 -->
             <div
                 data-ng-if="$ctrl.model.engine.selectedVersion.status === 'BETA'"
             >
-                <h2 data-translate="pci_database_add_step6_title"></h2>
+                <h2 data-translate="pci_database_add_step7_title"></h2>
                 <div class="mb-3">
                     <pci-project-lab-agreements
                         data-lab="$ctrl.lab"
@@ -312,24 +354,6 @@
                                 data-ng-bind="$ctrl.model.plan.name"
                             ></span>
                         </div>
-                        <div class="d-flex flex-column mb-2 pl-2">
-                            <div class="d-flex">
-                                <span
-                                    class="oui-icon oui-icon-cloud-edge-computing_concept mr-2"
-                                ></span>
-                                <span
-                                    data-ng-bind="$ctrl.getNodesSpecTranslation()"
-                                ></span>
-                            </div>
-                            <div class="d-flex">
-                                <span
-                                    class="oui-icon oui-icon-floppy-clock_concept mr-2"
-                                ></span>
-                                <span
-                                    data-translate="pci_database_add_spec_backup_policy"
-                                ></span>
-                            </div>
-                        </div>
                         <div class="mt-2">
                             <a
                                 href=""
@@ -385,8 +409,8 @@
                             <button
                                 type="button"
                                 class="oui-link"
-                                data-ng-click="$ctrl.scrollTo('flavor')"
-                                data-translate="pci_database_add_spec_storage"
+                                data-ng-click="$ctrl.scrollTo('cluster')"
+                                data-translate="pci_database_add_spec_cluster"
                                 data-ng-if="$ctrl.model.flavor.maxDiskSize > 0"
                             ></button>
                         </div>
@@ -396,10 +420,34 @@
                         >
                             <div class="d-flex">
                                 <span
+                                    class="oui-icon oui-icon-cloud-edge-computing_concept mr-2"
+                                ></span>
+                                <span
+                                    data-ng-if="$ctrl.model.plan.nodesCount === 1"
+                                    data-translate="pci_database_add_spec_nodes_single"
+                                    data-translate-values="{nodes: $ctrl.model.plan.nodesCount}"
+                                ></span>
+                                <span
+                                    data-ng-if="$ctrl.model.plan.nodesCount > 1"
+                                    data-translate="pci_database_add_spec_nodes"
+                                    data-translate-values="{nodes: $ctrl.model.plan.nodesCount}"
+                                ></span>
+                            </div>
+                            <div class="d-flex">
+                                <span
                                     class="oui-icon oui-icon-hardware-ssd_concept mr-2"
                                 ></span>
                                 <span
+                                    data-ng-if="$ctrl.model.disk.additionalDiskSize === 0"
                                     data-ng-bind="$ctrl.model.flavor.minDiskSize | bytes:2:false:'GB'"
+                                ></span>
+                                <span
+                                    data-ng-if="$ctrl.model.disk.additionalDiskSize > 0"
+                                    data-translate="pci_database_add_spec_storage_added"
+                                    data-translate-values="{
+                                        total: (($ctrl.model.disk.initialSize + $ctrl.model.disk.additionalDiskSize) | bytes:2:false:'GB'),
+                                        included: ($ctrl.model.disk.initialSize | bytes:2:false:'GB'),
+                                    }"
                                 ></span>
                             </div>
                         </div>
@@ -473,18 +521,37 @@
                 </oui-tile-definition>
                 <oui-tile-definition>
                     <oui-tile-description>
-                        <div class="d-flex justify-content-between">
+                        <div
+                            class="d-flex align-items-center justify-content-between mb-2"
+                        >
+                            <span
+                                data-translate="pci_database_add_price_unit_switch_label"
+                            ></span>
+                            <oui-switch
+                                class="d-inline-block"
+                                name="switch-price-unit"
+                                model="$ctrl.showMonthlyPrices"
+                            >
+                            </oui-switch>
+                        </div>
+                        <div class="d-flex justify-content-between flex-wrap">
                             <span
                                 data-translate="pci_database_common_price"
                             ></span>
-                            <ovh-manager-catalog-price
-                                data-price="$ctrl.model.flavor.hourlyPrice.priceInUcents * $ctrl.model.plan.nodesCount"
-                                data-tax="$ctrl.model.flavor.hourlyPrice.tax * $ctrl.model.plan.nodesCount"
-                                data-user="$ctrl.user"
-                                data-show-zero-price="true"
-                                data-interval="'hour'"
-                            >
-                            </ovh-manager-catalog-price>
+                            <div>
+                                <ovh-manager-catalog-price
+                                    data-price="$ctrl.price"
+                                    data-tax="$ctrl.tax"
+                                    data-user="$ctrl.user"
+                                    data-show-zero-price="true"
+                                    data-perform-rounding="false"
+                                    data-maximum-fraction-digits="3"
+                                >
+                                </ovh-manager-catalog-price>
+                                <strong
+                                    data-ng-bind="($ctrl.showMonthlyPrices ? 'pci_database_add_price_unit_month' : 'pci_database_add_price_unit_hour') | translate"
+                                ></strong>
+                            </div>
                         </div>
                     </oui-tile-description>
                 </oui-tile-definition>

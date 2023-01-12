@@ -3,6 +3,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
+import capitalize from 'lodash/capitalize';
 import animateScrollTo from 'animated-scroll-to';
 import { API_GUIDES } from '../../../project.constants';
 import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
@@ -31,6 +32,7 @@ export default class {
     this.ENGINE_LOGOS = ENGINE_LOGOS;
     this.orderKeys = ORDER_KEYS;
     this.nameGenerator = nameGenerator;
+    this.capitalize = capitalize;
   }
 
   $onInit() {
@@ -175,18 +177,6 @@ export default class {
     this.$timeout(() => this.getOrderData());
   }
 
-  getNodesSpecTranslation() {
-    const { nodesCount, maxNodes } = this.model.plan;
-    const prefix = 'pci_database_add_spec_nodes';
-    const range = nodesCount === maxNodes ? '' : '_range';
-    const single = nodesCount === 1 ? '_single' : '';
-    const translateKey = `${prefix}${range}${single}`;
-    return this.$translate.instant(translateKey, {
-      min: nodesCount,
-      max: maxNodes,
-    });
-  }
-
   getOrderData() {
     this.orderAPIUrl = `POST /cloud/project/${this.projectId}/database/${this.model.engine.name}`;
     this.orderData = {
@@ -197,6 +187,9 @@ export default class {
         region: this.model.region.name,
       },
       plan: this.model.plan.name,
+      disk: {
+        size: this.model.disk.initialSize + this.model.disk.additionalDiskSize,
+      },
       version: this.model.engine.selectedVersion.version,
     };
     if (this.model.usePrivateNetwork && this.model.subnet?.id?.length > 0) {
@@ -230,6 +223,10 @@ export default class {
     this.updateFlavor(flavor);
   }
 
+  onAdditionalDiskChange() {
+    this.$timeout(() => this.getOrderData());
+  }
+
   updateEngine(engine) {
     this.model.engine = engine;
     this.model.plan = this.getSyncPlan(engine);
@@ -251,7 +248,11 @@ export default class {
 
   updateFlavor(flavor) {
     this.model.flavor = flavor;
-
+    this.model.disk = {
+      initialSize: flavor.minDiskSize,
+      additionalDiskSize: 0,
+      step: flavor.stepDiskSize,
+    };
     if (!flavor.supportsPrivateNetwork) {
       this.model.usePrivateNetwork = false;
       this.model.subnet = null;
@@ -333,6 +334,34 @@ export default class {
 
   trackNamePopover() {
     this.trackDatabases(`databases_config_page::basket::info_popin::name`);
+  }
+
+  get price() {
+    const flavorPrice = this.showMonthlyPrices
+      ? this.model.flavor.monthlyPrice
+      : this.model.flavor.hourlyPrice;
+    const additionalDiskPrice = this.showMonthlyPrices
+      ? this.model.flavor.monthlyPricePerGB
+      : this.model.flavor.hourlyPricePerGB;
+    return (
+      this.model.plan.nodesCount *
+      (flavorPrice.priceInUcents +
+        additionalDiskPrice.priceInUcents * this.model.disk.additionalDiskSize)
+    );
+  }
+
+  get tax() {
+    const flavorPrice = this.showMonthlyPrices
+      ? this.model.flavor.monthlyPrice
+      : this.model.flavor.hourlyPrice;
+    const additionalDiskPrice = this.showMonthlyPrices
+      ? this.model.flavor.monthlyPricePerGB
+      : this.model.flavor.hourlyPricePerGB;
+    return (
+      this.model.plan.nodesCount *
+      (flavorPrice.tax +
+        this.model.disk.additionalDiskSize * additionalDiskPrice.tax)
+    );
   }
 
   createDatabase() {

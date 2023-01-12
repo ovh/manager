@@ -9,8 +9,8 @@
   "pci_databases_general_information_node_type_label": "Modelo de nodo",
   "pci_databases_general_information_node_type_cpu": "{{coreNumber}} CPU",
   "pci_databases_general_information_node_type_memory": "{{memorySize}} RAM",
-  "pci_databases_general_information_node_type_storage": "{{storageSize}} de almacenamiento SSD",
-  "pci_databases_general_information_node_type_storage_range": "de {{storageMinSize}} a {{storageMaxSize}} de almacenamiento SSD",
+  "pci_databases_general_information_node_type_storage": "{{storage}} de almacenamiento",
+  "pci_databases_general_information_node_type_storage_range": "De {{minStorage}} a {{maxStorage}} de almacenamiento",
   "pci_databases_general_information_upgrade_node": "Mejorar el modelo de nodo",
   "pci_databases_general_information_service_label": "Servicio",
   "pci_databases_general_information_service_URI_label": "URI",
@@ -82,5 +82,10 @@
   "pci_databases_general_information_support_level_label": "Nivel de soporte",
   "pci_databases_general_information_support_level_standard": "Standard",
   "pci_databases_general_information_support_create_ticket_label": "Crear un tíquet",
-  "pci_databases_general_information_storage_label": "Almacenamiento"
+  "pci_databases_general_information_storage_label": "Almacenamiento",
+  "pci_databases_general_information_storage_range_included": "({{included}} incluido(s))",
+  "pci_databases_general_information_storage_type_local-ssd": "Disco SSD local",
+  "pci_databases_general_information_storage_type_high-speed": "Disco remoto de primera generación",
+  "pci_databases_general_information_storage_type_high-speed-gen2": "Disco remoto de segunda generación",
+  "pci_databases_general_information_storage_upgrade_link": "Añadir almacenamiento adicional"
 }

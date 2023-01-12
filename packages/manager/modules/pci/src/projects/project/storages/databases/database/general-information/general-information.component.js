@@ -20,6 +20,7 @@ export default {
     goToUpgradePlan: '<',
     goToUpgradeVersion: '<',
     goToUpgradeNode: '<',
+    goToUpgradeStorage: '<',
     goToBackups: '<',
     goToMaintenances: '<',
     goToFork: '<',

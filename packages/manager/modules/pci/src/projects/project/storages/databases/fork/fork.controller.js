@@ -168,14 +168,15 @@ export default class {
   }
 
   onRegionSelect() {
-    this.model.flavor = find(
+    const newFlavor = find(
       this.model.region.availableFlavors,
       (flavor) => flavor.name === this.model.flavor.name,
     );
-    this.onFlavorSelect();
+    this.onFlavorSelect(newFlavor);
   }
 
-  onFlavorSelect() {
+  onFlavorSelect(flavor) {
+    this.model.flavor = flavor;
     this.model.usePrivateNetwork = !this.model.flavor.supportsPublicNetwork;
     this.model.privateNetwork = this.defaultPrivateNetwork;
     this.model.subnet = null;

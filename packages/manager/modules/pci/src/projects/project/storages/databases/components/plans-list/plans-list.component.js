@@ -9,6 +9,7 @@ export default {
     selectedPlan: '=',
     user: '<',
     allowLowerSelection: '<?',
+    showMonthlyPrices: '<?',
   },
   controller,
   template,

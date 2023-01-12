@@ -76,15 +76,14 @@
         </oui-numeric>
     </oui-field>
     <p data-translate="pci_database_fork_select_flavor"></p>
-    <database-flavors-list
+    <pci-projects-project-database-flavors-list
         data-flavors="$ctrl.model.region.availableFlavors"
         data-current-flavor="$ctrl.current.flavor"
         data-selected-flavor="$ctrl.model.flavor"
         data-user="$ctrl.user"
-        data-on-change="$ctrl.onFlavorSelect()"
-        data-allow-lower-selection="true"
+        data-on-change="$ctrl.onFlavorSelect(selectedFlavor)"
     >
-    </database-flavors-list>
+    </pci-projects-project-database-flavors-list>
 
     <h2>{{:: 'pci_database_fork_step5_title' | translate }}</h2>
     <oui-field
