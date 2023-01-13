@@ -92,16 +92,6 @@
                     ></span>
                 </oui-action-menu-item>
 
-                <!--Action: delete objects-->
-                <oui-action-menu-item
-                    data-ng-if="$ctrl.constructor.isActionDeleteObjectsAvailable($row)"
-                    data-on-click="$ctrl.goToDeleteContainerObjects($row)"
-                >
-                    <span
-                        data-translate="pci_projects_project_storages_cold_archive_container_action_delete_objects"
-                    ></span>
-                </oui-action-menu-item>
-
                 <!--Action: flush container-->
                 <oui-action-menu-item
                     data-ng-if="$ctrl.constructor.isActionFlushContainerAvailable($row)"
