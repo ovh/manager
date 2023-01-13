@@ -1,8 +1,7 @@
 export default class SiretService {
   /* @ngInject */
-  constructor($http, $locale) {
+  constructor($http) {
     this.$http = $http;
-    this.$locale = $locale;
   }
 
   getSiret(params) {
@@ -22,12 +21,5 @@ export default class SiretService {
           message: err?.data?.message,
         };
       });
-  }
-
-  dateFormat() {
-    return this.$locale.DATETIME_FORMATS.shortDate
-      .replace('dd', 'd')
-      .replace('MM', 'm')
-      .replace('y', 'Y');
   }
 }
