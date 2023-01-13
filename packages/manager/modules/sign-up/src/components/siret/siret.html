@@ -182,7 +182,7 @@
 
         <div class="row">
             <oui-field
-                class="col-lg-3"
+                class="col-lg-6"
                 data-label="{{ 'siret_siret' | translate }} ({{ 'siret_optional' | translate }})"
             >
                 <input
@@ -197,7 +197,7 @@
             </oui-field>
 
             <oui-field
-                class="col-lg-4"
+                class="col-lg-6"
                 data-label="{{ 'siret_vat' | translate }} ({{ 'siret_optional' | translate }})"
                 data-label-popover="{{ 'siret_vat_helper' | translate }}"
             >
@@ -210,20 +210,6 @@
                     type="text"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.vat)"
                 />
-            </oui-field>
-
-            <oui-field
-                class="col-lg-5"
-                data-label="{{ 'siret_manual_registration_date' | translate }} ({{ 'siret_optional' | translate }})"
-            >
-                <!-- for now this value isn't save, this will come later -->
-                <oui-calendar
-                    data-name="registrationDateField"
-                    data-alt-format="{{ $ctrl.siretService.dateFormat() }}"
-                    data-model="$ctrl.noSaveModel"
-                >
-                    <!-- model is madatory for oui-calendar but not use for now -->
-                </oui-calendar>
             </oui-field>
         </div>
     </div>
