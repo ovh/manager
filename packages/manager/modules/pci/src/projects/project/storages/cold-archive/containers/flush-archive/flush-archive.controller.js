@@ -26,7 +26,7 @@ export default class ColdArchiveContainersFlushArchiveController {
 
         return this.goBack(
           this.$translate.instant(
-            'pci_projects_project_storages_containers_container_delete_success_message',
+            'pci_projects_project_storages_containers_container_cold_archive_flush_success_message',
             {
               container: this.container?.name,
             },
@@ -38,7 +38,7 @@ export default class ColdArchiveContainersFlushArchiveController {
 
         return this.goBack(
           this.$translate.instant(
-            'pci_projects_project_storages_containers_container_delete_error_delete',
+            'pci_projects_project_storages_containers_container_cold_archive_flush_error_message',
             {
               message: err.data?.message || err?.message || err.data,
             },
