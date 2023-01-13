@@ -72,9 +72,7 @@ export default class {
     this.loading.init = true;
     this.TucSmsMediator.initAll()
       .then(() => {
-        const availableAccounts = toArray(
-          this.TucSmsMediator.getAccounts(),
-        ).sort((a, b) => a.description.localeCompare(b.description));
+        const availableAccounts = toArray(this.TucSmsMediator.getAccounts());
 
         // We have to format it to become human readable
         forEach(availableAccounts, (account, idx) => {
@@ -92,7 +90,7 @@ export default class {
             this.order.account = availableAccounts[idx];
             this.order.channel = availableAccounts[idx].channel;
           }
-        });
+        }).sort((a, b) => a.label.localeCompare(b.label));
 
         const newAccount = {
           name: 'new',
