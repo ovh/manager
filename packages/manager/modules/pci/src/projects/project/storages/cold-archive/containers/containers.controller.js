@@ -71,7 +71,6 @@ export default class PciStoragesColdArchiveContainersController {
     const Ctrl = PciStoragesColdArchiveContainersController;
     return [
       Ctrl.isActionAddUserAvailable(container),
-      Ctrl.isActionDeleteObjectsAvailable(container),
       Ctrl.isActionArchiveAvailable(container),
       Ctrl.isActionRestoredAvailable(container),
       Ctrl.isActionFlushContainerAvailable(container),
@@ -85,12 +84,6 @@ export default class PciStoragesColdArchiveContainersController {
       COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED,
       COLD_ARCHIVE_CONTAINER_STATUS.RESTORED,
     ].includes(status);
-  }
-
-  static isActionDeleteObjectsAvailable({ status, objectsCount }) {
-    return (
-      objectsCount > 0 && [COLD_ARCHIVE_CONTAINER_STATUS.NONE].includes(status)
-    );
   }
 
   static isActionArchiveAvailable({ status, objectsCount }) {
