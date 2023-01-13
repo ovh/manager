@@ -1,4 +1,12 @@
-export const CTA = 'https://www.ovhtelecom.fr/sms/';
+export const CTA = {
+  FR: 'https://www.ovhcloud.com/fr/sms/',
+  GB: 'https://www.ovhcloud.com/en-gb/sms/',
+  ES: 'https://www.ovhcloud.com/es-es/sms/',
+  IT: 'https://www.ovhcloud.com/it/sms/',
+  PL: 'https://www.ovhcloud.com/pl/sms/',
+  IE: 'https://www.ovhcloud.com/en-ie/sms/',
+  DEFAULT: 'https://www.ovhcloud.com/en-gb/sms/',
+};
 
 export const GUIDES = [
   {

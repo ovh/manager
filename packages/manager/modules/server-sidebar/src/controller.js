@@ -14,6 +14,7 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import sumBy from 'lodash/sumBy';
 import zipObject from 'lodash/zipObject';
+import set from 'lodash/set';
 
 import { SIDEBAR_CONFIG } from './sidebar.constants';
 import { ORDER_URLS, SIDEBAR_ORDER_CONFIG } from './order.constants';
@@ -148,6 +149,9 @@ export default class OvhManagerServerSidebarController {
 
   filterFeatures(items) {
     return filter(items, (item) => {
+      if (has(item, 'children')) {
+        set(item, 'children', this.filterFeatures(item.children));
+      }
       if (has(item, 'feature')) {
         return this.featuresAvailabilities.isFeatureAvailable(item.feature);
       }
