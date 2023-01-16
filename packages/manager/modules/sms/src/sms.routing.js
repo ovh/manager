@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { HEADER_GUIDE_LINK } from './sms.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('sms.index', {
@@ -29,6 +30,11 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       hideBreadcrumb: () => true,
       gotoOrder: /* @ngInject */ ($state) => () => $state.go('sms.order'),
+      headerGuideLink: /* @ngInject */ (coreConfig, $translate) =>
+        HEADER_GUIDE_LINK.map(({ translationKey, url }) => ({
+          label: $translate.instant(`sms_header_guide_${translationKey}`),
+          url: url[coreConfig.getUser().ovhSubsidiary] || url.DEFAULT,
+        })),
     },
     redirectTo: (transition) =>
       transition
