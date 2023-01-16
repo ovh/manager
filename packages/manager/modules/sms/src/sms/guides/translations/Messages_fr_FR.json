@@ -1,5 +1,8 @@
 {
   "sms_guides_breadcrumb": "Guides",
+  "sms_guides_section_smpp": "SMPP",
+  "sms_guides_smpp_control_panel": "Gestion d'un compte SMS SMPP",
+  "sms_guides_smpp_specifications": "Spécifications techniques du SMPP",
   "sms_guides_section_compose": "Composer un SMS",
   "sms_guides_compose_faq": "Questions fréquentes.",
   "sms_guides_compose_filters": "Liste des exceptions et filtres selon les destinations.",
