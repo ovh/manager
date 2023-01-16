@@ -1,14 +1,11 @@
-import controller from './telecom-sms.controller';
-import smsView from './telecom-sms.html';
+import { HEADER_GUIDE_LINK } from '../sms.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('sms.service', {
     url: '/:serviceName',
     views: {
       '': {
-        template: smsView,
-        controller,
-        controllerAs: 'TelecomSmsCtrl',
+        component: 'ovhManagerSmsComponent',
       },
     },
     redirectTo: 'sms.service.dashboard',
@@ -34,6 +31,11 @@ export default /* @ngInject */ ($stateProvider) => {
         );
         return $q.when({ init: true });
       },
+      headerGuideLink: /* @ngInject */ (coreConfig, $translate) =>
+        HEADER_GUIDE_LINK.map(({ translationKey, url }) => ({
+          label: $translate.instant(`sms_header_guide_${translationKey}`),
+          url: url[coreConfig.getUser().ovhSubsidiary] || url.DEFAULT,
+        })),
       service: /* @ngInject */ ($http, serviceName) =>
         $http.get(`/sms/${serviceName}`).then(({ data: service }) => service),
       isSmppAccount: /* @ngInject */ (service) => service.smpp,
