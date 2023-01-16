@@ -99,6 +99,31 @@ const SMS_GUIDES = {
       ],
     },
     {
+      label: 'sms_guides_section_smpp',
+      guides: [
+        {
+          label: 'sms_guides_smpp_control_panel',
+          url: {
+            fr: 'https://docs.ovh.com/fr/sms/smpp-control-panel/',
+            en: 'https://docs.ovh.com/gb/en/sms/smpp-control-panel/',
+            es: 'https://docs.ovh.com/es/sms/smpp-control-panel/',
+            it: 'https://docs.ovh.com/it/sms/smpp-control-panel/',
+            pl: 'https://docs.ovh.com/pl/sms/smpp-control-panel/',
+          },
+        },
+        {
+          label: 'sms_guides_smpp_specifications',
+          url: {
+            fr: 'https://docs.ovh.com/fr/sms/smpp-specifications/',
+            en: 'https://docs.ovh.com/gb/en/sms/smpp-specifications/',
+            es: 'https://docs.ovh.com/es/sms/smpp-specifications/',
+            it: 'https://docs.ovh.com/it/sms/smpp-specifications/',
+            pl: 'https://docs.ovh.com/pl/sms/smpp-specifications/',
+          },
+        },
+      ],
+    },
+    {
       label: 'sms_guides_section_outgoing',
       guides: [
         {
