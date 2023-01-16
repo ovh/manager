@@ -3,6 +3,9 @@ export const MAC_ADDRESS_FORMAT_REGEX = /\w{1,2}/g;
 export const RMA_URL_PREFIX =
   'https://www.ovh.com/cgi-bin/telephony/rma.pl?reference=';
 
+export const SUPPORT_TICKET_URL =
+  'https://help.ovhcloud.com/csm?id=contact_us_ovh';
+
 export const TEXT_FOR_MODAL = {
   cancelRma: 'telephony_line_assist_rma_cancel',
   equipmentOutOfOrder: 'telephony_line_assist_rma_equipment_out_of_order',
@@ -32,4 +35,5 @@ export default {
   ACTION_TYPE,
   RMA_NEW_TYPE,
   PREFIX_TRACKING,
+  SUPPORT_TICKET_URL,
 };

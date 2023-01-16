@@ -1,4 +1,4 @@
-import { PREFIX_TRACKING } from './rma.constants';
+import { PREFIX_TRACKING, SUPPORT_TICKET_URL } from './rma.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -15,8 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $transition$.params().billingAccount,
         serviceName: /* @ngInject */ ($transition$) =>
           $transition$.params().serviceName,
-        urlNewTicket: /* @ngInject */ (coreURLBuilder) =>
-          coreURLBuilder.buildURL('dedicated', '#/support/tickets/new'),
+        urlNewTicket: /* @ngInject */ () => SUPPORT_TICKET_URL,
         reloadPage: /* @ngInject */ (
           $state,
           billingAccount,

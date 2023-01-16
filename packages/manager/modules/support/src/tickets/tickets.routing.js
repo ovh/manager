@@ -42,8 +42,13 @@ export const state = {
     filters: /* @ngInject */ ($transition$) => $transition$.params().filters,
     goToTicket: /* @ngInject */ ($state) => (id) =>
       $state.go('support.tickets.ticket', { id }),
-    goToTicketCreation: /* @ngInject */ ($state) => () =>
-      $state.go('support.tickets.new'),
+    goToTicketCreation: /* @ngInject */ ($state, coreConfig, $window) => () =>
+      !coreConfig.isRegion('US')
+        ? $window.open(
+            'https://help.ovhcloud.com/csm?id=contact_us_ovh',
+            '_blank',
+          )
+        : $state.go('support.tickets.new'),
     gridColumnLastMessageFromTypeOptions: /* @ngInject */ (ticketsService) =>
       ticketsService.buildGridColumnLastMessageFromTypeOptions(),
     gridColumnStateTypeOptions: /* @ngInject */ (ticketsService) =>

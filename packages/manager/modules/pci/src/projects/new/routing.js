@@ -14,6 +14,7 @@ import {
   ELIGIBILITY_ACTION_ENUM,
   ELIGIBILITY_ERROR_IMAGES_SRC,
   PCI_PROJECT_STEPS,
+  SUPPORT_TICKET_URL,
 } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -140,10 +141,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
 
-      newSupportTicketLink: /* @ngInject */ (coreConfig, coreURLBuilder) =>
-        coreConfig.isRegion(['EU', 'CA'])
-          ? coreURLBuilder.buildURL('dedicated', '#/support/tickets/new')
-          : '',
+      newSupportTicketLink: /* @ngInject */ (coreConfig) =>
+        coreConfig.isRegion(['EU', 'CA']) ? SUPPORT_TICKET_URL : '',
 
       cart: /* @ngInject */ ($transition$, me, pciProjectNew) => {
         const hasCartId = has($transition$.params(), 'cartId');

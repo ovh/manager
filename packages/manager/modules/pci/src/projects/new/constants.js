@@ -25,9 +25,13 @@ export const PCI_PROJECT_STEPS = {
   PAYMENT: 'payment',
 };
 
+export const SUPPORT_TICKET_URL =
+  'https://help.ovhcloud.com/csm?id=contact_us_ovh';
+
 export default {
   ELIGIBILITY_ACTION_ENUM,
   ELIGIBILITY_ERROR_IMAGES_SRC,
   PCI_PROJECT_ORDER_CART,
   PCI_PROJECT_STEPS,
+  SUPPORT_TICKET_URL,
 };

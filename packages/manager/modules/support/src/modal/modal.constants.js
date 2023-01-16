@@ -1,4 +1,4 @@
-const helpRoot = 'https://help-beta.ovhcloud.com/csm';
+const helpRoot = 'https://help.ovhcloud.com/csm';
 const homeIndex = '?id=csm_cases_requests';
 
 export const GUIDES_LINK = {

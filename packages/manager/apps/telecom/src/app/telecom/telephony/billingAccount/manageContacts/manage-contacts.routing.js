@@ -15,9 +15,9 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('telephony_group_manage_contacts_breadcrumb'),
 
-      newSupportTicketLink: /* @ngInject */ (coreConfig, coreURLBuilder) =>
+      newSupportTicketLink: /* @ngInject */ (coreConfig) =>
         coreConfig.isRegion(['EU', 'CA'])
-          ? coreURLBuilder.buildURL('dedicated', '#/support/tickets/new')
+          ? 'https://help.ovhcloud.com/csm?id=contact_us_ovh'
           : '',
     },
   });

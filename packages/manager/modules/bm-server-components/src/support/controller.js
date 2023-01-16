@@ -1,14 +1,27 @@
-import { SUPPORT_LEVELS } from './constants';
+import {
+  SUPPORT_LEVELS,
+  SUPPORT_TICKET_URL,
+  VIEW_SUPPORT_TICKET,
+} from './constants';
 
 export default class DedicatedServerSupportTileController {
   /* @ngInject */
-  constructor($http, $translate, $q, $window, atInternet, coreURLBuilder) {
+  constructor(
+    $http,
+    $translate,
+    $q,
+    $window,
+    atInternet,
+    coreURLBuilder,
+    coreConfig,
+  ) {
     this.$http = $http;
     this.$translate = $translate;
     this.$q = $q;
     this.$window = $window;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -47,17 +60,21 @@ export default class DedicatedServerSupportTileController {
   }
 
   getViewTicketsUrl() {
-    return this.coreURLBuilder.buildURL('dedicated', '#/support/tickets', {
-      filters: JSON.stringify({
-        property: 'serviceName.value',
-        operator: 'is',
-        value: this.serviceName,
-      }),
-    });
+    return this.coreConfig.isRegion(['EU', 'CA'])
+      ? VIEW_SUPPORT_TICKET
+      : this.coreURLBuilder.buildURL('dedicated', '#/support/tickets', {
+          filters: JSON.stringify({
+            property: 'serviceName.value',
+            operator: 'is',
+            value: this.serviceName,
+          }),
+        });
   }
 
   getCreateNewTicketUrl() {
-    return this.coreURLBuilder.buildURL('dedicated', '#/support/tickets/new');
+    return this.coreConfig.isRegion(['EU', 'CA'])
+      ? SUPPORT_TICKET_URL
+      : this.coreURLBuilder.buildURL('dedicated', '#/support/tickets/new');
   }
 
   trackClick(trackText) {

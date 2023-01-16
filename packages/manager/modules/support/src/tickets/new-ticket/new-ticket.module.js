@@ -60,8 +60,13 @@ angular
           },
         },
         resolve: {
-          goToTickets: /* @ngInject */ ($state) => () =>
-            $state.go('support.tickets'),
+          goToTickets: /* @ngInject */ ($state, coreConfig, $window) => () =>
+            !coreConfig.isRegion('US')
+              ? $window.open(
+                  'https://help.ovhcloud.com/csm?id=csm_cases_requests',
+                  '_blank',
+                )
+              : $state.go('support.tickets'),
           categoryName: /* @ngInject */ ($transition$) =>
             $transition$.params().categoryName,
           serviceName: /* @ngInject */ ($transition$) =>

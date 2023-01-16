@@ -50,18 +50,18 @@ const useUsefulLinks = (): UseUsefulLinks => {
       },
       {
         id: 'tickets',
-        href: navigation.getURL('dedicated', '#/ticket'),
+        href: ['EU', 'CA'].includes(region) ? (constants[region]?.viewSupportTicketsUrl): navigation.getURL('dedicated', '#/ticket'),
         tracking: `${trackingPrefix}::go-to-tickets`,
         icon: 'oui-icon oui-icon-envelop_concept',
       },
       ...(['EU', 'CA'].includes(region)
         ? [
-            {
-              id: 'createTicket',
-              href: navigation.getURL('dedicated', '#/support/tickets/new'),
+          {
+            id: 'createTicket',
+              href: constants[region]?.supportTicketUrl,
               tracking: `${trackingPrefix}::go-to-create-ticket`,
               icon: 'oui-icon oui-icon-user-support_concept',
-            },
+          },
           ]
         : []),
     ];

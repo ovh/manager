@@ -1,6 +1,6 @@
 import { Region } from '@ovh-ux/manager-config';
 
-const helpRoot = 'https://help-beta.ovhcloud.com/csm';
+const helpRoot = 'https://help.ovhcloud.com/csm';
 const homeIndex = '-home?id=csm_index';
 
 interface UsefulLinks {
@@ -8,6 +8,8 @@ interface UsefulLinks {
     [key in string]: string;
   };
   tasks: string;
+  supportTicketUrl: string;
+  viewSupportTicketsUrl: string;
 }
 type UsefulLinkConstants = {
   [key in Region]: UsefulLinks;
@@ -30,6 +32,8 @@ const consts: UsefulLinkConstants = {
       TN: `${helpRoot}/fr-tn${homeIndex}`,
     },
     tasks: 'https://www.status-ovhcloud.com/',
+    supportTicketUrl: 'https://help.ovhcloud.com/csm?id=contact_us_ovh',
+    viewSupportTicketsUrl: 'https://help.ovhcloud.com/csm?id=csm_cases_requests',
   },
   CA: {
     help: {
@@ -42,12 +46,16 @@ const consts: UsefulLinkConstants = {
       WS: `${helpRoot}/es${homeIndex}`,
     },
     tasks: 'https://www.status-ovhcloud.com/',
+    supportTicketUrl: 'https://help.ovhcloud.com/csm?id=contact_us_ovh',
+    viewSupportTicketsUrl: 'https://help.ovhcloud.com/csm?id=csm_cases_requests',
   },
   US: {
     help: {
       US: 'https://us.ovhcloud.com/support',
     },
     tasks: '',
+    supportTicketUrl: '',
+    viewSupportTicketsUrl: '',
   },
 };
 
