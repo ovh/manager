@@ -1376,5 +1376,7 @@
   "hosting_dashboard_tabs_dropdown": "More",
   "hosting_dashboard_service_datacenter_gra": "Gravelines",
   "hosting_dashboard_service_datacenter_gra3": "Gravelines 3",
-  "hosting_dashboard_service_datacenter_bhs": "Beauharnois"
+  "hosting_dashboard_service_datacenter_bhs": "Beauharnois",
+  "hosting_configuration_tab_modules_create_step1_module_default_path_part_1": "The default installation directory is {{t0}}.",
+  "hosting_configuration_tab_modules_create_step1_module_default_path_part_2": "Please select advanced mode to install it in another directory."
 }
