@@ -1,0 +1,14 @@
+<div
+    class="sidebar-menu col-md-3 col-lg-2"
+    data-sidebar-menu
+    data-sidebar-namespace="$ctrl.namespace"
+    data-ng-class="{ 'nav-open': $ctrl.isOpen }"
+></div>
+<div
+    class="oui-navbar-backdrop"
+    aria-hidden="true"
+    tabindex="-1"
+    ng-class="{ 'oui-navbar-backdrop_active': $ctrl.isOpen }"
+    ng-click="$ctrl.onClick()"
+    role="button"
+></div>
