@@ -53,6 +53,9 @@ export default class AdditionalIpsFloatingIpsEditController {
         this.privateNetworks = privateNetworks;
         this.setDefaultInstance();
         if (!this.ip?.associatedEntity?.gatewayId) {
+          this.instances = this.instances.filter(
+            (instance) => instance.region === this.ip.region,
+          );
           this.isLoading = false;
         } else {
           this.loadInstanceToEdit();
@@ -93,16 +96,16 @@ export default class AdditionalIpsFloatingIpsEditController {
   }
 
   setDefaultPrivateNetwork() {
-    this.privateNetwork = this.privateNetworks.find(
+    this.privateNetwork = this.privateNetworks?.find(
       (privateNetwork) => privateNetwork.ip === this.ip.associatedEntity.ip,
     );
   }
 
   loadPrivateNetworks(instance) {
-    this.privateNetworks = instance.ipAddresses.filter(
+    this.privateNetworks = instance?.ipAddresses.filter(
       (ipAddress) => ipAddress.type === 'private',
     );
-    [this.privateNetwork] = this.privateNetworks;
+    [this.privateNetwork] = this.privateNetworks ? this.privateNetworks : [];
   }
 
   onCancelClick() {
