@@ -11,6 +11,7 @@ export default class WebAppCtrl {
     this.$translate = $translate;
     this.isTopLevelApplication = isTopLevelApplication();
     this.shell = getShellClient();
+    this.hasContainerSidebar = !!window.top.OVH_CONTAINER_SIDEBAR;
     this.shell.ux.isMenuSidebarVisible().then((isMenuSidebarVisible) => {
       this.isMenuSidebarVisible = isMenuSidebarVisible;
     });

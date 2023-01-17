@@ -31,13 +31,37 @@
                 </a>
             </div>
             <!-- /Skip to main content -->
+            <div data-ng-if="!$ctrl.hasContainerSidebar">
+                <button
+                    type="button"
+                    class="navbar-toggle position-absolute bg-transparent border-0"
+                    data-ng-if="$ctrl.sidebarIsOpen"
+                    data-ng-click="$ctrl.closeSidebar()"
+                ></button>
+            </div>
             <div
                 class="container-fluid h-100 w-100"
                 style="overflow: auto"
                 data-ui-view="app"
             >
                 <div class="row">
-                    <div class="px-0 col-lg-12">
+                    <ovh-manager-server-sidebar
+                        universe="'WEB'"
+                        data-is-open="$ctrl.sidebarIsOpen"
+                        data-on-click="$ctrl.closeSidebar()"
+                        data-ng-if="!$ctrl.hasContainerSidebar && !$ctrl.isMenuSidebarVisible"
+                    >
+                    </ovh-manager-server-sidebar>
+                    <div
+                        class="px-0"
+                        data-ng-class="{
+                            'col-lg-12': $ctrl.hasContainerSidebar || $ctrl.isMenuSidebarVisible,
+                            'col-lg-10': !$ctrl.hasContainerSidebar && !$ctrl.isMenuSidebarVisible,
+                            'col-md-9': !$ctrl.hasContainerSidebar && !$ctrl.isMenuSidebarVisible,
+                            'col-md-offset-3': !$ctrl.hasContainerSidebar && !$ctrl.isMenuSidebarVisible,
+                            'col-lg-offset-2': !$ctrl.hasContainerSidebar && !$ctrl.isMenuSidebarVisible,
+                        }"
+                    >
                         <!-- Skip content target -->
                         <div class="skiptarget">
                             <a id="maincontent" href>-</a>
