@@ -24,6 +24,12 @@
             data-ng-controller="TelecomAppCtrl as $ctrl"
             data-ng-cloak
         >
+            <div
+                class="oui-navbar-backdrop oui-navbar-backdrop_active"
+                data-ng-style="{ zIndex: 1010 }"
+                data-ng-if="!$ctrl.hasContainerSidebar && $ctrl.displayFallbackMenu"
+                data-ng-click="$ctrl.closeSidebar()"
+            ></div>
             <div>
                 <!-- Skip to main content -->
                 <div class="skipnav">
@@ -43,10 +49,23 @@
                 >
                     <div class="container-fluid h-100" data-ui-view="root">
                         <div class="row h-100">
+                            <!-- SIDE MENU -->
+                            <ovh-manager-server-sidebar
+                                data-ng-if="!$ctrl.hasContainerSidebar && $ctrl.sidebarUniverse && !$ctrl.isMenuSidebarVisible"
+                                universe="$ctrl.sidebarUniverse"
+                            >
+                            </ovh-manager-server-sidebar>
                             <!-- CONTENT -->
                             <div
                                 id="content"
-                                class="h-100 col-lg-12"
+                                class="h-100"
+                                data-ng-class="{
+                                    'col-lg-12': $ctrl.hasContainerSidebar || $ctrl.isMenuSidebarVisible,
+                                    'col-lg-10': !$ctrl.hasContainerSidebar && !$ctrl.isMenuSidebarVisible,
+                                    'col-md-9': !$ctrl.hasContainerSidebar && !$ctrl.isMenuSidebarVisible,
+                                    'col-md-offset-3': !$ctrl.hasContainerSidebar && !$ctrl.isMenuSidebarVisible,
+                                    'col-lg-offset-2': !$ctrl.hasContainerSidebar && !$ctrl.isMenuSidebarVisible,
+                                }"
                                 style="overflow: auto;"
                             >
                                 <div class="position-absolute w-100">
