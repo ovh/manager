@@ -42,17 +42,36 @@ export default class AdditionalIpsFloatingIpsEditController {
         privateNetworks: this.PciProjectAdditionalIpService.getPrivateNetworks(
           this.projectId,
         ),
+        associatedInstances: this.PciProjectAdditionalIpService.getAssociatedInstance(
+          this.projectId,
+          this.ip.region,
+        ),
       })
-      .then(({ instances, privateNetworks }) => {
+      .then(({ instances, privateNetworks, associatedInstances }) => {
+        const associatedInstance = associatedInstances?.map(
+          ({ associatedEntity }) => {
+            return associatedEntity?.id ? associatedEntity?.id : null;
+          },
+        );
         this.instances = instances.filter(
           (instance) =>
             !instance.ipAddresses.some(
               (ipAddress) => ipAddress.type !== 'private',
             ),
         );
+        this.instances = associatedInstance
+          ? this.instances.filter(
+              (instance) => !associatedInstance.includes(instance.id),
+            )
+          : this.instances;
         this.privateNetworks = privateNetworks;
-        this.setDefaultInstance();
         if (!this.ip?.associatedEntity?.gatewayId) {
+          this.instances = this.instances.filter(
+            (instance) => instance.region === this.ip.region,
+          );
+          this.setDefaultInstance();
+          this.privateNetwork = this.instance?.ipAddresses[0];
+          this.privateNetworks = [this.privateNetwork];
           this.isLoading = false;
         } else {
           this.loadInstanceToEdit();
@@ -77,15 +96,19 @@ export default class AdditionalIpsFloatingIpsEditController {
           (ipAddress) => ipAddress.networkId === privateNetworkId,
         ),
       );
-      this.setDefaultInstance();
-      this.loadPrivateNetworks(this.instance);
-      this.setDefaultPrivateNetwork();
+      if (this.instances.length > 0) {
+        this.setDefaultInstance();
+        this.loadPrivateNetworks(this.instance);
+        this.setDefaultPrivateNetwork();
+      } else {
+        this.instance = null;
+      }
       this.isLoading = false;
     });
   }
 
   setDefaultInstance() {
-    this.instance = this.ip ? this.ip.instance : null;
+    [this.instance] = this.instances ? this.instances : null;
 
     if (!this.instance && this.ip && this.ip.routedTo) {
       this.instance = find(this.instances, { id: this.ip.routedTo });
@@ -93,16 +116,18 @@ export default class AdditionalIpsFloatingIpsEditController {
   }
 
   setDefaultPrivateNetwork() {
-    this.privateNetwork = this.privateNetworks.find(
-      (privateNetwork) => privateNetwork.ip === this.ip.associatedEntity.ip,
+    const [firstInstance] = this.instances;
+    this.privateNetwork = this.privateNetworks?.find(
+      (privateNetwork) =>
+        privateNetwork.ip === firstInstance?.ipAddresses[0]?.ip,
     );
   }
 
   loadPrivateNetworks(instance) {
-    this.privateNetworks = instance.ipAddresses.filter(
+    this.privateNetworks = instance?.ipAddresses.filter(
       (ipAddress) => ipAddress.type === 'private',
     );
-    [this.privateNetwork] = this.privateNetworks;
+    [this.privateNetwork] = this.privateNetworks ? this.privateNetworks : [];
   }
 
   onCancelClick() {
