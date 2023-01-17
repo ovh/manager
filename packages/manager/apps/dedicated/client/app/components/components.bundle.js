@@ -15,6 +15,7 @@ import './paymentMethod/vantiv/billing-vantiv.constants';
 import './paymentMethod/vantiv/billing-vantiv.factory';
 import './services/services.constants';
 import './services/services.service';
+import './sidebar-menu/account/sidebar-menu-account.config';
 import './sshkeySwitch/sshkeySwitch';
 import './stepper/components/button/navigation-button.component';
 import './stepper/components/button/navigation-button.constants';
