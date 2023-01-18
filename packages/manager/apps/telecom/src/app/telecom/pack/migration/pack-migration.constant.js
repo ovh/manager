@@ -14,4 +14,14 @@ export const PROCESS_STEP = {
 
 export const QUANTITY = 1;
 
-export default { PROMO_DISPLAY, PROCESS_STEP, QUANTITY };
+export const MODEM_LIST = ['yes', 'recycled'];
+
+export const MODEM_OPTION_NAME = 'modem';
+
+export default {
+  PROMO_DISPLAY,
+  PROCESS_STEP,
+  QUANTITY,
+  MODEM_LIST,
+  MODEM_OPTION_NAME,
+};

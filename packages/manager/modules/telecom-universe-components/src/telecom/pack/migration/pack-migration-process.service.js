@@ -8,7 +8,7 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import values from 'lodash/values';
 
-import { OPTION_NAME } from './pack-migration-process.constant';
+import { OPTION_NAME, MODEM_LIST } from './pack-migration-process.constant';
 
 /**
  *  Service used to share data between differents steps of the pack migration process.
@@ -169,6 +169,13 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
     if (migrationProcess.contactPhone) {
       Object.assign(postParams, {
         contactPhone: migrationProcess.contactPhone,
+      });
+    }
+
+    // Set modem if one type is selected
+    if (MODEM_LIST.includes(migrationProcess.selectedOffer.modem)) {
+      assign(postParams, {
+        modem: migrationProcess.selectedOffer.modem,
       });
     }
 
