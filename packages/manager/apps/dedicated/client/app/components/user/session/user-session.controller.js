@@ -28,7 +28,6 @@ angular.module('App').controller(
       this.shell.ux.isMenuSidebarVisible().then((isMenuSidebarVisible) => {
         this.isMenuSidebarVisible = isMenuSidebarVisible;
       });
-      this.hasContainerSidebar = !!window.top.OVH_CONTAINER_SIDEBAR;
     }
 
     $onInit() {

@@ -27,8 +27,6 @@ export default class TelecomAppCtrl {
 
     this.URL_SURVEY_SYSTRAN = URL_SURVEY_SYSTRAN;
 
-    this.hasContainerSidebar = !!window.top.OVH_CONTAINER_SIDEBAR;
-
     this.shell.ux.isMenuSidebarVisible().then((isMenuSidebarVisible) => {
       this.isMenuSidebarVisible = isMenuSidebarVisible;
     });

@@ -22,13 +22,6 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'font-awesome/css/font-awesome.min.css';
 import './index.scss';
 
-declare global {
-    interface Window {
-        OVH_CONTAINER_SIDEBAR: boolean;
-    }
-}
-window.OVH_CONTAINER_SIDEBAR = true;
-
 // avoid container inception
 if (window.top !== window.self) {
   window.top.location.href = window.self.location.href;
