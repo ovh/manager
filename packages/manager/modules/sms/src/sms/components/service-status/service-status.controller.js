@@ -17,17 +17,18 @@ export default class SmsServiceStatusController {
   onResetPasswordBtnClick(state) {
     this.isOpenModal = state;
     if (state) {
-      this.atInternet.trackClick({
-        name: `${this.trackingPrefix}new-password`,
+      this.trackClick('new-password');
+      this.atInternet.trackPage({
+        name: `${this.trackingPrefix}newPassword`,
       });
+    } else {
+      this.trackClick('newPassword::cancel');
     }
   }
 
   submitResetPassword() {
     this.isSubmitting = true;
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}new-password-confirm`,
-    });
+    this.trackClick('newPassword::confirm');
     return this.smsService
       .postResetSmppPassword(this.serviceName)
       .then(() =>
@@ -49,5 +50,12 @@ export default class SmsServiceStatusController {
         this.isOpenModal = false;
         this.isSubmitting = false;
       });
+  }
+
+  trackClick(hit) {
+    return this.atInternet.trackClick({
+      name: `${this.trackingPrefix}${hit}`,
+      type: 'action',
+    });
   }
 }

@@ -6,6 +6,7 @@ export default {
     goToDashboard: '<',
     serviceName: '<',
     isSmppAccount: '<',
+    trackClick: '<',
   },
   controller,
   template,

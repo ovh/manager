@@ -7,6 +7,12 @@ export default class SmsCreditTransferCtrl {
   }
 
   $onInit() {
+    this.DASHBOARD_TRACKING_PREFIX = `sms::service::${
+      this.isSmppAccount ? 'dashboard-smpp' : 'dashboard'
+    }`;
+    this.atInternet.trackPage({
+      name: `${this.DASHBOARD_TRACKING_PREFIX}::creditTransfer`,
+    });
     this.loading = true;
     this.model = {
       serviceName: null,
@@ -46,11 +52,9 @@ export default class SmsCreditTransferCtrl {
   onSubmit() {
     this.submitting = true;
 
-    this.atInternet.trackClick({
-      name: `sms::service::${
-        this.isSmppAccount ? 'dashboard-smpp' : 'dashboard'
-      }::transfer-credit-confirm`,
-    });
+    this.trackClick(
+      `${this.DASHBOARD_TRACKING_PREFIX}::creditTransfer::confirm`,
+    );
 
     const params = {
       smsAccountTarget: this.model.smsAccountTarget.name,
@@ -78,6 +82,9 @@ export default class SmsCreditTransferCtrl {
   }
 
   onCancel() {
+    this.trackClick(
+      `${this.DASHBOARD_TRACKING_PREFIX}::creditTransfer::cancel`,
+    );
     return this.goToDashboard();
   }
 }
