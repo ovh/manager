@@ -24,17 +24,24 @@ export default class AllowedIpsController {
   openModal(modalType, ip = null) {
     if (modalType === 'add') {
       this.trackClick('add-ip');
+      this.trackPage('add-ip');
       this.isOpenModalAddIp = true;
     } else {
       this.trackClick('delete-ip');
+      this.trackPage('delete-ip');
       this.removeIp = ip;
       this.isOpenModalRemoveIp = true;
     }
   }
 
-  closeModal() {
-    this.isOpenModalAddIp = false;
-    this.isOpenModalRemoveIp = false;
+  closeModal(modalType) {
+    if (modalType === 'add') {
+      this.trackClick('add-ip::cancel');
+      this.isOpenModalAddIp = false;
+    } else {
+      this.trackClick('delete-ip::cancel');
+      this.isOpenModalRemoveIp = false;
+    }
   }
 
   getAllowedIps() {
@@ -107,6 +114,13 @@ export default class AllowedIpsController {
   trackClick(hit) {
     return this.atInternet.trackClick({
       name: `${TRACKING_PREFIX}${hit}`,
+      type: 'action',
+    });
+  }
+
+  trackPage(page) {
+    return this.atInternet.trackPage({
+      name: `${TRACKING_PREFIX}${page}`,
     });
   }
 }

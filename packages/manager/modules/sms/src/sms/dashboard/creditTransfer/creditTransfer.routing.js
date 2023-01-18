@@ -34,5 +34,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('sms_creditTransfer_title'),
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

@@ -58,9 +58,9 @@
                         data-primary-action="$ctrl.submitAddIp()"
                         data-primary-disabled="$ctrl.isSubmitting || allowIpsAddForm.$invalid"
                         data-primary-label="{{:: 'sms_options_smpp_parameter_allowed_ips_modal_add_button_primary' | translate }}"
-                        data-secondary-action="$ctrl.closeModal()"
+                        data-secondary-action="$ctrl.closeModal('add')"
                         data-secondary-label="{{:: 'sms_options_smpp_parameter_allowed_ips_modal_button_secondary' | translate }}"
-                        data-on-dismiss="$ctrl.closeModal()"
+                        data-on-dismiss="$ctrl.closeModal('add')"
                     >
                         <oui-field
                             data-label="{{ 'sms_options_smpp_parameter_allowed_ips_modal_label_ip' | translate }}"
