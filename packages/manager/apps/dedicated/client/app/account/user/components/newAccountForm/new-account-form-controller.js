@@ -254,13 +254,6 @@ export default class NewAccountFormController {
       }
     });
 
-    // nullify empty values
-    Object.entries(model).forEach(([key, value]) => {
-      if (!value) {
-        model[key] = null;
-      }
-    });
-
     // customer code does not belong to /rules, only displayed in the form
     // put on /me does not handle email modification
     model = Object.fromEntries(
