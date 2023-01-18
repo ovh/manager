@@ -405,7 +405,7 @@ export default class NewAccountFormFieldController {
   dateFormat() {
     return this.$locale.DATETIME_FORMATS.shortDate
       .replace('dd', 'd')
-      .replace('MM', 'm')
-      .replace('y', 'Y');
+      .replace(/MM|M/g, 'm')
+      .replace(/yy|y/g, 'Y');
   }
 }
