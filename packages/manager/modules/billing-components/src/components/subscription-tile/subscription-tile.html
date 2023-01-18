@@ -40,12 +40,13 @@
     >
         <oui-tile-description>
             <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
-            <div data-ng-if="!$ctrl.isLoading">
+            <p data-ng-if="!$ctrl.isLoading">
                 <span
-                    class="oui-badge oui-badge_error"
+                    class="oui-badge oui-badge_error text-wrap"
                     data-ng-if="!$ctrl.service.isEngaged() && !$ctrl.serviceInfos.hasPendingEngagement"
                     data-translate="manager_billing_subscription_engagement_status_none"
-                ></span>
+                >
+                </span>
                 <span
                     data-ng-if="$ctrl.service.isEngaged() && !$ctrl.service.isEngagementExpired() && !$ctrl.serviceInfos.hasPendingEngagement"
                     data-translate="{{ :: $ctrl.isAutoCommitmentStrategy ?
@@ -54,17 +55,18 @@
                     data-translate-values="{ endDate: $ctrl.service.engagementEndDate || $ctrl.service.expirationDate }"
                 ></span>
                 <span
+                    class="oui-badge oui-badge_error text-wrap"
                     data-ng-if="$ctrl.service.isEngagementExpired() && !$ctrl.serviceInfos.hasPendingEngagement"
-                    class="oui-badge oui-badge_error"
                     data-translate="manager_billing_subscription_engagement_status_engaged_expired"
                     data-translate-values="{ endDate: $ctrl.service.engagementEndDate || $ctrl.service.expirationDate }"
-                ></span>
+                >
+                </span>
                 <span
                     data-ng-if="$ctrl.serviceInfos.hasPendingEngagement"
                     data-translate="manager_billing_subscription_engagement_status_commitement_pending"
                     data-translate-values="{ nextBillingDate: $ctrl.service.nextBillingDate }"
                 ></span>
-            </div>
+            </p>
             <a
                 data-ng-if="!$ctrl.isLoading && $ctrl.constructor.showCommit($ctrl.serviceInfos, $ctrl.service.isEngaged(), $ctrl.highlightEngagement)"
                 class="oui-link_icon"
