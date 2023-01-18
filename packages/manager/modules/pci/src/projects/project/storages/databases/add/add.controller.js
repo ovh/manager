@@ -340,13 +340,15 @@ export default class {
     const flavorPrice = this.showMonthlyPrices
       ? this.model.flavor.monthlyPrice
       : this.model.flavor.hourlyPrice;
-    const additionalDiskPrice = this.showMonthlyPrices
-      ? this.model.flavor.monthlyPricePerGB
-      : this.model.flavor.hourlyPricePerGB;
+    const additionalDiskPrice =
+      (this.showMonthlyPrices
+        ? this.model.flavor.monthlyPricePerGB
+        : this.model.flavor.hourlyPricePerGB
+      ).priceInUcents || 0;
     return (
       this.model.plan.nodesCount *
       (flavorPrice.priceInUcents +
-        additionalDiskPrice.priceInUcents * this.model.disk.additionalDiskSize)
+        additionalDiskPrice * this.model.disk.additionalDiskSize)
     );
   }
 
@@ -354,13 +356,15 @@ export default class {
     const flavorPrice = this.showMonthlyPrices
       ? this.model.flavor.monthlyPrice
       : this.model.flavor.hourlyPrice;
-    const additionalDiskPrice = this.showMonthlyPrices
-      ? this.model.flavor.monthlyPricePerGB
-      : this.model.flavor.hourlyPricePerGB;
+    const additionalDiskPrice =
+      (this.showMonthlyPrices
+        ? this.model.flavor.monthlyPricePerGB
+        : this.model.flavor.hourlyPricePerGB
+      ).tax || 0;
     return (
       this.model.plan.nodesCount *
       (flavorPrice.tax +
-        this.model.disk.additionalDiskSize * additionalDiskPrice.tax)
+        this.model.disk.additionalDiskSize * additionalDiskPrice)
     );
   }
 
