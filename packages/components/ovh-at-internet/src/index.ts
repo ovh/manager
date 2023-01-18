@@ -2,11 +2,8 @@ import { LegacyTrackingData } from './track';
 
 declare global {
   interface Window {
-    ATInternet: {
-      Tracker: {
-        Tag: ATInternetTag;
-      };
-    };
+    ATInternet: any;
+    pa: any;
   }
 }
 

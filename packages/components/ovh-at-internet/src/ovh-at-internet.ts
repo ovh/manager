@@ -12,7 +12,8 @@ import {
   AT_INTERNET_LEVEL2,
   AT_INTERNET_WEBSITE,
 } from './constants';
-import { ATInternetTagOptions } from '.';
+import { loadManagerTMS } from './manager-tms';
+import { debug } from './utils';
 
 function getPageTrackingData(
   page: LegacyTrackingData,
@@ -41,19 +42,11 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   /**
    * Reference to ATInternet Tag object from their JS library.
    */
-  private atinternetTag: ATInternetTagOptions = null;
+  private tag: any = null;
 
   private trackQueue: Array<IOvhAtInternetTrack> = [];
 
-  // protected defaults;
-  /**
-   * Log arguments if debug is enabled
-   */
-  private logDebugInfos(log: string, logData: unknown): void {
-    if (this.debug) {
-      console.info(log, logData);
-    }
-  }
+  private afterSendEventHook: CallableFunction = null;
 
   getGenericTrackingData(data: LegacyTrackingData): GenericTrackingData {
     const params = {
@@ -63,7 +56,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     if (params.level2 === undefined) {
       params.level2 = '0';
       console.warn(
-        'atinternet level2 attribute undefined: use default unclassified level2 "0". Please fix it!',
+        'tracking level2 attribute undefined: use default unclassified level2 "0". Please fix it!',
       );
     }
 
@@ -104,18 +97,8 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     };
   }
 
-  /**
-   * Check if the service is enabled and if the ATInternet js lib is loaded.
-   */
-  isTagAvailable(): boolean {
-    const isEnabled = this.enabled;
-
-    if (isEnabled && !this.atinternetTag) {
-      console.error('atinternet missing smarttag.js dependency');
-      return false;
-    }
-
-    return isEnabled;
+  canTrack(): boolean {
+    return this.isDefaultSet() && this.enabled && this.tag;
   }
 
   clearTrackQueue(): void {
@@ -131,36 +114,142 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     }
   }
 
-  initTag(): void {
-    this.atinternetTag = new window.ATInternet.Tracker.Tag({
-      ClientSideUserId: { clientSideMode: 'always' },
-      secure: true, // force HTTPS,
-      disableCookie: !this.enabled,
-    });
-    this.processTrackQueue();
+  shouldUsePianoAnalytics() {
+    return (
+      !!window.pa &&
+      ['EU', 'CA'].includes(this.region) &&
+      window.location?.hostname !== 'localhost'
+    );
   }
 
-  getTag(): ATInternetTagOptions {
-    if (!this.atinternetTag) {
-      this.initTag();
+  initTag(withConsent: boolean) {
+    // check if the tag is not already initialized
+    if (this.tag) {
+      return;
     }
-    return this.atinternetTag;
+    // if we don't have consent drop previous tracking attemps
+    if (!withConsent) {
+      this.clearTrackQueue();
+    }
+    if (this.shouldUsePianoAnalytics()) {
+      debug(`tracking init: PianoAnalytics (consent=${withConsent})`);
+      window.pa.setConfigurations({
+        site: 563736, // EU & CA
+        collectDomain: 'https://logs1406.xiti.com', // EU & CA
+        addEventURL: 'true',
+        cookieDomain: (window.location.hostname.match(/\..+/) || [])[0] || '',
+        campaignPrefix: ['at_'],
+      });
+      this.tag = {};
+    } else if (window.ATInternet) {
+      debug(`tracking init: ATInternet (consent=${withConsent})`);
+      this.tag = new window.ATInternet.Tracker.Tag({
+        ClientSideUserId: { clientSideMode: 'always' },
+        secure: true, // force HTTPS,
+        disableCookie: !withConsent,
+      });
+    } else {
+      debug(`tracking init: no backend (consent=${withConsent})`);
+      this.tag = { debug: true };
+    }
+    return Promise.resolve(withConsent ? this.initVisitorId() : null).then(() =>
+      this.processTrackQueue(),
+    );
   }
 
-  init() {
-    // Reference to ATInternet JS lib
-    if (window.ATInternet && this.enabled) {
-      try {
-        this.initTag();
-      } catch (err) {
-        this.atinternetTag = null;
-        console.error('atinternet tag initialization failed', err);
+  initVisitorId() {
+    return loadManagerTMS().then(({ getVisitorId, updateVisitorId }) => {
+      const id = getVisitorId();
+      debug(`tracking tms visitor id = '${id}'`);
+      if (this.shouldUsePianoAnalytics()) {
+        if (id) {
+          window.pa.setVisitorId(id);
+        } else {
+          this.afterSendEventHook = () => {
+            updateVisitorId(window.pa.getVisitorId());
+            this.afterSendEventHook = null;
+          };
+        }
+      } else if (window.ATInternet) {
+        if (id) {
+          this.tag.clientSideUserId.set(id);
+        } else {
+          this.tag.clientSideUserId.get();
+          this.tag.clientSideUserId.store();
+          updateVisitorId(this.tag.clientSideUserId.get());
+        }
       }
+    });
+  }
+
+  init(withConsent: boolean) {
+    try {
+      return this.initTag(withConsent);
+    } catch (err) {
+      console.error('tracking initialization failed', err);
+      this.tag = null;
+    }
+  }
+
+  onConsentModalDisplay() {
+    debug('tracking consent modal display');
+    if (this.shouldUsePianoAnalytics()) {
+      window.pa.privacy.createMode('beforeConsent', false);
+      window.pa.privacy.include.property('*', 'beforeConsent');
+      window.pa.privacy.include.event('*', 'beforeConsent');
+      window.pa.privacy.exclude.storageKey('pa_uid', ['beforeConsent']);
+      window.pa.privacy.setMode('beforeConsent');
+    }
+  }
+
+  onUserConsentFromModal(consent: boolean) {
+    debug(`tracking consent modal ${consent ? 'accept' : 'decline'}`);
+    if (this.shouldUsePianoAnalytics() && consent) {
+      window.pa.privacy.setMode('optin');
+    } else if (window.ATInternet) {
+      window.ATInternet.Utils.consentReceived(consent);
+    }
+    return this.init(consent)
+      .then(() => {
+        if (consent) {
+          this.trackClick({
+            type: 'action',
+            name: 'cookie-banner-manager::accept',
+          } as any);
+        } else {
+          this.trackClick({
+            type: 'action',
+            name: 'cookie-banner-manager::decline',
+          } as any);
+        }
+      })
+      .finally(() => {
+        this.setEnabled(consent);
+        if (!consent && this.shouldUsePianoAnalytics()) {
+          document.cookie = `_pctx=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+          document.cookie = `_pcid=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+        }
+      });
+  }
+
+  sendEvent(type: string, data: any) {
+    debug('tracking send', type, data);
+    if (this.shouldUsePianoAnalytics()) {
+      const trackingData = { ...filterTrackingData(data) };
+      window.pa.setUser(trackingData.user_id, trackingData.user_category);
+      delete trackingData.user_id;
+      delete trackingData.user_category;
+      window.pa.sendEvent(type, trackingData);
+    } else if (window.ATInternet) {
+      this.tag.events.send(type, filterTrackingData(data));
+    }
+    if (this.afterSendEventHook) {
+      this.afterSendEventHook();
     }
   }
 
   trackMVTest(data: LegacyTrackingData): void {
-    if (this.isTagAvailable()) {
+    if (this.canTrack()) {
       const tracking = {
         ...this.getGenericTrackingData(data),
         mv_test: data.test,
@@ -168,11 +257,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         mv_creation: data.creation,
       };
       if (tracking.mv_test) {
-        this.atinternetTag.events.send(
-          'mv_test.display',
-          filterTrackingData(tracking),
-        );
-        this.logDebugInfos('atinternet.trackMVTest: ', tracking);
+        this.sendEvent('mv_test.display', filterTrackingData(tracking));
       } else {
         console.error(
           'atinternet.trackPage invalid data: missing name attribute',
@@ -188,17 +273,13 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   }
 
   trackPage(data: LegacyTrackingData): void {
-    if (this.isTagAvailable()) {
+    if (this.canTrack()) {
       const tracking = {
         ...this.getGenericTrackingData(data),
         ...getPageTrackingData(data),
       };
       if (tracking.page) {
-        this.atinternetTag.events.send(
-          'page.display',
-          filterTrackingData(tracking),
-        );
-        this.logDebugInfos('atinternet.trackpage: ', tracking);
+        this.sendEvent('page.display', filterTrackingData(tracking));
       } else {
         console.error(
           'atinternet.trackPage invalid data: missing name attribute',
@@ -214,7 +295,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   }
 
   trackClick(data: LegacyTrackingData): void {
-    if (this.isTagAvailable()) {
+    if (this.canTrack()) {
       const pageTrackingData = getPageTrackingData(data);
       const tracking = {
         ...this.getGenericTrackingData(data),
@@ -224,11 +305,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         click_chapter3: pageTrackingData.page_chapter3,
       };
       if (['action', 'navigation', 'download', 'exit'].includes(data.type)) {
-        this.atinternetTag.events.send(
-          'click.action',
-          filterTrackingData(tracking),
-        );
-        this.logDebugInfos('atinternet.trackclick: ', tracking);
+        this.sendEvent('click.action', filterTrackingData(tracking));
       } else {
         console.error(
           "atinternet.trackClick invalid or missing 'type' attribute for data",
@@ -241,7 +318,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   }
 
   trackEvent(data: LegacyTrackingData): void {
-    if (this.isTagAvailable()) {
+    if (this.canTrack()) {
       if (!data.page) {
         console.error('atinternet.trackEvent missing page attribute: ', data);
         return;
@@ -255,11 +332,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         ...getPageTrackingData(data),
         event: data.event,
       };
-      this.atinternetTag.events.send(
-        'page.display',
-        filterTrackingData(tracking),
-      );
-      this.logDebugInfos('atinternet.trackEvent: ', data);
+      this.sendEvent('page.display', filterTrackingData(tracking));
     } else {
       this.trackQueue.push({ type: 'trackEvent', data });
     }
@@ -267,11 +340,8 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
 
   trackImpression(data: LegacyTrackingData): void {
     const tracking = this.getImpressionTrackingData(data);
-    if (this.isTagAvailable()) {
-      this.atinternetTag.events.send(
-        'publisher.display',
-        filterTrackingData(tracking),
-      );
+    if (this.canTrack()) {
+      this.sendEvent('publisher.display', filterTrackingData(tracking));
       if (!tracking.onsitead_campaign) {
         console.error(
           'atinternet.trackImpression missing data attribute: ',
@@ -279,7 +349,6 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         );
         return;
       }
-      this.logDebugInfos('atinternet.trackImpression: ', tracking);
     } else {
       this.trackQueue.push({ type: 'trackImpression', data });
     }
@@ -287,11 +356,8 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
 
   trackClickImpression({ click: data }: { click: LegacyTrackingData }): void {
     const tracking = this.getImpressionTrackingData(data);
-    if (this.isTagAvailable()) {
-      this.atinternetTag.events.send(
-        'publisher.click',
-        filterTrackingData(tracking),
-      );
+    if (this.canTrack()) {
+      this.sendEvent('publisher.click', filterTrackingData(tracking));
       if (!tracking.onsitead_campaign) {
         console.error(
           'atinternet.trackClickImpression missing data attribute: ',
@@ -299,7 +365,6 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         );
         return;
       }
-      this.logDebugInfos('atinternet.trackClickImpression: ', tracking);
     } else {
       this.trackQueue.push({ type: 'trackClickImpression', data });
     }

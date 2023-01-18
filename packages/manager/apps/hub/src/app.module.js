@@ -56,7 +56,7 @@ export default async (containerEl, shellClient) => {
     .module(
       moduleName,
       [
-        initHubAtInternet(shellClient.tracking),
+        initHubAtInternet(environment.getRegion(), shellClient.tracking),
         dashboard,
         errorPage,
         'ngAnimate',
