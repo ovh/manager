@@ -749,7 +749,7 @@
   "signup_enum_IN_area_IN-WB": "West Bengal",
   "signup_section_identification": "Su identificación de cliente",
   "signup_section_activity": "Actividad",
-  "signup_section_language": "Preferencias de idioma",
+  "signup_section_language": "Configuración de su área de cliente",
   "signup_field_required_error": "Complete este campo.",
   "signup_field_pattern_error": "Introduzca un formato válido.",
   "signup_enum_managerLanguage_de_DE": "Alemán",
