@@ -27,7 +27,7 @@ export const buildURLIfStandalone = (appConfig: Application) => {
     new URLSearchParams(window.location.search).entries(),
   );
   // check for container redirection ...
-  if (appConfig.container?.enabled === true) {
+  if (appConfig?.container?.enabled === true) {
     // ... but skip redirection if we are forcing standalone
     if (!queryParams.hasOwnProperty('standalone')) {
       const targetURL = new URL(appConfig.publicURL);
@@ -61,7 +61,8 @@ export function initStandaloneClientApi(
   applications: Record<string, Application>,
 ) {
   const appConfig = applications[appId];
-  if (!appConfig) {
+
+  if (!appConfig && window.location.hostname !== 'localhost') {
     throw new Error(`Unknown application '${appId}'`);
   }
 
