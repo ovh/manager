@@ -1,4 +1,4 @@
-<div>
+<p>
     <span
         class="oui-badge oui-badge_error"
         data-ng-if="$ctrl.service.hasDebt()"
@@ -7,7 +7,7 @@
     </span>
     <span
         data-ng-if="$ctrl.shouldHideAutorenewStatus() && !$ctrl.service.isResiliated()"
-        >-</span
+    >-</span
     >
     <span
         data-ng-if="$ctrl.shouldHideAutorenewStatus() && $ctrl.service.isResiliated()"
@@ -16,7 +16,7 @@
     >
     </span>
     <span
-        class="oui-badge"
+        class="oui-badge text-wrap"
         data-ng-class="{
         'oui-badge_error': $ctrl.SERVICE_STATES.error.includes($ctrl.service.getRenew()),
         'oui-badge_warning': $ctrl.SERVICE_STATES.warning.includes($ctrl.service.getRenew()),
@@ -30,7 +30,7 @@
         type="button"
         class="oui-popover-button"
         data-ng-if="$ctrl.service.statusHelp"
-        oui-popover="{{ $ctrl.service.statusHelp }}"
-        oui-popover-placement="bottom"
+        data-oui-popover="{{ $ctrl.service.statusHelp }}"
+        data-oui-popover-placement="bottom"
     ></button>
-</div>
+</p>
