@@ -244,7 +244,7 @@
                         title="{{:: 'sms_order_order' | translate}}"
                         target="_blank"
                         data-track-on="click"
-                        data-track-name="sms::order::display_order"
+                        data-track-name="sms::order::display_order::{{$ctrl.order.channel}}::{{$ctrl.getSelectedCredit()}}"
                         data-track-type="action"
                     >
                         <span data-translate="sms_order_order_url"></span>

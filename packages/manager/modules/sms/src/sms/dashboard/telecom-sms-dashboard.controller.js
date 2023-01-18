@@ -5,8 +5,7 @@ const STATISTICS_FILTER = {
   ALL: 'all',
 };
 
-const RELOAD_CREDITS_HIT_NAME = 'sms::service::dashboard::report::add-credit';
-
+const RELOAD_CREDITS_HIT_NAME = 'report::credit-account';
 export default class {
   /* @ngInject */
   constructor(
@@ -151,8 +150,8 @@ export default class {
     return this.getStatistics();
   }
 
-  static getTrackName() {
-    return RELOAD_CREDITS_HIT_NAME;
+  getTrackName() {
+    return `${this.DASHBOARD_TRACKING_PREFIX}::${RELOAD_CREDITS_HIT_NAME}`;
   }
 
   getStatistics() {
@@ -233,19 +232,16 @@ export default class {
   }
 
   onGoToCreditTransfer() {
-    this.trackClick('report::transfer-credit');
+    this.trackClick(
+      `${this.DASHBOARD_TRACKING_PREFIX}::report::transfer-credit`,
+    );
     return this.goToCreditTransfer();
   }
 
   onGoToCreditOrder() {
-    this.trackClick('report::add-credit');
+    this.trackClick(
+      `${this.DASHBOARD_TRACKING_PREFIX}::report::credit-account`,
+    );
     return this.goToCreditOrder();
-  }
-
-  trackClick(hit) {
-    this.atInternet.trackClick({
-      name: `${this.DASHBOARD_TRACKING_PREFIX}::${hit}`,
-      type: 'action',
-    });
   }
 }
