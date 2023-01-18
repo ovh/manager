@@ -17,5 +17,22 @@
   "pci_projects_project_keystone_upgrade": "Il 23 giugno 2020 avverrà un cambiamento importante. Pianifica in anticipo la migrazione a &lt;strong>Keystone v3&lt;/strong>.",
   "pci_projects_project_keystone_upgrade_more": "Scopri di più",
   "pci_projects_project_quota_warning_message": "Per motivi di sicurezza, al tuo progetto è stata assegnata una quota. Per aumentare la quota disponibile, accedi alla pagina <a data-ui-sref=\"{{ quotaUrl }}\">Quota and localization</a>.",
-  "pci_projects_project_quota_threshold_warning_message": "I tuoi livelli di quote stanno raggiungendo il livello massimo, <a href=\"{{ quotaUrl }}\">clicca qui per gestire le quote</a>."
+  "pci_projects_project_quota_threshold_warning_message": "I tuoi livelli di quote stanno raggiungendo il livello massimo, <a href=\"{{ quotaUrl }}\">clicca qui per gestire le quote</a>.",
+  "pci_projects_project_billing": "Fatturazione",
+  "pci_projects_project_billing_voucher_credit": "Codice promozionale: {{ voucher }}",
+  "pci_projects_project_billing_active_credit_balance": "Valido fino al {{ expirationDate }}",
+  "pci_projects_project_documentation_getting_started_term": "Per cominciare",
+  "pci_projects_project_documentation_getting_started_description": "L'essenziale per cominciare",
+  "pci_projects_project_documentation_interface_term": "Public Cloud",
+  "pci_projects_project_documentation_interface_description": "Familiarizzare",
+  "pci_projects_project_documentation_instances_term": "Istanze",
+  "pci_projects_project_documentation_instances_description": "Gestire le istanze",
+  "pci_projects_project_documentation_billing_term": "Fatturazione",
+  "pci_projects_project_documentation_billing_description": "Comprendere e gestire",
+  "pci_projects_project_documentation_guides_term": "Guide",
+  "pci_projects_project_documentation_guides_description": "Tutte le guide Public Cloud",
+  "pci_projects_project_community_roadmap_term": "Roadmap",
+  "pci_projects_project_community_roadmap_description": "Scopri e partecipa",
+  "pci_projects_project_community_discord_term": "Community",
+  "pci_projects_project_community_discord_description": "Parlane su Discord"
 }
