@@ -833,6 +833,15 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
+  postTerminateQuery(serviceName, databaseId, databaseEngine, queryPid) {
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/database/${databaseEngine}/${databaseId}/currentQueries/cancel`,
+        { pid: queryPid },
+      )
+      .then(({ data }) => data);
+  }
+
   getPools(projectId, databaseId) {
     return this.$http
       .get(
