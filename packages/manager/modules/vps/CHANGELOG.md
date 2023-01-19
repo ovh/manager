@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.29.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.29.3...@ovh-ux/manager-vps@2.29.4) (2023-01-19)
+
+
+### Bug Fixes
+
+* **dedicated:** add vps secondary dns ([8d88ba7](https://github.com/ovh/manager/commit/8d88ba7b815609dd41cd4394476b08b6bd75b2c2))
+
+
+
+
+
 ## [2.29.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.29.2...@ovh-ux/manager-vps@2.29.3) (2023-01-11)
 
 

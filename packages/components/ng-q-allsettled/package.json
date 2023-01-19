@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-q-allsettled",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Copy of kriskowal/q for ovh control panels",
   "keywords": [
     "angularjs",
@@ -41,7 +41,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^12.0.1"
+    "@ovh-ux/component-rollup-config": "^12.0.2"
   },
   "peerDependencies": {
     "angular": "1.6.10"

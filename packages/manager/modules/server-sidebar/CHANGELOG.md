@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.29.0...@ovh-ux/manager-server-sidebar@3.29.1) (2023-01-19)
+
+
+### Bug Fixes
+
+* **server-sidebar:** add CA US links for Kub OCC ([6f4aebb](https://github.com/ovh/manager/commit/6f4aebb44ab935717b895d5cffd37396ffa8f3fd))
+
+
+
+
+
 # [3.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.28.0...@ovh-ux/manager-server-sidebar@3.29.0) (2022-12-19)
 
 

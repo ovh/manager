@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.43.1...@ovh-ux/manager-dedicated@17.44.0) (2023-01-19)
+
+
+### Bug Fixes
+
+* **dedicated.license:** cpanel translation missing for solo and plus ([#8678](https://github.com/ovh/manager/issues/8678)) ([ba958af](https://github.com/ovh/manager/commit/ba958af55020f4dcb6bf0aa8cb536014674fa6d6))
+* **dedicated.monitoring:** update the translation for the monitoring ([#8684](https://github.com/ovh/manager/issues/8684)) ([10cf5d0](https://github.com/ovh/manager/commit/10cf5d0de174cc7e2fec87aa55fee361bc1d9b3e))
+* **dedicated:** add vps secondary dns ([8d88ba7](https://github.com/ovh/manager/commit/8d88ba7b815609dd41cd4394476b08b6bd75b2c2))
+* **dedicated:** map right incoming bandwidth ([178e566](https://github.com/ovh/manager/commit/178e566eb27092c1353ea608cbca1d95bbfb32de))
+* **useraccount:** change the redirect comportement for emailuser ([375c389](https://github.com/ovh/manager/commit/375c389b3fdd98e842d7b185fc59d0f1fc063b11))
+
+
+### Features
+
+* **dedicated:** remove colour column ([3d4d436](https://github.com/ovh/manager/commit/3d4d4364d85ea91c66cf73253bb260fa34262474))
+
+
+### Reverts
+
+* Revert "fix(dedicated.monitoring): update the translation for the monitoring (#8684)" ([dae730b](https://github.com/ovh/manager/commit/dae730b69e871239dfc5a44d553177a60e6e0d52)), closes [#8684](https://github.com/ovh/manager/issues/8684)
+
+
+
+
+
 ## [17.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.43.0...@ovh-ux/manager-dedicated@17.43.1) (2023-01-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

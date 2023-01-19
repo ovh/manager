@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.24.1...@ovh-ux/manager-web@16.24.2) (2023-01-19)
+
+
+### Bug Fixes
+
+* **apps.web.hosting:** avoid html into translation ([8e6caac](https://github.com/ovh/manager/commit/8e6caac496d0366acf867d521f115edc48d49d57))
+* **i18n:** add missing translations [CDS 2047] ([#8756](https://github.com/ovh/manager/issues/8756)) ([6f46d57](https://github.com/ovh/manager/commit/6f46d5736a5dfee79b5dde50b2b0781ada32d259))
+* **web.domains:** fix redirection of expired domain name ([03ec30b](https://github.com/ovh/manager/commit/03ec30b5dbf525d3f70266c9cadabd43901de66e))
+
+
+### Reverts
+
+* Revert "fix(i18n): add missing translations [CDS 2047] (#8756)" ([9c1287d](https://github.com/ovh/manager/commit/9c1287d88fc279547df74e3c1dc3528435c61a97)), closes [#8756](https://github.com/ovh/manager/issues/8756)
+* Revert "fix(apps.web.hosting): avoid html into translation" ([486b5b7](https://github.com/ovh/manager/commit/486b5b70d8ab5a9dbcf4f4c6559f53f8d7894136))
+
+
+
+
+
 ## [16.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.24.0...@ovh-ux/manager-web@16.24.1) (2023-01-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
