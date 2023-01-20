@@ -2,7 +2,10 @@
     <div class="col">
         <div class="d-flex flex-column align-items-center">
             <img data-ng-src="{{::$ctrl.images.stock}}" alt="stock" />
-            <strong data-translate="pci_ai_dashboard_pipeline_stock"></strong>
+            <strong>
+                <span>1.</span>
+                <span data-translate="pci_ai_dashboard_pipeline_stock"></span>
+            </strong>
             <oui-button
                 data-variant="link"
                 data-icon-right="oui-icon-arrow-right"
@@ -20,7 +23,10 @@
     <div class="col">
         <div class="d-flex flex-column align-items-center">
             <img data-ng-src="{{::$ctrl.images.explore}}" alt="explore" />
-            <strong data-translate="pci_ai_dashboard_pipeline_explore"></strong>
+            <strong>
+                <span>2.</span>
+                <span data-translate="pci_ai_dashboard_pipeline_explore"></span>
+            </strong>
             <oui-button
                 class="mb-2"
                 data-variant="link"
@@ -39,14 +45,14 @@
                 <span class="oui-badge px-3 py-1 oui-badge_success">
                     <span
                         data-translate="pci_ai_dashboard_pipeline_running"
-                        data-translate-values="{nbServices: $ctrl.runningNotebooks}"
+                        data-translate-values="{nbServices: $ctrl.itemsByStatus.notebooks.running}"
                     >
                     </span>
                 </span>
                 <span class="oui-badge px-3 py-1 oui-badge_warning">
                     <span
                         data-translate="pci_ai_dashboard_pipeline_stopped"
-                        data-translate-values="{nbServices: $ctrl.stoppedNotebooks}"
+                        data-translate-values="{nbServices: $ctrl.itemsByStatus.notebooks.stopped}"
                     >
                     </span>
                 </span>
@@ -56,7 +62,10 @@
     <div class="col">
         <div class="d-flex flex-column align-items-center">
             <img data-ng-src="{{::$ctrl.images.train}}" alt="train" />
-            <strong data-translate="pci_ai_dashboard_pipeline_train"></strong>
+            <strong>
+                <span>3.</span>
+                <span data-translate="pci_ai_dashboard_pipeline_train"></span>
+            </strong>
             <oui-button
                 class="mb-2"
                 data-variant="link"
@@ -75,14 +84,14 @@
                 <span class="oui-badge px-3 py-1 oui-badge_success">
                     <span
                         data-translate="pci_ai_dashboard_pipeline_running"
-                        data-translate-values="{nbServices: $ctrl.runningTrainings}"
+                        data-translate-values="{nbServices: $ctrl.itemsByStatus.trainings.running}"
                     >
                     </span>
                 </span>
                 <span class="oui-badge px-3 py-1 oui-badge_warning">
                     <span
                         data-translate="pci_ai_dashboard_pipeline_stopped"
-                        data-translate-values="{nbServices: $ctrl.stoppedTrainings}"
+                        data-translate-values="{nbServices: $ctrl.itemsByStatus.trainings.stopped}"
                     >
                     </span>
                 </span>
@@ -92,7 +101,10 @@
     <div class="col">
         <div class="d-flex flex-column align-items-center">
             <img data-ng-src="{{::$ctrl.images.serve}}" alt="serve" />
-            <strong data-translate="pci_ai_dashboard_pipeline_serve"></strong>
+            <strong>
+                <span>4.</span>
+                <span data-translate="pci_ai_dashboard_pipeline_serve"></span>
+            </strong>
             <oui-button
                 class="mb-2"
                 data-variant="link"
@@ -111,14 +123,14 @@
                 <span class="oui-badge px-3 py-1 oui-badge_success">
                     <span
                         data-translate="pci_ai_dashboard_pipeline_running"
-                        data-translate-values="{nbServices: $ctrl.runningApps}"
+                        data-translate-values="{nbServices: $ctrl.itemsByStatus.apps.running}"
                     >
                     </span>
                 </span>
                 <span class="oui-badge px-3 py-1 oui-badge_warning">
                     <span
                         data-translate="pci_ai_dashboard_pipeline_stopped"
-                        data-translate-values="{nbServices: $ctrl.stoppedApps}"
+                        data-translate-values="{nbServices: $ctrl.itemsByStatus.apps.stopped}"
                     >
                     </span>
                 </span>

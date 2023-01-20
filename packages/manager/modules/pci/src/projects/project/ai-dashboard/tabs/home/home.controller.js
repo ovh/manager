@@ -10,7 +10,16 @@ export default class AIDashboardHomeCtrl {
 
   $onInit() {
     // Poll data
-    setInterval(() => this.getAIItems(), ITEMS_POLL_INTERVAL);
+    this.itemsPoller = setInterval(
+      () => this.getAIItems(),
+      ITEMS_POLL_INTERVAL,
+    );
+  }
+
+  $onDestroy() {
+    if (this.itemsPoller) {
+      clearInterval(this.itemsPoller);
+    }
   }
 
   getAIItems() {

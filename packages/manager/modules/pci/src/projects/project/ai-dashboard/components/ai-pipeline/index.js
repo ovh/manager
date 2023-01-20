@@ -14,7 +14,7 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('aiPipeline', component)
+  .component('pciProjectAiPipeline', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

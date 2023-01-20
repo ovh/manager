@@ -1,3 +1,5 @@
+import { countAiItems } from '../ai-dashboard.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.ai-dashboard.onboarding', {
     url: '/onboarding',
@@ -7,15 +9,12 @@ export default /* @ngInject */ ($stateProvider) => {
         .injector()
         .getAsync('aiItems')
         .then((items) =>
-          Object.values(items).reduce(
-            (acc, itemArray) => acc + itemArray.length,
-            0,
-          ) > 0
+          countAiItems(items) > 0
             ? { state: 'pci.projects.project.ai-dashboard' }
             : false,
         ),
     resolve: {
-      breadcrumb: () => null, // Hide breadcrumb
+      breadcrumb: /* @ngInject */ () => null, // Hide breadcrumb
     },
   });
 };

@@ -1,3 +1,5 @@
+import { countAiItems } from './ai-dashboard.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.ai-dashboard', {
     url: '/ai-dashboard',
@@ -7,10 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .injector()
         .getAsync('aiItems')
         .then((items) =>
-          Object.values(items).reduce(
-            (acc, itemArray) => acc + itemArray.length,
-            0,
-          ) === 0
+          countAiItems(items) === 0
             ? { state: 'pci.projects.project.ai-dashboard.onboarding' }
             : { state: 'pci.projects.project.ai-dashboard.home' },
         ),
@@ -23,7 +22,8 @@ export default /* @ngInject */ ($stateProvider) => {
         AIDashboardService.getAITokens(projectId),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_ai_dashboard_title'),
-      trackingPrefix: () => 'PublicCloud::pci::projects::project::ai-dashboard',
+      trackingPrefix: /* @ngInject */ () =>
+        'PublicCloud::pci::projects::project::ai-dashboard',
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       homeLink: /* @ngInject */ ($state, projectId) =>

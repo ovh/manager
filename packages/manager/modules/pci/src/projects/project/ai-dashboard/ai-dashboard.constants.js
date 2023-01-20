@@ -58,9 +58,17 @@ export const AI_PRICES_URL = {
 
 export const AI_ROLES_NAMES = ['ai_training_operator', 'ai_training_read'];
 
+export function countAiItems(itemsList) {
+  return Object.values(itemsList).reduce(
+    (acc, itemArray) => acc + itemArray.length,
+    0,
+  );
+}
+
 export default {
   AI_PRICES_URL,
   ITEMS_POLL_INTERVAL,
   GUIDES,
   AI_ROLES_NAMES,
+  countAiItems,
 };

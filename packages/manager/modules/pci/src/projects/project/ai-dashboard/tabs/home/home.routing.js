@@ -5,7 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
       aiDashboardTabUiView: 'pciProjectAIDashboardHome',
     },
     resolve: {
-      breadcrumb: () => null, // Hide breadcrumb
+      breadcrumb: /* @ngInject */ () => null, // Hide breadcrumb
     },
   });
 };

@@ -138,14 +138,11 @@ export default class AIDashboardService {
 
   // Guides
   getGuides(projectId, lang, section) {
-    let queryParams = [];
-    queryParams.push(lang ? `lang=${lang}` : '');
-    queryParams.push(section ? `section=${section}` : '');
-    queryParams = queryParams.filter((queryParam) => queryParam.length > 0);
+    const queryParams = [];
+    if (lang) queryParams.push(`lang=${lang}`);
+    if (section) queryParams.push(`section=${section}`);
     const queryString =
-      queryParams.length > 0
-        ? `?${queryParams.filter((l) => l.length > 0).join('&')}`
-        : '';
+      queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
     return this.$http
       .get(
         `/cloud/project/${projectId}/ai/guides${queryString}`,
