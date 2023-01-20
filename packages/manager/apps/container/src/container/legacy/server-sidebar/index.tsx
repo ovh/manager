@@ -22,11 +22,12 @@ export default function ServerSidebarIndex() {
   const isUniverseMenu = ['server', 'telecom', 'web'].indexOf(universe) >= 0;
 
   useEffect(() => {
-    if (universe === 'server') {
+    if (application?.container?.path === 'dedicated') {
       setIsAccountMenu(
         [
           '/useraccount',
           '/billing',
+          '/contact',
           '/contacts',
           '/support',
           '/ticket',
@@ -36,6 +37,8 @@ export default function ServerSidebarIndex() {
           ),
         ),
       );
+    } else {
+      setIsAccountMenu(false);
     }
   }, [universe, location]);
 

@@ -9,6 +9,7 @@ import { User } from '@ovh-ux/manager-config';
 import ovhCloudLogo from './assets/logo-ovhcloud.png';
 import links from './links';
 import './style.scss';
+import modalStyle from './cookie-modal.module.scss';
 
 import { useApplication } from '@/context';
 
@@ -101,12 +102,14 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
           <div className="img-wrapper w-100 d-flex justify-content-center align-items-center">
             <img src={ovhCloudLogo} alt="ovh-cloud-logo" />
           </div>
-          <h4 className="text-center">{t('cookie_policy_title')}</h4>
+          <h4 className={`${modalStyle.title} text-center`}>
+            {t('cookie_policy_title')}
+          </h4>
           <p dangerouslySetInnerHTML={moreInfoHtml()}></p>
-          <ul>
+          <ul className={modalStyle.list}>
             <li>{t('cookie_policy_description_3')}</li>
           </ul>
-          <p>{t('cookie_policy_description_2')}</p>
+          <p className="mb-3">{t('cookie_policy_description_2')}</p>
           <span>{t('cookie_policy_description_4')}</span>
 
           <span dangerouslySetInnerHTML={clickHereHtml()}></span>

@@ -7,7 +7,7 @@ import {
   PartnerPlatformSHIcon,
 } from '@ovh-ux/manager-themes';
 import { ShopItem } from '../OrderPopupContent';
-import ORDER_URLS from './order.constants';
+import { getOrderURL, ORDER_URLS } from './order.constants';
 
 const webShopConfig = (
   navigation: any,
@@ -19,7 +19,7 @@ const webShopConfig = (
     ? {
         label: 'item_domains',
         icon: OVHFontDomain,
-        url: ORDER_URLS[region].orderDomain[sub],
+        url: getOrderURL('orderDomain', region, sub),
         external: true,
         tracking: 'web::orders::domain-name::order',
       }
@@ -36,7 +36,7 @@ const webShopConfig = (
     ? {
         label: 'item_hostings',
         icon: OVHFontHosting,
-        url: ORDER_URLS[region].orderHosting[sub],
+        url: getOrderURL('orderHosting', region, sub),
         external: true,
         tracking: 'web::orders::web-hosting::order',
       }
@@ -45,7 +45,7 @@ const webShopConfig = (
     ? {
         label: 'order_item_cloudWeb',
         icon: OVHFontHosting,
-        url: ORDER_URLS[region].orderCloudWeb[sub],
+        url: getOrderURL('orderCloudWeb', region, sub),
         external: true,
         tracking: 'web::orders::cloud-web::order',
       }
@@ -54,7 +54,7 @@ const webShopConfig = (
     ? {
         label: 'order_item_emailPro',
         icon: OVHFontMail,
-        url: ORDER_URLS[region].orderEmailPro[sub],
+        url: getOrderURL('orderEmailPro', region, sub),
         external: true,
         tracking: 'web::orders::email-pro::order',
       }
@@ -79,7 +79,7 @@ const webShopConfig = (
     ? {
         label: 'order_item_office',
         icon: 'ms-Icon ms-Icon--OfficeLogo',
-        url: ORDER_URLS[region].orderOffice[sub],
+        url: getOrderURL('orderOffice', region, sub),
         tracking: 'web::orders::licences-office::order',
         external: true,
       }
@@ -88,7 +88,7 @@ const webShopConfig = (
     ? {
         label: 'order_item_csp2',
         icon: 'ms-Icon ms-Icon--OfficeLogo',
-        url: ORDER_URLS[region].orderCsp2[sub],
+        url: getOrderURL('orderCsp2', region, sub),
         external: true,
         tracking: 'web::orders::licences-office-reseller::order',
       }
