@@ -13,6 +13,7 @@ export default {
     objectKey: '<',
     goBack: '<',
     goToUsersAndRoles: '<',
-    trackingPrefix: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
 };

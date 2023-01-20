@@ -1,7 +1,10 @@
 import { TERMINATE_INPUT_PATTERN } from './delete-container.constants';
-
 import { COLD_ARCHIVE_CONTAINER_STATUS } from '../containers.constants';
-import { MANAGE_ARCHIVE_DOC_LINK, REGION } from '../../cold-archives.constants';
+import {
+  MANAGE_ARCHIVE_DOC_LINK,
+  COLD_ARCHIVE_TRACKING,
+  REGION,
+} from '../../cold-archives.constants';
 
 export default class ColdArchiveContainersDeleteContainerController {
   /* @ngInject */
@@ -17,6 +20,16 @@ export default class ColdArchiveContainersDeleteContainerController {
     this.COLD_ARCHIVE_CONTAINER_STATUS = COLD_ARCHIVE_CONTAINER_STATUS;
   }
 
+  trackDeleteContainerModalPage(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}::${action}`;
+    this.trackPage(hit);
+  }
+
+  trackDeleteContainerModalClick(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}::${action}`;
+    this.trackClick(hit);
+  }
+
   getDocumentationUrl() {
     return MANAGE_ARCHIVE_DOC_LINK[
       this.coreConfig.getUserLanguage().toUpperCase()
@@ -24,14 +37,14 @@ export default class ColdArchiveContainersDeleteContainerController {
   }
 
   deleteContainer() {
+    this.trackDeleteContainerModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
     this.isLoading = true;
     return this.pciStoragesColdArchiveService
       .deleteArchiveContainer(this.projectId, REGION, this.container.name)
       .then(() => {
-        this.trackPage(
-          'containers::container::delete-container::confirm_success',
+        this.trackDeleteContainerModalPage(
+          `${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
         );
-
         return this.goBack(
           this.$translate.instant(
             'pci_projects_project_storages_containers_container_delete_success_message',
@@ -42,8 +55,8 @@ export default class ColdArchiveContainersDeleteContainerController {
         );
       })
       .catch((err) => {
-        this.trackPage(
-          'containers::container::delete-container::confirm_error',
+        this.trackDeleteContainerModalPage(
+          `${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
         );
 
         return this.goBack(
@@ -62,8 +75,7 @@ export default class ColdArchiveContainersDeleteContainerController {
   }
 
   cancel() {
-    this.trackClick('containers::container::delete-container::cancel');
-
+    this.trackDeleteContainerModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
     return this.goBack();
   }
 }

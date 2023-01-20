@@ -2,6 +2,7 @@ import {
   COLD_ARCHIVE_DEFAULT_REGION,
   OBJECT_CONTAINER_USER_ROLES,
 } from './add-user.constants';
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 
 export default class ColdArchiveContainersAddUserController {
   /* @ngInject */
@@ -28,6 +29,16 @@ export default class ColdArchiveContainersAddUserController {
 
     this.setUserCredentialsList();
     this.preselectFirstUser();
+  }
+
+  trackAddUserModalPage(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}::${action}`;
+    this.trackPage(hit);
+  }
+
+  trackAddUserModalClick(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}::${action}`;
+    this.trackClick(hit);
   }
 
   setUserCredentialsList() {
@@ -58,28 +69,12 @@ export default class ColdArchiveContainersAddUserController {
     this.addUserStep = 0;
   }
 
-  trackNextStepClick() {
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}${
-        this.objectKey ? 'object::' : ''
-      }add-user::next`,
-      type: 'action',
-    });
-  }
-
   addUserStorage() {
     if (this.addUserStep < 1) {
       this.addUserStep += 1;
-      this.trackNextStepClick();
       return null;
     }
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}${
-        this.objectKey ? 'object::' : ''
-      }add-user::confirm`,
-      type: 'action',
-    });
-
+    this.trackAddUserModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
     this.isLoading = true;
     return this.$http
       .post(
@@ -89,8 +84,9 @@ export default class ColdArchiveContainersAddUserController {
           objectKey: this.objectKey,
         },
       )
-      .then(() =>
-        this.goBack(
+      .then(() => {
+        this.trackAddUserModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
+        return this.goBack(
           this.$translate.instant(
             this.objectKey
               ? 'pci_projects_project_storages_coldArchive_containers_addUser_object_success_message'
@@ -103,10 +99,11 @@ export default class ColdArchiveContainersAddUserController {
               ),
             },
           ),
-        ),
-      )
-      .catch((err) =>
-        this.goBack(
+        );
+      })
+      .catch((err) => {
+        this.trackAddUserModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
+        return this.goBack(
           this.$translate.instant(
             this.objectKey
               ? 'pci_projects_project_storages_coldArchive_containers_addUser_object_error_addUser'
@@ -117,20 +114,15 @@ export default class ColdArchiveContainersAddUserController {
             },
           ),
           'error',
-        ),
-      )
+        );
+      })
       .finally(() => {
         this.isLoading = false;
       });
   }
 
   cancel() {
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}${
-        this.objectKey ? 'object::' : ''
-      }add-user::cancel`,
-      type: 'action',
-    });
+    this.trackAddUserModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
     return this.goBack();
   }
 }

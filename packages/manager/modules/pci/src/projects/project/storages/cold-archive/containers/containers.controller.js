@@ -39,6 +39,10 @@ export default class PciStoragesColdArchiveContainersController {
     this.messages = this.messageHandler.getMessages();
   }
 
+  onClickOnManageContainer() {
+    this.goToManageContainer();
+  }
+
   // eslint-disable-next-line class-methods-use-this
   getStatusActions(status) {
     const { actions } = CONTAINER_STATUS_OPTIONS[status];
@@ -58,13 +62,6 @@ export default class PciStoragesColdArchiveContainersController {
       delete: this.goToDeleteContainer,
     };
     return ACTIONS[action];
-  }
-
-  trackPage(page) {
-    this.atInternet.trackPage({
-      name: `${this.trackingPrefix}${page}`,
-      type: 'navigation',
-    });
   }
 
   static isActionsAvailable(container) {

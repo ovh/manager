@@ -1,3 +1,5 @@
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive.users.add', {
     url: '/new',
@@ -5,6 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
       modal: {
         component: 'pciProjectColdArchiveUsersAdd',
       },
+    },
+    atInternet: {
+      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ADD_USER}`,
     },
     layout: 'modal',
     resolve: {
@@ -20,10 +25,6 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           allUserList.filter((user) => user),
         ),
-    },
-    atInternet: {
-      rename:
-        'pci::projects::project::storages::objects::s3-policies-users::add',
     },
   });
 };

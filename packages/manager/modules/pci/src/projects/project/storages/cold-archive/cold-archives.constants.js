@@ -1,5 +1,59 @@
-export const COLD_ARCHIVE_TRACKING_PREFIX =
-  'PublicCloud::pci::projects::project::storages::cold_archive';
+export const COLD_ARCHIVE_TRACKING = {
+  PREFIX: 'PublicCloud::pci::projects::project::storages::cold_archive',
+  ONBOARDING: {
+    MAIN: 'onboarding',
+    ADD_CONTAINER: 'add',
+    DOCUMENTATION_LINK: 'docs',
+  },
+  ADD: {
+    MAIN: 'add',
+    PREFIX: 'PublicCloud_cold_archive_add_archive::create_container',
+    ASSOCIATE: {
+      NEW_USER: 'add_new_user',
+      EXISTING_USER: 'add_existing_user',
+      ASSOCIATE_USER: 'associate_user',
+    },
+    CREATE: 'create_container',
+  },
+  CONTAINERS: {
+    MAIN: 'dashboard::containers',
+    RESTORE: 'restore',
+    DELETE: 'delete',
+    ADD_USER: 'add-user',
+    ARCHIVE: 'archive',
+    DELETE_CONTAINER: 'delete-container',
+    FLUSH_CONTAINER: 'flush-container',
+    MANAGE_CONTAINER: 'manage-container',
+  },
+  USER: {
+    MAIN: 'dashboard::s3_users',
+    ADD_USER: 'add_user',
+    CREATE_USER_MODES: {
+      NEW_USER: 'confirm_new',
+      EXISTING_USER: 'confirm_existing',
+    },
+    ACTIONS: {
+      MENU: 'action_menu',
+      DELETE_USER: 'delete_user_credentials',
+      ADD_POLICY: 'add_s3_policy',
+      DELETE_POLICY: 'delete_s3_policy',
+      IMPORT_POLICY: 'import_s3_policy',
+      DOWNLOAD_POLICY: 'download_s3_policy',
+      DOWNLOAD_RCLONE: 'download_rClone_file',
+      DISPLAY_SECRET: 'display_secret_key',
+      GENERATE_CREDENTIAL: 'generate_user_credentials',
+      DELETE_CREDENTIALS: 'delete_user_credentials',
+    },
+  },
+  ACTIONS: {
+    CONFIRM: 'confirm',
+    CANCEL: 'cancel',
+  },
+  STATUS: {
+    SUCCESS: 'confirm_success',
+    ERROR: 'confirm_error',
+  },
+};
 
 export const REGION = 'RBX-ARCHIVE';
 
@@ -150,7 +204,6 @@ export const COLD_ARCHIVE_STATES = {
 
 export default {
   COLD_ARCHIVE_STATES,
-  COLD_ARCHIVE_TRACKING_PREFIX,
   CHECK_PRICES_DOC_LINK,
   MANAGE_ARCHIVE_DOC_LINK,
   REGION,

@@ -1,4 +1,4 @@
-import { TRACKING } from './onboarding.constants';
+import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       atInternet: {
-        rename: TRACKING.ONBOARDING_PAGE_VISITE,
+        rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ONBOARDING.MAIN}`,
       },
       redirectTo: (transition) =>
         transition

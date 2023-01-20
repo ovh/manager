@@ -1,6 +1,6 @@
 import {
-  COLD_ARCHIVE_TRACKING_PREFIX,
   COLD_ARCHIVE_STATES,
+  COLD_ARCHIVE_TRACKING,
 } from '../../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -15,6 +15,9 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       container: null,
     },
+    atInternet: {
+      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}`,
+    },
     redirectTo: (transition) =>
       transition
         .injector()
@@ -27,9 +30,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
       container: /* @ngInject */ ($transition$) =>
         $transition$.params().container,
-    },
-    atInternet: {
-      rename: `${COLD_ARCHIVE_TRACKING_PREFIX}::delete-container`,
     },
   });
 };

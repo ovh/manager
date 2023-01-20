@@ -14,7 +14,6 @@ export default {
     initGuides: '<',
     goToAddColdArchive: '<',
     goToColdArchiveContainers: '<',
-    trackingPrefix: '<',
     guides: '<',
     containers: '<',
     priceLink: '<',

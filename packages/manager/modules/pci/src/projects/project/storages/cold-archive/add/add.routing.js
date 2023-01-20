@@ -1,3 +1,5 @@
+import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive.add', {
     url: '/new',
@@ -5,6 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
       'coldArchiveView@pci.projects.project.storages.cold-archive': {
         component: 'pciProjectsProjectStoragesColdArchiveAdd',
       },
+    },
+    atInternet: {
+      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ADD.MAIN}`,
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>

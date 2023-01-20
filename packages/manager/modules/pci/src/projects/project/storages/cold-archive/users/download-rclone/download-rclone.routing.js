@@ -5,6 +5,7 @@ import {
   COLD_ARCHIVE_DEFAULT_REGION,
   COLD_ARCHIVE_STATES,
 } from './download-rclone.constants';
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(`${COLD_ARCHIVE_STATES.S3_USERS_DOWNLOAD_RCLONE}`, {
@@ -15,6 +16,9 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     layout: 'modal',
+    atInternet: {
+      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_RCLONE}`,
+    },
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb
       file: /* @ngInject */ () => {

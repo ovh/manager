@@ -1,4 +1,4 @@
-import { TRACKING } from './users.constants';
+import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive.users', {
@@ -8,6 +8,9 @@ export default /* @ngInject */ ($stateProvider) => {
       userDetails: null,
       userCredential: null,
       trackingInfo: null,
+    },
+    atInternet: {
+      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.USER.MAIN}`,
     },
     resolve: {
       userDetails: /* @ngInject */ ($transition$) =>
@@ -28,17 +31,8 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         );
       },
-      goToUsersAndRoles: /* @ngInject */ (
-        $state,
-        atInternet,
-        trackingPrefix,
-      ) => () => {
-        atInternet.trackClick({
-          name: `${trackingPrefix}`,
-          type: 'action',
-        });
-        return $state.go('pci.projects.project.users');
-      },
+      goToUsersAndRoles: /* @ngInject */ ($state) => () =>
+        $state.go('pci.projects.project.users'),
       goToDeleteUser: /* @ngInject */ ($state) => (user) =>
         $state.go('pci.projects.project.storages.cold-archive.users.delete', {
           userId: user.id,
@@ -77,15 +71,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         );
       },
-      goToAddUser: /* @ngInject */ (
-        $state,
-        atInternet,
-        trackingPrefix,
-      ) => () => {
-        atInternet.trackClick({
-          name: `${trackingPrefix}${TRACKING.ADD_USER}`,
-          type: 'action',
-        });
+      goToAddUser: /* @ngInject */ ($state) => () => {
         return $state.go(
           'pci.projects.project.storages.cold-archive.users.add',
         );
@@ -121,9 +107,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant(
           'pci_projects_project_storages_containers_s3_users_label',
         ),
-    },
-    atInternet: {
-      ignore: true,
     },
   });
 };
