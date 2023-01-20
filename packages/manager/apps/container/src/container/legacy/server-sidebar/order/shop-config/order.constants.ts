@@ -568,4 +568,20 @@ export const ORDER_URLS: Record<
   },
 };
 
+export function getOrderURL(
+  product: string,
+  region: string,
+  subsidiary: string,
+) {
+  if (ORDER_URLS?.[region] && ORDER_URLS?.[region]?.[product]) {
+    const urls = ORDER_URLS[region][product];
+    const fallback = {
+      EU: 'FR',
+      CA: 'CA',
+      US: 'US',
+    }[region];
+    return urls[subsidiary] || urls[fallback];
+  }
+}
+
 export default ORDER_URLS;

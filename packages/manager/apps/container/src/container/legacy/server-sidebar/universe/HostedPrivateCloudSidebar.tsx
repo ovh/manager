@@ -39,6 +39,7 @@ const features = [
   'ip-load-balancer',
   'logs-data-platform',
   'dedicated-server:ecoRangeOrder',
+  'dedicated-server:nutanixOrder',
 ];
 
 export default function HostedPrivateCloudSidebar() {

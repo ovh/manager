@@ -145,9 +145,13 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
         setChatbotOpen(chatbotVisibility);
       }
     });
-  }, [isLivechatEnabled])
+  }, [isLivechatEnabled]);
 
   useEffect(() => {
+    // special HPC case
+    if (window.location.hash?.endsWith('hosted-private-cloud')) {
+      return;
+    }
     if (application?.universe) {
       setUniverse(application.universe);
     }
@@ -176,7 +180,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     universe,
     setUniverse(universe: string) {
       shell.getPlugin('environment').setUniverse(universe);
-    }
+    },
   };
 
   return (

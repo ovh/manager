@@ -8,7 +8,7 @@ import {
   OVHFontPrint,
 } from '@ovh-ux/manager-themes';
 import { ShopItem } from '../OrderPopupContent';
-import { ORDER_URLS } from './order.constants';
+import { getOrderURL, ORDER_URLS } from './order.constants';
 
 const telephony = (
   navigation: any,
@@ -24,19 +24,19 @@ const telephony = (
           {
             label: 'order_item_telephony_voip',
             external: true,
-            url: ORDER_URLS[region].telephony_voip[sub],
+            url: getOrderURL('telephony_voip', region, sub),
             tracking: 'orders::telephony::voip::order',
           },
           {
             label: 'order_item_telephony_siptrunk',
             external: true,
-            url: ORDER_URLS[region].telephony_siptrunk[sub],
+            url: getOrderURL('telephony_siptrunk', region, sub),
             tracking: 'orders::telephony::sip-trunk::order',
           },
           {
             label: 'order_item_telephony_siptrunk_call',
             external: true,
-            url: ORDER_URLS[region].telephony_siptrunkCall[sub],
+            url: getOrderURL('telephony_siptrunkCall', region, sub),
             tracking: 'orders::telephony::sip-trunk-included::order',
           },
           {
@@ -54,13 +54,13 @@ const email = (region: string, sub: string): ShopItem => ({
     {
       label: 'order_item_email_exchange',
       external: true,
-      url: ORDER_URLS[region].email_exchange[sub],
+      url: getOrderURL('email_exchange', region, sub),
       tracking: 'orders::email::email-microsoft-exchange::order',
     },
     {
       label: 'order_item_email_sharepoint',
       external: true,
-      url: ORDER_URLS[region].email_sharepoint[sub],
+      url: getOrderURL('email_sharepoint', region, sub),
       tracking: 'orders::email::microsoft-sharepoint::order',
     },
   ],
@@ -73,13 +73,13 @@ const office = (region: string, sub: string): ShopItem => ({
     {
       label: 'order_item_office365_business',
       external: true,
-      url: ORDER_URLS[region].office365_business[sub],
+      url: getOrderURL('office365_business', region, sub),
       tracking: 'orders::office365::licences-office::order',
     },
     {
       label: 'order_item_office365_sharepoint',
       external: true,
-      url: ORDER_URLS[region].office365_sharepoint[sub],
+      url: getOrderURL('office365_sharepoint', region, sub),
       tracking: 'orders::office365::microsoft-sharepoint::order',
     },
   ],
@@ -106,7 +106,7 @@ const sms = (
             ? {
                 label: 'order_item_sms_hlr',
                 external: true,
-                url: ORDER_URLS[region].smsHlr[sub],
+                url: getOrderURL('smsHlr', region, sub),
                 tracking: 'orders::sms::hlr::order',
               }
             : null,
@@ -131,7 +131,7 @@ const telecomShopConfig = (
     label: 'order_item_domain',
     icon: OVHFontDomain,
     external: true,
-    url: ORDER_URLS[region].domain[sub],
+    url: getOrderURL('domain', region, sub),
     tracking: 'orders::domain-name::order',
   },
   features.pack
@@ -141,32 +141,32 @@ const telecomShopConfig = (
         subMenu: [
           {
             label: 'order_item_internet_xdsl',
-            url: ORDER_URLS[region].internet_xdsl[sub],
+            url: getOrderURL('internet_xdsl', region, sub),
             external: true,
             tracking: 'orders::xdsl::order',
           },
           {
             label: 'order_item_internet_fiber',
             external: true,
-            url: ORDER_URLS[region].internet_fiber[sub],
+            url: getOrderURL('internet_fiber', region, sub),
             tracking: 'orders::fibre::order',
           },
           {
             label: 'order_item_internet_sdsl',
             external: true,
-            url: ORDER_URLS[region].internet_sdsl[sub],
+            url: getOrderURL('internet_sdsl', region, sub),
             tracking: 'orders::sdsl::order',
           },
           {
             label: 'order_item_internet_adsl_creation',
             external: true,
-            url: ORDER_URLS[region].internet_adsl_creation[sub],
+            url: getOrderURL('internet_adsl_creation', region, sub),
             tracking: 'orders::adsl-new::order',
           },
           {
             label: 'order_item_internet_otb',
             external: true,
-            url: ORDER_URLS[region].internet_otb[sub],
+            url: getOrderURL('internet_otb', region, sub),
           },
         ],
       }
@@ -180,7 +180,7 @@ const telecomShopConfig = (
         label: 'item_fax',
         icon: OVHFontPrint,
         external: true,
-        url: ORDER_URLS[region].faxOrder[sub],
+        url: getOrderURL('faxOrder', region, sub),
       }
     : null,
 ];

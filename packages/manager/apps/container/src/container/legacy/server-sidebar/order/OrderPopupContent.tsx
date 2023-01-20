@@ -149,73 +149,76 @@ const OrderPopupContent = ({
     </Stack>
   ) : (
     <Box role="list" display="flex" flexFlow="row wrap">
-      {shopItems.map((item, key) => {
-        if (!item) return null;
-        const props: Record<string, unknown> =
-          item.subMenu?.length > 0
-            ? {
-                as: 'button',
-                onClick: () => {
-                  setShowListMenu(true);
-                  setCurrentMenu(item.subMenu);
-                },
+      {shopItems
+        .filter((item) => !!item)
+        .map((item, key) => {
+          const props: Record<string, unknown> =
+            item.subMenu?.length > 0
+              ? {
+                  as: 'button',
+                  onClick: () => {
+                    setShowListMenu(true);
+                    setCurrentMenu(item.subMenu);
+                  },
+                }
+              : {
+                  as: 'a',
+                  href: item.url,
+                  target: item.external ? '_blank' : '_top',
+                  onClick: onItemSelect(item),
+                };
+          return (
+            <Stack
+              {...props}
+              key={`shop-item-${key}`}
+              sx={itemStyles((key + 1) % 3 !== 0)}
+              alignItems="center"
+              width="33.33%"
+              borderBottom={
+                key >= Math.ceil(shopItems.length / 3) * 3 - 3
+                  ? ''
+                  : '1px solid'
               }
-            : {
-                as: 'a',
-                href: item.url,
-                target: item.external ? '_blank' : '_top',
-                onClick: onItemSelect(item),
-              };
-        return (
-          <Stack
-            {...props}
-            key={`shop-item-${key}`}
-            sx={itemStyles((key + 1) % 3 !== 0)}
-            alignItems="center"
-            width="33.33%"
-            borderBottom={
-              key >= Math.ceil(shopItems.length / 3) * 3 - 3 ? '' : '1px solid'
-            }
-            borderColor="gray.200"
-            className={style.popupItem}
-          >
-            {typeof item.icon === 'string' ? (
-              <chakra.div sx={containerIconStyles}>
-                <chakra.div sx={iconStyles}>
-                  <chakra.span
-                    className={item.icon}
-                    sx={glyphIconStyles}
-                  ></chakra.span>
-                </chakra.div>
-              </chakra.div>
-            ) : (
-              <chakra.div sx={containerIconStyles}>
-                <item.icon sx={iconStyles} />
-              </chakra.div>
-            )}
-            <chakra.span
-              fontWeight="600"
-              color="#2859c0"
-              display="flex"
-              textAlign="center"
-              className="mt-0"
+              borderColor="gray.200"
+              className={style.popupItem}
             >
-              {t(`server_sidebar_${item.label}_title`)}
-            </chakra.span>
-            {item.external && (
-              <span
-                className={`external-link oui-icon oui-icon-external-link ${style.popupItemExternalLink}`}
-                style={{
-                  position: 'absolute',
-                  right: '1rem',
-                  fontSize: '0.75rem',
-                  marginTop: '0',
-                }}
-              ></span>
-            )}
-          </Stack>
-        );
-      })}
+              {typeof item.icon === 'string' ? (
+                <chakra.div sx={containerIconStyles}>
+                  <chakra.div sx={iconStyles}>
+                    <chakra.span
+                      className={item.icon}
+                      sx={glyphIconStyles}
+                    ></chakra.span>
+                  </chakra.div>
+                </chakra.div>
+              ) : (
+                <chakra.div sx={containerIconStyles}>
+                  <item.icon sx={iconStyles} />
+                </chakra.div>
+              )}
+              <chakra.span
+                fontWeight="600"
+                color="#2859c0"
+                display="flex"
+                textAlign="center"
+                className="mt-0"
+              >
+                {t(`server_sidebar_${item.label}_title`)}
+              </chakra.span>
+              {item.external && (
+                <span
+                  className={`external-link oui-icon oui-icon-external-link ${style.popupItemExternalLink}`}
+                  style={{
+                    position: 'absolute',
+                    right: '1rem',
+                    fontSize: '0.75rem',
+                    marginTop: '0',
+                  }}
+                ></span>
+              )}
+            </Stack>
+          );
+        })}
     </Box>
   );
 };
