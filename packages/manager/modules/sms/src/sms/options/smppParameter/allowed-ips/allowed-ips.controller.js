@@ -79,6 +79,7 @@ export default class AllowedIpsController {
       .finally(() => {
         this.isOpenModalAddIp = false;
         this.isSubmitting = false;
+        this.checkStatus();
       });
   }
 
@@ -108,6 +109,7 @@ export default class AllowedIpsController {
       .finally(() => {
         this.isOpenModalRemoveIp = false;
         this.isSubmitting = false;
+        this.checkStatus();
       });
   }
 
