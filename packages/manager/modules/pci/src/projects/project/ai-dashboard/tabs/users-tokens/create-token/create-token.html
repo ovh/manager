@@ -26,8 +26,17 @@
     </oui-field>
 
     <p data-translate="pci_ai_dashboard_create_token_add_info_1"></p>
-    <p data-translate="pci_ai_dashboard_create_token_add_info_2"></p>
-    <p data-translate="pci_ai_dashboard_create_token_add_info_3"></p>
+    <p>
+        <span data-translate="pci_ai_dashboard_create_token_add_info_2"></span>
+        <code>label=valeur</code><code>id=uuid</code><code>type=app</code>
+    </p>
+    <p
+        data-translate="pci_ai_dashboard_create_token_add_info_3"
+        data-translate-values="{
+        label1: '<code>id</code>',
+        label2: '<code>type</code>'
+    }"
+    ></p>
 
     <oui-field
         data-label="{{:: 'pci_ai_dashboard_create_token_label_selector' | translate }}"
@@ -41,7 +50,8 @@
             name="labelSelector"
             maxlength="100"
             data-ng-model="$ctrl.model.labelSelector"
-            data-ng-pattern="/(^[\w]+=[\w]+$)*/"
+            data-ng-pattern="/(^[\w]+=[\w]+$)/"
+            required
         />
     </oui-field>
 

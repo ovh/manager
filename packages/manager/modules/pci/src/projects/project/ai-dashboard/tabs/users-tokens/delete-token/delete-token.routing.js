@@ -2,9 +2,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.ai-dashboard.users-tokens.delete-token',
     {
-      url: '/delete-token',
+      url: '/delete-token/:tokenId',
       params: {
-        token: null,
+        tokenId: null,
       },
       views: {
         modal: {
@@ -15,7 +15,10 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: () => null,
         goBack: /* @ngInject */ (goBackToUsersToken) => goBackToUsersToken,
-        token: /* @ngInject */ ($transition$) => $transition$.params().token,
+        tokenId: /* @ngInject */ ($transition$) =>
+          $transition$.params().tokenId,
+        token: /* @ngInject */ (aiTokens, tokenId) =>
+          aiTokens.find((token) => token.id === tokenId),
       },
       atInternet: {
         ignore: true,

@@ -46,7 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
           'pci.projects.project.ai-dashboard.users-tokens.delete-token',
           {
             projectId,
-            token,
+            tokenId: token.id,
           },
         ),
       goToManageUser: /* @ngInject */ ($state, projectId) => () =>

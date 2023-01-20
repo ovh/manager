@@ -18,7 +18,7 @@ export default class AIDashboadCreateTokenCtrl {
           textHtml: this.$translate.instant(
             'pci_ai_dashboard_create_token_add_success',
             {
-              token: token.status.value,
+              token: `<code>${token.status.value}</code>`,
             },
           ),
         }),

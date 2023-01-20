@@ -22,7 +22,7 @@ export default class AIDashboadCreateUserCtrl {
             'pci_ai_dashboard_create_user_success_message',
             {
               userName: user.username,
-              password: user.password,
+              password: `<code>${user.password}</code>`,
             },
           ),
         }),
