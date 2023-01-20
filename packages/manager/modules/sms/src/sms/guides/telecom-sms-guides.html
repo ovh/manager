@@ -37,6 +37,9 @@
                                 rel="noopener"
                                 data-ng-if="guide.url[SmsGuidesCtrl.language]"
                                 data-ng-href="{{ guide.url[SmsGuidesCtrl.language] }}"
+                                data-track-on="click"
+                                data-track-name="sms::service::guides::goto-{{guide.label}}"
+                                data-track-type="action"
                             >
                                 <span
                                     data-translate="{{ guide.label | translate }}"
