@@ -63,36 +63,6 @@ export default class AIPipelineCtrl {
           }
         });
       });
-
-      //   this.runningNotebooks = AIPipelineCtrl.getItemsByStatusCount(
-      //     this.aiItems.notebooks,
-      //     TOOLS_STATUSES.NOTEBOOKS.RUNNING,
-      //   );
-      //   this.stoppedNotebooks = AIPipelineCtrl.getItemsByStatusCount(
-      //     this.aiItems.notebooks,
-      //     TOOLS_STATUSES.NOTEBOOKS.STOPPED,
-      //   );
-      //   this.runningTrainings = AIPipelineCtrl.getItemsByStatusCount(
-      //     this.aiItems.trainings,
-      //     TOOLS_STATUSES.TRAININGS.RUNNING,
-      //   );
-      //   this.stoppedTrainings = AIPipelineCtrl.getItemsByStatusCount(
-      //     this.aiItems.trainings,
-      //     TOOLS_STATUSES.TRAININGS.STOPPED,
-      //   );
-      //   this.runningApps = AIPipelineCtrl.getItemsByStatusCount(
-      //     this.aiItems.apps,
-      //     TOOLS_STATUSES.APPS.RUNNING,
-      //   );
-      //   this.stoppedApps = AIPipelineCtrl.getItemsByStatusCount(
-      //     this.aiItems.apps,
-      //     TOOLS_STATUSES.APPS.STOPPED,
-      //   );
     }
   }
-
-  // static getItemsByStatusCount(items, statusList) {
-  //   return items.filter((item) => statusList.includes(item.status.state))
-  //     .length;
-  // }
 }
