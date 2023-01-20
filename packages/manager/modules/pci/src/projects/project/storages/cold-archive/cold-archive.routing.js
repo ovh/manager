@@ -5,11 +5,15 @@ import {
   REGION,
 } from './cold-archives.constants';
 import { COLD_ARCHIVE_STATES } from './containers/containers.constants';
+import { PCI_FEATURES } from '../../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive', {
     url: '/cold-archive',
     component: 'pciProjectStorageColdArchive',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.COLD_ARCHIVE);
+    },
     atInternet: {
       rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ONBOARDING.MAIN}`,
     },
