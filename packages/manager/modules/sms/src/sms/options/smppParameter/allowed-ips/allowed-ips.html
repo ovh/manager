@@ -21,6 +21,7 @@
                             <oui-button
                                 size="s"
                                 variant="secondary"
+                                data-disabled="$ctrl.status === 'UPDATING_IP'"
                                 data-on-click="$ctrl.openModal('remove', ip)"
                             >
                                 <span class="oui-icon oui-icon-bin"></span>
@@ -37,7 +38,7 @@
                 data-variant="secondary"
                 data-on-click="$ctrl.openModal('add')"
                 data-icon-right="oui-icon-plus"
-                data-disabled="$ctrl.ips.length === $ctrl.MAX_ALLOWED_IP"
+                data-disabled="$ctrl.ips.length === $ctrl.MAX_ALLOWED_IP || $ctrl.status === 'UPDATING_IP'"
             >
                 <span
                     data-translate="sms_options_smpp_parameter_allowed_ips_button_add"
