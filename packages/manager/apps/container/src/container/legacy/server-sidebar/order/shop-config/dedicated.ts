@@ -14,7 +14,7 @@ import {
   LineCommunicatingIcon,
   ServerIcon,
 } from '@ovh-ux/manager-themes';
-import { ORDER_URLS } from './order.constants';
+import { getOrderURL, ORDER_URLS } from './order.constants';
 
 const dedicatedShopConfig = (
   navigation: any,
@@ -26,7 +26,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'order_item_cloud_project',
         icon: OVHFontPublicCloud,
-        url: ORDER_URLS[region].publicCloudProjectOrder[sub],
+        url: getOrderURL('publicCloudProjectOrder', region, sub),
         tracking: 'dedicated::orders::public-cloud-project::order',
       }
     : null,
@@ -34,7 +34,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'order_item_dedicated_server',
         icon: OVHFontServer,
-        url: ORDER_URLS[region].dedicatedOrder[sub],
+        url: getOrderURL('dedicatedOrder', region, sub),
         external: true,
         tracking: 'dedicated::orders::dedicated-servers::order',
       }
@@ -60,7 +60,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'order_item_kube',
         icon: OVHFontK8s,
-        url: ORDER_URLS[region].publicCloudKubernetes[sub],
+        url: getOrderURL('publicCloudKubernetes', region, sub),
         external: true,
         tracking: 'dedicated::orders::managed-kubernetes::order',
       }
@@ -69,7 +69,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'item_vps',
         icon: OVHFontServer2,
-        url: ORDER_URLS[region].vps[sub],
+        url: getOrderURL('vps', region, sub),
         external: true,
         tracking: 'dedicated::orders::vps::order',
       }
@@ -78,7 +78,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'item_managedBaremetal',
         icon: CloudEssentialIcon,
-        url: ORDER_URLS[region].managed_bare_metal[sub],
+        url: getOrderURL('managed_bare_metal', region, sub),
         external: true,
         tracking: 'dedicated::orders::mbm::order',
       }
@@ -87,7 +87,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'item_dedicatedClouds',
         icon: OVHFontDedicatedCloud,
-        url: ORDER_URLS[region].dedicated_cloud[sub],
+        url: getOrderURL('dedicated_cloud', region, sub),
         external: true,
         tracking: 'dedicated::orders::hpc::order',
       }
@@ -96,7 +96,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'order_item_paas_cda',
         icon: OVHFontCDA,
-        url: ORDER_URLS[region].cloud_disk_array[sub],
+        url: getOrderURL('cloud_disk_array', region, sub),
         external: true,
         tracking: 'dedicated::orders::cloud-disk-array::order',
       }
@@ -113,7 +113,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'order_item_paas_veeam',
         icon: OVHFontVeeam,
-        url: ORDER_URLS[region].veeam[sub],
+        url: getOrderURL('veeam', region, sub),
         external: true,
         tracking: 'dedicated::orders::veeam-cc::order',
       }
@@ -122,7 +122,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'order_item_paas_veeam_enterprise',
         icon: OVHFontVeeam,
-        url: ORDER_URLS[region].veeam_enterprise[sub],
+        url: getOrderURL('veeam_enterprise', region, sub),
         external: true,
         tracking: 'dedicated::orders::veeam-enterprise::order',
       }
@@ -131,7 +131,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'item_vrack',
         icon: OVHFontVRack,
-        url: ORDER_URLS[region].vrack[sub],
+        url: getOrderURL('vrack', region, sub),
         external: true,
         tracking: 'dedicated::orders::vrack::order',
       }
@@ -140,7 +140,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'order_item_iplb',
         icon: OVHFontIP,
-        url: ORDER_URLS[region].load_balancer[sub],
+        url: getOrderURL('load_balancer', region, sub),
         external: true,
         tracking: 'dedicated::orders::ip-load-balancer::order',
       }
@@ -157,7 +157,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'item_cloud_connect',
         icon: LineCommunicatingIcon,
-        url: ORDER_URLS[region].ovh_cloud_connect[sub],
+        url: getOrderURL('ovh_cloud_connect', region, sub),
         external: true,
         tracking: 'dedicated::orders::ovh-cloud-connect::order',
       }
@@ -167,7 +167,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'order_item_dedicated_server_eco',
         icon: ServerIcon,
-        url: ORDER_URLS[region].dedicatedEcoRangeOrder[sub],
+        url: getOrderURL('dedicatedEcoRangeOrder', region, sub),
         external: true,
         tracking: 'dedicated::orders::dedicated-servers-eco::order',
       }
@@ -177,7 +177,7 @@ const dedicatedShopConfig = (
     ? {
         label: 'item_nutanix',
         icon: 'oui-icon oui-icon-nutanix_concept_tm',
-        url: ORDER_URLS[region].dedicatedNutanixOrder[sub],
+        url: getOrderURL('dedicatedNutanixOrder', region, sub),
         external: true,
         tracking: 'dedicated::orders::dedicated-servers-nutanix::order',
       }

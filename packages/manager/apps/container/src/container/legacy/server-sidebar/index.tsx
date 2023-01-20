@@ -36,6 +36,8 @@ export default function ServerSidebarIndex() {
           ),
         ),
       );
+    } else {
+      setIsAccountMenu(false);
     }
   }, [universe, location]);
 
