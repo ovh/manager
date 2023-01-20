@@ -15,7 +15,6 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       breadcrumb: /* @ngInject */ () => null, // Hide breadcrumb
-      breadcrumb: () => null, // Hide breadcrumb
       aiGuides: /* @ngInject */ (AIDashboardService, projectId, coreConfig) =>
         AIDashboardService.getGuides(
           projectId,
