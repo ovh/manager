@@ -57,7 +57,7 @@
             data-filterable
         >
             <span
-                data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMacroRegion($row.region)"
+                data-ng-bind="$row.region ? $ctrl.ovhManagerRegionService.getTranslatedMacroRegion($row.region) : '-'"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
