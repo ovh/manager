@@ -85,7 +85,7 @@ export default class LogsStreamsHomeCtrl {
   edit(stream) {
     this.$state.go('dbaas-logs.detail.streams.stream.edit', {
       serviceName: this.serviceName,
-      streamId: stream.info.streamId,
+      streamId: stream.streamId,
     });
   }
 
@@ -101,7 +101,7 @@ export default class LogsStreamsHomeCtrl {
       .showDeleteModal({
         titleText: this.$translate.instant('logs_stream_delete_title'),
         textHtml: this.$translate.instant('logs_stream_delete_message', {
-          stream: stream.info.title,
+          stream: stream.title,
         }),
       })
       .then(() => this.remove(stream));
@@ -116,7 +116,7 @@ export default class LogsStreamsHomeCtrl {
   remove(stream) {
     this.delete = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.LogsStreamsService.deleteStream(this.serviceName, stream.info)
+        this.LogsStreamsService.deleteStream(this.serviceName, stream)
           .then(() => this.initLoaders())
           .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
@@ -133,7 +133,7 @@ export default class LogsStreamsHomeCtrl {
     this.CucCloudMessage.flushChildMessage();
     this.$state.go('dbaas-logs.detail.streams.stream.alerts', {
       serviceName: this.serviceName,
-      streamId: stream.info.streamId,
+      streamId: stream.streamId,
     });
   }
 
@@ -146,7 +146,7 @@ export default class LogsStreamsHomeCtrl {
   findRetention(stream) {
     return find(
       this.retentions,
-      (retention) => retention.retentionId === stream.info.retentionId,
+      (retention) => retention.retentionId === stream.retentionId,
     );
   }
 
@@ -174,7 +174,7 @@ export default class LogsStreamsHomeCtrl {
     this.CucCloudMessage.flushChildMessage();
     this.$state.go('dbaas-logs.detail.streams.stream.archives', {
       serviceName: this.serviceName,
-      streamId: stream.info.streamId,
+      streamId: stream.streamId,
     });
   }
 
@@ -188,7 +188,7 @@ export default class LogsStreamsHomeCtrl {
     this.CucCloudMessage.flushChildMessage();
     this.$state.go('dbaas-logs.detail.streams.stream.follow', {
       serviceName: this.serviceName,
-      streamId: stream.info.streamId,
+      streamId: stream.streamId,
     });
   }
 
@@ -199,12 +199,19 @@ export default class LogsStreamsHomeCtrl {
    * @return {string} graylog url
    * @memberof LogsStreamsHomeCtrl
    */
-  getGraylogUrl(stream) {
-    return this.LogsStreamsService.getStreamGraylogUrl(stream);
+  openGrayLog(stream) {
+    this.LogsStreamsService.getStreamGraylogUrl(this.serviceName, stream).then(
+      (url) => {
+        window.open(url, '_blank');
+      },
+    );
   }
 
   copyToken(stream) {
-    this.LogsStreamsService.copyStreamToken(stream);
-    this.CucControllerHelper.scrollPageToTop();
+    this.LogsStreamsService.copyStreamToken(this.serviceName, stream).then(
+      () => {
+        this.CucControllerHelper.scrollPageToTop();
+      },
+    );
   }
 }
