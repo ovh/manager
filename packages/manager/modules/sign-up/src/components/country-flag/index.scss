@@ -5,11 +5,15 @@ $flag-icon-css-path: 'flag-icon-css/flags';
 .country-flag {
   display: flex;
   white-space: nowrap;
+  align-items: center;
+  justify-items: flex-start;
 
   .flag-icon {
     width: 30px;
     height: 23px;
     border-radius: 3px;
     margin-right: 0.5rem;
+    flex-grow: 0;
+    flex-shrink: 0;
   }
 }
