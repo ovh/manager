@@ -29,9 +29,6 @@ export const IP_AGORA = {
 };
 
 export const TRACKING_PREFIX = 'dedicated::ip::dashboard::order::';
-export const TRACKING_HIT = {
-  ABOUT_ORGANISATION: 'dedicated::ip::dashboard-order::about-organisation',
-};
 
 export const IP_LOCATION_GROUPS = [
   { labels: ['APAC/CANADA', 'CANADA - ASIA'], countries: ['au', 'ca', 'sg'] },
@@ -58,7 +55,6 @@ export const IP_LOCATION_GROUPS = [
 ];
 
 export const VPS_MAX_QUANTITY = 16;
-export const LEARN_ORGANIZATION_LINK = 'https://docs.ovh.com/fr/';
 export const ADDITIONAL_IP = 'Additional IP';
 export const BLOCK_ADDITIONAL_IP = 'Block Additional IP';
 
@@ -70,8 +66,6 @@ export default {
   PRODUCT_TYPES,
   VPS_MAX_QUANTITY,
   TRACKING_PREFIX,
-  TRACKING_HIT,
   IP_AGORA,
-  LEARN_ORGANIZATION_LINK,
   IP_FAILOVER_RIPE_PLANCODE,
 };

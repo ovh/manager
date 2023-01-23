@@ -8,7 +8,6 @@ export const BADGE_FO = 'FO';
 export const BADGE_BYOIP = 'BYOIP';
 export const BADGES = [BADGE_FO, BADGE_BYOIP];
 export const ADDITIONAL_IP = 'Additional IP';
-export const LEARN_ORGANIZATION_LINK = 'https://docs.ovh.com/';
 
 export const SECURITY_URL = {
   DEFAULT:
@@ -62,7 +61,6 @@ export default {
   IP_TYPE,
   TRACKING_PREFIX,
   SECURITY_URL,
-  LEARN_ORGANIZATION_LINK,
   IP_COMPONENTS_LIST_TRACKING_HIT,
   PAGE_SIZE_MIN,
   PAGE_SIZE_MAX,
