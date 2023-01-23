@@ -12,6 +12,8 @@
   "netapp_volumes_snapshots_created_at": "Date de création",
   "netapp_volumes_snapshots_type": "Type",
   "netapp_volumes_snapshots_type_manual": "Manuelle",
+  "netapp_volumes_snapshots_type_automatic": "Automatique",
+  "netapp_volumes_snapshots_type_system": "Système",
   "netapp_volumes_snapshots_status": "Statut",
   "netapp_volumes_snapshots_status_available": "Disponible",
   "netapp_volumes_snapshots_status_error": "Erreur",

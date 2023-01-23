@@ -27,5 +27,7 @@
   "netapp_volumes_snapshots_policies_description": "Sie können eine Snapshot-Regel auf Ihr Volume anwenden.",
   "netapp_volumes_snapshots_policies_apply": "Regel anwenden",
   "netapp_volumes_snapshots_policies_apply_success": "Die Regel wurde angewandt.",
-  "netapp_volumes_snapshots_policies_apply_error": "Die Regel konnte nicht angewandt werden. Bitte versuchen Sie es später erneut."
+  "netapp_volumes_snapshots_policies_apply_error": "Die Regel konnte nicht angewandt werden. Bitte versuchen Sie es später erneut.",
+  "netapp_volumes_snapshots_type_automatic": "Automatisch",
+  "netapp_volumes_snapshots_type_system": "System"
 }
