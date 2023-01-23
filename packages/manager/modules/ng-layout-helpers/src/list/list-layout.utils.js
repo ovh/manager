@@ -195,6 +195,7 @@ export const stateResolves = {
     $q,
     $transition$,
     apiPath,
+    apiVersion,
     defaultFilterColumn,
     iceberg,
     staticResources,
@@ -215,6 +216,7 @@ export const stateResolves = {
 
       let request = iceberg(apiPath)
         .query()
+        .setApiVersion(apiVersion)
         .expand('CachedObjectList-Pages')
         .limit(pageSize)
         .offset(page)
@@ -236,6 +238,16 @@ export const stateResolves = {
   schema: /* @ngInject */ ($http, apiPath) =>
     $http.get(`${apiPath}.json`).then(({ data }) => data),
   apiModel: /* @ngInject */ (dataModel, schema) => schema.models[dataModel],
+  apiVersion: /* @ngInject */ ($transition$) => {
+    try {
+      return $transition$
+        .injector()
+        .getAsync('serviceType')
+        .then((serviceType) => serviceType || 'apiv6');
+    } catch (err) {
+      return 'apiv6';
+    }
+  },
   paginationNumber: /* @ngInject */ (
     $transition$,
     resources,
