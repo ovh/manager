@@ -59,6 +59,13 @@
                     ></oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-term="{{ ::'pci_projects_project_training_jobs_privacy' | translate  }}"
+                >
+                    <oui-tile-description
+                        data-ng-bind=":: ($ctrl.job.spec.unsecureHttp ? 'pci_projects_project_training_jobs_privacy_public' : 'pci_projects_project_training_jobs_privacy_restricted') | translate"
+                    ></oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{ ::'pci_projects_project_training_jobs_created' | translate  }}"
                 >
                     <oui-tile-description
