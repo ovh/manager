@@ -230,6 +230,10 @@ export const registerCoreModule = (environment, { onLocaleChange } = {}) => {
             urlPrefix: '/engine/apiv6',
           },
           {
+            serviceType: 'apiv2',
+            urlPrefix: '/engine/api/v2',
+          },
+          {
             serviceType: 'aapi',
             urlPrefix: '/engine/2api',
           },
