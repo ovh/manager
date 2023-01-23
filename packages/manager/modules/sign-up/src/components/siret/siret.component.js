@@ -9,8 +9,9 @@ export default {
     model: '=',
     rules: '<',
     trackingMode: '<',
-    isValid: '=',
+    isValid: '=?',
     formCtrl: '<?',
     onFieldError: '<?',
+    mode: '<',
   },
 };

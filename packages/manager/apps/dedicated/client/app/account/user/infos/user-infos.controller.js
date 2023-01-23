@@ -2,178 +2,198 @@ import identity from 'lodash/identity';
 import pick from 'lodash/pick';
 import pickBy from 'lodash/pickBy';
 
-export default /* @ngInject */ function UserAccountInfosController(
-  $scope,
-  $q,
-  $location,
-  $translate,
-  userAccountServiceInfos,
-  Alerter,
-  coreConfig,
-) {
-  /* Be carefull, a part of this controller is url driven.
-   * See the bottom of this file for more detail */
-  let searchParams;
+export default class UserAccountInfosController {
+  /* @ngInject */
+  constructor(
+    $q,
+    $location,
+    $translate,
+    userAccountServiceInfos,
+    Alerter,
+    coreConfig,
+  ) {
+    this.$q = $q;
+    this.$location = $location;
+    this.$translate = $translate;
+    this.userAccountServiceInfos = userAccountServiceInfos;
+    this.Alerter = Alerter;
+    this.coreConfig = coreConfig;
+  }
 
-  $scope.loading = false;
-  $scope.loadCreationRules = false;
-  $scope.dateFormat = 'yyyy/MM/dd';
+  $onInit() {
+    this.loading = true;
+    this.loadCreationRules = false;
+    this.dateFormat = 'yyyy/MM/dd';
 
-  $scope.alerts = {
-    dashboardInfos: 'useraccount.alerts.dashboardInfos',
-  };
+    this.alerts = {
+      dashboardInfos: 'useraccount.alerts.dashboardInfos',
+    };
 
-  $scope.controls = {
-    legalforms: [
-      'association',
-      'corporation',
-      'administration',
-      'individual',
-      'other',
-    ],
-    taskEmailChangesTodo: null,
-    validateEmailChange: null,
-    countries: null,
-  };
+    this.controls = {
+      legalforms: [
+        'association',
+        'corporation',
+        'administration',
+        'individual',
+        'other',
+      ],
+      taskEmailChangeTodo: null,
+      validateEmailChange: null,
+      countries: null,
+    };
 
-  $scope.worldPart = coreConfig.getRegion();
-  $scope.user = null;
+    this.worldPart = this.coreConfig.getRegion();
+    this.user = null;
 
-  function loadUserInfos() {
-    $scope.loading = true;
+    /* The url is watched to switch between the main view and the validation/refuse
+     * of the master email view */
+    this.searchParams = this.$location.search();
 
-    let promise = userAccountServiceInfos.getMeModels().then((model) => {
-      const props = model['nichandle.Nichandle'].properties;
-      const readOnlyProperties = [];
-      /* eslint-disable no-restricted-syntax */
-      for (const key in props) {
-        if (props[key].readOnly) {
-          readOnlyProperties.push(key);
-        }
-      }
-      /* eslint-enable no-restricted-syntax */
-      $scope.readOnlyProperties = readOnlyProperties;
-    });
-
-    promise = promise.then(() =>
-      userAccountServiceInfos.getListOfRulesFieldName(),
-    );
-
-    promise
-      .then((fieldNames) =>
-        userAccountServiceInfos.getUseraccountInfos().then((response) => {
-          // pick attributes that belong to /rules
-          // add customer code since it will be displayed in the form
-          $scope.user = pick(response, fieldNames.concat('customerCode'));
-
-          // remove empty attributes
-          $scope.user = pickBy($scope.user, identity);
-
-          // juste in case birthday date is retrieved in legacy format
-          // we nullify it so we don't break the first call to /rules
-          if (
-            !moment($scope.user.birthDay, 'YYYY-MM-DD', true).isValid() ||
-            /\//.test($scope.user.birthDay)
-          ) {
-            delete $scope.user.birthDay;
-          }
-        }),
-      )
+    if (
+      this.searchParams.taskId &&
+      this.searchParams.validateEmailChange === 'true'
+    ) {
+      this.controls.validateEmailChange = {
+        error: false,
+        loading: false,
+        taskId: this.searchParams.taskId,
+        token: this.searchParams.token,
+      };
+      return this.loadTaskForEmailValidation(
+        this.controls.validateEmailChange.taskId,
+      );
+    }
+    return this.$q
+      .all({
+        loadUserInfos: this.loadUserInfos(),
+        getTaskEmailChange: this.getTaskEmailChange(),
+      })
       .catch((err) => {
-        Alerter.alertFromSWS(
-          $translate.instant('user_account_info_error'),
+        return this.Alerter.alertFromSWS(
+          this.$translate.instant('user_account_info_error'),
           err.data,
           'InfoAlert',
         );
       })
       .finally(() => {
-        $scope.loading = false;
+        this.loading = false;
       });
-
-    $scope.controls.taskEmailChangeTodo = null;
-    userAccountServiceInfos.taskEmailChanges('todo').then(
-      (taskIds) => {
-        if (taskIds && taskIds.length > 0) {
-          // get only for the last
-          userAccountServiceInfos.taskEmailChange(taskIds.slice(-1)).then(
-            (task) => {
-              if (task && task.state === 'todo') {
-                $scope.controls.taskEmailChangeTodo = task;
-              }
-            },
-            (err) => {
-              Alerter.alertFromSWS(
-                $translate.instant('user_account_info_error'),
-                err.data,
-                'InfoAlert',
-              );
-            },
-          );
-        }
-      },
-      (err) => {
-        Alerter.alertFromSWS(
-          $translate.instant('user_account_info_error'),
-          err.data,
-          'InfoAlert',
-        );
-      },
-    );
   }
 
-  $scope.onProfileUpdate = function onProfileUpdate() {
-    $scope.user = null;
-    loadUserInfos();
-  };
+  loadUserInfos() {
+    return this.userAccountServiceInfos
+      .getMeModels()
+      .then((model) => {
+        const props = model['nichandle.Nichandle'].properties;
+        this.readOnlyProperties = Object.entries(props).flatMap(
+          ([key, value]) => {
+            if (value.readOnly) {
+              return [key];
+            }
+            return [];
+          },
+        );
+      })
+      .then(() => this.userAccountServiceInfos.getListOfRulesFieldName())
+      .then((fieldNames) =>
+        this.userAccountServiceInfos.getUseraccountInfos().then((response) => {
+          // pick attributes that belong to /rules
+          // add customer code since it will be displayed in the form
+          this.user = pick(response, fieldNames.concat('customerCode'));
 
-  $scope.resetInfoView = function resetInfoView() {
-    $location.search('validateEmailChange', null);
-    $location.search('taskId', null);
-    $location.search('token', null);
+          // remove empty attributes
+          this.user = pickBy(this.user, identity);
+
+          // juste in case birthday date is retrieved in legacy format
+          // we nullify it so we don't break the first call to /rules
+          if (
+            !moment(this.user.birthDay, 'YYYY-MM-DD', true).isValid() ||
+            /\//.test(this.user.birthDay)
+          ) {
+            delete this.user.birthDay;
+          }
+        }),
+      );
+  }
+
+  getTaskEmailChange() {
+    return this.userAccountServiceInfos
+      .taskEmailChanges('todo')
+      .then((taskIds) => {
+        if (taskIds.length > 0) {
+          // get only for the last
+          this.userAccountServiceInfos
+            .taskEmailChange(taskIds.slice(-1))
+            .then((task) => {
+              if (task.state === 'todo') {
+                this.controls.taskEmailChangeTodo = task;
+              }
+            });
+        }
+      });
+  }
+
+  onProfileUpdate() {
+    this.user = null;
+    return this.$q.all({
+      loadUserInfos: this.loadUserInfos(),
+      getTaskEmailChange: this.getTaskEmailChange(),
+    });
+  }
+
+  resetInfoView() {
+    this.$location.search('validateEmailChange', null);
+    this.$location.search('taskId', null);
+    this.$location.search('token', null);
 
     // ui-router quickwin : $location doesnt reload anymore
     // so we update the scope directly
-    $scope.controls.validateEmailChange = null;
-    loadUserInfos();
-  };
+    this.controls.taskEmailChangeTodo = null;
+    this.controls.validateEmailChange = null;
+    return this.loadUserInfos();
+  }
 
-  $scope.cancel = function cancel() {
-    $scope.edit = false;
-  };
+  cancel() {
+    this.edit = false;
+  }
 
-  function loadTaskForEmailValidation(taskId) {
-    userAccountServiceInfos.taskEmailChange(taskId).then(
+  loadTaskForEmailValidation(taskId) {
+    this.userAccountServiceInfos.taskEmailChange(taskId).then(
       (task) => {
         if (!task) {
-          return Alerter.alertFromSWS(
-            $translate.instant('user_account_info_error'),
+          return this.Alerter.alertFromSWS(
+            this.$translate.instant('user_account_info_error'),
             new Error('task not found.'),
             'InfoAlert',
           );
         }
 
-        $scope.controls.validateEmailChange.data = task;
+        this.controls.validateEmailChange.data = task;
 
         if (task.state !== 'todo') {
-          $scope.controls.validateEmailChange.error = true;
+          this.controls.validateEmailChange.error = true;
           switch (task.state) {
             case 'done':
-              Alerter.alertFromSWS(
-                $translate.instant('user_account_email_token_already_accepted'),
+              this.Alerter.alertFromSWS(
+                this.$translate.instant(
+                  'user_account_email_token_already_accepted',
+                ),
                 null,
                 'InfoAlert',
               );
               break;
             case 'refused':
-              Alerter.alertFromSWS(
-                $translate.instant('user_account_email_token_already_refused'),
+              this.Alerter.alertFromSWS(
+                this.$translate.instant(
+                  'user_account_email_token_already_refused',
+                ),
                 null,
                 'InfoAlert',
               );
               break;
             default:
-              Alerter.alertFromSWS(
-                $translate.instant('user_account_email_token_expired'),
+              this.Alerter.alertFromSWS(
+                this.$translate.instant('user_account_email_token_expired'),
                 null,
                 'InfoAlert',
               );
@@ -183,8 +203,8 @@ export default /* @ngInject */ function UserAccountInfosController(
         return task;
       },
       (err) => {
-        Alerter.alertFromSWS(
-          $translate.instant('user_account_info_error'),
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('user_account_info_error'),
           err.data,
           'InfoAlert',
         );
@@ -192,105 +212,108 @@ export default /* @ngInject */ function UserAccountInfosController(
     );
   }
 
-  function acceptOrRefuseEmailSuccess() {
-    $scope.resetInfoView();
+  acceptOrRefuseEmailSuccess() {
+    return this.resetInfoView();
   }
 
-  function acceptOrRefuseEmailError(err) {
-    Alerter.alertFromSWS(
-      $translate.instant('user_account_info_error'),
+  acceptOrRefuseEmailError(err) {
+    this.Alerter.alertFromSWS(
+      this.$translate.instant('user_account_info_error'),
       err.data,
       'InfoAlert',
     );
-    $scope.controls.validateEmailChange.loading = false;
+    this.controls.validateEmailChange.loading = false;
   }
 
-  function acceptOrRefuseEmail(accept) {
-    Alerter.resetMessage('InfoAlert');
-    $scope.controls.validateEmailChange.loading = true;
+  acceptOrRefuseEmail(accept) {
+    this.Alerter.resetMessage('InfoAlert');
+    this.controls.validateEmailChange.loading = true;
 
     if (accept) {
-      userAccountServiceInfos
+      return this.userAccountServiceInfos
         .taskEmailChangeAccept(
-          $scope.controls.validateEmailChange.data.id,
-          $scope.controls.validateEmailChange.token,
+          this.controls.validateEmailChange.data.id,
+          this.controls.validateEmailChange.token,
         )
-        .then(acceptOrRefuseEmailSuccess, acceptOrRefuseEmailError);
-    } else {
-      userAccountServiceInfos
-        .taskEmailChangeRefuse(
-          $scope.controls.validateEmailChange.data.id,
-          $scope.controls.validateEmailChange.token,
-        )
-        .then(acceptOrRefuseEmailSuccess, acceptOrRefuseEmailError);
+        .then(() => this.acceptOrRefuseEmailSuccess())
+        .catch((err) => this.acceptOrRefuseEmailError(err));
     }
+    return this.userAccountServiceInfos
+      .taskEmailChangeRefuse(
+        this.controls.validateEmailChange.data.id,
+        this.controls.validateEmailChange.token,
+      )
+      .then(() => this.acceptOrRefuseEmailSuccess())
+      .catch((err) => this.acceptOrRefuseEmailError(err));
   }
 
-  $scope.acceptEmail = function acceptEmail() {
-    acceptOrRefuseEmail(true);
-  };
+  acceptEmail() {
+    return this.acceptOrRefuseEmail(true);
+  }
 
-  $scope.refuseEmail = function refuseEmail() {
-    acceptOrRefuseEmail();
-  };
+  refuseEmail() {
+    return this.acceptOrRefuseEmail();
+  }
 
-  $scope.validateTaskWithToken = function validateTaskWithToken() {
-    $location.search({
+  validateTaskWithToken() {
+    this.$location.search({
       validateEmailChange: 'true', // string not boolean
-      taskId: $scope.controls.taskEmailChangeTodo.id,
+      taskId: this.controls.taskEmailChangeTodo.id,
     });
 
     // ui-router quickwin : $location doesnt reload anymore
     // so we update the scope directly
-    searchParams = $location.search();
-    $scope.controls.validateEmailChange = {
+    this.searchParams = this.$location.search();
+    this.controls.validateEmailChange = {
       error: false,
       loading: false,
-      taskId: searchParams.taskId,
-      token: searchParams.token,
+      taskId: this.searchParams.taskId,
+      token: this.searchParams.token,
     };
-    loadTaskForEmailValidation($scope.controls.validateEmailChange.taskId);
-  };
+    return this.loadTaskForEmailValidation(
+      this.controls.validateEmailChange.taskId,
+    );
+  }
 
-  $scope.requestChangeEmailToken = function requestChangeEmailToken(email) {
-    $scope.requestingToken = true;
-    return userAccountServiceInfos
+  requestChangeEmailToken(email) {
+    this.requestingToken = true;
+    return this.userAccountServiceInfos
       .changeEmail(email)
       .then(({ id }) => {
-        $scope.controls.taskEmailChangeTodo.id = id;
-        $scope.requestingToken = false;
-        Alerter.success(
-          $translate.instant('user_account_email_token_resend_success'),
+        this.controls.taskEmailChangeTodo.id = id;
+        this.requestingToken = false;
+        this.Alerter.success(
+          this.$translate.instant('user_account_email_token_resend_success'),
           'InfoAlert',
         );
       })
       .catch((error) => {
-        $scope.requestingToken = false;
-        Alerter.alertFromSWS(
-          $translate.instant('user_account_email_token_resend_error'),
+        this.requestingToken = false;
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('user_account_email_token_resend_error'),
           error.data,
           'InfoAlert',
         );
       });
-  };
+  }
 
-  $scope.isMandatory = function isMandatory(field) {
-    return $scope.edit && $scope.creationRules[field].mandatory;
-  };
+  isMandatory(field) {
+    return this.edit && this.creationRules[field].mandatory;
+  }
 
-  $scope.getRegexp = function getRegexp(field) {
+  getRegexp(field) {
     let pattern = '';
-    if ($scope.edit && $scope.creationRules[field].regularExpression) {
-      pattern = $scope.creationRules[field].regularExpression;
+    if (this.edit && this.creationRules[field].regularExpression) {
+      pattern = this.creationRules[field].regularExpression;
     }
     return pattern;
-  };
+  }
 
-  $scope.getInputClass = function getInputClass(field) {
+  getInputClass(field) {
     let accountField;
 
-    if ($scope.edit) {
-      accountField = $scope.myAccountForm[field];
+    if (this.edit) {
+      accountField = this.myAccountForm[field];
       if (accountField.$dirty) {
         if (accountField.$valid) {
           return 'success';
@@ -302,20 +325,5 @@ export default /* @ngInject */ function UserAccountInfosController(
     }
 
     return '';
-  };
-
-  /* The url is watched to switch between the main view and the validation/refuse
-   * of the master email view */
-  searchParams = $location.search();
-  if (searchParams.taskId && searchParams.validateEmailChange === 'true') {
-    $scope.controls.validateEmailChange = {
-      error: false,
-      loading: false,
-      taskId: searchParams.taskId,
-      token: searchParams.token,
-    };
-    loadTaskForEmailValidation($scope.controls.validateEmailChange.taskId);
-  } else {
-    loadUserInfos();
   }
 }

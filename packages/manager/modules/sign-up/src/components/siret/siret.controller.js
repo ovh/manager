@@ -19,7 +19,10 @@ export default class SiretCtrl {
   }
 
   $onInit() {
-    this.model.companyNationalIdentificationNumber = null;
+    if (this.mode === 'modification') {
+      this.isFirstSearch = false;
+      this.displayManualForm = true;
+    }
 
     this.legalFormList = LEGAL_FORM.map((value) =>
       this.$translate.instant(PREFIX_TRANSLATION_LEGAL_FORM + value),
@@ -74,6 +77,10 @@ export default class SiretCtrl {
       suggestSelected.secondaryCNIN;
     this.model.organisation = suggestSelected.name;
     this.suggest = { ...this.suggest, entryList: [suggestSelected] };
+    if (this.mode === 'modification') {
+      this.isFirstSearch = false;
+      this.displayManualForm = true;
+    }
     return null;
   }
 
