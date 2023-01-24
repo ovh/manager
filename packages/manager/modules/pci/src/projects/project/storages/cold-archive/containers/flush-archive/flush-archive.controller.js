@@ -16,7 +16,7 @@ export default class ColdArchiveContainersFlushArchiveController {
   }
 
   trackFlushContainerModalPage(action) {
-    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER}::${action}`;
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER}_${action}`;
     this.trackPage(hit);
   }
 
@@ -31,9 +31,7 @@ export default class ColdArchiveContainersFlushArchiveController {
     return this.pciStoragesColdArchiveService
       .flushArchive(this.projectId, REGION, this.container.name)
       .then(() => {
-        this.trackFlushContainerModalPage(
-          `${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
-        );
+        this.trackFlushContainerModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
 
         return this.goBack(
           this.$translate.instant(
@@ -45,9 +43,7 @@ export default class ColdArchiveContainersFlushArchiveController {
         );
       })
       .catch((err) => {
-        this.trackFlushContainerModalPage(
-          `${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
-        );
+        this.trackFlushContainerModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
 
         return this.goBack(
           this.$translate.instant(
