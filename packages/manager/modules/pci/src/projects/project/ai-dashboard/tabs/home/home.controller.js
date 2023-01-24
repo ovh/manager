@@ -1,18 +1,22 @@
 import { GUIDES, ITEMS_POLL_INTERVAL } from '../../ai-dashboard.constants';
-import { BILLING_RESOURCES, TUTORIALS_TO_DISPLAY } from './home.constants';
+import {
+  BILLING_RESOURCES,
+  TUTORIALS_TO_DISPLAY,
+  UCENT_PRICE_MULTIPLIER,
+} from './home.constants';
 
-export default class AIDashboardHomeCtrl {
+export default class AiDashboardHomeCtrl {
   /* @ngInject */
   constructor(
     $interval,
     $translate,
-    AIDashboardService,
+    AiDashboardService,
     atInternet,
     coreConfig,
   ) {
     this.$interval = $interval;
     this.$translate = $translate;
-    this.AIDashboardService = AIDashboardService;
+    this.AiDashboardService = AiDashboardService;
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
   }
@@ -41,20 +45,22 @@ export default class AIDashboardHomeCtrl {
   }
 
   getAIItems() {
-    this.AIDashboardService.getAIItems(this.projectId).then((data) => {
+    this.AiDashboardService.getAIItems(this.projectId).then((data) => {
       this.aiItems = data;
     });
   }
 
   getBillingData() {
     this.nextBillingDate = this.billing.period.to;
-    this.price = this.billing.resourcesUsage.reduce(
-      (sum, resource) =>
-        BILLING_RESOURCES.includes(resource.type)
-          ? sum + resource.totalPrice
-          : sum,
-      0,
-    );
+    this.price =
+      UCENT_PRICE_MULTIPLIER *
+      this.billing.resourcesUsage.reduce(
+        (sum, resource) =>
+          BILLING_RESOURCES.includes(resource.type)
+            ? sum + resource.totalPrice
+            : sum,
+        0,
+      );
   }
 
   getRandomTutorials() {

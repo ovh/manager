@@ -7,19 +7,19 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ () => null, // Hide breadcrumb
       homeAIGuides: /* @ngInject */ (
-        AIDashboardService,
+        AiDashboardService,
         projectId,
         coreConfig,
       ) =>
-        AIDashboardService.getGuides(
+        AiDashboardService.getGuides(
           projectId,
           coreConfig
             .getUserLocale()
             .replace('_', '-')
             .toLowerCase(),
         ),
-      billing: /* @ngInject */ (AIDashboardService, projectId) =>
-        AIDashboardService.getBilling(projectId),
+      billing: /* @ngInject */ (AiDashboardService, projectId) =>
+        AiDashboardService.getBilling(projectId),
       goToObjectStorage: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.storages.object-storage', {
           projectId,

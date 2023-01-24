@@ -7,9 +7,9 @@ import '@ovh-ux/ui-kit';
 import component from './home.component';
 import routing from './home.routing';
 
-const moduleName = 'ovhManagerPciAiDashboardHome';
-
 import aiGuideComponent from '../../components/ai-guide';
+
+const moduleName = 'ovhManagerPciAiDashboardHome';
 
 angular
   .module(moduleName, [

@@ -34,11 +34,10 @@
                                     data-translate="pci_ai_dashboard_home_billing_next_billing_data"
                                     data-translate-values="{ date: ($ctrl.nextBillingDate | date: 'mediumDate') }"
                                 ></span>
-                                <span
+                                <ovh-manager-catalog-price
                                     class="billing-price"
-                                    data-ng-bind="$ctrl.price | currency"
-                                >
-                                </span>
+                                    price="$ctrl.price"
+                                ></ovh-manager-catalog-price>
                             </div>
                             <oui-button
                                 data-variant="link"
@@ -114,7 +113,10 @@
                             variant="link"
                             data-on-click="$ctrl.trackAndGetRandomTutorials()"
                         >
-                            <span class="oui-icon oui-icon-refresh"></span>
+                            <span
+                                class="oui-icon oui-icon-refresh"
+                                aria-hiden="true"
+                            ></span>
                         </oui-button>
                     </div>
                 </div>
