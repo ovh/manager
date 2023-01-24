@@ -10,7 +10,7 @@ import routing from './cli.routing';
 import aiCodeSampleComponent from '../../components/ai-code-sample';
 import aiGuideComponent from '../../components/ai-guide';
 
-const moduleName = 'ovhManagerPciAIDashboardCli';
+const moduleName = 'ovhManagerPciAiDashboardCli';
 
 angular
   .module(moduleName, [
@@ -22,7 +22,7 @@ angular
     aiGuideComponent,
   ])
   .config(routing)
-  .component('pciProjectAIDashboardCli', component)
+  .component('pciProjectAiDashboardCli', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

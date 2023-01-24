@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.ai-dashboard.cli', {
     url: '/cli',
     views: {
-      aiDashboardTabUiView: 'pciProjectAIDashboardCli',
+      aiDashboardTabUiView: 'pciProjectAiDashboardCli',
     },
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb,
@@ -12,8 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.ai-dashboard.users-tokens', {
           projectId,
         }),
-      cliGuides: /* @ngInject */ (AIDashboardService, projectId, coreConfig) =>
-        AIDashboardService.getGuides(
+      cliGuides: /* @ngInject */ (AiDashboardService, projectId, coreConfig) =>
+        AiDashboardService.getGuides(
           projectId,
           coreConfig
             .getUserLocale()
