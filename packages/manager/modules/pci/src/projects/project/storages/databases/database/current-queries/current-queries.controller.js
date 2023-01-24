@@ -18,6 +18,7 @@ export default class {
     this.showIdleConnections = true;
     this.showActiveConnections = true;
     this.autorefreshPage = false;
+    this.IDLE_QUERY_STATES = IDLE_QUERY_STATES;
     this.loading = {
       queries: false,
     };
@@ -122,8 +123,9 @@ export default class {
       this.database.engine,
       query.pid,
     )
-      .then(() =>
-        this.CucCloudMessage.success(
+      .then(() => {
+        this.getCurrentQueries();
+        return this.CucCloudMessage.success(
           this.$translate.instant(
             'pci_databases_current_queries_datagrid_terminate_action_success',
             {
@@ -131,8 +133,8 @@ export default class {
             },
           ),
           this.messageContainer,
-        ),
-      )
+        );
+      })
       .catch(() =>
         this.CucCloudMessage.error(
           this.$translate.instant(
