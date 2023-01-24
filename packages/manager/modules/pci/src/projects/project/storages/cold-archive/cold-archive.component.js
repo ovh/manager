@@ -17,6 +17,8 @@ export default {
     guides: '<',
     containers: '<',
     priceLink: '<',
+    onPriceLinkClick: '<',
+    onGuideClick: '<',
   },
   template,
 };
