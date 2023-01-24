@@ -7,7 +7,7 @@ import '@ovh-ux/ui-kit';
 import component from './create-user.component';
 import routing from './create-user.routing';
 
-const moduleName = 'ovhManagerPciAIDashboardUsersTokensCreateUser';
+const moduleName = 'ovhManagerPciAiDashboardUsersTokensCreateUser';
 
 angular
   .module(moduleName, [

@@ -11,8 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         goBack: /* @ngInject */ (goBackToUsersToken) => goBackToUsersToken,
-        regions: /* @ngInject */ (AIDashboardService, projectId) =>
-          AIDashboardService.getRegions(projectId),
+        regions: /* @ngInject */ (AiDashboardService, projectId) =>
+          AiDashboardService.getRegions(projectId),
       },
     },
   );

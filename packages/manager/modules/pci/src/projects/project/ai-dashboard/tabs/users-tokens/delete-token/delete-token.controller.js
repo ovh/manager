@@ -1,7 +1,7 @@
 export default class AIDashboadDeleteTokenCtrl {
   /* @ngInject */
-  constructor($translate, atInternet, AIDashboardService) {
-    this.AIDashboardService = AIDashboardService;
+  constructor($translate, atInternet, AiDashboardService) {
+    this.AiDashboardService = AiDashboardService;
     this.atInternet = atInternet;
     this.$translate = $translate;
   }
@@ -12,7 +12,7 @@ export default class AIDashboadDeleteTokenCtrl {
       type: 'action',
     });
     this.processing = true;
-    return this.AIDashboardService.deleteToken(this.projectId, this.token.id)
+    return this.AiDashboardService.deleteToken(this.projectId, this.token.id)
       .then(() =>
         this.goBack({
           textHtml: this.$translate.instant(

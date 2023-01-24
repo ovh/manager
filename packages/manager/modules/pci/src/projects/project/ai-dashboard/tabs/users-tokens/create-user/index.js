@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerPciAIDashboardUsersTokensCreateUserLazyLoading';
+const moduleName = 'ovhManagerPciAiDashboardUsersTokensCreateUserLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {

@@ -21,10 +21,10 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
-      aiRoles: /* @ngInject */ (AIDashboardService, projectId) =>
-        AIDashboardService.getAIRoles(projectId),
-      aiTokens: /* @ngInject */ (AIDashboardService, projectId) =>
-        AIDashboardService.getAITokens(projectId),
+      aiRoles: /* @ngInject */ (AiDashboardService, projectId) =>
+        AiDashboardService.getAIRoles(projectId),
+      aiTokens: /* @ngInject */ (AiDashboardService, projectId) =>
+        AiDashboardService.getAITokens(projectId),
       goToCreateUser: /* @ngInject */ ($state, projectId) => () =>
         $state.go(
           'pci.projects.project.ai-dashboard.users-tokens.create-user',

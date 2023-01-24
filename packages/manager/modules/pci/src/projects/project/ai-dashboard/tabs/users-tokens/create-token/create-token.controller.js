@@ -1,9 +1,9 @@
 export default class AIDashboadCreateTokenCtrl {
   /* @ngInject */
-  constructor($translate, atInternet, AIDashboardService) {
+  constructor($translate, atInternet, AiDashboardService) {
     this.$translate = $translate;
     this.atInternet = atInternet;
-    this.AIDashboardService = AIDashboardService;
+    this.AiDashboardService = AiDashboardService;
   }
 
   addToken() {
@@ -12,7 +12,7 @@ export default class AIDashboadCreateTokenCtrl {
       type: 'action',
     });
     this.processing = true;
-    return this.AIDashboardService.addToken(this.projectId, this.model)
+    return this.AiDashboardService.addToken(this.projectId, this.model)
       .then((token) =>
         this.goBack({
           textHtml: this.$translate.instant(

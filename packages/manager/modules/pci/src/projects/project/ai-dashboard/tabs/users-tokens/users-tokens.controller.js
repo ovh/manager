@@ -1,10 +1,10 @@
-export default class AIDashboardUsersTokensCtrl {
+export default class AiDashboardUsersTokensCtrl {
   /* @ngInject */
-  constructor(atInternet, $translate, CucCloudMessage, AIDashboardService) {
+  constructor(atInternet, $translate, CucCloudMessage, AiDashboardService) {
     this.atInternet = atInternet;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.AIDashboardService = AIDashboardService;
+    this.AiDashboardService = AiDashboardService;
   }
 
   $onInit() {
@@ -59,7 +59,7 @@ export default class AIDashboardUsersTokensCtrl {
       name: `${this.trackingPrefix}::users-tokens::renew-token`,
       type: 'action',
     });
-    this.AIDashboardService.renewToken(this.projectId, token.id).then(
+    this.AiDashboardService.renewToken(this.projectId, token.id).then(
       (data) => {
         this.CucCloudMessage.success(
           {

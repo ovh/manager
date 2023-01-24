@@ -1,9 +1,9 @@
 export default class AIDashboadCreateUserCtrl {
   /* @ngInject */
-  constructor($translate, atInternet, AIDashboardService) {
+  constructor($translate, atInternet, AiDashboardService) {
     this.$translate = $translate;
     this.atInternet = atInternet;
-    this.AIDashboardService = AIDashboardService;
+    this.AiDashboardService = AiDashboardService;
   }
 
   addUser() {
@@ -12,7 +12,7 @@ export default class AIDashboadCreateUserCtrl {
       type: 'action',
     });
     this.processing = true;
-    return this.AIDashboardService.addUser(this.projectId, {
+    return this.AiDashboardService.addUser(this.projectId, {
       description: this.model.description,
       role: this.model.role,
     })
