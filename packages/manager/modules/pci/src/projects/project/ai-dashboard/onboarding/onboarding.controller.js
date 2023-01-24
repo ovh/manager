@@ -1,6 +1,6 @@
 import { ONBOARDING_TUTORIALS_SLUGS } from './onboarding.constants';
 
-export default class AIDashboardOnboardingCtrl {
+export default class AiDashboardOnboardingCtrl {
   /* @ngInject */
   constructor(atInternet) {
     this.atInternet = atInternet;

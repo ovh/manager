@@ -7,10 +7,10 @@ import '@ovh-ux/ui-kit';
 import component from './onboarding.component';
 import routing from './onboarding.routing';
 
-const moduleName = 'ovhManagerPciAiDashboardOnboarding';
-
 import aiPipeline from '../components/ai-pipeline';
 import aiGuideComponent from '../components/ai-guide';
+
+const moduleName = 'ovhManagerPciAiDashboardOnboarding';
 
 angular
   .module(moduleName, [
