@@ -13,7 +13,7 @@ export default class PciBlockStorageDetailsArchiveController {
   }
 
   trackArchiveModalPage(action) {
-    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}::${action}`;
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}_${action}`;
     this.trackPage(hit);
   }
 

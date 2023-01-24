@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       container: null,
     },
     atInternet: {
-      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.CONTAINERS_ARCHIVE_FLUSH}`,
+      rename: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER}`,
     },
     redirectTo: (transition) =>
       transition
