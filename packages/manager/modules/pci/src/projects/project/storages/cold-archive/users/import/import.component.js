@@ -11,5 +11,7 @@ export default {
     userList: '<',
     userId: '<',
     user: '<',
+    trackPage: '<',
+    trackClick: '<',
   },
 };
