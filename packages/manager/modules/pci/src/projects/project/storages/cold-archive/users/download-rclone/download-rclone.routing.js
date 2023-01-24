@@ -41,7 +41,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       rcloneGuide: /* @ngInject */ (coreConfig) => {
         return (
-          RCLONE_GUIDE[coreConfig.getUserLanguage().toUpperCase()] ||
+          RCLONE_GUIDE[coreConfig.getUser().ovhSubsidiary] ||
           RCLONE_GUIDE.DEFAULT
         );
       },
