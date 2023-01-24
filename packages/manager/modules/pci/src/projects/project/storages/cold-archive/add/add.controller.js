@@ -41,14 +41,14 @@ export default class ColdArchiveConfigurationController {
 
   trackAddContainerClick(action) {
     this.atInternet.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ADD.PREFIX}::${action}`,
+      name: `${COLD_ARCHIVE_TRACKING.CLICK_PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}::${action}`,
       type: 'click',
     });
   }
 
   trackAddContainerPage(action) {
     this.atInternet.trackPage({
-      name: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ADD.PREFIX}::${action}`,
+      name: `${COLD_ARCHIVE_TRACKING.CLICK_PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}_${action}`,
       type: 'navigation',
     });
   }
@@ -113,9 +113,7 @@ export default class ColdArchiveConfigurationController {
         ownerId: this.getUserOwnerId(),
       })
       .then(() => {
-        this.trackAddContainerPage(
-          `${COLD_ARCHIVE_TRACKING.ADD.CREATE}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
-        );
+        this.trackAddContainerPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
         return this.goToColdArchiveContainers(
           this.$translate.instant(
             'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success',
@@ -127,9 +125,7 @@ export default class ColdArchiveConfigurationController {
         );
       })
       .catch((err) => {
-        this.trackAddContainerPage(
-          `${COLD_ARCHIVE_TRACKING.ADD.CREATE}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
-        );
+        this.trackAddContainerPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
         this.cucCloudMessage.error(
           this.$translate.instant(
             'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_failed',
@@ -147,9 +143,7 @@ export default class ColdArchiveConfigurationController {
   }
 
   onArchiveSubmit() {
-    this.trackAddContainerClick(
-      `${COLD_ARCHIVE_TRACKING.ADD.CREATE}_${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}`,
-    );
+    this.trackAddContainerClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
     return this.createArchive();
   }
 }
