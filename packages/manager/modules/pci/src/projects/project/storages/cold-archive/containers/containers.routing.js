@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '',
     component: 'pciProjectStorageColdArchiveContainers',
     atInternet: {
-      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}`,
+      rename: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}`,
     },
     redirectTo: (transition) =>
       transition

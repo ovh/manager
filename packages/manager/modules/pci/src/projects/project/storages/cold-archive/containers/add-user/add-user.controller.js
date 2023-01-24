@@ -32,7 +32,7 @@ export default class ColdArchiveContainersAddUserController {
   }
 
   trackAddUserModalPage(action) {
-    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}::${action}`;
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}_${action}`;
     this.trackPage(hit);
   }
 
