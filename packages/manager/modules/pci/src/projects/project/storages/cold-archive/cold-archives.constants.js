@@ -1,29 +1,33 @@
 export const COLD_ARCHIVE_TRACKING = {
-  PREFIX: 'PublicCloud::pci::projects::project::storages::cold_archive',
+  CLICK_PREFIX: 'PublicCloud::pci::projects::project::storages::cold_archive',
+  PAGE_PREFIX: 'pci::projects::project::storages::cold_archive',
+  SEE_PRICE: 'dashboard::see-prices',
+  GUIDE: 'guides::go_to',
   ONBOARDING: {
     MAIN: 'onboarding',
     ADD_CONTAINER: 'add',
     DOCUMENTATION_LINK: 'docs',
   },
-  ADD: {
-    MAIN: 'add',
-    PREFIX: 'PublicCloud_cold_archive_add_archive::create_container',
+  ADD_USER: {
+    MAIN: 'add-user',
     ASSOCIATE: {
       NEW_USER: 'add_new_user',
       EXISTING_USER: 'add_existing_user',
       ASSOCIATE_USER: 'associate_user',
+      SEE_CREDENTIALS: 'see_credentials',
     },
     CREATE: 'create_container',
   },
   CONTAINERS: {
     MAIN: 'dashboard::containers',
     RESTORE: 'restore',
-    DELETE: 'delete',
-    ADD_USER: 'add-user',
+    ADD_CONTAINER: 'add',
     ARCHIVE: 'archive',
+    DELETE: 'delete',
+    MANAGE_CONTAINER: 'manage-container',
     DELETE_CONTAINER: 'delete-container',
     FLUSH_CONTAINER: 'flush-container',
-    MANAGE_CONTAINER: 'manage-container',
+    ADD_USER: 'add-user',
   },
   USER: {
     MAIN: 'dashboard::s3_users',
@@ -50,8 +54,8 @@ export const COLD_ARCHIVE_TRACKING = {
     CANCEL: 'cancel',
   },
   STATUS: {
-    SUCCESS: 'confirm_success',
-    ERROR: 'confirm_error',
+    SUCCESS: 'success',
+    ERROR: 'error',
   },
 };
 
