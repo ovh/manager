@@ -79,5 +79,11 @@
   "pci_projects_project_training_jobs_submit_select_ssh_add": "Dodaj nowy publiczny klucz SSH",
   "pci_projects_project_training_jobs_submit_select_ssh_quantity": "{{numberOfSshKeys}} / {{maxSshKeys}} kluczy SSH",
   "pci_projects_project_training_jobs_submit_select_ssh_legend": "Publiczny klucz SSH",
-  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Usuń przypisany klucz SSH"
+  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Usuń przypisany klucz SSH",
+  "pci_projects_project_training_jobs_submit_select_privacy": "Parametry poufności",
+  "pci_projects_project_training_jobs_submit_select_privacy_settings_item_restricted": "Ograniczony dostęp",
+  "pci_projects_project_training_jobs_submit_select_privacy_settings_item_restricted_description": "Dostęp do zadania jest zarezerwowany dla użytkowników Public Cloud OVHcloud utworzonych w Twoim projekcie.",
+  "pci_projects_project_training_jobs_submit_select_privacy_settings_item_public": "Dostęp publiczny",
+  "pci_projects_project_training_jobs_submit_select_privacy_settings_item_public_description": "Twoje zadanie jest dostępne dla wszystkich poprzez URL. Każdy może uzyskać dostęp do Twojego kodu i powiązanych z nim danych.",
+  "pci_projects_project_training_jobs_submit_select_privacy_settings_item_public_warning": "Zachowaj ostrożność w przypadku danych wrażliwych."
 }

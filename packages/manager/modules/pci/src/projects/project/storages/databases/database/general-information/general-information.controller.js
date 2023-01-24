@@ -3,10 +3,14 @@ import {
   MAX_IPS_DISPLAY,
   CERTIFICATE_FILENAME,
   DATABASE_TYPES,
+  SSL_MODE_REQUIRED,
+  SSL_MODE_NA,
+  SSL_MODE_SSL_TLS,
 } from '../../databases.constants';
 import {
   WARNING_MESSAGES,
   KARAPACE_URL,
+  TRANSLATION_PREFIX,
 } from './general-information.constants';
 import isFeatureActivated from '../../features.constants';
 import { DISK_TYPE } from '../../../../../../components/project/storages/databases/databases.constants';
@@ -308,6 +312,19 @@ export default class {
       .finally(() => {
         this.loading.restApi = false;
       });
+  }
+
+  getSSLKeyTranslation() {
+    let sslTranslationKey = this.endpoint.sslMode;
+    // if key exists in translation, return translation key.
+    if (SSL_MODE_REQUIRED.includes(sslTranslationKey)) {
+      sslTranslationKey = `${TRANSLATION_PREFIX}_required`;
+    } else if (SSL_MODE_NA.includes(sslTranslationKey)) {
+      sslTranslationKey = `${TRANSLATION_PREFIX}_n/a`;
+    } else if (SSL_MODE_SSL_TLS.includes(sslTranslationKey)) {
+      sslTranslationKey = `${TRANSLATION_PREFIX}_SSL_TLS`;
+    }
+    return sslTranslationKey;
   }
 
   onRestApiServiceUriCopy(event) {

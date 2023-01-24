@@ -134,6 +134,10 @@ export const NODES_PER_ROW = 4;
 export const MAX_IPS_DISPLAY = 3;
 export const CERTIFICATE_FILENAME = 'ca.pem';
 
+export const SSL_MODE_REQUIRED = ['require', 'required', 'REQUIRED'];
+export const SSL_MODE_NA = ['n/a'];
+export const SSL_MODE_SSL_TLS = ['TLS/SSL'];
+
 export default {
   DATABASE_TYPES,
   SHELL_NAMES,
@@ -143,4 +147,7 @@ export default {
   SECRET_TYPE,
   ENGINE_LOGOS,
   CERTIFICATE_FILENAME,
+  SSL_MODE_REQUIRED,
+  SSL_MODE_NA,
+  SSL_MODE_SSL_TLS,
 };

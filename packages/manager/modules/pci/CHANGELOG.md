@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.108.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.107.0...@ovh-ux/manager-pci@5.108.0) (2023-01-24)
+
+
+### Bug Fixes
+
+* ssl and backup translations ([#8697](https://github.com/ovh/manager/issues/8697)) ([481a260](https://github.com/ovh/manager/commit/481a260a05939ec0a655aed3f32adf6467c564fc))
+
+
+### Features
+
+* **modules.pci:** have a consistant margin on top and bottom ([#8768](https://github.com/ovh/manager/issues/8768)) ([5277df2](https://github.com/ovh/manager/commit/5277df22867c7b83b187a3c677cc33bfc0e3f746))
+* **pci.training:** datatr-155 - jobs privacy settings ([#8578](https://github.com/ovh/manager/issues/8578)) ([196df13](https://github.com/ovh/manager/commit/196df13e233120bc0f5e323fb51a8f7cf19bc644))
+
+
+
+
+
 # [5.107.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.106.0...@ovh-ux/manager-pci@5.107.0) (2023-01-19)
 
 

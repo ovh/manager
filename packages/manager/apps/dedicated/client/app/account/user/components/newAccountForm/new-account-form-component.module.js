@@ -5,6 +5,8 @@ import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 
+import '@ovh-ux/sign-up';
+
 import component from './new-account-form-component';
 import fieldComponent from './field/new-account-form-field-component';
 
@@ -17,6 +19,7 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
     'ui.router',
+    'ovhSignUp',
   ])
   .component('newAccountForm', component)
   .component('newAccountFormField', fieldComponent)

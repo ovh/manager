@@ -14,10 +14,8 @@ import {
   IP_LOCATION_GROUPS,
   PRODUCT_TYPES,
   TRACKING_PREFIX,
-  TRACKING_HIT,
   VPS_MAX_QUANTITY,
   IP_AGORA,
-  LEARN_ORGANIZATION_LINK,
   ADDITIONAL_IP,
   BLOCK_ADDITIONAL_IP,
 } from './ip-ip-agoraOrder.constant';
@@ -52,7 +50,6 @@ export default class AgoraIpOrderCtrl {
     this.IP_AGORA = IP_AGORA;
     this.ADDITIONAL_IP = ADDITIONAL_IP;
     this.BLOCK_ADDITIONAL_IP = BLOCK_ADDITIONAL_IP;
-    this.TRACKING_HIT = TRACKING_HIT;
     this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
   }
 
@@ -65,7 +62,6 @@ export default class AgoraIpOrderCtrl {
     this.user = this.$state.params.user;
     this.catalogName = this.$state.params.catalogName;
     this.loadServices();
-    this.LEARN_ORGANIZATION_LINK = LEARN_ORGANIZATION_LINK;
   }
 
   loadServices() {

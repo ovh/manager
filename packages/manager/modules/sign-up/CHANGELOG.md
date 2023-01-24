@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.6](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.5.5...@ovh-ux/sign-up@2.5.6) (2023-01-24)
+
+
+### Bug Fixes
+
+* **sign-up:** add module siret for corporation fr ([#8232](https://github.com/ovh/manager/issues/8232)) ([ba0280a](https://github.com/ovh/manager/commit/ba0280a148a9cd8848f79efabdc5290c0d2ba01f))
+
+
+
+
+
 ## [2.5.5](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.5.4...@ovh-ux/sign-up@2.5.5) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/sign-up
