@@ -82,7 +82,7 @@
   "ip_migration_step5_question": "Résumé de votre commande",
   "ip_migration_step5_success": "La demande de migration (commande <a href='{{t0}}' target='_blank'>{{t1}}</a>) a bien été prise en compte.",
   "ip_migration_step5_error": "Une erreur est survenue lors de la demande de migration.",
-  "ip_filter_service_type_all": "Tous les services",
+  "ip_filter_service_type_all": "Tous les types de service",
   "ip_filter_service_type_cloud": "Public Cloud",
   "ip_filter_service_type_dedicated": "Serveurs dédiés",
   "ip_filter_service_type_failover": "Additional IP",
