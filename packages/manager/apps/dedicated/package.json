@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "17.44.0",
+  "version": "17.45.0",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -43,7 +43,7 @@
     "@ovh-ux/manager-metrics": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-models": "^1.14.3",
     "@ovh-ux/manager-nasha": "^2.6.4",
-    "@ovh-ux/manager-netapp": "^1.4.3",
+    "@ovh-ux/manager-netapp": "^1.5.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
     "@ovh-ux/manager-nutanix": "^1.5.2",
     "@ovh-ux/manager-server-sidebar": "^3.29.1",
@@ -88,8 +88,8 @@
     "@ovh-ux/ng-ui-router-layout": "^4.1.2",
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/shell": "^1.8.2",
+    "@ovh-ux/sign-up": "^2.5.6",
     "@ovh-ux/ui-kit": "^6.3.0",
-    "@ovh-ux/sign-up": "^2.5.4",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "1.7.x",
     "angular-aria": "1.7.x",

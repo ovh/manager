@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.44.0...@ovh-ux/manager-dedicated@17.45.0) (2023-01-24)
+
+
+### Bug Fixes
+
+* **sign-up:** add module siret for corporation fr ([#8232](https://github.com/ovh/manager/issues/8232)) ([ba0280a](https://github.com/ovh/manager/commit/ba0280a148a9cd8848f79efabdc5290c0d2ba01f))
+
+
+### Features
+
+* **dedicated.ip:** move virtual mac column ([#8735](https://github.com/ovh/manager/issues/8735)) ([a1b9f1b](https://github.com/ovh/manager/commit/a1b9f1bb4cf51bac1a9b3ed49b16351bf4386c69))
+* **dedicated.ip:** remove organisation link ([#8738](https://github.com/ovh/manager/issues/8738)) ([6cecd24](https://github.com/ovh/manager/commit/6cecd24813596c44a0d541b1677fb9626871bf00))
+
+
+
+
+
 # [17.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.43.1...@ovh-ux/manager-dedicated@17.44.0) (2023-01-19)
 
 
