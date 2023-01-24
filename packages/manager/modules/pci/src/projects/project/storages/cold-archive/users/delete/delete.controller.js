@@ -1,12 +1,11 @@
 import get from 'lodash/get';
-import { TRACKING } from '../users.constants';
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 
 export default class PciStoragesContainersUsersDeleteController {
   /* @ngInject */
-  constructor($http, $translate, atInternet, PciStoragesColdArchiveService) {
+  constructor($http, $translate, PciStoragesColdArchiveService) {
     this.$http = $http;
     this.$translate = $translate;
-    this.atInternet = atInternet;
     this.PciStoragesColdArchiveService = PciStoragesColdArchiveService;
   }
 
@@ -15,10 +14,7 @@ export default class PciStoragesContainersUsersDeleteController {
   }
 
   delete() {
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}${TRACKING.DELETE_POLICY}::confirm`,
-      type: 'action',
-    });
+    this.trackDeleteUserModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
 
     this.isDeleting = true;
     return this.PciStoragesColdArchiveService.removeAllCredentials(
@@ -27,7 +23,7 @@ export default class PciStoragesContainersUsersDeleteController {
       this.credentials,
     )
       .then(() => {
-        this.trackPage(`${TRACKING.DELETE_POLICY}-success`);
+        this.trackDeleteUserModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
         return this.goBack(
           this.$translate.instant(
             'pci_projects_project_storages_containers_users_delete_success',
@@ -38,7 +34,7 @@ export default class PciStoragesContainersUsersDeleteController {
         );
       })
       .catch((error) => {
-        this.trackPage(`${TRACKING.DELETE_POLICY}-error`);
+        this.trackDeleteUserModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
         return this.goBack(
           this.$translate.instant(
             'pci_projects_project_storages_containers_users_delete_error',
@@ -55,17 +51,17 @@ export default class PciStoragesContainersUsersDeleteController {
   }
 
   cancel() {
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}${TRACKING.DELETE_POLICY}::cancel`,
-      type: 'action',
-    });
+    this.trackDeleteUserModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
     return this.goBack();
   }
 
-  trackPage(page) {
-    this.atInternet.trackPage({
-      name: `${this.trackingPrefix}${page}`,
-      type: 'navigation',
-    });
+  trackDeleteUserModalPage(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DELETE_POLICY}_${action}`;
+    this.trackPage(hit);
+  }
+
+  trackDeleteUserModalClick(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DELETE_POLICY}::${action}`;
+    this.trackClick(hit);
   }
 }

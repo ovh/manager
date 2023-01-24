@@ -7,9 +7,9 @@
         data-heading="{{ 'pci_projects_project_storages_cold_archive_users_download-rclone_title' | translate }}"
         data-primary-label="{{:: 'pci_projects_project_storages_cold_archive_users_download-rclone_submit_label' | translate }}"
         data-primary-disabled="$ctrl.isLoading"
-        data-secondary-action="$ctrl.goBack()"
+        data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{:: 'pci_projects_project_storages_cold_archive_users_download-rclone_cancel_label' | translate }}"
-        data-on-dismiss="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.cancel()"
         data-loading="$ctrl.isLoading"
     >
         <p>
@@ -32,9 +32,7 @@
                 ></span>
             </a>
         </p>
-        <oui-field
-            data-size="xl"
-        >
+        <oui-field data-size="xl">
             <oui-select
                 data-name="storageS3Regions"
                 data-model="$ctrl.storageS3Region"

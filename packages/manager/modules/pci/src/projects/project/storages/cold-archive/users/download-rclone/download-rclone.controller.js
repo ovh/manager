@@ -2,6 +2,7 @@ import {
   DOWNLOAD_FILETYPE,
   RCLONE_SERVICE_TYPE,
 } from './download-rclone.constants';
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 
 const { saveAs } = require('file-saver');
 
@@ -29,6 +30,7 @@ export default class ColdArchiveUsersDownloadRcloneController {
   }
 
   downloadRclone() {
+    this.trackDownloadRCloneModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
     this.isLoading = true;
     this.serviceType =
       RCLONE_SERVICE_TYPE[this.fileType?.toUpperCase()] ||
@@ -45,8 +47,11 @@ export default class ColdArchiveUsersDownloadRcloneController {
           const reader = new FileReader();
           reader.onloadend = () => resolve(reader.result);
           reader.readAsDataURL(data);
-        }).then((link) =>
-          this.goBack({
+        }).then((link) => {
+          this.trackDownloadRCloneModalPage(
+            COLD_ARCHIVE_TRACKING.STATUS.SUCCESS,
+          );
+          return this.goBack({
             text: this.$translate.instant(
               'pci_projects_project_storages_cold_archive_users_download-rclone_success_message',
               {
@@ -61,11 +66,12 @@ export default class ColdArchiveUsersDownloadRcloneController {
               value: link,
               download: this.file.fileName,
             },
-          }),
-        );
+          });
+        });
       })
-      .catch((err) =>
-        this.goBack(
+      .catch((err) => {
+        this.trackDownloadRCloneModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
+        return this.goBack(
           this.$translate.instant(
             'pci_projects_project_storages_cold_archive_users_download-rclone_error_rclone',
             {
@@ -73,10 +79,25 @@ export default class ColdArchiveUsersDownloadRcloneController {
             },
           ),
           'error',
-        ),
-      )
+        );
+      })
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  cancel() {
+    this.trackDownloadRCloneModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
+    return this.goBack();
+  }
+
+  trackDownloadRCloneModalPage(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_RCLONE}_${action}`;
+    this.trackPage(hit);
+  }
+
+  trackDownloadRCloneModalClick(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_RCLONE}::${action}`;
+    this.trackClick(hit);
   }
 }

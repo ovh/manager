@@ -34,6 +34,16 @@ export default class PciStoragesContainersUsersController {
     this.messages = this.messageHandler.getMessages();
   }
 
+  trackS3UsersPage(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${action}`;
+    this.trackPage(hit);
+  }
+
+  trackS3UsersClick(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${action}`;
+    this.trackClick(hit);
+  }
+
   downloadJson(user) {
     return this.PciStoragesColdArchiveService.getUserStoragePolicy(
       this.projectId,
@@ -47,8 +57,11 @@ export default class PciStoragesContainersUsersController {
           const reader = new FileReader();
           reader.onloadend = () => resolve(reader.result);
           reader.readAsDataURL(data);
-        }).then(() =>
-          this.CucCloudMessage.success(
+        }).then(() => {
+          this.trackS3UsersPage(
+            `${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_POLICY}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
+          );
+          return this.CucCloudMessage.success(
             this.$translate.instant(
               'pci_projects_project_storages_containers_users_import_success_message',
               {
@@ -56,11 +69,14 @@ export default class PciStoragesContainersUsersController {
               },
             ),
             'pci.projects.project.storages.cold-archive.users',
-          ),
-        );
+          );
+        });
       })
-      .catch((err) =>
-        this.CucCloudMessage.error(
+      .catch((err) => {
+        this.trackS3UsersPage(
+          `${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_POLICY}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
+        );
+        return this.CucCloudMessage.error(
           this.$translate.instant(
             'pci_projects_project_storages_containers_users_import_error_message',
             {
@@ -68,22 +84,18 @@ export default class PciStoragesContainersUsersController {
             },
           ),
           'pci.projects.project.storages.cold-archive.users',
-        ),
-      );
+        );
+      });
   }
 
   onAddUserClick() {
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ADD_USER}`,
-    );
+    this.trackS3UsersClick(COLD_ARCHIVE_TRACKING.USER.ADD_USER);
     this.goToAddUser();
   }
 
   onShowSecretKeyClick(user) {
     this.scrollToTop();
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DISPLAY_SECRET}`,
-    );
+    this.trackS3UsersClick(COLD_ARCHIVE_TRACKING.USER.ACTIONS.DISPLAY_SECRET);
     this.CucCloudMessage.info({
       textHtml: this.$translate.instant(
         'pci_projects_project_storages_containers_users_show_secret_key_success',
@@ -96,30 +108,22 @@ export default class PciStoragesContainersUsersController {
   }
 
   onImportPolicyClick(user) {
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.IMPORT_POLICY}`,
-    );
+    this.trackS3UsersClick(COLD_ARCHIVE_TRACKING.USER.ACTIONS.IMPORT_POLICY);
     this.goToImportPolicy(user);
   }
 
   onDownloadUserPolicy(user) {
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_POLICY}`,
-    );
+    this.trackS3UsersClick(COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_POLICY);
     this.downloadJson(user);
   }
 
   onDeleteUserClick(user) {
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DELETE_USER}`,
-    );
+    this.trackS3UsersClick(COLD_ARCHIVE_TRACKING.USER.ACTIONS.DELETE_POLICY);
     this.goToDeleteUser(user);
   }
 
   onDownloadRCloneClick(user) {
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_RCLONE}`,
-    );
+    this.trackS3UsersClick(COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_RCLONE);
     this.downloadOpenStackRclone(user);
   }
 }
