@@ -8,12 +8,15 @@ export function getOrderDataFromModel(model) {
     },
     plan: model.plan.name,
     version: model.engine.selectedVersion.version,
+    diskSize: model.disk.additionalDiskSize
+      ? model.disk.initialSize + model.disk.additionalDiskSize
+      : model.disk.initialSize,
   };
   if (model.usePrivateNetwork && model.subnet?.id?.length > 0) {
     orderData.networkId = model.privateNetwork.regions?.find(
-      (region) => region.region === model.subnet?.ipPools[0].region,
+      (region) => region.region === model.subnet.ipPools[0]?.region,
     )?.openstackId;
-    orderData.subnetId = model.subnet?.id;
+    orderData.subnetId = model.subnet.id;
   }
   return orderData;
 }
@@ -54,8 +57,18 @@ export function getTerraformDataFromModel(projectId, model) {
         values: [model.flavor.name],
         nodes: [],
       },
+      {
+        key: 'disk_size',
+        values: [
+          model.disk.additionalDiskSize
+            ? model.disk.initialSize + model.disk.additionalDiskSize
+            : model.disk.initialSize,
+        ],
+        nodes: [],
+      },
     ],
   };
+
   for (let i = 0; i < model.plan.nodesCount; i += 1) {
     const nodeData = {
       key: 'nodes',
@@ -73,7 +86,7 @@ export function getTerraformDataFromModel(projectId, model) {
         key: 'networkId',
         values: [
           model.privateNetwork.regions?.find(
-            (region) => region.region === model.subnet?.ipPools[0].region,
+            (region) => region.region === model.subnet.ipPools[0]?.region,
           )?.openstackId,
         ],
         nodes: [],

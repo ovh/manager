@@ -167,18 +167,6 @@ export default class {
     if (!usePrivateNetwork) this.model.subnet = null;
   }
 
-  getNodesSpecTranslation() {
-    const { nodesCount, maxNodes } = this.model.plan;
-    const prefix = 'pci_database_add_spec_nodes';
-    const range = nodesCount === maxNodes ? '' : '_range';
-    const single = nodesCount === 1 ? '_single' : '';
-    const translateKey = `${prefix}${range}${single}`;
-    return this.$translate.instant(translateKey, {
-      min: nodesCount,
-      max: maxNodes,
-    });
-  }
-
   onEngineChanged(engine) {
     this.updateEngine(engine);
   }
@@ -196,7 +184,7 @@ export default class {
   }
 
   onAdditionalDiskChange() {
-    this.$timeout(() => this.getOrderData());
+    this.$timeout(() => this.getOrderDataFromModel(this.model));
   }
 
   updateEngine(engine) {

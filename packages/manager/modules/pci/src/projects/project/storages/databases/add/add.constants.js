@@ -8,6 +8,7 @@ export const ORDER_KEYS = [
   'nodesPattern.region',
   'plan',
   'version',
+  'diskSize',
   'networkId',
   'subnetId',
 ];
@@ -18,6 +19,7 @@ export const ORDER_KEYS_TERRAFORM = [
   'version',
   'plan',
   'flavor',
+  'disk_size',
   'nodes',
   'nodes.region',
   'nodes.network_id',

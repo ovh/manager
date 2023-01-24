@@ -255,7 +255,7 @@
                             data-ng-if="$ctrl.availableSubnets.length > 1"
                             data-match="name"
                             data-searchable
-                            data-on-change="$ctrl.getOrderData()"
+                            data-on-change="$ctrl.getOrderDataFromModel($ctrl.model)"
                         >
                         </oui-select>
                         <p>
