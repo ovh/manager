@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     atInternet: {
-      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ADD.MAIN}`,
+      rename: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}`,
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
