@@ -7,7 +7,7 @@ import '@ovh-ux/ui-kit';
 import component from './users-tokens.component';
 import routing from './users-tokens.routing';
 
-const moduleName = 'ovhManagerPciAIDashboardUsersTokens';
+const moduleName = 'ovhManagerPciAiDashboardUsersTokens';
 
 angular
   .module(moduleName, [
@@ -17,7 +17,7 @@ angular
     'pascalprecht.translate',
   ])
   .config(routing)
-  .component('pciProjectAIDashboardUsersTokens', component)
+  .component('pciProjectAiDashboardUsersTokens', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

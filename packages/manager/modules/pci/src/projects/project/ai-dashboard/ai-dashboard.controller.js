@@ -1,9 +1,9 @@
 import { AI_PRICES_URL, GUIDES } from './ai-dashboard.constants';
 
-export default class AIDashboardCtrl {
+export default class AiDashboardCtrl {
   /* @ngInject */
   constructor(CucCloudMessage, coreConfig, atInternet) {
-    this.CucCloudMessage = CucCloudMessage;
+    this.cucCloudMessage = CucCloudMessage;
     this.coreConfig = coreConfig;
     this.atInternet = atInternet;
   }
@@ -25,8 +25,8 @@ export default class AIDashboardCtrl {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.ai-dashboard');
-    this.messageHandler = this.CucCloudMessage.subscribe(
+    this.cucCloudMessage.unSubscribe('pci.projects.project.ai-dashboard');
+    this.messageHandler = this.cucCloudMessage.subscribe(
       'pci.projects.project.ai-dashboard',
       {
         onMessage: () => this.refreshMessages(),

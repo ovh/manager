@@ -4,7 +4,7 @@ import 'oclazyload';
 
 import '@ovh-ux/manager-core';
 
-const moduleName = 'ovhManagerPciAIDashboardLazyloading';
+const moduleName = 'ovhManagerPciAiDashboardLazyloading';
 
 angular
   .module(moduleName, ['ui.router', 'ovhManagerCore', 'oc.lazyLoad'])

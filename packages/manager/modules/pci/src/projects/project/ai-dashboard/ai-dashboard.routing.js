@@ -3,7 +3,7 @@ import { countAiItems } from './ai-dashboard.constants';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.ai-dashboard', {
     url: '/ai-dashboard',
-    component: 'ovhManagerPciProjectAIDashboard',
+    component: 'ovhManagerPciProjectAiDashboard',
     redirectTo: (transition) =>
       transition
         .injector()
@@ -14,12 +14,12 @@ export default /* @ngInject */ ($stateProvider) => {
             : { state: 'pci.projects.project.ai-dashboard.home' },
         ),
     resolve: {
-      aiItems: /* @ngInject */ (AIDashboardService, projectId) =>
-        AIDashboardService.getAIItems(projectId),
-      aiUsers: /* @ngInject */ (AIDashboardService, projectId) =>
-        AIDashboardService.getAIUsers(projectId),
-      aiTokens: /* @ngInject */ (AIDashboardService, projectId) =>
-        AIDashboardService.getAITokens(projectId),
+      aiItems: /* @ngInject */ (AiDashboardService, projectId) =>
+        AiDashboardService.getAIItems(projectId),
+      aiUsers: /* @ngInject */ (AiDashboardService, projectId) =>
+        AiDashboardService.getAIUsers(projectId),
+      aiTokens: /* @ngInject */ (AiDashboardService, projectId) =>
+        AiDashboardService.getAITokens(projectId),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_ai_dashboard_title'),
       trackingPrefix: /* @ngInject */ () =>

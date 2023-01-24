@@ -5,7 +5,7 @@ import '@ovh-ux/ui-kit';
 
 import component from './ai-guide.component';
 
-const moduleName = 'ovhManagerPciAIDashboardAIGuide';
+const moduleName = 'ovhManagerPciAiDashboardAiGuide';
 
 angular
   .module(moduleName, [

@@ -7,7 +7,7 @@ import '@ovh-ux/ui-kit';
 import component from './home.component';
 import routing from './home.routing';
 
-const moduleName = 'ovhManagerPciAIDashboardHome';
+const moduleName = 'ovhManagerPciAiDashboardHome';
 
 angular
   .module(moduleName, [
@@ -17,7 +17,7 @@ angular
     'pascalprecht.translate',
   ])
   .config(routing)
-  .component('pciProjectAIDashboardHome', component)
+  .component('pciProjectAiDashboardHome', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

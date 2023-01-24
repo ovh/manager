@@ -5,7 +5,7 @@ import '@ovh-ux/ui-kit';
 
 import component from './ai-pipeline.component';
 
-const moduleName = 'ovhManagerPciAIDashboardAIPipeline';
+const moduleName = 'ovhManagerPciAiDashboardAIPipeline';
 
 angular
   .module(moduleName, [

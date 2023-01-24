@@ -1,6 +1,6 @@
 import { AI_ROLES_NAMES } from './ai-dashboard.constants';
 
-export default class AIDashboardService {
+export default class AiDashboardService {
   /* @ngInject */
   constructor($http, $q, $translate, iceberg, CucPriceHelper, Poller) {
     this.$http = $http;
@@ -26,7 +26,7 @@ export default class AIDashboardService {
     return this.$http
       .get(
         `/cloud/project/${serviceName}/ai/notebook`,
-        AIDashboardService.getIcebergHeaders(),
+        AiDashboardService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
   }
@@ -35,7 +35,7 @@ export default class AIDashboardService {
     return this.$http
       .get(
         `/cloud/project/${serviceName}/ai/job`,
-        AIDashboardService.getIcebergHeaders(),
+        AiDashboardService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
   }
@@ -44,7 +44,7 @@ export default class AIDashboardService {
     return this.$http
       .get(
         `/cloud/project/${serviceName}/ai/app`,
-        AIDashboardService.getIcebergHeaders(),
+        AiDashboardService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
   }
@@ -62,7 +62,7 @@ export default class AIDashboardService {
     return this.$http
       .get(
         `/cloud/project/${projectId}/role`,
-        AIDashboardService.getIcebergHeaders(),
+        AiDashboardService.getIcebergHeaders(),
       )
       .then(({ data }) =>
         data[0].filter((role) => AI_ROLES_NAMES.includes(role.name)),
@@ -74,7 +74,7 @@ export default class AIDashboardService {
     return this.$http
       .get(
         `/cloud/project/${projectId}/user`,
-        AIDashboardService.getIcebergHeaders(),
+        AiDashboardService.getIcebergHeaders(),
       )
       .then(({ data }) =>
         data.filter(
@@ -96,7 +96,7 @@ export default class AIDashboardService {
     return this.$http
       .get(
         `/cloud/project/${projectId}/ai/token`,
-        AIDashboardService.getIcebergHeaders(),
+        AiDashboardService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
   }
@@ -131,7 +131,7 @@ export default class AIDashboardService {
     return this.$http
       .get(
         `/cloud/project/${projectId}/ai/capabilities/region`,
-        AIDashboardService.getIcebergHeaders(),
+        AiDashboardService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
   }
@@ -146,7 +146,7 @@ export default class AIDashboardService {
     return this.$http
       .get(
         `/cloud/project/${projectId}/ai/guides${queryString}`,
-        AIDashboardService.getIcebergHeaders(),
+        AiDashboardService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
   }

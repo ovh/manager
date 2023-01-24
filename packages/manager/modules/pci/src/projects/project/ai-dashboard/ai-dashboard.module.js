@@ -15,7 +15,7 @@ import onboarding from './onboarding';
 import home from './tabs/home';
 import usersTokens from './tabs/users-tokens';
 
-const moduleName = 'ovhManagerPciAIDashboard';
+const moduleName = 'ovhManagerPciAiDashboard';
 
 angular
   .module(moduleName, [
@@ -30,8 +30,8 @@ angular
     aiPipelineComponent,
   ])
   .config(routing)
-  .component('ovhManagerPciProjectAIDashboard', component)
-  .service('AIDashboardService', service)
+  .component('ovhManagerPciProjectAiDashboard', component)
+  .service('AiDashboardService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

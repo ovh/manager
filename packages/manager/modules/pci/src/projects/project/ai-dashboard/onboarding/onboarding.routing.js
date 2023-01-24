@@ -3,7 +3,7 @@ import { countAiItems } from '../ai-dashboard.constants';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.ai-dashboard.onboarding', {
     url: '/onboarding',
-    component: 'pciProjectAIDashboardOnboarding',
+    component: 'pciProjectAiDashboardOnboarding',
     redirectTo: (transition) =>
       transition
         .injector()
