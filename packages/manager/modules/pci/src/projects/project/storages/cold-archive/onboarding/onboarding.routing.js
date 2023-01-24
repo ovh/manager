@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       atInternet: {
-        rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ONBOARDING.MAIN}`,
+        rename: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${COLD_ARCHIVE_TRACKING.ONBOARDING.MAIN}`,
       },
       redirectTo: (transition) =>
         transition
