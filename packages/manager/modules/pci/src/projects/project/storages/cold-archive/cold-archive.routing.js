@@ -126,13 +126,13 @@ export default /* @ngInject */ ($stateProvider) => {
 
       trackClick: /* @ngInject */ (atInternet) => (hit) =>
         atInternet.trackClick({
-          name: `${COLD_ARCHIVE_TRACKING.PREFIX}::${hit}`,
+          name: `${COLD_ARCHIVE_TRACKING.CLICK_PREFIX}::${hit}`,
           type: 'action',
         }),
 
       trackPage: /* @ngInject */ (atInternet) => (hit) =>
         atInternet.trackPage({
-          name: `${COLD_ARCHIVE_TRACKING.PREFIX}::${hit}`,
+          name: `${COLD_ARCHIVE_TRACKING.CLICK_PREFIX}::${hit}`,
           type: 'navigation',
         }),
 
