@@ -686,7 +686,7 @@
   "ip_alerts_antihack_help": "(Der Dienst wurde wegen des Verdachts auf böswillige Aktivität blockiert.)",
   "ip_alerts_mitigation_noun": "Abwehr von DDoS-Angriffen",
   "ip_alerts_mitigation_help": "(Schutz des Dienstes unter DDoS-Angriff)",
-  "ip_filter_service_type_all": "Alle Dienste",
+  "ip_filter_service_type_all": "Alle Arten von Diensten",
   "ip_filter_service_type_cloud": "Public Cloud",
   "ip_filter_service_type_dedicated": "Dedicated Server",
   "ip_filter_service_type_failover": "Additional IP",
