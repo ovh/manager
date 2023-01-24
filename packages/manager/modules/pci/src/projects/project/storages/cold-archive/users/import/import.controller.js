@@ -1,4 +1,4 @@
-import { TRACKING } from '../users.constants';
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 
 export default class PciBlockStorageContainersContainerObjectAddController {
   /* @ngInject */
@@ -24,11 +24,7 @@ export default class PciBlockStorageContainersContainerObjectAddController {
   }
 
   importFile() {
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}${TRACKING.IMPORT_POLICY}::confirm`,
-      type: 'action',
-    });
-
+    this.trackImportModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
     this.isLoading = true;
     return new Promise((resolve) => {
       const reader = new FileReader();
@@ -41,16 +37,18 @@ export default class PciBlockStorageContainersContainerObjectAddController {
           this.userId,
           fileData,
         )
-          .then(() =>
-            this.goBack(
+          .then(() => {
+            this.trackImportModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
+            return this.goBack(
               this.$translate.instant(
                 'pci_projects_project_storages_containers_users_import_success',
                 { username: this.user.username },
               ),
-            ),
-          )
-          .catch((err) =>
-            this.goBack(
+            );
+          })
+          .catch((err) => {
+            this.trackImportModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
+            return this.goBack(
               this.$translate.instant(
                 'pci_projects_project_storages_containers_users_import_error',
                 {
@@ -59,8 +57,8 @@ export default class PciBlockStorageContainersContainerObjectAddController {
                 },
               ),
               'error',
-            ),
-          )
+            );
+          })
           .finally(() => {
             this.isLoading = false;
           });
@@ -75,10 +73,17 @@ export default class PciBlockStorageContainersContainerObjectAddController {
   }
 
   cancel() {
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}${TRACKING.IMPORT_POLICY}::cancel`,
-      type: 'action',
-    });
+    this.trackImportModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
     return this.goBack();
+  }
+
+  trackImportModalPage(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.IMPORT_POLICY}_${action}`;
+    this.trackPage(hit);
+  }
+
+  trackImportModalClick(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.IMPORT_POLICY}::${action}`;
+    this.trackClick(hit);
   }
 }

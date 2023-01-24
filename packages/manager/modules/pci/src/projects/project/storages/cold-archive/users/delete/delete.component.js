@@ -8,6 +8,8 @@ const component = {
     projectId: '<',
     user: '<',
     userId: '<',
+    trackPage: '<',
+    trackClick: '<',
   },
   controller,
   template,
