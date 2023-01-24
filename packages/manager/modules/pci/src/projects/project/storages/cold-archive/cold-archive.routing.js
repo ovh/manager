@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.COLD_ARCHIVE);
     },
     atInternet: {
-      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ONBOARDING.MAIN}`,
+      rename: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}`,
     },
     redirectTo: (transition) =>
       transition
@@ -57,6 +57,14 @@ export default /* @ngInject */ ($stateProvider) => {
       priceLink: /* @ngInject */ (coreConfig) =>
         CHECK_PRICES_DOC_LINK[coreConfig.getUser()?.ovhSubsidiary] ||
         CHECK_PRICES_DOC_LINK.DEFAULT,
+
+      onPriceLinkClick: /* @ngInject */ (trackClick) => () =>
+        trackClick(COLD_ARCHIVE_TRACKING.SEE_PRICE),
+
+      onGuideClick: /* @ngInject */ (trackClick) => (guideId) => {
+        const hit = `${COLD_ARCHIVE_TRACKING.GUIDE}_${guideId}`;
+        return trackClick(hit);
+      },
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_storages_cold_archive_label'),
