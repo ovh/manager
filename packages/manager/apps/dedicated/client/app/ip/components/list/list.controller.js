@@ -401,6 +401,7 @@ export default class IpListController {
     });
 
     $scope.$on('ips.table.params', (event, params) => {
+      init();
       $scope.params = { ...$scope.params, ...params };
       refreshTable();
     });
