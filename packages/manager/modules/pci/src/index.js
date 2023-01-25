@@ -32,8 +32,6 @@ import error from './error';
 import projects from './projects';
 import template from './template.html';
 
-import sidebar from './projects/project/sidebar';
-
 import './index.scss';
 
 import {
@@ -61,7 +59,6 @@ angular
     components,
     error,
     projects,
-    sidebar,
     'ui.router',
     'ngOvhCloudUniverseComponents',
     'ngOvhProxyRequest',
