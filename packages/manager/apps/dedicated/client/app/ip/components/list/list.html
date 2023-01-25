@@ -126,11 +126,11 @@
                     ></button>
                 </th>
                 <th scope="col">
-                    <span data-translate="ip_table_header_reverse"></span>
+                    <span data-translate="ip_table_header_organisation"></span>
                     <button
                         type="button"
                         class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_reverse_help' | translate }}"
+                        data-oui-popover="{{:: 'ip_table_header_organisation_help' | translate }}"
                         data-oui-popover-placement="top"
                     ></button>
                 </th>
@@ -333,6 +333,9 @@
                         </li>
                     </ul>
                 </td>
+
+                <!-- Virtual MAC -->
+                <td data-ng-if="advancedModeFilter"></td>
 
                 <!-- Virtual MAC -->
                 <td data-ng-if="advancedModeFilter"></td>
