@@ -4,15 +4,14 @@ export default class PciProjectAdditionalIpService {
     this.$http = $http;
   }
 
-  getRegions(projectId, ovhSubsidiary) {
-    const product = 'floatingip';
+  getRegions(projectId, ovhSubsidiary, planCode) {
     return this.$http
       .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
-        params: { product, ovhSubsidiary },
+        params: { ovhSubsidiary, planCode },
       })
       .then(({ data }) =>
-        data.products
-          .find(({ name }) => name === product)
+        data.plans
+          .find(({ code }) => code === planCode)
           ?.regions.map(({ name, enabled }) => ({
             name,
             enabled,
