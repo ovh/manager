@@ -1,7 +1,8 @@
-import template from './error-modal.html';
+import template from './template.html';
 
 const component = {
   bindings: {
+    cancelLabel: '<',
     goBack: '<',
     message: '<',
     submitAction: '<',

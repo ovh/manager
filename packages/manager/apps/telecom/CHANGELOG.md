@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.52.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.52.6...@ovh-ux/manager-telecom@13.52.7) (2023-01-19)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** fix value displayed in live call dashboard ([a8ef1c4](https://github.com/ovh/manager/commit/a8ef1c4acf74389977a1226021d83392c663a746))
+
+
+
+
+
 ## [13.52.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.52.5...@ovh-ux/manager-telecom@13.52.6) (2023-01-11)
 
 

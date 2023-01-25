@@ -190,6 +190,19 @@
                                     memorySize: ($ctrl.getCurrentFlavor().memory | bytes:2:false:'GB')
                                 })"
                             ></span>
+                            <span
+                                data-ng-if="$ctrl.getCurrentFlavor().hasStorage && !$ctrl.getCurrentFlavor().isStorageRange"
+                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_storage' | translate:{
+                                    storage: ($ctrl.getCurrentFlavor().minDiskSize | bytes:2:false:'GB')
+                                })"
+                            ></span>
+                            <span
+                                data-ng-if="$ctrl.getCurrentFlavor().hasStorage && $ctrl.getCurrentFlavor().isStorageRange"
+                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_storage_range' | translate:{
+                                    minStorage: ($ctrl.getCurrentFlavor().minDiskSize | bytes:2:false:'GB'),
+                                    maxStorage: ($ctrl.getCurrentFlavor().maxDiskSize | bytes:2:false:'GB'),
+                                })"
+                            ></span>
                             <button
                                 class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                                 data-ng-if="$ctrl.database.flavor !== $ctrl.highestFlavor"
@@ -213,8 +226,33 @@
                 >
                     <oui-tile-description>
                         <span
+                            class="mb-1"
                             data-ng-bind="($ctrl.database.disk.size | bytes:2:false:'GB')"
                         ></span>
+                        <span
+                            data-ng-if="$ctrl.getCurrentFlavor().isStorageRange && $ctrl.database.disk.size > $ctrl.getCurrentFlavor().minDiskSize"
+                            data-translate="pci_databases_general_information_storage_range_included"
+                            data-translate-values="{ includedStorage: ($ctrl.getCurrentFlavor().minDiskSize | bytes:2:false:'GB')}"
+                        ></span>
+                        <p
+                            class="mb-0"
+                            data-ng-if="$ctrl.database.disk.type"
+                            data-ng-bind="('pci_databases_general_information_storage_type_' + $ctrl.database.disk.type) | translate"
+                        ></p>
+                        <button
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            data-ng-if="$ctrl.database.disk.size < $ctrl.getCurrentFlavor().maxDiskSize"
+                            data-ng-click="$ctrl.upgradeStorage()"
+                            data-ng-disabled="!$ctrl.database.isActive()"
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_storage_upgrade_link"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right ml-1"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
@@ -304,7 +342,7 @@
                 >
                     <oui-tile-description>
                         <span
-                            data-translate="{{'pci_databases_general_information_' + $ctrl.database.getSSLModeKey($ctrl.endpoint.sslMode)}}"
+                            data-translate="{{$ctrl.getSSLKeyTranslation()}}"
                         ></span>
                     </oui-tile-description>
                 </oui-tile-definition>

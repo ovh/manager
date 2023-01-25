@@ -9,7 +9,8 @@
   "pci_databases_general_information_node_type_label": "Model węzła",
   "pci_databases_general_information_node_type_cpu": "{{coreNumber}} CPU",
   "pci_databases_general_information_node_type_memory": "{{memorySize}} RAM",
-  "pci_databases_general_information_storage_label": "Przestrzeń dyskowa",
+  "pci_databases_general_information_node_type_storage": "{{storage}} przestrzeni dyskowej",
+  "pci_databases_general_information_node_type_storage_range": "Od {{minStorage}} do {{maxStorage}} przestrzeni dyskowej",
   "pci_databases_general_information_upgrade_node": "Ulepsz model węzła",
   "pci_databases_general_information_service_label": "Usługa",
   "pci_databases_general_information_service_URI_label": "URI",
@@ -80,5 +81,11 @@
   "pci_databases_general_information_support_title": "Dział Wsparcia Klienta",
   "pci_databases_general_information_support_level_label": "Poziom wsparcia",
   "pci_databases_general_information_support_level_standard": "Standard",
-  "pci_databases_general_information_support_create_ticket_label": "Utwórz zgłoszenie"
+  "pci_databases_general_information_support_create_ticket_label": "Utwórz zgłoszenie",
+  "pci_databases_general_information_storage_label": "Przestrzeń dyskowa",
+  "pci_databases_general_information_storage_range_included": "(w tym {{includedStorage}} w cenie)",
+  "pci_databases_general_information_storage_type_local-ssd": "Lokalny dysk SSD",
+  "pci_databases_general_information_storage_type_high-speed": "Dysk zdalny pierwszej generacji",
+  "pci_databases_general_information_storage_type_high-speed-gen2": "Dysk zdalny drugiej generacji",
+  "pci_databases_general_information_storage_upgrade_link": "Dodaj przestrzeń dyskową"
 }

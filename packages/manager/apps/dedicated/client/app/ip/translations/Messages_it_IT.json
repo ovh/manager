@@ -684,7 +684,7 @@
   "ip_alerts_antihack_help": "(blocco del servizio in seguito al rilevamento di una sospetta attività malevola)",
   "ip_alerts_mitigation_noun": "Mitigazione di attacco DDoS",
   "ip_alerts_mitigation_help": "(protezione del servizio colpito da un attacco DDoS)",
-  "ip_filter_service_type_all": "Tutti i servizi",
+  "ip_filter_service_type_all": "Tutti i tipi di servizio",
   "ip_filter_service_type_cloud": "Public Cloud",
   "ip_filter_service_type_dedicated": "Server dedicati",
   "ip_filter_service_type_failover": "Additional IP",

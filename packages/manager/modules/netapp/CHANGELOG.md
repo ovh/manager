@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.4.3...@ovh-ux/manager-netapp@1.5.0) (2023-01-24)
+
+
+### Features
+
+* **dedicated:** add missing snapshot types ([#8695](https://github.com/ovh/manager/issues/8695)) ([c2617c2](https://github.com/ovh/manager/commit/c2617c2bca0b4c615e62bc753cf94f9694481809))
+
+
+
+
+
+## [1.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.4.2...@ovh-ux/manager-netapp@1.4.3) (2023-01-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
 ## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.4.1...@ovh-ux/manager-netapp@1.4.2) (2022-12-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

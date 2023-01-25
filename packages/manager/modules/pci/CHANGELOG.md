@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.108.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.107.0...@ovh-ux/manager-pci@5.108.0) (2023-01-24)
+
+
+### Bug Fixes
+
+* ssl and backup translations ([#8697](https://github.com/ovh/manager/issues/8697)) ([481a260](https://github.com/ovh/manager/commit/481a260a05939ec0a655aed3f32adf6467c564fc))
+
+
+### Features
+
+* **modules.pci:** have a consistant margin on top and bottom ([#8768](https://github.com/ovh/manager/issues/8768)) ([5277df2](https://github.com/ovh/manager/commit/5277df22867c7b83b187a3c677cc33bfc0e3f746))
+* **pci.training:** datatr-155 - jobs privacy settings ([#8578](https://github.com/ovh/manager/issues/8578)) ([196df13](https://github.com/ovh/manager/commit/196df13e233120bc0f5e323fb51a8f7cf19bc644))
+
+
+
+
+
+# [5.107.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.106.0...@ovh-ux/manager-pci@5.107.0) (2023-01-19)
+
+
+### Bug Fixes
+
+* clear datasets when updating metrics ([ba3a094](https://github.com/ovh/manager/commit/ba3a0942944d8d003ebb4f4be13a84f79410cc15))
+* correctly handle disk prices ([6bb4b9c](https://github.com/ovh/manager/commit/6bb4b9c64be430523bb9eb5f38b7fe87181eca9e))
+* **pci.aitraining:** change the breacrumb for english trad ([9cc393a](https://github.com/ovh/manager/commit/9cc393a87264f8fd81575cba94887f50069d9eba))
+* **pci.instance:** fix the variable for cpu or vcpu ([a96fe27](https://github.com/ovh/manager/commit/a96fe271edf001dbe18f587232936483c694425c))
+* **pci.instance:** move the new label on metal instance ([5183ba8](https://github.com/ovh/manager/commit/5183ba86945f4e9aeffa6f3c8cf513de6abb3fe9))
+* **pci:** display project quota exceed error ([c60b175](https://github.com/ovh/manager/commit/c60b175d479dee480d6999a54f7a183f43b8fa5d))
+* **public-cloud.privatenetwork:** change guide links ([dd28bfa](https://github.com/ovh/manager/commit/dd28bfadddb029d2d1118c2d850de8eea3130718))
+* **public-cloud.privatenetwork:** change guide links ([04e5abd](https://github.com/ovh/manager/commit/04e5abd7fd8efbe30500423dd57e86d22e77ba3f))
+* **public-cloud.privatenetwork:** change the color for dhcp desactivate ([b6cf09c](https://github.com/ovh/manager/commit/b6cf09cfad1bf426ddfb77f631dc5e21b8e2c118))
+
+
+### Features
+
+* **kubernetes.node:** add kubernetes node status labels ([587ee5b](https://github.com/ovh/manager/commit/587ee5b73ee28c01e83ed0e6fad67c7b4c360fdb))
+* **modules.pci.storage:** add us link ([a94e020](https://github.com/ovh/manager/commit/a94e0202475a1c7ae297ec08b12b610865cf0292))
+* **pci.storages.databases:** datatr-46 datatr-82 - flex disks and custom disks ([#8392](https://github.com/ovh/manager/issues/8392)) ([80a3053](https://github.com/ovh/manager/commit/80a305350d82197c116e06d0ac0a5e34e1687328))
+
+
+
+
+
 # [5.106.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.105.1...@ovh-ux/manager-pci@5.106.0) (2023-01-09)
 
 

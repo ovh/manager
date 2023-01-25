@@ -30,8 +30,8 @@ const Anchor = ({
   return (
     <a
       className="d-flex"
-      target="_blank"
-      rel="noreferrer"
+      target={link.external ? '_blank' : '_self'}
+      rel={link.external ? 'noopener' : ''}
       href={link.href}
       onClick={() => handleLinkClick(link)}
     >

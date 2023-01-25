@@ -1,7 +1,14 @@
 <div>
-    <ip-alerts class="d-block mb-4" data-service-type="serviceType"></ip-alerts>
+    <ip-alerts
+        class="d-block mb-4"
+        data-service-type="selectedServiceType"
+    ></ip-alerts>
     <h4 data-translate="ip_addresses_grid_header"></h4>
+    <div class="text-center" data-ng-if="loading">
+        <oui-spinner></oui-spinner>
+    </div>
     <ip-list
+        data-ng-if="!loading"
         data-go-to-antispam="goToAntispam"
         data-go-to-firewall="goToFirewall"
         data-go-to-game-firewall="goToGameFirewall"
@@ -11,16 +18,37 @@
         data-track-click="trackClick"
         data-track-page="trackPage"
         data-tracking-data="trackingData"
+        data-params="{ serviceName: selectedService ? selectedService.serviceName : null }"
     >
-        <ip-list-header data-ng-if="serviceTypes.length">
-            <select
-                class="form-control"
-                id="serviceTypeSelector"
-                name="serviceTypeSelector"
-                data-ng-model="selectedServiceType"
-                data-ng-change="selectServiceType(selectedServiceType)"
-                data-ng-options="serviceType as (('ip_filter_service_type_' + serviceType) | translate) for serviceType in serviceTypes"
-            ></select>
+        <ip-list-header>
+            <div class="d-flex flex-column flex-lg-row">
+                <select
+                    class="form-control mr-3 mb-3"
+                    id="serviceTypeSelector"
+                    name="serviceTypeSelector"
+                    data-ng-model="ipScope.selectedServiceType"
+                    data-ng-change="ipScope.select({ serviceType: ipScope.selectedServiceType, service: null })"
+                    data-ng-options="serviceType as (('ip_filter_service_type_' + serviceType) | translate) for serviceType in ipScope.serviceTypes track by serviceType"
+                >
+                    <option
+                        value=""
+                        data-ng-bind="'ip_filter_service_type_all' | translate"
+                    ></option>
+                </select>
+                <select
+                    class="form-control"
+                    id="serviceSelector"
+                    name="serviceSelector"
+                    data-ng-model="ipScope.selectedService"
+                    data-ng-change="ipScope.select({ service: ipScope.selectedService, serviceType: null })"
+                    data-ng-options="service as service.serviceName group by (('ip_filter_services_title_' + service.category) | translate) for service in ipScope.services track by service.serviceName"
+                >
+                    <option
+                        value=""
+                        data-ng-bind="'ip_filter_services__ALL' | translate"
+                    ></option>
+                </select>
+            </div>
         </ip-list-header>
     </ip-list>
 </div>

@@ -6,10 +6,10 @@ jobs:
   label:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/labeler@main
+    - uses: actions/labeler@v4
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
-    - uses: TimonVS/pr-labeler-action@v3
+    - uses: TimonVS/pr-labeler-action@v4
       with:
         configuration-path: .github/branch-name-labeler.yml
       env:

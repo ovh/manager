@@ -92,7 +92,6 @@
             <oui-header-tabs-item
                 data-state="{{:: ctrlDomain.getState() + '.information' }}"
                 data-state-params="ctrlDomain.$stateParams"
-                data-disabled="ctrlDomain.domain.isExpired"
                 ><span data-translate="domain_tab_GENERAL_INFORMATIONS"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
@@ -103,45 +102,39 @@
             <oui-header-tabs-item
                 data-state="{{:: ctrlDomain.getState() + '.dns' }}"
                 data-state-params="ctrlDomain.$stateParams"
-                data-disabled="ctrlDomain.domain.isExpired"
                 ><span data-translate="domain_tab_DNS"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-state="{{:: ctrlDomain.getState() + '.redirection' }}"
                 data-state-params="ctrlDomain.$stateParams"
-                data-disabled="ctrlDomain.domain.isExpired"
                 ><span data-translate="domain_tab_REDIRECTION"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="ctrlDomain.hasZoneDns && ctrlDomain.zoneCapabilities.dynHost"
                 data-state="{{:: ctrlDomain.getState() + '.dynhost' }}"
                 data-state-params="ctrlDomain.$stateParams"
-                data-disabled="ctrlDomain.domain.isExpired"
-                ><span data-translate="domain_tab_DYNHOST"></span>
+            >
+                <span data-translate="domain_tab_DYNHOST"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-state="{{:: ctrlDomain.getState() + '.glue' }}"
                 data-state-params="ctrlDomain.$stateParams"
-                data-disabled="ctrlDomain.domain.isExpired"
                 ><span data-translate="domain_tab_GLUE"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="!ctrlDomain.domain.managedByOvh"
                 data-state="{{:: ctrlDomain.getState() + '.dnssec' }}"
                 data-state-params="ctrlDomain.$stateParams"
-                data-disabled="ctrlDomain.domain.isExpired"
                 ><span data-translate="domain_tab_DNSSEC"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-state="{{:: ctrlDomain.getState() + '.tasks' }}"
                 data-state-params="ctrlDomain.$stateParams"
-                data-disabled="ctrlDomain.domain.isExpired"
                 ><span data-translate="domain_tab_TASKS"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="ctrlDomain.isEmailDomainTabAvailable"
                 data-href="{{ '#/email_domain/' + ctrlDomain.domain.name + '/mailing-list' }}"
-                data-disabled="ctrlDomain.domain.isExpired"
                 ><span data-translate="domain_tab_emails"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>

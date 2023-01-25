@@ -22,8 +22,11 @@ export const NEW_SUPPORT_TICKET_PARAMS = {
   BASE_SERVICE_TYPE: 'managed_',
 };
 
+export const TRANSLATION_PREFIX = 'pci_databases_general_information';
+
 export default {
   WARNING_MESSAGES,
   KARAPACE_URL,
   NEW_SUPPORT_TICKET_PARAMS,
+  TRANSLATION_PREFIX,
 };

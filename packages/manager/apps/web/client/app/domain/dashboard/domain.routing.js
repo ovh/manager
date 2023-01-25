@@ -32,14 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
     atInternet: {
       ignore: true, // this tell AtInternet to not track this state
     },
-    redirectTo: (transition) => {
-      const domainPromise = transition.injector().getAsync('domain');
-      return domainPromise.then((domain) =>
-        domain.isExpired
-          ? 'app.domain.product.zone'
-          : 'app.domain.product.information',
-      );
-    },
+    redirectTo: 'app.domain.product.information',
     resolve: {
       ...commonResolves,
       currentSection: () => 'domain',

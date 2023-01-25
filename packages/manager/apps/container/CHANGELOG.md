@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.12.0...@ovh-ux/manager-container-app@0.12.1) (2023-01-19)
+
+
+### Bug Fixes
+
+* **accountsidebar:** fix the redirect comportement of link in new tab ([e0505cf](https://github.com/ovh/manager/commit/e0505cfa6aff01dc22935b1104e3a958489a64f0))
+* fix the ampersand coding issue in translations  ([#8618](https://github.com/ovh/manager/issues/8618)) ([a2f1681](https://github.com/ovh/manager/commit/a2f1681e4400ac13582619aafc6586df1bafa592))
+* **user-account-menu:** add missing fr traduction key ([#8607](https://github.com/ovh/manager/issues/8607)) ([574aad8](https://github.com/ovh/manager/commit/574aad8575f9f4d5edcb16253b291ebfdc825475))
+
+
+
+
+
 # [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.11.3...@ovh-ux/manager-container-app@0.12.0) (2023-01-10)
 
 

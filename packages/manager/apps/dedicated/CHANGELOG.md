@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.45.0...@ovh-ux/manager-dedicated@17.46.0) (2023-01-25)
+
+
+### Features
+
+* **dedicated.ip:** add service list ([#8785](https://github.com/ovh/manager/issues/8785)) ([a201846](https://github.com/ovh/manager/commit/a20184672b0d980566b34a230414d454e504ef1f))
+
+
+
+
+
+# [17.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.44.0...@ovh-ux/manager-dedicated@17.45.0) (2023-01-24)
+
+
+### Bug Fixes
+
+* **sign-up:** add module siret for corporation fr ([#8232](https://github.com/ovh/manager/issues/8232)) ([ba0280a](https://github.com/ovh/manager/commit/ba0280a148a9cd8848f79efabdc5290c0d2ba01f))
+
+
+### Features
+
+* **dedicated.ip:** move virtual mac column ([#8735](https://github.com/ovh/manager/issues/8735)) ([a1b9f1b](https://github.com/ovh/manager/commit/a1b9f1bb4cf51bac1a9b3ed49b16351bf4386c69))
+* **dedicated.ip:** remove organisation link ([#8738](https://github.com/ovh/manager/issues/8738)) ([6cecd24](https://github.com/ovh/manager/commit/6cecd24813596c44a0d541b1677fb9626871bf00))
+
+
+
+
+
+# [17.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.43.1...@ovh-ux/manager-dedicated@17.44.0) (2023-01-19)
+
+
+### Bug Fixes
+
+* **dedicated.license:** cpanel translation missing for solo and plus ([#8678](https://github.com/ovh/manager/issues/8678)) ([ba958af](https://github.com/ovh/manager/commit/ba958af55020f4dcb6bf0aa8cb536014674fa6d6))
+* **dedicated.monitoring:** update the translation for the monitoring ([#8684](https://github.com/ovh/manager/issues/8684)) ([10cf5d0](https://github.com/ovh/manager/commit/10cf5d0de174cc7e2fec87aa55fee361bc1d9b3e))
+* **dedicated:** add vps secondary dns ([8d88ba7](https://github.com/ovh/manager/commit/8d88ba7b815609dd41cd4394476b08b6bd75b2c2))
+* **dedicated:** map right incoming bandwidth ([178e566](https://github.com/ovh/manager/commit/178e566eb27092c1353ea608cbca1d95bbfb32de))
+* **useraccount:** change the redirect comportement for emailuser ([375c389](https://github.com/ovh/manager/commit/375c389b3fdd98e842d7b185fc59d0f1fc063b11))
+
+
+### Features
+
+* **dedicated:** remove colour column ([3d4d436](https://github.com/ovh/manager/commit/3d4d4364d85ea91c66cf73253bb260fa34262474))
+
+
+### Reverts
+
+* Revert "fix(dedicated.monitoring): update the translation for the monitoring (#8684)" ([dae730b](https://github.com/ovh/manager/commit/dae730b69e871239dfc5a44d553177a60e6e0d52)), closes [#8684](https://github.com/ovh/manager/issues/8684)
+
+
+
+
+
 ## [17.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.43.0...@ovh-ux/manager-dedicated@17.43.1) (2023-01-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

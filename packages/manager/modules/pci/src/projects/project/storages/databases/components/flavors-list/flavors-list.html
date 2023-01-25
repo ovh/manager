@@ -1,57 +1,56 @@
-<div class="row">
-    <oui-select-picker
-        class="d-inline-block col-md-6 col-xl-4 my-3"
+<table class="table table-bordered">
+    <caption
+        class="d-none"
+        data-translate="pci_database_flavors_list_table_description"
+    ></caption>
+    <thead>
+        <tr>
+            <th data-translate="pci_database_flavors_list_header_type"></th>
+            <th>vCores</th>
+            <th data-translate="pci_database_flavors_list_header_memory"></th>
+            <th data-translate="pci_database_flavors_list_header_storage"></th>
+            <th
+                data-ng-bind="($ctrl.showMonthlyPrices ? 'pci_database_flavors_list_header_price_month' : 'pci_database_flavors_list_header_price_hour') | translate"
+            ></th>
+        </tr>
+    </thead>
+    <tr
+        class="table-single-select-row"
         data-ng-repeat="flavor in $ctrl.getSortedFlavors() track by flavor.id"
-        data-name="{{:: flavor.name }}"
-        data-model="$ctrl.selectedFlavor"
-        data-disabled="!$ctrl.allowLowerSelection && $ctrl.currentFlavor && $ctrl.currentFlavor.compare(flavor) <= 0"
-        data-label="{{:: $ctrl.capitalize(flavor.name) }}"
-        data-values="[flavor]"
-        data-variant="light"
-        data-on-change="$ctrl.onChange({ selectedFlavor: modelValue })"
-        data-required
+        data-ng-class="{
+        'selected': $ctrl.selectedFlavor === flavor,
+        'disabled': $ctrl.isDisabled(flavor),
+    }"
+        data-ng-click="$ctrl.handleClick(flavor)"
     >
-        <oui-select-picker-picture data-ng-if="$ctrl.currentFlavor === flavor">
+        <td class="text-capitalize" data-ng-bind="flavor.name"></td>
+        <td data-ng-bind="flavor.core"></td>
+        <td data-ng-bind="flavor.memory | bytes:2:false:'GB'"></td>
+        <td>
+            <span data-ng-if="!flavor.hasStorage">-</span>
             <span
-                class="oui-badge oui-badge_s oui-badge_info"
-                data-translate="pci_database_flavors_list_current_offer"
+                data-ng-if="flavor.hasStorage && flavor.minDiskSize === flavor.maxDiskSize"
+                data-ng-bind="flavor.minDiskSize | bytes:2:false:'GB'"
             ></span>
-        </oui-select-picker-picture>
-        <oui-select-picker-section>
-            <div class="d-flex">
-                <span
-                    data-translate="pci_database_flavors_list_spec_ram"
-                    data-translate-values="{
-                        ram: (flavor.memory | bytes:0:false:'GB')
-                    }"
-                ></span>
-            </div>
-            <div class="d-flex">
-                <span
-                    data-translate="pci_database_flavors_list_spec_core"
-                    data-translate-values="{ cores: flavor.core }"
-                ></span>
-            </div>
-        </oui-select-picker-section>
-        <oui-select-picker-section data-ng-if="flavor.minDiskSize > 0">
             <span
-                data-translate="pci_database_flavors_list_spec_storage"
+                data-ng-if="flavor.hasStorage && flavor.minDiskSize !== flavor.maxDiskSize"
+                data-translate="pci_database_flavors_list_storage_range"
                 data-translate-values="{
-                    storage: (flavor.minDiskSize | bytes:2:false:'GB'),
-                }"
+                min: (flavor.minDiskSize | bytes:2:false:'GB'),
+                max: (flavor.maxDiskSize | bytes:2:false:'GB'),
+            }"
             ></span>
-        </oui-select-picker-section>
-        <oui-select-picker-section>
+        </td>
+        <td>
             <ovh-manager-catalog-price
-                data-price="flavor.hourlyPrice.priceInUcents"
-                data-tax="flavor.hourlyPrice.tax"
+                data-price="($ctrl.showMonthlyPrices ? flavor.monthlyPrice : flavor.hourlyPrice).priceInUcents"
+                data-tax="($ctrl.showMonthlyPrices ? flavor.monthlyPrice : flavor.hourlyPrice).tax"
                 data-user="$ctrl.user"
                 data-show-zero-price="true"
+                data-perform-rounding="false"
+                data-maximum-fraction-digits="3"
             >
             </ovh-manager-catalog-price>
-            <strong
-                data-translate="pci_database_flavors_list_spec_price_unit"
-            ></strong>
-        </oui-select-picker-section>
-    </oui-select-picker>
-</div>
+        </td>
+    </tr>
+</table>
