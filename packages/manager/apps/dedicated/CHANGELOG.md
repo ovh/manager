@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.45.0...@ovh-ux/manager-dedicated@17.46.0) (2023-01-25)
+
+
+### Features
+
+* **dedicated.ip:** add service list ([#8785](https://github.com/ovh/manager/issues/8785)) ([a201846](https://github.com/ovh/manager/commit/a20184672b0d980566b34a230414d454e504ef1f))
+
+
+
+
+
 # [17.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.44.0...@ovh-ux/manager-dedicated@17.45.0) (2023-01-24)
 
 
