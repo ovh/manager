@@ -66,9 +66,6 @@ export default /* @ngInject */ ($stateProvider) => {
         isLegacy(service?.billing?.plan?.code),
 
       isMenuSidebarVisible: /* @ngInject */ ($injector) => {
-        if (window.top.OVH_CONTAINER_SIDEBAR) {
-          return true;
-        }
         if ($injector.has('ovhShell')) {
           const ovhShell = $injector.get('ovhShell');
           return ovhShell.ux.isMenuSidebarVisible();
