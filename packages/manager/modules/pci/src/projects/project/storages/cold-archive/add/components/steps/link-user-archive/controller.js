@@ -12,12 +12,12 @@ export default class ColdArchiveLinkUserArchiveController {
   constructor(
     $translate,
     CucCloudMessage,
-    PciStoragesUsersService,
+    PciStoragesColdArchiveService,
     atInternet,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.pciStoragesUsersService = PciStoragesUsersService;
+    this.pciStoragesColdArchiveService = PciStoragesColdArchiveService;
     this.atInternet = atInternet;
   }
 
@@ -103,13 +103,10 @@ export default class ColdArchiveLinkUserArchiveController {
   }
 
   createUser(description) {
-    return this.pciStoragesUsersService
-      .createUser(this.projectId, {
-        description,
-        role: ARCHIVE_USER_ROLE,
-      })
+    return this.pciStoragesColdArchiveService
+      .createUser(this.projectId, description, ARCHIVE_USER_ROLE)
       .then((user) => {
-        return this.pciStoragesUsersService.pollUserStatus(
+        return this.pciStoragesColdArchiveService.pollUserStatus(
           this.projectId,
           user.id,
           ARCHIVE_USER_STATUS.OK,
@@ -132,7 +129,7 @@ export default class ColdArchiveLinkUserArchiveController {
   }
 
   generateUserS3Credential(user) {
-    return this.pciStoragesUsersService
+    return this.pciStoragesColdArchiveService
       .generateS3Credential(this.projectId, user.id)
       .catch(() => {
         return this.CucCloudMessage.error(
@@ -212,12 +209,12 @@ export default class ColdArchiveLinkUserArchiveController {
     const { selected: user } = this.userModel.linkedMode;
     const defaultCredential = user.s3Credentials[0];
     const functionToCallPromise = defaultCredential
-      ? this.pciStoragesUsersService.getS3Credential(
+      ? this.pciStoragesColdArchiveService.getS3Credentials(
           this.projectId,
           user.id,
           defaultCredential.access,
         )
-      : this.pciStoragesUsersService.generateS3Credential(
+      : this.pciStoragesColdArchiveService.generateS3Credentials(
           this.projectId,
           user.id,
         );
