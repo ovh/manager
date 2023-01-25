@@ -89,6 +89,7 @@ export const STORAGE_PRICES_LINK = {
   PT: 'https://www.ovhcloud.com/pt/public-cloud/prices/#armazenamento',
   WS: 'https://www.ovhcloud.com/es/public-cloud/prices/#storage',
   WE: 'https://www.ovhcloud.com/en/public-cloud/prices/#storage',
+  US: 'https://us.ovhcloud.com/public-cloud/prices/#439',
 };
 
 export const X_CONTAINER_HEADERS_REGEX = /^(X-Container|X-Storage)/i;

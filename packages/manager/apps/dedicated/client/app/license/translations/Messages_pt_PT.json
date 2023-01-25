@@ -686,10 +686,10 @@
   "license_potential_problem_isOsPlesk12": "O servidor não está a correr com uma distribuição Plesk 12",
   "license_potential_problem_isWindowsOs": "O servidor não está a correr com uma versão Windows",
   "license_potential_problem_isOsPleskOnyx": "O servidor não está a correr com uma distribuição Plesk Onyx",
-  "license_designation_CPANEL_premier_option": "até {{ numberOfCPANEL }} contas CPANEL",
-  "license_designation_CPANEL_admin_option": "2-5 comptes CPANEL",
-  "license_designation_CPANEL_pro_option": "6-30 CPANEL accounts",
-  "license_designation_CPANEL_version_option-cpanel": "até {{ licenseCount }} contas CPANEL",
+  "license_designation_CPANEL_premier_option": "até {{ numberOfCPANEL }} contas cPanel",
+  "license_designation_CPANEL_admin_option": "2-5 contas cPanel",
+  "license_designation_CPANEL_pro_option": "6-30 contas cPanel",
+  "license_designation_CPANEL_version_option-cpanel": "até {{ licenseCount }} contas cPanel",
   "license_designation_WINDOWS_version_WINDOWS_SERVER_2016_DATACENTER_EDITION_1_CPU_14_CORES": "Microsoft Windows Server 2016 Datacenter edition (1 CPU - 14 cores)",
   "license_designation_WINDOWS_version_WINDOWS_SERVER_2016_DATACENTER_EDITION_1_CPU_16_CORES": "Microsoft Windows Server 2016 Datacenter edition (1 CPU - 16 cores)",
   "license_designation_WINDOWS_version_WINDOWS_SERVER_2016_DATACENTER_EDITION_1_CPU_18_CORES": "Microsoft Windows Server 2016 Datacenter edition (1 CPU - 18 cores)",
@@ -1311,5 +1311,7 @@
   "license_designation_SQLSERVER_version_sql-server-2014-license-web-edition-24-cores": "SQL Server 2014 license - Web edition - 24 cores",
   "license_designation_SQLSERVER_version_sql-server-2016-license-standard-edition-14-cores": "SQL Server 2016 license - Standard edition - 14 cores",
   "license_designation_SQLSERVER_version_sql-server-2016-license-web-edition-14-cores": "SQL Server 2016 license - Web edition - 14 cores",
-  "license_designation_WINDOWS_version_WINDOWS_SERVER_2008_WEB_EDITION_4_CPU": "Windows Server 2008 license - Web edition - 4 CPU"
+  "license_designation_WINDOWS_version_WINDOWS_SERVER_2008_WEB_EDITION_4_CPU": "Windows Server 2008 license - Web edition - 4 CPU",
+  "license_designation_CPANEL_solo_option": "1 conta cPanel",
+  "license_designation_CPANEL_plus_option": "31-50 contas cPanel"
 }

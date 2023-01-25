@@ -3,5 +3,6 @@ export type UsefulLink = {
   href?: string;
   icon: string;
   id: string;
+  external?: boolean;
   tracking?: string;
 };

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.2](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@12.0.1...@ovh-ux/component-rollup-config@12.0.2) (2023-01-19)
+
+
+### Bug Fixes
+
+* fix the ampersand coding issue in translations  ([#8618](https://github.com/ovh/manager/issues/8618)) ([a2f1681](https://github.com/ovh/manager/commit/a2f1681e4400ac13582619aafc6586df1bafa592))
+
+
+
+
+
 ## [12.0.1](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@12.0.0...@ovh-ux/component-rollup-config@12.0.1) (2022-11-29)
 
 

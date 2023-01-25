@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-ui-confirm-modal@2.0.5...@ovh-ux/ng-ovh-ui-confirm-modal@2.0.6) (2023-01-19)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-ui-confirm-modal
+
+
+
+
+
 ## [2.0.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-ui-confirm-modal@2.0.4...@ovh-ux/ng-ovh-ui-confirm-modal@2.0.5) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-ui-confirm-modal

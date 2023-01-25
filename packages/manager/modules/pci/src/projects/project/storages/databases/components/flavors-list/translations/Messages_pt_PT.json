@@ -6,5 +6,13 @@
   "pci_database_flavors_list_price_hourly": "{{price}} /hora + IVA",
   "pci_database_flavors_list_price_monthly": "A partir de {{price}} /mês + IVA",
   "pci_database_flavors_list_current_offer": "Oferta atual",
-  "pci_database_flavors_list_spec_price_unit": " /hora por nó"
+  "pci_database_flavors_list_spec_storage_range": "{{minStorage}} a {{maxStorage}} de armazenamento SSD",
+  "pci_database_flavors_list_spec_price_unit": " /hora por nó",
+  "pci_database_flavors_list_header_type": "Tipo",
+  "pci_database_flavors_list_header_memory": "Memória",
+  "pci_database_flavors_list_header_storage": "Armazenamento útil",
+  "pci_database_flavors_list_header_price_hour": "Custo/hora/nó (estimado)",
+  "pci_database_flavors_list_header_price_month": "Custo/mês/nó (estimado)",
+  "pci_database_flavors_list_storage_range": "De {{min}} a {{max}}",
+  "pci_database_flavors_list_table_description": "Lista dos tipos de nós"
 }

@@ -12,6 +12,8 @@ export default class SignUpFormAppCtrl {
     this.isActivityStepVisible = false;
     this.saveError = null;
 
+    this.isValid = false;
+
     this.loading = {
       init: true,
     };
@@ -35,7 +37,38 @@ export default class SignUpFormAppCtrl {
         ],
         (fieldName) => get(rules, `${fieldName}`) !== undefined,
       );
+
+      let invalid = 0;
+
+      Object.entries(rules).forEach(([key, value]) => {
+        const modelItem = this.model[key];
+
+        if (
+          modelItem !== undefined &&
+          (value.in &&
+            !(typeof value.in[0] === 'string'
+              ? value.in?.includes(modelItem)
+              : !!value.in?.find((item) => item.value === modelItem)),
+          value.regularExpression && modelItem
+            ? !new RegExp(value.regularExpression).test(modelItem)
+            : false,
+          value.mandatory && !modelItem)
+        ) {
+          invalid += 1;
+        }
+      });
+
+      this.isValid = invalid === 0;
     }
+  }
+
+  onStepFormCancel(step) {
+    this.atInternet.trackPage({
+      name: `accountcreation-step${step === 'details' ? '2' : '3'}-${
+        this.me.model.legalform
+      }::cancel`,
+    });
+    return this.cancelStep(step);
   }
 
   onStepperFinished() {

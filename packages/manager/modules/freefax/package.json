@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-freefax",
-  "version": "7.6.1",
+  "version": "7.6.2",
   "private": true,
   "description": "Freefax product.",
   "repository": {
@@ -17,7 +17,7 @@
     "ovh-manager-webfont": "^1.2.0"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^12.0.1"
+    "@ovh-ux/component-rollup-config": "^12.0.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",

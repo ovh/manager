@@ -108,8 +108,9 @@ export default class MetricsCtrl {
         this.selectedTimeRange.value,
       ).then((data) => {
         const metrics = sortBy(data.metrics, 'hostname');
-        this.metricsData[data.name].data = data;
 
+        this.metricsData[data.name].data = data;
+        this.metricsData[data.name].chart.data.datasets = [];
         metrics.forEach((metric) => {
           this.metricsData[data.name].chart.updateSerie(
             metric.hostname,

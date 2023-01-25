@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-translate-async-loader@2.1.5...@ovh-ux/ng-translate-async-loader@2.1.6) (2023-01-19)
+
+**Note:** Version bump only for package @ovh-ux/ng-translate-async-loader
+
+
+
+
+
 ## [2.1.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-translate-async-loader@2.1.4...@ovh-ux/ng-translate-async-loader@2.1.5) (2022-11-29)
 
 **Note:** Version bump only for package @ovh-ux/ng-translate-async-loader

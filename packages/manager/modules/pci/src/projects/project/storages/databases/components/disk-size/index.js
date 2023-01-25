@@ -1,23 +1,21 @@
 import angular from 'angular';
-import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
-import '@ovh-ux/ui-kit';
+import '@ovh-ux/ng-ovh-cloud-universe-components';
 import 'angular-translate';
+import '@ovh-ux/ui-kit';
 
-import component from './error-modal.component';
-import routing from './error-modal.routing';
+import component from './disk-size.component';
 
-const moduleName = 'ovhManagerPciProjectErrorModal';
+const moduleName = 'ovhManagerPciStoragesDatabasesDiskSize';
 
 angular
   .module(moduleName, [
     'oui',
-    'ui.router',
+    'ngOvhCloudUniverseComponents',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .config(routing)
-  .component('pciProjectErrorModal', component)
+  .component('pciProjectsProjectDatabaseDiskSize', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

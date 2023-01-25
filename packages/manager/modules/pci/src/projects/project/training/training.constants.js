@@ -8,10 +8,15 @@ export const JOB_SSH_KEYS = {
   PLACEHOLDER: 'ssh-rsa AAAAB3...',
   NB_ROWS: 5,
 };
+export const PRIVACY_SETTINGS = {
+  RESTRICTED: 'restricted',
+  PUBLIC: 'public',
+};
 
 export default {
   GUIDE_URL,
   DISCORD_URL,
   DOC_DOCKER_BUILD_URL,
   JOB_SSH_KEYS,
+  PRIVACY_SETTINGS,
 };

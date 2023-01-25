@@ -110,15 +110,6 @@
                         data-oui-popover-placement="top"
                     ></button>
                 </th>
-                <th scope="col" data-ng-if="advancedModeFilter">
-                    <span data-translate="ip_table_header_virtual_mac"></span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_virtual_mac_help' | translate }}"
-                        data-oui-popover-placement="top"
-                    ></button>
-                </th>
                 <th scope="col">
                     <span data-translate="ip_table_header_reverse"></span>
                     <button
@@ -134,6 +125,15 @@
                         type="button"
                         class="oui-popover-button"
                         data-oui-popover="{{:: 'ip_table_header_organisation_help' | translate }}"
+                        data-oui-popover-placement="top"
+                    ></button>
+                </th>
+                <th scope="col" data-ng-if="advancedModeFilter">
+                    <span data-translate="ip_table_header_virtual_mac"></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{:: 'ip_table_header_virtual_mac_help' | translate }}"
                         data-oui-popover-placement="top"
                     ></button>
                 </th>
@@ -300,9 +300,6 @@
                     <span data-ng-if="!ipBlock.routedTo.serviceName">-</span>
                 </td>
 
-                <!-- Virtual MAC -->
-                <td data-ng-if="advancedModeFilter"></td>
-
                 <!-- Reverse -->
                 <td>
                     <span
@@ -335,6 +332,9 @@
                 <td>
                     <span data-ng-bind="ipBlock.organisationId"></span>
                 </td>
+
+                <!-- Virtual MAC -->
+                <td data-ng-if="advancedModeFilter"></td>
 
                 <!-- Mitigation -->
                 <td data-ng-if="advancedModeFilter"></td>
@@ -432,23 +432,6 @@
                     <span data-ng-if="!ipBlock.routedTo.serviceName">-</span>
                 </td>
 
-                <!-- VMAC -->
-                <td data-ng-if="advancedModeFilter">
-                    <span
-                        data-ng-if="ipBlock.virtualMac.status === 'OK'"
-                        data-ng-bind="ipBlock.virtualMac.virtualMacs[ip.ip] || '-'"
-                    >
-                    </span>
-                    <span
-                        class="oui-badge"
-                        data-ng-if="ipBlock.virtualMac.status === 'PENDING'"
-                        data-translate="ip_taskpending_label"
-                        data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
-                        data-oui-tooltip-placement="top"
-                    >
-                    </span>
-                </td>
-
                 <!-- Reverse -->
                 <td>
                     <span
@@ -511,6 +494,23 @@
                     <span
                         data-ng-if="ipBlock.organisationId"
                         data-ng-bind="ipBlock.organisationId"
+                    >
+                    </span>
+                </td>
+
+                <!-- VMAC -->
+                <td data-ng-if="advancedModeFilter">
+                    <span
+                        data-ng-if="ipBlock.virtualMac.status === 'OK'"
+                        data-ng-bind="ipBlock.virtualMac.virtualMacs[ip.ip] || '-'"
+                    >
+                    </span>
+                    <span
+                        class="oui-badge"
+                        data-ng-if="ipBlock.virtualMac.status === 'PENDING'"
+                        data-translate="ip_taskpending_label"
+                        data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
+                        data-oui-tooltip-placement="top"
                     >
                     </span>
                 </td>

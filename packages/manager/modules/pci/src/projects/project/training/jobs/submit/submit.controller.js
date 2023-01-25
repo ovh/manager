@@ -8,6 +8,7 @@ import {
   DISCORD_URL,
   DOC_DOCKER_BUILD_URL,
   JOB_SSH_KEYS,
+  PRIVACY_SETTINGS,
 } from '../../training.constants';
 
 export default class PciTrainingJobsSubmitController {
@@ -21,6 +22,7 @@ export default class PciTrainingJobsSubmitController {
     coreConfig,
   ) {
     this.JOB_SSH_KEYS_CONSTANTS = JOB_SSH_KEYS;
+    this.PRIVACY_SETTINGS = PRIVACY_SETTINGS;
     this.coreConfig = coreConfig;
     this.$translate = $translate;
     this.PciProjectTrainingService = PciProjectTrainingService;
@@ -83,6 +85,7 @@ export default class PciTrainingJobsSubmitController {
         id: null,
       },
       command: null,
+      privacy: this.PRIVACY_SETTINGS.RESTRICTED,
       valid: true,
       volumes: [],
       resources: {
@@ -189,6 +192,7 @@ export default class PciTrainingJobsSubmitController {
       region: this.job.region.name,
       volumes: this.job.volumes,
       name: this.job.name,
+      unsecureHttp: this.job.privacy === this.PRIVACY_SETTINGS.PUBLIC,
       resources: {
         cpu: this.job.resources.cpu,
         gpu: this.job.resources.gpu,

@@ -9,7 +9,8 @@
   "pci_databases_general_information_node_type_label": "Modelo de nó",
   "pci_databases_general_information_node_type_cpu": "{{coreNumber}} CPU",
   "pci_databases_general_information_node_type_memory": "{{memorySize}} RAM",
-  "pci_databases_general_information_storage_label": "Armazenamento",
+  "pci_databases_general_information_node_type_storage": "{{storage}} de armazenamento",
+  "pci_databases_general_information_node_type_storage_range": "De {{minStorage}} a {{maxStorage}} de armazenamento",
   "pci_databases_general_information_upgrade_node": "Melhorar o seu modelo de nó",
   "pci_databases_general_information_service_label": "Serviço",
   "pci_databases_general_information_service_URI_label": "URI",
@@ -80,5 +81,11 @@
   "pci_databases_general_information_support_title": "Apoio ao Cliente",
   "pci_databases_general_information_support_level_label": "Nível de suporte",
   "pci_databases_general_information_support_level_standard": "Standard",
-  "pci_databases_general_information_support_create_ticket_label": "Criar um ticket"
+  "pci_databases_general_information_support_create_ticket_label": "Criar um ticket",
+  "pci_databases_general_information_storage_label": "Armazenamento",
+  "pci_databases_general_information_storage_range_included": "(de {{includedStorage}} incluídos)",
+  "pci_databases_general_information_storage_type_local-ssd": "Disco SSD local",
+  "pci_databases_general_information_storage_type_high-speed": "Disco distante de primeira geração",
+  "pci_databases_general_information_storage_type_high-speed-gen2": "Disco distante de segunda geração",
+  "pci_databases_general_information_storage_upgrade_link": "Adicionar armazenamento suplementar"
 }

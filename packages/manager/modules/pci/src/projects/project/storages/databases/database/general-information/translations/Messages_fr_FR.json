@@ -9,6 +9,8 @@
   "pci_databases_general_information_node_type_label": "Modèle de nœud",
   "pci_databases_general_information_node_type_cpu": "{{coreNumber}} CPU",
   "pci_databases_general_information_node_type_memory": "{{memorySize}} RAM",
+  "pci_databases_general_information_node_type_storage": "{{storage}} de stockage",
+  "pci_databases_general_information_node_type_storage_range": "De {{minStorage}} à {{maxStorage}} de stockage",
   "pci_databases_general_information_storage_label": "Stockage",
   "pci_databases_general_information_upgrade_node": "Améliorer votre modèle de nœud",
   "pci_databases_general_information_service_label": "Service",
@@ -80,5 +82,10 @@
   "pci_databases_general_information_support_title": "Support",
   "pci_databases_general_information_support_level_label": "Niveau de support",
   "pci_databases_general_information_support_level_standard": "Standard",
-  "pci_databases_general_information_support_create_ticket_label": "Créer un ticket"
+  "pci_databases_general_information_support_create_ticket_label": "Créer un ticket",
+  "pci_databases_general_information_storage_range_included": "(dont {{includedStorage}} inclus)",
+  "pci_databases_general_information_storage_type_local-ssd": "Disque SSD local",
+  "pci_databases_general_information_storage_type_high-speed": "Disque distant de première génération",
+  "pci_databases_general_information_storage_type_high-speed-gen2": "Disque distant de deuxième génération",
+  "pci_databases_general_information_storage_upgrade_link": "Ajouter du stockage supplémentaire"
 }
