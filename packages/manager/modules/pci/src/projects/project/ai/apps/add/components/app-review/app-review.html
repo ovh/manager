@@ -17,6 +17,7 @@
             >
                 <oui-tile-description>
                     <ovh-manager-catalog-price
+                        data-ng-class="{'text-decoration-line-through': $ctrl.IS_BETA}"
                         data-ng-if="$ctrl.resourcePriceInUcents > 0"
                         data-price="$ctrl.resourcePriceInUcents"
                         data-tax="$ctrl.resourcePriceTax"
@@ -30,6 +31,11 @@
                             data-translate="pci_app_add_review_price_resource_free"
                         ></span>
                     </p>
+                    <span
+                        data-ng-if="$ctrl.IS_BETA"
+                        class="oui-badge oui-badge_s oui-badge_success"
+                        data-translate="pci_app_add_review_price_free_during_beta"
+                    ></span>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition
@@ -38,6 +44,7 @@
             >
                 <oui-tile-description>
                     <ovh-manager-catalog-price
+                        data-ng-class="{'text-decoration-line-through': $ctrl.IS_BETA}"
                         data-ng-if="$ctrl.partnerPriceInUcents > 0"
                         data-price="$ctrl.partnerPriceInUcents"
                         data-tax="$ctrl.partnerPriceTax"
@@ -52,6 +59,11 @@
                             data-translate-values="{ partner: $ctrl.appModel.preset.partner.name }"
                         ></span>
                     </p>
+                    <span
+                        data-ng-if="$ctrl.IS_BETA"
+                        class="oui-badge oui-badge_s oui-badge_success"
+                        data-translate="pci_app_add_review_price_free_during_beta"
+                    ></span>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition
@@ -60,6 +72,7 @@
             >
                 <oui-tile-description>
                     <ovh-manager-catalog-price
+                        data-ng-class="{'text-decoration-line-through': $ctrl.IS_BETA}"
                         data-price="$ctrl.partnerPriceInUcents + $ctrl.resourcePriceInUcents"
                         data-tax="$ctrl.partnerPriceTax + $ctrl.resourcePriceTax"
                         data-user="$ctrl.user"
@@ -67,6 +80,11 @@
                         data-interval="'hour'"
                     >
                     </ovh-manager-catalog-price>
+                    <span
+                        data-ng-if="$ctrl.IS_BETA"
+                        class="oui-badge oui-badge_s oui-badge_success"
+                        data-translate="pci_app_add_review_price_free_during_beta"
+                    ></span>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition

@@ -14,6 +14,7 @@ import tokens from './tokens';
 import component from './ai.component';
 import routing from './ai.routing';
 import service from './ai.service';
+import './ai.scss';
 
 const moduleName = 'ovhManagerPciAi';
 
