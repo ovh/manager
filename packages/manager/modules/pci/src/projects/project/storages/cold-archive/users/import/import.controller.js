@@ -47,7 +47,6 @@ export default class PciBlockStorageContainersContainerObjectAddController {
             );
           })
           .catch((err) => {
-            this.trackImportModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
             return this.goBack(
               this.$translate.instant(
                 'pci_projects_project_storages_containers_users_import_error',
@@ -63,6 +62,7 @@ export default class PciBlockStorageContainersContainerObjectAddController {
             this.isLoading = false;
           });
       }
+      this.trackImportModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
       return this.goBack(
         this.$translate.instant(
           'pci_projects_project_storages_containers_users_import_read_page_error',
@@ -79,11 +79,11 @@ export default class PciBlockStorageContainersContainerObjectAddController {
 
   trackImportModalPage(action) {
     const hit = `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.IMPORT_POLICY}_${action}`;
-    this.trackPage(hit);
+    return this.trackPage(hit);
   }
 
   trackImportModalClick(action) {
     const hit = `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.IMPORT_POLICY}::${action}`;
-    this.trackClick(hit);
+    return this.trackClick(hit);
   }
 }

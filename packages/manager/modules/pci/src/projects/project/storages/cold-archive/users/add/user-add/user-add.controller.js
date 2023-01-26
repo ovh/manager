@@ -55,21 +55,22 @@ export default class PciUsersAddController {
     this.model = action;
   }
 
-  onCancel() {
+  trackUserAddClick(action) {
     this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.USER.ADD_USER}::${COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL}`,
+      `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ADD_USER}::${action}`,
     );
+  }
+
+  onCancel() {
+    this.trackUserAddClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
     return this.cancel();
   }
 
   onSubmit(user) {
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.USER.ADD_USER}::${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}`,
-    );
     this.isLoading = true;
     if (!this.isUserCreationModeActive()) {
-      this.trackClick(
-        `${COLD_ARCHIVE_TRACKING.USER.ADD_USER}::${COLD_ARCHIVE_TRACKING.USER.CREATE_USER_MODES.EXISTING_USER}`,
+      this.trackUserAddClick(
+        COLD_ARCHIVE_TRACKING.USER.CREATE_USER_MODES.EXISTING_USER,
       );
       return this.getUserS3Credential(user.id)
         .then((credentials) => {
@@ -121,8 +122,8 @@ export default class PciUsersAddController {
   }
 
   createUser(description) {
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.USER.ADD_USER}::${COLD_ARCHIVE_TRACKING.USER.CREATE_USER_MODES.NEW_USER}`,
+    this.trackUserAddClick(
+      COLD_ARCHIVE_TRACKING.USER.CREATE_USER_MODES.NEW_USER,
     );
     return this.PciStoragesColdArchiveService.createUser(
       this.projectId,
