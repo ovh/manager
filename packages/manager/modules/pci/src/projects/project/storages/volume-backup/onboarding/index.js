@@ -1,6 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
+
 import { VOLUME_BACKUP_ROUTES } from '../volume-backups.constants';
 
 const moduleName =
