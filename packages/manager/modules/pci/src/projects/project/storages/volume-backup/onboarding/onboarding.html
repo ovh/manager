@@ -1,0 +1,28 @@
+<pci-announcement-banner
+    data-get-state-name="$ctrl.getStateName()"
+    data-on-go-to-region="$ctrl.goToRegion()"
+></pci-announcement-banner>
+
+<manager-on-boarding-layout
+    data-guides="$ctrl.guides"
+    data-on-guide-click="$ctrl.onDocumentationClick(guide)"
+>
+    <h1
+        data-translate="pci_projects_project_storages_volume_backup_onboarding_title"
+    ></h1>
+    <p
+        data-translate="pci_projects_project_storages_volume_backup_onboarding_description_part_1"
+    ></p>
+    <p
+        data-translate="pci_projects_project_storages_volume_backup_onboarding_description_part_2"
+    ></p>
+
+    <oui-button
+        data-variant="primary"
+        data-on-click="$ctrl.onAddVolumeBlockStorageClick()"
+    >
+        <span
+            data-translate="pci_projects_project_storages_volume_backup_onboarding_action_title"
+        ></span>
+    </oui-button>
+</manager-on-boarding-layout>
