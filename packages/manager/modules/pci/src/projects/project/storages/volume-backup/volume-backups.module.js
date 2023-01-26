@@ -9,8 +9,8 @@ import routing from './volume-backups.routing';
 import component from './volume-backups.component';
 import service from './volume-backup.service';
 
-import addVolumeBackup from './add';
-import dashboard from './dashboard';
+// import addVolumeBackup from './add';
+// import dashboard from './dashboard';
 import onboarding from './onboarding';
 
 const moduleName = 'ovhManagerPciProjectStoragesVolumeBackup';
@@ -23,8 +23,8 @@ angular
     'oui',
     'ngOvhCloudUniverseComponents',
     onboarding,
-    addVolumeBackup,
-    dashboard,
+    // addVolumeBackup,
+    // dashboard,
   ])
   .config(routing)
   .component('ovhManagerPciProjectsProjectStoragesVolumeBackup', component)

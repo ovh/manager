@@ -1,16 +1,13 @@
-import { PCI_FEATURES } from '../../../projects.constant';
 import VolumeBackup from './volume-backup.class';
-import {
-  VOLUME_BACKUP_DEFAULT_REGION,
-  VOLUME_BACKUP_ROUTES,
-} from './volume-backup.constants';
+import { PCI_FEATURES, PCI_FEATURES_STATES } from '../../../projects.constant';
+import { VOLUME_BACKUP_ROUTES } from './volume-backups.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(VOLUME_BACKUP_ROUTES.ROOT.STATE, {
     url: VOLUME_BACKUP_ROUTES.ROOT.URL,
     component: 'ovhManagerPciProjectsProjectStoragesVolumeBackup',
     onEnter: /* @ngInject */ (pciFeatureRedirect) => {
-      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.VOLUME_BACKUP);
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.NOTEBOOKS);
     },
     redirectTo: (transition) => {
       return Promise.all([
@@ -23,14 +20,15 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('pci_projects_project_storages_volume_backup_title'),
+        $translate.instant(
+          'pci_projects_project_storages_volume_backup_breadcrumb',
+        ),
 
       volumeBackups: /* @ngInject */ (projectId, VolumeBackupService) => {
-        return VolumeBackupService.getVolumeBackups(
+        return VolumeBackupService.getVolumeBackupsOnAllRegions(
           projectId,
-          VOLUME_BACKUP_DEFAULT_REGION,
-        ).then((volumeBackups) =>
-          volumeBackups.map((volumeBackup) => new VolumeBackup(volumeBackup)),
+        ).then(({ resources }) =>
+          resources.map((volumeBackup) => new VolumeBackup(volumeBackup)),
         );
       },
 
@@ -44,6 +42,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToAddVolumeBackup: /* @ngInject */ ($state, projectId) => () => {
         return $state.go(VOLUME_BACKUP_ROUTES.ADD.STATE, {
+          projectId,
+        });
+      },
+
+      goToAddVolumeBlockStorage: /* @ngInject */ ($state, projectId) => () => {
+        return $state.go(PCI_FEATURES_STATES.BLOCKS.ADD, {
           projectId,
         });
       },

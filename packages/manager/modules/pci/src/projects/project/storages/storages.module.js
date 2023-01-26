@@ -9,6 +9,7 @@ import instanceBackups from './instance-backups';
 import objectStorage from './object-storage';
 import snapshots from './snapshots';
 import storagesComponents from './components';
+import volumeBackup from './volume-backup';
 
 import routing from './storages.routing';
 import storageUsersService from './storage-users.service';
@@ -24,9 +25,10 @@ angular
     cloudArchive,
     databases,
     instanceBackups,
-    snapshots,
     objectStorage,
+    snapshots,
     storagesComponents,
+    volumeBackup,
   ])
   .service('PciStoragesUsersService', storageUsersService)
   .config(routing);
