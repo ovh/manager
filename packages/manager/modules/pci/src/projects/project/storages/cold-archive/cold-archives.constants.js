@@ -2,7 +2,7 @@ export const COLD_ARCHIVE_TRACKING = {
   CLICK_PREFIX: 'PublicCloud::pci::projects::project::storages::cold_archive',
   PAGE_PREFIX: 'pci::projects::project::storages::cold_archive',
   SEE_PRICE: 'dashboard::see-prices',
-  GUIDE: 'guides::go_to',
+  GUIDE: 'public-cloud_cold_archive::guides::go_to',
   ONBOARDING: {
     MAIN: 'onboarding',
     ADD_CONTAINER: 'add',

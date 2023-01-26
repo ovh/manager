@@ -58,12 +58,20 @@ export default /* @ngInject */ ($stateProvider) => {
         CHECK_PRICES_DOC_LINK[coreConfig.getUser()?.ovhSubsidiary] ||
         CHECK_PRICES_DOC_LINK.DEFAULT,
 
-      onPriceLinkClick: /* @ngInject */ (trackClick) => () =>
-        trackClick(COLD_ARCHIVE_TRACKING.SEE_PRICE),
+      onPriceLinkClick: /* @ngInject */ (atInternet) => () => {
+        const hit = `${COLD_ARCHIVE_TRACKING.CLICK_PREFIX}_${COLD_ARCHIVE_TRACKING.SEE_PRICE}`;
+        return atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
+      },
 
-      onGuideClick: /* @ngInject */ (trackClick) => (guideId) => {
+      onGuideClick: /* @ngInject */ (atInternet) => (guideId) => {
         const hit = `${COLD_ARCHIVE_TRACKING.GUIDE}_${guideId}`;
-        return trackClick(hit);
+        return atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
       },
 
       breadcrumb: /* @ngInject */ ($translate) =>

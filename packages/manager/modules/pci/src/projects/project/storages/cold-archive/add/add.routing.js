@@ -18,7 +18,10 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
 
       stepper: /* @ngInject */ () => ({
-        nameArchiveStep: { name: 'cold_archive_name_archive', display: null },
+        nameArchiveStep: {
+          name: 'cold_archive_name_archive',
+          display: null,
+        },
         linkUserArchiveStep: {
           name: 'cold_archive_link_user_archive',
           display: null,

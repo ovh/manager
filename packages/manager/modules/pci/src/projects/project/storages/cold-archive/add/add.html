@@ -8,7 +8,7 @@
             <oui-guide-menu-item
                 data-ng-repeat="guide in $ctrl.guides track by $index"
                 data-href="{{:: guide.link }}"
-                data-on-click="$ctrl.trackClick(guide.id)"
+                data-on-click="$ctrl.onGuideClick(guide.id)"
                 data-external
             >
                 <span
@@ -24,7 +24,7 @@
     ></p>
     <a
         data-ng-href="{{:: $ctrl.priceLink }}"
-        data-ng-click="$ctrl.onCheckPricesLinkClick()"
+        data-ng-click="$ctrl.onPriceLinkClick()"
         target="_blank"
         rel="noopener"
     >
