@@ -12,6 +12,7 @@ export default {
     goToAddVolumeBackup: '<',
     goToVolumeBackups: '<',
     goBack: '<',
+    goToAddVolumeBlockStorage: '<',
     reloadState: '<',
     messageContainer: '<',
     volumeBackupTrackPrefix: '<',
