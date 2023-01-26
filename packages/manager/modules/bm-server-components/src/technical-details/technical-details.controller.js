@@ -47,7 +47,7 @@ export default class BmServerComponentsTechnicalDetailsController {
   formatRAM() {
     const ram = get(this.technicalDetails, 'memory');
     if (!ram) {
-      return '-';
+      return '';
     }
     const freqUnit = this.$translate.instant(
       'dedicated_server_dashboard_technical_details_ram_frequency_unit',

@@ -245,9 +245,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .get(`/dedicated/technical-details/${serverName}`, {
             serviceType: 'aapi',
           })
-          .then(({ data }) =>
-            data?.baremetalServers?.storage ? data?.baremetalServers : null,
-          )
+          .then(({ data }) => data?.baremetalServers)
           .catch(() => null),
       terminateLink: /* @ngInject */ ($state, serverName) =>
         $state.href('app.dedicated-server.server.dashboard.terminate', {
