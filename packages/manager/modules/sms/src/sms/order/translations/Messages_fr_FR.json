@@ -25,5 +25,7 @@
   "sms_order_retract": "Vous sollicitez l'exécution immédiate de la prestation et reconnaissez qu'à ce titre, vous pourrez exercer votre droit de rétractation dans les conditions définies par l'article L.121-21-5 du code de la consommation.",
   "sms_order_bc": "Afin de finaliser votre demande, merci de valider ce",
   "sms_order_more_info": "En savoir plus",
-  "sms_order_retract_info": "Vous pouvez exercer votre droit de rétractation, sans avoir à justifier de motifs ni à payer de pénalités, dans un délai de quatorze (14) jours à compter de la souscription du contrat, par courrier postal ou par message adressé au Service client OVH par le biais de votre Interface de gestion."
+  "sms_order_retract_info": "Vous pouvez exercer votre droit de rétractation, sans avoir à justifier de motifs ni à payer de pénalités, dans un délai de quatorze (14) jours à compter de la souscription du contrat, par courrier postal ou par message adressé au Service client OVH par le biais de votre Interface de gestion.",
+  "sms_order_header_guide": "Guides",
+  "sms_order_header_guide_start_with_sms": "Débuter avec les SMS OVHcloud"
 }

@@ -60,6 +60,7 @@ angular
   .constant('SMS_ALERTS', constant.SMS_ALERTS)
   .constant('SMS_PHONEBOOKS', constant.SMS_PHONEBOOKS)
   .component('ovhManagerSmsComponent', component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

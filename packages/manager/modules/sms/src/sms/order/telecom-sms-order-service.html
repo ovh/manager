@@ -5,6 +5,18 @@
 
     <div class="widget-presentation" data-ng-if="!$ctrl.loading.init">
         <oui-header data-heading="{{ 'sms_order_title' | translate }}">
+            <oui-guide-menu
+                data-ng-if="$ctrl.needGuidesMenu"
+                data-text="{{ 'sms_order_header_guide' | translate }}"
+            >
+                <oui-guide-menu-item
+                    data-ng-repeat="guideLink in $ctrl.headerGuideLink track by $index"
+                    data-href="{{:: guideLink.url }}"
+                    data-external
+                >
+                    <span data-ng-bind=":: guideLink.label"></span>
+                </oui-guide-menu-item>
+            </oui-guide-menu>
         </oui-header>
 
         <form name="smsOrderForm">
