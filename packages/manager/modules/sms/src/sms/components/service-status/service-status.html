@@ -9,6 +9,15 @@
             <span
                 class="{{ 'oui-badge ' + $ctrl.SMPP_BADAGES_STATUS[$ctrl.status] }}"
                 data-translate="{{ 'sms_component_serviceStatus_status_' + $ctrl.status }}"
+                data-ng-if="$ctrl.status === $ctrl.SMPP_STATUS.SUCCESS || $ctrl.status === $ctrl.SMPP_STATUS.DELETED"
+            >
+            </span>
+            <span
+                data-ng-if="$ctrl.status !== $ctrl.SMPP_STATUS.SUCCESS && $ctrl.status !== $ctrl.SMPP_STATUS.DELETED"
+                class="{{ 'oui-badge ' + $ctrl.SMPP_BADAGES_STATUS[$ctrl.status] }}"
+                data-translate="{{ 'sms_component_serviceStatus_status_' + $ctrl.status }}"
+                data-oui-tooltip="{{:: 'sms_component_serviceStatus_status_' + $ctrl.status + '_tooltip' | translate }}"
+                data-oui-tooltip-placement="bottom"
             >
             </span>
         </oui-tile-description>
@@ -17,7 +26,7 @@
         <oui-tile-description>
             <oui-button
                 data-variant="secondary"
-                data-disabled="$ctrl.status !== $ctrl.SMPP_STATUS.OK"
+                data-disabled="$ctrl.status !== $ctrl.SMPP_STATUS.SUCCESS"
                 data-on-click="$ctrl.onResetPasswordBtnClick(true)"
             >
                 <span
