@@ -9,6 +9,8 @@ import instanceBackups from './instance-backups';
 import objectStorage from './object-storage';
 import coldArchive from './cold-archive';
 import snapshots from './snapshots';
+import storagesComponents from './components';
+import volumeBackup from './volume-backup';
 
 import routing from './storages.routing';
 import storageUsersService from './storage-users.service';
@@ -20,13 +22,15 @@ angular
     'oui',
     'ui.router',
     'ovhManagerFilters',
+    storagesComponents,
     blocks,
     cloudArchive,
     databases,
     instanceBackups,
-    snapshots,
     objectStorage,
     coldArchive,
+    snapshots,
+    volumeBackup,
   ])
   .service('PciStoragesUsersService', storageUsersService)
   .config(routing);

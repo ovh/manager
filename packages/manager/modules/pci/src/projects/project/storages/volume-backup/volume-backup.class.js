@@ -1,7 +1,6 @@
 import merge from 'lodash/merge';
-import 'moment';
 
-import { VOLUME_BACKUP_STATUS } from './volume-backup.constants';
+import { VOLUME_BACKUP_STATUS } from './volume-backups.constants';
 
 export default class VolumeBackup {
   /**

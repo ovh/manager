@@ -5,6 +5,17 @@ export default class VolumeBackupService {
   }
 
   /**
+   * list of all volume backup on all region backup
+   * @param serviceName {string}: volume backup service name
+   * @returns {*}: volume backup list promise
+   */
+  getVolumeBackupsOnAllRegions(serviceName) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/aggregated/volumeBackup`)
+      .then(({ data }) => data);
+  }
+
+  /**
    * list of volume backup
    * @param serviceName {string}: volume backup service name
    * @param regionName {string}:  volume backup region location
