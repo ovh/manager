@@ -9,6 +9,7 @@ export default class {
     $q,
     $translate,
     $filter,
+    $state,
     $stateParams,
     atInternet,
     TucSmsMediator,
@@ -21,6 +22,7 @@ export default class {
     this.$q = $q;
     this.$translate = $translate;
     this.$filter = $filter;
+    this.$state = $state;
     this.$stateParams = $stateParams;
     this.TucSmsMediator = TucSmsMediator;
     this.api = {
@@ -38,6 +40,7 @@ export default class {
   }
 
   $onInit() {
+    this.needGuidesMenu = this.$state.current.name === 'sms.order';
     this.loading = {
       init: false,
       order: false,

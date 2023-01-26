@@ -63,9 +63,5 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
   });
 };

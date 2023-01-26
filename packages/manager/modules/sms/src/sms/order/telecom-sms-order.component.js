@@ -18,6 +18,8 @@ import template from './telecom-sms-order.html';
 
 import '../telecom-sms.scss';
 
+import { HEADER_GUIDE_LINK } from '../../sms.constant';
+
 const moduleName = 'ovhManagerSmsOrderComponent';
 
 angular
@@ -32,6 +34,9 @@ angular
   .component('smsOrderComponent', {
     controller,
     template: templateService,
+    bindings: {
+      headerGuideLink: '<',
+    },
   })
   .config(($stateProvider) => {
     $stateProvider.state('sms.service.order', {
@@ -58,6 +63,13 @@ angular
         },
       },
       resolve: {
+        headerGuideLink: /* @ngInject */ (coreConfig, $translate) =>
+          HEADER_GUIDE_LINK.map(({ translationKey, url }) => ({
+            label: $translate.instant(
+              `sms_order_header_guide_${translationKey}`,
+            ),
+            url: url[coreConfig.getUser().ovhSubsidiary] || url.DEFAULT,
+          })),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('sms_order_title'),
       },
