@@ -49,7 +49,7 @@ export default class ColdArchiveLinkUserArchiveController {
 
   trackPage(hit) {
     this.atInternet.trackPage({
-      name: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}::${hit}`,
+      name: `${COLD_ARCHIVE_TRACKING.CLICK_PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}::${hit}`,
       type: 'page',
     });
   }
@@ -103,9 +103,6 @@ export default class ColdArchiveLinkUserArchiveController {
   }
 
   createUser(description) {
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.ASSOCIATE_USER}::${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}`,
-    );
     return this.pciStoragesUsersService
       .createUser(this.projectId, {
         description,
@@ -140,15 +137,9 @@ export default class ColdArchiveLinkUserArchiveController {
   }
 
   generateUserS3Credential(user) {
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.SEE_CREDENTIALS}`,
-    );
     return this.pciStoragesUsersService
       .generateS3Credential(this.projectId, user.id)
       .catch(() => {
-        this.trackPage(
-          `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.SEE_CREDENTIALS}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
-        );
         return this.CucCloudMessage.error(
           this.$translate.instant(
             'pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_fail',
@@ -194,9 +185,6 @@ export default class ColdArchiveLinkUserArchiveController {
       .then((credential) => {
         newUser.s3Credentials = [credential];
         this.userModel.createMode.credential = credential;
-        this.trackPage(
-          `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.NEW_USER}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
-        );
         return credential;
       })
       .catch(() => {

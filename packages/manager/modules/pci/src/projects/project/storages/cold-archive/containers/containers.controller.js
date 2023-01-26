@@ -45,43 +45,43 @@ export default class PciStoragesColdArchiveContainersController {
     return this.trackClick(hit);
   }
 
-  onClickOnManageContainer(container) {
+  onManageContainerClick(container) {
     this.trackContainerslClick(
       COLD_ARCHIVE_TRACKING.CONTAINERS.MANAGE_CONTAINER,
     );
     return this.goToManageContainer(container);
   }
 
-  onClickOnArchiveContainer(container) {
+  onArchiveContainerClick(container) {
     this.trackContainerslClick(COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE);
     return this.goToArchiveContainer(container);
   }
 
-  onClickOnRestoreContainer(container) {
+  onRestoreContainerClick(container) {
     this.trackContainerslClick(COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE);
     return this.goToRestoreContainer(container);
   }
 
-  onClickOnDeleteContainer(container) {
+  onDeleteContainerClick(container) {
     this.trackContainerslClick(
       COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER,
     );
     return this.goToDeleteContainer(container);
   }
 
-  onClickOnFlushContainer(container) {
+  onFlushContainerClick(container) {
     this.trackContainerslClick(
       COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER,
     );
     return this.goToFlushArchive(container);
   }
 
-  onClickOnAddUsertoContainer(container) {
+  onAddUsertoContainerClick(container) {
     this.trackContainerslClick(COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER);
     return this.goToAddUserToContainer(container);
   }
 
-  onClickOnAddContainer() {
+  onAddContainerClick() {
     this.trackContainerslClick(COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER);
     return this.goToAddColdArchive();
   }
