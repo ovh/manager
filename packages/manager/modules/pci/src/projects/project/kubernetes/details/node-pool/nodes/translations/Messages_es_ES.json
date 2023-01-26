@@ -47,5 +47,7 @@
   "kube_nodes_common_actions": "Acciones",
   "kube_nodes_add_nodes": "Añadir nodos",
   "kube_nodes_delete_nodes": "Eliminar nodos",
-  "kube_nodes_status_REDEPLOYING": "Aplicación de los cambios"
+  "kube_nodes_status_REDEPLOYING": "Aplicación de los cambios",
+  "kube_nodes_status_UPSCALING": "Upscaling",
+  "kube_nodes_status_DOWNSCALING": "Downscaling"
 }
