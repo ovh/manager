@@ -8,15 +8,18 @@ export default class {
   constructor(
     $translate,
     coreConfig,
+    isSmppAccount,
     TucSmsMediator,
     TucToastError,
     SMS_GUIDES,
+    SMPP_GUIDES,
   ) {
     this.$translate = $translate;
     this.coreConfig = coreConfig;
+    this.isSmppAccount = isSmppAccount;
     this.TucSmsMediator = TucSmsMediator;
     this.TucToastError = TucToastError;
-    this.constant = { SMS_GUIDES };
+    this.constant = { SMS_GUIDES, SMPP_GUIDES };
   }
 
   $onInit() {
@@ -30,7 +33,9 @@ export default class {
     this.loading.init = true;
     return this.TucSmsMediator.initDeferred.promise
       .then(() => {
-        this.guides = this.constant.SMS_GUIDES;
+        this.guides = this.constant[
+          this.isSmppAccount ? 'SMPP_GUIDES' : 'SMS_GUIDES'
+        ];
         this.language = this.coreConfig.getUserLanguage();
         this.injectTitleInUrl();
       })
