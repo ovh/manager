@@ -57,6 +57,7 @@ angular
   ])
   .constant('SMS_URL', constant.SMS_URL)
   .constant('SMS_GUIDES', constant.SMS_GUIDES)
+  .constant('SMPP_GUIDES', constant.SMPP_GUIDES)
   .constant('SMS_ALERTS', constant.SMS_ALERTS)
   .constant('SMS_PHONEBOOKS', constant.SMS_PHONEBOOKS)
   .component('ovhManagerSmsComponent', component)
