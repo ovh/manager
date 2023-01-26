@@ -13,7 +13,7 @@ export default class PciOrderCommandTerraformCtrl {
         .join(' ')}`;
     } else if (node.values.length > 0) {
       keyStr = `${node.key} = ${node.values
-        .map((value) => `"${value}"`)
+        .map((value) => (typeof value === 'string' ? `"${value}"` : value))
         .join(' ')}`;
     } else {
       keyStr = `${node.key}`;

@@ -8,9 +8,11 @@ export function getOrderDataFromModel(model) {
     },
     plan: model.plan.name,
     version: model.engine.selectedVersion.version,
-    diskSize: model.disk.additionalDiskSize
-      ? model.disk.initialSize + model.disk.additionalDiskSize
-      : model.disk.initialSize,
+    disk: {
+      size: model.disk.additionalDiskSize
+        ? model.disk.initialSize + model.disk.additionalDiskSize
+        : model.disk.initialSize,
+    },
   };
   if (model.usePrivateNetwork && model.subnet?.id?.length > 0) {
     orderData.networkId = model.privateNetwork.regions?.find(

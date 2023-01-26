@@ -8,7 +8,7 @@ export const ORDER_KEYS = [
   'nodesPattern.region',
   'plan',
   'version',
-  'diskSize',
+  'disk.size',
   'networkId',
   'subnetId',
 ];
