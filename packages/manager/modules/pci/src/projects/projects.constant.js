@@ -11,6 +11,7 @@ export const PCI_FEATURES = {
     OBJECT_STORAGE: 'object-storage',
     DATABASES: 'databases',
     SNAPSHOT: 'snapshot',
+    VOLUME_BACKUP: 'volume-backup',
     CLOUD_ARCHIVE: 'archive',
     INSTANCE_BACKUP: 'instance-backup',
     LOAD_BALANCER: 'load-balancer',

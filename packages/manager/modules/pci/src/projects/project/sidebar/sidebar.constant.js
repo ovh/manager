@@ -31,6 +31,15 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         feature: PCI_FEATURES.PRODUCTS.BLOCK_STORAGE,
       },
       {
+        id: 'volume-backup',
+        new: true,
+        options: {
+          state: 'pci.projects.project.storages.volume-backup',
+        },
+        title: 'Volume Backup',
+        feature: PCI_FEATURES.PRODUCTS.VOLUME_BACKUP,
+      },
+      {
         id: 'object-storage',
         options: {
           state: 'pci.projects.project.storages.object-storage',
