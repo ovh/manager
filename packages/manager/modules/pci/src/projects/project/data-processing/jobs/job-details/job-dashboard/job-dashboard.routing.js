@@ -15,6 +15,8 @@ export default /* @ngInject */ ($stateProvider) =>
         ) => dataProcessingService.getJob(projectId, jobId),
         metricsToken: /* @ngInject */ (dataProcessingService, projectId) =>
           dataProcessingService.getMetricsToken(projectId),
+        notebooks: /* @ngInject */ (dataProcessingService, projectId) =>
+          dataProcessingService.getNotebooks(projectId),
         terminateJob: /* @ngInject */ ($state, projectId, job) => () => {
           $state.go(
             'pci.projects.project.data-processing.jobs.job-details.dashboard.terminate',
@@ -34,6 +36,12 @@ export default /* @ngInject */ ($stateProvider) =>
               jobName: job.name,
             },
           );
+        },
+        showNotebook: /* @ngInject */ ($state, projectId, job) => () => {
+          $state.go('pci.projects.project.data-processing.notebooks.details', {
+            projectId,
+            notebookId: job.notebook,
+          });
         },
         showBillingConsole: /* @ngInject */ ($state, projectId) => () => {
           $state.go('pci.projects.project.billing', {

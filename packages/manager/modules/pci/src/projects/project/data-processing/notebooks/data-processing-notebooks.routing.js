@@ -55,8 +55,11 @@ export default /* @ngInject */ ($stateProvider) =>
           notebookName,
         });
       },
+      reloadState: /* @ngInject */ ($state) => () => {
+        $state.go($state.current, {}, { reload: true });
+      },
       notebooks: /* @ngInject */ (dataProcessingService, projectId) =>
-        dataProcessingService.getNotebooks(projectId).then(({ data }) => data),
+        dataProcessingService.getNotebooks(projectId).then((data) => data),
       notebookId: /* @ngInject */ ($transition$) => $transition$.params().id,
       lab: /* @ngInject */ (PciProjectLabsService, projectId) =>
         PciProjectLabsService.getLabByName(projectId, 'dataProcessing'),

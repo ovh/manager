@@ -46,6 +46,9 @@ export default /* @ngInject */ ($stateProvider) =>
               reload: true,
             },
           ),
+        reloadState: /* @ngInject */ ($state) => () => {
+          $state.go($state.current, {}, { reload: true });
+        },
         openLiveCodeEditor: /* @ngInject */ ($window, notebook) => () =>
           $window.open(notebook.status.url, '_blank'),
         breadcrumb: /* @ngInject */ ($translate) =>

@@ -12,5 +12,6 @@ export default {
     goBack: '<',
     openLiveCodeEditor: '<',
     capabilities: '<',
+    reloadState: '<',
   },
 };

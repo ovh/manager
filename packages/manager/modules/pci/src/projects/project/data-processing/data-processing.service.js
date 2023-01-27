@@ -172,7 +172,7 @@ export default class DataProcessingService {
    */
   getNotebookCapabilities(projectId) {
     return this.$http
-      .put(`/cloud/project/${projectId}/dataProcessing/notebooks/capabilities`)
+      .get(`/cloud/project/${projectId}/dataProcessing/notebooks/capabilities`)
       .then(({ data }) => data);
   }
 
