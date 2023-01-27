@@ -2,14 +2,14 @@
     <oui-header
         class="mb-3"
         data-ng-if="$ctrl.containers.length"
-        id="cold-archive-header"
+        id="cold-archive-guide-header"
         data-heading="{{:: 'pci_projects_project_storages_cold_archive_label' | translate }}"
     >
         <oui-guide-menu
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
             <oui-guide-menu-item
-                data-ng-repeat="guide in $ctrl.guides track by $index"
+                data-ng-repeat="guide in $ctrl.guideMenu track by $index"
                 data-href="{{:: guide.link }}"
                 data-on-click="$ctrl.onGuideClick(guide.id)"
                 data-external
