@@ -46,7 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
                 `pci_projects_project_storages_cold_archives_guides_${guide.id}_description`,
               ),
               link:
-                guide.links[coreConfig.getUser().ovhSubsidiary] ||
+                guide.links[coreConfig.getUser()?.ovhSubsidiary] ||
                 guide.links.DEFAULT,
             },
           ],
@@ -55,7 +55,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       priceLink: /* @ngInject */ (coreConfig) =>
-        CHECK_PRICES_DOC_LINK[coreConfig.getUser().ovhSubsidiary] ||
+        CHECK_PRICES_DOC_LINK[coreConfig.getUser()?.ovhSubsidiary] ||
         CHECK_PRICES_DOC_LINK.DEFAULT,
 
       breadcrumb: /* @ngInject */ ($translate) =>

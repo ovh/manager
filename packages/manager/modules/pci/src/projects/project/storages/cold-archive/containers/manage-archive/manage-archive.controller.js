@@ -12,9 +12,7 @@ export default class ColdArchiveContainersManageArchiveController {
   }
 
   getDocumentationUrl() {
-    return MANAGE_ARCHIVE_DOC_LINK[
-      this.coreConfig.getUserLanguage().toUpperCase()
-    ];
+    return MANAGE_ARCHIVE_DOC_LINK[this.coreConfig.getUser()?.ovhSubsidiary];
   }
 
   cancel() {
