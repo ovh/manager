@@ -7,6 +7,12 @@ import '@ovh-ux/ui-kit';
 import component from './users-tokens.component';
 import routing from './users-tokens.routing';
 
+import createUser from './create-user';
+import createToken from './create-token';
+import deleteToken from './delete-token';
+
+import aiPipeline from '../../components/ai-pipeline';
+
 const moduleName = 'ovhManagerPciAiDashboardUsersTokens';
 
 angular
@@ -15,6 +21,10 @@ angular
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    createUser,
+    createToken,
+    deleteToken,
+    aiPipeline,
   ])
   .config(routing)
   .component('pciProjectAiDashboardUsersTokens', component)
