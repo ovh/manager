@@ -1,4 +1,4 @@
-import { GIB_IN_MIB } from '../../../data-processing.constants';
+import { convertToGio } from '../../../data-processing.utils';
 
 export default class NotebookSizingCtrl {
   /* @ngInject */
@@ -23,7 +23,7 @@ export default class NotebookSizingCtrl {
 
     this.onChangeSelectedTemplate();
 
-    this.convertToGio = NotebookSizingCtrl.convertToGio;
+    this.convertToGio = convertToGio;
   }
 
   onChangeSelectedTemplate() {
@@ -31,9 +31,5 @@ export default class NotebookSizingCtrl {
       notebook: this.selectedNotebookTemplate,
       cluster: this.selectedClusterTemplate,
     });
-  }
-
-  static convertToGio(memory) {
-    return Math.round((memory / GIB_IN_MIB) * 1000) / 1000;
   }
 }

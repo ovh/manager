@@ -4,6 +4,7 @@ import {
   DATA_PROCESSING_STATUS_TO_CLASS,
   DATA_PROCESSING_STATUSES,
   DATA_PROCESSING_NOTEBOOKS_STATUSES,
+  GIB_IN_MIB,
 } from './data-processing.constants';
 
 const memoryConversions = {
@@ -180,6 +181,10 @@ export const getDataProcessingUiUrl = (region, id) => {
   return `https://adc.${region.toLowerCase()}.dataconvergence.ovh.com/${id}`;
 };
 
+export const convertToGio = (memory) => {
+  return Math.round((memory / GIB_IN_MIB) * 1000) / 1000;
+};
+
 export default {
   formatDuration,
   convertMemory,
@@ -188,4 +193,5 @@ export default {
   getClassFromStatus,
   datagridToIcebergFilter,
   getDataProcessingUiUrl,
+  convertToGio,
 };

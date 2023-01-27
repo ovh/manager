@@ -66,7 +66,7 @@
             <!-- Tile item :: Framework -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_notebooks_details_information_framework_label' | translate }}"
-                data-description="{{ $ctrl.notebook.spec.env.engineName + ' ' + $ctrl.notebook.spec.env.engineVersion}}"
+                data-description="{{ $ctrl.capitalize($ctrl.notebook.spec.env.engineName) + ' ' + $ctrl.notebook.spec.env.engineVersion}}"
             >
             </oui-tile-definition>
             <!-- Tile item :: Privacy -->
@@ -160,11 +160,11 @@
                 </oui-tile-description>
 
                 <oui-tile-description
-                    data-ng-repeat="template in $ctrl.capabilities.templates track by template.id"
+                    data-ng-repeat="template in $ctrl.templates track by template.id"
                     data-translate="data_processing_notebooks_details_resources_cluster_description_label"
                     data-translate-values="{'clusterName': '<strong>' + template.name + ' :</strong>', 
-                    'driverCores': template.driverCores, 'driverMemory': template.driverMemory, 'driverMemoryOverhead': template.driverMemoryOverhead, 
-                    'executorCores': template.executorCores, 'executorMemory': template.executorMemory, 'executorMemoryOverhead': template.executorMemoryOverhead,
+                    'driverCores': template.driverCores, 'driverMemory': $ctrl.convertToGio(template.driverMemory), 'driverMemoryOverhead': template.driverMemoryOverhead, 
+                    'executorCores': template.executorCores, 'executorMemory': $ctrl.convertToGio(template.executorMemory), 'executorMemoryOverhead': template.executorMemoryOverhead,
                     'executorNumber': template.executorNum, 'htPrice': 0, 'ttcPrice': 0}"
                 >
                 </oui-tile-description>

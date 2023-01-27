@@ -1,5 +1,6 @@
 import animateScrollTo from 'animated-scroll-to';
 import { API_GUIDES } from '../../../project.constants';
+import { SUBMIT_JOB_API_GUIDES } from '../../data-processing.constants';
 import { nameGenerator } from '../../../../../name-generator.constant';
 import { NOTEBOOK_PRIVACY_SETTINGS } from './privacy-selector/privacy-selector.constants';
 
@@ -41,6 +42,10 @@ export default class AddNotebookCtrl {
     this.apiGuideUrl =
       API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
 
+    this.addNotebookGuideUrl =
+      SUBMIT_JOB_API_GUIDES[this.user.ovhSubsidiary] ||
+      SUBMIT_JOB_API_GUIDES.DEFAULT;
+
     this.scrollToOptions = {
       element: document.getElementsByClassName('pci-project-content')[0],
       offset: 0,
@@ -64,8 +69,11 @@ export default class AddNotebookCtrl {
    * Fetch available regions from capabilities and update binding
    */
   updateAvailableRegions() {
-    const version = this.capabilities.availableVersions.find(
-      (v) => v.name === this.state.notebookEngine.version,
+    const engine = this.capabilities.find(() => (o) =>
+      o.name === this.state.notebookEngine.name,
+    );
+    const version = engine.availableVersions.find(
+      (o) => o.name === this.state.notebookEngine.version,
     );
     this.regions = version.availableRegions.map((region) => ({
       name: region,
@@ -87,8 +95,8 @@ export default class AddNotebookCtrl {
    * @param notebookType Selected notebook type
    */
   onChangeNotebookTypeHandler(notebookType) {
-    const e = this.capabilities.availableVersions.find(
-      (o) => o.name === notebookType.version,
+    const e = this.capabilities.find(() => (o) =>
+      o.name === notebookType.engine,
     );
     this.state.notebookEngine = {
       ...notebookType,
@@ -113,7 +121,7 @@ export default class AddNotebookCtrl {
   prepareNotebookPayload() {
     const payload = {
       env: {
-        engine: this.state.notebookEngine.engine,
+        engineName: this.state.notebookEngine.engine,
         engineVersion: this.state.notebookEngine.version,
       },
       name: this.state.name,
@@ -130,7 +138,7 @@ export default class AddNotebookCtrl {
 
     this.dataProcessingService
       .createNotebook(this.projectId, this.orderData)
-      .then(({ data }) => {
+      .then((data) => {
         this.atInternet.trackClick({
           name:
             'public-cloud::pci::projects::project::data-processing::submit-notebook::submit',
