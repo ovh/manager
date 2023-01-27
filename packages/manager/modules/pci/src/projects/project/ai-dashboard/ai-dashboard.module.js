@@ -14,6 +14,7 @@ import aiPipelineComponent from './components/ai-pipeline';
 import onboarding from './onboarding';
 import home from './tabs/home';
 import usersTokens from './tabs/users-tokens';
+import cli from './tabs/cli';
 
 const moduleName = 'ovhManagerPciAiDashboard';
 
@@ -22,6 +23,7 @@ angular
     onboarding,
     home,
     usersTokens,
+    cli,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ngOvhCloudUniverseComponents',
