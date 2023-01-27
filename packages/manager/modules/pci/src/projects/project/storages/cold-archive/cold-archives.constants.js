@@ -251,7 +251,7 @@ export const GUIDE_MENU_ITEMS = [
   },
 ];
 
-export const GUIDES = [
+export const ONBOARDING_DOC_LINKS = [
   {
     id: 'overview',
     links: {
@@ -374,7 +374,7 @@ export default {
   CHECK_PRICES_DOC_LINK,
   MANAGE_ARCHIVE_DOC_LINK,
   REGION,
-  GUIDES,
+  ONBOARDING_DOC_LINKS,
   GUIDE_MENU_ITEMS,
   DATE_FORMAT,
 };
