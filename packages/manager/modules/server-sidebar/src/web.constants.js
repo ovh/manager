@@ -165,6 +165,16 @@ export const EMAIL_CONFIG = {
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
       feature: 'emails:mxplan',
+      filter: {
+        category: 'mxplan',
+        fn: (items, compareTo) =>
+          items.filter(
+            ({ displayName }) =>
+              typeof compareTo.domain?.find(
+                (domain) => domain.displayName === displayName,
+              ) === 'string',
+          ),
+      },
     },
     {
       path: '/email/domain/delegatedAccount',
