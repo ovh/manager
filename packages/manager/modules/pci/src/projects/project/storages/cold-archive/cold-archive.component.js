@@ -14,7 +14,6 @@ export default {
     initGuides: '<',
     goToAddColdArchive: '<',
     goToColdArchiveContainers: '<',
-    guides: '<',
     guideMenu: '<',
     containers: '<',
     priceLink: '<',
