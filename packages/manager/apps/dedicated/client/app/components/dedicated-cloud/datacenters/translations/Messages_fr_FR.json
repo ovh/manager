@@ -1,5 +1,6 @@
 {
   "dedicatedCloud_datacenters_title": "Datacentres",
+  "dedicatedCloud_datacenters_commercialRange": "Gamme",
   "dedicatedCloud_datacenters_add": "Ajout d'un datacentre",
   "dedicatedCloud_datacenters_cpu": "Total CPU",
   "dedicatedCloud_datacenters_ram": "Total RAM",

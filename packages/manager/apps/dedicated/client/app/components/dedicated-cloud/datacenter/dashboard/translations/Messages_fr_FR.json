@@ -1,5 +1,6 @@
 {
   "dedicatedCloud_information_title": "Informations générales",
+  "dedicatedCloud_options_title": "Options",
   "dedicatedCloud_description": "Nom",
   "dedicatedCloud_datacenter_delete": "Supprimer le datacentre",
   "dedicatedCloud_datacenter_description": "Description",
