@@ -24,7 +24,7 @@ export default class PciStorageColdArchivesOnboardingController {
             `pci_projects_project_storages_cold_archives_guides_${guide.id}_description`,
           ),
           link:
-            guide.links[this.coreConfig.getUserLanguage().toUpperCase()] ||
+            guide.links[this.coreConfig.getUser()?.ovhSubsidiary] ||
             guide.links.DEFAULT,
         },
       ],
