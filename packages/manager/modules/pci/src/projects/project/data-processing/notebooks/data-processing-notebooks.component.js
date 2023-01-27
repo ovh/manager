@@ -18,6 +18,7 @@ export default {
     onListParamChange: '<',
     guideUrl: '<',
     guideTrackingSectionTags: '<',
+    reloadState: '<',
     trackClick: '<',
   },
 };

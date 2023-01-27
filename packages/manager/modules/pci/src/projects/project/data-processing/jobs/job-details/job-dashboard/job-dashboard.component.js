@@ -14,5 +14,7 @@ export default {
     showBillingConsole: '<',
     browseObjectStorage: '<',
     goBack: '<',
+    notebooks: '<',
+    showNotebook: '<',
   },
 };

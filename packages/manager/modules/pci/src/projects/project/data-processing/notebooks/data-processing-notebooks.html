@@ -45,7 +45,7 @@
                 data-filterable
             >
                 <span
-                    data-ng-bind="::$row.spec.env.engineName + ' ' + $row.spec.env.engineVersion"
+                    data-ng-bind="::$ctrl.capitalize($row.spec.env.engineName) + ' ' + $row.spec.env.engineVersion"
                 ></span>
             </oui-datagrid-column>
             <oui-datagrid-column

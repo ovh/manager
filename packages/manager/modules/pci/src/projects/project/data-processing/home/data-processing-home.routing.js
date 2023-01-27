@@ -17,6 +17,10 @@ export default /* @ngInject */ ($stateProvider) =>
         ),
       showJobs: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.data-processing.jobs', { projectId }),
+      showNotebooks: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.data-processing.notebooks', {
+          projectId,
+        }),
     },
     atInternet: {
       rename: 'public-cloud::pci::projects::project::data-processing',

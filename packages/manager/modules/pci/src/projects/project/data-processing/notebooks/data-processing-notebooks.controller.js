@@ -1,8 +1,12 @@
+import capitalize from 'lodash/capitalize';
 import {
   isNotebookRunning,
   getClassFromStatus,
 } from '../data-processing.utils';
-import { DATA_PROCESSING_GUIDE_URL } from '../data-processing.constants';
+import {
+  DATA_PROCESSING_GUIDE_URL,
+  NOTEBOOK_REFRESH_INTERVAL,
+} from '../data-processing.constants';
 
 export default class DataProcessingNotebooksCtrl {
   /* @ngInject */
@@ -11,6 +15,7 @@ export default class DataProcessingNotebooksCtrl {
     dataProcessingService,
     ovhManagerRegionService,
     atInternet,
+    $interval,
   ) {
     this.cucCloudMessage = CucCloudMessage;
     this.dataProcessingService = dataProcessingService;
@@ -19,11 +24,32 @@ export default class DataProcessingNotebooksCtrl {
     this.isNotebookRunning = isNotebookRunning;
     this.getClassFromStatus = getClassFromStatus;
     this.guideUrl = DATA_PROCESSING_GUIDE_URL;
+    this.capitalize = capitalize;
+    this.$interval = $interval;
   }
 
   $onInit() {
     this.subscribeToMessages();
     this.formatDuration = DataProcessingNotebooksCtrl.formatDuration;
+
+    this.pollTimer = this.$interval(
+      () => this.pollData(),
+      NOTEBOOK_REFRESH_INTERVAL,
+    );
+  }
+
+  $onDestroy() {
+    if (this.pollTimer !== null) {
+      this.$interval.cancel(this.pollTimer);
+    }
+  }
+
+  pollData() {
+    this.dataProcessingService
+      .getNotebooks(this.projectId)
+      .then((notebooks) => {
+        this.notebooks = notebooks;
+      });
   }
 
   refreshMessage() {
@@ -44,14 +70,13 @@ export default class DataProcessingNotebooksCtrl {
    * @return {*|Promise<any>}
    */
   startNotebook(notebook) {
-    return this.dataProcessingService.startNotebook(
-      this.projectId,
-      notebook.id,
-    );
+    return this.dataProcessingService
+      .startNotebook(this.projectId, notebook.id)
+      .then(this.reloadState());
   }
 
   static formatDuration(dt) {
-    const duration = moment.duration(dt);
+    const duration = moment.duration(dt, 'seconds');
     const days = Math.floor(duration.asDays());
     const hours = duration.hours();
     const minutes = duration.minutes();

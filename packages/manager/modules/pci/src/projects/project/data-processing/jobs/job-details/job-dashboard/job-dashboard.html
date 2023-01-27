@@ -38,9 +38,21 @@
             <!-- Tile item :: Notebook -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_details_information_notebook_name_label' | translate }}"
-                data-description="{{ $ctrl.job.notebook }}"
                 data-ng-if="$ctrl.job.notebook"
             >
+                <oui-tile-description>
+                    <oui-button
+                        data-variant="link"
+                        data-ng-if="!$ctrl.isNotebookDeleted()"
+                        data-on-click="$ctrl.showNotebook()"
+                    >
+                        <span data-ng-bind="::$ctrl.job.notebook"></span>
+                    </oui-button>
+                    <span
+                        data-ng-if="$ctrl.isNotebookDeleted()"
+                        data-ng-bind="$ctrl.job.notebook"
+                    ></span>
+                </oui-tile-description>
             </oui-tile-definition>
             <!-- Tile item :: Elapsed time -->
             <oui-tile-definition

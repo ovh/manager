@@ -10,7 +10,7 @@
   "data_processing_uptime": "Durée de fonctionnement",
   "data_processing_access": "Accès",
   "data_processing_notebook_status": "Statut",
-  "data_processing_notebook_status_deleting": "Suppression",
+  "data_processing_notebook_status_deleted": "Supprimé",
   "data_processing_notebook_status_failed": "Echec",
   "data_processing_notebook_status_running": "En cours",
   "data_processing_notebook_status_starting": "Démarrage",
