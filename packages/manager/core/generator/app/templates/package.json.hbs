@@ -18,9 +18,9 @@
     "start:watch": "lerna exec --stream --parallel --scope='{{ packageName }}' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-api": "^0.0.0",
-    "@ovh-ux/manager-react-breadcrumb": "^0.0.0",
-    "@ovh-ux/manager-react-core-application": "^0.0.0",
+    "@ovh-ux/manager-core-api": "*",
+    "@ovh-ux/manager-react-breadcrumb": "*",
+    "@ovh-ux/manager-react-core-application": "*",
     "@tanstack/react-query": "^4.9.0",
     "@tanstack/react-query-devtools": "^4.9.0",
     "react": "^18.2.0",
@@ -28,7 +28,7 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-vite-config": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-vite-config": "*",
     "typescript": "^4.3.2",
     "vite": "^3.0.2"
   },
