@@ -28,9 +28,9 @@ export default class PciUsersAddController {
       .filter((user) => user && user.status === 'ok')
       .map((user) => ({
         ...user,
-        asCredentials: this.usersCredentials.find(
-          (credential) => credential.userId === user.id,
-        ).asCredentials
+        asCredentials: this.usersWithCredentials.find(
+          (s3Credentials) => s3Credentials.userId === user.id,
+        )
           ? this.$translate.instant(
               'pci_projects_project_users_add_as_credentials',
             )

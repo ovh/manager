@@ -10,7 +10,7 @@ export default {
     userList: '<',
     allUserList: '<',
     cancel: '<',
-    usersCredentials: '<',
+    usersWithCredentials: '<',
     trackClick: '<',
     trackPage: '<',
   },
