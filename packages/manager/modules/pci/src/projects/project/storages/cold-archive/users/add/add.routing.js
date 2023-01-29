@@ -16,12 +16,12 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null, // Hide breadcrumb
       cancel: /* @ngInject */ (goToUsers) => goToUsers,
       goBack: /* @ngInject */ (goToUsersBanner) => goToUsersBanner,
-      usersCredentials: /* @ngInject */ (
+      usersWithCredentials: /* @ngInject */ (
         projectId,
         allUserList,
-        PciStoragesUsersService,
+        PciStoragesColdArchiveService,
       ) =>
-        PciStoragesUsersService.getUsersCredentials(
+        PciStoragesColdArchiveService.mapUsersToCredentials(
           projectId,
           allUserList.filter((user) => user),
         ),
