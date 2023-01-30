@@ -24,27 +24,7 @@
                 </a>
             </oui-message>
             <form novalidate>
-                <!-- step 1 - select notebook name -->
-                <h2
-                    id="name"
-                    data-translate="data_processing_add_notebook_stepper_name_title"
-                ></h2>
-                <oui-field
-                    data-label="{{:: 'data_processing_add_notebook_spec_config_name' | translate  }}"
-                    data-label-popover="{{:: 'data_processing_add_notebook_spec_config_name_help' | translate }}"
-                >
-                    <input
-                        class="oui-input minw-0 mb-0 ml-l-2"
-                        type="text"
-                        id="notebook-name"
-                        name="notebook-name"
-                        data-ng-model="$ctrl.state.name"
-                        required
-                        minlength="3"
-                        maxlength="32"
-                    />
-                </oui-field>
-                <!-- step 2 - select notebook type -->
+                <!-- step 1 - select notebook type -->
                 <h2
                     id="engine"
                     data-translate="data_processing_add_notebook_stepper_notebook_type_title"
@@ -138,6 +118,11 @@
                                     data-translate="data_processing_add_notebook_spec_name"
                                 ></a>
                                 <span data-ng-bind="$ctrl.state.name"></span>
+                                <button
+                                    type="button"
+                                    class="oui-popover-button"
+                                    data-oui-popover="{{:: 'data_processing_add_notebook_spec_config_name_help' | translate }}"
+                                ></button>
                             </div>
                             <!-- notebook type -->
                             <div class="d-flex align-items-center mt-2">
