@@ -112,7 +112,6 @@
                     data-max="$ctrl.model.flavor.maxDiskSize - $ctrl.model.flavor.minDiskSize"
                     data-step="$ctrl.model.disk.step"
                     data-model="$ctrl.model.disk.additionalDiskSize"
-                    data-on-change="$ctrl.onAdditionalDiskChange()"
                     data-prices="{
                             hourly: $ctrl.model.flavor.hourlyPricePerGB,
                             monthly: $ctrl.model.flavor.monthlyPricePerGB,
@@ -255,7 +254,6 @@
                             data-ng-if="$ctrl.availableSubnets.length > 1"
                             data-match="name"
                             data-searchable
-                            data-on-change="$ctrl.getOrderDataFromModel($ctrl.model)"
                         >
                         </oui-select>
                         <p>
@@ -566,11 +564,15 @@
                     </div>
                 </oui-button>
                 <div class="mt-2">
-                    <a
-                        href=""
-                        data-translate="pci_database_add_show_command"
+                    <button
+                        type="button"
+                        class="oui-link"
                         data-ng-click="$ctrl.trackAndGoToCommand()"
-                    ></a>
+                    >
+                        <span
+                            data-translate="pci_database_add_show_command"
+                        ></span>
+                    </button>
                 </div>
             </oui-tile>
         </div>

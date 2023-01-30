@@ -183,10 +183,6 @@ export default class {
     this.updateFlavor(flavor);
   }
 
-  onAdditionalDiskChange() {
-    this.$timeout(() => this.getOrderDataFromModel(this.model));
-  }
-
   updateEngine(engine) {
     this.model.engine = engine;
     this.model.plan = this.getSyncPlan(engine);
