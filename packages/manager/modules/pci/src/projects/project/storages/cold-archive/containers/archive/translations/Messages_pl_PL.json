@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_archive_title": "Zarchiwizuj kontener",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_description": "Za chwilę zarchiwizujesz kontener {{containerName}}.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_submit_label": "Zatwierdź",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_cancel_label": "Anuluj",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_success_message": "Trwa archiwizacja kontenera {{containerName}}.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_error_message": "Wystąpił błąd podczas archiwizowania kontenera {{containerName}}: {{message}}"
+}
