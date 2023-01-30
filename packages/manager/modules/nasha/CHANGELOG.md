@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.6.4...@ovh-ux/manager-nasha@2.6.5) (2023-01-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1919] ([#8315](https://github.com/ovh/manager/issues/8315)) ([cddd672](https://github.com/ovh/manager/commit/cddd67257a12d2a40cf5699a838933d656c607b2))
+
+
+
+
+
 ## [2.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.6.3...@ovh-ux/manager-nasha@2.6.4) (2022-11-17)
 
 

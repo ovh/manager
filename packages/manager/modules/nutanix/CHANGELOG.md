@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.5.2...@ovh-ux/manager-nutanix@1.5.3) (2023-01-30)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([37a8185](https://github.com/ovh/manager/commit/37a8185bc616a26ce926c12e2a27b8c25861cf5c))
+* remove unused translations [CDS] ([b1e1896](https://github.com/ovh/manager/commit/b1e1896de58e4f3c2e01a906854479fdcf256a1a))
+* remove unused translations [CDS] ([10da25e](https://github.com/ovh/manager/commit/10da25e6a1fa400e58c835a95182de2e29093f0b))
+* remove unused translations [CDS] ([9a54763](https://github.com/ovh/manager/commit/9a54763513876cb4e37df1501d90a7f5dcc7ee62))
+
+
+
+
+
 ## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.5.1...@ovh-ux/manager-nutanix@1.5.2) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix
