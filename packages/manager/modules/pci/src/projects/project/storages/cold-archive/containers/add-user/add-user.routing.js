@@ -5,7 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_ADD_USER, {
     url: '/add-user',
     atInternet: {
-      rename: `${COLD_ARCHIVE_TRACKING.ADD.PREFIX}::${COLD_ARCHIVE_TRACKING.ADD.MAIN}`,
+      rename: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}`,
     },
     redirectTo: (transition) =>
       transition

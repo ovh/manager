@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
       trackingInfo: null,
     },
     atInternet: {
-      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.USER.MAIN}`,
+      rename: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${COLD_ARCHIVE_TRACKING.USER.MAIN}`,
     },
     resolve: {
       userDetails: /* @ngInject */ ($transition$) =>

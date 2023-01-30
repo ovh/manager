@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
         userId: null,
       },
       atInternet: {
-        rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DELETE_POLICY}`,
+        rename: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DELETE_POLICY}`,
       },
       resolve: {
         userId: /* @ngInject */ ($transition$) => $transition$.params().userId,

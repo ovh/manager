@@ -3,6 +3,7 @@ import {
   CONTAINER_STATUS_OPTIONS,
   GUIDES,
 } from './containers.constants';
+import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
 
 export default class PciStoragesColdArchiveContainersController {
   /* @ngInject */
@@ -39,8 +40,50 @@ export default class PciStoragesColdArchiveContainersController {
     this.messages = this.messageHandler.getMessages();
   }
 
-  onClickOnManageContainer() {
-    this.goToManageContainer();
+  trackContainerslClick(action) {
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${action}`;
+    return this.trackClick(hit);
+  }
+
+  onManageContainerClick(container) {
+    this.trackContainerslClick(
+      COLD_ARCHIVE_TRACKING.CONTAINERS.MANAGE_CONTAINER,
+    );
+    return this.goToManageContainer(container);
+  }
+
+  onArchiveContainerClick(container) {
+    this.trackContainerslClick(COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE);
+    return this.goToArchiveContainer(container);
+  }
+
+  onRestoreContainerClick(container) {
+    this.trackContainerslClick(COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE);
+    return this.goToRestoreContainer(container);
+  }
+
+  onDeleteContainerClick(container) {
+    this.trackContainerslClick(
+      COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER,
+    );
+    return this.goToDeleteContainer(container);
+  }
+
+  onFlushContainerClick(container) {
+    this.trackContainerslClick(
+      COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER,
+    );
+    return this.goToFlushArchive(container);
+  }
+
+  onAddUsertoContainerClick(container) {
+    this.trackContainerslClick(COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER);
+    return this.goToAddUserToContainer(container);
+  }
+
+  onAddContainerClick() {
+    this.trackContainerslClick(COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER);
+    return this.goToAddColdArchive();
   }
 
   // eslint-disable-next-line class-methods-use-this

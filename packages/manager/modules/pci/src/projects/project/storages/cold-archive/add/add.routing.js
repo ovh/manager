@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     atInternet: {
-      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ADD.MAIN}`,
+      rename: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}`,
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
@@ -18,7 +18,10 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
 
       stepper: /* @ngInject */ () => ({
-        nameArchiveStep: { name: 'cold_archive_name_archive', display: null },
+        nameArchiveStep: {
+          name: 'cold_archive_name_archive',
+          display: null,
+        },
         linkUserArchiveStep: {
           name: 'cold_archive_link_user_archive',
           display: null,

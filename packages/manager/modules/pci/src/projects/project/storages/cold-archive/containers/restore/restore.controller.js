@@ -13,7 +13,7 @@ export default class PciBlockStorageDetailsRestoreController {
   }
 
   trackRestoreModalPage(action) {
-    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE}::${action}`;
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE}_${action}`;
     this.trackPage(hit);
   }
 
@@ -32,9 +32,7 @@ export default class PciBlockStorageDetailsRestoreController {
         this.container.name,
       )
       .then(() => {
-        this.trackRestoreModalPage(
-          `${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
-        );
+        this.trackRestoreModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
         return this.goBack(
           this.$translate.instant(
             'pci_projects_project_storages_cold_archive_containers_container_restore_success_message',
@@ -45,9 +43,7 @@ export default class PciBlockStorageDetailsRestoreController {
         );
       })
       .catch((err) => {
-        this.trackRestoreModalPage(
-          `${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
-        );
+        this.trackRestoreModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
         return this.goBack(
           this.$translate.instant(
             'pci_projects_project_storages_cold_archive_containers_container_restore_error_message',

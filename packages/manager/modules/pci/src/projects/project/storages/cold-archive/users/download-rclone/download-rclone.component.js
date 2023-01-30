@@ -14,5 +14,7 @@ export default {
     downloadRCloneConfig: '<',
     checkGlobalRegionCallBack: '<',
     storageS3Regions: '<',
+    trackPage: '<',
+    trackClick: '<',
   },
 };

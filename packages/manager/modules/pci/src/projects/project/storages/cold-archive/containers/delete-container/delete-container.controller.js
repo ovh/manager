@@ -21,7 +21,7 @@ export default class ColdArchiveContainersDeleteContainerController {
   }
 
   trackDeleteContainerModalPage(action) {
-    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}::${action}`;
+    const hit = `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}_${action}`;
     this.trackPage(hit);
   }
 
@@ -43,7 +43,7 @@ export default class ColdArchiveContainersDeleteContainerController {
       .deleteArchiveContainer(this.projectId, REGION, this.container.name)
       .then(() => {
         this.trackDeleteContainerModalPage(
-          `${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
+          COLD_ARCHIVE_TRACKING.STATUS.SUCCESS,
         );
         return this.goBack(
           this.$translate.instant(
@@ -55,9 +55,7 @@ export default class ColdArchiveContainersDeleteContainerController {
         );
       })
       .catch((err) => {
-        this.trackDeleteContainerModalPage(
-          `${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
-        );
+        this.trackDeleteContainerModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
 
         return this.goBack(
           this.$translate.instant(

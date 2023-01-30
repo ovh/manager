@@ -32,7 +32,7 @@ export default class PciStorageColdArchivesOnboardingController {
     );
   }
 
-  addColdArchive() {
+  onAddColdArchiveClick() {
     this.trackClick(
       `${COLD_ARCHIVE_TRACKING.ONBOARDING.MAIN}::${COLD_ARCHIVE_TRACKING.ONBOARDING.ADD_CONTAINER}`,
     );
@@ -40,7 +40,7 @@ export default class PciStorageColdArchivesOnboardingController {
   }
 
   onDocumentationClick(guide) {
-    const TRACKING_SUB_STRING = `${COLD_ARCHIVE_TRACKING.ONBOARDING.DOCUMENTATION_LINK}::${guide.id}`;
+    const TRACKING_SUB_STRING = `${COLD_ARCHIVE_TRACKING.ONBOARDING.MAIN}::${COLD_ARCHIVE_TRACKING.ONBOARDING.DOCUMENTATION_LINK}::${guide.id}`;
     this.trackClick(TRACKING_SUB_STRING);
   }
 }

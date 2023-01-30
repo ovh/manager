@@ -6,6 +6,8 @@ export default {
     projectId: '<',
     guides: '<',
     checkPricesLink: '<',
+    onPriceLinkClick: '<',
+    onGuideClick: '<',
     stepper: '<',
     userModel: '<',
     allUserList: '<',

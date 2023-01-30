@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.COLD_ARCHIVE);
     },
     atInternet: {
-      rename: `${COLD_ARCHIVE_TRACKING.PREFIX}::${COLD_ARCHIVE_TRACKING.ONBOARDING.MAIN}`,
+      rename: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}`,
     },
     redirectTo: (transition) =>
       transition
@@ -57,6 +57,22 @@ export default /* @ngInject */ ($stateProvider) => {
       priceLink: /* @ngInject */ (coreConfig) =>
         CHECK_PRICES_DOC_LINK[coreConfig.getUser()?.ovhSubsidiary] ||
         CHECK_PRICES_DOC_LINK.DEFAULT,
+
+      onPriceLinkClick: /* @ngInject */ (atInternet) => () => {
+        const hit = `${COLD_ARCHIVE_TRACKING.CLICK_PREFIX}_${COLD_ARCHIVE_TRACKING.SEE_PRICE}`;
+        return atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
+      },
+
+      onGuideClick: /* @ngInject */ (atInternet) => (guideId) => {
+        const hit = `${COLD_ARCHIVE_TRACKING.GUIDE}_${guideId}`;
+        return atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
+      },
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_storages_cold_archive_label'),
@@ -126,13 +142,13 @@ export default /* @ngInject */ ($stateProvider) => {
 
       trackClick: /* @ngInject */ (atInternet) => (hit) =>
         atInternet.trackClick({
-          name: `${COLD_ARCHIVE_TRACKING.PREFIX}::${hit}`,
+          name: `${COLD_ARCHIVE_TRACKING.CLICK_PREFIX}::${hit}`,
           type: 'action',
         }),
 
       trackPage: /* @ngInject */ (atInternet) => (hit) =>
         atInternet.trackPage({
-          name: `${COLD_ARCHIVE_TRACKING.PREFIX}::${hit}`,
+          name: `${COLD_ARCHIVE_TRACKING.CLICK_PREFIX}::${hit}`,
           type: 'navigation',
         }),
 
