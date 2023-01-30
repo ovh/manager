@@ -24,7 +24,7 @@ export default class ColdArchiveContainersAddUserController {
 
   $onInit() {
     this.selectedUser = null;
-    this.selectedRole = null;
+    [this.selectedRole] = this.OBJECT_CONTAINER_USER_ROLES;
     this.addUserStep = 0;
 
     this.setUserCredentialsList();
