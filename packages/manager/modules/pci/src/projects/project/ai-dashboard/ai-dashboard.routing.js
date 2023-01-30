@@ -7,19 +7,25 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('aiItems')
-        .then((items) =>
-          countAiItems(items) === 0
+        .get('$q')
+        .all([
+          transition.injector().getAsync('aiItems'),
+          transition.injector().getAsync('isAuthorized'),
+        ])
+        .then(([items, isAuthorized]) =>
+          !isAuthorized || countAiItems(items) === 0
             ? { state: 'pci.projects.project.ai-dashboard.onboarding' }
             : { state: 'pci.projects.project.ai-dashboard.home' },
         ),
     resolve: {
-      aiItems: /* @ngInject */ (AiDashboardService, projectId) =>
-        AiDashboardService.getAIItems(projectId),
+      isAuthorized: /* @ngInject */ (AiDashboardService, projectId) =>
+        AiDashboardService.getAIAuthorization(projectId),
+      aiItems: /* @ngInject */ (AiDashboardService, projectId, isAuthorized) =>
+        isAuthorized ? AiDashboardService.getAIItems(projectId) : [],
       aiUsers: /* @ngInject */ (AiDashboardService, projectId) =>
         AiDashboardService.getAIUsers(projectId),
-      aiTokens: /* @ngInject */ (AiDashboardService, projectId) =>
-        AiDashboardService.getAITokens(projectId),
+      aiTokens: /* @ngInject */ (AiDashboardService, projectId, isAuthorized) =>
+        isAuthorized ? AiDashboardService.getAITokens(projectId) : [],
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_ai_dashboard_title'),
       trackingPrefix: /* @ngInject */ () =>

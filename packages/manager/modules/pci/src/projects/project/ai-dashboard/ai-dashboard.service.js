@@ -21,6 +21,12 @@ export default class AiDashboardService {
     };
   }
 
+  getAIAuthorization(serviceName) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/ai/authorization`)
+      .then(({ data }) => data.authorized);
+  }
+
   // AI items
   getAINotebooks(serviceName) {
     return this.$http
