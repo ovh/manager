@@ -1,0 +1,5 @@
+{
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_title": "Benennen Sie Ihren Container",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_description": "Der Name des Containers muss aus 3 bis 63 Zeichen bestehen und mit Zahlen oder Kleinbuchstaben beginnen und enden, also von a bis z und 0 bis 9. Zulässig sind die Satzzeichen „.“ und „-“.",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_field_name": "Name des Containers"
+}
