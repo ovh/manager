@@ -1,4 +1,4 @@
-export default class VolumeBackupsController {
+export default class VolumeBackupController {
   /* @ngInject */
   constructor($translate, CucCloudMessage) {
     this.$translate = $translate;
