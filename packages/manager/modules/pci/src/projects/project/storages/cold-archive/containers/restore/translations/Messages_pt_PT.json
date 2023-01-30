@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_restore_title": "Restaurar o seu arquivo",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_description_1": "Está prestes a restaurar os seus dados do arquivo {{ containerName }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_description_2": "Cold Archive tem uma duração de armazenamento mínima de 180 dias.",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_description_3": "O restauro dos dados antes dos 180 dias acarreta custos adicionais iguais aos custos de restauro mais os custos de armazenamento ativo para os objetos restaurados mais os custos de armazenamento arquivado atuais.",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_description_3_link": "Preçário Cold Archive",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_submit_label": "Confirmar",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_cancel_label": "Anular",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_success_message": "O arquivo {{ containerName }} está a ser restaurado. O tempo de disponibilidade da recuperação dos dados depende do volume de dados. Por exemplo, para uma recuperação de várias centenas de TB, o tempo médio é de 48 horas. Para um volume de alguns TB, pode demorar entre alguns minutos e algumas horas.",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_error_message": "Ocorreu um erro ao restaurar o arquivo {{ containerName }}: {{ message }}."
+}
