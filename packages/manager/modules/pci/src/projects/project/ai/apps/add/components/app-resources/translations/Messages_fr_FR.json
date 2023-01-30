@@ -34,6 +34,5 @@
   "pci_app_add_resources_flavor_count": "Taille de réplica",
   "pci_app_add_resources_total": "Prix total du déploiement",
   "pci_app_add_resources_resource_price": "Prix resource",
-  "pci_app_add_resources_partner_price": "Prix licence",
-  "pci_app_add_resources_free_during_beta": "Gratuit pendant la bêta"
+  "pci_app_add_resources_partner_price": "Prix licence"
 }

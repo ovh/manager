@@ -266,17 +266,12 @@
 
     <p data-translate="pci_app_add_resources_total"></p>
     <ovh-manager-catalog-price
-        data-ng-class="{'text-decoration-line-through': $ctrl.IS_BETA}"
         data-price="$ctrl.price"
         data-tax="$ctrl.tax"
         data-user="$ctrl.user"
         data-show-zero-price="true"
         data-interval="'hour'"
+        data-beta="$ctrl.IS_BETA"
     >
     </ovh-manager-catalog-price>
-    <span
-        data-ng-if="$ctrl.IS_BETA"
-        class="oui-badge oui-badge_s oui-badge_success"
-        data-translate="pci_app_add_resources_free_during_beta"
-    ></span>
 </div>
