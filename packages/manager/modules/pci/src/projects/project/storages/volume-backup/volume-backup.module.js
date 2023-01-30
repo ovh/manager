@@ -11,6 +11,7 @@ import service from './volume-backup.service';
 
 // import addVolumeBackup from './add';
 import onboarding from './onboarding';
+import list from './list';
 
 const moduleName = 'ovhManagerPciProjectStoragesVolumeBackup';
 
@@ -22,6 +23,7 @@ angular
     'oui',
     'ngOvhCloudUniverseComponents',
     onboarding,
+    list,
     // addVolumeBackup,
     // dashboard,
   ])
