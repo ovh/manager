@@ -20,7 +20,7 @@ export default class {
   }
 
   $onInit() {
-    // Set bate to false by default
+    // Set beta to false by default
     this.beta = this.beta || false;
 
     // Support attribute without value to be evaluated to true

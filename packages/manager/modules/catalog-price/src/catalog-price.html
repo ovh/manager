@@ -1,7 +1,7 @@
 <span data-ng-if="!$ctrl.fromToPrice">
     <span data-ng-if="::$ctrl.price || $ctrl.showZeroPrice">
         <span data-ng-if="::$ctrl.isAsiaFormat()">
-            <strong data-ng-class="{ 'd-block': $ctrl.block}">
+            <strong data-ng-class="{ 'd-block': $ctrl.block }">
                 <span
                     data-translate="order_catalog_price_gst_excl_label"
                     data-translate-values="{ price: $ctrl.getPriceText($ctrl.price) }"
