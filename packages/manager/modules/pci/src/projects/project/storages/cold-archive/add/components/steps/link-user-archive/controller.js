@@ -136,12 +136,9 @@ export default class ColdArchiveLinkUserArchiveController {
       });
   }
 
-  generateUserS3Credential(user) {
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.SEE_CREDENTIALS}`,
-    );
+  generateUserS3Credentials(user) {
     return this.pciStoragesColdArchiveService
-      .generateS3Credential(this.projectId, user.id)
+      .generateS3Credentials(this.projectId, user.id)
       .catch(() => {
         return this.CucCloudMessage.error(
           this.$translate.instant(
@@ -183,12 +180,15 @@ export default class ColdArchiveLinkUserArchiveController {
     return this.createUser(description)
       .then((user) => {
         newUser = user;
-        return this.generateUserS3Credential(user);
-      })
-      .then((credential) => {
-        newUser.s3Credentials = [credential];
-        this.userModel.createMode.credential = credential;
-        return credential;
+        return this.generateUserS3Credentials(user).then((credential) => {
+          newUser.s3Credentials = credential;
+          this.userModel.createMode.user = newUser;
+          this.userModel.createMode.credential = credential;
+          this.trackPage(
+            `${COLD_ARCHIVE_TRACKING.ADD.ASSOCIATE.NEW_USER}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
+          );
+          return credential;
+        });
       })
       .catch(() => {
         this.trackPage(
@@ -229,13 +229,12 @@ export default class ColdArchiveLinkUserArchiveController {
     this.userModel.linkedMode.isInProgress = true;
 
     return functionToCallPromise
-      .then((credential) => {
+      .then((credentials) => {
         this.trackPage(
           `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.ASSOCIATE_USER}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
         );
-        const { s3Credentials } = user;
-        user.s3Credentials = s3Credentials || [];
-        user.s3Credentials.push(credential);
+        const [credential] = credentials;
+        user.s3Credentials = credential;
 
         this.userModel.linkedMode.credential = credential;
       })
