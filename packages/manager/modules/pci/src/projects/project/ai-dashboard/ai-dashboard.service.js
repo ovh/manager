@@ -66,12 +66,9 @@ export default class AiDashboardService {
   // Roles
   getAIRoles(projectId) {
     return this.$http
-      .get(
-        `/cloud/project/${projectId}/role`,
-        AiDashboardService.getIcebergHeaders(),
-      )
+      .get(`/cloud/project/${projectId}/role`)
       .then(({ data }) =>
-        data[0].filter((role) => AI_ROLES_NAMES.includes(role.name)),
+        data.roles.filter((role) => AI_ROLES_NAMES.includes(role.name)),
       );
   }
 
