@@ -5,14 +5,18 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/ai-dashboard',
     component: 'ovhManagerPciProjectAiDashboard',
     redirectTo: (transition) =>
-      Promise.all([
-        transition.injector().getAsync('aiItems'),
-        transition.injector().getAsync('isAuthorized'),
-      ]).then(([items, isAuthorized]) =>
-        !isAuthorized || countAiItems(items) === 0
-          ? { state: 'pci.projects.project.ai-dashboard.onboarding' }
-          : { state: 'pci.projects.project.ai-dashboard.home' },
-      ),
+      transition
+        .injector()
+        .get('$q')
+        .all([
+          transition.injector().getAsync('aiItems'),
+          transition.injector().getAsync('isAuthorized'),
+        ])
+        .then(([items, isAuthorized]) =>
+          !isAuthorized || countAiItems(items) === 0
+            ? { state: 'pci.projects.project.ai-dashboard.onboarding' }
+            : { state: 'pci.projects.project.ai-dashboard.home' },
+        ),
     resolve: {
       isAuthorized: /* @ngInject */ (AiDashboardService, projectId) =>
         AiDashboardService.getAIAuthorization(projectId),
