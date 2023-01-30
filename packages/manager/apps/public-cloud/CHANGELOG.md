@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.23.3...@ovh-ux/manager-public-cloud@4.23.4) (2023-01-30)
+
+
+### Performance Improvements
+
+* remove `public-cloud-dark-mode` component ([#8273](https://github.com/ovh/manager/issues/8273)) ([76c8153](https://github.com/ovh/manager/commit/76c815322dc7f5d14b907da7291eb238eb440b7c))
+
+
+
+
+
 ## [4.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.23.2...@ovh-ux/manager-public-cloud@4.23.3) (2023-01-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud
