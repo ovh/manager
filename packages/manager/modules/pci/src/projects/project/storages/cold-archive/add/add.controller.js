@@ -145,7 +145,7 @@ export default class ColdArchiveConfigurationController {
   onArchiveSubmit() {
     this.atInternet.trackClick({
       name: `${COLD_ARCHIVE_TRACKING.CLICK_PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}::${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}`,
-      type: 'click',
+      type: 'action',
     });
     return this.createArchive();
   }
