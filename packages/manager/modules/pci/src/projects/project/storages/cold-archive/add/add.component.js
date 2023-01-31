@@ -4,7 +4,8 @@ import template from './add.html';
 export default {
   bindings: {
     projectId: '<',
-    guides: '<',
+    guideMenu: '<',
+    initGuides: '<',
     checkPricesLink: '<',
     onPriceLinkClick: '<',
     onGuideClick: '<',

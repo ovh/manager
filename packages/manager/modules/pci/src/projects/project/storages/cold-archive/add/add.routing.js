@@ -1,4 +1,7 @@
-import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
+import {
+  COLD_ARCHIVE_TRACKING,
+  GUIDE_MENU_ITEMS,
+} from '../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.cold-archive.add', {
@@ -16,6 +19,37 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant(
           'pci_projects_project_storages_cold_archive_add_breadcrumb',
         ),
+
+      guideMenu: /* @ngInject */ (initGuides) => initGuides(GUIDE_MENU_ITEMS),
+
+      initGuides: /* @ngInject */ (coreConfig, $translate) => (guides) => {
+        return guides.reduce(
+          (list, guide) => [
+            ...list,
+            {
+              ...guide,
+              title: $translate.instant(
+                `pci_projects_project_storages_cold_archives_guides_${guide.id}_title`,
+              ),
+              description: $translate.instant(
+                `pci_projects_project_storages_cold_archives_guides_${guide.id}_description`,
+              ),
+              link:
+                guide.links[coreConfig.getUser()?.ovhSubsidiary] ||
+                guide.links.DEFAULT,
+            },
+          ],
+          [],
+        );
+      },
+
+      onGuideClick: /* @ngInject */ (atInternet) => (guideId) => {
+        const hit = `${COLD_ARCHIVE_TRACKING.GUIDE}_${guideId}`;
+        return atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
+      },
 
       stepper: /* @ngInject */ () => ({
         nameArchiveStep: {
