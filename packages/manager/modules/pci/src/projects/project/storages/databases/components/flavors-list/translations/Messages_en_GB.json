@@ -1,13 +1,4 @@
 {
-  "pci_database_flavors_list_spec_ram": "{{ram}} RAM",
-  "pci_database_flavors_list_spec_core": "{{cores}} vCores",
-  "pci_database_flavors_list_spec_storage": "{{storage}} total usable storage",
-  "pci_database_flavors_list_spec_bandwidth": "{{bandwidth}}Mbit/s",
-  "pci_database_flavors_list_price_hourly": "{{price}} ex. VAT/hour",
-  "pci_database_flavors_list_price_monthly": "From {{price}} ex. VAT/month",
-  "pci_database_flavors_list_current_offer": "Current solution",
-  "pci_database_flavors_list_spec_storage_range": "from {{minStorage}} to {{maxStorage}} SSD storage",
-  "pci_database_flavors_list_spec_price_unit": " /hour/node",
   "pci_database_flavors_list_header_type": "Type",
   "pci_database_flavors_list_header_memory": "Memory",
   "pci_database_flavors_list_header_storage": "Usable storage",
