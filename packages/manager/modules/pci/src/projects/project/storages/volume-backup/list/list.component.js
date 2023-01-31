@@ -7,7 +7,7 @@ export default {
   bindings: {
     projectId: '<',
     volumeBackups: '<',
-    volumeBackupLink: '<',
+    volumeLink: '<',
     guides: '<',
     goToRestoreVolume: '<',
     goToCreateVolume: '<',
