@@ -6,7 +6,7 @@
             data-text="{{:: 'pci_projects_project_storages_cold_archive_add_guides_title' | translate }}"
         >
             <oui-guide-menu-item
-                data-ng-repeat="guide in $ctrl.guides track by $index"
+                data-ng-repeat="guide in $ctrl.guideMenu track by $index"
                 data-href="{{:: guide.link }}"
                 data-on-click="$ctrl.onGuideClick(guide.id)"
                 data-external
