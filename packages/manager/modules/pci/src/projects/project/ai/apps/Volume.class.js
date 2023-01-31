@@ -5,7 +5,7 @@ export default class Volume {
     cache = false,
     container = null,
     prefix = null,
-    privateSwift = true,
+    dataStore = true,
   ) {
     return new Volume({
       mountPath,
@@ -13,7 +13,7 @@ export default class Volume {
       cache,
       container,
       prefix,
-      privateSwift,
+      dataStore,
     });
   }
 

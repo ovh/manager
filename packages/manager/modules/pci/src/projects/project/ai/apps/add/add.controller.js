@@ -85,7 +85,7 @@ export default class AppAddController {
           mountPath: volume.mountPath,
           permission: volume.permission,
           cache: volume.cache,
-          privateSwift: {
+          dataStore: {
             container: volume.container.name,
             region: volume.container.region,
             prefix: volume.prefix,

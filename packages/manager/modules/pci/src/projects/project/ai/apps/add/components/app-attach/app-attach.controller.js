@@ -103,7 +103,7 @@ export default class AppAttachController {
         return (
           !isHighPerfStorage &&
           !this.volumes
-            .filter(({ privateSwift }) => privateSwift)
+            .filter(({ dataStore }) => dataStore)
             .map(({ container }) => `${container.name}-${container.region}`)
             .includes(`${name}-${region}`)
         );

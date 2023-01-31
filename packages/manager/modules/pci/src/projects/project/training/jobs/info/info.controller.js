@@ -111,11 +111,11 @@ export default class PciTrainingJobsInfoController {
   }
 
   static getVolumeRepr(volume) {
-    if (volume.privateSwift) {
-      const prefix = volume.privateSwift.prefix
-        ? `/${volume.privateSwift.prefix}`
+    if (volume.dataStore) {
+      const prefix = volume.dataStore.prefix
+        ? `/${volume.dataStore.prefix}`
         : '';
-      return `${volume.privateSwift.container}@${volume.privateSwift.region}${prefix}:${volume.mountPath}:${volume.permission}`;
+      return `${volume.dataStore.container}@${volume.dataStore.region}${prefix}:${volume.mountPath}:${volume.permission}`;
     }
 
     if (volume.publicSwift) {
