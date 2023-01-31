@@ -1,4 +1,5 @@
 {
+  "user_account": "My account",
   "back": "Back",
   "todo": "Coming soon",
   "details": "Details",
@@ -31,7 +32,6 @@
   "user_account_spareemail": "Backup email address",
   "user_account_spareemail_info": "We strongly recommend entering an alternative email address to the previous one.",
   "user_account_customer_code": "Customer code",
-  "user_account_cancel": "Cancel",
   "user_account_OK": "Save changes",
   "user_account_info_error": "An error has occurred:",
   "user_account_info_error_on_change_email": "An error has occurred updating the primary email address:",
@@ -599,6 +599,7 @@
   "user_account_security_double_auth_type_backup_code_delete_error": "Oops! An error has occurred deleting the backup codes:",
   "user_account_security_ip_restrictions_alt": "IP access restriction",
   "user_account_title_infos": "My account",
+  "user_account_description": "Manage your customer account. In this topic, you manage your account security, support level, and users. You can also check the emails received for your services.",
   "user_account_title_subscriptions": "My subscriptions",
   "user_agreements_accepting": "Saving...",
   "user_account_emails_title": "Emails received",
@@ -607,8 +608,6 @@
   "user_account_ssh_keys_title": "My SSH keys",
   "user_account_users_management_title": "User management",
   "user_account_advanced_title": "Advanced settings",
-  "user_account": "My account",
-  "user_account_description": "Manage your customer account. In this topic, you manage your account security, support level, and users. You can also check the emails received for your services.",
   "user_account_guides_header": "Guides",
   "user_account_guides_header_account_informations_guides": "Account information"
 }
