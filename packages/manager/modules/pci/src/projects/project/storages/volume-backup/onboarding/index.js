@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import { VOLUME_BACKUP_ROUTES } from '../volume-backups.constants';
+import { VOLUME_BACKUP_ROUTES } from '../volume-backup.constants';
 
 const moduleName =
   'ovhManagerPciProjectStoragesVolumeBackupOnboardingLazyloading';

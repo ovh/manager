@@ -1,6 +1,6 @@
 import merge from 'lodash/merge';
 
-import { VOLUME_BACKUP_STATUS } from './volume-backups.constants';
+import { VOLUME_BACKUP_STATUS } from './volume-backup.constants';
 
 export default class VolumeBackup {
   /**
@@ -29,6 +29,18 @@ export default class VolumeBackup {
 
   isRestoring() {
     return this.status === VOLUME_BACKUP_STATUS.RESTORING;
+  }
+
+  get statusGroup() {
+    return {
+      error: [VOLUME_BACKUP_STATUS.ERROR].includes(this.status),
+      warning: [
+        VOLUME_BACKUP_STATUS.CREATING,
+        VOLUME_BACKUP_STATUS.RESTORING,
+        VOLUME_BACKUP_STATUS.DELETING,
+      ].includes(this.status),
+      success: [VOLUME_BACKUP_STATUS.OK].includes(this.status),
+    };
   }
 
   updateData(data) {

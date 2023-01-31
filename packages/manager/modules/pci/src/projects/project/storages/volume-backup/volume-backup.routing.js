@@ -1,13 +1,13 @@
 import VolumeBackup from './volume-backup.class';
 import { PCI_FEATURES, PCI_FEATURES_STATES } from '../../../projects.constant';
-import { VOLUME_BACKUP_ROUTES } from './volume-backups.constants';
+import { VOLUME_BACKUP_ROUTES } from './volume-backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(VOLUME_BACKUP_ROUTES.ROOT.STATE, {
     url: VOLUME_BACKUP_ROUTES.ROOT.URL,
     component: 'ovhManagerPciProjectsProjectStoragesVolumeBackup',
     onEnter: /* @ngInject */ (pciFeatureRedirect) => {
-      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.NOTEBOOKS);
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.VOLUME_BACKUP);
     },
     redirectTo: (transition) => {
       return Promise.all([
@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ]).then(([volumeBackups]) =>
         volumeBackups.length === 0
           ? { state: VOLUME_BACKUP_ROUTES.ONBOARDING.STATE }
-          : false,
+          : { state: VOLUME_BACKUP_ROUTES.LIST.STATE },
       );
     },
     resolve: {
@@ -30,20 +30,6 @@ export default /* @ngInject */ ($stateProvider) => {
         ).then(({ resources }) =>
           resources.map((volumeBackup) => new VolumeBackup(volumeBackup)),
         );
-      },
-
-      volumeBackupDashboardLink: /* @ngInject */ ($state, projectId) => (
-        volumeBackup,
-      ) =>
-        $state.href(VOLUME_BACKUP_ROUTES.DASHBOARD.STATE, {
-          projectId,
-          volumeBackupId: volumeBackup.id,
-        }),
-
-      goToAddVolumeBackup: /* @ngInject */ ($state, projectId) => () => {
-        return $state.go(VOLUME_BACKUP_ROUTES.ADD.STATE, {
-          projectId,
-        });
       },
 
       goToAddVolumeBlockStorage: /* @ngInject */ ($state, projectId) => () => {

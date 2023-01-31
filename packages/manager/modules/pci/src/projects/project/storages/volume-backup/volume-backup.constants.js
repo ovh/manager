@@ -11,9 +11,19 @@ export const VOLUME_BACKUP_ROUTES = {
     STATE: `${VOLUME_BACKUP_ROOT_STATE}.onboarding`,
     URL: '/onboarding',
   },
-  DASHBOARD: {
-    STATE: `${VOLUME_BACKUP_ROOT_STATE}.dashboard`,
-    URL: '/dashboard',
+  LIST: {
+    STATE: `${VOLUME_BACKUP_ROOT_STATE}.list`,
+    URL: '/',
+    ROUTES: {
+      DELETE: {
+        STATE: `${VOLUME_BACKUP_ROOT_STATE}.list.delete`,
+        URL: '/delete',
+      },
+      DASHBOARD: {
+        STATE: `${VOLUME_BACKUP_ROOT_STATE}.list.dashboard`,
+        URL: '/:volumeBackupId',
+      },
+    },
   },
 };
 
