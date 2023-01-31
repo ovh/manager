@@ -32,7 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       goToDeleteVolume: /* @ngInject */ ($state, projectId) => () => {
-        return $state.go(VOLUME_BACKUP_ROUTES.DELETE.STATE, {
+        return $state.go(VOLUME_BACKUP_ROUTES.LIST.ROUTES.DELETE.STATE, {
           projectId,
         });
       },
