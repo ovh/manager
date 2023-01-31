@@ -7,6 +7,7 @@ export const OPTIONS = [
   {
     name: 'nsx',
     type: OPTION_TYPES.basic,
+    eol: true,
   },
   {
     name: 'vrops',
