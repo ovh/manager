@@ -1,7 +1,7 @@
 import {
   VOLUME_BACKUP_ROUTES,
   VOLUME_BACKUP_TRACKING,
-} from '../volume-backups.constants';
+} from '../volume-backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(VOLUME_BACKUP_ROUTES.ONBOARDING.STATE, {

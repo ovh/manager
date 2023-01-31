@@ -1,5 +1,5 @@
-import controller from './volume-backups.controller';
-import template from './volume-backups.html';
+import controller from './volume-backup.controller';
+import template from './volume-backup.html';
 
 export default {
   controller,
@@ -8,9 +8,6 @@ export default {
     projectId: '<',
     pciFeatureRedirect: '<',
     volumeBackups: '<',
-    volumeBackupDashboardLink: '<',
-    goToAddVolumeBackup: '<',
-    goToVolumeBackups: '<',
     goBack: '<',
     goToAddVolumeBlockStorage: '<',
     reloadState: '<',

@@ -1,6 +1,6 @@
 import reduce from 'lodash/reduce';
 
-import { GUIDES } from '../volume-backups.constants';
+import { GUIDES } from '../volume-backup.constants';
 
 export default class PciStorageColdArchivesOnboardingController {
   /* @ngInject */
