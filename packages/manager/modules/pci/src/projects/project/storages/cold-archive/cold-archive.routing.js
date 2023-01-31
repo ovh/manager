@@ -1,7 +1,7 @@
 import {
   CHECK_PRICES_DOC_LINK,
   COLD_ARCHIVE_TRACKING,
-  GUIDES,
+  GUIDE_MENU_ITEMS,
   REGION,
 } from './cold-archives.constants';
 import { COLD_ARCHIVE_STATES } from './containers/containers.constants';
@@ -31,7 +31,7 @@ export default /* @ngInject */ ($stateProvider) => {
               },
         ),
     resolve: {
-      guides: /* @ngInject */ (initGuides) => initGuides(GUIDES),
+      guideMenu: /* @ngInject */ (initGuides) => initGuides(GUIDE_MENU_ITEMS),
 
       initGuides: /* @ngInject */ (coreConfig, $translate) => (guides) => {
         return guides.reduce(
