@@ -5,13 +5,13 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ui-kit';
 
-import routing from './volume-backups.routing';
-import component from './volume-backups.component';
+import routing from './volume-backup.routing';
+import component from './volume-backup.component';
 import service from './volume-backup.service';
 
 // import addVolumeBackup from './add';
-// import dashboard from './dashboard';
 import onboarding from './onboarding';
+import list from './list';
 
 const moduleName = 'ovhManagerPciProjectStoragesVolumeBackup';
 
@@ -23,6 +23,7 @@ angular
     'oui',
     'ngOvhCloudUniverseComponents',
     onboarding,
+    list,
     // addVolumeBackup,
     // dashboard,
   ])

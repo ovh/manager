@@ -3,7 +3,7 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 import '@ovh-ux/manager-core';
-import { VOLUME_BACKUP_ROUTES } from '../volume-backups.constants';
+import { VOLUME_BACKUP_ROUTES } from '../volume-backup.constants';
 
 const moduleName = 'ovhManagerPciProjectStoragesVolumeBackupAddLazyloading';
 
