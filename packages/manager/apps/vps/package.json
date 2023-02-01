@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vps-app",
-  "version": "1.10.8",
+  "version": "1.10.9",
   "private": true,
   "description": "VPS standalone application.",
   "repository": {

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.6.6...@ovh-ux/manager-web-paas-app@1.6.7) (2023-02-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-paas-app
+
+
+
+
+
 ## [1.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.6.5...@ovh-ux/manager-web-paas-app@1.6.6) (2023-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-paas-app
