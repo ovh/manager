@@ -1,6 +1,6 @@
 import VolumeBackup from './volume-backup.class';
 import { PCI_FEATURES, PCI_FEATURES_STATES } from '../../../projects.constant';
-import { VOLUME_BACKUP_ROUTES } from './volume-backup.constants';
+import { GUIDES, VOLUME_BACKUP_ROUTES } from './volume-backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(VOLUME_BACKUP_ROUTES.ROOT.STATE, {
@@ -23,6 +23,27 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant(
           'pci_projects_project_storages_volume_backup_breadcrumb',
         ),
+
+      guides: /* @ngInject */ (coreConfig, $translate) => {
+        return GUIDES.reduce(
+          (list, guide) => [
+            ...list,
+            {
+              ...guide,
+              title: $translate.instant(
+                `pci_projects_project_storages_volume_backup_guides_${guide.id}_title`,
+              ),
+              description: $translate.instant(
+                `pci_projects_project_storages_volume_backup_guides_${guide.id}_description`,
+              ),
+              link:
+                guide.links[coreConfig.getUser()?.ovhSubsidiary] ||
+                guide.links.DEFAULT,
+            },
+          ],
+          [],
+        );
+      },
 
       volumeBackups: /* @ngInject */ (projectId, VolumeBackupService) => {
         return VolumeBackupService.getVolumeBackupsOnAllRegions(
