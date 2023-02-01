@@ -32,7 +32,7 @@ export default class KubernetesNodePoolsScaleCtrl {
       {
         autoscale,
         minNodes: antiAffinity && !autoscale ? lowest.min : lowest.value,
-        desiredNodes: autoscale ? lowest.value : desired.value,
+        ...(!autoscale && { desiredNodes: desired.value }),
         maxNodes: highest.value,
       },
     )

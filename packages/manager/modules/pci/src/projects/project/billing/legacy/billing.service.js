@@ -273,8 +273,8 @@ export default class CloudProjectBillingService {
     this.initResourceUsage('registry', 'privateRegistry');
   }
 
-  initLoadBalancer() {
-    this.initResourceUsage('loadbalancer', 'loadBalancer');
+  initKubernetesLoadBalancer() {
+    this.initResourceUsage('loadbalancer', 'kubernetesLoadBalancer');
   }
 
   initNotebooks() {
@@ -305,6 +305,10 @@ export default class CloudProjectBillingService {
     this.initResourceUsage('gateway', 'gateway');
   }
 
+  initOctaviaLoadBalancer() {
+    this.initResourceUsage('octavia-loadbalancer', 'octaviaLoadBalancer');
+  }
+
   getConsumptionDetails(hourlyBillingInfo, monthlyBillingInfo) {
     return this.getDataInitialized().then(() => {
       this.data.hourlyBilling = hourlyBillingInfo;
@@ -320,7 +324,7 @@ export default class CloudProjectBillingService {
           this.initVolumeList(),
           this.initInstanceBandwidth(),
           this.initPrivateRegistry(),
-          this.initLoadBalancer(),
+          this.initKubernetesLoadBalancer(),
           this.initNotebooks(),
           this.initServing(),
           this.initTraining(),
@@ -328,6 +332,7 @@ export default class CloudProjectBillingService {
           this.initDatabases(),
           this.initFloatingIP(),
           this.initGateway(),
+          this.initOctaviaLoadBalancer(),
         ])
         .then(() => {
           this.data.totals.monthly.total = this.constructor.roundNumber(
@@ -342,14 +347,15 @@ export default class CloudProjectBillingService {
               this.data.totals.hourly.volume +
               this.data.totals.hourly.bandwidth +
               this.data.totals.hourly.privateRegistry +
-              this.data.totals.hourly.loadBalancer +
+              this.data.totals.hourly.kubernetesLoadBalancer +
               this.data.totals.hourly.notebooks +
               this.data.totals.hourly.serving +
               this.data.totals.hourly.training +
               this.data.totals.hourly.dataProcessing +
               this.data.totals.hourly.databases +
               this.data.totals.hourly.floatingIP +
-              this.data.totals.hourly.gateway,
+              this.data.totals.hourly.gateway +
+              this.data.totals.hourly.octaviaLoadBalancer,
             2,
           );
           this.data.totals.total = this.constructor.roundNumber(

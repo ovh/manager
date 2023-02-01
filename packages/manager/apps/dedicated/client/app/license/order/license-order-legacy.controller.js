@@ -1,16 +1,12 @@
 import assign from 'lodash/assign';
-import capitalize from 'lodash/capitalize';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import head from 'lodash/head';
 import includes from 'lodash/includes';
-import join from 'lodash/join';
 import map from 'lodash/map';
 import parseInt from 'lodash/parseInt';
-import replace from 'lodash/replace';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
-import split from 'lodash/split';
 import values from 'lodash/values';
 
 import {
@@ -27,10 +23,8 @@ import {
 } from './license-order.constants';
 
 export default /* @ngInject */ (
-  $q,
   $filter,
   $scope,
-  $timeout,
   $translate,
   Alerter,
   License,
@@ -119,21 +113,8 @@ export default /* @ngInject */ (
         languagePackNumber: null,
         powerpack: null,
       },
-      VIRTUOZZO: {
-        containerNumber: {
-          mandatory: true,
-          value: null,
-        },
-      },
       WINDOWS: {
         sqlVersion: null,
-      },
-      WORKLIGHT: {
-        lessThan1000Users: {
-          mandatory: true,
-          value: null,
-          shouldBeEqualsTo: true,
-        },
       },
     };
   }
@@ -270,12 +251,6 @@ export default /* @ngInject */ (
           return option;
         });
         $scope.formatedOptions = sortBy($scope.formatedOptions, 'cPanelCount');
-      } else if ($scope.selected.licenseType === LICENCE_TYPES.WORKLIGHT) {
-        $scope.formatedOptions = map(options, (option) => {
-          const value = replace(option.value, /version-/gi, '');
-          set(option, 'displayName', capitalize(join(split(value, '-'), ' ')));
-          return option;
-        });
       } else {
         $scope.formatedOptions = map(options, (option) => {
           set(
