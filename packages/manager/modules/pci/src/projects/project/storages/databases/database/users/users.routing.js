@@ -1,6 +1,7 @@
 import map from 'lodash/map';
 import User from '../../../../../../components/project/storages/databases/user.class';
 import { SECRET_TYPE } from '../../databases.constants';
+import isFeatureActivated from '../../features.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -19,11 +20,12 @@ export default /* @ngInject */ ($stateProvider) => {
             database.engine,
             database.id,
           ).then((usersResponse) => map(usersResponse, (u) => new User(u))),
-        roles: /* @ngInject */ (DatabaseService, database, projectId) =>
-          DatabaseService.getRoles(
+        roles: /* @ngInject */ (DatabaseService, database, projectId) => {
+          return DatabaseService.getRoles(
             projectId,
             database.engine,
             database.id,
+            isFeatureActivated('isAdvancedRole', database.engine),
           ).then((roles) =>
             roles.map((role, index) => {
               return {
@@ -31,7 +33,8 @@ export default /* @ngInject */ ($stateProvider) => {
                 name: role,
               };
             }),
-          ),
+          );
+        },
         goToAddUser: /* @ngInject */ ($state, database, projectId) => () =>
           $state.go(
             'pci.projects.project.storages.databases.dashboard.users.add',

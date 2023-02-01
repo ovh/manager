@@ -64,8 +64,128 @@
 
     <div ng-if="!$ctrl.isRolesReadOnly">
         <h2 data-translate="pci_databases_users_add_roles"></h2>
+        <!--advanced roles-->
+        <div class="row" ng-if="$ctrl.isAdvancedRole">
+            <div class="col-lg-6">
+                <oui-button
+                    data-ng-if="$ctrl.model.selectedRoles.length === 0"
+                    data-on-click="$ctrl.addEmptyEntry()"
+                >
+                    <span data-translate="pci_databases_users_add_role"></span>
+                </oui-button>
+                <form
+                    data-ng-disabled="$ctrl.processing"
+                    data-ng-if="$ctrl.model.selectedRoles.length > 0"
+                >
+                    <div class="oui-field__control">
+                        <div class="oui-inline-adder mb-2">
+                            <div
+                                class="oui-inline-adder__form"
+                                data-ng-repeat="extra in $ctrl.model.selectedRoles track by $index"
+                            >
+                                <fieldset class="oui-inline-adder__fieldset">
+                                    <legend
+                                        class="ng-hide"
+                                        aria-hidden="true"
+                                        data-translate="pci_databases_users_add_role"
+                                    ></legend>
+                                    <div class="oui-inline-adder__row">
+                                        <div class="oui-inline-adder__field">
+                                            <oui-field
+                                                data-label="{{::'pci_databases_user_add_select_roles'|translate}}"
+                                            >
+                                                <oui-select
+                                                    name="role-{{$index}}"
+                                                    id="role-{{$index}}"
+                                                    data-match="name"
+                                                    data-items="$ctrl.availableRoles"
+                                                    data-model="$ctrl.model.selectedRoles[$index].key"
+                                                    data-disabled="$ctrl.model.selectedRoles[$index].added || $ctrl.processing"
+                                                    data-on-change="$ctrl.onAdvancedRoleChanged(modelValue, $index)"
+                                                    data-searchable
+                                                >
+                                                </oui-select>
+                                            </oui-field>
+                                        </div>
+                                        <span class="mx-md-3 mt-md-3">@</span>
+                                        <div class="oui-inline-adder__field">
+                                            <oui-field
+                                                data-label="{{:: 'pci_databases_user_add_input_database' | translate}}"
+                                            >
+                                                <input
+                                                    class="oui-input"
+                                                    name="database-{{$index}}"
+                                                    type="text"
+                                                    data-ng-if="!$ctrl.model.selectedRoles[$index].key.admin"
+                                                    data-ng-disabled="$ctrl.model.selectedRoles[$index].added || $ctrl.processing"
+                                                    data-ng-model="$ctrl.model.selectedRoles[$index].value"
+                                                />
+                                                <input
+                                                    class="oui-input"
+                                                    name="database-{{$index}}"
+                                                    type="text"
+                                                    data-ng-if="$ctrl.model.selectedRoles[$index].key.admin"
+                                                    data-ng-disabled="true"
+                                                    data-ng-value="$ctrl.model.selectedRoles[$index].key.db"
+                                                />
+                                            </oui-field>
+                                        </div>
+                                    </div>
+                                    <oui-message
+                                        data-type="error"
+                                        data-ng-if="$ctrl.model.selectedRoles[$index].error"
+                                    >
+                                        <span
+                                            data-translate="pci_databases_user_add_error_existing"
+                                        ></span>
+                                    </oui-message>
+                                </fieldset>
+                                <footer
+                                    class="oui-inline-adder__footer flex-column"
+                                >
+                                    <button
+                                        type="button"
+                                        class="oui-inline-adder__action oui-button oui-button_primary oui-button_s mb-md-2"
+                                        data-ng-click="$ctrl.onAddAdvancedRole($index)"
+                                        data-ng-if="$ctrl.isButtonAddDisplayed($index)"
+                                        data-ng-disabled="!$ctrl.isButtonAddEnabled($index)"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-add"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                    <button
+                                        data-ng-disabled="!$ctrl.isButtonDeleteEnabled($index)"
+                                        type="button"
+                                        class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+                                        data-ng-click="$ctrl.onRemoveAdvancedRole($index)"
+                                        data-ng-if="$ctrl.isButtonDeleteDisplayed($index)"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-trash"
+                                        ></span>
+                                    </button>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div
+                    class="mb-2 text-right"
+                    data-ng-if="$ctrl.model.selectedRoles.length > 0"
+                >
+                    <span
+                        data-translate="pci_databases_user_add_configured_roles"
+                        data-translate-values="{nbRoles: $ctrl.configuredRoles}"
+                    ></span>
+                </div>
+            </div>
+        </div>
+        <!-- basic roles-->
         <oui-dual-list
-            data-source="$ctrl.availableRoles"
+            ng-if="!$ctrl.isAdvancedRole"
+            data-source="$ctrl.rolesList"
             data-target="$ctrl.model.selectedRoles"
             disabled="$ctrl.isFeatureActivated('getRoles')"
             property="name"
