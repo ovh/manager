@@ -20,10 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
           'pci_projects_project_storages_cold_archive_add_breadcrumb',
         ),
 
-      guideMenu: /* @ngInject */ (initGuides) => initGuides(GUIDE_MENU_ITEMS),
-
-      initGuides: /* @ngInject */ (coreConfig, $translate) => (guides) => {
-        return guides.reduce(
+      guideMenu: /* @ngInject */ (coreConfig, $translate) => {
+        return GUIDE_MENU_ITEMS.reduce(
           (list, guide) => [
             ...list,
             {

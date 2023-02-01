@@ -5,7 +5,6 @@ export default {
   bindings: {
     projectId: '<',
     guideMenu: '<',
-    initGuides: '<',
     checkPricesLink: '<',
     onPriceLinkClick: '<',
     onGuideClick: '<',
