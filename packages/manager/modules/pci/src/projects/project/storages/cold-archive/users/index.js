@@ -12,6 +12,7 @@ import deleteUser from './delete';
 import importPolicy from './import';
 import downloadRclone from './download-rclone';
 import addUser from './add';
+import credentialBanner from '../../components/user-credential-banner';
 
 const moduleName = 'ovhManagerPciStoragesColdArchiveUserList';
 
@@ -23,6 +24,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ui.bootstrap',
+    credentialBanner,
     deleteUser,
     importPolicy,
     downloadRclone,
