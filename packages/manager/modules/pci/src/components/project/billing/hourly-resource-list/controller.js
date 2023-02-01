@@ -1,7 +1,10 @@
+import { PRODUCTS } from './constants';
+
 export default class {
   /* @ngInject */
   constructor(DetailsPopoverService) {
     this.DetailsPopoverService = DetailsPopoverService;
+    this.PRODUCTS = PRODUCTS;
   }
 
   $onInit() {

@@ -103,6 +103,29 @@
                                                 data-ng-click="installation.deleteGabarit = gabarit"
                                                 data-translate="common_delete"
                                             ></button>
+                                            <i
+                                                class="pl-2 fa"
+                                                aria-hidden="true"
+                                                data-ng-class="{
+                                                    'fa-warning' : showEndOfLifeMessage(gabarit.endOfInstall,true),
+                                                    'fa-info-circle' : showEndOfLifeMessage(gabarit.endOfInstall,false),
+                                                }"
+                                                data-oui-tooltip="{{ getEndOfLifeMessage(gabarit) }}"
+                                                data-oui-tooltip-placement="bottom"
+                                            >
+                                            </i>
+                                            <span
+                                                class="text-danger"
+                                                data-ng-if="showEndOfLifeMessage(gabarit.endOfInstall,true)"
+                                                data-ng-bind="gabarit.endOfInstall | date:'mediumDate'"
+                                            >
+                                            </span>
+                                            <span
+                                                class="text-muted"
+                                                data-ng-if="showEndOfLifeMessage(gabarit.endOfInstall,false)"
+                                                data-ng-bind="gabarit.endOfInstall | date:'mediumDate'"
+                                            >
+                                            </span>
                                         </span>
                                     </label>
                                 </div>

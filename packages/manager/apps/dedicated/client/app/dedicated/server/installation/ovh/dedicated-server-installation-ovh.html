@@ -125,6 +125,29 @@
                                                 data-translate="server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported_short"
                                             >
                                             </span>
+                                            <i
+                                                class="pl-2 fa"
+                                                aria-hidden="true"
+                                                data-ng-class="{
+                                                    'fa-warning' : showEndOfLifeMessage(distribution.endOfInstall,true),
+                                                    'fa-info-circle' : showEndOfLifeMessage(distribution.endOfInstall,false),
+                                                }"
+                                                data-oui-tooltip="{{ getEndOfLifeMessage(distribution)}}"
+                                                data-oui-tooltip-placement="bottom"
+                                            >
+                                            </i>
+                                            <span
+                                                class="text-danger"
+                                                data-ng-if="showEndOfLifeMessage(distribution.endOfInstall,true)"
+                                                data-ng-bind="distribution.endOfInstall | date:'mediumDate'"
+                                            >
+                                            </span>
+                                            <span
+                                                class="text-muted"
+                                                data-ng-if="showEndOfLifeMessage(distribution.endOfInstall,false)"
+                                                data-ng-bind="distribution.endOfInstall | date:'mediumDate'"
+                                            >
+                                            </span>
                                         </span>
                                     </label>
                                 </div>
@@ -299,10 +322,16 @@
                             data-translate="server_configuration_installation_ovh_stephardraid_label_controllers"
                         >
                         </label>
+                        <span
+                            data-ng-if="informations.hardwareRaid.profile.controllers.length === 1"
+                            data-ng-bind="installation.hardwareRaid.controller.model + ' (' + installation.hardwareRaid.controller.type + ')'"
+                        >
+                        </span>
                         <select
                             class="form-control"
                             id="hardwareRaidController"
                             name="hardwareRaidController"
+                            data-ng-if="informations.hardwareRaid.profile.controllers.length !== 1"
                             data-ng-options="controller as (controller.model + ' (' + controller.type + ')') for controller in informations.hardwareRaid.profile.controllers"
                             data-ng-model="installation.hardwareRaid.controller"
                         >
@@ -334,11 +363,16 @@
                             data-translate="server_configuration_installation_ovh_stephardraid_label_disks"
                         >
                         </label>
+                        <span
+                            data-ng-if="informations.hardwareRaid.availableDisks.length === 1 && installation.hardwareRaid.raid"
+                            data-ng-bind="informations.hardwareRaid.availableDisks[0]"
+                        >
+                        </span>
                         <select
                             class="form-control"
                             id="hardwareRaidNbDisks"
                             name="hardwareRaidNbDisks"
-                            data-ng-if="installation.hardwareRaid.raid"
+                            data-ng-if="informations.hardwareRaid.availableDisks.length !== 1 && installation.hardwareRaid.raid"
                             data-ng-options="disk as disk for disk in informations.hardwareRaid.availableDisks"
                             data-ng-model="installation.hardwareRaid.disks"
                         >
@@ -352,11 +386,16 @@
                             data-translate="server_configuration_installation_ovh_stephardraid_label_arrays"
                         >
                         </label>
+                        <span
+                            data-ng-if="informations.hardwareRaid.availableArrays.length === 1 && installation.hardwareRaid.disks"
+                            data-ng-bind="informations.hardwareRaid.availableArrays[0]"
+                        >
+                        </span>
                         <select
                             id="hardwareaRidNbArrays"
                             class="form-control"
                             name="hardwareaRidNbArrays"
-                            data-ng-if="installation.hardwareRaid.disks"
+                            data-ng-if="informations.hardwareRaid.availableArrays.length !== 1 && installation.hardwareRaid.disks"
                             data-ng-model="installation.hardwareRaid.arrays"
                             data-ng-options="array as array for array in informations.hardwareRaid.availableArrays"
                         >
@@ -656,9 +695,14 @@
                                         data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
                                     >
                                     </span>
+                                    <span
+                                        data-ng-if="constants.fileSystemList.length === 1 && isSetPartition(partition) && partition.fileSystem != constants.warningSwap"
+                                        data-ng-bind="partition.fileSystem"
+                                    >
+                                    </span>
                                     <select
                                         class="form-control"
-                                        data-ng-if="isSetPartition(partition) && partition.fileSystem != constants.warningSwap"
+                                        data-ng-if="constants.fileSystemList.length !== 1 && isSetPartition(partition) && partition.fileSystem != constants.warningSwap"
                                         data-ng-options="fileSystem as ('server_configuration_installation_' + fileSystem | translate) for fileSystem in constants.fileSystemList"
                                         data-ng-model="partition.fileSystem"
                                         data-ng-change="validationFileSystem(partition)"
@@ -919,8 +963,14 @@
                                         'has-error': hasErrorFileSystem()
                                     }"
                                 >
+                                    <span
+                                        data-ng-if="constants.fileSystemList.length === 1"
+                                        data-ng-model="newPartition.fileSystem"
+                                    >
+                                    </span>
                                     <select
                                         class="form-control"
+                                        data-ng-if="constants.fileSystemList.length !== 1"
                                         data-ng-options="fileSystem as ('server_configuration_installation_' + fileSystem | translate) for fileSystem in constants.fileSystemList"
                                         data-ng-model="newPartition.fileSystem"
                                         data-ng-change="validationFileSystem(newPartition)"

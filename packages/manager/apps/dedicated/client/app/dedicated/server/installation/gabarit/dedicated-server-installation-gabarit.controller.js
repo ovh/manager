@@ -388,6 +388,36 @@ angular
         },
       );
 
+      // Return false if endOfInstall is undefined or 2999-12-31
+      $scope.showEndOfLifeMessage = function showEndOfLifeMessage(
+        endOfInstall,
+        showWarning,
+      ) {
+        if (!endOfInstall) return false;
+        const endOfInstallDate = moment.utc(endOfInstall);
+        if (endOfInstallDate.isSame(moment.utc('2999-12-31'))) return false;
+        const period = moment().add(6, 'months');
+        return showWarning
+          ? endOfInstallDate.isBefore(period)
+          : endOfInstallDate.isAfter(period);
+      };
+
+      $scope.getEndOfLifeMessage = function getEndOfLifeMessage(gabarit) {
+        // decoding &#34; codes to '"' by using replace
+        return `
+        ${$translate.instant(
+          'dedicated_servers_installation_template_wizard_prefix_message',
+        )}     
+        ${$filter('date')(gabarit.endOfInstall, 'mediumDate')}        
+        ${$translate.instant(
+          'dedicated_servers_installation_customer_template_wizard_message',
+          {
+            osName: gabarit.distribution,
+            customerTemplateName: gabarit.id,
+          },
+        )}`.replaceAll(/&#34;/g, '"');
+      };
+
       // return range between 1 and nbdisque of server if > 1
       $scope.getNbDisqueList = function getNbDisqueList(nbdisk) {
         if (nbdisk > 1) {

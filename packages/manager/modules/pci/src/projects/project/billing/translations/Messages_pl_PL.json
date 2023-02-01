@@ -18,7 +18,7 @@
   "cpbc_billing_control_consumption_family_volume": "Block Storage",
   "cpbc_billing_control_consumption_family_ai-training": "AI Training",
   "cpbc_billing_control_consumption_family_instance": "Instancje",
-  "cpbc_billing_control_consumption_family_loadbalancer": "Load Balancer",
+  "cpbc_billing_control_consumption_family_loadbalancer": "Kubernetes Load Balancer",
   "cpbc_billing_control_consumption_family_snapshot": "Snapshoty",
   "cpbc_billing_control_consumption_family_registry": "Managed Private Registry",
   "cpbc_billing_control_consumption_family_option-managed-kubernetes": "Managed Kubernetes",
@@ -41,5 +41,6 @@
   "cpbc_billing_control_consumption_current_period": "Wyświetlane aktualne zużycie szacowane jest od {{from }} do {{to}}.",
   "cpbc_billing_control_consumption_history": "Historia",
   "cpbc_billing_control_consumption_family_floatingip": "Floating IP",
-  "cpbc_billing_control_consumption_family_gateway": "Gateway"
+  "cpbc_billing_control_consumption_family_gateway": "Gateway",
+  "cpbc_billing_control_consumption_family_octavia-loadbalancer": "Load Balancer"
 }
