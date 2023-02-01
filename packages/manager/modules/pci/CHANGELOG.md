@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.108.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.108.1...@ovh-ux/manager-pci@5.108.2) (2023-02-01)
+
+
+### Bug Fixes
+
+* **pci.project:** display project dashboard ([a92037c](https://github.com/ovh/manager/commit/a92037c2a800ec3cc8dd89b7fab5bdf8f66fc6e7))
+
+
+
+
+
 ## [5.108.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.108.0...@ovh-ux/manager-pci@5.108.1) (2023-01-30)
 
 
