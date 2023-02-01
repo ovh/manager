@@ -8,6 +8,7 @@ export default {
     projectId: '<',
     pciFeatureRedirect: '<',
     volumeBackups: '<',
+    guides: '<',
     goBack: '<',
     goToAddVolumeBlockStorage: '<',
     reloadState: '<',
