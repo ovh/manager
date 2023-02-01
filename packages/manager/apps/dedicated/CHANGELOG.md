@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.46.1...@ovh-ux/manager-dedicated@17.47.0) (2023-02-01)
+
+
+### Bug Fixes
+
+* **dedicated.cdn:** change the wrong value backend use ([dbf06f4](https://github.com/ovh/manager/commit/dbf06f47e81351f773b26149ab81e3fa8faab0bd))
+* **dedicated.ip:** optimize the size of the ip dashboard ([176aca0](https://github.com/ovh/manager/commit/176aca0f0929c8146ef8f391b515c47465ea51fe))
+* **dedicated.ip:** optimize the size of the ip dashboard ([2748d2a](https://github.com/ovh/manager/commit/2748d2af8a1c66ef6ca4c8d8c178b6f8a698ef7c))
+
+
+### Features
+
+* **dedicated.license:** remove license types ([9e91ace](https://github.com/ovh/manager/commit/9e91ace98a74a0370d10cd36384a1a8849eeaf08))
+* **dedicated.server:** display endoflife information ([9929478](https://github.com/ovh/manager/commit/992947863b214af99329e4f575130028c08c1d1d))
+* **dedicated:** remove select option for single dropdown ([5c23718](https://github.com/ovh/manager/commit/5c23718da33e0441e9098c9c83e3433f972cdc11))
+
+
+
+
+
 ## [17.46.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.46.0...@ovh-ux/manager-dedicated@17.46.1) (2023-01-30)
 
 

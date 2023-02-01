@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.109.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.108.2...@ovh-ux/manager-pci@5.109.0) (2023-02-01)
+
+
+### Bug Fixes
+
+* **modules.pci.storages:** allow items stacking ([be0f0c1](https://github.com/ovh/manager/commit/be0f0c16987386dd3e9f3fffbb42b473bc47f4f5))
+* **pci.kube:** remove desired nodes if autoscale ([fa26588](https://github.com/ovh/manager/commit/fa26588e5be5107cf6a32b3a21fff4b2c79f785a))
+* **pci:** avoid multiple mapping in drop down ([a0a2862](https://github.com/ovh/manager/commit/a0a2862f207632d0d69c967fc9fee85618bd3253))
+
+
+### Features
+
+* **pci.project:** display load-balancer in billing ([#8751](https://github.com/ovh/manager/issues/8751)) ([d5f7a8f](https://github.com/ovh/manager/commit/d5f7a8f54384b2c4814481405c47376f10f4cc24))
+
+
+
+
+
 ## [5.108.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.108.1...@ovh-ux/manager-pci@5.108.2) (2023-02-01)
 
 
