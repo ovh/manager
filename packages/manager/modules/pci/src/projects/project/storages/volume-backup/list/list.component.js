@@ -8,6 +8,7 @@ export default {
     projectId: '<',
     volumeBackups: '<',
     volumeBackupLink: '<',
+    guides: '<',
     goToRestoreVolume: '<',
     goToCreateVolume: '<',
     goToDeleteVolume: '<',
