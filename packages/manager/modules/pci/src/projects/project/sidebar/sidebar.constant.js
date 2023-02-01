@@ -39,6 +39,23 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         feature: PCI_FEATURES.PRODUCTS.OBJECT_STORAGE,
       },
       {
+        id: 'archive',
+        options: {
+          state: 'pci.projects.project.storages.archives',
+        },
+        title: 'Cloud Archive',
+        feature: PCI_FEATURES.PRODUCTS.CLOUD_ARCHIVE,
+      },
+      {
+        id: 'cold-archive',
+        beta: true,
+        options: {
+          state: 'pci.projects.project.storages.cold-archive',
+        },
+        title: 'Cold Archive',
+        feature: PCI_FEATURES.PRODUCTS.COLD_ARCHIVE,
+      },
+      {
         id: 'databases',
         new: true,
         options: {
@@ -46,14 +63,6 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         },
         title: 'Databases',
         feature: PCI_FEATURES.PRODUCTS.DATABASES,
-      },
-      {
-        id: 'archive',
-        options: {
-          state: 'pci.projects.project.storages.archives',
-        },
-        title: 'Cloud Archive',
-        feature: PCI_FEATURES.PRODUCTS.CLOUD_ARCHIVE,
       },
       {
         id: 'snapshot',

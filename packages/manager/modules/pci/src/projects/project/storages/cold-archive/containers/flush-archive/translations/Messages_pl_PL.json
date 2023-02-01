@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_storages_containers_container_cold_archive_flush_title": "Chcesz opróżnić archiwum?",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_description": "Za chwilę usuniesz obiekty z archiwum: {{containerName}}.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_terminate_input_label": "Aby potwierdzić, wprowadź \"TERMINATE\" w poniższym polu",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_submit_label": "Zatwierdź",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_cancel_label": "Anuluj",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_erase_message": "Wszystkie dane z archiwum {{containerName}} zostaną utracone.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_status_archived_restored_warning_1": "Liczba obiektów zawartych w archiwum {{containerName}}: {{objetsCount}}.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_status_archived_restored_warning_2": "Za chwilę usuniesz wszystkie obiekty z archiwum.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_success_message": "Trwa usuwanie obiektów z archiwum {{containerName}}.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_error_delete": "Wystąpił błąd podczas usuwania obiektów z archiwum {{containerName}}: {{ message }}"
+}

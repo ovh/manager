@@ -1,0 +1,5 @@
+{
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_title": "Nazwij kontener",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_description": "Nazwa kontenera musi zawierać od 3 do 63 znaków, musi zaczynać się i kończyć małym znakiem alfanumerycznym (od „a” do „z” i od 0 do 9) i może zawierać następujące znaki interpunkcyjne: „.” oraz „-”.",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_field_name": "Nazwa kontenera"
+}
