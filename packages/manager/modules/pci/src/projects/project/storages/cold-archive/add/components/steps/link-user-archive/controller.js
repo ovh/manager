@@ -185,7 +185,7 @@ export default class ColdArchiveLinkUserArchiveController {
           this.userModel.createMode.user = newUser;
           this.userModel.createMode.credential = credential;
           this.trackPage(
-            `${COLD_ARCHIVE_TRACKING.ADD.ASSOCIATE.NEW_USER}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
+            `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.NEW_USER}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
           );
           return credential;
         });
