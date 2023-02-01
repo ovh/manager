@@ -7,7 +7,6 @@ import '@ovh-ux/ui-kit';
 import 'angular-ui-bootstrap';
 
 import component from './users.component';
-import credentialBanner from '../component/credential-banner';
 import routing from './users.routing';
 import deleteUser from './delete';
 import importPolicy from './import';
@@ -29,7 +28,7 @@ angular
     downloadRclone,
     addUser,
   ])
-  .component('pciProjectStorageColdArchiveUsers', component, credentialBanner)
+  .component('pciProjectStorageColdArchiveUsers', component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

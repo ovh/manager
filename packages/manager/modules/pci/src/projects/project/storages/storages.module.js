@@ -9,7 +9,6 @@ import instanceBackups from './instance-backups';
 import objectStorage from './object-storage';
 import coldArchive from './cold-archive';
 import snapshots from './snapshots';
-import storagesComponents from './cold-archive/component/credential-banner';
 
 import routing from './storages.routing';
 import storageUsersService from './storage-users.service';
@@ -28,7 +27,6 @@ angular
     snapshots,
     objectStorage,
     coldArchive,
-    storagesComponents,
   ])
   .service('PciStoragesUsersService', storageUsersService)
   .config(routing);

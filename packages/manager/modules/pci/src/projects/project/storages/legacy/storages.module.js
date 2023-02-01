@@ -10,7 +10,6 @@ import instanceBackups from '../instance-backups';
 import objectStorage from './object-storage';
 import snapshots from '../snapshots';
 import routing from './storages.routing';
-import credentialBanner from '../components/user-credential-banner';
 
 const moduleName = 'ovhManagerPciStorages';
 
@@ -23,7 +22,6 @@ angular
     instanceBackups,
     snapshots,
     objectStorage,
-    credentialBanner,
     'oui',
     'ui.router',
     'ovhManagerFilters',
