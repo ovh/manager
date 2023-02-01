@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_archive_title": "Archiviare il container",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_description": "Stai per archiviare il container {{ containerName }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_submit_label": "Confermare",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_cancel_label": "Annullare",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_success_message": "Archiviazione del container {{ containerName }} in corso...",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_error_message": "Si è verificato un errore durante l'archiviazione del container {{ containerName }}: {{ message }}"
+}

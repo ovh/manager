@@ -38,6 +38,7 @@ const pciNode: Node = {
         'snapshot',
         'instance-backup',
         'archive',
+        'cold-archive',
       ],
       forceVisibility: true,
       children: [
@@ -62,6 +63,29 @@ const pciNode: Node = {
           },
           features: ['object-storage'],
           forceVisibility: true,
+        },
+        {
+          id: 'pci-cloud-archive',
+          translation: 'sidebar_pci_cloud_archive',
+          serviceType: 'CLOUD_PROJECT_STORAGE_ARCHIVES',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/storages/cloud-archives',
+          },
+          features: ['archive'],
+          forceVisibility: true,
+        },
+        {
+          id: 'pci-cold-archive',
+          translation: 'sidebar_pci_cold_archive',
+          serviceType: 'CLOUD_PROJECT_STORAGE_COLD_ARCHIVES',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/storages/cold-archive',
+          },
+          features: ['cold-archive'],
+          forceVisibility: true,
+          tag: NodeTag.BETA,
         },
         {
           id: 'pci-databases',
@@ -95,17 +119,6 @@ const pciNode: Node = {
             hash: '#/pci/projects/{projectId}/storages/instance-backups',
           },
           features: ['instance-backup'],
-          forceVisibility: true,
-        },
-        {
-          id: 'pci-cloud-archive',
-          translation: 'sidebar_pci_cloud_archive',
-          serviceType: 'CLOUD_PROJECT_STORAGE_ARCHIVES',
-          routing: {
-            application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/storages/cloud-archives',
-          },
-          features: ['archive'],
           forceVisibility: true,
         },
       ],
