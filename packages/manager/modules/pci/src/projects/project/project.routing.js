@@ -184,9 +184,9 @@ export default /* @ngInject */ ($stateProvider) => {
                 voucher: voucherCreditDetails.voucher,
                 description: voucherCreditDetails.description,
                 balance: voucherCreditDetails.available_credit.text,
-                expirationDate: moment(voucherCreditDetails.validity.to).format(
-                  'LLL',
-                ),
+                expirationDate: voucherCreditDetails.validity
+                  ? moment(voucherCreditDetails.validity.to).format('LLL')
+                  : null,
               };
             }),
         ),
