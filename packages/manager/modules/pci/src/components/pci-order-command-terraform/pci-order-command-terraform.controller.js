@@ -1,6 +1,5 @@
 export default class PciOrderCommandTerraformCtrl {
   $onInit() {
-    this.identationString = '  ';
     this.terraformDisplay = this.formatTerraformNode(this.terraformData);
   }
 
@@ -20,19 +19,24 @@ export default class PciOrderCommandTerraformCtrl {
     }
     // handle sub nodes
     if (node.nodes.length > 0) {
-      return `${this.getIdentationString(identationCount)}${keyStr} {
+      return `${PciOrderCommandTerraformCtrl.getIdentationString(
+        identationCount,
+      )}${keyStr} {
 ${node.nodes
   .map((subnode) => `${this.formatTerraformNode(subnode, identationCount + 1)}`)
   .join(`\r\n`)}
-${this.getIdentationString(identationCount)}}`;
+${PciOrderCommandTerraformCtrl.getIdentationString(identationCount)}}`;
     }
-    return `${this.getIdentationString(identationCount)}${keyStr}`;
+    return `${PciOrderCommandTerraformCtrl.getIdentationString(
+      identationCount,
+    )}${keyStr}`;
   }
 
-  getIdentationString(ident) {
+  static getIdentationString(ident) {
     let identationStr = '';
+    const initialIdentationString = '  ';
     for (let i = 0; i < ident; i += 1) {
-      identationStr += this.identationString;
+      identationStr += initialIdentationString;
     }
     return identationStr;
   }
