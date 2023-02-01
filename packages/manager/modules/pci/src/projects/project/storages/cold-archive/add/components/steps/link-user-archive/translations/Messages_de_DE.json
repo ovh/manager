@@ -13,5 +13,6 @@
   "pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_description_label": "Nutzerbeschreibung:",
   "pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label": "Ihr geheimer S3-Schlüssel:",
   "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_success": "Die S3-Login-Daten für den Nutzer {{userName}} wurden generiert.",
-  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_fail": "Die S3-Login-Daten wurden nicht erstellt."
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_fail": "Die S3-Login-Daten wurden nicht erstellt.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select": "Einen bestehenden Nutzer auswählen"
 }
