@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.110.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.109.0...@ovh-ux/manager-pci@5.110.0) (2023-02-02)
+
+
+### Features
+
+* **public-cloud:** cold archive feature  ([#8059](https://github.com/ovh/manager/issues/8059)) ([b2566d7](https://github.com/ovh/manager/commit/b2566d7abd7795ef9afdd1f4d933b30d9d39d35d))
+
+
+
+
+
 # [5.109.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.108.2...@ovh-ux/manager-pci@5.109.0) (2023-02-01)
 
 
