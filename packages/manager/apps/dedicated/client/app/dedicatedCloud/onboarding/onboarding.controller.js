@@ -1,10 +1,12 @@
 import { GUIDES, CTAS, US_GUIDES, US_CTA } from './constants';
+import illustration from './assets/vmware.png';
 
 export default class DedicatedCloudsOnboardingController {
   /* @ngInject */
   constructor($translate, coreConfig) {
     this.$translate = $translate;
     this.coreConfig = coreConfig;
+    this.illustration = illustration;
   }
 
   async $onInit() {
