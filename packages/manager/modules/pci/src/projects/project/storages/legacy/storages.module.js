@@ -4,6 +4,7 @@ import '@ovh-ux/manager-filters';
 
 import blocks from '../blocks';
 import cloudArchive from '../cloud-archives';
+import coldArchive from '../cold-archive';
 import databases from '../databases';
 import instanceBackups from '../instance-backups';
 import objectStorage from './object-storage';
@@ -16,6 +17,7 @@ angular
   .module(moduleName, [
     blocks,
     cloudArchive,
+    coldArchive,
     databases,
     instanceBackups,
     snapshots,
