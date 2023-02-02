@@ -60,10 +60,6 @@
         data-filterable
         data-sortable
     >
-        <a
-            data-ng-href="{{:: $ctrl.volumeBackupLink($row) }}"
-            data-ng-bind=":: $value"
-        ></a>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'pci_projects_project_storages_volume_backup_list_datagrid_column_region' | translate"
@@ -81,6 +77,12 @@
         data-sortable
         data-filterable
     >
+        <a
+            target="_blank"
+            rel="noreferrer"
+            data-ng-href="{{:: $ctrl.volumeLink($row) }}"
+            data-ng-bind=":: $value"
+        ></a>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'pci_projects_project_storages_volume_backup_list_datagrid_column_create_date' | translate"
@@ -89,6 +91,7 @@
         data-sortable
         data-filterable
     >
+        <span data-ng-bind="$value | date:'short'"></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'pci_projects_project_storages_volume_backup_list_datagrid_column_capacity' | translate"
@@ -97,6 +100,7 @@
         data-sortable
         data-filterable
     >
+        <span data-ng-bind="$value | bytes:2:true:'GiB'"></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'pci_projects_project_storages_volume_backup_list_datagrid_column_status' | translate"

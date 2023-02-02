@@ -2,6 +2,7 @@ import {
   VOLUME_BACKUP_ROUTES,
   VOLUME_BACKUP_TRACKING,
 } from '../volume-backup.constants';
+import { PCI_FEATURES_STATES } from '../../../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(VOLUME_BACKUP_ROUTES.LIST.STATE, {
@@ -13,10 +14,10 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
 
-      volumeBackupLink: /* @ngInject */ ($state, projectId) => (volumeBackup) =>
-        $state.href(VOLUME_BACKUP_ROUTES.DASHBOARD, {
+      volumeLink: /* @ngInject */ ($state, projectId) => (volumeBackup) =>
+        $state.href(PCI_FEATURES_STATES.BLOCKS.LIST, {
           projectId,
-          volumeBackupId: volumeBackup.id,
+          storageId: volumeBackup.volumeId,
         }),
 
       goToAddVolumeBackup: /* @ngInject */ ($state, projectId) => () => {

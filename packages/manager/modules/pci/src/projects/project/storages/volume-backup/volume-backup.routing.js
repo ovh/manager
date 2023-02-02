@@ -53,6 +53,44 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
+      startPolling: /* @ngInject */ (
+        projectId,
+        volumeBackups,
+        VolumeBackupService,
+      ) => () => {
+        volumeBackups.forEach((volumeBackupInstance) => {
+          if (volumeBackupInstance.isPendingStatus) {
+            VolumeBackupService.startVolumeBackupPolling(
+              projectId,
+              volumeBackupInstance.region,
+              volumeBackupInstance.id,
+            ).then(
+              // success function, then update volumeBackup instance
+              (volumeBackup) => volumeBackupInstance.updateData(volumeBackup),
+              // if error occurred, then delete volumeBackup
+              () =>
+                volumeBackups.splice(
+                  volumeBackups.indexOf(volumeBackupInstance),
+                  1,
+                ),
+            );
+          }
+        });
+      },
+
+      stopPolling: /* @ngInject */ (
+        projectId,
+        volumeBackups,
+        VolumeBackupService,
+      ) => () =>
+        volumeBackups.forEach((volumeBackup) =>
+          VolumeBackupService.stopVolumeBackupPolling(
+            projectId,
+            volumeBackup.region,
+            volumeBackup.id,
+          ),
+        ),
+
       goToAddVolumeBlockStorage: /* @ngInject */ ($state, projectId) => () => {
         return $state.go(PCI_FEATURES_STATES.BLOCKS.ADD, {
           projectId,
