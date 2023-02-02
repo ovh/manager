@@ -18,7 +18,7 @@
   "pci_projects_project_storages_cold_archive_containers_creation_date_label": "Fecha de creación",
   "pci_projects_project_storages_cold_archive_containers_add_container_label": "Crear un contenedor",
   "pci_projects_project_storages_cold_archive_containers_manage_container_label": "Gestionar los contenedores por CLI",
-  "pci_projects_project_storages_cold_archive_containers_status_label": "Estatus",
+  "pci_projects_project_storages_cold_archive_containers_status_label": "Estado",
   "pci_projects_project_storages_containers_status_none": "Activo",
   "pci_projects_project_storages_containers_status_restored": "Restaurado",
   "pci_projects_project_storages_containers_status_restoring": "Restaurando...",
