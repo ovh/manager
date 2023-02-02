@@ -7,6 +7,11 @@ export default class VolumeBackupController {
 
   $onInit() {
     this.loadMessages();
+    this.startPolling();
+  }
+
+  $onDestroy() {
+    this.stopPolling();
   }
 
   loadMessages() {

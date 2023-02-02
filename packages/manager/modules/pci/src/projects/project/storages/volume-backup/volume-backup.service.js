@@ -1,7 +1,10 @@
+import VolumeBackup from './volume-backup.class';
+
 export default class VolumeBackupService {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, Poller) {
     this.$http = $http;
+    this.poller = Poller;
   }
 
   /**
@@ -102,5 +105,50 @@ export default class VolumeBackupService {
         { name },
       )
       .then(({ data }) => data);
+  }
+
+  static buildPollingNameSpace(projectId, regionName, volumeBackupId) {
+    return `volume_backup_${projectId}_${regionName}_${volumeBackupId}`;
+  }
+
+  /**
+   * start volume-backup instance polling
+   * @param projectId {string}: UUID to identify the project
+   * @param regionName {string}: where the volume backup is located
+   * @param volumeBackupId {string}: UUID to identifie the volume backup
+   * @returns {Promise}: polling promise
+   */
+  startVolumeBackupPolling(projectId, regionName, volumeBackupId) {
+    return this.poller.poll(
+      `/cloud/project/${projectId}/region/${regionName}/volumeBackup/${volumeBackupId}`,
+      {},
+      {
+        namespace: VolumeBackupService.buildPollingNameSpace(
+          projectId,
+          regionName,
+          volumeBackupId,
+        ),
+        method: 'get',
+        successRule: (volumeBackup) =>
+          !new VolumeBackup(volumeBackup).isPendingStatus,
+      },
+    );
+  }
+
+  /**
+   * stop volume-backup instance polling
+   * @param projectId {string}: UUID to identify the project
+   * @param regionName {string}: where the volume backup is located
+   * @param volumeBackupId {string}: UUID to identifie the volume backup
+   * @returns {Promise}: polling promise
+   */
+  stopVolumeBackupPolling(projectId, regionName, volumeBackupId) {
+    this.poller.kill({
+      namespace: VolumeBackupService.buildPollingNameSpace(
+        projectId,
+        regionName,
+        volumeBackupId,
+      ),
+    });
   }
 }

@@ -11,35 +11,43 @@ export default class VolumeBackup {
     merge(this, volumeBackup);
   }
 
-  isCreating() {
+  get isCreating() {
     return this.status === VOLUME_BACKUP_STATUS.CREATING;
   }
 
-  isDeleting() {
+  get isDeleting() {
     return this.status === VOLUME_BACKUP_STATUS.DELETING;
   }
 
-  isInError() {
+  get isInError() {
     return this.status === VOLUME_BACKUP_STATUS.ERROR;
   }
 
-  isRunning() {
+  get isRunning() {
     return this.status === VOLUME_BACKUP_STATUS.OK;
   }
 
-  isRestoring() {
+  get isRestoring() {
     return this.status === VOLUME_BACKUP_STATUS.RESTORING;
+  }
+
+  /**
+   * indicate if volume backup is in pending operation (require time)
+   * @returns {boolean}: true if pending status otherwise false
+   */
+  get isPendingStatus() {
+    return [this.isCreating, this.isDeleting, this.isRestoring].some(
+      (isPending) => isPending,
+    );
   }
 
   get statusGroup() {
     return {
-      error: [VOLUME_BACKUP_STATUS.ERROR].includes(this.status),
-      warning: [
-        VOLUME_BACKUP_STATUS.CREATING,
-        VOLUME_BACKUP_STATUS.RESTORING,
-        VOLUME_BACKUP_STATUS.DELETING,
-      ].includes(this.status),
-      success: [VOLUME_BACKUP_STATUS.OK].includes(this.status),
+      error: [this.isInError].some((isError) => isError),
+      warning: [this.isCreating, this.isRestoring, this.isDeleting].some(
+        (isWarning) => isWarning,
+      ),
+      success: [this.isRunning].some((isValid) => isValid),
     };
   }
 
