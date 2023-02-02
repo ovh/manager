@@ -6,5 +6,7 @@
   "sms_actions_create_sender": "Créer un expéditeur",
   "sms_actions_create_api_user": "Créer un utilisateur API",
   "sms_actions_clean_contact_list": "Nettoyer la liste des contacts",
-  "sms_consumed_last_recharge": "Dernière recharge"
+  "sms_consumed_last_recharge": "Dernière recharge",
+  "sms_actions_credit_transfer": "Transferir créditos",
+  "sms_actions_smpp_parameter": "Configurar o meu SMPP"
 }

@@ -1,3 +1,10 @@
 {
-  "sms_order": "Encomendar"
+  "sms_order": "Encomendar",
+  "sms_channel_label": "Formato da conta",
+  "sms_channel_both": "Standard",
+  "sms_channel_marketing": "SMPP de marketing",
+  "sms_channel_transactional": "SMPP transacional",
+  "sms_view_sms_label": "Detalhes",
+  "sms_header_guide": "Manuais",
+  "sms_header_guide_start_with_sms": "Dar os primeiros passos com as SMS OVHcloud"
 }

@@ -19,5 +19,7 @@
   "sms_statictics_credit_reload": "Top up credits",
   "sms_statistics_sent_number": "Number of SMS sent",
   "sms_statistics_delivered_number": "Number of SMS delivered",
-  "sms_statistics_stop_subscribe_number": "Number of unsubscriptions"
+  "sms_statistics_stop_subscribe_number": "Number of unsubscriptions",
+  "sms_actions_credit_transfer": "Transfer credits",
+  "sms_actions_smpp_parameter": "Configure my SMPP"
 }

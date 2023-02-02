@@ -1,6 +1,6 @@
 {
   "sms_section_back_link": "Powrót do opcji",
-  "sms_senders_blacklisted_manage_title": "Zarządzaj nadawcami z czarnej listy",
+  "sms_senders_blacklisted_manage_title": "Zarządzaj adresatami czarnej listy",
   "sms_senders_blacklisted_information_title": "Informacje",
   "sms_senders_blacklisted_information_text_1": "Lista odbiorców, którzy nie chcą otrzymywać od Ciebie SMS-ów.",
   "sms_senders_blacklisted_information_text_2": "Jeśli usuniesz numer z listy, odbiorca będzie znowu otrzymywał SMS-y wysyłane do niego przez nadawców.",
@@ -9,8 +9,8 @@
   "sms_senders_blacklisted_delete_list_success": "Usuwanie w trakcie...",
   "sms_senders_blacklisted_label_date": "Data",
   "sms_senders_blacklisted_label_number": "Numer",
-  "sms_senders_blacklisted_empty": "Brak nadawców figurujących na czarnej liście.",
-  "sms_senders_blacklisted_title": "Usuń nadawcę figurującego na czarnej liście",
-  "sms_senders_blacklisted_confirm": "Czy na pewno chcesz usunąć nadawcę figurującego na czarnej liście <b>«{{sender}}»</b>?",
-  "sms_senders_blacklisted_sender_ko": "Nie można usunąć nadawcy figurującego na czarnej liście.<br/>{{error}}"
+  "sms_senders_blacklisted_empty": "Brak adresata czarnej listy.",
+  "sms_senders_blacklisted_title": "Usuń adresata z listy",
+  "sms_senders_blacklisted_confirm": "Czy na pewno chcesz usunąć adresata czarnej listy <b>\"{{ sender }}\"</b>?",
+  "sms_senders_blacklisted_sender_ko": "Nie można usunąć adresata czarnej listy.<br/>{{error}}"
 }

@@ -14,5 +14,9 @@
   "sms_rename_error": "Impossible de renommer votre pack {{serviceName}}.",
   "sms_loading_error": "Une erreur est survenue lors du chargement de SMS",
   "sms_feature_soon_available": "Cette fonctionnalité sera bientôt disponible.",
-  "sms_confirm": "Bestätigen"
+  "sms_confirm": "Bestätigen",
+  "sms_header_guide": "Anleitungen",
+  "sms_header_guide_start_with_sms": "Erste SMS von OVHcloud",
+  "sms_smpp_channel_qualification_marketing": "Marketing",
+  "sms_smpp_channel_qualification_transactional": "Transaktional"
 }
