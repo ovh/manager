@@ -128,5 +128,6 @@
   "sidebar_tag_new": "Neu",
   "sidebar_domain_operations": "Laufende Vorgänge",
   "sidebar_pci_additional_ips": "Öffentliche IPs",
-  "sidebar_pci_public_gateways": "Gateway"
+  "sidebar_pci_public_gateways": "Gateway",
+  "sidebar_pci_cold_archive": "Cold Archive"
 }
