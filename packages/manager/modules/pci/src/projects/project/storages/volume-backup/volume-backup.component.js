@@ -9,6 +9,8 @@ export default {
     pciFeatureRedirect: '<',
     volumeBackups: '<',
     guides: '<',
+    startPolling: '<',
+    stopPolling: '<',
     goBack: '<',
     goToAddVolumeBlockStorage: '<',
     reloadState: '<',
