@@ -18,7 +18,6 @@ export default class {
     this.showIdleConnections = true;
     this.showActiveConnections = true;
     this.autorefreshPage = false;
-    this.IDLE_QUERY_STATES = IDLE_QUERY_STATES;
     this.loading = {
       queries: false,
     };
@@ -122,6 +121,7 @@ export default class {
       this.database.id,
       this.database.engine,
       query.pid,
+      true,
     )
       .then(() => {
         this.getCurrentQueries();
