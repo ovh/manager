@@ -1,8 +1,8 @@
+import { PCI_FEATURES_STATES } from '../../../../projects.constant';
 import {
   VOLUME_BACKUP_ROUTES,
   VOLUME_BACKUP_TRACKING,
 } from '../volume-backup.constants';
-import { PCI_FEATURES_STATES } from '../../../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(VOLUME_BACKUP_ROUTES.LIST.STATE, {
@@ -32,8 +32,17 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
-      goToDeleteVolume: /* @ngInject */ ($state, projectId) => () => {
+      goToDeleteVolumeBackup: /* @ngInject */ ($state, projectId) => (
+        volumeBackup,
+      ) => {
         return $state.go(VOLUME_BACKUP_ROUTES.LIST.ROUTES.DELETE.STATE, {
+          projectId,
+          volumeBackup,
+        });
+      },
+
+      goToAddVolumeBlockStorage: /* @ngInject */ ($state, projectId) => () => {
+        return $state.go(PCI_FEATURES_STATES.BLOCKS.ADD, {
           projectId,
         });
       },

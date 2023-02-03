@@ -13,7 +13,7 @@ export const VOLUME_BACKUP_ROUTES = {
   },
   LIST: {
     STATE: `${VOLUME_BACKUP_ROOT_STATE}.list`,
-    URL: '/',
+    URL: '/list',
     ROUTES: {
       DELETE: {
         STATE: `${VOLUME_BACKUP_ROOT_STATE}.list.delete`,

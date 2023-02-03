@@ -7,6 +7,8 @@ import '@ovh-ux/ui-kit';
 import routing from './list.routing';
 import component from './list.component';
 
+import deleteVolumeBackup from './delete';
+
 const moduleName = 'ovhManagerPciProjectStoragesVolumeBackupList';
 
 angular
@@ -15,6 +17,7 @@ angular
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    deleteVolumeBackup,
   ])
   .config(routing)
   .component('ovhManagerPciProjectsProjectStoragesVolumeBackupList', component)

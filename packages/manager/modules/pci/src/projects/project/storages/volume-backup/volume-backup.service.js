@@ -107,6 +107,18 @@ export default class VolumeBackupService {
       .then(({ data }) => data);
   }
 
+  /**
+   * Get volume details
+   * @param serviceName {string}: project id
+   * @param volumeId {string}: block storage volume id
+   * @returns {Promise}: block storage volume details Promise
+   */
+  getVolumeDetails(serviceName, volumeId) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/volume/${volumeId}`)
+      .then(({ data }) => data);
+  }
+
   static buildPollingNameSpace(projectId, regionName, volumeBackupId) {
     return `volume_backup_${projectId}_${regionName}_${volumeBackupId}`;
   }
