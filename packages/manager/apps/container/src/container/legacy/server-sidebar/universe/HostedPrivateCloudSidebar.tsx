@@ -206,6 +206,7 @@ export default function HostedPrivateCloudSidebar() {
         label: t('sidebar_ip_short'),
         icon: getIcon('ovh-font ovh-font-ip'),
         href: navigation.getURL('dedicated', '#/ip'),
+        routeMatcher: new RegExp('/ip(/|$)'),
       });
     }
 
