@@ -11,6 +11,7 @@ export default {
     guides: '<',
     goToRestoreVolume: '<',
     goToCreateVolume: '<',
+    goToCreateVolumeBackup: '<',
     goToDeleteVolumeBackup: '<',
     goBack: '<',
     goToAddVolumeBlockStorage: '<',
