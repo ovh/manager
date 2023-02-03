@@ -31,7 +31,10 @@ export const IP_AGORA = {
 export const TRACKING_PREFIX = 'dedicated::ip::dashboard::order::';
 
 export const IP_LOCATION_GROUPS = [
-  { labels: ['APAC/CANADA', 'CANADA - ASIA'], countries: ['au', 'ca', 'sg'] },
+  {
+    labels: ['APAC/CANADA', 'CANADA - ASIA'],
+    countries: ['au', 'ca', 'sg', 'in'],
+  },
   {
     labels: ['EUROPE'],
     countries: [
