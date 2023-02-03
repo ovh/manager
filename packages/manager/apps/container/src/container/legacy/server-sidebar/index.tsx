@@ -3,7 +3,6 @@ import useContainer from '@/core/container';
 import { useLegacyContainer } from '@/container/legacy/context';
 import { useLocation } from 'react-router-dom';
 import style from './index.module.scss';
-import { is } from 'date-fns/locale';
 
 const AccountSidebar = React.lazy(() => import('./universe/AccountSidebar'));
 const DedicatedSidebar = React.lazy(() =>
