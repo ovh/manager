@@ -1,5 +1,5 @@
 import VolumeBackup from './volume-backup.class';
-import { PCI_FEATURES, PCI_FEATURES_STATES } from '../../../projects.constant';
+import { PCI_FEATURES } from '../../../projects.constant';
 import { GUIDES, VOLUME_BACKUP_ROUTES } from './volume-backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -91,18 +91,12 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
         ),
 
-      goToAddVolumeBlockStorage: /* @ngInject */ ($state, projectId) => () => {
-        return $state.go(PCI_FEATURES_STATES.BLOCKS.ADD, {
-          projectId,
-        });
-      },
-
       goToVolumeBackups: ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',
       ) => {
         const reload = message && type === 'success';
-        const state = VOLUME_BACKUP_ROUTES.ROOT.STATE;
+        const state = VOLUME_BACKUP_ROUTES.LIST.STATE;
 
         const promise = $state.go(
           state,
