@@ -34,7 +34,7 @@ export default function PublicCloudSidebar() {
     });
 
   const { data: availability } = useQuery(
-    ['sidebar-dedicated-availability'],
+    ['sidebar-public-cloud-availability'],
     getFeatures,
   );
 

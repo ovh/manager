@@ -17,11 +17,11 @@ export default function ServerSidebar({ menu }: { menu: SidebarMenuItem }) {
   const shell = useShell();
   const location = useLocation();
 
-  const refreshMenu = useCallback(() => {
+  const refreshMenu = () => {
     updateSearchFields(menu);
     filterBySearch(menu, refreshMenu);
     setItems(flattenMenu(menu, { addNoResultsItems: true }));
-  }, [menu]);
+  };
 
   useEffect(() => {
     if (menu) {
