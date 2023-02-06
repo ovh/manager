@@ -81,6 +81,7 @@ import { serverBandwidth } from '@ovh-ux/manager-components';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerBilling from '@ovh-ux/manager-billing';
 import ovhManagerDbaasLogs from '@ovh-ux/manager-dbaas-logs';
+import ovhManagerIAM from '@ovh-ux/manager-iam';
 import ovhManagerNasha from '@ovh-ux/manager-nasha';
 import ovhManagerNetapp from '@ovh-ux/manager-netapp';
 import ovhManagerSupport from '@ovh-ux/manager-support';
@@ -209,6 +210,7 @@ export default async (containerEl, shellClient) => {
         ngTailLogs,
         ovhContacts,
         ovhManagerBanner,
+        ovhManagerIAM,
         ovhManagerMetrics,
         ovhManagerNasha,
         ovhManagerNetapp,
