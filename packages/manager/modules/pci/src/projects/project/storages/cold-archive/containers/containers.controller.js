@@ -1,6 +1,6 @@
 import {
   COLD_ARCHIVE_CONTAINER_STATUS,
-  CONTAINER_STATUS_OPTIONS,
+  COLD_ARCHIVE_CONTAINER_STATUS_LABEL,
 } from './containers.constants';
 import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
 
@@ -89,25 +89,8 @@ export default class PciStoragesColdArchiveContainersController {
     return this.goToAddColdArchive();
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  getStatusActions(status) {
-    const { actions } = CONTAINER_STATUS_OPTIONS[status];
-    return actions;
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  getStatusClass(status) {
-    const { componentClass } = CONTAINER_STATUS_OPTIONS[status];
-    return componentClass;
-  }
-
-  getAction(action) {
-    const ACTIONS = {
-      archive: this.goToArchiveContainer,
-      restore: this.goToRestoreContainer,
-      delete: this.goToDeleteContainer,
-    };
-    return ACTIONS[action];
+  static getStatusClass(status) {
+    return COLD_ARCHIVE_CONTAINER_STATUS_LABEL[status.toUpperCase()];
   }
 
   static isActionsAvailable(container) {
