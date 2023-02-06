@@ -12,6 +12,11 @@ export default class BillingResiliationController {
       type: 'action',
     });
     this.isResiliating = true;
+    if (this.endStrategy === 'CANCEL' && !this.engagementDetails) {
+      return this.BillingService.putServiceInfos(this.serviceName, {
+        deleteAtExpiration: true,
+      });
+    }
     return this.BillingService.putEndRuleStrategy(
       this.service.id,
       this.endStrategy,
