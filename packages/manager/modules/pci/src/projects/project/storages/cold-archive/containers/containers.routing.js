@@ -1,5 +1,7 @@
-import { COLD_ARCHIVE_STATES } from './containers.constants';
-import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
+import {
+  COLD_ARCHIVE_TRACKING,
+  COLD_ARCHIVE_STATES,
+} from '../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS, {
