@@ -38,6 +38,7 @@
     "@ovh-ux/manager-error-page": "^2.3.2",
     "@ovh-ux/manager-exchange": "^3.8.0",
     "@ovh-ux/manager-filters": "^1.1.1",
+    "@ovh-ux/manager-iam": "^1.0.0",
     "@ovh-ux/manager-iplb": "^1.7.3",
     "@ovh-ux/manager-metrics": "^1.4.0",
     "@ovh-ux/manager-models": "^1.14.6",
