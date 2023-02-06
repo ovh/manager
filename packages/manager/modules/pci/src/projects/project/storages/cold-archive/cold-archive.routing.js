@@ -3,8 +3,8 @@ import {
   COLD_ARCHIVE_TRACKING,
   GUIDE_MENU_ITEMS,
   REGION,
+  COLD_ARCHIVE_STATES,
 } from './cold-archives.constants';
-import { COLD_ARCHIVE_STATES } from './containers/containers.constants';
 import { PCI_FEATURES } from '../../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {

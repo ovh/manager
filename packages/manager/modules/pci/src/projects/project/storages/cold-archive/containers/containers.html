@@ -52,7 +52,7 @@
             data-filterable
         >
             <span
-                class="{{$ctrl.getStatusClass($row.status)}}"
+                class="{{$ctrl.constructor.getStatusClass($row.status)}}"
                 data-ng-bind=":: $row.translatedStatus"
             ></span>
         </oui-datagrid-column>
