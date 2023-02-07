@@ -1,7 +1,6 @@
 import {
   COLD_ARCHIVE_TRACKING,
   COLD_ARCHIVE_STATES,
-  REGION,
 } from '../cold-archives.constants';
 
 export default class ColdArchiveConfigurationController {
@@ -108,7 +107,7 @@ export default class ColdArchiveConfigurationController {
   createArchive() {
     this.isArchiveCreationInProgress = true;
     return this.pciStoragesColdArchiveService
-      .createArchiveContainer(this.projectId, REGION, {
+      .createArchiveContainer(this.projectId, this.regions[0], {
         ...this.archiveModel,
         ownerId: this.getUserOwnerId(),
       })

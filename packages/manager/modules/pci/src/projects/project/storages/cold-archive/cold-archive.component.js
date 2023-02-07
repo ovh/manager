@@ -19,6 +19,7 @@ export default {
     priceLink: '<',
     onPriceLinkClick: '<',
     onGuideClick: '<',
+    regions: '<',
   },
   template,
 };

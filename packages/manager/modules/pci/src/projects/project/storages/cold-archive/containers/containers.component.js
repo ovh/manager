@@ -24,5 +24,6 @@ export default {
     goBack: '<',
     trackClick: '<',
     trackPage: '<',
+    regions: '<',
   },
 };
