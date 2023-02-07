@@ -59,8 +59,6 @@ export const COLD_ARCHIVE_TRACKING = {
   },
 };
 
-export const REGION = 'RBX-ARCHIVE';
-
 export const DATE_FORMAT = 'DD/MM/YYYY HH:mm';
 
 export const CHECK_PRICES_DOC_LINK = {
@@ -373,7 +371,6 @@ export default {
   COLD_ARCHIVE_STATES,
   CHECK_PRICES_DOC_LINK,
   MANAGE_ARCHIVE_DOC_LINK,
-  REGION,
   ONBOARDING_DOC_LINKS,
   GUIDE_MENU_ITEMS,
   DATE_FORMAT,
