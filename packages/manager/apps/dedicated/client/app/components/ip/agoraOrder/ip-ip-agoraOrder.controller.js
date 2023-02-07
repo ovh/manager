@@ -271,27 +271,29 @@ export default class AgoraIpOrderCtrl {
         );
 
         return ipCountryAvailablePromise
-          .then((countries) => {
-            if (countries && countries.length > 0) {
-              const ipOffersByRegion = AgoraIpOrderCtrl.getRegionsOffers(
-                countries,
-              );
-              this.failoverIpOffers = this.getOfferDetails(
-                failoverIpOfferDetails,
-                ipOffersByRegion,
-                countries,
-              );
-              this.blockIpOffers = this.getOfferDetails(
-                blockIpOfferDetails,
-                ipOffersByRegion,
-                countries,
-              ).sort((a, b) => a.price.value - b.price.value);
-            } else {
-              this.ipOffers = AgoraIpOrderCtrl.filterOfferDetailsFromServiceName(
-                ipOfferDetails,
+          .then((data) => {
+            let countries = data;
+            if (data.length === 0) {
+              const REGION = AgoraIpOrderCtrl.getRegionFromServiceName(
                 this.model.selectedService.serviceName,
               );
+              countries = IP_LOCATION_GROUPS.find((group) =>
+                group.labels.includes(REGION),
+              )?.countries;
             }
+            const ipOffersByRegion = AgoraIpOrderCtrl.getRegionsOffers(
+              countries,
+            );
+            this.failoverIpOffers = this.getOfferDetails(
+              failoverIpOfferDetails,
+              ipOffersByRegion,
+              countries,
+            );
+            this.blockIpOffers = this.getOfferDetails(
+              blockIpOfferDetails,
+              ipOffersByRegion,
+              countries,
+            ).sort((a, b) => a.price.value - b.price.value);
           })
           .catch(() => {
             this.ipOffers = AgoraIpOrderCtrl.filterOfferDetailsFromServiceName(
