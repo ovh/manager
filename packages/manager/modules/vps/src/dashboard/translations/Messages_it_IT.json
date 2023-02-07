@@ -12,7 +12,7 @@
   "vps_dashboard_state_installing": "Installazione in corso...",
   "vps_dashboard_state_maintenance": "Manutenzione in corso...",
   "vps_dashboard_state_rebooting": "Riavvio in corso...",
-  "vps_dashboard_state_running": "Esecuzione in corso...",
+  "vps_dashboard_state_running": "Attivo",
   "vps_dashboard_state_stopped": "Cancellato",
   "vps_dashboard_state_stopping": "Cancellazione in corso...",
   "vps_dashboard_state_upgrading": "Modifica dell'offerta in corso...",
