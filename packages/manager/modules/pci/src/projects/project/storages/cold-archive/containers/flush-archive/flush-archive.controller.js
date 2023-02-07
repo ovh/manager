@@ -1,5 +1,5 @@
 import { TERMINATE_INPUT_PATTERN } from './flush-archive.constants';
-import { REGION, COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 import { COLD_ARCHIVE_CONTAINER_STATUS } from '../containers.constants';
 
 export default class ColdArchiveContainersFlushArchiveController {
@@ -29,7 +29,7 @@ export default class ColdArchiveContainersFlushArchiveController {
     this.trackFlushContainerModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
     this.isLoading = true;
     return this.pciStoragesColdArchiveService
-      .flushArchive(this.projectId, REGION, this.container.name)
+      .flushArchive(this.projectId, this.regions[0], this.container.name)
       .then(() => {
         this.trackFlushContainerModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
 

@@ -1,11 +1,3 @@
-import {
-  COLD_ARCHIVE_STATES as STATES,
-  REGION as DEFAULT_REGION,
-} from '../../cold-archives.constants';
-
-export const COLD_ARCHIVE_STATES = STATES;
-export const COLD_ARCHIVE_DEFAULT_REGION = DEFAULT_REGION;
-
 export const RCLONE_GUIDE = {
   DEFAULT: 'https://docs.ovh.com/us/en/storage/object-storage/s3/rclone/',
   FR: 'https://docs.ovh.com/fr/storage/object-storage/s3/rclone/',

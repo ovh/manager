@@ -1,5 +1,5 @@
 import { OBJECT_CONTAINER_USER_ROLES } from './add-user.constants';
-import { COLD_ARCHIVE_TRACKING, REGION } from '../../cold-archives.constants';
+import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 
 export default class ColdArchiveContainersAddUserController {
   /* @ngInject */
@@ -75,7 +75,7 @@ export default class ColdArchiveContainersAddUserController {
     this.isLoading = true;
     return this.$http
       .post(
-        `/cloud/project/${this.projectId}/region/${REGION}/storage/${this.container.name}/policy/${this.selectedUser.id}`,
+        `/cloud/project/${this.projectId}/region/${this.regions[0]}/storage/${this.container.name}/policy/${this.selectedUser.id}`,
         {
           roleName: this.selectedRole,
           objectKey: this.objectKey,
