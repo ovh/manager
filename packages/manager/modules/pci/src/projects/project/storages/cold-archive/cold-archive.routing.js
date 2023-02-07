@@ -2,7 +2,6 @@ import {
   CHECK_PRICES_DOC_LINK,
   COLD_ARCHIVE_TRACKING,
   GUIDE_MENU_ITEMS,
-  REGION,
   COLD_ARCHIVE_STATES,
 } from './cold-archives.constants';
 import { PCI_FEATURES } from '../../../projects.constant';
@@ -66,6 +65,12 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
+      regions: /* @ngInject */ (PciStoragesColdArchiveService) => {
+        return PciStoragesColdArchiveService.getProductRegionsAvailability().then(
+          (regions) => regions,
+        );
+      },
+
       onGuideClick: /* @ngInject */ (atInternet) => (guideId) => {
         const hit = `${COLD_ARCHIVE_TRACKING.GUIDE}_${guideId}`;
         return atInternet.trackClick({
@@ -104,10 +109,16 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
-      // The region parameter is for now hard-coded.
-      // waiting the API fix PCINT-3514
-      containers: /* @ngInject */ (PciStoragesColdArchiveService, projectId) =>
-        PciStoragesColdArchiveService.getArchiveContainers(projectId, REGION),
+      containers: /* @ngInject */ (
+        PciStoragesColdArchiveService,
+        projectId,
+        regions,
+      ) => {
+        return PciStoragesColdArchiveService.getArchiveContainers(
+          projectId,
+          regions[0],
+        );
+      },
 
       goToAddColdArchive: /* @ngInject */ ($state, projectId) => () =>
         $state.go(COLD_ARCHIVE_STATES.CONTAINER_ADD, {
