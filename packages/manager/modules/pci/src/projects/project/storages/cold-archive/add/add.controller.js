@@ -1,8 +1,8 @@
 import {
-  COLD_ARCHIVE_ADD_MESSAGES_ID,
-  COLD_ARCHIVE_DEFAULT_REGION,
-} from './add.constants';
-import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
+  COLD_ARCHIVE_TRACKING,
+  COLD_ARCHIVE_STATES,
+  REGION,
+} from '../cold-archives.constants';
 
 export default class ColdArchiveConfigurationController {
   /* @ngInject */
@@ -54,9 +54,9 @@ export default class ColdArchiveConfigurationController {
   }
 
   loadMessages() {
-    this.cucCloudMessage.unSubscribe(COLD_ARCHIVE_ADD_MESSAGES_ID);
+    this.cucCloudMessage.unSubscribe(COLD_ARCHIVE_STATES.CONTAINER_ADD);
     this.messageHandler = this.cucCloudMessage.subscribe(
-      COLD_ARCHIVE_ADD_MESSAGES_ID,
+      COLD_ARCHIVE_STATES.CONTAINER_ADD,
       { onMessage: () => this.refreshMessages() },
     );
   }
@@ -108,7 +108,7 @@ export default class ColdArchiveConfigurationController {
   createArchive() {
     this.isArchiveCreationInProgress = true;
     return this.pciStoragesColdArchiveService
-      .createArchiveContainer(this.projectId, COLD_ARCHIVE_DEFAULT_REGION, {
+      .createArchiveContainer(this.projectId, REGION, {
         ...this.archiveModel,
         ownerId: this.getUserOwnerId(),
       })
@@ -134,7 +134,7 @@ export default class ColdArchiveConfigurationController {
               message: err.data?.message || err?.message || err.data,
             },
           ),
-          COLD_ARCHIVE_ADD_MESSAGES_ID,
+          COLD_ARCHIVE_STATES.CONTAINER_ADD,
         );
       })
       .finally(() => {
