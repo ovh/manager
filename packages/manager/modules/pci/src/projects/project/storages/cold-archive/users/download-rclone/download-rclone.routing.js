@@ -2,7 +2,6 @@ import {
   RCLONE_GUIDE,
   DOWNLOAD_RCLONE_FILENAME,
   DOWNLOAD_RCLONE_FILETYPE,
-  COLD_ARCHIVE_DEFAULT_REGION,
 } from './download-rclone.constants';
 import {
   COLD_ARCHIVE_TRACKING,
@@ -35,11 +34,9 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
         userId,
       ) => PciStoragesColdArchiveService.get(projectId, userId),
-      regions: /* @ngInject */ () => {
-        return [COLD_ARCHIVE_DEFAULT_REGION];
-      },
-      storageS3Regions: /* @ngInject */ () => {
-        return [COLD_ARCHIVE_DEFAULT_REGION];
+
+      storageS3Regions: /* @ngInject */ (regions) => {
+        return regions;
       },
       rcloneGuide: /* @ngInject */ (coreConfig) => {
         return (

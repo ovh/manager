@@ -10,5 +10,6 @@ export default {
     trackClick: '<',
     trackPage: '<',
     goBack: '<',
+    regions: '<',
   },
 };
