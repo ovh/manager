@@ -1,10 +1,11 @@
 import {
   COLD_ARCHIVE_TRACKING,
   GUIDE_MENU_ITEMS,
+  COLD_ARCHIVE_STATES,
 } from '../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.storages.cold-archive.add', {
+  $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINER_ADD, {
     url: '/new',
     views: {
       'coldArchiveView@pci.projects.project.storages.cold-archive': {
