@@ -1,5 +1,4 @@
-import { COLD_ARCHIVE_DEFAULT_REGION } from './archive.constants';
-import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
+import { COLD_ARCHIVE_TRACKING, REGION } from '../../cold-archives.constants';
 
 export default class PciBlockStorageDetailsArchiveController {
   /* @ngInject */
@@ -26,11 +25,7 @@ export default class PciBlockStorageDetailsArchiveController {
     this.trackArchiveModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
     this.isLoading = true;
     return this.pciStoragesColdArchiveService
-      .startArchiveContainer(
-        this.projectId,
-        COLD_ARCHIVE_DEFAULT_REGION,
-        this.container.name,
-      )
+      .startArchiveContainer(this.projectId, REGION, this.container.name)
       .then(() => {
         this.trackArchiveModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
         return this.goBack(
