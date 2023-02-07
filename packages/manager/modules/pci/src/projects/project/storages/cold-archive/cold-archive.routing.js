@@ -8,7 +8,7 @@ import {
 import { PCI_FEATURES } from '../../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.storages.cold-archive', {
+  $stateProvider.state(COLD_ARCHIVE_STATES.ROOT, {
     url: '/cold-archive',
     component: 'pciProjectStorageColdArchive',
     onEnter: /* @ngInject */ (pciFeatureRedirect) => {
@@ -24,10 +24,10 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((containers) =>
           containers.length === 0
             ? {
-                state: 'pci.projects.project.storages.cold-archive.onboarding',
+                state: COLD_ARCHIVE_STATES.ONBOARDING,
               }
             : {
-                state: 'pci.projects.project.storages.cold-archive.containers',
+                state: COLD_ARCHIVE_STATES.CONTAINERS,
               },
         ),
     resolve: {
@@ -95,12 +95,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.is(COLD_ARCHIVE_STATES.CONTAINERS, $transition$.params()),
 
       userListLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.storages.cold-archive.users', {
+        $state.href(COLD_ARCHIVE_STATES.S3_USERS, {
           projectId,
         }),
 
       coldArchiveContainersLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.storages.cold-archive', {
+        $state.href(COLD_ARCHIVE_STATES.ROOT, {
           projectId,
         }),
 
@@ -110,7 +110,7 @@ export default /* @ngInject */ ($stateProvider) => {
         PciStoragesColdArchiveService.getArchiveContainers(projectId, REGION),
 
       goToAddColdArchive: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.storages.cold-archive.add', {
+        $state.go(COLD_ARCHIVE_STATES.CONTAINER_ADD, {
           projectId,
         }),
 

@@ -3,12 +3,14 @@ import {
   DOWNLOAD_RCLONE_FILENAME,
   DOWNLOAD_RCLONE_FILETYPE,
   COLD_ARCHIVE_DEFAULT_REGION,
-  COLD_ARCHIVE_STATES,
 } from './download-rclone.constants';
-import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
+import {
+  COLD_ARCHIVE_TRACKING,
+  COLD_ARCHIVE_STATES,
+} from '../../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state(`${COLD_ARCHIVE_STATES.S3_USERS_DOWNLOAD_RCLONE}`, {
+  $stateProvider.state(COLD_ARCHIVE_STATES.S3_USERS_DOWNLOAD_RCLONE, {
     url: '/rclone/download?userId',
     views: {
       modal: {
