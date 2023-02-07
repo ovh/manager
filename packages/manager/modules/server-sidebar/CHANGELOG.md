@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.29.2...@ovh-ux/manager-server-sidebar@3.30.0) (2023-02-07)
+
+
+### Bug Fixes
+
+* container sidebar production ([eb760fd](https://github.com/ovh/manager/commit/eb760fd466a6ae1505b67f2c1479c61f3bbb2d25))
+
+
+### Features
+
+* move server sidebar to container ([f446458](https://github.com/ovh/manager/commit/f446458542308f1ba0ae2cbccf9ed198081b5daa))
+
+
+
+
+
 # [3.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.28.0...@ovh-ux/manager-server-sidebar@3.29.0) (2022-12-19)
 
 

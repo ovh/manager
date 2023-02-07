@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.111.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.110.0...@ovh-ux/manager-pci@5.111.0) (2023-02-07)
+
+
+### Features
+
+* **container:** add public-cloud sidebar ([26330e5](https://github.com/ovh/manager/commit/26330e576cb84eda7a37a3f9f012f312f13409a0))
+
+
+
+
+
 # [5.110.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.109.0...@ovh-ux/manager-pci@5.110.0) (2023-02-02)
 
 

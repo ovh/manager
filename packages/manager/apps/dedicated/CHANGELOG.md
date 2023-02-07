@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.47.1...@ovh-ux/manager-dedicated@17.48.0) (2023-02-07)
+
+
+### Bug Fixes
+
+* container sidebar production ([eb760fd](https://github.com/ovh/manager/commit/eb760fd466a6ae1505b67f2c1479c61f3bbb2d25))
+* **container:** hpc sidebar, nutanix order ([c9303a6](https://github.com/ovh/manager/commit/c9303a60867f7cc44df33400293a6c6b8eaf3b9c))
+
+
+### Features
+
+* move server sidebar to container ([f446458](https://github.com/ovh/manager/commit/f446458542308f1ba0ae2cbccf9ed198081b5daa))
+
+
+
+
+
 ## [17.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.47.0...@ovh-ux/manager-dedicated@17.47.1) (2023-02-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
