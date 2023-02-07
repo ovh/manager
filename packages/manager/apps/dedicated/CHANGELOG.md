@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.48.0...@ovh-ux/manager-dedicated@17.48.1) (2023-02-07)
+
+
+### Bug Fixes
+
+* remove sidebar from applications ([8f37d2a](https://github.com/ovh/manager/commit/8f37d2ab49642b40d1adbb4817530e4f354ee4f3))
+
+
+
+
+
 # [17.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.47.1...@ovh-ux/manager-dedicated@17.48.0) (2023-02-07)
 
 
