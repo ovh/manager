@@ -66,7 +66,7 @@ export default class ColdArchiveLinkUserArchiveController {
 
   getCredentialTranslation(user) {
     return this.$translate.instant(
-      user.s3Credentials.length > 0
+      user.s3Credentials
         ? 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_credential'
         : 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_no_credential',
     );
@@ -213,7 +213,7 @@ export default class ColdArchiveLinkUserArchiveController {
     this.trackClick(
       `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.EXISTING_USER}::${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}`,
     );
-    if (user.s3Credentials?.length || user.s3Credentials?.access) {
+    if (user.s3Credentials?.access) {
       this.userModel.linkedMode.isInProgress = true;
       return this.pciStoragesColdArchiveService
         .getS3Credentials(this.projectId, user.id)
