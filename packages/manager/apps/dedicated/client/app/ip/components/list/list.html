@@ -319,6 +319,9 @@
                     </ul>
                 </td>
 
+                <!-- Virtual MAC -->
+                <td data-ng-if="advancedModeFilter"></td>
+
                 <!-- Mitigation -->
                 <td data-ng-if="advancedModeFilter"></td>
 
@@ -470,6 +473,22 @@
                             </button>
                         </span>
                     </div>
+                </td>
+                <!-- VMAC -->
+                <td data-ng-if="advancedModeFilter">
+                    <span
+                        data-ng-if="ipBlock.virtualMac.status === 'OK'"
+                        data-ng-bind="ipBlock.virtualMac.virtualMacs[ip.ip] || '-'"
+                    >
+                    </span>
+                    <span
+                        class="oui-badge"
+                        data-ng-if="ipBlock.virtualMac.status === 'PENDING'"
+                        data-translate="ip_taskpending_label"
+                        data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
+                        data-oui-tooltip-placement="top"
+                    >
+                    </span>
                 </td>
                 <!-- Mitigation -->
                 <td data-ng-if="advancedModeFilter">
