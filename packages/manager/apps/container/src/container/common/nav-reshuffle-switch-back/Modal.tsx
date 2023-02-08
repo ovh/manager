@@ -1,7 +1,7 @@
-import { useShell } from '@/context';
 import React from 'react';
 
 import { useTranslation } from 'react-i18next';
+import { useShell } from '@/context';
 
 import style from './style.module.scss';
 

@@ -21,6 +21,7 @@ const usePreloader = (shell: Shell, iframe: HTMLIFrameElement) => {
     };
   }, [shell]);
 
+
   useEffect(() => {
     if (iframe) {
       const showPreloader = () => {

@@ -50,7 +50,7 @@ initShell().then((shell) => {
         .use({
           type: 'postProcessor',
           name: 'normalize',
-          process: function process(value: string, key: string) {
+          process: function process(value: string) {
             if (!value) {
               return value;
             }

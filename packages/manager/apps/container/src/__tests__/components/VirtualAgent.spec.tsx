@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import VirtualAgent from '../../components/VirtualAgent';
 
 // TODO : Currently, jsdom doesn't support <dialog> and HTMLDialogElement, which makes the component not testable
@@ -6,6 +7,7 @@ import VirtualAgent from '../../components/VirtualAgent';
 // Keep this empty test as a reminder to test the component when the situation changes.
 describe('empty test', () => {
   it('passes', () => {
+    // eslint-disable-next-line
     console.warn(
       // eslint-disable-next-line no-multi-str
       'IMPORTANT: VirtualAgent component currently not testable due to jsdom issue related to HTMLDialogElement API\

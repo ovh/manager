@@ -80,8 +80,11 @@ const UserAccountMenu = ({
             </strong>
           </p>
         )}
-        <p className="mb-0" data-navi-id={ isProvider ? "account-username" : "account-email" }>
-          <strong>{ isProvider? user.auth.user : user.email }</strong>
+        <p
+          className="mb-0"
+          data-navi-id={isProvider ? 'account-username' : 'account-email'}
+        >
+          <strong>{isProvider ? user.auth.user : user.email}</strong>
         </p>
         {user.email !== user.nichandle && (
           <p className="mb-0">
@@ -94,7 +97,10 @@ const UserAccountMenu = ({
         )}
 
         {isProvider && (
-          <p className={`ml-0 oui-badge oui-badge_warning`} data-navi-id="account-auth-method">
+          <p
+            className={`ml-0 oui-badge oui-badge_warning`}
+            data-navi-id="account-auth-method"
+          >
             <strong>{t(`user_account_menu_role_provider`)}</strong>
           </p>
         )}

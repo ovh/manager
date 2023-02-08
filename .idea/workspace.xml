@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bb47032b-12bb-4749-8636-6c1fb27e2af3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.lintstagedrc.json" afterPath="$PROJECT_DIR$/.lintstagedrc.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/apps/container/src/components/VirtualAgent.tsx" afterPath="$PROJECT_DIR$/packages/manager/apps/container/src/components/VirtualAgent.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/apps/container/src/container/common/nav-reshuffle-switch-back/Modal.tsx" afterPath="$PROJECT_DIR$/packages/manager/apps/container/src/container/common/nav-reshuffle-switch-back/Modal.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/apps/container/src/container/legacy/account-sidebar/UserInfos/UserDetails.tsx" afterPath="$PROJECT_DIR$/packages/manager/apps/container/src/container/legacy/account-sidebar/UserInfos/UserDetails.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/apps/container/src/container/legacy/index.tsx" afterPath="$PROJECT_DIR$/packages/manager/apps/container/src/container/legacy/index.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/apps/container/src/container/nav-reshuffle/header/user-account-menu/Content.tsx" afterPath="$PROJECT_DIR$/packages/manager/apps/container/src/container/nav-reshuffle/header/user-account-menu/Content.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/apps/nasha-react-app/src/pages/index.tsx" afterPath="$PROJECT_DIR$/packages/manager/apps/nasha-react-app/src/pages/index.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/api/src/client.ts" afterPath="$PROJECT_DIR$/packages/manager/core/api/src/client.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-chakra-showcase/src/Modal.stories.tsx" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-chakra-showcase/src/Modal.stories.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-chakra-showcase/src/vite-env.d.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-chakra-showcase/src/vite-env.d.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-chakra-showcase/vite.config.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-chakra-showcase/vite.config.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-shell/__tests__/plugin/ux/ux.spec.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-shell/__tests__/plugin/ux/ux.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/AddIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/AddIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowDownIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowDownIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowDownRightIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowDownRightIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowLeftIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowLeftIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowRightIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowRightIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowTransferIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowTransferIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowUpIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowUpIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowUpRightIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ArrowUpRightIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/BellIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/BellIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/BinIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/BinIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/BookIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/BookIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/CalendarIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/CalendarIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/CartIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/CartIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ChatIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ChatIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/CheckIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/CheckIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ChevronDownIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ChevronDownIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ChevronLeftIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ChevronLeftIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ChevronRightIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ChevronRightIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ChevronUpDownIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ChevronUpDownIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ChevronUpIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ChevronUpIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ClockWaitIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ClockWaitIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/CloseIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/CloseIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/CopyIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/CopyIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/EllipsisIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/EllipsisIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/EllipsisVerticalIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/EllipsisVerticalIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/EmailIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/EmailIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/EqualIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/EqualIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ErrorCircleIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ErrorCircleIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ErrorIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ErrorIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ExternalLinkIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ExternalLinkIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/EyeClosedIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/EyeClosedIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/EyeOpenIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/EyeOpenIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/FileIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/FileIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/FilterIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/FilterIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/FolderIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/FolderIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/GearIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/GearIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/GuidesIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/GuidesIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/HamburgerIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/HamburgerIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/HelpCircleIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/HelpCircleIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/HelpIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/HelpIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/HomeIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/HomeIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/InfoCircleIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/InfoCircleIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/InfoIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/InfoIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/LightbulbIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/LightbulbIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ListIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ListIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/LocationIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/LocationIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/LockIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/LockIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/OKIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/OKIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/OVHIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/OVHIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/PenIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/PenIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/PhoneIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/PhoneIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/PlusIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/PlusIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/PrinterIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/PrinterIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/RefreshIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/RefreshIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SearchIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SearchIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SettingsIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SettingsIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ShapeCircleIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/ShapeCircleIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SortDownIcon.tsx" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SortDownIcon.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SortIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SortIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SortInactiveIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SortInactiveIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SortUpIcon.tsx" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SortUpIcon.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SuccessCircleIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SuccessCircleIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SuccessIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/SuccessIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/TimeIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/TimeIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/TriangleDownIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/TriangleDownIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/TriangleLeftIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/TriangleLeftIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/TriangleRightIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/TriangleRightIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/TriangleUpIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/TriangleUpIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/TruckIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/TruckIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/UserIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/UserIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/WarningCircleIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/WarningCircleIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/WarningIcon.ts" afterPath="$PROJECT_DIR$/packages/manager/core/ovh-themes/ui-kit/ovh-components/icons/system/WarningIcon.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/manager/core/request-tagger/src/requestTagger.ts" afterPath="$PROJECT_DIR$/packages/manager/core/request-tagger/src/requestTagger.ts" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="20" />
+    <option name="y" value="45" />
+    <option name="width" value="1400" />
+    <option name="height" value="773" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bb47032b-12bb-4749-8636-6c1fb27e2af3" name="Default" comment="" />
+      <created>1675952891871</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1675952891871</updated>
+      <workItem from="1675952893367" duration="93000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="93000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="20" y="45" width="1400" height="773" extended-state="0" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+</project>

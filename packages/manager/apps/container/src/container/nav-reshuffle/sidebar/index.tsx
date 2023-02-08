@@ -47,6 +47,7 @@ const Sidebar = (): JSX.Element => {
   const trackingPlugin = shell.getPlugin('tracking');
   const navigationPlugin = shell.getPlugin('navigation');
   const environmentPlugin = shell.getPlugin('environment');
+  // eslint-disable-next-line
   const routingPlugin = shell.getPlugin('routing');
   const reketInstance = useReket();
   const { betaVersion } = useContainer();

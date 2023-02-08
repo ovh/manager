@@ -38,6 +38,7 @@ export function setupDevApplication(shell: Shell) {
       };
       apps[devApp] = devConfig;
       containerApp = devConfig;
+      // eslint-disable-next-line
       console.error(
         `Application '${devApp}' doesn't exist in 2API configuration.`,
       );
