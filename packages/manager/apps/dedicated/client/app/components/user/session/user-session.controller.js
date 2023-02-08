@@ -48,6 +48,7 @@ angular.module('App').controller(
             'support',
             'app.account',
             'app.otrs',
+            'iam',
           ].some((name) => this.$state.includes(name));
         }),
       ];
