@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.53.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.53.1...@ovh-ux/manager-telecom@13.53.2) (2023-02-08)
+
+
+### Bug Fixes
+
+* **telecom:** add missing ng-ovh-actions-menu import ([#8873](https://github.com/ovh/manager/issues/8873)) ([9cf3e30](https://github.com/ovh/manager/commit/9cf3e3067c635324305f037e8221a7316cf9e5eb))
+
+
+
+
+
 ## [13.53.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.53.0...@ovh-ux/manager-telecom@13.53.1) (2023-02-07)
 
 

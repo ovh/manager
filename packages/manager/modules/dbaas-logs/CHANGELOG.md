@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.10.0...@ovh-ux/manager-dbaas-logs@1.10.1) (2023-02-08)
+
+
+### Bug Fixes
+
+* **dedicated.dbass-logs:** load streams with iceberg ([#8850](https://github.com/ovh/manager/issues/8850)) ([30406ce](https://github.com/ovh/manager/commit/30406ced7c78bfaf7c52b90cd03328382512d556))
+
+
+
+
+
 # [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.9.1...@ovh-ux/manager-dbaas-logs@1.10.0) (2023-02-07)
 
 

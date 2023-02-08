@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.48.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.48.1...@ovh-ux/manager-dedicated@17.48.2) (2023-02-08)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** order ip in us region ([#8857](https://github.com/ovh/manager/issues/8857)) ([8bb49e2](https://github.com/ovh/manager/commit/8bb49e2bd3b37512cf475943fadef94b74e76273))
+* **dedicated.ip:** vmac is not visible ([#8862](https://github.com/ovh/manager/issues/8862)) ([1cee671](https://github.com/ovh/manager/commit/1cee67175299a3026c85fa79a9f28cef3a2a9785))
+
+
+
+
+
 ## [17.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.48.0...@ovh-ux/manager-dedicated@17.48.1) (2023-02-07)
 
 
