@@ -8,5 +8,9 @@
   "sms_tabs_guides": "Manuais",
   "sms_rename_error": "Impossible de renommer votre pack {{serviceName}}.",
   "sms_loading_error": "Une erreur est survenue lors du chargement de SMS",
-  "sms_feature_soon_available": "Cette fonctionnalité sera bientôt disponible."
+  "sms_feature_soon_available": "Cette fonctionnalité sera bientôt disponible.",
+  "sms_header_guide": "Manuais",
+  "sms_header_guide_start_with_sms": "Dar os primeiros passos com as SMS OVHcloud",
+  "sms_smpp_channel_qualification_marketing": "Marketing",
+  "sms_smpp_channel_qualification_transactional": "Transacional"
 }

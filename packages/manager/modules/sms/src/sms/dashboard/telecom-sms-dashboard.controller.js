@@ -5,11 +5,17 @@ const STATISTICS_FILTER = {
   ALL: 'all',
 };
 
-const RELOAD_CREDITS_HIT_NAME = 'sms::service::dashboard::report::add-credit';
-
+const RELOAD_CREDITS_HIT_NAME = 'report::credit-account';
 export default class {
   /* @ngInject */
-  constructor($translate, OvhApiSms, TucSmsMediator, TucToastError) {
+  constructor(
+    $translate,
+    atInternet,
+    OvhApiSms,
+    SmsService,
+    TucSmsMediator,
+    TucToastError,
+  ) {
     this.$translate = $translate;
     this.api = {
       sms: {
@@ -19,60 +25,108 @@ export default class {
         jobs: OvhApiSms.Jobs().v6(),
       },
     };
+    this.atInternet = atInternet;
+    this.smsService = SmsService;
     this.TucSmsMediator = TucSmsMediator;
     this.TucToastError = TucToastError;
   }
 
   $onInit() {
+    this.DASHBOARD_TRACKING_PREFIX = `sms::service::${
+      this.isSmppAccount ? 'dashboard-smpp' : 'dashboard'
+    }`;
+    this.atInternet.trackPage({
+      name: this.DASHBOARD_TRACKING_PREFIX,
+    });
     this.actions = [
-      {
-        name: 'compose_message',
-        sref: 'sms.service.sms.compose',
-        text: this.$translate.instant('sms_actions_send_sms'),
-        hit: 'sms::service::dashboard::shortcuts::compose',
-      },
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'compose_message',
+              sref: 'sms.service.sms.compose',
+              text: this.$translate.instant('sms_actions_send_sms'),
+              hit: 'sms::service::dashboard::compose',
+            },
+          ]
+        : []),
       {
         name: 'recredit_options',
         sref: 'sms.service.order',
         text: this.$translate.instant('sms_actions_credit_account'),
-        hit: 'sms::service::dashboard::shortcuts::order',
+        hit: `${this.DASHBOARD_TRACKING_PREFIX}::credit-account`,
       },
       {
-        name: 'manage_recipient_new',
-        sref: 'sms.service.receivers',
-        text: this.$translate.instant('sms_actions_create_contact'),
-        hit: 'sms::service::dashboard::shortcuts::add-receivers',
+        name: 'credit_transfer',
+        sref: 'sms.service.dashboard.creditTransfer',
+        text: this.$translate.instant('sms_actions_credit_transfer'),
+        hit: `${this.DASHBOARD_TRACKING_PREFIX}::transfer-credit`,
       },
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'manage_recipient_new',
+              sref: 'sms.service.receivers',
+              text: this.$translate.instant('sms_actions_create_contact'),
+              hit: 'sms::service::dashboard::add-receivers',
+            },
+          ]
+        : []),
       {
         name: 'manage_senders',
         sref: 'sms.service.senders.add',
         text: this.$translate.instant('sms_actions_create_sender'),
-        hit: 'sms::service::dashboard::shortcuts::add-senders',
+        hit: `${this.DASHBOARD_TRACKING_PREFIX}::add-senders`,
       },
-      {
-        name: 'manage_soapi_users',
-        sref: 'sms.service.users',
-        text: this.$translate.instant('sms_actions_create_api_user'),
-        hit: 'sms::service::dashboard::shortcuts::add-user',
-      },
-      {
-        name: 'manage_blacklisted_senders',
-        sref: 'sms.service.receivers',
-        text: this.$translate.instant('sms_actions_clean_contact_list'),
-        hit: 'sms::service::dashboard::shortcuts::clean-receivers',
-      },
-      {
-        name: 'create_campaign',
-        sref: 'sms.service.batches.create',
-        text: this.$translate.instant('sms_actions_create_campaign'),
-        hit: 'sms::service::dashboard::shortcuts::add-campaign',
-      },
-      {
-        name: 'campaign_history',
-        sref: 'sms.service.batches.history',
-        text: this.$translate.instant('sms_actions_campaign_history'),
-        hit: 'sms::service::dashboard::shortcuts::historic-campaigns',
-      },
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'manage_soapi_users',
+              sref: 'sms.service.users',
+              text: this.$translate.instant('sms_actions_create_api_user'),
+              hit: 'sms::service::dashboard::add-user',
+            },
+          ]
+        : []),
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'manage_blacklisted_senders',
+              sref: 'sms.service.receivers',
+              text: this.$translate.instant('sms_actions_clean_contact_list'),
+              hit: 'sms::service::dashboard::clean-receivers',
+            },
+          ]
+        : []),
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'create_campaign',
+              sref: 'sms.service.batches.create',
+              text: this.$translate.instant('sms_actions_create_campaign'),
+              hit: 'sms::service::dashboard::add-campaign',
+            },
+          ]
+        : []),
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'campaign_history',
+              sref: 'sms.service.batches.history',
+              text: this.$translate.instant('sms_actions_campaign_history'),
+              hit: 'sms::service::dashboard::historic-campaigns',
+            },
+          ]
+        : []),
+      ...(this.isSmppAccount
+        ? [
+            {
+              name: 'option_smpp_parameter',
+              sref: 'sms.service.options.smppParameter',
+              text: this.$translate.instant('sms_actions_smpp_parameter'),
+              hit: 'sms::service::dashboard-smpp::configure-smpp',
+            },
+          ]
+        : []),
     ];
 
     this.statisticsFilters = Object.values(STATISTICS_FILTER).map((value) => ({
@@ -81,11 +135,23 @@ export default class {
     }));
 
     [this.statisticFilter] = this.statisticsFilters;
+
+    if (this.isSmppAccount) {
+      this.smppLoading = true;
+      this.smsService
+        .getSmppSettings(this.serviceName)
+        .then((result) => {
+          this.smppSettings = result;
+        })
+        .finally(() => {
+          this.smppLoading = false;
+        });
+    }
     return this.getStatistics();
   }
 
-  static getTrackName() {
-    return RELOAD_CREDITS_HIT_NAME;
+  getTrackName() {
+    return `${this.DASHBOARD_TRACKING_PREFIX}::${RELOAD_CREDITS_HIT_NAME}`;
   }
 
   getStatistics() {
@@ -163,5 +229,19 @@ export default class {
       .finally(() => {
         this.loadingStats = false;
       });
+  }
+
+  onGoToCreditTransfer() {
+    this.trackClick(
+      `${this.DASHBOARD_TRACKING_PREFIX}::report::transfer-credit`,
+    );
+    return this.goToCreditTransfer();
+  }
+
+  onGoToCreditOrder() {
+    this.trackClick(
+      `${this.DASHBOARD_TRACKING_PREFIX}::report::credit-account`,
+    );
+    return this.goToCreditOrder();
   }
 }

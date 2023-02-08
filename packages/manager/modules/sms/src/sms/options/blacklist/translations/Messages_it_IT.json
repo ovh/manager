@@ -1,6 +1,6 @@
 {
   "sms_section_back_link": "Ritorna alle opzioni",
-  "sms_senders_blacklisted_manage_title": "Gestisci i mittenti inseriti nella blacklist",
+  "sms_senders_blacklisted_manage_title": "Gestisci i destinatari inseriti nella blacklist",
   "sms_senders_blacklisted_information_title": "Informazioni",
   "sms_senders_blacklisted_information_text_1": "Lista dei tuoi destinatari che non desiderano più ricevere SMS da parte tua.",
   "sms_senders_blacklisted_information_text_2": "In caso di rimozione di un numero dalla lista, la ricezione degli SMS provenienti dai tuoi mittenti verrà ripristinata verso questo destinatario.",
@@ -9,8 +9,8 @@
   "sms_senders_blacklisted_delete_list_success": "Eliminazione in corso...",
   "sms_senders_blacklisted_label_date": "Data",
   "sms_senders_blacklisted_label_number": "Numero",
-  "sms_senders_blacklisted_empty": "Nessun mittente inserito nella blacklist. ",
-  "sms_senders_blacklisted_title": "Elimina il mittente inserito nella blacklist.",
-  "sms_senders_blacklisted_confirm": "Vuoi davvero eliminare il mittente inserito nella blacklist <b>\"{{ sender }}\"</b>?",
-  "sms_senders_blacklisted_sender_ko": "Impossibile eliminare il mittente inserito nella blacklist: <br/>{{error}}"
+  "sms_senders_blacklisted_empty": "Nessun destinatario inserito nella blacklist.",
+  "sms_senders_blacklisted_title": "Elimina il destinatario inserito nella blacklist",
+  "sms_senders_blacklisted_confirm": "Vuoi davvero eliminare il destinatario inserito nella blacklist <b>\"{{ sender }}\"</b>?",
+  "sms_senders_blacklisted_sender_ko": "Impossibile eliminare il destinatario blacklist.<br/>{{error}}"
 }
