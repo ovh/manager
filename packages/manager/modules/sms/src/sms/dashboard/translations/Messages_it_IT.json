@@ -19,5 +19,7 @@
   "sms_statictics_credit_reload": "Ricarica crediti",
   "sms_statistics_sent_number": "Numero di SMS inviati",
   "sms_statistics_delivered_number": "Numero di SMS consegnati",
-  "sms_statistics_stop_subscribe_number": "Numero di disiscrizioni"
+  "sms_statistics_stop_subscribe_number": "Numero di disiscrizioni",
+  "sms_actions_credit_transfer": "Trasferire crediti",
+  "sms_actions_smpp_parameter": "Impostare il tuo SMPP"
 }

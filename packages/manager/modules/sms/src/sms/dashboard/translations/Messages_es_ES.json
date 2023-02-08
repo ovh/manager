@@ -19,5 +19,7 @@
   "sms_statictics_credit_reload": "Recargar créditos",
   "sms_statistics_sent_number": "Número de SMS enviados",
   "sms_statistics_delivered_number": "Número de SMS entregados",
-  "sms_statistics_stop_subscribe_number": "Número de bajas"
+  "sms_statistics_stop_subscribe_number": "Número de bajas",
+  "sms_actions_credit_transfer": "Transferir crédito",
+  "sms_actions_smpp_parameter": "Configurar mi SMPP"
 }

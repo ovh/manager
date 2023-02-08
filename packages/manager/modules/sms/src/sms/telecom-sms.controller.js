@@ -23,6 +23,11 @@ export default class {
       .then(() => {
         this.service = this.TucSmsMediator.getCurrentSmsService();
         this.serviceNameSave = this.updateServiceNameSave.bind(this);
+        if (this.isSmppAccount) {
+          this.serviceNameAppendix = this.$translate.instant(
+            `sms_smpp_channel_qualification_${this.service.channel}`,
+          );
+        }
       })
       .catch((error) => {
         this.TucToast.error(

@@ -74,7 +74,13 @@
     </div>
 
     <h2
-        class="oui-header__description"
+        class="oui-header__description d-inline"
         data-ng-bind=":: $ctrl.serviceName"
+    ></h2>
+
+    <h2
+        data-ng-if="$ctrl.serviceNameAppendix"
+        class="oui-header__description d-inline"
+        data-ng-bind=":: ' | ' + $ctrl.serviceNameAppendix"
     ></h2>
 </form>

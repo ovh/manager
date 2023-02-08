@@ -1,4 +1,4 @@
-export default /* @ngInject */ ($http, $timeout) => ({
+export default /* @ngInject */ ($http, $timeout, iceberg) => ({
   getDocument(serviceName, from, to, batchId = null) {
     return $http({
       url: `/sms/${serviceName}/document`,
@@ -26,5 +26,44 @@ export default /* @ngInject */ ($http, $timeout) => ({
         window.location.href = document.getUrl;
       });
     });
+  },
+
+  getAccountList() {
+    return iceberg('/sms')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .sort('description', 'ASC')
+      .execute(null, true)
+      .$promise.then(({ data }) => data);
+  },
+
+  postCreditTransfer(serviceName, params) {
+    return $http
+      .post(`/sms/${serviceName}/transferCredits`, params)
+      .then(({ data }) => data);
+  },
+
+  getSmppSettings(serviceName) {
+    return $http
+      .get(`/sms/${serviceName}/smpp/settings`)
+      .then(({ data }) => data);
+  },
+
+  postResetSmppPassword(serviceName) {
+    return $http
+      .post(`/sms/${serviceName}/smpp/password`)
+      .then(({ data }) => data);
+  },
+
+  getAllowedIps(serviceName) {
+    return $http
+      .get(`/sms/${serviceName}/smpp/allowedIPs`)
+      .then(({ data }) => data);
+  },
+
+  putAllowedIps(serviceName, params) {
+    return $http
+      .put(`/sms/${serviceName}/smpp/allowedIPs`, params)
+      .then(({ data }) => data);
   },
 });
