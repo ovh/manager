@@ -56,6 +56,16 @@ const root: Node = {
           features: ['contact:management'],
         },
         {
+          id: 'account_iam',
+          translation: 'sidebar_account_iam',
+          routing: {
+            application: 'dedicated',
+            hash: '#/iam',
+          },
+          count: false,
+          features: ['iam'],
+        },
+        {
           id: 'billing_services',
           translation: 'sidebar_billing_ssh',
           routing: {

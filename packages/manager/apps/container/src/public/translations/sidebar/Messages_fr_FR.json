@@ -135,6 +135,7 @@
   "sidebar_orders": "Mes commandes",
   "sidebar_account_profile": "Mon profil",
   "sidebar_account_contacts": "Mes contacts",
+  "sidebar_account_iam": "Identités et accès (IAM)",
   "sidebar_billing_services": "Mes services",
   "sidebar_billing_ssh": "Mes clés SSH",
   "sidebar_billing_bills": "Mes factures",
