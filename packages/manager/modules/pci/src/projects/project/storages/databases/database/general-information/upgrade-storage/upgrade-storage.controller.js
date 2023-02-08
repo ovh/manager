@@ -16,31 +16,41 @@ export default class UpgradeStorageCtrl {
       this.database.disk.size - this.flavor.minDiskSize;
     this.additionalDiskSize = this.originallyAddedDiskSize;
 
+    const engine = this.engines.find(
+      (engineObject) => engineObject.name === this.database.engine,
+    );
+    this.nbNodes = this.database.nodes.length;
+    this.storageNodeFactor = engine.isDistributedStorage ? 1 : this.nbNodes;
+
     // compute initial price and tax
     this.initialPrice =
-      this.database.nodes.length *
-      (this.flavor.hourlyPrice.priceInUcents +
-        this.flavor.hourlyPricePerGB.priceInUcents *
-          this.originallyAddedDiskSize);
+      this.nbNodes * this.flavor.hourlyPrice.priceInUcents +
+      this.flavor.hourlyPricePerGB.priceInUcents *
+        this.originallyAddedDiskSize *
+        this.storageNodeFactor;
+
     this.initialTax =
-      this.database.nodes.length *
-      (this.flavor.hourlyPrice.tax +
-        this.flavor.hourlyPricePerGB.tax * this.originallyAddedDiskSize);
+      this.nbNodes * this.flavor.hourlyPrice.tax +
+      this.flavor.hourlyPricePerGB.tax *
+        this.originallyAddedDiskSize *
+        this.storageNodeFactor;
   }
 
   get priceDelta() {
     const newPrice =
-      this.database.nodes.length *
-      (this.flavor.hourlyPrice.priceInUcents +
-        this.flavor.hourlyPricePerGB.priceInUcents * this.additionalDiskSize);
+      this.nbNodes * this.flavor.hourlyPrice.priceInUcents +
+      this.flavor.hourlyPricePerGB.priceInUcents *
+        this.additionalDiskSize *
+        this.storageNodeFactor;
     return newPrice - this.initialPrice;
   }
 
   get taxDelta() {
     const newTax =
-      this.database.nodes.length *
-      (this.flavor.hourlyPrice.tax +
-        this.flavor.hourlyPricePerGB.tax * this.additionalDiskSize);
+      this.nbNodes * this.flavor.hourlyPrice.tax +
+      this.flavor.hourlyPricePerGB.tax *
+        this.additionalDiskSize *
+        this.storageNodeFactor;
     return newTax - this.initialTax;
   }
 
