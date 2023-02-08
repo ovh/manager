@@ -58,6 +58,7 @@ import 'ovh-ng-input-password';
 import '@ovh-ux/ui-kit';
 import 'angular-translate-loader-pluggable';
 import '@ovh-ux/manager-telecom-styles';
+import '@ovh-ux/ng-ovh-actions-menu';
 /* eslint-enable */
 
 import get from 'lodash/get';
@@ -161,6 +162,7 @@ export default async (containerEl, shellClient) => {
         'ngOvhContracts',
         'ngResource',
         'ngSanitize',
+        'ngOvhActionsMenu',
         ngOvhCheckboxTable,
         ngOvhApiWrappers,
         ngOvhBrowserAlert,
