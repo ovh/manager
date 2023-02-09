@@ -257,12 +257,14 @@ export default class IpListController {
               collapsed: !ip.isUniq,
             };
           });
+          $scope.loading.table = false;
           $scope.ipsList.forEach(checkIps);
         })
         .catch((error) => {
           if (error?.xhrStatus === 'abort') {
             return;
           }
+          $scope.loading.table = false;
           Alerter.error(`
             ${$translate.instant('ip_dashboard_error')}
             <br />
@@ -271,7 +273,6 @@ export default class IpListController {
         })
         .finally(() => {
           cancelFetch = null;
-          $scope.loading.table = false;
         });
     }
 
