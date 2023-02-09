@@ -6,6 +6,7 @@
     </oui-header>
     <!--return to dashboard-->
     <oui-back-button data-on-click="$ctrl.resumeOrder()"> </oui-back-button>
+    <div data-ovh-alert="{{:: $ctrl.ALERT_ID}}"></div>
     <oui-stepper
         data-current-index="$ctrl.currentStep"
         data-on-finish="$ctrl.redirectToPaymentPage()"
