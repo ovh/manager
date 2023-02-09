@@ -26,8 +26,8 @@ export default /* @ngInject */ ($stateProvider) => {
         PciStoragesColdArchiveService,
       ) => PciStoragesColdArchiveService.getUserDetails(projectId, userId),
       credentials: /* @ngInject */ (
-        userId,
         projectId,
+        userId,
         PciStoragesColdArchiveService,
       ) => PciStoragesColdArchiveService.getS3Credentials(projectId, userId),
       goBack: /* @ngInject */ (goToUsers) => goToUsers,
