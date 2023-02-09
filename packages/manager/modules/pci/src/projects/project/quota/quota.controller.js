@@ -2,6 +2,7 @@ import {
   RESTRICTED_CORES,
   RESTRICTED_RAM,
   RESTRICTED_INSTANCES,
+  PRODUCTS,
 } from './quota.constants';
 import { QUOTA_INCREASE_MODES } from './increase-request/increase.constants';
 
@@ -23,6 +24,7 @@ export default class {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.PciProjectQuota = PciProjectQuota;
+    this.PRODUCTS = PRODUCTS;
   }
 
   $onInit() {
