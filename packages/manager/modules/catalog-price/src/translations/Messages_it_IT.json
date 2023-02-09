@@ -9,5 +9,6 @@
   "order_catalog_price_interval_year": "anno",
   "order_catalog_price_from": "Da",
   "order_catalog_price_to": "a",
-  "order_catalog_price_interval_hour": "ora"
+  "order_catalog_price_interval_hour": "ora",
+  "order_catalog_price_beta_free": "Gratis durante la fase beta."
 }

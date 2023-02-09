@@ -1,3 +1,5 @@
+import { IS_BETA } from '../../../app.constants';
+
 export default class AppReviewController {
   /* @ngInject */
   constructor(coreConfig, ovhManagerRegionService, AppService, $translate) {
@@ -8,6 +10,7 @@ export default class AppReviewController {
   }
 
   $onInit() {
+    this.IS_BETA = IS_BETA;
     const { nbResources } = this.appModel.resource;
     const replicas = this.appModel.scalingStrategy.autoscaling
       ? this.appModel.scalingStrategy.automatic.replicasMin

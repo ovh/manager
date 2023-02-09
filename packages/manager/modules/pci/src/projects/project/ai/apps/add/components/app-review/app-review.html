@@ -17,6 +17,7 @@
             >
                 <oui-tile-description>
                     <ovh-manager-catalog-price
+                        data-beta="$ctrl.IS_BETA"
                         data-ng-if="$ctrl.resourcePriceInUcents > 0"
                         data-price="$ctrl.resourcePriceInUcents"
                         data-tax="$ctrl.resourcePriceTax"
@@ -38,6 +39,7 @@
             >
                 <oui-tile-description>
                     <ovh-manager-catalog-price
+                        data-beta="$ctrl.IS_BETA"
                         data-ng-if="$ctrl.partnerPriceInUcents > 0"
                         data-price="$ctrl.partnerPriceInUcents"
                         data-tax="$ctrl.partnerPriceTax"
@@ -60,6 +62,7 @@
             >
                 <oui-tile-description>
                     <ovh-manager-catalog-price
+                        data-beta="$ctrl.IS_BETA"
                         data-price="$ctrl.partnerPriceInUcents + $ctrl.resourcePriceInUcents"
                         data-tax="$ctrl.partnerPriceTax + $ctrl.resourcePriceTax"
                         data-user="$ctrl.user"
