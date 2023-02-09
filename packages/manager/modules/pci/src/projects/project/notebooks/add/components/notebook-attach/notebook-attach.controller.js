@@ -103,7 +103,7 @@ export default class NotebookAttachController {
           !isHighPerfStorage &&
           !this.notebookModel.volumes
             .filter(({ dataStore }) => dataStore)
-            .map(({ container }) => `${container.name}-${container.region}`)
+            .map(({ container }) => `${container.name}-${container.alias}`)
             .includes(`${name}-${region}`)
         );
       })

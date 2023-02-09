@@ -115,7 +115,7 @@ export default class PciTrainingJobsInfoController {
       const prefix = volume.dataStore.prefix
         ? `/${volume.dataStore.prefix}`
         : '';
-      return `${volume.dataStore.container}@${volume.dataStore.region}${prefix}:${volume.mountPath}:${volume.permission}`;
+      return `${volume.dataStore.container}@${volume.dataStore.alias}${prefix}:${volume.mountPath}:${volume.permission}`;
     }
 
     if (volume.publicSwift) {

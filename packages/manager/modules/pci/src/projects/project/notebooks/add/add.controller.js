@@ -85,7 +85,7 @@ export default class NotebookAddController {
           cache: volume.cache,
           dataStore: {
             container: volume.container.name,
-            region: volume.container.region,
+            alias: volume.container.region,
             prefix: volume.prefix,
           },
         };
