@@ -1,0 +1,5 @@
+{
+  "nasha_components_eol_lv1_lv2_services_banner_description_part_1": "El servicio {{serviceName}} llega al final de su vida útil el 1 de junio de 2023.",
+  "nasha_components_eol_lv1_lv2_services_banner_description_part_2": "Le recomendamos que planifique la migración de sus datos hacia los nuevos modelos NAS-HA o Enterprise File Storage, tal y como le explicamos en anteriores comunicaciones.",
+  "nasha_components_eol_lv1_lv2_services_banner_info_link": "¿Necesita ayuda? Consulte nuestra guía sobre la migración de datos."
+}

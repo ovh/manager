@@ -1,0 +1,5 @@
+{
+  "nasha_components_eol_lv1_lv2_services_banner_description_part_1": "Your {{serviceName}} service will reach its end of life on 01/06/2023.",
+  "nasha_components_eol_lv1_lv2_services_banner_description_part_2": "We recommend preparing to migrate your data to the new HA-NAS or Enterprise File Storage models, as detailed in our previous communications sent to you.",
+  "nasha_components_eol_lv1_lv2_services_banner_info_link": "Need help? Follow our guide, and learn how to migrate your data."
+}

@@ -11,6 +11,7 @@ export default {
     goToEditName: '<',
     goToPartitionsCreate: '<',
     isCommitmentAvailable: '<',
+    isNashaEolServiceBannerAvailable: '<',
     nasha: '<',
     nashaApiUrl: '<',
     partitionAllocatedSize: '<',
