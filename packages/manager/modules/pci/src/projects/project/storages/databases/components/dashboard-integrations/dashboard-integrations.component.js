@@ -5,6 +5,7 @@ export default {
   bindings: {
     integrations: '<',
     onManageButtonClick: '&?',
+    disabled: '<',
   },
   controller,
   template,
