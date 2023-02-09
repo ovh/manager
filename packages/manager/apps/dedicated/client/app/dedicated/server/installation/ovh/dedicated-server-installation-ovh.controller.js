@@ -1764,11 +1764,11 @@ angular
       // return list of available raid
       $scope.getRaidList = function getRaidList(nbDisk) {
         if (nbDisk !== null && $scope.constants.raidList !== null) {
-          if (nbDisk >= 4) {
+          if (nbDisk >= 6) {
             if (nbDisk % 2 === 0) {
-              return $scope.constants.raidList[4] || [];
+              return $scope.constants.raidList[5] || [];
             }
-            return $scope.constants.raidList[3] || [];
+            return $scope.constants.raidList[6] || [];
           }
           return $scope.constants.raidList[nbDisk] || [];
         }
@@ -1878,7 +1878,9 @@ angular
                 set(
                   option,
                   'partition.realSize',
-                  option.partition.partitionSize * 2,
+                  (option.partition.partitionSize /
+                    ($scope.installation.nbDiskUse - 2)) *
+                    $scope.installation.nbDiskUse,
                 );
                 break;
               case '_10':
