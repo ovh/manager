@@ -153,5 +153,6 @@
   "ovhManagerSupport_new_serviceType_publiccloud_gateway": "Gateway",
   "ovhManagerSupport_new_serviceType_publiccloud_floating_ip": "Floating IPs",
   "ovhManagerSupport_new_serviceType_ai_app": "AI Deploy",
-  "ovhManagerSupport_new_serviceType_managed_mongodb_enterprise": "Public Cloud Databases for MongoDB Entreprise"
+  "ovhManagerSupport_new_serviceType_managed_mongodb_enterprise": "Public Cloud Databases for MongoDB Entreprise",
+  "ovhManagerSupport_new_serviceType_publiccloud_storage_archive": "Object Storage S3 Archive"
 }
