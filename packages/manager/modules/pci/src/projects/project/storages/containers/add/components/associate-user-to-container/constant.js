@@ -1,3 +1,8 @@
+export const USER_ROLES = {
+  ADMINISTRATOR: 'administrator',
+  OBJECTSTORE_OPERATOR: 'objectstore_operator',
+};
+
 export const CONTAINER_USER_ASSOCIATION_MODES = {
   LINKED: 'LINKED',
   CREATE: 'CREATE',
@@ -20,9 +25,10 @@ export const NAMESPACES = {
 export const TRACKING_PREFIX = 'storage_container_add_user::';
 export const TRACKING_CREATE_USER = 'create-user';
 export const TRACKING_ASSOCIATE_USER = 'associate-user';
-export const OBJECT_STORAGE_USER_ROLE = 'objectstore_operator';
+export const OBJECT_STORAGE_USER_ROLE = USER_ROLES.OBJECTSTORE_OPERATOR;
 
 export default {
+  USER_ROLES,
   CONTAINER_USER_ASSOCIATION_MODES,
   ASSOCIATE_CONTAINER_USER_CONTAINER_MESSAGES,
   USER_STATUS,
