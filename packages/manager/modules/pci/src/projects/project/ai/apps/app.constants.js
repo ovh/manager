@@ -1,3 +1,4 @@
+export const IS_BETA = true;
 export const APP_TAGS = {
   LIMIT: 10,
   MAX: 20,
@@ -65,6 +66,7 @@ export const APP_SCALING_INFO = {
 export const APP_MULTIPLY_SIGN = ' × ';
 
 export default {
+  IS_BETA,
   APP_TAGS,
   APP_STATUS,
   APP_STATES,

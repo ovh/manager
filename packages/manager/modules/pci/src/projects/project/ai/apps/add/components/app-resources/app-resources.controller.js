@@ -5,7 +5,7 @@ import {
   APP_SCALING_SETTINGS,
 } from '../../add.constants';
 
-import { APP_SCALING_INFO } from '../../../app.constants';
+import { APP_SCALING_INFO, IS_BETA } from '../../../app.constants';
 
 const RESOURCES_SCALE_MIN_FLAVOR = 1;
 
@@ -24,6 +24,7 @@ export default class AppResourcesController {
       AUTOMATIC_SCALING_RESOURCE_TYPES,
     );
     this.APP_SCALING_SETTINGS = APP_SCALING_SETTINGS;
+    this.IS_BETA = IS_BETA;
   }
 
   filterType() {
