@@ -10,12 +10,18 @@ import {
 } from 'react-router-dom';
 
 import { getNashaReactAppIds } from '../api/nasha-react-app/GET/apiv6/listNasha';
+import { getNashaPartition } from '../api/nasha-react-app/GET/apiv6/partition';
+import { getNashaServiceInfos } from '../api/nasha-react-app/GET/apiv6/serviceInfos';
+import { getNashaDetails } from '../api/nasha-react-app/GET/apiv6/nashaDetails'
+
 import { SELECTED_NAS } from '../api/nasha-react-app/index';
 
 export function loader() {
-  return defer({
-    services: getNashaReactAppIds(),
-  });
+  let nashaList = getNashaReactAppIds();
+  let nashaDetails = getNashaDetails();
+  let nashaPartition = getNashaPartition();
+  let nashaServiceInfos = getNashaServiceInfos();
+  return defer({ services: nashaList, details: nashaDetails, partition: nashaPartition, serviceInfos: nashaServiceInfos });
 }
 
 export default function NashaReactApp() {
