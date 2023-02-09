@@ -18,13 +18,19 @@
             </button>
         </div>
         <p data-ng-bind="$ctrl.serviceName"></p>
+
+        <eol-lv1-lv2-services-banner
+            data-ng-if="$ctrl.isNashaEolServiceBannerAvailable"
+            data-service-name="$ctrl.serviceName"
+        ></eol-lv1-lv2-services-banner>
+
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.dashboardHref() }}"
                 data-active="[$ctrl.dashboardHref(), $ctrl.editNameHref()].includes($ctrl.currentHref())"
-                ><span
-                    data-translate="nasha_dashboard_tab_general_information"
-                ></span
+            ><span
+                data-translate="nasha_dashboard_tab_general_information"
+            ></span
             ></oui-header-tabs-item>
             <oui-header-tabs-item data-state="nasha.dashboard.partitions"
                 ><span data-translate="nasha_dashboard_tab_partitions"></span
