@@ -9,7 +9,8 @@ import {
   useLoaderData,
 } from 'react-router-dom';
 
-import { getNashaReactAppIds } from '../api/nasha-react-app';
+import { getNashaReactAppIds } from '../api/nasha-react-app/GET/apiv6/listNasha';
+import { SELECTED_NAS } from '../api/nasha-react-app/index';
 
 export function loader() {
   return defer({
@@ -41,17 +42,23 @@ export default function NashaReactApp() {
             }
             return (
               <>
-                <h2>
-                  Services list
-                </h2>
+                <h2>Services list</h2>
                 <ul>
                   {services.map((serviceName: string) => (
                     <li key={serviceName}>
                       <Link to={`/details/${serviceName}`}>{serviceName}</Link>
                     </li>
                   ))}
-
                 </ul>
+                <hr/>
+                <h1>{SELECTED_NAS}</h1>
+                <h2>Informations générales</h2>
+                <h2>Partitions</h2>
+                <div>
+                  <h3>Informations</h3>
+                  <h3>Configuration</h3>
+                  <h3>Abonnement</h3>
+                </div>
               </>
             );
           }}
