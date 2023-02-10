@@ -14,5 +14,6 @@ export default {
     containers: '<',
     aiNotebookLink: '<',
     goToDashboard: '<',
+    goToCommand: '<',
   },
 };

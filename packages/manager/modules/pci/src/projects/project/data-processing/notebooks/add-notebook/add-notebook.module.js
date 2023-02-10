@@ -6,6 +6,7 @@ import routing from './add-notebook.routing';
 import regionSelector from './region-selector';
 import notebookTypeSelector from './notebooktype-selector';
 import notebookSizing from './notebook-sizing';
+import command from './command';
 import privacySelector from './privacy-selector';
 
 import dataProcessingAddNotebookComponent from './add-notebook.component';
@@ -21,6 +22,7 @@ angular
     notebookTypeSelector,
     notebookSizing,
     privacySelector,
+    command,
   ])
   .config(routing)
   .component(

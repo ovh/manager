@@ -66,41 +66,6 @@
                     data-available-cluster-template="$ctrl.state.notebookEngine.templates"
                 >
                 </pci-project-data-processing-add-notebook-notebook-sizing>
-                <!-- step 5 - API -->
-                <h2
-                    id="API"
-                    data-translate="data_processing_add_notebook_stepper_api_title"
-                ></h2>
-
-                <oui-collapsible
-                    heading="{{:: 'data_processing_add_notebook_api_equivalent' | translate }}"
-                >
-                    <pci-order-command
-                        data-order-api-url="$ctrl.orderAPIUrl"
-                        data-order-data="$ctrl.orderData"
-                        data-help-link="$ctrl.addNotebookGuideUrl"
-                        data-auto-height="true"
-                        data-user="$ctrl.user"
-                    >
-                        <p
-                            data-translate="data_processing_add_notebook_command_description"
-                        ></p>
-                        <a
-                            class="oui-link_icon"
-                            target="_blank"
-                            rel="noopener"
-                            data-ng-href="{{$ctrl.apiGuideUrl}}"
-                        >
-                            <span
-                                data-translate="data_processing_add_notebook_command_documentation_link"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-external-link"
-                                aria-hidden="true"
-                            ></span>
-                        </a>
-                    </pci-order-command>
-                </oui-collapsible>
             </form>
         </div>
         <div class="col-lg-3">
@@ -197,7 +162,6 @@
                                     ></span>
                                 </div>
                             </div>
-
                             <div class="d-flex flex-column mb-2 pl-2">
                                 <div class="d-flex">
                                     <span
@@ -209,6 +173,17 @@
                                     ></span>
                                 </div>
                             </div>
+
+                            <oui-button
+                                block
+                                on-click="$ctrl.trackAndGoToCommand()"
+                                class="mb-2 mt-2"
+                                icon-left="oui-icon-app-script_concept"
+                            >
+                                <span
+                                    data-translate="data_processing_add_notebook_api_equivalent"
+                                ></span>
+                            </oui-button>
                         </oui-tile-description>
                     </oui-tile-definition>
                     <oui-tile-definition>
@@ -221,11 +196,12 @@
                                 ></a>
                                 <strong>
                                     <ovh-manager-catalog-price
-                                        data-price="0.01"
-                                        data-tax="0.01"
+                                        data-price="$ctrl.notebookPrice.priceInUcents"
+                                        data-tax="$ctrl.notebookPrice.tax"
                                         data-user="$ctrl.user"
                                         data-perform-rounding="false"
                                         data-maximum-fraction-digits="5"
+                                        data-show-zero-price="true"
                                     >
                                     </ovh-manager-catalog-price>
                                     /min</strong
