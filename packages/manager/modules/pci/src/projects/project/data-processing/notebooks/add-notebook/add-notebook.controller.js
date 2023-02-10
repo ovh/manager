@@ -108,6 +108,14 @@ export default class AddNotebookCtrl {
   onChangeSizingHandler(selectedSizing) {
     this.state.notebookSizing.notebook = selectedSizing.notebook;
     this.state.notebookSizing.cluster = selectedSizing.cluster;
+
+    this.updatePrice();
+  }
+
+  updatePrice() {
+    this.notebookPrice = this.prices.notebook[
+      this.state.notebookSizing.notebook
+    ];
   }
 
   /**
@@ -128,9 +136,12 @@ export default class AddNotebookCtrl {
       region: this.state.region.name,
     };
 
-    this.orderData = payload;
-
-    this.orderAPIUrl = `POST /cloud/project/${this.projectId}/dataProcessing/notebooks`;
+    this.orderData = {
+      orderData: payload,
+      orderAPIUrl: `POST /cloud/project/${this.projectId}/dataProcessing/notebooks`,
+      orderKeys: [],
+      apiGuideUrl: this.apiGuideUrl,
+    };
   }
 
   onAddNotebookHandler() {
@@ -146,5 +157,14 @@ export default class AddNotebookCtrl {
         });
         this.goToDashboard(data.id);
       });
+  }
+
+  trackAndGoToCommand() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::data-processing::submit-notebook::goto_api_equivalent',
+      type: 'action',
+    });
+    this.goToCommand(this.orderData);
   }
 }

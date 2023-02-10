@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) =>
           dataProcessingService.getNotebookCapabilities(projectId),
         goBack: /* @ngInject */ (showNotebooks) => showNotebooks,
         prices: /* @ngInject */ (dataProcessingService, projectId) =>
-          dataProcessingService.getPricesFromCatalog(projectId),
+          dataProcessingService.getNotebookPricesFromCatalog(projectId),
         user: /* @ngInject */ (SessionService) => SessionService.getUser(),
         aiNotebookLink: /* @ngInject */ ($state, projectId) => () =>
           $state.href('pci.projects.project.notebooks.add', {
@@ -31,6 +31,14 @@ export default /* @ngInject */ ($stateProvider) =>
               reload: true,
             },
           ),
+        goToCommand: /* @ngInject */ ($state) => (data) => {
+          return $state.go(
+            'pci.projects.project.data-processing.notebooks.add-notebook.command',
+            {
+              data,
+            },
+          );
+        },
       },
       atInternet: {
         rename:
