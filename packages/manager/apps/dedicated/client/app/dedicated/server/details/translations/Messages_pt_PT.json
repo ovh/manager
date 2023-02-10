@@ -1126,5 +1126,6 @@
   "server_configuration_monitoring_update_modal_update_proactive_request_success": "As intervenções no servidor {{serverName}} estão ativas.",
   "server_configuration_monitoring_update_modal_update_no-proactive_request_success": "As intervenções estão desativadas no servidor {{serverName}}.",
   "server_configuration_monitoring_update_modal_update_request_failed": "Ocorreu um erro aquando da alteração da opção de monitorização.",
-  "server_configuration_installation_ovh_desktop_ERP": "ERP"
+  "server_configuration_installation_ovh_desktop_ERP": "ERP",
+  "server_datacenter_YNM": "Mumbai (YNM {{number}}) - Índia"
 }
