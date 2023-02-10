@@ -21,7 +21,7 @@ const usePreloader = (shell: Shell, iframe: HTMLIFrameElement) => {
     };
   }, [shell]);
 
-
+  // eslint-disable-next-line
   useEffect(() => {
     if (iframe) {
       const showPreloader = () => {

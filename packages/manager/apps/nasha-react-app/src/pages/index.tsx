@@ -21,10 +21,6 @@ export default function NashaReactApp() {
   const { t } = useTranslation('nasha-react-app');
   const data = useLoaderData() as Record<string, unknown>;
 
-  const toto = 'titi'
-  const toto2 = 'titi'
-  console.info('Toto', titi)
-  console.info('Toto', titi2)
   return (
     <div>
       <h1>{t('title')} - Test First Monolith</h1>
