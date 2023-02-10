@@ -193,7 +193,7 @@ export default function PublicCloudSidebar() {
           ))}
       </div>
 
-      <div style={{ height: '100%', overflow: 'scroll' }}>
+      <div style={{ height: '100%', overflowX: 'hidden', overflowY: 'scroll' }}>
         <div className="d-flex m-2">
           <h2 className={style.projectTitle}>{currentProject?.description}</h2>
           <button
