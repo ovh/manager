@@ -1,6 +1,6 @@
 import apiClient from '@ovh-ux/manager-core-api';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { SELECTED_NAS } from '../../index';
+import { SELECTED_NAS } from '../../config';
 
 export const QUERY_KEY = ['/dedicated/nasha/'+SELECTED_NAS+'/partition'];
 
