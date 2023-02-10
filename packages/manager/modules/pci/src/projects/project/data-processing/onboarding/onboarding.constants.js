@@ -12,12 +12,6 @@ export const GUIDES = [
       'public-cloud::pci::projects::project::data-processing::onboarding::docs-spark',
   },
   {
-    id: 'quick_start_notebook',
-    link: 'https://docs.ovh.com/gb/en/data-processing/submit-javascala/',
-    tracker:
-      'public-cloud::pci::projects::project::data-processing::onboarding::docs-notebook',
-  },
-  {
     id: 'monitor_job',
     link: 'https://docs.ovh.com/gb/en/data-processing/monitor/',
     tracker:

@@ -279,4 +279,22 @@ export default class DataProcessingService {
       };
     });
   }
+
+  /**
+   * Retrieve the data processing notebook prices from the catalog
+   * @param projectId string Id of the project
+   * @returns {Promise}
+   */
+  getNotebookPricesFromCatalog(projectId) {
+    return this.CucPriceHelper.getPrices(projectId).then((prices) => {
+      return {
+        notebook: {
+          'NB1-1':
+            prices[
+              `data-processing-spark-notebook.notebook-nb1-1.minute.consumption`
+            ],
+        },
+      };
+    });
+  }
 }
