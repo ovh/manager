@@ -86,6 +86,25 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       taskApiUrl: /* @ngInject */ (nashaApiUrl) => `${nashaApiUrl}/task`,
+
+      isNashaLegacyServicesPeriod: /* @ngInject */ (ovhFeatureFlipping) => {
+        const featureId = 'dedicated-nasha:eol-lv1-lv2';
+        return ovhFeatureFlipping
+          .checkFeatureAvailability(featureId)
+          .then((feature) => feature.isFeatureAvailable(featureId));
+      },
+
+      isNashaLegacyService: /* @ngInject */ (nasha) => {
+        const { datacenter, diskType } = nasha;
+        return ['rbx', 'sbg', 'bhs'].includes(datacenter) && diskType === 'hdd';
+      },
+
+      isNashaEolServiceBannerAvailable: /* @ngInject */ (
+        isNashaLegacyServicesPeriod,
+        isNashaLegacyService,
+      ) => {
+        return isNashaLegacyServicesPeriod && isNashaLegacyService;
+      },
     },
     atInternet: {
       rename: 'nasha::dashboard',

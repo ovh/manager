@@ -60,6 +60,8 @@ export const BLOCK_ADDITIONAL_IP = 'Block Additional IP';
 
 export const IP_FAILOVER_RIPE_PLANCODE = 'ip-failover-ripe';
 
+export const ALERT_ID = 'ip.agora-order';
+
 export default {
   FETCH_PRICE_MAX_TRIES,
   IP_LOCATION_GROUPS,
@@ -68,4 +70,5 @@ export default {
   TRACKING_PREFIX,
   IP_AGORA,
   IP_FAILOVER_RIPE_PLANCODE,
+  ALERT_ID,
 };

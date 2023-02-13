@@ -2,11 +2,12 @@ import {
   ASSOCIATE_CONTAINER_USER_CONTAINER_MESSAGES,
   CONTAINER_USER_ASSOCIATION_MODES,
   NAMESPACES,
+  OBJECT_STORAGE_USER_ROLE,
   TRACKING_ASSOCIATE_USER,
   TRACKING_CREATE_USER,
   TRACKING_PREFIX,
+  USER_ROLES,
   USER_STATUS,
-  OBJECT_STORAGE_USER_ROLE,
 } from './constant';
 
 export default class CreateLinkedUserController {
@@ -35,13 +36,21 @@ export default class CreateLinkedUserController {
   }
 
   setUserCredentialsList() {
-    this.usersCredentials = this.users.map((user) => ({
-      ...user,
-      credentialTrad: this.getCredentialTranslation(user),
-      userNameDescriptionKey: user.description
-        ? `${user.username} - ${user.description}`
-        : user.username,
-    }));
+    this.usersCredentials = this.users
+      .filter(({ roles }) => {
+        return roles.find(({ name }) =>
+          [USER_ROLES.ADMINISTRATOR, USER_ROLES.OBJECTSTORE_OPERATOR].includes(
+            name,
+          ),
+        );
+      })
+      .map((user) => ({
+        ...user,
+        credentialTrad: this.getCredentialTranslation(user),
+        userNameDescriptionKey: user.description
+          ? `${user.username} - ${user.description}`
+          : user.username,
+      }));
   }
 
   loadMessages() {

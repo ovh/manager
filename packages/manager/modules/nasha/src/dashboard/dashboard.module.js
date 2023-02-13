@@ -10,6 +10,7 @@ import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 
 import spaceMeterComponentsModule from '../components/space-meter';
 import editNameComponentModule from '../components/edit-name';
+import eolLv1Lv2ServicesBannerModule from '../components/eol-lv1-lv2-banner';
 import editNameModule from './edit-name';
 import partitionsModule from './partitions';
 import partitionModule from './partition';
@@ -32,6 +33,7 @@ angular
     partitionsModule,
     partitionModule,
     spaceMeterComponentsModule,
+    eolLv1Lv2ServicesBannerModule,
   ])
   .component('nashaDashboard', component)
   .config(routing)

@@ -7,7 +7,7 @@ import legacyOrder from './legacyOrder/ip-ip-legacyOrder.module';
 const moduleName = 'ovhManagerIpComponents';
 
 angular
-  .module(moduleName, [agoraOrder, legacyOrder])
+  .module(moduleName, ['oui', agoraOrder, legacyOrder])
   .service('IpOrganisation', ipOrganisationService)
   .service('IpRange', ipRange);
 

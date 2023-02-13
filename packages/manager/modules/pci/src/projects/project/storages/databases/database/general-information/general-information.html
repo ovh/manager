@@ -241,7 +241,7 @@
                         ></p>
                         <button
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
-                            data-ng-if="$ctrl.database.disk.size < $ctrl.getCurrentFlavor().maxDiskSize"
+                            data-ng-if="$ctrl.database.disk.type !== $ctrl.DISK_TYPE.LOCAL_SSD && $ctrl.database.disk.size < $ctrl.getCurrentFlavor().maxDiskSize"
                             data-ng-click="$ctrl.upgradeStorage()"
                             data-ng-disabled="!$ctrl.database.isActive()"
                         >
@@ -392,6 +392,7 @@
                             type="button"
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                             data-ng-click="$ctrl.resetPassword()"
+                            data-ng-disabled="!$ctrl.database.isActive()"
                         >
                             <span
                                 data-translate="pci_databases_general_information_reset_password"
@@ -488,6 +489,7 @@
         </div>
         <div class="col-md">
             <dashboard-integration
+                data-disabled="!$ctrl.database.isActive()"
                 data-ng-if="$ctrl.isFeatureActivated('serviceIntegrationTab')"
                 data-integrations="$ctrl.serviceIntegration"
                 data-on-manage-button-click="$ctrl.manageIntegrations()"
@@ -513,6 +515,7 @@
                             type="button"
                             data-ng-click="$ctrl.goToMaintenances()"
                             data-ng-if="$ctrl.maintenances.length > 0"
+                            data-ng-disabled="!$ctrl.database.isActive()"
                         >
                             <span
                                 data-translate="pci_databases_general_information_manage_maintenances"
@@ -542,6 +545,7 @@
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                             type="button"
                             data-ng-click="$ctrl.goToBackups()"
+                            data-ng-disabled="!$ctrl.database.isActive()"
                         >
                             <span
                                 data-translate="pci_databases_general_information_manage_backups"
@@ -595,6 +599,7 @@
                         <button
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                             data-ng-click="$ctrl.goToFork()"
+                            data-ng-disabled="!$ctrl.database.isActive()"
                         >
                             <span
                                 data-translate="pci_databases_general_information_new_fork_link"
@@ -634,6 +639,7 @@
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                             type="button"
                             data-ng-click="$ctrl.manageAllowedIps()"
+                            data-ng-disabled="!$ctrl.database.isActive()"
                         >
                             <span
                                 data-translate="pci_databases_general_information_manage_ips"
