@@ -11,6 +11,7 @@ const component = {
     trackDashboard: '<',
     user: '<',
     engines: '<',
+    getCurrentFlavor: '<',
   },
   template,
   controller,
