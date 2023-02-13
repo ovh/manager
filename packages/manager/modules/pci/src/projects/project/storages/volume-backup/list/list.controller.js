@@ -51,7 +51,7 @@ export default class VolumeBackupListController {
   onCreateVolumeBackupClick() {
     // TODO: tracking
 
-    return this.goToAddVolumeBlockStorage();
+    return this.goToCreateVolumeBackup();
   }
 
   onRestoreVolumeClick() {

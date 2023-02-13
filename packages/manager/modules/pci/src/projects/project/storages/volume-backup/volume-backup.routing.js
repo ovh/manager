@@ -115,6 +115,12 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
+      goToCreateVolumeBackup: /* @ngInject */ ($state, projectId) => () => {
+        return $state.go(VOLUME_BACKUP_ROUTES.CREATE.STATE, {
+          projectId,
+        });
+      },
+
       goBack: /* @ngInject */ (goToVolumeBackups) => (message, type) =>
         goToVolumeBackups(message, type),
 
