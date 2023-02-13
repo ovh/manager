@@ -33,7 +33,9 @@ function Header({
 
   return (
     <ApplicationContext.Consumer>
-      {({ environment }) => (  // eslint-disable-line
+      {(
+        { environment }, // eslint-disable-line
+      ) => (
         <Suspense fallback="">
           <div
             className={`${modalStyle.popoverClickAway} ${
