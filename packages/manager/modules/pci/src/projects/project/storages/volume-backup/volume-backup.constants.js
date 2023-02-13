@@ -3,8 +3,8 @@ export const VOLUME_BACKUP_ROOT_STATE =
 
 export const VOLUME_BACKUP_ROUTES = {
   ROOT: { STATE: VOLUME_BACKUP_ROOT_STATE, URL: '/volume-backup' },
-  ADD: {
-    STATE: `${VOLUME_BACKUP_ROOT_STATE}.add`,
+  CREATE: {
+    STATE: `${VOLUME_BACKUP_ROOT_STATE}.create`,
     URL: '/create',
   },
   ONBOARDING: {

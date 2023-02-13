@@ -12,6 +12,7 @@ export default {
     startPolling: '<',
     stopPolling: '<',
     goBack: '<',
+    goToCreateVolumeBackup: '<',
     goToAddVolumeBlockStorage: '<',
     reloadState: '<',
     messageContainer: '<',
