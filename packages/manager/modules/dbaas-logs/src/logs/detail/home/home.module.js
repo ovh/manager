@@ -2,7 +2,6 @@ import angular from 'angular';
 
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
-import '@ovh-ux/ng-ovh-sidebar-menu';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-api-services';
@@ -20,7 +19,6 @@ const moduleName = 'ovhManagerDbaasLogsDetailHome';
 angular
   .module(moduleName, [
     'ngOvhCloudUniverseComponents',
-    'ngOvhSidebarMenu',
     'oui',
     'ovhManagerCore',
     'ovh-api-services',

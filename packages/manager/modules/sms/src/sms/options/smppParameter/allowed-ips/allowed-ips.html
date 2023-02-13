@@ -1,0 +1,105 @@
+<oui-tile
+    data-heading="{{ 'sms_options_smpp_parameter_allowed_ips_title' | translate }}"
+    data-loading="$ctrl.isLoading"
+>
+    <oui-tile-definition>
+        <oui-tile-description>
+            <table class="oui-table">
+                <thead style="display: none">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        data-ng-repeat="ip in $ctrl.ips track by $index"
+                        class="oui-table__row"
+                    >
+                        <td class="oui-table__cell" data-ng-bind="ip"></td>
+                        <td class="oui-table__cell">
+                            <oui-button
+                                size="s"
+                                variant="secondary"
+                                data-disabled="$ctrl.status === 'UPDATING_IP'"
+                                data-on-click="$ctrl.openModal('remove', ip)"
+                            >
+                                <span class="oui-icon oui-icon-bin"></span>
+                            </oui-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition>
+        <oui-tile-description>
+            <oui-button
+                data-variant="secondary"
+                data-on-click="$ctrl.openModal('add')"
+                data-icon-right="oui-icon-plus"
+                data-disabled="$ctrl.ips.length === $ctrl.MAX_ALLOWED_IP || $ctrl.status === 'UPDATING_IP'"
+            >
+                <span
+                    data-translate="sms_options_smpp_parameter_allowed_ips_button_add"
+                    data-translate-values="{ ipCount: '(' + $ctrl.ips.length + '/' + $ctrl.MAX_ALLOWED_IP + ')' }"
+                >
+                </span>
+            </oui-button>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>
+<div data-ng-if="$ctrl.isOpenModalAddIp || $ctrl.isOpenModalRemoveIp">
+    <div class="modal d-block" data-ng-if="$ctrl.isOpenModalAddIp">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <form novalidate name="allowIpsAddForm">
+                    <oui-modal
+                        data-heading="{{ 'sms_options_smpp_parameter_allowed_ips_modal_add_title' | translate }}"
+                        data-primary-action="$ctrl.submitAddIp()"
+                        data-primary-disabled="$ctrl.isSubmitting || allowIpsAddForm.$invalid"
+                        data-primary-label="{{:: 'sms_options_smpp_parameter_allowed_ips_modal_add_button_primary' | translate }}"
+                        data-secondary-action="$ctrl.closeModal('add')"
+                        data-secondary-label="{{:: 'sms_options_smpp_parameter_allowed_ips_modal_button_secondary' | translate }}"
+                        data-on-dismiss="$ctrl.closeModal('add')"
+                    >
+                        <oui-field
+                            data-label="{{ 'sms_options_smpp_parameter_allowed_ips_modal_label_ip' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                name="ipField"
+                                type="text"
+                                data-ng-model="$ctrl.addIp"
+                                oui-tooltip="{{ 'sms_options_smpp_parameter_allowed_ips_modal_tooltip_ip' | translate }}"
+                                required
+                            />
+                        </oui-field>
+                    </oui-modal>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal d-block" data-ng-if="$ctrl.isOpenModalRemoveIp">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    data-heading="{{ 'sms_options_smpp_parameter_allowed_ips_modal_delete_title' | translate }}"
+                    data-primary-action="$ctrl.submitRemoveIp()"
+                    data-primary-disabled="$ctrl.isSubmitting"
+                    data-primary-label="{{:: 'sms_options_smpp_parameter_allowed_ips_modal_delete_button_primary' | translate }}"
+                    data-secondary-action="$ctrl.closeModal()"
+                    data-secondary-label="{{:: 'sms_options_smpp_parameter_allowed_ips_modal_button_secondary' | translate }}"
+                    data-on-dismiss="$ctrl.closeModal()"
+                    data-type="warning"
+                >
+                    <p
+                        data-translate="sms_options_smpp_parameter_allowed_ips_modal_delete_content"
+                        data-translate-values="{ ip: '<strong>' + $ctrl.removeIp + '</strong>' }"
+                    ></p>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>

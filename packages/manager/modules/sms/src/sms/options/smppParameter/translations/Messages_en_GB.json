@@ -1,0 +1,17 @@
+{
+  "sms_options_smpp_parameter_title": "SMPP Settings",
+  "sms_options_smpp_parameter_allowed_ips_title": "Authorised IPs",
+  "sms_options_smpp_parameter_allowed_ips_button_add": "Add an IP {{ ipCount }}",
+  "sms_options_smpp_parameter_allowed_ips_modal_button_secondary": "Exit",
+  "sms_options_smpp_parameter_allowed_ips_modal_add_title": "Add an IP address",
+  "sms_options_smpp_parameter_allowed_ips_modal_add_button_primary": "Send",
+  "sms_options_smpp_parameter_allowed_ips_modal_label_ip": "IP",
+  "sms_options_smpp_parameter_allowed_ips_modal_tooltip_ip": "The IP address can be IPv4 or IPv6",
+  "sms_options_smpp_parameter_allowed_ips_modal_delete_title": "Delete an IP address",
+  "sms_options_smpp_parameter_allowed_ips_modal_delete_content": "You are about to delete: {{ ip }}",
+  "sms_options_smpp_parameter_allowed_ips_modal_delete_button_primary": "Delete",
+  "sms_options_smpp_parameter_allowed_ips_modal_add_message_success": "Your IP address has been added.",
+  "sms_options_smpp_parameter_allowed_ips_modal_add_message_error": "An error has occurred adding the IP address.",
+  "sms_options_smpp_parameter_allowed_ips_modal_remove_message_success": "The IP deletion has been registered.",
+  "sms_options_smpp_parameter_allowed_ips_modal_remove_message_error": "An error has occurred deleting the IP address."
+}

@@ -20,6 +20,9 @@ export default class {
   }
 
   $onInit() {
+    // Set beta to false by default
+    this.beta = this.beta || false;
+
     // Support attribute without value to be evaluated to true
     if (!isUndefined(this.$attrs.block) && this.$attrs.block === '') {
       this.block = true;

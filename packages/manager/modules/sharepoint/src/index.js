@@ -66,10 +66,10 @@ angular
         });
 
       $urlRouterProvider.when(
-        /^\/configuration\/microsoft\/sharepoint/,
+        /^\/configuration(\/microsoft)?\/sharepoint/,
         /* @ngInject */ ($location) => {
           $location.url(
-            $location.url().replace('/configuration/microsoft', ''),
+            $location.url().replace(/^\/configuration(\/microsoft)?/, ''),
           );
         },
       );

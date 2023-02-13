@@ -1,0 +1,40 @@
+<section class="telecom-sms-options-smppParameter">
+    <header>
+        <tuc-section-back-link
+            data-tuc-section-back-link-to-state="sms.service.options"
+            data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}"
+        >
+        </tuc-section-back-link>
+        <h1 data-translate="sms_options_smpp_parameter_title"></h1>
+    </header>
+
+    <tuc-toast-message></tuc-toast-message>
+</section>
+
+<div class="row">
+    <ovh-manager-sms-smpp-settings
+        class="col-sm-4"
+        data-loading="$ctrl.loading"
+        data-service-name="$ctrl.serviceName"
+        data-smpp-settings="$ctrl.smppSettings"
+    >
+    </ovh-manager-sms-smpp-settings>
+
+    <ovh-manager-sms-options-smpp-parameter-allowed-ips
+        class="col-sm-4"
+        data-service-name="$ctrl.serviceName"
+        data-status="$ctrl.smppSettings.status"
+        data-check-status="$ctrl.checkStatus()"
+    >
+    </ovh-manager-sms-options-smpp-parameter-allowed-ips>
+
+    <ovh-manager-sms-service-status
+        class="col-sm-4"
+        data-loading="$ctrl.loading"
+        data-service-name="$ctrl.serviceName"
+        data-status="$ctrl.smppSettings.status"
+        data-is-smpp-account="$ctrl.isSmppAccount"
+        data-tracking-prefix="$ctrl.OPTION_SMPP_TRACKING_PREFIX"
+    >
+    </ovh-manager-sms-service-status>
+</div>

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.8.3...@ovh-ux/shell@1.9.0) (2023-02-07)
+
+
+### Bug Fixes
+
+* **container:** hpc sidebar, nutanix order ([c9303a6](https://github.com/ovh/manager/commit/c9303a60867f7cc44df33400293a6c6b8eaf3b9c))
+
+
+### Features
+
+* **container:** add public-cloud sidebar ([26330e5](https://github.com/ovh/manager/commit/26330e576cb84eda7a37a3f9f012f312f13409a0))
+* move server sidebar to container ([f446458](https://github.com/ovh/manager/commit/f446458542308f1ba0ae2cbccf9ed198081b5daa))
+
+
+
+
+
 ## [1.8.3](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.8.2...@ovh-ux/shell@1.8.3) (2023-01-30)
 
 **Note:** Version bump only for package @ovh-ux/shell

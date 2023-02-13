@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { HEADER_GUIDE_LINK } from './sms.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('sms.index', {
@@ -17,7 +18,8 @@ export default /* @ngInject */ ($stateProvider) => {
       dataModel: () => 'sms.Account',
       smsStatusTypes: /* @ngInject */ (schema) =>
         get(schema.models, 'sms.StatusAccountEnum').enum,
-
+      smsChannelEnum: /* @ngInject */ (schema) =>
+        get(schema.models, 'sms.ChannelEnum').enum,
       getSmsLink: /* @ngInject */ ($state) => ({ name: serviceName }) =>
         $state.href('sms.service.dashboard', {
           serviceName,
@@ -27,9 +29,12 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName,
         }),
       hideBreadcrumb: () => true,
-      gotoOrder: /* @ngInject */ ($window) => () => {
-        $window.open('https://www.ovhtelecom.fr/sms/', '_blank');
-      },
+      gotoOrder: /* @ngInject */ ($state) => () => $state.go('sms.order'),
+      headerGuideLink: /* @ngInject */ (coreConfig, $translate) =>
+        HEADER_GUIDE_LINK.map(({ translationKey, url }) => ({
+          label: $translate.instant(`sms_header_guide_${translationKey}`),
+          url: url[coreConfig.getUser().ovhSubsidiary] || url.DEFAULT,
+        })),
     },
     redirectTo: (transition) =>
       transition

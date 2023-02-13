@@ -31,6 +31,6 @@
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf_label": "Nowość",
   "pci_projects_project_storages_containers_add_create_or_linked_user_title": "Przypisz użytkownika",
   "pci_projects_project_storages_containers_add_create_or_linked_user_success_field_secret_key": "Tajny klucz S3:",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_description": "Możesz przyznać dostęp do kontenera uprzednio zdefiniowanemu użytkownikowi lub utworzyć nowego użytkownika.",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_description": "Możesz przyznać dostęp do kontenera jednemu ze wstępnie skonfigurowanych użytkowników Openstack z rolą „Administrator” lub „Object Storage Operator” albo utworzyć nowego użytkownika.",
   "pci_projects_project_storages_containers_add_success_message_with_user_creation": "Kontener {{container}} został utworzony. Użytkownik S3 {{userName}} jest administratorem tego kontenera."
 }

@@ -24,5 +24,8 @@
   "sms_guides_api_nodejs": "Enviar SMS con la API de OVHcloud en Node.js",
   "sms_guides_api_php": "Enviar SMS con la API de OVHcloud en PHP",
   "sms_guides_empty": "No hay ninguna guía disponible en el idioma seleccionado.",
-  "sms_guides_breadcrumb": "Guías"
+  "sms_guides_breadcrumb": "Guías",
+  "sms_guides_section_smpp": "SMPP",
+  "sms_guides_smpp_control_panel": "Gestión de una cuenta SMS SMPP",
+  "sms_guides_smpp_specifications": "Especificaciones técnicas del SMPP"
 }

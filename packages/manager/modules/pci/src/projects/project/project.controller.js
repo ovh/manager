@@ -1,4 +1,3 @@
-import angular from 'angular';
 import isNil from 'lodash/isNil';
 
 import {
@@ -13,7 +12,6 @@ export default class ProjectController {
     $scope,
     $state,
     $stateParams,
-    $timeout,
     $uibModal,
     atInternet,
     coreConfig,
@@ -24,7 +22,6 @@ export default class ProjectController {
     this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
-    this.$timeout = $timeout;
     this.$uibModal = $uibModal;
     this.atInternet = atInternet;
     this.OvhApiCloudProject = OvhApiCloudProject;
@@ -44,22 +41,12 @@ export default class ProjectController {
 
   $onInit() {
     this.productImages = PRODUCT_IMAGES;
-    this.isSidebarOpen = false;
-
-    this.$scope.$on('sidebar:open', () => {
-      this.isSidebarOpen = true;
-      this.$timeout(() => angular.element('#sidebar-focus').focus());
-    });
 
     this.projectQuotaAboveThreshold = this.quotas.find(
       (quota) => quota.quotaAboveThreshold,
     );
 
     this.PciProject.setProjectInfo(this.project);
-  }
-
-  closeSidebar() {
-    this.isSidebarOpen = false;
   }
 
   isDisplayableLink({ availableForTrustedZone }) {

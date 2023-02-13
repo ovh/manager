@@ -1,4 +1,4 @@
-import { PRODUCT_NAME } from './add.constants';
+import { GATEWAY_HORULY_PLANCODE } from '../gateways.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.gateways.add', {
@@ -30,10 +30,10 @@ export default /* @ngInject */ ($stateProvider) => {
           (inactiveRegions) => {
             return PciPublicGatewaysService.getRegions(projectId, {
               ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
-              product: PRODUCT_NAME.toLowerCase(),
+              planCode: GATEWAY_HORULY_PLANCODE,
             }).then((data) =>
-              data.products
-                .find((product) => product.name === PRODUCT_NAME.toLowerCase())
+              data.plans
+                .find((plan) => plan.code === GATEWAY_HORULY_PLANCODE)
                 .regions.map((region) => {
                   return {
                     ...region,

@@ -1,0 +1,66 @@
+<oui-tile
+    data-heading="{{ 'sms_component_serviceStatus_title' | translate }}"
+    data-loading="$ctrl.loading"
+>
+    <oui-tile-definition
+        data-term="{{ 'sms_component_serviceStatus_label_status' | translate }}"
+    >
+        <oui-tile-description>
+            <span
+                class="{{ 'oui-badge ' + $ctrl.SMPP_BADAGES_STATUS[$ctrl.status] }}"
+                data-translate="{{ 'sms_component_serviceStatus_status_' + $ctrl.status }}"
+                data-ng-if="$ctrl.status === $ctrl.SMPP_STATUS.SUCCESS || $ctrl.status === $ctrl.SMPP_STATUS.DELETED"
+            >
+            </span>
+            <span
+                data-ng-if="$ctrl.status !== $ctrl.SMPP_STATUS.SUCCESS && $ctrl.status !== $ctrl.SMPP_STATUS.DELETED"
+                class="{{ 'oui-badge ' + $ctrl.SMPP_BADAGES_STATUS[$ctrl.status] }}"
+                data-translate="{{ 'sms_component_serviceStatus_status_' + $ctrl.status }}"
+                data-oui-tooltip="{{:: 'sms_component_serviceStatus_status_' + $ctrl.status + '_tooltip' | translate }}"
+                data-oui-tooltip-placement="bottom"
+            >
+            </span>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition data-ng-if="$ctrl.isSmppAccount">
+        <oui-tile-description>
+            <oui-button
+                data-variant="secondary"
+                data-disabled="$ctrl.status !== $ctrl.SMPP_STATUS.SUCCESS"
+                data-on-click="$ctrl.onResetPasswordBtnClick(true)"
+            >
+                <span
+                    data-translate="sms_component_serviceStatus_button_reset_password"
+                >
+                </span>
+            </oui-button>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>
+<div data-ng-if="$ctrl.isOpenModal">
+    <div class="modal d-block">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    data-heading="{{:: 'sms_component_serviceStatus_password_modal_title' | translate }}"
+                    data-primary-action="$ctrl.submitResetPassword()"
+                    data-primary-disabled="$ctrl.isSubmitting"
+                    data-primary-label="{{:: 'sms_component_serviceStatus_password_modal_button_primary' | translate }}"
+                    data-secondary-action="$ctrl.onResetPasswordBtnClick(false)"
+                    data-secondary-label="{{:: 'sms_component_serviceStatus_password_modal_button_secondary' | translate }}"
+                    data-on-dismiss="$ctrl.onResetPasswordBtnClick(false)"
+                >
+                    <p
+                        class="mb-0"
+                        data-translate="sms_component_serviceStatus_password_modal_content_part1"
+                    ></p>
+                    <p
+                        data-translate="sms_component_serviceStatus_password_modal_content_part2"
+                        data-translate-values="{ email: '<strong>' + $ctrl.emailAccount + '</strong>' }"
+                    ></p>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>

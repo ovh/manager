@@ -36,6 +36,7 @@ export default class {
   }
 
   $onInit() {
+    this.showMonthlyPrices = false;
     this.labAccepted = this.lab.isActivated();
     this.messageContainer = 'pci.projects.project.storages.databases.add';
     this.loadMessages();

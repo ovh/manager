@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.14.0...@ovh-ux/manager-container-app@0.14.1) (2023-02-07)
+
+
+### Bug Fixes
+
+* remove sidebar from applications ([8f37d2a](https://github.com/ovh/manager/commit/8f37d2ab49642b40d1adbb4817530e4f354ee4f3))
+
+
+
+
+
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.13.0...@ovh-ux/manager-container-app@0.14.0) (2023-02-07)
+
+
+### Bug Fixes
+
+* container sidebar production ([eb760fd](https://github.com/ovh/manager/commit/eb760fd466a6ae1505b67f2c1479c61f3bbb2d25))
+* **container:** hpc sidebar ip highlighting ([0234460](https://github.com/ovh/manager/commit/0234460bc04b1aff7c42f719a571a202b600b9f6))
+* **container:** hpc sidebar, nutanix order ([c9303a6](https://github.com/ovh/manager/commit/c9303a60867f7cc44df33400293a6c6b8eaf3b9c))
+* **container:** sidebar bmc refresh ([37e29ab](https://github.com/ovh/manager/commit/37e29ab76d4774871ab99c309190c1fcc1512d10))
+* **i18n:** add missing translations [CDS 2048] ([8f31acb](https://github.com/ovh/manager/commit/8f31acb21dbc3d273ea59a57589853f1c58aadc2))
+
+
+### Features
+
+* **container:** add public-cloud sidebar ([26330e5](https://github.com/ovh/manager/commit/26330e576cb84eda7a37a3f9f012f312f13409a0))
+* move server sidebar to container ([f446458](https://github.com/ovh/manager/commit/f446458542308f1ba0ae2cbccf9ed198081b5daa))
+
+
+
+
+
 # [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.12.2...@ovh-ux/manager-container-app@0.13.0) (2023-02-02)
 
 

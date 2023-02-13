@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.48.2...@ovh-ux/manager-dedicated@17.49.0) (2023-02-13)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** display quota error on order page ([#8657](https://github.com/ovh/manager/issues/8657)) ([6e5ff26](https://github.com/ovh/manager/commit/6e5ff263fd1ec9462ca9a40cfd8385e82b388786))
+* **dedicated:** list correct raid list for the disk ([#8692](https://github.com/ovh/manager/issues/8692)) ([79cd4e0](https://github.com/ovh/manager/commit/79cd4e0aa2778565c5f2e786f47ee82c8c8c55bb))
+
+
+### Features
+
+* **dedicated.ip:** change trade names ([#8737](https://github.com/ovh/manager/issues/8737)) ([fceacfb](https://github.com/ovh/manager/commit/fceacfb967d7d353c86b7c7dcbde67f2e3018b74))
+
+
+
+
+
+## [17.48.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.48.1...@ovh-ux/manager-dedicated@17.48.2) (2023-02-08)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** order ip in us region ([#8857](https://github.com/ovh/manager/issues/8857)) ([8bb49e2](https://github.com/ovh/manager/commit/8bb49e2bd3b37512cf475943fadef94b74e76273))
+* **dedicated.ip:** vmac is not visible ([#8862](https://github.com/ovh/manager/issues/8862)) ([1cee671](https://github.com/ovh/manager/commit/1cee67175299a3026c85fa79a9f28cef3a2a9785))
+
+
+
+
+
+## [17.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.48.0...@ovh-ux/manager-dedicated@17.48.1) (2023-02-07)
+
+
+### Bug Fixes
+
+* remove sidebar from applications ([8f37d2a](https://github.com/ovh/manager/commit/8f37d2ab49642b40d1adbb4817530e4f354ee4f3))
+
+
+
+
+
+# [17.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.47.1...@ovh-ux/manager-dedicated@17.48.0) (2023-02-07)
+
+
+### Bug Fixes
+
+* container sidebar production ([eb760fd](https://github.com/ovh/manager/commit/eb760fd466a6ae1505b67f2c1479c61f3bbb2d25))
+* **container:** hpc sidebar, nutanix order ([c9303a6](https://github.com/ovh/manager/commit/c9303a60867f7cc44df33400293a6c6b8eaf3b9c))
+
+
+### Features
+
+* move server sidebar to container ([f446458](https://github.com/ovh/manager/commit/f446458542308f1ba0ae2cbccf9ed198081b5daa))
+
+
+
+
+
 ## [17.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.47.0...@ovh-ux/manager-dedicated@17.47.1) (2023-02-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

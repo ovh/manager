@@ -14,7 +14,6 @@ export const AVAILABLE_SUBNET = [
   '172.16.0.1/24',
 ];
 
-export const PRODUCT_NAME = 'GATEWAY';
 export const DEFAULT_IPVERSION = 4;
 
 export const DEFAULTS_MODEL = [
@@ -57,6 +56,5 @@ export const DEFAULTS_MODEL = [
 export default {
   PUBLIC_GATEWAYS_READ_MORE_GUIDE,
   REGIONS_AVAILABILITY_URL,
-  PRODUCT_NAME,
   DEFAULT_IPVERSION,
 };

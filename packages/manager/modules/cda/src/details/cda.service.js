@@ -1,12 +1,6 @@
 export default class CdaService {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    OvhApiDedicatedCeph,
-    SidebarMenu,
-    CucCloudMessage,
-  ) {
+  constructor($injector, $q, $translate, OvhApiDedicatedCeph, CucCloudMessage) {
     const self = this;
 
     self.currentService = {};
@@ -73,9 +67,9 @@ export default class CdaService {
     };
 
     self.changeMenuTitle = function changeMenuTitle(serviceName, label) {
-      const menuItem = SidebarMenu.getItemById(serviceName);
-      if (menuItem) {
-        menuItem.title = label;
+      if ($injector.has('shellClient')) {
+        const shellClient = $injector.get('shellClient');
+        shellClient.ux.updateMenuSidebarItemLabel(serviceName, label);
       }
     };
 

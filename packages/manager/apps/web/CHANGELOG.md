@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.25.1...@ovh-ux/manager-web@16.25.2) (2023-02-13)
+
+
+### Bug Fixes
+
+* **web.domain:** change status display on my domain ([#8674](https://github.com/ovh/manager/issues/8674)) ([3c7af0d](https://github.com/ovh/manager/commit/3c7af0d755dbd0041e30a8fa76f14bacdc0ac233))
+
+
+
+
+
+## [16.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.25.0...@ovh-ux/manager-web@16.25.1) (2023-02-07)
+
+
+### Bug Fixes
+
+* remove sidebar from applications ([8f37d2a](https://github.com/ovh/manager/commit/8f37d2ab49642b40d1adbb4817530e4f354ee4f3))
+
+
+
+
+
+# [16.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.24.4...@ovh-ux/manager-web@16.25.0) (2023-02-07)
+
+
+### Bug Fixes
+
+* container sidebar production ([eb760fd](https://github.com/ovh/manager/commit/eb760fd466a6ae1505b67f2c1479c61f3bbb2d25))
+
+
+### Features
+
+* move server sidebar to container ([f446458](https://github.com/ovh/manager/commit/f446458542308f1ba0ae2cbccf9ed198081b5daa))
+
+
+
+
+
 ## [16.24.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.24.3...@ovh-ux/manager-web@16.24.4) (2023-02-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

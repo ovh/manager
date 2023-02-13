@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.6.5...@ovh-ux/manager-nasha@2.7.0) (2023-02-13)
+
+
+### Features
+
+* **dedicated.nasha:** nasha eol legacy services ([#8741](https://github.com/ovh/manager/issues/8741)) ([3ecdce6](https://github.com/ovh/manager/commit/3ecdce62f959aa8c5ca8b355d561a70d05d3c08e))
+
+
+
+
+
 ## [2.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.6.4...@ovh-ux/manager-nasha@2.6.5) (2023-01-30)
 
 

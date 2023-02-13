@@ -130,6 +130,7 @@ export default class AppAddController {
       scalingStrategy,
       preset,
       probe,
+      port,
     } = appModel;
 
     return {
@@ -146,6 +147,7 @@ export default class AppAddController {
       unsecureHttp: APP_PRIVACY_SETTINGS.PUBLIC === privacy,
       probe: AppAddController.buildProbe(probe),
       scalingStrategy: AppAddController.buildScalingBody(scalingStrategy),
+      defaultHttpPort: port,
     };
   }
 

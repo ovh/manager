@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.6.2...@ovh-ux/manager-catalog-price@1.7.0) (2023-02-13)
+
+
+### Features
+
+* **pci.ai:** add label free during beta ([#8802](https://github.com/ovh/manager/issues/8802)) ([195fd94](https://github.com/ovh/manager/commit/195fd94e97ad6a030c54e3a13943e6f2b8ffd4d8))
+
+
+
+
+
 ## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.6.1...@ovh-ux/manager-catalog-price@1.6.2) (2022-08-25)
 
 
