@@ -42,7 +42,7 @@ angular.module('App').config(
     $urlRouterProvider.when(/^\/cloud-connect\/details/, () => {
       window.location.href = window.location.href.replace(
         '/cloud-connect/details',
-        '/cloud-connect',
+        '/cloud-connect-test',
       );
     });
   },
