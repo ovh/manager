@@ -48,15 +48,9 @@ export default class PciStoragesColdArchiveService {
   }
 
   getAllS3Users(projectId) {
-    return this.$http.get(`/cloud/project/${projectId}/user`).then(({ data }) =>
-      data.map((user) => {
-        const updatedUser = user;
-        updatedUser.creationDate = moment(user.creationDate).format(
-          DATE_FORMAT,
-        );
-        return updatedUser;
-      }),
-    );
+    return this.$http
+      .get(`/cloud/project/${projectId}/user`)
+      .then(({ data }) => data);
   }
 
   mapUsersToCredentials(projectId, users) {

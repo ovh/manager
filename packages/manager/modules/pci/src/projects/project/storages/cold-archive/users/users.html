@@ -35,12 +35,13 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="'pci_projects_project_storages_containers_users_creation_date' | translate"
-        data-property="creationDate"
-        data-type="string"
+        data-property="gridPropertyCreationDate"
+        data-type="date"
         data-searchable
         data-sortable
         data-filterable
     >
+        <span data-ng-bind="$row.gridDisplayCreationDate"></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="'pci_projects_project_storages_containers_users_description' | translate"
