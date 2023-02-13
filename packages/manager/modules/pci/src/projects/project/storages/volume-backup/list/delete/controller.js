@@ -19,7 +19,7 @@ export default class VolumeBackupDeleteController {
       .deleteVolumeBackup(
         this.projectId,
         this.volumeBackup.region,
-        this.volumeBackup.volumeId,
+        this.volumeBackup.id,
       )
       .then(() => {
         return this.goToVolumeBackups(

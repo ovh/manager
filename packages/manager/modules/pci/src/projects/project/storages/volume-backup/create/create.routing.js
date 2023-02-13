@@ -16,8 +16,20 @@ export default /* @ngInject */ ($stateProvider) => {
           'pci_projects_project_storages_volume_backup_create_breadcrumb',
         ),
 
+      messageContainer: () => VOLUME_BACKUP_ROUTES.CREATE.STATE,
+
       volumes: /* @ngInject */ (projectId, VolumeBackupService) => {
         return VolumeBackupService.getVolumes(projectId);
+      },
+
+      goToDetachVolume: /* @ngInject */ ($state, projectId) => (volume) => {
+        return $state.go(
+          VOLUME_BACKUP_ROUTES.CREATE.ROUTES.DETACH_VOLUME.STATE,
+          {
+            projectId,
+            volume,
+          },
+        );
       },
     },
   });

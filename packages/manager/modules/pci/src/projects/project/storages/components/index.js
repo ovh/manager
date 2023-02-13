@@ -3,6 +3,7 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
 import passwordClipboardComponent from './password-clipboard';
+import detachVolumeBannerComponent from './detach-volume-banner';
 
 const moduleName = 'ovhManagerPciStoragesComponents';
 
@@ -11,6 +12,7 @@ angular
     'pascalprecht.translate',
     'oui',
     passwordClipboardComponent,
+    detachVolumeBannerComponent,
   ])
   .run(/* @ngTranslationsInject:json ./translations */);
 
