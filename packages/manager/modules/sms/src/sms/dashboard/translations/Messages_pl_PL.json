@@ -19,5 +19,7 @@
   "sms_statictics_credit_reload": "Doładuj kredyty",
   "sms_statistics_sent_number": "Liczba wysłanych wiadomości SMS",
   "sms_statistics_delivered_number": "Liczba dostarczonych wiadomości SMS",
-  "sms_statistics_stop_subscribe_number": "Liczba rezygnacji z otrzymywania wiadomości"
+  "sms_statistics_stop_subscribe_number": "Liczba rezygnacji z otrzymywania wiadomości",
+  "sms_actions_credit_transfer": "Przeniesienie zasileń",
+  "sms_actions_smpp_parameter": "Skonfiguruj SMPP"
 }

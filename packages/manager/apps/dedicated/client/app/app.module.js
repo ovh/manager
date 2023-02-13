@@ -40,7 +40,6 @@ import 'ovh-api-services';
 import 'angular-translate';
 import 'script-loader!angular-translate/dist/angular-translate-loader-partial/angular-translate-loader-partial.min.js';
 import 'ng-slide-down';
-import '@ovh-ux/ng-ovh-actions-menu';
 import 'script-loader!matchmedia-ng/matchmedia-ng.js';
 import 'angular-aria';
 import 'script-loader!chart.js/dist/Chart.min.js';
@@ -85,7 +84,6 @@ import ovhManagerBilling from '@ovh-ux/manager-billing';
 import ovhManagerDbaasLogs from '@ovh-ux/manager-dbaas-logs';
 import ovhManagerNasha from '@ovh-ux/manager-nasha';
 import ovhManagerNetapp from '@ovh-ux/manager-netapp';
-import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ovhManagerSupport from '@ovh-ux/manager-support';
 import ovhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
@@ -205,7 +203,6 @@ export default async (containerEl, shellClient) => {
         ovhManagerAccountMigration,
         ovhManagerDbaasLogs,
         ovhManagerIplb,
-        ovhManagerServerSidebar,
         ovhManagerSupport,
         ovhManagerVeeamEnterprise,
         ovhManagerVeeamCloudConnect,
@@ -370,6 +367,7 @@ export default async (containerEl, shellClient) => {
             'app.ip',
             'vrack',
             'cloud-connect',
+            'error',
           ];
 
           const stateIncludes = Object.keys(transition.$to().includes);

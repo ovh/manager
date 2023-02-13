@@ -1,0 +1,17 @@
+{
+  "sms_options_smpp_parameter_title": "SMPP Einstellungen",
+  "sms_options_smpp_parameter_allowed_ips_title": "Zugelassene IPs",
+  "sms_options_smpp_parameter_allowed_ips_button_add": "Eine IP {{ ipCount }} hinzufügen",
+  "sms_options_smpp_parameter_allowed_ips_modal_button_secondary": "Abbrechen",
+  "sms_options_smpp_parameter_allowed_ips_modal_add_title": "Eine IP-Adresse hinzufügen",
+  "sms_options_smpp_parameter_allowed_ips_modal_add_button_primary": "Absenden",
+  "sms_options_smpp_parameter_allowed_ips_modal_label_ip": "IP",
+  "sms_options_smpp_parameter_allowed_ips_modal_tooltip_ip": "Die IP-Adresse kann vom Typ IPv4 oder IPv6 sein",
+  "sms_options_smpp_parameter_allowed_ips_modal_delete_title": "IP-Adresse löschen",
+  "sms_options_smpp_parameter_allowed_ips_modal_delete_content": "Sie sind im Begriff zu löschen: {{ ip }}",
+  "sms_options_smpp_parameter_allowed_ips_modal_delete_button_primary": "Löschen",
+  "sms_options_smpp_parameter_allowed_ips_modal_add_message_success": "Das Hinzufügen der IP-Adresse wurde berücksichtigt.",
+  "sms_options_smpp_parameter_allowed_ips_modal_add_message_error": "Beim Hinzufügen der IP-Adresse ist ein Fehler aufgetreten.",
+  "sms_options_smpp_parameter_allowed_ips_modal_remove_message_success": "Die Löschung der IP wurde registriert.",
+  "sms_options_smpp_parameter_allowed_ips_modal_remove_message_error": "Beim Löschen der IP-Adresse ist ein Fehler aufgetreten."
+}

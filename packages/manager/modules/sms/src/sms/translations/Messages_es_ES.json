@@ -37,5 +37,9 @@
   "sms_reset": "Borrar",
   "sms_submit": "Aceptar",
   "sms_today": "Hoy",
-  "sms_yes": "sí"
+  "sms_yes": "sí",
+  "sms_header_guide": "Guías",
+  "sms_header_guide_start_with_sms": "Empezar con los SMS de OVHcloud",
+  "sms_smpp_channel_qualification_marketing": "Marketing",
+  "sms_smpp_channel_qualification_transactional": "Transaccional"
 }

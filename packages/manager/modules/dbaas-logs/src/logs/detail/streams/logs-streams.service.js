@@ -4,10 +4,12 @@ import get from 'lodash/get';
 export default class LogsStreamsService {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $translate,
     CucCloudMessage,
     CucControllerHelper,
+    iceberg,
     LogsHomeService,
     LogsStreamsAlertsService,
     LogsStreamsArchivesService,
@@ -17,8 +19,10 @@ export default class LogsStreamsService {
     CucUrlHelper,
     LogsHelperService,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
+    this.iceberg = iceberg;
     this.LogsApiService = OvhApiDbaas.Logs().v6();
     this.StreamsApiService = OvhApiDbaas.Logs()
       .Stream()
@@ -130,9 +134,7 @@ export default class LogsStreamsService {
    */
   getOwnStreams(serviceName) {
     return this.getStreamDetails(serviceName)
-      .then((streams) =>
-        streams.filter((aapiStream) => aapiStream.info.isEditable),
-      )
+      .then((streams) => streams.filter((stream) => stream.isEditable))
       .catch((err) =>
         this.LogsHelperService.handleError('logs_streams_get_error', err, {}),
       );
@@ -146,12 +148,11 @@ export default class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   getStreamDetails(serviceName) {
-    return this.getAllStreams(serviceName).then((streams) => {
-      const promises = streams.map((stream) =>
-        this.getAapiStream(serviceName, stream),
-      );
-      return this.$q.all(promises);
-    });
+    return this.iceberg(`/dbaas/logs/${serviceName}/output/graylog/stream`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(10000)
+      .execute().$promise;
   }
 
   /**
@@ -361,19 +362,25 @@ export default class LogsStreamsService {
    * @returns {string} graylog url, if not found empty string
    * @memberof LogsStreamsService
    */
-  getStreamGraylogUrl(stream) {
-    const url = this.CucUrlHelper.constructor.findUrl(
-      stream,
-      this.LogsConstants.GRAYLOG_WEBUI,
-    );
-    if (stream.indexingEnabled && !url) {
-      this.CucCloudMessage.error(
-        this.$translate.instant('logs_streams_get_graylog_url_error', {
-          stream: stream.info.title,
-        }),
-      );
-    }
-    return url;
+  getStreamGraylogUrl(serviceName, stream) {
+    return this.$http
+      .get(
+        `/dbaas/logs/${serviceName}/output/graylog/stream/${stream.streamId}/url`,
+      )
+      .then(({ data: urls }) => {
+        const url = this.CucUrlHelper.constructor.findUrl(
+          { urls },
+          this.LogsConstants.GRAYLOG_WEBUI,
+        );
+        if (stream.indexingEnabled && !url) {
+          this.CucCloudMessage.error(
+            this.$translate.instant('logs_streams_get_graylog_url_error', {
+              stream: stream.title,
+            }),
+          );
+        }
+        return url;
+      });
   }
 
   /**
@@ -383,23 +390,41 @@ export default class LogsStreamsService {
    * @param {any} stream
    * @memberof LogsStreamsService
    */
-  copyStreamToken(stream) {
-    const token = this.getStreamToken(stream);
-    if (token) {
-      const error = this.CucControllerHelper.constructor.copyToClipboard(token);
-      if (error) {
-        this.CucCloudMessage.error(
-          this.$translate.instant('logs_streams_copy_token_error', {
-            stream: stream.info.title,
-            token_value: token,
-          }),
+  copyStreamToken(serviceName, stream) {
+    return this.iceberg(
+      `/dbaas/logs/${serviceName}/output/graylog/stream/${stream.streamId}/rule`,
+    )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data: rules }) => {
+        const { value: token } = rules.find(
+          (rule) => rule.field === this.LogsConstants.X_OVH_TOKEN,
         );
-      } else {
-        this.CucCloudMessage.info(
-          this.$translate.instant('logs_streams_copy_token_success'),
-        );
-      }
-    }
+        if (token) {
+          const error = this.CucControllerHelper.constructor.copyToClipboard(
+            token,
+          );
+          if (error) {
+            this.CucCloudMessage.error(
+              this.$translate.instant('logs_streams_copy_token_error', {
+                stream: stream.title,
+                token_value: token,
+              }),
+            );
+          } else {
+            this.CucCloudMessage.info(
+              this.$translate.instant('logs_streams_copy_token_success'),
+            );
+          }
+        } else {
+          this.CucCloudMessage.error(
+            this.$translate.instant('logs_streams_find_token_error', {
+              stream: stream.title,
+            }),
+          );
+        }
+      });
   }
 
   /**

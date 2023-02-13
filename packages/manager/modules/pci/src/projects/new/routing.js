@@ -19,12 +19,21 @@ import {
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.new', {
     url: '/new?cartId&voucher',
-    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+    onEnter: /* @ngInject */ ($injector, pciFeatureRedirect) => {
+      if ($injector.has('ovhShell')) {
+        const ovhShell = $injector.get('ovhShell');
+        ovhShell.ux.hidePreloader();
+      }
       return pciFeatureRedirect(PCI_FEATURES.OTHERS.CREATE_PROJECT);
     },
     redirectTo: (transition) => {
       const injector = transition.injector();
-
+      injector.getAsync('$injector').then((i) => {
+        if (i.has('ovhShell')) {
+          const ovhShell = i.get('ovhShell');
+          ovhShell.ux.showPreloader();
+        }
+      });
       const translatePromise = injector.getAsync('$translate');
       const windowPromise = injector.getAsync('$window');
       const coreURLBuilderPromise = injector.getAsync('coreURLBuilder');

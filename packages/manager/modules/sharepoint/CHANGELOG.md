@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.7.0...@ovh-ux/manager-sharepoint@2.8.0) (2023-02-07)
+
+
+### Features
+
+* move server sidebar to container ([f446458](https://github.com/ovh/manager/commit/f446458542308f1ba0ae2cbccf9ed198081b5daa))
+
+
+
+
+
 # [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.6.1...@ovh-ux/manager-sharepoint@2.7.0) (2022-09-29)
 
 
@@ -281,6 +297,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 * **i18n:** add missing translations [CDS 9] ([f6b8c59](https://github.com/ovh-ux/manager/commit/f6b8c59))
 * **i18n:** declare array instead of string ([a8ee7ce](https://github.com/ovh-ux/manager/commit/a8ee7ce))
 * **manager-sharepoint:** bump lodash to version 4.17.14 ([35961d8](https://github.com/ovh-ux/manager/commit/35961d8))
-
-
-

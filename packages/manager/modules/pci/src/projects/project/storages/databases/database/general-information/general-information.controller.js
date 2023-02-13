@@ -13,6 +13,7 @@ import {
   TRANSLATION_PREFIX,
 } from './general-information.constants';
 import isFeatureActivated from '../../features.constants';
+import { DISK_TYPE } from '../../../../../../components/project/storages/databases/databases.constants';
 
 export default class {
   /* @ngInject */
@@ -36,6 +37,7 @@ export default class {
 
   $onInit() {
     this.DATABASE_TYPES = DATABASE_TYPES;
+    this.DISK_TYPE = DISK_TYPE;
 
     this.messageContainer = `pci.projects.project.storages.databases.dashboard.general-information-${this.database.id}`;
     this.loadMessages();

@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.4.2...@ovh-ux/manager-iplb@1.5.0) (2023-02-07)
+
+
+### Features
+
+* move server sidebar to container ([f446458](https://github.com/ovh/manager/commit/f446458542308f1ba0ae2cbccf9ed198081b5daa))
+
+
+
+
+
 ## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.4.1...@ovh-ux/manager-iplb@1.4.2) (2022-09-29)
 
 
@@ -417,6 +433,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Features
 
 * **iplb:** migrate IPLB ([b78786e](https://github.com/ovh/manager/commit/b78786ee6d70519ca06075697d798b649754d52e))
-
-
-

@@ -1,18 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
-
+import { Application } from '@ovh-ux/manager-config';
 import {
   getBetaAvailabilityFromLocalStorage,
   setBetaAvailabilityToLocalStorage,
   getBetaVersionFromLocalStorage,
   isBetaForced,
 } from './localStorage';
-// Note: Disabling prettier because it is not up-to-date
-// eslint-disable-next-line prettier/prettier
-import type { BetaVersion, ContainerContext as ContainerContextType} from './context';
-import ContainerContext from './context';
+import { BetaVersion, ContainerContext } from './context';
 import { useShell } from '@/context';
-
 
 export const BETA_V1 = 1;
 export const BETA_V2 = 2;
@@ -25,6 +21,8 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const [chatbotReduced, setChatbotReduced] = useState(false);
+  const [application, setApplication] = useState<Application>(undefined);
+  const [universe, setUniverse] = useState<string>();
 
   // true if we should we ask the user if he want to test beta version
   const [askBeta, setAskBeta] = useState(false);
@@ -36,8 +34,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const [useBeta, setUseBeta] = useState(false);
 
   const [isLivechatEnabled, setIsLivechatEnabled] = useState(false);
-
-  let containerContext: ContainerContextType = useContext(ContainerContext);
 
   const fetchFeatureAvailability = async () => {
     interface CurrentContextAvailability {
@@ -149,9 +145,25 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
         setChatbotOpen(chatbotVisibility);
       }
     });
-  }, [isLivechatEnabled])
+  }, [isLivechatEnabled]);
 
-  containerContext = {
+  useEffect(() => {
+    // special HPC case
+    if (window.location.hash?.endsWith('hosted-private-cloud')) {
+      return;
+    }
+    if (application?.universe) {
+      setUniverse(application.universe);
+    }
+  }, [application]);
+
+  useEffect(() => {
+    shell.getPlugin('environment').onUniverseChange((universe: string) => {
+      setUniverse(universe);
+    });
+  }, []);
+
+  const containerContext = {
     createBetaChoice,
     askBeta,
     betaVersion,
@@ -163,6 +175,12 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     setChatbotOpen,
     chatbotReduced,
     setChatbotReduced,
+    application,
+    setApplication,
+    universe,
+    setUniverse(universe: string) {
+      shell.getPlugin('environment').setUniverse(universe);
+    },
   };
 
   return (

@@ -1,0 +1,10 @@
+{
+  "sms_creditTransfer_title": "Transferir créditos",
+  "sms_creditTransfer_action_send": "Enviar",
+  "sms_creditTransfer_action_cancel": "Anular",
+  "sms_creditTransfer_label_your_account": "A sua conta",
+  "sms_creditTransfer_label_account_to_credit": "Conta a creditar",
+  "sms_creditTransfer_label_number_of_credits": "Indicar o número de dotações",
+  "sms_creditTransfer_message_success": "Transferência efetuada.",
+  "sms_creditTransfer_message_error": "Ocorreu um erro: {{error}}"
+}

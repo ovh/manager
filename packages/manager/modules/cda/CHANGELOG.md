@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.4.0...@ovh-ux/manager-cda@1.5.0) (2023-02-07)
+
+
+### Features
+
+* move server sidebar to container ([f446458](https://github.com/ovh/manager/commit/f446458542308f1ba0ae2cbccf9ed198081b5daa))
+
+
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.3.4...@ovh-ux/manager-cda@1.4.0) (2022-09-29)
 
 
@@ -207,6 +223,3 @@
 ### BREAKING CHANGES
 
 * init `@ovh-ux/manager-cda` module
-
-
-

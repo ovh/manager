@@ -1,5 +1,6 @@
 import { useEffect, useState, RefObject } from 'react';
 import { useLocation, useMatch, useNavigate } from 'react-router-dom';
+import useContainer from '@/core/container';
 import { Application } from '@ovh-ux/manager-config';
 
 import { appendSlash, removeHashbang } from './utils';
@@ -15,9 +16,14 @@ export function IFrameApplicationRoute({
 }: IFrameApplicationRouteProps): JSX.Element {
   const location = useLocation();
   const navigate = useNavigate();
+  const { setApplication } = useContainer();
 
   const [newIFrameURL, setNewIframeURL] = useState(null);
   const [iframeLocation, setIframeLocation] = useState(null);
+
+  useEffect(() => {
+    setApplication(appConfig);
+  }, [appConfig.universe, location]);
 
   const containerURLMatcher = useMatch('/:appPath/*');
 

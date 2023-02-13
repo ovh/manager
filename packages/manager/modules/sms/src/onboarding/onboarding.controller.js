@@ -17,6 +17,6 @@ export default class SmsOnboardingCtrl {
       title: this.$translate.instant(guide.title),
     }));
 
-    this.cta = CTA;
+    this.cta = CTA[this.ovhSubsidiary] || CTA.DEFAULT;
   }
 }

@@ -21,7 +21,7 @@ export default class PackCtrl {
     OvhApiPackXdsl,
     PACK,
     resiliationNotification,
-    SidebarMenu,
+    shellClient,
     TucToast,
     tucValidator,
   ) {
@@ -33,7 +33,7 @@ export default class PackCtrl {
     this.PACK = PACK;
     this.OvhApiPackXdsl = OvhApiPackXdsl;
     this.resiliationNotification = resiliationNotification;
-    this.SidebarMenu = SidebarMenu;
+    this.shellClient = shellClient;
     this.TucToast = TucToast;
     this.validator = tucValidator;
   }
@@ -211,14 +211,9 @@ export default class PackCtrl {
       .$promise.then(
         () => {
           this.pack.description = newPackDescription;
-
-          // rename in sidebar menu
-          this.SidebarMenu.updateItemDisplay(
-            {
-              title: newPackDescription || this.pack.offerDescription,
-            },
+          this.shellClient.ux.updateMenuSidebarItemLabel(
             this.$stateParams.packName,
-            'telecom-pack-section',
+            newPackDescription || this.pack.offerDescription,
           );
         },
         (error) => {

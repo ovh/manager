@@ -4,7 +4,10 @@ import get from 'lodash/get';
 import isNumber from 'lodash/isNumber';
 import min from 'lodash/min';
 import map from 'lodash/map';
-import { TABS } from '../additional-ips.constants';
+import {
+  TABS,
+  FLOATING_IP_HOURLY_PLAN_CODE,
+} from '../additional-ips.constants';
 import {
   IP_TYPE_ENUM,
   REGIONS,
@@ -344,6 +347,7 @@ export default class AdditionalIpController {
     return this.PciProjectAdditionalIpService.getRegions(
       this.projectId,
       this.user.ovhSubsidiary,
+      FLOATING_IP_HOURLY_PLAN_CODE,
     )
       .then((regions) => {
         this.regions = regions;

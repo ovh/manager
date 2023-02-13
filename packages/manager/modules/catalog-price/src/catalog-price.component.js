@@ -1,5 +1,6 @@
 import controller from './catalog-price.controller';
 import template from './catalog-price.html';
+import './catalog-price.scss';
 
 const component = {
   bindings: {
@@ -14,6 +15,7 @@ const component = {
     minimumFractionDigits: '<?',
     maximumFractionDigits: '<?',
     showZeroPrice: '<?',
+    beta: '<?',
   },
   controller,
   template,
