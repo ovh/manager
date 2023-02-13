@@ -113,15 +113,11 @@ export default class AddUserCtrl {
   }
 
   static getRoles(roles) {
-    const newRolesList = [];
-    roles.map((role) =>
-      newRolesList.push({
-        name: role.name.split('@')[0],
-        admin: role.name.includes('admin'),
-        db: role.name.includes('admin') ? 'admin' : '',
-      }),
-    );
-    return newRolesList;
+    return roles.map((role) => ({
+      name: role.name.split('@')[0],
+      admin: role.name.includes('admin'),
+      db: role.name.includes('admin') ? 'admin' : '',
+    }));
   }
 
   getAvailableRoles() {
