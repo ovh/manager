@@ -1,5 +1,4 @@
 {
-  "pci_app_add_resources_replicas": "Numero di istanze su cui verrà installata l’App",
   "pci_app_add_resources_usecase": "Tipo di repliche",
   "pci_app_add_resources_usecase_item_cpu": "CPU",
   "pci_app_add_resources_usecase_item_gpu": "GPU",
@@ -17,11 +16,6 @@
   "pci_app_add_resources_number_of_resources_type_cpu": "Risorse CPU",
   "pci_app_add_resources_number_of_resources_type_gpu": "Risorse GPU",
   "pci_app_add_resources_number_of_resources_number_of_resource": "Numero di CPU",
-  "pci_app_add_resources_replicas_help_text": "Esegui almeno 2 istanze per disporre di alta disponibilità",
-  "pci_app_add_resources_flavor_count": "Dimensione della replica",
-  "pci_app_add_resources_total": "Prezzo totale del deploy",
-  "pci_app_add_resources_resource_price": "Prezzo della risorsa",
-  "pci_app_add_resources_partner_price": "Prezzo della licenza",
   "pci_app_add_resources_scaling": "Dimensionamento",
   "pci_app_add_resources_scaling_description": "In base alle tue preferenze, scegli la strategia di deploy più adatta alla tua App: opta per un numero fisso di repliche su cui verrà eseguita la tua App o inserisci un numero minimo e massimo di repliche per i tuoi deploy, per ottimizzarne in modo dinamico le performance e adattarli al numero di richieste tramite l'opzione Autoscaling.",
   "pci_app_add_resources_scaling_description_link": "Ulteriori informazioni",
@@ -36,5 +30,9 @@
   "pci_app_add_resources_scaling_trigger_resource_help_text": "Metrica che attiverà l'autoscaling",
   "pci_app_add_resources_scaling_trigger_threshold": "Soglia di attivazione (%)",
   "pci_app_add_resources_scaling_trigger_threshold_help_text": "Valore della metrica, in percentuale",
-  "pci_app_add_resources_scaling_price_warning": "Il prezzo totale è calcolato in base al numero minimo di repliche scelte. Ricordiamo che questo costo può aumentare quando l'autoscaling è attivo."
+  "pci_app_add_resources_scaling_price_warning": "Il prezzo totale è calcolato in base al numero minimo di repliche scelte. Ricordiamo che questo costo può aumentare quando l'autoscaling è attivo.",
+  "pci_app_add_resources_flavor_count": "Dimensione della replica",
+  "pci_app_add_resources_total": "Prezzo totale del deploy",
+  "pci_app_add_resources_resource_price": "Prezzo della risorsa",
+  "pci_app_add_resources_partner_price": "Prezzo della licenza"
 }

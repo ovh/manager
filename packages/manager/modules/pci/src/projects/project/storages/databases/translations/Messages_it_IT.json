@@ -27,10 +27,8 @@
   "pci_database_list_upgrade_node_database": "Upgrade modello di nodo",
   "pci_database_node_type_cpu": "{{coreNumber}} CPU",
   "pci_database_node_type_memory": "{{memorySize}} RAM",
-  "pci_database_node_type_storage": "{{storageSize}} di storage SSD",
-  "pci_database_node_type_storage_range": "da {{storageMinSize}} a {{storageMaxSize}} di storage SSD",
   "pci_database_node_type_label": "Modello di nodo",
+  "pci_database_storage_label": "Storage utile",
   "pci_database_footer_part_1": "Tutti i nomi di prodotti, loghi e marchi appartengono ai loro legittimi proprietari. I nomi aziendali, di prodotti e di servizi presenti in questo sito Web sono impiegati a solo scopo identificativo. L'utilizzo di tali nomi, loghi e marchi non richiede alcuna approvazione.",
-  "pci_database_footer_part_2": "*Redis è un marchio di Redis Ltd e tutti i diritti ad esso associati sono riservati alla Redis Ltd. Qualsiasi utilizzo da parte di OVH SAS è da intendersi esclusivamente a titolo di riferimento e non implica alcuna sponsorizzazione, sostegno o affiliazione tra Redis e OVH SAS.",
-  "pci_database_storage_label": "Storage utile"
+  "pci_database_footer_part_2": "*Redis è un marchio di Redis Ltd e tutti i diritti ad esso associati sono riservati alla Redis Ltd. Qualsiasi utilizzo da parte di OVH SAS è da intendersi esclusivamente a titolo di riferimento e non implica alcuna sponsorizzazione, sostegno o affiliazione tra Redis e OVH SAS."
 }

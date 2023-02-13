@@ -1,0 +1,9 @@
+{
+  "pci_projects_project_storages_containers_users_import_title": "Import file",
+  "pci_projects_project_storages_containers_users_import_submit_label": "Import",
+  "pci_projects_project_storages_containers_users_import_add_files_label": "Import files",
+  "pci_projects_project_storages_containers_users_import_description": "You can import a JSON file to manage your user's rights.",
+  "pci_projects_project_storages_containers_users_import_success": "The JSON file linked to the user {{username}} has been imported.",
+  "pci_projects_project_storages_containers_users_import_error": "The JSON file linked to the user {{username}} was not imported correctly: {{message}}",
+  "pci_projects_project_storages_containers_users_import_read_page_error": "An error has occurred attempting to download the file."
+}

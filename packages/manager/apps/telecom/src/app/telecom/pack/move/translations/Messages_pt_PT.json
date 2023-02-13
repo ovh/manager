@@ -113,5 +113,8 @@
   "pack_move_service_delete_confirm": "Confirmar a seleção dos serviços",
   "pack_move_creation_line_fees": "Taxas de criação de linha",
   "pack_move_confirm_shipping": "Selecionou o modo de entrega do seu novo modem por transportador (+ {{ price }}€ + IVA).",
-  "pack_move_confirm_first_mensuality": "A sua primeira mensalidade será de {{ price }} + IVA."
+  "pack_move_confirm_first_mensuality": "A sua primeira mensalidade será de {{ price }} + IVA.",
+  "pack_move_resume_comfort_activation": "As taxas de ativação da opção Confort são de {{ price }} + IVA.",
+  "pack_move_resume_install_fees": "As taxas de instalação são de {{ price }} + IVA.",
+  "pack_move_resume_creation_line_fees": "Os custos de criação da linha são de {{ price }} + IVA."
 }

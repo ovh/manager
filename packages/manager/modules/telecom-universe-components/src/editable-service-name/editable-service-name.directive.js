@@ -9,6 +9,7 @@ export default /* @ngInject */ ($timeout) => ({
     onEditStart: '&?tucEditableServiceNameTitleOnEditStart',
     onEditCancel: '&?tucEditableServiceNameTitleOnEditCancel',
     onSave: '&tucEditableServiceNameTitleOnSave', // MUST BE a promise
+    serviceNameAppendix: '@',
     maxlength: '@',
     disabled: '=',
   },

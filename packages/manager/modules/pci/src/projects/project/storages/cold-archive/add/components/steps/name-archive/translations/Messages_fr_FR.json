@@ -1,0 +1,5 @@
+{
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_title": "Nommez votre conteneur",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_description": "Le nom du conteneur doit comporter entre 3 et 63 caractères, doit commencer et se terminer par des caractères alphanumériques minuscules (de a à z et de 0 à 9) et peut comporter les signes de ponctuation suivants : « . » et « - ».",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_field_name": "Nom du conteneur"
+}

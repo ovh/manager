@@ -46,7 +46,7 @@
   "pci_project_instances_instance_add_choose_model": "Cambia modello",
   "pci_projects_project_instances_add_automated_backup_recommended": "Consigliato",
   "pci_projects_project_instances_add_privateNetwork_description": "Di default le istanze Public Cloud dispongono  di una rete pubblica, ma è possibile aggiungere anche una rete privata.",
-  "pci_projects_project_instances_add_privateNetwork_add": "Crea una rete privata",
+  "pci_projects_project_instances_add_privateNetwork_add": "Creare una rete privata",
   "pci_projects_project_instances_add_instance_is_iops": "Il backup automatico viene eseguito esclusivamente per i dati del disco locale della tua istanza. I dati dei dischi NVMe non saranno copiati.",
   "pci_projects_project_instances_add_flavor_selected_legacy": "Il modello selezionato è obsoleto. La sua disponibilità non può essere garantita."
 }

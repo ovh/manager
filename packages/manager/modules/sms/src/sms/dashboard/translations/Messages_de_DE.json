@@ -19,5 +19,7 @@
   "sms_statictics_credit_reload": "Guthaben neu laden",
   "sms_statistics_sent_number": "Anzahl versendeter SMS",
   "sms_statistics_delivered_number": "Anzahl der gelieferten SMS",
-  "sms_statistics_stop_subscribe_number": "Anzahl der Abmeldungen"
+  "sms_statistics_stop_subscribe_number": "Anzahl der Abmeldungen",
+  "sms_actions_credit_transfer": "Übertragung von Mitteln",
+  "sms_actions_smpp_parameter": "SMPP einrichten"
 }

@@ -9,8 +9,13 @@ export default {
     getBatchesStatistics: '<',
     getReloadCreditLink: '<',
 
+    goToCreditTransfer: '<',
+    goToCreditOrder: '<',
+
     trackClick: '<',
     serviceName: '<',
+
+    isSmppAccount: '<',
   },
   controller,
   name: 'ovhManagerSmsDashboard',

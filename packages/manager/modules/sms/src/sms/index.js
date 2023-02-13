@@ -26,7 +26,7 @@ angular
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./telecom-sms.component').then((mod) =>
+          return import('./telecom-sms.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },

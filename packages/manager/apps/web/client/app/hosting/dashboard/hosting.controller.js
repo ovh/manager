@@ -71,7 +71,8 @@ export default class {
     user,
     userLogsLink,
     HOSTING_STATUS,
-    OVH_ORDER_URLS,
+    DOMAIN_ORDER_URL,
+    HOSTING_ORDER_URL,
     HOSTING_OPERATION_STATUS,
     HOSTING_FLUSH_STATE,
   ) {
@@ -135,7 +136,8 @@ export default class {
     this.taskLink = taskLink;
     this.user = user;
     this.userLogsLink = userLogsLink;
-    this.OVH_ORDER_URLS = OVH_ORDER_URLS;
+    this.DOMAIN_ORDER_URL = DOMAIN_ORDER_URL;
+    this.HOSTING_ORDER_URL = HOSTING_ORDER_URL;
     this.serviceName = serviceName;
   }
 
@@ -752,10 +754,8 @@ export default class {
             this.$stateParams.productId,
           ),
           hostingProxy: this.Hosting.getHosting(this.$stateParams.productId),
-          hostingUrl: this.OVH_ORDER_URLS.orderHosting[this.user.ovhSubsidiary],
-          domainOrderUrl: this.OVH_ORDER_URLS.orderDomain[
-            this.user.ovhSubsidiary
-          ],
+          hostingUrl: this.HOSTING_ORDER_URL[this.user.ovhSubsidiary],
+          domainOrderUrl: this.DOMAIN_ORDER_URL[this.user.ovhSubsidiary],
         });
       })
       .then(({ serviceInfos, hostingProxy, hostingUrl, domainOrderUrl }) => {

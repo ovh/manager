@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-office-app",
-  "version": "0.7.6",
+  "version": "0.7.9",
   "private": true,
   "repository": {
     "type": "git",
@@ -19,12 +19,12 @@
   },
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.6.2",
-    "@ovh-ux/manager-config": "^6.5.2",
-    "@ovh-ux/manager-core": "^12.12.8",
+    "@ovh-ux/manager-config": "^6.6.0",
+    "@ovh-ux/manager-core": "^12.12.10",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
     "@ovh-ux/manager-office": "^2.8.2",
-    "@ovh-ux/ng-at-internet": "^5.9.5",
-    "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
+    "@ovh-ux/ng-at-internet": "^5.9.6",
+    "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-http": "^5.0.6",
     "@ovh-ux/ng-ovh-payment-method": "^9.4.1",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.6",

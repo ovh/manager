@@ -3,6 +3,98 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.48.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.48.1...@ovh-ux/manager-dedicated@17.48.2) (2023-02-08)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** order ip in us region ([#8857](https://github.com/ovh/manager/issues/8857)) ([8bb49e2](https://github.com/ovh/manager/commit/8bb49e2bd3b37512cf475943fadef94b74e76273))
+* **dedicated.ip:** vmac is not visible ([#8862](https://github.com/ovh/manager/issues/8862)) ([1cee671](https://github.com/ovh/manager/commit/1cee67175299a3026c85fa79a9f28cef3a2a9785))
+
+
+
+
+
+## [17.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.48.0...@ovh-ux/manager-dedicated@17.48.1) (2023-02-07)
+
+
+### Bug Fixes
+
+* remove sidebar from applications ([8f37d2a](https://github.com/ovh/manager/commit/8f37d2ab49642b40d1adbb4817530e4f354ee4f3))
+
+
+
+
+
+# [17.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.47.1...@ovh-ux/manager-dedicated@17.48.0) (2023-02-07)
+
+
+### Bug Fixes
+
+* container sidebar production ([eb760fd](https://github.com/ovh/manager/commit/eb760fd466a6ae1505b67f2c1479c61f3bbb2d25))
+* **container:** hpc sidebar, nutanix order ([c9303a6](https://github.com/ovh/manager/commit/c9303a60867f7cc44df33400293a6c6b8eaf3b9c))
+
+
+### Features
+
+* move server sidebar to container ([f446458](https://github.com/ovh/manager/commit/f446458542308f1ba0ae2cbccf9ed198081b5daa))
+
+
+
+
+
+## [17.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.47.0...@ovh-ux/manager-dedicated@17.47.1) (2023-02-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [17.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.46.1...@ovh-ux/manager-dedicated@17.47.0) (2023-02-01)
+
+
+### Bug Fixes
+
+* **dedicated.cdn:** change the wrong value backend use ([dbf06f4](https://github.com/ovh/manager/commit/dbf06f47e81351f773b26149ab81e3fa8faab0bd))
+* **dedicated.ip:** optimize the size of the ip dashboard ([176aca0](https://github.com/ovh/manager/commit/176aca0f0929c8146ef8f391b515c47465ea51fe))
+* **dedicated.ip:** optimize the size of the ip dashboard ([2748d2a](https://github.com/ovh/manager/commit/2748d2af8a1c66ef6ca4c8d8c178b6f8a698ef7c))
+
+
+### Features
+
+* **dedicated.license:** remove license types ([9e91ace](https://github.com/ovh/manager/commit/9e91ace98a74a0370d10cd36384a1a8849eeaf08))
+* **dedicated.server:** display endoflife information ([9929478](https://github.com/ovh/manager/commit/992947863b214af99329e4f575130028c08c1d1d))
+* **dedicated:** remove select option for single dropdown ([5c23718](https://github.com/ovh/manager/commit/5c23718da33e0441e9098c9c83e3433f972cdc11))
+
+
+
+
+
+## [17.46.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.46.0...@ovh-ux/manager-dedicated@17.46.1) (2023-01-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1934] ([8a5b3e2](https://github.com/ovh/manager/commit/8a5b3e22c67b2022fe354e9cddf2fd4f3cedcb1f))
+* **i18n:** add missing translations [CDS 1955] ([c00d269](https://github.com/ovh/manager/commit/c00d269be43868a1e99c45fa877fe36e2bcf702c))
+* **i18n:** add missing translations [CDS 1973] ([be648c4](https://github.com/ovh/manager/commit/be648c41c74cf691bbea5bd316e5ba25c361ba50))
+* **i18n:** add missing translations [CDS 1981] ([727edd8](https://github.com/ovh/manager/commit/727edd84dc004af2fa16ad9edab3ee8b81f62621))
+* **i18n:** add missing translations [CDS 1984] ([ecc3adb](https://github.com/ovh/manager/commit/ecc3adb952e31bd50587294ab8486ea06365d435))
+* **i18n:** add missing translations [CDS 1993] ([18137a9](https://github.com/ovh/manager/commit/18137a9e793b27618f47b07fe2bcb7c2a0f2b07e))
+* **i18n:** add missing translations [CDS 1996] ([563500d](https://github.com/ovh/manager/commit/563500d878f953273c319ba8e24abe099ac39323))
+* **i18n:** add missing translations [CDS 2031] ([e7a40cc](https://github.com/ovh/manager/commit/e7a40cc8b5b6bddd79b3df10052909fcc80619ee))
+* **i18n:** add missing translations [CDS 2034] ([4164cf4](https://github.com/ovh/manager/commit/4164cf4d283a3c03081fbcf9523facc931f8771b))
+* remove unused translations [CDS] ([b1e1896](https://github.com/ovh/manager/commit/b1e1896de58e4f3c2e01a906854479fdcf256a1a))
+* remove unused translations [CDS] ([10da25e](https://github.com/ovh/manager/commit/10da25e6a1fa400e58c835a95182de2e29093f0b))
+* remove unused translations [CDS] ([7df56bd](https://github.com/ovh/manager/commit/7df56bdf800b9fbce2eae8199a984ccaef6a95fe))
+* remove unused translations [CDS] ([01559cf](https://github.com/ovh/manager/commit/01559cf11512055ca93b8aeb6b65bd26efc4499f))
+* remove unused translations [CDS] ([f8ead52](https://github.com/ovh/manager/commit/f8ead52034880395bfee2190069b13abc2bbf98e))
+
+
+
+
+
 # [17.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.45.0...@ovh-ux/manager-dedicated@17.46.0) (2023-01-25)
 
 

@@ -9,8 +9,8 @@ export default /* @ngInject */ function TelecomTelephonyFaxCtrl(
   currentActiveLink,
   faxDashboardLink,
   faxLink,
+  shellClient,
   TelephonyMediator,
-  SidebarMenu,
   TucToast,
   voicemailLink,
 ) {
@@ -42,13 +42,9 @@ export default /* @ngInject */ function TelecomTelephonyFaxCtrl(
     return self.fax.save().then(
       () => {
         self.fax.stopEdition();
-        SidebarMenu.updateItemDisplay(
-          {
-            title: self.fax.getDisplayedName(),
-          },
+        shellClient.ux.updateMenuSidebarItemLabel(
           self.fax.serviceName,
-          'telecom-telephony-section',
-          self.fax.billingAccount,
+          newServiceDescription,
         );
       },
       (error) => {

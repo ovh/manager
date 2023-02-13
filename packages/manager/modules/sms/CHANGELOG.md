@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.11.1...@ovh-ux/manager-sms@8.12.0) (2023-02-09)
+
+
+### Features
+
+* **telecom.sms:** sms smpp ga ([#8539](https://github.com/ovh/manager/issues/8539)) ([109ce03](https://github.com/ovh/manager/commit/109ce035e79b3014b1bbe3752a31b53582861817))
+
+
+
+
+
 ## [8.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.11.0...@ovh-ux/manager-sms@8.11.1) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-sms

@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.53.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.53.2...@ovh-ux/manager-telecom@13.53.3) (2023-02-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [13.53.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.53.1...@ovh-ux/manager-telecom@13.53.2) (2023-02-08)
+
+
+### Bug Fixes
+
+* **telecom:** add missing ng-ovh-actions-menu import ([#8873](https://github.com/ovh/manager/issues/8873)) ([9cf3e30](https://github.com/ovh/manager/commit/9cf3e3067c635324305f037e8221a7316cf9e5eb))
+
+
+
+
+
+## [13.53.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.53.0...@ovh-ux/manager-telecom@13.53.1) (2023-02-07)
+
+
+### Bug Fixes
+
+* remove sidebar from applications ([8f37d2a](https://github.com/ovh/manager/commit/8f37d2ab49642b40d1adbb4817530e4f354ee4f3))
+
+
+
+
+
+# [13.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.52.9...@ovh-ux/manager-telecom@13.53.0) (2023-02-07)
+
+
+### Bug Fixes
+
+* container sidebar production ([eb760fd](https://github.com/ovh/manager/commit/eb760fd466a6ae1505b67f2c1479c61f3bbb2d25))
+
+
+### Features
+
+* move server sidebar to container ([f446458](https://github.com/ovh/manager/commit/f446458542308f1ba0ae2cbccf9ed198081b5daa))
+
+
+
+
+
+## [13.52.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.52.8...@ovh-ux/manager-telecom@13.52.9) (2023-02-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [13.52.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.52.7...@ovh-ux/manager-telecom@13.52.8) (2023-01-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1981] ([727edd8](https://github.com/ovh/manager/commit/727edd84dc004af2fa16ad9edab3ee8b81f62621))
+* remove unused translations [CDS] ([01559cf](https://github.com/ovh/manager/commit/01559cf11512055ca93b8aeb6b65bd26efc4499f))
+
+
+
+
+
 ## [13.52.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.52.6...@ovh-ux/manager-telecom@13.52.7) (2023-01-19)
 
 

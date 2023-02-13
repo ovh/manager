@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iplb-app",
-  "version": "1.8.4",
+  "version": "1.8.7",
   "private": true,
   "description": "IP Load Balancer standalone application.",
   "repository": {
@@ -20,14 +20,14 @@
   },
   "dependencies": {
     "@ovh-ux/manager-components": "^1.0.0",
-    "@ovh-ux/manager-config": "^6.5.2",
-    "@ovh-ux/manager-core": "^12.12.8",
+    "@ovh-ux/manager-config": "^6.6.0",
+    "@ovh-ux/manager-core": "^12.12.10",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
-    "@ovh-ux/manager-iplb": "^0.4.0 || ^1.0.0",
+    "@ovh-ux/manager-iplb": "^1.5.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
-    "@ovh-ux/ng-at-internet": "^5.9.5",
+    "@ovh-ux/ng-at-internet": "^5.9.6",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.16",
-    "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
+    "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.7.1",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.6",
     "@ovh-ux/ng-ovh-http": "^5.0.6",

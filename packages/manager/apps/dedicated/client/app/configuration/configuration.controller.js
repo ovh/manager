@@ -21,7 +21,9 @@ angular.module('App').controller(
         this.constants.TOP_GUIDES.all,
       );
       this.user = this.coreConfig.getUser();
-      this.$scope.$on('switchUniverse', () => this.buildingGuideURLs());
+      this.$scope.$on('switchUniverse', (_, universe) =>
+        this.buildingGuideURLs(universe),
+      );
       return this.buildingGuideURLs().then(() => this.gettingHelpCenterURLs());
     }
 
@@ -32,12 +34,12 @@ angular.module('App').controller(
       return section[this.currentLanguage] || section[this.fallbackLanguage];
     }
 
-    buildingGuideURLs() {
+    buildingGuideURLs(universe) {
       return this.fetchingGuideSectionNames()
         .then((sectionNames) =>
           sectionNames.filter((sectionName) =>
             this.constants.SECTIONS_UNIVERSE_MAP[sectionName].includes(
-              this.coreConfig.getUniverse(),
+              universe || this.coreConfig.getUniverse(),
             ),
           ),
         )

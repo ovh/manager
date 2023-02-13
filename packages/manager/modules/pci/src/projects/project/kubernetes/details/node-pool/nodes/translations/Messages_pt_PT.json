@@ -47,5 +47,7 @@
   "kube_nodes_common_actions": "Ações",
   "kube_nodes_add_nodes": "Adicionar nós",
   "kube_nodes_delete_nodes": "Eliminar nós",
-  "kube_nodes_status_REDEPLOYING": "Aplicação das alterações"
+  "kube_nodes_status_REDEPLOYING": "Aplicação das alterações",
+  "kube_nodes_status_UPSCALING": "Upscaling",
+  "kube_nodes_status_DOWNSCALING": "Downscaling"
 }

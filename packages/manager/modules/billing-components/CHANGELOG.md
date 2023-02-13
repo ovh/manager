@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.11.3...@ovh-ux/manager-billing-components@3.11.4) (2023-02-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+## [3.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.11.2...@ovh-ux/manager-billing-components@3.11.3) (2023-02-01)
+
+
+### Bug Fixes
+
+* **modules.billing-components:** avoid text overflow ([38a2ba0](https://github.com/ovh/manager/commit/38a2ba0d825f444f935eb2627e50ff4673ddcdf3))
+
+
+
+
+
 ## [3.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.11.1...@ovh-ux/manager-billing-components@3.11.2) (2023-01-19)
 
 

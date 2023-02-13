@@ -61,11 +61,11 @@
 <oui-collapsible
     class="mx-0"
     data-ng-if="!$ctrl.isTrustedZone"
-    heading="{{ ::'cpbc_hourly_load_balancer_title' | translate }} ({{ $ctrl.resources.totals.hourly.loadBalancer.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    heading="{{ :: $ctrl.PRODUCTS.KUBERNETES_LOAD_BALANCER }} ({{ $ctrl.resources.totals.hourly.kubernetesLoadBalancer.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
-        data-resource-usage="$ctrl.resources.loadBalancer"
+        data-resource-usage="$ctrl.resources.kubernetesLoadBalancer"
     ></pci-billing-resource-usage>
 </oui-collapsible>
 <oui-collapsible
@@ -136,5 +136,15 @@
     <pci-billing-resource-usage
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
         data-resource-usage="$ctrl.resources.gateway"
+    ></pci-billing-resource-usage>
+</oui-collapsible>
+<oui-collapsible
+    class="mx-0"
+    data-ng-if="!$ctrl.isTrustedZone"
+    heading="{{:: $ctrl.PRODUCTS.OCTAVIA_LOAD_BALANCER}} ({{ $ctrl.resources.totals.hourly.octaviaLoadBalancer.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+>
+    <pci-billing-resource-usage
+        data-currency-symbol="$ctrl.resources.totals.currencySymbol"
+        data-resource-usage="$ctrl.resources.octaviaLoadBalancer"
     ></pci-billing-resource-usage>
 </oui-collapsible>

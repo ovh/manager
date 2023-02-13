@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/url-builder@1.1.0...@ovh-ux/url-builder@1.1.1) (2023-01-30)
+
+
+### Bug Fixes
+
+* **url-builder:** add tests ([45afbb6](https://github.com/ovh/manager/commit/45afbb6bea0a0877c4f5b7652d59a7bbbaff3cca))
+
+
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/url-builder@1.0.0...@ovh-ux/url-builder@1.1.0) (2022-11-29)
 
 

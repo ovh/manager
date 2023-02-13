@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.18.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.17.0...@ovh-ux/ng-ovh-telecom-universe-components@7.18.0) (2023-02-09)
+
+
+### Features
+
+* **telecom.sms:** sms smpp ga ([#8539](https://github.com/ovh/manager/issues/8539)) ([109ce03](https://github.com/ovh/manager/commit/109ce035e79b3014b1bbe3752a31b53582861817))
+
+
+
+
+
 # [7.17.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.16.0...@ovh-ux/ng-ovh-telecom-universe-components@7.17.0) (2022-12-19)
 
 

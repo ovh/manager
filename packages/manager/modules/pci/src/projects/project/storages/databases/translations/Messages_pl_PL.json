@@ -27,10 +27,8 @@
   "pci_database_list_upgrade_node_database": "Upgrade modelu węzła",
   "pci_database_node_type_cpu": "{{coreNumber}} CPU",
   "pci_database_node_type_memory": "{{memorySize}} RAM",
-  "pci_database_node_type_storage": "{{storageSize}} przestrzeni dyskowej SSD",
-  "pci_database_node_type_storage_range": "od {{storageMinSize}} do {{storageMaxSize}} przestrzeni dyskowej SSD",
   "pci_database_node_type_label": "Model węzła",
+  "pci_database_storage_label": "Dostępna przestrzeń dyskowa",
   "pci_database_footer_part_1": "Wszystkie nazwy produktów, logo i znaki towarowe należą do ich właścicieli. Wszystkie nazwy firm, produktów i usług publikowane na tej stronie internetowej służą wyłącznie do celów identyfikacji. Używanie tych nazw, logo i znaków towarowych nie wymaga uzyskania zgody.",
-  "pci_database_footer_part_2": "*Redis jest znakiem towarowym firmy Redis Ltd. Wszystkie prawa z nim związane są zastrzeżone dla Redis Ltd. Użycie go przez OVH SAS w jakiejkolwiek formie ma charakter wyłącznie referencyjny i nie oznacza sponsorowania, wspierania lub powiązania pomiędzy Redis a OVH SAS.",
-  "pci_database_storage_label": "Dostępna przestrzeń dyskowa"
+  "pci_database_footer_part_2": "*Redis jest znakiem towarowym firmy Redis Ltd. Wszystkie prawa z nim związane są zastrzeżone dla Redis Ltd. Użycie go przez OVH SAS w jakiejkolwiek formie ma charakter wyłącznie referencyjny i nie oznacza sponsorowania, wspierania lub powiązania pomiędzy Redis a OVH SAS."
 }

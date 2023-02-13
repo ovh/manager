@@ -109,7 +109,7 @@
                     name="input_stream"
                     id="input_stream"
                     data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_stream.$invalid}"
-                    data-ng-options="stream.info.streamId as stream.info.title for stream in ctrl.streams.data"
+                    data-ng-options="stream.streamId as stream.title for stream in ctrl.streams.data"
                     data-ng-model="ctrl.input.data.info.streamId"
                     required
                 >

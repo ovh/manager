@@ -1,17 +1,18 @@
 <div class="pci-project-new-payment-method-add">
-
     <!--Info about save payment mean-->
     <div class="mb-3">
-        <span data-translate="pci_project_new_payment_method_save_explain_part_1"></span>
-        <span class="font-weight-bold"
-              data-translate="pci_project_new_payment_method_save_explain_part_2"
+        <span
+            data-translate="pci_project_new_payment_method_save_explain_part_1"
+        ></span>
+        <span
+            class="font-weight-bold"
+            data-translate="pci_project_new_payment_method_save_explain_part_2"
         >
         </span>
     </div>
 
     <!--Payment methods-->
     <div class="row">
-
         <oui-select-picker
             class="col-md-6 m-0 mb-3"
             data-ng-repeat="authorizedPaymentMethod in $ctrl.authorizedPaymentMethods track by $index"
@@ -20,14 +21,14 @@
             data-name="paymentType"
             data-model="$ctrl.model.paymentMethod"
             data-values="[authorizedPaymentMethod]"
-            data-on-change="$ctrl.onPaymentTypeRadioChange()">
+            data-on-change="$ctrl.onPaymentTypeRadioChange()"
+        >
             <oui-select-picker-label class="w-100 text-center">
                 <span
                     data-ng-bind=":: $ctrl.getPaymentMethodTypeText(authorizedPaymentMethod)"
                 ></span>
             </oui-select-picker-label>
         </oui-select-picker>
-
     </div>
 
     <!--Credit card info banner-->
@@ -79,10 +80,10 @@
     </div>
 
     <!--SEPA banner info-->
-    <div class="text-justify"
-         data-ng-if="$ctrl.model.paymentMethod.type.isSepaDirectDebit()"
+    <div
+        class="text-justify"
+        data-ng-if="$ctrl.model.paymentMethod.type.isSepaDirectDebit()"
     >
-
         <!--Description-->
         <p
             data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_main_info"
@@ -104,11 +105,9 @@
                 data-translate-values="{ break: '<br>' }"
             ></span>
         </oui-message>
-
     </div>
 
-    <p data-ng-if="$ctrl.model.paymentMethod.type.isPaypal()"
-    >
+    <p data-ng-if="$ctrl.model.paymentMethod.type.isPaypal()">
         <small
             data-translate="pci_project_new_payment_method_add_info_paypal"
             data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"

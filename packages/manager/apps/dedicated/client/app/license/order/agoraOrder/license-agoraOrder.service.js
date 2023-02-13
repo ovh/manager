@@ -18,14 +18,10 @@ export default class LicenseAgoraOrder {
     this.User = User;
 
     this.licenseTypeToCatalog = {
-      CLOUDLINUX: 'licenseCloudLinux',
       CPANEL: 'licensecPanel',
-      DIRECTADMIN: 'licenseDirectadmin',
       PLESK: 'licensePlesk',
       SQLSERVER: 'licenseSqlServer',
-      VIRTUOZZO: 'licenseVirtuozzo',
       WINDOWS: 'licenseWindows',
-      WORKLIGHT: 'licenseWorklight',
     };
   }
 

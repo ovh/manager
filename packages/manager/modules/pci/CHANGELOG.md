@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.111.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.111.0...@ovh-ux/manager-pci@5.111.1) (2023-02-07)
+
+
+### Bug Fixes
+
+* remove sidebar from applications ([8f37d2a](https://github.com/ovh/manager/commit/8f37d2ab49642b40d1adbb4817530e4f354ee4f3))
+
+
+
+
+
+# [5.111.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.110.0...@ovh-ux/manager-pci@5.111.0) (2023-02-07)
+
+
+### Features
+
+* **container:** add public-cloud sidebar ([26330e5](https://github.com/ovh/manager/commit/26330e576cb84eda7a37a3f9f012f312f13409a0))
+
+
+
+
+
+# [5.110.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.109.0...@ovh-ux/manager-pci@5.110.0) (2023-02-02)
+
+
+### Features
+
+* **public-cloud:** cold archive feature  ([#8059](https://github.com/ovh/manager/issues/8059)) ([b2566d7](https://github.com/ovh/manager/commit/b2566d7abd7795ef9afdd1f4d933b30d9d39d35d))
+
+
+
+
+
+# [5.109.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.108.2...@ovh-ux/manager-pci@5.109.0) (2023-02-01)
+
+
+### Bug Fixes
+
+* **modules.pci.storages:** allow items stacking ([be0f0c1](https://github.com/ovh/manager/commit/be0f0c16987386dd3e9f3fffbb42b473bc47f4f5))
+* **pci.kube:** remove desired nodes if autoscale ([fa26588](https://github.com/ovh/manager/commit/fa26588e5be5107cf6a32b3a21fff4b2c79f785a))
+* **pci:** avoid multiple mapping in drop down ([a0a2862](https://github.com/ovh/manager/commit/a0a2862f207632d0d69c967fc9fee85618bd3253))
+
+
+### Features
+
+* **pci.project:** display load-balancer in billing ([#8751](https://github.com/ovh/manager/issues/8751)) ([d5f7a8f](https://github.com/ovh/manager/commit/d5f7a8f54384b2c4814481405c47376f10f4cc24))
+
+
+
+
+
+## [5.108.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.108.1...@ovh-ux/manager-pci@5.108.2) (2023-02-01)
+
+
+### Bug Fixes
+
+* **pci.project:** display project dashboard ([a92037c](https://github.com/ovh/manager/commit/a92037c2a800ec3cc8dd89b7fab5bdf8f66fc6e7))
+
+
+
+
+
+## [5.108.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.108.0...@ovh-ux/manager-pci@5.108.1) (2023-01-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1925] ([e37ab3c](https://github.com/ovh/manager/commit/e37ab3c06ebe073dde90e77a33b454bcfa0d863d))
+* **i18n:** add missing translations [CDS 1955] ([c00d269](https://github.com/ovh/manager/commit/c00d269be43868a1e99c45fa877fe36e2bcf702c))
+* **i18n:** add missing translations [CDS 1981] ([727edd8](https://github.com/ovh/manager/commit/727edd84dc004af2fa16ad9edab3ee8b81f62621))
+* **i18n:** add missing translations [CDS 1993] ([18137a9](https://github.com/ovh/manager/commit/18137a9e793b27618f47b07fe2bcb7c2a0f2b07e))
+* **i18n:** add missing translations [CDS 2035] ([722ae04](https://github.com/ovh/manager/commit/722ae042e078944d1b736af706159f8aeee5c638))
+* **i18n:** add missing translations [CDS 2052] ([9d86f5f](https://github.com/ovh/manager/commit/9d86f5f0a2dc4efb094d3fabf21a0ee5c7ad7d18))
+* **i18n:** add missing translations [CDS 2054] ([cf551dd](https://github.com/ovh/manager/commit/cf551ddd862d784c14b0acf5bb4c5f78272daa52))
+* **i18n:** add missing translations [CDS 2056] ([1947bbf](https://github.com/ovh/manager/commit/1947bbfdaae8c3bd6de229d2987ba4d066ad432a))
+* **i18n:** add missing translations [CDS 2062] ([37556fe](https://github.com/ovh/manager/commit/37556fe01512e5c1a6361a32eeba5e9e5ffb067e))
+* **i18n:** add missing translations [CDS 2066] ([e67378c](https://github.com/ovh/manager/commit/e67378cd717ee62b969f78fb465c9d8341ce53f4))
+* remove unused translations [CDS] ([37a8185](https://github.com/ovh/manager/commit/37a8185bc616a26ce926c12e2a27b8c25861cf5c))
+* remove unused translations [CDS] ([b1e1896](https://github.com/ovh/manager/commit/b1e1896de58e4f3c2e01a906854479fdcf256a1a))
+* remove unused translations [CDS] ([f8ead52](https://github.com/ovh/manager/commit/f8ead52034880395bfee2190069b13abc2bbf98e))
+* remove unused translations [CDS] ([14c387f](https://github.com/ovh/manager/commit/14c387f1d8ad4a1b75dba50e52fa69c30b130d4f))
+
+
+
+
+
 # [5.108.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.107.0...@ovh-ux/manager-pci@5.108.0) (2023-01-24)
 
 

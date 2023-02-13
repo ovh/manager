@@ -2,7 +2,6 @@ export const CPANEL_PREMIER_TYPES = ['premier-cloud', 'premier-metal'];
 
 export const LICENCE_TYPES = {
   CPANEL: 'CPANEL',
-  WORKLIGHT: 'WORKLIGHT',
 };
 
 export const CPANEL_ADMIN_TYPE = 'admin-cloud';
