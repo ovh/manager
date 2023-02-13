@@ -147,32 +147,24 @@
 
     <div data-ng-if="!$ctrl.bindings.isLoading">
         <oui-tile-definition
-            class="pb-2"
-            data-ng-if="$ctrl.bindings.options.basic.description.available"
+            data-ng-repeat="option in ::$ctrl.bindings.options.basic.description.items track by option.name"
+            data-ng-if="$ctrl.bindings.options.basic.description.available && option.available"
         >
-            <oui-tile-description class="oui-list oui-list_separated m-0">
-                <ul class="oui-list__items">
-                    <li
-                        data-ng-repeat="option in ::$ctrl.bindings.options.basic.description.items track by option.name"
-                        data-ng-if="option.available"
-                        data-ng-class="{
-                            'pb-3': !$last,
-                        }"
-                        class="oui-list__item oui-list__group pt-3"
-                    >
-                        <ovh-manager-pcc-dashboard-options-descriptions-basic-option
-                            data-current-user=":: $ctrl.bindings.currentUser"
-                            data-option-name=":: option.name"
-                            data-eol=":: option.eol"
-                            data-status=":: option.status"
-                        >
-                        </ovh-manager-pcc-dashboard-options-descriptions-basic-option>
-                    </li>
-                </ul>
+            <oui-tile-description>
+                <ovh-manager-pcc-dashboard-options-descriptions-basic-option
+                    data-current-user=":: $ctrl.bindings.currentUser"
+                    data-option-name=":: option.name"
+                    data-eol=":: option.eol"
+                    data-status=":: option.status"
+                >
+                </ovh-manager-pcc-dashboard-options-descriptions-basic-option>
             </oui-tile-description>
             <oui-tile-actions>
                 <oui-action-menu
-                    data-ng-if=":: $ctrl.bindings.options.basic.actionMenu.exists"
+                    data-ng-if=":: $ctrl.bindings.options.basic.actionMenu.exists &&
+                        !($ctrl.bindings.options.basic.actionMenu.items.switch.exists &&
+                        option.noActionSwitch)
+                    "
                     data-compact
                     data-placement="end"
                 >
