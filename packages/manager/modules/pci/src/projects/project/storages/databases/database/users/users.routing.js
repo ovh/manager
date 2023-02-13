@@ -20,8 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
             database.engine,
             database.id,
           ).then((usersResponse) => map(usersResponse, (u) => new User(u))),
-        roles: /* @ngInject */ (DatabaseService, database, projectId) => {
-          return DatabaseService.getRoles(
+        roles: /* @ngInject */ (DatabaseService, database, projectId) =>
+          DatabaseService.getRoles(
             projectId,
             database.engine,
             database.id,
@@ -33,8 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
                 name: role,
               };
             }),
-          );
-        },
+          ),
         goToAddUser: /* @ngInject */ ($state, database, projectId) => () =>
           $state.go(
             'pci.projects.project.storages.databases.dashboard.users.add',
