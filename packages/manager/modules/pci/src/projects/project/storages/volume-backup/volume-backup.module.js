@@ -9,7 +9,7 @@ import routing from './volume-backup.routing';
 import component from './volume-backup.component';
 import service from './volume-backup.service';
 
-// import addVolumeBackup from './add';
+import create from './create';
 import onboarding from './onboarding';
 import list from './list';
 
@@ -23,8 +23,8 @@ angular
     'oui',
     'ngOvhCloudUniverseComponents',
     onboarding,
+    create,
     list,
-    // addVolumeBackup,
     // dashboard,
   ])
   .config(routing)
