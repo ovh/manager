@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.48.2...@ovh-ux/manager-dedicated@17.49.0) (2023-02-13)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** display quota error on order page ([#8657](https://github.com/ovh/manager/issues/8657)) ([6e5ff26](https://github.com/ovh/manager/commit/6e5ff263fd1ec9462ca9a40cfd8385e82b388786))
+* **dedicated:** list correct raid list for the disk ([#8692](https://github.com/ovh/manager/issues/8692)) ([79cd4e0](https://github.com/ovh/manager/commit/79cd4e0aa2778565c5f2e786f47ee82c8c8c55bb))
+
+
+### Features
+
+* **dedicated.ip:** change trade names ([#8737](https://github.com/ovh/manager/issues/8737)) ([fceacfb](https://github.com/ovh/manager/commit/fceacfb967d7d353c86b7c7dcbde67f2e3018b74))
+
+
+
+
+
 ## [17.48.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.48.1...@ovh-ux/manager-dedicated@17.48.2) (2023-02-08)
 
 

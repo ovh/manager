@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.53.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.53.3...@ovh-ux/manager-telecom@13.53.4) (2023-02-13)
+
+
+### Bug Fixes
+
+* **telecom.voip:** fix issue with ext key label ([#8860](https://github.com/ovh/manager/issues/8860)) ([8d3d5ae](https://github.com/ovh/manager/commit/8d3d5aeb6766899b03e957c225f5539d24ee744e))
+
+
+
+
+
 ## [13.53.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.53.2...@ovh-ux/manager-telecom@13.53.3) (2023-02-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

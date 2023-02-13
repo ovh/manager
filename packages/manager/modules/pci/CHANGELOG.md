@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.112.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.111.1...@ovh-ux/manager-pci@5.112.0) (2023-02-13)
+
+
+### Bug Fixes
+
+* **pci.ai:** add default port to model ([#8833](https://github.com/ovh/manager/issues/8833)) ([1137987](https://github.com/ovh/manager/commit/113798773ba12d4972acd124af3e6491b6e3b9d1))
+* **pci:** hide upgrade disk for ssd ([#8790](https://github.com/ovh/manager/issues/8790)) ([38ff2d5](https://github.com/ovh/manager/commit/38ff2d581a4d09162c6143b5047269a0f0747f87))
+* **pci:** use plan code to display regions ([#8798](https://github.com/ovh/manager/issues/8798)) ([eb5dc89](https://github.com/ovh/manager/commit/eb5dc893e0e874cd6c5dd30938ad9455ef56fda5))
+
+
+### Features
+
+* **pci.ai:** add label free during beta ([#8802](https://github.com/ovh/manager/issues/8802)) ([195fd94](https://github.com/ovh/manager/commit/195fd94e97ad6a030c54e3a13943e6f2b8ffd4d8))
+* **pci.storage:** allow user have right roles ([#8720](https://github.com/ovh/manager/issues/8720)) ([2db7cd3](https://github.com/ovh/manager/commit/2db7cd3742d1e67fcecfb69fbdd0ef00dd8d6a9a))
+* **pci:** add advanced config tab for grafana and disable links ([#8801](https://github.com/ovh/manager/issues/8801)) ([6f976d8](https://github.com/ovh/manager/commit/6f976d8b5abf1813dad8972067da99c9c8f05648))
+* **pci:** improve hour and month switch price ([#8567](https://github.com/ovh/manager/issues/8567)) ([c3f942b](https://github.com/ovh/manager/commit/c3f942ba9c03d877c5da4172ef1d8b16feb74231))
+
+
+
+
+
 ## [5.111.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.111.0...@ovh-ux/manager-pci@5.111.1) (2023-02-07)
 
 
