@@ -24,7 +24,7 @@ export default class VolumeBackupService {
    * @param regionName {string}:  volume backup region location
    * @returns {*}: volume backup list promise
    */
-  getVolumeBackups(serviceName, regionName) {
+  getRegionVolumeBackups(serviceName, regionName) {
     return this.$http
       .get(`/cloud/project/${serviceName}/region/${regionName}/volumeBackup`)
       .then(({ data }) => data);
@@ -108,6 +108,17 @@ export default class VolumeBackupService {
   }
 
   /**
+   * Get volumes list
+   * @param serviceName {string}: project id
+   * @returns {Promise}: block storage volumes list Promise
+   */
+  getVolumes(serviceName) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/volume`)
+      .then(({ data }) => data);
+  }
+
+  /**
    * Get volume details
    * @param serviceName {string}: project id
    * @param volumeId {string}: block storage volume id
@@ -116,6 +127,22 @@ export default class VolumeBackupService {
   getVolumeDetails(serviceName, volumeId) {
     return this.$http
       .get(`/cloud/project/${serviceName}/volume/${volumeId}`)
+      .then(({ data }) => data);
+  }
+
+  /**
+   * create a volume snapshot backup
+   * @param serviceName {string}: volume snapshot service name
+   * @param volumeId {string}:  volume UUID to back up
+   * @param volumeBackup {string}:  volume snapshot model details
+   * @returns {*}: created volume snapshot details promise
+   */
+  createVolumeSnapshot(serviceName, volumeId, volumeBackup) {
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/volume/${volumeId}/snapshot`,
+        volumeBackup,
+      )
       .then(({ data }) => data);
   }
 
