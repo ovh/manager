@@ -13,5 +13,6 @@
   "server_datacenter_VIN": "Vint Hill (VIN {{number}}) - USA",
   "server_datacenter_WAW": "Warschau (WAW {{number}}) - Polen",
   "server_datacenter_RBX_HZ": "Roubaix (RBXHZ) - Frankreich",
-  "server_datacenter_GSW": "(GSW) - Frankreich"
+  "server_datacenter_GSW": "(GSW) - Frankreich",
+  "server_datacenter_YNM": "Mumbai (YNM {{number}}) - Indien"
 }
