@@ -65,7 +65,7 @@
     <div ng-if="!$ctrl.isRolesReadOnly">
         <h2 data-translate="pci_databases_users_add_roles"></h2>
         <!--advanced roles-->
-        <div class="row" ng-if="$ctrl.isAdvancedRole">
+        <div class="row" data-ng-if="$ctrl.isAdvancedRole">
             <div class="col-lg-6">
                 <oui-button
                     data-ng-if="$ctrl.model.selectedRoles.length === 0"
@@ -186,7 +186,7 @@
         </div>
         <!-- basic roles-->
         <oui-dual-list
-            ng-if="!$ctrl.isAdvancedRole"
+            data-ng-if="!$ctrl.isAdvancedRole"
             data-source="$ctrl.rolesList"
             data-target="$ctrl.model.selectedRoles"
             disabled="$ctrl.isFeatureActivated('getRoles')"
