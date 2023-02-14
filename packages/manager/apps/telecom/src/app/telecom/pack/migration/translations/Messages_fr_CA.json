@@ -101,7 +101,7 @@
   "telecom_pack_migration_confirm_no_commitment": "Ce changement d’offre n’est sujet à aucun réengagement.",
   "telecom_pack_migration_confirm_commitment": "Un réengagement de {{ month }} mois débutera à la date de facturation.",
   "telecom_pack_migration_confirm_new_offer_price": "Votre nouvel abonnement mensuel s'élève à : <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">HT/mois</span>, applicable dès livraison de votre nouvel accès. Vous en serez informé par e-mail.",
-  "telecom_pack_migration_confirm_shipping": "Vous avez sélectionné le mode de livraison de votre nouveau modem par transporteur (+ {{ transportPrice }} € HT).",
+  "telecom_pack_migration_confirm_shipping": "Vous avez sélectionné le mode de livraison de votre nouveau modem par transporteur (+ {{ price }} € HT).",
   "telecom_pack_migration_confirm_first_mensuality": "Votre première mensualité sera donc de {{ price }} HT.",
   "telecom_pack_migration_confirm_service_to_delete_title": "Services qui seront supprimés",
   "telecom_pack_migration_confirm_service_to_delete_total": "Au total {{count}} services seront supprimés durant le changement d'offre.",
@@ -177,5 +177,11 @@
   "telecom_pack_migration_confirm_resume_contact_owner": "Informations de contact",
   "telecom_pack_migration_confirm_resume_contact_phone": "Numéro de téléphone sur lequel vous pourrez être contacté si nécessaire",
   "telecom_pack_migration_confirm_resume_phone_form_error": "Le numéro saisi doit être valide.",
-  "telecom_pack_migration_choose_offer_error": "Une erreur est survenue durant la récupération des offres : {{ error }}."
+  "telecom_pack_migration_choose_offer_error": "Une erreur est survenue durant la récupération des offres : {{ error }}.",
+  "telecom_pack_migration_modem_yes": "Modem neuf ({{ price }} HT / mois)",
+  "telecom_pack_migration_modem_recycled": "Modem recyclé ({{ price }} HT / mois)",
+  "telecom_pack_migration_modem_no": "Pas de modem",
+  "telecom_pack_migration_modem_required": "La sélection d'un type de modem est obligatoire",
+  "telecom_pack_migration_confirm_modem_rental_yes": "Location modem neuf",
+  "telecom_pack_migration_confirm_modem_rental_recycled": "Location modem recyclé"
 }
