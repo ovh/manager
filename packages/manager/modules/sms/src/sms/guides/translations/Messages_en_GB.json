@@ -1,7 +1,9 @@
 {
+  "sms_guides_breadcrumb": "Guides",
+  "sms_guides_section_smpp": "SMPP",
+  "sms_guides_smpp_control_panel": "Manage an SMS SMPP account",
+  "sms_guides_smpp_specifications": "SMPP Technical Specifications",
   "sms_guides_section_compose": "Compose an SMS",
-  "sms_guides_compose_faq": "Frequently asked questions",
-  "sms_guides_compose_filters": "List of exceptions and filters depending on destinations",
   "sms_guides_compose_manager": "How do I send an SMS via the OVHcloud Control Panel?",
   "sms_guides_compose_email": "How do I send an SMS via an email address?",
   "sms_guides_compose_url": "How do I send an SMS via a URL?",
@@ -14,18 +16,12 @@
   "sms_guides_options_callback": "SMS callback user guide",
   "sms_guides_section_users": "Manage users",
   "sms_guides_users_about": "Everything you need to know about SMS users",
-  "sms_guides_users_faq": "What is an SMS user for?",
   "sms_guides_users_add": "How do I add a new SMS user?",
-  "sms_guides_users_quota": "How do I manage SMS usage with a user?",
   "sms_guides_section_api": "Using the API",
   "sms_guides_api_cookbook": "API SMS Cookbook",
   "sms_guides_api_java": "Sending SMS messages with the OVHcloud API in Java",
   "sms_guides_api_csharp": "Sending SMS messages with the OVHcloud API in C#",
   "sms_guides_api_nodejs": "Sending SMS messages with the OVHcloud API in Node.js",
   "sms_guides_api_php": "Sending SMS messages with the OVHcloud API in PHP",
-  "sms_guides_empty": "No guide available for the language selected.",
-  "sms_guides_breadcrumb": "Guides",
-  "sms_guides_section_smpp": "SMPP",
-  "sms_guides_smpp_control_panel": "Manage an SMS SMPP account",
-  "sms_guides_smpp_specifications": "SMPP Technical Specifications"
+  "sms_guides_empty": "No guide available for the language selected."
 }
