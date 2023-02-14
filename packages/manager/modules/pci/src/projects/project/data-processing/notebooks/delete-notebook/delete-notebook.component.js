@@ -8,6 +8,7 @@ const component = {
     showNotebooks: '<',
     notebookId: '<',
     notebookName: '<',
+    trackNotebooks: '<',
   },
   template,
   controller,
