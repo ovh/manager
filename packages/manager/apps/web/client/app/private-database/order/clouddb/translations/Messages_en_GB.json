@@ -1,6 +1,6 @@
 {
-  "private_database_order_clouddb_title": "Order a Cloud Database ",
-  "private_database_order_clouddb_subtitle": "CloudDB requires a service which has access to the public network/internet.",
+  "private_database_order_clouddb_title": "Order a Web Cloud Database",
+  "private_database_order_clouddb_subtitle": "Web Cloud Databases require a service that has access to the public network/internet.",
   "private_database_order_clouddb_customization": "Customisation",
   "private_database_order_clouddb_server_version": "Server version",
   "private_database_order_clouddb_server_version_placeholder": "Select the server version",
@@ -24,6 +24,8 @@
   "private_database_order_clouddb_payment_get_checkout_error": "An error has occurred retrieving information on your basket.",
   "private_database_order_clouddb_payment_get_payment_method_error": "An error has occurred retrieving payment methods.",
   "private_database_order_clouddb_payment_checkout_error": "An error has occurred paying for the orders in your basket.",
-  "private_database_order_clouddb_payment_checkout_success": "Your order for your Cloud Databases  has been successfully processed. Your account {{accountId}} has been debited from {{price}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">See my invoice</a>",
-  "private_database_order_clouddb_bill_success": "Your <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">order form</a> has been successfully generated. Your Cloud Databases database will be active after payment."
+  "private_database_order_clouddb_payment_checkout_success": "Your order for your Web Cloud Databases has been successfully processed. Your {{accountId}} account has been charged {{price}}.",
+  "private_database_order_clouddb_bill_success": "Your {{link}} has been successfully created. Your Web Cloud Database will be active after payment.",
+  "private_database_order_clouddb_payment_checkout_success_link": "Pay my bill",
+  "private_database_order_clouddb_bill_success_link": "purchase order"
 }

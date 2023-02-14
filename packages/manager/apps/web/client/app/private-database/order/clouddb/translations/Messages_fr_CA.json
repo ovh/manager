@@ -1,6 +1,7 @@
 {
-  "private_database_order_clouddb_title": "Commander une base de données Cloud Databases",
-  "private_database_order_clouddb_subtitle": "L’offre Cloud Databases nécessite un service ayant accès au réseau internet public.",
+  "private_database_order_clouddb_title": "Commander une base de données Web Cloud Databases",
+  "private_database_order_clouddb_subtitle": "L’offre Web Cloud Databases nécessite un service ayant accès au réseau internet public.",
+
   "private_database_order_clouddb_customization": "Personnalisation",
   "private_database_order_clouddb_server_version": "Version du serveur",
   "private_database_order_clouddb_server_version_placeholder": "Sélectionnez la version du serveur",
@@ -9,21 +10,29 @@
   "private_database_order_clouddb_server_version_postgresql": "PostgreSQL {{version}}",
   "private_database_order_clouddb_server_version_mongodb": "MongoDB {{version}}",
   "private_database_order_clouddb_server_version_redis": "Redis {{version}}",
+
   "private_database_order_clouddb_ram_option": "RAM",
   "private_database_order_clouddb_ram_option_placeholder": "Sélectionnez la quantité de RAM",
+
   "private_database_order_clouddb_duration": "Choisissez la durée",
   "private_database_order_clouddb_duration_month": "{{ number }} mois",
+
   "private_database_order_clouddb_payment": "Paiement",
   "private_database_order_clouddb_payment_subtitle": "Afin de confirmer votre demande, veuillez choisir votre moyen de paiement, et accepter les conditions d'utilisation.",
+
   "private_database_order_clouddb_payment_total_price_without_tax": "Prix HT :",
   "private_database_order_clouddb_payment_total_price_with_tax": "Prix TTC :",
   "private_database_order_clouddb_payment_duration": "Durée :",
+
   "private_database_order_clouddb_payment_cancel": "Annuler",
   "private_database_order_clouddb_payment_pay": "Payer",
+
   "private_database_order_clouddb_payment_choice": "Afin de confirmer votre demande, veuillez choisir votre moyen de paiement, et accepter les conditions d'utilisation.",
   "private_database_order_clouddb_payment_get_checkout_error": "Une erreur est survenue lors de la récupération des informations de votre panier.",
   "private_database_order_clouddb_payment_get_payment_method_error": "Une erreur est survenue lors de la récupération des moyens de paiement.",
   "private_database_order_clouddb_payment_checkout_error": "Une erreur est survenue lors du paiement de votre panier.",
-  "private_database_order_clouddb_payment_checkout_success": "Votre commande pour votre base de données Cloud Databases a bien été prise en compte. Votre compte {{accountId}} a bien été débité de {{price}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Voir ma facture</a>",
-  "private_database_order_clouddb_bill_success": "Votre <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">bon de commande</a> a été généré avec succès. Votre base de données Cloud Databases sera active après le paiement de celui-ci."
+  "private_database_order_clouddb_payment_checkout_success": "Votre commande pour votre base de données Web Cloud Databases a bien été prise en compte. Votre compte {{accountId}} a bien été débité de {{price}}.",
+  "private_database_order_clouddb_payment_checkout_success_link": "Voir ma facture",
+  "private_database_order_clouddb_bill_success": "Votre {{link}} a été généré avec succès. Votre base de données Web Cloud Databases sera active après le paiement de celui-ci.",
+  "private_database_order_clouddb_bill_success_link": "bon de commande"
 }
