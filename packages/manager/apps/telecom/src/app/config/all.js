@@ -12,7 +12,6 @@ angular
       'exchangeLite',
       'emailPro',
       'voipEcoFax',
-      'hubic',
       'domain',
       'siteBuilderStart',
     ],
@@ -121,7 +120,6 @@ angular
     orderTelephony: 'http://www.ovhtelecom.fr/telephonie/',
     orderExchange: 'https://www.ovh.com/fr/emails/hosted-exchange-2013/',
     orderFax: 'http://www.ovhtelecom.fr/fax/',
-    orderHubic: 'https://hubic.com/fr/offres/',
     orderSms: 'https://www.ovhtelecom.fr/sms/',
     orderExpressLite: 'https://www.ovhtelecom.fr/adsl/express-lite/',
     orderBoost: 'https://www.ovhtelecom.fr/adsl/offres-de-connexion.xml',
@@ -230,7 +228,6 @@ angular
       business: 'https://www.ovhtelecom.fr/office-365-business/',
       sharepoint: 'https://www.ovhtelecom.fr/sharepoint/?range=mail',
     },
-    hubic: 'https://hubic.com/fr/offres/',
     sms: {
       sms: 'https://www.ovhtelecom.fr/sms/',
       hlr: 'https://www.ovhtelecom.fr/sms/home-location-register/',
