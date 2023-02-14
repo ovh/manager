@@ -1,6 +1,6 @@
 {
-  "private_database_order_clouddb_title": "Ordinare un database Cloud Databases",
-  "private_database_order_clouddb_subtitle": "L'offerta Cloud Database richiede un servizio con accesso alla rete Internet pubblica.",
+  "private_database_order_clouddb_title": "Ordinare un database Web Cloud Databases",
+  "private_database_order_clouddb_subtitle": "Il servizio Web Cloud Database richiede un servizio con accesso alla rete Internet pubblica.",
   "private_database_order_clouddb_customization": "Personalizzazione",
   "private_database_order_clouddb_server_version": "Versione del server ",
   "private_database_order_clouddb_server_version_placeholder": "Selezionare la versione del server",
@@ -24,6 +24,8 @@
   "private_database_order_clouddb_payment_get_checkout_error": "Si è verificato un errore durante il recupero delle informazioni del tuo carrello.",
   "private_database_order_clouddb_payment_get_payment_method_error": "Si è verificato un errore durante il recupero dei metodi di pagamento",
   "private_database_order_clouddb_payment_checkout_error": "Si è verificato un errore durante il pagamento degli articoli nel carrello.",
-  "private_database_order_clouddb_payment_checkout_success": "L'ordine per il database dei database dei database Cloud è stato elaborato con successo. L’addebito di {{price}} è stato effettuato correttamente sull’account {{accountId}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Visualizza la tua fattura</a>",
-  "private_database_order_clouddb_bill_success": "Il tuo <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">ordine</a> è stato generato correttamente. Il tuo database Cloud Database sarà attivo dopo il pagamento."
+  "private_database_order_clouddb_payment_checkout_success": "L'ordine del database Web Cloud Database è stato preso in carico correttamente. L’addebito di {{price}} è stato effettuato sull’account {{accountId}}.",
+  "private_database_order_clouddb_bill_success": "{{link}} è stato generato correttamente. Il database Web Cloud Database risulterà attivo dopo il pagamento.",
+  "private_database_order_clouddb_payment_checkout_success_link": "Visualizzare la fattura",
+  "private_database_order_clouddb_bill_success_link": "buono d’ordine"
 }
