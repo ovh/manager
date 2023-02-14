@@ -8,5 +8,6 @@ export default {
     onChangeHandler: '<',
     availableClusterTemplate: '<',
     projectId: '<',
+    prices: '<',
   },
 };
