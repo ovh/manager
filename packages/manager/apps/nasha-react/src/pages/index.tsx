@@ -41,16 +41,13 @@ export default function NashaReact() {
             }
             return (
               <>
-                <h2>
-                  Services list
-                </h2>
+                <h2>Services list</h2>
                 <ul>
                   {services.map((serviceName: string) => (
                     <li key={serviceName}>
                       <Link to={`/details/${serviceName}`}>{serviceName}</Link>
                     </li>
                   ))}
-
                 </ul>
               </>
             );
