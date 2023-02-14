@@ -34,6 +34,36 @@ export default class PciStoragesContainersController {
         hidden: !this.archive,
       },
     ];
+    this.setSolutionTypeOptions();
+    this.addContainerSolution();
+  }
+
+  setSolutionTypeOptions() {
+    this.solutionTypeOptions = {
+      values: {},
+    };
+    Object.values(OBJECT_CONTAINER_OFFERS_TYPES).forEach((type) => {
+      this.solutionTypeOptions.values[type] = this.$translate.instant(
+        `pci_projects_project_storages_containers_offer_${type}`,
+      );
+    });
+  }
+
+  addContainerSolution() {
+    this.containers = this.containers.map((container) => {
+      let solution;
+      if (!container.s3StorageType) {
+        solution = OBJECT_CONTAINER_OFFERS_TYPES.SWIFT;
+      } else if (container.isHighPerfStorage) {
+        solution = OBJECT_CONTAINER_OFFERS_TYPES.HIGH_PERFORMANCE;
+      } else {
+        solution = OBJECT_CONTAINER_OFFERS_TYPES.STORAGE_STANDARD;
+      }
+      return {
+        ...container,
+        containerSolution: solution,
+      };
+    });
   }
 
   onPublicToggle(container) {
