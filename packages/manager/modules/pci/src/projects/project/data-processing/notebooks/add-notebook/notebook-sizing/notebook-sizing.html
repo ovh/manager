@@ -24,10 +24,11 @@
         <oui-select-picker-section>
             <ovh-manager-catalog-price
                 data-price="item.price"
-                data-tax="item.price"
+                data-tax="item.tax"
                 data-user="$ctrl.user"
                 data-perform-rounding="false"
                 data-maximum-fraction-digits="5"
+                data-show-zero-price="true"
             >
             </ovh-manager-catalog-price>
             /<span
@@ -87,11 +88,12 @@
         </oui-select-picker-section>
         <oui-select-picker-section>
             <ovh-manager-catalog-price
-                data-price="0.01"
-                data-tax="0.01"
+                data-price="item.price"
+                data-tax="item.tax"
                 data-user="$ctrl.user"
                 data-perform-rounding="false"
                 data-maximum-fraction-digits="5"
+                data-show-zero-price="true"
             >
             </ovh-manager-catalog-price>
             /<span

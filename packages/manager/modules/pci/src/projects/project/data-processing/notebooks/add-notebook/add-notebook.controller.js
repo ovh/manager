@@ -136,7 +136,7 @@ export default class AddNotebookCtrl {
       region: this.state.region.name,
     };
 
-    this.orderData = {
+    this.orderPayload = {
       orderData: payload,
       orderAPIUrl: `POST /cloud/project/${this.projectId}/dataProcessing/notebooks`,
       orderKeys: [],
@@ -153,7 +153,7 @@ export default class AddNotebookCtrl {
     );
 
     this.dataProcessingService
-      .createNotebook(this.projectId, this.orderData)
+      .createNotebook(this.projectId, this.orderPayload.orderData)
       .then((data) => {
         this.trackNotebooks(
           `add-notebook::create-notebook-validated::${this.state.notebookSizing.notebook}`,
@@ -172,6 +172,6 @@ export default class AddNotebookCtrl {
       name: 'add-notebook::goto-api-equivalent',
       type: 'action',
     });
-    this.goToCommand(this.orderData);
+    this.goToCommand(this.orderPayload);
   }
 }
