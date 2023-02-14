@@ -3,7 +3,11 @@ import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 import set from 'lodash/set';
 
-import { PROMO_DISPLAY } from '../pack-migration.constant';
+import {
+  PROMO_DISPLAY,
+  MODEM_LIST,
+  MODEM_OPTION_NAME,
+} from '../pack-migration.constant';
 
 export default class TelecomPackMigrationOffersCtrl {
   /* @ngInject */
@@ -29,6 +33,8 @@ export default class TelecomPackMigrationOffersCtrl {
 
   $onInit() {
     this.PROMO_DISPLAY = PROMO_DISPLAY;
+    this.MODEM_LIST = MODEM_LIST;
+    this.MODEM_OPTION_NAME = MODEM_OPTION_NAME;
     this.process = null;
     this.loading = {
       init: true,
@@ -76,6 +82,14 @@ export default class TelecomPackMigrationOffersCtrl {
       }
     });
 
+    if (optionName === this.MODEM_OPTION_NAME) {
+      offer.modemOptions.forEach((modem) => {
+        if (modem.name === offer.modem && modem.price) {
+          totalOfferPrice += modem.price.value;
+        }
+      });
+    }
+
     set(
       offer,
       'displayedPrice',
@@ -108,6 +122,10 @@ export default class TelecomPackMigrationOffersCtrl {
   }
 
   selectOffer(offer) {
+    if (!offer.modem) {
+      set(offer, 'modemRequired', true);
+      return;
+    }
     const selectedOffer = offer;
     const params = {
       offerName: selectedOffer.offerName,
@@ -125,6 +143,16 @@ export default class TelecomPackMigrationOffersCtrl {
     if (options.length > 0) {
       params.options = options;
     }
+
+    // Update modem rental from selected modem detail
+    selectedOffer.modemOptions.forEach((modem) => {
+      if (modem.name === selectedOffer.modem) {
+        selectedOffer.modemRental = modem.price;
+      }
+      if (this.MODEM_LIST.includes(selectedOffer.modem)) {
+        selectedOffer.needNewModem = true;
+      }
+    });
 
     this.loading.init = true;
 
@@ -149,6 +177,24 @@ export default class TelecomPackMigrationOffersCtrl {
       .finally(() => {
         this.loading.init = false;
       });
+  }
+
+  getModemOptionLabel(modemOption) {
+    return this.$translate.instant(
+      `telecom_pack_migration_modem_${modemOption.name}`,
+      {
+        price: modemOption.price ? modemOption.price.text : '',
+      },
+    );
+  }
+
+  onChangeSelectModem(offer) {
+    if (offer.modemRequired && offer.modem) {
+      set(offer, 'modemRequired', false);
+    }
+    if (offer.modem) {
+      this.updateOfferDisplayedPrice(1, offer, this.MODEM_OPTION_NAME);
+    }
   }
 
   /* -----  End of ACTIONS  ------*/
