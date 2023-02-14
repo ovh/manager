@@ -48,9 +48,9 @@
                         </span>
                         <ovh-manager-catalog-price
                             data-ng-if="type.name === $ctrl.IP_TYPE_ENUM.FLOATING"
-                            data-price="type.price * 12"
+                            data-price="type.price"
                             data-user="$ctrl.user"
-                            data-interval="'month'"
+                            data-interval-unit="hour"
                             data-perform-rounding="false"
                             data-maximum-fraction-digits="4"
                         ></ovh-manager-catalog-price>
