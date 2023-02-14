@@ -16,6 +16,16 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/license/office',
+      resources: /* @ngInject */ ($http) =>
+        $http
+          .get('/service', {
+            params: {
+              external: false,
+              type: '/license/office',
+            },
+            serviceType: 'aapi',
+          })
+          .then((data) => data),
       dataModel: () => 'license.office.OfficeTenant',
       defaultFilterColumn: () => 'serviceName',
       header: /* @ngInject */ ($translate) =>
