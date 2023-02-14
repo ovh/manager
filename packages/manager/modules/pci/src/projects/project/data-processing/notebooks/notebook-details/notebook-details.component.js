@@ -13,5 +13,6 @@ export default {
     openLiveCodeEditor: '<',
     capabilities: '<',
     reloadState: '<',
+    trackNotebooks: '<',
   },
 };

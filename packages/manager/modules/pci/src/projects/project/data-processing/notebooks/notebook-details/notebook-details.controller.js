@@ -75,11 +75,7 @@ export default class NoteBookDetailsCtrl {
   }
 
   onNotebookStartClick() {
-    this.atInternet.trackClick({
-      name:
-        'public-cloud::pci::projects::project::data-processing::job-details::dashboard::start-job',
-      type: 'action',
-    });
+    this.trackNotebooks({ name: `start-notebook`, type: 'action' });
     this.dataProcessingService
       .startNotebook(this.projectId, this.notebook.id)
       .then(() => {
@@ -88,11 +84,7 @@ export default class NoteBookDetailsCtrl {
   }
 
   onNotebookStopClick() {
-    this.atInternet.trackClick({
-      name:
-        'public-cloud::pci::projects::project::data-processing::job-details::dashboard::kill-job',
-      type: 'action',
-    });
+    this.trackNotebooks(`stop-notebook`);
     this.terminateNotebook();
   }
 }

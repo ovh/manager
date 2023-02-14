@@ -63,8 +63,38 @@ export default /* @ngInject */ ($stateProvider) =>
       notebookId: /* @ngInject */ ($transition$) => $transition$.params().id,
       lab: /* @ngInject */ (PciProjectLabsService, projectId) =>
         PciProjectLabsService.getLabByName(projectId, 'dataProcessing'),
-    },
-    atInternet: {
-      rename: 'public-cloud::pci::projects::project::data-processing',
+      notebooksTrackPrefix: () =>
+        'public-cloud::pci::projects::project::data-processing-notebooks',
+      trackNotebooks: /* @ngInject */ (
+        notebooksTrackPrefix,
+        trackClick,
+        trackPage,
+      ) => (complement, type = 'action', prefix = true) => {
+        const name = `${
+          prefix ? `${notebooksTrackPrefix}::` : ''
+        }${complement}`;
+        switch (type) {
+          case 'action':
+          case 'navigation':
+            trackClick(name, type);
+            break;
+          case 'page':
+            trackPage(name);
+            break;
+          default:
+            trackClick(name);
+        }
+      },
+      trackClick: /* @ngInject */ (atInternet) => (hit, type = 'action') => {
+        atInternet.trackClick({
+          name: hit,
+          type,
+        });
+      },
+      trackPage: /* @ngInject */ (atInternet) => (hit) => {
+        atInternet.trackPage({
+          name: hit,
+        });
+      },
     },
   });

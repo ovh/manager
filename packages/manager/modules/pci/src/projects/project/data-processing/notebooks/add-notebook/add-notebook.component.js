@@ -15,5 +15,6 @@ export default {
     aiNotebookLink: '<',
     goToDashboard: '<',
     goToCommand: '<',
+    trackNotebooks: '<',
   },
 };

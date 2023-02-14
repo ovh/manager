@@ -17,7 +17,8 @@ export default class {
 
   onAddNotebookClick() {
     this.atInternet.trackClick({
-      name: 'public-cloud::pci::projects::project::data-processing::add-job',
+      name:
+        'public-cloud::pci::projects::project::data-processing-notebooks::add-notebook',
       type: 'action',
     });
     this.addNotebook();
