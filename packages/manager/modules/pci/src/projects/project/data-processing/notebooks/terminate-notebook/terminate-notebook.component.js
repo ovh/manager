@@ -7,6 +7,7 @@ const component = {
     projectId: '<',
     notebookId: '<',
     notebookName: '<',
+    trackNotebooks: '<',
   },
   template,
   controller,

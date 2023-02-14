@@ -6,6 +6,7 @@ export default class DeleteNotebookCtrl {
   }
 
   deleteNotebook() {
+    this.trackNotebooks(`delete-notebook::delete-notebook-confirm`);
     return this.dataProcessingService
       .deleteNotebook(this.projectId, this.notebookId)
       .then(() => {
@@ -14,6 +15,7 @@ export default class DeleteNotebookCtrl {
   }
 
   closeModal() {
+    this.trackNotebooks(`delete-notebook::delete-notebook-cancel`);
     this.goBack();
   }
 }

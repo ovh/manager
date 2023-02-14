@@ -146,23 +146,30 @@ export default class AddNotebookCtrl {
 
   onAddNotebookHandler() {
     this.prepareNotebookPayload();
+    this.trackNotebooks(
+      'add-notebook::create-notebook::'.concat(
+        `${this.state.notebookSizing.notebook}`,
+      ),
+    );
 
     this.dataProcessingService
       .createNotebook(this.projectId, this.orderData)
       .then((data) => {
-        this.atInternet.trackClick({
-          name:
-            'public-cloud::pci::projects::project::data-processing::submit-notebook::submit',
-          type: 'action',
-        });
+        this.trackNotebooks(
+          `add-notebook::create-notebook-validated::${this.state.notebookSizing.notebook}`,
+        );
         this.goToDashboard(data.id);
+      })
+      .catch(() => {
+        this.trackNotebooks(
+          `add-notebook::create-notebook-error::${this.state.notebookSizing.notebook}`,
+        );
       });
   }
 
   trackAndGoToCommand() {
-    this.atInternet.trackClick({
-      name:
-        'public-cloud::pci::projects::project::data-processing::submit-notebook::goto_api_equivalent',
+    this.trackNotebooks({
+      name: 'add-notebook::goto-api-equivalent',
       type: 'action',
     });
     this.goToCommand(this.orderData);

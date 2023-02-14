@@ -70,6 +70,7 @@ export default class DataProcessingNotebooksCtrl {
    * @return {*|Promise<any>}
    */
   startNotebook(notebook) {
+    this.trackNotebooks({ name: `start-notebook`, type: 'action' });
     return this.dataProcessingService
       .startNotebook(this.projectId, notebook.id)
       .then(this.reloadState());
@@ -84,11 +85,17 @@ export default class DataProcessingNotebooksCtrl {
   }
 
   onSubmitClick() {
-    this.atInternet.trackClick({
-      name:
-        'public-cloud::pci::projects::project::data-processing::add-notebook',
-      type: 'action',
-    });
+    this.trackNotebooks(`add-notebook`);
     this.addNotebook();
+  }
+
+  onDeleteClick() {
+    this.trackNotebooks(`delete-notebook`);
+    this.deleteNotebook();
+  }
+
+  onTerminateClick() {
+    this.trackNotebooks(`stop-notebook`);
+    this.terminateNotebook();
   }
 }
