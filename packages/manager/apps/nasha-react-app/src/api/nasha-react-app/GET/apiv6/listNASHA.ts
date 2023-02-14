@@ -6,8 +6,3 @@ export async function fetchNashaList() {
   const response = await apiClient.v6.get(QUERY_KEY[0]);
   return response.data;
 }
-
-export default {
-  QUERY_KEY,
-  fetchNashaList,
-};
