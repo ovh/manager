@@ -8,7 +8,7 @@ import {
   OVHFontPrint,
 } from '@ovh-ux/manager-themes';
 import { ShopItem } from '../OrderPopupContent';
-import { getOrderURL, ORDER_URLS } from './order.constants';
+import { getOrderURL } from './order.constants';
 
 const telephony = (
   navigation: any,
