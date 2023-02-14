@@ -21,14 +21,17 @@ export default class NewAccountFormController {
     $q,
     $http,
     $timeout,
+    $location,
     atInternet,
     coreConfig,
     Alerter,
     $translate,
+    $anchorScroll,
   ) {
     this.$q = $q;
     this.$http = $http;
     this.$timeout = $timeout;
+    this.$location = $location;
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.Alerter = Alerter;
@@ -42,12 +45,12 @@ export default class NewAccountFormController {
     this.isSubmitting = false;
     this.originalManagerLanguage = coreConfig.getUserLocale();
     this.user = coreConfig.getUser();
+    this.$anchorScroll = $anchorScroll;
     this.SECTIONS = SECTIONS;
   }
 
   $onInit() {
     this.loading = true;
-
     // backup of original model
     this.originalModel = angular.copy(this.model);
 
@@ -320,6 +323,7 @@ export default class NewAccountFormController {
           this.coreConfig.setUserLocale(this.model.managerLanguage);
           window.location.reload();
         } else if (this.onSubmit) {
+          this.$location.search('isUpdated', true);
           this.onSubmit();
         }
       })
@@ -412,8 +416,15 @@ export default class NewAccountFormController {
   }
 
   siretFieldIsAvailable() {
-    return (
-      this.model.legalform === 'corporation' && this.model.country === 'FR'
-    );
+    const isSiretEnterprise =
+      this.model.legalform === 'corporation' && this.model.country === 'FR';
+    if (
+      isSiretEnterprise &&
+      this.fieldToFocus &&
+      !this.model.companyNationalIdentificationNumber
+    ) {
+      this.$anchorScroll(this.fieldToFocus);
+    }
+    return isSiretEnterprise;
   }
 }
