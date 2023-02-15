@@ -5,6 +5,7 @@ import './style.scss';
 const component = {
   bindings: {
     database: '<',
+    engines: '<',
     goBack: '<',
     flavor: '<',
     onStorageUpgrade: '<',

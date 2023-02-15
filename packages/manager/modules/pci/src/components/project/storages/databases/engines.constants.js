@@ -23,8 +23,14 @@ export const ENGINES_NAMES = {
   m3aggregator: 'M3 Aggregator',
 };
 
+export const ENGINES_STORAGE_MODES = {
+  distributed: 'distributed',
+  replicated: 'replicated',
+};
+
 export default {
   ENGINES_STATUS,
   ENGINES_PRICE_SUFFIX,
   ENGINES_NAMES,
+  ENGINES_STORAGE_MODES,
 };
