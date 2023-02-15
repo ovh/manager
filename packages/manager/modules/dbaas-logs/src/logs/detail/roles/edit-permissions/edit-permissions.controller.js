@@ -136,17 +136,14 @@ export default class LogsRolesPermissionsCtrl {
     this.allStreams = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
         this.LogsRolesService.getAllStreams(this.serviceName).then((result) => {
-          const search = map(
-            filter(
-              result,
-              (stream) =>
-                stream.info.isEditable &&
-                !find(
-                  permissionList,
-                  (permission) => permission.streamId === stream.info.streamId,
-                ),
-            ),
-            'info',
+          const search = filter(
+            result,
+            (stream) =>
+              stream.isEditable &&
+              !find(
+                permissionList,
+                (permission) => permission.streamId === stream.streamId,
+              ),
           );
           this.availableStreams.resolve(search);
         }),

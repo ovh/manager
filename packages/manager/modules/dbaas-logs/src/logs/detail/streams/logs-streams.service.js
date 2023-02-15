@@ -134,7 +134,7 @@ export default class LogsStreamsService {
    */
   getOwnStreams(serviceName) {
     return this.getStreamDetails(serviceName)
-      .then((streams) => streams.filter((stream) => stream.isEditable))
+      .then(({ data = [] }) => data.filter((stream) => stream.isEditable))
       .catch((err) =>
         this.LogsHelperService.handleError('logs_streams_get_error', err, {}),
       );
