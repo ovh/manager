@@ -77,7 +77,7 @@ export default class LogsAliasesLinkCtrl {
 
     this.$q.all([this.alias.promise, this.streams.promise]).then((result) => {
       const diff = filter(
-        result[1],
+        result[1].data,
         (stream) =>
           stream.isEditable &&
           !find(
@@ -86,7 +86,13 @@ export default class LogsAliasesLinkCtrl {
               attachedAapiStream.info.streamId === stream.streamId,
           ),
       );
-      this.availableStreams.resolve(diff);
+      this.availableStreams.resolve(
+        diff.map((stream) => ({
+          info: {
+            ...stream,
+          },
+        })),
+      );
     });
 
     this.$q.all([this.alias.promise, this.indices.promise]).then((result) => {
