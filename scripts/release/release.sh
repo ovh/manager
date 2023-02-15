@@ -20,10 +20,10 @@ version() {
     exit 1
   fi
 
-  if [[ "${GIT_BRANCH}" != "master" && ! "${DRY_RELEASE}" ]]; then
-    printf "%s\n" "Only dry releases are allowed on side branches"
-    exit 1
-  fi
+  # if [[ "${GIT_BRANCH}" != "master" && ! "${DRY_RELEASE}" ]]; then
+  #   printf "%s\n" "Only dry releases are allowed on side branches"
+  #   exit 1
+  # fi
 
   tag="$1"
 
@@ -67,9 +67,12 @@ push_and_release() {
   git commit -m "release: $1"
   git tag -a -m "release: $1" "$1"
   if ! "${DRY_RELEASE}"; then
-    gh config set prompt disabled
-    git push origin "${GIT_BRANCH}" --tags
-    echo "${RELEASE_NOTE}" | gh release create "$1" -F -
+    #gh config set prompt disabled
+    if [[ "${GIT_BRANCH}" != "master" ]];then # avoid mess on master
+      git push origin "${GIT_BRANCH}" --tags
+    fi
+    
+    #echo "${RELEASE_NOTE}" | gh release create "$1" -F -
   fi
 }
 
