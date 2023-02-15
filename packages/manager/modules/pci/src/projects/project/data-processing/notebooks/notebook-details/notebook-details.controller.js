@@ -25,8 +25,8 @@ export default class NoteBookDetailsCtrl {
   }
 
   $onInit() {
-    const e = this.capabilities.find(() => (o) =>
-      o.name === this.notebook.spec.env.engineName,
+    const e = this.capabilities.find(
+      (capability) => capability.name === this.notebook.spec.env.engineName,
     );
     this.templates = e.templates;
 

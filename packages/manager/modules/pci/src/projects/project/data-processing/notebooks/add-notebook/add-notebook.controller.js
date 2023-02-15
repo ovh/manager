@@ -69,11 +69,12 @@ export default class AddNotebookCtrl {
    * Fetch available regions from capabilities and update binding
    */
   updateAvailableRegions() {
-    const engine = this.capabilities.find(() => (o) =>
-      o.name === this.state.notebookEngine.name,
+    const engine = this.capabilities.find(
+      (capability) => capability.name === this.state.notebookEngine.engine,
     );
     const version = engine.availableVersions.find(
-      (o) => o.name === this.state.notebookEngine.version,
+      (availableVersion) =>
+        availableVersion.name === this.state.notebookEngine.version,
     );
     this.regions = version.availableRegions.map((region) => ({
       name: region,
@@ -95,12 +96,12 @@ export default class AddNotebookCtrl {
    * @param notebookType Selected notebook type
    */
   onChangeNotebookTypeHandler(notebookType) {
-    const e = this.capabilities.find(() => (o) =>
-      o.name === notebookType.engine,
+    const engine = this.capabilities.find(
+      (capability) => capability.name === notebookType.engine,
     );
     this.state.notebookEngine = {
       ...notebookType,
-      templates: e.templates,
+      templates: engine.templates,
     };
     this.updateAvailableRegions();
   }

@@ -246,8 +246,8 @@ export default class {
   }
 
   isNotebookDeleted() {
-    return !find(this.notebooks, (o) => {
-      return o.id === this.job.notebook;
+    return !find(this.notebooks, (notebook) => {
+      return notebook.id === this.job.notebook;
     });
   }
 
