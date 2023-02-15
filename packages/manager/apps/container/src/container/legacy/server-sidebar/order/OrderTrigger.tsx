@@ -4,6 +4,7 @@ import { ChevronDownIcon } from '@ovh-ux/manager-themes';
 import { useTranslation } from 'react-i18next';
 import OrderPopupContent, { ShopItem } from './OrderPopupContent';
 import OrderResponsivePopup from './OrderResponsivePopup';
+import style from '../index.module.scss';
 
 const OrderTrigger = ({ items }: { items: ShopItem[] }) => {
   const { t } = useTranslation('server-sidebar-order');
@@ -11,7 +12,14 @@ const OrderTrigger = ({ items }: { items: ShopItem[] }) => {
   const buttonRef = useRef();
 
   return (
-    <chakra.div w="full" display="flex" px="4" pt="4" ref={buttonRef}>
+    <chakra.div
+      w="full"
+      display="flex"
+      px="4"
+      pt="4"
+      ref={buttonRef}
+      className={style.orderButton}
+    >
       <Button
         w="auto"
         backgroundColor={isOpen ? '' : '#2859c0'}
@@ -44,10 +52,7 @@ const OrderTrigger = ({ items }: { items: ShopItem[] }) => {
       </Button>
       <Portal>
         {isOpen && (
-          <OrderResponsivePopup
-            button={buttonRef.current}
-            onClose={onClose}
-          >
+          <OrderResponsivePopup button={buttonRef.current} onClose={onClose}>
             <OrderPopupContent shopItems={items} onSelect={onClose} />
           </OrderResponsivePopup>
         )}

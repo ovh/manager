@@ -50,10 +50,14 @@
 
 .sticky {
   position: absolute;
-  top: 4rem;
+  top: 0;
   left: 0;
-  width: 100%;
+  right: 1rem;
   background-color: white;
+}
+
+.orderButton ~ .sticky {
+  top: 4rem;
 }
 
 .menuItem {
@@ -87,6 +91,10 @@
   button:hover {
     color: $menu-text-color;
   }
+}
+
+.orderButton {
+  display: block;
 }
 
 .subButton {
