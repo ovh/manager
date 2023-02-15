@@ -17,6 +17,12 @@ export default class PciStorageSnapshotsController {
   $onInit() {
     this.loadMessages();
     this.criteria = getCriteria('id', this.snapshotId);
+
+    if (this.taskResponse) {
+      const { type, message } = this.taskResponse.cucCloudParams;
+      this.taskResponse = null;
+      this.CucCloudMessage[type](message);
+    }
   }
 
   loadMessages() {

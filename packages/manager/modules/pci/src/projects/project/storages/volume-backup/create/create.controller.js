@@ -17,14 +17,6 @@ export default class VolumeBackupCreateController {
     this.VOLUMES_OPTIONS = VOLUMES_OPTIONS;
 
     this.isCreating = false;
-    this.volumeBackupModel = {
-      selected: {
-        volume: null,
-        volumeOption: null,
-      },
-      name: '',
-    };
-
     this.loadMessages();
   }
 
@@ -48,6 +40,12 @@ export default class VolumeBackupCreateController {
     return volumeOption?.type === VOLUME_OPTION_BACKUP;
   }
 
+  isVolumeSnapshotOption() {
+    const { volumeOption } = this.volumeBackupModel.selected;
+
+    return volumeOption?.type === VOLUME_OPTION_SNAPSHOT;
+  }
+
   isSelectedVolumeNeedToDetach() {
     const { volume } = this.volumeBackupModel.selected;
 
@@ -55,38 +53,74 @@ export default class VolumeBackupCreateController {
   }
 
   isValidConfiguration() {
-    const {
-      volume: selectedVolume,
-      volumeOption: selectedVolumeType,
-    } = this.volumeBackupModel.selected;
+    const { volume: selectedVolume } = this.volumeBackupModel.selected;
 
     return (
-      selectedVolume?.attachedTo.length === 0 &&
-      selectedVolumeType &&
-      this.volumeBackupModel.name
+      selectedVolume &&
+      this.volumeBackupModel.name &&
+      (this.isVolumeSnapshotOption() ||
+        (this.isVolumeBackupOption() &&
+          selectedVolume?.attachedTo.length === 0))
     );
   }
 
+  buildAttachVolumeToInstanceCucMessage(backupName, volumeName) {
+    const msgPart1 = this.$translate.instant(
+      'pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success_part_1',
+      {
+        backupName: `<strong>${backupName}</strong>`,
+      },
+    );
+    const msgPart2 = this.$translate.instant(
+      'pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success_part_2',
+      {
+        volumeName: `<strong>${volumeName}</strong>`,
+      },
+    );
+
+    return {
+      textHtml: `${msgPart1} <br /> ${msgPart2}`,
+    };
+  }
+
   createVolumeSnapshot() {
-    const { name } = this.volumeBackupModel;
+    const { name, volumeRelatedInstance } = this.volumeBackupModel;
     const { volume } = this.volumeBackupModel.selected;
 
     return this.volumeBackupService
       .createVolumeSnapshot(this.projectId, volume.id, { name })
       .then(() => {
-        return this.goToVolumeBackups(
-          this.$translate.instant(
-            'pci_projects_project_storages_volume_backup_create_action_create_option_volume_snapshot_success',
-            {
-              backupName: this.volumeBackupModel.name,
-            },
-          ),
-        );
+        return this.goToSnapshots({
+          cucCloudParams: {
+            message: this.buildAttachVolumeToInstanceCucMessage(
+              name,
+              volume.name,
+            ),
+            type: 'success',
+          },
+          taskParams: {
+            volumeDetached: volume,
+            instanceDetached: volumeRelatedInstance,
+          },
+        });
+      })
+      .catch(({ data }) => {
+        return this.goToSnapshots({
+          cucCloudParams: {
+            message: this.$translate.instant(
+              'pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail',
+              {
+                message: data.message,
+              },
+            ),
+            type: 'error',
+          },
+        });
       });
   }
 
   createVolumeBackup() {
-    const { name } = this.volumeBackupModel;
+    const { name, volumeRelatedInstance } = this.volumeBackupModel;
     const { volume } = this.volumeBackupModel.selected;
 
     return this.volumeBackupService
@@ -95,18 +129,36 @@ export default class VolumeBackupCreateController {
         volumeId: volume.id,
       })
       .then(() => {
-        return this.goToVolumeBackups(
-          this.$translate.instant(
-            'pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success',
-            {
-              backupName: this.volumeBackupModel.name,
-            },
-          ),
-        );
+        return this.goToVolumeBlockStorage({
+          cucCloudParams: {
+            message: this.buildAttachVolumeToInstanceCucMessage(
+              name,
+              volume.name,
+            ),
+            type: 'success',
+          },
+          taskParams: {
+            volumeDetached: volume,
+            instanceDetached: volumeRelatedInstance,
+          },
+        });
+      })
+      .catch(({ data }) => {
+        return this.goToVolumeBlockStorage({
+          cucCloudParams: {
+            message: this.$translate.instant(
+              'pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail',
+              {
+                message: data.message,
+              },
+            ),
+            type: 'error',
+          },
+        });
       });
   }
 
-  onGoToDetachVolumeFromInstanceLinkClick() {
+  onGoToDetachVolumeFromInstanceButtonClick() {
     // TODO: Tracking -- MANAGER-10570
 
     return this.goToDetachVolume(this.volumeBackupModel.selected.volume);
@@ -114,24 +166,13 @@ export default class VolumeBackupCreateController {
 
   onCreateBackupClick() {
     // TODO: Tracking -- MANAGER-10570
+    const taskPromise = this.isVolumeBackupOption()
+      ? this.createVolumeBackup()
+      : this.createVolumeSnapshot();
 
     this.isCreating = true;
-    return this.isVolumeBackupOption()
-      ? this.createVolumeBackup()
-      : this.createVolumeSnapshot()
-          .catch(({ data }) => {
-            return this.goToVolumeBackups(
-              this.$translate.instant(
-                'pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail',
-                {
-                  message: data.message,
-                },
-              ),
-              'error',
-            );
-          })
-          .finally(() => {
-            this.isCreating = false;
-          });
+    return taskPromise.finally(() => {
+      this.isCreating = false;
+    });
   }
 }

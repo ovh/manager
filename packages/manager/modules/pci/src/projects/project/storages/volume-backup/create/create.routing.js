@@ -18,8 +18,26 @@ export default /* @ngInject */ ($stateProvider) => {
 
       messageContainer: () => VOLUME_BACKUP_ROUTES.CREATE.STATE,
 
+      volumeBackupModel: () => ({
+        selected: {
+          volume: null,
+          volumeOption: null,
+        },
+        volumeRelatedInstance: null,
+        name: '',
+      }),
+
       volumes: /* @ngInject */ (projectId, VolumeBackupService) => {
         return VolumeBackupService.getVolumes(projectId);
+      },
+
+      attachVolumeToInstanceLink: /* @ngInject */ (projectId, $state) => {
+        return $state.href(
+          VOLUME_BACKUP_ROUTES.LIST.ROUTES.ATTACH_VOLUME.STATE,
+          {
+            projectId,
+          },
+        );
       },
 
       goToDetachVolume: /* @ngInject */ ($state, projectId) => (volume) => {

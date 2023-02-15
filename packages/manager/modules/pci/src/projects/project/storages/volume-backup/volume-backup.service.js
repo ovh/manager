@@ -176,6 +176,18 @@ export default class VolumeBackupService {
       .then(({ data }) => data);
   }
 
+  /**
+   * Get instance details
+   * @param serviceName {string}: project id
+   * @param instanceId {string}: instance id
+   * @returns {Promise}: instance details Promise
+   */
+  getInstanceDetails(serviceName, instanceId) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/instance/${instanceId}`)
+      .then(({ data }) => data);
+  }
+
   static buildPollingNameSpace(projectId, regionName, volumeBackupId) {
     return `volume_backup_${projectId}_${regionName}_${volumeBackupId}`;
   }
@@ -198,6 +210,7 @@ export default class VolumeBackupService {
           volumeBackupId,
         ),
         method: 'get',
+        interval: 3500,
         successRule: (volumeBackup) =>
           !new VolumeBackup(volumeBackup).isPendingStatus,
       },

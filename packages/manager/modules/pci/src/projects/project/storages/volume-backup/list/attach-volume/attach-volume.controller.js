@@ -1,61 +1,58 @@
 import { VOLUME_BACKUP_ROUTES } from '../../volume-backup.constants';
 
-export default class VolumeBackupDetachVolumeController {
+export default class VolumeBackupAttachVolumeController {
   /* @ngInject */
   constructor($translate, CucCloudMessage, VolumeBackupService) {
     this.$translate = $translate;
     this.cucCloudMessage = CucCloudMessage;
     this.volumeBackupService = VolumeBackupService;
 
-    this.isDetaching = false;
+    this.isAttaching = false;
   }
 
-  onDetachVolumeBackupDetachClick() {
+  onAttachVolumeBackupConfirmClick() {
     // TODO: Tracking -- MANAGER-10570
 
-    this.isDetaching = true;
+    this.isAttaching = true;
     return this.volumeBackupService
-      .detachVolumeFromInstance(
+      .attachVolumeToInstance(
         this.projectId,
-        this.volume.id,
-        this.instance.id,
+        this.volumeDetached.id,
+        this.instanceDetached.id,
       )
       .then(() => {
-        this.volume.attachedTo = [];
-        this.volumeBackupModel.volumeRelatedInstance = this.instance;
-
+        this.volumeDetached.attachedTo = [this.instanceDetached.id];
         return this.goBack();
       })
       .then(() => {
         return this.cucCloudMessage.success(
           this.$translate.instant(
-            'pci_projects_project_storages_volume_backup_create_detach_volume_action_success',
-            { volumeName: this.volume.name, instanceName: this.instance.name },
+            'pci_projects_project_storages_volume_backup_list_attach_volume_action_success',
+            {
+              volumeName: this.volumeDetached.name,
+              instanceName: this.instanceDetached.name,
+            },
           ),
-          VOLUME_BACKUP_ROUTES.CREATE.STATE,
+          VOLUME_BACKUP_ROUTES.LIST.STATE,
         );
       })
       .catch(({ data }) => {
         return this.goToVolumeBackups(
           this.$translate.instant(
-            'pci_projects_project_storages_volume_backup_create_detach_volume_action_fail',
+            'pci_projects_project_storages_volume_backup_list_attach_volume_action_fail',
             {
               message: data.message,
             },
           ),
           'error',
-          {
-            volumeDetached: null,
-            instanceDetached: null,
-          },
         );
       })
       .finally(() => {
-        this.isDetaching = false;
+        this.isAttaching = false;
       });
   }
 
-  onDetachVolumeBackupCancelClick() {
+  onAttachVolumeBackupCancelClick() {
     // TODO: Tracking -- MANAGER-10570
 
     return this.goBack();
