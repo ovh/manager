@@ -1,5 +1,5 @@
 import apiClient from '@ovh-ux/manager-core-api';
-import { SELECTED_NAS } from '../../config';
+import SELECTED_NAS from '../../config';
 
 const QUERY_KEY = [`/dedicated/nasha/${SELECTED_NAS}/serviceInfos`];
 

@@ -1,13 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, Navigate, Outlet, useLoaderData } from 'react-router-dom';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-import { fetchNashaList, SELECTED_NAS } from '../api/nasha-react-app/index';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query';
+import { fetchNashaList, SELECTED_NAS } from '../api/nasha-react';
 
 const queryClient = new QueryClient();
 
 function Services() {
-  const { isLoading, isError, data } = useQuery('listNasha', fetchNashaList);
+  const { isLoading, isError, data } = useQuery(['listNasha'], fetchNashaList);
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -17,7 +21,7 @@ function Services() {
     return <span>Error...</span>;
   }
 
-  const count = data.length;
+  const count = data?.length;
   if (count === 0) {
     return <Navigate to="onboarding" />;
   }
