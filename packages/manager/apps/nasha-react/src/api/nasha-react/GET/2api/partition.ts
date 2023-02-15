@@ -1,9 +1,9 @@
 import apiClient from '@ovh-ux/manager-core-api';
 import SELECTED_NAS from '../../config';
 
-const QUERY_KEY = [`/dedicated/nasha/${SELECTED_NAS}/partition`];
+const QUERY_KEY = [`/dedicated/nasha/${SELECTED_NAS}/partitions`];
 
 export default async function fetchNashaPartition() {
-  const response = await apiClient.v6.get(QUERY_KEY[0]);
+  const response = await apiClient.aapi.get(QUERY_KEY[0]);
   return response.data;
 }
