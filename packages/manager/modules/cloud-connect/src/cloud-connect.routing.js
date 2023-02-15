@@ -34,7 +34,11 @@ export default /* @ngInject */ ($stateProvider) => {
             ovhCloudConnectId,
           }),
         hideBreadcrumb: () => true,
-        gotoOrder: /* @ngInject */ ($window, coreConfig) => () => {
+        gotoOrder: /* @ngInject */ ($window, coreConfig, atInternet) => () => {
+          atInternet.trackClick({
+            name: 'cloud-connect::index::order',
+            type: 'action',
+          });
           $window.open(
             getCloudConnectOrderUrl(coreConfig.getUser().ovhSubsidiary),
             '_blank',

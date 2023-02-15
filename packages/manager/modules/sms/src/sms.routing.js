@@ -29,7 +29,13 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName,
         }),
       hideBreadcrumb: () => true,
-      gotoOrder: /* @ngInject */ ($state) => () => $state.go('sms.order'),
+      gotoOrder: /* @ngInject */ ($state, atInternet) => () => {
+        atInternet.trackClick({
+          name: 'sms::index::order',
+          type: 'action',
+        });
+        $state.go('sms.order');
+      },
       headerGuideLink: /* @ngInject */ (coreConfig, $translate) =>
         HEADER_GUIDE_LINK.map(({ translationKey, url }) => ({
           label: $translate.instant(`sms_header_guide_${translationKey}`),

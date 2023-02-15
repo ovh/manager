@@ -21,7 +21,12 @@ export default /* @ngInject */ ($stateProvider) => {
       header: /* @ngInject */ ($translate) =>
         $translate.instant('office_title'),
       customizableColumns: () => true,
-      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+      topbarOptions: /* @ngInject */ (
+        $translate,
+        $window,
+        coreConfig,
+        atInternet,
+      ) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -29,6 +34,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('office_order'),
           value: $translate.instant('office_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'office::index::order',
+              type: 'action',
+            });
             $window.open(
               getOfficeOrderUrl(coreConfig.getUser().ovhSubsidiary),
               '_blank',

@@ -28,7 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.private-database.dashboard', {
           productId,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $state) => ({
+      topbarOptions: /* @ngInject */ ($translate, $state, atInternet) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -36,6 +36,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('private_databases_order'),
           value: $translate.instant('private_databases_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'web::private-database::index::order',
+              type: 'action',
+            });
             $state.go('app.private-database-order-clouddb');
           },
         },

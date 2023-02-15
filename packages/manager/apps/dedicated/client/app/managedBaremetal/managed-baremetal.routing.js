@@ -30,7 +30,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.managedBaremetal.details.dashboard', {
           productId,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+      topbarOptions: /* @ngInject */ (
+        $translate,
+        $window,
+        coreConfig,
+        atInternet,
+      ) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -38,6 +43,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('managed_baremetal_order'),
           value: $translate.instant('managed_baremetal_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'dedicated::managedBaremetal::index::order',
+              type: 'action',
+            });
             $window.open(
               getManagedBareMetalOrderUrl(coreConfig.getUser().ovhSubsidiary),
               '_blank',

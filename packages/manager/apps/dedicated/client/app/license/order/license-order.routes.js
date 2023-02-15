@@ -10,5 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('license_order'),
     },
+    atInternet: {
+      rename: 'dedicated::license::dashboard::order',
+    },
   });
 };

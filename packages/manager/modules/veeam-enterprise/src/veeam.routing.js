@@ -27,7 +27,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('veeam-enterprise.details', {
           serviceName,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+      topbarOptions: /* @ngInject */ (
+        $translate,
+        $window,
+        coreConfig,
+        atInternet,
+      ) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -35,6 +40,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('veeam_enterprise_order'),
           value: $translate.instant('veeam_enterprise_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'veeam-enterprise::index::order',
+              type: 'action',
+            });
             $window.open(
               getVeeamOrderUrl(coreConfig.getUser().ovhSubsidiary),
               '_blank',
