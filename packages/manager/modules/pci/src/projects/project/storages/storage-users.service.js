@@ -41,6 +41,18 @@ export default class PciStoragesUsersService {
       .then(({ data }) => data);
   }
 
+  mapUsersToCredentials(projectId, users) {
+    const usersCredentialsPromises = users.map((user) =>
+      this.getS3Credentials(projectId, user.id).then((data) => {
+        const updatedUser = user;
+        [updatedUser.s3Credentials] = data;
+        return updatedUser;
+      }),
+    );
+
+    return this.$q.all(usersCredentialsPromises);
+  }
+
   getUser(serviceName, userId) {
     return this.$http
       .get(`/cloud/project/${serviceName}/user/${userId}`)
