@@ -13,8 +13,6 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         breadcrumb: () => null,
-        price: /* @ngInject */ (getCurrentFlavor) =>
-          getCurrentFlavor().nodeHourlyPrice,
         onNodeAdd: /* @ngInject */ (
           database,
           getNodeObject,

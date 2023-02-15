@@ -2,13 +2,17 @@ import 'moment';
 import find from 'lodash/find';
 import some from 'lodash/some';
 
-import { ENGINES_STATUS, ENGINES_NAMES } from './engines.constants';
+import {
+  ENGINES_STATUS,
+  ENGINES_NAMES,
+  ENGINES_STORAGE_MODES,
+} from './engines.constants';
 
 import Version from './version.class';
 
 export default class Engine {
   constructor(
-    { name, versions, defaultVersion, description },
+    { name, versions, defaultVersion, description, storage },
     availability,
     plans,
     flavors,
@@ -17,6 +21,7 @@ export default class Engine {
       name,
       defaultVersion,
       description,
+      storage,
     });
 
     this.versions = versions
@@ -42,6 +47,9 @@ export default class Engine {
       availability,
       (x) => x.status === ENGINES_STATUS.BETA && x.engine === name,
     );
+
+    this.isDistributedStorage =
+      this.storage === ENGINES_STORAGE_MODES.distributed;
   }
 
   getLabel() {
