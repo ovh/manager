@@ -128,7 +128,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go($state.current, {}, { reload: true });
       },
 
-      messageContainer: () => 'pci.projects.project.storages.volume-backup',
+      messageContainer: () => VOLUME_BACKUP_ROUTES.ROOT.STATE,
 
       volumeBackupTrackPrefix: () =>
         'PublicCloud::pci::projects::project::storages::volume-backup',
