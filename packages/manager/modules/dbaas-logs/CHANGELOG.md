@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.10.1...@ovh-ux/manager-dbaas-logs@1.10.2) (2023-02-15)
+
+
+### Bug Fixes
+
+* **dedicated:** load streams for edit role permissions ([#8909](https://github.com/ovh/manager/issues/8909)) ([5b559d0](https://github.com/ovh/manager/commit/5b559d05052cc36fdee89da5f17565f35e072bd1))
+
+
+
+
+
 ## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.10.0...@ovh-ux/manager-dbaas-logs@1.10.1) (2023-02-08)
 
 
