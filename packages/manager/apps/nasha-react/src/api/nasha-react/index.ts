@@ -1,18 +1,13 @@
-import apiClient from '@ovh-ux/manager-core-api';
-import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { SELECTED_NAS } from './config';
+import { fetchNashaList } from './GET/apiv6/listNasha';
+import { fetchNashaPartition } from './GET/apiv6/partition';
+import { fetchNashaServiceInfos } from './GET/apiv6/serviceInfos';
+import { fetchNashaDetails } from './GET/apiv6/nashaDetails';
 
-async function fetchData() {
-  const response = await apiClient.v6.get('/dedicated/nasha');
-  return response.data;
-}
-
-export const QUERY_KEY = ['/dedicated/nasha'];
-
-export const getNashaReactIds = async (): Promise<string[]> => {
-  return queryClient.fetchQuery(QUERY_KEY, fetchData);
-};
-
-export default {
-  QUERY_KEY,
-  getNashaReactIds,
+export {
+  fetchNashaDetails,
+  fetchNashaPartition,
+  fetchNashaServiceInfos,
+  fetchNashaList,
+  SELECTED_NAS,
 };
