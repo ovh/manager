@@ -59,7 +59,7 @@ export default class LogsAliasesLinkCtrl {
 
     this.streams = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
-        this.LogsStreamsService.getStreams(this.serviceName),
+        this.LogsStreamsService.getOwnStreams(this.serviceName),
     });
     this.streams.load();
 
@@ -77,9 +77,8 @@ export default class LogsAliasesLinkCtrl {
 
     this.$q.all([this.alias.promise, this.streams.promise]).then((result) => {
       const diff = filter(
-        result[1].data,
+        result[1],
         (stream) =>
-          stream.isEditable &&
           !find(
             result[0].streams,
             (attachedAapiStream) =>
