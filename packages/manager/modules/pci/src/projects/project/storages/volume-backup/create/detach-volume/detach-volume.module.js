@@ -4,12 +4,10 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import routing from './create.routing';
-import component from './create.component';
+import routing from './detach-volume.routing';
+import component from './detach-volume.component';
 
-import detachVolume from './detach-volume';
-
-const moduleName = 'ovhManagerPciProjectStoragesVolumeBackupCreate';
+const moduleName = 'ovhManagerPciProjectStoragesVolumeBackupCreateDetachVolume';
 
 angular
   .module(moduleName, [
@@ -17,11 +15,10 @@ angular
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
-    detachVolume,
   ])
   .config(routing)
   .component(
-    'ovhManagerPciProjectsProjectStoragesVolumeBackupCreate',
+    'ovhManagerPciProjectsProjectStoragesVolumeBackupCreateDetachVolume',
     component,
   )
   .run(/* @ngTranslationsInject:json ./translations */);

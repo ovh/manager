@@ -7,8 +7,9 @@ const VOLUMES_OPTIONS = [
 
 export default class VolumeBackupCreateController {
   /* @ngInject */
-  constructor($translate, VolumeBackupService) {
+  constructor($translate, CucCloudMessage, VolumeBackupService) {
     this.$translate = $translate;
+    this.cucCloudMessage = CucCloudMessage;
     this.volumeBackupService = VolumeBackupService;
   }
 
@@ -23,6 +24,22 @@ export default class VolumeBackupCreateController {
       },
       name: '',
     };
+
+    this.loadMessages();
+  }
+
+  loadMessages() {
+    this.cucCloudMessage.unSubscribe(this.messageContainer);
+    this.messageHandler = this.cucCloudMessage.subscribe(
+      this.messageContainer,
+      {
+        onMessage: () => this.refreshMessages(),
+      },
+    );
+  }
+
+  refreshMessages() {
+    this.messages = this.messageHandler.getMessages();
   }
 
   isVolumeBackupOption() {
@@ -31,13 +48,10 @@ export default class VolumeBackupCreateController {
     return volumeOption?.type === VOLUME_OPTION_BACKUP;
   }
 
-  isSelectableVolumeOption() {
+  isSelectedVolumeNeedToDetach() {
     const { volume } = this.volumeBackupModel.selected;
 
-    return (
-      (volume && !this.isVolumeBackupOption()) ||
-      (this.isVolumeBackupOption() && volume?.attachedTo?.length === 0)
-    );
+    return volume?.attachedTo.length > 0 && this.isVolumeBackupOption();
   }
 
   isValidConfiguration() {
@@ -46,7 +60,11 @@ export default class VolumeBackupCreateController {
       volumeOption: selectedVolumeType,
     } = this.volumeBackupModel.selected;
 
-    return selectedVolume && selectedVolumeType && this.volumeBackupModel.name;
+    return (
+      selectedVolume?.attachedTo.length === 0 &&
+      selectedVolumeType &&
+      this.volumeBackupModel.name
+    );
   }
 
   createVolumeSnapshot() {
@@ -88,6 +106,12 @@ export default class VolumeBackupCreateController {
       });
   }
 
+  onGoToDetachVolumeFromInstanceLinkClick() {
+    // TODO: Tracking -- MANAGER-10570
+
+    return this.goToDetachVolume(this.volumeBackupModel.selected.volume);
+  }
+
   onCreateBackupClick() {
     // TODO: Tracking -- MANAGER-10570
 
@@ -98,7 +122,7 @@ export default class VolumeBackupCreateController {
           .catch(({ data }) => {
             return this.goToVolumeBackups(
               this.$translate.instant(
-                'pci_projects_project_storages_volume_backup_list_delete_error',
+                'pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail',
                 {
                   message: data.message,
                 },
@@ -109,11 +133,5 @@ export default class VolumeBackupCreateController {
           .finally(() => {
             this.isCreating = false;
           });
-  }
-
-  onCreateVolumeBackupCancelClick() {
-    // TODO: Tracking -- MANAGER-10570
-
-    return this.goBack();
   }
 }

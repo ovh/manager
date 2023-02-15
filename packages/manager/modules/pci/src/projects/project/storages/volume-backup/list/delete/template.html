@@ -4,6 +4,7 @@
     data-primary-label="{{:: 'pci_projects_project_storages_volume_backup_list_delete_action_confirm' | translate }}"
     data-secondary-label="{{:: 'pci_projects_project_storages_volume_backup_list_delete_action_cancel' | translate }}"
     data-primary-disabled="$ctrl.isDeleting || volumeBackupDelete.$invalid"
+    data-primary-action="$ctrl.onDeleteVolumeBackupClick()"
     data-secondary-action="$ctrl.onDeleteVolumeBackupCancelClick()"
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isDeleting"
