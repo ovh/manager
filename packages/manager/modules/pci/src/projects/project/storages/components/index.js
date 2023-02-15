@@ -4,6 +4,7 @@ import '@ovh-ux/ui-kit';
 
 import passwordClipboardComponent from './password-clipboard';
 import userCredentialBannerComponent from './user-credential-banner';
+import detachVolumeBannerComponent from './detach-volume-banner';
 
 const moduleName = 'ovhManagerPciStoragesComponents';
 
@@ -13,6 +14,7 @@ angular
     'oui',
     passwordClipboardComponent,
     userCredentialBannerComponent,
+    detachVolumeBannerComponent,
   ])
   .run(/* @ngTranslationsInject:json ./translations */);
 

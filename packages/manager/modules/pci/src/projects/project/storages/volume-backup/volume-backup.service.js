@@ -119,6 +119,36 @@ export default class VolumeBackupService {
   }
 
   /**
+   * Detach a volume from instance
+   * @param serviceName {string}: project id
+   * @param volumeId {string}: volume to detach
+   * @param instanceId {string}: instance from where to detach the volume
+   * @returns {Promise}: detach volume Promise
+   */
+  detachVolumeFromInstance(serviceName, volumeId, instanceId) {
+    return this.$http
+      .post(`/cloud/project/${serviceName}/volume/${volumeId}/detach`, {
+        instanceId,
+      })
+      .then(({ data }) => data);
+  }
+
+  /**
+   * Attach a volume to an instance
+   * @param serviceName {string}: project id
+   * @param volumeId {string}: volume to attach
+   * @param instanceId {string}: instance where to attach the volume
+   * @returns {Promise}: attach volume Promise
+   */
+  attachVolumeToInstance(serviceName, volumeId, instanceId) {
+    return this.$http
+      .post(`/cloud/project/${serviceName}/volume/${volumeId}/attach`, {
+        instanceId,
+      })
+      .then(({ data }) => data);
+  }
+
+  /**
    * Get volume details
    * @param serviceName {string}: project id
    * @param volumeId {string}: block storage volume id
