@@ -51,7 +51,12 @@ export default /* @ngInject */ ($stateProvider) => {
           : $state.href('app.domain.product', {
               productId: domain,
             }),
-      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+      topbarOptions: /* @ngInject */ (
+        $translate,
+        $window,
+        coreConfig,
+        atInternet,
+      ) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -59,6 +64,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('domains_order'),
           value: $translate.instant('domains_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'web::domain::index::order',
+              type: 'action',
+            });
             $window.open(
               getDomainOrderUrl(coreConfig.getUser().ovhSubsidiary),
               '_blank',

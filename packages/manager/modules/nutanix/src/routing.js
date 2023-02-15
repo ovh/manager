@@ -87,7 +87,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('nutanix.dashboard', {
           serviceName,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+      topbarOptions: /* @ngInject */ (
+        $translate,
+        $window,
+        coreConfig,
+        atInternet,
+      ) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -95,6 +100,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('nutanix_order'),
           value: $translate.instant('nutanix_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'hpc::nutanix::clusters::order',
+              type: 'action',
+            });
             $window.open(
               getNutanixOrderUrl(coreConfig.getUser().ovhSubsidiary),
               '_blank',
