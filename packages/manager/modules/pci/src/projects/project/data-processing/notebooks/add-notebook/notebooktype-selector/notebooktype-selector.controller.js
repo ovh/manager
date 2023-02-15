@@ -15,11 +15,11 @@ export default class NotebookTypeSelectorCtrl {
         description: this.$translate.instant(
           `data_processing_add_notebook_${engine.name}_description`,
         ),
-        versions: engine.availableVersions.map((v) => ({
-          id: `${engine.name}@${v.name}`,
+        versions: engine.availableVersions.map((availableVersion) => ({
+          id: `${engine.name}@${availableVersion.name}`,
           engine: engine.name,
-          version: v.name,
-          description: v.description,
+          version: availableVersion.name,
+          description: availableVersion.description,
         })),
       }));
 
