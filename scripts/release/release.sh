@@ -66,14 +66,14 @@ push_and_release() {
   git add .
   git commit -m "release: $1"
   git tag -a -m "release: $1" "$1"
-  if ! "${DRY_RELEASE}"; then
+  #if ! "${DRY_RELEASE}"; then
     #gh config set prompt disabled
-    if [[ "${GIT_BRANCH}" != "master" ]];then # avoid mess on master
-      git push origin "${GIT_BRANCH}" --tags
-    fi
+  if [[ "${GIT_BRANCH}" != "master" ]];then # avoid mess on master
+    git push origin "${GIT_BRANCH}" --tags
+  fi
     
     #echo "${RELEASE_NOTE}" | gh release create "$1" -F -
-  fi
+  #fi
 }
 
 update_sonar_version() {
