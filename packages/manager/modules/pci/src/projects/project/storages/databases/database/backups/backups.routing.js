@@ -1,5 +1,3 @@
-import find from 'lodash/find';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.storages.databases.dashboard.backups',
@@ -13,16 +11,12 @@ export default /* @ngInject */ ($stateProvider) => {
         /* @ngInject */
         backupList: (database, DatabaseService, projectId) =>
           DatabaseService.getBackups(projectId, database.engine, database.id),
-        backupRetentionTime: /* @ngInject */ (
-          database,
-          DatabaseService,
-          projectId,
-        ) =>
-          DatabaseService.getCapabilities(projectId).then((capabilities) =>
-            moment.duration(
-              find(capabilities.plans, (p) => p.name === database.plan)
-                .backupRetention,
-            ),
+        getCurrentFlavor: /* @ngInject */ (database, engine) => () =>
+          engine.getFlavor(
+            database.version,
+            database.plan,
+            database.region,
+            database.flavor,
           ),
         goBackToBackups: /* @ngInject */ ($state, CucCloudMessage) => (
           message = false,
