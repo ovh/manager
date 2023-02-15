@@ -24,7 +24,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('overTheBoxes.overTheBox.details', {
           serviceName,
         }),
-      gotoOrder: /* @ngInject */ ($window) => () => {
+      gotoOrder: /* @ngInject */ ($window, atInternet) => () => {
+        atInternet.trackClick({
+          name: 'overTheBoxes::index::order',
+          type: 'action',
+        });
         $window.open('https://www.ovhtelecom.fr/overthebox/', '_blank');
       },
       hideBreadcrumb: () => true,

@@ -14,5 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       hideBreadcrumb: () => true,
     },
+    atInternet: {
+      rename: 'dedicated::license::dashboard::order-spla',
+    },
   });
 };

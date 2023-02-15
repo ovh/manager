@@ -39,7 +39,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.dedicatedCloud.details.dashboard', {
           productId,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+      topbarOptions: /* @ngInject */ (
+        $translate,
+        $window,
+        coreConfig,
+        atInternet,
+      ) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -47,6 +52,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('dedicated_clouds_order'),
           value: $translate.instant('dedicated_clouds_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'dedicated::dedicatedCloud::index::order',
+              type: 'action',
+            });
             $window.open(
               getDedicatedCloudOrderUrl(coreConfig.getUser().ovhSubsidiary),
               '_blank',

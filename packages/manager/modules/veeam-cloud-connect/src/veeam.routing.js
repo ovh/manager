@@ -22,7 +22,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('veeam-cloud-connect.detail', {
           serviceName,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+      topbarOptions: /* @ngInject */ (
+        $translate,
+        $window,
+        coreConfig,
+        atInternet,
+      ) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -30,6 +35,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('veeam_cc_order'),
           value: $translate.instant('veeam_cc_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'veeam-cloud-connect::index::order',
+              type: 'action',
+            });
             $window.open(
               getVeeamOrderUrl(coreConfig.getUser().ovhSubsidiary),
               '_blank',
