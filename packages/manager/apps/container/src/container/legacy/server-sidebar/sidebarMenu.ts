@@ -1,12 +1,3 @@
-export type SidebarService = {
-  id?: string;
-  serviceName: string;
-  parentName?: string;
-  displayName: string;
-  url: string;
-  extraParams?: Record<string, string>;
-};
-
 export type SidebarMenuItem = {
   id: string | number;
   label?: string;
@@ -22,6 +13,7 @@ export type SidebarMenuItem = {
   parentName?: string;
   serviceName?: string;
   extraParams?: Record<string, string>;
+  stateParams?: (number | string)[];
 
   loader?: () => Promise<SidebarMenuItem[]>;
   isLoading?: boolean;
