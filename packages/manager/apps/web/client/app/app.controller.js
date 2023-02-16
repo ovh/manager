@@ -25,7 +25,8 @@ angular.module('App').controller(
         }, 300);
       };
 
-      // Prevents a bug with CKEditor.
+      // Prevents a bug with CKEditor
+      // this is a test
       // See: https://stackoverflow.com/a/23667151 and includes updates from https://github.com/twbs/bootstrap-sass/blob/5d6b2ebba0c2a5885ce2f0e01e9218db3d3b5e47/assets/javascripts/bootstrap/modal.js#L139
       this.$timeout(() => {
         $.fn.modal.Constructor.prototype.enforceFocus = function enforceFocus() {
