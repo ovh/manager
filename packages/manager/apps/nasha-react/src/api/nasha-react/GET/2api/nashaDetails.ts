@@ -5,6 +5,6 @@ export default async function fetchNashaDetails({
   queryKey,
 }: QueryFunctionContext<[string, { serviceName: string }]>) {
   const { serviceName } = queryKey[1];
-  const response = await apiClient.v6.get(`/dedicated/nasha/${serviceName}`);
+  const response = await apiClient.aapi.get(`/dedicated/nasha/${serviceName}`);
   return response.data;
 }

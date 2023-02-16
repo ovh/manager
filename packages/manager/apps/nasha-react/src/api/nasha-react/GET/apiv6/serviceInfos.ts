@@ -1,9 +1,12 @@
 import apiClient from '@ovh-ux/manager-core-api';
-import SELECTED_NAS from '../../config';
+import { QueryFunctionContext } from '@tanstack/react-query';
 
-const QUERY_KEY = [`/dedicated/nasha/${SELECTED_NAS}/serviceInfos`];
-
-export default async function fetchNashaServiceInfos() {
-  const response = await apiClient.v6.get(QUERY_KEY[0]);
+export default async function fetchNashaServiceInfos({
+  queryKey,
+}: QueryFunctionContext<[string, { serviceName: string }]>) {
+  const { serviceName } = queryKey[1];
+  const response = await apiClient.v6.get(
+    `/dedicated/nasha/${serviceName}/serviceInfos`,
+  );
   return response.data;
 }

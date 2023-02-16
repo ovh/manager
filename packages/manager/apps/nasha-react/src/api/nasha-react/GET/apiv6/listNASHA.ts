@@ -1,8 +1,6 @@
 import apiClient from '@ovh-ux/manager-core-api';
 
-export const QUERY_KEY = ['/dedicated/nasha'];
-
 export default async function fetchNashaList() {
-  const response = await apiClient.v6.get(QUERY_KEY[0]);
+  const response = await apiClient.v6.get('/dedicated/nasha');
   return response.data;
 }
