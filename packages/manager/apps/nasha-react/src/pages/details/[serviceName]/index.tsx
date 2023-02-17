@@ -16,11 +16,28 @@ import {
 const queryClient = new QueryClient();
 
 function Partition(props: { serviceName: string }) {
+  const { serviceName } = props;
   const { isLoading, isError, data } = useQuery(
-    ['partitions'],
+    ['partitions', { serviceName }],
     fetchNashaPartition,
   );
-  return <>Partitions {props.serviceName}</>;
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error...</span>;
+  }
+
+  const count = data?.length;
+  if (count === 0) {
+    return <></>;
+  }
+  return (
+    <>
+      <ul>{JSON.stringify(data)}</ul>
+    </>
+  );
 }
 
 function Informations(props: { serviceName: string }) {
@@ -40,19 +57,15 @@ function Informations(props: { serviceName: string }) {
 
   const count = data?.length;
   if (count === 0) {
-    return <Navigate to="onboarding" />;
-  }
-  if (count === 1) {
-    return (
-      <>
-        <Outlet />
-        <Navigate to={data[0]} />
-      </>
-    );
+    return <></>;
   }
   return (
     <>
       <ul>{JSON.stringify(data)}</ul>
+      <ul>
+        <input type="text" value={data.serviceName} />
+        <button>Modifier</button>
+      </ul>
     </>
   );
 }
@@ -74,26 +87,21 @@ function Configuration(props: { serviceName: string }) {
 
   const count = data?.length;
   if (count === 0) {
-    return <Navigate to="onboarding" />;
-  }
-  if (count === 1) {
-    return (
-      <>
-        <Outlet />
-        <Navigate to={data[0]} />
-      </>
-    );
+    return <></>;
   }
   return (
     <>
       <ul>
         {data.use.used.value} / {data.use.size.value} {data.use.size.unit}
       </ul>
+      <ul>
+        <button>Créer une partition</button>
+      </ul>
     </>
   );
 }
 
-function ServicesInfo(props: { serviceName: string }) {
+function Abonnement(props: { serviceName: string }) {
   const { serviceName } = props;
   const { isLoading, isError, data } = useQuery(
     ['serviceInfos', { serviceName }],
@@ -110,19 +118,16 @@ function ServicesInfo(props: { serviceName: string }) {
 
   const count = data?.length;
   if (count === 0) {
-    return <Navigate to="onboarding" />;
-  }
-  if (count === 1) {
-    return (
-      <>
-        <Outlet />
-        <Navigate to={data[0]} />
-      </>
-    );
+    return <></>;
   }
   return (
     <>
       <ul>{JSON.stringify(data)}</ul>
+      <ul>
+        <button>Configurer le renouvellement</button>
+        <button>Anticiper le paiement</button>
+        <button>Configurer le renouvellement</button>
+      </ul>
     </>
   );
 }
@@ -138,15 +143,15 @@ export default function NashaReactDashboard() {
         <QueryClientProvider client={queryClient}>
           <hr />
           <h2>Informations générales</h2>
-          <h2>Partitions</h2>
-          <Partition serviceName={serviceName} />
           <div>
+            <h3>Partitions</h3>
+            <Partition serviceName={serviceName} />
             <h3>Informations</h3>
             <Informations serviceName={serviceName} />
             <h3>Configuration</h3>
             <Configuration serviceName={serviceName} />
             <h3>Abonnement</h3>
-            <ServicesInfo serviceName={serviceName} />
+            <Abonnement serviceName={serviceName} />
           </div>
         </QueryClientProvider>
       </Heading>
