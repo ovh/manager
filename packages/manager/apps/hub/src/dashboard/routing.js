@@ -51,11 +51,16 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       hideBreadcrumb: () => true,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('manager_hub_dashboard'),
-      displaySiretBanner: /* @ngInject */ (ovhFeatureFlipping) => {
-        const bannerHubSiretId = 'hub:banner-hub-invite-customer-siret';
+      callFeatureAvailabiltySiret: /* @ngInject */ (ovhFeatureFlipping) => {
+        const featureSiret = [
+          'hub:banner-hub-invite-customer-siret',
+          'hub:popup-hub-invite-customer-siret',
+        ];
         return ovhFeatureFlipping
-          .checkFeatureAvailability(bannerHubSiretId)
-          .then((feature) => feature.isFeatureAvailable(bannerHubSiretId));
+          .checkFeatureAvailability(featureSiret)
+          .then((features) => {
+            return features;
+          });
       },
     },
     resolvePolicy: {
