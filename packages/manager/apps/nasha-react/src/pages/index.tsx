@@ -1,59 +1,61 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link, Navigate, Outlet } from 'react-router-dom';
 import {
-  Await,
-  defer,
-  Link,
-  Navigate,
-  Outlet,
-  useLoaderData,
-} from 'react-router-dom';
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query';
+import { fetchNashaList } from '../api/nasha-react';
 
-import { getNashaReactIds } from '../api/nasha-react';
+const queryClient = new QueryClient();
 
-export function loader() {
-  return defer({
-    services: getNashaReactIds(),
-  });
+function Services() {
+  const { isLoading, isError, data } = useQuery(['listNasha'], fetchNashaList);
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error...</span>;
+  }
+
+  const count = data?.length;
+  if (count === 0) {
+    return <Navigate to="onboarding" />;
+  }
+  if (count === 1) {
+    return (
+      <>
+        <Outlet />
+        <Navigate to={data[0]} />
+      </>
+    );
+  }
+  return (
+    <>
+      <h2>Services list</h2>
+      <ul>
+        {data.map((serviceName: string) => (
+          <li key={serviceName}>
+            <Link to={`/details/${serviceName}`}>{serviceName}</Link>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 }
 
-export default function NashaReact() {
-  const { t } = useTranslation('nasha-react');
-  const data = useLoaderData() as Record<string, unknown>;
+export default function NashaReactApp() {
+  const { t } = useTranslation('nasha-react-app');
 
   return (
     <div>
-      <h1>{t('title')}</h1>
-      <Suspense fallback="">
-        <Await resolve={data.services}>
-          {(services) => {
-            const count = services.length;
-            if (count === 0) {
-              return <Navigate to="onboarding" />;
-            }
-            if (count === 1) {
-              return (
-                <>
-                  <Outlet />
-                  <Navigate to={services[0]} />
-                </>
-              );
-            }
-            return (
-              <>
-                <h2>Services list</h2>
-                <ul>
-                  {services.map((serviceName: string) => (
-                    <li key={serviceName}>
-                      <Link to={`/details/${serviceName}`}>{serviceName}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            );
-          }}
-        </Await>
-      </Suspense>
+      <h1>{t('NASHA')}</h1>
+      <QueryClientProvider client={queryClient}>
+        <Services />
+      </QueryClientProvider>
     </div>
   );
 }
