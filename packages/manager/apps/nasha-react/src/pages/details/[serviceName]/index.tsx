@@ -16,11 +16,25 @@ import {
 const queryClient = new QueryClient();
 
 function Partition(props: { serviceName: string }) {
+  const { serviceName } = props;
   const { isLoading, isError, data } = useQuery(
-    ['partitions'],
+    ['partitions', { serviceName }],
     fetchNashaPartition,
   );
-  return <>Partitions {props.serviceName}</>;
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error...</span>;
+  }
+
+  return (
+    <>
+      Partitions {props.serviceName}
+      <div>{JSON.stringify(data)}</div>
+    </>
+  );
 }
 
 function Informations(props: { serviceName: string }) {
@@ -135,21 +149,21 @@ export default function NashaReactDashboard() {
     <div>
       <Heading as="h3" size="sm">
         {t('title')}
-        <QueryClientProvider client={queryClient}>
-          <hr />
-          <h2>Informations générales</h2>
-          <h2>Partitions</h2>
-          <Partition serviceName={serviceName} />
-          <div>
-            <h3>Informations</h3>
-            <Informations serviceName={serviceName} />
-            <h3>Configuration</h3>
-            <Configuration serviceName={serviceName} />
-            <h3>Abonnement</h3>
-            <ServicesInfo serviceName={serviceName} />
-          </div>
-        </QueryClientProvider>
       </Heading>
+      <QueryClientProvider client={queryClient}>
+        <hr />
+        <h2>Informations générales</h2>
+        <h2>Partitions</h2>
+        <Partition serviceName={serviceName} />
+        <div>
+          <h3>Informations</h3>
+          <Informations serviceName={serviceName} />
+          <h3>Configuration</h3>
+          <Configuration serviceName={serviceName} />
+          <h3>Abonnement</h3>
+          <ServicesInfo serviceName={serviceName} />
+        </div>
+      </QueryClientProvider>
     </div>
   );
 }
