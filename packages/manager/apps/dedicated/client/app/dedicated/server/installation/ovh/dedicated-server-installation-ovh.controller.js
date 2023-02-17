@@ -16,6 +16,8 @@ import take from 'lodash/take';
 import {
   RTM_GUIDE_URLS,
   RTM_INSTALL_FEATURE,
+  MOUNT_POINTS,
+  MAX_MOUNT_POINTS,
 } from './dedicated-server-installation-ovh.constants';
 
 angular
@@ -198,6 +200,7 @@ angular
         remainingSize: 0,
         showAllDisk: false,
         diskGroups: [],
+        softRaidOnlyMirroring: null,
       };
 
       $scope.newPartition = {
@@ -648,6 +651,7 @@ angular
           $scope.informations.totalSize !==
             $scope.installation.hardwareRaid.availableSpace
         ) {
+          $scope.informations.softRaidOnlyMirroring = null;
           $scope.loader.loading = true;
 
           // init
@@ -960,11 +964,24 @@ angular
 
       // ------Add partition------
 
+      function isMountPointAlreadyUsed(newMountPoint) {
+        return $scope.installation.partitionSchemeModels.some(
+          (partition) => partition.mountPoint === newMountPoint,
+        );
+      }
+
       function getRandomMountPoint() {
-        const alphabet = 'defghijklmnopqrstuvwxyz'; // mountpoint character will be within c and z alphabet
-        return `${alphabet.charAt(
-          Math.floor(Math.random() * alphabet.length),
-        )}:`;
+        // mountpoint character will be within c and z alphabet and there can be maximum 24 partitions and a will get the error
+        let index = 0;
+        while (index !== MAX_MOUNT_POINTS) {
+          const newMountPoint = `${MOUNT_POINTS.charAt(index)}:`;
+          if (isMountPointAlreadyUsed(newMountPoint)) {
+            index += 1;
+          } else {
+            return newMountPoint;
+          }
+        }
+        return null;
       }
 
       $scope.displayNewPartition = function displayNewPartition() {
@@ -1561,7 +1578,11 @@ angular
             $scope.errorInst.mountPointWindows =
               !$scope.errorInst.mountPointEmpty &&
               !$scope.errorInst.mountPointUse &&
-              !/^[c-z]:$/.test(partition.mountPoint.toLowerCase());
+              !/^[c-z]:$/.test(partition.mountPoint.toLowerCase()) &&
+              !(
+                Object.keys($scope.validation.mountPointList).length ===
+                MAX_MOUNT_POINTS
+              );
           }
         } else {
           $scope.errorInst.mountPoint = false;
@@ -2333,6 +2354,7 @@ angular
 
       // ------CUSTOME STEP MODAL------
       $scope.reduceModal = function reduceModal() {
+        $scope.informations.softRaidOnlyMirroring = null;
         $scope.setToBigModalDialog(false);
       };
       $scope.extendModal = function extendModal() {
@@ -2340,6 +2362,8 @@ angular
       };
 
       $scope.checkNextStep1 = function checkNextStep1() {
+        $scope.informations.nbDisk =
+          $scope.installation.diskGroup.numberOfDisks;
         if (!$scope.installation.raidSetup) {
           if ($scope.installation.customInstall) {
             $scope.extendModal();
