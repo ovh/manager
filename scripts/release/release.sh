@@ -62,14 +62,26 @@ create_release_note() (
 )
 
 push_and_release() {
-  printf "%s\n" "Commit and tag"
+  printf "%s\n" "Commit, tag, push and create release"
   git add .
   git commit -m "release: $1"
   git tag -a -m "release: $1" "$1"
   if ! "${DRY_RELEASE}"; then
+    local release_commit_hash=$(git rev-parse HEAD)
+
     gh config set prompt disabled
     git push origin "${GIT_BRANCH}" --tags
-    echo "${RELEASE_NOTE}" | gh release create "$1" -F -
+    
+    gh api \
+        --method POST \
+        -H "Accept: application/vnd.github+json" \
+        /repos/ovh/manager/releases \
+        -f tag_name="$1" \
+        -f target_commitish="${release_commit_hash}" \
+        -f name="$1" \
+        -f body="${RELEASE_NOTE}" \
+        -F prerelease=false \
+        -F generate_release_notes=false
   fi
 }
 
