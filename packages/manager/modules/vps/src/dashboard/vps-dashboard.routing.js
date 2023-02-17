@@ -76,7 +76,9 @@ export default /* @ngInject */ ($stateProvider) => {
         VpsUpgradeService,
       ) =>
         isVpsNewRange
-          ? VpsUpgradeService.getAvailableUpgrades(serviceInfos.serviceId)
+          ? VpsUpgradeService.getAvailableUpgrades(
+              serviceInfos.serviceId,
+            ).catch(() => null)
           : [],
 
       isCommitmentAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
