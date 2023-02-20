@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.19.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.18.0...@ovh-ux/ng-ovh-telecom-universe-components@7.19.0) (2023-02-20)
+
+
+### Features
+
+* **pack:** add modem type selection on move and migration offer ([#8776](https://github.com/ovh/manager/issues/8776)) ([58f94d0](https://github.com/ovh/manager/commit/58f94d0bcf108b18e90b522d128fd7ea79ff60f9))
+
+
+
+
+
 # [7.18.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.17.0...@ovh-ux/ng-ovh-telecom-universe-components@7.18.0) (2023-02-09)
 
 

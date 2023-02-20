@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.53.4...@ovh-ux/manager-telecom@13.54.0) (2023-02-20)
+
+
+### Bug Fixes
+
+* **telecom:** remove all references to hubic service ([#8861](https://github.com/ovh/manager/issues/8861)) ([fcec635](https://github.com/ovh/manager/commit/fcec6359225c02619fb2a1f149cb7d8f0593e528))
+
+
+### Features
+
+* **pack:** add modem type selection on move and migration offer ([#8776](https://github.com/ovh/manager/issues/8776)) ([58f94d0](https://github.com/ovh/manager/commit/58f94d0bcf108b18e90b522d128fd7ea79ff60f9))
+
+
+
+
+
 ## [13.53.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.53.3...@ovh-ux/manager-telecom@13.53.4) (2023-02-13)
 
 

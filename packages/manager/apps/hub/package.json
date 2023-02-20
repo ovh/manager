@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-app",
-  "version": "3.24.8",
+  "version": "3.24.9",
   "private": true,
   "description": "OVHcloud Dashboard control panel.",
   "repository": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-banner": "^1.2.15",
-    "@ovh-ux/manager-billing-components": "^3.11.4",
+    "@ovh-ux/manager-billing-components": "^3.11.5",
     "@ovh-ux/manager-config": "^6.6.0",
     "@ovh-ux/manager-core": "^12.12.10",
     "@ovh-ux/manager-error-page": "^2.3.2",

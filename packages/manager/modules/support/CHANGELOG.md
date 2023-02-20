@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.17.1...@ovh-ux/manager-support@1.17.2) (2023-02-20)
+
+
+### Bug Fixes
+
+* **telecom:** remove all references to hubic service ([#8861](https://github.com/ovh/manager/issues/8861)) ([fcec635](https://github.com/ovh/manager/commit/fcec6359225c02619fb2a1f149cb7d8f0593e528))
+
+
+
+
+
 ## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.17.0...@ovh-ux/manager-support@1.17.1) (2023-02-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-support
