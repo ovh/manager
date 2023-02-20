@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.29.4...@ovh-ux/manager-vps@2.30.0) (2023-02-20)
+
+
+### Features
+
+* **vps.onboarding:** change vps running state label ([#8645](https://github.com/ovh/manager/issues/8645)) ([5e7b273](https://github.com/ovh/manager/commit/5e7b2733887b11a105636f4fc6bc1df944b21a17))
+* **web.database:** rename clouddb to Web Cloud Database ([#8655](https://github.com/ovh/manager/issues/8655)) ([84b4b07](https://github.com/ovh/manager/commit/84b4b078288143b9fd86198c1694604ad1bbefc6))
+
+
+
+
+
 ## [2.29.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.29.3...@ovh-ux/manager-vps@2.29.4) (2023-01-19)
 
 

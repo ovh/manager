@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.4.5...@ovh-ux/manager-telecom-dashboard@6.4.6) (2023-02-20)
+
+
+### Bug Fixes
+
+* **telecom:** remove all references to hubic service ([#8861](https://github.com/ovh/manager/issues/8861)) ([fcec635](https://github.com/ovh/manager/commit/fcec6359225c02619fb2a1f149cb7d8f0593e528))
+
+
+
+
+
 ## [6.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.4.4...@ovh-ux/manager-telecom-dashboard@6.4.5) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom-dashboard

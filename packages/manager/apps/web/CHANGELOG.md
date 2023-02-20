@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.25.2...@ovh-ux/manager-web@16.26.0) (2023-02-20)
+
+
+### Bug Fixes
+
+* **hosting.ftp:** fix user display for cloudweb ([#8906](https://github.com/ovh/manager/issues/8906)) ([4125c78](https://github.com/ovh/manager/commit/4125c78828045ea8695dbb35f082ec4ed6995049))
+
+
+### Features
+
+* **web.database:** rename clouddb to Web Cloud Database ([#8655](https://github.com/ovh/manager/issues/8655)) ([84b4b07](https://github.com/ovh/manager/commit/84b4b078288143b9fd86198c1694604ad1bbefc6))
+
+
+
+
+
 ## [16.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.25.1...@ovh-ux/manager-web@16.25.2) (2023-02-13)
 
 

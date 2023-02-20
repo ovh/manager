@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.11.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.11.4...@ovh-ux/manager-billing-components@3.11.5) (2023-02-20)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** change redirection of telephony resiliation ([#8889](https://github.com/ovh/manager/issues/8889)) ([267d98f](https://github.com/ovh/manager/commit/267d98fcbac535c5d7de8b00d69a0ce27fecb7c8))
+* **dedicated.server:** commitment feature not showing cancel options ([#8866](https://github.com/ovh/manager/issues/8866)) ([7bbf5e9](https://github.com/ovh/manager/commit/7bbf5e9e3571641980fdc915af77335188863826))
+
+
+
+
+
 ## [3.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.11.3...@ovh-ux/manager-billing-components@3.11.4) (2023-02-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.5.4...@ovh-ux/manager-nutanix@1.5.5) (2023-02-20)
+
+
+### Bug Fixes
+
+* **dedicated.server:** add india server location label ([#8864](https://github.com/ovh/manager/issues/8864)) ([d03707f](https://github.com/ovh/manager/commit/d03707f501207b8e0ee7cb49d98c4fbff73df921))
+
+
+
+
+
 ## [1.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.5.3...@ovh-ux/manager-nutanix@1.5.4) (2023-02-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix

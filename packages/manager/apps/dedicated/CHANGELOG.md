@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.49.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.49.1...@ovh-ux/manager-dedicated@17.49.2) (2023-02-20)
+
+
+### Bug Fixes
+
+* **dedicated.server:** add india server location label ([#8864](https://github.com/ovh/manager/issues/8864)) ([d03707f](https://github.com/ovh/manager/commit/d03707f501207b8e0ee7cb49d98c4fbff73df921))
+* **dedicated.server:** remove gpt notion in template installation ([#8865](https://github.com/ovh/manager/issues/8865)) ([ed817ad](https://github.com/ovh/manager/commit/ed817adabead14846bacbbc86b3eb5a23bb1e697))
+* **telecom:** remove all references to hubic service ([#8861](https://github.com/ovh/manager/issues/8861)) ([fcec635](https://github.com/ovh/manager/commit/fcec6359225c02619fb2a1f149cb7d8f0593e528))
+
+
+
+
+
 ## [17.49.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.49.0...@ovh-ux/manager-dedicated@17.49.1) (2023-02-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

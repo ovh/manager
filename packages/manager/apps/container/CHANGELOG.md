@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.14.2...@ovh-ux/manager-container-app@0.15.0) (2023-02-20)
+
+
+### Bug Fixes
+
+* **server-sidebar:** fix some tracking for telecom order menu ([#8883](https://github.com/ovh/manager/issues/8883)) ([b5bfd97](https://github.com/ovh/manager/commit/b5bfd9739fb336bdfccedd6722913104a1b46342))
+* **web.database:** move sidebar translations ([#8907](https://github.com/ovh/manager/issues/8907)) ([3c193b4](https://github.com/ovh/manager/commit/3c193b4e63671c69a9c3c04a33fed524e4455511))
+
+
+### Features
+
+* **web.database:** rename clouddb to Web Cloud Database ([#8655](https://github.com/ovh/manager/issues/8655)) ([84b4b07](https://github.com/ovh/manager/commit/84b4b078288143b9fd86198c1694604ad1bbefc6))
+
+
+
+
+
 ## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.14.1...@ovh-ux/manager-container-app@0.14.2) (2023-02-15)
 
 

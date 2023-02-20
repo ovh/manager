@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.112.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.112.0...@ovh-ux/manager-pci@5.112.1) (2023-02-20)
+
+
+### Bug Fixes
+
+* **pci.additional-ips:** display price per hour ([#8885](https://github.com/ovh/manager/issues/8885)) ([340cef4](https://github.com/ovh/manager/commit/340cef4769c18e57a44df2e8706fc9c9228ad6ef))
+* **pci.storages.databases:** distributed storage prices ([#8876](https://github.com/ovh/manager/issues/8876)) ([24b2447](https://github.com/ovh/manager/commit/24b244736467162361fea8bff60f469e19744cae))
+* **pci:** filter on container solution ([#8868](https://github.com/ovh/manager/issues/8868)) ([ffdc826](https://github.com/ovh/manager/commit/ffdc8267a6963a513d96e8f58f8ddc0cb69356d1))
+
+
+
+
+
 # [5.112.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.111.1...@ovh-ux/manager-pci@5.112.0) (2023-02-13)
 
 
