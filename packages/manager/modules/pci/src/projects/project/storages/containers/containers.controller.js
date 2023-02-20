@@ -36,6 +36,10 @@ export default class PciStoragesContainersController {
     ];
     this.setSolutionTypeOptions();
     this.addContainerSolution();
+
+    if (this.trackingTag) {
+      this.trackPage(this.trackingTag);
+    }
   }
 
   setSolutionTypeOptions() {
