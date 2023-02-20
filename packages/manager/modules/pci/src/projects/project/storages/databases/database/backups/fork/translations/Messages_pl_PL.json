@@ -1,0 +1,6 @@
+{
+  "pci_databases_backups_fork_title": "Duplikuj instancję bazy danych (fork)",
+  "pci_databases_backups_fork_description": "Duplikacja Twojej instancji (fork) wiąże się z utworzeniem nowej usługi, bez utraty danych. Zostaniesz przekierowany/-a do konfiguracji nowej usługi.",
+  "pci_databases_backups_fork_confirm": "Zatwierdź",
+  "pci_databases_backups_fork_cancel": "Anuluj"
+}
