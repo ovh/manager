@@ -46,6 +46,12 @@ export default class BillingService {
       );
   }
 
+  putServiceInfos(servicePath, params) {
+    return this.$http
+      .put(`${servicePath}/serviceInfos`, params)
+      .then(({ data }) => new ServiceInfos(data));
+  }
+
   hasDiscountAvailable(availableEngagement) {
     this.totalSavings = 0;
     const upfront = availableEngagement.find((commitment) =>

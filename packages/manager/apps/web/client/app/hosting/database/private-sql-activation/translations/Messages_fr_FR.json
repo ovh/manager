@@ -1,7 +1,8 @@
 {
+  "privatesql_activation_breadcrumb": "Activer",
   "privatesql_activation_back": "Retour",
   "privatesql_activation_order": "Activer",
-  "privatesql_activation_step_1": "Activer une base de donnée SQL privée",
+  "privatesql_activation_step_1": "Activer une base de données Web Cloud Databases",
   "privatesql_activation_step_2": "Confirmation",
   "privatesql_activation_hosting_select": "Hébergement à utiliser",
   "privatesql_activation_hosting_error": "Une erreur est survenue lors du chargement des options",

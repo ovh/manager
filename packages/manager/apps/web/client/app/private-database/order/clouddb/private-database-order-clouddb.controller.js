@@ -140,23 +140,33 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
       .then(({ prices, url }) => {
         this.hasValidatedCheckout = true;
         if (!this.autoPayWithPreferredPaymentMethod) {
+          const link = `<a target="_blank" href="${url}" rel="noopener">${this.$translate.instant(
+            'private_database_order_clouddb_bill_success_link',
+          )}</a>`;
+
           this.openBill(url);
           this.displaySuccessMessage(
             `${this.$translate.instant(
               'private_database_order_clouddb_bill_success',
-              { billUrl: url },
+              { link },
             )}`,
           );
         } else {
+          const successMessage = `${this.$translate.instant(
+            'private_database_order_clouddb_payment_checkout_success',
+            {
+              accountId: this.defaultPaymentMean.label,
+              price: prices.withTax.text,
+              billUrl: url,
+            },
+          )}`;
+
+          const linkMessage = `${this.$translate.instant(
+            'private_database_order_clouddb_payment_checkout_success_link',
+          )}`;
+
           this.displaySuccessMessage(
-            `${this.$translate.instant(
-              'private_database_order_clouddb_payment_checkout_success',
-              {
-                accountId: this.defaultPaymentMean.label,
-                price: prices.withTax.text,
-                billUrl: url,
-              },
-            )}`,
+            `${successMessage} <a class="d-block" target="_blank" href="${url}" rel="noopener">${linkMessage}</a>`,
           );
         }
       })

@@ -131,10 +131,34 @@
                                     data-title="{{ offer.description }}"
                                     data-ng-repeat="offer in $ctrl.process.migrationOffers.result.offers track by $index"
                                 >
-                                    <span
-                                        data-ng-if="offer.modemRental"
-                                        data-ng-bind-html="offer.modemRental.text | tucFormatPrice"
-                                    ></span>
+                                    <label class="oui-select">
+                                        <select
+                                            class="oui-select__input"
+                                            data-ng-model="offer.modem"
+                                            name="modem"
+                                            data-ng-change="$ctrl.onChangeSelectModem(offer)"
+                                        >
+                                            <option
+                                                data-ng-repeat="modemOption in offer.modemOptions"
+                                                data-ng-value="modemOption.name"
+                                                data-ng-bind-html="$ctrl.getModemOptionLabel(modemOption)"
+                                            >
+                                            </option>
+                                        </select>
+                                        <span
+                                            class="oui-icon oui-icon-chevron-down"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </label>
+                                    <div
+                                        role="alert"
+                                        data-ng-if="offer.modemRequired"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-translate="telecom_pack_migration_modem_required"
+                                        ></div>
+                                    </div>
                                 </td>
                             </tr>
                             <tr class="table-comparison__property">

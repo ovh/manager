@@ -92,6 +92,13 @@ export default class ServicesActionsCtrl {
           { serviceName: this.service.serviceId },
         );
         break;
+      case SERVICE_TYPE.TELEPHONY:
+        this.resiliateLink = this.coreURLBuilder.buildURL(
+          'telecom',
+          '#/telephony/:serviceName/administration/deleteGroup',
+          { serviceName: this.service.serviceId },
+        );
+        break;
       case SERVICE_TYPE.ALL_DOM:
         this.resiliateLink = this.service.canResiliateByEndRule()
           ? resiliationByEndRuleLink

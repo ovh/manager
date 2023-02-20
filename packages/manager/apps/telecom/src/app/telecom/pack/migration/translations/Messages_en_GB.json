@@ -101,7 +101,7 @@
   "telecom_pack_migration_confirm_no_commitment": "This change of plan is not subject to any new commitment periods.",
   "telecom_pack_migration_confirm_commitment": "A new commitment period of {{ month }} months will begin on the billing date.",
   "telecom_pack_migration_confirm_new_offer_price": "Your new monthly subscription is: <span class=\"text-price\">{{ price }}</span><span class=\"text-infos\">/month ex. VAT</span> and will be applicable as soon as your new access is delivered. You will receive confirmation via email.",
-  "telecom_pack_migration_confirm_shipping": "You have selected the delivery method for your new modem by transporter (+ €{{ transportPrice }} ex. VAT).",
+  "telecom_pack_migration_confirm_shipping": "You have selected the delivery method for your new modem by transporter (+ €{{ price }} ex. VAT).",
   "telecom_pack_migration_confirm_first_mensuality": "Your first monthly payment will be {{ price }} ex. VAT.",
   "telecom_pack_migration_confirm_service_to_delete_title": "Services to be deleted",
   "telecom_pack_migration_confirm_service_to_delete_total": "A total of {{count}} services will be deleted during the solution change.",
@@ -177,5 +177,11 @@
   "telecom_pack_migration_confirm_resume_contact_owner": "Contact information",
   "telecom_pack_migration_confirm_resume_contact_phone": "Telephone number you can be reached on, if required",
   "telecom_pack_migration_confirm_resume_phone_form_error": "The number you enter must be valid.",
-  "telecom_pack_migration_choose_offer_error": "An error occurred while retrieving the plans: {{ error }}."
+  "telecom_pack_migration_choose_offer_error": "An error occurred while retrieving the plans: {{ error }}.",
+  "telecom_pack_migration_modem_yes": "New modem ({{ price }} ex. VAT/month)",
+  "telecom_pack_migration_modem_recycled": "Recycled modem ({{ price }} ex. VAT/month)",
+  "telecom_pack_migration_modem_no": "No modem",
+  "telecom_pack_migration_modem_required": "You must select a modem type",
+  "telecom_pack_migration_confirm_modem_rental_yes": "New modem rental",
+  "telecom_pack_migration_confirm_modem_rental_recycled": "Location modem recycled"
 }

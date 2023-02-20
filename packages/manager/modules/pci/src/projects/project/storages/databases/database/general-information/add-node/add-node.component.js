@@ -10,6 +10,8 @@ const component = {
     projectId: '<',
     trackDashboard: '<',
     user: '<',
+    engines: '<',
+    getCurrentFlavor: '<',
   },
   template,
   controller,

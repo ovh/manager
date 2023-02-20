@@ -337,6 +337,12 @@ export default class {
     this.trackDatabases(`databases_config_page::basket::info_popin::name`);
   }
 
+  get storageNodeFactor() {
+    return this.model.engine.isDistributedStorage
+      ? 1
+      : this.model.plan.nodesCount;
+  }
+
   get price() {
     const flavorPrice = this.showMonthlyPrices
       ? this.model.flavor.monthlyPrice
@@ -347,9 +353,10 @@ export default class {
         : this.model.flavor.hourlyPricePerGB
       ).priceInUcents || 0;
     return (
-      this.model.plan.nodesCount *
-      (flavorPrice.priceInUcents +
-        additionalDiskPrice * this.model.disk.additionalDiskSize)
+      this.model.plan.nodesCount * flavorPrice.priceInUcents +
+      additionalDiskPrice *
+        this.model.disk.additionalDiskSize *
+        this.storageNodeFactor
     );
   }
 
@@ -363,9 +370,10 @@ export default class {
         : this.model.flavor.hourlyPricePerGB
       ).tax || 0;
     return (
-      this.model.plan.nodesCount *
-      (flavorPrice.tax +
-        this.model.disk.additionalDiskSize * additionalDiskPrice)
+      this.model.plan.nodesCount * flavorPrice.tax +
+      this.model.disk.additionalDiskSize *
+        additionalDiskPrice *
+        this.storageNodeFactor
     );
   }
 

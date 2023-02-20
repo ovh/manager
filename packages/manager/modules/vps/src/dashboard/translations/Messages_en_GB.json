@@ -12,7 +12,7 @@
   "vps_dashboard_state_installing": "Installing...",
   "vps_dashboard_state_maintenance": "Under maintenance",
   "vps_dashboard_state_rebooting": "Restarting...",
-  "vps_dashboard_state_running": "Running...",
+  "vps_dashboard_state_running": "Active",
   "vps_dashboard_state_stopped": "Stopped",
   "vps_dashboard_state_stopping": "Cancelling...",
   "vps_dashboard_state_upgrading": "Changing solution...",
