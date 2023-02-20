@@ -75,12 +75,14 @@
             ></oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_offer_label' | translate"
-                data-type="string"
+                data-property="containerSolution"
+                data-type="options"
+                data-type-options="$ctrl.solutionTypeOptions"
                 data-sortable
                 data-filterable
             >
                 <span
-                    data-ng-bind=":: 'pci_projects_project_storages_containers_offer_' + ($row.s3StorageType == null ? $ctrl.OBJECT_CONTAINER_OFFERS_TYPES.SWIFT : ($row.isHighPerfStorage ? $ctrl.OBJECT_CONTAINER_OFFERS_TYPES.HIGH_PERFORMANCE : $ctrl.OBJECT_CONTAINER_OFFERS_TYPES.STORAGE_STANDARD)) | translate"
+                    data-translate="{{:: 'pci_projects_project_storages_containers_offer_' + $row.containerSolution}}"
                 ></span>
             </oui-datagrid-column>
             <oui-datagrid-column

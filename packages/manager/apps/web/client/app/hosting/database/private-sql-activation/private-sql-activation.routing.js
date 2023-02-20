@@ -61,6 +61,8 @@ export default /* @ngInject */ ($stateProvider) => {
             'success',
             'app.alerts.database',
           ),
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('privatesql_activation_breadcrumb'),
       },
     },
   );

@@ -118,5 +118,12 @@
   "pack_move_confirm_first_mensuality": "La tua prima mensilità sarà quindi di {{ price }} +IVA.",
   "pack_move_resume_comfort_activation": "Le spese di attivazione dell'opzione Confort sono di {{ price }} +IVA.",
   "pack_move_resume_install_fees": "Le spese di installazione sono di {{ price }} +IVA.",
-  "pack_move_resume_creation_line_fees": "Le spese di creazione della linea sono di {{ price }} +IVA."
+  "pack_move_resume_creation_line_fees": "Le spese di creazione della linea sono di {{ price }} +IVA.",
+  "pack_move_resume_promotion": "Le spese di installazione e i primi {{ duration }} mesi del nuovo abbonamento sono incluse (locazione del modem, opzioni aggiuntive o spese di trasporto escluse).",
+  "pack_move_modem_yes": "Modem nove ({{ price }} +IVA/mese)",
+  "pack_move_modem_recycled": "Modem riciclato ({{ price }} +IVA/mese)",
+  "pack_move_modem_no": "Nessun modem",
+  "pack_move_modem_required": "La selezione di un tipo di modem è obbligatoria",
+  "pack_move_confirm_modem_rental_yes": "Location modem nove",
+  "pack_move_confirm_modem_rental_recycled": "Location modem riciclato"
 }

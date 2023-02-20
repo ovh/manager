@@ -117,5 +117,12 @@
   "pack_move_confirm_first_mensuality": "Ihre erste Monatsrate beträgt also {{ price }} ohne MwSt.",
   "pack_move_resume_comfort_activation": "Die Aktivierungsgebühr für die Komfortoption beträgt {{ price }} zzgl. MwSt.",
   "pack_move_resume_install_fees": "Die Einrichtungsgebühr beträgt {{ price }} ohne MwSt.",
-  "pack_move_resume_creation_line_fees": "Die Kosten für die Erstellung einer Leitung belaufen sich auf {{ price }} ohne MwSt."
+  "pack_move_resume_creation_line_fees": "Die Kosten für die Erstellung einer Leitung belaufen sich auf {{ price }} ohne MwSt.",
+  "pack_move_resume_promotion": "Die Einrichtungsgebühr und die ersten {{ duration }} Monate Ihres neuen Abos sind kostenlos (mit Ausnahme der Modem-Miete, Zusatzoptionen oder Transportkosten).",
+  "pack_move_modem_yes": "Neues Modem ({{ price }} ohne MwSt / Monat)",
+  "pack_move_modem_recycled": "Recyceltes Modem ({{ price }} ohne MwSt / Monat)",
+  "pack_move_modem_no": "Kein Modem",
+  "pack_move_modem_required": "Die Wahl eines Modemtyps ist zwingend erforderlich",
+  "pack_move_confirm_modem_rental_yes": "Miete für das neue Modem",
+  "pack_move_confirm_modem_rental_recycled": "Modem-Vermietung"
 }

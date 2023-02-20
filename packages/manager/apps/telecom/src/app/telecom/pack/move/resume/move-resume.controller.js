@@ -5,7 +5,7 @@ import set from 'lodash/set';
 import values from 'lodash/values';
 import moment from 'moment';
 
-import { PROMO_DISPLAY } from '../pack-move.constant';
+import { PROMO_DISPLAY, MODEM_LIST } from '../pack-move.constant';
 
 export default class MoveResumeCtrl {
   /* @ngInject */
@@ -23,6 +23,7 @@ export default class MoveResumeCtrl {
       acceptContracts: false,
     };
     this.PROMO_DISPLAY = PROMO_DISPLAY;
+    this.MODEM_LIST = MODEM_LIST;
 
     this.modemTransportPrice = 9.99;
     this.choosedAdditionalOptions = filter(
@@ -38,8 +39,7 @@ export default class MoveResumeCtrl {
       ? 1
       : 0;
 
-    const modemRental =
-      this.offer.selected.offer.prices.modemRental.price?.value || 0;
+    const modemRental = this.offer.selected.offer.modemRental?.value || 0;
     const providerOrange =
       this.offer.selected.offer.prices.providerOrange.price?.value || 0;
     const providerAI =
@@ -218,6 +218,13 @@ export default class MoveResumeCtrl {
         engageMonths: this.offer.selected.offer.engageMonths,
         acceptContracts: this.offer.selected.acceptContracts,
       };
+
+      // Set modem if one type is selected
+      if (this.MODEM_LIST.includes(this.offer.selected.offer.modem)) {
+        assign(moveData, {
+          modem: this.offer.selected.offer.modem,
+        });
+      }
 
       if (this.offer.selected.buildingDetails) {
         assign(moveData, {

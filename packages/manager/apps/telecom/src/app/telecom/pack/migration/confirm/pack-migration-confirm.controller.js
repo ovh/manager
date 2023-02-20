@@ -3,7 +3,11 @@ import get from 'lodash/get';
 import set from 'lodash/set';
 import map from 'lodash/map';
 
-import { PROMO_DISPLAY, QUANTITY } from '../pack-migration.constant';
+import {
+  PROMO_DISPLAY,
+  QUANTITY,
+  MODEM_LIST,
+} from '../pack-migration.constant';
 
 export default class TelecomPackMigrationConfirmCtrl {
   /* @ngInject */
@@ -26,6 +30,7 @@ export default class TelecomPackMigrationConfirmCtrl {
 
     this.PROMO_DISPLAY = PROMO_DISPLAY;
     this.QUANTITY = QUANTITY;
+    this.MODEM_LIST = MODEM_LIST;
 
     this.modemTransportPrice = 9.99;
 

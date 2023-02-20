@@ -274,5 +274,11 @@
   "pack_move_resume_promotion": "The setup fees and the first {{ duration }} months of your new subscription are included (excluding modem rental, additional options and transportation).",
   "pack_move_resume_comfort_activation": "The Comfort option activation fee is {{ price }} ex. VAT.",
   "pack_move_resume_install_fees": "Setup fees are {{ price }} ex. VAT.",
-  "pack_move_resume_creation_line_fees": "Line creation costs are {{ price }} ex. VAT."
+  "pack_move_resume_creation_line_fees": "Line creation costs are {{ price }} ex. VAT.",
+  "pack_move_modem_yes": "New modem ({{ price }} ex. VAT/month)",
+  "pack_move_modem_recycled": "Recycled modem ({{ price }} ex. VAT/month)",
+  "pack_move_modem_no": "No modem",
+  "pack_move_modem_required": "You must select a modem type",
+  "pack_move_confirm_modem_rental_yes": "New modem rental",
+  "pack_move_confirm_modem_rental_recycled": "Location modem recycled"
 }

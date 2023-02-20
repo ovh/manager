@@ -41,11 +41,18 @@
                                 ></oui-clipboard>
                             </dd>
 
-                            <dt data-translate="hosting_tab_FTP_FTP_port"></dt>
-                            <dd data-ng-bind="ftp.port"></dd>
-
-                            <dt data-translate="hosting_tab_FTP_SFTP_port"></dt>
-                            <dd data-ng-bind="ssh.port"></dd>
+                            <dl
+                                class="w-50 oui-description oui-description_horizontal"
+                            >
+                                <dt
+                                    data-translate="hosting_tab_FTP_FTP_port"
+                                ></dt>
+                                <dd data-ng-bind="ftp.port"></dd>
+                                <dt
+                                    data-translate="hosting_tab_FTP_SFTP_port"
+                                ></dt>
+                                <dd data-ng-bind="ssh.port"></dd>
+                            </dl>
                         </dl>
                     </div>
 
@@ -358,6 +365,28 @@
                             data-translate="hosting_tab_FTP_dashboard_login"
                         ></dt>
                         <dd
+                            data-ng-if="ctrlHostingTabFTP.primaryUser.ftp.user !== ctrlHostingTabFTP.primaryUser.ssh.user"
+                            class="mb-3"
+                        >
+                            <div>
+                                <span
+                                    data-translate="hosting_tab_FTP_FTP_user"
+                                ></span>
+                                <span
+                                    data-ng-bind="ctrlHostingTabFTP.primaryUser.ftp.user"
+                                ></span>
+                            </div>
+                            <div>
+                                <span
+                                    data-translate="hosting_tab_FTP_SSH_user"
+                                ></span>
+                                <span
+                                    data-ng-bind="ctrlHostingTabFTP.primaryUser.ssh.user"
+                                ></span>
+                            </div>
+                        </dd>
+                        <dd
+                            data-ng-if="ctrlHostingTabFTP.primaryUser.ftp.user === ctrlHostingTabFTP.primaryUser.ssh.user"
                             class="mb-3"
                             data-ng-bind="ctrlHostingTabFTP.primaryUser.ftp.user"
                         ></dd>
@@ -539,10 +568,34 @@
                                 <tr
                                     data-ng-repeat="element in ctrlHostingTabFTP.ftpInformations.list.results track by $index"
                                 >
-                                    <th
-                                        scope="row"
+                                    <td
+                                        data-ng-if="element.ftp.user === element.ssh.user"
+                                        class="text-nowrap"
                                         data-ng-bind="element.ftp.user"
-                                    ></th>
+                                    ></td>
+
+                                    <td
+                                        data-ng-if="element.ftp.user !== element.ssh.user"
+                                        class="text-nowrap"
+                                    >
+                                        <div>
+                                            <span
+                                                data-translate="hosting_tab_FTP_FTP_user"
+                                            ></span>
+                                            <span
+                                                data-ng-bind="element.ftp.user"
+                                            ></span>
+                                        </div>
+                                        <div>
+                                            <span
+                                                data-translate="hosting_tab_FTP_SSH_user"
+                                            ></span>
+                                            <span
+                                                data-ng-bind="element.ssh.user"
+                                            ></span>
+                                        </div>
+                                    </td>
+
                                     <td data-ng-bind="element.home"></td>
                                     <td>
                                         <span

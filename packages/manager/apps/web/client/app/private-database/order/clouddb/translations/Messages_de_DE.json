@@ -1,6 +1,6 @@
 {
-  "private_database_order_clouddb_title": "Bestellen Sie eine Datenbank für Cloud-Datenbanken",
-  "private_database_order_clouddb_subtitle": "Für Cloud Databases ist ein Dienst mit Zugriff auf das öffentliche Netzwerk/Internet notwendig.",
+  "private_database_order_clouddb_title": "Eine Datenbank mit der Lösung „Web Cloud Databases“ bestellen",
+  "private_database_order_clouddb_subtitle": "Die Verwendung von Web Cloud Databases erfordert einen Dienst mit Zugriff auf das öffentliche Netzwerk/Internet.",
   "private_database_order_clouddb_customization": "Anpassung",
   "private_database_order_clouddb_server_version": "Version des Servers",
   "private_database_order_clouddb_server_version_placeholder": "Wählen Sie die Serverversion aus",
@@ -24,6 +24,8 @@
   "private_database_order_clouddb_payment_get_checkout_error": "Beim Abruf der Informationen Ihres Warenkorbs ist ein Fehler aufgetreten.",
   "private_database_order_clouddb_payment_get_payment_method_error": "Bei der Rückforderung der Zahlungsmittel ist ein Fehler aufgetreten.",
   "private_database_order_clouddb_payment_checkout_error": "Bei der Bezahlung Ihres Korbs ist ein Fehler aufgetreten.",
-  "private_database_order_clouddb_payment_checkout_success": "Ihre Bestellung für Ihre Cloud-Datenbank wurde erfolgreich bearbeitet. Dein Konto {{accountId}} wurde von {{price}} abgebucht. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Siehe meine Rechnung</a>",
-  "private_database_order_clouddb_bill_success": "Ihr <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Kaufauftrag</a> wurde generiert. Ihre Cloud-Datenbanken-Datenbank wird nach der Zahlung aktiv."
+  "private_database_order_clouddb_payment_checkout_success": "Die Bestellung Ihrer Datenbank mit der Lösung Web Cloud Databases wurde registriert. Ihr Konto {{accountId} wurde mit {{price} belastet.",
+  "private_database_order_clouddb_bill_success": "Ihre {{link}} wurde erstellt. Ihre Datenbank mit der Lösung Web Cloud Databases ist nach deren Bezahlung aktiv.",
+  "private_database_order_clouddb_payment_checkout_success_link": "Rechnung anzeigen",
+  "private_database_order_clouddb_bill_success_link": "Bestellschein"
 }

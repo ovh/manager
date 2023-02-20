@@ -110,7 +110,6 @@ angular
         swapLabel: 'swap',
 
         maxSizeSwap: 30000, // = 30Go
-        maxSizePartition: 2000000, // =  2To
         minSizePartition: 10, // = 10Mo
         minSizeWindows: 32768, // = 32Go
         minSizeReiserfs: 32, // = 32Mo
@@ -548,13 +547,6 @@ angular
                 break;
             }
           }
-        }
-
-        if (
-          !$scope.installation.selectDistribution.supportsGpt &&
-          realRemainingSize > $scope.constants.maxSizePartition
-        ) {
-          return $scope.constants.maxSizePartition;
         }
 
         return realRemainingSize;
@@ -1664,19 +1656,6 @@ angular
         return $scope.errorInst.partitionSizeSwap;
       }
 
-      // partition size > 2To = error
-      function validationSizeMax(partition) {
-        $scope.errorInst.partitionSize =
-          partition.fileSystem !== $scope.constants.warningZFS &&
-          !$scope.installation.selectDistribution.supportsGpt &&
-          $scope.getRealDisplaySize({
-            partition,
-            notDisplay: true,
-            noRaid: true,
-          }) > $scope.constants.maxSizePartition;
-        return $scope.errorInst.partitionSize;
-      }
-
       // boot size < 50Mo = error
       function validationSizeBoot(partition) {
         $scope.errorInst.partitionSizeBoot =
@@ -1741,7 +1720,6 @@ angular
         return (
           $scope.errorInst.partitionSizeOver ||
           validationSizeSwap(partition) ||
-          validationSizeMax(partition) ||
           validationSizeBoot(partition) ||
           validationSizeReiserfs(partition) ||
           validationSizeWindowsMin(partition) ||

@@ -11,6 +11,29 @@ export default class {
     this.addingNode = false;
     this.name = this.database.description;
     this.trackDashboard('general_information::add_node');
+    // compute current flavor & engine
+    this.currentFlavor = this.getCurrentFlavor();
+    this.dbEngine = this.engines.find(
+      (engine) => engine.name === this.database.engine,
+    );
+    // compute price
+    this.computePrice();
+  }
+
+  computePrice() {
+    const flavorPrice = this.currentFlavor.nodeHourlyPrice;
+    let addedStorageByNode =
+      this.database.disk.size - this.currentFlavor.minDiskSize;
+    // if engine is distributed, the stockage is distributed between the nodes, so to get the
+    // size of for one node, we need to divide by the number of nodes
+    if (this.dbEngine.isDistributedStorage) {
+      addedStorageByNode /= this.database.nodeNumber;
+    }
+    const additionalStoragePrice = Math.max(
+      0,
+      addedStorageByNode * this.currentFlavor.hourlyPricePerGB.priceInUcents,
+    );
+    this.price = flavorPrice.priceInUcents + additionalStoragePrice;
   }
 
   addNode() {
