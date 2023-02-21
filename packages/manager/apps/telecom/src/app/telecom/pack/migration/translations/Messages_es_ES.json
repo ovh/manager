@@ -169,5 +169,7 @@
   "telecom_pack_migration_modem_no": "Sin módem",
   "telecom_pack_migration_modem_required": "La selección de un tipo de módem es obligatoria.",
   "telecom_pack_migration_confirm_modem_rental_yes": "Alquiler módem nuevo",
-  "telecom_pack_migration_confirm_modem_rental_recycled": "Alquiler de módem reciclable"
+  "telecom_pack_migration_confirm_modem_rental_recycled": "Alquiler de módem reciclable",
+  "telecom_pack_migration_offers_debit_mention_1": "(1) Hasta 92 Mbps que descenden en VDSL y 22 Mbps en ADSL, en función de los requisitos.",
+  "telecom_pack_migration_offers_debit_mention_2": "(2) Hasta 36 MB/s en VDSL y 1 Mb/s en ADSL, en función de los requisitos."
 }
