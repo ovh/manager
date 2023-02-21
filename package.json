@@ -35,6 +35,7 @@
     "prepare": "husky install",
     "release": "scripts/release/release.sh",
     "start": "node -r esm scripts/start-application.js",
+    "translation:check": "node scripts/translation-check.js",
     "test:jest": "jest --runInBand",
     "test": "yarn lint",
     "test:scripts": "make test"
