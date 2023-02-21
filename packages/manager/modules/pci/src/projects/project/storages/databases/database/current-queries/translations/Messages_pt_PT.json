@@ -13,5 +13,8 @@
   "pci_databases_current_queries_datagrid_column_database": "Base de dados",
   "pci_databases_current_queries_datagrid_column_client_address": "Endereço do cliente",
   "pci_databases_current_queries_datagrid_column_application_name": "Nome de aplicação",
-  "pci_databases_current_queries_fetch_error": "Ocorreu um erro aquando do carregamento dos pedidos em curso. Tente novamente mais tarde."
+  "pci_databases_current_queries_fetch_error": "Ocorreu um erro aquando do carregamento dos pedidos em curso. Tente novamente mais tarde.",
+  "pci_databases_current_queries_datagrid_terminate_action_label": "Concluir",
+  "pci_databases_current_queries_datagrid_terminate_action_success": "O pedido identificado {{pid}} está a ser finalizado e irá desaparecer da lista na próxima atualização.",
+  "pci_databases_current_queries_datagrid_terminate_action_error": "Não é possível terminar o pedido identificado {{pid}}."
 }

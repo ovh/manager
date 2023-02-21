@@ -13,5 +13,8 @@
   "pci_databases_current_queries_datagrid_column_database": "Database",
   "pci_databases_current_queries_datagrid_column_client_address": "Indirizzo client",
   "pci_databases_current_queries_datagrid_column_application_name": "Nome dell'applicazione",
-  "pci_databases_current_queries_fetch_error": "Si è verificato un errore durante il caricamento delle richieste in corso. Ti preghiamo di riprovare."
+  "pci_databases_current_queries_fetch_error": "Si è verificato un errore durante il caricamento delle richieste in corso. Ti preghiamo di riprovare.",
+  "pci_databases_current_queries_datagrid_terminate_action_label": "Terminare",
+  "pci_databases_current_queries_datagrid_terminate_action_success": "La query identificata {{pid}} sta per terminare e sparirà dalla lista al prossimo aggiornamento.",
+  "pci_databases_current_queries_datagrid_terminate_action_error": "Impossibile completare la query identificata {{pid}}."
 }
