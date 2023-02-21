@@ -280,5 +280,7 @@
   "pack_move_modem_no": "No modem",
   "pack_move_modem_required": "You must select a modem type",
   "pack_move_confirm_modem_rental_yes": "New modem rental",
-  "pack_move_confirm_modem_rental_recycled": "Location modem recycled"
+  "pack_move_confirm_modem_rental_recycled": "Location modem recycled",
+  "pack_move_offers_debit_mention_1": "(1) Up to 92 Mb/s descending in VDSL and 22 Mb/s in ADSL, depending on eligibility.",
+  "pack_move_offers_debit_mention_2": "(2) Up to 36 Mb/s VDSL and 1 Mb/s ADSL, depending on eligibility."
 }
