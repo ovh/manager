@@ -1,34 +1,58 @@
 <form novalidate name="rescueForm">
     <oui-modal
         data-heading="{{ 'pci_projects_project_instances_instance_rescue_title' | translate }}"
-        data-primary-action="$ctrl.rescueInstance()"
-        data-primary-label="{{:: 'pci_projects_project_instances_instance_rescue_submit_label' | translate }}"
+        data-primary-action="$ctrl.hasRescueMode ? $ctrl.rescueInstance() : $ctrl.goBack()"
+        data-primary-label="{{:: $ctrl.hasRescueMode ?
+            'pci_projects_project_instances_instance_rescue_submit_label' :
+            'pci_projects_project_instances_instance_rescue_close_label' | translate }}"
         data-primary-disabled="$ctrl.isLoading"
-        data-secondary-action="$ctrl.goBack()"
-        data-secondary-label="{{:: 'pci_projects_project_instances_instance_rescue_cancel_label' | translate }}"
+        data-secondary-action="$ctrl.hasRescueMode && $ctrl.goBack()"
+        data-secondary-label="{{:: $ctrl.hasRescueMode ? ('pci_projects_project_instances_instance_rescue_cancel_label' | translate) : '' }}"
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isLoading"
     >
-        <p
-            class="font-weight-bold"
-            data-translate="pci_projects_project_instances_instance_rescue_image_content"
-        ></p>
-        <p
-            class="oui-modal__text"
-            data-translate="pci_projects_project_instances_instance_rescue_image_explanations"
-        ></p>
+        <div data-ng-if="$ctrl.hasRescueMode">
+            <p
+                class="font-weight-bold"
+                data-translate="pci_projects_project_instances_instance_rescue_image_content"
+            ></p>
+            <p
+                class="oui-modal__text"
+                data-translate="pci_projects_project_instances_instance_rescue_image_explanations"
+            ></p>
 
-        <oui-field
-            data-label="{{:: 'pci_projects_project_instances_instance_rescue_image_label' | translate}}"
-        >
-            <oui-select
-                data-name="image"
-                data-model="$ctrl.selectedImage"
-                data-items="$ctrl.imageList"
-                data-match="name"
-                data-required
+            <oui-field
+                data-label="{{:: 'pci_projects_project_instances_instance_rescue_image_label' | translate}}"
             >
-            </oui-select>
-        </oui-field>
+                <oui-select
+                    data-name="image"
+                    data-model="$ctrl.selectedImage"
+                    data-items="$ctrl.imageList"
+                    data-match="name"
+                    data-required
+                >
+                </oui-select>
+            </oui-field>
+        </div>
+        <div data-ng-if="!$ctrl.hasRescueMode">
+            <span
+                data-translate="pci_projects_project_instances_instance_rescue_no_rescue_mode"
+            >
+            </span>
+            <a
+                class="oui-link_icon d-block"
+                href="{{ :: $ctrl.guideUrlRescue }}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_instance_rescue_no_rescue_mode_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </div>
     </oui-modal>
 </form>
