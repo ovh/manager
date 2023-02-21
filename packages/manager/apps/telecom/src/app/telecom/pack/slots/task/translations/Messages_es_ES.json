@@ -23,7 +23,6 @@
   "telecom_task_function_createTelephonyLine": "Creación de línea telefónica",
   "telecom_task_function_telephonyLineRenewConfiguration": "Reactivación de una línea telefónica",
   "telecom_task_function_createDomain": "Registro de un dominio",
-  "telecom_task_function_createHubic": "Creación de una cuenta hubiC",
   "telecom_task_function_createHostedEmail": "Creación de una cuenta e-mail",
   "telecom_task_function_createExchange": "Creación de una cuenta Exchange",
   "telecom_task_function_pendingMigration": "Migración de oferta",

@@ -1,24 +1,20 @@
 {
   "ovhManagerSupport_new": "Créer une demande",
   "ovhManagerSupport_new_open_new_tab": "Ouvre un nouvel onglet",
-
   "ovhManagerSupport_new_category": "Thématique",
   "ovhManagerSupport_new_category_billing": "Facturation et suivi de commande",
   "ovhManagerSupport_new_category_assistance": "Conseil technique",
   "ovhManagerSupport_new_category_incident": "Incident",
   "ovhManagerSupport_new_category_account": "Gestion du compte client",
   "ovhManagerSupport_new_category_business": "Contact commercial",
-
   "ovhManagerSupport_new_category_description_billing": "Questions relatives à la facturation et au suivi de commande de vos produits et services",
   "ovhManagerSupport_new_category_description_assistance": "Questions relatives à l'utilisation de vos produits et services",
   "ovhManagerSupport_new_category_description_incident": "Questions relatives aux incidents techniques survenant sur vos produits et services et ne relevant pas d'un problème d'utilisation",
   "ovhManagerSupport_new_category_description_account": "Questions relatives à la gestion de votre compte client, et qui ne concernent aucun produit",
-
   "ovhManagerSupport_new_urgency": "Degré d’urgence",
   "ovhManagerSupport_new_urgency_low": "Bas - J’ai un moyen de contournement viable",
   "ovhManagerSupport_new_urgency_medium": "Moyen - J’ai un moyen de contournement temporaire",
   "ovhManagerSupport_new_urgency_high": "Haut - Je n’ai aucun moyen de contournement",
-
   "ovhManagerSupport_new_serviceType": "Produit",
   "ovhManagerSupport_all_serviceType": "Afficher plus de produits",
   "ovhManagerSupport_new_serviceType_anthos": "Anthos",
@@ -28,7 +24,6 @@
   "ovhManagerSupport_new_serviceType_email_exchange": "Exchange",
   "ovhManagerSupport_new_serviceType_email_mxplan": "Email MX Plan",
   "ovhManagerSupport_new_serviceType_email_pro": "E-mail Pro",
-  "ovhManagerSupport_new_serviceType_hubic": "Hubic",
   "ovhManagerSupport_new_serviceType_OTHER": "Autre",
   "ovhManagerSupport_new_serviceType_dedicated_cloud": "VMware",
   "ovhManagerSupport_new_serviceType_managed_bare_metal": "Managed Bare Metal",
@@ -127,19 +122,14 @@
   "ovhManagerSupport_new_serviceType_publiccloud_storage_archive": "Object Storage S3 Archive",
   "ovhManagerSupport_new_service": "Service concerné",
   "ovhManagerSupport_new_service_unknown": "Mon service n'est pas listé et/ou je ne dispose pas encore de ce service",
-
   "ovhManagerSupport_new_issue": "Question",
-
   "ovh_manager_support_tickets_new_issues_form_resources_guides_header": "Guides",
   "ovh_manager_support_tickets_new_issues_form_resources_tips_header": "Astuces",
-
   "ovhManagerSupport_new_back": "Retour à la liste des demandes d'assistance",
-
   "ovhManagerSupport_new_helpfull": "Avez-vous trouvé la réponse à votre question ?",
   "ovhManagerSupport_new_helpfull_yes": "Oui",
   "ovhManagerSupport_new_helpfull_no": "Non",
   "ovhManagerSupport_new_helpfull_create": "Créer une nouvelle demande",
-
   "ovhManagerSupport_new_creation_tip": "Pour un traitement plus rapide de votre ticket, merci de vous assurer d’avoir choisi la bonne typologie de question, et de décrire votre demande le plus précisément possible.",
   "ovhManagerSupport_new_creation_subject": "Sujet",
   "ovhManagerSupport_new_creation_submit": "Valider",
@@ -156,7 +146,6 @@
   "ovhManagerSupport_new_creation_tip_2": "Vous avez trouvé la réponse à votre demande entre temps ?",
   "ovhManagerSupport_new_creation_tip_3": "Dans ce cas, nous vous invitons à <a ui-sref=\"{{ state }}\">clôturer votre ticket</a> directement depuis votre espace client.",
   "ovhManagerSupport_new_creation_optional": "{{label}} (facultatif)",
-
   "ovhManagerSupport_new_business_web": "Web",
   "ovhManagerSupport_new_business_telecom": "Telecom",
   "ovhManagerSupport_new_business_cloud": "Cloud",

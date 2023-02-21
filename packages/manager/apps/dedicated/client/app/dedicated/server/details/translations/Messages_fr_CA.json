@@ -730,7 +730,6 @@
   "server_configuration_installation_ovh_step2_error_partition_file_system_swap": "La partition swap existe déjà",
   "server_configuration_installation_ovh_step2_error_partition_file_system_no_swap": "La partition swap est obligatoire",
   "server_configuration_installation_ovh_step2_error_partition_size_swap": "La partition de type swap ne peut excéder {{t0}}",
-  "server_configuration_installation_ovh_step2_error_partition_size_max": "Une partition qui ne supporte pas GPT ne peut dépasser {{t0}}",
   "server_configuration_installation_ovh_step2_error_partition_size_min_windows": "La taille minimale d'une partition Windows est de {{t0}}",
   "server_configuration_installation_ovh_step2_error_partition_size_min_reiserfs": "La taille minimale d'une partition de type reiserFS est de {{t0}}",
   "server_configuration_installation_ovh_step2_error_partition_size_min_boot": "La taille minimale de la partition /boot est de {{t0}}",
