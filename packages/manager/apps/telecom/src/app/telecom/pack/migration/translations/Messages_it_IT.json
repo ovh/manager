@@ -164,5 +164,7 @@
   "telecom_pack_migration_modem_no": "Nessun modem",
   "telecom_pack_migration_modem_required": "La selezione di un tipo di modem è obbligatoria",
   "telecom_pack_migration_confirm_modem_rental_yes": "Location modem nove",
-  "telecom_pack_migration_confirm_modem_rental_recycled": "Location modem riciclato"
+  "telecom_pack_migration_confirm_modem_rental_recycled": "Location modem riciclato",
+  "telecom_pack_migration_offers_debit_mention_1": "(1) Fino a 92 Mb/s discendenti in VDSL e 22 Mb/s in ADSL, secondo l'ammissibilità.",
+  "telecom_pack_migration_offers_debit_mention_2": "(2) Fino a 36 Mb/s importo in VDSL e 1 Mb/s in ADSL, secondo l'ammissibilità."
 }
