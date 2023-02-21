@@ -1,7 +1,7 @@
 import apiClient from '@ovh-ux/manager-core-api';
 import { QueryFunctionContext } from '@tanstack/react-query';
 
-export default async function putNashaDetails({
+export default async function renameNasha({
   queryKey,
 }: QueryFunctionContext<[string, { serviceName: string }]>) {
   const { serviceName } = queryKey[1];
