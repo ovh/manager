@@ -12,6 +12,8 @@ const AUTO_REFRESH_ENABLE = `${CURRENT_QUERIES}::auto_refresh_enable`;
 
 const AUTO_REFRESH_DISABLE = `${CURRENT_QUERIES}::auto_refresh_disable`;
 
+const TERMINATE_QUERY = `${CURRENT_QUERIES}::terminate_query`;
+
 export const TRACKING_INFO = {
   CURRENT_QUERIES,
   IDLE_CONNECTIONS_ENABLE,
@@ -20,6 +22,7 @@ export const TRACKING_INFO = {
   ACTIVE_CONNECTIONS_DISABLE,
   AUTO_REFRESH_ENABLE,
   AUTO_REFRESH_DISABLE,
+  TERMINATE_QUERY,
 };
 
 export const IDLE_QUERY_STATES = [
