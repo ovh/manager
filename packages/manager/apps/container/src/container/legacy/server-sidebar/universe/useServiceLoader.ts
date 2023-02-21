@@ -25,6 +25,7 @@ export function useServiceLoader(appId: string) {
           id: `service-${path}-${service.serviceName}`,
           label: service.displayName,
           extraParams: service.extraParams,
+          stateParams: service.stateParams || [],
           href: navigation.getURL(appId, service.url || service.baseUrl || ''),
           parentName: service.parentName,
           serviceName: service.serviceName,
