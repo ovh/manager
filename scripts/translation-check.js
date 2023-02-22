@@ -6,15 +6,25 @@
 
 const path = require('path');
 const fs = require('fs');
+const process = require('process');
 
 const rootPath = 'packages';
+
 const LANGUAGE_FILES = {
-  EN: 'Messages_en_GB.json',
   FR: 'Messages_fr_FR.json',
+  EN: 'Messages_en_GB.json',
+  ES: 'Messages_es_ES.json',
+  CA: 'Messages_fr_CA.json',
+  IT: 'Messages_it_IT.json',
+  PL: 'Messages_pl_PL.json',
+  PT: 'Messages_pt_PT.json',
 };
 
+// cmd parameter
+const LANG = process.argv[2];
+
 /**
- * @param {[FR|EN]} lang language of the translation file
+ * @param {[FR | EN | ES | CA | IT | PL | PT]} lang language of the translation file
  * @param {string} filePath absolute path to the translation file
  * @returns translation keys array of a translation file
  */
@@ -75,9 +85,9 @@ function displayFile(directoryPath) {
       } else if (file === LANGUAGE_FILES.FR) {
         const frTranslationKeys = getTranslationKeys('FR', directoryPath);
         try {
-          const enTranslationKeys = getTranslationKeys('EN', directoryPath);
+          const langTranslationKeys = getTranslationKeys(LANG, directoryPath);
           const diff = frTranslationKeys.filter(
-            (key) => !enTranslationKeys.includes(key),
+            (key) => !langTranslationKeys.includes(key),
           );
 
           if (diff.length) {
@@ -93,4 +103,18 @@ function displayFile(directoryPath) {
   return null;
 }
 
-displayFile(rootPath);
+function main() {
+  if (!Object.keys(LANGUAGE_FILES).includes(LANG)) {
+    console.error(
+      'Incorrect argument: authorized arguments are < EN | ES | CA | IT | PL | PT >',
+    );
+    return null;
+  }
+  console.info(
+    `YAML translation content for the missing ${LANG} translation keys : `,
+  );
+  displayFile(rootPath);
+  return null;
+}
+
+main();
