@@ -1,11 +1,15 @@
 import VolumeBackup from './volume-backup.class';
-import { PCI_FEATURES } from '../../../projects.constant';
+import { PCI_FEATURES, PCI_FEATURES_STATES } from '../../../projects.constant';
 import { GUIDES, VOLUME_BACKUP_ROUTES } from './volume-backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(VOLUME_BACKUP_ROUTES.ROOT.STATE, {
     url: VOLUME_BACKUP_ROUTES.ROOT.URL,
     component: 'ovhManagerPciProjectsProjectStoragesVolumeBackup',
+    params: {
+      volumeDetached: null,
+      instanceDetached: null,
+    },
     onEnter: /* @ngInject */ (pciFeatureRedirect) => {
       return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.VOLUME_BACKUP);
     },
@@ -53,6 +57,12 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
+      volumeDetached: /* @ngInject */ ($stateParams) =>
+        $stateParams.volumeDetached,
+
+      instanceDetached: /* @ngInject */ ($stateParams) =>
+        $stateParams.instanceDetached,
+
       startPolling: /* @ngInject */ (
         projectId,
         volumeBackups,
@@ -64,16 +74,25 @@ export default /* @ngInject */ ($stateProvider) => {
               projectId,
               volumeBackupInstance.region,
               volumeBackupInstance.id,
-            ).then(
-              // success function, then update volumeBackup instance
-              (volumeBackup) => volumeBackupInstance.updateData(volumeBackup),
-              // if error occurred, then delete volumeBackup
-              () =>
-                volumeBackups.splice(
-                  volumeBackups.indexOf(volumeBackupInstance),
-                  1,
-                ),
-            );
+            )
+              .then(() => {
+                return VolumeBackupService.getVolumeBackup(
+                  projectId,
+                  volumeBackupInstance.region,
+                  volumeBackupInstance.id,
+                );
+              })
+              .then((volumeBackup) =>
+                volumeBackupInstance.updateData(volumeBackup),
+              )
+              .catch(({ status }) => {
+                if (status === 404) {
+                  volumeBackups.splice(
+                    volumeBackups.indexOf(volumeBackupInstance),
+                    1,
+                  );
+                }
+              });
           }
         });
       },
@@ -94,6 +113,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goToVolumeBackups: ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',
+        params = {},
       ) => {
         const reload = message && type === 'success';
         const state = VOLUME_BACKUP_ROUTES.LIST.STATE;
@@ -102,6 +122,7 @@ export default /* @ngInject */ ($stateProvider) => {
           state,
           {
             projectId,
+            ...params,
           },
           {
             reload,
@@ -123,6 +144,22 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goBack: /* @ngInject */ (goToVolumeBackups) => (message, type) =>
         goToVolumeBackups(message, type),
+
+      goToVolumeBlockStorage: /* @ngInject */ ($state, projectId) => (
+        taskResponse,
+      ) => {
+        return $state.go(PCI_FEATURES_STATES.BLOCKS.LIST, {
+          projectId,
+          taskResponse,
+        });
+      },
+
+      goToSnapshots: /* @ngInject */ ($state, projectId) => (taskResponse) => {
+        return $state.go(PCI_FEATURES_STATES.SNAPSHOTS.LIST, {
+          projectId,
+          taskResponse,
+        });
+      },
 
       reloadState: /* @ngInject */ ($state) => () => {
         $state.go($state.current, {}, { reload: true });

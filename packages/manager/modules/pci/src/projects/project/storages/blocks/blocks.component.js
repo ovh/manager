@@ -26,5 +26,7 @@ export default {
     storagesRegions: '<',
     getStateName: '<',
     goToRegion: '<',
+    goToBlockStorage: '<',
+    taskResponse: '<',
   },
 };

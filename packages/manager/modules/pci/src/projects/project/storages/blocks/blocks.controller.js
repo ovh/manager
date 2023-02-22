@@ -22,6 +22,12 @@ export default class PciBlockStorageController {
     this.initLoaders();
 
     this.criteria = getCriteria('id', this.storageId);
+
+    if (this.taskResponse) {
+      const { type, message } = this.taskResponse.cucCloudParams;
+      this.taskResponse = null;
+      this.CucCloudMessage[type](message);
+    }
   }
 
   initLoaders() {
