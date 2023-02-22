@@ -18,6 +18,10 @@ export default class PciProjectStorageDatabaseBackupsCtrl {
     this.loadMessages();
     this.trackDashboard('backups', 'page');
     this.backupTime = this.database.backupTime;
+    const flavor = this.getCurrentFlavor();
+    this.backupRetentionTime = moment.duration(
+      `P${flavor.availability[0].backupRetentionDays}D`,
+    );
   }
 
   loadMessages() {
