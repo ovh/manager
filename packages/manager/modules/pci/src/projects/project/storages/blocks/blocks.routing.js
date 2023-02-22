@@ -9,6 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         type: 'string',
       },
+      taskResponse: null,
     },
     onEnter: /* @ngInject */ (pciFeatureRedirect) => {
       return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.BLOCK_STORAGE);
@@ -68,6 +69,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
       storagesRegions: /* @ngInject */ (storages) =>
         Array.from(new Set(storages.map(({ region }) => region))),
+
+      taskResponse: /* @ngInject */ ($transition$) =>
+        $transition$.params().taskResponse,
 
       goToBlockStorage: /* @ngInject */ (
         CucCloudMessage,
