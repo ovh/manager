@@ -23,12 +23,11 @@ export default class PciStoragesContainersUsersController {
   }
 
   convertDate() {
-    return this.userList.map((user) => {
-      const u = user;
-      u.gridPropertyCreationDate = new Date(user.creationDate);
-      u.gridDisplayCreationDate = moment(user.creationDate).format(DATE_FORMAT);
-      return u;
-    });
+    this.userList = this.userList.map((user) => ({
+      ...user,
+      gridPropertyCreationDate: new Date(user.creationDate),
+      gridDisplayCreationDate: moment(user.creationDate).format(DATE_FORMAT),
+    }));
   }
 
   loadMessages() {
