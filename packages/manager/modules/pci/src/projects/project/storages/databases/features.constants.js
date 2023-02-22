@@ -88,6 +88,7 @@ const features = {
     DATABASE_TYPES.MYSQL,
     DATABASE_TYPES.POSTGRESQL,
   ],
+  forkPIT: [DATABASE_TYPES.POSTGRESQL, DATABASE_TYPES.MYSQL],
 };
 
 export default function isFeatureActivated(feature, databaseType) {

@@ -3,6 +3,7 @@ import { STATUS } from '../../../../../../components/project/storages/databases/
 import { NODES_PER_ROW } from '../../databases.constants';
 import { NEW_SUPPORT_TICKET_PARAMS } from './general-information.constants';
 import isFeatureActivated from '../../features.constants';
+import { RESTORE_MODES } from '../backups/fork/fork.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const stateName =
@@ -136,10 +137,6 @@ export default /* @ngInject */ ($stateProvider) => {
         );
         window.location.replace(url);
       },
-      goToFork: /* @ngInject */ ($state, database) => () =>
-        $state.go('pci.projects.project.storages.databases.fork', {
-          database,
-        }),
       vRack: /* @ngInject */ (DatabaseService, projectId) =>
         DatabaseService.getVRack(projectId),
       vRackLink: /* @ngInject */ (vRack, coreURLBuilder) => {
@@ -302,6 +299,16 @@ export default /* @ngInject */ ($stateProvider) => {
           database.engine,
           database.id,
         ),
+      backups: /* @ngInject */ (DatabaseService, database, projectId) =>
+        isFeatureActivated('backupTab', database.engine)
+          ? DatabaseService.getBackups(
+              projectId,
+              database.engine,
+              database.id,
+            ).then((backups) =>
+              backups.filter((backup) => backup.status === STATUS.READY),
+            )
+          : [],
       goToBackups: /* @ngInject */ (
         trackDashboard,
         $state,
@@ -313,6 +320,15 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           databaseId,
         });
+      },
+      goToFork: /* @ngInject */ (trackDashboard, $state) => () => {
+        trackDashboard('general_information::fork');
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.backups.fork',
+          {
+            restoreMode: RESTORE_MODES.SOONEST,
+          },
+        );
       },
       goToMaintenances: /* @ngInject */ (
         trackDashboard,

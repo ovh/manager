@@ -1,30 +1,45 @@
+import { set } from 'lodash';
+import { STATUS } from '../../../../../../../components/project/storages/databases/databases.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.storages.databases.dashboard.backups.fork',
     {
-      url: '/fork',
+      url: '/fork?restoreMode&backupId',
       params: {
-        backupInstance: null,
         database: null,
+        backupId: null,
       },
-      views: {
-        modal: {
-          component: 'ovhManagerPciStoragesDatabaseBackupsForkComponent',
-        },
-      },
-      layout: 'modal',
+      component: 'ovhManagerPciStoragesDatabaseBackupsForkComponent',
       resolve: {
-        backupInstance: /* @ngInject */ ($transition$) =>
-          $transition$.params().backupInstance,
-        database: /* @ngInject */ ($transition$) =>
-          $transition$.params().database,
-        breadcrumb: () => null,
-        goToFork: /* @ngInject */ ($state) => (backupInstance, database) =>
-          $state.go('pci.projects.project.storages.databases.fork', {
-            backupInstance,
-            database,
+        addPrivateNetworksLink: /* @ngInject */ ($state, projectId) =>
+          $state.href('pci.projects.project.privateNetwork', {
+            projectId,
           }),
-        goBack: /* @ngInject */ (goBackToBackups) => goBackToBackups,
+        backupList: (database, DatabaseService, projectId) =>
+          DatabaseService.getBackups(
+            projectId,
+            database.engine,
+            database.id,
+          ).then((backups) =>
+            backups.filter((backup) => backup.status === STATUS.READY),
+          ),
+        breadcrumb: () => null,
+        restoreMode: /* @ngInject */ ($transition$) =>
+          $transition$.params().restoreMode,
+        backupId: /* @ngInject */ ($transition$) =>
+          $transition$.params().backupId,
+        onDatabaseAdd: /* @ngInject */ (
+          databases,
+          getDatabaseObject,
+          goToDatabase,
+          newDatabases,
+        ) => (databaseInfo, message, type) =>
+          getDatabaseObject(databaseInfo).then((database) => {
+            databases.push(database);
+            set(newDatabases, database.id, true);
+            return goToDatabase(database, message, type);
+          }),
       },
       atInternet: {
         ignore: true,
