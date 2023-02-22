@@ -34,9 +34,6 @@ export default class AddUserCtrl {
     if (this.isRolesReadOnly) {
       this.model.selectedRoles = [];
     }
-    if (this.isAdvancedRole) {
-      this.addEmptyEntry();
-    }
   }
 
   isButtonAddDisplayed($index) {
@@ -124,7 +121,8 @@ export default class AddUserCtrl {
     this.availableRoles = this.rolesList.filter(
       (role) =>
         !this.model.selectedRoles.find(
-          (addedRole) => role.admin && addedRole.key.name === role.name,
+          (addedRole) =>
+            role.admin && addedRole.key && addedRole.key.name === role.name,
         ),
     );
   }

@@ -26,5 +26,6 @@
   "pci_databases_user_add_select_roles": "Selectionner un rôle",
   "pci_databases_user_add_input_database": "Database",
   "pci_databases_user_add_error_existing": "Un rôle similaire a déjà été ajouté.",
+  "pci_databases_user_add_warning_roles_added": "Attention, aucun rôle n'a encore été configuré pour cet utilisateur. Cliquez sur le bouton \"+\" pour finaliser l'ajout de votre premier rôle.",
   "pci_databases_user_add_configured_roles": "{{nbRoles}} rôle(s) configuré(s)"
 }
