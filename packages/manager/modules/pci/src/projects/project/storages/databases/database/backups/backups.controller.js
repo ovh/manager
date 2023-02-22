@@ -1,3 +1,5 @@
+import { DATABASE_TYPES } from '../../databases.constants';
+
 export default class PciProjectStorageDatabaseBackupsCtrl {
   /* @ngInject */
   constructor(
@@ -21,6 +23,24 @@ export default class PciProjectStorageDatabaseBackupsCtrl {
     const flavor = this.getCurrentFlavor();
     this.backupRetentionTime = moment.duration(
       `P${flavor.availability[0].backupRetentionDays}D`,
+    );
+
+    this.isEngineVersionDeprecated = flavor.isDeprecated;
+    this.isPITRActivated = this.isFeatureActivated(
+      'forkPIT',
+      this.database.engine,
+    );
+    this.isMongoEnterprise =
+      this.database.engine === DATABASE_TYPES.MONGO_DB &&
+      this.database.plan === 'enterprise';
+  }
+
+  get isTopButtonEnabled() {
+    return (
+      this.database.isActive() &&
+      (this.isPITRActivated ||
+        this.isMongoEnterprise ||
+        this.backupList.length > 0)
     );
   }
 

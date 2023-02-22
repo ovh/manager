@@ -1,14 +1,21 @@
 import controller from './fork.controller';
 import template from './fork.html';
+import './fork.scss';
 
 const component = {
   bindings: {
-    backupInstance: '<',
+    engines: '<',
+    backupList: '<',
+    restoreMode: '<',
+    backupId: '<',
     database: '<',
-    goBack: '<',
     goToFork: '<',
     projectId: '<',
     trackDashboard: '<',
+    privateNetworks: '<',
+    addPrivateNetworksLink: '<',
+    user: '<',
+    onDatabaseAdd: '<',
   },
   controller,
   template,
