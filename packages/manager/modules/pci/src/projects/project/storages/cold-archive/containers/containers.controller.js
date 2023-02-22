@@ -2,7 +2,7 @@ import {
   COLD_ARCHIVE_CONTAINER_STATUS,
   CONTAINER_STATUS_OPTIONS,
 } from './containers.constants';
-import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
+import { COLD_ARCHIVE_TRACKING, DATE_FORMAT } from '../cold-archives.constants';
 
 export default class PciStoragesColdArchiveContainersController {
   /* @ngInject */
@@ -20,6 +20,15 @@ export default class PciStoragesColdArchiveContainersController {
 
   $onInit() {
     this.loadMessages();
+    this.convertDate();
+  }
+
+  convertDate() {
+    this.containers = this.containers.map((container) => ({
+      ...container,
+      gridPropertyCreationDate: new Date(container.createdAt),
+      gridDisplayCreationDate: moment(container.createdAt).format(DATE_FORMAT),
+    }));
   }
 
   loadMessages() {

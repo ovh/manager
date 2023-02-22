@@ -1,6 +1,5 @@
 import map from 'lodash/map';
 import 'moment';
-import { DATE_FORMAT } from './cold-archives.constants';
 
 export default class PciStoragesColdArchiveService {
   /* @ngInject */
@@ -150,16 +149,12 @@ export default class PciStoragesColdArchiveService {
     return this.$http
       .get(`/cloud/project/${serviceName}/region/${regionName}/coldArchive`)
       .then(({ data }) =>
-        data.map((container) => {
-          const updatedContainer = container;
-          updatedContainer.creationDate = moment(container.createdAt).format(
-            DATE_FORMAT,
-          );
-          updatedContainer.translatedStatus = this.$translate.instant(
+        data.map((container) => ({
+          ...container,
+          translatedStatus: this.$translate.instant(
             `pci_projects_project_storages_containers_status_${container.status}`,
-          );
-          return updatedContainer;
-        }),
+          ),
+        })),
       );
   }
 
