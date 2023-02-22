@@ -54,14 +54,13 @@ export default class CreateLinkedUserController {
               ].includes(name),
             );
           })
-          .map((user) => {
-            const updatedUser = user;
-            updatedUser.credentialTrad = this.getCredentialTranslation(user);
-            updatedUser.userNameDescriptionKey = user.description
+          .map((user) => ({
+            ...user,
+            credentialTrad: this.getCredentialTranslation(user),
+            userNameDescriptionKey: user.description
               ? `${user.username} - ${user.description}`
-              : user.username;
-            return updatedUser;
-          });
+              : user.username,
+          }));
         this.users = this.usersCredentials;
       })
       .catch(() => [])

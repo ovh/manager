@@ -43,11 +43,10 @@ export default class PciStoragesUsersService {
 
   mapUsersToCredentials(projectId, users) {
     const usersCredentialsPromises = users.map((user) =>
-      this.getS3Credentials(projectId, user.id).then((data) => {
-        const updatedUser = user;
-        [updatedUser.s3Credentials] = data;
-        return updatedUser;
-      }),
+      this.getS3Credentials(projectId, user.id).then((data) => ({
+        ...user,
+        s3Credentials: data[0],
+      })),
     );
 
     return this.$q.all(usersCredentialsPromises);

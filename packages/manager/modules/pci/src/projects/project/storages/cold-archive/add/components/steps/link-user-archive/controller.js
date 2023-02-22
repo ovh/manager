@@ -64,15 +64,14 @@ export default class ColdArchiveLinkUserArchiveController {
         ),
       )
       .then((usersWithCredentials) => {
-        this.usersCredentials = usersWithCredentials.map((user) => {
-          const updatedUser = user;
-          [updatedUser.s3Credentials] = user.s3Credentials;
-          updatedUser.credentialTrad = this.getCredentialTranslation(user);
-          updatedUser.userNameDescriptionKey = user.description
+        this.usersCredentials = usersWithCredentials.map((user) => ({
+          ...user,
+          s3Credentials: user?.s3Credentials[0],
+          credentialTrad: this.getCredentialTranslation(user),
+          userNameDescriptionKey: user.description
             ? `${user.username} - ${user.description}`
-            : user.username;
-          return updatedUser;
-        });
+            : user.username,
+        }));
         this.users = this.usersCredentials;
       })
       .catch(() => [])
@@ -83,7 +82,7 @@ export default class ColdArchiveLinkUserArchiveController {
 
   getCredentialTranslation(user) {
     return this.$translate.instant(
-      user.s3Credentials
+      user.s3Credentials[0]
         ? 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_credential'
         : 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_no_credential',
     );
