@@ -91,7 +91,7 @@ export default function WebSidebar() {
               },
             })),
             ...domains
-              .filter((domain) => !domain.parentName)
+              .filter((domain) => !domain.parentName || !allDom.find((item) => domain.parentName === item.serviceName))
               .map((domain: SidebarMenuItem) => ({
                 ...domain,
                 icon: getIcon('ovh-font ovh-font-domain'),
