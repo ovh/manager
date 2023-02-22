@@ -3,12 +3,17 @@ import template from './restore.html';
 
 const component = {
   bindings: {
-    backupInstance: '<',
     database: '<',
+    backupList: '<',
+    restoreMode: '<',
+    backupId: '<',
     goBack: '<',
-    goBackToDashboard: '<',
+    goToDatabase: '<',
     projectId: '<',
     trackDashboard: '<',
+    user: '<',
+    onDatabaseAdd: '<',
+    engines: '<',
   },
   controller,
   template,

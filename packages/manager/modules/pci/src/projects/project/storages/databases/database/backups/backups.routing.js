@@ -50,13 +50,19 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return promise;
         },
-        goToRestore: /* @ngInject */ ($state) => (backupInstance) =>
+        goToRestore: /* @ngInject */ ($state) => (backupInstance) => {
+          const stateparams = {
+            restoreMode: RESTORE_MODES.SOONEST,
+          };
+          if (backupInstance) {
+            stateparams.restoreMode = RESTORE_MODES.BACKUP;
+            stateparams.backupId = backupInstance.id;
+          }
           $state.go(
             'pci.projects.project.storages.databases.dashboard.backups.restore',
-            {
-              backupInstance,
-            },
-          ),
+            stateparams,
+          );
+        },
         goToFork: /* @ngInject */ ($state) => (backupInstance) => {
           const stateparams = {
             restoreMode: RESTORE_MODES.SOONEST,
