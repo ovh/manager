@@ -4,13 +4,10 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import routing from './list.routing';
-import component from './list.component';
+import routing from './attach-volume.routing';
+import component from './attach-volume.component';
 
-import deleteVolumeBackup from './delete';
-import attachVolumeToInstance from './attach-volume';
-
-const moduleName = 'ovhManagerPciProjectStoragesVolumeBackupList';
+const moduleName = 'ovhManagerPciProjectStoragesVolumeBackupListAttachVolume';
 
 angular
   .module(moduleName, [
@@ -18,11 +15,12 @@ angular
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
-    deleteVolumeBackup,
-    attachVolumeToInstance,
   ])
   .config(routing)
-  .component('ovhManagerPciProjectsProjectStoragesVolumeBackupList', component)
+  .component(
+    'ovhManagerPciProjectStoragesVolumeBackupListAttachVolume',
+    component,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

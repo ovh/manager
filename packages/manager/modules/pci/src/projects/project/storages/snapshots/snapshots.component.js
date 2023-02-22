@@ -21,5 +21,6 @@ export default {
     snapshotsRegions: '<',
     getStateName: '<',
     goToRegion: '<',
+    taskResponse: '<',
   },
 };

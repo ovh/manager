@@ -21,9 +21,14 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         type: 'string',
       },
+      taskResponse: null,
     },
     resolve: {
       snapshotId: /* @ngInject */ ($transition$) => $transition$.params().id,
+
+      taskResponse: /* @ngInject */ ($transition$) =>
+        $transition$.params().taskResponse,
+
       snapshots: /* @ngInject */ (
         PciProjectStorageSnapshotsService,
         projectId,

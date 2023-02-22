@@ -25,6 +25,10 @@ export const VOLUME_BACKUP_ROUTES = {
         STATE: `${VOLUME_BACKUP_ROOT_STATE}.list.delete`,
         URL: '/delete',
       },
+      ATTACH_VOLUME: {
+        STATE: `${VOLUME_BACKUP_ROOT_STATE}.list.attach-volume`,
+        URL: '/attach-volume',
+      },
       DASHBOARD: {
         STATE: `${VOLUME_BACKUP_ROOT_STATE}.list.dashboard`,
         URL: '/:volumeBackupId',
