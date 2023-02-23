@@ -148,7 +148,7 @@ export default function NashaReactDashboard() {
   return (
     <div>
       <Heading as="h3" size="sm">
-        {t('title')}
+        {t('title')} test branch 2
       </Heading>
       <QueryClientProvider client={queryClient}>
         <hr />
