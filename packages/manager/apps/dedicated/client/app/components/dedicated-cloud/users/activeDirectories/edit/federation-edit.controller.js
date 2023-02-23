@@ -63,11 +63,17 @@ export default class ActiveDirectoriesEditController {
   }
 
   close() {
-    this.trackClick(`${TRACKING_PREFIX}::done`);
-    if (this.task.state === 'done') {
+    if (this.task.state) {
+      this.trackClick(`${TRACKING_PREFIX}::done`);
       this.loaders.cancelModal = true;
       return this.goBack(false, null, true);
     }
+    this.trackClick(`${TRACKING_PREFIX}::cancel`);
+    return this.goBack();
+  }
+
+  onCancel() {
+    this.trackClick(`${TRACKING_PREFIX}::cancel`);
     return this.goBack();
   }
 }

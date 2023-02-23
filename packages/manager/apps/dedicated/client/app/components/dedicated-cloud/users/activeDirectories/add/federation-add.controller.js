@@ -79,6 +79,8 @@ export default class FederationAddCtrl {
     this.trackClick(`${TRACKING_PREFIX}::done`);
     if (this.task.state === 'done') {
       this.goBack(false, null, true);
+    } else if (this.task.state === 'canceled') {
+      this.trackPage(`${TRACKING_PREFIX}-canceled`);
     } else {
       this.loaders.submitted = false;
     }
