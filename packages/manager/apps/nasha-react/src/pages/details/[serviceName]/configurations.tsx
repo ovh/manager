@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
-  fetchNashaDetails,
+  getNashaDetails,
   createNashaPartition,
 } from '../../../api/nasha-react';
 
@@ -21,7 +21,7 @@ function Configurations(props: { serviceName: string }) {
   });
   const { isLoading, isError, data } = useQuery(
     ['informations', { serviceName }],
-    fetchNashaDetails,
+    getNashaDetails,
   );
 
   if (isLoading) {

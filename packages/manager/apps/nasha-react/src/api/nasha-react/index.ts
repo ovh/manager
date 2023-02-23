@@ -1,17 +1,16 @@
 import SELECTED_NAS from './config';
-import fetchNashaList from './GET/apiv6/listNasha';
-import fetchNashaPartition from './GET/2api/partition';
-import fetchNashaServiceInfos from './GET/apiv6/serviceInfos';
-import fetchNashaDetails from './GET/2api/nashaDetails';
+
+import { getNashaPartition, getNashaDetails } from './GET/2api/service';
+import { getNashaServiceInfos, getNashaList } from './GET/apiv6/service';
 
 import renameNasha from './PUT/apiv6/renameNasha';
 import createNashaPartition from './POST/apiv6/createPartition';
 
 export {
-  fetchNashaDetails,
-  fetchNashaPartition,
-  fetchNashaServiceInfos,
-  fetchNashaList,
+  getNashaDetails,
+  getNashaPartition,
+  getNashaServiceInfos,
+  getNashaList,
   renameNasha,
   createNashaPartition,
   SELECTED_NAS,

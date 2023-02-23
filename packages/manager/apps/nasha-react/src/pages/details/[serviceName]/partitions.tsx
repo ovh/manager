@@ -1,12 +1,12 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchNashaPartition } from '../../../api/nasha-react';
+import { getNashaPartition } from '../../../api/nasha-react';
 
 function Partitions(props: { serviceName: string }) {
   const { serviceName } = props;
   const { isLoading, isError, data } = useQuery(
     ['partitions', { serviceName }],
-    fetchNashaPartition,
+    getNashaPartition,
   );
   if (isLoading) {
     return <span>Loading...</span>;

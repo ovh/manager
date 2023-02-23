@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchNashaDetails, renameNasha } from '../../../api/nasha-react';
+import { getNashaDetails, renameNasha } from '../../../api/nasha-react';
 
 function Informations(props: { serviceName: string }) {
   const { serviceName } = props;
   const [serviceRename, setServiceRename] = useState(serviceName);
   const { isLoading, isError, data } = useQuery(
     ['informations', { serviceName }],
-    fetchNashaDetails,
+    getNashaDetails,
   );
 
   if (isLoading) {
