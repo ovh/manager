@@ -1426,7 +1426,8 @@ export default /* @ngInject */ function VpsService(
       )
       .then((disks) =>
         disks.filter(({ capacity }) => capacity > vpsLinkedDisk.size),
-      );
+      )
+      .catch(() => []);
   };
 
   this.showOnlyAdditionalDisk = function showOnlyAdditionalDisk(disks) {
