@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "17.49.2",
+  "version": "17.50.0",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -50,7 +50,7 @@
     "@ovh-ux/manager-trusted-nic": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-veeam-cloud-connect": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-veeam-enterprise": "^0.3.0 || ^1.0.0",
-    "@ovh-ux/manager-vps": "^2.30.0",
+    "@ovh-ux/manager-vps": "^2.30.1",
     "@ovh-ux/manager-vrack": "^1.5.3",
     "@ovh-ux/ng-at-internet": "^5.9.6",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.3",
