@@ -1,0 +1,23 @@
+<dl class="oui-description">
+    <dt>
+        <span
+            data-translate="{{:: 'ovhManagerPccDashboardOptionsNsxt_name' }}"
+        ></span>
+        <button
+            type="button"
+            class="oui-popover-button"
+            oui-popover="{{ 'ovhManagerPccDashboardOptionsNsxt_tooltip' | translate }}"
+        ></button>
+    </dt>
+    <dd>
+        <div data-ng-if="$ctrl.loading">
+            <oui-spinner size="s"></oui-spinner>
+        </div>
+        <ovh-manager-pcc-dashboard-component-activation-status
+            data-ng-if="!$ctrl.loading"
+            class="d-block mt-1"
+            data-status-name=":: $ctrl.optionNsxt.state"
+            data-datacenters-state="$ctrl.optionNsxt.datacentersState"
+        ></ovh-manager-pcc-dashboard-component-activation-status>
+    </dd>
+</dl>
