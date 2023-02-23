@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.55.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.54.0...@ovh-ux/manager-telecom@13.55.0) (2023-02-23)
+
+
+### Bug Fixes
+
+* **telecom:** remove duplicate value in country dropdown ([#8739](https://github.com/ovh/manager/issues/8739)) ([0ac4fe3](https://github.com/ovh/manager/commit/0ac4fe35a9620ef8bbe78361adfe67626a2e1c5e))
+
+
+### Features
+
+* **pack:** add mention of the debit on migration pack and move offer ([#8764](https://github.com/ovh/manager/issues/8764)) ([601437e](https://github.com/ovh/manager/commit/601437ed57296fabe81232e30058e2264133b49c))
+
+
+
+
+
 # [13.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.53.4...@ovh-ux/manager-telecom@13.54.0) (2023-02-20)
 
 

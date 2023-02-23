@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.15.0...@ovh-ux/manager-container-app@0.15.1) (2023-02-23)
+
+
+### Bug Fixes
+
+* **container:** managerBaremetal dc url ([#8917](https://github.com/ovh/manager/issues/8917)) ([e89dba8](https://github.com/ovh/manager/commit/e89dba8469b5d681b35bb3923fb316e72c82f682))
+
+
+
+
+
 # [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.14.2...@ovh-ux/manager-container-app@0.15.0) (2023-02-20)
 
 
