@@ -5,6 +5,12 @@
 
 <form name="addUserForm" novalidate>
     <h2 data-translate="pci_databases_users_add"></h2>
+    <oui-message data-type="error" data-ng-if="$ctrl.usernameExist">
+        <span
+            data-translate="pci_databases_users_add_error_username_exist"
+            data-translate-values="{ user: '<b>' + $ctrl.usernameCheck + '</b>' }"
+        ></span>
+    </oui-message>
     <oui-field
         data-label="{{:: 'pci_databases_users_add_username_label' | translate }}"
         data-size="xl"

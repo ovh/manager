@@ -154,10 +154,20 @@ export default class AddUserCtrl {
     return user;
   }
 
+  checkUsernameExist(username) {
+    this.usernameCheck = username;
+    return this.users.some((user) =>
+      user.username.toLowerCase().includes(this.usernameCheck),
+    );
+  }
+
   addUser() {
-    if (this.model.username) {
+    if (this.checkUsernameExist(this.model.username)) {
+      this.usernameExist = true;
+    } else {
       this.trackDashboard('users::add_a_user::validate');
       this.processing = true;
+      this.usernameExist = false;
       this.DatabaseService.addUser(
         this.projectId,
         this.database.engine,

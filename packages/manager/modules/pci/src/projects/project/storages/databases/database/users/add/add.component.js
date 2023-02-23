@@ -6,6 +6,7 @@ export default {
     database: '<',
     goBack: '<',
     projectId: '<',
+    users: '<',
     roles: '<',
     trackDashboard: '<',
     isFeatureActivated: '<',
