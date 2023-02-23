@@ -1,5 +1,26 @@
 <span
+    data-ng-if="!$ctrl.datacentersState || ($ctrl.datacentersState && !($ctrl.statusName === $ctrl.ACTIVATION_STATUS.enabled.name))"
     class="oui-badge"
     data-ng-class="'oui-badge_' + $ctrl.status.type"
     data-translate="{{ 'ovhManagerPccDashboardComponentActivationStatus_' + $ctrl.statusName }}"
 ></span>
+<div
+    data-ng-if="$ctrl.datacentersState && $ctrl.statusName === $ctrl.ACTIVATION_STATUS.enabled.name"
+>
+    <div class="d-inline-block">
+        <span
+            class="oui-badge oui-badge_success"
+            data-translate="ovhManagerPccDashboardComponentActivationStatus_enabled"
+        ></span>
+    </div>
+    <div
+        class="d-inline-block"
+        data-ng-repeat="datacenter in ::$ctrl.datacentersState track by index"
+    >
+        <span
+            class="oui-badge oui-badge_info"
+            data-translate="ovhManagerPccDashboardComponentActivationStatus_hosted_on"
+            data-translate-values="{ datacenter: datacenter.name }"
+        ></span>
+    </div>
+</div>
