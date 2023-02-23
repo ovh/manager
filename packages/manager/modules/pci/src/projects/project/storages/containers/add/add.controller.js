@@ -196,13 +196,14 @@ export default class PciStoragesContainersAddController {
             ? 'pci_projects_project_storages_containers_add_success_message_with_user_creation'
             : 'pci_projects_project_storages_containers_add_success_message';
 
-        return this.goBackWithTrackingPage({
-          message: this.$translate.instant(message, {
+        return this.goBackWithTrackingPage(
+          this.$translate.instant(message, {
             container: this.container.name,
             userName: this.userModel.createMode?.user?.username,
           }),
-          trackingTag: `_add::${containerOffer}_${dataCenterLocation}::${containerTypeOffer}creation_confirmation`,
-        });
+          'success',
+          `_add::${containerOffer}_${dataCenterLocation}::${containerTypeOffer}creation_confirmation`,
+        );
       })
       .catch((err) => {
         this.trackPage(

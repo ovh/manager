@@ -29,6 +29,7 @@ export default {
     trackingPrefix: '<',
     refreshContainers: '<?',
     goBackWithTrackingPage: '<',
+    trackingTag: '<',
     trackPage: '<',
   },
 };
