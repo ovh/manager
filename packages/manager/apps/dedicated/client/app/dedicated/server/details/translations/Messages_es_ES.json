@@ -1105,7 +1105,7 @@
   "server_datacenter_WAW": "Varsovia (WAW{{number}}) - Polonia",
   "server_datacenter_RBX_HZ": "Roubaix (RBXHZ) - Francia",
   "server_datacenter_GSW": "(GSW) - Francia",
-  "server_datacenter_YNM": "Mumbai (YNM {{number}}) - India",
+  "server_datacenter_YNM": "Bombay (YNM {{number}}) - India",
   "server_usage_chart_yaxis_label": "Uso (en %)",
   "server_usage_chart_xaxis_label": "Tiempo",
   "server_duration_upto": "Hasta el {{t0}}",
