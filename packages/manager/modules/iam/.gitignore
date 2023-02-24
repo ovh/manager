@@ -1,0 +1,2 @@
+# "types" is ignored in the global .gitignore
+!packages/manager/modules/iam/src/resolves/types
