@@ -1,0 +1,38 @@
+<div>
+    <oui-header data-heading="{{:: 'iam_policy_header_heading' | translate }}">
+        <!-- <Tabs> -->
+        <oui-header-tabs>
+            <oui-header-tabs-item data-state="{{ $root.IAM.ROUTES.POLICIES }}"
+                ><span
+                    data-translate="iam_policy_header_tabs_item_policies"
+                ></span
+            ></oui-header-tabs-item>
+            <oui-header-tabs-item
+                ><span
+                    data-translate="iam_policy_header_tabs_item_identities"
+                ></span
+            ></oui-header-tabs-item>
+            <oui-header-tabs-item
+                ><span
+                    data-translate="iam_policy_header_tabs_item_resource_groups"
+                ></span
+            ></oui-header-tabs-item>
+        </oui-header-tabs>
+        <!-- </Tabs> -->
+
+        <!-- <Guide> -->
+        <oui-guide-menu
+            data-text="{{:: 'iam_policy_header_guide_text' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.onboardingGuides track by $index"
+                data-href="{{:: guide.url }}"
+                data-external
+            >
+                <span data-ng-bind=":: guide.text"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+        <!-- </Guide> -->
+    </oui-header>
+    <div data-ui-view></div>
+</div>
