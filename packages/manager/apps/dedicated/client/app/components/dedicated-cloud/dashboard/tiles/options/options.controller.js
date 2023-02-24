@@ -6,6 +6,7 @@ export default class Options {
     $q,
     $translate,
     Alerter,
+    atInternet,
     dedicatedCloudDrp,
     ovhFeatureFlipping,
     ovhManagerPccDashboardOptionsModelBindings,
@@ -14,6 +15,7 @@ export default class Options {
     this.$q = $q;
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.atInternet = atInternet;
     this.dedicatedCloudDrp = dedicatedCloudDrp;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.ovhManagerPccDashboardOptionsService = ovhManagerPccDashboardOptionsService;
@@ -107,5 +109,13 @@ export default class Options {
       .finally(() => {
         this.bindings.isLoading = false;
       });
+  }
+
+  onGoToBasicOptionsUpgrade(stateParams) {
+    this.atInternet.trackClick({
+      name: 'dedicated::dedicatedCloud::details::dashboard::modify-options',
+      type: 'action',
+    });
+    return this.onBasicOptionsUpgrade(stateParams);
   }
 }

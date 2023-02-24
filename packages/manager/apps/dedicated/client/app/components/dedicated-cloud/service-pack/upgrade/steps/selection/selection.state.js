@@ -71,4 +71,7 @@ export default {
     breadcrumb: () => null,
   },
   translations: { value: ['.'], format: 'json' },
+  atInternet: {
+    ignore: true,
+  },
 };

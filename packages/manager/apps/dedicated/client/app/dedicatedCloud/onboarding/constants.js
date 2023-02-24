@@ -2,6 +2,7 @@ export const GUIDES = [
   {
     title: 'dedicated_clouds_onboarding_guide1_title',
     description: 'dedicated_clouds_onboarding_guide1_description',
+    id: 'control-panel-ovh-private-cloud',
     links: {
       DEFAULT:
         'https://docs.ovh.com/gb/en/private-cloud/control-panel-ovh-private-cloud/',
@@ -34,6 +35,7 @@ export const GUIDES = [
   {
     title: 'dedicated_clouds_onboarding_guide2_title',
     description: 'dedicated_clouds_onboarding_guide2_description',
+    id: 'tanzu-tkgm-presentation',
     links: {
       DEFAULT:
         'https://docs.ovh.com/gb/en/private-cloud/tanzu-tkgm-presentation/',
@@ -59,6 +61,7 @@ export const GUIDES = [
   {
     title: 'dedicated_clouds_onboarding_guide3_title',
     description: 'dedicated_clouds_onboarding_guide3_description',
+    id: 'configure-ip-on-virtual-machine',
     links: {
       DEFAULT:
         'https://docs.ovh.com/gb/en/private-cloud/configure-ip-on-virtual-machine/',
@@ -149,18 +152,21 @@ export const US_GUIDES = [
   {
     title: 'dedicated_clouds_onboarding_us_guide1_title',
     description: 'dedicated_clouds_onboarding_us_guide1_description',
+    id: 'how-to-access-the-nsx-interface',
     link:
       'https://support.us.ovhcloud.com/hc/en-us/articles/360015961459-How-to-Access-the-NSX-Interface',
   },
   {
     title: 'dedicated_clouds_onboarding_us_guide2_title',
     description: 'dedicated_clouds_onboarding_us_guide2_description',
+    id: 'how-to-modify-the-vcenter-access-policy',
     link:
       'https://support.us.ovhcloud.com/hc/en-us/articles/1500007889561-How-to-Modify-the-vCenter-Access-Policy',
   },
   {
     title: 'dedicated_clouds_onboarding_us_guide3_title',
     description: 'dedicated_clouds_onboarding_us_guide3_description',
+    id: 'how-to-authorize-ip-addresses-for-vcenter-access',
     link:
       'https://support.us.ovhcloud.com/hc/en-us/articles/1500007893502-How-to-Authorize-IP-Addresses-for-vCenter-Access',
   },
