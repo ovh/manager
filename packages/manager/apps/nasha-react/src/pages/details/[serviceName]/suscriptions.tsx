@@ -1,12 +1,12 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getNashaServiceInfos } from '../../../api/nasha-react';
+import { serviceInfos } from '../../../api/nasha-react';
 
 function Subscriptions(props: { serviceName: string }) {
   const { serviceName } = props;
   const { isLoading, isError, data } = useQuery(
     ['serviceInfos', { serviceName }],
-    getNashaServiceInfos,
+    serviceInfos,
   );
 
   if (isLoading) {

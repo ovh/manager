@@ -6,12 +6,12 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query';
-import { getNashaList } from '../api/nasha-react';
+import { services } from '../api/nasha-react';
 
 const queryClient = new QueryClient();
 
 function Services() {
-  const { isLoading, isError, data } = useQuery(['listNasha'], getNashaList);
+  const { isLoading, isError, data } = useQuery(['listNasha'], services);
 
   if (isLoading) {
     return <span>Loading...</span>;

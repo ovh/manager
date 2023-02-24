@@ -1,7 +1,7 @@
 import apiClient from '@ovh-ux/manager-core-api';
 import { QueryFunctionContext } from '@tanstack/react-query';
 
-async function getNashaDetails({
+async function service({
   queryKey,
 }: QueryFunctionContext<[string, { serviceName: string }]>) {
   const { serviceName } = queryKey[1];
@@ -9,7 +9,7 @@ async function getNashaDetails({
   return response.data;
 }
 
-async function getNashaPartition({
+async function getPartition({
   queryKey,
 }: QueryFunctionContext<[string, { serviceName: string }]>) {
   const { serviceName } = queryKey[1];
@@ -19,4 +19,4 @@ async function getNashaPartition({
   return response.data;
 }
 
-export { getNashaDetails, getNashaPartition };
+export { service, getPartition };

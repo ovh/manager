@@ -1,7 +1,20 @@
 import apiClient from '@ovh-ux/manager-core-api';
 import { QueryFunctionContext } from '@tanstack/react-query';
 
-async function getNashaServiceInfos({
+async function services() {
+  const response = await apiClient.v6.get('/dedicated/nasha');
+  return response.data;
+}
+
+async function service({
+  queryKey,
+}: QueryFunctionContext<[string, { serviceName: string }]>) {
+  const { serviceName } = queryKey[1];
+  const response = await apiClient.v6.get(`/dedicated/nasha/${serviceName}`);
+  return response.data;
+}
+
+async function serviceInfos({
   queryKey,
 }: QueryFunctionContext<[string, { serviceName: string }]>) {
   const { serviceName } = queryKey[1];
@@ -11,7 +24,7 @@ async function getNashaServiceInfos({
   return response.data;
 }
 
-async function getNashaPartition({
+async function getPartition({
   queryKey,
 }: QueryFunctionContext<[string, { serviceName: string }]>) {
   const { serviceName } = queryKey[1];
@@ -21,22 +34,4 @@ async function getNashaPartition({
   return response.data;
 }
 
-async function getNashaDetails({
-  queryKey,
-}: QueryFunctionContext<[string, { serviceName: string }]>) {
-  const { serviceName } = queryKey[1];
-  const response = await apiClient.v6.get(`/dedicated/nasha/${serviceName}`);
-  return response.data;
-}
-
-async function getNashaList() {
-  const response = await apiClient.v6.get('/dedicated/nasha');
-  return response.data;
-}
-
-export {
-  getNashaDetails,
-  getNashaList,
-  getNashaPartition,
-  getNashaServiceInfos,
-};
+export { service, services, getPartition, serviceInfos };
