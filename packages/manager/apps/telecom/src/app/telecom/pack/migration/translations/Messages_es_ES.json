@@ -101,7 +101,7 @@
   "telecom_pack_migration_confirm_no_commitment": "Este cambio de producto no está sujeto a ninguna ampliación de compromiso.",
   "telecom_pack_migration_confirm_commitment": "Un nuevo compromiso de {{ month }} meses comenzará a aplicarse en la fecha de facturación.",
   "telecom_pack_migration_confirm_new_offer_price": "Su nueva suscripción mensual es de: <span class=\"text-price\">{{ price }}</span><span class=\"text-infos\">/mes + IVA</span>, aplicable a partir de la entrega del nuevo acceso. Le informaremos por correo electrónico.",
-  "telecom_pack_migration_confirm_shipping": "Ha seleccionado el modo de entrega del nuevo módem por transportista (+ {{ price }} € + IVA).",
+  "telecom_pack_migration_confirm_shipping": "Ha seleccionado el modo de entrega del nuevo módem por transportista (+ {{ transportPrice }} € + IVA).",
   "telecom_pack_migration_confirm_first_mensuality": "Su primera cuota mensual será de {{ price }} + IVA.",
   "telecom_pack_migration_confirm_service_to_delete_title": "Servicios que se eliminarán",
   "telecom_pack_migration_confirm_service_to_delete_total": "Al cambiar de producto, se eliminarán un total de {{count}} servicios.",
@@ -163,13 +163,5 @@
   "telecom_pack_migration_confirm_resume_contact_owner": "Datos de contacto",
   "telecom_pack_migration_confirm_resume_contact_phone": "Número de teléfono de contacto",
   "telecom_pack_migration_confirm_resume_phone_form_error": "El número introducido debe ser válido.",
-  "telecom_pack_migration_choose_offer_error": "Se ha producido un error al cargar las soluciones: {{ error }}.",
-  "telecom_pack_migration_modem_yes": "Módem nuevo ({{ price }}/mes + IVA)",
-  "telecom_pack_migration_modem_recycled": "Módem reciclador ({{ price }}/mes + IVA)",
-  "telecom_pack_migration_modem_no": "Sin módem",
-  "telecom_pack_migration_modem_required": "La selección de un tipo de módem es obligatoria.",
-  "telecom_pack_migration_confirm_modem_rental_yes": "Alquiler módem nuevo",
-  "telecom_pack_migration_confirm_modem_rental_recycled": "Alquiler de módem reciclable",
-  "telecom_pack_migration_offers_debit_mention_1": "(1) Hasta 92 Mbps que descenden en VDSL y 22 Mbps en ADSL, en función de los requisitos.",
-  "telecom_pack_migration_offers_debit_mention_2": "(2) Hasta 36 MB/s en VDSL y 1 Mb/s en ADSL, en función de los requisitos."
+  "telecom_pack_migration_choose_offer_error": "Se ha producido un error al cargar las soluciones: {{ error }}."
 }

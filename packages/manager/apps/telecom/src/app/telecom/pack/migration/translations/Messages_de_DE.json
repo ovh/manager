@@ -101,7 +101,7 @@
   "telecom_pack_migration_confirm_no_commitment": "Ce changement d’offre n’est sujet à aucun réengagement.",
   "telecom_pack_migration_confirm_commitment": "Un réengagement de {{ month }} mois débutera à la date de facturation.",
   "telecom_pack_migration_confirm_new_offer_price": "Votre nouvel abonnement mensuel s'élève à : <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">HT/mois</span>, applicable dès livraison de votre nouvel accès. Vous en serez informé par e-mail.",
-  "telecom_pack_migration_confirm_shipping": "Sie haben den Liefermodus Ihres neuen Routers pro Luftfahrtunternehmen ausgewählt (+ {{ price }} € ohne MwSt).",
+  "telecom_pack_migration_confirm_shipping": "Sie haben den Liefermodus Ihres neuen Routers pro Luftfahrtunternehmen ausgewählt (+ {{ transportPrice }} € ohne MwSt).",
   "telecom_pack_migration_confirm_first_mensuality": "Ihre erste Monatsrate beträgt also {{ price }} ohne MwSt.",
   "telecom_pack_migration_confirm_service_to_delete_title": "Services qui seront supprimés",
   "telecom_pack_migration_confirm_service_to_delete_total": "Beim Wechsel des Angebots werden insgesamt {{count}} Dienstleistungen gelöscht.",
@@ -158,13 +158,5 @@
   "telecom_pack_migration_confirm_resume_contact_owner": "Kontakt-Informationen",
   "telecom_pack_migration_confirm_resume_contact_phone": "Telefonnummer, unter der Sie bei Bedarf kontaktiert werden können",
   "telecom_pack_migration_confirm_resume_phone_form_error": "Die angegebene Nummer muss gültig sein.",
-  "telecom_pack_migration_choose_offer_error": "Beim Abruf der Angebote ist ein Fehler aufgetreten: {{ error }}",
-  "telecom_pack_migration_modem_yes": "Neues Modem ({{ price }} ohne MwSt / Monat)",
-  "telecom_pack_migration_modem_recycled": "Recyceltes Modem ({{ price }} ohne MwSt / Monat)",
-  "telecom_pack_migration_modem_no": "Kein Modem",
-  "telecom_pack_migration_modem_required": "Die Wahl eines Modemtyps ist zwingend erforderlich",
-  "telecom_pack_migration_confirm_modem_rental_yes": "Miete für das neue Modem",
-  "telecom_pack_migration_confirm_modem_rental_recycled": "Modem-Vermietung",
-  "telecom_pack_migration_offers_debit_mention_1": "(1) Bis zu 92 Mbit/s VDSL und 22 Mbit/s ADSL, je nach Förderfähigkeit.",
-  "telecom_pack_migration_offers_debit_mention_2": "(2) Bis zu 36 Mbit/s VDSL und 1 Mbit/s ADSL, je nach Förderfähigkeit."
+  "telecom_pack_migration_choose_offer_error": "Beim Abruf der Angebote ist ein Fehler aufgetreten: {{ error }}"
 }

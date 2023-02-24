@@ -96,16 +96,16 @@
                                 ></td>
                             </tr>
                             <tr
-                                data-ng-if="$ctrl.offer.selected.offer.modemRental"
+                                data-ng-if="$ctrl.offer.selected.offer.prices.modemRental.price"
                             >
                                 <th
                                     scope="row"
-                                    data-translate="{{'pack_move_confirm_modem_rental_' + $ctrl.offer.selected.offer.modem}}"
+                                    data-translate="pack_move_modem_rental"
                                     data-title="{{ 'pack_move_confirm_header_entitled' | translate }}"
                                 ></th>
                                 <td
                                     class="text-price text-right"
-                                    data-ng-bind="$ctrl.offer.selected.offer.modemRental.text"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.modemRental.price.text"
                                     data-title="{{ 'pack_move_confirm_header_price' | translate }}"
                                 ></td>
                                 <td
@@ -116,7 +116,7 @@
                                 </td>
                                 <td
                                     class="text-price text-right"
-                                    data-ng-bind="$ctrl.offer.selected.offer.modemRental.text"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.modemRental.price.text"
                                     data-title="{{ 'pack_move_confirm_header_total' | translate }}"
                                 ></td>
                             </tr>

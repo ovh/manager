@@ -2,7 +2,7 @@ import find from 'lodash/find';
 import isUndefined from 'lodash/isUndefined';
 import set from 'lodash/set';
 
-import { PROMO_DISPLAY, MODEM_OPTION_NAME } from '../pack-move.constant';
+import { PROMO_DISPLAY } from '../pack-move.constant';
 
 export default class PackMoveOffersCtrl {
   /* @ngInject */
@@ -30,7 +30,6 @@ export default class PackMoveOffersCtrl {
     };
 
     this.PROMO_DISPLAY = PROMO_DISPLAY;
-    this.MODEM_OPTION_NAME = MODEM_OPTION_NAME;
 
     this.getOptions()
       .then(() => {
@@ -206,13 +205,6 @@ export default class PackMoveOffersCtrl {
         totalOfferPrice += option.choosedValue * option.optionalPrice.value;
       }
     });
-    if (optionName === this.MODEM_OPTION_NAME) {
-      offer.modemOptions.forEach((modem) => {
-        if (modem.name === offer.modem && modem.price) {
-          totalOfferPrice += modem.price.value;
-        }
-      });
-    }
 
     const displayedPrice = {
       currencyCode: offer.prices.price.price
@@ -295,10 +287,6 @@ export default class PackMoveOffersCtrl {
   }
 
   selectOffer(offer) {
-    if (!offer.modem) {
-      set(offer, 'modemRequired', true);
-      return null;
-    }
     const selectedOffer = offer;
 
     const params = {
@@ -321,13 +309,6 @@ export default class PackMoveOffersCtrl {
     if (options.length > 0) {
       params.options = options;
     }
-
-    // Update modem rental from selected modem detail
-    selectedOffer.modemOptions.forEach((modem) => {
-      if (modem.name === selectedOffer.modem) {
-        selectedOffer.modemRental = modem.price;
-      }
-    });
 
     this.loading.init = true;
 
@@ -352,25 +333,5 @@ export default class PackMoveOffersCtrl {
       .finally(() => {
         this.loading.init = false;
       });
-    return null;
-  }
-
-  getModemOptionLabel(modemOption) {
-    return this.$translate.instant(`pack_move_modem_${modemOption.name}`, {
-      price: modemOption.price ? modemOption.price.text : '',
-    });
-  }
-
-  onChangeSelectModem(offer) {
-    if (offer.modemRequired && offer.modem) {
-      set(offer, 'modemRequired', false);
-    }
-    if (offer.modem) {
-      this.constructor.updateOfferDisplayedPrice(
-        1,
-        offer,
-        this.MODEM_OPTION_NAME,
-      );
-    }
   }
 }

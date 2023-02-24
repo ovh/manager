@@ -39,10 +39,6 @@ const PROMO_DISPLAY = {
   },
 };
 
-const MODEM_LIST = ['yes', 'recycled'];
-
-const MODEM_OPTION_NAME = 'modem';
-
 export {
   ELIGIBILITY_LINE_STATUS,
   LINE_STATUS,
@@ -50,6 +46,4 @@ export {
   STEPS,
   UNBUNDLING,
   PROMO_DISPLAY,
-  MODEM_LIST,
-  MODEM_OPTION_NAME,
 };

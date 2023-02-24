@@ -272,13 +272,5 @@
   "pack_move_resume_comfort_activation": "Los gastos de activación de la opción Confort son de {{ price }} + IVA.",
   "pack_move_resume_install_fees": "Los gastos de instalación son de {{ price }} + IVA.",
   "pack_move_resume_creation_line_fees": "Los gastos de creación de líneas son de {{ price }} + IVA.",
-  "pack_move_resume_promotion": "Los gastos de instalación y los {{ duration }} primeros meses de la nueva suscripción son gratuitos (sin incluir el alquiler de módem, las opciones adicionales o los gastos de transporte).",
-  "pack_move_modem_yes": "Módem nuevo ({{ price }}/mes + IVA)",
-  "pack_move_modem_recycled": "Módem reciclador ({{ price }}/mes + IVA)",
-  "pack_move_modem_no": "Sin módem",
-  "pack_move_modem_required": "La selección de un tipo de módem es obligatoria.",
-  "pack_move_confirm_modem_rental_yes": "Alquiler módem nuevo",
-  "pack_move_confirm_modem_rental_recycled": "Alquiler de módem reciclable",
-  "pack_move_offers_debit_mention_1": "(1) Hasta 92 Mbps que descenden en VDSL y 22 Mbps en ADSL, en función de los requisitos.",
-  "pack_move_offers_debit_mention_2": "(2) Hasta 36 MB/s en VDSL y 1 Mb/s en ADSL, en función de los requisitos."
+  "pack_move_resume_promotion": "Los gastos de instalación y los {{ duration }} primeros meses de la nueva suscripción son gratuitos (sin incluir el alquiler de módem, las opciones adicionales o los gastos de transporte)."
 }

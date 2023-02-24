@@ -115,34 +115,14 @@
                                 data-title="{{ offer.description }}"
                                 data-ng-repeat="offer in $ctrl.offers track by $index"
                             >
-                                <label class="oui-select">
-                                    <select
-                                        class="oui-select__input"
-                                        data-ng-model="offer.modem"
-                                        name="modem"
-                                        data-ng-change="$ctrl.onChangeSelectModem(offer)"
-                                    >
-                                        <option
-                                            data-ng-repeat="modemOption in offer.modemOptions"
-                                            data-ng-value="modemOption.name"
-                                            data-ng-bind-html="$ctrl.getModemOptionLabel(modemOption)"
-                                        >
-                                        </option>
-                                    </select>
-                                    <span
-                                        class="oui-icon oui-icon-chevron-down"
-                                        aria-hidden="true"
-                                    ></span>
-                                </label>
-                                <div
-                                    role="alert"
-                                    data-ng-if="offer.modemRequired"
-                                >
-                                    <div
-                                        class="text-danger"
-                                        data-translate="pack_move_modem_required"
-                                    ></div>
-                                </div>
+                                <span
+                                    data-ng-if="!offer.prices.modemRental.price"
+                                    data-translate="pack_move_no_install_fees"
+                                ></span>
+                                <span
+                                    data-ng-if="offer.prices.modemRental.price"
+                                    data-ng-bind-html="offer.prices.modemRental.price.text | tucFormatPrice"
+                                ></span>
                             </td>
                         </tr>
                         <tr class="table-comparison__property">
