@@ -52,6 +52,7 @@
   "sidebar_pci_cloud_archive": "Cloud Archive",
   "sidebar_pci_cold_archive": "Cold Archive",
   "sidebar_pci_volume_snapshot": "Volume Snapshot",
+  "sidebar_pci_volume_backup": "Volume Backup",
   "sidebar_pci_instance_backup": "Instance Backup",
   "sidebar_pci_load_balancer": "Load Balancer",
   "sidebar_pci_private_network": "Private Network",
