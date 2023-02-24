@@ -191,6 +191,9 @@
                 target="_blank"
                 rel="noopener"
                 data-ng-href="{{:: $ctrl.bindings.urls.vScope }}"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="{{ $ctrl.trackingPrefix }}::details::dashboard::goto-vscope"
             >
                 <span
                     data-translate="ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_vscope"
@@ -210,6 +213,9 @@
                 rel="noopener"
                 data-ng-if=":: $ctrl.bindings.urls.webInterface"
                 data-ng-href="{{:: $ctrl.bindings.urls.webInterface }}"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="{{ $ctrl.trackingPrefix }}::details::dashboard::goto-web-interface"
             >
                 <span
                     data-translate="ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_webInterface"
