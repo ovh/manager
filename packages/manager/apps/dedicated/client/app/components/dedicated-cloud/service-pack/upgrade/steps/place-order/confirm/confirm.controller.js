@@ -52,7 +52,7 @@ export default class {
   onCancel() {
     this.atInternet.trackClick({
       name:
-        'dedicated::dedicatedCloud::details::servicePackUpgrade::basicOptions::cancel',
+        'dedicated::dedicatedCloud::details::servicePackUpgrade::basicOptions::cancel_placeOrder',
       type: 'action',
     });
     this.$uibModalInstance.dismiss();

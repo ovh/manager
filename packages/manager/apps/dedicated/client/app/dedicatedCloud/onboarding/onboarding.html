@@ -1,6 +1,7 @@
 <manager-on-boarding-layout
     data-guides=":: $ctrl.guides"
     data-image-source=":: $ctrl.illustration"
+    data-on-guide-click="$ctrl.trackClick('docs::' + guide.id )"
 >
     <onboarding-title>
         <p data-translate="dedicated_clouds_onboarding_title"></p>
@@ -16,6 +17,7 @@
             href="{{:: $ctrl.cta }}"
             target="_blank"
             rel="noopener"
+            data-ng-click="$ctrl.trackClick('order')"
         >
         </a>
     </onboarding-description>

@@ -7,6 +7,7 @@ export default class Selection {
   constructor(
     $state,
     $translate,
+    atInternet,
     Alerter,
     OvhApiOrder,
     ovhManagerPccServicePackService,
@@ -14,6 +15,7 @@ export default class Selection {
     this.$state = $state;
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.atInternet = atInternet;
     this.OvhApiOrder = OvhApiOrder;
     this.ovhManagerPccServicePackService = ovhManagerPccServicePackService;
   }
@@ -99,5 +101,19 @@ export default class Selection {
 
   onChangeServicePackPicker(selectedItem) {
     this.servicePackToOrder = selectedItem;
+  }
+
+  onCancelTrack() {
+    this.atInternet.trackClick({
+      name: 'dedicated::dedicated::details::servicePackUpgrade::cancel',
+      type: 'action',
+    });
+  }
+
+  onSubmitTrack() {
+    this.atInternet.trackClick({
+      name: `dedicated::dedicated::details::servicePackUpgrade::confirm_${this.servicePackToOrder.name}`,
+      type: 'action',
+    });
   }
 }

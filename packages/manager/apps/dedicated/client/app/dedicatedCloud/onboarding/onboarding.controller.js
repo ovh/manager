@@ -3,8 +3,9 @@ import illustration from './assets/vmware.png';
 
 export default class DedicatedCloudsOnboardingController {
   /* @ngInject */
-  constructor($translate, coreConfig) {
+  constructor($translate, atInternet, coreConfig) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.illustration = illustration;
   }
@@ -21,6 +22,7 @@ export default class DedicatedCloudsOnboardingController {
     }
 
     this.guides = guides.map((guide) => ({
+      id: guide.id,
       link: guide.links
         ? guide.links[this.ovhSubsidiary] || guide.links.DEFAULT
         : guide.link,
@@ -28,5 +30,12 @@ export default class DedicatedCloudsOnboardingController {
       title: this.$translate.instant(guide.title),
     }));
     this.cta = cta;
+  }
+
+  trackClick(hit) {
+    this.atInternet.trackClick({
+      name: `dedicated::dedicatedCloud::onboarding::${hit}`,
+      type: 'action',
+    });
   }
 }
