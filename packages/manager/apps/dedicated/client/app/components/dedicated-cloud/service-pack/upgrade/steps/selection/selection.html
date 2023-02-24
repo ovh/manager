@@ -18,7 +18,10 @@
     >
     </ovh-manager-service-pack-no-default-means-of-payment>
 
-    <oui-stepper-v-navigation-button data-navigation-type="cancel">
+    <oui-stepper-v-navigation-button
+        data-navigation-type="cancel"
+        data-on-click="$ctrl.onCancelTrack()"
+    >
     </oui-stepper-v-navigation-button>
 
     <oui-stepper-v-navigation-button
@@ -30,6 +33,7 @@
         }"
         data-type="submit"
         data-navigation-type="next"
+        data-on-click="$ctrl.onSubmitTrack()"
     >
         <span
             data-ng-if="$ctrl.stepper.getStep({ relativeIndex: 1 }).name === 'placeOrder'"
