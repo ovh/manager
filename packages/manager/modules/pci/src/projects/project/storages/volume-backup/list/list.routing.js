@@ -11,6 +11,16 @@ export default /* @ngInject */ ($stateProvider) => {
     atInternet: {
       rename: `${VOLUME_BACKUP_TRACKING.PREFIX}`,
     },
+    redirectTo: (transition) => {
+      return transition
+        .injector()
+        .getAsync('volumeBackups')
+        .then((volumeBackups) =>
+          volumeBackups.length === 0
+            ? { state: VOLUME_BACKUP_ROUTES.ONBOARDING.STATE }
+            : false,
+        );
+    },
     resolve: {
       breadcrumb: () => null,
 
