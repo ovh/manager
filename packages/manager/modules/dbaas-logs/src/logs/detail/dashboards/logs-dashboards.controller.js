@@ -1,9 +1,13 @@
+import datagridToIcebergFilter from '../logs-iceberg.utils';
+
 export default class LogsDashboardsCtrl {
   /* @ngInject */
   constructor(
     $state,
     $stateParams,
     $translate,
+    $window,
+    ouiDatagridService,
     LogsDashboardsService,
     CucControllerHelper,
     CucCloudMessage,
@@ -14,26 +18,28 @@ export default class LogsDashboardsCtrl {
     this.$stateParams = $stateParams;
     this.serviceName = this.$stateParams.serviceName;
     this.$translate = $translate;
+    this.$window = $window;
+    this.ouiDatagridService = ouiDatagridService;
     this.LogsDashboardsService = LogsDashboardsService;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.LogsConstants = LogsConstants;
     this.CucControllerModalHelper = CucControllerModalHelper;
-
-    this.initLoaders();
   }
 
-  /**
-   * initializes dashboards object by making API call to get data
-   *
-   * @memberof LogsDashboardsCtrl
-   */
-  initLoaders() {
-    this.dashboards = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsDashboardsService.getDashboards(this.serviceName),
+  loadDashboards({ offset, pageSize, sort, criteria }) {
+    const filters = criteria.map((c) => {
+      const name = c.property || 'title';
+      return datagridToIcebergFilter(name, c.operator, c.value);
     });
-    this.dashboards.load();
+    const pageOffset = Math.ceil(offset / pageSize);
+    return this.LogsDashboardsService.getPaginatedDashboards(
+      this.serviceName,
+      pageOffset,
+      pageSize,
+      { name: sort.property, dir: sort.dir === -1 ? 'DESC' : 'ASC' },
+      filters,
+    );
   }
 
   /**
@@ -101,9 +107,13 @@ export default class LogsDashboardsCtrl {
   remove(dashboard) {
     this.delete = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.LogsDashboardsService.deleteDashboard(this.serviceName, dashboard)
-          .then(() => this.initLoaders())
-          .finally(() => this.CucControllerHelper.scrollPageToTop()),
+        this.LogsDashboardsService.deleteDashboard(
+          this.serviceName,
+          dashboard,
+        ).finally(() => {
+          this.ouiDatagridService.refresh('dashboards-datagrid', true);
+          this.CucControllerHelper.scrollPageToTop();
+        }),
     });
     this.delete.load();
   }
@@ -115,7 +125,12 @@ export default class LogsDashboardsCtrl {
    * @return {string} graylog url
    * @memberof LogsDashboardsCtrl
    */
-  getGraylogUrl(aapiDashboard) {
-    return this.LogsDashboardsService.getDashboardGraylogUrl(aapiDashboard);
+  openGrayLog(dashboard) {
+    return this.LogsDashboardsService.getDashboardGraylogUrl(
+      this.serviceName,
+      dashboard,
+    ).then((url) => {
+      this.$window.open(url, '_blank');
+    });
   }
 }

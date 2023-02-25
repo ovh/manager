@@ -7,18 +7,17 @@ export default class LogsHomeService {
     $injector,
     LogsHelperService,
     LogsConstants,
-    OvhApiDbaas,
     CucServiceHelper,
+    LogsDashboardsService,
+    LogsStreamsService,
   ) {
     this.$http = $http;
     this.$injector = $injector;
-    this.DetailsAapiService = OvhApiDbaas.Logs()
-      .Details()
-      .Aapi();
-    this.LogsLexiService = OvhApiDbaas.Logs().v6();
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;
     this.CucServiceHelper = CucServiceHelper;
+    this.LogsDashboardsService = LogsDashboardsService;
+    this.LogsStreamsService = LogsStreamsService;
   }
 
   /**
@@ -29,15 +28,27 @@ export default class LogsHomeService {
    * @memberof LogsHomeService
    */
   getAccountDetails(serviceName) {
-    return this.DetailsAapiService.me({ serviceName })
-      .$promise.then((accountDetails) =>
-        this.transformAccountDetails(accountDetails),
-      )
+    return this.getService(serviceName)
+      .then((service) => this.transformService(service))
       .catch(
         this.CucServiceHelper.errorHandler(
           'logs_home_account_details_get_error',
         ),
       );
+  }
+
+  getService(serviceName) {
+    return this.$http.get(`/dbaas/logs/${serviceName}`).then((response) => {
+      return response.data;
+    });
+  }
+
+  getMetricAccount(serviceName) {
+    return this.$http
+      .get(`/dbaas/logs/${serviceName}/metrics`)
+      .then((response) => {
+        return response.data;
+      });
   }
 
   /**
@@ -48,52 +59,54 @@ export default class LogsHomeService {
    * @memberof LogsHomeService
    */
   getDataUsage(serviceName, metricName) {
-    return this.getAccountDetails(serviceName)
-      .then((accountDetails) => {
-        const token = btoa(accountDetails.metrics.token);
-        const query = {
-          start: Math.max(
-            moment()
-              .subtract(
-                this.LogsConstants.DATA_STORAGE.TIME_PERIOD_MONTHS,
-                'month',
-              )
-              .unix() * 1000,
-            moment(accountDetails.service.createdAt).unix() * 1000,
-          ),
-          queries: [
-            {
-              metric: metricName,
-              aggregator: this.LogsConstants.DATA_STORAGE.AGGREGATORS.ZIMSUM,
-              downsample: this.LogsConstants.DATA_STORAGE.DOWNSAMPLING_MODE[
-                '24H_MAX'
-              ],
+    return this.getService(serviceName).then((service) => {
+      return this.getMetricAccount(serviceName)
+        .then((metrics) => {
+          const token = btoa(metrics.token);
+          const query = {
+            start: Math.max(
+              moment()
+                .subtract(
+                  this.LogsConstants.DATA_STORAGE.TIME_PERIOD_MONTHS,
+                  'month',
+                )
+                .unix() * 1000,
+              moment(service.createdAt).unix() * 1000,
+            ),
+            queries: [
+              {
+                metric: metricName,
+                aggregator: this.LogsConstants.DATA_STORAGE.AGGREGATORS.ZIMSUM,
+                downsample: this.LogsConstants.DATA_STORAGE.DOWNSAMPLING_MODE[
+                  '24H_MAX'
+                ],
+              },
+            ],
+          };
+          return this.$http({
+            method: 'POST',
+            url: `${metrics.host}/api/query`,
+            headers: {
+              Authorization: `Basic ${token}`,
             },
-          ],
-        };
-        return this.$http({
-          method: 'POST',
-          url: `${accountDetails.metrics.host}/api/query`,
-          headers: {
-            Authorization: `Basic ${token}`,
-          },
-          preventLogout: true,
-          data: JSON.stringify(query),
-        });
-      })
-      .then((data) => {
-        const timestamps =
-          data.data.length > 0 ? Object.keys(data.data[0].dps) : [];
-        // eslint-disable-next-line no-param-reassign
-        data = data.data.map((dat) =>
-          timestamps.map((timestamp) => dat.dps[timestamp]),
-        );
-        return {
-          timestamps: timestamps.map((timestamp) => timestamp * 1000),
-          usageData: data,
-        };
-      })
-      .catch(this.CucServiceHelper.errorHandler('logs_home_data_get_error'));
+            preventLogout: true,
+            data: JSON.stringify(query),
+          });
+        })
+        .then((data) => {
+          const timestamps =
+            data.data.length > 0 ? Object.keys(data.data[0].dps) : [];
+          // eslint-disable-next-line no-param-reassign
+          data = data.data.map((dat) =>
+            timestamps.map((timestamp) => dat.dps[timestamp]),
+          );
+          return {
+            timestamps: timestamps.map((timestamp) => timestamp * 1000),
+            usageData: data,
+          };
+        })
+        .catch(this.CucServiceHelper.errorHandler('logs_home_data_get_error'));
+    });
   }
 
   /**
@@ -104,9 +117,14 @@ export default class LogsHomeService {
    * @memberof LogsHomeService
    */
   getServiceInfos(serviceName) {
-    return this.LogsLexiService.serviceInfos({ serviceName }).$promise.catch(
-      this.CucServiceHelper.errorHandler('logs_home_service_info_get_error'),
-    );
+    return this.$http
+      .get(`/dbaas/logs/${serviceName}/serviceInfos`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch(
+        this.CucServiceHelper.errorHandler('logs_home_service_info_get_error'),
+      );
   }
 
   /**
@@ -118,14 +136,11 @@ export default class LogsHomeService {
    * @memberof LogsHomeService
    */
   updateDisplayName(serviceName, service) {
-    return this.LogsLexiService.update(
-      { serviceName },
-      {
+    return this.$http
+      .put(`/dbaas/logs/${serviceName}`, {
         displayName: service.displayName,
-      },
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+      })
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -173,9 +188,9 @@ export default class LogsHomeService {
    * @returns the Elasticsearch url
    * @memberof LogsHomeService
    */
-  getElasticSearchApiUrl(object) {
+  getElasticSearchApiUrl(object, urls) {
     const elasticSearchApiUrl = this.constructor.findUrl(
-      object.urls,
+      urls,
       this.LogsConstants.URLS.ELASTICSEARCH_API,
     );
     set(
@@ -193,14 +208,28 @@ export default class LogsHomeService {
    * @returns the Graylog API url
    * @memberof LogsHomeService
    */
-  getGrayLogApiUrl(object) {
+  getGrayLogApiUrl(object, urls) {
+    const graylogApiUrl = this.constructor.findUrl(
+      urls,
+      this.LogsConstants.URLS.GRAYLOG_API,
+    );
     set(
       object,
       'graylogApiUrl',
-      this.constructor.findUrl(
-        object.urls,
-        this.LogsConstants.URLS.GRAYLOG_API,
-      ),
+      `${graylogApiUrl}/api-browser/global/index.html`,
+    );
+    return object;
+  }
+
+  getGrayLogEntryPoint(object, urls) {
+    const graylogWebuiUrl = this.constructor.findUrl(
+      urls,
+      this.LogsConstants.URLS.GRAYLOG_WEBUI,
+    );
+    set(
+      object,
+      'graylogEntryPoint',
+      graylogWebuiUrl.replace('https://', '').replace('/api', ''),
     );
     return object;
   }
@@ -212,14 +241,11 @@ export default class LogsHomeService {
    * @returns the Graylog url
    * @memberof LogsHomeService
    */
-  getGrayLogUrl(object) {
+  getGrayLogUrl(object, urls) {
     set(
       object,
       'graylogWebuiUrl',
-      this.constructor.findUrl(
-        object.urls,
-        this.LogsConstants.URLS.GRAYLOG_WEBUI,
-      ),
+      this.constructor.findUrl(urls, this.LogsConstants.URLS.GRAYLOG_WEBUI),
     );
     return object;
   }
@@ -231,9 +257,9 @@ export default class LogsHomeService {
    * @returns the ports and messages information
    * @memberof LogsHomeService
    */
-  getPortsAndMessages(accountDetails) {
+  getPortsAndMessages(service, urls) {
     const portsAndMessages = {};
-    accountDetails.urls.forEach((url) => {
+    urls.forEach((url) => {
       const urlInfo = this.LogsConstants.URL_TYPES[url.type];
       if (urlInfo) {
         portsAndMessages[urlInfo.PORT] = portsAndMessages[urlInfo.PORT] || {
@@ -245,79 +271,62 @@ export default class LogsHomeService {
         )[1];
       }
     });
-    return Object.keys(portsAndMessages).map(
-      (portType) => portsAndMessages[portType],
-    );
-  }
-
-  /**
-   * Resets all relevant caches
-   *
-   * @memberof LogsHomeService
-   */
-  resetAllCache() {
-    this.DetailsAapiService.resetAllCache();
-    this.LogsLexiService.resetAllCache();
-  }
-
-  /**
-   * Returns the transformed account details object
-   *
-   * @param {any} accountDetails
-   * @returns the transformed account detials object
-   * @memberof LogsHomeService
-   */
-  transformAccountDetails(accountDetails) {
     set(
-      accountDetails,
-      'email',
-      accountDetails.service.contact
-        ? accountDetails.service.contact.email
-        : accountDetails.me.email,
-    );
-    this.getGrayLogUrl(accountDetails);
-    this.getGrayLogApiUrl(accountDetails);
-    set(
-      accountDetails,
-      'graylogApiUrl',
-      `${accountDetails.graylogApiUrl}/api-browser/global/index.html`,
-    );
-    set(
-      accountDetails,
-      'graylogEntryPoint',
-      accountDetails.graylogWebuiUrl
-        .replace('https://', '')
-        .replace('/api', ''),
-    );
-    this.getElasticSearchApiUrl(accountDetails);
-    if (accountDetails.last_stream) {
-      this.getGrayLogUrl(accountDetails.last_stream);
-    }
-    if (accountDetails.last_dashboard) {
-      this.getGrayLogUrl(accountDetails.last_dashboard);
-    }
-    set(
-      accountDetails,
+      service,
       'portsAndMessages',
-      this.getPortsAndMessages(accountDetails),
+      Object.keys(portsAndMessages).map(
+        (portType) => portsAndMessages[portType],
+      ),
     );
-    return accountDetails;
+    return service;
   }
 
-  /**
-   * Returns the transformed option object
-   *
-   * @param {any} option
-   * @returns the transformed option object
-   * @memberof LogsHomeService
-   */
-  static transformOption(option) {
-    set(
-      option,
-      'description',
-      `${option.quantity} ${option.type}: ${option.detail}`,
+  getLastUpdatedStream(service) {
+    this.LogsStreamsService.getLastUpdatedStream(service.serviceName).then(
+      (stream) => {
+        if (stream) {
+          this.$http
+            .get(
+              `/dbaas/logs/${service.serviceName}/output/graylog/stream/${stream.streamId}/url`,
+            )
+            .then((urls) => {
+              set(service, 'last_stream', stream);
+              this.getGrayLogUrl(service.last_stream, urls.data);
+            });
+        }
+      },
     );
-    return option;
+  }
+
+  getLastUpdatedDashboard(service) {
+    this.LogsDashboardsService.getLastUpdatedDashboard(
+      service.serviceName,
+    ).then((dashboard) => {
+      if (dashboard) {
+        this.$http
+          .get(
+            `/dbaas/logs/${service.serviceName}/output/graylog/dashboard/${dashboard.dashboardId}/url`,
+          )
+          .then((urls) => {
+            set(service, 'last_dashboard', dashboard);
+            this.getGrayLogUrl(service.last_dashboard, urls.data);
+          });
+      }
+    });
+  }
+
+  transformService(service) {
+    this.getLastUpdatedStream(service);
+    this.getLastUpdatedDashboard(service);
+    this.$http.get(`/dbaas/logs/${service.serviceName}/url`).then((urls) => {
+      this.getGrayLogUrl(service, urls.data);
+      this.getGrayLogApiUrl(service, urls.data);
+      this.getGrayLogEntryPoint(service, urls.data);
+      this.getElasticSearchApiUrl(service, urls.data);
+      this.getPortsAndMessages(service, urls.data);
+    });
+
+    return service;
   }
 
   /**

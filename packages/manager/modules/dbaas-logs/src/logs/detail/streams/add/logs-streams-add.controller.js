@@ -42,91 +42,63 @@ export default class LogsStreamsAddCtrl {
     this.initLoaders();
   }
 
-  /**
-   * initializes options list
-   *
-   * @memberof LogsStreamsHomeCtrl
-   */
-  initLoaders() {
-    this.defaultCluster = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.LogsTokensService.getDefaultCluster(this.serviceName),
+  $onInit() {
+    this.catalog.load().then((catalog) => {
+      const selectedCatalog = catalog.plans.find(
+        (plan) => plan.planCode === this.LogsConstants.LDP_PLAN_CODE,
+      );
+      const selectedFamily = selectedCatalog.addonsFamily.find(
+        (addon) => addon.family === this.LogsConstants.ADD_ON_FAMILY.NEW,
+      );
+      const indexingCapacities = selectedFamily.addons.find(
+        (add) =>
+          add.plan.planCode === this.LogsConstants.CONSUMPTION_REFERENCE.STREAM,
+      );
+      const coldstoragePCACapacities = selectedFamily.addons.find(
+        (add) =>
+          add.plan.planCode ===
+          this.LogsConstants.CONSUMPTION_REFERENCE.COLDSTORAGE_PCA,
+      );
+      const coldstoragePCSCapacities = selectedFamily.addons.find(
+        (add) =>
+          add.plan.planCode ===
+          this.LogsConstants.CONSUMPTION_REFERENCE.COLDSTORAGE_PCS,
+      );
+      const indexingFirstStepPrice = indexingCapacities.plan.details.pricings.default.find(
+        (capabilities) =>
+          capabilities.capacities.includes(
+            this.LogsConstants.CONSUMPTION_CAPACITY,
+          ) &&
+          capabilities.maximumQuantity === this.LogsConstants.INDEXING_TIERING,
+      );
+      const indexingSecondStepPrice = indexingCapacities.plan.details.pricings.default.find(
+        (capabilities) =>
+          capabilities.capacities.includes(
+            this.LogsConstants.CONSUMPTION_CAPACITY,
+          ) &&
+          capabilities.minimumQuantity ===
+            this.LogsConstants.INDEXING_TIERING + 1,
+      );
+      const coldstoragePCA = coldstoragePCACapacities.plan.details.pricings.default.find(
+        (capabilities) =>
+          capabilities.capacities.includes(
+            this.LogsConstants.CONSUMPTION_CAPACITY,
+          ),
+      );
+      const coldstoragePCS = coldstoragePCSCapacities.plan.details.pricings.default.find(
+        (capabilities) =>
+          capabilities.capacities.includes(
+            this.LogsConstants.CONSUMPTION_CAPACITY,
+          ),
+      );
+      this.coldStoragePrice.PCA.price = coldstoragePCA.price.text;
+      this.coldStoragePrice.PCS.price = coldstoragePCS.price.text;
+      this.indexingStoragePrice.FirstStep.price =
+        indexingFirstStepPrice.price.text;
+      this.indexingStoragePrice.SecondStep.price =
+        indexingSecondStepPrice.price.text;
     });
-    this.catalog = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsStreamsService.getOrderCatalog(this.ovhSubsidiary),
-    });
-    this.accountDetails = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.LogsStreamsService.getAccountDetails(this.serviceName),
-    });
-    this.accountDetails
-      .load()
-      .then(() => {
-        this.ovhSubsidiary = this.accountDetails.data.me.ovhSubsidiary;
-        return this.catalog.load();
-      })
-      .then(() => {
-        const selectedCatalog = this.catalog.data.plans.find(
-          (plan) => plan.planCode === this.LogsConstants.LDP_PLAN_CODE,
-        );
-        const selectedFamily = selectedCatalog.addonsFamily.find(
-          (addon) => addon.family === this.LogsConstants.ADD_ON_FAMILY.NEW,
-        );
-        const indexingCapacities = selectedFamily.addons.find(
-          (add) =>
-            add.plan.planCode ===
-            this.LogsConstants.CONSUMPTION_REFERENCE.STREAM,
-        );
-        const coldstoragePCACapacities = selectedFamily.addons.find(
-          (add) =>
-            add.plan.planCode ===
-            this.LogsConstants.CONSUMPTION_REFERENCE.COLDSTORAGE_PCA,
-        );
-        const coldstoragePCSCapacities = selectedFamily.addons.find(
-          (add) =>
-            add.plan.planCode ===
-            this.LogsConstants.CONSUMPTION_REFERENCE.COLDSTORAGE_PCS,
-        );
-        const indexingFirstStepPrice = indexingCapacities.plan.details.pricings.default.find(
-          (capabilities) =>
-            capabilities.capacities.includes(
-              this.LogsConstants.CONSUMPTION_CAPACITY,
-            ) &&
-            capabilities.maximumQuantity ===
-              this.LogsConstants.INDEXING_TIERING,
-        );
-        const indexingSecondStepPrice = indexingCapacities.plan.details.pricings.default.find(
-          (capabilities) =>
-            capabilities.capacities.includes(
-              this.LogsConstants.CONSUMPTION_CAPACITY,
-            ) &&
-            capabilities.minimumQuantity ===
-              this.LogsConstants.INDEXING_TIERING + 1,
-        );
-        const coldstoragePCA = coldstoragePCACapacities.plan.details.pricings.default.find(
-          (capabilities) =>
-            capabilities.capacities.includes(
-              this.LogsConstants.CONSUMPTION_CAPACITY,
-            ),
-        );
-        const coldstoragePCS = coldstoragePCSCapacities.plan.details.pricings.default.find(
-          (capabilities) =>
-            capabilities.capacities.includes(
-              this.LogsConstants.CONSUMPTION_CAPACITY,
-            ),
-        );
-        this.coldStoragePrice.PCA.price = coldstoragePCA.price.text;
-        this.coldStoragePrice.PCS.price = coldstoragePCS.price.text;
-        this.indexingStoragePrice.FirstStep.price =
-          indexingFirstStepPrice.price.text;
-        this.indexingStoragePrice.SecondStep.price =
-          indexingSecondStepPrice.price.text;
-      });
-    this.encryptionKeys = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.LogsEncryptionKeysService.getEncryptionKeys(this.serviceName),
-    });
+
     this.encryptionKeys.load();
 
     if (this.$stateParams.streamId) {
@@ -147,30 +119,53 @@ export default class LogsStreamsAddCtrl {
       this.isEdit = false;
       this.stream = this.LogsStreamsService.getNewStream();
 
-      this.defaultCluster.load().then((cluster) => {
-        this.availableRetentions = cluster.retentions.reduce(
-          (retentionsList, retention) => {
-            if (retention.isSupported) {
-              const updatedRetention = retention;
-              if (updatedRetention.duration) {
-                updatedRetention.label = moment
-                  .duration(updatedRetention.duration)
-                  .humanize();
-              } else {
-                updatedRetention.label = this.$translate.instant(
-                  'streams_disk_full',
-                );
+      this.LogsStreamsService.getRetentions(this.serviceName).then(
+        (retentions) => {
+          this.availableRetentions = retentions.reduce(
+            (retentionsList, retention) => {
+              if (retention.isSupported) {
+                const updatedRetention = retention;
+                if (updatedRetention.duration) {
+                  updatedRetention.label = moment
+                    .duration(updatedRetention.duration)
+                    .humanize();
+                } else {
+                  updatedRetention.label = this.$translate.instant(
+                    'streams_disk_full',
+                  );
+                }
+                retentionsList.push(updatedRetention);
               }
-              retentionsList.push(updatedRetention);
-            }
-            return retentionsList;
-          },
-          [],
-        );
+              return retentionsList;
+            },
+            [],
+          );
+        },
+      );
+      this.defaultCluster.load().then((cluster) => {
         this.stream.data.retentionId = cluster.defaultRetentionId;
       });
-      this.stream.data.retentionId = this.defaultCluster.defaultRetentionId;
     }
+  }
+
+  /**
+   * initializes options list
+   *
+   * @memberof LogsStreamsHomeCtrl
+   */
+  initLoaders() {
+    this.defaultCluster = this.CucControllerHelper.request.getHashLoader({
+      loaderFunction: () =>
+        this.LogsTokensService.getDefaultCluster(this.serviceName),
+    });
+    this.catalog = this.CucControllerHelper.request.getArrayLoader({
+      loaderFunction: () =>
+        this.LogsStreamsService.getOrderCatalog(this.serviceName),
+    });
+    this.encryptionKeys = this.CucControllerHelper.request.getHashLoader({
+      loaderFunction: () =>
+        this.LogsEncryptionKeysService.getEncryptionKeys(this.serviceName),
+    });
   }
 
   submit() {

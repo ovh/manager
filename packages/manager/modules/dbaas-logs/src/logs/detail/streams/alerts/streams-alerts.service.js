@@ -2,20 +2,17 @@ export default class LogsStreamsAlertsService {
   /* @ngInject */
   constructor(
     $q,
+    $http,
+    iceberg,
     CucCloudPoll,
-    OvhApiDbaas,
     CucServiceHelper,
     LogsConstants,
     LogsHelperService,
   ) {
     this.$q = $q;
+    this.$http = $http;
+    this.iceberg = iceberg;
     this.CucCloudPoll = CucCloudPoll;
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
-    this.AlertsApiService = OvhApiDbaas.Logs()
-      .Alert()
-      .v6();
     this.CucServiceHelper = CucServiceHelper;
     this.LogsConstants = LogsConstants;
     this.LogsHelperService = LogsHelperService;
@@ -31,31 +28,32 @@ export default class LogsStreamsAlertsService {
    * @memberof LogsStreamsAlertsService
    */
   addAlert(serviceName, streamId, alert) {
-    return this.AlertsApiService.post(
-      { serviceName, streamId },
-      {
-        backlog: alert.backlog,
-        conditionType: alert.conditionType,
-        constraintType: alert.constraintType,
-        field: alert.field,
-        grace: alert.grace,
-        queryFilter: alert.queryFilter,
-        repeatNotificationsEnabled: alert.repeatNotificationsEnabled,
-        threshold: alert.threshold,
-        thresholdType: alert.thresholdType,
-        time: alert.time,
-        title: alert.title,
-        value: alert.value,
-      },
-    )
-      .$promise.then((operation) =>
-        this.LogsHelperService.handleOperation(
+    return this.$http
+      .post(
+        `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}/alert`,
+        {
+          backlog: alert.backlog,
+          conditionType: alert.conditionType,
+          constraintType: alert.constraintType,
+          field: alert.field,
+          grace: alert.grace,
+          queryFilter: alert.queryFilter,
+          repeatNotificationsEnabled: alert.repeatNotificationsEnabled,
+          threshold: alert.threshold,
+          thresholdType: alert.thresholdType,
+          time: alert.time,
+          title: alert.title,
+          value: alert.value,
+        },
+      )
+      .then((operation) => {
+        return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'streams_alerts_add_success',
           { alertName: alert.title },
-        ),
-      )
+        );
+      })
       .catch((err) =>
         this.LogsHelperService.handleError('streams_alerts_add_error', err, {
           alertName: alert.title,
@@ -73,19 +71,18 @@ export default class LogsStreamsAlertsService {
    * @memberof LogsStreamsAlertsService
    */
   deleteAlert(serviceName, streamId, alert) {
-    return this.AlertsApiService.delete({
-      serviceName,
-      streamId,
-      alertId: alert.alertId,
-    })
-      .$promise.then((operation) =>
-        this.LogsHelperService.handleOperation(
+    return this.$http
+      .delete(
+        `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}/alert/${alert.alertId}`,
+      )
+      .then((operation) => {
+        return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'streams_alerts_delete_success',
           { alertName: alert.title },
-        ),
-      )
+        );
+      })
       .catch((err) =>
         this.LogsHelperService.handleError('streams_alerts_delete_error', err, {
           alertName: alert.title,
@@ -93,77 +90,36 @@ export default class LogsStreamsAlertsService {
       );
   }
 
-  /**
-   * Get the IDs of all alerts
-   *
-   * @param {any} serviceName
-   * @param {any} streamId
-   * @returns promise which will be resolve with a list of alert IDs
-   * @memberof LogsStreamsAlertsService
-   */
-  getAlertIds(serviceName, streamId) {
-    return this.AlertsApiService.query({
-      serviceName,
-      streamId,
-    }).$promise.catch((err) =>
-      this.LogsHelperService.handleError(
-        'streams_alerts_ids_loading_error',
-        err,
-        {},
+  getPaginatedAlerts(
+    serviceName,
+    streamId,
+    offset = 0,
+    pageSize = 25,
+    sort = { name: 'title', dir: 'desc' },
+    filters = null,
+  ) {
+    let res = this.iceberg(
+      `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}/alert`,
+    )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort.name, sort.dir);
+    if (filters !== null) {
+      filters.forEach((filter) => {
+        res = res.addFilter(filter.name, filter.operator, filter.value);
+      });
+    }
+    return res.execute().$promise.then((response) => ({
+      data: response.data.map((alert) =>
+        this.constructor.transformAlert(alert),
       ),
-    );
-  }
-
-  /**
-   * Gets the alert objects corresponding to the alertIds
-   *
-   * @param {any} serviceName
-   * @param {any} streamId
-   * @param {any} alertIds - list of alert IDs for which alert object is to be fetched
-   * @returns promise which will be resolve with the list of alerts
-   * @memberof LogsStreamsAlertsService
-   */
-  getAlerts(serviceName, streamId, alertIds) {
-    return this.getAlertDetails(serviceName, streamId, alertIds).catch((err) =>
-      this.LogsHelperService.handleError(
-        'streams_alerts_loading_error',
-        err,
-        {},
-      ),
-    );
-  }
-
-  /**
-   * Gets the alert objects corresponding to the alertIds
-   *
-   * @param {any} serviceName
-   * @param {any} streamId
-   * @param {any} alertIds - list of alert IDs for which alert object is to be fetched
-   * @returns promise which will be resolve with the list of alerts
-   * @memberof LogsStreamsAlertsService
-   */
-  getAlertDetails(serviceName, streamId, alertIds) {
-    const promises = alertIds.map((alertId) =>
-      this.getAlert(serviceName, streamId, alertId),
-    );
-    return this.$q.all(promises);
-  }
-
-  /**
-   * Gets the alert object corresponding to the alertId
-   *
-   * @param {any} serviceName
-   * @param {any} streamId
-   * @param {any} alertId - the alert ID for which alert object is to be fetched
-   * @returns promise which will be resolve with the alert
-   * @memberof LogsStreamsAlertsService
-   */
-  getAlert(serviceName, streamId, alertId) {
-    return this.AlertsApiService.get({
-      serviceName,
-      streamId,
-      alertId,
-    }).$promise.then((alert) => this.constructor.transformAlert(alert));
+      meta: {
+        totalCount:
+          parseInt(response.headers['x-pagination-elements'], 10) || 0,
+      },
+    }));
   }
 
   /**
@@ -205,31 +161,32 @@ export default class LogsStreamsAlertsService {
    * @memberof LogsStreamsAlertsService
    */
   updateAlert(serviceName, streamId, alert) {
-    return this.AlertsApiService.put(
-      { serviceName, streamId, alertId: alert.alertId },
-      {
-        backlog: alert.backlog,
-        conditionType: alert.conditionType,
-        constraintType: alert.constraintType,
-        field: alert.field,
-        grace: alert.grace,
-        queryFilter: alert.queryFilter,
-        repeatNotificationsEnabled: alert.repeatNotificationsEnabled,
-        threshold: alert.threshold,
-        thresholdType: alert.thresholdType,
-        time: alert.time,
-        title: alert.title,
-        value: alert.value,
-      },
-    )
-      .$promise.then((operation) =>
-        this.LogsHelperService.handleOperation(
+    return this.$http
+      .put(
+        `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}/alert/${alert.alertId}`,
+        {
+          backlog: alert.backlog,
+          conditionType: alert.conditionType,
+          constraintType: alert.constraintType,
+          field: alert.field,
+          grace: alert.grace,
+          queryFilter: alert.queryFilter,
+          repeatNotificationsEnabled: alert.repeatNotificationsEnabled,
+          threshold: alert.threshold,
+          thresholdType: alert.thresholdType,
+          time: alert.time,
+          title: alert.title,
+          value: alert.value,
+        },
+      )
+      .then((operation) => {
+        return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'streams_alerts_update_success',
           { alertName: alert.title },
-        ),
-      )
+        );
+      })
       .catch((err) =>
         this.LogsHelperService.handleError('streams_alerts_update_error', err, {
           alertName: alert.title,

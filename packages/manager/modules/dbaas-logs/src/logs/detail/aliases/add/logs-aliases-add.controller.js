@@ -4,6 +4,7 @@ export default class LogsAliasesAddCtrl {
     $q,
     $stateParams,
     $uibModalInstance,
+    ouiDatagridService,
     LogsAliasesService,
     CucControllerHelper,
     CucCloudMessage,
@@ -11,6 +12,7 @@ export default class LogsAliasesAddCtrl {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$uibModalInstance = $uibModalInstance;
+    this.ouiDatagridService = ouiDatagridService;
     this.serviceName = this.$stateParams.serviceName;
     this.LogsAliasesService = LogsAliasesService;
     this.CucControllerHelper = CucControllerHelper;
@@ -67,6 +69,7 @@ export default class LogsAliasesAddCtrl {
           this.$stateParams.serviceName,
           this.alias.data,
         ).finally(() => {
+          this.ouiDatagridService.refresh('aliases-datagrid', true);
           this.$uibModalInstance.close();
           this.CucControllerHelper.scrollPageToTop();
         }),
@@ -90,6 +93,7 @@ export default class LogsAliasesAddCtrl {
           this.$stateParams.serviceName,
           this.alias.data,
         ).finally(() => {
+          this.ouiDatagridService.refresh('aliases-datagrid', true);
           this.$uibModalInstance.close();
           this.CucControllerHelper.scrollPageToTop();
         }),

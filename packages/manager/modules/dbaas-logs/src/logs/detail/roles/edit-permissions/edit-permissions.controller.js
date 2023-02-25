@@ -1,7 +1,5 @@
-import assignIn from 'lodash/assignIn';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
-import map from 'lodash/map';
 
 export default class LogsRolesPermissionsCtrl {
   /* @ngInject */
@@ -21,271 +19,157 @@ export default class LogsRolesPermissionsCtrl {
     this.LogsRolesService = LogsRolesService;
     this.CucCloudMessage = CucCloudMessage;
     this.LogsConstants = LogsConstants;
+
+    this.availableStreams = [];
+    this.attachedReadOnlyStreams = [];
+
+    this.availableAliases = [];
+    this.attachedReadOnlyAliases = [];
+
+    this.availableIndices = [];
+    this.attachedReadOnlyIndices = [];
+    this.attachedReadWriteIndices = [];
+
+    this.availableDashboards = [];
+    this.attachedReadOnlyDashboards = [];
+    this.attachedReadWriteDashboards = [];
+
+    this.availableOsds = [];
+    this.attachedReadOnlyOsds = [];
+    this.attachedReadWriteOsds = [];
+
+    this.filteredElements = [];
+
+    this.allPermissions = [];
+
     this.initLoaders();
   }
 
   initLoaders() {
-    this.availableStreams = this.$q.defer();
-    this.attachedReadOnlyStreams = this.$q.defer();
-
-    this.availableAliases = this.$q.defer();
-    this.attachedReadOnlyAliases = this.$q.defer();
-
-    this.availableIndices = this.$q.defer();
-    this.attachedReadOnlyIndices = this.$q.defer();
-    this.attachedReadWriteIndices = this.$q.defer();
-
-    this.availableDashboards = this.$q.defer();
-    this.attachedReadOnlyDashboards = this.$q.defer();
-    this.attachedReadWriteDashboards = this.$q.defer();
-
-    this.availableKibanas = this.$q.defer();
-    this.attachedReadOnlyKibanas = this.$q.defer();
-    this.attachedReadWriteKibanas = this.$q.defer();
-
     this.roleDetails = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
         this.LogsRolesService.getRoleDetails(
           this.serviceName,
           this.roleId,
         ).then((role) => {
-          this.loadAttachedPermissions(role.permissions);
+          this.LogsRolesService.getRolePermissions(
+            this.serviceName,
+            this.roleId,
+          ).then((permissions) => {
+            this.allPermissions = permissions.data;
 
-          this.loadAvailableAliases(role.permissions);
-          this.loadAvailableDashboards(role.permissions);
-          this.loadAvailableIndices(role.permissions);
-          this.loadAvailableStreams(role.permissions);
-          this.loadAvailableKibanas(role.permissions);
-
+            this.loadAvailableAliases();
+            this.loadAvailableDashboards();
+            this.loadAvailableIndices();
+            this.loadAvailableStreams();
+            this.loadAvailableOsds();
+          });
           return role;
         }),
     });
     this.roleDetails.load();
   }
 
-  loadAvailableAliases(permissionList) {
-    this.allAliases = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsRolesService.getAllAliases(this.serviceName).then((result) => {
-          const search = map(
-            filter(
-              result,
-              (alias) =>
-                !find(
-                  permissionList,
-                  (permission) => permission.aliasId === alias.info.aliasId,
-                ),
-            ),
-            'info',
-          );
-          this.availableAliases.resolve(search);
-        }),
+  loadAvailableAliases() {
+    this.LogsRolesService.getAllAliases(this.serviceName).then((result) => {
+      this.availableAliases = this.getAvailable('aliasId', result);
+      this.attachedReadOnlyAliases = this.getSelected(
+        'aliasId',
+        result,
+        this.LogsConstants.PERMISSION_TYPES.RO,
+      );
     });
-    this.allAliases.load();
   }
 
-  loadAvailableIndices(permissionList) {
-    this.allIndices = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsRolesService.getAllIndices(this.serviceName).then((result) => {
-          const search = map(
-            filter(
-              result,
-              (index) =>
-                !find(
-                  permissionList,
-                  (permission) => permission.indexId === index.info.indexId,
-                ),
-            ),
-            'info',
-          );
-          this.availableIndices.resolve(search);
-        }),
+  loadAvailableIndices() {
+    this.LogsRolesService.getAllIndices(this.serviceName).then((result) => {
+      this.availableIndices = this.getAvailable('indexId', result);
+      this.attachedReadOnlyIndices = this.getSelected(
+        'indexId',
+        result,
+        this.LogsConstants.PERMISSION_TYPES.RO,
+      );
+      this.attachedReadWriteIndices = this.getSelected(
+        'indexId',
+        result,
+        this.LogsConstants.PERMISSION_TYPES.RW,
+      );
     });
-    this.allIndices.load();
   }
 
-  loadAvailableDashboards(permissionList) {
-    this.allDashboards = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsRolesService.getAllDashboards(this.serviceName).then(
-          (result) => {
-            const search = map(
-              filter(
-                result,
-                (dashboard) =>
-                  !find(
-                    permissionList,
-                    (permission) =>
-                      permission.dashboardId === dashboard.info.dashboardId,
-                  ),
-              ),
-              'info',
-            );
-            this.availableDashboards.resolve(search);
-          },
+  loadAvailableDashboards() {
+    this.LogsRolesService.getAllDashboards(this.serviceName).then((result) => {
+      this.availableDashboards = this.getAvailable('dashboardId', result);
+      this.attachedReadOnlyDashboards = this.getSelected(
+        'dashboardId',
+        result,
+        this.LogsConstants.PERMISSION_TYPES.RO,
+      );
+      this.attachedReadWriteDashboards = this.getSelected(
+        'dashboardId',
+        result,
+        this.LogsConstants.PERMISSION_TYPES.RW,
+      );
+    });
+  }
+
+  loadAvailableStreams() {
+    this.LogsRolesService.getAllStreams(this.serviceName).then((result) => {
+      this.availableStreams = this.getAvailable('streamId', result);
+      this.attachedReadOnlyStreams = this.getSelected(
+        'streamId',
+        result,
+        this.LogsConstants.PERMISSION_TYPES.RO,
+      );
+    });
+  }
+
+  loadAvailableOsds() {
+    this.LogsRolesService.getAllOsds(this.serviceName).then((result) => {
+      this.availableOsds = this.getAvailable('osdId', result);
+      this.attachedReadOnlyOsds = this.getSelected(
+        'osdId',
+        result,
+        this.LogsConstants.PERMISSION_TYPES.RO,
+      );
+      this.attachedReadWriteOsds = this.getSelected(
+        'osdId',
+        result,
+        this.LogsConstants.PERMISSION_TYPES.RW,
+      );
+    });
+  }
+
+  getAvailable(searchId, result) {
+    this.filteredElements = filter(
+      result,
+      (obj) =>
+        !find(
+          this.allPermissions,
+          (permission) => permission[searchId] === obj[searchId],
         ),
-    });
-    this.allDashboards.load();
-  }
-
-  loadAvailableStreams(permissionList) {
-    this.allStreams = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsRolesService.getAllStreams(this.serviceName).then((result) => {
-          const search = filter(
-            result,
-            (stream) =>
-              !find(
-                permissionList,
-                (permission) => permission.streamId === stream.streamId,
-              ),
-          );
-          this.availableStreams.resolve(search);
-        }),
-    });
-    this.allStreams.load();
-  }
-
-  loadAvailableKibanas(permissionList) {
-    this.allKibanas = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsRolesService.getAllKibanas(this.serviceName).then((result) => {
-          const search = map(
-            filter(
-              result,
-              (kibana) =>
-                !find(
-                  permissionList,
-                  (permission) => permission.kibanaId === kibana.info.kibanaId,
-                ),
-            ),
-            'info',
-          );
-          this.availableKibanas.resolve(search);
-        }),
-    });
-    this.allKibanas.load();
-  }
-
-  /**
-   * initializes and loads list of permissions
-   * adding permissionId to the object of index, alias, dashboard and stream so as to use it to
-   * remove permission later
-   * @memberof LogsRolesPermissionsCtrl
-   */
-  loadAttachedPermissions(permissionList) {
-    this.readOnlyPermissions = this.LogsRolesService.getNewReadOnlyPermissions();
-    this.readWritePermissions = this.LogsRolesService.getNewReadWritePermissions();
-    permissionList.forEach((permission) => {
-      if (permission.index) {
-        assignIn(permission.index, { permissionId: permission.permissionId });
-        if (
-          permission.permissionType === this.LogsConstants.PERMISSION_TYPES.RO
-        ) {
-          this.readOnlyPermissions.index.push(permission.index);
-        } else if (
-          permission.permissionType === this.LogsConstants.PERMISSION_TYPES.RW
-        ) {
-          this.readWritePermissions.index.push(permission.index);
-        }
-      }
-      if (permission.alias) {
-        assignIn(permission.alias, { permissionId: permission.permissionId });
-        if (
-          permission.permissionType === this.LogsConstants.PERMISSION_TYPES.RO
-        ) {
-          this.readOnlyPermissions.alias.push(permission.alias);
-        }
-      }
-      if (permission.stream) {
-        assignIn(permission.stream, { permissionId: permission.permissionId });
-        if (
-          permission.permissionType === this.LogsConstants.PERMISSION_TYPES.RO
-        ) {
-          this.readOnlyPermissions.stream.push(permission.stream);
-        }
-      }
-      if (permission.dashboard) {
-        assignIn(permission.dashboard, {
-          permissionId: permission.permissionId,
-        });
-        if (
-          permission.permissionType === this.LogsConstants.PERMISSION_TYPES.RO
-        ) {
-          this.readOnlyPermissions.dashboard.push(permission.dashboard);
-        } else if (
-          permission.permissionType === this.LogsConstants.PERMISSION_TYPES.RW
-        ) {
-          this.readWritePermissions.dashboard.push(permission.dashboard);
-        }
-      }
-      if (permission.kibana) {
-        assignIn(permission.kibana, {
-          permissionId: permission.permissionId,
-        });
-        if (
-          permission.permissionType === this.LogsConstants.PERMISSION_TYPES.RO
-        ) {
-          this.readOnlyPermissions.kibana.push(permission.kibana);
-        } else if (
-          permission.permissionType === this.LogsConstants.PERMISSION_TYPES.RW
-        ) {
-          this.readWritePermissions.kibana.push(permission.kibana);
-        }
-      }
-    });
-    this.attachedReadOnlyIndices.resolve(this.readOnlyPermissions.index);
-    this.attachedReadOnlyAliases.resolve(this.readOnlyPermissions.alias);
-    this.attachedReadOnlyDashboards.resolve(this.readOnlyPermissions.dashboard);
-    this.attachedReadOnlyStreams.resolve(this.readOnlyPermissions.stream);
-    this.attachedReadOnlyKibanas.resolve(this.readOnlyPermissions.kibana);
-
-    this.attachedReadWriteIndices.resolve(this.readWritePermissions.index);
-    this.attachedReadWriteDashboards.resolve(
-      this.readWritePermissions.dashboard,
     );
-    this.attachedReadWriteKibanas.resolve(this.readWritePermissions.kibana);
+    return this.filteredElements;
   }
 
-  loadAttachedReadWritePermissions(permissionList) {
-    this.readWritePermissions = this.LogsRolesService.getNewReadWritePermissions();
-    permissionList.forEach((permission) => {
-      if (permission.index) {
-        assignIn(permission.index, { permissionId: permission.permissionId });
-        if (
-          permission.permissionType === this.LogsConstants.PERMISSION_TYPES.RW
-        ) {
-          this.readWritePermissions.index.push(permission.index);
-        }
-      }
-      if (permission.dashboard) {
-        assignIn(permission.dashboard, {
-          permissionId: permission.permissionId,
-        });
-        if (
-          permission.permissionType === this.LogsConstants.PERMISSION_TYPES.RW
-        ) {
-          this.readWritePermissions.dashboard.push(permission.dashboard);
-        }
-      }
-      if (permission.kibana) {
-        assignIn(permission.kibana, {
-          permissionId: permission.permissionId,
-        });
-        if (
-          permission.permissionType === this.LogsConstants.PERMISSION_TYPES.RW
-        ) {
-          this.readWritePermissions.kibana.push(permission.kibana);
-        }
-      }
-    });
-
-    this.attachedReadWriteIndices.resolve(this.readWritePermissions.index);
-    this.attachedReadWriteDashboards.resolve(
-      this.readWritePermissions.dashboard,
+  getSelected(searchId, result, permissionType) {
+    this.filteredElements = filter(result, (obj) =>
+      find(
+        this.allPermissions,
+        (permission) =>
+          permission[searchId] === obj[searchId] &&
+          permission.permissionType === permissionType,
+      ),
     );
-    this.attachedReadWriteKibanas.resolve(this.readWritePermissions.kibana);
+    return this.filteredElements;
+  }
+
+  findPermission(obj, searchId) {
+    const foundPermission = find(
+      this.allPermissions,
+      (permission) => permission[searchId] === obj[0][searchId],
+    );
+    return foundPermission.permissionId;
   }
 
   attachAlias(item) {
@@ -346,11 +230,11 @@ export default class LogsRolesPermissionsCtrl {
     return this.saveDashboard.load();
   }
 
-  attachKibana(item, rw) {
+  attachOsd(item, rw) {
     this.CucCloudMessage.flushChildMessage();
-    this.saveKibana = this.CucControllerHelper.request.getArrayLoader({
+    this.saveOsd = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
-        this.LogsRolesService.addKibana(
+        this.LogsRolesService.addOsd(
           this.serviceName,
           this.roleId,
           item[0],
@@ -361,17 +245,17 @@ export default class LogsRolesPermissionsCtrl {
       successHandler: () => this.roleDetails.load(),
       errorHandler: () => this.CucControllerHelper.scrollPageToTop(),
     });
-    return this.saveKibana.load();
+    return this.saveOsd.load();
   }
 
-  removePermission(permission) {
+  removePermission(permission, searchId) {
     this.CucCloudMessage.flushChildMessage();
     this.deletePermission = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
         this.LogsRolesService.removePermission(
           this.serviceName,
           this.roleId,
-          permission,
+          this.findPermission(permission, searchId),
         ),
       errorHandler: () => this.CucControllerHelper.scrollPageToTop(),
     });

@@ -1,5 +1,5 @@
 import detailTemplate from './detail/detail.html';
-import datagridToIcebergFilter from './logs-encryption-keys-home.utils';
+import datagridToIcebergFilter from '../../logs-iceberg.utils';
 
 export default class LogsEncryptionKeysHomeCtrl {
   /* @ngInject */

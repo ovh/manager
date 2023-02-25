@@ -1,5 +1,5 @@
 import set from 'lodash/set';
-
+import datagridToIcebergFilter from '../../logs-iceberg.utils';
 import template from './info/logs-inputs-home-info.html';
 
 export default class LogsInputsHomeCtrl {
@@ -8,6 +8,7 @@ export default class LogsInputsHomeCtrl {
     $state,
     $stateParams,
     $translate,
+    ouiDatagridService,
     CucCloudMessage,
     CucControllerHelper,
     LogsConstants,
@@ -17,15 +18,26 @@ export default class LogsInputsHomeCtrl {
     this.$stateParams = $stateParams;
     this.serviceName = this.$stateParams.serviceName;
     this.$translate = $translate;
+    this.ouiDatagridService = ouiDatagridService;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.LogsConstants = LogsConstants;
     this.LogsInputsService = LogsInputsService;
-    this.initLoaders();
   }
 
-  $onInit() {
-    this.runLoaders();
+  loadInputs({ offset, pageSize, sort, criteria }) {
+    const filters = criteria.map((c) => {
+      const name = c.property || 'title';
+      return datagridToIcebergFilter(name, c.operator, c.value);
+    });
+    const pageOffset = Math.ceil(offset / pageSize);
+    return this.LogsInputsService.getPaginatedInputs(
+      this.serviceName,
+      pageOffset,
+      pageSize,
+      { name: sort.property, dir: sort.dir === -1 ? 'DESC' : 'ASC' },
+      filters,
+    );
   }
 
   /**
@@ -37,12 +49,14 @@ export default class LogsInputsHomeCtrl {
   delete(input) {
     this.delete = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.LogsInputsService.deleteInput(
-          this.serviceName,
-          input,
-        ).finally(() => this.CucControllerHelper.scrollPageToTop()),
+        this.LogsInputsService.deleteInput(this.serviceName, input).finally(
+          () => {
+            this.ouiDatagridService.refresh('inputs-datagrid', true);
+            this.CucControllerHelper.scrollPageToTop();
+          },
+        ),
     });
-    this.delete.load().then(() => this.runLoaders());
+    this.delete.load();
   }
 
   /**
@@ -62,18 +76,7 @@ export default class LogsInputsHomeCtrl {
     });
     this.processInput
       .load()
-      .finally(() => this.reloadInputDetail(input.info.inputId));
-  }
-
-  /**
-   * initializes the inputs
-   *
-   * @memberof LogsInputsCtrl
-   */
-  initLoaders() {
-    this.inputs = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsInputsService.getInputs(this.serviceName),
-    });
+      .finally(() => this.reloadInputDetail(input.inputId));
   }
 
   /**
@@ -91,21 +94,12 @@ export default class LogsInputsHomeCtrl {
 
     return this.inputReload.load().then((input) => {
       this.inputs.data.forEach((inputItem, inputIndex) => {
-        if (inputItem.info.inputId === input.info.inputId) {
+        if (inputItem.inputId === input.inputId) {
           this.inputs.data[inputIndex] = input;
         }
       });
       return input;
     });
-  }
-
-  /**
-   * Runs all the loaders to fetch data from APIs
-   *
-   * @memberof LogsInputsCtrl
-   */
-  runLoaders() {
-    this.inputs.load();
   }
 
   /**
@@ -115,7 +109,7 @@ export default class LogsInputsHomeCtrl {
    * @memberof LogsInputsCtrl
    */
   setInputToProcessing(input) {
-    set(input, 'info.status', this.LogsConstants.inputStatus.PROCESSING);
+    set(input, 'status', this.LogsConstants.inputStatus.PROCESSING);
     this.LogsInputsService.transformInput(input);
   }
 
@@ -141,7 +135,7 @@ export default class LogsInputsHomeCtrl {
     this.CucCloudMessage.flushChildMessage();
     this.$state.go('dbaas-logs.detail.inputs.input.editwizard.edit', {
       serviceName: this.serviceName,
-      inputId: input.info.inputId,
+      inputId: input.inputId,
     });
   }
 
@@ -178,7 +172,7 @@ export default class LogsInputsHomeCtrl {
       .showDeleteModal({
         titleText: this.$translate.instant('inputs_delete'),
         textHtml: this.$translate.instant('inputs_delete_message', {
-          input: input.info.title,
+          input: input.title,
         }),
       })
       .then(() => this.delete(input));
@@ -193,7 +187,7 @@ export default class LogsInputsHomeCtrl {
   restartInput(input) {
     this.CucCloudMessage.info(
       this.$translate.instant('inputs_restarting', {
-        inputTitle: input.info.title,
+        inputTitle: input.title,
       }),
     );
     this.executeAction(input, 'restartInput');
@@ -209,7 +203,7 @@ export default class LogsInputsHomeCtrl {
     this.CucCloudMessage.flushChildMessage();
     this.$state.go('dbaas-logs.detail.inputs.input.console', {
       serviceName: this.serviceName,
-      inputId: input.info.inputId,
+      inputId: input.inputId,
     });
   }
 
@@ -222,7 +216,7 @@ export default class LogsInputsHomeCtrl {
   startInput(input) {
     this.CucCloudMessage.info(
       this.$translate.instant('inputs_starting', {
-        inputTitle: input.info.title,
+        inputTitle: input.title,
       }),
     );
     this.executeAction(input, 'startInput');
@@ -237,7 +231,7 @@ export default class LogsInputsHomeCtrl {
   stopInput(input) {
     this.CucCloudMessage.info(
       this.$translate.instant('inputs_stopping', {
-        inputTitle: input.info.title,
+        inputTitle: input.title,
       }),
     );
     this.executeAction(input, 'stopInput');

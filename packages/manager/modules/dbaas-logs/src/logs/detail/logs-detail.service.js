@@ -1,19 +1,24 @@
 export default class LogsDetailService {
   /* @ngInject */
-  constructor($q, $translate, OvhApiDbaas, CucServiceHelper) {
+  constructor($q, $http, $translate, CucServiceHelper) {
     this.$q = $q;
+    this.$http = $http;
     this.$translate = $translate;
-    this.LogsLexiService = OvhApiDbaas.Logs().v6();
     this.CucServiceHelper = CucServiceHelper;
   }
 
   getServiceDetails(serviceName) {
-    return this.LogsLexiService.logDetail({ serviceName }).$promise.catch(
-      this.CucServiceHelper.errorHandler(
-        'logs_details_error',
-        undefined,
-        'data.message',
-      ),
-    );
+    return this.$http
+      .get(`/dbaas/logs/${serviceName}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch(
+        this.CucServiceHelper.errorHandler(
+          'logs_details_error',
+          undefined,
+          'data.message',
+        ),
+      );
   }
 }

@@ -2,13 +2,11 @@ import set from 'lodash/set';
 
 export default class LogsStreamsArchivesService {
   /* @ngInject */
-  constructor($http, $q, LogsConstants, OvhApiDbaas, CucServiceHelper) {
+  constructor($http, $q, iceberg, LogsConstants, CucServiceHelper) {
     this.$http = $http;
     this.$q = $q;
+    this.iceberg = iceberg;
     this.LogsConstants = LogsConstants;
-    this.ArchivesApiService = OvhApiDbaas.Logs()
-      .Archive()
-      .v6();
     this.CucServiceHelper = CucServiceHelper;
   }
 
@@ -20,49 +18,34 @@ export default class LogsStreamsArchivesService {
    * @returns promise which will resolve with a list of archive IDs
    * @memberof LogsStreamsArchivesService
    */
-  getArchiveIds(serviceName, streamId) {
-    return this.ArchivesApiService.query({
-      serviceName,
-      streamId,
-    }).$promise.catch(
-      this.CucServiceHelper.errorHandler('streams_archives_ids_loading_error'),
-    );
-  }
-
-  /**
-   * Gets the archive objects corresponding to the archiveIds
-   *
-   * @param {any} serviceName
-   * @param {any} streamId
-   * @param {any} archiveIds - list of archive IDs for which archive objects are to be fetched
-   * @returns promise which will be resolve with the list of archives
-   * @memberof LogsStreamsArchivesService
-   */
-  getArchives(serviceName, streamId, archiveIds) {
-    return this.getArchiveDetails(serviceName, streamId, archiveIds)
-      .then((archives) => {
-        archives.forEach((archive) => this.transformArchive(archive));
-        return archives;
-      })
-      .catch(
-        this.CucServiceHelper.errorHandler('streams_archives_loading_error'),
-      );
-  }
-
-  /**
-   * Gets the archive objects corresponding to the archiveIds
-   *
-   * @param {any} serviceName
-   * @param {any} streamId
-   * @param {any} archiveIds - list of archive IDs for which archive objects are to be fetched
-   * @returns promise which will be resolve with the list of archives
-   * @memberof LogsStreamsArchivesService
-   */
-  getArchiveDetails(serviceName, streamId, archiveIds) {
-    const promises = archiveIds.map((archiveId) =>
-      this.getArchive(serviceName, streamId, archiveId),
-    );
-    return this.$q.all(promises);
+  getPaginatedArchives(
+    serviceName,
+    streamId,
+    offset = 0,
+    pageSize = 25,
+    sort = { name: 'filename', dir: 'desc' },
+    filters = null,
+  ) {
+    let res = this.iceberg(
+      `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}/archive`,
+    )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort.name, sort.dir);
+    if (filters !== null) {
+      filters.forEach((filter) => {
+        res = res.addFilter(filter.name, filter.operator, filter.value);
+      });
+    }
+    return res.execute().$promise.then((response) => ({
+      data: response.data.map((archive) => this.transformArchive(archive)),
+      meta: {
+        totalCount:
+          parseInt(response.headers['x-pagination-elements'], 10) || 0,
+      },
+    }));
   }
 
   /**
@@ -75,8 +58,13 @@ export default class LogsStreamsArchivesService {
    * @memberof LogsStreamsArchivesService
    */
   getArchive(serviceName, streamId, archiveId) {
-    return this.ArchivesApiService.get({ serviceName, streamId, archiveId })
-      .$promise;
+    return this.$http
+      .get(
+        `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}/archive/${archiveId}`,
+      )
+      .then((response) => {
+        return this.transformArchive(response.data);
+      });
   }
 
   /**
@@ -88,12 +76,16 @@ export default class LogsStreamsArchivesService {
    * @memberof LogsStreamsArchivesService
    */
   getDownloadUrl(serviceName, streamId, archiveId) {
-    return this.ArchivesApiService.url({
-      serviceName,
-      streamId,
-      archiveId,
-      expirationInSeconds: this.LogsConstants.expirationInSeconds,
-    }).$promise.then((response) => response.data);
+    return this.$http
+      .post(
+        `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}/archive/${archiveId}/url`,
+        {
+          expirationInSeconds: this.LogsConstants.expirationInSeconds,
+        },
+      )
+      .then((response) => {
+        return response.data;
+      });
   }
 
   /**
@@ -108,5 +100,6 @@ export default class LogsStreamsArchivesService {
       'retrievalStateType',
       this.LogsConstants.stateType[archive.retrievalState],
     );
+    return archive;
   }
 }

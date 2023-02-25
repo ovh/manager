@@ -4,9 +4,10 @@ import set from 'lodash/set';
 export default class LogsAliasesService {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $translate,
-    OvhApiDbaas,
+    iceberg,
     CucServiceHelper,
     CucCloudPoll,
     LogsHelperService,
@@ -16,18 +17,11 @@ export default class LogsAliasesService {
     LogsStreamsService,
     LogsIndexService,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
+    this.iceberg = iceberg;
     this.CucServiceHelper = CucServiceHelper;
-    this.AliasApiService = OvhApiDbaas.Logs()
-      .Alias()
-      .v6();
-    this.AliasAapiService = OvhApiDbaas.Logs()
-      .Alias()
-      .Aapi();
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
     this.CucCloudPoll = CucCloudPoll;
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;
@@ -56,9 +50,47 @@ export default class LogsAliasesService {
    * @memberof LogsAliasesService
    */
   getAliases(serviceName) {
-    return this.getAliasesDetails(serviceName).catch((err) =>
-      this.LogsHelperService.handleError('logs_aliases_get_error', err, {}),
-    );
+    return this.iceberg(`/dbaas/logs/${serviceName}/output/opensearch/alias`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(10000)
+      .execute().$promise;
+  }
+
+  getPaginatedAliases(
+    serviceName,
+    offset = 0,
+    pageSize = 25,
+    sort = { name: 'name', dir: 'desc' },
+    filters = null,
+  ) {
+    let res = this.iceberg(`/dbaas/logs/${serviceName}/output/opensearch/alias`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort.name, sort.dir);
+    if (filters !== null) {
+      filters.forEach((filter) => {
+        res = res.addFilter(filter.name, filter.operator, filter.value);
+      });
+    }
+    return res.execute().$promise.then((response) => ({
+      data: response.data,
+      meta: {
+        totalCount:
+          parseInt(response.headers['x-pagination-elements'], 10) || 0,
+      },
+    }));
+  }
+
+  getAliasIds(serviceName) {
+    return this.iceberg(`/dbaas/logs/${serviceName}/output/opensearch/alias`)
+      .query()
+      .execute()
+      .$promise.then((response) => {
+        return response.data;
+      });
   }
 
   /**
@@ -70,38 +102,11 @@ export default class LogsAliasesService {
    * @memberof LogsStreamsService
    */
   getOwnAliases(serviceName) {
-    return this.getAliasesDetails(serviceName)
-      .then((aliases) => aliases.filter((alias) => alias.info.isEditable))
+    return this.getAliases(serviceName)
+      .then(({ data = [] }) => data.filter((alias) => alias.isEditable))
       .catch((err) =>
         this.LogsHelperService.handleError('logs_aliases_get_error', err, {}),
       );
-  }
-
-  /**
-   * gets details for each alias in array
-   *
-   * @param {any} serviceName
-   * @returns promise which will be resolve to an array of alias objects
-   * @memberof LogsAliasesService
-   */
-  getAliasesDetails(serviceName) {
-    return this.getAliasesIds(serviceName).then((aliases) => {
-      const promises = aliases.map((aliasId) =>
-        this.getAapiAlias(serviceName, aliasId),
-      );
-      return this.$q.all(promises);
-    });
-  }
-
-  /**
-   * returns array of aliases id's of logged in user
-   *
-   * @param {any} serviceName
-   * @returns promise which will be resolve to array of aliases id's
-   * @memberof LogsAliasesService
-   */
-  getAliasesIds(serviceName) {
-    return this.AliasApiService.query({ serviceName }).$promise;
   }
 
   /**
@@ -113,31 +118,31 @@ export default class LogsAliasesService {
    * @memberof LogsAliasesService
    */
   getAlias(serviceName, aliasId) {
-    return this.AliasApiService.get({
-      serviceName,
-      aliasId,
-    }).$promise.catch((err) =>
-      this.LogsHelperService.handleError('logs_alias_get_error', err, {}),
-    );
+    return this.$http
+      .get(`/dbaas/logs/${serviceName}/output/opensearch/alias/${aliasId}`)
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_alias_get_error', err, {}),
+      );
   }
 
   getAliasWithStreamsAndIndices(serviceName, aliasId) {
-    return this.AliasAapiService.get({ serviceName, aliasId })
-      .$promise.then((alias) => {
-        if (alias.streams.length > 0) {
-          const promises = alias.streams.map((streamId) =>
-            this.LogsStreamsService.getAapiStream(serviceName, streamId),
-          );
-          return this.$q.all(promises).then((streams) => {
+    return this.$http
+      .get(`/dbaas/logs/${serviceName}/output/opensearch/alias/${aliasId}`)
+      .then((alias) => {
+        if (alias.data.nbStream > 0) {
+          return this.LogsStreamsService.getStreamsForAlias(
+            serviceName,
+            aliasId,
+          ).then((streams) => {
             set(alias, 'streams', streams);
             return alias;
           });
         }
-        if (alias.indexes.length > 0) {
-          const promises = alias.indexes.map((indexId) =>
-            this.LogsIndexService.getIndexDetails(serviceName, indexId),
-          );
-          return this.$q.all(promises).then((indices) => {
+        if (alias.data.nbIndex > 0) {
+          return this.LogsIndexService.getIndicesForAlias(
+            serviceName,
+            aliasId,
+          ).then((indices) => {
             set(alias, 'indexes', indices);
             return alias;
           });
@@ -150,23 +155,6 @@ export default class LogsAliasesService {
   }
 
   /**
-   * returns details of an alias
-   *
-   * @param {any} serviceName
-   * @param {any} aliasId
-   * @returns promise which will be resolve to alias object
-   * @memberof LogsAliasesService
-   */
-  getAapiAlias(serviceName, aliasId) {
-    return this.AliasAapiService.get({
-      serviceName,
-      aliasId,
-    }).$promise.catch((err) =>
-      this.LogsHelperService.handleError('logs_alias_get_error', err, {}),
-    );
-  }
-
-  /**
    * delete alias
    *
    * @param {any} serviceName
@@ -175,12 +163,11 @@ export default class LogsAliasesService {
    * @memberof LogsAliasesService
    */
   deleteAlias(serviceName, alias) {
-    return this.AliasApiService.delete(
-      { serviceName, aliasId: alias.aliasId },
-      alias,
-    )
-      .$promise.then((operation) => {
-        this.getAliases(serviceName);
+    return this.$http
+      .delete(
+        `/dbaas/logs/${serviceName}/output/opensearch/alias/${alias.aliasId}`,
+      )
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -204,14 +191,12 @@ export default class LogsAliasesService {
    * @memberof LogsAliasesService
    */
   createAlias(serviceName, alias) {
-    return this.AliasApiService.create(
-      { serviceName },
-      {
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/output/opensearch/alias`, {
         description: alias.description,
         suffix: alias.suffix,
-      },
-    )
-      .$promise.then((operation) => {
+      })
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -220,7 +205,7 @@ export default class LogsAliasesService {
         );
       })
       .catch((err) =>
-        this.LogsHelperService.handleError('logs_aliases_create_error', err, {
+        this.LogsHelperService.handleError('logs_aliases_create_success', err, {
           aliasName: alias.suffix,
         }),
       );
@@ -235,13 +220,14 @@ export default class LogsAliasesService {
    * @memberof LogsAliasesService
    */
   updateAlias(serviceName, alias) {
-    return this.AliasApiService.update(
-      { serviceName, aliasId: alias.aliasId },
-      {
-        description: alias.description,
-      },
-    )
-      .$promise.then((operation) => {
+    return this.$http
+      .put(
+        `/dbaas/logs/${serviceName}/output/opensearch/alias/${alias.aliasId}`,
+        {
+          description: alias.description,
+        },
+      )
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -257,87 +243,99 @@ export default class LogsAliasesService {
   }
 
   attachStream(serviceName, alias, stream) {
-    return this.AliasApiService.linkStream(
-      { serviceName, aliasId: alias.aliasId },
-      { streamId: stream.streamId },
-    )
-      .$promise.then((operation) =>
-        this.LogsHelperService.handleOperation(
+    return this.$http
+      .post(
+        `/dbaas/logs/${serviceName}/output/opensearch/alias/${alias.aliasId}/stream`,
+        {
+          streamId: stream.streamId,
+        },
+      )
+      .then((operation) => {
+        return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           stream.indexingEnabled
             ? null
             : 'logs_aliases_attach_stream_not_indexed',
           { streamName: stream.title },
-        ),
-      )
+        );
+      })
       .catch((err) =>
         this.LogsHelperService.handleError(
           'logs_aliases_attach_stream_error',
           err,
-          { streamName: stream.title },
+          {
+            streamName: stream.title,
+          },
         ),
       );
   }
 
   detachStream(serviceName, alias, stream) {
-    return this.AliasApiService.unlinkStream({
-      serviceName,
-      aliasId: alias.aliasId,
-      streamId: stream.streamId,
-    })
-      .$promise.then((operation) =>
-        this.LogsHelperService.handleOperation(
+    return this.$http
+      .delete(
+        `/dbaas/logs/${serviceName}/output/opensearch/alias/${alias.aliasId}/stream/${stream.streamId}`,
+      )
+      .then((operation) => {
+        return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
-        ),
-      )
+        );
+      })
       .catch((err) =>
         this.LogsHelperService.handleError(
           'logs_aliases_detach_stream_error',
           err,
-          { streamName: stream.title },
+          {
+            streamName: stream.title,
+          },
         ),
       );
   }
 
   attachIndex(serviceName, alias, index) {
-    return this.AliasApiService.linkIndex(
-      { serviceName, aliasId: alias.aliasId },
-      { indexId: index.indexId },
-    )
-      .$promise.then((operation) =>
-        this.LogsHelperService.handleOperation(
+    return this.$http
+      .post(
+        `/dbaas/logs/${serviceName}/output/opensearch/alias/${alias.aliasId}/index`,
+        {
+          indexId: index.indexId,
+        },
+      )
+      .then((operation) => {
+        return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
-        ),
-      )
+        );
+      })
       .catch((err) =>
         this.LogsHelperService.handleError(
           'logs_aliases_attach_index_error',
           err,
-          { indexName: index.name },
+          {
+            indexName: index.name,
+          },
         ),
       );
   }
 
   detachIndex(serviceName, alias, index) {
-    return this.AliasApiService.unlinkIndex({
-      serviceName,
-      aliasId: alias.aliasId,
-      indexId: index.indexId,
-    })
-      .$promise.then((operation) =>
-        this.LogsHelperService.handleOperation(
+    return this.$http
+      .delete(
+        `/dbaas/logs/${serviceName}/output/opensearch/alias/${alias.aliasId}/index/${index.indexId}`,
+      )
+      .then((operation) => {
+        return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
-        ),
-      )
+        );
+      })
       .catch((err) =>
         this.LogsHelperService.handleError(
           'logs_aliases_detach_index_error',
           err,
-          { indexName: index.name },
+          {
+            indexName: index.name,
+          },
         ),
       );
   }
@@ -358,18 +356,17 @@ export default class LogsAliasesService {
     };
   }
 
-  getElasticSearchUrl(alias) {
-    const url = this.CucUrlHelper.constructor.findUrl(
-      alias,
-      this.LogsConstants.ELASTICSEARCH_API_URL,
-    );
-    if (!url) {
-      this.CucCloudMessage.error(
-        this.$translate.instant('logs_aliases_get_elasticsearch_url_error', {
-          alias: alias.info.name,
-        }),
-      );
-    }
-    return url;
+  getOpenSearchUrl(serviceName, alias) {
+    return this.$http
+      .get(
+        `/dbaas/logs/${serviceName}/output/opensearch/alias/${alias.aliasId}/url`,
+      )
+      .then(({ data: urls }) => {
+        const url = this.CucUrlHelper.constructor.findUrl(
+          { urls },
+          this.LogsConstants.OPENSEARCH_API_URL,
+        );
+        return url;
+      });
   }
 }

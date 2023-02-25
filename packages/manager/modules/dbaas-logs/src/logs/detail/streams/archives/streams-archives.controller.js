@@ -1,5 +1,6 @@
 import clone from 'lodash/clone';
 import find from 'lodash/find';
+import datagridToIcebergFilter from '../../logs-iceberg.utils';
 
 export default class LogsStreamsArchivesCtrl {
   /* @ngInject */
@@ -8,6 +9,7 @@ export default class LogsStreamsArchivesCtrl {
     $state,
     $stateParams,
     $translate,
+    ouiDatagridService,
     CucCloudMessage,
     CucControllerHelper,
     LogsStreamsService,
@@ -19,6 +21,7 @@ export default class LogsStreamsArchivesCtrl {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.ouiDatagridService = ouiDatagridService;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.LogsStreamsService = LogsStreamsService;
@@ -32,7 +35,6 @@ export default class LogsStreamsArchivesCtrl {
   }
 
   $onInit() {
-    this.archiveIds.load();
     this.stream.load();
     this.encryptionKeys.load();
     this.notifications = [];
@@ -66,13 +68,6 @@ export default class LogsStreamsArchivesCtrl {
    * @memberof LogsStreamsArchivesHomeCtrl
    */
   initLoaders() {
-    this.archiveIds = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsStreamsArchivesService.getArchiveIds(
-          this.serviceName,
-          this.streamId,
-        ),
-    });
     this.stream = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.LogsStreamsService.getStream(this.serviceName, this.streamId),
@@ -83,32 +78,45 @@ export default class LogsStreamsArchivesCtrl {
     });
   }
 
-  /**
-   * Updates the list of archive with the latest information of the archive
-   *
-   * @param {any} archiveId
-   * @returns promise which will be resolve with the reloaded archive
-   * @memberof LogsStreamsArchivesHomeCtrl
-   */
-  reloadArchiveDetail(archiveId) {
-    this.archiveReload = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsStreamsArchivesService.getArchives(
-          this.serviceName,
-          this.streamId,
-          [archiveId],
-        ),
+  loadArchives({ offset, pageSize, sort, criteria }) {
+    this.stopRetrievalDelayUpdate();
+    const filters = criteria.map((c) => {
+      const name = c.property || 'filename';
+      return datagridToIcebergFilter(name, c.operator, c.value);
     });
-
-    return this.archiveReload.load().then((archives) => {
-      const archive = archives[0];
-      this.archives.data.forEach((archiveItem, archiveIndex) => {
-        if (archiveItem.archiveId === archive.archiveId) {
-          this.archives.data[archiveIndex] = archive;
-        }
+    const pageOffset = Math.ceil(offset / pageSize);
+    return this.LogsStreamsArchivesService.getPaginatedArchives(
+      this.serviceName,
+      this.streamId,
+      pageOffset,
+      pageSize,
+      { name: sort.property, dir: sort.dir === -1 ? 'DESC' : 'ASC' },
+      filters,
+    )
+      .then(this.startRetrievalDelayUpdate())
+      .then((archivesData) => {
+        archivesData.data.forEach((archive) => {
+          this.updateUnfreezingNotification(archive);
+          // Retrieve the encryption keys used to encrypt the archive, if it exists
+          this.LogsEncryptionKeysService.getArchiveEncryptionKeys(
+            this.serviceName,
+            this.streamId,
+            archive.archiveId,
+          ).then((encryptionKeys) => {
+            if (encryptionKeys.length > 0) {
+              this.archivesEncryptionKeys[archive.archiveId] = [];
+            }
+            encryptionKeys.forEach((encryptionKeyId) => {
+              this.archivesEncryptionKeys[archive.archiveId].push(
+                find(this.encryptionKeys.data, {
+                  encryptionKeyId,
+                }).title,
+              );
+            });
+          });
+        });
+        return archivesData;
       });
-      return archive;
-    });
   }
 
   /**
@@ -247,59 +255,6 @@ export default class LogsStreamsArchivesCtrl {
   }
 
   /**
-   * Loads a number of archives specified by the pageSize, starting from the specified offset
-   * Also issues a notification for archives being unsealed
-   *
-   * @param {any} offset
-   * @param {any} pageSize
-   * @returns promise which will be resolve to the loaded archives data
-   * @memberof LogsStreamsArchivesHomeCtrl
-   */
-  loadArchives({ offset, pageSize }) {
-    this.stopRetrievalDelayUpdate();
-    this.archives = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsStreamsArchivesService.getArchives(
-          this.serviceName,
-          this.streamId,
-          this.archiveIds.data.slice(offset - 1, offset + pageSize - 1),
-        ),
-    });
-    return this.archives
-      .load()
-      .then((archives) => ({
-        data: archives,
-        meta: {
-          totalCount: this.archiveIds.data.length,
-        },
-      }))
-      .then(this.startRetrievalDelayUpdate())
-      .then((archivesData) => {
-        archivesData.data.forEach((archive) => {
-          this.updateUnfreezingNotification(archive);
-          // Retrieve the encryption keys used to encrypt the archive, if it exists
-          this.LogsEncryptionKeysService.getArchiveEncryptionKeys(
-            this.serviceName,
-            this.streamId,
-            archive.archiveId,
-          ).then((encryptionKeys) => {
-            if (encryptionKeys.length > 0) {
-              this.archivesEncryptionKeys[archive.archiveId] = [];
-            }
-            encryptionKeys.forEach((encryptionKeyId) => {
-              this.archivesEncryptionKeys[archive.archiveId].push(
-                find(this.encryptionKeys.data, {
-                  encryptionKeyId,
-                }).title,
-              );
-            });
-          });
-        });
-        return archivesData;
-      });
-  }
-
-  /**
    * Starts the unsealing process for an archive and issues a notification
    * with the remaining time after which the archive would be available for download
    *
@@ -320,10 +275,17 @@ export default class LogsStreamsArchivesCtrl {
       this.streamId,
       archive.archiveId,
     )
-      .then(() => this.reloadArchiveDetail(archive.archiveId))
-      .then((updatedArchive) =>
-        this.updateUnfreezingNotification(updatedArchive),
-      )
+      .then(() => {
+        return this.LogsStreamsArchivesService.getArchive(
+          this.serviceName,
+          this.streamId,
+          archive.archiveId,
+        );
+      })
+      .then((updatedArchive) => {
+        this.updateUnfreezingNotification(updatedArchive);
+        this.ouiDatagridService.refresh('archives-datagrid', true);
+      })
       .catch((err) => {
         this.updateNotification({
           text: this.$translate.instant('streams_archives_url_load_error', {

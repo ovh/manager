@@ -13,6 +13,8 @@ export default class LogsStreamsFollowCtrl {
   ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
+    this.serviceName = this.$stateParams.serviceName;
+    this.streamId = this.$stateParams.streamId;
     this.$translate = $translate;
     this.CucControllerHelper = CucControllerHelper;
     this.CucUrlHelper = CucUrlHelper;
@@ -31,37 +33,39 @@ export default class LogsStreamsFollowCtrl {
   initLoaders() {
     this.stream = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.LogsStreamsService.getAapiStream(
-          this.$stateParams.serviceName,
-          this.$stateParams.streamId,
-        ).then((stream) => {
-          this.LogsStreamsFollowService.openConnection(stream);
-          return stream;
-        }),
+        this.LogsStreamsService.getStream(this.serviceName, this.streamId).then(
+          (stream) => {
+            this.LogsStreamsFollowService.openConnection(
+              this.serviceName,
+              stream,
+            );
+            return stream;
+          },
+        ),
     });
     this.stream.load();
 
     this.testClientUrls = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.LogsStreamsFollowService.getTestClientUrls(
-          this.$stateParams.serviceName,
-        ).then((serviceInfo) => {
-          this.rfc5424Url = this.CucUrlHelper.constructor.findUrl(
-            serviceInfo,
-            this.LogsConstants.RFC_URL,
-            false,
-          );
-          this.ltsvUrl = this.CucUrlHelper.constructor.findUrl(
-            serviceInfo,
-            this.LogsConstants.LTSV_URL,
-            false,
-          );
-          this.gelfUrl = this.CucUrlHelper.constructor.findUrl(
-            serviceInfo,
-            this.LogsConstants.GELF_URL,
-            false,
-          );
-        }),
+        this.LogsStreamsFollowService.getTestClientUrls(this.serviceName).then(
+          (serviceInfo) => {
+            this.rfc5424Url = this.CucUrlHelper.constructor.findUrl(
+              serviceInfo,
+              this.LogsConstants.RFC_URL,
+              false,
+            );
+            this.ltsvUrl = this.CucUrlHelper.constructor.findUrl(
+              serviceInfo,
+              this.LogsConstants.LTSV_URL,
+              false,
+            );
+            this.gelfUrl = this.CucUrlHelper.constructor.findUrl(
+              serviceInfo,
+              this.LogsConstants.GELF_URL,
+              false,
+            );
+          },
+        ),
     });
     this.testClientUrls.load();
   }
@@ -98,25 +102,31 @@ export default class LogsStreamsFollowCtrl {
 
   copyAddress() {
     this.CucCloudMessage.flushChildMessage();
-    this.LogsStreamsFollowService.copyWebSocketAddress(this.stream.data);
+    this.LogsStreamsFollowService.copyWebSocketAddress(
+      this.serviceName,
+      this.stream.data,
+    );
   }
 
   testFlow(type) {
     switch (type) {
       case this.LogsStreamsFollowService.testTypeEnum.GELF:
         this.LogsStreamsFollowService.copyGELCommandLine(
+          this.serviceName,
           this.stream.data,
           this.gelfUrl,
         );
         break;
       case this.LogsStreamsFollowService.testTypeEnum.LTSV:
         this.LogsStreamsFollowService.copyLTSVCommandLine(
+          this.serviceName,
           this.stream.data,
           this.ltsvUrl,
         );
         break;
       case this.LogsStreamsFollowService.testTypeEnum.RFC5424:
         this.LogsStreamsFollowService.copyRFCCommandLine(
+          this.serviceName,
           this.stream.data,
           this.rfc5424Url,
         );

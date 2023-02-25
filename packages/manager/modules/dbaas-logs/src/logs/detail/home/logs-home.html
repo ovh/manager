@@ -38,7 +38,7 @@
                             target="_blank"
                         >
                             <span
-                                data-ng-bind="ctrl.accountDetails.last_stream.info.title"
+                                data-ng-bind="ctrl.accountDetails.last_stream.title"
                             ></span>
                             <i
                                 class="oui-icon oui-icon-external-link"
@@ -73,7 +73,7 @@
                             target="_blank"
                         >
                             <span
-                                data-ng-bind="ctrl.accountDetails.last_dashboard.info.title"
+                                data-ng-bind="ctrl.accountDetails.last_dashboard.title"
                             ></span>
                             <i
                                 class="oui-icon oui-icon-external-link"
@@ -261,7 +261,7 @@
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{::'logs_home_service'|translate}}"
-                    data-description="{{ctrl.accountDetails.service.username}}"
+                    data-description="{{ctrl.accountDetails.username}}"
                 >
                 </oui-tile-definition>
                 <oui-tile-definition
@@ -359,7 +359,7 @@
                     data-term="{{::'logs_home_account_name'|translate}}"
                 >
                     <oui-tile-description
-                        data-ng-bind="ctrl.accountDetails.service.displayName"
+                        data-ng-bind="ctrl.accountDetails.displayName"
                     >
                     </oui-tile-description>
                     <oui-action-menu data-compact data-placement="end">
@@ -404,7 +404,7 @@
                     data-term="{{::'logs_home_start_date'|translate}}"
                 >
                     <oui-tile-description
-                        data-ng-bind="ctrl.accountDetails.service.createdAt|cucMomentFormat:'LL'"
+                        data-ng-bind="ctrl.accountDetails.createdAt|cucMomentFormat:'LL'"
                     >
                     </oui-tile-description>
                 </oui-tile-definition>

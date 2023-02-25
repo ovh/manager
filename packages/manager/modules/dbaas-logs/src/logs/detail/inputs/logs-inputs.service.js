@@ -2,39 +2,32 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import set from 'lodash/set';
 import trim from 'lodash/trim';
+import find from 'lodash/find';
 
 export default class LogsInputsService {
   /* @ngInject */
   constructor(
     $q,
+    $http,
+    $stateParams,
+    iceberg,
     CucCloudMessage,
     CucCloudPoll,
     LogsHelperService,
     LogsConstants,
-    LogsHomeService,
-    LogsOrderService,
-    OvhApiDbaas,
     CucServiceHelper,
+    CucControllerHelper,
   ) {
     this.$q = $q;
-    this.DetailsAapiService = OvhApiDbaas.Logs()
-      .Details()
-      .Aapi();
+    this.$http = $http;
+    this.$stateParams = $stateParams;
+    this.serviceName = this.$stateParams.serviceName;
+    this.iceberg = iceberg;
     this.CucCloudMessage = CucCloudMessage;
     this.CucCloudPoll = CucCloudPoll;
-    this.InputsApiAapiService = OvhApiDbaas.Logs()
-      .Input()
-      .Aapi();
-    this.InputsApiLexiService = OvhApiDbaas.Logs()
-      .Input()
-      .v6();
     this.LogsConstants = LogsConstants;
-    this.LogsHomeService = LogsHomeService;
-    this.LogsOrderService = LogsOrderService;
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
     this.CucServiceHelper = CucServiceHelper;
+    this.CucControllerHelper = CucControllerHelper;
     this.LogsHelperService = LogsHelperService;
     this.initializeData();
   }
@@ -80,6 +73,14 @@ export default class LogsInputsService {
     this.allowedNetworks = [];
   }
 
+  getInputEngines(serviceName) {
+    return this.iceberg(`/dbaas/logs/${serviceName}/input/engine`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(10000)
+      .execute().$promise;
+  }
+
   getFlowggerLogFormats() {
     return this.flowggerLogFormats;
   }
@@ -97,20 +98,20 @@ export default class LogsInputsService {
    * @memberof LogsInputsService
    */
   addInput(serviceName, input) {
-    return this.InputsApiLexiService.create(
-      { serviceName },
-      this.transformInputToSave(input),
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .post(
+        `/dbaas/logs/${serviceName}/input`,
+        this.transformInputToSave(input),
+      )
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
-          operation.data,
+          operation.data || operation,
         );
       })
       .catch((err) =>
         this.LogsHelperService.handleError('logs_inputs_add_error', err, {
-          inputTitle: input.info.title,
+          inputTitle: input.title,
         }),
       );
   }
@@ -124,22 +125,19 @@ export default class LogsInputsService {
    * @memberof LogsInputsService
    */
   deleteInput(serviceName, input) {
-    return this.InputsApiLexiService.delete({
-      serviceName,
-      inputId: input.info.inputId,
-    })
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .delete(`/dbaas/logs/${serviceName}/input/${input.inputId}`)
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'logs_inputs_delete_success',
-          { inputTitle: input.info.title },
+          { inputTitle: input.title },
         );
       })
       .catch((err) =>
         this.LogsHelperService.handleError('logs_inputs_delete_error', err, {
-          inputTitle: input.info.title,
+          inputTitle: input.title,
         }),
       );
   }
@@ -151,27 +149,31 @@ export default class LogsInputsService {
    * @returns promise which will be resolve to array of input IDs
    * @memberof LogsInputsService
    */
-  getDetails(serviceName) {
-    return this.DetailsAapiService.me({ serviceName })
-      .$promise.then((details) => this.constructor.transformDetails(details))
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_inputs_details_get_error',
-          err,
-          {},
-        ),
-      );
-  }
-
-  /**
-   * returns array of Input IDs of logged in user
-   *
-   * @param {any} serviceName
-   * @returns promise which will be resolve to array of input IDs
-   * @memberof LogsInputsService
-   */
-  getAllInputs(serviceName) {
-    return this.InputsApiLexiService.query({ serviceName }).$promise;
+  getPaginatedInputs(
+    serviceName,
+    offset = 0,
+    pageSize = 25,
+    sort = { name: 'title', dir: 'desc' },
+    filters = null,
+  ) {
+    let res = this.iceberg(`/dbaas/logs/${serviceName}/input`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort.name, sort.dir);
+    if (filters !== null) {
+      filters.forEach((filter) => {
+        res = res.addFilter(filter.name, filter.operator, filter.value);
+      });
+    }
+    return res.execute().$promise.then((response) => ({
+      data: response.data.map((input) => this.transformInput(input)),
+      meta: {
+        totalCount:
+          parseInt(response.headers['x-pagination-elements'], 10) || 0,
+      },
+    }));
   }
 
   /**
@@ -183,12 +185,11 @@ export default class LogsInputsService {
    * @memberof LogsInputsService
    */
   getInput(serviceName, inputId) {
-    return this.InputsApiAapiService.get({
-      serviceName,
-      inputId,
-    }).$promise.catch((err) =>
-      this.LogsHelperService.handleError('logs_inputs_get_error', err, {}),
-    );
+    return this.$http
+      .get(`/dbaas/logs/${serviceName}/input/${inputId}`)
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_inputs_get_error', err, {}),
+      );
   }
 
   /**
@@ -214,53 +215,26 @@ export default class LogsInputsService {
    * @memberof LogsInputsService
    */
   getInputLogUrl(serviceName, inputId) {
-    return this.InputsApiLexiService.logurl({
-      serviceName,
-      inputId,
-    }).$promise.catch((err) =>
-      this.LogsHelperService.handleError('logs_inputs_logurl_error', err, {}),
-    );
-  }
-
-  /**
-   * gets details of all inputs
-   *
-   * @param {any} serviceName
-   * @returns promise which will be resolve to an array of inputs
-   * @memberof LogsInputsService
-   */
-  getInputs(serviceName) {
-    return this.getAllInputs(serviceName).then((inputIds) => {
-      const promises = inputIds.map((inputId) =>
-        this.getInputDetail(serviceName, inputId),
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/input/${inputId}/logs/url`)
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_inputs_logurl_error', err, {}),
       );
-      return this.$q.all(promises);
-    });
   }
 
   getNewInput() {
     return {
       data: {
-        info: {
-          exposedPort: this.LogsConstants.INPUT_DEFAULT_PORT,
-          nbInstance: this.LogsConstants.INPUT_DEFAULT_NB_INSTANCE,
-          autoscale: this.LogsConstants.INPUT_DEFAULT_AUTOSCALE,
-          minScaleInstance: this.LogsConstants
-            .INPUT_DEFAULT_AUTOSCALE_MIN_INSTANCE,
-          maxScaleInstance: this.LogsConstants
-            .INPUT_DEFAULT_AUTOSCALE_MAX_INSTANCE,
-        },
+        exposedPort: this.LogsConstants.INPUT_DEFAULT_PORT,
+        nbInstance: this.LogsConstants.INPUT_DEFAULT_NB_INSTANCE,
+        autoscale: this.LogsConstants.INPUT_DEFAULT_AUTOSCALE,
+        minScaleInstance: this.LogsConstants
+          .INPUT_DEFAULT_AUTOSCALE_MIN_INSTANCE,
+        maxScaleInstance: this.LogsConstants
+          .INPUT_DEFAULT_AUTOSCALE_MAX_INSTANCE,
       },
       loading: false,
     };
-  }
-
-  getAccountDetails(serviceName) {
-    return this.LogsHomeService.getAccountDetails(serviceName);
-  }
-
-  getOrderCatalog(ovhSubsidiary) {
-    return this.LogsOrderService.getOrderCatalog(ovhSubsidiary);
   }
 
   /**
@@ -272,27 +246,21 @@ export default class LogsInputsService {
    * @memberof LogsInputsService
    */
   restartInput(serviceName, input) {
-    return this.InputsApiLexiService.restart({
-      serviceName,
-      inputId: input.info.inputId,
-    })
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/input/${input.inputId}/restart`)
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'logs_inputs_restart_success',
-          { inputTitle: input.info.title },
+          { inputTitle: input.title },
         );
       })
-      .catch((err) => {
-        this.resetAllCache();
-        return this.LogsHelperService.handleError(
-          'logs_inputs_restart_error',
-          err,
-          { inputTitle: input.info.title },
-        );
-      });
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_inputs_restart_error', err, {
+          inputTitle: input.title,
+        }),
+      );
   }
 
   /**
@@ -304,27 +272,21 @@ export default class LogsInputsService {
    * @memberof LogsInputsService
    */
   startInput(serviceName, input) {
-    return this.InputsApiLexiService.start({
-      serviceName,
-      inputId: input.info.inputId,
-    })
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/input/${input.inputId}/start`)
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'logs_inputs_start_success',
-          { inputTitle: input.info.title },
+          { inputTitle: input.title },
         );
       })
-      .catch((err) => {
-        this.resetAllCache();
-        return this.LogsHelperService.handleError(
-          'logs_inputs_start_error',
-          err,
-          { inputTitle: input.info.title },
-        );
-      });
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_inputs_start_error', err, {
+          inputTitle: input.title,
+        }),
+      );
   }
 
   /**
@@ -336,27 +298,21 @@ export default class LogsInputsService {
    * @memberof LogsInputsService
    */
   stopInput(serviceName, input) {
-    return this.InputsApiLexiService.end({
-      serviceName,
-      inputId: input.info.inputId,
-    })
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/input/${input.inputId}/end`)
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'logs_inputs_stop_success',
-          { inputTitle: input.info.title },
+          { inputTitle: input.title },
         );
       })
-      .catch((err) => {
-        this.resetAllCache();
-        return this.LogsHelperService.handleError(
-          'logs_inputs_stop_error',
-          err,
-          { inputTitle: input.info.title },
-        );
-      });
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_inputs_stop_error', err, {
+          inputTitle: input.title,
+        }),
+      );
   }
 
   /**
@@ -367,184 +323,151 @@ export default class LogsInputsService {
    * @memberof LogsInputsService
    */
   transformInput(input) {
-    set(
-      input,
-      'info.engine.software',
-      [input.info.engine.name, input.info.engine.version].join(' '),
-    );
-    set(input, 'info.exposedPort', parseInt(input.info.exposedPort, 10));
-    if (Array.isArray(input.info.allowedNetworks)) {
-      set(input, 'info.allowedNetworks', input.info.allowedNetworks.join(', '));
+    this.getInputEngines(this.serviceName).then((engines) => {
+      const engine = find(
+        engines.data,
+        (inputEngine) => input.engineId === inputEngine.engineId,
+      );
+      set(input, 'engine.software', [engine.name, engine.version].join(' '));
+    });
+    set(input, 'exposedPort', parseInt(input.exposedPort, 10));
+    if (Array.isArray(input.allowedNetworks)) {
+      set(input, 'allowedNetworks', input.allowedNetworks.join(', '));
     }
-    set(
-      input,
-      'actionsMap',
-      input.actions.reduce((actions, action) => {
-        // eslint-disable-next-line no-param-reassign
-        actions[action.type] = action.isAllowed;
-        return actions;
-      }, {}),
-    );
+    this.getInputActions(this.serviceName, input).then((allowedActions) => {
+      set(
+        input,
+        'actionsMap',
+        allowedActions.data.reduce((actions, action) => {
+          // eslint-disable-next-line no-param-reassign
+          actions[action.type] = action.isAllowed;
+          return actions;
+        }, {}),
+      );
+      const isProcessing =
+        input.status === this.LogsConstants.inputStatus.PROCESSING;
+      const isToBeConfigured =
+        input.status === this.LogsConstants.inputStatus.INIT &&
+        !input.actionsMap.START;
+      const isPending =
+        (input.status === this.LogsConstants.inputStatus.INIT ||
+          input.status === this.LogsConstants.inputStatus.PENDING) &&
+        input.actionsMap.START;
+      const isRunning = input.status === this.LogsConstants.inputStatus.RUNNING;
 
-    const isProcessing =
-      input.info.status === this.LogsConstants.inputStatus.PROCESSING;
-    const isToBeConfigured =
-      input.info.status === this.LogsConstants.inputStatus.INIT &&
-      !input.actionsMap.START;
-    const isPending =
-      (input.info.status === this.LogsConstants.inputStatus.INIT ||
-        input.info.status === this.LogsConstants.inputStatus.PENDING) &&
-      input.actionsMap.START;
-    const isRunning =
-      input.info.status === this.LogsConstants.inputStatus.RUNNING;
-
+      /* eslint-disable no-nested-ternary */
+      set(
+        input,
+        'state',
+        isProcessing
+          ? this.LogsConstants.inputState.PROCESSING
+          : input.isRestartRequired
+          ? this.LogsConstants.inputState.RESTART_REQUIRED
+          : isToBeConfigured
+          ? this.LogsConstants.inputState.TO_CONFIGURE
+          : isPending
+          ? this.LogsConstants.inputState.PENDING
+          : isRunning
+          ? this.LogsConstants.inputState.RUNNING
+          : this.LogsConstants.inputState.UNKNOWN,
+      );
+      /* eslint-disable no-nested-ternary */
+      set(input, 'stateType', this.LogsConstants.inputStateType[input.state]);
+    });
     /* eslint-disable no-nested-ternary */
     set(
       input,
-      'info.state',
-      isProcessing
-        ? this.LogsConstants.inputState.PROCESSING
-        : input.info.isRestartRequired
-        ? this.LogsConstants.inputState.RESTART_REQUIRED
-        : isToBeConfigured
-        ? this.LogsConstants.inputState.TO_CONFIGURE
-        : isPending
-        ? this.LogsConstants.inputState.PENDING
-        : isRunning
-        ? this.LogsConstants.inputState.RUNNING
-        : this.LogsConstants.inputState.UNKNOWN,
+      'stateType',
+      this.LogsConstants.inputStateType[input.state],
     );
-    /* eslint-disable no-nested-ternary */
-    set(
-      input,
-      'info.stateType',
-      this.LogsConstants.inputStateType[input.info.state],
-    );
-    if (input.info.autoscale === false) {
+    if (input.autoscale === false) {
       // In the edit form, set the default values so they can be displayed in the form
       // Function transformInputToSave will manage the removal of these properties if needed
       set(
         input,
-        'info.minScaleInstance',
+        'minScaleInstance',
         this.LogsConstants.INPUT_DEFAULT_AUTOSCALE_MIN_INSTANCE,
       );
       set(
         input,
-        'info.maxScaleInstance',
+        'maxScaleInstance',
         this.LogsConstants.INPUT_DEFAULT_AUTOSCALE_MAX_INSTANCE,
       );
     }
     return input;
   }
 
-  addNetwork(serviceName, input, network) {
-    return this.InputsApiLexiService.trustNetwork(
-      { serviceName, inputId: input.info.inputId },
-      network,
-    )
-      .$promise.then((operation) => {
-        this.InputsApiAapiService.resetAllCache();
-        return this.LogsHelperService.handleOperation(
+  executeTest(serviceName, input) {
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/input/${input.inputId}/test`)
+      .then((operation) => {
+        this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
-        );
+          'logs_inputs_stop_success',
+          { inputTitle: input.title },
+        ).then(() => this.getTestResults(serviceName, input));
       })
       .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_inputs_network_add_error',
-          err,
-          { network: network.network, inputTitle: input.info.title },
-        ),
-      );
-  }
-
-  executeTest(serviceName, input) {
-    return this.InputsApiLexiService.test({
-      serviceName,
-      inputId: input.info.inputId,
-    })
-      .$promise.then((operation) =>
-        this.LogsHelperService.handleOperation(serviceName, operation),
-      )
-      .then(() => this.getTestResults(serviceName, input))
-      .catch((err) =>
         this.LogsHelperService.handleError('logs_inputs_test_error', err, {
-          inputTitle: input.info.title,
+          inputTitle: input.title,
         }),
       );
   }
 
-  removeNetwork(serviceName, input, network) {
-    return this.InputsApiLexiService.rejectNetwork({
-      serviceName,
-      inputId: input.info.inputId,
-      allowedNetworkId: network.allowedNetworkId,
-    })
-      .$promise.then((operation) => {
-        this.InputsApiAapiService.resetAllCache();
-        return this.LogsHelperService.handleOperation(
-          serviceName,
-          operation.data || operation,
-        );
-      })
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_inputs_network_remove_error',
-          err,
-          { network: network.network, inputTitle: input.info.title },
-        ),
-      );
-  }
-
   updateFlowgger(serviceName, input, flowgger) {
-    return this.InputsApiLexiService.updateFlowgger(
-      { serviceName, inputId: input.info.inputId },
-      {
-        logFormat: flowgger.logFormat,
-        logFraming: flowgger.logFraming,
-      },
-    )
-      .$promise.then((operation) => {
-        this.InputsApiAapiService.resetAllCache();
+    return this.$http
+      .put(
+        `/dbaas/logs/${serviceName}/input/${input.inputId}/configuration/flowgger`,
+        {
+          logFormat: flowgger.logFormat,
+          logFraming: flowgger.logFraming,
+        },
+      )
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'logs_inputs_update_success',
-          { inputTitle: input.info.title },
+          { inputTitle: input.title },
         );
       })
       .catch((err) =>
         this.LogsHelperService.handleError(
           'logs_inputs_flowgger_update_error',
           err,
-          { inputTitle: input.info.title },
+          {
+            inputTitle: input.title,
+          },
         ),
       );
   }
 
   updateLogstash(serviceName, input, logstash) {
-    return this.InputsApiLexiService.updateLogstash(
-      { serviceName, inputId: input.info.inputId },
-      {
-        filterSection: logstash.filterSection,
-        inputSection: logstash.inputSection,
-        patternSection: logstash.patternSection,
-      },
-    )
-      .$promise.then((operation) => {
-        this.InputsApiAapiService.resetAllCache();
+    return this.$http
+      .put(
+        `/dbaas/logs/${serviceName}/input/${input.inputId}/configuration/logstash`,
+        {
+          filterSection: logstash.filterSection,
+          inputSection: logstash.inputSection,
+          patternSection: logstash.patternSection,
+        },
+      )
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'logs_inputs_update_success',
-          { inputTitle: input.info.title },
+          { inputTitle: input.title },
         );
       })
       .catch((err) =>
         this.LogsHelperService.handleError(
           'logs_inputs_logstash_update_error',
           err,
-          { inputTitle: input.info.title },
+          {
+            inputTitle: input.title,
+          },
         ),
       );
   }
@@ -558,15 +481,12 @@ export default class LogsInputsService {
    * @memberof LogsInputsService
    */
   updateInput(serviceName, input) {
-    return this.InputsApiLexiService.update(
-      {
-        serviceName,
-        inputId: input.info.inputId,
-      },
-      this.transformInputToSave(input),
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .put(
+        `/dbaas/logs/${serviceName}/input/${input.inputId}`,
+        this.transformInputToSave(input),
+      )
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -574,26 +494,21 @@ export default class LogsInputsService {
       })
       .catch((err) =>
         this.LogsHelperService.handleError('logs_inputs_update_error', err, {
-          inputTitle: input.info.title,
+          inputTitle: input.title,
         }),
       );
   }
 
   getTestResults(serviceName, input) {
-    return this.InputsApiLexiService.testResult({
-      serviceName,
-      inputId: input.info.inputId,
-    }).$promise;
+    return this.$http.get(
+      `/dbaas/logs/${serviceName}/input/${input.inputId}/configtest/result`,
+    );
   }
 
-  /**
-   * Resets the cache of all APIs used
-   *
-   * @memberof LogsInputsService
-   */
-  resetAllCache() {
-    this.InputsApiAapiService.resetAllCache();
-    this.InputsApiLexiService.resetAllCache();
+  getInputActions(serviceName, input) {
+    return this.$http.get(
+      `/dbaas/logs/${serviceName}/input/${input.inputId}/action`,
+    );
   }
 
   static transformDetails(details) {
@@ -611,31 +526,30 @@ export default class LogsInputsService {
   }
 
   transformInputToSave(input) {
-    if (!isEmpty(trim(input.info.allowedNetworks))) {
-      this.allowedNetworks = map(
-        input.info.allowedNetworks.split(','),
-        (source) => trim(source),
+    if (!isEmpty(trim(input.allowedNetworks))) {
+      this.allowedNetworks = map(input.allowedNetworks.split(','), (source) =>
+        trim(source),
       );
     } else {
       this.allowedNetworks = [];
     }
     return {
-      title: input.info.title,
-      description: input.info.description,
-      engineId: input.info.engineId,
-      autoscale: input.info.autoscale,
+      title: input.title,
+      description: input.description,
+      engineId: input.engineId,
+      autoscale: input.autoscale,
       // Add the nbInstance property only if autoscale mode is false
-      ...(!input.info.autoscale &&
-        input.info.nbInstance && { nbInstance: input.info.nbInstance }),
+      ...(!input.autoscale &&
+        input.nbInstance && { nbInstance: input.nbInstance }),
       // Add the autoscale needed properties only if autoscale mode is true
-      ...(input.info.autoscale && {
-        minScaleInstance: input.info.minScaleInstance,
-        maxScaleInstance: input.info.maxScaleInstance,
-        scalingNotifyEnabled: input.info.scalingNotifyEnabled,
+      ...(input.autoscale && {
+        minScaleInstance: input.minScaleInstance,
+        maxScaleInstance: input.maxScaleInstance,
+        scalingNotifyEnabled: input.scalingNotifyEnabled,
       }),
       allowedNetworks: this.allowedNetworks,
-      streamId: input.info.streamId,
-      exposedPort: input.info.exposedPort.toString(),
+      streamId: input.streamId,
+      exposedPort: input.exposedPort.toString(),
     };
   }
 }

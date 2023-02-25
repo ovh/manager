@@ -76,8 +76,8 @@ export default class LogsInputsAddConfigureCtrl {
 
   getEngine() {
     this.loading.engine = true;
-    this.LogsInputsService.getDetails(this.serviceName).then((details) => {
-      this.engine = find(details.engines, {
+    this.LogsInputsService.getInputEngines(this.serviceName).then((engines) => {
+      this.engine = find(engines, {
         engineId: this.input.data.info.engineId,
       });
       this.loading.engine = false;

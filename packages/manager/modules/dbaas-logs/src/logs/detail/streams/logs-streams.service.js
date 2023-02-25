@@ -1,6 +1,3 @@
-import find from 'lodash/find';
-import get from 'lodash/get';
-
 export default class LogsStreamsService {
   /* @ngInject */
   constructor(
@@ -10,30 +7,18 @@ export default class LogsStreamsService {
     CucCloudMessage,
     CucControllerHelper,
     iceberg,
-    LogsHomeService,
     LogsStreamsAlertsService,
     LogsStreamsArchivesService,
     LogsOrderService,
     LogsConstants,
-    OvhApiDbaas,
     CucUrlHelper,
     LogsHelperService,
+    LogsTokensService,
   ) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.iceberg = iceberg;
-    this.LogsApiService = OvhApiDbaas.Logs().v6();
-    this.StreamsApiService = OvhApiDbaas.Logs()
-      .Stream()
-      .v6();
-    this.StreamsAapiService = OvhApiDbaas.Logs()
-      .Stream()
-      .Aapi();
-    this.DetailsAapiService = OvhApiDbaas.Logs()
-      .Details()
-      .Aapi();
-    this.LogsHomeService = LogsHomeService;
     this.LogsStreamsAlertsService = LogsStreamsAlertsService;
     this.LogsStreamsArchivesService = LogsStreamsArchivesService;
     this.CucControllerHelper = CucControllerHelper;
@@ -42,6 +27,7 @@ export default class LogsStreamsService {
     this.CucCloudMessage = CucCloudMessage;
     this.LogsConstants = LogsConstants;
     this.LogsHelperService = LogsHelperService;
+    this.LogsTokensService = LogsTokensService;
 
     this.initializeData();
   }
@@ -140,6 +126,15 @@ export default class LogsStreamsService {
       );
   }
 
+  getLastUpdatedStream(serviceName) {
+    return this.getOwnStreams(serviceName).then((streams) => {
+      if (streams.length > 0) {
+        return streams[0];
+      }
+      return null;
+    });
+  }
+
   /**
    * gets stream details for each stream in array
    *
@@ -155,6 +150,43 @@ export default class LogsStreamsService {
       .execute().$promise;
   }
 
+  getPaginatedStreams(
+    serviceName,
+    offset = 0,
+    pageSize = 25,
+    sort = { name: 'title', dir: 'desc' },
+    filters = null,
+  ) {
+    let res = this.iceberg(`/dbaas/logs/${serviceName}/output/graylog/stream`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort.name, sort.dir);
+    if (filters !== null) {
+      filters.forEach((filter) => {
+        res = res.addFilter(filter.name, filter.operator, filter.value);
+      });
+    }
+    return res.execute().$promise.then((response) => ({
+      data: response.data,
+      meta: {
+        totalCount:
+          parseInt(response.headers['x-pagination-elements'], 10) || 0,
+      },
+    }));
+  }
+
+  getStreamsForAlias(serviceName, aliasId) {
+    return this.$http
+      .get(
+        `/dbaas/logs/${serviceName}/output/opensearch/alias/${aliasId}/stream`,
+      )
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_stream_get_error', err, {}),
+      );
+  }
+
   /**
    * returns details of a stream
    *
@@ -164,29 +196,11 @@ export default class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   getStream(serviceName, streamId) {
-    return this.StreamsApiService.get({
-      serviceName,
-      streamId,
-    }).$promise.catch((err) =>
-      this.LogsHelperService.handleError('logs_stream_get_error', err, {}),
-    );
-  }
-
-  /**
-   * returns details of a stream making call to Aapi (2api) service
-   *
-   * @param {any} serviceName
-   * @param {any} streamId
-   * @returns promise which will be resolve to stream object
-   * @memberof LogsStreamsService
-   */
-  getAapiStream(serviceName, streamId) {
-    return this.StreamsAapiService.get({
-      serviceName,
-      streamId,
-    }).$promise.catch((err) =>
-      this.LogsHelperService.handleError('logs_stream_get_error', err, {}),
-    );
+    return this.$http
+      .get(`/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}`)
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_stream_get_error', err, {}),
+      );
   }
 
   /**
@@ -198,12 +212,11 @@ export default class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   deleteStream(serviceName, stream) {
-    return this.StreamsApiService.delete(
-      { serviceName, streamId: stream.streamId },
-      stream,
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .delete(
+        `/dbaas/logs/${serviceName}/output/graylog/stream/${stream.streamId}`,
+      )
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -227,9 +240,8 @@ export default class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   createStream(serviceName, stream) {
-    return this.StreamsApiService.create(
-      { serviceName },
-      {
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/output/graylog/stream`, {
         coldStorageCompression: stream.coldStorageCompression,
         coldStorageContent: stream.coldStorageContent,
         coldStorageEnabled: stream.coldStorageEnabled,
@@ -245,10 +257,8 @@ export default class LogsStreamsService {
         title: stream.title,
         webSocketEnabled: stream.webSocketEnabled,
         encryptionKeysIds: stream.encryptionKeysIds,
-      },
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+      })
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -272,27 +282,27 @@ export default class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   updateStream(serviceName, stream) {
-    return this.StreamsApiService.update(
-      { serviceName, streamId: stream.streamId },
-      {
-        coldStorageCompression: stream.coldStorageCompression,
-        coldStorageContent: stream.coldStorageContent,
-        coldStorageEnabled: stream.coldStorageEnabled,
-        coldStorageNotifyEnabled: stream.coldStorageNotifyEnabled,
-        coldStorageRetention: stream.coldStorageRetention,
-        coldStorageTarget: stream.coldStorageTarget,
-        description: stream.description,
-        indexingEnabled: stream.indexingEnabled,
-        indexingMaxSize: stream.indexingMaxSize,
-        indexingNotifyEnabled: stream.indexingNotifyEnabled,
-        pauseIndexingOnMaxSize: stream.pauseIndexingOnMaxSize,
-        title: stream.title,
-        webSocketEnabled: stream.webSocketEnabled,
-        encryptionKeysIds: stream.encryptionKeysIds,
-      },
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .put(
+        `/dbaas/logs/${serviceName}/output/graylog/stream/${stream.streamId}`,
+        {
+          coldStorageCompression: stream.coldStorageCompression,
+          coldStorageContent: stream.coldStorageContent,
+          coldStorageEnabled: stream.coldStorageEnabled,
+          coldStorageNotifyEnabled: stream.coldStorageNotifyEnabled,
+          coldStorageRetention: stream.coldStorageRetention,
+          coldStorageTarget: stream.coldStorageTarget,
+          description: stream.description,
+          indexingEnabled: stream.indexingEnabled,
+          indexingMaxSize: stream.indexingMaxSize,
+          indexingNotifyEnabled: stream.indexingNotifyEnabled,
+          pauseIndexingOnMaxSize: stream.pauseIndexingOnMaxSize,
+          title: stream.title,
+          webSocketEnabled: stream.webSocketEnabled,
+          encryptionKeysIds: stream.encryptionKeysIds,
+        },
+      )
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -305,17 +315,6 @@ export default class LogsStreamsService {
           streamName: stream.title,
         }),
       );
-  }
-
-  /**
-   * returns array of stream id's of logged in user
-   *
-   * @param {any} serviceName
-   * @returns promise which will be resolve to array of stream id's
-   * @memberof LogsStreamsService
-   */
-  getAllStreams(serviceName) {
-    return this.LogsApiService.streams({ serviceName }).$promise;
   }
 
   getCompressionAlgorithms() {
@@ -332,6 +331,23 @@ export default class LogsStreamsService {
 
   getStorageContents() {
     return this.storageContents;
+  }
+
+  getRetentions(serviceName) {
+    return this.LogsTokensService.getDefaultCluster(serviceName).then(
+      (defaultCluster) => {
+        return this.iceberg(
+          `/dbaas/logs/${serviceName}/cluster/${defaultCluster.clusterId}/retention`,
+        )
+          .query()
+          .expand('CachedObjectList-Pages')
+          .limit(10000)
+          .execute()
+          .$promise.then((response) => {
+            return response.data;
+          });
+      },
+    );
   }
 
   /**
@@ -394,40 +410,21 @@ export default class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   copyStreamToken(serviceName, stream) {
-    return this.iceberg(
-      `/dbaas/logs/${serviceName}/output/graylog/stream/${stream.streamId}/rule`,
-    )
-      .query()
-      .expand('CachedObjectList-Pages')
-      .execute()
-      .$promise.then(({ data: rules }) => {
-        const { value: token } = rules.find(
-          (rule) => rule.field === this.LogsConstants.X_OVH_TOKEN,
+    return this.findStreamTokenValue(serviceName, stream).then((token) => {
+      const error = this.CucControllerHelper.constructor.copyToClipboard(token);
+      if (error) {
+        this.CucCloudMessage.error(
+          this.$translate.instant('logs_streams_copy_token_error', {
+            stream: stream.title,
+            token_value: token,
+          }),
         );
-        if (token) {
-          const error = this.CucControllerHelper.constructor.copyToClipboard(
-            token,
-          );
-          if (error) {
-            this.CucCloudMessage.error(
-              this.$translate.instant('logs_streams_copy_token_error', {
-                stream: stream.title,
-                token_value: token,
-              }),
-            );
-          } else {
-            this.CucCloudMessage.info(
-              this.$translate.instant('logs_streams_copy_token_success'),
-            );
-          }
-        } else {
-          this.CucCloudMessage.error(
-            this.$translate.instant('logs_streams_find_token_error', {
-              stream: stream.title,
-            }),
-          );
-        }
-      });
+      } else {
+        this.CucCloudMessage.info(
+          this.$translate.instant('logs_streams_copy_token_success'),
+        );
+      }
+    });
   }
 
   /**
@@ -436,12 +433,12 @@ export default class LogsStreamsService {
    * @param {object} stream
    * @return {string} stream token if found, empty string otherwise
    */
-  getStreamToken(stream) {
-    const token = this.findStreamTokenValue(stream);
+  getStreamToken(serviceName, stream) {
+    const token = this.findStreamTokenValue(serviceName, stream);
     if (!token) {
       this.CucCloudMessage.error(
         this.$translate.instant('logs_streams_find_token_error', {
-          stream: stream.info.title,
+          stream: stream.title,
         }),
       );
     }
@@ -453,27 +450,29 @@ export default class LogsStreamsService {
    * @param {object} stream
    * @return {string} stream token if found, empty string otherwise
    */
-  findStreamTokenValue(stream) {
-    const ruleObj = find(
-      stream.rules,
-      (rule) => rule.field === this.LogsConstants.X_OVH_TOKEN,
-    );
-    return get(ruleObj, 'value');
+  findStreamTokenValue(serviceName, stream) {
+    return this.iceberg(
+      `/dbaas/logs/${serviceName}/output/graylog/stream/${stream.streamId}/rule`,
+    )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data: rules }) => {
+        const { value: token } = rules.find(
+          (rule) => rule.field === this.LogsConstants.X_OVH_TOKEN,
+        );
+        if (!token) {
+          this.CucCloudMessage.error(
+            this.$translate.instant('logs_streams_find_token_error', {
+              stream: stream.title,
+            }),
+          );
+        }
+        return token;
+      });
   }
 
-  getOrderCatalog(ovhSubsidiary) {
-    return this.LogsOrderService.getOrderCatalog(ovhSubsidiary);
-  }
-
-  getAccountDetails(serviceName) {
-    return this.LogsHomeService.getAccountDetails(serviceName);
-  }
-
-  resetAllCache() {
-    this.LogsApiService.resetAllCache();
-    this.StreamsApiService.resetAllCache();
-    this.StreamsAapiService.resetAllCache();
-    // refresh home page last modified stream
-    this.DetailsAapiService.resetAllCache();
+  getOrderCatalog() {
+    return this.LogsOrderService.getOrderCatalog();
   }
 }

@@ -1,7 +1,10 @@
 <section class="log-aliases">
     <h3 data-translate="logs_aliases_title"></h3>
     <p data-translate="logs_aliases_description"></p>
-    <oui-datagrid rows="ctrl.aliases.data">
+    <oui-datagrid
+        id="aliases-datagrid"
+        data-rows-loader="ctrl.loadAliases($config)"
+    >
         <oui-datagrid-topbar>
             <button
                 type="button"
@@ -21,7 +24,7 @@
         </oui-datagrid-topbar>
         <oui-datagrid-column
             title="::'logs_aliases_col_title' | translate"
-            property="info.name"
+            property="name"
             sortable="asc"
             type="string"
             searchable
@@ -29,78 +32,70 @@
         ></oui-datagrid-column>
         <oui-datagrid-column
             title="::'logs_aliases_col_description' | translate"
-            property="info.description"
+            property="description"
             sortable
             type="string"
             searchable
             filterable
         ></oui-datagrid-column>
         <oui-datagrid-column
-            title="::'logs_aliases_col_streams' | translate"
-            property="streams.length"
+            data-title="::'logs_aliases_col_streams' | translate"
+            property="nbStream"
             sortable
             type="number"
             filterable
         >
-            <span
-                data-ng-if="$row.streams.length"
-                data-ng-bind="$row.streams.length"
-            >
-                <span data-ng-if="!$row.streams.length"> - </span>
-            </span></oui-datagrid-column
-        >
+            {{ $row.nbStream || "-" }}
+        </oui-datagrid-column>
         <oui-datagrid-column
-            title="::'logs_aliases_col_indices' | translate"
-            property="indexes.length"
+            data-title="::'logs_aliases_col_indices' | translate"
+            property="nbIndex"
             sortable
             type="number"
             filterable
         >
-            <span
-                data-ng-if="$row.indexes.length"
-                data-ng-bind="$row.indexes.length"
-            >
-                <span data-ng-if="!$row.indexes.length"> - </span>
-            </span></oui-datagrid-column
-        >
+            {{ $row.nbIndex || "-" }}
+        </oui-datagrid-column>
         <oui-datagrid-column
             title="::'logs_col_last_modified' | translate"
-            property="info.updatedAt"
+            property="updatedAt"
             sortable
             type="date"
         >
-            {{ $row.info.updatedAt | cucMomentFormat:'L'}}
+            {{ $row.updatedAt | cucMomentFormat:'L'}}
         </oui-datagrid-column>
         <oui-datagrid-column
             title="::'logs_aliases_col_shared' | translate"
-            property="info.isEditable"
+            property="isEditable"
             sortable
             type="string"
         >
-            <span data-ng-if="!$row.info.isEditable"
+            <span data-ng-if="!$row.isEditable"
                 >{{ ::'logs_yes' | translate }}</span
             >
-            <span data-ng-if="$row.info.isEditable"> - </span>
+            <span data-ng-if="$row.isEditable"> - </span>
         </oui-datagrid-column>
         <oui-action-menu compact data-placement="end">
             <oui-action-menu-item
-                disabled="!$row.info.isEditable"
-                on-click="ctrl.edit($row.info)"
+                disabled="!$row.isEditable"
+                on-click="ctrl.edit($row)"
                 ><span data-translate="logs_edit"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
-                disabled="!$row.info.isEditable"
+                disabled="!$row.isEditable"
                 on-click="ctrl.attachContent($row)"
                 ><span data-translate="logs_aliases_attach_content"></span
             ></oui-action-menu-item>
+            <oui-action-menu-item data-on-click="ctrl.openOpenSearch($row)">
+                <span data-translate="logs_index_access_os_api"></span>
+                <i
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </oui-action-menu-item>
             <oui-action-menu-item
-                href="{{ctrl.getElasticSearchUrl($row)}}"
-                external
-                ><span data-translate="logs_index_access_os_api"></span
-            ></oui-action-menu-item>
-            <oui-action-menu-item
-                disabled="!$row.info.isEditable"
-                on-click="ctrl.showDeleteConfirm($row.info)"
+                disabled="!$row.isEditable"
+                on-click="ctrl.showDeleteConfirm($row)"
                 ><span data-translate="logs_delete"></span
             ></oui-action-menu-item>
         </oui-action-menu>

@@ -1,30 +1,39 @@
 import addTemplate from './add/logs-role-add.html';
 import overviewTemplate from './overview/logs-role-overview.html';
+import datagridToIcebergFilter from '../logs-iceberg.utils';
 
 export default class LogsRolesCtrl {
   /* @ngInject */
   constructor(
     $state,
     $stateParams,
+    ouiDatagridService,
     CucCloudMessage,
     CucControllerHelper,
     LogsRolesService,
   ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
+    this.ouiDatagridService = ouiDatagridService;
     this.serviceName = this.$stateParams.serviceName;
     this.CucControllerHelper = CucControllerHelper;
     this.LogsRolesService = LogsRolesService;
     this.CucCloudMessage = CucCloudMessage;
-    this.initLoaders();
   }
 
-  initLoaders() {
-    this.roles = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsRolesService.getRoles(this.serviceName),
+  loadRoles({ offset, pageSize, sort, criteria }) {
+    const filters = criteria.map((c) => {
+      const name = c.property || 'name';
+      return datagridToIcebergFilter(name, c.operator, c.value);
     });
-
-    this.roles.load();
+    const pageOffset = Math.ceil(offset / pageSize);
+    return this.LogsRolesService.getPaginatedRoles(
+      this.serviceName,
+      pageOffset,
+      pageSize,
+      { name: sort.property, dir: sort.dir === -1 ? 'DESC' : 'ASC' },
+      filters,
+    );
   }
 
   add(info) {
@@ -41,7 +50,9 @@ export default class LogsRolesCtrl {
           },
         },
       })
-      .then(() => this.initLoaders());
+      .finally(() => {
+        this.ouiDatagridService.refresh('roles-datagrid', true);
+      });
   }
 
   summary(info) {
@@ -62,9 +73,12 @@ export default class LogsRolesCtrl {
     this.LogsRolesService.deleteModal(info).then(() => {
       this.delete = this.CucControllerHelper.request.getHashLoader({
         loaderFunction: () =>
-          this.LogsRolesService.deleteRole(this.serviceName, info)
-            .then(() => this.initLoaders())
-            .finally(() => this.CucControllerHelper.scrollPageToTop()),
+          this.LogsRolesService.deleteRole(this.serviceName, info).finally(
+            () => {
+              this.ouiDatagridService.refresh('roles-datagrid', true);
+              this.CucControllerHelper.scrollPageToTop();
+            },
+          ),
       });
       this.delete.load();
     });
