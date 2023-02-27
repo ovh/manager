@@ -1,13 +1,13 @@
 import { policy as policyComponent } from '@iam/components';
-import { asResolve, defaultBreadcrumbResolve } from '@iam/resolves';
+import { asResolve, nullBreadcrumbResolve } from '@iam/resolves';
 import policiesRoute from './policies.route';
 
-const resolves = [defaultBreadcrumbResolve];
+const resolves = [nullBreadcrumbResolve];
 
 export const name = 'policy';
 
 export const state = ({ ROUTES }) => ({
-  url: `/policy`,
+  url: '/policy',
   component: policyComponent.name,
   redirectTo: ROUTES.POLICIES,
   resolve: {
