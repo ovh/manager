@@ -1,0 +1,38 @@
+<div>
+    <oui-header
+        data-heading="{{ 'iam_create_policy_title' | translate }}"
+        data-description="{{ 'iam_create_policy_description' | translate }}"
+    >
+        <!-- <Guide> -->
+        <oui-guide-menu
+            data-text="{{:: 'iam_policy_header_guide_text' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.onboardingGuides track by $index"
+                data-href="{{:: guide.url }}"
+                data-external
+            >
+                <span data-ng-bind=":: guide.text"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+        <!-- </Guide> -->
+    </oui-header>
+
+    <h4 data-translate="iam_create_policy_sub_section_policy_name"></h4>
+
+    <form novalidate name="createPolicyForm">
+        <oui-field
+            label="{{ 'iam_create_policy_field_policy_name' | translate }}"
+            size="xl"
+        >
+            <input
+                class="oui-input"
+                name="policyNameField"
+                data-type="text"
+                data-ng-model="$ctrl.policy.name"
+                data-ng-pattern="$root.IAM.POLICY_NAME_PATTERN"
+                data-required
+            />
+        </oui-field>
+    </form>
+</div>
