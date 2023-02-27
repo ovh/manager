@@ -1,0 +1,6 @@
+{
+  "iam_create_policy_title": "Créer une politique",
+  "iam_create_policy_description": "La politique contient une liste d'actions autorisées à une liste d'identités s'appliquant à des ressources.",
+  "iam_create_policy_sub_section_policy_name": "Nom de la politique",
+  "iam_create_policy_field_policy_name": "Nom de la politique"
+}

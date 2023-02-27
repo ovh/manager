@@ -3,11 +3,12 @@ import { FEATURE, UNAVAILABLE_STATE_NAME } from '@iam/constants';
 import {
   asResolve,
   featuresResolve,
-  nullBreadcrumbResolve,
+  defaultBreadcrumbResolve,
 } from '@iam/resolves';
 import policyRoute from './policy.route';
+import createPolicyRoute from './createPolicy.route';
 
-const resolves = [featuresResolve, nullBreadcrumbResolve];
+const resolves = [featuresResolve, defaultBreadcrumbResolve];
 const unavailableState = {
   state: UNAVAILABLE_STATE_NAME,
 };
@@ -29,7 +30,7 @@ export const state = ({ ROUTES }) => ({
   resolve: asResolve(resolves),
 });
 
-export const children = [policyRoute];
+export const children = [policyRoute, createPolicyRoute];
 
 export default {
   name,
