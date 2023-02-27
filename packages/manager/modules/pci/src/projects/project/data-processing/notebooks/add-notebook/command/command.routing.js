@@ -14,7 +14,12 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         breadcrumb: () => null,
-        data: /* @ngInject */ ($transition$) => $transition$.params().data,
+        data: /* @ngInject */ ($transition$, goBack) => {
+          if ($transition$.params().data) {
+            return $transition$.params().data;
+          }
+          return goBack();
+        },
         goBack: /* @ngInject */ ($state, projectId) => (reload = false) =>
           $state.go(
             'pci.projects.project.data-processing.notebooks.add-notebook',
