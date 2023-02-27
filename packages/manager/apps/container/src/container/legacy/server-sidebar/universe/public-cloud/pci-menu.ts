@@ -18,6 +18,7 @@ export const features = [
   'archive',
   'cold-archive',
   'snapshot',
+  'volume-backup',
   'instance-backup',
   'private-network',
   'failover-ip',
@@ -119,6 +120,16 @@ export function getPciProjectMenu(
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/storages/volume-snapshots`,
+          ),
+        },
+        {
+          id: 'volume-backup',
+          title: 'Volume Backup',
+          feature: 'volume-backup',
+          badge: 'new',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/volume-backup`,
           ),
         },
         {
