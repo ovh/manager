@@ -27,6 +27,7 @@ export default {
     getStateName: '<',
     goToRegion: '<',
     goToBlockStorage: '<',
+    goToCreateVolumeBackup: '<',
     taskResponse: '<',
   },
 };

@@ -10,6 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
     atInternet: {
       rename: `${VOLUME_BACKUP_TRACKING.PREFIX}`,
     },
+    params: {
+      volume: null,
+    },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant(
@@ -18,9 +21,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
       messageContainer: () => VOLUME_BACKUP_ROUTES.CREATE.STATE,
 
-      volumeBackupModel: () => ({
+      preselectedVolume: /* @ngInject */ ($transition$) =>
+        $transition$.params().volume,
+
+      volumeBackupModel: /* @ngInject */ (preselectedVolume) => ({
         selected: {
-          volume: null,
+          volume: preselectedVolume || null,
           volumeOption: null,
         },
         volumeRelatedInstance: null,

@@ -4,7 +4,7 @@
   "pci_projects_project_storages_volume_backup_list_status_creating": "En cours de création",
   "pci_projects_project_storages_volume_backup_list_status_deleting": "En cours de suppression",
   "pci_projects_project_storages_volume_backup_list_status_error": "Erreur",
-  "pci_projects_project_storages_volume_backup_list_status_ok": "En cours d'exécution",
+  "pci_projects_project_storages_volume_backup_list_status_ok": "Actif",
   "pci_projects_project_storages_volume_backup_list_status_restoring": "En cours de restauration",
   "pci_projects_project_storages_volume_backup_list_datagrid_menu_topbar_action_create": "Créer une sauvegarde de volume",
   "pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore": "Restaurer un volume",
