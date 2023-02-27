@@ -1,4 +1,5 @@
 import { areCursorsEquals, cursorsParamResolve } from '@iam/resolves';
+import { ROUTES } from '@iam/routes';
 
 export default class PoliciesController {
   /**
@@ -94,7 +95,7 @@ export default class PoliciesController {
    * @returns {Promise}
    */
   createPolicy() {
-    this.alert.error('createPolicy not implemented');
+    return this.goTo({ name: ROUTES.CREATE_POLICY });
   }
 
   /**
