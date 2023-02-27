@@ -173,6 +173,6 @@ export default class AddNotebookCtrl {
       name: 'add-notebook::goto-api-equivalent',
       type: 'action',
     });
-    this.goToCommand(this.orderPayload);
+    return this.goToCommand(this.orderPayload);
   }
 }
