@@ -35,6 +35,15 @@ export default /* @ngInject */ ($stateProvider) =>
             },
           );
         },
+        deleteNotebook: /* @ngInject */ ($state, projectId, notebook) => () => {
+          $state.go(
+            'pci.projects.project.data-processing.notebooks.details.delete',
+            {
+              projectId,
+              notebookId: notebook.id,
+            },
+          );
+        },
         showNotebook: /* @ngInject */ ($state, projectId, notebookId) => () =>
           $state.go(
             'pci.projects.project.data-processing.notebooks.details',
