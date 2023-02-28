@@ -14,5 +14,6 @@ export default {
     capabilities: '<',
     reloadState: '<',
     trackNotebooks: '<',
+    deleteNotebook: '<',
   },
 };

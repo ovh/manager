@@ -1,4 +1,3 @@
-import map from 'lodash/map';
 import { convertToGio } from '../../../data-processing.utils';
 
 export default class NotebookSizingCtrl {
@@ -21,8 +20,7 @@ export default class NotebookSizingCtrl {
     this.selectedNotebookTemplate = this.availableNotebookTemplate[0].name;
     this.selectedClusterTemplate = this.availableClusterTemplate[0].name;
 
-    this.availableNotebookTemplate = map(
-      this.availableNotebookTemplate,
+    this.availableNotebookTemplate = this.availableNotebookTemplate.map(
       (template) => {
         return {
           ...template,
@@ -36,8 +34,7 @@ export default class NotebookSizingCtrl {
       },
     );
 
-    this.availableClusterTemplate = map(
-      this.availableClusterTemplate,
+    this.availableClusterTemplate = this.availableClusterTemplate.map(
       (template) => {
         return {
           ...template,
