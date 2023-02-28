@@ -87,4 +87,9 @@ export default class NoteBookDetailsCtrl {
     this.trackNotebooks(`stop-notebook`);
     this.terminateNotebook();
   }
+
+  onDeleteNotebookClick() {
+    this.trackNotebooks('delete-notebook');
+    this.deleteNotebook();
+  }
 }

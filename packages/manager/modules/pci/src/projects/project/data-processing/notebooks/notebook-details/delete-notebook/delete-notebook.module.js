@@ -4,11 +4,11 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import component from '../../components/delete-notebook';
+import component from '../../../components/delete-notebook';
 import routing from './delete-notebook.routing';
 
 const moduleName =
-  'ovhManagerPciProjectDataProcessingNotebookQuickDeleteModalLazyLoading';
+  'ovhManagerPciProjectDataProcessingNotebookDetailsQuickDeleteModal';
 
 angular.module(moduleName, ['ui.router', component]).config(routing);
 

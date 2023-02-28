@@ -1,4 +1,3 @@
-import controller from './command.controller';
 import template from './command.html';
 
 const component = {
@@ -8,7 +7,6 @@ const component = {
     data: '<',
   },
   template,
-  controller,
 };
 
 export default component;

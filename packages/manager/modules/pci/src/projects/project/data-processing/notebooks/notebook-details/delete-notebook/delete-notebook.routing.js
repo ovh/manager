@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.data-processing.notebooks.delete',
+    'pci.projects.project.data-processing.notebooks.details.delete',
     {
       url: '/delete',
       views: {
@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         notebookId: /* @ngInject */ ($transition$) =>
           $transition$.params().notebookId,
-        goBack: /* @ngInject */ (showNotebooks) => showNotebooks,
+        goBack: /* @ngInject */ (showNotebook) => showNotebook,
       },
     },
   );
