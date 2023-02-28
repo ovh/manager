@@ -13,5 +13,8 @@
   "pci_databases_current_queries_datagrid_column_database": "Database",
   "pci_databases_current_queries_datagrid_column_client_address": "Client address",
   "pci_databases_current_queries_datagrid_column_application_name": "Application name",
-  "pci_databases_current_queries_fetch_error": "An error has occurred loading the queries in progress. Please try again later."
+  "pci_databases_current_queries_fetch_error": "An error has occurred loading the queries in progress. Please try again later.",
+  "pci_databases_current_queries_datagrid_terminate_action_label": "Finish",
+  "pci_databases_current_queries_datagrid_terminate_action_success": "The identified request {{pid}} is ending and will be removed from the list once you refresh the page again.",
+  "pci_databases_current_queries_datagrid_terminate_action_error": "The identified query cannot be completed {{pid}}."
 }

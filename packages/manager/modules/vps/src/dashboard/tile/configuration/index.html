@@ -20,6 +20,7 @@
                 data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteVcore && !$ctrl.isInRescueMode && !$ctrl.isMigrating"
             >
                 <a
+                    data-ng-if="$ctrl.configurationTile.upgrades"
                     data-ng-href="{{:: $ctrl.getUpscaleHref() }}"
                     data-track-on="click"
                     data-track-name="vps::detail::dashboard::vcore-upscale"
@@ -30,6 +31,16 @@
                     ></span>
                 </a>
             </p>
+            <oui-message
+                type="info"
+                data-ng-if="$ctrl.serviceInfos.contactAdmin !== $ctrl.nichandle"
+            >
+                <p
+                    class="mb-0"
+                    data-translate="vps_dashboard_tile_configuration_upgrade_wrong_nic_cpu"
+                    data-translate-values="{ nichandle: '<strong>' + $ctrl.serviceInfos.contactAdmin + '</strong>' }"
+                ></p>
+            </oui-message>
         </oui-tile-description>
     </oui-tile-definition>
 
@@ -78,6 +89,7 @@
                 data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteRam && !$ctrl.isInRescueMode && !$ctrl.isMigrating"
             >
                 <a
+                    data-ng-if="$ctrl.configurationTile.upgrades"
                     data-ng-href="{{:: $ctrl.getUpscaleHref()}}"
                     data-track-on="click"
                     data-track-name="vps::detail::dashboard::memory-upscale"
@@ -88,6 +100,16 @@
                     ></span>
                 </a>
             </p>
+            <oui-message
+                type="info"
+                data-ng-if="$ctrl.serviceInfos.contactAdmin !== $ctrl.nichandle"
+            >
+                <p
+                    class="mb-0"
+                    data-translate="vps_dashboard_tile_configuration_upgrade_wrong_nic_memory"
+                    data-translate-values="{ nichandle: '<strong>' + $ctrl.serviceInfos.contactAdmin + '</strong>' }"
+                ></p>
+            </oui-message>
         </oui-tile-description>
     </oui-tile-definition>
 
@@ -136,6 +158,7 @@
                 data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteStorage && !$ctrl.isInRescueMode"
             >
                 <a
+                    data-ng-if="$ctrl.configurationTile.upgrades"
                     data-ng-href="{{:: $ctrl.getUpscaleHref()}}"
                     data-track-on="click"
                     data-track-name="vps::detail::dashboard::storage-upscale"
@@ -146,6 +169,16 @@
                     ></span>
                 </a>
             </p>
+            <oui-message
+                type="info"
+                data-ng-if="$ctrl.serviceInfos.contactAdmin !== $ctrl.nichandle"
+            >
+                <p
+                    class="mb-0"
+                    data-translate="vps_dashboard_tile_configuration_upgrade_wrong_nic_storage"
+                    data-translate-values="{ nichandle: '<strong>' + $ctrl.serviceInfos.contactAdmin + '</strong>' }"
+                ></p>
+            </oui-message>
         </oui-tile-description>
     </oui-tile-definition>
 </oui-tile>

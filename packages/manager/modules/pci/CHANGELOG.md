@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.113.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.112.1...@ovh-ux/manager-pci@5.113.0) (2023-02-23)
+
+
+### Bug Fixes
+
+* **ai.apps:** ai datastore property ([#8884](https://github.com/ovh/manager/issues/8884)) ([f5c7705](https://github.com/ovh/manager/commit/f5c7705e74a4c31f350ab73e7f3f1c2b61575027))
+* **pci.instance:** add the metal rescue documentation link ([#8783](https://github.com/ovh/manager/issues/8783)) ([396dc9c](https://github.com/ovh/manager/commit/396dc9c2685485297b17141149af58547ffcfde1))
+
+
+### Features
+
+* **pci.storages.databases:** add terminate button current query ([#8782](https://github.com/ovh/manager/issues/8782)) ([6ddad43](https://github.com/ovh/manager/commit/6ddad43572f2e5ef331924183fb3671821f2349f))
+
+
+
+
+
 ## [5.112.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.112.0...@ovh-ux/manager-pci@5.112.1) (2023-02-20)
 
 

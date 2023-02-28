@@ -1,7 +1,7 @@
 <div>
     <ip-alerts
         class="d-block mb-4"
-        data-service-type="selectedServiceType"
+        data-service-type="selection.serviceType"
     ></ip-alerts>
     <h4 data-translate="ip_addresses_grid_header"></h4>
     <div class="text-center" data-ng-if="loading">
@@ -18,7 +18,8 @@
         data-track-click="trackClick"
         data-track-page="trackPage"
         data-tracking-data="trackingData"
-        data-params="{ serviceName: selectedService ? selectedService.serviceName : null }"
+        data-params="listParams"
+        data-on-param-deleted="onListParamDeleted(param)"
     >
         <ip-list-header>
             <div class="d-flex flex-column flex-lg-row">
@@ -26,8 +27,8 @@
                     class="form-control mr-3 mb-3"
                     id="serviceTypeSelector"
                     name="serviceTypeSelector"
-                    data-ng-model="ipScope.selectedServiceType"
-                    data-ng-change="ipScope.select({ serviceType: ipScope.selectedServiceType, service: null })"
+                    data-ng-model="ipScope.selection.serviceType"
+                    data-ng-change="ipScope.select({ serviceType: ipScope.selection.serviceType, service: null })"
                     data-ng-options="serviceType as (('ip_filter_service_type_' + serviceType) | translate) for serviceType in ipScope.serviceTypes track by serviceType"
                 >
                     <option
@@ -39,8 +40,8 @@
                     class="form-control"
                     id="serviceSelector"
                     name="serviceSelector"
-                    data-ng-model="ipScope.selectedService"
-                    data-ng-change="ipScope.select({ service: ipScope.selectedService, serviceType: null })"
+                    data-ng-model="ipScope.selection.service"
+                    data-ng-change="ipScope.select({ service: ipScope.selection.service, serviceType: null })"
                     data-ng-options="service as service.serviceName group by (('ip_filter_services_title_' + service.category) | translate) for service in ipScope.services track by service.serviceName"
                 >
                     <option

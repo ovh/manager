@@ -15,5 +15,8 @@
   "vps_dashboard_tile_configuration_upgrade_complete_reboot_required": "Los recursos se han añadido correctamente a su VPS. Por favor, reinicie su máquina para aplicar la nueva configuración.",
   "vps_dashboard_tile_configuration_vcore": "vCores",
   "vps_dashboard_tile_configuration_memory_add_upscale_elite": "Escale su VPS aumentando la memoria",
-  "vps_dashboard_tile_configuration_storage_add_upscale_elite": "Escale su VPS aumentando el almacenamiento"
+  "vps_dashboard_tile_configuration_storage_add_upscale_elite": "Escale su VPS aumentando el almacenamiento",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_cpu": "Si necesita más vCores, póngase en contacto con el administrador de la cuenta: {{ nichandle }}.",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_memory": "Si necesita más memoria, póngase en contacto con el administrador de la cuenta: {{ nichandle }}.",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_storage": "Si necesita más almacenamiento, póngase en contacto con el administrador de la cuenta: {{ nichandle }}."
 }

@@ -1,3 +1,4 @@
+import { debounce } from 'lodash';
 import {
   BRING_YOUR_OWN_IP,
   SERVICE_TYPES,
@@ -13,6 +14,7 @@ export default /* @ngInject */
   $translate,
   $timeout,
   $q,
+  $state,
   Alerter,
   goToAntispam,
   goToFirewall,
@@ -26,6 +28,7 @@ export default /* @ngInject */
   orderIpAvailable,
   trackPage,
   trackingData,
+  ipServiceData,
 ) => {
   $scope.BRING_YOUR_OWN_IP = BRING_YOUR_OWN_IP;
   $scope.ADDITIONAL_IP = ADDITIONAL_IP;
@@ -38,8 +41,8 @@ export default /* @ngInject */
   $scope.goToOrganisation = goToOrganisation;
   $scope.isByoipAvailable = isByoipAvailable;
   $scope.orderIpAvailable = orderIpAvailable;
-  $scope.selectedService = null;
-  $scope.selectedServiceType = null;
+  $scope.selection = { service: null, serviceType: null };
+  $scope.listParams = {};
   $scope.services = [];
   $scope.serviceTypes = [];
   $scope.trackClick = trackClick;
@@ -59,9 +62,7 @@ export default /* @ngInject */
           SERVICE_TYPES.includes(serviceType),
         );
         if ($stateParams.serviceType) {
-          $scope.selectedServiceType = $scope.serviceTypes.find(
-            (serviceType) => serviceType === $stateParams.serviceType,
-          );
+          $scope.selection.serviceType = $stateParams.serviceType;
         }
       });
   }
@@ -72,9 +73,7 @@ export default /* @ngInject */
         ({ serviceName: a }, { serviceName: b }) => (a > b ? 1 : -1),
       );
       if ($stateParams.serviceName) {
-        $scope.selectedService = $scope.services.find(
-          ({ serviceName }) => serviceName === $stateParams.serviceName,
-        );
+        $scope.selection.service = { serviceName: $stateParams.serviceName };
       }
     });
   }
@@ -93,10 +92,21 @@ export default /* @ngInject */
   $scope.select = function select({ serviceType, service }) {
     $location.search('serviceType', serviceType);
     $location.search('serviceName', service?.serviceName);
+    $location.search('ipService', '');
     $location.search('page', 1);
-    $scope.selectedServiceType = serviceType;
-    $scope.selectedService = service;
-    $timeout(() => $scope.$broadcast('ips.table.reload'));
+  };
+
+  $scope.onListParamDeleted = function onListParamDeleted(param) {
+    if (param === 'ip') {
+      $scope.select({ serviceType: null, service: null });
+    }
+  };
+
+  $scope.displayOrganisation = function displayOrganisation() {
+    trackClick('manage-organisation');
+    goToOrganisation().then(() =>
+      $scope.$broadcast('ips.organisation.display'),
+    );
   };
 
   $scope.$on('organisation.change.done', () => {
@@ -113,12 +123,43 @@ export default /* @ngInject */
     }
   });
 
-  $scope.displayOrganisation = function displayOrganisation() {
-    trackClick('manage-organisation');
-    goToOrganisation().then(() =>
-      $scope.$broadcast('ips.organisation.display'),
-    );
-  };
+  const debouncedReload = debounce(
+    () => $timeout(() => $scope.$broadcast('ips.table.reload')),
+    200,
+  );
+
+  // State management & grid reload
+  // React to both user selections and url changes (including back / force mecanism)
+  $scope.$watch(
+    () => {
+      const { ipService, serviceName, serviceType } = $location.search();
+      return {
+        selection: $scope.selection,
+        params: { ipService, serviceName, serviceType },
+      };
+    },
+    ({ params: { ipService, serviceName, serviceType } }) => {
+      if (ipService && !ipServiceData) {
+        return $state.go(
+          'app.ip',
+          { ipService, serviceType: null, serviceName: null },
+          { reload: true },
+        );
+      }
+      $scope.selection.serviceType = serviceType
+        ? $scope.serviceTypes.find((item) => item === serviceType)
+        : null;
+      $scope.selection.service = serviceName
+        ? $scope.services.find((item) => item.serviceName === serviceName)
+        : null;
+      $scope.listParams = {
+        ...(ipService && ipServiceData && { ip: ipServiceData.ip }),
+        serviceName: $scope.selection.service?.serviceName || null,
+      };
+      return debouncedReload();
+    },
+    true,
+  );
 
   if ($location.search().action === 'firewall' && $location.search().ip) {
     goToFirewall($location.search().ip);

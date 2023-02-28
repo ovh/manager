@@ -52,15 +52,24 @@ export const listRouting = {
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip', {
-    url: '/ip?action&ip&serviceName&serviceType&page&pageSize&ipBlock',
+    url:
+      '/ip?action&ip&serviceName&serviceType&page&pageSize&ipBlock&ipService',
     template,
     controller,
     reloadOnSearch: false,
-    redirectTo: (transition) =>
-      transition
+    redirectTo: (transition) => {
+      const { serviceName, ...params } = transition.params();
+      if (serviceName?.match(/^(ip|byoip-failover)-[\d./]+$/)) {
+        return {
+          state: 'app.ip',
+          params: { ...params, ipService: serviceName },
+        };
+      }
+      return transition
         .injector()
         .getAsync('hasAnyIp')
-        .then((hasAnyIp) => `app.ip.${hasAnyIp ? 'dashboard' : 'onboarding'}`),
+        .then((hasAnyIp) => `app.ip.${hasAnyIp ? 'dashboard' : 'onboarding'}`);
+    },
     resolve: {
       fetchFirstIp: /* @ngInject */ ($http) => (params = '') =>
         $http
@@ -100,6 +109,16 @@ export default /* @ngInject */ ($stateProvider) => {
           '_blank',
           'noopener',
         ),
+      ipServiceData: /* @ngInject */ ($transition$, $http) => {
+        const { ipService } = $transition$.params();
+        if (!ipService) {
+          return null;
+        }
+        return $http
+          .get(`/ip/service/${encodeURIComponent(ipService)}`)
+          .then(({ data }) => data)
+          .catch(() => null);
+      },
       trackPage: /* @ngInject */ (atInternet) => (...hits) => {
         atInternet.trackPage({
           name: [TRACKING_PREFIX, ...hits].join('::'),

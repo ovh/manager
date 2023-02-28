@@ -13,8 +13,8 @@ export default class {
 
     this.messageContainer = 'pci.projects.project.apps.dashboard.attach-data';
     this.loadMessages();
-    this.privateSwiftVolumes = this.app.spec.volumes.filter(
-      ({ privateSwift }) => privateSwift !== undefined,
+    this.dataStoreVolumes = this.app.spec.volumes.filter(
+      ({ dataStore }) => dataStore !== undefined,
     );
     this.publicGitVolumes = this.app.spec.volumes.filter(
       ({ publicGit }) => publicGit !== undefined,

@@ -114,6 +114,40 @@ export default class {
     }
   }
 
+  trackAndTerminateQuery(query) {
+    this.trackDashboard(TRACKING_INFO.TERMINATE_QUERY, 'action');
+    return this.DatabaseService.postTerminateQuery(
+      this.projectId,
+      this.database.id,
+      this.database.engine,
+      query.pid,
+      true,
+    )
+      .then(() => {
+        this.getCurrentQueries();
+        return this.CucCloudMessage.success(
+          this.$translate.instant(
+            'pci_databases_current_queries_datagrid_terminate_action_success',
+            {
+              pid: query.pid,
+            },
+          ),
+          this.messageContainer,
+        );
+      })
+      .catch(() =>
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_databases_current_queries_datagrid_terminate_action_error',
+            {
+              pid: query.pid,
+            },
+          ),
+          this.messageContainer,
+        ),
+      );
+  }
+
   $onDestroy() {
     clearInterval(this.refreshTimer);
   }
