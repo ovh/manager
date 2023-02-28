@@ -23,6 +23,8 @@ const cacheLoader = {
   },
 };
 
+const resolveAlias = require('./alias');
+
 // The common webpack configuration
 
 module.exports = (opts) => {
@@ -89,6 +91,7 @@ module.exports = (opts) => {
 
     resolve: {
       modules: ['./node_modules', path.resolve('./node_modules')],
+      alias: resolveAlias,
     },
 
     resolveLoader: {

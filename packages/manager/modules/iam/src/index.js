@@ -4,6 +4,7 @@ import uiRouter from '@uirouter/angularjs';
 
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
+import uiKit from '@ovh-ux/ui-kit';
 
 import { declareRoutes, ROUTES } from '@iam/routes';
 import { assignConstants } from '@iam/constants';
@@ -11,11 +12,7 @@ import { registerTypes } from '@iam/resolves';
 import services from '@iam/services';
 import components from '@iam/components';
 
-// TODO remove the relative paths once the feat/datagrid-pagination-mode branch
-// of @ovh-ux/ui-kit has been merged / published
-import '../../../apps/iam/node_modules/@ovh-ux/ui-kit/dist/js/oui';
-import '../../../apps/iam/node_modules/@ovh-ux/ui-kit/dist/css/oui.css';
-import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
+import './index.scss';
 
 const moduleName = 'ovhManagerIAM';
 const componentModuleNames = Object.values(components).map(
@@ -28,9 +25,7 @@ angular
     uiRouter,
     ngOvhFeatureFlipping,
     ngOvhUtils,
-    // TODO use the default export of @ovh-ux/ui-kit once the fix/build-export-default-library-name
-    //  branch of @ovh-ux/ui-kit has been merged / published
-    'oui',
+    uiKit,
     ...componentModuleNames,
   ])
   .config(registerTypes)
