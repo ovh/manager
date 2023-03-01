@@ -23,16 +23,12 @@ angular
     ngOvhFeatureFlipping,
     ngOvhUtils,
     uiKit,
+    services,
     components,
   ])
   .config(registerTypes)
   .config(declareRoutes)
   .run(assignConstants('IAM', { ROUTES }))
-  .run(/* @ngTranslationsInject:json ./services/translations */)
   .run(/* @ngTranslationsInject:json ./resolves/translations */);
-
-Object.entries(services).forEach(([serviceName, Service]) => {
-  angular.module(moduleName).service(serviceName, Service);
-});
 
 export default moduleName;
