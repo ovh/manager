@@ -10,6 +10,7 @@ import component from './list.component';
 import deleteVolumeBackup from './delete';
 import attachVolumeToInstance from './attach-volume';
 import restoreVolumeFromVolumeBackup from './restore-volume';
+import createVolumeFromVolumeBackup from './create-volume';
 
 const moduleName = 'ovhManagerPciProjectStoragesVolumeBackupList';
 
@@ -22,6 +23,7 @@ angular
     deleteVolumeBackup,
     attachVolumeToInstance,
     restoreVolumeFromVolumeBackup,
+    createVolumeFromVolumeBackup,
   ])
   .config(routing)
   .component('ovhManagerPciProjectsProjectStoragesVolumeBackupList', component)
