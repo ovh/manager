@@ -8,7 +8,7 @@ import uiKit from '@ovh-ux/ui-kit';
 
 import { declareRoutes, ROUTES } from '@iam/routes';
 import { assignConstants } from '@iam/constants';
-import { registerTypes } from '@iam/resolves';
+import revolves from '@iam/resolves';
 import services from '@iam/services';
 import components from '@iam/components';
 
@@ -23,12 +23,11 @@ angular
     ngOvhFeatureFlipping,
     ngOvhUtils,
     uiKit,
+    revolves,
     services,
     components,
   ])
-  .config(registerTypes)
   .config(declareRoutes)
-  .run(assignConstants('IAM', { ROUTES }))
-  .run(/* @ngTranslationsInject:json ./resolves/translations */);
+  .run(assignConstants('IAM', { ROUTES }));
 
 export default moduleName;
