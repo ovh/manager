@@ -64,7 +64,7 @@ export default class ColdArchiveLinkUserArchiveController {
         ),
       )
       .then((usersWithCredentials) => {
-        this.usersCredentials = usersWithCredentials.map((user) => ({
+        this.users = usersWithCredentials.map((user) => ({
           ...user,
           s3Credentials: user?.s3Credentials[0],
           credentialTrad: this.getCredentialTranslation(user),
@@ -72,7 +72,6 @@ export default class ColdArchiveLinkUserArchiveController {
             ? `${user.username} - ${user.description}`
             : user.username,
         }));
-        this.users = this.usersCredentials;
       })
       .catch(() => [])
       .finally(() => {
