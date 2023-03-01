@@ -1,9 +1,8 @@
-const VOLUME_OPTION_SNAPSHOT = 'SNAPSHOT';
-const VOLUME_OPTION_BACKUP = 'BACKUP';
-const VOLUMES_OPTIONS = [
-  { id: 'volume_snapshot', type: VOLUME_OPTION_SNAPSHOT },
-  { id: 'volume_backup', type: VOLUME_OPTION_BACKUP },
-];
+import {
+  VOLUME_OPTION_BACKUP,
+  VOLUME_OPTION_SNAPSHOT,
+  VOLUMES_OPTIONS,
+} from './create.constants';
 
 export default class VolumeBackupCreateController {
   /* @ngInject */
