@@ -1,4 +1,4 @@
-import { PCI_FEATURES } from '../../../projects.constant';
+import { PCI_FEATURES, PCI_FEATURES_STATES } from '../../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.blocks', {
@@ -100,6 +100,15 @@ export default /* @ngInject */ ($stateProvider) => {
         }
 
         return promise;
+      },
+
+      goToCreateVolumeBackup: /* @ngInject */ (projectId, $state) => (
+        volume,
+        typeToPreselect,
+      ) => {
+        return $state.go(PCI_FEATURES_STATES.VOLUME_BACKUP.ADD, {
+          volume,
+        });
       },
 
       breadcrumb: /* @ngInject */ ($translate) =>

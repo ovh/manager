@@ -8,6 +8,6 @@ export default class PciStorageColdArchivesOnboardingController {
   onAddVolumeBlockStorageClick() {
     // TODO: tracking
 
-    this.goToAddVolumeBlockStorage();
+    this.goToCreateVolumeBackup();
   }
 }
