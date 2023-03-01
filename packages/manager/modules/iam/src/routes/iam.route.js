@@ -31,6 +31,6 @@ const state = ({ ROUTES }) => ({
 
 export default {
   name,
-  state,
   children,
+  state,
 };

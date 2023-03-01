@@ -4,7 +4,7 @@ import { asResolve, createPolicyBreadcrumb } from '@iam/resolves';
 const name = 'createPolicy';
 const resolves = [createPolicyBreadcrumb];
 
-export const state = () => ({
+const state = () => ({
   url: '/policy/create',
   component: createPolicy.name,
   resolve: {
