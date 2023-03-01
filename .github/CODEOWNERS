@@ -1,10 +1,5 @@
 # Default owners
 * @ovh/team-manager-dev
-yarn.lock @ovh/team-manager-core
-
-# Documentation
-*.md
-/docs/ @ovh/team-manager-core
 
 # Components
 /packages/components/ @ovh/team-manager-dev
