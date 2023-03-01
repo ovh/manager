@@ -155,9 +155,10 @@ export default class AddUserCtrl {
   }
 
   checkUsernameExist(username) {
-    return this.users.some((user) =>
-      user.username.toLowerCase().includes(username),
-    );
+    if (!username) {
+      return true;
+    }
+    return this.users.some((user) => user.username.toLowerCase() === username);
   }
 
   addUser() {
