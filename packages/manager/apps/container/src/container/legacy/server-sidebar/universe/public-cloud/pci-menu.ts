@@ -237,7 +237,7 @@ export function getPciProjectMenu(
         {
           id: 'apps',
           title: 'AI Deploy',
-          badge: 'beta',
+          badge: 'new',
           regions: ['CA', 'EU'],
           feature: 'ai-apps',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/apps`),
