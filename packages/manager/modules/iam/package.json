@@ -20,6 +20,7 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "lodash-es": "^4.17.15",
+    "oclazyload": "^1.1.0",
     "ovh-ui-kit-bs": "^4.2.0"
   }
 }

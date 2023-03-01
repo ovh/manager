@@ -1,6 +1,7 @@
 import angular from 'angular';
-
 import { snakeCase } from 'lodash-es';
+
+import resolves from '@iam/resolves';
 import iam from './iam.route';
 
 // ---------------------------------------------------------------------------------------------------- //
@@ -62,7 +63,7 @@ const declareRoutes = /* @ngInject */ ($stateProvider) => {
 const moduleName = 'ovhManagerIAMRoutes';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [resolves])
   .config(declareRoutes)
   .run(/* @ngTranslationsInject:json ./translations */);
 
