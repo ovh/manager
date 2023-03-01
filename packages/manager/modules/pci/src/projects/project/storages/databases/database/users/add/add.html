@@ -5,12 +5,6 @@
 
 <form name="addUserForm" novalidate>
     <h2 data-translate="pci_databases_users_add"></h2>
-    <oui-message data-type="error" data-ng-if="$ctrl.usernameExist">
-        <span
-            data-translate="pci_databases_users_add_error_username_exist"
-            data-translate-values="{ user: '<b>' + $ctrl.usernameCheck + '</b>' }"
-        ></span>
-    </oui-message>
     <oui-field
         data-label="{{:: 'pci_databases_users_add_username_label' | translate }}"
         data-size="xl"
@@ -38,6 +32,10 @@
             <pci-storage-database-input-rule
                 valid="$ctrl.checkPattern(addUserForm.username.$viewValue, $ctrl.inputRules.name.pattern)"
                 data-label="{{:: 'pci_databases_users_add_username_pattern_rule' | translate }}"
+            ></pci-storage-database-input-rule>
+            <pci-storage-database-input-rule
+                valid="!$ctrl.checkUsernameExist(addUserForm.username.$viewValue)"
+                data-label="{{:: 'pci_databases_users_add_error_username_exist' | translate }}"
             ></pci-storage-database-input-rule>
         </div>
     </oui-field>
@@ -271,7 +269,7 @@
             data-size="l"
             data-variant="primary"
             data-icon-right="oui-icon-arrow-right"
-            data-disabled="$ctrl.processing || !$ctrl.model.username"
+            data-disabled="$ctrl.processing || !$ctrl.model.username || $ctrl.checkUsernameExist($ctrl.model.username)"
             data-on-click="$ctrl.addUser()"
         >
             <span data-translate="pci_databases_users_add_create"></span>
