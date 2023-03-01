@@ -1,5 +1,5 @@
 import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from './users.constants';
-import { COLD_ARCHIVE_TRACKING, DATE_FORMAT } from '../cold-archives.constants';
+import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
 
 const { saveAs } = require('file-saver');
 
@@ -26,7 +26,6 @@ export default class PciStoragesContainersUsersController {
     this.userList = this.userList.map((user) => ({
       ...user,
       gridPropertyCreationDate: new Date(user.creationDate),
-      gridDisplayCreationDate: moment(user.creationDate).format(DATE_FORMAT),
     }));
   }
 
