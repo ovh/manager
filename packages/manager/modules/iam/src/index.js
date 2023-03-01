@@ -6,9 +6,9 @@ import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
 
-import { declareRoutes, ROUTES } from '@iam/routes';
 import { assignConstants } from '@iam/constants';
 import revolves from '@iam/resolves';
+import routes, { ROUTES } from '@iam/routes';
 import services from '@iam/services';
 import components from '@iam/components';
 
@@ -18,16 +18,18 @@ const moduleName = 'ovhManagerIAM';
 
 angular
   .module(moduleName, [
+    // Vendors
     angularTranslate,
     uiRouter,
     ngOvhFeatureFlipping,
     ngOvhUtils,
     uiKit,
+    // IAM
     revolves,
+    routes,
     services,
     components,
   ])
-  .config(declareRoutes)
   .run(assignConstants('IAM', { ROUTES }));
 
 export default moduleName;

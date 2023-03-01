@@ -1,9 +1,11 @@
+import angular from 'angular';
+
 import { snakeCase } from 'lodash-es';
 import iam from './iam.route';
 
-const defaultExport = {
-  iam,
-};
+// ---------------------------------------------------------------------------------------------------- //
+
+const rootRoutes = [iam];
 
 /**
  * Get the full state name (e.g. with the dots) of a route
@@ -27,7 +29,7 @@ const getStateName = (...parts) => parts.filter(Boolean).join('.');
  *
  * @type {Object<string, string>}
  */
-export const ROUTES = (() => {
+const ROUTES = (() => {
   const recursiveROUTES = (routes, parentName) =>
     routes.reduce((constants, { name, children = [] }) => {
       const stateName = getStateName(parentName, name);
@@ -37,15 +39,14 @@ export const ROUTES = (() => {
         [snakeCase(name.split('.').pop()).toUpperCase()]: stateName,
       };
     }, {});
-
-  return recursiveROUTES(Object.values(defaultExport));
+  return recursiveROUTES(rootRoutes);
 })();
 
 /**
  * Declare all the routes onto the given StateProvider instance using its state method
  * @param {StateProvider} $stateProvider
  */
-export const declareRoutes = /* @ngInject */ ($stateProvider) => {
+const declareRoutes = /* @ngInject */ ($stateProvider) => {
   const recursiveDeclareRoutes = (routes, parentName) => {
     routes.forEach(({ name, state, children = [] }) => {
       const stateName = getStateName(parentName, name);
@@ -53,8 +54,19 @@ export const declareRoutes = /* @ngInject */ ($stateProvider) => {
       recursiveDeclareRoutes(children, stateName);
     });
   };
-
-  recursiveDeclareRoutes(Object.values(defaultExport));
+  recursiveDeclareRoutes(rootRoutes);
 };
 
-export default defaultExport;
+// ---------------------------------------------------------------------------------------------------- //
+
+const moduleName = 'ovhManagerIAMRoutes';
+
+angular
+  .module(moduleName, [])
+  .config(declareRoutes)
+  .run(/* @ngTranslationsInject:json ./translations */);
+
+// ---------------------------------------------------------------------------------------------------- //
+
+export { ROUTES };
+export default moduleName;

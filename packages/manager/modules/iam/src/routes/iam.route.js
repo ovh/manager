@@ -8,14 +8,11 @@ import {
 import policyRoute from './policy.route';
 import createPolicyRoute from './createPolicy.route';
 
+const name = 'iam';
+const children = [policyRoute, createPolicyRoute];
 const resolves = [featuresResolve, defaultBreadcrumbResolve];
-const unavailableState = {
-  state: UNAVAILABLE_STATE_NAME,
-};
 
-export const name = 'iam';
-
-export const state = ({ ROUTES }) => ({
+const state = ({ ROUTES }) => ({
   url: '/iam',
   component: iamComponent.name,
   redirectTo: (transition) =>
@@ -25,12 +22,12 @@ export const state = ({ ROUTES }) => ({
       .then((featureAvailabilityResult) =>
         featureAvailabilityResult.isFeatureAvailable(FEATURE.MAIN)
           ? ROUTES.POLICY
-          : unavailableState,
+          : { state: UNAVAILABLE_STATE_NAME },
       ),
-  resolve: asResolve(resolves),
+  resolve: {
+    ...asResolve(resolves),
+  },
 });
-
-export const children = [policyRoute, createPolicyRoute];
 
 export default {
   name,

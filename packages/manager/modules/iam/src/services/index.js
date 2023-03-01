@@ -11,6 +11,6 @@ angular
   .service('Apiv2Service', Apiv2Service)
   .service('GuideService', GuideService)
   .service('PolicyService', PolicyService)
-  .run(/* @ngTranslationsInject:json ./createPolicy/translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
