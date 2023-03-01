@@ -15,9 +15,6 @@ import components from '@iam/components';
 import './index.scss';
 
 const moduleName = 'ovhManagerIAM';
-const componentModuleNames = Object.values(components).map(
-  ({ moduleName: componentModuleName }) => componentModuleName,
-);
 
 angular
   .module(moduleName, [
@@ -26,7 +23,7 @@ angular
     ngOvhFeatureFlipping,
     ngOvhUtils,
     uiKit,
-    ...componentModuleNames,
+    components,
   ])
   .config(registerTypes)
   .config(declareRoutes)
