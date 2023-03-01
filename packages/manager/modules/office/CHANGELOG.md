@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.8.2...@ovh-ux/manager-office@2.9.0) (2023-03-01)
+
+
+### Features
+
+* add tracking in product listing pages ([aded2e5](https://github.com/ovh/manager/commit/aded2e522bafaee9416589e96a375a0db5b72419))
+
+
+
+
+
 ## [2.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.8.1...@ovh-ux/manager-office@2.8.2) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-office
