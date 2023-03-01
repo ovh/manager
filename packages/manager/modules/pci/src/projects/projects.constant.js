@@ -97,7 +97,7 @@ export const PCI_FEATURES_STATES = {
   },
   VOLUME_BACKUP: {
     LIST: 'pci.projects.project.storages.volume-backup',
-    ADD: 'pci.projects.project.storages.blocks.add', // no volume backup add page, completed on volume block storage
+    ADD: 'pci.projects.project.storages.volume-backup.create',
   },
   OBJECTS: {
     LIST: 'pci.projects.project.storages.object-storage',
