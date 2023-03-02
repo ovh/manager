@@ -1,5 +1,6 @@
 import { isEmpty } from 'lodash-es';
 import { LegacyTrackingData } from './track';
+import { debug } from './utils';
 
 export type TrackingDefaults = Partial<LegacyTrackingData>;
 
@@ -10,24 +11,11 @@ export class OvhAtInternetConfig {
   protected defaults: TrackingDefaults;
 
   /**
-   * Promise that make sure that defaults are setted after a promise resoltion.
-   */
-  protected defaultsPromise: Promise<TrackingDefaults>;
-
-  /**
    * Enable or disable tracking.
    */
-  protected enabled = false;
+  protected enabled = true;
 
-  /**
-   * Enable or disable logging tracking in JS console.
-   */
-  protected debug = false;
-
-  /**
-   * Region used to get custom vars.
-   */
-  protected region = 'EU';
+  protected region: string = '';
 
   /**
    * Check if default data has been set.
@@ -42,6 +30,7 @@ export class OvhAtInternetConfig {
    */
   setDefaults(def: TrackingDefaults): TrackingDefaults {
     this.defaults = def;
+    debug('tracking set defaults', def);
     return this.defaults;
   }
 
@@ -54,28 +43,14 @@ export class OvhAtInternetConfig {
     };
   }
 
-  /**
-   * Configure the defaults promise that needs to be resolved before sending hits (to be sure
-   * that defaults are setted).
-   * @param promise  A promise that needs to be resolved before sending hits.
-   */
-  setDefaultsPromise(promise: Promise<TrackingDefaults>): void {
-    this.defaultsPromise = promise.then((defaults: TrackingDefaults) => {
-      return this.setDefaults(defaults);
-    });
-  }
-
-  /**
-   * Retrieve the defaults promise setted by setDefaultsPromise method.
-   */
-  getDefaultsPromise(): Promise<TrackingDefaults> {
-    return this.defaultsPromise;
+  setRegion(region: string) {
+    this.region = region;
   }
 
   /**
    * Get the enabled state.
    */
-  isEnabled(): boolean {
+  protected isEnabled(): boolean {
     return this.enabled;
   }
 
@@ -83,38 +58,9 @@ export class OvhAtInternetConfig {
    * Enable or disable tracking.
    * @param state  true to enable tracking, false otherwise.
    */
-  setEnabled(state: boolean): void {
+  protected setEnabled(state: boolean): void {
     this.enabled = state;
-  }
-
-  /**
-   * Enable or disable logging of tracking data in the Javascript console.
-   * @param state  true to enable console logs, false otherwise.
-   */
-  setDebug(state: boolean): void {
-    this.debug = state;
-  }
-
-  /**
-   * Get the debug state
-   */
-  isDebugActive(): boolean {
-    return this.debug;
-  }
-
-  /**
-   * Get the setted region in order to get right default custom vars.
-   */
-  getRegion(): string {
-    return this.region;
-  }
-
-  /**
-   * Set the region in order to get right default custom vars.
-   * @param region  Region where to get custom vars.
-   */
-  setRegion(region: string): void {
-    this.region = region;
+    debug(`tracking ${state ? 'enabled' : 'disable'}`);
   }
 }
 
