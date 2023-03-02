@@ -39,7 +39,11 @@ export default class MoveResumeCtrl {
       ? 1
       : 0;
 
-    const modemRental = this.offer.selected.offer.modemRental?.value || 0;
+    const modemRental = this.MODEM_LIST.includes(
+      this.offer.selected.offer.modem,
+    )
+      ? this.offer.selected.offer.prices.modemRental.price.value
+      : 0;
     const providerOrange =
       this.offer.selected.offer.prices.providerOrange.price?.value || 0;
     const providerAI =
