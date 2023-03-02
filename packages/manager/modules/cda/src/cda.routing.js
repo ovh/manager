@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('cda.dashboard', {
           serviceName,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $window) => ({
+      topbarOptions: /* @ngInject */ ($translate, $window, atInternet) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -28,6 +28,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('cda_order'),
           value: $translate.instant('cda_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'cda::index::order',
+              type: 'action',
+            });
             $window.open('https://www.ovh.com/fr/cloud-disk-array/', '_blank');
           },
         },

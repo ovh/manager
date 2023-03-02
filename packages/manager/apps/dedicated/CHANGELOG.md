@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.50.0...@ovh-ux/manager-dedicated@17.51.0) (2023-03-01)
+
+
+### Bug Fixes
+
+* **dedicated.cloud:** add tracking recomendations ([ae49587](https://github.com/ovh/manager/commit/ae49587d04b85872ef153a6a24d3c64ea7f073e3))
+* **dedicated.monitoring:** update the translation for the monitoring ([f80528f](https://github.com/ovh/manager/commit/f80528f121bdb6eeb13f918219c62b4195f0514f))
+
+
+### Features
+
+* add tracking in product listing pages ([aded2e5](https://github.com/ovh/manager/commit/aded2e522bafaee9416589e96a375a0db5b72419))
+
+
+
+
+
 # [17.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.49.2...@ovh-ux/manager-dedicated@17.50.0) (2023-02-23)
 
 

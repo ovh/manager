@@ -31,7 +31,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('vrack.dashboard', {
           vrackId,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+      topbarOptions: /* @ngInject */ (
+        $translate,
+        $window,
+        coreConfig,
+        atInternet,
+      ) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -39,6 +44,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('vrack_order'),
           value: $translate.instant('vrack_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'vrack::index::order',
+              type: 'action',
+            });
             $window.open(
               getVrackOrderUrl(coreConfig.getUser().ovhSubsidiary),
               '_blank',

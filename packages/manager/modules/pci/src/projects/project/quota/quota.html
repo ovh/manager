@@ -248,5 +248,22 @@
             >
             </span>
         </oui-datagrid-column>
+        <oui-datagrid-column data-title="$ctrl.PRODUCTS.FLOATING_IP">
+            <span data-ng-bind="$row.network.usedFloatingIPs"></span>
+            <span class="mx-1">/</span>
+            <span data-ng-bind="$row.network.maxFloatingIPs"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column data-title="$ctrl.PRODUCTS.GATEWAYS">
+            <span data-ng-bind="$row.network.usedGateways"></span>
+            <span class="mx-1">/</span>
+            <span data-ng-bind="$row.network.maxGateways"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column data-title="$ctrl.PRODUCTS.LB_OCTAVIA">
+            <span
+                data-ng-bind="$row.loadbalancer.usedLoadbalancers || 0"
+            ></span>
+            <span class="mx-1">/</span>
+            <span data-ng-bind="$row.loadbalancer.maxLoadbalancers || 0"></span>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>

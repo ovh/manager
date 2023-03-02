@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.8.0...@ovh-ux/manager-sharepoint@2.9.0) (2023-03-01)
+
+
+### Features
+
+* add tracking in product listing pages ([aded2e5](https://github.com/ovh/manager/commit/aded2e522bafaee9416589e96a375a0db5b72419))
+
+
+
+
+
 # [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.7.0...@ovh-ux/manager-sharepoint@2.8.0) (2023-02-07)
 
 

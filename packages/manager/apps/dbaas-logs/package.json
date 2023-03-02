@@ -1,8 +1,8 @@
 {
   "name": "@ovh-ux/manager-dbaas-logs-app",
-  "version": "1.9.9",
+  "version": "1.10.0",
   "private": true,
-  "description": "Cloud Databases standalone application.",
+  "description": "Logs Data Platform standalone application.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -22,7 +22,7 @@
     "@ovh-ux/manager-at-internet-configuration": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-config": "^6.6.0",
     "@ovh-ux/manager-core": "^12.12.10",
-    "@ovh-ux/manager-dbaas-logs": "^1.10.2",
+    "@ovh-ux/manager-dbaas-logs": "^1.11.0",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
     "@ovh-ux/ng-at-internet": "^5.9.6",

@@ -32,7 +32,7 @@
   "pci_projects_project_training_jobs_submit_select_data_tips_2": "Une bonne pratique est d'attacher un container avec vos données d'entrée et un deuxième dans lequel enregistrer les données de sortie.",
   "pci_projects_project_training_jobs_submit_command_default_select": "Spécifier la commande à lancer. (facultatif)",
   "pci_projects_project_training_jobs_submit_select_command": "Renseigner la commande Docker à lancer dans le conteneur (facultatif)",
-  "pci_projects_project_training_jobs_submit_select_command_tips": "Renseigner les arguments (séparés par des espaces) qui seront passés à la commande Docker",
+  "pci_projects_project_training_jobs_submit_select_command_tips": "Renseigner les arguments (séparés par des espaces) qui seront passés à la commande Docker. Les apostrophes simples (`) ne sont pas supportées et à remplacer par des guillemets.",
   "pci_projects_project_training_jobs_submit_select_command_tile_title": "Commande spécifique",
   "pci_projects_project_training_jobs_submit_select_command_tile_command": "Arguments",
   "pci_projects_project_training_jobs_access_url_help": "L'accès HTTP permet d'être redirigé depuis votre navigateur vers le port 80 du conteneur si celui-ci est toujours en cours d'exécution. Pour accéder à l'interface web vous aurez besoin de vous identifier.",

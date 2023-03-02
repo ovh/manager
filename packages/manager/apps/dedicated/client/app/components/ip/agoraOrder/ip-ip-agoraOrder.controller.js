@@ -67,7 +67,10 @@ export default class AgoraIpOrderCtrl {
   }
 
   loadServices() {
-    this.trackStep(1);
+    this.atInternet.trackClick({
+      name: `dedicated::ip::dashboard::order`,
+      type: 'action',
+    });
     this.loading.services = true;
 
     return this.$q

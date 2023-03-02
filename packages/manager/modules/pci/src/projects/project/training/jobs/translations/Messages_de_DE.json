@@ -32,7 +32,7 @@
   "pci_projects_project_training_jobs_submit_select_data_tips_2": "Es hat sich bewährt, einen Container für Ihre Eingabedaten und einen zweiten für die Ausgabedaten hinzuzufügen.",
   "pci_projects_project_training_jobs_submit_command_default_select": "Den Befehl angeben, der ausgeführt werden soll (optional)",
   "pci_projects_project_training_jobs_submit_select_command": "Geben Sie den Docker-Befehl an, der im Container gestartet werden soll (optional)",
-  "pci_projects_project_training_jobs_submit_select_command_tips": "Geben Sie die Argumente für den Docker-Befehl durch Leerzeichen getrennt an",
+  "pci_projects_project_training_jobs_submit_select_command_tips": "Geben Sie die Argumente durch Leerzeichen getrennt ein, die der Bestellung von Docker hinzugefügt werden. Das Apostroph (`) wird nicht unterstützt. Bitte ersetzen Sie es durch Anführungszeichen.",
   "pci_projects_project_training_jobs_submit_select_command_tile_title": "Exakter Befehl",
   "pci_projects_project_training_jobs_submit_select_command_tile_command": "Argumente",
   "pci_projects_project_training_jobs_access_url_help": "Der HTTP-Zugang kann von Ihrem Browser auf den Port 80 des Containers weitergeleitet werden, sofern dieser noch ausgeführt wird. Identifizieren Sie sich, um auf das Webinterface zuzugreifen.",
