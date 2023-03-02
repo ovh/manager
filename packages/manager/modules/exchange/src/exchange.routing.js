@@ -33,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
           organization: domain,
           productId: domain,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $state) => ({
+      topbarOptions: /* @ngInject */ ($translate, $state, atInternet) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -41,6 +41,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('exchange_order'),
           value: $translate.instant('exchange_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'exchange::index::order',
+              type: 'action',
+            });
             $state.go('exchange.order');
           },
         },

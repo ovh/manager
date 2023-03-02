@@ -51,7 +51,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('telecom.telephony.billingAccount.services', {
           billingAccount,
         }),
-      gotoOrder: /* @ngInject */ ($window) => () => {
+      gotoOrder: /* @ngInject */ ($window, atInternet) => () => {
+        atInternet.trackClick({
+          name: 'telecom::telephony::index::order',
+          type: 'action',
+        });
         $window.open('https://www.ovhtelecom.fr/telephonie/voip/', '_blank');
       },
       hideBreadcrumb: () => true,

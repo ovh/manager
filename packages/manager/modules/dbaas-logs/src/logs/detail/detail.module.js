@@ -27,6 +27,7 @@ import logsHelperService from './logs-helper.service';
 import roles from './roles/roles.module';
 import streams from './streams/streams.module';
 import tokens from './tokens/tokens.module';
+import encryptionKeys from './encryption-keys/encryption-keys.module';
 
 const moduleName = 'ovhManagerDbaasLogsDetail';
 
@@ -49,6 +50,7 @@ angular
     roles,
     streams,
     tokens,
+    encryptionKeys,
     'ngOvhDocUrl',
   ])
   .config(routing)

@@ -29,7 +29,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('telecom.packs.pack', {
           packName,
         }),
-      gotoOrder: /* @ngInject */ ($window) => () => {
+      gotoOrder: /* @ngInject */ ($window, atInternet) => () => {
+        atInternet.trackClick({
+          name: 'telecom::packs::index::order',
+          type: 'action',
+        });
         $window.open('https://www.ovhtelecom.fr/offre-internet/', '_blank');
       },
       hideBreadcrumb: () => true,

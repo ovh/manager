@@ -136,6 +136,7 @@ export default class VSphereUserImportController {
             'dedicatedCloud_USER_import_error',
           )} ${err.message || err}`,
           type: 'danger',
+          reload: true,
           trackingTag: `${TRACKING_PREFIX}-error`,
         });
       });

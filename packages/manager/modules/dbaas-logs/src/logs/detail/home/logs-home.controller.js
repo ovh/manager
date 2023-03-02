@@ -187,6 +187,15 @@ export default class LogsHomeCtrl {
   }
 
   /**
+   * Redirects to the encryption keys page
+   *
+   * @memberof LogsHomeCtrl
+   */
+  editEncryptionKeys() {
+    return this.gotoState('dbaas-logs.detail.encryption-keys.home');
+  }
+
+  /**
    * Opens the edit password dialog
    *
    * @memberof LogsHomeCtrl

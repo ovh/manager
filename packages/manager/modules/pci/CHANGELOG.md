@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.114.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.113.0...@ovh-ux/manager-pci@5.114.0) (2023-03-01)
+
+
+### Features
+
+* add mention to docker command step ([8dec7d0](https://github.com/ovh/manager/commit/8dec7d03a26ffc237fa0f0e37123b01be82f9df6))
+* **pci.quota:** display network components ([9f95db6](https://github.com/ovh/manager/commit/9f95db6e15b75ab53129d1a8f85156a3be8a4eee))
+
+
+
+
+
 # [5.113.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.112.1...@ovh-ux/manager-pci@5.113.0) (2023-02-23)
 
 

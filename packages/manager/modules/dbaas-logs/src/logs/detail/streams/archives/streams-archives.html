@@ -50,6 +50,23 @@
             ></div>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title="::'streams_archives_encryption_keys' | translate"
+            data-helper="::'streams_archives_encryption_keys_helper' | translate"
+            data-property="filename"
+        >
+            <ul
+                class="p-1 m-0"
+                data-ng-if="ctrl.archivesEncryptionKeys.hasOwnProperty($row.archiveId)"
+            >
+                <li
+                    class="p-0 m-0"
+                    style="list-style-type: none;"
+                    data-ng-repeat="key in ctrl.archivesEncryptionKeys[$row.archiveId] track by $index"
+                    data-ng-bind="key"
+                ></li>
+            </ul>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'streams_archives_status' | translate"
             data-property="retrievalState"
         >
