@@ -66,7 +66,7 @@ export default async (containerEl, shellClient) => {
       moduleName,
       [
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
-        initAtInternet(shellClient.tracking),
+        initAtInternet(environment.getRegion(), shellClient.tracking),
         ngAnimate,
         ngUiRouterBreadcrumb,
         ngOvhApiWrappers,

@@ -47,8 +47,11 @@ export const AT_INTERNET_CUSTOM_PROPS: Record<string, string> = {
   orderStatus: 'order_status',
 };
 
+export const TMS_SCRIPT_URL = 'https://analytics.ovh.com/ovh/ovh_manager.js';
+
 export default {
   AT_INTERNET_CUSTOM_PROPS,
   AT_INTERNET_LEVEL2,
   AT_INTERNET_WEBSITE,
+  TMS_SCRIPT_URL,
 };

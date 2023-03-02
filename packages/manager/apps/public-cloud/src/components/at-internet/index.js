@@ -6,14 +6,14 @@ import TRACKING from './at-internet.constant';
 
 const moduleName = 'publicCloudAtInternet';
 
-export const initAtInternet = (trackingPlugin) => {
+export const initAtInternet = (region, trackingPlugin) => {
   angular
     .module(moduleName, [
       registerAtInternet(trackingPlugin),
       ovhManagerAtInternetConfiguration,
     ])
     .config(async () => {
-      await trackingPlugin.setConfig(TRACKING);
+      await trackingPlugin.setConfig(region, TRACKING);
     })
     .config(
       /* @ngInject */ (atInternetConfigurationProvider) => {
