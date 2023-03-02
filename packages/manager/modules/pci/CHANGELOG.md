@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.115.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.114.0...@ovh-ux/manager-pci@5.115.0) (2023-03-02)
+
+
+### Features
+
+* **pci.ai-dashboard:** ai dashboard ([#8952](https://github.com/ovh/manager/issues/8952)) ([c8b6a2a](https://github.com/ovh/manager/commit/c8b6a2ae0feff6056aa16c96732d63d8074e1eff))
+
+
+
+
+
 # [5.114.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.113.0...@ovh-ux/manager-pci@5.114.0) (2023-03-01)
 
 
