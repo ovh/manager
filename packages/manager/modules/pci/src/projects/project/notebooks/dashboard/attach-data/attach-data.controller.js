@@ -12,8 +12,8 @@ export default class {
     this.messageContainer =
       'pci.projects.project.notebooks.dashboard.attach-data';
     this.loadMessages();
-    this.privateSwiftVolumes = this.notebook.spec.volumes.filter(
-      ({ privateSwift }) => privateSwift !== undefined,
+    this.dataStoreVolumes = this.notebook.spec.volumes.filter(
+      ({ dataStore }) => dataStore !== undefined,
     );
     this.publicGitVolumes = this.notebook.spec.volumes.filter(
       ({ publicGit }) => publicGit !== undefined,

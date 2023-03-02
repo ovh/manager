@@ -123,18 +123,21 @@ export default function DedicatedSidebar() {
                 `/dedicatedCloud/${service.serviceName}/datacenter`,
                 'MBM',
               );
-              return services.map((dc) => ({
-                ...dc,
-                href: navigation.getURL(
-                  'dedicated',
-                  `#/managedBaremetal/${
-                    service.serviceName
-                  }/${dc.serviceName.replace('datacenter', 'datacenter/')}`,
-                ),
-                routeMatcher: new RegExp(
-                  `${dc.serviceName.replace('datacenter', 'datacenter/')}`,
-                ),
-              }));
+              return services.map((dc) => {
+                const dcId = dc.stateParams.slice(-1)[0];
+                return {
+                  ...dc,
+                  href: navigation.getURL(
+                    'dedicated',
+                    `#/managedBaremetal/${
+                      service.serviceName
+                    }/datacenter/${dcId}`,
+                  ),
+                  routeMatcher: new RegExp(
+                    `/datacenter/${dcId}`,
+                  ),
+                };
+              });
             },
           }));
         },

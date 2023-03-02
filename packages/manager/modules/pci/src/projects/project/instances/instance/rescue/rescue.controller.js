@@ -3,34 +3,53 @@ import findLast from 'lodash/findLast';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 
+import {
+  FLAVORS_WITHOUT_RESCUE_MODE,
+  GUIDE_URL_RESCUE,
+} from './rescue.constants';
+
 export default class PciInstanceRescueController {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, PciProjectsProjectInstanceService) {
+  constructor(
+    $translate,
+    CucCloudMessage,
+    PciProjectsProjectInstanceService,
+    coreConfig,
+  ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
+    this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
   }
 
   $onInit() {
     this.isLoading = false;
-    this.ovhDefaultImage = {
-      id: '',
-      type: 'linux',
-      user: 'root',
-      name: this.$translate.instant(
-        'pci_projects_project_instances_instance_rescue_image_default',
-      ),
-    };
+    this.hasRescueMode = PciInstanceRescueController.hasRescueMode(
+      this.instance.flavor.type,
+    );
+    if (this.hasRescueMode) {
+      this.ovhDefaultImage = {
+        id: '',
+        type: 'linux',
+        user: 'root',
+        name: this.$translate.instant(
+          'pci_projects_project_instances_instance_rescue_image_default',
+        ),
+      };
 
-    if (this.instance.isRescuableWithDefaultImage()) {
-      this.selectedImage = this.ovhDefaultImage;
+      if (this.instance.isRescuableWithDefaultImage()) {
+        this.selectedImage = this.ovhDefaultImage;
+      } else {
+        this.selectedImage = findLast(this.images, {
+          nameGeneric: get(this.instance.image, 'nameGeneric'),
+        });
+      }
+
+      this.imageList = [this.ovhDefaultImage, ...this.images];
     } else {
-      this.selectedImage = findLast(this.images, {
-        nameGeneric: get(this.instance.image, 'nameGeneric'),
-      });
+      this.guideUrlRescue =
+        GUIDE_URL_RESCUE[this.ovhSubsidiary] || GUIDE_URL_RESCUE.DEFAULT;
     }
-
-    this.imageList = [this.ovhDefaultImage, ...this.images];
   }
 
   getInfosMessage(password = '') {
@@ -84,5 +103,9 @@ export default class PciInstanceRescueController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  static hasRescueMode(flavorType) {
+    return !FLAVORS_WITHOUT_RESCUE_MODE.find((value) => value.test(flavorType));
   }
 }

@@ -3,6 +3,8 @@ import forEach from 'lodash/forEach';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
+import uniqWith from 'lodash/uniqWith';
+import isEqual from 'lodash/isEqual';
 
 import { TELEPHONY_NUMBER_OFFER } from '../order-alias.constant';
 
@@ -254,14 +256,20 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderInternationalC
       }),
       TelecomTelephonyBillingAccountOrderAliasService.getForeignCountries().then(
         (countries) => {
-          self.countries = map(countries, (country) => {
-            const countryFlag = country.toLowerCase() === 'uk' ? 'gb' : country;
-            return {
-              code: country,
-              class: `flag-icon flag-icon-squared flag-icon-${countryFlag}`,
-              name: $translate.instant(`country_${country.toUpperCase()}`),
-            };
-          });
+          self.countries = uniqWith(
+            map(countries, (country) => {
+              const countryCode =
+                country.toLowerCase() === 'uk' ? 'gb' : country;
+              return {
+                code: countryCode,
+                class: `flag-icon flag-icon-squared flag-icon-${countryCode}`,
+                name: $translate.instant(
+                  `country_${countryCode.toUpperCase()}`,
+                ),
+              };
+            }),
+            isEqual,
+          );
         },
         (err) => {
           TucToastError(

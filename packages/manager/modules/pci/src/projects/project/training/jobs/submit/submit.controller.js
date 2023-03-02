@@ -41,8 +41,8 @@ export default class PciTrainingJobsSubmitController {
   onHttpHeaderAddBtnClick(index) {
     this.httpHeader[index].added = true;
     this.job.volumes.push({
-      privateSwift: {
-        region: this.httpHeader[index].model.container.region,
+      dataStore: {
+        alias: this.httpHeader[index].model.container.region,
         container: this.httpHeader[index].model.container.name,
         prefix: this.httpHeader[index].model.prefix,
       },

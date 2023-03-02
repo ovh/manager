@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.30.0...@ovh-ux/manager-vps@2.30.1) (2023-02-23)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** catch the 404 error if only nic tech ([#8919](https://github.com/ovh/manager/issues/8919)) ([242128c](https://github.com/ovh/manager/commit/242128c978ea6ae33678f7446a75ecdaf94c764a))
+
+
+
+
+
 # [2.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.29.4...@ovh-ux/manager-vps@2.30.0) (2023-02-20)
 
 

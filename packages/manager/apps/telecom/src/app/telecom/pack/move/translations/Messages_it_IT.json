@@ -124,6 +124,8 @@
   "pack_move_modem_recycled": "Modem riciclato ({{ price }} +IVA/mese)",
   "pack_move_modem_no": "Nessun modem",
   "pack_move_modem_required": "La selezione di un tipo di modem è obbligatoria",
-  "pack_move_confirm_modem_rental_yes": "Locazione modem nuovo",
-  "pack_move_confirm_modem_rental_recycled": "Locazione modem riciclato"
+  "pack_move_confirm_modem_rental_yes": "Location modem nove",
+  "pack_move_confirm_modem_rental_recycled": "Location modem riciclato",
+  "pack_move_offers_debit_mention_1": "(1) Fino a 92 Mb/s discendenti in VDSL e 22 Mb/s in ADSL, secondo l'ammissibilità.",
+  "pack_move_offers_debit_mention_2": "(2) Fino a 36 Mb/s importo in VDSL e 1 Mb/s in ADSL, secondo l'ammissibilità."
 }

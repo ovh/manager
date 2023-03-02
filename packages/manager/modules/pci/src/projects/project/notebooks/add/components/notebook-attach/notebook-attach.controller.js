@@ -102,8 +102,8 @@ export default class NotebookAttachController {
         return (
           !isHighPerfStorage &&
           !this.notebookModel.volumes
-            .filter(({ privateSwift }) => privateSwift)
-            .map(({ container }) => `${container.name}-${container.region}`)
+            .filter(({ dataStore }) => dataStore)
+            .map(({ container }) => `${container.name}-${container.alias}`)
             .includes(`${name}-${region}`)
         );
       })

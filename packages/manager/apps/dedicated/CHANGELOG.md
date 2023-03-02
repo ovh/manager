@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.49.2...@ovh-ux/manager-dedicated@17.50.0) (2023-02-23)
+
+
+### Features
+
+* **dedicated.ip:** handle serviceName param ([63c4cdd](https://github.com/ovh/manager/commit/63c4cdd08f52518f990966fa5829acfcc9a374ec))
+
+
+
+
+
 ## [17.49.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.49.1...@ovh-ux/manager-dedicated@17.49.2) (2023-02-20)
 
 
