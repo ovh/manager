@@ -37,6 +37,10 @@ export const VOLUME_BACKUP_ROUTES = {
         STATE: `${VOLUME_BACKUP_ROOT_STATE}.list.dashboard`,
         URL: '/:volumeBackupId',
       },
+      CREATE_VOLUME: {
+        STATE: `${VOLUME_BACKUP_ROOT_STATE}.list.create-volume`,
+        URL: '/:volumeBackupId/create-volume',
+      },
     },
   },
 };

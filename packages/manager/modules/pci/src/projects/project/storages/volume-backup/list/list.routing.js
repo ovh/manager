@@ -7,7 +7,9 @@ import {
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(VOLUME_BACKUP_ROUTES.LIST.STATE, {
     url: VOLUME_BACKUP_ROUTES.LIST.URL,
-    component: 'ovhManagerPciProjectsProjectStoragesVolumeBackupList',
+    views: {
+      volumeBackupView: 'ovhManagerPciProjectsProjectStoragesVolumeBackupList',
+    },
     atInternet: {
       rename: `${VOLUME_BACKUP_TRACKING.PREFIX}`,
     },
@@ -48,6 +50,15 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
+      goToCreateVolume: /* @ngInject */ ($state, projectId) => (
+        volumeBackup,
+      ) => {
+        return $state.go(VOLUME_BACKUP_ROUTES.LIST.ROUTES.CREATE_VOLUME.STATE, {
+          projectId,
+          volumeBackupId: volumeBackup.id,
+        });
+      },
+
       goToDeleteVolumeBackup: /* @ngInject */ ($state, projectId) => (
         volumeBackup,
       ) => {
@@ -59,6 +70,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToAddVolumeBlockStorage: /* @ngInject */ ($state, projectId) => () => {
         return $state.go(PCI_FEATURES_STATES.BLOCKS.ADD, {
+          projectId,
+        });
+      },
+
+      volumeBlockStorageLink: /* @ngInject */ ($state, projectId) => {
+        return $state.href(PCI_FEATURES_STATES.BLOCKS.ADD, {
           projectId,
         });
       },

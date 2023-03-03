@@ -6,7 +6,10 @@ import {
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(VOLUME_BACKUP_ROUTES.ONBOARDING.STATE, {
     url: VOLUME_BACKUP_ROUTES.ONBOARDING.URL,
-    component: 'ovhManagerPciProjectsProjectStoragesVolumeBackupOnboarding',
+    views: {
+      volumeBackupView:
+        'ovhManagerPciProjectsProjectStoragesVolumeBackupOnboarding',
+    },
     atInternet: {
       rename: `${VOLUME_BACKUP_TRACKING.PREFIX}`,
     },
