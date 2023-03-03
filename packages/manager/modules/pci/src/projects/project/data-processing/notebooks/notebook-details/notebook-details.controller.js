@@ -13,15 +13,30 @@ export default class NoteBookDetailsCtrl {
     dataProcessingService,
     ovhManagerRegionService,
     atInternet,
-    $timeout,
+    $interval,
   ) {
     this.dataProcessingService = dataProcessingService;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.atInternet = atInternet;
-    this.$timeout = $timeout;
+    this.$interval = $interval;
     this.NOTEBOOK_CLUSTER_NAME = NOTEBOOK_CLUSTER_NAME;
     this.capitalize = capitalize;
     this.convertToGio = convertToGio;
+
+    this.pollData = () => {
+      this.dataProcessingService
+        .getNotebook(this.projectId, this.notebook.id)
+        .then((notebook) => {
+          this.notebook = notebook;
+          if (
+            !DATA_PROCESSING_NOTEBOOKS_TRANSITION_STATUSES.includes(
+              notebook.status.state,
+            )
+          ) {
+            this.stopPollData();
+          }
+        });
+    };
   }
 
   $onInit() {
@@ -35,32 +50,18 @@ export default class NoteBookDetailsCtrl {
         this.notebook.status.state,
       )
     ) {
-      this.pollData();
+      this.pollTimer = this.$interval(this.pollData, NOTEBOOK_REFRESH_INTERVAL);
     }
   }
 
   $onDestroy() {
     if (this.pollTimer !== null) {
-      this.$timeout.cancel(this.pollTimer);
+      this.stopPollData();
     }
   }
 
-  pollData() {
-    this.dataProcessingService
-      .getNotebook(this.projectId, this.notebook.id)
-      .then((notebook) => {
-        this.notebook = notebook;
-        if (
-          DATA_PROCESSING_NOTEBOOKS_TRANSITION_STATUSES.includes(
-            notebook.status.state,
-          )
-        ) {
-          this.pollTimer = this.$timeout(
-            () => this.pollData(),
-            NOTEBOOK_REFRESH_INTERVAL,
-          );
-        }
-      });
+  stopPollData() {
+    this.$interval.cancel(this.pollTimer);
   }
 
   /**
