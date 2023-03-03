@@ -60,10 +60,10 @@ export default class VolumeBackupListController {
     return this.goToRestoreVolume(volumeBackup);
   }
 
-  onCreateVolumeClick() {
+  onCreateVolumeClick(volumeBackup) {
     // TODO: tracking - MANAGER-10570
 
-    return this.goToAddVolumeBlockStorage();
+    return this.goToCreateVolume(volumeBackup);
   }
 
   onDeleteVolumeBackupClick(volumeBackup) {
