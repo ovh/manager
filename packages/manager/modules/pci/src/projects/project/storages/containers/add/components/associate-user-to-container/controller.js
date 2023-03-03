@@ -45,7 +45,7 @@ export default class CreateLinkedUserController {
         ),
       )
       .then((usersWithCredentials) => {
-        this.usersCredentials = usersWithCredentials
+        this.users = usersWithCredentials
           .filter(({ roles }) => {
             return roles.find(({ name }) =>
               [
@@ -61,7 +61,6 @@ export default class CreateLinkedUserController {
               ? `${user.username} - ${user.description}`
               : user.username,
           }));
-        this.users = this.usersCredentials;
       })
       .catch(() => [])
       .finally(() => {
