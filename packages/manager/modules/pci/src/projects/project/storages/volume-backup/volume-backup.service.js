@@ -82,10 +82,16 @@ export default class VolumeBackupService {
    * @param volumeBackupId {string}:  volume backup id
    * @returns {*}: volume backup details promise
    */
-  restoreVolumeBackupToVolume(serviceName, regionName, volumeBackupId) {
+  restoreVolumeBackupToVolume(
+    serviceName,
+    regionName,
+    volumeBackupId,
+    volumeId,
+  ) {
     return this.$http
       .post(
         `/cloud/project/${serviceName}/region/${regionName}/volumeBackup/${volumeBackupId}/restore`,
+        { volumeId },
       )
       .then(({ data }) => data);
   }

@@ -36,10 +36,16 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
-      goToRestoreVolume: /* @ngInject */ ($state, projectId) => () => {
-        return $state.go(VOLUME_BACKUP_ROUTES.ADD.STATE, {
-          projectId,
-        });
+      goToRestoreVolume: /* @ngInject */ ($state, projectId) => (
+        volumeBackup,
+      ) => {
+        return $state.go(
+          VOLUME_BACKUP_ROUTES.LIST.ROUTES.RESTORE_VOLUME.STATE,
+          {
+            projectId,
+            volumeBackup,
+          },
+        );
       },
 
       goToDeleteVolumeBackup: /* @ngInject */ ($state, projectId) => (
