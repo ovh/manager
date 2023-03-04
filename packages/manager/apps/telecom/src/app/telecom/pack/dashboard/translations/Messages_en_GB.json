@@ -66,7 +66,7 @@
   "create_a_new_service_with_the_adding_button": "Activate a new service using the “Activate a service” link.",
   "pack_xdsl_loading": "Loading your pack...",
   "pack_xdsl_this_pack_seems_to_be_unavailable": "This pack does not seem to exist.",
-  "pack_promotion_code_proposal": "OVHcloud offers a voucher with a value of <strong>{{text}}</strong> ex. VAT, valid for all of our products (excluding the ADSL-VDSL/SDSL package, hardware purchase and telephone deposit, OVHcloud customer account credit and prepaid point purchase).",
+  "pack_promotion_code_proposal": "OVHcloud offers a voucher with a value of <strong>{{text}}</strong> ex. VAT, valid for all of our products (excluding the ADSL-VDSL/SDSL package, hardware and telephone deposit purchases, OVHcloud customer account credit, and pre-paid point purchases).",
   "pack_promotion_code_question": "Get started",
   "pack_promotion_code_modal_title": "Use discount code",
   "pack_promotion_code_condition": "I understand that when I generate my coupon for <strong>{{text}}</strong> (ex. VAT), I am re-subscribing to <b>{{engagement}} months</b> for the <b>full pack</b>. This operation cannot be <b>reversed</b>.",

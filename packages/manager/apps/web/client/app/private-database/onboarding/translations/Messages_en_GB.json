@@ -4,7 +4,7 @@
   "private_databases_onboarding_description2": "You can also select a private SQL database. You can choose between our various MySQL, MariaDB or PostgreSQL solutions, giving you more freedom to configure your hosting plan.",
   "private_databases_onboarding_order": "Order a Web Cloud Database",
   "private_databases_onboarding_order2": "Order Private SQL",
-  "private_databases_onboarding_guide1_title": "Getting started with Web Cloud Databases",
+  "private_databases_onboarding_guide1_title": "Getting started with the Web Cloud Databases service",
   "private_databases_onboarding_guide1_description": "Find out how to get started with the Web Cloud Databases solution",
   "private_databases_onboarding_guide2_title": "Creating databases and users on your database server",
   "private_databases_onboarding_guide2_description": "Find out how to create a database on your database server",

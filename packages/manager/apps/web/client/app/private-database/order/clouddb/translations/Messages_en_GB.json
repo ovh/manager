@@ -24,8 +24,8 @@
   "private_database_order_clouddb_payment_get_checkout_error": "An error has occurred retrieving information on your basket.",
   "private_database_order_clouddb_payment_get_payment_method_error": "An error has occurred retrieving payment methods.",
   "private_database_order_clouddb_payment_checkout_error": "An error has occurred paying for the orders in your basket.",
-  "private_database_order_clouddb_payment_checkout_success": "Your order for your Web Cloud Databases has been successfully processed. Your {{accountId}} account has been charged {{price}}.",
-  "private_database_order_clouddb_bill_success": "Your {{link}} has been successfully created. Your Web Cloud Database will be active after payment.",
+  "private_database_order_clouddb_payment_checkout_success": "Your order for your Web Cloud Database has been processed. Your {{accountId}} account has been charged {{price}}.",
+  "private_database_order_clouddb_bill_success": "Your {{link}} has been generated. Your Web Cloud Database will be active after payment.",
   "private_database_order_clouddb_payment_checkout_success_link": "Pay my bill",
   "private_database_order_clouddb_bill_success_link": "purchase order"
 }
