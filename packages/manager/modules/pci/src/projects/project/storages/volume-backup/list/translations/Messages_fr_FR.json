@@ -1,5 +1,5 @@
 {
-  "pci_projects_project_storages_volume_backup_list_header": "Volume backup",
+  "pci_projects_project_storages_volume_backup_list_header": "Volume Backup",
   "pci_projects_project_storages_volume_backup_list_header_description": "Effectuez des sauvegardes régulières pour une meilleure résilience de vos données.",
   "pci_projects_project_storages_volume_backup_list_status_creating": "En cours de création",
   "pci_projects_project_storages_volume_backup_list_status_deleting": "En cours de suppression",

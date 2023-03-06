@@ -19,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     params: {
       volume: null,
+      volumeOption: null,
     },
     redirectTo: (transition) => {
       return transition
