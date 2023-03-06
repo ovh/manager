@@ -1,17 +1,15 @@
 import { createPolicy } from '@iam/components';
-import { asParams, asResolve } from '@iam/resolves';
+import { asResolve, createPolicyBreadcrumb } from '@iam/resolves';
 
-export const name = 'createPolicy';
-export const params = [];
+const name = 'createPolicy';
+const resolves = [createPolicyBreadcrumb];
 
-export const state = () => ({
+const state = () => ({
   url: '/policy/create',
   component: createPolicy.name,
-  params: asParams(params),
   resolve: {
     ...asResolve(createPolicy.resolves),
-    breadcrumb: /* @ngInject */ ($translate) =>
-      $translate.instant('iam_create_policy_title'),
+    ...asResolve(resolves),
   },
 });
 
