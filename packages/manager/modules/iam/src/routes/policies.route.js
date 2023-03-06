@@ -7,15 +7,16 @@ import {
   nullBreadcrumbResolve,
 } from '@iam/resolves';
 
+const name = 'policies';
 const params = [cursorsParamResolve];
 const resolves = [nullBreadcrumbResolve];
 
-export const name = 'policies';
-
-export const state = () => ({
+const state = () => ({
   url: `?${asQuery(params)}`,
   component: policiesComponent.name,
-  params: asParams(params),
+  params: {
+    ...asParams(params),
+  },
   resolve: {
     ...asResolve(policiesComponent.resolves),
     ...asResolve(resolves),
