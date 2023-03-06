@@ -1,4 +1,4 @@
-export default class APIV2Service {
+export default class Apiv2Service {
   #baseURL = 'iam';
 
   /* @ngInject */
