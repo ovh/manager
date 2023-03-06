@@ -3,6 +3,7 @@ import 'script-loader!moment'; // eslint-disable-line
 import angular from 'angular';
 
 import ovhManagerIAM from '@ovh-ux/manager-iam';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 
 import './iam.styles.scss';
@@ -32,7 +33,11 @@ const broadcastAppStarted = /* @ngInject */ ($rootScope, $transitions) => {
 export default (element, environment) => {
   const moduleName = 'ovhManagerIAMApp';
   angular
-    .module(moduleName, [ovhManagerIAM, registerCoreModule(environment)])
+    .module(moduleName, [
+      ovhManagerIAM,
+      ngUiRouterBreadcrumb,
+      registerCoreModule(environment),
+    ])
     .config(redirection)
     .run(importMomentLocale)
     .run(broadcastAppStarted);
