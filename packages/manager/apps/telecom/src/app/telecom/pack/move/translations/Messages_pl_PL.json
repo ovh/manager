@@ -129,12 +129,12 @@
   "pack_move_resume_comfort_activation": "Opłata aktywacyjna dla opcji Comfort wynosi {{ price }} netto.",
   "pack_move_resume_install_fees": "Opłata instalacyjna to {{ price }} netto.",
   "pack_move_resume_creation_line_fees": "Opłata za utworzenie linii wynosi {{ price }} netto.",
-  "pack_move_modem_yes": "Modem dziewięć ({{ price }} netto / m-c)",
-  "pack_move_modem_recycled": "Modem z recyklingu ({{ price }} netto / m-c)",
+  "pack_move_modem_yes": "Nowy modem ({{price}} netto/m-c)",
+  "pack_move_modem_recycled": "Modem z recyklingu ({{price}} netto/m-c)",
   "pack_move_modem_no": "Brak modemu",
   "pack_move_modem_required": "Wybór typu modemu jest obowiązkowy",
-  "pack_move_confirm_modem_rental_yes": "Dzierżawa modemu",
-  "pack_move_confirm_modem_rental_recycled": "Wynajem modemu z recyklingu",
+  "pack_move_confirm_modem_rental_yes": "Dzierżawa nowego modemu",
+  "pack_move_confirm_modem_rental_recycled": "Dzierżawa modemu z recyklingu",
   "pack_move_offers_debit_mention_1": "(1) Aż do 92 Mb/s łączących się w VDSL i 22 Mb/s w ADSL, w zależności od dostępności.",
   "pack_move_offers_debit_mention_2": "(2) Do 36 Mb/s w VDSL i 1 Mb/s w ADSL, w zależności od dostępności."
 }

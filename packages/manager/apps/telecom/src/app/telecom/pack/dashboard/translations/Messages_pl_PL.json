@@ -66,7 +66,7 @@
   "create_a_new_service_with_the_adding_button": "Activez un nouveau service grâce au lien \"Activer un service\".",
   "pack_xdsl_loading": "Le chargement de votre pack est en cours ...",
   "pack_xdsl_this_pack_seems_to_be_unavailable": "Il semblerait que ce pack n'existe pas.",
-  "pack_promotion_code_proposal": "OVHcloud oferuje kupon o wartości <strong>{{text}}</strong> netto ważny na wszystkich naszych produktach (poza abonamentem ADSL-VDSL/SDSL, bez zakupu sprzętu i kaucji telefonicznej, poza zasileniem konta klienta OVHcloud i zakupu punktów przedpłaconych).",
+  "pack_promotion_code_proposal": "OVHcloud oferuje kupon o wartości {{text}} netto, ważny na wszystkie nasze produkty (z wyłączeniem pakietu ADSL-VDSL/SDSL, z wyłączeniem zakupu sprzętu i kaucji telefonicznej, z wyłączeniem zasilenia konta klienta OVHcloud i zakupu punktów prepaid).",
   "pack_promotion_code_question": "J'en profite",
   "pack_promotion_code_modal_title": "Profiter du bon de réduction",
   "pack_promotion_code_condition": "Je comprends qu'en générant mon bon d'achat de <strong>{{text}}</strong> HT, je me réengage sur <b>{{engagement}} mois</b> pour le <b>pack complet</b>. Cette opération est <b>irréversible</b>.",
