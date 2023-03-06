@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.27.0...@ovh-ux/manager-web@16.28.0) (2023-03-06)
+
+
+### Features
+
+* piano analytics tracking ([#8557](https://github.com/ovh/manager/issues/8557)) ([0b62090](https://github.com/ovh/manager/commit/0b620907c48aea25bd7e43cca39cb6d81863b05d))
+
+
+
+
+
 # [16.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.26.0...@ovh-ux/manager-web@16.27.0) (2023-03-01)
 
 

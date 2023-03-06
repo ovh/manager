@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.24.9...@ovh-ux/manager-hub-app@3.25.0) (2023-03-06)
+
+
+### Features
+
+* piano analytics tracking ([#8557](https://github.com/ovh/manager/issues/8557)) ([0b62090](https://github.com/ovh/manager/commit/0b620907c48aea25bd7e43cca39cb6d81863b05d))
+
+
+
+
+
 ## [3.24.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.24.8...@ovh-ux/manager-hub-app@3.24.9) (2023-02-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app
