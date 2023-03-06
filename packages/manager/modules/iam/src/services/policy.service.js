@@ -4,17 +4,17 @@ const ENDPOINT = {
 
 export default class PolicyService {
   /* @ngInject */
-  constructor(APIV2Service) {
-    this.APIV2Service = APIV2Service;
+  constructor(Apiv2Service) {
+    this.Apiv2Service = Apiv2Service;
   }
 
   /**
    * Get the list of policies
    * @param {string} cursor The base64 encoded cursor to pass
-   * @see APIV2Service#getList
+   * @see Apiv2Service#getList
    * @returns {Promise}
    */
   getPolicies({ cursor }) {
-    return this.APIV2Service.getList(ENDPOINT.policy, { cursor });
+    return this.Apiv2Service.getList(ENDPOINT.policy, { cursor });
   }
 }
