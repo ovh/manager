@@ -1,8 +1,8 @@
-import breadcrumbs from './breadcrumbs.resolve';
-import guides from './guides.resolve';
-import misc from './misc.resolve';
-import params from './params.resolve';
+import angular from 'angular';
+
 import types from './types';
+
+// ---------------------------------------------------------------------------------------------------- //
 
 /**
  * Build a Set where all the keys represent the key property of each resolve function
@@ -10,7 +10,7 @@ import types from './types';
  * @param {Function[]} resolves
  * @returns {Object<string, '<'>}
  */
-export const asBindings = (resolves) =>
+const asBindings = (resolves) =>
   resolves.reduce((map, res) => ({ ...map, [res.key]: '<' }), {});
 
 /**
@@ -19,7 +19,7 @@ export const asBindings = (resolves) =>
  * @param {Function[]} resolves
  * @returns {Object<string, function>}
  */
-export const asResolve = (resolves) =>
+const asResolve = (resolves) =>
   resolves.reduce(
     (map, res) => ({
       ...map,
@@ -34,7 +34,7 @@ export const asResolve = (resolves) =>
  * @param {Function[]} resolves
  * @returns {string}
  */
-export const asQuery = (resolves) => resolves.map(({ key }) => key).join('&');
+const asQuery = (resolves) => resolves.map(({ key }) => key).join('&');
 
 /**
  * Build a Set where all the keys represent the key property of each resolve function
@@ -43,7 +43,7 @@ export const asQuery = (resolves) => resolves.map(({ key }) => key).join('&');
  * @param {Function[]} resolves
  * @returns {Object<string, ParamDeclaration>}
  */
-export const asParams = (resolves) =>
+const asParams = (resolves) =>
   resolves.reduce(
     (map, { key, declaration, resolves: paramResolves }) => ({
       ...map,
@@ -59,19 +59,26 @@ export const asParams = (resolves) =>
  * @see https://ui-router.github.io/ng1/docs/latest/interfaces/params.paramtypedefinition.html
  * @param {UrlMatcherFactoryProvider} $urlMatcherFactoryProvider
  */
-export const registerTypes = /* @ngInject */ ($urlMatcherFactoryProvider) =>
+const registerTypes = /* @ngInject */ ($urlMatcherFactoryProvider) =>
   Object.values(types).forEach(({ type, ...definition }) =>
     $urlMatcherFactoryProvider.type(type, definition),
   );
+
+// ---------------------------------------------------------------------------------------------------- //
+
+const moduleName = 'ovhManagerIAMResolves';
+
+angular
+  .module(moduleName, [])
+  .config(registerTypes)
+  .run(/* @ngTranslationsInject:json ./translations */);
+
+// ---------------------------------------------------------------------------------------------------- //
 
 export * from './breadcrumbs.resolve';
 export * from './guides.resolve';
 export * from './misc.resolve';
 export * from './params.resolve';
 export * from './types';
-export default {
-  ...breadcrumbs,
-  ...guides,
-  ...misc,
-  ...params,
-};
+export { asBindings, asResolve, asQuery, asParams };
+export default moduleName;
