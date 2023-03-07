@@ -1,9 +1,11 @@
-import { asBindings, onboardingGuidesResolve } from '@iam/resolves';
+import { asBindings } from '@iam/resolves';
+
+import resolves from './policy.resolves';
 import template from './policy.template.html';
 
-export const resolves = [onboardingGuidesResolve];
-
 export default {
-  bindings: asBindings(resolves),
+  bindings: {
+    ...asBindings(resolves),
+  },
   template,
 };
