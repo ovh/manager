@@ -182,6 +182,18 @@ export default class TelecomPackMigrationConfirmCtrl {
     return true;
   }
 
+  getMeeting() {
+    const { startDate, endDate } = this.process.selectedOffer.meetingSlots.slot;
+    const day = moment(startDate).format('DD/MM/YYYY');
+    const start = moment(startDate).format('HH:mm');
+    const end = moment(endDate).format('HH:mm');
+    return this.$translate.instant('telecom_pack_migration_contract_meeting', {
+      day,
+      start,
+      end,
+    });
+  }
+
   /* -----  End of HELPERS  ------*/
 
   /*= ==============================

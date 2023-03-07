@@ -348,6 +348,8 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
       migrationProcess.currentStep = 'serviceDelete';
     } else if (migrationProcess.selectedOffer.needNewModem) {
       migrationProcess.currentStep = 'shipping';
+    } else if (migrationProcess.selectedOffer.needMeeting) {
+      migrationProcess.currentStep = 'meeting';
     } else {
       migrationProcess.currentStep = 'confirm';
     }
@@ -364,6 +366,18 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
 
   self.setBuildings = function setBuildings(buildings) {
     migrationProcess.buildings = buildings;
+  };
+
+  /*= ===============================
+    =          Meeting              =
+    ================================= */
+  self.setSelectedMeeting = function setSelectedMeeting(
+    meetingSlots,
+    contactName,
+  ) {
+    migrationProcess.selectedOffer.contactName = contactName;
+    migrationProcess.selectedOffer.meetingSlots = meetingSlots;
+    migrationProcess.currentStep = 'confirm';
   };
 
   /*= =====================================

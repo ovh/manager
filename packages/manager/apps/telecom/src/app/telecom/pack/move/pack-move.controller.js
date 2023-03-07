@@ -5,6 +5,7 @@ import {
   LINE_STATUS,
   OFFER_TYPE,
   STEPS,
+  OFFER_TYPE_XDSL,
 } from './pack-move.constant';
 
 export default class PackMoveCtrl {
@@ -39,6 +40,8 @@ export default class PackMoveCtrl {
     this.moveStep = STEPS.eligibility;
 
     this.steps = STEPS;
+
+    this.OFFER_TYPE_XDSL = OFFER_TYPE_XDSL;
 
     this.operationAlreadyPending = false;
 
@@ -159,7 +162,7 @@ export default class PackMoveCtrl {
       } else if (this.offer.selected.offer.needNewModem) {
         this.moveStep = STEPS.shipping;
       } else {
-        this.moveStep = STEPS.resume;
+        this.moveStep = STEPS.meeting;
       }
     });
     this.$scope.$on('subservicesDelete', (event, subServicesToDelete) => {
@@ -168,6 +171,8 @@ export default class PackMoveCtrl {
         this.moveStep = STEPS.shipping;
       } else if (!this.isOfferFTTH && this.isNewLine) {
         this.moveStep = STEPS.meeting;
+      } else if (this.isOfferFTTH) {
+        this.moveStep = STEPS.meeting;
       } else {
         this.moveStep = STEPS.resume;
       }
@@ -175,6 +180,8 @@ export default class PackMoveCtrl {
     this.$scope.$on('shippingSelected', (event, shipping) => {
       this.offer.selected.shipping = shipping;
       if (!this.isOfferFTTH && this.isNewLine) {
+        this.moveStep = STEPS.meeting;
+      } else if (this.isOfferFTTH) {
         this.moveStep = STEPS.meeting;
       } else {
         this.moveStep = STEPS.resume;

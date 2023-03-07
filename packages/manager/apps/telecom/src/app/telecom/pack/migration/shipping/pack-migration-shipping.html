@@ -64,7 +64,7 @@
                         class="btn btn-primary"
                         data-ng-disabled="!$ctrl.process.shipping.mode || ($ctrl.process.shipping.mode === 'mondialRelay' && !$ctrl.process.shipping.relay) || ($ctrl.process.shipping.mode === 'transporter' && !$ctrl.process.shipping.address)"
                         data-translate="telecom_pack_migration_shipping_confirm"
-                        data-ng-click="$ctrl.process.currentStep = 'confirm'"
+                        data-ng-click="$ctrl.process.currentStep = $ctrl.process.selectedOffer.needMeeting ? 'meeting' : 'confirm'"
                     ></button>
                 </div>
             </div>
