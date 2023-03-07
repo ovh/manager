@@ -50,6 +50,11 @@ export const APP_STORAGE_INFO = {
   CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/data/',
 };
 
+export const APP_LABELS_INFO = {
+  DEFAULT:
+    'https://docs.ovh.com/gb/en/publiccloud/ai/deploy/tokens/#adding-labels-to-an-app',
+};
+
 export const APP_DOCKER_IMAGE_PORTFOLIO = {
   DEFAULT: 'https://docs.ovh.com/gb/en/publiccloud/ai/deploy/apps-portfolio',
 };
@@ -73,6 +78,7 @@ export default {
   APP_VOLUME_TYPE,
   APP_AUTOMATION_INFO,
   APP_STORAGE_INFO,
+  APP_LABELS_INFO,
   APP_POLLER_NAMESPACES,
   APP_FRAMEWORK_INFO,
   APP_DOCKER_IMAGE_PORTFOLIO,

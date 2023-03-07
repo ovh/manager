@@ -1,7 +1,8 @@
 {
   "pci_app_add_configuration_name": "Nom de votre app",
   "pci_app_add_configuration_label": "Labels",
-  "pci_app_add_configuration_label_description": "Vous pouvez ajouter des labels à votre app. Utile pour le filtrage ou la sécurisation par token sur un label précis",
+  "pci_app_add_configuration_label_description": "Vous pouvez ajouter des labels à votre app, ils sont utiles pour le filtrage ou la sécurisation par token sur un label précis. Vous pouvez noter un id spécifique, un type, ou tout autre label précédemment créé.",
+  "pci_app_add_configuration_label_description_link": "En savoir plus sur la gestion des labels avec AI Deploy.",
   "pci_app_add_configuration_label_field_key": "Clé",
   "pci_app_add_configuration_label_field_key_error_key_already_exist": "Cette clé existe déjà",
   "pci_app_add_configuration_label_field_value": "Valeur",
