@@ -52,7 +52,6 @@ export default function ServerSidebarIndex() {
         className={`${style.serverSidebar} ${
           isResponsiveSidebarMenuOpen ? style.serverSidebarOpen : ''
         }`}
-        role="navigation"
       >
         <AccountSidebar />
       </div>
@@ -64,7 +63,6 @@ export default function ServerSidebarIndex() {
         className={`${style.serverSidebar} ${
           isResponsiveSidebarMenuOpen ? style.serverSidebarOpen : ''
         }`}
-        role="navigation"
       >
         <HostedPrivateCloudSidebar />
       </div>
@@ -82,7 +80,6 @@ export default function ServerSidebarIndex() {
         className={`${style.serverSidebar} ${
           isResponsiveSidebarMenuOpen ? style.serverSidebarOpen : ''
         }`}
-        role="navigation"
       >
         {universe === 'public-cloud' && <PublicCloudSidebar />}
         {universe === 'server' && <DedicatedSidebar />}

@@ -67,7 +67,6 @@ const NotificationsSidebar = () => {
       className={`${
         style.notificationsSidebar
       } ${isNotificationsSidebarVisible && style.notificationsSidebar_toggle}`}
-      role="menu"
     >
       <Notifications>
         <>

@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
-
+import { useTranslation } from 'react-i18next';
 import ServerSidebarItemRenderer from './SidebarItemRenderer';
 import { loadItem, SidebarMenuItem } from './sidebarMenu';
 import style from './index.module.scss';
@@ -12,8 +12,9 @@ export default function ServerSidebarVirtual({
   items: SidebarMenuItem[];
   onMenuChange: CallableFunction;
 }) {
-  const parentRef = useRef();
-  const rowVirtualizer = useVirtualizer({
+    const { t } = useTranslation('sidebar');
+    const parentRef = useRef();
+    const rowVirtualizer = useVirtualizer({
     count: items.length,
     getItemKey: (i) => items[i].id,
     getScrollElement: () => parentRef.current,
@@ -74,11 +75,13 @@ export default function ServerSidebarVirtual({
             width: '100%',
             position: 'relative',
           }}
+          aria-label={t('sidebar_description')}
         >
-          <ul role="tree">
+          <ul role="menu" tabIndex={0}>
             {vItems.map((virtualRow) => (
               <li
                 key={virtualRow.key}
+                role="menuitem"
                 style={{
                   position: 'absolute',
                   top: 0,
