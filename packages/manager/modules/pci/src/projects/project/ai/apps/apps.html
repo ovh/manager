@@ -79,6 +79,24 @@
         >
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title=":: 'pci_ai_app_list_creation_date' | translate"
+            data-property="createdAt"
+            data-type="date"
+            data-sortable
+            data-filterable
+        >
+            <span data-ng-bind=":: $value | date: 'short'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_ai_app_list_last_update_date' | translate"
+            data-property="updatedAt"
+            data-type="date"
+            data-sortable
+            data-filterable
+        >
+            <span data-ng-bind=":: $value | date: 'short'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_ai_app_list_status' | translate"
             data-property="state"
             data-sortable
