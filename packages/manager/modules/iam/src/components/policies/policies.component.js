@@ -1,17 +1,13 @@
-import {
-  asBindings,
-  alertResolve,
-  goToResolve,
-  cursorsParamResolve,
-} from '@iam/resolves';
+import { asBindings } from '@iam/resolves';
 
 import controller from './policies.controller';
+import resolves from './policies.resolves';
 import template from './policies.template.html';
 
-export const resolves = [alertResolve, goToResolve, cursorsParamResolve];
-
 export default {
-  bindings: asBindings(resolves),
+  bindings: {
+    ...asBindings(resolves),
+  },
   controller,
   template,
 };
