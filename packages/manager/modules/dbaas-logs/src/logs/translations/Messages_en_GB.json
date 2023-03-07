@@ -730,7 +730,7 @@
   "logs_encryption_keys_goto_1": "Manage my",
   "logs_encryption_keys_goto_2": "PGP encryption keys",
   "logs_encryption_keys_add": "Add a PGP encryption key",
-  "logs_encryption_keys_col_title": "Surname",
+  "logs_encryption_keys_col_title": "Name",
   "logs_encryption_keys_col_fingerprint": "Fingerprint",
   "logs_encryption_keys_col_algorithm": "Algorithm",
   "logs_encryption_keys_col_uid": "UID",
