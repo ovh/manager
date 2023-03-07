@@ -52,6 +52,18 @@
                     </oui-tile-description>
                 </oui-tile-definition>
 
+                <!-- app port-->
+                <oui-tile-definition
+                    data-ng-if="$ctrl.app.spec.defaultHttpPort"
+                    data-term="{{:: 'pci_apps_general_information_info_app_port' | translate }}"
+                >
+                    <oui-tile-description>
+                        <code
+                            data-ng-bind="$ctrl.app.spec.defaultHttpPort"
+                        ></code>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
                 <!--Container-->
                 <oui-tile-definition
                     data-term="{{:: 'pci_apps_general_information_info_app_container' | translate }}"
