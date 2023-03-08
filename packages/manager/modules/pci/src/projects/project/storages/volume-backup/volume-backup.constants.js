@@ -65,6 +65,20 @@ export const VOLUME_BACKUP_TRACKING = {
 
 export const GUIDES = [
   {
+    id: 'storages_volume_backup_overview',
+    links: {
+      DEFAULT: 'https://docs.ovh.com/en-gb/public-cloud/volume-backup/',
+      ES: 'https://docs.ovh.com/es/public-cloud/volume-backup/',
+      FR: 'https://docs.ovh.com/fr/public-cloud/volume-backup/',
+      GB: 'https://docs.ovh.com/en-gb/public-cloud/volume-backup/',
+      IT: 'https://docs.ovh.com/it/public-cloud/volume-backup/',
+      NL: 'https://docs.ovh.com/nl/public-cloud/volume-backup/',
+      PL: 'https://docs.ovh.com/pl/public-cloud/volume-backup/',
+      PT: 'https://docs.ovh.com/pt/public-cloud/volume-backup/',
+      US: 'https://docs.ovh.com/en-us/public-cloud/volume-backup/',
+    },
+  },
+  {
     id: 'storages_overview',
     links: {
       DEFAULT: 'https://docs.ovh.com/gb/en/storage/',
@@ -108,20 +122,6 @@ export const GUIDES = [
       US: 'https://docs.ovh.com/us/en/public-cloud/public-cloud-first-steps/',
       WS:
         'https://docs.ovh.com/us/es/public-cloud/public-cloud-primeros-pasos/',
-    },
-  },
-  {
-    id: 'storages_volume_backup_overview',
-    links: {
-      DEFAULT: 'https://docs.ovh.com/en-gb/public-cloud/volume-backup/',
-      ES: 'https://docs.ovh.com/es/public-cloud/volume-backup/',
-      FR: 'https://docs.ovh.com/fr/public-cloud/volume-backup/',
-      GB: 'https://docs.ovh.com/en-gb/public-cloud/volume-backup/',
-      IT: 'https://docs.ovh.com/it/public-cloud/volume-backup/',
-      NL: 'https://docs.ovh.com/nl/public-cloud/volume-backup/',
-      PL: 'https://docs.ovh.com/pl/public-cloud/volume-backup/',
-      PT: 'https://docs.ovh.com/pt/public-cloud/volume-backup/',
-      US: 'https://docs.ovh.com/en-us/public-cloud/volume-backup/',
     },
   },
 ];

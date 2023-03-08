@@ -21,12 +21,6 @@
 <!--Volume backup listing page-->
 <div data-ui-view="volumeBackupList">
 
-    <!--Description-->
-    <p
-        class="py-2"
-        data-translate="pci_projects_project_storages_volume_backup_list_header_description"
-    ></p>
-
     <!--Messages-->
     <cui-message-container
         data-messages="$ctrl.messages"
@@ -88,7 +82,7 @@
         >
             <a
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener"
                 data-ng-href="{{:: $ctrl.volumeLink($row) }}"
                 data-ng-bind=":: $value"
             ></a>

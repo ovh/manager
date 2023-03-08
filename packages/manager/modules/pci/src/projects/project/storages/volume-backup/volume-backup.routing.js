@@ -49,6 +49,15 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
+      catalog: /* @ngInject */ ($http, coreConfig, catalogEndpoint) =>
+        $http
+          .get(
+            `${catalogEndpoint}?ovhSubsidiary=${
+              coreConfig.getUser().ovhSubsidiary
+            }`,
+          )
+          .then(({ data }) => data),
+
       volumeBackups: /* @ngInject */ (projectId, VolumeBackupService) => {
         return VolumeBackupService.getVolumeBackupsOnAllRegions(
           projectId,
@@ -151,6 +160,18 @@ export default /* @ngInject */ ($stateProvider) => {
         return $state.go(PCI_FEATURES_STATES.BLOCKS.LIST, {
           projectId,
           taskResponse,
+        });
+      },
+
+      volumeBlockStorageLink: /* @ngInject */ ($state, projectId) => {
+        return $state.href(PCI_FEATURES_STATES.BLOCKS.LIST, {
+          projectId,
+        });
+      },
+
+      volumeSnapshotStorageLink: /* @ngInject */ ($state, projectId) => {
+        return $state.href(PCI_FEATURES_STATES.SNAPSHOTS.LIST, {
+          projectId,
         });
       },
 
