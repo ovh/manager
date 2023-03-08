@@ -158,6 +158,12 @@ export default class AddUserCtrl {
     if (!username) {
       return true;
     }
+    if (this.database.engine === DATABASE_TYPES.MONGO_DB) {
+      return this.users.some(
+        (user) =>
+          user.username.toLowerCase().split('@')[0] === username.split('@')[0],
+      );
+    }
     return this.users.some((user) => user.username.toLowerCase() === username);
   }
 
