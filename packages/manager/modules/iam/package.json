@@ -22,5 +22,12 @@
     "lodash-es": "^4.17.15",
     "oclazyload": "^1.1.0",
     "ovh-ui-kit-bs": "^4.2.0"
+  },
+  "resolveAlias": {
+    "@iam/components": "./src/components",
+    "@iam/constants": "./src/constants",
+    "@iam/resolves": "./src/resolves",
+    "@iam/routes": "./src/routes",
+    "@iam/services": "./src/services"
   }
 }
