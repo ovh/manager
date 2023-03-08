@@ -25,6 +25,24 @@
 <!--Messages-->
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
+<!--Banner in case no volume-->
+<oui-message data-type="info" data-ng-if="$ctrl.volumes.length === 0">
+    <p
+        data-translate="pci_projects_project_storages_volume_backup_create_banner_no_volumes_description"
+    ></p>
+    <a
+        class="oui-link_icon"
+        data-ng-href="{{:: $ctrl.createBlockStorageVolumeLink }}"
+        rel="noopener"
+        target="_blank"
+    >
+        <span
+            data-translate="pci_projects_project_storages_volume_backup_create_banner_no_volumes_link"
+        ></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+</oui-message>
+
 <!--Step 1 :: Select a volume to backup-->
 <div class="py-2">
     <!--Title-->
@@ -60,21 +78,17 @@
         data-translate="pci_projects_project_storages_volume_backup_create_step_2_title"
     ></p>
 
-    <!--Description-->
-        <a
-            data-ng-href="{{::$ctrl.autoscalingInfoLink}}"
-            data-ng-click="$ctrl.onAutoscalingLinkClicked()"
-            target="_blank"
-            rel="noopener"
-        >
-            <span
-                data-translate="pci_projects_project_storages_volume_backup_create_step_2_description_link"
-            ></span>
-            <span
-                class="oui-icon oui-icon-external-link"
-                aria-hidden="true"
-            ></span>
-        </a>
+    <!--Link to know more about backup-->
+    <a
+        data-ng-href="{{:: $ctrl.knowMoreAboutBackupLink}}"
+        target="_blank"
+        rel="noopener"
+    >
+        <span
+            data-translate="pci_projects_project_storages_volume_backup_create_step_2_description_link"
+        ></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
 
     <!--Types-->
     <div class="row">
@@ -87,6 +101,7 @@
             data-disabled="$ctrl.isCreating || !$ctrl.volumeBackupModel.selected.volume"
             data-values="[volumeOption]"
             data-variant="light"
+            data-on-change="$ctrl.onVolumeTypeChange(modelValue)"
         >
             <oui-select-picker-label class="w-100">
                 <p
@@ -96,10 +111,15 @@
             </oui-select-picker-label>
 
             <oui-select-picker-description class="w-100">
-                <p
-                    class="text-center my-1"
-                    data-translate="pci_projects_project_storages_volume_backup_create_step_2_option_{{:: volumeOption.id}}_description"
-                ></p>
+                <p class="text-center my-2">
+                    <span
+                        data-translate="pci_projects_project_storages_volume_backup_create_step_2_option_{{:: volumeOption.id}}_description_part_1"
+                    ></span>
+                    <br/>
+                    <span
+                        data-translate="pci_projects_project_storages_volume_backup_create_step_2_option_{{:: volumeOption.id}}_description_part_2"
+                    ></span>
+                </p>
 
                 <p
                     class="text-center my-1"

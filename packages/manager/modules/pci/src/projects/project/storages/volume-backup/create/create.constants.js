@@ -7,11 +7,14 @@ export const VOLUMES_OPTIONS = [
   { id: 'volume_backup', type: VOLUME_OPTION_BACKUP },
 ];
 
-export const VOLUME_BACKUP_NAME_PREFIX = 'volume-backup';
+export const BACKUP_NAME_PREFIX = {
+  [VOLUME_OPTION_SNAPSHOT]: 'volume-snapshot',
+  [VOLUME_OPTION_BACKUP]: 'volume-backup',
+};
 
 export default {
   VOLUME_OPTION_SNAPSHOT,
   VOLUME_OPTION_BACKUP,
   VOLUMES_OPTIONS,
-  VOLUME_BACKUP_NAME_PREFIX,
+  BACKUP_NAME_PREFIX,
 };
