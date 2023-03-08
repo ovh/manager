@@ -50,6 +50,7 @@ module.exports = (env = {}) => {
       lessPath: ['./node_modules'],
       lessJavascriptEnabled: true,
       root: path.resolve(__dirname, './client/app'),
+      resolveAlias: ['@ovh-ux/manager-iam'],
       assets: {
         files: [
           {
