@@ -22,21 +22,27 @@ export default class VolumeBackupDeleteController {
         this.volumeBackup.id,
       )
       .then(() => {
-        return this.goToVolumeBackups(
-          this.$translate.instant(
+        return this.goToVolumeBackups({
+          textHtml: this.$translate.instant(
             'pci_projects_project_storages_volume_backup_list_delete_success',
+            {
+              volumeBackupName: `<strong>${this.volumeBackup.name}</strong>`,
+            },
           ),
-        );
+        });
       })
       .then(() => this.startPolling())
       .catch(({ data }) => {
         return this.goToVolumeBackups(
-          this.$translate.instant(
-            'pci_projects_project_storages_volume_backup_list_delete_error',
-            {
-              message: data.message,
-            },
-          ),
+          {
+            textHtml: this.$translate.instant(
+              'pci_projects_project_storages_volume_backup_list_delete_error',
+              {
+                volumeBackupName: `<strong>${this.volumeBackup.name}</strong>`,
+                message: data.message,
+              },
+            ),
+          },
           'error',
         );
       });

@@ -45,6 +45,8 @@
             data-model="$ctrl.volumeBackupModel.selected.volume"
             data-name="block-storage-volume"
             data-placeholder="{{ 'pci_projects_project_storages_volume_backup_create_step_1_select_placeholder' | translate }}"
+            data-on-change="$ctrl.onVolumeChange(modelValue)"
+            data-searchable
         >
         </oui-select>
     </oui-field>
@@ -59,15 +61,6 @@
     ></p>
 
     <!--Description-->
-    <p>
-        <span
-            data-translate="pci_projects_project_storages_volume_backup_create_step_2_description_part_1"
-        ></span>
-        <br/>
-        <span
-            data-translate="pci_projects_project_storages_volume_backup_create_step_2_description_part_2"
-        ></span>
-        <br/>
         <a
             data-ng-href="{{::$ctrl.autoscalingInfoLink}}"
             data-ng-click="$ctrl.onAutoscalingLinkClicked()"
@@ -82,7 +75,6 @@
                 aria-hidden="true"
             ></span>
         </a>
-    </p>
 
     <!--Types-->
     <div class="row">
