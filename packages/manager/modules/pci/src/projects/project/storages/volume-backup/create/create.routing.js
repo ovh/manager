@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     params: {
       volume: null,
+      volumeOption: null,
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
@@ -27,10 +28,16 @@ export default /* @ngInject */ ($stateProvider) => {
       preselectedVolume: /* @ngInject */ ($transition$) =>
         $transition$.params().volume,
 
-      volumeBackupModel: /* @ngInject */ (preselectedVolume) => ({
+      preselectedVolumeOption: /* @ngInject */ ($transition$) =>
+        $transition$.params().volumeOption,
+
+      volumeBackupModel: /* @ngInject */ (
+        preselectedVolume,
+        preselectedVolumeOption,
+      ) => ({
         selected: {
           volume: preselectedVolume || null,
-          volumeOption: null,
+          volumeOption: preselectedVolumeOption || null,
         },
         volumeRelatedInstance: null,
         name: '',
@@ -49,12 +56,16 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
-      goToDetachVolume: /* @ngInject */ ($state, projectId) => (volume) => {
+      goToDetachVolume: /* @ngInject */ ($state, projectId) => (
+        volume,
+        volumeOption,
+      ) => {
         return $state.go(
           VOLUME_BACKUP_ROUTES.CREATE.ROUTES.DETACH_VOLUME.STATE,
           {
             projectId,
             volume,
+            volumeOption,
           },
         );
       },

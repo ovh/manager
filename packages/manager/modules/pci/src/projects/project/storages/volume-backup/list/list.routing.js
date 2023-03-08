@@ -73,12 +73,6 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         });
       },
-
-      volumeBlockStorageLink: /* @ngInject */ ($state, projectId) => {
-        return $state.href(PCI_FEATURES_STATES.BLOCKS.ADD, {
-          projectId,
-        });
-      },
     },
   });
 };
