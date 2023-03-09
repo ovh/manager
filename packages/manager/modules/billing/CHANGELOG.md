@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.6...@ovh-ux/manager-billing@0.20.0-alpha.7) (2023-03-09)
+
+
+### Bug Fixes
+
+* **dedicated:** ssh key comment can be anything ([50754b5](https://github.com/ovh/manager/commit/50754b5f4a6eba530b148d9ec205d143506e9add))
+
+
+
+
+
 # [0.20.0-alpha.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.5...@ovh-ux/manager-billing@0.20.0-alpha.6) (2023-01-02)
 
 

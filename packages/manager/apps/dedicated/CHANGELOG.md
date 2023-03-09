@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.52.0...@ovh-ux/manager-dedicated@17.53.0) (2023-03-09)
+
+
+### Bug Fixes
+
+* **dedicated:** ssh key comment can be anything ([50754b5](https://github.com/ovh/manager/commit/50754b5f4a6eba530b148d9ec205d143506e9add))
+
+
+### Features
+
+* **dedicated.server:** add raid 7 support ([bde4cbb](https://github.com/ovh/manager/commit/bde4cbb6fe96327b1ff4ebbe90c5507355036e14))
+
+
+
+
+
 # [17.52.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.51.0...@ovh-ux/manager-dedicated@17.52.0) (2023-03-06)
 
 

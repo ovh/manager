@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.28.0...@ovh-ux/manager-web@16.28.1) (2023-03-09)
+
+
+### Bug Fixes
+
+* **domain:** show authCode when domain is expired ([1336bce](https://github.com/ovh/manager/commit/1336bce58a23b4a2e3f51b6684dad5949b7950a5))
+
+
+
+
+
 # [16.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.27.0...@ovh-ux/manager-web@16.28.0) (2023-03-06)
 
 
