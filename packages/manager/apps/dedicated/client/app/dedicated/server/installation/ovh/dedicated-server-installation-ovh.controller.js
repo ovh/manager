@@ -168,7 +168,6 @@ angular
           postInstallationScriptReturn: null,
           sshKeyName: null,
           useDistributionKernel: false,
-          installSqlServer: false,
           useSpla: false,
           variablePartition: null,
           validForm: true,
@@ -2430,7 +2429,6 @@ angular
           postInstallationScriptReturn: null,
           sshKeyName: null,
           useDistributionKernel: false,
-          installSqlServer: false,
           useSpla: false,
           variablePartition: null,
           validForm: true,
@@ -2573,7 +2571,6 @@ angular
             language: camelCase($scope.installation.selectLanguage),
             installRTM: $scope.installation.options.installRTM || false,
             customHostname: $scope.installation.options.customHostname,
-            installSqlServer: $scope.installation.options.installSqlServer,
             postInstallationScriptLink:
               $scope.installation.options.postInstallationScriptLink,
             postInstallationScriptReturn: $scope.installation.options
