@@ -17,6 +17,8 @@ export const GUIDES = [
         'https://docs.ovh.com/pl/dedicated/pierwsze-kroki-z-serwerem-dedykowanym/',
       US:
         'https://docs.ovh.com/us/en/dedicated/getting-started-dedicated-server/',
+      IN:
+        'https://docs.ovh.com/asia/en/dedicated/getting-started-dedicated-server/',
       DEFAULT:
         'https://docs.ovh.com/ie/en/dedicated/getting-started-dedicated-server/',
     },
@@ -34,6 +36,7 @@ export const GUIDES = [
       PT: 'https://docs.ovh.com/pt/dedicated/servicos-backup-storage/',
       PL: 'https://docs.ovh.com/pl/dedicated/usluga-backup-storage/',
       US: 'https://docs.ovh.com/us/en/dedicated/using-backup-storage/',
+      IN: 'https://docs.ovh.com/asia/en/dedicated/using-backup-storage/',
       DEFAULT: 'https://docs.ovh.com/ie/en/dedicated/services-backup-storage/',
     },
   },
@@ -50,6 +53,7 @@ export const GUIDES = [
       PT: 'https://docs.ovh.com/pt/dedicated/firewall-network/',
       PL: 'https://docs.ovh.com/pl/dedicated/network-firewall/',
       US: 'https://docs.ovh.com/us/en/dedicated/firewall-network/',
+      IN: 'https://docs.ovh.com/asia/en/dedicated/firewall-network/',
       DEFAULT: 'https://docs.ovh.com/ie/en/dedicated/firewall-network/',
     },
   },
@@ -79,6 +83,7 @@ export const CTAS = {
   LT: 'https://www.ovhcloud.com/en-ie/bare-metal/prices/',
   WE: 'https://www.ovhcloud.com/en/bare-metal/prices/',
   WS: 'https://www.ovhcloud.com/es/bare-metal/prices/',
+  IN: 'https://www.ovhcloud.com/asia/bare-metal/advance/',
 };
 
 export const US_GUIDES = [

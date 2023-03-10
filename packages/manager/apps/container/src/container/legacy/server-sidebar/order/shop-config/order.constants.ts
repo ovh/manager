@@ -451,6 +451,7 @@ export const ORDER_URLS: Record<
       SG: 'https://www.ovhcloud.com/en-sg/bare-metal/prices/',
       WE: 'https://www.ovhcloud.com/en/bare-metal/prices/',
       WS: 'https://www.ovhcloud.com/en/bare-metal/prices/',
+      IN: 'https://www.ovhcloud.com/asia/bare-metal/advance/',
     },
     dedicatedEcoRangeOrder: {
       ASIA: 'https://eco.ovhcloud.com/asia/',
