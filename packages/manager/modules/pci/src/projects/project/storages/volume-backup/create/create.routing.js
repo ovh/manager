@@ -1,7 +1,9 @@
 import {
+  GUIDES,
   VOLUME_BACKUP_ROUTES,
   VOLUME_BACKUP_TRACKING,
 } from '../volume-backup.constants';
+import { PCI_FEATURES_STATES } from '../../../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(VOLUME_BACKUP_ROUTES.CREATE.STATE, {
@@ -16,6 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       volume: null,
       volumeOption: null,
+      backupName: null,
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
@@ -31,20 +34,30 @@ export default /* @ngInject */ ($stateProvider) => {
       preselectedVolumeOption: /* @ngInject */ ($transition$) =>
         $transition$.params().volumeOption,
 
+      prefilledBackupName: /* @ngInject */ ($transition$) =>
+        $transition$.params().backupName,
+
       volumeBackupModel: /* @ngInject */ (
         preselectedVolume,
         preselectedVolumeOption,
+        prefilledBackupName,
       ) => ({
+        name: prefilledBackupName || '',
         selected: {
           volume: preselectedVolume || null,
           volumeOption: preselectedVolumeOption || null,
         },
         volumeRelatedInstance: null,
-        name: '',
       }),
 
       volumes: /* @ngInject */ (projectId, VolumeBackupService) => {
         return VolumeBackupService.getVolumes(projectId);
+      },
+
+      knowMoreAboutBackupLink: /* @ngInject */ (coreConfig) => {
+        return GUIDES.find((guide) => guide.id === 'storages_overview').links[
+          coreConfig.getUser().ovhSubsidiary
+        ];
       },
 
       attachVolumeToInstanceLink: /* @ngInject */ (projectId, $state) => {
@@ -56,9 +69,16 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
+      createBlockStorageVolumeLink: /* @ngInject */ (projectId, $state) => {
+        return $state.href(PCI_FEATURES_STATES.BLOCKS.ADD, {
+          projectId,
+        });
+      },
+
       goToDetachVolume: /* @ngInject */ ($state, projectId) => (
         volume,
         volumeOption,
+        backupName,
       ) => {
         return $state.go(
           VOLUME_BACKUP_ROUTES.CREATE.ROUTES.DETACH_VOLUME.STATE,
@@ -66,6 +86,7 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId,
             volume,
             volumeOption,
+            backupName,
           },
         );
       },
