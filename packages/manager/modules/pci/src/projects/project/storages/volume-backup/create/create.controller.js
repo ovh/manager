@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 import {
-  VOLUME_BACKUP_NAME_PREFIX,
+  BACKUP_NAME_PREFIX,
   VOLUME_OPTION_BACKUP,
   VOLUME_OPTION_SNAPSHOT,
   VOLUMES_OPTIONS,
@@ -147,17 +147,38 @@ export default class VolumeBackupCreateController {
       });
   }
 
+  setVolumeBackupName(volume, volumeOption) {
+    if (volume && volumeOption) {
+      const volumeTypePrefix = BACKUP_NAME_PREFIX[volumeOption.type];
+      const timestamp = moment().format();
+
+      this.volumeBackupModel.name = `${volumeTypePrefix}-${volume.name}-${timestamp}`;
+    }
+  }
+
   onVolumeChange(volume) {
-    this.volumeBackupModel.name = `${VOLUME_BACKUP_NAME_PREFIX}-${
-      volume.name
-    }-${moment().format('DD-MM-YYYY_HH:mm:ss')}`;
+    this.setVolumeBackupName(
+      volume,
+      this.volumeBackupModel.selected.volumeOption,
+    );
+  }
+
+  onVolumeTypeChange(volumeType) {
+    this.setVolumeBackupName(
+      this.volumeBackupModel.selected.volume,
+      volumeType,
+    );
   }
 
   onGoToDetachVolumeFromInstanceButtonClick() {
     // TODO: Tracking -- MANAGER-10570
 
-    const { volume, volumeOption } = this.volumeBackupModel.selected;
-    return this.goToDetachVolume(volume, volumeOption);
+    const {
+      name,
+      selected: { volume, volumeOption },
+    } = this.volumeBackupModel;
+
+    return this.goToDetachVolume(volume, volumeOption, name);
   }
 
   onCreateBackupClick() {

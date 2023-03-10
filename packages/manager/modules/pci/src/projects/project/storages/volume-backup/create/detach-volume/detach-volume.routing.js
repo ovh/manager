@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       volume: null,
       volumeOption: null,
+      backupName: null,
     },
     redirectTo: (transition) => {
       return transition
