@@ -674,7 +674,7 @@
   "server_configuration_installation_ovh_step2_hide_all_disk": "Ocultar los otros discos",
   "server_configuration_installation_ovh_step2_file_system": "Sistema de archivos",
   "server_configuration_installation_ovh_step2_mount_point": "Punto de montaje",
-  "server_configuration_installation_ovh_step2_volume_name": "Nombre del volumen LVM",
+  "server_configuration_installation_ovh_step2_volume_name": "Nombre del volumen lógico (LVM) / zpool (ZFS)",
   "server_configuration_installation_ovh_step2_raid": "RAID",
   "server_configuration_installation_ovh_step2_raid_help": "El RAID (a partir de RAID 1) permite replicar datos en varios discos duros para mejorar la disponibilidad de los datos del servidor en caso de avería. Atención: RAID 0 no garantiza la integridad de los datos, por lo que no es aconsejable elegir esta opción.",
   "server_configuration_installation_ovh_step2_available_size": "Tamaño de la partición",

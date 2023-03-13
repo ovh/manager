@@ -750,18 +750,18 @@
                                     }"
                                 >
                                     <span
-                                        data-ng-show="partition.typePartition != constants.warningLV || errorInst.typeLvSwap"
+                                        data-ng-show="(partition.typePartition != constants.warningLV && partition.fileSystem != constants.warningZFS) || errorInst.typeLvSwap"
                                     >
                                         -
                                     </span>
                                     <span
-                                        data-ng-hide="isSetPartition(partition) || partition.typePartition != constants.warningLV"
+                                        data-ng-hide="isSetPartition(partition) || (partition.typePartition != constants.warningLV && partition.fileSystem != constants.warningZFS)"
                                         data-ng-bind="partition.volumeName"
                                     >
                                     </span>
                                     <input
                                         type="text"
-                                        data-ng-show="isSetPartition(partition) && partition.typePartition == constants.warningLV && !errorInst.typeLvSwap"
+                                        data-ng-show="isSetPartition(partition) && (partition.typePartition == constants.warningLV || partition.fileSystem == constants.warningZFS) && !errorInst.typeLvSwap"
                                         data-ng-model="partition.volumeName"
                                         data-ng-required="partition.typePartition == constants.warningLV"
                                         data-ng-change="validationVolumeName(partition)"
@@ -1031,17 +1031,17 @@
                                     }"
                                 >
                                     <span
-                                        data-ng-show="newPartition.typePartition != constants.warningLV"
+                                        data-ng-show="newPartition.typePartition != constants.warningLV && newPartition.fileSystem != constants.warningZFS"
                                     >
                                         -
                                     </span>
                                     <input
                                         type="text"
                                         class="form-control"
-                                        data-ng-show="newPartition.typePartition == constants.warningLV"
+                                        data-ng-show="newPartition.typePartition == constants.warningLV || newPartition.fileSystem == constants.warningZFS"
                                         data-ng-model="newPartition.volumeName"
                                         data-ng-change="validationVolumeName(newPartition)"
-                                        data-ng-disabled="newPartition.typePartition != constants.warningLV"
+                                        data-ng-disabled="newPartition.typePartition != constants.warningLV && newPartition.fileSystem != constants.warningZFS"
                                     />
                                 </td>
                                 <td
@@ -1243,18 +1243,6 @@
                                 data-translate="server_configuration_installation_ovh_step2_error_partition_volumename_empty"
                             ></span>
                         </li>
-                        <li data-ng-show="errorInst.volumeName">
-                            <span
-                                class="red"
-                                data-translate="server_configuration_installation_ovh_step2_error_partition_volumename_wrong"
-                            ></span>
-                        </li>
-                        <li data-ng-show="errorInst.volumeNameUse">
-                            <span
-                                class="red"
-                                data-translate="server_configuration_installation_ovh_step2_error_partition_volumename_use"
-                            ></span>
-                        </li>
                         <li data-ng-show="errorInst.mountPointEmpty">
                             <span
                                 class="red"
@@ -1348,18 +1336,6 @@
                             <span
                                 class="red"
                                 data-translate="server_configuration_installation_ovh_step2_error_partition_type_lv_swap"
-                            ></span>
-                        </li>
-                        <li data-ng-show="errorInst.typeLogicalLv">
-                            <span
-                                class="red"
-                                data-translate="server_configuration_installation_ovh_step2_error_partition_type_logical_lv"
-                            ></span>
-                        </li>
-                        <li data-ng-show="errorInst.raidLv">
-                            <span
-                                class="red"
-                                data-translate="server_configuration_installation_ovh_step2_error_partition_raid_LV"
                             ></span>
                         </li>
                         <li data-ng-show="configError.raidDiskUse">
@@ -1496,12 +1472,12 @@
                                     data-ng-if="!informations.softRaidOnlyMirroring"
                                 >
                                     <span
-                                        data-ng-if="partition.typePartition != constants.warningLV"
+                                        data-ng-if="partition.typePartition != constants.warningLV && partition.fileSystem != constants.warningZFS"
                                     >
                                         -
                                     </span>
                                     <span
-                                        data-ng-if="partition.typePartition == constants.warningLV"
+                                        data-ng-if="partition.typePartition == constants.warningLV || partition.fileSystem == constants.warningZFS"
                                         data-ng-bind="partition.volumeName"
                                     >
                                     </span>

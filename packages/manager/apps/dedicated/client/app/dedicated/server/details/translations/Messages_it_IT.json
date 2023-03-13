@@ -674,7 +674,7 @@
   "server_configuration_installation_ovh_step2_hide_all_disk": "Nascondi gli altri dischi",
   "server_configuration_installation_ovh_step2_file_system": "File System",
   "server_configuration_installation_ovh_step2_mount_point": "Punto di mount",
-  "server_configuration_installation_ovh_step2_volume_name": "Nome del volume LVM",
+  "server_configuration_installation_ovh_step2_volume_name": "Nome del volume logico (LVM)/zpool (ZFS)",
   "server_configuration_installation_ovh_step2_raid": "RAID",
   "server_configuration_installation_ovh_step2_raid_help": "Il RAID (a partire dal RAID 1) permette di copiare dati su diversi hard disk per migliorare il backup del server in caso di problemi. Attenzione: il RAID 0 non salva i dati ed è quindi sconsigliato.",
   "server_configuration_installation_ovh_step2_available_size": "Dimensione della partizione",
