@@ -258,7 +258,6 @@ angular
 
         volumeNameEmpty: false,
         volumeName: false,
-        volumeNameUse: false,
 
         partitionSizeToAdd: false,
         partitionSizeOver: false,
@@ -1600,11 +1599,7 @@ angular
       // ------VOLUME NAME VALIDATION------
 
       $scope.hasErrorVolumeName = function hasErrorVolumeName() {
-        return (
-          $scope.errorInst.volumeNameEmpty ||
-          $scope.errorInst.volumeName ||
-          $scope.errorInst.volumeNameUse
-        );
+        return $scope.errorInst.volumeNameEmpty || $scope.errorInst.volumeName;
       };
 
       $scope.validationVolumeName = function validationVolumeName(partition) {
@@ -1617,13 +1612,6 @@ angular
           (!/^[a-zA-Z0-9]{1,16}$/.test(partition.volumeName) ||
             partition.volumeName.toLowerCase() === 'snapshot' ||
             partition.volumeName.toLowerCase() === 'pvmove');
-        $scope.errorInst.volumeNameUse =
-          !$scope.errorInst.typeLvSwap &&
-          !$scope.errorInst.typeLogicalLv &&
-          !$scope.errorInst.volumeNameEmpty &&
-          !$scope.errorInst.volumeName &&
-          partition.typePartition === $scope.constants.warningLV &&
-          $scope.validation.volumeNameList[partition.volumeName.toLowerCase()];
       };
 
       // ------Soft RAID VALIDATION------
