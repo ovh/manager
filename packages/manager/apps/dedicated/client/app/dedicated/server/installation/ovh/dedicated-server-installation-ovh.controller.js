@@ -1103,7 +1103,9 @@ angular
           } else {
             trueSize = $scope.newPartition.partitionSize;
             if (
-              $scope.newPartition.typePartition !== $scope.constants.warningLV
+              $scope.newPartition.typePartition !==
+                $scope.constants.warningLV &&
+              $scope.newPartition.fileSystem !== $scope.constants.warningZFS
             ) {
               $scope.newPartition.volumeName = null;
             }
@@ -1214,7 +1216,10 @@ angular
             $scope.buttonControl.setInProgress = false;
           } else {
             trueSize = partitionToSet.partitionSize;
-            if (partitionToSet.typePartition !== $scope.constants.warningLV) {
+            if (
+              partitionToSet.typePartition !== $scope.constants.warningLV &&
+              partitionToSet.fileSystem !== $scope.constants.warningZFS
+            ) {
               partitionToSet.volumeName = null;
             }
 
