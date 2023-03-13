@@ -110,8 +110,8 @@
                 ></p>
             </oui-select-picker-label>
 
-            <oui-select-picker-description class="w-100">
-                <p class="text-center my-2">
+            <oui-select-picker-section>
+                <p class="w-100 text-center my-0">
                     <span
                         data-translate="pci_projects_project_storages_volume_backup_create_step_2_option_{{:: volumeOption.id}}_description_part_1"
                     ></span>
@@ -120,13 +120,15 @@
                         data-translate="pci_projects_project_storages_volume_backup_create_step_2_option_{{:: volumeOption.id}}_description_part_2"
                     ></span>
                 </p>
+            </oui-select-picker-section>
 
+            <oui-select-picker-footer>
                 <p
                     class="text-center my-1"
                     data-translate="pci_projects_project_storages_volume_backup_create_step_2_option_price"
-                    data-translate-values="{ priceValue: '0.000x€'}"
+                    data-translate-values="{ priceValue: '<strong>'+ $ctrl.formatVolumePrice(volumeOption) +'</strong>'}"
                 ></p>
-            </oui-select-picker-description>
+            </oui-select-picker-footer>
         </oui-select-picker>
     </div>
 </div>

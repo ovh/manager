@@ -9,9 +9,15 @@ import {
 
 export default class VolumeBackupCreateController {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, VolumeBackupService) {
+  constructor(
+    $translate,
+    CucCloudMessage,
+    CucCurrencyService,
+    VolumeBackupService,
+  ) {
     this.$translate = $translate;
     this.cucCloudMessage = CucCloudMessage;
+    this.cucCurrencyService = CucCurrencyService;
     this.volumeBackupService = VolumeBackupService;
   }
 
@@ -34,6 +40,20 @@ export default class VolumeBackupCreateController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  getVolumeAddon(volumeOption) {
+    return this.volumesAddons.find(
+      ({ planCode }) => planCode === volumeOption.planCode,
+    );
+  }
+
+  formatVolumePrice(volumeOption) {
+    const { price } = this.getVolumeAddon(volumeOption).pricings[0];
+    const convertPrice = this.cucCurrencyService.convertUcentsToCurrency(price);
+    const priceCurrency = this.cucCurrencyService.getCurrentCurrency();
+
+    return `${convertPrice}${priceCurrency}`;
   }
 
   isVolumeBackupOption() {
