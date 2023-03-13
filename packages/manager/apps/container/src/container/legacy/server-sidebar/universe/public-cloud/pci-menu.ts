@@ -95,7 +95,7 @@ export function getPciProjectMenu(
         {
           id: 'cold-archive',
           title: 'Cold Archive',
-          badge: 'beta',
+          badge: 'new',
           feature: 'cold-archive',
           href: getURL(
             'public-cloud',
