@@ -1608,10 +1608,9 @@ angular
       // ------Soft RAID VALIDATION------
 
       $scope.hasErrorRaid = function hasErrorRaid() {
-        return $scope.errorInst.raid0 || $scope.errorInst.raidLv;
+        return $scope.errorInst.raid0;
       };
       $scope.validationRaid = function validationRaid(partition) {
-        $scope.errorInst.raidLv = false;
         if (
           $scope.installation.nbDiskUse > 1 &&
           !$scope.informations.raidController
@@ -1626,24 +1625,6 @@ angular
             partition.raid === $scope.constants.warningRaid0 &&
             partition.fileSystem !== $scope.constants.warningSwap;
         }
-        if (
-          $scope.installation.nbDiskUse > 1 &&
-          !$scope.informations.raidController &&
-          partition.typePartition === $scope.constants.warningLV
-        ) {
-          angular.forEach(
-            $scope.installation.partitionSchemeModels,
-            (partition2) => {
-              if (
-                partition2.typePartition === $scope.constants.warningLV &&
-                partition2.raid !== partition.raid
-              ) {
-                $scope.errorInst.raidLv = true;
-              }
-            },
-          );
-        }
-
         $scope.validationSize(partition);
       };
 

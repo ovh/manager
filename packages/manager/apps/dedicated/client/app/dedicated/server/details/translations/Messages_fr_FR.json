@@ -713,7 +713,6 @@
   "server_configuration_installation_ovh_step2_error_partition_size_exceed": "Vous dépassez l'espace disponible. Vous devez réduire l'espace occupé par cette partition.",
   "server_configuration_installation_ovh_step2_warning_partition_raid0": "Attention, si vous configurez cette partition en Raid 0 vous gagnerez de l'espace mais la configuration en Raid 0 n'offrira pas de tolérance de panne.",
   "server_configuration_installation_ovh_step2_error_partition_raid0": "La partition {{t0}} doit être en raid1",
-  "server_configuration_installation_ovh_step2_error_partition_raid_LV": "Toutes les partitions LV doivent avoir un raid identique.",
   "server_configuration_installation_ovh_step2_error_partition_order": "Une partition est déjà assignée à ce numéro d'ordre",
   "server_configuration_installation_ovh_step2_error_partition_order_first": "La première partition doit avoir comme point de montage /boot ou /. Si les 2 partitions sont présentes, /boot doit être placé en première position.",
   "server_configuration_installation_ovh_step2_error_partition_order_first_win": "La première partition doit avoir comme point de montage c:",
