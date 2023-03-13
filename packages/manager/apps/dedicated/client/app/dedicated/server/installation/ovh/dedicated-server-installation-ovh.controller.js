@@ -247,7 +247,6 @@ angular
         raid0: false,
         raidLv: false,
         orderType: false,
-        typeLogicalLv: false,
         typePrimary: false,
         typeLvSwap: false,
 
@@ -1416,7 +1415,6 @@ angular
       function validationVolumeNameByType(partition) {
         $scope.errorInst.volumeNameEmpty =
           !$scope.errorInst.typeLvSwap &&
-          !$scope.errorInst.typeLogicalLv &&
           partition.typePartition === $scope.constants.warningLV &&
           (!partition.volumeName || partition.volumeName === '');
       }
@@ -1426,15 +1424,11 @@ angular
           $scope.errorInst.orderType ||
           $scope.errorInst.typePrimary ||
           $scope.errorInst.typeLvSwap ||
-          $scope.errorInst.typeLogicalLv ||
           $scope.errorInst.mountPointPrimary
         );
       };
 
       $scope.validationType = function validationType(partition) {
-        let nbLv = 0;
-        let nbLogical = 0;
-
         $scope.errorInst.typeLvSwap =
           partition.typePartition === $scope.constants.warningLV &&
           partition.fileSystem === $scope.constants.warningSwap;
@@ -1453,7 +1447,6 @@ angular
         $scope.errorInst.orderType = false;
 
         // $scope.errorInst.orderLv = false;
-        $scope.errorInst.typeLogicalLv = false;
         if (
           !$scope.errorInst.order &&
           !$scope.errorInst.orderFirst &&
@@ -1477,27 +1470,8 @@ angular
               ) {
                 $scope.errorInst.orderType = true;
               }
-              if (partition2.typePartition === $scope.constants.warningLV) {
-                nbLv += 1;
-              } else if (
-                partition2.typePartition === $scope.constants.warningLogical
-              ) {
-                nbLogical += 1;
-              }
             },
           );
-          if ($scope.newPartition.display) {
-            if (partition.typePartition === $scope.constants.warningLV) {
-              nbLv += 1;
-            } else if (
-              partition.typePartition === $scope.constants.warningLogical
-            ) {
-              nbLogical += 1;
-            }
-          }
-          if (nbLv !== 0 && nbLogical !== 0) {
-            $scope.errorInst.typeLogicalLv = true;
-          }
         }
 
         $scope.errorInst.typePrimary =
