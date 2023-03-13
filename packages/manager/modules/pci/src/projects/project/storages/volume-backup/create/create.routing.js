@@ -4,6 +4,7 @@ import {
   VOLUME_BACKUP_TRACKING,
 } from '../volume-backup.constants';
 import { PCI_FEATURES_STATES } from '../../../../projects.constant';
+import { VOLUMES_OPTIONS } from './create.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(VOLUME_BACKUP_ROUTES.CREATE.STATE, {
@@ -52,6 +53,14 @@ export default /* @ngInject */ ($stateProvider) => {
 
       volumes: /* @ngInject */ (projectId, VolumeBackupService) => {
         return VolumeBackupService.getVolumes(projectId);
+      },
+
+      volumesAddons: /* @ngInject */ (catalog) => {
+        const planCodes = VOLUMES_OPTIONS.map(({ planCode }) => planCode);
+
+        return catalog.addons.filter(({ planCode }) => {
+          return planCodes.includes(planCode);
+        });
       },
 
       knowMoreAboutBackupLink: /* @ngInject */ (coreConfig) => {

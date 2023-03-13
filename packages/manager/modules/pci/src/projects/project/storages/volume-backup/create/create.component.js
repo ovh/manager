@@ -8,6 +8,7 @@ export default {
     projectId: '<',
     guides: '<',
     volumes: '<',
+    volumesAddons: '<',
     volumeBackupModel: '<',
     goToDetachVolume: '<',
     goToVolumeBackups: '<',
