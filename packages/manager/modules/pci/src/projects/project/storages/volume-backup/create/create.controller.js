@@ -101,40 +101,25 @@ export default class VolumeBackupCreateController {
   }
 
   buildSuccessSnapshotBackupCucMessage(backupName) {
-    const msgPart1 = this.$translate.instant(
-      'pci_projects_project_storages_volume_backup_create_action_create_option_volume_snapshot_success',
-      {
-        backupName: `<strong>${backupName}</strong>`,
-      },
+    return this.buildTaskResponse(
+      'success',
+      this.$translate.instant(
+        'pci_projects_project_storages_volume_backup_create_action_create_option_volume_snapshot_success',
+        {
+          backupName: `<strong>${backupName}</strong>`,
+        },
+      ),
     );
-    const linkMessage = this.$translate.instant(
-      'pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success_snapshot_link',
-    );
-
-    return {
-      textHtml: `${msgPart1} <br/> ${VolumeBackupCreateController.buildLink(
-        this.volumeSnapshotStorageLink,
-        linkMessage,
-      )}`,
-    };
   }
 
   buildSuccessVolumeBackupCucMessage(backupName) {
-    const msgPart1 = this.$translate.instant(
-      'pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success',
-      {
-        backupName: `<strong>${backupName}</strong>`,
-      },
-    );
-    const linkMessage = this.$translate.instant(
-      'pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success_block_storage_link',
-    );
-
     return {
-      textHtml: `${msgPart1} <br/> ${VolumeBackupCreateController.buildLink(
-        this.volumeBlockStorageLink,
-        linkMessage,
-      )}`,
+      textHtml: this.$translate.instant(
+        'pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success',
+        {
+          backupName: `<strong>${backupName}</strong>`,
+        },
+      ),
     };
   }
 
@@ -145,8 +130,21 @@ export default class VolumeBackupCreateController {
     return this.volumeBackupService
       .createVolumeSnapshot(this.projectId, volume.id, { name })
       .then(() => {
-        return this.goToVolumeBackups(
+        return this.goToSnapshots(
           this.buildSuccessSnapshotBackupCucMessage(name),
+        );
+      })
+      .catch(({ data }) => {
+        return this.goToSnapshots(
+          this.buildTaskResponse(
+            'error',
+            this.$translate.instant(
+              'pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail',
+              {
+                message: data.message,
+              },
+            ),
+          ),
         );
       });
   }
@@ -163,6 +161,17 @@ export default class VolumeBackupCreateController {
       .then(() => {
         return this.goToVolumeBackups(
           this.buildSuccessVolumeBackupCucMessage(name, volume.name),
+        );
+      })
+      .catch(({ data }) => {
+        return this.goToVolumeBackups(
+          this.$translate.instant(
+            'pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail',
+            {
+              message: data.message,
+            },
+          ),
+          'error',
         );
       });
   }
@@ -208,20 +217,8 @@ export default class VolumeBackupCreateController {
       : this.createVolumeSnapshot();
 
     this.isCreating = true;
-    return taskPromise
-      .catch(({ data }) => {
-        return this.goToVolumeBackups(
-          this.$translate.instant(
-            'pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail',
-            {
-              message: data.message,
-            },
-          ),
-          'error',
-        );
-      })
-      .finally(() => {
-        this.isCreating = false;
-      });
+    return taskPromise.finally(() => {
+      this.isCreating = false;
+    });
   }
 }

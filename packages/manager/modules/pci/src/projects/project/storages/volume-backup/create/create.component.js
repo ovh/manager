@@ -12,6 +12,7 @@ export default {
     volumeBackupModel: '<',
     goToDetachVolume: '<',
     goToVolumeBackups: '<',
+    buildTaskResponse: '<',
     knowMoreAboutBackupLink: '<',
     volumeBlockStorageLink: '<',
     volumeSnapshotStorageLink: '<',
