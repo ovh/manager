@@ -34,30 +34,13 @@ const getCookie = (cookieId: string) => {
 };
 
 export class TrackingPlugin extends OvhAtInternet {
-  private stateRules: unknown[];
-
-  private prefix: string;
-
   private config: RegionsTrackingConfig;
 
   private currentUser: User;
 
-  setReplacementRules(rules: unknown[]): void {
-    this.stateRules = [...this.stateRules, ...rules];
-  }
-
-  setPrefix(prefix: string): void {
-    this.prefix = prefix;
-  }
-
-  getPrefix(): string {
-    return this.prefix;
-  }
-
-  setConfig(config: RegionsTrackingConfig): void {
+  setConfig(region: string, config: RegionsTrackingConfig): void {
     this.config = config;
-
-    this.configureTracking(this.region as Region, this.currentUser);
+    this.configureTracking(region as Region, this.currentUser);
   }
 
   waitForConfig(retryInterval = 500): Promise<RegionsTrackingConfig> {
@@ -98,5 +81,6 @@ export class TrackingPlugin extends OvhAtInternet {
     };
 
     this.setDefaults(defaultConfig);
+    this.setRegion(region);
   }
 }

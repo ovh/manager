@@ -12,6 +12,7 @@ import {
   OBJECT_CONTAINER_TYPE_OFFERS,
   OBJECT_CONTAINER_TYPES,
   STORAGE_PRICES_LINK,
+  STORAGES_CONTAINER_NAME_PATTERN,
 } from '../containers.constants';
 
 import { CONTAINER_USER_ASSOCIATION_MODES } from './components/associate-user-to-container/constant';
@@ -36,6 +37,7 @@ export default class PciStoragesContainersAddController {
     this.storagePricesLink =
       STORAGE_PRICES_LINK[ovhSubsidiary] || STORAGE_PRICES_LINK.DEFAULT;
 
+    this.STORAGES_CONTAINER_NAME_PATTERN = STORAGES_CONTAINER_NAME_PATTERN;
     this.OBJECT_CONTAINER_NAME_PATTERN = OBJECT_CONTAINER_NAME_PATTERN;
     this.OBJECT_CONTAINER_OFFERS = OBJECT_CONTAINER_OFFERS;
     this.OBJECT_CONTAINER_OFFERS_LABELS = OBJECT_CONTAINER_OFFERS_LABELS;
@@ -196,13 +198,14 @@ export default class PciStoragesContainersAddController {
             ? 'pci_projects_project_storages_containers_add_success_message_with_user_creation'
             : 'pci_projects_project_storages_containers_add_success_message';
 
-        return this.goBackWithTrackingPage({
-          message: this.$translate.instant(message, {
+        return this.goBackWithTrackingPage(
+          this.$translate.instant(message, {
             container: this.container.name,
             userName: this.userModel.createMode?.user?.username,
           }),
-          trackingTag: `_add::${containerOffer}_${dataCenterLocation}::${containerTypeOffer}creation_confirmation`,
-        });
+          'success',
+          `_add::${containerOffer}_${dataCenterLocation}::${containerTypeOffer}creation_confirmation`,
+        );
       })
       .catch((err) => {
         this.trackPage(

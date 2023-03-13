@@ -8,8 +8,22 @@ export const ORDER_KEYS = [
   'nodesPattern.region',
   'plan',
   'version',
+  'disk.size',
   'networkId',
   'subnetId',
+];
+export const ORDER_KEYS_TERRAFORM = [
+  'service_name',
+  'description',
+  'engine',
+  'version',
+  'plan',
+  'flavor',
+  'disk_size',
+  'nodes',
+  'nodes.region',
+  'nodes.network_id',
+  'nodes.subnet_id',
 ];
 export const PRIVATE_NETWORK_GUIDE = {
   DEFAULT: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-vrack/',
@@ -28,5 +42,6 @@ export default {
   MIN_NAME_LENGTH,
   MAX_NAME_LENGTH,
   ORDER_KEYS,
+  ORDER_KEYS_TERRAFORM,
   PRIVATE_NETWORK_GUIDE,
 };

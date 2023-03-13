@@ -7,5 +7,6 @@
   "pci_additional_ips_floatingips_edit_select_ip": "Seleziona una rete/IP",
   "pci_additional_ips_floatingips_edit_success": "L'istanza associata all'IP {{ ip }} è stata modificata.",
   "pci_additional_ips_floatingips_edit_error": "Si è verificato un errore durante la modifica dell'istanza associata: {{ error }}",
-  "pci_additional_ips_floatingips_edit_gateway_error": "Nella rete privata selezionata non abbiamo trovato un gateway, necessario per associare questo Floating IP. Creane uno prima o seleziona un'altra istanza/rete privata."
+  "pci_additional_ips_floatingips_edit_gateway_error": "Nella rete privata selezionata non abbiamo trovato un gateway, necessario per associare questo Floating IP. Creane uno prima o seleziona un'altra istanza/rete privata.",
+  "pci_additional_ips_floatingips_edit_gateway_no_instance_error": "Non disponi di istanze associate disponibili"
 }

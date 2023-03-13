@@ -5,14 +5,14 @@ import TRACKING from './at-internet.constant';
 
 const moduleName = 'hubAtInternet';
 
-export const initHubAtInternet = (trackingPlugin) => {
+export const initHubAtInternet = (region, trackingPlugin) => {
   angular
     .module(moduleName, [
       registerAtInternet(trackingPlugin),
       ovhManagerAtInternetConfiguration,
     ])
     .config(async () => {
-      await trackingPlugin.setConfig(TRACKING);
+      await trackingPlugin.setConfig(region, TRACKING);
     })
     .config(
       /* @ngInject */ (atInternetConfigurationProvider) => {

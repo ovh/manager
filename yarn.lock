@@ -21506,6 +21506,11 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
+piano-analytics-js@^6.7.0:
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/piano-analytics-js/-/piano-analytics-js-6.7.0.tgz#49ba0597b0db02334f01a93469a7e8d54c4357e9"
+  integrity sha512-K80o4V13BiW7/QZ1/eUUl4yoylEaYlVaLZKXAaJd09YmHc374lmjKwbTucU9tH8NkhSjl3AlaxJX+nWi0hzcLQ==
+
 picocolors@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
