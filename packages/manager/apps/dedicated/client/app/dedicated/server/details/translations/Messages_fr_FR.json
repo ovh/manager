@@ -718,7 +718,6 @@
   "server_configuration_installation_ovh_step2_error_partition_order_first": "La première partition doit avoir comme point de montage /boot ou /. Si les 2 partitions sont présentes, /boot doit être placé en première position.",
   "server_configuration_installation_ovh_step2_error_partition_order_first_win": "La première partition doit avoir comme point de montage c:",
   "server_configuration_installation_ovh_step2_error_partition_volumename_empty": "Le nom du volume est obligatoire pour une partition de type LV",
-  "server_configuration_installation_ovh_step2_error_partition_volumename_wrong": "Le nom du volume ne doit pas contenir de caractères spéciaux, ne doit pas excéder 16 caractères et doit etre différent de pvmove et snapshot.",
   "server_configuration_installation_ovh_step2_error_partition_mountPoint_empty": "Le point de montage est obligatoire",
   "server_configuration_installation_ovh_step2_error_partition_mountPoint_wrong": "Ce point de montage ne peut être utilisé, le nom est incorrect. Les caractères spéciaux sont interdits (excepté _ / et -) et le nombre maximum de caractères est de 255.",
   "server_configuration_installation_ovh_step2_error_partition_mountPoint_wrong2": "Le point de montage /var/log n'est pas autorisé pour cette distribution. Vous devez utiliser /home/log.",
