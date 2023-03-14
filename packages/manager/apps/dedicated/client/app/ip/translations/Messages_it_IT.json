@@ -708,11 +708,11 @@
   "ip_table_header_organisation_help": "Un'organizzazione rappresenta l'entità responsabile di un blocco IP specifico (ad esempio, la tua azienda).",
   "ip_table_header_alerts_help": "Alert relativi all'indirizzo IP o al blocco Additional IP",
   "ip_table_filter_advanced_mode": "Modalità avanzata",
-  "ip_edit_or_assosiate_title": "Modificare/Associare un'organizzazione",
+  "ip_edit_or_assosiate_title": "Visualizza/modifica le informazioni sul blocco IP",
   "ip_edit_or_assosiate_editor_tab": "Modificare",
-  "ip_edit_or_assosiate_asso_tab": "Associare un'organizzazione",
-  "ip_edit_or_assosiate_edit_submit_button": "Editor",
-  "ip_edit_or_assosiate_asso_submit_button": "Associa",
+  "ip_edit_or_assosiate_asso_tab": "Organizzazione",
+  "ip_edit_or_assosiate_edit_submit_button": "Modificare",
+  "ip_edit_or_assosiate_asso_submit_button": "Confermare",
   "ip_edit_or_assosiate_cancel_button": "Annullare",
   "ip_edit_or_assosiate_editor_tab_name_label": "Nome della rete (Netname)",
   "ip_edit_or_assosiate_editor_tab_description_label": "Descrizione",
@@ -734,5 +734,7 @@
   "ip_repricing_banner_list_item_2": "Dal 1° dicembre 2022, per gli indirizzi esistenti (ordinati prima del 6 ottobre 2022).",
   "ip_repricing_banner_link": "Ulteriori informazioni",
   "ip_unused_banner_text": "Disponi di indirizzi IP non utilizzati. Gli indirizzi IPv4 sono una risorsa sempre più rara. Se non effettivamente necessari, consigliamo pertanto di liberarli.",
-  "ip_unused_banner_link": "Visualizza i miei IP non utilizzati"
+  "ip_unused_banner_link": "Visualizza i miei IP non utilizzati",
+  "ip_edit_or_assosiate_description": "Questa sezione permette di personalizzare le informazioni pubbliche sul blocco IP (informazioni presenti sul database whois).",
+  "ip_edit_or_assosiate_network_tab": "Rete"
 }
