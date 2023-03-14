@@ -17,4 +17,28 @@ export default class PolicyService {
   getPolicies({ cursor }) {
     return this.Apiv2Service.getList(ENDPOINT.policy, { cursor });
   }
+
+  /**
+   * Get the policy given the id
+   * @param {string} id The policy's id
+   * @see Apiv2Service#get
+   * @returns {Promise}
+   */
+  getPolicy(id) {
+    return this.Apiv2Service.get(`${ENDPOINT.policy}/${id}`).then(
+      ({ data }) => data,
+    );
+  }
+
+  /**
+   * Delete the policy given the id
+   * @param {string} id The policy's id
+   * @see Apiv2Service#delete
+   * @returns {Promise}
+   */
+  deletePolicy(id) {
+    return this.Apiv2Service.delete(`${ENDPOINT.policy}/${id}`).then(
+      ({ data }) => data,
+    );
+  }
 }
