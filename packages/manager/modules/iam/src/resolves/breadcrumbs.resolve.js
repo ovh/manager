@@ -1,4 +1,5 @@
-const breadcrumbKey = 'breadcrumb';
+const key = 'breadcrumb';
+const pfx = 'iam_resolves_breadcrumbs';
 
 // ---------------------------------------------------------------------------------------------------- //
 
@@ -6,10 +7,10 @@ const breadcrumbKey = 'breadcrumb';
  * The create policy breadcrumb
  * @returns {string}
  */
-export const createPolicyBreadcrumb = /* @ngInject */ ($translate) =>
-  $translate.instant('iam_resolves_breadcrumbs_create_policy');
+const createPolicyBreadcrumbResolve = /* @ngInject */ ($translate) =>
+  $translate.instant(`${pfx}_create_policy`);
 
-createPolicyBreadcrumb.key = breadcrumbKey;
+createPolicyBreadcrumbResolve.key = key;
 
 // ---------------------------------------------------------------------------------------------------- //
 
@@ -17,25 +18,25 @@ createPolicyBreadcrumb.key = breadcrumbKey;
  * The default breadcrumb
  * @returns {string}
  */
-export const defaultBreadcrumbResolve = /* @ngInject */ ($translate) =>
-  $translate.instant('iam_resolves_breadcrumbs_default');
+const defaultBreadcrumbResolve = /* @ngInject */ ($translate) =>
+  $translate.instant(`${pfx}_default`);
 
-defaultBreadcrumbResolve.key = breadcrumbKey;
+defaultBreadcrumbResolve.key = key;
 
 // ---------------------------------------------------------------------------------------------------- //
 
 /**
- * Null breadcrumb (hide it)
+ * No breadcrumb (hide it)
  * @returns {null}
  */
-export const nullBreadcrumbResolve = () => null;
+const noBreadcrumbResolve = () => null;
 
-nullBreadcrumbResolve.key = breadcrumbKey;
+noBreadcrumbResolve.key = key;
 
 // ---------------------------------------------------------------------------------------------------- //
 
-export default {
-  createPolicyBreadcrumb,
+export {
+  createPolicyBreadcrumbResolve,
   defaultBreadcrumbResolve,
-  nullBreadcrumbResolve,
+  noBreadcrumbResolve,
 };
