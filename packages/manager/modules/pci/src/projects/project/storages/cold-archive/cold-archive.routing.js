@@ -85,8 +85,8 @@ export default /* @ngInject */ ($stateProvider) => {
           PciStoragesColdArchiveService.mapUsersToCredentials(projectId, users),
         ),
 
-      isUserTabActive: /* @ngInject */ ($transition$, $state) => () =>
-        $state.is(COLD_ARCHIVE_STATES.S3_USERS, $transition$.params()),
+      isUserTabActive: /* @ngInject */ ($state) => () =>
+        $state.is(COLD_ARCHIVE_STATES.S3_USERS),
 
       isUserColdArchiveContainersTabActive: /* @ngInject */ (
         $transition$,
