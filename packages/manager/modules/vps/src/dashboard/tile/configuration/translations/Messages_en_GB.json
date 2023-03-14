@@ -16,7 +16,7 @@
   "vps_dashboard_tile_configuration_vcore": "vCores",
   "vps_dashboard_tile_configuration_memory_add_upscale_elite": "Add power to your VPS by increasing your memory",
   "vps_dashboard_tile_configuration_storage_add_upscale_elite": "Add power to your VPS by increasing your storage",
-  "vps_dashboard_tile_configuration_upgrade_wrong_nic_cpu": "For more vCores, please contact the NIC admin: {{nichandle}}",
-  "vps_dashboard_tile_configuration_upgrade_wrong_nic_memory": "For more memory, please contact the NIC admin: {{nichandle}}",
-  "vps_dashboard_tile_configuration_upgrade_wrong_nic_storage": "For more storage, please contact the NIC admin: {{nichandle}}"
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_cpu": "To get more vCores, please contact the admin NIC: {{nichandle}}",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_memory": "To get more information, please contact the admin NIC: {{nichandle}}",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_storage": "To get more storage, please contact the admin NIC: {{nichandle}}"
 }
