@@ -1,0 +1,10 @@
+{
+  "iam_delete_entity_policy_error": "Une erreur est survenue lors de la suppression de la politique : {{ message }}",
+  "iam_delete_entity_policy_field": "Veuillez écrire le mot \"{{ statement }}\" pour supprimer votre polique",
+  "iam_delete_entity_policy_heading": "Suppression d'une politique",
+  "iam_delete_entity_policy_name": "Suppression de la politique :",
+  "iam_delete_entity_policy_success": "La politique a bien été supprimée",
+  "iam_delete_entity_policy_warn": "La suppression d'une politique entraine la perte de droits d'accès des identités sur les ressources.",
+  "iam_delete_entity_primary_label": "Supprimer",
+  "iam_delete_entity_secondary_label": "Annuler"
+}
