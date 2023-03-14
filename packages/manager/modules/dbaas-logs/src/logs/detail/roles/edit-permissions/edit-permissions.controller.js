@@ -71,7 +71,6 @@ export default class LogsRolesPermissionsCtrl {
             filter(
               result,
               (alias) =>
-                alias.info.isEditable &&
                 !find(
                   permissionList,
                   (permission) => permission.aliasId === alias.info.aliasId,
@@ -93,7 +92,6 @@ export default class LogsRolesPermissionsCtrl {
             filter(
               result,
               (index) =>
-                index.info.isEditable &&
                 !find(
                   permissionList,
                   (permission) => permission.indexId === index.info.indexId,
@@ -116,7 +114,6 @@ export default class LogsRolesPermissionsCtrl {
               filter(
                 result,
                 (dashboard) =>
-                  dashboard.info.isEditable &&
                   !find(
                     permissionList,
                     (permission) =>
@@ -139,7 +136,6 @@ export default class LogsRolesPermissionsCtrl {
           const search = filter(
             result,
             (stream) =>
-              stream.isEditable &&
               !find(
                 permissionList,
                 (permission) => permission.streamId === stream.streamId,
@@ -159,7 +155,6 @@ export default class LogsRolesPermissionsCtrl {
             filter(
               result,
               (kibana) =>
-                kibana.info.isEditable &&
                 !find(
                   permissionList,
                   (permission) => permission.kibanaId === kibana.info.kibanaId,
