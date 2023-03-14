@@ -21,10 +21,7 @@ export default class BmServerComponentsTechnicalDetailsController {
         this.formattedDataDisks = this.formatDisks('data');
         this.formattedCacheDisks = this.formatDisks('cache');
         this.formattedOsDisks = this.formatDisks('os');
-        this.formattedExtensionCard =
-          this.technicalDetails.storage?.raid !== 'none'
-            ? this.technicalDetails.storage.raid
-            : '';
+        this.formattedGPU = this.formatGPU();
         this.upgradeWithTicketAvailable = false;
         this.UPGRADE_TYPE = UPGRADE_TYPE;
         if (this.goToUpgrade) {
@@ -101,6 +98,7 @@ export default class BmServerComponentsTechnicalDetailsController {
       const number = get(disk, 'number', 1);
       const technology = get(disk, 'technology', '');
       const diskInterface = get(disk, 'interface', '');
+      const raid = get(disk, 'raid', '');
       let capacity = Number(get(disk, 'capacity'));
 
       if (Number.isNaN(capacity)) {
@@ -112,7 +110,15 @@ export default class BmServerComponentsTechnicalDetailsController {
         capacity = `${capacity} ${gbTranslated}`;
       }
 
-      return `${number}×${capacity} ${technology} ${diskInterface}`;
+      return {
+        disk:
+          number === 0
+            ? this.$translate.instant(
+                'dedicated_server_dashboard_technical_details_disk_none',
+              )
+            : `${number}×${capacity} ${technology} ${diskInterface}`,
+        raid: raid !== 'none' ? raid : '',
+      };
     });
   }
 
@@ -122,6 +128,17 @@ export default class BmServerComponentsTechnicalDetailsController {
       this.technicalDetails.storage?.upgradable?.length &&
       !this.upgradeTask
     );
+  }
+
+  formatGPU() {
+    const { gpu } = this.technicalDetails;
+    return gpu
+      ? `${gpu.number}× ${gpu.brand} ${gpu.model} ${
+          gpu.memory.size
+        }${this.$translate.instant(
+          'dedicated_server_dashboard_technical_details_ram_size_unit',
+        )}`
+      : null;
   }
 
   loadData() {
