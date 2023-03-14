@@ -4,7 +4,7 @@ import Apiv2Service from './apiv2.service';
 import GuideService from './guide.service';
 import PolicyService from './policy.service';
 
-export const moduleName = 'ovhManagerIAMServices';
+const moduleName = 'ovhManagerIAMServices';
 
 angular
   .module(moduleName, [])
