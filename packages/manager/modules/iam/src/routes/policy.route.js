@@ -1,10 +1,8 @@
 import { policy as policyComponent } from '@iam/components';
-import { asResolve, nullBreadcrumbResolve } from '@iam/resolves';
-import policiesRoute from './policies.route';
+import { asResolve, noBreadcrumbResolve } from '@iam/resolves';
 
 const name = 'policy';
-const children = [policiesRoute];
-const resolves = [nullBreadcrumbResolve];
+const resolves = [noBreadcrumbResolve];
 
 const state = ({ ROUTES }) => ({
   url: '/policy',
@@ -18,6 +16,5 @@ const state = ({ ROUTES }) => ({
 
 export default {
   name,
-  children,
   state,
 };

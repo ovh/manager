@@ -4,12 +4,12 @@ import {
   asQuery,
   asResolve,
   cursorsParamResolve,
-  nullBreadcrumbResolve,
+  noBreadcrumbResolve,
 } from '@iam/resolves';
 
 const name = 'policies';
 const params = [cursorsParamResolve];
-const resolves = [nullBreadcrumbResolve];
+const resolves = [noBreadcrumbResolve];
 
 const state = () => ({
   url: `?${asQuery(params)}`,
