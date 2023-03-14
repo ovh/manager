@@ -529,5 +529,16 @@
   "vps_configuration_additional_disk_upgrade_option": "Aumentar el tamaño del disco",
   "vps_additional_disk_current_capacity": "Capacidad del disco: {{vpsDiskCapacity}}",
   "vps_additional_disk_cant_upgrade": "Si quiere mejorar su disco adicional, deberá migrar primero a la nueva gama de VPS haciendo clic en «Migrar mi VPS».",
-  "vps_configuration_desactivate_option_disabled_info": "Podrá dar de baja el disco adicional una vez finalizado el compromiso de permanencia de su VPS."
+  "vps_configuration_desactivate_option_disabled_info": "Podrá dar de baja el disco adicional una vez finalizado el compromiso de permanencia de su VPS.",
+  "vps_dashboard_snapshot_download_modal_title": "Descargar el snapshot",
+  "vps_dashboard_snapshot_download_modal_summary": "Información",
+  "vps_dashboard_snapshot_download_modal_service_name": "Nombre del servicio",
+  "vps_dashboard_snapshot_download_modal_snapshot_size": "Tamaño",
+  "vps_dashboard_snapshot_download_modal_snapshot_creation_date": "Fecha de creación del snapshot",
+  "vps_dashboard_snapshot_download_modal_snapshot_link_expiration_date": "Fecha de expiración del enlace de descarga",
+  "vps_dashboard_snapshot_download_modal_snapshot_loading_message": "Generando el pedido de la descarga del snapshot...",
+  "vps_dashboard_snapshot_download_modal_snapshot_curl_success": "El pedido de la descarga se ha generado correctamente.",
+  "vps_dashboard_snapshot_download_modal_snapshot_curl_info": "Copie el comando CURL anterior y ejecútelo en su terminal. Para más información sobre CURL, haga clic <a href=\"{{curlDocumentationLink}}\" target=\"_blank\">aquí</a>.",
+  "vps_dashboard_snapshot_download_modal_snapshot_button_label": "Generar el enlace de descarga",
+  "vps_configuration_download_snapshot_title_button": "Descargar el snapshot"
 }
