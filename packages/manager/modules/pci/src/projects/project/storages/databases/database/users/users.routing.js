@@ -1,6 +1,7 @@
 import map from 'lodash/map';
 import User from '../../../../../../components/project/storages/databases/user.class';
 import { SECRET_TYPE } from '../../databases.constants';
+import isFeatureActivated from '../../features.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -24,6 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId,
             database.engine,
             database.id,
+            isFeatureActivated('isAdvancedRole', database.engine),
           ).then((roles) =>
             roles.map((role, index) => {
               return {
