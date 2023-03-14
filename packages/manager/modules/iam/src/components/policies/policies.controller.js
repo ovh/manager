@@ -33,7 +33,7 @@ export default class PoliciesController {
    * @param {Object} params
    */
   uiOnParamsChanged({ [cursorsParamResolve.key]: cursors }) {
-    if (!areCursorsEquals(this.cursors, cursors)) {
+    if (cursors && !areCursorsEquals(this.cursors, cursors)) {
       this.cursors = { ...cursors };
       this.ouiDatagridService.refresh(this.datagridId, true);
     }
@@ -85,7 +85,8 @@ export default class PoliciesController {
         }));
       })
       .catch((error) => {
-        this.alert.apiError('iam_policy_error_data', error);
+        const { message } = error.data ?? {};
+        this.alert.error('iam_policy_error_data', { message });
         return { data: [], meta: { totalCount: 0 } };
       });
   }
@@ -122,6 +123,6 @@ export default class PoliciesController {
    * @returns {Promise}
    */
   deletePolicy({ id }) {
-    this.alert.error(`deletePolicy not implemented [id=${id}]`);
+    return this.goTo({ name: ROUTES.DELETE_POLICY, params: { policy: id } });
   }
 }
