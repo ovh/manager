@@ -5,11 +5,8 @@ import {
   featuresResolve,
   defaultBreadcrumbResolve,
 } from '@iam/resolves';
-import policyRoute from './policy.route';
-import createPolicyRoute from './createPolicy.route';
 
 const name = 'iam';
-const children = [policyRoute, createPolicyRoute];
 const resolves = [featuresResolve, defaultBreadcrumbResolve];
 
 const state = ({ ROUTES }) => ({
@@ -31,6 +28,5 @@ const state = ({ ROUTES }) => ({
 
 export default {
   name,
-  children,
   state,
 };

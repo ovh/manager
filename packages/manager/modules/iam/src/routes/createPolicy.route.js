@@ -1,8 +1,8 @@
 import { createPolicy } from '@iam/components';
-import { asResolve, createPolicyBreadcrumb } from '@iam/resolves';
+import { asResolve, createPolicyBreadcrumbResolve } from '@iam/resolves';
 
 const name = 'createPolicy';
-const resolves = [createPolicyBreadcrumb];
+const resolves = [createPolicyBreadcrumbResolve];
 
 const state = () => ({
   url: '/policy/create',
