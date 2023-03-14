@@ -2,11 +2,8 @@ import angular from 'angular';
 import { snakeCase } from 'lodash-es';
 
 import resolves from '@iam/resolves';
-import iam from './iam.route';
 
-// ---------------------------------------------------------------------------------------------------- //
-
-const rootRoutes = [iam];
+import rootRoute from './root.route';
 
 /**
  * Get the full state name (e.g. with the dots) of a route
@@ -32,7 +29,7 @@ const getStateName = (...parts) => parts.filter(Boolean).join('.');
  */
 const ROUTES = (() => {
   const recursiveROUTES = (routes, parentName) =>
-    routes.reduce((constants, { name, children = [] }) => {
+    routes.reduce((constants, { route: { name }, children = [] }) => {
       const stateName = getStateName(parentName, name);
       return {
         ...constants,
@@ -40,7 +37,7 @@ const ROUTES = (() => {
         [snakeCase(name.split('.').pop()).toUpperCase()]: stateName,
       };
     }, {});
-  return recursiveROUTES(rootRoutes);
+  return recursiveROUTES(rootRoute);
 })();
 
 /**
@@ -49,16 +46,14 @@ const ROUTES = (() => {
  */
 const declareRoutes = /* @ngInject */ ($stateProvider) => {
   const recursiveDeclareRoutes = (routes, parentName) => {
-    routes.forEach(({ name, state, children = [] }) => {
+    routes.forEach(({ route: { name, state }, children = [] }) => {
       const stateName = getStateName(parentName, name);
       $stateProvider.state(stateName, state({ $stateProvider, ROUTES }));
       recursiveDeclareRoutes(children, stateName);
     });
   };
-  recursiveDeclareRoutes(rootRoutes);
+  recursiveDeclareRoutes(rootRoute);
 };
-
-// ---------------------------------------------------------------------------------------------------- //
 
 const moduleName = 'ovhManagerIAMRoutes';
 
@@ -66,8 +61,6 @@ angular
   .module(moduleName, [resolves])
   .config(declareRoutes)
   .run(/* @ngTranslationsInject:json ./translations */);
-
-// ---------------------------------------------------------------------------------------------------- //
 
 export { ROUTES };
 export default moduleName;

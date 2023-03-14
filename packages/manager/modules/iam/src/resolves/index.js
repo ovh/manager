@@ -2,25 +2,30 @@ import angular from 'angular';
 
 import types from './types';
 
-// ---------------------------------------------------------------------------------------------------- //
+/**
+ * Cast the passed object to an array
+ * @param {any} object
+ * @returns {Array}
+ */
+const castArray = (object) => (Array.isArray(object) ? object : [object]);
 
 /**
  * Build a Set where all the keys represent the key property of each resolve function
  * and the values are the one-way angular binding symbole (e.g. '<')
- * @param {Function[]} resolves
+ * @param {Function|Function[]} resolves
  * @returns {Object<string, '<'>}
  */
 const asBindings = (resolves) =>
-  resolves.reduce((map, res) => ({ ...map, [res.key]: '<' }), {});
+  castArray(resolves).reduce((map, res) => ({ ...map, [res.key]: '<' }), {});
 
 /**
  * Build a Set where all the keys represent the key property of each resolve function
  * and the values are the resolve function itself
- * @param {Function[]} resolves
+ * @param {Function|Function[]} resolves
  * @returns {Object<string, function>}
  */
 const asResolve = (resolves) =>
-  resolves.reduce(
+  castArray(resolves).reduce(
     (map, res) => ({
       ...map,
       ...asResolve(res.resolves ?? []),
@@ -30,21 +35,37 @@ const asResolve = (resolves) =>
   );
 
 /**
- * Build a query string with each resolve's key property separated by a &
- * @param {Function[]} resolves
+ * Build a query string with each resolve's key property separated by a "&"
+ * @param {Function|Function[]} resolves
  * @returns {string}
  */
-const asQuery = (resolves) => resolves.map(({ key }) => key).join('&');
+const asQuery = (resolves) =>
+  castArray(resolves)
+    .map(({ key }) => key)
+    .join('&');
+
+/**
+ * Build a path with each resolve's key properties and declaration's type (if any)
+ * separated by a "/"
+ * @param {Function|Function[]} resolves
+ * @returns {string}
+ */
+const asPath = (resolves) =>
+  castArray(resolves)
+    .map(({ key, declaration: { type } = {} }) =>
+      type ? `{${key}:${type}}` : `:${key}`,
+    )
+    .join('/');
 
 /**
  * Build a Set where all the keys represent the key property of each resolve function
  * and the values are the resolve's declaration object
  * @see https://ui-router.github.io/ng1/docs/latest/interfaces/params.paramdeclaration.html
- * @param {Function[]} resolves
+ * @param {Function|Function[]} resolves
  * @returns {Object<string, ParamDeclaration>}
  */
 const asParams = (resolves) =>
-  resolves.reduce(
+  castArray(resolves).reduce(
     (map, { key, declaration, resolves: paramResolves }) => ({
       ...map,
       ...asParams(paramResolves ?? []),
@@ -64,8 +85,6 @@ const registerTypes = /* @ngInject */ ($urlMatcherFactoryProvider) =>
     $urlMatcherFactoryProvider.type(type, definition),
   );
 
-// ---------------------------------------------------------------------------------------------------- //
-
 const moduleName = 'ovhManagerIAMResolves';
 
 angular
@@ -73,12 +92,10 @@ angular
   .config(registerTypes)
   .run(/* @ngTranslationsInject:json ./translations */);
 
-// ---------------------------------------------------------------------------------------------------- //
-
 export * from './breadcrumbs.resolve';
 export * from './guides.resolve';
 export * from './misc.resolve';
 export * from './params.resolve';
 export * from './types';
-export { asBindings, asResolve, asQuery, asParams };
+export { asBindings, asResolve, asQuery, asPath, asParams };
 export default moduleName;
