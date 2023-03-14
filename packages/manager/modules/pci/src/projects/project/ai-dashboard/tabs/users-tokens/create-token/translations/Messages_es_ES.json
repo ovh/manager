@@ -16,5 +16,5 @@
   "pci_ai_dashboard_create_token_add_info_2": "Ejemplo de selectores:",
   "pci_ai_dashboard_create_token_add_info_3": "Por defecto, sus aplicaciones tendrán los siguientes labels: {{label1}} y {{label2}}",
   "pci_ai_dashboard_create_token_role_name_ai_training_operator": "AI Platform - Operador",
-  "pci_ai_dashboard_create_token_role_name_ai_training_read": "AI Platform - Sólo lectura"
+  "pci_ai_dashboard_create_token_role_name_ai_training_read": "AI Platform - Solo lectura"
 }
