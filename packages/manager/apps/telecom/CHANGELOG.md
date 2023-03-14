@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.57.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.56.0...@ovh-ux/manager-telecom@13.57.0) (2023-03-06)
+
+
+### Features
+
+* piano analytics tracking ([#8557](https://github.com/ovh/manager/issues/8557)) ([0b62090](https://github.com/ovh/manager/commit/0b620907c48aea25bd7e43cca39cb6d81863b05d))
+
+
+
+
+
 # [13.56.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.55.0...@ovh-ux/manager-telecom@13.56.0) (2023-03-01)
 
 

@@ -344,7 +344,7 @@
                             type="button"
                             data-translate="domain_dashboard_show_authinfo"
                             data-ng-click="setAction('authinfo/domain-authinfo', $ctrl.domain)"
-                            data-ng-if="!$ctrl.domain.isExpired && $ctrl.domain.protection === 'unlocked'"
+                            data-ng-if="$ctrl.domain.protection === 'unlocked'"
                             data-oui-tooltip="{{ ::'domain_dashboard_show_authinfo_title' | translate }}"
                         ></button>
                         <button

@@ -27,9 +27,9 @@ useShellClient('hub')
       client.ux.showAccountSidebar();
     }
 
-    await client.tracking.setConfig(TRACKING);
-
-    return client.environment.getEnvironment();
+    const environment = await client.environment.getEnvironment();
+    await client.tracking.setConfig(environment.getRegion(), TRACKING);
+    return environment;
   })
   .then((environment) => {
     BILLING_REDIRECTIONS.forEach((redirectionRegex) => {
