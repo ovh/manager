@@ -19,6 +19,14 @@ export default class PciStoragesContainersUsersController {
 
   $onInit() {
     this.loadMessages();
+    this.convertDate();
+  }
+
+  convertDate() {
+    this.userList = this.userList.map((user) => ({
+      ...user,
+      gridPropertyCreationDate: new Date(user.creationDate),
+    }));
   }
 
   loadMessages() {

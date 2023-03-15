@@ -9,7 +9,7 @@
                 type="button"
                 class="btn btn-icon my-auto ml-2"
                 data-translate-attr="{ title: 'nasha_dashboard_edit' }"
-                data-ng-click="$ctrl.openEditNameModal()"
+                data-ng-click="$ctrl.goToEditName()"
             >
                 <span
                     class="oui-icon oui-icon_small oui-icon-pen_concept"
@@ -139,10 +139,4 @@
         </div>
         <div data-ui-view="edit"></div>
     </div>
-    <nasha-components-edit-name
-        data-ng-if="$ctrl.isEditNameModalOpened"
-        data-close=":: $ctrl.closeEditNameModal"
-        data-nasha=":: $ctrl.nasha"
-        data-nasha-api-url=":: $ctrl.nashaApiUrl"
-    ></nasha-components-edit-name>
 </div>

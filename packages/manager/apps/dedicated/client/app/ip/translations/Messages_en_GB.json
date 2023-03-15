@@ -708,11 +708,11 @@
   "ip_table_header_organisation_help": "An organisation represents the entity responsible for an IP block (for example, your company).",
   "ip_table_header_alerts_help": "IP address or Additional IP block alerts.",
   "ip_table_filter_advanced_mode": "Advanced mode",
-  "ip_edit_or_assosiate_title": "Edit/Link an organisation",
+  "ip_edit_or_assosiate_title": "View/Edit IP Block Information",
   "ip_edit_or_assosiate_editor_tab": "Edit",
-  "ip_edit_or_assosiate_asso_tab": "Link an organisation",
-  "ip_edit_or_assosiate_edit_submit_button": "Editor",
-  "ip_edit_or_assosiate_asso_submit_button": "Attach",
+  "ip_edit_or_assosiate_asso_tab": "Organisation",
+  "ip_edit_or_assosiate_edit_submit_button": "Edit",
+  "ip_edit_or_assosiate_asso_submit_button": "Validate",
   "ip_edit_or_assosiate_cancel_button": "Exit",
   "ip_edit_or_assosiate_editor_tab_name_label": "Network name (netname)",
   "ip_edit_or_assosiate_editor_tab_description_label": "Description",
@@ -734,5 +734,7 @@
   "ip_repricing_banner_list_item_2": "For IPs ordered before 06 October 2022, the change will come into effect from 01 December 2022 onwards.",
   "ip_repricing_banner_link": "More information",
   "ip_unused_banner_text": "You have unused IP addresses. Since IPv4 addresses are becoming increasingly scarce as a resource, please release them if you do not need them.",
-  "ip_unused_banner_link": "View unused IPs."
+  "ip_unused_banner_link": "View unused IPs.",
+  "ip_edit_or_assosiate_description": "This section allows you to customise the public information on your IP block (information on the WHOIS database).",
+  "ip_edit_or_assosiate_network_tab": "Network"
 }
