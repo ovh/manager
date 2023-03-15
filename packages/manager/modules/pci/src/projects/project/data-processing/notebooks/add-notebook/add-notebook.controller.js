@@ -148,31 +148,39 @@ export default class AddNotebookCtrl {
   onAddNotebookHandler() {
     this.prepareNotebookPayload();
     this.trackNotebooks(
-      'add-notebook::create-notebook::'.concat(
-        `${this.state.notebookSizing.notebook}`,
-      ),
+      `add::confirm_${this.state.notebookSizing.notebook}_${this.state.notebookSizing.cluster}`,
     );
 
     this.dataProcessingService
       .createNotebook(this.projectId, this.orderPayload.orderData)
       .then((data) => {
-        this.trackNotebooks(
-          `add-notebook::create-notebook-validated::${this.state.notebookSizing.notebook}`,
-        );
+        this.trackNotebooks({
+          name: `add-success::${this.state.notebookSizing.notebook}_${this.state.notebookSizing.cluster}`,
+          type: 'page',
+        });
         this.goToDashboard(data.id);
       })
       .catch(() => {
-        this.trackNotebooks(
-          `add-notebook::create-notebook-error::${this.state.notebookSizing.notebook}`,
-        );
+        this.trackNotebooks({
+          name: `add-error::${this.state.notebookSizing.notebook}_${this.state.notebookSizing.cluster}`,
+          type: 'page',
+        });
       });
   }
 
   trackAndGoToCommand() {
     this.trackNotebooks({
-      name: 'add-notebook::goto-api-equivalent',
+      name: 'add::goto-api-equivalent',
       type: 'action',
     });
     return this.goToCommand(this.orderPayload);
+  }
+
+  trackAndGoToAiNotebook() {
+    this.trackNotebooks({
+      name: 'add::try-ai-notebooks',
+      type: 'action',
+    });
+    return this.goToAiNotebook(this.orderPayload);
   }
 }

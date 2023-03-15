@@ -12,7 +12,7 @@ export default {
     prices: '<',
     user: '<',
     containers: '<',
-    aiNotebookLink: '<',
+    goToAiNotebook: '<',
     goToDashboard: '<',
     goToCommand: '<',
     trackNotebooks: '<',

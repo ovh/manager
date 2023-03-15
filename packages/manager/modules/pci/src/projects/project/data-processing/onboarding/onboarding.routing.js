@@ -18,7 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     },
     atInternet: {
-      name: 'public-cloud::pci::projects::project::data-processing::onboarding',
+      name: 'PublicCloud::pci::projects::project::data-processing::onboarding',
     },
   });
 };

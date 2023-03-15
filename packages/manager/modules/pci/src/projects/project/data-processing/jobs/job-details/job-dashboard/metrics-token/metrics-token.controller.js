@@ -3,10 +3,11 @@ import { GRAFANA_URL, GUIDES_MONITOR_JOB_URL } from './metrics-token.constants';
 
 export default class {
   /* @ngInject */
-  constructor($state, $window) {
+  constructor($state, $window, atInternet) {
     this.$state = $state;
     this.docsMonitoringUrl = GUIDES_MONITOR_JOB_URL;
     this.$window = $window;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -27,6 +28,11 @@ export default class {
   }
 
   goToGrafana() {
+    this.atInternet.trackClick({
+      name:
+        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::metrics-token::access-grafana',
+      type: 'action',
+    });
     this.$window.open(this.grafanaUrl, '_blank', 'noopener');
   }
 

@@ -14,14 +14,13 @@
                     data-translate="data_processing_add_notebook_description_warning_ai"
                 >
                 </span>
-                <a
-                    class="oui-link oui-link_icon"
-                    data-ng-href="{{:: $ctrl.aiNotebookLink()}}"
-                >
-                    <span
-                        data-translate="data_processing_add_notebook_description_warning_ai_link"
-                    ></span>
-                </a>
+                <span>
+                    <a href="" data-ng-click="$ctrl.trackAndGoToAiNotebook()">
+                        <span
+                            data-translate="data_processing_add_notebook_description_warning_ai_link"
+                        ></span>
+                    </a>
+                </span>
             </oui-message>
             <form novalidate>
                 <!-- step 1 - select notebook type -->

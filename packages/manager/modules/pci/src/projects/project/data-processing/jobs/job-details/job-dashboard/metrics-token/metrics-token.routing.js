@@ -29,6 +29,10 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           ),
       },
+      atInternet: {
+        name:
+          'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::metrics-token',
+      },
     },
   );
 };

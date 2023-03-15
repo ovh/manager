@@ -5,6 +5,7 @@ export default class TerminatenotebookCtrl {
   }
 
   stopNotebook() {
+    this.trackNotebooks(`stop-notebook::confirm`);
     return this.dataProcessingService
       .stopNotebook(this.projectId, this.notebookId)
       .then(() => {
@@ -13,6 +14,8 @@ export default class TerminatenotebookCtrl {
   }
 
   closeModal() {
+    this.trackNotebooks(`stop-notebook::cancel`);
+
     this.goBack();
   }
 }

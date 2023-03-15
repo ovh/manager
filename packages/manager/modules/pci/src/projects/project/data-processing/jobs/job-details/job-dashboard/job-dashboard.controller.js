@@ -254,7 +254,7 @@ export default class {
   onSparkUIClick() {
     this.atInternet.trackClick({
       name:
-        'public-cloud::pci::projects::project::data-processing::job-details::dashboard::job-user-interface',
+        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::job-user-interface',
       type: 'action',
     });
     this.$window.open(
@@ -266,7 +266,7 @@ export default class {
   onMetricsClick() {
     this.atInternet.trackClick({
       name:
-        'public-cloud::pci::projects::project::data-processing::job-details::dashboard::monitor',
+        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::monitor',
       type: 'action',
     });
     this.showMetrics();
@@ -275,7 +275,7 @@ export default class {
   onObjectContainerClick() {
     this.atInternet.trackClick({
       name:
-        'public-cloud::pci::projects::project::data-processing::job-details::dashboard::object-container',
+        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::object-container',
       type: 'action',
     });
     this.browseObjectStorage(this.containerId);
@@ -284,7 +284,7 @@ export default class {
   onBillingConsoleClick() {
     this.atInternet.trackClick({
       name:
-        'public-cloud::pci::projects::project::data-processing::job-details::dashboard::billing-console',
+        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::billing-console',
       type: 'action',
     });
     this.showBillingConsole();
@@ -293,7 +293,7 @@ export default class {
   onTerminateClick() {
     this.atInternet.trackClick({
       name:
-        'public-cloud::pci::projects::project::data-processing::job-details::dashboard::kill-job',
+        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::kill-job',
       type: 'action',
     });
     this.terminateJob();

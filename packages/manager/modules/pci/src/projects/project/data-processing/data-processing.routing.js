@@ -38,6 +38,6 @@ export default /* @ngInject */ ($stateProvider) =>
         }),
     },
     atInternet: {
-      rename: 'public-cloud::pci::projects::project::data-processing',
+      rename: 'PublicCloud::pci::projects::project::data-processing::home',
     },
   });
