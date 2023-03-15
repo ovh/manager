@@ -80,7 +80,7 @@ export default class {
 
   onSubmitClick() {
     this.atInternet.trackClick({
-      name: 'public-cloud::pci::projects::project::data-processing::add-job',
+      name: 'PublicCloud::pci::projects::project::data-processing::add-job',
       type: 'action',
     });
     this.submitJob();

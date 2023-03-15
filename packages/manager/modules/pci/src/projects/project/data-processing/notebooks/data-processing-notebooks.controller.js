@@ -16,6 +16,7 @@ export default class DataProcessingNotebooksCtrl {
     ovhManagerRegionService,
     atInternet,
     $interval,
+    $window,
   ) {
     this.cucCloudMessage = CucCloudMessage;
     this.dataProcessingService = dataProcessingService;
@@ -26,6 +27,7 @@ export default class DataProcessingNotebooksCtrl {
     this.guideUrl = DATA_PROCESSING_GUIDE_URL;
     this.capitalize = capitalize;
     this.$interval = $interval;
+    this.$window = $window;
   }
 
   $onInit() {
@@ -70,7 +72,7 @@ export default class DataProcessingNotebooksCtrl {
    * @return {*|Promise<any>}
    */
   startNotebook(notebook) {
-    this.trackNotebooks({ name: `start-notebook`, type: 'action' });
+    this.trackNotebooks(`start-notebook`);
     return this.dataProcessingService
       .startNotebook(this.projectId, notebook.id)
       .then(this.reloadState());
@@ -97,5 +99,15 @@ export default class DataProcessingNotebooksCtrl {
   onTerminateClick() {
     this.trackNotebooks(`stop-notebook`);
     this.terminateNotebook();
+  }
+
+  onShowNotebook(notebookId) {
+    this.trackNotebooks(`details-notebook`);
+    this.showNotebook(notebookId);
+  }
+
+  onShowJupyterLab(jupyterLabUrl) {
+    this.trackNotebooks(`goto-jupyterlab`);
+    this.$window.open(jupyterLabUrl, '_blank');
   }
 }

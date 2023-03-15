@@ -36,7 +36,7 @@ export default class {
     this.isActivating = true;
     this.atInternet.trackClick({
       name:
-        'public-cloud::pci::projects::project::data-processing::onboarding::first-job',
+        'PublicCloud::pci::projects::project::data-processing::onboarding::first-job',
       type: 'action',
     });
     this.dataProcessingService

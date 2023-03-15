@@ -267,13 +267,19 @@ export default class {
     const lastIndex = this.currentIndex;
     this.isSubmitting = true;
 
+    this.atInternet.trackClick({
+      name:
+        'PublicCloud::pci::projects::project::data-processing::jobs::submit-job::confirm',
+      type: 'action',
+    });
+
     this.dataProcessingService
       .submitJob(this.projectId, this.orderData)
       .then(({ data }) => {
-        this.atInternet.trackClick({
+        this.atInternet.trackPage({
           name:
-            'public-cloud::pci::projects::project::data-processing::submit-job::submit',
-          type: 'action',
+            'PublicCloud::pci::projects::project::data-processing::jobs::submit-job-success',
+          type: 'page',
         });
         this.goToDashboard(data.id);
       })
@@ -285,6 +291,11 @@ export default class {
         ) {
           this.onSubmitJobHandler();
         } else {
+          this.atInternet.trackPage({
+            name:
+              'PublicCloud::pci::projects::project::data-processing::jobs::submit-job-error',
+            type: 'page',
+          });
           if (error.status === 400 || error.status === 422) {
             this.parseSubmitErrorMessage(error.data.data.class);
           }

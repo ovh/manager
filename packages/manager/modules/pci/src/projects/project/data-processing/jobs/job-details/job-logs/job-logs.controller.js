@@ -10,6 +10,7 @@ export default class {
     dataProcessingJobLogsService,
     PciStoragesContainersService,
     $window,
+    atInternet,
   ) {
     this.$scope = $scope;
     this.$timeout = $timeout;
@@ -19,6 +20,7 @@ export default class {
     this.formatLogsDate = formatLogsDate;
     this.moment = moment;
     this.$window = $window;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -34,6 +36,12 @@ export default class {
   }
 
   downloadObject(object) {
+    this.atInternet.trackClick({
+      name:
+        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::logs::download',
+      type: 'action',
+    });
+
     this.PciStoragesContainersService.downloadObject(
       this.projectId,
       this.logContainer.id,

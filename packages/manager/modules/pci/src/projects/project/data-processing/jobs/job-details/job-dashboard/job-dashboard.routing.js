@@ -64,7 +64,7 @@ export default /* @ngInject */ ($stateProvider) =>
       },
       atInternet: {
         name:
-          'public-cloud::pci::projects::project::data-processing::job-details::dashboard',
+          'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard',
       },
     },
   );

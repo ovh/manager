@@ -46,6 +46,6 @@ export default /* @ngInject */ ($stateProvider) =>
         PciProjectLabsService.getLabByName(projectId, 'dataProcessing'),
     },
     atInternet: {
-      rename: 'public-cloud::pci::projects::project::data-processing',
+      rename: 'PublicCloud::pci::projects::project::data-processing::jobs',
     },
   });

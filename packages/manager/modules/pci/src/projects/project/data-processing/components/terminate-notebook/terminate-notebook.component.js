@@ -10,5 +10,6 @@ export default {
     showNotebooks: '<',
     notebookId: '<',
     notebookName: '<',
+    trackNotebooks: '<',
   },
 };

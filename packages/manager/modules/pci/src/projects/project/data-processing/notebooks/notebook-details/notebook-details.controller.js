@@ -76,7 +76,7 @@ export default class NoteBookDetailsCtrl {
   }
 
   onNotebookStartClick() {
-    this.trackNotebooks({ name: `start-notebook`, type: 'action' });
+    this.trackNotebooks(`notebook-details::dashboard::start-notebook`);
     this.dataProcessingService
       .startNotebook(this.projectId, this.notebook.id)
       .then(() => {
@@ -85,12 +85,17 @@ export default class NoteBookDetailsCtrl {
   }
 
   onNotebookStopClick() {
-    this.trackNotebooks(`stop-notebook`);
+    this.trackNotebooks(`notebook-details::dashboard::stop-notebook`);
     this.terminateNotebook();
   }
 
   onDeleteNotebookClick() {
-    this.trackNotebooks('delete-notebook');
+    this.trackNotebooks('notebook-details::dashboard::delete-notebook');
     this.deleteNotebook();
+  }
+
+  onOpenJupyterLab() {
+    this.trackNotebooks('notebook-details::dashboard::goto-jupyterlab');
+    this.openLiveCodeEditor();
   }
 }

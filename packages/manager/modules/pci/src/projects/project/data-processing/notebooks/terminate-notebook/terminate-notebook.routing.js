@@ -19,6 +19,10 @@ export default /* @ngInject */ ($stateProvider) => {
           $transition$.params().notebookId,
         goBack: /* @ngInject */ (showNotebooks) => showNotebooks,
       },
+      atInternet: {
+        name:
+          'PublicCloud::pci::projects::project::data-processing::notebooks::stop-notebook',
+      },
     },
   );
 };

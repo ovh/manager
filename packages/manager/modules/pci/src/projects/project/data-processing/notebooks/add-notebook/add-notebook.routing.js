@@ -16,10 +16,11 @@ export default /* @ngInject */ ($stateProvider) =>
         prices: /* @ngInject */ (dataProcessingService, projectId) =>
           dataProcessingService.getNotebookPricesFromCatalog(projectId),
         user: /* @ngInject */ (SessionService) => SessionService.getUser(),
-        aiNotebookLink: /* @ngInject */ ($state, projectId) => () =>
-          $state.href('pci.projects.project.notebooks.add', {
+        goToAiNotebook: /* @ngInject */ ($state, projectId) => () => {
+          return $state.go('pci.projects.project.notebooks.add', {
             projectId,
-          }),
+          });
+        },
         goToDashboard: /* @ngInject */ ($state, projectId) => (notebookId) =>
           $state.go(
             'pci.projects.project.data-processing.notebooks.details',
@@ -42,7 +43,7 @@ export default /* @ngInject */ ($stateProvider) =>
       },
       atInternet: {
         rename:
-          'public-cloud::pci::projects::project::data-processing::add-notebook',
+          'public-cloud::pci::projects::project::data-processing::notebooks::add',
       },
     },
   );

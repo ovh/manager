@@ -64,7 +64,7 @@ export default /* @ngInject */ ($stateProvider) =>
       lab: /* @ngInject */ (PciProjectLabsService, projectId) =>
         PciProjectLabsService.getLabByName(projectId, 'dataProcessing'),
       notebooksTrackPrefix: () =>
-        'public-cloud::pci::projects::project::data-processing-notebooks',
+        'PublicCloud::pci::projects::project::data-processing::notebooks',
       trackNotebooks: /* @ngInject */ (
         notebooksTrackPrefix,
         trackClick,
@@ -96,5 +96,8 @@ export default /* @ngInject */ ($stateProvider) =>
           name: hit,
         });
       },
+    },
+    atInternet: {
+      name: 'PublicCloud::pci::projects::project::data-processing::notebooks',
     },
   });
