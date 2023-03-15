@@ -14,6 +14,7 @@ export default {
     instanceDetached: '<',
     startPolling: '<',
     stopPolling: '<',
+    buildTaskResponse: '<',
     goBack: '<',
     goToCreateVolumeBackup: '<',
     goToVolumeBlockStorage: '<',

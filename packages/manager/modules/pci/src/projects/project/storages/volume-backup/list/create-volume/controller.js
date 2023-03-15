@@ -21,34 +21,6 @@ export default class VolumeBackupListCreateVolumeController {
     };
   }
 
-  buildSuccessMessage() {
-    const volumeSuccessMessage = this.$translate.instant(
-      'pci_projects_project_storages_volume_backup_list_create_volume_request_success',
-      {
-        volumeName: `<strong>${this.createVolumeModel.name}</strong>`,
-      },
-    );
-    const linkMessage = this.$translate.instant(
-      'pci_projects_project_storages_volume_backup_list_create_volume_request_success_link',
-    );
-
-    const volumeListingPageLink = `<a
-      href="${this.volumeBlockStorageLink}"
-      target="_blank"
-      rel="noopener"
-    >
-      <span>${linkMessage}</span>
-      <span
-        class="oui-icon oui-icon-external-link"
-        aria-hidden="true"
-      ></span>
-    </a>`;
-
-    return {
-      textHtml: `${volumeSuccessMessage} <br/> ${volumeListingPageLink}`,
-    };
-  }
-
   onVolumeSizeChange(size) {
     this.getVolumePriceEstimation({
       ...this.volume,
@@ -69,21 +41,31 @@ export default class VolumeBackupListCreateVolumeController {
         this.volumeBackup.id,
         this.createVolumeModel.name,
       )
-      .then(() => {
-        return this.goToVolumeBackups(this.buildSuccessMessage());
-      })
-      .then(() => this.startPolling())
+      .then(() =>
+        this.goToVolumeBlockStorage(
+          this.buildTaskResponse(
+            'success',
+            this.$translate.instant(
+              'pci_projects_project_storages_volume_backup_list_create_volume_request_success',
+              {
+                volumeName: `<strong>${this.createVolumeModel.name}</strong>`,
+              },
+            ),
+          ),
+        ),
+      )
       .catch(({ data }) => {
-        return this.goToVolumeBackups(
-          {
-            textHtml: this.$translate.instant(
+        return this.goToVolumeBlockStorage(
+          this.buildTaskResponse(
+            'error',
+            this.$translate.instant(
               'pci_projects_project_storages_volume_backup_list_create_volume_request_fail',
               {
+                volumeName: this.createVolumeModel.name,
                 message: data.message,
               },
             ),
-          },
-          'error',
+          ),
         );
       })
       .finally(() => {
