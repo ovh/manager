@@ -33,7 +33,9 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().volume,
 
       preselectedVolumeOption: /* @ngInject */ ($transition$) =>
-        $transition$.params().volumeOption,
+        VOLUMES_OPTIONS.find(
+          ({ id }) => id === $transition$.params().volumeOption,
+        ),
 
       prefilledBackupName: /* @ngInject */ ($transition$) =>
         $transition$.params().backupName,
