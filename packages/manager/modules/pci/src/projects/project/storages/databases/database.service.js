@@ -322,11 +322,14 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
-  getRoles(projectId, engine, databaseId) {
+  getRoles(projectId, engine, databaseId, advanced) {
     if (isFeatureActivated('getRoles', engine)) {
       return this.$http
         .get(
           `/cloud/project/${projectId}/database/${engine}/${databaseId}/roles`,
+          {
+            params: advanced ? { advanced: 1 } : null,
+          },
           DatabaseService.getIcebergHeaders(),
         )
         .then(({ data }) => data);

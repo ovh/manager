@@ -20,6 +20,14 @@ export default class PciStoragesColdArchiveContainersController {
 
   $onInit() {
     this.loadMessages();
+    this.convertDate();
+  }
+
+  convertDate() {
+    this.containers = this.containers.map((container) => ({
+      ...container,
+      gridPropertyCreationDate: new Date(container.createdAt),
+    }));
   }
 
   loadMessages() {
