@@ -119,11 +119,22 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
         ),
 
-      goToVolumeBackups: ($state, CucCloudMessage, projectId) => (
-        message = false,
-        type = 'success',
-        params = {},
-      ) => {
+      buildTaskResponse: () => (type, message) => {
+        return {
+          cucCloudParams: {
+            type,
+            message: {
+              textHtml: message,
+            },
+          },
+        };
+      },
+
+      goToVolumeBackups: /* @ngInject */ (
+        $state,
+        CucCloudMessage,
+        projectId,
+      ) => (message = false, type = 'success', params = {}) => {
         const reload = message && type === 'success';
         const state = VOLUME_BACKUP_ROUTES.LIST.STATE;
 
