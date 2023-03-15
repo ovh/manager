@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.117.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.116.0...@ovh-ux/manager-pci@5.117.0) (2023-03-15)
+
+
+### Bug Fixes
+
+* **storage.cold-archive:** always display user tab active when selected ([#8941](https://github.com/ovh/manager/issues/8941)) ([6d16bfd](https://github.com/ovh/manager/commit/6d16bfda4cb8a0f473da520f6ef5ea5e7df7603a))
+* **storage.cold-archive:** use date grid property for user creationdate ([#8892](https://github.com/ovh/manager/issues/8892)) ([95c4fbd](https://github.com/ovh/manager/commit/95c4fbd3273c222650abded71d3f85c48d7bacbd))
+
+
+### Features
+
+* **pci.storages.databases:** add advanced roles mongoDB ([#8849](https://github.com/ovh/manager/issues/8849)) ([cf7a2c0](https://github.com/ovh/manager/commit/cf7a2c0e67154319090ea81caf89ac195e7469dc))
+
+
+
+
+
 # [5.116.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.115.0...@ovh-ux/manager-pci@5.116.0) (2023-03-09)
 
 

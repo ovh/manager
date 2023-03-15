@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.9.0...@ovh-ux/manager-office@2.9.1) (2023-03-15)
+
+
+### Bug Fixes
+
+* **web:** include prepaid licenses in dashboard ([#8902](https://github.com/ovh/manager/issues/8902)) ([8c89374](https://github.com/ovh/manager/commit/8c893749ac174b0ef285a95e1d52e522c09b828b))
+
+
+
+
+
 # [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.8.2...@ovh-ux/manager-office@2.9.0) (2023-03-01)
 
 
