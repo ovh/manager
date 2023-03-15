@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.31.0...@ovh-ux/manager-vps@2.32.0) (2023-03-15)
+
+
+### Features
+
+* **vps.snapshot:** add download vps snapshot feature ([#8887](https://github.com/ovh/manager/issues/8887)) ([71b6268](https://github.com/ovh/manager/commit/71b626878fef14cafbd204367d694b322abd2c6b))
+
+
+
+
+
 # [2.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.30.1...@ovh-ux/manager-vps@2.31.0) (2023-03-01)
 
 

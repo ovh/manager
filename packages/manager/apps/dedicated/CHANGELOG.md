@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.53.0...@ovh-ux/manager-dedicated@17.54.0) (2023-03-15)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** order ip on india server ([#8863](https://github.com/ovh/manager/issues/8863)) ([872bcea](https://github.com/ovh/manager/commit/872bcea2a4ec59eb18470f5ab7565f08b61ddab9))
+
+
+### Features
+
+* **dedicated.ip:** add and modify text in organization edit modal ([#8877](https://github.com/ovh/manager/issues/8877)) ([8fa70ac](https://github.com/ovh/manager/commit/8fa70ac7bd15fa1def05440d0f8bdf00384d6510))
+
+
+
+
+
 # [17.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.52.0...@ovh-ux/manager-dedicated@17.53.0) (2023-03-09)
 
 

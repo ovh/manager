@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.11.0...@ovh-ux/manager-dbaas-logs@1.11.1) (2023-03-15)
+
+
+### Bug Fixes
+
+* **dbaas-logs:** object ownership on link usage ([#8973](https://github.com/ovh/manager/issues/8973)) ([f4aa7c3](https://github.com/ovh/manager/commit/f4aa7c30de2a234d69cc0d8be758d49db55a567e))
+
+
+
+
+
 # [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.10.2...@ovh-ux/manager-dbaas-logs@1.11.0) (2023-03-01)
 
 
