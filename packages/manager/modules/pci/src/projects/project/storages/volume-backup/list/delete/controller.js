@@ -1,3 +1,5 @@
+import { VOLUME_BACKUP_TRACKING } from '../../volume-backup.constants';
+
 export default class VolumeBackupDeleteController {
   /* @ngInject */
   constructor($translate, VolumeBackupService) {
@@ -12,7 +14,7 @@ export default class VolumeBackupDeleteController {
   }
 
   onDeleteVolumeBackupClick() {
-    // TODO: Tracking -- MANAGER-10570
+    this.trackClick(VOLUME_BACKUP_TRACKING.DELETE_BACKUP.CTA_CONFIRM);
 
     this.isDeleting = true;
     return this.volumeBackupService
@@ -22,6 +24,8 @@ export default class VolumeBackupDeleteController {
         this.volumeBackup.id,
       )
       .then(() => {
+        this.trackPage(VOLUME_BACKUP_TRACKING.DELETE_BACKUP.REQUEST_SUCCESS);
+
         return this.goToVolumeBackups({
           textHtml: this.$translate.instant(
             'pci_projects_project_storages_volume_backup_list_delete_success',
@@ -33,6 +37,8 @@ export default class VolumeBackupDeleteController {
       })
       .then(() => this.startPolling())
       .catch(({ data }) => {
+        this.trackPage(VOLUME_BACKUP_TRACKING.DELETE_BACKUP.REQUEST_FAIL);
+
         return this.goToVolumeBackups(
           {
             textHtml: this.$translate.instant(
@@ -49,7 +55,7 @@ export default class VolumeBackupDeleteController {
   }
 
   onDeleteVolumeBackupCancelClick() {
-    // TODO: Tracking -- MANAGER-10570
+    this.trackClick(VOLUME_BACKUP_TRACKING.DELETE_BACKUP.CTA_CANCEL);
 
     return this.goBack();
   }

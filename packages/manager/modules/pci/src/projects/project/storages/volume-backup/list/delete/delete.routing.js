@@ -1,4 +1,7 @@
-import { VOLUME_BACKUP_ROUTES } from '../../volume-backup.constants';
+import {
+  VOLUME_BACKUP_ROUTES,
+  VOLUME_BACKUP_TRACKING,
+} from '../../volume-backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(VOLUME_BACKUP_ROUTES.LIST.ROUTES.DELETE.STATE, {
@@ -11,6 +14,9 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     params: {
       volumeBackup: null,
+    },
+    atInternet: {
+      rename: VOLUME_BACKUP_TRACKING.DELETE_BACKUP.PAGE,
     },
     redirectTo: (transition) => {
       return transition

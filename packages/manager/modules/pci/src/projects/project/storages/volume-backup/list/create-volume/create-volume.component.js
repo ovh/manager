@@ -13,6 +13,8 @@ const component = {
     getVolumePriceEstimation: '<',
     goToVolumeBlockStorage: '<',
     goBack: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
   controller,
   template,

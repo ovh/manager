@@ -1,3 +1,5 @@
+import { VOLUME_BACKUP_TRACKING } from '../volume-backup.constants';
+
 export default class PciStorageColdArchivesOnboardingController {
   /* @ngInject */
   constructor($translate, coreConfig) {
@@ -5,9 +7,13 @@ export default class PciStorageColdArchivesOnboardingController {
     this.coreConfig = coreConfig;
   }
 
-  onAddVolumeBlockStorageClick() {
-    // TODO: tracking
+  onDocumentationClick(guide) {
+    this.trackClick(`${VOLUME_BACKUP_TRACKING.ONBOARDING.GUIDE}::${guide.id}`);
+  }
 
-    this.goToCreateVolumeBackup();
+  onAddVolumeBlockStorageClick() {
+    this.trackClick(VOLUME_BACKUP_TRACKING.ONBOARDING.ADD);
+
+    return this.goToCreateVolumeBackup();
   }
 }

@@ -1,3 +1,5 @@
+import { VOLUME_BACKUP_TRACKING } from '../../volume-backup.constants';
+
 const VOLUME_SIZE = {
   MIN: 10,
   MAX: 4000,
@@ -31,7 +33,7 @@ export default class VolumeBackupListCreateVolumeController {
   }
 
   onCreateVolumeClick() {
-    // TODO: Tracking -- MANAGER-10570
+    this.trackClick(VOLUME_BACKUP_TRACKING.CREATE_VOLUME.CTA_CONFIRM);
 
     this.isCreating = true;
     return this.volumeBackupService
@@ -41,8 +43,10 @@ export default class VolumeBackupListCreateVolumeController {
         this.volumeBackup.id,
         this.createVolumeModel.name,
       )
-      .then(() =>
-        this.goToVolumeBlockStorage(
+      .then(() => {
+        this.trackPage(VOLUME_BACKUP_TRACKING.CREATE_VOLUME.REQUEST_SUCCESS);
+
+        return this.goToVolumeBlockStorage(
           this.buildTaskResponse(
             'success',
             this.$translate.instant(
@@ -52,9 +56,11 @@ export default class VolumeBackupListCreateVolumeController {
               },
             ),
           ),
-        ),
-      )
+        );
+      })
       .catch(({ data }) => {
+        this.trackPage(VOLUME_BACKUP_TRACKING.CREATE_VOLUME.REQUEST_FAIL);
+
         return this.goToVolumeBlockStorage(
           this.buildTaskResponse(
             'error',
@@ -74,7 +80,7 @@ export default class VolumeBackupListCreateVolumeController {
   }
 
   onCreateVolumeCancelClick() {
-    // TODO: Tracking -- MANAGER-10570
+    this.trackClick(VOLUME_BACKUP_TRACKING.CREATE_VOLUME.CTA_CANCEL);
 
     return this.goBack();
   }
