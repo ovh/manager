@@ -135,6 +135,6 @@
   "pack_move_modem_required": "Wybór typu modemu jest obowiązkowy",
   "pack_move_confirm_modem_rental_yes": "Dzierżawa nowego modemu",
   "pack_move_confirm_modem_rental_recycled": "Dzierżawa modemu z recyklingu",
-  "pack_move_offers_debit_mention_1": "(1) Aż do 92 Mb/s łączących się w VDSL i 22 Mb/s w ADSL, w zależności od dostępności.",
-  "pack_move_offers_debit_mention_2": "(2) Do 36 Mb/s w VDSL i 1 Mb/s w ADSL, w zależności od dostępności."
+  "pack_move_offers_debit_mention_1": "(1) Prędkość pobierania do 92 Mbps w VDSL i 22 Mbps w ADSL, pod warunkiem dostępności.",
+  "pack_move_offers_debit_mention_2": "(2) Prędkość pobierania do 36 Mbps w VDSL i 1 Mbps w ADSL, pod warunkiem dostępności."
 }
