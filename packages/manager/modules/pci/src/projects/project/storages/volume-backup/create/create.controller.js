@@ -6,6 +6,7 @@ import {
   VOLUME_OPTION_SNAPSHOT,
   VOLUMES_OPTIONS,
 } from './create.constants';
+import { VOLUME_BACKUP_TRACKING } from '../volume-backup.constants';
 
 export default class VolumeBackupCreateController {
   /* @ngInject */
@@ -123,18 +124,28 @@ export default class VolumeBackupCreateController {
     };
   }
 
-  createVolumeSnapshot() {
-    const { name } = this.volumeBackupModel;
-    const { volume } = this.volumeBackupModel.selected;
+  createVolumeSnapshot(trackPrefix) {
+    const {
+      name,
+      selected: { volume },
+    } = this.volumeBackupModel;
 
     return this.volumeBackupService
       .createVolumeSnapshot(this.projectId, volume.id, { name })
       .then(() => {
+        this.trackPage(
+          `${VOLUME_BACKUP_TRACKING.CREATE.REQUEST_SUCCESS}::${trackPrefix}`,
+        );
+
         return this.goToSnapshots(
           this.buildSuccessSnapshotBackupCucMessage(name),
         );
       })
       .catch(({ data }) => {
+        this.trackPage(
+          `${VOLUME_BACKUP_TRACKING.CREATE.REQUEST_FAIL}::${trackPrefix}`,
+        );
+
         return this.goToSnapshots(
           this.buildTaskResponse(
             'error',
@@ -149,9 +160,11 @@ export default class VolumeBackupCreateController {
       });
   }
 
-  createVolumeBackup() {
-    const { name } = this.volumeBackupModel;
-    const { volume } = this.volumeBackupModel.selected;
+  createVolumeBackup(trackPrefix) {
+    const {
+      name,
+      selected: { volume },
+    } = this.volumeBackupModel;
 
     return this.volumeBackupService
       .createVolumeBackup(this.projectId, volume.region, {
@@ -159,11 +172,19 @@ export default class VolumeBackupCreateController {
         volumeId: volume.id,
       })
       .then(() => {
+        this.trackPage(
+          `${VOLUME_BACKUP_TRACKING.CREATE.REQUEST_SUCCESS}::${trackPrefix}`,
+        );
+
         return this.goToVolumeBackups(
           this.buildSuccessVolumeBackupCucMessage(name, volume.name),
         );
       })
       .catch(({ data }) => {
+        this.trackPage(
+          `${VOLUME_BACKUP_TRACKING.CREATE.REQUEST_FAIL}::${trackPrefix}`,
+        );
+
         return this.goToVolumeBackups(
           this.$translate.instant(
             'pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail',
@@ -200,8 +221,6 @@ export default class VolumeBackupCreateController {
   }
 
   onGoToDetachVolumeFromInstanceButtonClick() {
-    // TODO: Tracking -- MANAGER-10570
-
     const {
       name,
       selected: { volume, volumeOption },
@@ -211,10 +230,15 @@ export default class VolumeBackupCreateController {
   }
 
   onCreateBackupClick() {
-    // TODO: Tracking -- MANAGER-10570
+    const { type } = this.volumeBackupModel.selected.volumeOption;
+    const trackPrefix = BACKUP_NAME_PREFIX[type];
+    this.trackClick(
+      `${VOLUME_BACKUP_TRACKING.CREATE.CTA_CONFIRM}::${trackPrefix}`,
+    );
+
     const taskPromise = this.isVolumeBackupOption()
-      ? this.createVolumeBackup()
-      : this.createVolumeSnapshot();
+      ? this.createVolumeBackup(trackPrefix)
+      : this.createVolumeSnapshot(trackPrefix);
 
     this.isCreating = true;
     return taskPromise.finally(() => {

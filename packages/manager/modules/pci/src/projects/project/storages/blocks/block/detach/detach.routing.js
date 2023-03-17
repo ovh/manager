@@ -1,3 +1,5 @@
+import { VOLUME_BLOCK_TRACKING } from '../../block.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.blocks.detach', {
     url: '/detach?storageId',
@@ -7,6 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     layout: 'modal',
+    atInternet: {
+      rename: VOLUME_BLOCK_TRACKING.DETACH_VOLUME.PAGE,
+    },
     resolve: {
       storageId: /* @ngInject */ ($transition$) =>
         $transition$.params().storageId,

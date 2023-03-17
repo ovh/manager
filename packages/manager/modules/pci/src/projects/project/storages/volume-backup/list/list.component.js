@@ -17,7 +17,6 @@ export default {
     goToAddVolumeBlockStorage: '<',
     volumeBlockStorageLink: '<',
     messageContainer: '<',
-    volumeBackupTrackPrefix: '<',
     trackClick: '<',
   },
 };

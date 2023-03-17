@@ -104,7 +104,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToCreateVolumeBackup: /* @ngInject */ (projectId, $state) => (
         volume,
-        typeToPreselect,
       ) => {
         return $state.go(PCI_FEATURES_STATES.VOLUME_BACKUP.ADD, {
           volume,

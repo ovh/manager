@@ -9,6 +9,8 @@ const component = {
     startPolling: '<',
     goToVolumeBackups: '<',
     goBack: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
   controller,
   template,

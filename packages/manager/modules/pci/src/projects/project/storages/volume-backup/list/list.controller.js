@@ -1,4 +1,7 @@
-import { VOLUME_BACKUP_STATUS } from '../volume-backup.constants';
+import {
+  VOLUME_BACKUP_STATUS,
+  VOLUME_BACKUP_TRACKING,
+} from '../volume-backup.constants';
 
 export default class VolumeBackupListController {
   /* @ngInject */
@@ -48,26 +51,30 @@ export default class VolumeBackupListController {
     ].some((actionAvailable) => actionAvailable);
   }
 
+  onDocumentationClick(guide) {
+    this.trackClick(`${VOLUME_BACKUP_TRACKING.LISTING.PAGE}::${guide.id}`);
+  }
+
   onCreateVolumeBackupClick() {
-    // TODO: tracking
+    this.trackClick(VOLUME_BACKUP_TRACKING.LISTING.ADD);
 
     return this.goToCreateVolumeBackup();
   }
 
   onRestoreVolumeClick(volumeBackup) {
-    // TODO: tracking - MANAGER-10570
+    this.trackClick(VOLUME_BACKUP_TRACKING.LISTING.ROW_CTA_RESTORE_VOLUME);
 
     return this.goToRestoreVolume(volumeBackup);
   }
 
   onCreateVolumeClick(volumeBackup) {
-    // TODO: tracking - MANAGER-10570
+    this.trackClick(VOLUME_BACKUP_TRACKING.LISTING.ROW_CTA_CREATE_VOLUME);
 
     return this.goToCreateVolume(volumeBackup);
   }
 
   onDeleteVolumeBackupClick(volumeBackup) {
-    // TODO: tracking - MANAGER-10570
+    this.trackClick(VOLUME_BACKUP_TRACKING.LISTING.ROW_CTA_DELETE_VOLUME);
 
     return this.goToDeleteVolumeBackup(volumeBackup);
   }

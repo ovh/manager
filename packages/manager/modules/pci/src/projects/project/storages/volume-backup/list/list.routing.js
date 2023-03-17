@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
       volumeBackupView: 'ovhManagerPciProjectsProjectStoragesVolumeBackupList',
     },
     atInternet: {
-      rename: `${VOLUME_BACKUP_TRACKING.PREFIX}`,
+      rename: VOLUME_BACKUP_TRACKING.LISTING.PAGE,
     },
     redirectTo: (transition) => {
       return transition
