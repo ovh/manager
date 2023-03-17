@@ -135,6 +135,7 @@
             data-ng-if="$ctrl.isFeatureActivated('replicationsTab')"
             data-href="{{ $ctrl.replicationsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.replicationsLink"
+            data-disabled="!$ctrl.database.isActive()"
             ><span
                 data-translate="pci_databases_dashboard_replications_tab_title"
             ></span>
@@ -152,6 +153,7 @@
             data-ng-if="$ctrl.isFeatureActivated('connectorsTab')"
             data-href="{{ $ctrl.connectorsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.connectorsLink"
+            data-disabled="!$ctrl.database.isActive()"
             ><span
                 data-translate="pci_databases_dashboard_connectors_tab_title"
             ></span>
