@@ -21,5 +21,6 @@ export default {
     messageContainer: '<',
     volumeBackupTrackPrefix: '<',
     trackClick: '<',
+    trackPage: '<',
   },
 };
