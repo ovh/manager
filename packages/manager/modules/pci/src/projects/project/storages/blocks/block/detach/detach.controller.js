@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { VOLUME_BLOCK_TRACKING } from '../../block.constants';
 
 export default class PciBlockStorageDetailsDetachController {
   /* @ngInject */
@@ -11,24 +12,30 @@ export default class PciBlockStorageDetailsDetachController {
     this.isLoading = false;
   }
 
-  detachStorage() {
+  onDetachStorageClick() {
+    this.trackClick(VOLUME_BLOCK_TRACKING.DETACH_VOLUME.CTA_CONFIRM);
+
     this.isLoading = true;
     return this.PciProjectStorageBlockService.detach(
       this.projectId,
       this.storage,
     )
-      .then(() =>
-        this.goBack(
+      .then(() => {
+        this.trackPage(VOLUME_BLOCK_TRACKING.DETACH_VOLUME.REQUEST_SUCCESS);
+
+        return this.goBack(
           this.$translate.instant(
             'pci_projects_project_storages_blocks_block_detach_success_message',
             {
               volume: this.storage.name,
             },
           ),
-        ),
-      )
-      .catch((err) =>
-        this.goBack(
+        );
+      })
+      .catch((err) => {
+        this.trackPage(VOLUME_BLOCK_TRACKING.DETACH_VOLUME.REQUEST_FAIL);
+
+        return this.goBack(
           this.$translate.instant(
             'pci_projects_project_storages_blocks_block_detach_error_detach',
             {
@@ -37,10 +44,16 @@ export default class PciBlockStorageDetailsDetachController {
             },
           ),
           'error',
-        ),
-      )
+        );
+      })
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  onDetachStorageCancelClick() {
+    this.trackClick(VOLUME_BLOCK_TRACKING.DETACH_VOLUME.CTA_CANCEL);
+
+    return this.goBack();
   }
 }

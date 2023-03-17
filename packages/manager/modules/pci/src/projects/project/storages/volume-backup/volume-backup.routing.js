@@ -199,9 +199,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
       messageContainer: () => VOLUME_BACKUP_ROUTES.ROOT.STATE,
 
-      volumeBackupTrackPrefix: () =>
-        'PublicCloud::pci::projects::project::storages::volume-backup',
-
       trackClick: /* @ngInject */ (atInternet) => (hit, type = 'action') => {
         atInternet.trackClick({
           name: hit,

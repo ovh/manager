@@ -21,7 +21,7 @@ export default {
     goToSnapshots: '<',
     reloadState: '<',
     messageContainer: '<',
-    volumeBackupTrackPrefix: '<',
     trackClick: '<',
+    trackPage: '<',
   },
 };

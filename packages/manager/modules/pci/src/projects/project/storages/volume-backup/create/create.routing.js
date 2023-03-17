@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
         'ovhManagerPciProjectsProjectStoragesVolumeBackupCreate',
     },
     atInternet: {
-      rename: `${VOLUME_BACKUP_TRACKING.PREFIX}`,
+      rename: VOLUME_BACKUP_TRACKING.CREATE.PAGE,
     },
     params: {
       volume: null,

@@ -10,6 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
       volumeBackupList:
         'ovhManagerPciProjectsProjectStoragesVolumeBackupListCreateVolume',
     },
+    atInternet: {
+      rename: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.PAGE,
+    },
     redirectTo: (transition) => {
       return transition
         .injector()
@@ -17,9 +20,6 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((volumeBackup) =>
           volumeBackup ? false : { state: VOLUME_BACKUP_ROUTES.LIST.STATE },
         );
-    },
-    atInternet: {
-      rename: `${VOLUME_BACKUP_TRACKING.PREFIX}`,
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
