@@ -1,4 +1,4 @@
-import { cursorsType, uuidType } from './types';
+import { cursorsType, urnType, uuidType } from './types';
 
 // ---------------------------------------------------------------------------------------------------- //
 
@@ -39,4 +39,22 @@ policyParamResolve.declaration = {
 
 // ---------------------------------------------------------------------------------------------------- //
 
-export { cursorsParamResolve, policyParamResolve };
+/**
+ * The Identity parameter based on the identity's urn
+ * @returns {Object|null}
+ */
+const identityParamResolve = /* @ngInject */ ($transition$) => {
+  const { [identityParamResolve.key]: identity } = $transition$.params();
+  return identity ?? null;
+};
+
+identityParamResolve.key = 'identity';
+identityParamResolve.declaration = {
+  array: false,
+  type: urnType,
+  value: null,
+};
+
+// ---------------------------------------------------------------------------------------------------- //
+
+export { cursorsParamResolve, identityParamResolve, policyParamResolve };
