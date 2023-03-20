@@ -223,12 +223,10 @@ export default class MoveResumeCtrl {
         acceptContracts: this.offer.selected.acceptContracts,
       };
 
-      // Set modem if one type is selected
-      if (this.MODEM_LIST.includes(this.offer.selected.offer.modem)) {
-        assign(moveData, {
-          modem: this.offer.selected.offer.modem,
-        });
-      }
+      // Set modem
+      assign(moveData, {
+        modem: this.offer.selected.offer.modem,
+      });
 
       if (this.offer.selected.buildingDetails) {
         assign(moveData, {
