@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.57.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.57.0...@ovh-ux/manager-telecom@13.57.1) (2023-03-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1981] ([5a6500d](https://github.com/ovh/manager/commit/5a6500d51f2415ae011b0430d12c3a6a391ea298))
+* **i18n:** add missing translations [CDS 2116] ([17915ca](https://github.com/ovh/manager/commit/17915ca736255f38720bf47d97e81880acd4e77c))
+* **i18n:** add missing translations [CDS 2138] ([9f999de](https://github.com/ovh/manager/commit/9f999de760ed3554621076e54275f3476adf4a41))
+* **i18n:** add missing translations [CDS 2140] ([34b3058](https://github.com/ovh/manager/commit/34b3058abd17b6be530ebbd90ee64dda67c50205))
+* **i18n:** add missing translations [CDS 2153] ([f6a075e](https://github.com/ovh/manager/commit/f6a075eecd6492a61bfc8f786a022e9a24203780))
+* **i18n:** add missing translations [CDS 2156] ([6a664f8](https://github.com/ovh/manager/commit/6a664f86a7e103904b731aead40545c2343d1cd8))
+* remove unused translations [CDS] ([019d228](https://github.com/ovh/manager/commit/019d22829b296d82ab3826ea10cdbe7dd349d7f2))
+* remove unused translations [CDS] ([1745fc9](https://github.com/ovh/manager/commit/1745fc93970cadcd0402556cdf0f4bca69a1203c))
+
+
+
+
+
 # [13.57.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.56.0...@ovh-ux/manager-telecom@13.57.0) (2023-03-06)
 
 

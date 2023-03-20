@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.9](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.5.8...@ovh-ux/sign-up@2.5.9) (2023-03-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2066] ([32def94](https://github.com/ovh/manager/commit/32def942f614f7edb695a78bae1e48917d2ec58a))
+* **i18n:** add missing translations [CDS 2080] ([155da23](https://github.com/ovh/manager/commit/155da230fc32a68dfad5fdac2dc60820dc93f27d))
+
+
+
+
+
 ## [2.5.8](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.5.7...@ovh-ux/sign-up@2.5.8) (2023-02-07)
 
 **Note:** Version bump only for package @ovh-ux/sign-up

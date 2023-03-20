@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.32.0...@ovh-ux/manager-vps@2.32.1) (2023-03-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2153] ([f6a075e](https://github.com/ovh/manager/commit/f6a075eecd6492a61bfc8f786a022e9a24203780))
+* remove unused translations [CDS] ([07e9c6a](https://github.com/ovh/manager/commit/07e9c6a48992b2442009492683e3d2bb70e67900))
+
+
+
+
+
 # [2.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.31.0...@ovh-ux/manager-vps@2.32.0) (2023-03-15)
 
 
