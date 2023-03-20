@@ -404,7 +404,8 @@ export default class IpLoadBalancerHomeCtrl {
     const linkLabel = this.$translate.instant(
       'iplb_home_tile_configuration_billing_more_information_label',
     );
-    const linkURL = INFO_LINK[this.coreConfig.getUser()?.ovhSubsidiary];
+    const linkURL =
+      INFO_LINK[this.coreConfig.getUser()?.ovhSubsidiary] || INFO_LINK.DEFAULT;
     const link = `<a target="_blank" rel="noopener"href=${linkURL}>${linkLabel}</a>`;
 
     this.CucCloudMessage.info({

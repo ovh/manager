@@ -1,4 +1,5 @@
 export const INFO_LINK = {
+  DEFAULT: 'https://www.ovhcloud.com/en-gb/network/load-balancer/',
   FR: 'https://www.ovhcloud.com/fr/network/load-balancer',
   DE: 'https://www.ovhcloud.com/de/network/load-balancer/',
   ES: 'https://www.ovhcloud.com/es-es/network/load-balancer/',
