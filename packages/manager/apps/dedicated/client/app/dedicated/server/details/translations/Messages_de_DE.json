@@ -169,6 +169,7 @@
   "server_configuration_reboot_fail_task": "Beim Neustart Ihres Servers ist ein Fehler aufgetreten.",
   "server_configuration_monitoring_activate_title_button": "Aktivieren",
   "server_configuration_monitoring_activate_title": "Monitoring aktivieren",
+  "server_configuration_monitoring_cta_setting": "Konfigurieren",
   "server_configuration_monitoring_activate_question": "Sind Sie sicher, dass Sie das Monitoring für den Server {{t0}} aktivieren möchten?",
   "server_configuration_monitoring_activate_success": "Das Monitoring für den Server {{t0}} wurde aktiviert",
   "server_configuration_monitoring_activate_failed": "Bei der Aktivierung des Monitorings für den Server {{t0}} ist ein Fehler aufgetreten",
@@ -631,6 +632,7 @@
   "server_configuration_installation_ovh_desktop_BASIC": "Basic",
   "server_configuration_installation_ovh_desktop_CUSTOMER": "Personalisiert",
   "server_configuration_installation_ovh_desktop_DATABASE": "Datenbank",
+  "server_configuration_installation_ovh_desktop_ERP": "ERP",
   "server_configuration_installation_ovh_desktop_HOSTING": "Hosting",
   "server_configuration_installation_ovh_desktop_MANAGEMENT": "Verwaltungs-Interface",
   "server_configuration_installation_ovh_desktop_OTHER": "Sonstige",
@@ -711,7 +713,6 @@
   "server_configuration_installation_ovh_step2_error_partition_file_system_swap": "Die Swap-Partition existiert bereits",
   "server_configuration_installation_ovh_step2_error_partition_file_system_no_swap": "Die Swap-Partition ist zwingend erforderlich",
   "server_configuration_installation_ovh_step2_error_partition_size_swap": "Die Swap-Partition kann nicht größer als {{t0}} sein",
-  "server_configuration_installation_ovh_step2_error_partition_size_max": "Eine Partition, die GPT nicht unterstützt, kann nicht größer als {{t0}} sein",
   "server_configuration_installation_ovh_step2_error_partition_size_min_windows": "Die Mindestgröße einer Windows-Partition ist {{t0}}",
   "server_configuration_installation_ovh_step2_error_partition_size_min_reiserfs": "Die Mindestgröße einer ReiserFS-Partition ist {{t0}}",
   "server_configuration_installation_ovh_step2_error_partition_size_min_boot": "Die Mindestgröße der /boot-Partition ist {{t0}}",
@@ -1087,6 +1088,7 @@
   "server_datacenter_WAW": "Warschau (WAW {{number}}) - Polen",
   "server_datacenter_RBX_HZ": "Roubaix (RBXHZ) - Frankreich",
   "server_datacenter_GSW": "(GSW) - Frankreich",
+  "server_datacenter_YNM": "Mumbai (YNM {{number}}) - Indien",
   "server_usage_chart_yaxis_label": "Nutzung (in %)",
   "server_usage_chart_xaxis_label": "Zeit",
   "server_duration_upto": "Bis zum {{t0}}",
@@ -1108,7 +1110,6 @@
   "server_nutanix_cluster_node_warning_2": "Wir empfehlen Ihnen, Ihre Konfiguration direkt im Dashboard des Servers zu bearbeiten, der mit Ihrem Nutanix-Cluster verbunden ist. Zum Dashboard: {{clusterNodeDashboardLink}}",
   "server_nutanix_cluster_node_warning_3": "Alle mit diesem Server verbundenen Abrechnungen sehen Sie in Ihrem Nutanix-Cluster: {{clusterDashboardLink}}",
   "server_rtm_eol_info": "Wichtige Informationen zur Einstellung des veralterten Dienstes Real Time Monitoring. Dieser Dienst wird nur noch bis zum 30. Juni 2022 betrieben. Nach diesem Datum wird die Anzeige der Daten Ihrer Nutzung eingestellt. Dies hat keine Auswirkungen auf den Betrieb Ihres Servers.",
-  "server_configuration_monitoring_cta_setting": "Konfigurieren",
   "server_configuration_monitoring_status_disabled": "Deaktiviert",
   "server_configuration_monitoring_status_proactive": "Aktiviert mit proaktivem Eingriff",
   "server_configuration_monitoring_status_no-proactive": "Aktiviert ohne proaktiven Eingriff",
@@ -1125,7 +1126,5 @@
   "server_configuration_monitoring_update_modal_description_status_no-proactive": "Ihr Server wird überwacht. Sie erhalten per E-Mail Benachrichtigungen an die Adresse, die der Kennung Ihres technischen Ansprechpartners zugeordnet ist. OVHcloud greift nur auf Ihrer Maschine ein, wenn Sie dies veranlassen.",
   "server_configuration_monitoring_update_modal_update_proactive_request_success": "Die Eingriffe auf dem Server {{serverName}} sind aktiviert.",
   "server_configuration_monitoring_update_modal_update_no-proactive_request_success": "Die Eingriffe auf dem Server {{serverName}} sind deaktiviert.",
-  "server_configuration_monitoring_update_modal_update_request_failed": "Beim Wechsel der Monitoring-Option ist ein Fehler aufgetreten.",
-  "server_configuration_installation_ovh_desktop_ERP": "ERP",
-  "server_datacenter_YNM": "Mumbai (YNM {{number}}) - Indien"
+  "server_configuration_monitoring_update_modal_update_request_failed": "Beim Wechsel der Monitoring-Option ist ein Fehler aufgetreten."
 }

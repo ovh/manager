@@ -21,7 +21,8 @@
             data-name="paymentType"
             data-model="$ctrl.model.paymentMethod"
             data-values="[authorizedPaymentMethod]"
-            data-on-change="$ctrl.onPaymentTypeRadioChange()">
+            data-on-change="$ctrl.onPaymentTypeRadioChange()"
+        >
             <oui-select-picker-label class="w-100 text-center">
                 <span
                     data-ng-bind=":: $ctrl.getPaymentMethodTypeText(authorizedPaymentMethod)"
@@ -79,10 +80,10 @@
     </div>
 
     <!--SEPA banner info-->
-    <div class="text-justify"
-         data-ng-if="$ctrl.model.paymentMethod.type.isSepaDirectDebit()"
+    <div
+        class="text-justify"
+        data-ng-if="$ctrl.model.paymentMethod.type.isSepaDirectDebit()"
     >
-
         <!--Description-->
         <p
             data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_main_info"
@@ -104,11 +105,9 @@
                 data-translate-values="{ break: '<br>' }"
             ></span>
         </oui-message>
-
     </div>
 
-    <p data-ng-if="$ctrl.model.paymentMethod.type.isPaypal()"
-    >
+    <p data-ng-if="$ctrl.model.paymentMethod.type.isPaypal()">
         <small
             data-translate="pci_project_new_payment_method_add_info_paypal"
             data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"

@@ -728,6 +728,8 @@
   "hosting_tab_FTP_FTP_port": "Porta FTP:",
   "hosting_tab_FTP_SFTP_port": "Porta SFTP:",
   "hosting_tab_FTP_SSH_port": "Porta SSH:",
+  "hosting_tab_FTP_FTP_user": "FTP:",
+  "hosting_tab_FTP_SSH_user": "SFTP e SSH:",
   "hosting_tab_FTP_dashboard_login": "Login principal:",
   "hosting_tab_FTP_dashboard_login_enabled": "Login principal ativado:",
   "hosting_tab_FTP_dashboard_homez": "Caminho da pasta home:",
@@ -1072,7 +1074,6 @@
   "hosting_tab_DATABASES_configuration_order_title_button_public": "Encomendar uma base de dados",
   "hosting_tab_DATABASES_configuration_order_title_button_private": "Encomendar uma base de dados Web Cloud Databases",
   "hosting_tab_DATABASES_configuration_order_title": "Encomendar uma base de dados",
-  "hosting_tab_DATABASES_configuration_order_title_private": "Encomendar uma base de dados SQL privada",
   "hosting_ipv4_coming_soon": "Atualmente indisponível.",
   "hosting_tab_BOOST": "Aplicar opção boost ao serviço",
   "hosting_tab_BOOST_not_supported": "O serviço {{t0}} não pode beneficiar da opção \"boost\".",
@@ -1353,7 +1354,5 @@
   "hosting_dashboard_service_common_inactive": "Inativo",
   "hosting_dashboard_email_offer_get_error": "Não é possível recuperar o endereço de e-mail",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Mais",
-  "hosting_tab_FTP_FTP_user": "FTP:",
-  "hosting_tab_FTP_SSH_user": "SFTP e SSH:"
+  "hosting_dashboard_tabs_dropdown": "Mais"
 }

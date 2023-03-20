@@ -55,7 +55,6 @@
   "otrs_service_type_email_mxplan": "E-mail MXPlan",
   "otrs_service_type_email_pro": "E-mail Pro",
   "otrs_service_type_hosting_web": "Alojamento web",
-  "otrs_service_type_hubic": "Hubic",
   "otrs_service_type_OTHER": "Outro",
   "otrs_service_type_dedicated_cloud": "Hosted Private Cloud",
   "otrs_service_type_cloud": "Public Cloud",
@@ -120,8 +119,12 @@
   "otrs_service_type_hpcspot": "HPC Spot",
   "otrs_service_type_saas_csp_2": "SAAS CSP2",
   "otrs_service_type_horizon_view": "Horizon View",
+  "otrs_service_type_webcoach": "Website Coach",
   "otrs_service_type_other": "Outro pedido",
   "otrs_service_type_choice": "Tipo de serviço:",
+  "otrs_service_type_dedicated_anthos": "Anthos",
+  "otrs_service_type_license_redhat": "Licença Red Hat",
+  "otrs_service_type_nutanix": "Nutanix",
   "otrs_universe_choice": "Universo:",
   "otrs_universe_WEB": "Web",
   "otrs_universe_SUNRISE": "Sunrise",
@@ -197,9 +200,5 @@
   "otrs_intervention_disk_comment_english_please": "Preferencialmente em inglês",
   "otrs_intervention_disk_confirm": "Fiz o backup dos dados contidos no disco que desejo substituir. Pode proceder à sua substituição.",
   "otrs_support_agreements": "Os dados comunicados através deste formulário são recolhidos com o seu consentimento e destinam-se à OVH S.A.S. na sua qualidade de responsável pelo tratamento. Poderão ser transmitidos a subcontratantes que agem segundo instruções estritas da OVH S.A.S., bem como às entidades do Grupo OVH. Nesta segunda hipótese, e sob reserva de que a entidade do Grupo OVH tenha subscrito regras vinculativas, os dados poderão ser objeto de uma transferência para fora da União Europeia. Os dados deste formulário são recolhidos para fins de gestão da relação com o cliente, de solicitações comerciais e de respeito pela regulamentação aplicável à OVH. Os dados da sua conta de cliente são conservados até à supressão desta última, e depois durante trinta e seis (36) meses. Certos dados tratados para fins de gestão (faturação, por exemplo) podem ser conservados por mais tempo, de acordo com a regulamentação aplicável. Dispõe da possibilidade de fazer uma reclamação junto da autoridade de controlo competente, bem como do direito de acesso, de retificação, de supressão, de limitação, de portabilidade e de oposição, por motivos legítimos, quanto aos seus dados pessoais. Para exercer este direito, efetue o seu pedido no nosso formulário dedicado.",
-  "otrs_support_agreements_US": "A OVH utiliza as informações da sua conta para o identificar, permitir ao representante do serviço de clientela resolver os problemas técnicos e melhorar os serviços da OVH. A sua utilização deste site rege-se pelas <a href=\"{{ terms }}\" target=\"_blank\">Condições de utilização</a> e pela <a href=\"{{ privacyPolicy}}\" target=\"_blank\">Política de confidencialidade</a> da OVH, a menos que tenha celebrado um contrato separado com a OVH para a aquisição dos serviços da OVH.",
-  "otrs_service_type_webcoach": "Website Coach",
-  "otrs_service_type_dedicated_anthos": "Anthos",
-  "otrs_service_type_license_redhat": "Licença Red Hat",
-  "otrs_service_type_nutanix": "Nutanix"
+  "otrs_support_agreements_US": "A OVH utiliza as informações da sua conta para o identificar, permitir ao representante do serviço de clientela resolver os problemas técnicos e melhorar os serviços da OVH. A sua utilização deste site rege-se pelas <a href=\"{{ terms }}\" target=\"_blank\">Condições de utilização</a> e pela <a href=\"{{ privacyPolicy}}\" target=\"_blank\">Política de confidencialidade</a> da OVH, a menos que tenha celebrado um contrato separado com a OVH para a aquisição dos serviços da OVH."
 }

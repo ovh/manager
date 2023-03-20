@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_delete_objects_title": "Eliminare gli oggetti del container {{ containerName }} Cold Archive",
+  "pci_projects_project_storages_cold_archive_containers_container_delete_objects_submit_label": "Confermare",
+  "pci_projects_project_storages_cold_archive_containers_container_delete_objects_cancel_label": "Annullare",
+  "pci_projects_project_storages_cold_archive_containers_container_delete_objects_success_message": "Gli oggetti del container {{ containerName }} sono stati eliminati.",
+  "pci_projects_project_storages_cold_archive_containers_container_delete_objects_error_delete": "Si è verificato un errore durante l'eliminazione degli oggetti del container {{ containerName }}: {{ message }}",
+  "pci_projects_project_storages_cold_archive_containers_container_delete_objects_error_delete_warning": "Stai per eliminare tutti i tuoi oggetti: {{ objectsCount }}"
+}

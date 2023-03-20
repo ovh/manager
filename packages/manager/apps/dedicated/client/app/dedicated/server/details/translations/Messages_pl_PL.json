@@ -169,6 +169,7 @@
   "server_configuration_reboot_fail_task": "Wystąpił błąd podczas restartu serwera.",
   "server_configuration_monitoring_activate_title_button": "Włącz",
   "server_configuration_monitoring_activate_title": "Włącz monitoring",
+  "server_configuration_monitoring_cta_setting": "Skonfiguruj",
   "server_configuration_monitoring_activate_question": "Czy na pewno chcesz włączyć monitoring serwera {{t0}}?",
   "server_configuration_monitoring_activate_success": "Monitoring serwera {{t0}} został włączony.",
   "server_configuration_monitoring_activate_failed": "Wystąpił błąd podczas włączania monitoringu serwera {{t0}}.",
@@ -631,6 +632,7 @@
   "server_configuration_installation_ovh_desktop_BASIC": "Podstawowy",
   "server_configuration_installation_ovh_desktop_CUSTOMER": "Spersonalizowana",
   "server_configuration_installation_ovh_desktop_DATABASE": "Baza danych",
+  "server_configuration_installation_ovh_desktop_ERP": "ERP",
   "server_configuration_installation_ovh_desktop_HOSTING": "Hosting",
   "server_configuration_installation_ovh_desktop_MANAGEMENT": "Interfejs zarządzania",
   "server_configuration_installation_ovh_desktop_OTHER": "Inne",
@@ -711,7 +713,6 @@
   "server_configuration_installation_ovh_step2_error_partition_file_system_swap": "Partycja swap już istnieje.",
   "server_configuration_installation_ovh_step2_error_partition_file_system_no_swap": "Partycja swap jest obowiązkowa.",
   "server_configuration_installation_ovh_step2_error_partition_size_swap": "Partycja swap nie może przekroczyć {{t0}}.",
-  "server_configuration_installation_ovh_step2_error_partition_size_max": "Partycja, która nie obsługuje GPT nie może przekroczyć {{t0}}.",
   "server_configuration_installation_ovh_step2_error_partition_size_min_windows": "Minimalny rozmiar partycji Windows to {{t0}}.",
   "server_configuration_installation_ovh_step2_error_partition_size_min_reiserfs": "Minimalny rozmiar partycji reiserFS to {{t0}}.",
   "server_configuration_installation_ovh_step2_error_partition_size_min_boot": "Minimalny rozmiar partycji /boot to {{t0}}.",
@@ -1087,6 +1088,7 @@
   "server_datacenter_WAW": "Warszawa (WAW {{number}}) - Polska",
   "server_datacenter_RBX_HZ": "Roubaix (RBXHZ) - Francja",
   "server_datacenter_GSW": "(GSW) - Francja",
+  "server_datacenter_YNM": "Bombaj (YNM {{number}}) - Indie",
   "server_usage_chart_yaxis_label": "Zużycie (w %)",
   "server_usage_chart_xaxis_label": "Czas",
   "server_duration_upto": "Do {{t0}}",
@@ -1108,7 +1110,6 @@
   "server_nutanix_cluster_node_warning_2": "Zalecamy przeprowadzenie wszystkich zmian konfiguracji bezpośrednio na dashboardzie serwera powiązanego z klastrem Nutanix: {{clusterNodeDashboardLink}}",
   "server_nutanix_cluster_node_warning_3": "Wszystkie operacje płatnicze związane z tym serwerem są widoczne w klastrze Nutanix: {{clusterDashboardLink}}",
   "server_rtm_eol_info": "Ważna informacja dotycząca usługi Real Time Monitoring - usługa będzie działać do 30 czerwca 2022. Po tym terminie wstrzymamy wyświetlanie danych dotyczących zużycia. Nie będzie to miało wpływu na działanie serwera.",
-  "server_configuration_monitoring_cta_setting": "Skonfiguruj",
   "server_configuration_monitoring_status_disabled": "Wyłączony",
   "server_configuration_monitoring_status_proactive": "Włączony z aktywną interwencją",
   "server_configuration_monitoring_status_no-proactive": "Włączony bez aktywnej interwencji",
@@ -1125,7 +1126,5 @@
   "server_configuration_monitoring_update_modal_description_status_no-proactive": "Twój serwer jest monitorowany. Będziesz otrzymywał alerty pocztą elektroniczną na adres przypisany do kontaktu technicznego. OVHcloud nie będzie interweniować na Twojej maszynie, jeśli nie otrzyma od Ciebie takiej dyspozycji.",
   "server_configuration_monitoring_update_modal_update_proactive_request_success": "Interwencje na serwerze {{serverName}} są włączone.",
   "server_configuration_monitoring_update_modal_update_no-proactive_request_success": "Interwencje na serwerze {{serverName}} zostały wyłączone.",
-  "server_configuration_monitoring_update_modal_update_request_failed": "Wystąpił błąd podczas zmiany opcji monitoringu.",
-  "server_configuration_installation_ovh_desktop_ERP": "ERP",
-  "server_datacenter_YNM": "Bombaj (YNM {{number}}) - Indie"
+  "server_configuration_monitoring_update_modal_update_request_failed": "Wystąpił błąd podczas zmiany opcji monitoringu."
 }

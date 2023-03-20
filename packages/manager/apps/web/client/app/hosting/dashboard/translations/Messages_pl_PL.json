@@ -728,6 +728,8 @@
   "hosting_tab_FTP_FTP_port": "Port FTP:",
   "hosting_tab_FTP_SFTP_port": "Port SFTP:",
   "hosting_tab_FTP_SSH_port": "Port SSH:",
+  "hosting_tab_FTP_FTP_user": "FTP:",
+  "hosting_tab_FTP_SSH_user": "SFTP i SSH:",
   "hosting_tab_FTP_dashboard_login": "Login główny:",
   "hosting_tab_FTP_dashboard_login_enabled": "Aktywny login główny:",
   "hosting_tab_FTP_dashboard_homez": "Ścieżka do katalogu home:",
@@ -1072,7 +1074,6 @@
   "hosting_tab_DATABASES_configuration_order_title_button_public": "Zamów bazę danych",
   "hosting_tab_DATABASES_configuration_order_title_button_private": "Zamów bazę danych Web Cloud Databases",
   "hosting_tab_DATABASES_configuration_order_title": "Zamów bazę danych",
-  "hosting_tab_DATABASES_configuration_order_title_private": "Zamów prywatną bazę SQL",
   "hosting_ipv4_coming_soon": "Opcja aktualnie niedostępna.",
   "hosting_tab_BOOST": "Skorzystaj z opcji Boost",
   "hosting_tab_BOOST_not_supported": "Pakiet {{t0}} nie pozwala na skorzystanie z opcji Boost.",
@@ -1353,7 +1354,5 @@
   "hosting_dashboard_service_common_inactive": "Nieaktywny",
   "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Więcej",
-  "hosting_tab_FTP_FTP_user": "FTP:",
-  "hosting_tab_FTP_SSH_user": "SFTP i SSH:"
+  "hosting_dashboard_tabs_dropdown": "Więcej"
 }
