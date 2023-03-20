@@ -53,6 +53,7 @@ export default class AgoraIpOrderCtrl {
     this.BLOCK_ADDITIONAL_IP = BLOCK_ADDITIONAL_IP;
     this.ALERT_ID = ALERT_ID;
     this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -201,12 +202,14 @@ export default class AgoraIpOrderCtrl {
     this.failoverIpOffers = [];
     this.blockIpOffers = [];
 
+    const { serviceName } = this.model.selectedService;
+
     if (
       this.model?.selectedService?.type ===
       PRODUCT_TYPES.dedicatedServer.typeName
     ) {
       return this.IpAgoraOrder.checkIpDedicatedServerIsOrderable(
-        this.model?.selectedService?.serviceName,
+        serviceName,
       ).then((isOrderable) => {
         if (!isOrderable) {
           this.Alerter.set(
@@ -220,6 +223,16 @@ export default class AgoraIpOrderCtrl {
         }
         return this.loadIpOffers();
       });
+    }
+    if (
+      this.model?.selectedService?.type === PRODUCT_TYPES.privateCloud.typeName
+    ) {
+      return this.IpAgoraOrder.getOrderableIpCountries(serviceName).then(
+        (orderableIpCountries) => {
+          this.orderableIpCountries = orderableIpCountries;
+          return this.loadIpOffers();
+        },
+      );
     }
     return this.loadIpOffers();
   }
@@ -381,6 +394,15 @@ export default class AgoraIpOrderCtrl {
     const offerPlanCode = params.selectedOffer.planCode;
     const quantity = params.selectedQuantity || 1;
     const countryCode = params.selectedCountry?.code || null;
+    const orderableIpCountry =
+      countryCode || get(this.orderableIpCountries, '[0]', '');
+    const commonProductProps = {
+      destination: get(this.model, 'selectedService.serviceName'),
+      country: orderableIpCountry,
+      planCode: get(this.model.params, 'selectedOffer.planCode'),
+      quantity: get(this.model.params, 'selectedQuantity', 1),
+    };
+
     this.atInternet.trackClick({
       name: `${TRACKING_PREFIX}confirm_${serviceType}_${offerPlanCode}_${quantity}${
         countryCode ? `_${countryCode}` : ''
@@ -394,22 +416,16 @@ export default class AgoraIpOrderCtrl {
         productId: 'privateCloud',
         duration: get(this.model.params, 'selectedOffer.duration'),
         pricingMode: get(this.model.params, 'selectedOffer.pricingMode'),
-        country: get(this.model.params, 'selectedCountry.code'),
-        destination: get(this.model, 'selectedService.serviceName'),
         serviceName: get(this.model, 'selectedService.serviceName'),
-        planCode: get(this.model.params, 'selectedOffer.planCode'),
-        quantity: get(this.model.params, 'selectedQuantity', 1),
+        ...commonProductProps,
       });
     } else {
       productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
-        country: get(this.model.params, 'selectedCountry.code'),
-        destination: this.model.selectedService.serviceName,
         organisation: get(
           this.model.params,
           'selectedOrganisation.organisationId',
         ),
-        planCode: get(this.model.params, 'selectedOffer.planCode'),
-        quantity: get(this.model.params, 'selectedQuantity', 1),
+        ...commonProductProps,
       });
     }
 
