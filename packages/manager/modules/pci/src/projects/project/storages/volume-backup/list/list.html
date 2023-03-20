@@ -50,9 +50,9 @@
             title=":: 'pci_projects_project_storages_volume_backup_list_datagrid_column_name' | translate"
             data-property="name"
             data-type="string"
+            data-sortable
             data-searchable
             data-filterable
-            data-sortable="asc"
         >
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -91,8 +91,8 @@
             data-title=":: 'pci_projects_project_storages_volume_backup_list_datagrid_column_create_date' | translate"
             data-property="creationDate"
             data-type="date"
-            data-sortable
             data-filterable
+            data-sortable="desc"
         >
             <span data-ng-bind="$value | date:'short'"></span>
         </oui-datagrid-column>
