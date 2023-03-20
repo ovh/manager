@@ -237,4 +237,10 @@ export default class IpAgoraOrder {
         return null;
     }
   }
+
+  getOrderableIpCountries(serviceName) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}/orderableIpCountries`)
+      .then(({ data }) => data);
+  }
 }
