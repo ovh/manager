@@ -93,7 +93,7 @@
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^6.1.2",
     "glob": "^7.1.4",
-    "webpack": "^5.74.0",
+    "webpack": "^5.76.2",
     "webpack-merge": "^5.0.2"
   },
   "regions": [
