@@ -203,35 +203,38 @@ export default class AgoraIpOrderCtrl {
     this.blockIpOffers = [];
 
     const { serviceName } = this.model.selectedService;
-    const promise = this.IpAgoraOrder.getOrderableIpCountries(serviceName).then(
-      (orderableIpCountries) => {
-        this.orderableIpCountries = orderableIpCountries;
-      },
-    );
 
     if (
       this.model?.selectedService?.type ===
       PRODUCT_TYPES.dedicatedServer.typeName
     ) {
-      return promise
-        .then(() =>
-          this.IpAgoraOrder.checkIpDedicatedServerIsOrderable(serviceName),
-        )
-        .then((isOrderable) => {
-          if (!isOrderable) {
-            this.Alerter.set(
-              'alert-warning',
-              this.$translate.instant('ip_order_quota_full'),
-              null,
-              this.ALERT_ID,
-            );
-            this.loading.ipOffers = false;
-            return this.$q.reject();
-          }
-          return this.loadIpOffers();
-        });
+      return this.IpAgoraOrder.checkIpDedicatedServerIsOrderable(
+        serviceName,
+      ).then((isOrderable) => {
+        if (!isOrderable) {
+          this.Alerter.set(
+            'alert-warning',
+            this.$translate.instant('ip_order_quota_full'),
+            null,
+            this.ALERT_ID,
+          );
+          this.loading.ipOffers = false;
+          return this.$q.reject();
+        }
+        return this.loadIpOffers();
+      });
     }
-    return promise.then(() => this.loadIpOffers());
+    if (
+      this.model?.selectedService?.type === PRODUCT_TYPES.privateCloud.typeName
+    ) {
+      return this.IpAgoraOrder.getOrderableIpCountries(serviceName).then(
+        (orderableIpCountries) => {
+          this.orderableIpCountries = orderableIpCountries;
+          return this.loadIpOffers();
+        },
+      );
+    }
+    return this.loadIpOffers();
   }
 
   getOfferContent(offer) {
@@ -393,7 +396,6 @@ export default class AgoraIpOrderCtrl {
     const countryCode = params.selectedCountry?.code || null;
     const orderableIpCountry =
       countryCode || get(this.orderableIpCountries, '[0]', '');
-
     const commonProductProps = {
       destination: get(this.model, 'selectedService.serviceName'),
       country: orderableIpCountry,
