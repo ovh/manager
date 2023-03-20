@@ -26,6 +26,12 @@ export default class PciProjectAdditionalIpService {
       .then(({ data }) => data);
   }
 
+  getAssociatedInstance(projectId, regionName) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/region/${regionName}/floatingip`)
+      .then(({ data }) => data);
+  }
+
   getNetworkSubnets(projectId, networkId) {
     return this.$http
       .get(`/cloud/project/${projectId}/network/private/${networkId}/subnet`)

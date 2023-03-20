@@ -89,7 +89,7 @@ export default class LogsInputsAddEditCtrl {
     });
     this.streams = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
-        this.LogsStreamsService.getStreams(this.serviceName),
+        this.LogsStreamsService.getOwnStreams(this.serviceName),
     });
     this.catalog = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>

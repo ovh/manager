@@ -246,6 +246,20 @@ export default class {
           this.tabSummary.snapshot.optionAvailable &&
           !this.isMigrationInProgress,
       },
+      download: {
+        text: this.$translate.instant(
+          'vps_configuration_download_snapshot_title_button',
+        ),
+        callback: () =>
+          this.$state.go('vps.detail.snapshot.download', {
+            serviceName: this.serviceName,
+          }),
+        isAvailable: () =>
+          this.tabSummary.snapshot.optionAvailable &&
+          this.tabSummary.snapshot.creationDate &&
+          !this.loaders.polling &&
+          !this.isMigrationInProgress,
+      },
       restore: {
         text: this.$translate.instant(
           'vps_configuration_snapshot_restore_title_button',

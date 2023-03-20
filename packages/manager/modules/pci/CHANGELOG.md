@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.117.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.116.0...@ovh-ux/manager-pci@5.117.0) (2023-03-15)
+
+
+### Bug Fixes
+
+* **storage.cold-archive:** always display user tab active when selected ([#8941](https://github.com/ovh/manager/issues/8941)) ([6d16bfd](https://github.com/ovh/manager/commit/6d16bfda4cb8a0f473da520f6ef5ea5e7df7603a))
+* **storage.cold-archive:** use date grid property for user creationdate ([#8892](https://github.com/ovh/manager/issues/8892)) ([95c4fbd](https://github.com/ovh/manager/commit/95c4fbd3273c222650abded71d3f85c48d7bacbd))
+
+
+### Features
+
+* **pci.storages.databases:** add advanced roles mongoDB ([#8849](https://github.com/ovh/manager/issues/8849)) ([cf7a2c0](https://github.com/ovh/manager/commit/cf7a2c0e67154319090ea81caf89ac195e7469dc))
+
+
+
+
+
+# [5.116.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.115.0...@ovh-ux/manager-pci@5.116.0) (2023-03-09)
+
+
+### Bug Fixes
+
+* **pci.storages:** containers success tracking ([#8928](https://github.com/ovh/manager/issues/8928)) ([d4f2b0d](https://github.com/ovh/manager/commit/d4f2b0de6e91bf33168c283638cb5d375848a0d6))
+* **pci:** resolve modify instance issue ([5b733c8](https://github.com/ovh/manager/commit/5b733c837776b69b1584b06466a6df1eb1097e48))
+* **pci:** sort for queries statistics table ([f1fc4db](https://github.com/ovh/manager/commit/f1fc4db1465ba2c1aa041f5ab57a2bdbedfb0de6))
+* **storages:** applied right pattern to name cloud-archive container ([#8957](https://github.com/ovh/manager/issues/8957)) ([c505ca2](https://github.com/ovh/manager/commit/c505ca2852b33eb0e9d0d86a5c191d1c7597ba1c))
+
+
+### Features
+
+* **pci:** add terraform order ([85226a1](https://github.com/ovh/manager/commit/85226a1dd956ddd86830f181dc293717b3543596))
+* **pci:** changed the mongodb logo ([450f6c7](https://github.com/ovh/manager/commit/450f6c76dfe8aeac13113bae2d5434f6c61beddf))
+* **pci:** support sort current queries ([1b74d96](https://github.com/ovh/manager/commit/1b74d9663642ecb00ec87b8db40c999356a90bed))
+
+
+
+
+
+# [5.115.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.114.0...@ovh-ux/manager-pci@5.115.0) (2023-03-02)
+
+
+### Features
+
+* **pci.ai-dashboard:** ai dashboard ([#8952](https://github.com/ovh/manager/issues/8952)) ([c8b6a2a](https://github.com/ovh/manager/commit/c8b6a2ae0feff6056aa16c96732d63d8074e1eff))
+
+
+
+
+
+# [5.114.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.113.0...@ovh-ux/manager-pci@5.114.0) (2023-03-01)
+
+
+### Features
+
+* add mention to docker command step ([8dec7d0](https://github.com/ovh/manager/commit/8dec7d03a26ffc237fa0f0e37123b01be82f9df6))
+* **pci.quota:** display network components ([9f95db6](https://github.com/ovh/manager/commit/9f95db6e15b75ab53129d1a8f85156a3be8a4eee))
+
+
+
+
+
 # [5.113.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.112.1...@ovh-ux/manager-pci@5.113.0) (2023-02-23)
 
 

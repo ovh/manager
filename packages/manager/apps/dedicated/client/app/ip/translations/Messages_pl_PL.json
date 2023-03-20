@@ -708,11 +708,11 @@
   "ip_table_header_organisation_help": "Organizacja oznacza podmiot odpowiedzialny za dany blok IP (np. Twoja firmę).",
   "ip_table_header_alerts_help": "Alerty dotyczące adresu IP lub bloku Additional IP.",
   "ip_table_filter_advanced_mode": "Tryb zaawansowany",
-  "ip_edit_or_assosiate_title": "Edytuj/ Przypisz organizację",
+  "ip_edit_or_assosiate_title": "Sprawdź/Zmień informacje o bloku IP",
   "ip_edit_or_assosiate_editor_tab": "Edytuj",
-  "ip_edit_or_assosiate_asso_tab": "Przypisz organizację",
-  "ip_edit_or_assosiate_edit_submit_button": "Editor",
-  "ip_edit_or_assosiate_asso_submit_button": "Przypisz",
+  "ip_edit_or_assosiate_asso_tab": "Podmiot",
+  "ip_edit_or_assosiate_edit_submit_button": "Edytuj",
+  "ip_edit_or_assosiate_asso_submit_button": "Zatwierdź",
   "ip_edit_or_assosiate_cancel_button": "Anuluj",
   "ip_edit_or_assosiate_editor_tab_name_label": "Nazwa sieci (Netname)",
   "ip_edit_or_assosiate_editor_tab_description_label": "Opis",
@@ -734,5 +734,7 @@
   "ip_repricing_banner_list_item_2": "Od 1 grudnia 2022 r. ceny istniejących adresów (zamówionych przed 6 października 2022).",
   "ip_repricing_banner_link": "Więcej informacji",
   "ip_unused_banner_text": "Dysponujesz adresami IP, których nie używasz. Adresy IPv4 są zasobem deficytowym, zatem jeśli ich nie potrzebujesz, prosimy o ich zwolnienie.",
-  "ip_unused_banner_link": "Sprawdź nieużywane adresy IP."
+  "ip_unused_banner_link": "Sprawdź nieużywane adresy IP.",
+  "ip_edit_or_assosiate_description": "W tej sekcji możesz spersonalizować informacje publiczne dotyczące bloku IP (informacje dostępne w bazie whois).",
+  "ip_edit_or_assosiate_network_tab": "Sieć"
 }

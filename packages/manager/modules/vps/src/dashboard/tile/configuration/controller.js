@@ -1,4 +1,9 @@
 export default class VpsDashboardTileConfigurationCtrl {
+  /* @ngInject */
+  constructor(coreConfig) {
+    this.nichandle = coreConfig.getUser().nichandle;
+  }
+
   $onInit() {
     // @TODO: create a VPS model and manage that logic in it
     this.isMaxEliteVcore = this.vps.vcore === 8;

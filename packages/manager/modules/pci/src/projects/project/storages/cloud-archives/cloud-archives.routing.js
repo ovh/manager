@@ -9,6 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         type: 'string',
       },
+      trackingTag: null,
     },
     onEnter: /* @ngInject */ ($transition$) => {
       return Promise.all([
@@ -58,12 +59,23 @@ export default /* @ngInject */ ($stateProvider) => {
           containerId: container.id,
         }),
 
+      trackingTag: /* @ngInject */ ($transition$) =>
+        $transition$.params().trackingTag,
+
+      goBackWithTrackingPage: /* @ngInject */ (goToStorageContainers) => (
+        message,
+        type,
+        trackingTag,
+      ) => {
+        return goToStorageContainers(message, type, { trackingTag });
+      },
+
       goToStorageContainers: /* @ngInject */ (
         $rootScope,
         CucCloudMessage,
         $state,
         projectId,
-      ) => (message = false, type = 'success') => {
+      ) => (message = false, type = 'success', params = {}) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
@@ -73,6 +85,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
           {
             reload,
+            ...params,
           },
         );
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.12.1...@ovh-ux/manager-sms@8.13.0) (2023-03-01)
+
+
+### Features
+
+* add tracking in product listing pages ([aded2e5](https://github.com/ovh/manager/commit/aded2e522bafaee9416589e96a375a0db5b72419))
+
+
+
+
+
 ## [8.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.12.0...@ovh-ux/manager-sms@8.12.1) (2023-02-23)
 
 

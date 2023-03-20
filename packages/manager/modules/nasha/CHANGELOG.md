@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.7.0...@ovh-ux/manager-nasha@2.7.1) (2023-03-15)
+
+
+### Bug Fixes
+
+* **nasha:** edit display name ([#9031](https://github.com/ovh/manager/issues/9031)) ([3286dc7](https://github.com/ovh/manager/commit/3286dc7f6d2755887a35443452589d1cc59123a2))
+
+
+
+
+
 # [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.6.5...@ovh-ux/manager-nasha@2.7.0) (2023-02-13)
 
 

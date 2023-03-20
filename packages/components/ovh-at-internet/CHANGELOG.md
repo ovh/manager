@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.3.3...@ovh-ux/ovh-at-internet@0.4.0) (2023-03-06)
+
+
+### Features
+
+* piano analytics tracking ([#8557](https://github.com/ovh/manager/issues/8557)) ([0b62090](https://github.com/ovh/manager/commit/0b620907c48aea25bd7e43cca39cb6d81863b05d))
+
+
+
+
+
 ## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.3.2...@ovh-ux/ovh-at-internet@0.3.3) (2023-02-07)
 
 **Note:** Version bump only for package @ovh-ux/ovh-at-internet

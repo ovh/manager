@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.31.0...@ovh-ux/manager-vps@2.32.0) (2023-03-15)
+
+
+### Features
+
+* **vps.snapshot:** add download vps snapshot feature ([#8887](https://github.com/ovh/manager/issues/8887)) ([71b6268](https://github.com/ovh/manager/commit/71b626878fef14cafbd204367d694b322abd2c6b))
+
+
+
+
+
+# [2.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.30.1...@ovh-ux/manager-vps@2.31.0) (2023-03-01)
+
+
+### Features
+
+* add tracking in product listing pages ([aded2e5](https://github.com/ovh/manager/commit/aded2e522bafaee9416589e96a375a0db5b72419))
+
+
+
+
+
+## [2.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.30.0...@ovh-ux/manager-vps@2.30.1) (2023-02-23)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** catch the 404 error if only nic tech ([#8919](https://github.com/ovh/manager/issues/8919)) ([242128c](https://github.com/ovh/manager/commit/242128c978ea6ae33678f7446a75ecdaf94c764a))
+
+
+
+
+
 # [2.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.29.4...@ovh-ux/manager-vps@2.30.0) (2023-02-20)
 
 

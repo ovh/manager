@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.4.0...@ovh-ux/manager-at-internet-configuration@1.5.0) (2023-03-06)
+
+
+### Features
+
+* piano analytics tracking ([#8557](https://github.com/ovh/manager/issues/8557)) ([0b62090](https://github.com/ovh/manager/commit/0b620907c48aea25bd7e43cca39cb6d81863b05d))
+
+
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.3.2...@ovh-ux/manager-at-internet-configuration@1.4.0) (2022-08-10)
 
 
@@ -149,6 +165,3 @@
 * init @ovh-ux/manager-at-internet-configuration module
 
 Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
-
-
-

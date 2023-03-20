@@ -11,28 +11,16 @@ export default class NgAtInternet {
     this.trackingPlugin = trackingPlugin;
   }
 
-  async init() {
-    return this.trackingPlugin.init();
+  async init(withConsent) {
+    return this.trackingPlugin.init(withConsent);
   }
 
-  async isTagAvailable() {
-    return this.trackingPlugin.isTagAvailable();
+  async onConsentModalDisplay() {
+    return this.trackingPlugin.onConsentModalDisplay();
   }
 
-  async clearTrackQueue() {
-    return this.trackingPlugin.clearTrackQueue();
-  }
-
-  async processTrackQueue() {
-    return this.trackingPlugin.processTrackQueue();
-  }
-
-  async initTag() {
-    return this.trackingPlugin.initTag();
-  }
-
-  async getTag() {
-    return this.trackingPlugin.getTag();
+  async onUserConsentFromModal(consent) {
+    return this.trackingPlugin.onUserConsentFromModal(consent);
   }
 
   async trackClick(data) {
@@ -63,39 +51,11 @@ export default class NgAtInternet {
     return this.trackingPlugin.setEnabled(state);
   }
 
-  async setDebug(state) {
-    return this.trackingPlugin.setDebug(state);
-  }
-
-  async isDebugActive() {
-    return this.trackingPlugin.isDebugActive();
-  }
-
-  async getRegion() {
-    return this.trackingPlugin.getRegion();
-  }
-
   async setRegion(region) {
     return this.trackingPlugin.setRegion(region);
   }
 
-  async setDefaultsPromise(promise) {
-    return this.trackingPlugin.setDefaultsPromise(promise);
-  }
-
-  async getDefaultsPromise() {
-    return this.trackingPlugin.getDefaultsPromise();
-  }
-
-  async getDefaults() {
-    return this.trackingPlugin.getDefaults();
-  }
-
   async setDefaults(def) {
     return this.trackingPlugin.setDefaults(def);
-  }
-
-  async isDefaultSet() {
-    return this.trackingPlugin.isDefaultSet();
   }
 }

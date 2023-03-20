@@ -84,96 +84,99 @@ export default class ConfigurationTileService {
    *  @return {Object}
    */
   getAvailableUpgrades() {
-    if (this.vpsModel.vcore === 8) {
-      // if vps elite - no upgrade available from configuration tile
+    if (this.availableUpgrades) {
+      if (this.vpsModel.vcore === 8) {
+        // if vps elite - no upgrade available from configuration tile
+        return {
+          memory: {
+            plan: null,
+          },
+          storage: {
+            plan: null,
+          },
+        };
+      }
+
+      const availableUpgradePlancodes = this.availableUpgrades.map(
+        (upgrade) => upgrade.planCode,
+      );
+      // Exclude all products which aren't listed in available upgrades
+      const availableCatalogProducts = this.catalog.products.filter((product) =>
+        availableUpgradePlancodes.includes(product.name),
+      );
+
+      // get next ram plan infos
+      const nextRamVps = find(availableCatalogProducts, ({ blobs }) => {
+        if (!get(blobs, 'technical')) {
+          return false;
+        }
+
+        const cpu = get(blobs, 'technical.cpu.cores');
+        const storage = get(blobs, 'technical.storage.disks[0].capacity');
+        const ram = get(blobs, 'technical.memory.size');
+
+        // try to find the VPS in the same range that have the double RAM
+        // than the current plan
+        return (
+          cpu === this.vps.vcore &&
+          storage === this.vpsModel.disk &&
+          ram === this.vps.ram.value * 2
+        );
+      });
+
+      const nextRamVpsPlan = nextRamVps
+        ? find(this.availableUpgrades, {
+            planCode: nextRamVps.name,
+          })
+        : null;
+
+      // get next storage plan infos
+      const nextStorageVps = find(availableCatalogProducts, ({ blobs }) => {
+        if (!get(blobs, 'technical')) {
+          return false;
+        }
+
+        const cpu = get(blobs, 'technical.cpu.cores');
+        const ram = get(blobs, 'technical.memory.size');
+        const storage = get(blobs, 'technical.storage.disks[0].capacity');
+
+        // try to find the VPS in the same range that have the double storage (disk)
+        // than the current plan
+        return (
+          cpu === this.vps.vcore &&
+          ram === this.vps.ram.value &&
+          storage === this.vpsModel.disk * 2
+        );
+      });
+
+      const nextStorageVpsPlan = nextStorageVps
+        ? find(this.availableUpgrades, {
+            planCode: nextStorageVps.name,
+          })
+        : null;
+
+      // return an object with calculated plans and price diff
       return {
         memory: {
-          plan: null,
+          plan: nextRamVpsPlan,
+          diff: nextRamVpsPlan ? this.getPlanPriceDiff(nextRamVpsPlan) : null,
+          upfrontDiff:
+            nextRamVpsPlan && this.isUpfront
+              ? this.getPlanUpfrontPriceDiff(nextRamVpsPlan)
+              : null,
         },
         storage: {
-          plan: null,
+          plan: nextStorageVpsPlan,
+          diff: nextStorageVpsPlan
+            ? this.getPlanPriceDiff(nextStorageVpsPlan)
+            : null,
+          upfrontDiff:
+            nextStorageVpsPlan && this.isUpfront
+              ? this.getPlanUpfrontPriceDiff(nextStorageVpsPlan)
+              : null,
         },
       };
     }
-
-    const availableUpgradePlancodes = this.availableUpgrades.map(
-      (upgrade) => upgrade.planCode,
-    );
-    // Exclude all products which aren't listed in available upgrades
-    const availableCatalogProducts = this.catalog.products.filter((product) =>
-      availableUpgradePlancodes.includes(product.name),
-    );
-
-    // get next ram plan infos
-    const nextRamVps = find(availableCatalogProducts, ({ blobs }) => {
-      if (!get(blobs, 'technical')) {
-        return false;
-      }
-
-      const cpu = get(blobs, 'technical.cpu.cores');
-      const storage = get(blobs, 'technical.storage.disks[0].capacity');
-      const ram = get(blobs, 'technical.memory.size');
-
-      // try to find the VPS in the same range that have the double RAM
-      // than the current plan
-      return (
-        cpu === this.vps.vcore &&
-        storage === this.vpsModel.disk &&
-        ram === this.vps.ram.value * 2
-      );
-    });
-
-    const nextRamVpsPlan = nextRamVps
-      ? find(this.availableUpgrades, {
-          planCode: nextRamVps.name,
-        })
-      : null;
-
-    // get next storage plan infos
-    const nextStorageVps = find(availableCatalogProducts, ({ blobs }) => {
-      if (!get(blobs, 'technical')) {
-        return false;
-      }
-
-      const cpu = get(blobs, 'technical.cpu.cores');
-      const ram = get(blobs, 'technical.memory.size');
-      const storage = get(blobs, 'technical.storage.disks[0].capacity');
-
-      // try to find the VPS in the same range that have the double storage (disk)
-      // than the current plan
-      return (
-        cpu === this.vps.vcore &&
-        ram === this.vps.ram.value &&
-        storage === this.vpsModel.disk * 2
-      );
-    });
-
-    const nextStorageVpsPlan = nextStorageVps
-      ? find(this.availableUpgrades, {
-          planCode: nextStorageVps.name,
-        })
-      : null;
-
-    // return an object with calculated plans and price diff
-    return {
-      memory: {
-        plan: nextRamVpsPlan,
-        diff: nextRamVpsPlan ? this.getPlanPriceDiff(nextRamVpsPlan) : null,
-        upfrontDiff:
-          nextRamVpsPlan && this.isUpfront
-            ? this.getPlanUpfrontPriceDiff(nextRamVpsPlan)
-            : null,
-      },
-      storage: {
-        plan: nextStorageVpsPlan,
-        diff: nextStorageVpsPlan
-          ? this.getPlanPriceDiff(nextStorageVpsPlan)
-          : null,
-        upfrontDiff:
-          nextStorageVpsPlan && this.isUpfront
-            ? this.getPlanUpfrontPriceDiff(nextStorageVpsPlan)
-            : null,
-      },
-    };
+    return null;
   }
 }

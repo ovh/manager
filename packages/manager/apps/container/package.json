@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-container-app",
-  "version": "0.15.1",
+  "version": "0.17.0",
   "private": true,
   "description": "OVHcloud Manager Container.",
   "repository": {
@@ -35,7 +35,7 @@
     "@ovh-ux/ovh-payment-method": "^0.1.1",
     "@ovh-ux/ovh-reket": "^1.0.2",
     "@ovh-ux/request-tagger": "^0.1.1",
-    "@ovh-ux/shell": "^1.9.0",
+    "@ovh-ux/shell": "^1.10.0",
     "@ovh-ux/ui-kit": "^6.3.0",
     "@popperjs/core": "^2.11.4",
     "@tanem/react-nprogress": "^5.0.0",
@@ -52,6 +52,7 @@
     "lodash-es": "^4.17.15",
     "office-ui-fabric-core": "^11.0.0",
     "ovh-manager-webfont": "^1.2.0",
+    "piano-analytics-js": "^6.7.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.2.3",
     "react-cookie": "^4.1.1",

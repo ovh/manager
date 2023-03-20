@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.6.0...@ovh-ux/manager-bm-server-components@1.6.1) (2023-03-15)
+
+
+### Bug Fixes
+
+* **dedicated.server:** hardware tile rework ([#8872](https://github.com/ovh/manager/issues/8872)) ([a570b65](https://github.com/ovh/manager/commit/a570b65b33274038a262aad8cd004efd73b949d2))
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.5.0...@ovh-ux/manager-bm-server-components@1.6.0) (2022-12-19)
 
 

@@ -29,7 +29,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.hosting.dashboard', {
           productId,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+      topbarOptions: /* @ngInject */ (
+        $translate,
+        $window,
+        coreConfig,
+        atInternet,
+      ) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -37,6 +42,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('hostings_order'),
           value: $translate.instant('hostings_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'web::hosting::index::order',
+              type: 'action',
+            });
             $window.open(
               getHostingOrderUrl(coreConfig.getUser().ovhSubsidiary),
               '_blank',

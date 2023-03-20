@@ -15,5 +15,6 @@ export default {
     goToUpgrade: '<',
     vpsUpgradeTask: '<',
     isMigrating: '<',
+    serviceInfos: '<',
   },
 };

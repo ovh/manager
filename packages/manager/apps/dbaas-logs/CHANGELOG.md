@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.10.1...@ovh-ux/manager-dbaas-logs-app@1.10.2) (2023-03-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-dbaas-logs-app
+
+
+
+
+
+## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.10.0...@ovh-ux/manager-dbaas-logs-app@1.10.1) (2023-03-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-dbaas-logs-app
+
+
+
+
+
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.9.9...@ovh-ux/manager-dbaas-logs-app@1.10.0) (2023-03-01)
+
+
+### Features
+
+* **dbaas-logs:** archives encryption ([a8057ca](https://github.com/ovh/manager/commit/a8057ca5cb5cacecbb9033b61fb3d51e13b3c30c))
+
+
+
+
+
 ## [1.9.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.9.8...@ovh-ux/manager-dbaas-logs-app@1.9.9) (2023-02-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-dbaas-logs-app

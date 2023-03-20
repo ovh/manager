@@ -19,7 +19,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.networks.cdn.dedicated', {
           productId,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+      topbarOptions: /* @ngInject */ (
+        $translate,
+        $window,
+        coreConfig,
+        atInternet,
+      ) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -27,6 +32,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('cdn_order'),
           value: $translate.instant('cdn_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'dedicated::networks::cdn::index::order',
+              type: 'action',
+            });
             $window.open(
               getCdnOrderUrl(coreConfig.getUser().ovhSubsidiary),
               '_blank',

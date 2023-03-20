@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.16.0...@ovh-ux/manager-container-app@0.17.0) (2023-03-06)
+
+
+### Features
+
+* piano analytics tracking ([#8557](https://github.com/ovh/manager/issues/8557)) ([0b62090](https://github.com/ovh/manager/commit/0b620907c48aea25bd7e43cca39cb6d81863b05d))
+
+
+
+
+
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.15.2...@ovh-ux/manager-container-app@0.16.0) (2023-03-02)
+
+
+### Features
+
+* **pci.ai-dashboard:** ai dashboard ([#8952](https://github.com/ovh/manager/issues/8952)) ([c8b6a2a](https://github.com/ovh/manager/commit/c8b6a2ae0feff6056aa16c96732d63d8074e1eff))
+
+
+
+
+
+## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.15.1...@ovh-ux/manager-container-app@0.15.2) (2023-02-23)
+
+
+### Bug Fixes
+
+* **server-sidebar:** change filter for web domain ([b9471be](https://github.com/ovh/manager/commit/b9471be91e26fa735bbbd892ed3b17308d392136))
+
+
+
+
+
 ## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.15.0...@ovh-ux/manager-container-app@0.15.1) (2023-02-23)
 
 

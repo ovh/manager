@@ -21,5 +21,11 @@
   "pci_databases_users_add_username_pattern_rule": "Deve essere composto da caratteri alfanumerici, punti (.), underscore (_) o trattini ( - ), non iniziare con un trattino ( - ) o un punto (.)",
   "pci_databases_users_add_group_max_rule": "Massimo {{max}} caratteri",
   "pci_databases_users_add_group_pattern_rule": "Deve essere composto da caratteri alfanumerici. Sono accettati esclusivamente lettere maiuscole, minuscole, underscore (_) e numeri.",
-  "pci_databases_users_add_group_label": "Gruppo"
+  "pci_databases_users_add_group_label": "Gruppo",
+  "pci_databases_users_add_role": "Aggiungi un ruolo",
+  "pci_databases_user_add_select_roles": "Seleziona un ruolo",
+  "pci_databases_user_add_input_database": "Database",
+  "pci_databases_user_add_error_existing": "Un ruolo analogo è già stato aggiunto.",
+  "pci_databases_user_add_warning_roles_added": "Attenzione: questo utente non ha ancora configurato alcun ruolo. Clicca sul pulsante \"+\" per aggiungere il tuo primo ruolo.",
+  "pci_databases_user_add_configured_roles": "{{nbRoles}} ruoli configurati"
 }

@@ -1,12 +1,14 @@
 import { QUOTA_THRESHOLD } from './projects.constant';
 
 export default class Quota {
-  constructor({ instance, keypair, region, volume }) {
+  constructor({ instance, keypair, region, volume, network, loadbalancer }) {
     Object.assign(this, {
       instance,
       keypair,
       region,
       volume,
+      network,
+      loadbalancer,
     });
     this.quotaAboveThreshold = false;
     if (this.isInstanceQuotaAvailable()) {

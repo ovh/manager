@@ -21,5 +21,11 @@
   "pci_databases_users_add_username_pattern_rule": "Must contain letters and numbers, full stops (.), underscores (_) and dashes (-), must not start with a dash (-) or a full stop (.)",
   "pci_databases_users_add_group_max_rule": "Maximum {{max}} characters",
   "pci_databases_users_add_group_pattern_rule": "Must include alphanumeric characters. Only upper-case letters, underscores (_) and numbers are authorised.",
-  "pci_databases_users_add_group_label": "Group"
+  "pci_databases_users_add_group_label": "Group",
+  "pci_databases_users_add_role": "Add a role",
+  "pci_databases_user_add_select_roles": "Select a role",
+  "pci_databases_user_add_input_database": "Database",
+  "pci_databases_user_add_error_existing": "A similar role has already been added.",
+  "pci_databases_user_add_warning_roles_added": "Warning - no roles have been configured for this user yet. Click the “+” button to finish adding your first role.",
+  "pci_databases_user_add_configured_roles": "{{nbRoles}} roles configured"
 }
