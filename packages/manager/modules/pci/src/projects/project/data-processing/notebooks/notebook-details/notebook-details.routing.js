@@ -66,7 +66,7 @@ export default /* @ngInject */ ($stateProvider) =>
           ), // update breadcrumb with "Dashboard"
       },
       atInternet: {
-        name:
+        rename:
           'PublicCloud::pci::projects::project::data-processing::notebooks::notebook-details::dashboard',
       },
     },

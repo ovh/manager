@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ (showNotebook) => showNotebook,
       },
       atInternet: {
-        name:
+        rename:
           'PublicCloud::pci::projects::project::data-processing::notebooks::delete-notebook',
       },
     },

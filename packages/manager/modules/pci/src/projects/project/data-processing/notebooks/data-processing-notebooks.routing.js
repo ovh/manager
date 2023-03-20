@@ -98,6 +98,6 @@ export default /* @ngInject */ ($stateProvider) =>
       },
     },
     atInternet: {
-      name: 'PublicCloud::pci::projects::project::data-processing::notebooks',
+      rename: 'PublicCloud::pci::projects::project::data-processing::notebooks',
     },
   });
