@@ -105,7 +105,10 @@ export default class PoliciesController {
    * @returns {Promise}
    */
   editIdentities({ id }) {
-    this.alert.error(`editIdentities not implemented [id=${id}]`);
+    return this.goTo({
+      name: ROUTES.POLICY_IDENTITIES,
+      params: { policy: id },
+    });
   }
 
   /**
