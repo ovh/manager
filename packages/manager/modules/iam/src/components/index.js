@@ -5,6 +5,8 @@ import createPolicyResolves from './createPolicy/createPolicy.resolves';
 import deleteEntityComponent from './deleteEntity/deleteEntity.component';
 import deleteEntityResolves from './deleteEntity/deleteEntity.resolves';
 import iamComponent from './iam/iam.component';
+import policyIdentitiesComponent from './policyIdentities/policyIdentities.component';
+import policyIdentitiesResolves from './policyIdentities/policyIdentities.resolves';
 import policiesComponent from './policies/policies.component';
 import policiesResolves from './policies/policies.resolves';
 import policyComponent from './policy/policy.component';
@@ -28,6 +30,12 @@ const iam = {
   resolves: null,
 };
 
+const policyIdentities = {
+  name: 'policyIdentities',
+  component: policyIdentitiesComponent,
+  resolves: policyIdentitiesResolves,
+};
+
 const policies = {
   name: 'iamPolicies',
   component: policiesComponent,
@@ -47,6 +55,7 @@ angular
   .component(createPolicy.name, createPolicy.component)
   .component(deleteEntity.name, deleteEntity.component)
   .component(iam.name, iam.component)
+  .component(policyIdentities.name, policyIdentities.component)
   .component(policies.name, policies.component)
   .component(policy.name, policy.component)
   .run(/*
@@ -54,9 +63,10 @@ angular
       ./createPolicy/translations
       ./deleteEntity/translations
       ./iam/translations
+      ./policyIdentities/translations
       ./policies/translations
       ./policy/translations
   */);
 
-export { createPolicy, deleteEntity, iam, policies, policy };
+export { createPolicy, deleteEntity, iam, policyIdentities, policies, policy };
 export default moduleName;

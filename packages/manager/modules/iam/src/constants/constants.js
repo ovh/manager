@@ -8,7 +8,9 @@ const FEATURE = {
 
 const ENTITY = {
   POLICY: 'policy',
+  IDENTITY: 'identity',
 };
+const URN_VERSION = 1;
 
 // TODO wait for other guide specifications
 const GUIDE = {
@@ -65,4 +67,5 @@ export {
   GUIDE,
   POLICY_NAME_PATTERN,
   UNAVAILABLE_STATE_NAME,
+  URN_VERSION,
 };
