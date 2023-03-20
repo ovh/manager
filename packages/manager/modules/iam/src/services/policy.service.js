@@ -41,4 +41,21 @@ export default class PolicyService {
       ({ data }) => data,
     );
   }
+
+  /**
+   * Put the policy given the id
+   * @param {string} id The policy's id
+   * @see Apiv2Service#put
+   * @returns {Promise}
+   */
+  editIdentities(id, identities) {
+    return this.getPolicy(id)
+      .then((policy) => {
+        const { name, resources, permissions } = policy;
+        return this.Apiv2Service.put(`${ENDPOINT.policy}/${id}`, {
+          data: { name, resources, permissions, identities },
+        });
+      })
+      .then(({ data }) => data);
+  }
 }
