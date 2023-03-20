@@ -1,3 +1,8 @@
-import { alertResolve, entityResolve, goBackResolve } from '@iam/resolves';
+import {
+  alertResolve,
+  entityResolve,
+  goBackResolve,
+  statementResolve,
+} from '@iam/resolves';
 
-export default [alertResolve, entityResolve, goBackResolve];
+export default [alertResolve, entityResolve, goBackResolve, statementResolve];

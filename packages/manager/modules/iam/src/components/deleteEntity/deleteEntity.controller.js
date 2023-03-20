@@ -1,4 +1,5 @@
 import { DELETE_STATEMENT, ENTITY } from '@iam/constants';
+import { encodeUrn } from '@iam/resolves';
 
 export default class DeleteEntityController {
   /* @ngInject */
@@ -64,6 +65,8 @@ export default class DeleteEntityController {
 
     if (this.entity.type === ENTITY.POLICY) {
       promise = this.deletePolicy();
+    } else if (this.entity.type === ENTITY.IDENTITY) {
+      promise = this.deletePolicyIdentity();
     } else {
       promise = this.$q.reject({ data: { message: 'Unknown entity type' } });
     }
@@ -90,5 +93,18 @@ export default class DeleteEntityController {
    */
   deletePolicy() {
     return this.PolicyService.deletePolicy(this.entity.data.id);
+  }
+
+  /**
+   * Delete the identity using the PolicyService
+   * @returns {Promise}
+   */
+  deletePolicyIdentity() {
+    const { identity, policy } = this.entity.data;
+    const encodedIdentity = encodeUrn(identity);
+    return this.PolicyService.editIdentities(
+      policy.id,
+      policy.identities.filter((item) => item !== encodedIdentity),
+    );
   }
 }

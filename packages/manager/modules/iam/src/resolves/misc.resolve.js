@@ -1,7 +1,7 @@
 import FeatureAvailabilityResult from '@ovh-ux/ng-ovh-feature-flipping/src/feature-availability-result.class';
 
 import { ALERT_ID, ENTITY, FEATURE } from '@iam/constants';
-import { policyParamResolve } from './params.resolve';
+import { policyParamResolve, identityParamResolve } from './params.resolve';
 
 // ---------------------------------------------------------------------------------------------------- //
 
@@ -38,13 +38,34 @@ alertResolve.key = 'alert';
  *   type: string
  * }|null}
  */
-const entityResolve = /* @ngInject */ (policy) => {
-  if (policy) return { data: policy, type: ENTITY.POLICY };
-  return null;
+const entityResolve = /* @ngInject */ (policy, identity) => {
+  let entity = null;
+  if (identity && policy) {
+    const [, userName] = identity.components;
+    entity = {
+      data: { policy, identity, name: userName },
+      type: ENTITY.IDENTITY,
+    };
+  } else if (policy) {
+    entity = { data: policy, type: ENTITY.POLICY };
+  }
+  return entity;
 };
 
 entityResolve.key = 'entity';
-entityResolve.resolves = [policyParamResolve];
+entityResolve.resolves = [policyParamResolve, identityParamResolve];
+
+// ---------------------------------------------------------------------------------------------------- //
+
+/**
+ * Whether the entity requires a statement
+ * @returns {boolean}
+ */
+const statementResolve = /* @ngInject */ (entity) =>
+  [ENTITY.POLICY].includes(entity.type);
+
+statementResolve.key = 'statement';
+statementResolve.resolves = [entityResolve];
 
 // ---------------------------------------------------------------------------------------------------- //
 
@@ -119,4 +140,5 @@ export {
   featuresResolve,
   goBackResolve,
   goToResolve,
+  statementResolve,
 };
