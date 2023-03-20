@@ -26,6 +26,19 @@ defaultBreadcrumbResolve.key = key;
 // ---------------------------------------------------------------------------------------------------- //
 
 /**
+ * The policyIdentities breadcrumb
+ * @returns {string}
+ */
+const policyIdentitiesBreadcrumbResolve = /* @ngInject */ (
+  $translate,
+  policy,
+) => $translate.instant(`${pfx}_policy_identities`, { policy: policy.name });
+
+policyIdentitiesBreadcrumbResolve.key = key;
+
+// ---------------------------------------------------------------------------------------------------- //
+
+/**
  * No breadcrumb (hide it)
  * @returns {null}
  */
@@ -38,5 +51,6 @@ noBreadcrumbResolve.key = key;
 export {
   createPolicyBreadcrumbResolve,
   defaultBreadcrumbResolve,
+  policyIdentitiesBreadcrumbResolve,
   noBreadcrumbResolve,
 };

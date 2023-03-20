@@ -43,6 +43,16 @@ export default class Apiv2Service {
   }
 
   /**
+   * Call the given endpoint on the API v2 using the 'put' method
+   * @param {string} endpoint
+   * @param {object=} options the $http.put options
+   * @returns {Promise}
+   */
+  put(endpoint, options) {
+    return this.http('put', endpoint, options);
+  }
+
+  /**
    * Call the given list endpoint on the API v2 that implements the cursor api
    * @param {string} endpoint
    * @param {string=} cursor The cursor id

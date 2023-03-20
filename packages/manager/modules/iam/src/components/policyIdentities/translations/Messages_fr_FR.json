@@ -1,0 +1,14 @@
+{
+  "iam_policy_identities_title": "Gérez les identités de la politique {{ policy }}",
+  "iam_policy_identities_description": "Vous pouvez associer ou supprimer des identités à votre politique (utilisateurs, NIC, email, groupes d'utilisateurs...)",
+  "iam_policy_identities_guide_text": "Guides",
+  "iam_policy_identities_field_users_selection_label": "Users & sub-users",
+  "iam_policy_identities_field_users_selection_placeholder": "NIC, utilisateurs, groupes d'utilisateurs...",
+  "iam_policy_identities_field_users_button_add": "Ajouter",
+  "iam_policy_identities_error_load_users": "Une erreur est survenue lors de la récupération de vos utilisateurs : {{ message }}",
+  "iam_policy_identities_add_identity_error": "Le format de l'identité ajoutée n'est pas valable : {{ message }}",
+  "iam_policy_identities_add_identity_success": "L'identité est rattachée à votre politique",
+  "iam_policy_identities_submit_identity_success": "Les modifications de vos identités ont bien été réalisées.",
+  "iam_policy_identities_form_cancel": "Annuler",
+  "iam_policy_identities_form_submit": "Valider"
+}
