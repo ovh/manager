@@ -15,7 +15,6 @@ export default class TerminatenotebookCtrl {
 
   closeModal() {
     this.trackNotebooks(`stop-notebook::cancel`);
-
     this.goBack();
   }
 }
