@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.7...@ovh-ux/manager-billing@0.20.0-alpha.8) (2023-03-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing
+
+
+
+
+
 # [0.20.0-alpha.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.6...@ovh-ux/manager-billing@0.20.0-alpha.7) (2023-03-09)
 
 
