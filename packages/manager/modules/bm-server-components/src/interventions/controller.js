@@ -8,7 +8,7 @@ export default class BMServerComponentsInterventionsController {
   }
 
   getInterventions({ offset, pageSize }) {
-    return this.loadInterventions(this.serviceName, pageSize, offset)
+    return this.loadInterventions(this.serviceName, pageSize, offset - 1)
       .then((interventions) => ({
         data: get(interventions, 'list.results', []),
         meta: {
