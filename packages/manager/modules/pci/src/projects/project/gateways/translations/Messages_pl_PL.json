@@ -2,7 +2,7 @@
   "pci_projects_project_public_gateway_title": "Gateway",
   "pci_projects_project_public_gateways_intro_part_1": "Gateway zapewnia łączność z prywatnymi instancjami, umożliwiając bezpieczny dostęp do sieci zewnętrznych lub dając dostęp do aplikacji z zewnątrz:",
   "pci_projects_project_public_gateways_intro_part_2": "W pierwszym przypadku Gateway działa jako brama SNAT, umożliwiając instancjom dostęp do Internetu, ale nie odwrotnie.",
-  "pci_projects_project_public_gateways_intro_part_3": "W drugim przypadku możliwe jest wystawienie usługi za prywatną instancją lub Load Balancerem w Internecie przy użyciu adresów Floating IP.",
+  "pci_projects_project_public_gateways_intro_part_3": "W drugim przypadku usługa udostępniana jest w Internecie za prywatną instancją lub Load Balancerem przy użyciu adresów Floating IP.",
   "pci_projects_project_public_gateway_create": "Utwórz Gateway",
   "pci_projects_project_public_gateway_name": "Nazwa/ID",
   "pci_projects_project_public_gateway_region": "Region",
