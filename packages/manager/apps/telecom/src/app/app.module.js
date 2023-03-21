@@ -36,7 +36,6 @@ import 'script-loader!angular-ui-utils/ui-utils.js';
 import 'angular-validation-match';
 import 'bootstrap';
 import 'script-loader!CSV-JS/csv.js';
-import 'script-loader!d3/dist/d3.js';
 import 'matchmedia-polyfill';
 import 'matchmedia-ng';
 import 'script-loader!messenger/build/js/messenger.js';
@@ -65,6 +64,8 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
+
+import * as d3 from 'd3';
 
 import ovhManagerBetaPreference from '@ovh-ux/manager-beta-preference';
 import { registerCoreModule } from '@ovh-ux/manager-core';
@@ -120,6 +121,8 @@ import './app-scss.scss';
 import './app.less';
 
 import { TRACKING } from './at-internet.constants';
+
+window.d3 = d3;
 
 const getEnvironment = (shellClient) => {
   return shellClient.environment.getEnvironment();
