@@ -1,3 +1,5 @@
+import { DATA_PROCESSING_TRACKING_PREFIX } from '../data-processing.constants';
+
 export default /* @ngInject */ ($stateProvider) =>
   $stateProvider.state('pci.projects.project.data-processing.home', {
     url: '/home',
@@ -23,6 +25,6 @@ export default /* @ngInject */ ($stateProvider) =>
         }),
     },
     atInternet: {
-      rename: 'public-cloud::pci::projects::project::data-processing',
+      rename: DATA_PROCESSING_TRACKING_PREFIX,
     },
   });

@@ -10,7 +10,7 @@ export const DATA_PROCESSING_STATUS_TO_CLASS = Object.freeze({
 export const DATA_PROCESSING_NOTEBOOKS_STATUS_TO_CLASS = Object.freeze({
   DELETING: 'warning',
   FAILED: 'error',
-  RUNNING: 'info',
+  RUNNING: 'success',
   STARTING: 'warning',
   STOPPED: 'info',
   STOPPING: 'warning',
@@ -93,3 +93,6 @@ export const SUBMIT_JOB_API_GUIDES = {
 export const GIB_IN_MIB = 1024;
 
 export const NOTEBOOK_CLUSTER_NAME = 'NB1-1';
+
+export const DATA_PROCESSING_TRACKING_PREFIX =
+  'PublicCloud::pci::projects::project::data-processing';

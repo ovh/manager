@@ -1,3 +1,5 @@
+import { DATA_PROCESSING_TRACKING_PREFIX } from '../../../data-processing.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.data-processing.notebooks.details.terminate',
@@ -20,8 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ (showNotebook) => showNotebook,
       },
       atInternet: {
-        rename:
-          'PublicCloud::pci::projects::project::data-processing::notebooks::stop-notebook',
+        rename: `${DATA_PROCESSING_TRACKING_PREFIX}::notebooks::stop-notebook`,
       },
     },
   );

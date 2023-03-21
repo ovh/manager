@@ -12,7 +12,7 @@
   "data_processing_notebook_status": "Statut",
   "data_processing_notebook_status_deleted": "Supprimé",
   "data_processing_notebook_status_failed": "Echec",
-  "data_processing_notebook_status_running": "En cours",
+  "data_processing_notebook_status_running": "En service",
   "data_processing_notebook_status_starting": "Démarrage",
   "data_processing_notebook_status_stopped": "Arrêté",
   "data_processing_notebook_status_stopping": "Arrêt",

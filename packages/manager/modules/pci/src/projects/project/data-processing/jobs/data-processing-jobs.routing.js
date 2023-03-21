@@ -1,3 +1,5 @@
+import { DATA_PROCESSING_TRACKING_PREFIX } from '../data-processing.constants';
+
 export default /* @ngInject */ ($stateProvider) =>
   $stateProvider.state('pci.projects.project.data-processing.jobs', {
     url: '/jobs?id',
@@ -46,6 +48,6 @@ export default /* @ngInject */ ($stateProvider) =>
         PciProjectLabsService.getLabByName(projectId, 'dataProcessing'),
     },
     atInternet: {
-      rename: 'PublicCloud::pci::projects::project::data-processing::jobs',
+      rename: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs`,
     },
   });

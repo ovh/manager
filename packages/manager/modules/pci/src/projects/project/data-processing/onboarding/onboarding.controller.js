@@ -1,6 +1,7 @@
 import reduce from 'lodash/reduce';
 import illustration from './assets/data-processing.png';
 import { GUIDES, SPARK_URL } from './onboarding.constants';
+import { DATA_PROCESSING_TRACKING_PREFIX } from '../data-processing.constants';
 
 export default class {
   /* @ngInject */
@@ -35,8 +36,7 @@ export default class {
   authorizeService() {
     this.isActivating = true;
     this.atInternet.trackClick({
-      name:
-        'PublicCloud::pci::projects::project::data-processing::onboarding::first-job',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::onboarding::first-job`,
       type: 'action',
     });
     this.dataProcessingService

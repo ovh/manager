@@ -1,4 +1,5 @@
 import { PCI_FEATURES } from '../../projects.constant';
+import { DATA_PROCESSING_TRACKING_PREFIX } from './data-processing.constants';
 
 export default /* @ngInject */ ($stateProvider) =>
   $stateProvider.state('pci.projects.project.data-processing', {
@@ -38,6 +39,6 @@ export default /* @ngInject */ ($stateProvider) =>
         }),
     },
     atInternet: {
-      rename: 'PublicCloud::pci::projects::project::data-processing::home',
+      rename: `${DATA_PROCESSING_TRACKING_PREFIX}::home`,
     },
   });
