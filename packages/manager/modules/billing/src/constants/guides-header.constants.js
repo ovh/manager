@@ -20,6 +20,7 @@ export const MANAGE_PAYMENT_METHODS = {
   MA: 'https://docs.ovh.com/fr/billing/manage-payment-methods/',
   TN: 'https://docs.ovh.com/fr/billing/manage-payment-methods/',
   SN: 'https://docs.ovh.com/fr/billing/manage-payment-methods/',
+  IN: 'https://docs.ovh.com/asia/en/billing/manage-payment-methods/',
 };
 
 export const MANAGING_ORDERS = {
@@ -44,6 +45,7 @@ export const MANAGING_ORDERS = {
   MA: 'https://docs.ovh.com/fr/billing/gerer-ses-commandes-ovh/',
   TN: 'https://docs.ovh.com/fr/billing/gerer-ses-commandes-ovh/',
   SN: 'https://docs.ovh.com/fr/billing/gerer-ses-commandes-ovh/',
+  IN: 'https://docs.ovh.com/asia/en/billing/managing-ovh-orders/',
 };
 
 export const PURCHASE_ORDER = {
@@ -66,6 +68,7 @@ export const PURCHASE_ORDER = {
   MA: 'https://docs.ovh.com/fr/billing/purchase-order/',
   TN: 'https://docs.ovh.com/fr/billing/purchase-order/',
   SN: 'https://docs.ovh.com/fr/billing/purchase-order/',
+  IN: 'https://docs.ovh.com/asia/en/billing/purchase-order/',
 };
 
 export const MANAGING_BILLS = {
@@ -90,6 +93,7 @@ export const MANAGING_BILLS = {
   MA: 'https://docs.ovh.com/fr/billing/gerer-factures-ovh/',
   TN: 'https://docs.ovh.com/fr/billing/gerer-factures-ovh/',
   SN: 'https://docs.ovh.com/fr/billing/gerer-factures-ovh/',
+  IN: 'https://docs.ovh.com/asia/en/billing/manage-ovh-bills/',
 };
 
 export const AUTOMATIC_RENEWAL = {
@@ -118,6 +122,8 @@ export const AUTOMATIC_RENEWAL = {
   MA: 'https://docs.ovh.com/fr/billing/renouvellement-automatique-ovh/',
   TN: 'https://docs.ovh.com/fr/billing/renouvellement-automatique-ovh/',
   SN: 'https://docs.ovh.com/fr/billing/renouvellement-automatique-ovh/',
+  IN:
+    'https://docs.ovh.com/asia/en/billing/how-to-use-automatic-renewal-at-ovh/',
 };
 
 export const PREFIX_UNIVERSE_NAME = 'billing';

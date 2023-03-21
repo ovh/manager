@@ -147,6 +147,12 @@ export const URLS = {
     business: 'https://www.ovhcloud.com/es/support-levels/business/',
     enterprise: 'https://www.ovhcloud.com/es/support-levels/enterprise/',
   },
+  IN: {
+    standard: 'https://www.ovhcloud.com/en-in/support-levels/standard/',
+    premium: 'https://www.ovhcloud.com/en-in/support-levels/premium/',
+    business: 'https://www.ovhcloud.com/en-in/support-levels/business/',
+    enterprise: 'https://www.ovhcloud.com/en-in/support-levels/enterprise/',
+  },
 };
 
 export default {
