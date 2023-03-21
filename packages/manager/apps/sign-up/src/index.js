@@ -1,5 +1,6 @@
 import { bootstrapApplication } from '@ovh-ux/manager-core';
 import { defineApplicationVersion } from '@ovh-ux/request-tagger';
+import 'piano-analytics-js/dist/browser/piano-analytics';
 
 defineApplicationVersion(__VERSION__);
 

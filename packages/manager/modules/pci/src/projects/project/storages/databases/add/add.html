@@ -112,7 +112,6 @@
                     data-max="$ctrl.model.flavor.maxDiskSize - $ctrl.model.flavor.minDiskSize"
                     data-step="$ctrl.model.disk.step"
                     data-model="$ctrl.model.disk.additionalDiskSize"
-                    data-on-change="$ctrl.onAdditionalDiskChange()"
                     data-prices="{
                             hourly: $ctrl.model.flavor.hourlyPricePerGB,
                             monthly: $ctrl.model.flavor.monthlyPricePerGB,
@@ -255,7 +254,6 @@
                             data-ng-if="$ctrl.availableSubnets.length > 1"
                             data-match="name"
                             data-searchable
-                            data-on-change="$ctrl.getOrderData()"
                         >
                         </oui-select>
                         <p>
@@ -507,16 +505,6 @@
                                 ></span>
                             </div>
                         </div>
-                        <oui-button
-                            block
-                            on-click="$ctrl.trackAndGoToCommand()"
-                            class="mb-2 mt-2"
-                            icon-left="oui-icon-app-script_concept"
-                        >
-                            <span
-                                data-translate="pci_database_add_show_command"
-                            ></span>
-                        </oui-button>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition>
@@ -565,6 +553,17 @@
                         ></span>
                     </div>
                 </oui-button>
+                <div class="mt-2">
+                    <button
+                        type="button"
+                        class="oui-link"
+                        data-ng-click="$ctrl.trackAndGoToCommand()"
+                    >
+                        <span
+                            data-translate="pci_database_add_show_command"
+                        ></span>
+                    </button>
+                </div>
             </oui-tile>
         </div>
     </div>

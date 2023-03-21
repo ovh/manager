@@ -36,7 +36,7 @@
                         <div class="oui-inline-adder__row">
                             <div
                                 class="oui-inline-adder__field"
-                                ng-if="volume.privateSwift"
+                                ng-if="volume.dataStore"
                             >
                                 <oui-field
                                     label="{{:: 'pci_notebook_add_attach_container_storage_container' | translate}}"
@@ -56,7 +56,7 @@
                             </div>
                             <div
                                 class="oui-inline-adder__field"
-                                ng-if="volume.privateSwift"
+                                ng-if="volume.dataStore"
                             >
                                 <oui-field
                                     data-label="{{:: 'pci_notebook_add_attach_container_data_prefix' | translate  }}"
@@ -145,7 +145,7 @@
                             </div>
                             <div
                                 class="oui-inline-adder__field"
-                                ng-if="volume.privateSwift"
+                                ng-if="volume.dataStore"
                             >
                                 <oui-field
                                     data-label="{{:: 'pci_notebook_data_cache' | translate  }}"

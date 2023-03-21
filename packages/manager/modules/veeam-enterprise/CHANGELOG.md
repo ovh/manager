@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.5.0...@ovh-ux/manager-veeam-enterprise@1.6.0) (2023-03-01)
+
+
+### Features
+
+* add tracking in product listing pages ([aded2e5](https://github.com/ovh/manager/commit/aded2e522bafaee9416589e96a375a0db5b72419))
+
+
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.4.1...@ovh-ux/manager-veeam-enterprise@1.5.0) (2022-09-29)
 
 
@@ -256,6 +272,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 * **veeam-enterprise:** add standalone module ([5fac8f4](https://github.com/ovh/manager/commit/5fac8f4cc45c924f53fc875641191fc7a96117cb))
 * **veeam-enterprise:** migrate veeam-enterprise ([7bf5fd3](https://github.com/ovh/manager/commit/7bf5fd367375e38e141dc97ae04cd3b5a3a6d46b))
-
-
-

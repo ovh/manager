@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.24.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.24.3...@ovh-ux/manager-public-cloud@4.24.4) (2023-03-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [4.24.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.24.2...@ovh-ux/manager-public-cloud@4.24.3) (2023-03-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [4.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.24.1...@ovh-ux/manager-public-cloud@4.24.2) (2023-03-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [4.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.24.0...@ovh-ux/manager-public-cloud@4.24.1) (2023-03-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+# [4.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.23.14...@ovh-ux/manager-public-cloud@4.24.0) (2023-03-06)
+
+
+### Features
+
+* piano analytics tracking ([#8557](https://github.com/ovh/manager/issues/8557)) ([0b62090](https://github.com/ovh/manager/commit/0b620907c48aea25bd7e43cca39cb6d81863b05d))
+
+
+
+
+
+## [4.23.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.23.13...@ovh-ux/manager-public-cloud@4.23.14) (2023-03-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [4.23.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.23.12...@ovh-ux/manager-public-cloud@4.23.13) (2023-03-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [4.23.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.23.11...@ovh-ux/manager-public-cloud@4.23.12) (2023-02-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
 ## [4.23.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.23.10...@ovh-ux/manager-public-cloud@4.23.11) (2023-02-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

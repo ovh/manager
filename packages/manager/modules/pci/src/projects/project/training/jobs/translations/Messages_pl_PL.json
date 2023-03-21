@@ -32,7 +32,7 @@
   "pci_projects_project_training_jobs_submit_select_data_tips_2": "Dobrą praktyką jest dołączenie jednego kontenera z danymi wejściowymi i drugiego, w którym będą przechowywane dane wyjściowe.",
   "pci_projects_project_training_jobs_submit_command_default_select": "Wskaż polecenie, które ma zostać uruchomione (opcjonalnie)",
   "pci_projects_project_training_jobs_submit_select_command": "Wpisz polecenie Docker, które chcesz uruchomić w kontenerze (opcjonalnie)",
-  "pci_projects_project_training_jobs_submit_select_command_tips": "Wpisz argumenty (oddzielone spacją), które zostaną uwzględnione w poleceniu Docker",
+  "pci_projects_project_training_jobs_submit_select_command_tips": "Wpisz argumenty (oddzielone spacjami), które zostaną przekazane do polecenia Docker. Cudzysłowy pojedyncze (`) nie są wspierane, należy je zastąpić cudzysłowami podwójnymi.",
   "pci_projects_project_training_jobs_submit_select_command_tile_title": "Określone polecenie",
   "pci_projects_project_training_jobs_submit_select_command_tile_command": "Argumenty",
   "pci_projects_project_training_jobs_access_url_help": "Dostęp HTTP umożliwia przekierowanie z przeglądarki do portu 80 kontenera, jeśli nadal trwa jego wykonywanie. Zaloguj się, aby  uzyskać dostęp do interfejsu WWW.",

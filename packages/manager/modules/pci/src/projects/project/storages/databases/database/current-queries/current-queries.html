@@ -99,6 +99,7 @@
             data-title="::'pci_databases_current_queries_datagrid_column_duration' | translate"
             property="queryDuration"
             type="number"
+            data-sortable
         >
             <span data-ng-bind="$value  | number : 2"></span>
         </oui-datagrid-column>
@@ -123,5 +124,14 @@
         >
             <span data-ng-bind="$value ? $value : '-'"></span>
         </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item
+                data-on-click="$ctrl.trackAndTerminateQuery($row)"
+            >
+                <span
+                    data-translate="pci_databases_current_queries_datagrid_terminate_action_label"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
     </oui-datagrid>
 </div>

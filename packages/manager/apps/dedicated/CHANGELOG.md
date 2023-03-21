@@ -3,6 +3,119 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.54.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.54.1...@ovh-ux/manager-dedicated@17.54.2) (2023-03-21)
+
+
+### Bug Fixes
+
+* **ip.agora-order:** complete missed country param ([#9048](https://github.com/ovh/manager/issues/9048)) ([1ae7fdd](https://github.com/ovh/manager/commit/1ae7fdd0ee3bc1762d03cf058954e271e0fe917a))
+
+
+
+
+
+## [17.54.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.54.0...@ovh-ux/manager-dedicated@17.54.1) (2023-03-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1934] ([b9db1c7](https://github.com/ovh/manager/commit/b9db1c779e8d4df98d70f83bf89d9f124a4c5b4f))
+* **i18n:** add missing translations [CDS 1955] ([a4e6fe7](https://github.com/ovh/manager/commit/a4e6fe7817264ce2f4f31f51be0b551de692417b))
+* **i18n:** add missing translations [CDS 1973] ([aa41116](https://github.com/ovh/manager/commit/aa41116d3486cc37eaa1fc2abcd904e4d391a068))
+* **i18n:** add missing translations [CDS 1981] ([5a6500d](https://github.com/ovh/manager/commit/5a6500d51f2415ae011b0430d12c3a6a391ea298))
+* **i18n:** add missing translations [CDS 1984] ([80def4d](https://github.com/ovh/manager/commit/80def4d2cb1a4fe7ce9b3463a0521f3052efb736))
+* **i18n:** add missing translations [CDS 1993] ([c412502](https://github.com/ovh/manager/commit/c412502f02b59b2df9a54afdad45dc619e009cd9))
+* **i18n:** add missing translations [CDS 1996] ([bea956a](https://github.com/ovh/manager/commit/bea956ab46408aa9a138db7e3f20c4465ef23c34))
+* **i18n:** add missing translations [CDS 2031] ([602c65b](https://github.com/ovh/manager/commit/602c65b6086b5c701f0e6823defb63d67a22231f))
+* **i18n:** add missing translations [CDS 2034] ([bf1d522](https://github.com/ovh/manager/commit/bf1d5226898dfb68710b6f1231ba86766bd304f4))
+* **i18n:** add missing translations [CDS 2080] ([155da23](https://github.com/ovh/manager/commit/155da230fc32a68dfad5fdac2dc60820dc93f27d))
+* **i18n:** add missing translations [CDS 2110] ([24d5525](https://github.com/ovh/manager/commit/24d5525e6cca4d632f23a24b7f4be065e5f08c8b))
+* **i18n:** add missing translations [CDS 2116] ([17915ca](https://github.com/ovh/manager/commit/17915ca736255f38720bf47d97e81880acd4e77c))
+* **i18n:** add missing translations [CDS 2123] ([5b90ac4](https://github.com/ovh/manager/commit/5b90ac442359602988ff808468021f519385c273))
+* **i18n:** add missing translations [CDS 2135] ([1c4b1a4](https://github.com/ovh/manager/commit/1c4b1a482ee1977d7fd10e7f35b7bc31a1610f87))
+* remove unused translations [CDS] ([019d228](https://github.com/ovh/manager/commit/019d22829b296d82ab3826ea10cdbe7dd349d7f2))
+* remove unused translations [CDS] ([a9ce8a8](https://github.com/ovh/manager/commit/a9ce8a8275f1621789219f60267ad366f7d25251))
+* remove unused translations [CDS] ([4a20b18](https://github.com/ovh/manager/commit/4a20b18f4385d6ab3c0e94d7cfd53951ddd1e2b0))
+* remove unused translations [CDS] ([62faf0f](https://github.com/ovh/manager/commit/62faf0f260ae38b04e183d3455d3965d99a79c76))
+* remove unused translations [CDS] ([4da1021](https://github.com/ovh/manager/commit/4da102139ee13a75014195ed70eb185a98c00faa))
+* remove unused translations [CDS] ([1745fc9](https://github.com/ovh/manager/commit/1745fc93970cadcd0402556cdf0f4bca69a1203c))
+* remove unused translations [CDS] ([9072eee](https://github.com/ovh/manager/commit/9072eee6b8b45ea2cbb485742e26b24462faffd8))
+
+
+
+
+
+# [17.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.53.0...@ovh-ux/manager-dedicated@17.54.0) (2023-03-15)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** order ip on india server ([#8863](https://github.com/ovh/manager/issues/8863)) ([872bcea](https://github.com/ovh/manager/commit/872bcea2a4ec59eb18470f5ab7565f08b61ddab9))
+
+
+### Features
+
+* **dedicated.ip:** add and modify text in organization edit modal ([#8877](https://github.com/ovh/manager/issues/8877)) ([8fa70ac](https://github.com/ovh/manager/commit/8fa70ac7bd15fa1def05440d0f8bdf00384d6510))
+
+
+
+
+
+# [17.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.52.0...@ovh-ux/manager-dedicated@17.53.0) (2023-03-09)
+
+
+### Bug Fixes
+
+* **dedicated:** ssh key comment can be anything ([50754b5](https://github.com/ovh/manager/commit/50754b5f4a6eba530b148d9ec205d143506e9add))
+
+
+### Features
+
+* **dedicated.server:** add raid 7 support ([bde4cbb](https://github.com/ovh/manager/commit/bde4cbb6fe96327b1ff4ebbe90c5507355036e14))
+
+
+
+
+
+# [17.52.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.51.0...@ovh-ux/manager-dedicated@17.52.0) (2023-03-06)
+
+
+### Features
+
+* piano analytics tracking ([#8557](https://github.com/ovh/manager/issues/8557)) ([0b62090](https://github.com/ovh/manager/commit/0b620907c48aea25bd7e43cca39cb6d81863b05d))
+
+
+
+
+
+# [17.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.50.0...@ovh-ux/manager-dedicated@17.51.0) (2023-03-01)
+
+
+### Bug Fixes
+
+* **dedicated.cloud:** add tracking recomendations ([ae49587](https://github.com/ovh/manager/commit/ae49587d04b85872ef153a6a24d3c64ea7f073e3))
+* **dedicated.monitoring:** update the translation for the monitoring ([f80528f](https://github.com/ovh/manager/commit/f80528f121bdb6eeb13f918219c62b4195f0514f))
+
+
+### Features
+
+* add tracking in product listing pages ([aded2e5](https://github.com/ovh/manager/commit/aded2e522bafaee9416589e96a375a0db5b72419))
+
+
+
+
+
+# [17.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.49.2...@ovh-ux/manager-dedicated@17.50.0) (2023-02-23)
+
+
+### Features
+
+* **dedicated.ip:** handle serviceName param ([63c4cdd](https://github.com/ovh/manager/commit/63c4cdd08f52518f990966fa5829acfcc9a374ec))
+
+
+
+
+
 ## [17.49.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.49.1...@ovh-ux/manager-dedicated@17.49.2) (2023-02-20)
 
 

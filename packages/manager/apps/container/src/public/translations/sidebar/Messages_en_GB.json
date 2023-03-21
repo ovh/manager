@@ -131,6 +131,7 @@
   "sidebar_domain_operations": "Ongoing operations ",
   "sidebar_pci_additional_ips": "Public IPs",
   "sidebar_pci_public_gateways": "Gateway",
+  "sidebar_pci_cold_archive": "Cold Archive",
   "sidebar_loading": "Loading...",
   "sidebar_no_result": "No results found.",
   "sidebar_back_home": "Back to homepage",

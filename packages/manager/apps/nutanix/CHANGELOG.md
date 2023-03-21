@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix-app@1.4.13...@ovh-ux/manager-nutanix-app@1.4.14) (2023-03-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix-app
+
+
+
+
+
+## [1.4.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix-app@1.4.12...@ovh-ux/manager-nutanix-app@1.4.13) (2023-03-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix-app
+
+
+
+
+
+## [1.4.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix-app@1.4.11...@ovh-ux/manager-nutanix-app@1.4.12) (2023-03-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix-app
+
+
+
+
+
+## [1.4.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix-app@1.4.10...@ovh-ux/manager-nutanix-app@1.4.11) (2023-03-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix-app
+
+
+
+
+
+## [1.4.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix-app@1.4.9...@ovh-ux/manager-nutanix-app@1.4.10) (2023-03-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix-app
+
+
+
+
+
 ## [1.4.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix-app@1.4.8...@ovh-ux/manager-nutanix-app@1.4.9) (2023-02-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix-app

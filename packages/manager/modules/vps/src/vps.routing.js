@@ -21,7 +21,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('vps.detail', {
           serviceName,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+      topbarOptions: /* @ngInject */ (
+        $translate,
+        $window,
+        coreConfig,
+        atInternet,
+      ) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -29,6 +34,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('vps_common_order'),
           value: $translate.instant('vps_common_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'vps::index::order',
+              type: 'action',
+            });
             $window.open(
               getVpsOrderUrl(coreConfig.getUser().ovhSubsidiary),
               '_blank',

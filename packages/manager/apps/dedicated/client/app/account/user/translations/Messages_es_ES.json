@@ -1,4 +1,5 @@
 {
+  "user_account": "Mi cuenta",
   "back": "Volver",
   "todo": "Próximamente",
   "details": "Detalles",
@@ -31,7 +32,6 @@
   "user_account_spareemail": "Correo electrónico secundario",
   "user_account_spareemail_info": "Es recomendable indicar una dirección de correo electrónico alternativa a la dirección anterior.",
   "user_account_customer_code": "Número de cliente",
-  "user_account_cancel": "Cancelar",
   "user_account_OK": "Guardar los cambios",
   "user_account_info_error": "Se ha producido un error:",
   "user_account_info_error_on_change_email": "Se ha producido un error al actualizar la dirección de correo electrónico principal:",
@@ -66,6 +66,7 @@
   "user_ipRestrictions_title": "Restricción de acceso por IP",
   "user_ipRestrictions_activate": "Activar",
   "user_ipRestrictions_default_rule": "Regla por defecto",
+  "user_ipRestrictions_warning_last_ip_with_deny": "Cambie la regla por defecto a «Autorizado» para poder eliminar la última dirección IP.",
   "user_ipRestrictions_list": "IP configuradas",
   "user_ipRestrictions_add": "Añadir una restricción",
   "user_ipRestrictions_add_error": "Se ha producido un error al añadir la regla de restricción de la IP <b>{{t0}}</b>",
@@ -598,6 +599,7 @@
   "user_account_security_double_auth_type_backup_code_delete_error": "¡Vaya! Se ha producido un error al eliminar los códigos de seguridad:",
   "user_account_security_ip_restrictions_alt": "Restricción de acceso por IP",
   "user_account_title_infos": "Mi cuenta",
+  "user_account_description": "Administre su cuenta de cliente. Desde aquí podrá gestionar la seguridad de su cuenta, el nivel de soporte y los usuarios. También puede consultar los mensajes recibidos relacionados con sus servicios.",
   "user_account_title_subscriptions": "Mis suscripciones",
   "user_agreements_accepting": "Guardando...",
   "user_account_emails_title": "Mensajes recibidos",
@@ -606,9 +608,6 @@
   "user_account_ssh_keys_title": "Mis claves SSH",
   "user_account_users_management_title": "Gestión de los usuarios",
   "user_account_advanced_title": "Configuración avanzada",
-  "user_ipRestrictions_warning_last_ip_with_deny": "Cambie la regla por defecto a «Autorizado» para poder eliminar la última dirección IP.",
-  "user_account": "Mi cuenta",
-  "user_account_description": "Administre su cuenta de cliente. Desde aquí podrá gestionar la seguridad de su cuenta, el nivel de soporte y los usuarios. También puede consultar los mensajes recibidos relacionados con sus servicios.",
   "user_account_guides_header": "Guías",
   "user_account_guides_header_account_informations_guides": "Información de la cuenta"
 }

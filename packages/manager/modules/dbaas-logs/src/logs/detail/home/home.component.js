@@ -14,6 +14,7 @@ export default {
     indiceData: '<',
     indexIds: '<',
     aliasIds: '<',
+    encryptionKeysIds: '<',
   },
   controller,
   controllerAs: 'ctrl',

@@ -101,7 +101,7 @@
   "telecom_pack_migration_confirm_no_commitment": "Ce changement d’offre n’est sujet à aucun réengagement.",
   "telecom_pack_migration_confirm_commitment": "Un réengagement de {{ month }} mois débutera à la date de facturation.",
   "telecom_pack_migration_confirm_new_offer_price": "Votre nouvel abonnement mensuel s'élève à : <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">HT/mois</span>, applicable dès livraison de votre nouvel accès. Vous en serez informé par e-mail.",
-  "telecom_pack_migration_confirm_shipping": "Wybrałeś sposób dostawy nowego modemu dla każdego przewoźnika (+ € netto).",
+  "telecom_pack_migration_confirm_shipping": "Wybrałeś sposób dostawy nowego modemu przez przewoźnika (+ € netto).",
   "telecom_pack_migration_confirm_first_mensuality": "Twoim pierwszym miesięcznym terminem rozliczenia jest {{ price }} netto.",
   "telecom_pack_migration_confirm_service_to_delete_title": "Services qui seront supprimés",
   "telecom_pack_migration_confirm_service_to_delete_total": "Łącznie {{count}} usługi zostaną usunięte podczas zmiany oferty.",
@@ -173,10 +173,12 @@
   "telecom_pack_migration_confirm_resume_contact_phone": "Numer telefonu, pod którym w razie potrzeby można się z Tobą w skontaktować.",
   "telecom_pack_migration_confirm_resume_phone_form_error": "Wprowadź poprawny numer telefonu.",
   "telecom_pack_migration_choose_offer_error": "Wystąpił błąd podczas pobierania ofert: {{error}}",
-  "telecom_pack_migration_modem_yes": "Modem dziewięć ({{ price }} netto / m-c)",
-  "telecom_pack_migration_modem_recycled": "Modem z recyklingu ({{ price }} netto / m-c)",
+  "telecom_pack_migration_modem_yes": "Nowy modem ({{price}} netto/m-c)",
+  "telecom_pack_migration_modem_recycled": "Modem z recyklingu ({{price}} netto/m-c)",
   "telecom_pack_migration_modem_no": "Brak modemu",
   "telecom_pack_migration_modem_required": "Wybór typu modemu jest obowiązkowy",
-  "telecom_pack_migration_confirm_modem_rental_yes": "Dzierżawa modemu",
-  "telecom_pack_migration_confirm_modem_rental_recycled": "Wynajem modemu z recyklingu"
+  "telecom_pack_migration_confirm_modem_rental_yes": "Dzierżawa nowego modemu",
+  "telecom_pack_migration_confirm_modem_rental_recycled": "Dzierżawa modemu z recyklingu",
+  "telecom_pack_migration_offers_debit_mention_1": "(1) Prędkość pobierania do 92 Mbps w VDSL i 22 Mbps w ADSL, pod warunkiem dostępności.",
+  "telecom_pack_migration_offers_debit_mention_2": "(2) Prędkość pobierania do 36 Mbps w VDSL i 1 Mbps w ADSL, pod warunkiem dostępności."
 }

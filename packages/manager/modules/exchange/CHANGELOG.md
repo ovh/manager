@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.6.1...@ovh-ux/manager-exchange@3.7.0) (2023-03-01)
+
+
+### Features
+
+* add tracking in product listing pages ([aded2e5](https://github.com/ovh/manager/commit/aded2e522bafaee9416589e96a375a0db5b72419))
+
+
+
+
+
 ## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.6.0...@ovh-ux/manager-exchange@3.6.1) (2022-10-19)
 
 
@@ -1184,6 +1200,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 * **i18n:** submit translations ([3969846](https://github.com/ovh-ux/ovh-module-exchange/commit/3969846))
 * **module:** fix App module ([fcdb0ad](https://github.com/ovh-ux/ovh-module-exchange/commit/fcdb0ad))
 * **translations:** add missing translation ([1311e13](https://github.com/ovh-ux/ovh-module-exchange/commit/1311e13))
-
-
-

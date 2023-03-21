@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.11.1...@ovh-ux/manager-dbaas-logs@1.11.2) (2023-03-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1920] ([#8316](https://github.com/ovh/manager/issues/8316)) ([454b094](https://github.com/ovh/manager/commit/454b094f65b689937fb87c80d54061894dbdefc6))
+* **i18n:** add missing translations [CDS 2031] ([602c65b](https://github.com/ovh/manager/commit/602c65b6086b5c701f0e6823defb63d67a22231f))
+* **i18n:** add missing translations [CDS 2153] ([f6a075e](https://github.com/ovh/manager/commit/f6a075eecd6492a61bfc8f786a022e9a24203780))
+* remove unused translations [CDS] ([62faf0f](https://github.com/ovh/manager/commit/62faf0f260ae38b04e183d3455d3965d99a79c76))
+
+
+
+
+
+## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.11.0...@ovh-ux/manager-dbaas-logs@1.11.1) (2023-03-15)
+
+
+### Bug Fixes
+
+* **dbaas-logs:** object ownership on link usage ([#8973](https://github.com/ovh/manager/issues/8973)) ([f4aa7c3](https://github.com/ovh/manager/commit/f4aa7c30de2a234d69cc0d8be758d49db55a567e))
+
+
+
+
+
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.10.2...@ovh-ux/manager-dbaas-logs@1.11.0) (2023-03-01)
+
+
+### Features
+
+* add tracking in product listing pages ([aded2e5](https://github.com/ovh/manager/commit/aded2e522bafaee9416589e96a375a0db5b72419))
+* **dbaas-logs:** archives encryption ([a8057ca](https://github.com/ovh/manager/commit/a8057ca5cb5cacecbb9033b61fb3d51e13b3c30c))
+
+
+
+
+
 ## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.10.1...@ovh-ux/manager-dbaas-logs@1.10.2) (2023-02-15)
 
 

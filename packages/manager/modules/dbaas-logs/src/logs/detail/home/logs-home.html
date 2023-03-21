@@ -292,6 +292,21 @@
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{::'logs_encryption_keys_title'|translate}}"
+                    data-term-popover="{{::'logs_home_encryption_keys_tooltip'|translate}}"
+                >
+                    <oui-tile-description
+                        data-ng-bind="ctrl.encryptionKeysIds.length"
+                    ></oui-tile-description>
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            aria-label="{{::'logs_edit'|translate}}"
+                            data-on-click="ctrl.editEncryptionKeys()"
+                            ><span data-translate="logs_edit"></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
             </oui-tile>
         </div>
         <div class="col-xm-12 col-md-4" data-ng-if="!ctrl.isAccountDisabled">

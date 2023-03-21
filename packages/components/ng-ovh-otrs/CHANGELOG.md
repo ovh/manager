@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.11](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.2.10...@ovh-ux/ng-ovh-otrs@9.2.11) (2023-03-20)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([019d228](https://github.com/ovh/manager/commit/019d22829b296d82ab3826ea10cdbe7dd349d7f2))
+
+
+
+
+
 ## [9.2.10](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.2.9...@ovh-ux/ng-ovh-otrs@9.2.10) (2023-02-20)
 
 

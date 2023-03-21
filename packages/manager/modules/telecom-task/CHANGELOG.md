@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-task@6.3.4...@ovh-ux/manager-telecom-task@6.3.5) (2023-03-20)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([019d228](https://github.com/ovh/manager/commit/019d22829b296d82ab3826ea10cdbe7dd349d7f2))
+
+
+
+
+
 ## [6.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-task@6.3.3...@ovh-ux/manager-telecom-task@6.3.4) (2023-02-20)
 
 

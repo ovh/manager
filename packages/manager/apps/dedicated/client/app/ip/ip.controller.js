@@ -98,10 +98,6 @@ export default /* @ngInject */ function IpMainCtrl(
   });
 
   $scope.onAgoraOrderButtonClick = function onAgoraOrderButtonClick() {
-    trackClick(
-      DASHBOARD_TRACKING_PREFIX.DEFAULT,
-      DASHBOARD_TRACKING_HIT.AGORA_ORDER,
-    );
     goToAgoraOrder();
   };
 

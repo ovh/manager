@@ -333,11 +333,14 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
-  getRoles(projectId, engine, databaseId) {
+  getRoles(projectId, engine, databaseId, advanced) {
     if (isFeatureActivated('getRoles', engine)) {
       return this.$http
         .get(
           `/cloud/project/${projectId}/database/${engine}/${databaseId}/roles`,
+          {
+            params: advanced ? { advanced: 1 } : null,
+          },
           DatabaseService.getIcebergHeaders(),
         )
         .then(({ data }) => data);
@@ -840,6 +843,21 @@ export default class DatabaseService {
       .get(
         `/cloud/project/${serviceName}/database/${databaseEngine}/${databaseId}/currentQueries`,
         DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  postTerminateQuery(
+    serviceName,
+    databaseId,
+    databaseEngine,
+    queryPid,
+    terminateRequest,
+  ) {
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/database/${databaseEngine}/${databaseId}/currentQueries/cancel`,
+        { pid: queryPid, terminate: terminateRequest },
       )
       .then(({ data }) => data);
   }

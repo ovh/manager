@@ -55,7 +55,6 @@
   "otrs_service_type_email_mxplan": "MX Plan email",
   "otrs_service_type_email_pro": "Email Pro",
   "otrs_service_type_hosting_web": "Web hosting",
-  "otrs_service_type_hubic": "hubiC",
   "otrs_service_type_OTHER": "Other",
   "otrs_service_type_dedicated_cloud": "Hosted Private Cloud",
   "otrs_service_type_cloud": "Public Cloud",
@@ -120,8 +119,12 @@
   "otrs_service_type_hpcspot": "HPCSpot",
   "otrs_service_type_saas_csp_2": "SaaS CSP2",
   "otrs_service_type_horizon_view": "Horizon View",
+  "otrs_service_type_webcoach": "Website Coach",
   "otrs_service_type_other": "Other request",
   "otrs_service_type_choice": "Type of service:",
+  "otrs_service_type_dedicated_anthos": "Anthos",
+  "otrs_service_type_license_redhat": "Red Hat licence",
+  "otrs_service_type_nutanix": "Nutanix",
   "otrs_universe_choice": "Universe:",
   "otrs_universe_WEB": "Web",
   "otrs_universe_SUNRISE": "Sunrise",
@@ -197,9 +200,5 @@
   "otrs_intervention_disk_comment_english_please": "English as a preference",
   "otrs_intervention_disk_confirm": "I backed up the data on the drive I want to replace. You can replace it.",
   "otrs_support_agreements": "The data communicated via this form is collected with your consent and is intended for OVHcloud S.A.S., in its capacity as data controller. Data may be transmitted to its subcontractors acting on strict instructions from OVHcloud S. A. S. and to the entities of the OVHcloud Group. In this second case, and provided that the OVHcloud Group entity has signed binding corporate rules, the data may be transferred outside the European Union. The data in this form is gathered in order to manage customer relations, send commercial messages and comply with the applicable regulations at OVHcloud. The data of your customer account will be stored until your account is deleted, then for a period of thirty-six (36) months thereafter. Some data processed for management purposes (e.g. invoices) may be conserved for a longer period, in accordance with applicable regulations. You have the right to lodge a complaint with the competent supervisory authority as well as a right of access, rectification, deletion, limitation, portability and opposition to your personal data for legitimate reasons. To exercise this right, please submit your request via our dedicated form.",
-  "otrs_support_agreements_US": "OVH uses your account information to identify you, enable the customer service representative to resolve technical issues, and improve OVH services. Your use of this site is governed by the OVH <a href=\"{{ terms }}\" target=\"_blank\">Terms of Use</a> and <a href=\"{{ privacyPolicy}}\" target=\"_blank\">Privacy Policy</a>, unless you have entered into a separate contract with OVH to purchase OVH services.",
-  "otrs_service_type_webcoach": "Website Coach",
-  "otrs_service_type_dedicated_anthos": "Anthos",
-  "otrs_service_type_license_redhat": "Red Hat licence",
-  "otrs_service_type_nutanix": "Nutanix"
+  "otrs_support_agreements_US": "OVH uses your account information to identify you, enable the customer service representative to resolve technical issues, and improve OVH services. Your use of this site is governed by the OVH <a href=\"{{ terms }}\" target=\"_blank\">Terms of Use</a> and <a href=\"{{ privacyPolicy}}\" target=\"_blank\">Privacy Policy</a>, unless you have entered into a separate contract with OVH to purchase OVH services."
 }

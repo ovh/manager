@@ -27,7 +27,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('email-pro.dashboard', {
           productId,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $window, coreConfig) => ({
+      topbarOptions: /* @ngInject */ (
+        $translate,
+        $window,
+        coreConfig,
+        atInternet,
+      ) => ({
         cta: {
           type: 'button',
           displayed: true,
@@ -35,6 +40,10 @@ export default /* @ngInject */ ($stateProvider) => {
           label: $translate.instant('email_pro_order'),
           value: $translate.instant('email_pro_order'),
           onClick: () => {
+            atInternet.trackClick({
+              name: 'email-pro::index::order',
+              type: 'action',
+            });
             $window.open(
               getEmailProOrderUrl(coreConfig.getUser().ovhSubsidiary),
               '_blank',

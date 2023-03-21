@@ -13,8 +13,6 @@ import modalStyle from './cookie-modal.module.scss';
 
 import { useApplication } from '@/context';
 
-const trackingEnabled = process.env.NODE_ENV === 'production';
-
 type Props = {
   shell: Shell;
 };
@@ -30,41 +28,23 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
 
   const accept = () => {
     setCookies('MANAGER_TRACKING', 1);
-    trackingPlugin.setEnabled(trackingEnabled);
-    trackingPlugin.setRegion(environment.getRegion());
-    trackingPlugin.init();
-
-    trackingPlugin.trackClick({
-      type: 'action',
-      name: 'cookie-banner-manager::accept',
-    });
-
+    trackingPlugin.onUserConsentFromModal(true);
     setShow(false);
   };
 
   const deny = () => {
     setCookies('MANAGER_TRACKING', 0);
-    trackingPlugin.setEnabled(trackingEnabled);
-    trackingPlugin.clearTrackQueue();
-    trackingPlugin.init();
-
-    trackingPlugin.trackClick({
-      type: 'action',
-      name: 'cookie-banner-manager::decline',
-    });
-
-    trackingPlugin.setEnabled(false);
-
+    trackingPlugin.onUserConsentFromModal(false);
     setShow(false);
   };
 
   useEffect(() => {
+    trackingPlugin.setRegion(environment.getRegion());
     // activate tracking if region is US or if tracking consent cookie is valid
     if (environment.getRegion() === 'US' || cookies.MANAGER_TRACKING === '1') {
-      trackingPlugin.setEnabled(trackingEnabled);
-      trackingPlugin.setRegion(environment.getRegion());
-      trackingPlugin.init();
+      trackingPlugin.init(true);
     } else if (cookies.MANAGER_TRACKING == null) {
+      trackingPlugin.onConsentModalDisplay();
       setShow(true);
     } else {
       trackingPlugin.setEnabled(false);

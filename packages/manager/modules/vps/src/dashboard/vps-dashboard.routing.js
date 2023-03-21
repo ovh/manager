@@ -39,6 +39,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('vps.detail.dashboard.snapshot-take'),
       goToSnapshotRestore: /* @ngInject */ ($state) => () =>
         $state.go('vps.detail.dashboard.snapshot-restore'),
+      goToSnapshotDownload: /* @ngInject */ ($state) => () =>
+        $state.go('vps.detail.dashboard.snapshot-download'),
       goToTerminateOption: /* @ngInject */ ($state) => (vpsOption) =>
         $state.go('vps.detail.dashboard.terminate-option', { vpsOption }),
       goToUpgradeAdditionalDisk: /* @ngInject */ ($state) => (vpsOption) =>
@@ -76,7 +78,9 @@ export default /* @ngInject */ ($stateProvider) => {
         VpsUpgradeService,
       ) =>
         isVpsNewRange
-          ? VpsUpgradeService.getAvailableUpgrades(serviceInfos.serviceId)
+          ? VpsUpgradeService.getAvailableUpgrades(
+              serviceInfos.serviceId,
+            ).catch(() => null)
           : [],
 
       isCommitmentAvailable: /* @ngInject */ (ovhFeatureFlipping) =>

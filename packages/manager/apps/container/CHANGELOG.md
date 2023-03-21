@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.17.0...@ovh-ux/manager-container-app@0.17.1) (2023-03-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2040] ([7948230](https://github.com/ovh/manager/commit/7948230d618ec667c6fb39906e2cf7e116c86c82))
+* **i18n:** add missing translations [CDS 2081] ([128c328](https://github.com/ovh/manager/commit/128c3288180f8e294dc472c293c32c11a7a28564))
+* **i18n:** add missing translations [CDS 2104] ([e464a92](https://github.com/ovh/manager/commit/e464a92789ee9a9ec3e4620b354516a06462a453))
+
+
+
+
+
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.16.0...@ovh-ux/manager-container-app@0.17.0) (2023-03-06)
+
+
+### Features
+
+* piano analytics tracking ([#8557](https://github.com/ovh/manager/issues/8557)) ([0b62090](https://github.com/ovh/manager/commit/0b620907c48aea25bd7e43cca39cb6d81863b05d))
+
+
+
+
+
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.15.2...@ovh-ux/manager-container-app@0.16.0) (2023-03-02)
+
+
+### Features
+
+* **pci.ai-dashboard:** ai dashboard ([#8952](https://github.com/ovh/manager/issues/8952)) ([c8b6a2a](https://github.com/ovh/manager/commit/c8b6a2ae0feff6056aa16c96732d63d8074e1eff))
+
+
+
+
+
+## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.15.1...@ovh-ux/manager-container-app@0.15.2) (2023-02-23)
+
+
+### Bug Fixes
+
+* **server-sidebar:** change filter for web domain ([b9471be](https://github.com/ovh/manager/commit/b9471be91e26fa735bbbd892ed3b17308d392136))
+
+
+
+
+
+## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.15.0...@ovh-ux/manager-container-app@0.15.1) (2023-02-23)
+
+
+### Bug Fixes
+
+* **container:** managerBaremetal dc url ([#8917](https://github.com/ovh/manager/issues/8917)) ([e89dba8](https://github.com/ovh/manager/commit/e89dba8469b5d681b35bb3923fb316e72c82f682))
+
+
+
+
+
 # [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.14.2...@ovh-ux/manager-container-app@0.15.0) (2023-02-20)
 
 

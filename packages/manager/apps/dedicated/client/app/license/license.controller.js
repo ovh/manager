@@ -13,6 +13,7 @@ export default /* @ngInject */ (
   constants,
   ovhFeatureFlipping,
   LICENCE_TYPES,
+  atInternet,
 ) => {
   $scope.licencesTableLoading = false;
   $scope.licenses = null;
@@ -149,6 +150,22 @@ export default /* @ngInject */ (
 
   $scope.canRenewLicense = (licenseType) => {
     return LICENCE_TYPES.indexOf(licenseType) > -1;
+  };
+
+  $scope.onGoToLicenseSpla = () => {
+    atInternet.trackClick({
+      name: 'dedicated::license::dashboard::order-spla',
+      type: 'action',
+    });
+    $state.go('app.license.dashboard.spla-add');
+  };
+
+  $scope.onGoToLicenseOrder = () => {
+    atInternet.trackClick({
+      name: 'dedicated::license::dashboard::order',
+      type: 'action',
+    });
+    $state.go('app.license.order');
   };
 
   const init = () => {

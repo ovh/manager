@@ -1,4 +1,5 @@
 import clone from 'lodash/clone';
+import find from 'lodash/find';
 
 export default class LogsStreamsArchivesCtrl {
   /* @ngInject */
@@ -12,6 +13,7 @@ export default class LogsStreamsArchivesCtrl {
     LogsStreamsService,
     LogsConstants,
     LogsStreamsArchivesService,
+    LogsEncryptionKeysService,
   ) {
     this.$interval = $interval;
     this.$state = $state;
@@ -22,6 +24,7 @@ export default class LogsStreamsArchivesCtrl {
     this.LogsStreamsService = LogsStreamsService;
     this.LogsConstants = LogsConstants;
     this.LogsStreamsArchivesService = LogsStreamsArchivesService;
+    this.LogsEncryptionKeysService = LogsEncryptionKeysService;
 
     this.serviceName = this.$stateParams.serviceName;
     this.streamId = this.$stateParams.streamId;
@@ -31,7 +34,9 @@ export default class LogsStreamsArchivesCtrl {
   $onInit() {
     this.archiveIds.load();
     this.stream.load();
+    this.encryptionKeys.load();
     this.notifications = [];
+    this.archivesEncryptionKeys = {};
   }
 
   $destroy() {
@@ -71,6 +76,10 @@ export default class LogsStreamsArchivesCtrl {
     this.stream = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.LogsStreamsService.getStream(this.serviceName, this.streamId),
+    });
+    this.encryptionKeys = this.CucControllerHelper.request.getHashLoader({
+      loaderFunction: () =>
+        this.LogsEncryptionKeysService.getEncryptionKeys(this.serviceName),
     });
   }
 
@@ -266,9 +275,26 @@ export default class LogsStreamsArchivesCtrl {
       }))
       .then(this.startRetrievalDelayUpdate())
       .then((archivesData) => {
-        archivesData.data.forEach((archive) =>
-          this.updateUnfreezingNotification(archive),
-        );
+        archivesData.data.forEach((archive) => {
+          this.updateUnfreezingNotification(archive);
+          // Retrieve the encryption keys used to encrypt the archive, if it exists
+          this.LogsEncryptionKeysService.getArchiveEncryptionKeys(
+            this.serviceName,
+            this.streamId,
+            archive.archiveId,
+          ).then((encryptionKeys) => {
+            if (encryptionKeys.length > 0) {
+              this.archivesEncryptionKeys[archive.archiveId] = [];
+            }
+            encryptionKeys.forEach((encryptionKeyId) => {
+              this.archivesEncryptionKeys[archive.archiveId].push(
+                find(this.encryptionKeys.data, {
+                  encryptionKeyId,
+                }).title,
+              );
+            });
+          });
+        });
         return archivesData;
       });
   }
