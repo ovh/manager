@@ -18,7 +18,7 @@ export default {
     services: '<',
     tickets: '<',
     trackingPrefix: '<',
-    displaySiretBanner: '<',
+    callFeatureAvailabiltySiret: '<',
   },
   controller,
   template,

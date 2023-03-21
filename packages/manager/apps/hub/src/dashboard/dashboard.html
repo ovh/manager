@@ -37,6 +37,33 @@
                 ></span
             ></a>
         </oui-message>
+        <div data-ng-if="$ctrl.availableSiretPopup">
+            <div class="modal d-block" role="dialog" id="modal-siret">
+                <div
+                    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                >
+                    <div class="modal-content">
+                        <oui-modal
+                            data-heading="{{:: 'manager_hub_dashboard_modal_title' | translate }}"
+                            data-primary-action="$ctrl.goToSiretModification()"
+                            data-primary-label="{{:: 'manager_hub_dashboard_modal_siret_link' | translate }}"
+                            data-secondary-action="$ctrl.cancelToSiretModification()"
+                            data-secondary-label="{{:: 'manager_hub_dashboard_modal_siret_cancel' | translate }}"
+                            data-on-dismiss="$ctrl.cancelToSiretModification()"
+                        >
+                            <p
+                                class="mb-0"
+                                data-translate="manager_hub_dashboard_modal_siret_part_1"
+                            ></p>
+                            <p
+                                data-translate="manager_hub_dashboard_modal_siret_part_2"
+                            ></p>
+                        </oui-modal>
+                    </div>
+                </div>
+            </div>
+            <div class="oui-modal-backdrop"></div>
+        </div>
         <h2 data-translate="manager_hub_dashboard_overview"></h2>
         <div class="row">
             <hub-payment-status
