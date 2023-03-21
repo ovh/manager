@@ -1,5 +1,7 @@
 {
   "manager_hub_dashboard_overview": "Vista general de mi actividad",
   "manager_hub_dashboard_services": "Mis productos y servicios",
-  "manager_hub_dashboard": "Panel de control"
+  "manager_hub_dashboard": "Panel de control",
+  "manager_hub_dashboard_banner_siret_link": "Haga clic aquí para lanzar la actualización.",
+  "manager_hub_dashboard_banner_siret": "Con el objetivo de mejorar la calidad de sus datos, necesitamos actualizar el número SIRET de su empresa. Esta actualización se realizará en solo unos segundos. Tenga en cuenta que necesitará su extracto KBIS. "
 }

@@ -33,7 +33,7 @@
   "user_account_spareemail_info": "È consigliato inserire un indirizzo email alternativo all'indirizzo precedente.",
   "user_account_customer_code": "Codice cliente",
   "user_account_OK": "Salva le modifiche",
-  "user_account_info_error": "Si è verificato un errore:",
+  "user_account_info_error": "Le informazioni inserite non sono corrette, ti preghiamo di riprovare:",
   "user_account_info_error_on_change_email": "Si è verificato un errore durante l'aggiornamento dell'email principale:",
   "subscriptions_title": "Abbonamenti",
   "subscriptions_error": "Si è verificato un errore. Ti preghiamo di riprovare più tardi",

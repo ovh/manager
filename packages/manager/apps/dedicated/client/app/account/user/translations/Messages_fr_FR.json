@@ -33,7 +33,7 @@
   "user_account_spareemail_info": "Il est judicieux de mettre une adresse email alternative à l'adresse précédente.",
   "user_account_customer_code": "Code client",
   "user_account_OK": "Enregistrer les modifications",
-  "user_account_info_error": "Une erreur est survenue :",
+  "user_account_info_error": "Les informations saisies sont incorrectes, merci d'essayer ultérieurement :",
   "user_account_info_error_on_change_email": "Une erreur est survenue sur la mise à jour de l’email principal:",
   "subscriptions_title": "Abonnements",
   "subscriptions_error": "Une erreur est survenue. Veuillez réessayer plus tard.",

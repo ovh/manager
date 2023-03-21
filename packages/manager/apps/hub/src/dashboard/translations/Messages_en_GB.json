@@ -1,5 +1,7 @@
 {
   "manager_hub_dashboard": "Dashboard",
   "manager_hub_dashboard_overview": "View all my activity",
-  "manager_hub_dashboard_services": "My products and services"
+  "manager_hub_dashboard_services": "My products and services",
+  "manager_hub_dashboard_banner_siret_link": "click here for the update.",
+  "manager_hub_dashboard_banner_siret": "To improve the quality of your data, we need to update your company’s SIRET number. This update will only take a few seconds. Please take your KBIS and "
 }

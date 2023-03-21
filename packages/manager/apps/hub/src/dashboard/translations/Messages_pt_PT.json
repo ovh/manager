@@ -1,5 +1,7 @@
 {
   "manager_hub_dashboard_overview": "Visão geral da minha atividade",
   "manager_hub_dashboard_services": "Os meus produtos e serviços",
-  "manager_hub_dashboard": "Painel de controlo"
+  "manager_hub_dashboard": "Painel de controlo",
+  "manager_hub_dashboard_banner_siret_link": "clique aqui para efetuar a atualização.",
+  "manager_hub_dashboard_banner_siret": "Para melhorar a qualidade dos seus dados, é necessário atualizar o NIF da sua empresa. Esta atualização demorará apenas alguns segundos. Tenha consigo a sua certidão de registo comercial e "
 }

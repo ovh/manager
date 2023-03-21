@@ -13,5 +13,6 @@ export default {
     formCtrl: '<?',
     onFieldError: '<?',
     mode: '<',
+    fieldToFocus: '<',
   },
 };
