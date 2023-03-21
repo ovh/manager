@@ -33,7 +33,7 @@
   "user_account_spareemail_info": "Es wird empfohlen, für die bereits eingegebene E-Mail-Adresse eine alternative Adresse einzutragen.",
   "user_account_customer_code": "Kundencode",
   "user_account_OK": "Änderungen speichern",
-  "user_account_info_error": "Es ist ein Fehler aufgetreten:",
+  "user_account_info_error": "Die eingegebenen Informationen stimmen nicht, bitte versuchen Sie es später noch einmal:",
   "user_account_info_error_on_change_email": "Bei der Änderung der Haupt-E-Mail-Adresse ist ein Fehler aufgetreten:",
   "subscriptions_title": "Abonnements",
   "subscriptions_error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",

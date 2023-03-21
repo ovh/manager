@@ -33,7 +33,7 @@
   "user_account_spareemail_info": "We strongly recommend entering an alternative email address to the previous one.",
   "user_account_customer_code": "Customer code",
   "user_account_OK": "Save changes",
-  "user_account_info_error": "An error has occurred:",
+  "user_account_info_error": "The information entered is incorrect. Please try again later:",
   "user_account_info_error_on_change_email": "An error has occurred updating the primary email address:",
   "subscriptions_title": "Subscriptions",
   "subscriptions_error": "An error has occurred. Please try again later.",

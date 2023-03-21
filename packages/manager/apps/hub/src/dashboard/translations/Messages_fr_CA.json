@@ -1,5 +1,7 @@
 {
   "manager_hub_dashboard": "Tableau de bord",
   "manager_hub_dashboard_overview": "Vue d'ensemble de mon activité",
-  "manager_hub_dashboard_services": "Mes produits et services"
+  "manager_hub_dashboard_services": "Mes produits et services",
+  "manager_hub_dashboard_banner_siret_link": "cliquez-ici pour la mise à jour.",
+  "manager_hub_dashboard_banner_siret": "Dans le cadre de l’amélioration de la qualité de vos données, nous avons besoin de mettre à jour le numéro SIRET de votre entreprise. Cette mise à jour ne prendra que quelques secondes, munissez-vous de votre KBIS et "
 }

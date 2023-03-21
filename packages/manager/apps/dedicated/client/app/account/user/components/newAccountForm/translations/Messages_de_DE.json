@@ -758,5 +758,6 @@
   "signup_enum_IN_area_IN-TR": "Tripura",
   "signup_enum_IN_area_IN-UP": "Uttar Pradesh",
   "signup_enum_IN_area_IN-UT": "Uttarakhand",
-  "signup_enum_IN_area_IN-WB": "Westbengalen"
+  "signup_enum_IN_area_IN-WB": "Westbengalen",
+  "signup_field_add_companyNationalIdentificationNumber_siret_success": "Ihr Update wurde registriert."
 }

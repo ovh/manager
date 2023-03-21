@@ -38,7 +38,6 @@ export default /* @ngInject */ ($stateProvider) => {
           };
         });
       },
-
       trackClick: /* @ngInject */ (atInternet) => (hit) => {
         return atInternet.trackClick({
           name: hit,

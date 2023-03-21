@@ -16,6 +16,16 @@
     data-ng-submit="$ctrl.submit()"
     novalidate
 >
+    <oui-message
+        type="success"
+        on-dismiss="$ctrl.onDismiss()"
+        dismissable
+        data-ng-if="$ctrl.isUpdated"
+    >
+        <span
+            data-translate="signup_field_add_companyNationalIdentificationNumber_siret_success"
+        ></span>
+    </oui-message>
     <!-- FORM SECTIONS -->
     <fieldset
         data-ng-form="{{:: 'form_part_' + section }}"

@@ -8,6 +8,7 @@ export default {
     readonly: '<',
     onSubmit: '&', // on create callback
     userAccountServiceInfos: '<',
+    fieldToFocus: '<',
   },
   template,
   controller,
