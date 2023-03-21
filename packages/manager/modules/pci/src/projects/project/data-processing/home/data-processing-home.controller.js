@@ -1,4 +1,7 @@
-import { DATA_PROCESSING_GUIDE_URL } from '../data-processing.constants';
+import {
+  DATA_PROCESSING_GUIDE_URL,
+  DATA_PROCESSING_TRACKING_PREFIX,
+} from '../data-processing.constants';
 
 export default class DataProcessingHomeCtrl {
   /* @ngInject */
@@ -9,7 +12,7 @@ export default class DataProcessingHomeCtrl {
 
   onSubmitClick() {
     this.atInternet.trackClick({
-      name: 'PublicCloud::pci::projects::project::data-processing::jobs-new',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs-new`,
       type: 'action',
     });
     this.submitJob();
@@ -17,7 +20,7 @@ export default class DataProcessingHomeCtrl {
 
   onShowJobsClick() {
     this.atInternet.trackClick({
-      name: 'PublicCloud::pci::projects::project::data-processing::jobs-all',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs-all`,
       type: 'action',
     });
     this.showJobs();
@@ -25,8 +28,7 @@ export default class DataProcessingHomeCtrl {
 
   onAddNotebookClick() {
     this.atInternet.trackClick({
-      name:
-        'PublicCloud::pci::projects::project::data-processing::notebooks-new',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::notebooks-new`,
       type: 'action',
     });
     this.addNotebook();
@@ -34,8 +36,7 @@ export default class DataProcessingHomeCtrl {
 
   onShowNotebooksClick() {
     this.atInternet.trackClick({
-      name:
-        'PublicCloud::pci::projects::project::data-processing::notebooks-all',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::notebooks-all`,
       type: 'action',
     });
     this.showNotebooks();

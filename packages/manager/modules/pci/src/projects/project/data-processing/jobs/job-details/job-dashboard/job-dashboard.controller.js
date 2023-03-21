@@ -9,6 +9,7 @@ import {
   METRICS_REFRESH_INTERVAL,
   JOB_TYPE_JAVA,
   JOB_TYPE_PYTHON,
+  DATA_PROCESSING_TRACKING_PREFIX,
 } from '../../../data-processing.constants';
 import { WARP10_URL } from './job-dashboard.constants';
 
@@ -253,8 +254,7 @@ export default class {
 
   onSparkUIClick() {
     this.atInternet.trackClick({
-      name:
-        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::job-user-interface',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::job-details::dashboard::job-user-interface`,
       type: 'action',
     });
     this.$window.open(
@@ -265,8 +265,7 @@ export default class {
 
   onMetricsClick() {
     this.atInternet.trackClick({
-      name:
-        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::monitor',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::job-details::dashboard::monitor`,
       type: 'action',
     });
     this.showMetrics();
@@ -274,8 +273,7 @@ export default class {
 
   onObjectContainerClick() {
     this.atInternet.trackClick({
-      name:
-        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::object-container',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::job-details::dashboard::object-container`,
       type: 'action',
     });
     this.browseObjectStorage(this.containerId);
@@ -283,8 +281,7 @@ export default class {
 
   onBillingConsoleClick() {
     this.atInternet.trackClick({
-      name:
-        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::billing-console',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::job-details::dashboard::billing-console`,
       type: 'action',
     });
     this.showBillingConsole();
@@ -292,8 +289,7 @@ export default class {
 
   onTerminateClick() {
     this.atInternet.trackClick({
-      name:
-        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::kill-job',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::job-details::dashboard::kill-job`,
       type: 'action',
     });
     this.terminateJob();

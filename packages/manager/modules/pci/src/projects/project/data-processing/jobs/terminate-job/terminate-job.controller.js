@@ -3,7 +3,6 @@ export default class {
   constructor($state, dataProcessingService) {
     this.$state = $state;
     this.dataProcessingService = dataProcessingService;
-    this.deleteJob = this.deleteJob.bind(this);
   }
 
   deleteJob() {

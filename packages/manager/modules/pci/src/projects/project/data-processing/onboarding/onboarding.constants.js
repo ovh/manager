@@ -1,21 +1,20 @@
+import { DATA_PROCESSING_TRACKING_PREFIX } from '../data-processing.constants';
+
 export const GUIDES = [
   {
     id: 'overview',
     link: 'https://docs.ovh.com/gb/en/data-processing/overview/',
-    tracker:
-      'PublicCloud::pci::projects::project::data-processing::onboarding::docs-overview',
+    tracker: `${DATA_PROCESSING_TRACKING_PREFIX}::onboarding::docs-overview`,
   },
   {
     id: 'quick_start',
     link: 'https://docs.ovh.com/gb/en/data-processing/submit-javascala/',
-    tracker:
-      'PublicCloud::pci::projects::project::data-processing::onboarding::docs-spark',
+    tracker: `${DATA_PROCESSING_TRACKING_PREFIX}::onboarding::docs-spark`,
   },
   {
     id: 'monitor_job',
     link: 'https://docs.ovh.com/gb/en/data-processing/monitor/',
-    tracker:
-      'PublicCloud::pci::projects::project::data-processing::onboarding::docs-monitor',
+    tracker: `${DATA_PROCESSING_TRACKING_PREFIX}::onboarding::docs-monitor`,
   },
 ];
 

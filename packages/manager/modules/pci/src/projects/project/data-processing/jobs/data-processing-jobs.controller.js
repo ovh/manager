@@ -4,7 +4,10 @@ import {
   datagridToIcebergFilter,
   getDataProcessingUiUrl,
 } from '../data-processing.utils';
-import { DATA_PROCESSING_GUIDE_URL } from '../data-processing.constants';
+import {
+  DATA_PROCESSING_GUIDE_URL,
+  DATA_PROCESSING_TRACKING_PREFIX,
+} from '../data-processing.constants';
 
 import { getCriteria } from '../../project.utils';
 
@@ -80,7 +83,7 @@ export default class {
 
   onSubmitClick() {
     this.atInternet.trackClick({
-      name: 'PublicCloud::pci::projects::project::data-processing::add-job',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::add-job`,
       type: 'action',
     });
     this.submitJob();

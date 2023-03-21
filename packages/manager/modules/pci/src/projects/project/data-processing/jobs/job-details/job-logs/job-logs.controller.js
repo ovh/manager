@@ -1,6 +1,9 @@
 import moment from 'moment';
 import { formatLogsDate } from './job-logs.utils';
-import { DATA_PROCESSING_ENDED_JOBS } from '../../../data-processing.constants';
+import {
+  DATA_PROCESSING_ENDED_JOBS,
+  DATA_PROCESSING_TRACKING_PREFIX,
+} from '../../../data-processing.constants';
 
 export default class {
   /* @ngInject */
@@ -37,8 +40,7 @@ export default class {
 
   downloadObject(object) {
     this.atInternet.trackClick({
-      name:
-        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::logs::download',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::job-details::logs::download`,
       type: 'action',
     });
 

@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { GRAFANA_URL, GUIDES_MONITOR_JOB_URL } from './metrics-token.constants';
+import { DATA_PROCESSING_TRACKING_PREFIX } from '../../../../data-processing.constants';
 
 export default class {
   /* @ngInject */
@@ -29,8 +30,7 @@ export default class {
 
   goToGrafana() {
     this.atInternet.trackClick({
-      name:
-        'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::metrics-token::access-grafana',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::job-details::dashboard::metrics-token::access-grafana`,
       type: 'action',
     });
     this.$window.open(this.grafanaUrl, '_blank', 'noopener');

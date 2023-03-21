@@ -1,3 +1,5 @@
+import { DATA_PROCESSING_TRACKING_PREFIX } from '../data-processing.constants';
+
 export default /* @ngInject */ ($stateProvider) =>
   $stateProvider.state('pci.projects.project.data-processing.notebooks', {
     url: '/notebooks?id',
@@ -64,7 +66,7 @@ export default /* @ngInject */ ($stateProvider) =>
       lab: /* @ngInject */ (PciProjectLabsService, projectId) =>
         PciProjectLabsService.getLabByName(projectId, 'dataProcessing'),
       notebooksTrackPrefix: () =>
-        'PublicCloud::pci::projects::project::data-processing::notebooks',
+        `${DATA_PROCESSING_TRACKING_PREFIX}::notebooks`,
       trackNotebooks: /* @ngInject */ (
         notebooksTrackPrefix,
         trackClick,
@@ -98,6 +100,6 @@ export default /* @ngInject */ ($stateProvider) =>
       },
     },
     atInternet: {
-      rename: 'PublicCloud::pci::projects::project::data-processing::notebooks',
+      rename: `${DATA_PROCESSING_TRACKING_PREFIX}::notebooks`,
     },
   });

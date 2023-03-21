@@ -4,6 +4,7 @@ import { API_GUIDES } from '../../../project.constants';
 import {
   SUBMIT_JOB_API_GUIDES,
   GIB_IN_MIB,
+  DATA_PROCESSING_TRACKING_PREFIX,
 } from '../../data-processing.constants';
 
 export default class {
@@ -268,8 +269,7 @@ export default class {
     this.isSubmitting = true;
 
     this.atInternet.trackClick({
-      name:
-        'PublicCloud::pci::projects::project::data-processing::jobs::submit-job::confirm',
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::submit-job::confirm`,
       type: 'action',
     });
 
@@ -277,8 +277,7 @@ export default class {
       .submitJob(this.projectId, this.orderData)
       .then(({ data }) => {
         this.atInternet.trackPage({
-          name:
-            'PublicCloud::pci::projects::project::data-processing::jobs::submit-job-success',
+          name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::submit-job-success`,
           type: 'page',
         });
         this.goToDashboard(data.id);
@@ -292,8 +291,7 @@ export default class {
           this.onSubmitJobHandler();
         } else {
           this.atInternet.trackPage({
-            name:
-              'PublicCloud::pci::projects::project::data-processing::jobs::submit-job-error',
+            name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::submit-job-error`,
             type: 'page',
           });
           if (error.status === 400 || error.status === 422) {

@@ -1,3 +1,5 @@
+import { DATA_PROCESSING_TRACKING_PREFIX } from '../../../../data-processing.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.data-processing.jobs.job-details.dashboard.metrics-token',
@@ -30,8 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       },
       atInternet: {
-        rename:
-          'PublicCloud::pci::projects::project::data-processing::jobs::job-details::dashboard::metrics-token',
+        rename: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::job-details::dashboard::metrics-token`,
       },
     },
   );

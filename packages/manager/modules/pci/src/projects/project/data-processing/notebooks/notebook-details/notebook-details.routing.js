@@ -1,3 +1,5 @@
+import { DATA_PROCESSING_TRACKING_PREFIX } from '../../data-processing.constants';
+
 export default /* @ngInject */ ($stateProvider) =>
   $stateProvider.state(
     'pci.projects.project.data-processing.notebooks.details',
@@ -66,8 +68,7 @@ export default /* @ngInject */ ($stateProvider) =>
           ), // update breadcrumb with "Dashboard"
       },
       atInternet: {
-        rename:
-          'PublicCloud::pci::projects::project::data-processing::notebooks::notebook-details::dashboard',
+        rename: `${DATA_PROCESSING_TRACKING_PREFIX}::notebooks::notebook-details::dashboard`,
       },
     },
   );
