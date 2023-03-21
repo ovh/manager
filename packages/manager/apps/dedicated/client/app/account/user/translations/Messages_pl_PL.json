@@ -33,7 +33,7 @@
   "user_account_spareemail_info": "Zalecamy podanie alternatywnego adresu e-mail.",
   "user_account_customer_code": "Kod klienta",
   "user_account_OK": "Zapisz zmiany",
-  "user_account_info_error": "Wystąpił błąd:",
+  "user_account_info_error": "Podane informacje są nieprawidłowe. Spróbuj później:",
   "user_account_info_error_on_change_email": "Wystąpił błąd podczas aktualizacji głównego adresu e-mail:",
   "subscriptions_title": "Subskrypcje",
   "subscriptions_error": "Wystąpił błąd. Spróbuj ponownie później.",
