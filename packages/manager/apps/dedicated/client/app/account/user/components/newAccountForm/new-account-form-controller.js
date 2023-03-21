@@ -273,11 +273,15 @@ export default class NewAccountFormController {
       .then((result) => {
         if (result !== 'null') {
           this.atInternet.trackPage({
-            name: 'edit-profil-confirm-banner::error',
+            name: 'dedicated::account::user::infos_error',
             type: 'navigation',
           });
           return this.$q.reject(result);
         }
+        this.atInternet.trackPage({
+          name: 'dedicated::account::user::infos_success',
+          type: 'navigation',
+        });
         return result;
       });
 
