@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.54.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.54.1...@ovh-ux/manager-dedicated@17.54.2) (2023-03-21)
+
+
+### Bug Fixes
+
+* **ip.agora-order:** complete missed country param ([#9048](https://github.com/ovh/manager/issues/9048)) ([1ae7fdd](https://github.com/ovh/manager/commit/1ae7fdd0ee3bc1762d03cf058954e271e0fe917a))
+
+
+
+
+
 ## [17.54.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.54.0...@ovh-ux/manager-dedicated@17.54.1) (2023-03-20)
 
 

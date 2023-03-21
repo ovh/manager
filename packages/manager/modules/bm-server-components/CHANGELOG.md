@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.6.1...@ovh-ux/manager-bm-server-components@1.6.2) (2023-03-21)
+
+
+### Bug Fixes
+
+* **dedicated.server:** display server interventions ([#9056](https://github.com/ovh/manager/issues/9056)) ([67f6103](https://github.com/ovh/manager/commit/67f610327641a19b891ba419884623aba0ac2efc))
+
+
+
+
+
 ## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.6.0...@ovh-ux/manager-bm-server-components@1.6.1) (2023-03-15)
 
 
