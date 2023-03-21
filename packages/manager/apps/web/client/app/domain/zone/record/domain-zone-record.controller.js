@@ -206,7 +206,9 @@ angular.module('App').controller(
           this.WucValidator.isValidSubDomain(value, {
             canBeginWithUnderscore: true,
             canBeginWithWildcard: true,
-            canContainsUnderscore: this.model.fieldType === 'CNAME',
+            canContainsUnderscore:
+              this.model.fieldType === 'CNAME' ||
+              this.model.fieldType === 'TXT',
           }),
       );
 
