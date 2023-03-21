@@ -18,6 +18,6 @@
   "billing_payment_method_table_action_set_default": "Establecer como forma de pago por defecto",
   "billing_payment_method_table_action_delete": "Eliminar esta forma de pago",
   "billing_payment_method_credit_card_disclaimer": "Es necesario registrar una forma de pago para utilizar la renovación automática. Podrá modificarla en cualquier momento. Si no tiene activada la renovación automática y quiere eliminar su forma de pago, puede ponerse en contacto con nuestro equipo de soporte mediante un tíquet de asistencia.",
-  "billing_payment_method_information_add_ovh_sas": "When you register a means of payment, you authorize OVH S.A.S to store this method for the purpose of facilitating further online payment.",
+  "billing_payment_method_information_add_ovh_sas": "Al registrar una forma de pago, autoriza a OVH SAS a conservarla para facilitar el pago de futuros pedidos.",
   "billing_payment_method_information_add_default": "La forma de pago registrada como forma de pago por defecto se utilizará automáticamente en cada vencimiento para abonar el pago de sus servicios con renovación automática y pago por uso («pay-as-you-go»). Antes de cada vencimiento de pago, recibirá una notificación. Puede modificar, eliminar o añadir formas de pago utilizando la siguiente interfaz. Para poder utilizar servicios con renovación automática o con pago por uso, deberá disponer al menos de una forma de pago válida registrada."
 }
