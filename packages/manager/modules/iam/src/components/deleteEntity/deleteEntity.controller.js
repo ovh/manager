@@ -3,8 +3,9 @@ import { encodeUrn } from '@iam/resolves';
 
 export default class DeleteEntityController {
   /* @ngInject */
-  constructor($q, PolicyService) {
+  constructor($q, $stateParams, PolicyService) {
     this.$q = $q;
+    this.$stateParams = $stateParams;
     this.PolicyService = PolicyService;
 
     /**
@@ -54,6 +55,14 @@ export default class DeleteEntityController {
       success: `iam_delete_entity_${this.entity.type}_success`,
       warn: `iam_delete_entity_${this.entity.type}_warn`,
     };
+  }
+
+  /**
+   * Close the current modal
+   * @returns {Promise}
+   */
+  close() {
+    return this.goBack({ params: this.$stateParams });
   }
 
   /**

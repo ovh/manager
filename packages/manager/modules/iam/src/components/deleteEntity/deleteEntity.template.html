@@ -1,4 +1,4 @@
-<div class="modal d-block" tabindex="-1" data-ng-mouseup=":: $ctrl.goBack()">
+<div class="modal d-block" tabindex="-1" data-ng-mouseup=":: $ctrl.close()">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <oui-modal
@@ -6,8 +6,8 @@
                 data-primary-disabled="!$ctrl.canDelete"
                 data-primary-action="$ctrl.delete()"
                 data-secondary-label="{{:: 'iam_delete_entity_secondary_label' | translate }}"
-                data-secondary-action=":: $ctrl.goBack()"
-                data-on-dismiss=":: $ctrl.goBack()"
+                data-secondary-action=":: $ctrl.close()"
+                data-on-dismiss=":: $ctrl.close()"
                 data-heading="{{:: $ctrl.translate.heading | translate }}"
                 data-type="warning"
                 data-loading="$ctrl.isDeleting"
