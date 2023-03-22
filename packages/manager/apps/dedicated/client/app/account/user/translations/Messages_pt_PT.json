@@ -33,7 +33,7 @@
   "user_account_spareemail_info": "É aconselhável colocar um endereço de e-mail alternativo ao endereço anterior.",
   "user_account_customer_code": "Código cliente",
   "user_account_OK": "Registar as modificações",
-  "user_account_info_error": "Ocorreu um erro:",
+  "user_account_info_error": "As informações introduzidas estão incorretas. Tente novamente mais tarde:",
   "user_account_info_error_on_change_email": "Ocorreu um erro aquando da atualização do e-mail principal:",
   "subscriptions_title": "Assinaturas",
   "subscriptions_error": "Ocorreu um erro. Tente novamente mais tarde.",

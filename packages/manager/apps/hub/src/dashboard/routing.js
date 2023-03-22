@@ -51,6 +51,17 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       hideBreadcrumb: () => true,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('manager_hub_dashboard'),
+      callFeatureAvailabiltySiret: /* @ngInject */ (ovhFeatureFlipping) => {
+        const featureSiret = [
+          'hub:banner-hub-invite-customer-siret',
+          'hub:popup-hub-invite-customer-siret',
+        ];
+        return ovhFeatureFlipping
+          .checkFeatureAvailability(featureSiret)
+          .then((features) => {
+            return features;
+          });
+      },
     },
     resolvePolicy: {
       async: 'NOWAIT',

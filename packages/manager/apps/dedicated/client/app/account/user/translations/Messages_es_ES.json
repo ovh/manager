@@ -33,7 +33,7 @@
   "user_account_spareemail_info": "Es recomendable indicar una dirección de correo electrónico alternativa a la dirección anterior.",
   "user_account_customer_code": "Número de cliente",
   "user_account_OK": "Guardar los cambios",
-  "user_account_info_error": "Se ha producido un error:",
+  "user_account_info_error": "Los datos introducidos son incorrectos. Por favor, inténtelo más tarde:",
   "user_account_info_error_on_change_email": "Se ha producido un error al actualizar la dirección de correo electrónico principal:",
   "subscriptions_title": "Suscripciones",
   "subscriptions_error": "Se ha producido un error. Por favor, inténtelo de nuevo más tarde.",

@@ -20,6 +20,7 @@ export const ACCOUNT_INFORMATIONS = {
   MA: 'https://docs.ovh.com/fr/customer/',
   TN: 'https://docs.ovh.com/fr/customer/',
   SN: 'https://docs.ovh.com/fr/customer/',
+  IN: 'https://docs.ovh.com/asia/en/customer/',
 };
 
 export const GUIDES_LIST = {
