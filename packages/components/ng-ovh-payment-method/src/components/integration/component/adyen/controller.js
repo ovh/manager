@@ -86,6 +86,7 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
             ...AdyenService.parseFormSessionId(
               this.initialParams.paymentMethod.formSessionId,
             ),
+            showBrandsUnderCardNumber: false,
           })
           .mount('#adyen-component-container');
       });
