@@ -55,14 +55,20 @@ export default class Apiv2Service {
   /**
    * Call the given list endpoint on the API v2 that implements the cursor api
    * @param {string} endpoint
+   * @param {Object=} options The $http.get options
    * @param {string=} cursor The cursor id
+   * @param {number=} size The page size. Default is 25
    * @returns {Promise}
    */
-  getList(endpoint, { cursor }) {
-    const options = cursor
-      ? { headers: { 'X-Pagination-Cursor': cursor } }
-      : null;
-    return this.get(endpoint, options)
+  getList(endpoint, { cursor, options, size = 25 }) {
+    return this.get(endpoint, {
+      ...options,
+      headers: {
+        ...options?.headers,
+        ...(cursor && { 'X-Pagination-Cursor': cursor }),
+        'X-Pagination-size': size,
+      },
+    })
       .then(({ data, headers }) => ({
         data,
         cursor: {
