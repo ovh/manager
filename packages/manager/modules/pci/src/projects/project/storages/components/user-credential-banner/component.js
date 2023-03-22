@@ -5,6 +5,8 @@ export default {
     user: '<',
     credential: '<',
     fieldSecretKeyLabel: '@',
+    containerName: '<',
+    role: '<',
   },
   template,
 };

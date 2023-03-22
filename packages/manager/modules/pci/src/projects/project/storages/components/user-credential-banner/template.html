@@ -1,9 +1,18 @@
 <oui-message type="success" dismissable>
-
     <!--Description-->
     <p
+        ng-if="!$ctrl.containerName"
         data-translate="{{:: $ctrl.isNewUser ? 'pci_projects_project_storages_containers_add_create_user_success_message' : 'pci_projects_project_storages_containers_add_linked_user_success_message'}}"
         data-translate-values="{ username: '<strong>'+$ctrl.user.username+'</strong>' }"
+    ></p>
+    <p
+        ng-if="$ctrl.containerName"
+        data-translate="pci_projects_project_storages_containers_add_container_success"
+        data-translate-values="{
+            'containerName': '<strong>'+$ctrl.containerName+'</strong>', 
+            'username': '<strong>'+$ctrl.user.description+'</strong>', 
+            'role': '<strong>'+$ctrl.role+'</strong>'
+        }"
     ></p>
 
     <!---->
