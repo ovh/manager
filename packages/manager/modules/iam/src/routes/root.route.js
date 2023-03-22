@@ -5,6 +5,7 @@ import iam from './iam.route';
 import policyIdentities from './policyIdentities.route';
 import policies from './policies.route';
 import policy from './policy.route';
+import resourceGroup from './resourceGroup.route';
 
 export default [
   {
@@ -20,6 +21,9 @@ export default [
                 route: deletePolicy,
               },
             ],
+          },
+          {
+            route: resourceGroup,
           },
         ],
       },

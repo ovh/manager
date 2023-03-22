@@ -11,6 +11,8 @@ import policiesComponent from './policies/policies.component';
 import policiesResolves from './policies/policies.resolves';
 import policyComponent from './policy/policy.component';
 import policyResolves from './policy/policy.resolves';
+import resourceGroupComponent from './resourceGroup/resourceGroup.component';
+import resourceGroupResolves from './resourceGroup/resourceGroup.resolves';
 
 const createPolicy = {
   name: 'iamCreatePolicy',
@@ -48,6 +50,12 @@ const policy = {
   resolves: policyResolves,
 };
 
+const resourceGroup = {
+  name: 'iamResourceGroup',
+  component: resourceGroupComponent,
+  resolves: resourceGroupResolves,
+};
+
 const moduleName = 'ovhManagerIAMComponents';
 
 angular
@@ -58,6 +66,7 @@ angular
   .component(policyIdentities.name, policyIdentities.component)
   .component(policies.name, policies.component)
   .component(policy.name, policy.component)
+  .component(resourceGroup.name, resourceGroup.component)
   .run(/*
     @ngTranslationsInject:json
       ./createPolicy/translations
@@ -66,7 +75,16 @@ angular
       ./policyIdentities/translations
       ./policies/translations
       ./policy/translations
+      ./resourceGroup/translations
   */);
 
-export { createPolicy, deleteEntity, iam, policyIdentities, policies, policy };
+export {
+  createPolicy,
+  deleteEntity,
+  iam,
+  policyIdentities,
+  policies,
+  policy,
+  resourceGroup,
+};
 export default moduleName;
