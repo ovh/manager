@@ -13,6 +13,7 @@ export default {
     coldArchiveContainersLink: '<',
     goToAddColdArchive: '<',
     goToColdArchiveContainers: '<',
+    goToColdArchiveContainersWithData: '<',
     guideMenu: '<',
     initGuides: '<',
     containers: '<',
