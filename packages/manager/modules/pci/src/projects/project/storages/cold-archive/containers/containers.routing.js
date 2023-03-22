@@ -21,6 +21,9 @@ export default /* @ngInject */ ($stateProvider) => {
               }
             : false,
         ),
+    params: {
+      createdContainerInfos: null,
+    },
     resolve: {
       breadcrumb: () => null,
 
@@ -31,6 +34,9 @@ export default /* @ngInject */ ($stateProvider) => {
           containerName: name,
         });
       },
+
+      createdContainerInfos: /* @ngInject */ ($transition$) =>
+        $transition$.params().createdContainerInfos,
 
       goToManageContainer: /* @ngInject */ ($state) => () =>
         $state.go(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_MANAGE, {}),
