@@ -42,18 +42,18 @@ export default class UpscaleController {
       this.upscaleOptions,
       this.vps.model.name,
     );
-    upscaleRanges = upscaleRanges
-      .filter(({ formattedName }) => formattedName !== RANGES.STARTER)
-      .map((range) => this.formatRange(range));
+    upscaleRanges = upscaleRanges.map((range) => this.formatRange(range));
 
     this.upscaleRanges = sortBy(upscaleRanges, 'indicativePricing.price');
+    [, this.range] = this.upscaleRanges;
+  }
 
-    if (this.isEliteUpgrade) {
-      this.range = this.upscaleRanges.find(({ formattedName }) =>
-        UpscaleController.isRangeElite(formattedName),
-      );
-      this.goToNextStep(this.range.formattedName);
-    }
+  getModelPrice(price) {
+    const priceToDisplay = UpscaleService.buildPriceToDisplay(
+      new Price(price),
+      this.connectedUser.language,
+    );
+    return priceToDisplay;
   }
 
   resetRangeConfiguration() {
@@ -141,10 +141,6 @@ export default class UpscaleController {
     };
   }
 
-  goToNextStep(range) {
-    this.currentIndex = UpscaleController.isRangeElite(range) ? 1 : 2;
-  }
-
   getIndicativePricing(pricings) {
     const renewPricing = this.ovhManagerProductOffersService.constructor.getUniquePricingOfCapacity(
       pricings,
@@ -169,7 +165,7 @@ export default class UpscaleController {
     };
   }
 
-  static isRangeEliteConfigurationComplete({
+  static isRangeFlavorConfigurationComplete({
     bandwidth,
     cores,
     memory,
@@ -180,9 +176,17 @@ export default class UpscaleController {
     );
   }
 
-  getRangeEliteConfigurationPricing() {
+  isStorageSelectionDisabled(storage) {
+    const { cores, memory } = this.rangeConfiguration;
+    const rangeName = this.range.formattedName.toLowerCase();
+    const plans = this.catalog.plans.map((plan) => plan.planCode);
+    this.planCode = `vps-${rangeName}-${cores}-${memory}-${storage}`;
+    return !plans.includes(this.planCode) || storage <= this.vps.model.disk;
+  }
+
+  getRangeFlavorConfigurationPricing() {
     if (
-      UpscaleController.isRangeEliteConfigurationComplete(
+      UpscaleController.isRangeFlavorConfigurationComplete(
         this.rangeConfiguration,
       )
     ) {
@@ -191,26 +195,29 @@ export default class UpscaleController {
         this.range.formattedName.toLowerCase(),
       );
 
-      this.isNewPlanCodeDifferent = this.planCode !== this.vps.model.name;
+      try {
+        this.fetchUpscaleInformation();
+        const pricings = this.catalog.plans
+          .find(({ planCode }) => planCode === this.planCode)
+          .pricings.map((pricing) =>
+            UpscaleController.convertFromCatalog(pricing),
+          );
+        const renewPricing = this.getIndicativePricing(pricings);
 
-      const pricings = this.catalog.plans
-        .find(({ planCode }) => planCode === this.planCode)
-        .pricings.map((pricing) =>
-          UpscaleController.convertFromCatalog(pricing),
-        );
-
-      const renewPricing = this.getIndicativePricing(pricings);
-
-      this.rangeConfiguration.pricing = {
-        ...renewPricing,
-        currency: this.connectedUser.currency.code,
-        pricingMode: UpscaleService.convertPricingMode(
-          renewPricing.pricingMode,
-        ),
-        unit: Price.UNITS.MICROCENTS,
-        totalPrice: renewPricing.priceInUcents,
-        value: renewPricing.price.value,
-      };
+        this.rangeConfiguration.pricing = {
+          ...renewPricing,
+          currency: this.connectedUser.currency.code,
+          pricingMode: UpscaleService.convertPricingMode(
+            renewPricing.pricingMode,
+          ),
+          unit: Price.UNITS.MICROCENTS,
+          totalPrice: renewPricing.priceInUcents,
+          value: renewPricing.price.value,
+        };
+        this.formatNewRangeInformation();
+      } catch (error) {
+        this.rangeConfiguration.pricing = null;
+      }
     }
   }
 
@@ -362,12 +369,14 @@ export default class UpscaleController {
     return [parseInt(cores, 10), parseInt(memory, 10), parseInt(storage, 10)];
   }
 
-  setValueIfUniqueChoice(values, path) {
+  initRangeConfiguration(values, path) {
     if (values.length === 1) {
-      [this.rangeConfiguration[path]] = values;
+      this.rangeConfiguration[path] = values;
     }
 
-    this.getRangeEliteConfigurationPricing();
+    [this.rangeConfiguration[path]] = values;
+
+    this.getRangeFlavorConfigurationPricing();
   }
 
   getAvailableValuesForParameter(technicals, path) {
@@ -405,14 +414,10 @@ export default class UpscaleController {
 
   fetchUpscaleInformation() {
     this.loading.getUpscaleInformation = true;
-    const plan =
-      this.isEliteUpgrade ||
-      UpscaleController.isRangeElite(this.range?.formattedName)
-        ? this.getPlanFromSelectedRangeAndConfiguration(
-            this.rangeConfiguration,
-            this.range.formattedName.toLowerCase(),
-          )
-        : this.range;
+    const plan = this.getPlanFromSelectedRangeAndConfiguration(
+      this.rangeConfiguration,
+      this.range.formattedName.toLowerCase(),
+    );
     const currentPlanCode = this.upscaleRanges.find((e) => e.isCurrentRange)
       ?.planCode;
     return this.getUpscaleInformation(plan)
@@ -450,7 +455,7 @@ export default class UpscaleController {
     this.newRangeInformation = null;
     let newRangeInformation;
     if (
-      !UpscaleController.isRangeEliteConfigurationComplete(
+      !UpscaleController.isRangeFlavorConfigurationComplete(
         this.rangeConfiguration,
       )
     ) {
@@ -489,6 +494,10 @@ export default class UpscaleController {
     return `vps_upscale_summary_price_${paymentType}_${
       this.defaultPaymentMethod ? 'with' : 'without'
     }_payment_method_validation`;
+  }
+
+  static isRangeDisabled(range) {
+    return range.isCurrentRange;
   }
 
   performUpscaleService() {
