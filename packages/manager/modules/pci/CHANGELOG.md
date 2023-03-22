@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.117.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.117.2...@ovh-ux/manager-pci@5.117.3) (2023-03-22)
+
+
+### Bug Fixes
+
+* **pci:** display supported regions for cloud-archive add ([#8997](https://github.com/ovh/manager/issues/8997)) ([a94bf1d](https://github.com/ovh/manager/commit/a94bf1d79edb9fc9e002c93ae8706040b1aba283))
+
+
+
+
+
 ## [5.117.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.117.1...@ovh-ux/manager-pci@5.117.2) (2023-03-21)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.5.9...@ovh-ux/sign-up@2.6.0) (2023-03-22)
+
+
+### Features
+
+* **hub.account:** add a banner to invit the customer to update the siret ([#8905](https://github.com/ovh/manager/issues/8905)) ([5359957](https://github.com/ovh/manager/commit/5359957f2bf7dae9abcfb3da0d53eb1129bdfb77))
+
+
+
+
+
 ## [2.5.9](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.5.8...@ovh-ux/sign-up@2.5.9) (2023-03-20)
 
 
