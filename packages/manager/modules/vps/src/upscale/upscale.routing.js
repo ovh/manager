@@ -1,12 +1,14 @@
 import component from './upscale.component';
 import vpsHeaderComponent from '../header/vps-header.component';
+import { AGREEMENTS } from './upscale.constants';
 
 export default /* @ngInject */ function($stateProvider) {
   $stateProvider.state('vps.detail.upscale', {
     url: '/upscale',
     resolve: {
-      agreements: /* @ngInject */ (coreConfig, CORE_URLS) =>
-        CORE_URLS.agreements[coreConfig.getRegion()],
+      agreements: /* @ngInject */ (coreConfig) => {
+        return AGREEMENTS[coreConfig.getRegion()];
+      },
       serviceInfos: /* @ngInject */ ($http, serviceName) =>
         $http.get(`/vps/${serviceName}/serviceInfos`).then(({ data }) => data),
       getUpscaleInformation: /* @ngInject */ (
