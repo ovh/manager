@@ -7,6 +7,7 @@ export default {
   bindings: {
     containers: '<',
     containerName: '<',
+    createdContainerInfos: '<',
     refreshContainers: '<',
     initGuides: '<',
     guides: '<',
