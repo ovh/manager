@@ -82,7 +82,30 @@ export default class ColdArchiveConfigurationController {
   getUserName() {
     const { createMode, linkedMode } = this.userModel;
 
+    return createMode.user?.username || linkedMode.selected?.username;
+  }
+
+  getUserDescription() {
+    const { createMode, linkedMode } = this.userModel;
+
     return createMode.user?.description || linkedMode.selected?.description;
+  }
+
+  getUserRole() {
+    const { createMode, linkedMode } = this.userModel;
+
+    return (
+      createMode.user?.roles[0].description ||
+      linkedMode.selected?.roles[0].description
+    );
+  }
+
+  getUserCredentials() {
+    const { createMode, linkedMode } = this.userModel;
+
+    return (
+      createMode?.user?.s3Credentials || linkedMode?.selected?.s3Credentials
+    );
   }
 
   getNameArchiveStepHeader(display) {
@@ -102,7 +125,6 @@ export default class ColdArchiveConfigurationController {
 
   isReadyForValidation() {
     const { createMode, linkedMode, createOrLinkedMode } = this.userModel;
-
     return (
       createOrLinkedMode &&
       ((createMode.user && createMode.description) || linkedMode.selected)
@@ -118,15 +140,15 @@ export default class ColdArchiveConfigurationController {
       })
       .then(() => {
         this.trackAddContainerPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
-        return this.goToColdArchiveContainers(
-          this.$translate.instant(
-            'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success',
-            {
-              containerName: this.archiveModel.name,
-              userName: this.getUserName(),
-            },
-          ),
-        );
+        return this.goToColdArchiveContainersWithData({
+          containerName: this.archiveModel.name,
+          user: {
+            username: this.getUserName(),
+            description: this.getUserDescription(),
+          },
+          userCredentials: this.getUserCredentials(),
+          role: this.getUserRole(),
+        });
       })
       .catch((err) => {
         this.trackAddContainerPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
