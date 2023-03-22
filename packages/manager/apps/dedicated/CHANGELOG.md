@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.55.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.54.2...@ovh-ux/manager-dedicated@17.55.0) (2023-03-22)
+
+
+### Features
+
+* **dedicated.support:** add links for indian account ([#8965](https://github.com/ovh/manager/issues/8965)) ([d76f7ba](https://github.com/ovh/manager/commit/d76f7baedc892bdbd4ab1a2dc14823ece7cc5311))
+* **hub.account:** add a banner to invit the customer to update the siret ([#8905](https://github.com/ovh/manager/issues/8905)) ([5359957](https://github.com/ovh/manager/commit/5359957f2bf7dae9abcfb3da0d53eb1129bdfb77))
+* **hub.account:** add incentive pop-up for updating the siret  ([#8924](https://github.com/ovh/manager/issues/8924)) ([a3a88b0](https://github.com/ovh/manager/commit/a3a88b029be9c7debd08d11b19f446cf2e1553a2))
+
+
+
+
+
 ## [17.54.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.54.1...@ovh-ux/manager-dedicated@17.54.2) (2023-03-21)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.25.0...@ovh-ux/manager-hub-app@3.26.0) (2023-03-22)
+
+
+### Features
+
+* **hub.account:** add a banner to invit the customer to update the siret ([#8905](https://github.com/ovh/manager/issues/8905)) ([5359957](https://github.com/ovh/manager/commit/5359957f2bf7dae9abcfb3da0d53eb1129bdfb77))
+* **hub.account:** add incentive pop-up for updating the siret  ([#8924](https://github.com/ovh/manager/issues/8924)) ([a3a88b0](https://github.com/ovh/manager/commit/a3a88b029be9c7debd08d11b19f446cf2e1553a2))
+
+
+
+
+
 # [3.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.24.9...@ovh-ux/manager-hub-app@3.25.0) (2023-03-06)
 
 

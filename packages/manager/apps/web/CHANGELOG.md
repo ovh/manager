@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.28.3...@ovh-ux/manager-web@16.29.0) (2023-03-22)
+
+
+### Features
+
+* **web:** allow underscore in subdomain of txt records ([#9076](https://github.com/ovh/manager/issues/9076)) ([79d6c7a](https://github.com/ovh/manager/commit/79d6c7ab3107f25eaf5505a1a18d3de037294716))
+
+
+
+
+
 ## [16.28.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.28.2...@ovh-ux/manager-web@16.28.3) (2023-03-20)
 
 

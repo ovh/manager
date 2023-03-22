@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.8...@ovh-ux/manager-billing@0.20.0-alpha.9) (2023-03-22)
+
+
+### Bug Fixes
+
+* **dedicated.payments:** delete a contradiction for payment method ([#9077](https://github.com/ovh/manager/issues/9077)) ([7476ee1](https://github.com/ovh/manager/commit/7476ee1b5b6a3e776e11db9faec711c1ea962902))
+
+
+### Features
+
+* **dedicated.support:** add links for indian account ([#8965](https://github.com/ovh/manager/issues/8965)) ([d76f7ba](https://github.com/ovh/manager/commit/d76f7baedc892bdbd4ab1a2dc14823ece7cc5311))
+
+
+
+
+
 # [0.20.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.7...@ovh-ux/manager-billing@0.20.0-alpha.8) (2023-03-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing
