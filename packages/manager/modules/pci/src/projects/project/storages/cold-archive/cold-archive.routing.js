@@ -151,6 +151,24 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
+      goToColdArchiveContainersWithData: /* @ngInject */ (
+        $state,
+        projectId,
+      ) => (createdContainerInfos = false) => {
+        const reload = !!createdContainerInfos;
+
+        return $state.go(
+          COLD_ARCHIVE_STATES.CONTAINERS,
+          {
+            projectId,
+            createdContainerInfos,
+          },
+          {
+            reload,
+          },
+        );
+      },
+
       trackClick: /* @ngInject */ (atInternet) => (hit) =>
         atInternet.trackClick({
           name: `${COLD_ARCHIVE_TRACKING.CLICK_PREFIX}::${hit}`,
