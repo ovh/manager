@@ -1,94 +1,21 @@
-import { areCursorsEquals, cursorsParamResolve } from '@iam/resolves';
 import { ROUTES } from '@iam/routes';
+import { policyParamResolve } from '@iam/resolves';
+import AbstractCursorDatagridController from '../cursorDatagrid/cursorDatagrid.controller';
 
-export default class PoliciesController {
-  /**
-   * The cursors resolved object
-   * @type {object}
-   */
-  cursors = null;
-
-  /**
-   * The <oui-datagrid> component's id attribute
-   * @type {string}
-   */
-  datagridId = 'policiesDatagrid';
-
+export default class PoliciesController extends AbstractCursorDatagridController {
   /* @ngInject */
-  constructor($location, PolicyService, ouiDatagridService) {
-    this.$location = $location;
+  constructor($location, ouiDatagridService, PolicyService) {
+    super($location, ouiDatagridService, 'policiesDatagrid');
     this.PolicyService = PolicyService;
-    this.ouiDatagridService = ouiDatagridService;
-  }
-
-  $onInit() {
-    // Copy the value of the cursors resolve to break the reference
-    this.cursors = { ...this[cursorsParamResolve.key] };
   }
 
   /**
-   * Called by uirouter each time a parameter has changed
-   * Since the only declared param (cursors) is dynamic, this hook in the only way
-   * we can detect that the URL has changed without reloading the entire state
-   * @param {Object} params
-   */
-  uiOnParamsChanged({ [cursorsParamResolve.key]: cursors }) {
-    if (cursors && !areCursorsEquals(this.cursors, cursors)) {
-      this.cursors = { ...cursors };
-      this.ouiDatagridService.refresh(this.datagridId, true);
-    }
-  }
-
-  /**
-   * Change the URL without reloading the state
-   * (The cursors param is dynamic)
+   * Get the list of policies promise
+   * @param {string} cursor The current cursor id
    * @returns {Promise}
    */
-  changeParams() {
-    return this.goTo({
-      name: '.',
-      params: {
-        // Pass a copy to break the reference
-        [cursorsParamResolve.key]: { ...this.cursors },
-      },
-    });
-  }
-
-  /**
-   * Get the list of policies
-   * @param {number} offset The <oui-datagrid> component's offset property
-   * @param {number} pageSize The <oui-datagrid> component's pageSize property
-   * @returns {Promise}
-   */
-  getPolicies({ offset, pageSize }) {
-    const total = pageSize + offset;
-    const index = Math.floor(total / pageSize);
-
-    return this.PolicyService.getPolicies({ cursor: this.cursors[index] })
-      .then(({ data, cursor: { next, prev, error } }) => {
-        if (error) {
-          this.cursors = cursorsParamResolve.declaration.value();
-          this.alert.error('iam_policy_error_cursor');
-          return this.getPolicies({ offset: 1, pageSize });
-        }
-
-        if (next) this.cursors[index + 1] = next;
-        if (prev) this.cursors[index - 1] = prev;
-        this.cursors.index = index;
-
-        return this.changeParams().then(() => ({
-          data,
-          meta: {
-            currentOffset: offset,
-            totalCount: total - (next ? 0 : 1),
-          },
-        }));
-      })
-      .catch((error) => {
-        const { message } = error.data ?? {};
-        this.alert.error('iam_policy_error_data', { message });
-        return { data: [], meta: { totalCount: 0 } };
-      });
+  createItemsPromise({ cursor }) {
+    return this.PolicyService.getPolicies({ cursor });
   }
 
   /**
@@ -126,6 +53,9 @@ export default class PoliciesController {
    * @returns {Promise}
    */
   deletePolicy({ id }) {
-    return this.goTo({ name: ROUTES.DELETE_POLICY, params: { policy: id } });
+    return this.goTo({
+      name: ROUTES.DELETE_POLICY,
+      params: { ...this.params, [policyParamResolve.key]: id },
+    });
   }
 }
