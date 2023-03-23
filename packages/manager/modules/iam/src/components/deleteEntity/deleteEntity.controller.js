@@ -3,9 +3,10 @@ import { encodeUrn } from '@iam/resolves';
 
 export default class DeleteEntityController {
   /* @ngInject */
-  constructor($q, PolicyService) {
+  constructor($q, PolicyService, ResourceGroupService) {
     this.$q = $q;
     this.PolicyService = PolicyService;
+    this.ResourceGroupService = ResourceGroupService;
 
     /**
      * Whether the controller is currently deleting the entity
@@ -67,6 +68,8 @@ export default class DeleteEntityController {
       promise = this.deletePolicy();
     } else if (this.entity.type === ENTITY.IDENTITY) {
       promise = this.deletePolicyIdentity();
+    } else if (this.entity.type === ENTITY.RESOURCE_GROUP) {
+      promise = this.deleteResourceGroup();
     } else {
       promise = this.$q.reject({ data: { message: 'Unknown entity type' } });
     }
@@ -106,5 +109,13 @@ export default class DeleteEntityController {
       policy.id,
       policy.identities.filter((item) => item !== encodedIdentity),
     );
+  }
+
+  /**
+   * Delete the entity using the ResourceGroupService
+   * @returns {Promise}
+   */
+  deleteResourceGroup() {
+    return this.ResourceGroupService.deleteResourceGroup(this.entity.data.id);
   }
 }

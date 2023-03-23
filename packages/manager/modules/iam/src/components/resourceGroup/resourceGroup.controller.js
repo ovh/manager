@@ -1,4 +1,5 @@
 import { areCursorsEquals, cursorsParamResolve } from '@iam/resolves';
+import { ROUTES } from '@iam/routes';
 
 export default class ResourceGroupController {
   /**
@@ -115,6 +116,9 @@ export default class ResourceGroupController {
    * @returns {Promise}
    */
   deleteResourceGroup({ id }) {
-    this.alert.error(`deleteResourceGroup not implemented [id=${id}]`);
+    this.goTo({
+      name: ROUTES.DELETE_RESOURCE_GROUP,
+      params: { resourceGroup: id },
+    });
   }
 }

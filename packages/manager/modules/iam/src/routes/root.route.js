@@ -6,6 +6,7 @@ import policyIdentities from './policyIdentities.route';
 import policies from './policies.route';
 import policy from './policy.route';
 import resourceGroup from './resourceGroup.route';
+import deleteResourceGroup from './deleteResourceGroup.route';
 
 export default [
   {
@@ -24,6 +25,11 @@ export default [
           },
           {
             route: resourceGroup,
+            children: [
+              {
+                route: deleteResourceGroup,
+              },
+            ],
           },
         ],
       },

@@ -57,4 +57,30 @@ identityParamResolve.declaration = {
 
 // ---------------------------------------------------------------------------------------------------- //
 
-export { cursorsParamResolve, identityParamResolve, policyParamResolve };
+/**
+ * The resourceGroup parameter based on the resourceGroup's id
+ * @returns {Object|null}
+ */
+const resourceGroupParamResolve = /* @ngInject */ (
+  $transition$,
+  ResourceGroupService,
+) => {
+  const { [resourceGroupParamResolve.key]: uuid } = $transition$.params();
+  return uuid ? ResourceGroupService.getResourceGroup(uuid) : null;
+};
+
+resourceGroupParamResolve.key = 'resourceGroup';
+resourceGroupParamResolve.declaration = {
+  array: false,
+  type: uuidType,
+  value: null,
+};
+
+// ---------------------------------------------------------------------------------------------------- //
+
+export {
+  cursorsParamResolve,
+  identityParamResolve,
+  policyParamResolve,
+  resourceGroupParamResolve,
+};
