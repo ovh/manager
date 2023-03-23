@@ -1,3 +1,4 @@
+import { ROUTES } from '@iam/routes';
 import AbstractCursorDatagridController from '../cursorDatagrid/cursorDatagrid.controller';
 
 export default class ResourceGroupsController extends AbstractCursorDatagridController {
@@ -39,6 +40,9 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    * @returns {Promise}
    */
   deleteResourceGroup({ id }) {
-    this.alert.error(`deleteResourceGroup not implemented [id=${id}]`);
+    this.goTo({
+      name: ROUTES.DELETE_RESOURCE_GROUP,
+      params: { resourceGroup: id },
+    });
   }
 }

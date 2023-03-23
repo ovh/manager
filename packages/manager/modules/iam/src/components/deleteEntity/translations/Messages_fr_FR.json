@@ -10,6 +10,11 @@
   "iam_delete_entity_identity_name": "Suppression de l'identité :",
   "iam_delete_entity_identity_success": "L'identité a bien été supprimée",
   "iam_delete_entity_identity_warn": "Êtes-vous sûr.e de vouloir supprimer l'identité liée à cette politique. Vous ne supprimez pas l'utilisateur, mais uniquement son lien avec la politique.",
+  "iam_delete_entity_resourceGroup_heading": "Supprimer un groupe de ressources",
+  "iam_delete_entity_resourceGroup_warn": "Êtes-vous sûr.e de confirmer la suppression ?",
+  "iam_delete_entity_resourceGroup_name": "Suppression du groupe de ressources : ",
+  "iam_delete_entity_resourceGroup_error": "Une erreur est survenue lors de la suppression du groupe de ressources : {{ message }}",
+  "iam_delete_entity_resourceGroup_success": "Le groupe de ressources a bien été supprimé",
   "iam_delete_entity_primary_label": "Supprimer",
   "iam_delete_entity_secondary_label": "Annuler"
 }

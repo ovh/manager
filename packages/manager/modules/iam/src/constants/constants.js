@@ -9,6 +9,7 @@ const FEATURE = {
 const ENTITY = {
   POLICY: 'policy',
   IDENTITY: 'identity',
+  RESOURCE_GROUP: 'resourceGroup',
 };
 const URN_VERSION = 1;
 
