@@ -1,5 +1,5 @@
 {
-  "pci_additional_ips_floating_ips_floating_ip_terminate_title": "Are you sure you want to delete the floating IP {{ip}}?",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_title": "Are you sure you want to delete the {{ip}} Floating IP?",
   "pci_additional_ips_floating_ips_floating_ip_terminate_confirm": "Confirm",
   "pci_additional_ips_floating_ips_floating_ip_terminate_cancel": "Exit",
   "pci_additional_ips_floating_ips_floating_ip_terminate_success_info": "The IP {{ip}} has been deleted.",
