@@ -1,7 +1,11 @@
 import FeatureAvailabilityResult from '@ovh-ux/ng-ovh-feature-flipping/src/feature-availability-result.class';
 
 import { ALERT_ID, ENTITY, FEATURE } from '@iam/constants';
-import { policyParamResolve, identityParamResolve } from './params.resolve';
+import {
+  policyParamResolve,
+  identityParamResolve,
+  resourceGroupParamResolve,
+} from './params.resolve';
 
 // ---------------------------------------------------------------------------------------------------- //
 
@@ -38,7 +42,7 @@ alertResolve.key = 'alert';
  *   type: string
  * }|null}
  */
-const entityResolve = /* @ngInject */ (policy, identity) => {
+const entityResolve = /* @ngInject */ (policy, identity, resourceGroup) => {
   let entity = null;
   if (identity && policy) {
     const [, userName] = identity.components;
@@ -48,12 +52,18 @@ const entityResolve = /* @ngInject */ (policy, identity) => {
     };
   } else if (policy) {
     entity = { data: policy, type: ENTITY.POLICY };
+  } else if (resourceGroup) {
+    entity = { data: resourceGroup, type: ENTITY.RESOURCE_GROUP };
   }
   return entity;
 };
 
 entityResolve.key = 'entity';
-entityResolve.resolves = [policyParamResolve, identityParamResolve];
+entityResolve.resolves = [
+  policyParamResolve,
+  identityParamResolve,
+  resourceGroupParamResolve,
+];
 
 // ---------------------------------------------------------------------------------------------------- //
 
