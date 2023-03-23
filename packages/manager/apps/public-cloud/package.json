@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "4.24.5",
+  "version": "4.24.6",
   "private": true,
   "description": "OVHcloud Public Cloud control panel.",
   "repository": {
@@ -42,7 +42,7 @@
     "@ovh-ux/ng-ovh-contracts": "^4.2.3",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.7",
     "@ovh-ux/ng-ovh-http": "^5.0.6",
-    "@ovh-ux/ng-ovh-payment-method": "^9.4.1",
+    "@ovh-ux/ng-ovh-payment-method": "^9.5.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.6",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.8",
     "@ovh-ux/ng-ovh-responsive-popover": "^6.0.2",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.4.1...@ovh-ux/ng-ovh-payment-method@9.5.0) (2023-03-23)
+
+
+### Features
+
+* **ng-ovh-payment-method:** adyen upgrade ([#9093](https://github.com/ovh/manager/issues/9093)) ([89f56d4](https://github.com/ovh/manager/commit/89f56d4bf5c7cd5e030c02b5bf9a7ccc034668d8))
+
+
+
+
+
 ## [9.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.4.0...@ovh-ux/ng-ovh-payment-method@9.4.1) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-payment-method
