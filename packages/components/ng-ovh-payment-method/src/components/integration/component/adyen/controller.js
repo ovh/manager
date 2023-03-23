@@ -79,14 +79,17 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
 
   createAdyenComponent(adyenConfiguration) {
     this.$timeout().then(() => {
-      this.checkout = new AdyenCheckout(adyenConfiguration);
-      this.checkout
-        .create('card', {
-          ...AdyenService.parseFormSessionId(
-            this.initialParams.paymentMethod.formSessionId,
-          ),
-        })
-        .mount('#adyen-component-container');
+      AdyenCheckout(adyenConfiguration).then((checkout) => {
+        this.checkout = checkout;
+        this.checkout
+          .create('card', {
+            ...AdyenService.parseFormSessionId(
+              this.initialParams.paymentMethod.formSessionId,
+            ),
+            showBrandsUnderCardNumber: false,
+          })
+          .mount('#adyen-component-container');
+      });
     });
   }
 
