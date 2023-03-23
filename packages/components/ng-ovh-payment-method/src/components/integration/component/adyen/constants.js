@@ -54,6 +54,9 @@ export const ADYEN_CONFIG = {
         color: '#4d5592',
       },
     },
+    analytics: {
+      enabled: false,
+    },
   },
 };
 
