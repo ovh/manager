@@ -1,7 +1,7 @@
 {
   "pci_additional_ips_title": "IP públicos",
   "pci_additional_ips_failover_ip_title": "Additional IP",
-  "pci_additional_ips_floating_ip_title": "Floating IP",
+  "pci_additional_ips_floating_ip_title": "IP flutuante",
   "pci_additional_ips_additional_ips_description": "Faça a gestão dos IP públicos associados aos seus serviços",
   "pci_additional_ips_country_US": "Estados Unidos",
   "pci_additional_ips_country_AU": "Austrália",
