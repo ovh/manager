@@ -152,5 +152,9 @@
   "sidebar_telephony_type_sip": "SIP",
   "sidebar_telephony_type_fax": "Fax",
   "sidebar_pci_volume_backup": "Volume Backup",
-  "sidebar_vmware_all": "All my services"
+  "sidebar_vmware_all": "All my services",
+  "sidebar_description": "My services menu",
+  "sidebar_load_services": "Load services",
+  "sidebar_access_list": "Access list",
+  "sidebar_access_dashboard": "Access dashboard"
 }
