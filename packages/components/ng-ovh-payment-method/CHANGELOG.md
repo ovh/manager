@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.5.0...@ovh-ux/ng-ovh-payment-method@9.5.1) (2023-03-23)
+
+
+### Bug Fixes
+
+* **ng-ovh-payment-method:** disable adyen analytics ([#9096](https://github.com/ovh/manager/issues/9096)) ([0d86a20](https://github.com/ovh/manager/commit/0d86a20d8ff1e8c362183d9b03b3fda253462c09))
+
+
+
+
+
 # [9.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.4.1...@ovh-ux/ng-ovh-payment-method@9.5.0) (2023-03-23)
 
 

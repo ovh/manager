@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.117.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.117.3...@ovh-ux/manager-pci@5.117.4) (2023-03-23)
+
+
+### Reverts
+
+* Revert "fix(i18n): add missing translations [CDS 2166]" (#9099) ([7bfcfe0](https://github.com/ovh/manager/commit/7bfcfe0866d5f2c91387bae1953a17dbd0b41599)), closes [#9099](https://github.com/ovh/manager/issues/9099)
+
+
+
+
+
 ## [5.117.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.117.2...@ovh-ux/manager-pci@5.117.3) (2023-03-22)
 
 
