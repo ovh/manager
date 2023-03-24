@@ -4,7 +4,7 @@ import publicCloud from './services/publicCloud';
 import webCloud from './services/webCloud';
 import network from './services/network';
 import telecom from './services/telecom';
-import { Node } from './node';
+import { Node, NodeTag } from './node';
 
 const root: Node = {
   id: 'home',
@@ -62,6 +62,7 @@ const root: Node = {
             application: 'dedicated',
             hash: '#/iam',
           },
+          tag: NodeTag.NEW,
           count: false,
           features: ['iam'],
         },
