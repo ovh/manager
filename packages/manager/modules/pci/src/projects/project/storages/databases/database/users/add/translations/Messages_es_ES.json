@@ -27,5 +27,6 @@
   "pci_databases_user_add_input_database": "Base de datos",
   "pci_databases_user_add_error_existing": "Ya se ha añadido un rol similar.",
   "pci_databases_user_add_warning_roles_added": "¡Atención! Todavía no ha configurado ningún rol para este usuario. Haga clic en el botón «+» para añadir su primer rol.",
-  "pci_databases_user_add_configured_roles": "{{nbRoles}} rol(es) configurado(s)"
+  "pci_databases_user_add_configured_roles": "{{nbRoles}} rol(es) configurado(s)",
+  "pci_databases_users_add_error_username_exist": "Debe ser único"
 }
