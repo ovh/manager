@@ -106,6 +106,7 @@ export default function AccountSidebar() {
       menu.push({
         id: 'iam',
         label: t('sidebar_account_iam'),
+        badge: 'new',
         href: navigation.getURL('dedicated', '/iam'),
         routeMatcher: new RegExp('^/iam'),
       });
