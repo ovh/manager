@@ -16,7 +16,6 @@ function getIcon(iconClass: string): JSX.Element {
 
 const features = [
   'dedicated-cloud',
-  'anthos',
   'nutanix',
   'veeam-enterprise',
   'dedicated-network',
@@ -78,31 +77,6 @@ export default function HostedPrivateCloudSidebar() {
               );
             },
           }));
-        },
-      });
-    }
-
-    if (feature.anthos) {
-      menu.push({
-        id: 'anthos',
-        label: t('sidebar_anthos'),
-        icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
-        routeMatcher: new RegExp(`^/anthos`),
-        async loader() {
-          const anthos = await loadServices('/dedicated/anthos/tenants');
-          return [
-            {
-              id: 'dedicated-anthos-all',
-              label: t('sidebar_anthos_all'),
-              href: navigation.getURL('dedicated', '#/anthos'),
-              icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
-              ignoreSearch: true,
-            },
-            ...anthos.map((service) => ({
-              ...service,
-              icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
-            })),
-          ];
         },
       });
     }
