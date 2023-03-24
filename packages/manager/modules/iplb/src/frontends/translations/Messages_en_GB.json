@@ -1,6 +1,6 @@
 {
   "iplb_frontends_title": "Front-ends",
-  "iplb_frontends_intro_text": "The front-end is the part of your Load Balancer that make your services visible on the internet.",
+  "iplb_frontends_intro_text": "The front-end is the part of your Load Balancer that makes your services visible on the internet.",
   "iplb_frontends_add": "Add a front-end",
   "iplb_frontend_frontend": "Front-end",
   "iplb_frontend_protocol": "Protocol",
