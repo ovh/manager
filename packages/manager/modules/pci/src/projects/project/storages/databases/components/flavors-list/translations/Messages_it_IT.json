@@ -5,5 +5,6 @@
   "pci_database_flavors_list_header_price_hour": "Costo/ora/nodo (stimato)",
   "pci_database_flavors_list_header_price_month": "Costo/mese/nodo (stimato)",
   "pci_database_flavors_list_storage_range": "Da {{min}} a {{max}}",
-  "pci_database_flavors_list_table_description": "Lista dei tipi di nodi"
+  "pci_database_flavors_list_table_description": "Lista dei tipi di nodi",
+  "pci_database_flavors_list_current_offer": "Soluzione corrente"
 }
