@@ -244,6 +244,11 @@ export default class LogsInputsService {
         info: {
           exposedPort: this.LogsConstants.INPUT_DEFAULT_PORT,
           nbInstance: this.LogsConstants.INPUT_DEFAULT_NB_INSTANCE,
+          autoscale: this.LogsConstants.INPUT_DEFAULT_AUTOSCALE,
+          minScaleInstance: this.LogsConstants
+            .INPUT_DEFAULT_AUTOSCALE_MIN_INSTANCE,
+          maxScaleInstance: this.LogsConstants
+            .INPUT_DEFAULT_AUTOSCALE_MAX_INSTANCE,
         },
       },
       loading: false,
@@ -415,6 +420,20 @@ export default class LogsInputsService {
       'info.stateType',
       this.LogsConstants.inputStateType[input.info.state],
     );
+    if (input.info.autoscale === false) {
+      // In the edit form, set the default values so they can be displayed in the form
+      // Function transformInputToSave will manage the removal of these properties if needed
+      set(
+        input,
+        'info.minScaleInstance',
+        this.LogsConstants.INPUT_DEFAULT_AUTOSCALE_MIN_INSTANCE,
+      );
+      set(
+        input,
+        'info.maxScaleInstance',
+        this.LogsConstants.INPUT_DEFAULT_AUTOSCALE_MAX_INSTANCE,
+      );
+    }
     return input;
   }
 
@@ -604,7 +623,16 @@ export default class LogsInputsService {
       title: input.info.title,
       description: input.info.description,
       engineId: input.info.engineId,
-      nbInstance: input.info.nbInstance ? input.info.nbInstance : undefined,
+      autoscale: input.info.autoscale,
+      // Add the nbInstance property only if autoscale mode is false
+      ...(!input.info.autoscale &&
+        input.info.nbInstance && { nbInstance: input.info.nbInstance }),
+      // Add the autoscale needed properties only if autoscale mode is true
+      ...(input.info.autoscale && {
+        minScaleInstance: input.info.minScaleInstance,
+        maxScaleInstance: input.info.maxScaleInstance,
+        scalingNotifyEnabled: input.info.scalingNotifyEnabled,
+      }),
       allowedNetworks: this.allowedNetworks,
       streamId: input.info.streamId,
       exposedPort: input.info.exposedPort.toString(),
