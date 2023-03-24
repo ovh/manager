@@ -1,0 +1,70 @@
+<div>
+    <oui-header
+        data-heading="{{ 'iam_create_resourceGroup_title' | translate }}"
+        data-description="{{ 'iam_create_resourceGroup_description' | translate }}"
+    >
+        <!-- <Guide> -->
+        <oui-guide-menu
+            data-text="{{:: 'iam_create_resourceGroup_header_guide_text' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.onboardingGuides track by $index"
+                data-href="{{:: guide.url }}"
+                data-external
+            >
+                <span data-ng-bind=":: guide.text"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+        <!-- </Guide> -->
+    </oui-header>
+
+    <h4
+        data-translate="iam_create_resourceGroup_sub_section_resourceGroup"
+    ></h4>
+
+    <form novalidate name="createResourceGroupForm">
+        <oui-field
+            label="{{ 'iam_create_resourceGroup_field_resourceGroup_name' | translate }}"
+            size="xl"
+        >
+            <input
+                class="oui-input"
+                name="resourceGroupNameField"
+                data-type="text"
+                data-ng-model="$ctrl.resourceGroup.name"
+                data-ng-pattern="$root.IAM.RESOURCE_GROUP_NAME_PATTERN"
+                data-required
+            />
+        </oui-field>
+
+        <h4
+            data-translate="iam_create_resourceGroup_sub_section_product_title"
+        ></h4>
+        <p
+            data-translate="iam_create_resourceGroup_sub_section_product_description"
+        ></p>
+
+        <!-- <Footer> -->
+        <div class="d-flex align-items-center">
+            <button
+                type="button"
+                class="oui-button oui-button_l oui-button_link mr-3"
+                data-ng-click="$ctrl.goToResourceGroup()"
+            >
+                <span
+                    data-translate="iam_create_resourceGroup_form_cancel"
+                ></span>
+            </button>
+            <button
+                type="button"
+                class="oui-button oui-button_l oui-button_primary mr-3"
+                data-ng-click="$ctrl.submit()"
+            >
+                <span
+                    data-translate="iam_create_resourceGroup_form_submit"
+                ></span>
+            </button>
+        </div>
+        <!-- </Footer> -->
+    </form>
+</div>

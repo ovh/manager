@@ -98,7 +98,9 @@ export default class ResourceGroupController {
    * @returns {Promise}
    */
   createResourceGroup() {
-    this.alert.error('createResourceGroup not implemented');
+    this.goTo({
+      name: ROUTES.CREATE_RESOURCE_GROUP,
+    });
   }
 
   /**

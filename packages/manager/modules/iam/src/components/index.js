@@ -11,6 +11,8 @@ import policiesComponent from './policies/policies.component';
 import policiesResolves from './policies/policies.resolves';
 import policyComponent from './policy/policy.component';
 import policyResolves from './policy/policy.resolves';
+import createResourceGroupComponent from './createResourceGroup/createResourceGroup.component';
+import createResourceGroupResolves from './createResourceGroup/createResourceGroup.resolves';
 import resourceGroupComponent from './resourceGroup/resourceGroup.component';
 import resourceGroupResolves from './resourceGroup/resourceGroup.resolves';
 
@@ -50,6 +52,12 @@ const policy = {
   resolves: policyResolves,
 };
 
+const createResourceGroup = {
+  name: 'iamCreateResourceGroup',
+  component: createResourceGroupComponent,
+  resolves: createResourceGroupResolves,
+};
+
 const resourceGroup = {
   name: 'iamResourceGroup',
   component: resourceGroupComponent,
@@ -66,6 +74,7 @@ angular
   .component(policyIdentities.name, policyIdentities.component)
   .component(policies.name, policies.component)
   .component(policy.name, policy.component)
+  .component(createResourceGroup.name, createResourceGroup.component)
   .component(resourceGroup.name, resourceGroup.component)
   .run(/*
     @ngTranslationsInject:json
@@ -75,6 +84,7 @@ angular
       ./policyIdentities/translations
       ./policies/translations
       ./policy/translations
+      ./createResourceGroup/translations
       ./resourceGroup/translations
   */);
 
@@ -85,6 +95,7 @@ export {
   policyIdentities,
   policies,
   policy,
+  createResourceGroup,
   resourceGroup,
 };
 export default moduleName;

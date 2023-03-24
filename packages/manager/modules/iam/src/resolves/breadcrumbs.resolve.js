@@ -15,6 +15,17 @@ createPolicyBreadcrumbResolve.key = key;
 // ---------------------------------------------------------------------------------------------------- //
 
 /**
+ * The create resourceGroup breadcrumb
+ * @returns {string}
+ */
+const createResourceGroupBreadcrumbResolve = /* @ngInject */ ($translate) =>
+  $translate.instant(`${pfx}_create_resourceGroup`);
+
+createResourceGroupBreadcrumbResolve.key = key;
+
+// ---------------------------------------------------------------------------------------------------- //
+
+/**
  * The default breadcrumb
  * @returns {string}
  */
@@ -50,6 +61,7 @@ noBreadcrumbResolve.key = key;
 
 export {
   createPolicyBreadcrumbResolve,
+  createResourceGroupBreadcrumbResolve,
   defaultBreadcrumbResolve,
   policyIdentitiesBreadcrumbResolve,
   noBreadcrumbResolve,

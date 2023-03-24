@@ -1,0 +1,11 @@
+{
+  "iam_create_resourceGroup_header_guide_text": "Guides",
+  "iam_create_resourceGroup_title": "Créer un groupe de ressources",
+  "iam_create_resourceGroup_description": "Sélectionnez les ressources que vous souhaitez pour créer votre groupe de ressources.",
+  "iam_create_resourceGroup_sub_section_resourceGroup": "Ressources",
+  "iam_create_resourceGroup_sub_section_product_title": "Sélection des produits",
+  "iam_create_resourceGroup_sub_section_product_description": "Sélectionnez le type de produits et ajoutez les produits que vous souhaitez à votre groupe.",
+  "iam_create_resourceGroup_field_resourceGroup_name": "Nom du groupe de ressources",
+  "iam_create_resourceGroup_form_cancel": "Annuler",
+  "iam_create_resourceGroup_form_submit": "Créer le groupe"
+}
