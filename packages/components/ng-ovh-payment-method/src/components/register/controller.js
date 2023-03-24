@@ -51,8 +51,6 @@ export default class OvhPaymentMethodRegisterCtrl {
       this.registeredPaymentMethods = [];
     }
 
-    // comment for send translation
-
     this.hasDefaultPaymentMethod = this.registeredPaymentMethods.some(
       ({ default: isDefault }) => isDefault === true,
     );
