@@ -86,9 +86,8 @@ export default function ServerSidebarItemRenderer({
           'aria-busy': !!item.isLoading,
         }}
         title={item.label}
-        className={`${item.depth > 0 ? style.subButton : ''} ${
-          item.isSelected ? style.selectedButton : ''
-        }`}
+        className={`${item.depth > 0 ? style.subButton : ''} ${item.isSelected ? style.selectedButton : ''
+          }`}
       >
         {item.isLoading && (
           <span className={style.menuItemIcon} aria-hidden="true">
@@ -117,9 +116,9 @@ export default function ServerSidebarItemRenderer({
   } else {
     const externalTarget = item.isExternal
       ? {
-          target: '_blank',
-          rel: 'noopener',
-        }
+        target: '_blank',
+        rel: 'noopener',
+      }
       : {};
     itemRender = (
       <a
@@ -144,6 +143,13 @@ export default function ServerSidebarItemRenderer({
           </span>
         )}
         <span>{item.label}</span>
+        {item?.badge && (
+          <span
+            className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
+          >
+            {item.badge}
+          </span>
+        )}
       </a>
     );
   }
