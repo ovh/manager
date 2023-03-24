@@ -759,5 +759,13 @@
   "logs_streams_encryption_detail": "Szyfruj archiwa za pomocą moich kluczy do szyfrowania PGP.",
   "logs_streams_encryption_max_keys": "Możesz wybrać maksymalnie {{maxKeys}} kluczy do szyfrowania",
   "streams_archives_encryption_keys": "Klucze do szyfrowania PGP",
-  "streams_archives_encryption_keys_helper": "Archiwum zostało zaszyfrowane za pomocą następującego/-ych klucza/-y:"
+  "streams_archives_encryption_keys_helper": "Archiwum zostało zaszyfrowane za pomocą następującego/-ych klucza/-y:",
+  "inputs_autoscaled": "Automatyczne skalowanie",
+  "inputs_autoscaled_detailled": "Automatyczne skalowanie liczby instancji",
+  "inputs_autoscaled_explanation": "Liczba instancji w Twoim narzędziu do gromadzenia logów może być stała lub automatycznie skalowana w zależności od obciążenia.",
+  "inputs_autoscaled_true": "Włączone",
+  "inputs_autoscaled_false": "Wyłączone",
+  "inputs_autoscaled_notification_detail": "Powiadom mnie w wiadomości e-mail, jeśli nastąpi automatyczne skalowanie.",
+  "inputs_logs_edit_min_instance_field": "Minimalna liczba instancji",
+  "inputs_logs_edit_max_instance_field": "Maksymalna liczba instancji"
 }
