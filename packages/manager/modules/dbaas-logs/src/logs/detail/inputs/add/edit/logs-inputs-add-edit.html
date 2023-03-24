@@ -128,20 +128,77 @@
         </oui-field>
 
         <oui-field
-            label="{{ ::'inputs_logs_edit_nb_instance_field' | translate }}"
+            label="{{ ::'inputs_autoscaled_detailled' | translate }}"
             size="xl"
-            help-text="{{ ctrl.showInputPrices() }}"
+            help-text="{{ ::'inputs_autoscaled_explanation' | translate }}"
         >
-            <oui-numeric
-                id="input_nbInstance"
-                name="input_nbInstance"
-                data-model="ctrl.input.data.info.nbInstance"
-                min="ctrl.LogsConstants.NB_INSTANCE_MIN"
-                max="ctrl.LogsConstants.NB_INSTANCE_MAX"
-                required
+            <oui-switch
+                name="input_autoscale"
+                data-model="ctrl.input.data.info.autoscale"
             >
-            </oui-numeric>
+            </oui-switch>
         </oui-field>
+
+        <div class="pl-4 mb-5">
+            <oui-field
+                label="{{ ::'inputs_logs_edit_nb_instance_field' | translate }}"
+                size="xl"
+                data-ng-hide="ctrl.input.data.info.autoscale"
+            >
+                <oui-numeric
+                    id="input_nbInstance"
+                    name="input_nbInstance"
+                    data-model="ctrl.input.data.info.nbInstance"
+                    min="ctrl.LogsConstants.NB_INSTANCE_MIN"
+                    max="ctrl.LogsConstants.NB_INSTANCE_MAX"
+                >
+                </oui-numeric>
+            </oui-field>
+
+            <oui-field
+                label="{{ ::'inputs_logs_edit_min_instance_field' | translate }}"
+                size="xl"
+                data-ng-hide="!ctrl.input.data.info.autoscale"
+            >
+                <oui-numeric
+                    id="input_minScaleInstance"
+                    name="input_minScaleInstance"
+                    data-model="ctrl.input.data.info.minScaleInstance"
+                    min="ctrl.LogsConstants.NB_INSTANCE_MIN"
+                    max="ctrl.LogsConstants.NB_INSTANCE_MAX"
+                >
+                </oui-numeric>
+            </oui-field>
+            <oui-field
+                label="{{ ::'inputs_logs_edit_max_instance_field' | translate }}"
+                size="xl"
+                data-ng-hide="!ctrl.input.data.info.autoscale"
+            >
+                <oui-numeric
+                    id="input_maxScaleInstance"
+                    name="input_maxScaleInstance"
+                    data-model="ctrl.input.data.info.maxScaleInstance"
+                    min="ctrl.input.data.info.minScaleInstance + 1"
+                    max="ctrl.LogsConstants.NB_INSTANCE_MAX"
+                >
+                </oui-numeric>
+            </oui-field>
+            <oui-field
+                label="{{ ::'logs_notification_title' | translate }}"
+                size="auto"
+                data-ng-hide="!ctrl.input.data.info.autoscale"
+            >
+                <oui-checkbox
+                    name="input_scaleNotification"
+                    id="input_scaleNotification"
+                    data-model="ctrl.input.data.info.scalingNotifyEnabled"
+                    ><span
+                        data-translate="inputs_autoscaled_notification_detail"
+                    ></span>
+                </oui-checkbox>
+            </oui-field>
+            <small class="oui-color-p-700">{{ ctrl.showInputPrices() }}</small>
+        </div>
 
         <oui-form-actions
             data-ng-hide="ctrl.inputAddEdit.loading"
