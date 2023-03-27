@@ -734,5 +734,7 @@
   "ip_unused_banner_text": "Disponi di indirizzi IP non utilizzati. Gli indirizzi IPv4 sono una risorsa sempre più rara. Se non effettivamente necessari, consigliamo pertanto di liberarli.",
   "ip_unused_banner_link": "Visualizza i miei IP non utilizzati",
   "ip_edit_or_assosiate_description": "Questa sezione permette di personalizzare le informazioni pubbliche sul blocco IP (informazioni presenti sul database whois).",
-  "ip_edit_or_assosiate_network_tab": "Rete"
+  "ip_edit_or_assosiate_network_tab": "Rete",
+  "ip_table_header_campus": "Campus",
+  "ip_repricing_banner_list_item_1": "Dal 6 ottobre 2022, per i nuovi indirizzi."
 }

@@ -92,5 +92,7 @@
   "telephony_order_specific_typology_relationship_label": "Beziehung zwischen Kunde und Unternehmen / Verwaltung / Verband",
   "telephony_order_specific_typology_content_label": "Klingeltöne, Logos",
   "telephony_order_specific_typology_general_label": "Allgemein",
-  "telephony_order_specific_typology_relaxing_label": "Dienste zur Entspannung"
+  "telephony_order_specific_typology_relaxing_label": "Dienste zur Entspannung",
+  "telephony_alias_portability_order_sda_sva_warning": "Für jede Portierung einer Sondernummer müssen Sie das Formular zur Identitätsbestätigung ausfüllen.",
+  "telephony_alias_portability_order_sda_sva_go_to_kyc": "Identität überprüfen"
 }

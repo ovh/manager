@@ -22,5 +22,12 @@
   "telephony_alias_administration_terminate": "Kündigen",
   "telephony_alias_administration_terminate_success": "Résiliation planifiée avec succès.",
   "telephony_alias_administration_cancel_termination": "Kündigung zurücknehmen",
-  "telephony_alias_administration_cancel_termination_success": "Résiliation annulée."
+  "telephony_alias_administration_cancel_termination_success": "Résiliation annulée.",
+  "telephony_alias_administration_terminate_sva_warning": "Wenn eine Kündigung im Gange ist, sind die Zahlungen in den nächsten 2 Monaten (60 Tagen) noch möglich",
+  "telephony_alias_administration_terminate_sva_warning_guarantee": "Um ihre Zahlungen sicherzustellen, ist es wichtig, dass Ihr gültiges KYC sowie das bestehende Zahlungskonto über diesen Zeitraum beibehalten werden.",
+  "telephony_alias_administration_terminate_sva_warning_link": "Meine Kontaktdaten überprüfen",
+  "telephony_alias_administration_terminate_confirm_message": "Sind Sie sicher, dass Sie Ihre Nummer löschen möchten?",
+  "telephony_alias_administration_terminate_confirm_sva_warning": "Ihre Identität und Ihre IBAN müssen gültig sein, um Ihre Auszahlungen zu erhalten.",
+  "telephony_alias_administration_terminate_confirm_primary": "Bestätigen",
+  "telephony_alias_administration_terminate_confirm_cancel": "Abbrechen"
 }

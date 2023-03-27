@@ -71,5 +71,19 @@
   "overTheBox_expiration_warning_help": "La disattivazione può essere annullata prima della data di scadenza del servizio.",
   "overTheBox_detail_link_guide": "Guide",
   "overthebox_detail_links": "Link",
-  "overTheBox_service_id": "Identificativo del servizio:"
+  "overTheBox_service_id": "Identificativo del servizio:",
+  "overTheBox_release_channels": "Versioni disponibili",
+  "overTheBox_change_release_channel_success": "La modifica della versione è stata effettuata correttamente.",
+  "overTheBox_change_release_channel_error": "Non è stato possibile effettuare la modifica della versione: {{errorMessage}}",
+  "overTheBox_release_channel_stable": "Versione stabile pubblica",
+  "overTheBox_release_channel_testing": "Versione beta",
+  "overTheBox_release_channel_unstable": "Versione alpha",
+  "overTheBox_release_channel_develop": "Versione di sviluppo",
+  "overTheBox_release_channel_rpi3": "Versione per Raspberry 3",
+  "overTheBox_version_device": "Versione dell'hardware",
+  "overTheBox_version_system": "Versione del sistema",
+  "overTheBox_last_seen": "Ultimo accesso dell'hardware dai server di provisioning",
+  "overTheBox_last_seen_few_seconds": "Qualche secondo fa",
+  "overTheBox_last_seen_minutes_ago": "Ci sono circa {{lastSeenDiff}}",
+  "overTheBox_reverse_dns": "Reverse DNS"
 }

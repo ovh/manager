@@ -1,0 +1,10 @@
+{
+  "xdsl_meeting_slots": "Marcar intervenção",
+  "xdsl_meeting_description": "A intervenção de um técnico é necessária para finalizar a instalação da sua linha.",
+  "xdsl_meeting_programmed_meeting_select": "Escolha o intervalo para a instalação da mesma.",
+  "xdsl_meeting_programmed_meeting": "Um encontro é selecionado a {{day}} entre {{start}} e {{end}}.",
+  "xdsl_meeting_confirm": "Validar a seleção",
+  "xdsl_meeting_order_succeed": "A reunião programada entre {{start}} e {{end}} foi registada.",
+  "xdsl_meeting_order_error": "A reunião programada entre {{start}} e {{end}} não pôde ser registada: {{error}}",
+  "xdsl_meeting_no_meetings": "Não há compromissos disponíveis para este serviço."
+}

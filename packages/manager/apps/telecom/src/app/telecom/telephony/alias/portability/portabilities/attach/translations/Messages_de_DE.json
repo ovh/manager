@@ -1,0 +1,12 @@
+{
+  "portabilities_attach_title": "Portierungsauftrag anhängen",
+  "portabilities_attach_action": "Portierungsmandat-Datei",
+  "portabilities_attach_invalid_format": "Ungültiges Dateiformat",
+  "portabilities_attach_file_format": "Maximale Größe: 10 MB, erlaubtes Format: PDF",
+  "portabilities_attach_processing": "Bindung des Portierungsauftrags wird durchgeführt",
+  "portabilities_attach_document_processing": "Dokument wird verbunden",
+  "portabilities_attach_document_succeed": "Das Dokument wurde erfolgreich verbunden.",
+  "portabilities_attach_document_failed": "Die Bindung an das Dokument ist gescheitert.",
+  "portabilities_attach_submit": "Bestätigen",
+  "portabilities_attach_cancel": "Abbrechen"
+}

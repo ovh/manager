@@ -827,5 +827,7 @@
   "domain_contact_owner": "Holder",
   "domain_configuration_renew": "Your domain name is suspended. You can still renew it during the grace period. Once this period has passed, additional fees will apply.",
   "domain_configuration_restorable": "Your domain name is being deleted. You can still restore it for an additional fee, by following the restore link. If you choose not to do this, your domain name will be permanently deleted.",
-  "domain_configuration_restorable_title_button": "Restore"
+  "domain_configuration_restorable_title_button": "Restore",
+  "domain_hosting_price_ht_label": "{{price}} ex. VAT",
+  "domain_tab_options_delete_expiry": "Your cancellation of the option will come into effect on the renewal date, i.e. {{ date }}"
 }
