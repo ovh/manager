@@ -357,7 +357,7 @@ export default class AgoraIpOrderCtrl {
   }
 
   onSelectedOfferChange(selectedOffer) {
-    this.maxSize = IP_AGORA[selectedOffer].maxQty;
+    this.maxSize = get(this.model, 'params.selectedOffer.maximumQuantity');
     this.minSize = IP_AGORA[selectedOffer].minQty;
     this.model.params.selectedQuantity = this.minSize;
     this.model.params.selectedOrganisation = null;
