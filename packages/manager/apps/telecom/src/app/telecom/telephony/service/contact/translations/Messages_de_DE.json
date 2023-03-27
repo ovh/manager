@@ -61,5 +61,7 @@
   "telephony_service_contact_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification des coordonnées.",
   "telephony_service_contact_required_fields": "Die Felder mit Asterisk sind Pflichtfelder.",
   "telephony_service_contact_tva": "USt-IdNr.",
-  "telephony_service_contact_tva_invalid": "Die angegebene Umsatzsteuer-Identifikationsnummer ist ungültig."
+  "telephony_service_contact_tva_invalid": "Die angegebene Umsatzsteuer-Identifikationsnummer ist ungültig.",
+  "telephony_service_contact_sync_error": "Synchronisierung nicht möglich, bitte überprüfen Sie Ihre Angaben.",
+  "telephony_service_contact_sync_na": "Nicht zutreffend"
 }

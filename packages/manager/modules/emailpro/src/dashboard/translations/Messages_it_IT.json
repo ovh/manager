@@ -864,5 +864,6 @@
   "emailpro_resilitation_cancel_action_intro_3": "Il servizio passerà in rinnovo automatico.",
   "emailpro_resilitation_cancel_action_confirmation_1": "Stai per annullare la disattivazione del servizio \"{0}\".",
   "emailpro_resilitation_cancel_action_confirmation_2": "Vuoi procedere con questa operazione?",
-  "emailpro_resilitation_cancel_action_confirmation_3": "Il servizio passerà in rinnovo automatico."
+  "emailpro_resilitation_cancel_action_confirmation_3": "Il servizio passerà in rinnovo automatico.",
+  "emailpro_GROUPS_partial_account": "Si è verificato un errore durante il caricamento: {0}"
 }

@@ -145,5 +145,11 @@
   "telephony_number_feature_ovh_pabx_step_rule_edit": "Modifier une action",
   "telephony_number_feature_ovh_pabx_step_rule_action": "Action à exécuter",
   "telephony_number_feature_ovh_pabx_step_rule_create_error": "Oups ! Une erreur est survenue lors de la création de l'action.",
-  "telephony_number_feature_ovh_pabx_step_rule_edit_error": "Oups ! Une erreur est survenue lors de la modification de l'action."
+  "telephony_number_feature_ovh_pabx_step_rule_edit_error": "Oups ! Une erreur est survenue lors de la modification de l'action.",
+  "telephony_number_feature_ovh_pabx_dialplan_terminal_action": "Terminalwirkung",
+  "telephony_number_feature_ovh_pabx_step_actions_count_hidden": "{{ count }} versteckte Aktionen",
+  "telephony_number_feature_ovh_pabx_step_actions_count_single_hidden": "{{ count }} versteckte Aktion",
+  "telephony_number_feature_ovh_pabx_step_rule_action_edit_menu_interactif": "Interaktives Menü ändern",
+  "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_already_added": "Menüs bereits hinzugefügt",
+  "telephony_number_feature_ovh_pabx_step_rule_read_dtmf_infos": "Ein DTMF-Eintrag entspricht der Frequenz, die von der Taste eines Telefons ausgestrahlt wird, wenn diese gepresst wird."
 }

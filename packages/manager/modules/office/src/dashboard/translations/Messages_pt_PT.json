@@ -110,5 +110,7 @@
   "microsoft_office_license_user_edit": "Alterar dados do utilizador",
   "microsoft_office_license_edit_user_confirm": "Os dados deste utilizador irão ser alterados:",
   "microsoft_office_license_detail_user_edit_success": "As alterações dos dados do utilizador foram concretizadas.",
-  "microsoft_office_license_detail_user_edit_error": "Erro ao processar alterações dos dados do utilizador."
+  "microsoft_office_license_detail_user_edit_error": "Erro ao processar alterações dos dados do utilizador.",
+  "microsoft_office_license_microsoft-365-apps-for-business-pp-nce": "Microsoft Office 365 Apps for Business",
+  "microsoft_office_license_microsoft-365-apps-for-enterprise-pp-nce": "Microsoft Office 365 Apps for Enterprise"
 }

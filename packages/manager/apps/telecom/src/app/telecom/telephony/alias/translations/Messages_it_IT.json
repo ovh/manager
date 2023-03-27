@@ -80,5 +80,14 @@
   "telephony_alias_config_obsolete_feature_type_part_one": "Pour configurer votre numéro en Easy (ou mini) PABX, merci de vous rendre dans le",
   "telephony_alias_config_obsolete_feature_type_part_two": "Sachez que prochainement cette configuration sera définitivement remplacée par la configuration File d'appels.",
   "telephony_alias_config_obsolete_feature_type_warning": "Attention {{featureType}} est une configuration obsolète, ce choix ne sera plus proposé lors d’une nouvelle configuration.",
-  "telephony_alias_breadcrumb": "Linee"
+  "telephony_alias_breadcrumb": "Linee",
+  "telephony_alias_tab_showmore": "Consultazione",
+  "telephony_alias_configuration_guide": "Guide",
+  "telephony_alias_configuration_guide_ccs": "Configura il tuo CCS",
+  "telephony_alias_configuration_guide_ccs_step_add": "Aggiungi una condizione a uno step",
+  "telephony_alias_configuration_guide_ccs_days_condition": "Condizione \"Giorni eccezionali\"",
+  "telephony_alias_configuration_guide_ccs_hours_condition": "Requisito relativo alle fasce orarie",
+  "telephony_alias_configuration_guide_ccs_filtering_condition": "Requisito \"Filtro chiamate\"",
+  "telephony_alias_configuration_guide_ccs_dashboard": "Consulta la dashboard",
+  "telephony_alias_configuration_guide_ccs_recordings": "Consulta le registrazioni"
 }
