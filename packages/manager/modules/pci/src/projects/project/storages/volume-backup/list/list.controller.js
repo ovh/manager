@@ -52,7 +52,7 @@ export default class VolumeBackupListController {
   }
 
   onDocumentationClick(guide) {
-    this.trackClick(`${VOLUME_BACKUP_TRACKING.LISTING.PAGE}::${guide.id}`);
+    this.trackClick(`${VOLUME_BACKUP_TRACKING.GUIDES}_${guide.id}`);
   }
 
   onCreateVolumeBackupClick() {
