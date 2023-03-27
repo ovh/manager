@@ -530,15 +530,15 @@
   "vps_additional_disk_current_capacity": "Capacità del disco: {{vpsDiskCapacity}}",
   "vps_additional_disk_cant_upgrade": "Per effettuare l'upgrade del disco aggiuntivo è prima necessario migrare verso la nuova gamma VPS cliccando su \"Migra il tuo VPS\".",
   "vps_configuration_desactivate_option_disabled_info": "Il disco aggiuntivo può essere disattivato al termine dell'impegno del tuo VPS.",
-  "vps_dashboard_snapshot_download_modal_title": "Scarica Snapshot",
+  "vps_dashboard_snapshot_download_modal_title": "Scaricare Snapshot",
   "vps_dashboard_snapshot_download_modal_summary": "Informazioni",
   "vps_dashboard_snapshot_download_modal_service_name": "Nome del servizio",
   "vps_dashboard_snapshot_download_modal_snapshot_size": "Taglia",
   "vps_dashboard_snapshot_download_modal_snapshot_creation_date": "Data di creazione dello Snapshot",
   "vps_dashboard_snapshot_download_modal_snapshot_link_expiration_date": "Data di scadenza del link di download",
-  "vps_dashboard_snapshot_download_modal_snapshot_loading_message": "Generazione dell'ordine di download dello Snapshot ...",
-  "vps_dashboard_snapshot_download_modal_snapshot_curl_success": "Ordine di download generato correttamente.",
-  "vps_dashboard_snapshot_download_modal_snapshot_curl_info": "Copia il comando CURL sopra indicato ed eseguilo sul tuo terminale. Per maggiori informazioni su CURL, <a href=\"{{curlDocumentationLink}}\" target=\"_blank\">clicca qui</a>.",
-  "vps_dashboard_snapshot_download_modal_snapshot_button_label": "Genera il link di download",
-  "vps_configuration_download_snapshot_title_button": "Scarica lo Snapshot"
+  "vps_dashboard_snapshot_download_modal_snapshot_loading_message": "Generazione del comando di download dello Snapshot...",
+  "vps_dashboard_snapshot_download_modal_snapshot_curl_success": "Comando di download generato correttamente.",
+  "vps_dashboard_snapshot_download_modal_snapshot_curl_info": "Copia il comando CURL qui sotto ed eseguilo sul tuo terminale. Per maggiori informazioni su CURL, <a href=\"{{curlDocumentationLink}}\" target=\"_blank\">clicca qui</a>.",
+  "vps_dashboard_snapshot_download_modal_snapshot_button_label": "Generare il link di download",
+  "vps_configuration_download_snapshot_title_button": "Scaricare lo Snapshot"
 }
