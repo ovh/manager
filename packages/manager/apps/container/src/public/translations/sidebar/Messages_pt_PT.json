@@ -149,5 +149,6 @@
   "sidebar_telephony_type_alias": "N.°",
   "sidebar_telephony_type_sipTrunk": "Trunk",
   "sidebar_telephony_type_sip": "SIP",
-  "sidebar_telephony_type_fax": "Fax"
+  "sidebar_telephony_type_fax": "Fax",
+  "sidebar_pci_volume_backup": "Volume Backup"
 }
