@@ -7,5 +7,6 @@
   "*.{css,less,scss}": ["stylelint --fix"],
   "!(*CHANGELOG).md": ["remark -qf .", "eslint --ext .md --fix"],
   "**/package.json": ["npx sort-package-json"],
-  "*.json": ["prettier --write"]
+  "*.json": ["prettier --write"],
+  "*.sh": ["make test"]
 }
