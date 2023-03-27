@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_volume_backup_create_detach_volume_title": "Volume trennen",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_description": "Möchten Sie Ihr Volume {{ volumeName }} von seiner Instanz {{ instanceName }} trennen?",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_action_cancel": "Abbrechen",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_action_detach": "Bestätigen",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_action_success": "Ihr Volume {{ volumeName }} wurde von seiner Instanz {{ instanceName }} getrennt.",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_action_fail": "Beim Update Ihres Volumes ist ein Fehler aufgetreten: {{ errorMessage }}"
+}
