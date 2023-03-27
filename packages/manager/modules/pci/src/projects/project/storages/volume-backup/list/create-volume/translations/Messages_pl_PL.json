@@ -1,0 +1,16 @@
+{
+  "pci_projects_project_storages_volume_backup_list_create_volume_breadcrumb": "Utwórz wolumen na bazie kopii zapasowej",
+  "pci_projects_project_storages_volume_backup_list_create_volume_title": "Utwórz wolumen na bazie kopii zapasowej",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_region": "Lokalizacja",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_type": "Typ wolumenu",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_name": "Nazwa wolumenu",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_size": "Rozmiar wolumenu",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_size_unit": "GB",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_size_price": "Szacowana kwota: {{ price }} netto/m-c",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_size_help": "Maksymalny rozmiar zależy od dostępnego limitu.",
+  "pci_projects_project_storages_volume_backup_list_create_volume_action_confirm": "Utwórz wolumen",
+  "pci_projects_project_storages_volume_backup_list_create_volume_action_cancel": "Anuluj",
+  "pci_projects_project_storages_volume_backup_list_create_volume_request_success": "Trwa tworzenie wolumenu {{volumeName}}.",
+  "pci_projects_project_storages_volume_backup_list_create_volume_request_success_link": "Możesz go sprawdzić na stronie Block Storage.",
+  "pci_projects_project_storages_volume_backup_list_create_volume_request_fail": "Wystąpił błąd podczas tworzenia wolumenu {{volumeName}} : {{message}}"
+}

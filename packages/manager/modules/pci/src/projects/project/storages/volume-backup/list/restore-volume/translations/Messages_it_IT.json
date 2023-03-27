@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_volume_backup_list_restore_volume_header": "Ripristinare il tuo volume",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_description": "Vuoi davvero ripristinare il volume {{ volumeName }} dal backup {{ volumeBackupName }}? Questa operazione comporta la perdita dei dati del volume corrente.",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_action_confirm": "Confermare",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_action_cancel": "Annullare",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_action_request_success": "Ripristino del volume {{ volumeName }} in corso...",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_action_request_error": "Si è verificato un errore durante il ripristino del volume {{ volumeName }}: {{ message }}"
+}
