@@ -197,7 +197,11 @@ export default class NewAccountFormFieldController {
             this.rule.fieldName === this.FIELD_NAME_LIST.timezone
               ? value
               : this.$translate.instant(
-                  `signup_enum_${this.rule.fieldName}_${value}`,
+                  `signup_enum_${
+                    this.rule.fieldName === this.FIELD_NAME_LIST.area
+                      ? `${this.newAccountForm.model.country}_`
+                      : ''
+                  }${this.rule.fieldName}_${value}`,
                 ),
         };
       } else if (this.getFieldType() === 'date') {
