@@ -25,6 +25,7 @@
                 <div
                     class="col-md-4"
                     data-ng-repeat="(key, data) in $ctrl.netboots track by $index"
+                    data-ng-if="key !== 'power'"
                 >
                     <oui-select-picker
                         name="{{:: key }}"
