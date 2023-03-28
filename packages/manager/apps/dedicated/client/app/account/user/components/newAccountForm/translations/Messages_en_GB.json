@@ -29,7 +29,7 @@
   "signup_field_gst": "Goods and Services Tax number (GST)",
   "signup_field_address": "Address",
   "signup_field_area": "Region",
-  "signup_field_state": "Status",
+  "signup_field_state": "State",
   "signup_field_zip": "Postcode",
   "signup_field_city": "City",
   "signup_field_birthDay": "Date of birth",
