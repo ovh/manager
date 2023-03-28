@@ -275,12 +275,12 @@
   "pack_move_promotion_subscription_months_offered": "{{ duration }} mois offerts",
   "pack_move_promotion_installation_fees_offered": "Frais de mise en service offerts",
   "pack_move_resume_promotion": "Les frais d'installation et les {{ duration }} premiers mois de votre nouvel abonnement sont offerts (hors location de modem, options supplémentaires ou frais de transport).",
-  "pack_move_modem_yes": "Modem neuf ({{ price }} HT / mois)",
-  "pack_move_modem_recycled": "Modem recyclé ({{ price }} HT / mois)",
-  "pack_move_modem_no": "Pas de modem",
+  "pack_move_modem_yes": "Je souhaite prendre un modem neuf ({{ price }} HT / mois)",
+  "pack_move_modem_recycled": "Je souhaite prendre un modem recyclé ({{ price }} HT / mois)",
+  "pack_move_modem_no": "Je ne souhaite pas de modem",
+  "pack_move_modem_keep": "Je souhaite conserver mon modem ({{ price }} HT/mois)",
   "pack_move_modem_required": "La sélection d'un type de modem est obligatoire",
-  "pack_move_confirm_modem_rental_yes": "Location modem neuf",
-  "pack_move_confirm_modem_rental_recycled": "Location modem recyclé",
+  "pack_move_confirm_modem_rental": "Location modem",
   "pack_move_offers_debit_mention_1": "(1) Jusqu'à 92 Mb/s descendant en VDSL et 22 Mb/s en ADSL, selon éligibilité.",
   "pack_move_offers_debit_mention_2": "(2) Jusqu'à 36 Mb/s montant en VDSL et 1 Mb/s en ADSL, selon éligibilité."
 }

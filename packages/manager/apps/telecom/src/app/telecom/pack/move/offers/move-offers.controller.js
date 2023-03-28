@@ -2,7 +2,11 @@ import find from 'lodash/find';
 import isUndefined from 'lodash/isUndefined';
 import set from 'lodash/set';
 
-import { PROMO_DISPLAY, MODEM_OPTION_NAME } from '../pack-move.constant';
+import {
+  PROMO_DISPLAY,
+  MODEM_OPTION_NAME,
+  MODEM_LIST,
+} from '../pack-move.constant';
 
 export default class PackMoveOffersCtrl {
   /* @ngInject */
@@ -31,6 +35,7 @@ export default class PackMoveOffersCtrl {
 
     this.PROMO_DISPLAY = PROMO_DISPLAY;
     this.MODEM_OPTION_NAME = MODEM_OPTION_NAME;
+    this.MODEM_LIST = MODEM_LIST;
 
     this.getOptions()
       .then(() => {
@@ -60,6 +65,7 @@ export default class PackMoveOffersCtrl {
         } else {
           this.offers = this.listOffers;
         }
+        this.initModemOptions();
       })
       .finally(() => {
         this.loading.init = false;
@@ -206,13 +212,11 @@ export default class PackMoveOffersCtrl {
         totalOfferPrice += option.choosedValue * option.optionalPrice.value;
       }
     });
-    if (optionName === this.MODEM_OPTION_NAME) {
-      offer.modemOptions.forEach((modem) => {
-        if (modem.name === offer.modem && modem.price) {
-          totalOfferPrice += modem.price.value;
-        }
-      });
-    }
+    offer.modemOptions.forEach((modem) => {
+      if (modem.name === offer.modem && modem.price) {
+        totalOfferPrice += modem.price.value;
+      }
+    });
 
     const displayedPrice = {
       currencyCode: offer.prices.price.price
@@ -325,7 +329,18 @@ export default class PackMoveOffersCtrl {
     // Update modem rental from selected modem detail
     selectedOffer.modemOptions.forEach((modem) => {
       if (modem.name === selectedOffer.modem) {
-        selectedOffer.modemRental = modem.price;
+        if (modem.price) {
+          if (
+            !selectedOffer.prices.modemRental.price ||
+            selectedOffer.prices.modemRental.price.value !== modem.price.value
+          ) {
+            selectedOffer.prices.modemRental.price = modem.price;
+
+            if (this.MODEM_LIST.includes(selectedOffer.modem)) {
+              selectedOffer.needNewModem = true;
+            }
+          }
+        }
       }
     });
 
@@ -355,9 +370,45 @@ export default class PackMoveOffersCtrl {
     return null;
   }
 
-  getModemOptionLabel(modemOption) {
-    return this.$translate.instant(`pack_move_modem_${modemOption.name}`, {
-      price: modemOption.price ? modemOption.price.text : '',
+  initModemOptions() {
+    this.offers = this.offers.map((offer) => {
+      Object.values(offer.modemOptions).forEach((option) => {
+        let optionLabel = '';
+        if (offer.needNewModem || !offer.prices.modemRental.price) {
+          optionLabel = this.$translate.instant(
+            `pack_move_modem_${option.name}`,
+            {
+              price: option.price ? option.price.text : '',
+            },
+          );
+        } else if (
+          this.MODEM_LIST.includes(option.name) &&
+          offer.prices.modemRental.price.value === option.price.value
+        ) {
+          optionLabel = this.$translate.instant('pack_move_modem_keep', {
+            price: option.price ? option.price.text : '',
+          });
+        } else {
+          optionLabel = this.$translate.instant(
+            `pack_move_modem_${option.name}`,
+            {
+              price: option.price ? option.price.text : '',
+            },
+          );
+        }
+        set(option, 'label', optionLabel);
+        return option;
+      });
+      // Set modem option to the first value from modem options list
+      set(offer, 'modem', offer.modemOptions[0].name);
+
+      // Update price
+      this.constructor.updateOfferDisplayedPrice(
+        1,
+        offer,
+        this.MODEM_OPTION_NAME,
+      );
+      return offer;
     });
   }
 

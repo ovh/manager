@@ -173,12 +173,13 @@
   "telecom_pack_migration_confirm_resume_contact_phone": "Numer telefonu, pod którym w razie potrzeby można się z Tobą w skontaktować.",
   "telecom_pack_migration_confirm_resume_phone_form_error": "Wprowadź poprawny numer telefonu.",
   "telecom_pack_migration_choose_offer_error": "Wystąpił błąd podczas pobierania ofert: {{error}}",
-  "telecom_pack_migration_modem_yes": "Nowy modem ({{price}} netto/m-c)",
-  "telecom_pack_migration_modem_recycled": "Modem z recyklingu ({{price}} netto/m-c)",
-  "telecom_pack_migration_modem_no": "Brak modemu",
+  "telecom_pack_migration_modem_yes": "Chcę zamówić nowy modem ({{ price }} netto / m-c)",
+  "telecom_pack_migration_modem_recycled": "Chcę skorzystać z modemu z recyklingu ({{ price }} netto / m-c)",
+  "telecom_pack_migration_modem_no": "Nie chcę modemu",
   "telecom_pack_migration_modem_required": "Wybór typu modemu jest obowiązkowy",
-  "telecom_pack_migration_confirm_modem_rental_yes": "Dzierżawa nowego modemu",
-  "telecom_pack_migration_confirm_modem_rental_recycled": "Dzierżawa modemu z recyklingu",
-  "telecom_pack_migration_offers_debit_mention_1": "(1) Prędkość pobierania do 92 Mbps w VDSL i 22 Mbps w ADSL, pod warunkiem dostępności.",
-  "telecom_pack_migration_offers_debit_mention_2": "(2) Prędkość pobierania do 36 Mbps w VDSL i 1 Mbps w ADSL, pod warunkiem dostępności."
+  "telecom_pack_migration_confirm_modem_rental_yes": "Dzierżawa modemu",
+  "telecom_pack_migration_confirm_modem_rental_recycled": "Wynajem modemu z recyklingu",
+  "telecom_pack_migration_offers_debit_mention_1": "(1) Aż do 92 Mb/s łączących się w VDSL i 22 Mb/s w ADSL, w zależności od dostępności.",
+  "telecom_pack_migration_offers_debit_mention_2": "(2) Do 36 Mb/s w VDSL i 1 Mb/s w ADSL, w zależności od dostępności.",
+  "telecom_pack_migration_modem_keep": "Chcę zachować modem ({{ price }} netto/m-c)"
 }

@@ -178,12 +178,13 @@
   "telecom_pack_migration_confirm_resume_contact_phone": "Telephone number you can be reached on, if required",
   "telecom_pack_migration_confirm_resume_phone_form_error": "The number you enter must be valid.",
   "telecom_pack_migration_choose_offer_error": "An error occurred while retrieving the plans: {{ error }}.",
-  "telecom_pack_migration_modem_yes": "New modem ({{price}} ex. VAT/month)",
-  "telecom_pack_migration_modem_recycled": "Recycled modem ({{price}} ex. VAT/month)",
-  "telecom_pack_migration_modem_no": "No modem",
+  "telecom_pack_migration_modem_yes": "I want to use a new modem ({{ price }} ex. VAT/month)",
+  "telecom_pack_migration_modem_recycled": "I want to use a recycled modem ({{ price }} ex. VAT/month)",
+  "telecom_pack_migration_modem_no": "I do not want a modem",
   "telecom_pack_migration_modem_required": "You must select a modem type",
   "telecom_pack_migration_confirm_modem_rental_yes": "New modem rental",
-  "telecom_pack_migration_confirm_modem_rental_recycled": "Recycled modem rental",
-  "telecom_pack_migration_offers_debit_mention_1": "(1) Up to 92Mb/s downstream bandwidth in VDSL and 22Mb/s in ADSL, depending on eligibility.",
-  "telecom_pack_migration_offers_debit_mention_2": "(2) Up to 36Mb/s upstream bandwidth in VDSL and 1Mb/s in ADSL, depending on eligibility."
+  "telecom_pack_migration_confirm_modem_rental_recycled": "Location modem recycled",
+  "telecom_pack_migration_offers_debit_mention_1": "(1) Up to 92 Mb/s descending in VDSL and 22 Mb/s in ADSL, depending on eligibility.",
+  "telecom_pack_migration_offers_debit_mention_2": "(2) Up to 36 Mb/s VDSL and 1 Mb/s ADSL, depending on eligibility.",
+  "telecom_pack_migration_modem_keep": "I want to keep my modem ({{ price }} ex. VAT/month)"
 }
