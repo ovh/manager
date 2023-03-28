@@ -29,6 +29,7 @@
             type="button"
             data-ng-if="$ctrl.getWarningMessage().userLink"
             data-ng-click="$ctrl.manageUsers()"
+            data-ng-disabled="!$ctrl.database.isActive()"
             data-translate="{{$ctrl.getWarningMessage().linkMessage}}"
         ></button>
     </oui-message>
@@ -371,6 +372,7 @@
                         <button
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                             data-ng-click="$ctrl.manageUsers()"
+                            data-ng-disabled="!$ctrl.database.isActive()"
                         >
                             <span
                                 data-translate="pci_databases_general_information_manage_users"
