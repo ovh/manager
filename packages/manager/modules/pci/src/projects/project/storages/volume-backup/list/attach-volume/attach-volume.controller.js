@@ -11,8 +11,6 @@ export default class VolumeBackupAttachVolumeController {
   }
 
   onAttachVolumeBackupConfirmClick() {
-    // TODO: Tracking -- MANAGER-10570
-
     this.isAttaching = true;
     return this.volumeBackupService
       .attachVolumeToInstance(
@@ -53,8 +51,6 @@ export default class VolumeBackupAttachVolumeController {
   }
 
   onAttachVolumeBackupCancelClick() {
-    // TODO: Tracking -- MANAGER-10570
-
     return this.goBack();
   }
 }
