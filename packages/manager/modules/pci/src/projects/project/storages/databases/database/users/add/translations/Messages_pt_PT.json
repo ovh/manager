@@ -27,5 +27,6 @@
   "pci_databases_user_add_input_database": "Base de dados",
   "pci_databases_user_add_error_existing": "Uma função semelhante já foi adicionada.",
   "pci_databases_user_add_warning_roles_added": "Atenção, ainda não foi configurada nenhuma função para este utilizador. Clique no botão «+» para concluir a adição da sua primeira função.",
-  "pci_databases_user_add_configured_roles": "{{nbRoles}} função(ões) configurada(s)"
+  "pci_databases_user_add_configured_roles": "{{nbRoles}} função(ões) configurada(s)",
+  "pci_databases_users_add_error_username_exist": "Deve ser único"
 }
