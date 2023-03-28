@@ -73,13 +73,13 @@
         </oui-field>
 
         <!--User credential overview inform-->
-        <storages-components-user-credential-banner
+        <pci-projects-project-storages-components-user-credential-banner
             data-ng-if="$ctrl.userModel.linkedMode.credential"
             data-is-new-user="false"
             data-user="$ctrl.userModel.linkedMode.selected"
             data-credential="$ctrl.userModel.linkedMode.credential"
             data-field-secret-key-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label' | translate}}"
-        ></storages-components-user-credential-banner>
+        ></pci-projects-project-storages-components-user-credential-banner>
 
         <!--Linked user btns-->
         <div class="d-inline-block mb-3">
@@ -131,13 +131,13 @@
         </oui-field>
 
         <!--User credential overview information-->
-        <storages-components-user-credential-banner
+        <pci-projects-project-storages-components-user-credential-banner
             data-ng-if="$ctrl.userModel.createMode.credential"
             data-is-new-user="true"
             data-user="$ctrl.userModel.createMode.user"
             data-credential="$ctrl.userModel.createMode.credential"
             data-field-secret-key-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label' | translate}}"
-        ></storages-components-user-credential-banner>
+        ></pci-projects-project-storages-components-user-credential-banner>
 
         <!--Create user btns-->
         <div class="d-inline-block mb-3">
