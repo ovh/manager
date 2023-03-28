@@ -60,47 +60,50 @@ export const VOLUME_BACKUP_POLLER_NAMESPACES = {
 export const VOLUME_BACKUP_DEFAULT_REGION = 'RBX';
 
 export const VOLUME_BACKUP_BASE_TRACKING =
-  'PublicCloud::pci::projects::project::storages::volume-backup';
+  'pci::projects::project::storages::volume-backup';
+
+export const VOLUME_BACKUP_CTA_TRACKING = `PublicCloud::${VOLUME_BACKUP_BASE_TRACKING}`;
 
 export const VOLUME_BACKUP_TRACKING = {
+  GUIDES: 'public-cloud_volume_backup::guides::go_to',
   ONBOARDING: {
     PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::onboarding`,
-    ADD: `${VOLUME_BACKUP_BASE_TRACKING}::onboarding::add`,
-    GUIDE: `${VOLUME_BACKUP_BASE_TRACKING}::onboarding::docs`,
+    ADD: `${VOLUME_BACKUP_CTA_TRACKING}::onboarding::add`,
+    GUIDE: `${VOLUME_BACKUP_CTA_TRACKING}::onboarding::docs`,
   },
   CREATE: {
     PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::create-backup`,
-    CTA_CONFIRM: `${VOLUME_BACKUP_BASE_TRACKING}::create-backup::confirm`,
-    REQUEST_FAIL: `${VOLUME_BACKUP_BASE_TRACKING}::create-backup::error`,
-    REQUEST_SUCCESS: `${VOLUME_BACKUP_BASE_TRACKING}::create-backup::success`,
+    CTA_CONFIRM: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup::confirm`,
+    REQUEST_FAIL: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup_error`,
+    REQUEST_SUCCESS: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup_success`,
   },
   LISTING: {
     PAGE: `${VOLUME_BACKUP_BASE_TRACKING}`,
-    ADD: `${VOLUME_BACKUP_BASE_TRACKING}::add`,
-    ROW_CTA_RESTORE_VOLUME: `${VOLUME_BACKUP_BASE_TRACKING}::table-option-menu::restore-volume`,
-    ROW_CTA_CREATE_VOLUME: `${VOLUME_BACKUP_BASE_TRACKING}::table-option-menu::create-volume`,
-    ROW_CTA_DELETE_VOLUME: `${VOLUME_BACKUP_BASE_TRACKING}::table-option-menu::delete-volume`,
+    ADD: `${VOLUME_BACKUP_CTA_TRACKING}::add`,
+    ROW_CTA_RESTORE_VOLUME: `${VOLUME_BACKUP_CTA_TRACKING}::table-option-menu::restore-volume`,
+    ROW_CTA_CREATE_VOLUME: `${VOLUME_BACKUP_CTA_TRACKING}::table-option-menu::create-volume`,
+    ROW_CTA_DELETE_VOLUME: `${VOLUME_BACKUP_CTA_TRACKING}::table-option-menu::delete-volume`,
   },
   RESTORE_VOLUME: {
     PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::restore`,
-    CTA_CANCEL: `${VOLUME_BACKUP_BASE_TRACKING}::restore::cancel`,
-    CTA_CONFIRM: `${VOLUME_BACKUP_BASE_TRACKING}::restore::confirm`,
-    REQUEST_FAIL: `${VOLUME_BACKUP_BASE_TRACKING}::restore::error`,
-    REQUEST_SUCCESS: `${VOLUME_BACKUP_BASE_TRACKING}::restore::success`,
+    CTA_CANCEL: `${VOLUME_BACKUP_CTA_TRACKING}::restore::cancel`,
+    CTA_CONFIRM: `${VOLUME_BACKUP_CTA_TRACKING}::restore::confirm`,
+    REQUEST_FAIL: `${VOLUME_BACKUP_CTA_TRACKING}::restore_error`,
+    REQUEST_SUCCESS: `${VOLUME_BACKUP_CTA_TRACKING}::restore_success`,
   },
   CREATE_VOLUME: {
     PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::create-volume`,
-    CTA_CANCEL: `${VOLUME_BACKUP_BASE_TRACKING}::create-volume::cancel`,
-    CTA_CONFIRM: `${VOLUME_BACKUP_BASE_TRACKING}::create-volume::confirm`,
-    REQUEST_FAIL: `${VOLUME_BACKUP_BASE_TRACKING}::create-volume::error`,
-    REQUEST_SUCCESS: `${VOLUME_BACKUP_BASE_TRACKING}::create-volume::success`,
+    CTA_CANCEL: `${VOLUME_BACKUP_CTA_TRACKING}::create-volume::cancel`,
+    CTA_CONFIRM: `${VOLUME_BACKUP_CTA_TRACKING}::create-volume::confirm`,
+    REQUEST_FAIL: `${VOLUME_BACKUP_CTA_TRACKING}::create-volume_error`,
+    REQUEST_SUCCESS: `${VOLUME_BACKUP_CTA_TRACKING}::create-volume_success`,
   },
   DELETE_BACKUP: {
     PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::delete`,
-    CTA_CANCEL: `${VOLUME_BACKUP_BASE_TRACKING}::delete::cancel`,
-    CTA_CONFIRM: `${VOLUME_BACKUP_BASE_TRACKING}::delete::confirm`,
-    REQUEST_FAIL: `${VOLUME_BACKUP_BASE_TRACKING}::delete::error`,
-    REQUEST_SUCCESS: `${VOLUME_BACKUP_BASE_TRACKING}::delete::success`,
+    CTA_CANCEL: `${VOLUME_BACKUP_CTA_TRACKING}::delete::cancel`,
+    CTA_CONFIRM: `${VOLUME_BACKUP_CTA_TRACKING}::delete::confirm`,
+    REQUEST_FAIL: `${VOLUME_BACKUP_CTA_TRACKING}::delete_error`,
+    REQUEST_SUCCESS: `${VOLUME_BACKUP_CTA_TRACKING}::delete_success`,
   },
 };
 

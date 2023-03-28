@@ -233,7 +233,7 @@ export default class VolumeBackupCreateController {
     const { type } = this.volumeBackupModel.selected.volumeOption;
     const trackPrefix = BACKUP_NAME_PREFIX[type];
     this.trackClick(
-      `${VOLUME_BACKUP_TRACKING.CREATE.CTA_CONFIRM}::${trackPrefix}`,
+      `${VOLUME_BACKUP_TRACKING.CREATE.CTA_CONFIRM}_${trackPrefix}`,
     );
 
     const taskPromise = this.isVolumeBackupOption()
