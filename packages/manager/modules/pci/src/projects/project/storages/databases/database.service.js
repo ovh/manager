@@ -192,6 +192,17 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
+  restoreService(projectId, engine, databaseId, pointInTime) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/restore`,
+        {
+          pointInTime,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
   getBackups(projectId, engine, databaseId) {
     return this.$http
       .get(

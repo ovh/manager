@@ -51,6 +51,12 @@
                 data-maximum-fraction-digits="3"
             >
             </ovh-manager-catalog-price>
+
+            <span
+                class="oui-badge oui-badge_s oui-badge_success"
+                data-ng-if="$ctrl.currentFlavor.id === flavor.id"
+                data-translate="pci_database_flavors_list_current_offer"
+            ></span>
         </td>
     </tr>
 </table>
