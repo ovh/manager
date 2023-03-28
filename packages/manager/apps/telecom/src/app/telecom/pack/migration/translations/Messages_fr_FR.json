@@ -178,12 +178,12 @@
   "telecom_pack_migration_confirm_resume_contact_phone": "Numéro de téléphone sur lequel vous pourrez être contacté si nécessaire",
   "telecom_pack_migration_confirm_resume_phone_form_error": "Le numéro saisi doit être valide.",
   "telecom_pack_migration_choose_offer_error": "Une erreur est survenue durant la récupération des offres : {{ error }}.",
-  "telecom_pack_migration_modem_yes": "Modem neuf ({{ price }} HT / mois)",
-  "telecom_pack_migration_modem_recycled": "Modem recyclé ({{ price }} HT / mois)",
-  "telecom_pack_migration_modem_no": "Pas de modem",
+  "telecom_pack_migration_modem_yes": "Je souhaite prendre un modem neuf ({{ price }} HT / mois)",
+  "telecom_pack_migration_modem_recycled": "Je souhaite prendre un modem recyclé ({{ price }} HT / mois)",
+  "telecom_pack_migration_modem_no": "Je ne souhaite pas de modem",
+  "telecom_pack_migration_modem_keep": "Je souhaite conserver mon modem ({{ price }} HT/mois)",
   "telecom_pack_migration_modem_required": "La sélection d'un type de modem est obligatoire",
-  "telecom_pack_migration_confirm_modem_rental_yes": "Location modem neuf",
-  "telecom_pack_migration_confirm_modem_rental_recycled": "Location modem recyclé",
+  "telecom_pack_migration_confirm_modem_rental": "Location modem",
   "telecom_pack_migration_offers_debit_mention_1": "(1) Jusqu'à 92 Mb/s descendant en VDSL et 22 Mb/s en ADSL, selon éligibilité.",
   "telecom_pack_migration_offers_debit_mention_2": "(2) Jusqu'à 36 Mb/s montant en VDSL et 1 Mb/s en ADSL, selon éligibilité."
 }
