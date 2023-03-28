@@ -4,5 +4,11 @@
   "pci_databases_backups_restore_confirm": "Confirm",
   "pci_databases_backups_restore_cancel": "Cancel",
   "pci_databases_backups_restore_success": "Your request to restore the {{name}} backup has been created successfully.",
-  "pci_databases_backups_restore_error": "Unable to restore backup: {{message}}"
+  "pci_databases_backups_restore_error": "Unable to restore backup: {{message}}",
+  "pci_databases_backups_restore_backup_success": "The request to restore the {{name}} backup ({{date}}) has been created.",
+  "pci_databases_backups_restore_pit_success": "The request to restore the service to the date {{date}} has been created.",
+  "pci_databases_backups_restore_restore_mode_description": "Select the restore point from which the service will be restored.",
+  "pci_databases_backups_restore_spec_restore_mode_soonest": "Newest",
+  "pci_databases_backups_restore_spec_restore_mode_timestamp": "Specific date",
+  "pci_databases_backups_restore_spec_restore_mode_backup": "Backup"
 }

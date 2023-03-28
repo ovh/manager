@@ -1,4 +1,4 @@
-import find from 'lodash/find';
+import { RESTORE_MODES } from './fork/fork.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -13,16 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
         /* @ngInject */
         backupList: (database, DatabaseService, projectId) =>
           DatabaseService.getBackups(projectId, database.engine, database.id),
-        backupRetentionTime: /* @ngInject */ (
-          database,
-          DatabaseService,
-          projectId,
-        ) =>
-          DatabaseService.getCapabilities(projectId).then((capabilities) =>
-            moment.duration(
-              find(capabilities.plans, (p) => p.name === database.plan)
-                .backupRetention,
-            ),
+        getCurrentFlavor: /* @ngInject */ (database, engine) => () =>
+          engine.getFlavor(
+            database.version,
+            database.plan,
+            database.region,
+            database.flavor,
           ),
         goBackToBackups: /* @ngInject */ ($state, CucCloudMessage) => (
           message = false,
@@ -54,21 +50,33 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return promise;
         },
-        goToRestore: /* @ngInject */ ($state) => (backupInstance) =>
+        goToRestore: /* @ngInject */ ($state) => (backupInstance) => {
+          const stateparams = {
+            restoreMode: RESTORE_MODES.SOONEST,
+          };
+          if (backupInstance) {
+            stateparams.restoreMode = RESTORE_MODES.BACKUP;
+            stateparams.backupId = backupInstance.id;
+          }
           $state.go(
             'pci.projects.project.storages.databases.dashboard.backups.restore',
-            {
-              backupInstance,
-            },
-          ),
-        goToFork: /* @ngInject */ ($state) => (backupInstance, database) =>
-          $state.go(
+            stateparams,
+          );
+        },
+        goToFork: /* @ngInject */ ($state) => (backupInstance) => {
+          const stateparams = {
+            restoreMode: RESTORE_MODES.SOONEST,
+          };
+          if (backupInstance) {
+            stateparams.restoreMode = RESTORE_MODES.BACKUP;
+            stateparams.backupId = backupInstance.id;
+          }
+
+          return $state.go(
             'pci.projects.project.storages.databases.dashboard.backups.fork',
-            {
-              backupInstance,
-              database,
-            },
-          ),
+            stateparams,
+          );
+        },
         refreshBackups: /* @ngInject */ ($state) => () => {
           return $state.reload();
         },
