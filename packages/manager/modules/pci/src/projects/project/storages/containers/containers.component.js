@@ -10,6 +10,7 @@ export default {
     containerLink: '<',
     containers: '<',
     containerId: '<',
+    containersResponseObj: '<',
     deleteContainer: '<',
     goToAddUserContainer: '<',
     goToStorageContainers: '<',
