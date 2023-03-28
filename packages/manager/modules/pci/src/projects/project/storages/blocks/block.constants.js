@@ -9,37 +9,39 @@ export const VOLUME_HELP_PREFERENCE_KEY =
   'PCI_PROJECTS_STORAGES_BLOCKS_HELP_SHOW_';
 
 export const VOLUME_BLOCK_BASE_TRACKING =
-  'PublicCloud::pci::projects::project::storages::blocks';
+  'pci::projects::project::storages::blocks';
+
+export const VOLUME_BLOCK_CTA_TRACKING = `PublicCloud::${VOLUME_BLOCK_BASE_TRACKING}`;
 
 export const VOLUME_BLOCK_TRACKING = {
   ONBOARDING: {
     PAGE: `${VOLUME_BLOCK_BASE_TRACKING}::onboarding`,
-    ADD: `${VOLUME_BLOCK_BASE_TRACKING}::onboarding::add`,
-    GUIDE: `${VOLUME_BLOCK_BASE_TRACKING}::onboarding::docs`,
+    ADD: `${VOLUME_BLOCK_CTA_TRACKING}::onboarding::add`,
+    GUIDE: `${VOLUME_BLOCK_CTA_TRACKING}::onboarding::docs`,
   },
   CREATE: {
     PAGE: `${VOLUME_BLOCK_BASE_TRACKING}::create-backup`,
-    GUIDE: `${VOLUME_BLOCK_BASE_TRACKING}::create-backup::guide`,
-    CTA_CONFIRM: `${VOLUME_BLOCK_BASE_TRACKING}::create-backup::confirm`,
-    CTA_CANCEL: `${VOLUME_BLOCK_BASE_TRACKING}::create-backup::cancel`,
-    REQUEST_FAIL: `${VOLUME_BLOCK_BASE_TRACKING}::create-backup::error`,
-    REQUEST_SUCCESS: `${VOLUME_BLOCK_BASE_TRACKING}::create-backup::success`,
+    GUIDE: `${VOLUME_BLOCK_CTA_TRACKING}::create-backup::guide`,
+    CTA_CONFIRM: `${VOLUME_BLOCK_CTA_TRACKING}::create-backup::confirm`,
+    CTA_CANCEL: `${VOLUME_BLOCK_CTA_TRACKING}::create-backup::cancel`,
+    REQUEST_FAIL: `${VOLUME_BLOCK_CTA_TRACKING}::create-backup::#error#`,
+    REQUEST_SUCCESS: `${VOLUME_BLOCK_CTA_TRACKING}::create-backup::#success#`,
   },
   DETACH_VOLUME: {
     PAGE: `${VOLUME_BLOCK_BASE_TRACKING}::detach-volume`,
-    CTA_CONFIRM: `${VOLUME_BLOCK_BASE_TRACKING}::detach-volume::confirm`,
-    CTA_CANCEL: `${VOLUME_BLOCK_BASE_TRACKING}::detach-volume::cancel`,
-    REQUEST_FAIL: `${VOLUME_BLOCK_BASE_TRACKING}::detach-volume::error`,
-    REQUEST_SUCCESS: `${VOLUME_BLOCK_BASE_TRACKING}::detach-volume::success`,
+    CTA_CONFIRM: `${VOLUME_BLOCK_CTA_TRACKING}::detach-volume::confirm`,
+    CTA_CANCEL: `${VOLUME_BLOCK_CTA_TRACKING}::detach-volume::cancel`,
+    REQUEST_FAIL: `${VOLUME_BLOCK_CTA_TRACKING}::detach-volume::#error#`,
+    REQUEST_SUCCESS: `${VOLUME_BLOCK_CTA_TRACKING}::detach-volume::#success#`,
   },
   LISTING: {
     PAGE: `${VOLUME_BLOCK_BASE_TRACKING}`,
-    CTA_CREATE: `${VOLUME_BLOCK_BASE_TRACKING}::add`,
-    ROW_CTA_DETACH_VOLUME: `${VOLUME_BLOCK_BASE_TRACKING}::table-option-menu::detach-volume`,
-    ROW_CTA_EDIT: `${VOLUME_BLOCK_BASE_TRACKING}::table-option-menu::edit`,
-    ROW_CTA_ATTACH: `${VOLUME_BLOCK_BASE_TRACKING}::table-option-menu::attach`,
-    ROW_CTA_CREATE_BACKUP: `${VOLUME_BLOCK_BASE_TRACKING}::table-option-menu::create-backup`,
-    ROW_CTA_DELETE: `${VOLUME_BLOCK_BASE_TRACKING}::table-option-menu::delete`,
+    CTA_CREATE: `${VOLUME_BLOCK_CTA_TRACKING}::add`,
+    ROW_CTA_DETACH_VOLUME: `${VOLUME_BLOCK_CTA_TRACKING}::table-option-menu::detach-volume`,
+    ROW_CTA_EDIT: `${VOLUME_BLOCK_CTA_TRACKING}::table-option-menu::edit`,
+    ROW_CTA_ATTACH: `${VOLUME_BLOCK_CTA_TRACKING}::table-option-menu::attach`,
+    ROW_CTA_CREATE_BACKUP: `${VOLUME_BLOCK_CTA_TRACKING}::table-option-menu::create-backup`,
+    ROW_CTA_DELETE: `${VOLUME_BLOCK_CTA_TRACKING}::table-option-menu::delete`,
   },
 };
 

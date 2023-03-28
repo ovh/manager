@@ -11,8 +11,6 @@ export default class VolumeBackupDetachVolumeController {
   }
 
   onDetachVolumeBackupDetachClick() {
-    // TODO: Tracking -- MANAGER-10570
-
     this.isDetaching = true;
     return this.volumeBackupService
       .detachVolumeFromInstance(
@@ -56,8 +54,6 @@ export default class VolumeBackupDetachVolumeController {
   }
 
   onDetachVolumeBackupCancelClick() {
-    // TODO: Tracking -- MANAGER-10570
-
     return this.goBack();
   }
 }
