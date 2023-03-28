@@ -557,6 +557,20 @@
                                 aria-hidden="true"
                             ></span>
                         </button>
+                        <button
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            type="button"
+                            data-ng-disabled="!$ctrl.database.isActive() || !$ctrl.isForkButtonEnabled"
+                            data-ng-click="$ctrl.goToFork()"
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_fork"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right ml-1"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
@@ -591,26 +605,6 @@
                                 data-translate="pci_databases_general_information_private_network_none"
                             ></span>
                         </div>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_new_fork_label' | translate }}"
-                    data-ng-if="$ctrl.isFeatureActivated('forkFromGeneralInformation')"
-                >
-                    <oui-tile-description>
-                        <button
-                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
-                            data-ng-click="$ctrl.goToFork()"
-                            data-ng-disabled="!$ctrl.database.isActive()"
-                        >
-                            <span
-                                data-translate="pci_databases_general_information_new_fork_link"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-arrow-right ml-1"
-                                aria-hidden="true"
-                            ></span>
-                        </button>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition

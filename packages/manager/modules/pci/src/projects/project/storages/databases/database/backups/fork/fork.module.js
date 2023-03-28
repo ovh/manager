@@ -7,6 +7,11 @@ import '@ovh-ux/ui-kit';
 import forkComponent from './fork.component';
 import routing from './fork.routing';
 
+import databasePlanList from '../../../components/plans-list';
+import databaseFlavorsList from '../../../components/flavors-list';
+import databaseDiskSize from '../../../components/disk-size';
+import switchPriceComponent from '../../../components/switch-price';
+
 const moduleName = 'ovhManagerPciStoragesDatabaseBackupsFork';
 
 angular
@@ -15,6 +20,10 @@ angular
     'pascalprecht.translate',
     'oui',
     'ui.router',
+    databasePlanList,
+    databaseFlavorsList,
+    databaseDiskSize,
+    switchPriceComponent,
   ])
   .config(routing)
   .component('ovhManagerPciStoragesDatabaseBackupsForkComponent', forkComponent)

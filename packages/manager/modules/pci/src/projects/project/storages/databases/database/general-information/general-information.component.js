@@ -46,6 +46,8 @@ export default {
     goBacktoGeneralInformation: '<',
     showPaymentWarning: '<',
     maintenances: '<',
+    backups: '<',
+    engines: '<',
   },
   controller,
   template,

@@ -44,6 +44,7 @@
   "pci_databases_general_information_manage_ips": "Gérer les adresses IP",
   "pci_databases_general_information_manage_maintenances": "Gérer les maintenances",
   "pci_databases_general_information_manage_backups": "Gérer les sauvegardes",
+  "pci_databases_general_information_fork": "Dupliquer (Fork)",
   "pci_databases_general_information_subscription_title": "Abonnement",
   "pci_databases_general_information_manage_billing_label": "Gérer la facturation",
   "pci_databases_general_information_display_billing": "Afficher la facturation",
