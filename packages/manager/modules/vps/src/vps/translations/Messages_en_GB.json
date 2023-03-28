@@ -530,7 +530,7 @@
   "vps_additional_disk_current_capacity": "Disk capacity: {{vpsDiskCapacity}}",
   "vps_additional_disk_cant_upgrade": "If you would like to upgrade your additional disk, you will need to migrate to the new VPS range first by clicking “Migrate my VPS” above.",
   "vps_configuration_desactivate_option_disabled_info": "The additional disk may be cancelled once your VPS subscription has ended.",
-  "vps_dashboard_snapshot_download_modal_title": "Download snapshot",
+  "vps_dashboard_snapshot_download_modal_title": "Download Snapshot",
   "vps_dashboard_snapshot_download_modal_summary": "Information",
   "vps_dashboard_snapshot_download_modal_service_name": "Service name",
   "vps_dashboard_snapshot_download_modal_snapshot_size": "Size",
@@ -538,7 +538,7 @@
   "vps_dashboard_snapshot_download_modal_snapshot_link_expiration_date": "Download link expiration date",
   "vps_dashboard_snapshot_download_modal_snapshot_loading_message": "Generating snapshot download command...",
   "vps_dashboard_snapshot_download_modal_snapshot_curl_success": "Download command generated successfully.",
-  "vps_dashboard_snapshot_download_modal_snapshot_curl_info": "Please copy the CURL command above and run it on your terminal. To learn more about CURL <a href=\"{{curlDocumentationLink}}\" target=\"_blank\">Click here</a>.",
+  "vps_dashboard_snapshot_download_modal_snapshot_curl_info": "Please copy the CURL command above, and run it on your terminal. To learn more about CURL, <a href=\"{{curlDocumentationLink}}\" target=\"_blank\">click here</a>.",
   "vps_dashboard_snapshot_download_modal_snapshot_button_label": "Generate download link",
-  "vps_configuration_download_snapshot_title_button": "Download the snapshot"
+  "vps_configuration_download_snapshot_title_button": "Download Snapshot"
 }
