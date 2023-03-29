@@ -10,7 +10,6 @@ module.exports = (env = {}) => {
       basePath: './src',
       lessPath: ['./node_modules'],
       root: path.resolve(__dirname, './src'),
-      resolveAlias: ['@ovh-ux/manager-iam'],
     },
     env,
   );
