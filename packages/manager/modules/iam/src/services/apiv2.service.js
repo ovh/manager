@@ -1,6 +1,4 @@
 export default class Apiv2Service {
-  #baseURL = 'iam';
-
   /* @ngInject */
   constructor($http) {
     this.$http = $http;
@@ -17,7 +15,7 @@ export default class Apiv2Service {
     return this.$http({
       ...options,
       method,
-      url: `/engine/api/v2/${this.#baseURL}/${endpoint}`,
+      url: `/engine/api/v2/iam/${endpoint}`,
       serviceType: 'apiv2',
     });
   }
