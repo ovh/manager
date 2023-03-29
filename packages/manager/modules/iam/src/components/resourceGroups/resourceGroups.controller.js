@@ -1,10 +1,10 @@
-import { ROUTES } from '@iam/routes';
 import AbstractCursorDatagridController from '../cursorDatagrid/cursorDatagrid.controller';
 
 export default class ResourceGroupsController extends AbstractCursorDatagridController {
   /* @ngInject */
-  constructor($location, ResourceGroupService, ouiDatagridService) {
+  constructor($location, IAMRoutes, ResourceGroupService, ouiDatagridService) {
     super($location, ouiDatagridService, 'resourceGroupDatagrid');
+    this.IAMRoutes = IAMRoutes;
     this.ResourceGroupService = ResourceGroupService;
   }
 
@@ -41,7 +41,7 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    */
   deleteResourceGroup({ id }) {
     this.goTo({
-      name: ROUTES.DELETE_RESOURCE_GROUP,
+      name: this.IAMRoutes.DELETE_RESOURCE_GROUP,
       params: { resourceGroup: id },
     });
   }
