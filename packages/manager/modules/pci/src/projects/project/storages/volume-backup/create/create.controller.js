@@ -134,7 +134,7 @@ export default class VolumeBackupCreateController {
       .createVolumeSnapshot(this.projectId, volume.id, { name })
       .then(() => {
         this.trackPage(
-          `${VOLUME_BACKUP_TRACKING.CREATE.REQUEST_SUCCESS}::${trackPrefix}`,
+          `${VOLUME_BACKUP_TRACKING.CREATE.REQUEST_SUCCESS}_${trackPrefix}`,
         );
 
         return this.goToSnapshots(
@@ -182,7 +182,7 @@ export default class VolumeBackupCreateController {
       })
       .catch(({ data }) => {
         this.trackPage(
-          `${VOLUME_BACKUP_TRACKING.CREATE.REQUEST_FAIL}::${trackPrefix}`,
+          `${VOLUME_BACKUP_TRACKING.CREATE.REQUEST_FAIL}_${trackPrefix}`,
         );
 
         return this.goToVolumeBackups(
@@ -204,6 +204,10 @@ export default class VolumeBackupCreateController {
 
       this.volumeBackupModel.name = `${volumeTypePrefix}-${volume.name}-${timestamp}`;
     }
+  }
+
+  onPriceLinkClick() {
+    this.trackClick(VOLUME_BACKUP_TRACKING.CREATE.PRICE_LINK);
   }
 
   onVolumeChange(volume) {

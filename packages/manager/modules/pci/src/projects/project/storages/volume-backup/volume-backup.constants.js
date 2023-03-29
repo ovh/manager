@@ -64,6 +64,8 @@ export const VOLUME_BACKUP_BASE_TRACKING =
 
 export const VOLUME_BACKUP_CTA_TRACKING = `PublicCloud::${VOLUME_BACKUP_BASE_TRACKING}`;
 
+export const GUIDES_STORAGES_OVERVIEW = 'storages_overview';
+
 export const VOLUME_BACKUP_TRACKING = {
   GUIDES: 'public-cloud_volume_backup::guides::go_to',
   ONBOARDING: {
@@ -73,6 +75,7 @@ export const VOLUME_BACKUP_TRACKING = {
   },
   CREATE: {
     PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::create-backup`,
+    PRICE_LINK: `${VOLUME_BACKUP_BASE_TRACKING}::create-backup::guide_${GUIDES_STORAGES_OVERVIEW}`,
     CTA_CONFIRM: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup::confirm`,
     REQUEST_FAIL: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup_error`,
     REQUEST_SUCCESS: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup_success`,
@@ -123,7 +126,7 @@ export const GUIDES = [
     },
   },
   {
-    id: 'storages_overview',
+    id: GUIDES_STORAGES_OVERVIEW,
     links: {
       DEFAULT: 'https://docs.ovh.com/gb/en/storage/',
       ASIA: 'https://docs.ovh.com/asia/en/storage/',
