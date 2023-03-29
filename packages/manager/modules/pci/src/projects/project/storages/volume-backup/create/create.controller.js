@@ -173,7 +173,7 @@ export default class VolumeBackupCreateController {
       })
       .then(() => {
         this.trackPage(
-          `${VOLUME_BACKUP_TRACKING.CREATE.REQUEST_SUCCESS}::${trackPrefix}`,
+          `${VOLUME_BACKUP_TRACKING.CREATE.REQUEST_SUCCESS}_${trackPrefix}`,
         );
 
         return this.goToVolumeBackups(

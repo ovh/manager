@@ -20,6 +20,7 @@ export default {
     goToSnapshots: '<',
     messageContainer: '<',
     volumeBackupTrackPrefix: '<',
+    onDocumentationClick: '<',
     trackClick: '<',
     trackPage: '<',
   },

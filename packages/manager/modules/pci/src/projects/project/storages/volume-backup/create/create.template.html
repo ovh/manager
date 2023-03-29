@@ -10,7 +10,7 @@
         <oui-guide-menu-item
             data-ng-repeat="guide in $ctrl.guides track by $index"
             data-href="{{:: guide.link }}"
-            data-on-click="$ctrl.trackClick(guide.id)"
+            data-on-click="$ctrl.onDocumentationClick(guide)"
             data-external
         >
             <span data-ng-bind=":: guide.title"></span>
