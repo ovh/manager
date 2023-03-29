@@ -1,0 +1,25 @@
+<manager-on-boarding-layout data-guides=":: $ctrl.onboardingGuides">
+    <onboarding-title>
+        <p data-translate="iam_onboarding_title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <p data-translate="iam_onboarding_description"></p>
+        <p data-translate="iam_onboarding_description_2"></p>
+        <a
+            class="mt-3 oui-button oui-button_primary oui-button_l text-light"
+            data-translate="iam_onboarding_cta_1"
+            ui-sref="{{ :: $root.IAM.ROUTES.CREATE_POLICY }}"
+            target="_self"
+            rel="noopener"
+        >
+        </a>
+        <a
+            class="mt-3 oui-button oui-button_secondary oui-button_l"
+            data-translate="iam_onboarding_cta_2"
+            href="{{ :: $ctrl.usersManagementLink }}"
+            target="_self"
+            rel="noopener"
+        >
+        </a>
+    </onboarding-description>
+</manager-on-boarding-layout>

@@ -5,6 +5,8 @@ import createPolicyResolves from './createPolicy/createPolicy.resolves';
 import deleteEntityComponent from './deleteEntity/deleteEntity.component';
 import deleteEntityResolves from './deleteEntity/deleteEntity.resolves';
 import iamComponent from './iam/iam.component';
+import onboardingComponent from './onboarding/onboarding.component';
+import onboardingResolves from './onboarding/onboarding.resolves';
 import policyIdentitiesComponent from './policyIdentities/policyIdentities.component';
 import policyIdentitiesResolves from './policyIdentities/policyIdentities.resolves';
 import policiesComponent from './policies/policies.component';
@@ -30,6 +32,12 @@ const iam = {
   name: 'iam',
   component: iamComponent,
   resolves: null,
+};
+
+const onboarding = {
+  name: 'iamOnboarding',
+  component: onboardingComponent,
+  resolves: onboardingResolves,
 };
 
 const policyIdentities = {
@@ -63,6 +71,7 @@ angular
   .component(createPolicy.name, createPolicy.component)
   .component(deleteEntity.name, deleteEntity.component)
   .component(iam.name, iam.component)
+  .component(onboarding.name, onboarding.component)
   .component(policyIdentities.name, policyIdentities.component)
   .component(policies.name, policies.component)
   .component(policy.name, policy.component)
@@ -73,6 +82,7 @@ angular
       ./cursorDatagrid/translations
       ./deleteEntity/translations
       ./iam/translations
+      ./onboarding/translations
       ./policyIdentities/translations
       ./policies/translations
       ./policy/translations
@@ -83,6 +93,7 @@ export {
   createPolicy,
   deleteEntity,
   iam,
+  onboarding,
   policyIdentities,
   policies,
   policy,
