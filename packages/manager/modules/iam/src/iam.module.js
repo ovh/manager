@@ -12,7 +12,8 @@ import routes from '@iam/routes';
 import services from '@iam/services';
 import components from '@iam/components';
 
-import './index.scss';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 const moduleName = 'ovhManagerIAM';
 

@@ -55,11 +55,20 @@ const declareRoutes = /* @ngInject */ ($stateProvider) => {
   recursiveDeclareRoutes(rootRoute);
 };
 
+/**
+ * Assign the ROUTES constants to the $rootScope
+ * @param {RootScope} $rootScope
+ */
+const assignROUTES = /* @ngInject */ ($rootScope) =>
+  Object.assign($rootScope, { IAM: { ...$rootScope.IAM, ROUTES } });
+
 const moduleName = 'ovhManagerIAMRoutes';
 
 angular
   .module(moduleName, [resolves])
   .config(declareRoutes)
+  .constant('IAMRoutes', ROUTES)
+  .run(assignROUTES)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export { ROUTES };
