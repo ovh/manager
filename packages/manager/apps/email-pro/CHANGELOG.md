@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.7.15...@ovh-ux/manager-emailpro-app@0.7.16) (2023-03-29)
+
+
+### Bug Fixes
+
+* **pci:** display error in regions ([#8128](https://github.com/ovh/manager/issues/8128)) ([4f0538e](https://github.com/ovh/manager/commit/4f0538e756d4be3c7c547a85b5f284249a0af4f2))
+
+
+
+
+
 ## [0.7.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.7.14...@ovh-ux/manager-emailpro-app@0.7.15) (2023-03-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-emailpro-app

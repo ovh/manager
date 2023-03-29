@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.17.1...@ovh-ux/manager-container-app@0.17.2) (2023-03-29)
+
+
+### Bug Fixes
+
+* **container:** case for composed first names ([#9026](https://github.com/ovh/manager/issues/9026)) ([186b1d9](https://github.com/ovh/manager/commit/186b1d9488a277fde1c6b7ca4a79239e96878952))
+
+
+
+
+
 ## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.17.0...@ovh-ux/manager-container-app@0.17.1) (2023-03-20)
 
 

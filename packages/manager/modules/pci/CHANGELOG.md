@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.118.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.117.4...@ovh-ux/manager-pci@5.118.0) (2023-03-29)
+
+
+### Bug Fixes
+
+* disable links when service is not ready ([#9061](https://github.com/ovh/manager/issues/9061)) ([8d4afc2](https://github.com/ovh/manager/commit/8d4afc2184bc8bdc10e86e2479b865d936769bc7))
+* **pci:** display error in regions ([#8128](https://github.com/ovh/manager/issues/8128)) ([4f0538e](https://github.com/ovh/manager/commit/4f0538e756d4be3c7c547a85b5f284249a0af4f2))
+* **projects.quota:** handle http quota request fail ([#9057](https://github.com/ovh/manager/issues/9057)) ([f6a3e20](https://github.com/ovh/manager/commit/f6a3e20e26af2191ff85850fa3e1466dc09a7d80))
+
+
+### Features
+
+* **pci.databases:** datatr 137 - cdb pitr ([#8950](https://github.com/ovh/manager/issues/8950)) ([b6c81c4](https://github.com/ovh/manager/commit/b6c81c4098a870147941c09565994e9bc7b8550c))
+* **pci.databases:** datatr-197 create user already exist ([#8967](https://github.com/ovh/manager/issues/8967)) ([5afb079](https://github.com/ovh/manager/commit/5afb079fb30b9631df4dea659c5ba6f7d174be36))
+
+
+
+
+
 ## [5.117.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.117.3...@ovh-ux/manager-pci@5.117.4) (2023-03-23)
 
 

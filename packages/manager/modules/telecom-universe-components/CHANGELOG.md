@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.19.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.19.0...@ovh-ux/ng-ovh-telecom-universe-components@7.19.1) (2023-03-29)
+
+
+### Bug Fixes
+
+* display shipping page only when user order new modem ([#8999](https://github.com/ovh/manager/issues/8999)) ([88f1bc4](https://github.com/ovh/manager/commit/88f1bc4e5783180d8d4db608f59d1c162e3a9d85))
+
+
+
+
+
 # [7.19.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.18.0...@ovh-ux/ng-ovh-telecom-universe-components@7.19.0) (2023-02-20)
 
 
