@@ -51,10 +51,6 @@ export default class VolumeBackupListController {
     ].some((actionAvailable) => actionAvailable);
   }
 
-  onDocumentationClick(guide) {
-    this.trackClick(`${VOLUME_BACKUP_TRACKING.GUIDES}_${guide.id}`);
-  }
-
   onCreateVolumeBackupClick() {
     this.trackClick(VOLUME_BACKUP_TRACKING.LISTING.ADD);
 

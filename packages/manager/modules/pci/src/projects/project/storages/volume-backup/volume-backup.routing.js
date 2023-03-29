@@ -1,6 +1,10 @@
 import VolumeBackup from './volume-backup.class';
 import { PCI_FEATURES, PCI_FEATURES_STATES } from '../../../projects.constant';
-import { GUIDES, VOLUME_BACKUP_ROUTES } from './volume-backup.constants';
+import {
+  GUIDES,
+  VOLUME_BACKUP_ROUTES,
+  VOLUME_BACKUP_TRACKING,
+} from './volume-backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(VOLUME_BACKUP_ROUTES.ROOT.STATE, {
@@ -199,15 +203,19 @@ export default /* @ngInject */ ($stateProvider) => {
 
       messageContainer: () => VOLUME_BACKUP_ROUTES.ROOT.STATE,
 
+      onDocumentationClick: /* @ngInject */ (trackClick) => (guide) => {
+        return trackClick(`${VOLUME_BACKUP_TRACKING.GUIDES}_${guide.id}`);
+      },
+
       trackClick: /* @ngInject */ (atInternet) => (hit, type = 'action') => {
-        atInternet.trackClick({
+        return atInternet.trackClick({
           name: hit,
           type,
         });
       },
 
       trackPage: /* @ngInject */ (atInternet) => (hit) => {
-        atInternet.trackPage({
+        return atInternet.trackPage({
           name: hit,
         });
       },
