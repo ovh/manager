@@ -1,6 +1,5 @@
 import angular from 'angular';
 
-import { ROUTES } from '@iam/routes';
 import * as constants from './constants';
 
 /**
@@ -8,12 +7,13 @@ import * as constants from './constants';
  * @param {RootScope} $rootScope
  */
 const assignConstants = /* @ngInject */ ($rootScope) =>
-  Object.assign($rootScope, { IAM: { ...constants, ROUTES } });
+  Object.assign($rootScope, { IAM: { ...$rootScope.IAM, ...constants } });
 
 const moduleName = 'ovhManagerIAMConstants';
 
 angular
   .module(moduleName, [])
+  .constant('IAMConstants', constants)
   .run(assignConstants)
   .run(/* @ngTranslationsInject:json ./translations */);
 
