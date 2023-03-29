@@ -1,11 +1,19 @@
 import get from 'lodash/get';
 import includes from 'lodash/includes';
 
+import { REGEX_COMMERCIAL_RANGE_NAME_NSX } from './datacenters.constants';
+
 export default class {
   /* @ngInject */
   constructor($q, DedicatedCloud) {
     this.$q = $q;
     this.DedicatedCloud = DedicatedCloud;
+  }
+
+  $onInit() {
+    this.isNSXPcc = REGEX_COMMERCIAL_RANGE_NAME_NSX.test(
+      this.dedicatedCloud.commercialRange,
+    );
   }
 
   getRight(order) {

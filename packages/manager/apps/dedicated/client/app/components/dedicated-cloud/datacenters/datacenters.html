@@ -4,9 +4,15 @@
         type="button"
         class="btn btn-default mb-4"
         data-ng-if="$ctrl.dedicatedCloud.canOrderDatacenter"
+        data-ng-disabled="$ctrl.isNSXPcc"
         data-ng-click="$ctrl.addDatacenter()"
         data-translate="dedicatedCloud_datacenters_add"
     ></button>
+    <oui-message class="mb-3" type="info" data-ng-if="$ctrl.isNSXPcc">
+        <span
+            data-translate="dedicatedCloud_datacenters_add_not_available"
+        ></span>
+    </oui-message>
     <oui-datagrid data-rows-loader="$ctrl.loadDatacenters($config)">
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_datacenters_title' | translate"
