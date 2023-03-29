@@ -25,7 +25,6 @@ export default class ColdArchiveLinkUserArchiveController {
     this.messageContainer = ARCHIVE_MESSAGES_ID;
 
     this.loadMessages();
-    this.initUsersCredentialsList();
   }
 
   loadMessages() {
@@ -55,18 +54,34 @@ export default class ColdArchiveLinkUserArchiveController {
   }
 
   initUsersCredentialsList() {
-    this.usersCredentials = this.users.map((user) => ({
-      ...user,
-      credentialTrad: this.getCredentialTranslation(user),
-      userNameDescriptionKey: user.description
-        ? `${user.username} - ${user.description}`
-        : user.username,
-    }));
+    this.userModel.linkedMode.isInProgress = true;
+    this.pciStoragesColdArchiveService
+      .getAllS3Users(this.projectId)
+      .then((users) =>
+        this.pciStoragesColdArchiveService.mapUsersToCredentials(
+          this.projectId,
+          users,
+        ),
+      )
+      .then((usersWithCredentials) => {
+        this.users = usersWithCredentials.map((user) => ({
+          ...user,
+          s3Credentials: user?.s3Credentials[0],
+          credentialTrad: this.getCredentialTranslation(user),
+          userNameDescriptionKey: user.description
+            ? `${user.username} - ${user.description}`
+            : user.username,
+        }));
+      })
+      .catch(() => [])
+      .finally(() => {
+        this.userModel.linkedMode.isInProgress = false;
+      });
   }
 
   getCredentialTranslation(user) {
     return this.$translate.instant(
-      user.s3Credentials
+      user.s3Credentials[0]
         ? 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_credential'
         : 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_no_credential',
     );
@@ -152,6 +167,7 @@ export default class ColdArchiveLinkUserArchiveController {
   onLinkedModeClicked() {
     this.trackClick(COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.EXISTING_USER);
     this.userModel.createOrLinkedMode = COLD_ARCHIVE_LINKED_MODES.LINKED;
+    this.initUsersCredentialsList();
   }
 
   onCreateModeClicked() {
