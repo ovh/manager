@@ -1,5 +1,8 @@
-import { VOLUME_HELP_PREFERENCE_KEY } from './block.constants';
 import { getCriteria } from '../../project.utils';
+import {
+  VOLUME_BLOCK_TRACKING,
+  VOLUME_HELP_PREFERENCE_KEY,
+} from './block.constants';
 
 export default class PciBlockStorageController {
   /* @ngInject */
@@ -22,6 +25,12 @@ export default class PciBlockStorageController {
     this.initLoaders();
 
     this.criteria = getCriteria('id', this.storageId);
+
+    if (this.taskResponse) {
+      const { type, message } = this.taskResponse.cucCloudParams;
+      this.taskResponse = null;
+      this.CucCloudMessage[type](message);
+    }
   }
 
   initLoaders() {
@@ -86,5 +95,41 @@ export default class PciBlockStorageController {
           this.displayHelp = null;
         });
     }
+  }
+
+  onAddStorageClick() {
+    this.trackClick(VOLUME_BLOCK_TRACKING.LISTING.CTA_CREATE);
+
+    return this.addStorage();
+  }
+
+  onEditStorageClick(storage) {
+    this.trackClick(VOLUME_BLOCK_TRACKING.LISTING.ROW_CTA_EDIT);
+
+    return this.editStorage(storage);
+  }
+
+  onAttachStorageClick(storage) {
+    this.trackClick(VOLUME_BLOCK_TRACKING.LISTING.ROW_CTA_ATTACH);
+
+    return this.attachStorage(storage);
+  }
+
+  onDetachStorageClick(storage) {
+    this.trackClick(VOLUME_BLOCK_TRACKING.LISTING.ROW_CTA_DETACH_VOLUME);
+
+    return this.detachStorage(storage);
+  }
+
+  onCreateBackupClick(storage) {
+    this.trackClick(VOLUME_BLOCK_TRACKING.LISTING.ROW_CTA_CREATE_BACKUP);
+
+    return this.goToCreateVolumeBackup(storage);
+  }
+
+  onDeleteStorageClick(storage) {
+    this.trackClick(VOLUME_BLOCK_TRACKING.LISTING.ROW_CTA_DELETE);
+
+    return this.deleteStorage(storage);
   }
 }

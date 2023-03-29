@@ -1,0 +1,4 @@
+{
+  "pci_projects_project_storages_components_detach_volume_from_instance_banner_info": "If you want to create a volume backup, you must detach your volume from its instance.",
+  "pci_projects_project_storages_components_detach_volume_from_instance_banner_info_link": "Detach your volume"
+}

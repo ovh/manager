@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_storages_volume_backup_list_delete_title": "Backup löschen",
+  "pci_projects_project_storages_volume_backup_list_delete_description": "Das Backup {{ volumeBackupName }} endgültig löschen?",
+  "pci_projects_project_storages_volume_backup_list_delete_warn": "Sämtliche Daten des Backups gehen dabei verloren.",
+  "pci_projects_project_storages_volume_backup_list_delete_enter": "Geben Sie im folgenden Feld „DELETE“ ein, um den Vorgang zu bestätigen.",
+  "pci_projects_project_storages_volume_backup_list_delete_action_confirm": "Bestätigen",
+  "pci_projects_project_storages_volume_backup_list_delete_action_cancel": "Abbrechen",
+  "pci_projects_project_storages_volume_backup_list_delete_success": "Ihr Backup {{ volumeBackupName }} wird gelöscht.",
+  "pci_projects_project_storages_volume_backup_list_delete_error": "Beim Löschen Ihres Backups {{ volumeBackupName }} ist ein Fehler aufgetreten: {{ message }}"
+}

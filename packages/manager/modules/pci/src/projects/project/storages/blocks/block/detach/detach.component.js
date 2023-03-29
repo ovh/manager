@@ -9,5 +9,7 @@ export default {
     storageId: '<',
     storage: '<',
     goBack: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
 };
