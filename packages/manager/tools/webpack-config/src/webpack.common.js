@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const RemcalcPlugin = require('less-plugin-remcalc');
 const WebpackBar = require('webpackbar');
@@ -24,21 +23,9 @@ const cacheLoader = {
   },
 };
 
-const readClosestPackage = (entry) => {
-  const packageFile = path.resolve(entry, 'package.json');
-  if (fs.existsSync(packageFile))
-    return {
-      path: path.parse(packageFile).dir,
-      file: require(packageFile), // eslint-disable-line
-    };
-  const top = path.resolve(entry, '..');
-  return top === entry ? null : readClosestPackage(top);
-};
-
 // The common webpack configuration
 
 module.exports = (opts) => {
-  const resolveAlias = {};
   const lessLoaderOptions = {
     sourceMap: true,
     plugins: [
@@ -53,15 +40,6 @@ module.exports = (opts) => {
 
   if ('lessJavascriptEnabled' in opts) {
     set(lessLoaderOptions, 'javascriptEnabled', opts.lessJavascriptEnabled);
-  }
-
-  if ('resolveAlias' in opts) {
-    opts.resolveAlias.forEach((module) => {
-      const pkg = readClosestPackage(require.resolve(module));
-      Object.entries(pkg.file.resolveAlias).forEach(([alias, aliasPath]) => {
-        resolveAlias[alias] = path.resolve(pkg.path, aliasPath);
-      });
-    });
   }
 
   const jsExclude = [
@@ -111,7 +89,6 @@ module.exports = (opts) => {
 
     resolve: {
       modules: ['./node_modules', path.resolve('./node_modules')],
-      alias: resolveAlias,
     },
 
     resolveLoader: {
