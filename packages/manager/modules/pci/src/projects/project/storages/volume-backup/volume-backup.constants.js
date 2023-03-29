@@ -75,7 +75,7 @@ export const VOLUME_BACKUP_TRACKING = {
   },
   CREATE: {
     PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::create-backup`,
-    PRICE_LINK: `${VOLUME_BACKUP_BASE_TRACKING}::create-backup::guide_${GUIDES_STORAGES_OVERVIEW}`,
+    PRICE_LINK: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup::guide_${GUIDES_STORAGES_OVERVIEW}`,
     CTA_CONFIRM: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup::confirm`,
     REQUEST_FAIL: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup_error`,
     REQUEST_SUCCESS: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup_success`,
