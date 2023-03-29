@@ -2,6 +2,8 @@ import angular from 'angular';
 import angularTranslate from 'angular-translate';
 import uiRouter from '@uirouter/angularjs';
 
+import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
@@ -18,6 +20,7 @@ import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 const moduleName = 'ovhManagerIAM';
 
 angular.module(moduleName, [
+  OnboardingLayoutHelper,
   angularTranslate,
   uiRouter,
   ngOvhFeatureFlipping,

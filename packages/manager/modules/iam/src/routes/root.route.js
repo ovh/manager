@@ -7,6 +7,7 @@ import policies from './policies.route';
 import policy from './policy.route';
 import resourceGroups from './resourceGroups.route';
 import deleteResourceGroup from './deleteResourceGroup.route';
+import onboarding from './onboarding.route';
 
 export default [
   {
@@ -43,6 +44,9 @@ export default [
             route: deleteIdentity,
           },
         ],
+      },
+      {
+        route: onboarding,
       },
     ],
   },

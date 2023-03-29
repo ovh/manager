@@ -25,6 +25,7 @@
     "@rollup/plugin-alias": "^4.0.3"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.7",
     "@ovh-ux/ng-ovh-utils": "^14.0.19",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.8",
