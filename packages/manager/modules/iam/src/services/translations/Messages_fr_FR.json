@@ -1,5 +1,8 @@
 {
   "iam_services_guide_iam": "Créer et gérer des politiques",
   "iam_services_guide_users": "Créer et gérer des utilisateurs",
-  "iam_services_guide_samlsso": "Activer la fédération SAML"
+  "iam_services_guide_samlsso": "Activer la fédération SAML",
+  "iam_services_guide_description_iam": "",
+  "iam_services_guide_description_users": "Découvrez comment ajouter des utilisateurs depuis votre compte OVHcloud.",
+  "iam_services_guide_description_samlsso": "Découvrez comment associer votre service ADFS à votre compte OVHcloud via SAML 2.0"
 }

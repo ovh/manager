@@ -12,7 +12,7 @@ export default class GuideService {
    * Format the given list of guides based on the current user's subsidiary
    * for direct use in templates
    * @param {GUIDE[]} guides A list of GUIDE constants
-   * @returns {{ key: string, url: string, text: string }[]}
+   * @returns {{ key: string, link: string, title: string, description: string }[]}
    */
   formatGuides(...guides) {
     return this.guideEntries
@@ -21,8 +21,11 @@ export default class GuideService {
         const lowerKey = key.toLowerCase();
         return {
           key: lowerKey,
-          url: guide[this.ovhSubsidiary] ?? guide.DEFAULT,
-          text: this.$translate.instant(`iam_services_guide_${lowerKey}`),
+          link: guide[this.ovhSubsidiary] ?? guide.DEFAULT,
+          title: this.$translate.instant(`iam_services_guide_${lowerKey}`),
+          description: this.$translate.instant(
+            `iam_services_guide_description_${lowerKey}`,
+          ),
           // TODO augment with tracking data
         };
       });
