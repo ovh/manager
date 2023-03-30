@@ -219,29 +219,28 @@
         >
         </vps-upscale-summary-configuration>
     </div>
-    <div class="row mt-2" data-ng-if="$ctrl.newRangeInformation && $ctrl.order">
-        <div class="col-md-6">
-            <vps-upscale-summary-price
-                language="$ctrl.connectedUser.language"
-                payment-type="$ctrl.newRangeInformation.pricing.paymentType"
-                price="{
-                  currency: $ctrl.connectedUser.currency.code,
-                  unit: $ctrl.order.prices.withoutTax.unit,
-                  value: $ctrl.order.prices.withoutTax.value,
-                }"
-            >
-            </vps-upscale-summary-price>
+    <div class="row mt-4" data-ng-if="$ctrl.newRangeInformation">
+        <oui-message class="col-md-12" type="info">
+            <p ng-if="!$ctrl.order">
+                <span data-translate="vps_upscale_prorata_price_loading"></span>
+                <oui-spinner size="s"></oui-spinner>
+            </p>
             <p
+                ng-if="$ctrl.order"
                 data-translate="{{:: $ctrl.getValidationInformation() }}"
                 data-translate-values="{
                   'price': '<strong>' + $ctrl.order.prices.withoutTax.text + '</strong>'
                 }"
             ></p>
-        </div>
+        </oui-message>
     </div>
+    <p
+        class="mt-4"
+        data-translate="vps_upscale_new_configuration_refresh_time"
+    ></p>
 
     <!-- Order agreement -->
-    <div data-ng-if="$ctrl.order">
+    <div class="mt-4" data-ng-if="$ctrl.order">
         <oui-checkbox
             model="$ctrl.agreeContracts"
             data-ng-if="$ctrl.order && $ctrl.agreements"
@@ -262,12 +261,11 @@
     </div>
 
     <!-- Submit/cancel buttons -->
-    <p data-translate="vps_upscale_new_configuration_refresh_time"></p>
-    <div class="row">
+    <div class="row mt-4 justify-content-end">
         <oui-button
             data-type="button"
             size="l"
-            class="offset-md-8 offset-sm-8 mr-2"
+            class="mr-2"
             data-variant="secondary"
             on-click="$ctrl.goBack()"
         >

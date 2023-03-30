@@ -38,6 +38,7 @@
   "vps_upscale_summary_price_monthly_without_payment_method_validation": "En validant ce choix, vous serez redirigé(e) vers un bon de commande pour régler la somme de {{ price }} au titre du prorata temporis.",
   "vps_upscale_summary_price_upfront_with_payment_method_validation": "En validant ce choix, vous serez facturé(e) de {{ price }} pour le temps restant de votre engagement.",
   "vps_upscale_summary_price_upfront_without_payment_method_validation": "En validant ce choix, vous serez redirigé(e) vers un bon de commande pour régler la somme supplémentaire de {{ price }} pour le temps restant de votre engagement.",
+  "vps_upscale_prorata_price_loading": "Chargement du prix au prorata temporis.",
   "vps_upscale_get_information_error": "Une erreur est survenue lors de la récupération des informations pour passer à la nouvelle gamme.",
   "vps_upscale_get_configuration_information_error": "Une erreur est survenue lors de la récupération des informations pour modifier la configuration.",
   "vps_upscale_error": "Une erreur est survenue lors de la validation de la nouvelle gamme.",

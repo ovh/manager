@@ -185,6 +185,7 @@ export default class UpscaleController {
   }
 
   getRangeFlavorConfigurationPricing() {
+    this.order = null;
     if (
       UpscaleController.isRangeFlavorConfigurationComplete(
         this.rangeConfiguration,
