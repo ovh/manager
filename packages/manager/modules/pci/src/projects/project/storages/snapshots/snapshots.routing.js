@@ -1,4 +1,4 @@
-import { PCI_FEATURES } from '../../../projects.constant';
+import { PCI_FEATURES, PCI_FEATURES_STATES } from '../../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.snapshots', {
@@ -21,9 +21,14 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         type: 'string',
       },
+      taskResponse: null,
     },
     resolve: {
       snapshotId: /* @ngInject */ ($transition$) => $transition$.params().id,
+
+      taskResponse: /* @ngInject */ ($transition$) =>
+        $transition$.params().taskResponse,
+
       snapshots: /* @ngInject */ (
         PciProjectStorageSnapshotsService,
         projectId,
@@ -50,6 +55,14 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           snapshotId: snapshot.id,
         }),
+
+      goToCreateVolumeBackup: /* @ngInject */ ($state, projectId) => () => {
+        return $state.go(PCI_FEATURES_STATES.VOLUME_BACKUP.ADD, {
+          projectId,
+          volumeOption: 'volume_snapshot',
+        });
+      },
+
       goToSnapshots: /* @ngInject */ (
         $rootScope,
         CucCloudMessage,
