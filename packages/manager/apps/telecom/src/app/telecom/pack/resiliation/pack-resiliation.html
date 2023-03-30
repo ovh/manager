@@ -6,6 +6,74 @@
         <h1 data-translate="pack_resiliation_title"></h1>
     </header>
 
+    <div data-ng-if="$ctrl.isEligible">
+        <oui-modal
+            data-heading="{{:: 'pack_resiliation_eligibility_eligible_title' | translate}}"
+            data-type="help"
+            data-on-dismiss="$ctrl.onDismiss()"
+        >
+            <p data-translate="pack_resiliation_eligibility_fiber_eligible"></p>
+            <p
+                data-translate="pack_resiliation_eligibility_fiber_eligible_description"
+            ></p>
+            <oui-button
+                data-variant="link"
+                data-ng-click="$ctrl.onChangeOffer()"
+            >
+                <span
+                    data-translate="pack_resiliation_eligibility_change_offer"
+                ></span>
+            </oui-button>
+            <oui-button
+                data-variant="link"
+                data-ng-click="$ctrl.constructor.openFiberPage()"
+            >
+                <span
+                    data-translate="pack_resiliation_eligibility_fiber_information"
+                ></span>
+            </oui-button>
+            <oui-button data-variant="link" data-ng-click="$ctrl.onDismiss()">
+                <span
+                    data-translate="pack_resiliation_eligibility_not_interest"
+                ></span>
+            </oui-button>
+        </oui-modal>
+        <div class="oui-modal-backdrop"></div>
+    </div>
+    <div data-ng-if="$ctrl.isEligibleNotYet">
+        <oui-modal
+            data-heading="{{:: 'pack_resiliation_eligibility_not_yet_eligible_title' | translate}}"
+            type="help"
+            on-dismiss="$ctrl.onDismiss()"
+        >
+            <p
+                data-translate="pack_resiliation_eligibility_fiber_not_eligible"
+            ></p>
+            <p
+                data-translate="pack_resiliation_eligibility_fiber_not_eligible_description"
+            ></p>
+            <p
+                data-translate="pack_resiliation_eligibility_available_date"
+                data-translate-values="{'availabilityDate': $ctrl.constructor.formatDate($ctrl.eligibility.availabilityDate)}"
+                data-ng-if="$ctrl.eligibility.availabilityDate"
+            ></p>
+            <oui-button
+                variant="link"
+                data-ng-click="$ctrl.constructor.openFiberPage()"
+            >
+                <span
+                    data-translate="pack_resiliation_eligibility_fiber_information"
+                ></span>
+            </oui-button>
+            <oui-button variant="link" data-ng-click="$ctrl.onDismiss()">
+                <span
+                    data-translate="pack_resiliation_eligibility_not_interest"
+                ></span>
+            </oui-button>
+        </oui-modal>
+        <div class="oui-modal-backdrop"></div>
+    </div>
+
     <div class="row">
         <div class="col-xs-12 col-md-6">
             <div
