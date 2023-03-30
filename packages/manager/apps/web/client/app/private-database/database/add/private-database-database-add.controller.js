@@ -46,7 +46,7 @@ angular.module('App').controller(
               min: 1,
               max: 50,
             },
-            reg: /^([\d\w-]){1,50}$/,
+            reg: /^[a-zA-Z0-9]([\w-]){0,49}$/,
           },
         },
         user: {
