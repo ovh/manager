@@ -220,9 +220,10 @@ export default class CreateLinkedUserController {
         return this.generateUserS3Credential(user);
       })
       .then((credential) => {
-        newUser.s3Credentials = [credential];
+        newUser.s3Credentials = credential;
         this.users.push(newUser);
         this.userModel.createMode.credential = credential;
+        this.userModel.createMode.user = newUser;
         this.setUserCredentialsList();
         this.trackPage(`${TRACKING_CREATE_USER}-success`);
         return credential;
