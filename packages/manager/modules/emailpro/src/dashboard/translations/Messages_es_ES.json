@@ -848,5 +848,22 @@
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> hacia <strong>{1}</strong>",
   "emails_common_continue_question": "¿Seguro que quiere continuar?",
   "emails_common_account_name_conditions": "Atención: El nombre de la cuenta debe cumplir los siguientes criterios: <br/>- mínimo {0} caracteres,<br/>- máximo {1} caracteres,<br/>- sin espacios,<br/>- sin caracteres acentuados,<br/>- sin caracteres especiales, excepto «.», «-» y «_».",
-  "emailpro-mxplan_tab_domain_no_domains": "No se han encontrado resultados"
+  "emailpro-mxplan_tab_domain_no_domains": "No se han encontrado resultados",
+  "emailpro_resilitation_action_intro_1": "¿Seguro que quiere dar de baja el servicio Email Pro «{0}»?",
+  "emailpro_resilitation_action_intro_2": "Esta acción cancelará la renovación automática al finalizar el período de expiración, por lo que el servicio se bloqueará.",
+  "emailpro_resilitation_action_intro_3": "Podrá utilizar el servicio con normalidad hasta esa fecha.",
+  "emailpro-mxplan_resilitation_action_intro_1": "¿Seguro que quiere dar de baja el servicio de correo MX Plan «{0}»?",
+  "emailpro-mxplan_resilitation_action_intro_2": "Esta acción cancelará la renovación automática al finalizar el período de expiración, por lo que el servicio se bloqueará.",
+  "emailpro-mxplan_resilitation_action_intro_3": "Podrá utilizar el servicio con normalidad hasta esa fecha.",
+  "emailpro_resilitation_action_confirmation_1": "Atención: va a dar de baja íntegramente el servicio «{0}», así como las {1} cuentas Email Pro asociadas.",
+  "emailpro_resilitation_action_confirmation_2": "¿Seguro que quiere realizar esta operación?",
+  "emailpro-mxplan_resilitation_action_confirmation_1": "Atención: va a dar de baja íntegramente el servicio «{0}», así como las {1} cuentas de correo MX Plan asociadas.",
+  "email_pro-mxplan_resilitation_action_confirmation_2": "¿Seguro que quiere realizar esta operación?",
+  "emailpro_resilitation_cancel_action_intro_1": "La baja del servicio Email Pro «{0}» está programada para la fecha de expiración.",
+  "emailpro_resilitation_cancel_action_intro_2": "¿Seguro que quiere cancelar dicha baja?",
+  "emailpro_resilitation_cancel_action_intro_3": "En ese caso, el servicio pasará a renovación automática.",
+  "emailpro_GROUPS_partial_account": "Se ha producido un error al cargar: {0}.",
+  "emailpro_resilitation_cancel_action_confirmation_1": "Va a cancelar la baja del servicio «{0}».",
+  "emailpro_resilitation_cancel_action_confirmation_2": "¿Quiere realizar dicha operación?",
+  "emailpro_resilitation_cancel_action_confirmation_3": "En ese caso, el servicio pasará a renovación automática."
 }

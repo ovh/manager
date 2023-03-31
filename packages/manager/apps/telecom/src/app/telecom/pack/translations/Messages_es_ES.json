@@ -1,4 +1,9 @@
 {
   "packs_breadcrumb": "Acceso a internet",
-  "packs_order": "Contratar"
+  "packs_order": "Contratar",
+  "packs_pack_name_label": "Pack",
+  "packs_description_label": "Descripción",
+  "packs_num_service_label": "Acceso a internet",
+  "packs_view_label": "Detalle del pack",
+  "pack_internet_access_title": "Acceso a internet"
 }

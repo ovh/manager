@@ -1,0 +1,13 @@
+{
+  "carrier_sip_endpoints_list_IP": "Lista adresów IP upoważnionych do wykonywania połączeń wychodzących",
+  "carrier_sip_endpoints_with_incoming_call_enabled": "Routing połączeń przychodzących",
+  "carrier_sip_endpoints_id": "ID",
+  "carrier_sip_endpoints_protocol": "Protokół",
+  "carrier_sip_endpoints_protocol_tcp": "TCP",
+  "carrier_sip_endpoints_protocol_tis": "TIS",
+  "carrier_sip_endpoints_protocol_udp": "UDP",
+  "carrier_sip_endpoints_ip_sip": "IP SIP",
+  "carrier_sip_endpoints_port": "Port",
+  "carrier_sip_endpoints_priority": "Priorytet",
+  "carrier_sip_endpoints_weight": "Waga"
+}

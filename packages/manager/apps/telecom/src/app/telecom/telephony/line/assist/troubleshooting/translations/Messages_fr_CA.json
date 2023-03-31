@@ -29,7 +29,6 @@
   "telephony_line_assist_troubleshooting_problem_forbidden": "Je ne reçois pas d'appels, et mon téléphone a le bouton &#171; Sens interdit &#187; allumé en rouge",
   "telephony_line_assist_troubleshooting_problem_noip": "Mon téléphone affiche &#171; Pas de connexion IP &#187;",
   "telephony_line_assist_troubleshooting_problem_local": "Je peux émettre et recevoir des appels, mais mon téléphone affiche &#171; Local &#187;",
-  "telephony_line_assist_troubleshooting_problem_": "",
   "telephony_line_assist_troubleshooting_problem_phone_mac_address": "Adresse MAC : {{ macAddress }}",
   "telephony_line_assist_troubleshooting_support_contact": "Contacter le support",
   "telephony_line_assist_troubleshooting_support_contact_title": "Votre problème semble nécessiter l'intervention d'un technicien.",
