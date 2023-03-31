@@ -198,6 +198,7 @@ export default class ColdArchiveLinkUserArchiveController {
         newUser = user;
         return this.generateUserS3Credentials(user).then((credential) => {
           newUser.s3Credentials = credential;
+          this.users.push(newUser);
           this.userModel.createMode.user = newUser;
           this.userModel.createMode.credential = credential;
           this.trackPage(
