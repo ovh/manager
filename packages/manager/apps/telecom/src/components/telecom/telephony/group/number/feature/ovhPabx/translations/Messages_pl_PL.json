@@ -145,5 +145,11 @@
   "telephony_number_feature_ovh_pabx_step_rule_edit": "Modifier une action",
   "telephony_number_feature_ovh_pabx_step_rule_action": "Action à exécuter",
   "telephony_number_feature_ovh_pabx_step_rule_create_error": "Oups ! Une erreur est survenue lors de la création de l'action.",
-  "telephony_number_feature_ovh_pabx_step_rule_edit_error": "Oups ! Une erreur est survenue lors de la modification de l'action."
+  "telephony_number_feature_ovh_pabx_step_rule_edit_error": "Oups ! Une erreur est survenue lors de la modification de l'action.",
+  "telephony_number_feature_ovh_pabx_dialplan_terminal_action": "Działania końcowe",
+  "telephony_number_feature_ovh_pabx_step_actions_count_hidden": "{{ count }} ukrytych operacji",
+  "telephony_number_feature_ovh_pabx_step_actions_count_single_hidden": "{{ count }} ukryta operacja",
+  "telephony_number_feature_ovh_pabx_step_rule_action_edit_menu_interactif": "Zmień menu interaktywne",
+  "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_already_added": "Wpisy dodane",
+  "telephony_number_feature_ovh_pabx_step_rule_read_dtmf_infos": "Wpis DTMF odpowiada częstotliwości emitowanej przez klawisz telefonu podczas zapisywania go."
 }
