@@ -1,5 +1,5 @@
 {
-  "pci_app_submit_select_image_tips": "Wpisz ścieżkę dostępu do obrazu Docker. Może to być rejestr publiczny (GitHub, Gitlab, DockerHub, ...) lub prywatny",
+  "pci_app_submit_select_image_tips": "Wpisz ścieżkę dostępu do obrazu Docker. Może to być rejestr publiczny (GitHub, Gitlab, DockerHub, ...) lub prywatny.",
   "pci_app_submit_select_image_preset_info": "Opis",
   "pci_app_submit_select_image_advanced_tips": "Uruchom swoją własną aplikację",
   "pci_app_submit_select_image_advanced": "Uruchom swoją własną aplikację (obraz Docker)",
@@ -7,5 +7,9 @@
   "pci_app_submit_select_image_tips_help": "Obrazy przechowywane w prywatnym lub publicznym rejestrze są akceptowane (GitHub, GitLab, DockerHub, ...)",
   "pci_app_submit_select_image_custom_doc": "Stwórz własny spersonalizowany obraz Docker",
   "pci_app_submit_select_start_from": "Od",
-  "pci_app_submit_select_image_portfolio": "Poznaj naszą ofertę aplikacji AI gotowych do użycia"
+  "pci_app_submit_select_image_portfolio": "Poznaj naszą ofertę aplikacji AI gotowych do użycia",
+  "pci_app_submit_select_image_info_message_1": "Skonfiguruj rejestr, jeśli jest on prywatny.",
+  "pci_app_submit_select_image_info_message_2": "Pamiętaj, że obraz musi być zbudowany w oparciu o architekturę AMD {{architectures}}. Użycie docker-compose nie jest możliwe.",
+  "pci_app_submit_select_image_info_message_3": "Nadaj odpowiednie prawa dostępu użytkownikowi OVHcloud (user=42420:42420), aby obraz działał poprawnie:",
+  "pci_app_submit_select_image_info_custom_doc": "Aby uzyskać więcej informacji, zapoznaj się z naszą dokumentacją"
 }
