@@ -14,6 +14,7 @@ export default {
     priceLink: '<',
     goToColdArchiveContainers: '<',
     regions: '<',
+    goToColdArchiveContainersWithData: '<',
   },
   controller,
   template,

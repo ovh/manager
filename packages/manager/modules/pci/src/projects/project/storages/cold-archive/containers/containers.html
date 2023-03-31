@@ -2,6 +2,14 @@
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
+    <pci-projects-project-storages-components-user-credential-banner
+        ng-if="$ctrl.createdContainerInfos"
+        data-user="$ctrl.createdContainerInfos.user"
+        data-role="$ctrl.createdContainerInfos.role"
+        data-credential="$ctrl.createdContainerInfos.userCredentials"
+        data-container-name="$ctrl.createdContainerInfos.containerName"
+        data-field-secret-key-label="{{:: 'pci_projects_project_storages_cold_archives_add_container_success_secret_label' | translate}}"
+    ></pci-projects-project-storages-components-user-credential-banner>
 
     <oui-datagrid data-rows="$ctrl.containers">
         <oui-datagrid-column
