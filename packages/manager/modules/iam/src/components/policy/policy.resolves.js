@@ -1,3 +1,6 @@
-import { onboardingGuidesResolve } from '@iam/resolves';
+import {
+  onboardingGuidesResolve,
+  usersManagementLinkResolve,
+} from '@iam/resolves';
 
-export default [onboardingGuidesResolve];
+export default [onboardingGuidesResolve, usersManagementLinkResolve];

@@ -144,6 +144,17 @@ goBackResolve.resolves = [goToResolve];
 
 // ---------------------------------------------------------------------------------------------------- //
 
+/**
+ * Builds the url to go to the user management page
+ * @returns {string}
+ */
+const usersManagementLinkResolve = /* @ngInject */ (coreURLBuilder) =>
+  coreURLBuilder.buildURL('dedicated', '#/useraccount/users');
+
+usersManagementLinkResolve.key = 'usersManagementLink';
+
+// ---------------------------------------------------------------------------------------------------- //
+
 export {
   alertResolve,
   entityResolve,
@@ -151,4 +162,5 @@ export {
   goBackResolve,
   goToResolve,
   statementResolve,
+  usersManagementLinkResolve,
 };
