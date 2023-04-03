@@ -1,5 +1,6 @@
 import {
   GUIDES,
+  GUIDES_STORAGES_VOLUME_BACKUP_OVERVIEW,
   VOLUME_BACKUP_ROUTES,
   VOLUME_BACKUP_TRACKING,
 } from '../volume-backup.constants';
@@ -66,9 +67,13 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       knowMoreAboutBackupLink: /* @ngInject */ (coreConfig) => {
-        return GUIDES.find((guide) => guide.id === 'storages_overview').links[
-          coreConfig.getUser().ovhSubsidiary
-        ];
+        const guide =
+          GUIDES.find(
+            ({ id }) => id === GUIDES_STORAGES_VOLUME_BACKUP_OVERVIEW,
+          ) || {};
+        return (
+          guide.links[coreConfig.getUser().ovhSubsidiary] || guide.links.DEFAULT
+        );
       },
 
       attachVolumeToInstanceLink: /* @ngInject */ (projectId, $state) => {
