@@ -1,6 +1,6 @@
 {
-  "pci_app_add_attach_container_description": "Bei Bedarf lassen sich OVHcloud Object Storage Container Ihrer App hinzufügen. Wenn die Verbindung mit den Containern hergestellt ist, werden sie vorübergehend geladen und nahe an Ihrer Instanz im Cache abgelegt. Das reduziert die Latenz und verbessert die Leistung. Es hat sich bewährt, das Notebook mit einem Container für Ihre eingehenden Daten und einem weiteren für Ihre ausgehenden Daten zu verbinden.",
-  "pci_app_add_attach_container_description_link": "Mehr Informationen zum Speichern von Daten",
+  "pci_app_add_attach_container_description": "Bei Bedarf lassen sich OVHcloud Object Storage Container Ihrer App hinzufügen. Wenn die Verbindung mit den Containern hergestellt ist, werden sie vorübergehend geladen und nahe an Ihrer Instanz im Cache abgelegt. Das reduziert die Latenz und verbessert die Leistung. Eine Best Practice kann sein, einen Container mit Ihren Daten und dem Modell, auf dem Ihre App basiert, anzuhängen.",
+  "pci_app_add_attach_container_description_link": "Mehr Informationen zur Datenverwaltung mit AI Deploy.",
   "pci_app_add_attach_container_btn_attach_storage_add": "Verbindung mit einem Object Storage Container herstellen",
   "pci_app_add_attach_container_btn_attach_repo_git_add": "Ein öffentliches Git-Repository anhängen",
   "pci_app_add_attach_container_btn_attach_storage_remove": "Object Storage Container löschen",

@@ -37,5 +37,7 @@
   "pci_ai_app_list_creator": "Utilisateur",
   "pci_ai_app_beta_warning": "Pendant la phase de beta-test, la disponibilité de l'infrastructure et la pérennité des données ne sont pas garanties. N'utilisez pas ce service pour des applications en production tant que cette phase n'est pas terminée.",
   "pci_ai_app_beta_warning_special_conditions": "AI Apps change de nom et devient AI Deploy. AI Deploy est couvert par les ",
-  "pci_ai_app_beta_warning_special_conditions_link": "Conditions Spéciales des Services Public Cloud d'OVHcloud"
+  "pci_ai_app_beta_warning_special_conditions_link": "Conditions Spéciales des Services Public Cloud d'OVHcloud",
+  "pci_ai_app_list_creation_date": "Date de création",
+  "pci_ai_app_list_last_update_date": "Date de mise à jour"
 }

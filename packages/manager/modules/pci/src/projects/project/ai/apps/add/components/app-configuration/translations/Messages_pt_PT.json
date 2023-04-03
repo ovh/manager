@@ -1,7 +1,7 @@
 {
   "pci_app_add_configuration_name": "Nome da sua app",
   "pci_app_add_configuration_label": "Etiquetas",
-  "pci_app_add_configuration_label_description": "Pode adicionar etiquetas à sua app. Útil para a filtragem ou a proteção por token com um rótulo preciso",
+  "pci_app_add_configuration_label_description": "Pode adicionar etiquetas à sua app, pois são úteis para a filtragem ou a proteção por token segundo uma etiqueta precisa. Pode registar um ID específico, um tipo ou qualquer outra etiqueta criada anteriormente.",
   "pci_app_add_configuration_label_field_key": "Chave",
   "pci_app_add_configuration_label_field_key_error_key_already_exist": "Esta chave já existe",
   "pci_app_add_configuration_label_field_value": "Valor",
@@ -24,5 +24,6 @@
   "pci_app_add_readiness_probe_path_label": "Ponto de terminação API da sonda",
   "pci_app_add_readiness_probe_path_help_text": "Ponto de terminação API da sonda de disponibilidade Deve devolver um estado 2XX ou 3XX",
   "pci_app_add_readiness_probe_port_label": "Porta da sonda",
-  "pci_app_add_readiness_probe_port_help_text": "Permite-lhe configurar uma porta específica para este caminho de acesso API"
+  "pci_app_add_readiness_probe_port_help_text": "Permite-lhe configurar uma porta específica para este caminho de acesso API",
+  "pci_app_add_configuration_label_description_link": "Saber mais sobre a gestão das etiquetas com o AI Deploy."
 }

@@ -35,5 +35,7 @@
   "pci_ai_app_list_stop_error": "Wystąpił błąd podczas próby zatrzymania aplikacji {{appName}}: {{message}}",
   "pci_ai_app_list_creator": "Użytkownik",
   "pci_ai_app_beta_warning_special_conditions": "AI Apps zmienia nazwę na AI Deploy. AI Deploy jest objęte ",
-  "pci_ai_app_beta_warning_special_conditions_link": "warunkami specjalnymi usługi Public Cloud OVHcloud"
+  "pci_ai_app_beta_warning_special_conditions_link": "warunkami specjalnymi usługi Public Cloud OVHcloud",
+  "pci_ai_app_list_creation_date": "Data utworzenia",
+  "pci_ai_app_list_last_update_date": "Data aktualizacji"
 }
