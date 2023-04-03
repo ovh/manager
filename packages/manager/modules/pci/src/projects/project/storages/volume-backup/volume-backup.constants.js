@@ -64,7 +64,10 @@ export const VOLUME_BACKUP_BASE_TRACKING =
 
 export const VOLUME_BACKUP_CTA_TRACKING = `PublicCloud::${VOLUME_BACKUP_BASE_TRACKING}`;
 
+export const GUIDES_STORAGES_VOLUME_BACKUP_OVERVIEW =
+  'storages_volume_backup_overview';
 export const GUIDES_STORAGES_OVERVIEW = 'storages_overview';
+export const GUIDES_INSTANCES_OVERVIEW = 'instances_overview';
 
 export const VOLUME_BACKUP_TRACKING = {
   GUIDES: 'public-cloud_volume_backup::guides::go_to',
@@ -75,7 +78,7 @@ export const VOLUME_BACKUP_TRACKING = {
   },
   CREATE: {
     PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::create-backup`,
-    PRICE_LINK: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup::guide_${GUIDES_STORAGES_OVERVIEW}`,
+    PRICE_LINK: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup::guide_${GUIDES_STORAGES_VOLUME_BACKUP_OVERVIEW}`,
     CTA_CONFIRM: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup::confirm`,
     REQUEST_FAIL: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup_error`,
     REQUEST_SUCCESS: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup_success`,
@@ -112,17 +115,24 @@ export const VOLUME_BACKUP_TRACKING = {
 
 export const GUIDES = [
   {
-    id: 'storages_volume_backup_overview',
+    id: GUIDES_STORAGES_VOLUME_BACKUP_OVERVIEW,
     links: {
-      DEFAULT: 'https://docs.ovh.com/en-gb/public-cloud/volume-backup/',
-      ES: 'https://docs.ovh.com/es/public-cloud/volume-backup/',
-      FR: 'https://docs.ovh.com/fr/public-cloud/volume-backup/',
-      GB: 'https://docs.ovh.com/en-gb/public-cloud/volume-backup/',
-      IT: 'https://docs.ovh.com/it/public-cloud/volume-backup/',
-      NL: 'https://docs.ovh.com/nl/public-cloud/volume-backup/',
-      PL: 'https://docs.ovh.com/pl/public-cloud/volume-backup/',
-      PT: 'https://docs.ovh.com/pt/public-cloud/volume-backup/',
-      US: 'https://docs.ovh.com/en-us/public-cloud/volume-backup/',
+      DEFAULT: 'https://docs.ovh.com/gb/en/public-cloud/volume-backup',
+      ASIA: 'https://docs.ovh.com/asia/en/public-cloud/volume-backup',
+      AU: 'https://docs.ovh.com/au/en/public-cloud/volume-backup',
+      CA: 'https://docs.ovh.com/ca/en/public-cloud/volume-backup',
+      DE: 'https://docs.ovh.com/de/public-cloud/volume-backup/',
+      GB: 'https://docs.ovh.com/gb/en/public-cloud/volume-backup',
+      IE: 'https://docs.ovh.com/ie/en/public-cloud/volume-backup',
+      SG: 'https://docs.ovh.com/sg/en/public-cloud/volume-backup',
+      ES: 'https://docs.ovh.com/es/public-cloud/volume-backup',
+      US: 'https://docs.ovh.com/us/en/public-cloud/volume-backup/',
+      FR: 'https://docs.ovh.com/fr/public-cloud/volume-backup',
+      QC: 'https://docs.ovh.com/ca/fr/public-cloud/volume-backup',
+      IT: 'https://docs.ovh.com/it/public-cloud/volume-backup',
+      PL: 'https://docs.ovh.com/pl/public-cloud/volume-backup',
+      PT: 'https://docs.ovh.com/pt/public-cloud/volume-backup',
+      WS: 'https://docs.ovh.com/us/es/public-cloud/volume-backup/',
     },
   },
   {
@@ -141,13 +151,13 @@ export const GUIDES = [
       PL: 'https://docs.ovh.com/pl/storage/',
       PT: 'https://docs.ovh.com/pt/storage/',
       QC: 'https://docs.ovh.com/ca/fr/storage/',
-      SG: 'https://docs.ovh.com/sg/storage/',
+      SG: 'https://docs.ovh.com/sg/en/storage/',
       US: 'https://docs.ovh.com/us/en/storage/',
       WS: 'https://docs.ovh.com/us/es/storage/',
     },
   },
   {
-    id: 'instances_overview',
+    id: GUIDES_INSTANCES_OVERVIEW,
     links: {
       DEFAULT:
         'https://docs.ovh.com/gb/en/public-cloud/public-cloud-first-steps/',
@@ -161,8 +171,7 @@ export const GUIDES = [
         'https://docs.ovh.com/fr/public-cloud/premiers-pas-instance-public-cloud/',
       GB: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-first-steps/',
       IT: 'https://docs.ovh.com/it/public-cloud/primi-passi-public-cloud/',
-      NL: 'https://docs.ovh.com/nl/public-cloud/public-cloud-primeiros-passos/',
-      PL: 'https://docs.ovh.com/pl/public-cloud/public-cloud-primeiros-passos/',
+      PL: 'https://docs.ovh.com/pl/public-cloud/public-cloud-pierwsze-kroki/',
       PT: 'https://docs.ovh.com/pt/public-cloud/public-cloud-primeiros-passos/',
       QC:
         'https://docs.ovh.com/ca/fr/public-cloud/premiers-pas-instance-public-cloud/',
