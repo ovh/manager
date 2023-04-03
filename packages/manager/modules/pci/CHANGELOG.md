@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.119.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.119.0...@ovh-ux/manager-pci@5.119.1) (2023-04-03)
+
+
+### Bug Fixes
+
+* **pci.volume-backup:** update guides ([#9133](https://github.com/ovh/manager/issues/9133)) ([1f65acd](https://github.com/ovh/manager/commit/1f65acd7d55c82c7a2e56573e717a90748d9acf2))
+
+
+
+
+
 # [5.119.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.118.0...@ovh-ux/manager-pci@5.119.0) (2023-03-30)
 
 
