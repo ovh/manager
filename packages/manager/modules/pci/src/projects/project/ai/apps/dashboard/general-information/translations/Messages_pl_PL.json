@@ -1,6 +1,6 @@
 {
   "pci_apps_general_information_info_title": "Informacje ogólne",
-  "pci_apps_general_information_info_app_url": "Adres URL dostępu",
+  "pci_apps_general_information_info_app_url": "URL dostępu (HTTP endpoint)",
   "pci_apps_general_information_info_app_name": "Nazwa aplikacji",
   "pci_apps_general_information_info_app_container": "Przyłączone kontenery",
   "pci_apps_general_information_info_app_container_total": "{{ xContainer }} kontener(y/ów)",
@@ -55,5 +55,6 @@
   "pci_apps_general_information_min_replicas": "Minimalna liczba replik:",
   "pci_apps_general_information_max_replicas": "Maksymalna liczba replik:",
   "pci_apps_general_information_trigger_resource": "Monitorowana metryka:",
-  "pci_apps_general_information_trigger_resource_threshold": "Próg uruchomienia:"
+  "pci_apps_general_information_trigger_resource_threshold": "Próg uruchomienia:",
+  "pci_apps_general_information_info_app_port": "Port"
 }

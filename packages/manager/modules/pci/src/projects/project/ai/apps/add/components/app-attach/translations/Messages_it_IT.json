@@ -1,6 +1,6 @@
 {
-  "pci_app_add_attach_container_description": "Se necessario, è possibile associare container Object Storage OVHcloud alla propria App. Una volta associati, vengono caricati temporaneamente e inseriti in cache vicino all’istanza per ridurre la latenza e migliorare le prestazioni. Una buona prassi è quella di associare un container con i dati in entrata e un altro con i dati in uscita.",
-  "pci_app_add_attach_container_description_link": "Maggiori informazioni sullo storage di dati",
+  "pci_app_add_attach_container_description": "Se necessario, è possibile associare container Object Storage OVHcloud alla propria App. Una volta associati, questi container vengono caricati temporaneamente e inseriti in cache vicino all’istanza per ridurre la latenza e migliorare le prestazioni. Una best practice consiste nell’associare un container con i dati e il modello su cui si baserà l’App.",
+  "pci_app_add_attach_container_description_link": "Più informazioni sulla gestione dei dati con AI Deploy.",
   "pci_app_add_attach_container_btn_attach_storage_add": "Associare un container Object Storage",
   "pci_app_add_attach_container_btn_attach_repo_git_add": "Associare un repository Git pubblico",
   "pci_app_add_attach_container_btn_attach_storage_remove": "Eliminare un container Object Storage",

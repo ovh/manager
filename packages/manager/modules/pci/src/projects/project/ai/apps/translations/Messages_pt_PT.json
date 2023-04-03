@@ -35,5 +35,7 @@
   "pci_ai_app_list_stop_error": "Ocorreu um erro ao parar a app {{appName}}: {{message}}",
   "pci_ai_app_list_creator": "Utilizador",
   "pci_ai_app_beta_warning_special_conditions": "AI Apps muda de nome e torna-se AI Deploy. O AI Deploy é um serviço sujeito às ",
-  "pci_ai_app_beta_warning_special_conditions_link": "Condições Especiais dos Serviços Public Cloud da OVHcloud"
+  "pci_ai_app_beta_warning_special_conditions_link": "Condições Especiais dos Serviços Public Cloud da OVHcloud",
+  "pci_ai_app_list_creation_date": "Data de criação",
+  "pci_ai_app_list_last_update_date": "Data de atualização"
 }
