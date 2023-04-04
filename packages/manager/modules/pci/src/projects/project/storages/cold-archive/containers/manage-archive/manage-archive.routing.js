@@ -17,10 +17,14 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: () => null,
-      endpoint: /* @ngInject */ (PciStoragesColdArchiveService, projectId) =>
+      endpoint: /* @ngInject */ (
+        PciStoragesColdArchiveService,
+        projectId,
+        regions,
+      ) =>
         PciStoragesColdArchiveService.getArchiveRegionDetails(
           projectId,
-          this.regions[0],
+          regions[0],
         )
           .then(({ data }) => data?.services[0]?.endpoint)
           .catch(() => ''),
