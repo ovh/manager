@@ -5,7 +5,6 @@ import anycast from '../anycast';
 import dns from '../dns/dns.module';
 import dnssec from '../dnssec/dnssec.module';
 import dynhost from '../dynhost/dynhost.module';
-import emailObfuscation from '../email-obfuscation/index';
 import glue from '../glue/glue.module';
 import optin from '../optin/index';
 import redirection from '../redirection/redirection.module';
@@ -27,7 +26,6 @@ angular
     dnssec,
     dnsZone,
     dynhost,
-    emailObfuscation,
     glue,
     optin,
     ovhManagerAdvices,
