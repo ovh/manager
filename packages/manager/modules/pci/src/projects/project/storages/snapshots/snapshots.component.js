@@ -21,5 +21,7 @@ export default {
     snapshotsRegions: '<',
     getStateName: '<',
     goToRegion: '<',
+    goToCreateVolumeBackup: '<',
+    taskResponse: '<',
   },
 };

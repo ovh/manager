@@ -1,0 +1,20 @@
+{
+  "pci_projects_project_storages_volume_backup_list_header": "Volume Backup",
+  "pci_projects_project_storages_volume_backup_list_header_description": "Wykonuj regularne kopie zapasowe, aby zwiększyć odporność Twoich danych.",
+  "pci_projects_project_storages_volume_backup_list_status_creating": "Trwa tworzenie",
+  "pci_projects_project_storages_volume_backup_list_status_deleting": "Trwa usuwanie",
+  "pci_projects_project_storages_volume_backup_list_status_error": "Błąd",
+  "pci_projects_project_storages_volume_backup_list_status_ok": "Aktywna",
+  "pci_projects_project_storages_volume_backup_list_status_restoring": "Trwa przywracanie",
+  "pci_projects_project_storages_volume_backup_list_datagrid_menu_topbar_action_create": "Utwórz kopię zapasową wolumenu",
+  "pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore": "Przywróć wolumen",
+  "pci_projects_project_storages_volume_backup_list_datagrid_menu_action_create_volume": "Utwórz wolumen",
+  "pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete": "Usuń",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_name": "Nazwa",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_id": "ID",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_region": "Lokalizacja",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_volume": "Wolumen",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_create_date": "Data utworzenia",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_capacity": "Rozmiar",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_status": "Status"
+}

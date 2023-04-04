@@ -17,6 +17,6 @@
   "billing_payment_method_table_action_description_edit": "Zmień opis",
   "billing_payment_method_table_action_set_default": "Ustaw tę metodę płatności jako domyślną",
   "billing_payment_method_table_action_delete": "Usuń tę metodę płatności",
-  "billing_payment_method_information_add_ovh_sas": "When you register a means of payment, you authorize OVH S.A.S to store this method for the purpose of facilitating further online payment.",
+  "billing_payment_method_information_add_ovh_sas": "Po zarejestrowaniu sposobu płatności OVH S.A.S może go zachować, aby ułatwić płatności za przyszłe zamówienia.",
   "billing_payment_method_information_add_default": "Sposób płatności zarejestrowany jako domyślny zostanie automatycznie użyty w każdym kolejnym terminie płatności do opłacenia usług z opcją automatycznego odnowienia oraz płatności za wykorzystane zasoby („pay as you go”). Otrzymasz powiadomienie przed każdym nowym terminem płatności. W każdej chwili możesz zmienić, usunąć lub dodać sposoby płatności, używając poniższego interfejsu. Aby móc korzystać z usług z opcją automatycznego odnawiania lub z płatnością za wykorzystane zasoby, musisz mieć zarejestrowany co najmniej jeden ważny sposób płatności."
 }

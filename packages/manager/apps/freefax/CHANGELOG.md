@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@7.1.29...@ovh-ux/manager-freefax-app@7.1.30) (2023-03-29)
+
+
+### Bug Fixes
+
+* **pci:** display error in regions ([#8128](https://github.com/ovh/manager/issues/8128)) ([4f0538e](https://github.com/ovh/manager/commit/4f0538e756d4be3c7c547a85b5f284249a0af4f2))
+
+
+
+
+
 ## [7.1.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@7.1.28...@ovh-ux/manager-freefax-app@7.1.29) (2023-03-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-freefax-app

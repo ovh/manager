@@ -84,11 +84,11 @@
             </div>
         </div>
     </div>
-
     <table class="table table-hover" id="module-ip-table" aria-label="ips">
         <thead>
             <tr>
                 <th scope="col"></th>
+
                 <th scope="col">
                     <span data-translate="ip_table_header_ip_address"></span>
                     <button
@@ -96,6 +96,8 @@
                         class="oui-popover-button"
                         data-oui-popover="{{:: 'ip_table_header_ip_address_help' | translate }}"
                         data-oui-popover-placement="top"
+                        data-oui-popover-open="headerPopover.ip_address"
+                        data-ng-click="headerPopover = { ip_address: true }"
                     ></button>
                 </th>
                 <th scope="col">
@@ -105,6 +107,8 @@
                         class="oui-popover-button"
                         data-oui-popover="{{:: 'ip_table_header_campus_help' | translate }}"
                         data-oui-popover-placement="top"
+                        data-oui-popover-open="headerPopover.campus"
+                        data-ng-click="headerPopover = { campus : true }"
                     ></button>
                 </th>
                 <th scope="col">
@@ -114,6 +118,8 @@
                         class="oui-popover-button"
                         data-oui-popover="{{:: 'ip_table_header_country_help' | translate }}"
                         data-oui-popover-placement="top"
+                        data-oui-popover-open="headerPopover.country"
+                        data-ng-click="headerPopover = { country : true }"
                     ></button>
                 </th>
                 <th scope="col">
@@ -123,6 +129,8 @@
                         class="oui-popover-button"
                         data-oui-popover="{{:: 'ip_table_header_service_help' | translate }}"
                         data-oui-popover-placement="top"
+                        data-oui-popover-open="headerPopover.service"
+                        data-ng-click="headerPopover = { service : true }"
                     ></button>
                 </th>
                 <th scope="col">
@@ -132,6 +140,8 @@
                         class="oui-popover-button"
                         data-oui-popover="{{:: 'ip_table_header_reverse_help' | translate }}"
                         data-oui-popover-placement="top"
+                        data-oui-popover-open="headerPopover.reverse"
+                        data-ng-click="headerPopover = { reverse : true }"
                     ></button>
                 </th>
                 <th scope="col" data-ng-if="advancedModeFilter">
@@ -141,6 +151,8 @@
                         class="oui-popover-button"
                         data-oui-popover="{{:: 'ip_table_header_virtual_mac_help' | translate }}"
                         data-oui-popover-placement="top"
+                        data-oui-popover-open="$parent.headerPopover.virtual_mac"
+                        data-ng-click="$parent.headerPopover = { virtual_mac : true }"
                     ></button>
                 </th>
                 <th scope="col" data-ng-if="advancedModeFilter">
@@ -150,6 +162,8 @@
                         class="oui-popover-button"
                         data-oui-popover="{{:: 'ip_table_header_mitigation_help' | translate }}"
                         data-oui-popover-placement="top"
+                        data-oui-popover-open="$parent.headerPopover.mitigation"
+                        data-ng-click="$parent.headerPopover = { mitigation : true }"
                     ></button>
                 </th>
                 <th scope="col" data-ng-if="advancedModeFilter">
@@ -169,6 +183,8 @@
                         data-oui-popover-scope="$ctrl"
                         data-oui-popover-template="ip_firewall_help.html"
                         data-oui-popover-placement="top"
+                        data-oui-popover-open="$parent.headerPopover.security"
+                        data-ng-click="$parent.headerPopover = { security : true }"
                     ></button>
                 </th>
                 <th scope="col" data-ng-if="advancedModeFilter">
@@ -180,6 +196,8 @@
                         class="oui-popover-button"
                         data-oui-popover="{{:: 'ip_table_header_game_mitigation_help' | translate }}"
                         data-oui-popover-placement="top"
+                        data-oui-popover-open="$parent.headerPopover.game_mitigation"
+                        data-ng-click="$parent.headerPopover = { game_mitigation : true }"
                     ></button>
                 </th>
                 <th scope="col">
@@ -212,6 +230,8 @@
                         class="oui-popover-button"
                         data-oui-popover="{{:: 'ip_table_header_alerts_help' | translate }}"
                         data-oui-popover-placement="top"
+                        data-oui-popover-open="headerPopover.alerts"
+                        data-ng-click="headerPopover = { alerts : true }"
                     ></button>
                 </th>
                 <th scope="col"></th>

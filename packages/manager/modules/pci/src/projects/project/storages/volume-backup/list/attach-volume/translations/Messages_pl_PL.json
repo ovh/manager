@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_volume_backup_list_attach_volume_title": "Podłącz wolumen",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_description": "Czy chcesz podłączyć {{volumeName}} do tej instancji {{instanceName}}?",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_cancel": "Anuluj",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_attach": "Zatwierdź",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_success": "Twój wolumen {{volumeName}} został podłączony do instancji {{instanceName}}.",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_fail": "Wystąpił błąd podczas aktualizacji wolumenu: {{errorMessage}}"
+}

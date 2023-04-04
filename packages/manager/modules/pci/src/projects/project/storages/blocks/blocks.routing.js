@@ -1,4 +1,4 @@
-import { PCI_FEATURES } from '../../../projects.constant';
+import { PCI_FEATURES, PCI_FEATURES_STATES } from '../../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.blocks', {
@@ -9,6 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         type: 'string',
       },
+      taskResponse: null,
     },
     onEnter: /* @ngInject */ (pciFeatureRedirect) => {
       return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.BLOCK_STORAGE);
@@ -69,6 +70,9 @@ export default /* @ngInject */ ($stateProvider) => {
       storagesRegions: /* @ngInject */ (storages) =>
         Array.from(new Set(storages.map(({ region }) => region))),
 
+      taskResponse: /* @ngInject */ ($transition$) =>
+        $transition$.params().taskResponse,
+
       goToBlockStorage: /* @ngInject */ (
         CucCloudMessage,
         $state,
@@ -96,6 +100,14 @@ export default /* @ngInject */ ($stateProvider) => {
         }
 
         return promise;
+      },
+
+      goToCreateVolumeBackup: /* @ngInject */ (projectId, $state) => (
+        volume,
+      ) => {
+        return $state.go(PCI_FEATURES_STATES.VOLUME_BACKUP.ADD, {
+          volume,
+        });
       },
 
       breadcrumb: /* @ngInject */ ($translate) =>

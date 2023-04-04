@@ -66,6 +66,45 @@
 
 <div data-ng-if="$ctrl.showAdvancedImage || $ctrl.presets.length === 0">
     <p data-translate="pci_app_submit_select_image_tips"></p>
+    <oui-message data-type="info">
+        <div class="d-flex flex-column">
+            <ul>
+                <li
+                    data-translate="pci_app_submit_select_image_info_message_1"
+                ></li>
+                <li
+                    data-translate="pci_app_submit_select_image_info_message_2"
+                    data-translate-values="{ 'architectures': '<strong>(linux/AMD64)</strong>' }"
+                ></li>
+                <li
+                    data-translate="pci_app_submit_select_image_info_message_3"
+                ></li>
+            </ul>
+            <code class="my-2 ml-4 oui-background-p-800 oui-color-p-050"
+                >RUN chown -R 42420:42420 /workspace<br />ENV
+                HOME=/workspace</code
+            >
+            <div>
+                <span
+                    data-translate="pci_app_submit_select_image_info_custom_doc"
+                ></span>
+                <a
+                    target="_blank"
+                    class="oui-link align-bottom"
+                    rel="noopener"
+                    data-ng-href="{{ $ctrl.docDockerBuildUrl }}"
+                >
+                    <span
+                        data-translate="pci_app_submit_select_image_custom_doc"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-external-link"
+                        aria-hidden="true"
+                    ></span>
+                </a>
+            </div>
+        </div>
+    </oui-message>
     <oui-field
         class="mb-0"
         data-size="xl"
@@ -89,23 +128,6 @@
             >
                 <span
                     data-translate="pci_app_submit_select_image_portfolio"
-                ></span>
-                <span
-                    class="oui-icon oui-icon-external-link"
-                    aria-hidden="true"
-                ></span>
-            </a>
-        </div>
-        <div class="align-middle mx-2">
-            <span class="oui-icon oui-icon-info" aria-hidden="true"></span>
-            <a
-                target="_blank"
-                class="oui-link align-bottom"
-                rel="noopener"
-                data-ng-href="{{ $ctrl.docDockerBuildUrl }}"
-            >
-                <span
-                    data-translate="pci_app_submit_select_image_custom_doc"
                 ></span>
                 <span
                     class="oui-icon oui-icon-external-link"

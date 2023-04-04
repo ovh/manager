@@ -7,5 +7,9 @@
   "pci_app_submit_select_image_tips_help": "Images hosted on a private or public registry are accepted (GitHub, GitLab, DockerHub, etc.)",
   "pci_app_submit_select_image_custom_doc": "Create your own custom Docker image",
   "pci_app_submit_select_start_from": "From",
-  "pci_app_submit_select_image_portfolio": "Explore our portfolio of ready-to-use AI applications"
+  "pci_app_submit_select_image_portfolio": "Explore our portfolio of ready-to-use AI applications",
+  "pci_app_submit_select_image_info_message_1": "Please ensure that you configure your registry if it is private.",
+  "pci_app_submit_select_image_info_message_2": "Please note that the image must be built with an AMD {{architectures}} architecture. Docker-compose cannot be used.",
+  "pci_app_submit_select_image_info_message_3": "Please ensure that you give the correct access rights to the OVHcloud user (user=42420:42420), so that your image launches correctly:",
+  "pci_app_submit_select_image_info_custom_doc": "For further information, please refer to our documentation"
 }

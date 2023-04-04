@@ -154,6 +154,19 @@ export default class AddUserCtrl {
     return user;
   }
 
+  checkUsernameExist(username) {
+    if (!username) {
+      return true;
+    }
+    if (this.database.engine === DATABASE_TYPES.MONGO_DB) {
+      return this.users.some(
+        (user) =>
+          user.username.toLowerCase().split('@')[0] === username.split('@')[0],
+      );
+    }
+    return this.users.some((user) => user.username.toLowerCase() === username);
+  }
+
   addUser() {
     if (this.model.username) {
       this.trackDashboard('users::add_a_user::validate');

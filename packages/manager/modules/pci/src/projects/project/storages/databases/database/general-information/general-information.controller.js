@@ -60,6 +60,18 @@ export default class {
     this.backupTime = this.database.backupTime;
     const { supportLevel } = this.user;
     this.supportLevel = `pci_databases_general_information_support_level_${supportLevel.level}`;
+
+    const isEngineVersionDeprecated = this.getCurrentFlavor().isDeprecated;
+    const isPITRActivated = this.isFeatureActivated(
+      'forkPIT',
+      this.database.engine,
+    );
+    const isMongoEnterprise =
+      this.database.engine === DATABASE_TYPES.MONGO_DB &&
+      this.database.plan === 'enterprise';
+    this.isForkButtonEnabled =
+      !isEngineVersionDeprecated &&
+      (isPITRActivated || isMongoEnterprise || this.backups.length > 0);
   }
 
   downloadCertificate() {

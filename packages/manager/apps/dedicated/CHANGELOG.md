@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.55.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.55.2...@ovh-ux/manager-dedicated@17.55.3) (2023-03-29)
+
+
+### Bug Fixes
+
+* **dedicated.account:** missing a translation on the state field ([#9103](https://github.com/ovh/manager/issues/9103)) ([f8c6910](https://github.com/ovh/manager/commit/f8c6910c439326b268d294cf1743c5f6cfa47dae))
+* **dedicated.ip:** changed the staggered tooltips comportement ([#9015](https://github.com/ovh/manager/issues/9015)) ([31fa91c](https://github.com/ovh/manager/commit/31fa91ccb067404810ec781b4116ba48d80ac100))
+* **dedicated:** add pricing rules for mumbai dc ([#9029](https://github.com/ovh/manager/issues/9029)) ([d7ccfe9](https://github.com/ovh/manager/commit/d7ccfe98555589b54648cf37b2ca538e15453241))
+* **pci:** display error in regions ([#8128](https://github.com/ovh/manager/issues/8128)) ([4f0538e](https://github.com/ovh/manager/commit/4f0538e756d4be3c7c547a85b5f284249a0af4f2))
+
+
+
+
+
 ## [17.55.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.55.1...@ovh-ux/manager-dedicated@17.55.2) (2023-03-23)
 
 

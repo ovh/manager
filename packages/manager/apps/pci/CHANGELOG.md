@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.33](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.7.32...@ovh-ux/manager-pci-app@3.7.33) (2023-04-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
+## [3.7.32](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.7.31...@ovh-ux/manager-pci-app@3.7.32) (2023-04-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
+## [3.7.31](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.7.30...@ovh-ux/manager-pci-app@3.7.31) (2023-03-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
+## [3.7.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.7.29...@ovh-ux/manager-pci-app@3.7.30) (2023-03-29)
+
+
+### Bug Fixes
+
+* **pci:** display error in regions ([#8128](https://github.com/ovh/manager/issues/8128)) ([4f0538e](https://github.com/ovh/manager/commit/4f0538e756d4be3c7c547a85b5f284249a0af4f2))
+
+
+
+
+
 ## [3.7.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.7.28...@ovh-ux/manager-pci-app@3.7.29) (2023-03-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-app

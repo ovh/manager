@@ -1,0 +1,16 @@
+{
+  "pci_projects_project_storages_volume_backup_list_create_volume_breadcrumb": "Crear un volumen a partir de una copia de seguridad",
+  "pci_projects_project_storages_volume_backup_list_create_volume_title": "Crear un volumen a partir de una copia de seguridad",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_region": "Localización",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_type": "Tipo de volumen",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_name": "Nombre del volumen",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_size": "Capacidad del volumen",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_size_unit": "GB",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_size_price": "Importe estimado: {{ price }}/mes + IVA",
+  "pci_projects_project_storages_volume_backup_list_create_volume_field_size_help": "El tamaño máximo depende de la cuota de su proyecto.",
+  "pci_projects_project_storages_volume_backup_list_create_volume_action_confirm": "Crear el volumen",
+  "pci_projects_project_storages_volume_backup_list_create_volume_action_cancel": "Cancelar",
+  "pci_projects_project_storages_volume_backup_list_create_volume_request_success": "Creando el volumen {{ volumeName }}...",
+  "pci_projects_project_storages_volume_backup_list_create_volume_request_success_link": "Puede consultarlo desde la página de Block Storage.",
+  "pci_projects_project_storages_volume_backup_list_create_volume_request_fail": "Se ha producido un error al crear el volumen {{ volumeName }}: {{ message }}"
+}

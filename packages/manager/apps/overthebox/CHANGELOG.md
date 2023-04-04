@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.9.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.9.10...@ovh-ux/manager-overthebox-app@5.9.11) (2023-03-29)
+
+
+### Bug Fixes
+
+* **pci:** display error in regions ([#8128](https://github.com/ovh/manager/issues/8128)) ([4f0538e](https://github.com/ovh/manager/commit/4f0538e756d4be3c7c547a85b5f284249a0af4f2))
+
+
+
+
+
 ## [5.9.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.9.9...@ovh-ux/manager-overthebox-app@5.9.10) (2023-03-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-overthebox-app

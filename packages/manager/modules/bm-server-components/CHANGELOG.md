@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.6.2...@ovh-ux/manager-bm-server-components@1.6.3) (2023-03-29)
+
+
+### Bug Fixes
+
+* **dedicated:** hide server_configuration_netboot_option_power netboot ([#9040](https://github.com/ovh/manager/issues/9040)) ([04a3e48](https://github.com/ovh/manager/commit/04a3e48aa4a6cfafe5a6b1379c73ba7ae9fbe535))
+
+
+
+
+
 ## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.6.1...@ovh-ux/manager-bm-server-components@1.6.2) (2023-03-21)
 
 

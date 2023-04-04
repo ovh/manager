@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-metrics-app",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "private": true,
   "repository": {
     "type": "git",
@@ -60,7 +60,7 @@
     "moment": "^2.19",
     "moment-duration-format": "^1.3",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^16.0.0",
+    "ovh-api-services": "^17.0.0",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {

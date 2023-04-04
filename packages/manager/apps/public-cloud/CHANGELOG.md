@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.24.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.24.10...@ovh-ux/manager-public-cloud@4.24.11) (2023-04-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [4.24.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.24.9...@ovh-ux/manager-public-cloud@4.24.10) (2023-04-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [4.24.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.24.8...@ovh-ux/manager-public-cloud@4.24.9) (2023-03-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [4.24.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.24.7...@ovh-ux/manager-public-cloud@4.24.8) (2023-03-29)
+
+
+### Bug Fixes
+
+* **pci:** display error in regions ([#8128](https://github.com/ovh/manager/issues/8128)) ([4f0538e](https://github.com/ovh/manager/commit/4f0538e756d4be3c7c547a85b5f284249a0af4f2))
+
+
+
+
+
 ## [4.24.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.24.6...@ovh-ux/manager-public-cloud@4.24.7) (2023-03-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

@@ -1,14 +1,14 @@
 export default class DiskSizeController {
   $onInit() {
-    if (!this.initialValue) {
-      this.initialValue = this.min;
-    }
     this.checkRange();
   }
 
   checkRange() {
-    if (this.model < this.initialValue) {
+    if (this.initialValue && this.model < this.initialValue) {
       this.model = this.initialValue;
+    }
+    if (this.model < this.min) {
+      this.model = this.min;
     }
     if (this.model > this.max) {
       this.model = this.max;
