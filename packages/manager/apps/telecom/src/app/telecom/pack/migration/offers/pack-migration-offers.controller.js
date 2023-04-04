@@ -7,6 +7,7 @@ import {
   PROMO_DISPLAY,
   MODEM_LIST,
   MODEM_OPTION_NAME,
+  GTR_NONE,
 } from '../pack-migration.constant';
 
 export default class TelecomPackMigrationOffersCtrl {
@@ -35,6 +36,7 @@ export default class TelecomPackMigrationOffersCtrl {
     this.PROMO_DISPLAY = PROMO_DISPLAY;
     this.MODEM_LIST = MODEM_LIST;
     this.MODEM_OPTION_NAME = MODEM_OPTION_NAME;
+    this.GTR_NONE = GTR_NONE;
     this.process = null;
     this.loading = {
       init: true,
@@ -44,6 +46,7 @@ export default class TelecomPackMigrationOffersCtrl {
       .then((migrationProcess) => {
         this.process = migrationProcess;
         this.initializeModemOptions();
+        this.setGtrOptions();
       })
       .catch((error) => {
         const msgErr = `${this.$translate.instant(
@@ -99,25 +102,28 @@ export default class TelecomPackMigrationOffersCtrl {
   static updateSelectedGtrOption(offer, optionName) {
     let optionComfort = false;
     Object.values(offer.options).forEach((option) => {
-      if (
-        option.name.startsWith('gtr_') &&
-        option.selected !== null &&
-        optionName.startsWith('gtr_')
-      ) {
-        if (option.name !== optionName) {
+      if (option.name.startsWith('gtr_') && option.selected !== null) {
+        if (optionName.startsWith('gtr_')) {
+          if (option.name !== optionName) {
+            set(option, 'selected', false);
+          } else {
+            set(option, 'selected', true);
+          }
+          if (optionName.match(/^gtr_\d{1,2}m_/) && option.selected === true) {
+            optionComfort = true;
+          }
+          set(offer, 'gtrComfortActivated', optionComfort);
+        }
+        if (optionName === GTR_NONE) {
           set(option, 'selected', false);
         }
-        if (optionName.match(/^gtr_\d{1,2}m_/) && option.selected === true) {
-          optionComfort = true;
-        }
-        set(offer, 'gtrComfortActivated', optionComfort);
       }
     });
   }
 
-  updateOfferPriceAndGtr(value, offer, optionName) {
-    this.constructor.updateSelectedGtrOption(offer, optionName);
-    this.updateOfferDisplayedPrice(value, offer, optionName);
+  updateOfferPriceAndGtr(offer) {
+    this.constructor.updateSelectedGtrOption(offer, offer.gtrSelected);
+    this.updateOfferDisplayedPrice(1, offer, offer.gtrSelected);
   }
 
   selectOffer(offer) {
@@ -223,6 +229,36 @@ export default class TelecomPackMigrationOffersCtrl {
 
         // Update price
         this.updateOfferDisplayedPrice(1, offer, this.MODEM_OPTION_NAME);
+        return offer;
+      },
+    );
+  }
+
+  setGtrOptions() {
+    this.process.migrationOffers.result.offers = this.process.migrationOffers.result.offers.map(
+      (offer) => {
+        const gtr = Object.values(offer.options)
+          .filter((el) => el.name.startsWith('gtr_'))
+          .map((option) => ({
+            ...option,
+            label: this.$translate.instant(
+              `telecom_pack_migration_${option.name}`,
+              {
+                price: option.optionalPrice.text,
+              },
+            ),
+          }));
+
+        if (gtr.length > 0) {
+          // Initialize GTR options with a none value
+          gtr.unshift({
+            name: this.GTR_NONE,
+            label: this.$translate.instant('telecom_pack_migration_no_gtr'),
+          });
+        }
+
+        set(offer, 'gtrOptions', gtr);
+
         return offer;
       },
     );

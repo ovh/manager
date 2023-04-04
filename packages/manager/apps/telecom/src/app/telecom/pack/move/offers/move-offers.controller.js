@@ -66,6 +66,7 @@ export default class PackMoveOffersCtrl {
           this.offers = this.listOffers;
         }
         this.initModemOptions();
+        this.initGtrOptions();
       })
       .finally(() => {
         this.loading.init = false;
@@ -236,37 +237,64 @@ export default class PackMoveOffersCtrl {
   static updateSelectedGtrOption(offer, optionName) {
     let optionComfort = false;
     offer.options.forEach((option) => {
-      if (
-        option.name.startsWith('gtr_') &&
-        option.selected !== null &&
-        optionName.startsWith('gtr_')
-      ) {
-        if (option.name !== optionName) {
+      if (option.name.startsWith('gtr_') && option.selected !== null) {
+        if (optionName.startsWith('gtr_')) {
+          if (option.name !== optionName) {
+            set(option, 'selected', false);
+          } else {
+            set(option, 'selected', true);
+          }
+          if (optionName.match(/^gtr_\d{1,2}m_/) && option.selected === true) {
+            optionComfort = true;
+          }
+          set(offer, 'gtrComfortActivated', optionComfort);
+        }
+        if (optionName === 'none') {
           set(option, 'selected', false);
         }
-        if (optionName.match(/^gtr_\d{1,2}m_/) && option.selected === true) {
-          optionComfort = true;
-        }
-        set(offer, 'gtrComfortActivated', optionComfort);
       }
     });
   }
 
-  updateOfferPriceAndGtr(value, offer, optionName) {
-    this.constructor.updateSelectedGtrOption(offer, optionName);
-    this.constructor.updateOfferDisplayedPrice(value, offer, optionName);
+  updateOfferPriceAndGtr(offer) {
+    this.constructor.updateSelectedGtrOption(offer, offer.gtrSelected);
+    this.constructor.updateOfferDisplayedPrice(1, offer, offer.gtrSelected);
   }
 
   static isChosen(option) {
     return option.choosedValue > 0;
   }
 
-  static isGtrOption(optionName) {
-    return optionName.startsWith('gtr_');
-  }
-
   static isGtrOptionExist(offer) {
     return offer.options.some((option) => option.name.startsWith('gtr_'));
+  }
+
+  initGtrOptions() {
+    this.offers = this.offers.map((offer) => {
+      const gtrOptions = Object.values(offer.options)
+        .filter((el) => el.name.startsWith('gtr_'))
+        .map((option) => ({
+          ...option,
+          label: this.$translate.instant(
+            `telecom_pack_migration_${option.name}`,
+            {
+              price: option.optionalPrice.text,
+            },
+          ),
+        }));
+
+      if (gtrOptions.length > 0) {
+        // Initialize GTR options with a none value
+        gtrOptions.unshift({
+          name: this.GTR_NONE,
+          label: this.$translate.instant('pack_move_no_gtr'),
+        });
+      }
+
+      set(offer, 'gtrOptions', gtrOptions);
+
+      return offer;
+    });
   }
 
   static updateSelectedVoipLineOption(value, offer, option) {

@@ -18,10 +18,13 @@ export const MODEM_LIST = ['yes', 'recycled'];
 
 export const MODEM_OPTION_NAME = 'modem';
 
+export const GTR_NONE = 'none';
+
 export default {
   PROMO_DISPLAY,
   PROCESS_STEP,
   QUANTITY,
   MODEM_LIST,
   MODEM_OPTION_NAME,
+  GTR_NONE,
 };
