@@ -21,7 +21,6 @@
 
   "ovhManagerSupport_new_serviceType": "Produit",
   "ovhManagerSupport_all_serviceType": "Afficher plus de produits",
-  "ovhManagerSupport_new_serviceType_anthos": "Anthos",
   "ovhManagerSupport_new_serviceType_ml_serving": "ML Serving",
   "ovhManagerSupport_new_serviceType_DEDICATED": "Dédié",
   "ovhManagerSupport_new_serviceType_data_processing": "Data processing",
@@ -106,7 +105,6 @@
   "ovhManagerSupport_new_serviceType_ai_notebook": "AI Notebooks",
   "ovhManagerSupport_new_serviceType_ai_app": "AI Deploy",
   "ovhManagerSupport_new_serviceType_webpaas": "Web PaaS",
-  "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos",
   "ovhManagerSupport_new_serviceType_managed_mysql": "Public Cloud databases for MySQL",
   "ovhManagerSupport_new_serviceType_managed_postgresql": "Public Cloud databases for PostgreSQL",
   "ovhManagerSupport_new_serviceType_managed_redis": "Public Cloud databases for Redis",

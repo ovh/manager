@@ -15,10 +15,6 @@ const productListingPages = {
     application: 'dedicated',
     hash: '#/dbaas/logs',
   },
-  DEDICATED_ANTHOS_TENANTS: {
-    application: 'dedicated',
-    hash: '#/anthos',
-  },
   DEDICATED_CEPH: {
     application: 'dedicated',
     hash: '#/cda',
