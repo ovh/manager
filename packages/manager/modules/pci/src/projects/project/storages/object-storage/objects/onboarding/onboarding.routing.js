@@ -3,13 +3,17 @@ export default /* @ngInject */ ($stateProvider) => {
     'pci.projects.project.storages.object-storage.onboarding',
     {
       url: '/onboarding',
-      component: 'pciProjectStorageObjectsOnboarding',
+      views: {
+        objectStorageView: {
+          component: 'pciProjectStorageObjectsOnboarding',
+        },
+      },
       redirectTo: (transition) =>
         transition
           .injector()
           .getAsync('containersResponseObj')
           .then(({ resources, errors }) =>
-            resources.length === 0 && errors.length === 0
+            resources.length !== 0 || errors.length !== 0
               ? {
                   state: 'pci.projects.project.storages.object-storage.objects',
                 }
