@@ -186,5 +186,12 @@
   "telecom_pack_migration_confirm_modem_rental_recycled": "Location modem recycled",
   "telecom_pack_migration_offers_debit_mention_1": "(1) Up to 92 Mb/s descending in VDSL and 22 Mb/s in ADSL, depending on eligibility.",
   "telecom_pack_migration_offers_debit_mention_2": "(2) Up to 36 Mb/s VDSL and 1 Mb/s ADSL, depending on eligibility.",
-  "telecom_pack_migration_modem_keep": "I want to keep my modem ({{ price }} ex. VAT/month)"
+  "telecom_pack_migration_modem_keep": "I want to keep my modem ({{ price }} ex. VAT/month)",
+  "telecom_pack_migration_gtr_4ho": "GTR 4HO ({{ price }} ex. VAT/month)",
+  "telecom_pack_migration_gtr_10ho": "GTR 10HO ({{ price }} ex. VAT/month)",
+  "telecom_pack_migration_gtr_5m_4ho": "GTR 4HO &amp; COMFORT 5M OPTION ({{ price }} ex. VAT/month)",
+  "telecom_pack_migration_gtr_5m_10ho": "GTR 10HO &amp; COMFORT 5M OPTION ({{ price }} ex. VAT/month)",
+  "telecom_pack_migration_gtr_20m_4ho": "GTR 4HO &amp; COMFORT 20M OPTION ({{ price }} ex. VAT/month)",
+  "telecom_pack_migration_gtr_20m_10ho": "GTR 10HO &amp; COMFORT 20M OPTION ({{ price }} ex. VAT/month)",
+  "telecom_pack_migration_no_gtr": "No GRT"
 }

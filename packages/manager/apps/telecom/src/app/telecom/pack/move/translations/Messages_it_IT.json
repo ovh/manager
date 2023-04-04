@@ -129,5 +129,12 @@
   "pack_move_offers_debit_mention_1": "(1) Fino a 92 Mb/s discendenti in VDSL e 22 Mb/s in ADSL, secondo l'ammissibilità.",
   "pack_move_offers_debit_mention_2": "(2) Fino a 36 Mb/s importo in VDSL e 1 Mb/s in ADSL, secondo l'ammissibilità.",
   "pack_move_modem_keep": "Voglio conservare il mio modem ({{ price }} +IVA/mese)",
-  "pack_move_confirm_modem_rental": "Locazione modem"
+  "pack_move_confirm_modem_rental": "Locazione modem",
+  "pack_move_gtr_4ho": "GTR 4HO ({{ price }} +IVA/mese)",
+  "pack_move_gtr_10ho": "GTR 10HO ({{ price }} +IVA/mese)",
+  "pack_move_gtr_5m_4ho": "GTR 4HO &amp; OPTION CONFORT 5M ({{ price }} +IVA/mese)",
+  "pack_move_gtr_5m_10ho": "GTR 10HO &amp; OPTION CONFORT 5M ({{ price }} +IVA/mese)",
+  "pack_move_gtr_20m_4ho": "GTR 4HO &amp; OPTION CONFORT 20M ({{ price }} +IVA/mese)",
+  "pack_move_gtr_20m_10ho": "GTR 10HO &amp; OPTION CONFORT 20M ({{ price }} +IVA/mese)",
+  "pack_move_no_gtr": "Nessuna GTR"
 }

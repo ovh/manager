@@ -854,40 +854,26 @@
                                 data-title="{{ offer.description }}"
                                 data-ng-repeat="offer in $ctrl.offers track by $index"
                             >
-                                <div
-                                    data-ng-repeat="option in offer.options | orderBy: 'optionalPrice.value' track by $index"
-                                >
-                                    <div
-                                        data-ng-if="$ctrl.constructor.isGtrOption(option.name)"
+                                <label class="oui-select">
+                                    <select
+                                        class="oui-select__input"
+                                        data-ng-model="offer.gtrSelected"
+                                        name="gtr"
+                                        data-ng-change="$ctrl.updateOfferPriceAndGtr(offer)"
                                     >
-                                        <strong
-                                            class="d-block"
-                                            data-translate="{{ 'pack_move_' + option.name + '_available' }}"
+                                        <option
+                                            data-ng-repeat="gtrOption in offer.gtrOptions"
+                                            data-ng-value="gtrOption.name"
+                                            data-ng-bind-html="gtrOption.label"
                                         >
-                                        </strong>
-                                        <label class="d-block">
-                                            <div
-                                                class="input-group d-inline-block align-middle mr-2"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    data-ng-model="option.selected"
-                                                    data-ng-change="$ctrl.updateOfferPriceAndGtr(modelValue, offer, option.name)"
-                                                />
-                                            </div>
-                                            <span
-                                                class="d-block align-middle text-small"
-                                            >
-                                                <span
-                                                    data-translate="pack_move_gtr_add"
-                                                ></span>
-                                                <span
-                                                    data-ng-bind-html="option.optionalPrice.text | tucFormatPrice:{ addBrackets : true }"
-                                                ></span>
-                                            </span>
-                                        </label>
-                                    </div>
-                                </div>
+                                        </option>
+                                    </select>
+                                    <span
+                                        class="oui-icon oui-icon-chevron-down"
+                                        aria-hidden="true"
+                                    ></span>
+                                </label>
+
                                 <strong
                                     class="d-block text-muted"
                                     data-ng-if="!$ctrl.constructor.isGtrOptionExist(offer)"
