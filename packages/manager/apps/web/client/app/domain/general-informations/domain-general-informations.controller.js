@@ -37,7 +37,6 @@ export default class DomainTabGeneralInformationsCtrl {
     coreURLBuilder,
     dnsAvailableOptions,
     Domain,
-    emailObfuscationLink,
     enableWebhostingLink,
     Hosting,
     HostingDomain,
@@ -63,7 +62,6 @@ export default class DomainTabGeneralInformationsCtrl {
     this.WucAllDom = WucAllDom;
     this.dnsAvailableOptions = dnsAvailableOptions;
     this.Domain = Domain;
-    this.emailObfuscationLink = emailObfuscationLink;
     this.enableWebhostingLink = enableWebhostingLink;
     this.Hosting = Hosting;
     this.HostingDomain = HostingDomain;
@@ -590,20 +588,14 @@ export default class DomainTabGeneralInformationsCtrl {
     this.loading.whoIs = true;
     return this.$q
       .all({
-        obfuscationRules: this.OvhApiDomainRules.EmailsObfuscation()
-          .v6()
-          .query({
-            serviceName: this.domain.name,
-          }).$promise,
         optinRules: this.OvhApiDomainRules.Optin()
           .v6()
           .query({
             serviceName: this.domain.name,
           }).$promise,
       })
-      .then(({ obfuscationRules, optinRules }) => {
+      .then(({ optinRules }) => {
         this.isWhoisOptinAllowed = !isEmpty(optinRules);
-        this.canObfuscateEmails = !isEmpty(obfuscationRules);
       })
       .catch(() =>
         this.Alerter.error(
