@@ -181,7 +181,7 @@
   "telecom_pack_migration_confirm_modem_rental_recycled": "Wynajem modemu z recyklingu",
   "telecom_pack_migration_offers_debit_mention_1": "(1) Aż do 92 Mb/s łączących się w VDSL i 22 Mb/s w ADSL, w zależności od dostępności.",
   "telecom_pack_migration_offers_debit_mention_2": "(2) Do 36 Mb/s w VDSL i 1 Mb/s w ADSL, w zależności od dostępności.",
-  "telecom_pack_migration_modem_keep": "Chcę zachować modem ({{ price }} netto/m-c)",
+  "telecom_pack_migration_modem_keep": "Chcę zachować mój modem ({{ price }} netto/m-c)",
   "telecom_pack_migration_gtr_4ho": "GTR 4HO ({{ price }} netto/m-c)",
   "telecom_pack_migration_gtr_10ho": "GTR 10HO ({{ price }} netto/m-c)",
   "telecom_pack_migration_gtr_5m_4ho": "GTR 4HO &amp; OPCJA KOMFORT 5M ({{ price }} netto/m-c)",
