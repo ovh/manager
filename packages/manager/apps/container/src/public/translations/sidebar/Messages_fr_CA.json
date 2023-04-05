@@ -26,7 +26,6 @@
   "sidebar_licences": "Licences",
   "sidebar_hpc": "Hosted Private Cloud",
   "sidebar_vmware": "VMware",
-  "sidebar_anthos": "Anthos",
   "sidebar_anthos_all": "Tous mes déploiements",
   "sidebar_nutanix": "Nutanix",
   "sidebar_cluster_all": "Tous mes clusters",
