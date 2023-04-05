@@ -15,7 +15,10 @@ export default class PoliciesController extends AbstractCursorDatagridController
    * @returns {Promise}
    */
   createItemsPromise({ cursor }) {
-    return this.PolicyService.getPolicies({ cursor });
+    return this.PolicyService.getPolicies({
+      cursor,
+      ...(!this.advancedMode && { readOnly: false }),
+    });
   }
 
   /**
