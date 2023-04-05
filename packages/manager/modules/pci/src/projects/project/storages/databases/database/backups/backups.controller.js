@@ -44,6 +44,22 @@ export default class PciProjectStorageDatabaseBackupsCtrl {
     );
   }
 
+  getRegions(backup) {
+    let regionString = '-';
+    if (backup.regions.length > 0) {
+      regionString = backup.regions
+        .map((region) =>
+          this.ovhManagerRegionService.getTranslatedMacroRegion(region.name),
+        )
+        .join(', ');
+    } else if (backup.region) {
+      regionString = this.ovhManagerRegionService.getTranslatedMacroRegion(
+        backup.region,
+      );
+    }
+    return regionString;
+  }
+
   loadMessages() {
     this.CucCloudMessage.unSubscribe(this.messageContainer);
     this.messageHandler = this.CucCloudMessage.subscribe(
