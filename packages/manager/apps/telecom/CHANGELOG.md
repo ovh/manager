@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.59.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.58.0...@ovh-ux/manager-telecom@13.59.0) (2023-04-05)
+
+
+### Features
+
+* use a select box on gtr options for migration and move offers ([#8988](https://github.com/ovh/manager/issues/8988)) ([3b05ba7](https://github.com/ovh/manager/commit/3b05ba792629f7d5b2badfd950362d04b6eefb55))
+
+
+
+
+
 # [13.58.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.57.3...@ovh-ux/manager-telecom@13.58.0) (2023-03-29)
 
 

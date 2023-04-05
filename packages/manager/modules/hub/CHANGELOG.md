@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.6.3...@ovh-ux/manager-hub@3.7.0) (2023-04-05)
+
+
+### Features
+
+* **anthos:** remove anthos product ([#9104](https://github.com/ovh/manager/issues/9104)) ([1a8d677](https://github.com/ovh/manager/commit/1a8d677843db3a7c4b1aa3262056970531c1693e))
+
+
+
+
+
 ## [3.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.6.2...@ovh-ux/manager-hub@3.6.3) (2023-02-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub

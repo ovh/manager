@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.18.1...@ovh-ux/manager-container-app@0.19.0) (2023-04-05)
+
+
+### Bug Fixes
+
+* **container:** fix typo in switch language in fr ([#9035](https://github.com/ovh/manager/issues/9035)) ([c615fad](https://github.com/ovh/manager/commit/c615fad90847e1ea5910660173ff675efb6c6fe2))
+
+
+### Features
+
+* **anthos:** remove anthos product ([#9104](https://github.com/ovh/manager/issues/9104)) ([1a8d677](https://github.com/ovh/manager/commit/1a8d677843db3a7c4b1aa3262056970531c1693e))
+
+
+
+
+
 ## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.18.0...@ovh-ux/manager-container-app@0.18.1) (2023-04-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.120.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.119.2...@ovh-ux/manager-pci@5.120.0) (2023-04-05)
+
+
+### Bug Fixes
+
+* **public-cloud:** fix the access onboarding page on object storage ([#9140](https://github.com/ovh/manager/issues/9140)) ([daec314](https://github.com/ovh/manager/commit/daec3145c471d1e95bf5b9ae50c63f26d45799e5))
+
+
+### Features
+
+* **project.billing:** remove ML serving from billing page ([#9109](https://github.com/ovh/manager/issues/9109)) ([c526ee4](https://github.com/ovh/manager/commit/c526ee4413536391dea59d7482227b5818dcea2e))
+
+
+
+
+
 ## [5.119.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.119.1...@ovh-ux/manager-pci@5.119.2) (2023-04-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci
