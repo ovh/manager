@@ -1,5 +1,4 @@
 import map from 'lodash/map';
-import 'moment';
 
 export default class PciStoragesColdArchiveService {
   /* @ngInject */
