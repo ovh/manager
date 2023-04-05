@@ -1,0 +1,11 @@
+{
+  "telephony_billingAccount_svaWallet_kyc_summary_title": "Mi perfil SVA",
+  "telephony_billingAccount_svaWallet_kyc_summary_message": "A continuación, encontrará la información relativa a su perfil SVA.",
+  "telephony_billingAccount_svaWallet_kyc_summary_bankaccount_title": "Mis datos bancarios",
+  "telephony_billingAccount_svaWallet_kyc_summary_bankaccount_edit": "Editar mis datos bancarios",
+  "telephony_billingAccount_svaWallet_kyc_summary_beneficiaries_title": "Mis beneficiarios",
+  "telephony_billingAccount_svaWallet_kyc_summary_documents_title": "Mis documentos",
+  "telephony_billingAccount_svaWallet_kyc_summary_iban_confirmation": "Su IBAN se ha actualizado correctamente.",
+  "telephony_billingAccount_svaWallet_kyc_summary_document_confirmation": "El documento se ha actualizado correctamente. La validación de sus nuevos documentos tardará 48 horas.",
+  "telephony_billingAccount_svaWallet_kyc_summary_edit_identity": "Actualizar mis datos"
+}
