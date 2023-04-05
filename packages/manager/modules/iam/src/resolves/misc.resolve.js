@@ -80,6 +80,33 @@ statementResolve.resolves = [entityResolve];
 // ---------------------------------------------------------------------------------------------------- //
 
 /**
+ * Get the status of the advanced mode
+ * @returns {boolean}
+ */
+const advancedModeResolve = /* @ngInject */ (PreferencesService) => {
+  return PreferencesService.isAdvancedModeEnabled();
+};
+
+advancedModeResolve.key = 'advancedMode';
+
+// ---------------------------------------------------------------------------------------------------- //
+
+/**
+ * determines if there are any policies
+ * @returns {boolean}
+ */
+const hasPoliciesResolve = /* @ngInject */ (PolicyService, advancedMode) => {
+  return PolicyService.getPolicies({
+    ...(!advancedMode && { readOnly: false }),
+  }).then(({ data }) => data.length > 0);
+};
+
+hasPoliciesResolve.key = 'hasPolicies';
+hasPoliciesResolve.resolves = [advancedModeResolve];
+
+// ---------------------------------------------------------------------------------------------------- //
+
+/**
  * FeatureAvailability instance based on the FEATURE constant
  * @returns {FeatureAvailabilityResult}
  */
@@ -156,11 +183,13 @@ usersManagementLinkResolve.key = 'usersManagementLink';
 // ---------------------------------------------------------------------------------------------------- //
 
 export {
+  advancedModeResolve,
   alertResolve,
   entityResolve,
   featuresResolve,
   goBackResolve,
   goToResolve,
+  hasPoliciesResolve,
   statementResolve,
   usersManagementLinkResolve,
 };
