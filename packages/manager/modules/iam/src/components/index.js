@@ -1,6 +1,8 @@
 import angular from 'angular';
 
 import actionSelectComponent from './actionSelect/actionSelect.component';
+import advancedModeSwitchComponent from './advancedModeSwitch/advancedModeSwitch.component';
+import advancedModeSwitchResolves from './advancedModeSwitch/advancedModeSwitch.resolves';
 import createPolicyComponent from './createPolicy/createPolicy.component';
 import createPolicyResolves from './createPolicy/createPolicy.resolves';
 import deleteEntityComponent from './deleteEntity/deleteEntity.component';
@@ -24,6 +26,12 @@ const actionSelect = {
   name: 'iamActionSelect',
   component: actionSelectComponent,
   resolves: null,
+};
+
+const advancedModeSwitch = {
+  name: 'iamAdvancedModeSwitch',
+  component: advancedModeSwitchComponent,
+  resolves: advancedModeSwitchResolves,
 };
 
 const createPolicy = {
@@ -90,6 +98,7 @@ const moduleName = 'ovhManagerIAMComponents';
 angular
   .module(moduleName, [])
   .component(actionSelect.name, actionSelect.component)
+  .component(advancedModeSwitch.name, advancedModeSwitch.component)
   .component(createPolicy.name, createPolicy.component)
   .component(deleteEntity.name, deleteEntity.component)
   .component(iam.name, iam.component)
@@ -103,6 +112,7 @@ angular
   .run(/*
     @ngTranslationsInject:json
       ./actionSelect/translations
+      ./advancedModeSwitch/translations
       ./createPolicy/translations
       ./cursorDatagrid/translations
       ./deleteEntity/translations
@@ -116,6 +126,7 @@ angular
   */);
 
 export {
+  advancedModeSwitch,
   createPolicy,
   deleteEntity,
   iam,
