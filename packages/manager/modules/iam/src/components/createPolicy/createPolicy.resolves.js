@@ -1,7 +1,7 @@
 import {
   alertResolve,
-  goToResolve,
+  goBackResolve,
   onboardingGuidesResolve,
 } from '@iam/resolves';
 
-export default [alertResolve, goToResolve, onboardingGuidesResolve];
+export default [alertResolve, goBackResolve, onboardingGuidesResolve];
