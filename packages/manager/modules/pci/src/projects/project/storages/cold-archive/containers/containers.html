@@ -63,6 +63,13 @@
                 class="{{$ctrl.constructor.getStatusClass($row.status)}}"
                 data-ng-bind=":: $row.translatedStatus"
             ></span>
+            <span
+                class="d-block"
+                oui-tooltip="{{:: 'pci_projects_project_storages_cold_archive_containers_status_restore_date_tooltip' | translate  }}"
+                data-ng-if="$ctrl.displayRestoreDate($row)"
+                data-translate="pci_projects_project_storages_cold_archive_containers_status_restore_date"
+                data-translate-values="{ date: $ctrl.displayRestoreDate($row) }"
+            ></span>
         </oui-datagrid-column>
         <oui-datagrid-column>
             <oui-action-menu
