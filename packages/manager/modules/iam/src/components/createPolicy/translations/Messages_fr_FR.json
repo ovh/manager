@@ -1,6 +1,22 @@
 {
-  "iam_create_policy_title": "Créer une politique",
-  "iam_create_policy_description": "La politique contient une liste d'actions autorisées à une liste d'identités s'appliquant à des ressources.",
-  "iam_create_policy_sub_section_policy_name": "Nom de la politique",
-  "iam_create_policy_field_policy_name": "Nom de la politique"
+  "iam_create_policy_cancel": "Annuler",
+  "iam_create_policy_error_creation": "Impossible de créer cette politique : {{ message }}",
+  "iam_create_policy_error_heading": "Certaines erreurs dans le formulaire empêchent la création de cette politique. Merci de les corriger avant de le soumettre à nouveau.",
+  "iam_create_policy_error_no_resources": "Aucune ressource n'est disponible pour ce ou ces types de produits.",
+  "iam_create_policy_form_name_error_pattern": "Le format du nom de la politique n'est pas conforme",
+  "iam_create_policy_form_name_heading": "Nom de la politique",
+  "iam_create_policy_form_resource_groups_create": "Créer un groupe de ressources",
+  "iam_create_policy_form_resource_groups_heading": "Groupes de ressources",
+  "iam_create_policy_form_resource_groups_info": "Vous n'avez pas encore créé de groupe de resources. [TODO]complete this message[/TODO]",
+  "iam_create_policy_form_resource_types_description": "Sélectionnez le type de produits qui correspond aux actions et aux ressources que vous souhaitez ajouter.",
+  "iam_create_policy_form_resource_types_error_required": "Veuillez sélectionner un ou plusieurs types de produits.",
+  "iam_create_policy_form_resource_types_heading": "Types de produits",
+  "iam_create_policy_form_resources_description": "Ajoutez les ressources concernées par votre politique.",
+  "iam_create_policy_form_resources_error_required": "Veuillez sélectionner une ou plusieures ressources ou groupes de ressources",
+  "iam_create_policy_form_resources_heading": "Ressources",
+  "iam_create_policy_header_description": "La politique contient une liste d'actions autorisées à une liste d'identités s'appliquant à des ressources.",
+  "iam_create_policy_header_guide_text": "Guides",
+  "iam_create_policy_header_heading": "Créer une politique",
+  "iam_create_policy_submit": "Créer la politique",
+  "iam_create_policy_success": "La politique {{ name }} a été créée avec succès"
 }
