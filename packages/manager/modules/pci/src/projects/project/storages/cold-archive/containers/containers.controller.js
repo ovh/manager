@@ -9,11 +9,13 @@ export default class PciStoragesColdArchiveContainersController {
   constructor(
     $translate,
     atInternet,
+    $filter,
     CucCloudMessage,
     PciStoragesColdArchiveService,
   ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
+    this.$filter = $filter;
     this.CucCloudMessage = CucCloudMessage;
     this.PciStoragesColdArchiveService = PciStoragesColdArchiveService;
   }
@@ -134,5 +136,13 @@ export default class PciStoragesColdArchiveContainersController {
       COLD_ARCHIVE_CONTAINER_STATUS.NONE,
       COLD_ARCHIVE_CONTAINER_STATUS.FLUSHED,
     ].includes(status);
+  }
+
+  displayRestoreDate(container) {
+    const { status, restorationEndAt } = container;
+    if (status === COLD_ARCHIVE_CONTAINER_STATUS.RESTORED && restorationEndAt) {
+      return this.$filter('date')(new Date(restorationEndAt), 'short');
+    }
+    return '';
   }
 }
