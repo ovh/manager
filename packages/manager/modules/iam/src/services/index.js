@@ -5,6 +5,7 @@ import GuideService from './guide.service';
 import IdentityService from './identity.service';
 import PolicyService from './policy.service';
 import ReferenceService from './reference.service';
+import PreferencesService from './preferences.service';
 import ResourceGroupService from './resourceGroup.service';
 import ResourceService from './resource.service';
 
@@ -17,6 +18,7 @@ angular
   .service('IdentityService', IdentityService)
   .service('PolicyService', PolicyService)
   .service('ReferenceService', ReferenceService)
+  .service('PreferencesService', PreferencesService)
   .service('ResourceGroupService', ResourceGroupService)
   .service('ResourceService', ResourceService)
   .run(/* @ngTranslationsInject:json ./translations */);
