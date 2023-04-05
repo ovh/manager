@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.5.0...@ovh-ux/manager-iplb@1.5.1) (2023-03-29)
+
+
+### Bug Fixes
+
+* **dedicated.loadbalancer:** fix translation issue ([#9081](https://github.com/ovh/manager/issues/9081)) ([4e1cc31](https://github.com/ovh/manager/commit/4e1cc319e53b08b482186f09819c21ab3e33752e))
+
+
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.4.2...@ovh-ux/manager-iplb@1.5.0) (2023-02-07)
 
 

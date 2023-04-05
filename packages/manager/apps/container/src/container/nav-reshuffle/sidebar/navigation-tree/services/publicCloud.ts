@@ -36,6 +36,7 @@ const pciNode: Node = {
         'block-storage',
         'object-storage',
         'snapshot',
+        'volume-backup',
         'instance-backup',
         'archive',
         'cold-archive',
@@ -109,6 +110,18 @@ const pciNode: Node = {
           },
           features: ['snapshot'],
           forceVisibility: true,
+        },
+        {
+          id: 'pci-volume-backup',
+          translation: 'sidebar_pci_volume_backup',
+          serviceType: 'CLOUD_PROJECT_VOLUME_BACKUP',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/storages/volume-backup',
+          },
+          features: ['volume-backup'],
+          forceVisibility: true,
+          tag: NodeTag.NEW,
         },
         {
           id: 'pci-instance-backup',

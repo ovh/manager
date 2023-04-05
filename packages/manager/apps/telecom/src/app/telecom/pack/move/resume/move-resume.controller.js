@@ -39,7 +39,11 @@ export default class MoveResumeCtrl {
       ? 1
       : 0;
 
-    const modemRental = this.offer.selected.offer.modemRental?.value || 0;
+    const modemRental = this.MODEM_LIST.includes(
+      this.offer.selected.offer.modem,
+    )
+      ? this.offer.selected.offer.prices.modemRental.price.value
+      : 0;
     const providerOrange =
       this.offer.selected.offer.prices.providerOrange.price?.value || 0;
     const providerAI =
@@ -219,12 +223,10 @@ export default class MoveResumeCtrl {
         acceptContracts: this.offer.selected.acceptContracts,
       };
 
-      // Set modem if one type is selected
-      if (this.MODEM_LIST.includes(this.offer.selected.offer.modem)) {
-        assign(moveData, {
-          modem: this.offer.selected.offer.modem,
-        });
-      }
+      // Set modem
+      assign(moveData, {
+        modem: this.offer.selected.offer.modem,
+      });
 
       if (this.offer.selected.buildingDetails) {
         assign(moveData, {

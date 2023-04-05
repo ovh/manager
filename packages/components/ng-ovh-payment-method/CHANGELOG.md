@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.5.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.5.1...@ovh-ux/ng-ovh-payment-method@9.5.2) (2023-03-29)
+
+
+### Bug Fixes
+
+* **dedicated.payment:** change content in en for translation ([#9058](https://github.com/ovh/manager/issues/9058)) ([81a1d92](https://github.com/ovh/manager/commit/81a1d9226350507dd9d62093e9a04fbda64bbaa1))
+
+
+
+
+
 ## [9.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.5.0...@ovh-ux/ng-ovh-payment-method@9.5.1) (2023-03-23)
 
 

@@ -43,6 +43,7 @@ export default class TelecomPackMigrationOffersCtrl {
     return this.TucPackMigrationProcess.initOffersView()
       .then((migrationProcess) => {
         this.process = migrationProcess;
+        this.initializeModemOptions();
       })
       .catch((error) => {
         const msgErr = `${this.$translate.instant(
@@ -82,13 +83,11 @@ export default class TelecomPackMigrationOffersCtrl {
       }
     });
 
-    if (optionName === this.MODEM_OPTION_NAME) {
-      offer.modemOptions.forEach((modem) => {
-        if (modem.name === offer.modem && modem.price) {
-          totalOfferPrice += modem.price.value;
-        }
-      });
-    }
+    offer.modemOptions.forEach((modem) => {
+      if (modem.name === offer.modem && modem.price) {
+        totalOfferPrice += modem.price.value;
+      }
+    });
 
     set(
       offer,
@@ -147,10 +146,18 @@ export default class TelecomPackMigrationOffersCtrl {
     // Update modem rental from selected modem detail
     selectedOffer.modemOptions.forEach((modem) => {
       if (modem.name === selectedOffer.modem) {
-        selectedOffer.modemRental = modem.price;
-      }
-      if (this.MODEM_LIST.includes(selectedOffer.modem)) {
-        selectedOffer.needNewModem = true;
+        if (modem.price) {
+          if (
+            !selectedOffer.modemRental ||
+            selectedOffer.modemRental.value !== modem.price.value
+          ) {
+            selectedOffer.modemRental = modem.price;
+
+            if (this.MODEM_LIST.includes(selectedOffer.modem)) {
+              selectedOffer.needNewModem = true;
+            }
+          }
+        }
       }
     });
 
@@ -164,6 +171,7 @@ export default class TelecomPackMigrationOffersCtrl {
       .then((result) => {
         selectedOffer.subServicesToDelete = result.data;
         this.TucPackMigrationProcess.selectOffer(selectedOffer);
+
         return result.data;
       })
       .catch((error) => {
@@ -179,11 +187,43 @@ export default class TelecomPackMigrationOffersCtrl {
       });
   }
 
-  getModemOptionLabel(modemOption) {
-    return this.$translate.instant(
-      `telecom_pack_migration_modem_${modemOption.name}`,
-      {
-        price: modemOption.price ? modemOption.price.text : '',
+  initializeModemOptions() {
+    this.process.migrationOffers.result.offers = this.process.migrationOffers.result.offers.map(
+      (offer) => {
+        Object.values(offer.modemOptions).forEach((option) => {
+          let optionLabel = '';
+          if (offer.needNewModem || !offer.modemRental) {
+            optionLabel = this.$translate.instant(
+              `telecom_pack_migration_modem_${option.name}`,
+              {
+                price: option.price ? option.price.text : '',
+              },
+            );
+          } else if (
+            this.MODEM_LIST.includes(option.name) &&
+            offer.modemRental.value === option.price.value
+          ) {
+            optionLabel = this.$translate.instant(
+              'telecom_pack_migration_modem_keep',
+              { price: option.price ? option.price.text : '' },
+            );
+          } else {
+            optionLabel = this.$translate.instant(
+              `telecom_pack_migration_modem_${option.name}`,
+              {
+                price: option.price ? option.price.text : '',
+              },
+            );
+          }
+          set(option, 'label', optionLabel);
+          return option;
+        });
+        // Set modem option to the first value from modem options list
+        set(offer, 'modem', offer.modemOptions[0].name);
+
+        // Update price
+        this.updateOfferDisplayedPrice(1, offer, this.MODEM_OPTION_NAME);
+        return offer;
       },
     );
   }

@@ -9,6 +9,8 @@ import databases from '../databases';
 import instanceBackups from '../instance-backups';
 import objectStorage from './object-storage';
 import snapshots from '../snapshots';
+import volumeBackup from '../volume-backup';
+
 import routing from './storages.routing';
 
 const moduleName = 'ovhManagerPciStorages';
@@ -22,6 +24,7 @@ angular
     instanceBackups,
     snapshots,
     objectStorage,
+    volumeBackup,
     'oui',
     'ui.router',
     'ovhManagerFilters',

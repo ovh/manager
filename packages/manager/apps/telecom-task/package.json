@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-task-app",
-  "version": "6.8.9",
+  "version": "6.8.10",
   "private": true,
   "description": "Telecom task standalone application.",
   "repository": {
@@ -28,7 +28,7 @@
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.8",
     "@ovh-ux/ng-ovh-sso-auth": "^4.6.4",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.7",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^7.19.0",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^7.19.1",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.8",
     "@ovh-ux/ng-ui-router-title": "^3.0.6",
     "@ovh-ux/request-tagger": "^0.1.1",
@@ -50,7 +50,7 @@
     "lodash-es": "^4.17.15",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^16.0.0",
+    "ovh-api-services": "^17.0.0",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-kit-bs": "^4.2.0",

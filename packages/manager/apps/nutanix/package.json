@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix-app",
-  "version": "1.4.16",
+  "version": "1.4.17",
   "private": true,
   "description": "OVHcloud Nutanix app",
   "repository": {
@@ -19,7 +19,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-nutanix-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-bm-server-components": "^1.6.2",
+    "@ovh-ux/manager-bm-server-components": "^1.6.3",
     "@ovh-ux/manager-components": "^1.0.0",
     "@ovh-ux/manager-config": "^6.6.0",
     "@ovh-ux/manager-core": "^12.12.10",
@@ -30,7 +30,7 @@
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.7",
     "@ovh-ux/ng-ovh-http": "^5.0.6",
-    "@ovh-ux/ng-ovh-payment-method": "^9.5.1",
+    "@ovh-ux/ng-ovh-payment-method": "^9.5.2",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.8",
     "@ovh-ux/ng-ovh-sso-auth": "^4.6.4",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.7",
@@ -57,7 +57,7 @@
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^16.0.0",
+    "ovh-api-services": "^17.0.0",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {

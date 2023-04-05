@@ -43,7 +43,11 @@ export default class TelecomPackMigrationConfirmCtrl {
       ? 1
       : 0;
 
-    const modemRental = this.process.selectedOffer.modemRental?.value || 0;
+    const modemRental = this.MODEM_LIST.includes(
+      this.process.selectedOffer.modem,
+    )
+      ? this.process.selectedOffer.modemRental.value
+      : 0;
     const firstYearPromo = this.process.selectedOffer.firstYearPromo
       ? this.process.selectedOffer.price.value -
         this.process.selectedOffer.firstYearPromo.value

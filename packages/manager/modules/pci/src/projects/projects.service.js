@@ -62,7 +62,8 @@ export default class {
       .query({
         serviceName: projectId,
       })
-      .$promise.then((quotas) => map(quotas, (quota) => new Quota(quota)));
+      .$promise.then((quotas) => map(quotas, (quota) => new Quota(quota)))
+      .catch(() => []);
   }
 
   getOrderFollowUp(orderId) {

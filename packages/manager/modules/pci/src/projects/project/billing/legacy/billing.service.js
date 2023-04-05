@@ -309,6 +309,10 @@ export default class CloudProjectBillingService {
     this.initResourceUsage('octavia-loadbalancer', 'octaviaLoadBalancer');
   }
 
+  initAiDeploy() {
+    this.initResourceUsage('ai-app', 'aiDeploy');
+  }
+
   getConsumptionDetails(hourlyBillingInfo, monthlyBillingInfo) {
     return this.getDataInitialized().then(() => {
       this.data.hourlyBilling = hourlyBillingInfo;
@@ -333,6 +337,7 @@ export default class CloudProjectBillingService {
           this.initFloatingIP(),
           this.initGateway(),
           this.initOctaviaLoadBalancer(),
+          this.initAiDeploy(),
         ])
         .then(() => {
           this.data.totals.monthly.total = this.constructor.roundNumber(
@@ -351,6 +356,7 @@ export default class CloudProjectBillingService {
               this.data.totals.hourly.notebooks +
               this.data.totals.hourly.serving +
               this.data.totals.hourly.training +
+              this.data.totals.hourly.aiDeploy +
               this.data.totals.hourly.dataProcessing +
               this.data.totals.hourly.databases +
               this.data.totals.hourly.floatingIP +

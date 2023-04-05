@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.58.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.57.3...@ovh-ux/manager-telecom@13.58.0) (2023-03-29)
+
+
+### Bug Fixes
+
+* display shipping page only when user order new modem ([#8999](https://github.com/ovh/manager/issues/8999)) ([88f1bc4](https://github.com/ovh/manager/commit/88f1bc4e5783180d8d4db608f59d1c162e3a9d85))
+* **pci:** display error in regions ([#8128](https://github.com/ovh/manager/issues/8128)) ([4f0538e](https://github.com/ovh/manager/commit/4f0538e756d4be3c7c547a85b5f284249a0af4f2))
+
+
+### Features
+
+* display serial number for all modems ([#9018](https://github.com/ovh/manager/issues/9018)) ([ab73968](https://github.com/ovh/manager/commit/ab73968490376190ddfcb3cc5646f5b3f957a9d1))
+
+
+
+
+
 ## [13.57.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.57.2...@ovh-ux/manager-telecom@13.57.3) (2023-03-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

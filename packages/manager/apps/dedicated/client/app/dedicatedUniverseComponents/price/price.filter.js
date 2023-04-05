@@ -53,6 +53,7 @@ export default /* @ngInject */ ($translate) => {
     SG: asiaTouch,
     TN: frenchTouch,
     US: usTouch,
+    IN: asiaTouch,
   };
 
   function format(price, paramCountry, modifier) {
