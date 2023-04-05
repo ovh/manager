@@ -21,19 +21,36 @@ export default class PolicyService {
   /**
    * Get the policy given the id
    * @param {string} id The policy's id
-   * @see Apiv2Service#get
    * @returns {Promise}
    */
   getPolicy(id) {
     return this.Apiv2Service.get(`${ENDPOINT.policy}/${id}`).then(
-      ({ data }) => data,
+      ({ data: policy }) => policy,
+    );
+  }
+
+  /**
+   * Create a new policy
+   * @param {{
+   *   identities: string[]
+   *   name: string
+   *   permissions: {
+   *     allow: { action: string }[]
+   *     except: { action: string }[]
+   *   }
+   *   resources: { urn: string }[]
+   * }} data The policy's data
+   * @returns {Promise}
+   */
+  createPolicy(data) {
+    return this.Apiv2Service.post(ENDPOINT.policy, { data }).then(
+      ({ data: policy }) => policy,
     );
   }
 
   /**
    * Delete the policy given the id
    * @param {string} id The policy's id
-   * @see Apiv2Service#delete
    * @returns {Promise}
    */
   deletePolicy(id) {

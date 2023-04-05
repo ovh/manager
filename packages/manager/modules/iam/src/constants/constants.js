@@ -1,5 +1,17 @@
 const ALERT_ID = 'iam_alert';
 
+const API_ERROR = {
+  POLICY: {
+    NAME: [
+      'INVALID_FORMAT',
+      'INVALID_PARAMETER',
+      'MISSING_PARAMETER',
+      'PARAMETER_TOO_LONG',
+      'POLICY_ALREADY_EXISTS',
+    ],
+  },
+};
+
 const DELETE_STATEMENT = 'Terminate';
 
 const FEATURE = {
@@ -12,6 +24,8 @@ const ENTITY = {
   RESOURCE_GROUP: 'resourceGroup',
 };
 const URN_VERSION = 1;
+
+const ENTITY_NAME_PATTERN = /^[a-zA-Z0-9-/_+]*$/;
 
 // TODO wait for other guide specifications
 const GUIDE = {
@@ -56,17 +70,16 @@ GUIDE.IAM.DEFAULT = GUIDE.IAM.FR;
 GUIDE.USERS.DEFAULT = GUIDE.USERS.US;
 GUIDE.SAMLSSO.DEFAULT = GUIDE.SAMLSSO.US;
 
-const POLICY_NAME_PATTERN = /^[a-zA-Z0-9-/_+]*$/;
-
 const UNAVAILABLE_STATE_NAME = 'app.account.user';
 
 export {
   ALERT_ID,
+  API_ERROR,
   DELETE_STATEMENT,
   ENTITY,
+  ENTITY_NAME_PATTERN,
   FEATURE,
   GUIDE,
-  POLICY_NAME_PATTERN,
   UNAVAILABLE_STATE_NAME,
   URN_VERSION,
 };
