@@ -52,11 +52,22 @@
 
         <!-- <Topbar> -->
         <oui-datagrid-topbar>
-            <oui-button data-on-click="$ctrl.createPolicy()" class="mb-3">
+            <oui-button
+                data-on-click="$ctrl.createPolicy()"
+                class="mb-3 d-inline-block align-middle"
+            >
                 <span
                     data-translate="iam_policies_datagrid_topbar_create_policy"
                 ></span>
             </oui-button>
+
+            <iam-advanced-mode-switch
+                class="ml-4 d-inline-block"
+                data-advanced-mode="$ctrl.advancedMode"
+                data-alert="$ctrl.alert"
+                data-go-to="$ctrl.goTo"
+            >
+            </iam-advanced-mode-switch>
         </oui-datagrid-topbar>
         <!-- </Topbar> -->
     </oui-datagrid>
