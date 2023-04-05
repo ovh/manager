@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.29.3...@ovh-ux/manager-web@16.30.0) (2023-04-05)
+
+
+### Features
+
+* **web:** remove owo feature from manager ([#9130](https://github.com/ovh/manager/issues/9130)) ([cef252b](https://github.com/ovh/manager/commit/cef252b3ce86b4f4c3fc7ff7e46a856b301688d5))
+
+
+
+
+
 ## [16.29.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.29.2...@ovh-ux/manager-web@16.29.3) (2023-03-29)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.17.3...@ovh-ux/manager-support@1.18.0) (2023-04-05)
+
+
+### Features
+
+* **anthos:** remove anthos product ([#9104](https://github.com/ovh/manager/issues/9104)) ([1a8d677](https://github.com/ovh/manager/commit/1a8d677843db3a7c4b1aa3262056970531c1693e))
+
+
+
+
+
 ## [1.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.17.2...@ovh-ux/manager-support@1.17.3) (2023-03-20)
 
 
