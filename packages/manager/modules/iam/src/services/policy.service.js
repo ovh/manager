@@ -11,11 +11,17 @@ export default class PolicyService {
   /**
    * Get the list of policies
    * @param {string} cursor The base64 encoded cursor to pass
+   * @param {boolean} readOnly
    * @see Apiv2Service#getList
    * @returns {Promise}
    */
-  getPolicies({ cursor }) {
-    return this.Apiv2Service.getList(ENDPOINT.policy, { cursor });
+  getPolicies({ cursor, readOnly }) {
+    return this.Apiv2Service.getList(ENDPOINT.policy, {
+      ...(typeof readOnly !== 'undefined' && {
+        options: { params: { readOnly } },
+      }),
+      cursor,
+    });
   }
 
   /**

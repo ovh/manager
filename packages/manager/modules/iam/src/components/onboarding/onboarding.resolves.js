@@ -1,6 +1,17 @@
 import {
+  advancedModeResolve,
+  alertResolve,
+  goToResolve,
+  hasPoliciesResolve,
   onboardingGuidesResolve,
   usersManagementLinkResolve,
 } from '@iam/resolves';
 
-export default [onboardingGuidesResolve, usersManagementLinkResolve];
+export default [
+  advancedModeResolve,
+  alertResolve,
+  goToResolve,
+  hasPoliciesResolve,
+  onboardingGuidesResolve,
+  usersManagementLinkResolve,
+];
