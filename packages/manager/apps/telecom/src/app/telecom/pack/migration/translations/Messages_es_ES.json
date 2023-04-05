@@ -173,5 +173,12 @@
   "telecom_pack_migration_offers_debit_mention_1": "(1) Hasta 92 Mbps que descenden en VDSL y 22 Mbps en ADSL, en función de los requisitos.",
   "telecom_pack_migration_offers_debit_mention_2": "(2) Hasta 36 MB/s en VDSL y 1 Mb/s en ADSL, en función de los requisitos.",
   "telecom_pack_migration_modem_keep": "Quiero conservar mi módem ({{ price }}/mes + IVA)",
-  "telecom_pack_migration_confirm_modem_rental": "Alquiler módem"
+  "telecom_pack_migration_confirm_modem_rental": "Alquiler módem",
+  "telecom_pack_migration_gtr_4ho": "GTR 4HO ({{ price }}/mes + IVA)",
+  "telecom_pack_migration_gtr_10ho": "GTR 10 HO ({{ price }}/mes + IVA)",
+  "telecom_pack_migration_gtr_5m_4ho": "GTR 4HO &amp; OPTION CONFORT 5M ({{ price }}/mes + IVA)",
+  "telecom_pack_migration_gtr_5m_10ho": "GTR 10HO &amp; OPTION CONFORT 5M ({{ price }}/mes + IVA)",
+  "telecom_pack_migration_gtr_20m_4ho": "GTR 4HO &amp; OPTION CONFORT 20M ({{ price }}/mes + IVA)",
+  "telecom_pack_migration_gtr_20m_10ho": "GTR 10HO &amp; OPTION CONFORT 20M ({{ price }}/mes + IVA)",
+  "telecom_pack_migration_no_gtr": "Sin GTR"
 }

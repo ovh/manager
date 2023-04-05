@@ -840,164 +840,28 @@
                                     data-title="{{ offer.description }}"
                                     data-ng-repeat="offer in $ctrl.process.migrationOffers.result.offers track by $index"
                                 >
-                                    <div data-ng-if="offer.options.gtr_10ho">
-                                        <strong
-                                            class="d-block"
-                                            data-translate="telecom_pack_migration_gtr_10ho_available"
-                                        >
-                                        </strong>
-                                        <label class="d-block">
-                                            <div
-                                                class="input-group d-inline-block align-middle mr-2"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    data-ng-model="offer.options.gtr_10ho.selected"
-                                                    data-ng-change="$ctrl.updateOfferPriceAndGtr(offer.options.gtr_10ho, offer, offer.options.gtr_10ho.name)"
-                                                />
-                                            </div>
-                                            <small class="d-block align-middle">
-                                                <span
-                                                    data-translate="telecom_pack_migration_gtr_add"
-                                                ></span>
-                                                <span
-                                                    data-ng-bind-html="offer.options.gtr_10ho.optionalPrice.text | tucFormatPrice:{ addBrackets : true }"
-                                                ></span>
-                                            </small>
-                                        </label>
-                                    </div>
-                                    <div data-ng-if="offer.options.gtr_4ho">
-                                        <strong
-                                            class="d-block"
-                                            data-translate="telecom_pack_migration_gtr_4ho_available"
-                                        >
-                                        </strong>
-                                        <label class="d-block">
-                                            <div
-                                                class="input-group d-inline-block align-middle mr-2"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    data-ng-model="offer.options.gtr_4ho.selected"
-                                                    data-ng-change="$ctrl.updateOfferPriceAndGtr(offer.options.gtr_4ho, offer, offer.options.gtr_4ho.name)"
-                                                />
-                                            </div>
-                                            <small class="d-block align-middle">
-                                                <span
-                                                    data-translate="telecom_pack_migration_gtr_add"
-                                                ></span>
-                                                <span
-                                                    data-ng-bind-html="offer.options.gtr_4ho.optionalPrice.text | tucFormatPrice:{ addBrackets : true }"
-                                                ></span>
-                                            </small>
-                                        </label>
-                                    </div>
-                                    <div data-ng-if="offer.options.gtr_5m_10ho">
-                                        <strong
-                                            class="d-block"
-                                            data-translate="telecom_pack_migration_gtr_5m_10ho_available"
-                                        >
-                                        </strong>
-                                        <label class="d-block">
-                                            <div
-                                                class="input-group d-inline-block align-middle mr-2"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    data-ng-model="offer.options.gtr_5m_10ho.selected"
-                                                    data-ng-change="$ctrl.updateOfferPriceAndGtr(offer.options.gtr_5m_10ho, offer, offer.options.gtr_5m_10ho.name)"
-                                                />
-                                            </div>
-                                            <small class="d-block align-middle">
-                                                <span
-                                                    data-translate="telecom_pack_migration_gtr_add"
-                                                ></span>
-                                                <span
-                                                    data-ng-bind-html="offer.options.gtr_5m_10ho.optionalPrice.text | tucFormatPrice:{ addBrackets : true }"
-                                                ></span>
-                                            </small>
-                                        </label>
-                                    </div>
-                                    <div data-ng-if="offer.options.gtr_5m_4ho">
-                                        <strong
-                                            class="d-block"
-                                            data-translate="telecom_pack_migration_gtr_5m_4ho_available"
-                                        >
-                                        </strong>
-                                        <label class="d-block">
-                                            <div
-                                                class="input-group d-inline-block align-middle mr-2"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    data-ng-model="offer.options.gtr_5m_4ho.selected"
-                                                    data-ng-change="$ctrl.updateOfferPriceAndGtr(offer.options.gtr_5m_4ho, offer, offer.options.gtr_5m_4ho.name)"
-                                                />
-                                            </div>
-                                            <small class="d-block align-middle">
-                                                <span
-                                                    data-translate="telecom_pack_migration_gtr_add"
-                                                ></span>
-                                                <span
-                                                    data-ng-bind-html="offer.options.gtr_5m_4ho.optionalPrice.text | tucFormatPrice:{ addBrackets : true }"
-                                                ></span>
-                                            </small>
-                                        </label>
-                                    </div>
-                                    <div
-                                        data-ng-if="offer.options.gtr_20m_10ho"
+                                    <label
+                                        class="oui-select"
+                                        data-ng-if="offer.gtrOptions.length > 0"
                                     >
-                                        <strong
-                                            class="d-block"
-                                            data-translate="telecom_pack_migration_gtr_20m_10ho_available"
+                                        <select
+                                            class="oui-select__input"
+                                            data-ng-model="offer.gtrSelected"
+                                            name="gtr"
+                                            data-ng-change="$ctrl.updateOfferPriceAndGtr(offer)"
                                         >
-                                        </strong>
-                                        <label class="d-block">
-                                            <div
-                                                class="input-group d-inline-block align-middle mr-2"
+                                            <option
+                                                data-ng-repeat="gtrOption in offer.gtrOptions"
+                                                data-ng-value="gtrOption.name"
+                                                data-ng-bind-html="gtrOption.label"
                                             >
-                                                <input
-                                                    type="checkbox"
-                                                    data-ng-model="offer.options.gtr_20m_10ho.selected"
-                                                    data-ng-change="$ctrl.updateOfferPriceAndGtr(offer.options.gtr_20m_10ho, offer, offer.options.gtr_20m_10ho.name)"
-                                                />
-                                            </div>
-                                            <small class="d-block align-middle">
-                                                <span
-                                                    data-translate="telecom_pack_migration_gtr_add"
-                                                ></span>
-                                                <span
-                                                    data-ng-bind-html="offer.options.gtr_20m_10ho.optionalPrice.text | tucFormatPrice:{ addBrackets : true }"
-                                                ></span>
-                                            </small>
-                                        </label>
-                                    </div>
-                                    <div data-ng-if="offer.options.gtr_20m_4ho">
-                                        <strong
-                                            class="d-block"
-                                            data-translate="telecom_pack_migration_gtr_20m_4ho_available"
-                                        >
-                                        </strong>
-                                        <label class="d-block">
-                                            <div
-                                                class="input-group d-inline-block align-middle mr-2"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    data-ng-model="offer.options.gtr_20m_4ho.selected"
-                                                    data-ng-change="$ctrl.updateOfferPriceAndGtr(offer.options.gtr_20m_4ho, offer, offer.options.gtr_20m_4ho.name)"
-                                                />
-                                            </div>
-                                            <small class="d-block align-middle">
-                                                <span
-                                                    data-translate="telecom_pack_migration_gtr_add"
-                                                ></span>
-                                                <span
-                                                    data-ng-bind-html="offer.options.gtr_20m_4ho.optionalPrice.text | tucFormatPrice:{ addBrackets : true }"
-                                                ></span>
-                                            </small>
-                                        </label>
-                                    </div>
+                                            </option>
+                                        </select>
+                                        <span
+                                            class="oui-icon oui-icon-chevron-down"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </label>
                                     <strong
                                         class="d-block text-muted"
                                         data-ng-if="!offer.options.gtr_4ho && !offer.options.gtr_5m_4ho && !offer.options.gtr_20m_4ho &&

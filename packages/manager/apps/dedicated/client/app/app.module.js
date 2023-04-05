@@ -50,7 +50,6 @@ import 'script-loader!angular-websocket/dist/angular-websocket';
 import './app.less';
 import './css/source.scss';
 /* eslint-enable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
-
 import get from 'lodash/get';
 import has from 'lodash/has';
 import set from 'lodash/set';
@@ -89,7 +88,6 @@ import ovhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import chartjs from 'angular-chart.js';
 
-import ovhManagerAnthos from '@ovh-ux/manager-anthos';
 import moduleExchange from '@ovh-ux/manager-exchange';
 import ovhManagerFilters from '@ovh-ux/manager-filters';
 import ovhManagerMetrics from '@ovh-ux/manager-metrics';
@@ -210,7 +208,6 @@ export default async (containerEl, shellClient) => {
         ovhManagerFilters,
         ngTailLogs,
         ovhContacts,
-        ovhManagerAnthos,
         ovhManagerBanner,
         ovhManagerMetrics,
         ovhManagerNasha,
@@ -352,7 +349,6 @@ export default async (containerEl, shellClient) => {
 
         $transitions.onBefore({}, (transition) => {
           const HPC_STATES = [
-            'anthos',
             'app.hpc',
             'app.dedicatedCloud',
             'veeam-enterprise',

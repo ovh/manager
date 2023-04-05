@@ -6,7 +6,7 @@ export default {
     {
       id: 'hpc-platforms',
       translation: 'sidebar_platforms',
-      features: ['dedicated-cloud', 'anthos', 'nutanix', 'license'],
+      features: ['dedicated-cloud', 'nutanix', 'license'],
       children: [
         {
           id: 'vm-ware',
@@ -17,16 +17,6 @@ export default {
             hash: '#/dedicated_cloud',
           },
           features: ['dedicated-cloud'],
-        },
-        {
-          id: 'anthos',
-          translation: 'sidebar_anthos',
-          serviceType: 'DEDICATED_ANTHOS_TENANTS',
-          routing: {
-            application: 'dedicated',
-            hash: '#/anthos',
-          },
-          features: ['anthos'],
         },
         {
           id: 'nutanix',
