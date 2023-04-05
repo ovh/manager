@@ -208,7 +208,6 @@ export default async (containerEl, shellClient) => {
         ovhManagerFilters,
         ngTailLogs,
         ovhContacts,
-        ovhManagerAnthos,
         ovhManagerBanner,
         ovhManagerMetrics,
         ovhManagerNasha,
