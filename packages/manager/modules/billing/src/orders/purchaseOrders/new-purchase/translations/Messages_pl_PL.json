@@ -15,5 +15,6 @@
   "purchaseOrders_form_add_purchase_cancel": "Anuluj",
   "purchaseOrders_form_add_purchase_submit_REFERENCE_ORDER_success": "Twoje wewnętrzne oznaczenie referencyjne zostało utworzone!",
   "purchaseOrders_form_add_purchase_submit_PURCHASE_ORDER_success": "Twój „purchase order” został utworzony!",
-  "purchaseOrders_form_add_purchase_submit_error": "Twoja dyspozycja nie mogła zostać przyjęta. Spróbuj później."
+  "purchaseOrders_form_add_purchase_submit_error": "Twoja dyspozycja nie mogła zostać przyjęta. Spróbuj później.",
+  "purchaseOrders_add_page_warning_ongoing_purchase": "Twoje wewnętrzne oznaczenie referencyjne lub poprzedni „purchase order” nie posiada daty końcowej. Nie jest możliwe ustanowienie nowego oznaczenia referencyjnego bez wskazania daty końcowej dla istniejącego oznaczenia. "
 }
