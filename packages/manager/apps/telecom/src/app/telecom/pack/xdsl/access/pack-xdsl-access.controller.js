@@ -169,7 +169,6 @@ export default class XdslAccessCtrl {
       this.getDiagnostic(),
       this.getIncident(),
       this.getModemExchange(),
-      this.getAvailableProfiles(),
     ]);
   }
 
@@ -388,6 +387,11 @@ export default class XdslAccessCtrl {
                 this.$scope.access.xdsl.isNotSdsl = false;
               }
               this.setStatusLabel(this.$scope.access.xdsl.status);
+
+              // Get available profiles only for copper access
+              if (!this.$scope.access.xdsl.isFiber) {
+                this.getAvailableProfiles();
+              }
               return this.$scope.access.xdsl;
             },
             (err) => {
