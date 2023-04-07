@@ -7,5 +7,6 @@
   "ovhManagerPccDashboardComponentActivationStatus_inError": "Erro",
   "ovhManagerPccDashboardComponentActivationStatus_needsConfiguration": "Configuração pendente",
   "ovhManagerPccDashboardComponentActivationStatus_awaitingValidation": "Validação pendente",
-  "ovhManagerPccDashboardComponentActivationStatus_unknown": "Estado desconhecido"
+  "ovhManagerPccDashboardComponentActivationStatus_unknown": "Estado desconhecido",
+  "ovhManagerPccDashboardComponentActivationStatus_hosted_on": "Alojado em {{ datacenter }}"
 }
