@@ -139,9 +139,12 @@ export default class PciStoragesColdArchiveContainersController {
   }
 
   displayRestoreDate(container) {
-    const { status, restorationEndAt } = container;
-    if (status === COLD_ARCHIVE_CONTAINER_STATUS.RESTORED && restorationEndAt) {
-      return this.$filter('date')(new Date(restorationEndAt), 'short');
+    const { status, automaticDeletionAt } = container;
+    if (
+      status === COLD_ARCHIVE_CONTAINER_STATUS.RESTORED &&
+      automaticDeletionAt
+    ) {
+      return this.$filter('date')(new Date(automaticDeletionAt), 'short');
     }
     return '';
   }
