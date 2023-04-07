@@ -1,5 +1,5 @@
 <div class="row" data-ng-controller="HostingUpgradeOfferCtrl as $ctrl">
-    <div class="col-md-8">
+    <div class="w-100">
         <oui-back-button data-sref="^">
             <span data-translate="hosting_order_upgrade_modal_header"></span>
         </oui-back-button>
@@ -61,11 +61,20 @@
                     <oui-checkbox
                         data-required
                         data-model="$ctrl.model.downgradeAgree"
-                        ><span
-                            data-translate="hosting_dashboard_service_offer_downgrade_KIMSUFI_2015_agree"
-                        ></span>
+                    ><span
+                        data-translate="hosting_dashboard_service_offer_downgrade_KIMSUFI_2015_agree"
+                    ></span>
                     </oui-checkbox>
                 </oui-field>
+
+                <web-component-hosting-domain-offers
+                    data-ng-if="$ctrl.catalog"
+                    data-user="$ctrl.user"
+                    data-catalog="$ctrl.catalog"
+                    data-offers="$ctrl.availableOffers"
+                    data-on-offer-click="$ctrl.onHostingOfferClick({ hostingOffer })"
+                >
+                </web-component-hosting-domain-offers>
             </oui-step-form>
 
             <oui-step-form
