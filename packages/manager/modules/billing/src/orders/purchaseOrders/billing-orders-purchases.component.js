@@ -11,6 +11,7 @@ export default {
     goToNewPurchase: '<',
     goToModalDesactivatePurchase: '<',
     goToPurchaseOrder: '<',
+    maxDate: '<',
     minDate: '<',
     minDateForEndDate: '<',
     purchases: '<',

@@ -15,5 +15,6 @@
   "purchaseOrders_form_add_purchase_cancel": "Cancelar",
   "purchaseOrders_form_add_purchase_submit_REFERENCE_ORDER_success": "La referencia interna se ha creado correctamente.",
   "purchaseOrders_form_add_purchase_submit_PURCHASE_ORDER_success": "El «purchase order» se ha creado correctamente.",
-  "purchaseOrders_form_add_purchase_submit_error": "La solicitud no se ha enviado. Por favor, vuelva a intentarlo más adelante."
+  "purchaseOrders_form_add_purchase_submit_error": "La solicitud no se ha enviado. Por favor, vuelva a intentarlo más adelante.",
+  "purchaseOrders_add_page_warning_ongoing_purchase": "Tiene una referencia interna o un «purchase order» anterior sin fecha de finalización. No es posible crear una nueva referencia sin indicar una fecha de finalización de la existente."
 }

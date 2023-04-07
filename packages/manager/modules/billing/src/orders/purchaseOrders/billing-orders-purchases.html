@@ -5,6 +5,15 @@
         description="{{:: 'purchaseOrders_page_description' | translate }}"
     >
     </oui-header>
+    <oui-message
+        class="mb-4"
+        data-type="warning"
+        data-ng-if="$ctrl.hasOnGoingPurchase"
+    >
+        <p
+            data-translate="purchaseOrders_add_page_warning_ongoing_purchase"
+        ></p>
+    </oui-message>
     <oui-datagrid
         data-page-size="{{:: $ctrl.PAGE_SIZE }}"
         data-rows="$ctrl.purchases"
@@ -16,6 +25,7 @@
             <button
                 class="oui-button oui-button_secondary oui-button_icon-left"
                 data-ng-click="$ctrl.newPurchase()"
+                data-ng-disabled="$ctrl.hasOnGoingPurchase"
             >
                 <span
                     class="oui-icon oui-icon-add"
