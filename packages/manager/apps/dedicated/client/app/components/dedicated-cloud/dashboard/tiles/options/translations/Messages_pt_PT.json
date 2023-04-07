@@ -24,5 +24,7 @@
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_error": "Erro na configuração da VPN",
   "ovhManagerPccDashboardOptions_security_drp_action_add_configuration": "Adicionar IP",
   "ovhManagerPccDashboardOptions_security_drp_action_install": "Instalar um DRP",
-  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Eliminar Zerto DRP"
+  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Eliminar Zerto DRP",
+  "ovhManagerPccDashboardOptions_heading_conformity": "Conformidade",
+  "ovhManagerPccDashboardOptions_heading_vmware_option": "Opções VMware"
 }
