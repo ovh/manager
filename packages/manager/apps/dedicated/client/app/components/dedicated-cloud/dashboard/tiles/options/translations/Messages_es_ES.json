@@ -16,13 +16,15 @@
   "ovhManagerPccDashboardOptions_security_drp": "Planes de recuperación ante desastres y continuidad de la actividad",
   "ovhManagerPccDashboardOptions_security_drp_status_delivered": "Activado",
   "ovhManagerPccDashboardOptions_security_drp_status_delivering": "Instalando...",
-  "ovhManagerPccDashboardOptions_security_drp_status_disabling": "Eliminando...",
-  "ovhManagerPccDashboardOptions_security_drp_status_disabled": "Ninguna",
+  "ovhManagerPccDashboardOptions_security_drp_status_disabling": "En proceso de eliminación",
+  "ovhManagerPccDashboardOptions_security_drp_status_disabled": "Ninguno",
   "ovhManagerPccDashboardOptions_security_drp_status_error": "En error",
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_notConfigured": "Esperando las IP de la VPN",
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_configuring": "Configurando la VPN...",
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_error": "Configuración de la VPN en error",
   "ovhManagerPccDashboardOptions_security_drp_action_add_configuration": "Añadir las direcciones IP",
   "ovhManagerPccDashboardOptions_security_drp_action_install": "Instalar un DRP",
-  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Eliminar el DRP Zerto"
+  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Eliminar el DRP Zerto",
+  "ovhManagerPccDashboardOptions_heading_conformity": "Conformidad",
+  "ovhManagerPccDashboardOptions_heading_vmware_option": "Opciones VMware"
 }

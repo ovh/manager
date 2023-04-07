@@ -6,5 +6,7 @@
   "dedicatedCloud_datacenters_disk": "Speicherplatz insgesamt",
   "dedicatedCloud_datacenters_order_host": "Host bestellen",
   "dedicatedCloud_datacenters_order_datastore": "Datastore bestellen",
-  "dedicatedCloud_datacenters_loading_error": "Beim Laden der Datacenter-Informationen ist ein Fehler aufgetreten."
+  "dedicatedCloud_datacenters_loading_error": "Beim Laden der Datacenter-Informationen ist ein Fehler aufgetreten.",
+  "dedicatedCloud_datacenters_commercialRange": "Reihe",
+  "dedicatedCloud_datacenters_add_not_available": "Das Hinzufügen eines neuen Datacenters ist derzeit nicht verfügbar. Wir arbeiten daran, diese Funktion in Kürze verfügbar zu machen."
 }

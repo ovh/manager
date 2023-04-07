@@ -14,7 +14,7 @@
   "ovhManagerPccDashboardOptions_certification_actionMenu_payCheckout": "Zatwierdź aktywację",
   "ovhManagerPccDashboardOptions_security_term": "Opcje zgodności dla danego sektora",
   "ovhManagerPccDashboardOptions_security_drp": "Plan DRP oraz plan ciągłości działania biznesu",
-  "ovhManagerPccDashboardOptions_security_drp_status_delivered": "Aktywny",
+  "ovhManagerPccDashboardOptions_security_drp_status_delivered": "Włączone",
   "ovhManagerPccDashboardOptions_security_drp_status_delivering": "Trwa instalacja",
   "ovhManagerPccDashboardOptions_security_drp_status_disabling": "Trwa usuwanie",
   "ovhManagerPccDashboardOptions_security_drp_status_disabled": "Brak",
@@ -24,5 +24,7 @@
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_error": "Wystąpił błąd podczas konfiguracji VPN.",
   "ovhManagerPccDashboardOptions_security_drp_action_add_configuration": "Dodaj adresy IP",
   "ovhManagerPccDashboardOptions_security_drp_action_install": "Zainstaluj DRP",
-  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Usuń DRP Zerto"
+  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Usuń DRP Zerto",
+  "ovhManagerPccDashboardOptions_heading_conformity": "Zgodność",
+  "ovhManagerPccDashboardOptions_heading_vmware_option": "Opcje VMware"
 }
