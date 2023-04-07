@@ -17,6 +17,10 @@ export default class BillingOrdersPurchasesCtrl {
     this.PAGE_SIZE = PAGE_SIZE;
   }
 
+  get hasOnGoingPurchase() {
+    return moment(this.maxDate).isBefore(moment().startOf('day'));
+  }
+
   editPurchase(purchase) {
     return this.goToEditPurchase(purchase);
   }

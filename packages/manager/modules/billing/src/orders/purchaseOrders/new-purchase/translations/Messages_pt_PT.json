@@ -15,5 +15,6 @@
   "purchaseOrders_form_add_purchase_cancel": "Anular",
   "purchaseOrders_form_add_purchase_submit_REFERENCE_ORDER_success": "A sua referência interna foi criada com êxito!",
   "purchaseOrders_form_add_purchase_submit_PURCHASE_ORDER_success": "O seu purchase order foi criado com êxito!",
-  "purchaseOrders_form_add_purchase_submit_error": "Não foi possível tratar o seu pedido. Tente novamente mais tarde."
+  "purchaseOrders_form_add_purchase_submit_error": "Não foi possível tratar o seu pedido. Tente novamente mais tarde.",
+  "purchaseOrders_add_page_warning_ongoing_purchase": "Atualmente, tem uma referência interna ou um purchase order anterior sem data de fim. Não é possível estabelecer uma nova referência sem indicar uma data final sobre a existente."
 }
