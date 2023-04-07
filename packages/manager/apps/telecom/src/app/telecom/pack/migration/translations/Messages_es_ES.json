@@ -180,5 +180,20 @@
   "telecom_pack_migration_gtr_5m_10ho": "GTR 10HO &amp; OPTION CONFORT 5M ({{ price }}/mes + IVA)",
   "telecom_pack_migration_gtr_20m_4ho": "GTR 4HO &amp; OPTION CONFORT 20M ({{ price }}/mes + IVA)",
   "telecom_pack_migration_gtr_20m_10ho": "GTR 10HO &amp; OPTION CONFORT 20M ({{ price }}/mes + IVA)",
-  "telecom_pack_migration_no_gtr": "Sin GTR"
+  "telecom_pack_migration_no_gtr": "Sin GTR",
+  "telecom_pack_migration_meeting_slots": "Reserva de citas",
+  "telecom_pack_migration_meeting_description": "La solución que ha seleccionado requiere la intervención de un técnico.",
+  "telecom_pack_migration_fake_meeting": "No me conviene ninguna de las citas de abajo. Quiero que un técnico contacte conmigo para acordar otra franja horaria.",
+  "telecom_pack_migration_no_fake_meeting": "Elijo un horario de cita.",
+  "telecom_pack_migration_programmed_meeting_select": "Elija la franja horaria para la instalación de su línea.",
+  "telecom_pack_migration_programmed_meeting": "Se ha programado una cita el {{day}} entre {{start}} y {{end}}.",
+  "telecom_pack_migration_contact_name": "Nombre del contacto que quiere comunicar al técnico",
+  "telecom_pack_migration_no_erdv_info": "Un técnico contactará con usted lo antes posible para acordar la fecha de la intervención.",
+  "telecom_pack_migration_contact_name_info": "Por favor, indíquenos el nombre de la persona que puede acoger al técnico el día de la cita.",
+  "telecom_pack_migration_mandatory_field": "Los campos marcados con asterisco son obligatorios.",
+  "telecom_pack_migration_confirm": "Confirme la selección",
+  "telecom_pack_migration_contract_action_create": "Se va a crear una nueva línea en la dirección:",
+  "telecom_pack_migration_contract_meeting": "Se ha programado una cita el {{ day }} entre {{ start }} y {{ end }}.",
+  "telecom_pack_migration_contract_meeting_contact": "Un técnico se pondrá en contacto conmigo para acordar una cita.",
+  "telecom_pack_migration_meeting_error": "¡Vaya! Se ha producido un error al cargar las fechas disponibles."
 }

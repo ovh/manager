@@ -175,5 +175,20 @@
   "telecom_pack_migration_gtr_5m_10ho": "GTR 10HO &amp; OPTION CONFORT 5M ({{ price }} +IVA/mese)",
   "telecom_pack_migration_gtr_20m_4ho": "GTR 4HO &amp; OPTION CONFORT 20M ({{ price }} +IVA/mese)",
   "telecom_pack_migration_gtr_20m_10ho": "GTR 10HO &amp; OPTION CONFORT 20M ({{ price }} +IVA/mese)",
-  "telecom_pack_migration_no_gtr": "Nessuna GTR"
+  "telecom_pack_migration_no_gtr": "Nessuna GTR",
+  "telecom_pack_migration_meeting_slots": "Prenota un appuntamento",
+  "telecom_pack_migration_meeting_description": "L'offerta selezionata richiede l'intervento di un tecnico.",
+  "telecom_pack_migration_fake_meeting": "Non sono d'accordo con nessuno degli appuntamenti qui sotto, voglio essere contattato per concordare da un tecnico di un'altra fascia oraria.",
+  "telecom_pack_migration_no_fake_meeting": "Scelgo un orario per l'appuntamento.",
+  "telecom_pack_migration_programmed_meeting_select": "Scegli l'intervallo per l'installazione della tua linea.",
+  "telecom_pack_migration_programmed_meeting": "Il {{day}} è stato fissato un appuntamento tra {{start}} e {{end}}.",
+  "telecom_pack_migration_contact_name": "Nome del contatto da comunicare al tecnico",
+  "telecom_pack_migration_no_erdv_info": "Un tecnico ti contatterà il prima possibile per concordare la data dell'intervento sul posto.",
+  "telecom_pack_migration_contact_name_info": "Inviaci il nome della persona che accoglierà il tecnico il giorno dell'incontro.",
+  "telecom_pack_migration_mandatory_field": "I campi contrassegnati con un asterisco sono obbligatori.",
+  "telecom_pack_migration_confirm": "Conferma la selezione",
+  "telecom_pack_migration_contract_action_create": "Stai per creare una nuova linea all'indirizzo:",
+  "telecom_pack_migration_contract_meeting": "Il {{ day }} è stato fissato un appuntamento tra {{ start }} e {{ end }}.",
+  "telecom_pack_migration_contract_meeting_contact": "Verrò contattato da un tecnico per concordare un appuntamento.",
+  "telecom_pack_migration_meeting_error": "Ops! Si è verificato un errore durante il recupero delle date degli appuntamenti disponibili."
 }
