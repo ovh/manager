@@ -185,5 +185,20 @@
   "telecom_pack_migration_modem_required": "La sélection d'un type de modem est obligatoire",
   "telecom_pack_migration_confirm_modem_rental": "Location modem",
   "telecom_pack_migration_offers_debit_mention_1": "(1) Jusqu'à 92 Mb/s descendant en VDSL et 22 Mb/s en ADSL, selon éligibilité.",
-  "telecom_pack_migration_offers_debit_mention_2": "(2) Jusqu'à 36 Mb/s montant en VDSL et 1 Mb/s en ADSL, selon éligibilité."
+  "telecom_pack_migration_offers_debit_mention_2": "(2) Jusqu'à 36 Mb/s montant en VDSL et 1 Mb/s en ADSL, selon éligibilité.",
+  "telecom_pack_migration_meeting_slots": "Prise de rendez-vous",
+  "telecom_pack_migration_meeting_description": "L'offre que vous avez sélectionnée nécessite l'intervention d'un technicien.",
+  "telecom_pack_migration_fake_meeting": "Aucun des rendez-vous ci-dessous ne me convient, je veux être contacté pour convenir par un technicien d'un autre créneau horaire.",
+  "telecom_pack_migration_no_fake_meeting": "Je choisis un horaire de rendez-vous.",
+  "telecom_pack_migration_programmed_meeting_select": "Veuillez choisir le créneau pour l'installation de votre ligne.",
+  "telecom_pack_migration_programmed_meeting": "Un rendez-vous est programmé le {{day}} entre {{start}} et {{end}}.",
+  "telecom_pack_migration_contact_name": "Nom du contact à communiquer au technicien",
+  "telecom_pack_migration_no_erdv_info": "Un technicien vous contactera dans les plus brefs délais pour convenir de la date d’intervention sur site.",
+  "telecom_pack_migration_contact_name_info": "Veuillez nous communiquer le nom de la personne susceptible d’accueillir le technicien le jour du rendez-vous.",
+  "telecom_pack_migration_mandatory_field": "Les champs marqués d’un astérisque sont obligatoires.",
+  "telecom_pack_migration_confirm": "Confirmer la sélection",
+  "telecom_pack_migration_contract_action_create": "Une nouvelle ligne va être créée à l'adresse :",
+  "telecom_pack_migration_contract_meeting": "Un rendez-vous est programmé le {{ day }} entre {{ start }} et {{ end }}.",
+  "telecom_pack_migration_contract_meeting_contact": "Je serai contacté par un technicien pour convenir d'un rendez-vous.",
+  "telecom_pack_migration_meeting_error": "Oups ! Une erreur est survenue lors la récupération des dates de rendez-vous disponibles."
 }

@@ -10,6 +10,7 @@ import routing from './pack-migration.routing';
 import buildings from './buildings';
 import buildingDetails from './building-details';
 import confirm from './confirm';
+import meeting from './meeting';
 import migration from './migration';
 import offers from './offers';
 import serviceDelete from './service-delete';
@@ -27,6 +28,7 @@ angular
     buildings,
     buildingDetails,
     confirm,
+    meeting,
     migration,
     offers,
     serviceDelete,

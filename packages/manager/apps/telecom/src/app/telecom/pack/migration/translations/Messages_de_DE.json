@@ -175,5 +175,20 @@
   "telecom_pack_migration_gtr_5m_10ho": "GTR 10HO &amp; OPTION KOMFORT 5M ({{ price }} ohne MwSt / Monat)",
   "telecom_pack_migration_gtr_20m_4ho": "GTR 4HO &amp; OPTION KOMFORT 20M ({{ price }} ohne MwSt / Monat)",
   "telecom_pack_migration_gtr_20m_10ho": "GTR 10HO &amp; OPTION KOMFORT 20M ({{ price }} ohne MwSt / Monat)",
-  "telecom_pack_migration_no_gtr": "Keine GTR"
+  "telecom_pack_migration_no_gtr": "Keine GTR",
+  "telecom_pack_migration_meeting_slots": "Termin vereinbaren",
+  "telecom_pack_migration_meeting_description": "Das von Ihnen gewählte Angebot erfordert einen technischen Eingriff.",
+  "telecom_pack_migration_fake_meeting": "Keines der folgenden Termine passt mir. Ich möchte von einem Techniker kontaktiert werden, um eine andere Zeitnische zu vereinbaren.",
+  "telecom_pack_migration_no_fake_meeting": "Ich wähle einen Terminplan.",
+  "telecom_pack_migration_programmed_meeting_select": "Bitte wählen Sie das Zeitfenster für die Installation Ihrer Leitung aus.",
+  "telecom_pack_migration_programmed_meeting": "Es ist ein Termin für einen Termin am {{day}} zwischen {{start}} und {{end}} festgelegt.",
+  "telecom_pack_migration_contact_name": "Name des an den Techniker zu übermittelnden Kontakts",
+  "telecom_pack_migration_no_erdv_info": "Ein Techniker wird Sie umgehend kontaktieren, um sich auf den Zeitpunkt des Eingriffs vor Ort zu einigen.",
+  "telecom_pack_migration_contact_name_info": "Bitte geben Sie uns den Namen der Person an, die den Techniker am Tag des Treffens aufnehmen kann.",
+  "telecom_pack_migration_mandatory_field": "Mit einem Sternchen gekennzeichnete Felder sind Pflichtfelder.",
+  "telecom_pack_migration_confirm": "Auswahl bestätigen",
+  "telecom_pack_migration_contract_action_create": "Es wird eine neue Leitung unter folgender Adresse erstellt:",
+  "telecom_pack_migration_contract_meeting": "Es ist ein Termin für einen Termin am {{ day }} zwischen {{ start }} und {{ end }} festgelegt.",
+  "telecom_pack_migration_contract_meeting_contact": "Ich werde von einem Techniker kontaktiert, um einen Termin zu vereinbaren.",
+  "telecom_pack_migration_meeting_error": "Hoppla! Beim Abruf der verfügbaren Termine ist ein Fehler aufgetreten."
 }
