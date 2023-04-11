@@ -175,5 +175,20 @@
   "telecom_pack_migration_gtr_5m_10ho": "GTR 10HO &amp; OPÇÃO CONFORT 5M ({{ price }}/mês + IVA)",
   "telecom_pack_migration_gtr_20m_4ho": "GTR 4HO &amp; OPÇÃO CONFORT 20M ({{ price }}/mês + IVA)",
   "telecom_pack_migration_gtr_20m_10ho": "GTR 10HO &amp; OPÇÃO CONFORT 20M ({{ price }}/mês + IVA)",
-  "telecom_pack_migration_no_gtr": "Nenhum GTR"
+  "telecom_pack_migration_no_gtr": "Nenhum GTR",
+  "telecom_pack_migration_meeting_slots": "Marcar intervenção",
+  "telecom_pack_migration_meeting_description": "A oferta que selecionou requer a intervenção de um técnico.",
+  "telecom_pack_migration_fake_meeting": "Nenhum dos encontros abaixo me convém, quero ser contactado para ser convencionado por um técnico de outra faixa horária.",
+  "telecom_pack_migration_no_fake_meeting": "Escolho um horário de reunião.",
+  "telecom_pack_migration_programmed_meeting_select": "Escolha o intervalo para a instalação da sua linha.",
+  "telecom_pack_migration_programmed_meeting": "Um encontro está programado para {{day}} entre {{start}} e {{end}}.",
+  "telecom_pack_migration_contact_name": "Nome do contacto a comunicar ao técnico",
+  "telecom_pack_migration_no_erdv_info": "Um técnico irá contactá-lo o mais rapidamente possível para acordar a data da intervenção no site.",
+  "telecom_pack_migration_contact_name_info": "Queira comunicar-nos o nome da pessoa suscetível de acolher o técnico no dia da reunião.",
+  "telecom_pack_migration_mandatory_field": "Os campos marcados com um asterisco são obrigatórios.",
+  "telecom_pack_migration_confirm": "Confirmar a seleção",
+  "telecom_pack_migration_contract_action_create": "Vai ser criada uma nova linha no endereço:",
+  "telecom_pack_migration_contract_meeting": "Um encontro está programado para {{ day }} entre {{ start }} e {{ end }}.",
+  "telecom_pack_migration_contract_meeting_contact": "Serei contactado por um técnico para acordar um encontro.",
+  "telecom_pack_migration_meeting_error": "Ups! Ocorreu um erro aquando da recuperação das datas das consultas disponíveis."
 }

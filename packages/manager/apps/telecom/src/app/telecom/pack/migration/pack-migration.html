@@ -40,6 +40,13 @@
         <pack-migration-shipping></pack-migration-shipping>
     </div>
 
+    <!-- MEETING STEP -->
+    <div
+        data-ng-if="!$ctrl.loading.init && $ctrl.process.currentStep === 'meeting'"
+    >
+        <pack-migration-meeting></pack-migration-meeting>
+    </div>
+
     <!-- CONFIRM STEP -->
     <div
         data-ng-if="!$ctrl.loading.init && $ctrl.process.currentStep === 'confirm'"
@@ -48,11 +55,9 @@
     </div>
 
     <!-- MIGRATION TASK IN PROGRESS -->
-    <div
+    <pack-migration-migration
         data-ng-if="!$ctrl.loading.init && $ctrl.process.currentStep === 'migration'"
-    >
-        <pack-migration-migration></pack-migration-migration>
-    </div>
+    ></pack-migration-migration>
 
     <!-- SERVICE TO DELETE -->
     <div

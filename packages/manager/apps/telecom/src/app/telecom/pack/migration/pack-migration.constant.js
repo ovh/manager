@@ -19,6 +19,8 @@ export const MODEM_LIST = ['yes', 'recycled'];
 export const MODEM_OPTION_NAME = 'modem';
 
 export const GTR_NONE = 'none';
+export const OFFER_XDSL = 'xdsl';
+export const OFFER_FIBER = 'fiber';
 
 export default {
   PROMO_DISPLAY,
@@ -27,4 +29,6 @@ export default {
   MODEM_LIST,
   MODEM_OPTION_NAME,
   GTR_NONE,
+  OFFER_XDSL,
+  OFFER_FIBER,
 };

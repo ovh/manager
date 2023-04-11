@@ -96,7 +96,7 @@
             type="button"
             class="btn btn-primary"
             data-translate="telecom_pack_migration_service_delete_confirm"
-            data-ng-click="$ctrl.process.currentStep = $ctrl.process.selectedOffer.needNewModem ? 'shipping' : 'confirm'"
+            data-ng-click="$ctrl.process.currentStep = $ctrl.process.selectedOffer.needNewModem ? 'shipping' : $ctrl.process.selectedOffer.needMeeting ? 'meeting' : 'confirm'"
         ></button>
     </div>
 </div>
