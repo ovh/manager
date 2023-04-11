@@ -15,5 +15,6 @@
   "purchaseOrders_form_add_purchase_cancel": "Cancel",
   "purchaseOrders_form_add_purchase_submit_REFERENCE_ORDER_success": "Your internal reference has been created.",
   "purchaseOrders_form_add_purchase_submit_PURCHASE_ORDER_success": "Your purchase order has been created.",
-  "purchaseOrders_form_add_purchase_submit_error": "Your request could not be processed. Please try again later."
+  "purchaseOrders_form_add_purchase_submit_error": "Your request could not be processed. Please try again later.",
+  "purchaseOrders_add_page_warning_ongoing_purchase": "You currently have an internal reference or earlier purchase order with no end date. You cannot set up a new reference without specifying an end date on the existing one."
 }

@@ -752,7 +752,7 @@ export default class PciInstancesAddController {
   onCreateInstanceSuccess(instanceId, ips, message) {
     const filteredIp = ips.find(({ version: ipv4 }) => ipv4 === 4);
     if (this.isAttachFloatingIP && filteredIp) {
-      if (this.isCreateFloatingIPClicked) {
+      if (this.isCreateFloatingIPClicked && !this.selectedFloatingIP.id) {
         return this.createAndAttachFloatingIp(
           instanceId,
           filteredIp.ip,
@@ -842,10 +842,6 @@ export default class PciInstancesAddController {
   createAndAttachFloatingIp(instanceId, ip, message) {
     this.isLoading = true;
     this.floatingIpModel = {
-      gateway: {
-        model: this.subnetGateways[0]?.model || this.selectedGatewaySize,
-        name: this.subnetGateways[0]?.name || this.gatewayName,
-      },
       ip,
     };
     return this.PciProjectsProjectInstanceService.createAndAttachFloatingIp(
@@ -867,10 +863,6 @@ export default class PciInstancesAddController {
     this.isLoading = true;
     this.floatingIpModel = {
       floatingIpId,
-      gateway: {
-        model: this.subnetGateways[0]?.model || this.selectedGatewaySize,
-        name: this.subnetGateways[0]?.name || this.gatewayName,
-      },
       ip,
     };
     return this.PciProjectsProjectInstanceService.associateFloatingIp(
