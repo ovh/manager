@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.120.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.120.0...@ovh-ux/manager-pci@5.120.1) (2023-04-11)
+
+
+### Bug Fixes
+
+* **pci.instances:** do not create a floating ip if selected one ([#9151](https://github.com/ovh/manager/issues/9151)) ([3adb381](https://github.com/ovh/manager/commit/3adb381722a1f865740690821a674a6f1e5b0faf))
+
+
+
+
+
 # [5.120.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.119.2...@ovh-ux/manager-pci@5.120.0) (2023-04-05)
 
 
