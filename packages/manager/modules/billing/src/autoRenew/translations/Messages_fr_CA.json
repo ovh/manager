@@ -20,21 +20,17 @@
   "billing_autorenew_service_expiration_months": "Expirant dans un mois",
   "billing_autorenew_service_expiration_renew_month": "Renouvelés dans un mois",
   "billing_autorenew_service_actions": "Actions",
-
   "billing_autorenew_criterion_serviceType": "Service",
   "billing_autorenew_criterion_status": "Statut",
   "billing_autorenew_criterion_state": "Disponibilité",
   "billing_autorenew_criterion_expiration": "Date d'effet",
   "billing_autorenew_nic_all": "Tous",
-
   "autorenew_service_deleteAtExpiration_banner": "La résiliation à l’expiration du service « {{ serviceName }} » a bien été prise en compte. Vous pouvez annuler cette opération jusqu’à 24 heures avant expiration du service.",
   "autorenew_service_deleteAtExpiration_banner_cancel": "Annuler la resiliation à l’expiration",
-
   "billing_autorenew_service": "Service",
   "billing_autorenew_service_name": "Nom du service",
   "billing_autorenew_service_state_EXPIRED": "Suspendu",
   "billing_autorenew_service_state_UP": "Actif",
-
   "billing_autorenew_service_state_IN_CREATION": "En cours de création",
   "billing_autorenew_service_state_OK": "Payé",
   "billing_autorenew_service_state_UN_PAID": "Non payé",
@@ -43,7 +39,6 @@
   "billing_autorenew_service_date_before": "Avant le {{ date }}",
   "billing_autorenew_service_date_renew": "Le {{ date }}",
   "billing_autorenew_service_expiration_date": "Expire le",
-
   "autorenew_service_after_expiration_date": "Expiré le",
   "autorenew_service_renew_auto": "Automatique",
   "autorenew_service_renew_manuel": "Manuel",
@@ -55,7 +50,6 @@
   "autorenew_service_renew_frequency_value": "Automatique : tous les {{t0}} mois",
   "autorenew_service_renew_years_frequency_value": "Automatique : tous les {{t0}} ans",
   "autorenew_service_renew_paid": "Payé",
-
   "autorenew_empty": "Vous n'avez aucun service",
   "autorenew_service_action_title": "Actions",
   "autorenew_service_autorenew_day": "Jour de renouvellement automatique:",
@@ -67,8 +61,6 @@
   "billing_autorenew_service_type_CDN_WEBSITE": "CDN Site web",
   "billing_autorenew_service_type_CDN_WEBSTORAGE": "CDN WebStorage",
   "billing_autorenew_service_type_CLUSTER_HADOOP": "Cluster Hadoop",
-  "billing_autorenew_service_type_ANTHOS": "Anthos",
-  "billing_autorenew_service_type_DEDICATED_ANTHOS": "Anthos",
   "billing_autorenew_service_type_DEDICATED_NAS": "Dedicated Nas",
   "billing_autorenew_service_type_DEDICATED_NASHA": "Dedicated NasHa",
   "billing_autorenew_service_autorenew_contact_filter": "Choisissez votre contact de facturation",

@@ -1,6 +1,5 @@
 {
   "manager_hub_products_ALL_DOM": "Pakiet AllDom",
-  "manager_hub_products_DEDICATED_ANTHOS_TENANTS": "Platforma Anthos",
   "manager_hub_products_CDN_DEDICATED": "CDN",
   "manager_hub_products_CLOUD_PROJECT": "Projekty PCI",
   "manager_hub_products_CLOUD_DB_ENTERPRISE_CLUSTER": "Enterprise Cloud Databases",
@@ -16,6 +15,7 @@
   "manager_hub_products_DOMAIN": "Domeny",
   "manager_hub_products_DOMAIN_ZONE": "Strefy DNS",
   "manager_hub_products_EMAIL_DOMAIN": "E-maile",
+  "manager_hub_products_EMAIL_EXCHANGE": "Microsoft Exchange",
   "manager_hub_products_EMAIL_EXCHANGE_SERVICE": "Microsoft Exchange",
   "manager_hub_products_EMAIL_PRO": "E-maile Pro",
   "manager_hub_products_EXCHANGE": "Microsoft Exchange",
@@ -49,6 +49,7 @@
   "manager_hub_products_MS_SERVICES_SHAREPOINT": "Microsoft Sharepoint",
   "manager_hub_products_STORAGE_NETAPP": "Enterprise File Storage",
   "manager_hub_products_NUTANIX": "Nutanix",
+  "manager_hub_products_NETAPP": "NetApp",
   "manager_hub_products_OVH_CLOUD_CONNECT": "OVHCloud Connect",
   "manager_hub_products_OVER_THE_BOX": "OverTheBox",
   "manager_hub_products_PACK_XDSL": "Pakiety xDSL",
@@ -63,7 +64,5 @@
   "manager_hub_products_WEB_PAA_S_SUBSCRIPTION": "Web PaaS",
   "manager_hub_products_see_less": "Wyświetl mniej usług",
   "manager_hub_products_see_more": "Wyświetl więcej usług",
-  "manager_hub_products_see_all": "Zobacz wszystko",
-  "manager_hub_products_NETAPP": "NetApp",
-  "manager_hub_products_EMAIL_EXCHANGE": "Microsoft Exchange"
+  "manager_hub_products_see_all": "Zobacz wszystko"
 }

@@ -1,8 +1,6 @@
 {
   "pci_databases_backups_fork_title": "Duplicate your database service (fork)",
   "pci_databases_backups_fork_description": "Your backup fork will be run on a new cluster.",
-  "pci_databases_backups_fork_confirm": "Confirm",
-  "pci_databases_backups_fork_cancel": "Cancel",
   "pci_databases_backups_fork_plan_label": "Select a service plan",
   "pci_databases_backups_fork_flavor_label": "Node type",
   "pci_databases_backups_fork_cluster_label": "Cluster sizing",
