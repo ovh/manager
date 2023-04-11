@@ -576,7 +576,9 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>
+                                <th
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
+                                >
                                     <span
                                         class="fa fa-question-circle"
                                         data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_order_help' | translate }}"
@@ -585,15 +587,18 @@
                                     </span>
                                 </th>
                                 <th
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-translate="server_configuration_installation_ovh_step2_type"
                                 ></th>
                                 <th
                                     data-translate="server_configuration_installation_ovh_step2_file_system"
                                 ></th>
                                 <th
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-translate="server_configuration_installation_ovh_step2_mount_point"
                                 ></th>
                                 <th
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-translate="server_configuration_installation_ovh_step2_volume_name"
                                 ></th>
                                 <th
@@ -609,6 +614,10 @@
                                     >
                                     </span>
                                 </th>
+                                <th
+                                    scope="col"
+                                    data-ng-if="informations.softRaidOnlyMirroring"
+                                ></th>
                                 <th>
                                     <span
                                         data-translate="server_configuration_installation_ovh_step2_available_size"
@@ -621,7 +630,7 @@
                                     </span>
                                 </th>
                                 <th
-                                    data-ng-show="installation.nbDiskUse > 1 && !informations.raidController"
+                                    data-ng-show="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
                                 >
                                     <span
                                         data-translate="server_configuration_installation_ovh_step2_size"
@@ -638,12 +647,13 @@
                         </thead>
                         <tbody>
                             <tr
-                                data-ng-repeat="partition in installation.partitionSchemeModels | orderBy:'orderTable'"
+                                data-ng-repeat="partition in installation.partitionSchemeModels | orderBy:'orderTable' track by $index"
                                 data-ng-class="{
                                     'deleting': partition == installation.partitionSchemeModels[setPartition.delModel]
                                 }"
                             >
                                 <td
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     class="form-group"
                                     data-ng-class="{
                                         'has-error': isSetPartition(partition) && hasErrorOrder()
@@ -665,6 +675,7 @@
                                     />
                                 </td>
                                 <td
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     class="form-group"
                                     data-ng-class="{
                                         'has-error': isSetPartition(partition) && hasErrorType()
@@ -696,13 +707,13 @@
                                     >
                                     </span>
                                     <span
-                                        data-ng-if="constants.fileSystemList.length === 1 && isSetPartition(partition) && partition.fileSystem != constants.warningSwap"
+                                        data-ng-if="constants.fileSystemList.length === 1 && isSetPartition(partition) && partition.fileSystem != constants.warningSwap && informations.softRaidOnlyMirroring"
                                         data-ng-bind="partition.fileSystem"
                                     >
                                     </span>
                                     <select
                                         class="form-control"
-                                        data-ng-if="constants.fileSystemList.length !== 1 && isSetPartition(partition) && partition.fileSystem != constants.warningSwap"
+                                        data-ng-if="constants.fileSystemList.length !== 1 && isSetPartition(partition) && partition.fileSystem != constants.warningSwap && !informations.softRaidOnlyMirroring"
                                         data-ng-options="fileSystem as ('server_configuration_installation_' + fileSystem | translate) for fileSystem in constants.fileSystemList"
                                         data-ng-model="partition.fileSystem"
                                         data-ng-change="validationFileSystem(partition)"
@@ -711,6 +722,7 @@
                                 </td>
                                 <td
                                     class="form-group"
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-ng-class="{
                                         'has-error': isSetPartition(partition) && hasErrorMountPoint()
                                     }"
@@ -727,11 +739,12 @@
                                         data-ng-model="partition.mountPoint"
                                         data-ng-required="true"
                                         data-ng-change="validationMountPoint(partition)"
-                                        data-ng-disabled="!validation.hasSwap && partition.fileSystem == constants.warningSwap"
+                                        data-ng-disabled="!validation.hasSwap && partition.fileSystem == constants.warningSwap || informations.softRaidOnlyMirroring"
                                     />
                                 </td>
                                 <td
                                     class="form-group"
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-ng-class="{
                                         'has-error': isSetPartition(partition) && hasErrorVolumeName()
                                     }"
@@ -773,12 +786,17 @@
                                     </span>
                                     <select
                                         class="form-control"
-                                        data-ng-if="isSetPartition(partition) && partition.fileSystem != constants.warningSwap"
+                                        data-ng-if="isSetPartition(partition) && partition.fileSystem != constants.warningSwap && !informations.softRaidOnlyMirroring"
                                         data-ng-options="raid as raid.replace('_', '') for raid in getRaidList(installation.nbDiskUse)"
                                         data-ng-model="partition.raid"
                                         data-ng-change="validationRaid(partition)"
                                     >
                                     </select>
+                                    <span
+                                        data-ng-if="isSetPartition(partition) && partition.fileSystem != constants.warningSwap && informations.softRaidOnlyMirroring"
+                                        data-ng-bind="partition.raid.replace('_', '')"
+                                    >
+                                    </span>
                                     <span
                                         class="oui-icon oui-icon-warning-circle"
                                         aria-label="{{ 'server_configuration_installation_ovh_step2_error_raid_diskUse_icon' | translate }}"
@@ -795,6 +813,16 @@
                                         data-oui-tooltip-placement="top"
                                     >
                                     </span>
+                                </td>
+                                <td
+                                    data-ng-if="informations.softRaidOnlyMirroring"
+                                >
+                                    <span
+                                        class="fa fa-windows"
+                                        data-ng-if="$index === 0"
+                                    >
+                                    </span>
+                                    <span data-ng-if="$index !===0"> </span>
                                 </td>
                                 <td
                                     class="form-group"
@@ -858,7 +886,7 @@
                                     </div>
                                 </td>
                                 <td
-                                    data-ng-show="installation.nbDiskUse > 1 && !informations.raidController"
+                                    data-ng-show="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
                                 >
                                     <span
                                         data-ng-hide="isSetPartition(partition)"
@@ -930,6 +958,7 @@
                             <tr data-ng-show="newPartition.display">
                                 <td
                                     class="form-group"
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-ng-class="{
                                         'has-error': hasErrorOrder()
                                     }"
@@ -945,6 +974,7 @@
                                 </td>
                                 <td
                                     class="form-group"
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-ng-class="{
                                         'has-error': hasErrorType()
                                     }"
@@ -964,13 +994,13 @@
                                     }"
                                 >
                                     <span
-                                        data-ng-if="constants.fileSystemList.length === 1"
-                                        data-ng-model="newPartition.fileSystem"
+                                        data-ng-if="constants.fileSystemList.length === 1 && informations.softRaidOnlyMirroring"
+                                        data-ng-bind="newPartition.fileSystem"
                                     >
                                     </span>
                                     <select
                                         class="form-control"
-                                        data-ng-if="constants.fileSystemList.length !== 1"
+                                        data-ng-if="constants.fileSystemList.length !== 1 && !informations.softRaidOnlyMirroring"
                                         data-ng-options="fileSystem as ('server_configuration_installation_' + fileSystem | translate) for fileSystem in constants.fileSystemList"
                                         data-ng-model="newPartition.fileSystem"
                                         data-ng-change="validationFileSystem(newPartition)"
@@ -979,6 +1009,7 @@
                                 </td>
                                 <td
                                     class="form-group"
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-ng-class="{
                                         'has-error': hasErrorMountPoint()
                                     }"
@@ -994,6 +1025,7 @@
                                 </td>
                                 <td
                                     class="form-group"
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-ng-class="{
                                         'has-error': hasErrorVolumeName()
                                     }"
@@ -1021,12 +1053,22 @@
                                 >
                                     <select
                                         class="form-control"
+                                        data-ng-if="!informations.softRaidOnlyMirroring"
                                         data-ng-options="raid as raid.replace('_','') for raid in getRaidList(installation.nbDiskUse)"
                                         data-ng-model="newPartition.raid"
                                         data-ng-change="validationRaid(newPartition)"
                                     >
                                     </select>
+                                    <span
+                                        data-ng-if="informations.softRaidOnlyMirroring"
+                                        data-ng-bind="newPartition.raid.replace('_', '')"
+                                    >
+                                    </span>
                                 </td>
+                                <td
+                                    data-ng-if="informations.softRaidOnlyMirroring"
+                                ></td>
+
                                 <td
                                     class="form-group"
                                     data-ng-class="{
@@ -1063,7 +1105,7 @@
                                     </div>
                                 </td>
                                 <td
-                                    data-ng-show="installation.nbDiskUse > 1 && !informations.raidController"
+                                    data-ng-show="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
                                     data-ng-bind="getRealDisplaySize({partition: newPartition, multiplicator: newPartition.unit.value})"
                                 ></td>
                                 <td>
@@ -1358,7 +1400,10 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">
+                                <th
+                                    scope="col"
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
+                                >
                                     <span
                                         class="icon-question-sign icon-white"
                                         data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_order_help' | translate }}"
@@ -1367,6 +1412,7 @@
                                     </span>
                                 </th>
                                 <th
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     scope="col"
                                     data-translate="server_configuration_installation_ovh_step2_type"
                                 ></th>
@@ -1376,15 +1422,17 @@
                                 ></th>
                                 <th
                                     scope="col"
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-translate="server_configuration_installation_ovh_step2_mount_point"
                                 ></th>
                                 <th
                                     scope="col"
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-translate="server_configuration_installation_ovh_step2_volume_name"
                                 ></th>
                                 <th
                                     scope="col"
-                                    data-ng-if="installation.nbDiskUse > 1 && !informations.raidController"
+                                    data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
                                 >
                                     <span
                                         data-translate="server_configuration_installation_ovh_step2_raid"
@@ -1396,6 +1444,7 @@
                                     >
                                     </span>
                                 </th>
+
                                 <th scope="col">
                                     <span
                                         data-translate="server_configuration_installation_ovh_step2_available_size"
@@ -1409,7 +1458,7 @@
                                 </th>
                                 <th
                                     scope="col"
-                                    data-ng-if="installation.nbDiskUse > 1 && !informations.raidController"
+                                    data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
                                 >
                                     <span
                                         data-translate="server_configuration_installation_ovh_step2_size"
@@ -1428,17 +1477,24 @@
                                 data-ng-repeat="partition in installation.partitionSchemeModels | orderBy:'orderTable' track by $index"
                             >
                                 <th
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     scope="row"
                                     data-ng-bind="partition.order"
                                 ></th>
                                 <td
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-translate="{{ 'server_configuration_installation_' + partition.typePartition }}"
                                 ></td>
                                 <td
                                     data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
                                 ></td>
-                                <td data-ng-bind="partition.mountPoint"></td>
-                                <td>
+                                <td
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
+                                    data-ng-bind="partition.mountPoint"
+                                ></td>
+                                <td
+                                    data-ng-if="!informations.softRaidOnlyMirroring"
+                                >
                                     <span
                                         data-ng-if="partition.typePartition != constants.warningLV"
                                     >
@@ -1451,7 +1507,7 @@
                                     </span>
                                 </td>
                                 <td
-                                    data-ng-if="installation.nbDiskUse > 1 && !informations.raidController"
+                                    data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
                                 >
                                     <span
                                         data-ng-if="partition.fileSystem == constants.warningSwap"
@@ -1494,7 +1550,7 @@
                                     </span>
                                 </td>
                                 <td
-                                    data-ng-if="installation.nbDiskUse > 1 && !informations.raidController"
+                                    data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
                                     data-ng-bind="getRealDisplaySize({ partition: partition })"
                                 ></td>
                             </tr>
