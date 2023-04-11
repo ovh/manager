@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.11...@ovh-ux/manager-billing@0.20.0-alpha.12) (2023-04-11)
+
+
+### Bug Fixes
+
+* **billing:** show ongoing REF/PO warning ([#9083](https://github.com/ovh/manager/issues/9083)) ([1951848](https://github.com/ovh/manager/commit/19518489776eb8614ddd9f12715575890e1b640f))
+
+
+
+
+
 # [0.20.0-alpha.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.10...@ovh-ux/manager-billing@0.20.0-alpha.11) (2023-04-05)
 
 
