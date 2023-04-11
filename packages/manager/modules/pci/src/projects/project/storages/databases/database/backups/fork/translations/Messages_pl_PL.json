@@ -1,8 +1,6 @@
 {
   "pci_databases_backups_fork_title": "Duplikuj usługę bazy danych (fork)",
   "pci_databases_backups_fork_description": "Fork kopii zapasowej zostanie wykonany na nowym klastrze.",
-  "pci_databases_backups_fork_confirm": "Zatwierdź",
-  "pci_databases_backups_fork_cancel": "Anuluj",
   "pci_databases_backups_fork_plan_label": "Wybierz pakiet",
   "pci_databases_backups_fork_flavor_label": "Rodzaj węzła",
   "pci_databases_backups_fork_cluster_label": "Konfiguracja klastra",

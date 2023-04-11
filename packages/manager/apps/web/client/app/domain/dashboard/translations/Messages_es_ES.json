@@ -41,8 +41,6 @@
   "domain_dashboard_whois_pending": "Creando el servicio... Espere, por favor.",
   "domain_dashboard_whois_invalid_contact": "Solo el contacto administrador está autorizado a realizar esta acción.",
   "domain_dashboard_whois_error": "Se ha producido un error al cargar la información del WHOIS. Por favor, vuelva a intentarlo más adelante.",
-  "domain_dashboard_obfuscated_email": "Direcciones de correo de sustitución",
-  "domain_dashboard_obfuscated_email_regenerate_button": "Gestionar las direcciones de correo de sustitución",
   "domain_dashboard_offer": "Producto",
   "domain_dashboard_dns_state": "Estado",
   "domain_dashboard_dns_anycast": "Opción DNS Anycast",

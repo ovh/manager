@@ -1,8 +1,6 @@
 {
   "pci_databases_backups_fork_title": "Datenbankdienst duplizieren (Fork)",
   "pci_databases_backups_fork_description": "Der Fork Ihres Backups wird auf einem neuen Cluster ausgeführt.",
-  "pci_databases_backups_fork_confirm": "Bestätigen",
-  "pci_databases_backups_fork_cancel": "Abbrechen",
   "pci_databases_backups_fork_plan_label": "Wählen Sie ein Angebot aus",
   "pci_databases_backups_fork_flavor_label": "Node-Typ",
   "pci_databases_backups_fork_cluster_label": "Cluster-Dimensionierung",
