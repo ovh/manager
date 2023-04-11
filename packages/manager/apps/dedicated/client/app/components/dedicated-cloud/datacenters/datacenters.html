@@ -23,8 +23,10 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_datacenters_commercialRange' | translate"
-            property="commercialRange"
         >
+            <span
+                data-translate="{{ 'dedicatedCloud_datacenters_commercial_name_' + $row.commercialName }}"
+            ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_datacenters_cpu' | translate"
