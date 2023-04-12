@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.57.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.56.1...@ovh-ux/manager-dedicated@17.57.0) (2023-04-12)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** resolve hover css issue ([87a9b62](https://github.com/ovh/manager/commit/87a9b62e166dbe22a234d1a371f041f9fb3253dc))
+* **dedicated:** cleaned useless installSqlServer option ([2e47460](https://github.com/ovh/manager/commit/2e4746053f221fd8d885e0d45dcf5f5567228504))
+
+
+### Features
+
+* **dedicated.servers:** modify dedicated server partitioning ([#8376](https://github.com/ovh/manager/issues/8376)) ([c75a688](https://github.com/ovh/manager/commit/c75a68873b319647b775222b3d83fc583b1ef649))
+* **dedicated:** alternate colored lines to partitioning wizzard ([052d106](https://github.com/ovh/manager/commit/052d1061498c53b7c13bf584b0986b1ebd5f604a))
+
+
+
+
+
 ## [17.56.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.56.0...@ovh-ux/manager-dedicated@17.56.1) (2023-04-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
