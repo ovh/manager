@@ -4,6 +4,7 @@ import {
   COMMUNITY_LINKS,
   PRODUCT_IMAGES,
   PCI_FEATURES,
+  IN_SUBSIDARY,
 } from './project.constants';
 
 export default class ProjectController {
@@ -36,6 +37,7 @@ export default class ProjectController {
       );
 
     this.PCI_FEATURES = PCI_FEATURES;
+    this.IN_SUBSIDARY = IN_SUBSIDARY;
     this.communityLinks = filterByRegion(COMMUNITY_LINKS);
   }
 

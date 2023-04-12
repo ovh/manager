@@ -127,7 +127,7 @@
                                                 ></oui-tile-term>
                                                 <oui-tile-description>
                                                     <a
-                                                        data-ng-href="{{ ::link.href }}"
+                                                        data-ng-href="{{ :: $ctrl.coreConfig.getUser().ovhSubsidiary === $ctrl.IN_SUBSIDARY ? link.asiahref : link.defaulthref }}"
                                                         target="_blank"
                                                         rel="noopener"
                                                         data-translate="{{ ::link.description }}"

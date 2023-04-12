@@ -78,40 +78,52 @@ export const DOCUMENTATION_LINKS = [
     term: 'pci_projects_project_documentation_getting_started_term',
     description:
       'pci_projects_project_documentation_getting_started_description',
-    href:
+    asiahref:
+      'https://docs.ovh.com/asia/en/public-cloud/public-cloud-essential-information/',
+    defaulthref:
       'https://docs.ovh.com/gb/en/public-cloud/public-cloud-essential-information/',
     feature: PCI_FEATURES.LINKS.CLOUD_ESSENTIAL_INFORMATION,
   },
   {
     term: 'pci_projects_project_documentation_interface_term',
     description: 'pci_projects_project_documentation_interface_description',
-    href: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-interface/',
+    asiahref:
+      'https://docs.ovh.com/asia/en/public-cloud/public-cloud-interface/',
+    defaulthref:
+      'https://docs.ovh.com/gb/en/public-cloud/public-cloud-interface/',
     feature: PCI_FEATURES.LINKS.PUBLIC_CLOUD_INTERFACE,
   },
   {
     term: 'pci_projects_project_documentation_instances_term',
     description: 'pci_projects_project_documentation_instances_description',
-    href:
+    asiahref:
+      'https://docs.ovh.com/asia/en/public-cloud/get-started-with-a-public-cloud-instance/',
+    defaulthref:
       'https://docs.ovh.com/gb/en/public-cloud/get-started-with-a-public-cloud-instance/',
     feature: PCI_FEATURES.LINKS.START_PCI_INSTANCE,
   },
   {
     term: 'pci_projects_project_documentation_billing_term',
     description: 'pci_projects_project_documentation_billing_description',
-    href:
+    asiahref:
+      'https://docs.ovh.com/asia/en/public-cloud/information-on-cloud-billing-options/',
+    defaulthref:
       'https://docs.ovh.com/gb/en/public-cloud/information-on-cloud-billing-options/',
     feature: PCI_FEATURES.LINKS.CLOUD_BILLING_OPTIONS,
   },
   {
     term: 'pci_projects_project_documentation_guides_term',
     description: 'pci_projects_project_documentation_guides_description',
-    href: 'https://docs.ovh.com/gb/en/',
+    asiahref: 'https://docs.ovh.com/asia/en/',
+    defaulthref: 'https://docs.ovh.com/gb/en/',
     feature: PCI_FEATURES.LINKS.ALL_GUIDES,
   },
   {
     term: 'pci_projects_project_documentation_block_storage_term',
     description: 'pci_projects_project_documentation_block_storage_description',
-    href: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002157044',
+    asiahref: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002157044',
+    defaulthref:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360002157044',
     feature: PCI_FEATURES.LINKS.START_WITH_BLOCK_STORAGE,
   },
 ];
@@ -168,6 +180,8 @@ export const PCI_HDS_ADDON = {
 
 export const LEGACY_PLAN_CODES = ['project.legacy', 'project.2018'];
 
+export const IN_SUBSIDARY = 'IN';
+
 export default {
   PRODUCT_IMAGES,
   ACTIONS,
@@ -179,4 +193,5 @@ export default {
   TERRAFORM_GUIDES,
   DATABASE_CREATION_GUIDES,
   PCI_FEATURES,
+  IN_SUBSIDARY,
 };
