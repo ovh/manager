@@ -15,6 +15,7 @@ export const PRODUCT_MAPPING = {
   'ai-serving-engine': `${BASE_URL}/serving`,
   databases: `${BASE_URL}/storages/databases`,
   'data-processing-job': `${BASE_URL}/data-processing`,
+  'cold-archive': `${BASE_URL}/storages/cold-archive`,
 };
 
 export default {

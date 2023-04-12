@@ -9,11 +9,14 @@ import reduce from 'lodash/reduce';
 import reject from 'lodash/reject';
 import set from 'lodash/set';
 
+import { COLD_ARCHIVE_GRID_DATA } from './billing-legacy.constant';
+
 export default class CloudProjectBillingService {
   /* @ngInject */
   constructor($q, coreConfig) {
     this.$q = $q;
     this.coreConfig = coreConfig;
+    this.COLD_ARCHIVE_GRID_DATA = COLD_ARCHIVE_GRID_DATA;
   }
 
   static roundNumber(number, decimals) {
@@ -269,6 +272,42 @@ export default class CloudProjectBillingService {
     );
   }
 
+  sumColdArchiveTotalPriceByName(name) {
+    return this.data.coldArchive.reduce((sum, object) => {
+      if (object.name === name) {
+        return sum + object?.totalPrice;
+      }
+      return sum;
+    }, 0);
+  }
+
+  sumColdArchiveBillingQuantitiesByName(name) {
+    return this.data.coldArchive.reduce((sum, object) => {
+      if (object.name === name) {
+        return sum + object?.quantity?.value;
+      }
+      return sum;
+    }, 0);
+  }
+
+  reduceColdArchiveBillingInfo() {
+    return Object.keys(this.COLD_ARCHIVE_GRID_DATA.FEE_TYPES).map((type) => {
+      const name = type.toLowerCase();
+      return {
+        name,
+        quantity: {
+          value: this.sumColdArchiveBillingQuantitiesByName(name),
+          unit:
+            name === this.COLD_ARCHIVE_GRID_DATA.FEE_TYPES.RESTORE
+              ? this.COLD_ARCHIVE_GRID_DATA.QUANTITY.UNIT
+              : this.COLD_ARCHIVE_GRID_DATA.QUANTITY.HOUR,
+        },
+        totalPrice: this.sumColdArchiveTotalPriceByName(name),
+        region: this.COLD_ARCHIVE_GRID_DATA.REGION,
+      };
+    });
+  }
+
   initPrivateRegistry() {
     this.initResourceUsage('registry', 'privateRegistry');
   }
@@ -295,6 +334,11 @@ export default class CloudProjectBillingService {
 
   initDatabases() {
     this.initResourceUsage('databases', 'databases');
+  }
+
+  initColdArchives() {
+    this.initResourceUsage('coldarchive', 'coldArchive');
+    this.data.coldArchive = this.reduceColdArchiveBillingInfo();
   }
 
   initFloatingIP() {
@@ -334,6 +378,7 @@ export default class CloudProjectBillingService {
           this.initTraining(),
           this.initDataprocessing(),
           this.initDatabases(),
+          this.initColdArchives(),
           this.initFloatingIP(),
           this.initGateway(),
           this.initOctaviaLoadBalancer(),
