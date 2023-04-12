@@ -60,7 +60,7 @@ export const TELEPHONY_LINE_PHONE_CHOICE = {
     img: `${PATH_URL_IMG}yealink/phone-yealink-cp960-90-90.png`,
   },
   'yealink.t58wpro': {
-    url: `${PATH_URL_INFO}yealink_T58WPRO`,
+    url: `${PATH_URL_INFO}yealink_T58WPro`,
     img: `${PATH_URL_IMG}yealink/phone-yealink-t58wpro-90-90.png`,
   },
   'yealink.cp925': {
