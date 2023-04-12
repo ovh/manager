@@ -2,6 +2,9 @@
   "pci_billing_private_registry_no_entry": "Pas de consommation pour la période sélectionnée.",
   "pci_billing_private_registry_region": "Région",
   "pci_billing_private_registry_type": "Type",
+  "pci_billing_private_registry_type_cold_archive_archive_label": "Archivage sur bandes",
+  "pci_billing_private_registry_type_cold_archive_archive-fees_label": "Frais de suppression",
+  "pci_billing_private_registry_type_cold_archive_restore_label": "Restauration de données",
   "pci_billing_private_registry_price": "Prix",
   "pci_billing_private_registry_consumption": "Consommation",
   "pci_billing_private_registry_consumption_value": "{{ value }} heures"
