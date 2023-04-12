@@ -1,16 +1,16 @@
 <span
     data-ng-if="$ctrl.resourceUsage.length === 0"
-    data-translate="pci_billing_private_registry_no_entry"
+    data-translate="pci_billing_cold_archive_no_entry"
     class="cloud-billing-resource-no-data"
 >
 </span>
 <oui-datagrid
     data-rows="$ctrl.resourceUsage"
-    class="datagrid-without-pagination"
+    page-size="3"
     data-ng-if="$ctrl.resourceUsage.length > 0"
 >
     <oui-datagrid-column
-        data-title="::'pci_billing_private_registry_region' | translate"
+        data-title="::'pci_billing_cold_archive_region' | translate"
         data-property="region"
     >
         <span
@@ -18,22 +18,22 @@
         ></span>
     </oui-datagrid-column>
     <oui-datagrid-column
-        data-title="::'pci_billing_private_registry_type' | translate"
-    >
-        <span data-ng-bind=":: $ctrl.getType($row.name)"></span>
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        data-title="::'pci_billing_private_registry_consumption' | translate"
-        data-property="quantity.value"
+        data-title="::'pci_billing_cold_archive_type' | translate"
     >
         <span
-            data-translate="pci_billing_private_registry_consumption_value"
-            data-translate-values="{ value: $ctrl.constructor.hourlyQuantity($row.quantity) }"
+            data-ng-bind=":: $ctrl.getType($row.name)"
+            data-oui-tooltip="{{:: $ctrl.getFeeTypeTooltipMessage($row.name) }}"
         >
         </span>
     </oui-datagrid-column>
     <oui-datagrid-column
-        data-title="::'pci_billing_private_registry_price' | translate"
+        data-title="::'pci_billing_cold_archive_consumption' | translate"
+        data-property="quantity.value"
+    >
+        <span data-ng-bind=":: $ctrl.quantityUnit($row.quantity)"> </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'pci_billing_cold_archive_price' | translate"
         data-property="totalPrice"
     >
         <span
