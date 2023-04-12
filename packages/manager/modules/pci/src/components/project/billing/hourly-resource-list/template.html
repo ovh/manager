@@ -42,6 +42,16 @@
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
+    data-ng-if="!$ctrl.isTrustedZone"
+    heading="{{ ::'cpbc_cold_archive_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.coldArchive.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+>
+    <pci-billing-cold-archive-list
+        data-currency-symbol="$ctrl.resources.totals.currencySymbol"
+        data-resource-usage="$ctrl.resources.coldArchive"
+    ></pci-billing-cold-archive-list>
+</oui-collapsible>
+<oui-collapsible
+    class="mx-0"
     heading="{{ ::'cpbc_hourly_instance_trafic_title' | translate }} ({{ $ctrl.resources.totals.hourly.bandwidth.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <outgoing-trafic
