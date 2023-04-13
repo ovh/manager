@@ -31,6 +31,7 @@ export const CURRENCY_SUBSIDIARY = {
   AU: 'A$',
   SG: 'S$',
   ASIA: 'USD$',
+  IN: '\u20B9',
 };
 
 export const UCENTS_FACTOR = 100000000;
