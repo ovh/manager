@@ -8,9 +8,7 @@ import PciStoragesContainersService from '../../../../storages/containers/contai
 import dataProcessingJobDetailsComponent from './job-dashboard.component';
 import jobStatus from '../../job-status';
 import terminateJob from './terminate-job';
-import metricsToken from './metrics-token';
 import jobLogs from '../job-logs';
-import metricsChart from './metrics-chart';
 
 const moduleName = 'ovhManagerPciProjectDataProcessingJobDetailsDashboard';
 
@@ -21,8 +19,6 @@ angular
     jobStatus,
     terminateJob,
     jobLogs,
-    metricsChart,
-    metricsToken,
   ])
   .config(routing)
   .component(

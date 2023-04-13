@@ -1,8 +1,0 @@
-{
-  "data_processing_details_metrics_token_modal_title": "Acceder a la monitorización",
-  "data_processing_details_metrics_token_modal_dismiss_button": "Cerrar",
-  "data_processing_details_metrics_token_modal_description_1": "Puede acceder a las métricas detalladas de su job a través de ",
-  "data_processing_details_metrics_token_modal_description_2": "Consultar la documentación",
-  "data_processing_details_metrics_token_modal_token_label": "Utilice el siguiente token para acceder a sus métricas.",
-  "data_processing_details_metrics_token_modal_grafana_button": "Acceder a Grafana"
-}
