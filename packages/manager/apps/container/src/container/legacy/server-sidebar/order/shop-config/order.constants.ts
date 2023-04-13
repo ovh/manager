@@ -411,6 +411,8 @@ export const ORDER_URLS: Record<
         'https://www.ovhcloud.com/en/hosted-private-cloud/vmware/prices/',
       WS:
         'https://www.ovhcloud.com/es/hosted-private-cloud/vmware/prices/',
+      IN:
+        'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/prices/',
     },
     managed_bare_metal: {
       ASIA: 'https://www.ovhcloud.com/asia/managed-bare-metal/',
@@ -420,6 +422,7 @@ export const ORDER_URLS: Record<
       SG: 'https://www.ovhcloud.com/en-sg/managed-bare-metal/',
       WE: 'https://www.ovhcloud.com/en/managed-bare-metal/',
       WS: 'https://www.ovhcloud.com/es/managed-bare-metal/',
+      IN: 'https://www.ovhcloud.com/asia/managed-bare-metal/',
     },
     sap_hana: {
       QC: 'https://www.ovhcloud.com/fr-ca/hosted-private-cloud/sap-hana/',
@@ -439,6 +442,7 @@ export const ORDER_URLS: Record<
     veeam_enterprise: {
       CA: 'https://www.ovh.com/ca/en/storage-solutions/veeam-enterprise.xml',
       QC: 'https://www.ovh.com/ca/fr/storage-solutions/veeam-enterprise.xml',
+      IN: 'https://www.ovh.com/asia/storage-solutions/veeam-enterprise.xml'
     },
     vrack: {
       ASIA:
@@ -464,6 +468,7 @@ export const ORDER_URLS: Record<
       SG: 'https://www.ovh.com/sg/solutions/ip-load-balancing/',
       WE: 'https://www.ovh.com/us/solutions/ip-load-balancing/',
       WS: 'https://www.ovh.com/us/es/soluciones/ip-load-balancing/',
+      IN: 'https://www.ovh.com/asia/solutions/ip-load-balancing/',
     },
     dedicatedOrder: {
       ASIA: 'https://www.ovhcloud.com/asia/bare-metal/prices/',
@@ -473,6 +478,7 @@ export const ORDER_URLS: Record<
       SG: 'https://www.ovhcloud.com/en-sg/bare-metal/prices/',
       WE: 'https://www.ovhcloud.com/en/bare-metal/prices/',
       WS: 'https://www.ovhcloud.com/en/bare-metal/prices/',
+      IN: 'https://www.ovhcloud.com/asia/bare-metal/prices/',
     },
     dedicatedEcoRangeOrder: {
       ASIA: 'https://eco.ovhcloud.com/asia/',
@@ -482,6 +488,7 @@ export const ORDER_URLS: Record<
       SG: 'https://eco.ovhcloud.com/en-sg/',
       WE: 'https://eco.ovhcloud.com/en/',
       WS: 'https://eco.ovhcloud.com/en/',
+      IN: 'https://eco.ovhcloud.com/asia/',
     },
     cloudProjectOrder: {
       ASIA: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
@@ -522,6 +529,7 @@ export const ORDER_URLS: Record<
       SG: 'https://www.ovh.com/sg/vps/',
       WE: 'https://www.ovh.com/us/vps/',
       WS: 'https://www.ovh.com/us/es/vps/',
+      IN: 'https://www.ovh.com/asia/vps/',
     },
     dedicatedNutanixOrder: {
       ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/nutanix/',
@@ -535,6 +543,7 @@ export const ORDER_URLS: Record<
     ovh_cloud_connect: {
       CA: 'https://www.ovhcloud.com/en-ca/network/ovhcloud-connect/',
       QC: 'https://www.ovhcloud.com/fr-ca/network/ovhcloud-connect/',
+      IN: 'https://www.ovhcloud.com/asia/network/ovhcloud-connect/',
     },
   },
   US: {
