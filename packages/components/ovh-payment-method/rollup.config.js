@@ -1,5 +1,9 @@
-import path from 'path';
+import { fileURLToPath } from 'url';
+import { resolve, dirname } from 'path';
 import rollupConfig from '@ovh-ux/component-rollup-config';
+
+const __filename = fileURLToPath(import.meta.url); // eslint-disable-line
+const __dirname = dirname(__filename); // eslint-disable-line
 
 const config = rollupConfig(
   {
@@ -8,8 +12,8 @@ const config = rollupConfig(
   {
     lessTildeImporter: {
       paths: [
-        path.resolve(__dirname, 'node_modules'),
-        path.resolve(__dirname, '../../node_modules'),
+        resolve(__dirname, 'node_modules'),
+        resolve(__dirname, '../../node_modules'),
       ],
     },
   },

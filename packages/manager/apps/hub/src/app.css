@@ -1,0 +1,235 @@
+/* stylelint-disable */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Source Sans Pro";
+    font-weight: 200;
+    font-style: normal;
+    font-stretch: normal;
+    font-display: fallback;
+    src:
+      local("SourceSansPro-ExtraLight"),
+      local("Source Sans Pro"),
+      url("/fonts/source-sans-pro/SourceSansPro-ExtraLight.woff2") format("woff2"),
+      url("/fonts/source-sans-pro/SourceSansPro-ExtraLight.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    font-weight: 200;
+    font-style: italic;
+    font-stretch: normal;
+    font-display: fallback;
+    src:
+      local("SourceSansPro-ExtraLightIt"),
+      local("Source Sans Pro"),
+      url("/fonts/source-sans-pro/SourceSansPro-ExtraLightIt.woff2") format("woff2"),
+      url("/fonts/source-sans-pro/SourceSansPro-ExtraLightIt.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    font-display: fallback;
+    src:
+      local("SourceSansPro-Light"),
+      local("Source Sans Pro"),
+      url("/fonts/source-sans-pro/SourceSansPro-Light.woff2") format("woff2"),
+      url("/fonts/source-sans-pro/SourceSansPro-Light.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    font-weight: 300;
+    font-style: italic;
+    font-stretch: normal;
+    font-display: fallback;
+    src:
+      local("SourceSansPro-LightIt"),
+      local("Source Sans Pro"),
+      url("/fonts/source-sans-pro/SourceSansPro-LightIt.woff2") format("woff2"),
+      url("/fonts/source-sans-pro/SourceSansPro-LightIt.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    font-display: fallback;
+    src:
+      local("SourceSansPro-Regular"),
+      local("Source Sans Pro"),
+      url("/fonts/source-sans-pro/SourceSansPro-Regular.woff2") format("woff2"),
+      url("/fonts/source-sans-pro/SourceSansPro-Regular.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    font-weight: 400;
+    font-style: italic;
+    font-stretch: normal;
+    font-display: fallback;
+    src:
+      local("SourceSansPro-It"),
+      local("Source Sans Pro"),
+      url("/fonts/source-sans-pro/SourceSansPro-It.woff2") format("woff2"),
+      url("/fonts/source-sans-pro/SourceSansPro-It.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    font-display: fallback;
+    src:
+      local("SourceSansPro-Semibold"),
+      local("Source Sans Pro Semibold"),
+      url("/fonts/source-sans-pro/SourceSansPro-Semibold.woff2") format("woff2"),
+      url("/fonts/source-sans-pro/SourceSansPro-Semibold.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    font-weight: 600;
+    font-style: italic;
+    font-stretch: normal;
+    font-display: fallback;
+    src:
+      local("SourceSansPro-SemiboldIt"),
+      local("Source Sans Pro"),
+      url("/fonts/source-sans-pro/SourceSansPro-SemiboldIt.woff2") format("woff2"),
+      url("/fonts/source-sans-pro/SourceSansPro-SemiboldIt.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    font-display: fallback;
+    src:
+      local("SourceSansPro-Bold"),
+      local("Source Sans Pro Bold"),
+      url("/fonts/source-sans-pro/SourceSansPro-Bold.woff2") format("woff2"),
+      url("/fonts/source-sans-pro/SourceSansPro-Bold.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    font-weight: 700;
+    font-style: italic;
+    font-stretch: normal;
+    font-display: fallback;
+    src:
+      local("SourceSansPro-BoldIt"),
+      local("Source Sans Pro"),
+      url("/fonts/source-sans-pro/SourceSansPro-BoldIt.woff2") format("woff2"),
+      url("/fonts/source-sans-pro/SourceSansPro-BoldIt.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    font-display: fallback;
+    src:
+      local("SourceSansPro-Black"),
+      local("Source Sans Pro Black"),
+      url("/fonts/source-sans-pro/SourceSansPro-Black.woff2") format("woff2"),
+      url("/fonts/source-sans-pro/SourceSansPro-Black.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    font-weight: 900;
+    font-style: italic;
+    font-stretch: normal;
+    font-display: fallback;
+    src:
+      local("SourceSansPro-BlackIt"),
+      local("Source Sans Pro"),
+      url("/fonts/source-sans-pro/SourceSansPro-BlackIt.woff2") format("woff2"),
+      url("/fonts/source-sans-pro/SourceSansPro-BlackIt.woff") format("woff");
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+    @apply text-primary-800;
+  }
+  
+  h1 {
+    @apply text-4xl;
+    @apply my-4;
+    line-height: 67px;
+  }
+  
+  h2 {
+    @apply text-3xl;
+    line-height: 45px;
+  }
+
+  h3 {
+    @apply text-2xl;
+    line-height: 35px;
+  }
+  h4 {
+    @apply text-2xl;
+    line-height: 32px;
+  }
+  h5 {
+    @apply text-xl;
+  }
+  h6 {
+    @apply text-lg;
+  }
+
+  a:not([role=button]) {
+    @apply text-primary-500;
+    @apply hover:underline;
+    @apply hover:text-primary-700;
+    @apply active:text-primary-800;
+  }
+
+  button,
+  a[role=button] {
+    @apply bg-primary-500;
+    @apply hover:bg-primary-600;
+    @apply active:bg-primary-800;
+    @apply text-white;
+    @apply rounded-md;
+    @apply p-4;
+    @apply font-semibold;
+  }
+  
+  button.ghost,
+  a[role=button].ghost {
+    @apply hover:bg-primary-100;
+    @apply active:bg-primary-200;
+    @apply text-primary-500;
+    @apply rounded-md;
+    @apply p-1;
+    @apply font-semibold;
+    background: transparent;
+  }
+
+  button.small,
+  a[role=button].small {
+    @apply p-2;
+    @apply h-8;
+  }
+
+  button.icon,
+  a[role=button].icon {
+    @apply inline-flex;
+    @apply items-center;
+  }
+}
+/* stylelint-enable */

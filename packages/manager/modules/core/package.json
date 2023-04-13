@@ -13,6 +13,7 @@
     "directory": "packages/manager/modules/core"
   },
   "license": "BSD-3-Clause",
+  "type": "module",
   "main": "./dist/esm/index.js",
   "files": [
     "dist"

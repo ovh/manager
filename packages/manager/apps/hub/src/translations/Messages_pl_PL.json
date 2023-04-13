@@ -1,4 +1,9 @@
 {
-  "manager_hub_notification_warning": "{{ content }}",
-  "manager_hub_skip_to_main_content": "Przejdź do głównej sekcji"
+	"manager_hub__see_all": "Zobacz wszystko",
+	"manager_hub_notification_warning": "{{ content }}",
+	"manager_hub_skip_to_main_content": "Przejdź do głównej sekcji",
+	"manager_hub_dashboard_welcome": "Witamy!",
+	"manager_hub_dashboard": "Dashboard",
+	"manager_hub_dashboard_overview": "Przegląd moich projektów",
+	"manager_hub_dashboard_services": "Moje produkty i usługi"
 }

@@ -81,6 +81,7 @@
     "ora": "^3.4.0",
     "p-series": "^2.1.0",
     "prettier": "^1.18.2",
+    "prettier-plugin-svelte": "^2.10.0",
     "progress": "^2.0.3",
     "remark-cli": "^8.0.1",
     "remark-lint": "^7.0.1",

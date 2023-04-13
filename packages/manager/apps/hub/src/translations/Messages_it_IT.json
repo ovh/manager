@@ -1,4 +1,9 @@
 {
-  "manager_hub_notification_warning": "{{ content }}",
-  "manager_hub_skip_to_main_content": "Vai al contenuto principale"
+	"manager_hub_see_all": "Visualizza tutto",
+	"manager_hub_notification_warning": "{{ content }}",
+	"manager_hub_skip_to_main_content": "Vai al contenuto principale",
+	"manager_hub_dashboard_welcome": "Benvenuto {{ name }}!",
+	"manager_hub_dashboard_overview": "Visione d’insieme della tua attività",
+	"manager_hub_dashboard_services": "I tuoi prodotti e servizi",
+	"manager_hub_dashboard": "Dashboard"
 }

@@ -1,4 +1,9 @@
 {
-  "manager_hub_notification_warning": "{{ content }}",
-  "manager_hub_skip_to_main_content": "Skip to main content"
+	"manager_hub_see_all": "See all",
+	"manager_hub_notification_warning": "{{ content }}",
+	"manager_hub_skip_to_main_content": "Skip to main content",
+	"manager_hub_dashboard_welcome": "Welcome {{name}}!",
+	"manager_hub_dashboard": "Dashboard",
+	"manager_hub_dashboard_overview": "View all my activity",
+	"manager_hub_dashboard_services": "My products and services"
 }

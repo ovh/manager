@@ -19,6 +19,7 @@
     "directory": "packages/manager/modules/banner"
   },
   "license": "BSD-3-Clause",
+  "type": "module",
   "main": "./dist/esm/index.js",
   "files": [
     "dist"
