@@ -1,0 +1,49 @@
+<oui-datagrid data-page-size="10" data-rows="$ctrl.jobs">
+    <oui-datagrid-column
+        data-title="'ID'"
+        data-property="id"
+        data-sortable="asc"
+        data-type="string"
+    ></oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'Creation date'"
+        data-property="createdAt"
+        data-sortable="asc"
+        data-type="date"
+    >
+        <span data-ng-bind="$row.createdAt | date: 'medium'"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'Started date'"
+        data-property="startedAt"
+        data-sortable="asc"
+        data-type="date"
+    >
+        <span data-ng-bind="$row.startedAt | date: 'medium'"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'Ended date'"
+        data-property="endedAt"
+        data-sortable="asc"
+        data-type="date"
+    >
+        <span data-ng-bind="$row.endedAt | date: 'medium'"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'Status'"
+        data-property="status"
+        data-sortable="asc"
+        data-type="string"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="{
+                'oui-badge_success': ['COMPLETED', 'RUNNING'].includes($row.status),
+                'oui-badge_warning': ['DELETED', 'PROVISIONING', 'SUBMITTED'].includes($row.status),
+                'oui-badge_error': ['FAILED', 'TERMINATED'].includes($row.status),
+            }"
+        >
+            <span data-ng-bind="$row.status"></span>
+        </span>
+    </oui-datagrid-column>
+</oui-datagrid>

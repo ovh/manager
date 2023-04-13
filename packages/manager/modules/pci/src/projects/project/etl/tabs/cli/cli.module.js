@@ -4,13 +4,11 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
+import pciCodeSampleComponent from '../../../../../components/pci-code-sample';
 import component from './cli.component';
 import routing from './cli.routing';
 
-import pciCodeSampleComponent from '../../../../../components/pci-code-sample';
-import aiGuideComponent from '../../components/ai-guide';
-
-const moduleName = 'ovhManagerPciAiDashboardCli';
+const moduleName = 'ovhManagerPciEtlCli';
 
 angular
   .module(moduleName, [
@@ -19,10 +17,9 @@ angular
     'ui.router',
     'oui',
     pciCodeSampleComponent,
-    aiGuideComponent,
   ])
   .config(routing)
-  .component('pciProjectAiDashboardCli', component)
+  .component('pciProjectEtlCli', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

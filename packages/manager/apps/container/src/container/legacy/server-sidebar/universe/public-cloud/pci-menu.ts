@@ -32,6 +32,7 @@ export const features = [
   'training',
   'ai-apps',
   'data-processing',
+  'etl',
   'logs-data-platform',
   'horizon',
   'public-cloud:users',
@@ -268,6 +269,16 @@ export function getPciProjectMenu(
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/data-processing`,
+          ),
+        },
+        {
+          id: 'etl',
+          title: 'Data Integration',
+          badge: 'beta',
+          feature: 'data-processing',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/etl`,
           ),
         },
         {

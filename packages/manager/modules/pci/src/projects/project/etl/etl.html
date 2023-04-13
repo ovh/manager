@@ -1,0 +1,37 @@
+<div data-ui-view>
+    <!-- Title & guides -->
+    <oui-header data-heading="Data Integration" class="mb-3">
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.guides track by $index"
+                data-href="{{:: guide.link }}"
+                data-on-click="$ctrl.trackClick(guide)"
+                data-external
+            >
+                <span
+                    data-translate="{{:: 'pci_ai_dashboard_guide_' + guide.id }}"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+    <div data-ui-view id="etlUiView">
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.homeLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.homeLink"
+            >
+                <span>Tableau de bord</span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.cliLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.cliLink"
+            >
+                <span>Command Line Interface</span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </div>
+    <div class="container-fluid mt-4" data-ui-view="etlTabUiView"></div>
+</div>

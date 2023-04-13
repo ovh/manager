@@ -1,0 +1,254 @@
+<div class="oui-datagrid-responsive">
+    <table class="oui-datagrid">
+        <thead>
+            <th
+                class="oui-datagrid__header oui-datagrid__header_sortable"
+                data-ng-click="$ctrl.sortItems('name')"
+            >
+                <span>Nom/ID</span>
+                <span
+                    class="oui-icon"
+                    ng-class="$ctrl.getSortableIcons('name')"
+                    aria-hidden="true"
+                >
+                </span>
+            </th>
+            <th
+                class="oui-datagrid__header oui-datagrid__header_sortable"
+                data-ng-click="$ctrl.sortItems('sourceData.name')"
+            >
+                <span>Source</span>
+                <span
+                    class="oui-icon"
+                    ng-class="$ctrl.getSortableIcons('sourceData.name')"
+                    aria-hidden="true"
+                >
+                </span>
+            </th>
+            <th
+                class="oui-datagrid__header oui-datagrid__header_sortable"
+                data-ng-click="$ctrl.sortItems('destinationData.name')"
+            >
+                <span>Destination</span>
+                <span
+                    class="oui-icon"
+                    ng-class="$ctrl.getSortableIcons('destinationData.name')"
+                    aria-hidden="true"
+                >
+                </span>
+            </th>
+            <th
+                class="oui-datagrid__header oui-datagrid__header_sortable"
+                data-ng-click="$ctrl.sortItems('schedule')"
+            >
+                <span>Planification</span>
+                <span
+                    class="oui-icon"
+                    ng-class="$ctrl.getSortableIcons('schedule')"
+                    aria-hidden="true"
+                >
+                </span>
+            </th>
+            <th
+                class="oui-datagrid__header oui-datagrid__header_sortable"
+                data-ng-click="$ctrl.sortItems('status')"
+            >
+                <span>Etat</span>
+                <span
+                    class="oui-icon"
+                    ng-class="$ctrl.getSortableIcons('status')"
+                    aria-hidden="true"
+                >
+                </span>
+            </th>
+            <th
+                class="oui-datagrid__header oui-datagrid__header_sortable"
+                data-ng-click="$ctrl.sortItems('lastJob.createdAt', 'date')"
+            >
+                <span>Dernier job</span>
+                <span
+                    class="oui-icon"
+                    ng-class="$ctrl.getSortableIcons('lastJob.createdAt')"
+                    aria-hidden="true"
+                >
+                </span>
+            </th>
+            <th
+                class="oui-datagrid__header oui-datagrid__header_sortable"
+                data-ng-click="$ctrl.sortItems('activated', 'boolean')"
+            >
+                <span>Activé</span>
+                <span
+                    class="oui-icon"
+                    ng-class="$ctrl.getSortableIcons('activated')"
+                    aria-hidden="true"
+                >
+                </span>
+            </th>
+        </thead>
+        <tbody>
+            <tr
+                class="table-single-select-row"
+                data-ng-class="{
+                    'selected': $ctrl.selectedWorkflow === workflow
+                }"
+                data-ng-repeat="workflow in $ctrl.displayedItems track by workflow.id"
+                data-ng-click="$ctrl.handleClick(workflow)"
+            >
+                <td class="oui-datagrid__cell">
+                    <div class="d-flex flex-column">
+                        <span data-ng-bind="workflow.name"></span>
+                        <small data-ng-bind="workflow.id"></small>
+                    </div>
+                </td>
+                <td class="oui-datagrid__cell">
+                    <div class="d-flex flex-column">
+                        <span data-ng-bind="workflow.sourceData.name"></span>
+                        <small data-ng-bind="workflow.sourceId"></small>
+                    </div>
+                </td>
+                <td class="oui-datagrid__cell">
+                    <div class="d-flex flex-column">
+                        <span
+                            data-ng-bind="workflow.destinationData.name"
+                        ></span>
+                        <small data-ng-bind="workflow.destinationId"></small>
+                    </div>
+                </td>
+                <td class="oui-datagrid__cell">
+                    <code data-ng-bind="workflow.schedule"></code>
+                </td>
+                <td class="oui-datagrid__cell">
+                    <span
+                        class="oui-badge"
+                        data-ng-class="{
+                            'oui-badge_success': ['READY'].includes(workflow.status),
+                            'oui-badge_warning': ['WAITING'].includes(workflow.status),
+                            'oui-badge_error': ['ERROR'].includes(workflow.status),
+                        }"
+                    >
+                        <span data-ng-bind="workflow.status"></span>
+                    </span>
+                </td>
+                <td class="oui-datagrid__cell">
+                    <span data-ng-if="!workflow.lastJob.createdAt">-</span>
+                    <span
+                        data-ng-if="workflow.lastJob.createdAt"
+                        data-ng-bind="workflow.lastJob.createdAt | date: 'medium'"
+                    ></span>
+                </td>
+                <td class="oui-datagrid__cell">
+                    <oui-switch disabled="true" model="workflow.activated">
+                    </oui-switch>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div
+        class="oui-datagrid-panel__pagination oui-pagination"
+        data-ng-if="$ctrl.totalPages > 1"
+        ng-switch="$ctrl.paginationMode"
+    >
+        <div class="oui-pagination-nav">
+            <button
+                type="button"
+                class="oui-button oui-button_secondary oui-button_s oui-pagination-nav__previous"
+                data-ng-click="$ctrl.previousPage()"
+                data-ng-disabled="$ctrl.paginationPage <== 1"
+            >
+                <span class="oui-icon oui-icon-chevron-left"></span>
+            </button>
+
+            <!-- Buttons -->
+            <div
+                class="oui-pagination-items oui-pagination-items_button oui-button-group"
+                ng-switch-when="button"
+            >
+                <button
+                    type="button"
+                    class="oui-pagination-items__button oui-button oui-button_s"
+                    ng-repeat="page in $ctrl.pages track by $index"
+                    ng-class="{
+                        'oui-button_primary oui-pagination-items__button_selected': page === $ctrl.paginationPage,
+                        'oui-button_secondary': page != $ctrl.paginationPage
+                    }"
+                    ng-disabled="page === $ctrl.paginationPage"
+                    ng-bind="page"
+                    ng-click="$ctrl.paginationPage = page"
+                ></button>
+            </div>
+            <!-- /Buttons -->
+
+            <!-- Select -->
+            <form
+                class="oui-pagination-items oui-pagination-items_select"
+                ng-switch-when="select"
+                novalidate
+            >
+                <span
+                    aria-hidden="true"
+                    ng-bind="$ctrl.translations.splittedPageOfPageCount[0]"
+                >
+                </span>
+                <label
+                    class="oui-pagination-items__control oui-select oui-select_inline"
+                >
+                    <select
+                        class="oui-select__input"
+                        ng-attr-aria-label="{{ $ctrl.getPageAriaLabel($ctrl.currentPage) }}"
+                        ng-model="$ctrl.paginationPage"
+                        ng-options="page as page for page in $ctrl.pages track by page"
+                    >
+                    </select>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
+                </label>
+                <span
+                    aria-hidden="true"
+                    ng-bind="$ctrl.translations.splittedPageOfPageCount[1]"
+                >
+                </span>
+            </form>
+            <!-- /Select -->
+
+            <!-- Input -->
+            <form
+                class="oui-pagination-items oui-pagination-items_input"
+                ng-switch-default
+                novalidate
+            >
+                <span
+                    aria-hidden="true"
+                    ng-bind="$ctrl.translations.splittedPageOfPageCount[0]"
+                >
+                </span>
+                <input
+                    class="oui-pagination-items__control oui-input oui-input_inline oui-input_xs"
+                    type="number"
+                    ng-min="1"
+                    ng-max="$ctrl.totalPages"
+                    step="1"
+                    ng-attr-aria-label="{{ $ctrl.getPageAriaLabel($ctrl.currentPage) }}"
+                    ng-model="$ctrl.paginationPage"
+                />
+                <span
+                    aria-hidden="true"
+                    ng-bind="$ctrl.translations.splittedPageOfPageCount[1]"
+                >
+                </span>
+            </form>
+            <!-- /Input -->
+
+            <button
+                type="button"
+                class="oui-button oui-button_secondary oui-button_s oui-pagination-nav__next"
+                data-ng-click="$ctrl.nextPage()"
+                data-ng-disabled="$ctrl.paginationPage >= $ctrl.totalPages"
+            >
+                <span class="oui-icon oui-icon-chevron-right"></span>
+            </button>
+        </div>
+    </div>
+</div>

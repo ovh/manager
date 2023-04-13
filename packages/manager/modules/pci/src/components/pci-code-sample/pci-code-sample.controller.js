@@ -1,7 +1,7 @@
 import ClipboardJS from 'clipboard';
 import hljs from 'highlight.js';
 
-export default class AICodeSampleCtrl {
+export default class PciCodeSampleCtrl {
   /* @ngInject */
   constructor($translate, $timeout, $element) {
     this.$translate = $translate;
@@ -11,11 +11,9 @@ export default class AICodeSampleCtrl {
 
   $onInit() {
     this.$timeout(() => {
-      this.tooltip = this.$translate.instant(
-        'pci_ai_dashboard_code_sample_tooltip_copy',
-      );
-      [this.trigger] = this.$element.find('.ai-code-sample-button');
-      [this.target] = this.$element.find('.ai-code-sample-code');
+      this.tooltip = this.$translate.instant('pci_code_sample_tooltip_copy');
+      [this.trigger] = this.$element.find('.pci-code-sample-button');
+      [this.target] = this.$element.find('.pci-code-sample-code');
 
       // Init clipboardJS
       this.clipboard = new ClipboardJS(this.trigger, {
@@ -38,13 +36,9 @@ export default class AICodeSampleCtrl {
   }
 
   updateTooltip() {
-    this.tooltip = this.$translate.instant(
-      'pci_ai_dashboard_code_sample_tooltip_copied',
-    );
+    this.tooltip = this.$translate.instant('pci_code_sample_tooltip_copied');
     this.$timeout(() => {
-      this.tooltip = this.$translate.instant(
-        'pci_ai_dashboard_code_sample_tooltip_copy',
-      );
+      this.tooltip = this.$translate.instant('pci_code_sample_tooltip_copy');
     }, 2000);
   }
 }

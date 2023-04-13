@@ -3,9 +3,9 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import component from './ai-code-sample.component';
+import component from './pci-code-sample.component';
 
-const moduleName = 'ovhManagerPciAiDashboardCodeSample';
+const moduleName = 'ovhManagerPciCodeSample';
 
 angular
   .module(moduleName, [
@@ -14,7 +14,7 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('pciProjectAiCodeSample', component)
+  .component('pciCodeSample', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
