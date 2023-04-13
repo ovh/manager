@@ -386,6 +386,7 @@ export const ORDER_URLS: Record<
       SG: 'https://ca.ovh.com/sg/order/webcloud',
       WE: 'https://us.ovh.com/us/order/webcloud',
       WS: 'https://us.ovh.com/es/order/webcloud',
+      IN: 'https://ca.ovh.com/asia/order/webcloud',
     },
     orderHosting: {
       ASIA: 'https://www.ovh.com/asia/web-hosting/',
@@ -395,6 +396,7 @@ export const ORDER_URLS: Record<
       SG: 'https://www.ovh.com/sg/web-hosting/',
       WE: 'https://www.ovh.com/world/web-hosting/',
       WS: 'https://www.ovh.com/world/es/hosting/',
+      IN: 'https://www.ovh.com/asia/web-hosting/',
     },
     dedicated_cloud: {
       ASIA:
