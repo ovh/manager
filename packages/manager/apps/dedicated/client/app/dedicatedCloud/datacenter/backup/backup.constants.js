@@ -45,6 +45,8 @@ export const BACKUP_TARIFF_URL = {
     'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
   WS:
     'https://www.ovhcloud.com/es/enterprise/products/hosted-private-cloud/prices/',
+  IN:
+    'https://www.ovhcloud.com/asia/enterprise/products/hosted-private-cloud/prices/',
 };
 
 export const TRUSTED_ACCOUNT_BACKUP_TARIFF_URL = {
