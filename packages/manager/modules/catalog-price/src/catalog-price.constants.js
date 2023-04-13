@@ -1,4 +1,4 @@
-export const ASIA_FORMAT = ['SG', 'ASIA', 'AU'];
+export const ASIA_FORMAT = ['SG', 'ASIA', 'AU', 'IN'];
 export const FRENCH_FORMAT = [
   'CZ',
   'ES',
