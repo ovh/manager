@@ -16,6 +16,7 @@ function getIcon(iconClass: string): JSX.Element {
 
 const features = [
   'dedicated-cloud',
+  'dedicated-cloud:sapHanaOrder',
   'nutanix',
   'veeam-enterprise',
   'dedicated-network',

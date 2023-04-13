@@ -51,6 +51,20 @@ export const ORDER_URLS: Record<
       SN: 'https://www.ovhcloud.com/fr-sn/managed-bare-metal/',
       TN: 'https://www.ovhcloud.com/fr-tn/managed-bare-metal/',
     },
+    sap_hana: {
+      FR: 'https://www.ovhcloud.com/fr/hosted-private-cloud/sap-hana/',
+      TN: 'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/sap-hana/',
+      IT: 'https://www.ovhcloud.com/it/hosted-private-cloud/sap-hana/',
+      PL: 'https://www.ovhcloud.com/pl/hosted-private-cloud/sap-hana/',
+      NL: 'https://www.ovhcloud.com/nl/hosted-private-cloud/sap-hana/',
+      PT: 'https://www.ovhcloud.com/pt/hosted-private-cloud/sap-hana/',
+      SN: 'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/sap-hana/',
+      MA: 'https://www.ovhcloud.com/fr-ma/hosted-private-cloud/sap-hana/',
+      ES: 'https://www.ovhcloud.com/es-es/hosted-private-cloud/sap-hana/',
+      IE: 'https://www.ovhcloud.com/en-ie/hosted-private-cloud/sap-hana/',
+      GB: 'https://www.ovhcloud.com/en-gb/hosted-private-cloud/sap-hana/',
+      DE: 'https://www.ovhcloud.com/de/hosted-private-cloud/sap-hana/',
+    },
     vrack: {
       CZ:
         "https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
@@ -409,6 +423,16 @@ export const ORDER_URLS: Record<
       WE: 'https://www.ovhcloud.com/en/managed-bare-metal/',
       WS: 'https://www.ovhcloud.com/es/managed-bare-metal/',
     },
+    sap_hana: {
+      QC: 'https://www.ovhcloud.com/fr-ca/hosted-private-cloud/sap-hana/',
+      WS: 'https://www.ovhcloud.com/es/hosted-private-cloud/sap-hana/',
+      WE: 'https://www.ovhcloud.com/en/hosted-private-cloud/sap-hana/',
+      SG: 'https://www.ovhcloud.com/en-sg/hosted-private-cloud/sap-hana/',
+      CA: 'https://www.ovhcloud.com/en-ca/hosted-private-cloud/sap-hana/',
+      AU: 'https://www.ovhcloud.com/en-au/hosted-private-cloud/sap-hana/',
+      ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/sap-hana/',
+      IN: 'https://www.ovhcloud.com/asia/hosted-private-cloud/sap-hana/',
+    },
     cloud_disk_array: {},
     dbaas_logs: {
       CA: 'https://ca.ovh.com/manager/dedicated/#/dbaas/logs/welcome',
@@ -524,6 +548,9 @@ export const ORDER_URLS: Record<
     },
     managed_bare_metal: {
       US: 'https://us.ovhcloud.com/managed-bare-metal/',
+    },
+    sap_hana: {
+      US: 'https://us.ovhcloud.com/hosted-private-cloud/sap-hana/',
     },
     cloud_disk_array: {
       US: 'https://us.ovhcloud.com/cloud/cloud-disk-array/',
