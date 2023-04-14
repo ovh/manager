@@ -658,6 +658,38 @@ const constants = {
               'https://help.ovhcloud.com/csm/es-es-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043701',
           },
           {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-1',
+            url:
+              'https://docs.ovh.com/ca/en/dedicated/getting-started-dedicated-server/',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-2',
+            url: 'https://docs.ovh.com/ca/en/dedicated/',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-3',
+            url:
+              'https://docs.ovh.com/ca/en/public-cloud/configure-reverse-dns-instance/',
+          },
+          {
+            title: 'core_sd_top_guide_firewall_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-Firewall',
+            url: 'https://docs.ovh.com/ca/en/dedicated/firewall-network/',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-5',
+            url: 'https://docs.ovh.com/ca/en/dedicated/network-virtual-mac/',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-6',
+            url: 'https://docs.ovh.com/ca/en/dedicated/network-ipaliasing/',
+          },
+          {
             title: 'core_sd_top_guide_7_title',
             atInternetClickTag: 'configure-new-window-server-installation',
             url:
@@ -1014,6 +1046,12 @@ const constants = {
             atInternetClickTag: 'configure-new-window-server-installation',
             url:
               'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044079',
+          },
+          {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-8',
+            url:
+              'https://docs.ovh.com/ca/en/dedicated/find-disk-serial-number/',
           },
         ],
       },
