@@ -331,6 +331,7 @@ export default class MoveResumeCtrl {
             endDate: this.offer.selected.meetingSlots.slot.endDate,
             startDate: this.offer.selected.meetingSlots.slot.startDate,
             uiCode: this.offer.selected.meetingSlots.slot.uiCode,
+            slotId: this.offer.selected.meetingSlots.slot.slotId,
           },
           name: this.offer.selected.contactName,
         };
@@ -339,7 +340,7 @@ export default class MoveResumeCtrl {
         });
 
         // Set address complements for copper line creation if set
-        if (this.offer.selected.searchAddress.residence) {
+        if (this.offer.selected.searchAddress?.residence) {
           Object.assign(moveData, {
             residence: this.offer.selected.searchAddress.residence,
           });
@@ -356,7 +357,7 @@ export default class MoveResumeCtrl {
           assign(moveData, {
             floor: this.offer.selected.address.floor,
           });
-        } else if (this.offer.selected.searchAddress.floor) {
+        } else if (this.offer.selected.searchAddress?.floor) {
           assign(moveData, {
             floor: this.offer.selected.searchAddress.floor,
           });
@@ -373,7 +374,7 @@ export default class MoveResumeCtrl {
           assign(moveData, {
             door: this.offer.selected.address.door,
           });
-        } else if (this.offer.selected.searchAddress.door) {
+        } else if (this.offer.selected.searchAddress?.door) {
           assign(moveData, {
             door: this.offer.selected.searchAddress.door,
           });
@@ -390,7 +391,7 @@ export default class MoveResumeCtrl {
           assign(moveData, {
             stair: this.offer.selected.address.stairs,
           });
-        } else if (this.offer.selected.searchAddress.stairs) {
+        } else if (this.offer.selected.searchAddress?.stairs) {
           assign(moveData, {
             stair: this.offer.selected.searchAddress.stairs,
           });
