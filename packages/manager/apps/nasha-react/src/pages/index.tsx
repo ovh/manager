@@ -12,6 +12,7 @@ const queryClient = new QueryClient();
 
 function Services() {
   const { isLoading, isError, data } = useQuery(['listNasha'], services);
+  const { t } = useTranslation('nasha-react');
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -35,7 +36,7 @@ function Services() {
   }
   return (
     <>
-      <h2>Services list</h2>
+      <h2>{t('title')}</h2>
       <ul>
         {data.map((serviceName: string) => (
           <li key={serviceName}>
@@ -48,11 +49,8 @@ function Services() {
 }
 
 export default function NashaReactApp() {
-  const { t } = useTranslation('nasha-react-app');
-
   return (
     <div>
-      <h1>{t('NASHA')}</h1>
       <QueryClientProvider client={queryClient}>
         <Services />
       </QueryClientProvider>

@@ -16,8 +16,6 @@ export default function NashaReactDashboard() {
       <Heading as="h3" size="sm">
         {t('title')}
       </Heading>
-      <hr />
-      <h2>Informations générales</h2>
       <div>
         <h3>Partitions</h3>
         <Partitions serviceName={serviceName} />

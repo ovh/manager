@@ -21,9 +21,9 @@ export default function NashaReactDetails() {
       to: useResolvedPath('').pathname,
     },
     {
-      name: 'tab',
-      title: t('tab_second'),
-      to: useResolvedPath('tab').pathname,
+      name: 'partitions',
+      title: t('tab_partitions'),
+      to: useResolvedPath('partitionsTab').pathname,
     },
   ];
 
@@ -38,6 +38,7 @@ export default function NashaReactDetails() {
           </li>
         ))}
       </ul>
+      <hr></hr>
       <Outlet />
     </>
   );
