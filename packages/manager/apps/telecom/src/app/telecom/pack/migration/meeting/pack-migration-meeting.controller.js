@@ -43,6 +43,7 @@ export default class TelecomPackMigrationMeetingCtrl {
           const productCode = eligibility.result.offers[0].product.code;
           this.process.selectedOffer.address =
             eligibility.result.endpoint.address;
+          this.process.selectedOffer.productCode = productCode;
           return this.ovhApiConnectivityEligibilitySearch
             .v6()
             .searchMeetings(this.$scope, {
@@ -78,6 +79,7 @@ export default class TelecomPackMigrationMeetingCtrl {
                     startTime: moment(slot.startDate).format('HH:mm'),
                     endTime: moment(slot.endDate).format('HH:mm'),
                     selected: false,
+                    slotId: slot.slotId,
                   });
                 });
                 this.showMeetingSlots = true;
