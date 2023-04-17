@@ -34,7 +34,7 @@ const ServicePackOptionService = class ServicePackOptionService {
   }
 
   static getType(optionName) {
-    return find(OPTIONS, { name: optionName }).type;
+    return find(OPTIONS, { name: optionName })?.type;
   }
 
   getPresentationUrl(optionName, subsidiary) {
