@@ -23,7 +23,6 @@
     "format:css": "yarn run lint:css --fix",
     "format:html": "yarn run lint:html && prettier --parser=html --write \"packages/**/*.html\"",
     "format:js": "yarn run lint:js --fix",
-    "format:tsx2": "yarn run lint:tsx2 --fix && prettier --write \"packages/manager/core/generator/**/*.{tsx,ts}\"",
     "format:tsx": "yarn run lint:tsx --fix && prettier --write \"packages/manager/apps/**/*.{tsx,ts}\"",
     "format:md": "yarn run lint:md --fix",
     "generate:app": "sao ./packages/manager/tools/sao-ovh-manager-app",
@@ -33,9 +32,12 @@
     "lint:css": "stylelint \"packages/**/*.{css,less,scss}\"",
     "lint:html": "htmlhint --ignore \"**/dist/**\" \"packages/**/*.html\"",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "lint:tsx": "eslint --quiet \"packages/manager/apps/**/*.{tsx,ts,md}\"",
 =======
     "lint:tsx2": "eslint \"packages/manager/core/generator/**/*.{tsx,ts}\"",
+=======
+>>>>>>> e8023d89b1 (feat(generator): fix package json)
     "lint:tsx": "eslint \"packages/manager/apps/**/*.{tsx,ts}\"",
 >>>>>>> 25a4671a20 (feat(generator): fix eslint vite template generator)
     "lint:js": "eslint --cache --quiet --format=pretty \"packages\" \"scripts\"",
@@ -90,7 +92,6 @@
     "npm-run-all": "^4.1.5",
     "ora": "^3.4.0",
     "p-series": "^2.1.0",
-    "plop": "^3.1.1",
     "prettier": "^1.18.2",
     "progress": "^2.0.3",
     "remark-cli": "^8.0.1",
