@@ -4,4 +4,4 @@ packages/manager/tools/sao-ovh-manager-module/template/src
 packages/manager/tools/sao-ovh-manager-app/template
 packages/manager/apps/container
 packages/manager/core/generator/app/templates
-
+packages/components/ovh-shell

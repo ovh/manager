@@ -34,7 +34,12 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('Toggle the visibility of sidebar when toggle is disabled', ({given, and, when, then}) => {
+  test('Toggle the visibility of sidebar when toggle is disabled', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     const uxShell = new ShellUX(shell);
     uxShell.registerSidebar('foo');
 
@@ -52,10 +57,15 @@ defineFeature(feature, (test) => {
 
     then('My sidebar should still be visible', () => {
       expect(uxShell.isSidebarVisible('foo')).toBe(true);
-    })
-  })
+    });
+  });
 
-  test('Trigger custom action when visibility of sidebar changes', ({given, and, when, then}) => {
+  test('Trigger custom action when visibility of sidebar changes', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     let customAction;
     const uxShell = new ShellUX(shell);
 
@@ -77,5 +87,5 @@ defineFeature(feature, (test) => {
     then('My custom action should trigger', () => {
       expect(customAction).toHaveBeenCalled();
     });
-  })
+  });
 });
