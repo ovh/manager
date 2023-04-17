@@ -27,5 +27,6 @@
   "data_processing_details_charts_num_active_tasks": "# de tarefas ativas nos últimos 5 minutos",
   "data_processing_details_charts_blockmanager_disk": "Utilização do disco Blockmanager nos últimos 5 minutos",
   "data_processing_details_configuration_python_file_label": "Ficheiro Python",
-  "data_processing_details_information_return_code_label": "Código de regresso"
+  "data_processing_details_information_return_code_label": "Código de regresso",
+  "data_processing_details_information_notebook_name_label": "Notebook"
 }
