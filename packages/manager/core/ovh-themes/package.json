@@ -16,7 +16,7 @@
     "dev:watch": "tsc -w"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.6",
+    "@chakra-ui/icons": "^2.0.4",
     "@chakra-ui/utils": "^2.0.8",
     "@h6s/calendar": "^1.0.5",
     "date-fns": "^2.29.1"
