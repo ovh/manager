@@ -4,9 +4,5 @@ packages/manager/tools/sao-ovh-manager-module/template/src
 packages/manager/tools/sao-ovh-manager-app/template
 packages/manager/apps/container
 packages/manager/core/generator/app/templates
-<<<<<<< HEAD
 packages/components/ovh-shell
 packages/manager/core/generator
-=======
-
->>>>>>> 25a4671a20 (feat(generator): fix eslint vite template generator)
