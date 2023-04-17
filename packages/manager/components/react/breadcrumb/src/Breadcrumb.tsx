@@ -1,3 +1,8 @@
+/**
+ *  TODO - Move in the future
+ *  Super components manager library
+ */
+
 import React, { useEffect, useState } from 'react';
 import { Link, Params, useMatches } from 'react-router-dom';
 
