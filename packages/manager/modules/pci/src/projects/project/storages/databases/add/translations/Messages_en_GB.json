@@ -58,8 +58,6 @@
   "pci_database_add_spec_order": "Order",
   "pci_database_add_spec_nodes": "{{nodes}} nodes",
   "pci_database_add_spec_nodes_single": "{{nodes}} node",
-  "pci_database_add_spec_nodes_range": "{{min}} nodes included, up to {{max}} nodes",
-  "pci_database_add_spec_nodes_range_single": "{{min}} nodes included, up to {{max}} nodes",
   "pci_database_add_show_command": "API and Terraform equivalent",
   "pci_database_add_spec_name_popover": "The name of your cluster is automatically generated. You can change it later.",
   "pci_database_add_spec_logo_alt": "Engine logo",

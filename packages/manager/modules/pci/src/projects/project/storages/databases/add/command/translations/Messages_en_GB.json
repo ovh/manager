@@ -23,7 +23,7 @@
   "pci_databases_add_command_parameters_info_terraform_plan": "Selected plan",
   "pci_databases_add_command_parameters_info_terraform_flavor": "Selected features",
   "pci_databases_add_command_parameters_info_terraform_disk_size": "Storage capacity",
-  "pci_databases_add_command_parameters_info_terraform_nodes": "List of nodes",
+  "pci_databases_add_command_parameters_info_terraform_nodes": "Node list",
   "pci_databases_add_command_parameters_info_terraform_nodes_region": "Selected location",
   "pci_databases_add_command_parameters_info_terraform_nodes_network_id": "OpenStack private network ID",
   "pci_databases_add_command_parameters_info_terraform_nodes_subnet_id": "Subnet ID"

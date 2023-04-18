@@ -1,7 +1,7 @@
 {
   "pci_ai_dashboard_pipeline_stock": "Przechowywanie",
   "pci_ai_dashboard_pipeline_stock_link": "Object Storage",
-  "pci_ai_dashboard_pipeline_explore": "Explorer",
+  "pci_ai_dashboard_pipeline_explore": "Sprawdź",
   "pci_ai_dashboard_pipeline_explore_link": "AI Notebooks",
   "pci_ai_dashboard_pipeline_train": "Trening",
   "pci_ai_dashboard_pipeline_train_link": "AI Training",

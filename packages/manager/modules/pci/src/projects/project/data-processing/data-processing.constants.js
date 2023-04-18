@@ -7,6 +7,15 @@ export const DATA_PROCESSING_STATUS_TO_CLASS = Object.freeze({
   TERMINATED: 'error',
 });
 
+export const DATA_PROCESSING_NOTEBOOKS_STATUS_TO_CLASS = Object.freeze({
+  DELETING: 'warning',
+  FAILED: 'error',
+  RUNNING: 'success',
+  STARTING: 'warning',
+  STOPPED: 'info',
+  STOPPING: 'warning',
+});
+
 export const DATA_PROCESSING_STATUSES = Object.freeze({
   PENDING: 'Pending',
   SUBMITTED: 'Submitted',
@@ -15,6 +24,20 @@ export const DATA_PROCESSING_STATUSES = Object.freeze({
   COMPLETED: 'Completed',
   TERMINATED: 'Killed',
 });
+
+export const DATA_PROCESSING_NOTEBOOKS_STATUSES = Object.freeze({
+  DELETED: 'DELETED',
+  FAILED: 'FAILED',
+  RUNNING: 'RUNNING',
+  STARTING: 'STARTING',
+  STOPPED: 'STOPPED',
+  STOPPING: 'STOPPING',
+});
+
+export const DATA_PROCESSING_NOTEBOOKS_TRANSITION_STATUSES = [
+  DATA_PROCESSING_NOTEBOOKS_STATUSES.STARTING,
+  DATA_PROCESSING_NOTEBOOKS_STATUSES.STOPPING,
+];
 
 export const DATA_PROCESSING_API_STATUSES = Object.freeze({
   PENDING: 'PENDING',
@@ -50,6 +73,8 @@ export default {
 
 export const METRICS_REFRESH_INTERVAL = 5000;
 
+export const NOTEBOOK_REFRESH_INTERVAL = 5000;
+
 export const JOB_TYPE_PYTHON = 'python';
 export const JOB_TYPE_JAVA = 'java';
 
@@ -66,3 +91,8 @@ export const SUBMIT_JOB_API_GUIDES = {
 };
 
 export const GIB_IN_MIB = 1024;
+
+export const NOTEBOOK_CLUSTER_NAME = 'NB1-1';
+
+export const DATA_PROCESSING_TRACKING_PREFIX =
+  'PublicCloud::pci::projects::project::data-processing';
