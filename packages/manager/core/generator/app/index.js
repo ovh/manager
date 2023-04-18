@@ -45,6 +45,7 @@ export default (plop) => {
         },
       },
       {
+<<<<<<< HEAD
         type: 'checkbox',
         name: 'templates',
         message: 'What template do you want generate by default ?',
@@ -83,6 +84,12 @@ export default (plop) => {
             }),
           );
         },
+=======
+        type: 'addMany',
+        destination: join(appDirectory, '../../../apps/{{dashCase appName}}'),
+        templateFiles: join(appDirectory, './templates/**'),
+        base: join(appDirectory, './templates'),
+>>>>>>> 15132344e7 (fix(generator): delete breadcrumb package + do some fixes on the)
       },
     ],
     actions: ({ apiV6Endpoints, templates, appName }) => {

@@ -35,11 +35,17 @@ export default function BreadcrumbComponent(): JSX.Element {
       };
     });
 
+<<<<<<< HEAD
     Promise.all(items)
       .then((breadcrumbs) => {
         setCrumbs(breadcrumbs.filter(({ crumb }) => !!crumb));
       })
       .catch((err) => console.error(err));
+=======
+    Promise.all(items).then((breadcrumbs) => {
+      setCrumbs(breadcrumbs.filter(({ crumb }) => !!crumb));
+    });
+>>>>>>> 15132344e7 (fix(generator): delete breadcrumb package + do some fixes on the)
   }, [matches]);
 
   // no need to display a breadcrumb for a single item

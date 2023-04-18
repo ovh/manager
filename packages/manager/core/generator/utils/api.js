@@ -1,7 +1,11 @@
 import axios from 'axios';
+<<<<<<< HEAD
 /**
  * @returns the list of API v6 services endpoints
  */
+=======
+
+>>>>>>> 15132344e7 (fix(generator): delete breadcrumb package + do some fixes on the)
 export const getApiPaths = async () => {
   const response = await axios.get('https://api.ovh.com/1.0');
   return response.data.apis.map(({ path }) => path);
