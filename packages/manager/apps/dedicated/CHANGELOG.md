@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.57.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.57.0...@ovh-ux/manager-dedicated@17.57.1) (2023-04-18)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** avoid access to no exist field ([#9189](https://github.com/ovh/manager/issues/9189)) ([3529e59](https://github.com/ovh/manager/commit/3529e59145ed09808e54bc12863e2fab9e6c2e74))
+
+
+
+
+
 # [17.57.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.56.1...@ovh-ux/manager-dedicated@17.57.0) (2023-04-12)
 
 
