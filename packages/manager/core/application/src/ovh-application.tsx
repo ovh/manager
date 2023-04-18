@@ -23,6 +23,10 @@ export function OvhApplication({
 }): JSX.Element {
   const [context, setContext] = useState<OvhContextType>(null);
 
+  context?.shell?.i18n.onLocaleChange(() => {
+    init(name).then(setContext);
+  });
+
   useEffect(() => {
     init(name).then(setContext);
   }, []);
