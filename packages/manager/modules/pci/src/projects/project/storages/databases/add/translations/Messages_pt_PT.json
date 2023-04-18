@@ -58,8 +58,6 @@
   "pci_database_add_spec_order": "Encomendar",
   "pci_database_add_spec_nodes": "{{nodes}} nós",
   "pci_database_add_spec_nodes_single": "{{nodes}} nó",
-  "pci_database_add_spec_nodes_range": "{{min}} nós incluídos, até {{max}} nós",
-  "pci_database_add_spec_nodes_range_single": "{{min}} nó incluído, até {{max}} nós",
   "pci_database_add_show_command": "Equivalente API e Terraform",
   "pci_database_add_spec_name_popover": "O nome do seu cluster é gerado automaticamente. Poderá alterá-lo mais tarde.",
   "pci_database_add_spec_logo_alt": "Logótipo do motor",

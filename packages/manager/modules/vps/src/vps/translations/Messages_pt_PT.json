@@ -530,15 +530,15 @@
   "vps_additional_disk_current_capacity": "Capacidade do disco: {{vpsDiskCapacity}}",
   "vps_additional_disk_cant_upgrade": "Se pretender fazer evoluir o seu disco adicional, deverá migrar para a nova gama VPS ao clicar em \"Migrar o meu VPS\" acima.",
   "vps_configuration_desactivate_option_disabled_info": "O disco adicional poderá ser rescindido assim que o período de compromisso do seu VPS terminar.",
-  "vps_dashboard_snapshot_download_modal_title": "Descarregar o Snapshot",
+  "vps_dashboard_snapshot_download_modal_title": "Fazer download do Snapshot",
   "vps_dashboard_snapshot_download_modal_summary": "Informações",
   "vps_dashboard_snapshot_download_modal_service_name": "Nome do serviço",
   "vps_dashboard_snapshot_download_modal_snapshot_size": "Dimensão",
-  "vps_dashboard_snapshot_download_modal_snapshot_creation_date": "Data de criação da snapshot",
-  "vps_dashboard_snapshot_download_modal_snapshot_link_expiration_date": "Data de expiração da ligação de descarregamento",
-  "vps_dashboard_snapshot_download_modal_snapshot_loading_message": "Geração da encomenda de descarregamento da snapshot ...",
-  "vps_dashboard_snapshot_download_modal_snapshot_curl_success": "Encomenda de descarregamento gerada com sucesso.",
-  "vps_dashboard_snapshot_download_modal_snapshot_curl_info": "Por favor, copie o comando CURL acima e execute-o no seu terminal. Para saber mais sobre o CURL, <a href=\"{{curlDocumentationLink}}\" target=\"_blank\">clique aqui</a>.",
-  "vps_dashboard_snapshot_download_modal_snapshot_button_label": "Gerar a ligação de descarregamento",
-  "vps_configuration_download_snapshot_title_button": "Descarregar o Snapshot"
+  "vps_dashboard_snapshot_download_modal_snapshot_creation_date": "Data de criação do snapshot",
+  "vps_dashboard_snapshot_download_modal_snapshot_link_expiration_date": "Data de expiração do link de download",
+  "vps_dashboard_snapshot_download_modal_snapshot_loading_message": "Criação da encomenda de download do snapshot...",
+  "vps_dashboard_snapshot_download_modal_snapshot_curl_success": "Encomenda de download criada com sucesso.",
+  "vps_dashboard_snapshot_download_modal_snapshot_curl_info": "Copie o comando CURL acima e execute-o no seu terminal. Para saber mais sobre o CURL, <a href=\"{{curlDocumentationLink}}\" target=\"_blank\">clique aqui</a>.",
+  "vps_dashboard_snapshot_download_modal_snapshot_button_label": "Gerar o link de download",
+  "vps_configuration_download_snapshot_title_button": "Fazer download do Snapshot"
 }

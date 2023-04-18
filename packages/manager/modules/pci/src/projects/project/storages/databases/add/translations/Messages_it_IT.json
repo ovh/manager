@@ -58,8 +58,6 @@
   "pci_database_add_spec_order": "Ordina",
   "pci_database_add_spec_nodes": "{{nodes}} nodi",
   "pci_database_add_spec_nodes_single": "{{nodes}} nodo",
-  "pci_database_add_spec_nodes_range": "{{min}} nodi inclusi, fino a {{max}} nodi",
-  "pci_database_add_spec_nodes_range_single": "{{min}} nodi inclusi, fino a {{max}} nodi",
   "pci_database_add_show_command": "API equivalenti e Terraform",
   "pci_database_add_spec_name_popover": "Il nome del cluster è generato automaticamente. Potrai modificarlo in seguito.",
   "pci_database_add_spec_logo_alt": "Logo del motore",

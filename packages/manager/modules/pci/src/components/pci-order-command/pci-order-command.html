@@ -9,7 +9,7 @@
     <p data-ng-bind="$ctrl.orderApiUrl" class="api-url monospace"></p>
     <p data-translate="pci_order_command_parameters"></p>
     <pre data-ng-bind="$ctrl.getRequestData()" class="monospace"></pre>
-    <p>
+    <p data-ng-if="$ctrl.helpLink">
         <span data-translate="pci_order_command_parameters_info"></span>
         <a
             data-ng-if="$ctrl.helpLink"
