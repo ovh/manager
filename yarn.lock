@@ -98,11 +98,14 @@
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.17.0.tgz#86850b8597ea6962089770952075dcaabb8dba34"
   integrity sha512-392byTlpGWXMv4FbyWw3sAZ/FrW/DrwqLGXpy0mbyNe9Taqv1mg9yON5/o0cnr8XYCkFTZbC1eV+c+LAROgrng==
 
+<<<<<<< HEAD
 "@babel/compat-data@^7.20.0":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.20.5.tgz#86f172690b093373a933223b4745deeb6049e733"
   integrity sha512-KZXo2t10+/jxmkhNXc7pZTqRvSOIvVv/+lJwHS+B2rErwOyjuVRh60yVpb7liQ1U5t7lLJ1bz+t8tSypUZdm0g==
 
+=======
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
 "@babel/compat-data@^7.20.0":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.20.5.tgz#86f172690b093373a933223b4745deeb6049e733"
@@ -194,6 +197,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
+<<<<<<< HEAD
 "@babel/core@^7.19.6":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.20.5.tgz#45e2114dc6cd4ab167f81daf7820e8fa1250d113"
@@ -215,6 +219,8 @@
     json5 "^2.2.1"
     semver "^6.3.0"
 
+=======
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
 "@babel/core@^7.19.6":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.20.5.tgz#45e2114dc6cd4ab167f81daf7820e8fa1250d113"
@@ -292,6 +298,7 @@
     jsesc "^2.5.1"
     source-map "^0.5.0"
 
+<<<<<<< HEAD
 "@babel/generator@^7.20.5":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.20.5.tgz#cb25abee3178adf58d6814b68517c62bdbfdda95"
@@ -301,6 +308,8 @@
     "@jridgewell/gen-mapping" "^0.3.2"
     jsesc "^2.5.1"
 
+=======
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
 "@babel/generator@^7.20.5":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.20.5.tgz#cb25abee3178adf58d6814b68517c62bdbfdda95"
@@ -393,6 +402,7 @@
     browserslist "^4.17.5"
     semver "^6.3.0"
 
+<<<<<<< HEAD
 "@babel/helper-compilation-targets@^7.20.0":
   version "7.20.0"
   resolved "https://registry.yarnpkg.com/@babel/helper-compilation-targets/-/helper-compilation-targets-7.20.0.tgz#6bf5374d424e1b3922822f1d9bdaa43b1a139d0a"
@@ -403,6 +413,8 @@
     browserslist "^4.21.3"
     semver "^6.3.0"
 
+=======
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
 "@babel/helper-compilation-targets@^7.20.0":
   version "7.20.0"
   resolved "https://registry.yarnpkg.com/@babel/helper-compilation-targets/-/helper-compilation-targets-7.20.0.tgz#6bf5374d424e1b3922822f1d9bdaa43b1a139d0a"
@@ -766,6 +778,7 @@
     "@babel/traverse" "^7.16.7"
     "@babel/types" "^7.16.7"
 
+<<<<<<< HEAD
 "@babel/helper-module-transforms@^7.20.2":
   version "7.20.2"
   resolved "https://registry.yarnpkg.com/@babel/helper-module-transforms/-/helper-module-transforms-7.20.2.tgz#ac53da669501edd37e658602a21ba14c08748712"
@@ -780,6 +793,8 @@
     "@babel/traverse" "^7.20.1"
     "@babel/types" "^7.20.2"
 
+=======
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
 "@babel/helper-module-transforms@^7.20.2":
   version "7.20.2"
   resolved "https://registry.yarnpkg.com/@babel/helper-module-transforms/-/helper-module-transforms-7.20.2.tgz#ac53da669501edd37e658602a21ba14c08748712"
@@ -959,6 +974,7 @@
   dependencies:
     "@babel/types" "^7.16.7"
 
+<<<<<<< HEAD
 "@babel/helper-simple-access@^7.20.2":
   version "7.20.2"
   resolved "https://registry.yarnpkg.com/@babel/helper-simple-access/-/helper-simple-access-7.20.2.tgz#0ab452687fe0c2cfb1e2b9e0015de07fc2d62dd9"
@@ -966,6 +982,8 @@
   dependencies:
     "@babel/types" "^7.20.2"
 
+=======
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
 "@babel/helper-simple-access@^7.20.2":
   version "7.20.2"
   resolved "https://registry.yarnpkg.com/@babel/helper-simple-access/-/helper-simple-access-7.20.2.tgz#0ab452687fe0c2cfb1e2b9e0015de07fc2d62dd9"
@@ -1134,6 +1152,7 @@
     "@babel/traverse" "^7.17.0"
     "@babel/types" "^7.17.0"
 
+<<<<<<< HEAD
 "@babel/helpers@^7.20.5":
   version "7.20.6"
   resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.20.6.tgz#e64778046b70e04779dfbdf924e7ebb45992c763"
@@ -1143,6 +1162,8 @@
     "@babel/traverse" "^7.20.5"
     "@babel/types" "^7.20.5"
 
+=======
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
 "@babel/helpers@^7.20.5":
   version "7.20.6"
   resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.20.6.tgz#e64778046b70e04779dfbdf924e7ebb45992c763"
@@ -2429,6 +2450,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.16.7"
 
+<<<<<<< HEAD
 "@babel/plugin-transform-react-jsx-source@^7.19.6":
   version "7.19.6"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx-source/-/plugin-transform-react-jsx-source-7.19.6.tgz#88578ae8331e5887e8ce28e4c9dc83fb29da0b86"
@@ -2436,6 +2458,8 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.19.0"
 
+=======
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
 "@babel/plugin-transform-react-jsx-source@^7.19.6":
   version "7.19.6"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx-source/-/plugin-transform-react-jsx-source-7.19.6.tgz#88578ae8331e5887e8ce28e4c9dc83fb29da0b86"
@@ -3164,6 +3188,7 @@
     globals "^11.1.0"
     lodash "^4.17.19"
 
+<<<<<<< HEAD
 "@babel/traverse@^7.20.1", "@babel/traverse@^7.20.5":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.20.5.tgz#78eb244bea8270fdda1ef9af22a5d5e5b7e57133"
@@ -3180,6 +3205,8 @@
     debug "^4.1.0"
     globals "^11.1.0"
 
+=======
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
 "@babel/traverse@^7.20.1", "@babel/traverse@^7.20.5":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.20.5.tgz#78eb244bea8270fdda1ef9af22a5d5e5b7e57133"
@@ -7661,6 +7688,7 @@
     "@rollup/pluginutils" "^4.1.1"
     react-refresh "^0.10.0"
 
+<<<<<<< HEAD
 "@vitejs/plugin-react@^2.2.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-react/-/plugin-react-2.2.0.tgz#1b9f63b8b6bc3f56258d20cd19b33f5cc761ce6e"
@@ -7674,6 +7702,8 @@
     magic-string "^0.26.7"
     react-refresh "^0.14.0"
 
+=======
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
 "@vitejs/plugin-react@^2.2.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-react/-/plugin-react-2.2.0.tgz#1b9f63b8b6bc3f56258d20cd19b33f5cc761ce6e"
@@ -14825,11 +14855,6 @@ functional-red-black-tree@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
-
-fuzzy@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/fuzzy/-/fuzzy-0.1.3.tgz#4c76ec2ff0ac1a36a9dccf9a00df8623078d4ed8"
-  integrity sha512-/gZffu4ykarLrCiP3Ygsa86UAo1E5vEVlvTrpkKywXSbP9Xhln3oSp9QSV57gEq3JFFpGJ4GZ+5zdEp3FcUh4w==
 
 gauge@^3.0.0:
   version "3.0.2"
@@ -24320,6 +24345,7 @@ send@0.17.1:
     range-parser "~1.2.1"
     statuses "~1.5.0"
 
+<<<<<<< HEAD
 sentence-case@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/sentence-case/-/sentence-case-3.0.4.tgz#3645a7b8c117c787fde8702056225bb62a45131f"
@@ -24329,6 +24355,8 @@ sentence-case@^3.0.4:
     tslib "^2.0.3"
     upper-case-first "^2.0.2"
 
+=======
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
 sentence-case@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/sentence-case/-/sentence-case-3.0.4.tgz#3645a7b8c117c787fde8702056225bb62a45131f"
@@ -26344,11 +26372,14 @@ type-fest@^1.2.2:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-1.4.0.tgz#e9fb813fe3bf1744ec359d55d1affefa76f14be1"
   integrity sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==
 
+<<<<<<< HEAD
 type-fest@^3.0.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-3.3.0.tgz#3378c9664eecfd1eb4f0522b13cb0630bc1ec044"
   integrity sha512-gezeeOIZyQLGW5uuCeEnXF1aXmtt2afKspXz3YqoOcZ3l/YMJq1pujvgT+cz/Nw1O/7q/kSav5fihJHsC/AOUg==
 
+=======
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
 type-fest@^3.0.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-3.3.0.tgz#3378c9664eecfd1eb4f0522b13cb0630bc1ec044"
@@ -27189,7 +27220,11 @@ vite@^3.0.2:
   resolved "https://registry.yarnpkg.com/vite/-/vite-3.1.2.tgz#6b080f928490b1a46465ed3cbb4815f31f1a5376"
   integrity sha512-wTDKPkiVbeT+drTPdkuvjVIC/2vKKUc1w3qNOuwgpyvPCZF6fvdxB5v5WEcCsqaYea0zrwA4+XialJKCHM3oVQ==
   dependencies:
+<<<<<<< HEAD
     esbuild "^0.15.9"
+=======
+    esbuild "^0.15.6"
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
     postcss "^8.4.16"
     resolve "^1.22.1"
     rollup "~2.78.0"

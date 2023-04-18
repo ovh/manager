@@ -21,6 +21,7 @@ export function OvhApplication({
   const [context, setContext] = useState<OvhContextType>(null);
 
   useEffect(() => {
+<<<<<<< HEAD
     initOvhContext(name)
       .then(async (ovhContext) => {
         const contextWithI18n = await setLocale(ovhContext);
@@ -30,6 +31,15 @@ export function OvhApplication({
         );
       })
       .catch((err) => console.error(err));
+=======
+    initOvhContext(name).then(async (ovhContext) => {
+      const contextWithI18n = await setLocale(ovhContext);
+      setContext(contextWithI18n);
+      contextWithI18n.shell.i18n.onLocaleChange(() =>
+        setLocale(contextWithI18n).then(setContext),
+      );
+    });
+>>>>>>> 934f9fb911 (fix(generator): rename useShellClient into initShellClient to avoid hook)
   }, []);
 
   return (
