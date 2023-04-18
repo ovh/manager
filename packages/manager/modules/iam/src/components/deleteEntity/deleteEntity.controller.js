@@ -79,6 +79,8 @@ export default class DeleteEntityController {
       promise = this.deletePolicyIdentity();
     } else if (this.entity.type === ENTITY.RESOURCE_GROUP) {
       promise = this.deleteResourceGroup();
+    } else if (this.entity.type === ENTITY.RESOURCE_TYPE) {
+      promise = this.$q.when(true);
     } else {
       promise = this.$q.reject({ data: { message: 'Unknown entity type' } });
     }
