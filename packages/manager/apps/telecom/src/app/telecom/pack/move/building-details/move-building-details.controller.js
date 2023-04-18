@@ -39,9 +39,7 @@ export default class MoveBuildingDetailsCtrl {
 
     // check if the building name is empty to set a name to display in the select component
     this.building.name =
-      this.building.name === ''
-        ? this.$translate.instant('pack_move_building_details_unknown')
-        : this.building.name;
+      this.building.name === '' ? this.building.reference : this.building.name;
 
     this.OvhApiConnectivityEligibilitySearch.v6()
       .pollerBuildingDetails(this.$scope, {
