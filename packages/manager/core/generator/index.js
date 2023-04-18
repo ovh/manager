@@ -1,19 +1,18 @@
 #!/usr/bin/env node
 import minimist from 'minimist';
 import { Plop, run } from 'plop';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const args = process.argv.slice(2);
 const argv = minimist(args);
 
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const appDirectory = dirname(fileURLToPath(import.meta.url));
 
 Plop.prepare(
   {
     cwd: argv.cwd,
-    configPath: join(__dirname, 'plopfile.js'),
+    configPath: join(appDirectory, 'plopfile.js'),
     preload: argv.preload || [],
     completion: argv.completion,
   },

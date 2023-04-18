@@ -1,10 +1,9 @@
+/* eslint-disable import/extensions */
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import fuzzy from 'fuzzy';
-
 import { getApiPaths } from '../utils/api.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const appDirectory = dirname(fileURLToPath(import.meta.url));
 
 export default (plop) => {
   plop.setGenerator('app', {
@@ -32,21 +31,18 @@ export default (plop) => {
         type: 'autocomplete',
         name: 'apiPath',
         message: 'What API base route is used?',
-        source: async ({ appName }, input) => {
+        source: async (_, input) => {
           const paths = await getApiPaths();
-
-          return fuzzy
-            .filter(input || `${appName}`, paths)
-            .map((el) => el.original);
+          return paths.filter((p) => p.includes(input || '/'));
         },
       },
     ],
     actions: [
       {
         type: 'addMany',
-        destination: join(__dirname, '../../../apps/{{dashCase appName}}'),
-        templateFiles: join(__dirname, './templates/**'),
-        base: join(__dirname, './templates'),
+        destination: join(appDirectory, '../../../apps/{{dashCase appName}}'),
+        templateFiles: join(appDirectory, './templates/**'),
+        base: join(appDirectory, './templates'),
       },
       ({ appName, packageName }) =>
         `App ${appName} generated. Please run \n  yarn install && yarn workspace ${packageName} run start:dev`,

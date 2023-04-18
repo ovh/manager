@@ -29,11 +29,10 @@ export default function BreadcrumbComponent(): JSX.Element {
     const items = matches.map(async (match) => {
       const { handle, data, params }: Match = match;
       const breadcrumb = await handle?.breadcrumb;
-      const crumb = {
+      return {
         pathname: match.pathname,
         crumb: await breadcrumb?.({ data, params }),
       };
-      return crumb;
     });
 
     Promise.all(items).then((breadcrumbs) => {
