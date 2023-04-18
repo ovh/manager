@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import actionSelectComponent from './actionSelect/actionSelect.component';
 import createPolicyComponent from './createPolicy/createPolicy.component';
 import createPolicyResolves from './createPolicy/createPolicy.resolves';
 import deleteEntityComponent from './deleteEntity/deleteEntity.component';
@@ -15,6 +16,15 @@ import policyComponent from './policy/policy.component';
 import policyResolves from './policy/policy.resolves';
 import resourceGroupsComponent from './resourceGroups/resourceGroups.component';
 import resourceGroupsResolves from './resourceGroups/resourceGroups.resolves';
+import resourceSelectComponent from './resourceSelect/resourceSelect.component';
+
+import highlightTextDirective from './highlightText/highlightText.directive';
+
+const actionSelect = {
+  name: 'iamActionSelect',
+  component: actionSelectComponent,
+  resolves: null,
+};
 
 const createPolicy = {
   name: 'iamCreatePolicy',
@@ -64,10 +74,22 @@ const resourceGroups = {
   resolves: resourceGroupsResolves,
 };
 
+const resourceSelect = {
+  name: 'iamResourceSelect',
+  component: resourceSelectComponent,
+  resolves: null,
+};
+
+const highlightText = {
+  name: 'iamHighlightText',
+  directive: highlightTextDirective,
+};
+
 const moduleName = 'ovhManagerIAMComponents';
 
 angular
   .module(moduleName, [])
+  .component(actionSelect.name, actionSelect.component)
   .component(createPolicy.name, createPolicy.component)
   .component(deleteEntity.name, deleteEntity.component)
   .component(iam.name, iam.component)
@@ -76,8 +98,11 @@ angular
   .component(policies.name, policies.component)
   .component(policy.name, policy.component)
   .component(resourceGroups.name, resourceGroups.component)
+  .component(resourceSelect.name, resourceSelect.component)
+  .directive(highlightText.name, highlightText.directive)
   .run(/*
     @ngTranslationsInject:json
+      ./actionSelect/translations
       ./createPolicy/translations
       ./cursorDatagrid/translations
       ./deleteEntity/translations
@@ -87,6 +112,7 @@ angular
       ./policies/translations
       ./policy/translations
       ./resourceGroups/translations
+      ./resourceSelect/translations
   */);
 
 export {
