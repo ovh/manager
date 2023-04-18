@@ -2,8 +2,8 @@
   "iam_policies_datagrid_action_delete_policy": "Supprimer la politique",
   "iam_policies_datagrid_action_edit_identities": "Gérer les identités associées",
   "iam_policies_datagrid_action_edit_policy": "Modifier la politique",
+  "iam_policies_datagrid_column_actions": "Nombre d'actions",
   "iam_policies_datagrid_column_identities": "Nombre d'identités",
   "iam_policies_datagrid_column_name": "Nom",
-  "iam_policies_datagrid_column_resources": "Nombre d'actions",
   "iam_policies_datagrid_topbar_create_policy": "Créer une politique"
 }

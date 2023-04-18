@@ -2,17 +2,20 @@ import { cloneDeep, isEqual } from 'lodash-es';
 
 export default class CreatePolicyController {
   /* @ngInject */
-  constructor(
-    $timeout,
-    $translate,
-    PolicyService,
-    ReferenceService,
-    ResourceService,
-  ) {
+  constructor($timeout, $translate, PolicyService, ResourceService) {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.PolicyService = PolicyService;
-    this.ResourceService = ResourceService;
+
+    /**
+     *
+     * @type {{
+     *   actions: Object[]
+     *   name: string
+     *   resources: Object[]
+     * }?}
+     */
+    this.deletion = null;
 
     /**
      * A set of parsed error classes returned by the api
@@ -42,6 +45,7 @@ export default class CreatePolicyController {
      * @type {Object}
      */
     this.model = {
+      actions: [],
       name: '',
       resources: [],
       resourceGroups: [],
@@ -57,19 +61,27 @@ export default class CreatePolicyController {
 
     /**
      * List of resource groups loaded by the oui-select
-     * @type {Object[]}
+     * @type {Object[]?}
      */
-    this.resourceGroups = [];
+    this.resourceGroups = null;
+
+    /**
+     * Keep a copy of previously added resource types
+     * So we can know witch resource type has been deleted during a change event
+     * @type {string}
+     */
+    this.resourceTypes = [];
 
     /**
      * Urls for the oui-select load options
      * @type {Object<string,string>}
      */
     this.url = {
-      resources: ResourceService.resourcesUrl,
       resourceGroups: ResourceService.resourceGroupsUrl,
-      resourceTypes: ReferenceService.resourceTypesUrl,
     };
+
+    // Can be passed as reference to a component
+    this.onResourceTypeDeleted = this.onResourceTypeDeleted.bind(this);
   }
 
   /**
@@ -81,24 +93,32 @@ export default class CreatePolicyController {
   }
 
   /**
+   * Returns a list of form controls with a $validators attribute
+   * E.g. instances of NgModelController
+   * @returns {Object[]}
+   */
+  get formControls() {
+    if (this.form) {
+      return this.form.$$controls.filter(({ $validators }) => !!$validators);
+    }
+    return [];
+  }
+
+  /**
    * Whether there is any error coming from the api
    * @type {boolean}
    */
   get hasAnyError() {
-    const errors = Object.values(this.error);
-    const onlySilentErrors = errors.every(({ silent }) => silent);
-    if (!errors.length || onlySilentErrors) {
-      return false;
-    }
-    return true;
+    return Object.values(this.error).length > 0;
   }
 
   /**
    * Whether the user has registered resource groups
+   * Default is true until the api respond
    * @returns {boolean}
    */
   get hasResourceGroups() {
-    return this.resourceGroups.length > 0;
+    return this.resourceGroups === null || this.resourceGroups.length > 0;
   }
 
   /**
@@ -125,18 +145,7 @@ export default class CreatePolicyController {
    * @returns {boolean}
    */
   get isResourceTypesRequired() {
-    return !this.model.resourceGroups || this.model.resourceGroups.length === 0;
-  }
-
-  /**
-   * Returns a list of form controls with a $validators attribute
-   * E.g. instances of NgModelController
-   * @returns {Object[]}
-   */
-  get formControls() {
-    return (
-      this.form?.$$controls.filter(({ $validators }) => !!$validators) || []
-    );
+    return !this.model.resourceGroups || !this.model.resourceGroups.length;
   }
 
   /**
@@ -152,7 +161,6 @@ export default class CreatePolicyController {
         resources: $t(`${pfx}_form_resources_heading`),
         resourceTypes: $t(`${pfx}_form_resource_types_heading`),
       },
-      noResources: $t(`${pfx}_error_no_resources`),
     };
   }
 
@@ -188,23 +196,10 @@ export default class CreatePolicyController {
    * @returns {Promise}
    */
   createPolicy() {
-    // >>> TO REMOVE >>>
-    // Needed to demonstrate the current state of this page
-    // Will be removed on next dev iteration
-    const data = {
-      identities: [],
-      permissions: { allow: [{ action: '*' }] },
-      resources: [
-        { urn: 'urn:v1:eu:resource:cdn:28dd67c9-1817-4c02-a3ab-76e96324b603' },
-      ],
-      name: this.model.name,
-    };
-    // <<< TO REMOVE <<<
-
     this.createSnapshot();
     this.isSubmitting = true;
 
-    return this.PolicyService.createPolicy(data)
+    return this.PolicyService.createPolicy(this.toAPI())
       .then(() => {
         this.error = {};
         return this.goBack({
@@ -224,6 +219,7 @@ export default class CreatePolicyController {
           return;
         }
 
+        this.error = {};
         this.onError(error);
       });
   }
@@ -237,6 +233,27 @@ export default class CreatePolicyController {
   }
 
   /**
+   * Called back each time a resource types is deleted using the iamDeleteEntity component
+   * @param {boolean} success
+   */
+  onResourceTypeDeleted({ success }) {
+    const { actions, name: resourceType, resources } = this.deletion;
+    this.deletion = null;
+
+    if (!success) {
+      this.model.resourceTypes = [...this.model.resourceTypes, resourceType];
+      this.resourceTypes = [...this.model.resourceTypes];
+      return;
+    }
+    this.model.actions = this.model.actions?.filter(
+      (action) => !actions.includes(action),
+    );
+    this.model.resources = this.model.resources?.filter(
+      (resource) => !resources.includes(resource),
+    );
+  }
+
+  /**
    * Global error handler
    * @param {Error} error
    */
@@ -246,36 +263,35 @@ export default class CreatePolicyController {
   }
 
   /**
-   * Called back each time the resources have been loaded
-   * @param {Object[]} data
-   */
-  onResourcesLoaded({ data: resources }) {
-    if (this.hasSelectedResourceTypes && !resources.length) {
-      this.createSnapshot();
-      this.error.resourceTypes = {
-        label: this.translations.noResources,
-        silent: true,
-      };
-    } else {
-      delete this.error.resourceTypes;
-    }
-
-    this.runValidation();
-  }
-
-  /**
    * Called back each time the resource types have changed
-   * Change the resources url to trigger a new load
+   * If a deletion is detected, ask the user for a confirmation
    */
-  onResourceTypesChanged() {
-    this.url.resources = [
-      this.ResourceService.resourcesUrl,
-      this.model.resourceTypes.map((item) => `resourceType=${item}`).join('&'),
-    ].join('?');
+  onResourceChanged(change) {
+    if (change.type === 'resourceTypes') {
+      const actionsToRemove = this.model.actions?.filter(
+        ({ action, resourceType }) =>
+          action !== '*' &&
+          resourceType !== 'custom' &&
+          !this.model.resourceTypes.includes(resourceType),
+      );
+      const resourcesToRemove = this.model.resources?.filter(
+        ({ type }) => !this.model.resourceTypes.includes(type),
+      );
 
-    this.model.resources = this.model.resources?.filter(({ type }) =>
-      this.model.resourceTypes.includes(type),
-    );
+      if (resourcesToRemove?.length || actionsToRemove?.length) {
+        this.deletion = {
+          // When oui-select triggers a change with an array as a value
+          // It is actually a deletion
+          name: this.resourceTypes
+            .filter((resourceType) => !change.value.includes(resourceType))
+            .pop(),
+          actions: actionsToRemove,
+          resources: resourcesToRemove,
+        };
+      }
+
+      this.resourceTypes = [...(this.model.resourceTypes || [])];
+    }
   }
 
   /**
@@ -290,5 +306,28 @@ export default class CreatePolicyController {
         control.$validate();
       });
     });
+  }
+
+  /**
+   * Transform the current model to an API compliant data
+   * @see {PolicyService#createPolicy}
+   * @returns {Object}
+   */
+  toAPI() {
+    return {
+      identities: [],
+      name: this.model.name,
+      permissions: {
+        allow: this.model.actions.map(({ action }) => ({ action })),
+      },
+      resources: [
+        ...new Map(
+          [
+            ...this.model.resources.map(({ urn }) => ({ urn })),
+            ...this.model.resourceGroups.map(({ urn }) => ({ urn })),
+          ].map((resource) => [resource.urn, resource]),
+        ).values(),
+      ],
+    };
   }
 }

@@ -1,4 +1,24 @@
 <div class="iam-create_policy">
+    <iam-delete-entity
+        data-ng-if="$ctrl.deletion"
+        data-entity="{ data: $ctrl.deletion, type: $root.IAM.ENTITY.RESOURCE_TYPE }"
+        data-statement="false"
+        data-go-back="$ctrl.onResourceTypeDeleted"
+    >
+        <strong
+            class="d-block"
+            data-ng-if="$ctrl.deletion.resources.length"
+            data-translate="iam_create_policy_deletion_resources_{{ $ctrl.deletion.resources.length > 1 ? 'many' : 'one' }}"
+            data-translate-values="{ count : $ctrl.deletion.resources.length }"
+        ></strong>
+        <strong
+            class="d-block"
+            data-ng-if="$ctrl.deletion.actions.length"
+            data-translate="iam_create_policy_deletion_actions_{{ $ctrl.deletion.actions.length > 1 ? 'many' : 'one' }}"
+            data-translate-values="{ count : $ctrl.deletion.actions.length }"
+        ></strong>
+    </iam-delete-entity>
+
     <oui-header
         data-heading="{{ 'iam_create_policy_header_heading' | translate }}"
         data-description="{{ 'iam_create_policy_header_description' | translate }}"
@@ -58,103 +78,91 @@
         </oui-field>
         <!-- </Name> -->
 
-        <!-- <ResourceTypes> -->
-        <h4 data-translate="iam_create_policy_form_resource_types_heading"></h4>
-        <p
-            data-translate="iam_create_policy_form_resource_types_description"
-        ></p>
-        <oui-field
-            data-label="{{:: 'iam_create_policy_form_resource_types_heading' | translate }}"
+        <!-- <Resource> -->
+        <iam-resource-select
+            data-on-change="$ctrl.onResourceChanged(change)"
+            data-on-error="$ctrl.onError(error)"
+            data-required="$ctrl.isResourceTypesRequired"
+            data-resources-label="{{:: 'iam_create_policy_form_resources_heading' | translate }}"
+            data-resources-model="$ctrl.model.resources"
+            data-resources-name="resources"
+            data-resources-required-message="{{:: 'iam_create_policy_form_resources_error_required' | translate }}"
+            data-resource-types-label="{{:: 'iam_create_policy_form_resource_types_heading' | translate }}"
+            data-resource-types-model="$ctrl.model.resourceTypes"
+            data-resource-types-name="resourceTypes"
             data-size="xl"
+        >
+            <resource-types-header>
+                <h4
+                    data-translate="iam_create_policy_form_resource_types_heading"
+                ></h4>
+                <p
+                    data-translate="iam_create_policy_form_resource_types_description"
+                ></p>
+            </resource-types-header>
+            <resources-header>
+                <h4
+                    data-translate="iam_create_policy_form_resources_heading"
+                ></h4>
+                <p
+                    data-translate="iam_create_policy_form_resources_description"
+                ></p>
+            </resources-header>
+        </iam-resource-select>
+        <!-- </Resource> -->
+
+        <!-- <ResourceGroups> -->
+        <oui-field
+            class="w-100"
+            data-ng-class="{ 'no-margin': !$ctrl.hasResourceGroups }"
+            data-size="xl"
+            data-label="{{:: 'iam_create_policy_form_resource_groups_heading' | translate }}"
             data-error-messages="{
-                api: $ctrl.error.resourceTypes.label,
-                required: ('iam_create_policy_form_resource_types_error_required' | translate)
+                required: ('iam_create_policy_form_resources_error_required' | translate),
             }"
         >
             <oui-select
-                class="w-100"
-                data-load="{{:: $ctrl.url.resourceTypes }}"
+                data-disabled="!$ctrl.hasResourceGroups"
+                data-load="{{:: $ctrl.url.resourceGroups }}"
                 data-load-options="{ global: { serviceType: 'apiv2' } }"
-                data-model="$ctrl.model.resourceTypes"
+                data-match="name"
+                data-model="$ctrl.model.resourceGroups"
                 data-multiple="true"
-                data-name="resourceTypes"
-                data-on-change="$ctrl.onResourceTypesChanged(modelValue)"
+                data-name="resourceGroups"
+                data-on-load="$ctrl.resourceGroups = response.data"
                 data-on-error="$ctrl.onError(error)"
-                data-required="$ctrl.isResourceTypesRequired"
+                data-required="!$ctrl.hasSelectedResources"
             ></oui-select>
         </oui-field>
-        <!-- </ResourceTypes> -->
+        <oui-message
+            class="mt-2"
+            data-type="info"
+            data-ng-if="!$ctrl.hasResourceGroups"
+        >
+            <p data-translate="iam_create_policy_form_resource_groups_info"></p>
+            <a
+                class="oui-link"
+                data-ui-sref="$root.IAM.ROUTE.CREATE_RESOURCE_GROUP"
+                data-translate="iam_create_policy_form_resource_groups_create"
+            ></a>
+        </oui-message>
+        <!-- </ResourceGroups> -->
 
-        <h4 data-translate="iam_create_policy_form_resources_heading"></h4>
-        <p data-translate="iam_create_policy_form_resources_description"></p>
-
-        <div class="d-flex flex-column">
-            <!-- <Resources> -->
-            <oui-field
-                data-label="{{:: 'iam_create_policy_form_resources_heading' | translate }}"
-                data-size="xl"
-                data-error-messages="{
-                    required: ('iam_create_policy_form_resources_error_required' | translate)
-                }"
-            >
-                <oui-select
-                    class="w-100"
-                    data-disabled="!$ctrl.hasSelectedResourceTypes || $ctrl.error.resourceTypes"
-                    data-load="{{ $ctrl.hasSelectedResourceTypes ? $ctrl.url.resources : '' }}"
-                    data-load-options="{ global: { serviceType: 'apiv2' } }"
-                    data-match="displayName"
-                    data-model="$ctrl.model.resources"
-                    data-multiple="true"
-                    data-name="resources"
-                    data-on-load="$ctrl.onResourcesLoaded(response)"
-                    data-on-error="$ctrl.onError(error)"
-                    data-required="$ctrl.hasSelectedResourceTypes"
-                ></oui-select>
-            </oui-field>
-            <!-- </Resources> -->
-
-            <!-- <ResourceGroups> -->
-            <oui-field
-                class="w-100"
-                data-ng-class="{ 'no-margin': !$ctrl.hasResourceGroups }"
-                data-size="xl"
-                data-label="{{:: 'iam_create_policy_form_resource_groups_heading' | translate }}"
-                data-error-messages="{
-                    required: ('iam_create_policy_form_resources_error_required' | translate),
-                }"
-            >
-                <oui-select
-                    data-disabled="!$ctrl.hasResourceGroups"
-                    data-load="{{:: $ctrl.url.resourceGroups }}"
-                    data-load-options="{ global: { serviceType: 'apiv2' } }"
-                    data-match="name"
-                    data-model="$ctrl.model.resourceGroups"
-                    data-multiple="true"
-                    data-name="resourceGroups"
-                    data-on-load="$ctrl.resourceGroups = response.data"
-                    data-on-error="$ctrl.onError(error)"
-                    data-required="!$ctrl.hasSelectedResources"
-                ></oui-select>
-            </oui-field>
-            <oui-message
-                class="mt-2"
-                data-type="info"
-                data-ng-if="!$ctrl.hasResourceGroups"
-            >
-                <p
-                    data-translate="iam_create_policy_form_resource_groups_info"
-                ></p>
-                <a
-                    class="oui-link"
-                    data-ui-sref="$root.IAM.ROUTE.CREATE_RESOURCE_GROUP"
-                    data-translate="iam_create_policy_form_resource_groups_create"
-                ></a>
-            </oui-message>
-            <!-- </ResourceGroups> -->
-        </div>
+        <!-- <Actions> -->
+        <h4 data-translate="iam_create_policy_form_actions_heading"></h4>
+        <p data-translate="iam_create_policy_form_actions_description"></p>
+        <iam-action-select
+            data-error="$ctrl.onError(error)"
+            data-load="$ctrl.onActionsLoaded(actions)"
+            data-name="actions"
+            data-ng-model="$ctrl.model.actions"
+            data-resource-types="$ctrl.model.resourceTypes"
+            data-required
+        ></iam-action-select>
+        <!-- </Actions> -->
 
         <!-- <Footer> -->
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center mb-5">
             <button
                 type="button"
                 class="oui-button oui-button_l oui-button_link mr-3"
