@@ -1,4 +1,5 @@
 const ENDPOINT = {
+  action: 'reference/action',
   resourceType: 'reference/resource/type',
 };
 
@@ -15,8 +16,21 @@ export default class ReferenceService {
   }
 
   /**
+   * Get the list of actions given the types
+   * @param {string[]?} types
+   * @returns {Promise}
+   */
+  getActions(types) {
+    const params = {
+      ...(types && { resourceType: types }),
+    };
+    return this.Apiv2Service.get(ENDPOINT.action, { params }).then(
+      ({ data: actions }) => actions,
+    );
+  }
+
+  /**
    * Get the list of resource types
-   * @see Apiv2Service#get
    * @returns {Promise}
    */
   getResourceTypes() {

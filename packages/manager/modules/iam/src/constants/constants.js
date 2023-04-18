@@ -12,6 +12,8 @@ const API_ERROR = {
   },
 };
 
+const CUSTOM_RESOURCE_TYPE = 'custom';
+
 const DELETE_STATEMENT = 'Terminate';
 
 const FEATURE = {
@@ -22,6 +24,7 @@ const ENTITY = {
   POLICY: 'policy',
   IDENTITY: 'identity',
   RESOURCE_GROUP: 'resourceGroup',
+  RESOURCE_TYPE: 'resourceType',
 };
 const URN_VERSION = 1;
 
@@ -75,6 +78,7 @@ const UNAVAILABLE_STATE_NAME = 'app.account.user';
 export {
   ALERT_ID,
   API_ERROR,
+  CUSTOM_RESOURCE_TYPE,
   DELETE_STATEMENT,
   ENTITY,
   ENTITY_NAME_PATTERN,
