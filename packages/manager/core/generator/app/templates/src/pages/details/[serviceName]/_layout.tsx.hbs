@@ -1,10 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink, Outlet, useParams, useResolvedPath } from 'react-router-dom';
-
-import Breadcrumb, {
-  BreadcrumbHandleParams,
-} from '@ovh-ux/manager-react-breadcrumb';
+import Breadcrumb, {BreadcrumbHandleParams} from '../../../components/Breadcrumb';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;
