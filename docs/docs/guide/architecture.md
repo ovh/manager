@@ -72,7 +72,7 @@ The philosophy behind this, is not to be tied to a single framework and big mono
 
 The standalone application is loaded inside an `iframe`. The iframe communicates with the container through [`window.postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) API. You don't have to worry about this part, since the library `@ovh-ux/shell` handles all this part for you, by exposing a set of plugins that you can use to communicate between a standalone application and the container.
 
-Each app has to instantiate a `ShellClient` through the `useShellClient` method. This will allow the application to have access to the shell plugins and can use them for `environnement`, `navigation` etc. ( Check the shell library for more information on the subject ).
+Each app has to instantiate a `ShellClient` through the `initShellClient` method. This will allow the application to have access to the shell plugins and can use them for `environnement`, `navigation` etc. ( Check the shell library for more information on the subject ).
 
 Once the shell is instantiated, it will enable communication between the `container` and the app through a message bus.
 

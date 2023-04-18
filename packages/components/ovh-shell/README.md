@@ -57,10 +57,10 @@ In a nutshell, the client side is a simplified version of the core side, that is
 
 ## Shell initialization
 
-To init the shell, you have to import the method `useShellClient`.
+To init the shell, you have to import the method `initShellClient`.
 
 ```ts
-import { useShellClient } from '@ovh-ux/shell';
+import { initShellClient } from '@ovh-ux/shell';
 ```
 
 By passing an app name to this method, you will have access to the shell plugins.
@@ -68,14 +68,14 @@ By passing an app name to this method, you will have access to the shell plugins
 _Example_:
 
 ```ts
-import { useShellClient } from '@ovh-ux/shell';
+import { initShellClient } from '@ovh-ux/shell';
 
-useShellClient('myAwesomeApp').then((shell: Shell) => {
+initShellClient('myAwesomeApp').then((shell: Shell) => {
   // Do stuff with shell
 })
 
 // You can also do this:
-const shell: Shell = await useShellClient('myAwesomeApp');
+const shell: Shell = await initShellClient('myAwesomeApp');
 
 // Do stuff with shell
 
