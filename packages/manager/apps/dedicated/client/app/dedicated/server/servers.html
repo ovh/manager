@@ -15,14 +15,14 @@
     >
         <oui-datagrid-column
             data-title=":: 'dedicated_servers_name' | translate"
-            data-property="name"
+            data-property="displayName"
             data-searchable
             data-filterable
             data-sortable
             data-type="string"
         >
             <a data-ng-href="{{ $ctrl.getServerDashboardLink($row) }}"
-                >{{$value}}</a
+                >{{ $row.displayName }}</a
             >
         </oui-datagrid-column>
         <oui-datagrid-column

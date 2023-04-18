@@ -58,6 +58,13 @@ export default /* @ngInject */ ($stateProvider) => {
           .query()
           .expand('CachedObjectList-Pages')
           .execute(null, true).$promise,
+      services: /* @ngInject */ ($http) => {
+        return $http
+          .get('/service?external=false&type=/dedicated/server', {
+            serviceType: 'aapi',
+          })
+          .then(({ data }) => data);
+      },
       dedicatedServers: /* @ngInject */ ($transition$, iceberg) => {
         const { filter, pageSize, sort, sortOrder } = $transition$.params();
         let { page } = $transition$.params();

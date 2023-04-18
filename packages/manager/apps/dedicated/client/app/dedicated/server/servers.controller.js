@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
+import groupBy from 'lodash/groupBy';
 
 export default class ServersCtrl {
   /* @ngInject */
@@ -91,11 +92,25 @@ export default class ServersCtrl {
         : this.paginationTotalCount,
     );
 
-    return this.$q.resolve({
-      data: get(this.dedicatedServers, 'data'),
-      meta: {
-        totalCount: this.paginationTotalCount,
-      },
+    return this.$q
+      .resolve({
+        data: get(this.dedicatedServers, 'data'),
+        meta: {
+          totalCount: this.paginationTotalCount,
+        },
+      })
+      .then(({ meta, data }) => {
+        return { meta, data: this.completeServerData(data) };
+      });
+  }
+
+  completeServerData(servers) {
+    const gServices = groupBy(this.services, 'serviceName');
+    return servers.map((server) => {
+      return {
+        ...server,
+        displayName: gServices[server.name]?.[0]?.displayName || server.name,
+      };
     });
   }
 
