@@ -28,5 +28,5 @@
   "data_processing_details_charts_blockmanager_disk": "Wykorzystanie dysku Blockmanager w ciągu ostatnich 5 minut",
   "data_processing_details_configuration_python_file_label": "Plik Python",
   "data_processing_details_information_return_code_label": "Kod zwrotny",
-  "data_processing_details_information_notebook_name_label": "Notebooks"
+  "data_processing_details_information_notebook_name_label": "Notebook"
 }

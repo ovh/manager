@@ -190,7 +190,7 @@
   "telecom_pack_migration_fake_meeting": "None of these dates are convenient for me — I would like to be contacted to arrange another time slot with a technician.",
   "telecom_pack_migration_no_fake_meeting": "Choose a meeting schedule.",
   "telecom_pack_migration_programmed_meeting_select": "Please choose the time slot for installing your line.",
-  "telecom_pack_migration_programmed_meeting": "An appointment is scheduled on {{day}} between {{start}} and {{end}}.",
+  "telecom_pack_migration_programmed_meeting": "A time slot is scheduled on {{ day }} between {{ start }} and {{ end }}.",
   "telecom_pack_migration_contact_name": "Contact number to send to technician",
   "telecom_pack_migration_no_erdv_info": "A technician will contact you as soon as possible to arrange an intervention date for your site.",
   "telecom_pack_migration_contact_name_info": "Please provide us with the name of the person who can meet the technician on the date of the appointment.",

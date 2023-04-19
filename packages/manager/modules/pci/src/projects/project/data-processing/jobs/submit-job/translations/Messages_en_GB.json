@@ -8,7 +8,7 @@
   "data_processing_submit_job_stepper_sizing_title": "Job sizing",
   "data_processing_submit_job_stepper_configure_title": "Configure your job",
   "data_processing_submit_job_stepper_submit_error_title": "An error has occurred",
-  "data_processing_submit_job_button_label": "Submit job",
+  "data_processing_submit_job_button_label": "Start job",
   "data_processing_submit_job_spinner_label": "launching...",
   "data_processing_submit_job_error_label": "An error has occurred - unable to start your job for now.",
   "data_processing_submit_job_error_message_odp_job_engine_unsupportedValue": "Entry error: The requested job type is not supported",
