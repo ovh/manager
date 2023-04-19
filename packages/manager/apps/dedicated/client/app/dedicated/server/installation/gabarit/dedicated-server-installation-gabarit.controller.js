@@ -43,7 +43,6 @@ angular
           postInstallationScriptReturn: null,
           sshKeyName: null,
           useDistributionKernel: false,
-          installSqlServer: false,
           useSpla: false,
           validForm: true,
         },
@@ -161,7 +160,6 @@ angular
           sshKeyName: $scope.installation.selectGabarit.sshKeyName,
           useDistributionKernel:
             $scope.installation.selectGabarit.useDistributionKernel,
-          installSqlServer: false,
           useSpla: false,
           validForm: true,
         };
@@ -292,7 +290,6 @@ angular
           {
             language: camelCase($scope.installation.selectLanguage),
             customHostname: $scope.installation.options.customHostname,
-            installSqlServer: $scope.installation.options.installSqlServer,
             postInstallationScriptLink:
               $scope.installation.options.postInstallationScriptLink,
             postInstallationScriptReturn:
@@ -407,8 +404,8 @@ angular
         return `
         ${$translate.instant(
           'dedicated_servers_installation_template_wizard_prefix_message',
-        )}     
-        ${$filter('date')(gabarit.endOfInstall, 'mediumDate')}        
+        )}
+        ${$filter('date')(gabarit.endOfInstall, 'mediumDate')}
         ${$translate.instant(
           'dedicated_servers_installation_customer_template_wizard_message',
           {

@@ -306,6 +306,41 @@
             </div>
         </div>
 
+        <div data-ng-if="$ctrl.offer.selected.isOfferFTTH">
+            <p
+                class="mb-3 font-weight-bold"
+                data-translate="pack_move_contract_action_create"
+            ></p>
+            <div class="ml-3">
+                <strong
+                    data-ng-bind=":: $ctrl.offer.selected.address.streetNumber"
+                ></strong>
+                <strong
+                    data-ng-bind=":: $ctrl.offer.selected.address.streetName"
+                ></strong>
+            </div>
+            <div class="ml-3 mb-3">
+                <strong
+                    data-ng-bind=":: $ctrl.offer.selected.address.zipCode"
+                ></strong>
+                <strong
+                    data-ng-bind=":: $ctrl.offer.selected.address.city"
+                ></strong>
+            </div>
+            <div>
+                <p
+                    class="mb-3 font-weight-bold"
+                    data-ng-if="$ctrl.offer.selected.meetingSlots.fakeMeeting"
+                    data-translate="pack_move_contract_meeting_contact"
+                ></p>
+                <p
+                    class="mb-3 font-weight-bold"
+                    data-ng-if="!$ctrl.offer.selected.meetingSlots.fakeMeeting"
+                    data-ng-bind="$ctrl.getMeeting()"
+                ></p>
+            </div>
+        </div>
+
         <div class="widget-presentation">
             <h2
                 class="widget-presentation-title"

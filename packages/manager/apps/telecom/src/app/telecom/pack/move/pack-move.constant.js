@@ -43,6 +43,8 @@ const MODEM_LIST = ['yes', 'recycled'];
 
 const MODEM_OPTION_NAME = 'modem';
 
+const OFFER_TYPE_XDSL = 'xdsl';
+
 export {
   ELIGIBILITY_LINE_STATUS,
   LINE_STATUS,
@@ -52,4 +54,5 @@ export {
   PROMO_DISPLAY,
   MODEM_LIST,
   MODEM_OPTION_NAME,
+  OFFER_TYPE_XDSL,
 };

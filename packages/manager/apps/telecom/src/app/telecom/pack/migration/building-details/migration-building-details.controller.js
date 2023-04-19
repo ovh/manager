@@ -92,6 +92,8 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
       this.process.currentStep = 'serviceDelete';
     } else if (this.process.selectedOffer.needNewModem) {
       this.process.currentStep = 'shipping';
+    } else if (this.process.selectedOffer.needMeeting) {
+      this.process.currentStep = 'meeting';
     } else {
       this.process.currentStep = 'confirm';
     }
