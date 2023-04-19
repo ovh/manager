@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.12...@ovh-ux/manager-billing@0.20.0-alpha.13) (2023-04-19)
+
+
+### Features
+
+* **pci.data-processing:** adding spark notebooks ([#9127](https://github.com/ovh/manager/issues/9127)) ([d7b3aaf](https://github.com/ovh/manager/commit/d7b3aaf10a002a5b40739c25459d262927623bd1))
+
+
+
+
+
 # [0.20.0-alpha.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.11...@ovh-ux/manager-billing@0.20.0-alpha.12) (2023-04-11)
 
 

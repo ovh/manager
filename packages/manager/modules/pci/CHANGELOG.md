@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.121.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.120.1...@ovh-ux/manager-pci@5.121.0) (2023-04-19)
+
+
+### Features
+
+* **pci.data-processing:** adding spark notebooks ([#9127](https://github.com/ovh/manager/issues/9127)) ([d7b3aaf](https://github.com/ovh/manager/commit/d7b3aaf10a002a5b40739c25459d262927623bd1))
+
+
+
+
+
 ## [5.120.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.120.0...@ovh-ux/manager-pci@5.120.1) (2023-04-11)
 
 
