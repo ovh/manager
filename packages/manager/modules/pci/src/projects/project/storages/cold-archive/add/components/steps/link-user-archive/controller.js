@@ -66,7 +66,7 @@ export default class ColdArchiveLinkUserArchiveController {
       .then((usersWithCredentials) => {
         this.usersCredentials = usersWithCredentials.map((user) => {
           const updatedUser = user;
-          [updatedUser.s3Credentials] = user.s3Credentials;
+          updatedUser.s3Credentials = user.s3Credentials;
           updatedUser.credentialTrad = this.getCredentialTranslation(user);
           updatedUser.userNameDescriptionKey = user.description
             ? `${user.username} - ${user.description}`

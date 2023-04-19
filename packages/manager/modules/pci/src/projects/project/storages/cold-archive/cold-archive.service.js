@@ -64,7 +64,7 @@ export default class PciStoragesColdArchiveService {
       this.getS3Credentials(projectId, user.id)
         .then((data) => ({
           ...user,
-          s3Credentials: data,
+          s3Credentials: data?.[0],
         }))
         .catch(() => null),
     );
