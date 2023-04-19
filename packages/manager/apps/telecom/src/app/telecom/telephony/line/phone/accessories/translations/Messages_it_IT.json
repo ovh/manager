@@ -30,5 +30,15 @@
   "telephony_line_phone_accessories_finalize_error": "Ops! Si è verificato un errore durante la creazione del tuo buono d'ordine.",
   "telephony_line_phone_accessories_finalize_order_id": "N° del buono d'ordine:",
   "telephony_line_phone_accessories_finalize_order_total_ht": "Importo +IVA:",
-  "telephony_line_phone_accessories_finalize_order_total_ttc": "Importo IVA incl.:"
+  "telephony_line_phone_accessories_finalize_order_total_ttc": "Importo IVA incl.:",
+  "telephony_line_phone_accessories_resume_subtitle": "Il tuo ordine",
+  "telephony_line_phone_accessories_filter_price": "Prezzo",
+  "telephony_line_phone_accessories_filter_price_asc": "Visualizzazione dal - caro al + caro",
+  "telephony_line_phone_accessories_filter_price_desc": "Visualizzazione del + caro a - costo",
+  "telephony_line_phone_accessories_filter_compatibility": "Compatibilità",
+  "telephony_line_phone_accessories_filter_compatibility_all": "Visualizza tutto",
+  "telephony_line_phone_accessories_filter_compatibility_compatible": "Con i miei telefoni",
+  "telephony_line_phone_accessories_detail_link": "Scheda tecnica",
+  "ovh_contracts_agree": "Riconosco di aver preso visione dei contratti di cui sopra.",
+  "telephony_line_phone_accessories_max_order": "Non è possibile ordinare più di 5 accessori identici."
 }

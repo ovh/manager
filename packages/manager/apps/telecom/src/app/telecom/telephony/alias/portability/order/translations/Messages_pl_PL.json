@@ -78,5 +78,21 @@
   "telephony_alias_portability_order_step_2": "Informacje",
   "telephony_alias_portability_order_step_3": "Configuration du numéro",
   "telephony_alias_portability_order_step_4": "Finalisation",
-  "telephony_alias_portability_order_number_category": "Catégorie du numéro spécial"
+  "telephony_alias_portability_order_number_category": "Catégorie du numéro spécial",
+  "telephony_order_specific_typology_error": "Wystąpił błąd podczas pobierania danych.",
+  "telephony_order_specific_typology_access_label": "Usługi wystawiające kody dostępu",
+  "telephony_order_specific_typology_adults_label": "Zawartość dla dorosłych",
+  "telephony_order_specific_typology_announced_label": "Ogłoszenia",
+  "telephony_order_specific_typology_conferencing_label": "Telefonia/telekonferencja",
+  "telephony_order_specific_typology_contentsAuto_label": "Edycja zautomatyzowanych treści",
+  "telephony_order_specific_typology_contentsManual_label": "Edycja treści usług świadczonych przez wykwalifikowane osoby fizyczne",
+  "telephony_order_specific_typology_games_label": "Gry",
+  "telephony_order_specific_typology_linking_label": "Usługi związane",
+  "telephony_order_specific_typology_m2m_label": "Usługi związane z maszynami",
+  "telephony_order_specific_typology_relationship_label": "Kontakt z klientem firmy / administracji / stowarzyszenia",
+  "telephony_order_specific_typology_content_label": "Dzwonki, logo",
+  "telephony_order_specific_typology_general_label": "Skrzynka główna",
+  "telephony_order_specific_typology_relaxing_label": "Usługi rozluźniania",
+  "telephony_alias_portability_order_sda_sva_warning": "W przypadku przeniesienia numeru specjalnego należy wypełnić formularz potwierdzający tożsamość.",
+  "telephony_alias_portability_order_sda_sva_go_to_kyc": "Sprawdź tożsamość"
 }

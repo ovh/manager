@@ -92,5 +92,7 @@
   "telephony_order_specific_typology_relationship_label": "Rapporto azienda-cliente/amministrazione/associazione",
   "telephony_order_specific_typology_content_label": "Suonerie, loghi",
   "telephony_order_specific_typology_general_label": "Generale",
-  "telephony_order_specific_typology_relaxing_label": "Servizi ricreativi"
+  "telephony_order_specific_typology_relaxing_label": "Servizi ricreativi",
+  "telephony_alias_portability_order_sda_sva_warning": "Per la portabilità di un numero speciale, è necessario compilare il modulo di convalida dell'identità.",
+  "telephony_alias_portability_order_sda_sva_go_to_kyc": "Verifica l'identità"
 }

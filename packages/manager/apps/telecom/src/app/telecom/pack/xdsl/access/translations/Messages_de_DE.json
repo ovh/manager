@@ -103,5 +103,17 @@
   "xdsl_access_amount_download": "Download-Volumen im Monat",
   "xdsl_access_amount_upload": "Upload-Volumen im Monat",
   "xdsl_details_action": "Aktionen",
-  "xdsl_details_transfert": "Mein Angebot bearbeiten"
+  "xdsl_details_transfert": "Mein Angebot bearbeiten",
+  "xdsl_details_diagnostic_known_incident": "Wir haben eine Störung auf Ihrer Leitung festgestellt und unternehmen alles, um Ihre Verbindung wiederherzustellen. Wir bitten Sie um Entschuldigung für die entstandenen Unannehmlichkeiten.",
+  "xdsl_details_diagnostic_known_incident_details": "Weitere Informationen zu dieser Störung finden Sie über folgenden Link:",
+  "xdsl_details_diagnostic_get_incident_error": "Beim Abruf der Informationen zu den Störungen ist ein Fehler aufgetreten.",
+  "xdsl_modem_comfort_exchange_subtitle": "Austausch eines Komfortmodems",
+  "xdsl_modem_exchange": "Mein Modem austauschen",
+  "xdsl_modem_exchange_title": "Tauschen",
+  "xdsl_modem_comfort_exchange_description_part1": "Sie können Ihr existierendes Modem auf ein {{ newModel }} Modem ändern.",
+  "xdsl_modem_comfort_exchange_description_part2": "Die Kosten für den Austausch belaufen sich auf {{ priceHT }} € ohne MwSt ({{ priceTTC }} € inkl. MwSt).",
+  "xdsl_modem_comfort_exchange_description_part3": "Das neue Modem wird automatisch an die Anschlussadresse versandt.",
+  "xdsl_modem_comfort_exchange_already_opened_rma": "Es wird bereits eine Anfrage zum Austausch von Hardware gestellt.",
+  "xdsl_modem_comfort_exchange_already_last_model": "Sie haben bereits das letzte Modem-Modell.",
+  "xdsl_modem_comfort_exchange_not_replace_modem_sdsl": "Es ist nicht möglich, dieses Modem für einen SDSL Zugang zu ersetzen."
 }

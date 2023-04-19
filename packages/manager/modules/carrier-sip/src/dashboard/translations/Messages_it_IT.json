@@ -18,5 +18,7 @@
   "carrier_sip_dashboard_renewal_contacts_manage": "Gestisci i contatti",
   "carrier_sip_dashboard_shortcuts": "Scelta rapida",
   "carrier_sip_dashboard_shortcuts_bills": "Dettagli dei consumi",
-  "carrier_sip_dashboard_shortcuts_cdrs": "Disponibiltà dei CDR"
+  "carrier_sip_dashboard_shortcuts_cdrs": "Disponibiltà dei CDR",
+  "carrier_sip_dashboard_network": "Rete",
+  "carrier_sip_dashboard_network_ip_media": "IP Media"
 }

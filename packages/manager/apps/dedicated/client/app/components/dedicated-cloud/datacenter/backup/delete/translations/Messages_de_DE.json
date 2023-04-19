@@ -5,5 +5,6 @@
   "dedicatedCloud_datacenter_backup_delete_cancel": "Abbrechen",
   "dedicatedCloud_datacenter_backup_delete_confirm": "Backup deaktivieren",
   "dedicatedCloud_datacenter_backup_delete_success": "Die Anfrage zur Deaktivierung Ihres Veeam Backup Angebots {{name}} wird bearbeitet. Dieser Vorgang dauert 24 Stunden.",
-  "dedicatedCloud_datacenter_backup_delete_error": "Bei der Deaktivierung Ihres Backup-Dienstes ist ein Fehler aufgetreten: {{ message }}"
+  "dedicatedCloud_datacenter_backup_delete_error": "Bei der Deaktivierung Ihres Backup-Dienstes ist ein Fehler aufgetreten: {{ message }}",
+  "dedicatedCloud_datacenter_backup_delete_error_403": "Bei der Deaktivierung Ihres Backup-Dienstes ist ein Fehler aufgetreten: {{ message }} Bitte kontaktieren Sie unser Support-Team, um das Problem zu lösen."
 }

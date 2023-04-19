@@ -1,0 +1,9 @@
+{
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_title": "Conferma le tue informazioni",
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_message": "Stai per confermare le informazioni necessarie per completare il tuo modulo di iscrizione.",
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_alert": "Una volta convalidate le informazioni e i documenti, la loro verifica richiede da 24 a 48 ore.",
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_label": "Inserisci \"{{ confirmationCode }}\" per confermare la tua scelta",
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_code": "CONFERMARE",
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_submit_label": "Conferma le tue informazioni",
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_cancel_label": "Annullare"
+}

@@ -1,0 +1,12 @@
+{
+  "portabilities_attach_title": "Associar o meu mandato de portabilidade",
+  "portabilities_attach_action": "Ficheiro de portabilidade",
+  "portabilities_attach_invalid_format": "Formato do ficheiro inválido",
+  "portabilities_attach_file_format": "Tamanho máximo: 10MB, formato autorizado: PDF",
+  "portabilities_attach_processing": "Associação do mandato de portabilidade em curso",
+  "portabilities_attach_document_processing": "Associação do documento em curso",
+  "portabilities_attach_document_succeed": "O apego do documento foi efetuado com sucesso.",
+  "portabilities_attach_document_failed": "A ligação do documento falhou.",
+  "portabilities_attach_submit": "Validar",
+  "portabilities_attach_cancel": "Anular"
+}

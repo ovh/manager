@@ -110,5 +110,7 @@
   "microsoft_office_license_user_edit": "Edytuj użytkownika",
   "microsoft_office_license_edit_user_confirm": "Następujący użytkownik zostanie zmodyfikowany:",
   "microsoft_office_license_detail_user_edit_success": "Dla użytkownika zostały wprowadzone zmiany.",
-  "microsoft_office_license_detail_user_edit_error": "Wystąpił błąd podczas edycji użytkownika."
+  "microsoft_office_license_detail_user_edit_error": "Wystąpił błąd podczas edycji użytkownika.",
+  "microsoft_office_license_microsoft-365-apps-for-business-pp-nce": "Microsoft Office 365 Apps for Business",
+  "microsoft_office_license_microsoft-365-apps-for-enterprise-pp-nce": "Microsoft Office 365 Apps for Enterprise"
 }

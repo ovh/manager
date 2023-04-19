@@ -71,5 +71,19 @@
   "overTheBox_expiration_warning_help": "Możesz anulować rezygnację przed datą wygaśnięcia.",
   "overTheBox_detail_link_guide": "Przewodniki",
   "overthebox_detail_links": "Pomocne linki",
-  "overTheBox_service_id": "Identyfikator usługi:"
+  "overTheBox_service_id": "Identyfikator usługi:",
+  "overTheBox_release_channels": "Dostępne wersje",
+  "overTheBox_change_release_channel_success": "Zmiana wersji została wykonana.",
+  "overTheBox_change_release_channel_error": "Nie mogliśmy zmienić wersji: {{errorMessage}}",
+  "overTheBox_release_channel_stable": "Stabilna wersja publiczna",
+  "overTheBox_release_channel_testing": "Wersja beta",
+  "overTheBox_release_channel_unstable": "Wersja alfa",
+  "overTheBox_release_channel_develop": "Wersja do programowania",
+  "overTheBox_release_channel_rpi3": "Wersja dla Raspberry 3",
+  "overTheBox_version_device": "Wersja sprzętu",
+  "overTheBox_version_system": "Wersja systemu",
+  "overTheBox_last_seen": "Ostatni dostęp do sprzętu z serwerów programowania",
+  "overTheBox_last_seen_few_seconds": "Kilka sekund temu",
+  "overTheBox_last_seen_minutes_ago": "Około {{lastSeenDiff}}",
+  "overTheBox_reverse_dns": "Rewers DNS"
 }

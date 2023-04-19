@@ -34,5 +34,9 @@
   "telecom_dashboard_auth_failed": "Impossible de récupérer les informations de l'utilisateur.",
   "telecom_dashboard_express_lite_desc": "Express Lite comprend donc un modem offrant un accès à internet et une ligne VoIP pour <span class=\"ad-price font-weight-bold fs14\">22,99€ HT</span> / mois.",
   "telecom_dashboard_express_lite_title": "OVH lance une nouvelle offre de connexion ADSL et VDSL incluant l'essentiel.",
-  "telecom_dashboard_discover": "Découvrir l'offre"
+  "telecom_dashboard_discover": "Découvrir l'offre",
+  "telecom_dashboard_common_vip": "Estado VIP",
+  "telecom_dashboard_common_newtab": "(novo separador)",
+  "telecom_dashboard_identity_check_message_info": "Não se esqueça de validar o ID de telefone.",
+  "telecom_dashboard_identity_check_message_link": "Ligação para o formulário"
 }

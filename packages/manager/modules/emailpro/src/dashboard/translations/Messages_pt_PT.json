@@ -864,5 +864,6 @@
   "emailpro_resilitation_cancel_action_intro_3": "O serviço passará a renovação automática.",
   "emailpro_resilitation_cancel_action_confirmation_1": "Está prestes a anular o cancelamento do serviço \"{0}\".",
   "emailpro_resilitation_cancel_action_confirmation_2": "Deseja proceder a esta operação?",
-  "emailpro_resilitation_cancel_action_confirmation_3": "O serviço passará a renovação automática."
+  "emailpro_resilitation_cancel_action_confirmation_3": "O serviço passará a renovação automática.",
+  "emailpro_GROUPS_partial_account": "Ocorreu um erro aquando do carregamento: {0}"
 }

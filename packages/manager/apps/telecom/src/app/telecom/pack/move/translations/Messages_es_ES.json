@@ -289,5 +289,7 @@
   "pack_move_gtr_5m_10ho": "GTR 10HO &amp; OPTION CONFORT 5M ({{ price }}/mes + IVA)",
   "pack_move_gtr_20m_4ho": "GTR 4HO &amp; OPTION CONFORT 20M ({{ price }}/mes + IVA)",
   "pack_move_gtr_20m_10ho": "GTR 10HO &amp; OPTION CONFORT 20M ({{ price }}/mes + IVA)",
-  "pack_move_no_gtr": "Sin GTR"
+  "pack_move_no_gtr": "Sin GTR",
+  "pack_move_promotion_description": "Promoción disponible hasta el {{ endDate }}",
+  "pack_move_promotion_subscription_months_offered": "{{ duration }} meses gratis"
 }
