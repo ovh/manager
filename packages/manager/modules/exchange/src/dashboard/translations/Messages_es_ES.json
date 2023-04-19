@@ -1623,5 +1623,17 @@
   "exchange_reset_mfa_success": "Se ha reiniciado la doble autenticación.",
   "exchange_mfa_error": "Se ha producido un error: {{error}}",
   "exchange_delete_mfa_success": "Se ha eliminado la doble autenticación.",
-  "exchange_delete_mfa_error": "Se ha producido un error al eliminar la doble autenticación: {{error}}"
+  "exchange_delete_mfa_error": "Se ha producido un error al eliminar la doble autenticación: {{error}}",
+  "exchange_resilitation_action_intro_1": "¿Seguro que quiere dar de baja el servicio Exchange «{0}»?",
+  "exchange_resilitation_action_intro_2": "Esta acción cancelará la renovación automática al finalizar el período de expiración, por lo que el servicio se bloqueará.",
+  "exchange_resilitation_action_intro_3": "Podrá utilizar el servicio con normalidad hasta esa fecha.",
+  "exchange_resilitation_action_confirmation_1": "Atención: va a dar de baja todo el servicio «{0}», así como las {1} cuentas Exchange asociadas a él.",
+  "exchange_resilitation_action_confirmation_2": "¿Seguro que quiere realizar esta operación?",
+  "exchange_resilitation_cancel_action_intro_1": "La baja del servicio Exchange «{0}» está programada para la fecha de expiración.",
+  "exchange_resilitation_cancel_action_intro_2": "¿Seguro que quiere cancelar dicha baja? En ese caso, el servicio pasará a renovación automática.",
+  "exchange_resilitation_cancel_action_confirmation_1": "Va a cancelar la baja del servicio «{0}».",
+  "exchange_resilitation_cancel_action_confirmation_2": "¿Quiere realizar dicha operación?",
+  "exchange_resilitation_cancel_action_confirmation_3": "En ese caso, el servicio pasará a renovación automática.",
+  "exchange_update_billing_periode_intro_1": "Elija la frecuencia para la renovación automática de cada cuenta.",
+  "exchange_update_billing_periode_intro_2": "Se aplicará a partir de la siguiente renovación."
 }

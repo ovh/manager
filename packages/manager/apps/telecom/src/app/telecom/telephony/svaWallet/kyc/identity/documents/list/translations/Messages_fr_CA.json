@@ -3,7 +3,6 @@
   "telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_title": "Télécharger un document",
   "telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_submit_label": "Valider le document",
   "telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_cancel_label": "Annuler",
-  "telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_label": "",
   "telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_error": "Une erreur est survenue lors de la sauvegarde du fichier : {{ errorMessage }}",
 
   "telephony_billingAccount_svaWallet_kyc_documents_type_ADDRESS_PROOF": "Justificatif de domicile",

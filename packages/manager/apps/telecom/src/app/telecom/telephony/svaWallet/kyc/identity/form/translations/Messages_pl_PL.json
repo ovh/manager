@@ -1,0 +1,9 @@
+{
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_title": "Potwierdź moje informacje",
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_message": "Chcesz potwierdzić informacje niezbędne do zamknięcia formularza rejestracyjnego.",
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_alert": "Po zatwierdzeniu informacji i dokumentów ich weryfikacja wymaga czasu od 24 do 48 godzin.",
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_label": "Wpisz \"{{ confirmationCode }}\", aby zatwierdzić wybór",
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_code": "POTWIERDŹ",
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_submit_label": "Zatwierdź moje dane",
+  "telephony_billingAccount_svaWallet_kyc_identity_confirm_cancel_label": "Anuluj"
+}

@@ -11,5 +11,8 @@
   "kube_add_billing_type_description": "Nella sezione di modifica del pool di nodi, è possibile passare dalla fatturazione oraria al forfait mensile per ogni nodo.",
   "kube_node_pool_disabled": "Disattivato",
   "kube_node_pool_autoscale_true": "Attivo",
-  "kube_node_pool_autoscale_false": "Disattivo"
+  "kube_node_pool_autoscale_false": "Disattivo",
+  "kube_node_pool_monthly_billing": "Forfait mensile",
+  "kube_node_pool_anti_affinity": "Anti-affinità",
+  "kube_node_pool_enabled": "Attivato"
 }

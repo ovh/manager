@@ -6,5 +6,6 @@
   "telephony_group_line_cancel_terminate_terminate": "Anular cancelamento do serviço",
   "telephony_group_line_cancel_terminating_ok": "La résiliation a été annulée.",
   "telephony_group_line_cancel_terminating_ko": "Une erreur est survenue lors de la demande d'annulation<br/>{{error}}",
-  "telephony_group_line_cancel_terminate_action_label": "Vous avez une demande de résiliation en cours sur la ligne.<br/>Cette résiliation est programmée le <b class=\"text-danger\">{{executionDate}}</b>.<br/>En cliquant sur le bouton «Annuler la résiliation», vous procédez à l'annulation immédiate de la résiliation."
+  "telephony_group_line_cancel_terminate_action_label": "Vous avez une demande de résiliation en cours sur la ligne.<br/>Cette résiliation est programmée le <b class=\"text-danger\">{{executionDate}}</b>.<br/>En cliquant sur le bouton «Annuler la résiliation», vous procédez à l'annulation immédiate de la résiliation.",
+  "telephony_group_line_cancel_terminate": "Anular rescisão"
 }

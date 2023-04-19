@@ -9,5 +9,6 @@
   "xdsl_modem_template_apply_doing": "Chargement de la configuration du modem en cours",
   "xdsl_modem_template_creation_doing": "Enregistrement de la configuration du modem en cours",
   "xdsl_modem_template_an_error_ocurred": "TEMPLATE : Une erreur est survenue !",
-  "xdsl_modem_template_name_already_exist": "{{templateName}} existe déjà dans votre liste de templates. Veuillez utiliser un autre nom."
+  "xdsl_modem_template_name_already_exist": "{{templateName}} existe déjà dans votre liste de templates. Veuillez utiliser un autre nom.",
+  "xdsl_modem_template_invalid_name": "Nazwa szablonu ({{templateName}}) jest nieprawidłowa. Skorzystaj z innej nazwy."
 }

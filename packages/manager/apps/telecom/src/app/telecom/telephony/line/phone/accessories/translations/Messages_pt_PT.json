@@ -30,5 +30,15 @@
   "telephony_line_phone_accessories_finalize_error": "Oups, une erreur est survenue lors de la création de votre bon de commande.",
   "telephony_line_phone_accessories_finalize_order_id": "N° de bon de commande :",
   "telephony_line_phone_accessories_finalize_order_total_ht": "Montant HT :",
-  "telephony_line_phone_accessories_finalize_order_total_ttc": "Montant TTC :"
+  "telephony_line_phone_accessories_finalize_order_total_ttc": "Montant TTC :",
+  "telephony_line_phone_accessories_resume_subtitle": "A sua encomenda",
+  "telephony_line_phone_accessories_filter_price": "Preço",
+  "telephony_line_phone_accessories_filter_price_asc": "Apresentação do - caro ao + caro",
+  "telephony_line_phone_accessories_filter_price_desc": "Apresentação do + caro ao",
+  "telephony_line_phone_accessories_filter_compatibility": "Compatibilidade",
+  "telephony_line_phone_accessories_filter_compatibility_all": "Ver tudo",
+  "telephony_line_phone_accessories_filter_compatibility_compatible": "Com os meus telefones",
+  "telephony_line_phone_accessories_detail_link": "Ficha técnica",
+  "ovh_contracts_agree": "Reconheço ter tomado conhecimento dos contratos acima referidos.",
+  "telephony_line_phone_accessories_max_order": "Não pode encomendar mais do que 5 acessórios idênticos."
 }

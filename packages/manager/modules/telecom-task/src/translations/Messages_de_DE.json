@@ -16,5 +16,19 @@
   "telecom_task_none": "Aucune tâche trouvée",
   "telecom_task_page": "Seite",
   "telecom_task_page_amount": "éléments par page",
-  "telecom_task_function": "Aktion"
+  "telecom_task_function": "Aktion",
+  "telecom_task_function_createTelephonyPhone": "Professionelle Telefonbestellung",
+  "telecom_task_function_createNas": "Aktivierung des Cloud NAS Online-Speichers",
+  "telecom_task_function_createFax": "Aktivierung des EcoFax Dienstes",
+  "telecom_task_function_createTelephonyLine": "Erstellung einer Telefonleitung",
+  "telecom_task_function_telephonyLineRenewConfiguration": "Reaktivierung einer Telefonleitung",
+  "telecom_task_function_createDomain": "Domainbestellung",
+  "telecom_task_function_createHostedEmail": "Erstellung eines E-Mail Accounts",
+  "telecom_task_function_createExchange": "Erstellung eines Exchange Accounts",
+  "telecom_task_function_pendingMigration": "Angebotsmigration",
+  "telecom_task_function_pendingAddressMove": "Umzug des Angebots wird durchgeführt",
+  "telecom_task_function_regeneratePromoCode": "Regeneration des Promotioncodes",
+  "telecom_task_function_changePackOffer": "Angebotswechsel",
+  "telecom_task_function_packXdslAddressMove": "Umzug",
+  "telecom_task_function_accessDiagnosticRun": "Diagnose der Leitung"
 }

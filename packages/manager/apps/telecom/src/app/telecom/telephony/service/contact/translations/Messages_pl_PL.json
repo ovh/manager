@@ -61,5 +61,7 @@
   "telephony_service_contact_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification des coordonnées.",
   "telephony_service_contact_required_fields": "Pola oznaczone gwiazdką są obowiązkowe.",
   "telephony_service_contact_tva": "Numer VAT",
-  "telephony_service_contact_tva_invalid": "Podany numer VAT jest nieprawidłowy"
+  "telephony_service_contact_tva_invalid": "Podany numer VAT jest nieprawidłowy",
+  "telephony_service_contact_sync_error": "Niemożliwa synchronizacja, sprawdź swoje dane.",
+  "telephony_service_contact_sync_na": "Nie dotyczy"
 }

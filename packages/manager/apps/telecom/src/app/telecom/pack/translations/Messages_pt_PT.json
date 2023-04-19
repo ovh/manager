@@ -1,3 +1,9 @@
 {
-  "packs_order": "Encomendar"
+  "packs_order": "Encomendar",
+  "packs_pack_name_label": "Pack",
+  "packs_description_label": "Descrição",
+  "packs_num_service_label": "Acesso Internet",
+  "packs_view_label": "Detalhes do pack",
+  "pack_internet_access_title": "Acesso Internet",
+  "packs_breadcrumb": "Acesso Internet"
 }

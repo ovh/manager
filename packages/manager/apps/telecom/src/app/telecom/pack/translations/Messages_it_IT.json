@@ -1,4 +1,9 @@
 {
   "packs_breadcrumb": "Accesso Internet",
-  "packs_order": "Ordina"
+  "packs_order": "Ordina",
+  "packs_pack_name_label": "Pack",
+  "packs_description_label": "Descrizione",
+  "packs_num_service_label": "Accesso Internet",
+  "packs_view_label": "Dettagli del pack",
+  "pack_internet_access_title": "Accesso Internet"
 }

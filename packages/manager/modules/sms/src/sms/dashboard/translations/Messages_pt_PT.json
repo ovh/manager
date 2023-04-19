@@ -8,5 +8,18 @@
   "sms_actions_clean_contact_list": "Nettoyer la liste des contacts",
   "sms_consumed_last_recharge": "Dernière recharge",
   "sms_actions_credit_transfer": "Transferir créditos",
-  "sms_actions_smpp_parameter": "Configurar o meu SMPP"
+  "sms_actions_smpp_parameter": "Configurar o meu SMPP",
+  "sms_actions_create_campaign": "Criar uma campanha",
+  "sms_actions_campaign_history": "Histórico das campanhas",
+  "sms_consumed_credit_balance": "Saldo de crédito",
+  "sms_statistics": "Estatísticas",
+  "sms_statistics_campaign_filter_today": "Hoje",
+  "sms_statistics_campaign_filter_last": "Última campanha",
+  "sms_statistics_campaign_filter_ten_last": "As últimas 10 campanhas",
+  "sms_statistics_campaign_filter_all": "Todas as campanhas",
+  "sms_statistics_campaign_number": "Número de campanhas",
+  "sms_statictics_credit_reload": "Recarregar créditos",
+  "sms_statistics_sent_number": "Número de SMS enviados",
+  "sms_statistics_delivered_number": "Número de SMS emitidos",
+  "sms_statistics_stop_subscribe_number": "Número de assinaturas"
 }

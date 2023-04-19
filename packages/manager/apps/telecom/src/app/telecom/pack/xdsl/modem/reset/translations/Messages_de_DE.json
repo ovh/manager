@@ -7,5 +7,11 @@
   "xdsl_modem_reset_ovh_config_success": "Réinitialisation de la configuration OVH en cours.",
   "xdsl_modem_reset_really": "Sind Sie sicher, dass Sie das Modem neu starten möchten?",
   "xdsl_modem_reset_ovh_config_really": "Êtes-vous sûr(e) de vouloir réinitialiser la configuration OVH ?",
-  "xdsl_modem_reset_success_end": "Neustart des Modems abgeschlossen. Bitte haben Sie noch einige Minuten Geduld, bis Ihr Modem konfiguriert ist."
+  "xdsl_modem_reset_success_end": "Neustart des Modems abgeschlossen. Bitte haben Sie noch einige Minuten Geduld, bis Ihr Modem konfiguriert ist.",
+  "xdsl_modem_reset_reconf_tel": "VoIP Konfiguration zurücksetzen",
+  "xdsl_modem_reset_reconf_tel_success": "Zurücksetzen der VoIP Konfiguration wird durchgeführt",
+  "xdsl_modem_reset_reconf_tel_really": "Sind Sie sicher, dass Sie die VoIP Konfiguration zurücksetzen möchten?",
+  "xdsl_modem_reconf_tel_an_error_ocurred": "[Zurücksetzen der VoIP Konfiguration] Es ist ein Fehler aufgetreten!",
+  "xdsl_modem_reconf_tel_no_voip_line_found": "Keine Telefonleitung im Modem gefunden, keine notwendigen Aktionen.",
+  "xdsl_modem_reconf_tel_renew_already_scheduled": "Für dieses Paket ist bereits eine Rekonfiguration der Leitung geplant."
 }
