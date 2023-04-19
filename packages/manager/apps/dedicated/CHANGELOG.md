@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.58.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.57.1...@ovh-ux/manager-dedicated@17.58.0) (2023-04-19)
+
+
+### Features
+
+* **pci.data-processing:** adding spark notebooks ([#9127](https://github.com/ovh/manager/issues/9127)) ([d7b3aaf](https://github.com/ovh/manager/commit/d7b3aaf10a002a5b40739c25459d262927623bd1))
+
+
+
+
+
 ## [17.57.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.57.0...@ovh-ux/manager-dedicated@17.57.1) (2023-04-18)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.32.1...@ovh-ux/manager-vps@2.33.0) (2023-04-19)
+
+
+### Features
+
+* **pci.data-processing:** adding spark notebooks ([#9127](https://github.com/ovh/manager/issues/9127)) ([d7b3aaf](https://github.com/ovh/manager/commit/d7b3aaf10a002a5b40739c25459d262927623bd1))
+
+
+
+
+
 ## [2.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.32.0...@ovh-ux/manager-vps@2.32.1) (2023-03-20)
 
 
