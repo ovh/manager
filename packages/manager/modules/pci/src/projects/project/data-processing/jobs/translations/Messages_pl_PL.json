@@ -23,6 +23,6 @@
   "data_processing_list_button_job_monitoring": "Dostęp do monitoringu",
   "data_processing_list_button_job_terminate": "Zakończ zadanie",
   "data_processing_job_id": "ID",
-  "data_processing_job_notebook": "Notebooks",
+  "data_processing_job_notebook": "Notebook",
   "data_processing_job_spec": "{{vcores}} c/{{ram}}"
 }

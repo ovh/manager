@@ -1,5 +1,5 @@
 {
-  "data_processing_add_notebook_notebook_title": "Notebooks",
+  "data_processing_add_notebook_notebook_title": "Notebook",
   "data_processing_add_notebook_cluster_title": "Klaster",
   "data_processing_add_notebook_cluster_sizing_description": "Podany tutaj rozmiar klastra jest <strong>orientacyjny</strong>. Stanie się ostateczny dopiero po wyborze jądra z JupyterLab.",
   "data_processing_add_notebook_price_unit": "min",

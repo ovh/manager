@@ -175,7 +175,7 @@
   "telecom_pack_migration_fake_meeting": "No me conviene ninguna de las citas de abajo. Quiero que un técnico contacte conmigo para acordar otra franja horaria.",
   "telecom_pack_migration_no_fake_meeting": "Elijo un horario de cita.",
   "telecom_pack_migration_programmed_meeting_select": "Elija la franja horaria para la instalación de su línea.",
-  "telecom_pack_migration_programmed_meeting": "Se ha programado una cita el {{day}} entre {{start}} y {{end}}.",
+  "telecom_pack_migration_programmed_meeting": "Se ha programado una cita el {{ day }} entre {{ start }} y {{ end }}.",
   "telecom_pack_migration_contact_name": "Nombre del contacto que quiere comunicar al técnico",
   "telecom_pack_migration_no_erdv_info": "Un técnico contactará con usted lo antes posible para acordar la fecha de la intervención.",
   "telecom_pack_migration_contact_name_info": "Por favor, indíquenos el nombre de la persona que puede acoger al técnico el día de la cita.",

@@ -10,7 +10,7 @@
   "data_processing_submit_job_stepper_submit_error_title": "Se ha producido un error.",
   "data_processing_submit_job_button_label": "Iniciar el job",
   "data_processing_submit_job_spinner_label": "Lanzando el job...",
-  "data_processing_submit_job_error_label": "Se ha producido un error y no es posible iniciar el job en este momento.",
+  "data_processing_submit_job_error_label": "Se ha producido un error y no es posible crear el job en este momento.",
   "data_processing_submit_job_error_message_odp_job_engine_unsupportedValue": "Error al introducir los datos: el tipo de job solicitado no es compatible.",
   "data_processing_submit_job_error_message_odp_job_engineVersion_unsupportedValue": "Error al introducir los datos: la versión del motor solicitado no es compatible.",
   "data_processing_submit_job_error_message_odp_job_region_unsupportedRegion": "Error al introducir los datos: la región solicitada no es compatible.",

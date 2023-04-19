@@ -1,5 +1,5 @@
 {
-  "data_processing_add_notebook_title": "Stwórz notebook",
+  "data_processing_add_notebook_title": "Utwórz notebook",
   "data_processing_add_notebook_description": "Uruchom notebooki Jupyter w chmurze, po czym uruchamiaj zadania Apache Spark na żądanie bezpośrednio z notebooków.",
   "data_processing_add_notebook_description_warning_ai": "Najlepiej eksplorować dane za pomocą notebooka, który pozwala korzystać z największych frameworków sztucznej inteligencji (Tensorflow, PyTorch, Hugging Face czy Scikit-learn).",
   "data_processing_add_notebook_description_warning_ai_link": "Wypróbuj AI Notebooks.",
