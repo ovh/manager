@@ -8,6 +8,11 @@ import values from 'lodash/values';
 import 'moment';
 
 import IplbHomeUpdateQuotaTemplate from './updateQuota/iplb-update-quota.html';
+import {
+  INFO_LINK,
+  MESSAGE_DISPLAY_DATE,
+  LB_TEMPORARY_WARNING_BANNER_FEATURE,
+} from './iplb-home.constants';
 
 export default class IpLoadBalancerHomeCtrl {
   /* @ngInject */
@@ -31,6 +36,7 @@ export default class IpLoadBalancerHomeCtrl {
     IpLoadBalancerVrackService,
     ovhManagerRegionService,
     CucVrackService,
+    ovhFeatureFlipping,
   ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -51,6 +57,7 @@ export default class IpLoadBalancerHomeCtrl {
     this.IpLoadBalancerVrackService = IpLoadBalancerVrackService;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.VrackService = CucVrackService;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
 
     this.serviceName = this.$stateParams.serviceName;
 
@@ -125,6 +132,7 @@ export default class IpLoadBalancerHomeCtrl {
               'expirationFormated',
               moment(subscriptionInfos.expiration).format('LL'),
             );
+            this.showBillingEvolMessages(subscriptionInfos);
             return subscriptionInfos;
           },
         ),
@@ -273,6 +281,25 @@ export default class IpLoadBalancerHomeCtrl {
     };
   }
 
+  showBillingEvolMessages(subscriptionInfos) {
+    this.displayBillingEvolutionInfoMessage();
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability(LB_TEMPORARY_WARNING_BANNER_FEATURE)
+      .then((tempWarnBannerFeatureResult) => {
+        const isTempWarnBannerAvailable = tempWarnBannerFeatureResult.isFeatureAvailable(
+          LB_TEMPORARY_WARNING_BANNER_FEATURE,
+        );
+        // displayed when this feature is available and only if the
+        // Load balancer is created befor the date 2023-04-01.
+        if (
+          isTempWarnBannerAvailable &&
+          moment(subscriptionInfos?.creation).isBefore(MESSAGE_DISPLAY_DATE)
+        ) {
+          this.displayBillingIssuesWarnMessage();
+        }
+      });
+  }
+
   updateQuotaAlert(quota) {
     this.CucControllerHelper.modal
       .showModal({
@@ -368,5 +395,39 @@ export default class IpLoadBalancerHomeCtrl {
 
   hasMultipleRegions() {
     return isArray(this.detailedRegions) && this.detailedRegions.length > 1;
+  }
+
+  displayBillingEvolutionInfoMessage() {
+    const message = this.$translate.instant(
+      'iplb_home_tile_configuration_billing_evolution_message_info',
+    );
+    const linkLabel = this.$translate.instant(
+      'iplb_home_tile_configuration_billing_more_information_label',
+    );
+    const linkURL =
+      INFO_LINK[this.coreConfig.getUser()?.ovhSubsidiary] || INFO_LINK.DEFAULT;
+    const link = `<a target="_blank" rel="noopener"href=${linkURL}>${linkLabel}</a>`;
+
+    this.CucCloudMessage.info({
+      textHtml: `${message}${link}`,
+    });
+  }
+
+  displayBillingIssuesWarnMessage() {
+    const message1 = this.$translate.instant(
+      'iplb_home_tile_configuration_billing_issues_message_warn_1',
+    );
+    const message2 = this.$translate.instant(
+      'iplb_home_tile_configuration_billing_issues_message_warn_2',
+    );
+    const linkLabel = this.$translate.instant(
+      'iplb_home_tile_configuration_billing_here_label',
+    );
+    const linkURL = INFO_LINK[this.coreConfig.getUser()?.ovhSubsidiary];
+    const link = `<a target="_blank" rel="noopener"href=${linkURL}>${linkLabel}</a>`;
+
+    this.CucCloudMessage.warning({
+      textHtml: `<p>${message1}</p><p>${message2} ${link}.</p>`,
+    });
   }
 }
