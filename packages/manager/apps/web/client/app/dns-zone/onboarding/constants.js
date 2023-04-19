@@ -74,6 +74,8 @@ export const GUIDES = [
         'https://docs.ovh.com/us/en/domains/web_hosting_how_to_edit_my_dns_zone/',
       US:
         'https://docs.ovh.com/us/en/domains/web_hosting_how_to_edit_my_dns_zone/',
+      IN:
+        'https://docs.ovh.com/asia/en/domains/web_hosting_how_to_edit_my_dns_zone/',
     },
   },
 ];

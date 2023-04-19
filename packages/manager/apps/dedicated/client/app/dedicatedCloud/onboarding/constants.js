@@ -35,6 +35,8 @@ export const GUIDES = [
         'https://docs.ovh.com/us/en/private-cloud/deploying-a-virtual-machine/',
       US:
         'https://docs.ovh.com/us/en/private-cloud/deploying-a-virtual-machine/',
+      IN:
+        'https://docs.ovh.com/asia/en/private-cloud/deploying-a-virtual-machine/',
     },
   },
   {
@@ -63,6 +65,7 @@ export const GUIDES = [
       WE: 'https://docs.ovh.com/us/en/private-cloud/login-vsphere-interface/',
       WS: 'https://docs.ovh.com/us/en/private-cloud/login-vsphere-interface/',
       US: 'https://docs.ovh.com/us/en/private-cloud/login-vsphere-interface/',
+      IN: 'https://docs.ovh.com/asia/en/private-cloud/login-vsphere-interface/',
     },
   },
   {
@@ -86,6 +89,7 @@ export const GUIDES = [
       WE: 'https://docs.ovh.com/us/en/private-cloud/sftp_connection/',
       WS: 'https://docs.ovh.com/us/en/private-cloud/sftp_connection/',
       US: 'https://docs.ovh.com/us/en/private-cloud/sftp_connection/',
+      IN: 'https://docs.ovh.com/asia/en/private-cloud/sftp_connection/',
     },
   },
 ];
@@ -137,6 +141,8 @@ export const CTAS = {
     'https://ovhcloud.com/us-en/enterprise/products/hosted-private-cloud/prices/',
   WS:
     'https://ovhcloud.com/us-en/enterprise/products/hosted-private-cloud/prices/',
+  IN:
+    'https://ovhcloud.com/asia/enterprise/products/hosted-private-cloud/prices/',
 };
 
 export const US_GUIDES = [

@@ -22,6 +22,7 @@ export const DOMAIN_ORDER_URLS = {
   LT: 'https://www.ovh.com/lt/order/webcloud/',
   WE: 'https://www.ovh.com/en/order/webcloud/',
   WS: 'https://www.ovh.com/en/order/webcloud/',
+  IN: 'https://www.ovh.com/en/order/webcloud/',
 };
 
 export function getDomainOrderUrl(subsidiary) {

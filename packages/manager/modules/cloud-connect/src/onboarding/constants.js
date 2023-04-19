@@ -15,6 +15,7 @@ export const GUIDES = [
       WE: 'https://docs.ovh.com/us/en/ovhcloud-connect/overview/',
       WS: 'https://docs.ovh.com/us/en/ovhcloud-connect/overview/',
       US: 'https://docs.ovh.com/us/en/ovhcloud-connect/overview/',
+      IN: 'https://docs.ovh.com/asia/en/ovhcloud-connect/overview/',
     },
   },
   {
@@ -35,6 +36,7 @@ export const GUIDES = [
       WE: 'https://docs.ovh.com/us/en/ovhcloud-connect/ovhcloudconnect-faq/',
       WS: 'https://docs.ovh.com/us/en/ovhcloud-connect/ovhcloudconnect-faq/',
       US: 'https://docs.ovh.com/us/en/ovhcloud-connect/ovhcloudconnect-faq/',
+      IN: 'https://docs.ovh.com/asia/en/ovhcloud-connect/ovhcloudconnect-faq/',
     },
   },
 ];
@@ -63,6 +65,7 @@ export const CTAS = {
   LT: 'https://ovhcloud.com/lt/network-security/ovhcloud-connect/',
   WE: 'https://ovhcloud.com/us-en/network-security/ovhcloud-connect/',
   WS: 'https://ovhcloud.com/us-en/network-security/ovhcloud-connect/',
+  IN: 'https://ovhcloud.com/asia/network-security/ovhcloud-connect/',
 };
 
 export default {

@@ -16,6 +16,7 @@ export const GUIDE_FEDERATION = {
   WE: 'https://docs.ovh.com/us/en/private-cloud/federation/',
   WS: 'https://docs.ovh.com/us/es/private-cloud/federation/',
   US: 'https://docs.ovh.com/us/en/private-cloud/federation/',
+  IN: 'https://docs.ovh.com/asia/en/private-cloud/federation/',
 };
 
 export const PLACEHOLDER = {

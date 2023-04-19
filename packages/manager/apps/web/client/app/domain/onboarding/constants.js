@@ -20,6 +20,7 @@ export const GUIDES = [
       WE: 'https://docs.ovh.com/us/en/domains/redirect-domain-name/',
       WS: 'https://docs.ovh.com/us/en/domains/redirect-domain-name/',
       US: 'https://docs.ovh.com/us/en/domains/redirect-domain-name/',
+      IN: 'https://docs.ovh.com/asia/en/domains/redirect-domain-name/',
     },
   },
   {
@@ -54,6 +55,8 @@ export const GUIDES = [
         'https://docs.ovh.com/us/en/domains/how-to-change-domain-name-holder/',
       US:
         'https://docs.ovh.com/us/en/domains/how-to-change-domain-name-holder/',
+      IN:
+        'https://docs.ovh.com/asia/en/domains/how-to-change-domain-name-holder/',
     },
   },
   {
@@ -79,6 +82,7 @@ export const GUIDES = [
       WE: 'https://docs.ovh.com/us/en/domains/transfer-generic-domain/',
       WS: 'https://docs.ovh.com/us/en/domains/transfer-generic-domain/',
       US: 'https://docs.ovh.com/us/en/domains/transfer-generic-domain/',
+      IN: 'https://docs.ovh.com/asia/en/domains/transfer-generic-domain/',
     },
   },
 ];
@@ -105,4 +109,5 @@ export const CTAS = {
   CZ: 'https://www.ovh.com/cz/order/webcloud/',
   FI: 'https://www.ovh.com/fi/order/webcloud/',
   LT: 'https://www.ovh.com/lt/order/webcloud/',
+  IN: 'https://ca.ovh.com/en/order/webcloud/',
 };
