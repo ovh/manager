@@ -68,7 +68,7 @@ export default class ColdArchiveConfigurationController {
     this.users = this.allUserList.filter((user) => user.status === 'ok');
     this.users.map((user) => {
       const updatedUser = user;
-      [updatedUser.s3Credentials] = user.s3Credentials;
+      updatedUser.s3Credentials = user.s3Credentials;
       return updatedUser;
     });
   }

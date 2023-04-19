@@ -83,7 +83,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('pci_projects_project_storages_cold_archive_label'),
 
       userList: /* @ngInject */ (projectId, allUserList) =>
-        allUserList.filter((user) => user?.s3Credentials?.length > 0),
+        allUserList.filter((user) => user?.s3Credentials),
 
       allUserList: /* @ngInject */ (projectId, PciStoragesColdArchiveService) =>
         PciStoragesColdArchiveService.getAllS3Users(projectId).then((users) =>
