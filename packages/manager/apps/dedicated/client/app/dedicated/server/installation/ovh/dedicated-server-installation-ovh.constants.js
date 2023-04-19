@@ -9,8 +9,12 @@ export const RTM_GUIDE_URLS = {
 };
 
 export const RTM_INSTALL_FEATURE = 'dedicated-server:install:ovh:installRTM';
+export const MOUNT_POINTS = 'defghijklmnopqrstuvwxyza';
+export const MAX_MOUNT_POINTS = 24;
 
 export default {
   RTM_GUIDE_URLS,
   RTM_INSTALL_FEATURE,
+  MOUNT_POINTS,
+  MAX_MOUNT_POINTS,
 };

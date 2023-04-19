@@ -16,6 +16,8 @@ import take from 'lodash/take';
 import {
   RTM_GUIDE_URLS,
   RTM_INSTALL_FEATURE,
+  MOUNT_POINTS,
+  MAX_MOUNT_POINTS,
 } from './dedicated-server-installation-ovh.constants';
 
 angular
@@ -168,7 +170,6 @@ angular
           postInstallationScriptReturn: null,
           sshKeyName: null,
           useDistributionKernel: false,
-          installSqlServer: false,
           useSpla: false,
           variablePartition: null,
           validForm: true,
@@ -199,6 +200,7 @@ angular
         remainingSize: 0,
         showAllDisk: false,
         diskGroups: [],
+        softRaidOnlyMirroring: null,
       };
 
       $scope.newPartition = {
@@ -654,6 +656,7 @@ angular
           $scope.informations.totalSize !==
             $scope.installation.hardwareRaid.availableSpace
         ) {
+          $scope.informations.softRaidOnlyMirroring = null;
           $scope.loader.loading = true;
 
           // init
@@ -681,6 +684,8 @@ angular
                 partitionSchemesList.templateOsFileSystemEnum;
               $scope.constants.partitionTypeList =
                 partitionSchemesList.templatePartitionTypeEnum;
+              $scope.informations.softRaidOnlyMirroring =
+                partitionSchemesList.softRaidOnlyMirroring;
 
               // if hardware Raid
               if ($scope.installation.hardwareRaid.raid) {
@@ -964,7 +969,31 @@ angular
 
       // ------Add partition------
 
+      function isMountPointAlreadyUsed(newMountPoint) {
+        return $scope.installation.partitionSchemeModels.some(
+          (partition) => partition.mountPoint === newMountPoint,
+        );
+      }
+
+      function getRandomMountPoint() {
+        // mountpoint character will be within c and z alphabet and there can be maximum 24 partitions and a will get the error
+        let index = 0;
+        while (index !== MAX_MOUNT_POINTS) {
+          const newMountPoint = `${MOUNT_POINTS.charAt(index)}:`;
+          if (isMountPointAlreadyUsed(newMountPoint)) {
+            index += 1;
+          } else {
+            return newMountPoint;
+          }
+        }
+        return null;
+      }
+
       $scope.displayNewPartition = function displayNewPartition() {
+        $scope.newPartition.mountPoint = $scope.informations
+          .softRaidOnlyMirroring
+          ? getRandomMountPoint()
+          : $scope.newPartition.mountPoint;
         const raidList = $scope.getRaidList($scope.installation.nbDiskUse);
         clearError();
         $scope.newPartition.raid =
@@ -1554,7 +1583,11 @@ angular
             $scope.errorInst.mountPointWindows =
               !$scope.errorInst.mountPointEmpty &&
               !$scope.errorInst.mountPointUse &&
-              !/^[c-z]:$/.test(partition.mountPoint.toLowerCase());
+              !/^[c-z]:$/.test(partition.mountPoint.toLowerCase()) &&
+              !(
+                Object.keys($scope.validation.mountPointList).length ===
+                MAX_MOUNT_POINTS
+              );
           }
         } else {
           $scope.errorInst.mountPoint = false;
@@ -1739,8 +1772,20 @@ angular
 
       // return range between 1 and nbdisque of server if > 1
       $scope.getNbDisqueList = function getNbDisqueList(nbdisk) {
-        if (nbdisk > 1) {
+        if (nbdisk > 1 && !$scope.informations.softRaidOnlyMirroring) {
           return range(1, nbdisk + 1);
+        }
+        if (nbdisk > 1 && $scope.informations.softRaidOnlyMirroring) {
+          // For softRaidOnlyMirroring: Disks used for installation list should be limited to 2
+          $scope.informations.nbDisk =
+            $scope.informations.nbDisk > 2 ? 2 : $scope.informations.nbDisk;
+          $scope.installation.nbDiskUse =
+            $scope.installation.nbDiskUse === 1
+              ? $scope.installation.nbDiskUse
+              : 2;
+          $scope.informations.totalSize =
+            $scope.informations.diskSize * $scope.installation.nbDiskUse;
+          return range(1, 3);
         }
         return [nbdisk];
       };
@@ -2339,6 +2384,7 @@ angular
 
       // ------CUSTOME STEP MODAL------
       $scope.reduceModal = function reduceModal() {
+        $scope.informations.softRaidOnlyMirroring = null;
         $scope.setToBigModalDialog(false);
       };
       $scope.extendModal = function extendModal() {
@@ -2346,6 +2392,8 @@ angular
       };
 
       $scope.checkNextStep1 = function checkNextStep1() {
+        $scope.informations.nbDisk =
+          $scope.installation.diskGroup.numberOfDisks;
         if (!$scope.installation.raidSetup) {
           if ($scope.installation.customInstall) {
             $scope.extendModal();
@@ -2430,7 +2478,6 @@ angular
           postInstallationScriptReturn: null,
           sshKeyName: null,
           useDistributionKernel: false,
-          installSqlServer: false,
           useSpla: false,
           variablePartition: null,
           validForm: true,
@@ -2573,7 +2620,6 @@ angular
             language: camelCase($scope.installation.selectLanguage),
             installRTM: $scope.installation.options.installRTM || false,
             customHostname: $scope.installation.options.customHostname,
-            installSqlServer: $scope.installation.options.installSqlServer,
             postInstallationScriptLink:
               $scope.installation.options.postInstallationScriptLink,
             postInstallationScriptReturn: $scope.installation.options

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.59.0...@ovh-ux/manager-telecom@13.60.0) (2023-04-12)
+
+
+### Features
+
+* **telecom.packxdsl:** display meeting when migrate or move to fiber offer ([#9016](https://github.com/ovh/manager/issues/9016)) ([9b009ad](https://github.com/ovh/manager/commit/9b009ad921b6bbed8e2a2cef9c266fc1628fb18a))
+
+
+
+
+
 # [13.59.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.58.0...@ovh-ux/manager-telecom@13.59.0) (2023-04-05)
 
 
