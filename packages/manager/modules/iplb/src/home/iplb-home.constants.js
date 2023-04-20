@@ -17,6 +17,8 @@ export const INFO_LINK = {
   AU: 'https://www.ovhcloud.com/en-au/network/load-balancer/',
   SG: 'https://www.ovhcloud.com/en-sg/network/load-balancer/',
   ASIA: 'https://www.ovhcloud.com/asia/network/load-balancer/',
+  WE: 'https://www.ovhcloud.com/en/network/load-balancer/',
+  WS: 'https://www.ovhcloud.com/es/network/load-balancer/',
 };
 
 export const MESSAGE_DISPLAY_DATE = '2023-04-01';
