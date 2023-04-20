@@ -5,7 +5,7 @@ const ELIGIBILITY_LINE_STATUS = {
 };
 
 const LINE_STATUS = {
-  slamming: 'slamming',
+  slamming: 'notification',
 };
 
 const OFFER_TYPE = {
