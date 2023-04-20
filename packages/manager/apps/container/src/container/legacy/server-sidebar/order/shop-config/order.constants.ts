@@ -377,6 +377,7 @@ export const ORDER_URLS: Record<
       SG: 'https://ca.ovh.com/manager/dedicated/',
       WE: 'https://ca.ovh.com/manager/dedicated/',
       WS: 'https://ca.ovh.com/manager/dedicated/',
+      IN: 'https://ca.ovh.com/manager/dedicated/',
     },
     orderDomain: {
       ASIA: 'https://ca.ovh.com/asia/order/webcloud',
@@ -461,6 +462,8 @@ export const ORDER_URLS: Record<
         "https://us.ovh.com/us/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
       WS:
         "https://us.ovh.com/es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      IN:
+        "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
     },
     load_balancer: {
       ASIA: 'https://www.ovh.com/asia/solutions/ip-load-balancing/',
@@ -500,6 +503,7 @@ export const ORDER_URLS: Record<
       SG: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
       WE: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
       WS: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+      IN: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
     },
     publicCloudProjectOrder: {
       ASIA: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
@@ -509,6 +513,7 @@ export const ORDER_URLS: Record<
       SG: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
       WE: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
       WS: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
+      IN: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
     },
     publicCloudKubernetes: {
       CA:
@@ -522,6 +527,7 @@ export const ORDER_URLS: Record<
       SG: 'https://ca.ovh.com/sg/order/express/#/express/review',
       WE: 'https://us.ovh.com/us/order/express/#/express/review',
       WS: 'https://us.ovh.com/es/order/express/#/express/review',
+      IN: 'https://ca.ovh.com/asia/order/express/#/express/review',
     },
     vps: {
       ASIA: 'https://www.ovh.com/asia/vps/',
@@ -541,6 +547,7 @@ export const ORDER_URLS: Record<
       SG: 'https://www.ovhcloud.com/en-sg/hosted-private-cloud/nutanix/',
       WE: 'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/',
       WS: 'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/',
+      IN: 'https://www.ovhcloud.com/asia/hosted-private-cloud/nutanix/',
     },
     ovh_cloud_connect: {
       CA: 'https://www.ovhcloud.com/en-ca/network/ovhcloud-connect/',

@@ -45,6 +45,7 @@ export const GUIDES = [
       US: 'https://support.us.ovhcloud.com/hc/en-us/articles/360011668000',
       WS: 'https://docs.ovh.com/us/es/',
       WW: 'https://www.ovhcloud.com/en/',
+      IN: 'https://www.ovhcloud.com/asia/',
     },
   },
   {
@@ -74,6 +75,7 @@ export const GUIDES = [
       US: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002175944',
       WS: 'https://docs.ovh.com/us/es/',
       WW: 'https://www.ovhcloud.com/en/',
+      IN: 'https://www.ovhcloud.com/asia/',
     },
   },
   {
@@ -99,6 +101,7 @@ export const GUIDES = [
       US: 'https://support.us.ovhcloud.com/hc/en-us/articles/7154925809683',
       WS: 'https://docs.ovh.com/us/es/',
       WW: 'https://www.ovhcloud.com/en/',
+      IN: 'https://www.ovhcloud.com/asia/',
     },
   },
 ];

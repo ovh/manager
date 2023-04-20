@@ -33,6 +33,7 @@ export const HOSTING_ORDER_URL = {
     SG: 'https://www.ovh.com/sg/web-hosting/',
     WE: 'https://www.ovh.com/world/web-hosting/',
     WS: 'https://www.ovh.com/world/es/hosting/',
+    IN: 'https://www.ovh.com/asia/web-hosting/',
   },
 };
 
@@ -62,6 +63,7 @@ export const DOMAIN_ORDER_URL = {
     SG: 'https://ca.ovh.com/sg/order/webcloud',
     WE: 'https://us.ovh.com/us/order/webcloud',
     WS: 'https://us.ovh.com/es/order/webcloud',
+    IN: 'https://ca.ovh.com/asia/order/webcloud',
   },
 };
 

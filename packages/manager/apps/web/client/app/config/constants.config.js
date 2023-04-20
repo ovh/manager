@@ -870,6 +870,41 @@ module.exports = {
           'https://ca.ovh.com/asia/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
       },
+      IN: {
+        support: 'https://www.ovh.com/ca/en/support/',
+        guides: {
+          home: 'https://docs.ovh.com/asia/en/',
+          all: 'https://docs.ovh.com/asia/en/',
+          dnsForExternalDomain:
+            'https://docs.ovh.com/asia/en/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
+          hostingPrivateDatabase:
+            'https://docs.ovh.com/asia/en/hosting/getting-started-with-private-sql/',
+          hostingPrivateDatabaseDBaaS: {
+            beginner:
+              'https://docs.ovh.com/asia/en/clouddb/getting-started-with-clouddb/',
+            db:
+              'https://docs.ovh.com/asia/en/clouddb/get-started-with-mysql-and-mariadb/',
+            beginPostgre:
+              'https://docs.ovh.com/asia/en/clouddb/getting-started-with-postgresql/',
+          },
+          wordpress:
+            'https://codex.wordpress.org/Getting_Started_with_WordPress',
+          prestashop:
+            'http://doc.prestashop.com/display/PS16/English+documentation',
+          phpAppendices: 'http://php.net/manual/en/appendices.php',
+          works: {
+            apache:
+              'https://community.ovh.com/t/faq-how-can-i-update-my-website-to-support-apache-2-4/3851',
+          },
+        },
+        dnssec_service: 'https://www.ovh.com/asia/domains/dnssec_service.xml',
+        domainOrderChange: 'https://ca.ovh.com/en/cgi-bin/newOrder/order.cgi',
+        domainOrderTrade:
+          "https://ca.ovh.com/asia/order/domain/#/legacy/domain/list/informations?options=~~(domain~~'{domain})",
+        bulkChangeOwner:
+          'https://ca.ovh.com/asia/order/domain/#/legacy/domain/trade/list',
+        exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
+      },
       AU: {
         support: 'https://www.ovh.com/ca/en/support/',
         guides: {
@@ -1108,6 +1143,8 @@ module.exports = {
           "https://us.ovh.com/us/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
         WS:
           "https://us.ovh.com/us/es/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+        IN:
+          "https://ca.ovh.com/asia/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
       },
       TOOLS: {
         ZONE_CHECK: 'https://www.zonemaster.net/',
@@ -1169,6 +1206,7 @@ module.exports = {
       SG: 'https://ca.ovh.com/sg/order/express/#/express/review?products=',
       WE: 'https://us.ovh.com/us/order/express/#/express/review?products=',
       WS: 'https://us.ovh.com/es/order/express/#/express/review?products=',
+      IN: 'https://ca.ovh.com/asia/order/express/#/express/review?products=',
     },
   },
 };
