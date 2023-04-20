@@ -409,7 +409,7 @@ export default class IpLoadBalancerHomeCtrl {
     const link = `<a target="_blank" rel="noopener"href=${linkURL}>${linkLabel}</a>`;
 
     this.CucCloudMessage.info({
-      textHtml: `${message}${link}`,
+      textHtml: `${message} ${link}`,
     });
   }
 
