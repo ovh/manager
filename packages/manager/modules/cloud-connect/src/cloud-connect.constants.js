@@ -5,6 +5,7 @@ export const GUIDELINK = {
   ASIA: 'https://docs.ovh.com/asia/en/ovhcloud-connect/',
   AU: 'https://docs.ovh.com/au/en/ovhcloud-connect/',
   SG: 'https://docs.ovh.com/sg/en/ovhcloud-connect/',
+  IN: 'https://docs.ovh.com/asia/en/ovhcloud-connect/',
 };
 
 export const POP_MAP = {

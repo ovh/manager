@@ -22,6 +22,7 @@ export const HOSTING_ORDER_URLS = {
   LT: 'https://ovhcloud.com/lt/web-hosting/',
   WE: 'https://ovhcloud.com/us-en/web-hosting/',
   WS: 'https://ovhcloud.com/us-en/web-hosting/',
+  IN: 'https://ovhcloud.com/asia/web-hosting/',
 };
 
 export function getHostingOrderUrl(subsidiary) {

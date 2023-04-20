@@ -22,6 +22,7 @@ export const BACKUP_TARIFF_URL = {
   US: 'https://us.ovhcloud.com/managed-bare-metal/options/',
   WE: 'https://www.ovhcloud.com/en/managed-bare-metal/options/',
   WS: 'https://www.ovhcloud.com/es/managed-bare-metal/options/',
+  IN: 'https://www.ovhcloud.com/asia/managed-bare-metal/options/',
 };
 
 export default {

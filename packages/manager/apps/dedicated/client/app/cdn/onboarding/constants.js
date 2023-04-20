@@ -76,6 +76,7 @@ export const CTAS = {
   LT: 'https://ovhcloud.com/lt/cdn/infrastructure/',
   WE: 'https://ovhcloud.com/us-en/cdn/infrastructure/',
   WS: 'https://ovhcloud.com/us-en/cdn/infrastructure/',
+  IN: 'https://ovhcloud.com/asia/cdn/infrastructure/',
 };
 
 export default {

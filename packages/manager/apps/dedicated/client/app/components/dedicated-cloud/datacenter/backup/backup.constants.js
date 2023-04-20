@@ -99,6 +99,8 @@ export const BACKUP_CONDITIONS_URL = {
     'https://www.ovh.com/world/support/termsofservice/special_conditions_dedicated_cloud_2014.pdf',
   WS:
     'https://www.ovh.com/world/support/termsofservice/special_conditions_dedicated_cloud_2014.pdf',
+  IN:
+    'https://www.ovh.com/asia/support/termsofservice/Specific_Conditions_public_cloud%20(Asia)_18022019.pdf',
 };
 
 export default {
