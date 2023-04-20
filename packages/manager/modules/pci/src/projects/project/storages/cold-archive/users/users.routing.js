@@ -1,7 +1,10 @@
-import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
+import {
+  COLD_ARCHIVE_TRACKING,
+  COLD_ARCHIVE_STATES,
+} from '../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.storages.cold-archive.users', {
+  $stateProvider.state(COLD_ARCHIVE_STATES.S3_USERS, {
     url: '/users',
     component: 'pciProjectStorageColdArchiveUsers',
     params: {
@@ -21,7 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().trackingInfo,
       refreshS3Credentials: /* @ngInject */ ($state, projectId) => () => {
         return $state.go(
-          'pci.projects.project.storages.cold-archive.users',
+          COLD_ARCHIVE_STATES.S3_USERS,
           {
             projectId,
             userDetails: null,
@@ -34,24 +37,18 @@ export default /* @ngInject */ ($stateProvider) => {
       goToUsersAndRoles: /* @ngInject */ ($state) => () =>
         $state.go('pci.projects.project.users'),
       goToDeleteUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('pci.projects.project.storages.cold-archive.users.delete', {
+        $state.go(COLD_ARCHIVE_STATES.S3_USERS_DELETE, {
           userId: user.id,
         }),
       goToImportPolicy: /* @ngInject */ ($state) => (user) =>
-        $state.go(
-          'pci.projects.project.storages.cold-archive.users.import-policy',
-          {
-            userId: user.id,
-          },
-        ),
+        $state.go(COLD_ARCHIVE_STATES.S3_USERS_IMPORT_POLICY, {
+          userId: user.id,
+        }),
       downloadOpenStackRclone: /* @ngInject */ ($state, projectId) => (user) =>
-        $state.go(
-          'pci.projects.project.storages.cold-archive.users.download-rclone',
-          {
-            projectId,
-            userId: user.id,
-          },
-        ),
+        $state.go(COLD_ARCHIVE_STATES.S3_USERS_DOWNLOAD_RCLONE, {
+          projectId,
+          userId: user.id,
+        }),
       goToUsersBanner: /* @ngInject */ ($state, projectId) => (
         reload = false,
         userDetails,
@@ -59,7 +56,7 @@ export default /* @ngInject */ ($stateProvider) => {
         trackingInfo,
       ) => {
         return $state.go(
-          'pci.projects.project.storages.cold-archive.users',
+          COLD_ARCHIVE_STATES.S3_USERS,
           {
             projectId,
             userDetails,
@@ -72,9 +69,7 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
       goToAddUser: /* @ngInject */ ($state) => () => {
-        return $state.go(
-          'pci.projects.project.storages.cold-archive.users.add',
-        );
+        return $state.go(COLD_ARCHIVE_STATES.S3_USERS_ADD);
       },
       goToUsers: /* @ngInject */ (CucCloudMessage, $state, projectId) => (
         message = false,
@@ -82,7 +77,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => {
         const reload = message && type === 'success';
         const promise = $state.go(
-          'pci.projects.project.storages.cold-archive.users',
+          COLD_ARCHIVE_STATES.S3_USERS,
           {
             projectId,
             userDetails: null,
@@ -94,10 +89,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         if (message) {
           promise.then(() =>
-            CucCloudMessage[type](
-              message,
-              'pci.projects.project.storages.cold-archive.users',
-            ),
+            CucCloudMessage[type](message, COLD_ARCHIVE_STATES.S3_USERS),
           );
         }
 

@@ -6,6 +6,6 @@
   "pci_projects_project_storages_containers_container_cold_archive_delete_cancel_label": "Annuler",
   "pci_projects_project_storages_containers_container_cold_archive_delete_archive_status_active_warning_1": "Votre conteneur {{containerName}} dispose encore de {{objetsCount}} objet(s).",
   "pci_projects_project_storages_containers_container_cold_archive_delete_archive_status_active_warning_2": "Pour supprimer définitivement votre conteneur, vous devez d'abord supprimer les objets qu'il comporte. Consultez notre <a class=\"oui-link oui-link_icon\" href=\"{{ docUrl }}\" target=\"_blank\" rel=\"noopener\">guide pour gérer les objets d'une archive avec AWS CLI</a>.",
-  "pci_projects_project_storages_containers_container_cold_archive_delete_success_message": "Le conteneur {{ containerName }} a été supprimé.",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_success_message": "Le conteneur {{ containerName }} est en cours de suppression.",
   "pci_projects_project_storages_containers_container_cold_archive_delete_error_delete": "Une erreur est survenue lors de la suppression du conteneur {{ containerName }} : {{ message }}."
 }

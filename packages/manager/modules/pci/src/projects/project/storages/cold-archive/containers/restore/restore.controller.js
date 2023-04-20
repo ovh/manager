@@ -1,4 +1,3 @@
-import { COLD_ARCHIVE_DEFAULT_REGION } from './restore.constants';
 import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 
 export default class PciBlockStorageDetailsRestoreController {
@@ -28,7 +27,7 @@ export default class PciBlockStorageDetailsRestoreController {
     return this.pciStoragesColdArchiveService
       .restoreArchiveContainer(
         this.projectId,
-        COLD_ARCHIVE_DEFAULT_REGION,
+        this.regions[0],
         this.container.name,
       )
       .then(() => {

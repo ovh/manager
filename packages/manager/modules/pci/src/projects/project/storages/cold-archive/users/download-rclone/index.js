@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import { COLD_ARCHIVE_STATES } from './download-rclone.constants';
+import { COLD_ARCHIVE_STATES } from '../../cold-archives.constants';
 
 const moduleName = 'ovhManagerPciUsersColdArchiveDownloadRcloneLazyLoading';
 

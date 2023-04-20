@@ -25,7 +25,6 @@ export default class ColdArchiveLinkUserArchiveController {
     this.messageContainer = ARCHIVE_MESSAGES_ID;
 
     this.loadMessages();
-    this.initUsersCredentialsList();
   }
 
   loadMessages() {
@@ -55,18 +54,36 @@ export default class ColdArchiveLinkUserArchiveController {
   }
 
   initUsersCredentialsList() {
-    this.usersCredentials = this.users.map((user) => ({
-      ...user,
-      credentialTrad: this.getCredentialTranslation(user),
-      userNameDescriptionKey: user.description
-        ? `${user.username} - ${user.description}`
-        : user.username,
-    }));
+    this.userModel.linkedMode.isInProgress = true;
+    this.pciStoragesColdArchiveService
+      .getAllS3Users(this.projectId)
+      .then((users) =>
+        this.pciStoragesColdArchiveService.mapUsersToCredentials(
+          this.projectId,
+          users,
+        ),
+      )
+      .then((usersWithCredentials) => {
+        this.usersCredentials = usersWithCredentials.map((user) => {
+          const updatedUser = user;
+          updatedUser.s3Credentials = user.s3Credentials;
+          updatedUser.credentialTrad = this.getCredentialTranslation(user);
+          updatedUser.userNameDescriptionKey = user.description
+            ? `${user.username} - ${user.description}`
+            : user.username;
+          return updatedUser;
+        });
+        this.users = this.usersCredentials;
+      })
+      .catch(() => [])
+      .finally(() => {
+        this.userModel.linkedMode.isInProgress = false;
+      });
   }
 
   getCredentialTranslation(user) {
     return this.$translate.instant(
-      user.s3Credentials.length > 0
+      user.s3Credentials
         ? 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_credential'
         : 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_no_credential',
     );
@@ -152,6 +169,7 @@ export default class ColdArchiveLinkUserArchiveController {
   onLinkedModeClicked() {
     this.trackClick(COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.EXISTING_USER);
     this.userModel.createOrLinkedMode = COLD_ARCHIVE_LINKED_MODES.LINKED;
+    this.initUsersCredentialsList();
   }
 
   onCreateModeClicked() {
@@ -182,6 +200,7 @@ export default class ColdArchiveLinkUserArchiveController {
         newUser = user;
         return this.generateUserS3Credentials(user).then((credential) => {
           newUser.s3Credentials = credential;
+          this.users.push(newUser);
           this.userModel.createMode.user = newUser;
           this.userModel.createMode.credential = credential;
           this.trackPage(
@@ -213,7 +232,7 @@ export default class ColdArchiveLinkUserArchiveController {
     this.trackClick(
       `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.EXISTING_USER}::${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}`,
     );
-    if (user.s3Credentials?.length || user.s3Credentials?.access) {
+    if (user.s3Credentials?.access) {
       this.userModel.linkedMode.isInProgress = true;
       return this.pciStoragesColdArchiveService
         .getS3Credentials(this.projectId, user.id)

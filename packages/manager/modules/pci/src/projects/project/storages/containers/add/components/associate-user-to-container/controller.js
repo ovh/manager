@@ -36,21 +36,38 @@ export default class CreateLinkedUserController {
   }
 
   setUserCredentialsList() {
-    this.usersCredentials = this.users
-      .filter(({ roles }) => {
-        return roles.find(({ name }) =>
-          [USER_ROLES.ADMINISTRATOR, USER_ROLES.OBJECTSTORE_OPERATOR].includes(
-            name,
-          ),
-        );
+    this.userModel.linkedMode.isInProgress = true;
+    this.PciStoragesUsersService.getUsers(this.projectId)
+      .then((users) =>
+        this.PciStoragesUsersService.mapUsersToCredentials(
+          this.projectId,
+          users,
+        ),
+      )
+      .then((usersWithCredentials) => {
+        this.usersCredentials = usersWithCredentials
+          .filter(({ roles }) => {
+            return roles.find(({ name }) =>
+              [
+                USER_ROLES.ADMINISTRATOR,
+                USER_ROLES.OBJECTSTORE_OPERATOR,
+              ].includes(name),
+            );
+          })
+          .map((user) => {
+            const updatedUser = user;
+            updatedUser.credentialTrad = this.getCredentialTranslation(user);
+            updatedUser.userNameDescriptionKey = user.description
+              ? `${user.username} - ${user.description}`
+              : user.username;
+            return updatedUser;
+          });
+        this.users = this.usersCredentials;
       })
-      .map((user) => ({
-        ...user,
-        credentialTrad: this.getCredentialTranslation(user),
-        userNameDescriptionKey: user.description
-          ? `${user.username} - ${user.description}`
-          : user.username,
-      }));
+      .catch(() => [])
+      .finally(() => {
+        this.userModel.linkedMode.isInProgress = false;
+      });
   }
 
   loadMessages() {
@@ -68,7 +85,7 @@ export default class CreateLinkedUserController {
 
   getCredentialTranslation(user) {
     return this.$translate.instant(
-      user.s3Credentials.length > 0
+      user.s3Credentials
         ? 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_credential'
         : 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_not_credential',
     );
@@ -151,6 +168,7 @@ export default class CreateLinkedUserController {
   onLinkedModeClicked() {
     this.trackClick(TRACKING_ASSOCIATE_USER);
     this.userModel.createOrLinkedMode = CONTAINER_USER_ASSOCIATION_MODES.LINKED;
+    this.setUserCredentialsList();
   }
 
   onCreateModeClicked() {
@@ -163,7 +181,7 @@ export default class CreateLinkedUserController {
 
     const service = this.PciStoragesUsersService;
     const { selected: user } = this.userModel.linkedMode;
-    const defaultCredential = user.s3Credentials[0];
+    const defaultCredential = user.s3Credentials;
     const functionToCallPromise = defaultCredential
       ? service.getS3Credential(
           this.projectId,
@@ -176,10 +194,7 @@ export default class CreateLinkedUserController {
     return functionToCallPromise
       .then((credential) => {
         this.trackPage(`${TRACKING_ASSOCIATE_USER}-success`);
-        const { s3Credentials } = user;
-        user.s3Credentials = s3Credentials || [];
-        user.s3Credentials.push(credential);
-
+        user.s3Credentials = credential;
         this.userModel.linkedMode.credential = credential;
       })
       .catch(() => {
@@ -207,9 +222,10 @@ export default class CreateLinkedUserController {
         return this.generateUserS3Credential(user);
       })
       .then((credential) => {
-        newUser.s3Credentials = [credential];
+        newUser.s3Credentials = credential;
         this.users.push(newUser);
         this.userModel.createMode.credential = credential;
+        this.userModel.createMode.user = newUser;
         this.setUserCredentialsList();
         this.trackPage(`${TRACKING_CREATE_USER}-success`);
         return credential;
