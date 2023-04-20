@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.1.5...@ovh-ux/ng-ovh-contact@5.1.6) (2023-04-20)
+
+
+### Bug Fixes
+
+* add some missing translations ([#9107](https://github.com/ovh/manager/issues/9107)) ([f838b0e](https://github.com/ovh/manager/commit/f838b0e36562026970ed3db178c8f179edef7d51))
+
+
+
+
+
 ## [5.1.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.1.4...@ovh-ux/ng-ovh-contact@5.1.5) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-contact

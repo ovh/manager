@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.121.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.121.0...@ovh-ux/manager-pci@5.121.1) (2023-04-20)
+
+
+### Bug Fixes
+
+* add some missing translations ([#9107](https://github.com/ovh/manager/issues/9107)) ([f838b0e](https://github.com/ovh/manager/commit/f838b0e36562026970ed3db178c8f179edef7d51))
+* **pci:** error message correction ([#9098](https://github.com/ovh/manager/issues/9098)) ([#9155](https://github.com/ovh/manager/issues/9155)) ([4c419cb](https://github.com/ovh/manager/commit/4c419cb49af82c26b657687d40a4cdec609e060b))
+
+
+
+
+
 # [5.121.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.120.1...@ovh-ux/manager-pci@5.121.0) (2023-04-19)
 
 
