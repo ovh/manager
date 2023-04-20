@@ -19,6 +19,7 @@ export const ALIGNMENT_URLS = {
   US: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
   WE: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
   WS: 'https://www.ovh.es/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  IN: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
 };
 
 export const AUTORENEW_EVENT = 'billing.autorenew.changed';

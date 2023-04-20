@@ -79,6 +79,7 @@ export const CTAS = {
   LT: 'https://www.ovhcloud.com/en-ie/bare-metal/prices/',
   WE: 'https://www.ovhcloud.com/en/bare-metal/prices/',
   WS: 'https://www.ovhcloud.com/es/bare-metal/prices/',
+  IN: 'https://www.ovhcloud.com/asia/bare-metal/prices/',
 };
 
 export const US_GUIDES = [
