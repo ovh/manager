@@ -3,21 +3,19 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 export function breadcrumb() {
-  return i18next.t('{{appName}}/details/tab:crumb');
+  return i18next.t('catalog/details/tab:crumb');
 }
 
-const Header: React.FC<{children: React.ReactNode}> = ({children}) => (
+const Header: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <h3>{children}</h3>
-)
+);
 
-export default function {{pascalCase appName}}Tab() {
-  const { t } = useTranslation('{{appName}}/details/tab');
+export default function CatalogTab() {
+  const { t } = useTranslation('catalog/details/tab');
 
   return (
     <>
-      <Header>
-        {t('title')}
-      </Header>
+      <Header>{t('title')}</Header>
       Rename me by:
       <ul>
         <li>changing my file name by the route path you want</li>

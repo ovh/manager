@@ -3,11 +3,14 @@ import { createRoot } from 'react-dom/client';
 import { ApplicationId } from '@ovh-ux/manager-config';
 import { RouterProvider } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from './query-client';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { queryClient } from './query-client';
 
 import './vite-hmr';
 import OvhApplication from './ovh-application';
-import OvhContext, { OvhContextShellType } from './ovh-context';
+import OvhContext, {
+  OvhContextShellType as OvhContextShellT,
+} from './ovh-context';
 import { createAppRouter } from './ovh-routing';
 
 export function useEnvironment() {
@@ -15,9 +18,9 @@ export function useEnvironment() {
   return environment;
 }
 
-export type { OvhContextShellType };
+export type OvhContextShellType = OvhContextShellT;
 
-export { queryClient } from './query-client';
+export { queryClient } from './query-client';
 export * from './hooks';
 
 export function useShell(): OvhContextShellType {
@@ -33,9 +36,7 @@ export function createContainerElement() {
   return divContainer;
 }
 
-export function startApplication(
-  appName: ApplicationId,
-) {
+export function startApplication(appName: ApplicationId) {
   const root = createRoot(createContainerElement());
   const appRouter = createAppRouter();
   root.render(
@@ -44,6 +45,7 @@ export function startApplication(
         <OvhApplication name={appName}>
           <RouterProvider router={appRouter} />
         </OvhApplication>
+        <ReactQueryDevtools />
       </QueryClientProvider>
     </React.StrictMode>,
   );
