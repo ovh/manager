@@ -12,7 +12,7 @@
   "data_processing_submit_job_stepper_spark_jar_file_help": "Pathway to your JAR file within your object container",
   "data_processing_submit_job_stepper_spark_version_label": "Spark version",
   "data_processing_submit_job_stepper_spark_arguments_label": "Arguments (optional)",
-  "data_processing_submit_job_stepper_spark_arguments_placeholder": "Press the <Enter> key to add an argument",
+  "data_processing_submit_job_stepper_spark_arguments_placeholder": "Press the <Enter>key to add an argument",
   "data_processing_submit_job_stepper_spark_invalid_jar_label": "Warning: This file does not appear to be a valid JAR (MIME type does not match a JAR file).",
   "data_processing_submit_job_stepper_spark_not_found_file_label": "This file does not seem to exist in the container selected.",
   "data_processing_submit_job_stepper_spark_no_python_environment_label": "The 'environment.yml' Python file does not exist in the container selected.",
