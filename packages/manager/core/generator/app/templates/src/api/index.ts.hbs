@@ -1,3 +1,7 @@
 {{#each apiV6Endpoints}}
+<<<<<<< HEAD
 export * from './{{uppercase @key}}/apiv6/services';
+=======
+export * from './{{this.filepathFromIndexWithoutExtension}}';
+>>>>>>> 669d25faed (feat: generate api v6 endpoints)
 {{/each}}

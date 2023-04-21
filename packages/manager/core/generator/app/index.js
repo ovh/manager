@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+<<<<<<< HEAD
 import { getApiPaths } from '../utils/api.js';
 import { getApiv6TemplateData } from '../utils/api-template.js';
 import {
@@ -8,6 +9,9 @@ import {
   createTranslations,
   createApiQueryFilesActions,
 } from '../utils/create-structure-helpers.js';
+=======
+import { getApiPaths, getApiEndpointQueryData } from '../utils/api.js';
+>>>>>>> 669d25faed (feat: generate api v6 endpoints)
 
 const appDirectory = dirname(fileURLToPath(import.meta.url));
 
@@ -46,16 +50,25 @@ export default (plop) => {
       },
       {
 <<<<<<< HEAD
+<<<<<<< HEAD
         type: 'checkbox',
         name: 'templates',
         message: 'What template do you want generate by default ?',
         choices: ['listing', 'dashboard', 'onboarding'],
         when: async (data) => {
           const result = await getApiv6TemplateData(data.apiPath);
+=======
+        type: 'list',
+        name: 'listingEndpoint',
+        message: 'What is the listing endpoint?',
+        when: async (data) => {
+          const result = await getApiEndpointQueryData(data.apiPath);
+>>>>>>> 669d25faed (feat: generate api v6 endpoints)
           // eslint-disable-next-line no-param-reassign
           data.apiV6Endpoints = result;
           return true;
         },
+<<<<<<< HEAD
       },
       {
         type: 'list',
@@ -96,6 +109,26 @@ export default (plop) => {
       const apiFiles = createApiQueryFilesActions(apiV6Endpoints, appDirectory);
       const pages = createPages(templates, appDirectory);
       const translations = createTranslations(templates, appName, appDirectory);
+=======
+        choices: async ({ apiV6Endpoints }) =>
+          apiV6Endpoints.map(({ apiPath, fileName }) => ({
+            name: apiPath,
+            value: fileName,
+          })),
+      },
+    ],
+    actions: ({ apiV6Endpoints }) => {
+      const createApiQueryFilesActions = apiV6Endpoints.map((endpointData) => ({
+        type: 'add',
+        path: join(
+          appDirectory,
+          `../../../apps/{{dashCase appName}}/src/api/${endpointData.filepathFromIndex}`,
+        ),
+        templateFile: join(appDirectory, '../utils/api-query-template.ts.hbs'),
+        data: endpointData,
+      }));
+
+>>>>>>> 669d25faed (feat: generate api v6 endpoints)
       return [
         {
           type: 'addMany',
@@ -103,10 +136,15 @@ export default (plop) => {
           templateFiles: join(appDirectory, './templates/**'),
           base: join(appDirectory, './templates'),
         },
+<<<<<<< HEAD
         ...apiFiles,
         ...pages,
         ...translations,
         ({ packageName }) =>
+=======
+        ...createApiQueryFilesActions,
+        ({ appName, packageName }) =>
+>>>>>>> 669d25faed (feat: generate api v6 endpoints)
           `App ${appName} generated. Please run \n  yarn install && yarn workspace ${packageName} run start:dev`,
       ];
     },

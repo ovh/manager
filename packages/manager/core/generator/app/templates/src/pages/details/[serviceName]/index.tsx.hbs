@@ -1,18 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-const Header: React.FC<{children: React.ReactNode}> = ({children}) => (
+const Header: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <h3>{children}</h3>
-)
+);
 
-export default function {{pascalCase appName}}Dashboard() {
-  const { t } = useTranslation('{{appName}}/details/dashboard');
+export default function CatalogDashboard() {
+  const { t } = useTranslation('catalog/details/dashboard');
 
   return (
     <div>
-      <Header>
-        {t('title')}
-      </Header>
+      <Header>{t('title')}</Header>
     </div>
   );
 }

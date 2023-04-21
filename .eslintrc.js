@@ -41,6 +41,7 @@ module.exports = {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-empty-function': 'off',
         'import/extensions': 'off',
+        'import/prefer-default-export': 'off',
         'no-use-before-define': 'off',
         'no-shadow': 'off',
         'no-unused-expressions': 'off',

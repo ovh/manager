@@ -6912,6 +6912,7 @@
   integrity sha512-+ME02sUmBfx3Pjd+0XtEthK8/4rVMD2jcxvnW9DSgFONpKtpjzfRzjY4ykzpDw1QEo2eoPvl7NS8J5mNI199aA==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@tanstack/query-core@4.29.1":
   version "4.29.1"
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.29.1.tgz#62a4bc120b85e6bb3c6c0aca96346e643e232248"
@@ -6927,12 +6928,26 @@
   resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-4.29.1.tgz#4cd09673b56b204fd6f18b8f4d47705ca9d288ca"
   integrity sha512-lbtNGArplXLVmY8eEh8LFqZz61PJI38sASEcuKoSnEK8UgWvLCwY5vjlT8fzk10yQ4jhR3+PHKLDMXA5ifCTXw==
 >>>>>>> 122fb7a20f (feat(generator): add eslint and prettier in react project)
+=======
+"@tanstack/query-core@4.29.1":
+  version "4.29.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.29.1.tgz#62a4bc120b85e6bb3c6c0aca96346e643e232248"
+  integrity sha512-vkPewLEG8ua0efo3SsVT0BcBtkq5RZX8oPhDAyKL+k/rdOYSQTEocfGEXSaBwIwsXeOGBUpfKqI+UmHvNqdWXg==
+
+"@tanstack/react-query-devtools@^4.29.3":
+  version "4.29.3"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-4.29.3.tgz#3ffd833d66918208bc6f2f5b4008d094754140b3"
+  integrity sha512-Ne/K9+gskn8zM4sbLWl4mq5x0ha0JIg7I078K+t6seorL6oq9Y9E30wlP4y/IVa9hgn8DHB1Q6GoPtA2iu6p2g==
+>>>>>>> 669d25faed (feat: generate api v6 endpoints)
   dependencies:
     "@tanstack/match-sorter-utils" "^8.7.0"
     superjson "^1.10.0"
     use-sync-external-store "^1.2.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 669d25faed (feat: generate api v6 endpoints)
 "@tanstack/react-query@^4.29.3":
   version "4.29.3"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.29.3.tgz#037205560784ed4a5e3fd605a2143e325b6189fa"
@@ -6941,8 +6956,11 @@
     "@tanstack/query-core" "4.29.1"
     use-sync-external-store "^1.2.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> 122fb7a20f (feat(generator): add eslint and prettier in react project)
+=======
+>>>>>>> 669d25faed (feat: generate api v6 endpoints)
 "@tanstack/react-query@^4.9.0":
   version "4.10.3"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.10.3.tgz#294deefa0fb6ada88bc4631d346ef5d5551c5443"
