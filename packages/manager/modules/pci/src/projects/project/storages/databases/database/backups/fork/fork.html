@@ -445,11 +445,14 @@
                                     aria-hidden="true"
                                 ></span>
                                 <span
-                                    data-translate="pci_databases_backups_fork_spec_flavor_CPU"
-                                    data-translate-values="{
-                                        cpu: ($ctrl.model.flavor.core|
-                                        bytes:2:false:'GB')
-                                    }"
+                                    data-ng-if="$ctrl.model.flavor.core === 1"
+                                    data-translate="pci_databases_backups_fork_spec_flavor_CPU_one"
+                                    data-translate-values="{ cpu: $ctrl.model.flavor.core }"
+                                ></span>
+                                <span
+                                    data-ng-if="$ctrl.model.flavor.core > 1"
+                                    data-translate="pci_databases_backups_fork_spec_flavor_CPU_many"
+                                    data-translate-values="{ cpu: $ctrl.model.flavor.core }"
                                 ></span>
                             </div>
                             <div class="d-flex">
