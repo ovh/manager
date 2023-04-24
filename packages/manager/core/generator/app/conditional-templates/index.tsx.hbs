@@ -9,28 +9,16 @@ import {
   useLoaderData,
 } from 'react-router-dom';
 
-<<<<<<< HEAD
-import { {{listingEndpoint}} } from '@/api';
-
-export function loader() {
-  return defer({
-    services: {{listingEndpoint}}(),
-=======
 import { get{{pascalCase listingEndpoint}} } from '@/api';
 
 export function loader() {
   return defer({
     services: get{{pascalCase listingEndpoint}}(),
->>>>>>> 5c6f5029ff (feat(generator): update template vite js)
   });
 }
 
-export default function Listing() {
-<<<<<<< HEAD
-  const { t } = useTranslation('{{appName}}/listing');
-=======
+export default function {{pascalCase appName}}() {
   const { t } = useTranslation('{{appName}}');
->>>>>>> 5c6f5029ff (feat(generator): update template vite js)
   const data = useLoaderData() as Record<string, unknown>;
 
   return (
@@ -59,11 +47,7 @@ export default function Listing() {
                 <ul>
                   {services.map((serviceName: string) => (
                     <li key={serviceName}>
-<<<<<<< HEAD
-                      <Link to={`/dashboard/${serviceName}`}>{serviceName}</Link>
-=======
                       <Link to={`/details/${serviceName}`}>{serviceName}</Link>
->>>>>>> 5c6f5029ff (feat(generator): update template vite js)
                     </li>
                   ))}
 

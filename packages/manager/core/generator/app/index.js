@@ -51,16 +51,22 @@ export default (plop) => {
       {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 5c6f5029ff (feat(generator): update template vite js)
         type: 'checkbox',
         name: 'templates',
         message: 'What template do you want generate by default ?',
         choices: ['listing', 'dashboard', 'onboarding'],
+<<<<<<< HEAD
         when: async (data) => {
           const result = await getApiv6TemplateData(data.apiPath);
 =======
         type: 'list',
         name: 'listingEndpoint',
         message: 'What is the listing endpoint?',
+=======
+>>>>>>> 5c6f5029ff (feat(generator): update template vite js)
         when: async (data) => {
           const result = await getApiEndpointQueryData(data.apiPath);
 >>>>>>> 669d25faed (feat: generate api v6 endpoints)
@@ -69,12 +75,16 @@ export default (plop) => {
           return true;
         },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 5c6f5029ff (feat(generator): update template vite js)
       },
       {
         type: 'list',
         name: 'listingEndpoint',
         message: 'What is the listing endpoint?',
         when: (data) => data.templates.includes('listing'),
+<<<<<<< HEAD
         choices: async ({ apiV6Endpoints }) => {
           return apiV6Endpoints?.get?.operationList?.map(
             ({ apiPath, functionName }) => ({
@@ -110,6 +120,8 @@ export default (plop) => {
       const pages = createPages(templates, appDirectory);
       const translations = createTranslations(templates, appName, appDirectory);
 =======
+=======
+>>>>>>> 5c6f5029ff (feat(generator): update template vite js)
         choices: async ({ apiV6Endpoints }) =>
           apiV6Endpoints.map(({ apiPath, fileName }) => ({
             name: apiPath,
@@ -117,7 +129,7 @@ export default (plop) => {
           })),
       },
     ],
-    actions: ({ apiV6Endpoints }) => {
+    actions: ({ apiV6Endpoints, templates }) => {
       const createApiQueryFilesActions = apiV6Endpoints.map((endpointData) => ({
         type: 'add',
         path: join(
@@ -128,7 +140,38 @@ export default (plop) => {
         data: endpointData,
       }));
 
+<<<<<<< HEAD
 >>>>>>> 669d25faed (feat: generate api v6 endpoints)
+=======
+      const createPages = templates.map((template) => {
+        if (template === 'listing') {
+          return {
+            type: 'add',
+            path: join(
+              appDirectory,
+              `../../../apps/{{dashCase appName}}/src/pages/index.tsx`,
+            ),
+            force: true,
+            templateFile: join(
+              appDirectory,
+              `./conditional-templates/${template}/index.tsx.hbs`,
+            ),
+          };
+        }
+        return {
+          type: 'add',
+          path: join(
+            appDirectory,
+            `../../../apps/{{dashCase appName}}/src/pages/${template}/index.tsx`,
+          ),
+          templateFile: join(
+            appDirectory,
+            `./conditional-templates/${template}/index.tsx.hbs`,
+          ),
+        };
+      });
+
+>>>>>>> 5c6f5029ff (feat(generator): update template vite js)
       return [
         {
           type: 'addMany',
@@ -143,6 +186,7 @@ export default (plop) => {
         ({ packageName }) =>
 =======
         ...createApiQueryFilesActions,
+        ...createPages,
         ({ appName, packageName }) =>
 >>>>>>> 669d25faed (feat: generate api v6 endpoints)
           `App ${appName} generated. Please run \n  yarn install && yarn workspace ${packageName} run start:dev`,
