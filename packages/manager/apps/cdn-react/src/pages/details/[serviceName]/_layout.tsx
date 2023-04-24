@@ -10,8 +10,8 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;
 }
 
-export default function NashaReactDetails() {
-  const { t } = useTranslation('nasha-react/details');
+export default function CdnReactDetails() {
+  const { t } = useTranslation('cdn-react/details');
   const { serviceName } = useParams();
 
   const tabs = [
@@ -21,9 +21,9 @@ export default function NashaReactDetails() {
       to: useResolvedPath('').pathname,
     },
     {
-      name: 'partitions',
-      title: t('tab_partitions'),
-      to: useResolvedPath('partitionsTab').pathname,
+      name: 'tab',
+      title: t('tab_second'),
+      to: useResolvedPath('tab').pathname,
     },
   ];
 
@@ -38,7 +38,6 @@ export default function NashaReactDetails() {
           </li>
         ))}
       </ul>
-      <hr></hr>
       <Outlet />
     </>
   );

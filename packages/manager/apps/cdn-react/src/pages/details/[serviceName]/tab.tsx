@@ -4,11 +4,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 export function breadcrumb() {
-  return i18next.t('nasha-react/details/tab:crumb');
+  return i18next.t('cdn-react/details/tab:crumb');
 }
 
-export default function NashaReactTab() {
-  const { t } = useTranslation('nasha-react/details/tab');
+export default function CdnReactTab() {
+  const { t } = useTranslation('cdn-react/details/tab');
 
   return (
     <>
