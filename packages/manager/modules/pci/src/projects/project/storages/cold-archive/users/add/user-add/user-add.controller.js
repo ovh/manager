@@ -1,7 +1,7 @@
 import {
   NAMESPACES,
-  USER_STATUS,
   OBJECT_STORAGE_USER_ROLE,
+  USER_STATUS,
 } from '../../users.constants';
 
 import { COLD_ARCHIVE_TRACKING } from '../../../cold-archives.constants';
@@ -24,7 +24,19 @@ export default class PciUsersAddController {
     this.isLoading = false;
     this.addExistingUser = 'addExistingUser';
     this.createNewUser = 'createNewUser';
-    this.users = this.allUserList
+    this.users = this.getValidUsers();
+    this.usersWithoutCredentials = this.getUsersHaveNotCredentials();
+    this.isUserCouldGenerateCredentails =
+      this.usersWithoutCredentials?.length > 0;
+    [this.userModel] = this.usersWithoutCredentials;
+  }
+
+  onChange(action) {
+    this.model = action;
+  }
+
+  getValidUsers() {
+    return this.allUserList
       .filter((user) => user && user.status === 'ok')
       .map((user) => ({
         ...user,
@@ -38,21 +50,17 @@ export default class PciUsersAddController {
               'pci_projects_project_users_add_as_no_credentials',
             ),
       }));
-    this.usersWithoutCredentials = this.users
-      .filter(({ s3Credentials }) => !s3Credentials.length)
+  }
+
+  getUsersHaveNotCredentials() {
+    return this.users
+      .filter(({ s3Credentials }) => !s3Credentials?.length)
       .map((user) => ({
         ...user,
         userNameDescriptionKey: user.description
           ? `${user.username} - ${user.description}`
           : user.username,
       }));
-    this.isUserCouldGenerateCredentails =
-      this.usersWithoutCredentials?.length > 0;
-    [this.userModel] = this.usersWithoutCredentials;
-  }
-
-  onChange(action) {
-    this.model = action;
   }
 
   trackUserAddClick(action) {
