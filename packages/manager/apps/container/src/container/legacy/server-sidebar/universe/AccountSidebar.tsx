@@ -24,7 +24,7 @@ export default function AccountSidebar() {
   const region = environment.getRegion();
   const isEnterprise = environment.getUser()?.enterprise;
 
-  const getAccountSidebar = () => {
+  const getAccountSidebar = async () => {
     const menu = [];
 
     menu.push({
@@ -39,6 +39,24 @@ export default function AccountSidebar() {
       href: navigation.getURL('dedicated', '/useraccount/dashboard'),
       routeMatcher: new RegExp('^/useraccount'),
     });
+
+    const featureAvailability = await reketInstance.get(
+      `/feature/identity-documents/availability`,
+      {
+        requestType: 'aapi',
+      },
+    );
+    if (featureAvailability['identity-documents']) {
+      const { status } = await reketInstance.get(`/me/procedure/identity`);
+      if (['open', 'required'].includes(status)) {
+        menu.push({
+          id: 'my-identity-documents',
+          label: t('sidebar_account_identity_documents'),
+          href: navigation.getURL('dedicated', '/identity-documents'),
+          routeMatcher: new RegExp('^/identity-documents'),
+        });
+      }
+    }
 
     if (!isEnterprise) {
       menu.push({
@@ -101,11 +119,11 @@ export default function AccountSidebar() {
     return menu;
   };
 
-  const buildMenu = () =>
+  const buildMenu = async () =>
     Promise.resolve({
       id: 'my-account-sidebar',
       label: '',
-      subItems: [...getAccountSidebar()],
+      subItems: [...(await getAccountSidebar())],
     });
 
   useEffect(() => {
