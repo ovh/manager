@@ -383,10 +383,11 @@
                                     class="oui-icon oui-icon-component_concept mr-2"
                                 ></span>
                                 <span
-                                    data-translate="pci_database_add_spec_flavor_CPU"
-                                    data-translate-values="{
-                                        cpu: ($ctrl.model.flavor.core|
-                                        bytes:2:false:'GB')
+                                    data-ng-pluralize
+                                    data-count="$ctrl.model.flavor.core"
+                                    data-when="{
+                                        '1': ('pci_database_add_spec_flavor_CPU_one' | translate: { cpu: $ctrl.model.flavor.core }),
+                                        'other': ('pci_database_add_spec_flavor_CPU_many' | translate: { cpu: $ctrl.model.flavor.core }),
                                     }"
                                 ></span>
                             </div>

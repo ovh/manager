@@ -445,10 +445,11 @@
                                     aria-hidden="true"
                                 ></span>
                                 <span
-                                    data-translate="pci_databases_backups_fork_spec_flavor_CPU"
-                                    data-translate-values="{
-                                        cpu: ($ctrl.model.flavor.core|
-                                        bytes:2:false:'GB')
+                                    data-ng-pluralize
+                                    data-count="$ctrl.model.flavor.core"
+                                    data-when="{
+                                        '1': ('pci_databases_backups_fork_spec_flavor_CPU_one' | translate: { cpu: $ctrl.model.flavor.core }),
+                                        'other': ('pci_databases_backups_fork_spec_flavor_CPU_many' | translate: { cpu: $ctrl.model.flavor.core }),
                                     }"
                                 ></span>
                             </div>
