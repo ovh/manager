@@ -60,5 +60,7 @@
   "pci_databases_backups_fork_price_unit_hour": "/ godz.",
   "pci_databases_backups_fork_price_unit_switch_label": "Wyświetl ceny miesięczne",
   "pci_databases_backups_fork_restore_mode_title": "Punkt przywracania",
-  "pci_databases_backups_fork_restore_mode_description": "Wybierz punkt przywracania, z którego usługa zostanie zduplikowana."
+  "pci_databases_backups_fork_restore_mode_description": "Wybierz punkt przywracania, z którego usługa zostanie zduplikowana.",
+  "pci_databases_backups_fork_spec_flavor_CPU_one": "{{cpu}} vCore",
+  "pci_databases_backups_fork_spec_flavor_CPU_many": "{{cpu}} vCores"
 }
