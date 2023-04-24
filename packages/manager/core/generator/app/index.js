@@ -130,15 +130,20 @@ export default (plop) => {
       },
     ],
     actions: ({ apiV6Endpoints, templates }) => {
-      const createApiQueryFilesActions = apiV6Endpoints.map((endpointData) => ({
-        type: 'add',
-        path: join(
-          appDirectory,
-          `../../../apps/{{dashCase appName}}/src/api/${endpointData.filepathFromIndex}`,
-        ),
-        templateFile: join(appDirectory, '../utils/api-query-template.ts.hbs'),
-        data: endpointData,
-      }));
+      const createApiQueryFilesActions = Object.entries(apiV6Endpoints).map(
+        ([method, data]) => ({
+          type: 'add',
+          path: join(
+            appDirectory,
+            `../../../apps/{{dashCase appName}}/src/api/${method.toUpperCase()}/apiv6/services.ts`,
+          ),
+          templateFile: join(
+            appDirectory,
+            './conditional-templates/api/services-template.ts.hbs',
+          ),
+          data,
+        }),
+      );
 
 <<<<<<< HEAD
 >>>>>>> 669d25faed (feat: generate api v6 endpoints)
