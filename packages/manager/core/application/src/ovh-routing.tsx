@@ -121,7 +121,7 @@ export function createAppRouter() {
           }
         />
       ),
-      ...(appBlob[appBlobKey].breadcrumb
+      ...(appBlob[appBlobKey]?.breadcrumb
         ? {
             handle: {
               breadcrumb: appBlob[appBlobKey].breadcrumb,
