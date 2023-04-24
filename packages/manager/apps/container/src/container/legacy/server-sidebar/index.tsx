@@ -35,6 +35,7 @@ export default function ServerSidebarIndex() {
           '/contacts',
           '/support',
           '/ticket',
+          '/identity-documents',
         ].some((route) =>
           location.pathname.startsWith(
             `/${application.container.path}${route}`,
