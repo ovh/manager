@@ -51,7 +51,7 @@ export default class PciUsersAddController {
 
   getUsersHaveNotCredentials() {
     return this.users
-      .filter(({ s3Credentials }) => !s3Credentials?.length)
+      .filter(({ s3Credentials }) => !s3Credentials)
       .map((user) => ({
         ...user,
         userNameDescriptionKey: user.description
