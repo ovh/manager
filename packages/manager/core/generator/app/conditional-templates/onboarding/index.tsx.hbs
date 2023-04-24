@@ -1,12 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export default function {{pascalCase appName}}Onboarding() {
-  const { t } = useTranslation('{{appName}}/onboarding');
+export default function Onboarding() {
+  const { t } = useTranslation('{{appName}}');
 
   return (
     <div>
       <h1>{t('title')}</h1>
+      <div>Onboarding page</div>
     </div>
   );
 }

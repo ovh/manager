@@ -13,6 +13,7 @@ export default (plop) => {
         type: 'input',
         name: 'appName',
         message: 'What is the name of the new app?',
+        validate: (appName) => appName.length > 1,
       },
       {
         type: 'input',
@@ -26,6 +27,7 @@ export default (plop) => {
         type: 'input',
         name: 'description',
         message: 'How would you describe the new app?',
+        validate: (description) => description.length > 1,
       },
       {
         type: 'autocomplete',
@@ -37,15 +39,22 @@ export default (plop) => {
         },
       },
       {
-        type: 'list',
-        name: 'listingEndpoint',
-        message: 'What is the listing endpoint?',
+        type: 'checkbox',
+        name: 'templates',
+        message: 'What template do you want generate by default ?',
+        choices: ['listing', 'dashboard', 'onboarding'],
         when: async (data) => {
           const result = await getApiEndpointQueryData(data.apiPath);
           // eslint-disable-next-line no-param-reassign
           data.apiV6Endpoints = result;
           return true;
         },
+      },
+      {
+        type: 'list',
+        name: 'listingEndpoint',
+        message: 'What is the listing endpoint?',
+        when: (data) => data.templates.includes('listing'),
         choices: async ({ apiV6Endpoints }) =>
           apiV6Endpoints.map(({ apiPath, fileName }) => ({
             name: apiPath,
@@ -53,7 +62,7 @@ export default (plop) => {
           })),
       },
     ],
-    actions: ({ apiV6Endpoints }) => {
+    actions: ({ apiV6Endpoints, templates }) => {
       const createApiQueryFilesActions = apiV6Endpoints.map((endpointData) => ({
         type: 'add',
         path: join(
@@ -64,6 +73,34 @@ export default (plop) => {
         data: endpointData,
       }));
 
+      const createPages = templates.map((template) => {
+        if (template === 'listing') {
+          return {
+            type: 'add',
+            path: join(
+              appDirectory,
+              `../../../apps/{{dashCase appName}}/src/pages/index.tsx`,
+            ),
+            force: true,
+            templateFile: join(
+              appDirectory,
+              `./conditional-templates/${template}/index.tsx.hbs`,
+            ),
+          };
+        }
+        return {
+          type: 'add',
+          path: join(
+            appDirectory,
+            `../../../apps/{{dashCase appName}}/src/pages/${template}/index.tsx`,
+          ),
+          templateFile: join(
+            appDirectory,
+            `./conditional-templates/${template}/index.tsx.hbs`,
+          ),
+        };
+      });
+
       return [
         {
           type: 'addMany',
@@ -72,6 +109,7 @@ export default (plop) => {
           base: join(appDirectory, './templates'),
         },
         ...createApiQueryFilesActions,
+        ...createPages,
         ({ appName, packageName }) =>
           `App ${appName} generated. Please run \n  yarn install && yarn workspace ${packageName} run start:dev`,
       ];
