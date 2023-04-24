@@ -53,7 +53,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
 
       userList: /* @ngInject */ (projectId, allUserList) =>
-        allUserList.filter((user) => user?.s3Credentials?.length > 0),
+        allUserList.filter((user) => user?.s3Credentials),
 
       allUserList: /* @ngInject */ (
         projectId,
