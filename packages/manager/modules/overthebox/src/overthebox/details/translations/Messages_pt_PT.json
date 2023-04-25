@@ -71,5 +71,7 @@
   "overTheBox_expiration_warning_help": "Pode anular a rescisão antes da data de expiração.",
   "overTheBox_detail_link_guide": "Manuais",
   "overthebox_detail_links": "Links",
-  "overTheBox_service_id": "Identificador do serviço:"
+  "overTheBox_service_id": "Identificador do serviço:",
+  "overTheBox_release_channel_beta": "Versão beta",
+  "overTheBox_release_channel_alpha": "Versão alfa"
 }

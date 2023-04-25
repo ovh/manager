@@ -71,5 +71,7 @@
   "overTheBox_expiration_warning_help": "Sie können die Kündigung vor dem Ablaufdatum stornieren.",
   "overTheBox_detail_link_guide": "Anleitungen",
   "overthebox_detail_links": "Links",
-  "overTheBox_service_id": "Kennung des Dienstes:"
+  "overTheBox_service_id": "Kennung des Dienstes:",
+  "overTheBox_release_channel_beta": "Beta-Version",
+  "overTheBox_release_channel_alpha": "Alpha-Version"
 }

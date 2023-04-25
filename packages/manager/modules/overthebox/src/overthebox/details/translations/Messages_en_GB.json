@@ -85,5 +85,7 @@
   "overTheBox_reverse_dns": "Reverse DNS",
   "overTheBox_detail_link_guide": "Guides",
   "overthebox_detail_links": "Links",
-  "overTheBox_service_id": "Service ID:"
+  "overTheBox_service_id": "Service ID:",
+  "overTheBox_release_channel_beta": "Beta version",
+  "overTheBox_release_channel_alpha": "Alpha version"
 }

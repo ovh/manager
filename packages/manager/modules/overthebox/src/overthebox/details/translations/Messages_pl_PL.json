@@ -71,5 +71,7 @@
   "overTheBox_expiration_warning_help": "Możesz anulować rezygnację przed datą wygaśnięcia.",
   "overTheBox_detail_link_guide": "Przewodniki",
   "overthebox_detail_links": "Pomocne linki",
-  "overTheBox_service_id": "Identyfikator usługi:"
+  "overTheBox_service_id": "Identyfikator usługi:",
+  "overTheBox_release_channel_beta": "Wersja beta",
+  "overTheBox_release_channel_alpha": "Wersja alfa"
 }
