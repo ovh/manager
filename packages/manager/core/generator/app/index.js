@@ -85,6 +85,9 @@ export default (plop) => {
         message: 'What is the listing endpoint?',
         when: (data) => data.templates.includes('listing'),
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c5c6c0b474 (feat(generator): add apiv6 requests)
         choices: async ({ apiV6Endpoints }) => {
           return apiV6Endpoints?.get?.operationList?.map(
             ({ apiPath, functionName }) => ({
@@ -93,6 +96,7 @@ export default (plop) => {
             }),
           );
         },
+<<<<<<< HEAD
       },
       {
         type: 'list',
@@ -127,6 +131,8 @@ export default (plop) => {
             name: apiPath,
             value: fileName,
           })),
+=======
+>>>>>>> c5c6c0b474 (feat(generator): add apiv6 requests)
       },
     ],
     actions: ({ apiV6Endpoints, templates }) => {
