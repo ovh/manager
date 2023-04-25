@@ -15,5 +15,6 @@ export default {
     goToUsersAndRoles: '<',
     trackClick: '<',
     trackPage: '<',
+    regions: '<',
   },
 };

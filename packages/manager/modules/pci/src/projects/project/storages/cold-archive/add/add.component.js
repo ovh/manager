@@ -13,6 +13,8 @@ export default {
     allUserList: '<',
     priceLink: '<',
     goToColdArchiveContainers: '<',
+    regions: '<',
+    goToColdArchiveContainersWithData: '<',
   },
   controller,
   template,

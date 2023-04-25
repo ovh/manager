@@ -1,5 +1,7 @@
-import { COLD_ARCHIVE_STATES } from './containers.constants';
-import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
+import {
+  COLD_ARCHIVE_TRACKING,
+  COLD_ARCHIVE_STATES,
+} from '../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(COLD_ARCHIVE_STATES.CONTAINERS, {
@@ -19,6 +21,9 @@ export default /* @ngInject */ ($stateProvider) => {
               }
             : false,
         ),
+    params: {
+      createdContainerInfos: null,
+    },
     resolve: {
       breadcrumb: () => null,
 
@@ -29,6 +34,9 @@ export default /* @ngInject */ ($stateProvider) => {
           containerName: name,
         });
       },
+
+      createdContainerInfos: /* @ngInject */ ($transition$) =>
+        $transition$.params().createdContainerInfos,
 
       goToManageContainer: /* @ngInject */ ($state) => () =>
         $state.go(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_MANAGE, {}),

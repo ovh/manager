@@ -7,6 +7,7 @@ export default {
   bindings: {
     containers: '<',
     containerName: '<',
+    createdContainerInfos: '<',
     refreshContainers: '<',
     initGuides: '<',
     guides: '<',
@@ -24,5 +25,6 @@ export default {
     goBack: '<',
     trackClick: '<',
     trackPage: '<',
+    regions: '<',
   },
 };

@@ -6,5 +6,6 @@
   "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label": "Votre nom d'utilisateur S3 :",
   "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label": "Votre description :",
   "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label": "Votre clé d'accès S3 :",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label": "Votre clé secrète S3 :"
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label": "Votre clé secrète S3 :",
+  "pci_projects_project_storages_containers_add_container_success": "Le conteneur {{containerName}} a été créé avec succès et l'utilisateur S3 {{username}} a été ajouté en tant que {{role}}."
 }

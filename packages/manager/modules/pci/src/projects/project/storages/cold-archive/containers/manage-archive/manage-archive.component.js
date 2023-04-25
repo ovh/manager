@@ -6,7 +6,7 @@ export default {
   template,
   bindings: {
     endpoint: '<',
-    region: '<',
+    regions: '<',
     trackClick: '<',
     trackPage: '<',
     goBack: '<',

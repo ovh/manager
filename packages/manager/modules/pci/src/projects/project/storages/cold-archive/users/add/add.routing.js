@@ -1,7 +1,10 @@
-import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
+import {
+  COLD_ARCHIVE_TRACKING,
+  COLD_ARCHIVE_STATES,
+} from '../../cold-archives.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.storages.cold-archive.users.add', {
+  $stateProvider.state(COLD_ARCHIVE_STATES.S3_USERS_ADD, {
     url: '/new',
     views: {
       modal: {

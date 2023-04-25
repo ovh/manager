@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_message": "S3 credentials for user {{username}} have been generated.",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_fail_message": "S3 credentials not generated.",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_credential_fail_message": "Failed to create user {{username}}.",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label": "Your S3 username",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label": "Your access key:",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label": "Your secret key:"
-}
