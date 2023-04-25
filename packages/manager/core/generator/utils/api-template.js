@@ -1,11 +1,12 @@
+/* eslint-disable import/extensions */
 import {
   isArrayType,
   getTypeFromString,
   isUnknownTypescriptType,
   removeTypeBrackets,
   transformTypeToTypescript,
-} from './string-helpers';
-import { getApiServiceOperations } from './api';
+} from './string-helpers.js';
+import { getApiServiceOperations } from './api.js';
 
 /**
  * Tranform endpoint data into a list of operations template data
