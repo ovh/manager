@@ -24,19 +24,31 @@ export function loader(params: any) {
 }
 
 export default function Dashboard() {
+<<<<<<< HEAD
   const { t } = useTranslation('{{appName}}/dashboard');
+=======
+  const { t } = useTranslation('{{appName}}');
+>>>>>>> 111b163b0c (feat(generator): add template dashboard api)
    const data = useLoaderData() as Record<string, unknown>;
 
   return (
     <div>
       <Breadcrumb/>
       <h1>{t('title')}</h1>
+<<<<<<< HEAD
+=======
+      <div>Dashboard page</div>
+>>>>>>> 111b163b0c (feat(generator): add template dashboard api)
       <Suspense fallback="">
         <Await resolve={data.services}>
           {(services) => {
             const count = services.length;
             if (count === 0) {
+<<<<<<< HEAD
               return <div>{t('error_service')}</div>
+=======
+              return <div>No services info</div>
+>>>>>>> 111b163b0c (feat(generator): add template dashboard api)
             }
             return (
               <div>

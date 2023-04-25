@@ -1,7 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* eslint-disable import/extensions */
 =======
 >>>>>>> 81dbec510f (docs: add doc for api utils)
+=======
+/* eslint-disable import/extensions */
+>>>>>>> 111b163b0c (feat(generator): add template dashboard api)
 import {
   isArrayType,
   getTypeFromString,
@@ -9,12 +13,17 @@ import {
   removeTypeBrackets,
   transformTypeToTypescript,
 <<<<<<< HEAD
+<<<<<<< HEAD
 } from './string-helpers.js';
 import { getApiServiceOperations } from './api.js';
 =======
 } from './string-helpers';
 import { getApiServiceOperations } from './api';
 >>>>>>> 81dbec510f (docs: add doc for api utils)
+=======
+} from './string-helpers.js';
+import { getApiServiceOperations } from './api.js';
+>>>>>>> 111b163b0c (feat(generator): add template dashboard api)
 
 /**
  * Tranform endpoint data into a list of operations template data

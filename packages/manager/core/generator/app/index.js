@@ -143,6 +143,20 @@ export default (plop) => {
 =======
 >>>>>>> c5c6c0b474 (feat(generator): add apiv6 requests)
       },
+      {
+        type: 'list',
+        name: 'dashboardEndpoint',
+        message: 'What is the dashboard endpoint?',
+        when: (data) => data.templates.includes('dashboard'),
+        choices: async ({ apiV6Endpoints }) => {
+          return apiV6Endpoints?.get?.operationList?.map(
+            ({ apiPath, functionName }) => ({
+              name: apiPath,
+              value: functionName,
+            }),
+          );
+        },
+      },
     ],
     actions: ({ apiV6Endpoints, templates }) => {
       const createApiQueryFilesActions = Object.entries(apiV6Endpoints).map(
@@ -172,6 +186,19 @@ export default (plop) => {
               `../../../apps/{{dashCase appName}}/src/pages/index.tsx`,
             ),
             force: true,
+            templateFile: join(
+              appDirectory,
+              `./conditional-templates/${template}/index.tsx.hbs`,
+            ),
+          };
+        }
+        if (template === 'dashboard') {
+          return {
+            type: 'add',
+            path: join(
+              appDirectory,
+              `../../../apps/{{dashCase appName}}/src/pages/dashboard/[serviceName]/index.tsx`,
+            ),
             templateFile: join(
               appDirectory,
               `./conditional-templates/${template}/index.tsx.hbs`,
