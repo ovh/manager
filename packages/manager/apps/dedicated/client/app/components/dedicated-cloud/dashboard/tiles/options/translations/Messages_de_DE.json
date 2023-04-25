@@ -26,5 +26,5 @@
   "ovhManagerPccDashboardOptions_security_drp_action_install": "DRP installieren",
   "ovhManagerPccDashboardOptions_security_drp_action_delete": "Zerto DRP löschen",
   "ovhManagerPccDashboardOptions_heading_conformity": "Compliance",
-  "ovhManagerPccDashboardOptions_heading_vmware_option": "VMware Optionen"
+  "ovhManagerPccDashboardOptions_heading_vmware_option": "VMware-Optionen"
 }
