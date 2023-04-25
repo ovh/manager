@@ -1,6 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, Navigate, Outlet } from 'react-router-dom';
+
+import '@ods/theme-blue-jeans/index.css';
+import '@ods/stencil/components/custom-elements-bundle';
+
 import {
   QueryClient,
   QueryClientProvider,
