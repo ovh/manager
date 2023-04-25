@@ -89,7 +89,6 @@
   "domain_dashboard_web_hosting_more_infos": "More information",
   "domain_configuration_action_disable": "Disable",
   "domain_configuration_action_enable": "Enable",
-  "domain_contact_owner": "Holder",
   "domain_tab_GENERAL_INFORMATIONS": "General information",
   "domain_tab_DNS": "DNS servers ",
   "domain_tab_DNS_warning_only_one_dns": "Please note: We strongly advise having more than one active DNS server.",
@@ -244,10 +243,7 @@
   "domain_configuration_add_subdomain_add_dom": "Add a domain or sub-domain to your hosting plan",
   "domain_configuration_add_subdomain_hosting_choice": "Choose the hosting plan you want to attach <strong>{{t0}} to. {{t1}}</strong>",
   "domain_configuration_add_subdomain_hosting_search": "Search for a hosting plan",
-  "domain_configuration_renew": "Your domain name is suspended. You can still renew it during the grace period. Once this period has passed, additional fees will apply.",
-  "domain_configuration_restorable": "Your domain name is being deleted. You can still restore it for an additional fee, by following the restore link. If you choose not to do this, your domain name will be permanently deleted.",
   "domain_configuration_renew_title_button": "Renew",
-  "domain_configuration_restorable_title_button": "Restore",
   "domain_configuration_renew_alldom_title_button": "Renew AllDom",
   "domain_configuration_renew_title": "Renew your domain",
   "domain_configuration_renew_step1_question": "To renew your <span class=\"italic\">{{t0}} domain</span>, you will need to use the OVHcloud renewal interface (outside of the OVHcloud Web Control Panel).",
@@ -825,5 +821,11 @@
   "domain_dashboard_general_information_domain_automatic": "Automatic renewal",
   "domain_dashboard_general_information_alldom_termination_info": "Your pack will expire on {{expirationDate}}. The non-cancelled domains included in this pack will be <strong>renewed for free until your pack expires permanently.</strong> After this date, your non-cancelled domains will be billed individually.",
   "domain_dashboard_general_information_alldom_renewal_link": "Undo pack cancellation",
-  "domain_dashboard_general_information_alldom_termination_warning_close": "Close"
+  "domain_dashboard_general_information_alldom_termination_warning_close": "Close",
+  "domain_contact_owner": "Holder",
+  "domain_configuration_renew": "Your domain name is suspended. You can still renew it during the grace period. Once this period has passed, additional fees will apply.",
+  "domain_configuration_restorable": "Your domain name is being deleted. You can still restore it for an additional fee, by following the restore link. If you choose not to do this, your domain name will be permanently deleted.",
+  "domain_configuration_restorable_title_button": "Restore",
+  "domain_hosting_price_ht_label": "{{price}} ex. VAT",
+  "domain_tab_options_delete_expiry": "Your cancellation of the option will come into effect on the renewal date, i.e. {{ date }}"
 }

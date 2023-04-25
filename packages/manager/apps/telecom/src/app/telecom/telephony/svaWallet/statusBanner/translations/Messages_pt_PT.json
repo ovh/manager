@@ -1,0 +1,5 @@
+{
+  "telephony_billingAccount_svaWallet_status_banner_in_progress": "O seu pedido de validação de identidade foi corretamente tomado em conta! É necessário um prazo de validação de 24h/48h antes da validação!",
+  "telephony_billingAccount_svaWallet_status_banner_incomplete": "O seu formulário de validação está em espera. Para validar a encomenda de número SVA deve finalizar o seu formulário.",
+  "telephony_billingAccount_svaWallet_status_banner_edit_kyc": "Finalizar o meu formulário de validação de identidade"
+}

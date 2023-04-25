@@ -89,7 +89,6 @@
   "domain_dashboard_web_hosting_more_infos": "Więcej informacji",
   "domain_configuration_action_disable": "Wyłącz",
   "domain_configuration_action_enable": "Włącz",
-  "domain_contact_owner": "Właściciel",
   "domain_tab_GENERAL_INFORMATIONS": "Informacje ogólne",
   "domain_tab_DNS": "Serwery DNS",
   "domain_tab_DNS_warning_only_one_dns": "Uwaga, odradzamy posiadanie tylko jednego aktywnego serwera DNS.",
@@ -244,10 +243,7 @@
   "domain_configuration_add_subdomain_add_dom": "Dodaj domenę, subdomenę do hostingu WWW",
   "domain_configuration_add_subdomain_hosting_choice": "Wybierz hosting, do którego chcesz przypisać <strong>{{t0}}.{{t1}}</strong>",
   "domain_configuration_add_subdomain_hosting_search": "Wyszukaj hosting",
-  "domain_configuration_renew": "Twoja domena jest zawieszona. Możesz ją odnowić w okresie karencji. Po tym terminie zostaną zastosowane dodatkowe opłaty.",
-  "domain_configuration_restorable": "Trwa usuwanie Twojej domeny. Możesz ją przywrócić za dodatkową opłatą przy użyciu przeznaczonego do tego celu linku. W przeciwnym razie Twoja domena zostanie definitywnie usunięta.",
   "domain_configuration_renew_title_button": "Odnów",
-  "domain_configuration_restorable_title_button": "Przywróć",
   "domain_configuration_renew_alldom_title_button": "Odnów usługę AllDom",
   "domain_configuration_renew_title": "Odnowienie domeny",
   "domain_configuration_renew_step1_question": "Aby odnowić domenę <span class=\"italic\">{{t0}}</span>, skorzystaj z interfejsu OVHcloud do odnawiania usług (poza Panelem klienta OVHcloud).",
@@ -826,5 +822,10 @@
   "domain_dashboard_general_information_domain_automatic": "Automatyczne odnowienie",
   "domain_dashboard_general_information_alldom_termination_info": "Twój pakiet wygaśnie w dniu {{expirationDate}}. Zawarte w pakiecie domeny, z których nie zrezygnujesz, będą <strong>odnawiane bezpłatnie aż do ostatecznego wygaśnięcia pakietu.</strong> Po tym terminie, domeny, z których nie zrezygnowałeś, będą fakturowane indywidualnie.",
   "domain_dashboard_general_information_alldom_renewal_link": "Anuluj rezygnację z pakietu",
-  "domain_dashboard_general_information_alldom_termination_warning_close": "Zamknij"
+  "domain_dashboard_general_information_alldom_termination_warning_close": "Zamknij",
+  "domain_contact_owner": "Właściciel",
+  "domain_configuration_renew": "Twoja domena jest zawieszona. Możesz ją odnowić w okresie karencji. Po tym terminie zostaną zastosowane dodatkowe opłaty.",
+  "domain_configuration_restorable": "Trwa usuwanie Twojej domeny. Możesz ją przywrócić za dodatkową opłatą przy użyciu przeznaczonego do tego celu linku. W przeciwnym razie Twoja domena zostanie definitywnie usunięta.",
+  "domain_configuration_restorable_title_button": "Przywróć",
+  "domain_hosting_price_ht_label": "{{price}} netto"
 }

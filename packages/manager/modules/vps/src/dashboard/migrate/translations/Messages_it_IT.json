@@ -10,5 +10,6 @@
   "vps_dashboard_migrate_information_1": "In base alle tue specifiche tecniche attuali, ti suggeriamo di migrare verso il VPS qui sotto.",
   "vps_dashboard_migrate_information_2": "La durata della migrazione dipende dalla capacità del tuo VPS. L'operazione richiederà da 30 minuti a qualche ora.",
   "vps_dashboard_migrate_link_information": "La nuova tariffazione verrà applicata alla scadenza del tuo abbonamento.",
-  "vps_dashboard_migrate_price_per_month": "mese"
+  "vps_dashboard_migrate_price_per_month": "mese",
+  "vps_dashboard_migrate_choice": "Selezione"
 }

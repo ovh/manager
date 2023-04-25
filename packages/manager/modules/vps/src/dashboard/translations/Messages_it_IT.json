@@ -17,5 +17,6 @@
   "vps_dashboard_state_stopping": "Cancellazione in corso...",
   "vps_dashboard_state_upgrading": "Modifica dell'offerta in corso...",
   "vps_dashboard_state_rescued": "In Rescue",
-  "vps_dashboard_auto_migration_warning_new": "Il tuo VPS {{vps}} è idoneo alla migrazione in un click verso la nuova gamma."
+  "vps_dashboard_auto_migration_warning_new": "Il tuo VPS {{vps}} è idoneo alla migrazione in un click verso la nuova gamma.",
+  "vps_dashboard_migration_tile": "Migrare il VPS"
 }

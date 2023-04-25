@@ -71,5 +71,19 @@
   "overTheBox_expiration_warning_help": "Sie können die Kündigung vor dem Ablaufdatum stornieren.",
   "overTheBox_detail_link_guide": "Anleitungen",
   "overthebox_detail_links": "Links",
-  "overTheBox_service_id": "Kennung des Dienstes:"
+  "overTheBox_service_id": "Kennung des Dienstes:",
+  "overTheBox_release_channels": "Verfügbare Versionen",
+  "overTheBox_change_release_channel_success": "Die Änderung der Version wurde erfolgreich durchgeführt.",
+  "overTheBox_change_release_channel_error": "Die Änderung der Version konnte nicht durchgeführt werden: {{errorMessage}}",
+  "overTheBox_release_channel_stable": "Stabile öffentliche Version",
+  "overTheBox_release_channel_testing": "Beta Version",
+  "overTheBox_release_channel_unstable": "Alpha-Version",
+  "overTheBox_release_channel_develop": "Entwicklungsversion",
+  "overTheBox_release_channel_rpi3": "Version für Raspberry 3",
+  "overTheBox_version_device": "Hardware-Version",
+  "overTheBox_version_system": "Version des Systems",
+  "overTheBox_last_seen": "Letzter Zugang der Hardware über die Provisioning-Server",
+  "overTheBox_last_seen_few_seconds": "Vor ein paar Sekunden",
+  "overTheBox_last_seen_minutes_ago": "Es sind etwa {{lastSeenDiff}}",
+  "overTheBox_reverse_dns": "DNS Reverse"
 }

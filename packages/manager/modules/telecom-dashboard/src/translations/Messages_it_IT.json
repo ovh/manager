@@ -36,5 +36,7 @@
   "telecom_dashboard_express_lite_title": "OVH propone una nuova offerta base con connessione ADSL e VDSL.",
   "telecom_dashboard_discover": "Scopri l'offerta",
   "telecom_dashboard_common_vip": "Status VIP",
-  "telecom_dashboard_common_newtab": "(nuova scheda)"
+  "telecom_dashboard_common_newtab": "(nuova scheda)",
+  "telecom_dashboard_identity_check_message_info": "Conferma il tuo ID per la telefonia adesso.",
+  "telecom_dashboard_identity_check_message_link": "Link al form"
 }

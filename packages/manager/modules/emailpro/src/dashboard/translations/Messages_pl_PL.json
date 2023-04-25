@@ -864,5 +864,6 @@
   "emailpro_resilitation_cancel_action_intro_3": "Włączone wówczas zostanie automatyczne odnawianie usługi.",
   "emailpro_resilitation_cancel_action_confirmation_1": "Chcesz anulować rezygnację z usługi \"{0}\".",
   "emailpro_resilitation_cancel_action_confirmation_2": "Czy chcesz wykonać tę operację?",
-  "emailpro_resilitation_cancel_action_confirmation_3": "Włączone wówczas zostanie automatyczne odnawianie usługi."
+  "emailpro_resilitation_cancel_action_confirmation_3": "Włączone wówczas zostanie automatyczne odnawianie usługi.",
+  "emailpro_GROUPS_partial_account": "Wystąpił błąd podczas pobierania informacji: {0}"
 }

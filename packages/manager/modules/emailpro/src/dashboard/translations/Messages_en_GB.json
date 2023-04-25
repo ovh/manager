@@ -864,5 +864,6 @@
   "emailpro_resilitation_cancel_action_intro_3": "The service will then switch to automatic renewal.",
   "emailpro_resilitation_cancel_action_confirmation_1": "You are about to undo the cancellation of the “{0}” service.",
   "emailpro_resilitation_cancel_action_confirmation_2": "Do you want to proceed with this operation?",
-  "emailpro_resilitation_cancel_action_confirmation_3": "The service will then switch to automatic renewal."
+  "emailpro_resilitation_cancel_action_confirmation_3": "The service will then switch to automatic renewal.",
+  "emailpro_GROUPS_partial_account": "An error has occurred loading: {0}"
 }

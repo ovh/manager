@@ -22,5 +22,12 @@
   "telephony_alias_administration_terminate": "Cancelar",
   "telephony_alias_administration_terminate_success": "Résiliation planifiée avec succès.",
   "telephony_alias_administration_cancel_termination": "Anular cancelamento do serviço",
-  "telephony_alias_administration_cancel_termination_success": "Résiliation annulée."
+  "telephony_alias_administration_cancel_termination_success": "Résiliation annulée.",
+  "telephony_alias_administration_terminate_sva_warning": "Uma vez que o cancelamento está em curso, os pagamentos serão ainda possíveis durante os próximos 2 meses (60 dias)",
+  "telephony_alias_administration_terminate_sva_warning_guarantee": "Para garantir os pagamentos, é importante manter o seu KYC válido e a conta de pagamento existente durante este período.",
+  "telephony_alias_administration_terminate_sva_warning_link": "Verificar as minhas informações",
+  "telephony_alias_administration_terminate_confirm_message": "Têm a certeza de que deseja eliminar o seu número?",
+  "telephony_alias_administration_terminate_confirm_sva_warning": "A sua identidade e o seu IBAN devem ser válidos para receber as suas transferências.",
+  "telephony_alias_administration_terminate_confirm_primary": "Confirmar",
+  "telephony_alias_administration_terminate_confirm_cancel": "Anular"
 }

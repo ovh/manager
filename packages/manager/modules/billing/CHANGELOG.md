@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.13...@ovh-ux/manager-billing@0.20.0-alpha.14) (2023-04-20)
+
+
+### Bug Fixes
+
+* add some missing translations ([#9107](https://github.com/ovh/manager/issues/9107)) ([f838b0e](https://github.com/ovh/manager/commit/f838b0e36562026970ed3db178c8f179edef7d51))
+
+
+
+
+
 # [0.20.0-alpha.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.12...@ovh-ux/manager-billing@0.20.0-alpha.13) (2023-04-19)
 
 

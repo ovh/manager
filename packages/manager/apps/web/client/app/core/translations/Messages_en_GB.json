@@ -608,5 +608,6 @@
   "common_manage_contacts": "Manage contacts",
   "common_plan": "Plan",
   "common_upgrade_account": "Change solution",
-  "common_automatic_renewal": "Automatic renewal"
+  "common_automatic_renewal": "Automatic renewal",
+  "older_interface": "Old interface"
 }

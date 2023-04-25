@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.4.7...@ovh-ux/manager-telecom-dashboard@6.4.8) (2023-04-20)
+
+
+### Bug Fixes
+
+* add some missing translations ([#9107](https://github.com/ovh/manager/issues/9107)) ([f838b0e](https://github.com/ovh/manager/commit/f838b0e36562026970ed3db178c8f179edef7d51))
+
+
+
+
+
 ## [6.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.4.6...@ovh-ux/manager-telecom-dashboard@6.4.7) (2023-03-20)
 
 

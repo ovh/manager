@@ -26,5 +26,13 @@
   "telephony_number_feature_svi_bad_url_ftp_format": "Il formato dell'URL FTP deve essere una directory (che termina con /). Es.: ftp://www.tuodominio.com/tuacartella/.",
   "telephony_number_feature_svi_bad_url_mailto_format": "Il formato dell'indirizzo email non è valido. Es.: esempio@tuodominio.com.  ",
   "telephony_number_feature_svi_save_error": "Ops! Si è verificato un errore durante la modifica delle impostazioni del tuo server vocale.",
-  "telephony_number_footer_question": "Salvare la configurazione?"
+  "telephony_number_footer_question": "Salvare la configurazione?",
+  "telephony_number_action_layout": "Modifica la disposizione della visualizzazione",
+  "telephony_number_action_layout_vertical": "Visualizzazione verticale",
+  "telephony_number_action_layout_horizontal": "Visualizzazione orizzontale",
+  "telephony_number_display_options": "Opzioni di visualizzazione",
+  "telephony_number_action_reorder": "Riordinare le fasi e le azioni",
+  "telephony_number_action_show_all_actions": "Mostra tutte le azioni",
+  "telephony_number_action_hide_all_actions": "Nascondi tutte le azioni",
+  "telephony_number_action_reorder_confirm": "Conferma le modifiche"
 }

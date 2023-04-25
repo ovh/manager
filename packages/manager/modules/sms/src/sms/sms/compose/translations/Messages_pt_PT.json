@@ -114,5 +114,11 @@
   "sms_sms_compose_add_phonebook_contact_empty": "Não foi encontrado nenhum contacto.",
   "sms_sms_compose_add_phonebook_contact_adding": "Mise à jour des contacts…",
   "sms_sms_compose_add_phonebook_contact_added": "Liste des contacts mise à jour !",
-  "sms_sms_compose_add_phonebook_contact_ko": "Oups ! Impossible de récupérer la liste des contacts."
+  "sms_sms_compose_add_phonebook_contact_ko": "Oups ! Impossible de récupérer la liste des contacts.",
+  "sms_sms_compose_status_invalid_receiver": "A sua SMS não pôde ser enviada para o seguinte número: {{invalidReceivers}} (destinatário inválido)",
+  "sms_sms_compose_message_commercial_description": "Por razões legais, uma SMS de caráter comercial só será enviada <strong>entre as 8h00 e as 20h00, de segunda a sábado</strong>.",
+  "sms_sms_compose_no_commercial_clause_label": "Certifico solenemente que a SMS não tem caráter comercial.",
+  "sms_credit_balance": "Saldo",
+  "sms_credit_remaining_sms": "SMS restantes",
+  "sms_credit_manage_credits": "Gerir os seus créditos SMS"
 }

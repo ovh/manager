@@ -1,0 +1,5 @@
+{
+  "telephony_billingAccount_svaWallet_status_banner_in_progress": "Ihre Anfrage zur Identitätsbestätigung wurde erfolgreich durchgeführt! Vor der Validierung ist eine Validierungsfrist von 24/48 Stunden erforderlich!",
+  "telephony_billingAccount_svaWallet_status_banner_incomplete": "Ihr Validierungsformular ist in Bearbeitung. Um Ihre SVA-Nummernbestellung zu validieren müssen Sie Ihr Formular fertigstellen.",
+  "telephony_billingAccount_svaWallet_status_banner_edit_kyc": "Mein Formular zur Identitätsbestätigung abschließen"
+}

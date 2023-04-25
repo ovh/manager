@@ -6,5 +6,8 @@
   "exchange_onboarding_guide2_title": "Gestire la fatturazione degli account Exchange",
   "exchange_onboarding_guide2_description": "Come gestire la fatturazione del servizio Exchange",
   "exchange_onboarding_guide3_title": "Iniziare a utilizzare Private Exchange",
-  "exchange_onboarding_guide3_description": "Come configurare il server Private Exchange."
+  "exchange_onboarding_guide3_description": "Come configurare il server Private Exchange.",
+  "exchange_onboarding_description_fr": "Ospita i dati in Europa con la soluzione di posta professionale più completa del mercato",
+  "exchange_onboarding_description_eu": "Ospita i tuoi dati in Europa usufruendo della soluzione di posta elettronica più completa",
+  "exchange_onboarding_description_ca": "Ospita i dati in Canada con la soluzione di posta professionale più completa del mercato"
 }

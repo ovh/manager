@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.5.1...@ovh-ux/manager-iplb@1.6.0) (2023-04-20)
+
+
+### Bug Fixes
+
+* **dedicated.iplb:** add sub we and ws for warning link message ([#9199](https://github.com/ovh/manager/issues/9199)) ([2d1e663](https://github.com/ovh/manager/commit/2d1e66391643fa8a234b63964293a1c06b53273b))
+
+
+### Features
+
+* **dedicated.load-balancer:** display notification messages for billing evolution ([#9050](https://github.com/ovh/manager/issues/9050)) ([5788f6c](https://github.com/ovh/manager/commit/5788f6cc0e20f955f11ff7c07c86615103de74b4))
+
+
+
+
+
 ## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.5.0...@ovh-ux/manager-iplb@1.5.1) (2023-03-29)
 
 

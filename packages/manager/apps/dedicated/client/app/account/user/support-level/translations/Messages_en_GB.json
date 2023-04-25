@@ -32,5 +32,6 @@
   "user_account_support_level_section_required": "Level required",
   "user_account_support_level_section_premium-accredited_description": "This level includes a custom integration process, regular custom monitoring for your services, and higher priority for your phone calls — so that we can respond as quickly as possible to your requests.",
   "user_account_support_level_section_title_what_trusted": "Dedicated, 100% European support teams.",
-  "user_account_support_level_section_title_description_trusted": "OVHcloud services offered in the Trusted Zone are operated 24/7 exclusively by European staff located in the European Union. Specific security measures and the segregation of information systems reinforce the protection of data that cannot be transferred outside of the European Union, strengthening the protection of customer data sovereignty."
+  "user_account_support_level_section_title_description_trusted": "OVHcloud services offered in the Trusted Zone are operated 24/7 exclusively by European staff located in the European Union. Specific security measures and the segregation of information systems reinforce the protection of data that cannot be transferred outside of the European Union, strengthening the protection of customer data sovereignty.",
+  "user_account_support_level_section_subscribe": "Subscribe"
 }
