@@ -3,10 +3,12 @@
   "data_processing_title": "Data Processing",
   "data_processing_jobs": "Job",
   "data_processing_region": "Region",
+  "data_processing_job_id": "ID",
+  "data_processing_job_notebook": "Notebook",
   "data_processing_job_type": "Tipo",
   "data_processing_job_cores_ram": "vCore/RAM",
   "data_processing_job_ram": "RAM",
-  "data_processing_job_cores_abbreviation": "c",
+  "data_processing_job_spec": "{{vcores}} c/{{ram}}",
   "data_processing_job_creation_date": "Creato",
   "data_processing_job_status": "Stato",
   "data_processing_job_status_pending": "In attesa",
@@ -21,8 +23,5 @@
   "data_processing_list_button_job_details": "Dettagli del job",
   "data_processing_list_button_job_ui": "Accedi all’interfaccia grafica del job",
   "data_processing_list_button_job_monitoring": "Accedi al monitoraggio",
-  "data_processing_list_button_job_terminate": "Termina il job",
-  "data_processing_job_id": "ID",
-  "data_processing_job_notebook": "Notebook",
-  "data_processing_job_spec": "{{vcores}} c/{{ram}}"
+  "data_processing_list_button_job_terminate": "Termina il job"
 }
