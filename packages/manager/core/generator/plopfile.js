@@ -5,6 +5,6 @@ import appGenerator from './app/index.js';
 export default (plop) => {
   // add autocomplete prompt
   plop.setPrompt('autocomplete', autocompletePrompt);
-
+  plop.setHelper('uppercase', (name) => name.toUpperCase());
   appGenerator(plop);
 };

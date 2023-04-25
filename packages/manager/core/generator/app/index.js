@@ -55,11 +55,14 @@ export default (plop) => {
         name: 'listingEndpoint',
         message: 'What is the listing endpoint?',
         when: (data) => data.templates.includes('listing'),
-        choices: async ({ apiV6Endpoints }) =>
-          apiV6Endpoints.map(({ apiPath, fileName }) => ({
-            name: apiPath,
-            value: fileName,
-          })),
+        choices: async ({ apiV6Endpoints }) => {
+          return apiV6Endpoints?.get?.operationList?.map(
+            ({ apiPath, functionName }) => ({
+              name: apiPath,
+              value: functionName,
+            }),
+          );
+        },
       },
     ],
     actions: ({ apiV6Endpoints, templates }) => {
