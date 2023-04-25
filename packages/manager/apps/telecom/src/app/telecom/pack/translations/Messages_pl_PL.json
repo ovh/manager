@@ -1,4 +1,9 @@
 {
   "packs_breadcrumb": "Dostęp do Internetu",
-  "packs_order": "Zamów"
+  "packs_order": "Zamów",
+  "packs_pack_name_label": "Pakiet",
+  "packs_description_label": "Opis",
+  "packs_num_service_label": "Dostęp do Internetu",
+  "packs_view_label": "Szczegóły dotyczące pakietu",
+  "pack_internet_access_title": "Dostęp do Internetu"
 }

@@ -13,5 +13,9 @@
   "telephony_line_actions_line_calls_call_waiting_cw_explain": "Cette option permets d'activer ou de désactiver la fonction \"double appel\", présente sur votre ligne.",
   "telephony_line_actions_line_calls_call_waiting_cw_explain1": "Si l'option est désactivée, vous ne pourrez plus transférer votre appel ou prendre un deuxième appel.",
   "telephony_line_actions_line_calls_call_waiting_intercom_explain": "Mode intercom : Décrochage automatique avec activation du haut parleur.",
-  "telephony_line_actions_line_calls_call_waiting_intercom_detail": "Les téléphones proposés par OVH comptatibles avec le service Intercom sont : le Thomson ST2030, la série Cisco SPA5 et la gamme LG IP 88XX."
+  "telephony_line_actions_line_calls_call_waiting_intercom_detail": "Les téléphones proposés par OVH comptatibles avec le service Intercom sont : le Thomson ST2030, la série Cisco SPA5 et la gamme LG IP 88XX.",
+  "telephony_line_actions_line_calls_cw_intercom_bulk_all_success": "A modificação do modo intercom e/ou da dupla chamada foi corretamente aplicada aos serviços selecionados.",
+  "telephony_line_actions_line_calls_cw_intercom_bulk_some_success": "A alteração do modo intercom e/ou da chamada dupla foi aplicada a {{ count }} dos serviços selecionados.",
+  "telephony_line_actions_line_calls_cw_intercom_bulk_error": "A alteração do modo intercom e/ou da chamada dupla não pôde ser aplicada ao(s) seguinte(s) serviço(s):",
+  "telephony_line_actions_line_calls_cw_intercom_bulk_on_error": "Ups! Ocorreu um erro aquando da modificação do modo intercom e/ou da dupla chamada."
 }

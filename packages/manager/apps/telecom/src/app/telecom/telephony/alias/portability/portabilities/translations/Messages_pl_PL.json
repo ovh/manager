@@ -38,5 +38,7 @@
   "telephony_alias_portabilities_attach_form": "Dodaj moje podpisane zlecenie przeniesienia",
   "telephony_alias_portabilities_attach_delete": "Usuń",
   "telephony_alias_portabilities_step_guide": "Przewodnik",
-  "telephony_alias_portabilities_relaunch": "Poprawienie i wznowienie przenoszenia"
+  "telephony_alias_portabilities_relaunch": "Poprawienie i wznowienie przenoszenia",
+  "telephony_alias_portabilities_attach_list_files": "Lista wysłanych dokumentów",
+  "telephony_alias_portabilities_attach_file_name": "Nazwa dokumentu"
 }

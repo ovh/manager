@@ -17,5 +17,6 @@
   "vps_dashboard_state_stopping": "Cancelando",
   "vps_dashboard_state_upgrading": "Cambiando de solución",
   "vps_dashboard_state_rescued": "En rescue",
-  "vps_dashboard_auto_migration_warning_new": "Le confirmamos que es posible migrar su VPS {{vps}} hacia la nueva gama en un clic."
+  "vps_dashboard_auto_migration_warning_new": "Le confirmamos que es posible migrar su VPS {{vps}} hacia la nueva gama en un clic.",
+  "vps_dashboard_migration_tile": "Migrar mi VPS"
 }

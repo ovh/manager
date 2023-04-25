@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.6.0...@ovh-ux/manager-veeam-enterprise@1.6.1) (2023-04-20)
+
+
+### Bug Fixes
+
+* add some missing translations ([#9107](https://github.com/ovh/manager/issues/9107)) ([f838b0e](https://github.com/ovh/manager/commit/f838b0e36562026970ed3db178c8f179edef7d51))
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.5.0...@ovh-ux/manager-veeam-enterprise@1.6.0) (2023-03-01)
 
 

@@ -78,5 +78,21 @@
   "telephony_alias_portability_order_step_2": "Informações",
   "telephony_alias_portability_order_step_3": "Configuration du numéro",
   "telephony_alias_portability_order_step_4": "Finalisation",
-  "telephony_alias_portability_order_number_category": "Catégorie du numéro spécial"
+  "telephony_alias_portability_order_number_category": "Catégorie du numéro spécial",
+  "telephony_order_specific_typology_error": "Ocorreu um erro aquando da recuperação das informações",
+  "telephony_order_specific_typology_access_label": "Serviços que emitem códigos de acesso",
+  "telephony_order_specific_typology_adults_label": "Conteúdo para adultos",
+  "telephony_order_specific_typology_announced_label": "Pequenos anúncios",
+  "telephony_order_specific_typology_conferencing_label": "Serviços de telefonia/teleconferência",
+  "telephony_order_specific_typology_contentsAuto_label": "Edição de conteúdos automatizados, emitidos por um automatizado",
+  "telephony_order_specific_typology_contentsManual_label": "Edição de conteúdo de serviços emitidos por pessoas singulares qualificadas",
+  "telephony_order_specific_typology_games_label": "Jogos",
+  "telephony_order_specific_typology_linking_label": "Serviços de ligação",
+  "telephony_order_specific_typology_m2m_label": "Serviços de máquinas",
+  "telephony_order_specific_typology_relationship_label": "Relação com o cliente empresa / administração / associação",
+  "telephony_order_specific_typology_content_label": "Sonneries, logótipos",
+  "telephony_order_specific_typology_general_label": "Geral",
+  "telephony_order_specific_typology_relaxing_label": "Serviços de relaxamento",
+  "telephony_alias_portability_order_sda_sva_warning": "Para qualquer portabilidade de um número especial, deve preencher o formulário de validação de identidade.",
+  "telephony_alias_portability_order_sda_sva_go_to_kyc": "Verificar a identidade"
 }

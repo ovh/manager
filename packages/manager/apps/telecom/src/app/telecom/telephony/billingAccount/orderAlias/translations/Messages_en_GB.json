@@ -58,5 +58,10 @@
   "telephony_order_order_error_city": "{{city}} is not part of zone ({{zone}})",
   "telephony_order_order_error_available": "The requested number is no longer available. Please select another one.",
   "telephony_order_specific_numbers_error": "Unable to load list of preselected numbers.",
-  "telephony_order_prices_error": "Unable to load prices."
+  "telephony_order_prices_error": "Unable to load prices.",
+  "telephony_order_address_street_type": "Track type",
+  "telephony_order_address_addressextra": "Additional address information",
+  "telephony_order_contact_universal_directory_publish": "Publication in the directory",
+  "telephony_order_identity_cedex": "Cedex",
+  "telephony_order_goto_kyc": "Verify Identity"
 }

@@ -10,5 +10,6 @@
   "vps_dashboard_migrate_information_1": "Biorąc pod uwagę obecne parametry Twojego serwera VPS proponujemy migrację do serwera VPS przedstawionego poniżej.",
   "vps_dashboard_migrate_information_2": "Czas migracji zależy od ilości danych znajdujących się na serwerze VPS. Operacja potrwa od 30 minut do kilku godzin.",
   "vps_dashboard_migrate_link_information": "Nowe ceny będą obowiązywać po wygaśnięciu abonamentu.",
-  "vps_dashboard_migrate_price_per_month": "miesiąc"
+  "vps_dashboard_migrate_price_per_month": "miesiąc",
+  "vps_dashboard_migrate_choice": "Wybór"
 }

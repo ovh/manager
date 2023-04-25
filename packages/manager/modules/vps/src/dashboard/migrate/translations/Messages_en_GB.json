@@ -10,5 +10,6 @@
   "vps_dashboard_migrate_information_1": "Based on your current technical specifications, we recommend upgrading to the VPS below.",
   "vps_dashboard_migrate_information_2": "The duration of the migration process will vary, depending on the volume of your VPS. The operation will take between 30 minutes and a few hours.",
   "vps_dashboard_migrate_link_information": "The new pricing will apply when your subscription expires.",
-  "vps_dashboard_migrate_price_per_month": "month"
+  "vps_dashboard_migrate_price_per_month": "month",
+  "vps_dashboard_migrate_choice": "Choice"
 }

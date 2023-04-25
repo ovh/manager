@@ -103,5 +103,17 @@
   "xdsl_access_amount_download": "Volume téléchargé dans le mois",
   "xdsl_access_amount_upload": "Volume émis dans le mois",
   "xdsl_details_action": "Operacje",
-  "xdsl_details_transfert": "Modifier mon offre"
+  "xdsl_details_transfert": "Modifier mon offre",
+  "xdsl_details_diagnostic_known_incident": "Wykryliśmy problem na twojej linii i dołożyliśmy wszelkich starań, aby przywrócić połączenie. Przepraszamy za niedogodności.",
+  "xdsl_details_diagnostic_known_incident_details": "Więcej informacji na temat tego incydentu znajdziesz pod linkiem:",
+  "xdsl_details_diagnostic_get_incident_error": "Wystąpił błąd podczas pobierania informacji o incydentach.",
+  "xdsl_modem_comfort_exchange_subtitle": "Wymiana modemu komfortowego",
+  "xdsl_modem_exchange": "Wymiana modemu",
+  "xdsl_modem_exchange_title": "Wymiana",
+  "xdsl_modem_comfort_exchange_description_part1": "Możesz zmienić istniejący modem na modem {{ newModel }}.",
+  "xdsl_modem_comfort_exchange_description_part2": "Koszt wymiany wynosi {{ priceHT }} PLN netto ({{ priceTTC }} PLN brutto).",
+  "xdsl_modem_comfort_exchange_description_part3": "Nowy modem zostanie automatycznie wysłany na adres przyłączenia.",
+  "xdsl_modem_comfort_exchange_already_opened_rma": "Istnieje już wniosek o wymianę sprzętu w trakcie.",
+  "xdsl_modem_comfort_exchange_already_last_model": "Posiadasz już najnowszy model modemu.",
+  "xdsl_modem_comfort_exchange_not_replace_modem_sdsl": "Nie można zastąpić tego modemu dla dostępu SDSL."
 }

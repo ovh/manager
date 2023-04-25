@@ -58,5 +58,10 @@
   "telephony_order_order_error_city": "{{city}} n'appartient pas à la zone ({{zone}})",
   "telephony_order_order_error_available": "Le numéro demandé n'est plus disponible. Veuillez en sélectionner un autre.",
   "telephony_order_specific_numbers_error": "Impossible de charger la liste des présélections de numéros.",
-  "telephony_order_prices_error": "Impossible de charger les tarifs."
+  "telephony_order_prices_error": "Impossible de charger les tarifs.",
+  "telephony_order_address_street_type": "Gleistyp",
+  "telephony_order_address_addressextra": "Adresszusatz",
+  "telephony_order_contact_universal_directory_publish": "Veröffentlichung im Verzeichnis",
+  "telephony_order_identity_cedex": "Cedex",
+  "telephony_order_goto_kyc": "Identität überprüfen"
 }

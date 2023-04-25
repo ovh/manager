@@ -89,7 +89,6 @@
   "domain_dashboard_web_hosting_more_infos": "Maggiori informazioni",
   "domain_configuration_action_disable": "Disattiva",
   "domain_configuration_action_enable": "Attiva",
-  "domain_contact_owner": "Proprietario",
   "domain_tab_GENERAL_INFORMATIONS": "Informazioni generali",
   "domain_tab_DNS": "Server DNS",
   "domain_tab_DNS_warning_only_one_dns": "Attenzione: è fortemente sconsigliato disporre di un solo DNS attivo.",
@@ -244,10 +243,7 @@
   "domain_configuration_add_subdomain_add_dom": "Aggiungere un dominio o sottodominio all’hosting condiviso",
   "domain_configuration_add_subdomain_hosting_choice": "Scegli l'hosting a cui vuoi associare <strong>{{t0}}.{{t1}}</strong>",
   "domain_configuration_add_subdomain_hosting_search": "Cerca un hosting",
-  "domain_configuration_renew": "Il tuo dominio è sospeso, ma ti ricordiamo che puoi rinnovarlo durante il Grace Period. Trascorso questo termine, verranno applicate spese supplementari.",
-  "domain_configuration_restorable": "Il dominio è in corso di eliminazione. Per recuperarlo con una spesa aggiuntiva, clicca sul link “Ripristinare”. In caso contrario il dominio verrà definitivamente eliminato.",
   "domain_configuration_renew_title_button": "Rinnova",
-  "domain_configuration_restorable_title_button": "Ripristinare",
   "domain_configuration_renew_alldom_title_button": "Rinnova il tuo AllDom",
   "domain_configuration_renew_title": "Rinnovare il mio Dominio",
   "domain_configuration_renew_step1_question": "Per rinnovare il tuo dominio <span class=\"italic\">{{t0}}</span>,devi utilizzare l'interfaccia di rinnovo OVHcloud (esterna allo Spazio Cliente Web).",
@@ -826,5 +822,10 @@
   "domain_dashboard_general_information_domain_automatic": "Rinnovo automatico",
   "domain_dashboard_general_information_alldom_termination_info": "Il tuo pack scadrà il {{ expirationDate }}. I domini non disattivati inclusi nel pack saranno<strong> rinnovati gratuitamente fino alla scadenza definitiva del pacchetto.</strong> A partire da questa data, i domini non disattivati saranno fatturati individualmente.",
   "domain_dashboard_general_information_alldom_renewal_link": "Annulla la disattivazione del pack",
-  "domain_dashboard_general_information_alldom_termination_warning_close": "Chiudi"
+  "domain_dashboard_general_information_alldom_termination_warning_close": "Chiudi",
+  "domain_contact_owner": "Proprietario",
+  "domain_configuration_renew": "Il tuo dominio è sospeso, ma ti ricordiamo che puoi rinnovarlo durante il Grace Period. Trascorso questo termine, verranno applicate spese supplementari.",
+  "domain_configuration_restorable": "Il dominio è in corso di eliminazione. Per recuperarlo con una spesa aggiuntiva, clicca sul link “Ripristinare”. In caso contrario il dominio verrà definitivamente eliminato.",
+  "domain_configuration_restorable_title_button": "Ripristinare",
+  "domain_hosting_price_ht_label": "{{price}} +IVA"
 }

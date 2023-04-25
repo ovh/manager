@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip@2.2.1...@ovh-ux/manager-carrier-sip@2.2.2) (2023-04-20)
+
+
+### Bug Fixes
+
+* add some missing translations ([#9107](https://github.com/ovh/manager/issues/9107)) ([f838b0e](https://github.com/ovh/manager/commit/f838b0e36562026970ed3db178c8f179edef7d51))
+
+
+
+
+
 ## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip@2.2.0...@ovh-ux/manager-carrier-sip@2.2.1) (2022-07-27)
 
 
@@ -239,6 +255,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### BREAKING CHANGES
 
 * **carrier.sip:** init `@ovh-ux/manager-carrier-sip` module.
-
-
-

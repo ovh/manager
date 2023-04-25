@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.60.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.60.0...@ovh-ux/manager-telecom@13.60.1) (2023-04-20)
+
+
+### Bug Fixes
+
+* add some missing translations ([#9107](https://github.com/ovh/manager/issues/9107)) ([f838b0e](https://github.com/ovh/manager/commit/f838b0e36562026970ed3db178c8f179edef7d51))
+* **telecom.telephony:** fix the technical sheet url for t48wpro phone ([254ce9f](https://github.com/ovh/manager/commit/254ce9f17c46a86f1ca383d9de9f743fd6f7916e))
+
+
+
+
+
 # [13.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.59.0...@ovh-ux/manager-telecom@13.60.0) (2023-04-12)
 
 
