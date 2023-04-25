@@ -1,7 +1,8 @@
 /* eslint-disable import/extensions */
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { getApiPaths, getApiEndpointQueryData } from '../utils/api.js';
+import { getApiPaths } from '../utils/api.js';
+import { getApiv6TemplateData } from '../utils/api-template.js';
 
 const appDirectory = dirname(fileURLToPath(import.meta.url));
 
@@ -44,7 +45,7 @@ export default (plop) => {
         message: 'What template do you want generate by default ?',
         choices: ['listing', 'dashboard', 'onboarding'],
         when: async (data) => {
-          const result = await getApiEndpointQueryData(data.apiPath);
+          const result = await getApiv6TemplateData(data.apiPath);
           // eslint-disable-next-line no-param-reassign
           data.apiV6Endpoints = result;
           return true;
