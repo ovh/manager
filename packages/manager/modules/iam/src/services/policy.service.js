@@ -4,8 +4,10 @@ const ENDPOINT = {
 
 export default class PolicyService {
   /* @ngInject */
-  constructor(Apiv2Service) {
+  constructor($q, Apiv2Service, ReferenceService) {
+    this.$q = $q;
     this.Apiv2Service = Apiv2Service;
+    this.ReferenceService = ReferenceService;
   }
 
   /**
@@ -27,6 +29,30 @@ export default class PolicyService {
     return this.Apiv2Service.get(`${ENDPOINT.policy}/${id}`).then(
       ({ data: policy }) => policy,
     );
+  }
+
+  /**
+   * Get the policy given the id populated with more data
+   * @param {string} id The policy's id
+   * @returns {Promise}
+   */
+  getDetailedPolicy(id) {
+    return this.$q
+      .all({
+        actions: this.ReferenceService.getActions(),
+        policy: this.Apiv2Service.get(`${ENDPOINT.policy}/${id}`, {
+          params: { details: true },
+        }).then(({ data: policy }) => policy),
+      })
+      .then(({ actions, policy }) => {
+        Object.assign(policy.permissions, {
+          allow: policy.permissions.allow.map(
+            (allow) =>
+              actions.find((action) => action.action === allow.action) ?? allow,
+          ),
+        });
+        return policy;
+      });
   }
 
   /**
@@ -56,6 +82,27 @@ export default class PolicyService {
   deletePolicy(id) {
     return this.Apiv2Service.delete(`${ENDPOINT.policy}/${id}`).then(
       ({ data }) => data,
+    );
+  }
+
+  /**
+   * Edit a policy
+   * @param {string} id The policy's id
+   * @param {{
+   *   identities: string[]
+   *   name: string
+   *   permissions: {
+   *     allow: { action: string }[]
+   *     except: { action: string }[]
+   *   }
+   *   resources: { urn: string }[]
+   * }} data The policy's data
+   * @see Apiv2Service#put
+   * @returns {Promise}
+   */
+  editPolicy(id, data) {
+    return this.Apiv2Service.put(`${ENDPOINT.policy}/${id}`, { data }).then(
+      ({ data: policy }) => policy,
     );
   }
 

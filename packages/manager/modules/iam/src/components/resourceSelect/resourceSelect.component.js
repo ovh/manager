@@ -5,6 +5,7 @@ export default {
   bindings: {
     onChange: '&?',
     onError: '&?',
+    onResourceTypesConfirmRemove: '&?',
     required: '<',
     resourcesLabel: '@',
     resourcesModel: '=',

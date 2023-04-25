@@ -44,7 +44,10 @@ export default class PoliciesController extends AbstractCursorDatagridController
    * @returns {Promise}
    */
   editPolicy({ id }) {
-    this.alert.error(`editPolicy not implemented [id=${id}]`);
+    return this.goTo({
+      name: this.IAMRoutes.EDIT_POLICY,
+      params: { policy: id },
+    });
   }
 
   /**
