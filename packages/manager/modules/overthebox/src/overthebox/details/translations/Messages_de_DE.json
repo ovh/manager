@@ -85,5 +85,7 @@
   "overTheBox_last_seen": "Letzter Zugang der Hardware über die Provisioning-Server",
   "overTheBox_last_seen_few_seconds": "Vor ein paar Sekunden",
   "overTheBox_last_seen_minutes_ago": "Es sind etwa {{lastSeenDiff}}",
-  "overTheBox_reverse_dns": "DNS Reverse"
+  "overTheBox_reverse_dns": "DNS Reverse",
+  "overTheBox_release_channel_beta": "Beta-Version",
+  "overTheBox_release_channel_alpha": "Alpha-Version"
 }
