@@ -9,11 +9,11 @@ import {
   useLoaderData,
 } from 'react-router-dom';
 
-import { get{{pascalCase listingEndpoint}} } from '@/api';
+import { {{listingEndpoint}} } from '@/api';
 
 export function loader() {
   return defer({
-    services: get{{pascalCase listingEndpoint}}(),
+    services: {{listingEndpoint}}(),
   });
 }
 
