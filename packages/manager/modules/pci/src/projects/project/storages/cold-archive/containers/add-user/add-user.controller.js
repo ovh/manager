@@ -40,7 +40,7 @@ export default class ColdArchiveContainersAddUserController {
 
   setUserCredentialsList() {
     this.usersCredentials = this.allUserList
-      .filter((user) => user?.s3Credentials.length)
+      .filter((user) => user?.s3Credentials)
       .map((user) => ({
         ...user,
         credentialTrad: this.getCredentialTranslation(user),
@@ -52,7 +52,7 @@ export default class ColdArchiveContainersAddUserController {
 
   getCredentialTranslation(user) {
     return this.$translate.instant(
-      user.s3Credentials.length > 0
+      user?.s3Credentials
         ? 'pci_projects_project_storages_coldArchive_containers_addUser_select_user_has_credential'
         : 'pci_projects_project_storages_coldArchive_containers_addUser_select_user_has_not_credential',
     );
