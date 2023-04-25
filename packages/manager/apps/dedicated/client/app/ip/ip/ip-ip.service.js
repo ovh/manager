@@ -442,6 +442,7 @@ export default /* @ngInject */ function Ip(
     pageNumber = 1,
     pageSize = 10,
     extras = true,
+    version,
   }) => {
     const params = {
       ...otherParams,
@@ -449,6 +450,7 @@ export default /* @ngInject */ function Ip(
       extras,
       pageNumber,
       pageSize,
+      version,
     };
     const canceller = $q.defer();
     const cancel = () => {
