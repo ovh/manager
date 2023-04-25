@@ -2,6 +2,7 @@
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { getApiPaths } from '../utils/api.js';
 import { getApiv6TemplateData } from '../utils/api-template.js';
 import {
@@ -12,6 +13,10 @@ import {
 =======
 import { getApiPaths, getApiEndpointQueryData } from '../utils/api.js';
 >>>>>>> 669d25faed (feat: generate api v6 endpoints)
+=======
+import { getApiPaths } from '../utils/api.js';
+import { getApiv6TemplateData } from '../utils/api-template.js';
+>>>>>>> 81dbec510f (docs: add doc for api utils)
 
 const appDirectory = dirname(fileURLToPath(import.meta.url));
 
@@ -68,8 +73,12 @@ export default (plop) => {
 =======
 >>>>>>> 5c6f5029ff (feat(generator): update template vite js)
         when: async (data) => {
+<<<<<<< HEAD
           const result = await getApiEndpointQueryData(data.apiPath);
 >>>>>>> 669d25faed (feat: generate api v6 endpoints)
+=======
+          const result = await getApiv6TemplateData(data.apiPath);
+>>>>>>> 81dbec510f (docs: add doc for api utils)
           // eslint-disable-next-line no-param-reassign
           data.apiV6Endpoints = result;
           return true;

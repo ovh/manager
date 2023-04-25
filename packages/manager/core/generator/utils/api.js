@@ -1,23 +1,33 @@
 import axios from 'axios';
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * @returns the list of API v6 services endpoints
  */
 =======
 
 >>>>>>> 15132344e7 (fix(generator): delete breadcrumb package + do some fixes on the)
+=======
+/**
+ * @returns the list of API v6 services endpoints
+ */
+>>>>>>> 81dbec510f (docs: add doc for api utils)
 export const getApiPaths = async () => {
   const response = await axios.get('https://api.ovh.com/1.0');
   return response.data.apis.map(({ path }) => path);
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 81dbec510f (docs: add doc for api utils)
 /**
  * @returns the list of API v6 operations of a specific service
  */
 export const getApiServiceOperations = async (apiPath) => {
   const response = await axios.get(`https://api.ovh.com/1.0${apiPath}.json`);
   return response.data.apis;
+<<<<<<< HEAD
 =======
 const isArrayType = (typeStr) => typeStr.endsWith('[]');
 const removeTypeBrackets = (typeStr) =>
@@ -159,13 +169,19 @@ export const getApiEndpointQueryData = async (apiPath) => {
     }, {});
   return result;
 >>>>>>> 669d25faed (feat: generate api v6 endpoints)
+=======
+>>>>>>> 81dbec510f (docs: add doc for api utils)
 };
 
 export default {
   getApiPaths,
 <<<<<<< HEAD
+<<<<<<< HEAD
   getApiServiceOperations,
 =======
   getApiEndpointQueryData,
 >>>>>>> 669d25faed (feat: generate api v6 endpoints)
+=======
+  getApiServiceOperations,
+>>>>>>> 81dbec510f (docs: add doc for api utils)
 };

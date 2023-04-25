@@ -1,12 +1,20 @@
+<<<<<<< HEAD
 /* eslint-disable import/extensions */
+=======
+>>>>>>> 81dbec510f (docs: add doc for api utils)
 import {
   isArrayType,
   getTypeFromString,
   isUnknownTypescriptType,
   removeTypeBrackets,
   transformTypeToTypescript,
+<<<<<<< HEAD
 } from './string-helpers.js';
 import { getApiServiceOperations } from './api.js';
+=======
+} from './string-helpers';
+import { getApiServiceOperations } from './api';
+>>>>>>> 81dbec510f (docs: add doc for api utils)
 
 /**
  * Tranform endpoint data into a list of operations template data
