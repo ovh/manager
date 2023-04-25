@@ -18,7 +18,7 @@ export function loader() {
 }
 
 export default function Listing() {
-  const { t } = useTranslation('{{appName}}');
+  const { t } = useTranslation('{{appName}}/listing');
   const data = useLoaderData() as Record<string, unknown>;
 
   return (
@@ -47,7 +47,7 @@ export default function Listing() {
                 <ul>
                   {services.map((serviceName: string) => (
                     <li key={serviceName}>
-                      <Link to={`/details/${serviceName}`}>{serviceName}</Link>
+                      <Link to={`/dashboard/${serviceName}`}>{serviceName}</Link>
                     </li>
                   ))}
 

@@ -3,7 +3,7 @@
 All micro-applications (or uApp) are located in the `packages/manager/apps/*` workspace like other Applications.
 They are powered by :
 
-- [Vite](https://vitejs.dev/) - Next frontend tooling Next Generation Frontend ToolingNext Generation Frontend Tooling
+- [Vite](https://vitejs.dev/) -  Next Generation Frontend Tooling
 - [React](https://reactjs.org/docs/getting-started.html) - The library for web and native user interfaces
 - [Typescript](https://www.typescriptlang.org/) - Javascript with syntax for types
 
