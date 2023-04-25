@@ -16,6 +16,8 @@ import {
   IP_COMPONENTS_LIST_TRACKING_HIT,
   PAGE_SIZE_MIN,
   PAGE_SIZE_MAX,
+  FILTER_OPTIONS,
+  TRACKING_OPTIONS,
 } from './list.constant';
 
 export default class IpListController {
@@ -88,9 +90,12 @@ export default class IpListController {
 
     $scope.IP_TYPE = IP_TYPE;
     $scope.ADDITIONAL_IP = ADDITIONAL_IP;
+    $scope.FILTER_OPTIONS = FILTER_OPTIONS;
     $scope.showBYOIPBadge = (self.badges || BADGES).includes(BADGE_BYOIP);
     $scope.showFOBadge = (self.badges || BADGES).includes(BADGE_FO);
     $scope.advancedModeFilter = true;
+    $scope.version = null;
+    $scope.selected_option = FILTER_OPTIONS.ALL_IPS;
 
     this.securityUrl =
       SECURITY_URL[coreConfig.getUser().ovhSubsidiary] || SECURITY_URL.DEFAULT;
@@ -234,6 +239,7 @@ export default class IpListController {
     }
 
     function refreshTable() {
+      if ($scope.serviceType) $scope.version = null;
       if (cancelFetch) {
         cancelFetch();
       }
@@ -246,6 +252,7 @@ export default class IpListController {
         otherParams: $scope.params,
         pageNumber: $scope.pageNumber,
         pageSize: $scope.pageSize,
+        version: $scope.version,
       });
       cancelFetch = cancel;
       request
@@ -600,6 +607,19 @@ export default class IpListController {
         IP_COMPONENTS_LIST_TRACKING_HIT.IMPORT,
       );
       $scope.setAction('ip/legacyOrder/migrate/ip-ip-legacyOrder-migrate');
+    };
+
+    $scope.getIpsOnFilter = function getIpsOnFilter(version) {
+      $scope.version = version;
+      atInternet.trackClick({
+        name:
+          FILTER_OPTIONS.IPV4 === version
+            ? TRACKING_OPTIONS.IPV4
+            : TRACKING_OPTIONS.IPV6,
+        type: 'action',
+        chapter1: TRACKING_OPTIONS.TRACK_CHAPTER1,
+      });
+      $rootScope.$broadcast('ips.table.reload');
     };
 
     refreshTable();
