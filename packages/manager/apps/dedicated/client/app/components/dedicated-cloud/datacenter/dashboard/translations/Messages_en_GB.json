@@ -89,7 +89,7 @@
   "dedicatedCloud_datacenter_commercial_name_vSphere-UNKNOWN": "vSphere",
   "dedicatedCloud_datacenter_commercial_name_NSX-T": "NSX",
   "dedicatedCloud_datacenter_commercial_name_NSX-T-HDS": "NSX HDS",
-  "dedicatedCloud_datacenter_commercial_name_NSX-T-HIPAA": "HIPAA NSX",
+  "dedicatedCloud_datacenter_commercial_name_NSX-T-HIPAA": "NSX HIPAA",
   "dedicatedCloud_datacenter_commercial_name_NSX-T-PCIDSS": "NSX PCI DSS",
   "dedicatedCloud_datacenter_commercial_name_NSX-T-VROPS": "NSX with vROps",
   "dedicatedCloud_datacenter_commercial_name_NSX-T-NSX": "NSX",
