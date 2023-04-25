@@ -8,6 +8,18 @@ export const BADGE_FO = 'FO';
 export const BADGE_BYOIP = 'BYOIP';
 export const BADGES = [BADGE_FO, BADGE_BYOIP];
 export const ADDITIONAL_IP = 'Additional IP';
+export const FILTER_OPTIONS = {
+  IPV4_IPS: 4,
+  IPV6_IPS: 6,
+  ALL_IPS: 'all',
+};
+
+export const TRACKING_OPTIONS = {
+  IPV4: 'ips_v4',
+  IPV6: 'ips_v6',
+  ALL_IPS: 'all_ips',
+  TRACK_CHAPTER1: 'all_ips_filter',
+};
 
 export const SECURITY_URL = {
   DEFAULT:
