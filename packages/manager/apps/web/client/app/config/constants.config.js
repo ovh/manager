@@ -1206,7 +1206,7 @@ module.exports = {
       SG: 'https://ca.ovh.com/sg/order/express/#/express/review?products=',
       WE: 'https://us.ovh.com/us/order/express/#/express/review?products=',
       WS: 'https://us.ovh.com/es/order/express/#/express/review?products=',
-      IN: 'https://ca.ovh.com/asia/order/express/#/express/review?products=',
+      IN: 'https://ca.ovh.com/in/order/express/#/express/review?products=',
     },
   },
 };

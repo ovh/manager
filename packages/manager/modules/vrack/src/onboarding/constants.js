@@ -148,7 +148,7 @@ export const CTAS = {
   WS:
     "https://us.ovh.com/es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
   IN:
-    "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+    "https://ca.ovh.com/in/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
 };
 
 export const US_GUIDES = [
