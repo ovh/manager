@@ -66,8 +66,11 @@
                     </div>
                 </oui-select>
                 <oui-spinner
-                    data-ng-if="$ctrl.userModel.linkedMode.isInProgress"
-                    size="s"
+                    data-ng-class="{
+                            'visible': $ctrl.userModel.linkedMode.isInProgress,
+                            'invisible': !$ctrl.userModel.linkedMode.isInProgress
+                        }"
+                    data-size="s"
                 ></oui-spinner>
             </div>
         </oui-field>
