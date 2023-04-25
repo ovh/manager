@@ -8,5 +8,5 @@
   "dedicatedCloud_datacenters_order_datastore": "Order a datastore",
   "dedicatedCloud_datacenters_loading_error": "An error has occurred loading the datacenter information.",
   "dedicatedCloud_datacenters_commercialRange": "Range",
-  "dedicatedCloud_datacenters_add_not_available": "The addition of a new datacentre is not currently available. We are working on making this feature available very soon."
+  "dedicatedCloud_datacenters_add_not_available": "Adding new datacentres is currently unavailable. We are working on making this feature available very soon."
 }

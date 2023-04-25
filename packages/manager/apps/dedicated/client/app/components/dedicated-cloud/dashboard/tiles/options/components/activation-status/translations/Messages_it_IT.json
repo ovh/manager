@@ -8,5 +8,5 @@
   "ovhManagerPccDashboardComponentActivationStatus_needsConfiguration": "In attesa di configurazione",
   "ovhManagerPccDashboardComponentActivationStatus_awaitingValidation": "In attesa di convalida",
   "ovhManagerPccDashboardComponentActivationStatus_unknown": "Stato sconosciuto",
-  "ovhManagerPccDashboardComponentActivationStatus_hosted_on": "Ospitato su {{ datacenter }}"
+  "ovhManagerPccDashboardComponentActivationStatus_hosted_on": "Ospitato in {{ datacenter }}"
 }
