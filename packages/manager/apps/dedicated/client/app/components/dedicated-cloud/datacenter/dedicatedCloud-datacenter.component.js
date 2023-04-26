@@ -11,7 +11,7 @@ export default {
     drpAvailability: '<',
     drpState: '<',
     hostsState: '<',
-    surveyUrl: '<',
+    newProductUrl: '<',
   },
   controller,
   template,
