@@ -2,18 +2,16 @@ import { cloneDeep, isEqual } from 'lodash-es';
 
 export default class CreatePolicyController {
   /* @ngInject */
-  constructor($timeout, $translate, PolicyService, ResourceService) {
+  constructor($q, $timeout, $translate, PolicyService, ResourceService) {
+    this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.PolicyService = PolicyService;
 
     /**
-     *
-     * @type {{
-     *   actions: Object[]
-     *   name: string
-     *   resources: Object[]
-     * }?}
+     * The oui-select confirm-remove property works with promises
+     * Associated entities to delete when the user wants to remove a resourceType
+     * @type {Object}
      */
     this.deletion = null;
 
@@ -45,7 +43,7 @@ export default class CreatePolicyController {
      * @type {Object}
      */
     this.model = {
-      actions: [],
+      actions: { selection: [], isWildcardActive: false },
       name: '',
       resources: [],
       resourceGroups: [],
@@ -66,13 +64,6 @@ export default class CreatePolicyController {
     this.resourceGroups = null;
 
     /**
-     * Keep a copy of previously added resource types
-     * So we can know witch resource type has been deleted during a change event
-     * @type {string}
-     */
-    this.resourceTypes = [];
-
-    /**
      * Urls for the oui-select load options
      * @type {Object<string,string>}
      */
@@ -81,7 +72,7 @@ export default class CreatePolicyController {
     };
 
     // Can be passed as reference to a component
-    this.onResourceTypeDeleted = this.onResourceTypeDeleted.bind(this);
+    this.onDeleteEntityGoBack = this.onDeleteEntityGoBack.bind(this);
   }
 
   /**
@@ -148,19 +139,28 @@ export default class CreatePolicyController {
     return !this.model.resourceGroups || !this.model.resourceGroups.length;
   }
 
+  get mode() {
+    return this.policy ? 'edit' : 'create';
+  }
+
   /**
    * A contextualized Set where each key map to a translation
    * @returns {Object<string,string>}
    */
   get translations() {
     const pfx = 'iam_create_policy';
-    const { instant: $t } = this.$translate;
+    const { mode } = this;
     return {
-      heading: {
-        name: $t(`${pfx}_form_name_heading`),
-        resources: $t(`${pfx}_form_resources_heading`),
-        resourceTypes: $t(`${pfx}_form_resource_types_heading`),
+      error: `${pfx}_error_${mode}`,
+      errorHeading: `${pfx}_error_heading_${mode}`,
+      formHeading: {
+        name: `${pfx}_form_name_heading`,
+        resources: `${pfx}_form_resources_heading`,
+        resourceTypes: `${pfx}_form_resource_types_heading`,
       },
+      header: `${pfx}_header_heading_${mode}`,
+      submit: `${pfx}_submit_${mode}`,
+      success: `${pfx}_success_${mode}`,
     };
   }
 
@@ -181,6 +181,31 @@ export default class CreatePolicyController {
         });
       });
     });
+
+    // Edit mode, feed the model
+    if (this.mode === 'edit') {
+      const wildcardAction = this.policy.permissions.allow.find(
+        ({ action }) => action === '*',
+      );
+      this.model.actions.selection = this.policy.permissions.allow.filter(
+        (action) => action !== wildcardAction,
+      );
+      this.model.actions.isWildcardActive = Boolean(wildcardAction);
+      this.model.name = this.policy.name;
+      this.model.resources = this.policy.resources
+        .filter(({ resource }) => Boolean(resource))
+        .map(({ resource }) => resource);
+      this.model.resourceGroups = this.policy.resources
+        .filter(({ group }) => Boolean(group))
+        .map(({ group }) => group);
+      this.model.resourceTypes = [
+        ...this.model.resources.map(({ type }) => type),
+        ...this.model.actions.selection.map(({ resourceType }) => resourceType),
+      ].filter(
+        (resourceType, index, list) =>
+          Boolean(resourceType) && list.indexOf(resourceType) === index,
+      );
+    }
   }
 
   /**
@@ -192,19 +217,97 @@ export default class CreatePolicyController {
   }
 
   /**
-   * Create the policy
+   * Create a snapshot of the current model state
+   * @see {modelSnapshot}
+   */
+  createSnapshot() {
+    this.modelSnapshot = cloneDeep(this.model);
+  }
+
+  /**
+   * Global error handler
+   * @param {Error} error
+   */
+  onError(error) {
+    const { message } = error.data ?? {};
+    this.alert.error(this.translations.error, { message });
+  }
+
+  /**
+   * Called back each time a resource types is deleted using the iamDeleteEntity component
+   * @param {boolean} success
+   */
+  onResourceGroupsLoaded(resourceGroups) {
+    this.resourceGroups = resourceGroups;
+    // Restore references to the model
+    // /!\ Avoid having the same selected item twice
+    if (this.model.resourceGroups?.length) {
+      this.model.resourceGroups = this.model.resourceGroups.map(
+        (resourceGroup) =>
+          resourceGroups.find(({ id }) => resourceGroup.id === id) ??
+          resourceGroup,
+      );
+    }
+  }
+
+  /**
+   * Called back each time a resource types is deleted using the iamDeleteEntity component
+   * @param {boolean} success
+   */
+  onDeleteEntityGoBack({ success }) {
+    if (success) {
+      this.model.actions.selection = this.model.actions.selection.filter(
+        (action) => !this.deletion.data.actions.includes(action),
+      );
+      this.model.resources = this.model.resources?.filter(
+        (resource) => !this.deletion.data.resources.includes(resource),
+      );
+    }
+    this.deletion.resolve(success);
+    this.deletion = null;
+  }
+
+  /**
+   * Called back each time a resource types is about to be deleted
+   * If a deletion is detected, ask the user for a confirmation
+   * @param {string} resourceType The resource type to delete
+   */
+  onResourceTypesConfirmRemove(resourceType) {
+    const actions = this.model.actions.selection.filter(
+      (action) => action.resourceType === resourceType,
+    );
+    const resources = this.model.resources?.filter(
+      (resource) => resource.type === resourceType,
+    );
+
+    if (actions?.length || resources?.length) {
+      this.deletion = this.$q.defer();
+      this.deletion.data = { name: resourceType, actions, resources };
+      return this.deletion.promise;
+    }
+
+    return this.$q.when(true);
+  }
+
+  /**
+   * Called back when the form is submitted
    * @returns {Promise}
    */
-  createPolicy() {
+  onSubmit() {
     this.createSnapshot();
     this.isSubmitting = true;
 
-    return this.PolicyService.createPolicy(this.toAPI())
+    const promise =
+      this.mode === 'edit'
+        ? this.PolicyService.editPolicy(this.policy.id, this.toAPI())
+        : this.PolicyService.createPolicy(this.toAPI());
+
+    return promise
       .then(() => {
         this.error = {};
         return this.goBack({
           success: {
-            key: 'iam_create_policy_success',
+            key: this.translations.success,
             values: { name: `<strong>${this.model.name}</strong>` },
           },
           reload: true,
@@ -222,76 +325,6 @@ export default class CreatePolicyController {
         this.error = {};
         this.onError(error);
       });
-  }
-
-  /**
-   * Create a snapshot of the current model state
-   * @see {modelSnapshot}
-   */
-  createSnapshot() {
-    this.modelSnapshot = cloneDeep(this.model);
-  }
-
-  /**
-   * Called back each time a resource types is deleted using the iamDeleteEntity component
-   * @param {boolean} success
-   */
-  onResourceTypeDeleted({ success }) {
-    const { actions, name: resourceType, resources } = this.deletion;
-    this.deletion = null;
-
-    if (!success) {
-      this.model.resourceTypes = [...this.model.resourceTypes, resourceType];
-      this.resourceTypes = [...this.model.resourceTypes];
-      return;
-    }
-    this.model.actions = this.model.actions?.filter(
-      (action) => !actions.includes(action),
-    );
-    this.model.resources = this.model.resources?.filter(
-      (resource) => !resources.includes(resource),
-    );
-  }
-
-  /**
-   * Global error handler
-   * @param {Error} error
-   */
-  onError(error) {
-    const { message } = error.data ?? {};
-    this.alert.error('iam_create_policy_error_creation', { message });
-  }
-
-  /**
-   * Called back each time the resource types have changed
-   * If a deletion is detected, ask the user for a confirmation
-   */
-  onResourceChanged(change) {
-    if (change.type === 'resourceTypes') {
-      const actionsToRemove = this.model.actions?.filter(
-        ({ action, resourceType }) =>
-          action !== '*' &&
-          resourceType !== 'custom' &&
-          !this.model.resourceTypes.includes(resourceType),
-      );
-      const resourcesToRemove = this.model.resources?.filter(
-        ({ type }) => !this.model.resourceTypes.includes(type),
-      );
-
-      if (resourcesToRemove?.length || actionsToRemove?.length) {
-        this.deletion = {
-          // When oui-select triggers a change with an array as a value
-          // It is actually a deletion
-          name: this.resourceTypes
-            .filter((resourceType) => !change.value.includes(resourceType))
-            .pop(),
-          actions: actionsToRemove,
-          resources: resourcesToRemove,
-        };
-      }
-
-      this.resourceTypes = [...(this.model.resourceTypes || [])];
-    }
   }
 
   /**
@@ -318,7 +351,9 @@ export default class CreatePolicyController {
       identities: [],
       name: this.model.name,
       permissions: {
-        allow: this.model.actions.map(({ action }) => ({ action })),
+        allow: this.model.actions.isWildcardActive
+          ? [{ action: '*' }]
+          : this.model.actions.selection.map(({ action }) => ({ action })),
       },
       resources: [
         ...new Map(

@@ -8,7 +8,7 @@
         <oui-switch
             data-name="wildcard"
             data-model="$ctrl.isWildcardActive"
-            data-on-change="$ctrl.toggleWildcard()"
+            data-on-change="$ctrl.onModelChanged()"
         ></oui-switch>
     </div>
     <small
@@ -120,11 +120,7 @@
                     <oui-checkbox-label>
                         <strong data-ng-bind="category.value"></strong>
                         <span
-                            data-translate="{{
-                                category.selection.length
-                                    ? (category.selection.length === 1 ? 'iam_action_select_category_count_one' : 'iam_action_select_category_count_many')
-                                    : 'iam_action_select_category_count_zero'
-                            }}"
+                            data-translate="{{ $ctrl.constructor.getCategoryLabel(category) }}"
                             data-translate-values="{
                                 selected: category.selection.length,
                                 total: category.actions.length,
