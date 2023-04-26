@@ -10,6 +10,7 @@ import {
   createTranslations,
   createApiQueryFilesActions,
 } from '../utils/create-structure-helpers.js';
+<<<<<<< HEAD
 =======
 import { getApiPaths, getApiEndpointQueryData } from '../utils/api.js';
 >>>>>>> 669d25faed (feat: generate api v6 endpoints)
@@ -17,6 +18,8 @@ import { getApiPaths, getApiEndpointQueryData } from '../utils/api.js';
 import { getApiPaths } from '../utils/api.js';
 import { getApiv6TemplateData } from '../utils/api-template.js';
 >>>>>>> 81dbec510f (docs: add doc for api utils)
+=======
+>>>>>>> 2a06818152 (feat(generator): add translations in generator corresponding to template)
 
 const appDirectory = dirname(fileURLToPath(import.meta.url));
 
@@ -158,6 +161,7 @@ export default (plop) => {
         },
       },
     ],
+<<<<<<< HEAD
     actions: ({ apiV6Endpoints, templates }) => {
       const createApiQueryFilesActions = Object.entries(apiV6Endpoints).map(
         ([method, data]) => ({
@@ -219,6 +223,12 @@ export default (plop) => {
       });
 
 >>>>>>> 5c6f5029ff (feat(generator): update template vite js)
+=======
+    actions: ({ apiV6Endpoints, templates, appName }) => {
+      const apiFiles = createApiQueryFilesActions(apiV6Endpoints, appDirectory);
+      const pages = createPages(templates, appDirectory);
+      const translations = createTranslations(templates, appName, appDirectory);
+>>>>>>> 2a06818152 (feat(generator): add translations in generator corresponding to template)
       return [
         {
           type: 'addMany',
@@ -227,15 +237,21 @@ export default (plop) => {
           base: join(appDirectory, './templates'),
         },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2a06818152 (feat(generator): add translations in generator corresponding to template)
         ...apiFiles,
         ...pages,
         ...translations,
         ({ packageName }) =>
+<<<<<<< HEAD
 =======
         ...createApiQueryFilesActions,
         ...createPages,
         ({ appName, packageName }) =>
 >>>>>>> 669d25faed (feat: generate api v6 endpoints)
+=======
+>>>>>>> 2a06818152 (feat(generator): add translations in generator corresponding to template)
           `App ${appName} generated. Please run \n  yarn install && yarn workspace ${packageName} run start:dev`,
       ];
     },
