@@ -1,3 +1,5 @@
+import { policyParamResolve } from './params.resolve';
+
 const key = 'breadcrumb';
 const pfx = 'iam_resolves_breadcrumbs';
 
@@ -29,12 +31,25 @@ defaultBreadcrumbResolve.key = key;
  * The policyIdentities breadcrumb
  * @returns {string}
  */
+const editPolicyBreadcrumbResolve = /* @ngInject */ ($translate, policy) =>
+  $translate.instant(`${pfx}_edit_policy`, { policy: policy.name });
+
+editPolicyBreadcrumbResolve.key = key;
+editPolicyBreadcrumbResolve.resolves = [policyParamResolve];
+
+// ---------------------------------------------------------------------------------------------------- //
+
+/**
+ * The policyIdentities breadcrumb
+ * @returns {string}
+ */
 const policyIdentitiesBreadcrumbResolve = /* @ngInject */ (
   $translate,
   policy,
 ) => $translate.instant(`${pfx}_policy_identities`, { policy: policy.name });
 
 policyIdentitiesBreadcrumbResolve.key = key;
+policyIdentitiesBreadcrumbResolve.resolves = [policyParamResolve];
 
 // ---------------------------------------------------------------------------------------------------- //
 
@@ -51,6 +66,7 @@ noBreadcrumbResolve.key = key;
 export {
   createPolicyBreadcrumbResolve,
   defaultBreadcrumbResolve,
+  editPolicyBreadcrumbResolve,
   policyIdentitiesBreadcrumbResolve,
   noBreadcrumbResolve,
 };
