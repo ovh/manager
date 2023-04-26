@@ -7,7 +7,6 @@ const i18nextLocaleToOvh = (i18nextLocale = '') =>
   i18nextLocale.replace('-', '_');
 
 export async function initI18n(locale: string, availableLocales: string[]) {
-  console.info('COUCOUCOCUCOCUOCOCUCOCCOUCOUCOUCOUCOUCUO ');
   return i18n
     .use(initReactI18next)
     .use(Backend)
@@ -21,13 +20,6 @@ export async function initI18n(locale: string, availableLocales: string[]) {
         loadPath: (lngs, namespaces) => {
           const [ns] = namespaces;
           const [lng] = lngs;
-          console.info('**********************************');
-          console.info(
-            'toto : ',
-            `${
-              import.meta.env.BASE_URL
-            }translations/${ns}/Messages_${i18nextLocaleToOvh(lng)}.json`,
-          );
           return `${
             import.meta.env.BASE_URL
           }translations/${ns}/Messages_${i18nextLocaleToOvh(lng)}.json`;
