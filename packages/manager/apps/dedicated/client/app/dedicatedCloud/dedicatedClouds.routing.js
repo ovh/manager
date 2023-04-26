@@ -26,7 +26,6 @@ export default /* @ngInject */ ($stateProvider) => {
           .get(apiPath, {
             headers: {
               'X-Pagination-Mode': 'CachedObjectList-Pages',
-              'X-Pagination-Filter': 'productReference:eq=EPCC',
             },
           })
           .then(({ data }) => data),
