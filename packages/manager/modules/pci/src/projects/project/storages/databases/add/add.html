@@ -383,14 +383,12 @@
                                     class="oui-icon oui-icon-component_concept mr-2"
                                 ></span>
                                 <span
-                                    data-ng-if="$ctrl.model.flavor.core === 1"
-                                    data-translate="pci_database_add_spec_flavor_CPU_one"
-                                    data-translate-values="{ cpu: $ctrl.model.flavor.core }"
-                                ></span>
-                                <span
-                                    data-ng-if="$ctrl.model.flavor.core > 1"
-                                    data-translate="pci_database_add_spec_flavor_CPU_many"
-                                    data-translate-values="{ cpu: $ctrl.model.flavor.core }"
+                                    data-ng-pluralize
+                                    data-count="$ctrl.model.flavor.core"
+                                    data-when="{
+                                        '1': ('pci_database_add_spec_flavor_CPU_one' | translate: { cpu: $ctrl.model.flavor.core }),
+                                        'other': ('pci_database_add_spec_flavor_CPU_many' | translate: { cpu: $ctrl.model.flavor.core }),
+                                    }"
                                 ></span>
                             </div>
                             <div class="d-flex">
