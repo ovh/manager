@@ -11,6 +11,7 @@ export const URLS = {
 
 export const WEATHERMAP_URL = {
   US: 'http://weathermap.ovh.net/#usa',
+  IN: 'https://weathermap.ovh.net/#mumbai_core',
   OTHERS: 'http://weathermap.ovh.net/',
 };
 
@@ -39,6 +40,8 @@ export const UPGRADE_TYPE = {
 
 export const HIDE_MRTG_FOR_SERVER_RANGES = ['scale', 'hgr'];
 
+export const VMS_URL_OTHERS = 'OTHERS';
+
 export default {
   ELIGIBLE_FOR_UPGRADE,
   URLS,
@@ -46,4 +49,5 @@ export default {
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
   UPGRADE_TYPE,
+  VMS_URL_OTHERS,
 };
