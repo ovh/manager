@@ -108,7 +108,6 @@ import moduleLicense from './license';
 import config, { getConstants } from './config/config';
 import dedicatedCloud from './dedicatedCloud';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
-import managedBaremetal from './managedBaremetal';
 import errorPage from './error';
 import expiredPage from './expired';
 import ip from './ip';
@@ -174,7 +173,6 @@ export default async (containerEl, shellClient) => {
         ipComponents,
         'Module.download',
         environment.getRegion() === 'CA' ? moduleExchange : undefined,
-        managedBaremetal,
         moduleLicense,
         otrs,
         'ngMessages',
