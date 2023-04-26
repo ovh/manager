@@ -1,6 +1,5 @@
 import {
   COLD_ARCHIVE_STATES,
-  REGION,
   COLD_ARCHIVE_TRACKING,
 } from '../../cold-archives.constants';
 
@@ -18,11 +17,17 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: () => null,
-      endpoint: /* @ngInject */ (PciStoragesColdArchiveService, projectId) =>
-        PciStoragesColdArchiveService.getArchiveRegionDetails(projectId, REGION)
+      endpoint: /* @ngInject */ (
+        PciStoragesColdArchiveService,
+        projectId,
+        regions,
+      ) =>
+        PciStoragesColdArchiveService.getArchiveRegionDetails(
+          projectId,
+          regions[0],
+        )
           .then(({ data }) => data?.services[0]?.endpoint)
           .catch(() => ''),
-      region: () => REGION,
     },
   });
 };

@@ -12,7 +12,6 @@ import routing from './containers.routing';
 import addUser from './add-user';
 import archiveContainer from './archive';
 import restoreContainer from './restore';
-import deleteContainerObjects from './delete-objects';
 import deleteContainer from './delete-container';
 import flushArchive from './flush-archive';
 import manageArchive from './manage-archive';
@@ -30,7 +29,6 @@ angular
     addUser,
     archiveContainer,
     restoreContainer,
-    deleteContainerObjects,
     deleteContainer,
     flushArchive,
     manageArchive,

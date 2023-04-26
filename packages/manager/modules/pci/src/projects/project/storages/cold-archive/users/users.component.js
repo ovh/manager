@@ -21,5 +21,6 @@ export default {
     scrollToTop: '<',
     trackPage: '<',
     trackClick: '<',
+    regions: '<',
   },
 };

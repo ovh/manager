@@ -2,13 +2,12 @@ import {
   CHECK_PRICES_DOC_LINK,
   COLD_ARCHIVE_TRACKING,
   GUIDE_MENU_ITEMS,
-  REGION,
+  COLD_ARCHIVE_STATES,
 } from './cold-archives.constants';
-import { COLD_ARCHIVE_STATES } from './containers/containers.constants';
 import { PCI_FEATURES } from '../../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.storages.cold-archive', {
+  $stateProvider.state(COLD_ARCHIVE_STATES.ROOT, {
     url: '/cold-archive',
     component: 'pciProjectStorageColdArchive',
     onEnter: /* @ngInject */ (pciFeatureRedirect) => {
@@ -24,10 +23,10 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((containers) =>
           containers.length === 0
             ? {
-                state: 'pci.projects.project.storages.cold-archive.onboarding',
+                state: COLD_ARCHIVE_STATES.ONBOARDING,
               }
             : {
-                state: 'pci.projects.project.storages.cold-archive.containers',
+                state: COLD_ARCHIVE_STATES.CONTAINERS,
               },
         ),
     resolve: {
@@ -66,6 +65,12 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
+      regions: /* @ngInject */ (PciStoragesColdArchiveService) => {
+        return PciStoragesColdArchiveService.getProductRegionsAvailability().then(
+          (regions) => regions,
+        );
+      },
+
       onGuideClick: /* @ngInject */ (atInternet) => (guideId) => {
         const hit = `${COLD_ARCHIVE_TRACKING.GUIDE}_${guideId}`;
         return atInternet.trackClick({
@@ -78,7 +83,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('pci_projects_project_storages_cold_archive_label'),
 
       userList: /* @ngInject */ (projectId, allUserList) =>
-        allUserList.filter((user) => user?.s3Credentials?.length > 0),
+        allUserList.filter((user) => user?.s3Credentials),
 
       allUserList: /* @ngInject */ (projectId, PciStoragesColdArchiveService) =>
         PciStoragesColdArchiveService.getAllS3Users(projectId).then((users) =>
@@ -95,22 +100,28 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.is(COLD_ARCHIVE_STATES.CONTAINERS, $transition$.params()),
 
       userListLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.storages.cold-archive.users', {
+        $state.href(COLD_ARCHIVE_STATES.S3_USERS, {
           projectId,
         }),
 
       coldArchiveContainersLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.storages.cold-archive', {
+        $state.href(COLD_ARCHIVE_STATES.ROOT, {
           projectId,
         }),
 
-      // The region parameter is for now hard-coded.
-      // waiting the API fix PCINT-3514
-      containers: /* @ngInject */ (PciStoragesColdArchiveService, projectId) =>
-        PciStoragesColdArchiveService.getArchiveContainers(projectId, REGION),
+      containers: /* @ngInject */ (
+        PciStoragesColdArchiveService,
+        projectId,
+        regions,
+      ) => {
+        return PciStoragesColdArchiveService.getArchiveContainers(
+          projectId,
+          regions[0],
+        );
+      },
 
       goToAddColdArchive: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.storages.cold-archive.add', {
+        $state.go(COLD_ARCHIVE_STATES.CONTAINER_ADD, {
           projectId,
         }),
 
@@ -138,6 +149,24 @@ export default /* @ngInject */ ($stateProvider) => {
         }
 
         return promise;
+      },
+
+      goToColdArchiveContainersWithData: /* @ngInject */ (
+        $state,
+        projectId,
+      ) => (createdContainerInfos = false) => {
+        const reload = !!createdContainerInfos;
+
+        return $state.go(
+          COLD_ARCHIVE_STATES.CONTAINERS,
+          {
+            projectId,
+            createdContainerInfos,
+          },
+          {
+            reload,
+          },
+        );
       },
 
       trackClick: /* @ngInject */ (atInternet) => (hit) =>

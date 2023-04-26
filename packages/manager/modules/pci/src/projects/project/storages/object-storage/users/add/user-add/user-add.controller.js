@@ -1,8 +1,8 @@
 import {
   NAMESPACES,
+  OBJECT_STORAGE_USER_ROLE,
   TRACKING_S3_POLICY_ADD,
   USER_STATUS,
-  OBJECT_STORAGE_USER_ROLE,
 } from '../../users.constants';
 
 export default class PciUsersAddController {
@@ -25,7 +25,15 @@ export default class PciUsersAddController {
     this.isLoading = false;
     this.addExistingUser = 'addExistingUser';
     this.createNewUser = 'createNewUser';
-    this.users = this.allUserList
+    this.users = this.getValidUsers();
+    this.usersWithoutCredentials = this.getUsersHaveNotCredentials();
+    this.isUserCouldGenerateCredentails =
+      this.usersWithoutCredentials?.length > 0;
+    [this.userModel] = this.usersWithoutCredentials;
+  }
+
+  getValidUsers() {
+    return this.allUserList
       .filter((user) => user && user.status === 'ok')
       .map((user) => ({
         ...user,
@@ -39,17 +47,17 @@ export default class PciUsersAddController {
               'pci_projects_project_users_add_as_no_credentials',
             ),
       }));
-    this.usersWithoutCredentials = this.users
-      .filter(({ s3Credentials }) => !s3Credentials.length)
+  }
+
+  getUsersHaveNotCredentials() {
+    return this.users
+      .filter(({ s3Credentials }) => !s3Credentials)
       .map((user) => ({
         ...user,
         userNameDescriptionKey: user.description
           ? `${user.username} - ${user.description}`
           : user.username,
       }));
-    this.isUserCouldGenerateCredentails =
-      this.usersWithoutCredentials?.length > 0;
-    [this.userModel] = this.usersWithoutCredentials;
   }
 
   onChange(action) {

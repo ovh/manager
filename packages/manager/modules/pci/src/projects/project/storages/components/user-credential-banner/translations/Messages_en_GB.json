@@ -6,5 +6,6 @@
   "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label": "Your S3 username:",
   "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label": "Your description:",
   "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label": "Your S3 access key:",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label": "Your S3 secret key:"
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label": "Your S3 secret key:",
+  "pci_projects_project_storages_containers_add_container_success": "The {{containerName}} container has been created, and the S3 user {{username}} has been added as {{role}}."
 }
