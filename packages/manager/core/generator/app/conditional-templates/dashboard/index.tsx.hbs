@@ -24,7 +24,7 @@ export function loader(params: any) {
 }
 
 export default function Dashboard() {
-  const { t } = useTranslation('{{appName}}');
+  const { t } = useTranslation('{{appName}}/dashboard');
    const data = useLoaderData() as Record<string, unknown>;
 
   return (

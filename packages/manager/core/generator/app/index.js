@@ -3,6 +3,11 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getApiPaths } from '../utils/api.js';
 import { getApiv6TemplateData } from '../utils/api-template.js';
+import {
+  createPages,
+  createTranslations,
+  createApiQueryFilesActions,
+} from '../utils/create-structure-helpers.js';
 
 const appDirectory = dirname(fileURLToPath(import.meta.url));
 
@@ -80,63 +85,10 @@ export default (plop) => {
         },
       },
     ],
-    actions: ({ apiV6Endpoints, templates }) => {
-      const createApiQueryFilesActions = Object.entries(apiV6Endpoints).map(
-        ([method, data]) => ({
-          type: 'add',
-          path: join(
-            appDirectory,
-            `../../../apps/{{dashCase appName}}/src/api/${method.toUpperCase()}/apiv6/services.ts`,
-          ),
-          templateFile: join(
-            appDirectory,
-            './conditional-templates/api/services-template.ts.hbs',
-          ),
-          data,
-        }),
-      );
-
-      const createPages = templates.map((template) => {
-        if (template === 'listing') {
-          return {
-            type: 'add',
-            path: join(
-              appDirectory,
-              `../../../apps/{{dashCase appName}}/src/pages/index.tsx`,
-            ),
-            force: true,
-            templateFile: join(
-              appDirectory,
-              `./conditional-templates/${template}/index.tsx.hbs`,
-            ),
-          };
-        }
-        if (template === 'dashboard') {
-          return {
-            type: 'add',
-            path: join(
-              appDirectory,
-              `../../../apps/{{dashCase appName}}/src/pages/dashboard/[serviceName]/index.tsx`,
-            ),
-            templateFile: join(
-              appDirectory,
-              `./conditional-templates/${template}/index.tsx.hbs`,
-            ),
-          };
-        }
-        return {
-          type: 'add',
-          path: join(
-            appDirectory,
-            `../../../apps/{{dashCase appName}}/src/pages/${template}/index.tsx`,
-          ),
-          templateFile: join(
-            appDirectory,
-            `./conditional-templates/${template}/index.tsx.hbs`,
-          ),
-        };
-      });
-
+    actions: ({ apiV6Endpoints, templates, appName }) => {
+      const apiFiles = createApiQueryFilesActions(apiV6Endpoints, appDirectory);
+      const pages = createPages(templates, appDirectory);
+      const translations = createTranslations(templates, appName, appDirectory);
       return [
         {
           type: 'addMany',
@@ -144,9 +96,10 @@ export default (plop) => {
           templateFiles: join(appDirectory, './templates/**'),
           base: join(appDirectory, './templates'),
         },
-        ...createApiQueryFilesActions,
-        ...createPages,
-        ({ appName, packageName }) =>
+        ...apiFiles,
+        ...pages,
+        ...translations,
+        ({ packageName }) =>
           `App ${appName} generated. Please run \n  yarn install && yarn workspace ${packageName} run start:dev`,
       ];
     },
