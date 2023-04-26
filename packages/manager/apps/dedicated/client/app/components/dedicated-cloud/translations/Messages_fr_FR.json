@@ -243,9 +243,9 @@
   "ip_order_finish_error": "Une erreur est survenue lors de la commande d'IPs additionnelles.",
   "ip_order_free_activation_fee": "Pour les serveurs dont l'abonnement des IPs additionnelles est offert, ces frais d'activation ne seront pas refacturés à l'issu du renouvellement du serveur.",
   "ip_order_resume_short": "Bloc /{{ blockSize }} : {{ price }}",
-  "dedicatedCloud_survey": "En vue d’améliorer la qualité de service Hosted Private Cloud : nous vous invitons à",
-  "dedicatedCloud_survey_link": "donner votre opinion sur cette interface",
   "ip_order_renew_EPCC": "Vos IPs seront automatiquement renouvellées avec votre infrastructure Dedicated Cloud.",
   "ip_order_renew_MBM": "Vos IPs seront automatiquement renouvellées avec votre infrastructure Managed Bare Metal.",
-  "dedicatedCloud_premier_sbg_order_warning": "Nous ne sommes pas en mesure de prendre de nouvelles commandes sur notre site de SBG. Nos équipes sont pleinement mobilisées et nous mettons tout en œuvre pour rétablir cette possibilité de commande dans un avenir proche."
+  "dedicatedCloud_premier_sbg_order_warning": "Nous ne sommes pas en mesure de prendre de nouvelles commandes sur notre site de SBG. Nos équipes sont pleinement mobilisées et nous mettons tout en œuvre pour rétablir cette possibilité de commande dans un avenir proche.",
+  "dedicatedCloud_banner_new_product": "Vous pouvez désormais commander des datacenters correspondants à des packs logiciels VMware différents au sein d'un même environnement Private Cloud.",
+  "dedicatedCloud_banner_new_product_link": "En savoir plus"
 }
