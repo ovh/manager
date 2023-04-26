@@ -1,7 +1,9 @@
 {
   "iam_create_policy_cancel": "Annuler",
-  "iam_create_policy_error_creation": "Impossible de créer cette politique : {{ message }}",
-  "iam_create_policy_error_heading": "Certaines erreurs dans le formulaire empêchent la création de cette politique. Merci de les corriger avant de le soumettre à nouveau.",
+  "iam_create_policy_error_create": "Impossible de créer cette politique : {{ message }}",
+  "iam_create_policy_error_edit": "Impossible de modifier cette politique : {{ message }}",
+  "iam_create_policy_error_heading_create": "Certaines erreurs dans le formulaire empêchent la création de cette politique. Merci de les corriger avant de le soumettre à nouveau.",
+  "iam_create_policy_error_heading_edit": "Certaines erreurs dans le formulaire empêchent la modification de cette politique. Merci de les corriger avant de le soumettre à nouveau.",
   "iam_create_policy_error_no_resources": "Aucune ressource n'est disponible pour ce ou ces types de produits.",
   "iam_create_policy_deletion_actions_many": "{{ count }} actions seront supprimées",
   "iam_create_policy_deletion_actions_one": "1 action sera supprimée",
@@ -22,7 +24,10 @@
   "iam_create_policy_form_resources_heading": "Ressources",
   "iam_create_policy_header_description": "La politique contient une liste d'actions autorisées à une liste d'identités s'appliquant à des ressources.",
   "iam_create_policy_header_guide_text": "Guides",
-  "iam_create_policy_header_heading": "Créer une politique",
-  "iam_create_policy_submit": "Créer la politique",
-  "iam_create_policy_success": "La politique {{ name }} a été créée avec succès"
+  "iam_create_policy_header_heading_create": "Créer une politique",
+  "iam_create_policy_header_heading_edit": "Modifier une politique",
+  "iam_create_policy_submit_create": "Créer la politique",
+  "iam_create_policy_submit_edit": "Modifier la politique",
+  "iam_create_policy_success_create": "La politique {{ name }} a été créée avec succès",
+  "iam_create_policy_success_edit": "La politique {{ name }} a été modifiée avec succès"
 }
