@@ -13,7 +13,7 @@ export default {
     securityState: '<',
     setMessage: '<',
     usersState: '<',
-    surveyUrl: '<',
+    newProductUrl: '<',
   },
   controller,
   template,
