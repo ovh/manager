@@ -10,7 +10,7 @@ export default {
     {
       id: 'bmc-dedicated-vps',
       translation: 'sidebar_dedicated_vps',
-      features: ['dedicated-server', 'vps', 'managed-bare-metal', 'license'],
+      features: ['dedicated-server', 'vps', 'license'],
       children: [
         {
           id: 'dedicated-servers',
@@ -42,16 +42,6 @@ export default {
             hash: '#/vps',
           },
           features: ['vps'],
-        },
-        {
-          id: 'managed-bare-metal',
-          translation: 'sidebar_dedicated_cloud',
-          serviceType: 'DEDICATEDCLOUD',
-          routing: {
-            application: 'dedicated',
-            hash: '#/managedBaremetal',
-          },
-          features: ['managed-bare-metal'],
         },
         {
           id: 'dedicated-licences',
