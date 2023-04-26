@@ -1,26 +1,26 @@
 <div class="iam-create_policy">
     <iam-delete-entity
         data-ng-if="$ctrl.deletion"
-        data-entity="{ data: $ctrl.deletion, type: $root.IAM.ENTITY.RESOURCE_TYPE }"
+        data-entity="{ data: $ctrl.deletion.data, type: $root.IAM.ENTITY.RESOURCE_TYPE }"
         data-statement="false"
-        data-go-back="$ctrl.onResourceTypeDeleted"
+        data-go-back="$ctrl.onDeleteEntityGoBack"
     >
         <strong
             class="d-block"
-            data-ng-if="$ctrl.deletion.resources.length"
-            data-translate="iam_create_policy_deletion_resources_{{ $ctrl.deletion.resources.length > 1 ? 'many' : 'one' }}"
+            data-ng-if="$ctrl.deletion.data.resources.length"
+            data-translate="iam_create_policy_deletion_resources_{{ $ctrl.deletion.data.resources.length > 1 ? 'many' : 'one' }}"
             data-translate-values="{ count : $ctrl.deletion.resources.length }"
         ></strong>
         <strong
             class="d-block"
-            data-ng-if="$ctrl.deletion.actions.length"
-            data-translate="iam_create_policy_deletion_actions_{{ $ctrl.deletion.actions.length > 1 ? 'many' : 'one' }}"
-            data-translate-values="{ count : $ctrl.deletion.actions.length }"
+            data-ng-if="$ctrl.deletion.data.actions.length"
+            data-translate="iam_create_policy_deletion_actions_{{ $ctrl.deletion.data.actions.length > 1 ? 'many' : 'one' }}"
+            data-translate-values="{ count : $ctrl.deletion.data.actions.length }"
         ></strong>
     </iam-delete-entity>
 
     <oui-header
-        data-heading="{{ 'iam_create_policy_header_heading' | translate }}"
+        data-heading="{{ $ctrl.translations.header | translate }}"
         data-description="{{ 'iam_create_policy_header_description' | translate }}"
     >
         <!-- <Guide> -->
@@ -41,9 +41,9 @@
     <!-- <Error> -->
     <oui-message data-type="error" data-ng-if="$ctrl.hasAnyError">
         <div data-ng-repeat="(property, error) in $ctrl.error">
-            <p data-translate="iam_create_policy_error_heading"></p>
+            <p data-translate="{{:: $ctrl.translations.errorHeading }}"></p>
             <strong
-                data-ng-bind="$ctrl.translations.heading[property]"
+                data-translate="{{ $ctrl.translations.formHeading[property] }}"
             ></strong>
             :
             <span data-ng-bind="error"></span>
@@ -53,7 +53,7 @@
 
     <form
         name="$ctrl.form"
-        data-ng-submit="$ctrl.createPolicy()"
+        data-ng-submit="$ctrl.onSubmit()"
         autocomplete="off"
         novalidate
     >
@@ -82,6 +82,7 @@
         <iam-resource-select
             data-on-change="$ctrl.onResourceChanged(change)"
             data-on-error="$ctrl.onError(error)"
+            data-on-resource-types-confirm-remove="$ctrl.onResourceTypesConfirmRemove(item, index)"
             data-required="$ctrl.isResourceTypesRequired"
             data-resources-label="{{:: 'iam_create_policy_form_resources_heading' | translate }}"
             data-resources-model="$ctrl.model.resources"
@@ -129,7 +130,7 @@
                 data-model="$ctrl.model.resourceGroups"
                 data-multiple="true"
                 data-name="resourceGroups"
-                data-on-load="$ctrl.resourceGroups = response.data"
+                data-on-load="$ctrl.onResourceGroupsLoaded(response.data)"
                 data-on-error="$ctrl.onError(error)"
                 data-required="!$ctrl.hasSelectedResources"
             ></oui-select>
@@ -153,7 +154,6 @@
         <p data-translate="iam_create_policy_form_actions_description"></p>
         <iam-action-select
             data-error="$ctrl.onError(error)"
-            data-load="$ctrl.onActionsLoaded(actions)"
             data-name="actions"
             data-ng-model="$ctrl.model.actions"
             data-resource-types="$ctrl.model.resourceTypes"
@@ -176,7 +176,7 @@
                 class="oui-button oui-button_l oui-button_primary mr-3"
                 data-ng-disabled="!$ctrl.canSubmit"
             >
-                <span data-translate="iam_create_policy_submit"></span>
+                <span data-translate="{{ $ctrl.translations.submit }}"></span>
             </button>
             <oui-spinner
                 data-size="s"

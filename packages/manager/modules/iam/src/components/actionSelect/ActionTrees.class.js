@@ -206,6 +206,7 @@ export default class ActionTrees extends Array {
     const unknownActions = selectedActions
       ? selectedActions.filter(
           ({ action: selectedAction }) =>
+            selectedAction !== '*' &&
             !actions.find(({ action }) => action === selectedAction),
         )
       : [];
