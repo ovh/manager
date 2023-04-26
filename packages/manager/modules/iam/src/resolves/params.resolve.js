@@ -40,6 +40,27 @@ policyParamResolve.declaration = {
 // ---------------------------------------------------------------------------------------------------- //
 
 /**
+ * The Policy parameter based on the policy's id
+ * @returns {Object|null}
+ */
+const detailedPolicyParamResolve = /* @ngInject */ (
+  $transition$,
+  PolicyService,
+) => {
+  const { [detailedPolicyParamResolve.key]: uuid } = $transition$.params();
+  return uuid ? PolicyService.getDetailedPolicy(uuid) : null;
+};
+
+detailedPolicyParamResolve.key = 'policy';
+detailedPolicyParamResolve.declaration = {
+  array: false,
+  type: uuidType,
+  value: null,
+};
+
+// ---------------------------------------------------------------------------------------------------- //
+
+/**
  * The Identity parameter based on the identity's urn
  * @returns {Object|null}
  */
@@ -80,6 +101,7 @@ resourceGroupParamResolve.declaration = {
 
 export {
   cursorsParamResolve,
+  detailedPolicyParamResolve,
   identityParamResolve,
   policyParamResolve,
   resourceGroupParamResolve,

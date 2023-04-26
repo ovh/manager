@@ -1,6 +1,7 @@
 export default class ResourceSelectController {
   /* @ngInject */
   constructor(
+    $scope,
     $timeout,
     $translate,
     PolicyService,
@@ -32,6 +33,13 @@ export default class ResourceSelectController {
       resources: ResourceService.resourcesUrl,
       resourceTypes: ReferenceService.resourceTypesUrl,
     };
+
+    // Two way bound properties do no trigger $onChanges events
+    $scope.$watch(
+      () => this.resourceTypesModel,
+      (value) => value && this.onResourceTypesChanged(),
+      true,
+    );
   }
 
   /**
@@ -103,6 +111,14 @@ export default class ResourceSelectController {
    * @param {Object[]} resources
    */
   onResourcesLoaded({ data: resources }) {
+    // Restore references to the model
+    // /!\ Avoid having the same selected item twice
+    if (this.resourcesModel?.length) {
+      this.resourcesModel = this.resourcesModel.map(
+        (resource) =>
+          resources.find(({ id }) => resource.id === id) ?? resource,
+      );
+    }
     this.resources = resources;
     this.runValidation();
   }
@@ -110,10 +126,10 @@ export default class ResourceSelectController {
   /**
    * Called back each time the resource types have changed
    * Change the resources url to trigger a new load
-   * @param {string} value
+   * @param {string|Array|undefined} value
    */
   onResourceTypesChanged(value) {
-    if (this.onChange) {
+    if (value && this.onChange) {
       this.onChange({ change: { type: 'resourceTypes', value } });
     }
     if (this.hasSelectedResourceTypes) {

@@ -70,12 +70,6 @@ export default class ActionSelectController {
      * @type {string}
      */
     this.size = 'xl';
-
-    /**
-     * The snapshot of the user selection
-     * @type {ActionTrees=}
-     */
-    this.snapshot = undefined;
   }
 
   /**
@@ -108,17 +102,13 @@ export default class ActionSelectController {
           break;
 
         case 'ngModel':
-          // Wildcard case
-          if (value?.length === 1 && value[0].action === '*') {
-            this.isWildcardActive = true;
-          }
-          // Classic case of action list
-          else if (value) {
-            this.isWildcardActive = false;
+          if (value) {
+            this.isWildcardActive = value.isWildcardActive;
             this.createActionTrees();
           }
           // The ngModel is not defined yet
           else {
+            this.isWildcardActive = false;
             this.actionTrees = undefined;
           }
           break;
@@ -140,7 +130,9 @@ export default class ActionSelectController {
       .then((actions) => {
         this.actions = cloneDeep(actions);
         this.createActionTrees();
-        this.load({ actions });
+        if (this.load) {
+          this.load({ actions });
+        }
       })
       .catch((error) => {
         this.error({ error });
@@ -155,7 +147,9 @@ export default class ActionSelectController {
 
     // Custom required validator for the whole component
     name.$validators.required = () =>
-      this.required ? this.ngModel.length > 0 : false;
+      this.required
+        ? this.ngModel?.selection.length > 0 || this.ngModel?.isWildcardActive
+        : false;
 
     // Custom exist validator to know if a custom action already exists
     customAction.$validators.exist = (action) =>
@@ -169,23 +163,29 @@ export default class ActionSelectController {
    */
   addCustomAction() {
     const { customActionModel: value } = this;
-    const { instant: $t } = this.$translate;
-    const { action, created } = this.actionTrees.addAction(value);
-
     const key = 'iam_action_select';
     const successKey = `${key}_custom_action_success`;
-    const translateValues = {
-      action: `<strong>${action.value}</strong>`,
-      resourceType: `<strong>${$t(
-        `${key}_action_${action.resourceType}_heading`,
-      )}</strong>`,
-    };
+    const { instant: $t } = this.$translate;
+
+    if (value === '*') {
+      this.isWildcardActive = true;
+      this.customActionModel = '';
+      this.customActionSuccessMessage = $t(`${successKey}_wildcard`);
+    } else {
+      const { action, created } = this.actionTrees.addAction(value);
+      const translateValues = {
+        action: `<strong>${action.value}</strong>`,
+        resourceType: `<strong>${$t(
+          `${key}_action_${action.resourceType}_heading`,
+        )}</strong>`,
+      };
+
+      this.customActionSuccessMessage = created
+        ? $t(`${successKey}_created`, translateValues)
+        : $t(`${successKey}_selected`, translateValues);
+    }
 
     this.customActionModel = '';
-    this.customActionSuccessMessage = created
-      ? $t(`${successKey}_created`, translateValues)
-      : $t(`${successKey}_selected`, translateValues);
-
     this.onModelChanged();
   }
 
@@ -194,12 +194,16 @@ export default class ActionSelectController {
    * @see {ActionTrees.create}
    */
   createActionTrees() {
+    if (!this.actions.length) {
+      return;
+    }
+
     this.actionTrees = ActionTrees.create({
       $scope: this.$scope,
       actions: this.actions,
       actionTrees: this.actionTrees,
       resourceTypes: this.resourceTypes,
-      selectedActions: this.ngModel,
+      selectedActions: this.ngModel?.selection || [],
     });
   }
 
@@ -220,6 +224,7 @@ export default class ActionSelectController {
    */
   onCustomActionKeyPressed(event) {
     if (event.key.toLowerCase() === 'enter' && this.canAddCustomAction) {
+      event.preventDefault();
       this.addCustomAction();
     }
   }
@@ -227,16 +232,18 @@ export default class ActionSelectController {
   /**
    * Set the required ngModel instance's value each time the model has changed
    * The ngModel is of type { action: string, resourceType?: string }[]
-   * @param {{ action: string }[]} forcedModel
    */
-  onModelChanged(forcedModel) {
+  onModelChanged() {
     // Give time to the action selected flags to react on change
     this.$timeout(() => {
       const mappedSelection = this.actionTrees?.selection.map(
         ({ value: action, resourceType }) => ({ action, resourceType }),
       );
 
-      this.requiredNgModel.$setViewValue(forcedModel || mappedSelection || []);
+      this.requiredNgModel.$setViewValue({
+        isWildcardActive: this.isWildcardActive,
+        selection: mappedSelection || [],
+      });
 
       // Run a manual validation
       const { customAction, [this.name]: name } = this.form;
@@ -283,24 +290,20 @@ export default class ActionSelectController {
   }
 
   /**
-   * Toggle the wilcard switch
-   * - If active, it means we want now and futures actions => "*"
-   * - If not, restore the previous model snapshot
+   * Get the label translation key for the given category
+   * @param {Category} category
+   * @returns {string}
    */
-  toggleWildcard() {
-    // Give time to isWildcardActive to react
-    this.$timeout(() => {
-      if (this.isWildcardActive) {
-        if (this.actionTrees) {
-          this.snapshot = cloneDeep(this.actionTrees);
-        }
-        this.onModelChanged([{ action: '*' }]);
-      } else {
-        if (this.snapshot) {
-          this.actionTrees = cloneDeep(this.snapshot);
-        }
-        this.onModelChanged();
-      }
-    });
+  static getCategoryLabel({ actions, selection }) {
+    const { length: selectionLength } = selection;
+    const prefix = 'iam_action_select_category_count';
+    if (selectionLength) {
+      return selectionLength === 1
+        ? `${prefix}_selection_one`
+        : `${prefix}_selection_many`;
+    }
+    return actions.length === 1
+      ? `${prefix}_no_selection_one`
+      : `${prefix}_no_selection_many`;
   }
 }

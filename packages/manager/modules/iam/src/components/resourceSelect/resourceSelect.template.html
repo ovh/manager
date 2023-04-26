@@ -17,6 +17,7 @@
             data-multiple="true"
             data-name="{{:: $ctrl.resourceTypesName }}"
             data-on-change="$ctrl.onResourceTypesChanged(modelValue)"
+            data-on-confirm-remove="$ctrl.onResourceTypesConfirmRemove({ item, index })"
             data-on-error="$ctrl.onError(error)"
             data-required="$ctrl.isResourceTypesRequired"
         ></oui-select>
