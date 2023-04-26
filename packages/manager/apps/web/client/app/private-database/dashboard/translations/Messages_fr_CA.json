@@ -269,7 +269,7 @@
   "privateDatabase_add_bdd_name": "Nom de la base",
   "privateDatabase_add_bdd_error_name_pattern": "Le nom ne respecte pas les règles.",
   "privateDatabase_add_bdd_error_name_required": "Champs requis.",
-  "privateDatabase_create_bdd_conditions": "Attention, le nom doit respecter les conditions suivantes : <br/>- Minimum {{t0}} caractères<br/>- Maximum {{t1}} caractères<br/>- Doit être composé uniquement de chiffres et de lettres.",
+  "privateDatabase_create_bdd_conditions": "Attention, le nom doit respecter les conditions suivantes : <br/>- Minimum {{t0}} caractères.<br/>- Maximum {{t1}} caractères.<br/>- Doit commencer uniquement par un chiffre ou une lettre.<br/>- Ne peut contenir que des chiffres, des lettres ou les caractères `_` et `-`.",
   "privateDatabase_add_bdd_success": "La demande de création de la base a été prise en compte",
   "privateDatabase_add_bdd_fail": "Une erreur est survenue lors la création de la base de données.",
   "privateDatabase_tabs_bdd_adding": "Ajout de la base de données en cours...",
