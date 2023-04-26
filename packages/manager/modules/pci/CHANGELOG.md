@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.122.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.121.1...@ovh-ux/manager-pci@5.122.0) (2023-04-26)
+
+
+### Features
+
+* **storages:** tape ga ([#9218](https://github.com/ovh/manager/issues/9218)) ([0f31942](https://github.com/ovh/manager/commit/0f319429797be091acd76e2208525a7c6855cd92))
+
+
+
+
+
 ## [5.121.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.121.0...@ovh-ux/manager-pci@5.121.1) (2023-04-20)
 
 
