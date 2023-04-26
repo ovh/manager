@@ -9,6 +9,7 @@ import {
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
   HIDE_MRTG_FOR_SERVER_RANGES,
+  VMS_URL_OTHERS,
 } from './dashboard.constants';
 import { NEW_RANGE } from '../details/server.constants';
 
@@ -42,10 +43,12 @@ export default class DedicatedServerDashboard {
     this.URLS = URLS;
     this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
     this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
-
     this.servicesStateLinks = {
-      weathermap: WEATHERMAP_URL[this.user.country] || WEATHERMAP_URL.OTHERS,
-      vms: this.constants.vmsUrl,
+      weathermap:
+        WEATHERMAP_URL[this.user.ovhSubsidiary] || WEATHERMAP_URL.OTHERS,
+      vms:
+        this.constants.vmsUrl[this.user.ovhSubsidiary] ||
+        this.constants.vmsUrl[VMS_URL_OTHERS],
       status: this.constants.statusUrl,
     };
 
