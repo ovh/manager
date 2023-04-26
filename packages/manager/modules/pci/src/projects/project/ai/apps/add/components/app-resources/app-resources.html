@@ -10,7 +10,7 @@
         <oui-select-picker
             class="d-inline-block col-md-6 col-xl-3 my-3"
             data-name="appResources"
-            data-ng-repeat="flavorType in $ctrl.flavorTypes | filter:$ctrl.filterType() track by $index"
+            data-ng-repeat="flavorType in $ctrl.flavorTypes track by $index"
             data-label="{{:: 'pci_app_add_resources_usecase_item_' + flavorType | translate}}"
             data-model="$ctrl.appModel.resource.usage"
             data-values="[flavorType]"
@@ -127,20 +127,6 @@
                     data-interval="'hour'"
                 >
                 </ovh-manager-catalog-price>
-
-                <p ng-if="$ctrl.appModel.preset.partner">
-                    <span
-                        data-translate="pci_app_add_resources_partner_price"
-                    ></span>
-                    <ovh-manager-catalog-price
-                        data-price="$ctrl.partnerPriceInUcents * $ctrl.appModel.resource.nbResources"
-                        data-tax="$ctrl.partnerPriceTax * $ctrl.appModel.resource.nbResources"
-                        data-user="$ctrl.user"
-                        data-show-zero-price="true"
-                        data-interval="'hour'"
-                    >
-                    </ovh-manager-catalog-price>
-                </p>
             </oui-select-picker-section>
         </oui-select-picker>
     </div>
@@ -275,7 +261,7 @@
             ></oui-numeric>
         </oui-field>
         <!-- price alert-->
-        <oui-message data-type="warning"
+        <oui-message data-type="info"
             ><span
                 data-translate="pci_app_add_resources_scaling_price_warning"
             ></span
@@ -291,4 +277,8 @@
         data-interval="'hour'"
     >
     </ovh-manager-catalog-price>
+
+    <oui-message data-type="info"
+        ><span data-translate="pci_app_add_resources_total_info"></span
+    ></oui-message>
 </div>

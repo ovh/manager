@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import find from 'lodash/find';
 import { merge } from 'lodash';
 import { APP_PRIVACY_SETTINGS, APP_SCALING_SETTINGS } from './add.constants';
+import { nameGenerator } from '../../../../../name-generator.constant';
 
 export default class AppAddController {
   /* @ngInject */
@@ -29,7 +30,12 @@ export default class AppAddController {
       volumes: [],
       privacy: APP_PRIVACY_SETTINGS.RESTRICTED,
       region: null,
-      image: null,
+      image: {
+        isCustom: true,
+        customImageName: null,
+        preset: null,
+        partnerConditionsAccepted: false,
+      },
       scalingStrategy: {
         autoscaling: false,
         fixed: {
@@ -42,7 +48,6 @@ export default class AppAddController {
           resourceType: APP_SCALING_SETTINGS.AUTOMATIC.DEFAULT_RESOURCE,
         },
       },
-      preset: null,
       port: 8080,
       useCase: null,
       probe: {
@@ -128,7 +133,6 @@ export default class AppAddController {
       resource,
       privacy,
       scalingStrategy,
-      preset,
       probe,
       port,
     } = appModel;
@@ -136,13 +140,15 @@ export default class AppAddController {
     return {
       labels: AppAddController.convertLabels(labels),
       name,
-      image,
+      image: image.isCustom
+        ? image.customImageName
+        : `${image.preset.id}:${image.preset.selectedVersion}`,
       region: region.name,
       resources: AppAddController.buildResourceBody(
         resource.flavor,
         resource.nbResources,
       ),
-      partnerId: preset?.partner?.id,
+      partnerId: image.isCustom ? null : image.preset.partnerId,
       volumes: AppAddController.buildVolumesBody(volumes),
       unsecureHttp: APP_PRIVACY_SETTINGS.PUBLIC === privacy,
       probe: AppAddController.buildProbe(probe),
@@ -208,14 +214,15 @@ export default class AppAddController {
 
   getImageHeader(display) {
     if (display === false) {
-      if (this.appModel.preset?.partner) {
+      const { image } = this.appModel;
+      if (!image.isCustom) {
         return this.$translate.instant('pci_app_add_image_partner_header', {
-          partner: this.appModel.preset.partner.name,
-          image: this.appModel.image,
+          partner: image.preset.partnerName,
+          image: `${image.preset.id}:${image.preset.selectedVersion}`,
         });
       }
       return this.$translate.instant('pci_app_add_image_header', {
-        image: this.appModel.image,
+        image: image.customImageName,
       });
     }
 
@@ -249,11 +256,11 @@ export default class AppAddController {
     this.$q
       .all([
         this.AppService.getFlavors(this.projectId, regionName),
-        this.AppService.getPresets(this.projectId, regionName),
+        this.AppService.getPartnersImages(this.projectId, regionName),
+        this.AppService.getPartners(this.projectId, regionName),
       ])
-      .then(([flavors, presets]) => {
+      .then(([flavors, presets, partners]) => {
         this.flavors = flavors;
-
         // We assume that cpu has the lowest price
         const defaultFlavor = find(this.flavors, { type: 'cpu' });
         const resourcePrice = this.AppService.getPrice(
@@ -262,25 +269,52 @@ export default class AppAddController {
         );
 
         presets.map((preset) => {
-          const partnerPrice = this.AppService.getPartnerPrice(
+          const partnerPriceCPU = this.AppService.getPartnerPrice(
             this.prices,
-            preset.partner.id,
-            preset.partner.flavor,
+            preset.partnerId,
+            preset.id,
             'cpu',
           );
+          const partnerPriceGPU = this.AppService.getPartnerPrice(
+            this.prices,
+            preset.partnerId,
+            preset.id,
+            'gpu',
+          );
+          const partner = partners.find((part) => part.id === preset.partnerId);
 
           return merge(preset, {
-            tax: partnerPrice.tax + resourcePrice.tax,
-            priceInUcents:
-              partnerPrice.priceInUcents + resourcePrice.priceInUcents,
+            partner,
+            prices: {
+              cpu: partnerPriceCPU,
+              gpu: partnerPriceGPU,
+            },
           });
         });
-        this.presets = presets;
+        this.presets = presets.map((partner) => ({
+          ...partner,
+          selectedVersion: partner.versions[0],
+        }));
         this.defaultPrice = resourcePrice;
       })
       .finally(() => {
         this.loadingRegionDeps = false;
+        // clean model
+        this.appModel.image.preset = null;
       });
+  }
+
+  onImageSubmit() {
+    const { image } = this.appModel;
+    const imageModel = image.isCustom
+      ? image.customImageName
+      : `${image.preset.id}:${image.preset.selectedVersion}`;
+    const splitImage = imageModel.split('/');
+    const lastImagePart = splitImage[splitImage.length - 1];
+    const splitTag = lastImagePart.split(':');
+    const prefix = splitTag[0];
+    this.appModel.name = `${prefix}-${nameGenerator()}`;
+    return false;
   }
 
   onAppSubmit() {
@@ -297,10 +331,20 @@ export default class AppAddController {
     );
 
     this.isAdding = true;
-    return this.AppService.addApp(
-      this.projectId,
-      AppAddController.convertAppModel(this.appModel),
-    )
+
+    const model = AppAddController.convertAppModel(this.appModel);
+    const mustSignToS =
+      !this.appModel.image.isCustom &&
+      this.appModel.image.preset.partner.contract.signedAt === null;
+    const createAppPromise = mustSignToS
+      ? this.AppService.upadatePartnerSignature(
+          this.projectId,
+          model.region,
+          model.partnerId,
+        ).then(() => this.AppService.addApp(this.projectId, model))
+      : this.AppService.addApp(this.projectId, model);
+
+    return createAppPromise
       .then(() =>
         this.goToApps(
           this.$translate.instant('pci_app_add_app_create_success'),

@@ -167,7 +167,7 @@ export default class App {
   }
 
   get gpu() {
-    return this.spec?.resources?.gpu || 'none';
+    return this.spec?.resources?.gpu;
   }
 
   get memory() {
@@ -200,6 +200,13 @@ export default class App {
 
   get flavor() {
     return this.spec.resources.flavor;
+  }
+
+  get specScore() {
+    const cpu = this.cpu || 0;
+    const gpu = this.gpu || 0;
+    const replicas = this.replicas || 0;
+    return cpu + 100 * gpu + 10 * replicas;
   }
 
   geNbContainerByType(type) {

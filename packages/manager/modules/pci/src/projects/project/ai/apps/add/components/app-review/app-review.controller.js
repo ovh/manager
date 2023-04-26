@@ -25,15 +25,24 @@ export default class AppReviewController {
     this.resourcePriceTax = resourcePrice.tax * multiplier;
     this.resourcePriceInUcents = resourcePrice.priceInUcents * multiplier;
 
-    if (this.appModel.preset?.partner) {
+    if (!this.appModel.image.isCustom) {
+      const { preset } = this.appModel.image;
       const partnerPrice = this.AppService.getPartnerPrice(
         this.prices,
-        this.appModel.preset.partner.id,
-        this.appModel.preset.partner.flavor,
+        preset.partnerId,
+        preset.id,
         this.appModel.resource.flavorType,
       );
-      this.partnerPriceTax = partnerPrice.tax * multiplier;
-      this.partnerPriceInUcents = partnerPrice.priceInUcents * multiplier;
+      let multiplierPartner = 60; // convert price from min to hour
+      if (preset.licensing === 'per-resource') {
+        multiplierPartner *= nbResources;
+      }
+      if (preset.licensing === 'per-replica') {
+        multiplierPartner *= replicas;
+      }
+      this.partnerPriceTax = partnerPrice.tax * multiplierPartner;
+      this.partnerPriceInUcents =
+        partnerPrice.priceInUcents * multiplierPartner;
     } else {
       this.partnerPriceTax = 0;
       this.partnerPriceInUcents = 0;
@@ -44,7 +53,7 @@ export default class AppReviewController {
 
   getLicencePartner() {
     return this.$translate.instant('pci_app_add_review_price_partner', {
-      partner: this.appModel.preset.partner.name,
+      partner: this.appModel.image.preset.partnerName,
     });
   }
 

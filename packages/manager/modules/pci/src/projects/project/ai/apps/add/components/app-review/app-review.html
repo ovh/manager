@@ -33,7 +33,7 @@
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition
-                data-ng-if="$ctrl.appModel.preset.partner"
+                data-ng-if="!$ctrl.appModel.image.isCustom"
                 data-term="{{:: $ctrl.getLicencePartner() }}"
             >
                 <oui-tile-description>
@@ -49,13 +49,13 @@
                     <p ng-if="$ctrl.partnerPriceInUcents == 0">
                         <span
                             data-translate="pci_app_add_review_price_partner_free"
-                            data-translate-values="{ partner: $ctrl.appModel.preset.partner.name }"
+                            data-translate-values="{ partner: $ctrl.appModel.image.preset.partnerName }"
                         ></span>
                     </p>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition
-                data-ng-if="$ctrl.appModel.preset.partner"
+                data-ng-if="!$ctrl.appModel.image.isCustom"
                 data-term="{{:: 'pci_app_add_review_price_total' | translate}}"
             >
                 <oui-tile-description>

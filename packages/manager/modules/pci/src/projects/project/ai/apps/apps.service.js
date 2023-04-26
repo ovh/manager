@@ -39,6 +39,27 @@ export default class AppService {
         maximumFractionDigits: 2,
       },
     );
+
+    this.partnerMock = {
+      createdAt: '2023-04-26T13:51:50.417',
+      id: 'aic-zzz-users',
+      name: 'My Partner',
+      description: 'My partner for life providing lots of wonderful images',
+      contract: {
+        signedAt: '2023-05-01T14:30:50.417',
+        termsOfService: {
+          default: { url: 'https://path.to.the.tos/?locale=en_GB' },
+          en_GB: { url: 'https://path.to.the.tos/?locale=en_GB' },
+          de_DE: { url: 'https://path.to.the.tos/?locale=de_DE' },
+          es_ES: { url: 'https://path.to.the.tos/?locale=es_ES' },
+          fr_FR: { url: 'https://path.to.the.tos/?locale=fr_FR' },
+          fr_CA: { url: 'https://path.to.the.tos/?locale=fr_CA' },
+          it_IT: { url: 'https://path.to.the.tos/?locale=it_IT' },
+          pl_PL: { url: 'https://path.to.the.tos/?locale=pl_PL' },
+          pt_PT: { url: 'https://path.to.the.tos/?locale=pt_PT' },
+        },
+      },
+    };
   }
 
   pollAppStatus(serviceName, appId) {
@@ -143,6 +164,44 @@ export default class AppService {
         AppService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
+  }
+
+  getPartnersImages(serviceName, region) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/ai/capabilities/region/${region}/app/image`,
+        AppService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getPartners(serviceName, region) {
+    const mock = false;
+    return mock
+      ? new Promise((res) => res([this.partnerMock]))
+      : this.$http
+          .get(
+            `/cloud/project/${serviceName}/ai/partners/region/${region}/partner`,
+            AppService.getIcebergHeaders(),
+          )
+          .then(({ data }) => data);
+  }
+
+  getPartner(serviceName, region, partnerId) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/ai/partners/region/${region}/partner/${partnerId}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  upadatePartnerSignature(serviceName, region, partnerId) {
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/ai/partners/region/${region}/partner/${partnerId}/contract/signature`,
+      )
+      .then(({ data }) => data)
+      .catch((e) => e || null);
   }
 
   getStorages(serviceName, archive = false, withObjects = false) {
