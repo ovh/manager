@@ -192,20 +192,23 @@ export default class PciStoragesContainersAddController {
       this.container,
     )
       .then(() => {
-        const message =
+        const translationKey =
           this.userModel.createOrLinkedMode ===
           CONTAINER_USER_ASSOCIATION_MODES.CREATE
             ? 'pci_projects_project_storages_containers_add_success_message_with_user_creation'
             : 'pci_projects_project_storages_containers_add_success_message';
+        const message = this.$translate.instant(translationKey, {
+          container: this.container.name,
+          userName: this.userModel.createMode?.user?.username,
+        });
+        const trackingTag = `_add::${containerOffer}_${dataCenterLocation}::${containerTypeOffer}creation_confirmation`;
 
-        return this.goBackWithTrackingPage(
-          this.$translate.instant(message, {
-            container: this.container.name,
-            userName: this.userModel.createMode?.user?.username,
-          }),
-          'success',
-          `_add::${containerOffer}_${dataCenterLocation}::${containerTypeOffer}creation_confirmation`,
-        );
+        return this.goBackWithTrackingPage({
+          message,
+          type: 'success',
+          reload: true,
+          trackingTag,
+        });
       })
       .catch((err) => {
         this.trackPage(
