@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 import {
   COLD_ARCHIVE_TRACKING,
   COLD_ARCHIVE_STATES,
@@ -174,5 +176,14 @@ export default class ColdArchiveConfigurationController {
       type: 'action',
     });
     return this.createArchive();
+  }
+
+  onLinkOrCreateStepSubmit(linkUserArchiveStep) {
+    if (
+      this.userModel.createMode?.user ||
+      this.userModel.linkedMode?.selected
+    ) {
+      set(linkUserArchiveStep, 'display', false);
+    }
   }
 }

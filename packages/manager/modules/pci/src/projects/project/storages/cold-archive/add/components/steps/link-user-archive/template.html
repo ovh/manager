@@ -123,7 +123,9 @@
                     class="oui-input mr-2"
                     type="text"
                     name="username"
+                    data-ng-disabled="$ctrl.userModel.createMode.isInProgress"
                     data-ng-model="$ctrl.userModel.createMode.description"
+                    data-ng-keyup="$ctrl.onCreateUserClicked($ctrl.userModel.createMode.description, $event)"
                     required
                 />
                 <oui-spinner
