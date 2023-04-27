@@ -52,6 +52,7 @@
                     data-match="userNameDescriptionKey"
                     data-name="userNameDescriptionKey"
                     data-model="$ctrl.userModel.linkedMode.selected"
+                    data-on-change="$ctrl.onUserSelected(modelValue)"
                 >
                     <div class="row">
                         <div
@@ -97,7 +98,7 @@
                 ></span>
             </oui-button>
 
-            <!--Linked btn-->
+            <!--Linked btn in case the credetial is generated-->
             <oui-button
                 data-variant="secondary"
                 data-disabled="!$ctrl.canGenerateS3CredentialModeLinked()"

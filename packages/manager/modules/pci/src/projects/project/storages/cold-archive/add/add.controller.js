@@ -127,7 +127,8 @@ export default class ColdArchiveConfigurationController {
     const { createMode, linkedMode, createOrLinkedMode } = this.userModel;
     return (
       createOrLinkedMode &&
-      ((createMode.user && createMode.description) || linkedMode.selected)
+      ((createMode.user && createMode.description) ||
+        linkedMode?.selected?.s3Credentials)
     );
   }
 
