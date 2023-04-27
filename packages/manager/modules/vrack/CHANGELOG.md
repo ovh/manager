@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.6.0...@ovh-ux/manager-vrack@1.6.1) (2023-04-27)
+
+
+### Bug Fixes
+
+* **dedicated:** resolve src issue ([#9213](https://github.com/ovh/manager/issues/9213)) ([5353000](https://github.com/ovh/manager/commit/5353000987b2a7eebb61b9af1fe17c3a791628b3))
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.5.3...@ovh-ux/manager-vrack@1.6.0) (2023-03-01)
 
 
