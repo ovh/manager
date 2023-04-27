@@ -189,34 +189,38 @@ export default class ColdArchiveLinkUserArchiveController {
     this.CucCloudMessage.flushMessages(ARCHIVE_MESSAGES_ID);
   }
 
-  onCreateUserClicked(description) {
-    let newUser;
-    this.trackClick(
-      `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.NEW_USER}::${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}`,
-    );
-    this.userModel.createMode.isInProgress = true;
-    return this.createUser(description)
-      .then((user) => {
-        newUser = user;
-        return this.generateUserS3Credentials(user).then((credential) => {
-          newUser.s3Credentials = credential;
-          this.users.push(newUser);
-          this.userModel.createMode.user = newUser;
-          this.userModel.createMode.credential = credential;
+  onCreateUserClicked(description, $event) {
+    if (description && (!$event || $event.keyCode === 13)) {
+      let newUser;
+      this.trackClick(
+        `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.NEW_USER}::${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}`,
+      );
+      this.userModel.createMode.isInProgress = true;
+      return this.createUser(description)
+        .then((user) => {
+          newUser = user;
+          return this.generateUserS3Credentials(user).then((credential) => {
+            newUser.s3Credentials = credential;
+            this.users.push(newUser);
+            this.userModel.createMode.user = newUser;
+            this.userModel.createMode.credential = credential;
+            this.trackPage(
+              `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.NEW_USER}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
+            );
+            return credential;
+          });
+        })
+        .catch(() => {
           this.trackPage(
-            `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.NEW_USER}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
+            `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.NEW_USER}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
           );
-          return credential;
+        })
+        .finally(() => {
+          this.userModel.createMode.isInProgress = false;
         });
-      })
-      .catch(() => {
-        this.trackPage(
-          `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.NEW_USER}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
-        );
-      })
-      .finally(() => {
-        this.userModel.createMode.isInProgress = false;
-      });
+    }
+
+    return Promise.resolve();
   }
 
   onCancelLinkedUserClicked() {
