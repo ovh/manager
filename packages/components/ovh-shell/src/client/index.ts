@@ -60,9 +60,12 @@ export function initStandaloneClientApi(
   appId: ApplicationId,
   applications: Record<string, Application>,
 ) {
-  const appConfig = applications[appId];
+  let appConfig = applications[appId];
   if (!appConfig) {
-    throw new Error(`Unknown application '${appId}'`);
+    //throw new Error(`Unknown application toto '${appId}'`);
+    // by default in local we add dedicated app
+    // if the app is not registred in 2api
+    appConfig = applications['dedicated'];
   }
 
   const url = buildURLIfStandalone(appConfig);
@@ -79,9 +82,9 @@ export default function init(applicationId: ApplicationId) {
   let initPromise;
 
   if (isTopLevelApplication()) {
-    initPromise = fetchApplications().then((apps) =>
-      initStandaloneClientApi(applicationId, apps),
-    );
+    initPromise = fetchApplications().then((apps) => {
+      return initStandaloneClientApi(applicationId, apps);
+    });
   } else {
     initPromise = initIFrameClientApi(applicationId);
   }
