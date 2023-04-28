@@ -62,11 +62,11 @@ export default /* @ngInject */ ($stateProvider) => {
       trackingTag: /* @ngInject */ ($transition$) =>
         $transition$.params().trackingTag,
 
-      goBackWithTrackingPage: /* @ngInject */ (goToStorageContainers) => (
-        message,
-        type,
-        trackingTag,
-      ) => {
+      goBackWithTrackingPage: /* @ngInject */ (goToStorageContainers) => ({
+        message = false,
+        type = 'success',
+        trackingTag = null,
+      }) => {
         return goToStorageContainers(message, type, { trackingTag });
       },
 
