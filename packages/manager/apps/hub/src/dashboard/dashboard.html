@@ -16,9 +16,9 @@
             ></ovh-manager-hub-carousel>
         </div>
         <oui-message
-            type="info"
-            on-dismiss="$ctrl.onDismiss()"
-            dismissable
+            data-type="info"
+            data-on-dismiss="$ctrl.onDismiss()"
+            data-dismissable
             data-ng-if="$ctrl.availableSiretBanner"
         >
             <span data-translate="manager_hub_dashboard_banner_siret"></span>
@@ -37,6 +37,29 @@
                 ></span
             ></a>
         </oui-message>
+        <!-- Banner for India KYC -->
+        <oui-message
+            data-type="info"
+            data-on-dismiss="$ctrl.onDismiss()"
+            data-dismissable
+            data-ng-if="$ctrl.showKycBanner"
+        >
+            <span
+                data-translate="manager_hub_dashboard_kyc_banner_description"
+            ></span>
+            <a
+                class="oui-link_icon"
+                data-ng-href="{{:: $ctrl.myIdentitySectionLink }}"
+                data-ng-click="$ctrl.trackClick()"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="manager_hub_dashboard_kyc_banner_link"
+                ></span>
+            </a>
+        </oui-message>
+
         <div data-ng-if="$ctrl.availableSiretPopup">
             <div class="modal d-block" role="dialog" id="modal-siret">
                 <div
