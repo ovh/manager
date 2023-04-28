@@ -138,7 +138,10 @@ export class Environment implements IEnvironment {
   setUniverseFromApplicationId(applicationId: ApplicationId): string {
     const app = this.applications[applicationId] || this.applications.dedicated;
     const { universe } = app;
+<<<<<<< HEAD
 
+=======
+>>>>>>> ddfac4a33f (fix(generator): fix local application by default dedicated)
     if (window.location?.hash?.endsWith('hosted-private-cloud')) {
       this.universe = 'hpc';
     } else if (this.universe === 'hpc' && universe === 'server') {
