@@ -154,33 +154,27 @@ export default class AddNotebookCtrl {
     this.dataProcessingService
       .createNotebook(this.projectId, this.orderPayload.orderData)
       .then((data) => {
-        this.trackNotebooks({
-          name: `add-success::${this.state.notebookSizing.notebook}_${this.state.notebookSizing.cluster}`,
-          type: 'page',
-        });
+        this.trackNotebooks(
+          `add-success::${this.state.notebookSizing.notebook}_${this.state.notebookSizing.cluster}`,
+          'page',
+        );
         this.goToDashboard(data.id);
       })
       .catch(() => {
-        this.trackNotebooks({
-          name: `add-error::${this.state.notebookSizing.notebook}_${this.state.notebookSizing.cluster}`,
-          type: 'page',
-        });
+        this.trackNotebooks(
+          `add-error::${this.state.notebookSizing.notebook}_${this.state.notebookSizing.cluster}`,
+          'page',
+        );
       });
   }
 
   trackAndGoToCommand() {
-    this.trackNotebooks({
-      name: 'add::goto-api-equivalent',
-      type: 'action',
-    });
+    this.trackNotebooks('add::goto-api-equivalent', 'action');
     return this.goToCommand(this.orderPayload);
   }
 
   trackAndGoToAiNotebook() {
-    this.trackNotebooks({
-      name: 'add::try-ai-notebooks',
-      type: 'action',
-    });
+    this.trackNotebooks('add::try-ai-notebooks', 'action');
     return this.goToAiNotebook(this.orderPayload);
   }
 }

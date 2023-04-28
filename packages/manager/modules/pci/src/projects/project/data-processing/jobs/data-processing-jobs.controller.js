@@ -83,7 +83,7 @@ export default class {
 
   onSubmitClick() {
     this.atInternet.trackClick({
-      name: `${DATA_PROCESSING_TRACKING_PREFIX}::add-job`,
+      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::add-job`,
       type: 'action',
     });
     this.submitJob();
