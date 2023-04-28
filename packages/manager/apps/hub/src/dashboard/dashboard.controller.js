@@ -14,11 +14,27 @@ export default class DashboardController {
     this.HIT_PREFIX = HIT_PREFIX;
     this.TRACKING_PREFIX_POPUP = TRACKING_PREFIX_POPUP;
     this.$http = $http;
+    this.myIdentitySectionLink = coreURLBuilder.buildURL(
+      'dedicated',
+      '#/identity-documents',
+    );
   }
 
   $onInit() {
     this.availableSiretBanner = false;
     this.availableSiretPopup = false;
+    this.showKycBanner = false;
+    this.$http
+      .get(`/feature/identity-documents/availability`, {
+        serviceType: 'aapi',
+      })
+      .then(({ data: featureAvailability }) => {
+        if (featureAvailability['identity-documents']) {
+          this.$http.get(`/me/procedure/identity`).then(({ data }) => {
+            this.showKycBanner = ['open', 'required'].includes(data.status);
+          });
+        }
+      });
 
     this.$http
       .get('/me')
@@ -34,10 +50,10 @@ export default class DashboardController {
       })
       .then((data) => {
         this.availableSiretBanner =
-          data.isFeatureAvailable('hub:banner-hub-invite-customer-siret') &&
+          data?.isFeatureAvailable('hub:banner-hub-invite-customer-siret') &&
           this.userSiretFR;
         this.availableSiretPopup =
-          data.isFeatureAvailable('hub:popup-hub-invite-customer-siret') &&
+          data?.isFeatureAvailable('hub:popup-hub-invite-customer-siret') &&
           this.userSiretFR;
         if (this.availableSiretBanner) {
           this.atInternet.trackPage({
