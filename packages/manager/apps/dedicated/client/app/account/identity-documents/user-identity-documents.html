@@ -1,1 +1,92 @@
-<p class="oui-heading_2" data-translate="user_account_identity_documents"></p>
+<!--Header section-->
+<div class="mt-2">
+    <!--My Identity document title-->
+    <p
+        class="oui-heading_4 mb-1 mt-3"
+        data-translate="user_account_identity_documents"
+    ></p>
+    <!--My Identity document description-->
+    <p
+        class="oui-tile__body"
+        data-translate="user_account_identity_documents_intro"
+    ></p>
+    <!--My Identity document sub-title-->
+    <p
+        class="oui-heading_4 mb-1 mt-3"
+        data-translate="user_account_identity_documents_sub_title"
+    ></p>
+    <!--My Identity document description-->
+    <span
+        class="oui-tile__body"
+        data-translate="{{:: 'user_account_identity_documents_list_for_' + $ctrl.user_type[$ctrl.currentUser] ? $ctrl.user_type[$ctrl.currentUser] : $ctrl.user_type['default']}}"
+    ></span>
+    <span
+        class="oui-tile__body"
+        data-translate="user_account_identity_documents_descriptiom"
+    ></span>
+</div>
+<!--End of Header section-->
+
+<!-- Loader -->
+<div class="text-center mt-5" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+<!-- End of Loader -->
+
+<!-- Document upload option -->
+<div class="mt-2" data-ng-if="!$ctrl.loading && $ctrl.showUploadOption">
+    <div data-ng-if="$ctrl.displayError">
+        <oui-message data-type="error">
+            <p
+                data-translate="user_account_identity_documents_submit_error_message_description"
+            ></p>
+        </oui-message>
+    </div>
+    <form novalidate name="$ctrl.form">
+        <oui-field
+            data-label="{{:: 'user_account_identity_documents_selection_file_format' | translate }}"
+            data-size="l"
+        >
+            <oui-file
+                data-model="$ctrl.files"
+                data-accept="application/pdf,image/jpeg,image/png,image/jpg"
+                data-multiple
+                data-maxsize="$ctrl.maximum_size"
+                data-name="files"
+            ></oui-file>
+        </oui-field>
+        <oui-form-actions
+            class="mt-5"
+            data-disabled="$ctrl.form.$invalid || !$ctrl.files || $ctrl.files.length === 0"
+            data-on-submit="$ctrl.uploadIdentityDocuments()"
+            data-submit-text="{{:: 'user_account_identity_documents_submit' | translate}}"
+        ></oui-form-actions>
+    </form>
+</div>
+<!-- End of upload option -->
+
+<!-- Suceess Banner -->
+<div class="mt-2" data-ng-if="!$ctrl.loading && !$ctrl.showUploadOption">
+    <oui-message data-type="success">
+        <p
+            class="oui-heading_4"
+            data-translate="user_account_identity_documents_submit_success_message_title"
+        ></p>
+        <p
+            data-translate="user_account_identity_documents_submit_success_message_description"
+        ></p>
+    </oui-message>
+    <!-- go back to dashboard option -->
+    <a
+        class="oui-link_icon mt-3"
+        data-ng-href="{{:: $ctrl.dashboardRedirectURL }}"
+        target="_blank"
+        rel="noopener"
+    >
+        <span
+            data-translate="user_account_identity_documents_go_back_to_dashboard"
+        ></span>
+    </a>
+    <!--end of go back to dashboard option -->
+</div>
+<!-- End of Suceess Banner -->
