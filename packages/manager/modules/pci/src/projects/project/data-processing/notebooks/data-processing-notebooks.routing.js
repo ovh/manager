@@ -1,4 +1,7 @@
-import { DATA_PROCESSING_TRACKING_PREFIX } from '../data-processing.constants';
+import {
+  DATA_PROCESSING_TRACKING_PREFIX,
+  DATA_PROCESSING_TRACKING_PREFIX_FULL,
+} from '../data-processing.constants';
 
 export default /* @ngInject */ ($stateProvider) =>
   $stateProvider.state('pci.projects.project.data-processing.notebooks', {
@@ -66,7 +69,7 @@ export default /* @ngInject */ ($stateProvider) =>
       lab: /* @ngInject */ (PciProjectLabsService, projectId) =>
         PciProjectLabsService.getLabByName(projectId, 'dataProcessing'),
       notebooksTrackPrefix: () =>
-        `${DATA_PROCESSING_TRACKING_PREFIX}::notebooks`,
+        `${DATA_PROCESSING_TRACKING_PREFIX_FULL}::notebooks`,
       trackNotebooks: /* @ngInject */ (
         notebooksTrackPrefix,
         trackClick,
