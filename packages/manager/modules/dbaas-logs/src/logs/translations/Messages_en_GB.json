@@ -759,5 +759,13 @@
   "logs_streams_encryption_detail": "Encrypt archives with my PGP encryption keys.",
   "logs_streams_encryption_max_keys": "You can select a maximum of {{maxKeys}} encryption keys",
   "streams_archives_encryption_keys": "PGP encryption keys",
-  "streams_archives_encryption_keys_helper": "The archive has been encrypted with the following key(s):"
+  "streams_archives_encryption_keys_helper": "The archive has been encrypted with the following key(s):",
+  "inputs_autoscaled": "Automatic scaling",
+  "inputs_autoscaled_detailled": "Automatic scaling for the number of instances",
+  "inputs_autoscaled_explanation": "The number of instances for your data-gathering tool can either be fixed, or automatically scaled depending on the workload to be absorbed.",
+  "inputs_autoscaled_true": "Enabled",
+  "inputs_autoscaled_false": "Disabled",
+  "inputs_autoscaled_notification_detail": "Notify me via email when an automatic scaling occurs.",
+  "inputs_logs_edit_min_instance_field": "Minimum number of instances",
+  "inputs_logs_edit_max_instance_field": "Maximum number of instances"
 }

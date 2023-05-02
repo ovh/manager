@@ -759,5 +759,13 @@
   "logs_streams_encryption_detail": "Cifrar archivos con claves de cifrado PGP.",
   "logs_streams_encryption_max_keys": "Puede seleccionar como máximo {{maxKeys}} claves de cifrado",
   "streams_archives_encryption_keys": "Claves de cifrado PGP",
-  "streams_archives_encryption_keys_helper": "El archivo se ha cifrado con las siguientes claves:"
+  "streams_archives_encryption_keys_helper": "El archivo se ha cifrado con las siguientes claves:",
+  "inputs_autoscaled": "Escalado automático",
+  "inputs_autoscaled_detailled": "Escalado automático del número de instancias",
+  "inputs_autoscaled_explanation": "El número de instancias del recopilador puede ser fijo o ampliarse automáticamente en función de la carga que sea necesario absorber.",
+  "inputs_autoscaled_true": "Activado",
+  "inputs_autoscaled_false": "Desactivado",
+  "inputs_autoscaled_notification_detail": "Avisarme por correo electrónico cuando se realice un escalado automático.",
+  "inputs_logs_edit_min_instance_field": "Número mínimo de instancias",
+  "inputs_logs_edit_max_instance_field": "Número máximo de instancias"
 }
