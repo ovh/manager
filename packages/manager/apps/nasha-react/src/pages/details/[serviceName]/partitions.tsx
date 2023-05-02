@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getPartition } from '../../../api/nasha-react';
+import NotFound from '../../404';
 
 function Partitions(props: { serviceName: string }) {
   const { serviceName } = props;
@@ -13,7 +14,7 @@ function Partitions(props: { serviceName: string }) {
   }
 
   if (isError) {
-    return <span>Error...</span>;
+    return NotFound;
   }
 
   const count = data?.length;

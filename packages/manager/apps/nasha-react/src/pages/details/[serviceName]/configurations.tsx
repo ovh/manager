@@ -61,41 +61,66 @@ function Configurations(props: { serviceName: string }) {
         {data.use.used.value} / {data.use.size.value} {data.use.size.unit}
       </ul>
       <ul>
-        <input
-          type="text"
-          value={partitionData.partitionName}
-          onChange={(e) =>
-            setPartitionData({
-              ...partitionData,
-              partitionName: e.target.value,
-            })
-          }
-        />
-        <input
-          type="text"
-          value={partitionData.partitionDescription}
-          onChange={(e) =>
-            setPartitionData({
-              ...partitionData,
-              partitionDescription: e.target.value,
-            })
-          }
-        />
-        <input
-          type="text"
-          value={partitionData.size}
-          onChange={(e) =>
-            setPartitionData({ ...partitionData, size: Number(e.target.value) })
-          }
-        />
-        <input
-          type="text"
-          value={partitionData.protocol}
-          onChange={(e) =>
-            setPartitionData({ ...partitionData, protocol: e.target.value })
-          }
-        />
-        <button onClick={handleClickPartition}>Créer</button>
+        <div>
+          <osds-input
+            type="text"
+            value={partitionData.partitionName}
+            onChange={(e) =>
+              setPartitionData({
+                ...partitionData,
+                partitionName: e.target.value,
+              })
+            }
+          />
+          <osds-input
+            type="text"
+            value={partitionData.partitionDescription}
+            onChange={(e) =>
+              setPartitionData({
+                ...partitionData,
+                partitionDescription: e.target.value,
+              })
+            }
+          />
+          <osds-input
+            type="text"
+            value={partitionData.size}
+            onChange={(e) =>
+              setPartitionData({
+                ...partitionData,
+                size: Number(e.target.value),
+              })
+            }
+          />
+          <osds-input
+            type="text"
+            value={partitionData.protocol}
+            onChange={(e) =>
+              setPartitionData({ ...partitionData, protocol: e.target.value })
+            }
+          />
+        </div>
+        <osds-link
+          color="primary"
+          href=""
+          rel=""
+          target="_self"
+          class="hydrated"
+        >
+          <span slot="start"></span>
+          Créer une partition
+          <span slot="end">
+            <osds-icon
+              name="arrow-right"
+              size="xs"
+              color="primary"
+              aria-hidden=""
+              alt=""
+              aria-name=""
+              class="hydrated"
+            ></osds-icon>
+          </span>
+        </osds-link>
       </ul>
     </>
   );

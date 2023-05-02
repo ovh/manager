@@ -34,7 +34,9 @@ export default function NashaReactDetails() {
       <ul>
         {tabs.map((tab) => (
           <li key={tab.name}>
-            <NavLink to={tab.to}>{tab.title}</NavLink>
+            <NavLink to={tab.to}>
+              <osds-link color="primary">{tab.title}</osds-link>
+            </NavLink>
           </li>
         ))}
       </ul>
