@@ -759,5 +759,13 @@
   "logs_streams_encryption_detail": "Cifrare gli archivi con le tue chiavi di PGP.",
   "logs_streams_encryption_max_keys": "È possibile selezionare un massimo di {{maxKeys}} chiavi di cifratura",
   "streams_archives_encryption_keys": "Chiavi di cifratura PGP",
-  "streams_archives_encryption_keys_helper": "L'archivio è stato cifrato con le seguenti chiavi:"
+  "streams_archives_encryption_keys_helper": "L'archivio è stato cifrato con le seguenti chiavi:",
+  "inputs_autoscaled": "Scaling automatico",
+  "inputs_autoscaled_detailled": "Scaling automatico del numero di istanze",
+  "inputs_autoscaled_explanation": "Il numero di istanze del tuo strumento di raccolta può essere fisso o scalare automaticamente in base al carico.",
+  "inputs_autoscaled_true": "Attivato",
+  "inputs_autoscaled_false": "Disattivato",
+  "inputs_autoscaled_notification_detail": "Ricevere una notifica via email quando viene effettuato uno scaling automatico.",
+  "inputs_logs_edit_min_instance_field": "Numero minimo di istanze",
+  "inputs_logs_edit_max_instance_field": "Numero massimo di istanze"
 }

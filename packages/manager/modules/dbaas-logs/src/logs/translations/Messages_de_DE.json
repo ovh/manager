@@ -759,5 +759,13 @@
   "logs_streams_encryption_detail": "Die Archive mit meinen PGP-Schlüsseln verschlüsseln.",
   "logs_streams_encryption_max_keys": "Sie können bis zu {{maxKeys}} Schlüssel auswählen.",
   "streams_archives_encryption_keys": "PGP-Schlüssel",
-  "streams_archives_encryption_keys_helper": "Das Archiv wurde mit folgenden Schlüsseln verschlüsselt:"
+  "streams_archives_encryption_keys_helper": "Das Archiv wurde mit folgenden Schlüsseln verschlüsselt:",
+  "inputs_autoscaled": "Automatische Skalierung",
+  "inputs_autoscaled_detailled": "Automatische Skalierung der Anzahl der Instanzen",
+  "inputs_autoscaled_explanation": "Die Anzahl der Instanzen Ihres Datensammlers kann entweder fest sein oder automatisch entsprechend der zu absorbierenden Last skaliert werden.",
+  "inputs_autoscaled_true": "Aktiviert",
+  "inputs_autoscaled_false": "Deaktiviert",
+  "inputs_autoscaled_notification_detail": "Mich per E-Mail benachrichtigen, wenn ein automatisches Skalieren stattfindet.",
+  "inputs_logs_edit_min_instance_field": "Mindestanzahl an Instanzen",
+  "inputs_logs_edit_max_instance_field": "Maximale Anzahl an Instanzen"
 }
