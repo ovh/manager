@@ -6,7 +6,7 @@ import {
 } from '../data-processing.utils';
 import {
   DATA_PROCESSING_GUIDE_URL,
-  DATA_PROCESSING_TRACKING_PREFIX,
+  DATA_PROCESSING_TRACKING_PREFIX_FULL,
 } from '../data-processing.constants';
 
 import { getCriteria } from '../../project.utils';
@@ -83,7 +83,7 @@ export default class {
 
   onSubmitClick() {
     this.atInternet.trackClick({
-      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::add-job`,
+      name: `${DATA_PROCESSING_TRACKING_PREFIX_FULL}::jobs::add-job`,
       type: 'action',
     });
     this.submitJob();

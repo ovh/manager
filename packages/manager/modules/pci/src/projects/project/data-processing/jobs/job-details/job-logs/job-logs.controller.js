@@ -2,7 +2,7 @@ import moment from 'moment';
 import { formatLogsDate } from './job-logs.utils';
 import {
   DATA_PROCESSING_ENDED_JOBS,
-  DATA_PROCESSING_TRACKING_PREFIX,
+  DATA_PROCESSING_TRACKING_PREFIX_FULL,
 } from '../../../data-processing.constants';
 
 export default class {
@@ -40,7 +40,7 @@ export default class {
 
   downloadObject(object) {
     this.atInternet.trackClick({
-      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs::job-details::logs::download`,
+      name: `${DATA_PROCESSING_TRACKING_PREFIX_FULL}::jobs::job-details::logs::download`,
       type: 'action',
     });
 
