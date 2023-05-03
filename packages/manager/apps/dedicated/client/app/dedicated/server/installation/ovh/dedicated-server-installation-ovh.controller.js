@@ -169,7 +169,6 @@ angular
           postInstallationScriptLink: null,
           postInstallationScriptReturn: null,
           sshKeyName: null,
-          useDistributionKernel: false,
           useSpla: false,
           variablePartition: null,
           validForm: true,
@@ -2477,7 +2476,6 @@ angular
           postInstallationScriptLink: null,
           postInstallationScriptReturn: null,
           sshKeyName: null,
-          useDistributionKernel: false,
           useSpla: false,
           variablePartition: null,
           validForm: true,
@@ -2627,7 +2625,6 @@ angular
               ? $scope.installation.options.postInstallationScriptReturn
               : null,
             sshKeyName: $scope.installation.options.sshKeyName,
-            useDistribKernel: $scope.installation.options.useDistributionKernel,
             useSpla: $scope.installation.options.useSpla,
             softRaidDevices:
               $scope.informations.nbDisk > 2 &&
@@ -2721,8 +2718,6 @@ angular
               ? $scope.installation.options.postInstallationScriptReturn
               : null,
             sshKeyName: $scope.installation.options.sshKeyName,
-            useDistributionKernel:
-              $scope.installation.options.useDistributionKernel,
           },
         ).then(
           () => {
