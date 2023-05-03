@@ -3,6 +3,7 @@ import React, { Suspense, lazy } from 'react';
 import '@ods/theme-blue-jeans/index.css';
 import '@ods/stencil/components/react';
 import './index.scss';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Loading from './loading';

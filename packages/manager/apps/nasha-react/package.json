@@ -27,6 +27,7 @@
     "@ovh-ux/manager-react-core-application": "*",
     "@tanstack/react-query": "^4.9.0",
     "@tanstack/react-query-devtools": "^4.9.0",
+    "bootstrap": "^5.2.3",
     "react": "^18.2.0",
     "react-i18next": "^11.18.1",
     "react-router-dom": "^6.3.0"

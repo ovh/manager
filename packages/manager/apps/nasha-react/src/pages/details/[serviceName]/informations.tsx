@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Navigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { service, renameNasha } from '../../../api/nasha-react';
 
 function Informations(props: { serviceName: string }) {
@@ -10,6 +11,7 @@ function Informations(props: { serviceName: string }) {
     ['informations', { serviceName }],
     service,
   );
+  const { t } = useTranslation('nasha-react/details/dashboard');
 
   const [redirectToError, setRedirectToError] = useState(false);
   const [redirectToSuccess, setRedirectToSuccess] = useState(false);
@@ -69,21 +71,21 @@ function Informations(props: { serviceName: string }) {
 
   return (
     <>
-      <ul>
-        <li>
-          <div>
-            <osds-text
-              color="text"
-              size="100"
-              level="heading"
-              hue="500"
-              class="hydrated"
-            >
-              Name:
-            </osds-text>
-          </div>
+      <div>
+        <osds-text
+          color="text"
+          size="100"
+          level="heading"
+          hue="500"
+          class="hydrated"
+        >
+          {t('nasha_dashboard_information_name')}
+        </osds-text>
+      </div>
+      <div className="row">
+        <div className="col">
           <osds-text
-            color="default"
+            color="text"
             size="100"
             level="heading"
             hue="500"
@@ -91,135 +93,139 @@ function Informations(props: { serviceName: string }) {
           >
             {JSON.parse(JSON.stringify(data.serviceName))}
           </osds-text>
-        </li>
-        <osds-divider
-          color="default"
-          size="6"
-          class="hydrated"
-          separator=""
-        ></osds-divider>
-        <li>
-          <div>
-            <osds-text
-              color="text"
-              size="100"
-              level="heading"
-              hue="500"
-              class="hydrated"
-            >
-              Service ID:
-            </osds-text>
-          </div>
-          <osds-text
+        </div>
+        <div className="col-3">
+          <osds-chip
+            tabindex="-1"
             color="default"
-            size="100"
-            level="heading"
-            hue="500"
+            size="md"
+            variant="stroked"
             class="hydrated"
           >
-            {JSON.parse(JSON.stringify(data.customName))}
-          </osds-text>
-        </li>
-        <osds-divider
-          color="default"
-          size="6"
-          class="hydrated"
-          separator=""
-        ></osds-divider>
-        <li>
-          <div>
-            <osds-text
-              color="text"
-              size="100"
-              level="heading"
-              hue="500"
-              class="hydrated"
-            >
-              Datacenter:
-            </osds-text>
-          </div>
-          <osds-text
-            color="default"
-            size="100"
-            level="heading"
-            hue="500"
-            class="hydrated"
-          >
-            {JSON.parse(JSON.stringify(data.datacenter))}
-          </osds-text>
-        </li>
-        <osds-divider
-          color="default"
-          size="6"
-          class="hydrated"
-          separator=""
-        ></osds-divider>
-        <li>
-          <div>
-            <osds-text
-              color="text"
-              size="100"
-              level="heading"
-              hue="500"
-              class="hydrated"
-            >
-              Disk Type:
-            </osds-text>
-          </div>
-          <osds-text
-            color="default"
-            size="100"
-            level="heading"
-            hue="500"
-            class="hydrated"
-          >
-            {JSON.parse(JSON.stringify(data.diskType))}
-          </osds-text>
-        </li>
-        <osds-divider
-          color="default"
-          size="6"
-          class="hydrated"
-          separator=""
-        ></osds-divider>
-        <li>
-          <div>
-            <osds-text
-              color="text"
-              size="100"
-              level="heading"
-              hue="500"
-              class="hydrated"
-            >
-              zpoolSize:
-            </osds-text>
-          </div>
-          <osds-text
-            color="default"
-            size="100"
-            level="heading"
-            hue="500"
-            class="hydrated"
-          >
-            {JSON.parse(JSON.stringify(data.zpoolSize))}
-          </osds-text>
-        </li>
-      </ul>
+            <osds-link>
+              <osds-icon
+                name="ellipsis"
+                size="xxs"
+                color="primary"
+                onClick={handleClickRename}
+              ></osds-icon>
+            </osds-link>
+          </osds-chip>
+        </div>
+      </div>
 
-      <ul>
+      <osds-divider
+        color="default"
+        size="1"
+        class="hydrated"
+        separator=""
+      ></osds-divider>
+      <div>
         <div>
-          <osds-input
-            type="text"
-            value={serviceRename}
-            onChange={(e) => setServiceRename(e.target.value)}
-          />
+          <osds-text
+            color="text"
+            size="100"
+            level="heading"
+            hue="500"
+            class="hydrated"
+          >
+            {t('nasha_dashboard_information_id')}
+          </osds-text>
         </div>
+        <osds-text
+          color="text"
+          size="100"
+          level="heading"
+          hue="500"
+          class="hydrated"
+        >
+          {JSON.parse(JSON.stringify(data.customName))}
+        </osds-text>
+      </div>
+      <osds-divider
+        color="default"
+        size="1"
+        class="hydrated"
+        separator=""
+      ></osds-divider>
+      <div>
         <div>
-          <osds-button size="sm" color="primary" onClick={handleClickRename}>
-            Modifier
-          </osds-button>
+          <osds-text
+            color="text"
+            size="100"
+            level="heading"
+            hue="500"
+            class="hydrated"
+          >
+            {t('nasha_dashboard_information_datacenter')}
+          </osds-text>
         </div>
-      </ul>
+        <osds-text
+          color="default"
+          size="100"
+          level="heading"
+          hue="500"
+          class="hydrated"
+        >
+          {JSON.parse(JSON.stringify(data.datacenter))}
+        </osds-text>
+      </div>
+      <osds-divider
+        color="default"
+        size="1"
+        class="hydrated"
+        separator=""
+      ></osds-divider>
+      <div>
+        <div>
+          <osds-text
+            color="text"
+            size="100"
+            level="heading"
+            hue="500"
+            class="hydrated"
+          >
+            {t('nasha_dashboard_information_disk_type')}
+          </osds-text>
+        </div>
+        <osds-text
+          color="default"
+          size="100"
+          level="heading"
+          hue="500"
+          class="hydrated"
+        >
+          {JSON.parse(JSON.stringify(data.diskType))}
+        </osds-text>
+      </div>
+      <osds-divider
+        color="default"
+        size="1"
+        class="hydrated"
+        separator=""
+      ></osds-divider>
+      <div>
+        <div>
+          <osds-text
+            color="text"
+            size="100"
+            level="heading"
+            hue="500"
+            class="hydrated"
+          >
+            {t('nasha_dashboard_information_disk_size')}
+          </osds-text>
+        </div>
+        <osds-text
+          color="default"
+          size="100"
+          level="heading"
+          hue="500"
+          class="hydrated"
+        >
+          {JSON.parse(JSON.stringify(data.zpoolSize))}
+        </osds-text>
+      </div>
     </>
   );
 }
