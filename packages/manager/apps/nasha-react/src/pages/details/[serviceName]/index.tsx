@@ -17,13 +17,13 @@ export default function NashaReactDashboard() {
         {t('title')}
       </Heading>
       <div>
-        <h3>Partitions</h3>
+        <h3>{t('partitions')}</h3>
         <Partitions serviceName={serviceName} />
-        <h3>Informations</h3>
+        <h3>{t('informations')}</h3>
         <Informations serviceName={serviceName} />
-        <h3>Configuration</h3>
+        <h3>{t('configurations')}</h3>
         <Configurations serviceName={serviceName} />
-        <h3>Abonnement</h3>
+        <h3>{t('subscriptions')}</h3>
         <Subscriptions serviceName={serviceName} />
       </div>
     </div>
