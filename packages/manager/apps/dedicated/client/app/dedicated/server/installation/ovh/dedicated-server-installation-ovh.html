@@ -476,6 +476,16 @@
                     <span
                         data-translate="server_configuration_installation_ovh_step2_type_disk"
                     ></span>
+                    <span
+                        data-ng-if="informations.softRaidOnlyMirroring && installation.diskGroup.numberOfDisks > 2"
+                    >
+                        <i
+                            class="fa fa-info-circle"
+                            data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_type_disk_warning_windows' | translate:{ t0: installation.diskGroup.numberOfDisks } }}"
+                            data-oui-tooltip-placement="bottom"
+                        >
+                        </i>
+                    </span>
                     <select
                         class="form-control"
                         data-ng-show="informations.nbDisk > 1"
