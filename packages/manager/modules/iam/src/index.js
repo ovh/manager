@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerIAMLazyLoading';
 angular.module(moduleName, [uiRouter, ocLazyLoad]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('iam.**', {
-      url: '/iam',
+      url: '/',
       lazyLoad: (transition) =>
         import('./iam.module').then((module) =>
           transition

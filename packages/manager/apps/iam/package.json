@@ -19,6 +19,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-iam-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
+    "@ovh-ux/manager-config": "^6.6.0",
     "@ovh-ux/manager-core": "^12.12.9",
     "@ovh-ux/manager-iam": "^1.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
@@ -29,12 +30,14 @@
     "@ovh-ux/ng-ovh-utils": "^14.0.19",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.8",
     "@ovh-ux/request-tagger": "^0.1.1",
+    "@ovh-ux/shell": "^1.10.0",
     "@ovh-ux/ui-kit": "^6.5.1",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "core-js": "^3.6.5",
+    "flatpickr": "^4.6.3",
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
