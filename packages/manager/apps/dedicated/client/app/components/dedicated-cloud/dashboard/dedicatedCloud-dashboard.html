@@ -6,6 +6,11 @@
         data-pcc-type="$ctrl.pccType"
     ></ovh-manager-dedicated-cloud-datacenter-drp-alerts>
 
+    <ovh-manager-pcc-dashboard-lv1-lv2-migration-banner
+        data-ng-if="$ctrl.isLv1Lv2BannerAvailable"
+        data-product-id="$ctrl.productId"
+    ></ovh-manager-pcc-dashboard-lv1-lv2-migration-banner>
+
     <ovh-manager-pcc-dashboard-legacy
         data-current-drp="$ctrl.currentDrp"
         data-current-service="$ctrl.currentService"
