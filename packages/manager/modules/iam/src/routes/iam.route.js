@@ -10,7 +10,7 @@ const name = 'iam';
 const resolves = [featuresResolve, defaultBreadcrumbResolve];
 
 const state = ({ ROUTES }) => ({
-  url: '/iam',
+  url: '',
   component: iamComponent.name,
   redirectTo: (transition) =>
     transition

@@ -26,6 +26,21 @@ export default [
             ],
           },
           {
+            route: {
+              name: 'identitiesRedirection',
+              state: () => ({
+                url: '/identities',
+                resolve: {
+                  redirect: /* @ngInject */ (shellClient) =>
+                    shellClient.navigation.navigateTo(
+                      'dedicated',
+                      '#/useraccount/users',
+                    ),
+                },
+              }),
+            },
+          },
+          {
             route: resourceGroups,
             children: [
               {
