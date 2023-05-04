@@ -41,7 +41,6 @@ function LanguageMenu({
     shell.getPlugin('i18n').setLocale(locale);
     setShow(false);
     setUserLocale(locale);
-    window.location.reload();
   };
 
   useEffect(() => {
