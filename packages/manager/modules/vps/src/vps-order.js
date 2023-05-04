@@ -22,6 +22,7 @@ export const VPS_ORDER_URLS = {
   LT: 'https://ovhcloud.com/lt/vps',
   WE: 'https://ovhcloud.com/us-en/vps',
   WS: 'https://ovhcloud.com/us-en/vps',
+  US: 'https://us.ovhcloud.com/vps/',
 };
 
 export function getVpsOrderUrl(subsidiary) {
