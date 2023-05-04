@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.122.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.122.0...@ovh-ux/manager-pci@5.122.1) (2023-05-04)
+
+
+### Bug Fixes
+
+* remove spaces around slashes in prices ([3bdce6d](https://github.com/ovh/manager/commit/3bdce6d547c8ec2c53bf3d8743820f457e2da6ea))
+* **storages.cold-archive:** generate user + cred on enter button ([845911b](https://github.com/ovh/manager/commit/845911bf95a036ef4ecf77e8ef517fac4cc6391c))
+* **storages:** applied right params format ([#9225](https://github.com/ovh/manager/issues/9225)) ([07272d9](https://github.com/ovh/manager/commit/07272d9b0e328b440ac95e02c64f46251d83b921))
+
+
+
+
+
 # [5.122.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.121.1...@ovh-ux/manager-pci@5.122.0) (2023-04-26)
 
 

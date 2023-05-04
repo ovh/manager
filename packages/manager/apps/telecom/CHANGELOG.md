@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.60.2...@ovh-ux/manager-telecom@13.61.0) (2023-05-04)
+
+
+### Bug Fixes
+
+* add slot id missing value into slots for meetings ([a730999](https://github.com/ovh/manager/commit/a7309995b7c267635b3d57bd0e24f237ec042bd1))
+* rework on display meeting if not fiber offer selected ([6383dae](https://github.com/ovh/manager/commit/6383daed404ee16ac05dae75307a3eed4a469df5))
+* rework on slamming check for line and on portability labels invert ([740a09f](https://github.com/ovh/manager/commit/740a09f4c6b3bde5c5fee0d8256585d5327c9308))
+
+
+### Features
+
+* get available profiles only for copper lines ([dfd748e](https://github.com/ovh/manager/commit/dfd748ef80fe7a4c7709139431142fb40ef96b02))
+
+
+
+
+
 ## [13.60.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.60.1...@ovh-ux/manager-telecom@13.60.2) (2023-04-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
