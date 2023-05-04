@@ -22,6 +22,8 @@ export const VEEAM_ORDER_URLS = {
   LT: 'https://ovhcloud.com/lt/storage-solutions/veeam-enterprise',
   WE: 'https://ovhcloud.com/us-en/storage-solutions/veeam-enterprise',
   WS: 'https://ovhcloud.com/us-en/storage-solutions/veeam-enterprise',
+  US:
+    'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/veeam-enterprise/',
 };
 
 export function getVeeamOrderUrl(subsidiary) {
