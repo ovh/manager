@@ -46,4 +46,6 @@ export const CTAS = {
   CZ: 'https://ovhcloud.com/cz-cs/storage-solutions/veeam-enterprise',
   FI: 'https://ovhcloud.com/fi/storage-solutions/veeam-enterprise',
   LT: 'https://ovhcloud.com/lt/storage-solutions/veeam-enterprise',
+  US:
+    'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/veeam-enterprise/',
 };
