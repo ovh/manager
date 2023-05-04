@@ -59,8 +59,8 @@ const root: Node = {
           id: 'account_iam',
           translation: 'sidebar_account_iam',
           routing: {
-            application: 'dedicated',
-            hash: '#/iam',
+            application: 'iam',
+            hash: '#/',
           },
           tag: NodeTag.NEW,
           count: false,
