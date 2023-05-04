@@ -11,10 +11,10 @@
   "dedicated_clouds_onboarding_guide2_description": "Découvrez la solution Tanzu Kubernetes Grid et ses possiblités d'intégration dans VMware on OVHcloud",
   "dedicated_clouds_onboarding_guide3_title": "Configurer une IP sur une machine virtuelle",
   "dedicated_clouds_onboarding_guide3_description": "Après avoir créé une machine virtuelle, vous pouvez lui attribuer une IP publique ou privée",
-  "dedicated_clouds_onboarding_us_guide1_title": "How to Access the NSX Interface",
-  "dedicated_clouds_onboarding_us_guide1_description": "NSX is a Software Defined Network (SDN) solution developed by VMware that is activated from the vCenter and managed directly from the vSphere interface. With NSX, you can configure rules to access your networks, create your security policy, and quickly deploy the various network services needed to build your infrastructure. This article provides an introduction to the NSX interface.",
-  "dedicated_clouds_onboarding_us_guide2_title": "How to Modify the vCenter Access Policy",
-  "dedicated_clouds_onboarding_us_guide2_description": "To enhance security for your Managed Bare Metal infrastructure, you can restrict and manage the access to vCenter. In this article, we will go over how to change the access policy for vCenter in the OVHcloud Manager.",
-  "dedicated_clouds_onboarding_us_guide3_title": "How to Authorize IP Addresses for vCenter Access",
-  "dedicated_clouds_onboarding_us_guide3_description": "Access to your vCenter environment can be restricted by allowing only certain IP addresses or ranges to connect to it. In this article, we will cover how to authorize IP addresses for vCenter access in the OVHcloud Manager."
+  "dedicated_clouds_onboarding_us_guide1_title": "Premiers pas avec NSX",
+  "dedicated_clouds_onboarding_us_guide1_description": "NSX est une solution de gestion de réseau logicielle Software Defined Networking (SDN) fournie par VMware. OVHcloud propose ce service en remplacement de NSX-v dans son offre Hosted Private Cloud Powered by VMware. Deux hôtes sont déployés avec, sur chacun d'entre eux, une machine virtuelle dédiée à NSX, ce qui permet une redondance en cas de défaillance d'un des hôtes.",
+  "dedicated_clouds_onboarding_us_guide2_title": "Découvrez comment modifier la stratégie d'accès pour vCenter dans l'espace client OVHcloud.",
+  "dedicated_clouds_onboarding_us_guide2_description": "Pour améliorer la sécurité de votre infrastructure vSphere, vous pouvez restreindre et gérer l'accès à vCenter.",
+  "dedicated_clouds_onboarding_us_guide3_title": "Découvrez comment autoriser des adresses IPs à se connecter au vCenter.",
+  "dedicated_clouds_onboarding_us_guide3_description": "Par défaut, l'accès à votre vCenter est restreint. Il est donc nécessaire d'ajouter les IPs qui seront autorisées à se connecter au service."
 }
