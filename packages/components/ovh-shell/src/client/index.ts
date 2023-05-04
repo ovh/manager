@@ -60,9 +60,23 @@ export function initStandaloneClientApi(
   appId: ApplicationId,
   applications: Record<string, Application>,
 ) {
-  const appConfig = applications[appId];
+  let appConfig = applications[appId];
   if (!appConfig) {
-    throw new Error(`Unknown application '${appId}'`);
+    if (window.location.hostname === 'localhost') {
+      appConfig = {
+        container: {
+          containerURL: '',
+          enabled: false,
+          isDefault: false,
+          path: '',
+        },
+        publicURL: window.location.href,
+        universe: 'hub',
+        url: window.location.href,
+      };
+    } else {
+      throw new Error(`Unknown application '${appId}'`);
+    }
   }
 
   const url = buildURLIfStandalone(appConfig);
