@@ -19,6 +19,9 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.4",
+    "@ods/core": "^10.2.0",
+    "@ods/stencil": "^10.2.0",
+    "@ods/theme-blue-jeans": "^10.2.0",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-react-breadcrumb": "*",
     "@ovh-ux/manager-react-core-application": "*",

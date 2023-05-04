@@ -7197,6 +7197,31 @@
   dependencies:
     "@octokit/openapi-types" "^14.0.0"
 
+"@ods/core@^10.2.0":
+  version "10.2.0"
+  resolved "https://artifactory.ovhcloud.tools:443/artifactory/api/npm/digital-tools-order-ods-npm-release/@ods/core/-/@ods/core-10.2.0.tgz#5120ab400131363bf5f88af6c8a328e2d77ee8fe"
+  integrity sha512-l8xKCxSlZIy67Y4VR+FfFQ+LGOpfxH/DHVvdQ8SYUjv9Sx57CE3apES5oh55JWSRy8OutUl2MfTFoU5uVtweJw==
+
+"@ods/stencil@^10.2.0":
+  version "10.2.0"
+  resolved "https://artifactory.ovhcloud.tools:443/artifactory/api/npm/digital-tools-order-ods-npm-release/@ods/stencil/-/@ods/stencil-10.2.0.tgz#9b2716372033231fcac10b207eb32b2c13d98893"
+  integrity sha512-5IwMsjioVtXemNljVtwwxlhJqjp9e/gFOErCF53woFZb2ZT1PmzD3YidAkt0gRWeoChG5oF4S5WBdWQnsPgOEg==
+  dependencies:
+    "@ods/theme-blue-jeans" "^10.2.0"
+    "@stencil/core" "~2.18.1"
+
+"@ods/theme-blue-jeans@^10.2.0":
+  version "10.2.0"
+  resolved "https://artifactory.ovhcloud.tools:443/artifactory/api/npm/digital-tools-order-ods-npm-release/@ods/theme-blue-jeans/-/@ods/theme-blue-jeans-10.2.0.tgz#35faa894f164aa5794901c61fdc22ef1ccce6551"
+  integrity sha512-kNak1IRY9I58h44exF2M3+i6iFJ8JcziE8S3ifUDcQYLsdYDZ1ksusOrIRj0nq5wx+Fx/qdwZ/zUrBip3hB9wg==
+  dependencies:
+    "@ods/theming" "^10.2.0"
+
+"@ods/theming@^10.2.0":
+  version "10.2.0"
+  resolved "https://artifactory.ovhcloud.tools:443/artifactory/api/npm/digital-tools-order-ods-npm-release/@ods/theming/-/@ods/theming-10.2.0.tgz#942b1318d4170c1c91091a3c15a83ad53345abb6"
+  integrity sha512-zreifOHfj5+BT3aN1huMlRhWa+6yuJxMJ7zUp91MuVC+hAJG+ZCCq3/KQDhyYQ9f7kG3fyf4S7E3dz5Hp9UV/w==
+
 "@open-draft/until@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@open-draft/until/-/until-1.0.3.tgz#db9cc719191a62e7d9200f6e7bab21c5b848adca"
@@ -7495,6 +7520,11 @@
   integrity sha512-OAPJUAtgeINhh/TAlUID4QTs53Njm7xzddaVlEs/SXwgtiD1tW22zAB/W1wdqfrpmikgaWQ9Fw6Ws+hsiRm5Vg==
   dependencies:
     "@sinonjs/commons" "^1.7.0"
+
+"@stencil/core@~2.18.1":
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.18.1.tgz#f45e99b7abe2a0fa90d3141363601a68df5c08a7"
+  integrity sha512-/fXkh1lwZ+X9JQCw50mPjhBogzEHOBvVC5pLoDLZqodVYK0DGWILM2YLV4dcIUBNEK8/HMDpO/Rq81/rS3mNOw==
 
 "@stylelint/postcss-css-in-js@^0.37.2":
   version "0.37.2"
