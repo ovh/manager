@@ -8,3 +8,5 @@ types
 .eslintcache
 .turbo
 packages/manager/apps/**/dev.proxy.config.mjs
+cypress/screenshots
+cypress/videos

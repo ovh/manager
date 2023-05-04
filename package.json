@@ -40,7 +40,9 @@
     "start": "node -r esm scripts/start-application.js",
     "test:jest": "jest --runInBand",
     "test": "yarn lint",
-    "test:scripts": "make test"
+    "test:scripts": "make test",
+    "test:cypress:dev": "cypress open",
+    "test:cypress:run": "lerna run test:e2e --concurrency 1"
   },
   "resolutions": {
     "flatpickr": "4.6.9"
@@ -58,6 +60,7 @@
     "commander": "^6.0.0",
     "concurrently": "^7.2.2",
     "conventional-changelog-cli": "^2.0.25",
+    "cypress": "^12.11.0",
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.3.0",

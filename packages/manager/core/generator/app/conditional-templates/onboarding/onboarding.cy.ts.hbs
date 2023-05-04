@@ -1,0 +1,7 @@
+describe('Onboarding specs', () => {
+  it('displays an onboarding page', () => {
+    cy.login();
+    cy.visit('/app/#/onboarding');
+    cy.contains('Onboarding page').should('be.visible');
+  });
+});

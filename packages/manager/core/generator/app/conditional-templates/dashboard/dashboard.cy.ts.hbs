@@ -1,0 +1,14 @@
+describe('Dashboard specs', () => {
+  it('Navigates to a dashboard page', () => {
+    cy.login();
+    cy.get(':nth-child(1) > a').click();
+    cy.contains('Dashboard page').should('be.visible');
+  });
+
+  it('Gets back to Listing page', () => {
+    cy.login();
+    cy.get(':nth-child(1) > a').click();
+    cy.get('a').click();
+    cy.contains('Listing page').should('be.visible');
+  });
+});

@@ -1,0 +1,6 @@
+describe('Home specs', () => {
+  it('displays an home page', () => {
+    cy.login();
+    cy.contains('{{pascalCase appName}}').should('be.visible');
+  });
+});

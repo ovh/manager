@@ -8,7 +8,6 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "removeComments": true,
-    "outDir": "dist",
     "esModuleInterop": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
@@ -16,11 +15,7 @@
     "noImplicitAny": true,
     "declaration": true,
     "allowJs": true,
-    "jsx": "react",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "jsx": "react"
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "types", "src/__tests__"]
+  "include": ["**/*.ts", "**/*.tsx"]
 }

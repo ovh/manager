@@ -1,0 +1,13 @@
+import { defineConfig } from 'cypress';
+import * as env from '../../../../cypress/cypress.env.json';
+
+export default defineConfig({
+  e2e: {
+    baseUrl: 'http://localhost:9000/app',
+    screenshotsFolder: '../../../../cypress/screenshots/{{dashCase appName}}',
+    videosFolder: '../../../../cypress/videos/{{dashCase appName}}',
+    supportFile: '../../../../cypress/support/e2e.ts',
+    specPattern: ['./e2e/**/*.cy.{js,jsx,ts,tsx}'],
+    env,
+  },
+});

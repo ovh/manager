@@ -1,0 +1,9 @@
+describe('Listing specs', () => {
+  it('displays a listing page', () => {
+    cy.login();
+    cy.contains('Listing page').should('be.visible');
+    cy.get('ul')
+      .children()
+      .should('have.length', 10);
+  });
+});
