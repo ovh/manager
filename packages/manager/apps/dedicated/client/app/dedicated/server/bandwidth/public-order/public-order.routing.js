@@ -25,8 +25,10 @@ export default /* @ngInject */ ($stateProvider) => {
             .get(`/services/${serviceInfos.serviceId}/options`)
             .then(
               ({ data: options }) =>
-                options.find((option) =>
-                  option.resource.product.name.startsWith('bandwidth-'),
+                options.find(
+                  (option) =>
+                    option.resource.product.name.startsWith('bandwidth-') ||
+                    option.resource.product.name.startsWith('traffic-'),
                 )?.serviceId,
             ),
         trackingPrefix: () =>
