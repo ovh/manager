@@ -1,30 +1,63 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/naming-convention */
+import React, { ComponentProps, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { Heading } from '@chakra-ui/react';
-import Partitions from './partitions';
-import Subscriptions from './suscriptions';
-import Informations from './informations';
-import Configurations from './configurations';
+import Loading from '../../loading';
+
+const Informations = lazy(() => import('./informations'));
+const Subscriptions = lazy(() => import('./suscriptions'));
+const Configurations = lazy(() => import('./configurations'));
 
 export default function NashaReactDashboard() {
   const { t } = useTranslation('nasha-react/details/dashboard');
   const { serviceName } = useParams();
 
+  interface SectionProps {
+    title: string;
+    component: React.ComponentType<ComponentProps & { serviceName: string }>;
+  }
+  const Section = ({ title, component: Component }: SectionProps) => (
+    <div className="col">
+      <span className="element">
+        <osds-text
+          color="default"
+          size="400"
+          level="heading"
+          hue="500"
+          class="hydrated"
+        >
+          {t(title)}
+        </osds-text>
+        <div className="element">
+          <osds-divider
+            color="default"
+            size="1"
+            class="hydrated"
+            separator=""
+          ></osds-divider>
+        </div>
+        <Suspense fallback={<Loading />}>
+          <Component serviceName={serviceName} />
+        </Suspense>
+      </span>
+    </div>
+  );
+
   return (
-    <div>
-      <Heading as="h3" size="sm">
-        {t('title')}
-      </Heading>
-      <div>
-        <h3>{t('partitions')}</h3>
-        <Partitions serviceName={serviceName} />
-        <h3>{t('informations')}</h3>
-        <Informations serviceName={serviceName} />
-        <h3>{t('configurations')}</h3>
-        <Configurations serviceName={serviceName} />
-        <h3>{t('subscriptions')}</h3>
-        <Subscriptions serviceName={serviceName} />
+    <div className="container">
+      <div className="row">
+        <Section
+          title="nasha_dashboard_information_title"
+          component={Informations}
+        />
+        <Section
+          title="nasha_dashboard_configuration_title"
+          component={Configurations}
+        />
+        <Section
+          title="nasha_dashboard_abonnement_title"
+          component={Subscriptions}
+        />
       </div>
     </div>
   );
