@@ -1,6 +1,4 @@
-import concat from 'lodash/concat';
 import map from 'lodash/map';
-import template from 'lodash/template';
 
 import { PRIVATE_REGISTRY_STATUS } from './private-registry.constants';
 
@@ -100,22 +98,6 @@ export default class pciPrivateRegistryService {
     }).$promise;
   }
 
-  getAgreements() {
-    return this.OvhApiCloud.agreements({ product: 'registry' }).$promise.then(
-      (agreements) =>
-        concat(
-          map(agreements.agreementsToValidate, (agreement) => ({
-            id: agreement,
-            validated: false,
-          })),
-          map(agreements.agreementsValidated, (agreement) => ({
-            id: agreement,
-            validated: true,
-          })),
-        ),
-    );
-  }
-
   acceptAgreements(contactList = []) {
     const acceptPromises = map(
       contactList,
@@ -129,13 +111,6 @@ export default class pciPrivateRegistryService {
     );
 
     return this.$q.all(acceptPromises);
-  }
-
-  static getCompiledLinks(linkTemplate, registryContracts) {
-    return map(registryContracts, (contract) => {
-      const compile = template(linkTemplate);
-      return compile(contract);
-    }).join(', ');
   }
 
   isDeploymentInProgress(registry) {

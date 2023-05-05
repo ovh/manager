@@ -10,7 +10,6 @@ const component = {
     goBack: '<',
     plans: '<',
     projectId: '<',
-    registryContracts: '<',
     trackClick: '<',
     user: '<',
   },
