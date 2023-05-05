@@ -1,6 +1,6 @@
 import { startApplication } from '@ovh-ux/manager-react-core-application';
 import { useShellClient } from '@ovh-ux/shell';
-import { getShellClient, setShellClient } from './shell';
+import { setShellClient } from './shell';
 
 useShellClient('dedicated')
   .then((client) => {

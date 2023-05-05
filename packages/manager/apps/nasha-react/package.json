@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.4",
+    "@ovh-ux/manager-config": "^6.6.0",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-react-breadcrumb": "*",
     "@ovh-ux/manager-react-core-application": "*",
