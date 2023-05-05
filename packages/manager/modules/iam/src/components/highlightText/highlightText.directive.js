@@ -46,8 +46,9 @@ export default () => ({
         const { innerText } = element;
         const regExp = new RegExp(`(${text})`, 'gi');
 
+        element.innerHTML = innerText;
+
         if (!text || text.length < minLength) {
-          element.innerHTML = innerText;
           return;
         }
 
