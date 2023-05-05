@@ -1,4 +1,4 @@
-import { API_ERROR } from '@iam/constants';
+import { API_ERROR, PAGE_SIZE } from '@iam/constants';
 
 export default class Apiv2Service {
   /* @ngInject */
@@ -86,7 +86,7 @@ export default class Apiv2Service {
    * @param {number=} size The page size. Default is 25
    * @returns {Promise}
    */
-  getList(endpoint, { cursor, options, size = 25 }) {
+  getList(endpoint, { cursor, options, size = PAGE_SIZE }) {
     return this.get(endpoint, {
       ...options,
       headers: {

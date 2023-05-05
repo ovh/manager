@@ -5,27 +5,18 @@ import { areCursorsEquals, cursorsParamResolve } from '@iam/resolves';
  * @abstract
  */
 export default class AbstractCursorDatagridController {
-  /* @ngInject */
-  constructor($location, ouiDatagridService, datagridId) {
-    this.$location = $location;
-    this.ouiDatagridService = ouiDatagridService;
-
+  constructor() {
     /**
      * The cursors resolved object
      * @type {object}
      */
     this.cursors = null;
-
-    /**
-     * The <oui-datagrid> component's id attribute
-     * @type {string}
-     */
-    this.datagridId = datagridId;
   }
 
   $onInit() {
     // Copy the value of the cursors resolve to break the reference
-    this.cursors = { ...this[cursorsParamResolve.key] };
+    const cursorsParam = this[cursorsParamResolve.key];
+    this.cursors = cursorsParam ? { ...cursorsParam } : null;
   }
 
   /**
@@ -35,9 +26,12 @@ export default class AbstractCursorDatagridController {
    * @param {Object} params
    */
   uiOnParamsChanged({ [cursorsParamResolve.key]: cursors }) {
-    if (cursors && !areCursorsEquals(this.cursors, cursors)) {
-      this.cursors = { ...cursors };
-      this.ouiDatagridService.refresh(this.datagridId, true);
+    if (!areCursorsEquals(this.cursors, cursors)) {
+      if (cursors?.index >= 2) {
+        this.cursors = { ...cursors };
+      } else {
+        this.cursors.index = 1;
+      }
     }
   }
 
@@ -46,10 +40,12 @@ export default class AbstractCursorDatagridController {
    * @returns {Object}
    */
   get params() {
-    return {
-      // Pass a copy to break the reference
-      [cursorsParamResolve.key]: { ...this.cursors },
-    };
+    return this.cursors?.index >= 2
+      ? {
+          // Pass a copy to break the reference
+          [cursorsParamResolve.key]: { ...this.cursors },
+        }
+      : {};
   }
 
   /**
@@ -68,21 +64,24 @@ export default class AbstractCursorDatagridController {
    * @returns {Promise}
    */
   getItems({ offset, pageSize }) {
-    const total = pageSize + offset;
+    const total = pageSize + offset - 1;
     const index = Math.floor(total / pageSize);
 
     return this.createItemsPromise({
       offset,
       pageSize,
-      cursor: this.cursors[index],
+      cursor: this.cursors?.[index],
     })
       .then(({ data, cursor: { next, prev, error } }) => {
         if (error) {
-          this.cursors = cursorsParamResolve.declaration.value();
+          this.cursors = null;
           this.alert.error('iam_cursor_datagrid_error_cursor');
-          return this.getItems({ offset: 1, pageSize });
+          return this.changeParams().then(() =>
+            this.getItems({ offset: 1, pageSize }),
+          );
         }
 
+        if (!this.cursors) this.cursors = {};
         if (next) this.cursors[index + 1] = next;
         if (prev) this.cursors[index - 1] = prev;
         this.cursors.index = index;
@@ -91,7 +90,7 @@ export default class AbstractCursorDatagridController {
           data,
           meta: {
             currentOffset: offset,
-            totalCount: total - (next ? 0 : 1),
+            totalCount: total + (next ? 1 : 0),
           },
         }));
       })
