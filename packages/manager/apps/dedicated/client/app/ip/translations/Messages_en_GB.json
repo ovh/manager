@@ -735,5 +735,9 @@
   "ip_repricing_banner_list_item_2": "For IPs ordered before 06 October 2022, the change will come into effect from 01 December 2022 onwards.",
   "ip_repricing_banner_link": "More information",
   "ip_unused_banner_text": "You have unused IP addresses. Since IPv4 addresses are becoming increasingly scarce as a resource, please release them if you do not need them.",
-  "ip_unused_banner_link": "View unused IPs."
+  "ip_unused_banner_link": "View unused IPs.",
+  "show_all_ips": "Show IPv4 and IPv6",
+  "show_ipv4_ips": "Show IPv4",
+  "show_ipv6_ips": "Show IPv6",
+  "ipv4_ipv6_filter_title": "Filter IPv4/IPv6"
 }
