@@ -69,7 +69,7 @@
   "pci_database_add_storage_sizing": "Stockage additionnel",
   "pci_database_add_storage_sizing_offer": "Votre modèle de nœud {{flavorName}} inclut {{includedStorage}} de stockage auxquels vous pouvez ajouter jusqu'à {{addableStorage}} de stockage supplémentaire par pas de {{step}}.",
   "pci_database_add_spec_storage_added": "{{total}} (dont {{included}} inclus)",
-  "pci_database_add_price_unit_month": "/ mois",
-  "pci_database_add_price_unit_hour": "/ heure",
+  "pci_database_add_price_unit_month": "/mois",
+  "pci_database_add_price_unit_hour": "/heure",
   "pci_database_add_price_unit_switch_label": "Afficher les prix au mois"
 }

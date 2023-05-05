@@ -735,5 +735,9 @@
   "ip_repricing_banner_list_item_2": "Od 1 grudnia 2022 r. ceny istniejących adresów (zamówionych przed 6 października 2022).",
   "ip_repricing_banner_link": "Więcej informacji",
   "ip_unused_banner_text": "Dysponujesz adresami IP, których nie używasz. Adresy IPv4 są zasobem deficytowym, zatem jeśli ich nie potrzebujesz, prosimy o ich zwolnienie.",
-  "ip_unused_banner_link": "Sprawdź nieużywane adresy IP."
+  "ip_unused_banner_link": "Sprawdź nieużywane adresy IP.",
+  "show_all_ips": "Wyświetl adresy IPv4 i IPv6",
+  "show_ipv4_ips": "Wyświetl adresy IPv4",
+  "show_ipv6_ips": "Wyświetl adresy IPv6",
+  "ipv4_ipv6_filter_title": "Filtr IPv4/IPv6"
 }
