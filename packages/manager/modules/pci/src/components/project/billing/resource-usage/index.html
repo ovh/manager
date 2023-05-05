@@ -19,8 +19,8 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="::'pci_billing_private_registry_type' | translate"
-        data-property="name"
     >
+        <span data-ng-bind=":: $ctrl.getType($row.name)"></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="::'pci_billing_private_registry_consumption' | translate"

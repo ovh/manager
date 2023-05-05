@@ -1,0 +1,14 @@
+{
+  "pci_billing_cold_archive_no_entry": "Pas de consommation pour la période sélectionnée.",
+  "pci_billing_cold_archive_region": "Région",
+  "pci_billing_cold_archive_type": "Type",
+  "pci_billing_cold_archive_type_archive_label": "Archivage sur bandes",
+  "pci_billing_cold_archive_type_archive-fees_label": "Frais de suppression",
+  "pci_billing_cold_archive_type_restore_label": "Restauration de données",
+  "pci_billing_cold_archive_type_archive-fees_tooltip_1": "La durée minimale d'archivage est de 180 jours. ",
+  "pci_billing_cold_archive_type_archive-fees_tooltip_2": "Dans le cas où une archive est supprimée avant cette durée d'engagement, date = date comprise entre 0 jour et 180 jours, vous êtes facturé des frais supplémentaires calculés : [180 jours - date] x prix de la classe de stockage.",
+  "pci_billing_cold_archive_price": "Prix",
+  "pci_billing_cold_archive_consumption": "Consommation",
+  "pci_billing_cold_archive_consumption_value_gbih": "{{ value }} GiBh",
+  "pci_billing_cold_archive_consumption_value_gbi": "{{ value }} GiB"
+}

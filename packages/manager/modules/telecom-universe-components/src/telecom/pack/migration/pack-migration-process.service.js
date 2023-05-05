@@ -99,6 +99,10 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
 
     postParams.options = migrationOptions;
 
+    assign(postParams, {
+      productCode: migrationProcess.selectedOffer.productCode,
+    });
+
     // shipping post params
     if (
       migrationProcess.selectedOffer.needNewModem &&
@@ -176,6 +180,23 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
     assign(postParams, {
       modem: migrationProcess.selectedOffer.modem,
     });
+
+    // Set meeting
+    if (migrationProcess.selectedOffer.meetingSlots) {
+      const meeting = {
+        fakeMeeting: migrationProcess.selectedOffer.meetingSlots.fakeMeeting,
+        meetingSlot: {
+          endDate: migrationProcess.selectedOffer.meetingSlots.slot.endDate,
+          startDate: migrationProcess.selectedOffer.meetingSlots.slot.startDate,
+          uiCode: migrationProcess.selectedOffer.meetingSlots.slot.uiCode,
+          slotId: migrationProcess.selectedOffer.meetingSlots.slot.slotId,
+        },
+        name: migrationProcess.selectedOffer.contactName,
+      };
+      assign(postParams, {
+        meeting,
+      });
+    }
 
     return OvhApiPackXdsl.v6().migrate(
       {

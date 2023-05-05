@@ -73,7 +73,6 @@ export default class PackMoveCtrl {
     this.loading = true;
     this.$q
       .all([
-        this.isSlammingLine(),
         this.updateOperationAlreadyPending(),
         this.updateIsLegacyOffer(),
         this.getCurrentPackAddress(),
@@ -263,6 +262,8 @@ export default class PackMoveCtrl {
       ])
       .catch((error) => new this.TucToastError(error))
       .finally(() => {
+        this.hasSlamming =
+          this.packAddress.current.status === LINE_STATUS.slamming;
         this.packAddress.loading = false;
       });
   }

@@ -1,8 +1,9 @@
+import set from 'lodash/set';
+
 import {
-  COLD_ARCHIVE_ADD_MESSAGES_ID,
-  COLD_ARCHIVE_DEFAULT_REGION,
-} from './add.constants';
-import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
+  COLD_ARCHIVE_TRACKING,
+  COLD_ARCHIVE_STATES,
+} from '../cold-archives.constants';
 
 export default class ColdArchiveConfigurationController {
   /* @ngInject */
@@ -54,9 +55,9 @@ export default class ColdArchiveConfigurationController {
   }
 
   loadMessages() {
-    this.cucCloudMessage.unSubscribe(COLD_ARCHIVE_ADD_MESSAGES_ID);
+    this.cucCloudMessage.unSubscribe(COLD_ARCHIVE_STATES.CONTAINER_ADD);
     this.messageHandler = this.cucCloudMessage.subscribe(
-      COLD_ARCHIVE_ADD_MESSAGES_ID,
+      COLD_ARCHIVE_STATES.CONTAINER_ADD,
       { onMessage: () => this.refreshMessages() },
     );
   }
@@ -67,6 +68,11 @@ export default class ColdArchiveConfigurationController {
 
   setUsersForContainerCreation() {
     this.users = this.allUserList.filter((user) => user.status === 'ok');
+    this.users.map((user) => {
+      const updatedUser = user;
+      updatedUser.s3Credentials = user.s3Credentials;
+      return updatedUser;
+    });
   }
 
   getUserOwnerId() {
@@ -78,7 +84,30 @@ export default class ColdArchiveConfigurationController {
   getUserName() {
     const { createMode, linkedMode } = this.userModel;
 
+    return createMode.user?.username || linkedMode.selected?.username;
+  }
+
+  getUserDescription() {
+    const { createMode, linkedMode } = this.userModel;
+
     return createMode.user?.description || linkedMode.selected?.description;
+  }
+
+  getUserRole() {
+    const { createMode, linkedMode } = this.userModel;
+
+    return (
+      createMode.user?.roles[0].description ||
+      linkedMode.selected?.roles[0].description
+    );
+  }
+
+  getUserCredentials() {
+    const { createMode, linkedMode } = this.userModel;
+
+    return (
+      createMode?.user?.s3Credentials || linkedMode?.selected?.s3Credentials
+    );
   }
 
   getNameArchiveStepHeader(display) {
@@ -98,7 +127,6 @@ export default class ColdArchiveConfigurationController {
 
   isReadyForValidation() {
     const { createMode, linkedMode, createOrLinkedMode } = this.userModel;
-
     return (
       createOrLinkedMode &&
       ((createMode.user && createMode.description) || linkedMode.selected)
@@ -108,21 +136,21 @@ export default class ColdArchiveConfigurationController {
   createArchive() {
     this.isArchiveCreationInProgress = true;
     return this.pciStoragesColdArchiveService
-      .createArchiveContainer(this.projectId, COLD_ARCHIVE_DEFAULT_REGION, {
+      .createArchiveContainer(this.projectId, this.regions[0], {
         ...this.archiveModel,
         ownerId: this.getUserOwnerId(),
       })
       .then(() => {
         this.trackAddContainerPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
-        return this.goToColdArchiveContainers(
-          this.$translate.instant(
-            'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success',
-            {
-              containerName: this.archiveModel.name,
-              userName: this.getUserName(),
-            },
-          ),
-        );
+        return this.goToColdArchiveContainersWithData({
+          containerName: this.archiveModel.name,
+          user: {
+            username: this.getUserName(),
+            description: this.getUserDescription(),
+          },
+          userCredentials: this.getUserCredentials(),
+          role: this.getUserRole(),
+        });
       })
       .catch((err) => {
         this.trackAddContainerPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
@@ -134,7 +162,7 @@ export default class ColdArchiveConfigurationController {
               message: err.data?.message || err?.message || err.data,
             },
           ),
-          COLD_ARCHIVE_ADD_MESSAGES_ID,
+          COLD_ARCHIVE_STATES.CONTAINER_ADD,
         );
       })
       .finally(() => {
@@ -148,5 +176,14 @@ export default class ColdArchiveConfigurationController {
       type: 'action',
     });
     return this.createArchive();
+  }
+
+  onLinkOrCreateStepSubmit(linkUserArchiveStep) {
+    if (
+      this.userModel.createMode?.user ||
+      this.userModel.linkedMode?.selected
+    ) {
+      set(linkUserArchiveStep, 'display', false);
+    }
   }
 }

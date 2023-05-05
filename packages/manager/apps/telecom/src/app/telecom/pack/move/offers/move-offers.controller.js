@@ -238,7 +238,7 @@ export default class PackMoveOffersCtrl {
     let optionComfort = false;
     offer.options.forEach((option) => {
       if (option.name.startsWith('gtr_') && option.selected !== null) {
-        if (optionName.startsWith('gtr_')) {
+        if (optionName && optionName.startsWith('gtr_')) {
           if (option.name !== optionName) {
             set(option, 'selected', false);
           } else {
@@ -249,7 +249,7 @@ export default class PackMoveOffersCtrl {
           }
           set(offer, 'gtrComfortActivated', optionComfort);
         }
-        if (optionName === 'none') {
+        if (!optionName) {
           set(option, 'selected', false);
         }
       }

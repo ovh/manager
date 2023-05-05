@@ -39,7 +39,7 @@ export default class PciBlockStorageDetailsAddUserController {
 
   getCredentialTranslation(user) {
     return this.$translate.instant(
-      user.s3Credentials.length > 0
+      user?.s3Credentials
         ? 'pci_projects_project_storages_containers_container_addUser_select_user_has_credential'
         : 'pci_projects_project_storages_containers_container_addUser_select_user_has_not_credential',
     );

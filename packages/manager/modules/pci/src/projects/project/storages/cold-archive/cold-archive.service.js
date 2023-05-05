@@ -1,14 +1,21 @@
 import map from 'lodash/map';
-import 'moment';
 
 export default class PciStoragesColdArchiveService {
   /* @ngInject */
-  constructor($http, $q, $translate, Poller, OvhApiCloudProjectUser) {
+  constructor(
+    $http,
+    $q,
+    $translate,
+    Poller,
+    coreConfig,
+    OvhApiCloudProjectUser,
+  ) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.Poller = Poller;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
+    this.coreConfig = coreConfig;
   }
 
   /* ****** Manage S3 Users  ********** */
@@ -57,7 +64,7 @@ export default class PciStoragesColdArchiveService {
       this.getS3Credentials(projectId, user.id)
         .then((data) => ({
           ...user,
-          s3Credentials: data,
+          s3Credentials: data?.[0],
         }))
         .catch(() => null),
     );
@@ -122,6 +129,20 @@ export default class PciStoragesColdArchiveService {
         },
       })
       .then(({ data }) => data);
+  }
+
+  getProductRegionsAvailability() {
+    return this.$http
+      .get(
+        `/cloud/order/rule/availability?ovhSubsidiary=${
+          this.coreConfig.getUser()?.ovhSubsidiary
+        }&planCode=coldarchive.archive.hour.consumption`,
+      )
+      .then(({ data }) => {
+        const regions = data?.plans[0]?.regions;
+        return regions;
+      })
+      .catch(() => []);
   }
 
   /**

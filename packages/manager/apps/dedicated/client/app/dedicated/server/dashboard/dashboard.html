@@ -384,7 +384,7 @@
                             data-on-click="$ctrl.onMonitoringUpdateClick()"
                         >
                             <span
-                                translate="server_configuration_monitoring_cta_setting"
+                                data-translate="server_configuration_monitoring_cta_setting"
                             ></span>
                         </oui-button>
                     </oui-tile-description>
@@ -466,7 +466,7 @@
                                 <li class="oui-list__item">
                                     <a
                                         class="oui-list__link oui-button_ghost"
-                                        ng-if="$ctrl.servicesStateLinks.vms"
+                                        data-ng-if="$ctrl.servicesStateLinks.vms"
                                         href="{{:: $ctrl.servicesStateLinks.vms}}"
                                         target="_blank"
                                         rel="noopener"

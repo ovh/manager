@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.59.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.59.0...@ovh-ux/manager-dedicated@17.59.1) (2023-05-04)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** change disclaimer content on byoip ([#9150](https://github.com/ovh/manager/issues/9150)) ([bb28d52](https://github.com/ovh/manager/commit/bb28d520320e161523cf00746755c466420bf068))
+
+
+
+
+
+# [17.59.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.58.1...@ovh-ux/manager-dedicated@17.59.0) (2023-04-27)
+
+
+### Features
+
+* **dedicated.ip:** add filter option based on ip version ([#9111](https://github.com/ovh/manager/issues/9111)) ([3581707](https://github.com/ovh/manager/commit/3581707586c59afbc3ec180a6b6365b7d9fb0889))
+* **dedicated:** enable links for weathermap vms on indian server ([#8944](https://github.com/ovh/manager/issues/8944)) ([fca09f0](https://github.com/ovh/manager/commit/fca09f0c1b26a0ef9eab59385289007056c2c72f))
+
+
+
+
+
 ## [17.58.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.58.0...@ovh-ux/manager-dedicated@17.58.1) (2023-04-20)
 
 

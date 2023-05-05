@@ -113,12 +113,8 @@ export default class TelecomPackMigrationCtrl {
           } else if (buildings && buildings.length === 1) {
             const [building] = buildings;
 
-            // check if the building name is empty to set a name to display in the select component
-            building.name =
-              building.name ||
-              this.$translate.instant(
-                'telecom_pack_migration_building_details_unknown',
-              );
+            // check if the building name is empty to set a name or the building reference to display in the select component
+            building.name = building.name || building.reference;
 
             this.TucPackMigrationProcess.setSelectedBuilding(building);
 

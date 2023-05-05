@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.30.1...@ovh-ux/manager-web@16.30.2) (2023-04-27)
+
+
+### Bug Fixes
+
+* **web.clouddb:** fix rules to create a database ([#9126](https://github.com/ovh/manager/issues/9126)) ([3ebf5ac](https://github.com/ovh/manager/commit/3ebf5aca0f5d5fd0723222cdae49547c5d019218))
+
+
+
+
+
 ## [16.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.30.0...@ovh-ux/manager-web@16.30.1) (2023-04-20)
 
 

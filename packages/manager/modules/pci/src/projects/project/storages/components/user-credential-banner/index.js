@@ -10,7 +10,10 @@ const moduleName =
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate', passwordClipboard])
-  .component('storagesComponentsUserCredentialBanner', component)
+  .component(
+    'pciProjectsProjectStoragesComponentsUserCredentialBanner',
+    component,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

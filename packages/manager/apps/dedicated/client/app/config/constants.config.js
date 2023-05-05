@@ -4,7 +4,10 @@ const constants = {
   EU: {
     RENEW_URL:
       'https://eu.ovh.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-    vmsUrl: 'http://vms.status-ovhcloud.com/',
+    vmsUrl: {
+      IN: 'https://vms.status-ovhcloud.com/index_ynm1.html',
+      OTHERS: 'http://vms.status-ovhcloud.com/',
+    },
     statusUrl: 'https://www.status-ovhcloud.com/',
     UNIVERS: 'dedicated',
     SECTIONS_UNIVERSE_MAP: {
@@ -816,7 +819,10 @@ const constants = {
   CA: {
     RENEW_URL:
       'https://ca.ovh.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-    vmsUrl: 'http://vms.status-ovhcloud.com/',
+    vmsUrl: {
+      IN: 'https://vms.status-ovhcloud.com/index_ynm1.html',
+      OTHERS: 'http://vms.status-ovhcloud.com/',
+    },
     statusUrl: 'https://www.status-ovhcloud.com/',
     UNIVERS: 'dedicated',
     SECTIONS_UNIVERSE_MAP: {

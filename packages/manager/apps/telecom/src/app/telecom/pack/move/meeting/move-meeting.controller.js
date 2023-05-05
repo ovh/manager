@@ -53,6 +53,7 @@ export default class MoveMeetingCtrl {
                 startTime: moment(slot.startDate).format('HH:mm'),
                 endTime: moment(slot.endDate).format('HH:mm'),
                 selected: false,
+                slotId: slot.slotId,
               });
             } else if (prevTitle !== title) {
               this.meetings.push({
@@ -67,6 +68,7 @@ export default class MoveMeetingCtrl {
                 startTime: moment(slot.startDate).format('HH:mm'),
                 endTime: moment(slot.endDate).format('HH:mm'),
                 selected: false,
+                slotId: slot.slotId,
               });
               prevTitle = title;
             } else {
@@ -77,6 +79,7 @@ export default class MoveMeetingCtrl {
                 startTime: moment(slot.startDate).format('HH:mm'),
                 endTime: moment(slot.endDate).format('HH:mm'),
                 selected: false,
+                slotId: slot.slotId,
               });
             }
           });

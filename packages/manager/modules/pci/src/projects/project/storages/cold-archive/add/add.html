@@ -58,7 +58,7 @@
         data-name="{{:: linkUserArchiveStep.name}}"
         data-header="{{:: 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_header' | translate }}"
         data-on-focus="linkUserArchiveStep.display = true"
-        data-on-submit="linkUserArchiveStep.display = false"
+        data-on-submit="$ctrl.onLinkOrCreateStepSubmit(linkUserArchiveStep)"
         data-editable="!$ctrl.isArchiveCreationInProgress"
         data-valid="$ctrl.isReadyForValidation()"
         data-navigation="$ctrl.isReadyForValidation()"

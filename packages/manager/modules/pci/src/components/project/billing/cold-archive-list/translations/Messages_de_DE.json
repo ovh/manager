@@ -1,0 +1,14 @@
+{
+  "pci_billing_cold_archive_no_entry": "Kein Verbrauch im gewählten Zeitraum.",
+  "pci_billing_cold_archive_region": "Region",
+  "pci_billing_cold_archive_type": "Typ",
+  "pci_billing_cold_archive_type_archive_label": "Bandarchivierung",
+  "pci_billing_cold_archive_type_archive-fees_label": "Löschungsgebühr",
+  "pci_billing_cold_archive_type_restore_label": "Daten-Wiederherstellung",
+  "pci_billing_cold_archive_type_archive-fees_tooltip_1": "Die Mindestdauer für die Archivierung beträgt 180 Tage. ",
+  "pci_billing_cold_archive_type_archive-fees_tooltip_2": "Wird ein Archiv vorher gelöscht, also an einem Tag zwischen 0 und 180 der Vertragslaufzeit, so werden Ihnen folgende Zusatzkosten in Rechnung gestellt: [180 Tage - Anzahl der effektiven Archivierungstage] x Preis für die Speicherkategorie.",
+  "pci_billing_cold_archive_price": "Preis",
+  "pci_billing_cold_archive_consumption": "Verbrauch",
+  "pci_billing_cold_archive_consumption_value_gbih": "{{ value }} GiBh",
+  "pci_billing_cold_archive_consumption_value_gbi": "{{ value }} GiB"
+}

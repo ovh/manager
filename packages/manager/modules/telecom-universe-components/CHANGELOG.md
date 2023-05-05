@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.20.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.20.1...@ovh-ux/ng-ovh-telecom-universe-components@7.20.2) (2023-05-04)
+
+
+### Bug Fixes
+
+* add slot id missing value into slots for meetings ([a730999](https://github.com/ovh/manager/commit/a7309995b7c267635b3d57bd0e24f237ec042bd1))
+
+
+
+
+
 ## [7.20.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.20.0...@ovh-ux/ng-ovh-telecom-universe-components@7.20.1) (2023-04-20)
 
 
