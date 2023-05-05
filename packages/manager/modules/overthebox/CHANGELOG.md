@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.10.1...@ovh-ux/manager-overthebox@6.11.0) (2023-04-27)
+
+
+### Features
+
+* **overthebox:** change unstable to alpha and testing to beta ([#9145](https://github.com/ovh/manager/issues/9145)) ([da29612](https://github.com/ovh/manager/commit/da2961271fca2aabf64970b07b35cacc61ed6fb8))
+
+
+
+
+
 ## [6.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.10.0...@ovh-ux/manager-overthebox@6.10.1) (2023-04-20)
 
 

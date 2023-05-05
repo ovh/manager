@@ -2,7 +2,7 @@ import angular from 'angular';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import credentialBanner from './componenets/credential-banner';
+import credentialBanner from '../../../../components/user-credential-banner';
 
 import component from './component';
 

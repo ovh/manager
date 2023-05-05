@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom",
-  "version": "13.60.1",
+  "version": "13.61.0",
   "private": true,
   "description": "OVHcloud Telecom control panel.",
   "repository": {
@@ -31,7 +31,7 @@
     "@ovh-ux/manager-freefax": "^7.7.1",
     "@ovh-ux/manager-models": "^1.14.4",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
-    "@ovh-ux/manager-overthebox": "^6.10.1",
+    "@ovh-ux/manager-overthebox": "^6.11.0",
     "@ovh-ux/manager-sms": "^8.13.2",
     "@ovh-ux/manager-telecom-dashboard": "^6.4.8",
     "@ovh-ux/manager-telecom-styles": "^4.6.1",
@@ -56,7 +56,7 @@
     "@ovh-ux/ng-ovh-simple-country-list": "^2.0.6",
     "@ovh-ux/ng-ovh-sso-auth": "^4.6.4",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.7",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^7.20.1",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^7.20.2",
     "@ovh-ux/ng-ovh-timeline": "^2.0.6",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.6",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.6",

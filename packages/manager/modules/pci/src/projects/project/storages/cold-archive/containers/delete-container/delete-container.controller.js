@@ -3,7 +3,6 @@ import { COLD_ARCHIVE_CONTAINER_STATUS } from '../containers.constants';
 import {
   MANAGE_ARCHIVE_DOC_LINK,
   COLD_ARCHIVE_TRACKING,
-  REGION,
 } from '../../cold-archives.constants';
 
 export default class ColdArchiveContainersDeleteContainerController {
@@ -38,16 +37,20 @@ export default class ColdArchiveContainersDeleteContainerController {
     this.trackDeleteContainerModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
     this.isLoading = true;
     return this.pciStoragesColdArchiveService
-      .deleteArchiveContainer(this.projectId, REGION, this.container.name)
+      .deleteArchiveContainer(
+        this.projectId,
+        this.regions[0],
+        this.container.name,
+      )
       .then(() => {
         this.trackDeleteContainerModalPage(
           COLD_ARCHIVE_TRACKING.STATUS.SUCCESS,
         );
         return this.goBack(
           this.$translate.instant(
-            'pci_projects_project_storages_containers_container_delete_success_message',
+            'pci_projects_project_storages_containers_container_cold_archive_delete_success_message',
             {
-              container: this.container?.name,
+              containerName: this.container?.name,
             },
           ),
         );
@@ -57,7 +60,7 @@ export default class ColdArchiveContainersDeleteContainerController {
 
         return this.goBack(
           this.$translate.instant(
-            'pci_projects_project_storages_containers_container_delete_error_delete',
+            'pci_projects_project_storages_containers_container_cold_archive_delete_error_delete',
             {
               message: err.data?.message || err?.message || err.data,
             },

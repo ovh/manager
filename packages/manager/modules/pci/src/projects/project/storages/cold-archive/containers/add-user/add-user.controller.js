@@ -1,7 +1,4 @@
-import {
-  COLD_ARCHIVE_DEFAULT_REGION,
-  OBJECT_CONTAINER_USER_ROLES,
-} from './add-user.constants';
+import { OBJECT_CONTAINER_USER_ROLES } from './add-user.constants';
 import { COLD_ARCHIVE_TRACKING } from '../../cold-archives.constants';
 
 export default class ColdArchiveContainersAddUserController {
@@ -43,7 +40,7 @@ export default class ColdArchiveContainersAddUserController {
 
   setUserCredentialsList() {
     this.usersCredentials = this.allUserList
-      .filter((user) => user?.s3Credentials.length)
+      .filter((user) => user?.s3Credentials)
       .map((user) => ({
         ...user,
         credentialTrad: this.getCredentialTranslation(user),
@@ -55,7 +52,7 @@ export default class ColdArchiveContainersAddUserController {
 
   getCredentialTranslation(user) {
     return this.$translate.instant(
-      user.s3Credentials.length > 0
+      user?.s3Credentials
         ? 'pci_projects_project_storages_coldArchive_containers_addUser_select_user_has_credential'
         : 'pci_projects_project_storages_coldArchive_containers_addUser_select_user_has_not_credential',
     );
@@ -78,7 +75,7 @@ export default class ColdArchiveContainersAddUserController {
     this.isLoading = true;
     return this.$http
       .post(
-        `/cloud/project/${this.projectId}/region/${COLD_ARCHIVE_DEFAULT_REGION}/storage/${this.container.name}/policy/${this.selectedUser.id}`,
+        `/cloud/project/${this.projectId}/region/${this.regions[0]}/storage/${this.container.name}/policy/${this.selectedUser.id}`,
         {
           roleName: this.selectedRole,
           objectKey: this.objectKey,

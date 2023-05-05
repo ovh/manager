@@ -259,7 +259,7 @@
             ></p>
 
             <div
-                data-ng-if="!$ctrl.offer.selected.form.futureLandline.lineNumber"
+                data-ng-if="!$ctrl.offer.selected.form.futureLandline.lineNumber && $ctrl.offer.selected.product.type !== 'FTTH'"
             >
                 <p
                     class="mb-3 font-weight-bold"
@@ -281,24 +281,16 @@
                         data-ng-bind="$ctrl.offer.selected.address.city"
                     ></strong>
                 </div>
-                <div data-ng-if="$ctrl.offer.selected.product.type !== 'FTTH'">
-                    <p
-                        class="mb-3 font-weight-bold"
-                        data-ng-if="$ctrl.offer.selected.meetingSlots.fakeMeeting"
-                        data-translate="pack_move_contract_meeting_contact"
-                    ></p>
-                    <p
-                        class="mb-3 font-weight-bold"
-                        data-ng-if="!$ctrl.offer.selected.meetingSlots.fakeMeeting"
-                        data-ng-bind="$ctrl.getMeeting()"
-                    ></p>
-                </div>
-                <div data-ng-if="$ctrl.offer.selected.product.type === 'FTTH'">
-                    <p
-                        class="mb-3 font-weight-bold"
-                        data-translate="pack_move_contract_meeting_contact"
-                    ></p>
-                </div>
+                <p
+                    class="mb-3 font-weight-bold"
+                    data-ng-if="$ctrl.offer.selected.meetingSlots.fakeMeeting"
+                    data-translate="pack_move_contract_meeting_contact"
+                ></p>
+                <p
+                    class="mb-3 font-weight-bold"
+                    data-ng-if="!$ctrl.offer.selected.meetingSlots.fakeMeeting"
+                    data-ng-bind="$ctrl.getMeeting()"
+                ></p>
             </div>
 
             <div data-ng-if="$ctrl.offer.selected.moveOutDate">

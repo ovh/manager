@@ -86,7 +86,7 @@ const pciNode: Node = {
           },
           features: ['cold-archive'],
           forceVisibility: true,
-          tag: NodeTag.BETA,
+          tag: NodeTag.NEW,
         },
         {
           id: 'pci-databases',

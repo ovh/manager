@@ -13,6 +13,7 @@ export default class {
         instance: false,
         objectStorage: false,
         archiveStorage: false,
+        coldArchive: false,
         snapshot: false,
         volume: false,
       },
