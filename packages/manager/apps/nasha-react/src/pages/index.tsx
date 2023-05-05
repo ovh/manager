@@ -9,6 +9,7 @@ import {
 import { getServices } from '../api/nasha-react';
 import NasServiceDataGrid from '@/components/nasServiceDataGrid';
 import '@ovhcloud/ods-theme-blue-jeans/index.css';
+import Loading from './loading';
 
 const queryClient = new QueryClient();
 
@@ -38,7 +39,7 @@ function Services() {
   const { data, isError, isLoading } = useQuery(['services'], getServices);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p>{Loading}</p>;
   }
 
   if (isError) {

@@ -1,8 +1,11 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import React, { ComponentProps, Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
+
+import Section from './section';
 import Loading from '../../loading';
+
+import '../../index.scss';
 
 const Informations = lazy(() => import('./informations'));
 const Subscriptions = lazy(() => import('./suscriptions'));
@@ -12,53 +15,27 @@ export default function NashaReactDashboard() {
   const { t } = useTranslation('nasha-react/details/dashboard');
   const { serviceName } = useParams();
 
-  interface SectionProps {
-    title: string;
-    component: React.ComponentType<ComponentProps & { serviceName: string }>;
-  }
-  const Section = ({ title, component: Component }: SectionProps) => (
-    <div className="col">
-      <span className="element">
-        <osds-text
-          color="default"
-          size="400"
-          level="heading"
-          hue="500"
-          class="hydrated"
-        >
-          {t(title)}
-        </osds-text>
-        <div className="element">
-          <osds-divider
-            color="default"
-            size="1"
-            class="hydrated"
-            separator=""
-          ></osds-divider>
-        </div>
-        <Suspense fallback={<Loading />}>
-          <Component serviceName={serviceName} />
-        </Suspense>
-      </span>
-    </div>
-  );
-
   return (
-    <div className="container">
-      <div className="row">
-        <Section
-          title="nasha_dashboard_information_title"
-          component={Informations}
-        />
-        <Section
-          title="nasha_dashboard_configuration_title"
-          component={Configurations}
-        />
-        <Section
-          title="nasha_dashboard_abonnement_title"
-          component={Subscriptions}
-        />
+    <Suspense fallback={<Loading />}>
+      <div className="dashboard-section">
+        <div>
+          <Section title={t('nasha_dashboard_information_title')}>
+            <Informations serviceName={serviceName} />
+          </Section>
+        </div>
+        <div>
+          <Section title={t('nasha_dashboard_configuration_title')}>
+            <div className="">
+              <Configurations serviceName={serviceName} />
+            </div>
+          </Section>
+        </div>
+        <div>
+          <Section title={t('manager_billing_subscription')}>
+            <Subscriptions serviceName={serviceName} />
+          </Section>
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 }

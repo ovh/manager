@@ -1,26 +1,36 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { serviceInfos } from '../../../api/nasha-react';
-// import { createPath } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-function Subscriptions(props: { serviceName: string }) {
+import {
+  OsdsText,
+  OsdsDivider,
+  OsdsLink,
+  OsdsIcon,
+  OsdsChip,
+  OsdsSpinner,
+} from '@ovhcloud/ods-stencil/components/react/';
+import {
+  OdsThemeColorIntent,
+  OdsThemeTypographyLevel,
+} from '@ovhcloud/ods-theming';
+
+import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
+import { serviceInfos } from '@/api/nasha-react';
+
+import EngagedUpToContent from './engagementUpToContent';
+import DateLocale from './dateLocale';
+import ButtonTooltip from './buttonTooltip';
+
+function Subscriptions(props: any) {
   const { serviceName } = props;
   const { isLoading, isError, data } = useQuery(
     ['serviceInfos', { serviceName }],
     serviceInfos,
   );
-  const count = data?.length;
-  if (count === 0) {
-    return <></>;
-  }
-
-  if (isLoading) return <span>Loading...</span>;
-  if (isError)
-    return (
-      <span>Une erreur est survenue lors du chargement des données...</span>
-    );
 
   const {
+    domain,
     creation,
     expiration,
     engagedUpTo,
@@ -29,225 +39,140 @@ function Subscriptions(props: { serviceName: string }) {
     contactTech,
     contactBilling,
   } = data || {};
+  const { t } = useTranslation('nasha-react/details/dashboard');
 
-  const optionsDate = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
-
-  const dateCreation = creation
-    ? new Date(creation).toLocaleDateString(undefined, optionsDate)
-    : '';
-  const dateExpiration = expiration
-    ? new Date(expiration).toLocaleDateString(undefined, optionsDate)
-    : '';
-  const dateEngagementUpTo = engagedUpTo
-    ? new Date(engagedUpTo).toLocaleDateString(undefined, optionsDate)
-    : '';
-
-  let engagedUpToContent;
-  if (!dateEngagementUpTo || dateEngagementUpTo === 'Invalid Date') {
-    engagedUpToContent = (
-      <div>
-        <osds-chip color="accent" size="sm" variant="flat">
-          Aucun engagement
-        </osds-chip>
-        <osds-divider color="default" size="1" />
-      </div>
-    );
-  } else if (dateEngagementUpTo) {
-    engagedUpToContent = (
-      <div>
-        <osds-text color="default" size="100" level="heading" hue="500">
-          Terminé le {dateEngagementUpTo}
-        </osds-text>
-        <osds-divider color="default" size="1" />
-      </div>
-    );
-  }
+  if (isLoading) return <OsdsSpinner />;
+  if (isError) return <span>{t('manager_billing_subscription_error')}</span>;
 
   return (
     <>
-      <div className="element">
+      <div>
         <div>
-          <div>
-            <osds-text
-              color="text"
-              size="100"
-              level="heading"
-              hue="500"
-              class="hydrated"
-            >
-              Date de création:
-            </osds-text>
-          </div>
-          <osds-text
-            color="default"
-            size="100"
-            level="body"
-            hue="500"
-            class="hydrated"
+          <OsdsText
+            level={OdsThemeTypographyLevel.subheading}
+            color={OdsThemeColorIntent.text}
           >
-            Le {dateCreation}
-          </osds-text>
+            {t('manager_billing_subscription_creation')}
+          </OsdsText>
         </div>
-        <osds-divider
-          color="default"
-          size="1"
-          class="hydrated"
-          separator=""
-        ></osds-divider>
+        <OsdsText>
+          <DateLocale date={creation} />
+        </OsdsText>
+      </div>
+      <OsdsDivider separator />
+      <div>
         <div>
-          <div>
-            <osds-text
-              color="text"
-              size="100"
-              level="heading"
-              hue="500"
-              class="hydrated"
-            >
-              Prochaine échéance:
-            </osds-text>
-          </div>
-          <osds-text
-            color="default"
-            size="100"
-            level="body"
-            hue="500"
-            class="hydrated"
+          <OsdsText
+            level={OdsThemeTypographyLevel.subheading}
+            color={OdsThemeColorIntent.text}
           >
-            Le {dateExpiration}
-          </osds-text>
-          <osds-divider
-            color="default"
-            size="1"
-            class="hydrated"
-            separator=""
-          ></osds-divider>
+            {t('manager_billing_subscription_next_due_date')}
+          </OsdsText>
         </div>
-        <div>
-          {renew.manualPayment && (
-            <div>
-              <osds-chip
-                tabindex="-1"
-                color="warning"
-                size="sm"
-                variant="flat"
-                class="hydrated"
-              >
-                Renouvellement manuel
-              </osds-chip>
-              <div>
-                <osds-link
-                  color="primary"
-                  href=""
-                  rel=""
-                  target="_self"
-                  class="hydrated"
-                >
-                  <span slot="start"></span>
-                  S'engager
-                  <span slot="end">
-                    <osds-icon
-                      name="arrow-right"
-                      size="xs"
-                      color="primary"
-                      aria-hidden=""
-                      alt=""
-                      aria-name=""
-                      class="hydrated"
-                    ></osds-icon>
-                  </span>
-                </osds-link>
-                <osds-divider
-                  color="default"
-                  size="1"
-                  class="hydrated"
-                  separator=""
-                ></osds-divider>
-              </div>
-            </div>
-          )}
-          {!renew.manualPayment && renew.automatic && (
-            <div>
-              <osds-chip
-                tabindex="-1"
-                color="success"
-                size="md"
-                variant="flat"
-                class="hydrated"
-              >
-                Renouvellement automatique
-              </osds-chip>
-              <osds-divider
-                color="default"
-                size="1"
-                class="hydrated"
-                separator=""
-              ></osds-divider>
-            </div>
-          )}
+        <div className="buttonTooltipDashboard">
+          <div className="elementTileLeft">
+            <OsdsText>
+              <DateLocale date={expiration} />
+            </OsdsText>
+          </div>
+          <div className="elementTileRight">
+            <ButtonTooltip
+              tooltipContent={[
+                {
+                  label: (
+                    <OsdsLink color={OdsThemeColorIntent.primary}>
+                      {t(
+                        'manager_billing_subscription_engagement_menu_actions_renewal',
+                      )}
+                    </OsdsLink>
+                  ),
+                },
+                {
+                  label: (
+                    <OsdsLink color={OdsThemeColorIntent.primary}>
+                      {t(
+                        'manager_billing_subscription_engagement_menu_actions_commitment',
+                      )}
+                    </OsdsLink>
+                  ),
+                },
+                {
+                  label: (
+                    <OsdsLink color={OdsThemeColorIntent.primary}>
+                      {t(
+                        'manager_billing_subscription_engagement_menu_actions_resiliate',
+                      )}
+                    </OsdsLink>
+                  ),
+                },
+              ]}
+            />
+          </div>
         </div>
       </div>
-      <div className="element">
-        <div>
-          <osds-text
-            color="text"
-            size="100"
-            level="heading"
-            hue="500"
-            class="hydrated"
-          >
-            Engagement:
-          </osds-text>
-        </div>
-        {engagedUpToContent}
+
+      <div>
+        {renew.manualPayment && (
+          <div>
+            <OsdsChip color={OdsThemeColorIntent.warning}>
+              {t('nasha_dashboard_suscriptions_manual_renew')}
+            </OsdsChip>
+
+            <OsdsDivider separator={true} color={OdsThemeColorIntent.default} />
+          </div>
+        )}
+        {!renew.manualPayment && renew.automatic && (
+          <div>
+            <OsdsChip color={OdsThemeColorIntent.success}>
+              {t('nasha_dashboard_suscriptions_automatic_renewal')}
+            </OsdsChip>
+            <OsdsDivider separator={true} color={OdsThemeColorIntent.default} />
+          </div>
+        )}
       </div>
-      <div className="element">
+
+      <div>
         <div>
-          <osds-text
-            color="text"
-            size="100"
-            level="heading"
-            hue="500"
-            class="hydrated"
+          <OsdsText
+            level={OdsThemeTypographyLevel.subheading}
+            color={OdsThemeColorIntent.text}
           >
-            Contacts:
-          </osds-text>
+            {t('manager_billing_subscription_engagement')}
+          </OsdsText>
         </div>
-        <osds-text
-          color="default"
-          size="100"
-          level="heading"
-          hue="500"
-          class="hydrated"
-        >
-          <div>{contactAdmin} Administrateur</div>
-          <div>{contactTech} Technique</div>
-          <div>{contactBilling} Facturation</div>
-        </osds-text>
-        <osds-link
-          color="primary"
-          href=""
-          rel=""
-          target="_self"
-          class="hydrated"
-        >
-          <span slot="start"></span>
-          Gérer les contacts
+        <EngagedUpToContent dateEngagementUpTo={engagedUpTo} t={t} />{' '}
+      </div>
+      <div>
+        <div>
+          <OsdsText
+            level={OdsThemeTypographyLevel.subheading}
+            color={OdsThemeColorIntent.text}
+          >
+            {t('manager_billing_subscription_contacts')}:
+          </OsdsText>
+        </div>
+        <OsdsText>
+          <div>
+            {contactAdmin} {t('manager_billing_subscription_contacts_admin')}
+          </div>
+          <div>
+            {contactTech} {t('manager_billing_subscription_contacts_tech')}
+          </div>
+          <div>
+            {contactBilling}{' '}
+            {t('manager_billing_subscription_contacts_billing')}
+          </div>
+        </OsdsText>
+        <OsdsLink color={OdsThemeColorIntent.primary}>
+          {t('manager_billing_subscription_contacts_management')}
           <span slot="end">
-            <osds-icon
-              name="arrow-right"
-              size="xs"
-              color="primary"
-              aria-hidden=""
-              alt=""
-              aria-name=""
-              class="hydrated"
-            ></osds-icon>
+            <OsdsIcon
+              name={OdsIconName.ARROW_RIGHT}
+              size={OdsIconSize.xs}
+              color={OdsThemeColorIntent.primary}
+            />
           </span>
-        </osds-link>
+        </OsdsLink>
       </div>
     </>
   );

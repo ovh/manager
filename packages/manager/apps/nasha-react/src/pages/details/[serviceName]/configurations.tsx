@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { service, createNashaPartition } from '../../../api/nasha-react';
+import {
+  OsdsInput,
+  OsdsLink,
+  OsdsIcon,
+  OsdsSpinner,
+} from '@ovhcloud/ods-stencil/components/react/';
+import { useTranslation } from 'react-i18next';
+import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
+import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+import { createNashaPartition, service } from '@/api/nasha-react';
 
-function Configurations(props: any) {
+function Configurations(props: { serviceName: string }) {
   const { serviceName } = props;
   const [partitionData, setPartitionData] = useState({
     partitionDescription: '',
@@ -10,103 +19,87 @@ function Configurations(props: any) {
     size: 10,
     protocol: 'NFS',
   });
+  const { t } = useTranslation('nasha-react/details/dashboard');
 
   const { isLoading, isError, data } = useQuery(
     ['informations', { serviceName }],
     service,
   );
 
-  if (isLoading) return <span>Loading...</span>;
-  if (isError) return <span>Error...</span>;
+  if (isLoading) return <OsdsSpinner />;
+  if (isError) return <span>{t('nasha_dashboard_suscriptions_error')}</span>;
   if (data?.length === 0) return <></>;
 
   const handleClickPartition = async () => {
-    try {
-      const response = await createNashaPartition({
-        queryKey: [
-          'createPartition',
-          {
-            serviceName,
-            data: partitionData,
-          },
-        ],
-      });
-      console.log('creating partition:', response);
-      // handle successful response here
-    } catch (error) {
-      console.error('Error creating partition:', error);
-      // handle error here
-    }
+    const response = await createNashaPartition({
+      queryKey: [
+        'createPartition',
+        {
+          serviceName,
+          data: partitionData,
+        },
+      ],
+    });
+    // handle successful response here
   };
 
   return (
     <>
-      <div className="element">
+      <div>
         {data.use.used.value} / {data.use.size.value} {data.use.size.unit}
       </div>
-      <div className="element">
-        <div>
-          <osds-input
-            type="text"
-            value={partitionData.partitionName}
-            onChange={(e) =>
-              setPartitionData({
-                ...partitionData,
-                partitionName: e.target.value,
-              })
-            }
-          />
-          <osds-input
-            type="text"
-            value={partitionData.partitionDescription}
-            onChange={(e) =>
-              setPartitionData({
-                ...partitionData,
-                partitionDescription: e.target.value,
-              })
-            }
-          />
-          <osds-input
-            type="text"
-            value={partitionData.size}
-            onChange={(e) =>
-              setPartitionData({
-                ...partitionData,
-                size: Number(e.target.value),
-              })
-            }
-          />
-          <osds-input
-            type="text"
-            value={partitionData.protocol}
-            onChange={(e) =>
-              setPartitionData({ ...partitionData, protocol: e.target.value })
-            }
-          />
-        </div>
-        <osds-link
-          color="primary"
-          href=""
-          rel=""
-          target="_self"
-          class="hydrated"
-          onClick={handleClickPartition}
-        >
-          <span slot="start"></span>
-          Créer une partition
-          <span slot="end">
-            <osds-icon
-              name="arrow-right"
-              size="xs"
-              color="primary"
-              aria-hidden=""
-              alt=""
-              aria-name=""
-              class="hydrated"
-            ></osds-icon>
-          </span>
-        </osds-link>
+
+      <div>
+        <OsdsInput
+          value={partitionData.partitionName}
+          onChange={(e: any) =>
+            setPartitionData((currentPartitionData) => ({
+              ...currentPartitionData,
+              partitionName: e.target?.value,
+            }))
+          }
+        />
+        <OsdsInput
+          value={partitionData.partitionDescription}
+          onChange={(e: any) =>
+            setPartitionData((currentPartitionData) => ({
+              ...currentPartitionData,
+              partitionDescription: e.target?.value,
+            }))
+          }
+        />
+        <OsdsInput
+          value={partitionData.size}
+          onChange={(e: any) =>
+            setPartitionData((currentPartitionData) => ({
+              ...currentPartitionData,
+              size: Number(e.target.value),
+            }))
+          }
+        />
+        <OsdsInput
+          value={partitionData.protocol}
+          onChange={(e: any) =>
+            setPartitionData((currentPartitionData) => ({
+              ...currentPartitionData,
+              protocol: e.target?.value as string,
+            }))
+          }
+        />
       </div>
+      <OsdsLink
+        onClick={handleClickPartition}
+        color={OdsThemeColorIntent.primary}
+      >
+        {t('nasha_dashboard_partitions_create')}
+        <span slot="end">
+          <OsdsIcon
+            name={OdsIconName.ARROW_RIGHT}
+            size={OdsIconSize.xs}
+            color={OdsThemeColorIntent.primary}
+          />
+        </span>
+      </OsdsLink>
     </>
   );
 }

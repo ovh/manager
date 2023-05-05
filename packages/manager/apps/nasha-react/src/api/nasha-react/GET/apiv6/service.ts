@@ -1,12 +1,13 @@
 import apiClient from '@ovh-ux/manager-core-api';
 import { QueryFunctionContext } from '@tanstack/react-query';
+import ServiceInfos from './types';
 
 async function services() {
   const response = await apiClient.v6.get('/dedicated/nasha');
   return response.data;
 }
 
-async function service({
+async function serviceV6({
   queryKey,
 }: QueryFunctionContext<[string, { serviceName: string }]>) {
   const { serviceName } = queryKey[1];
@@ -21,7 +22,8 @@ async function serviceInfos({
   const response = await apiClient.v6.get(
     `/dedicated/nasha/${serviceName}/serviceInfos`,
   );
-  return response.data;
+
+  return response.data as ServiceInfos;
 }
 
 async function getPartition({
@@ -34,4 +36,4 @@ async function getPartition({
   return response.data;
 }
 
-export { service, services, getPartition, serviceInfos };
+export { serviceV6, services, getPartition, serviceInfos };

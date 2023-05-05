@@ -1,7 +1,7 @@
 {
   "name": "@ovh-ux/manager-cdn-react-app",
   "version": "0.0.0",
-  "private": "true",
+  "private": true,
   "description": "",
   "repository": {
     "type": "git",
