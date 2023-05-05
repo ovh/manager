@@ -94,11 +94,4 @@ export default class {
       },
     );
   }
-
-  getCompiledLinks(linkTemplate) {
-    return this.privateRegistryService.constructor.getCompiledLinks(
-      linkTemplate,
-      this.registryContracts,
-    );
-  }
 }
