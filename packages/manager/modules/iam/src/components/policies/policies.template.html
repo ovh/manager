@@ -2,8 +2,8 @@
     <oui-datagrid
         id="{{ $ctrl.datagridId }}"
         data-rows-loader="$ctrl.getItems($config)"
-        data-page="{{ $ctrl.cursors.index }}"
-        data-page-size="100"
+        data-page="{{ $ctrl.cursors.index || 1 }}"
+        data-page-size="{{ $root.IAM.PAGE_SIZE }}"
         data-pagination-mode="arrows"
     >
         <!-- <Columns> -->
