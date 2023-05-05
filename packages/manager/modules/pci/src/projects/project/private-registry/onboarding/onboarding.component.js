@@ -7,7 +7,6 @@ export default {
   bindings: {
     projectId: '<',
     registryId: '<',
-    registryContracts: '<',
     trackClick: '<',
   },
 };
