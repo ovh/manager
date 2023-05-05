@@ -3,8 +3,8 @@ import AbstractCursorDatagridController from '../cursorDatagrid/cursorDatagrid.c
 
 export default class PoliciesController extends AbstractCursorDatagridController {
   /* @ngInject */
-  constructor($location, ouiDatagridService, IAMRoutes, PolicyService) {
-    super($location, ouiDatagridService, 'policiesDatagrid');
+  constructor(IAMRoutes, PolicyService) {
+    super();
     this.IAMRoutes = IAMRoutes;
     this.PolicyService = PolicyService;
   }

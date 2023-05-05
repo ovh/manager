@@ -16,7 +16,7 @@ cursorsParamResolve.declaration = {
   inherit: false,
   squash: true,
   type: cursorsType,
-  value: () => ({ index: 1 }),
+  value: null,
 };
 
 // ---------------------------------------------------------------------------------------------------- //

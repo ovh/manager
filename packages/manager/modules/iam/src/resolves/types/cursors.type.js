@@ -17,37 +17,43 @@ import { isEqual } from 'lodash-es';
 const base64 = '(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?';
 const base64RE = new RegExp(`^${base64}$`);
 const cursorsType = 'cursors';
-const cursorsPattern = new RegExp(`^[0-9]+-([0-9]+:${base64},?)*$`);
+const cursorsPattern = new RegExp(`^([0-9]+-([0-9]+:${base64},?)*)$`);
 
 /**
  * Encode a cursors object to a string
- * { "index": 1, "2": "base64_cursor_2", "3": "base64_cursor_3" } => "1-2:base64_cursor_2,3:base64_cursor_3"
+ * { "index": 3, "2": "base64_cursor_2", "3": "base64_cursor_3" } => "3-2:base64_cursor_2,3:base64_cursor_3"
  * @param {Object} object
  * @returns {string}
  */
 const encodeCursors = (object) => {
+  if (!object) return '';
   const { index, ...cursors } = object;
   const entries = Object.entries(cursors)
+    .filter(([x]) => x >= 2 && x <= index)
     .map(([x, cursor]) => `${x}:${cursor}`)
     .join(',');
-  return `${index}-${entries}`;
+  return entries ? `${index}-${entries}` : '';
 };
 
 /**
  * Decode a cursors object from a string
- * "1-2:base64_cursor_2,3:base64_cursor_3" => { "index": 1, "2": "base64_cursor_2", "3": "base64_cursor_3" }
+ * "3-2:base64_cursor_2,3:base64_cursor_3" => { "index": 3, "2": "base64_cursor_2", "3": "base64_cursor_3" }
  * @param {string} string
  * @returns {Object}
  */
 const decodeCursors = (string) => {
+  if (!string) return null;
   const [index, entries] = string.split('-');
-  return entries.split(',').reduce(
-    (map, entry) => {
-      const [x, cursor] = entry.split(':');
-      return { ...map, [x]: cursor };
-    },
-    { index: parseInt(index, 10) },
-  );
+  return entries
+    .split(',')
+    .filter(Boolean)
+    .reduce(
+      (map, entry) => {
+        const [x, cursor] = entry.split(':');
+        return { ...map, [x]: cursor };
+      },
+      { index: parseInt(index, 10) },
+    );
 };
 
 /**
@@ -56,7 +62,7 @@ const decodeCursors = (string) => {
  * @returns {boolean}
  */
 const isCursors = (object) => {
-  if (!object) return false;
+  if (!object) return true;
   const { index, ...cursors } = object;
   return (
     parseInt(index, 10) >= 0 &&
