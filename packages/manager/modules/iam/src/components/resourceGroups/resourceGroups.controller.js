@@ -2,8 +2,8 @@ import AbstractCursorDatagridController from '../cursorDatagrid/cursorDatagrid.c
 
 export default class ResourceGroupsController extends AbstractCursorDatagridController {
   /* @ngInject */
-  constructor($location, IAMRoutes, ResourceGroupService, ouiDatagridService) {
-    super($location, ouiDatagridService, 'resourceGroupDatagrid');
+  constructor(IAMRoutes, ResourceGroupService) {
+    super();
     this.IAMRoutes = IAMRoutes;
     this.ResourceGroupService = ResourceGroupService;
   }

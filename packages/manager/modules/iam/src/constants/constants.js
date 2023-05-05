@@ -77,6 +77,8 @@ const KEY_PREFERENCES = {
   ADVANCED_MODE: 'IAM_ADVANCED_MODE',
 };
 
+const PAGE_SIZE = 25;
+
 const UNAVAILABLE_STATE_NAME = 'app.account.user';
 
 export {
@@ -89,6 +91,7 @@ export {
   FEATURE,
   GUIDE,
   KEY_PREFERENCES,
+  PAGE_SIZE,
   UNAVAILABLE_STATE_NAME,
   URN_VERSION,
 };
