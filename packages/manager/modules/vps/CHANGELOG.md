@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.33.1...@ovh-ux/manager-vps@2.33.2) (2023-05-09)
+
+
+### Bug Fixes
+
+* **vps:** order urls for us ([#9247](https://github.com/ovh/manager/issues/9247)) ([613335f](https://github.com/ovh/manager/commit/613335f33c1db564075aaaa1ee087806c844c7bb))
+
+
+
+
+
 ## [2.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.33.0...@ovh-ux/manager-vps@2.33.1) (2023-04-20)
 
 
