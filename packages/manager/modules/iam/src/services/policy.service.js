@@ -23,7 +23,10 @@ export default class PolicyService {
         options: { params: { readOnly } },
       }),
       cursor,
-    });
+    }).then(({ data, ...rest }) => ({
+      ...rest,
+      data: data.map((policy) => PolicyService.transformPolicy(policy)),
+    }));
   }
 
   /**
@@ -32,9 +35,9 @@ export default class PolicyService {
    * @returns {Promise}
    */
   getPolicy(id) {
-    return this.Apiv2Service.get(`${ENDPOINT.policy}/${id}`).then(
-      ({ data: policy }) => policy,
-    );
+    return this.Apiv2Service.get(
+      `${ENDPOINT.policy}/${id}`,
+    ).then(({ data: policy }) => PolicyService.transformPolicy(policy));
   }
 
   /**
@@ -50,15 +53,9 @@ export default class PolicyService {
           params: { details: true },
         }).then(({ data: policy }) => policy),
       })
-      .then(({ actions, policy }) => {
-        Object.assign(policy.permissions, {
-          allow: policy.permissions.allow.map(
-            (allow) =>
-              actions.find((action) => action.action === allow.action) ?? allow,
-          ),
-        });
-        return policy;
-      });
+      .then(({ actions, policy }) =>
+        PolicyService.transformPolicy(policy, actions),
+      );
   }
 
   /**
@@ -67,8 +64,8 @@ export default class PolicyService {
    *   identities: string[]
    *   name: string
    *   permissions: {
-   *     allow: { action: string }[]
-   *     except: { action: string }[]
+   *     allow?: { action: string }[]
+   *     except?: { action: string }[]
    *   }
    *   resources: { urn: string }[]
    * }} data The policy's data
@@ -98,8 +95,8 @@ export default class PolicyService {
    *   identities: string[]
    *   name: string
    *   permissions: {
-   *     allow: { action: string }[]
-   *     except: { action: string }[]
+   *     allow?: { action: string }[]
+   *     except?: { action: string }[]
    *   }
    *   resources: { urn: string }[]
    * }} data The policy's data
@@ -127,5 +124,30 @@ export default class PolicyService {
         });
       })
       .then(({ data }) => data);
+  }
+
+  /**
+   * - Ensure the presence of policy.permissions.allow is the policy data
+   * - Instanciate the dates
+   * @param {Object} policy
+   * @param {Array?} actions
+   * @returns {Object}
+   */
+  static transformPolicy(policy, actions = []) {
+    Object.assign(policy, {
+      createdAt: new Date(policy.createdAt),
+      updatedAt: new Date(policy.updatedAt),
+      permissions: {
+        ...policy.permissions,
+        allow: Array.isArray(policy.permissions.allow)
+          ? policy.permissions.allow.map(
+              (allow) =>
+                actions.find((action) => action.action === allow.action) ??
+                allow,
+            )
+          : [],
+      },
+    });
+    return policy;
   }
 }
