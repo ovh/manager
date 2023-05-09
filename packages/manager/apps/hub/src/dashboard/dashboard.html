@@ -25,7 +25,7 @@
             <a
                 class="oui-link_icon"
                 href="{{:: $ctrl.ACCOUNT_DASHBOARD_URL }}"
-                data-ng-click="$ctrl.trackClick()"
+                data-ng-click="$ctrl.trackClick($ctrl.SIRET_HIT_PREFIX)"
                 target="_top"
             >
                 <span
@@ -50,7 +50,7 @@
             <a
                 class="oui-link_icon"
                 data-ng-href="{{:: $ctrl.myIdentitySectionLink }}"
-                data-ng-click="$ctrl.trackClick()"
+                data-ng-click="$ctrl.trackClick($ctrl.KYC_HIT_PREFIX)"
                 target="_blank"
                 rel="noopener"
             >
