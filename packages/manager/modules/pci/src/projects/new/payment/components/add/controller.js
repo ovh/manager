@@ -141,6 +141,13 @@ export default class PciProjectNewPaymentMethodAddCtrl {
 
     // set payment method model
     this.preselectPaymentMethod();
+
+    return this.ovhPaymentMethodHelper
+      .hasSpecificCrossBorderSentenceForCardPayment()
+      .then((hasSpecificCrossBorderSentenceForCardPayment) => {
+        // display or not the specific cross border sentence for given subsidiaries
+        this.hasSpecificCrossBorderSentenceForCardPayment = hasSpecificCrossBorderSentenceForCardPayment;
+      });
   }
 
   preselectPaymentMethod() {
