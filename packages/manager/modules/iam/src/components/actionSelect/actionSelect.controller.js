@@ -85,7 +85,7 @@ export default class ActionSelectController {
    * @returns {boolean}
    */
   get isRequired() {
-    if (this.form) {
+    if (this.required && this.form) {
       const { [this.name]: name } = this.form;
       return name.$dirty && name.$invalid;
     }
@@ -149,7 +149,7 @@ export default class ActionSelectController {
     name.$validators.required = () =>
       this.required
         ? this.ngModel?.selection.length > 0 || this.ngModel?.isWildcardActive
-        : false;
+        : true;
 
     // Custom exist validator to know if a custom action already exists
     customAction.$validators.exist = (action) =>
