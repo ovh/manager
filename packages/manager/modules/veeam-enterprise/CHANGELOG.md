@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.6.1...@ovh-ux/manager-veeam-enterprise@1.6.2) (2023-05-09)
+
+
+### Bug Fixes
+
+* **veeam-enterprise:** order urls for us ([#9249](https://github.com/ovh/manager/issues/9249)) ([d0a2151](https://github.com/ovh/manager/commit/d0a2151fee78b11b1d6ee1d5a1e4d2b7e65a2fc5))
+
+
+
+
+
 ## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.6.0...@ovh-ux/manager-veeam-enterprise@1.6.1) (2023-04-20)
 
 

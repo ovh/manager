@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.122.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.122.1...@ovh-ux/manager-pci@5.122.2) (2023-05-09)
+
+
+### Bug Fixes
+
+* **public-cloud:** instance creation with vrack ([#9240](https://github.com/ovh/manager/issues/9240)) ([6393049](https://github.com/ovh/manager/commit/6393049f7a0164846396ef1a5b8b9821dfcf11d7))
+
+
+
+
+
 ## [5.122.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.122.0...@ovh-ux/manager-pci@5.122.1) (2023-05-04)
 
 

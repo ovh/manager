@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.59.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.59.1...@ovh-ux/manager-dedicated@17.59.2) (2023-05-09)
+
+
+### Bug Fixes
+
+* **dedicated.server:** public bandwidth upgrade ([#8929](https://github.com/ovh/manager/issues/8929)) ([ffd12b9](https://github.com/ovh/manager/commit/ffd12b9d678e023320a5b13a5449f22b738a7e87))
+
+
+
+
+
 ## [17.59.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.59.0...@ovh-ux/manager-dedicated@17.59.1) (2023-05-04)
 
 
