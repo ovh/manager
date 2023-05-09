@@ -71,5 +71,7 @@
   "pci_database_add_spec_storage_added": "{{total}} (davon {{included}} inklusive)",
   "pci_database_add_price_unit_month": "/ Monat",
   "pci_database_add_price_unit_hour": "/ Stunde",
-  "pci_database_add_price_unit_switch_label": "Preise pro Monat anzeigen"
+  "pci_database_add_price_unit_switch_label": "Preise pro Monat anzeigen",
+  "pci_database_add_spec_flavor_CPU_one": "{{cpu}} vCore",
+  "pci_database_add_spec_flavor_CPU_many": "{{cpu}} vCores"
 }
