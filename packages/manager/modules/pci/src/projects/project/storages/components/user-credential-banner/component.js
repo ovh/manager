@@ -7,6 +7,7 @@ export default {
     fieldSecretKeyLabel: '@',
     containerName: '<',
     role: '<',
+    onCopyFieldClick: '&',
   },
   template,
 };
