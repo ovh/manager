@@ -5,14 +5,16 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import 'moment';
-
+import { RANGES } from '../upscale/upscale.constants';
 import {
+  VPS_RANGE_COMPARE_LINKS,
   COMMIT_IMPRESSION_TRACKING_DATA,
   DASHBOARD_FEATURES,
   MIGRATION_STATUS,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
   SERVICE_TYPE,
 } from './vps-dashboard.constants';
+
 import { CHANGE_OWNER_URL, RENEW_URL } from '../vps/constants';
 
 export default class {
@@ -47,6 +49,8 @@ export default class {
     this.VpsUpgradeService = VpsUpgradeService;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
     this.SERVICE_TYPE = SERVICE_TYPE;
+    this.RANGES = RANGES;
+    this.VPS_RANGE_COMPARE_LINKS = VPS_RANGE_COMPARE_LINKS;
 
     this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
     this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
@@ -89,6 +93,19 @@ export default class {
 
   canBeMigrated() {
     return this.vpsMigration?.status === MIGRATION_STATUS.AVAILABLE;
+  }
+
+  isStarter() {
+    return this.stateVps?.model?.name.includes(
+      this.RANGES.STARTER.toLocaleLowerCase(),
+    );
+  }
+
+  getRangeCompareLink() {
+    return (
+      this.VPS_RANGE_COMPARE_LINKS[this.coreConfig.getUser()?.ovhSubsidiary] ||
+      this.VPS_RANGE_COMPARE_LINKS.links.DEFAULT
+    );
   }
 
   $onDestroy() {
