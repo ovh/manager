@@ -19,6 +19,9 @@ export default class ColdArchiveLinkUserArchiveController {
     this.CucCloudMessage = CucCloudMessage;
     this.pciStoragesColdArchiveService = PciStoragesColdArchiveService;
     this.atInternet = atInternet;
+
+    this.USER_SUCCESS_BANNER =
+      COLD_ARCHIVE_TRACKING.ADD_USER.USER_SUCCESS_BANNER;
   }
 
   $onInit() {
@@ -276,5 +279,9 @@ export default class ColdArchiveLinkUserArchiveController {
       .finally(() => {
         this.userModel.linkedMode.isInProgress = false;
       });
+  }
+
+  onClipboardFieldClick({ tracking }) {
+    this.trackClick(tracking);
   }
 }

@@ -81,7 +81,9 @@
             data-is-new-user="false"
             data-user="$ctrl.userModel.linkedMode.selected"
             data-credential="$ctrl.userModel.linkedMode.credential"
-            data-field-secret-key-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label' | translate}}"
+            data-fields="$ctrl.USER_SUCCESS_BANNER"
+            data-field-key-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label' | translate}}"
+            data-on-copy-field-click="$ctrl.onClipboardFieldClick(data)"
         ></pci-projects-project-storages-components-user-credential-banner>
 
         <!--Linked user btns-->
@@ -141,7 +143,9 @@
             data-is-new-user="true"
             data-user="$ctrl.userModel.createMode.user"
             data-credential="$ctrl.userModel.createMode.credential"
+            data-fields="$ctrl.USER_SUCCESS_BANNER"
             data-field-secret-key-label="{{:: 'pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label' | translate}}"
+            data-on-copy-field-click="$ctrl.onClipboardFieldClick(data)"
         ></pci-projects-project-storages-components-user-credential-banner>
 
         <!--Create user btns-->

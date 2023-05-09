@@ -18,6 +18,9 @@ export default class PciStoragesColdArchiveContainersController {
     this.$filter = $filter;
     this.CucCloudMessage = CucCloudMessage;
     this.PciStoragesColdArchiveService = PciStoragesColdArchiveService;
+
+    this.USER_SUCCESS_BANNER =
+      COLD_ARCHIVE_TRACKING.CONTAINERS.USER_SUCCESS_BANNER;
   }
 
   $onInit() {
@@ -147,5 +150,9 @@ export default class PciStoragesColdArchiveContainersController {
       return this.$filter('date')(new Date(automaticDeletionAt), 'short');
     }
     return '';
+  }
+
+  onClipboardFieldClick({ tracking }) {
+    this.trackClick(tracking);
   }
 }

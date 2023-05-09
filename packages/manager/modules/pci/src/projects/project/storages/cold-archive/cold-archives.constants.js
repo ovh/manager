@@ -17,6 +17,24 @@ export const COLD_ARCHIVE_TRACKING = {
       SEE_CREDENTIALS: 'see_credentials',
     },
     CREATE: 'create_container',
+    USER_SUCCESS_BANNER: {
+      USERNAME: {
+        id: 'username',
+        tracking: 'add-user::add_success_copy-s3-name',
+      },
+      DESCRIPTION: {
+        id: 'description',
+        tracking: 'add-user::add_success_copy-description',
+      },
+      ACCESS_KEY: {
+        id: 's3AccessKey',
+        tracking: 'add-user::add_success_copy-s3-access-key',
+      },
+      SECRET_KEY: {
+        id: 'secretKey',
+        tracking: 'add-user::add_success_copy-s3-secret-key',
+      },
+    },
   },
   CONTAINERS: {
     MAIN: 'dashboard::containers',
@@ -28,6 +46,24 @@ export const COLD_ARCHIVE_TRACKING = {
     DELETE_CONTAINER: 'delete-container',
     FLUSH_CONTAINER: 'flush-container',
     ADD_USER: 'add-user',
+    USER_SUCCESS_BANNER: {
+      USERNAME: {
+        id: 'username',
+        tracking: 'add_success_copy-s3-name',
+      },
+      DESCRIPTION: {
+        id: 'description',
+        tracking: 'add_success_copy-description',
+      },
+      ACCESS_KEY: {
+        id: 's3AccessKey',
+        tracking: 'add_success_copy-s3-access-key',
+      },
+      SECRET_KEY: {
+        id: 'secretKey',
+        tracking: 'add_success_copy-s3-secret-key',
+      },
+    },
   },
   USER: {
     MAIN: 'dashboard::s3_users',
