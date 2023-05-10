@@ -6,13 +6,12 @@ export default class PasswordClipboardComponentController {
     this.$element = $element;
     this.$timeout = $timeout;
     this.$translate = $translate;
-    this.shouldDisplayPasswordInput = false;
     this.SECRET_KEY_CLIPBOARD_BTN_ID = 'secretKeyClipboardCopyBtnId';
-    this.SECRET_KEY_INPUT_ID = 'secretKeyInputId';
   }
 
   $onInit() {
     return this.$timeout().then(() => {
+      this.shouldDisplayPasswordInput = !this.isDisplayableShowHidePasswordBtn;
       const tooltipText = this.getClipboardTooltipContent();
       this.model = {
         clipboard: new ClipboardJS(`#${this.SECRET_KEY_CLIPBOARD_BTN_ID}`),
@@ -52,7 +51,12 @@ export default class PasswordClipboardComponentController {
     this.model.tooltipText = this.getClipboardTooltipContent();
   }
 
+  onShowHidePasswordClick() {
+    this.shouldDisplayPasswordInput = !this.shouldDisplayPasswordInput;
+  }
+
   onClipboardClick() {
+    this.onCopyClick();
     return this.resetToDefault();
   }
 
