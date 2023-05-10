@@ -2,8 +2,8 @@
     <div class="mb-0 oui-input-overlay oui-clipboard">
         <input
             class="oui-input oui-clipboard__control"
-            data-ng-attr-id="{{:: $ctrl.fieldName}}"
-            data-ng-attr-name="{{:: $ctrl.fieldName}}"
+            data-ng-attr-id="{{:: $ctrl.fieldData.id}}"
+            data-ng-attr-name="{{:: $ctrl.fieldData.id}}"
             data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput? 'text' : 'password' }}"
             data-ng-value="$ctrl.fieldKeyValue"
             readonly

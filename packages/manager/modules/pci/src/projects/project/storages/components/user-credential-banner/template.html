@@ -15,44 +15,44 @@
         }"
     ></p>
 
-    <!---->
+    <!--Fields-->
     <div class="row">
         <div class="col-md-6 col-lg-5">
             <!--User username info-->
             <pci-project-storages-components-field-clipboard
                 data-is-displayable-show-hide-password-btn="false"
-                data-field-name=":: 'username'"
+                data-field-data=":: $ctrl.fields.USERNAME"
                 data-field-key-label=":: 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label' | translate"
                 data-field-key-value="$ctrl.user.description"
-                data-on-copy-click="$ctrl.onCopyFieldClick({fieldId: 'username'})"
+                data-on-copy-click="$ctrl.onCopyFieldClick({data: $ctrl.fields.USERNAME})"
             ></pci-project-storages-components-field-clipboard>
 
             <!--User description info-->
             <pci-project-storages-components-field-clipboard
                 data-is-displayable-show-hide-password-btn="false"
-                data-field-name=":: 'description'"
+                data-field-data=":: $ctrl.fields.DESCRIPTION"
                 data-field-key-label=":: 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label' | translate"
                 data-field-key-value="$ctrl.user.username"
-                data-on-copy-click="$ctrl.onCopyFieldClick({fieldId: 'description'})"
+                data-on-copy-click="$ctrl.onCopyFieldClick({data: $ctrl.fields.DESCRIPTION})"
             ></pci-project-storages-components-field-clipboard>
         </div>
         <div class="col-md-6 col-lg-5">
             <!--User S3 credential access key-->
             <pci-project-storages-components-field-clipboard
                 data-is-displayable-show-hide-password-btn="false"
-                data-field-name=":: 's3AccessKey'"
+                data-field-data=":: $ctrl.fields.ACCESS_KEY"
                 data-field-key-label=":: 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label' | translate"
                 data-field-key-value="$ctrl.credential.access"
-                data-on-copy-click="$ctrl.onCopyFieldClick({fieldId: 's3AccessKey'})"
+                data-on-copy-click="$ctrl.onCopyFieldClick({data: $ctrl.fields.ACCESS_KEY})"
             ></pci-project-storages-components-field-clipboard>
 
             <!--User S3 credential secret key-->
             <pci-project-storages-components-field-clipboard
                 data-is-displayable-show-hide-password-btn="true"
-                data-field-name=":: 'secretKey'"
+                data-field-data=":: $ctrl.fields.SECRET_KEY"
                 data-field-key-label=":: 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label' | translate"
                 data-field-key-value="$ctrl.credential.secret"
-                data-on-copy-click="$ctrl.onCopyFieldClick({fieldId: 'secretKey'})"
+                data-on-copy-click="$ctrl.onCopyFieldClick({data: $ctrl.fields.SECRET_KEY})"
             ></pci-project-storages-components-field-clipboard>
         </div>
     </div>
