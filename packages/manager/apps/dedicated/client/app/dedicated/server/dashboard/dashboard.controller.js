@@ -11,7 +11,7 @@ import {
   HIDE_MRTG_FOR_SERVER_RANGES,
   VMS_URL_OTHERS,
 } from './dashboard.constants';
-import { NEW_RANGE } from '../details/server.constants';
+import { NEW_RANGE, OPERATING_SYSTEM_ENUM } from '../details/server.constants';
 
 export default class DedicatedServerDashboard {
   /* @ngInject */
@@ -427,5 +427,18 @@ export default class DedicatedServerDashboard {
     return !HIDE_MRTG_FOR_SERVER_RANGES.includes(
       this.technicalDetails?.server?.range,
     );
+  }
+
+  getOperatingSystemLabel() {
+    const { os } = this.server;
+    if (!os || Object.values(OPERATING_SYSTEM_ENUM).includes(os)) {
+      return this.$translate.instant(
+        os === OPERATING_SYSTEM_ENUM.BRING_YOUR_OWN_IMAGE
+          ? 'server_configuration_distribution_byoi'
+          : 'server_configuration_distribution_none',
+      );
+    }
+
+    return os;
   }
 }
