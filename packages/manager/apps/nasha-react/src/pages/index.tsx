@@ -10,9 +10,6 @@ function ServiceList({ data }) {
   const { t } = useTranslation('nasha-react');
 
   const count = data?.length;
-  if (count === 0) {
-    return <Navigate to="onboarding" />;
-  }
   if (count === 1) {
     return (
       <>
@@ -45,7 +42,7 @@ function Services() {
   }, []);
 
   if (!data) {
-    return null; // or any other loading state logic
+    return <Navigate to="onboarding" />;
   }
 
   return <ServiceList data={data} />;
