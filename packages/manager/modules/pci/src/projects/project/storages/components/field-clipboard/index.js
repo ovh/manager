@@ -8,7 +8,7 @@ const moduleName = 'ovhManagerPciStoragesComponentsPasswordClipboard';
 
 angular
   .module(moduleName, ['pascalprecht.translate', 'oui'])
-  .component('pciProjectStoragesComponentsPasswordClipboard', component)
+  .component('pciProjectStoragesComponentsFieldClipboard', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
