@@ -2,7 +2,7 @@ import angular from 'angular';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import passwordClipboardComponent from './password-clipboard';
+import fieldClipboardComponent from './field-clipboard';
 import userCredentialBannerComponent from './user-credential-banner';
 import detachVolumeBannerComponent from './detach-volume-banner';
 
@@ -12,7 +12,7 @@ angular
   .module(moduleName, [
     'pascalprecht.translate',
     'oui',
-    passwordClipboardComponent,
+    fieldClipboardComponent,
     userCredentialBannerComponent,
     detachVolumeBannerComponent,
   ])
