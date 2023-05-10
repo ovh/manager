@@ -2,11 +2,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedCloud.details.datacenter.add-datacenter', {
     url: '/add-datacenter',
     views: {
-      modal: {
-        component: 'ovhManagerDedicatedCloudDatacenterAdd',
-      },
+      'pccView@app.dedicatedCloud.details':
+        'ovhManagerDedicatedCloudDatacenterAdd',
     },
-    layout: 'modal',
     resolve: {
       goBack: /* @ngInject */ ($state, $timeout, productId, setMessage) => (
         message = false,
