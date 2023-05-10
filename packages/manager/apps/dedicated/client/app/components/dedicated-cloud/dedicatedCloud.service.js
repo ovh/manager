@@ -285,6 +285,12 @@ class DedicatedCloudService {
     );
   }
 
+  getCartServiceOption(serviceName) {
+    return this.$http
+      .get(`/order/cartServiceOption/privateCloud/${serviceName}`)
+      .then(({ data }) => data);
+  }
+
   addDatacenter(serviceName, commercialRangeName) {
     return this.OvhHttp.post('/dedicatedCloud/{serviceName}/datacenter', {
       rootPath: 'apiv6',
