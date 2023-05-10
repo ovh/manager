@@ -454,6 +454,11 @@ export default class PciStoragesContainersService {
   }
 
   deleteContainer(projectId, container) {
+    if (!container.s3StorageType) {
+      return this.$http.delete(
+        `/cloud/project/${projectId}/storage/${container.id}?recursive=true`,
+      );
+    }
     const promises = reduce(
       container.objects,
       (result, object) => [
@@ -462,17 +467,10 @@ export default class PciStoragesContainersService {
       ],
       [],
     );
-
     return this.$q.all(promises).then(() => {
-      if (container.s3StorageType) {
-        return this.$http.delete(
-          `/cloud/project/${projectId}/region/${container.region}/${container.s3StorageType}/${container.name}`,
-        );
-      }
-      return this.OvhApiCloudProjectStorage.v6().delete({
-        projectId,
-        containerId: container.id,
-      }).$promise;
+      return this.$http.delete(
+        `/cloud/project/${projectId}/region/${container.region}/${container.s3StorageType}/${container.name}`,
+      );
     });
   }
 
