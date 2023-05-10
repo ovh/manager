@@ -70,7 +70,7 @@ export async function fetchIceberg<T>({
     requestHeaders['x-pagination-sort'] = encodeURIComponent(sortBy);
     requestHeaders['x-pagination-sort-order'] = sortReverse ? 'DESC' : 'ASC';
   }
-  if (filters && filters.length) {
+  if (filters?.length) {
     requestHeaders['x-pagination-filter'] = filters
       .map(
         ({ comparator, key, value }) =>

@@ -9,9 +9,7 @@ const defaultAxiosConfig = {};
 function handleAuthenticationError(error: AxiosError) {
   const { response } = error;
   let { status } = response;
-  const hasCustomCredentials = !!(response.config.headers || {})[
-    'Authorization'
-  ];
+  const hasCustomCredentials = !!response.config.headers?.Authorization;
 
   if (status === 403) {
     const message = (response.data as {
