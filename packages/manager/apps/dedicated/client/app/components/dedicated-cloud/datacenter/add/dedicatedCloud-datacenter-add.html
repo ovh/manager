@@ -1,42 +1,57 @@
-<oui-modal
-    data-heading="{{:: 'dedicatedCloud_configuration_add_datacenter_title' | translate }}"
-    data-primary-action="$ctrl.isValidNsxConfig() ? $ctrl.addOptionNSX() : $ctrl.addDatacenter()"
-    data-primary-label="{{ $ctrl.isValidNsxConfig() ? 'dedicatedCloud_configuration_add_datacenter_option':'wizard_confirm' | translate }}"
-    data-primary-disabled="!$ctrl.commercialRange.model"
-    data-secondary-action="$ctrl.onCancel()"
-    data-secondary-label="{{:: 'wizard_cancel' | translate }}"
-    data-loading="$ctrl.loader"
-    data-on-dismiss="$ctrl.goBack()"
+<oui-header
+    data-heading="{{ :: 'dedicatedCloud_configuration_add_datacenter_title' | translate }}"
+    data-description="{{ :: 'dedicatedCloud_configuration_add_datacenter_description' | translate }}"
 >
-    <label
-        for="commercialRange"
-        class="control-label"
-        data-translate="dedicatedCloud_configuration_add_datacenter_confirmation"
-    >
-    </label>
-    <select
-        class="form-control"
-        id="commercialRange"
-        name="commercialRange"
-        data-ng-model="$ctrl.commercialRange.model"
-        data-ng-options="commercialRangeType as ($ctrl.COMMERCIAL_RANGE_ENUM[commercialRangeType.name] || commercialRangeType.name) for commercialRangeType in $ctrl.commercialRange.list"
-    >
-        <option
-            value=""
-            data-ng-disabled="true"
-            data-translate="dedicatedCloud_datacenters_adding_select"
-        ></option>
-    </select>
+</oui-header>
 
-    <div class="mt-4" data-ng-if="$ctrl.isValidNsxConfig()">
-        <p
-            data-translate="dedicatedCloud_configuration_add_datacenter_description_no_nsx_part1"
-        ></p>
-        <p
-            data-translate="dedicatedCloud_configuration_add_datacenter_description_no_nsx_part2"
-        ></p>
-        <p
-            data-translate="dedicatedCloud_configuration_add_datacenter_description_no_nsx_part3"
-        ></p>
+<form novalidate name="addDatacenterForm">
+    <oui-spinner data-ng-if="$ctrl.loader"></oui-spinner>
+    <div class="row mb-4" data-ng-if="!$ctrl.loader">
+        <div class="col-sm-12 mt-2 mb-2 d-flex flex-wrap align-content-stretch">
+            <oui-select-picker
+                data-ng-repeat="datacenter in $ctrl.commercialRange.list track by $index"
+                class="col-md-3"
+                data-model="$ctrl.commercialRange.model"
+                data-label="{{ 'dedicatedCloud_configuration_add_datacenter_card_' + datacenter.name + '_label' | translate }}"
+                data-values="[datacenter]"
+                data-disabled="$ctrl.submitting"
+                data-required
+            >
+                <oui-select-picker-section>
+                    <span
+                        data-translate="{{ 'dedicatedCloud_configuration_add_datacenter_card_' + datacenter.name + '_description' }}"
+                    >
+                    </span>
+                </oui-select-picker-section>
+
+                <oui-select-picker-footer>
+                    <span data-ng-bind-html="datacenter.displayPrice"> </span>
+                </oui-select-picker-footer>
+            </oui-select-picker>
+        </div>
     </div>
-</oui-modal>
+    <div class="d-flex align-items-center">
+        <button
+            type="button"
+            class="oui-button oui-button_l oui-button_link mr-3"
+            data-ng-click="$ctrl.goBack()"
+        >
+            <span
+                data-translate="dedicatedCloud_configuration_add_datacenter_cta_cancel"
+            >
+            </span>
+        </button>
+        <button
+            type="button"
+            class="oui-button oui-button_l oui-button_primary mr-3"
+            data-ng-disabled="!$ctrl.commercialRange.model || $ctrl.submitting"
+            data-ng-click="$ctrl.addDatacenter()"
+        >
+            <span
+                data-translate="dedicatedCloud_configuration_add_datacenter_cta_submit"
+            >
+            </span>
+        </button>
+        <oui-spinner size="s" data-ng-if="$ctrl.submitting"></oui-spinner>
+    </div>
+</form>
