@@ -14,8 +14,8 @@ defineFeature(feature, (test) => {
   });
 
   // define i18n instanciation
-  const givenLoggerPluginInstanciated = (given: DefineStepFunction) => {
-    given('I have a logger plugin instanciated', () => {
+  const givenLoggerPluginInstantiated = (given: DefineStepFunction) => {
+    given('I have a logger plugin instantiated', () => {
       loggerPlugin = logger();
     });
   };
@@ -34,7 +34,7 @@ defineFeature(feature, (test) => {
 
     const errorParam = new Error('Log error');
 
-    givenLoggerPluginInstanciated(given);
+    givenLoggerPluginInstantiated(given);
 
     and('debug flag is activated', () => {
       localStorage.setItem('MANAGER_SHELL_DEBUG', 'true');
@@ -58,7 +58,7 @@ defineFeature(feature, (test) => {
   });
 
   test('Disable the plugin', ({ given, when, then }) => {
-    givenLoggerPluginInstanciated(given);
+    givenLoggerPluginInstantiated(given);
 
     when('I try to log, info, warn, error, debug something', () => {
       loggerPlugin.log('log');
