@@ -8,7 +8,6 @@ async function services() {
     });
     return nashaList;
   } catch (error) {
-    console.error(error);
     return null;
   }
 }
