@@ -1556,11 +1556,6 @@ angular
           $scope.installation.nbDiskUse > 1 &&
           !$scope.informations.raidController
         ) {
-          $scope.errorInst.raid0 =
-            partition.raid !== $scope.constants.warningRaid1 &&
-            partition.raid !== $scope.constants.warningRaid0 &&
-            (partition.mountPoint === $scope.constants.warningBoot ||
-              partition.mountPoint === $scope.constants.warningRoot);
           $scope.warning.raid0 =
             !$scope.errorInst.raid0 &&
             partition.raid === $scope.constants.warningRaid0;
