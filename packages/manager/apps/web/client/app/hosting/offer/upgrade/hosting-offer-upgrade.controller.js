@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import {
-  OFFERS_NAME_MAPPING,
   DETACH_DEFAULT_OPTIONS,
+  OFFERS_NAME_MAPPING,
 } from './hosting-offer-upgrade.constants';
 
 angular.module('App').controller(
@@ -17,6 +17,7 @@ angular.module('App').controller(
       Alerter,
       apiTranslator,
       atInternet,
+      coreConfig,
       Hosting,
       WucUser,
       ovhManagerProductOffersActionService,
@@ -30,6 +31,7 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.apiTranslator = apiTranslator;
       this.atInternet = atInternet;
+      this.coreConfig = coreConfig;
       this.Hosting = Hosting;
       this.WucUser = WucUser;
       this.ovhManagerProductOffersActionService = ovhManagerProductOffersActionService;
@@ -55,7 +57,10 @@ angular.module('App').controller(
         downgradeAgree: false,
       };
 
-      this.WucUser.getUser().then((user) => {
+      const user = this.coreConfig.getUser();
+      this.Hosting.getCatalog(user.ovhSubsidiary).then((catalog) => {
+        this.user = user;
+        this.catalog = catalog;
         this.ovhSubsidiary = user.ovhSubsidiary;
       });
 
