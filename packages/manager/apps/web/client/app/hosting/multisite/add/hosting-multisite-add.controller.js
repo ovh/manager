@@ -8,6 +8,7 @@ angular
     'HostingDomainAttachCtrl',
     (
       $scope,
+      $state,
       $stateParams,
       $rootScope,
       $translate,
@@ -41,19 +42,24 @@ angular
       $scope.MAX_DOMAIN_LENGTH = WucValidator.MAX_DOMAIN_LENGTH;
 
       $scope.isStep1Valid = () => {
-        if (!$scope.model.options) {
+        if (!$scope.model.options && !$scope.model.needChangeOffer) {
           return false;
         }
         if (
           $scope.model.capabilities &&
-          $scope.model.domainsCount >= $scope.model.capabilities.attachedDomains
+          $scope.model.domainsCount >=
+            $scope.model.capabilities.attachedDomains &&
+          !$scope.model.needChangeOffer
         ) {
           return false;
         }
-        if (!$scope.selected.mode) {
+        if (!$scope.selected.mode && !$scope.model.needChangeOffer) {
           return false;
         }
-        if ($scope.selected.mode === $scope.model.mode.OVH) {
+        if (
+          $scope.selected.mode === $scope.model.mode.OVH &&
+          !$scope.model.needChangeOffer
+        ) {
           return $scope.selected.baseDomain !== null;
         }
         return true;
@@ -233,6 +239,20 @@ angular
 
             if (resp.length > 1) {
               $scope.model.domainsCount = resp[1].length;
+            }
+
+            $scope.model.needChangeOffer =
+              $scope.model.domainsCount >= 1 &&
+              $scope.model.capabilities.attachedDomains === 1;
+
+            if ($scope.model.needChangeOffer) {
+              $scope.wizardConfirmButtonText = $translate.instant(
+                'hosting_tab_DOMAINS_configuration_add_buttom_update_offer',
+              );
+              $scope.onFinish = () =>
+                $state.go('app.hosting.dashboard.upgrade', {
+                  productId: $stateParams.productId,
+                });
             }
 
             if ($scope.currentActionData && $scope.currentActionData.hosting) {

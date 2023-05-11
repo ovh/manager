@@ -3,13 +3,14 @@ import dnsConfigurationStep from './dnsConfiguration/domain-webhosting-order-ste
 import hostingStep from './hosting/domain-webhosting-order-steps-hosting.component';
 import moduleStep from './module/domain-webhosting-order-steps-module.component';
 import paymentStep from './payment/domain-webhosting-order-steps-payment.component';
+import hostingDomainOffers from '../../../../components/hosting-domain-offers';
 
 import component from './domain-webhosting-order-steps.component';
 
 const moduleName = 'ovhManagerWebDomainWebhostingOrderStepsModule';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [hostingDomainOffers])
   .component(component.name, component)
   .component(dnsConfigurationStep.name, dnsConfigurationStep)
   .component(durationStep.name, durationStep)

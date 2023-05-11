@@ -1,8 +1,6 @@
 import get from 'lodash/get';
-import {
-  OFFERS_NAME_MAPPING,
-  DETACH_DEFAULT_OPTIONS,
-} from './hosting-offer-upgrade.constants';
+import { DETACH_DEFAULT_OPTIONS } from './hosting-offer-upgrade.constants';
+import { HOSTING_TRACKING } from '../../hosting.constants';
 
 angular.module('App').controller(
   'HostingUpgradeOfferCtrl',
@@ -17,6 +15,7 @@ angular.module('App').controller(
       Alerter,
       apiTranslator,
       atInternet,
+      coreConfig,
       Hosting,
       WucUser,
       ovhManagerProductOffersActionService,
@@ -30,6 +29,7 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.apiTranslator = apiTranslator;
       this.atInternet = atInternet;
+      this.coreConfig = coreConfig;
       this.Hosting = Hosting;
       this.WucUser = WucUser;
       this.ovhManagerProductOffersActionService = ovhManagerProductOffersActionService;
@@ -55,7 +55,10 @@ angular.module('App').controller(
         downgradeAgree: false,
       };
 
-      this.WucUser.getUser().then((user) => {
+      const user = this.coreConfig.getUser();
+      this.Hosting.getCatalog(user.ovhSubsidiary).then((catalog) => {
+        this.user = user;
+        this.catalog = catalog;
         this.ovhSubsidiary = user.ovhSubsidiary;
       });
 
@@ -87,25 +90,24 @@ angular.module('App').controller(
             );
           })
           .then((availableOffers) => {
-            this.availableOffers = availableOffers.map((offer) => ({
-              name: this.$translate.instant(
-                `hosting_dashboard_service_offer_${
-                  OFFERS_NAME_MAPPING[offer.planCode]
-                }`,
-              ),
-              value: offer.planCode,
-            }));
+            this.availableOffers = availableOffers;
           });
       }
 
       return this.Hosting.getAvailableOffer(this.productId).then(
         (availableOffers) => {
-          this.availableOffers = availableOffers.map((offer) => ({
-            name: this.$translate.instant(
-              `hosting_dashboard_service_offer_${offer}`,
-            ),
-            value: offer,
-          }));
+          const availableOffersFormatted = availableOffers.map((offer) =>
+            offer.toLowerCase().replace(/_/g, ''),
+          );
+
+          const catalogProducts = this.catalog.plans.filter(({ planCode }) =>
+            availableOffersFormatted.includes(planCode),
+          );
+
+          this.availableOffers = availableOffersFormatted.flatMap(
+            (offers) =>
+              catalogProducts.find(({ planCode }) => offers === planCode) || [],
+          );
         },
       );
     }
@@ -153,12 +155,12 @@ angular.module('App').controller(
 
     getPrices() {
       if (this.isDetachable) {
-        return this.getDetachPrices(this.serviceId, this.model.offer.value);
+        return this.getDetachPrices(this.serviceId, this.model.offer.planCode);
       }
 
       return this.Hosting.getUpgradePrices(
         get(this.hosting, 'serviceName', this.$stateParams.productId),
-        this.model.offer.value,
+        this.model.offer.planCode,
       );
     }
 
@@ -179,7 +181,10 @@ angular.module('App').controller(
 
     executeOrder() {
       if (this.isDetachable) {
-        return this.executeDetachOrder(this.serviceId, this.model.offer.value);
+        return this.executeDetachOrder(
+          this.serviceId,
+          this.model.offer.planCode,
+        );
       }
 
       const startTime = moment(this.model.startTime, 'HH:mm:ss')
@@ -188,7 +193,7 @@ angular.module('App').controller(
 
       return this.Hosting.orderUpgrade(
         get(this.hosting, 'serviceName', this.$stateParams.productId),
-        this.model.offer.value,
+        this.model.offer.planCode,
         this.model.duration.duration,
         this.hosting.isCloudWeb ? startTime : null,
       );
@@ -274,6 +279,41 @@ angular.module('App').controller(
           this.loading.validation = false;
           this.$state.go('^');
         });
+    }
+
+    trackClick(hit) {
+      return this.atInternet.trackClick({
+        name: hit,
+        type: 'action',
+      });
+    }
+
+    trackOffer(groupOffer, versionOffer) {
+      const { value } = groupOffer.selectedVersion;
+
+      if (versionOffer) {
+        this.trackClick(
+          `${HOSTING_TRACKING.STEP_1.SELECT_OFFER_LIST}${groupOffer.category}`,
+        );
+      }
+
+      this.trackClick(`${HOSTING_TRACKING.STEP_1.SELECT_OFFER}${value}`);
+    }
+
+    onHostingGroupOfferClick(groupOffer, versionOffer) {
+      this.model.offer = groupOffer.selectedVersion;
+
+      this.trackOffer(groupOffer, versionOffer);
+    }
+
+    onOfferNextStepClick() {
+      this.trackClick(HOSTING_TRACKING.STEP_1.GO_TO_NEXT_STEP);
+    }
+
+    onPreviousPageClick() {
+      this.trackClick(HOSTING_TRACKING.STEP_1.GO_TO_PREVIOUS_PAGE);
+
+      return this.$state.go('^');
     }
 
     static isProrataDuration({ duration }) {

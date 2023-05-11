@@ -12,11 +12,13 @@ export default class {
   /* @ngInject */
   constructor(
     $q,
+    $http,
     OvhApiHostingWebModuleList,
     OvhApiOrder,
     WucOrderCartService,
   ) {
     this.$q = $q;
+    this.$http = $http;
     this.OvhApiHostingWebModuleList = OvhApiHostingWebModuleList;
     this.OvhApiOrder = OvhApiOrder;
     this.WucOrderCartService = WucOrderCartService;
@@ -33,11 +35,11 @@ export default class {
   getAvailableOffers(cartId, ovhSubsidiary) {
     return this.$q
       .all({
-        catalog: this.OvhApiOrder.Catalog()
-          .Public()
-          .v6()
-          .get({ productName: WEBHOSTING_ORDER_PRODUCT, ovhSubsidiary })
-          .$promise.then(({ plans }) => plans),
+        catalog: this.$http
+          .get(
+            `/order/catalog/public/webHosting?ovhSubsidiary=${ovhSubsidiary}`,
+          )
+          .then(({ data: { plans } }) => plans),
         offers: this.OvhApiOrder.Cart()
           .Product()
           .v6()
@@ -166,6 +168,12 @@ export default class {
 
   validateCheckout(cartId, checkout) {
     return this.WucOrderCartService.checkoutCart(cartId, checkout);
+  }
+
+  getCatalog(ovhSubsidiary) {
+    return this.$http
+      .get(`/order/catalog/public/webHosting?ovhSubsidiary=${ovhSubsidiary}`)
+      .then(({ data }) => data);
   }
 
   static mapDnsZoneValue(dnsConfiguration) {

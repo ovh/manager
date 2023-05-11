@@ -15,9 +15,9 @@
         data-on-focus="$ctrl.workflow.getPricings()"
         data-loading="$ctrl.workflow.loading.getPricingInformation"
     >
-        <div class="row">
+        <div class="d-flex flex-row">
             <oui-select-picker
-                class="col-md-3 mb-3"
+                class="col-md-3 mb-3 align-self-baseline"
                 name="duration"
                 data-ng-repeat="pricing in $ctrl.workflow.pricings track by pricing.description"
                 model="$ctrl.workflow.pricing"

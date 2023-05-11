@@ -20,6 +20,7 @@ import {
   DOMAIN_SERVICE_STATES,
   DOMAIN_STATE_TYPE,
 } from './general-information.constants';
+import { DOMAIN_TRACKING } from '../../hosting/hosting.constants';
 
 export default class DomainTabGeneralInformationsCtrl {
   /* @ngInject */
@@ -50,6 +51,7 @@ export default class DomainTabGeneralInformationsCtrl {
     goToDnsAnycast,
     goToTerminateAnycast,
     shellClient,
+    atInternet,
   ) {
     this.$http = $http;
     this.$scope = $scope;
@@ -78,6 +80,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.goToTerminateAnycast = goToTerminateAnycast;
     this.DOMAIN_STATE_TYPE = DOMAIN_STATE_TYPE;
     this.shellClient = shellClient;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -673,6 +676,19 @@ export default class DomainTabGeneralInformationsCtrl {
     }
 
     return this.domain.whoisOwner.organisationName || ownerName;
+  }
+
+  trackClick(hit) {
+    return this.atInternet.trackClick({
+      name: hit,
+      type: 'action',
+    });
+  }
+
+  onWebhostingOrderClick() {
+    this.trackClick(DOMAIN_TRACKING.WEBHOSTING_ORDER);
+
+    return this.goToWebhostingOrder();
   }
 }
 

@@ -1,8 +1,13 @@
 <div class="row" data-ng-controller="HostingUpgradeOfferCtrl as $ctrl">
-    <div class="col-md-8">
-        <oui-back-button data-sref="^">
-            <span data-translate="hosting_order_upgrade_modal_header"></span>
+    <div class="w-100">
+        <oui-back-button data-on-click="$ctrl.onPreviousPageClick()">
         </oui-back-button>
+
+        <!--Title + description-->
+        <div class="ml-2">
+            <span class="oui-heading_4" data-translate="hosting_order_upgrade_modal_header"></span>
+            <p data-translate="hosting_order_upgrade_modal_header_description"></p>
+        </div>
 
         <oui-spinner
             data-size="l"
@@ -27,45 +32,21 @@
         >
             <oui-step-form
                 data-header="{{:: 'hosting_order_upgrade_step_header_offer' | translate }}"
+                data-valid="$ctrl.model.offer"
+                data-prevent-next="true"
+                data-on-submit="$ctrl.onOfferNextStepClick()"
             >
-                <oui-field
-                    data-label="{{::'hostin_order_select_offer' | translate}}"
-                    data-size="m"
-                    data-label-popover="{{:: ($ctrl.hosting.isCloudWeb
-                                                    ? 'hosting_order_upgrade_select_noduration_cloudweb'
-                                                    : 'hosting_order_upgrade_select_noduration') | translate }}"
+                <web-component-hosting-domain-offers
+                    data-ng-if="$ctrl.catalog"
+                    data-user="$ctrl.user"
+                    data-catalog="$ctrl.catalog"
+                    data-offers="$ctrl.availableOffers"
+                    data-current-offer="$ctrl.hosting.offer"
+                    data-customer-region="$ctrl.coreConfig.getRegion()"
+                    data-show-details="true"
+                    data-on-group-offer-click="$ctrl.onHostingGroupOfferClick(groupOffer, versionOffer)"
                 >
-                    <oui-select
-                        data-required
-                        data-placeholder="{{::'select_placeholder' | translate}}"
-                        data-name="availableOffer"
-                        data-model="$ctrl.model.offer"
-                        data-items="$ctrl.availableOffers"
-                        data-match="name"
-                    >
-                        <span data-ng-bind="$item.name"></span>
-                    </oui-select>
-                </oui-field>
-                <oui-message
-                    data-type="info"
-                    data-ng-if="$ctrl.hosting.isCloudWeb"
-                >
-                    <span
-                        data-translate="hosting_order_upgrade_select_noduration_cloudweb_explanation"
-                    ></span>
-                </oui-message>
-                <oui-field
-                    data-ng-if="$ctrl.model.offer && $ctrl.model.offer.value === 'KS'"
-                    data-label="{{:: 'hosting_dashboard_service_offer_downgrade_KIMSUFI_2015' | translate }}"
-                >
-                    <oui-checkbox
-                        data-required
-                        data-model="$ctrl.model.downgradeAgree"
-                        ><span
-                            data-translate="hosting_dashboard_service_offer_downgrade_KIMSUFI_2015_agree"
-                        ></span>
-                    </oui-checkbox>
-                </oui-field>
+                </web-component-hosting-domain-offers>
             </oui-step-form>
 
             <oui-step-form
@@ -142,44 +123,44 @@
             >
                 <table class="table table-condensed">
                     <tbody>
-                        <tr
-                            data-ng-repeat="detail in $ctrl.model.duration.details track by $index"
-                        >
-                            <th
-                                class="font-weight-normal"
-                                scope="row"
-                                data-ng-bind="detail.description"
-                            ></th>
-                            <td class="text-nowrap text-right">
-                                <strong
-                                    data-ng-bind-html="$ctrl.formatPrice(detail.totalPrice)"
-                                ></strong>
-                            </td>
-                        </tr>
+                    <tr
+                        data-ng-repeat="detail in $ctrl.model.duration.details track by $index"
+                    >
+                        <th
+                            class="font-weight-normal"
+                            scope="row"
+                            data-ng-bind="detail.description"
+                        ></th>
+                        <td class="text-nowrap text-right">
+                            <strong
+                                data-ng-bind-html="$ctrl.formatPrice(detail.totalPrice)"
+                            ></strong>
+                        </td>
+                    </tr>
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <th
-                                class="text-right"
-                                scope="row"
-                                data-translate="hosting_order_upgrade_price_HT"
-                            ></th>
-                            <td
-                                class="font-weight-bold text-right"
-                                data-ng-bind="$ctrl.model.duration.prices.withoutTax.text"
-                            ></td>
-                        </tr>
-                        <tr>
-                            <th
-                                scope="row"
-                                class="text-right"
-                                data-translate="hosting_order_upgrade_price_TTC"
-                            ></th>
-                            <td
-                                class="font-weight-bold text-right"
-                                data-ng-bind="$ctrl.model.duration.prices.withTax.text"
-                            ></td>
-                        </tr>
+                    <tr>
+                        <th
+                            class="text-right"
+                            scope="row"
+                            data-translate="hosting_order_upgrade_price_HT"
+                        ></th>
+                        <td
+                            class="font-weight-bold text-right"
+                            data-ng-bind="$ctrl.model.duration.prices.withoutTax.text"
+                        ></td>
+                    </tr>
+                    <tr>
+                        <th
+                            scope="row"
+                            class="text-right"
+                            data-translate="hosting_order_upgrade_price_TTC"
+                        ></th>
+                        <td
+                            class="font-weight-bold text-right"
+                            data-ng-bind="$ctrl.model.duration.prices.withTax.text"
+                        ></td>
+                    </tr>
                     </tfoot>
                 </table>
                 <oui-message data-type="info">

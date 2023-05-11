@@ -18,6 +18,7 @@ import privateSqlActivation from '../database/private-sql-activation';
 import runtimes from '../runtimes/runtimes.module';
 import task from '../task/task.module';
 import userLogs from '../user-logs/user-logs.module';
+import hostingDomainOffersComponent from '../../components/hosting-domain-offers';
 
 const moduleName = 'ovhManagerHosting';
 
@@ -43,6 +44,7 @@ angular
     runtimes,
     task,
     userLogs,
+    hostingDomainOffersComponent,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

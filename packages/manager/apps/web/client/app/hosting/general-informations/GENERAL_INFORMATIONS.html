@@ -521,7 +521,7 @@
                             </oui-action-menu-item>
 
                             <oui-action-menu-item
-                                data-ui-sref="app.private-database-order-clouddb"
+                                data-ui-sref="app.hosting.dashboard.database.order-public({preselectDbCategory: 'private'})"
                             >
                                 <span
                                     data-translate="hosting_dashboard_service_privatesql_order"
@@ -538,6 +538,7 @@
                                 data-wuc-pbec-nb-elements="hosting.databaseCount"
                                 data-wuc-pbec-max-elements="hosting.databaseMax"
                                 data-wuc-pbec-upper-limit="cloudWebUnlimitedQuantity"
+                                data-wuc-pbec-force-display-max-elements="true"
                             ></div>
                         </oui-tile-description>
                     </oui-tile-definition>
@@ -637,7 +638,7 @@
                         <oui-tile-description>
                             <span
                                 class="text-capitalized mr-2"
-                                data-ng-bind="::'hosting_dashboard_service_offer_'+ hosting.offer | translate"
+                                data-ng-bind=":: $ctrl.getOfferName(hosting.offer)"
                             ></span>
                             <span
                                 class="fa fa-exclamation-triangle text-warning"
