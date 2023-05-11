@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.59.2...@ovh-ux/manager-dedicated@17.60.0) (2023-05-11)
+
+
+### Features
+
+* **dedicated:** make zpool name customizable for ZFS ([0bc51ca](https://github.com/ovh/manager/commit/0bc51cac917b21f718121453b66cc84eddb23808))
+
+
+
+
+
 ## [17.59.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.59.1...@ovh-ux/manager-dedicated@17.59.2) (2023-05-09)
 
 

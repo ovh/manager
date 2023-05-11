@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.123.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.122.2...@ovh-ux/manager-pci@5.123.0) (2023-05-11)
+
+
+### Bug Fixes
+
+* **pci.data-processing:** fix wrong label ([9b444a9](https://github.com/ovh/manager/commit/9b444a914018ddb7dd49203ad9fdd666bb25a471))
+* **pci.data-processing:** fixing wrong tracking labels ([0db39d7](https://github.com/ovh/manager/commit/0db39d78e580b8f642c2cdbac5c2125a25619ca2))
+* **pci.storages.cold-archive:** generate cred if user has not ([cb21024](https://github.com/ovh/manager/commit/cb2102444a729408a41b594f202ddcf8521e3ec9))
+
+
+### Features
+
+* **pci.storages.databases:** add secondary backups ([fed8bd0](https://github.com/ovh/manager/commit/fed8bd0cf231d0e81152c99f9c2427cd7872a5b6))
+
+
+
+
+
 ## [5.122.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.122.1...@ovh-ux/manager-pci@5.122.2) (2023-05-09)
 
 
