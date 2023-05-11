@@ -100,6 +100,13 @@ export default /* @ngInject */ ($stateProvider) => {
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
 
+      goToDatabaseTab: /* @ngInject */ ($state, $transition$) => () => {
+        return $state.go(
+          'app.hosting.dashboard.database',
+          $transition$.params(),
+        );
+      },
+
       availableOptions: /* @ngInject */ (WucOrderCartService, serviceName) =>
         WucOrderCartService.getProductServiceOptions(
           'webHosting',

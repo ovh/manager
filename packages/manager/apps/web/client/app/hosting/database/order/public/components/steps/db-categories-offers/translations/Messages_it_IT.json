@@ -1,0 +1,8 @@
+{
+  "web_hosting_database_order_components_db_categories_offers_category_starter": "Start SQL",
+  "web_hosting_database_order_components_db_categories_offers_category_starter_description": "Ordina un database MySQL aggiuntivo da 250 MB, 500 MB a 1GB.",
+  "web_hosting_database_order_components_db_categories_offers_category_private": "Web Cloud Databases",
+  "web_hosting_database_order_components_db_categories_offers_category_private_description": "L'istanza Web Cloud Databases permette di creare tutti i database desiderati e offre una scelta più ampia di motori SQL o NoSQL e una maggiore libertà di configurazione.",
+  "web_hosting_database_order_components_db_categories_price_select_version_placeholder": "Scegliere una versione",
+  "web_hosting_database_order_components_db_categories_price": "{{priceValue}} +IVA/mese"
+}

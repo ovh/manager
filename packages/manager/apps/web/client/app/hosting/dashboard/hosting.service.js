@@ -820,6 +820,14 @@ import union from 'lodash/union';
           data: {},
         });
       }
+
+      getCatalog(ovhSubsidiary) {
+        return this.$http
+          .get(
+            `/order/catalog/public/webHosting?ovhSubsidiary=${ovhSubsidiary}`,
+          )
+          .then(({ data }) => data);
+      }
     },
   );
 }

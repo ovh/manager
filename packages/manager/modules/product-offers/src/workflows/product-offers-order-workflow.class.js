@@ -84,6 +84,12 @@ export default class OrderWorkflow extends Workflow {
    */
   getPricings() {
     this.pricing = null;
+    if (typeof this.getRightCatalogConfig === 'function') {
+      const { catalog, catalogItemTypeName } = this.getRightCatalogConfig();
+
+      this.catalog = catalog;
+      this.catalogItemTypeName = catalogItemTypeName;
+    }
 
     if (!this.getPlanCode()) {
       throw new Error('ovhProductOffers-OrderWorkflow: Invalid plan code');
