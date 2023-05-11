@@ -236,37 +236,22 @@ export default class ColdArchiveLinkUserArchiveController {
     this.trackClick(
       `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.EXISTING_USER}::${COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM}`,
     );
-    if (user.s3Credentials?.access) {
-      this.userModel.linkedMode.isInProgress = true;
-      return this.pciStoragesColdArchiveService
-        .getS3Credentials(this.projectId, user.id)
-        .then((data) => {
-          this.trackPage(
-            `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.ASSOCIATE_USER}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
-          );
-          const [credentials] = data;
-          this.userModel.linkedMode.selected.s3Credentials = credentials;
-          this.userModel.linkedMode.credential = credentials;
-        })
-        .catch(() => {
-          this.trackPage(
-            `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.ASSOCIATE_USER}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
-          );
-        })
-        .finally(() => {
-          this.userModel.linkedMode.isInProgress = false;
-        });
-    }
+
+    const Service = this.pciStoragesColdArchiveService;
+    const taskPromise = user.s3Credentials?.access
+      ? Service.getS3Credentials(this.projectId, user.id).then(
+          (credentials) => credentials?.[0],
+        )
+      : Service.generateS3Credentials(this.projectId, user.id);
 
     this.userModel.linkedMode.isInProgress = true;
-    return this.pciStoragesColdArchiveService
-      .generateS3Credentials(this.projectId, user.id)
-      .then((credentials) => {
+    return taskPromise
+      .then((credential) => {
         this.trackPage(
           `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.ASSOCIATE_USER}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
         );
-        this.userModel.linkedMode.selected.s3Credentials = credentials;
-        this.userModel.linkedMode.credential = credentials;
+        this.userModel.linkedMode.selected.s3Credentials = credential;
+        this.userModel.linkedMode.credential = credential;
       })
       .catch(() => {
         this.trackPage(
@@ -276,5 +261,22 @@ export default class ColdArchiveLinkUserArchiveController {
       .finally(() => {
         this.userModel.linkedMode.isInProgress = false;
       });
+  }
+
+  onUserSelected(user) {
+    if (!user.s3Credentials?.access) {
+      this.userModel.linkedMode.isInProgress = true;
+
+      this.pciStoragesColdArchiveService
+        .generateS3Credentials(this.projectId, user.id)
+        .then((credential) => {
+          this.usersCredentials.find(
+            ({ id }) => id === user.id,
+          ).s3Credentials = credential;
+        })
+        .finally(() => {
+          this.userModel.linkedMode.isInProgress = false;
+        });
+    }
   }
 }

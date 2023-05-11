@@ -690,7 +690,7 @@
   "server_configuration_installation_ovh_step2_hide_all_disk": "Hide other disks",
   "server_configuration_installation_ovh_step2_file_system": "File system",
   "server_configuration_installation_ovh_step2_mount_point": "Mount point",
-  "server_configuration_installation_ovh_step2_volume_name": "Name of LVM volume",
+  "server_configuration_installation_ovh_step2_volume_name": "Logical volume name (LVM) / zpool (ZFS)",
   "server_configuration_installation_ovh_step2_raid": "RAID",
   "server_configuration_installation_ovh_step2_raid_help": "With RAID (starting from RAID 1), you can replicate data on multiple hard disks, to improve the server's data backup in the event of failure. Important: RAID 0 does not back up the data. For this reason, it is not recommended.",
   "server_configuration_installation_ovh_step2_available_size": "Partition size",

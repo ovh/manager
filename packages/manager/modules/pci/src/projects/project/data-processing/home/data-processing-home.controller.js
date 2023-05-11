@@ -1,6 +1,6 @@
 import {
   DATA_PROCESSING_GUIDE_URL,
-  DATA_PROCESSING_TRACKING_PREFIX,
+  DATA_PROCESSING_TRACKING_PREFIX_FULL,
 } from '../data-processing.constants';
 
 export default class DataProcessingHomeCtrl {
@@ -12,7 +12,7 @@ export default class DataProcessingHomeCtrl {
 
   onSubmitClick() {
     this.atInternet.trackClick({
-      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs-new`,
+      name: `${DATA_PROCESSING_TRACKING_PREFIX_FULL}::jobs-new`,
       type: 'action',
     });
     this.submitJob();
@@ -20,7 +20,7 @@ export default class DataProcessingHomeCtrl {
 
   onShowJobsClick() {
     this.atInternet.trackClick({
-      name: `${DATA_PROCESSING_TRACKING_PREFIX}::jobs-all`,
+      name: `${DATA_PROCESSING_TRACKING_PREFIX_FULL}::jobs-all`,
       type: 'action',
     });
     this.showJobs();
@@ -28,7 +28,7 @@ export default class DataProcessingHomeCtrl {
 
   onAddNotebookClick() {
     this.atInternet.trackClick({
-      name: `${DATA_PROCESSING_TRACKING_PREFIX}::notebooks-new`,
+      name: `${DATA_PROCESSING_TRACKING_PREFIX_FULL}::notebooks-new`,
       type: 'action',
     });
     this.addNotebook();
@@ -36,7 +36,7 @@ export default class DataProcessingHomeCtrl {
 
   onShowNotebooksClick() {
     this.atInternet.trackClick({
-      name: `${DATA_PROCESSING_TRACKING_PREFIX}::notebooks-all`,
+      name: `${DATA_PROCESSING_TRACKING_PREFIX_FULL}::notebooks-all`,
       type: 'action',
     });
     this.showNotebooks();

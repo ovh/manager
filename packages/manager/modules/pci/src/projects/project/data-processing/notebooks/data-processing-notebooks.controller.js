@@ -91,14 +91,14 @@ export default class DataProcessingNotebooksCtrl {
     this.addNotebook();
   }
 
-  onDeleteClick() {
+  onDeleteClick(notebookId) {
     this.trackNotebooks(`delete-notebook`);
-    this.deleteNotebook();
+    this.deleteNotebook(notebookId);
   }
 
-  onTerminateClick() {
+  onTerminateClick(notebookId) {
     this.trackNotebooks(`stop-notebook`);
-    this.terminateNotebook();
+    this.terminateNotebook(notebookId);
   }
 
   onShowNotebook(notebookId) {

@@ -95,4 +95,8 @@ export const GIB_IN_MIB = 1024;
 export const NOTEBOOK_CLUSTER_NAME = 'NB1-1';
 
 export const DATA_PROCESSING_TRACKING_PREFIX =
-  'PublicCloud::pci::projects::project::data-processing';
+  'pci::projects::project::data-processing';
+
+export const PUBLIC_CLOUD_TRACKING_PREFIX = 'PublicCloud';
+
+export const DATA_PROCESSING_TRACKING_PREFIX_FULL = `${PUBLIC_CLOUD_TRACKING_PREFIX}::${DATA_PROCESSING_TRACKING_PREFIX}`;

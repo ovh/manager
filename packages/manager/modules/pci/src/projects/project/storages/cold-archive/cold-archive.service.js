@@ -83,7 +83,7 @@ export default class PciStoragesColdArchiveService {
         data.length > 0
           ? {
               ...user,
-              s3Credentials: data,
+              s3Credentials: data?.[0],
             }
           : undefined,
       ),

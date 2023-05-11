@@ -247,7 +247,6 @@ angular
         raid0: false,
         raidLv: false,
         orderType: false,
-        typeLogicalLv: false,
         typePrimary: false,
         typeLvSwap: false,
 
@@ -257,8 +256,6 @@ angular
         mountPointUse: false,
 
         volumeNameEmpty: false,
-        volumeName: false,
-        volumeNameUse: false,
 
         partitionSizeToAdd: false,
         partitionSizeOver: false,
@@ -1106,7 +1103,9 @@ angular
           } else {
             trueSize = $scope.newPartition.partitionSize;
             if (
-              $scope.newPartition.typePartition !== $scope.constants.warningLV
+              $scope.newPartition.typePartition !==
+                $scope.constants.warningLV &&
+              $scope.newPartition.fileSystem !== $scope.constants.warningZFS
             ) {
               $scope.newPartition.volumeName = null;
             }
@@ -1217,7 +1216,10 @@ angular
             $scope.buttonControl.setInProgress = false;
           } else {
             trueSize = partitionToSet.partitionSize;
-            if (partitionToSet.typePartition !== $scope.constants.warningLV) {
+            if (
+              partitionToSet.typePartition !== $scope.constants.warningLV &&
+              partitionToSet.fileSystem !== $scope.constants.warningZFS
+            ) {
               partitionToSet.volumeName = null;
             }
 
@@ -1418,7 +1420,6 @@ angular
       function validationVolumeNameByType(partition) {
         $scope.errorInst.volumeNameEmpty =
           !$scope.errorInst.typeLvSwap &&
-          !$scope.errorInst.typeLogicalLv &&
           partition.typePartition === $scope.constants.warningLV &&
           (!partition.volumeName || partition.volumeName === '');
       }
@@ -1428,15 +1429,11 @@ angular
           $scope.errorInst.orderType ||
           $scope.errorInst.typePrimary ||
           $scope.errorInst.typeLvSwap ||
-          $scope.errorInst.typeLogicalLv ||
           $scope.errorInst.mountPointPrimary
         );
       };
 
       $scope.validationType = function validationType(partition) {
-        let nbLv = 0;
-        let nbLogical = 0;
-
         $scope.errorInst.typeLvSwap =
           partition.typePartition === $scope.constants.warningLV &&
           partition.fileSystem === $scope.constants.warningSwap;
@@ -1455,7 +1452,6 @@ angular
         $scope.errorInst.orderType = false;
 
         // $scope.errorInst.orderLv = false;
-        $scope.errorInst.typeLogicalLv = false;
         if (
           !$scope.errorInst.order &&
           !$scope.errorInst.orderFirst &&
@@ -1479,27 +1475,8 @@ angular
               ) {
                 $scope.errorInst.orderType = true;
               }
-              if (partition2.typePartition === $scope.constants.warningLV) {
-                nbLv += 1;
-              } else if (
-                partition2.typePartition === $scope.constants.warningLogical
-              ) {
-                nbLogical += 1;
-              }
             },
           );
-          if ($scope.newPartition.display) {
-            if (partition.typePartition === $scope.constants.warningLV) {
-              nbLv += 1;
-            } else if (
-              partition.typePartition === $scope.constants.warningLogical
-            ) {
-              nbLogical += 1;
-            }
-          }
-          if (nbLv !== 0 && nbLogical !== 0) {
-            $scope.errorInst.typeLogicalLv = true;
-          }
         }
 
         $scope.errorInst.typePrimary =
@@ -1600,39 +1577,19 @@ angular
       // ------VOLUME NAME VALIDATION------
 
       $scope.hasErrorVolumeName = function hasErrorVolumeName() {
-        return (
-          $scope.errorInst.volumeNameEmpty ||
-          $scope.errorInst.volumeName ||
-          $scope.errorInst.volumeNameUse
-        );
+        return $scope.errorInst.volumeNameEmpty;
       };
 
       $scope.validationVolumeName = function validationVolumeName(partition) {
         validationVolumeNameByType(partition);
-        $scope.errorInst.volumeName =
-          !$scope.errorInst.typeLvSwap &&
-          !$scope.errorInst.typeLogicalLv &&
-          !$scope.errorInst.volumeNameEmpty &&
-          partition.typePartition === $scope.constants.warningLV &&
-          (!/^[a-zA-Z0-9]{1,16}$/.test(partition.volumeName) ||
-            partition.volumeName.toLowerCase() === 'snapshot' ||
-            partition.volumeName.toLowerCase() === 'pvmove');
-        $scope.errorInst.volumeNameUse =
-          !$scope.errorInst.typeLvSwap &&
-          !$scope.errorInst.typeLogicalLv &&
-          !$scope.errorInst.volumeNameEmpty &&
-          !$scope.errorInst.volumeName &&
-          partition.typePartition === $scope.constants.warningLV &&
-          $scope.validation.volumeNameList[partition.volumeName.toLowerCase()];
       };
 
       // ------Soft RAID VALIDATION------
 
       $scope.hasErrorRaid = function hasErrorRaid() {
-        return $scope.errorInst.raid0 || $scope.errorInst.raidLv;
+        return $scope.errorInst.raid0;
       };
       $scope.validationRaid = function validationRaid(partition) {
-        $scope.errorInst.raidLv = false;
         if (
           $scope.installation.nbDiskUse > 1 &&
           !$scope.informations.raidController
@@ -1647,24 +1604,6 @@ angular
             partition.raid === $scope.constants.warningRaid0 &&
             partition.fileSystem !== $scope.constants.warningSwap;
         }
-        if (
-          $scope.installation.nbDiskUse > 1 &&
-          !$scope.informations.raidController &&
-          partition.typePartition === $scope.constants.warningLV
-        ) {
-          angular.forEach(
-            $scope.installation.partitionSchemeModels,
-            (partition2) => {
-              if (
-                partition2.typePartition === $scope.constants.warningLV &&
-                partition2.raid !== partition.raid
-              ) {
-                $scope.errorInst.raidLv = true;
-              }
-            },
-          );
-        }
-
         $scope.validationSize(partition);
       };
 
