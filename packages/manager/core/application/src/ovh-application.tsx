@@ -2,7 +2,6 @@ import { useEffect, useState, Suspense } from 'react';
 import { ApplicationId } from '@ovh-ux/manager-config';
 import initI18n from './i18n';
 import OvhContext, { initOvhContext, OvhContextType } from './ovh-context';
-import { useLogger } from './hooks';
 
 async function setLocale(context: OvhContextType) {
   const availableLocales = await context.shell.i18n.getAvailableLocales();
@@ -20,7 +19,6 @@ export function OvhApplication({
   children: JSX.Element;
 }): JSX.Element {
   const [context, setContext] = useState<OvhContextType>(null);
-  const logger = useLogger();
 
   useEffect(() => {
     initOvhContext(name)
@@ -31,7 +29,7 @@ export function OvhApplication({
           setLocale(contextWithI18n).then(setContext),
         );
       })
-      .catch((err) => logger.error(err));
+      .catch((err) => console.error(err));
   }, []);
 
   return (
