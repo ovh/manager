@@ -7,7 +7,7 @@
   "private_registry_create_registry": "Create a private registry",
   "private_registry_name": "Registry name",
   "private_registry_id": "ID",
-  "private_registry_plan": "Contents",
+  "private_registry_plan": "Service Plan",
   "private_registry_harbor_version": "Harbor version ",
   "private_registry_status": "Status",
   "private_registry_upgrade_plan": "Change plan",
