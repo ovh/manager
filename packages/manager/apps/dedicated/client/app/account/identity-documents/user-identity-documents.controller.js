@@ -3,6 +3,9 @@ import {
   MAX_SIZE,
   TRACKING_PREFIX,
   TRACKING_TASK_TAG,
+  LEGAL_LINK1,
+  LEGAL_LINK2,
+  LEGAL_LINK3,
 } from './user-identity-documents.constant';
 
 export default class AccountUserIdentityDocumentsController {
@@ -15,6 +18,10 @@ export default class AccountUserIdentityDocumentsController {
     this.user_type = USER_TYPE;
     this.maximum_size = MAX_SIZE;
     this.atInternet = atInternet;
+    this.LEGAL_LINK1 = LEGAL_LINK1;
+    this.LEGAL_LINK2 = LEGAL_LINK2;
+    this.LEGAL_LINK3 =
+      LEGAL_LINK3[coreConfig.getUser().ovhSubsidiary] || LEGAL_LINK3.OTHERS;
   }
 
   $onInit() {
