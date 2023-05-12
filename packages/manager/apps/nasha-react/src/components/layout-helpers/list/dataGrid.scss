@@ -12,9 +12,14 @@ table {
     background-color: #fff;
     border: 1px solid #bef1ff;
     border-collapse: collapse;
+    cursor: pointer;
   }
 
   td {
     padding: 15px;
+  }
+
+  tr:hover {
+    background-color: #b0dfec;
   }
 }

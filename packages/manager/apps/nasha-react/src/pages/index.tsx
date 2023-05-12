@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navigate, Outlet } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { services } from '../api/nasha-react';
+import { getServices } from '../api/nasha-react';
 import Datagrid from '@/components/layout-helpers/list/dataGrid';
 
 const queryClient = new QueryClient();
@@ -33,7 +33,7 @@ function Services() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    services()
+    getServices()
       .then((servicesData) => setData(servicesData))
       .catch(() => {
         return <Navigate to="onboarding" />;

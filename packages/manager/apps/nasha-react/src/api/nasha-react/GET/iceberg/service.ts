@@ -1,6 +1,6 @@
 import { fetchIceberg } from '@ovh-ux/manager-core-api/src/iceberg';
 
-async function services() {
+async function getServices() {
   try {
     let nashaList;
     await fetchIceberg({ route: '/dedicated/nasha' }).then(({ data }) => {
@@ -12,4 +12,4 @@ async function services() {
   }
 }
 
-export default services;
+export default getServices;
