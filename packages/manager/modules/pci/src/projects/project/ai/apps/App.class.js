@@ -7,6 +7,7 @@ import {
   APP_STATUS,
   APP_STORAGE_INFO,
   APP_TAGS,
+  APP_SPEC_WEIGHTS,
 } from './app.constants';
 
 export default class App {
@@ -131,7 +132,11 @@ export default class App {
   }
 
   get replicas() {
-    return this.spec?.scalingStrategy?.fixed?.replicas;
+    const { scalingStrategy } = this.spec;
+    return (
+      scalingStrategy?.fixed?.replicas ||
+      scalingStrategy?.automatic?.replicasMin
+    );
   }
 
   get duration() {
@@ -167,7 +172,7 @@ export default class App {
   }
 
   get gpu() {
-    return this.spec?.resources?.gpu || 'none';
+    return this.spec?.resources?.gpu;
   }
 
   get memory() {
@@ -176,6 +181,17 @@ export default class App {
 
   get gpuMemory() {
     return this.spec.resources.gpuMemory;
+  }
+
+  get specScore() {
+    const cpu = this.cpu || 0;
+    const gpu = this.gpu || 0;
+    const replicas = this.replicas || 0;
+    return (
+      APP_SPEC_WEIGHTS.CPU * cpu +
+      APP_SPEC_WEIGHTS.GPU * gpu +
+      APP_SPEC_WEIGHTS.REPLICAS * replicas
+    );
   }
 
   get ephemeralStorage() {
