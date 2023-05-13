@@ -255,7 +255,7 @@
   "privateDatabase_add_bdd_name": "Database name",
   "privateDatabase_add_bdd_error_name_pattern": "The name does not follow the conditions.",
   "privateDatabase_add_bdd_error_name_required": "Required fields.",
-  "privateDatabase_create_bdd_conditions": "Warning: the name must meet the following conditions: <br/>- Minimum {{t0}} characters<br/>- Maximum {{t1}} characters<br/>- Must start only with a number or a letter.<br/>- May only contain numbers, letters or the characters '_' and '-'.",
+  "privateDatabase_create_bdd_conditions": "Please note, the name must meet the following conditions: <br/>- Minimum {{t0}} characters<br/>- Maximum {{t1}} characters<br/>- Must start only with a number or a letter.<br/>- May only contain numbers, letters or the characters '_' and '-'.",
   "privateDatabase_add_bdd_success": "The database creation request has been processed.",
   "privateDatabase_add_bdd_fail": "An error has occurred creating the database.",
   "privateDatabase_tabs_bdd_adding": "Adding database...",
