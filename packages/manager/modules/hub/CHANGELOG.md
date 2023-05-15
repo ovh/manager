@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.7.1...@ovh-ux/manager-hub@3.7.2) (2023-05-15)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([2f0b868](https://github.com/ovh/manager/commit/2f0b8682ff0dfda9ea2bfa2714d58cb4617a1935))
+
+
+
+
+
 ## [3.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.7.0...@ovh-ux/manager-hub@3.7.1) (2023-04-20)
 
 

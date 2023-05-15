@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.123.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.123.0...@ovh-ux/manager-pci@5.123.1) (2023-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2170] ([8f43f78](https://github.com/ovh/manager/commit/8f43f78639db6f5d81c6aeaa0363f31b5517cee3))
+* **i18n:** add missing translations [CDS 2173] ([0ebbf82](https://github.com/ovh/manager/commit/0ebbf825eeb44cdf5303d9ce883856d45c855574))
+* **i18n:** add missing translations [CDS 2212] ([c4ddd01](https://github.com/ovh/manager/commit/c4ddd01888383df306df908ac4287de69fb93809))
+* **i18n:** add missing translations [CDS 2234] ([93d3af2](https://github.com/ovh/manager/commit/93d3af283c068662cea166fac5a83e868c8284a5))
+* **i18n:** add missing translations [CDS 2237] ([c506bcc](https://github.com/ovh/manager/commit/c506bcc18ab6c8a843cbf586899f403d8075f8ef))
+* **i18n:** add missing translations [CDS 2241] ([67009e3](https://github.com/ovh/manager/commit/67009e38ad9c3c63a293c36b14f6c3d671e6d03c))
+* **i18n:** add missing translations [CDS 2246] ([b6bb4e5](https://github.com/ovh/manager/commit/b6bb4e5ee4b86be910af36bff1bcf9a44a39db58))
+* **i18n:** add missing translations [CDS 2262] ([d748c68](https://github.com/ovh/manager/commit/d748c6873c324b26bd17ec82c4cc02ea7a31b576))
+* **i18n:** add missing translations [CDS 2272] ([adba06e](https://github.com/ovh/manager/commit/adba06e97d89329b90b22c92669f997415d0d60a))
+* remove unused translations [CDS] ([d4c86a7](https://github.com/ovh/manager/commit/d4c86a7edb92c61d5ae55922ad2928656ccf562f))
+* remove unused translations [CDS] ([2f0b868](https://github.com/ovh/manager/commit/2f0b8682ff0dfda9ea2bfa2714d58cb4617a1935))
+* remove unused translations [CDS] ([9d7ee36](https://github.com/ovh/manager/commit/9d7ee367c9bf7c866294b177848e93aaa98979f3))
+
+
+
+
+
 # [5.123.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.122.2...@ovh-ux/manager-pci@5.123.0) (2023-05-11)
 
 

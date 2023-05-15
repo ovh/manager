@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.14...@ovh-ux/manager-billing@0.20.0-alpha.15) (2023-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2226] ([1208caa](https://github.com/ovh/manager/commit/1208caa8e3cc7d614fdd9bea88e0c89982a275d1))
+* remove unused translations [CDS] ([2f0b868](https://github.com/ovh/manager/commit/2f0b8682ff0dfda9ea2bfa2714d58cb4617a1935))
+* remove unused translations [CDS] ([f860e4d](https://github.com/ovh/manager/commit/f860e4d84ef1aa81b2432486a92db0b792f7872f))
+
+
+
+
+
 # [0.20.0-alpha.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.13...@ovh-ux/manager-billing@0.20.0-alpha.14) (2023-04-20)
 
 
