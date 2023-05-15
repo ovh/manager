@@ -1,5 +1,6 @@
 {
   "billing_title": "Moje usługi",
+  "billing_description": "Zarządzaj odnawianiem usług. Sprawdź ich status oraz umowy.",
   "billing_home_title": "Strona główna",
   "billing_agreements_title": "Regulaminy",
   "billing_ssh_title": "Klucze SSH",
@@ -60,8 +61,6 @@
   "billing_autorenew_service_type_CDN_WEBSITE": "CDN Website",
   "billing_autorenew_service_type_CDN_WEBSTORAGE": "CDN WebStorage",
   "billing_autorenew_service_type_CLUSTER_HADOOP": "Klaster Hadoop",
-  "billing_autorenew_service_type_ANTHOS": "Anthos",
-  "billing_autorenew_service_type_DEDICATED_ANTHOS": "Anthos",
   "billing_autorenew_service_type_DEDICATED_NAS": "Dedykowany NAS",
   "billing_autorenew_service_type_DEDICATED_NASHA": "Dedykowany NAS HA",
   "billing_autorenew_service_autorenew_contact_filter": "Wybierz kontakt księgowy",
@@ -123,7 +122,6 @@
   "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHcloud Connect",
   "billing_autorenew_service_type_WEB_PAAS": "Web PaaS",
   "billing_autorenew_service_type_NETAPP": "Enterprise File Storage",
-  "billing_autorenew_service_type_NUTANIX": "Nutanix",
   "billing_autorenew_service_type_CLOUD_PROJECT": "Projekty PCI",
   "billing_autorenew_service_type_CLOUD_DB_ENTERPRISE_CLUSTER": "Enterprise Cloud Databases",
   "billing_autorenew_service_type_DOMAIN_ZONE": "Strefy DNS",
@@ -141,14 +139,14 @@
   "billing_autorenew_service_type_LICENSE_WORKLIGHT": "Licencje Worklight",
   "billing_autorenew_service_type_LICENSE_SQLSERVER": "Licencje SQL Server",
   "billing_autorenew_service_type_LICENCE_SQLSERVER": "Licencje SQL Server",
+  "billing_autorenew_service_type_LICENSE_OFFICE_PREPAID": "Licencje Office 365",
   "billing_autorenew_service_type_MS_SERVICES_SHAREPOINT": "Microsoft Sharepoint",
   "billing_autorenew_service_type_PACK_XDSL": "Pakiety xDSL",
   "billing_autorenew_service_type_VRACK": "vRack",
+  "billing_autorenew_service_type_NUTANIX": "Nutanix",
   "billing_export_csv": "Eksportuj w formacie CSV",
   "billing_common_link_new_window": "(nowe okno)",
   "billing_autorenew_renew_action": "Odnów",
   "billing_autorenew_service_renew_requires_mean_and_date": "Aby dokończyć aktywację automatycznego odnowienia, prosimy o dodanie sposobu płatności. Następnie będziesz mógł wybrać datę pobrania płatności.",
-  "billing_autorenew_service_activate_alert": "Posiadasz co najmniej jedną usługę w trybie automatycznego odnowienia, ale nie zatwierdziłeś jeszcze tej opcji.",
-  "billing_description": "Zarządzaj odnawianiem usług. Sprawdź ich status oraz umowy.",
-  "billing_autorenew_service_type_LICENSE_OFFICE_PREPAID": "Licencje Office 365"
+  "billing_autorenew_service_activate_alert": "Posiadasz co najmniej jedną usługę w trybie automatycznego odnowienia, ale nie zatwierdziłeś jeszcze tej opcji."
 }

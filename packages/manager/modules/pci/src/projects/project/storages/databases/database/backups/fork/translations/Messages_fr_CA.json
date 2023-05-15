@@ -56,8 +56,8 @@
   "pci_databases_backups_fork_storage_sizing": "Stockage additionnel",
   "pci_databases_backups_fork_storage_sizing_offer": "Votre modèle de nœud {{flavorName}} inclut {{includedStorage}} de stockage auxquels vous pouvez ajouter jusqu'à {{addableStorage}} de stockage supplémentaire par pas de {{step}}.",
   "pci_databases_backups_fork_spec_storage_added": "{{total}} (dont {{included}} inclus)",
-  "pci_databases_backups_fork_price_unit_month": "/ mois",
-  "pci_databases_backups_fork_price_unit_hour": "/ heure",
+  "pci_databases_backups_fork_price_unit_month": "/mois",
+  "pci_databases_backups_fork_price_unit_hour": "/heure",
   "pci_databases_backups_fork_price_unit_switch_label": "Afficher les prix au mois",
   "pci_databases_backups_fork_restore_mode_title": "Point de restauration",
   "pci_databases_backups_fork_restore_mode_description": "Sélectionnez le point de restauration à partir duquel le service sera dupliqué."

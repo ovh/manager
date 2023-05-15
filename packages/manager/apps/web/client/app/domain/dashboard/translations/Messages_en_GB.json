@@ -41,8 +41,6 @@
   "domain_dashboard_whois_pending": "This service is currently being set up. Please wait.",
   "domain_dashboard_whois_invalid_contact": "Only the admin contact is authorised to perform this action.",
   "domain_dashboard_whois_error": "An error has occurred loading the WHOIS information. Please try again later.",
-  "domain_dashboard_obfuscated_email": "Alternative email addresses",
-  "domain_dashboard_obfuscated_email_regenerate_button": "Manage alternative email addresses",
   "domain_dashboard_offer": "Solution ",
   "domain_dashboard_dns_state": "Status",
   "domain_dashboard_dns_anycast": "Anycast DNS option",

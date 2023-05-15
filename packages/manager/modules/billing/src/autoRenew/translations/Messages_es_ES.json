@@ -1,5 +1,6 @@
 {
   "billing_title": "Mis servicios",
+  "billing_description": "Gestione la renovación de sus servicios. Consulte el estado de sus servicios y los contratos asociados.",
   "billing_home_title": "Inicio",
   "billing_agreements_title": "Contratos",
   "billing_ssh_title": "Llaves SSH",
@@ -60,8 +61,6 @@
   "billing_autorenew_service_type_CDN_WEBSITE": "CDN WebSite",
   "billing_autorenew_service_type_CDN_WEBSTORAGE": "CDN WebStorage",
   "billing_autorenew_service_type_CLUSTER_HADOOP": "Cluster Hadoop",
-  "billing_autorenew_service_type_ANTHOS": "Anthos",
-  "billing_autorenew_service_type_DEDICATED_ANTHOS": "Anthos",
   "billing_autorenew_service_type_DEDICATED_NAS": "NAS dedicado",
   "billing_autorenew_service_type_DEDICATED_NASHA": "NAS-HA dedicado",
   "billing_autorenew_service_autorenew_contact_filter": "Elija su contacto de facturación",
@@ -123,7 +122,6 @@
   "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHcloud Connect",
   "billing_autorenew_service_type_WEB_PAAS": "Web PaaS",
   "billing_autorenew_service_type_NETAPP": "Enterprise File Storage",
-  "billing_autorenew_service_type_NUTANIX": "Nutanix",
   "billing_autorenew_service_type_CLOUD_PROJECT": "Proyectos PCI",
   "billing_autorenew_service_type_CLOUD_DB_ENTERPRISE_CLUSTER": "Enterprise Cloud Databases",
   "billing_autorenew_service_type_DOMAIN_ZONE": "Zonas DNS",
@@ -141,14 +139,14 @@
   "billing_autorenew_service_type_LICENSE_WORKLIGHT": "Licencias Worklight",
   "billing_autorenew_service_type_LICENSE_SQLSERVER": "Licencias SQL Server",
   "billing_autorenew_service_type_LICENCE_SQLSERVER": "Licencias SQL Server",
+  "billing_autorenew_service_type_LICENSE_OFFICE_PREPAID": "Licencias Office 365",
   "billing_autorenew_service_type_MS_SERVICES_SHAREPOINT": "Microsoft SharePoint",
   "billing_autorenew_service_type_PACK_XDSL": "Packs xDSL",
   "billing_autorenew_service_type_VRACK": "vRacks",
+  "billing_autorenew_service_type_NUTANIX": "Nutanix",
   "billing_export_csv": "Exportar en CSV",
   "billing_common_link_new_window": "(nueva ventana)",
   "billing_autorenew_renew_action": "Renovar",
   "billing_autorenew_service_renew_requires_mean_and_date": "Para completar la activación de la renovación automática, debe añadir una forma de pago. A continuación, podrá seleccionar la fecha del cargo.",
-  "billing_autorenew_service_activate_alert": "Ha configurado la renovación automática en al menos un servicio, pero todavía no ha autorizado esta opción.",
-  "billing_description": "Gestione la renovación de sus servicios. Consulte el estado de sus servicios y los contratos asociados.",
-  "billing_autorenew_service_type_LICENSE_OFFICE_PREPAID": "Licencias Office 365"
+  "billing_autorenew_service_activate_alert": "Ha configurado la renovación automática en al menos un servicio, pero todavía no ha autorizado esta opción."
 }

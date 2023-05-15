@@ -257,7 +257,7 @@
   "privateDatabase_add_bdd_name": "Nome da base de dados",
   "privateDatabase_add_bdd_error_name_pattern": "O nome não cumpre os requisitos.",
   "privateDatabase_add_bdd_error_name_required": "Campos obrigatórios.",
-  "privateDatabase_create_bdd_conditions": "Atenção, o nome deve respeitar as seguintes condições: <br/>- Mínimo de {{t0}} caracteres<br/>- Máximo de {{t1}} caracteres<br/>- Deve começar unicamente por um número ou uma letra.<br/>- Só pode conter números, letras ou os caracteres \" ^_`\" e \"-`\".",
+  "privateDatabase_create_bdd_conditions": "Atenção, o nome deve respeitar as seguintes condições: <br/>- Mínimo de {{t0}} caracteres<br/>- Máximo de {{t1}} caracteres<br/>- Deve começar unicamente por um número ou uma letra.<br/>- Só pode conter números, letras ou os caracteres `_` e `-`.",
   "privateDatabase_add_bdd_success": "O pedido de criação da base de dados foi registado",
   "privateDatabase_add_bdd_fail": "Erro ao processar criação da base de dados.",
   "privateDatabase_tabs_bdd_adding": "Criação da base de dados em curso...",

@@ -1,8 +1,6 @@
 {
   "pci_databases_backups_fork_title": "Duplicar o serviço de base de dados (fork)",
   "pci_databases_backups_fork_description": "O fork do seu backup será efetuado num novo cluster.",
-  "pci_databases_backups_fork_confirm": "Confirmar",
-  "pci_databases_backups_fork_cancel": "Cancelar",
   "pci_databases_backups_fork_plan_label": "Selecione um plano",
   "pci_databases_backups_fork_flavor_label": "Tipo de nó",
   "pci_databases_backups_fork_cluster_label": "Dimensionamento do cluster",

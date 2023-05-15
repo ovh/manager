@@ -2,7 +2,6 @@
   "account_contacts_service_name": "Nombre del servicio",
   "account_contacts_service_category": "Servicio",
   "account_contacts_service_category_CLOUD": "Public Cloud",
-  "account_contacts_service_category_ANTHOS": "Anthos",
   "account_contacts_service_category_DEDICATED": "Servidor dedicado",
   "account_contacts_service_category_EXCHANGE": "Exchange",
   "account_contacts_service_category_HOSTING": "Alojamiento compartido",

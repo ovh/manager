@@ -1,8 +1,6 @@
 {
   "pci_databases_backups_fork_title": "Duplicar el servicio de base de datos (fork)",
   "pci_databases_backups_fork_description": "El fork de la copia de seguridad se realizará en un nuevo cluster.",
-  "pci_databases_backups_fork_confirm": "Confirmar",
-  "pci_databases_backups_fork_cancel": "Cancelar",
   "pci_databases_backups_fork_plan_label": "Seleccione un producto",
   "pci_databases_backups_fork_flavor_label": "Tipo de nodo",
   "pci_databases_backups_fork_cluster_label": "Dimensionamiento del cluster",

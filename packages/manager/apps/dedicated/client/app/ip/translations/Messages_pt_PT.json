@@ -735,5 +735,9 @@
   "ip_repricing_banner_list_item_2": "A partir de 1 de dezembro de 2022, para os endereços existentes (encomendados antes de 6 de outubro de 2022).",
   "ip_repricing_banner_link": "Mais informações",
   "ip_unused_banner_text": "Tem endereços IP não utilizados. Como os endereços IPv4 são um recurso cada vez mais escasso, sugerimos que os liberte caso não precise deles.",
-  "ip_unused_banner_link": "Ver os meus endereços IP não utilizados."
+  "ip_unused_banner_link": "Ver os meus endereços IP não utilizados.",
+  "show_all_ips": "Mostrar os IPv4 e IPv6",
+  "show_ipv4_ips": "Mostrar os IPv4",
+  "show_ipv6_ips": "Mostrar os IPv6",
+  "ipv4_ipv6_filter_title": "Filtro IPv4/IPv6"
 }

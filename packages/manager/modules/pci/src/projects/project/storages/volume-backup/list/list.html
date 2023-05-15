@@ -4,9 +4,7 @@
     data-id="volume-backup-header"
     data-heading="{{:: 'pci_projects_project_storages_volume_backup_list_header' | translate }}"
 >
-    <oui-guide-menu
-        data-text="{{:: 'pci_project_guides_header' | translate }}"
-    >
+    <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
         <oui-guide-menu-item
             data-ng-repeat="guide in $ctrl.guides track by $index"
             data-href="{{:: guide.link }}"
@@ -20,7 +18,6 @@
 
 <!--Volume backup listing page-->
 <div data-ui-view="volumeBackupList">
-
     <!--Messages-->
     <cui-message-container
         data-messages="$ctrl.messages"

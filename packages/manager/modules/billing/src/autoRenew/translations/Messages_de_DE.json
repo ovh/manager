@@ -1,5 +1,6 @@
 {
   "billing_title": "Meine Dienste",
+  "billing_description": "Verwalten Sie die Verlängerung Ihrer Dienste. Überprüfen Sie den Zustand Ihrer Dienste und Ihre Verträge.",
   "billing_home_title": "Start",
   "billing_agreements_title": "Verträge",
   "billing_ssh_title": "SSH-Schlüssel",
@@ -60,8 +61,6 @@
   "billing_autorenew_service_type_CDN_WEBSITE": "WebSite CDN",
   "billing_autorenew_service_type_CDN_WEBSTORAGE": "WebStorage CDN",
   "billing_autorenew_service_type_CLUSTER_HADOOP": "Hadoop-Cluster",
-  "billing_autorenew_service_type_ANTHOS": "Anthos",
-  "billing_autorenew_service_type_DEDICATED_ANTHOS": "Anthos",
   "billing_autorenew_service_type_DEDICATED_NAS": "Dedicated NAS",
   "billing_autorenew_service_type_DEDICATED_NASHA": "Dedicated HA-NAS",
   "billing_autorenew_service_autorenew_contact_filter": "Wählen Sie Ihren Rechnungskontakt",
@@ -123,7 +122,6 @@
   "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHcloud Connect",
   "billing_autorenew_service_type_WEB_PAAS": "Web PaaS",
   "billing_autorenew_service_type_NETAPP": "Enterprise File Storage",
-  "billing_autorenew_service_type_NUTANIX": "Nutanix",
   "billing_autorenew_service_type_CLOUD_PROJECT": "PCI Projekte",
   "billing_autorenew_service_type_CLOUD_DB_ENTERPRISE_CLUSTER": "Enterprise Cloud Database",
   "billing_autorenew_service_type_DOMAIN_ZONE": "DNS-Zone",
@@ -141,14 +139,14 @@
   "billing_autorenew_service_type_LICENSE_WORKLIGHT": "Worklight Lizenzen",
   "billing_autorenew_service_type_LICENSE_SQLSERVER": "SQL Server Lizenzen",
   "billing_autorenew_service_type_LICENCE_SQLSERVER": "SQL Server Lizenzen",
+  "billing_autorenew_service_type_LICENSE_OFFICE_PREPAID": "Office 365 Lizenzen",
   "billing_autorenew_service_type_MS_SERVICES_SHAREPOINT": "Microsoft Sharepoint ",
   "billing_autorenew_service_type_PACK_XDSL": "xDSL-Pakete",
   "billing_autorenew_service_type_VRACK": "vRacks",
+  "billing_autorenew_service_type_NUTANIX": "Nutanix",
   "billing_export_csv": "Export als CSV-Datei",
   "billing_common_link_new_window": "(neues Fenster)",
   "billing_autorenew_renew_action": "Verlängern",
   "billing_autorenew_service_renew_requires_mean_and_date": "Um die Aktivierung der automatischen Verlängerung abzuschließen, hinterlegen Sie bitte ein Zahlungsmittel Ihrer Wahl. Danach können Sie das Datum der Abbuchung auswählen.",
-  "billing_autorenew_service_activate_alert": "Sie haben für mindestens einen Dienst die automatische Verlängerung eingestellt, diese Option aber noch nicht autorisiert.",
-  "billing_description": "Verwalten Sie die Verlängerung Ihrer Dienste. Überprüfen Sie den Zustand Ihrer Dienste und Ihre Verträge.",
-  "billing_autorenew_service_type_LICENSE_OFFICE_PREPAID": "Office 365 Lizenzen"
+  "billing_autorenew_service_activate_alert": "Sie haben für mindestens einen Dienst die automatische Verlängerung eingestellt, diese Option aber noch nicht autorisiert."
 }
