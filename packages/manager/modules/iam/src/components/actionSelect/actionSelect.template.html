@@ -27,7 +27,6 @@
 
         <oui-field
             data-label="{{:: 'iam_action_select_custom_action_label' | translate }}"
-            data-size="{{ $ctrl.size }}"
             data-error-messages="{
                 exist: ('iam_action_select_custom_action_error_exist' | translate)
             }"
@@ -79,7 +78,6 @@
         <oui-field
             data-ng-if="actionTree.searchable"
             data-label="{{:: 'iam_action_select_action_search_label' | translate }}"
-            data-size="{{ $ctrl.size }}"
         >
             <input
                 class="oui-input mr-3"
