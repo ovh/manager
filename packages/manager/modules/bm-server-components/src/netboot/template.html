@@ -55,7 +55,7 @@
                             class="form-control"
                             id="rescue"
                             name="rescue"
-                            data-ng-options="rescue as rescue.kernel for rescue in $ctrl.netboots.rescue"
+                            data-ng-options="rescue.kernel + ' - ' + rescue.description for rescue in $ctrl.netboots.rescue"
                             data-ng-model="$ctrl.currentNetboot.rescue"
                             required
                         >
