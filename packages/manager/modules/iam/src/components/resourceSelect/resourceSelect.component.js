@@ -1,5 +1,6 @@
 import controller from './resourceSelect.controller';
 import template from './resourceSelect.template.html';
+import './resourceSelect.styles.scss';
 
 export default {
   bindings: {
@@ -14,12 +15,12 @@ export default {
     resourceTypesLabel: '@',
     resourceTypesModel: '=',
     resourceTypesName: '@',
-    size: '@?',
   },
   controller,
   template,
   transclude: {
-    resourcesHeaderSlot: 'resourcesHeader',
-    resourceTypesHeaderSlot: 'resourceTypesHeader',
+    resourcesHeaderSlot: '?resourcesHeader',
+    resourcesSiblingSlot: '?resourcesSibling',
+    resourceTypesHeaderSlot: '?resourceTypesHeader',
   },
 };
