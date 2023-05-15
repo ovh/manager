@@ -1,6 +1,8 @@
 import forEach from 'lodash/forEach';
 import isFunction from 'lodash/isFunction';
 
+import { getNetbootGuideUrl } from './constants';
+
 export default class BmServerComponentsNetbootCtrl {
   /* @ngInject */
   constructor(
@@ -8,6 +10,7 @@ export default class BmServerComponentsNetbootCtrl {
     $q,
     $translate,
     atInternet,
+    coreConfig,
     netbootService,
     $anchorScroll,
     $location,
@@ -15,6 +18,7 @@ export default class BmServerComponentsNetbootCtrl {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
+    this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
     this.atInternet = atInternet;
     this.netbootService = netbootService;
     this.$anchorScroll = $anchorScroll;
@@ -42,6 +46,7 @@ export default class BmServerComponentsNetbootCtrl {
     this.rootDevice = {
       root: null,
     };
+    this.hardwareDiagnosticsGuide = getNetbootGuideUrl(this.ovhSubsidiary);
 
     this.loadNetboots();
   }
