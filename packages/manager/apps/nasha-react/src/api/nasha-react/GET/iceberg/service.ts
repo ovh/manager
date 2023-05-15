@@ -2,10 +2,9 @@ import { fetchIceberg } from '@ovh-ux/manager-core-api';
 
 async function getServices() {
   try {
-    let nashaList;
-    await fetchIceberg({ route: '/dedicated/nasha' }).then(({ data }: any) => {
-      nashaList = data;
-    });
+    const nashaList = await fetchIceberg({ route: '/dedicated/nasha' }).then(
+      ({ data }) => data,
+    );
     return nashaList;
   } catch (error) {
     return null;

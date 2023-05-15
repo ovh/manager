@@ -13,7 +13,7 @@ const Datagrid = (props: { data: any }) => {
       <thead>
         <tr>
           {tableHeaders.map((header) => (
-            <th key={header}>{t(header)}</th>
+            <th>{t(header)}</th>
           ))}
         </tr>
       </thead>
@@ -21,10 +21,7 @@ const Datagrid = (props: { data: any }) => {
         {data.map((service: any, index: number) => (
           <tr key={index}>
             {tableHeaders.map((header) => (
-              <td
-                key={header}
-                onClick={() => navigate(`/details/${service.serviceName}`)}
-              >
+              <td onClick={() => navigate(`/details/${service.serviceName}`)}>
                 {header === 'serviceName' ? (
                   <Link to={`/details/${service.serviceName}`}>
                     {String(service[header])}

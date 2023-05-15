@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navigate, Outlet } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query';
 import { getServices } from '../api/nasha-react';
 import Datagrid from '@/components/layout-helpers/list/dataGrid';
 
@@ -30,17 +34,17 @@ function ServiceList({ data }: any) {
 }
 
 function Services() {
-  const [data, setData] = useState(null);
+  const { data, isError, isLoading } = useQuery(['services'], getServices);
 
-  useEffect(() => {
-    getServices()
-      .then((servicesData) => setData(servicesData))
-      .catch(() => {
-        return <Navigate to="onboarding" />;
-      });
-  }, []);
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
-  if (data) return <ServiceList data={data} />;
+  if (isError) {
+    return <Navigate to="onboarding" />;
+  }
+
+  return <ServiceList data={data} />;
 }
 
 export default function NashaReactApp() {
