@@ -45,9 +45,8 @@ alertResolve.key = 'alert';
 const entityResolve = /* @ngInject */ (policy, identity, resourceGroup) => {
   let entity = null;
   if (identity && policy) {
-    const [, userName] = identity.components;
     entity = {
-      data: { policy, identity, name: userName },
+      data: { policy, identity, name: identity.componentsString },
       type: ENTITY.IDENTITY,
     };
   } else if (policy) {
