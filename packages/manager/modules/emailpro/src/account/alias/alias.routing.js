@@ -2,12 +2,15 @@ import clone from 'lodash/clone';
 import template from './emailpro-account-alias.html';
 
 const state = {
-  url: '/alias',
+  url: '/alias?emailAddress',
   template,
   controller: 'EmailProTabAliasCtrl',
   resolve: {
     breadcrumb: /* @ngInject */ ($translate) =>
       $translate.instant('emailpro_accounts_add'),
+
+    emailAddress: /* @ngInject */ ($transition$) =>
+      $transition$.params().emailAddress,
   },
 };
 
