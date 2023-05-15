@@ -18,7 +18,7 @@ export const LEGAL_LINK3 = {
   OTHERS: 'https://www.ovhcloud.com/en-gb/terms-and-conditions/privacy-policy/',
 };
 
-export const MAX_SIZE = 100000000;
+export const MAX_SIZE = 10000000;
 
 export const TRACKING_PREFIX = 'dedicated::account::identity-files';
 

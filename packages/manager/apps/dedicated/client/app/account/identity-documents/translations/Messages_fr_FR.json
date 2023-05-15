@@ -8,7 +8,7 @@
   "user_account_identity_documents_list_for_institution": "Vous êtes une association, les documents obligatoires à fournir sont Carte d'identité ou passeport (ou permis de conduire, carte électorale, preuve de possession d'un nombre Aadhaar), Justificatif de domicile, Certificat GST (optionnel).",
   "user_account_identity_documents_list_for_others": "Voici les documents obligatoires à fournir sont Carte d'identité ou passeport (ou permis de conduire, carte électorale, preuve de possession d'un nombre Aadhaar), Justificatif de domicile, Certificat GST (optionnel).",
   "user_account_identity_documents_descriptiom": "Les documents seront conservés durant 5 ans après la fin du contrat.",
-  "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png Taille maximale: 100 mo.",
+  "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png Taille maximale: 10 mo.",
   "user_account_identity_documents_submit": "Envoyer mes documents",
   "user_account_identity_documents_submit_success_message_title": "Merci, nous avons bien reçu vos documents!",
   "user_account_identity_documents_submit_success_message_description": "Nous avons bien reçu l’ensemble de vos documents. Ils seront soumis à validation auprès de nos équipes. Vous serez informé par email de leur validation ou vous serez contacté si nous avons besoin d’informations complémentaires.",
