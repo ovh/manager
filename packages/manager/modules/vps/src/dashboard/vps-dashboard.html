@@ -23,8 +23,8 @@
         <span data-translate="vps_dashboard_migration_link"></span>
     </a>
 </oui-message>
-<oui-message ng-if="$ctrl.isStarter()" type="info" class="mb-3">
-    <span data-translate="vps_dashboard_starter_range_info_message_1"> </span>
+<oui-message data-ng-if="$ctrl.isStarter()" type="info" class="mb-3">
+    <span data-translate="vps_dashboard_starter_range_info_message_1"></span>
     <a
         data-ng-href="{{ $ctrl.getRangeCompareLink()}}"
         target="_blank"

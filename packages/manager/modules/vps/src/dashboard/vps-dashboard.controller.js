@@ -49,8 +49,6 @@ export default class {
     this.VpsUpgradeService = VpsUpgradeService;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
     this.SERVICE_TYPE = SERVICE_TYPE;
-    this.RANGES = RANGES;
-    this.VPS_RANGE_COMPARE_LINKS = VPS_RANGE_COMPARE_LINKS;
 
     this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
     this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
@@ -97,14 +95,14 @@ export default class {
 
   isStarter() {
     return this.stateVps?.model?.name.includes(
-      this.RANGES.STARTER.toLocaleLowerCase(),
+      RANGES.STARTER.toLocaleLowerCase(),
     );
   }
 
   getRangeCompareLink() {
     return (
-      this.VPS_RANGE_COMPARE_LINKS[this.coreConfig.getUser()?.ovhSubsidiary] ||
-      this.VPS_RANGE_COMPARE_LINKS.links.DEFAULT
+      VPS_RANGE_COMPARE_LINKS[this.coreConfig.getUser()?.ovhSubsidiary] ||
+      VPS_RANGE_COMPARE_LINKS.links.DEFAULT
     );
   }
 
