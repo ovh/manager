@@ -15,7 +15,6 @@
   "iam_create_policy_form_name_heading": "Nom de la politique",
   "iam_create_policy_form_resource_groups_create": "Créer un groupe de ressources",
   "iam_create_policy_form_resource_groups_heading": "Groupes de ressources",
-  "iam_create_policy_form_resource_groups_info": "Vous n'avez pas encore créé de groupe de resources. [TODO]complete this message[/TODO]",
   "iam_create_policy_form_resource_types_description": "Sélectionnez le type de produits qui correspond aux actions et aux ressources que vous souhaitez ajouter.",
   "iam_create_policy_form_resource_types_error_required": "Veuillez sélectionner un ou plusieurs types de produits.",
   "iam_create_policy_form_resource_types_heading": "Types de produits",
