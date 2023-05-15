@@ -25,7 +25,7 @@ export default class PolicyIdentitiesController {
 
     this.identities = this.policy.identities
       .map(decodeUrn)
-      .map((urn) => ({ title: [...urn.components].pop(), urn }));
+      .map((urn) => ({ title: urn.componentsString, urn }));
 
     this.$q
       .all({
