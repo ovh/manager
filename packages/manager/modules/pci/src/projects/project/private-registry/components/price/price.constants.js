@@ -1,4 +1,4 @@
-export const ASIATOUCH = ['SG', 'ASIA', 'AU'];
+export const ASIATOUCH = ['SG', 'ASIA', 'AU', 'IN'];
 export const GERMANTOUCH = ['DE', 'FI', 'SN'];
 export const FRENCHTOUCH = [
   'CZ',
