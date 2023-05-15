@@ -123,8 +123,8 @@
 
         <oui-field
             data-ng-if="$ctrl.suggest.type === 'siret' && $ctrl.mode !== 'modification'"
-            data-label="{{ 'siret_vat' | translate }} ({{'siret_optional' | translate }})"
-            data-label-popover="{{ 'siret_vat_helper' | translate }}"
+            data-label="{{:: ('siret_' + $ctrl.vatProperty )| translate }} ({{'siret_optional' | translate }})"
+            data-label-popover="{{:: 'siret_' + $ctrl.vatProperty + '_helper' | translate }}"
         >
             <input
                 class="oui-input"
@@ -206,8 +206,8 @@
 
             <oui-field
                 class="col-lg-6"
-                data-label="{{ 'siret_vat' | translate }} ({{ 'siret_optional' | translate }})"
-                data-label-popover="{{ 'siret_vat_helper' | translate }}"
+                data-label="{{:: ('siret_' + $ctrl.vatProperty )| translate }} ({{'siret_optional' | translate }})"
+                data-label-popover="{{:: 'siret_' + $ctrl.vatProperty + '_helper' | translate }}"
             >
                 <input
                     class="oui-input"

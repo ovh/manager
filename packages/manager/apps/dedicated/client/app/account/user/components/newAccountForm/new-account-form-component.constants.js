@@ -51,8 +51,6 @@ export const ROUTE = {
   emailValidation: '/auth/signup/isValidEmail',
 };
 
-export const GST_SUBSIDIARIES = ['IN'];
-
 export const SECTIONS = {
   identification: ['customerCode', 'ovhCompany', 'ovhSubsidiary', 'legalform'],
   personal: [
@@ -121,6 +119,12 @@ export const FIELD_NAME_LIST = {
   companyNationalIdentificationNumber: 'companyNationalIdentificationNumber',
   vat: 'vat',
   gst: 'gst',
+  iceNumber: 'iceNumber',
+};
+
+export const SUBSIDIARIES_VAT_FIELD_OVERRIDE = {
+  IN: FIELD_NAME_LIST.gst,
+  MA: FIELD_NAME_LIST.iceNumber,
 };
 
 export const PHONE_PREFIX = {
@@ -376,7 +380,7 @@ export default {
   READY_ONLY_PARAMS,
   READY_ONLY_RULES_PARAMS,
   ROUTE,
-  GST_SUBSIDIARIES,
+  SUBSIDIARIES_VAT_FIELD_OVERRIDE,
   SECTIONS,
   PHONE_PREFIX,
   CONSENT_MARKETING_EMAIL_NAME,

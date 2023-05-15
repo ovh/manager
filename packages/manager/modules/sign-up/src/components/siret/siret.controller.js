@@ -4,6 +4,7 @@ import {
   LEGAL_FORM,
   PREFIX_TRANSLATION_LEGAL_FORM,
   TRACKING_PREFIX,
+  VAT_SUBSIDIARIES_FIELD_VALUE,
 } from './siret.constants';
 
 export default class SiretCtrl {
@@ -29,6 +30,8 @@ export default class SiretCtrl {
     );
 
     this.trackingPrefix = TRACKING_PREFIX[this.trackingMode];
+    this.vatProperty =
+      VAT_SUBSIDIARIES_FIELD_VALUE[this.country.toUpperCase()] || 'vat';
   }
 
   submitSearch(needTracking = true) {

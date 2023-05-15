@@ -64,6 +64,7 @@ export const COUNTRIES_VAT_LABEL = {
   DO: 'RNC',
   UY: 'RUT',
   VE: 'RIF',
+  MA: 'ICE',
 };
 
 export default {

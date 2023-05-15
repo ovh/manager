@@ -7,12 +7,12 @@ import values from 'lodash/values';
 import { LANGUAGES } from '@ovh-ux/manager-config';
 
 import {
+  CONSENT_MARKETING_EMAIL_NAME,
+  FIELD_NAME_LIST,
   READY_ONLY_PARAMS,
   READY_ONLY_RULES_PARAMS,
-  CONSENT_MARKETING_EMAIL_NAME,
-  GST_SUBSIDIARIES,
   SECTIONS,
-  FIELD_NAME_LIST,
+  SUBSIDIARIES_VAT_FIELD_OVERRIDE,
 } from './new-account-form-component.constants';
 
 export default class NewAccountFormController {
@@ -203,11 +203,11 @@ export default class NewAccountFormController {
         const displayRules = rules
           .map((rule) => {
             let displayFieldName = rule.fieldName;
-            if (
-              rule.fieldName === FIELD_NAME_LIST.vat &&
-              GST_SUBSIDIARIES.includes(this.user.country)
-            ) {
-              displayFieldName = FIELD_NAME_LIST.gst;
+            if (rule.fieldName === FIELD_NAME_LIST.vat) {
+              displayFieldName =
+                SUBSIDIARIES_VAT_FIELD_OVERRIDE[
+                  this.user.country.toUpperCase()
+                ] || displayFieldName;
             }
             return {
               ...rule,
