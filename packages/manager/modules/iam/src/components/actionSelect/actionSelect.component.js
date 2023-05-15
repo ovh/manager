@@ -11,7 +11,6 @@ export default {
     ngModel: '<',
     required: '@?',
     resourceTypes: '<',
-    size: '@?',
   },
   require: {
     requiredNgModel: '^ngModel',
