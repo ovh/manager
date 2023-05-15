@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, Link } from 'react-router-dom';
 import './dataGrid.scss';
 
-const Datagrid = (props: { data }) => {
+const Datagrid = (props: { data: any }) => {
   const { data } = props;
   const navigate = useNavigate();
   const tableHeaders = Object.keys(data[0]);

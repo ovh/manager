@@ -7,7 +7,7 @@ import Datagrid from '@/components/layout-helpers/list/dataGrid';
 
 const queryClient = new QueryClient();
 
-function ServiceList({ data }) {
+function ServiceList({ data }: any) {
   const { t } = useTranslation('nasha-react');
 
   const count = data?.length;
