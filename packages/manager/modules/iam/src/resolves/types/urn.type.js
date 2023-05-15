@@ -2,8 +2,8 @@ import { isEqual } from 'lodash-es';
 import { ENTITY } from '@iam/constants';
 
 const urnType = 'urn';
-const urnPattern = /urn:v[0-9]:(?:eu|ca|us):[a-z]+:[\w:\s/-]+/;
-const urnRegExp = /^urn:v([0-9]):(eu|ca|us):([a-z]+):([\w:\s/-]+)$/;
+const urnPattern = /urn:v[0-9]:(?:eu|ca|us):[a-z]+:.+/;
+const urnRegExp = /^urn:v([0-9]):(eu|ca|us):([a-z]+):(.+?)$/;
 
 /**
  * Encode a urn object to a string
@@ -27,12 +27,18 @@ const encodeUrn = (object) => {
  * @returns {Object}
  */
 const decodeUrn = (string) => {
-  const [, version, region, entity, components] = urnRegExp.exec(string);
+  const [match, version, region, entity, components] =
+    urnRegExp.exec(string) ?? [];
+  if (!match) {
+    return undefined;
+  }
+  const splittedComponents = components.split(':');
   return {
     version: parseInt(version, 10),
     region: region.toUpperCase(),
     entity,
-    components: components.split(':'),
+    components: splittedComponents,
+    componentsString: splittedComponents.slice(1).join(':'),
   };
 };
 
