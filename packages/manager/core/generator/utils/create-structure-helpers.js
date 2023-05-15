@@ -56,15 +56,13 @@ const createPages = (templates, appDirectory) => {
       };
     }
     return {
-      type: 'add',
-      path: join(
+      type: 'addMany',
+      destination: join(
         appDirectory,
-        `../../../apps/{{dashCase appName}}/src/pages/${template}/index.tsx`,
+        `../../../apps/{{dashCase appName}}/src/pages/${template}/`,
       ),
-      templateFile: join(
-        appDirectory,
-        `./conditional-templates/${template}/index.tsx.hbs`,
-      ),
+      templateFiles: join(appDirectory, `./conditional-templates/${template}`),
+      base: join(appDirectory, `./conditional-templates/${template}`),
     };
   });
 };
@@ -77,15 +75,16 @@ const createPages = (templates, appDirectory) => {
 const createTranslations = (templates, appName, appDirectory) => {
   return templates.map((template) => {
     return {
-      type: 'add',
-      path: join(
+      type: 'addMany',
+      destination: join(
         appDirectory,
-        `../../../apps/{{dashCase appName}}/src/public/translations/${appName}/${template}/Messages_fr_FR.json`,
+        `../../../apps/{{dashCase appName}}/src/public/translations/${appName}/${template}/`,
       ),
-      templateFile: join(
+      templateFiles: join(
         appDirectory,
-        `./conditional-translations/${template}/Messages_fr_FR.json`,
+        `./conditional-translations/${template}/`,
       ),
+      base: join(appDirectory, `./conditional-translations/${template}/`),
     };
   });
 };
