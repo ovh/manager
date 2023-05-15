@@ -3,14 +3,12 @@
     <div data-ng-transclude="resourceTypesHeaderSlot"></div>
     <oui-field
         data-label="{{:: $ctrl.resourceTypesLabel }}"
-        data-size="{{:: $ctrl.size }}"
         data-error-messages="{
             resources: ('iam_resource_select_resource_types_error_resources' | translate),
             required: ('iam_resource_select_resource_types_error_required' | translate)
         }"
     >
         <oui-select
-            class="w-100"
             data-load="{{:: $ctrl.url.resourceTypes }}"
             data-load-options="{ global: { serviceType: 'apiv2' } }"
             data-model="$ctrl.resourceTypesModel"
@@ -26,27 +24,35 @@
 
     <!-- <Resources> -->
     <div data-ng-transclude="resourcesHeaderSlot"></div>
-    <oui-field
-        data-label="{{:: $ctrl.resourcesLabel }}"
-        data-size="{{:: $ctrl.size }}"
-        data-error-messages="{
-            required: $ctrl.resourcesRequiredMessage || ('iam_resource_select_resources_error_required' | translate)
-        }"
+    <div
+        class="iam-resource_select--resources_container d-flex flex-column flex-sm-row"
     >
-        <oui-select
+        <oui-field
             class="w-100"
-            data-disabled="$ctrl.isResourcesDisabled"
-            data-load="{{ $ctrl.hasSelectedResourceTypes ? $ctrl.url.resources : '' }}"
-            data-load-options="{ global: { serviceType: 'apiv2' } }"
-            data-match="displayName"
-            data-model="$ctrl.resourcesModel"
-            data-multiple="true"
-            data-name="{{:: $ctrl.resourcesName }}"
-            data-on-change="$ctrl.onResourcesChanged(modelValue)"
-            data-on-load="$ctrl.onResourcesLoaded(response)"
-            data-on-error="$ctrl.onError(error)"
-            data-required="$ctrl.isResourcesRequired"
-        ></oui-select>
-    </oui-field>
+            data-label="{{:: $ctrl.resourcesLabel }}"
+            data-error-messages="{
+                required: $ctrl.resourcesRequiredMessage || ('iam_resource_select_resources_error_required' | translate)
+            }"
+        >
+            <oui-select
+                data-disabled="$ctrl.isResourcesDisabled"
+                data-load="{{ $ctrl.hasSelectedResourceTypes ? $ctrl.url.resources : '' }}"
+                data-load-options="{ global: { serviceType: 'apiv2' } }"
+                data-match="displayName"
+                data-model="$ctrl.resourcesModel"
+                data-multiple="true"
+                data-name="{{:: $ctrl.resourcesName }}"
+                data-on-change="$ctrl.onResourcesChanged(modelValue)"
+                data-on-load="$ctrl.onResourcesLoaded(response)"
+                data-on-error="$ctrl.onError(error)"
+                data-required="$ctrl.isResourcesRequired"
+            ></oui-select>
+        </oui-field>
+        <div
+            class="w-100"
+            data-ng-if="$ctrl.hasResourcesSiblingSlot"
+            data-ng-transclude="resourcesSiblingSlot"
+        ></div>
+    </div>
     <!-- </Resources> -->
 </ng-form>

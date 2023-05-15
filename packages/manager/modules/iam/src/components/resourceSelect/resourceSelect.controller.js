@@ -3,6 +3,7 @@ export default class ResourceSelectController {
   constructor(
     $scope,
     $timeout,
+    $transclude,
     $translate,
     PolicyService,
     ReferenceService,
@@ -18,6 +19,15 @@ export default class ResourceSelectController {
      * @type {NgFormController}
      */
     this.form = null;
+
+    /**
+     * Whether the resource sibling slot is filled
+     * Used to fix a layout issue
+     * @type {Boolean}
+     */
+    this.hasResourcesSiblingSlot = $transclude.isSlotFilled(
+      'resourcesSiblingSlot',
+    );
 
     /**
      * Resources loaded from the api when resourceTypes have changed
