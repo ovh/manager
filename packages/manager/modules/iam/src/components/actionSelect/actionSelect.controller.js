@@ -64,12 +64,6 @@ export default class ActionSelectController {
      * @type {boolean}
      */
     this.required = false;
-
-    /**
-     * The input size attribute
-     * @type {string}
-     */
-    this.size = 'xl';
   }
 
   /**
