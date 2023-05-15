@@ -5,7 +5,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link, Params, useMatches } from 'react-router-dom';
-import { useLogger } from '@ovh-ux/manager-react-core-application';
 
 export type BreadcrumbHandleParams = {
   data: unknown;
@@ -25,7 +24,6 @@ type Match = {
 export default function BreadcrumbComponent(): JSX.Element {
   const matches = useMatches();
   const [crumbs, setCrumbs] = useState<Record<string, string>[]>();
-  const logger = useLogger();
 
   useEffect(() => {
     const items = matches.map(async (match) => {
@@ -41,7 +39,7 @@ export default function BreadcrumbComponent(): JSX.Element {
       .then((breadcrumbs) => {
         setCrumbs(breadcrumbs.filter(({ crumb }) => !!crumb));
       })
-      .catch((err) => logger.error(err));
+      .catch((err) => console.error(err));
   }, [matches]);
 
   // no need to display a breadcrumb for a single item
