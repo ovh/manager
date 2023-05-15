@@ -24,10 +24,10 @@ export default class {
     this.$scope.getAliases = ({ pageSize, offset }) => {
       this.$scope.getAliasesParams.pageSize = pageSize;
       this.$scope.getAliasesParams.offset = offset;
-      if (this.$scope.selectedAccount) {
+      if (this.$stateParams.emailAddress) {
         return this.EmailPro.getAliases(
           this.$stateParams.productId,
-          this.$scope.selectedAccount.primaryEmailAddress,
+          this.$stateParams.emailAddress,
           pageSize,
           offset - 1,
         )
@@ -48,7 +48,8 @@ export default class {
             );
           });
       }
-      return null;
+
+      return this.goToAccounts();
     };
 
     this.$scope.refreshList = () => {

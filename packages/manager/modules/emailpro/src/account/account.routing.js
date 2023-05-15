@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goToAliases: /* @ngInject */ ($state, $transition$) => (account) =>
         $state.go('email-pro.dashboard.account.email.alias', {
           ...$transition$.params(),
+          emailAddress: account.primaryEmailAddress,
           account: account.primaryEmailAddress,
         }),
       breadcrumb: /* @ngInject */ ($translate) =>
