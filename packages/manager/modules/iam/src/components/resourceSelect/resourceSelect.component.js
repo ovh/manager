@@ -7,6 +7,7 @@ export default {
     onChange: '&?',
     onError: '&?',
     onResourceTypesConfirmRemove: '&?',
+    readOnly: '<?',
     required: '<',
     resourcesLabel: '@',
     resourcesModel: '=',

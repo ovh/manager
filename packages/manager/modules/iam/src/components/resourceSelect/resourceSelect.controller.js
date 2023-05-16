@@ -74,7 +74,7 @@ export default class ResourceSelectController {
    * @returns {boolean}
    */
   get isResourcesDisabled() {
-    return !this.resources || !this.resources.length;
+    return !this.resources || !this.resources.length || this.readOnly;
   }
 
   /**
