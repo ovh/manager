@@ -9,6 +9,7 @@ export default {
     load: '&?',
     name: '@?',
     ngModel: '<',
+    readOnly: '<?',
     required: '@?',
     resourceTypes: '<',
   },
