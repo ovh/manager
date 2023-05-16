@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.4.1...@ovh-ux/manager-emailpro@3.4.2) (2023-05-16)
+
+
+### Bug Fixes
+
+* **web:** reload aliases ([#9298](https://github.com/ovh/manager/issues/9298)) ([b708fb1](https://github.com/ovh/manager/commit/b708fb13b439a949c5781506eff827c3c8ec6dd8))
+
+
+
+
+
 ## [3.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.4.0...@ovh-ux/manager-emailpro@3.4.1) (2023-04-20)
 
 
