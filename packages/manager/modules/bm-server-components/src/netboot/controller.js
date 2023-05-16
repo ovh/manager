@@ -31,6 +31,8 @@ export default class BmServerComponentsNetbootCtrl {
     this.RESCUE = 'rescue';
     this.NETWORK = 'network';
 
+    this.DEFAULT_RESCUE = 'rescue-customer';
+
     this.loading = {
       init: true,
       setNetboot: false,
@@ -67,6 +69,12 @@ export default class BmServerComponentsNetbootCtrl {
       forEach(eachNetboot, (eachNetbootItem) => {
         if (eachNetbootItem.id === this.server.bootId) {
           this.currentNetboot.type = eachNetbootItem.type.toLowerCase();
+          this.currentNetboot[netbootType] = eachNetbootItem;
+        }
+        if (
+          netbootType === this.RESCUE &&
+          eachNetbootItem.kernel === this.DEFAULT_RESCUE
+        ) {
           this.currentNetboot[netbootType] = eachNetbootItem;
         }
       });
