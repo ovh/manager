@@ -62,7 +62,7 @@ export default class AccountUserIdentityDocumentsController {
         const { uploadLinks } = response;
         return this.$q.all(
           uploadLinks.map((uploadLink, index) =>
-            this.uploadDocumenstToS3usingLinks(uploadLink, this.files[index]),
+            this.uploadDocumentsToS3usingLinks(uploadLink, this.files[index]),
           ),
         );
       })
@@ -75,8 +75,8 @@ export default class AccountUserIdentityDocumentsController {
       });
   }
 
-  uploadDocumenstToS3usingLinks(uploadLink, uploadedfile) {
-    this.$http.put(uploadLink.link, uploadedfile, {
+  uploadDocumentsToS3usingLinks(uploadLink, uploadedfile) {
+    return this.$http.put(uploadLink.link, uploadedfile, {
       headers: { ...uploadLink.headers },
     });
   }

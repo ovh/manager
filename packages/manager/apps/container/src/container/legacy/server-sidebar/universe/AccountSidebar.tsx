@@ -52,7 +52,7 @@ export default function AccountSidebar() {
     );
     if (featureAvailability['identity-documents']) {
       const { status } = await reketInstance.get(`/me/procedure/identity`);
-      if (['open', 'required'].includes(status)) {
+      if (['required'].includes(status)) {
         menu.push({
           id: 'my-identity-documents',
           label: t('sidebar_account_identity_documents'),
