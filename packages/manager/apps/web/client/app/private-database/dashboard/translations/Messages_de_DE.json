@@ -257,7 +257,7 @@
   "privateDatabase_add_bdd_name": "Name der Datenbank",
   "privateDatabase_add_bdd_error_name_pattern": "Der Name entspricht nicht den Bedingungen.",
   "privateDatabase_add_bdd_error_name_required": "Pflichtangabe.",
-  "privateDatabase_create_bdd_conditions": "Achtung, der Name muss folgende Bedingungen erfüllen: <br/>- mindestens {{t0}} Zeichen<br/>- höchstens {{t1}} Zeichen<br/>- Darf nur mit einer Ziffer oder einem Buchstaben beginnen.<br/>- Darf nur Ziffern, Buchstaben oder die Zeichen_` und Kfz.",
+  "privateDatabase_create_bdd_conditions": "Achtung: Der Name muss folgende Bedingungen erfüllen: <br/>- Mindestens {{t0}} Zeichen<br/>- Höchstens {{t1}} Zeichen<br/>- Muss mit einer Ziffer oder einem Buchstaben beginnen.<br/>- Darf nur Ziffern, Buchstaben und die Zeichen  „_“ und „-“ enthalten.",
   "privateDatabase_add_bdd_success": "Die Anfrage zur Erstellung der Datenbank wurde erfolgreich durchgeführt",
   "privateDatabase_add_bdd_fail": "Bei der Erstellung der Datenbank ist ein Fehler aufgetreten.",
   "privateDatabase_tabs_bdd_adding": "Datenbank wird hinzugefügt...",
