@@ -9,6 +9,7 @@
             data-name="wildcard"
             data-model="$ctrl.isWildcardActive"
             data-on-change="$ctrl.onModelChanged()"
+            data-disabled="$ctrl.readOnly"
         ></oui-switch>
     </div>
     <small
@@ -23,6 +24,7 @@
             type="hidden"
             name="{{ $ctrl.name }}"
             data-ng-model="$ctrl.ngModel"
+            data-disabled="$ctrl.readOnly"
         />
 
         <oui-field
@@ -38,7 +40,7 @@
                     class="oui-input mr-3"
                     name="customAction"
                     type="text"
-                    data-ng-disabled="$ctrl.isWildcardActive"
+                    data-ng-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
                 />
                 <button
                     type="button"
@@ -95,7 +97,7 @@
             data-ng-repeat="action in actionTree.actions track by action.value"
             data-model="action.selected"
             data-on-change="$ctrl.onModelChanged()"
-            data-disabled="$ctrl.isWildcardActive"
+            data-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
         >
             <oui-checkbox-label>
                 <span data-ng-bind="action.value"></span>
@@ -112,7 +114,7 @@
                 <!-- <CategoryCheckbox> -->
                 <oui-checkbox
                     class="mb-3"
-                    data-disabled="$ctrl.isWildcardActive"
+                    data-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
                     data-model="category.selected"
                     data-on-change="$ctrl.toggleActions(category.actions)"
                 >
@@ -145,7 +147,7 @@
                 <!-- <CategoryActions> -->
                 <oui-checkbox
                     class="ml-4"
-                    data-disabled="$ctrl.isWildcardActive"
+                    data-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
                     data-ng-repeat="action in category.actions track by action.value"
                     data-model="action.selected"
                     data-on-change="$ctrl.onModelChanged()"

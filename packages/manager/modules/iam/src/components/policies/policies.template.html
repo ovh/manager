@@ -34,15 +34,18 @@
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item data-on-click="$ctrl.editIdentities($row)">
                 <span
-                    data-translate="iam_policies_datagrid_action_edit_identities"
+                    data-translate="iam_policies_datagrid_action_{{ $row.readOnly ? 'read' : 'edit' }}_identities"
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item data-on-click="$ctrl.editPolicy($row)">
                 <span
-                    data-translate="iam_policies_datagrid_action_edit_policy"
+                    data-translate="iam_policies_datagrid_action_{{ $row.readOnly ? 'read' : 'edit' }}_policy"
                 ></span>
             </oui-action-menu-item>
-            <oui-action-menu-item data-on-click="$ctrl.deletePolicy($row)">
+            <oui-action-menu-item
+                data-disabled="$row.readOnly"
+                data-on-click="$ctrl.deletePolicy($row)"
+            >
                 <span
                     data-translate="iam_policies_datagrid_action_delete_policy"
                     class="text-danger"

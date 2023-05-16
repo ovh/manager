@@ -72,6 +72,7 @@
                 type="text"
                 data-ng-model="$ctrl.model.name"
                 data-ng-pattern="$root.IAM.ENTITY_NAME_PATTERN"
+                data-ng-disabled="$ctrl.policy.readOnly"
                 required
             />
         </oui-field>
@@ -90,6 +91,7 @@
             data-resource-types-label="{{:: 'iam_create_policy_form_resource_types_heading' | translate }}"
             data-resource-types-model="$ctrl.model.resourceTypes"
             data-resource-types-name="resourceTypes"
+            data-read-only="$ctrl.policy.readOnly"
         >
             <resource-types-header>
                 <h4
@@ -117,7 +119,7 @@
                     }"
                 >
                     <oui-select
-                        data-disabled="!$ctrl.hasResourceGroups"
+                        data-disabled="!$ctrl.hasResourceGroups || $ctrl.policy.readOnly"
                         data-load="{{:: $ctrl.url.resourceGroups }}"
                         data-load-options="{ global: { serviceType: 'apiv2' } }"
                         data-match="name"
@@ -142,6 +144,7 @@
             data-name="actions"
             data-ng-model="$ctrl.model.actions"
             data-resource-types="$ctrl.model.resourceTypes"
+            data-read-only="$ctrl.policy.readOnly"
         ></iam-action-select>
         <!-- </Actions> -->
 
