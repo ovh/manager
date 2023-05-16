@@ -1,6 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import {
+  OsdsText,
+  OsdsLink,
+  OsdsIcon,
+} from '@ovhcloud/ods-stencil/components/react/';
+import {
+  OdsThemeColorIntent,
+  OdsThemeTypographyLevel,
+} from '@ovhcloud/ods-theming';
+import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
 import './dataGrid.scss';
 
 const Datagrid = (props: { data: any }) => {
@@ -13,8 +23,22 @@ const Datagrid = (props: { data: any }) => {
       <thead>
         <tr>
           {tableHeaders.map((header) => (
-            <th>{t(header)}</th>
+            <th>
+              <OsdsText
+                level={OdsThemeTypographyLevel.subheading}
+                color={OdsThemeColorIntent.text}
+              >
+                {t(header)}
+              </OsdsText>
+            </th>
           ))}
+          <th>
+            <OsdsIcon
+              size={OdsIconSize.xxs}
+              name={OdsIconName.SETTINGS}
+              color={OdsThemeColorIntent.primary}
+            ></OsdsIcon>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -23,9 +47,12 @@ const Datagrid = (props: { data: any }) => {
             {tableHeaders.map((header) => (
               <td onClick={() => navigate(`/details/${service.serviceName}`)}>
                 {header === 'serviceName' ? (
-                  <Link to={`/details/${service.serviceName}`}>
+                  <OsdsLink
+                    color={OdsThemeColorIntent.primary}
+                    href={`/details/${service.serviceName}`}
+                  >
                     {String(service[header])}
-                  </Link>
+                  </OsdsLink>
                 ) : (
                   String(service[header])
                 )}

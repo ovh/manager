@@ -8,6 +8,7 @@ import {
 } from '@tanstack/react-query';
 import { getServices } from '../api/nasha-react';
 import Datagrid from '@/components/layout-helpers/list/dataGrid';
+import '@ovhcloud/ods-theme-blue-jeans/index.css';
 
 const queryClient = new QueryClient();
 
