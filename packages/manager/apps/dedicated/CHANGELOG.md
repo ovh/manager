@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.60.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.60.1...@ovh-ux/manager-dedicated@17.60.2) (2023-05-16)
+
+
+### Bug Fixes
+
+* **dedicated:** display mrtg in us region ([#9281](https://github.com/ovh/manager/issues/9281)) ([115d690](https://github.com/ovh/manager/commit/115d690e90064d541ef7598c2db214549d6027bd))
+
+
+
+
+
 ## [17.60.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.60.0...@ovh-ux/manager-dedicated@17.60.1) (2023-05-15)
 
 
