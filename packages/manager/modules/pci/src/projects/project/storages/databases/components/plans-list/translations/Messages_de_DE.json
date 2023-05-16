@@ -12,6 +12,6 @@
   "pci_database_plans_list_spec_storage_unique": "{{storage}} Storage",
   "pci_database_plans_list_current_offer": "Derzeitiges Angebot",
   "pci_database_plans_list_spec_private_network": "Private Netzwerke",
-  "pci_database_plans_list_spec_price_unit_hour": " / Stunde",
-  "pci_database_plans_list_spec_price_unit_month": " / Monat"
+  "pci_database_plans_list_spec_price_unit_hour": "/ Stunde",
+  "pci_database_plans_list_spec_price_unit_month": "/ Monat"
 }
