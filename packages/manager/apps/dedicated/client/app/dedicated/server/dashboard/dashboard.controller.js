@@ -26,6 +26,7 @@ export default class DedicatedServerDashboard {
     constants,
     DedicatedServerFeatureAvailability,
     Server,
+    coreConfig,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -37,6 +38,7 @@ export default class DedicatedServerDashboard {
     this.constants = constants;
     this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
     this.Server = Server;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -46,9 +48,7 @@ export default class DedicatedServerDashboard {
     this.servicesStateLinks = {
       weathermap:
         WEATHERMAP_URL[this.user.ovhSubsidiary] || WEATHERMAP_URL.OTHERS,
-      vms:
-        this.constants.vmsUrl[this.user.ovhSubsidiary] ||
-        this.constants.vmsUrl[VMS_URL_OTHERS],
+      vms: this.coreConfig.isRegion('US') ? null : this.getVmsLink(),
       status: this.constants.statusUrl,
     };
 
@@ -87,6 +87,13 @@ export default class DedicatedServerDashboard {
     });
 
     this.loadStatistics();
+  }
+
+  getVmsLink() {
+    return (
+      this.constants.vmsUrl[this.user.ovhSubsidiary] ||
+      this.constants.vmsUrl[VMS_URL_OTHERS]
+    );
   }
 
   createChart(data) {
