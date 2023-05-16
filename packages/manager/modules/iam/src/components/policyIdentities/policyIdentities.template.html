@@ -43,6 +43,7 @@
                     data-oui-autocomplete-property="userName"
                     data-oui-autocomplete-on-select="$ctrl.suggestion = value"
                     data-ng-keypress="$ctrl.onUsersFieldKeypress($event)"
+                    data-ng-disabled="$ctrl.policy.readOnly"
                 />
                 <button
                     class="oui-button oui-button_secondary oui-button_icon-right"
@@ -61,12 +62,17 @@
             <div class="oui-chip__container">
                 <button
                     data-ng-repeat="identity in $ctrl.identities track by $index"
-                    class="oui-chip oui-chip_closable"
+                    class="oui-chip"
+                    data-ng-class="{
+                        'oui-chip_closable': !$ctrl.policy.readOnly,
+                    }"
                     type="button"
                     data-ng-click="$ctrl.goToDeleteIdentity(identity.urn)"
+                    data-ng-disabled="$ctrl.policy.readOnly"
                 >
                     <span data-ng-bind="identity.title"></span>
                     <span
+                        data-ng-if="!$ctrl.policy.readOnly"
                         class="oui-chip__close oui-icon oui-icon-close"
                     ></span>
                 </button>
