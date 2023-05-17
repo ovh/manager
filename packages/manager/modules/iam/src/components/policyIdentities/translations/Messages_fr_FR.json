@@ -1,8 +1,8 @@
 {
   "iam_policy_identities_title": "Gérez les identités de la politique {{ policy }}",
-  "iam_policy_identities_description": "Vous pouvez associer ou supprimer des identités à votre politique (utilisateurs, NIC, email, groupes d'utilisateurs...)",
+  "iam_policy_identities_description": "Vous pouvez associer ou supprimer des identités à votre politique (utilisateurs, NIC, e-mail, groupes d'utilisateurs...)",
   "iam_policy_identities_guide_text": "Guides",
-  "iam_policy_identities_field_users_selection_label": "Users & sub-users",
+  "iam_policy_identities_field_users_selection_label": "Utilisateurs et sous-utilisateurs",
   "iam_policy_identities_field_users_selection_placeholder": "NIC, utilisateurs, groupes d'utilisateurs...",
   "iam_policy_identities_field_users_button_add": "Ajouter",
   "iam_policy_identities_error_load_users": "Une erreur est survenue lors de la récupération de vos utilisateurs : {{ message }}",
