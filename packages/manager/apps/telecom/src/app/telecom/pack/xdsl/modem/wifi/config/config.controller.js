@@ -235,7 +235,7 @@ export default /* @ngInject */ function XdslModemWifiConfigCtrl(
           self.fields.securityType =
             self.modem.model === 'TG799VAC'
               ? ['None', 'WPA2', 'WPAandWPA2']
-              : ['None', 'WEP', 'WPA', 'WPA2', 'WPAandWPA2'];
+              : ['WPA2', 'WPA2andWPA3', 'WPA3'];
         },
         (err) => {
           TucToast.error($translate.instant('xdsl_modem_wifi_read_error'));
