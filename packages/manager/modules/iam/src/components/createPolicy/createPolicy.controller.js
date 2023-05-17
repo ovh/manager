@@ -80,7 +80,7 @@ export default class CreatePolicyController {
    * @type {boolean}
    */
   get canSubmit() {
-    return !this.isSubmitting && this.form?.$valid && !this.policy.readOnly;
+    return !this.isSubmitting && this.form?.$valid && !this.policy?.readOnly;
   }
 
   /**
