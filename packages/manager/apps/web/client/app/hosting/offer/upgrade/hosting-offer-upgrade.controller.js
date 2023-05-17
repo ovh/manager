@@ -281,6 +281,11 @@ angular.module('App').controller(
         });
     }
 
+    onHostingOfferClick(offer) {
+      const { name, value } = offer.selectedVersion;
+      this.model.offer = { name, value };
+    }
+
     static isProrataDuration({ duration }) {
       return /^upto/.test(duration);
     }

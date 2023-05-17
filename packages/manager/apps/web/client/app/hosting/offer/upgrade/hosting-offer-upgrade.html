@@ -28,51 +28,13 @@
             <oui-step-form
                 data-header="{{:: 'hosting_order_upgrade_step_header_offer' | translate }}"
             >
-                <oui-field
-                    data-label="{{::'hostin_order_select_offer' | translate}}"
-                    data-size="m"
-                    data-label-popover="{{:: ($ctrl.hosting.isCloudWeb
-                                                    ? 'hosting_order_upgrade_select_noduration_cloudweb'
-                                                    : 'hosting_order_upgrade_select_noduration') | translate }}"
-                >
-                    <oui-select
-                        data-required
-                        data-placeholder="{{::'select_placeholder' | translate}}"
-                        data-name="availableOffer"
-                        data-model="$ctrl.model.offer"
-                        data-items="$ctrl.availableOffers"
-                        data-match="name"
-                    >
-                        <span data-ng-bind="$item.name"></span>
-                    </oui-select>
-                </oui-field>
-                <oui-message
-                    data-type="info"
-                    data-ng-if="$ctrl.hosting.isCloudWeb"
-                >
-                    <span
-                        data-translate="hosting_order_upgrade_select_noduration_cloudweb_explanation"
-                    ></span>
-                </oui-message>
-                <oui-field
-                    data-ng-if="$ctrl.model.offer && $ctrl.model.offer.value === 'KS'"
-                    data-label="{{:: 'hosting_dashboard_service_offer_downgrade_KIMSUFI_2015' | translate }}"
-                >
-                    <oui-checkbox
-                        data-required
-                        data-model="$ctrl.model.downgradeAgree"
-                    ><span
-                        data-translate="hosting_dashboard_service_offer_downgrade_KIMSUFI_2015_agree"
-                    ></span>
-                    </oui-checkbox>
-                </oui-field>
-
                 <web-component-hosting-domain-offers
                     data-ng-if="$ctrl.catalog"
                     data-user="$ctrl.user"
                     data-catalog="$ctrl.catalog"
                     data-offers="$ctrl.availableOffers"
-                    data-on-offer-click="$ctrl.onHostingOfferClick({ hostingOffer })"
+                    data-show-details="true"
+                    data-on-offer-click="$ctrl.onHostingOfferClick(offer)"
                 >
                 </web-component-hosting-domain-offers>
             </oui-step-form>

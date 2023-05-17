@@ -6,6 +6,7 @@ const component = {
     user: '<',
     catalog: '<',
     offers: '<',
+    showDetails: '<',
     onOfferClick: '&',
   },
   controller,

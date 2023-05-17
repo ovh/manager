@@ -9,7 +9,7 @@
         data-model="$ctrl.model.offer"
         data-values="[offer]"
         data-variant="light"
-        data-on-change="$ctrl.onOfferClick(offer)"
+        data-on-change="$ctrl.onOfferClick({offer})"
     >
         <!--Offer picker header-->
         <oui-select-picker-label class="w-100 d-flex justify-content-between">
@@ -28,7 +28,7 @@
         <!--Offer picker body-->
         <oui-select-picker-section>
             <!--Technicals list info-->
-            <ul>
+            <ul data-ng-if="$ctrl.showDetails">
                 <li
                     data-ng-repeat="technicalInfo in ::$ctrl.getOfferTechnicalsInfo(offer.category) track by $index"
                     data-ng-bind=":: technicalInfo"
@@ -38,6 +38,7 @@
             <!--Offer versions-->
             <oui-select
                 class="w-100"
+                data-ng-init="$ctrl.initSelectedVersion(offer)"
                 data-disabled="offer.versions.length <= 1"
                 data-name="hosting-offer-version-{{modelValue.name}}"
                 data-items="offer.versions"
