@@ -22,8 +22,8 @@ const Datagrid = (props: { data: any }) => {
     <table>
       <thead>
         <tr>
-          {tableHeaders.map((header) => (
-            <th>
+          {tableHeaders.map((header, indexTh) => (
+            <th key={`datagrid-th-${indexTh}`}>
               <OsdsText
                 level={OdsThemeTypographyLevel.subheading}
                 color={OdsThemeColorIntent.text}
@@ -44,8 +44,11 @@ const Datagrid = (props: { data: any }) => {
       <tbody>
         {data.map((service: any, index: number) => (
           <tr key={index}>
-            {tableHeaders.map((header) => (
-              <td onClick={() => navigate(`/details/${service.serviceName}`)}>
+            {tableHeaders.map((header, indexTd) => (
+              <td
+                key={`datagrid-td-${header}-${indexTd}`}
+                onClick={() => navigate(`/details/${service.serviceName}`)}
+              >
                 {header === 'serviceName' ? (
                   <OsdsLink
                     color={OdsThemeColorIntent.primary}
