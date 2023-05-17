@@ -76,9 +76,13 @@ export default class AccountUserIdentityDocumentsController {
   }
 
   uploadDocumentsToS3usingLinks(uploadLink, uploadedfile) {
-    return this.$http.put(uploadLink.link, uploadedfile, {
-      headers: { ...uploadLink.headers },
-    });
+    return this.$http
+      .put(uploadLink.link, uploadedfile, {
+        headers: { ...uploadLink.headers },
+      })
+      .catch(() => {
+        this.displayErrorBanner();
+      });
   }
 
   displayErrorBanner() {
