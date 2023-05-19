@@ -7,7 +7,8 @@ export const USER_TYPE = {
 
 export const LEGAL_LINK1 =
   'https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf';
-export const LEGAL_LINK2 = 'https://www.cert-in.org.in/Directions70B.jsp';
+export const LEGAL_LINK2 =
+  'https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf';
 export const LEGAL_LINK3 = {
   FR: 'https://www.ovhcloud.com/fr/terms-and-conditions/privacy-policy/',
   DE: 'https://www.ovhcloud.com/de/terms-and-conditions/privacy-policy/',
