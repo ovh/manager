@@ -13,8 +13,12 @@ import {
 import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
 import './dataGrid.scss';
 
-const Datagrid = (props: { data: any }) => {
-  const { data } = props;
+interface DataItem {
+  [key: string]: JSON;
+}
+
+const Datagrid = (props: { data: DataItem[]; link: string }) => {
+  const { data, link } = props;
   const navigate = useNavigate();
   const tableHeaders = Object.keys(data[0]);
   const { t } = useTranslation('nasha-react');
@@ -49,7 +53,7 @@ const Datagrid = (props: { data: any }) => {
                 key={`datagrid-td-${header}-${indexTd}`}
                 onClick={() => navigate(`/details/${service.serviceName}`)}
               >
-                {header === 'serviceName' ? (
+                {link && header === link ? (
                   <OsdsLink
                     color={OdsThemeColorIntent.primary}
                     href={`/details/${service.serviceName}`}

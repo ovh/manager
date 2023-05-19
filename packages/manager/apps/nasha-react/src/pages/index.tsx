@@ -29,7 +29,7 @@ function ServiceList({ data }: any) {
     <>
       <h2>{t('title')}</h2>
 
-      <Datagrid data={data} />
+      <Datagrid data={data} link={'serviceName'} />
     </>
   );
 }
