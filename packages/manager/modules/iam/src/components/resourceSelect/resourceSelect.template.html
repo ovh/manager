@@ -17,6 +17,7 @@
             data-on-change="$ctrl.onResourceTypesChanged(modelValue)"
             data-on-confirm-remove="$ctrl.onResourceTypesConfirmRemove({ item, index })"
             data-on-error="$ctrl.onError(error)"
+            data-on-load="response.data.sort()"
             data-required="$ctrl.isResourceTypesRequired"
             data-disabled="$ctrl.readOnly"
         ></oui-select>
