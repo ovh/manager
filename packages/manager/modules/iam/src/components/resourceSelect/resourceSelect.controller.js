@@ -1,3 +1,5 @@
+import punycode from 'punycode';
+
 export default class ResourceSelectController {
   /* @ngInject */
   constructor(
@@ -121,6 +123,13 @@ export default class ResourceSelectController {
    * @param {Object[]} resources
    */
   onResourcesLoaded({ data: resources }) {
+    // Some resources could be encoded using punycode scheme
+    resources.forEach((resource) => {
+      Object.assign(resource, {
+        displayName: punycode.toUnicode(resource.displayName),
+      });
+    });
+
     // Restore references to the model
     // /!\ Avoid having the same selected item twice
     if (this.resourcesModel?.length) {
