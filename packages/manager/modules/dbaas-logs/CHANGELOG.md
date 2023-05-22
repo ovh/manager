@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.11.2...@ovh-ux/manager-dbaas-logs@1.12.0) (2023-05-22)
+
+
+### Features
+
+* **ldp:** ldp inputs can now be autoscaled ([c658c99](https://github.com/ovh/manager/commit/c658c991b485c02a3940b357e5754736de36c62f))
+
+
+
+
+
 ## [1.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.11.1...@ovh-ux/manager-dbaas-logs@1.11.2) (2023-03-20)
 
 
