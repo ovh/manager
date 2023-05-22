@@ -857,6 +857,7 @@ angular
 
               if (
                 $scope.informations.nbDisk > 2 &&
+                partitionSchemeModel.raid !== null &&
                 !includes(raidList, partitionSchemeModel.raid)
               ) {
                 $scope.configError.raidDiskUse = true;
