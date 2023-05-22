@@ -1,4 +1,5 @@
 import sortBy from 'lodash/sortBy';
+import capitalize from 'lodash/capitalize';
 
 export default class {
   /* @ngInject */
@@ -16,10 +17,20 @@ export default class {
       ),
       'pricing.price',
     );
+
+    this.hostingOffers = this.availableOffers.map((offer) => ({
+      value: offer,
+      name: capitalize(offer.toLowerCase()).replace('_', ' '),
+    }));
   }
 
   updateOffer() {
     this.stepper.cartOption.offer = this.offer;
     this.stepper.currentIndex += 1;
+  }
+
+  onHostingOfferClick({ selectedVersion }) {
+    this.offer = selectedVersion;
+    this.stepper.cartOption.offer = selectedVersion;
   }
 }

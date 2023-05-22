@@ -3,6 +3,7 @@ import template from './domain-webhosting-order-steps-hosting.html';
 
 export default {
   bindings: {
+    catalog: '<',
     availableOffers: '<',
     user: '<',
     stepperPosition: '@',

@@ -74,15 +74,18 @@ export default class WebComponentsHostingDomainOffersController {
   }
 
   $onInit() {
+    // build offers object
     const offers = this.offers.map((offer) => {
       const category = offer.value.startsWith('PERFORMANCE_')
         ? 'performance'
         : offer.value.toLowerCase();
       const technicalsOffer = this.getOfferSelector(category, offer.value);
-      const price = this.formatOfferPrice(category, technicalsOffer.planCode);
+      const { planCode } = technicalsOffer;
+      const price = this.formatOfferPrice(category, planCode);
 
       return {
         ...offer,
+        planCode,
         category,
         selector: this.$translate.instant(
           `web_components_hosting_domain_offers_offer_select_version_performance`,
@@ -91,12 +94,18 @@ export default class WebComponentsHostingDomainOffersController {
         price,
       };
     });
+
+    // grouped offers by category
     const groupedOffers = groupBy(offers, 'category');
     this.groupedOffers = Object.keys(groupedOffers).map((category) => {
       const versions = groupedOffers[category];
-      const selectedVersion = versions.length > 1 ? versions[0] : null;
 
-      return { category, versions, selectedVersion, price: versions[0].price };
+      return {
+        category,
+        versions,
+        selectedVersion: versions[0],
+        price: versions[0].price,
+      };
     });
 
     this.model = {
@@ -108,11 +117,13 @@ export default class WebComponentsHostingDomainOffersController {
     const selectedPlan = this.catalog.plans.find((plan) => {
       return plan.planCode === planCode;
     });
-    const { price } = selectedPlan.pricings.find(
+    const { price, tax } = selectedPlan.pricings.find(
       ({ intervalUnit }) => intervalUnit === 'month',
     );
 
-    return `${price / UCENTS_FACTOR} ${this.user.currency.symbol}`;
+    return `${((price - tax) / UCENTS_FACTOR).toFixed(2)} ${
+      this.user.currency.symbol
+    }`;
   }
 
   getOfferInfo(offerCategory) {

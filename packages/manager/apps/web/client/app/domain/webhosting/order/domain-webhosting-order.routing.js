@@ -7,8 +7,17 @@ const resolve = {
   /* @ngInject */
   getAvailableModules: (cartId, WebHostingOrder) => (offer) =>
     WebHostingOrder.getAvailableModules(cartId, offer),
-  availableOffers: /* @ngInject */ (cartId, user, WebHostingOrder) =>
-    WebHostingOrder.getAvailableOffers(cartId, user.ovhSubsidiary),
+
+  /** TODO: for the moment the available offers must be hardcoded. Later they will be dynamic */
+  availableOffers: /* @ngInject */ () => [
+    'PERSO',
+    'PRO',
+    'PERFORMANCE_1',
+    'PERFORMANCE_2',
+    'PERFORMANCE_3',
+    'PERFORMANCE_4',
+  ],
+
   cartId: /* @ngInject */ (assignCart, createCart) =>
     createCart().then(({ cartId }) => assignCart(cartId).then(() => cartId)),
   createCart: /* @ngInject */ (WucOrderCartService, user) => () =>
@@ -109,6 +118,12 @@ export default /* @ngInject */ ($stateProvider) => {
         ...resolve,
         goBackToDashboard: /* @ngInject */ ($state) => () =>
           $state.go('app.domain.product.information'),
+
+        user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
+
+        catalog: /* @ngInject */ (user, WebHostingOrder) => {
+          return WebHostingOrder.getCatalog(user.ovhSubsidiary);
+        },
       },
     })
     .state('app.alldom.domain.webhosting.order', {
