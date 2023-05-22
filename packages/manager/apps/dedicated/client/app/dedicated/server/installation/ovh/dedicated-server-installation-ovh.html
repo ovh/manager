@@ -478,14 +478,14 @@
                     ></span>
                     <select
                         class="form-control"
-                        data-ng-show="informations.nbDisk > 1"
+                        data-ng-show="informations.nbDisk > 1 && !canPersonnalizeRaid()"
                         data-ng-options="nbdisk as nbdisk for nbdisk in getNbDisqueList(informations.nbDisk)"
                         data-ng-model="installation.nbDiskUse"
                         data-ng-disabled="setPartition.indexSet != -1 || newPartition.display"
                     >
                     </select>
                     <strong
-                        data-ng-hide="informations.nbDisk > 1"
+                        data-ng-hide="informations.nbDisk > 1 && !canPersonnalizeRaid()"
                         data-ng-bind="informations.nbPhysicalDisk"
                     ></strong
                     >&nbsp;
