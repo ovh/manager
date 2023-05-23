@@ -85,7 +85,7 @@
   "privateDatabase_configuration_wait_timeout": "Le nombre de secondes que le serveur attend avant de fermer la connexion lorsqu'il n'y a pas d'activité lors d'une connexion externe.",
   "privateDatabase_configuration_field_autocommit": "Définit si les transactions SQL sont automatiquement soumises ou non.",
   "privateDatabase_configuration_field_event_scheduler": "Permet de déclencher l’exécution de requêtes programmées directement dans le serveur MySQL.",
-  "privateDatabase_configuration_field_innodb_buffer_pool_size": "Choix de la taille de la mémoire tampon (en mégaoctets).",
+  "privateDatabase_configuration_field_innodb_buffer_pool_size": "Choix de la taille de la mémoire tampon (en mégaoctets). Ne peut dépasser 50% de la RAM.",
   "privateDatabase_configuration_field_interactive_timeout": "Nombre de secondes pendant lesquelles le serveur attend une activité sur une connexion interactive avant de la fermer.",
   "privateDatabase_configuration_field_max_allowed_packet": "Taille maximum des paquets (en mégaoctets).",
   "privateDatabase_configuration_field_max_connections": "Nombre de connexions simultanées autorisées sur le SQL Privé.",
