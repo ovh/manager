@@ -83,7 +83,7 @@
             data-on-change="$ctrl.onResourceChanged(change)"
             data-on-error="$ctrl.onError(error)"
             data-on-resource-types-confirm-remove="$ctrl.onResourceTypesConfirmRemove(item, index)"
-            data-required="$ctrl.isResourceTypesRequired"
+            data-read-only="$ctrl.policy.readOnly"
             data-resources-label="{{:: 'iam_create_policy_form_resources_heading' | translate }}"
             data-resources-model="$ctrl.model.resources"
             data-resources-name="resources"
@@ -91,7 +91,6 @@
             data-resource-types-label="{{:: 'iam_create_policy_form_resource_types_heading' | translate }}"
             data-resource-types-model="$ctrl.model.resourceTypes"
             data-resource-types-name="resourceTypes"
-            data-read-only="$ctrl.policy.readOnly"
         >
             <resource-types-header>
                 <h4
@@ -128,7 +127,6 @@
                         data-name="resourceGroups"
                         data-on-load="$ctrl.onResourceGroupsLoaded(response.data)"
                         data-on-error="$ctrl.onError(error)"
-                        data-required="!$ctrl.hasSelectedResources"
                     ></oui-select>
                 </oui-field>
                 <!-- </ResourceGroups> -->
