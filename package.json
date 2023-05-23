@@ -40,7 +40,8 @@
     "start": "node -r esm scripts/start-application.js",
     "test:jest": "jest --runInBand",
     "test": "yarn lint",
-    "test:scripts": "make test"
+    "test:scripts": "make test",
+    "test:playwright:run": "lerna run test:e2e:script --concurrency 1"
   },
   "resolutions": {
     "flatpickr": "4.6.9"
@@ -50,6 +51,7 @@
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-angular": "^17.1.0",
     "@ovh-ux/codename-generator": "^1.0.0",
+    "@playwright/test": "^1.34.3",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",
     "babel-eslint": "^10.1.0",

@@ -8,3 +8,4 @@ types
 .eslintcache
 .turbo
 packages/manager/apps/**/dev.proxy.config.mjs
+playwright/config.json

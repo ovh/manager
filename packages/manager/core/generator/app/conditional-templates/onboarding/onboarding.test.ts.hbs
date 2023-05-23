@@ -1,0 +1,10 @@
+import { expect, test } from '@playwright/test';
+import '../../../../../playwright/login';
+import * as config from '../../../../../playwright/config.json';
+
+test('Onboarding page should be present', async ({ page }) => {
+  const onboardingPath = '/#/onboarding';
+  const absoluteUrl = new URL(onboardingPath, config.appUrl).href;
+  await page.goto(absoluteUrl);
+  await expect(page.locator('h1')).toContainText('Onboarding page');
+});
