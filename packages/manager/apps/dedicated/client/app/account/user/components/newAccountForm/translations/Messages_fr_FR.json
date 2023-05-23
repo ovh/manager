@@ -19,7 +19,7 @@
   "signup_field_firstname": "Prénom",
   "signup_field_name": "Nom",
   "signup_field_email": "E-mail",
-  "signup_field_commercialCommunicationsApproval": "J'accepte de recevoir des informations concernant les produits d'OVH",
+  "signup_field_commercialCommunicationsApproval": "J'accepte de recevoir des e-mails relatifs aux nouveautés et offres commerciales d'OVHcloud",
   "signup_field_password": "Mot de passe",
   "signup_field_corporationType": "Type d'entreprise",
   "signup_field_organisation": "Organisation",
