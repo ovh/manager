@@ -9,19 +9,27 @@ export default /* @ngInject */ ($stateProvider) => {
       value: ['.'],
     },
     resolve: {
-      needkyc: /* @ngInject */ ($http) => {
+      isKycFeatureAvailable: /* @ngInject */ ($http) => {
         return $http
           .get(`/feature/identity-documents/availability`, {
             serviceType: 'aapi',
           })
-          .then(({ data: featureAvailability }) => {
-            if (featureAvailability['identity-documents']) {
-              return $http
-                .get(`/me/procedure/identity`)
-                .then(({ data }) => ['required'].includes(data.status));
-            }
-            return false;
-          });
+          .then(
+            ({ data: featureAvailability }) =>
+              featureAvailability['identity-documents'],
+          );
+      },
+      kycStatus: /* @ngInject */ ($http, isKycFeatureAvailable) => {
+        if (isKycFeatureAvailable) {
+          return $http.get(`/me/procedure/identity`).then(({ data }) => data);
+        }
+        return false;
+      },
+      needkyc: /* @ngInject */ (isKycFeatureAvailable, kycStatus) => {
+        if (isKycFeatureAvailable) {
+          return ['required', 'open'].includes(kycStatus.status);
+        }
+        return false;
       },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('user_account_identity_documents'),
