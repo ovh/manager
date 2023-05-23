@@ -3,10 +3,12 @@ import map from 'lodash/map';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
+import { ELIGIBLE, URL_PRO_FIBER } from './pack-resiliation.constant';
 
 export default class PackResiliationCtrl {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $stateParams,
     $state,
@@ -30,9 +32,11 @@ export default class PackResiliationCtrl {
     this.OvhApiPackXdslResiliation = OvhApiPackXdslResiliation;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
+    this.$http = $http;
   }
 
   $onInit() {
+    this.ELIGIBLE = ELIGIBLE;
     this.model = {
       subServicesToKeep: {},
     };
@@ -62,6 +66,9 @@ export default class PackResiliationCtrl {
     this.model.when = null;
     this.dpOpts = {};
     this.isSubsidiaryQuestion = false;
+    this.eligibility = null;
+    this.isEligible = false;
+    this.isEligibleNotYet = false;
 
     this.OvhApiPackXdslResiliation.Aapi()
       .terms({
@@ -109,6 +116,8 @@ export default class PackResiliationCtrl {
         }
 
         this.updateFeeSummary();
+
+        this.checkForEligibility();
       })
       .catch((err) => new this.TucToastError(err))
       .finally(() => {
@@ -434,5 +443,69 @@ export default class PackResiliationCtrl {
       'eligibilityFtth',
       'changeOperator',
     ].includes(this.model.reason.value);
+  }
+
+  /**
+   * Retrieve access name, access type and launch eligibility if not fiber access
+   */
+  checkForEligibility() {
+    this.$http
+      .get(`/pack/xdsl/${this.$stateParams.packName}/xdslAccess/services`)
+      .then(({ data }) => {
+        if (data.length > 0) {
+          const accessName = data[0];
+          this.$http.get(`/xdsl/${accessName}`).then((response) => {
+            const { accessType } = response.data;
+            if (['vdsl', 'adsl'].includes(accessType)) {
+              this.$http
+                .get(`/xdsl/${accessName}/fiberEligibilities`)
+                .then((result) => {
+                  if (result.data.length > 0) {
+                    const id = result.data[0];
+                    this.$http
+                      .get(`/xdsl/${accessName}/fiberEligibilities/${id}`)
+                      .then((res) => {
+                        this.eligibility = res.data;
+                        if (this.eligibility.status === this.ELIGIBLE) {
+                          this.isEligible = true;
+                        } else {
+                          this.isEligibleNotYet = true;
+                        }
+                      });
+                  }
+                });
+            }
+          });
+        }
+      });
+  }
+
+  /**
+   * Close modal
+   */
+  onDismiss() {
+    if (this.isEligible) {
+      this.isEligible = false;
+    }
+    if (this.isEligibleNotYet) {
+      this.isEligibleNotYet = false;
+    }
+  }
+
+  /**
+   * Go to change offer page
+   */
+  onChangeOffer() {
+    this.$state.go('telecom.packs.pack.migration', {
+      packName: this.$stateParams.packName,
+    });
+  }
+
+  static formatDate(dateToFormat) {
+    return moment(dateToFormat).format('DD/MM/YYYY');
+  }
+
+  static openFiberPage() {
+    window.open(URL_PRO_FIBER, '_blank', 'noopener');
   }
 }
