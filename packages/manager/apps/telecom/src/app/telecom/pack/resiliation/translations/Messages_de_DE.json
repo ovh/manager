@@ -67,5 +67,15 @@
   "pack_resiliation_choice_changeOperator": "Wechsel des Betreibers",
   "pack_resiliation_susbsidiary_question_technicalProblems": "Was ist das Problem? (Durchsatz, Navigation, andere)",
   "pack_resiliation_susbsidiary_question_eligibilityFtth": "Geben Sie die nicht wählbare Adresse an (Stadt)",
-  "pack_resiliation_susbsidiary_question_changeOperator": "Betroffener Betreiber"
+  "pack_resiliation_susbsidiary_question_changeOperator": "Betroffener Betreiber",
+  "pack_resiliation_eligibility_eligible_title": "Wussten Sie, dass Sie für Glasfaser infrage kommen?",
+  "pack_resiliation_eligibility_not_yet_eligible_title": "Wussten Sie, dass Sie bald Zugang zu Glasfasern haben?",
+  "pack_resiliation_eligibility_fiber_eligible": "Sie kommen für unser Faser Pro Angebot in Frage.",
+  "pack_resiliation_eligibility_fiber_eligible_description": "Profitieren Sie ab sofort von 3 Monaten Abo und den Zugangskosten für die Migration Ihres Angebots auf die Glasfaser.",
+  "pack_resiliation_eligibility_fiber_not_eligible": "Sie kommen in Kürze für unser Faser Pro Angebot in Frage.",
+  "pack_resiliation_eligibility_fiber_not_eligible_description": "Sie können von 3 Monaten Abo und den Zugangskosten für die Migration Ihres Angebots auf die Glasfaser profitieren.",
+  "pack_resiliation_eligibility_change_offer": "Ich möchte auf ein Glasfaserangebot migrieren",
+  "pack_resiliation_eligibility_fiber_information": "Ich möchte mich zum Glasfaserangebot informieren",
+  "pack_resiliation_eligibility_not_interest": "Ich bin nicht interessiert",
+  "pack_resiliation_eligibility_available_date": "Das voraussichtliche Datum der Verfügbarkeit der Faser ist {{availabilityDate}}"
 }

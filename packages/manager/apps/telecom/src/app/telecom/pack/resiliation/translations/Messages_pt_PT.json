@@ -67,5 +67,15 @@
   "pack_resiliation_choice_changeOperator": "Mudança de operador",
   "pack_resiliation_susbsidiary_question_technicalProblems": "Qual é o problema encontrado? (velocidade, navegação, outros)",
   "pack_resiliation_susbsidiary_question_eligibilityFtth": "Indique o endereço não elegível (cidade)",
-  "pack_resiliation_susbsidiary_question_changeOperator": "Operador em causa"
+  "pack_resiliation_susbsidiary_question_changeOperator": "Operador em causa",
+  "pack_resiliation_eligibility_eligible_title": "Sabia que é elegível para a fibra?",
+  "pack_resiliation_eligibility_not_yet_eligible_title": "Sabia que em breve será elegível para a fibra?",
+  "pack_resiliation_eligibility_fiber_eligible": "É elegível para a nossa oferta Fibre Pro.",
+  "pack_resiliation_eligibility_fiber_eligible_description": "Beneficie desde já de 3 meses de subscrição e das taxas de acesso oferecidas para a migração da sua oferta para a fibra.",
+  "pack_resiliation_eligibility_fiber_not_eligible": "Em breve será elegível para a nossa oferta Fibre Pro.",
+  "pack_resiliation_eligibility_fiber_not_eligible_description": "Poderá usufruir de 3 meses de subscrição e das taxas de acesso oferecidas para a migração da sua oferta para a fibra.",
+  "pack_resiliation_eligibility_change_offer": "Pretendo migrar para uma oferta de fibra",
+  "pack_resiliation_eligibility_fiber_information": "Eu desejo me informar sobre a oferta de fibra",
+  "pack_resiliation_eligibility_not_interest": "Não estou interessado",
+  "pack_resiliation_eligibility_available_date": "A data previsional de disponibilidade da fibra é {{availabilityDate}}"
 }
