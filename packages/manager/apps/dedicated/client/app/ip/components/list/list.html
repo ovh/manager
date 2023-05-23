@@ -81,43 +81,40 @@
                     class="d-flex align-items-center"
                     data-ng-transclude="filters"
                 ></div>
-                <div data-ng-if="!serviceType">
+                <div>
                     <oui-dropdown data-placement="end">
                         <oui-dropdown-trigger
                             data-text="{{:: 'ipv4_ipv6_filter_title' | translate}}"
                         >
                         </oui-dropdown-trigger>
                         <oui-dropdown-content>
-                            <oui-dropdown-item>
-                                <oui-radio
-                                    data-name="radioIps"
-                                    data-model="selected_option"
-                                    data-value="FILTER_OPTIONS.ALL_IPS"
-                                    data-on-change="getIpsOnFilter()"
-                                >
-                                    <span data-translate="show_all_ips"> </span>
-                                </oui-radio>
-                            </oui-dropdown-item>
-                            <oui-dropdown-item>
-                                <oui-radio
-                                    data-name="radioIps"
-                                    data-model="selected_option"
-                                    data-value="FILTER_OPTIONS.IPV4_IPS"
-                                    data-on-change="getIpsOnFilter(FILTER_OPTIONS.IPV4_IPS)"
-                                >
-                                    <span data-translate="show_ipv4_ips"></span>
-                                </oui-radio>
-                            </oui-dropdown-item>
-                            <oui-dropdown-item>
-                                <oui-radio
-                                    data-name="radioIps"
-                                    data-model="selected_option"
-                                    data-value="FILTER_OPTIONS.IPV6_IPS"
-                                    data-on-change="getIpsOnFilter(FILTER_OPTIONS.IPV6_IPS)"
-                                >
-                                    <span data-translate="show_ipv6_ips"></span>
-                                </oui-radio>
-                            </oui-dropdown-item>
+                            <oui-radio
+                                class="m-1"
+                                data-name="radioIps"
+                                data-model="selected_option"
+                                data-value="FILTER_OPTIONS.ALL_IPS"
+                                data-on-change="getIpsOnFilter()"
+                            >
+                                <span data-translate="show_all_ips"> </span>
+                            </oui-radio>
+                            <oui-radio
+                                class="m-1"
+                                data-name="radioIps"
+                                data-model="selected_option"
+                                data-value="FILTER_OPTIONS.IPV4_IPS"
+                                data-on-change="getIpsOnFilter(FILTER_OPTIONS.IPV4_IPS)"
+                            >
+                                <span data-translate="show_ipv4_ips"></span>
+                            </oui-radio>
+                            <oui-radio
+                                class="m-1"
+                                data-name="radioIps"
+                                data-model="selected_option"
+                                data-value="FILTER_OPTIONS.IPV6_IPS"
+                                data-on-change="getIpsOnFilter(FILTER_OPTIONS.IPV6_IPS)"
+                            >
+                                <span data-translate="show_ipv6_ips"></span>
+                            </oui-radio>
                         </oui-dropdown-content>
                     </oui-dropdown>
                 </div>

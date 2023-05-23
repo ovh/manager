@@ -239,7 +239,6 @@ export default class IpListController {
     }
 
     function refreshTable() {
-      if ($scope.serviceType) $scope.version = null;
       if (cancelFetch) {
         cancelFetch();
       }
