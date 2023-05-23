@@ -55,12 +55,11 @@ export default class ResourceSelectController {
   }
 
   /**
-   * Returns the resourceTypes form control
-   * E.g. instance of NgModelController
-   * @returns {Object?}
+   * Whether the selected resourceType has associated resources
+   * @returns {boolean}
    */
-  get resourceTypesControl() {
-    return this.form?.[this.resourceTypesName];
+  get hasNoAssociatedResources() {
+    return this.resources !== null && this.resources.length === 0;
   }
 
   /**
@@ -98,13 +97,30 @@ export default class ResourceSelectController {
     );
   }
 
-  $onInit() {
+  /**
+   * Returns the resourceTypes form control
+   * E.g. instance of NgModelController
+   * @returns {Object?}
+   */
+  get resourceTypesControl() {
+    return this.form?.[this.resourceTypesName];
+  }
+
+  $onChanges({ required }) {
+    if (!required) {
+      return;
+    }
     // Wait for this.form to be attached
     // Can't use $postLink because oui-select are not attached at this time
     this.$timeout(() => {
-      // Error when a resourceType is selected with no associated resources
-      this.resourceTypesControl.$validators.resources = () =>
-        this.resources === null || this.resources?.length > 0;
+      const { resourceTypesControl } = this;
+      if (required?.currentValue) {
+        // Error when a resourceType is selected with no associated resources
+        resourceTypesControl.$validators.resources = () =>
+          !this.hasNoAssociatedResources;
+      } else {
+        delete resourceTypesControl.$validators.resources;
+      }
     });
   }
 

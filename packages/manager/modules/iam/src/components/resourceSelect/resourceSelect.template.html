@@ -3,6 +3,11 @@
     <div data-ng-transclude="resourceTypesHeaderSlot"></div>
     <oui-field
         data-label="{{:: $ctrl.resourceTypesLabel }}"
+        data-help-text="{{
+            !$ctrl.required && $ctrl.hasNoAssociatedResources
+                ? ('iam_resource_select_resource_types_error_resources' | translate)
+                : ''
+        }}"
         data-error-messages="{
             resources: ('iam_resource_select_resource_types_error_resources' | translate),
             required: ('iam_resource_select_resource_types_error_required' | translate)
