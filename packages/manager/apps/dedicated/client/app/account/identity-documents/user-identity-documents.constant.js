@@ -29,6 +29,11 @@ export const TRACKING_TASK_TAG = {
   uploadError: `${TRACKING_PREFIX}::upload-error`,
 };
 
+export const KYC_STATUS = {
+  OPEN: 'open',
+  REQUIRED: 'required',
+};
+
 export default {
   USER_TYPE,
   MAX_SIZE,
@@ -37,4 +42,5 @@ export default {
   LEGAL_LINK1,
   LEGAL_LINK2,
   LEGAL_LINK3,
+  KYC_STATUS,
 };

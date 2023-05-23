@@ -1,5 +1,25 @@
 <!--Header section-->
 <div class="mt-2">
+    <!-- information banner for open status -->
+    <div
+        data-ng-if="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN && !$ctrl.displayError"
+    >
+        <oui-message data-type="info">
+            <p
+                data-translate="user_account_identity_documents_verification_in_progress_info"
+            ></p>
+        </oui-message>
+    </div>
+    <!-- information banner for required status with additional files-->
+    <div
+        data-ng-if="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.REQUIRED && !!$ctrl.kycStatus.ticketId && !$ctrl.displayError"
+    >
+        <oui-message data-type="info">
+            <p
+                data-translate="user_account_identity_documents_verification_waiting_info"
+            ></p>
+        </oui-message>
+    </div>
     <!--My Identity document title-->
     <p
         class="oui-heading_4 mb-1 mt-3"
@@ -49,11 +69,12 @@
                 data-multiple
                 data-maxsize="$ctrl.maximum_size"
                 data-name="files"
+                data-disabled="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN"
             ></oui-file>
         </oui-field>
         <oui-form-actions
             class="mt-5"
-            data-disabled="$ctrl.form.$invalid || !$ctrl.files || $ctrl.files.length === 0"
+            data-disabled="$ctrl.form.$invalid || !$ctrl.files || $ctrl.files.length === 0 || $ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN"
             data-on-submit="$ctrl.uploadIdentityDocuments()"
             data-submit-text="{{:: 'user_account_identity_documents_submit' | translate}}"
         ></oui-form-actions>

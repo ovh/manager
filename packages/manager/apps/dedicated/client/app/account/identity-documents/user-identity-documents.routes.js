@@ -9,6 +9,20 @@ export default /* @ngInject */ ($stateProvider) => {
       value: ['.'],
     },
     resolve: {
+      kycStatus: /* @ngInject */ ($http) => {
+        return $http
+          .get(`/feature/identity-documents/availability`, {
+            serviceType: 'aapi',
+          })
+          .then(({ data: featureAvailability }) => {
+            if (featureAvailability['identity-documents']) {
+              return $http
+                .get(`/me/procedure/identity`)
+                .then(({ data }) => data);
+            }
+            return false;
+          });
+      },
       needkyc: /* @ngInject */ ($http) => {
         return $http
           .get(`/feature/identity-documents/availability`, {
@@ -18,7 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
             if (featureAvailability['identity-documents']) {
               return $http
                 .get(`/me/procedure/identity`)
-                .then(({ data }) => ['required'].includes(data.status));
+                .then(({ data }) => ['required', 'open'].includes(data.status));
             }
             return false;
           });
