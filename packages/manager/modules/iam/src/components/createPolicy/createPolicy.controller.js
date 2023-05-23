@@ -113,14 +113,6 @@ export default class CreatePolicyController {
   }
 
   /**
-   * Whether the user has selected at least one resource
-   * @returns {boolean}
-   */
-  get hasSelectedResources() {
-    return this.model.resources?.length > 0;
-  }
-
-  /**
    * Whether the user has selected at least one resource type
    * @returns {boolean}
    */
@@ -129,16 +121,10 @@ export default class CreatePolicyController {
   }
 
   /**
-   * Whether the resourceTypes select is required
-   * The use must select a resource on witch actions apply. This resource can be
-   * - A resource from the resource select, with prior selection of a resource type
-   * - A resource group
-   * @returns {boolean}
+   * THe Current controller's mode. If any policy is given, it is edition mode
+   * Otherwise, it is creation mode
+   * @returns {'create'|'edit'}
    */
-  get isResourceTypesRequired() {
-    return !this.model.resourceGroups || !this.model.resourceGroups.length;
-  }
-
   get mode() {
     return this.policy ? 'edit' : 'create';
   }
@@ -234,8 +220,8 @@ export default class CreatePolicyController {
   }
 
   /**
-   * Called back each time a resource types is deleted using the iamDeleteEntity component
-   * @param {boolean} success
+   * Called back each time the resourceGroups have loaded
+   * @param {Array} resourceGroups
    */
   onResourceGroupsLoaded(resourceGroups) {
     this.resourceGroups = resourceGroups;
