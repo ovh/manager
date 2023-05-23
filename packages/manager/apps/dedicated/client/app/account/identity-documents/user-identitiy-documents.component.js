@@ -4,5 +4,7 @@ import template from './user-identity-documents.html';
 export default {
   controller,
   template,
-  bindings: {},
+  bindings: {
+    kycStatus: '<',
+  },
 };

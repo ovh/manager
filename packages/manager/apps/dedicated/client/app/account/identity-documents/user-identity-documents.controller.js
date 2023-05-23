@@ -6,6 +6,7 @@ import {
   LEGAL_LINK1,
   LEGAL_LINK2,
   LEGAL_LINK3,
+  KYC_STATUS,
 } from './user-identity-documents.constant';
 
 export default class AccountUserIdentityDocumentsController {
@@ -22,6 +23,7 @@ export default class AccountUserIdentityDocumentsController {
     this.LEGAL_LINK2 = LEGAL_LINK2;
     this.LEGAL_LINK3 =
       LEGAL_LINK3[coreConfig.getUser().ovhSubsidiary] || LEGAL_LINK3.OTHERS;
+    this.KYC_STATUS = KYC_STATUS;
   }
 
   $onInit() {
@@ -42,6 +44,7 @@ export default class AccountUserIdentityDocumentsController {
       this.getUploadDocumentsLinks(this.files.length)
         .then(() => {
           this.loading = false;
+          this.kycStatus.status = KYC_STATUS.OPEN;
           this.trackPage(TRACKING_TASK_TAG.uploadSuccess);
         })
         .catch(() => {

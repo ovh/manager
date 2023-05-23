@@ -156,7 +156,7 @@ const Sidebar = (): JSX.Element => {
         let isIdentityDocumentsVisible;
         if (results['identity-documents']) {
           const { status } = await reketInstance.get(`/me/procedure/identity`);
-          if (!['required'].includes(status)) {
+          if (!['required','open'].includes(status)) {
             isIdentityDocumentsVisible = false;
           }
         } else {
