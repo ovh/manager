@@ -6,6 +6,8 @@ const component = {
     user: '<',
     catalog: '<',
     offers: '<',
+    currentOffer: '<',
+    customerRegion: '<',
     showDetails: '<',
     onOfferClick: '&',
   },
