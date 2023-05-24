@@ -3,7 +3,7 @@ import '@ovh-ux/ui-kit';
 import 'angular-translate';
 
 import component from './component';
-import passwordClipboard from '../password-clipboard';
+import passwordClipboard from '../field-clipboard';
 
 const moduleName =
   'ovhManagerPciProjectsProjectStoragesComponentsUserCredentialBanner';

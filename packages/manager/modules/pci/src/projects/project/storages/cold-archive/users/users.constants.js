@@ -17,6 +17,24 @@ export const TRACKING = {
     'dashboard::s3_users::action_menu::generate_user_credentials',
   DELETE_CREDENTIALS:
     'dashboard::s3_users::action_menu::delete_user_credentials',
+  USER_SUCCESS_BANNER: {
+    USERNAME: {
+      id: 'username',
+      tracking: 's3_users::add_user_success_copy-s3-name',
+    },
+    DESCRIPTION: {
+      id: 'description',
+      tracking: 's3_users::add_user_success_copy-description',
+    },
+    ACCESS_KEY: {
+      id: 's3AccessKey',
+      tracking: 's3_users::add_user_success_copy-s3-access-key',
+    },
+    SECRET_KEY: {
+      id: 'secretKey',
+      tracking: 's3_users::add_user_success_copy-s3-secret-key',
+    },
+  },
 };
 
 export const USER_STATUS = {

@@ -1,4 +1,4 @@
-import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from './users.constants';
+import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE, TRACKING } from './users.constants';
 import { COLD_ARCHIVE_TRACKING } from '../cold-archives.constants';
 
 const { saveAs } = require('file-saver');
@@ -15,6 +15,8 @@ export default class PciStoragesContainersUsersController {
     this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciStoragesColdArchiveService = PciStoragesColdArchiveService;
+
+    this.USER_SUCCESS_BANNER = TRACKING.USER_SUCCESS_BANNER;
   }
 
   $onInit() {
@@ -133,5 +135,9 @@ export default class PciStoragesContainersUsersController {
   onDownloadRCloneClick(user) {
     this.trackS3UsersClick(COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_RCLONE);
     this.downloadOpenStackRclone(user);
+  }
+
+  onClipboardFieldClick({ tracking }) {
+    this.trackClick(tracking);
   }
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.20.1...@ovh-ux/manager-container-app@0.20.2) (2023-05-22)
+
+
+### Bug Fixes
+
+* **container:** check auth redirection ([114e256](https://github.com/ovh/manager/commit/114e256346685cd5fc696bd356b3859a38173fa1))
+
+
+
+
+
 ## [0.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.20.0...@ovh-ux/manager-container-app@0.20.1) (2023-05-15)
 
 

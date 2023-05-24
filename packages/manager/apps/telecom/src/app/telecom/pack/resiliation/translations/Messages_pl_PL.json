@@ -67,5 +67,15 @@
   "pack_resiliation_choice_changeOperator": "Zmiana operatora",
   "pack_resiliation_susbsidiary_question_technicalProblems": "Co się stało? (przepływ, nawigacja, inne)",
   "pack_resiliation_susbsidiary_question_eligibilityFtth": "Wskaż niedopuszczalny adres (miasto)",
-  "pack_resiliation_susbsidiary_question_changeOperator": "Zainteresowany podmiot"
+  "pack_resiliation_susbsidiary_question_changeOperator": "Zainteresowany podmiot",
+  "pack_resiliation_eligibility_eligible_title": "Wiedziałeś, że jesteś uprawniony do błonnika?",
+  "pack_resiliation_eligibility_not_yet_eligible_title": "Czy wiedziałeś, że wkrótce będziesz uprawniony do błonnika?",
+  "pack_resiliation_eligibility_fiber_eligible": "Możesz skorzystać z oferty Fibre Pro.",
+  "pack_resiliation_eligibility_fiber_eligible_description": "Skorzystaj z 3 miesięcy abonamentu i bezpłatnego dostępu do usługi podczas migracji Twojej oferty na włókno.",
+  "pack_resiliation_eligibility_fiber_not_eligible": "Wkrótce będziesz mógł skorzystać z oferty Fibre Pro.",
+  "pack_resiliation_eligibility_fiber_not_eligible_description": "Będziesz mógł skorzystać z 3-miesięcznego abonamentu i bezpłatnego dostępu do usługi podczas migracji Twojej oferty na włókno.",
+  "pack_resiliation_eligibility_change_offer": "Chcę przejść na ofertę światłowodową",
+  "pack_resiliation_eligibility_fiber_information": "Chcę wiedzieć o ofercie światłowodów",
+  "pack_resiliation_eligibility_not_interest": "Nie jestem zainteresowany",
+  "pack_resiliation_eligibility_available_date": "Przewidywana data dostępności włókna to {{availabilityDate}}."
 }

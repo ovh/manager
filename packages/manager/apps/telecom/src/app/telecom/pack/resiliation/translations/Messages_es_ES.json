@@ -67,5 +67,15 @@
   "pack_resiliation_choice_changeOperator": "Cambio de operador",
   "pack_resiliation_susbsidiary_question_technicalProblems": "¿Cuál es el problema? (ancho de banda, navegación, otros)",
   "pack_resiliation_susbsidiary_question_eligibilityFtth": "Indique la dirección no elegible (ciudad)",
-  "pack_resiliation_susbsidiary_question_changeOperator": "operador"
+  "pack_resiliation_susbsidiary_question_changeOperator": "operador",
+  "pack_resiliation_eligibility_eligible_title": "¿Sabían que son elegibles para la fibra?",
+  "pack_resiliation_eligibility_not_yet_eligible_title": "¿Sabían que pronto se puede optar a la fibra?",
+  "pack_resiliation_eligibility_fiber_eligible": "Puede optar a nuestra solución Fibre Pro.",
+  "pack_resiliation_eligibility_fiber_eligible_description": "Disfrute ahora de 3 meses de suscripción y de los gastos de acceso que ofrece la migración de su producto a la fibra.",
+  "pack_resiliation_eligibility_fiber_not_eligible": "Pronto podrá optar a nuestra solución Fibre Pro.",
+  "pack_resiliation_eligibility_fiber_not_eligible_description": "Podrá disfrutar de 3 meses de suscripción y de los gastos de acceso que ofrece la migración de su producto a la fibra.",
+  "pack_resiliation_eligibility_change_offer": "Quiero migrar a un producto de fibra",
+  "pack_resiliation_eligibility_fiber_information": "Quiero saber sobre la oferta de fibra",
+  "pack_resiliation_eligibility_not_interest": "No estoy interesado",
+  "pack_resiliation_eligibility_available_date": "La fecha prevista de disponibilidad de la fibra es el {{availabilityDate}}."
 }

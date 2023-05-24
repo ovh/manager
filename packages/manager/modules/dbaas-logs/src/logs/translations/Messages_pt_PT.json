@@ -759,5 +759,13 @@
   "logs_streams_encryption_detail": "Encriptar os arquivos com as minhas chaves de encriptação PGP.",
   "logs_streams_encryption_max_keys": "Pode escolher um máximo de {{maxKeys}} chaves de encriptação",
   "streams_archives_encryption_keys": "Chaves de encriptação PGP",
-  "streams_archives_encryption_keys_helper": "O arquivo foi encriptado com a(s) seguinte(s) chave(s):"
+  "streams_archives_encryption_keys_helper": "O arquivo foi encriptado com a(s) seguinte(s) chave(s):",
+  "inputs_autoscaled": "Escalabilidade automática",
+  "inputs_autoscaled_detailled": "Escalabilidade automática do número de instâncias",
+  "inputs_autoscaled_explanation": "O número de instâncias da sua ferramenta de recolha pode ser fixo ou escalável automaticamente, em função da carga a absorver.",
+  "inputs_autoscaled_true": "Ativado",
+  "inputs_autoscaled_false": "Desativado",
+  "inputs_autoscaled_notification_detail": "Notificar-me por e-mail quando ocorrer uma escalabilidade automática.",
+  "inputs_logs_edit_min_instance_field": "Número mínimo de instâncias",
+  "inputs_logs_edit_max_instance_field": "Número máximo de instâncias"
 }

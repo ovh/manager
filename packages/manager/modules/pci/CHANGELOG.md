@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.124.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.123.1...@ovh-ux/manager-pci@5.124.0) (2023-05-22)
+
+
+### Bug Fixes
+
+* **pci.storages.databases:** use vcores unit for cpu ([6e96e26](https://github.com/ovh/manager/commit/6e96e26060170e8fadef0110462e74f52461f087))
+
+
+### Features
+
+* **storages.cold-archive:** tracking ([#9270](https://github.com/ovh/manager/issues/9270)) ([366286d](https://github.com/ovh/manager/commit/366286d680f1f828236ad036380906c2660366cf))
+
+
+
+
+
 ## [5.123.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.123.0...@ovh-ux/manager-pci@5.123.1) (2023-05-15)
 
 
