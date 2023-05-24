@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.61.1...@ovh-ux/manager-telecom@13.62.0) (2023-05-24)
+
+
+### Features
+
+* add check eligibility for resiliation retention on internet access ([#9131](https://github.com/ovh/manager/issues/9131)) ([508f902](https://github.com/ovh/manager/commit/508f9029414cf7b6e42c4a48acff2818c2e74dfd))
+
+
+
+
+
 ## [13.61.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.61.0...@ovh-ux/manager-telecom@13.61.1) (2023-05-15)
 
 

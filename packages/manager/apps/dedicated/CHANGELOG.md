@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.60.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.60.3...@ovh-ux/manager-dedicated@17.60.4) (2023-05-24)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** filter on ips ([#9244](https://github.com/ovh/manager/issues/9244)) ([fe2acfc](https://github.com/ovh/manager/commit/fe2acfce01cbfa5e58a55f6f495fea45e4ee7a93))
+* **dedicated:** modify profile email consent text ([#9266](https://github.com/ovh/manager/issues/9266)) ([fe09769](https://github.com/ovh/manager/commit/fe0976901b2baa964268c93466227c2e35242b66))
+
+
+
+
+
 ## [17.60.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.60.2...@ovh-ux/manager-dedicated@17.60.3) (2023-05-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
