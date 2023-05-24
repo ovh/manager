@@ -67,5 +67,15 @@
   "pack_resiliation_choice_changeOperator": "Operator change",
   "pack_resiliation_susbsidiary_question_technicalProblems": "What is the problem? (throughput, navigation, others)",
   "pack_resiliation_susbsidiary_question_eligibilityFtth": "Enter the non-eligible address (city)",
-  "pack_resiliation_susbsidiary_question_changeOperator": "Operator concerned"
+  "pack_resiliation_susbsidiary_question_changeOperator": "Operator concerned",
+  "pack_resiliation_eligibility_eligible_title": "Did you know that you are eligible for fibre?",
+  "pack_resiliation_eligibility_not_yet_eligible_title": "Did you know that you are soon eligible for fibre?",
+  "pack_resiliation_eligibility_fiber_eligible": "You are eligible for our Fibre Pro solution.",
+  "pack_resiliation_eligibility_fiber_eligible_description": "Get a 3-month subscription now, and free access to migrate your solution to fibre.",
+  "pack_resiliation_eligibility_fiber_not_eligible": "You will soon be eligible for our Fibre Pro solution.",
+  "pack_resiliation_eligibility_fiber_not_eligible_description": "You can get a 3-month subscription and free access fee to migrate your solution to fibre.",
+  "pack_resiliation_eligibility_change_offer": "I want to migrate to a fibre solution",
+  "pack_resiliation_eligibility_fiber_information": "I would like to know more about the fibre offer",
+  "pack_resiliation_eligibility_not_interest": "I'm not interested",
+  "pack_resiliation_eligibility_available_date": "The estimated availability date for the fibre is {{availabilityDate}}"
 }

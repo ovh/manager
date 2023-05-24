@@ -71,5 +71,7 @@
   "pci_database_add_spec_storage_added": "{{total}} (di cui {{included}} inclusi)",
   "pci_database_add_price_unit_month": "/mese",
   "pci_database_add_price_unit_hour": "/ora",
-  "pci_database_add_price_unit_switch_label": "Visualizzare le tariffe mensili"
+  "pci_database_add_price_unit_switch_label": "Visualizzare le tariffe mensili",
+  "pci_database_add_spec_flavor_CPU_one": "{{cpu}} vCore",
+  "pci_database_add_spec_flavor_CPU_many": "{{cpu}} vCores"
 }

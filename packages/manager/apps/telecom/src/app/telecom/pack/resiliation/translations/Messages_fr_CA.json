@@ -67,5 +67,15 @@
   "pack_resiliation_choice_changeOperator": "Changement d'opérateur",
   "pack_resiliation_susbsidiary_question_technicalProblems": "Quel est le problème rencontré ? (débit, navigation, autres)",
   "pack_resiliation_susbsidiary_question_eligibilityFtth": "Indiquez l'adresse non éligible (ville)",
-  "pack_resiliation_susbsidiary_question_changeOperator": "Opérateur concerné"
+  "pack_resiliation_susbsidiary_question_changeOperator": "Opérateur concerné",
+  "pack_resiliation_eligibility_eligible_title": "Saviez-vous que vous êtes éligible à la fibre ?",
+  "pack_resiliation_eligibility_not_yet_eligible_title": "Saviez-vous que vous êtes bientôt éligible à la fibre ?",
+  "pack_resiliation_eligibility_fiber_eligible": "Vous êtes éligible à notre offre Fibre Pro.",
+  "pack_resiliation_eligibility_fiber_eligible_description": "Profitez dès maintenant de 3 mois d'abonnement et des frais d'accès offerts pour la migration de votre offre vers la fibre.",
+  "pack_resiliation_eligibility_fiber_not_eligible": "Vous serez bientôt éligible à notre offre Fibre Pro.",
+  "pack_resiliation_eligibility_fiber_not_eligible_description": "Vous pourrez profiter de 3 mois d'abonnement et des frais d'accès offerts pour la migration de votre offre vers la fibre.",
+  "pack_resiliation_eligibility_change_offer": "Je souhaite migrer vers une offre fibre",
+  "pack_resiliation_eligibility_fiber_information": "Je souhaite m'informer sur l'offre fibre",
+  "pack_resiliation_eligibility_not_interest": "Je ne suis pas intéressé",
+  "pack_resiliation_eligibility_available_date": "La date prévisionelle de disponibilité de la fibre est le {{availabilityDate}}"
 }

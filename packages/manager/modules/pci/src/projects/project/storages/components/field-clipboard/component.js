@@ -3,8 +3,11 @@ import controller from './controller';
 
 const component = {
   bindings: {
-    fieldSecretKeyLabel: '<',
-    fieldSecretKeyValue: '<',
+    isDisplayableShowHidePasswordBtn: '<',
+    fieldId: '<',
+    fieldKeyLabel: '<',
+    fieldKeyValue: '<',
+    onCopyClick: '&',
   },
   template,
   controller,
