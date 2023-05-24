@@ -1,0 +1,23 @@
+.datagrid {
+  border: 1px solid #bef1ff;
+  border-collapse: collapse;
+
+  th {
+    background-color: #bef1ff;
+    padding: 15px;
+  }
+
+  tr {
+    background-color: #fff;
+    border: 1px solid #bef1ff;
+    border-collapse: collapse;
+  }
+
+  td {
+    padding: 15px;
+  }
+
+  tr:hover {
+    background-color: #b0dfec;
+  }
+}
