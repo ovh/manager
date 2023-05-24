@@ -31,13 +31,12 @@ export default function Dashboard() {
     <div>
       <Breadcrumb/>
       <h1>{t('title')}</h1>
-      <div>Dashboard page</div>
       <Suspense fallback="">
         <Await resolve={data.services}>
           {(services) => {
             const count = services.length;
             if (count === 0) {
-              return <div>No services info</div>
+              return <div>{t('error_service')}</div>
             }
             return (
               <div>
