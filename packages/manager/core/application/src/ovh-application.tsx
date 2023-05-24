@@ -1,26 +1,18 @@
 import { useEffect, useState, Suspense } from 'react';
 import { ApplicationId } from '@ovh-ux/manager-config';
-import initI18n from './i18n';
 import OvhContext, { initOvhContext, OvhContextType } from './ovh-context';
 
-async function setLocale(context: OvhContextType) {
-  const availableLocales = await context.shell.i18n.getAvailableLocales();
-  await initI18n(
-    context.environment.getUserLocale(),
-    availableLocales.map(({ key }) => key),
-  );
-  return context;
-}
 export function OvhApplication({
   name,
   children,
+  context,
 }: {
   name: ApplicationId;
   children: JSX.Element;
+  context: OvhContextType;
 }): JSX.Element {
-  const [context, setContext] = useState<OvhContextType>(null);
-
   useEffect(() => {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -51,6 +43,11 @@ export function OvhApplication({
 =======
       .catch((err) => console.error(err));
 >>>>>>> 14b4c3089c (feat(generator.test): delete use logger in ovh application)
+=======
+    console.info('******************%*%*%*%**%*%*%*%*%*%*%*%*');
+    console.info('entre dans le ovh application useEffect init !');
+    console.info('name : ', name);
+>>>>>>> 9d2cca2251 (feat(tracking): add tracking ovh)
   }, []);
 
   return (

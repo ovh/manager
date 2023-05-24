@@ -17,6 +17,7 @@ export const OvhContext = React.createContext<OvhContextType>({
 export async function initOvhContext(
   appName: ApplicationId,
 ): Promise<OvhContextType> {
+  console.info('initOvhContext appName : ', appName);
   const shell = await initShellClient(appName);
   const environment = await shell.environment.getEnvironment();
   return { shell, environment };

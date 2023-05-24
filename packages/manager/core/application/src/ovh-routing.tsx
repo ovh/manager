@@ -14,6 +14,7 @@ import {
   generateRegularRoutes,
   generatePreservedRoutes,
 } from 'generouted/core';
+import OvhTracking from './ovh-tracking';
 
 import { useShell } from '.';
 
@@ -37,6 +38,8 @@ function HidePreloader(): JSX.Element {
 function OvhContainerRoutingSync(): JSX.Element {
   const location = useLocation();
 
+  console.info('++++++++++++++++++++++++++++++');
+  console.info('OvhContainerRoutingSync INIT ');
   const shell = useShell();
   useEffect(() => {
     shell.routing.stopListenForHashChange();
@@ -85,6 +88,7 @@ function buildRegularRoute(module: () => Promise<Module>, key: string) {
 }
 
 export function createAppRouter() {
+  console.info('entre dans le createApp Router !!!!');
   const preservedRoutesBlob = import.meta.glob<Module>(
     '/pages/(_app|404).tsx',
     { eager: true },
@@ -117,6 +121,7 @@ export function createAppRouter() {
               <OvhContainerRoutingSync />
               <HidePreloader />
               <Outlet />
+              <OvhTracking />
             </>
           }
         />

@@ -110,6 +110,7 @@
     "turbo": "^1.4.3",
     "whatwg-fetch": "^3.6.2"
   },
+  "packageManager": "yarn@1.22.19",
   "engines": {
     "node": "^16",
     "yarn": ">=1.21.1"
