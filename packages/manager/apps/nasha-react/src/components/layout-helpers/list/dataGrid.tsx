@@ -49,14 +49,11 @@ const Datagrid = <T,>(props: { data: DataItem<T>[]; link: string }) => {
         {data.map((service: any, index: number) => (
           <tr key={index}>
             {tableHeaders.map((header, indexTd) => (
-              <td
-                key={`datagrid-td-${header}-${indexTd}`}
-                onClick={() => navigate(`/details/${service.serviceName}`)}
-              >
+              <td key={`datagrid-td-${header}-${indexTd}`}>
                 {link && header === link ? (
                   <OsdsLink
                     color={OdsThemeColorIntent.primary}
-                    href={`/details/${service.serviceName}`}
+                    onClick={() => navigate(`/details/${service[header]}`)}
                   >
                     {String(service[header])}
                   </OsdsLink>
