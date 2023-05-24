@@ -14,8 +14,20 @@ import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
 import './dataGrid.scss';
 
 interface DataItem {
-  [key: string]: JSON;
+  [key: string]: NasService;
 }
+
+type NasService = {
+  canCreatePartition: boolean;
+  customName: string;
+  datacenter: string;
+  diskType: string;
+  ip: string;
+  monitored: boolean;
+  serviceName: string;
+  zpoolCapacity: number;
+  zpoolSize: number;
+};
 
 const Datagrid = (props: { data: DataItem[]; link: string }) => {
   const { data, link } = props;
@@ -23,7 +35,7 @@ const Datagrid = (props: { data: DataItem[]; link: string }) => {
   const tableHeaders = Object.keys(data[0]);
   const { t } = useTranslation('nasha-react');
   return (
-    <table>
+    <table className="datagrid">
       <thead>
         <tr>
           {tableHeaders.map((header, indexTh) => (
