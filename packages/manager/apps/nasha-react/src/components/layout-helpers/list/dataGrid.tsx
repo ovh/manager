@@ -13,23 +13,11 @@ import {
 import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
 import './dataGrid.scss';
 
-interface DataItem {
-  [key: string]: NasService;
+interface DataItem<T> {
+  [key: string]: T;
 }
 
-type NasService = {
-  canCreatePartition: boolean;
-  customName: string;
-  datacenter: string;
-  diskType: string;
-  ip: string;
-  monitored: boolean;
-  serviceName: string;
-  zpoolCapacity: number;
-  zpoolSize: number;
-};
-
-const Datagrid = (props: { data: DataItem[]; link: string }) => {
+const Datagrid = <T,>(props: { data: DataItem<T>[]; link: string }) => {
   const { data, link } = props;
   const navigate = useNavigate();
   const tableHeaders = Object.keys(data[0]);

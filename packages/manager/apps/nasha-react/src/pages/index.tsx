@@ -7,7 +7,7 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 import { getServices } from '../api/nasha-react';
-import Datagrid from '@/components/layout-helpers/list/dataGrid';
+import NasServiceDataGrid from '@/components/nasServiceDataGrid';
 import '@ovhcloud/ods-theme-blue-jeans/index.css';
 
 const queryClient = new QueryClient();
@@ -29,7 +29,7 @@ function ServiceList({ data }: any) {
     <>
       <h2>{t('title')}</h2>
 
-      <Datagrid data={data} link={'serviceName'} />
+      <NasServiceDataGrid data={data} />
     </>
   );
 }
