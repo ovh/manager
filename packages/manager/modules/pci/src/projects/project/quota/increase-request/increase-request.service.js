@@ -18,13 +18,16 @@ export default class {
   }
 
   orderQuota(projectId, cartId, serviceOption) {
+    const renewPrice = serviceOption.prices?.find((price) =>
+      price.capacities.includes('renew'),
+    );
     return this.$http
       .post(`/order/cartServiceOption/cloud/${projectId}`, {
         cartId,
         quantity: 1,
         planCode: serviceOption.planCode,
-        duration: serviceOption.prices[0].duration,
-        pricingMode: serviceOption.prices[0].pricingMode,
+        duration: renewPrice.duration,
+        pricingMode: renewPrice.pricingMode,
       })
       .then(() =>
         this.$http.post(`/order/cart/${cartId}/checkout`, {
