@@ -12,6 +12,6 @@
   "pci_database_plans_list_spec_storage_unique": "{{storage}} przestrzeni dyskowej",
   "pci_database_plans_list_current_offer": "Aktualna oferta",
   "pci_database_plans_list_spec_private_network": "Sieci prywatne",
-  "pci_database_plans_list_spec_price_unit_hour": " / godz.",
-  "pci_database_plans_list_spec_price_unit_month": " / m-c"
+  "pci_database_plans_list_spec_price_unit_hour": "/godz.",
+  "pci_database_plans_list_spec_price_unit_month": "/m-c"
 }
