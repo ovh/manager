@@ -257,7 +257,7 @@
   "privateDatabase_add_bdd_name": "Nazwa bazy",
   "privateDatabase_add_bdd_error_name_pattern": "Nazwa nie spełnia zasad.",
   "privateDatabase_add_bdd_error_name_required": "Pole wymagane",
-  "privateDatabase_create_bdd_conditions": "Uwaga: nazwa musi spełniać następujące warunki: <br/>- Minimalna liczba znaków: {{t0}}<br/>- Maksymalna liczba znaków: {{t1}}<br/>- Powinien rozpoczynać się od cyfry lub litery.<br/>- Może zawierać tylko cyfry, litery lub znaki `_`-`.",
+  "privateDatabase_create_bdd_conditions": "Uwaga: nazwa musi spełniać następujące warunki: <br/>- Minimalna liczba znaków: {{t0}}.<br/>- Maksymalna liczba znaków: {{t1}}.<br/>- Musi zaczynać się od cyfry lub litery.<br/>- Może zawierać tylko cyfry, litery lub znaki „_” i „-”.",
   "privateDatabase_add_bdd_success": "Zlecenie utworzenia bazy danych zostało zarejestrowane w systemie.",
   "privateDatabase_add_bdd_fail": "Wystąpił błąd podczas zakładania bazy danych.",
   "privateDatabase_tabs_bdd_adding": "Trwa dodawanie bazy danych...",
