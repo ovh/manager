@@ -1,4 +1,4 @@
 {
-  "ovhManagerPccDashboardOptionsNsxt_name": "Network virtualization and security platform (NSX)",
-  "ovhManagerPccDashboardOptionsNsxt_tooltip": "Aktywacja i wyłączenie NSX nie jest aktualnie dostępne."
+  "ovhManagerPccDashboardOptionsNsxt_name": "Wirtualizacja sieci i bezpieczeństwa (NSX-T)",
+  "ovhManagerPccDashboardOptionsNsxt_tooltip": "Włączenie i wyłączenie NSX nie jest aktualnie dostępne."
 }
