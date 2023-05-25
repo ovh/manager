@@ -1,8 +1,8 @@
 {
-  "dedicated_clouds_onboarding_title": "Nasze rozwiązanie do wirtualizacji",
-  "dedicated_clouds_onboarding_description": "Opracowaliśmy platformę podobną do Twoich doświadczeń \"On-Prem\", w tym vSphere, vCenter i vROps.",
-  "dedicated_clouds_onboarding_description2": "Infrastruktura chmury prywatnej OVHcloud pozwala Ci cieszyć się usługą cloud, innowacyjnością OVHcloud i zmniejszyć koszty oraz wpływ na środowisko.",
-  "dedicated_clouds_onboarding_description3": "Zarządzamy utrzymaniem Twojej infrastruktury, zarówno sprzętowej, jak i programowej.",
+  "dedicated_clouds_onboarding_title": "Nasze rozwiązanie do zarządzanej wirtualizacji",
+  "dedicated_clouds_onboarding_description": "Zaprojektowaliśmy platformę podobną do Twojego rozwiązania on premises, w tym vSphere, vCenter i vROps.",
+  "dedicated_clouds_onboarding_description2": "Dzięki infrastrukturze chmury prywatnej OVHcloud zyskujesz niezawodną usługę i dostęp do innowacji, a ponadto obniżasz koszty i zmniejszasz negatywny wpływ na środowisko.",
+  "dedicated_clouds_onboarding_description3": "Zarządzamy utrzymaniem Twojej infrastruktury, zarówno sprzętowej, jak i software’owej.",
   "dedicated_clouds_onboarding_order": "Zamów",
   "dedicated_clouds_onboarding_guide1_title": "Prezentacja Panelu klienta OVHcloud",
   "dedicated_clouds_onboarding_guide1_description": "Poznaj możliwości Panelu klienta VMware",
@@ -10,11 +10,11 @@
   "dedicated_clouds_onboarding_guide2_description": "Poznaj rozwiązanie Tanzu Kubernetes Grid i jego możliwości integracji z VMware on OVHcloud",
   "dedicated_clouds_onboarding_guide3_title": "Konfiguracja IP na maszynie wirtualnej",
   "dedicated_clouds_onboarding_guide3_description": "Po utworzeniu wirtualnej maszyny możesz przypisać jej publiczny lub prywatny adres IP",
-  "dedicated_clouds_onboarding_us_guide1_title": "Dostęp do NSX Interfejs",
-  "dedicated_clouds_onboarding_us_guide1_description": "NSX is a Software-Defined Network (SDN) solution developed by VMware that is activated from the vCenter and managed directly from the vSphere interface. With NSX, you can configure rules to access your networks, tworzenie polityki bezpieczeństwa, and quickly deploy the various network services needed to build your infrastructure. This artykuł provides an wprowadzenie do NSX interface.",
-  "dedicated_clouds_onboarding_us_guide2_title": "Do Modify the vCenter Access Policy",
-  "dedicated_clouds_onboarding_us_guide2_description": "To enhance security for your Managed Bare Metal infrastructure, you can restrict and manage the access to vCenter. W tym artykule, we will go over how to change the access policy for vCenter in the OVHcloud Manager.",
-  "dedicated_clouds_onboarding_us_guide3_title": "How to Authorize IP Addresses for vCenter Access",
-  "dedicated_clouds_onboarding_us_guide3_description": "Access to your vCenter environment can be restricted by allowing only określone IP addresses or ranges to connect to it. We will cover how to authorize IP addresses for vCenter access in the OVHcloud Manager.",
-  "dedicated_clouds_onboarding_description4": "Korzystasz również z usług w chmurze o wysokiej wydajności z opcjami takimi jak NSX, vSAN i Veeam Backup (do wykonywania kopii zapasowych) — i Zerto (do realizacji planu Disaster Recovery)."
+  "dedicated_clouds_onboarding_us_guide1_title": "Pierwsze kroki z NSX",
+  "dedicated_clouds_onboarding_us_guide1_description": "NSX to rozwiązanie do zarządzania siecią Software Defined Networking (SDN) dostarczane przez VMware. OVHcloud oferuje tę usługę w ramach oferty Private Cloud Powered by VMware, w miejsce NSX-v. Wdrożone są dwa hosty, z maszyną wirtualną dedykowaną dla NSX na każdym z nich, co zapewnia redundancję w przypadku awarii jednego z hostów.",
+  "dedicated_clouds_onboarding_us_guide2_title": "Dowiedz się, jak zmienić politykę dostępu do vCenter w Panelu klienta OVHcloud.",
+  "dedicated_clouds_onboarding_us_guide2_description": "Aby zwiększyć bezpieczeństwo infrastruktury vSphere, możesz ograniczyć dostęp do vCenter i zarządzać nim.",
+  "dedicated_clouds_onboarding_us_guide3_title": "Dowiedz się, jak zezwolić adresom IP na łączenie się z vCenter.",
+  "dedicated_clouds_onboarding_us_guide3_description": "Dostęp do vCenter jest domyślnie ograniczony. Konieczne jest zatem dodanie adresów IP, które będą mogły łączyć się z usługą.",
+  "dedicated_clouds_onboarding_description4": "Korzystasz również z usług w chmurze o wysokiej wydajności z opcjami takimi jak NSX, vSAN i Veeam Backup (do tworzenia kopii zapasowych) oraz Zerto (do realizacji planu Disaster Recovery)."
 }
