@@ -1,8 +1,8 @@
 {
   "pci_projects_project_storages_components_password_clipboard_label_show_password": "Mostra la password",
   "pci_projects_project_storages_components_password_clipboard_label_hide_password": "Nascondi la password",
-  "pci_projects_project_storages_components_password_clipboard_label_copy_to_clipboard": "Copia negli appunti",
-  "pci_projects_project_storages_components_password_clipboard_tooltip_action_copy": "Copia negli appunti",
+  "pci_projects_project_storages_components_password_clipboard_label_copy_to_clipboard": "Copiare negli appunti",
+  "pci_projects_project_storages_components_password_clipboard_tooltip_action_copy": "Copiare negli appunti",
   "pci_projects_project_storages_components_password_clipboard_tooltip_action_copied": "Copiato",
   "pci_projects_project_storages_components_password_clipboard_tooltip_action_copy_not_supported": "Non è possibile effettuare la copia negli appunti. Copia il testo manualmente."
 }
