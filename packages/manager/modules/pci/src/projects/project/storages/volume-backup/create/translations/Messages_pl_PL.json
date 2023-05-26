@@ -25,7 +25,7 @@
   "pci_projects_project_storages_volume_backup_create_step_4_title": "Nazwij kopię zapasową",
   "pci_projects_project_storages_volume_backup_create_step_4_input_label": "Nazwa kopii zapasowej",
   "pci_projects_project_storages_volume_backup_create_action_create": "Utwórz kopię zapasową",
-  "pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success": "Rozpoczęło się tworzenie Volume Backup {{backupName}}. Pamiętaj, aby podłączyć wolumen do instancji.",
+  "pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success": "Trwa tworzenie wolumenu Backup {{backupName}}. Pamiętaj, aby podłączyć wolumen do instancji.",
   "pci_projects_project_storages_volume_backup_create_action_create_option_volume_snapshot_success": "Trwa tworzenie kopii zapasowej {{backupName}}.",
   "pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail": "Wystąpił błąd podczas tworzenia kopii zapasowej: {{errorMessage}}"
 }
