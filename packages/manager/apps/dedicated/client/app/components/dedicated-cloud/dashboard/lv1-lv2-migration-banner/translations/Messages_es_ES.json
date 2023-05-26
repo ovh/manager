@@ -1,0 +1,4 @@
+{
+  "dedicated_cloud_dashboard_lv1_lv2_migration_banner_info_1": "En el marco del ciclo de vida de nuestras soluciones Hosted Private Cloud VMware®, el año pasado lanzamos nuevos modelos de datastores. Así pues, los antiguos datastores se detendrán el próximo 31 de octubre de 2023. Le recomendamos que planifique la migración de su servicio hacia los nuevos modelos disponibles, tal y como le indicamos en nuestra comunicación.",
+  "dedicated_cloud_dashboard_lv1_lv2_migration_banner_info_2": "¿Necesita ayuda? Consulte nuestra <a href=\"{{ guideLink }}\" target=\"_blank\">guía</a> sobre la migración de sus datos."
+}
