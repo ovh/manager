@@ -10,12 +10,8 @@ import './vite-hmr';
 import OvhApplication from './ovh-application';
 import OvhContext, {
   OvhContextShellType as OvhContextShellT,
-  initOvhContext,
-  OvhContextType,
 } from './ovh-context';
 import { createAppRouter } from './ovh-routing';
-
-import initI18n from './i18n';
 
 export function useEnvironment() {
   const { environment } = useContext(OvhContext);
@@ -39,44 +35,23 @@ export function createContainerElement() {
   body.append(divContainer);
   return divContainer;
 }
-async function setLocale(context: OvhContextType) {
-  const availableLocales = await context.shell.i18n.getAvailableLocales();
-  await initI18n(
-    context.environment.getUserLocale(),
-    availableLocales.map(({ key }) => key),
-  );
-  return context;
-}
 
-export async function startApplication(appName: ApplicationId) {
+export function startApplication(appName: ApplicationId) {
   const root = createRoot(createContainerElement());
   const appRouter = createAppRouter();
   console.info('entre dans startApplication');
   console.info('startApplication appName : ', appName);
 
-  try {
-    const ovhContext = await initOvhContext(appName);
-    const contextWithI18n = await setLocale(ovhContext);
-    // contextWithI18n.shell.i18n.onLocaleChange(() => {
-    //   console.info('entre dans onLocaleChange I18n.shell.i18n')
-    //   setLocale(contextWithI18n).then((ctx) => contextWithI18n = ctx)
-    // });
-    console.info('contextWithI18n :', contextWithI18n);
-    root.render(
-      <React.StrictMode>
-        <OvhContext.Provider value={contextWithI18n}>
-          <QueryClientProvider client={queryClient}>
-            <React.Suspense fallback={null}>
-              <RouterProvider router={appRouter} />
-            </React.Suspense>
-            <ReactQueryDevtools />
-          </QueryClientProvider>
-        </OvhContext.Provider>
-      </React.StrictMode>,
-    );
-  } catch (error) {
-    console.info('Error Start application');
-  }
+  root.render(
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <OvhApplication name={appName}>
+          <RouterProvider router={appRouter} />
+        </OvhApplication>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </React.StrictMode>,
+  );
 }
 
 export default startApplication;

@@ -6634,6 +6634,31 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.3.0.tgz#d88ec8e58022de2a9269a364b0c946f9c8a8252d"
   integrity sha512-Vy74YQYFdT+d5O7FPETDZ5Yp5dmk+ifZbhlEToaCg1lflBOhnzqT3+cQf1BkbYDt4+X6M4jc4qKYit79tHC7FA==
 
+"@ovhcloud/ods-core@^12.1.0":
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-core/-/ods-core-12.1.1.tgz#55c3d2407329ea216882addb50baef9273d5cfc6"
+  integrity sha512-WV+MKQqJgoYHXWWbt8DUPbCGXHtBxpNOajPaMD4mp0B/thus+p9OcfvnE4Nztc58aUO0XLejGLChCldeB65Sdg==
+
+"@ovhcloud/ods-stencil@^12.1.0":
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-stencil/-/ods-stencil-12.1.1.tgz#d4fb8f9fc96717c31c4fa6775af5d64e1161c9f6"
+  integrity sha512-69dTOQ9E3weq3i4o9prvfDxJIohz6Mn98vGwMrqnjW4iwO3VB6LZByV0/FzybVNsEShZdyvR8/8NBzJm9c0kjw==
+  dependencies:
+    "@ovhcloud/ods-theme-blue-jeans" "^12.1.1"
+    "@stencil/core" "~2.18.1"
+
+"@ovhcloud/ods-theme-blue-jeans@^12.1.0", "@ovhcloud/ods-theme-blue-jeans@^12.1.1":
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-12.1.1.tgz#642b5827a20a6c1c472407cd4080e85c5f592798"
+  integrity sha512-darWRHYkjGzM1TTGm1ndnjJuI8UTzfce7ChHJGxMeY4me7jKHPDu9ekKdtES9gxGKx0FOOztaM/UQLfq4LGsOQ==
+  dependencies:
+    "@ovhcloud/ods-theming" "^12.1.1"
+
+"@ovhcloud/ods-theming@^12.1.0", "@ovhcloud/ods-theming@^12.1.1":
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theming/-/ods-theming-12.1.1.tgz#f8ffdad3207d4104e0a6cc69393400985e3097d0"
+  integrity sha512-6RQ8+YA0gRTkdRFRjxYuq2ktC1ULKqqrg7Cat572sDQjTNDBOlEulIrFBSWWJunpzT7tCXe0FUvDbukeNatg6w==
+
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/reket-axios-client/-/reket-axios-client-0.2.1.tgz#835997e9d3514a5855dc4d7ac867abe8b2c8638d"
@@ -6868,6 +6893,11 @@
   integrity sha512-OAPJUAtgeINhh/TAlUID4QTs53Njm7xzddaVlEs/SXwgtiD1tW22zAB/W1wdqfrpmikgaWQ9Fw6Ws+hsiRm5Vg==
   dependencies:
     "@sinonjs/commons" "^1.7.0"
+
+"@stencil/core@~2.18.1":
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.18.1.tgz#f45e99b7abe2a0fa90d3141363601a68df5c08a7"
+  integrity sha512-/fXkh1lwZ+X9JQCw50mPjhBogzEHOBvVC5pLoDLZqodVYK0DGWILM2YLV4dcIUBNEK8/HMDpO/Rq81/rS3mNOw==
 
 "@stylelint/postcss-css-in-js@^0.37.2":
   version "0.37.2"

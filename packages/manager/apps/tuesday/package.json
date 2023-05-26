@@ -20,6 +20,10 @@
   "dependencies": {
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-react-core-application": "*",
+    "@ovhcloud/ods-core": "^12.1.0",
+    "@ovhcloud/ods-stencil": "^12.1.0",
+    "@ovhcloud/ods-theme-blue-jeans": "^12.1.0",
+    "@ovhcloud/ods-theming": "^12.1.0",
     "@tanstack/react-query": "^4.29.3",
     "react": "^18.2.0",
     "react-i18next": "^11.18.1",

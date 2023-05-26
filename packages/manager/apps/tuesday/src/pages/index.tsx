@@ -8,6 +8,7 @@ import {
   Outlet,
   useLoaderData,
 } from 'react-router-dom';
+import '@ovhcloud/ods-theme-blue-jeans/index.css';
 
 import { getDedicatedNashaList } from '@/api';
 
@@ -20,11 +21,6 @@ export function loader() {
 export default function Listing() {
   const { t } = useTranslation('tuesday/listing');
   const data = useLoaderData() as Record<string, unknown>;
-
-  useEffect(() => {
-    console.info('++++++++++++++++++++++++++');
-    console.info('USEEFFECT LISTING INIT !');
-  }, []);
 
   return (
     <div>
