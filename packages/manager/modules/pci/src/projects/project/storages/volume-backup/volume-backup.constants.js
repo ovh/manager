@@ -152,7 +152,8 @@ export const GUIDES = [
       PT: 'https://docs.ovh.com/pt/storage/',
       QC: 'https://docs.ovh.com/ca/fr/storage/',
       SG: 'https://docs.ovh.com/sg/en/storage/',
-      US: 'https://docs.ovh.com/us/en/storage/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/sections/115000624590-Storage',
       WS: 'https://docs.ovh.com/us/es/storage/',
     },
   },
@@ -175,7 +176,8 @@ export const GUIDES = [
       PT: 'https://docs.ovh.com/pt/public-cloud/public-cloud-primeiros-passos/',
       QC:
         'https://docs.ovh.com/ca/fr/public-cloud/premiers-pas-instance-public-cloud/',
-      US: 'https://docs.ovh.com/us/en/public-cloud/public-cloud-first-steps/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/4481009956243-How-to-Manage-Your-Public-Cloud-Instance',
       WS:
         'https://docs.ovh.com/us/es/public-cloud/public-cloud-primeros-pasos/',
     },
