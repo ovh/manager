@@ -25,7 +25,7 @@
   "pci_projects_project_storages_volume_backup_create_step_4_title": "Asígnele un nombre a la copia de seguridad",
   "pci_projects_project_storages_volume_backup_create_step_4_input_label": "Nombre de la copia de seguridad",
   "pci_projects_project_storages_volume_backup_create_action_create": "Crear la copia de seguridad",
-  "pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success": "Creando el Volume Backup {{ backupName }}... Recuerde vincular el volumen a su instancia.",
+  "pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success": "Estamos creando su Volume Backup {{ backupName }}. Recuerde vincular el volumen a su instancia.",
   "pci_projects_project_storages_volume_backup_create_action_create_option_volume_snapshot_success": "Creando la copia de seguridad {{ backupName }}...",
   "pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail": "Se ha producido un error al crear la copia de seguridad: {{ errorMessage }}"
 }
