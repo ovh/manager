@@ -1,7 +1,6 @@
 import {
   USER_TYPE,
   MAX_SIZE,
-  TRACKING_PREFIX,
   TRACKING_TASK_TAG,
   LEGAL_LINK1,
   LEGAL_LINK2,
@@ -24,6 +23,7 @@ export default class AccountUserIdentityDocumentsController {
     this.LEGAL_LINK3 =
       LEGAL_LINK3[coreConfig.getUser().ovhSubsidiary] || LEGAL_LINK3.OTHERS;
     this.KYC_STATUS = KYC_STATUS;
+    this.TRACKING_TASK_TAG = TRACKING_TASK_TAG;
   }
 
   $onInit() {
@@ -33,7 +33,6 @@ export default class AccountUserIdentityDocumentsController {
     this.showUploadOption = true;
     this.displayError = false;
     this.dashboardRedirectURL = this.coreURLBuilder.buildURL('hub', '');
-    this.trackPage(TRACKING_PREFIX);
   }
 
   uploadIdentityDocuments() {

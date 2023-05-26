@@ -27,6 +27,7 @@ export const TRACKING_TASK_TAG = {
   upload: `${TRACKING_PREFIX}::upload`,
   uploadSuccess: `${TRACKING_PREFIX}::upload-success`,
   uploadError: `${TRACKING_PREFIX}::upload-error`,
+  gotToHub: `${TRACKING_PREFIX}::goto-hub`,
 };
 
 export const KYC_STATUS = {
