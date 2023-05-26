@@ -44,10 +44,14 @@ export default /* @ngInject */ ($stateProvider) => {
       goToAddUserToContainer: /* @ngInject */ ($state, projectId) => (
         container,
       ) => {
-        return $state.go(COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_ADD_USER, {
-          projectId,
-          container,
-        });
+        return $state.go(
+          COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_ADD_USER,
+          {
+            projectId,
+            container,
+          },
+          { inherit: false },
+        );
       },
 
       goToDeleteContainerObjects: /* @ngInject */ ($state, projectId) => (
