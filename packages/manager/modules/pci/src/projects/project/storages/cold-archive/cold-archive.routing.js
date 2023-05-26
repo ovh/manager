@@ -139,6 +139,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
           {
             reload,
+            inherit: false,
           },
         );
 
