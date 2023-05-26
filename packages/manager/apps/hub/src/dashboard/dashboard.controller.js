@@ -34,7 +34,7 @@ export default class DashboardController {
       .then(({ data: featureAvailability }) => {
         if (featureAvailability['identity-documents']) {
           this.$http.get(`/me/procedure/identity`).then(({ data }) => {
-            this.showKycBanner = ['required'].includes(data.status);
+            this.showKycBanner = ['required', 'open'].includes(data.status);
             if (this.showKycBanner)
               this.atInternet.trackPage({
                 name: KYC_TRACKING_PREFIX,
