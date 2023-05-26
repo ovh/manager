@@ -25,7 +25,7 @@
   "pci_projects_project_storages_volume_backup_create_step_4_title": "Benennen Sie Ihr Backup",
   "pci_projects_project_storages_volume_backup_create_step_4_input_label": "Backup-Name",
   "pci_projects_project_storages_volume_backup_create_action_create": "Backup erstellen",
-  "pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success": "Die Erstellung Ihres Volume Backup {{ backupName }} wurde erfolgreich gestartet. Denken Sie daran, Ihr Volume mit seiner Instanz zu verbinden.",
+  "pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success": "Volume Backup {{ backupName }} wird erstellt. Denken Sie daran, Ihr Volume wieder mit seiner Instanz zu verbinden.",
   "pci_projects_project_storages_volume_backup_create_action_create_option_volume_snapshot_success": "Backup {{ backupName }} wird erstellt.",
   "pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail": "Bei der Erstellung Ihres Backups ist ein Fehler aufgetreten: {{ errorMessage }}"
 }
