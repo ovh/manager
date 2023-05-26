@@ -15,6 +15,7 @@ export default class WebComponentsHostingDomainOffersController {
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     const bytes = $filter('bytes');
+    const planCodeKey = 'legacyPlanCode'; // planCode
 
     this.NEW_OFFERS = {
       PERSO: {
@@ -28,7 +29,7 @@ export default class WebComponentsHostingDomainOffersController {
         ],
         SELECTORS: {
           PERSO: {
-            planCode: NEW_OFFERS_PLAN_CODES.PERSO.legacyPlanCode,
+            planCode: NEW_OFFERS_PLAN_CODES.PERSO[planCodeKey],
           },
         },
       },
@@ -43,7 +44,7 @@ export default class WebComponentsHostingDomainOffersController {
         ],
         SELECTORS: {
           PRO: {
-            planCode: NEW_OFFERS_PLAN_CODES.PRO.legacyPlanCode,
+            planCode: NEW_OFFERS_PLAN_CODES.PRO[planCodeKey],
           },
         },
       },
@@ -61,22 +62,22 @@ export default class WebComponentsHostingDomainOffersController {
         ],
         SELECTORS: {
           PERFORMANCE_1: {
-            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_1.legacyPlanCode,
+            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_1[planCodeKey],
             cores: 2,
             ram: bytes(4000, undefined, false, 'MB'),
           },
           PERFORMANCE_2: {
-            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_2.legacyPlanCode,
+            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_2[planCodeKey],
             cores: 4,
             ram: bytes(8000, undefined, false, 'MB'),
           },
           PERFORMANCE_3: {
-            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_3.legacyPlanCode,
+            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_3[planCodeKey],
             cores: 6,
             ram: bytes(12000, undefined, false, 'MB'),
           },
           PERFORMANCE_4: {
-            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_4.legacyPlanCode,
+            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_4[planCodeKey],
             cores: 8,
             ram: bytes(16000, undefined, false, 'MB'),
           },
@@ -86,8 +87,30 @@ export default class WebComponentsHostingDomainOffersController {
   }
 
   $onInit() {
-    // build offers object
-    const offers = this.offers.map((offer) => {
+    // build offers group
+    this.groupedOffers = this.buildOffersGroup();
+
+    // preselect equal offer (if exist)
+    this.model = {
+      offer: this.getEqualOffer(),
+    };
+  }
+
+  static buildBadgeModel(type, className) {
+    return {
+      type,
+      className,
+    };
+  }
+
+  static getOfferPrice(offer) {
+    return offer.versions.length > 1
+      ? offer.selectedVersion.price
+      : offer.price;
+  }
+
+  extendOffers() {
+    return this.offers.map((offer) => {
       const category = offer.value.startsWith('PERFORMANCE_')
         ? 'performance'
         : offer.value.toLowerCase();
@@ -107,10 +130,13 @@ export default class WebComponentsHostingDomainOffersController {
         price,
       };
     });
+  }
 
-    // grouped offers by category
+  buildOffersGroup() {
+    const offers = this.extendOffers();
     const groupedOffers = groupBy(offers, 'category');
-    this.groupedOffers = Object.keys(groupedOffers).map((category) => {
+
+    return Object.keys(groupedOffers).map((category) => {
       const versions = groupedOffers[category];
       const equalOffer = versions.find(
         ({ badge }) => badge.type === BADGES.EQUAL,
@@ -124,24 +150,6 @@ export default class WebComponentsHostingDomainOffersController {
         price: selectedVersion.price,
       };
     });
-
-    // preselect equal offer (if exist)
-    this.model = {
-      offer: this.getEqualOffer(),
-    };
-  }
-
-  static buildBadgeModel(type, className) {
-    return {
-      type,
-      className,
-    };
-  }
-
-  static getOfferPrice(offer) {
-    return offer.versions.length > 1
-      ? offer.selectedVersion.price
-      : offer.price;
   }
 
   getEqualOffer() {

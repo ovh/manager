@@ -7,6 +7,7 @@ import {
   QUOTA_DECIMAL_PRECISION,
 } from './general-informations.constants';
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
+import { NEW_OFFERS_NAME } from '../hosting.constants';
 
 export default class HostingGeneralInformationsCtrl {
   /* @ngInject */
@@ -367,5 +368,14 @@ export default class HostingGeneralInformationsCtrl {
       name: hit,
       type: 'action',
     });
+  }
+
+  getOfferName(offer) {
+    const offerPrefix = NEW_OFFERS_NAME[offer];
+    const translateKey = offerPrefix
+      ? `hostings_offer_${offerPrefix}`
+      : `hosting_dashboard_service_offer_${offer}`;
+
+    return this.$translate.instant(translateKey);
   }
 }
