@@ -20,8 +20,12 @@
             ></p>
 
             <!--Offer label-->
-            <div class="m-0">
-                <span class="oui-badge oui-badge_new">New</span>
+            <div class="m-0"
+                 data-ng-if="offer.selectedVersion.badge.type"
+            >
+                <span class="oui-badge oui-badge_{{offer.selectedVersion.badge.className}}"
+                      data-ng-bind="('web_components_hosting_domain_offers_offer_badge_' + offer.selectedVersion.badge.type) | translate"
+                ></span>
             </div>
         </oui-select-picker-label>
 

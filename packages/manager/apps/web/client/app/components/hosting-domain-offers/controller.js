@@ -1,14 +1,22 @@
+import moment from 'moment';
 import groupBy from 'lodash/groupBy';
 
-export const UCENTS_FACTOR = 1000000000;
+import {
+  UCENTS_FACTOR,
+  NEW_OFFERS_END_DATE,
+  CURRENT_OFFERS,
+  BADGES,
+  NEW_OFFERS_PLAN_CODES,
+} from './constants';
 
 export default class WebComponentsHostingDomainOffersController {
   /* @ngInject */
-  constructor($translate, $filter) {
+  constructor($translate, $filter, coreConfig) {
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     const bytes = $filter('bytes');
 
-    this.OFFERS_INFO = {
+    this.NEW_OFFERS = {
       PERSO: {
         TECHNICALS: [
           { prefix: 'discs', values: [bytes(1000, undefined, false, 'MB')] },
@@ -19,7 +27,9 @@ export default class WebComponentsHostingDomainOffersController {
           { prefix: 'dbs', values: [1, bytes(500, undefined, false, 'MB')] },
         ],
         SELECTORS: {
-          PERSO: { planCode: 'perso2014' },
+          PERSO: {
+            planCode: NEW_OFFERS_PLAN_CODES.PERSO.legacyPlanCode,
+          },
         },
       },
       PRO: {
@@ -32,7 +42,9 @@ export default class WebComponentsHostingDomainOffersController {
           { prefix: 'dbs', values: [4, bytes(1000, undefined, false, 'MB')] },
         ],
         SELECTORS: {
-          PRO: { planCode: 'pro2014' },
+          PRO: {
+            planCode: NEW_OFFERS_PLAN_CODES.PRO.legacyPlanCode,
+          },
         },
       },
       PERFORMANCE: {
@@ -49,22 +61,22 @@ export default class WebComponentsHostingDomainOffersController {
         ],
         SELECTORS: {
           PERFORMANCE_1: {
-            planCode: 'perf2014x1',
+            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_1.legacyPlanCode,
             cores: 2,
             ram: bytes(4000, undefined, false, 'MB'),
           },
           PERFORMANCE_2: {
-            planCode: 'perf2014x2',
+            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_2.legacyPlanCode,
             cores: 4,
             ram: bytes(8000, undefined, false, 'MB'),
           },
           PERFORMANCE_3: {
-            planCode: 'perf2014x3',
+            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_3.legacyPlanCode,
             cores: 6,
             ram: bytes(12000, undefined, false, 'MB'),
           },
           PERFORMANCE_4: {
-            planCode: 'perf2014x4',
+            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_4.legacyPlanCode,
             cores: 8,
             ram: bytes(16000, undefined, false, 'MB'),
           },
@@ -85,6 +97,7 @@ export default class WebComponentsHostingDomainOffersController {
 
       return {
         ...offer,
+        badge: this.getOfferBadge(offer),
         planCode,
         category,
         selector: this.$translate.instant(
@@ -99,18 +112,72 @@ export default class WebComponentsHostingDomainOffersController {
     const groupedOffers = groupBy(offers, 'category');
     this.groupedOffers = Object.keys(groupedOffers).map((category) => {
       const versions = groupedOffers[category];
+      const equalOffer = versions.find(
+        ({ badge }) => badge.type === BADGES.EQUAL,
+      );
+      const selectedVersion = equalOffer || versions[0];
 
       return {
         category,
         versions,
-        selectedVersion: versions[0],
-        price: versions[0].price,
+        selectedVersion,
+        price: selectedVersion.price,
       };
     });
 
+    // preselect equal offer (if exist)
     this.model = {
-      offer: null,
+      offer: this.getEqualOffer(),
     };
+  }
+
+  static buildBadgeModel(type, className) {
+    return {
+      type,
+      className,
+    };
+  }
+
+  static getOfferPrice(offer) {
+    return offer.versions.length > 1
+      ? offer.selectedVersion.price
+      : offer.price;
+  }
+
+  getEqualOffer() {
+    return this.groupedOffers.find(
+      ({ selectedVersion }) => selectedVersion.badge.type === BADGES.EQUAL,
+    );
+  }
+
+  getOfferBadge(offer) {
+    const Ctrl = WebComponentsHostingDomainOffersController;
+    const CURRENT_OFFER = CURRENT_OFFERS[this.currentOffer];
+
+    // upgrade case
+    if (CURRENT_OFFER?.upgrade?.includes(offer.value)) {
+      return Ctrl.buildBadgeModel(BADGES.UPGRADE, 'warning');
+    }
+
+    // equal case
+    if (CURRENT_OFFER?.equal?.includes(offer.value)) {
+      return Ctrl.buildBadgeModel(BADGES.EQUAL, 'success');
+    }
+
+    // downgrade case
+    if (
+      this.coreConfig.isRegion('EU') &&
+      CURRENT_OFFER?.downgrade?.includes(offer.value)
+    ) {
+      return Ctrl.buildBadgeModel(BADGES.DOWNGRADE, 'error');
+    }
+
+    // case new
+    if (moment().isBefore(NEW_OFFERS_END_DATE)) {
+      return Ctrl.buildBadgeModel(BADGES.NEW, 'info');
+    }
+
+    return Ctrl.buildBadgeModel('', '');
   }
 
   formatOfferPrice(offerCategory, planCode) {
@@ -126,12 +193,12 @@ export default class WebComponentsHostingDomainOffersController {
     }`;
   }
 
-  getOfferInfo(offerCategory) {
-    return this.OFFERS_INFO[offerCategory.toUpperCase()];
+  getNewOffer(offerCategory) {
+    return this.NEW_OFFERS[offerCategory.toUpperCase()];
   }
 
   getOfferTechnicalsInfo(offerCategory) {
-    return this.getOfferInfo(offerCategory).TECHNICALS.map(
+    return this.getNewOffer(offerCategory).TECHNICALS.map(
       ({ prefix, values }) => {
         return this.$translate.instant(
           `web_components_hosting_domain_offers_offer_${offerCategory}_technicals_${prefix}`,
@@ -142,12 +209,6 @@ export default class WebComponentsHostingDomainOffersController {
   }
 
   getOfferSelector(offerCategory, offerVersion) {
-    return this.getOfferInfo(offerCategory)?.SELECTORS?.[offerVersion] || {};
-  }
-
-  static getOfferPrice(offer) {
-    return offer.versions.length > 1
-      ? offer.selectedVersion.price
-      : offer.price;
+    return this.getNewOffer(offerCategory)?.SELECTORS?.[offerVersion] || {};
   }
 }
