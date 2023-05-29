@@ -1,4 +1,4 @@
-import { alertResolve, goToResolve, advancedModeResolve } from '@iam/resolves';
+import { alertResolve, goToResolve, advancedModeResolve } from '../../resolves';
 import cursorDatagridResolves from '../cursorDatagrid/cursorDatagrid.resolves';
 
 export default [

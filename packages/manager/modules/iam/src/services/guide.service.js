@@ -1,4 +1,4 @@
-import { GUIDE } from '@iam/constants';
+import { GUIDE } from '../constants';
 
 export default class GuideService {
   /* @ngInject */

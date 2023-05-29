@@ -1,4 +1,4 @@
-import { asBindings } from '@iam/resolves';
+import { asBindings } from '../../resolves';
 
 import controller from './deleteEntity.controller';
 import resolves from './deleteEntity.resolves';

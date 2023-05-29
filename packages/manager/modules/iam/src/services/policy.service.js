@@ -142,7 +142,7 @@ export default class PolicyService {
         allow: Array.isArray(policy.permissions.allow)
           ? policy.permissions.allow.map(
               (allow) =>
-                actions.find((action) => action.action === allow.action) ??
+                actions.find((action) => action.action === allow.action) ||
                 allow,
             )
           : [],

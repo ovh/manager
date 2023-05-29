@@ -4,7 +4,7 @@ import {
   goToResolve,
   onboardingGuidesResolve,
   policyParamResolve,
-} from '@iam/resolves';
+} from '../../resolves';
 
 export default [
   alertResolve,

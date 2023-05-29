@@ -1,6 +1,6 @@
 import FeatureAvailabilityResult from '@ovh-ux/ng-ovh-feature-flipping/src/feature-availability-result.class';
 
-import { ALERT_ID, ENTITY, FEATURE } from '@iam/constants';
+import { ALERT_ID, ENTITY, FEATURE } from '../constants';
 import {
   policyParamResolve,
   identityParamResolve,
