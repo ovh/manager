@@ -1,4 +1,4 @@
-import { KEY_PREFERENCES } from '@iam/constants';
+import { KEY_PREFERENCES } from '../constants';
 
 const ENDPOINT = '/me/preferences/manager';
 

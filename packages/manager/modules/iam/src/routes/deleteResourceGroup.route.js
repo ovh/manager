@@ -1,10 +1,10 @@
-import { deleteEntity as deleteEntityComponent } from '@iam/components';
+import { deleteEntity as deleteEntityComponent } from '../components';
 import {
   asPath,
   asResolve,
   noBreadcrumbResolve,
   resourceGroupParamResolve,
-} from '@iam/resolves';
+} from '../resolves';
 
 const name = 'deleteResourceGroup';
 const resolves = [noBreadcrumbResolve, resourceGroupParamResolve];

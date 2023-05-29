@@ -1,3 +1,3 @@
-import { cursorsParamResolve } from '@iam/resolves';
+import { cursorsParamResolve } from '../../resolves';
 
 export default [cursorsParamResolve];

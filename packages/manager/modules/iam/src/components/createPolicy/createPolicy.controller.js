@@ -230,7 +230,7 @@ export default class CreatePolicyController {
     if (this.model.resourceGroups?.length) {
       this.model.resourceGroups = this.model.resourceGroups.map(
         (resourceGroup) =>
-          resourceGroups.find(({ id }) => resourceGroup.id === id) ??
+          resourceGroups.find(({ id }) => resourceGroup.id === id) ||
           resourceGroup,
       );
     }

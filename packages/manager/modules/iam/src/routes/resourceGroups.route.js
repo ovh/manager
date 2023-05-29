@@ -1,11 +1,11 @@
-import { resourceGroups as resourceGroupsComponent } from '@iam/components';
+import { resourceGroups as resourceGroupsComponent } from '../components';
 import {
   asParams,
   asQuery,
   asResolve,
   cursorsParamResolve,
   noBreadcrumbResolve,
-} from '@iam/resolves';
+} from '../resolves';
 
 const name = 'resourceGroups';
 const params = [cursorsParamResolve];

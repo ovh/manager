@@ -1,3 +1,3 @@
-import { alertResolve, advancedModeResolve, goToResolve } from '@iam/resolves';
+import { alertResolve, advancedModeResolve, goToResolve } from '../../resolves';
 
 export default [alertResolve, advancedModeResolve, goToResolve];
