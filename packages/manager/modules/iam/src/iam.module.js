@@ -8,7 +8,6 @@ import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
 
-import constants from './constants';
 import resolves from './resolves';
 import routes from './routes';
 import services from './services';
@@ -26,7 +25,6 @@ angular.module(moduleName, [
   ngOvhFeatureFlipping,
   ngOvhUtils,
   uiKit,
-  constants,
   resolves,
   routes,
   services,

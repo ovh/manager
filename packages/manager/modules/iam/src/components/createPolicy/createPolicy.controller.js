@@ -1,5 +1,7 @@
 import { cloneDeep, isEqual } from 'lodash-es';
 
+import { ENTITY, ENTITY_NAME_PATTERN } from '../../iam.constants';
+
 export default class CreatePolicyController {
   /* @ngInject */
   constructor($q, $timeout, $translate, PolicyService, ResourceService) {
@@ -7,6 +9,9 @@ export default class CreatePolicyController {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.PolicyService = PolicyService;
+
+    this.ENTITY_NAME_PATTERN = ENTITY_NAME_PATTERN;
+    this.ENTITY_RESOURCE_TYPE = ENTITY.RESOURCE_TYPE;
 
     /**
      * The oui-select confirm-remove property works with promises
