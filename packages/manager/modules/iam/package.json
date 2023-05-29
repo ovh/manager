@@ -10,20 +10,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "main": "./dist/esm/index.js",
-  "scripts": {
-    "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-iam' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-iam' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-iam' --include-dependencies -- yarn run dev:watch"
-  },
-  "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^12.0.2",
-    "@rollup/plugin-alias": "^4.0.3"
-  },
+  "main": "src/index.js",
   "peerDependencies": {
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.7",

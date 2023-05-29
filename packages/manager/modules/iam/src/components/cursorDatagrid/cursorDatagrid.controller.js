@@ -1,4 +1,4 @@
-import { areCursorsEquals, cursorsParamResolve } from '@iam/resolves';
+import { areCursorsEquals, cursorsParamResolve } from '../../resolves';
 
 /**
  * This class is meant to be extended by the datagrid controllers

@@ -1,10 +1,10 @@
-import { iam as iamComponent } from '@iam/components';
-import { FEATURE, UNAVAILABLE_STATE_NAME } from '@iam/constants';
+import { iam as iamComponent } from '../components';
+import { FEATURE, UNAVAILABLE_STATE_NAME } from '../constants';
 import {
   asResolve,
   featuresResolve,
   defaultBreadcrumbResolve,
-} from '@iam/resolves';
+} from '../resolves';
 
 const name = 'iam';
 const resolves = [featuresResolve, defaultBreadcrumbResolve];

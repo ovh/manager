@@ -1,10 +1,10 @@
-import { deleteEntity as deleteEntityComponent } from '@iam/components';
+import { deleteEntity as deleteEntityComponent } from '../components';
 import {
   asPath,
   asResolve,
   noBreadcrumbResolve,
   identityParamResolve,
-} from '@iam/resolves';
+} from '../resolves';
 
 const name = 'deleteIdentity';
 const resolves = [noBreadcrumbResolve, identityParamResolve];

@@ -1,6 +1,6 @@
 import {
   onboardingGuidesResolve,
   usersManagementLinkResolve,
-} from '@iam/resolves';
+} from '../../resolves';
 
 export default [onboardingGuidesResolve, usersManagementLinkResolve];
