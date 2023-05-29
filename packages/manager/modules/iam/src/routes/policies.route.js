@@ -1,4 +1,4 @@
-import { policies as policiesComponent } from '@iam/components';
+import { policies as policiesComponent } from '../components';
 import {
   asParams,
   asQuery,
@@ -6,7 +6,7 @@ import {
   cursorsParamResolve,
   hasPoliciesResolve,
   noBreadcrumbResolve,
-} from '@iam/resolves';
+} from '../resolves';
 
 const name = 'policies';
 const params = [cursorsParamResolve];

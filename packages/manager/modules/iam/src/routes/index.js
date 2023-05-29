@@ -1,7 +1,7 @@
 import angular from 'angular';
 import { snakeCase } from 'lodash-es';
 
-import resolves from '@iam/resolves';
+import resolves from '../resolves';
 
 import rootRoute from './root.route';
 

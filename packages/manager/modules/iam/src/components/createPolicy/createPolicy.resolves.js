@@ -3,7 +3,7 @@ import {
   goBackResolve,
   onboardingGuidesResolve,
   detailedPolicyParamResolve,
-} from '@iam/resolves';
+} from '../../resolves';
 
 export default [
   alertResolve,

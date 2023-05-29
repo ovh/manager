@@ -1,10 +1,10 @@
-import { policyIdentities as policyIdentitiesComponent } from '@iam/components';
+import { policyIdentities as policyIdentitiesComponent } from '../components';
 import {
   asPath,
   asResolve,
   policyParamResolve,
   policyIdentitiesBreadcrumbResolve,
-} from '@iam/resolves';
+} from '../resolves';
 
 const name = 'policyIdentities';
 const resolves = [policyParamResolve, policyIdentitiesBreadcrumbResolve];

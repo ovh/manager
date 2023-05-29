@@ -1,9 +1,9 @@
-import { onboarding as onboardingComponent } from '@iam/components';
+import { onboarding as onboardingComponent } from '../components';
 import {
   asResolve,
   noBreadcrumbResolve,
   hasPoliciesResolve,
-} from '@iam/resolves';
+} from '../resolves';
 
 const name = 'onboarding';
 const resolves = [noBreadcrumbResolve];
