@@ -1,5 +1,5 @@
 import { iam as iamComponent } from '../components';
-import { FEATURE, UNAVAILABLE_STATE_NAME } from '../constants';
+import { FEATURE, UNAVAILABLE_STATE_NAME } from '../iam.constants';
 import {
   asResolve,
   featuresResolve,

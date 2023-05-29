@@ -1,4 +1,4 @@
-import { DELETE_STATEMENT, ENTITY } from '../../constants';
+import { DELETE_STATEMENT, ENTITY } from '../../iam.constants';
 import { encodeUrn } from '../../resolves';
 
 export default class DeleteEntityController {
@@ -8,6 +8,8 @@ export default class DeleteEntityController {
     this.$stateParams = $stateParams;
     this.PolicyService = PolicyService;
     this.ResourceGroupService = ResourceGroupService;
+
+    this.DELETE_STATEMENT = DELETE_STATEMENT;
 
     /**
      * Whether the controller is currently deleting the entity
