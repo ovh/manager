@@ -1,3 +1,4 @@
+import { PAGE_SIZE } from '../../iam.constants';
 import { policyParamResolve } from '../../resolves';
 import AbstractCursorDatagridController from '../cursorDatagrid/cursorDatagrid.controller';
 
@@ -7,6 +8,8 @@ export default class PoliciesController extends AbstractCursorDatagridController
     super();
     this.IAMRoutes = IAMRoutes;
     this.PolicyService = PolicyService;
+
+    this.PAGE_SIZE = PAGE_SIZE;
   }
 
   /**

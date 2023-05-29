@@ -1,5 +1,5 @@
 import { isEqual } from 'lodash-es';
-import { ENTITY } from '../../constants';
+import { ENTITY } from '../../iam.constants';
 
 const urnType = 'urn';
 const urnPattern = /urn:v[0-9]:(?:eu|ca|us):[a-z]+:.+/;
