@@ -1,7 +1,7 @@
 <div class="iam-create_policy">
     <iam-delete-entity
         data-ng-if="$ctrl.deletion"
-        data-entity="{ data: $ctrl.deletion.data, type: $root.IAM.ENTITY.RESOURCE_TYPE }"
+        data-entity="{ data: $ctrl.deletion.data, type: $ctrl.ENTITY_RESOURCE_TYPE }"
         data-statement="false"
         data-go-back="$ctrl.onDeleteEntityGoBack"
     >
@@ -71,7 +71,7 @@
                 name="name"
                 type="text"
                 data-ng-model="$ctrl.model.name"
-                data-ng-pattern="$root.IAM.ENTITY_NAME_PATTERN"
+                data-ng-pattern="$ctrl.ENTITY_NAME_PATTERN"
                 data-ng-disabled="$ctrl.policy.readOnly"
                 required
             />
