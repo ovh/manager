@@ -1,4 +1,4 @@
-import { API_ERROR, PAGE_SIZE } from '@iam/constants';
+import { API_ERROR, PAGE_SIZE } from '../constants';
 
 export default class Apiv2Service {
   /* @ngInject */

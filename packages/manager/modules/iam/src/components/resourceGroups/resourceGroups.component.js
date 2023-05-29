@@ -1,4 +1,4 @@
-import { asBindings } from '@iam/resolves';
+import { asBindings } from '../../resolves';
 
 import controller from './resourceGroups.controller';
 import resolves from './resourceGroups.resolves';

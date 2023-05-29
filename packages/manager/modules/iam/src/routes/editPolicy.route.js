@@ -1,10 +1,10 @@
-import { createPolicy as createPolicyComponent } from '@iam/components';
+import { createPolicy as createPolicyComponent } from '../components';
 import {
   asPath,
   asResolve,
   editPolicyBreadcrumbResolve,
   detailedPolicyParamResolve,
-} from '@iam/resolves';
+} from '../resolves';
 
 const name = 'editPolicy';
 const resolves = [editPolicyBreadcrumbResolve, detailedPolicyParamResolve];

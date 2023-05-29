@@ -1,5 +1,5 @@
-import { createPolicy } from '@iam/components';
-import { asResolve, createPolicyBreadcrumbResolve } from '@iam/resolves';
+import { createPolicy } from '../components';
+import { asResolve, createPolicyBreadcrumbResolve } from '../resolves';
 
 const name = 'createPolicy';
 const resolves = [createPolicyBreadcrumbResolve];

@@ -1,4 +1,4 @@
-import { policyParamResolve } from '@iam/resolves';
+import { policyParamResolve } from '../../resolves';
 import AbstractCursorDatagridController from '../cursorDatagrid/cursorDatagrid.controller';
 
 export default class PoliciesController extends AbstractCursorDatagridController {

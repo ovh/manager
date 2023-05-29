@@ -1,4 +1,4 @@
-import { asBindings } from '@iam/resolves';
+import { asBindings } from '../../resolves';
 
 import resolves from './policy.resolves';
 import template from './policy.template.html';

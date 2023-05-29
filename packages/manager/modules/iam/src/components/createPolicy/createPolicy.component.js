@@ -1,4 +1,4 @@
-import { asBindings } from '@iam/resolves';
+import { asBindings } from '../../resolves';
 
 import controller from './createPolicy.controller';
 import resolves from './createPolicy.resolves';

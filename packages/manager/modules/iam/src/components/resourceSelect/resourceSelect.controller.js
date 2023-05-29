@@ -151,7 +151,7 @@ export default class ResourceSelectController {
     if (this.resourcesModel?.length) {
       this.resourcesModel = this.resourcesModel.map(
         (resource) =>
-          resources.find(({ id }) => resource.id === id) ?? resource,
+          resources.find(({ id }) => resource.id === id) || resource,
       );
     }
     this.resources = resources;

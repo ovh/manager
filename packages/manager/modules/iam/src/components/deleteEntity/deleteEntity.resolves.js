@@ -3,6 +3,6 @@ import {
   entityResolve,
   goBackResolve,
   statementResolve,
-} from '@iam/resolves';
+} from '../../resolves';
 
 export default [alertResolve, entityResolve, goBackResolve, statementResolve];

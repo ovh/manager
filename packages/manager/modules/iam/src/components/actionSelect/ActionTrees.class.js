@@ -44,7 +44,7 @@
  * }} RawAction
  */
 
-import { CUSTOM_RESOURCE_TYPE } from '@iam/constants';
+import { CUSTOM_RESOURCE_TYPE } from '../../constants';
 
 export default class ActionTrees extends Array {
   /**

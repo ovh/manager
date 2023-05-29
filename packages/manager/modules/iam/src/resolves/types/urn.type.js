@@ -1,5 +1,5 @@
 import { isEqual } from 'lodash-es';
-import { ENTITY } from '@iam/constants';
+import { ENTITY } from '../../constants';
 
 const urnType = 'urn';
 const urnPattern = /urn:v[0-9]:(?:eu|ca|us):[a-z]+:.+/;
@@ -28,7 +28,7 @@ const encodeUrn = (object) => {
  */
 const decodeUrn = (string) => {
   const [match, version, region, entity, components] =
-    urnRegExp.exec(string) ?? [];
+    urnRegExp.exec(string) || [];
   if (!match) {
     return undefined;
   }

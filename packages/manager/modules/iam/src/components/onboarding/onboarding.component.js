@@ -1,4 +1,4 @@
-import { asBindings } from '@iam/resolves';
+import { asBindings } from '../../resolves';
 
 import resolves from './onboarding.resolves';
 import template from './onboarding.template.html';

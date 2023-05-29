@@ -1,5 +1,5 @@
-import { policy as policyComponent } from '@iam/components';
-import { asResolve, noBreadcrumbResolve } from '@iam/resolves';
+import { policy as policyComponent } from '../components';
+import { asResolve, noBreadcrumbResolve } from '../resolves';
 
 const name = 'policy';
 const resolves = [noBreadcrumbResolve];
