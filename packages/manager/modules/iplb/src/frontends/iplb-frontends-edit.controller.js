@@ -247,6 +247,10 @@ export default class IpLoadBalancerFrontendsEditCtrl {
       delete request.ssl;
     }
 
+    if (request.httpHeader) {
+      request.httpHeader = request.httpHeader.split(',');
+    }
+
     if (includes(['udp', 'tcp'], this.type)) {
       delete request.hsts;
     }
