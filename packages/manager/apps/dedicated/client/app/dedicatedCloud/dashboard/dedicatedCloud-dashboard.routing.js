@@ -12,16 +12,21 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       deleteDrp: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedCloud.details.dashboard.deleteDrp'),
+      featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping.checkFeatureAvailability([
+          'dedicated-cloud:mailingListSubscription',
+          'dedicated-cloud:leclercAndLeclercV2Migration',
+        ]),
       isMailingListSubscriptionAvailable: /* @ngInject */ (
-        ovhFeatureFlipping,
+        featureAvailability,
       ) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability('dedicated-cloud:mailingListSubscription')
-          .then((featureAvailability) =>
-            featureAvailability.isFeatureAvailable(
-              'dedicated-cloud:mailingListSubscription',
-            ),
-          ),
+        featureAvailability.isFeatureAvailable(
+          'dedicated-cloud:mailingListSubscription',
+        ),
+      isLv1Lv2BannerAvailable: /* @ngInject */ (featureAvailability) =>
+        featureAvailability.isFeatureAvailable(
+          'dedicated-cloud:leclercAndLeclercV2Migration',
+        ),
       vCenterUpgradeTask: /* @ngInject */ ($http, currentService) =>
         $http
           .get(`/dedicatedCloud/${currentService.serviceName}/task`, {
