@@ -12,7 +12,7 @@
   "pci_projects_project_storages_volume_backup_create_step_2_description_part_1": "Perform regular backups",
   "pci_projects_project_storages_volume_backup_create_step_2_description_part_2": "Get a backup service to suit your needs.",
   "pci_projects_project_storages_volume_backup_create_step_2_description_link": "More information about backups",
-  "pci_projects_project_storages_volume_backup_create_step_2_option_price": "Price: {{priceValue}} ex. VAT/GB/hour",
+  "pci_projects_project_storages_volume_backup_create_step_2_option_price": "Price: {{priceValue}} ex. VAT/GB/month",
   "pci_projects_project_storages_volume_backup_create_step_2_option_volume_backup_label": "Volume Backup",
   "pci_projects_project_storages_volume_backup_create_step_2_option_volume_backup_description_part_1": "Limit the impact of unexpected data loss on your application data.",
   "pci_projects_project_storages_volume_backup_create_step_2_option_volume_backup_description_part_2": "The backup is stored on a different cluster (Object Storage), but in the same location as your volume.",
