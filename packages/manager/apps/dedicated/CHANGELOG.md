@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.60.4...@ovh-ux/manager-dedicated@17.61.0) (2023-05-30)
+
+
+### Features
+
+* **dedicated:** display lv1/lv2 migration banner ([#9239](https://github.com/ovh/manager/issues/9239)) ([e38665e](https://github.com/ovh/manager/commit/e38665e45fede22747ab74513c54188783ac3eef))
+
+
+
+
+
 ## [17.60.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.60.3...@ovh-ux/manager-dedicated@17.60.4) (2023-05-24)
 
 

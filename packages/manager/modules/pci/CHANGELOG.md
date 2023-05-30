@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.125.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.124.0...@ovh-ux/manager-pci@5.125.0) (2023-05-30)
+
+
+### Bug Fixes
+
+* **pci:** fix wrong links for US manager guides ([#9324](https://github.com/ovh/manager/issues/9324)) ([9ad9056](https://github.com/ovh/manager/commit/9ad9056b81f53c0c1683d4920836d012a3b3da2a))
+* **pci:** update message error for k8s pool invalid name ([#9320](https://github.com/ovh/manager/issues/9320)) ([4ab4a7d](https://github.com/ovh/manager/commit/4ab4a7d65d92e8b3080795d0a31dcbc9466753d9))
+* **storage.cold-archive:** clear success container banner after navigation to add user modal ([#9273](https://github.com/ovh/manager/issues/9273)) ([fb10fd9](https://github.com/ovh/manager/commit/fb10fd9f280218c47f70b9dff975e37d90b499fb))
+* **storage.volume-backup:** update volume-backup creation message ([#9292](https://github.com/ovh/manager/issues/9292)) ([64dc3ac](https://github.com/ovh/manager/commit/64dc3ac25ae18cdc2a34e8a0835b110eadc65561))
+
+
+### Features
+
+* **project.quota:** find plan price of renew capacity ([#9341](https://github.com/ovh/manager/issues/9341)) ([7c77e61](https://github.com/ovh/manager/commit/7c77e6126cdb82eaf228022fdd806fa6d37d17d8))
+
+
+### Reverts
+
+* Revert "Revert "fix(storage.volume-backup): update volume-backup creation message"" (#9349) ([1b80d4e](https://github.com/ovh/manager/commit/1b80d4e8fea0d103811f5ee137d22db3cd8a82ec)), closes [#9349](https://github.com/ovh/manager/issues/9349)
+* Revert "fix(storage.volume-backup): update volume-backup creation message (#9292)" (#9348) ([9b27bea](https://github.com/ovh/manager/commit/9b27bea22c3a209210aace1ae82f61139abbb928)), closes [#9292](https://github.com/ovh/manager/issues/9292) [#9348](https://github.com/ovh/manager/issues/9348)
+
+
+
+
+
 # [5.124.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.123.1...@ovh-ux/manager-pci@5.124.0) (2023-05-22)
 
 
