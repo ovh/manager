@@ -702,18 +702,18 @@
                                     }"
                                 >
                                     <span
-                                        data-ng-hide="isSetPartition(partition) && partition.fileSystem != constants.warningSwap"
+                                        data-ng-hide="isSetPartition(partition) && partition.fileSystem != constants.warningSwap && partition.fileSystem != constants.warningNone"
                                         data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
                                     >
                                     </span>
                                     <span
-                                        data-ng-if="constants.fileSystemList.length === 1 && isSetPartition(partition) && partition.fileSystem != constants.warningSwap && informations.softRaidOnlyMirroring"
+                                        data-ng-if="constants.fileSystemList.length === 1 && isSetPartition(partition) && partition.fileSystem != constants.warningSwap && informations.softRaidOnlyMirroring && partition.fileSystem != constants.warningNone"
                                         data-ng-bind="partition.fileSystem"
                                     >
                                     </span>
                                     <select
                                         class="form-control"
-                                        data-ng-if="constants.fileSystemList.length !== 1 && isSetPartition(partition) && partition.fileSystem != constants.warningSwap && !informations.softRaidOnlyMirroring"
+                                        data-ng-if="constants.fileSystemList.length !== 1 && isSetPartition(partition) && partition.fileSystem != constants.warningSwap && !informations.softRaidOnlyMirroring && partition.fileSystem != constants.warningNone"
                                         data-ng-options="fileSystem as ('server_configuration_installation_' + fileSystem | translate) for fileSystem in constants.fileSystemList"
                                         data-ng-model="partition.fileSystem"
                                         data-ng-change="validationFileSystem(partition)"
@@ -1461,9 +1461,18 @@
                                     data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-translate="{{ 'server_configuration_installation_' + partition.typePartition }}"
                                 ></td>
-                                <td
-                                    data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
-                                ></td>
+                                <td>
+                                    <span
+                                        data-ng-if="partition.fileSystem == constants.warningNone"
+                                    >
+                                        -
+                                    </span>
+                                    <span
+                                        data-ng-if="partition.fileSystem != constants.warningNone"
+                                        data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
+                                    >
+                                    </span>
+                                </td>
                                 <td
                                     data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-ng-bind="partition.mountPoint"
