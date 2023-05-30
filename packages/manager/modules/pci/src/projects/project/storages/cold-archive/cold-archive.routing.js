@@ -93,11 +93,8 @@ export default /* @ngInject */ ($stateProvider) => {
       isUserTabActive: /* @ngInject */ ($state) => () =>
         $state.is(COLD_ARCHIVE_STATES.S3_USERS),
 
-      isUserColdArchiveContainersTabActive: /* @ngInject */ (
-        $transition$,
-        $state,
-      ) => () =>
-        $state.is(COLD_ARCHIVE_STATES.CONTAINERS, $transition$.params()),
+      isUserColdArchiveContainersTabActive: /* @ngInject */ ($state) => () =>
+        $state.is(COLD_ARCHIVE_STATES.CONTAINERS),
 
       userListLink: /* @ngInject */ ($state, projectId) =>
         $state.href(COLD_ARCHIVE_STATES.S3_USERS, {
