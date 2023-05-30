@@ -5,6 +5,7 @@ import {
   OVHFontCertificate,
   OVHFontK8s,
   OVHFontServer2,
+  CloudEssentialIcon,
   OVHFontDedicatedCloud,
   OVHFontCDA,
   OVHFontCloudNAS,
@@ -71,6 +72,15 @@ const dedicatedShopConfig = (
         url: getOrderURL('vps', region, sub),
         external: true,
         tracking: 'dedicated::orders::vps::order',
+      }
+    : null,
+  features['managed-bare-metal'] && ORDER_URLS[region].managed_bare_metal
+    ? {
+        label: 'item_managedBaremetal',
+        icon: CloudEssentialIcon,
+        url: getOrderURL('managed_bare_metal', region, sub),
+        external: true,
+        tracking: 'dedicated::orders::mbm::order',
       }
     : null,
   features['dedicated-cloud:order'] && ORDER_URLS[region].dedicated_cloud
