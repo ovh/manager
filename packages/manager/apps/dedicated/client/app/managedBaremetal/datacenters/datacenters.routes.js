@@ -28,6 +28,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (click) => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}::details::${click}`,
+          type: 'action',
+        });
+      },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('managed_baremetal_datacenters'),
     },
