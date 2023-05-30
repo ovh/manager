@@ -607,6 +607,7 @@
   "server_configuration_installation_ZFS": "ZFS",
   "server_configuration_installation_REISERFS": "ReiserFS",
   "server_configuration_installation_SWAP": "Swap",
+  "server_configuration_installation_NONE": "Aucun",
   "server_configuration_installation_UFS": "UFS",
   "server_configuration_installation_LOGICAL": "logical",
   "server_configuration_installation_LV": "lv",

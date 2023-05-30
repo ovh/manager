@@ -99,6 +99,7 @@ angular
         warningLV: 'LV',
         warningLogical: 'LOGICAL',
         warningPrimary: 'PRIMARY',
+        warningNone: 'NONE',
         warningSwap: 'SWAP',
         warningReiserfs: 'REISERFS',
         warningWindows: 'WINDOWS',
