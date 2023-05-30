@@ -17,6 +17,7 @@ export function getIcon(iconClass: string): JSX.Element {
 export const features = [
   'dedicated-server',
   'vps',
+  'managed-bare-metal',
   'dedicated-networks',
   'dedicated-cdn',
   'dedicated-nas',
@@ -101,6 +102,44 @@ export default function DedicatedSidebar() {
           return services.map((service) => ({
             ...service,
             icon: getIcon('ovh-font ovh-font-vps'),
+          }));
+        },
+      });
+    }
+
+    if (feature['managed-bare-metal']) {
+      menu.push({
+        id: 'dedicated-managed-bare-metal',
+        label: t('sidebar_dedicated_cloud'),
+        icon: getIcon('oui-icon oui-icon-cloud-essential_concept'),
+        routeMatcher: new RegExp('^(/configuration)?/managedBaremetal'),
+        async loader() {
+          const mbm = await loadServices('/dedicatedCloud', 'MBM');
+          return mbm.map((service) => ({
+            ...service,
+            icon: getIcon('oui-icon oui-icon-cloud-essential_concept'),
+            routeMatcher: new RegExp(`managedBaremetal/${service.serviceName}`),
+            async loader() {
+              const services = await loadServices(
+                `/dedicatedCloud/${service.serviceName}/datacenter`,
+                'MBM',
+              );
+              return services.map((dc) => {
+                const dcId = dc.stateParams.slice(-1)[0];
+                return {
+                  ...dc,
+                  href: navigation.getURL(
+                    'dedicated',
+                    `#/managedBaremetal/${
+                      service.serviceName
+                    }/datacenter/${dcId}`,
+                  ),
+                  routeMatcher: new RegExp(
+                    `/datacenter/${dcId}`,
+                  ),
+                };
+              });
+            },
           }));
         },
       });
