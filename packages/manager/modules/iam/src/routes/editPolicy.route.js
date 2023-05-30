@@ -1,19 +1,26 @@
-import { createPolicy as createPolicyComponent } from '../components';
 import {
   asPath,
   asResolve,
   editPolicyBreadcrumbResolve,
   detailedPolicyParamResolve,
+  alertResolve,
+  goBackResolve,
+  onboardingGuidesResolve,
 } from '../resolves';
 
 const name = 'editPolicy';
-const resolves = [editPolicyBreadcrumbResolve, detailedPolicyParamResolve];
+const resolves = [
+  editPolicyBreadcrumbResolve,
+  detailedPolicyParamResolve,
+  alertResolve,
+  goBackResolve,
+  onboardingGuidesResolve,
+];
 
 const state = () => ({
   url: `/policy/${asPath(detailedPolicyParamResolve)}/edit`,
-  component: createPolicyComponent.name,
+  component: 'iamCreatePolicy',
   resolve: {
-    ...asResolve(createPolicyComponent.resolves),
     ...asResolve(resolves),
   },
 });

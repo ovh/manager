@@ -1,11 +1,11 @@
-import { asBindings } from '../../resolves';
-import template from './advancedModeSwitch.template.html';
-import resolves from './advancedModeSwitch.resolves';
 import controller from './advancedModeSwitch.controller';
+import template from './advancedModeSwitch.template.html';
 
 export default {
   bindings: {
-    ...asBindings(resolves),
+    advancedMode: '<',
+    alert: '<',
+    goTo: '<',
   },
   template,
   controller,

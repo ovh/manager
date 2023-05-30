@@ -1,24 +1,29 @@
-import { resourceGroups as resourceGroupsComponent } from '../components';
 import {
   asParams,
   asQuery,
   asResolve,
   cursorsParamResolve,
   noBreadcrumbResolve,
+  alertResolve,
+  goToResolve,
 } from '../resolves';
 
 const name = 'resourceGroups';
 const params = [cursorsParamResolve];
-const resolves = [noBreadcrumbResolve];
+const resolves = [
+  noBreadcrumbResolve,
+  alertResolve,
+  goToResolve,
+  cursorsParamResolve,
+];
 
 const state = () => ({
   url: `/resource_groups?${asQuery(params)}`,
-  component: resourceGroupsComponent.name,
+  component: 'iamResourceGroups',
   params: {
     ...asParams(params),
   },
   resolve: {
-    ...asResolve(resourceGroupsComponent.resolves),
     ...asResolve(resolves),
   },
 });

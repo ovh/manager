@@ -1,18 +1,29 @@
-import { onboarding as onboardingComponent } from '../components';
 import {
   asResolve,
   noBreadcrumbResolve,
   hasPoliciesResolve,
+  advancedModeResolve,
+  alertResolve,
+  goToResolve,
+  onboardingGuidesResolve,
+  usersManagementLinkResolve,
 } from '../resolves';
 
 const name = 'onboarding';
-const resolves = [noBreadcrumbResolve];
+const resolves = [
+  noBreadcrumbResolve,
+  advancedModeResolve,
+  alertResolve,
+  goToResolve,
+  hasPoliciesResolve,
+  onboardingGuidesResolve,
+  usersManagementLinkResolve,
+];
 
 const state = () => ({
   url: '/onboarding',
-  component: onboardingComponent.name,
+  component: 'iamOnboarding',
   resolve: {
-    ...asResolve(onboardingComponent.resolves),
     ...asResolve(resolves),
   },
   redirectTo: (transition) =>
