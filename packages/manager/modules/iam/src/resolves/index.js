@@ -11,15 +11,6 @@ const castArray = (object) => (Array.isArray(object) ? object : [object]);
 
 /**
  * Build a Set where all the keys represent the key property of each resolve function
- * and the values are the one-way angular binding symbole (e.g. '<')
- * @param {Function|Function[]} resolves
- * @returns {Object<string, '<'>}
- */
-const asBindings = (resolves) =>
-  castArray(resolves).reduce((map, res) => ({ ...map, [res.key]: '<' }), {});
-
-/**
- * Build a Set where all the keys represent the key property of each resolve function
  * and the values are the resolve function itself
  * @param {Function|Function[]} resolves
  * @returns {Object<string, function>}
@@ -97,5 +88,5 @@ export * from './guides.resolve';
 export * from './misc.resolve';
 export * from './params.resolve';
 export * from './types';
-export { asBindings, asResolve, asQuery, asPath, asParams };
+export { asResolve, asQuery, asPath, asParams };
 export default moduleName;

@@ -1,4 +1,3 @@
-import { iam as iamComponent } from '../components';
 import { FEATURE, UNAVAILABLE_STATE_NAME } from '../iam.constants';
 import {
   asResolve,
@@ -11,7 +10,7 @@ const resolves = [featuresResolve, defaultBreadcrumbResolve];
 
 const state = () => ({
   url: '/iam',
-  component: iamComponent.name,
+  component: 'iam',
   redirectTo: (transition) =>
     transition
       .injector()
