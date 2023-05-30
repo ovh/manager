@@ -1052,8 +1052,8 @@ angular
         if (validationTypePrimary(true)) {
           $scope.errorInst.typePrimary = true;
         } else if (
-          $scope.installation.selectDistribution.family ===
-            $scope.constants.warningWindows &&
+          $scope.informations.softRaidOnlyMirroring &&
+          $scope.newPartition.mountPoint === $scope.constants.warningCwin &&
           $scope.newPartition.partitionSize < $scope.constants.minSizeWindows
         ) {
           $scope.errorInst.partitionSizeWindows = true;
@@ -1662,8 +1662,8 @@ angular
       // windows size < 20Go = error
       function validationSizeWindowsMin(partition) {
         $scope.errorInst.partitionSizeWindows =
-          $scope.installation.selectDistribution.family ===
-            $scope.constants.warningWindows &&
+          $scope.informations.softRaidOnlyMirroring &&
+          partition.mountPoint === $scope.constants.warningCwin &&
           $scope.getRealDisplaySize({
             partition,
             notDisplay: true,
