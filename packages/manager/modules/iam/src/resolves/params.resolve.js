@@ -9,7 +9,7 @@ import { cursorsType, urnType, uuidType } from './types';
 const cursorsParamResolve = /* @ngInject */ ($transition$) =>
   $transition$.params()[cursorsParamResolve.key];
 
-cursorsParamResolve.key = 'c';
+cursorsParamResolve.key = 'cursors';
 cursorsParamResolve.declaration = {
   array: false,
   dynamic: true,

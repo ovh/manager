@@ -1,15 +1,22 @@
-import { policy as policyComponent } from '../components';
-import { asResolve, noBreadcrumbResolve } from '../resolves';
+import {
+  asResolve,
+  noBreadcrumbResolve,
+  onboardingGuidesResolve,
+  usersManagementLinkResolve,
+} from '../resolves';
 
 const name = 'policy';
-const resolves = [noBreadcrumbResolve];
+const resolves = [
+  noBreadcrumbResolve,
+  onboardingGuidesResolve,
+  usersManagementLinkResolve,
+];
 
 const state = () => ({
   url: '/policy',
-  component: policyComponent.name,
+  component: 'iamPolicy',
   redirectTo: 'iam.policy.policies',
   resolve: {
-    ...asResolve(policyComponent.resolves),
     ...asResolve(resolves),
   },
 });
