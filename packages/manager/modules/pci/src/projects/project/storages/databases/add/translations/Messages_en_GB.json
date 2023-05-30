@@ -48,7 +48,8 @@
   "pci_database_add_spec_region": "Datacenter:",
   "pci_database_add_spec_region_name": "{{region}} ({{alias}})",
   "pci_database_add_spec_flavor": "Node template:",
-  "pci_database_add_spec_flavor_CPU": "{{cpu}} CPU",
+  "pci_database_add_spec_flavor_CPU_one": "{{cpu}} vCore",
+  "pci_database_add_spec_flavor_CPU_many": "{{cpu}} vCores",
   "pci_database_add_spec_flavor_RAM": "{{ram}} RAM",
   "pci_database_add_spec_cluster": "Cluster:",
   "pci_database_add_spec_network": "Network type:",
@@ -71,7 +72,5 @@
   "pci_database_add_spec_storage_added": "{{total}} ({{included}} included)",
   "pci_database_add_price_unit_month": "/month",
   "pci_database_add_price_unit_hour": "/hour",
-  "pci_database_add_price_unit_switch_label": "Show prices per month",
-  "pci_database_add_spec_flavor_CPU_one": "{{cpu}} vCore",
-  "pci_database_add_spec_flavor_CPU_many": "{{cpu}} vCores"
+  "pci_database_add_price_unit_switch_label": "Show prices per month"
 }
