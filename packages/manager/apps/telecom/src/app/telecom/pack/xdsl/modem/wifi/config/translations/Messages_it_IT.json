@@ -43,5 +43,7 @@
   "xdsl_modem_wifi_WPAandWPA2": "WPA e WPA2",
   "xdsl_modem_wifi_read_error": "Ops! Impossibile recuperare le informazioni relative al tuo Wi-Fi.",
   "xdsl_modem_wifi_write_error": "Ops! Impossibile aggiornare il tuo Wi-Fi. ",
-  "xdsl_modem_wifi_config_info": "Une modification de configuration d'un réseau Wi-Fi est déjà en cours. Les modifications que vous allez apporter seront appliquées une fois cette modification terminée."
+  "xdsl_modem_wifi_config_info": "Une modification de configuration d'un réseau Wi-Fi est déjà en cours. Les modifications que vous allez apporter seront appliquées une fois cette modification terminée.",
+  "xdsl_modem_wifi_WPA2andWPA3": "WPA2 e WPA3",
+  "xdsl_modem_wifi_WPA3": "WPA3"
 }
