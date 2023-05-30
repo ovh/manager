@@ -5,23 +5,25 @@ import { GUIDES } from './onboarding.constants';
 
 export default class PciStorageInstanceBackupsOnboardingController {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, coreConfig) {
     this.$translate = $translate;
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {
     this.illustration = illustration;
+    const guideKey =
+      'pci_projects_project_storages_instance-backups_onboarding_guides_';
     this.guides = reduce(
       GUIDES,
       (list, guide) => [
         ...list,
         {
-          ...guide,
-          title: this.$translate.instant(
-            `pci_projects_project_storages_instance-backups_onboarding_guides_${guide.id}_title`,
-          ),
+          id: guide.id,
+          link: guide.link[this.user.ovhSubsidiary] || guide.link.DEFAULT,
+          title: this.$translate.instant(`${guideKey}${guide.id}_title`),
           description: this.$translate.instant(
-            `pci_projects_project_storages_instance-backups_onboarding_guides_${guide.id}_description`,
+            `${guideKey}${guide.id}_description`,
           ),
         },
       ],

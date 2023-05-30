@@ -15,6 +15,7 @@ export default {
     goToDrpDatacenterSelection: '<',
     goToVpnConfiguration: '<',
     isDrpActionPossible: '<',
+    isLv1Lv2BannerAvailable: '<',
     isMailingListSubscriptionAvailable: '<',
     onUpgradeVersion: '<',
     associateIpBlockLink: '<',
