@@ -48,7 +48,8 @@
   "pci_database_add_spec_region": "Datacenter:",
   "pci_database_add_spec_region_name": "{{region}} ({{alias}})",
   "pci_database_add_spec_flavor": "Modelo de nó:",
-  "pci_database_add_spec_flavor_CPU": "{{cpu}} CPU",
+  "pci_database_add_spec_flavor_CPU_one": "{{cpu}} vCore",
+  "pci_database_add_spec_flavor_CPU_many": "{{cpu}} vCores",
   "pci_database_add_spec_flavor_RAM": "{{ram}} RAM",
   "pci_database_add_spec_cluster": "Cluster:",
   "pci_database_add_spec_network": "Tipo de rede:",
@@ -71,7 +72,5 @@
   "pci_database_add_spec_storage_added": "{{total}} (de {{included}} incluídos)",
   "pci_database_add_price_unit_month": "/mês",
   "pci_database_add_price_unit_hour": "/hora",
-  "pci_database_add_price_unit_switch_label": "Mostrar os preços ao mês",
-  "pci_database_add_spec_flavor_CPU_one": "{{cpu}} vCore",
-  "pci_database_add_spec_flavor_CPU_many": "{{cpu}} vCores"
+  "pci_database_add_price_unit_switch_label": "Mostrar os preços ao mês"
 }

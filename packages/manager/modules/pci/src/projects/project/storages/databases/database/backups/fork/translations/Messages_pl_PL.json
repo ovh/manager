@@ -37,7 +37,6 @@
   "pci_databases_backups_fork_spec_region": "Centrum danych:",
   "pci_databases_backups_fork_spec_region_name": "{{region}} ({{alias}})",
   "pci_databases_backups_fork_spec_flavor": "Model węzła:",
-  "pci_databases_backups_fork_spec_flavor_CPU": "{{cpu}}",
   "pci_databases_backups_fork_spec_flavor_RAM": "{{ram}} RAM",
   "pci_databases_backups_fork_spec_cluster": "Klaster:",
   "pci_databases_backups_fork_spec_network": "Typ sieci:",
