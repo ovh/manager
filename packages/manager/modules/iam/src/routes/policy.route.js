@@ -4,10 +4,10 @@ import { asResolve, noBreadcrumbResolve } from '../resolves';
 const name = 'policy';
 const resolves = [noBreadcrumbResolve];
 
-const state = ({ ROUTES }) => ({
+const state = () => ({
   url: '/policy',
   component: policyComponent.name,
-  redirectTo: ROUTES.POLICIES,
+  redirectTo: 'iam.policy.policies',
   resolve: {
     ...asResolve(policyComponent.resolves),
     ...asResolve(resolves),
