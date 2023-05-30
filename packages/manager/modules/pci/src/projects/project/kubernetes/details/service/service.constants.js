@@ -12,9 +12,12 @@ export const KUBE_INSTALL_URL =
 export const VERSIONS_GUIDE_URL =
   'https://docs.ovh.com/gb/en/kubernetes/eos-eol-policies/';
 
+export const KUBE_INSTALLING_STATUS = 'INSTALLING';
+
 export default {
   CONFIG_FILENAME,
   KUBECONFIG_URL,
   KUBECTL_URL,
   VERSIONS_GUIDE_URL,
+  KUBE_INSTALLING_STATUS,
 };
