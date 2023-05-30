@@ -4,9 +4,8 @@ import AbstractCursorDatagridController from '../cursorDatagrid/cursorDatagrid.c
 
 export default class PoliciesController extends AbstractCursorDatagridController {
   /* @ngInject */
-  constructor(IAMRoutes, PolicyService) {
+  constructor(PolicyService) {
     super();
-    this.IAMRoutes = IAMRoutes;
     this.PolicyService = PolicyService;
 
     this.PAGE_SIZE = PAGE_SIZE;
@@ -29,7 +28,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    * @returns {Promise}
    */
   createPolicy() {
-    return this.goTo({ name: this.IAMRoutes.CREATE_POLICY });
+    return this.goTo({ name: 'iam.createPolicy' });
   }
 
   /**
@@ -39,7 +38,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    */
   editIdentities({ id }) {
     return this.goTo({
-      name: this.IAMRoutes.POLICY_IDENTITIES,
+      name: 'iam.policyIdentities',
       params: { policy: id },
     });
   }
@@ -51,7 +50,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    */
   editPolicy({ id }) {
     return this.goTo({
-      name: this.IAMRoutes.EDIT_POLICY,
+      name: 'iam.editPolicy',
       params: { policy: id },
     });
   }
@@ -63,7 +62,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    */
   deletePolicy({ id }) {
     return this.goTo({
-      name: this.IAMRoutes.DELETE_POLICY,
+      name: 'iam.policy.policies.deletePolicy',
       params: { ...this.params, [policyParamResolve.key]: id },
     });
   }
