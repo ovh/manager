@@ -8,7 +8,7 @@ import {
 const name = 'onboarding';
 const resolves = [noBreadcrumbResolve];
 
-const state = ({ ROUTES }) => ({
+const state = () => ({
   url: '/onboarding',
   component: onboardingComponent.name,
   resolve: {
@@ -20,7 +20,7 @@ const state = ({ ROUTES }) => ({
       .injector()
       .getAsync(`${hasPoliciesResolve.key}`)
       .then((hasPolicies) =>
-        hasPolicies ? { state: ROUTES.POLICIES } : false,
+        hasPolicies ? { state: 'iam.policy.policies' } : false,
       ),
 });
 

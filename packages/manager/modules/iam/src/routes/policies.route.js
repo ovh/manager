@@ -12,7 +12,7 @@ const name = 'policies';
 const params = [cursorsParamResolve];
 const resolves = [noBreadcrumbResolve, hasPoliciesResolve];
 
-const state = ({ ROUTES }) => ({
+const state = () => ({
   url: `?${asQuery(params)}`,
   component: policiesComponent.name,
   params: {
@@ -27,7 +27,7 @@ const state = ({ ROUTES }) => ({
       .injector()
       .getAsync(`${hasPoliciesResolve.key}`)
       .then((hasPolicies) =>
-        !hasPolicies ? { state: ROUTES.ONBOARDING } : false,
+        !hasPolicies ? { state: 'iam.onboarding' } : false,
       ),
 });
 
