@@ -588,7 +588,7 @@
   "server_configuration_reinstallation_button": "Neu installieren",
   "server_configuration_installation_button": "Installieren",
   "server_configuration_installation_title": "Installation des Servers",
-  "server_configuration_installation_info": "Sie sind im Begriff, ein Betriebssystem auf dem Server<b>{{t0}}</b> zu installieren. Wählen Sie den gewünschten Installationstyp aus:",
+  "server_configuration_installation_info": "Sie sind im Begriff, ein Betriebssystem auf dem Server <b>{{t0}}</b> zu installieren. Wählen Sie den gewünschten Installationstyp aus:",
   "server_configuration_installation_warning": "Achtung: Bei der Installation werden alle Festplatten gelöscht",
   "server_configuration_installation_32": "32 Bit",
   "server_configuration_installation_64": "64 Bit",
