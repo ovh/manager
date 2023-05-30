@@ -27,6 +27,7 @@ const features = [
   'license',
   'kubernetes',
   'vps',
+  'managed-bare-metal',
   'dedicated-cloud:order',
   'cloud-disk-array',
   'dedicated-nasha',
@@ -62,7 +63,7 @@ export default function HostedPrivateCloudSidebar() {
         icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
         routeMatcher: new RegExp(`^(/configuration)?/dedicated_cloud`),
         async loader() {
-          const mbm = await loadServices('/dedicatedCloud');
+          const mbm = await loadServices('/dedicatedCloud', 'EPCC');
           return [
             {
               id: 'dedicated-vmware-all',
@@ -80,6 +81,7 @@ export default function HostedPrivateCloudSidebar() {
               async loader() {
                 return loadServices(
                   `/dedicatedCloud/${service.serviceName}/datacenter`,
+                  'EPCC',
                 );
               },
             })),
