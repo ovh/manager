@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.4.2...@ovh-ux/manager-emailpro@3.4.3) (2023-05-30)
+
+
+### Bug Fixes
+
+* **emailpro:** propagate primary email ([#9334](https://github.com/ovh/manager/issues/9334)) ([845cf54](https://github.com/ovh/manager/commit/845cf5412a811c873cb92870032cb5e82e49e3a9))
+
+
+
+
+
 ## [3.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.4.1...@ovh-ux/manager-emailpro@3.4.2) (2023-05-16)
 
 
