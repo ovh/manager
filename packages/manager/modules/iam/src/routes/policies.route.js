@@ -1,4 +1,3 @@
-import { policies as policiesComponent } from '../components';
 import {
   asParams,
   asQuery,
@@ -6,20 +5,29 @@ import {
   cursorsParamResolve,
   hasPoliciesResolve,
   noBreadcrumbResolve,
+  alertResolve,
+  goToResolve,
+  advancedModeResolve,
 } from '../resolves';
 
 const name = 'policies';
 const params = [cursorsParamResolve];
-const resolves = [noBreadcrumbResolve, hasPoliciesResolve];
+const resolves = [
+  noBreadcrumbResolve,
+  hasPoliciesResolve,
+  alertResolve,
+  goToResolve,
+  advancedModeResolve,
+  cursorsParamResolve,
+];
 
 const state = () => ({
   url: `?${asQuery(params)}`,
-  component: policiesComponent.name,
+  component: 'iamPolicies',
   params: {
     ...asParams(params),
   },
   resolve: {
-    ...asResolve(policiesComponent.resolves),
     ...asResolve(resolves),
   },
   redirectTo: (transition) =>
