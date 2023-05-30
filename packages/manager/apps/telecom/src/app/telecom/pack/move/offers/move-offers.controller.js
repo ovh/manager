@@ -368,6 +368,9 @@ export default class PackMoveOffersCtrl {
               selectedOffer.needNewModem = true;
             }
           }
+        } else {
+          // Selected modem = no, no display shipping page
+          selectedOffer.needNewModem = false;
         }
       }
     });
