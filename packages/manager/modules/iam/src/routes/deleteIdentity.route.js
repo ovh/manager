@@ -1,19 +1,28 @@
-import { deleteEntity as deleteEntityComponent } from '../components';
 import {
   asPath,
   asResolve,
   noBreadcrumbResolve,
   identityParamResolve,
+  alertResolve,
+  entityResolve,
+  goBackResolve,
+  statementResolve,
 } from '../resolves';
 
 const name = 'deleteIdentity';
-const resolves = [noBreadcrumbResolve, identityParamResolve];
+const resolves = [
+  noBreadcrumbResolve,
+  identityParamResolve,
+  alertResolve,
+  entityResolve,
+  goBackResolve,
+  statementResolve,
+];
 
 const state = () => ({
   url: `/delete/${asPath(identityParamResolve)}`,
-  component: deleteEntityComponent.name,
+  component: 'iamDeleteEntity',
   resolve: {
-    ...asResolve(deleteEntityComponent.resolves),
     ...asResolve(resolves),
   },
 });
