@@ -9,7 +9,7 @@ import {
 const name = 'iam';
 const resolves = [featuresResolve, defaultBreadcrumbResolve];
 
-const state = ({ ROUTES }) => ({
+const state = () => ({
   url: '/iam',
   component: iamComponent.name,
   redirectTo: (transition) =>
@@ -18,7 +18,7 @@ const state = ({ ROUTES }) => ({
       .getAsync(featuresResolve.key)
       .then((featureAvailabilityResult) =>
         featureAvailabilityResult.isFeatureAvailable(FEATURE.MAIN)
-          ? ROUTES.POLICY
+          ? 'iam.policy'
           : { state: UNAVAILABLE_STATE_NAME },
       ),
   resolve: {

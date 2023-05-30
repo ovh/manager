@@ -3,17 +3,9 @@ import { URN_VERSION, ENTITY } from '../../iam.constants';
 
 export default class PolicyIdentitiesController {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    IAMRoutes,
-    IdentityService,
-    PolicyService,
-    coreConfig,
-  ) {
+  constructor($q, $translate, IdentityService, PolicyService, coreConfig) {
     this.$q = $q;
     this.$translate = $translate;
-    this.IAMRoutes = IAMRoutes;
     this.IdentityService = IdentityService;
     this.PolicyService = PolicyService;
     this.region = coreConfig.getRegion();
@@ -52,7 +44,7 @@ export default class PolicyIdentitiesController {
 
   goToDeleteIdentity(identity) {
     return this.goTo({
-      name: this.IAMRoutes.DELETE_IDENTITY,
+      name: 'iam.policyIdentities.deleteIdentity',
       params: { identity },
     });
   }
