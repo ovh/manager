@@ -1,3 +1,4 @@
 {
-  "price_ht_label": "{{ price }} HT"
+  "price_ht_label": "{{ price }} HT",
+  "test": "Test"
 }
