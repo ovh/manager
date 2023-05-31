@@ -35,7 +35,7 @@ export default /* @ngInject */ ($stateProvider) => {
        * @returns {boolean}
        */
       statement: /* @ngInject */ (entity) =>
-        [ENTITY.POLICY].includes(entity.type),
+        entity.type === ENTITY.RESOURCE_GROUP,
     },
   });
 };
