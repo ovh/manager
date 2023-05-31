@@ -155,9 +155,9 @@ export const CTAS = {
   LT:
     'https://ovhcloud.com/lt/enterprise/products/hosted-private-cloud/prices/',
   WE:
-    'https://ovhcloud.com/us-en/enterprise/products/hosted-private-cloud/prices/',
+    'https://www.ovhcloud.com/en-ie/enterprise/products/hosted-private-cloud/prices/',
   WS:
-    'https://ovhcloud.com/us-en/enterprise/products/hosted-private-cloud/prices/',
+    'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
 };
 
 export const US_GUIDES = [
