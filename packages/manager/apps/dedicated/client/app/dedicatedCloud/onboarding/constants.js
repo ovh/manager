@@ -29,7 +29,7 @@ export const GUIDES = [
       SN: 'https://docs.ovh.com/fr/private-cloud/manager-ovh-private-cloud/',
       TN: 'https://docs.ovh.com/fr/private-cloud/manager-ovh-private-cloud/',
       WE:
-        'https://docs.ovh.com/ie/en/private-cloud/control-panel-ovh-private-cloud/',
+        'https://docs.ovh.com/us/en/private-cloud/control-panel-ovh-private-cloud/',
       WS: 'https://docs.ovh.com/us/es/private-cloud/manager-ovh-private-cloud/',
       US:
         'https://docs.ovh.com/us/en/private-cloud/control-panel-ovh-private-cloud/',
@@ -59,7 +59,7 @@ export const GUIDES = [
       MA: 'https://docs.ovh.com/fr/private-cloud/tanzu-tkgm-presentation/',
       SN: 'https://docs.ovh.com/fr/private-cloud/tanzu-tkgm-presentation/',
       TN: 'https://docs.ovh.com/fr/private-cloud/tanzu-tkgm-presentation/',
-      WE: 'https://docs.ovh.com/ie/en/private-cloud/tanzu-tkgm-presentation/',
+      WE: 'https://docs.ovh.com/us/en/private-cloud/tanzu-tkgm-presentation/',
       WS: 'https://docs.ovh.com/us/es/private-cloud/tanzu-tkgm-presentation/',
       US: 'https://docs.ovh.com/us/en/private-cloud/tanzu-tkgm-presentation/',
     },
@@ -102,7 +102,7 @@ export const GUIDES = [
       TN:
         'https://docs.ovh.com/fr/private-cloud/configuration-ip-machine-virtuelle/',
       WE:
-        'https://docs.ovh.com/ie/en/private-cloud/configure-ip-on-virtual-machine/',
+        'https://docs.ovh.com/us/en/private-cloud/configure-ip-on-virtual-machine/',
       WS:
         'https://docs.ovh.com/us/es/private-cloud/configuracion-ip-maquina-virtual/',
       US:
@@ -155,9 +155,9 @@ export const CTAS = {
   LT:
     'https://ovhcloud.com/lt/enterprise/products/hosted-private-cloud/prices/',
   WE:
-    'https://www.ovhcloud.com/en-ie/enterprise/products/hosted-private-cloud/prices/',
-  WS:
     'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
+  WS:
+    'https://www.ovhcloud.com/es/enterprise/products/hosted-private-cloud/prices/',
 };
 
 export const US_GUIDES = [
