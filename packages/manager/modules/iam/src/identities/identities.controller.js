@@ -1,7 +1,7 @@
-import { decodeUrn, encodeUrn } from '../../resolves';
-import { URN_VERSION, ENTITY } from '../../iam.constants';
+import { decodeUrn, encodeUrn } from '../resolves';
+import { URN_VERSION, ENTITY } from '../iam.constants';
 
-export default class PolicyIdentitiesController {
+export default class IdentitiesController {
   /* @ngInject */
   constructor($q, $translate, IdentityService, PolicyService, coreConfig) {
     this.$q = $q;
@@ -35,7 +35,7 @@ export default class PolicyIdentitiesController {
       })
       .catch((error) => {
         const { message } = error.data ?? {};
-        this.alert.error('iam_policy_identities_error_load_users', { message });
+        this.alert.error('iam_identities_error_load_users', { message });
       })
       .finally(() => {
         this.loading = false;
@@ -44,7 +44,7 @@ export default class PolicyIdentitiesController {
 
   goToDeleteIdentity(identity) {
     return this.goTo({
-      name: 'iam.policyIdentities.deleteIdentity',
+      name: 'iam.identities.deleteIdentity',
       params: { identity },
     });
   }
@@ -77,7 +77,7 @@ export default class PolicyIdentitiesController {
           name: '.',
           params: { policy: this.policy.id },
           success: this.$translate.instant(
-            'iam_policy_identities_add_identity_success',
+            'iam_identities_add_identity_success',
           ),
           reload: true,
         });
@@ -86,10 +86,9 @@ export default class PolicyIdentitiesController {
         return this.goTo({
           name: '.',
           params: { policy: this.policy.id },
-          error: this.$translate.instant(
-            'iam_policy_identities_add_identity_error',
-            { message: e?.data?.message },
-          ),
+          error: this.$translate.instant('iam_identities_add_identity_error', {
+            message: e?.data?.message,
+          }),
           reload: true,
         });
       });
@@ -98,7 +97,7 @@ export default class PolicyIdentitiesController {
   submit() {
     this.goBack({
       success: this.$translate.instant(
-        'iam_policy_identities_submit_identity_success',
+        'iam_identities_submit_identity_success',
       ),
       reload: true,
     });

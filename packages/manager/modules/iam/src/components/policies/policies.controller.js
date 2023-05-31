@@ -35,7 +35,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    */
   editIdentities({ id }) {
     return this.goTo({
-      name: 'iam.policyIdentities',
+      name: 'iam.identities',
       params: { policy: id },
     });
   }
