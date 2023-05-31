@@ -12,6 +12,9 @@ import resolves from './resolves';
 import routes from './routes';
 import services from './services';
 import components from './components';
+
+import onboarding from './onboarding';
+
 import routing from './iam.routing';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -32,6 +35,8 @@ angular
     routes,
     services,
     components,
+
+    onboarding,
   ])
   .config(routing);
 
