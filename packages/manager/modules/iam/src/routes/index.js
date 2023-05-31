@@ -19,7 +19,9 @@ const declareRoutes = /* @ngInject */ ($stateProvider) => {
   const recursiveDeclareRoutes = (routes, parentName) => {
     routes.forEach(({ route: { name, state }, children = [] }) => {
       const stateName = getStateName(parentName, name);
-      $stateProvider.state(stateName, state({ $stateProvider }));
+      if (state) {
+        $stateProvider.state(stateName, state({ $stateProvider }));
+      }
       recursiveDeclareRoutes(children, stateName);
     });
   };
