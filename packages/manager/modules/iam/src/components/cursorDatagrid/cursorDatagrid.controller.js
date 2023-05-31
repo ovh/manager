@@ -1,3 +1,4 @@
+import { PAGE_SIZE } from '../../iam.constants';
 import { areCursorsEquals, cursorsParamResolve } from '../../resolves';
 
 /**
@@ -11,6 +12,8 @@ export default class AbstractCursorDatagridController {
      * @type {object}
      */
     this.cursors = null;
+
+    this.PAGE_SIZE = PAGE_SIZE;
   }
 
   $onInit() {
