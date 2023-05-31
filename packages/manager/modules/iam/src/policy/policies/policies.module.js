@@ -1,12 +1,16 @@
 import angular from 'angular';
 
-import component from './policies.component';
+import cursorDatagrid from '../../components/cursorDatagrid';
 
-const moduleName = 'ovhManagerIAMComponentsPolicies';
+import component from './policies.component';
+import routing from './policies.routing';
+
+const moduleName = 'ovhManagerIAMPolicies';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [cursorDatagrid])
   .component('iamPolicies', component)
+  .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

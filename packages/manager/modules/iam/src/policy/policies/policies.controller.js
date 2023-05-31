@@ -1,5 +1,5 @@
 import { policyParamResolve } from '../../resolves';
-import AbstractCursorDatagridController from '../cursorDatagrid/cursorDatagrid.controller';
+import AbstractCursorDatagridController from '../../components/cursorDatagrid/cursorDatagrid.controller';
 
 export default class PoliciesController extends AbstractCursorDatagridController {
   /* @ngInject */
