@@ -44,7 +44,7 @@ export default class IdentitiesController {
 
   goToDeleteIdentity(identity) {
     return this.goTo({
-      name: 'iam.identities.deleteIdentity',
+      name: 'iam.identities.delete',
       params: { identity },
     });
   }
