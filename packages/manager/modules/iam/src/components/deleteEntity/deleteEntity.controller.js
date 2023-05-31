@@ -1,5 +1,5 @@
 import { DELETE_STATEMENT, ENTITY } from '../../iam.constants';
-import { encodeUrn } from '../../resolves';
+import { encodeUrn } from '../../iam.paramTypes';
 
 export default class DeleteEntityController {
   /* @ngInject */
