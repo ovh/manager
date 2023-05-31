@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.63.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.62.0...@ovh-ux/manager-telecom@13.63.0) (2023-05-31)
+
+
+### Bug Fixes
+
+* set need new modem flag to false when no modem selected ([#9284](https://github.com/ovh/manager/issues/9284)) ([af64bde](https://github.com/ovh/manager/commit/af64bde4e70ff86b05e40fd4bd190835b383d971))
+
+
+### Features
+
+* **telecom:** add new security level for wifi on modem ([#9317](https://github.com/ovh/manager/issues/9317)) ([d5c33ae](https://github.com/ovh/manager/commit/d5c33aea662db9e3fd285ae762dba7d367c93cf3))
+
+
+
+
+
 # [13.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.61.1...@ovh-ux/manager-telecom@13.62.0) (2023-05-24)
 
 

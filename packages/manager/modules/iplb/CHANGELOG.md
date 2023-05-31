@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.6.0...@ovh-ux/manager-iplb@1.6.1) (2023-05-31)
+
+
+### Bug Fixes
+
+* **modules.iplb:** allow custom http headers ([#9327](https://github.com/ovh/manager/issues/9327)) ([3e89b31](https://github.com/ovh/manager/commit/3e89b314cee5a293ff17d88ca6c6e9a69e4b8ffe))
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.5.1...@ovh-ux/manager-iplb@1.6.0) (2023-04-20)
 
 

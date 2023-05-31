@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.10.23...@ovh-ux/manager-vps-app@1.10.24) (2023-05-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-vps-app
+
+
+
+
+
 ## [1.10.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.10.22...@ovh-ux/manager-vps-app@1.10.23) (2023-05-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-vps-app

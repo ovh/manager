@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.20.2...@ovh-ux/manager-container-app@0.20.3) (2023-05-31)
+
+
+### Bug Fixes
+
+* **container:** handle new applications in dev env ([3697ff5](https://github.com/ovh/manager/commit/3697ff5467544ea899b295d7ff7aa5c3e8d613e1))
+
+
+
+
+
 ## [0.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.20.1...@ovh-ux/manager-container-app@0.20.2) (2023-05-22)
 
 
