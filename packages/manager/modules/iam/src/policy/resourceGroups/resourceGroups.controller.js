@@ -1,4 +1,4 @@
-import AbstractCursorDatagridController from '../cursorDatagrid/cursorDatagrid.controller';
+import AbstractCursorDatagridController from '../../components/cursorDatagrid/cursorDatagrid.controller';
 
 export default class ResourceGroupsController extends AbstractCursorDatagridController {
   /* @ngInject */
@@ -40,7 +40,7 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    */
   deleteResourceGroup({ id }) {
     this.goTo({
-      name: 'iam.policy.resourceGroups.deleteResourceGroup',
+      name: 'iam.policy.resourceGroups.delete',
       params: { resourceGroup: id },
     });
   }
