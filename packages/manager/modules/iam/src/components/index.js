@@ -5,7 +5,6 @@ import advancedModeSwitch from './advancedModeSwitch';
 import createPolicy from './createPolicy';
 import deleteEntity from './deleteEntity';
 import highlightText from './highlightText';
-import onboarding from './onboarding';
 import policies from './policies';
 import policy from './policy';
 import policyIdentities from './policyIdentities';
@@ -20,7 +19,6 @@ angular.module(moduleName, [
   createPolicy,
   deleteEntity,
   highlightText,
-  onboarding,
   policies,
   policy,
   policyIdentities,
