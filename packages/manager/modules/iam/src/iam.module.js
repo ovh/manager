@@ -15,6 +15,7 @@ import components from './components';
 
 import identities from './identities';
 import onboarding from './onboarding';
+import policy from './policy';
 
 import routing from './iam.routing';
 
@@ -39,6 +40,7 @@ angular
 
     identities,
     onboarding,
+    policy,
   ])
   .config(routing);
 
