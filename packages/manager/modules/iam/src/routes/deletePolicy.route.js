@@ -1,29 +1,21 @@
 import {
-  asPath,
-  asResolve,
-  noBreadcrumbResolve,
-  policyParamResolve,
-  alertResolve,
   entityResolve,
-  goBackResolve,
+  policyParamResolve,
   statementResolve,
 } from '../resolves';
 
 const name = 'deletePolicy';
-const resolves = [
-  noBreadcrumbResolve,
-  policyParamResolve,
-  alertResolve,
-  entityResolve,
-  goBackResolve,
-  statementResolve,
-];
 
 const state = () => ({
-  url: `/delete/${asPath(policyParamResolve)}`,
+  url: `/delete/{policy:uuid}`,
   component: 'iamDeleteEntity',
   resolve: {
-    ...asResolve(resolves),
+    breadcrumb: () => null,
+    entity: entityResolve,
+    identity: () => null,
+    policy: policyParamResolve,
+    resourceGroup: () => null,
+    statement: statementResolve,
   },
 });
 

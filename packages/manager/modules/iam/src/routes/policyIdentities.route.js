@@ -1,29 +1,16 @@
 import {
-  asPath,
-  asResolve,
-  policyParamResolve,
   policyIdentitiesBreadcrumbResolve,
-  alertResolve,
-  goBackResolve,
-  goToResolve,
-  onboardingGuidesResolve,
+  policyParamResolve,
 } from '../resolves';
 
 const name = 'policyIdentities';
-const resolves = [
-  policyParamResolve,
-  policyIdentitiesBreadcrumbResolve,
-  alertResolve,
-  goBackResolve,
-  goToResolve,
-  onboardingGuidesResolve,
-];
 
 const state = () => ({
-  url: `/identity/${asPath(policyParamResolve)}`,
+  url: `/identity/{policy:uuid}`,
   component: 'iamPolicyIdentities',
   resolve: {
-    ...asResolve(resolves),
+    breadcrumb: policyIdentitiesBreadcrumbResolve,
+    policy: policyParamResolve,
   },
 });
 
