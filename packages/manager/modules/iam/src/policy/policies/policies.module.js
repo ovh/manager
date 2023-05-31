@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import advancedModeSwitch from '../../components/advancedModeSwitch';
 import cursorDatagrid from '../../components/cursorDatagrid';
 
 import deleteModule from './delete';
@@ -10,7 +11,7 @@ import routing from './policies.routing';
 const moduleName = 'ovhManagerIAMPolicyPolicies';
 
 angular
-  .module(moduleName, [cursorDatagrid, deleteModule])
+  .module(moduleName, [advancedModeSwitch, cursorDatagrid, deleteModule])
   .component('iamPolicies', component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
