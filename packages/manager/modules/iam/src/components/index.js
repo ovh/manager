@@ -5,7 +5,6 @@ import advancedModeSwitch from './advancedModeSwitch';
 import createPolicy from './createPolicy';
 import deleteEntity from './deleteEntity';
 import highlightText from './highlightText';
-import policies from './policies';
 import resourceGroups from './resourceGroups';
 import resourceSelect from './resourceSelect';
 
@@ -17,7 +16,6 @@ angular.module(moduleName, [
   createPolicy,
   deleteEntity,
   highlightText,
-  policies,
   resourceGroups,
   resourceSelect,
 ]);
