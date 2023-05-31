@@ -59,7 +59,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    */
   deletePolicy({ id }) {
     return this.goTo({
-      name: 'iam.policy.policies.deletePolicy',
+      name: 'iam.policy.policies.delete',
       params: { ...this.params, [policyParamResolve.key]: id },
     });
   }
