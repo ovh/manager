@@ -1,5 +1,5 @@
-import controller from './policyIdentities.controller';
-import template from './policyIdentities.template.html';
+import controller from './identities.controller';
+import template from './identities.template.html';
 
 export default {
   bindings: {

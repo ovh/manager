@@ -7,7 +7,6 @@ import deleteEntity from './deleteEntity';
 import highlightText from './highlightText';
 import policies from './policies';
 import policy from './policy';
-import policyIdentities from './policyIdentities';
 import resourceGroups from './resourceGroups';
 import resourceSelect from './resourceSelect';
 
@@ -21,7 +20,6 @@ angular.module(moduleName, [
   highlightText,
   policies,
   policy,
-  policyIdentities,
   resourceGroups,
   resourceSelect,
 ]);

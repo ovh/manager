@@ -1,11 +1,11 @@
 <div>
     <oui-header
-        data-heading="{{ 'iam_policy_identities_title' | translate : { policy: $ctrl.policy.name } }}"
-        data-description="{{ 'iam_policy_identities_description' | translate }}"
+        data-heading="{{ 'iam_identities_title' | translate : { policy: $ctrl.policy.name } }}"
+        data-description="{{ 'iam_identities_description' | translate }}"
     >
         <!-- <Guide> -->
         <oui-guide-menu
-            data-text="{{:: 'iam_policy_identities_guide_text' | translate }}"
+            data-text="{{:: 'iam_identities_guide_text' | translate }}"
         >
             <oui-guide-menu-item
                 data-ng-repeat="guide in $ctrl.onboardingGuides track by $index"
@@ -29,12 +29,12 @@
         data-ng-submit="$ctrl.editIdentitites()"
     >
         <oui-field
-            label="{{ 'iam_policy_identities_field_users_selection_label' | translate }}"
+            label="{{ 'iam_identities_field_users_selection_label' | translate }}"
             size="xl"
         >
             <div class="oui-input-group oui-input-group_xl">
                 <input
-                    placeholder="{{ 'iam_policy_identities_field_users_selection_placeholder' | translate }}"
+                    placeholder="{{ 'iam_identities_field_users_selection_placeholder' | translate }}"
                     class="oui-input oui-input_inline mr-2"
                     name="usersField"
                     type="text"
@@ -51,7 +51,7 @@
                     data-ng-disabled="!$ctrl.newUser"
                 >
                     <span
-                        data-translate="iam_policy_identities_field_users_button_add"
+                        data-translate="iam_identities_field_users_button_add"
                     ></span>
                     <span
                         class="oui-icon oui-icon-plus"
@@ -86,14 +86,14 @@
                 class="oui-button oui-button_l oui-button_link mr-3"
                 data-ng-click="$ctrl.goBack()"
             >
-                <span data-translate="iam_policy_identities_form_cancel"></span>
+                <span data-translate="iam_identities_form_cancel"></span>
             </button>
             <button
                 type="button"
                 class="oui-button oui-button_l oui-button_primary mr-3"
                 data-ng-click="$ctrl.submit()"
             >
-                <span data-translate="iam_policy_identities_form_submit"></span>
+                <span data-translate="iam_identities_form_submit"></span>
             </button>
         </div>
         <!-- </Footer> -->
