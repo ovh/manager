@@ -9,7 +9,6 @@ import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
 
 import services from './services';
-import components from './components';
 
 import identities from './identities';
 import onboarding from './onboarding';
@@ -44,7 +43,6 @@ angular
     ngOvhUtils,
     uiKit,
     services,
-    components,
 
     identities,
     onboarding,
