@@ -1,4 +1,3 @@
-import { policyParamResolve } from '../../resolves';
 import AbstractCursorDatagridController from '../../components/cursorDatagrid/cursorDatagrid.controller';
 
 export default class PoliciesController extends AbstractCursorDatagridController {
@@ -60,7 +59,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
   deletePolicy({ id }) {
     return this.goTo({
       name: 'iam.policy.policies.delete',
-      params: { ...this.params, [policyParamResolve.key]: id },
+      params: { ...this.params, policy: id },
     });
   }
 }
