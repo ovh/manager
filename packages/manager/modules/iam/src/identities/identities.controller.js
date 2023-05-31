@@ -1,5 +1,5 @@
-import { decodeUrn, encodeUrn } from '../resolves';
 import { URN_VERSION, ENTITY } from '../iam.constants';
+import { decodeUrn, encodeUrn } from '../iam.paramTypes';
 
 export default class IdentitiesController {
   /* @ngInject */
