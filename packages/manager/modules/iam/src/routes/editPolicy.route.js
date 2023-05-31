@@ -1,27 +1,16 @@
 import {
-  asPath,
-  asResolve,
-  editPolicyBreadcrumbResolve,
   detailedPolicyParamResolve,
-  alertResolve,
-  goBackResolve,
-  onboardingGuidesResolve,
+  editPolicyBreadcrumbResolve,
 } from '../resolves';
 
 const name = 'editPolicy';
-const resolves = [
-  editPolicyBreadcrumbResolve,
-  detailedPolicyParamResolve,
-  alertResolve,
-  goBackResolve,
-  onboardingGuidesResolve,
-];
 
 const state = () => ({
-  url: `/policy/${asPath(detailedPolicyParamResolve)}/edit`,
+  url: `/policy/{policy:uuid}/edit`,
   component: 'iamCreatePolicy',
   resolve: {
-    ...asResolve(resolves),
+    breadcrumb: editPolicyBreadcrumbResolve,
+    policy: detailedPolicyParamResolve,
   },
 });
 

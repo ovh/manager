@@ -1,30 +1,16 @@
-import {
-  asParams,
-  asQuery,
-  asResolve,
-  cursorsParamResolve,
-  noBreadcrumbResolve,
-  alertResolve,
-  goToResolve,
-} from '../resolves';
+import { cursorsParamResolve } from '../resolves';
 
 const name = 'resourceGroups';
-const params = [cursorsParamResolve];
-const resolves = [
-  noBreadcrumbResolve,
-  alertResolve,
-  goToResolve,
-  cursorsParamResolve,
-];
 
 const state = () => ({
-  url: `/resource_groups?${asQuery(params)}`,
+  url: `/resourceGroups?cursors`,
   component: 'iamResourceGroups',
   params: {
-    ...asParams(params),
+    cursors: cursorsParamResolve.declaration,
   },
   resolve: {
-    ...asResolve(resolves),
+    breadcrumb: () => null,
+    cursors: cursorsParamResolve,
   },
 });
 

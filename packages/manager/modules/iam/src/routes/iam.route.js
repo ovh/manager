@@ -1,12 +1,17 @@
 import { FEATURE, UNAVAILABLE_STATE_NAME } from '../iam.constants';
 import {
-  asResolve,
-  featuresResolve,
+  advancedModeResolve,
+  alertResolve,
   defaultBreadcrumbResolve,
+  featuresResolve,
+  goBackResolve,
+  goToResolve,
+  hasPoliciesResolve,
+  onboardingGuidesResolve,
+  usersManagementLinkResolve,
 } from '../resolves';
 
 const name = 'iam';
-const resolves = [featuresResolve, defaultBreadcrumbResolve];
 
 const state = () => ({
   url: '/iam',
@@ -21,7 +26,15 @@ const state = () => ({
           : { state: UNAVAILABLE_STATE_NAME },
       ),
   resolve: {
-    ...asResolve(resolves),
+    advancedMode: advancedModeResolve,
+    alert: alertResolve,
+    breadcrumb: defaultBreadcrumbResolve,
+    features: featuresResolve,
+    goBack: goBackResolve,
+    goTo: goToResolve,
+    hasPolicies: hasPoliciesResolve,
+    onboardingGuides: onboardingGuidesResolve,
+    usersManagementLink: usersManagementLinkResolve,
   },
 });
 

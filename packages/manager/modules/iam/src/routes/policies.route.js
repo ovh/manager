@@ -1,39 +1,21 @@
-import {
-  asParams,
-  asQuery,
-  asResolve,
-  cursorsParamResolve,
-  hasPoliciesResolve,
-  noBreadcrumbResolve,
-  alertResolve,
-  goToResolve,
-  advancedModeResolve,
-} from '../resolves';
+import { cursorsParamResolve } from '../resolves';
 
 const name = 'policies';
-const params = [cursorsParamResolve];
-const resolves = [
-  noBreadcrumbResolve,
-  hasPoliciesResolve,
-  alertResolve,
-  goToResolve,
-  advancedModeResolve,
-  cursorsParamResolve,
-];
 
 const state = () => ({
-  url: `?${asQuery(params)}`,
+  url: `?cursors`,
   component: 'iamPolicies',
   params: {
-    ...asParams(params),
+    cursors: cursorsParamResolve.declaration,
   },
   resolve: {
-    ...asResolve(resolves),
+    breadcrumb: () => null,
+    cursors: cursorsParamResolve,
   },
   redirectTo: (transition) =>
     transition
       .injector()
-      .getAsync(`${hasPoliciesResolve.key}`)
+      .getAsync('hasPolicies')
       .then((hasPolicies) =>
         !hasPolicies ? { state: 'iam.onboarding' } : false,
       ),
