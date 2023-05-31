@@ -37,8 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
        * Whether the entity requires a statement
        * @returns {boolean}
        */
-      statement: /* @ngInject */ (entity) =>
-        [ENTITY.POLICY].includes(entity.type),
+      statement: () => false,
     },
   });
 };
