@@ -13,6 +13,7 @@ import routes from './routes';
 import services from './services';
 import components from './components';
 
+import identities from './identities';
 import onboarding from './onboarding';
 
 import routing from './iam.routing';
@@ -36,6 +37,7 @@ angular
     services,
     components,
 
+    identities,
     onboarding,
   ])
   .config(routing);
