@@ -9,7 +9,10 @@ import {
   OsdsRadioGroup,
   OsdsRadio,
   OsdsTile,
+  OsdsSelectOption,
+  OsdsSelect,
 } from '@ovhcloud/ods-stencil/components/react/';
+import { Link } from 'react-router-dom';
 import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
 import { OdsCheckboxButtonSize } from '@ovhcloud/ods-core';
 
@@ -81,12 +84,12 @@ export default function Onboarding() {
         <h2>Test tracking ods tile in radio group</h2>
         <div>
           <OsdsRadioGroup>
-            <OsdsRadio value="A" data-tracking="option-radio-tile-a">
+            <OsdsRadio value="A">
               <OsdsTile interactive>
                 Radio-group with Radio & Tile in it (option A)
               </OsdsTile>
             </OsdsRadio>
-            <OsdsRadio value="B" data-tracking="option-radio-tile-b">
+            <OsdsRadio value="B">
               <OsdsTile interactive>
                 Radio-group with Radio & Tile in it (option B)
               </OsdsTile>
@@ -99,20 +102,12 @@ export default function Onboarding() {
         <div>
           <OsdsRadioGroup>
             <OsdsRadio value="A">
-              <OsdsCheckboxButton
-                data-tracking="checkbox-button-option-a"
-                size={OdsCheckboxButtonSize.sm}
-                interactive
-              >
+              <OsdsCheckboxButton size={OdsCheckboxButtonSize.sm} interactive>
                 <span slot={'end'}>Option A</span>
               </OsdsCheckboxButton>
             </OsdsRadio>
             <OsdsRadio value="B">
-              <OsdsCheckboxButton
-                data-tracking="checkbox-button-option-b"
-                size={OdsCheckboxButtonSize.sm}
-                interactive
-              >
+              <OsdsCheckboxButton size={OdsCheckboxButtonSize.sm} interactive>
                 <span slot={'end'}>Option B</span>
               </OsdsCheckboxButton>
             </OsdsRadio>
@@ -120,7 +115,7 @@ export default function Onboarding() {
         </div>
       </div>
       <div>
-        <h2>Checkbox</h2>
+        <h2>Test tracking ods checkbox</h2>
         <OsdsCheckbox
           value="A"
           checked={isValueCheckboxChecked}
@@ -128,6 +123,31 @@ export default function Onboarding() {
         >
           <OsdsToggle></OsdsToggle>
         </OsdsCheckbox>
+      </div>
+      <div>
+        <h2>Test tracking ods select group button</h2>
+        <div>
+          <OsdsSelect value="1" id="myOdsSelect">
+            <OsdsSelectOption value="1">Value 1</OsdsSelectOption>
+            <OsdsSelectOption value="2">Value 2</OsdsSelectOption>
+            <OsdsSelectOption value="3">Value 3</OsdsSelectOption>
+          </OsdsSelect>
+        </div>
+        <br />
+        <div>
+          <OsdsSelect value="1" id="myOdsSelect2">
+            <OsdsSelectOption value="1">Value 1</OsdsSelectOption>
+            <OsdsSelectOption value="2">Value 2</OsdsSelectOption>
+            <OsdsSelectOption value="3">Value 3</OsdsSelectOption>
+          </OsdsSelect>
+        </div>
+      </div>
+      <div>
+        <br />
+        <br />
+        <OsdsLink data-tracking="link2" color={OdsThemeColorIntent.primary}>
+          <Link to={`/`}>Listing page</Link>
+        </OsdsLink>
       </div>
       <br />
       <br />

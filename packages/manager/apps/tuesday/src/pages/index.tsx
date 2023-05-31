@@ -10,6 +10,21 @@ import {
 } from 'react-router-dom';
 import '@ovhcloud/ods-theme-blue-jeans/index.css';
 
+import {
+  OsdsLink,
+  OsdsButton,
+  OsdsCheckbox,
+  OsdsCheckboxButton,
+  OsdsToggle,
+  OsdsRadioGroup,
+  OsdsRadio,
+  OsdsTile,
+  OsdsSelectGroup,
+  OsdsSelectOption,
+  OsdsSelect,
+} from '@ovhcloud/ods-stencil/components/react/';
+import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+import { OdsCheckboxButtonSize } from '@ovhcloud/ods-core';
 import { getDedicatedNashaList } from '@/api';
 
 export function loader() {
@@ -57,6 +72,31 @@ export default function Listing() {
           }}
         </Await>
       </Suspense>
+      <div>
+        <h2>Test tracking ods select group button</h2>
+        <div>
+          <OsdsSelect value="1" id="myOdsSelect">
+            <OsdsSelectOption value="1">Value 1</OsdsSelectOption>
+            <OsdsSelectOption value="2">Value 2</OsdsSelectOption>
+            <OsdsSelectOption value="3">Value 3</OsdsSelectOption>
+          </OsdsSelect>
+        </div>
+        <br />
+        <div>
+          <OsdsSelect value="1" id="myOdsSelect2">
+            <OsdsSelectOption value="1">Value 1</OsdsSelectOption>
+            <OsdsSelectOption value="2">Value 2</OsdsSelectOption>
+            <OsdsSelectOption value="3">Value 3</OsdsSelectOption>
+          </OsdsSelect>
+        </div>
+      </div>
+      <div>
+        <br />
+        <br />
+        <OsdsLink data-tracking="link2" color={OdsThemeColorIntent.primary}>
+          <Link to={`/onboarding`}>Onboarding page</Link>
+        </OsdsLink>
+      </div>
     </div>
   );
 }
