@@ -5,12 +5,14 @@ export const OPTION_TYPES = {
 
 export const OPTIONS = [
   {
-    name: 'nsx',
+    name: 'vrops',
     type: OPTION_TYPES.basic,
   },
   {
-    name: 'vrops',
+    name: 'nsx',
     type: OPTION_TYPES.basic,
+    eol: true,
+    noActionSwitch: true,
   },
   {
     name: 'pcidss',

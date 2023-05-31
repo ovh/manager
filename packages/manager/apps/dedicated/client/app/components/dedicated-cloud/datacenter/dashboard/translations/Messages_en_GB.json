@@ -77,5 +77,22 @@
   "dedicatedCloud_datacenter_commercial_name_PREMIER-NSX-VROPS": "Premier with NSX and vROps",
   "dedicatedCloud_datacenter_commercial_name_PREMIER-PCIDSS": "Premier PCI DSS",
   "dedicatedCloud_datacenter_commercial_name_PREMIER-UNKNOWN": "Premier",
-  "dedicatedCloud_datacenter_commercial_name_PREMIER-VROPS": "Premier with vROps"
+  "dedicatedCloud_datacenter_commercial_name_PREMIER-VROPS": "Premier with vROps",
+  "dedicatedCloud_options_title": "Options",
+  "dedicatedCloud_datacenter_commercial_name_vSphere": "vSphere",
+  "dedicatedCloud_datacenter_commercial_name_vSphere-HDS": "vSphere HDS",
+  "dedicatedCloud_datacenter_commercial_name_vSphere-HIPAA": "vSphere HIPAA",
+  "dedicatedCloud_datacenter_commercial_name_vSphere-PCIDSS": "vSphere PCI DSS",
+  "dedicatedCloud_datacenter_commercial_name_vSphere-VROPS": "vSphere with vROps",
+  "dedicatedCloud_datacenter_commercial_name_vSphere-NSX": "vSphere",
+  "dedicatedCloud_datacenter_commercial_name_vSphere-NSX-VROPS": "vSphere with vROps",
+  "dedicatedCloud_datacenter_commercial_name_vSphere-UNKNOWN": "vSphere",
+  "dedicatedCloud_datacenter_commercial_name_NSX-T": "NSX",
+  "dedicatedCloud_datacenter_commercial_name_NSX-T-HDS": "NSX HDS",
+  "dedicatedCloud_datacenter_commercial_name_NSX-T-HIPAA": "NSX HIPAA",
+  "dedicatedCloud_datacenter_commercial_name_NSX-T-PCIDSS": "NSX PCI DSS",
+  "dedicatedCloud_datacenter_commercial_name_NSX-T-VROPS": "NSX with vROps",
+  "dedicatedCloud_datacenter_commercial_name_NSX-T-NSX": "NSX",
+  "dedicatedCloud_datacenter_commercial_name_NSX-T-NSX-VROPS": "NSX with vROps",
+  "dedicatedCloud_datacenter_commercial_name_NSX-T-UNKNOWN": "NSX"
 }

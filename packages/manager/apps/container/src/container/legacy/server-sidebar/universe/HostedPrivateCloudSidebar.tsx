@@ -64,19 +64,28 @@ export default function HostedPrivateCloudSidebar() {
         routeMatcher: new RegExp(`^(/configuration)?/dedicated_cloud`),
         async loader() {
           const mbm = await loadServices('/dedicatedCloud', 'EPCC');
-          return mbm.map((service) => ({
-            ...service,
-            icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
-            routeMatcher: new RegExp(
-              `^(/configuration)?/dedicated_cloud/${service.serviceName}`,
-            ),
-            async loader() {
-              return loadServices(
-                `/dedicatedCloud/${service.serviceName}/datacenter`,
-                'EPCC',
-              );
+          return [
+            {
+              id: 'dedicated-vmware-all',
+              label: t('sidebar_vmware_all'),
+              href: navigation.getURL('dedicated', '#/dedicated_cloud'),
+              icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
+              ignoreSearch: true,
             },
-          }));
+            ...mbm.map((service) => ({
+              ...service,
+              icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
+              routeMatcher: new RegExp(
+                `^(/configuration)?/dedicated_cloud/${service.serviceName}`,
+              ),
+              async loader() {
+                return loadServices(
+                  `/dedicatedCloud/${service.serviceName}/datacenter`,
+                  'EPCC',
+                );
+              },
+            })),
+          ];
         },
       });
     }

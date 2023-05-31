@@ -2,6 +2,7 @@ import { ACTIVATION_STATUS } from './activation-status.constants';
 
 export default class {
   $onInit() {
+    this.ACTIVATION_STATUS = ACTIVATION_STATUS;
     this.onStatusChange();
   }
 
