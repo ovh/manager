@@ -1,8 +1,4 @@
-import {
-  entityResolve,
-  identityParamResolve,
-  statementResolve,
-} from '../../resolves';
+import { ENTITY } from '../../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.identities.delete', {
@@ -10,10 +6,39 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'iamDeleteEntity',
     resolve: {
       breadcrumb: () => null,
-      entity: entityResolve,
-      identity: identityParamResolve,
-      resourceGroup: () => null,
-      statement: statementResolve,
+
+      /**
+       * A polymorphic DTO required by the deleteEntity component
+       * @returns {{
+       *   data: Object,
+       *   type: string
+       * }|null}
+       */
+      entity: /* @ngInject */ (policy, identity) => {
+        if (identity && policy) {
+          return {
+            data: { policy, identity, name: identity.componentsString },
+            type: ENTITY.IDENTITY,
+          };
+        }
+        return null;
+      },
+
+      /**
+       * The Identity parameter based on the identity's urn
+       * @returns {Object|null}
+       */
+      identity: /* @ngInject */ ($transition$) => {
+        const { identity } = $transition$.params();
+        return identity || null;
+      },
+
+      /**
+       * Whether the entity requires a statement
+       * @returns {boolean}
+       */
+      statement: /* @ngInject */ (entity) =>
+        [ENTITY.POLICY].includes(entity.type),
     },
   });
 };

@@ -6,6 +6,9 @@ import routing from './edit.routing';
 
 const moduleName = 'ovhManagerIAMPolicyEdit';
 
-angular.module(moduleName, [createPolicy]).config(routing);
+angular
+  .module(moduleName, [createPolicy])
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
