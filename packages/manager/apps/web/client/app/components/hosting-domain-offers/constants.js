@@ -81,7 +81,10 @@ export const BADGES = {
   DOWNGRADE: 'downgrade',
 };
 
-// use legacy planCode until the new catalog is prod
+/* TODO ::
+  1 - legacyPlanCode key could be removed once new catalog is prod
+  2 - use planCode key directly with related object
+*/
 export const NEW_OFFERS_PLAN_CODES = {
   PERSO: {
     legacyPlanCode: 'perso2014',

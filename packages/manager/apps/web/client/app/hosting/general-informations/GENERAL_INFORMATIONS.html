@@ -637,7 +637,7 @@
                         <oui-tile-description>
                             <span
                                 class="text-capitalized mr-2"
-                                data-ng-bind="::'hosting_dashboard_service_offer_'+ hosting.offer | translate"
+                                data-ng-bind=":: $ctrl.getOfferName(hosting.offer)"
                             ></span>
                             <span
                                 class="fa fa-exclamation-triangle text-warning"
