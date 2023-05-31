@@ -7,5 +7,6 @@
   "ovhManagerPccDashboardComponentActivationStatus_inError": "Fehler",
   "ovhManagerPccDashboardComponentActivationStatus_needsConfiguration": "Wird konfiguriert",
   "ovhManagerPccDashboardComponentActivationStatus_awaitingValidation": "Warten auf Validierung",
-  "ovhManagerPccDashboardComponentActivationStatus_unknown": "Unbekannter Status"
+  "ovhManagerPccDashboardComponentActivationStatus_unknown": "Unbekannter Status",
+  "ovhManagerPccDashboardComponentActivationStatus_hosted_on": "Gehostet in {{ datacenter }}"
 }

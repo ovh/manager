@@ -2,90 +2,111 @@ export const GUIDES = [
   {
     title: 'dedicated_clouds_onboarding_guide1_title',
     description: 'dedicated_clouds_onboarding_guide1_description',
+    id: 'control-panel-ovh-private-cloud',
     links: {
       DEFAULT:
-        'https://docs.ovh.com/gb/en/private-cloud/deploying-a-virtual-machine/',
+        'https://docs.ovh.com/gb/en/private-cloud/control-panel-ovh-private-cloud/',
       ASIA:
-        'https://docs.ovh.com/asia/en/private-cloud/deploying-a-virtual-machine/',
-      DE: 'https://docs.ovh.com/de/private-cloud/virtuelle-maschine-deployen/',
-      ES:
-        'https://docs.ovh.com/es/private-cloud/instrumentacion-de-una-maquina-virtual/',
+        'https://docs.ovh.com/asia/en/private-cloud/control-panel-ovh-private-cloud/',
+      DE: 'https://docs.ovh.com/de/private-cloud/manager-ovh-private-cloud/',
+      ES: 'https://docs.ovh.com/es/private-cloud/manager-ovh-private-cloud/',
       IE:
-        'https://docs.ovh.com/ie/en/private-cloud/deploying-a-virtual-machine/',
-      IT:
-        'https://docs.ovh.com/it/private-cloud/deploy-di-una-macchina-virtuale/',
-      PL: 'https://docs.ovh.com/pl/private-cloud/wdrozenie-maszyny-wirtualnej/',
-      PT:
-        'https://docs.ovh.com/pt/private-cloud/implementacao-de-uma-maquina-virtual/',
+        'https://docs.ovh.com/ie/en/private-cloud/control-panel-ovh-private-cloud/',
+      IT: 'https://docs.ovh.com/it/private-cloud/manager-ovh-private-cloud/',
+      PL: 'https://docs.ovh.com/pl/private-cloud/manager-ovh-private-cloud/',
+      PT: 'https://docs.ovh.com/pt/private-cloud/manager-ovh-private-cloud/',
       GB:
-        'https://docs.ovh.com/gb/en/private-cloud/deploying-a-virtual-machine/',
+        'https://docs.ovh.com/gb/en/private-cloud/control-panel-ovh-private-cloud/',
       CA:
-        'https://docs.ovh.com/ca/en/private-cloud/deploying-a-virtual-machine/',
-      QC:
-        'https://docs.ovh.com/ca/fr/private-cloud/deploiement-d-une-machine-virtuelle/',
+        'https://docs.ovh.com/ca/en/private-cloud/control-panel-ovh-private-cloud/',
+      QC: 'https://docs.ovh.com/ca/fr/private-cloud/manager-ovh-private-cloud/',
       AU:
-        'https://docs.ovh.com/au/en/private-cloud/deploying-a-virtual-machine/',
+        'https://docs.ovh.com/au/en/private-cloud/control-panel-ovh-private-cloud/',
       SG:
-        'https://docs.ovh.com/sg/en/private-cloud/deploying-a-virtual-machine/',
-      FR:
-        'https://docs.ovh.com/fr/private-cloud/deploiement-d-une-machine-virtuelle/',
+        'https://docs.ovh.com/sg/en/private-cloud/control-panel-ovh-private-cloud/',
+      FR: 'https://docs.ovh.com/fr/private-cloud/manager-ovh-private-cloud/',
+      MA: 'https://docs.ovh.com/fr/private-cloud/manager-ovh-private-cloud/',
+      SN: 'https://docs.ovh.com/fr/private-cloud/manager-ovh-private-cloud/',
+      TN: 'https://docs.ovh.com/fr/private-cloud/manager-ovh-private-cloud/',
       WE:
-        'https://docs.ovh.com/us/en/private-cloud/deploying-a-virtual-machine/',
-      WS:
-        'https://docs.ovh.com/us/en/private-cloud/deploying-a-virtual-machine/',
+        'https://docs.ovh.com/us/en/private-cloud/control-panel-ovh-private-cloud/',
+      WS: 'https://docs.ovh.com/us/es/private-cloud/manager-ovh-private-cloud/',
       US:
-        'https://docs.ovh.com/us/en/private-cloud/deploying-a-virtual-machine/',
+        'https://docs.ovh.com/us/en/private-cloud/control-panel-ovh-private-cloud/',
     },
   },
   {
     title: 'dedicated_clouds_onboarding_guide2_title',
     description: 'dedicated_clouds_onboarding_guide2_description',
+    id: 'tanzu-tkgm-presentation',
     links: {
       DEFAULT:
-        'https://docs.ovh.com/gb/en/private-cloud/login-vsphere-interface/',
+        'https://docs.ovh.com/gb/en/private-cloud/tanzu-tkgm-presentation/',
       ASIA:
-        'https://docs.ovh.com/asia/en/private-cloud/login-vsphere-interface/',
-      DE:
-        'https://docs.ovh.com/de/private-cloud/den_vsphere_client_installieren/',
-      ES: 'https://docs.ovh.com/es/private-cloud/instalar_el_vsphere_client/',
-      IE: 'https://docs.ovh.com/ie/en/private-cloud/login-vsphere-interface/',
-      IT:
-        'https://docs.ovh.com/it/private-cloud/connessione-interfaccia-vsphere/',
-      PL: 'https://docs.ovh.com/pl/private-cloud/polaczenie-interfejs-vsphere/',
-      PT: 'https://docs.ovh.com/pt/private-cloud/instalar_o_vsphere_client/',
-      GB: 'https://docs.ovh.com/gb/en/private-cloud/login-vsphere-interface/',
-      CA: 'https://docs.ovh.com/ca/en/private-cloud/login-vsphere-interface/',
-      QC:
-        'https://docs.ovh.com/ca/fr/private-cloud/connexion-interface-vsphere/',
-      AU: 'https://docs.ovh.com/au/en/private-cloud/login-vsphere-interface/',
-      SG: 'https://docs.ovh.com/sg/en/private-cloud/login-vsphere-interface/',
-      FR: 'https://docs.ovh.com/fr/private-cloud/connexion-interface-vsphere/',
-      WE: 'https://docs.ovh.com/us/en/private-cloud/login-vsphere-interface/',
-      WS: 'https://docs.ovh.com/us/en/private-cloud/login-vsphere-interface/',
-      US: 'https://docs.ovh.com/us/en/private-cloud/login-vsphere-interface/',
+        'https://docs.ovh.com/asia/en/private-cloud/tanzu-tkgm-presentation/',
+      DE: 'https://docs.ovh.com/de/private-cloud/tanzu-tkgm-presentation/',
+      ES: 'https://docs.ovh.com/es/private-cloud/tanzu-tkgm-presentation/',
+      IE: 'https://docs.ovh.com/ie/en/private-cloud/tanzu-tkgm-presentation/',
+      IT: 'https://docs.ovh.com/it/private-cloud/tanzu-tkgm-presentation/',
+      PL: 'https://docs.ovh.com/pl/private-cloud/tanzu-tkgm-presentation/',
+      PT: 'https://docs.ovh.com/pt/private-cloud/tanzu-tkgm-presentation/',
+      GB: 'https://docs.ovh.com/gb/en/private-cloud/tanzu-tkgm-presentation/',
+      CA: 'https://docs.ovh.com/ca/en/private-cloud/tanzu-tkgm-presentation/',
+      QC: 'https://docs.ovh.com/ca/fr/private-cloud/tanzu-tkgm-presentation/',
+      AU: 'https://docs.ovh.com/au/en/private-cloud/tanzu-tkgm-presentation/',
+      SG: 'https://docs.ovh.com/sg/en/private-cloud/tanzu-tkgm-presentation/',
+      FR: 'https://docs.ovh.com/fr/private-cloud/tanzu-tkgm-presentation/',
+      MA: 'https://docs.ovh.com/fr/private-cloud/tanzu-tkgm-presentation/',
+      SN: 'https://docs.ovh.com/fr/private-cloud/tanzu-tkgm-presentation/',
+      TN: 'https://docs.ovh.com/fr/private-cloud/tanzu-tkgm-presentation/',
+      WE: 'https://docs.ovh.com/us/en/private-cloud/tanzu-tkgm-presentation/',
+      WS: 'https://docs.ovh.com/us/es/private-cloud/tanzu-tkgm-presentation/',
+      US: 'https://docs.ovh.com/us/en/private-cloud/tanzu-tkgm-presentation/',
     },
   },
   {
     title: 'dedicated_clouds_onboarding_guide3_title',
     description: 'dedicated_clouds_onboarding_guide3_description',
+    id: 'configure-ip-on-virtual-machine',
     links: {
-      DEFAULT: 'https://docs.ovh.com/gb/en/private-cloud/sftp_connection/',
-      ASIA: 'https://docs.ovh.com/asia/en/private-cloud/sftp_connection/',
-      DE: 'https://docs.ovh.com/de/private-cloud/verbindung_per_sftp/',
-      ES: 'https://docs.ovh.com/es/private-cloud/conexion_en_sftp/',
-      IE: 'https://docs.ovh.com/ie/en/private-cloud/sftp_connection/',
-      IT: 'https://docs.ovh.com/it/private-cloud/connessione-in-sftp/',
-      PL: 'https://docs.ovh.com/pl/private-cloud/polaczenie_przez_sftp/',
-      PT: 'https://docs.ovh.com/pt/private-cloud/ligacao_por_sftp/',
-      GB: 'https://docs.ovh.com/gb/en/private-cloud/sftp_connection/',
-      CA: 'https://docs.ovh.com/ca/en/private-cloud/sftp_connection/',
-      QC: 'https://docs.ovh.com/ca/fr/private-cloud/connexion-en-sftp/',
-      AU: 'https://docs.ovh.com/au/en/private-cloud/sftp_connection/',
-      SG: 'https://docs.ovh.com/sg/en/private-cloud/sftp_connection/',
-      FR: 'https://docs.ovh.com/fr/private-cloud/connexion-en-sftp/',
-      WE: 'https://docs.ovh.com/us/en/private-cloud/sftp_connection/',
-      WS: 'https://docs.ovh.com/us/en/private-cloud/sftp_connection/',
-      US: 'https://docs.ovh.com/us/en/private-cloud/sftp_connection/',
+      DEFAULT:
+        'https://docs.ovh.com/gb/en/private-cloud/configure-ip-on-virtual-machine/',
+      ASIA:
+        'https://docs.ovh.com/asia/en/private-cloud/configure-ip-on-virtual-machine/',
+      DE: 'https://docs.ovh.com/de/private-cloud/ip-server-konfiguration/',
+      ES:
+        'https://docs.ovh.com/es/private-cloud/configuracion-ip-maquina-virtual/',
+      IE:
+        'https://docs.ovh.com/ie/en/private-cloud/configure-ip-on-virtual-machine/',
+      IT:
+        'https://docs.ovh.com/it/private-cloud/configurazione-ip-macchina-virtuale/',
+      PL: 'https://docs.ovh.com/pl/private-cloud/konfiguracja-ip-vm/',
+      PT:
+        'https://docs.ovh.com/pt/private-cloud/configuracao-ip-maquina-virtual/',
+      GB:
+        'https://docs.ovh.com/gb/en/private-cloud/configure-ip-on-virtual-machine/',
+      CA:
+        'https://docs.ovh.com/ca/en/private-cloud/configure-ip-on-virtual-machine/',
+      QC:
+        'https://docs.ovh.com/ca/fr/private-cloud/configuration-ip-machine-virtuelle/',
+      AU:
+        'https://docs.ovh.com/au/en/private-cloud/configure-ip-on-virtual-machine/',
+      SG:
+        'https://docs.ovh.com/sg/en/private-cloud/configure-ip-on-virtual-machine/',
+      FR:
+        'https://docs.ovh.com/fr/private-cloud/configuration-ip-machine-virtuelle/',
+      MA:
+        'https://docs.ovh.com/fr/private-cloud/configuration-ip-machine-virtuelle/',
+      SN:
+        'https://docs.ovh.com/fr/private-cloud/configuration-ip-machine-virtuelle/',
+      TN:
+        'https://docs.ovh.com/fr/private-cloud/configuration-ip-machine-virtuelle/',
+      WE:
+        'https://docs.ovh.com/us/en/private-cloud/configure-ip-on-virtual-machine/',
+      WS:
+        'https://docs.ovh.com/us/es/private-cloud/configuracion-ip-maquina-virtual/',
+      US:
+        'https://docs.ovh.com/us/en/private-cloud/configure-ip-on-virtual-machine/',
     },
   },
 ];
@@ -134,29 +155,32 @@ export const CTAS = {
   LT:
     'https://ovhcloud.com/lt/enterprise/products/hosted-private-cloud/prices/',
   WE:
-    'https://ovhcloud.com/us-en/enterprise/products/hosted-private-cloud/prices/',
+    'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
   WS:
-    'https://ovhcloud.com/us-en/enterprise/products/hosted-private-cloud/prices/',
+    'https://www.ovhcloud.com/es/enterprise/products/hosted-private-cloud/prices/',
 };
 
 export const US_GUIDES = [
   {
     title: 'dedicated_clouds_onboarding_us_guide1_title',
     description: 'dedicated_clouds_onboarding_us_guide1_description',
+    id: 'how-to-access-the-nsx-interface',
     link:
-      'https://support.us.ovhcloud.com/hc/en-us/articles/360017372019-How-to-Deploy-a-VM-in-the-vSphere-Web-Client',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360015961459-How-to-Access-the-NSX-Interface',
   },
   {
     title: 'dedicated_clouds_onboarding_us_guide2_title',
     description: 'dedicated_clouds_onboarding_us_guide2_description',
+    id: 'how-to-modify-the-vcenter-access-policy',
     link:
-      'https://support.us.ovhcloud.com/hc/en-us/articles/360015989419-How-to-Log-Into-the-vSphere-Web-Client',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/1500007889561-How-to-Modify-the-vCenter-Access-Policy',
   },
   {
     title: 'dedicated_clouds_onboarding_us_guide3_title',
     description: 'dedicated_clouds_onboarding_us_guide3_description',
+    id: 'how-to-authorize-ip-addresses-for-vcenter-access',
     link:
-      'https://support.us.ovhcloud.com/hc/en-us/articles/360000794910-How-to-Access-a-Datastore-via-SFTP',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/1500007893502-How-to-Authorize-IP-Addresses-for-vCenter-Access',
   },
 ];
 export const US_CTA =

@@ -24,4 +24,8 @@ export default {
     servicePackToOrder: resolveServicePackToOrder,
     breadcrumb: () => null,
   },
+  atInternet: {
+    rename:
+      'dedicated::dedicatedCloud::details::servicePackUpgrade::basicOptions::placeOrder',
+  },
 };
