@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.10.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.10.0...@ovh-ux/ng-at-internet@5.10.1) (2023-05-31)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet
+
+
+
+
+
 # [5.10.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.9.6...@ovh-ux/ng-at-internet@5.10.0) (2023-03-06)
 
 

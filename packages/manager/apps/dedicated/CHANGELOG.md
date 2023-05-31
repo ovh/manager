@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.61.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.61.0...@ovh-ux/manager-dedicated@17.61.1) (2023-05-31)
+
+
+### Bug Fixes
+
+* **dedicated:** add missing translations ([#9314](https://github.com/ovh/manager/issues/9314)) ([8cac97a](https://github.com/ovh/manager/commit/8cac97a4cbf6ac1c65a39cdcc8b83900dc666d89))
+* **dedicated:** introducing none filesystem for partitioning ([#9136](https://github.com/ovh/manager/issues/9136)) ([afd8b77](https://github.com/ovh/manager/commit/afd8b77114922f6db90a6c91d3e48599d9561e32))
+* **dedicated:** windows partition minimum size is for c: only ([#9245](https://github.com/ovh/manager/issues/9245)) ([f48a9eb](https://github.com/ovh/manager/commit/f48a9ebc328cdf32792cad892156b791eed1e61e))
+
+
+
+
+
 # [17.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.60.4...@ovh-ux/manager-dedicated@17.61.0) (2023-05-30)
 
 

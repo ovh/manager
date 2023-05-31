@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.10.0...@ovh-ux/shell@1.10.1) (2023-05-31)
+
+
+### Bug Fixes
+
+* **ovh-shell:** handle non existing applications ([1940411](https://github.com/ovh/manager/commit/1940411486542fd417752e4e7a38e11c52cf13ca))
+
+
+
+
+
 # [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.9.0...@ovh-ux/shell@1.10.0) (2023-03-06)
 
 

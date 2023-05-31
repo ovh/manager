@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.126.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.125.0...@ovh-ux/manager-pci@5.126.0) (2023-05-31)
+
+
+### Bug Fixes
+
+* **pci.data-processing:** fix missing executor numbers ([#9235](https://github.com/ovh/manager/issues/9235)) ([9b249fa](https://github.com/ovh/manager/commit/9b249fadc4f9ca26b8bf103370e3e3c1717edd86))
+* **pci:** disable kubeconfig file if its installing ([#9353](https://github.com/ovh/manager/issues/9353)) ([732f679](https://github.com/ovh/manager/commit/732f679cd61912c1f0bd2172ebcf94f93652bbf0))
+
+
+### Features
+
+* **pci.storages:** display monthly prices on create volume backup view ([#9325](https://github.com/ovh/manager/issues/9325)) ([137a979](https://github.com/ovh/manager/commit/137a97992c0ddce717d88c1d2d1e368abdd366dd))
+
+
+
+
+
 # [5.125.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.124.0...@ovh-ux/manager-pci@5.125.0) (2023-05-30)
 
 
