@@ -1,8 +1,4 @@
-import {
-  entityResolve,
-  resourceGroupParamResolve,
-  statementResolve,
-} from '../../../resolves';
+import { ENTITY } from '../../../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.policy.resourceGroups.delete', {
@@ -10,11 +6,34 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'iamDeleteEntity',
     resolve: {
       breadcrumb: () => null,
-      entity: entityResolve,
-      identity: () => null,
-      policy: () => null,
-      resourceGroup: resourceGroupParamResolve,
-      statement: statementResolve,
+      /**
+       * A polymorphic DTO required by the deleteEntity component
+       * @returns {{
+       *   data: Object,
+       *   type: string
+       * }|null}
+       */
+      entity: /* @ngInject */ (resourceGroup) => {
+        if (resourceGroup) {
+          return { data: resourceGroup, type: ENTITY.RESOURCE_GROUP };
+        }
+        return null;
+      },
+      /**
+       * The resourceGroup parameter based on the resourceGroup's id
+       * @returns {Object|null}
+       */
+      resourceGroup: /* @ngInject */ ($transition$, ResourceGroupService) => {
+        const { resourceGroup: uuid } = $transition$.params();
+        return uuid ? ResourceGroupService.getResourceGroup(uuid) : null;
+      },
+
+      /**
+       * Whether the entity requires a statement
+       * @returns {boolean}
+       */
+      statement: /* @ngInject */ (entity) =>
+        [ENTITY.POLICY].includes(entity.type),
     },
   });
 };

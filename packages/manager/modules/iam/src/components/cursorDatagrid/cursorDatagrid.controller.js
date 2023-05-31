@@ -1,5 +1,5 @@
 import { PAGE_SIZE } from '../../iam.constants';
-import { areCursorsEquals, cursorsParamResolve } from '../../resolves';
+import { areCursorsEquals } from '../../iam.paramTypes';
 
 /**
  * This class is meant to be extended by the datagrid controllers
@@ -18,7 +18,7 @@ export default class AbstractCursorDatagridController {
 
   $onInit() {
     // Copy the value of the cursors resolve to break the reference
-    const cursorsParam = this[cursorsParamResolve.key];
+    const cursorsParam = this.cursors;
     this.cursors = cursorsParam ? { ...cursorsParam } : null;
   }
 
@@ -28,7 +28,7 @@ export default class AbstractCursorDatagridController {
    * we can detect that the URL has changed without reloading the entire state
    * @param {Object} params
    */
-  uiOnParamsChanged({ [cursorsParamResolve.key]: cursors }) {
+  uiOnParamsChanged({ cursors }) {
     if (!areCursorsEquals(this.cursors, cursors)) {
       if (cursors?.index >= 2) {
         this.cursors = { ...cursors };
@@ -46,7 +46,7 @@ export default class AbstractCursorDatagridController {
     return this.cursors?.index >= 2
       ? {
           // Pass a copy to break the reference
-          [cursorsParamResolve.key]: { ...this.cursors },
+          cursors: { ...this.cursors },
         }
       : {};
   }
