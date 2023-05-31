@@ -208,8 +208,9 @@ export default class AdditionalIpController {
   instanceChange(instance) {
     this.privateNetworks = filter(
       instance.ipAddresses,
-      (network) => network.type === 'private',
+      (network) => network.type === 'private' && network.version === 4,
     );
+
     if (this.privateNetworks.length === 1) {
       [this.ip.network] = this.privateNetworks;
     }
