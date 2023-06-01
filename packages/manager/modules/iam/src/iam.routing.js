@@ -33,8 +33,10 @@ export default /* @ngInject */ ($stateProvider) => {
        * Get the status of the advanced mode
        * @returns {boolean}
        */
-      advancedMode: /* @ngInject */ (PreferencesService) =>
-        PreferencesService.isAdvancedModeEnabled(),
+      advancedMode: /* @ngInject */ (IAMService) =>
+        IAMService.registerAdvancedMode().then(() =>
+          IAMService.isAdvancedModeEnabled(),
+        ),
 
       /**
        * Display a Alerter message
@@ -106,8 +108,8 @@ export default /* @ngInject */ ($stateProvider) => {
        * Whether there are any policies given the read-only flag (a.k.a advanced mode)
        * @returns {boolean}
        */
-      hasPolicies: /* @ngInject */ (PolicyService, advancedMode) =>
-        PolicyService.getPolicies({
+      hasPolicies: /* @ngInject */ (IAMService, advancedMode) =>
+        IAMService.getPolicies({
           ...(!advancedMode && { readOnly: false }),
         }).then(({ data }) => data.length > 0),
 
@@ -115,8 +117,8 @@ export default /* @ngInject */ ($stateProvider) => {
        * The onboarding guides
        * @returns {Object}
        */
-      onboardingGuides: /* @ngInject */ (GuideService) =>
-        GuideService.formatGuides(GUIDE.IAM, GUIDE.USERS, GUIDE.SAMLSSO),
+      onboardingGuides: /* @ngInject */ (IAMService) =>
+        IAMService.formatGuides(GUIDE.IAM, GUIDE.USERS, GUIDE.SAMLSSO),
 
       /**
        * Builds the url to go to the user management page
