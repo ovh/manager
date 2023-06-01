@@ -36,6 +36,7 @@ export const GUIDES = [
 export const CTAS = {
   DEFAULT: 'https://ovhcloud.com/en/logs-data-platform/',
   ASIA: 'https://ovhcloud.com/asia/logs-data-platform/',
+  IN: 'https://www.ovhcloud.com/en-in/logs-data-platform/',
   DE: 'https://ovhcloud.com/de/logs-data-platform/',
   ES: 'https://ovhcloud.com/es-es/logs-data-platform/',
   IE: 'https://ovhcloud.com/en-ie/logs-data-platform/',
