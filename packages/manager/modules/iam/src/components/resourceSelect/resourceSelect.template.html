@@ -14,7 +14,7 @@
         }"
     >
         <oui-select
-            data-load="{{:: $ctrl.url.resourceTypes }}"
+            data-load="{{:: $ctrl.URL.RESOURCE_TYPE }}"
             data-load-options="{ global: { serviceType: 'apiv2' } }"
             data-model="$ctrl.resourceTypesModel"
             data-multiple="true"
@@ -43,7 +43,7 @@
         >
             <oui-select
                 data-disabled="$ctrl.isResourcesDisabled"
-                data-load="{{ $ctrl.hasSelectedResourceTypes ? $ctrl.url.resources : '' }}"
+                data-load="{{ $ctrl.hasSelectedResourceTypes ? $ctrl.resourceUrl : '' }}"
                 data-load-options="{ global: { serviceType: 'apiv2' } }"
                 data-match="displayName"
                 data-model="$ctrl.resourcesModel"

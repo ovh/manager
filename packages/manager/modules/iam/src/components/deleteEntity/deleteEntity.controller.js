@@ -3,11 +3,10 @@ import { encodeUrn } from '../../iam.paramTypes';
 
 export default class DeleteEntityController {
   /* @ngInject */
-  constructor($q, $stateParams, PolicyService, ResourceGroupService) {
+  constructor($q, $stateParams, IAMService) {
     this.$q = $q;
     this.$stateParams = $stateParams;
-    this.PolicyService = PolicyService;
-    this.ResourceGroupService = ResourceGroupService;
+    this.IAMService = IAMService;
 
     this.DELETE_STATEMENT = DELETE_STATEMENT;
 
@@ -104,31 +103,31 @@ export default class DeleteEntityController {
   }
 
   /**
-   * Delete the entity using the PolicyService
+   * Delete the entity using the IAMService
    * @returns {Promise}
    */
   deletePolicy() {
-    return this.PolicyService.deletePolicy(this.entity.data.id);
+    return this.IAMService.deletePolicy(this.entity.data.id);
   }
 
   /**
-   * Delete the identity using the PolicyService
+   * Delete the identity using the IAMService
    * @returns {Promise}
    */
   deletePolicyIdentity() {
     const { identity, policy } = this.entity.data;
     const encodedIdentity = encodeUrn(identity);
-    return this.PolicyService.editIdentities(
+    return this.IAMService.setPolicyIdentities(
       policy.id,
       policy.identities.filter((item) => item !== encodedIdentity),
     );
   }
 
   /**
-   * Delete the entity using the ResourceGroupService
+   * Delete the entity using the IAMService
    * @returns {Promise}
    */
   deleteResourceGroup() {
-    return this.ResourceGroupService.deleteResourceGroup(this.entity.data.id);
+    return this.IAMService.deleteResourceGroup(this.entity.data.id);
   }
 }
