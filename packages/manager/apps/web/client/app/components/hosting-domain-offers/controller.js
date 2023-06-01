@@ -20,7 +20,7 @@ export default class WebComponentsHostingDomainOffersController {
     this.NEW_OFFERS = {
       PERSO: {
         TECHNICALS: [
-          { prefix: 'discs', values: [bytes(1000, undefined, false, 'MB')] },
+          { prefix: 'discs', values: [bytes(100000, undefined, false, 'MB')] },
           { prefix: 'emails', values: [10] },
           { prefix: 'cms', values: [] },
           { prefix: 'multisite', values: [] },
@@ -35,7 +35,7 @@ export default class WebComponentsHostingDomainOffersController {
       },
       PRO: {
         TECHNICALS: [
-          { prefix: 'discs', values: [bytes(2500, undefined, false, 'MB')] },
+          { prefix: 'discs', values: [bytes(250000, undefined, false, 'MB')] },
           { prefix: 'emails', values: [100] },
           { prefix: 'cms', values: [] },
           { prefix: 'multisite', values: [] },
@@ -50,8 +50,8 @@ export default class WebComponentsHostingDomainOffersController {
       },
       PERFORMANCE: {
         TECHNICALS: [
-          { prefix: 'discs', values: [bytes(2500, undefined, false, 'MB')] },
-          { prefix: 'emails', values: [100] },
+          { prefix: 'discs', values: [bytes(500000, undefined, false, 'MB')] },
+          { prefix: 'emails', values: [1000] },
           { prefix: 'cms', values: [] },
           { prefix: 'multisite', values: [] },
           { prefix: 'ftp_ssh', values: [] },
