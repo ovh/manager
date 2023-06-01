@@ -42,8 +42,7 @@
             <!--Offer versions-->
             <oui-select
                 class="w-100"
-                data-ng-init="$ctrl.initSelectedVersion(offer)"
-                data-disabled="offer.versions.length <= 1"
+                data-ng-if="offer.versions.length > 1"
                 data-name="hosting-offer-version-{{modelValue.name}}"
                 data-items="offer.versions"
                 data-match="name"
