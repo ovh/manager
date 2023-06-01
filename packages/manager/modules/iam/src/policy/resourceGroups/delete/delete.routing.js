@@ -23,9 +23,9 @@ export default /* @ngInject */ ($stateProvider) => {
        * The resourceGroup parameter based on the resourceGroup's id
        * @returns {Object|null}
        */
-      resourceGroup: /* @ngInject */ ($transition$, ResourceGroupService) => {
+      resourceGroup: /* @ngInject */ ($transition$, IAMService) => {
         const { resourceGroup: uuid } = $transition$.params();
-        return uuid ? ResourceGroupService.getResourceGroup(uuid) : null;
+        return uuid ? IAMService.getResourceGroup(uuid) : null;
       },
 
       /**

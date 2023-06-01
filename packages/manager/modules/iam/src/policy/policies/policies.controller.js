@@ -2,9 +2,9 @@ import AbstractCursorDatagridController from '../../components/cursorDatagrid/cu
 
 export default class PoliciesController extends AbstractCursorDatagridController {
   /* @ngInject */
-  constructor(PolicyService) {
+  constructor(IAMService) {
     super();
-    this.PolicyService = PolicyService;
+    this.IAMService = IAMService;
   }
 
   /**
@@ -13,7 +13,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    * @returns {Promise}
    */
   createItemsPromise({ cursor }) {
-    return this.PolicyService.getPolicies({
+    return this.IAMService.getPolicies({
       cursor,
       ...(!this.advancedMode && { readOnly: false }),
     });

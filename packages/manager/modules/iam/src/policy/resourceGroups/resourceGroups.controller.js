@@ -2,9 +2,9 @@ import AbstractCursorDatagridController from '../../components/cursorDatagrid/cu
 
 export default class ResourceGroupsController extends AbstractCursorDatagridController {
   /* @ngInject */
-  constructor(ResourceGroupService) {
+  constructor(IAMService) {
     super();
-    this.ResourceGroupService = ResourceGroupService;
+    this.IAMService = IAMService;
   }
 
   /**
@@ -13,7 +13,7 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    * @returns {Promise}
    */
   createItemsPromise({ cursor }) {
-    return this.ResourceGroupService.getResourceGroups({ cursor });
+    return this.IAMService.getResourceGroups({ cursor });
   }
 
   /**
