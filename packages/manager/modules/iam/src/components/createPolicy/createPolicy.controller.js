@@ -1,17 +1,19 @@
 import { cloneDeep, isEqual } from 'lodash-es';
 
 import { ENTITY, ENTITY_NAME_PATTERN } from '../../iam.constants';
+import { URL } from '../../iam.service';
 
 export default class CreatePolicyController {
   /* @ngInject */
-  constructor($q, $timeout, $translate, PolicyService, ResourceService) {
+  constructor($q, $timeout, $translate, IAMService) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
-    this.PolicyService = PolicyService;
+    this.IAMService = IAMService;
 
     this.ENTITY_NAME_PATTERN = ENTITY_NAME_PATTERN;
     this.ENTITY_RESOURCE_TYPE = ENTITY.RESOURCE_TYPE;
+    this.URL_RESOURCE_GROUP = URL.RESOURCE_GROUP;
 
     /**
      * The oui-select confirm-remove property works with promises
@@ -67,14 +69,6 @@ export default class CreatePolicyController {
      * @type {Object[]?}
      */
     this.resourceGroups = null;
-
-    /**
-     * Urls for the oui-select load options
-     * @type {Object<string,string>}
-     */
-    this.url = {
-      resourceGroups: ResourceService.resourceGroupsUrl,
-    };
 
     // Can be passed as reference to a component
     this.onDeleteEntityGoBack = this.onDeleteEntityGoBack.bind(this);
@@ -290,8 +284,8 @@ export default class CreatePolicyController {
 
     const promise =
       this.mode === 'edit'
-        ? this.PolicyService.editPolicy(this.policy.id, this.toAPI())
-        : this.PolicyService.createPolicy(this.toAPI());
+        ? this.IAMService.setPolicy(this.policy.id, this.toAPI())
+        : this.IAMService.createPolicy(this.toAPI());
 
     return promise
       .then(() => {
@@ -334,7 +328,7 @@ export default class CreatePolicyController {
 
   /**
    * Transform the current model to an API compliant data
-   * @see {PolicyService#createPolicy}
+   * @see {IAMService#createPolicy}
    * @returns {Object}
    */
   toAPI() {

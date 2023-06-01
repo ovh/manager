@@ -8,14 +8,13 @@ import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
 
-import services from './services';
-
 import identities from './identities';
 import onboarding from './onboarding';
 import policy from './policy';
 
 import paramTypes from './iam.paramTypes';
 import routing from './iam.routing';
+import service from './iam.service';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
@@ -42,14 +41,13 @@ angular
     ngOvhFeatureFlipping,
     ngOvhUtils,
     uiKit,
-    services,
-
     identities,
     onboarding,
     policy,
   ])
   .config(routing)
   .config(registerTypes)
+  .service('IAMService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

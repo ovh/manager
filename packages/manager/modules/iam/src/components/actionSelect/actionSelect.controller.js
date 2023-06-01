@@ -3,12 +3,12 @@ import ActionTrees from './ActionTrees.class';
 
 export default class ActionSelectController {
   /* @ngInject */
-  constructor($attrs, $scope, $timeout, $translate, ReferenceService) {
+  constructor($attrs, $scope, $timeout, $translate, IAMService) {
     this.$attrs = $attrs;
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
-    this.ReferenceService = ReferenceService;
+    this.IAMService = IAMService;
 
     /**
      * List of actions
@@ -120,7 +120,7 @@ export default class ActionSelectController {
 
   $onInit() {
     this.isLoading = true;
-    return this.ReferenceService.getActions()
+    return this.IAMService.getActions()
       .then((actions) => {
         this.actions = cloneDeep(actions);
         this.createActionTrees();
