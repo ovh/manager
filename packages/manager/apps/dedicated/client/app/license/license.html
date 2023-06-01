@@ -38,10 +38,21 @@
             </div>
         </div>
 
-        <oui-datagrid rows-loader="loadDatagridLicences($config)">
+        <oui-datagrid class="table-striped" rows-loader="loadDatagridLicences($config)">
             <oui-datagrid-column
                 title=":: 'license_dashboard_table_title_type' | translate"
+                property="type"
+                type="text"
+            >
+                <span
+                    data-translate="{{:: 'license_designation_' + $row.type }}"
+                    data-translate-default="{{:: capitalize($row.type) }}"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'license_dashboard_table_title_name' | translate"
                 property="id"
+                type="text"
             >
                 <span
                     data-ng-if="$row.type !== licenseTypes.SPLA"
