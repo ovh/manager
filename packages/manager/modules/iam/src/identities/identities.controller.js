@@ -3,11 +3,10 @@ import { decodeUrn, encodeUrn } from '../iam.paramTypes';
 
 export default class IdentitiesController {
   /* @ngInject */
-  constructor($q, $translate, IdentityService, PolicyService, coreConfig) {
+  constructor($q, $translate, IAMService, coreConfig) {
     this.$q = $q;
     this.$translate = $translate;
-    this.IdentityService = IdentityService;
-    this.PolicyService = PolicyService;
+    this.IAMService = IAMService;
     this.region = coreConfig.getRegion();
     this.user = coreConfig.getUser();
   }
@@ -21,8 +20,8 @@ export default class IdentitiesController {
 
     this.$q
       .all({
-        users: this.IdentityService.getUsers(),
-        groups: this.IdentityService.getGroups(),
+        users: this.IAMService.getIdentityUsers(),
+        groups: this.IAMService.getIdentityGroups(),
       })
       .then(({ users, groups }) => {
         this.userList = [
@@ -68,7 +67,7 @@ export default class IdentitiesController {
   }
 
   editIdentitites() {
-    return this.PolicyService.editIdentities(this.policy.id, [
+    return this.IAMService.setPolicyIdentities(this.policy.id, [
       ...this.policy.identities,
       this.newUserIdentityUrn,
     ])

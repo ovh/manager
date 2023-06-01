@@ -1,20 +1,14 @@
 import punycode from 'punycode';
 
+import { URL } from '../../iam.service';
+
 export default class ResourceSelectController {
   /* @ngInject */
-  constructor(
-    $scope,
-    $timeout,
-    $transclude,
-    $translate,
-    PolicyService,
-    ReferenceService,
-    ResourceService,
-  ) {
+  constructor($scope, $timeout, $transclude, $translate) {
     this.$timeout = $timeout;
     this.$translate = $translate;
-    this.PolicyService = PolicyService;
-    this.ResourceService = ResourceService;
+
+    this.URL = URL;
 
     /**
      * The NgFormController created by the template by using name="$ctrl.form"
@@ -38,13 +32,11 @@ export default class ResourceSelectController {
     this.resources = null;
 
     /**
-     * Urls for the oui-select load options
-     * @type {Object<string,string>}
+     * Keep a copy of the resource url
+     * This url will change each time resource types changed
+     * @type {string}
      */
-    this.url = {
-      resources: ResourceService.resourcesUrl,
-      resourceTypes: ReferenceService.resourceTypesUrl,
-    };
+    this.resourceUrl = URL.RESOURCE;
 
     // Two way bound properties do no trigger $onChanges events
     $scope.$watch(
@@ -168,8 +160,8 @@ export default class ResourceSelectController {
       this.onChange({ change: { type: 'resourceTypes', value } });
     }
     if (this.hasSelectedResourceTypes) {
-      this.url.resources = [
-        this.ResourceService.resourcesUrl,
+      this.resourceUrl = [
+        URL.RESOURCE,
         this.resourceTypesModel.map((item) => `resourceType=${item}`).join('&'),
       ].join('?');
     }

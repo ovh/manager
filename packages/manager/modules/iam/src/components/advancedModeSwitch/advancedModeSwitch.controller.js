@@ -1,13 +1,13 @@
 export default class IamAdvancedModeSwitchController {
   /* @ngInject */
-  constructor(PreferencesService) {
-    this.PreferencesService = PreferencesService;
+  constructor(IAMService) {
+    this.IAMService = IAMService;
   }
 
   onChangeMode(modelValue) {
     const promise = modelValue
-      ? this.PreferencesService.enableAdvancedMode()
-      : this.PreferencesService.disableAdvancedMode();
+      ? this.IAMService.enableAdvancedMode()
+      : this.IAMService.disableAdvancedMode();
 
     promise
       .then(() => this.goTo({ name: '.', reload: true }))

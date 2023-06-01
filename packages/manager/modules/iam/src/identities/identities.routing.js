@@ -10,9 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
        * The Policy parameter based on the policy's id
        * @returns {Object|null}
        */
-      policy: /* @ngInject */ ($transition$, PolicyService) => {
+      policy: /* @ngInject */ ($transition$, IAMService) => {
         const { policy: uuid } = $transition$.params();
-        return uuid ? PolicyService.getPolicy(uuid) : null;
+        return uuid ? IAMService.getPolicy(uuid) : null;
       },
     },
   });

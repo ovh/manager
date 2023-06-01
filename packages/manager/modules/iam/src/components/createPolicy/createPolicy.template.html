@@ -119,7 +119,7 @@
                 >
                     <oui-select
                         data-disabled="!$ctrl.hasResourceGroups || $ctrl.policy.readOnly"
-                        data-load="{{:: $ctrl.url.resourceGroups }}"
+                        data-load="{{:: $ctrl.URL_RESOURCE_GROUP }}"
                         data-load-options="{ global: { serviceType: 'apiv2' } }"
                         data-match="name"
                         data-model="$ctrl.model.resourceGroups"
