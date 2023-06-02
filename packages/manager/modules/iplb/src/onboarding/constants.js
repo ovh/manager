@@ -72,6 +72,7 @@ export const GUIDES = [
 export const CTAS = {
   DEFAULT: 'https://ovhcloud.com/en/solutions/load-balancer/',
   ASIA: 'https://ovhcloud.com/asia/solutions/load-balancer/',
+  IN: 'https://www.ovhcloud.com/en-in/solutions/load-balancer/',
   DE: 'https://ovhcloud.com/de/solutions/load-balancer/',
   ES: 'https://ovhcloud.com/es-es/solutions/load-balancer/',
   IE: 'https://ovhcloud.com/en-ie/solutions/load-balancer/',

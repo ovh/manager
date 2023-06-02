@@ -18,6 +18,7 @@ export const REPRICING_LINKS_INFO = {
   AU: 'https://www.ovhcloud.com/en-au/public-cloud/prices/',
   SG: 'https://www.ovhcloud.com/en-sg/public-cloud/prices/',
   ASIA: 'https://www.ovhcloud.com/asia/public-cloud/prices/',
+  IN: 'https://www.ovhcloud.com/en-in/public-cloud/prices/',
 };
 
 export default {

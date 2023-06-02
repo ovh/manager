@@ -1121,6 +1121,7 @@ module.exports = {
       },
       express_order: {
         ASIA: 'https://ca.ovh.com/asia/order/express/',
+        IN: 'https://ca.ovh.com/en-in/order/express/',
         AU: 'https://ca.ovh.com/au/order/express/',
         CA: 'https://ca.ovh.com/en/order/express/',
         QC: 'https://ca.ovh.com/fr/order/express/',
@@ -1131,6 +1132,8 @@ module.exports = {
       domain_order_options_service: {
         ASIA:
           "https://ca.ovh.com/asia/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+        IN:
+          'https://ca.ovh.com/en-in/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~hosting_existing_service~serviceName~{serviceName}))&fqdn={domainName}',
         AU:
           "https://ca.ovh.com/au/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
         CA:
@@ -1143,8 +1146,6 @@ module.exports = {
           "https://us.ovh.com/us/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
         WS:
           "https://us.ovh.com/us/es/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
-        IN:
-          "https://ca.ovh.com/asia/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
       },
       TOOLS: {
         ZONE_CHECK: 'https://www.zonemaster.net/',
@@ -1200,13 +1201,13 @@ module.exports = {
     ],
     ORDER_URL: {
       ASIA: 'https://ca.ovh.com/asia/order/express/#/express/review?products=',
+      IN: 'https://ca.ovh.com/en-in/order/express/#/express/review?products=',
       AU: 'https://ca.ovh.com/au/order/express/#/express/review?products=',
       CA: 'https://ca.ovh.com/en/order/express/#/express/review?products=',
       QC: 'https://ca.ovh.com/fr/order/express/#/express/review?products=',
       SG: 'https://ca.ovh.com/sg/order/express/#/express/review?products=',
       WE: 'https://us.ovh.com/us/order/express/#/express/review?products=',
       WS: 'https://us.ovh.com/es/order/express/#/express/review?products=',
-      IN: 'https://ca.ovh.com/in/order/express/#/express/review?products=',
     },
   },
 };

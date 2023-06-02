@@ -76,6 +76,7 @@ export const GUIDES = [
 export const CTAS = {
   DEFAULT: 'https://ovhcloud.com/en/collaborative-tools/microsoft-365/',
   ASIA: 'https://ovhcloud.com/asia/collaborative-tools/microsoft-365/',
+  IN: 'https://www.ovhcloud.com/en-in/collaborative-tools/microsoft-365/',
   DE: 'https://ovhcloud.com/de/collaborative-tools/microsoft-365/',
   ES: 'https://ovhcloud.com/es-es/collaborative-tools/microsoft-365/',
   IE: 'https://ovhcloud.com/en-ie/collaborative-tools/microsoft-365/',
