@@ -22,7 +22,6 @@ export default class UpscaleController {
   }
 
   $onInit() {
-    this.currentIndex = 0;
     this.errorMessage = null;
     this.resetRangeConfiguration();
     this.getCurrentRangeInformation();
@@ -45,7 +44,8 @@ export default class UpscaleController {
     upscaleRanges = upscaleRanges.map((range) => this.formatRange(range));
 
     this.upscaleRanges = sortBy(upscaleRanges, 'indicativePricing.price');
-    [, this.range] = this.upscaleRanges;
+    [this.range] = this.upscaleRanges;
+    console.log(this);
   }
 
   getModelPrice(price) {
@@ -495,10 +495,6 @@ export default class UpscaleController {
     return `vps_upscale_summary_price_${paymentType}_${
       this.defaultPaymentMethod ? 'with' : 'without'
     }_payment_method_validation`;
-  }
-
-  static isRangeDisabled(range) {
-    return range.isCurrentRange;
   }
 
   performUpscaleService() {
