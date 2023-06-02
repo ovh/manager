@@ -111,6 +111,7 @@ export const CHECK_PRICES_DOC_LINK = {
   AU: 'https://www.ovhcloud.com/en-au/public-cloud/prices/#11500',
   SG: 'https://www.ovhcloud.com/en-sg/public-cloud/prices/#11500',
   ASIA: 'https://www.ovhcloud.com/asia/public-cloud/prices/#11500',
+  IN: 'https://www.ovhcloud.com/en-in/public-cloud/prices/#11500',
   ES: 'https://www.ovhcloud.com/es-es/public-cloud/prices/#11500',
   WS: 'https://www.ovhcloud.com/es/public-cloud/prices/#11500',
   PT: 'https://www.ovhcloud.com/pt/public-cloud/prices/#11500',
