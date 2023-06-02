@@ -375,11 +375,7 @@ export default class LogsInputsService {
       set(input, 'stateType', this.LogsConstants.inputStateType[input.state]);
     });
     /* eslint-disable no-nested-ternary */
-    set(
-      input,
-      'stateType',
-      this.LogsConstants.inputStateType[input.state],
-    );
+    set(input, 'stateType', this.LogsConstants.inputStateType[input.state]);
     if (input.autoscale === false) {
       // In the edit form, set the default values so they can be displayed in the form
       // Function transformInputToSave will manage the removal of these properties if needed
