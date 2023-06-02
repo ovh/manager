@@ -62,16 +62,24 @@ export default class {
                   (cartServiceOption
                     .find((option) => option.planCode === planCode)
                     ?.prices.reduce(
-                      (childAccumulator, { price, duration, pricingMode }) => {
-                        // We need more parameters for the primary planCode.
-                        if (planCode.includes('-vdc')) {
-                          set(datacenter.addons[index], 'duration', duration);
-                          set(
-                            datacenter.addons[index],
-                            'pricingMode',
-                            pricingMode,
-                          );
-                        }
+                      (childAccumulator, { price, pricingMode }) => {
+                        // We need set more parameters for express order url.
+                        set(datacenter.addons, index, {
+                          ...datacenter.addons[index],
+                          ...(datacenter.addons[index].planCode.includes(
+                            'host',
+                          ) && {
+                            configuration: [
+                              {
+                                label: 'datacenter_id',
+                                values: [0],
+                              },
+                            ],
+                          }),
+                          pricingMode,
+                          productId: 'privateCloud',
+                          serviceName: this.serviceName,
+                        });
                         return childAccumulator + price.value * quantity;
                       },
                       0,
@@ -147,25 +155,10 @@ export default class {
   }
 
   goToExpressOrder() {
-    // We get the parameters of the primary planCode
-    const mainPlanCode = this.commercialRange.model.addons.find(
-      ({ planCode }) => planCode.includes('-vdc'),
-    );
-
-    // We get the addons planCode required
-    const optionPlanCode = this.commercialRange.model.addons.filter(
-      ({ planCode }) => !planCode.includes('-vdc'),
-    );
-
     this.$window.open(
-      `${this.expressOrderUrl}?products=${JSURL.stringify([
-        {
-          ...mainPlanCode,
-          productId: 'privateCloud',
-          serviceName: this.serviceName,
-          option: optionPlanCode,
-        },
-      ])}`,
+      `${this.expressOrderUrl}?products=${JSURL.stringify(
+        this.commercialRange.model.addons,
+      )}`,
       '_blank',
       'noopener',
     );
