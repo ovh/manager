@@ -1,6 +1,7 @@
 export const VEEAM_ORDER_URLS = {
   DEFAULT: 'https://ovhcloud.com/en/storage-solutions/veeam-cloud-connect',
   ASIA: 'https://ovhcloud.com/asia/storage-solutions/veeam-cloud-connect',
+  IN: 'https://www.ovhcloud.com/en-in/storage-solutions/veeam-cloud-connect',
   DE: 'https://ovhcloud.com/de/storage-solutions/veeam-cloud-connect',
   ES: 'https://ovhcloud.com/es-es/storage-solutions/veeam-cloud-connect',
   IE: 'https://ovhcloud.com/en-ie/storage-solutions/veeam-cloud-connect',

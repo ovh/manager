@@ -45,6 +45,7 @@ export const GUIDES = [
 export const CTAS = {
   DEFAULT: 'https://ovhcloud.com/en/network-security/ovhcloud-connect/',
   ASIA: 'https://ovhcloud.com/asia/network-security/ovhcloud-connect/',
+  IN: 'https://www.ovhcloud.com/en-in/network-security/ovhcloud-connect/',
   DE: 'https://ovhcloud.com/de/network-security/ovhcloud-connect/',
   ES: 'https://ovhcloud.com/es-es/network-security/ovhcloud-connect/',
   IE: 'https://ovhcloud.com/en-ie/network-security/ovhcloud-connect/',
@@ -66,7 +67,6 @@ export const CTAS = {
   LT: 'https://ovhcloud.com/lt/network-security/ovhcloud-connect/',
   WE: 'https://ovhcloud.com/us-en/network-security/ovhcloud-connect/',
   WS: 'https://ovhcloud.com/us-en/network-security/ovhcloud-connect/',
-  IN: 'https://ovhcloud.com/asia/network-security/ovhcloud-connect/',
 };
 
 export default {

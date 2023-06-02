@@ -1372,8 +1372,8 @@ const constants = {
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
-        dedicatedOrder: 'https://www.ovhcloud.com/asia/bare-metal/prices/',
-        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/asia/',
+        dedicatedOrder: 'https://www.ovhcloud.com/en-in/bare-metal/prices/',
+        dedicatedEcoRangeOrder: 'https://eco.static.ovh.net/en-in/',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',

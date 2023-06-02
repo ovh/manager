@@ -1,6 +1,7 @@
 export const HOSTING_ORDER_URLS = {
   DEFAULT: 'https://ovhcloud.com/en/web-hosting/',
   ASIA: 'https://ovhcloud.com/asia/web-hosting/',
+  IN: 'https://www.ovhcloud.com/en-in/web-hosting/',
   DE: 'https://ovhcloud.com/de/web-hosting/',
   ES: 'https://ovhcloud.com/es-es/web-hosting/',
   IE: 'https://ovhcloud.com/en-ie/web-hosting/',
@@ -22,7 +23,6 @@ export const HOSTING_ORDER_URLS = {
   LT: 'https://ovhcloud.com/lt/web-hosting/',
   WE: 'https://ovhcloud.com/us-en/web-hosting/',
   WS: 'https://ovhcloud.com/us-en/web-hosting/',
-  IN: 'https://ovhcloud.com/asia/web-hosting/',
 };
 
 export function getHostingOrderUrl(subsidiary) {

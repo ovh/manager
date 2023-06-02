@@ -29,7 +29,7 @@ export default {
     AU: 'https://www.ovh.com.au/support/termsofservice/cookies_ovh.xml',
     SG: 'https://www.ovh.com/sg/support/termsofservice/cookies_ovh.xml',
     ASIA: 'https://www.ovh.com/asia/support/termsofservice/cookies_ovh.xml',
-    IN: 'https://www.ovh.com/asia/support/termsofservice/cookies_ovh.xml',
+    IN: 'https://www.ovhcloud.com/en-in/support/termsofservice/cookies_ovh.xml',
   },
   changeOpinionLink: {
     FR:
